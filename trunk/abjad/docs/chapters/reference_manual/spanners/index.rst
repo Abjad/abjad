@@ -32,7 +32,7 @@ The symbols below are black with fixed thickness and predetermined spacing:
 
 	abjad> show(staff)
 
-.. image:: images/example-1.png
+.. image:: images/spanners-1.png
 
 But you can override LilyPond grobs to change the look of spanners:
 
@@ -64,7 +64,7 @@ But you can override LilyPond grobs to change the look of spanners:
 
 	abjad> show(staff)
 
-.. image:: images/example-2.png
+.. image:: images/spanners-2.png
 
 Overriding the components to which spanners attach
 --------------------------------------------------
@@ -106,7 +106,7 @@ You can override LilyPond grobs to change spanners' contents:
 
 	abjad> show(staff)
 
-.. image:: images/example-3.png
+.. image:: images/spanners-3.png
 
 Removing spanner overrides
 --------------------------
@@ -143,4 +143,4 @@ Delete grob overrides you no longer want:
 
 	abjad> show(staff)
 
-.. image:: images/example-4.png
+.. image:: images/spanners-4.png

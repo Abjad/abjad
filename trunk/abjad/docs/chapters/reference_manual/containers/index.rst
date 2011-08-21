@@ -15,7 +15,7 @@ Create a container with components:
 
 	abjad> show(container)
 
-.. image:: images/example-1.png
+.. image:: images/containers-1.png
 
 Or with a note-entry string:
 
@@ -30,7 +30,7 @@ Or with a note-entry string:
 
 	abjad> show(container)
 
-.. image:: images/example-2.png
+.. image:: images/containers-2.png
 
 Inspecting music
 ----------------
@@ -87,7 +87,7 @@ Add one component to the end of a container with ``append``:
 
 	abjad> show(container)
 
-.. image:: images/example-3.png
+.. image:: images/containers-3.png
 
 Adding many components to the end of a container
 ------------------------------------------------
@@ -103,7 +103,7 @@ Add many components to the end of a container with ``extend``:
 
 	abjad> show(container)
 
-.. image:: images/example-4.png
+.. image:: images/containers-4.png
 
 Finding the index of a component
 --------------------------------
@@ -135,7 +135,7 @@ Insert a component by index with ``insert``:
 
 	abjad> show(container)
 
-.. image:: images/example-5.png
+.. image:: images/containers-5.png
 
 Removing a component by index
 -----------------------------
@@ -151,7 +151,7 @@ Remove a component by index with ``pop``:
 
 	abjad> show(container)
 
-.. image:: images/example-6.png
+.. image:: images/containers-6.png
 
 Removing a component by reference
 ---------------------------------
@@ -167,7 +167,7 @@ Remove a component by reference with ``remove``:
 
 	abjad> show(container)
 
-.. image:: images/example-7.png
+.. image:: images/containers-7.png
 
 .. note::
 
@@ -225,7 +225,7 @@ But container names do not appear in notational output:
 
 	abjad> show(score)
 
-.. image:: images/example-8.png
+.. image:: images/containers-8.png
 
 Understanding ``{ }`` and ``<< >>`` in LilyPond
 -----------------------------------------------
@@ -244,7 +244,7 @@ that are to be engraved one after the other::
         d''4 \fermata
     }
 
-.. image:: images/example-9.png
+.. image:: images/containers-9.png
 
 LilyPond uses skeleton ``<< >>`` braces to wrap two or more musical
 expressions that are to be played at the same time::
@@ -275,7 +275,7 @@ expressions that are to be played at the same time::
         }
     >>
 
-.. image:: images/example-10.png
+.. image:: images/containers-10.png
 
 The examples above are both LilyPond input.
 
@@ -317,7 +317,7 @@ Set ``is_parallel`` by hand as necessary:
 	abjad> marktools.LilyPondCommandMark('voiceTwo')(voice_2)
 	abjad> show(staff)
 
-.. image:: images/example-11.png
+.. image:: images/containers-11.png
 
 The staff in the example above is set to parallel after initialization to create
 a type of polyphonic staff:
@@ -383,7 +383,7 @@ The symbols below are black with fixed thickness and predetermined spacing:
 
 	abjad> show(staff)
 
-.. image:: images/example-12.png
+.. image:: images/containers-12.png
 
 But you can override LilyPond grobs to change the look of Abjad containers:
 
@@ -412,7 +412,7 @@ But you can override LilyPond grobs to change the look of Abjad containers:
 
 	abjad> show(staff)
 
-.. image:: images/example-13.png
+.. image:: images/containers-13.png
 
 Overriding containers' contents
 -------------------------------
@@ -447,7 +447,7 @@ You can override LilyPond grobs to change the look of containers' contents, too:
 
 	abjad> show(staff)
 
-.. image:: images/example-14.png
+.. image:: images/containers-14.png
 
 Removing container overrides
 ----------------------------
@@ -480,4 +480,4 @@ Delete grob overrides you no longer want:
 
 	abjad> show(staff)
 
-.. image:: images/example-15.png
+.. image:: images/containers-15.png

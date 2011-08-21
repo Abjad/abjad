@@ -17,7 +17,7 @@ score = Score([treble_staff_1, treble_staff_2])
 
 <abjad>
 show(score)
-iotools.write_expr_to_ly(score, 'example-1') <hide
+iotools.write_expr_to_ly(score, 'scores-1') <hide
 </abjad>
 
 Inspecting score music
@@ -66,7 +66,7 @@ score.append(bass_staff)
 
 <abjad>
 show(score)
-iotools.write_expr_to_ly(score, 'example-2') <hide
+iotools.write_expr_to_ly(score, 'scores-2') <hide
 </abjad>
 
 Finding the index of a score component
@@ -90,7 +90,7 @@ score.pop(1)
 
 <abjad>
 show(score)
-iotools.write_expr_to_ly(score, 'example-3') <hide
+iotools.write_expr_to_ly(score, 'scores-3') <hide
 </abjad>
 
 Removing a score component by reference
@@ -104,7 +104,7 @@ score.remove(treble_staff_1)
 
 <abjad>
 show(score)
-iotools.write_expr_to_ly(score, 'example-4') <hide
+iotools.write_expr_to_ly(score, 'scores-4') <hide
 </abjad>
 
 Testing score containment
@@ -146,5 +146,5 @@ But do not appear in notational output:
 
 <abjad>
 show(score)
-iotools.write_expr_to_ly(score, 'example-5') <hide
+iotools.write_expr_to_ly(score, 'scores-5') <hide
 </abjad>

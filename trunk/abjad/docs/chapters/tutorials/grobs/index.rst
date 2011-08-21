@@ -19,7 +19,7 @@ LilyPond grobs control the typographic details of the score::
     }
 
 
-.. image:: images/example-1.png
+.. image:: images/grob-tutorial-1.png
 
 In the example above LilyPond creates a grob for every printed glyph.
 This includes the clef and time signature as well as the note heads, stems and
@@ -45,7 +45,7 @@ You can change the appearance of LilyPond grobs with grob overrides::
         g'2
     }
 
-.. image:: images/example-2.png
+.. image:: images/grob-tutorial-2.png
 
 Check the LilyPond docs
 -----------------------

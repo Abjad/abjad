@@ -149,7 +149,7 @@ according to the following table:
 <abjad>
 staff = Staff([Note(n, (1, 8)) for n in range(12)])
 show(staff)
-iotools.write_expr_to_ly(staff, 'example-1') <hide
+iotools.write_expr_to_ly(staff, 'pitch-conventions-1') <hide
 </abjad>
 
 Use pitch tools to respell with sharps:
@@ -157,7 +157,7 @@ Use pitch tools to respell with sharps:
 <abjad>
 pitchtools.respell_named_chromatic_pitches_in_expr_with_sharps(staff)
 show(staff)
-iotools.write_expr_to_ly(staff, 'example-2') <hide
+iotools.write_expr_to_ly(staff, 'pitch-conventions-2') <hide
 </abjad>
 
 Or flats:
@@ -165,5 +165,5 @@ Or flats:
 <abjad>
 pitchtools.respell_named_chromatic_pitches_in_expr_with_flats(staff)
 show(staff)
-iotools.write_expr_to_ly(staff, 'example-3') <hide
+iotools.write_expr_to_ly(staff, 'pitch-conventions-3') <hide
 </abjad>

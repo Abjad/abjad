@@ -11,7 +11,7 @@ staff = Staff([note_1, note_2])
 
 <abjad>
 show(staff)
-iotools.write_expr_to_ly(staff, 'example-1') <hide
+iotools.write_expr_to_ly(staff, 'pitch-deviation-1') <hide
 </abjad>
 
 <abjad>
@@ -29,5 +29,5 @@ Use markup to include indications of pitch deviation in your score:
 
 <abjad>
 markuptools.Markup(note_2.written_pitch.deviation_in_cents, 'up')(note_2)
-iotools.write_expr_to_ly(staff, 'example-2') <hide
+iotools.write_expr_to_ly(staff, 'pitch-deviation-2') <hide
 </abjad>

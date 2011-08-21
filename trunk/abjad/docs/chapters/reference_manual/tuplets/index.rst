@@ -15,7 +15,7 @@ You can make an Abjad tuplet from a multiplier and a LilyPond input string:
 
 	abjad> show(tuplet)
 
-.. image:: images/example-1.png
+.. image:: images/tuplets-1.png
 
 Making a tuplet from a list of other Abjad components
 -----------------------------------------------------
@@ -36,7 +36,7 @@ You can also make a tuplet from a multiplier and a list of other Abjad component
 
 	abjad> show(tuplet)
 
-.. image:: images/example-2.png
+.. image:: images/tuplets-2.png
 
 Understanding the interpreter display of a tuplet
 -------------------------------------------------
@@ -230,7 +230,7 @@ Add one component to the end of a tuplet with ``append``:
 
 	abjad> show(tuplet)
 
-.. image:: images/example-3.png
+.. image:: images/tuplets-3.png
 
 Adding many components to the end of a tuplet
 ---------------------------------------------
@@ -247,7 +247,7 @@ Add many components to the end of a tuplet with ``extend``:
 
 	abjad> show(tuplet)
 
-.. image:: images/example-4.png
+.. image:: images/tuplets-4.png
 
 Finding the index of a component in a tuplet
 --------------------------------------------
@@ -286,7 +286,7 @@ Use ``pop()`` to remove a tuplet component by index:
 
 	abjad> show(tuplet)
 
-.. image:: images/example-5.png
+.. image:: images/tuplets-5.png
 
 Removing a tuplet component by reference
 ----------------------------------------
@@ -302,7 +302,7 @@ Remove tuplet components by reference with ``remove()``:
 
 	abjad> show(tuplet)
 
-.. image:: images/example-6.png
+.. image:: images/tuplets-6.png
 
 Overriding attributes of the LilyPond tuplet number grob
 --------------------------------------------------------
@@ -336,7 +336,7 @@ Override attributes of the LilyPond tuplet number grob like this:
 
 	abjad> show(tuplet)
 
-.. image:: images/example-7.png
+.. image:: images/tuplets-7.png
 
 See the LilyPond docs for lists of grob attributes available.
 
@@ -373,6 +373,6 @@ Override attributes of the LilyPond tuplet bracket grob like this:
 
 	abjad> show(tuplet)
 
-.. image:: images/example-8.png
+.. image:: images/tuplets-8.png
 
 See the LilyPond docs for lists of grob attributes available.

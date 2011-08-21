@@ -29,7 +29,7 @@ Add some Abjad code to your HTML between open and close
    <abjad>
    v = Voice(construct.scale(8))
    Beam(v)
-   write_ly(v, 'example-1') <hide
+   write_ly(v, 'abjad-book-1') <hide
    show(v)
    </abjad>
 
@@ -45,7 +45,7 @@ In the terminal, call ``abjad-book`` on ``example.html.raw``. ::
    $ abjad-book example.html.raw example.html
 
    Parsing file...
-   Rendering "example-1.ly"...
+   Rendering "abjad-book-1.ly"...
    
 The application opens ``example.html.raw``, finds all Abjad code between
 \<abjad\> \</abjad\> tags, executes it, and then creates and inserts 
@@ -91,7 +91,7 @@ any LaTeX you create. Type the sample code below into a file. ::
    for inclusion in LaTeX documents.
 
    <abjad>
-   write_ly(measure, 'example-1', 'oedo') <hide
+   write_ly(measure, 'abjad-book-1', 'oedo') <hide
    </abjad>
 
    And this is the end of the our sample LaTeX document.
@@ -107,7 +107,7 @@ In the terminal, call ``abjad-book`` on ``example.tex.raw``. ::
 
    Processing 'example.tex.raw'. Will write output to 'example.tex'...
    Parsing file...
-   Rendering "example-1.ly"...
+   Rendering "abjad-book-1.ly"...
 
 The application open ``example.tex.raw``, finds all code between Abjad tags,
 executes it, and then creates and inserts Abjad interpreter output and
@@ -141,7 +141,7 @@ file ``abjad-book`` has created. ::
    This code renders the measure as a PDF using a template suitable
    for inclusion in LaTeX documents.
 
-   \includegraphics{images/example-1.pdf}
+   \includegraphics{images/abjad-book-1.pdf}
 
    And this is the end of the our sample LaTeX document.
 

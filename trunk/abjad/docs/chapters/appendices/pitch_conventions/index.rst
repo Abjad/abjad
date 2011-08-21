@@ -151,7 +151,7 @@ according to the following table:
 	abjad> staff = Staff([Note(n, (1, 8)) for n in range(12)])
 	abjad> show(staff)
 
-.. image:: images/example-1.png
+.. image:: images/pitch-conventions-1.png
 
 Use pitch tools to respell with sharps:
 
@@ -160,7 +160,7 @@ Use pitch tools to respell with sharps:
 	abjad> pitchtools.respell_named_chromatic_pitches_in_expr_with_sharps(staff)
 	abjad> show(staff)
 
-.. image:: images/example-2.png
+.. image:: images/pitch-conventions-2.png
 
 Or flats:
 
@@ -169,4 +169,4 @@ Or flats:
 	abjad> pitchtools.respell_named_chromatic_pitches_in_expr_with_flats(staff)
 	abjad> show(staff)
 
-.. image:: images/example-3.png
+.. image:: images/pitch-conventions-3.png

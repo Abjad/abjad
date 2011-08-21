@@ -132,5 +132,5 @@ And show the result:
 
 <abjad>
 show(lily_file)
-iotools.write_expr_to_ly(lily_file, 'example-1') <hide
+iotools.write_expr_to_ly(lily_file, 'fernyehouh-1') <hide
 </abjad>

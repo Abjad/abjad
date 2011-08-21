@@ -10,7 +10,7 @@ Many score objects contain other score objects.
 	abjad> score = Score([staff])
 	abjad> show(score)
 
-.. image:: images/example-1.png
+.. image:: images/parentage-tutorial-1.png
 
 Abjad uses the idea of parentage to model the way objects contain each other.
 

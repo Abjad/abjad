@@ -15,7 +15,7 @@ Create staves like this:
 
 	abjad> show(staff)
 
-.. image:: images/example-1.png
+.. image:: images/staves-1.png
 
 Inspecting staff music
 ----------------------
@@ -64,7 +64,7 @@ Add one component to the end of a staff with ``append``:
 
 	abjad> show(staff)
 
-.. image:: images/example-2.png
+.. image:: images/staves-2.png
 
 Adding many components to the end of a staff
 --------------------------------------------
@@ -81,7 +81,7 @@ Add many components to the end of a staff with ``extend``:
 
 	abjad> show(staff)
 
-.. image:: images/example-3.png
+.. image:: images/staves-3.png
 
 Finding the index of a staff component
 --------------------------------------
@@ -120,7 +120,7 @@ Use ``pop`` to remove a staff component by index:
 
 	abjad> show(staff)
 
-.. image:: images/example-4.png
+.. image:: images/staves-4.png
 
 Removing a staff component by reference
 ---------------------------------------
@@ -136,7 +136,7 @@ Remove staff components by reference with ``remove``:
 
 	abjad> show(staff)
 
-.. image:: images/example-5.png
+.. image:: images/staves-5.png
 
 Naming staves
 -------------
@@ -173,7 +173,7 @@ But not in notational output:
 
 	abjad> show(staff)
 
-.. image:: images/example-6.png
+.. image:: images/staves-6.png
 
 Forcing context
 ---------------

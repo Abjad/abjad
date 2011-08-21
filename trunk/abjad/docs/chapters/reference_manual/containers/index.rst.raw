@@ -13,7 +13,7 @@ container = Container([Note("ds'16"), Note("cs'16"), Note("e'16"), Note("c'16")]
 <abjad>
 show(container)
 container.override.staff.time_signature.transparent = True <hide
-iotools.write_expr_to_ly(container, 'example-1') <hide
+iotools.write_expr_to_ly(container, 'containers-1') <hide
 </abjad>
 
 Or with a note-entry string:
@@ -27,7 +27,7 @@ container = Container("ds'16 cs'16 e'16 c'16 d'2 ~ d'8")
 <abjad>
 show(container)
 container.override.staff.time_signature.transparent = True <hide
-iotools.write_expr_to_ly(container, 'example-2') <hide
+iotools.write_expr_to_ly(container, 'containers-2') <hide
 </abjad>
 
 Inspecting music
@@ -78,7 +78,7 @@ container.append(Note("af'32"))
 
 <abjad>
 show(container)
-iotools.write_expr_to_ly(container, 'example-3') <hide
+iotools.write_expr_to_ly(container, 'containers-3') <hide
 </abjad>
 
 Adding many components to the end of a container
@@ -92,7 +92,7 @@ container.extend([Note("c''32"), Note("a'32")])
 
 <abjad>
 show(container)
-iotools.write_expr_to_ly(container, 'example-4') <hide
+iotools.write_expr_to_ly(container, 'containers-4') <hide
 </abjad>
 
 Finding the index of a component
@@ -120,7 +120,7 @@ container.insert(-3, Note("g'32"))
 
 <abjad>
 show(container)
-iotools.write_expr_to_ly(container, 'example-5') <hide
+iotools.write_expr_to_ly(container, 'containers-5') <hide
 </abjad>
 
 Removing a component by index
@@ -134,7 +134,7 @@ container.pop(-1)
 
 <abjad>
 show(container)
-iotools.write_expr_to_ly(container, 'example-6') <hide
+iotools.write_expr_to_ly(container, 'containers-6') <hide
 </abjad>
 
 Removing a component by reference
@@ -148,7 +148,7 @@ container.remove(container[-1])
 
 <abjad>
 show(container)
-iotools.write_expr_to_ly(container, 'example-7') <hide
+iotools.write_expr_to_ly(container, 'containers-7') <hide
 </abjad>
 
 .. note::
@@ -186,7 +186,7 @@ But container names do not appear in notational output:
 
 <abjad>
 show(score)
-iotools.write_expr_to_ly(score, 'example-8') <hide
+iotools.write_expr_to_ly(score, 'containers-8') <hide
 </abjad>
 
 Understanding ``{ }`` and ``<< >>`` in LilyPond
@@ -208,7 +208,7 @@ that are to be engraved one after the other::
 
 <abjad>
 staff = Staff(r"e''4 f''4 g''4 g''4 f''4 e''4 d''4 d''4 \fermata") <hide
-iotools.write_expr_to_ly(staff, 'example-9') <hide
+iotools.write_expr_to_ly(staff, 'containers-9') <hide
 </abjad>
 
 LilyPond uses skeleton ``<< >>`` braces to wrap two or more musical
@@ -247,7 +247,7 @@ staff = Staff([voice_1, voice_2]) <hide
 staff.is_parallel = True <hide
 marktools.LilyPondCommandMark('voiceOne')(voice_1) <hide
 marktools.LilyPondCommandMark('voiceTwo')(voice_2) <hide
-iotools.write_expr_to_ly(staff, 'example-10') <hide
+iotools.write_expr_to_ly(staff, 'containers-10') <hide
 </abjad>
 
 The examples above are both LilyPond input.
@@ -288,7 +288,7 @@ staff.is_parallel = True
 marktools.LilyPondCommandMark('voiceOne')(voice_1)
 marktools.LilyPondCommandMark('voiceTwo')(voice_2)
 show(staff)
-iotools.write_expr_to_ly(staff, 'example-11') <hide
+iotools.write_expr_to_ly(staff, 'containers-11') <hide
 </abjad>
 
 The staff in the example above is set to parallel after initialization to create
@@ -316,7 +316,7 @@ f(staff)
 
 <abjad>
 show(staff)
-iotools.write_expr_to_ly(staff, 'example-12') <hide
+iotools.write_expr_to_ly(staff, 'containers-12') <hide
 </abjad>
 
 But you can override LilyPond grobs to change the look of Abjad containers:
@@ -331,7 +331,7 @@ f(staff)
 
 <abjad>
 show(staff)
-iotools.write_expr_to_ly(staff, 'example-13') <hide
+iotools.write_expr_to_ly(staff, 'containers-13') <hide
 </abjad>
 
 Overriding containers' contents
@@ -350,7 +350,7 @@ f(staff)
 
 <abjad>
 show(staff)
-iotools.write_expr_to_ly(staff, 'example-14') <hide
+iotools.write_expr_to_ly(staff, 'containers-14') <hide
 </abjad>
 
 Removing container overrides
@@ -368,5 +368,5 @@ f(staff)
 
 <abjad>
 show(staff)
-iotools.write_expr_to_ly(staff, 'example-15') <hide
+iotools.write_expr_to_ly(staff, 'containers-15') <hide
 </abjad>

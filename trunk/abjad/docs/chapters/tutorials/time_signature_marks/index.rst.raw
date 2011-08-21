@@ -84,7 +84,7 @@ We find out like this:
 
 <abjad>
 show(staff)
-iotools.write_expr_to_ly(staff, 'example-1') <hide
+iotools.write_expr_to_ly(staff, 'time-signature-tutorial-1') <hide
 </abjad>
 
 It turns out LilyPond defaults to a time signature of ``4/4``.
@@ -208,7 +208,7 @@ Before moving on let's look at the PDF corresponding to our staff:
 
 <abjad>
 show(staff)
-iotools.write_expr_to_ly(staff, 'example-2') <hide
+iotools.write_expr_to_ly(staff, 'time-signature-tutorial-2') <hide
 </abjad>
 
 And let's confirm what we see in the PDF in the staff's format:
@@ -271,7 +271,7 @@ f(staff)
 
 <abjad>
 show(staff)
-iotools.write_expr_to_ly(staff, 'example-3') <hide
+iotools.write_expr_to_ly(staff, 'time-signature-tutorial-3') <hide
 </abjad>
 
 Yup. That works.
@@ -332,7 +332,7 @@ f(staff)
 
 <abjad>
 show(staff)
-iotools.write_expr_to_ly(staff, 'example-4') <hide
+iotools.write_expr_to_ly(staff, 'time-signature-tutorial-4') <hide
 </abjad>
 
 And everything works as it should.
@@ -362,7 +362,7 @@ f(staff)
 
 <abjad>
 show(staff)
-iotools.write_expr_to_ly(staff, 'example-5') <hide
+iotools.write_expr_to_ly(staff, 'time-signature-tutorial-5') <hide
 </abjad>
 
 And what if time signature changes all over the place?
@@ -424,7 +424,7 @@ f(staff)
 
 <abjad>
 show(staff)
-iotools.write_expr_to_ly(staff, 'example-6') <hide
+iotools.write_expr_to_ly(staff, 'time-signature-tutorial-6') <hide
 </abjad>
 
 And everything works as we would like.

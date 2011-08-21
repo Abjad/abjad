@@ -21,7 +21,7 @@ Create a score like this:
 
 	abjad> show(score)
 
-.. image:: images/example-1.png
+.. image:: images/scores-1.png
 
 Inspecting score music
 ----------------------
@@ -76,7 +76,7 @@ Add one component to the bottom of a score with ``append``:
 
 	abjad> show(score)
 
-.. image:: images/example-2.png
+.. image:: images/scores-2.png
 
 Finding the index of a score component
 --------------------------------------
@@ -103,7 +103,7 @@ Use ``pop`` to remove a score component by index:
 
 	abjad> show(score)
 
-.. image:: images/example-3.png
+.. image:: images/scores-3.png
 
 Removing a score component by reference
 ---------------------------------------
@@ -119,7 +119,7 @@ Remove a score component by reference with ``remove``:
 
 	abjad> show(score)
 
-.. image:: images/example-4.png
+.. image:: images/scores-4.png
 
 Testing score containment
 -------------------------
@@ -177,4 +177,4 @@ But do not appear in notational output:
 
 	abjad> show(score)
 
-.. image:: images/example-5.png
+.. image:: images/scores-5.png

@@ -35,7 +35,7 @@ LilyPond uses a single construct to nest tuplets arbitrarily:
 	abjad> staff.override.tuplet_bracket.padding = 1.6
 	abjad> show(staff)
 
-.. image:: images/example-1.png
+.. image:: images/lilypond-1.png
 
 LilyPond's tuplet input syntax works the same as any other recursive construct.
 
@@ -64,7 +64,7 @@ LilyPond engraves tupletted notes interrupted by nontupletted notes correctly:
 	abjad> staff = stafftools.RhythmicStaff([measure])
 	abjad> show(staff)
 
-.. image:: images/example-2.png
+.. image:: images/lilypond-2.png
 
 Nonbinary meters work out of the box
 ------------------------------------
@@ -90,7 +90,7 @@ The rhythm above rewrites with time signatures in place of tuplets:
 	abjad> staff = stafftools.RhythmicStaff([t, u, v])
 	abjad> show(staff)
 
-.. image:: images/example-3.png
+.. image:: images/lilypond-3.png
 
 The time signatures ``4/28`` and ``3/28`` here have a denominator not
 equal to ``4``, ``8``, ``16`` or any other nonnegative integer power of two.

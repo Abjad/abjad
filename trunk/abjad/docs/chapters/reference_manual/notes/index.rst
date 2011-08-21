@@ -15,7 +15,7 @@ You can make notes from string:
 
 	abjad> show(note)
 
-.. image:: images/example-1.png
+.. image:: images/notes-1.png
 
 Making notes from chromatic pitch number and duration
 -----------------------------------------------------
@@ -31,7 +31,7 @@ You can also make notes from chromatic pitch number and duration:
 
 	abjad> show(note)
 
-.. image:: images/example-2.png
+.. image:: images/notes-2.png
 
 (You even use ``Note("c'4")`` to create notes with numbers alone.)
 
@@ -55,7 +55,7 @@ And you can change the written pitch of notes:
 
 	abjad> note.written_pitch = "cs'"
 
-.. image:: images/example-3.png
+.. image:: images/notes-3.png
 
 (You can use ``note.written_pitch = 1`` to change pitch with numbers, too.)
 
@@ -97,7 +97,7 @@ Except for notes inside a tuplet:
 
 	abjad> show(tuplet)
 
-.. image:: images/example-4.png
+.. image:: images/notes-4.png
 
 ::
 
@@ -144,7 +144,7 @@ You can change the written duration of notes:
 
 	abjad> show(tuplet)
 
-.. image:: images/example-5.png
+.. image:: images/notes-5.png
 
 Other duration attributes are read-only.
 
@@ -179,7 +179,7 @@ The notes below are black with fixed thickness and predetermined spacing:
 
 	abjad> show(staff)
 
-.. image:: images/example-6.png
+.. image:: images/notes-6.png
 
 But you can override LilyPond grobs to change the look of notes, rests and chords:
 
@@ -209,7 +209,7 @@ But you can override LilyPond grobs to change the look of notes, rests and chord
 
 	abjad> show(staff)
 
-.. image:: images/example-7.png
+.. image:: images/notes-7.png
 
 Removing note overrides
 -----------------------
@@ -240,4 +240,4 @@ Delete grob overrides you no longer want:
 
 	abjad> show(staff)
 
-.. image:: images/example-8.png
+.. image:: images/notes-8.png

@@ -89,7 +89,7 @@ We find out like this:
 
 	abjad> show(staff)
 
-.. image:: images/example-1.png
+.. image:: images/time-signature-tutorial-1.png
 
 It turns out LilyPond defaults to a time signature of ``4/4``.
 
@@ -224,7 +224,7 @@ Before moving on let's look at the PDF corresponding to our staff:
 
 	abjad> show(staff)
 
-.. image:: images/example-2.png
+.. image:: images/time-signature-tutorial-2.png
 
 And let's confirm what we see in the PDF in the staff's format:
 
@@ -301,7 +301,7 @@ We can simply create and attach a new time signature mark:
 
 	abjad> show(staff)
 
-.. image:: images/example-3.png
+.. image:: images/time-signature-tutorial-3.png
 
 Yup. That works.
 
@@ -385,7 +385,7 @@ To do this we'll first detach our ``2/4`` time signature mark ...
 
 	abjad> show(staff)
 
-.. image:: images/example-4.png
+.. image:: images/time-signature-tutorial-4.png
 
 And everything works as it should.
 
@@ -437,7 +437,7 @@ Abjad time signature marks implement this as a read / write attribute:
 
 	abjad> show(staff)
 
-.. image:: images/example-5.png
+.. image:: images/time-signature-tutorial-5.png
 
 And what if time signature changes all over the place?
 
@@ -532,7 +532,7 @@ We do that like this:
 
 	abjad> show(staff)
 
-.. image:: images/example-6.png
+.. image:: images/time-signature-tutorial-6.png
 
 And everything works as we would like.
 

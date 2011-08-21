@@ -33,7 +33,7 @@ Tuplet(Fraction(7, 8), measure.music)
 staff.override.tuplet_bracket.bracket_visibility = True
 staff.override.tuplet_bracket.padding = 1.6
 show(staff)
-iotools.write_expr_to_ly(staff, 'example-1', 'oedo') <hide
+iotools.write_expr_to_ly(staff, 'lilypond-1', 'oedo') <hide
 </abjad>
 
 LilyPond's tuplet input syntax works the same as any other recursive construct.
@@ -61,7 +61,7 @@ spannertools.BeamSpanner(u)
 measure = Measure((4, 8), [t] + notes + [u])
 staff = stafftools.RhythmicStaff([measure])
 show(staff)
-iotools.write_expr_to_ly(staff, 'example-2', 'oedo') <hide
+iotools.write_expr_to_ly(staff, 'lilypond-2', 'oedo') <hide
 </abjad>
 
 Nonbinary meters work out of the box
@@ -86,7 +86,7 @@ spannertools.BeamSpanner(u)
 spannertools.BeamSpanner(v)
 staff = stafftools.RhythmicStaff([t, u, v])
 show(staff)
-iotools.write_expr_to_ly(staff, 'example-3') <hide
+iotools.write_expr_to_ly(staff, 'lilypond-3') <hide
 </abjad>
 
 The time signatures ``4/28`` and ``3/28`` here have a denominator not

@@ -15,7 +15,7 @@ You can make rests from a string:
 
 	abjad> show(rest)
 
-.. image:: images/example-1.png
+.. image:: images/rests-1.png
 
 Making rests from durations
 ---------------------------
@@ -31,7 +31,7 @@ You can also make rests from a duration:
 
 	abjad> show(rest)
 
-.. image:: images/example-2.png
+.. image:: images/rests-2.png
 
 (You can even use ``Rest((1, 8))`` to make rests from a duration pair.)
 
@@ -73,7 +73,7 @@ Except for rests inside a tuplet:
 
 	abjad> show(tuplet)
 
-.. image:: images/example-3.png
+.. image:: images/rests-3.png
 
 ::
 
@@ -120,6 +120,6 @@ You can change the written duration of notes and rests:
 
 	abjad> show(tuplet)
 
-.. image:: images/example-4.png
+.. image:: images/rests-4.png
 
 Other duration attributes are read-only.

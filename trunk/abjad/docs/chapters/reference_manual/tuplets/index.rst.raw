@@ -13,7 +13,7 @@ tuplet = Tuplet(Fraction(2, 3), "c'8 d'8 e'8")
 <abjad>
 show(tuplet)
 measure = measuretools.AnonymousMeasure([tuplet]) <hide
-iotools.write_expr_to_ly(measure, 'example-1') <hide
+iotools.write_expr_to_ly(measure, 'tuplets-1') <hide
 </abjad>
 
 Making a tuplet from a list of other Abjad components
@@ -32,7 +32,7 @@ measure = measuretools.AnonymousMeasure([tuplet]) <hide
 
 <abjad>
 show(tuplet)
-iotools.write_expr_to_ly(measure, 'example-2') <hide
+iotools.write_expr_to_ly(measure, 'tuplets-2') <hide
 </abjad>
 
 Understanding the interpreter display of a tuplet
@@ -204,7 +204,7 @@ measure = measuretools.AnonymousMeasure([tuplet]) <hide
 
 <abjad>
 show(tuplet)
-iotools.write_expr_to_ly(measure, 'example-3') <hide
+iotools.write_expr_to_ly(measure, 'tuplets-3') <hide
 </abjad>
 
 Adding many components to the end of a tuplet
@@ -221,7 +221,7 @@ measure = measuretools.AnonymousMeasure([tuplet]) <hide
 
 <abjad>
 show(tuplet)
-iotools.write_expr_to_ly(measure, 'example-4') <hide
+iotools.write_expr_to_ly(measure, 'tuplets-4') <hide
 </abjad>
 
 Finding the index of a component in a tuplet
@@ -256,7 +256,7 @@ spannertools.BeamSpanner(tuplet[-3:]) <hide
 
 <abjad>
 show(tuplet)
-iotools.write_expr_to_ly(measure, 'example-5') <hide
+iotools.write_expr_to_ly(measure, 'tuplets-5') <hide
 </abjad>
 
 Removing a tuplet component by reference
@@ -270,7 +270,7 @@ tuplet.remove(tuplet[3])
 
 <abjad>
 show(tuplet)
-iotools.write_expr_to_ly(measure, 'example-6') <hide
+iotools.write_expr_to_ly(measure, 'tuplets-6') <hide
 </abjad>
 
 Overriding attributes of the LilyPond tuplet number grob
@@ -289,7 +289,7 @@ f(tuplet)
 
 <abjad>
 show(tuplet)
-iotools.write_expr_to_ly(measure, 'example-7') <hide
+iotools.write_expr_to_ly(measure, 'tuplets-7') <hide
 </abjad>
 
 See the LilyPond docs for lists of grob attributes available.
@@ -309,7 +309,7 @@ f(tuplet)
 
 <abjad>
 show(tuplet)
-iotools.write_expr_to_ly(measure, 'example-8') <hide
+iotools.write_expr_to_ly(measure, 'tuplets-8') <hide
 </abjad>
 
 See the LilyPond docs for lists of grob attributes available.

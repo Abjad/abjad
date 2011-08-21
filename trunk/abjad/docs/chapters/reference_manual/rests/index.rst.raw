@@ -13,7 +13,7 @@ rest = Rest('r8')
 <abjad>
 show(rest)
 measure = measuretools.AnonymousMeasure([rest]) <hide
-iotools.write_expr_to_ly(measure, 'example-1', 'oedo.ly') <hide
+iotools.write_expr_to_ly(measure, 'rests-1', 'oedo.ly') <hide
 </abjad>
 
 Making rests from durations
@@ -28,7 +28,7 @@ rest = Rest(Duration(1, 4))
 <abjad>
 show(rest)
 measure = measuretools.AnonymousMeasure([rest]) <hide
-iotools.write_expr_to_ly(measure, 'example-2', 'oedo.ly') <hide
+iotools.write_expr_to_ly(measure, 'rests-2', 'oedo.ly') <hide
 </abjad>
 
 (You can even use ``Rest((1, 8))`` to make rests from a duration pair.)
@@ -66,7 +66,7 @@ tuplet = Tuplet(Fraction(2, 3), [Note("c'4"), Rest('r4'), Note("e'4")])
 <abjad>
 show(tuplet)
 measure = measuretools.AnonymousMeasure([tuplet]) <hide
-iotools.write_expr_to_ly(measure, 'example-3', 'oedo.ly') <hide
+iotools.write_expr_to_ly(measure, 'rests-3', 'oedo.ly') <hide
 </abjad>
 
 <abjad>
@@ -108,7 +108,7 @@ spannertools.BeamSpanner(tuplet) <hide
 
 <abjad>
 show(tuplet)
-iotools.write_expr_to_ly(measure, 'example-4', 'oedo.ly') <hide
+iotools.write_expr_to_ly(measure, 'rests-4', 'oedo.ly') <hide
 </abjad>
 
 Other duration attributes are read-only.

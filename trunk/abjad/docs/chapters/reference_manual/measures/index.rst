@@ -24,7 +24,7 @@ In LilyPond you specify time signatures by hand and LilyPond creates measures au
         c'2
     }
 
-.. image:: images/example-1.png
+.. image:: images/measures-1.png
 
 Here LilyPond creates five measures from two time signatures.
 This happens because behind-the-scenes LilyPond time-keeping tells the program
@@ -50,7 +50,7 @@ Measures are optional in Abjad, too, and you may omit them in favor of time sign
 
 	abjad> show(staff)
 
-.. image:: images/example-1.png
+.. image:: images/measures-1.png
 
 But you may also include explicit measures in the Abjad scores you build.
 The following sections explain how.
@@ -80,7 +80,7 @@ Create a measure with a meter and music:
 
 	abjad> show(measure)
 
-.. image:: images/example-2.png
+.. image:: images/measures-2.png
 
 Working with dynamic measures
 -----------------------------
@@ -99,7 +99,7 @@ Create dynamic measures without a time signature:
 
 	abjad> show(measure)
 
-.. image:: images/example-3.png
+.. image:: images/measures-3.png
 
 Adding music to dynamic measures
 --------------------------------
@@ -115,7 +115,7 @@ Add music to dynamic measures the same as to all containers:
 
 	abjad> show(measure)
 
-.. image:: images/example-4.png
+.. image:: images/measures-4.png
 
 Removing music from dynamic measures
 ------------------------------------
@@ -131,7 +131,7 @@ Remove music from dynamic measures the same as with other containers:
 
 	abjad> show(measure)
 
-.. image:: images/example-5.png
+.. image:: images/measures-5.png
 
 Setting the denominator of dynamic measures
 -------------------------------------------
@@ -147,7 +147,7 @@ You can set the denominator of dynamic measures to any integer power of ``2``:
 
 	abjad> show(measure)
 
-.. image:: images/example-6.png
+.. image:: images/measures-6.png
 
 Suppressing the meter of dynamic measures
 -----------------------------------------
@@ -187,7 +187,7 @@ Create anonymous measures without a time signature:
 
 	abjad> show(measure)
 
-.. image:: images/example-7.png
+.. image:: images/measures-7.png
 
 Adding music to anonymous measures
 ----------------------------------
@@ -203,7 +203,7 @@ Add music to anonymous measures the same as to other containers:
 
 	abjad> show(measure)
 
-.. image:: images/example-8.png
+.. image:: images/measures-8.png
 
 Removing music from anonymous measures
 --------------------------------------
@@ -219,4 +219,4 @@ Remove music from anonymous measure the same as from other containers:
 
 	abjad> show(measure)
 
-.. image:: images/example-9.png
+.. image:: images/measures-9.png

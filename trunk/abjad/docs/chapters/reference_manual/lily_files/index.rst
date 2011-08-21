@@ -26,8 +26,8 @@ that appear in file output:
 ::
 
 	abjad> f(lily_file)
-	% Abjad revision 4650
-	% 2011-08-21 12:10
+	% Abjad revision 4651
+	% 2011-08-21 13:58
 	
 	\version "2.15.8"
 	\include "english.ly"
@@ -56,8 +56,8 @@ Set default LilyPond paper size like this:
 ::
 
 	abjad> f(lily_file)
-	% Abjad revision 4650
-	% 2011-08-21 12:10
+	% Abjad revision 4651
+	% 2011-08-21 13:58
 	
 	\version "2.15.8"
 	\include "english.ly"
@@ -88,8 +88,8 @@ Set global staff size like this:
 ::
 
 	abjad> f(lily_file)
-	% Abjad revision 4650
-	% 2011-08-21 12:10
+	% Abjad revision 4651
+	% 2011-08-21 13:58
 	
 	\version "2.15.8"
 	\include "english.ly"

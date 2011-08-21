@@ -15,7 +15,7 @@ You can make chords from a LilyPond input string:
 
 	abjad> show(chord)
 
-.. image:: images/example-1.png
+.. image:: images/chords-1.png
 
 Making chords from chromatic pitch numbers and duration
 -------------------------------------------------------
@@ -31,7 +31,7 @@ You can also make chords from chromatic pitch numbers and duration:
 
 	abjad> show(chord)
 
-.. image:: images/example-2.png
+.. image:: images/chords-2.png
 
 Getting all the written pitches of a chord at once
 --------------------------------------------------
@@ -75,7 +75,7 @@ You can add a pitch to a chord with a chromatic pitch number:
 
 	abjad> show(chord)
 
-.. image:: images/example-3.png
+.. image:: images/chords-3.png
 
 Or you can add a pitch to a chord with a chromatic pitch name:
 
@@ -88,7 +88,7 @@ Or you can add a pitch to a chord with a chromatic pitch name:
 
 	abjad> show(chord)
 
-.. image:: images/example-4.png
+.. image:: images/chords-4.png
 
 Chords sort their pitches every time you add a new one.
 
@@ -110,7 +110,7 @@ You can use chromatic pitch numbers:
 
 	abjad> show(chord)
 
-.. image:: images/example-5.png
+.. image:: images/chords-5.png
 
 Or you can chromatic pitch names:
 
@@ -123,7 +123,7 @@ Or you can chromatic pitch names:
 
 	abjad> show(chord)
 
-.. image:: images/example-6.png
+.. image:: images/chords-6.png
 
 Deleting pitches from a chord
 -----------------------------
@@ -139,7 +139,7 @@ Delete pitches from a chord with ``del()``:
 
 	abjad> show(chord)
 
-.. image:: images/example-7.png
+.. image:: images/chords-7.png
 
 ::
 
@@ -150,7 +150,7 @@ Delete pitches from a chord with ``del()``:
 
 	abjad> show(chord)
 
-.. image:: images/example-8.png
+.. image:: images/chords-8.png
 
 Negative indices work too:
 
@@ -163,7 +163,7 @@ Negative indices work too:
 
 	abjad> show(chord)
 
-.. image:: images/example-8.png
+.. image:: images/chords-8.png
 
 Formatting chords
 -----------------
@@ -226,7 +226,7 @@ This is useful when you want to apply LilyPond overrides to note heads in a chor
 
 	abjad> show(chord)
 
-.. image:: images/example-9.png
+.. image:: images/chords-9.png
 
 
 Working with empty chords
@@ -263,4 +263,4 @@ into it chord in any of the ways described above:
 
 	abjad> show(chord)
 
-.. image:: images/example-10.png
+.. image:: images/chords-10.png

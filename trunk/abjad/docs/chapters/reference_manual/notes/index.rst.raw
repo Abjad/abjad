@@ -13,7 +13,7 @@ note = Note("c'4")
 <abjad>
 show(note)
 measure = measuretools.AnonymousMeasure([note]) <hide
-iotools.write_expr_to_ly(measure, 'example-1', 'oedo.ly') <hide
+iotools.write_expr_to_ly(measure, 'notes-1', 'oedo.ly') <hide
 </abjad>
 
 Making notes from chromatic pitch number and duration
@@ -28,7 +28,7 @@ note = Note(0, Duration(1, 4))
 <abjad>
 show(note)
 measure = measuretools.AnonymousMeasure([note]) <hide
-iotools.write_expr_to_ly(measure, 'example-2', 'oedo.ly') <hide
+iotools.write_expr_to_ly(measure, 'notes-2', 'oedo.ly') <hide
 </abjad>
 
 (You even use ``Note("c'4")`` to create notes with numbers alone.)
@@ -50,7 +50,7 @@ And you can change the written pitch of notes:
 
 <abjad>
 note.written_pitch = "cs'"
-iotools.write_expr_to_ly(measure, 'example-3', 'oedo.ly') <hide
+iotools.write_expr_to_ly(measure, 'notes-3', 'oedo.ly') <hide
 </abjad>
 
 (You can use ``note.written_pitch = 1`` to change pitch with numbers, too.)
@@ -88,7 +88,7 @@ tuplet = Tuplet(Fraction(2, 3), [Note("c'4"), Note("d'4"), Note("e'4")])
 <abjad>
 show(tuplet)
 measure = measuretools.AnonymousMeasure([tuplet]) <hide
-iotools.write_expr_to_ly(measure, 'example-4', 'oedo.ly') <hide
+iotools.write_expr_to_ly(measure, 'notes-4', 'oedo.ly') <hide
 </abjad>
 
 <abjad>
@@ -130,7 +130,7 @@ spannertools.BeamSpanner(tuplet) <hide
 
 <abjad>
 show(tuplet)
-iotools.write_expr_to_ly(measure, 'example-5', 'oedo.ly') <hide
+iotools.write_expr_to_ly(measure, 'notes-5', 'oedo.ly') <hide
 </abjad>
 
 Other duration attributes are read-only.
@@ -153,7 +153,7 @@ f(staff)
 
 <abjad>
 show(staff)
-iotools.write_expr_to_ly(staff, 'example-6') <hide
+iotools.write_expr_to_ly(staff, 'notes-6') <hide
 </abjad>
 
 But you can override LilyPond grobs to change the look of notes, rests and chords:
@@ -169,7 +169,7 @@ f(staff)
 
 <abjad>
 show(staff)
-iotools.write_expr_to_ly(staff, 'example-7') <hide
+iotools.write_expr_to_ly(staff, 'notes-7') <hide
 </abjad>
 
 Removing note overrides
@@ -187,5 +187,5 @@ f(staff)
 
 <abjad>
 show(staff)
-iotools.write_expr_to_ly(staff, 'example-8') <hide
+iotools.write_expr_to_ly(staff, 'notes-8') <hide
 </abjad>

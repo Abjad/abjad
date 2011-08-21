@@ -14,7 +14,7 @@ Use deviation to model the fact that two pitches differ by a fraction of a semit
 
 	abjad> show(staff)
 
-.. image:: images/example-1.png
+.. image:: images/pitch-deviation-1.png
 
 ::
 
@@ -35,4 +35,4 @@ Use markup to include indications of pitch deviation in your score:
 
 	abjad> markuptools.Markup(note_2.written_pitch.deviation_in_cents, 'up')(note_2)
 
-.. image:: images/example-2.png
+.. image:: images/pitch-deviation-2.png

@@ -27,7 +27,7 @@ slur_3 = spannertools.SlurSpanner(staff[4:6]) <hide
 
 <abjad>
 show(staff) <hide
-iotools.write_expr_to_ly(staff, 'example-1') <hide
+iotools.write_expr_to_ly(staff, 'grob-tutorial-1') <hide
 </abjad>
 
 In the example above LilyPond creates a grob for every printed glyph.
@@ -58,7 +58,7 @@ You can change the appearance of LilyPond grobs with grob overrides::
 staff.override.staff_symbol.color = 'blue' <hide
 staff.override.note_head.color = 'red' <hide
 staff.override.stem.color = 'red' <hide
-iotools.write_expr_to_ly(staff, 'example-2') <hide
+iotools.write_expr_to_ly(staff, 'grob-tutorial-2') <hide
 </abjad>
 
 Check the LilyPond docs

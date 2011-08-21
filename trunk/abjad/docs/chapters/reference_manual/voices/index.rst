@@ -15,7 +15,7 @@ You can make an Abjad voice from a LilyPond input string:
 
 	abjad> show(voice)
 
-.. image:: images/example-1.png
+.. image:: images/voices-1.png
 
 Making a voice from a list of other Abjad components
 ----------------------------------------------------
@@ -36,7 +36,7 @@ You can also make a voice from a list of other Abjad components:
 
 	abjad> show(voice)
 
-.. image:: images/example-2.png
+.. image:: images/voices-2.png
 
 Understanding the ``repr`` of a voice
 -------------------------------------
@@ -178,7 +178,7 @@ Add one component to the end of a voice with ``append``:
 
 	abjad> show(voice)
 
-.. image:: images/example-3.png
+.. image:: images/voices-3.png
 
 Adding many components to the end of a voice
 --------------------------------------------
@@ -195,7 +195,7 @@ Add many components to the end of a voice with ``extend``:
 
 	abjad> show(voice)
 
-.. image:: images/example-4.png
+.. image:: images/voices-4.png
 
 Finding the index of a component in a voice
 -------------------------------------------
@@ -234,7 +234,7 @@ Use ``pop()`` to remove a voice component by index:
 
 	abjad> show(voice)
 
-.. image:: images/example-5.png
+.. image:: images/voices-5.png
 
 Removing a voice component by reference
 ---------------------------------------
@@ -250,7 +250,7 @@ Remove voice components by reference with ``remove()``:
 
 	abjad> show(voice)
 
-.. image:: images/example-6.png
+.. image:: images/voices-6.png
 
 Naming voices
 -------------
@@ -285,7 +285,7 @@ But not in notational output:
 
 	abjad> show(voice)
 
-.. image:: images/example-7.png
+.. image:: images/voices-7.png
 
 Changing the context of a voice
 -------------------------------

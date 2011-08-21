@@ -8,7 +8,7 @@ tuplet = Tuplet(Fraction(2, 3), "c'4 d'4 e'4")
 staff = Staff(2 * tuplet)
 score = Score([staff])
 show(score)
-iotools.write_expr_to_ly(score, 'example-1', 'oedo') <hide
+iotools.write_expr_to_ly(score, 'parentage-tutorial-1', 'oedo') <hide
 </abjad>
 
 Abjad uses the idea of parentage to model the way objects contain each other.

@@ -12,7 +12,7 @@ voice = Voice("c'8 d'8 e'8 f'8 g'8 a'8 b'4 c''1")
 
 <abjad>
 show(voice)
-iotools.write_expr_to_ly(voice, 'example-1') <hide
+iotools.write_expr_to_ly(voice, 'voices-1') <hide
 </abjad>
 
 Making a voice from a list of other Abjad components
@@ -30,7 +30,7 @@ voice = Voice(components)
 
 <abjad>
 show(voice)
-iotools.write_expr_to_ly(voice, 'example-2') <hide
+iotools.write_expr_to_ly(voice, 'voices-2') <hide
 </abjad>
 
 Understanding the ``repr`` of a voice
@@ -151,7 +151,7 @@ voice.append(Note("af'2"))
 
 <abjad>
 show(voice)
-iotools.write_expr_to_ly(voice, 'example-3') <hide
+iotools.write_expr_to_ly(voice, 'voices-3') <hide
 </abjad>
 
 Adding many components to the end of a voice
@@ -166,7 +166,7 @@ voice.extend(notes)
 
 <abjad>
 show(voice)
-iotools.write_expr_to_ly(voice, 'example-4') <hide
+iotools.write_expr_to_ly(voice, 'voices-4') <hide
 </abjad>
 
 Finding the index of a component in a voice
@@ -200,7 +200,7 @@ voice.pop(5)
 
 <abjad>
 show(voice)
-iotools.write_expr_to_ly(voice, 'example-5') <hide
+iotools.write_expr_to_ly(voice, 'voices-5') <hide
 </abjad>
 
 Removing a voice component by reference
@@ -214,7 +214,7 @@ voice.remove(voice[-1])
 
 <abjad>
 show(voice)
-iotools.write_expr_to_ly(voice, 'example-6') <hide
+iotools.write_expr_to_ly(voice, 'voices-6') <hide
 </abjad>
 
 Naming voices
@@ -236,7 +236,7 @@ But not in notational output:
 
 <abjad>
 show(voice)
-iotools.write_expr_to_ly(voice, 'example-7') <hide
+iotools.write_expr_to_ly(voice, 'voices-7') <hide
 </abjad>
 
 Changing the context of a voice
