@@ -37,14 +37,15 @@ Reference manual
     :numbered:
 
     chapters/reference_manual/annotations/index
+    chapters/reference_manual/articulations/index
     chapters/reference_manual/chords/index
-    chapters/reference_manual/comments/index
     chapters/reference_manual/containers/index
     chapters/reference_manual/instrument_marks/index
-    chapters/reference_manual/lily_files/index
+    chapters/reference_manual/lilypond_comments/index
+    chapters/reference_manual/lilypond_files/index
     chapters/reference_manual/measures/index
     chapters/reference_manual/notes/index
-    chapters/reference_manual/pitch/named_chromatic_pitch/index
+    chapters/reference_manual/named_chromatic_pitch/index
     chapters/reference_manual/rests/index
     chapters/reference_manual/scores/index
     chapters/reference_manual/spanners/index
