@@ -20,7 +20,7 @@ staff = stafftools.RhythmicStaff([measure])
 note = measure[0]
 note.written_duration
 print repr(note.written_duration) <hide
-iotools.write_expr_to_ly(staff, 'written_dur1', 'oedo') <hide
+iotools.write_expr_to_ly(staff, 'duration-types-1', 'oedo') <hide
 </abjad>
 
 These sixteenth notes are worth more than a sixteenth of a whole note:
@@ -33,7 +33,7 @@ staff = stafftools.RhythmicStaff([measure])
 note = tuplet[0]
 note.written_duration
 print repr(note.written_duration) <hide
-iotools.write_expr_to_ly(staff, 'written_dur2', 'oedo') <hide
+iotools.write_expr_to_ly(staff, 'duration-types-2', 'oedo') <hide
 </abjad>
 
 The notes in these examples are 'sixteenth notes' that carry different prolated durations.
@@ -82,7 +82,7 @@ measure = Measure((4, 8), notes + [tuplet])
 staff = stafftools.RhythmicStaff([measure])
 measure.contents_duration
 print repr(measure.contents_duration) <hide
-iotools.write_expr_to_ly(staff, 'contents_dur1', 'oedo') <hide
+iotools.write_expr_to_ly(staff, 'duration-types-3', 'oedo') <hide
 </abjad>
 
 The contents duration of the measure here equals 1/8 + 1/8 + 2/8 = 4/8.
@@ -102,7 +102,7 @@ spannertools.BeamSpanner(tuplet)
 measure = Measure((4, 8), [tuplet])
 staff = stafftools.RhythmicStaff([measure])
 print tuplet.contents_duration
-iotools.write_expr_to_ly(staff, 'target_dur1', 'oedo') <hide
+iotools.write_expr_to_ly(staff, 'duration-types-4', 'oedo') <hide
 tuplet.target_duration
 print repr(tuplet.target_duration) <hide
 </abjad>
@@ -128,7 +128,7 @@ staff = stafftools.RhythmicStaff([measure])
 note = measure[0]
 note.written_duration
 print repr(note.written_duration) <hide
-iotools.write_expr_to_ly(staff, 'multiplied_dur1', 'oedo') <hide
+iotools.write_expr_to_ly(staff, 'duration-types-5', 'oedo') <hide
 </abjad>
 
 <abjad>

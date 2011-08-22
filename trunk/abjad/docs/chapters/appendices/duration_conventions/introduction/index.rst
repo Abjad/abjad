@@ -14,7 +14,7 @@ Notes, rests, chords and skips carry some duration attributes:
 	abjad> note.written_duration
 	Duration(3, 16)
 
-.. image:: images/example1.png
+.. image:: images/duration-introduction-1.png
 
 Tuplets, measures, voices, staves and the other containers carry duration attributes, too:
 
@@ -26,6 +26,6 @@ Tuplets, measures, voices, staves and the other containers carry duration attrib
 	abjad> tuplet.multiplier
 	Duration(3, 5)
 
-.. image:: images/example2.png
+.. image:: images/duration-introduction-2.png
 
 The next chapters document core duration concepts in Abjad.

@@ -37,7 +37,6 @@ Reference manual
     :numbered:
 
     chapters/reference_manual/annotations/index
-    chapters/reference_manual/articulations/index
     chapters/reference_manual/chords/index
     chapters/reference_manual/containers/index
     chapters/reference_manual/instrument_marks/index
@@ -99,7 +98,7 @@ Appendices
     chapters/appendices/pitch_conventions/index
     chapters/appendices/pitch_deviation/index
     chapters/appendices/duration_conventions/index
-    chapters/appendices/abjad_templates/index
+    chapters/appendices/templates/index
     chapters/appendices/text_alignment/index
     chapters/appendices/abjad_book/index
     chapters/appendices/colors/index

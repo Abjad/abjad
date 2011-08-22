@@ -10,7 +10,7 @@ two complementary and completely independent layers of structure: a
 *tree* that includes the Containers and the Leaves, and a layer of
 free floating *connectors* or Spanners.
 
-.. image:: images/container_spanner.png
+.. image:: images/container-spanner.png
 
 There can be any number of Spanners, they may overlap, and they may
 connect to different levels of the tree hierarchy. The spanner
@@ -25,7 +25,7 @@ Abjad, it is probably easier to base the discussion on concrete
 musical examples. Let's begin with a simple and rather abstract
 musical fragment: a measure with nested tuplets.
 
-.. image:: images/1.png
+.. image:: images/lcs-1.png
 
 What we see in this little fragment is a measure with 4/4 meter, 14
 notes and four tuplet brackets prolating the notes. The three bottom
@@ -59,15 +59,15 @@ alternatives:
 
 Beaming alternative 1:
 
-.. image:: images/2.png
+.. image:: images/lcs-2.png
 
 Beaming alternative 2:
 
-.. image:: images/3.png
+.. image:: images/lcs-3.png
 
 Beaming alternative 3:
 
-.. image:: images/4.png
+.. image:: images/lcs-4.png
 
 Clearly the beaming of notes can be totally independent from the
 tuplet groupings. Beaming across tuplet groups implies beaming across
@@ -82,7 +82,7 @@ represent spanners.
 
 Beaming alternative 3 (graph):
 
-.. image:: images/lcs_tuplet_spanned.png
+.. image:: images/lcs-tuplet-spanned.png
 
 Example 2
 ---------
@@ -92,7 +92,7 @@ As a second example let's look at the last five measures of Bartók's
 five measures carry with them a lot of information pertaining to
 musical notation.
 
-.. image:: images/bartok_wandering.png
+.. image:: images/bartok-wandering.png
 
 .. note::
    Please refer to the :doc:`Bartok example 
@@ -127,7 +127,7 @@ measures, and each measure is composed of a series of notes. So again
 we find that the score structure can be organized hierarchically as a
 tree. This tree structure looks like this:
 
-.. image:: images/bartok_wandering_graph.png
+.. image:: images/bartok-wandering-graph.png
 
 Notice again though that there are elements in the score that imply
 and require a different kind of grouping. The two four eighth-note

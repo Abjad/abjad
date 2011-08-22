@@ -38,7 +38,7 @@ markuptools.Markup('XX', 'up')(leaves[1])
 leaves[1].override.text_script.self_alignment_X = 'center'
 markuptools.Markup('XX', 'up')(leaves[2])
 leaves[2].override.text_script.self_alignment_X = 'right'
-iotools.write_expr_to_ly(staff, 'self-alignment-X-alone', template = 'thebes') <hide
+iotools.write_expr_to_ly(staff, 'self-alignment-x-alone', template = 'thebes') <hide
 show(staff, 'thebes')
 </abjad>
 
@@ -68,6 +68,6 @@ markuptools.Markup('XX', 'up')(leaves[2])
 leaves[2].override.text_script.X_offset = 4
 markuptools.Markup('XX', 'up')(leaves[3])
 leaves[3].override.text_script.X_offset = 6
-iotools.write_expr_to_ly(staff, 'X-offset-alone', template = 'thebes') <hide
+iotools.write_expr_to_ly(staff, 'x-offset-alone', template = 'thebes') <hide
 show(staff, 'thebes')
 </abjad>

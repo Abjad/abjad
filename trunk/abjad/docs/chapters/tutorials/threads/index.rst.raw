@@ -43,7 +43,7 @@ What are threads for?
 
 Consider the following situation:
 
-.. image:: images/thread-resolution_1.png
+.. image:: images/thread-resolution-1.png
 
 Are the two eighth notes in the second half of the measure the continuation
 of the ascending line in the first half, or is it the quarter note?
@@ -68,7 +68,7 @@ marktools.LilyPondCommandMark('voiceTwo')(vC[0])
 p = Container([vB, vC])
 p.is_parallel = True
 staff = Staff([vA, p])
-iotools.write_expr_to_ly(staff, 'thread-resolution_1', 'oedo') <hide
+iotools.write_expr_to_ly(staff, 'thread-resolution-1', 'oedo') <hide
 </abjad>
 
 There's a staff that sequentially contains a voice and a parallel container.
@@ -216,7 +216,7 @@ spannertools.SlurSpanner(list(notes))
 
 <abjad>
 show(staff)
-iotools.write_expr_to_ly(staff, 'thread-resolution_2', 'oedo') <hide
+iotools.write_expr_to_ly(staff, 'thread-resolution-2', 'oedo') <hide
 </abjad>
 
 Coda
@@ -232,5 +232,5 @@ marktools.LilyPondCommandMark('voiceOne')(vX[0])
 marktools.LilyPondCommandMark('voiceTwo')(vY[0])
 staff = Staff([vX, vY])
 staff.is_parallel = True
-iotools.write_expr_to_ly(staff, 'thread-resolution_3', 'oedo') <hide
+iotools.write_expr_to_ly(staff, 'thread-resolution-3', 'oedo') <hide
 </abjad>

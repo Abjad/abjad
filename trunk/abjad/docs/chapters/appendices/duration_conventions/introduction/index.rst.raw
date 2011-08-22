@@ -12,7 +12,7 @@ measure = Measure((3, 16), [note])
 staff = stafftools.RhythmicStaff([measure])
 note.written_duration
 print repr(note.written_duration) <hide
-iotools.write_expr_to_ly(staff, 'example1', 'oedo') <hide
+iotools.write_expr_to_ly(staff, 'duration-introduction-1', 'oedo') <hide
 </abjad>
 
 Tuplets, measures, voices, staves and the other containers carry duration attributes, too:
@@ -23,7 +23,7 @@ measure = Measure((3, 16), [tuplet])
 staff = stafftools.RhythmicStaff([measure])
 tuplet.multiplier
 print repr(tuplet.multiplier) <hide
-iotools.write_expr_to_ly(staff, 'example2', 'oedo') <hide
+iotools.write_expr_to_ly(staff, 'duration-introduction-2', 'oedo') <hide
 </abjad>
 
 The next chapters document core duration concepts in Abjad.

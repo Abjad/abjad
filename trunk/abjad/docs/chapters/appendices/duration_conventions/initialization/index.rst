@@ -8,7 +8,7 @@ Durated Abjad classes initialize duration from arguments in the form `(n, d)` wi
 
 	abjad> note = Note(0, (3, 16))
 
-.. image:: images/example1.png
+.. image:: images/duration-initialization-1.png
 
 
 Durated classes include notes, rests, chords, skips, tuplets and measures.
@@ -19,7 +19,7 @@ Durated classes include notes, rests, chords, skips, tuplets and measures.
 	abjad> tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3)
 	abjad> spannertools.BeamSpanner(tuplet)
 
-.. image:: images/example2.png
+.. image:: images/duration-initialization-2.png
 
 
 Abjad restricts notes, rests, chords and skips to durations like 3/16 that can be written with dots, beams and flags without ties or brackets. Abjad allows arbitrary positive durations like 5/8 for tuplets and measures.
@@ -30,7 +30,7 @@ Abjad restricts notes, rests, chords and skips to durations like 3/16 that can b
 	abjad> tuplet = tuplettools.FixedDurationTuplet(Duration(5, 8), Note(0, (1, 8)) * 4)
 	abjad> spannertools.BeamSpanner(tuplet)
 
-.. image:: images/example3.png
+.. image:: images/duration-initialization-3.png
 
 
 Abjad supports breves.
@@ -40,7 +40,7 @@ Abjad supports breves.
 
 	abjad> note = Note(0, (2, 1))
 
-.. image:: images/example4.png
+.. image:: images/duration-initialization-4.png
 
 
 And longas.
@@ -50,7 +50,7 @@ And longas.
 
 	abjad> note = Note(0, (4, 1))
 
-.. image:: images/example5.png
+.. image:: images/duration-initialization-5.png
 
 
 

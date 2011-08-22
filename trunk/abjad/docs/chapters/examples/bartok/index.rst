@@ -8,7 +8,7 @@ you'll use most often in Abjad.
 
 Here is what we want to end up with:
 
-.. image :: images/bartok_final.png
+.. image :: images/bartok-final.png
 
 The score
 ---------
@@ -200,7 +200,7 @@ Here's our work so far:
 
 	abjad> show(score)
 
-.. image:: images/bartok_framework.png
+.. image:: images/bartok-framework.png
 
 The details
 -----------
@@ -242,7 +242,7 @@ And see how things are coming out:
 
 	abjad> show(score)
 
-.. image:: images/bartok_notes.png
+.. image:: images/bartok-notes.png
 
 Notice that the beams of the eighth and sixteenth notes appear 
 as you would usually expect: grouped by beat.
@@ -261,7 +261,7 @@ Let's set the beams as Bartók did with some crossing the bar lines:
 
 	abjad> show(score)
 
-.. image:: images/bartok_beams.png
+.. image:: images/bartok-beams.png
 
 Now some slurs:
 
@@ -303,4 +303,4 @@ The final result:
 
 	abjad> show(score)
 
-.. image:: images/bartok_final.png
+.. image:: images/bartok-final.png

@@ -28,7 +28,7 @@ Attach LilyPond comments to a note, rest or chord with ``attach_mark()``:
 <abjad>
 note = Note("cs''4")
 show(note)
-iotools.write_expr_to_ly(note, 'comments-1', 'oedo') <hide
+iotools.write_expr_to_ly(note, 'lilypond-comments-1', 'oedo') <hide
 </abjad>
 
 <abjad>
@@ -50,7 +50,7 @@ Use ``attach_mark()`` to attach LilyPond comments to a container:
 <abjad>
 staff = Staff("c'8 d'8 e'8 f'8")
 show(staff)
-iotools.write_expr_to_ly(staff, 'comments-2', 'oedo') <hide
+iotools.write_expr_to_ly(staff, 'lilypond-comments-2', 'oedo') <hide
 </abjad>
 
 <abjad>

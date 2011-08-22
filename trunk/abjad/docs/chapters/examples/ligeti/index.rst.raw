@@ -7,7 +7,7 @@ This example demonstrates the power of exploiting redundancy to model musical st
 
 The redundancy is immediately evident in the repeating pattern found in both staves. The pattern is hierarchical. At the smallest level we have what we will here call a *cell*:
 
-.. image :: images/desordre_cell.png
+.. image :: images/desordre-cell.png
 
 There are two of these cells per measure. Notice that the cells are strictly contained within the measure (i.e., there are no cells crossing a bar line). So, the next level in the hierarchy is the measure.  Notice that the measure sizes (the meters) change and that these changes occur independently for each staff, so that each staff carries it's own sequence of measures. Thus, the staff is the next level in the hierarchy.
 Finally there's the piano staff, which is composed of the right hand and left hand staves.

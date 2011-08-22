@@ -124,4 +124,4 @@ And show the result:
 
 	abjad> show(lily_file)
 
-.. image:: images/example-1.png
+.. image:: images/fernyehouh-1.png

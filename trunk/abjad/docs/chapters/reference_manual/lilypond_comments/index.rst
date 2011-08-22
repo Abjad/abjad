@@ -32,7 +32,7 @@ Attach LilyPond comments to a note, rest or chord with ``attach_mark()``:
 	abjad> note = Note("cs''4")
 	abjad> show(note)
 
-.. image:: images/comments-1.png
+.. image:: images/lilypond-comments-1.png
 
 ::
 
@@ -59,7 +59,7 @@ Use ``attach_mark()`` to attach LilyPond comments to a container:
 	abjad> staff = Staff("c'8 d'8 e'8 f'8")
 	abjad> show(staff)
 
-.. image:: images/comments-2.png
+.. image:: images/lilypond-comments-2.png
 
 ::
 

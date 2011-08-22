@@ -6,7 +6,7 @@ Durated Abjad classes initialize duration from arguments in the form `(n, d)` wi
 
 <abjad>
 note = Note(0, (3, 16))
-iotools.write_expr_to_ly(note, 'example1', 'oedo') <hide
+iotools.write_expr_to_ly(note, 'duration-initialization-1', 'oedo') <hide
 </abjad>
 
 
@@ -16,7 +16,7 @@ Durated classes include notes, rests, chords, skips, tuplets and measures.
 <abjad>
 tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3)
 spannertools.BeamSpanner(tuplet)
-iotools.write_expr_to_ly(tuplet, 'example2', 'oedo') <hide
+iotools.write_expr_to_ly(tuplet, 'duration-initialization-2', 'oedo') <hide
 </abjad>
 
 
@@ -26,7 +26,7 @@ Abjad restricts notes, rests, chords and skips to durations like 3/16 that can b
 <abjad>
 tuplet = tuplettools.FixedDurationTuplet(Duration(5, 8), Note(0, (1, 8)) * 4)
 spannertools.BeamSpanner(tuplet)
-iotools.write_expr_to_ly(tuplet, 'example3', 'oedo') <hide
+iotools.write_expr_to_ly(tuplet, 'duration-initialization-3', 'oedo') <hide
 </abjad>
 
 
@@ -35,7 +35,7 @@ Abjad supports breves.
 
 <abjad>
 note = Note(0, (2, 1))
-iotools.write_expr_to_ly(note, 'example4', 'oedo') <hide
+iotools.write_expr_to_ly(note, 'duration-initialization-4', 'oedo') <hide
 </abjad>
 
 
@@ -44,7 +44,7 @@ And longas.
 
 <abjad>
 note = Note(0, (4, 1))
-iotools.write_expr_to_ly(note, 'example5', 'oedo') <hide
+iotools.write_expr_to_ly(note, 'duration-initialization-5', 'oedo') <hide
 </abjad>
 
 

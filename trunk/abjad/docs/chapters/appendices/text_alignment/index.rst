@@ -42,7 +42,7 @@ relative to the left edge of note head.
 	abjad> leaves[2].override.text_script.self_alignment_X = 'right'
 	abjad> show(staff, 'thebes')
 
-.. image:: images/self-alignment-X-alone.png
+.. image:: images/self-alignment-x-alone.png
 
 
 ``TextScript #'X-offset``
@@ -73,4 +73,4 @@ Use ``#'X-offset`` to offset markup by some number of magic units in the horizon
 	abjad> leaves[3].override.text_script.X_offset = 6
 	abjad> show(staff, 'thebes')
 
-.. image:: images/X-offset-alone.png
+.. image:: images/x-offset-alone.png

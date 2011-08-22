@@ -46,7 +46,7 @@ LilyPond multipliers give the half notes here multiplied durations equal to a qu
 	abjad> bottom = stafftools.RhythmicStaff(multiplied_notes)
 	abjad> staves = scoretools.StaffGroup([top, bottom])
 
-.. image:: images/example1.png
+.. image:: images/leaf-multipliers-1.png
 
 .. note::
 

@@ -93,9 +93,9 @@ notated durations:
 	abjad> m3 = measuretools.AnonymousMeasure([Note(0, (1, 8))] + Note(0, (1, 16)) * 2)
 	abjad> tietools.TieSpanner(m3)
 	abjad> r = stafftools.RhythmicStaff([m1, m2, m3])
-	abjad> iotools.write_expr_to_ly(r, 'example1')
+	abjad> iotools.write_expr_to_ly(r, 'midi-1')
 
-.. image:: images/example1.png
+.. image:: images/midi-1.png
 
 Written note pitch vs. midi note-on
 -----------------------------------
@@ -109,9 +109,9 @@ a C sharp or a B flat?
 	abjad> m1 = measuretools.AnonymousMeasure([Note(1, (1, 4))])
 	abjad> m2 = measuretools.AnonymousMeasure([Note(('df', 4), (1, 4))])
 	abjad> r = Staff([m1, m2])
-	abjad> iotools.write_expr_to_ly(r, 'example2')
+	abjad> iotools.write_expr_to_ly(r, 'midi-2')
 
-.. image:: images/example2.png
+.. image:: images/midi-2.png
 
 Conclusion
 ----------
