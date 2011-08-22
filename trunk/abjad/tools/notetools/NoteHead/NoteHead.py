@@ -1,3 +1,4 @@
+import copy
 from abjad.core import LilyPondTweakReservoir
 from abjad.core import _UnaryComparator
 
@@ -16,29 +17,34 @@ class NoteHead(_UnaryComparator):
     __slots__ = ('_client', '_written_pitch', '_tweak')
 
     def __init__(self, *args):
-        primary_args = [ ]
-        tweak_pairs = [ ]
-        for x in args:
-            if isinstance(x, tuple) and len(x) == 2 and \
-                isinstance(x[0], str) and isinstance(x[1], str):
-                tweak_pairs.append(x)
-            else:
-                primary_args.append(x)
-        args = primary_args
-        if len(args) == 1:
-            _client = None
-            written_pitch = args[0]
-        elif len(args) == 2:
-            _client, written_pitch = args
+        from abjad.tools.leaftools._Leaf import _Leaf
+        if isinstance(args[0], (type(None), _Leaf)):
+            _client, written_pitch, tweak_pairs = args[0], args[1], args[2:]
         else:
-            raise ValueError('\n\tCan not initialize note head from args "%s".' % str(args))
+            _client, written_pitch, tweak_pairs = None, args[0], args[1:]
+#        primary_args = [ ]
+#        tweak_pairs = [ ]
+#        for x in args:
+#            if isinstance(x, tuple) and len(x) == 2 and \
+#                isinstance(x[0], str) and isinstance(x[1], str):
+#                tweak_pairs.append(x)
+#            else:
+#                primary_args.append(x)
+#        args = primary_args
+#        if len(args) == 1:
+#            _client = None
+#            written_pitch = args[0]
+#        elif len(args) == 2:
+#            _client, written_pitch = args
+#        else:
+#            raise ValueError('\n\tCan not initialize note head from args "%s".' % str(args))
         self._client = _client
         self.written_pitch = written_pitch
         ### must assign comparison attribute after written pitch initialization ###
         self._comparison_attribute = self.written_pitch
         for tweak_pair in tweak_pairs:
             key, value = tweak_pair
-            setattr(self.tweak, key, value)
+            setattr(self.tweak, key, copy.copy(value))
 
     ### OVERLOADS ###
 

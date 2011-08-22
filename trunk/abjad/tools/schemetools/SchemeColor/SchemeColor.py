@@ -11,13 +11,15 @@ class SchemeColor(_StrictComparator, _Immutable):
     Scheme colors are immutable.
     '''
 
+    __slots__ = ('color_name',)
+
     def __new__(klass, color_name):
         self = object.__new__(klass)
         object.__setattr__(self, 'color_name', color_name)
         return self
 
     def __getnewargs__(self):
-        return (self.color_name, )
+        return (self.color_name,)
 
     ### OVERLOADS ###
 
