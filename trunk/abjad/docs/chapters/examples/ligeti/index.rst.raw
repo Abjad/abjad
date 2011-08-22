@@ -70,7 +70,7 @@ This results in the complete *Désordre* *cell*:
 
 <abjad>[hide = True]
 cell = Staff([p])
-iotools.write_expr_to_ly(cell, 'desordre_cell')
+iotools.write_expr_to_ly(cell, 'desordre-cell')
 </abjad>
 
 Because this *cell* appears over and over again, we want to reuse this code to generate any number of these *cells*. We here encapsulate it in a function that will take only a list of pitches::
@@ -110,7 +110,7 @@ We define a function to create a measure from a list of lists of numbers::
 
     def measure_build(pitches):
         '''Constructs a measure composed of *Désordre cells*.
-            - `pitches` is a list of lists of number (e.g., [[1,2,3], [2,3,4]])
+            - `pitches` is a list of lists of number (e.g., [[1, 2, 3], [2, 3, 4]])
         The function returns a DynamicMeasure.
         '''
         result = DynamicMeasure([ ])
@@ -122,8 +122,8 @@ To construct a Ligeti measure we would call the function like so:
 
 <abjad>
 from abjad.demos.desordre.helpers import * <hide
-measure = measure_build([[0,4,7], [0,4,7,9], [4,7,9,11]])
-iotools.write_expr_to_ly(Staff([measure]), 'desordre_measure') <hide
+measure = measure_build([[0, 4, 7], [0, 4, 7, 9], [4, 7, 9, 11]])
+iotools.write_expr_to_ly(Staff([measure]), 'desordre-measure') <hide
 show(Staff([measure]))
 </abjad>
 
@@ -146,7 +146,7 @@ As with measures, we can now create full measure sequences with this new functio
 <abjad>
 pitches = [[[-1, 4, 5], [-1, 4, 5, 7, 9]], [[0, 7, 9], [-1, 4, 5, 7, 9]]]
 staff = staff_build(pitches)
-iotools.write_expr_to_ly(staff, 'desordre_staff') <hide
+iotools.write_expr_to_ly(staff, 'desordre-staff') <hide
 show(staff)
 </abjad>
 
@@ -178,7 +178,7 @@ top = [[[-1, 4, 5], [-1, 4, 5, 7, 9]], [[0, 7, 9], [-1, 4, 5, 7, 9]], [[2, 4, 5,
 bottom = [[[-9, -4, -2], [-9, -4, -2, 1, 3]], [[-6, -2, 1], [-9, -4, -2, 1, 3]], [[-4, -2, 1, 3, 6], [-4, -2, 1]], [[-9, -6, -4, -2, 1, 3, 6, 1]], [[-6, -2, 1], [-6, -2, 1, 3, -2]], [[-4, 1, 3], [-6, 3, 6, -6, -4]], [[-14, -11, -9, -6, -4], [-14, -11, -9]], [[-11, -2, 1, -6, -4, -2, 1, 3]], [[-6, 1, 3], [-6, -4, -2, 1, 3]]]
 
 desordre = desordre_build([top, bottom])
-iotools.write_expr_to_ly(desordre, 'desordre_final', template = 'tirnaveni') <hide
+iotools.write_expr_to_ly(desordre, 'desordre-final', template = 'tirnaveni') <hide
 show(desordre)
 </abjad>
 

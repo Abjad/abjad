@@ -73,7 +73,7 @@ Finally we combine the two voices in a parallel Container:
 
 This results in the complete *Désordre* *cell*:
 
-.. image:: images/desordre_cell.png
+.. image:: images/desordre-cell.png
 
 Because this *cell* appears over and over again, we want to reuse this code to generate any number of these *cells*. We here encapsulate it in a function that will take only a list of pitches::
 
@@ -112,7 +112,7 @@ We define a function to create a measure from a list of lists of numbers::
 
     def measure_build(pitches):
         '''Constructs a measure composed of *Désordre cells*.
-            - `pitches` is a list of lists of number (e.g., [[1,2,3], [2,3,4]])
+            - `pitches` is a list of lists of number (e.g., [[1, 2, 3], [2, 3, 4]])
         The function returns a DynamicMeasure.
         '''
         result = DynamicMeasure([ ])
@@ -124,10 +124,10 @@ To construct a Ligeti measure we would call the function like so:
 
 ::
 
-	abjad> measure = measure_build([[0,4,7], [0,4,7,9], [4,7,9,11]])
+	abjad> measure = measure_build([[0, 4, 7], [0, 4, 7, 9], [4, 7, 9, 11]])
 	abjad> show(Staff([measure]))
 
-.. image:: images/desordre_measure.png
+.. image:: images/desordre-measure.png
 
 The staff
 ---------
@@ -151,7 +151,7 @@ As with measures, we can now create full measure sequences with this new functio
 	abjad> staff = staff_build(pitches)
 	abjad> show(staff)
 
-.. image:: images/desordre_staff.png
+.. image:: images/desordre-staff.png
 
 The score
 ---------
@@ -184,7 +184,7 @@ The final result:
 	abjad> desordre = desordre_build([top, bottom])
 	abjad> show(desordre)
 
-.. image:: images/desordre_final.png
+.. image:: images/desordre-final.png
 
 Now that we have the redundant aspect of the piece compactly expressed and encapsulated, we can play around with it by changing the sequence of pitches.
 
