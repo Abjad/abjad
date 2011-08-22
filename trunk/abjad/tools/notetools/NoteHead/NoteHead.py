@@ -20,8 +20,7 @@ class NoteHead(_UnaryComparator):
         tweak_pairs = [ ]
         for x in args:
             if isinstance(x, tuple) and len(x) == 2 and \
-                isinstance(x[0], str):
-#                isinstance(x[0], str) and isinstance(x[1], str):
+                isinstance(x[0], str) and isinstance(x[1], str):
                 tweak_pairs.append(x)
             else:
                 primary_args.append(x)
