@@ -6,7 +6,7 @@ import os
 import pprint
 
 
-def _find_import_as_statements( ):
+def _find_import_as_statements():
    total_modules_with_import_as_statements = 0
    total_import_as_statements = 0
    for path, subdirectories, files in os.walk(ABJADPATH):
@@ -21,7 +21,7 @@ def _find_import_as_statements( ):
                      print full_file_name 
                      found_import_as_statement = True
                      total_modules_with_import_as_statements += 1
-                  print line.strip( )
+                  print line.strip()
                   total_import_as_statements += 1
          if found_import_as_statement:
             print ''
@@ -31,7 +31,7 @@ def _find_import_as_statements( ):
 
 
 if __name__ == '__main__':
-   iotools.clear_terminal( )
+   iotools.clear_terminal()
    print 'Finding import as statements ...'
    print ''
-   _find_import_as_statements( )
+   _find_import_as_statements()

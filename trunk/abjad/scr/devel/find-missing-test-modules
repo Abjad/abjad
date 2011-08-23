@@ -5,7 +5,7 @@ from abjad.tools import iotools
 import os
 
 
-def _find_missing_test_modules( ):
+def _find_missing_test_modules():
    tools_path = os.path.join(ABJADPATH, 'tools')
    public_tools_modules = set([ ])
    test_modules = set([ ])
@@ -14,7 +14,7 @@ def _find_missing_test_modules( ):
          if f.endswith('.py'):
             if f.startswith('test_') and 'tools' in f:
                test_modules.add(f)
-            elif not f.startswith(('_', 'test_')) and f[0].islower( ):
+            elif not f.startswith(('_', 'test_')) and f[0].islower():
                public_tools_modules.add(f)
    print ''
 
@@ -30,7 +30,7 @@ def _find_missing_test_modules( ):
       module_stem = x[:-3]
       if module_stem not in test_stems:
          missing_test_modules.append(x)
-   missing_test_modules.sort( )
+   missing_test_modules.sort()
 
    for x in missing_test_modules:
       print x
@@ -40,6 +40,6 @@ def _find_missing_test_modules( ):
       
 
 if __name__ == '__main__':
-   iotools.clear_terminal( )
+   iotools.clear_terminal()
    print 'Finding missing test modules ...'
-   _find_missing_test_modules( )
+   _find_missing_test_modules()

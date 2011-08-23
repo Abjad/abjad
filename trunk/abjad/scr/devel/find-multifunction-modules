@@ -10,7 +10,7 @@ import re
 class_definition_pattern = re.compile(r'\s*class\s+(\w+)')
 function_definition_pattern = re.compile(r'\s*def\s+(\w+)')
 
-def _find_multifunction_modules( ):
+def _find_multifunction_modules():
    multifunction_modules = [ ]
    tools_directory = os.path.join(ABJADPATH, 'tools')
    for path, subdirectories, files in os.walk(tools_directory):
@@ -32,13 +32,13 @@ def _find_multifunction_modules( ):
 def _has_multiple_public_function_definitions(path, f):
    function_names = [ ]
    full_name = os.path.join(path, f)
-   for line in file(full_name, 'r').readlines( ):
+   for line in file(full_name, 'r').readlines():
       match = class_definition_pattern.match(line)
       if match is not None:
          return False
       match = function_definition_pattern.match(line)
       if match is not None:
-         function_name = match.groups( )[0]
+         function_name = match.groups()[0]
          if not function_name.startswith('_'):
             function_names.append(function_name)
    if 1 < len(function_names):
@@ -48,5 +48,5 @@ def _has_multiple_public_function_definitions(path, f):
 
 
 if __name__ == '__main__':
-   iotools.clear_terminal( )
-   _find_multifunction_modules( )
+   iotools.clear_terminal()
+   _find_multifunction_modules()

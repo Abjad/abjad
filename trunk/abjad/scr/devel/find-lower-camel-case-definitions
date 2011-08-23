@@ -7,7 +7,7 @@ import pprint
 import re
 
 
-def _find_lower_camel_case_definitions( ):
+def _find_lower_camel_case_definitions():
    total_modules_with_lower_camel_case_definitions = 0
    lower_camel_case_definitions = [ ]
    lower_camel_case_definition_pattern = re.compile(r'.*def [_]*[a-z]+[A-Z]+.*')
@@ -24,7 +24,7 @@ def _find_lower_camel_case_definitions( ):
                      print full_file_name 
                      found_lower_camel_case_definition = True
                      total_modules_with_lower_camel_case_definitions += 1
-                  print line.strip( )
+                  print line.strip()
          if found_lower_camel_case_definition:
             print ''
    print 'Total modules with lower camel case definitions: %s' % total_modules_with_lower_camel_case_definitions
@@ -33,7 +33,7 @@ def _find_lower_camel_case_definitions( ):
 
 
 if __name__ == '__main__':
-   iotools.clear_terminal( )
+   iotools.clear_terminal()
    print 'Finding lower camel case definitions ...'
    print ''
-   _find_lower_camel_case_definitions( )
+   _find_lower_camel_case_definitions()

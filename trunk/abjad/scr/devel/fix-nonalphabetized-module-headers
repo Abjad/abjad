@@ -5,7 +5,7 @@ from abjad.tools import iotools
 import os
 
 
-def _main( ):
+def _main():
    total_nonalphabetized_module_headers = 0
    for path, subdirectories, files in os.walk(ABJADPATH):
       for f in files:
@@ -39,16 +39,16 @@ def _main( ):
             if header_lines:
                assert not module_lines
                module_lines.extend(header_lines)
-            fp.close( )
+            fp.close()
             fp = file(full_file_name, 'w')
             fp.write(''.join(module_lines))
-            fp.close( )
+            fp.close()
    print 'Total nonalphabetized headers fixed: %s' % total_nonalphabetized_module_headers
    print ''
 
 
 if __name__ == '__main__':
-   iotools.clear_terminal( )
+   iotools.clear_terminal()
    print 'Fixing nonalphabetized module headers ...'
    print ''
-   _main( )
+   _main()

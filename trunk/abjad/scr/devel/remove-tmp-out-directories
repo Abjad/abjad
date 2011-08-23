@@ -4,7 +4,7 @@ from abjad.tools.mathtools import greatest_common_divisor
 import os
 
 
-def _remove_tmp_out_directories( ):
+def _remove_tmp_out_directories():
    total_file_names = 0
    bad_files, good_files = [ ], [ ]
    for dir_path, dir_names, file_names in os.walk('.'):
@@ -16,5 +16,5 @@ def _remove_tmp_out_directories( ):
    
 
 if __name__ == '__main__':
-   iotools.clear_terminal( )
-   _remove_tmp_out_directories( )
+   iotools.clear_terminal()
+   _remove_tmp_out_directories()

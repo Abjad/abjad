@@ -7,7 +7,7 @@ import os
 import pprint
 
 
-def _get_old_package_and_function( ):
+def _get_old_package_and_function():
    while True:
       full_helper_name = raw_input('Enter current helper name: ')
       if '.' not in full_helper_name:
@@ -16,14 +16,14 @@ def _get_old_package_and_function( ):
          print ''
          continue
       helper_parts = full_helper_name.split('.')
-      old_package = helper_parts[0].lower( )
-      old_function = helper_parts[1].lower( )
-      if old_package not in _get_packages( ):
+      old_package = helper_parts[0].lower()
+      old_function = helper_parts[1].lower()
+      if old_package not in _get_packages():
          print ''
          print 'Error: can not find %s in Abjad tools.' % old_package
          print ''
          continue
-      if old_function not in _get_functions( ):
+      if old_function not in _get_functions():
          print ''
          print 'Error: can not find %s in %s.' % (old_function, old_package)
          print ''
@@ -31,7 +31,7 @@ def _get_old_package_and_function( ):
       return old_package, old_function
    
 
-def _get_new_package_and_function( ):
+def _get_new_package_and_function():
    while True:
       message = 'Enter new helper name:     '
       helper_name = raw_input(message)
@@ -41,14 +41,14 @@ def _get_new_package_and_function( ):
          print ''
          continue
       helper_parts = helper_name.split('.')
-      new_package = helper_parts[0].lower( )
-      new_function = helper_parts[1].lower( )
-      if new_package not in _get_packages( ):
+      new_package = helper_parts[0].lower()
+      new_function = helper_parts[1].lower()
+      if new_package not in _get_packages():
          print ''
          print 'Error: can not find %s in Abjad packages.' % new_package
          print ''
          continue
-#      if new_function in _get_functions( ):
+#      if new_function in _get_functions():
 #         print ''
 #         print 'Error: %s already exists in Abjad functions.' % new_function
 #         print ''
@@ -56,7 +56,7 @@ def _get_new_package_and_function( ):
       return new_package, new_function
 
 
-def _get_packages( ):
+def _get_packages():
    tool_path = os.path.join(ABJADPATH, 'tools')
    names = [ ]
    for x in os.listdir(tool_path):
@@ -66,14 +66,14 @@ def _get_packages( ):
    return names
 
 
-def _get_functions( ):
+def _get_functions():
    tool_path = os.path.join(ABJADPATH, 'tools')
    module_names = [ ]
    for path, subdirectories, files in os.walk(tool_path):
       for f in files:
          if f.endswith('.py') and not f.startswith('_'):
             module_names.append(f[:-3])
-   module_names.sort( )
+   module_names.sort()
    return module_names
       
 
@@ -81,13 +81,13 @@ def _confirm_name_changes(old_package, old_function, new_package, new_module):
    print ''
    print 'Is ...'
    print ''
-   print '   %s.%s( )' % (old_package, old_function)
+   print '   %s.%s()' % (old_package, old_function)
    print '   ===>'
-   print '   %s.%s( )' % (new_package, new_function)
+   print '   %s.%s()' % (new_package, new_function)
    print ''
    input = raw_input('... correct? ')
    print ''
-   if not input.lower( ) == 'y':
+   if not input.lower() == 'y':
       raise SystemExit
    else:
       return
@@ -124,7 +124,7 @@ def _make_new_api_page(new_package, new_function):
    new_api_path = os.path.join(api_path, new_package, new_rst_file)
    new_api_file = file(new_api_path, 'w')
    new_api_file.write(content_string)
-   new_api_file.close( )
+   new_api_file.close()
    print ''
 
 
@@ -136,7 +136,7 @@ def _update_api_toc(old_package, old_function, new_package, new_function):
    new_lines = [ ]
    old_line_suffix = '%s/%s\n' % (old_package, old_function)
    old_line = None
-   for line in api_toc_file.readlines( ):
+   for line in api_toc_file.readlines():
       if line.endswith(old_line_suffix):
          old_line = line
       else:
@@ -144,13 +144,13 @@ def _update_api_toc(old_package, old_function, new_package, new_function):
    if old_line is None:
       print 'could not find API toc line ending in %s' % old_line_suffix
       raise SystemExit
-   api_toc_file.close( )
+   api_toc_file.close()
    new_line = old_line.replace(old_package, new_package)
    new_line = new_line.replace(old_function, new_function)
    package_tag = 'tools/%s' % new_package
    package_lines = [x for x in new_lines if package_tag in x]
    package_lines.append(new_line)
-   package_lines.sort( )
+   package_lines.sort()
    #pprint.pprint(package_lines)
    new_line_idx = package_lines.index(new_line)
    if new_line_idx == 0:
@@ -165,7 +165,7 @@ def _update_api_toc(old_package, old_function, new_package, new_function):
    revised_toc_string = ''.join(new_lines)
    api_toc_file = file(api_toc_file_name, 'w')
    api_toc_file.write(revised_toc_string)
-   api_toc_file.close( )
+   api_toc_file.close()
    print ''
 
 
@@ -225,8 +225,8 @@ def _add_versionchanged(old_package, old_function, new_package, new_function):
    new_module = new_function + '.py'
    new_path = os.path.join(ABJADPATH, 'tools', new_package, new_module)
    new_module_pointer = file(new_path, 'r')
-   new_module_lines = new_module_pointer.readlines( )
-   new_module_pointer.close( )
+   new_module_lines = new_module_pointer.readlines()
+   new_module_pointer.close()
    close_docstring_index = None
    for i, line in enumerate(new_module_lines):
       if line == "   '''\n":
@@ -237,8 +237,8 @@ def _add_versionchanged(old_package, old_function, new_package, new_function):
       print 'Error: can not find close docstring for %s.' % new_module
       print ''
       raise SystemExit
-   old_helper = '%s.%s( )' % (old_package, old_function)
-   new_helper = '%s.%s( )' % (new_package, new_function)
+   old_helper = '%s.%s()' % (old_package, old_function)
+   new_helper = '%s.%s()' % (new_package, new_function)
    version_lines = [ ]
    version_lines.append('')
    version_lines.append('   .. versionchanged:: %s' % ABJADVERSION)
@@ -250,20 +250,20 @@ def _add_versionchanged(old_package, old_function, new_package, new_function):
    new_module_string = ''.join(new_module_lines)
    new_module_pointer = file(new_path, 'w')
    new_module_pointer.write(new_module_string)
-   new_module_pointer.close( )
+   new_module_pointer.close()
    print ''
 
 
-def _debug( ):
+def _debug():
    file_name = os.path.join(ABJADPATH, 'tools/seqtools/zip_nontruncating.py')
    os.system('ls -l %s' % file_name)
    print ''
 
 
 if __name__ == '__main__':
-   iotools.clear_terminal( )
-   old_package, old_function = _get_old_package_and_function( )
-   new_package, new_function = _get_new_package_and_function( )
+   iotools.clear_terminal()
+   old_package, old_function = _get_old_package_and_function()
+   new_package, new_function = _get_new_package_and_function()
    _confirm_name_changes(old_package, old_function, new_package, new_function)
    _rename_old_api_page(old_package, old_function, new_package, new_function)
    #_make_new_api_page(new_package, new_function)

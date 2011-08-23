@@ -5,26 +5,26 @@ from abjad.tools import clear_terminal
 import os
 
 
-def _find_initializers( ):
+def _find_initializers():
    public_class_package_initializers = [ ]
    for path, subdirectories, files in os.walk(ABJADPATH):
       for f in files:
          if f == '__init__.py':
             initializer_parent_directory = path.split(os.path.sep)[-1]
-            if initializer_parent_directory[0].isupper( ):
+            if initializer_parent_directory[0].isupper():
                public_class_package_initializers.append(os.path.join(path, f))
    print 'There are %s public class packages ...' % len(public_class_package_initializers)
    for x in public_class_package_initializers:
-      first_line = file(x, 'r').readlines( )[0]
+      first_line = file(x, 'r').readlines()[0]
       if 'importtools' not in first_line:
          output = file(x, 'w')
          output.write('from abjad.tools.importtools._import_structured_package import _import_structured_package\n')
          output.write('\n')
-         output.write('_import_structured_package(__path__[0], globals( ))\n')
-         output.close( )
+         output.write('_import_structured_package(__path__[0], globals())\n')
+         output.close()
       
 
 if __name__ == '__main__':
-   iotools.clear_terminal( )
+   iotools.clear_terminal()
    print 'Finding manual class package initializers ...'
-   _find_initializers( )
+   _find_initializers()

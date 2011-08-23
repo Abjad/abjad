@@ -4,10 +4,10 @@ from abjad.tools import iotools
 import os
 
 
-def find_nontrivial_subdirectories( ):
+def find_nontrivial_subdirectories():
    for d in os.listdir('.'):
       subdirectories = [ ]
-      if d[0].isupper( ):
+      if d[0].isupper():
          try:
             for x in os.listdir(d):
                element = os.path.join(d, x)
@@ -24,7 +24,7 @@ def find_nontrivial_subdirectories( ):
 
 
 if __name__ == '__main__':
-   iotools.clear_terminal( )
+   iotools.clear_terminal()
    print 'Finding nontrivial subdirectories ...'
    print ''
-   find_nontrivial_subdirectories( )
+   find_nontrivial_subdirectories()

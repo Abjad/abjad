@@ -6,7 +6,7 @@ import os
 import pprint
 
 
-def _find_multiline_import_statements( ):
+def _find_multiline_import_statements():
    total_multiline_import_statements = 0
    for path, subdirectories, files in os.walk(ABJADPATH):
       for f in files:
@@ -35,7 +35,7 @@ def _find_multiline_import_statements( ):
 
 
 if __name__ == '__main__':
-   iotools.clear_terminal( )
+   iotools.clear_terminal()
    print 'Finding multiline import statements ...'
    print ''
-   _find_multiline_import_statements( )
+   _find_multiline_import_statements()

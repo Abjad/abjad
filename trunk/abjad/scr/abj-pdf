@@ -2,4 +2,4 @@
 
 from abjad.tools.iotools.pdf import pdf
 
-pdf( )
+pdf()

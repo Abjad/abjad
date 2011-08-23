@@ -5,7 +5,7 @@ import os
 import sys
 
 
-iotools.clear_terminal( )
+iotools.clear_terminal()
 os.system(
    'grep -Irn "%s" * | grep -v svn | grep -v documentation | grep -v test' % 
    sys.argv[1])

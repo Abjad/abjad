@@ -5,7 +5,7 @@ from abjad.tools import iotools
 import os
 
 
-def _main( ):
+def _main():
    total_nonalphabetized_module_headers = 0
    for path, subdirectories, files in os.walk(ABJADPATH):
       for f in files:
@@ -41,7 +41,7 @@ def _main( ):
 
 
 if __name__ == '__main__':
-   iotools.clear_terminal( )
+   iotools.clear_terminal()
    print 'Finding nonalphabetized module headers ...'
    print ''
-   _main( )
+   _main()

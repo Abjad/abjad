@@ -7,7 +7,7 @@ import os
 import pprint
 
 
-def _find_duplicate_module_names( ):
+def _find_duplicate_module_names():
    file_path_pairs = [ ]
    tools_directory = os.path.join(ABJADPATH, 'tools')
    for path, subdirectories, files in os.walk(tools_directory):
@@ -16,7 +16,7 @@ def _find_duplicate_module_names( ):
             if not f == '__init__.py':
                file_path_pair = (f, path)
                file_path_pairs.append(file_path_pair)
-   file_path_pairs.sort( )
+   file_path_pairs.sort()
    result = [ ]
    pairs_generator = itertools.groupby(file_path_pairs, lambda x: x[0])
    for key, values_generator in pairs_generator:
@@ -32,8 +32,8 @@ def _find_duplicate_module_names( ):
 
 
 if __name__ == '__main__':
-   iotools.clear_terminal( )
-   result = _find_duplicate_module_names( )
+   iotools.clear_terminal()
+   result = _find_duplicate_module_names()
    if not result:
       print 'No duplicate tools module names found.'
    else:

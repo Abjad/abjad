@@ -9,7 +9,7 @@ import re
 
 function_definition_pattern = re.compile(r'\s*def\s+(\w+)')
 
-def _find_modules_with_chevrons( ):
+def _find_modules_with_chevrons():
    modules_with_chevrons = [ ]
    #tools_directory = os.path.join(ABJADPATH, 'tools')
    for path, subdirectories, files in os.walk(ABJADPATH):
@@ -40,6 +40,6 @@ def _has_python_prompt_chevrons(path, f):
 
 
 if __name__ == '__main__':
-   iotools.clear_terminal( )
+   iotools.clear_terminal()
    print 'Finding modules with chevrons ...'
-   _find_modules_with_chevrons( )
+   _find_modules_with_chevrons()

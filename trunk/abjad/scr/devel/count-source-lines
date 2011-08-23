@@ -4,7 +4,7 @@ from abjad.tools import iotools
 import os
 
 
-def _count_source_lines( ):
+def _count_source_lines():
 
    source_lines = 0
    source_modules = 0
@@ -16,7 +16,7 @@ def _count_source_lines( ):
          modules = [x for x in files if x.endswith('.py')]
          for module in modules:
             lines = os.popen('cat %s | wc -l' % os.path.join(path, module))
-            lines = lines.read( )
+            lines = lines.read()
             lines = int(lines)
             if module.startswith('test_'):
                test_lines += lines
@@ -46,5 +46,5 @@ def _report(source_modules, source_lines, test_modules, test_lines):
    print ''
 
 if __name__ == '__main__':
-   iotools.clear_terminal( )
-   _report(*_count_source_lines( ))
+   iotools.clear_terminal()
+   _report(*_count_source_lines())

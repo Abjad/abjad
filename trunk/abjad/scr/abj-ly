@@ -2,4 +2,4 @@
 
 from abjad.tools.iotools.ly import ly
 
-ly( )
+ly()

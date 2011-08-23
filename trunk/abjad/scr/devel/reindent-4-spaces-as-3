@@ -5,7 +5,7 @@ from abjad.tools.mathtools import greatest_common_divisor
 import os
 
 
-def _reindent_4_spaces_as_3( ):
+def _reindent_4_spaces_as_3():
    reindented = [ ]
    indented = [ ]
    skipped = [ ]
@@ -26,24 +26,24 @@ def _reindent_4_spaces_as_3( ):
 def _strip_whitespace(file, path):
    filepath = os.path.join(path, file)
    f = open(filepath, 'r')
-   lines = f.read( ).split('\n')
-   f.close( )
+   lines = f.read().split('\n')
+   f.close()
    for i, line in enumerate(lines):
-      if not len(line.lstrip( )):
+      if not len(line.lstrip()):
          lines[i] = ''
    f = open(filepath, 'w')
    f.write('\n'.join(lines))
-   f.close( )
+   f.close()
 
 def _find_indent_gcd(file, path):
    indents = [ ]
    filepath = os.path.join(path, file)
    f = open(filepath, 'r')
-   lines = f.read( ).split('\n')
-   f.close( )
+   lines = f.read().split('\n')
+   f.close()
    for i, line in enumerate(lines):
-      if 0 < len(line.lstrip( )):
-         indent = len(line) - len(line.lstrip( ))
+      if 0 < len(line.lstrip()):
+         indent = len(line) - len(line.lstrip())
          if 0 < indent:
             indents.append(indent)
    if indents:
@@ -54,10 +54,10 @@ def _find_indent_gcd(file, path):
 def _reindent(file, path):
    filepath = os.path.join(path, file)
    f = open(filepath, 'r')
-   lines = f.read( ).split('\n')
-   f.close( )
+   lines = f.read().split('\n')
+   f.close()
    for i, line in enumerate(lines):
-      indent = len(line) - len(line.lstrip( ))
+      indent = len(line) - len(line.lstrip())
       div, mod = divmod(indent, 4)
       if mod != 0:
           print 'Unexpected indent (%d, %d) in %s:%d' % (div, mod, filepath, mod)
@@ -66,11 +66,11 @@ def _reindent(file, path):
           print '%d:\t"%s"' % (i, line)
           if line != lines[-1]:
               print '%d:\t"%s"' % (i + 1, lines[i + 1])
-          raise Exception( )
+          raise Exception()
       lines[i] = lines[i].replace('    ' * div, '   ' * div)
    f = open(filepath, 'w')
    f.write('\n'.join(lines))
-   f.close( )
+   f.close()
 
 def _print_results(reindented, indented, skipped):
    print '%d FILE(S) REINDENTED' % len(reindented)
@@ -84,7 +84,7 @@ def _print_results(reindented, indented, skipped):
       print '\t%s' % x
 
 if __name__ == '__main__':
-   iotools.clear_terminal( )
-   _reindent_4_spaces_as_3( )
+   iotools.clear_terminal()
+   _reindent_4_spaces_as_3()
    print ''
 

@@ -5,7 +5,7 @@ from abjad.tools import iotools
 import os
 
 
-def _find_public_helpers_without_docstrings( ):
+def _find_public_helpers_without_docstrings():
    tools_path = os.path.join(ABJADPATH, 'tools')
    total_undocumented_helpers = 0
    total_without_close_quote = 0
@@ -33,7 +33,7 @@ def _find_undocumented_helpers_in_file(path, f):
    waiting_for_close_quote = False
    total_undocumented = 0
    total_without_close_quote = 0
-   for line in fp.readlines( ):
+   for line in fp.readlines():
       if next_line_should_be_docstring:
          if line.startswith(("   r'''", "   '''", '   r"""', '   """')):
             pass
@@ -62,5 +62,5 @@ def _find_undocumented_helpers_in_file(path, f):
 
 
 if __name__ == '__main__':
-   iotools.clear_terminal( )
-   _find_public_helpers_without_docstrings( )
+   iotools.clear_terminal()
+   _find_public_helpers_without_docstrings()

@@ -13,15 +13,15 @@ project_root = ABJADPATH.rstrip('abjad')
 
 ### svn update
 os.chdir(project_root)
-iotools.clear_terminal( )
+iotools.clear_terminal()
 os.system('svn update')
 os.chdir(start_directory)
 
 ### write version file
-_write_abjad_version_file( )
+_write_abjad_version_file()
 
 ### update docs release string
-#_update_docs_release_string( )
+#_update_docs_release_string()
 
 ### remove Abjad *.pyc files
-iotools.remove_abjad_pyc_files( )
+iotools.remove_abjad_pyc_files()

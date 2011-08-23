@@ -4,7 +4,7 @@ from abjad.tools import iotools
 import os
 
 
-def _fix_test_case_numbers( ):
+def _fix_test_case_numbers():
    total_test_modules = 0
    total_test_cases = 0
    total_misnumbered_cases = 0
@@ -36,7 +36,7 @@ def _process_test_module(test_module, path):
    desired_test_case_prefix = short_module_name
    fp = file(full_module_name, 'r')
    new_lines = [ ]
-   lines = fp.readlines( )
+   lines = fp.readlines()
    current_case_number = 1
    for line in lines:
       if line.startswith('def test') or line.startswith('#def test'):
@@ -56,7 +56,7 @@ def _process_test_module(test_module, path):
             print 'NEW LINE:  %s' % new_line.strip('\n')
             #choice = raw_input('Make replacement [y/n]? ')
             choice = 'y' 
-            if choice.lower( ) == 'y':
+            if choice.lower() == 'y':
                new_lines.append(new_line)
             else:
                new_lines.append(line)
@@ -66,14 +66,14 @@ def _process_test_module(test_module, path):
          current_case_number += 1
       else:
          new_lines.append(line)
-   fp.close( )
+   fp.close()
    fp = open(full_module_name, 'w')
    fp.writelines(new_lines)
-   fp.close( )
+   fp.close()
    return test_cases_in_current_module, misnumbered_cases_in_current_module
 
 
 if __name__ == '__main__':
-   iotools.clear_terminal( )
-   _fix_test_case_numbers( )
+   iotools.clear_terminal()
+   _fix_test_case_numbers()
    print ''

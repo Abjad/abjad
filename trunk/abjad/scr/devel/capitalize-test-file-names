@@ -7,7 +7,7 @@ import pprint
 import re
 
 
-def _capitalize_test_file_names( ):
+def _capitalize_test_file_names():
    uncapitalized_pattern = re.compile(r'test_[a-z]+.+py$')
    total_test_files = 0
    old, new = 'zzz', 'zzz'
@@ -27,10 +27,10 @@ def _rename_test_file(short_file_name, full_file_name, old, new):
    if short_file_name.endswith('_tmp.py'):
       old = '_tmp.py'
       new = '.py'
-   elif old not in short_file_name or use_previous.lower( ) != 'y':
+   elif old not in short_file_name or use_previous.lower() != 'y':
       old = raw_input('Old text: ')
       new =  raw_input('New text: ')
-   if old.lower( ) == new.lower( ):
+   if old.lower() == new.lower():
       new_short_file_name = short_file_name.replace(old, new)
       new_short_file_name = new_short_file_name.replace('.py', '_tmp.py')
       new_full_file_name = full_file_name.replace(short_file_name, new_short_file_name)
@@ -53,7 +53,7 @@ def _rename_test_file(short_file_name, full_file_name, old, new):
       
    
 if __name__ == '__main__':
-   iotools.clear_terminal( )
+   iotools.clear_terminal()
    print 'Finding test files ...'
    print ''
-   _capitalize_test_file_names( )
+   _capitalize_test_file_names()

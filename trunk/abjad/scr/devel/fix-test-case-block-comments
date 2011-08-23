@@ -5,7 +5,7 @@ import os
 import re
 
 
-def _fix_test_case_block_comments( ):
+def _fix_test_case_block_comments():
    total_test_modules = 0
    total_broken_modules = 0
    total_broken_comments = 0
@@ -23,7 +23,7 @@ def _fix_test_case_block_comments( ):
          contained_broken_comment = False
          fp = file(full_module_name, 'r')
          new_lines = [ ]
-         lines = fp.readlines( )
+         lines = fp.readlines()
          new_lines = [ ]
          prev_line = ''
          for line in lines:
@@ -34,13 +34,13 @@ def _fix_test_case_block_comments( ):
             elif open_match:
                total_broken_comments += 1
                contained_broken_comment = True
-               whitespace, open_quote, expr = open_match.groups( )
+               whitespace, open_quote, expr = open_match.groups()
                new_line = whitespace + open_quote + '\n'
                new_lines.append(new_line)
                new_line = whitespace + expr + '\n'
                new_lines.append(new_line)
             elif close_match:
-               groups = close_match.groups( )
+               groups = close_match.groups()
                whitespace, close_bracket, chord_duration, close_quote = groups
                new_line = whitespace + close_bracket + chord_duration + '\n'
                new_lines.append(new_line)
@@ -49,13 +49,13 @@ def _fix_test_case_block_comments( ):
             else:
                new_lines.append(line)
             prev_line = line
-         fp.close( ) 
+         fp.close() 
          if contained_broken_comment:
             total_broken_modules += 1
             new_file_string = ''.join(new_lines)
             fp = open(full_module_name, 'w')
             fp.write(new_file_string)
-            fp.close( )
+            fp.close()
 
    print 'total test modules: %s' % total_test_modules
    print 'total fixed test modules: %s' % total_broken_modules
@@ -63,6 +63,6 @@ def _fix_test_case_block_comments( ):
          
 
 if __name__ == '__main__':
-   iotools.clear_terminal( )
-   _fix_test_case_block_comments( )
+   iotools.clear_terminal()
+   _fix_test_case_block_comments()
    print ''

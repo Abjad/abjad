@@ -6,7 +6,7 @@ import os
 import pprint
 
 
-def _find_local_import_statements( ):
+def _find_local_import_statements():
    total_local_import_statements = 0
    for path, subdirectories, files in os.walk(ABJADPATH):
       if '.svn' not in path and 'docs' not in path:
@@ -26,22 +26,22 @@ def _find_local_import_statements_in_file(full_file_name):
    function = file_parts[-1]
    shorter_module_name = '%s%s%s' % (module, os.path.sep, function)
    fp = file(full_file_name, 'r')
-   for line in fp.readlines( ):
+   for line in fp.readlines():
       if line.startswith('from'):
-         line_parts = line.split( )
+         line_parts = line.split()
          module_name = line_parts[1]
          if not module_name in ('abjad', '__future__'):
             if '.' not in module_name:
                if total_local_import_statements == 0:
                   print shorter_module_name
                   total_local_import_statements += 1
-               print line.strip( )
-   fp.close( )
+               print line.strip()
+   fp.close()
    if 0 < total_local_import_statements:
       print ''
    return total_local_import_statements
 
 
 if __name__ == '__main__':
-   iotools.clear_terminal( )
-   _find_local_import_statements( )
+   iotools.clear_terminal()
+   _find_local_import_statements()

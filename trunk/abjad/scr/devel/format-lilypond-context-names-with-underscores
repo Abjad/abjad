@@ -12,11 +12,11 @@ def format_lilypond_context_names_with_underscores(lilypond_context_names):
       except IndexError:
          continue
       context = context.strip('\n')
-      new_context_name = context[0].lower( )
+      new_context_name = context[0].lower()
       for x in context[1:]:
-         if x.isupper( ):
+         if x.isupper():
             new_context_name += '_'
-            new_context_name += x.lower( )
+            new_context_name += x.lower()
          else:
             new_context_name += x
       context_names_with_underscores.append(new_context_name)
@@ -187,7 +187,7 @@ lilypond_grob_names = '''
 '''
 
 if __name__ == '__main__':
-   iotools.clear_terminal( )
+   iotools.clear_terminal()
    print 'Formatting LilyPond context names with underscores ...\n'
    print format_lilypond_context_names_with_underscores(lilypond_context_names)
    print ''

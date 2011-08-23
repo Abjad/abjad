@@ -5,7 +5,7 @@ from abjad.tools.mathtools import greatest_common_divisor
 import os
 
 
-def _reindent_3_spaces_as_4( ):
+def _reindent_3_spaces_as_4():
    reindented = [ ]
    indented = [ ]
    skipped = [ ]
@@ -28,28 +28,28 @@ def _reindent_3_spaces_as_4( ):
 def _strip_trailing_whitespace(file, path):
    filepath = os.path.join(path, file)
    f = open(filepath, 'r')
-   lines = f.read( ).split('\n')
-   f.close( )
+   lines = f.read().split('\n')
+   f.close()
    for i, line in enumerate(lines):
-      lines[i] = line.rstrip( )
-#      if not len(line.lstrip( )):
+      lines[i] = line.rstrip()
+#      if not len(line.lstrip()):
 #         lines[i] = ''
 #      else:
-#         lines[i] = line.rstrip( )
+#         lines[i] = line.rstrip()
    f = open(filepath, 'w')
    f.write('\n'.join(lines))
-   f.close( )
+   f.close()
 
 
 def _find_indent_gcd(file, path):
    indents = [ ]
    filepath = os.path.join(path, file)
    f = open(filepath, 'r')
-   lines = f.read( ).split('\n')
-   f.close( )
+   lines = f.read().split('\n')
+   f.close()
    for i, line in enumerate(lines):
-      if 0 < len(line.lstrip( )):
-         indent = len(line) - len(line.lstrip( ))
+      if 0 < len(line.lstrip()):
+         indent = len(line) - len(line.lstrip())
          if 0 < indent:
             indents.append(indent)
    if indents:
@@ -62,11 +62,11 @@ def _find_inconsistent_indents(file, path):
    inconsistencies = [ ]
    filepath = os.path.join(path, file)
    f = open(filepath, 'r')
-   lines = f.read( ).split('\n')
-   f.close( )
+   lines = f.read().split('\n')
+   f.close()
    for i, line in enumerate(lines):
-      if 0 < len(line.lstrip( )):
-         indent = len(line) - len(line.lstrip( ))
+      if 0 < len(line.lstrip()):
+         indent = len(line) - len(line.lstrip())
          if 0 < indent:
             if 0 < (indent % 3):
                inconsistencies.append(i)
@@ -76,10 +76,10 @@ def _find_inconsistent_indents(file, path):
 def _reindent(file, path):
    filepath = os.path.join(path, file)
    f = open(filepath, 'r')
-   lines = f.read( ).split('\n')
-   f.close( )
+   lines = f.read().split('\n')
+   f.close()
    for i, line in enumerate(lines):
-      indent = len(line) - len(line.lstrip( ))
+      indent = len(line) - len(line.lstrip())
       div, mod = divmod(indent, 3)
       if mod != 0:
           print 'Unexpected indent (%d, %d) in %s:%d' % (div, mod, filepath, mod)
@@ -88,11 +88,11 @@ def _reindent(file, path):
           print '%d:\t"%s"' % (i, line)
           if line != lines[-1]:
               print '%d:\t"%s"' % (i + 1, lines[i + 1])
-          raise Exception( )
+          raise Exception()
       lines[i] = lines[i].replace('   ' * div, '    ' * div)
    f = open(filepath, 'w')
    f.write('\n'.join(lines))
-   f.close( )
+   f.close()
 
 
 def _print_results(reindented, indented, skipped):
@@ -109,7 +109,7 @@ def _print_results(reindented, indented, skipped):
               
 
 if __name__ == '__main__':
-   iotools.clear_terminal( )   
-   _reindent_3_spaces_as_4( )
+   iotools.clear_terminal()   
+   _reindent_3_spaces_as_4()
    print ''
 

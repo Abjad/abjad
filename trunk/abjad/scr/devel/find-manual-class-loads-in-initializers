@@ -5,7 +5,7 @@ from abjad.tools import iotools
 import os
 
 
-def _find_initializers( ):
+def _find_initializers():
    initializers = [ ]
    for path, subdirectories, files in os.walk(ABJADPATH):
       for f in files:
@@ -17,8 +17,8 @@ def _find_initializers( ):
    print 'There are %s initializers ...' % len(initializers)
    inits_with_manual_imports = set([ ])
    for x in initializers:
-      for line in file(x, 'r').readlines( ):
-         if line.startswith('from ') and line[5].isupper( ):
+      for line in file(x, 'r').readlines():
+         if line.startswith('from ') and line[5].isupper():
             inits_with_manual_imports.add(x)
    for x in sorted(inits_with_manual_imports):
       print x
@@ -26,6 +26,6 @@ def _find_initializers( ):
    print 'Total initializers with manual imports: %s' % len(inits_with_manual_imports)
 
 if __name__ == '__main__':
-   iotools.clear_terminal( )
+   iotools.clear_terminal()
    print 'Finding manual class loads in initializers ...'
-   _find_initializers( )
+   _find_initializers()

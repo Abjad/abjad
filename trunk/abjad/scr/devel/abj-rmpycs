@@ -2,4 +2,4 @@
 
 from abjad.tools import iotools
 
-iotools.remove_abjad_pyc_files( )
+iotools.remove_abjad_pyc_files()

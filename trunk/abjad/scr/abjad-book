@@ -4,7 +4,7 @@
 from abjad.book.abjad_book import _abjad_book
 from abjad.tools import iotools
 
-iotools.clear_terminal( )
-_abjad_book( )
+iotools.clear_terminal()
+_abjad_book()
 
 print ''

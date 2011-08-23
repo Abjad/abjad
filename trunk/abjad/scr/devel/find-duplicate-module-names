@@ -4,7 +4,7 @@ from abjad.tools import iotools
 import os
 
 
-def _find_all_duplicate_module_names( ):
+def _find_all_duplicate_module_names():
    all_filenames = [ ]
    for dirpath, dirnames, filenames in os.walk('.'):
       for filename in filenames:
@@ -21,5 +21,5 @@ def _find_all_duplicate_module_names( ):
    
 
 if __name__ == '__main__':
-   iotools.clear_terminal( )
-   _find_all_duplicate_module_names( )
+   iotools.clear_terminal()
+   _find_all_duplicate_module_names()

@@ -9,13 +9,13 @@ import re
 
 function_definition_pattern = re.compile(r'\s*def\s+(\w+)')
 
-def _find_undocumented_tools( ):
+def _find_undocumented_tools():
    undocumented_tools = [ ]
    tools_directory = os.path.join(ABJADPATH, 'tools')
    for path, subdirectories, files in os.walk(tools_directory):
       for f in files:
          if f.endswith('.py'):
-            if f[0].islower( ):
+            if f[0].islower():
                if not f.startswith('test_'):
                   if _has_undocumented_tool(path, f):
                      package = path.split(os.sep)[-1]
@@ -34,7 +34,7 @@ def _has_undocumented_tool(path, f):
    full_name = os.path.join(path, f)
    examine_next_line = False
    examine_upcoming_line = False
-   for line in file(full_name, 'r').readlines( ):
+   for line in file(full_name, 'r').readlines():
       if examine_next_line:
          if "'''" not in line:
             if '"""' not in line:
@@ -46,7 +46,7 @@ def _has_undocumented_tool(path, f):
             examine_next_line = True
       match = function_definition_pattern.match(line)
       if match is not None:
-         function_name = match.groups( )[0]
+         function_name = match.groups()[0]
          if not function_name.startswith('_'):
             if ':' in line:
                examine_next_line = True
@@ -57,5 +57,5 @@ def _has_undocumented_tool(path, f):
          
 
 if __name__ == '__main__':
-   iotools.clear_terminal( )
-   _find_undocumented_tools( )
+   iotools.clear_terminal()
+   _find_undocumented_tools()

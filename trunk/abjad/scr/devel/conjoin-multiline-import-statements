@@ -5,7 +5,7 @@ from abjad.tools import iotools
 import os
 
 
-def _conjoin_multiline_import_statements( ):
+def _conjoin_multiline_import_statements():
    total_multiline_import_statements = 0
    for path, subdirectories, files in os.walk(ABJADPATH):
       for f in files:
@@ -18,11 +18,11 @@ def _conjoin_multiline_import_statements( ):
             for line in fp:
                if ('import' in line or line.startswith('from')) and line.endswith('\\\n'):
                   ### strip only right edge of first line to preserve indentation at left
-                  constituent_lines.append(line.rstrip( ))
+                  constituent_lines.append(line.rstrip())
                   within_multiline_import = True
                elif within_multiline_import:
                   ### strip both left and right edges of subsequent lines
-                  constituent_lines.append(line.strip( ))
+                  constituent_lines.append(line.strip())
                   if not line.endswith('\\\n'):   
                      conjoined_line = ' '.join(constituent_lines) + '\n'
                      conjoined_line = conjoined_line.replace(' \\', '')
@@ -31,14 +31,14 @@ def _conjoin_multiline_import_statements( ):
                      within_multiline_import, constituent_lines = False, [ ]
                else:
                   file_lines_to_output.append(line)
-            fp.close( )
+            fp.close()
             fp = file(full_file_name, 'w')
             fp.write(''.join(file_lines_to_output))
-            fp.close( )
+            fp.close()
 
 
 if __name__ == '__main__':
-   iotools.clear_terminal( )
+   iotools.clear_terminal()
    print 'Conjoining multiline import statements ...'
    print ''
-   _conjoin_multiline_import_statements( )
+   _conjoin_multiline_import_statements()

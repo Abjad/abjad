@@ -18,12 +18,12 @@ def _reindent(leading_tab, old_tab_size, new_tab_size):
                 fullpath = os.path.join(path, file)
 
                 f = open(fullpath, 'r')
-                lines = f.read( ).split('\n')
-                f.close( )
+                lines = f.read().split('\n')
+                f.close()
 
                 dirty = False
                 for i, line in enumerate(lines):
-                    this_tab = len(line) - len(line.lstrip( ))
+                    this_tab = len(line) - len(line.lstrip())
                     if leading_tab < this_tab:
                         div, mod = divmod(this_tab - leading_tab, old_tab_size)
                         if mod == 0:
@@ -32,7 +32,7 @@ def _reindent(leading_tab, old_tab_size, new_tab_size):
                                 dirty = True
                             new_line = ' ' * leading_tab
                             new_line += ' ' * new_tab_size * div
-                            new_line += line.strip( )
+                            new_line += line.strip()
                             print '--- %s' % line
                             print '+++ %s' % new_line
                             lines[i] = new_line
@@ -40,10 +40,10 @@ def _reindent(leading_tab, old_tab_size, new_tab_size):
                 f = open(fullpath, 'w')
                 for line in lines:
                     f.write('%s\n' % line)
-                f.close( )
+                f.close()
 
 
-def _usage( ):
+def _usage():
     result = [ ]
     result.append('')
     result.append('Usage:')
@@ -62,7 +62,7 @@ def _usage( ):
 if __name__ == '__main__':
     import sys
     if len(sys.argv) < 4:
-        print _usage( )
+        print _usage()
         sys.exit(2)
 
     leading_tab = int(sys.argv[1])
@@ -73,7 +73,7 @@ if __name__ == '__main__':
     assert 0 < old_tab_size
     assert 0 < new_tab_size
 
-    iotools.clear_terminal( )
+    iotools.clear_terminal()
     print 'REINDENTING...'
     _reindent(leading_tab, old_tab_size, new_tab_size)
 

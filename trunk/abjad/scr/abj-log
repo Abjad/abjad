@@ -2,4 +2,4 @@
 
 from abjad.tools.iotools.log import log
 
-log( )
+log()

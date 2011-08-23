@@ -6,7 +6,7 @@ import doctest
 import os
 
 
-def _main( ):
+def _main():
    total_modules = 0
    for dir_path, dir_names, file_names in os.walk('.'):
       for file_name in file_names:
@@ -15,11 +15,11 @@ def _main( ):
             not file_name == '__init__.py':
             total_modules += 1
             full_file_name = os.path.abspath(os.path.join(dir_path, file_name))
-            doctest.testfile(full_file_name, module_relative = False, globs = globals( ),
+            doctest.testfile(full_file_name, module_relative = False, globs = globals(),
                optionflags = doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS)
    print 'Total modules: %s' % total_modules
    
 
 if __name__ == '__main__':
-   iotools.clear_terminal( )
-   _main( )
+   iotools.clear_terminal()
+   _main()

@@ -7,7 +7,7 @@ import pprint
 import re
 
 
-def _find_lower_camel_case_modules( ):
+def _find_lower_camel_case_modules():
    lower_camel_case_modules = [ ]
    lower_camel_case_pattern = re.compile(r'[a-z]+[A-Z]+.*')
    for path, subdirectories, files in os.walk(ABJADPATH):
@@ -27,7 +27,7 @@ def _find_lower_camel_case_modules( ):
 
 
 if __name__ == '__main__':
-   iotools.clear_terminal( )
+   iotools.clear_terminal()
    print 'Finding lower camel case modules ...'
    print ''
-   _find_lower_camel_case_modules( )
+   _find_lower_camel_case_modules()

@@ -6,7 +6,7 @@ import os
 import pprint
 
 
-def _find_misnamed_private_modules( ):
+def _find_misnamed_private_modules():
    tools_path = os.path.join(ABJADPATH, 'tools')
    offending_definition_lines = [ ]
    for path, subdirectories, files in os.walk(tools_path):
@@ -14,10 +14,10 @@ def _find_misnamed_private_modules( ):
          if f.endswith('.py'):
             if not f.startswith(('test', '_')):
                full_name = os.path.join(path, f)
-               for line in file(full_name, 'r').readlines( ):
+               for line in file(full_name, 'r').readlines():
                   if line.startswith('def '):
                      if line.startswith('def _'):
-                        function_name = ' '.join(line.strip( ).split( )[1:])[:-1]
+                        function_name = ' '.join(line.strip().split()[1:])[:-1]
                         function_name = function_name.split('(')[0]
                         module_name = f[:-3]
                         if function_name[1:] == module_name:
@@ -33,6 +33,6 @@ def _find_misnamed_private_modules( ):
       
 
 if __name__ == '__main__':
-   iotools.clear_terminal( )
+   iotools.clear_terminal()
    print 'Finding misnamed private modules ...'
-   _find_misnamed_private_modules( )
+   _find_misnamed_private_modules()
