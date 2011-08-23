@@ -1,12 +1,11 @@
+from abjad.cfg._get_text_editor import _get_text_editor
 from abjad.cfg._read_config_file import _read_config_file
 from abjad.tools.iotools.get_last_output_file_name import get_last_output_file_name
 import os
 
 
-### TODO: Open operating-specific text editor instead of vi. ###
-
 def ly(target = -1):
-    r'''Open the last LilyPond output file in ``vi``::
+    r'''Open the last LilyPond output file in text editor::
 
         abjad> iotools.ly() # doctest: +SKIP
 
@@ -23,16 +22,17 @@ def ly(target = -1):
             c'4
         }
 
-    Open the next-to-last LilyPond output file in ``vi``::
+    Open the next-to-last LilyPond output file in text editor::
 
         abjad> iotools.ly(-2) # doctest: +SKIP
 
-    Exit ``vi`` in the usual way with ``:q`` or equivalent.
+    Exit text editor in the usual way.
 
     Return none.
     '''
 
     ABJADOUTPUT = _read_config_file()['abjad_output']
+    text_editor = _get_text_editor()
     if isinstance(target, int) and target < 0:
         last_lilypond = get_last_output_file_name()
         if last_lilypond:
@@ -51,6 +51,7 @@ def ly(target = -1):
         raise ValueError('can not get target LilyPond input from %s.' % target)
 
     if os.stat(target_ly):
-        os.system('vi %s' % target_ly)
+        command = '%s %s' % (text_editor, target_ly)
+        os.system(command)
     else:
         print 'Target LilyPond input file %s does not exist.' % target_ly
