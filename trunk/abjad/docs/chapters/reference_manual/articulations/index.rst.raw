@@ -1,0 +1,41 @@
+Articulations
+=============
+
+
+Creating articulations
+----------------------
+
+
+
+
+Attaching articulations to leaves
+---------------------------------
+
+
+
+
+Getting the articulations attached to a leaf
+--------------------------------------------
+
+
+Detaching articulations from a leaf one at a time
+-------------------------------------------------
+
+
+
+Detaching all articulations attached to a leaf at once
+------------------------------------------------------
+
+
+
+Inspecting the leaf to which an articulation is attached
+--------------------------------------------------------
+
+
+Controling whether an articulation appears above or below the staff
+-------------------------------------------------------------------
+
+
+Getting and setting articulation name
+-------------------------------------
+
