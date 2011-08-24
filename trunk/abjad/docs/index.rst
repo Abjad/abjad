@@ -37,6 +37,7 @@ Reference manual
     :numbered:
 
     chapters/reference_manual/annotations/index
+    chapters/reference_manual/articulations/index
     chapters/reference_manual/chords/index
     chapters/reference_manual/containers/index
     chapters/reference_manual/instrument_marks/index

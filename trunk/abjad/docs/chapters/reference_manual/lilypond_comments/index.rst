@@ -1,4 +1,4 @@
-LilyPond Comments
+LilyPond comments
 =================
 
 LilyPond comments begin with the ``%`` sign.

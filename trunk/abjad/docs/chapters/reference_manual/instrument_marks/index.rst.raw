@@ -6,7 +6,7 @@ Instrument marks appear as markup in the left margin of your score.
 Creating instrument marks
 -------------------------
 
-Use context tools to create instrument marks:
+Use ``contexttools`` to create instrument marks:
 
 <abjad>
 instrument_mark = contexttools.InstrumentMark('Violin ', 'Vn. ')
@@ -17,8 +17,8 @@ instrument_mark
 print repr(instrument_mark) <hide
 </abjad>
 
-Attaching instrument marks
---------------------------
+Attaching instrument marks to a component
+-----------------------------------------
 
 Use ``attach_mark()`` to attach any mark to a component:
 
@@ -39,7 +39,7 @@ iotools.write_expr_to_ly(staff, 'instrument-marks-1') <hide
 Getting the instrument mark attached to a component
 ---------------------------------------------------
 
-Use context tools to get the instrument mark attached to a component:
+Use ``contexttools`` to get the instrument mark attached to a component:
 
 <abjad>
 contexttools.get_instrument_mark_attached_to_component(staff)
@@ -58,10 +58,10 @@ print repr(contexttools.get_effective_instrument(staff[1])) <hide
 </abjad>
 
 
-Detaching instrument marks by hand
-----------------------------------
+Detaching instrument marks from a component one at a time
+---------------------------------------------------------
 
-Detach instrument marks by hand:
+Use ``detach_mark()`` to detach instrument marks from a component one at a time:
 
 <abjad>
 instrument_mark.detach_mark()
@@ -74,14 +74,14 @@ print repr(instrument_mark) <hide
 
 <abjad>
 show(staff)
-iotools.write_expr_to_ly(staff, 'instrument-marks-2')
+iotools.write_expr_to_ly(staff, 'instrument-marks-2') <hide
 </abjad>
 
 
-Detaching instrument marks automatically
-----------------------------------------
+Detaching all instrument marks attached to a component at once
+--------------------------------------------------------------
 
-Or use context tools to detach instrument marks all at once:
+Or use ``contexttools`` to detach instrument marks all at once:
 
 <abjad>
 instrument_mark = contexttools.InstrumentMark('Violin ', 'Vn. ')
@@ -95,7 +95,7 @@ print repr(instrument_mark) <hide
 
 <abjad>
 show(staff)
-iotools.write_expr_to_ly(staff, 'instrument-marks-3')
+iotools.write_expr_to_ly(staff, 'instrument-marks-3') <hide
 </abjad>
 
 <abjad>
@@ -109,14 +109,14 @@ print repr(instrument_mark) <hide
 
 <abjad>
 show(staff)
-iotools.write_expr_to_ly(staff, 'instrument-marks-4')
+iotools.write_expr_to_ly(staff, 'instrument-marks-4') <hide
 </abjad>
 
 
-Inspecting attachment
----------------------
+Inspecting the component to which an instrument mark is attached
+----------------------------------------------------------------
 
-Use ``start_component`` to inspect attachment:
+Use ``start_component`` to inspect the component to which an instrument mark is attached:
 
 <abjad>
 instrument_mark = contexttools.InstrumentMark('Flute ', 'Fl. ')
@@ -125,7 +125,7 @@ instrument_mark.attach_mark(staff)
 
 <abjad>
 show(staff)
-iotools.write_expr_to_ly(staff, 'instrument-marks-5')
+iotools.write_expr_to_ly(staff, 'instrument-marks-5') <hide
 </abjad>
 
 <abjad>
@@ -134,8 +134,8 @@ print repr(instrument_mark.start_component) <hide
 </abjad>
 
 
-Inspecting instrument name
---------------------------
+Inspecting the instrument name of an instrument mark
+----------------------------------------------------
 
 Use ``instrument_name`` to get the instrument name of any instrument mark:
 
@@ -145,8 +145,8 @@ print repr(instrument_mark.instrument_name) <hide
 </abjad>
 
 
-Inspecting short instrument name
---------------------------------
+Inspecting the short instrument name of an instrument mark
+----------------------------------------------------------
 
 And use ``short_instrument_name`` to get the short instrument name of any instrument mark:
 

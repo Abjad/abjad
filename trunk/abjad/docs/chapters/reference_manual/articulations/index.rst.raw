@@ -1,41 +1,251 @@
 Articulations
 =============
 
+Articulations model staccati, marcati, tenuti and other symbols.
+Articulations attach notes, rests or chords.
+
 
 Creating articulations
 ----------------------
 
+Use ``marktools`` to create articulations:
 
+<abjad>
+articulation = marktools.Articulation('marcato') 
+</abjad>
+
+<abjad>
+articulation
+print repr(articulation) <hide
+</abjad>
 
 
 Attaching articulations to leaves
 ---------------------------------
 
+Use ``attach_mark()`` to attach any articulation to a leaf:
 
+<abjad>
+staff = Staff("c'4 d'4 e'4 f'4")
+</abjad>
+
+<abjad>
+articulation.attach_mark(staff[0])
+</abjad>
+
+<abjad>
+show(staff)
+iotools.write_expr_to_ly(staff, 'articulations-1') <hide
+</abjad>
 
 
 Getting the articulations attached to a leaf
 --------------------------------------------
 
+Use ``marktools`` to get the articulations attached to a leaf:
+
+<abjad>
+marktools.get_articulations_attached_to_component(staff[0])
+print marktools.get_articulations_attached_to_component(staff[0]) <hide
+</abjad>
+
 
 Detaching articulations from a leaf one at a time
 -------------------------------------------------
 
+Detach articulations by hand with ``detach_mark()``:
+
+<abjad>
+articulation.detach_mark()
+</abjad>
+
+<abjad>
+articulation
+print articulation <hide
+</abjad>
+
+<abjad>
+show(staff)
+iotools.write_expr_to_ly(staff, 'articulations-2') <hide
+</abjad>
 
 
 Detaching all articulations attached to a leaf at once
 ------------------------------------------------------
 
+Use ``marktools`` to detach all articulations attached to a leaf at once:
+
+<abjad>
+articulation_1 = marktools.Articulation('marcato')
+articulation_1.attach_mark(staff[0])
+</abjad>
+
+<abjad>
+articulation_2 = marktools.Articulation('staccato')
+articulation_2.attach_mark(staff[0])
+</abjad>
+
+<abjad>
+show(staff)
+iotools.write_expr_to_ly(staff, 'articulations-3') <hide
+</abjad>
+
+<abjad>
+marktools.detach_articulations_attached_to_component(staff[0])
+</abjad>
+
+<abjad>
+show(staff)
+iotools.write_expr_to_ly(staff, 'articulations-4') <hide
+</abjad>
 
 
 Inspecting the leaf to which an articulation is attached
 --------------------------------------------------------
 
+Use ``start_component`` to inspect the component to which an articulation is attached:
+
+<abjad>
+articulation = marktools.Articulation('marcato')
+articulation.attach_mark(staff[0])
+</abjad>
+
+<abjad>
+show(staff)
+iotools.write_expr_to_ly(staff, 'articulations-5') <hide
+</abjad>
+
+<abjad>
+articulation.start_component
+print repr(articulation.start_component) <hide
+</abjad>
+
 
 Controling whether an articulation appears above or below the staff
 -------------------------------------------------------------------
+
+Set ``direction_string`` to ``'^'`` to force an articulation to appear
+above the staff:
+
+<abjad>
+articulation.direction_string = '^'
+</abjad>
+
+<abjad>
+show(staff)
+iotools.write_expr_to_ly(staff, 'articulations-6') <hide
+</abjad>
+
+Set ``direction_string`` to ``'_'`` to force an articulation to appear
+above the staff:
+
+<abjad>
+articulation.direction_string = '_'
+</abjad>
+
+<abjad>
+show(staff)
+iotools.write_expr_to_ly(staff, 'articulations-7') <hide
+</abjad>
+
+Set ``direction_string`` to ``'-'`` to allow LilyPond to position
+an articulation automatically:
+
+<abjad>
+articulation.direction_string = '-'
+</abjad>
+
+<abjad>
+show(staff)
+iotools.write_expr_to_ly(staff, 'articulations-8') <hide
+</abjad>
 
 
 Getting and setting articulation name
 -------------------------------------
 
+Set the ``name_string`` of an articulation to change the symbol an articulation prints:
+
+<abjad>
+articulation.name_string = 'staccatissimo'
+</abjad>
+
+<abjad>
+show(staff)
+iotools.write_expr_to_ly(staff, 'articulations-9') <hide
+</abjad>
+
+
+Copying articulations
+---------------------
+
+Use ``copy.copy()`` to copy an articulation:
+
+<abjad>
+import copy
+</abjad>
+
+<abjad>
+articulation_copy_1 = copy.copy(articulation)
+</abjad>
+
+<abjad>
+articulation_copy_1
+print repr(articulation_copy_1) <hide
+</abjad>
+
+<abjad>
+articulation_copy_1.attach_mark(staff[1])
+</abjad>
+
+<abjad>
+show(staff)
+iotools.write_expr_to_ly(staff, 'articulations-10') <hide
+</abjad>
+
+Or use ``copy.deepcopy()`` to do the same thing:
+
+<abjad>
+articulation_copy_2 = copy.deepcopy(articulation)
+</abjad>
+
+<abjad>
+articulation_copy_2
+print repr(articulation_copy_2) <hide
+</abjad>
+
+<abjad>
+articulation_copy_2.attach_mark(staff[2])
+</abjad>
+
+<abjad>
+show(staff)
+iotools.write_expr_to_ly(staff, 'articulations-11') <hide
+</abjad>
+
+
+Comparing articulations
+-----------------------
+
+Articulations compare equal with equal direction name strings and direction strings:
+
+<abjad>
+articulation.name_string
+print repr(articulation.name_string) <hide
+articulation.direction_string
+print repr(articulation.direction_string) <hide
+</abjad>
+
+<abjad>
+articulation_copy_1.name_string
+print repr(articulation_copy_1.name_string) <hide
+articulation_copy_1.direction_string
+print repr(articulation_copy_1.direction_string) <hide
+</abjad>
+
+<abjad>
+articulation == articulation_copy_1
+print repr(articulation == articulation_copy_1) <hide
+</abjad>
+
+Otherwise articulations do not compare equal.

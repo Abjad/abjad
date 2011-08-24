@@ -5,29 +5,30 @@ import os
 
 
 def _rebuild_docs():
-   total_file_names = 0
-   bad_files, good_files = [ ], [ ]
-   for dir_path, dir_names, file_names in os.walk('.'):
-      for file_name in file_names:
-         if file_name == 'index.rst.raw':
-            total_file_names += 1
-            source_file_name = os.path.abspath(os.path.join(dir_path, file_name))
-            target_file_name = os.path.abspath(os.path.join(dir_path, 'index.rst'))
-            command = 'abjad-book %s %s' % (source_file_name, target_file_name)
-            try:
-               os.system(command)
-               good_files.append(source_file_name)
-            except:
-               bad_files.append(source_file_name)
-   print 'Total file names: %s' % total_file_names
-   print 'Total good files: %s' % len(good_files)
-   print 'Total bad files:  %s' % len(bad_files)
-   print ''
-   for bad_file in bad_files:
-      print bad_file
-   print ''
-   
+    total_file_names = 0
+    bad_files, good_files = [ ], [ ]
+    for dir_path, dir_names, file_names in os.walk('.'):
+        for file_name in file_names:
+            if file_name == 'index.rst.raw':
+                total_file_names += 1
+                source_file_name = os.path.abspath(os.path.join(dir_path, file_name))
+                target_file_name = os.path.abspath(os.path.join(dir_path, 'index.rst'))
+                command = 'abjad-book %s %s' % (source_file_name, target_file_name)
+                try:
+                    os.system(command)
+                    good_files.append(source_file_name)
+                except:
+                    bad_files.append(source_file_name)
+    print 'Total file names: %s' % total_file_names
+    print 'Total good files: %s' % len(good_files)
+    print 'Total bad files:  %s' % len(bad_files)
+    print ''
+    for bad_file in bad_files:
+        print bad_file
+    print ''
+    
 
 if __name__ == '__main__':
-   iotools.clear_terminal()
-   _rebuild_docs()
+    iotools.clear_terminal()
+    _rebuild_docs()
+    os.system('html-docs')

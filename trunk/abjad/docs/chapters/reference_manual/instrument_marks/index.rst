@@ -6,7 +6,7 @@ Instrument marks appear as markup in the left margin of your score.
 Creating instrument marks
 -------------------------
 
-Use context tools to create instrument marks:
+Use ``contexttools`` to create instrument marks:
 
 ::
 
@@ -19,8 +19,8 @@ Use context tools to create instrument marks:
 	InstrumentMark('Violin ', 'Vn. ')
 
 
-Attaching instrument marks
---------------------------
+Attaching instrument marks to a component
+-----------------------------------------
 
 Use ``attach_mark()`` to attach any mark to a component:
 
@@ -44,7 +44,7 @@ Use ``attach_mark()`` to attach any mark to a component:
 Getting the instrument mark attached to a component
 ---------------------------------------------------
 
-Use context tools to get the instrument mark attached to a component:
+Use ``contexttools`` to get the instrument mark attached to a component:
 
 ::
 
@@ -65,10 +65,10 @@ Or to get the instrument currently in effect for a component:
 
 
 
-Detaching instrument marks by hand
-----------------------------------
+Detaching instrument marks from a component one at a time
+---------------------------------------------------------
 
-Detach instrument marks by hand:
+Use ``detach_mark()`` to detach instrument marks from a component one at a time:
 
 ::
 
@@ -84,15 +84,14 @@ Detach instrument marks by hand:
 ::
 
 	abjad> show(staff)
-	abjad> iotools.write_expr_to_ly(staff, 'instrument-marks-2')
 
 .. image:: images/instrument-marks-2.png
 
 
-Detaching instrument marks automatically
-----------------------------------------
+Detaching all instrument marks attached to a component at once
+--------------------------------------------------------------
 
-Or use context tools to detach instrument marks all at once:
+Or use ``contexttools`` to detach instrument marks all at once:
 
 ::
 
@@ -109,7 +108,6 @@ Or use context tools to detach instrument marks all at once:
 ::
 
 	abjad> show(staff)
-	abjad> iotools.write_expr_to_ly(staff, 'instrument-marks-3')
 
 .. image:: images/instrument-marks-3.png
 
@@ -127,15 +125,14 @@ Or use context tools to detach instrument marks all at once:
 ::
 
 	abjad> show(staff)
-	abjad> iotools.write_expr_to_ly(staff, 'instrument-marks-4')
 
 .. image:: images/instrument-marks-4.png
 
 
-Inspecting attachment
----------------------
+Inspecting the component to which an instrument mark is attached
+----------------------------------------------------------------
 
-Use ``start_component`` to inspect attachment:
+Use ``start_component`` to inspect the component to which an instrument mark is attached:
 
 ::
 
@@ -146,7 +143,6 @@ Use ``start_component`` to inspect attachment:
 ::
 
 	abjad> show(staff)
-	abjad> iotools.write_expr_to_ly(staff, 'instrument-marks-5')
 
 .. image:: images/instrument-marks-5.png
 
@@ -157,8 +153,8 @@ Use ``start_component`` to inspect attachment:
 
 
 
-Inspecting instrument name
---------------------------
+Inspecting the instrument name of an instrument mark
+----------------------------------------------------
 
 Use ``instrument_name`` to get the instrument name of any instrument mark:
 
@@ -169,8 +165,8 @@ Use ``instrument_name`` to get the instrument name of any instrument mark:
 
 
 
-Inspecting short instrument name
---------------------------------
+Inspecting the short instrument name of an instrument mark
+----------------------------------------------------------
 
 And use ``short_instrument_name`` to get the short instrument name of any instrument mark:
 
