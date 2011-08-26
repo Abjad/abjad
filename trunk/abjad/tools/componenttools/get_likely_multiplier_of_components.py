@@ -1,6 +1,6 @@
-from abjad.tools import mathtools
-from abjad.tools import seqtools
 from abjad.tools import durtools
+from abjad.tools.mathtools import greatest_power_of_two_less_equal
+from abjad.tools.seqtools import truncate_runs_in_sequence
 
 
 ### TODO: Maybe move get_likely_multiplier_of_components() from durtools to measuretools? ###
@@ -60,8 +60,8 @@ def get_likely_multiplier_of_components(components):
             chain_duration = tietools.get_preprolated_tie_chain_duration(expr)
             chain_duration_numerators.append(chain_duration.numerator)
 
-    if len(seqtools.truncate_runs_in_sequence(chain_duration_numerators)) == 1:
+    if len(truncate_runs_in_sequence(chain_duration_numerators)) == 1:
         numerator = chain_duration_numerators[0]
-        denominator = mathtools.greatest_power_of_two_less_equal(numerator)
+        denominator = greatest_power_of_two_less_equal(numerator)
         likely_multiplier = durtools.Duration(numerator, denominator)
         return likely_multiplier

@@ -1,5 +1,5 @@
-from abjad.tools import mathtools
-from abjad.tools import seqtools
+from abjad.tools.mathtools import cumulative_sums_zero
+from abjad.tools.seqtools import iterate_sequence_pairwise_strict
 
 
 ### TODO: Implement in-place containertools.partition_components_by_counts() ###
@@ -79,7 +79,7 @@ def copy_and_partition_governed_component_subtree_by_leaf_counts(container, leaf
     assert all([isinstance(x, int) for x in leaf_counts])
 
     result = [ ]
-    sums = mathtools.cumulative_sums_zero(leaf_counts)
-    for start, stop in seqtools.iterate_sequence_pairwise_strict(sums):
+    sums = cumulative_sums_zero(leaf_counts)
+    for start, stop in iterate_sequence_pairwise_strict(sums):
         result.append(copy_governed_component_subtree_by_leaf_range(container, start, stop))
     return result
