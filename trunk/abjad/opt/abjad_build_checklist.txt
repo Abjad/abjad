@@ -9,37 +9,38 @@ Abjad build checklist:
 
  4. Run py.test. If any tests break, fix and repeat this step.
 
- 5. Change to abjad/tools and run doctest. 
+ 5. Change to abjad/tools and run the following three scripts:
+    replace-python-prompts-with-abjad-prompts
+    run-doctest-on-all-modules-in-tree
+    replace-abjad-prompts-with-python-prompts
     If any tests break, fix and go back to (3.)
 
  6. Change to abjad/docs and run 'make clean'.
     (This step is important. Failing to 'make clean' before building
     the docs can cause the doc tarball made in step #18, below,
-    to exceed 10 megs. PyPI rejects doc tarballs greater than
-    10 megs on upload to PyPI.)
+    to exceed 10 megs. PyPI rejects doc tarballs greater than 10 megs.)
 
- 7. Run make-abjad-api. If any errors, fix and go back to (3.)
+ 7. Run make-abjad-api. If any errors occur, fix and go back to (3.)
 
- 8. Run 'make latex'. If any errors, fix and go back to (3.)
+ 8. Run 'make latex'. If any errors occur, fix and go back to (3.)
 
  9. Change to docs/_build/latex and run 'make all-pdf'.
-    If any errors, fix and go back to (3.)
+    If any errors occur, fix and go back to (3.)
 
 10. Copy docs/_build/latex/Abjad.pdf to docs/pdf/Abjad-x.y.pdf.
 
-11. Run 'svn rm docs/pdf/Abjad-x.(y-1).pdf' to remove the PDF
-    of the previous version of the docs.
+11. Add docs/pdf/Abajd-x.y.pdf to svn.
 
-12. Add all newly created files to svn.
+12. Remove docs/pdf/Abjad-x.(y-1).pdf from svn.
 
-13. Commit.
+13. Change to abjad/trunk.
 
-14. Change to abjad/trunk.
+14. Edit setup.py and increment the 'version' string found there.
 
-15. Edit setup.py and increment the 'version' string found there.
+15. Commit.
 
 16. Run 'python setup.py sdist'.
-    If any errors, fix and go back to (3.)
+    If any errors occur, fix and go back to (3.)
 
 17. Run 'python setup.py register sdist upload'
     Follow the login instructions provided by PyPI.
@@ -87,4 +88,4 @@ Abjad build checklist:
     
 27. Return to your Abjad sources and remove docs/_build/html/Abjad-docs.zip.
 
-[2011-08-21]
+[2011-08-21, rev. 2011-08-30]
