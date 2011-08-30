@@ -59,7 +59,7 @@ def multiply_contents_of_measures_in_expr(expr, n):
         new_pair = durtools.multiply_duration_pair(old_pair, durtools.Duration(n))
         time_signature = contexttools.TimeSignatureMark(new_pair)
         contexttools.detach_time_signature_mark_attached_to_component(measure)
-        time_signature.attach_mark(measure)
+        time_signature.attach(measure)
 
 
 

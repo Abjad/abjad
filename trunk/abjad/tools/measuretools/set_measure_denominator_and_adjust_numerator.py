@@ -55,7 +55,7 @@ def set_measure_denominator_and_adjust_numerator(measure, denominator):
             old_meter_pair, denominator)
         new_meter = contexttools.TimeSignatureMark(new_meter)
         contexttools.detach_time_signature_mark_attached_to_component(measure)
-        new_meter.attach_mark(measure)
+        new_meter.attach(measure)
 
     return measure
 

@@ -25,7 +25,7 @@ Use ``marktools`` to create LilyPond comments:
 Attaching LilyPond comments to leaves
 -------------------------------------
 
-Attach LilyPond comments to a note, rest or chord with ``attach_mark()``:
+Attach LilyPond comments to a note, rest or chord with ``attach()``:
 
 ::
 
@@ -36,7 +36,7 @@ Attach LilyPond comments to a note, rest or chord with ``attach_mark()``:
 
 ::
 
-	abjad> comment_1.attach_mark(note)
+	abjad> comment_1.attach(note)
 
 
 ::
@@ -52,7 +52,7 @@ You can add LilyPond comments before, after or to the right of any leaf.
 Attaching LilyPond comments to containers
 -----------------------------------------
 
-Use ``attach_mark()`` to attach LilyPond comments to a container:
+Use ``attach()`` to attach LilyPond comments to a container:
 
 ::
 
@@ -72,11 +72,11 @@ Use ``attach_mark()`` to attach LilyPond comments to a container:
 
 ::
 
-	abjad> staff_comment_1.attach_mark(staff)
-	abjad> staff_comment_2.attach_mark(staff)
-	abjad> staff_comment_3.attach_mark(staff)
-	abjad> staff_comment_4.attach_mark(staff)
-	abjad> staff_comment_5.attach_mark(staff)
+	abjad> staff_comment_1.attach(staff)
+	abjad> staff_comment_2.attach(staff)
+	abjad> staff_comment_3.attach(staff)
+	abjad> staff_comment_4.attach(staff)
+	abjad> staff_comment_5.attach(staff)
 
 
 ::
@@ -174,7 +174,7 @@ Use ``start_component`` to inspect the component to which a LilyPond comment is 
 
 ::
 
-	abjad> comment_1.attach_mark(note)
+	abjad> comment_1.attach(note)
 
 
 ::

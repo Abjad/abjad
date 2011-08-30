@@ -131,7 +131,7 @@ def copy_components_and_immediate_parent_of_first_component(components):
         new_duration = parent_multiplier * result.contents_duration
         new_time_signature = contexttools.TimeSignatureMark(new_duration)
         contexttools.detach_time_signature_mark_attached_to_component(result)
-        new_time_signature.attach_mark(result)
+        new_time_signature.attach(result)
 
     # new: rewrite result denominator, if available
     if parent_denominator is not None:
@@ -141,7 +141,7 @@ def copy_components_and_immediate_parent_of_first_component(components):
             old_meter_pair, parent_denominator)
         new_time_signature = contexttools.TimeSignatureMark(new_meter)
         contexttools.detach_time_signature_mark_attached_to_component(result)
-        new_time_signature.attach_mark(result)
+        new_time_signature.attach(result)
 
     # return copy
     return result

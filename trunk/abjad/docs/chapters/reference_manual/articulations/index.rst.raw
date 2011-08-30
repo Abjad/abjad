@@ -23,14 +23,14 @@ print repr(articulation) <hide
 Attaching articulations to leaves
 ---------------------------------
 
-Use ``attach_mark()`` to attach any articulation to a leaf:
+Use ``attach()`` to attach any articulation to a leaf:
 
 <abjad>
 staff = Staff("c'4 d'4 e'4 f'4")
 </abjad>
 
 <abjad>
-articulation.attach_mark(staff[0])
+articulation.attach(staff[0])
 </abjad>
 
 <abjad>
@@ -77,12 +77,12 @@ Use ``marktools`` to detach all articulations attached to a leaf at once:
 
 <abjad>
 articulation_1 = marktools.Articulation('marcato')
-articulation_1.attach_mark(staff[0])
+articulation_1.attach(staff[0])
 </abjad>
 
 <abjad>
 articulation_2 = marktools.Articulation('staccato')
-articulation_2.attach_mark(staff[0])
+articulation_2.attach(staff[0])
 </abjad>
 
 <abjad>
@@ -107,7 +107,7 @@ Use ``start_component`` to inspect the component to which an articulation is att
 
 <abjad>
 articulation = marktools.Articulation('marcato')
-articulation.attach_mark(staff[0])
+articulation.attach(staff[0])
 </abjad>
 
 <abjad>
@@ -195,7 +195,7 @@ print repr(articulation_copy_1) <hide
 </abjad>
 
 <abjad>
-articulation_copy_1.attach_mark(staff[1])
+articulation_copy_1.attach(staff[1])
 </abjad>
 
 <abjad>
@@ -215,7 +215,7 @@ print repr(articulation_copy_2) <hide
 </abjad>
 
 <abjad>
-articulation_copy_2.attach_mark(staff[2])
+articulation_copy_2.attach(staff[2])
 </abjad>
 
 <abjad>

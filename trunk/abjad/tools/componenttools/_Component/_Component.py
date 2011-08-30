@@ -42,7 +42,7 @@ class _Component(_StrictComparator):
             new._set = copy.copy(self.set)
         for mark in marktools.get_marks_attached_to_component(self):
             new_mark = copy.copy(mark)
-            new_mark.attach_mark(new)
+            new_mark.attach(new)
         return new
 
     def __getnewargs__(self):

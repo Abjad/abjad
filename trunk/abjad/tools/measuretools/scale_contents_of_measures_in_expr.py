@@ -39,7 +39,7 @@ def scale_contents_of_measures_in_expr(expr, multiplier = 1):
             new_meter = metertools.duration_and_possible_denominators_to_meter(
                 new_duration, [old_denominator], multiplier.denominator)
         contexttools.detach_time_signature_mark_attached_to_component(measure)
-        new_meter.attach_mark(measure)
+        new_meter.attach(measure)
 
         contents_multiplier_denominator = \
             mathtools.greatest_power_of_two_less_equal(multiplier.denominator)

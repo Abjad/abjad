@@ -10,7 +10,7 @@ def get_instrument_mark_attached_to_component(component):
 
         abjad> staff = Staff("c'8 d'8 e'8 f'8")
         abjad> violin = contexttools.InstrumentMark('Violin ', 'Vn. ')
-        abjad> violin.attach_mark(staff)
+        abjad> violin.attach(staff)
         InstrumentMark('Violin ', 'Vn. ')(Staff{4})
 
     ::

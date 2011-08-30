@@ -29,7 +29,7 @@ class Mark(object):
         if len(args) == 0:
             return self.detach_mark()
         elif len(args) == 1:
-            return self.attach_mark(args[0])
+            return self.attach(args[0])
         else:
             raise ValueError('must call mark with at most 1 argument.')
 
@@ -109,7 +109,7 @@ class Mark(object):
 
     ### PUBLIC METHODS ###
 
-    def attach_mark(self, start_component):
+    def attach(self, start_component):
         '''Attach mark to `start_component`::
 
             abjad> note = Note("c'4")
@@ -117,7 +117,7 @@ class Mark(object):
 
         ::
 
-            abjad> mark.attach_mark(note)
+            abjad> mark.attach(note)
             Mark()(c'4)
 
         ::

@@ -161,7 +161,7 @@ So now we attach our time signature mark to our staff:
 
 ::
 
-    abjad> time_signature_mark.attach_mark(staff)
+    abjad> time_signature_mark.attach(staff)
     TimeSignatureMark(3, 4)(Staff{5})
 
 Abjad responds immediately by returning the time signature mark we have just attached.
@@ -281,7 +281,7 @@ We can simply create and attach a new time signature mark:
 ::
 
     abjad> duple_time_signature_mark = contexttools.TimeSignatureMark(2, 4)
-    abjad> duple_time_signature_mark.attach_mark(staff)
+    abjad> duple_time_signature_mark.attach(staff)
     TimeSignatureMark(2, 4)(Staff{5})
 
 ::
@@ -343,12 +343,12 @@ To do this we'll first detach our ``2/4`` time signature mark ...
 
 ::
 
-	abjad> time_signature_mark.attach_mark(staff)
+	abjad> time_signature_mark.attach(staff)
 
 
 ::
 
-    abjad> time_signature_mark.attach_mark(staff)
+    abjad> time_signature_mark.attach(staff)
     TimeSignatureMark(4, 4)(Staff{5})
 
 ... change the numerator of our time signature mark ...
@@ -506,12 +506,12 @@ We do that like this:
 
 ::
 
-	abjad> duple_time_signature_mark.attach_mark(staff[4])
+	abjad> duple_time_signature_mark.attach(staff[4])
 
 
 ::
 
-    abjad> duple_time_signature_mark.attach_mark(staff[4])
+    abjad> duple_time_signature_mark.attach(staff[4])
     TimeSignatureMark(2, 4)(g'2)
 
 ::
@@ -628,7 +628,7 @@ So to recreate our ``3/4`` time signature we can do this ...
 	abjad> time_signature_mark = contexttools.TimeSignatureMark(3, 4)
 
 
-... and then use a short-cut to avoid calling ``time_signature_mark.attach_mark()`` like this:
+... and then use a short-cut to avoid calling ``time_signature_mark.attach()`` like this:
 
 
 ::
@@ -650,7 +650,7 @@ So to recreate our ``3/4`` time signature we can do this ...
 
 
 What's going on here is that all context marks implement
-the special ``__call__()`` method as a short-cut for ``attach_mark()``.
+the special ``__call__()`` method as a short-cut for ``attach()``.
 What is the special ``__call__()`` method?
 The ``__call__()`` method is what makes a function, class
 or any other Python object callable.
@@ -684,7 +684,7 @@ The empty call made against the time signature mark causes
 the time signature mark to detach from its start component.
 
 The fact that context marks implement the special ``__call__()`` method
-as a short-cut for attach_mark() means that context marks
+as a short-cut for attach() means that context marks
 can be created and attached in a single line:
 
 

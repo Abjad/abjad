@@ -38,7 +38,7 @@ class Measure(Container):
         self._formatter = _MeasureFormatter(self)
         self._measure_number = None
         time_signature = contexttools.TimeSignatureMark(meter)
-        time_signature.attach_mark(self)
+        time_signature.attach(self)
         self._initialize_keyword_values(**kwargs)
 
     ### OVERLOADS ###
@@ -68,7 +68,7 @@ class Measure(Container):
             new._set = copy.copy(self.set)
         for mark in marktools.get_marks_attached_to_component(self):
             new_mark = copy.copy(mark)
-            new_mark.attach_mark(new)
+            new_mark.attach(new)
         new.is_parallel = self.is_parallel
         return new
 
@@ -86,7 +86,7 @@ class Measure(Container):
                 naive_meter, old_denominator)
             better_meter = contexttools.TimeSignatureMark(better_meter)
             contexttools.detach_time_signature_mark_attached_to_component(self)
-            better_meter.attach_mark(self)
+            better_meter.attach(self)
         except (AttributeError, UnboundLocalError):
             pass
 

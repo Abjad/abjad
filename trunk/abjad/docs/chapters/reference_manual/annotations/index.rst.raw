@@ -24,11 +24,11 @@ print repr(annotation) <hide
 Attaching annotations to a component
 ------------------------------------
 
-Attach annotations to any component with ``attach_mark()``:
+Attach annotations to any component with ``attach()``:
 
 <abjad>
 note = Note("c'4")
-annotation.attach_mark(note)
+annotation.attach(note)
 </abjad>
 
 <abjad>
@@ -38,7 +38,7 @@ print repr(annotation) <hide
 
 <abjad>
 another_annotation = marktools.Annotation('special pitch', pitchtools.NamedChromaticPitch('bs'))
-another_annotation.attach_mark(note)
+another_annotation.attach(note)
 </abjad>
 
 <abjad>
@@ -94,7 +94,7 @@ Inspecting the component to which an annotation is attached
 Use ``start_component`` to inspect the component to which an annotation is attached:
 
 <abjad>
-annotation.attach_mark(note)
+annotation.attach(note)
 </abjad>
 
 <abjad>

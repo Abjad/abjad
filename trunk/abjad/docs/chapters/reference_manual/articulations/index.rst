@@ -25,7 +25,7 @@ Use ``marktools`` to create articulations:
 Attaching articulations to leaves
 ---------------------------------
 
-Use ``attach_mark()`` to attach any articulation to a leaf:
+Use ``attach()`` to attach any articulation to a leaf:
 
 ::
 
@@ -34,7 +34,7 @@ Use ``attach_mark()`` to attach any articulation to a leaf:
 
 ::
 
-	abjad> articulation.attach_mark(staff[0])
+	abjad> articulation.attach(staff[0])
 
 
 ::
@@ -87,13 +87,13 @@ Use ``marktools`` to detach all articulations attached to a leaf at once:
 ::
 
 	abjad> articulation_1 = marktools.Articulation('marcato')
-	abjad> articulation_1.attach_mark(staff[0])
+	abjad> articulation_1.attach(staff[0])
 
 
 ::
 
 	abjad> articulation_2 = marktools.Articulation('staccato')
-	abjad> articulation_2.attach_mark(staff[0])
+	abjad> articulation_2.attach(staff[0])
 
 
 ::
@@ -122,7 +122,7 @@ Use ``start_component`` to inspect the component to which an articulation is att
 ::
 
 	abjad> articulation = marktools.Articulation('marcato')
-	abjad> articulation.attach_mark(staff[0])
+	abjad> articulation.attach(staff[0])
 
 
 ::
@@ -224,7 +224,7 @@ Use ``copy.copy()`` to copy an articulation:
 
 ::
 
-	abjad> articulation_copy_1.attach_mark(staff[1])
+	abjad> articulation_copy_1.attach(staff[1])
 
 
 ::
@@ -248,7 +248,7 @@ Or use ``copy.deepcopy()`` to do the same thing:
 
 ::
 
-	abjad> articulation_copy_2.attach_mark(staff[2])
+	abjad> articulation_copy_2.attach(staff[2])
 
 
 ::

@@ -25,14 +25,14 @@ Use ``marktools`` to create LilyPond command marks:
 Attaching LilyPond command marks to Abjad components
 ----------------------------------------------------
 
-Use ``attach_mark()`` to attach a LilyPond command mark to any Abjad component:
+Use ``attach()`` to attach a LilyPond command mark to any Abjad component:
 
 ::
 
 	abjad> import copy
 	abjad> staff = Staff([])
 	abjad> key_signature = contexttools.KeySignatureMark('f', 'major')
-	abjad> key_signature.attach_mark(staff)
+	abjad> key_signature.attach(staff)
 	abjad> staff.extend(iotools.parse_lilypond_input_string("d''16 ( c''16 fs''16 g''16 )"))
 	abjad> staff.extend(iotools.parse_lilypond_input_string("f''16 ( e''16 d''16 c''16 )"))
 	abjad> staff.extend(iotools.parse_lilypond_input_string("cs''16 ( d''16 f''16 d''16 )"))
@@ -45,7 +45,7 @@ Use ``attach_mark()`` to attach a LilyPond command mark to any Abjad component:
 
 ::
 
-	abjad> lilypond_command_mark.attach_mark(staff[-2])
+	abjad> lilypond_command_mark.attach(staff[-2])
 
 
 ::
@@ -98,13 +98,13 @@ Use ``marktools`` to detach all LilyPond command marks attached to a component a
 ::
 
 	abjad> lilypond_command_mark_1 = marktools.LilyPondCommandMark('bar "||"', 'closing')
-	abjad> lilypond_command_mark_1.attach_mark(staff[-2])
+	abjad> lilypond_command_mark_1.attach(staff[-2])
 
 
 ::
 
 	abjad> lilypond_command_mark_2 = marktools.LilyPondCommandMark('bar "||"', 'closing')
-	abjad> lilypond_command_mark_2.attach_mark(staff[-16])
+	abjad> lilypond_command_mark_2.attach(staff[-16])
 
 
 ::
@@ -133,7 +133,7 @@ Use ``start_component`` to inspect the component to which a LilyPond command mar
 ::
 
 	abjad> lilypond_command_mark = marktools.LilyPondCommandMark('bar "||"', 'closing')
-	abjad> lilypond_command_mark.attach_mark(staff[-2])
+	abjad> lilypond_command_mark.attach(staff[-2])
 
 
 ::
@@ -190,7 +190,7 @@ Use ``copy.copy()`` to copy a LilyPond command mark:
 
 ::
 
-	abjad> lilypond_command_mark_copy_1.attach_mark(staff[-1])
+	abjad> lilypond_command_mark_copy_1.attach(staff[-1])
 
 
 ::

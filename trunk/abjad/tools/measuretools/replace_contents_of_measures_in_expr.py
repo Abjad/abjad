@@ -92,7 +92,7 @@ def replace_contents_of_measures_in_expr(expr, new_contents):
         else:
             cur_meter = contexttools.TimeSignatureMark(cur_meter)
             contexttools.detach_time_signature_mark_attached_to_component(cur_measure)
-            cur_meter.attach_mark(cur_measure)
+            cur_meter.attach(cur_measure)
             append_spacer_skips_to_underfull_measures_in_expr([cur_measure])
             cur_measure = get_next_measure_from_component(cur_measure)
             if cur_measure is None:
@@ -104,7 +104,7 @@ def replace_contents_of_measures_in_expr(expr, new_contents):
     ### restore last iterated measure
     cur_meter = contexttools.TimeSignatureMark(cur_meter)
     contexttools.detach_time_signature_mark_attached_to_component(cur_measure)
-    cur_meter.attach_mark(cur_measure)
+    cur_meter.attach(cur_measure)
     append_spacer_skips_to_underfull_measures_in_expr(cur_measure)
 
     ### return iterated measures

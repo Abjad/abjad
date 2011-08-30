@@ -22,7 +22,7 @@ Use ``contexttools`` to create instrument marks:
 Attaching instrument marks to a component
 -----------------------------------------
 
-Use ``attach_mark()`` to attach any mark to a component:
+Use ``attach()`` to attach any mark to a component:
 
 ::
 
@@ -31,7 +31,7 @@ Use ``attach_mark()`` to attach any mark to a component:
 
 ::
 
-	abjad> instrument_mark.attach_mark(staff)
+	abjad> instrument_mark.attach(staff)
 
 
 ::
@@ -96,7 +96,7 @@ Or use ``contexttools`` to detach instrument marks all at once:
 ::
 
 	abjad> instrument_mark = contexttools.InstrumentMark('Violin ', 'Vn. ')
-	abjad> instrument_mark.attach_mark(staff)
+	abjad> instrument_mark.attach(staff)
 
 
 ::
@@ -137,7 +137,7 @@ Use ``start_component`` to inspect the component to which an instrument mark is 
 ::
 
 	abjad> instrument_mark = contexttools.InstrumentMark('Flute ', 'Fl. ')
-	abjad> instrument_mark.attach_mark(staff)
+	abjad> instrument_mark.attach(staff)
 
 
 ::

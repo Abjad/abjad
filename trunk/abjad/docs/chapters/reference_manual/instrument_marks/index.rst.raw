@@ -20,14 +20,14 @@ print repr(instrument_mark) <hide
 Attaching instrument marks to a component
 -----------------------------------------
 
-Use ``attach_mark()`` to attach any mark to a component:
+Use ``attach()`` to attach any mark to a component:
 
 <abjad>
 staff = Staff("c'4 d'4 e'4 f'4")
 </abjad>
 
 <abjad>
-instrument_mark.attach_mark(staff)
+instrument_mark.attach(staff)
 </abjad>
 
 <abjad>
@@ -85,7 +85,7 @@ Or use ``contexttools`` to detach instrument marks all at once:
 
 <abjad>
 instrument_mark = contexttools.InstrumentMark('Violin ', 'Vn. ')
-instrument_mark.attach_mark(staff)
+instrument_mark.attach(staff)
 </abjad>
 
 <abjad>
@@ -120,7 +120,7 @@ Use ``start_component`` to inspect the component to which an instrument mark is 
 
 <abjad>
 instrument_mark = contexttools.InstrumentMark('Flute ', 'Fl. ')
-instrument_mark.attach_mark(staff)
+instrument_mark.attach(staff)
 </abjad>
 
 <abjad>

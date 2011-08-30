@@ -129,14 +129,14 @@ We'll name the second of these two voices the `appendix_voice`:
 appendix_voice_m4 = Voice([Note("b2")])
 appendix_voice_m4.name = 'appendix_voice'
 lilypond_command_mark = marktools.LilyPondCommandMark('voiceOne')
-lilypond_command_mark.attach_mark(appendix_voice_m4)
+lilypond_command_mark.attach(appendix_voice_m4)
 </abjad>
 
 <abjad>
 main_voice_m4 = Voice("b4 a4")
 main_voice_m4.name = 'main_voice'
 lilypond_command_mark = marktools.LilyPondCommandMark('voiceTwo')
-lilypond_command_mark.attach_mark(main_voice_m4)
+lilypond_command_mark.attach(main_voice_m4)
 </abjad>
 
 <abjad>
@@ -159,14 +159,14 @@ We now do a similar thing for the last measure:
 appendix_voice_m5 = Voice("b2")
 appendix_voice_m5.name = 'appendix_voice'
 lilypond_command_mark = marktools.LilyPondCommandMark('voiceOne')
-lilypond_command_mark.attach_mark(appendix_voice_m5)
+lilypond_command_mark.attach(appendix_voice_m5)
 </abjad>
 
 <abjad>
 main_voice_m5 =  Voice("g2")
 main_voice_m5.name = 'main_voice'
 lilypond_command_mark = marktools.LilyPondCommandMark('voiceTwo')
-lilypond_command_mark.attach_mark(main_voice_m5)
+lilypond_command_mark.attach(main_voice_m5)
 </abjad>
 
 <abjad>
@@ -210,7 +210,7 @@ Let's add a double bar to the end of the piece:
 
 <abjad>
 lilypond_command_mark = marktools.LilyPondCommandMark('bar "|."', format_slot = 'closing') 
-lilypond_command_mark.attach_mark(lower_staff.leaves[-1])
+lilypond_command_mark.attach(lower_staff.leaves[-1])
 </abjad>
 
 And see how things are coming out:

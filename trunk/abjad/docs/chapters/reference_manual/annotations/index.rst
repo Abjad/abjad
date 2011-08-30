@@ -26,12 +26,12 @@ Use mark tools to create annotations:
 Attaching annotations to a component
 ------------------------------------
 
-Attach annotations to any component with ``attach_mark()``:
+Attach annotations to any component with ``attach()``:
 
 ::
 
 	abjad> note = Note("c'4")
-	abjad> annotation.attach_mark(note)
+	abjad> annotation.attach(note)
 
 
 ::
@@ -43,7 +43,7 @@ Attach annotations to any component with ``attach_mark()``:
 ::
 
 	abjad> another_annotation = marktools.Annotation('special pitch', pitchtools.NamedChromaticPitch('bs'))
-	abjad> another_annotation.attach_mark(note)
+	abjad> another_annotation.attach(note)
 
 
 ::
@@ -107,7 +107,7 @@ Use ``start_component`` to inspect the component to which an annotation is attac
 
 ::
 
-	abjad> annotation.attach_mark(note)
+	abjad> annotation.attach(note)
 
 
 ::

@@ -44,4 +44,4 @@ def set_container_multiplier(container, multiplier):
         new_duration = multiplier * container.contents_duration
         new_time_signature = contexttools.TimeSignatureMark(new_duration)
         contexttools.detach_time_signature_mark_attached_to_component(container)
-        new_time_signature.attach_mark(container)
+        new_time_signature.attach(container)

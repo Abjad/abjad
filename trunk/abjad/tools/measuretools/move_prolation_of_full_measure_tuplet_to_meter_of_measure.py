@@ -49,7 +49,7 @@ def move_prolation_of_full_measure_tuplet_to_meter_of_measure(expr):
                 denominator = meter_rational.denominator * reduced_denominator
                 time_signature = contexttools.TimeSignatureMark((numerator, denominator))
                 contexttools.detach_time_signature_mark_attached_to_component(measure)
-                time_signature.attach_mark(measure)
+                time_signature.attach(measure)
                 meter_multiplier = contexttools.get_effective_time_signature(measure).multiplier
                 written_adjustment = tuplet_multiplier / meter_multiplier
                 componenttools.move_parentage_and_spanners_from_components_to_components(
