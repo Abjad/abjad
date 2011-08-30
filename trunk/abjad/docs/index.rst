@@ -41,6 +41,7 @@ Reference manual
     chapters/reference_manual/chords/index
     chapters/reference_manual/containers/index
     chapters/reference_manual/instrument_marks/index
+    chapters/reference_manual/lilypond_command_marks/index
     chapters/reference_manual/lilypond_comments/index
     chapters/reference_manual/lilypond_files/index
     chapters/reference_manual/measures/index
