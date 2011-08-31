@@ -62,9 +62,9 @@ class TimeSignatureMark(ContextMark):
             numerator, denominator = args[0].numerator, args[0].denominator
         elif len(args) == 1 and isinstance(args[0], tuple):
             numerator, denominator = args[0][0], args[0][1]
-        # will remove to bring initialization in line with rests and skips:
-        elif len(args) == 2 and all([isinstance(x, int) for x in args]):
-            numerator, denominator = args[0], args[1]
+        # removed to bring initialization in line with rests and skips:
+        #elif len(args) == 2 and all([isinstance(x, int) for x in args]):
+        #    numerator, denominator = args[0], args[1]
         else:
             raise TypeError('invalid meter initialization.')
         self._numerator = numerator
