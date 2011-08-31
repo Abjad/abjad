@@ -155,7 +155,16 @@ print repr(articulation)
 
 ``'staccato'`` tells you the articulation's name.
 
-``'-'`` tells you the articulation's direction string.
+If you set the direction string of the articulation then that will appear, too:
+
+<abjad>
+articulation.direction_string = '^'
+</abjad>
+
+<abjad>
+articulation
+print repr(articulation)
+</abjad>
 
 
 Understanding the interpreter display of an articulation that is attached to a leaf
@@ -182,9 +191,21 @@ iotools.write_expr_to_ly(staff, 'articulations-6') <hide
 
 ``'staccato'`` tells you the articulation's name.
 
-``'-'`` tells you the articulation's direction string.
+``'^'`` tells you the articulation's direction string.
 
 ``(a''4)`` tells you the component to which the articulation is attached.
+
+If you set the direction string of the articulation to none then the direction
+will no longer appear:
+
+<abjad>
+articulation.direction_string = None
+</abjad>
+
+<abjad>
+articulation
+print repr(articulation) <hide
+</abjad>
 
 
 Understanding the string representation of an articulation
@@ -246,11 +267,11 @@ show(staff)
 iotools.write_expr_to_ly(staff, 'articulations-8') <hide
 </abjad>
 
-Set ``direction_string`` to ``'-'`` to allow LilyPond to position
+Set ``direction_string`` to none to allow LilyPond to position
 an articulation automatically:
 
 <abjad>
-articulation.direction_string = '-'
+articulation.direction_string = None
 </abjad>
 
 <abjad>

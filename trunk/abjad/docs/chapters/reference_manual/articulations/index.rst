@@ -18,7 +18,7 @@ Use ``marktools`` to create articulations:
 ::
 
 	abjad> articulation
-	Articulation('turn', '-')
+	Articulation('turn')
 
 
 
@@ -52,7 +52,7 @@ Use ``attach()`` to attach articulations to a leaf:
 
 .. image:: images/articulations-1.png
 
-(The example comes from Haydn's piano sonata number 42, Hob. XVI/27.)
+(The example is based on Haydn's piano sonata number 42, Hob. XVI/27.)
 
 
 Attaching articulations to many notes and chords at once
@@ -80,7 +80,7 @@ Use ``marktools`` to get the articulations attached to a leaf:
 ::
 
 	abjad> marktools.get_articulations_attached_to_component(staff[5])
-	(Articulation('turn', '-')(gs'4), Articulation('.', '-')(gs'4))
+	(Articulation('turn')(gs'4), Articulation('.')(gs'4))
 
 
 
@@ -169,14 +169,26 @@ contains three parts:
 
 	abjad> articulation
 	abjad> print repr(articulation)
-	Articulation('staccato', '-')
+	Articulation('staccato')
 
 
 ``Articulation`` tells you the articulation's class.
 
 ``'staccato'`` tells you the articulation's name.
 
-``'-'`` tells you the articulation's direction string.
+If you set the direction string of the articulation then that will appear, too:
+
+::
+
+	abjad> articulation.direction_string = '^'
+
+
+::
+
+	abjad> articulation
+	abjad> print repr(articulation)
+	Articulation('staccato', '^')
+
 
 
 Understanding the interpreter display of an articulation that is attached to a leaf
@@ -194,7 +206,7 @@ contains four parts:
 
 	abjad> articulation
 	abjad> print repr(articulation)
-	Articulation('staccato', '-')(a'4)
+	Articulation('staccato', '^')(a'4)
 
 
 ::
@@ -207,9 +219,23 @@ contains four parts:
 
 ``'staccato'`` tells you the articulation's name.
 
-``'-'`` tells you the articulation's direction string.
+``'^'`` tells you the articulation's direction string.
 
 ``(a''4)`` tells you the component to which the articulation is attached.
+
+If you set the direction string of the articulation to none then the direction
+will no longer appear:
+
+::
+
+	abjad> articulation.direction_string = None
+
+
+::
+
+	abjad> articulation
+	Articulation('staccato')(a'4)
+
 
 
 Understanding the string representation of an articulation
@@ -416,3 +442,5 @@ Override attributes of the LilyPond script grob like this:
 	abjad> show(staff)
 
 .. image:: images/articulations-12.png
+
+See the LilyPond documentation for a list of script grob attributes available.

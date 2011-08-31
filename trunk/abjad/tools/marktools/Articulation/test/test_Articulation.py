@@ -3,10 +3,12 @@ import py.test
 
 
 def test_Articulation_01():
-    '''Articulations can be initialized from zero, one or two arguments.'''
+    '''Articulations can be initialized from zero, one or two arguments.
+    '''
+
     a = marktools.Articulation()
     assert a.name == None
-    assert a.direction_string == '-'
+    assert a.direction_string is None
     a = marktools.Articulation('^\\marcato')
     assert a.name == 'marcato'
     assert a.direction_string == '^'
@@ -16,16 +18,18 @@ def test_Articulation_01():
 
 
 def test_Articulation_02():
-    '''Articulations have string and direction.'''
+    '''Articulations have string and direction.
+    '''
 
     t = Note("c'4")
     a = marktools.Articulation('staccato')(t)
     assert a.name == 'staccato'
-    assert a.direction_string == '-'
+    assert a.direction_string is None
 
 
 def test_Articulation_03():
-    '''String can be set to None'''
+    '''Articulation name can be set to none.
+    '''
 
     t = Note("c'4")
     a = marktools.Articulation()(t)
@@ -34,16 +38,18 @@ def test_Articulation_03():
 
 
 def test_Articulation_04():
-    '''Direction can be set to None.'''
+    '''Direction can be set to None.
+    '''
 
     t = Note("c'4")
     a = marktools.Articulation('staccato', None)(t)
-    assert a.direction_string == '-'
+    assert a.direction_string is None
     assert str(a) == r'-\staccato'
 
 
 def test_Articulation_05():
-    '''Direction can be set to up.'''
+    '''Direction can be set to up.
+    '''
 
     t = Note("c'4")
     a = marktools.Articulation('staccato', 'up')(t)
@@ -56,7 +62,8 @@ def test_Articulation_05():
 
 
 def test_Articulation_06():
-    '''Direction can be set to down.'''
+    '''Direction can be set to down.
+    '''
 
     t = Note("c'4")
     a = marktools.Articulation('staccato', 'down')(t)
@@ -69,11 +76,12 @@ def test_Articulation_06():
 
 
 def test_Articulation_07():
-    '''Direction can be set to default.'''
+    '''Direction can be set to default.
+    '''
 
     t = Note("c'4")
     a = marktools.Articulation('staccato')
-    assert a.direction_string == '-'
+    assert a.direction_string is None
     assert str(a) == r'-\staccato'
 
     a = marktools.Articulation('staccato', '-')
@@ -83,7 +91,8 @@ def test_Articulation_07():
 
 
 def test_Articulation_08():
-    '''Shortcut strings are replaced with full word.'''
+    '''Shortcut strings are replaced with full word.
+    '''
 
     t = Note("c'4")
     a = marktools.Articulation('.')(t)

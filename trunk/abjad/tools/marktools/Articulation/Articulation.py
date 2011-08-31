@@ -10,7 +10,7 @@ class Articulation(Mark):
     ::
 
         abjad> marktools.Articulation('staccato')(note)
-        Articulation('staccato', '-')(c'4)
+        Articulation('staccato')(c'4)
 
     ::
 
@@ -51,8 +51,10 @@ class Articulation(Mark):
             direction = '^'
         elif direction in ('_', 'down'):
             direction = '_'
-        elif direction in ('-', 'default', None):
+        elif direction in ('-', 'default'):
             direction = '-'
+        elif direction is None:
+            direction = None
         else:
             raise ValueError('can not set articulation direction.')
 
@@ -79,7 +81,11 @@ class Articulation(Mark):
             string = self._shortcut_to_word.get(self.name)
             if not string:
                 string = self.name
-            return '%s\%s' % (self.direction_string, string)
+            if self.direction_string is None:
+                direction_string = '-'
+            else:
+                direction_string = self.direction_string
+            return '%s\%s' % (direction_string, string)
         else:
             return ''
 
@@ -110,7 +116,10 @@ class Articulation(Mark):
 
     @property
     def _contents_repr_string(self):
-        return '%s, %s' % (repr(self.name), repr(self.direction_string))
+        if self.direction_string is not None:
+            return '%s, %s' % (repr(self.name), repr(self.direction_string))
+        else:
+            return repr(self.name)
 
     ### PUBLIC ATTRIBUTES ###
 
@@ -120,8 +129,8 @@ class Articulation(Mark):
             '''Get direction string of articulation::
 
                 abjad> articulation = marktools.Articulation('staccato')
-                abjad> articulation.direction_string
-                '-'
+                abjad> articulation.direction_string is None
+                True
 
             Set direction string of articulation::
 
@@ -133,7 +142,7 @@ class Articulation(Mark):
             '''
             return self._direction
         def fset(self, direction_string):
-            assert isinstance(direction_string, str)
+            assert isinstance(direction_string, (str, type(None)))
             self._direction = direction_string
         return property(**locals())
 
@@ -141,7 +150,7 @@ class Articulation(Mark):
     def format(self):
         '''Read-only LilyPond format string of articulation::
 
-            abjad> articulation = marktools.Articulation('staccato', 'up')
+            abjad> articulation = marktools.Articulation('marcato', 'up')
             abjad> articulation.format
             '^\\staccato'
 
@@ -171,4 +180,3 @@ class Articulation(Mark):
             assert isinstance(name, str)
             self._string = name
         return property(**locals())
-
