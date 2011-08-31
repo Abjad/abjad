@@ -18,7 +18,7 @@ setup(name = 'Abjad',
     keywords = 'music composition, music notation, formalized score control, lilypond',
     license = 'GPL',
     platforms = 'Any',
-    requires = ['pytest (>=2.1)', 'Sphinx (>=1.0.7)'],
+    install_requires = ['pytest >=2.1', 'Sphinx >=1.0.7'],
     # include all packages found in '.'
     packages = find_packages(),
     #scripts = ['ez_setup.py'],
