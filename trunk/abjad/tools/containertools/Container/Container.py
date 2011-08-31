@@ -123,6 +123,7 @@ class Container(_Component):
         This operation leaves all score trees always in tact.
         '''
         from abjad.tools import componenttools
+        from abjad.tools import iotools
         from abjad.tools import spannertools
         from abjad.tools.spannertools._withdraw_components_in_expr_from_crossing_spanners import _withdraw_components_in_expr_from_crossing_spanners
         # item assignment
@@ -141,6 +142,9 @@ class Container(_Component):
                 expr._spanners.add(spanner)
         # slice assignment
         else:
+            if isinstance(expr, str):
+                container = iotools.parse_lilypond_input_string(expr)
+                expr = container[:]
             assert componenttools.all_are_components(expr)
             if i.start == i.stop and i.start is not None \
                 and i.stop is not None and i.start <= -len(self):
@@ -397,6 +401,9 @@ class Container(_Component):
             }
 
         Return none.
+
+        .. versionadded:: 2.3
+            ``expr`` may now be a LilyPond input string.
         '''
         self[len(self):len(self)] = expr[:]
         #return self

@@ -3,7 +3,8 @@ import py.test
 
 
 def test_Container_extend_01():
-    '''Extend container with list of leaves.'''
+    '''Extend container with list of leaves.
+    '''
 
     t = Voice("c'8 d'8")
     spannertools.BeamSpanner(t[:])
@@ -31,7 +32,8 @@ def test_Container_extend_01():
 
 
 def test_Container_extend_02():
-    '''Extend container with contents of other container.'''
+    '''Extend container with contents of other container.
+    '''
 
     t = Voice("c'8 d'8")
     spannertools.BeamSpanner(t[:])
@@ -61,7 +63,8 @@ def test_Container_extend_02():
 
 
 def test_Container_extend_03():
-    '''Extending container with empty list leaves container unchanged.'''
+    '''Extending container with empty list leaves container unchanged.
+    '''
 
     t = Voice("c'8 d'8")
     spannertools.BeamSpanner(t[:])
@@ -79,8 +82,8 @@ def test_Container_extend_03():
 
 
 def test_Container_extend_04():
-    '''Extending one container with empty second container
-        leaves both containers unchanged.'''
+    '''Extending one container with empty second container leaves both containers unchanged.
+    '''
 
     t = Voice("c'8 d'8")
     spannertools.BeamSpanner(t[:])
@@ -98,7 +101,8 @@ def test_Container_extend_04():
 
 
 def test_Container_extend_05():
-    '''Trying to extend container with noncomponent raises TypeError.'''
+    '''Trying to extend container with noncomponent raises TypeError.
+    '''
 
     t = Voice("c'8 d'8")
     spannertools.BeamSpanner(t[:])
@@ -108,7 +112,8 @@ def test_Container_extend_05():
 
 
 def test_Container_extend_06():
-    '''Trying to extend container with noncontainer raises TypeError.'''
+    '''Trying to extend container with noncontainer raises TypeError.
+    '''
 
     t = Voice("c'8 d'8")
     spannertools.BeamSpanner(t[:])
@@ -118,8 +123,7 @@ def test_Container_extend_06():
 
 
 def test_Container_extend_07():
-    '''Extend container with partial and
-        spanned contents of other container.'''
+    '''Extend container with partial and spanned contents of other container.'''
 
     t = Voice("c'8 d'8")
     spannertools.BeamSpanner(t[:])
@@ -173,9 +177,9 @@ def test_Container_extend_07():
 
 
 def test_Container_extend_08():
-    '''Extend container with partial and
-        spanned contents of other container.
-        Covered span comes with components from donor container.'''
+    '''Extend container with partial and spanned contents of other container.
+    Covered span comes with components from donor container.
+    '''
 
     t = Voice("c'8 d'8")
     spannertools.BeamSpanner(t[:])
@@ -227,3 +231,23 @@ def test_Container_extend_08():
 
     assert componenttools.is_well_formed_component(u)
     assert u.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n}"
+
+
+def test_Container_extend_09():
+    '''Extend container with LilyPond input string.
+    '''
+
+    container = Container([])
+    container.extend("c'4 ( d'4 e'4 f'4 )")
+
+    r'''
+    {
+        c'4 (
+        d'4
+        e'4
+        f'4 )
+    }
+    '''
+
+    assert componenttools.is_well_formed_component(container)
+    assert container.format == "{\n\tc'4 (\n\td'4\n\te'4\n\tf'4 )\n}"
