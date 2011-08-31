@@ -44,3 +44,5 @@ del sys
 del threadtools
 del tonalitytools
 del tools
+
+__version__ = '2.2'
