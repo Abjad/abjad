@@ -2,11 +2,11 @@ from abjad import *
 import py.test
 
 
-def test_Comment___setattr___01():
+def test_LilyPondComment___setattr___01():
     '''Slots constrain comment attributes.
     '''
 
-    comment = marktools.Comment('foo')
+    comment = marktools.LilyPondComment('foo')
 
     assert py.test.raises(AttributeError, "comment.foo = 'bar'")
 

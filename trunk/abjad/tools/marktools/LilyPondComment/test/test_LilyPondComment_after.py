@@ -1,14 +1,14 @@
 from abjad import *
 
 
-def test_Comment_after_01():
+def test_LilyPondComment_after_01():
     '''Test context comments after.'''
 
     t = Voice("c'8 d'8 e'8 f'8")
     beam = spannertools.BeamSpanner(t[:])
     beam.override.beam.thickness = 3
-    marktools.Comment('Voice after comments here.', 'after')(t)
-    marktools.Comment('More voice after comments.', 'after')(t)
+    marktools.LilyPondComment('Voice after comments here.', 'after')(t)
+    marktools.LilyPondComment('More voice after comments.', 'after')(t)
 
     r'''
     \new Voice {
@@ -26,13 +26,13 @@ def test_Comment_after_01():
     assert t.format == "\\new Voice {\n\t\\override Beam #'thickness = #3\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n\t\\revert Beam #'thickness\n}\n% Voice after comments here.\n% More voice after comments."
 
 
-def test_Comment_after_02():
+def test_LilyPondComment_after_02():
     '''Leaf comments after.'''
 
     t = Note(0, (1, 8))
     t.override.beam.thickness = 3
-    marktools.Comment('Leaf comments after here.', 'after')(t)
-    marktools.Comment('More comments after.', 'after')(t)
+    marktools.LilyPondComment('Leaf comments after here.', 'after')(t)
+    marktools.LilyPondComment('More comments after.', 'after')(t)
 
     r'''
     \once \override Beam #'thickness = #3

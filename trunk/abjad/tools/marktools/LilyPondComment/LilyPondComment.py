@@ -2,8 +2,11 @@ from abjad.tools.componenttools._Component import _Component
 from abjad.tools.marktools.Mark import Mark
 
 
-class Comment(Mark):
+class LilyPondComment(Mark):
     r'''.. versionadded:: 2.0
+    
+    .. versionchanged:: 2.3
+        Changed ``Comment`` to ``LilyPondComment``.
 
     User-defined comment::
 
@@ -11,8 +14,8 @@ class Comment(Mark):
 
     ::
 
-        abjad> marktools.Comment('this is a comment')(note)
-        Comment('this is a comment')(c'4)
+        abjad> marktools.LilyPondComment('this is a comment')(note)
+        LilyPondComment('this is a comment')(c'4)
 
     ::
 
@@ -20,7 +23,7 @@ class Comment(Mark):
         % this is a comment
         c'4
 
-    Comments implement ``__slots__``.
+    LilyPond comments implement ``__slots__``.
     '''
 
     __slots__ = ('_comment_name_string', '_format_slot', )
@@ -55,7 +58,7 @@ class Comment(Mark):
         def fget(self):
             r'''Get contents string of comment::
 
-                abjad> comment = marktools.Comment('comment contents string')
+                abjad> comment = marktools.LilyPondComment('comment contents string')
                 abjad> comment.contents_string
                 'comment contents string'
 
@@ -79,7 +82,7 @@ class Comment(Mark):
 
         ::
 
-            abjad> comment = marktools.Comment('this is a comment.')
+            abjad> comment = marktools.LilyPondComment('this is a comment.')
             abjad> comment.format
             '% this is a comment.'
 

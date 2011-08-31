@@ -1,13 +1,13 @@
 from abjad import *
 
 
-def test_Comment_opening_01():
+def test_LilyPondComment_opening_01():
     '''Opening comments in container.'''
 
     t = Voice("c'8 d'8 e'8 f'8")
     spannertools.BeamSpanner(t[:])
-    marktools.Comment('Voice opening comments here.', 'opening')(t)
-    marktools.Comment('More voice opening comments.', 'opening')(t)
+    marktools.LilyPondComment('Voice opening comments here.', 'opening')(t)
+    marktools.LilyPondComment('More voice opening comments.', 'opening')(t)
 
     r'''
     \new Voice {
@@ -24,13 +24,13 @@ def test_Comment_opening_01():
     assert t.format == "\\new Voice {\n\t% Voice opening comments here.\n\t% More voice opening comments.\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
 
 
-def test_Comment_opening_02():
+def test_LilyPondComment_opening_02():
     '''Opening comments on leaf.'''
 
     t = Note(0, (1, 8))
     t.override.beam.thickness = 3
-    marktools.Comment('Leaf opening comments here.', 'opening')(t)
-    marktools.Comment('More leaf opening comments.', 'opening')(t)
+    marktools.LilyPondComment('Leaf opening comments here.', 'opening')(t)
+    marktools.LilyPondComment('More leaf opening comments.', 'opening')(t)
 
     r'''
     \once \override Beam #'thickness = #3
