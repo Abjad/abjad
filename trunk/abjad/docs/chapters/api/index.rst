@@ -398,7 +398,12 @@ marktools
    tools/marktools/get_noncontext_marks_attached_to_component
    tools/marktools/get_stem_tremolos_attached_to_component
    tools/marktools/get_value_of_annotation_attached_to_component
+   tools/marktools/is_component_with_annotation_attached
+   tools/marktools/is_component_with_articulation_attached
    tools/marktools/is_component_with_lilypond_command_mark_attached
+   tools/marktools/is_component_with_lilypond_comment_attached
+   tools/marktools/is_component_with_mark_attached
+   tools/marktools/is_component_with_stem_tremolo_attached
 
 
 markuptools

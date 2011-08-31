@@ -2,7 +2,9 @@ from abjad.tools.marktools.get_lilypond_command_marks_attached_to_component impo
 
 
 def is_component_with_lilypond_command_mark_attached(expr, command_name = None):
-    '''True when `expr` is component with LilyPond command mark attached::
+    '''.. versionadded:: 2.0
+
+    True when `expr` is component with LilyPond command mark attached::
 
         abjad> note = Note("c'4")
         abjad> marktools.LilyPondCommandMark('stemUp')(note)
