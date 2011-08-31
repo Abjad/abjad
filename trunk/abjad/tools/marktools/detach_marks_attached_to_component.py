@@ -10,7 +10,7 @@ def detach_marks_attached_to_component(component):
         abjad> slur = spannertools.SlurSpanner(staff.leaves)
         abjad> marktools.Articulation('^')(staff[0])
         Articulation('^', '-')(c'8)
-        abjad> marktools.Comment('comment 1')(staff[0])
+        abjad> marktools.LilyPondComment('comment 1')(staff[0])
         Comment('comment 1')(c'8)
         abjad> marktools.LilyPondCommandMark('slurUp')(staff[0])
         LilyPondCommandMark('slurUp')(c'8)

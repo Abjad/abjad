@@ -7,7 +7,7 @@ def test_containertools_report_container_modifications_as_string_01():
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    marktools.Comment('Example voice', 'before')(t)
+    marktools.LilyPondComment('Example voice', 'before')(t)
     t.override.note_head.color = 'red'
     marktools.LilyPondCommandMark("#(set-accidental-style 'forget)")(t)
     beam = spannertools.BeamSpanner(t[:])
@@ -50,7 +50,7 @@ def test_containertools_report_container_modifications_as_string_02():
     '''
 
     t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-    marktools.Comment('Example tuplet', 'before')(t)
+    marktools.LilyPondComment('Example tuplet', 'before')(t)
     t.override.note_head.color = 'red'
     marktools.LilyPondCommandMark("#(set-accidental-style 'forget)")(t)
     beam = spannertools.BeamSpanner(t[:])

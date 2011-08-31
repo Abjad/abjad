@@ -12,8 +12,8 @@ def test_componenttools_report_component_format_contributions_as_string_01():
     marktools.Articulation('staccato')(t)
     marktools.Articulation('tenuto')(t)
     markuptools.Markup(r'\italic { ben. marcato }', 'down')(t)
-    marktools.Comment('textual information before', 'before')(t)
-    marktools.Comment('textual information after', 'after')(t)
+    marktools.LilyPondComment('textual information before', 'before')(t)
+    marktools.LilyPondComment('textual information after', 'after')(t)
 
     r'''
     slot 1:

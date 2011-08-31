@@ -8,10 +8,10 @@ def detach_comments_attached_to_component(component):
 
         abjad> staff = Staff("c'8 d'8 e'8 f'8")
         abjad> slur = spannertools.SlurSpanner(staff.leaves)
-        abjad> marktools.Comment('comment 1')(staff[0])
-        Comment('comment 1')(c'8)
-        abjad> marktools.Comment('comment 2')(staff[0])
-        Comment('comment 2')(c'8)
+        abjad> marktools.LilyPondComment('comment 1')(staff[0])
+        LilyPondComment('comment 1')(c'8)
+        abjad> marktools.LilyPondComment('comment 2')(staff[0])
+        LilyPondComment('comment 2')(c'8)
 
     ::
 
@@ -28,7 +28,7 @@ def detach_comments_attached_to_component(component):
     ::
 
         abjad> marktools.detach_comments_attached_to_component(staff[0])
-        (Comment('comment 1'), Comment('comment 2'))
+        (LilyPondComment('comment 1'), LilyPondComment('comment 2'))
 
     ::
 

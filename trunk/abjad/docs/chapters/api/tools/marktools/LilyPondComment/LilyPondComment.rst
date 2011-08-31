@@ -1,7 +1,7 @@
-marktools.Comment
-=================
+marktools.LilyPondComment
+=========================
 
-.. autoclass:: abjad.tools.marktools.Comment
+.. autoclass:: abjad.tools.marktools.LilyPondComment
    :members:
    :undoc-members:
    :show-inheritance:

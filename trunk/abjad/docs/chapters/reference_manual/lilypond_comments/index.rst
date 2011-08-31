@@ -12,13 +12,13 @@ Use ``marktools`` to create LilyPond comments:
 
 ::
 
-	abjad> comment_1 = marktools.Comment('This is a LilyPond comment before a note.', 'before')
+	abjad> comment_1 = marktools.LilyPondComment('This is a LilyPond comment before a note.', 'before')
 
 
 ::
 
 	abjad> comment_1
-	Comment('This is a LilyPond comment before a note.')
+	LilyPondComment('This is a LilyPond comment before a note.')
 
 
 
@@ -63,11 +63,11 @@ Use ``attach()`` to attach LilyPond comments to a container:
 
 ::
 
-	abjad> staff_comment_1 = marktools.Comment('Here is a LilyPond comment before the staff.', 'before')
-	abjad> staff_comment_2 = marktools.Comment('Here is a LilyPond comment in the staff opening.', 'opening')
-	abjad> staff_comment_3 = marktools.Comment('Here is another LilyPond comment in the staff opening.', 'opening')
-	abjad> staff_comment_4 = marktools.Comment('LilyPond comment in the staff closing.', 'closing')
-	abjad> staff_comment_5 = marktools.Comment('LilyPond comment after the staff.', 'after')
+	abjad> staff_comment_1 = marktools.LilyPondComment('Here is a LilyPond comment before the staff.', 'before')
+	abjad> staff_comment_2 = marktools.LilyPondComment('Here is a LilyPond comment in the staff opening.', 'opening')
+	abjad> staff_comment_3 = marktools.LilyPondComment('Here is another LilyPond comment in the staff opening.', 'opening')
+	abjad> staff_comment_4 = marktools.LilyPondComment('LilyPond comment in the staff closing.', 'closing')
+	abjad> staff_comment_5 = marktools.LilyPondComment('LilyPond comment after the staff.', 'after')
 
 
 ::
@@ -106,7 +106,7 @@ Use ``marktools`` to get all the LilyPond comments attached to a component:
 ::
 
 	abjad> marktools.get_comments_attached_to_component(note)
-	(Comment('This is a LilyPond comment before a note.')(cs''4),)
+	(LilyPondComment('This is a LilyPond comment before a note.')(cs''4),)
 
 
 Abjad returns a tuple of zero or more LilyPond comments.
@@ -125,7 +125,7 @@ Use ``detach_mark()`` to detach LilyPond comments from a component one at a time
 ::
 
 	abjad> comment_1.detach_mark()
-	Comment('This is a LilyPond comment before a note.')
+	LilyPondComment('This is a LilyPond comment before a note.')
 
 
 ::
@@ -143,11 +143,11 @@ Or use ``marktools`` to detach all LilyPond comments attached to a component at 
 ::
 
 	abjad> for comment in marktools.get_comments_attached_to_component(staff): print comment
-	Comment('Here is a LilyPond comment before the staff.')(Staff{4})
-	Comment('Here is a LilyPond comment in the staff opening.')(Staff{4})
-	Comment('Here is another LilyPond comment in the staff opening.')(Staff{4})
-	Comment('LilyPond comment in the staff closing.')(Staff{4})
-	Comment('LilyPond comment after the staff.')(Staff{4})
+	LilyPondComment('Here is a LilyPond comment before the staff.')(Staff{4})
+	LilyPondComment('Here is a LilyPond comment in the staff opening.')(Staff{4})
+	LilyPondComment('Here is another LilyPond comment in the staff opening.')(Staff{4})
+	LilyPondComment('LilyPond comment in the staff closing.')(Staff{4})
+	LilyPondComment('LilyPond comment after the staff.')(Staff{4})
 
 
 ::

@@ -378,8 +378,8 @@ marktools
 
    tools/marktools/Annotation/Annotation
    tools/marktools/Articulation/Articulation
-   tools/marktools/Comment/Comment
    tools/marktools/LilyPondCommandMark/LilyPondCommandMark
+   tools/marktools/LilyPondComment/LilyPondComment
    tools/marktools/Mark/Mark
    tools/marktools/StemTremolo/StemTremolo
    tools/marktools/apply_articulations_to_notes_and_chords_in_expr
@@ -915,6 +915,7 @@ cfgtools
    tools/cfgtools/get_python_version_string
    tools/cfgtools/list_abjad_environment_variables
    tools/cfgtools/list_abjad_templates
+   tools/cfgtools/list_package_dependency_versions
    tools/cfgtools/set_default_accidental_spelling
 
 
@@ -1043,6 +1044,7 @@ iotools
    tools/iotools/play
    tools/iotools/profile_expr
    tools/iotools/redo
+   tools/iotools/remove_abjad___pycache___directories
    tools/iotools/remove_abjad_pyc_files
    tools/iotools/save_last_ly_as
    tools/iotools/save_last_pdf_as
