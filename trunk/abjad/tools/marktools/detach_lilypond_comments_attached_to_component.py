@@ -1,7 +1,7 @@
-from abjad.tools.marktools.get_comments_attached_to_component import get_comments_attached_to_component
+from abjad.tools.marktools.get_lilypond_comments_attached_to_component import get_lilypond_comments_attached_to_component
 
 
-def detach_comments_attached_to_component(component):
+def detach_lilypond_comments_attached_to_component(component):
     r'''.. versionadded:: 2.0
 
     Detach comments attached to `component`::
@@ -27,7 +27,7 @@ def detach_comments_attached_to_component(component):
 
     ::
 
-        abjad> marktools.detach_comments_attached_to_component(staff[0])
+        abjad> marktools.detach_lilypond_comments_attached_to_component(staff[0])
         (LilyPondComment('comment 1'), LilyPondComment('comment 2'))
 
     ::
@@ -42,14 +42,14 @@ def detach_comments_attached_to_component(component):
 
     ::
 
-        abjad> marktools.get_comments_attached_to_component(staff[0])
+        abjad> marktools.get_lilypond_comments_attached_to_component(staff[0])
         ()
 
     Return tuple or zero or more comments.
     '''
 
     comments = [ ]
-    for comment in get_comments_attached_to_component(component):
+    for comment in get_lilypond_comments_attached_to_component(component):
         comment.detach_mark()
         comments.append(comment)
 

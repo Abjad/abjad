@@ -1,7 +1,7 @@
 from abjad.tools.marktools.LilyPondComment import LilyPondComment
 
 
-def get_comments_attached_to_component(component):
+def get_lilypond_comments_attached_to_component(component):
     r'''.. versionadded:: 2.0
 
     Get comments attached to `component`::
@@ -27,7 +27,7 @@ def get_comments_attached_to_component(component):
 
     ::
 
-        abjad> marktools.get_comments_attached_to_component(staff[0])
+        abjad> marktools.get_lilypond_comments_attached_to_component(staff[0])
         (LilyPondComment('comment 1')(c'8), LilyPondComment('comment 2')(c'8))
 
     Return tuple of zero or more comments.

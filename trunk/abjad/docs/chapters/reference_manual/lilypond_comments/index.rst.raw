@@ -82,8 +82,8 @@ Getting the LilyPond comments attached to a component
 Use ``marktools`` to get all the LilyPond comments attached to a component:
 
 <abjad>
-marktools.get_comments_attached_to_component(note)
-print repr(marktools.get_comments_attached_to_component(note)) <hide
+marktools.get_lilypond_comments_attached_to_component(note)
+print repr(marktools.get_lilypond_comments_attached_to_component(note)) <hide
 </abjad>
 
 Abjad returns a tuple of zero or more LilyPond comments.
@@ -95,7 +95,7 @@ Detaching LilyPond comments from a component one at a time
 Use ``detach_mark()`` to detach LilyPond comments from a component one at a time:
 
 <abjad>
-comment_1 = marktools.get_comments_attached_to_component(note)[0]
+comment_1 = marktools.get_lilypond_comments_attached_to_component(note)[0]
 </abjad>
 
 <abjad>
@@ -114,11 +114,11 @@ Detaching all LilyPond comments attached to a component at once
 Or use ``marktools`` to detach all LilyPond comments attached to a component at once:
 
 <abjad>
-for comment in marktools.get_comments_attached_to_component(staff): print comment
+for comment in marktools.get_lilypond_comments_attached_to_component(staff): print comment
 </abjad>
 
 <abjad>
-marktools.detach_comments_attached_to_component(staff)
+marktools.detach_lilypond_comments_attached_to_component(staff)
 </abjad>
 
 <abjad>

@@ -105,7 +105,7 @@ Use ``marktools`` to get all the LilyPond comments attached to a component:
 
 ::
 
-	abjad> marktools.get_comments_attached_to_component(note)
+	abjad> marktools.get_lilypond_comments_attached_to_component(note)
 	(LilyPondComment('This is a LilyPond comment before a note.')(cs''4),)
 
 
@@ -119,7 +119,7 @@ Use ``detach_mark()`` to detach LilyPond comments from a component one at a time
 
 ::
 
-	abjad> comment_1 = marktools.get_comments_attached_to_component(note)[0]
+	abjad> comment_1 = marktools.get_lilypond_comments_attached_to_component(note)[0]
 
 
 ::
@@ -142,7 +142,7 @@ Or use ``marktools`` to detach all LilyPond comments attached to a component at 
 
 ::
 
-	abjad> for comment in marktools.get_comments_attached_to_component(staff): print comment
+	abjad> for comment in marktools.get_lilypond_comments_attached_to_component(staff): print comment
 	LilyPondComment('Here is a LilyPond comment before the staff.')(Staff{4})
 	LilyPondComment('Here is a LilyPond comment in the staff opening.')(Staff{4})
 	LilyPondComment('Here is another LilyPond comment in the staff opening.')(Staff{4})
@@ -152,7 +152,7 @@ Or use ``marktools`` to detach all LilyPond comments attached to a component at 
 
 ::
 
-	abjad> marktools.detach_comments_attached_to_component(staff)
+	abjad> marktools.detach_lilypond_comments_attached_to_component(staff)
 
 
 ::
