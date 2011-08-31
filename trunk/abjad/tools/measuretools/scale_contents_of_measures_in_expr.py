@@ -30,7 +30,7 @@ def scale_contents_of_measures_in_expr(expr, multiplier = 1):
             old_numerator = contexttools.get_effective_time_signature(measure).numerator
             old_denominator = contexttools.get_effective_time_signature(measure).denominator
             new_denominator = old_denominator / multiplier.numerator
-            new_meter = contexttools.TimeSignatureMark(old_numerator, new_denominator)
+            new_meter = contexttools.TimeSignatureMark((old_numerator, new_denominator))
         else:
             old_meter = contexttools.get_effective_time_signature(measure)
             old_denominator = old_meter.denominator

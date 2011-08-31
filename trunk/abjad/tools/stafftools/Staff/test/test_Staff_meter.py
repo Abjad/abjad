@@ -6,7 +6,7 @@ def test_Staff_meter_01():
     '''Force meter on nonempty staff.'''
 
     t = Staff(Note("c'4") * 8)
-    contexttools.TimeSignatureMark(2, 4)(t)
+    contexttools.TimeSignatureMark((2, 4))(t)
     assert t.format == "\\new Staff {\n\t\\time 2/4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n}"
     r'''
     \new Staff {
@@ -27,7 +27,7 @@ def test_Staff_meter_02():
     '''Force meter on empty staff.'''
 
     t = Staff([ ])
-    contexttools.TimeSignatureMark(2, 4)(t)
+    contexttools.TimeSignatureMark((2, 4))(t)
 
     r'''
     \new Staff {
@@ -42,9 +42,9 @@ def test_Staff_meter_03():
     '''Staff meter carries over to staff-contained leaves.'''
 
     t = Staff(Note("c'4") * 8)
-    contexttools.TimeSignatureMark(2, 4)(t)
+    contexttools.TimeSignatureMark((2, 4))(t)
     for x in t:
-        assert contexttools.get_effective_time_signature(x) == contexttools.TimeSignatureMark(2, 4)
+        assert contexttools.get_effective_time_signature(x) == contexttools.TimeSignatureMark((2, 4))
 
 
 def test_Staff_meter_04():
@@ -52,7 +52,7 @@ def test_Staff_meter_04():
     '''
 
     t = Staff(Note("c'4") * 8)
-    contexttools.TimeSignatureMark(2, 4)(t)
+    contexttools.TimeSignatureMark((2, 4))(t)
     contexttools.get_effective_time_signature(t).detach_mark()
     for leaf in t:
         assert contexttools.get_effective_time_signature(leaf) is None

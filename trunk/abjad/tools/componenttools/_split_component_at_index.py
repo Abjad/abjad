@@ -47,13 +47,13 @@ def _split_component_at_index(component, i, spanners = 'unfractured'):
         left_pair = \
             durtools.rational_to_duration_pair_with_multiple_of_specified_integer_denominator(
             left_duration, meter_denominator)
-        left_meter = contexttools.TimeSignatureMark(*left_pair)
+        left_meter = contexttools.TimeSignatureMark(left_pair)
         left = component.__class__(left_meter, left_music)
         right_duration = sum([x.prolated_duration for x in right_music])
         right_pair = \
             durtools.rational_to_duration_pair_with_multiple_of_specified_integer_denominator(
             right_duration, meter_denominator)
-        right_meter = contexttools.TimeSignatureMark(*right_pair)
+        right_meter = contexttools.TimeSignatureMark(right_pair)
         right = component.__class__(right_meter, right_music)
     elif isinstance(component, FixedDurationTuplet):
         left = component.__class__(1, left_music)

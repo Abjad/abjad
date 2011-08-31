@@ -7,11 +7,11 @@ def test_Measure_duration_is_underfull_01():
     assert not t.is_underfull
 
     contexttools.detach_time_signature_mark_attached_to_component(t)
-    contexttools.TimeSignatureMark(4, 8)(t)
+    contexttools.TimeSignatureMark((4, 8))(t)
     assert t.is_underfull
 
     contexttools.detach_time_signature_mark_attached_to_component(t)
-    contexttools.TimeSignatureMark(3, 8)(t)
+    contexttools.TimeSignatureMark((3, 8))(t)
     assert not t.is_underfull
 
 

@@ -18,7 +18,7 @@ def test_DynamicMeasure_meter_assignment_01():
     }
     '''
 
-    assert py.test.raises(ExtraMarkError, 'contexttools.TimeSignatureMark(4, 8)(measure)')
+    assert py.test.raises(ExtraMarkError, 'contexttools.TimeSignatureMark((4, 8))(measure)')
 
 
 

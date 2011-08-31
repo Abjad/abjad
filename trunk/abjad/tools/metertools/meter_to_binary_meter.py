@@ -45,6 +45,4 @@ def meter_to_binary_meter(nonbinary_meter, contents_multiplier = fractions.Fract
         nonbinary_pair, binary_denominator)
 
     ### return new binary meter
-    return contexttools.TimeSignatureMark(*binary_pair)
-
-
+    return contexttools.TimeSignatureMark(binary_pair)

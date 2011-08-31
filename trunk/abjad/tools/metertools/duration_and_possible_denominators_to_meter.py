@@ -10,17 +10,17 @@ def duration_and_possible_denominators_to_meter(duration, denominators = None, f
     ::
 
         abjad> metertools.duration_and_possible_denominators_to_meter(Duration(3, 2))
-        TimeSignatureMark(3, 2)
+        TimeSignatureMark((3, 2))
 
     Make new meter equal to `duration` with denominator equal to the first possible element in `denominators`::
 
         abjad> metertools.duration_and_possible_denominators_to_meter(Duration(3, 2), denominators = [5, 6, 7, 8])
-        TimeSignatureMark(9, 6)
+        TimeSignatureMark((9, 6))
 
     Make new meter equal to `duration` with denominator divisible by `factor`::
 
         abjad> metertools.duration_and_possible_denominators_to_meter(Duration(3, 2), factor = 5)
-        TimeSignatureMark(15, 10)
+        TimeSignatureMark((15, 10))
 
     Return new meter.
 
@@ -45,7 +45,7 @@ def duration_and_possible_denominators_to_meter(duration, denominators = None, f
         else:
             meter_numerator = factor * duration.numerator
             meter_denominator = factor * duration.denominator
-            return contexttools.TimeSignatureMark(meter_numerator, meter_denominator)
+            return contexttools.TimeSignatureMark((meter_numerator, meter_denominator))
     else:
         return contexttools.TimeSignatureMark(duration)
 

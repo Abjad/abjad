@@ -42,10 +42,10 @@ def pitch_array_row_to_measure(pitch_array_row, cell_duration_denominator = 8):
     if not isinstance(pitch_array_row, PitchArrayRow):
         raise TypeError('must be pitch array row.')
 
-    meter = contexttools.TimeSignatureMark(pitch_array_row.width, cell_duration_denominator)
-    measure = Measure(meter, [ ])
+    meter = contexttools.TimeSignatureMark((pitch_array_row.width, cell_duration_denominator))
+    measure = Measure(meter, [])
     basic_cell_duration = durtools.Duration(1, cell_duration_denominator)
-    measure_pitches, measure_durations = [ ], [ ]
+    measure_pitches, measure_durations = [], []
     for cell in pitch_array_row.cells:
         cell_pitches = cell.pitches
         if not cell_pitches:
