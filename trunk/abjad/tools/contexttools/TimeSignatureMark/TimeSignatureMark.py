@@ -15,7 +15,7 @@ class TimeSignatureMark(ContextMark):
     ::
 
         abjad> contexttools.TimeSignatureMark((4, 8))(staff[0])
-        TimeSignatureMark(4, 8)(c'8)
+        TimeSignatureMark((4, 8))(c'8)
 
     ::
 
@@ -34,7 +34,7 @@ class TimeSignatureMark(ContextMark):
     Initialize time signature marks to **score context** like this::
 
         abjad> contexttools.TimeSignatureMark((4, 8), target_context = Score)
-        TimeSignatureMark(4, 8, target_context = Score)
+        TimeSignatureMark((4, 8), target_context = Score)
 
     Time signatures are immutable.
     '''
@@ -139,11 +139,13 @@ class TimeSignatureMark(ContextMark):
 
     def __repr__(self):
         if self._has_default_target_context:
-            return '%s(%s, %s%s)%s' % (self.__class__.__name__, self.numerator,
+            return '%s((%s, %s)%s)%s' % (self.__class__.__name__, self.numerator,
                 self.denominator, self._partial_repr_string, self._attachment_repr_string)
         else:
-            return '%s(%s, %s%s, target_context = %s)%s' % (self.__class__.__name__, self.numerator,
-                self.denominator, self._partial_repr_string, self._target_context_name, self._attachment_repr_string)
+            return '%s((%s, %s)%s, target_context = %s)%s' % (
+                self.__class__.__name__, self.numerator,
+                self.denominator, self._partial_repr_string, self._target_context_name, 
+                self._attachment_repr_string)
 
     def __str__(self):
         return '%s/%s' % (self.numerator, self.denominator)
