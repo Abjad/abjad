@@ -40,7 +40,7 @@ class Scale(NamedChromaticPitchClassSegment):
     @property
     def _capital_name(self):
         letter = self.key_signature.tonic.name.title()
-        mode = self.key_signature.mode.mode_name_string.title()
+        mode = self.key_signature.mode.mode_name.title()
         return '%s%s' % (letter, mode)
 
     ### PUBLIC ATTRIBUTES ###

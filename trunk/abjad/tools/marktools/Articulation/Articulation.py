@@ -63,22 +63,22 @@ class Articulation(Mark):
     ### OVERLOADS ###
 
     def __copy__(self, *args):
-        return type(self)(self.name_string, self.direction_string)
+        return type(self)(self.name, self.direction_string)
 
     __deepcopy__ = __copy__
 
     def __eq__(self, expr):
         if isinstance(expr, type(self)):
-            if expr.name_string == self.name_string:
+            if expr.name == self.name:
                 if self.direction_string == expr.direction_string:
                     return True
         return False
 
     def __str__(self):
-        if self.name_string:
-            string = self._shortcut_to_word.get(self.name_string)
+        if self.name:
+            string = self._shortcut_to_word.get(self.name)
             if not string:
-                string = self.name_string
+                string = self.name
             return '%s\%s' % (self.direction_string, string)
         else:
             return ''
@@ -110,7 +110,7 @@ class Articulation(Mark):
 
     @property
     def _contents_repr_string(self):
-        return '%s, %s' % (repr(self.name_string), repr(self.direction_string))
+        return '%s, %s' % (repr(self.name), repr(self.direction_string))
 
     ### PUBLIC ATTRIBUTES ###
 
@@ -150,25 +150,25 @@ class Articulation(Mark):
         return str(self)
 
     @apply
-    def name_string():
+    def name():
         def fget(self):
             '''Get name string of articulation::
 
                 abjad> articulation = marktools.Articulation('staccato', 'up')
-                abjad> articulation.name_string
+                abjad> articulation.name
                 'staccato'
 
             Set name string of articulation::
 
-                abjad> articulation.name_string = 'marcato'
-                abjad> articulation.name_string
+                abjad> articulation.name = 'marcato'
+                abjad> articulation.name
                 'marcato'
 
             Set string.
             '''
             return self._string
-        def fset(self, name_string):
-            assert isinstance(name_string, str)
-            self._string = name_string
+        def fset(self, name):
+            assert isinstance(name, str)
+            self._string = name
         return property(**locals())
 

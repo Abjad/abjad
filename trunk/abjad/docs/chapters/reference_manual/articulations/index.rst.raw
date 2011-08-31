@@ -164,10 +164,10 @@ iotools.write_expr_to_ly(staff, 'articulations-8') <hide
 Getting and setting articulation name
 -------------------------------------
 
-Set the ``name_string`` of an articulation to change the symbol an articulation prints:
+Set the ``name`` of an articulation to change the symbol an articulation prints:
 
 <abjad>
-articulation.name_string = 'staccatissimo'
+articulation.name = 'staccatissimo'
 </abjad>
 
 <abjad>
@@ -230,15 +230,15 @@ Comparing articulations
 Articulations compare equal with equal direction name strings and direction strings:
 
 <abjad>
-articulation.name_string
-print repr(articulation.name_string) <hide
+articulation.name
+print repr(articulation.name) <hide
 articulation.direction_string
 print repr(articulation.direction_string) <hide
 </abjad>
 
 <abjad>
-articulation_copy_1.name_string
-print repr(articulation_copy_1.name_string) <hide
+articulation_copy_1.name
+print repr(articulation_copy_1.name) <hide
 articulation_copy_1.direction_string
 print repr(articulation_copy_1.direction_string) <hide
 </abjad>

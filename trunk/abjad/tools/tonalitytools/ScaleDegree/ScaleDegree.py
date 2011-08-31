@@ -59,13 +59,13 @@ class ScaleDegree(_Immutable):
     def _format_string(self):
         parts = [ ]
         if self.accidental.is_adjusted:
-            parts.append(self.accidental.name_string)
+            parts.append(self.accidental.name)
         parts.append(str(self.number))
         return ', '.join(parts)
 
     ### PRIVATE ATTRIBUTES ###
 
-    _numeral_to_number_name_string = {
+    _numeral_to_number_name = {
         1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five', 6: 'six',
         7: 'seven', 8: 'eight', 9: 'nine', 10: 'ten', 11: 'eleven',
         12: 'twelve', 13: 'thirteen', 14: 'fourteen', 15: 'fifteen',
@@ -157,11 +157,11 @@ class ScaleDegree(_Immutable):
 
     @property
     def title_string(self):
-        if not self.accidental.name_string == 'natural':
-            accidental = self.accidental.name_string
+        if not self.accidental.name == 'natural':
+            accidental = self.accidental.name
         else:
             accidental = ''
-        number = self._numeral_to_number_name_string[self.number]
+        number = self._numeral_to_number_name[self.number]
         return '%s%s' % (accidental.title(), number.title())
 
     ### PUBLIC METHODS ###

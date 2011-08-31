@@ -6,7 +6,7 @@ def test_Mode___init___01():
     '''Init with mode name string.'''
 
     mode = tonalitytools.Mode('dorian')
-    assert mode.mode_name_string == 'dorian'
+    assert mode.mode_name == 'dorian'
 
 
 def test_Mode___init___02():
@@ -15,4 +15,4 @@ def test_Mode___init___02():
     mode = tonalitytools.Mode('dorian')
     new = tonalitytools.Mode(mode)
 
-    assert new.mode_name_string == 'dorian'
+    assert new.mode_name == 'dorian'

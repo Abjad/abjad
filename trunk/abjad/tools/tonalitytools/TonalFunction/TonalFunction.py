@@ -59,10 +59,10 @@ class TonalFunction(_Immutable):
     ### PRIVATE ATTRIBUTES ###
 
     @property
-    def _accidental_name_string(self):
+    def _accidental_name(self):
         accidental = self.scale_degree.accidental
         if accidental.is_adjusted:
-            return accidental.name_string.title()
+            return accidental.name.title()
         return ''
 
     @property
@@ -91,7 +91,7 @@ class TonalFunction(_Immutable):
     @property
     def _format_string(self):
         result = [ ]
-        result.append(self._accidental_name_string)
+        result.append(self._accidental_name)
         result.append(self._roman_numeral_string)
         result.append(self.quality.quality_string.title())
         result.append(self.extent.name.title())

@@ -1,7 +1,7 @@
 from abjad.tools.marktools.get_lilypond_command_marks_attached_to_component import get_lilypond_command_marks_attached_to_component
 
 
-def detach_lilypond_command_marks_attached_to_component(component, command_name_string = None):
+def detach_lilypond_command_marks_attached_to_component(component, command_name = None):
     r'''.. versionadded:: 2.0
 
     Detach LilyPond command marks attached to `component`::
@@ -45,7 +45,7 @@ def detach_lilypond_command_marks_attached_to_component(component, command_name_
 
     marks = [ ]
     for mark in get_lilypond_command_marks_attached_to_component(
-        component, command_name_string = command_name_string):
+        component, command_name = command_name):
         mark.detach_mark()
         marks.append(mark)
     return tuple(marks)

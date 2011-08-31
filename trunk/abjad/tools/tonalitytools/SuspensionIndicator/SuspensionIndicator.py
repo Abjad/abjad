@@ -92,7 +92,7 @@ class SuspensionIndicator(_Immutable):
     ### PUBLIC ATTRIBUTES ###
 
     @property
-    def chord_name_string(self):
+    def chord_name(self):
         if self.is_empty:
             return ''
         return 'sus%s' % self.start

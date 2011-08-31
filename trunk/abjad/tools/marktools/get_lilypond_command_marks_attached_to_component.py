@@ -1,7 +1,7 @@
 from abjad.tools.marktools.LilyPondCommandMark import LilyPondCommandMark
 
 
-def get_lilypond_command_marks_attached_to_component(component, command_name_string = None):
+def get_lilypond_command_marks_attached_to_component(component, command_name = None):
     r'''.. versionadded:: 2.0
 
     Get LilyPond command marks attached to `component`::
@@ -36,7 +36,7 @@ def get_lilypond_command_marks_attached_to_component(component, command_name_str
     result = [ ]
     for mark in component._marks_for_which_component_functions_as_start_component:
         if isinstance(mark, LilyPondCommandMark):
-            if mark.command_name_string == command_name_string or command_name_string is None:
+            if mark.command_name == command_name or command_name is None:
                 result.append(mark)
 
     result = tuple(result)

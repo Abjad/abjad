@@ -60,7 +60,7 @@ class KeySignatureMark(ContextMark):
     ### PRIVATE ATTRIBUTES ###
 
     @property
-    #def _contents_name_string(self):
+    #def _contents_name(self):
     def _contents_repr_string(self):
         return "%s, %s" % (repr(self.tonic), repr(self.mode))
 
@@ -116,11 +116,11 @@ class KeySignatureMark(ContextMark):
 
         Return string.
         '''
-        if self.mode.mode_name_string == 'major':
+        if self.mode.mode_name == 'major':
             tonic = str(self.tonic).upper()
         else:
             tonic = str(self.tonic)
-        return '%s %s' % (tonic, self.mode.mode_name_string)
+        return '%s %s' % (tonic, self.mode.mode_name)
 
     @apply
     def tonic():

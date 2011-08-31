@@ -26,30 +26,30 @@ class LilyPondComment(Mark):
     LilyPond comments implement ``__slots__``.
     '''
 
-    __slots__ = ('_comment_name_string', '_format_slot', )
+    __slots__ = ('_comment_name', '_format_slot', )
 
-    def __init__(self, comment_name_string, format_slot = 'opening'):
+    def __init__(self, comment_name, format_slot = 'opening'):
         Mark.__init__(self)
-        self._comment_name_string = comment_name_string
+        self._comment_name = comment_name
         self._format_slot = format_slot
 
     ### OVERLOADS ###
 
     def __copy__(self, *args):
-        return type(self)(self._comment_name_string)
+        return type(self)(self._comment_name)
 
     __deepcopy__ = __copy__
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):
-            return self._comment_name_string == arg._comment_name_string
+            return self._comment_name == arg._comment_name
         return False
 
     ### PRIVATE ATTRIBUTES ###
 
     @property
     def _contents_repr_string(self):
-        return repr(self._comment_name_string)
+        return repr(self._comment_name)
 
     ### PUBLIC ATTRIBUTES ###
 
@@ -70,10 +70,10 @@ class LilyPondComment(Mark):
 
             Set string.
             '''
-            return self._comment_name_string
+            return self._comment_name
         def fset(self, contents_string):
             assert isinstance(contents_string, str)
-            self._comment_name_string = contents_string
+            self._comment_name = contents_string
         return property(**locals())
 
     @property
@@ -89,6 +89,6 @@ class LilyPondComment(Mark):
         Return string.
         '''
         from abjad.tools import iotools
-        command = iotools.underscore_delimited_lowercase_to_lowercamelcase(self._comment_name_string)
+        command = iotools.underscore_delimited_lowercase_to_lowercamelcase(self._comment_name)
         return r'%% %s' % command
 

@@ -135,11 +135,11 @@ print repr(lilypond_command_mark.start_component) <hide
 Getting and setting the command name of a LilyPond command mark
 ---------------------------------------------------------------
 
-Set the ``command_name_string`` of a LilyPond command mark to change the 
+Set the ``command_name`` of a LilyPond command mark to change the 
 LilyPond command a LilyPond command mark prints:
 
 <abjad>
-lilypond_command_mark.command_name_string = 'bar "|."'
+lilypond_command_mark.command_name = 'bar "|."'
 </abjad>
 
 <abjad>
@@ -184,13 +184,13 @@ Comparing LilyPond command marks
 LilyPond command marks compare equal with equal command names:
 
 <abjad>
-lilypond_command_mark.command_name_string
-print repr(lilypond_command_mark.command_name_string) <hide
+lilypond_command_mark.command_name
+print repr(lilypond_command_mark.command_name) <hide
 </abjad>
 
 <abjad>
-lilypond_command_mark_copy_1.command_name_string
-print repr(lilypond_command_mark_copy_1.command_name_string) <hide
+lilypond_command_mark_copy_1.command_name
+print repr(lilypond_command_mark_copy_1.command_name) <hide
 </abjad>
 
 <abjad>

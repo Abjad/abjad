@@ -15,7 +15,7 @@ class Accidental(_StrictComparator, _Immutable):
     Accidentals are immutable.
     '''
 
-    __slots__ = ('_alphabetic_string', '_is_adjusted', '_name_string', '_semitones', '_symbolic_string')
+    __slots__ = ('_alphabetic_string', '_is_adjusted', '_name', '_semitones', '_symbolic_string')
 
     def __new__(klass, arg = ''):
         self = object.__new__(klass)
@@ -24,8 +24,8 @@ class Accidental(_StrictComparator, _Immutable):
             _alphabetic_string = arg
         elif arg in self._all_accidental_symbolic_strings:
             _alphabetic_string = self._symbolic_string_to_alphabetic_string[arg]
-        elif arg in self._all_accidental_name_strings:
-            _alphabetic_string = self._name_string_to_alphabetic_string[arg]
+        elif arg in self._all_accidental_names:
+            _alphabetic_string = self._name_to_alphabetic_string[arg]
         elif arg in self._all_accidental_semitone_values:
             _alphabetic_string = self._semitones_to_alphabetic_string[arg]
         elif isinstance(arg, type(self)):
@@ -38,8 +38,8 @@ class Accidental(_StrictComparator, _Immutable):
         ### initialize derived attributes
         _semitones = self._alphabetic_string_to_semitones[self.alphabetic_string]
         object.__setattr__(self, '_semitones', _semitones)
-        _name_string = self._alphabetic_string_to_name_string[self.alphabetic_string]
-        object.__setattr__(self, '_name_string', _name_string)
+        _name = self._alphabetic_string_to_name[self.alphabetic_string]
+        object.__setattr__(self, '_name', _name)
         _is_adjusted = not self.semitones == 0
         object.__setattr__(self, '_is_adjusted', _is_adjusted)
         _symbolic_string = self._alphabetic_string_to_symbolic_string[self.alphabetic_string]
@@ -102,7 +102,7 @@ class Accidental(_StrictComparator, _Immutable):
     def _all_accidental_alphabetic_strings(self):
         return self._alphabetic_string_to_symbolic_string.keys()
 
-    _alphabetic_string_to_name_string = {
+    _alphabetic_string_to_name = {
         'ss'  : 'double sharp',
         'tqs' : 'three-quarters sharp',
         's'   : 'sharp',
@@ -141,7 +141,7 @@ class Accidental(_StrictComparator, _Immutable):
         'ss': '###',
     }
 
-    _name_string_to_alphabetic_string = {
+    _name_to_alphabetic_string = {
         'double sharp'            : 'ss',
         'three-quarters sharp'  : 'tqs',
         'sharp'                     : 's',
@@ -180,8 +180,8 @@ class Accidental(_StrictComparator, _Immutable):
     }
 
     @property
-    def _all_accidental_name_strings(self):
-        return self._name_string_to_alphabetic_string.keys()
+    def _all_accidental_names(self):
+        return self._name_to_alphabetic_string.keys()
 
     @property
     def _all_accidental_semitone_values(self):
@@ -230,16 +230,16 @@ class Accidental(_StrictComparator, _Immutable):
         return self._is_adjusted
 
     @property
-    def name_string(self):
+    def name(self):
         '''Read-only name string of accidental::
 
             abjad> accidental = pitchtools.Accidental('s')
-            abjad> accidental.name_string
+            abjad> accidental.name
             'sharp'
 
         Return string.
         '''
-        return self._name_string
+        return self._name
 
     @property
     def semitones(self):

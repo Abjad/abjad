@@ -28,54 +28,54 @@ class LilyPondCommandMark(Mark):
     LilyPond command marks implement ``__slots__``.
     '''
 
-    __slots__ = ('_command_name_string', '_format_slot', )
+    __slots__ = ('_command_name', '_format_slot', )
 
-    def __init__(self, command_name_string, format_slot = 'opening'):
+    def __init__(self, command_name, format_slot = 'opening'):
         Mark.__init__(self)
-        self._command_name_string = command_name_string
+        self._command_name = command_name
         self._format_slot = format_slot
 
     ### OVERLOADS ###
 
     def __copy__(self, *args):
-        return type(self)(self._command_name_string)
+        return type(self)(self._command_name)
 
     __deepcopy__ = __copy__
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):
-            return self._command_name_string == arg._command_name_string
+            return self._command_name == arg._command_name
         return False
 
     ### PRIVATE ATTRIBUTES ###
 
     @property
     def _contents_repr_string(self):
-        return repr(self.command_name_string)
+        return repr(self.command_name)
 
     ### PUBLIC ATTRIBUTES ###
 
     @apply
-    def command_name_string():
+    def command_name():
         def fget(self):
             '''Get command name string of LilyPond command mark::
 
                 abjad> lilypond_command = marktools.LilyPondCommandMark('slurDotted')
-                abjad> lilypond_command.command_name_string
+                abjad> lilypond_command.command_name
                 'slurDotted'
 
             Set command name string of LilyPond command mark::
 
-                abjad> lilypond_command.command_name_string = 'slurDashed'
-                abjad> lilypond_command.command_name_string
+                abjad> lilypond_command.command_name = 'slurDashed'
+                abjad> lilypond_command.command_name
                 'slurDashed'
 
             Set string.
             '''
-            return self._command_name_string
-        def fset(self, command_name_string):
-            assert isinstance(command_name_string, str)
-            self._command_name_string = command_name_string
+            return self._command_name
+        def fset(self, command_name):
+            assert isinstance(command_name, str)
+            self._command_name = command_name
         return property(**locals())
 
     @property
@@ -90,7 +90,7 @@ class LilyPondCommandMark(Mark):
         Return string.
         '''
         from abjad.tools import iotools
-        command = self._command_name_string
+        command = self._command_name
         if command.startswith('#'):
             return command
         else:

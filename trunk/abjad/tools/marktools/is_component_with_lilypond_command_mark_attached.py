@@ -1,7 +1,7 @@
 from abjad.tools.marktools.get_lilypond_command_marks_attached_to_component import get_lilypond_command_marks_attached_to_component
 
 
-def is_component_with_lilypond_command_mark_attached(expr, command_name_string = None):
+def is_component_with_lilypond_command_mark_attached(expr, command_name = None):
     '''True when `expr` is component with LilyPond command mark attached::
 
         abjad> note = Note("c'4")
@@ -28,7 +28,7 @@ def is_component_with_lilypond_command_mark_attached(expr, command_name_string =
 
     if isinstance(expr, _Component):
         for mark in get_lilypond_command_marks_attached_to_component(expr):
-            if mark.command_name_string == command_name_string or command_name_string is None:
+            if mark.command_name == command_name or command_name is None:
                 return True
 
     return False

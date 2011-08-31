@@ -111,7 +111,7 @@ class NamedChromaticPitchClass(_PitchClass):
 
     ### PRIVATE METHODS ###
 
-    def _init_by_name_string(self, name):
+    def _init_by_name(self, name):
         if not self._is_acceptable_name(name.lower()):
             raise ValueError("unknown pitch-class name '%s'." % name)
         object.__setattr__(self, '_chromatic_pitch_class_name', name.lower())

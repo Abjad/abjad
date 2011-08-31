@@ -187,11 +187,11 @@ an articulation automatically:
 Getting and setting articulation name
 -------------------------------------
 
-Set the ``name_string`` of an articulation to change the symbol an articulation prints:
+Set the ``name`` of an articulation to change the symbol an articulation prints:
 
 ::
 
-	abjad> articulation.name_string = 'staccatissimo'
+	abjad> articulation.name = 'staccatissimo'
 
 
 ::
@@ -265,7 +265,7 @@ Articulations compare equal with equal direction name strings and direction stri
 
 ::
 
-	abjad> articulation.name_string
+	abjad> articulation.name
 	'staccatissimo'
 	abjad> articulation.direction_string
 	'-'
@@ -273,7 +273,7 @@ Articulations compare equal with equal direction name strings and direction stri
 
 ::
 
-	abjad> articulation_copy_1.name_string
+	abjad> articulation_copy_1.name
 	'staccatissimo'
 	abjad> articulation_copy_1.direction_string
 	'-'

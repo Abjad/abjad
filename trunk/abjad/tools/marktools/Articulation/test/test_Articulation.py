@@ -5,13 +5,13 @@ import py.test
 def test_Articulation_01():
     '''Articulations can be initialized from zero, one or two arguments.'''
     a = marktools.Articulation()
-    assert a.name_string == None
+    assert a.name == None
     assert a.direction_string == '-'
     a = marktools.Articulation('^\\marcato')
-    assert a.name_string == 'marcato'
+    assert a.name == 'marcato'
     assert a.direction_string == '^'
     a = marktools.Articulation('legato', 'down')
-    assert a.name_string == 'legato'
+    assert a.name == 'legato'
     assert a.direction_string == '_'
 
 
@@ -20,7 +20,7 @@ def test_Articulation_02():
 
     t = Note("c'4")
     a = marktools.Articulation('staccato')(t)
-    assert a.name_string == 'staccato'
+    assert a.name == 'staccato'
     assert a.direction_string == '-'
 
 
@@ -29,7 +29,7 @@ def test_Articulation_03():
 
     t = Note("c'4")
     a = marktools.Articulation()(t)
-    assert a.name_string is None
+    assert a.name is None
     assert str(a) == ''
 
 
@@ -87,14 +87,14 @@ def test_Articulation_08():
 
     t = Note("c'4")
     a = marktools.Articulation('.')(t)
-    assert a.name_string == '.'
+    assert a.name == '.'
     assert str(a) == r'-\staccato'
 
     a = marktools.Articulation('-')
-    assert a.name_string == '-'
+    assert a.name == '-'
     assert str(a) == r'-\tenuto'
 
     a = marktools.Articulation('|')
-    assert a.name_string == '|'
+    assert a.name == '|'
     assert str(a) == r'-\staccatissimo'
 
