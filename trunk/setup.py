@@ -3,8 +3,10 @@
 
 #from distutils.core import setup
 from ez_setup import use_setuptools
-use_setuptools( ) ### this must come before setup import
+# following line must come before import setup
+use_setuptools()
 from setuptools import setup, find_packages
+
 
 setup(name = 'Abjad', 
     version = '2.2',
@@ -15,13 +17,16 @@ setup(name = 'Abjad',
     url = 'http://www.projectabjad.org',
     keywords = 'music composition, music notation, formalized score control, lilypond',
     license = 'GPL',
-    platforms = 'All',
-    packages = find_packages( ), ### include all packages found in '.'
+    platforms = 'Any',
+    requires = ['pytest (>=2.1)', 'Sphinx (>=1.0.7)'],
+    # include all packages found in '.'
+    packages = find_packages(),
     #scripts = ['ez_setup.py'],
-    include_package_data = True, ### include all file types under abjad.
-    entry_points = { 'console_scripts':[
+    # include all file types under abjad
+    include_package_data = True,
+    entry_points = {'console_scripts':[
         'abj = abjad.tools.iotools._run_abjad:_run_abjad',
         'abjad = abjad.tools.iotools._run_abjad:_run_abjad',
         'abjad-book = abjad.book.abjad_book:_abjad_book',
-        ] },
-     )
+        ]},
+    )
