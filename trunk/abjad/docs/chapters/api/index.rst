@@ -382,7 +382,7 @@ marktools
    tools/marktools/LilyPondComment/LilyPondComment
    tools/marktools/Mark/Mark
    tools/marktools/StemTremolo/StemTremolo
-   tools/marktools/apply_articulations_to_notes_and_chords_in_expr
+   tools/marktools/attach_articulations_to_notes_and_chords_in_expr
    tools/marktools/detach_annotations_attached_to_component
    tools/marktools/detach_articulations_attached_to_component
    tools/marktools/detach_lilypond_command_marks_attached_to_component

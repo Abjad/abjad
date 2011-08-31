@@ -1,13 +1,13 @@
 from abjad.tools.marktools.Articulation import Articulation
 
 
-def apply_articulations_to_notes_and_chords_in_expr(expr, articulations):
+def attach_articulations_to_notes_and_chords_in_expr(expr, articulations):
     r'''.. versionadded:: 2.0
 
-    Apply `articulations` to notes and chords in `expr`::
+    Attach `articulations` to notes and chords in `expr`::
 
         abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> marktools.apply_articulations_to_notes_and_chords_in_expr(staff, list('^.'))
+        abjad> marktools.attach_articulations_to_notes_and_chords_in_expr(staff, list('^.'))
 
     ::
 
