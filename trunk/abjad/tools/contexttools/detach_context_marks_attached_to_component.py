@@ -1,7 +1,7 @@
 from abjad.tools.contexttools.ContextMark import ContextMark
 
 
-def detach_all_context_marks_attached_to_component(start_component, klasses = (ContextMark, )):
+def detach_context_marks_attached_to_component(start_component, klasses = (ContextMark, )):
     r'''.. versionadded:: 2.0
 
     Detach context marks attached to `start_component`::
@@ -20,7 +20,7 @@ def detach_all_context_marks_attached_to_component(start_component, klasses = (C
 
     ::
 
-        abjad> contexttools.detach_all_context_marks_attached_to_component(staff[0])
+        abjad> contexttools.detach_context_marks_attached_to_component(staff[0])
         (DynamicMark('p'),)
 
     ::
@@ -38,7 +38,7 @@ def detach_all_context_marks_attached_to_component(start_component, klasses = (C
 
     .. versionchanged:: 2.0
         renamed ``contexttools.detach_context_marks_attached_to_start_component()`` to
-        ``contexttools.detach_all_context_marks_attached_to_component()``.
+        ``contexttools.detach_context_marks_attached_to_component()``.
     '''
 
     marks = [ ]

@@ -453,12 +453,12 @@ First an API function to detach ALL context marks attaching to a component:
 We call the function a first time:
 
 <abjad>
-contexttools.detach_all_context_marks_attached_to_component(staff) <hide
+contexttools.detach_context_marks_attached_to_component(staff) <hide
 </abjad>
 
 ::
 
-    abjad> contexttools.detach_all_context_marks_attached_to_component(staff)
+    abjad> contexttools.detach_context_marks_attached_to_component(staff)
     (TimeSignatureMark(4, 4),)
 
 <abjad>
@@ -468,11 +468,11 @@ f(staff)
 And then a second time:
 
 <abjad>
-contexttools.detach_all_context_marks_attached_to_component(staff[4]) <hide
+contexttools.detach_context_marks_attached_to_component(staff[4]) <hide
 </abjad>
 
 ::
-    abjad> contexttools.detach_all_context_marks_attached_to_component(staff[4])
+    abjad> contexttools.detach_context_marks_attached_to_component(staff[4])
     (TimeSignatureMark(2, 4),)
 
 <abjad>

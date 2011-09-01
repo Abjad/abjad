@@ -563,7 +563,7 @@ We call the function a first time:
 
 ::
 
-    abjad> contexttools.detach_all_context_marks_attached_to_component(staff)
+    abjad> contexttools.detach_context_marks_attached_to_component(staff)
     (TimeSignatureMark(4, 4),)
 
 ::
@@ -583,7 +583,7 @@ And then a second time:
 
 
 ::
-    abjad> contexttools.detach_all_context_marks_attached_to_component(staff[4])
+    abjad> contexttools.detach_context_marks_attached_to_component(staff[4])
     (TimeSignatureMark(2, 4),)
 
 ::
