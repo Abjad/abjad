@@ -408,6 +408,7 @@ marktools
    tools/marktools/is_component_with_lilypond_command_mark_attached
    tools/marktools/is_component_with_lilypond_comment_attached
    tools/marktools/is_component_with_mark_attached
+   tools/marktools/is_component_with_noncontext_mark_attached
    tools/marktools/is_component_with_stem_tremolo_attached
 
 
