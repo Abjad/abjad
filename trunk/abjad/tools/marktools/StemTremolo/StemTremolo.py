@@ -25,12 +25,15 @@ class StemTremolo(Mark):
 
     __slots__ = ('_format_slot', '_tremolo_flags')
 
-    def __init__(self, tremolo_flags):
+    def __init__(self, *args):
         Mark.__init__(self)
-        if not mathtools.is_nonnegative_integer_power_of_two(tremolo_flags):
-            raise ValueError
-        object.__setattr__(self, '_tremolo_flags', tremolo_flags)
         self._format_slot = 'right'
+        if len(args) == 1 and isinstance(args[0], type(self)):
+            self.tremolo_flags = args[0].tremolo_flags
+        elif len(args) == 1 and not isinstance(args[0], type(self)):
+            self.tremolo_flags = args[0]
+        else:
+            raise ValueError('can not initialize stem tremolo.')
 
     ### OVERLOADS ###
 
@@ -88,7 +91,6 @@ class StemTremolo(Mark):
             return self._tremolo_flags
         def fset(self, tremolo_flags):
             if not mathtools.is_nonnegative_integer_power_of_two(tremolo_flags):
-                raise ValueError
+                raise ValueError('tremolo flags must be nonnegative integer power of 2.')
             self._tremolo_flags = tremolo_flags
         return property(**locals())
-

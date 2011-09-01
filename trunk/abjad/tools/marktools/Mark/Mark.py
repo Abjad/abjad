@@ -20,8 +20,13 @@ class Mark(object):
 
     __slots__ = ('_start_component', )
 
-    def __init__(self):
-        self._start_component = None
+    def __init__(self, *args):
+        if len(args) == 0:
+            self._start_component = None
+        elif len(args) == 1 and isinstance(args[0], type(self)):
+            self._start_component = None
+        else:
+            raise ValueError('can not initialize mark.')
 
     ### OVERLOADS ###
 
