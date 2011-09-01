@@ -29,4 +29,4 @@ def is_component_with_mark_attached(expr):
     from abjad.tools.componenttools._Component import _Component
 
     if isinstance(expr, _Component):
-        return len(get_marks_attached_to_component(expr))
+        return bool(get_marks_attached_to_component(expr))

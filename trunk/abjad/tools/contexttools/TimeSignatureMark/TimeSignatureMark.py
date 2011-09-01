@@ -164,9 +164,9 @@ class TimeSignatureMark(ContextMark):
         def fget(self):
             r'''Get denominator of time signature mark::
 
-                abjad> meter = contexttools.TimeSignatureMark(3, 8)
+                abjad> meter = contexttools.TimeSignatureMark((3, 8))
                 abjad> meter
-                TimeSignatureMark(3, 8)
+                TimeSignatureMark((3, 8))
                 abjad> meter.denominator
                 8
 
@@ -188,7 +188,7 @@ class TimeSignatureMark(ContextMark):
     def duration(self):
         r'''Read-only duration of time signature mark::
 
-            abjad> meter = contexttools.TimeSignatureMark(3, 8)
+            abjad> meter = contexttools.TimeSignatureMark((3, 8))
             abjad> meter.duration
             Duration(3, 8)
 
@@ -200,7 +200,7 @@ class TimeSignatureMark(ContextMark):
     def format(self):
         r'''Read-only LilyPond format of time signature mark::
 
-            abjad> meter = contexttools.TimeSignatureMark(3, 8)
+            abjad> meter = contexttools.TimeSignatureMark((3, 8))
             abjad> meter.format
             '\\time 3/8'
 
@@ -222,7 +222,7 @@ class TimeSignatureMark(ContextMark):
     def multiplier(self):
         r'''Read-only multiplier of time signature mark::
 
-            abjad> meter = contexttools.TimeSignatureMark(3, 8)
+            abjad> meter = contexttools.TimeSignatureMark((3, 8))
             abjad> meter.multiplier
             Fraction(1, 1)
 
@@ -235,7 +235,7 @@ class TimeSignatureMark(ContextMark):
         def fget(self):
             '''Get numerator of time signature mark::
 
-                abjad> meter = contexttools.TimeSignatureMark(3, 8)
+                abjad> meter = contexttools.TimeSignatureMark((3, 8))
                 abjad> meter.numerator
                 3
 
@@ -257,7 +257,7 @@ class TimeSignatureMark(ContextMark):
     def is_nonbinary(self):
         r'''Read-only indicator true when time siganture mark is nonbinary::
 
-            abjad> meter = contexttools.TimeSignatureMark(3, 8)
+            abjad> meter = contexttools.TimeSignatureMark((3, 8))
             abjad> meter.is_nonbinary
             False
 
@@ -270,7 +270,7 @@ class TimeSignatureMark(ContextMark):
         def fget(self):
             '''Get partial measure pick-up of time signature mark::
 
-                abjad> meter = contexttools.TimeSignatureMark(3, 8, partial = Duration(1, 8))
+                abjad> meter = contexttools.TimeSignatureMark((3, 8), partial = Duration(1, 8))
                 abjad> meter.partial
                 Duration(1, 8)
 

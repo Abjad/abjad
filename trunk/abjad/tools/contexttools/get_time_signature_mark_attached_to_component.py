@@ -24,7 +24,7 @@ def get_time_signature_mark_attached_to_component(component):
     ::
 
         abjad> contexttools.get_time_signature_mark_attached_to_component(measure)
-        TimeSignatureMark(4, 8)(|4/8, c'8, d'8, e'8, f'8|)
+        TimeSignatureMark((4, 8))(|4/8, c'8, d'8, e'8, f'8|)
 
     Return time signature mark.
 

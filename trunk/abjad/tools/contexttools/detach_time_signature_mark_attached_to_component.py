@@ -7,8 +7,8 @@ def detach_time_signature_mark_attached_to_component(component):
     Detach time signature mark attached to `component`::
 
         abjad> staff = Staff("c'4 d'4 e'4 f'4")
-        abjad> contexttools.TimeSignatureMark(4, 4)(staff[0])
-        TimeSignatureMark(4, 4)(c'4)
+        abjad> contexttools.TimeSignatureMark((4, 4))(staff[0])
+        TimeSignatureMark((4, 4))(c'4)
 
     ::
 
@@ -24,7 +24,7 @@ def detach_time_signature_mark_attached_to_component(component):
     ::
 
         abjad> contexttools.detach_time_signature_mark_attached_to_component(staff[0])
-        TimeSignatureMark(4, 4)
+        TimeSignatureMark((4, 4))
 
     ::
 

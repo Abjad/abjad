@@ -8,7 +8,7 @@ def is_component_with_stem_tremolo_attached(expr, tremolo_flags = None):
 
         abjad> note = Note("c'4")
         abjad> marktools.StemTremolo(16)(note)
-        StemTremolo(16)(note)
+        StemTremolo(16)(c'4)
 
     ::
 

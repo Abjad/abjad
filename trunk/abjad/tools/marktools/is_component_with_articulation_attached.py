@@ -30,7 +30,7 @@ def is_component_with_articulation_attached(expr, articulation_name = None):
 
     if isinstance(expr, _Component):
         for articulation in get_articulations_attached_to_component(expr):
-            if articulation.name == articulation_name:
+            if articulation.name == articulation_name or articulation_name is None:
                 return True
 
     return False

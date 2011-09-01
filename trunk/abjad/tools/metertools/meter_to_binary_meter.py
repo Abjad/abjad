@@ -11,13 +11,13 @@ def meter_to_binary_meter(nonbinary_meter, contents_multiplier = fractions.Fract
 
     ::
 
-        abjad> metertools.meter_to_binary_meter(contexttools.TimeSignatureMark(3, 12))
-        TimeSignatureMark(2, 8)
+        abjad> metertools.meter_to_binary_meter(contexttools.TimeSignatureMark((3, 12)))
+        TimeSignatureMark((2, 8))
 
     Preserve binary `meter`::
 
-        abjad> metertools.meter_to_binary_meter(contexttools.TimeSignatureMark(2, 8))
-        TimeSignatureMark(2, 8)
+        abjad> metertools.meter_to_binary_meter(contexttools.TimeSignatureMark((2, 8)))
+        TimeSignatureMark((2, 8))
 
     Return newly constructed meter.
 

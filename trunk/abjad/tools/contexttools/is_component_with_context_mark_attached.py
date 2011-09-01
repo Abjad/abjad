@@ -8,8 +8,8 @@ def is_component_with_context_mark_attached(component, klasses = (ContextMark, )
     True when context mark of `klasses` attaches to `component`::
 
         abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> contexttools.TimeSignatureMark(4, 8)(staff[0])
-        TimeSignatureMark(4, 8)(c'8)
+        abjad> contexttools.TimeSignatureMark((4, 8))(staff[0])
+        TimeSignatureMark((4, 8))(c'8)
         abjad> f(staff)
         \new Staff {
             \time 4/8

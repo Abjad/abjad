@@ -152,7 +152,7 @@ class Articulation(Mark):
 
             abjad> articulation = marktools.Articulation('marcato', 'up')
             abjad> articulation.format
-            '^\\staccato'
+            '^\\marcato'
 
         Return string.
         '''

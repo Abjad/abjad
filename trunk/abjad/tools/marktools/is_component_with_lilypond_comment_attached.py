@@ -30,7 +30,7 @@ def is_component_with_lilypond_comment_attached(expr, comment_contents_string = 
 
     if isinstance(expr, _Component):
         for comment in get_lilypond_comments_attached_to_component(expr):
-            if comment.comment_contents_string == comment_contents_string or \
+            if comment.contents_string == comment_contents_string or \
                 comment_contents_string is None:
                 return True
 

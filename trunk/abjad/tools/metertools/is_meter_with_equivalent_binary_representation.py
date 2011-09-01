@@ -9,12 +9,12 @@ def is_meter_with_equivalent_binary_representation(expr):
 
     ::
 
-        abjad> metertools.is_meter_with_equivalent_binary_representation(contexttools.TimeSignatureMark(3, 12))
+        abjad> metertools.is_meter_with_equivalent_binary_representation(contexttools.TimeSignatureMark((3, 12)))
         True
 
     Otherwise false::
 
-        abjad> metertools.is_meter_with_equivalent_binary_representation(contexttools.TimeSignatureMark(4, 12))
+        abjad> metertools.is_meter_with_equivalent_binary_representation(contexttools.TimeSignatureMark((4, 12)))
         False
 
     ::

@@ -9,9 +9,9 @@ def detach_marks_attached_to_component(component):
         abjad> staff = Staff("c'8 d'8 e'8 f'8")
         abjad> slur = spannertools.SlurSpanner(staff.leaves)
         abjad> marktools.Articulation('^')(staff[0])
-        Articulation('^', '-')(c'8)
+        Articulation('^')(c'8)
         abjad> marktools.LilyPondComment('comment 1')(staff[0])
-        Comment('comment 1')(c'8)
+        LilyPondComment('comment 1')(c'8)
         abjad> marktools.LilyPondCommandMark('slurUp')(staff[0])
         LilyPondCommandMark('slurUp')(c'8)
 
@@ -30,12 +30,12 @@ def detach_marks_attached_to_component(component):
     ::
 
         abjad> marktools.get_marks_attached_to_component(staff[0])
-        (Articulation('^', '-')(c'8), Comment('comment 1')(c'8), LilyPondCommandMark('slurUp')(c'8))
+        (Articulation('^')(c'8), LilyPondComment('comment 1')(c'8), LilyPondCommandMark('slurUp')(c'8))
 
     ::
 
         abjad> marktools.detach_marks_attached_to_component(staff[0])
-        (Articulation('^', '-'), Comment('comment 1'), LilyPondCommandMark('slurUp'))
+        (Articulation('^'), LilyPondComment('comment 1'), LilyPondCommandMark('slurUp'))
 
     ::
 

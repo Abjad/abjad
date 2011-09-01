@@ -9,9 +9,9 @@ def detach_articulations_attached_to_component(component):
         abjad> staff = Staff("c'8 d'8 e'8 f'8")
         abjad> slur = spannertools.SlurSpanner(staff.leaves)
         abjad> marktools.Articulation('^')(staff[0])
-        Articulation('^', '-')(c'8)
+        Articulation('^')(c'8)
         abjad> marktools.Articulation('.')(staff[0])
-        Articulation('.', '-')(c'8)
+        Articulation('.')(c'8)
 
     ::
 
@@ -26,12 +26,12 @@ def detach_articulations_attached_to_component(component):
     ::
 
         abjad> marktools.get_articulations_attached_to_component(staff[0])
-        (Articulation('^', '-')(c'8), Articulation('.', '-')(c'8))
+        (Articulation('^')(c'8), Articulation('.')(c'8))
 
     ::
 
         abjad> marktools.detach_articulations_attached_to_component(staff[0])
-        (Articulation('^', '-'), Articulation('.', '-'))
+        (Articulation('^'), Articulation('.'))
 
     ::
 

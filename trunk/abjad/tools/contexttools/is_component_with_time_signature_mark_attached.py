@@ -8,8 +8,8 @@ def is_component_with_time_signature_mark_attached(component):
     True when time signature mark attaches to `component`::
 
         abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> contexttools.TimeSignatureMark(4, 8)(staff[0])
-        TimeSignatureMark(4, 8)(c'8)
+        abjad> contexttools.TimeSignatureMark((4, 8))(staff[0])
+        TimeSignatureMark((4, 8))(c'8)
 
     ::
 
