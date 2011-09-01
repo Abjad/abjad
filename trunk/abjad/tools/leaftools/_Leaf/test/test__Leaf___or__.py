@@ -62,7 +62,7 @@ def test__Leaf___or___06():
     assert t is not u is not v
 
 
-def test__Leaf___or___08():
+def test__Leaf___or___07():
     '''Rest in union with note produces note.'''
     t = Rest((1, 4))
     u = Note("c'4")
@@ -72,7 +72,7 @@ def test__Leaf___or___08():
     assert t is not u is not v
 
 
-def test__Leaf___or___09():
+def test__Leaf___or___08():
     '''Note in union with like pitched note produces note.'''
     t = Note("c'4")
     u = Note("c'4")
@@ -82,7 +82,7 @@ def test__Leaf___or___09():
     assert t is not u is not v
 
 
-def test__Leaf___or___10():
+def test__Leaf___or___09():
     '''Note in union with differently pitched note produces chord.'''
     t = Note("c'4")
     u = Note(2, (1, 4))
@@ -92,7 +92,7 @@ def test__Leaf___or___10():
     assert t is not u is not v
 
 
-def test__Leaf___or___11():
+def test__Leaf___or___10():
     '''Chord in union with differently pitched note produces chord.'''
     t = Chord([0, 2], (1, 4))
     u = Note(4, (1, 4))
@@ -102,7 +102,7 @@ def test__Leaf___or___11():
     assert t is not u is not v
 
 
-def test__Leaf___or___12():
+def test__Leaf___or___11():
     '''Chord in union with like pitched note produces chord.'''
     t = Chord([0, 2], (1, 4))
     u = Note("c'4")
