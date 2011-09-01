@@ -392,6 +392,7 @@ marktools
    tools/marktools/detach_lilypond_command_marks_attached_to_component
    tools/marktools/detach_lilypond_comments_attached_to_component
    tools/marktools/detach_marks_attached_to_component
+   tools/marktools/detach_noncontext_marks_attached_to_component
    tools/marktools/detach_stem_tremolos_attached_to_component
    tools/marktools/get_annotation_attached_to_component
    tools/marktools/get_annotations_attached_to_component

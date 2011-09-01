@@ -48,4 +48,3 @@ def detach_annotations_attached_to_component(component):
         annotations.append(annotation)
 
     return tuple(annotations)
-
