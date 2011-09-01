@@ -386,7 +386,7 @@ marktools
    tools/marktools/attach_articulations_to_notes_and_chords_in_expr
    tools/marktools/attach_lilypond_command_marks_to_components_in_expr
    tools/marktools/attach_lilypond_comments_to_components_in_expr
-   tools/marktools/attach_stem_tremolo_to_notes_and_chords_in_expr
+   tools/marktools/attach_stem_tremolos_to_notes_and_chords_in_expr
    tools/marktools/detach_annotations_attached_to_component
    tools/marktools/detach_articulations_attached_to_component
    tools/marktools/detach_lilypond_command_marks_attached_to_component

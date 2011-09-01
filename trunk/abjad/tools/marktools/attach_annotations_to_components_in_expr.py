@@ -1,5 +1,4 @@
 from abjad.tools.marktools.Annotation import Annotation
-import copy
 
 
 def attach_annotations_to_components_in_expr(expr, annotations):

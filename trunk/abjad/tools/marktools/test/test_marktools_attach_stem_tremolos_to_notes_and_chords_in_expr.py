@@ -1,11 +1,11 @@
 from abjad import *
 
 
-def test_marktools_attach_stem_tremolo_to_notes_and_chords_in_expr_01( ):
+def test_marktools_attach_stem_tremolos_to_notes_and_chords_in_expr_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     stem_tremolo = marktools.StemTremolo(16)
-    marktools.attach_stem_tremolo_to_notes_and_chords_in_expr(staff, stem_tremolo)
+    marktools.attach_stem_tremolos_to_notes_and_chords_in_expr(staff, [stem_tremolo])
 
     r'''
     \new Staff {
