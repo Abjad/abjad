@@ -16,7 +16,7 @@ def get_lilypond_comment_attached_to_component(component):
 
         abjad> f(staff)
         \new Staff {
-            \comment
+            % comment
             c'8
             d'8
             e'8

@@ -124,14 +124,14 @@ class LilyPondCommandMark(Mark):
             Get format slot of LilyPond command mark::
             
                 abjad> note = Note("c'4")
-                abjad> lilypond_command = marktools.LilyPondCommandMark('bar "||", 'after')
+                abjad> lilypond_command = marktools.LilyPondCommandMark('bar "||"', 'after')
                 abjad> lilypond_command.format_slot
                 'after'
 
             Set format slot of LiyPond command mark::
 
                 abjad> note = Note("c'4")
-                abjad> lilypond_command = marktools.LilyPondCommandMark('bar "||", 'after')
+                abjad> lilypond_command = marktools.LilyPondCommandMark('bar "||"', 'after')
                 abjad> lilypond_command.format_slot = 'before'
                 abjad> lilypond_command.format_slot
                 'before'

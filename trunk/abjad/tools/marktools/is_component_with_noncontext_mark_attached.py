@@ -31,3 +31,5 @@ def is_component_with_noncontext_mark_attached(expr):
     if isinstance(expr, _Component):
         for noncontext_mark in get_noncontext_marks_attached_to_component(expr):
             return True
+
+    return False

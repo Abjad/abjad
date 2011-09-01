@@ -15,10 +15,10 @@ def attach_annotations_to_components_in_expr(expr, annotations):
         abjad> for x in staff:
         ...     print x, marktools.get_annotations_attached_to_component(x)
         ... 
-        c'8 (Annotation(Annotation('foo', 'bar'))(c'8),)
-        d'8 (Annotation(Annotation('foo', 'bar'))(d'8),)
-        e'8 (Annotation(Annotation('foo', 'bar'))(e'8),)
-        f'8 (Annotation(Annotation('foo', 'bar'))(f'8),)
+        c'8 (Annotation('foo', 'bar')(c'8),)
+        d'8 (Annotation('foo', 'bar')(d'8),)
+        e'8 (Annotation('foo', 'bar')(e'8),)
+        f'8 (Annotation('foo', 'bar')(f'8),)
 
     Return none.
     '''

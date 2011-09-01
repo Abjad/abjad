@@ -22,7 +22,7 @@ def detach_stem_tremolos_attached_to_component(component):
 
     ::
 
-        abjad> marktools.get_stem_tremolo_attached_to_component(staff[0])
+        abjad> marktools.get_stem_tremolos_attached_to_component(staff[0])
         (StemTremolo(16)(c'8),)
 
     ::
@@ -32,7 +32,7 @@ def detach_stem_tremolos_attached_to_component(component):
 
     ::
 
-        abjad> marktools.get_stem_tremolo_attached_to_component(staff[0])
+        abjad> marktools.get_stem_tremolos_attached_to_component(staff[0])
         ()
 
     Return tuple or zero or more stem tremolos detached.
