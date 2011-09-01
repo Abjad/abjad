@@ -40,29 +40,33 @@ class Annotation(Mark):
     Annotations implement ``__slots__``.
     '''
 
-    #__slots__ = ('_contents', '_format_slot', )
     __slots__ = ('_format_slot', '_name', '_value', )
 
     _format_slot = None
 
-    #def __init__(self, contents):
-    def __init__(self, name, value = None):
+    def __init__(self, *args):
         Mark.__init__(self)
-        #self._contents = copy.copy(contents)
-        self._name = copy.copy(name)
-        self._value = copy.copy(value)
+        if len(args) == 1 and isinstance(args[0], type(self)):
+            self._name = copy.copy(args[0].name)
+            self._value = copy.copy(args[0].value)
+        elif len(args) == 1 and not isinstance(args[0], type(self)):
+            self._name = copy.copy(args[0])
+            self._value = None
+        elif len(args) == 2:
+            self._name = copy.copy(args[0])
+            self._value = copy.copy(args[1])
+        else:
+            raise ValueError('unknown annotation initialization signature.')
 
     ### OVERLOADS ###
 
     def __copy__(self, *args):
-        #return type(self)(self.contents_string)
         return type(self)(self.name, self.value)
 
     __deepcopy__ = __copy__
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):
-            #return self.contents_string == arg.contents_string
             if self.name == arg.name:
                 if self.value == self.value:
                     return True
@@ -72,33 +76,11 @@ class Annotation(Mark):
 
     @property
     def _contents_repr_string(self):
-        #return repr(self.contents_string)
         if self.value is None:
             return repr(self.name)
         return ', '.join([repr(self.name), repr(self.value)])
 
     ### PUBLIC ATTRIBUTES ###
-
-#   @apply
-#   def contents_string():
-#      def fget(self):
-#         '''Get contents string of annotation::
-#
-#            abjad> annotation = marktools.Annotation('annotation contents')
-#            abjad> annotation.contents_string
-#            'annotation contents'
-#
-#         Set contents string of annotation::
-#
-#            abjad> annotation.contents_string = 'new annotation contents'
-#            abjad> annotation.contents_string
-#            'new annotation contents'
-#         '''
-#         return self._contents
-#      def fset(self, contents_string):
-#         assert isinstance(contents_string, str)
-#         self._contents = contents_string
-#      return property(**locals())
 
     @apply
     def name():
@@ -144,4 +126,3 @@ class Annotation(Mark):
         def fset(self, value):
             self._value = value
         return property(**locals())
-

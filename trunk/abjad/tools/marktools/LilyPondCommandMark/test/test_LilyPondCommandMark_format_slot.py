@@ -1,10 +1,10 @@
 from abjad import *
 
 
-def test_LilyPondCommandMark__format_slot_01():
+def test_LilyPondCommandMark_format_slot_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    marktools.LilyPondCommandMark('break', format_slot = 'closing')(staff[0])
+    marktools.LilyPondCommandMark('break', 'closing')(staff[0])
 
     r'''
     \new Staff {
@@ -18,4 +18,3 @@ def test_LilyPondCommandMark__format_slot_01():
 
     assert componenttools.is_well_formed_component(staff)
     assert staff.format == "\\new Staff {\n\tc'8\n\t\\break\n\td'8\n\te'8\n\tf'8\n}"
-

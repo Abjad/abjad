@@ -34,20 +34,20 @@ def _line_break_every(expr, line_duration, klass = Measure,
         if candidate_duration < line_duration:
             cum_duration += cur_duration
         elif candidate_duration == line_duration:
-            marktools.LilyPondCommandMark('break', format_slot = 'closing')(cur)
+            marktools.LilyPondCommandMark('break', 'closing')(cur)
             if adjust_eol:
                 marktools.LilyPondCommandMark('adjustEOLTimeSignatureBarlineExtraOffset',
-                    format_slot = 'closing')(cur)
+                    'closing')(cur)
             if add_empty_bars:
                 if cur.bar_line.kind is None:
                     cur.bar_line.kind = ''
             cum_duration = durtools.Duration(0)
         else:
             if prev is not None:
-                marktools.LilyPondCommandMark('break', format_slot = 'closing')(prev)
+                marktools.LilyPondCommandMark('break', 'closing')(prev)
                 if adjust_eol:
                     marktools.LilyPondCommandMark('adjustEOLTimeSignatureBarlineExtraOffset',
-                        format_slot = 'closing')(prev)
+                        'closing')(prev)
                 if add_empty_bars:
                     if cur.bar_line.kind is None:
                         cur.bar_line.kind = ''
