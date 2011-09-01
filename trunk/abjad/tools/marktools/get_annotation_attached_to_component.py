@@ -41,4 +41,3 @@ def get_annotation_attached_to_component(component):
         raise ExtraMarkError
     else:
         return annotations[0]
-

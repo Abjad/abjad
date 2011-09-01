@@ -396,12 +396,18 @@ marktools
    tools/marktools/detach_stem_tremolos_attached_to_component
    tools/marktools/get_annotation_attached_to_component
    tools/marktools/get_annotations_attached_to_component
+   tools/marktools/get_articulation_attached_to_component
    tools/marktools/get_articulations_attached_to_component
+   tools/marktools/get_lilypond_command_mark_attached_to_component
    tools/marktools/get_lilypond_command_marks_attached_to_component
+   tools/marktools/get_lilypond_comment_attached_to_component
    tools/marktools/get_lilypond_comments_attached_to_component
+   tools/marktools/get_mark_attached_to_component
    tools/marktools/get_marks_attached_to_component
+   tools/marktools/get_noncontext_mark_attached_to_component
    tools/marktools/get_noncontext_marks_attached_to_component
    tools/marktools/get_stem_tremolo_attached_to_component
+   tools/marktools/get_stem_tremolos_attached_to_component
    tools/marktools/get_value_of_annotation_attached_to_component
    tools/marktools/is_component_with_annotation_attached
    tools/marktools/is_component_with_articulation_attached
