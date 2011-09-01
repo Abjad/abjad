@@ -26,4 +26,3 @@ def attach_articulations_to_notes_and_chords_in_expr(expr, articulations):
     for leaf in leaftools.iterate_notes_and_chords_forward_in_expr(expr):
         for articulation in articulations:
             Articulation(articulation)(leaf)
-
