@@ -2,7 +2,7 @@ from abjad.tools.marktools.LilyPondComment import LilyPondComment
 
 
 def attach_lilypond_comments_to_components_in_expr(expr, lilypond_comments):
-    r'''.. versionadded:: 2.0
+    r'''.. versionadded:: 2.3
 
     Attach `lilypond_comments` to components in `expr`::
 
