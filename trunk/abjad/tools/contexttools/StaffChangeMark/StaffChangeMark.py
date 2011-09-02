@@ -35,7 +35,7 @@ class StaffChangeMark(ContextMark):
 
     ::
 
-        abjad> f(piano_staff) # doctest: +SKIP
+        abjad> f(piano_staff)
         \new PianoStaff <<
             \context Staff = "RHStaff" {
                 c'8
