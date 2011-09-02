@@ -113,7 +113,7 @@ Or use ``contexttools`` to detach instrument marks all at once:
 
 ::
 
-	abjad> contexttools.detach_instrument_mark_attached_to_component(staff)
+	abjad> contexttools.detach_instrument_marks_attached_to_component(staff)
 
 
 ::

@@ -99,7 +99,7 @@ iotools.write_expr_to_ly(staff, 'instrument-marks-3') <hide
 </abjad>
 
 <abjad>
-contexttools.detach_instrument_mark_attached_to_component(staff)
+contexttools.detach_instrument_marks_attached_to_component(staff)
 </abjad>
 
 <abjad>

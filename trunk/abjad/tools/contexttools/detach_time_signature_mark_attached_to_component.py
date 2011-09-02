@@ -44,5 +44,3 @@ def detach_time_signature_mark_attached_to_component(component):
     time_signature_mark = get_time_signature_mark_attached_to_component(component)
 
     return time_signature_mark.detach_mark()
-
-

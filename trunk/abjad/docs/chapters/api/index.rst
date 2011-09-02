@@ -210,7 +210,7 @@ contexttools
    tools/contexttools/TempoMark/TempoMark
    tools/contexttools/TimeSignatureMark/TimeSignatureMark
    tools/contexttools/detach_context_marks_attached_to_component
-   tools/contexttools/detach_instrument_mark_attached_to_component
+   tools/contexttools/detach_instrument_marks_attached_to_component
    tools/contexttools/detach_time_signature_mark_attached_to_component
    tools/contexttools/get_clef_marks_attached_to_component
    tools/contexttools/get_context_marks_attached_to_any_improper_parent_of_component
