@@ -1,10 +1,10 @@
 from abjad.tools.contexttools.ContextMark import ContextMark
 
 
-def detach_context_marks_attached_to_component(start_component, klasses = (ContextMark, )):
+def detach_context_marks_attached_to_component(component, klasses = (ContextMark, )):
     r'''.. versionadded:: 2.0
 
-    Detach context marks attached to `start_component`::
+    Detach context marks attached to `component`::
 
         abjad> staff = Staff("c'8 d'8 e'8 f'8")
         abjad> clef_mark = contexttools.ClefMark('treble')(staff)
@@ -34,15 +34,11 @@ def detach_context_marks_attached_to_component(start_component, klasses = (Conte
             f'8
         }
 
-    Return tuple of zero or marks.
-
-    .. versionchanged:: 2.0
-        renamed ``contexttools.detach_context_marks_attached_to_start_component()`` to
-        ``contexttools.detach_context_marks_attached_to_component()``.
+    Return tuple of zero or context marks.
     '''
 
     marks = []
-    for mark in start_component._marks_for_which_component_functions_as_start_component[:]:
+    for mark in component._marks_for_which_component_functions_as_start_component[:]:
         if isinstance(mark, klasses):
             mark.detach_mark()
             marks.append(mark)

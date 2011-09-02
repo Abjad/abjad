@@ -4,10 +4,6 @@ from abjad.tools.contexttools.get_instrument_marks_attached_to_component import 
 def detach_instrument_marks_attached_to_component(component):
     r'''.. versionadded:: 2.1
 
-    .. versionchanged:: 2.3
-        replace ``detach_instrument_mark_attached_to_component()``
-        with ``detach_instrument_marks_attached_to_component()``.
-
     Detach instrument marks attached to `component`::
 
         abjad> staff = Staff("c'4 d'4 e'4 f'4")
@@ -42,9 +38,7 @@ def detach_instrument_marks_attached_to_component(component):
             f'4
         }
 
-    Return instrument mark.
-
-    Raise missing mark error when no instrument mark attached to `component`.
+    Return tuple of zero or more instrument marks.
     '''
 
     marks = []
