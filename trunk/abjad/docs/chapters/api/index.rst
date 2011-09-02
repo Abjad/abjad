@@ -209,8 +209,13 @@ contexttools
    tools/contexttools/StaffChangeMark/StaffChangeMark
    tools/contexttools/TempoMark/TempoMark
    tools/contexttools/TimeSignatureMark/TimeSignatureMark
+   tools/contexttools/detach_clef_marks_attached_to_component
    tools/contexttools/detach_context_marks_attached_to_component
+   tools/contexttools/detach_dynamic_marks_attached_to_component
    tools/contexttools/detach_instrument_marks_attached_to_component
+   tools/contexttools/detach_key_signature_marks_attached_to_component
+   tools/contexttools/detach_staff_change_marks_attached_to_component
+   tools/contexttools/detach_tempo_marks_attached_to_component
    tools/contexttools/detach_time_signature_marks_attached_to_component
    tools/contexttools/get_clef_marks_attached_to_component
    tools/contexttools/get_context_marks_attached_to_any_improper_parent_of_component

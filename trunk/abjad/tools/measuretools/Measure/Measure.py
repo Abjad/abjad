@@ -61,7 +61,7 @@ class Measure(Container):
         from abjad.tools import markuptools
         new = type(self)(*self.__getnewargs__())
         ### only this line differs from Container.__copy__
-        contexttools.detach_time_signature_mark_attached_to_component(new)
+        contexttools.detach_time_signature_marks_attached_to_component(new)
         if getattr(self, '_override', None) is not None:
             new._override = copy.copy(self.override)
         if getattr(self, '_set', None) is not None:
@@ -85,7 +85,7 @@ class Measure(Container):
             better_meter = durtools.rational_to_duration_pair_with_specified_integer_denominator(
                 naive_meter, old_denominator)
             better_meter = contexttools.TimeSignatureMark(better_meter)
-            contexttools.detach_time_signature_mark_attached_to_component(self)
+            contexttools.detach_time_signature_marks_attached_to_component(self)
             better_meter.attach(self)
         except (AttributeError, UnboundLocalError):
             pass

@@ -38,7 +38,7 @@ def scale_contents_of_measures_in_expr(expr, multiplier = 1):
             new_duration = multiplier * old_duration
             new_meter = metertools.duration_and_possible_denominators_to_meter(
                 new_duration, [old_denominator], multiplier.denominator)
-        contexttools.detach_time_signature_mark_attached_to_component(measure)
+        contexttools.detach_time_signature_marks_attached_to_component(measure)
         new_meter.attach(measure)
 
         contents_multiplier_denominator = \

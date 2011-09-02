@@ -43,5 +43,5 @@ def set_container_multiplier(container, multiplier):
     elif isinstance(container, measuretools.Measure):
         new_duration = multiplier * container.contents_duration
         new_time_signature = contexttools.TimeSignatureMark(new_duration)
-        contexttools.detach_time_signature_mark_attached_to_component(container)
+        contexttools.detach_time_signature_marks_attached_to_component(container)
         new_time_signature.attach(container)
