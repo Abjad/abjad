@@ -26,7 +26,7 @@ class Chord(_Leaf):
             elif hasattr(leaf, 'written_pitches'):
                 written_pitches = leaf.written_pitches
             else:
-                written_pitches = [ ]
+                written_pitches = []
             self._copy_override_and_set_from_leaf(leaf)
         elif len(args) == 1 and isinstance(args[0], str):
             pattern = '^<(.*)>\s*(.+)'
@@ -68,7 +68,7 @@ class Chord(_Leaf):
         return self._note_heads[i]
 
     def __getnewargs__(self):
-        result = [ ]
+        result = []
         result.append(self.written_pitches)
         result.extend(_Leaf.__getnewargs__(self))
         return tuple(result)
@@ -158,7 +158,7 @@ class Chord(_Leaf):
             '''
             return tuple(self._note_heads)
         def fset(self, note_head_tokens):
-            self._note_heads = [ ]
+            self._note_heads = []
             if isinstance(note_head_tokens, str):
                 note_head_tokens = note_head_tokens.split()
             self.extend(note_head_tokens)

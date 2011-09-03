@@ -15,7 +15,7 @@ def get_improper_parentage_of_component(component):
     Return tuple of zero or more components.
     '''
 
-    result = [ ]
+    result = []
     parent = component
     while parent is not None:
         result.append(parent)

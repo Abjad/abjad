@@ -18,7 +18,7 @@ def test_componenttools_get_parent_and_start_stop_indices_of_components_02():
 
 
 def test_componenttools_get_parent_and_start_stop_indices_of_components_03():
-    parent, start, stop = componenttools.get_parent_and_start_stop_indices_of_components([ ])
+    parent, start, stop = componenttools.get_parent_and_start_stop_indices_of_components([])
     assert parent is None
     assert start is None
     assert stop is None

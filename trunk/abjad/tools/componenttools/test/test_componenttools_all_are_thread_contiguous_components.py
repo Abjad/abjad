@@ -125,7 +125,7 @@ def test_componenttools_all_are_thread_contiguous_components_07():
 def test_componenttools_all_are_thread_contiguous_components_08():
     '''True for empty list.'''
 
-    assert componenttools.all_are_thread_contiguous_components([ ])
+    assert componenttools.all_are_thread_contiguous_components([])
 
 
 def test_componenttools_all_are_thread_contiguous_components_09():

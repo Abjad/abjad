@@ -78,7 +78,7 @@ def copy_and_partition_governed_component_subtree_by_leaf_counts(container, leaf
     assert isinstance(container, Container)
     assert all([isinstance(x, int) for x in leaf_counts])
 
-    result = [ ]
+    result = []
     sums = cumulative_sums_zero(leaf_counts)
     for start, stop in iterate_sequence_pairwise_strict(sums):
         result.append(copy_governed_component_subtree_by_leaf_range(container, start, stop))

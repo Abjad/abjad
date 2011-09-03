@@ -13,7 +13,7 @@ def get_spanners_on_components_or_component_children(components):
     assert componenttools.all_are_contiguous_components_in_same_thread(components)
 
     ### accumulate spanners
-    spanners = set([ ])
+    spanners = set([])
     for component in components:
         #for spanner in list(component.spanners._spanners):
         for spanner in component.spanners:

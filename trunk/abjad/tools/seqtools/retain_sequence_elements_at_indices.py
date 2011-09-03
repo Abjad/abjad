@@ -15,7 +15,7 @@ def retain_sequence_elements_at_indices(sequence, indices):
     Return list.
     '''
 
-    result = [ ]
+    result = []
 
     for i, element in enumerate(sequence):
         if i in indices:

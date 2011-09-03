@@ -12,7 +12,7 @@ def test_seqtools_join_subsequences_by_sign_of_subsequence_elements_01():
 
 def test_seqtools_join_subsequences_by_sign_of_subsequence_elements_02():
 
-    l = [[1, 2], [ ], [ ], [3, 4, 5], [6, 7]]
+    l = [[1, 2], [], [], [3, 4, 5], [6, 7]]
     t = seqtools.join_subsequences_by_sign_of_subsequence_elements(l)
 
-    assert t == [[1, 2], [ ], [3, 4, 5, 6, 7]]
+    assert t == [[1, 2], [], [3, 4, 5, 6, 7]]

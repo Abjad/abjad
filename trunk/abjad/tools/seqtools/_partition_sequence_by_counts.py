@@ -55,7 +55,7 @@ def _partition_sequence_by_counts(sequence, counts, cyclic = False, overhang = F
 
     assert all_are_nonnegative_integers(counts)
 
-    result = [ ]
+    result = []
 
     if cyclic == True:
         if overhang == True:
@@ -71,7 +71,7 @@ def _partition_sequence_by_counts(sequence, counts, cyclic = False, overhang = F
 
     for start, stop in cumulative_sums_zero_pairwise(counts):
 #      if copy_elements:
-#         part = [ ]
+#         part = []
 #         for element in sequence[start:stop]:
 #            part.append(copy.copy(element))
 #         part = type(sequence)(part)

@@ -48,7 +48,7 @@ class InversionEquivalentDiatonicIntervalClassVector(_Vector):
 
     @property
     def _contents_string(self):
-        parts = [ ]
+        parts = []
         for dic in self.all_dics:
             count = self[dic]
             part = '%s: %s' % (dic, count)

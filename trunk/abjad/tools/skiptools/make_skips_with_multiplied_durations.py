@@ -20,7 +20,7 @@ def make_skips_with_multiplied_durations(written_duration, multiplied_durations)
     '''
 
     ### initialize skips and written duration
-    skips = [ ]
+    skips = []
     written_duration = durtools.Duration(written_duration)
 
     ### make skips

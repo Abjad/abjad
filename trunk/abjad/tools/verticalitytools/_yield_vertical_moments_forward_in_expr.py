@@ -14,12 +14,12 @@ def _yield_vertical_moments_forward_in_expr(expr):
         raise TypeError('must be Abjad component.')
 
     governors = (expr, )
-    cur_offset, stop_offsets, buffer = durtools.Offset(0), [ ], [ ]
+    cur_offset, stop_offsets, buffer = durtools.Offset(0), [], []
     _buffer_components_starting_with(expr, buffer, stop_offsets)
 
     while buffer:
         yield VerticalMoment(cur_offset, governors, tuple(buffer))
-        cur_offset, stop_offsets = min(stop_offsets), [ ]
+        cur_offset, stop_offsets = min(stop_offsets), []
         _update_buffer(cur_offset, buffer, stop_offsets)
 
 

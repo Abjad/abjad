@@ -11,7 +11,7 @@ def test_PitchArray_has_voice_crossing_01():
 
     '''
     [  ] [d'] [bqf     ]
-    [g'      ] [fs'] [ ]
+    [g'      ] [fs'] []
     '''
 
     assert array.has_voice_crossing

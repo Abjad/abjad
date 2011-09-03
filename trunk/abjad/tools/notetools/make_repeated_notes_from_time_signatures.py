@@ -20,7 +20,7 @@ def make_repeated_notes_from_time_signatures(time_signatures, pitch = "c'"):
     '''
 
     ### init result
-    result = [ ]
+    result = []
 
     ### iterate time signatures and make notes
     for time_signature in time_signatures:

@@ -8,8 +8,8 @@ def test_PitchArrayCell_is_first_in_row_01():
     array = pitcharraytools.PitchArray([[1, 2, 1], [2, 1, 1]])
 
     '''
-    [ ] [      ] [ ]
-    [      ] [ ] [ ]
+    [] [      ] []
+    [      ] [] []
     '''
 
     assert array[0].cells[0].is_first_in_row

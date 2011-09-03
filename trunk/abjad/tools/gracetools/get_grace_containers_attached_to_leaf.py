@@ -34,7 +34,7 @@ def get_grace_containers_attached_to_leaf(leaf):
     Return tuple.
     '''
 
-    result = [ ]
+    result = []
     if hasattr(leaf, '_grace'):
         result.append(leaf._grace)
     if hasattr(leaf, '_after_grace'):

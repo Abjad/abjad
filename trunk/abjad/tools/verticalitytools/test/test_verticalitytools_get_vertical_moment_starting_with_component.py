@@ -4,9 +4,9 @@ from abjad.tools import verticalitytools
 
 def test_verticalitytools_get_vertical_moment_starting_with_component_01():
 
-    score = Score([ ])
+    score = Score([])
     score.append(Staff([tuplettools.FixedDurationTuplet(Duration(4, 8), notetools.make_repeated_notes(3))]))
-    piano_staff = scoretools.PianoStaff([ ])
+    piano_staff = scoretools.PianoStaff([])
     piano_staff.append(Staff(notetools.make_repeated_notes(2, Duration(1, 4))))
     piano_staff.append(Staff(notetools.make_repeated_notes(4)))
     contexttools.ClefMark('bass')(piano_staff[1])
@@ -56,9 +56,9 @@ def test_verticalitytools_get_vertical_moment_starting_with_component_01():
 
 def test_verticalitytools_get_vertical_moment_starting_with_component_02():
 
-    score = Score([ ])
+    score = Score([])
     score.append(Staff([tuplettools.FixedDurationTuplet(Duration(4, 8), notetools.make_repeated_notes(3))]))
-    piano_staff = scoretools.PianoStaff([ ])
+    piano_staff = scoretools.PianoStaff([])
     piano_staff.append(Staff(notetools.make_repeated_notes(2, Duration(1, 4))))
     piano_staff.append(Staff(notetools.make_repeated_notes(4)))
     contexttools.ClefMark('bass')(piano_staff[1])

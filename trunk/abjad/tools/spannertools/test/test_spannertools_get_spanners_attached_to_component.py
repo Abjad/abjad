@@ -30,7 +30,7 @@ def test_spannertools_get_spanners_attached_to_component_01():
     assert spanners == set([beam, first_slur])
 
     spanners = spannertools.get_spanners_attached_to_component(leaf, tietools.TieSpanner)
-    assert spanners == set([ ])
+    assert spanners == set([])
 
 
 

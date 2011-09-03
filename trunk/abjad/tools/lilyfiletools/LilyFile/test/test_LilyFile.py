@@ -10,8 +10,8 @@ def test_LilyFile_01():
     lily_file.append(t)
     lily_file.default_paper_size = '11x17', 'landscape'
     lily_file.global_staff_size = 14
-    lily_file.file_initial_system_comments = [ ]
-    lily_file.file_initial_system_includes = [ ]
+    lily_file.file_initial_system_comments = []
+    lily_file.file_initial_system_includes = []
 
     r'''
     #(set-default-paper-size "11x17" 'landscape)

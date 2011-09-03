@@ -32,7 +32,7 @@ def make_quarter_notes_with_lilypond_multipliers(pitches, multiplied_durations):
         ``notetools.make_quarter_notes_with_lilypond_multipliers()``.
     '''
 
-    quarter_notes = [ ]
+    quarter_notes = []
 
     for pitch, duration in seqtools.zip_sequences_cyclically(pitches, multiplied_durations):
         quarter_note = Note(pitch, durtools.Duration(1, 4))

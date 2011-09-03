@@ -56,7 +56,7 @@ def make_percussion_note(pitch, total_duration, max_note_duration = (1, 8)):
         if 1 < len(n):
             for i in range(1, len(n)):
                 n[i] = Rest(n[i])
-        r = [ ]
+        r = []
     return n + r
 
 

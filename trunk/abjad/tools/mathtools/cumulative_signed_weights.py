@@ -26,7 +26,7 @@ def cumulative_signed_weights(sequence):
     if not isinstance(sequence, list):
         raise TypeError
 
-    result = [ ]
+    result = []
 
     for x in sequence:
         try:

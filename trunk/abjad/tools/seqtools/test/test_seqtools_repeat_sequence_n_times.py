@@ -15,4 +15,4 @@ def test_seqtools_repeat_sequence_n_times_02():
     '''
 
     t = seqtools.repeat_sequence_n_times(range(1, 6), 0)
-    assert t == [ ]
+    assert t == []

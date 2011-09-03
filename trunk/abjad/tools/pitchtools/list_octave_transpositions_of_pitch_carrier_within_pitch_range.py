@@ -32,7 +32,7 @@ def list_octave_transpositions_of_pitch_carrier_within_pitch_range(pitch_carrier
     if not isinstance(pitch_carrier, (Chord, NamedChromaticPitchSet)):
         raise TypeError('must be chord or named chromatic pitch set.')
 
-    result = [ ]
+    result = []
 
     interval = MelodicChromaticInterval(-12)
     while True:
@@ -60,7 +60,7 @@ def list_octave_transpositions_of_pitch_carrier_within_pitch_range(pitch_carrier
 
 
 def _pitch_number_list_octave_transpositions(pitch_number_list, pitch_range):
-    result = [ ]
+    result = []
     ps = set(pitch_number_list)
     start_pitch_number = abs(pitch_range.start_pitch.numbered_chromatic_pitch)
     stop_pitch_number = abs(pitch_range.stop_pitch.numbered_chromatic_pitch)

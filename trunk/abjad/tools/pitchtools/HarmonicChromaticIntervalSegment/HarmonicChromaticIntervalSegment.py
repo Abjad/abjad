@@ -14,7 +14,7 @@ class HarmonicChromaticIntervalSegment(_IntervalSegment):
 
     def __new__(self, hci_tokens):
         from abjad.tools import pitchtools
-        hcis = [ ]
+        hcis = []
         for token in hci_tokens:
             hci = pitchtools.HarmonicChromaticInterval(token)
             hcis.append(hci)

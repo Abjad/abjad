@@ -44,7 +44,7 @@ def yield_all_combinations_of_sequence_elements(sequence, min_length = None, max
     for i in range(2 ** len_l):
         binary_string = mathtools.integer_to_binary_string(i)
         binary_string = binary_string.zfill(len_l)
-        sublist = [ ]
+        sublist = []
         for j, digit in enumerate(reversed(binary_string)):
             if digit == '1':
                 ### copy makes the function work with score components ###

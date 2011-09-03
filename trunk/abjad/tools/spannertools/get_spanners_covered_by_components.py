@@ -17,7 +17,7 @@ def get_spanners_covered_by_components(components):
     assert componenttools.all_are_thread_contiguous_components(components)
 
     if not len(components):
-        return set([ ])
+        return set([])
 
     first, last = components[0], components[-1]
     components_begin = first._offset.start

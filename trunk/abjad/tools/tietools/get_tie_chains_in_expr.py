@@ -20,7 +20,7 @@ def get_tie_chains_in_expr(components):
     assert componenttools.all_are_components(components)
 
     ### collect tie spanners in components
-    tie_spanners = [ ]
+    tie_spanners = []
     for component in components:
         spanners = spannertools.get_spanners_attached_to_component(component, TieSpanner)
         #if component.tie.spanned:
@@ -32,11 +32,11 @@ def get_tie_chains_in_expr(components):
                 tie_spanners.append(spanner)
 
     ### get leaves to fuse
-    result = [ ]
+    result = []
     #leaves_in_components = list(leaftools.iterate_leaves_forward_in_expr(components))
     leaves_in_components = set(leaftools.iterate_leaves_forward_in_expr(components))
     for spanner in tie_spanners:
-        leaves_intersecting = [ ]
+        leaves_intersecting = []
         for leaf in spanner.leaves:
             if leaf in leaves_in_components:
                 leaves_intersecting.append(leaf)

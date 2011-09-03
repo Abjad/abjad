@@ -42,7 +42,7 @@ class Skip(_Leaf):
 
     @property
     def _body(self):
-        result = [ ]
+        result = []
         result.append('s%s' % self._formatted_duration)
         return result
 

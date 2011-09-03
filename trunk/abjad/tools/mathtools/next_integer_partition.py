@@ -48,7 +48,7 @@ def _split_into_left_and_right_halves(integer_partition):
     '''split not-1s (left half) from 1s (right half):
 
     _split_into_left_and_right_halves((8, 3))
-    [8, 3], [ ]
+    [8, 3], []
 
     _split_into_left_and_right_halves((8, 2, 1))
     [8, 2], [1, ]
@@ -57,8 +57,8 @@ def _split_into_left_and_right_halves(integer_partition):
     [8], [1, 1, 1]
     '''
 
-    left_half = [ ]
-    right_half = [ ]
+    left_half = []
+    right_half = []
     for part in integer_partition:
         if not part == 1:
             left_half.append(part)

@@ -78,7 +78,7 @@ class NumberedChromaticPitchClassSegment(_PitchClassSegment):
         Return numbered chromatic pitch-class segment.
         '''
         from abjad.tools import mathtools
-        numbers = [ ]
+        numbers = []
         for pc in self:
             pc = abs(pc)
             is_integer = True

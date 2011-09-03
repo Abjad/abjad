@@ -33,7 +33,7 @@ def get_lilypond_command_marks_attached_to_component(component, command_name = N
     Return tuple of zero or more marks.
     '''
 
-    result = [ ]
+    result = []
     for mark in component._marks_for_which_component_functions_as_start_component:
         if isinstance(mark, LilyPondCommandMark):
             if mark.command_name == command_name or command_name is None:

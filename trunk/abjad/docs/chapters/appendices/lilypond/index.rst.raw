@@ -22,7 +22,7 @@ LilyPond uses a single construct to nest tuplets arbitrarily:
     }
 
 <abjad>
-staff = stafftools.RhythmicStaff([Measure((7, 8), [ ])])
+staff = stafftools.RhythmicStaff([Measure((7, 8), [])])
 measure = staff[0]
 measure.append(Note('c8.'))
 measure.append(Tuplet(Fraction(7, 5), 5 * Note('c16')))

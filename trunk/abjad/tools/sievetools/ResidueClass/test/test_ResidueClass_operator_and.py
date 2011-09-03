@@ -17,7 +17,7 @@ def test_ResidueClass_operator_and_01():
     assert t.operator == 'and'
     assert t.rcs == [rc1, rc2]
     assert t.get_boolean_train(4) == [0,0,0,0]
-    assert t.get_congruent_bases(6) == [ ]
+    assert t.get_congruent_bases(6) == []
 
 
 def test_ResidueClass_operator_and_02():

@@ -13,7 +13,7 @@ from abjad.tools.tietools import TieSpanner
 
 def test_quantizationtools_tempo_scaled_leaves_to_q_events_01():
 
-    staff = Staff([ ])
+    staff = Staff([])
 
     staff.append(Note(0, (1, 4)))
     staff.append(Rest((1, 4)))
@@ -50,7 +50,7 @@ def test_quantizationtools_tempo_scaled_leaves_to_q_events_01():
 
 def test_quantizationtools_tempo_scaled_leaves_to_q_events_02():
 
-    staff = Staff([ ])
+    staff = Staff([])
 
     staff.append(Note(0, (1, 4)))
     staff.append(Rest((1, 4)))

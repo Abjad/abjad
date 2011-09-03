@@ -38,7 +38,7 @@ def remove_initial_rests_from_sequence(sequence):
     '''
     from abjad.tools.resttools.Rest import Rest
 
-    result = [ ]
+    result = []
     found_nonrest = False
 
     for element in sequence:

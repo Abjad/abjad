@@ -40,7 +40,7 @@ def test_pitchtools_list_named_chromatic_pitches_in_expr_04():
 
     '''
     [  ] [d'] [bqf     ]
-    [g'      ] [fs'] [ ]
+    [g'      ] [fs'] []
     '''
 
     assert pitchtools.list_named_chromatic_pitches_in_expr(array) == (

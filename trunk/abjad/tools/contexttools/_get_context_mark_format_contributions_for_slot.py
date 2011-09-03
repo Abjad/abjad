@@ -5,8 +5,8 @@ def _get_context_mark_format_contributions_for_slot(component, slot):
     from abjad.tools import contexttools
     from abjad.tools.contexttools.TimeSignatureMark import TimeSignatureMark
 
-    result = [ ]
-    marks = set([ ])
+    result = []
+    marks = set([])
     candidates = contexttools.get_context_marks_attached_to_any_improper_parent_of_component(
         component)
     #print candidates
@@ -37,7 +37,7 @@ def _get_context_mark_format_contributions_for_slot(component, slot):
     #print marks
     for mark in marks:
         #print mark, mark.format
-        addenda = [ ]
+        addenda = []
         mark_format = mark.format
         if isinstance(mark_format, (tuple, list)):
             #result.extend(mark_format)

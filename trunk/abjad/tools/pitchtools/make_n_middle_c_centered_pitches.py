@@ -26,7 +26,7 @@ def make_n_middle_c_centered_pitches(n):
     '''
 
     if n == 0:
-        return [ ]
+        return []
     indices = range(0, 2 * abs(n), 2)
     if n < 0:
         indices.reverse()

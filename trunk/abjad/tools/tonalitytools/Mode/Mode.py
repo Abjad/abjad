@@ -47,8 +47,8 @@ class Mode(_Immutable):
     ### PRIVATE METHODS ###
 
     def _init_with_mode_name(self, mode_name):
-        #mdi_segment = MelodicDiatonicIntervalSegment([ ])
-        mdi_segment = [ ]
+        #mdi_segment = MelodicDiatonicIntervalSegment([])
+        mdi_segment = []
         m2 = MelodicDiatonicInterval('minor', 2)
         M2 = MelodicDiatonicInterval('major', 2)
         dorian = [M2, m2, M2, M2, M2, m2, M2]

@@ -50,7 +50,7 @@ class Note(_Leaf):
     #__deepcopy__ = __copy__
 
     def __getnewargs__(self):
-        result = [ ]
+        result = []
         result.append(self.written_pitch)
         result.extend(_Leaf.__getnewargs__(self))
         return tuple(result)

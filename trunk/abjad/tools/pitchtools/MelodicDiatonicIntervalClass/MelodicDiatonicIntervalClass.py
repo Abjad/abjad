@@ -77,7 +77,7 @@ class MelodicDiatonicIntervalClass(_DiatonicIntervalClass, _MelodicIntervalClass
 
     @property
     def _full_name(self):
-        strings = [ ]
+        strings = []
         if self.direction_word:
             strings.append(self.direction_word)
         strings.extend([self._quality_string, self._interval_string])

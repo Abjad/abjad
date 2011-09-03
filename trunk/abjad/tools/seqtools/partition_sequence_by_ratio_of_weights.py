@@ -54,8 +54,8 @@ def partition_sequence_by_ratio_of_weights(sequence, weights):
     weights_parts = mathtools.partition_integer_by_ratio(list_weight, weights)
     cumulative_weights = cumulative_sums(weights_parts)
 
-    result = [ ]
-    sublist = [ ]
+    result = []
+    sublist = []
     result.append(sublist)
     cur_cumulative_weight = cumulative_weights.pop(0)
     for n in sequence:
@@ -65,7 +65,7 @@ def partition_sequence_by_ratio_of_weights(sequence, weights):
         while cur_cumulative_weight <= weight(flatten_sequence(result)):
             try:
                 cur_cumulative_weight = cumulative_weights.pop(0)
-                sublist = [ ]
+                sublist = []
                 result.append(sublist)
             except IndexError:
                 break

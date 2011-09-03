@@ -33,7 +33,7 @@ def move_parentage_children_and_spanners_from_components_to_empty_container(dono
 
     ::
 
-        abjad> tuplet = Tuplet(Fraction(3, 4), [ ])
+        abjad> tuplet = Tuplet(Fraction(3, 4), [])
         abjad> containertools.move_parentage_children_and_spanners_from_components_to_empty_container(voice[:2], tuplet)
 
     ::

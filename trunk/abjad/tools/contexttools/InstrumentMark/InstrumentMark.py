@@ -79,7 +79,7 @@ class InstrumentMark(ContextMark):
 
         Return list.
         '''
-        result = [ ]
+        result = []
         result.append(r'\set %s.instrumentName = %s' % (self._target_context_name, self.instrument_name))
         result.append(r'\set %s.shortInstrumentName = %s' % (self._target_context_name, self.short_instrument_name))
         return result

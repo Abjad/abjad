@@ -13,13 +13,13 @@ def test_componenttools_all_are_contiguous_components_in_same_score_01():
     assert not componenttools.all_are_contiguous_components_in_same_score(list(reversed(t.leaves)),
         )
 
-    components = [ ]
+    components = []
     components.extend(t.leaves[2:])
     components.extend(t.leaves[:2])
     assert not componenttools.all_are_contiguous_components_in_same_score(components,
         )
 
-    components = [ ]
+    components = []
     components.extend(t.leaves[3:4])
     components.extend(t.leaves[0:1])
     assert not componenttools.all_are_contiguous_components_in_same_score(components,
@@ -74,6 +74,6 @@ def test_componenttools_all_are_contiguous_components_in_same_score_03():
 def test_componenttools_all_are_contiguous_components_in_same_score_04():
     '''Empty list returns True.'''
 
-    t = [ ]
+    t = []
 
     assert componenttools.all_are_contiguous_components_in_same_score(t)

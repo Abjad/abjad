@@ -15,7 +15,7 @@ def truncate_runs_in_sequence(sequence):
 
     Return empty list when `sequence` is empty::
 
-        abjad> seqtools.truncate_runs_in_sequence([ ])
+        abjad> seqtools.truncate_runs_in_sequence([])
         []
 
     Raise type error when `sequence` is not a list.
@@ -32,7 +32,7 @@ def truncate_runs_in_sequence(sequence):
 
     assert all([isinstance(x, (int, float, Fraction)) for x in sequence])
 
-    result = [ ]
+    result = []
 
     if sequence:
         result.append(sequence[0])

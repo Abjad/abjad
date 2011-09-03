@@ -45,7 +45,7 @@ def detach_marks_attached_to_component(component):
     Return tuple or zero or more marks detached.
     '''
 
-    marks = [ ]
+    marks = []
     for mark in get_marks_attached_to_component(component):
         mark.detach_mark()
         marks.append(mark)

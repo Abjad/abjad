@@ -9,7 +9,7 @@ from abjad.tools import durtools
 _types_forbidden_to_write_as_keyword_values = (_Component, _Interface)
 
 def _get_leaf_keyword_attributes(leaf):
-    result = [ ]
+    result = []
     attributes = _inspect_leaf_instance_attributes(leaf)
     vanilla_attributes, read_only_properties, read_write_properties = attributes
     #print vanilla_attributes
@@ -37,7 +37,7 @@ def _get_leaf_keyword_attributes(leaf):
 
 
 def _handle_vanilla_attribute(attribute_host_name, attribute_host, attribute_name):
-    result = [ ]
+    result = []
     attribute = getattr(attribute_host, attribute_name)
     if isinstance(attribute, _types_forbidden_to_write_as_keyword_values):
         return result
@@ -52,7 +52,7 @@ def _handle_vanilla_attribute(attribute_host_name, attribute_host, attribute_nam
 
 
 def _handle_read_only_property(property_host_name, property_host, property_name):
-    result = [ ]
+    result = []
     #print 'handling read-only %s.%s ...' % (property_host_name, property_name)
     try:
         attribute = getattr(property_host, property_name)
@@ -69,7 +69,7 @@ def _handle_read_only_property(property_host_name, property_host, property_name)
 
 
 def _handle_interface(interface_name, interface):
-    result = [ ]
+    result = []
     #print 'handling interface %s ...' % interface_name
     attributes = _inspect_leaf_instance_attributes(interface)
     vanilla_attributes, read_only_properties, read_write_properties = attributes
@@ -88,7 +88,7 @@ def _handle_interface(interface_name, interface):
 
 
 def _handle_read_write_property(property_host_name, property_host, property_name):
-    result = [ ]
+    result = []
     #print 'handling read-write %s.%s ...' % (property_host_name, property_name)
     ### ignore _Leaf.written_duration
     if property_name == 'written':
@@ -103,7 +103,7 @@ def _handle_read_write_property(property_host_name, property_host, property_name
     attribute = getattr(property_host, property_name)
     if attribute is None:
         pass
-    elif attribute == [ ]:
+    elif attribute == []:
         pass
     elif isinstance(attribute, _Interface):
         interface_name, interface = property_name, attribute

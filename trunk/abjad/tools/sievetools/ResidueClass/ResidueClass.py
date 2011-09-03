@@ -142,7 +142,7 @@ class ResidueClass(_BaseResidueClass, _Immutable):
         '''
 
         min, max = _process_min_max_attribute(*min_max)
-        result = [ ]
+        result = []
         for i in range(min, max):
             if i % self.modulo == self.residue:
                 result.append(1)
@@ -171,7 +171,7 @@ class ResidueClass(_BaseResidueClass, _Immutable):
         '''
 
         min, max = _process_min_max_attribute(*min_max)
-        result = [ ]
+        result = []
         for i in range(min, max + 1):
             if i % self.modulo == self.residue:
                 result.append(i)

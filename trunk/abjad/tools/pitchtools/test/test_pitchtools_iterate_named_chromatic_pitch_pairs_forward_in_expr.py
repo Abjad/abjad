@@ -3,7 +3,7 @@ from abjad import *
 
 def test_pitchtools_iterate_named_chromatic_pitch_pairs_forward_in_expr_01():
 
-    score = Score([ ])
+    score = Score([])
     notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8"), Note("g'4")]
     score.append(Staff(notes))
     notes = [Note(x, (1, 4)) for x in [-12, -15, -17]]

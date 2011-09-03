@@ -29,7 +29,7 @@ def _split_component_at_duration(component, duration, spanners = 'unfractured', 
 
     ### if zero duration then return component
     if duration == 0:
-        ### TODO: This one case should be ([ ], component) ###
+        ### TODO: This one case should be ([], component) ###
         return (component, )
 
     ### get global position of duration split in score

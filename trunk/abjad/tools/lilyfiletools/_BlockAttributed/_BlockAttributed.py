@@ -17,7 +17,7 @@ class _BlockAttributed(object):
 
     @property
     def _format_pieces(self):
-        result = [ ]
+        result = []
         if not self._formatted_user_attributes and not getattr(self, 'contexts', None):
             if self.is_formatted_when_empty:
                 result.append('%s {}' % self._escaped_name)
@@ -37,7 +37,7 @@ class _BlockAttributed(object):
     @property
     def _formatted_user_attributes(self):
         from abjad.tools.lilyfiletools._format_lilypond_value import _format_lilypond_value
-        result = [ ]
+        result = []
         for key, value in sorted(vars(self).items()):
             if not key.startswith('_'):
                 formatted_key = key.replace('_', '-')

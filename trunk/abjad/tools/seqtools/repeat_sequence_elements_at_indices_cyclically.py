@@ -28,7 +28,7 @@ def repeat_sequence_elements_at_indices_cyclically(sequence, cycle_token, total)
     list_sequence = list(sequence)
     indices = sieve.get_congruent_bases(len(list_sequence))
 
-    result = [ ]
+    result = []
 
     for i, element in enumerate(sequence):
         if i in indices:

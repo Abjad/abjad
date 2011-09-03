@@ -37,7 +37,7 @@ def is_monotonically_increasing_sequence(expr):
 
     True when `expr` is a sequence and `expr` is empty::
 
-        abjad> expr = [ ]
+        abjad> expr = []
         abjad> seqtools.is_monotonically_increasing_sequence(expr)
         True
 

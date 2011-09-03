@@ -9,7 +9,7 @@ class TempoMark(ContextMark):
 
     Abjad model of a tempo indication::
 
-        abjad> score = Score([ ])
+        abjad> score = Score([])
         abjad> staff = Staff("c'8 d'8 e'8 f'8")
         abjad> score.append(staff)
 

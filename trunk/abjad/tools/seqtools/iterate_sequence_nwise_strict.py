@@ -13,7 +13,7 @@ def iterate_sequence_nwise_strict(sequence, n):
     Return generator.
     '''
 
-    buffer = [ ]
+    buffer = []
     for element in sequence:
         buffer.append(element)
         if len(buffer) == n:

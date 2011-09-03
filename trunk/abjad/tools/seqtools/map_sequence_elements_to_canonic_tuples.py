@@ -35,7 +35,7 @@ def map_sequence_elements_to_canonic_tuples(sequence, direction = 'big-endian'):
     if not all([isinstance(x, (int, long)) for x in sequence]):
         raise ValueError
 
-    result = [ ]
+    result = []
 
     for x in sequence:
         result.append(mathtools.partition_integer_into_canonic_parts(x, direction = direction))

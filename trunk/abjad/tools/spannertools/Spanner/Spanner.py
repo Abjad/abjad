@@ -36,7 +36,7 @@ class Spanner(_StrictComparator):
     def __init__(self, components = None):
         '''Apply spanner to components. Init dedicated duration interface.
         '''
-        self._components = [ ]
+        self._components = []
         self._contiguity_constraint = 'thread'
         self._format = _SpannerFormatInterface(self)
         self._offset = _SpannerOffsetInterface(self)
@@ -151,7 +151,7 @@ class Spanner(_StrictComparator):
         from abjad.tools.componenttools._Component import _Component
         from abjad.tools import componenttools
         from abjad.tools import leaftools
-        components = components or [ ]
+        components = components or []
         if isinstance(components, _Component):
             components = [components]
         ### TODO: Author staff-level contiguity check in tools/check. ###
@@ -312,7 +312,7 @@ class Spanner(_StrictComparator):
 
         from abjad.tools.leaftools._Leaf import _Leaf
         from abjad.tools import componenttools
-        result = [ ]
+        result = []
         for component in self._components:
             ### EXPERIMENTAL: expand to allow staff-level spanner eventually ###
             for node in componenttools.iterate_components_depth_first(component):
@@ -464,7 +464,7 @@ class Spanner(_StrictComparator):
         '''
 
         my_components = self._components[:]
-        self._components = [ ]
+        self._components = []
         result = copy.deepcopy(self)
         self._components = my_components
 

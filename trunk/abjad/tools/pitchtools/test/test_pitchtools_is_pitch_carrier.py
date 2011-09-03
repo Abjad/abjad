@@ -11,8 +11,8 @@ def test_pitchtools_is_pitch_carrier_01():
 
 def test_pitchtools_is_pitch_carrier_02():
 
-    assert not pitchtools.is_pitch_carrier(Staff([ ]))
-    assert not pitchtools.is_pitch_carrier(Voice([ ]))
+    assert not pitchtools.is_pitch_carrier(Staff([]))
+    assert not pitchtools.is_pitch_carrier(Voice([]))
     assert not pitchtools.is_pitch_carrier(0)
     assert not pitchtools.is_pitch_carrier('foo')
 

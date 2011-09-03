@@ -43,7 +43,7 @@ class ResidueClassExpression(_BaseResidueClass, _Immutable):
         if op is operator.iand:
             result = set(range(min, max + 1))
         else:
-            result = set([ ])
+            result = set([])
         for rc in self.rcs:
             op(result, set(rc.get_congruent_bases(min, max)))
         return sorted(result)
@@ -63,7 +63,7 @@ class ResidueClassExpression(_BaseResidueClass, _Immutable):
 
     @property
     def period(self):
-        rc_periods = [ ]
+        rc_periods = []
         for rc in self.rcs:
             rc_periods.append(rc.modulo)
         if rc_periods:
@@ -115,7 +115,7 @@ class ResidueClassExpression(_BaseResidueClass, _Immutable):
         '''
 
         min, max = _process_min_max_attribute(*min_max)
-        result = [ ]
+        result = []
         cb = self.get_congruent_bases(min, max)
         for i in range(min, max ):
             if i in cb:

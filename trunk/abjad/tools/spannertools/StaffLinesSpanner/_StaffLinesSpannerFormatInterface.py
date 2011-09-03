@@ -7,7 +7,7 @@ class _StaffLinesSpannerFormatInterface(_SpannerFormatInterface):
     ### PRIVATE METHODS ###
 
     def _after(self, leaf):
-        result = [ ]
+        result = []
         if self.spanner._is_my_last_leaf(leaf):
             result.append(r'\stopStaff')
             if isinstance(self.spanner.lines, int):
@@ -18,7 +18,7 @@ class _StaffLinesSpannerFormatInterface(_SpannerFormatInterface):
         return result
 
     def _before(self, leaf):
-        result = [ ]
+        result = []
         if self.spanner._is_my_first_leaf(leaf):
             result.append(r'\stopStaff')
             if isinstance(self.spanner.lines, int):

@@ -22,8 +22,8 @@ class NoteHead(_UnaryComparator):
             _client, written_pitch, tweak_pairs = args[0], args[1], args[2:]
         else:
             _client, written_pitch, tweak_pairs = None, args[0], args[1:]
-#        primary_args = [ ]
-#        tweak_pairs = [ ]
+#        primary_args = []
+#        tweak_pairs = []
 #        for x in args:
 #            if isinstance(x, tuple) and len(x) == 2 and \
 #                isinstance(x[0], str) and isinstance(x[1], str):

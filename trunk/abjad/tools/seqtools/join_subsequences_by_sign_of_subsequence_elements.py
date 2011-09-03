@@ -16,7 +16,7 @@ def join_subsequences_by_sign_of_subsequence_elements(sequence):
 
     ::
 
-        abjad> sequence = [[1, 2], [ ], [ ], [3, 4, 5], [6, 7]]
+        abjad> sequence = [[1, 2], [], [], [3, 4, 5], [6, 7]]
         abjad> seqtools.join_subsequences_by_sign_of_subsequence_elements(sequence)
         [[1, 2], [], [3, 4, 5, 6, 7]]
 
@@ -36,7 +36,7 @@ def join_subsequences_by_sign_of_subsequence_elements(sequence):
     if any([get_shared_numeric_sign(x) is None for x in sequence]):
         raise ValueError
 
-    result = [ ]
+    result = []
 
     for sublist in sequence:
         try:

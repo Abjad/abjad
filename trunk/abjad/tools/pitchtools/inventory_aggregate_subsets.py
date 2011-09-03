@@ -45,7 +45,7 @@ def inventory_aggregate_subsets():
         result = [x[1] for x in result if x[0] == '1']
         return result
 
-    result = [ ]
+    result = []
 
     for x in range(4096):
         subset = ''.join(list(reversed(mathtools.integer_to_binary_string(x).zfill(12))))

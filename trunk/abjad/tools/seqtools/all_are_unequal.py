@@ -12,7 +12,7 @@ def all_are_unequal(expr):
 
     True when `expr` is an empty sequence::
 
-        abjad> seqtools.all_are_unequal([ ])
+        abjad> seqtools.all_are_unequal([])
         True
 
     False otherwise::

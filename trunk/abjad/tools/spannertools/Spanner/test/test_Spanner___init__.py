@@ -6,7 +6,7 @@ def test_Spanner___init___01():
 
     p = spannertools.BeamSpanner()
     assert len(p) == 0
-    assert p[:] == [ ]
+    assert p[:] == []
 
 
 def test_Spanner___init___02():

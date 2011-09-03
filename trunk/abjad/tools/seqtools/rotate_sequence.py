@@ -30,7 +30,7 @@ def rotate_sequence(sequence, n):
         ``seqtools.rotate_sequence()``.
     '''
 
-    result = [ ]
+    result = []
     n = n % len(sequence)
 
     for element in sequence[-n:len(sequence)] + sequence[:-n]:

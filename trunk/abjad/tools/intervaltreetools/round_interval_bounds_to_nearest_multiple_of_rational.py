@@ -14,7 +14,7 @@ def round_interval_bounds_to_nearest_multiple_of_rational(intervals, rational):
     if not tree:
         return tree
 
-    intervals = [ ]
+    intervals = []
     for interval in tree:
         low = Fraction(int(round(interval.low / rational))) * rational
         high = Fraction(int(round(interval.high / rational))) * rational

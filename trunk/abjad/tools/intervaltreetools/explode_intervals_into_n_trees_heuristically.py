@@ -19,7 +19,7 @@ def explode_intervals_into_n_trees_heuristically(intervals, n):
         tree = IntervalTree(intervals)
 
     if not tree:
-        return [IntervalTree([ ])] * n
+        return [IntervalTree([])] * n
     elif n == 1:
         return [tree]
 
@@ -29,18 +29,18 @@ def explode_intervals_into_n_trees_heuristically(intervals, n):
     densities = [calculate_depth_density_of_intervals_in_interval(xtrees[0], treebounds)]
     logical_ors = [compute_logical_or_of_intervals(xtrees[0])]
     for i in range(1, n):
-        xtrees.append(IntervalTree([ ]))
+        xtrees.append(IntervalTree([]))
         densities.append(0)
-        logical_ors.append(IntervalTree([ ]))
+        logical_ors.append(IntervalTree([]))
 
     # loop through intervals
     for interval in tree[1:]:
 
 #      print interval
 
-        empty_trees = [ ]
-        nonoverlapping_trees = [ ]
-        overlapping_trees = [ ]
+        empty_trees = []
+        nonoverlapping_trees = []
+        overlapping_trees = []
 
         for i, zipped in enumerate(zip(xtrees, densities, logical_ors)):
             xtree = zipped[0]

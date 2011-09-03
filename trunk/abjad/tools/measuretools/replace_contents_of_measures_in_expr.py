@@ -65,7 +65,7 @@ def replace_contents_of_measures_in_expr(expr, new_contents):
     '''
 
     ### init return list
-    result = [ ]
+    result = []
 
     ### get first measure and first meter
     cur_measure = get_next_measure_from_component(expr)

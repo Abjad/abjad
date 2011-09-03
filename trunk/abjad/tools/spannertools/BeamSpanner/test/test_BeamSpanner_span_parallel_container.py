@@ -5,7 +5,7 @@ import py.test
 def test_BeamSpanner_span_parallel_container_01():
     '''Abjad spanners will not inspect the contents of parallel containers.'''
 
-    t = Container([ ])
+    t = Container([])
     t.is_parallel = True
     p = spannertools.BeamSpanner(t)
 
@@ -92,7 +92,7 @@ def test_BeamSpanner_span_parallel_container_05():
         LilyPond is happy here.'''
 
     t = Staff(notetools.make_repeated_notes(4))
-    new = Container([ ])
+    new = Container([])
     new.is_parallel = True
     t.insert(2, new)
     pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)

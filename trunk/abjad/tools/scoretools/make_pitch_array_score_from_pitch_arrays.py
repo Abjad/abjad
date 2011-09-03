@@ -67,11 +67,11 @@ def make_pitch_array_score_from_pitch_arrays(pitch_arrays):
 
     from abjad.tools import measuretools
 
-    score = Score([ ])
-    staff_group = StaffGroup([ ])
+    score = Score([])
+    staff_group = StaffGroup([])
     score.append(staff_group)
     number_staves = pitch_arrays[0].depth
-    staves = Staff([ ]) * number_staves
+    staves = Staff([]) * number_staves
     staff_group.extend(staves)
 
     for pitch_array in pitch_arrays:

@@ -4,13 +4,13 @@ import py.test
 
 def test_Staff_is_nonsemantic_01():
 
-    voice = Staff([ ])
+    voice = Staff([])
     assert not voice.is_nonsemantic
 
 
 def test_Staff_is_nonsemantic_02():
 
-    voice = Staff([ ])
+    voice = Staff([])
     voice.is_nonsemantic = True
 
     assert voice.is_nonsemantic
@@ -18,6 +18,6 @@ def test_Staff_is_nonsemantic_02():
 
 def test_Staff_is_nonsemantic_03():
 
-    voice = Staff([ ])
+    voice = Staff([])
 
     assert py.test.raises(TypeError, "voice.is_nonsemantic = 'foo'")

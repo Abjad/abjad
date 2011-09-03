@@ -22,7 +22,7 @@ def get_arithmetic_mean_of_chord(chord):
     Return number or none.
     '''
 
-    numbers = [ ]
+    numbers = []
     for pitch in chord.written_pitches:
         numbers.append(pitch.numbered_chromatic_pitch._chromatic_pitch_number)
     if numbers:

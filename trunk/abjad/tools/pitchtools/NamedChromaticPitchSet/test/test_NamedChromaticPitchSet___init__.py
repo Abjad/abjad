@@ -40,7 +40,7 @@ def test_NamedChromaticPitchSet___init___05():
 def test_NamedChromaticPitchSet___init___06():
     '''Works with empty chords.'''
 
-    chord = Chord([ ], (1, 4))
+    chord = Chord([], (1, 4))
     pitch_set = pitchtools.NamedChromaticPitchSet(pitchtools.list_named_chromatic_pitches_in_expr(chord))
     assert len(pitch_set) == 0
 

@@ -21,7 +21,7 @@ def permute_sequence(sequence, permutation):
         args = (str(permutation), len(sequence))
         raise TypeError('"%s" must be permutation of length %s.' % args)
 
-    result = [ ]
+    result = []
     for index in permutation:
         new_element = copy.copy(sequence[index])
         result.append(new_element)

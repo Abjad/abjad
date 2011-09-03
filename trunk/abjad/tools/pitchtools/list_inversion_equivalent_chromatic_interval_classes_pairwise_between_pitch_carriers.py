@@ -68,7 +68,7 @@ def list_inversion_equivalent_chromatic_interval_classes_pairwise_between_pitch_
     Return list.
     '''
 
-    result = [ ]
+    result = []
 
     if len(pitch_carriers) == 0:
         return result

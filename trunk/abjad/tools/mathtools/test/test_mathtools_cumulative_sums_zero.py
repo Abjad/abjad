@@ -20,4 +20,4 @@ def test_mathtools_cumulative_sums_zero_01():
 #      Raise ValueError when l is empty.'''
 #
 #   assert py.test.raises(TypeError, "mathtools.cumulative_sums_zero('foo')")
-#   assert py.test.raises(ValueError, 'mathtools.cumulative_sums_zero([ ])')
+#   assert py.test.raises(ValueError, 'mathtools.cumulative_sums_zero([])')

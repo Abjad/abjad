@@ -21,5 +21,5 @@ def test_chordtools_get_arithmetic_mean_of_chord_03():
     '''Chord mean of empty chord returns none.
     '''
 
-    chord = Chord([ ], (1, 4))
+    chord = Chord([], (1, 4))
     assert chordtools.get_arithmetic_mean_of_chord(chord) is None

@@ -2,19 +2,19 @@ from abjad import *
 
 ### create high level framework
 
-piano = PianoStaff([ ])
+piano = PianoStaff([])
 
-upper_staff = Staff([ ])
-lower_staff = Staff([ ])
+upper_staff = Staff([])
+lower_staff = Staff([])
 
 piano.append(upper_staff)
 piano.append(lower_staff)
 
-m1 = Measure((2, 4), [ ])
-m2 = Measure((3, 4), [ ])
-m3 = Measure((2, 4), [ ])
-m4 = Measure((2, 4), [ ])
-m5 = Measure((2, 4), [ ])
+m1 = Measure((2, 4), [])
+m2 = Measure((3, 4), [])
+m3 = Measure((2, 4), [])
+m4 = Measure((2, 4), [])
+m5 = Measure((2, 4), [])
 upper_measures = [m1, m2, m3, m4, m5]
 lower_measures = componenttools.copy_components_and_covered_spanners(upper_measures)
 

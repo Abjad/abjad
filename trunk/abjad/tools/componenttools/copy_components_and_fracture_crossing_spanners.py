@@ -90,7 +90,7 @@ def copy_components_and_fracture_crossing_spanners(components, n = 1):
     from abjad.tools import componenttools
 
     if n < 1:
-        return [ ]
+        return []
 
     assert componenttools.all_are_thread_contiguous_components(components)
 
@@ -98,7 +98,7 @@ def copy_components_and_fracture_crossing_spanners(components, n = 1):
 #
 #   spanners = spannertools.get_spanners_that_cross_components(components)
 #
-#   spanner_map = set([ ])
+#   spanner_map = set([])
 #   for spanner in spanners:
 #      spanner_map.add((spanner, tuple(spanner[:])))
 #      for component in spanner[:]:

@@ -24,7 +24,7 @@ def iterate_sequence_nwise_cyclic(sequence, n):
     Return generator.
     '''
 
-    buffer = [ ]
+    buffer = []
     long_enough = False
     for element in sequence:
         buffer.append(element)
@@ -37,7 +37,7 @@ def iterate_sequence_nwise_cyclic(sequence, n):
     len_sequence = len(buffer)
     cur = len_sequence - n + 1
     while True:
-        output = [ ]
+        output = []
         for local_offset in range(n):
             index = (cur + local_offset) % len_sequence
             output.append(buffer[index])

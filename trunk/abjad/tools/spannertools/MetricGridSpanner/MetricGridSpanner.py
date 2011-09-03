@@ -56,7 +56,7 @@ class MetricGridSpanner(Spanner):
 #      meters = self.meters
 #      #meter = meters.next()
 #      meter, moffset, temp_hide = meters.next()
-#      leaves_in_meter = [[ ]]
+#      leaves_in_meter = [[]]
 #      leaf = self.leaves[0]
 #      ### group leaves by measure.
 #      while leaf:
@@ -69,12 +69,12 @@ class MetricGridSpanner(Spanner):
 #            try:
 #               #meter = meters.next()
 #               meter, moffset, temp_hide = meters.next()
-#               leaves_in_meter.append([ ])
+#               leaves_in_meter.append([])
 #            except StopIteration:
 #               break
 #      ### group together leaves in same measure that are tied together.
 #      for leaves in leaves_in_meter:
-#         result = [[ ]]
+#         result = [[]]
 #         if 0 < len(leaves):
 #            #if leaves[0].tie.spanned:
 #            if tietools.is_component_with_tie_spanner_attached(leaves[0]):
@@ -97,7 +97,7 @@ class MetricGridSpanner(Spanner):
 #                     l, tietools.TieSpanner)
 #               else:
 #                  sp = None
-#               result.append([ ])
+#               result.append([])
 #         ### fuse leaves
 #         for r in result:
 #            ### keep last after graces, if any

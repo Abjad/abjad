@@ -312,7 +312,7 @@ class Container(_Component):
         from abjad.tools import componenttools
         from abjad.tools import iotools
         from abjad.tools.componenttools._switch_components_to_parent import _switch_components_to_parent
-        music = music or [ ]
+        music = music or []
         if componenttools.all_are_contiguous_components_in_same_thread(music):
             parent, index, stop_index = componenttools.get_parent_and_start_stop_indices_of_components(
                 music)
@@ -323,7 +323,7 @@ class Container(_Component):
                 self._parentage._switch(parent)
         elif isinstance(music, str):
             music_container = iotools.parse_lilypond_input_string(music)
-            self._music = [ ]
+            self._music = []
             self[:] = music_container.music
         else:
             raise TypeError('can not initialize container from "%s".' % str(music))

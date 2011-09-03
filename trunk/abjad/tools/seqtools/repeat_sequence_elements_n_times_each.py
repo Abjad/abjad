@@ -25,7 +25,7 @@ def repeat_sequence_elements_n_times_each(sequence, n):
     if not mathtools.is_nonnegative_integer(n):
         raise ValueError
 
-    result = [ ]
+    result = []
     for element in sequence:
         for x in range(n):
             result.append(copy.copy(element))

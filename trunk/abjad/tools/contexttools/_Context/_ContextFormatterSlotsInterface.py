@@ -12,7 +12,7 @@ class _ContextFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
     def slot_2(self):
         from abjad.core.LilyPondGrobOverrideComponentPlugIn._get_grob_override_format_contributions import _get_grob_override_format_contributions
         from abjad.tools.contexttools._get_context_setting_format_contributions import _get_context_setting_format_contributions
-        result = [ ]
+        result = []
         formatter = self.formatter
         context = formatter.context
         if self._client._client.is_parallel:
@@ -48,7 +48,7 @@ class _ContextFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
         from abjad.tools.marktools._get_comment_format_contributions_for_slot import _get_comment_format_contributions_for_slot
         from abjad.tools.marktools._get_lilypond_command_mark_format_contributions_for_slot import _get_lilypond_command_mark_format_contributions_for_slot
         from abjad.tools.contexttools._get_context_mark_format_contributions_for_slot import _get_context_mark_format_contributions_for_slot
-        result = [ ]
+        result = []
         context = self.formatter.context
         result.append(_get_comment_format_contributions_for_slot(context, 'opening'))
         result.append(_get_context_mark_format_contributions_for_slot(context, 'opening'))
@@ -61,7 +61,7 @@ class _ContextFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
         from abjad.tools.marktools._get_comment_format_contributions_for_slot import _get_comment_format_contributions_for_slot
         from abjad.tools.marktools._get_lilypond_command_mark_format_contributions_for_slot import _get_lilypond_command_mark_format_contributions_for_slot
         from abjad.tools.contexttools._get_context_mark_format_contributions_for_slot import _get_context_mark_format_contributions_for_slot
-        result = [ ]
+        result = []
         context = self.formatter.context
         result.append(_get_context_mark_format_contributions_for_slot(context, 'closing'))
         result.append(_get_lilypond_command_mark_format_contributions_for_slot(context, 'closing'))

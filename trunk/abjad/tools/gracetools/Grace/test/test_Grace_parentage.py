@@ -29,15 +29,15 @@ def test_Grace_parentage_03():
     gracetools.Grace([Note(4, (1, 16))], kind = 'grace')(t)
     assert t.after_grace._carrier is t
     assert t.grace._carrier is t
-    t.after_grace[:] = [ ]
+    t.after_grace[:] = []
     notes = [Note("c'8"), Note("d'8")]
     t.after_grace.extend(notes)
-    t.grace[:] = [ ]
+    t.grace[:] = []
     notes = [Note("c'8"), Note("d'8")]
     t.grace.extend(notes)
     assert t.after_grace._carrier is t
     assert t.grace._carrier is t
-    t.after_grace[:] = [ ]
-    t.grace[:] = [ ]
+    t.after_grace[:] = []
+    t.grace[:] = []
     assert t.after_grace._carrier is t
     assert t.grace._carrier is t

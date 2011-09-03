@@ -13,7 +13,7 @@ def label_vertical_moments_in_expr_with_chromatic_intervals(expr, markup_directi
 
     ::
 
-        abjad> score = Score(Staff([ ]) * 3)
+        abjad> score = Score(Staff([]) * 3)
         abjad> notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
         abjad> score[0].extend(notes)
         abjad> contexttools.ClefMark('alto')(score[1])
@@ -58,7 +58,7 @@ def label_vertical_moments_in_expr_with_chromatic_intervals(expr, markup_directi
         notes.reverse()
         bass_note = notes[-1]
         upper_notes = notes[:-1]
-        hcis = [ ]
+        hcis = []
         for upper_note in upper_notes:
             hci = pitchtools.calculate_harmonic_chromatic_interval_from_pitch_carrier_to_pitch_carrier(
                 bass_note, upper_note)

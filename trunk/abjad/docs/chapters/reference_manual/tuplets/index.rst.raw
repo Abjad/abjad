@@ -197,7 +197,7 @@ Adding one component to the end of a tuplet
 Add one component to the end of a tuplet with ``append``:
 
 <abjad>
-measure[:] = [ ] <hide
+measure[:] = [] <hide
 tuplet.append(Note("e'4."))
 measure = measuretools.AnonymousMeasure([tuplet]) <hide
 </abjad>
@@ -213,7 +213,7 @@ Adding many components to the end of a tuplet
 Add many components to the end of a tuplet with ``extend``:
 
 <abjad>
-measure[:] = [ ] <hide
+measure[:] = [] <hide
 notes = [Note("fs'8"), Note("e'8"), Note("d'8"), Note("c'4.")]
 tuplet.extend(notes)
 measure = measuretools.AnonymousMeasure([tuplet]) <hide

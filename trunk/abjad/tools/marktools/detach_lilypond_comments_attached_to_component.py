@@ -48,7 +48,7 @@ def detach_lilypond_comments_attached_to_component(component):
     Return tuple or zero or more LilyPond comments.
     '''
 
-    comments = [ ]
+    comments = []
     for comment in get_lilypond_comments_attached_to_component(component):
         comment.detach_mark()
         comments.append(comment)

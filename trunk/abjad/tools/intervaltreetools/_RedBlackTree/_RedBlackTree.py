@@ -277,7 +277,7 @@ class _RedBlackTree(object):
 
     def _sort_nodes_inorder(self):
         def recurse(node):
-            nodes = [ ]
+            nodes = []
             if node.left != self._sentinel:
                 nodes.extend(recurse(node.left))
             nodes.append(node)
@@ -287,4 +287,4 @@ class _RedBlackTree(object):
         if self._root != self._sentinel:
             return recurse(self._root)
         else:
-            return [ ]
+            return []

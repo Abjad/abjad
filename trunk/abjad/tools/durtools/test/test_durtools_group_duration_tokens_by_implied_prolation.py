@@ -5,7 +5,7 @@ import py.test
 
 def test_durtools_group_duration_tokens_by_implied_prolation_01():
     assert py.test.raises(
-        AssertionError, 'durtools.group_duration_tokens_by_implied_prolation([ ])')
+        AssertionError, 'durtools.group_duration_tokens_by_implied_prolation([])')
 
 
 def test_durtools_group_duration_tokens_by_implied_prolation_02():

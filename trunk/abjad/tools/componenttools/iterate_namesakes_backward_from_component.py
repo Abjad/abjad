@@ -7,7 +7,7 @@ def iterate_namesakes_backward_from_component(component, start = 0, stop = None)
         abjad> container.is_parallel = True
         abjad> container[0].name = 'staff 1'
         abjad> container[1].name = 'staff 2'
-        abjad> score = Score([ ])
+        abjad> score = Score([])
         abjad> score.is_parallel = False
         abjad> score.extend(container * 2)
         abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(score)

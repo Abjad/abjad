@@ -14,4 +14,4 @@ def test_componenttools_is_beamable_component_02():
     '''Containers are not beamable.
     '''
 
-    assert not componenttools.is_beamable_component(Staff([ ]))
+    assert not componenttools.is_beamable_component(Staff([]))

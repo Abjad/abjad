@@ -22,12 +22,12 @@ def _split_container_by_counts(components, counts, spanners = 'unfractured', cyc
     assert seqtools.all_are_positive_integers(counts)
 
     ### handle empty counts boundary case
-    if counts == [ ]:
+    if counts == []:
         return [components[:]]
 
     ### initialize loop variables
-    result = [ ]
-    part = [ ]
+    result = []
+    part = []
     i = 0
     len_counts = len(counts)
     cum_comp_in_this_part = 0
@@ -75,7 +75,7 @@ def _split_container_by_counts(components, counts, spanners = 'unfractured', cyc
             result.append(part)
             i += 1
             cum_comp_in_this_part = 0
-            part = [ ]
+            part = []
 
     ### append stub part, if any
     if len(part):

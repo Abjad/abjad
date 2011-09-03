@@ -33,7 +33,7 @@ def test_spannertools_get_spanners_that_dominate_component_pair_01():
     receipt = spannertools.get_spanners_that_dominate_component_pair(None, t[0])
 
     assert len(receipt) == 0
-    assert receipt == set([ ])
+    assert receipt == set([])
 
 
 def test_spannertools_get_spanners_that_dominate_component_pair_02():
@@ -80,7 +80,7 @@ def test_spannertools_get_spanners_that_dominate_component_pair_04():
     receipt = spannertools.get_spanners_that_dominate_component_pair(t[2], None)
 
     assert len(receipt) == 0
-    assert receipt == set([ ])
+    assert receipt == set([])
 
 
 

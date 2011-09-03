@@ -53,7 +53,7 @@ def compute_depth_of_intervals_in_interval(intervals, interval):
             bounds.append(interval.high)
         bounds = sorted(list(set(bounds)))
 
-    intervals = [ ]
+    intervals = []
 #   for i in range(len(bounds) - 1):
     for pair in iterate_sequence_pairwise_strict(bounds):
         target = BoundedInterval(pair[0], pair[1], {})

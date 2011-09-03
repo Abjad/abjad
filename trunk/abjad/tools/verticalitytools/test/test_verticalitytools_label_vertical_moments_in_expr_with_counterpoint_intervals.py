@@ -4,7 +4,7 @@ from abjad.tools import verticalitytools
 
 def test_verticalitytools_label_vertical_moments_in_expr_with_counterpoint_intervals_01():
 
-    score = Score(Staff([ ]) * 3)
+    score = Score(Staff([]) * 3)
     notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
     score[0].extend(notes)
     contexttools.ClefMark('alto')(score[1])

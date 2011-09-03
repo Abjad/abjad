@@ -31,7 +31,7 @@ def test_tietools_remove_tie_spanners_from_components_in_expr_01():
 def test_tietools_remove_tie_spanners_from_components_in_expr_02():
     '''Handles empty list without exception.'''
 
-    result = tietools.remove_tie_spanners_from_components_in_expr([ ])
-    assert result == [ ]
+    result = tietools.remove_tie_spanners_from_components_in_expr([])
+    assert result == []
 
 

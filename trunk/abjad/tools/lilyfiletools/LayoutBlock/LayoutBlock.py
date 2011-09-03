@@ -10,13 +10,13 @@ class LayoutBlock(_BlockAttributed):
     def __init__(self):
         _BlockAttributed.__init__(self)
         self._escaped_name = r'\layout'
-        self._contexts = [ ]
+        self._contexts = []
 
     ### PRIVATE ATTRIUBTES ###
 
     @property
     def _formatted_context_specifications(self):
-        result = [ ]
+        result = []
         for context_specification in self.contexts:
             result.append(r'\context {')
             for x in context_specification:

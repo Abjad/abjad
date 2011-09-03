@@ -78,10 +78,10 @@ def repeat_runs_in_sequence_to_count(sequence, indicators):
     assert all([len(x) == 3 for x in indicators])
 
     len_l = len(sequence)
-    instructions = [ ]
+    instructions = []
 
     for start, length, count in indicators:
-        new_slice = [ ]
+        new_slice = []
         stop = start + length
         for i in range(start, stop):
             new_slice.append(sequence[i % len_l])
@@ -92,7 +92,7 @@ def repeat_runs_in_sequence_to_count(sequence, indicators):
     result = sequence[:]
 
     for index, new_slice, count in reversed(sorted(instructions)):
-        insert = [ ]
+        insert = []
         for i in range(count):
             #result[index:index] = new_slice
             insert.extend(new_slice)

@@ -17,7 +17,7 @@ def get_indices_of_sequence_elements_equal_to_true(sequence):
         ``seqtools.get_indices_of_sequence_elements_equal_to_true()``.
     '''
 
-    result = [ ]
+    result = []
     for i, x in enumerate(sequence):
         if bool(x):
             result.append(i)

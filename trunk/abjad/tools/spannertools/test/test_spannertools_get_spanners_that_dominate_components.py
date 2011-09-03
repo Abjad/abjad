@@ -157,7 +157,7 @@ def test_spannertools_get_spanners_that_dominate_components_09():
     '''Works on empty containers.
         Implementation does not depend on component duration.'''
 
-    t = Voice(Container([ ]) * 3)
+    t = Voice(Container([]) * 3)
     beam = spannertools.BeamSpanner(t[:2])
     glissando = spannertools.GlissandoSpanner(t[1:])
     trill = spannertools.TrillSpanner(t.leaves)

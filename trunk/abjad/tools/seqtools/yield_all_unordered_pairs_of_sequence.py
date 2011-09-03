@@ -18,7 +18,7 @@ def yield_all_unordered_pairs_of_sequence(sequence):
 
     Yield all unordered pairs of empty `sequence`::
 
-        abjad> list(seqtools.yield_all_unordered_pairs_of_sequence([ ]))
+        abjad> list(seqtools.yield_all_unordered_pairs_of_sequence([]))
         []
 
     Yield all unordered pairs of `sequence` with duplicate elements::
@@ -31,7 +31,7 @@ def yield_all_unordered_pairs_of_sequence(sequence):
     Return generator.
     '''
 
-    #result = [ ]
+    #result = []
     sequence_copy = list(sequence)
 
     for i, x in enumerate(sequence_copy):

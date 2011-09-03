@@ -35,7 +35,7 @@ def get_instrument_mark_attached_to_component(component):
     Raise missing mark error when no instrument mark attaches to `component`.
     '''
 
-    result = [ ]
+    result = []
     for mark in component._marks_for_which_component_functions_as_start_component:
         if isinstance(mark, InstrumentMark):
             result.append(mark)

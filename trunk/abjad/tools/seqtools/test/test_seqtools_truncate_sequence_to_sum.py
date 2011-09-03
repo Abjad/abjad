@@ -8,7 +8,7 @@ def test_seqtools_truncate_sequence_to_sum_01():
     t = seqtools.truncate_sequence_to_sum([2, 2, 2], 0)
 
     #assert t == [0]
-    assert t == [ ]
+    assert t == []
     assert isinstance(t, list)
 
 

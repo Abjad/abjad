@@ -45,7 +45,7 @@ def yield_all_compositions_of_integer(n):
     ### Finds small values of n easily.
     ### Takes ca. 4 seconds for n = 17.
 
-    compositions = [ ]
+    compositions = []
 
     x = 0
     string_length = n
@@ -53,7 +53,7 @@ def yield_all_compositions_of_integer(n):
         string = integer_to_binary_string(x)
         string = string.zfill(string_length)
         l = [int(c) for c in list(string)]
-        partition = [ ]
+        partition = []
         g = itertools.groupby(l, lambda x: x)
         for value, group in g:
             partition.append(list(group))

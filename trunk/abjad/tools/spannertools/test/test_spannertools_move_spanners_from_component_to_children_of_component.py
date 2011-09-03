@@ -23,7 +23,7 @@ def test_spannertools_move_spanners_from_component_to_children_of_component_01()
 
     spannertools.move_spanners_from_component_to_children_of_component(t[0])
 
-    assert t[0].spanners == set([ ])
+    assert t[0].spanners == set([])
     assert t[0][0].spanners == set([beam])
 
 

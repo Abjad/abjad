@@ -57,7 +57,7 @@ class ScaleDegree(_Immutable):
 
     @property
     def _format_string(self):
-        parts = [ ]
+        parts = []
         if self.accidental.is_adjusted:
             parts.append(self.accidental.name)
         parts.append(str(self.number))

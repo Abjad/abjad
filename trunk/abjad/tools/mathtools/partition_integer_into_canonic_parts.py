@@ -77,7 +77,7 @@ def partition_integer_into_canonic_parts(n, direction = 'big-endian'):
     if n == 0:
         return (0, )
 
-    result = [ ]
+    result = []
     prev_empty = True
     binary_n = integer_to_binary_string(abs(n))
     binary_length = len(binary_n)

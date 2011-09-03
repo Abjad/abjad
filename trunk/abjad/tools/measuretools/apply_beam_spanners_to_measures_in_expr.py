@@ -56,7 +56,7 @@ def apply_beam_spanners_to_measures_in_expr(expr):
     '''
 
     ### init beams created
-    beams_created = [ ]
+    beams_created = []
 
     ### apply beam spanners to measures in expr
     for measure in iterate_measures_forward_in_expr(expr):

@@ -1,6 +1,6 @@
 def list_package_dependency_versions():
 
-    deps = { }
+    deps = {}
 
     # sphinx
     deps['sphinx'] = None

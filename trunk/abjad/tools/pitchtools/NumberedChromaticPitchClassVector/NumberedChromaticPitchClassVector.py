@@ -47,7 +47,7 @@ class NumberedChromaticPitchClassVector(_Vector):
     @property
     def _first_quartertone_sextet_string(self):
         items = self._quartertone_items[:6]
-        substrings = [ ]
+        substrings = []
         for pitch_class_number, count in sorted(items):
             substring = '%s' % count
             substrings.append(substring)
@@ -56,7 +56,7 @@ class NumberedChromaticPitchClassVector(_Vector):
     @property
     def _first_twelve_tone_sextet_string(self):
         items = self._twelve_tone_items[:6]
-        substrings = [ ]
+        substrings = []
         for pitch_class_number, count in sorted(items):
             substring = '%s' % count
             substrings.append(substring)
@@ -88,7 +88,7 @@ class NumberedChromaticPitchClassVector(_Vector):
     @property
     def _second_quartertone_sextet_string(self):
         items = self._quartertone_items[6:]
-        substrings = [ ]
+        substrings = []
         for pitch_class_number, count in sorted(items):
             substring = '%s' % count
             substrings.append(substring)
@@ -97,7 +97,7 @@ class NumberedChromaticPitchClassVector(_Vector):
     @property
     def _second_twelve_tone_sextet_string(self):
         items = self._twelve_tone_items[6:]
-        substrings = [ ]
+        substrings = []
         for pitch_class_number, count in sorted(items):
             substring = '%s' % count
             substrings.append(substring)
@@ -142,7 +142,7 @@ class NumberedChromaticPitchClassVector(_Vector):
         Return list.
         '''
         from abjad.tools import pitchtools
-        pitch_classes = [ ]
+        pitch_classes = []
         for pitch_class_number, count in self.items():
             if 0 < count:
                 pitch_class = pitchtools.NumberedChromaticPitchClass(pitch_class_number)

@@ -135,7 +135,7 @@ class QGrid(_Immutable):
 
     def _expand_offsets(self):
         def recurse(n, prev_div, prev_offset):
-            results = [ ]
+            results = []
             this_div = Fraction(1, len(n)) * prev_div
             for i, x in enumerate(n):
                 this_offset = Offset(i * this_div) + prev_offset
@@ -155,7 +155,7 @@ class QGrid(_Immutable):
                     self._is_valid_grid_value(x) for x in n]) or \
                 not set(divisors(len(n))) == set([1, len(n)]):
                 return [False]
-            results = [ ]
+            results = []
             for x in n:
                 if isinstance(x, list):
                     results.extend(recurse(x))
@@ -259,7 +259,7 @@ class QGrid(_Immutable):
         if index == len(self) - 1:
             return None
         def recurse(n, index, prev_count):
-            results = [ ]
+            results = []
             count = prev_count
             for i, x in enumerate(n):
                 if isinstance(x, list):
@@ -296,7 +296,7 @@ class QGrid(_Immutable):
         assert all_are_numbers(points)
         points = filter(lambda x: 0 <= x <= 1, points)
         offsets = self.offsets
-        indices = [ ]
+        indices = []
         for i in range(len(offsets) - 1):
             filtered = filter(lambda x: offsets[i] < x < offsets[i + 1], points)
             if filtered:
@@ -326,9 +326,9 @@ class QGrid(_Immutable):
             pow = greatest_power_of_two_less_equal(len(n))
             val = Fraction(1, pow) * division
             if divisors(len(n)) in [[1], [1, 2]]:
-                c = Container([ ])
+                c = Container([])
             else: # we are in a non-2 prime container, hence tuplet
-                c = Tuplet(Fraction(pow, len(n)), [ ])
+                c = Tuplet(Fraction(pow, len(n)), [])
             for x in n:
                 if isinstance(x, list):
                     if len(x) in [1, 2]:

@@ -22,7 +22,7 @@ def list_harmonic_chromatic_intervals_in_expr(expr):
     Return unordered set.
     '''
 
-    chromatic_intervals = [ ]
+    chromatic_intervals = []
     pitches = list_named_chromatic_pitches_in_expr(expr)
     unordered_pitch_pairs = seqtools.yield_all_unordered_pairs_of_sequence(pitches)
     for first_pitch, second_pitch in unordered_pitch_pairs:

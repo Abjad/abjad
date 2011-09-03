@@ -14,7 +14,7 @@ class _BlockNonattributed(list):
 
     @property
     def _format_pieces(self):
-        result = [ ]
+        result = []
         if not len(self):
             result.append(r'%s {}' % self._escaped_name)
         else:

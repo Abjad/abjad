@@ -10,7 +10,7 @@ def make_empty_pitch_array_from_list_of_pitch_lists(leaf_iterables):
 
     ::
 
-        abjad> score = Score([ ])
+        abjad> score = Score([])
         abjad> score.append(Staff("c'8 d'8 e'8 f'8"))
         abjad> score.append(Staff("c'4 d'4"))
         abjad> score.append(Staff(tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8") * 2))

@@ -6,7 +6,7 @@ def test_pitchtools_expr_has_duplicate_named_chromatic_pitch_01():
 
     assert pitchtools.expr_has_duplicate_named_chromatic_pitch(Chord([13, 13, 14], (1, 4)))
     assert not pitchtools.expr_has_duplicate_named_chromatic_pitch(Chord([13, 14], (1, 4)))
-    assert not pitchtools.expr_has_duplicate_named_chromatic_pitch(Chord([ ], (1, 4)))
+    assert not pitchtools.expr_has_duplicate_named_chromatic_pitch(Chord([], (1, 4)))
 
 
 def test_pitchtools_expr_has_duplicate_named_chromatic_pitch_02():

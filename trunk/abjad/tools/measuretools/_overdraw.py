@@ -18,8 +18,8 @@ def _overdraw(expr, source_count = 1, total_reps = 2):
     Example:
     '''
 
-    source = [ ]
-    result = [ ]
+    source = []
+    result = []
     for i, measure in enumerate(measuretools.iterate_measures_forward_in_expr(expr)):
         if i < source_count:
             source.append(measure)

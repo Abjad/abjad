@@ -12,9 +12,9 @@ def get_vertical_moment_starting_with_component(expr, governor = None):
 
     ::
 
-        abjad> score = Score([ ])
+        abjad> score = Score([])
         abjad> score.append(Staff([tuplettools.FixedDurationTuplet(Duration(4, 8), notetools.make_repeated_notes(3))]))
-        abjad> piano_staff = scoretools.PianoStaff([ ])
+        abjad> piano_staff = scoretools.PianoStaff([])
         abjad> piano_staff.append(Staff(notetools.make_repeated_notes(2, Duration(1, 4))))
         abjad> piano_staff.append(Staff(notetools.make_repeated_notes(4)))
         abjad> contexttools.ClefMark('bass')(piano_staff[1])

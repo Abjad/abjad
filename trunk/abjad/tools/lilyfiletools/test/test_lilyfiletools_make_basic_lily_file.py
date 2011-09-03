@@ -11,8 +11,8 @@ def test_lilyfiletools_make_basic_lily_file_01():
     lily_file.paper_block.top_margin = 15
     lily_file.paper_block.left_margin = 15
 
-    lily_file.file_initial_system_comments = [ ]
-    lily_file.file_initial_system_includes = [ ]
+    lily_file.file_initial_system_comments = []
+    lily_file.file_initial_system_includes = []
 
     r'''
     \header {

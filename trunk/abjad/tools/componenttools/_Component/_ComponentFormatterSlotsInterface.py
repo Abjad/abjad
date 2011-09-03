@@ -12,7 +12,7 @@ class _ComponentFormatterSlotsInterface(_Interface):
 
     def _format_contributor_name(self, contributor):
         '''Formater contributor name.'''
-        result = [ ]
+        result = []
         for part in contributor:
             if isinstance(part, str):
                 result.append(part)
@@ -79,7 +79,7 @@ class _ComponentFormatterSlotsInterface(_Interface):
     ### PUBLIC METHODS ###
 
     def contributions(self, attr):
-        result = [ ]
+        result = []
         for contributor, contributions in getattr(self, attr):
             result.extend(contributions)
         return result

@@ -10,7 +10,7 @@ def weight(sequence, start = 0):
 
     Absolute value of `start`::
 
-        abjad> mathtools.weight([ ])
+        abjad> mathtools.weight([])
         0
 
     Return nonnegative integer.

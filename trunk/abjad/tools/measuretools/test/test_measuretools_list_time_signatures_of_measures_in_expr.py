@@ -45,7 +45,7 @@ def test_measuretools_list_time_signatures_of_measures_in_expr_02():
     '''
 
     meter_list = measuretools.list_time_signatures_of_measures_in_expr(t[:])
-    assert meter_list == [ ]
+    assert meter_list == []
 
 
 

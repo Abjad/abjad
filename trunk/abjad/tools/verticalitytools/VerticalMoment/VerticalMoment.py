@@ -84,7 +84,7 @@ class VerticalMoment(_Immutable):
         return False
 
     def __hash__(self):
-        result = [ ]
+        result = []
         result.append(str(self.prolated_offset))
         result.extend([str(id(x)) for x in self.governors])
         result = '+'.join(result)
@@ -111,7 +111,7 @@ class VerticalMoment(_Immutable):
     def attack_count(self):
         '''Positive integer number of pitch carriers
         starting at vertical moment.'''
-        attack_carriers = [ ]
+        attack_carriers = []
         for leaf in self.start_leaves:
             if isinstance(leaf, (Note, Chord)):
                 attack_carriers.append(leaf)
@@ -136,7 +136,7 @@ class VerticalMoment(_Immutable):
     def leaves(self):
         '''Read-only tuple of zero or more leaves
         at vertical moment.'''
-        result = [ ]
+        result = []
         for component in self.components:
             if isinstance(component, _Leaf):
                 result.append(component)
@@ -147,7 +147,7 @@ class VerticalMoment(_Immutable):
     def measures(self):
         '''Read-only tuplet of zero or more measures
         at vertical moment.'''
-        result = [ ]
+        result = []
         for component in self.components:
             if isinstance(component, Measure):
                 result.append(component)
@@ -171,7 +171,7 @@ class VerticalMoment(_Immutable):
     def notes(self):
         '''Read-only tuple of zero or more notes
         at vertical moment.'''
-        result = [ ]
+        result = []
         for component in self.components:
             if isinstance(component, Note):
                 result.append(component)
@@ -196,7 +196,7 @@ class VerticalMoment(_Immutable):
     def overlap_components(self):
         '''Read-only tuple of components in vertical moment
         starting before vertical moment, ordered by score index.'''
-        result = [ ]
+        result = []
         for component in self.components:
             if component._offset.start < self.prolated_offset:
                 result.append(component)
@@ -274,7 +274,7 @@ class VerticalMoment(_Immutable):
     def start_components(self):
         '''Read-only tuple of components in vertical moment
         starting with at vertical moment, ordered by score index.'''
-        result = [ ]
+        result = []
         for component in self.components:
             if component._offset.start == self.prolated_offset:
                 result.append(component)

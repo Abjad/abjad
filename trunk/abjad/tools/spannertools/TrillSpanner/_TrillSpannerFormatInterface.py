@@ -11,7 +11,7 @@ class _TrillSpannerFormatInterface(_SpannerFormatInterface):
     #def _left(self, leaf):
     def _before(self, leaf):
         '''Spanner format contribution left of leaf.'''
-        result = [ ]
+        result = []
         spanner = self.spanner
         if spanner.pitch is not None:
             if spanner._is_my_first_leaf(leaf):
@@ -20,7 +20,7 @@ class _TrillSpannerFormatInterface(_SpannerFormatInterface):
 
     def _right(self, leaf):
         '''Spanner format contribution right of leaf.'''
-        result = [ ]
+        result = []
         spanner = self.spanner
         if spanner._is_my_first_leaf(leaf):
             result.append(r'\startTrillSpan')

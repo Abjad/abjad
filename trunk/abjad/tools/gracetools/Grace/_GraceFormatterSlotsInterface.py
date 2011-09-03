@@ -10,7 +10,7 @@ class _GraceFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
 
     @property
     def slot_2(self):
-        result = [ ]
+        result = []
         grace = self.formatter.grace
         kind = grace.kind
         if kind == 'after':

@@ -33,7 +33,7 @@ def flatten_sequence_at_indices(sequence, indices, klasses = None, depth = -1):
     len_l = len(sequence)
     indices = [x if 0 <= x else len_l + x for x in indices]
 
-    result = [ ]
+    result = []
     for i, element in enumerate(sequence):
         if i in indices:
             try:

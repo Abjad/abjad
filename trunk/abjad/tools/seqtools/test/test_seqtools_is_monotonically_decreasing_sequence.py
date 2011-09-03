@@ -25,7 +25,7 @@ def test_seqtools_is_monotonically_decreasing_sequence_02():
 def test_seqtools_is_monotonically_decreasing_sequence_03():
     '''True when expr is empty.'''
 
-    expr = [ ]
+    expr = []
     assert seqtools.is_monotonically_decreasing_sequence(expr)
 
 

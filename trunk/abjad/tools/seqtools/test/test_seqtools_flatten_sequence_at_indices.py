@@ -26,7 +26,7 @@ def test_seqtools_flatten_sequence_at_indices_03():
 
     l = [0, 1, [2, 3, 4], [5, 6, 7]]
 
-    t = seqtools.flatten_sequence_at_indices(l, [ ])
+    t = seqtools.flatten_sequence_at_indices(l, [])
     assert t == [0, 1, [2, 3, 4], [5, 6, 7]]
 
     t = seqtools.flatten_sequence_at_indices(l, [99])

@@ -15,7 +15,7 @@ def difference_series(sequence):
         ``mathtools.difference_series()``.
     '''
 
-    result = [ ]
+    result = []
 
     for i, n in enumerate(sequence[1:]):
         #yield n - l[i]

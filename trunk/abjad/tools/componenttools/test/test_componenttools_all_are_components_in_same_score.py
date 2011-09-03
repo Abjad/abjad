@@ -56,4 +56,4 @@ def test_componenttools_all_are_components_in_same_score_03():
 def test_componenttools_all_are_components_in_same_score_04():
     '''Empty list returns True.'''
 
-    assert componenttools.all_are_components_in_same_score([ ])
+    assert componenttools.all_are_components_in_same_score([])

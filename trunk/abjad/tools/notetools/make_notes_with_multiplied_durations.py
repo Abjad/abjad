@@ -16,7 +16,7 @@ def make_notes_with_multiplied_durations(pitch, written_duration, multiplied_dur
     '''
 
     ### initialize notes and written duration
-    notes = [ ]
+    notes = []
     written_duration = durtools.Duration(written_duration)
 
     ### make notes

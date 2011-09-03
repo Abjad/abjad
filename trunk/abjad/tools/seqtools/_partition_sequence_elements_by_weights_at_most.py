@@ -11,8 +11,8 @@ def _partition_sequence_elements_by_weights_at_most(sequence, weights, cyclic, o
 def _partition_sequence_elements_once_by_weights_at_most(sequence, weights, overhang):
 
     l_copy = sequence[:]
-    result = [ ]
-    cur_part = [ ]
+    result = []
+    cur_part = []
 
     for target_weight in weights:
         while True:
@@ -27,12 +27,12 @@ def _partition_sequence_elements_once_by_weights_at_most(sequence, weights, over
             elif candidate_weight == target_weight:
                 cur_part.append(x)
                 result.append(cur_part)
-                cur_part = [ ]
+                cur_part = []
                 break
             elif target_weight < candidate_weight:
                 if cur_part:
                     result.append(cur_part)
-                    cur_part = [ ]
+                    cur_part = []
                     l_copy.insert(0, x)
                     break
                 else:
@@ -50,8 +50,8 @@ def _partition_sequence_elements_once_by_weights_at_most(sequence, weights, over
 
 def _partition_sequence_elements_cyclically_by_weights_at_most(sequence, weights, overhang):
 
-    result = [ ]
-    cur_part = [ ]
+    result = []
+    cur_part = []
     cur_target_weight_index = 0
     cur_target_weight = weights[cur_target_weight_index]
     l_copy = sequence[:]
@@ -66,13 +66,13 @@ def _partition_sequence_elements_cyclically_by_weights_at_most(sequence, weights
         elif candidate_part_weight == cur_target_weight:
             cur_part.append(x)
             result.append(cur_part)
-            cur_part = [ ]
+            cur_part = []
             cur_target_weight_index += 1
         elif cur_target_weight < candidate_part_weight:
             if cur_part:
                 l_copy.insert(0, x)
                 result.append(cur_part)
-                cur_part = [ ]
+                cur_part = []
                 cur_target_weight_index += 1
             else:
                 raise PartitionError('Elements in sequence too big.')

@@ -15,7 +15,7 @@ def remove_sequence_elements_at_indices_cyclically(sequence, indices, period, of
     Return list.
     '''
 
-    result = [ ]
+    result = []
 
     for i, element in enumerate(sequence):
         if (i - offset) % period not in indices:

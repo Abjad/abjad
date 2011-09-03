@@ -73,7 +73,7 @@ def make_tuplet_from_proportions_and_pair(l, (n, d), together = False):
     if 1 < len(l):
         exponent = int(math.log(mathtools.weight(l), 2) - math.log(n, 2))
         denominator = int(d * 2 ** exponent)
-        music = [ ]
+        music = []
         for x in l:
             if not x:
                 raise ValueError('no divide zero values.')

@@ -34,7 +34,7 @@ def get_note_head_from_chord_by_pitch(chord, pitch):
     if not isinstance(pitch, (NamedChromaticPitch, Number)):
         raise TypeError('must be number or Abjad pitch.')
 
-    result = [ ]
+    result = []
 
     if isinstance(pitch, NamedChromaticPitch):
         for note_head in chord.note_heads:

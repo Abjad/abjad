@@ -113,7 +113,7 @@ We define a function to create a measure from a list of lists of numbers::
             - `pitches` is a list of lists of number (e.g., [[1, 2, 3], [2, 3, 4]])
         The function returns a DynamicMeasure.
         '''
-        result = DynamicMeasure([ ])
+        result = DynamicMeasure([])
         for seq in pitches:
             result.append(desordre_cell(seq))
 
@@ -134,7 +134,7 @@ Now we move up to the next level, the staff::
 
     def staff_build(pitches):
         '''Returns a Staff containing DynamicMeasures.'''
-        result = Staff([ ])
+        result = Staff([])
         for seq in pitches:
             measure = measure_build(seq)
             result.append(measure)
@@ -158,7 +158,7 @@ Finally a function that will generate the whole opening section of the piece *DÃ
     def desordre_build(pitches):
         '''Returns a complete PianoStaff with Ligeti music!'''
         assert len(pitches) == 2
-        piano = PianoStaff([ ])
+        piano = PianoStaff([])
         ### build the music...
         for hand in pitches:
             seq = staff_build(hand)

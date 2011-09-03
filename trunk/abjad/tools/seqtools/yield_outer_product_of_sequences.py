@@ -32,7 +32,7 @@ def yield_outer_product_of_sequences(sequences):
     '''
 
     def _helper(list1, list2):
-        result = [ ]
+        result = []
         for l1 in list1:
             for l2 in list2:
                 result.extend([l1 + [l2]])

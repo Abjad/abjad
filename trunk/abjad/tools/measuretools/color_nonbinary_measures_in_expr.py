@@ -69,7 +69,7 @@ def color_nonbinary_measures_in_expr(expr, color = 'red'):
     '''
 
     ### init measures colored
-    measures_colored = [ ]
+    measures_colored = []
 
     ### color nonbinary measures in expr
     for measure in iterate_measures_forward_in_expr(expr):

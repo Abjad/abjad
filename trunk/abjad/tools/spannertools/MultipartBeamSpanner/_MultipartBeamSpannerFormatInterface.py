@@ -10,7 +10,7 @@ class _MultipartBeamSpannerFormatInterface(_BeamSpannerFormatInterface):
 
 #   def _before(self, leaf):
 #      '''Spanner format contribution before leaf.'''
-#      result = [ ]
+#      result = []
 #      result.extend(_BeamSpannerFormatInterface._before(self, leaf))
 #      return result
 
@@ -18,7 +18,7 @@ class _MultipartBeamSpannerFormatInterface(_BeamSpannerFormatInterface):
         '''Spanner format contribution right of leaf.'''
         from abjad.tools import componenttools
         from abjad.tools import leaftools
-        result = [ ]
+        result = []
         spanner = self.spanner
         if componenttools.is_beamable_component(leaf):
             if 1 < len(spanner.leaves):

@@ -52,7 +52,7 @@ def list_time_signatures_of_measures_in_expr(components):
     #assert componenttools.all_are_components(components)
 
     ### create empty list to hold result
-    result = [ ]
+    result = []
 
     ### iterate measures and store meter pairs
     for measure in measuretools.iterate_measures_forward_in_expr(components):

@@ -26,7 +26,7 @@ def move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_tuplet(tuplet):
     ::
 
         abjad> tuplettools.move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_tuplet(t[0])
-        FixedDurationTuplet(3/8, [ ])
+        FixedDurationTuplet(3/8, [])
         abjad> print t.format
         \new Staff {
             c'8. [

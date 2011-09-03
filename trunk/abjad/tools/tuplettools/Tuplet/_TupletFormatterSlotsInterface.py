@@ -15,7 +15,7 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
         from abjad.core.LilyPondGrobOverrideComponentPlugIn._get_grob_override_format_contributions import _get_grob_override_format_contributions
         from abjad.core.LilyPondGrobOverrideComponentPlugIn._get_grob_revert_format_contributions import _get_grob_revert_format_contributions
         from abjad.tools.marktools._get_lilypond_command_mark_format_contributions_for_slot import _get_lilypond_command_mark_format_contributions_for_slot
-        result = [ ]
+        result = []
         tuplet = self.formatter.tuplet
         result.append(_get_comment_format_contributions_for_slot(tuplet, 'before'))
         result.append(_get_lilypond_command_mark_format_contributions_for_slot(tuplet, 'before'))
@@ -24,7 +24,7 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
 
     @property
     def slot_2(self):
-        result = [ ]
+        result = []
         formatter = self.formatter
         tuplet = formatter.tuplet
         if tuplet.multiplier:
@@ -55,7 +55,7 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
         from abjad.core.LilyPondGrobOverrideComponentPlugIn._get_grob_override_format_contributions import _get_grob_override_format_contributions
         from abjad.core.LilyPondGrobOverrideComponentPlugIn._get_grob_revert_format_contributions import _get_grob_revert_format_contributions
         from abjad.tools.marktools._get_lilypond_command_mark_format_contributions_for_slot import _get_lilypond_command_mark_format_contributions_for_slot
-        result = [ ]
+        result = []
         tuplet = self.formatter.tuplet
         result.append(_get_comment_format_contributions_for_slot(tuplet, 'opening'))
         result.append(_get_lilypond_command_mark_format_contributions_for_slot(tuplet, 'opening'))
@@ -70,7 +70,7 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
         from abjad.core.LilyPondGrobOverrideComponentPlugIn._get_grob_override_format_contributions import _get_grob_override_format_contributions
         from abjad.core.LilyPondGrobOverrideComponentPlugIn._get_grob_revert_format_contributions import _get_grob_revert_format_contributions
         from abjad.tools.marktools._get_lilypond_command_mark_format_contributions_for_slot import _get_lilypond_command_mark_format_contributions_for_slot
-        result = [ ]
+        result = []
         tuplet = self.formatter.tuplet
         result.append(_get_lilypond_command_mark_format_contributions_for_slot(tuplet, 'closing'))
         result.append(_get_comment_format_contributions_for_slot(tuplet, 'closing'))
@@ -81,7 +81,7 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
     def slot_6(self):
         '''Read-only tuplet of format contributions used to generate tuplet closing.
         '''
-        result = [ ]
+        result = []
         tuplet = self.formatter.tuplet
         if tuplet.multiplier:
             result.append([('tuplet_brackets', 'close'), '}'])
@@ -95,7 +95,7 @@ class _TupletFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
         from abjad.core.LilyPondGrobOverrideComponentPlugIn._get_grob_override_format_contributions import _get_grob_override_format_contributions
         from abjad.core.LilyPondGrobOverrideComponentPlugIn._get_grob_revert_format_contributions import _get_grob_revert_format_contributions
         from abjad.tools.marktools._get_lilypond_command_mark_format_contributions_for_slot import _get_lilypond_command_mark_format_contributions_for_slot
-        result = [ ]
+        result = []
         tuplet = self.formatter.tuplet
         result.append(_get_lilypond_command_mark_format_contributions_for_slot(tuplet, 'after'))
         result.append(_get_grob_revert_format_contributions(self._client._client))

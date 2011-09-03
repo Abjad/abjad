@@ -207,11 +207,11 @@ class TimeSignatureMark(ContextMark):
         Return string.
         '''
         if self.suppress:
-            return [ ]
+            return []
         elif self.partial is None:
             return r'\time %s/%s' % (self.numerator, self.denominator)
         else:
-            result = [ ]
+            result = []
             result.append(r'\time %s/%s' % (self.numerator, self.denominator))
             duration_string = durtools.assignable_rational_to_lilypond_duration_string(self.partial)
             partial_directive = r'\partial %s' % duration_string

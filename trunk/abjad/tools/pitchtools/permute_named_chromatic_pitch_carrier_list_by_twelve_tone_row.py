@@ -21,10 +21,10 @@ def permute_named_chromatic_pitch_carrier_list_by_twelve_tone_row(pitches, row):
     if not isinstance(row, TwelveToneRow):
         raise TypeError('must be twelve-tone row.')
 
-    result = [ ]
+    result = []
 
     for pc in row:
-        matching_pitches = [ ]
+        matching_pitches = []
         for pitch in pitches:
             if isinstance(pitch, NamedChromaticPitch):
                 if pitch.numbered_chromatic_pitch_class == pc:

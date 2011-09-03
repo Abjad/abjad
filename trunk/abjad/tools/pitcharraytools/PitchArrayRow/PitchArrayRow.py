@@ -47,7 +47,7 @@ class PitchArrayRow(_StrictComparator):
     def __init__(self, cells):
         self._parent_array = None
         self._pitch_range = PitchRange(None, None)
-        self._cells = [ ]
+        self._cells = []
         self.extend(cells)
 
     ### OVERLOADS ###
@@ -57,13 +57,13 @@ class PitchArrayRow(_StrictComparator):
             raise TypeError('must be pitch array row.')
         self_copy = copy.copy(self)
         arg_copy = copy.copy(arg)
-        new_row = PitchArrayRow([ ])
+        new_row = PitchArrayRow([])
         new_row.extend(self_copy.cells)
         new_row.extend(arg_copy.cells)
         return new_row
 
     def __copy__(self):
-        new_cells = [ ]
+        new_cells = []
         for cell in self.cells:
             new_cell = copy.copy(cell)
             new_cells.append(new_cell)
@@ -97,7 +97,7 @@ class PitchArrayRow(_StrictComparator):
             else:
                 raise IndexError('no such cell in row.')
         elif isinstance(arg, slice):
-            cells = [ ]
+            cells = []
             start, stop, step = arg.indices(self.width)
             for cell_index in range(start, stop, step):
                 cell = self[cell_index]
@@ -154,7 +154,7 @@ class PitchArrayRow(_StrictComparator):
 
     @property
     def _format_contents_string(self):
-        result = [ ]
+        result = []
         for cell in self.cells:
             result.append(cell._format_row_column_repr_string)
         result = ', '.join(result)
@@ -208,7 +208,7 @@ class PitchArrayRow(_StrictComparator):
 
     @property
     def pitches(self):
-        pitches = [ ]
+        pitches = []
         for cell in self.cells:
             pitches.extend(cell.pitches)
         return tuple(pitches)
@@ -250,9 +250,9 @@ class PitchArrayRow(_StrictComparator):
         if not step == 1:
             raise NotImplementedError('step not implemented.')
         column_indices = set(range(start, stop, step))
-        row = PitchArrayRow([ ])
+        row = PitchArrayRow([])
         cells = self[arg]
-        new_cells = [ ]
+        new_cells = []
         for cell in cells:
             if not cell in new_cells:
                 trim = [x for x in cell.column_indices if x not in column_indices]
@@ -265,7 +265,7 @@ class PitchArrayRow(_StrictComparator):
 
     def empty_pitches(self):
         for cell in self.cells:
-            cell.pitches = [ ]
+            cell.pitches = []
 
     def extend(self, cell_tokens):
         for cell_token in cell_tokens:
@@ -282,8 +282,8 @@ class PitchArrayRow(_StrictComparator):
         return self._cells.index(cell)
 
     def merge(self, cells):
-        column_indices = [ ]
-        pitches = [ ]
+        column_indices = []
+        pitches = []
         width = 0
         for cell in cells:
             if not isinstance(cell, PitchArrayCell):

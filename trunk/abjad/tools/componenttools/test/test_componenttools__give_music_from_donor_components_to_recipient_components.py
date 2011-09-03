@@ -26,7 +26,7 @@ def test_componenttools__give_music_from_donor_components_to_recipient_component
     '''
 
     donor = t[0]
-    recipient = Voice([ ])
+    recipient = Voice([])
     _give_music_from_donor_components_to_recipient_components([donor], recipient)
 
     "Container t is now ..."
@@ -67,7 +67,7 @@ def test_componenttools__give_music_from_donor_components_to_recipient_component
     '''
 
     donor = Note(0, (1, 8))
-    recipient = Voice([ ])
+    recipient = Voice([])
 
     _give_music_from_donor_components_to_recipient_components([donor], recipient)
 

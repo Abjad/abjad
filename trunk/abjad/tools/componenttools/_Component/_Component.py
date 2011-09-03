@@ -28,7 +28,7 @@ class _Component(_StrictComparator):
         self._offset_values_in_seconds_are_current = False
         self._parentage = ParentageInterface(self)
         self._prolated_offset_values_are_current = False
-        self._spanners = set([ ])
+        self._spanners = set([])
 
     ### OVERLOADS ###
 
@@ -72,7 +72,7 @@ class _Component(_StrictComparator):
 
     @property
     def _prolations(self):
-        result = [ ]
+        result = []
         parent = self._parentage.parent
         while parent is not None:
             result.append(getattr(parent, 'multiplier', fractions.Fraction(1)))

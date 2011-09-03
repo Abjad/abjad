@@ -32,7 +32,7 @@ def get_noncontext_marks_attached_to_component(component):
     '''
     from abjad.tools import contexttools
 
-    result = [ ]
+    result = []
 
     for mark in get_marks_attached_to_component(component):
         if not isinstance(mark, contexttools.ContextMark):

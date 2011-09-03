@@ -37,7 +37,7 @@ def _cycle_token_to_sieve(cycle_token):
         offset = 0
 
     ### create residue classes from cycle token
-    residue_classes = [ ]
+    residue_classes = []
     for residue in residues:
         adjusted_residue = (residue + offset) % modulo
         residue_class = ResidueClass(modulo, adjusted_residue)

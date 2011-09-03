@@ -4,7 +4,7 @@ from abjad import *
 def test_chordtools_change_defective_chord_to_note_or_rest_01():
     '''Change zero-length chord as rest.'''
 
-    t = Chord([ ], (1, 8))
+    t = Chord([], (1, 8))
     rest = chordtools.change_defective_chord_to_note_or_rest(t)
 
     assert isinstance(t, Chord)

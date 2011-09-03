@@ -6,7 +6,7 @@ class StaffChangeMark(ContextMark):
 
     Abjad model of a staff change::
 
-        abjad> piano_staff = scoretools.PianoStaff([ ])
+        abjad> piano_staff = scoretools.PianoStaff([])
         abjad> rh_staff = Staff("c'8 d'8 e'8 f'8")
         abjad> rh_staff.name = 'RHStaff'
         abjad> lh_staff = Staff("s2")

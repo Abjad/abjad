@@ -6,7 +6,7 @@ def test_BeamSpanner_span_anonymous_01():
     '''Spanned empty sequential container;
         container formats no beam indications.'''
 
-    t = Container([ ])
+    t = Container([])
     p = spannertools.BeamSpanner(t)
 
     r'''
@@ -167,7 +167,7 @@ def test_BeamSpanner_span_anonymous_07():
     '''Contiguous empty containers are OK;
         no beams appear at format-time.'''
 
-    t = Staff(Container([ ]) * 3)
+    t = Staff(Container([]) * 3)
     p = spannertools.BeamSpanner(t[:])
 
     assert len(p.components) == 3
@@ -191,7 +191,7 @@ def test_BeamSpanner_span_anonymous_08():
     '''Intervening empty containers are OK.'''
 
     t = Staff(Container(Note(0, (1, 8)) * 4) * 2)
-    t.insert(1, Container([ ]))
+    t.insert(1, Container([]))
     p = spannertools.BeamSpanner(t[:])
 
     assert len(p.components) == 3
@@ -223,7 +223,7 @@ def test_BeamSpanner_span_anonymous_08():
 def test_BeamSpanner_span_anonymous_09():
     '''Empty containers at edges are OK.'''
 
-    t = Staff(Container([ ]) * 2)
+    t = Staff(Container([]) * 2)
     t.insert(1, Container(Note(0, (1, 8)) * 4))
     p = spannertools.BeamSpanner(t[:])
 

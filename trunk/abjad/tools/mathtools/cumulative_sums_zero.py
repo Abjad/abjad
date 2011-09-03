@@ -10,7 +10,7 @@ def cumulative_sums_zero(sequence):
 
     Return ``[0]`` on empty `sequence`::
 
-        abjad> mathtools.cumulative_sums_zero([ ])
+        abjad> mathtools.cumulative_sums_zero([])
         [0]
 
     Return list.

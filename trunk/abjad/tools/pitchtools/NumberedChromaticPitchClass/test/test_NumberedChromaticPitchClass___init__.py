@@ -79,7 +79,7 @@ def test_NumberedChromaticPitchClass___init___08():
 def test_NumberedChromaticPitchClass___init___09():
     '''PitchClass initialization raises MissingPitchError on empty chord.'''
 
-    chord = Chord([ ], (1, 4))
+    chord = Chord([], (1, 4))
     assert py.test.raises(MissingPitchError, 'pitchtools.NumberedChromaticPitchClass(chord)')
 
 

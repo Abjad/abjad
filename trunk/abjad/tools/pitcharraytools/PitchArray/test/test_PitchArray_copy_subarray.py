@@ -11,7 +11,7 @@ def test_PitchArray_copy_subarray_01():
 
     '''
     [c'] [d'     ] [  ]
-    [         ] [ ] [e']
+    [         ] [] [e']
     '''
 
     subarray = array.copy_subarray((0, 0), (2, 2))

@@ -42,7 +42,7 @@ class NamedChromaticPitchVector(_Vector):
         pitches = self.named_chromatic_pitches
         if not pitches:
             return ' '
-        substrings = [ ]
+        substrings = []
         for pitch in pitches:
             count = self[str(pitch)]
             substring = '%s: %s' % (pitch, count)
@@ -53,7 +53,7 @@ class NamedChromaticPitchVector(_Vector):
 
     @property
     def chromatic_pitch_numbers(self):
-        numbers = [ ]
+        numbers = []
         for pitch in self.named_chromatic_pitches:
             number = pitch.chromatic_pitch_number
             if number not in numbers:

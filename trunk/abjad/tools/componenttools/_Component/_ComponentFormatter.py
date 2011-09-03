@@ -19,7 +19,7 @@ class _ComponentFormatter(_Interface):
 
     @property
     def _format_pieces(self):
-        result = [ ]
+        result = []
         result.extend(self.slots.contributions('slot_1'))
         result.extend(self.slots.contributions('slot_2'))
         result.extend(self.slots.contributions('slot_3'))

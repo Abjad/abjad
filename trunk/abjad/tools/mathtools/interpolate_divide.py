@@ -44,7 +44,7 @@ def interpolate_divide(total, start_frac, stop_frac, exp='cosine'):
     if total < (stop_frac + start_frac):
         raise ValueError("'start_frac' + 'stop_frac' must be < 'total'.")
 
-    result = [ ]
+    result = []
     total = float(total)
     partial_sum = 0
     while partial_sum < total:

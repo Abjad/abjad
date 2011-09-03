@@ -14,7 +14,7 @@ class _IntervalNode(_RedBlackNode):
     def __init__(self, key, intervals = None):
         assert isinstance(key, (int, Fraction))
         _RedBlackNode.__init__(self, key)
-        self.payload = [ ]
+        self.payload = []
         if isinstance(intervals, (list, set, tuple)):
             assert all([isinstance(interval, BoundedInterval) for interval in intervals])
             self.payload.extend(intervals)

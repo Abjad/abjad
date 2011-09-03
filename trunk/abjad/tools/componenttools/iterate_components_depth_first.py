@@ -15,7 +15,7 @@ def iterate_components_depth_first(component, capped = True, unique = True,
     '''
 
     client_parent, node, rank = component._parentage.parent, component, 0
-    queue = collections.deque([ ])
+    queue = collections.deque([])
     while node is not None and not (capped and node is client_parent):
         result = _find_yield(node, rank, queue, unique)
         if result is not None:

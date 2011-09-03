@@ -4,7 +4,7 @@ from abjad.tools.musicxmltools._get_staff_id_in_note_node import get_staff_id_in
 
 def _get_staff_ids_in_note_nodes(nodes):
     assert _all_are_nodes_with_tag(nodes, 'note')
-    ids = [ ]
+    ids = []
     for node in nodes:
         id = _get_staff_id_in_note_node(node)
         if id is not None and id not in ids:

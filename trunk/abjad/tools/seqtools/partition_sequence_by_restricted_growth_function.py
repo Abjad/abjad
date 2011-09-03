@@ -26,9 +26,9 @@ def partition_sequence_by_restricted_growth_function(sequence, restricted_growth
     if not len(sequence) == len(restricted_growth_function):
         raise ValueError('lengths must be equal.')
 
-    partition = [ ]
+    partition = []
     for part_index in range(max(restricted_growth_function)):
-        part = [ ]
+        part = []
         partition.append(part)
 
     for n, part_number in zip(sequence, restricted_growth_function):

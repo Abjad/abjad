@@ -40,7 +40,7 @@ def splice_new_elements_between_sequence_elements(sequence, new_elements, overha
         ``seqtools.splice_new_elements_between_sequence_elements()``.
     '''
 
-    result = [ ]
+    result = []
 
     if overhang[0] == 1:
         result.extend(new_elements[:])

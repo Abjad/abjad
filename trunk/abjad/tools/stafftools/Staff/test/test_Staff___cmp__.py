@@ -6,7 +6,7 @@ def test_Staff___cmp___01():
     '''Compare container to itself.
     '''
 
-    container = Container([ ])
+    container = Container([])
 
     assert container == container
     assert not container != container
@@ -25,8 +25,8 @@ def test_Staff___cmp___02():
     '''Compare containers.
     '''
 
-    container_1 = Container([ ])
-    container_2 = Container([ ])
+    container_1 = Container([])
+    container_2 = Container([])
 
     assert not container_1 == container_2
     assert      container_1 != container_2
@@ -45,7 +45,7 @@ def test_Staff___cmp___03():
     '''Compare container to foreign type.
     '''
 
-    container = Container([ ])
+    container = Container([])
 
     assert not container == 'foo'
     assert      container != 'foo'

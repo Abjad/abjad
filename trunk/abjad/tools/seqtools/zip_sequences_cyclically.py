@@ -32,7 +32,7 @@ def zip_sequences_cyclically(*sequences):
     '''
 
     ### make sure sequences are, in fact, all sequences
-    new_sequences = [ ]
+    new_sequences = []
     for sequence in sequences:
         if not isinstance(sequence, (list, tuple)):
             new_sequences.append([sequence])
@@ -43,7 +43,7 @@ def zip_sequences_cyclically(*sequences):
     max_length = max([len(x) for x in new_sequences])
 
     ### produce list of tuples
-    result = [ ]
+    result = []
     for i in range(max_length):
         part = [x[i % len(x)] for x in new_sequences]
         result.append(tuple(part))

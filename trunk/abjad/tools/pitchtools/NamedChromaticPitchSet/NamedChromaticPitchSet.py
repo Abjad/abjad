@@ -15,7 +15,7 @@ class NamedChromaticPitchSet(_PitchSet):
     def __new__(self, pitch_tokens):
         from abjad.tools import notetools
         from abjad.tools import pitchtools
-        pitches = [ ]
+        pitches = []
         for token in pitch_tokens:
             if isinstance(token, notetools.NoteHead):
                 pitch = pitchtools.NamedChromaticPitch(token.written_pitch)
@@ -60,8 +60,8 @@ class NamedChromaticPitchSet(_PitchSet):
     @property
     def duplicate_pitch_classes(self):
         from abjad.tools import pitchtools
-        pitch_classes = [ ]
-        duplicate_pitch_classes = [ ]
+        pitch_classes = []
+        duplicate_pitch_classes = []
         for pitch in self:
             pitch_class = pitch.numbered_chromatic_pitch_class
             if pitch_class in pitch_classes:

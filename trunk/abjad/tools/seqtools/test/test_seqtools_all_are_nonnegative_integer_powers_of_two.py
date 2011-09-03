@@ -13,7 +13,7 @@ def test_seqtools_all_are_nonnegative_integer_powers_of_two_02():
     '''True on empty sequence.
     '''
 
-    assert seqtools.all_are_nonnegative_integer_powers_of_two([ ])
+    assert seqtools.all_are_nonnegative_integer_powers_of_two([])
 
 
 def test_seqtools_all_are_nonnegative_integer_powers_of_two_03():

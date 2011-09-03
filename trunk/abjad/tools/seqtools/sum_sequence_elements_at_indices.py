@@ -46,7 +46,7 @@ def sum_sequence_elements_at_indices(sequence, pairs, period = None, overhang = 
         raise ValueError('must be list of nonoverlapping pairs.')
 
     start_indices = set([pair[0] for pair in pairs])
-    indices_affected = [ ]
+    indices_affected = []
     for pair in pairs:
         indices_affected.extend(range(pair[0], sum(pair)))
 
@@ -56,7 +56,7 @@ def sum_sequence_elements_at_indices(sequence, pairs, period = None, overhang = 
     else:
         period = len(sequence)
 
-    result = [ ]
+    result = []
     slice_remaining = 0
     slice_total = None
     for i, x in enumerate(sequence):
@@ -89,7 +89,7 @@ def _check_sum_slices_at_specification(pairs):
         assert isinstance(pairs, list)
         assert all([isinstance(x, tuple) and len(x) == 2 and 0 < x[-1]
             for x in pairs])
-        indices_affected = [ ]
+        indices_affected = []
         for pair in pairs:
             indices_affected.extend(range(pair[0], sum(pair)))
         assert len(indices_affected) == len(set(indices_affected))

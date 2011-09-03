@@ -44,7 +44,7 @@ def make_accelerating_notes_with_lilypond_multipliers(pitches, total, start, sto
     dts = [fractions.Fraction(int(round(x * 2**10)), 2**10) for x in dts]
 
     ### make notes
-    result = [ ]
+    result = []
     for i, dt in enumerate(dts):
         note = Note(pitches[i % len(pitches)], written)
         note.duration_multiplier = fractions.Fraction(dt / written)

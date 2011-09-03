@@ -12,6 +12,6 @@ def test_IntervalTree_low_max_01():
 
 def test_IntervalTree_low_max_02():
     '''low_max returns None if no intervals in tree.'''
-    tree = IntervalTree([ ])
+    tree = IntervalTree([])
     assert tree.low_max is None
 

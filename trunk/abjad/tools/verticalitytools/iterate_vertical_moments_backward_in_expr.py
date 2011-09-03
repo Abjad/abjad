@@ -13,9 +13,9 @@ def iterate_vertical_moments_backward_in_expr(governor):
 
     ::
 
-        abjad> score = Score([ ])
+        abjad> score = Score([])
         abjad> score.append(Staff([tuplettools.FixedDurationTuplet(Duration(4, 8), notetools.make_repeated_notes(3))]))
-        abjad> piano_staff = scoretools.PianoStaff([ ])
+        abjad> piano_staff = scoretools.PianoStaff([])
         abjad> piano_staff.append(Staff(notetools.make_repeated_notes(2, Duration(1, 4))))
         abjad> piano_staff.append(Staff(notetools.make_repeated_notes(4)))
         abjad> contexttools.ClefMark('bass')(piano_staff[1])
@@ -74,7 +74,7 @@ def iterate_vertical_moments_backward_in_expr(governor):
     '''
     from abjad.tools.verticalitytools.VerticalMoment import VerticalMoment
 
-    moments_in_governor = [ ]
+    moments_in_governor = []
     for component in iterate_components_forward_in_expr(governor, _Component):
         prolated_offset = component._offset.start
         if prolated_offset not in moments_in_governor:

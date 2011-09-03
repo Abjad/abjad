@@ -28,7 +28,7 @@ def get_spanners_attached_to_any_proper_parent_of_component(component, klass = N
     '''
     from abjad.tools import componenttools
 
-    result = set([ ])
+    result = set([])
     parentage = componenttools.get_proper_parentage_of_component(component)
     for parent in parentage:
         for spanner in parent.spanners:

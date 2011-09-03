@@ -6,7 +6,7 @@ def change_defective_chord_to_note_or_rest(chord):
 
     Change zero-length `chord` to rest::
 
-        abjad> chord = Chord([ ], (3, 16))
+        abjad> chord = Chord([], (3, 16))
 
     ::
 

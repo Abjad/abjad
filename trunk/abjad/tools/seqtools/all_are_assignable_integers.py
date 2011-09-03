@@ -15,7 +15,7 @@ def all_are_assignable_integers(expr):
 
     True when `expr` is an empty sequence::
 
-        abjad> seqtools.all_are_assignable_integers([ ])
+        abjad> seqtools.all_are_assignable_integers([])
         True
 
     False otherwise::

@@ -19,7 +19,7 @@ def cycle_tokens_to_sieve(*cycle_tokens):
     Cycle token comprises mandatory `modulo`, mandatory `residues` and optional `offset`.
     '''
 
-    sieves = [ ]
+    sieves = []
     for cycle_token in cycle_tokens:
         sieve = _cycle_token_to_sieve(cycle_token)
         sieves.append(sieve)
@@ -29,6 +29,6 @@ def cycle_tokens_to_sieve(*cycle_tokens):
         for sieve in sieves[1:]:
             cur_sieve = cur_sieve | sieve
     else:
-        cur_sieve = ResidueClassExpression([ ])
+        cur_sieve = ResidueClassExpression([])
 
     return cur_sieve

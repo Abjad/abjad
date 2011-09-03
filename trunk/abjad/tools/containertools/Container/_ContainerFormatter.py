@@ -14,7 +14,7 @@ class _ContainerFormatter(_ComponentFormatter):
     def _contents(self):
         '''Read-only list of tabbed lines of content.
         '''
-        result = [ ]
+        result = []
         for m in self._client._music:
             result.extend(m.format.split('\n'))
         result = ['\t' + x for x in result]

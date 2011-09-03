@@ -24,7 +24,7 @@ def negate_sequence_elements_at_indices(sequence, indices):
     if not isinstance(sequence, list):
         raise TypeError
 
-    result = [ ]
+    result = []
 
     for i, element in enumerate(sequence):
         if (i in indices):

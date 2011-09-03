@@ -37,7 +37,7 @@ class PitchArrayColumn(_StrictComparator):
     '''
 
     def __init__(self, cells):
-        self._cells = [ ]
+        self._cells = []
         self._column_index = None
         self._parent_array = None
         self.extend(cells)
@@ -91,7 +91,7 @@ class PitchArrayColumn(_StrictComparator):
 
     @property
     def _format_contents_string(self):
-        result = [ ]
+        result = []
         for cell in self.cells:
             result.append(cell._format_row_column_repr_string)
         result = ', '.join(result)
@@ -138,7 +138,7 @@ class PitchArrayColumn(_StrictComparator):
     ### PRIVATE METHODS ###
 
     def _cells_starting_at_index(self, index):
-        result = [ ]
+        result = []
         for cell in self.cells:
             if cell.column_indices[0] == index:
                 result.append(cell)
@@ -192,14 +192,14 @@ class PitchArrayColumn(_StrictComparator):
 
     @property
     def pitches(self):
-        pitches = [ ]
+        pitches = []
         for cell in self.cells:
             pitches.extend(cell.pitches)
         return tuple(pitches)
 
     @property
     def start_cells(self):
-        start_cells = [ ]
+        start_cells = []
         column_index = self.column_index
         for cell in self.cells:
             if cell.column_indices[0] == column_index:
@@ -208,14 +208,14 @@ class PitchArrayColumn(_StrictComparator):
 
     @property
     def start_pitches(self):
-        start_pitches = [ ]
+        start_pitches = []
         for cell in self.start_cells:
             start_pitches.extend(cell.pitches)
         return tuple(start_pitches)
 
     @property
     def stop_cells(self):
-        start_cells = [ ]
+        start_cells = []
         column_index = self.column_index
         for cell in self.cells:
             if cell.column_indices[-1] == column_index:
@@ -224,7 +224,7 @@ class PitchArrayColumn(_StrictComparator):
 
     @property
     def stop_pitches(self):
-        stop_pitches = [ ]
+        stop_pitches = []
         for cell in self.stop_cells:
             stop_pitches.extend(cell.pitches)
         return tuple(stop_pitches)

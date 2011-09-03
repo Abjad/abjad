@@ -11,7 +11,7 @@ def label_vertical_moments_in_expr_with_interval_class_vectors(expr, markup_dire
 
     ::
 
-        abjad> score = Score(Staff([ ]) * 3)
+        abjad> score = Score(Staff([]) * 3)
         abjad> notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
         abjad> score[0].extend(notes)
         abjad> contexttools.ClefMark('alto')(score[1])
@@ -57,12 +57,12 @@ def label_vertical_moments_in_expr_with_interval_class_vectors(expr, markup_dire
 
 
 def _format_interval_class_vector(interval_class_vector):
-    counts = [ ]
+    counts = []
     for i in range(7):
         counts.append(interval_class_vector[i])
     counts = ''.join([str(x) for x in counts])
     if len(interval_class_vector) == 13:
-        quartertones = [ ]
+        quartertones = []
         for i in range(6):
             quartertones.append(interval_class_vector[i+0.5])
         quartertones = ''.join([str(x) for x in quartertones])

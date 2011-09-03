@@ -6,7 +6,7 @@ def test_tietools_get_tie_chains_in_expr_01():
     t = notetools.make_repeated_notes(4)
     chains = tietools.get_tie_chains_in_expr(t)
 
-    assert chains == [ ]
+    assert chains == []
 
 
 def test_tietools_get_tie_chains_in_expr_02():
@@ -15,7 +15,7 @@ def test_tietools_get_tie_chains_in_expr_02():
     t = Voice(notetools.make_repeated_notes(4))
     chains = tietools.get_tie_chains_in_expr([t])
 
-    assert chains == [ ]
+    assert chains == []
 
 
 def test_tietools_get_tie_chains_in_expr_03():
@@ -58,7 +58,7 @@ def test_tietools_get_tie_chains_in_expr_06():
     tietools.TieSpanner(t[2:])
     chains = tietools.get_tie_chains_in_expr([t])
 
-    assert chains == [ ]
+    assert chains == []
 
 
 def test_tietools_get_tie_chains_in_expr_07():

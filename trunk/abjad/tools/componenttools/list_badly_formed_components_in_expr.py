@@ -23,7 +23,7 @@ def list_badly_formed_components_in_expr(expr, allow_empty_containers = True):
     '''
     from abjad import checks as _checks
 
-    badly_formed_components = [ ]
+    badly_formed_components = []
     for key, value in sorted(vars(_checks).items()):
         checker = value()
         badly_formed_components.extend(checker.violators(expr))

@@ -17,8 +17,8 @@ Default LilyPond layout
 <abjad>
 import random
 pitches = [random.randrange(0, 25) for x in range(32)]
-staff_1 = Staff([ ])
-staff_2 = Staff([ ])
+staff_1 = Staff([])
+staff_2 = Staff([])
 score = Score([staff_1, staff_2])
 staff_1.extend([Note(x, (1, 8)) for x in pitches[:16]])
 staff_2.extend([Note(x, (1, 8)) for x in pitches[16:]])
@@ -32,8 +32,8 @@ show(score)
 <abjad>
 import random <hide
 pitches = [random.randrange(0, 25) for x in range(32)]
-staff_1 = Staff([ ])
-staff_2 = Staff([ ])
+staff_1 = Staff([])
+staff_2 = Staff([])
 score = Score([staff_1, staff_2])
 staff_1.extend([Note(x, (1, 8)) for x in pitches[:16]])
 staff_2.extend([Note(x, (1, 8)) for x in pitches[16:]])
@@ -47,8 +47,8 @@ show(score, template = 'lagos')
 <abjad>
 import random <hide
 pitches = [random.randrange(0, 25) for x in range(32)]
-staff_1 = Staff([ ])
-staff_2 = Staff([ ])
+staff_1 = Staff([])
+staff_2 = Staff([])
 score = Score([staff_1, staff_2])
 staff_1.extend([Note(x, (1, 8)) for x in pitches[:16]])
 staff_2.extend([Note(x, (1, 8)) for x in pitches[16:]])
@@ -62,8 +62,8 @@ show(score, template = 'oedo')
 <abjad>
 import random <hide
 pitches = [random.randrange(0, 25) for x in range(32)]
-staff_1 = Staff([ ])
-staff_2 = Staff([ ])
+staff_1 = Staff([])
+staff_2 = Staff([])
 score = Score([staff_1, staff_2])
 staff_1.extend([Note(x, (1, 8)) for x in pitches[:16]])
 staff_2.extend([Note(x, (1, 8)) for x in pitches[16:]])
@@ -77,8 +77,8 @@ show(score, template = 'tangiers')
 <abjad>
 import random <hide
 pitches = [random.randrange(0, 25) for x in range(32)]
-staff_1 = Staff([ ])
-staff_2 = Staff([ ])
+staff_1 = Staff([])
+staff_2 = Staff([])
 score = Score([staff_1, staff_2])
 staff_1.extend([Note(x, (1, 8)) for x in pitches[:16]])
 staff_2.extend([Note(x, (1, 8)) for x in pitches[16:]])

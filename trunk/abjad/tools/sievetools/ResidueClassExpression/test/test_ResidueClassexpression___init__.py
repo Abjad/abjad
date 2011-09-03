@@ -5,7 +5,7 @@ from abjad.tools import sievetools
 def test_ResidueClassexpression___init___01():
     '''Init sieve from rc instances and operator keyword.'''
 
-    rcs = [ ]
+    rcs = []
     rcs.append(sievetools.ResidueClass(6, 0))
     rcs.append(sievetools.ResidueClass(6, 1))
     rcs.append(sievetools.ResidueClass(6, 4))
@@ -19,7 +19,7 @@ def test_ResidueClassexpression___init___01():
 def test_ResidueClassexpression___init___02():
     '''Init sieve from other sieve instance.'''
 
-    rcs = [ ]
+    rcs = []
     rcs.append(sievetools.ResidueClass(6, 0))
     rcs.append(sievetools.ResidueClass(6, 1))
     rcs.append(sievetools.ResidueClass(6, 4))

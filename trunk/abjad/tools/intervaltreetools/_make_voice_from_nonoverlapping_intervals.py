@@ -19,10 +19,10 @@ def _make_voice_from_nonoverlapping_intervals(intervals, colorkey = None, bounds
     else:
         tree = IntervalTree(intervals)
     if not tree:
-        return Voice([ ])
+        return Voice([])
     assert all_intervals_are_nonoverlapping(tree)
 
-    voice = Voice([ ])
+    voice = Voice([])
 
 #   if bounds is None:
 #      depth_tree = compute_depth_of_intervals(tree)

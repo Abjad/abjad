@@ -18,7 +18,7 @@ class MelodicDiatonicIntervalSegment(_IntervalSegment):
             melodic_diatonic_interval_tokens = arg.split()
         else:
             melodic_diatonic_interval_tokens = arg
-        mdis = [ ]
+        mdis = []
         for token in melodic_diatonic_interval_tokens:
             mdi = pitchtools.MelodicDiatonicInterval(token)
             mdis.append(mdi)

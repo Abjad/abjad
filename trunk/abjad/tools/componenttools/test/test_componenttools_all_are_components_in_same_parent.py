@@ -69,4 +69,4 @@ def test_componenttools_all_are_components_in_same_parent_03():
 def test_componenttools_all_are_components_in_same_parent_04():
     '''Empty list returns True.'''
 
-    assert componenttools.all_are_components_in_same_parent([ ])
+    assert componenttools.all_are_components_in_same_parent([])

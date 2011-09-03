@@ -25,7 +25,7 @@ def increase_sequence_elements_cyclically_by_addenda(sequence, addenda, shield =
     if not isinstance(sequence, (list, tuple)):
         raise TypeError
 
-    result = [ ]
+    result = []
 
     for i, element in enumerate(sequence):
         new = element + addenda[i % len(addenda)]

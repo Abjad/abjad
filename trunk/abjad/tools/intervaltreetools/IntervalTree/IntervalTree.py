@@ -30,14 +30,14 @@ class IntervalTree(_RedBlackTree):
 
     __slots__ = ('_root', '_sentinel')
 
-    def __init__(self, intervals = [ ]):
+    def __init__(self, intervals = []):
         self._sentinel = _IntervalNode(0)
         self._sentinel.red = True
         self._sentinel.left = self._sentinel
         self._sentinel.right = self._sentinel
         self._sentinel.parent = self._sentinel
         self._root = self._sentinel
-#        self._intervals = [ ]
+#        self._intervals = []
         self._insert(intervals)
 
     ### OVERLOADS ###
@@ -87,14 +87,14 @@ class IntervalTree(_RedBlackTree):
             intervals = [repr(interval) for interval in self._inorder]
             return '%s([\n\t%s\n])' % (type(self).__name__, ',\n\t'.join(intervals))
         else:
-            return '%s([ ])' % type(self).__name__
+            return '%s([])' % type(self).__name__
 
     ### PRIVATE ATTRIBUTES
 
     @property
     def _inorder(self):
         if self:
-            intervals = [ ]
+            intervals = []
             nodes = tuple(self._sort_nodes_inorder())
             for node in nodes:
                 intervals.extend(sorted(node.payload, key=lambda x: x.signature))
@@ -222,7 +222,7 @@ class IntervalTree(_RedBlackTree):
 
     def find_intervals_intersecting_or_tangent_to_interval(self, *args):
         def recurse(node, low, high):
-            intervals = [ ]
+            intervals = []
             if node == self._sentinel:
                 return intervals
             if node.key <= high and low <= node.high_max:
@@ -251,7 +251,7 @@ class IntervalTree(_RedBlackTree):
 
     def find_intervals_intersecting_or_tangent_to_offset(self, offset):
         def recurse(node, offset):
-            intervals = [ ]
+            intervals = []
             if node == self._sentinel:
                 return intervals
             if node.key <= offset and offset <= node.high_max:
@@ -270,7 +270,7 @@ class IntervalTree(_RedBlackTree):
 
     def find_intervals_starting_after_offset(self, offset):
         def recurse(node, offset):
-            intervals = [ ]
+            intervals = []
             if node == self._sentinel:
                 return intervals
             if offset < node.key:
@@ -285,7 +285,7 @@ class IntervalTree(_RedBlackTree):
 
     def find_intervals_starting_and_stopping_within_interval(self, *args):
         def recurse(node, low, high):
-            intervals = [ ]
+            intervals = []
             if node == self._sentinel:
                 return intervals
             if low <= node.key and node.high_min <= high:
@@ -322,7 +322,7 @@ class IntervalTree(_RedBlackTree):
 
     def find_intervals_starting_before_offset(self, offset):
         def recurse(node, offset):
-            intervals = [ ]
+            intervals = []
             if node == self._sentinel:
                 return intervals
             if node.key < offset:
@@ -337,7 +337,7 @@ class IntervalTree(_RedBlackTree):
 
     def find_intervals_starting_or_stopping_at_offset(self, offset):
         def recurse(node, offset):
-            intervals = [ ]
+            intervals = []
             if node == self._sentinel:
                 return intervals
             if node.key <= offset and offset <= node.high_max:
@@ -355,7 +355,7 @@ class IntervalTree(_RedBlackTree):
 
     def find_intervals_starting_within_interval(self, *args):
         def recurse(node, low, high):
-            intervals = [ ]
+            intervals = []
             if node == self._sentinel:
                 return intervals
             if low <= node.key <= high:
@@ -382,7 +382,7 @@ class IntervalTree(_RedBlackTree):
 
     def find_intervals_stopping_after_offset(self, offset):
         def recurse(node, offset):
-            intervals = [ ]
+            intervals = []
             if node == self._sentinel:
                 return intervals
             if offset < node.high_max:
@@ -399,7 +399,7 @@ class IntervalTree(_RedBlackTree):
 
     def find_intervals_stopping_at_offset(self, offset):
         def recurse(node, offset):
-            intervals = [ ]
+            intervals = []
             if node == self._sentinel:
                 return intervals
             if node.high_min <= offset and offset <= node.high_max:
@@ -416,7 +416,7 @@ class IntervalTree(_RedBlackTree):
 
     def find_intervals_stopping_before_offset(self, offset):
         def recurse(node, offset):
-            intervals = [ ]
+            intervals = []
             if node == self._sentinel:
                 return intervals
             if node.key <= offset and node.high_min < offset:
@@ -433,7 +433,7 @@ class IntervalTree(_RedBlackTree):
 
     def find_intervals_stopping_within_interval(self, *args):
         def recurse(node, low, high):
-            intervals = [ ]
+            intervals = []
             if node == self._sentinel:
                 return intervals
             if low <= node.high_max and node.high_min <= high:

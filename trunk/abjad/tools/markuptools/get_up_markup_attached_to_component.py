@@ -20,7 +20,7 @@ def get_up_markup_attached_to_component(component):
     Return tuple of zero or more markup objects.
     '''
 
-    result = [ ]
+    result = []
 
     markups = get_markup_attached_to_component(component)
     for markup in markups:

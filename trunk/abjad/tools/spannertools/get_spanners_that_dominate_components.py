@@ -24,7 +24,7 @@ def get_spanners_that_dominate_components(components):
     assert componenttools.all_are_thread_contiguous_components(components,
         allow_orphans = False)
 
-    receipt = set([ ])
+    receipt = set([])
 
     if len(components) == 0:
         return receipt
@@ -36,7 +36,7 @@ def get_spanners_that_dominate_components(components):
     for component in start_components:
         #for spanner in component.spanners.attached:
         for spanner in get_spanners_attached_to_component(component):
-            if set(spanner[:]) & stop_components != set([ ]):
+            if set(spanner[:]) & stop_components != set([]):
                 index = spanner.index(component)
                 receipt.add((spanner, index))
 

@@ -54,7 +54,7 @@ def test_Container_append_03():
 
     assert py.test.raises(AssertionError, "t.append('foo')")
     assert py.test.raises(AssertionError, "t.append(99)")
-    assert py.test.raises(AssertionError, "t.append([ ])")
+    assert py.test.raises(AssertionError, "t.append([])")
     assert py.test.raises(AssertionError, "t.append([Note(0, (1, 8))])")
 
 

@@ -60,7 +60,7 @@ def list_melodic_chromatic_interval_numbers_pairwise_between_pitch_carriers(
         ``pitchtools.list_melodic_chromatic_interval_numbers_pairwise_between_pitch_carriers()``.
     '''
 
-    result = [ ]
+    result = []
 
     if len(pitch_carriers) == 0:
         return result

@@ -89,7 +89,7 @@ class PitchArrayCell(_StrictComparator):
 
     def __init__(self, cell_token = None):
         self._parent_row = None
-        self._pitches = [ ]
+        self._pitches = []
         pitches, width = self._parse_cell_token(cell_token)
         self._pitches.extend(pitches)
         self._width = width
@@ -168,10 +168,10 @@ class PitchArrayCell(_StrictComparator):
 
     def _parse_cell_token(self, cell_token):
         if cell_token is None:
-            pitches, width = [ ], 1
+            pitches, width = [], 1
         elif isinstance(cell_token, int):
             if 0 < cell_token:
-                pitches, width = [ ], cell_token
+                pitches, width = [], cell_token
             else:
                 raise ValueError('integer width token must be positive.')
         elif isinstance(cell_token, NamedChromaticPitch):
@@ -195,7 +195,7 @@ class PitchArrayCell(_StrictComparator):
         return pitches, width
 
     def _parse_pitch_token(self, pitch_token):
-        pitches = [ ]
+        pitches = []
         if isinstance(pitch_token, (int, float, NamedChromaticPitch)):
             pitch = NamedChromaticPitch(pitch_token)
             pitches.append(pitch)

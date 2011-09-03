@@ -21,7 +21,7 @@ def get_spanners_that_dominate_component_pair(left, right):
     from abjad.tools import componenttools
 
     if left is None or right is None:
-        return set([ ])
+        return set([])
 
     assert componenttools.all_are_thread_contiguous_components([left, right])
 
@@ -31,7 +31,7 @@ def get_spanners_that_dominate_component_pair(left, right):
     dominant_spanners = left_contained & right_contained
     components_after_gap = right._navigator._contemporaneous_start_components
 
-    receipt = set([ ])
+    receipt = set([])
     for spanner in dominant_spanners:
         for component in components_after_gap:
             if component in spanner:

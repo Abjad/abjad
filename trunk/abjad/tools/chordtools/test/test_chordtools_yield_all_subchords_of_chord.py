@@ -6,7 +6,7 @@ def test_chordtools_yield_all_subchords_of_chord_01():
     chord = Chord([0, 2, 8, 9], (1, 4))
     generator = chordtools.yield_all_subchords_of_chord(chord)
     subchords = list(generator)
-    pairs = [ ]
+    pairs = []
     for subchord in subchords:
         named_chromatic_pitches = pitchtools.list_named_chromatic_pitches_in_expr(subchord)
         pairs_tuple = tuple([(str(pitch.named_chromatic_pitch_class), pitch.octave_number) 

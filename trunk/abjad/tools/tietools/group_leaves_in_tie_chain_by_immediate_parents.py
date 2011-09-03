@@ -40,7 +40,7 @@ def group_leaves_in_tie_chain_by_immediate_parents(tie_chain):
         raise TypeError('must be tie chain.')
 
     ### create partition with itertools
-    result = [ ]
+    result = []
     pairs_generator = itertools.groupby(tie_chain, lambda x: id(x._parentage.parent))
     for key, values_generator in pairs_generator:
         result.append(list(values_generator))

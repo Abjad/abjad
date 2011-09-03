@@ -30,8 +30,8 @@ def analyze_chord(expr):
     pitches = pitchtools.list_named_chromatic_pitches_in_expr(expr)
     npcset = pitchtools.NamedChromaticPitchClassSet(pitches)
 
-    #ordered_npcs = pitchtools.NamedChromaticPitchClassSegment([ ])
-    ordered_npcs = [ ]
+    #ordered_npcs = pitchtools.NamedChromaticPitchClassSegment([])
+    ordered_npcs = []
     letters = ('c', 'e', 'g', 'b', 'd', 'f', 'a')
     for letter in letters:
         for npc in npcset:

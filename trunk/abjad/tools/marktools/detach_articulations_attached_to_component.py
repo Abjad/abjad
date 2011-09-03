@@ -41,7 +41,7 @@ def detach_articulations_attached_to_component(component):
     Return tuple or zero or more articulations detached.
     '''
 
-    articulations = [ ]
+    articulations = []
     for articulation in get_articulations_attached_to_component(component):
         articulation.detach_mark()
         articulations.append(articulation)

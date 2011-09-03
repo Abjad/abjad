@@ -202,8 +202,8 @@ def test_containertools_split_container_cyclically_by_counts_and_fracture_crossi
     }
     '''
 
-    #parts = containertools.split_container_cyclically_by_counts_and_fracture_crossing_spanners(t[:], [ ])
-    parts = containertools.split_container_cyclically_by_counts_and_fracture_crossing_spanners(t[0], [ ])
+    #parts = containertools.split_container_cyclically_by_counts_and_fracture_crossing_spanners(t[:], [])
+    parts = containertools.split_container_cyclically_by_counts_and_fracture_crossing_spanners(t[0], [])
 
     r'''
     \new Voice {

@@ -10,8 +10,8 @@ def _partition_sequence_elements_by_weights_at_least(sequence, weights, cyclic, 
 
 def _partition_sequence_elements_once_by_weights_at_least(sequence, weights, overhang):
 
-    result = [ ]
-    cur_part = [ ]
+    result = []
+    cur_part = []
     l_copy = sequence[:]
 
     for num_weight, target_weight in enumerate(weights):
@@ -27,7 +27,7 @@ def _partition_sequence_elements_once_by_weights_at_least(sequence, weights, ove
             cur_part.append(x)
             if target_weight <= mathtools.weight(cur_part):
                 result.append(cur_part)
-                cur_part = [ ]
+                cur_part = []
                 break
     if l_copy:
         if overhang:
@@ -38,8 +38,8 @@ def _partition_sequence_elements_once_by_weights_at_least(sequence, weights, ove
 def _partition_sequence_elements_cyclically_by_weights_at_least(sequence, weights, overhang):
 
     l_copy = sequence[:]
-    result = [ ]
-    cur_part = [ ]
+    result = []
+    cur_part = []
     target_weight_index = 0
     len_weights = len(weights)
 
@@ -49,7 +49,7 @@ def _partition_sequence_elements_cyclically_by_weights_at_least(sequence, weight
         cur_part.append(x)
         if target_weight <= mathtools.weight(cur_part):
             result.append(cur_part)
-            cur_part = [ ]
+            cur_part = []
             target_weight_index += 1
 
     assert not l_copy

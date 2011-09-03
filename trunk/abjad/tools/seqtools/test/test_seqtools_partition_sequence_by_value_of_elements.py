@@ -4,10 +4,10 @@ from abjad.tools import seqtools
 
 def test_seqtools_partition_sequence_by_value_of_elements_01():
 
-    l = [ ]
+    l = []
 
     t = list(seqtools.partition_sequence_by_value_of_elements(l))
-    assert t == [ ]
+    assert t == []
 
 
 def test_seqtools_partition_sequence_by_value_of_elements_02():

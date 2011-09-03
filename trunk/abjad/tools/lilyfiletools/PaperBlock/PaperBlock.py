@@ -17,7 +17,7 @@ class PaperBlock(_BlockAttributed):
 
     @property
     def _formatted_user_attributes(self):
-        result = [ ]
+        result = []
         if self.minimal_page_breaking:
             result.append('#(define page-breaking ly:minimal-breaking)')
         result.extend(_BlockAttributed._formatted_user_attributes.fget(self))

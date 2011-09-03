@@ -66,7 +66,7 @@ def partition_sequence_by_sign_of_elements(sequence, sign = [-1, 0, 1]):
         ``seqtools.partition_sequence_by_sign_of_elements()``.
     '''
 
-    result = [ ]
+    result = []
     g = itertools.groupby(sequence, mathtools.sign)
     for cur_sign, group in g:
         if cur_sign in sign:

@@ -34,7 +34,7 @@ def instantiate_pitch_and_interval_test_collection():
     '''
     from abjad.tools import pitchtools
 
-    result = [ ]
+    result = []
     result.append(pitchtools.HarmonicChromaticInterval(1))
     result.append(pitchtools.HarmonicChromaticIntervalClass(1))
     result.append(pitchtools.HarmonicCounterpointInterval(1))

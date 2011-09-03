@@ -78,7 +78,8 @@ class Tuplet(Container):
         if 0 < len(self):
             return ', '.join([str(x) for x in self._music])
         else:
-            return ' '
+            #return ' '
+            return ''
 
     ### PUBLIC ATTRIBUTES ###
 

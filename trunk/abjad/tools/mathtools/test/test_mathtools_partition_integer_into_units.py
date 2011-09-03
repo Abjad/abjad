@@ -26,6 +26,6 @@ def test_mathtools_partition_integer_into_units_03():
 
     t = mathtools.partition_integer_into_units(0)
 
-    assert t == [ ]
+    assert t == []
 
 

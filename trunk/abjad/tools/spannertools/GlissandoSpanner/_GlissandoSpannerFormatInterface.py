@@ -14,7 +14,7 @@ class _GlissandoSpannerFormatInterface(_SpannerFormatInterface):
         '''Spanner contribution to right of leaf.'''
         from abjad.tools.notetools.Note import Note
         from abjad.tools.chordtools.Chord import Chord
-        result = [ ]
+        result = []
         if not self.spanner._is_my_last_leaf(leaf) and isinstance(leaf, (Chord, Note)):
             result.append(r'\glissando')
         return result

@@ -26,10 +26,10 @@ def test_spannertools_get_spanners_that_cross_components_01():
     '''
 
     spanners = spannertools.get_spanners_that_cross_components([t])
-    assert spanners == set([ ])
+    assert spanners == set([])
 
     spanners = spannertools.get_spanners_that_cross_components(t.leaves)
-    assert spanners == set([ ])
+    assert spanners == set([])
 
     spanners = spannertools.get_spanners_that_cross_components(t[0:1])
     assert len(spanners) == 1

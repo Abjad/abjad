@@ -90,7 +90,7 @@ def copy_components_and_remove_all_spanners(components, n = 1):
     from abjad.tools import componenttools
 
     if n < 1:
-        return [ ]
+        return []
 
     assert componenttools.all_are_thread_contiguous_components(components)
 

@@ -63,7 +63,7 @@ def desordre_cell(pitches):
     ### make all 1/8 beats breakable
     for n in v_lower.leaves[:-1]:
         #n.bar_line.kind = ''
-        marktools.LilyPondCommandMark('bar ""', format_slot = 'closing')(n)
+        marktools.LilyPondCommandMark('bar ""', 'closing')(n)
     return p
 
 

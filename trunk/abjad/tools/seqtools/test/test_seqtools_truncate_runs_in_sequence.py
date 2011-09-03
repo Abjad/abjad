@@ -15,10 +15,10 @@ def test_seqtools_truncate_runs_in_sequence_01():
 def test_seqtools_truncate_runs_in_sequence_02():
     '''Truncate subruns to length 1.'''
 
-    t = [ ]
+    t = []
     result = seqtools.truncate_runs_in_sequence(t)
 
-    assert result == [ ]
+    assert result == []
 
 
 def test_seqtools_truncate_runs_in_sequence_03():

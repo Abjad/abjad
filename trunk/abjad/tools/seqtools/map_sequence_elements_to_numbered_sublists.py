@@ -33,7 +33,7 @@ def map_sequence_elements_to_numbered_sublists(sequence):
     if not all([isinstance(x, (int, long)) for x in sequence]):
         raise ValueError
 
-    result = [ ]
+    result = []
     cur = 1
 
     for length in sequence:

@@ -121,7 +121,7 @@ def test_tuplettools_make_tuplet_from_proportions_and_pair_24():
 ### TEST DIVIDE ASSERTIONS ###
 
 def test_tuplettools_make_tuplet_from_proportions_and_pair_25():
-    py.test.raises(ValueError, 'tuplettools.make_tuplet_from_proportions_and_pair([ ], (3, 16))')
+    py.test.raises(ValueError, 'tuplettools.make_tuplet_from_proportions_and_pair([], (3, 16))')
 
 def test_tuplettools_make_tuplet_from_proportions_and_pair_26():
     py.test.raises(ValueError, 'tuplettools.make_tuplet_from_proportions_and_pair([0], (3, 16))')

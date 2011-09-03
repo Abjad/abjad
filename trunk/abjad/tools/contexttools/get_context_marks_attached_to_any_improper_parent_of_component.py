@@ -38,7 +38,7 @@ def get_context_marks_attached_to_any_improper_parent_of_component(component):
     '''
     from abjad.tools import componenttools
 
-    result = set([ ])
+    result = set([])
 
     for component in componenttools.get_improper_parentage_of_component(component):
         for mark in component.marks:

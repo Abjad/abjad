@@ -20,7 +20,7 @@ def clip_interval_magnitudes_to_range(intervals, min = None, max = None):
     if not tree:
         return tree
 
-    intervals = [ ]
+    intervals = []
     for interval in tree:
         if min is not None and interval.magnitude < min:
             intervals.append(interval.scale_to_rational(min))

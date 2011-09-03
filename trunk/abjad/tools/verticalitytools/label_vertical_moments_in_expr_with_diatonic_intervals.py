@@ -12,7 +12,7 @@ def label_vertical_moments_in_expr_with_diatonic_intervals(expr, markup_directio
 
     ::
 
-        abjad> score = Score(Staff([ ]) * 3)
+        abjad> score = Score(Staff([]) * 3)
         abjad> notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
         abjad> score[0].extend(notes)
         abjad> contexttools.ClefMark('alto')(score[1])
@@ -57,7 +57,7 @@ def label_vertical_moments_in_expr_with_diatonic_intervals(expr, markup_directio
         notes.reverse()
         bass_note = notes[-1]
         upper_notes = notes[:-1]
-        diatonic_intervals = [ ]
+        diatonic_intervals = []
         for upper_note in upper_notes:
             diatonic_interval = pitchtools.calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(
                 bass_note.written_pitch, upper_note.written_pitch)

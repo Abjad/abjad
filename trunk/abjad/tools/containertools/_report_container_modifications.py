@@ -6,7 +6,7 @@ def _report_container_modifications(container, output):
     assert isinstance(container, containertools.Container)
     assert output in ('screen', 'string')
 
-    result = [ ]
+    result = []
     result.extend(container._formatter.slots.contributions('slot_1'))
     result.extend(container._formatter.slots.contributions('slot_2'))
     result.extend(container._formatter.slots.contributions('slot_3'))

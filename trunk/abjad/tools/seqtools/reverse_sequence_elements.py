@@ -16,7 +16,7 @@ def reverse_sequence_elements(sequence):
     Return new `sequence` object.
     '''
 
-    result = [ ]
+    result = []
     for element in sequence:
         try:
             result.append(reverse_sequence(element))

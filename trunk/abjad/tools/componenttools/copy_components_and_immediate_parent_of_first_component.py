@@ -101,7 +101,7 @@ def copy_components_and_immediate_parent_of_first_component(components):
     parents_music = components[0]._parentage.parent._music
 
     # strip parent of music temporarily
-    parent._music = [ ]
+    parent._music = []
 
     # copy parent without music
     result = copy_components_and_fracture_crossing_spanners([parent])[0]

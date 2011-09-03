@@ -28,4 +28,4 @@ def test_intervaltreetools_compute_logical_and_of_intervals_in_interval_03():
     tree = IntervalTree([a, b, c])
     d = BoundedInterval(2001, 2010)
     logic = compute_logical_and_of_intervals_in_interval(tree, d)
-    assert [x.signature for x in logic] == [ ]
+    assert [x.signature for x in logic] == []

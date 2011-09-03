@@ -30,7 +30,7 @@ def is_well_formed_component(expr, allow_empty_containers = True):
     if not isinstance(expr, _Component):
         return False
 
-    results = [ ]
+    results = []
     for key, value in sorted(vars(_checks).items()):
         checker = value()
         if allow_empty_containers:

@@ -10,7 +10,7 @@ class _ClusterFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
 
     @property
     def slot_2(self):
-        result = [ ]
+        result = []
         cluster = self.formatter.cluster
         contributor = ('cluster_brackets', 'open')
         if self._client._client.is_parallel:

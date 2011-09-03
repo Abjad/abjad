@@ -20,7 +20,7 @@ class ChordClass(NamedChromaticPitchClassSet):
     def __new__(klass, root, *args):
         root = NamedChromaticPitchClass(root)
         quality_indicator = ChordQualityIndicator(*args)
-        npcs = [ ]
+        npcs = []
         for hdi in quality_indicator:
             mdi = hdi.melodic_diatonic_interval_ascending
             npc = root + mdi

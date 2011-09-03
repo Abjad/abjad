@@ -13,10 +13,10 @@ def group_overlapping_intervals_and_yield_groups(intervals):
     else:
         tree = IntervalTree(intervals)
     if not tree:
-        yield IntervalTree([ ])
+        yield IntervalTree([])
         return
 
-    groups = [ ]
+    groups = []
     group = [tree[0]]
 
     low = group[0].low

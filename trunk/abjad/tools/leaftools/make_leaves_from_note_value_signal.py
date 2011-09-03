@@ -34,7 +34,7 @@ def make_leaves_from_note_value_signal(
     from abjad.tools.notetools.Note import Note
     from abjad.tools.resttools.Rest import Rest
 
-    result = [ ]
+    result = []
 
     for note_value in note_value_signal:
         if note_value == 0:

@@ -10,7 +10,7 @@ def _ignore_parentage_of_components(components):
 
     assert componenttools.all_are_components(components)
 
-    receipt = set([ ])
+    receipt = set([])
     for component in components:
         parent = component._parentage.parent
         component._parentage._ignore()

@@ -12,7 +12,7 @@ def insert_and_transpose_nested_subruns_in_chromatic_pitch_class_number_list(not
         abjad> subrun_indicators = [(0, [2, 4]), (4, [3, 1])]
         abjad> pitchtools.insert_and_transpose_nested_subruns_in_chromatic_pitch_class_number_list(notes, subrun_indicators)
 
-        abjad> t = [ ]
+        abjad> t = []
         abjad> for x in notes:
         ...   try:
         ...        t.append(x.written_pitch.chromatic_pitch_number)
@@ -65,7 +65,7 @@ def insert_and_transpose_nested_subruns_in_chromatic_pitch_class_number_list(not
     assert isinstance(subrun_indicators, list)
 
     len_notes = len(notes)
-    instructions = [ ]
+    instructions = []
 
     for subrun_indicator in subrun_indicators:
         pairs = _make_index_length_pairs(subrun_indicator)
@@ -103,7 +103,7 @@ def _get_intervals_in_subrun(subrun_source):
 def _make_index_length_pairs(subrun_indicator):
     anchor_index, subrun_lengths = subrun_indicator
     num_subruns = len(subrun_lengths)
-    pairs = [ ]
+    pairs = []
     for i in range(num_subruns):
         start_index = anchor_index + i
         subrun_length = subrun_lengths[i]
@@ -114,7 +114,7 @@ def _make_index_length_pairs(subrun_indicator):
 
 def _make_new_notes(anchor_pitch, anchor_written_duration, subrun_intervals):
     from abjad.tools import notetools
-    new_notes = [ ]
+    new_notes = []
     for subrun_interval in subrun_intervals:
         new_pc = (abs(anchor_pitch.numbered_chromatic_pitch) + subrun_interval) % 12
         new_note = notetools.Note(new_pc, anchor_written_duration)

@@ -184,5 +184,5 @@ class Grace(Container):
                 delattr(carrier, '_grace')
                 delattr(carrier, 'grace')
             self._carrier = None
-            self[:] = [ ]
+            self[:] = []
         return self

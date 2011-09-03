@@ -57,7 +57,7 @@ def list_improper_contents_of_component_that_cross_prolated_offset(component, pr
     assert isinstance(component, _Component)
     assert isinstance(prolated_offset, (int, float, durtools.Duration))
 
-    result = [ ]
+    result = []
 
     if component.prolated_duration <= prolated_offset:
         return result

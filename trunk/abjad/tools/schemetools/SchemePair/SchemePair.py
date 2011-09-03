@@ -39,7 +39,7 @@ class SchemePair(tuple, _Immutable):
     @property
     def _format_string(self):
         #return ', '.join([str(x) for x in self])
-        result = [ ]
+        result = []
         for x in self:
             if isinstance(x, str):
                 result.append('%r' % x)
@@ -50,7 +50,7 @@ class SchemePair(tuple, _Immutable):
 
     @property
     def _output_string(self):
-        vals = [ ]
+        vals = []
         for x in self:
             if isinstance(x, type(True)) and x:
                 vals.append("#t")

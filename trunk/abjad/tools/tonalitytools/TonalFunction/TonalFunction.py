@@ -90,7 +90,7 @@ class TonalFunction(_Immutable):
 
     @property
     def _format_string(self):
-        result = [ ]
+        result = []
         result.append(self._accidental_name)
         result.append(self._roman_numeral_string)
         result.append(self.quality.quality_string.title())
@@ -253,7 +253,7 @@ class TonalFunction(_Immutable):
         if self.suspension.is_empty:
             return '/'.join([str(x) for x in digits])
         suspension_pair = self.suspension.figured_bass_pair
-        figured_bass_list = [ ]
+        figured_bass_list = []
         for n in range(9, 1, -1):
             if n == suspension_pair[0]:
                 figured_bass_list.append(str(self.suspension))

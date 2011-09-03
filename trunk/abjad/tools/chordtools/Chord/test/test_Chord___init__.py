@@ -5,7 +5,7 @@ def test_Chord___init___01():
     '''Init empty chord.
     '''
 
-    t = Chord([ ], (1, 4))
+    t = Chord([], (1, 4))
     assert t.format == "<>4"
 
 

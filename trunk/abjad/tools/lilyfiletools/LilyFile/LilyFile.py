@@ -70,15 +70,15 @@ class LilyFile(list):
 
     def __init__(self):
         list.__init__(self)
-        self._file_initial_system_comments = [ ]
+        self._file_initial_system_comments = []
         self._file_initial_system_comments.append(AbjadRevisionToken())
         self._file_initial_system_comments.append(DateTimeToken())
-        self._file_initial_user_comments = [ ]
-        self._file_initial_system_includes = [ ]
+        self._file_initial_user_comments = []
+        self._file_initial_system_includes = []
         self._file_initial_system_includes.append(LilyPondVersionToken())
         self._file_initial_system_includes.append(LilyPondLanguageToken())
         self._file_initial_system_includes.append(os.path.join(ABJADPATH, 'cfg', 'abjad.scm'))
-        self._file_initial_user_includes = [ ]
+        self._file_initial_user_includes = []
         self.default_paper_size = None
         self.global_staff_size = None
 
@@ -94,7 +94,7 @@ class LilyFile(list):
 
     @property
     def _format_pieces(self):
-        result = [ ]
+        result = []
         result.extend(self._formatted_file_initial_system_comments)
         result.extend(self._formatted_file_initial_user_comments)
         result.extend(self._formatted_file_initial_system_includes)
@@ -105,7 +105,7 @@ class LilyFile(list):
 
     @property
     def _formatted_blocks(self):
-        result = [ ]
+        result = []
         for x in self:
             if 'format' in dir(x) and not isinstance(x, str):
                 format = x.format
@@ -117,7 +117,7 @@ class LilyFile(list):
 
     @property
     def _formatted_file_initial_system_comments(self):
-        result = [ ]
+        result = []
         for x in self.file_initial_system_comments:
             if 'format' in dir(x) and not isinstance(x, str):
                 format = x.format
@@ -131,7 +131,7 @@ class LilyFile(list):
 
     @property
     def _formatted_file_initial_system_includes(self):
-        result = [ ]
+        result = []
         for file_initial_include in self.file_initial_system_includes:
             if isinstance(file_initial_include, str):
                 result.append(r'\include "%s"' % file_initial_include)
@@ -143,7 +143,7 @@ class LilyFile(list):
 
     @property
     def _formatted_file_initial_scheme_settings(self):
-        result = [ ]
+        result = []
         default_paper_size = self.default_paper_size
         if default_paper_size is not None:
             dimension, orientation = default_paper_size
@@ -157,7 +157,7 @@ class LilyFile(list):
 
     @property
     def _formatted_file_initial_user_comments(self):
-        result = [ ]
+        result = []
         for x in self.file_initial_user_comments:
             if 'format' in dir(x) and not isinstance(x, str):
                 format = x.format
@@ -171,7 +171,7 @@ class LilyFile(list):
 
     @property
     def _formatted_file_initial_user_includes(self):
-        result = [ ]
+        result = []
         for file_initial_include in self.file_initial_user_includes:
             if isinstance(file_initial_include, str):
                 result.append(r'\include "%s"' % file_initial_include)

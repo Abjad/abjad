@@ -15,7 +15,7 @@ def make_repeated_rests_from_time_signatures(time_signatures):
     '''
 
     ### init result
-    result = [ ]
+    result = []
 
     ### iterate time signatures and make rests
     for time_signature in time_signatures:

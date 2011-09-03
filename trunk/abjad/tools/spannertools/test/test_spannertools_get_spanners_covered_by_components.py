@@ -42,7 +42,7 @@ def test_spannertools_get_spanners_covered_by_components_01():
     assert beam in spanners
 
     spanners = spannertools.get_spanners_covered_by_components(t.leaves[0:1])
-    assert spanners == set([ ])
+    assert spanners == set([])
 
 
 

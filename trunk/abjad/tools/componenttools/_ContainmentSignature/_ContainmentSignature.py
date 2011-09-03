@@ -30,7 +30,7 @@ class _ContainmentSignature(_StrictComparator):
         return '<' + ' * '.join(str.split('\n')) + ' >'
 
     def __str__(self):
-        result = [ ]
+        result = []
         result.append('        root: %s (%s)' % (self._root_str, self._root))
         result.append('     score: %s' % (self._score or ''))
         result.append('staffgroup: %s' % (self._staffgroup or ''))

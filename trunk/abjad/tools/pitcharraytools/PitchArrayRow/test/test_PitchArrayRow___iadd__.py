@@ -11,14 +11,14 @@ def test_PitchArrayRow___iadd___01():
 
     '''
     [c'] [d'     ] [  ]
-    [         ] [ ] [e']
+    [         ] [] [e']
     '''
 
     row = array[0].withdraw()
     row += row
 
     '''
-    [c'] [d'] [ ] [c'] [d'] [ ]
+    [c'] [d'] [] [c'] [d'] []
     '''
 
     assert row.cell_widths == (1, 2, 1, 1, 2, 1)

@@ -11,13 +11,13 @@ def test_PitchArrayRow_copy_subrow_01():
 
     '''
     [c'] [d'     ] [  ]
-    [         ] [ ] [e']
+    [         ] [] [e']
     '''
 
     subrow = array[0].copy_subrow(2, None)
 
     '''
-    [d'] [ ]
+    [d'] []
     '''
 
     assert subrow.dimensions == (1, 2)

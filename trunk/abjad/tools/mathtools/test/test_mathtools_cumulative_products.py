@@ -18,4 +18,4 @@ def test_mathtools_cumulative_products_02():
         Raise ValueError when l is empty.'''
 
     assert py.test.raises(TypeError, "mathtools.cumulative_products('foo')")
-    assert py.test.raises(ValueError, 'mathtools.cumulative_products([ ])')
+    assert py.test.raises(ValueError, 'mathtools.cumulative_products([])')

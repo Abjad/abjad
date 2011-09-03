@@ -63,7 +63,7 @@ def make_repeated_notes_with_shorter_notes_at_end(pitch, written_duration, total
 
     prolated_duration = prolation * written_duration
     current_duration = durtools.Duration(0)
-    result = [ ]
+    result = []
     while current_duration + prolated_duration <= total_duration:
         result.append(Note(pitch, written_duration))
         current_duration += prolated_duration

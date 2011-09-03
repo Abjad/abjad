@@ -5,7 +5,7 @@ from abjad import Fraction
 
 
 def test_intervaltreetools_calculate_min_mean_and_max_depth_of_intervals_01():
-    tree = IntervalTree([ ])
+    tree = IntervalTree([])
     result = calculate_min_mean_and_max_depth_of_intervals(tree)
     assert result is None
 

@@ -37,7 +37,7 @@ def test_Spanner_leaves_03():
     '''Spanner attaching to empty container knows about container
         and also about empty leaves.'''
 
-    t = Voice([ ])
+    t = Voice([])
     p = spannertools.Spanner(t)
 
     assert len(p.components) == 1

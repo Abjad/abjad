@@ -7,6 +7,6 @@ class RhythmicStaff(Staff):
 
     __slots__ = ()
 
-    def __init__(self, music = [ ], **kwargs):
+    def __init__(self, music = [], **kwargs):
         Staff.__init__(self, music, **kwargs)
         self.context = 'RhythmicStaff'

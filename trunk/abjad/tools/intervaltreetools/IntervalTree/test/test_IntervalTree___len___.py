@@ -3,7 +3,7 @@ from abjad.tools.intervaltreetools import *
 
 def test_IntervalTree___len____01():
     '''IntervalTree containing no BoundedIntervals report 0 length.'''
-    tree = IntervalTree([ ])
+    tree = IntervalTree([])
     assert len(tree) == 0
 
 

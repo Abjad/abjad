@@ -6,6 +6,6 @@ def test_Staff___setattr___01():
     '''Slots constrain staff attributes.
     '''
 
-    staff = Staff([ ])
+    staff = Staff([])
 
     assert py.test.raises(AttributeError, "staff.foo = 'bar'")

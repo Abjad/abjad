@@ -36,4 +36,4 @@ def test_componenttools_all_are_contiguous_components_in_same_thread_04():
 def test_componenttools_all_are_contiguous_components_in_same_thread_05():
     '''True for empty list.'''
 
-    assert componenttools.all_are_contiguous_components_in_same_thread([ ])
+    assert componenttools.all_are_contiguous_components_in_same_thread([])

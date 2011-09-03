@@ -32,8 +32,8 @@ The code to generate this table is as follows::
     score, treble_staff, bass_staff = scoretools.make_empty_piano_score()
     duration = Fraction(1, 32)
 
-    treble = measuretools.AnonymousMeasure([ ])
-    bass = measuretools.AnonymousMeasure([ ])
+    treble = measuretools.AnonymousMeasure([])
+    bass = measuretools.AnonymousMeasure([])
 
     treble_staff.append(treble)
     bass_staff.append(bass)

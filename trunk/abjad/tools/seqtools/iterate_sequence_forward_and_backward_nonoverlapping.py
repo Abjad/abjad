@@ -13,7 +13,7 @@ def iterate_sequence_forward_and_backward_nonoverlapping(sequence):
     Return generator.
     '''
 
-    sequence_copy = [ ]
+    sequence_copy = []
     for x in sequence:
         yield x
         sequence_copy.append(x)

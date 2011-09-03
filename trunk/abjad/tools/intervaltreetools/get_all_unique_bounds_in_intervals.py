@@ -11,7 +11,7 @@ def get_all_unique_bounds_in_intervals(intervals):
     else:
         tree = IntervalTree(intervals)
 
-    values = [ ]
+    values = []
     for interval in tree:
         if interval.low not in values:
             values.append(interval.low)

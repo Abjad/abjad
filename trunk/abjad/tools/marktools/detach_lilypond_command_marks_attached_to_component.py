@@ -43,7 +43,7 @@ def detach_lilypond_command_marks_attached_to_component(component, command_name 
     Return tuple of zero or more marks detached.
     '''
 
-    marks = [ ]
+    marks = []
     for mark in get_lilypond_command_marks_attached_to_component(
         component, command_name = command_name):
         mark.detach_mark()

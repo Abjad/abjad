@@ -11,7 +11,7 @@ def test_NamedChromaticPitchSet_chromatic_pitch_numbers_01():
 def test_NamedChromaticPitchSet_chromatic_pitch_numbers_02():
     '''Works with other pitch sets.'''
 
-    pitch_set = pitchtools.NamedChromaticPitchSet([ ])
+    pitch_set = pitchtools.NamedChromaticPitchSet([])
     assert pitch_set.chromatic_pitch_numbers == ()
 
     pitch_set = pitchtools.NamedChromaticPitchSet([-10])

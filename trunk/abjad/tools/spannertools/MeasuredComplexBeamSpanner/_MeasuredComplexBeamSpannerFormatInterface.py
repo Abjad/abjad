@@ -10,7 +10,7 @@ class _MeasuredComplexBeamSpannerFormatInterface(_ComplexBeamSpannerFormatInterf
         '''Spanner format contribution to output before leaf.'''
         from abjad.tools.measuretools.Measure import Measure
         from abjad.tools import componenttools
-        result = [ ]
+        result = []
         spanner = self.spanner
         #if leaf.beam.beamable:
         if componenttools.is_beamable_component(leaf):

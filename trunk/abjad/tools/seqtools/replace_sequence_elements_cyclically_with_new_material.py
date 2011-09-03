@@ -59,7 +59,7 @@ def replace_sequence_elements_cyclically_with_new_material(sequence, indices, ne
     if material_period is None:
         material_period = sys.maxint
 
-    result = [ ]
+    result = []
 
     material_index = 0
 

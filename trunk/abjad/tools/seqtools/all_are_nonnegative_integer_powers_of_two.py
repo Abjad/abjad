@@ -15,7 +15,7 @@ def all_are_nonnegative_integer_powers_of_two(expr):
 
     True when `expr` is an empty sequence::
 
-        abjad> seqtools.all_are_nonnegative_integer_powers_of_two([ ])
+        abjad> seqtools.all_are_nonnegative_integer_powers_of_two([])
         True
 
     False otherwise::

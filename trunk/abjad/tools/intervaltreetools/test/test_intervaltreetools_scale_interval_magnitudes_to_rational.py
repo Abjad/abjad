@@ -16,7 +16,7 @@ def test_intervaltreetools_scale_interval_magnitudes_to_rational_01():
     assert scaled[2] == BoundedInterval(5, Fraction(100, 7), {'c': 3})
 
 def test_intervaltreetools_scale_interval_magnitudes_to_rational_02():
-    tree = IntervalTree([ ])
+    tree = IntervalTree([])
     scalar = Fraction(5, 2)
     scaled = scale_interval_magnitudes_by_rational(tree, scalar)
     assert scaled == tree

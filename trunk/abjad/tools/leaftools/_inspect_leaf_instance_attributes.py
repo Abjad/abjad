@@ -10,8 +10,8 @@ def _inspect_leaf_instance_attributes(instance):
 
     ### inspect class attributes
     class_attribute_names = dir(instance.__class__)
-    read_only_class_properties = [ ]
-    read_write_class_properties = [ ]
+    read_only_class_properties = []
+    read_write_class_properties = []
     for class_attribute_name in class_attribute_names:
         ### ignore private class attributes
         if class_attribute_name.startswith('_'):
@@ -32,7 +32,7 @@ def _inspect_leaf_instance_attributes(instance):
             raise ValueError(message % instance.__class__.__name__)
 
     ### inspect instance attributes
-    vanilla_instance_attributes = [ ]
+    vanilla_instance_attributes = []
     instance_attribute_names = dir(instance)
     for instance_attribute_name in instance_attribute_names:
         ### ignore private instance attributes

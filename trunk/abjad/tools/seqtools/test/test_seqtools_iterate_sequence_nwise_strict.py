@@ -12,8 +12,8 @@ def test_seqtools_iterate_sequence_nwise_strict_01():
 def test_seqtools_iterate_sequence_nwise_strict_02():
     '''Empty iterable boundary case.'''
 
-    t = list(seqtools.iterate_sequence_nwise_strict([ ], 3))
-    assert t == [ ]
+    t = list(seqtools.iterate_sequence_nwise_strict([], 3))
+    assert t == []
 
 
 def test_seqtools_iterate_sequence_nwise_strict_03():

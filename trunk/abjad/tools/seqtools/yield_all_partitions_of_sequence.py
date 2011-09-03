@@ -29,7 +29,7 @@ def yield_all_partitions_of_sequence(sequence):
     if not isinstance(sequence, list):
         raise TypeError('%s must be list.' % sequence)
 
-    partitions = [ ]
+    partitions = []
 
     len_l_minus_1 = len(sequence) - 1
     for i in range(2 ** len_l_minus_1):

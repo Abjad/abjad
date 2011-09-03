@@ -9,8 +9,8 @@ def test_PitchArrayCell_token_01():
     array[0].cells[1].pitches.extend([pitchtools.NamedChromaticPitch(2), pitchtools.NamedChromaticPitch(4)])
 
     '''
-    [c'] [d' e'     ] [ ]
-    [             ] [ ] [ ]
+    [c'] [d' e'     ] []
+    [             ] [] []
     '''
 
     assert array[0].cells[0].token == ('c', 4)

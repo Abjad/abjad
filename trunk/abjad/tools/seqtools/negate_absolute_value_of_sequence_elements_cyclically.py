@@ -18,7 +18,7 @@ def negate_absolute_value_of_sequence_elements_cyclically(sequence, indices, per
     Return newly constructed list.
     '''
 
-    result = [ ]
+    result = []
 
     for i, element in enumerate(sequence):
         if (i in indices) or (period and i % period in indices):

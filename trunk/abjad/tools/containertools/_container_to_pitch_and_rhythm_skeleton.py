@@ -8,7 +8,7 @@ def _container_to_pitch_and_rhythm_skeleton(container, include_keyword_attribute
     from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
     from abjad.tools.leaftools._get_leaf_keyword_attributes import _get_leaf_keyword_attributes
     class_name = container.__class__.__name__
-    contents = [ ]
+    contents = []
     for x in container:
         if include_keyword_attributes:
             skeleton = \
@@ -23,7 +23,7 @@ def _container_to_pitch_and_rhythm_skeleton(container, include_keyword_attribute
     if include_keyword_attributes:
         keyword_attributes = _get_leaf_keyword_attributes(container)
     else:
-        keyword_attributes = [ ]
+        keyword_attributes = []
     if keyword_attributes:
         keyword_attributes = ',\n'.join(keyword_attributes)
         keyword_attributes = '\n' + keyword_attributes

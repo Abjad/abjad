@@ -10,9 +10,9 @@ def _split_sequence_by_weights(sequence, weights, cyclic = False, overhang = Fal
     Return list of sequence types.
     '''
 
-    result = [ ]
+    result = []
     cur_index = 0
-    cur_piece = [ ]
+    cur_piece = []
     if cyclic:
         weights = repeat_sequence_to_weight_at_most(weights, mathtools.weight(sequence))
     for weight in weights:
@@ -24,7 +24,7 @@ def _split_sequence_by_weights(sequence, weights, cyclic = False, overhang = Fal
         if cur_piece_weight == weight:
             cur_piece = type(sequence)(cur_piece)
             result.append(cur_piece)
-            cur_piece = [ ]
+            cur_piece = []
         elif weight < cur_piece_weight:
             overage = cur_piece_weight - weight
             cur_last_element = cur_piece.pop(-1)

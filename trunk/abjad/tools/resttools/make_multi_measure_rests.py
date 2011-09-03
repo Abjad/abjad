@@ -13,7 +13,7 @@ def make_multi_measure_rests(duration_tokens):
     Return list.
     '''
 
-    multi_measure_rests = [ ]
+    multi_measure_rests = []
 
     for duration_token in duration_tokens:
         written_duration = durtools.duration_token_to_rational(duration_token)

@@ -89,7 +89,7 @@ class Matrix(object):
     def _init_from_columns(self, columns):
         columns = tuple([tuple(column) for column in columns])
         assert len(set([len(column) for column in columns])) in (0, 1)
-        rows = [ ]
+        rows = []
         for row_index in range(len(columns[0])):
             row = tuple([column[row_index] for column in columns])
             rows.append(row)
@@ -99,7 +99,7 @@ class Matrix(object):
     def _init_from_rows(self, rows):
         rows = tuple([tuple(row) for row in rows])
         assert len(set([len(row) for row in rows])) in (0, 1)
-        columns = [ ]
+        columns = []
         for column_index in range(len(rows[0])):
             column = tuple([row[column_index] for row in rows])
             columns.append(column)

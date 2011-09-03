@@ -44,7 +44,7 @@ def interpolate_divide_multiple(totals, key_values, exp='cosine'):
 
     assert len(totals) == len(key_values) - 1
 
-    result = [ ]
+    result = []
     for i in range(len(totals)):
         dts = interpolate_divide(totals[i], key_values[i], key_values[i+1], exp)
         ### we want a flat list

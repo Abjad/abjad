@@ -13,7 +13,7 @@ def make_repeated_skips_from_time_signatures(time_signatures):
     '''
 
     ### init result
-    result = [ ]
+    result = []
 
     ### iterate time signatures and make skips
     for time_signature in time_signatures:

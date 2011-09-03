@@ -44,7 +44,7 @@ def mask_intervals_with_intervals(masked_intervals, mask_intervals):
         mask_tree = IntervalTree(mask_intervals)
 
     if not masked_tree or not mask_tree:
-        return IntervalTree([ ])
+        return IntervalTree([])
 
 #   print 'masked: %d, %s | mask: %d, %s' % (len(masked_tree), get_all_unique_bounds_in_intervals(masked_tree), \
 #      len(mask_tree), get_all_unique_bounds_in_intervals(mask_tree))

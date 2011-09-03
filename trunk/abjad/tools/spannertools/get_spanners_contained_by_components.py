@@ -14,7 +14,7 @@ def get_spanners_contained_by_components(components):
 
     assert componenttools.all_are_thread_contiguous_components(components)
 
-    result = set([ ])
+    result = set([])
     for component in components:
         #result.update(component.spanners.contained)
         result.update(get_spanners_attached_to_any_improper_child_of_component(component))

@@ -88,7 +88,7 @@ class _ComplexBeamSpannerFormatInterface(_BeamSpannerFormatInterface):
     def _before(self, leaf):
         '''Spanner format contribution to output before leaf.'''
         from abjad.tools import componenttools
-        result = [ ]
+        result = []
         result.extend(_BeamSpannerFormatInterface._before(self, leaf))
         spanner = self.spanner
         if componenttools.is_beamable_component(leaf):
@@ -107,7 +107,7 @@ class _ComplexBeamSpannerFormatInterface(_BeamSpannerFormatInterface):
     def _right(self, leaf):
         '''Spanner format contribution to output right of leaf.'''
         from abjad.tools import componenttools
-        result = [ ]
+        result = []
         spanner = self.spanner
         #if leaf.beam.beamable:
         if componenttools.is_beamable_component(leaf):

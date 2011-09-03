@@ -39,8 +39,8 @@ def test_spannertools_withdraw_from_attached_02():
 
 
 def test_spannertools_withdraw_from_attached_03():
-    t = _withdraw_components_from_attached_spanners([ ])
-    assert t == [ ]
+    t = _withdraw_components_from_attached_spanners([])
+    assert t == []
 
 
 

@@ -12,12 +12,12 @@ def test_componenttools_all_are_contiguous_components_01():
     components = list(reversed(t.leaves))
     assert not componenttools.all_are_contiguous_components(components)
 
-    components = [ ]
+    components = []
     components.extend(t.leaves[2:])
     components.extend(t.leaves[:2])
     assert not componenttools.all_are_contiguous_components(components)
 
-    components = [ ]
+    components = []
     components.extend(t.leaves[3:4])
     components.extend(t.leaves[0:1])
     assert not componenttools.all_are_contiguous_components(components)
@@ -67,6 +67,6 @@ def test_componenttools_all_are_contiguous_components_03():
 def test_componenttools_all_are_contiguous_components_04():
     '''Empty list returns True.'''
 
-    t = [ ]
+    t = []
 
     assert componenttools.all_are_contiguous_components(t)

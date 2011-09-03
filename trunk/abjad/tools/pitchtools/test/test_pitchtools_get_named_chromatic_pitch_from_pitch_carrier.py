@@ -43,7 +43,7 @@ def test_pitchtools_get_named_chromatic_pitch_from_pitch_carrier_05():
 
 def test_pitchtools_get_named_chromatic_pitch_from_pitch_carrier_06():
 
-    chord = Chord([ ], (1, 4))
+    chord = Chord([], (1, 4))
     assert py.test.raises(
         MissingPitchError, 't = pitchtools.get_named_chromatic_pitch_from_pitch_carrier(chord)')
 

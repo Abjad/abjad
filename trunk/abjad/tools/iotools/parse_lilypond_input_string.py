@@ -30,11 +30,11 @@ def parse_lilypond_input_string(note_entry_string):
     from abjad.tools import leaftools
     from abjad.tools import spannertools
 
-    container = Container([ ])
+    container = Container([])
     tokens = note_entry_string.split()
 
     in_chord = False
-    chord_tokens = [ ]
+    chord_tokens = []
 
     in_beam = False
     beam_start_leaf = None
@@ -75,7 +75,7 @@ def parse_lilypond_input_string(note_entry_string):
                 else:
                     container.append(leaf)
                 in_chord = False
-                chord_tokens = [ ]
+                chord_tokens = []
                 if clef_string:
                     last_leaf = leaftools.get_nth_leaf_in_expr(container, -1)
                     contexttools.ClefMark(clef_string)(last_leaf)
@@ -162,7 +162,7 @@ def parse_lilypond_input_string(note_entry_string):
                 BeamSpanner(container[start_index:stop_index + 1])
                 beam_start_leaf = None
 
-            elif token == '[ ]':
+            elif token == '[]':
                 if in_beam:
                     raise Exception('Attempting to create overlapping beams.')
                 last_leaf = leaftools.get_nth_leaf_in_expr(container, -1)

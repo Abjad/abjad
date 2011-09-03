@@ -178,7 +178,7 @@ def test_measuretools_fuse_measures_04():
 def test_measuretools_fuse_measures_05():
     '''Fusing empty list raises no excpetion but returns None.'''
 
-    result = measuretools.fuse_measures([ ])
+    result = measuretools.fuse_measures([])
     assert result is None
 
 
@@ -282,8 +282,8 @@ def test_measuretools_fuse_measures_09():
         With change in number of note_heads because of nonbinary multiplier.'''
 
     t = Staff([
-        Measure((9, 80), [ ]),
-        Measure((2, 16), [ ])])
+        Measure((9, 80), []),
+        Measure((2, 16), [])])
     measuretools.fill_measures_in_expr_with_meter_denominator_notes(t)
 
     r'''

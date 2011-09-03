@@ -7,7 +7,7 @@ def test_pitchtools_transpose_chromatic_pitch_number_by_octave_transposition_map
     mapping = [((-39, -13), 0), ((-12, 23), 12), ((24, 48), 24)]
     pitch_numbers = [-30, -18, -6, 6, 18, 30, 42]
 
-    t = [ ]
+    t = []
     for pitch_number in pitch_numbers:
         t.append(pitchtools.transpose_chromatic_pitch_number_by_octave_transposition_mapping(pitch_number, mapping))
 
@@ -20,7 +20,7 @@ def test_pitchtools_transpose_chromatic_pitch_number_by_octave_transposition_map
     mapping = [((-39, -1), 0), ((0, 48), 6)]
     pitch_numbers = [-30, -18, -6, 6, 18, 30, 42]
 
-    t = [ ]
+    t = []
     for pitch_number in pitch_numbers:
         t.append(pitchtools.transpose_chromatic_pitch_number_by_octave_transposition_mapping(pitch_number, mapping))
 
@@ -33,7 +33,7 @@ def test_pitchtools_transpose_chromatic_pitch_number_by_octave_transposition_map
     mapping = [((-39, -1), 0), ((0, 48), 6)]
     pitch_numbers = [-34, -22, -10, 2, 14, 26, 38]
 
-    t = [ ]
+    t = []
     for pitch_number in pitch_numbers:
         t.append(pitchtools.transpose_chromatic_pitch_number_by_octave_transposition_mapping(pitch_number, mapping))
 

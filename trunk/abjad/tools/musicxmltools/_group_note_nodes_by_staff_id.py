@@ -8,7 +8,7 @@ def _group_note_nodes_by_staff_id(nodes):
     if not ids:
         return [nodes]
     else:
-        groups = [ ]
+        groups = []
         for id in ids:
             groups.append(filter(\
                 lambda x: _get_staff_id_in_note_node(x) == id, nodes))

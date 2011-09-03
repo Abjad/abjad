@@ -26,7 +26,7 @@ def test_Staff_meter_01():
 def test_Staff_meter_02():
     '''Force meter on empty staff.'''
 
-    t = Staff([ ])
+    t = Staff([])
     contexttools.TimeSignatureMark((2, 4))(t)
 
     r'''

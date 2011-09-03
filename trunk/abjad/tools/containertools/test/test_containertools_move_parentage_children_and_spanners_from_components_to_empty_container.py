@@ -26,7 +26,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
     }
     '''
 
-    tuplet = tuplettools.FixedDurationTuplet(Duration(3, 8), [ ])
+    tuplet = tuplettools.FixedDurationTuplet(Duration(3, 8), [])
     containertools.move_parentage_children_and_spanners_from_components_to_empty_container(t[:2], tuplet)
 
     r'''
@@ -125,7 +125,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
     '''
 
     containertools.move_parentage_children_and_spanners_from_components_to_empty_container(
-        t[1:2], tuplettools.FixedDurationTuplet(Duration(3, 16), [ ]))
+        t[1:2], tuplettools.FixedDurationTuplet(Duration(3, 16), []))
 
     r'''
     \new Voice {
@@ -198,7 +198,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
     }
     '''
 
-    tuplet = tuplettools.FixedDurationTuplet(Duration(3, 8), [ ])
+    tuplet = tuplettools.FixedDurationTuplet(Duration(3, 8), [])
     assert py.test.raises(AssertionError,
         'containertools.move_parentage_children_and_spanners_from_components_to_empty_container([t[0], t[2]], tuplet)')
 
@@ -218,7 +218,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
     }
     '''
 
-    u = Measure((4, 8), [ ])
+    u = Measure((4, 8), [])
     containertools.move_parentage_children_and_spanners_from_components_to_empty_container([t], u)
 
     r'''

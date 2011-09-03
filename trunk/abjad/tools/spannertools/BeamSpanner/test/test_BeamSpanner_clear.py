@@ -10,7 +10,7 @@ def test_BeamSpanner_clear_01():
 
     r'''
     \new Staff {
-        c'8 [ ]
+        c'8 []
         cs'8
         d'8
         ef'8
@@ -49,7 +49,7 @@ def test_BeamSpanner_clear_02():
 
     r'''
     \new Staff {
-        c'8 [ ]
+        c'8 []
         cs'8
         d'8
         ef'8

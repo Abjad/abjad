@@ -16,7 +16,7 @@ def test_seqtools_all_are_equal_02():
     '''True on empty sequence.
     '''
 
-    assert seqtools.all_are_equal([ ])
+    assert seqtools.all_are_equal([])
 
 
 def test_seqtools_all_are_equal_03():

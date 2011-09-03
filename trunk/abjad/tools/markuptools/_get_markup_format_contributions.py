@@ -3,9 +3,9 @@ def _get_markup_format_contributions(component):
     '''
     from abjad.tools import markuptools
 
-    result = [ ]
+    result = []
     markup = markuptools.get_markup_attached_to_component(component)
-    up_markup, down_markup, neutral_markup = [ ], [ ], [ ]
+    up_markup, down_markup, neutral_markup = [], [], []
     for markup_object in markup:
         if markup_object._direction_string == 'up':
             up_markup.append(markup_object)

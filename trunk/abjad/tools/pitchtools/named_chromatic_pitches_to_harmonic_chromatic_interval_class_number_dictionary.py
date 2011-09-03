@@ -19,7 +19,7 @@ def named_chromatic_pitches_to_harmonic_chromatic_interval_class_number_dictiona
         ``pitchtools.named_chromatic_pitches_to_harmonic_chromatic_interval_class_number_dictionary()``.
     '''
 
-    numbers = [ ]
+    numbers = []
 
     for pitch in pitches:
         if not isinstance(pitch, NamedChromaticPitch):
@@ -28,7 +28,7 @@ def named_chromatic_pitches_to_harmonic_chromatic_interval_class_number_dictiona
 
     pairs = seqtools.yield_all_unordered_pairs_of_sequence(numbers)
 
-    intervals = [ ]
+    intervals = []
 
     for pair in pairs:
         interval = max(pair) - min(pair)

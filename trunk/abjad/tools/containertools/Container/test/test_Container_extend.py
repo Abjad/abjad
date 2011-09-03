@@ -68,7 +68,7 @@ def test_Container_extend_03():
 
     t = Voice("c'8 d'8")
     spannertools.BeamSpanner(t[:])
-    t.extend([ ])
+    t.extend([])
 
     r'''
     \new Voice {
@@ -87,7 +87,7 @@ def test_Container_extend_04():
 
     t = Voice("c'8 d'8")
     spannertools.BeamSpanner(t[:])
-    t.extend(Voice([ ]))
+    t.extend(Voice([]))
 
     r'''
     \new Voice {

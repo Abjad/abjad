@@ -11,7 +11,7 @@ def test_measuretools_pitch_array_row_to_measure_01():
 
     '''
     [  ] [d'] [bf bqf     ]
-    [g'      ] [fs'    ] [ ]
+    [g'      ] [fs'    ] []
     '''
     measure = measuretools.pitch_array_row_to_measure(array.rows[0])
 

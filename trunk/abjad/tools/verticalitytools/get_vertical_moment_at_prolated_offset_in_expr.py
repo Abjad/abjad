@@ -12,9 +12,9 @@ def get_vertical_moment_at_prolated_offset_in_expr(governor, prolated_offset):
 
     ::
 
-        abjad> score = Score([ ])
+        abjad> score = Score([])
         abjad> score.append(Staff([tuplettools.FixedDurationTuplet(Duration(4, 8), notetools.make_repeated_notes(3))]))
-        abjad> piano_staff = scoretools.PianoStaff([ ])
+        abjad> piano_staff = scoretools.PianoStaff([])
         abjad> piano_staff.append(Staff(notetools.make_repeated_notes(2, Duration(1, 4))))
         abjad> piano_staff.append(Staff(notetools.make_repeated_notes(4)))
         abjad> contexttools.ClefMark('bass')(piano_staff[1])
@@ -56,7 +56,7 @@ def get_vertical_moment_at_prolated_offset_in_expr(governor, prolated_offset):
     '''
     from abjad.tools.verticalitytools.VerticalMoment import VerticalMoment
 
-    governors = [ ]
+    governors = []
     message = 'must be Abjad component or list or tuple of Abjad components.'
     if isinstance(governor, _Component):
         governors.append(governor)
@@ -74,7 +74,7 @@ def get_vertical_moment_at_prolated_offset_in_expr(governor, prolated_offset):
             componenttools.component_to_score_index(y)))
     governors = tuple(governors)
 
-    components = [ ]
+    components = []
     for governor in governors:
         for component in iterate_components_forward_in_expr(governor, _Component):
             if component._offset.start <= prolated_offset:

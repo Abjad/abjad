@@ -14,7 +14,7 @@ def yield_components_grouped_by_prolated_duration(components):
     Return generator.
     '''
 
-    cur_group = [ ]
+    cur_group = []
     for component in components:
         if cur_group:
             prev_component = cur_group[-1]
@@ -24,7 +24,7 @@ def yield_components_grouped_by_prolated_duration(components):
                 cur_group.append(component)
             else:
                 yield tuple(cur_group)
-                cur_group = [ ]
+                cur_group = []
                 cur_group.append(component)
         else:
             cur_group.append(component)

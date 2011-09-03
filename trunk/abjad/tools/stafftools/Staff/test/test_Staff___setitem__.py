@@ -68,13 +68,13 @@ def test_Staff___setitem___02():
 def test_Staff___setitem___03():
     '''Item-assign an empty container to t.'''
     t = Staff(Note("c'4") * 4)
-    t[0] = Voice([ ])
+    t[0] = Voice([])
 
 
 def test_Staff___setitem___04():
     '''Slice-assign empty containers to t.'''
     t = Staff(Note("c'4") * 4)
-    t[0:2] = [Voice([ ]), Voice([ ])]
+    t[0:2] = [Voice([]), Voice([])]
 
 
 def test_Staff___setitem___05():

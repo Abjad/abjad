@@ -17,4 +17,4 @@ def test_seqtools_iterate_sequence_cyclically_from_start_to_stop_02():
     assert list(t) == [10, 11, 12, 13, 14, 15, 16, 17]
 
     t = seqtools.iterate_sequence_cyclically_from_start_to_stop(l, 10, 10)
-    assert list(t) == [ ]
+    assert list(t) == []

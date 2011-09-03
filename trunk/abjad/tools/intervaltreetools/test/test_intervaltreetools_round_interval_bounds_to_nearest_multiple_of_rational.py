@@ -52,6 +52,6 @@ def test_intervaltreetools_round_interval_bounds_to_nearest_multiple_of_rational
 
 
 def test_intervaltreetools_round_interval_bounds_to_nearest_multiple_of_rational_05():
-    tree = IntervalTree([ ])
+    tree = IntervalTree([])
     result = round_interval_bounds_to_nearest_multiple_of_rational(tree, 1)
     assert result == tree

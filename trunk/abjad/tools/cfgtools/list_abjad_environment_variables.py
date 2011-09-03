@@ -17,7 +17,7 @@ def list_abjad_environment_variables():
         ``cfgtools.list_abjad_environment_variables()``.
     '''
 
-    result = [ ]
+    result = []
     for key, value in sorted(vars(cfg).items()):
         if not isinstance(value, types.ModuleType):
             if not key.startswith('_'):

@@ -13,7 +13,7 @@ def list_prolated_durations_of_leaves_in_expr(expr):
     Return list of fractions.
     '''
 
-    durations = [ ]
+    durations = []
 
     for leaf in iterate_leaves_forward_in_expr(expr):
         durations.append(leaf.prolated_duration)

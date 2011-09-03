@@ -30,7 +30,7 @@ def fracture_all_spanners_attached_to_component(component, direction = 'both', k
     Set `direction` to left, right or both.
     '''
 
-    result = [ ]
+    result = []
     #for spanner in set(component.spanners.attached):
     #for spanner in set(component.spanners._spanners):
     for spanner in component.spanners:

@@ -13,8 +13,8 @@ def iterate_sequence_nwise_wrapped(sequence, n):
     Return generator.
     '''
 
-    first_n_minus_1 = [ ]
-    buffer = [ ]
+    first_n_minus_1 = []
+    buffer = []
     for element in sequence:
         buffer.append(element)
         if len(buffer) == n:

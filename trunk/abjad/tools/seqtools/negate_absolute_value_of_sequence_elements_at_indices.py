@@ -21,7 +21,7 @@ def negate_absolute_value_of_sequence_elements_at_indices(sequence, indices):
         ``seqtools.negate_absolute_value_of_sequence_elements_at_indices()``.
     '''
 
-    result = [ ]
+    result = []
 
     for i, element in enumerate(sequence):
         if (i in indices):

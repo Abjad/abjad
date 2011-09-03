@@ -23,7 +23,7 @@ class NamedChromaticPitchClassSet(_PitchClassSet):
 
     def __new__(self, expr):
         from abjad.tools import pitchtools
-        npcs = [ ]
+        npcs = []
         ### assume expr is iterable
         try:
             for x in expr:
@@ -40,7 +40,7 @@ class NamedChromaticPitchClassSet(_PitchClassSet):
                 npcs.append(npc)
             ### expr is a Rest or non-PC type
             except TypeError:
-                npcs = [ ]
+                npcs = []
         return frozenset.__new__(self, npcs)
 
     ### OVERLOADS ###

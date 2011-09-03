@@ -15,9 +15,9 @@ def test_intervaltreetools_group_overlapping_intervals_and_yield_groups_01():
         [(34, 37)],
     ]
 
-    actual_signatures = [ ]
+    actual_signatures = []
     for group in group_overlapping_intervals_and_yield_groups(tree):
-        signature_group = [ ]
+        signature_group = []
         for interval in group:
             signature_group.append(interval.signature)
         actual_signatures.append(signature_group)

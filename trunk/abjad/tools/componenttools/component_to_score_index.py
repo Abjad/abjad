@@ -48,7 +48,7 @@ def component_to_score_index(component):
     Return tuple of zero or more nonnegative integers.
     '''
 
-    result = [ ]
+    result = []
     cur = component
     parent = cur._parentage.parent
     while parent is not None:

@@ -44,7 +44,7 @@ def make_measures_with_full_measure_spacer_skips(meters):
     meters = [contexttools.TimeSignatureMark(meter) for meter in meters]
 
     ### make measures
-    measures = [Measure(meter, [ ]) for meter in meters]
+    measures = [Measure(meter, []) for meter in meters]
     fill_measures_in_expr_with_full_measure_spacer_skips(measures)
 
     ### return measures

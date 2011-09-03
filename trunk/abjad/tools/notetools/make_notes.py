@@ -77,7 +77,7 @@ def make_notes(pitches, durations, direction='big-endian'):
 
     durations = durtools.group_duration_tokens_by_implied_prolation(durations)
 
-    result = [ ]
+    result = []
     for ds in durations:
         ### get factors in denominator of duration group ds other than 1, 2.
         factors = set(mathtools.factors(ds[0][1]))

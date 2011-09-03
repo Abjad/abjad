@@ -11,7 +11,7 @@ class _MetricGridSpannerFormatInterface(_SpannerFormatInterface):
 
     def _after(self, leaf):
         '''Spanner format contribution after leaf.'''
-        result = [ ]
+        result = []
         spanner = self.spanner
         if hasattr(spanner, '_slicing_metersFound'):
             delattr(spanner, '_slicing_metersFound')
@@ -29,7 +29,7 @@ class _MetricGridSpannerFormatInterface(_SpannerFormatInterface):
         from abjad.tools.containertools.Container import Container
         from abjad.tools.skiptools.Skip import Skip
         from abjad.tools import contexttools
-        result = [ ]
+        result = []
         spanner = self.spanner
         if not spanner.hide:
             #meter = spanner._matching_meter(leaf)

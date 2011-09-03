@@ -38,7 +38,7 @@ def test_intervaltreetools_mask_intervals_with_intervals_03():
     masked = IntervalTree([a, b])
     mask = IntervalTree([c])
     result = mask_intervals_with_intervals(masked, mask)
-    target_signatures = [ ]
+    target_signatures = []
     actual_signatures = [interval.signature for interval in result]
     assert target_signatures == actual_signatures
 

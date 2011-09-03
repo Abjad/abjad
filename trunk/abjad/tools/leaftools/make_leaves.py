@@ -128,7 +128,7 @@ def make_leaves(pitches, durations, direction='big-endian', tied_rests=False):
 
     durations = durtools.group_duration_tokens_by_implied_prolation(durations)
 
-    result = [ ]
+    result = []
     for ds in durations:
         ### get factors in denominator of duration group ds other than 1, 2.
         factors = set(mathtools.factors(ds[0][1]))
@@ -148,7 +148,7 @@ def make_leaves(pitches, durations, direction='big-endian', tied_rests=False):
             ratio = 1 / durtools.Duration(*multiplier)
             ds = [ratio * durtools.Duration(*d) for d in ds]
             ### make leaves
-            leaves = [ ]
+            leaves = []
             for pch, dur in zip(ps, ds):
                 leaves.extend( _make_leaf_on_pitch(pch, dur, direction))
             #t = Tuplet(multiplier, leaves)

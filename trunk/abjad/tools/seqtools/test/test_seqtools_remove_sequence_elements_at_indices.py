@@ -10,13 +10,13 @@ def test_seqtools_remove_sequence_elements_at_indices_01():
 
 def test_seqtools_remove_sequence_elements_at_indices_02():
 
-    t = list(seqtools.remove_sequence_elements_at_indices([ ], [1, 2, 3, 4, 5]))
-    assert t == [ ]
+    t = list(seqtools.remove_sequence_elements_at_indices([], [1, 2, 3, 4, 5]))
+    assert t == []
 
 
 def test_seqtools_remove_sequence_elements_at_indices_03():
 
-    t = list(seqtools.remove_sequence_elements_at_indices(range(5), [ ]))
+    t = list(seqtools.remove_sequence_elements_at_indices(range(5), []))
     assert t == [0, 1, 2, 3, 4]
 
 

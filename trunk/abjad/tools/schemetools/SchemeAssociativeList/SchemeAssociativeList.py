@@ -14,7 +14,7 @@ class SchemeAssociativeList(tuple, _Immutable):
     '''
 
     def __new__(klass, *args):
-        args_as_pairs = [ ]
+        args_as_pairs = []
         for arg in args:
             if not isinstance(arg, (tuple, SchemePair)):
                 raise TypeError('must be Python pair or Scheme pair: "%s".' % str(arg))
@@ -42,7 +42,7 @@ class SchemeAssociativeList(tuple, _Immutable):
 
     @property
     def _output_string(self):
-        vals = [ ]
+        vals = []
         for x in self:
             if isinstance(x, type(True)) and x:
                 vals.append("#t")

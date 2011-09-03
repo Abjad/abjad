@@ -237,7 +237,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
 
     assert len(parts) == 6
 
-    t = Staff([ ])
+    t = Staff([])
     for part in parts:
         t.extend(part)
 
@@ -274,7 +274,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
 
     assert len(parts) == 6
 
-    t = Staff([ ])
+    t = Staff([])
     for part in parts:
         t.extend(part)
 

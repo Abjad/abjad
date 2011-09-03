@@ -7,7 +7,7 @@ def iterate_staves_forward_in_expr(expr, start = 0, stop = None):
 
     Iterate staves forward in `expr`::
 
-        abjad> score = Score(4 * Staff([ ]))
+        abjad> score = Score(4 * Staff([]))
 
     ::
 

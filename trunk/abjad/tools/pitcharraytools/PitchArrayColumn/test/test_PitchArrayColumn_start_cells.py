@@ -11,7 +11,7 @@ def test_PitchArrayColumn_start_cells_01():
 
     '''
     [  ] [d'] [bf bqf     ]
-    [g'      ] [fs'    ] [ ]
+    [g'      ] [fs'    ] []
     '''
 
     array.columns[0].start_cells == (array[0].cells[0], array[1].cells[0])

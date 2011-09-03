@@ -4,7 +4,7 @@ from abjad.tools.intervaltreetools._make_test_intervals import _make_test_interv
 
 
 def test_IntervalTree_bounds_01():
-    tree = IntervalTree([ ])
+    tree = IntervalTree([])
     assert tree.bounds is None
 
 

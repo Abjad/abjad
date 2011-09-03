@@ -15,7 +15,7 @@ def get_shared_numeric_sign(sequence):
 
     Return ``0`` on empty `sequence`::
 
-        abjad> mathtools.get_shared_numeric_sign([ ])
+        abjad> mathtools.get_shared_numeric_sign([])
         0
 
     Otherwise return none::

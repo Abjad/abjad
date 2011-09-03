@@ -7,7 +7,7 @@ def test_Measure_empty_01():
 
 
 def test_Measure_empty_02():
-    t = Measure((4, 4), [ ])
+    t = Measure((4, 4), [])
     assert repr(t) == 'Measure(4/4)'
     assert str(t) == '|4/4|'
     assert py.test.raises(UnderfullMeasureError, 't.format')
@@ -18,7 +18,7 @@ def test_Measure_empty_02():
 
 
 def test_Measure_empty_03():
-    t = Measure((4, 5), [ ])
+    t = Measure((4, 5), [])
     assert repr(t) == 'Measure(4/5)'
     assert str(t) == '|4/5|'
     assert py.test.raises(UnderfullMeasureError, 't.format')

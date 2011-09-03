@@ -39,4 +39,4 @@ def test_seqtools_get_sequence_period_of_rotation_05():
     '''Empty iterable boundary case.
     '''
 
-    assert py.test.raises(ZeroDivisionError, 'seqtools.get_sequence_period_of_rotation([ ], 1)')
+    assert py.test.raises(ZeroDivisionError, 'seqtools.get_sequence_period_of_rotation([], 1)')

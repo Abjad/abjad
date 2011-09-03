@@ -47,7 +47,7 @@ class MelodicChromaticIntervalClassVector(_Vector):
 
     @property
     def _format_strings(self):
-        strings = [ ]
+        strings = []
         strings.append(self._twelve_tone_ascending_string)
         strings.append(self._twelve_tone_descending_string)
         strings.append(self._quartertone_ascending_string)
@@ -56,7 +56,7 @@ class MelodicChromaticIntervalClassVector(_Vector):
 
     @property
     def _quartertone_ascending_string(self):
-        counts = [ ]
+        counts = []
         for n in range(12):
             count = self[n + 0.5]
             if count == 0:
@@ -72,7 +72,7 @@ class MelodicChromaticIntervalClassVector(_Vector):
 
     @property
     def _quartertone_descending_string(self):
-        counts = [ ]
+        counts = []
         for n in range(12):
             count = self[-(n + 0.5)]
             if count == 0:
@@ -88,7 +88,7 @@ class MelodicChromaticIntervalClassVector(_Vector):
 
     @property
     def _twelve_tone_ascending_string(self):
-        counts = [ ]
+        counts = []
         for n in range(1, 13):
             count = self[n]
             if count == 0:
@@ -108,7 +108,7 @@ class MelodicChromaticIntervalClassVector(_Vector):
 
     @property
     def _twelve_tone_descending_string(self):
-        counts = [ ]
+        counts = []
         for n in range(1, 13):
             count = self[-n]
             if count == 0:

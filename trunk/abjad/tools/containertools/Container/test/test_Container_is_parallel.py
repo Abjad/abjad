@@ -6,25 +6,25 @@ def test_Container_is_parallel_01():
     '''True when container encloses contents in LilyPond << >> brackets,
         otherwise False.'''
 
-    assert not Container([ ]).is_parallel
-    assert not tuplettools.FixedDurationTuplet(Duration(2, 8), [ ]).is_parallel
-    assert not Tuplet(Fraction(2, 3), [ ]).is_parallel
-    assert scoretools.GrandStaff([ ]).is_parallel
-    assert not stafftools.make_rhythmic_sketch_staff([ ]).is_parallel
-    assert not stafftools.RhythmicStaff([ ]).is_parallel
-    assert not Measure((4, 8), [ ]).is_parallel
-    assert Score([ ]).is_parallel
-    assert not Container([ ]).is_parallel
-    assert not Staff([ ]).is_parallel
-    assert scoretools.StaffGroup([ ]).is_parallel
-    assert not Voice([ ]).is_parallel
+    assert not Container([]).is_parallel
+    assert not tuplettools.FixedDurationTuplet(Duration(2, 8), []).is_parallel
+    assert not Tuplet(Fraction(2, 3), []).is_parallel
+    assert scoretools.GrandStaff([]).is_parallel
+    assert not stafftools.make_rhythmic_sketch_staff([]).is_parallel
+    assert not stafftools.RhythmicStaff([]).is_parallel
+    assert not Measure((4, 8), []).is_parallel
+    assert Score([]).is_parallel
+    assert not Container([]).is_parallel
+    assert not Staff([]).is_parallel
+    assert scoretools.StaffGroup([]).is_parallel
+    assert not Voice([]).is_parallel
 
 
 def test_Container_is_parallel_02():
     '''True when container encloses contents in LilyPond << >> brackets,
         otherwise False.'''
 
-    t = Container([ ])
+    t = Container([])
     t.is_parallel = True
     assert t.is_parallel
 
@@ -32,7 +32,7 @@ def test_Container_is_parallel_02():
 def test_Container_is_parallel_03():
     '''Container 'parallel' is settable.'''
 
-    t = Container([ ])
+    t = Container([])
     assert not t.is_parallel
 
     t.is_parallel = True

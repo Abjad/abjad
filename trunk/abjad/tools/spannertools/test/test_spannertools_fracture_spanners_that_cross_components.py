@@ -48,8 +48,8 @@ def test_spannertools_fracture_spanners_that_cross_components_02():
 def test_spannertools_fracture_spanners_that_cross_components_03():
     '''Empty list raises no exception.'''
 
-    result = spannertools.fracture_spanners_that_cross_components([ ])
-    assert result == [ ]
+    result = spannertools.fracture_spanners_that_cross_components([])
+    assert result == []
 
 
 def test_spannertools_fracture_spanners_that_cross_components_04():

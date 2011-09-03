@@ -17,7 +17,7 @@ def test_seqtools_remove_sequence_elements_at_indices_cyclically_02():
 
 def test_seqtools_remove_sequence_elements_at_indices_cyclically_03():
 
-    t = list(seqtools.remove_sequence_elements_at_indices_cyclically(range(20), [ ], 5))
+    t = list(seqtools.remove_sequence_elements_at_indices_cyclically(range(20), [], 5))
     assert t == range(20)
 
 

@@ -39,7 +39,7 @@ class _Leaf(_Component, _StrictComparator):
     __deepcopy__ = __copy__
 
     def __getnewargs__(self):
-        result = [ ]
+        result = []
         result.append(self.written_duration)
         if self.duration_multiplier is not None:
             result.append(self.duration_multiplier)

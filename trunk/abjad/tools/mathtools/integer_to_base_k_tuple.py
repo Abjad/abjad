@@ -25,7 +25,7 @@ def integer_to_base_k_tuple(n, k):
     if n == 0:
         return (0, )
 
-    result = [ ]
+    result = []
     current_exponent = math.trunc(math.log(n, k))
     remainder = n
     while 0 <= current_exponent:

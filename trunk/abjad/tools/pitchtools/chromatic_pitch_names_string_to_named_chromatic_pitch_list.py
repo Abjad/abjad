@@ -12,7 +12,7 @@ def chromatic_pitch_names_string_to_named_chromatic_pitch_list(chromatic_pitch_n
     Return list of named chromatic pitches.
     '''
 
-    pitches = [ ]
+    pitches = []
     pitch_strings = chromatic_pitch_names_string.split()
     for pitch_string in pitch_strings:
         pitch = NamedChromaticPitch(pitch_string)

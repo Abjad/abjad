@@ -17,7 +17,7 @@ def expr_to_melodic_chromatic_interval_segment(expr):
     '''
 
     pitches = list_named_chromatic_pitches_in_expr(expr)
-    mcis = [ ]
+    mcis = []
     for left, right in seqtools.iterate_sequence_pairwise_strict(pitches):
         mci = calculate_melodic_chromatic_interval_from_pitch_carrier_to_pitch_carrier(left, right)
         mcis.append(mci)

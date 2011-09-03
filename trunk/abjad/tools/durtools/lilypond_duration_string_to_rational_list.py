@@ -19,7 +19,7 @@ def lilypond_duration_string_to_rational_list(duration_string):
     if not isinstance(duration_string, str):
         raise TypeError('duration string must be string.')
 
-    rationals = [ ]
+    rationals = []
     duration_strings = duration_string.split()
     for duration_string in duration_strings:
         rational = lilypond_duration_string_to_rational(duration_string)

@@ -67,7 +67,7 @@ And then we make the rhythms:
 ::
 
     for proportion in proportions:
-        tuplets = [ ]
+        tuplets = []
         for n in range(1, 6 + 1):
             tuplet = make_tuplet(duration, proportion)
             divide_tuplet(tuplet, n)

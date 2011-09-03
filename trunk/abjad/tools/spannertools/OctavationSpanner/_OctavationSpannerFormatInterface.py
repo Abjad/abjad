@@ -10,7 +10,7 @@ class _OctavationSpannerFormatInterface(_SpannerFormatInterface):
 
     def _after(self, leaf):
         '''Spanner format contributions after leaf.'''
-        result = [ ]
+        result = []
         result.extend(_SpannerFormatInterface._after(self, leaf))
         spanner = self.spanner
         if spanner._is_my_last_leaf(leaf):
@@ -19,7 +19,7 @@ class _OctavationSpannerFormatInterface(_SpannerFormatInterface):
 
     def _before(self, leaf):
         '''Spanner format contributions before leaf.'''
-        result = [ ]
+        result = []
         result.extend(_SpannerFormatInterface._before(self, leaf))
         spanner = self.spanner
         if spanner._is_my_first_leaf(leaf):

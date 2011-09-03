@@ -64,7 +64,7 @@ def test_componenttools_list_improper_contents_of_component_that_cross_prolated_
 
     result = componenttools.list_improper_contents_of_component_that_cross_prolated_offset(t, Duration(0))
 
-    assert result == [ ]
+    assert result == []
 
 
 def test_componenttools_list_improper_contents_of_component_that_cross_prolated_offset_04():
@@ -86,4 +86,4 @@ def test_componenttools_list_improper_contents_of_component_that_cross_prolated_
 
     result = componenttools.list_improper_contents_of_component_that_cross_prolated_offset(t, Duration(100))
 
-    assert result == [ ]
+    assert result == []

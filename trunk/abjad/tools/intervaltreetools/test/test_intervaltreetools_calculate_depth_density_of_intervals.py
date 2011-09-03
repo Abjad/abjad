@@ -15,4 +15,4 @@ def test_intervaltreetools_calculate_depth_density_of_intervals_02():
 
 
 def test_intervaltreetools_calculate_depth_density_of_intervals_03():
-    assert calculate_depth_density_of_intervals([ ]) == 0
+    assert calculate_depth_density_of_intervals([]) == 0

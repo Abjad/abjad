@@ -18,11 +18,11 @@ def test_containertools_delete_contents_of_container_01():
 def test_containertools_delete_contents_of_container_02():
     '''Eject container contents.'''
 
-    t = Staff([ ])
+    t = Staff([])
     contents = containertools.delete_contents_of_container(t)
 
     assert len(t) == 0
-    assert contents == [ ]
+    assert contents == []
 
 
 def test_containertools_delete_contents_of_container_03():

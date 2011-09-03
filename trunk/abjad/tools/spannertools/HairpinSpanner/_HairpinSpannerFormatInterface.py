@@ -13,7 +13,7 @@ class _HairpinSpannerFormatInterface(_SpannerFormatInterface):
         from abjad.tools.chordtools.Chord import Chord
         from abjad.tools.notetools.Note import Note
         from abjad.tools import contexttools
-        result = [ ]
+        result = []
         spanner = self.spanner
         effective_dynamic = contexttools.get_effective_dynamic(leaf)
         if spanner.include_rests:

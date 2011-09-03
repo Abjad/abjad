@@ -3,7 +3,7 @@ def _get_articulation_format_contributions(component):
     '''
     from abjad.tools import marktools
 
-    result = [ ]
+    result = []
     articulations = marktools.get_articulations_attached_to_component(component)
     for articulation in articulations:
         result.append(articulation.format)

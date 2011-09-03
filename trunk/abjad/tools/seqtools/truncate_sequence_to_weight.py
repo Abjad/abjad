@@ -47,7 +47,7 @@ def truncate_sequence_to_weight(sequence, weight):
     if weight < 0:
         raise ValueError
 
-    result = [ ]
+    result = []
 
     if weight == 0:
         return result

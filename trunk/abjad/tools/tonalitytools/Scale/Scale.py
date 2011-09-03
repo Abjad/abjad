@@ -49,7 +49,7 @@ class Scale(NamedChromaticPitchClassSegment):
     def diatonic_interval_class_segment(self):
         from abjad.tools import seqtools
         from abjad.tools import pitchtools
-        dics = [ ]
+        dics = []
         for left, right in seqtools.iterate_sequence_pairwise_wrapped(self):
             dic = left - right
             dics.append(dic)

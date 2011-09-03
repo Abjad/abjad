@@ -12,14 +12,14 @@ class _ContextFormatter(_ContainerFormatter):
 
     @property
     def _formatted_engraver_consists(self):
-        result = [ ]
+        result = []
         for engraver in sorted(self.context.engraver_consists):
             result.append(r'\consists %s' % engraver)
         return result
 
     @property
     def _formatted_engraver_removals(self):
-        result = [ ]
+        result = []
         for engraver in sorted(self.context.engraver_removals):
             result.append(r'\remove %s' % engraver)
         return result

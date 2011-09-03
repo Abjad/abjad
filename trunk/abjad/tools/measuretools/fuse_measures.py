@@ -92,7 +92,7 @@ def fuse_measures(measures):
 
     parent, start, stop = componenttools.get_parent_and_start_stop_indices_of_components(measures)
 
-    old_denominators = [ ]
+    old_denominators = []
     new_duration = durtools.Duration(0)
     for measure in measures:
         effective_meter = contexttools.get_effective_time_signature(measure)
@@ -102,7 +102,7 @@ def fuse_measures(measures):
     new_meter = metertools.duration_and_possible_denominators_to_meter(
         new_duration, old_denominators)
 
-    music = [ ]
+    music = []
     for measure in measures:
         ### scale before reassignment to prevent tie chain scale drama
         multiplier = \

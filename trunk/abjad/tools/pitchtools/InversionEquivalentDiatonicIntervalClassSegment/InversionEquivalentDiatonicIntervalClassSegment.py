@@ -14,7 +14,7 @@ class InversionEquivalentDiatonicIntervalClassSegment(_IntervalSegment):
     '''
 
     def __new__(self, diatonic_interval_class_tokens):
-        dics = [ ]
+        dics = []
         for token in diatonic_interval_class_tokens:
             dic = InversionEquivalentDiatonicIntervalClass(token)
             dics.append(dic)

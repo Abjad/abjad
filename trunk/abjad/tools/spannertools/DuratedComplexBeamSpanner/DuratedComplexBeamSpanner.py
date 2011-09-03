@@ -51,7 +51,7 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
 
     @property
     def _span_points(self):
-        result = [ ]
+        result = []
         if self.durations is not None:
             result.append(self.durations[0])
             for d in self.durations[1:]:

@@ -11,14 +11,14 @@ def test_PitchArray_apply_pitches_by_row_01():
 
     '''
     [  ] [c'] [c'     ]
-    [c'      ] [c'] [ ]
+    [c'      ] [c'] []
     '''
 
     array.apply_pitches_by_row([[-2, -1.5], [7, 6]])
 
     '''
     [  ] [bf] [bqf     ]
-    [c'      ] [c' ] [ ]
+    [c'      ] [c' ] []
     '''
 
     assert array.dimensions == (2, 4)

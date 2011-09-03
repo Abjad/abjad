@@ -11,7 +11,7 @@ def test_PitchArrayRow_has_spanning_cell_over_index_01():
 
     '''
     [c'] [d'     ] [  ]
-    [         ] [ ] [e']
+    [         ] [] [e']
     '''
 
     assert not array[0].has_spanning_cell_over_index(0)

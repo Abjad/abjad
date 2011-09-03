@@ -28,7 +28,7 @@ def _repeat_sequence_to_weight(sequence, weight, remainder = 'chop'):
     assert isinstance(weight, Number)
     assert 0 <= weight
 
-    result = [ ]
+    result = []
     result.append(sequence[0])
     i = 1
     while mathtools.weight(result) < weight:

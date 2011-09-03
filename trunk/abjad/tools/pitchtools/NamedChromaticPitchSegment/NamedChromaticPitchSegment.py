@@ -90,7 +90,7 @@ class NamedChromaticPitchSegment(_PitchSegment):
 
     @property
     def local_minima(self):
-        result = [ ]
+        result = []
         if 3 <= len(self):
             for i in range(1, len(self) - 1):
                 left, middle, right = self[i-1], self[i], self[i+1]
@@ -100,7 +100,7 @@ class NamedChromaticPitchSegment(_PitchSegment):
 
     @property
     def local_maxima(self):
-        result = [ ]
+        result = []
         if 3 <= len(self):
             for i in range(1, len(self) - 1):
                 left, middle, right = self[i-1], self[i], self[i+1]

@@ -4,7 +4,7 @@ from abjad.tools import seqtools
 
 def test_componenttools_get_nth_component_in_expr_01():
 
-    staff = Staff([ ])
+    staff = Staff([])
     durations = [Duration(n, 16) for n in range(1, 5)]
     notes = notetools.make_notes([0, 2, 4, 5], durations)
     rests = resttools.make_rests(durations)
@@ -40,7 +40,7 @@ def test_componenttools_get_nth_component_in_expr_01():
 def test_componenttools_get_nth_component_in_expr_02():
     '''Iterates backwards with negative values of n.'''
 
-    staff = Staff([ ])
+    staff = Staff([])
     durations = [Duration(n, 16) for n in range(1, 5)]
     notes = notetools.make_notes([0, 2, 4, 5], durations)
     rests = resttools.make_rests(durations)

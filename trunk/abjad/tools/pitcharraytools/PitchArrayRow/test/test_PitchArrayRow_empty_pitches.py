@@ -11,14 +11,14 @@ def test_PitchArrayRow_empty_pitches_01():
 
     '''
     [c'] [d'     ] [  ]
-    [         ] [ ] [e']
+    [         ] [] [e']
     '''
 
     array[0].empty_pitches()
 
     '''
-    [ ] [      ] [  ]
-    [      ] [ ] [e']
+    [] [      ] [  ]
+    [      ] [] [e']
     '''
 
     assert array[0].dimensions == (1, 4)

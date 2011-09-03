@@ -28,7 +28,7 @@ def integer_tempo_to_multiplier_tempo_pairs(integer_tempo,
     Return list.
     '''
 
-    pairs = [ ]
+    pairs = []
     divisors = mathtools.divisors(integer_tempo)
     if maximum_denominator is not None:
       divisors = [x for x in divisors if x <= maximum_denominator]

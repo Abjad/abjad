@@ -11,7 +11,7 @@ def test_intervaltreetools_get_all_unique_bounds_in_intervals_01():
 
 
 def test_intervaltreetools_get_all_unique_bounds_in_intervals_02():
-    tree = IntervalTree([ ])
+    tree = IntervalTree([])
     target_bounds = ()
     actual_bounds = get_all_unique_bounds_in_intervals(tree)
     assert actual_bounds == target_bounds

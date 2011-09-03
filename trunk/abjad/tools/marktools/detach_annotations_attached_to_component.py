@@ -42,7 +42,7 @@ def detach_annotations_attached_to_component(component):
     Return tuple or zero or more annotations detached.
     '''
 
-    annotations = [ ]
+    annotations = []
     for annotation in get_annotations_attached_to_component(component):
         annotation.detach_mark()
         annotations.append(annotation)

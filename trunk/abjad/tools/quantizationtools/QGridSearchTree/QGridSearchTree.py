@@ -61,7 +61,7 @@ class QGridSearchTree(_Immutable, _ImmutableDictionary):
 
     def _init_offsets(self, definition):
         def recurse(n, prev_div, prev_offset):
-            results = [ ]
+            results = []
             for k in n:
                 div = Fraction(1, k) * prev_div
                 for i in range(k):
@@ -77,7 +77,7 @@ class QGridSearchTree(_Immutable, _ImmutableDictionary):
         if not isinstance(definition, dict) or not len(definition):
             return False
         def recurse(n):
-            results = [ ]
+            results = []
             for key in n:
                 if not isinstance(key, int) or \
                     not 0 < key or \
@@ -169,9 +169,9 @@ class QGridSearchTree(_Immutable, _ImmutableDictionary):
         for item in parentage[1:]:
             node = node[item]
             if node is None:
-                return tuple([ ])
+                return tuple([])
         if node is None:
-            return tuple([ ])
+            return tuple([])
         return tuple(sorted(node.keys()))
 
     def prune(self, beatspan, tempo, threshold):

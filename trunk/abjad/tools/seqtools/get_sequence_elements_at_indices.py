@@ -13,7 +13,7 @@ def get_sequence_elements_at_indices(sequence, indices):
     Return newly constructed tuple of references to `sequence` elements.
     '''
 
-    result = [ ]
+    result = []
     for i, element in enumerate(sequence):
         if i in indices:
             result.append(element)

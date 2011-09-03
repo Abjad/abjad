@@ -55,7 +55,7 @@ def fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(tie_chain):
         raise TypeError('must be tie chain.')
 
     ### init result
-    result = [ ]
+    result = []
 
     ### group leaves in tie chain by parent
     parts = tietools.group_leaves_in_tie_chain_by_immediate_parents(tie_chain)

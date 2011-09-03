@@ -5,7 +5,7 @@ def test_StaffChangeMark___repr___01():
     '''Staff change mark returns nonempty string repr.
     '''
 
-    staff = Staff([ ])
+    staff = Staff([])
     staff.name = 'Flute Staff'
     repr = contexttools.StaffChangeMark(staff).__repr__()
 

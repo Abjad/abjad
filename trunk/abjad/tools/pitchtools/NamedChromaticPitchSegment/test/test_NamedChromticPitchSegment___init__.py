@@ -14,7 +14,7 @@ def test_NamedChromticPitchSegment___init___02():
     '''Init named chromatic pitch segment from named chromatic pitches.
     '''
 
-    named_chromatic_pitches = [ ]
+    named_chromatic_pitches = []
     named_chromatic_pitches.append(pitchtools.NamedChromaticPitch("c''"))
     named_chromatic_pitches.append(pitchtools.NamedChromaticPitch("cs''"))
     named_chromatic_pitches.append(pitchtools.NamedChromaticPitch("d''"))

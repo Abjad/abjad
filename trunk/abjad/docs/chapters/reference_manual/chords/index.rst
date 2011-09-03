@@ -236,7 +236,7 @@ Abjad allows empty chords:
 
 ::
 
-	abjad> chord = Chord([ ], Duration(1, 4))
+	abjad> chord = Chord([], Duration(1, 4))
 	Chord('<>4')
 
 

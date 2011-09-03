@@ -394,7 +394,7 @@ def test_Container___setitem___slice_13():
     '''
 
     ### set outer container contents to empty
-    outer[:] = [ ]
+    outer[:] = []
 
     r'''
     \new Staff {

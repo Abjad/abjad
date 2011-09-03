@@ -40,7 +40,7 @@ def test_Chord_note_heads_04():
     '''
 
     chord = Chord([3, 13, 17], (1, 4))
-    note_heads = [ ]
+    note_heads = []
     note_head = notetools.NoteHead(3)
     note_head.tweak.color = 'red'
     note_heads.append(note_head)

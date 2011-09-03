@@ -6,7 +6,7 @@ def test_Chord_extend_01():
     '''
 
     chord = Chord([3], (1, 4))
-    note_heads = [ ]
+    note_heads = []
     note_head = notetools.NoteHead(13)
     note_head.tweak.color = 'blue'
     note_heads.append(note_head)

@@ -36,7 +36,7 @@ def get_first_component_in_expr_with_name(expr, name):
     if not isinstance(expr, (_Component, list, tuple)):
         raise TypeError('must be tuple, list or Abjad comonent.')
 
-    result = [ ]
+    result = []
 
     for component in iterate_components_forward_in_expr(expr, _Component):
         if name is None or getattr(component, 'name', None) == name:

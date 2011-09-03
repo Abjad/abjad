@@ -9,7 +9,7 @@ def _leaf_to_pitch_and_rhythm_skeleton(leaf, include_keyword_attributes = False)
         # a hack
         keyword_attributes = filter(lambda x: not x.startswith('note_head ='), keyword_attributes)
     else:
-        keyword_attributes = [ ]
+        keyword_attributes = []
     keyword_attributes = ['\t' + x for x in keyword_attributes]
     if keyword_attributes:
         keyword_attributes = ',\n'.join(keyword_attributes)

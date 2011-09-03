@@ -19,8 +19,8 @@ Default LilyPond layout
 
 	abjad> import random
 	abjad> pitches = [random.randrange(0, 25) for x in range(32)]
-	abjad> staff_1 = Staff([ ])
-	abjad> staff_2 = Staff([ ])
+	abjad> staff_1 = Staff([])
+	abjad> staff_2 = Staff([])
 	abjad> score = Score([staff_1, staff_2])
 	abjad> staff_1.extend([Note(x, (1, 8)) for x in pitches[:16]])
 	abjad> staff_2.extend([Note(x, (1, 8)) for x in pitches[16:]])
@@ -34,8 +34,8 @@ Default LilyPond layout
 ::
 
 	abjad> pitches = [random.randrange(0, 25) for x in range(32)]
-	abjad> staff_1 = Staff([ ])
-	abjad> staff_2 = Staff([ ])
+	abjad> staff_1 = Staff([])
+	abjad> staff_2 = Staff([])
 	abjad> score = Score([staff_1, staff_2])
 	abjad> staff_1.extend([Note(x, (1, 8)) for x in pitches[:16]])
 	abjad> staff_2.extend([Note(x, (1, 8)) for x in pitches[16:]])
@@ -49,8 +49,8 @@ Default LilyPond layout
 ::
 
 	abjad> pitches = [random.randrange(0, 25) for x in range(32)]
-	abjad> staff_1 = Staff([ ])
-	abjad> staff_2 = Staff([ ])
+	abjad> staff_1 = Staff([])
+	abjad> staff_2 = Staff([])
 	abjad> score = Score([staff_1, staff_2])
 	abjad> staff_1.extend([Note(x, (1, 8)) for x in pitches[:16]])
 	abjad> staff_2.extend([Note(x, (1, 8)) for x in pitches[16:]])
@@ -64,8 +64,8 @@ Default LilyPond layout
 ::
 
 	abjad> pitches = [random.randrange(0, 25) for x in range(32)]
-	abjad> staff_1 = Staff([ ])
-	abjad> staff_2 = Staff([ ])
+	abjad> staff_1 = Staff([])
+	abjad> staff_2 = Staff([])
 	abjad> score = Score([staff_1, staff_2])
 	abjad> staff_1.extend([Note(x, (1, 8)) for x in pitches[:16]])
 	abjad> staff_2.extend([Note(x, (1, 8)) for x in pitches[16:]])
@@ -79,8 +79,8 @@ Default LilyPond layout
 ::
 
 	abjad> pitches = [random.randrange(0, 25) for x in range(32)]
-	abjad> staff_1 = Staff([ ])
-	abjad> staff_2 = Staff([ ])
+	abjad> staff_1 = Staff([])
+	abjad> staff_2 = Staff([])
 	abjad> score = Score([staff_1, staff_2])
 	abjad> staff_1.extend([Note(x, (1, 8)) for x in pitches[:16]])
 	abjad> staff_2.extend([Note(x, (1, 8)) for x in pitches[16:]])

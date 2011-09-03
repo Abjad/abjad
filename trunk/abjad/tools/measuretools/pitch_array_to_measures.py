@@ -42,12 +42,9 @@ def pitch_array_to_measures(pitch_array, cell_duration_denominator = 8):
     Return list of measures.
     '''
 
-    measures = [ ]
+    measures = []
     for row in pitch_array.rows:
         measure = pitch_array_row_to_measure(row, cell_duration_denominator)
         measures.append(measure)
 
     return measures
-
-
-

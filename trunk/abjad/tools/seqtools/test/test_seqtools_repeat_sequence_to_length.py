@@ -29,13 +29,13 @@ def test_seqtools_repeat_sequence_to_length_04():
     '''When length is zero, return an empty list.'''
 
     t = seqtools.repeat_sequence_to_length(range(5), 0)
-    assert t == [ ]
+    assert t == []
 
 
 def test_seqtools_repeat_sequence_to_length_05():
     '''List must not be empty.'''
 
-    assert py.test.raises(ValueError, 'seqtools.repeat_sequence_to_length([ ], 2)')
+    assert py.test.raises(ValueError, 'seqtools.repeat_sequence_to_length([], 2)')
 
 
 def test_seqtools_repeat_sequence_to_length_06():

@@ -11,13 +11,13 @@ from abjad.tools import seqtools
 
 
 def _format_leaf(leaf):
-    result = [ ]
+    result = []
     result.extend(_get_slot_1(leaf))
     result.extend(_get_slot_3(leaf))
     result.extend(_get_slot_4(leaf))
     result.extend(_get_slot_5(leaf))
     result.extend(_get_slot_7(leaf))
-    contributions = [ ]
+    contributions = []
     for contributor, contribution in result:
         contributions.extend(contribution)
     return '\n'.join(contributions)
@@ -52,7 +52,7 @@ def _process_contribution_packet(contribution_packet):
     return result
 
 def _get_agrace_body(leaf):
-    result = [ ]
+    result = []
     if hasattr(leaf, '_after_grace'):
         after_grace = leaf.after_grace
         if len(after_grace):
@@ -60,14 +60,14 @@ def _get_agrace_body(leaf):
     return ['agrace body', result]
 
 def _get_agrace_opening(leaf):
-    result = [ ]
+    result = []
     if hasattr(leaf, '_after_grace'):
         if len(leaf.after_grace):
             result.append(r'\afterGrace')
     return ['agrace opening', result]
 
 def _get_grace_body(leaf):
-    result = [ ]
+    result = []
     if hasattr(leaf, '_grace'):
         grace = leaf.grace
         if len(grace):
@@ -75,7 +75,7 @@ def _get_grace_body(leaf):
     return ['grace body', result]
 
 def _get_leaf_body(leaf):
-    result = [ ]
+    result = []
     client = leaf
     result.append(_get_nucleus(leaf))
     result.append(_get_stem_tremolo_format_contributions(leaf))
@@ -94,7 +94,7 @@ def _get_nucleus(leaf):
     from abjad.tools.chordtools.Chord import Chord
     if not isinstance(leaf, Chord):
         return ['nucleus', leaf._body]
-    result =  [ ]
+    result =  []
     chord = leaf
     note_heads = chord.note_heads
     if any(['\n' in x.format for x in note_heads]):
@@ -114,7 +114,7 @@ def _get_nucleus(leaf):
     return ['nucleus', [result]]
 
 def _get_slot_1(leaf):
-    result = [ ]
+    result = []
     result.append(_get_grace_body(leaf))
     result.append(_get_comment_format_contributions_for_slot(leaf, 'before'))
     result.append(_get_lilypond_command_mark_format_contributions_for_slot(leaf, 'before'))
@@ -125,7 +125,7 @@ def _get_slot_1(leaf):
     return result
 
 def _get_slot_3(leaf):
-    result = [ ]
+    result = []
     result.append(_get_comment_format_contributions_for_slot(leaf, 'opening'))
     result.append(_get_lilypond_command_mark_format_contributions_for_slot(leaf, 'opening'))
     result.append(_get_context_mark_format_contributions_for_slot(leaf, 'opening'))
@@ -133,12 +133,12 @@ def _get_slot_3(leaf):
     return result
 
 def _get_slot_4(leaf):
-    result = [ ]
+    result = []
     result.append(_get_leaf_body(leaf))
     return result
 
 def _get_slot_5(leaf):
-    result = [ ]
+    result = []
     result.append(_get_agrace_body(leaf))
     result.append(_get_lilypond_command_mark_format_contributions_for_slot(leaf, 'closing'))
     result.append(_get_context_mark_format_contributions_for_slot(leaf, 'closing'))
@@ -146,7 +146,7 @@ def _get_slot_5(leaf):
     return result
 
 def _get_slot_7(leaf):
-    result = [ ]
+    result = []
     result.append(_get_spanner_format_contributions_for_leaf_slot(leaf, 'after'))
     result.append(_get_context_mark_format_contributions_for_slot(leaf, 'after'))
     result.append(_get_lilypond_command_mark_format_contributions_for_slot(leaf, 'after'))

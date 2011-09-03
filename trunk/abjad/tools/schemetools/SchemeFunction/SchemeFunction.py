@@ -17,7 +17,7 @@ class SchemeFunction(_StrictComparator, _Immutable):
         if 1 < len(args):
             object.__setattr__(self, 'args', args[1:])
         else:
-            object.__setattr__(self, 'args', [ ])
+            object.__setattr__(self, 'args', [])
         return self
 
     def __getnewargs__(self):
@@ -34,7 +34,7 @@ class SchemeFunction(_StrictComparator, _Immutable):
 
     @property
     def _repr_contents_string(self):
-        result = [ ]
+        result = []
         result.append('%r' % self.name)
         result.extend(self.args)
         result = ', '.join(str(x) for x in result)

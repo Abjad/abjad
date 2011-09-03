@@ -24,7 +24,7 @@ def list_named_chromatic_pitches_in_expr(expr):
         result = get_named_chromatic_pitch_from_pitch_carrier(expr)
         return (result, )
     except (TypeError, MissingPitchError, ExtraPitchError):
-        result = [ ]
+        result = []
         if hasattr(expr, 'written_pitches'):
             result.extend(expr.written_pitches)
         ### for pitch arrays

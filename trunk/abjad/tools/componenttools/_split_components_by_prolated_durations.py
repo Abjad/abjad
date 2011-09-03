@@ -18,8 +18,8 @@ def _split_components_by_prolated_durations(components, durations,
     assert all([isinstance(x, (int, float, durtools.Duration)) for x in durations])
 
     ### initialize loop variables
-    result = [ ]
-    part = [ ]
+    result = []
+    part = []
     duration_index = 0
     len_durations = len(durations)
     cum_duration = durtools.Duration(0)
@@ -50,7 +50,7 @@ def _split_components_by_prolated_durations(components, durations,
             #print 'exactly equal %s' % x
             part.append(x)
             result.append(part)
-            part = [ ]
+            part = []
             cum_duration = durtools.Duration(0)
             duration_index += 1
         ### if current component exceeds duration of current part
@@ -63,7 +63,7 @@ def _split_components_by_prolated_durations(components, durations,
             #print 'left_list, right_list %s, %s' % (left_list, right_list)
             part.extend(left_list)
             result.append(part)
-            part = [ ]
+            part = []
             xx[0:0] = right_list
             duration_index += 1
             cum_duration = durtools.Duration(0)

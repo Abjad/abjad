@@ -206,7 +206,7 @@ Working with empty chords
 Abjad allows empty chords:
 
 <abjad>
-chord = Chord([ ], Duration(1, 4))
+chord = Chord([], Duration(1, 4))
 print repr(chord) <hide
 </abjad>
 

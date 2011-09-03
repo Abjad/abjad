@@ -95,7 +95,7 @@ def fuse_contiguous_measures_in_container_cyclically_by_counts(container, counts
         while True:
             part_count = counts[part_index % len_parts]
             if 1 < part_count:
-                measures_to_fuse = [ ]
+                measures_to_fuse = []
                 measure_to_fuse = cur_measure
                 for x in range(part_count):
                     measures_to_fuse.append(measure_to_fuse)

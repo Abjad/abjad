@@ -44,7 +44,7 @@ def multiply_contents_of_measures_in_expr_and_scale_meter_denominators(expr, con
     assert isinstance(concentration_pairs, list)
     assert all([isinstance(pair, tuple) for pair in concentration_pairs])
 
-    result = [ ]
+    result = []
     num_pairs = len(concentration_pairs)
     for i, measure in enumerate(iterate_measures_forward_in_expr(expr)):
         concentration_pair = concentration_pairs[i % num_pairs]

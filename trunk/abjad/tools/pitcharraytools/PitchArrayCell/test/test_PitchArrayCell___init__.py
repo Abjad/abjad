@@ -7,7 +7,7 @@ def test_PitchArrayCell___init___01():
     '''Init empty.'''
 
     cell = PitchArrayCell()
-    assert cell.pitches == [ ]
+    assert cell.pitches == []
     assert cell.width == 1
 
 
@@ -15,7 +15,7 @@ def test_PitchArrayCell___init___02():
     '''Init with positive integer width.'''
 
     cell = PitchArrayCell(2)
-    assert cell.pitches == [ ]
+    assert cell.pitches == []
     assert cell.width == 2
 
 

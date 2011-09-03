@@ -11,7 +11,7 @@ def test_pitchtools_insert_and_transpose_nested_subruns_in_chromatic_pitch_class
 
     "Inserts are shown in the innermost pairs of brackets below."
 
-    t = [ ]
+    t = []
     for x in notes:
         try:
             t.append(abs(x.written_pitch.numbered_chromatic_pitch))

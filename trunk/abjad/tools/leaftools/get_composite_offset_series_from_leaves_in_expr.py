@@ -34,7 +34,7 @@ def get_composite_offset_series_from_leaves_in_expr(expr):
     Return list of fractions.
     '''
 
-    offsets = [ ]
+    offsets = []
 
     for leaf in iterate_leaves_forward_in_expr(expr):
         start_offset = leaf._offset.start

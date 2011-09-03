@@ -20,11 +20,11 @@ def zip_sequences_without_truncation(*sequences):
         ``seqtools.zip_sequences_without_truncation()``.
     '''
 
-    result = [ ]
+    result = []
 
     max_length = max([len(l) for l in sequences])
     for i in range(max_length):
-        part = [ ]
+        part = []
         for l in sequences:
             try:
                 part.append(l[i])

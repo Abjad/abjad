@@ -37,7 +37,7 @@ def tempo_scaled_leaves_to_q_events(leaves, tempo = None):
         assert isinstance(tempo, TempoMark)
 
     # sort by silence and tied leaves
-    groups = [ ]
+    groups = []
     for rvalue, rgroup in groupby(leaves, lambda x: isinstance(x, (Rest, Skip))):
         if rvalue:
             groups.append(list(rgroup))
@@ -46,8 +46,8 @@ def tempo_scaled_leaves_to_q_events(leaves, tempo = None):
                 groups.append(list(tgroup))
 
     # calculate lists of pitches and durations
-    durations = [ ]
-    pitches = [ ]
+    durations = []
+    pitches = []
     for group in groups:
 
         # get millisecond cumulative duration

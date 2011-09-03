@@ -7,7 +7,7 @@ def test_AnonymousMeasure_meter_change_01():
     If last measure formats *both* meter 1/4 and meter 3/8, there's contention.
     Contention between leaf and measure as to who should format meter.'''
 
-    t = Staff([ ])
+    t = Staff([])
     t.append(measuretools.AnonymousMeasure("c'8 d'8"))
     t.append(measuretools.AnonymousMeasure("c'8 d'8 e'8"))
     t.append(measuretools.AnonymousMeasure("c'8 d'8"))

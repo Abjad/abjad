@@ -26,7 +26,7 @@ def test_FixedDurationTuplet_02():
     '''Nest empty fdtuplet.'''
 
     t = tuplettools.FixedDurationTuplet(Duration(2, 4), [
-        tuplettools.FixedDurationTuplet(Duration(2, 8), [ ]),
+        tuplettools.FixedDurationTuplet(Duration(2, 8), []),
         Note(0, (1, 8)),
         Note(0, (1, 8)),
         Note(0, (1, 8))])
@@ -35,7 +35,7 @@ def test_FixedDurationTuplet_02():
     assert t.target_duration == Fraction(1, 2)
     assert t.multiplier == Fraction(4, 5)
     assert t.prolated_duration == Fraction(1, 2)
-    assert repr(t[0]) == 'FixedDurationTuplet(1/4, [ ])'
+    assert repr(t[0]) == 'FixedDurationTuplet(1/4, [])'
     assert str(t[0]) == '{@ 1/4 @}'
     assert len(t[0]) == 0
     assert t[0].target_duration == Fraction(1, 4)

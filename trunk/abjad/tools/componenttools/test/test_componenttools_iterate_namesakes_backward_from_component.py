@@ -8,7 +8,7 @@ def test_componenttools_iterate_namesakes_backward_from_component_01():
     container.is_parallel = True
     container[0].name = 'staff 1'
     container[1].name = 'staff 2'
-    score = Score([ ])
+    score = Score([])
     score.is_parallel = False
     score.extend(container * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(score)
@@ -55,7 +55,7 @@ def test_componenttools_iterate_namesakes_backward_from_component_02():
     container.is_parallel = True
     container[0].name = 'staff 1'
     container[1].name = 'staff 2'
-    score = Score([ ])
+    score = Score([])
     score.is_parallel = False
     score.extend(container * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(score)

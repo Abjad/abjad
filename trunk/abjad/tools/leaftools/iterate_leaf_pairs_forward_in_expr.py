@@ -6,7 +6,7 @@ def iterate_leaf_pairs_forward_in_expr(expr):
 
     Iterate leaf pairs forward in `expr`::
 
-        abjad> score = Score([ ])
+        abjad> score = Score([])
         abjad> notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8"), Note("g'4")]
         abjad> score.append(Staff(notes))
         abjad> notes = [Note(x, (1, 4)) for x in [-12, -15, -17]]

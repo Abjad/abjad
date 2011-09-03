@@ -18,9 +18,9 @@ def test_FixedDurationTuplet___init___01():
 def test_FixedDurationTuplet___init___02():
     '''Initialize empty fixed-duration tuplet.'''
 
-    t = tuplettools.FixedDurationTuplet(Duration(1, 4), [ ])
+    t = tuplettools.FixedDurationTuplet(Duration(1, 4), [])
 
-    assert repr(t) == 'FixedDurationTuplet(1/4, [ ])'
+    assert repr(t) == 'FixedDurationTuplet(1/4, [])'
     assert str(t) == '{@ 1/4 @}'
     assert len(t) == 0
     assert t.target_duration == Fraction(1, 4)

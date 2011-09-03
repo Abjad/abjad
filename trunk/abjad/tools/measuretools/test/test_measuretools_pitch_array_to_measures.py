@@ -11,11 +11,11 @@ def test_measuretools_pitch_array_to_measures_01():
 
     '''
     [  ] [d'] [bf bqf     ]
-    [g'      ] [fs'    ] [ ]
+    [g'      ] [fs'    ] []
     '''
 
     measures = measuretools.pitch_array_to_measures(array)
-    score = Score(Staff([ ]) * 2)
+    score = Score(Staff([]) * 2)
     score[0].append(measures[0])
     score[1].append(measures[1])
 

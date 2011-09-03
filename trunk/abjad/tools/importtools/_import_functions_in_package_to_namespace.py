@@ -21,7 +21,7 @@ def _import_functions_in_package_to_namespace(package, namespace, skip_dirs=['te
             package.mod3_func1()
     '''
 
-    functions = [ ]
+    functions = []
     for root, dirs, files in os.walk(package):
         root = root[root.rindex('abjad'):]
 

@@ -154,8 +154,8 @@ def test_containertools_split_container_once_by_counts_and_fracture_crossing_spa
     }
     '''
 
-    #parts = containertools.split_container_once_by_counts_and_fracture_crossing_spanners(t[:], [ ])
-    parts = containertools.split_container_once_by_counts_and_fracture_crossing_spanners(t[0], [ ])
+    #parts = containertools.split_container_once_by_counts_and_fracture_crossing_spanners(t[:], [])
+    parts = containertools.split_container_once_by_counts_and_fracture_crossing_spanners(t[0], [])
 
     r'''
     \new Voice {

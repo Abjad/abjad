@@ -17,5 +17,5 @@ def test_componenttools_all_are_components_03():
 
 
 def test_componenttools_all_are_components_04():
-    t = [ ]
+    t = []
     assert componenttools.all_are_components(t)

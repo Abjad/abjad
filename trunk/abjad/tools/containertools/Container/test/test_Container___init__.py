@@ -5,7 +5,7 @@ def test_Container___init___01():
     '''Init empty container.
     '''
 
-    container = Container([ ])
+    container = Container([])
 
     r'''
     {

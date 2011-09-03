@@ -14,8 +14,8 @@ class _Context(Container):
         Container.__init__(self, music)
         self._context = '_Context'
         self._formatter = _ContextFormatter(self)
-        self._engraver_consists = set([ ])
-        self._engraver_removals = set([ ])
+        self._engraver_consists = set([])
+        self._engraver_removals = set([])
         self._name = None
         self.is_nonsemantic = False
 
@@ -68,7 +68,7 @@ class _Context(Container):
 
         Manage with add, update, other standard set commands. ::
 
-            abjad> staff = Staff([ ])
+            abjad> staff = Staff([])
             abjad> staff.engraver_consists.add('Horizontal_bracket_engraver')
             abjad> f(staff)
             \new Staff \with {
@@ -87,7 +87,7 @@ class _Context(Container):
 
         Manage with add, update, other standard set commands. ::
 
-            abjad> staff = Staff([ ])
+            abjad> staff = Staff([])
             abjad> staff.engraver_removals.add('Time_signature_engraver')
             abjad> f(staff)
             \new Staff \with {
@@ -136,7 +136,7 @@ class _Context(Container):
 
             Get indicator of nonsemantic voice::
 
-                abjad> voice = Voice([ ])
+                abjad> voice = Voice([])
 
             ::
 

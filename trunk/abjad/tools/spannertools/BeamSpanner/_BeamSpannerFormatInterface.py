@@ -10,13 +10,13 @@ class _BeamSpannerFormatInterface(_SpannerFormatInterface):
 
     def _before(self, leaf):
         '''Spanner format contribution before leaf.'''
-        result = [ ]
+        result = []
         result.extend(_SpannerFormatInterface._before(self, leaf))
         return result
 
     def _right(self, leaf):
         '''Spanner format contribution right of leaf.'''
-        result = [ ]
+        result = []
         spanner = self.spanner
         if spanner._is_my_first_leaf(leaf):
             result.append('[')

@@ -47,7 +47,7 @@ def get_effective_context_mark(component, klass):
     component._update_marks_of_entire_score_tree_if_necessary()
 
     #print 'gathering candidate marks ...'
-    candidate_marks = set([ ])
+    candidate_marks = set([])
     for parent in componenttools.get_improper_parentage_of_component(component):
         parent_marks = parent.marks
         #print 'parent marks %s ...' % str(parent_marks)

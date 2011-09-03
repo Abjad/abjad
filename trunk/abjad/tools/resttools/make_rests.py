@@ -42,7 +42,7 @@ def make_rests(duration_tokens, direction = 'big-endian', tied = False):
     if isinstance(duration_tokens, (Number, tuple)):
         duration_tokens = [duration_tokens]
 
-    result = [ ]
+    result = []
     for d in duration_tokens:
         result.extend(_construct_tied_rest(d, direction, tied))
     return result

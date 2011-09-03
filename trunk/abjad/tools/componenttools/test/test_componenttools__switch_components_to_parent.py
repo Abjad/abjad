@@ -4,7 +4,7 @@ from abjad.tools.componenttools._switch_components_to_parent import _switch_comp
 
 def test_componenttools__switch_components_to_parent_01():
 
-    t = Voice([ ])
+    t = Voice([])
     u = Voice("c'8 d'8 e'8 f'8")
 
     components = u[:]

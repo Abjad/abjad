@@ -9,7 +9,7 @@ def sum_preprolated_duration_of_components(components):
 
     Return zero on empty iterable::
 
-        abjad> componenttools.sum_preprolated_duration_of_components([ ])
+        abjad> componenttools.sum_preprolated_duration_of_components([])
         0
 
     Raise contiguity error on nonparent-contiguous `components`::

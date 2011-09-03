@@ -9,8 +9,8 @@ def test_PitchArrayCell_indices_01():
     array = pitcharraytools.PitchArray([[1, 2, 1], [2, 1, 1]])
 
     '''
-    [ ] [      ] [ ]
-    [      ] [ ] [ ]
+    [] [      ] []
+    [      ] [] []
     '''
 
     assert array[0].cells[0].indices == (0, (0,))

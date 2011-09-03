@@ -32,7 +32,7 @@ class StaffGroup(_Context):
     Return staff group.
     '''
 
-    def __init__(self, music = [ ], **kwargs):
+    def __init__(self, music = [], **kwargs):
         _Context.__init__(self, music)
         self.is_parallel = True
         self.context = 'StaffGroup'

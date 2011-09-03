@@ -1,7 +1,7 @@
 def _get_context_setting_format_contributions(component):
     '''Sorted list of format-time context settings.
     '''
-    result = [ ]
+    result = []
     from abjad.tools.leaftools._Leaf import _Leaf
     from abjad.tools.measuretools.Measure import Measure
     from abjad.tools.lilyfiletools._format_lilypond_context_setting_inline import _format_lilypond_context_setting_inline

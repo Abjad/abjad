@@ -5,7 +5,7 @@ def _format_note_head(note_head):
 
     ### make sure note head has pitch
     assert note_head.written_pitch
-    result = [ ]
+    result = []
 
     ### format chord note head with optional tweaks
     if isinstance(note_head._client, Chord):

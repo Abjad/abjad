@@ -33,7 +33,7 @@ def repeat_sequence_to_length(sequence, length, start = 0):
     if len(sequence) <= 0:
         raise ValueError
 
-    result = [ ]
+    result = []
     start %= len(sequence)
     stop_index = start + length
     repetitions = int(math.ceil(stop_index / len(sequence)))

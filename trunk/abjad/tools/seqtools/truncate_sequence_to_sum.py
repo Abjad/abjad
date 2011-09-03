@@ -47,7 +47,7 @@ def truncate_sequence_to_sum(sequence, sum):
         raise ValueError
 
     #assert 0 <= total
-    result = [ ]
+    result = []
 
     if total == 0:
         return result

@@ -31,7 +31,7 @@ def test_componenttools_list_leftmost_components_with_prolated_duration_at_most_
     components, duration = componenttools.list_leftmost_components_with_prolated_duration_at_most(
         t[:], Duration(0))
 
-    assert components == [ ]
+    assert components == []
     assert duration == Duration(0)
 
 

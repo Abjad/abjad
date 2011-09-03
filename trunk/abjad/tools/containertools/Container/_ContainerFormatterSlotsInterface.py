@@ -20,7 +20,7 @@ class _ContainerFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
     def slot_1(self):
         from abjad.tools.marktools._get_comment_format_contributions_for_slot import _get_comment_format_contributions_for_slot
         from abjad.tools.marktools._get_lilypond_command_mark_format_contributions_for_slot import _get_lilypond_command_mark_format_contributions_for_slot
-        result = [ ]
+        result = []
         container = self.formatter.container
         result.append(_get_comment_format_contributions_for_slot(container, 'before'))
         result.append(_get_lilypond_command_mark_format_contributions_for_slot(container, 'before'))
@@ -28,7 +28,7 @@ class _ContainerFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
 
     @property
     def slot_2(self):
-        result = [ ]
+        result = []
         if self._client._client.is_parallel:
             brackets_open = ['<<']
         else:
@@ -42,7 +42,7 @@ class _ContainerFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
         from abjad.tools.marktools._get_lilypond_command_mark_format_contributions_for_slot import _get_lilypond_command_mark_format_contributions_for_slot
         from abjad.core.LilyPondGrobOverrideComponentPlugIn._get_grob_override_format_contributions import _get_grob_override_format_contributions
         from abjad.tools.contexttools._get_context_setting_format_contributions import _get_context_setting_format_contributions
-        result = [ ]
+        result = []
         container = self.formatter.container
         result.append(_get_comment_format_contributions_for_slot(container, 'opening'))
         result.append(_get_lilypond_command_mark_format_contributions_for_slot(container, 'opening'))
@@ -53,7 +53,7 @@ class _ContainerFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
 
     @property
     def slot_4(self):
-        result = [ ]
+        result = []
         result.append(self.wrap(self.formatter, '_contents'))
         return tuple(result)
 
@@ -62,7 +62,7 @@ class _ContainerFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
         from abjad.tools.marktools._get_comment_format_contributions_for_slot import _get_comment_format_contributions_for_slot
         from abjad.tools.marktools._get_lilypond_command_mark_format_contributions_for_slot import _get_lilypond_command_mark_format_contributions_for_slot
         from abjad.core.LilyPondGrobOverrideComponentPlugIn._get_grob_revert_format_contributions import _get_grob_revert_format_contributions
-        result = [ ]
+        result = []
         container = self.formatter.container
         result.append(_get_grob_revert_format_contributions(container))
         result.append(_get_lilypond_command_mark_format_contributions_for_slot(container, 'closing'))
@@ -72,7 +72,7 @@ class _ContainerFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
 
     @property
     def slot_6(self):
-        result = [ ]
+        result = []
         if self._client._client.is_parallel:
             brackets_close = ['>>']
         else:
@@ -84,7 +84,7 @@ class _ContainerFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
     def slot_7(self):
         from abjad.tools.marktools._get_comment_format_contributions_for_slot import _get_comment_format_contributions_for_slot
         from abjad.tools.marktools._get_lilypond_command_mark_format_contributions_for_slot import _get_lilypond_command_mark_format_contributions_for_slot
-        result = [ ]
+        result = []
         container = self.formatter.container
         result.append(_get_lilypond_command_mark_format_contributions_for_slot(container, 'after'))
         result.append(_get_comment_format_contributions_for_slot(container, 'after'))

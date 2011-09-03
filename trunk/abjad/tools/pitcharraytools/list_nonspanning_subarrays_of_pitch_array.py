@@ -53,13 +53,13 @@ def list_nonspanning_subarrays_of_pitch_array(pitch_array):
     if not isinstance(pitch_array, PitchArray):
         raise TypeError('must be pitch array.')
 
-    unspanned_indices = [ ]
+    unspanned_indices = []
     for i in range(pitch_array.width + 1):
         if not pitch_array.has_spanning_cell_over_index(i):
             unspanned_indices.append(i)
 
     array_depth = pitch_array.depth
-    subarrays = [ ]
+    subarrays = []
     for start_column, stop_column in seqtools.iterate_sequence_pairwise_strict(unspanned_indices):
         upper_left_pair = (0, start_column)
         lower_right_pair = (array_depth, stop_column)

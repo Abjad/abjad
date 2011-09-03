@@ -20,7 +20,7 @@ def is_repetition_free_sequence(expr):
 
     True when `expr` is an empty sequence::
 
-        abjad> seqtools.is_repetition_free_sequence([ ])
+        abjad> seqtools.is_repetition_free_sequence([])
         True
 
     False `expr` is not a sequence::

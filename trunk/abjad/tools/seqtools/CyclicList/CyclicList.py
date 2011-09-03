@@ -41,6 +41,6 @@ class CyclicList(list):
         return list.__getitem__(self, expr % len(self))
 
     def __getslice__(self, start_index, stop_index):
-        result = [ ]
+        result = []
         result = [self[n] for n in range(start_index, stop_index)]
         return result

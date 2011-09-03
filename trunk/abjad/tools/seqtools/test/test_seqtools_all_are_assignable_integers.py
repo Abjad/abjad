@@ -13,7 +13,7 @@ def test_seqtools_all_are_assignable_integers_02():
     '''True on empty sequence.
     '''
 
-    assert seqtools.all_are_assignable_integers([ ])
+    assert seqtools.all_are_assignable_integers([])
 
 
 def test_seqtools_all_are_assignable_integers_03():

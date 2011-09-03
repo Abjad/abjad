@@ -6,7 +6,7 @@ def test_iotools_parse_lilypond_input_string_01():
 
     note_entry_string = r'''g'4 a'4 ~ a'2 \bar "||" g'4. fs'8 e'4 d'4 \fermata'''
     container = iotools.parse_lilypond_input_string(note_entry_string)
-    staff = Staff([ ])
+    staff = Staff([])
     staff[:] = container[:]
 
     r'''
@@ -31,7 +31,7 @@ def test_iotools_parse_lilypond_input_string_02():
 
     note_entry_string = r'''c'4 g'4 b8 c'8 d'8 -. ( ef'8 ^\marcato <bf cs' f'>4 c'4 )'''
     container = iotools.parse_lilypond_input_string(note_entry_string)
-    staff = Staff([ ])
+    staff = Staff([])
     staff[:] = container[:]
 
     r'''
@@ -56,7 +56,7 @@ def test_iotools_parse_lilypond_input_string_03():
 
     note_entry_string = r'''c'4 ( d'4 e'8 fs'8 [ a'16. d'32 ] ) g'2 b16 [ ] ( c'16 b16 c'16 )'''
     container = iotools.parse_lilypond_input_string(note_entry_string)
-    staff = Staff([ ])
+    staff = Staff([])
     staff[:] = container[:]
 
     r'''

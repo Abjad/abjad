@@ -21,10 +21,10 @@ First let's create an empty score with a pair of staves connected by a brace:
 
 ::
 
-	abjad> score = Score([ ])
-	abjad> piano_staff = scoretools.PianoStaff([ ])
-	abjad> upper_staff = Staff([ ])
-	abjad> lower_staff = Staff([ ])
+	abjad> score = Score([])
+	abjad> piano_staff = scoretools.PianoStaff([])
+	abjad> upper_staff = Staff([])
+	abjad> lower_staff = Staff([])
 
 
 ::
@@ -46,11 +46,11 @@ Now let's add some measures to our score:
 
 ::
 
-	abjad> m1 = Measure((2, 4), [ ])
-	abjad> m2 = Measure((3, 4), [ ])
-	abjad> m3 = Measure((2, 4), [ ])
-	abjad> m4 = Measure((2, 4), [ ])
-	abjad> m5 = Measure((2, 4), [ ])
+	abjad> m1 = Measure((2, 4), [])
+	abjad> m2 = Measure((3, 4), [])
+	abjad> m3 = Measure((2, 4), [])
+	abjad> m4 = Measure((2, 4), [])
+	abjad> m5 = Measure((2, 4), [])
 
 
 ::
@@ -232,7 +232,7 @@ Let's add a double bar to the end of the piece:
 
 ::
 
-	lilypond_command_mark = marktools.LilyPondCommandMark('bar "|."', format_slot = 'closing')
+	lilypond_command_mark = marktools.LilyPondCommandMark('bar "|."', 'closing')
 	abjad> lilypond_command_mark.attach(lower_staff.leaves[-1])
 
 

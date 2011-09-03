@@ -25,7 +25,7 @@ def test_seqtools_is_strictly_increasing_sequence_02():
 def test_seqtools_is_strictly_increasing_sequence_03():
     '''True when l is empty.'''
 
-    l = [ ]
+    l = []
     assert seqtools.is_strictly_increasing_sequence(l)
 
 

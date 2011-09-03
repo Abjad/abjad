@@ -19,7 +19,7 @@ def test_intervaltreetools_scale_interval_offsets_by_rational_01():
     assert scaled[2].magnitude == c.magnitude
 
 def test_intervaltreetools_scale_interval_offsets_by_rational_02():
-    tree = IntervalTree([ ])
+    tree = IntervalTree([])
     scalar = Fraction(5, 2)
     scaled = scale_interval_offsets_by_rational(tree, scalar)
     assert scaled == tree

@@ -20,7 +20,7 @@ def negate_sequence_elements_cyclically(sequence, indices, period):
     if not isinstance(sequence, list):
         raise TypeError
 
-    result = [ ]
+    result = []
 
     for i, element in enumerate(sequence):
         if (i in indices) or (period and i % period in indices):

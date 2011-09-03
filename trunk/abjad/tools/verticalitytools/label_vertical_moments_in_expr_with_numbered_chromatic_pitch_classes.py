@@ -11,7 +11,7 @@ def label_vertical_moments_in_expr_with_numbered_chromatic_pitch_classes(expr, m
 
     ::
 
-        abjad> score = Score(Staff([ ]) * 3)
+        abjad> score = Score(Staff([]) * 3)
         abjad> notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
         abjad> score[0].extend(notes)
         abjad> contexttools.ClefMark('alto')(score[1])

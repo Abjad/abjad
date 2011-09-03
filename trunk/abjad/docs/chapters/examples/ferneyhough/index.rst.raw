@@ -67,9 +67,9 @@ duration = Fraction(1, 4)
 And then we make the rhythms:
 
 <abjad>
-music = [ ] <hide
+music = [] <hide
 for proportion in proportions: <hide
-    tuplets = [ ] <hide
+    tuplets = [] <hide
     for n in range(1, 6 + 1): <hide
         tuplet = make_tuplet(duration, proportion) <hide
         divide_tuplet(tuplet, n) <hide
@@ -80,7 +80,7 @@ for proportion in proportions: <hide
 ::
 
     for proportion in proportions:
-        tuplets = [ ]
+        tuplets = []
         for n in range(1, 6 + 1):
             tuplet = make_tuplet(duration, proportion)
             divide_tuplet(tuplet, n)

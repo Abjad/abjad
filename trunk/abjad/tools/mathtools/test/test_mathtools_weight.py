@@ -13,4 +13,4 @@ def test_mathtools_weight_02():
     '''Weight of empty sequence.
     '''
 
-    assert mathtools.weight([ ]) == 0
+    assert mathtools.weight([]) == 0

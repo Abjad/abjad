@@ -76,7 +76,7 @@ def test_Chord_07():
     '''Set chord pitches to numbers.
     '''
 
-    t = Chord([ ], (1,4))
+    t = Chord([], (1,4))
     t.written_pitches = [4, 3, 2]
 
     assert t.format == "<d' ef' e'>4"
@@ -90,7 +90,7 @@ def test_Chord_08():
     '''Set chord pitches to pitches.
     '''
 
-    t = Chord([ ], (1,4))
+    t = Chord([], (1,4))
     t.written_pitches = [pitchtools.NamedChromaticPitch(4), pitchtools.NamedChromaticPitch(3), 
         pitchtools.NamedChromaticPitch(2)]
 
@@ -101,7 +101,7 @@ def test_Chord_09():
     '''Set chord pitches to mixed numbers and pitches.
     '''
 
-    t = Chord([ ], (1,4))
+    t = Chord([], (1,4))
     t.written_pitches = [4, pitchtools.NamedChromaticPitch(3), pitchtools.NamedChromaticPitch(2)]
 
     assert t.format == "<d' ef' e'>4"
@@ -111,7 +111,7 @@ def test_Chord_10():
     '''Set chord note heads to numbers.
     '''
 
-    t = Chord([ ], (1,4))
+    t = Chord([], (1,4))
     t.note_heads = [4, 3, 2]
 
     assert t.format == "<d' ef' e'>4"
@@ -121,7 +121,7 @@ def test_Chord_11():
     '''Set chord note heads to pitches.
     '''
 
-    t = Chord([ ], (1,4))
+    t = Chord([], (1,4))
     t.note_heads = [pitchtools.NamedChromaticPitch(4), pitchtools.NamedChromaticPitch(3), pitchtools.NamedChromaticPitch(2)]
 
     assert t.format == "<d' ef' e'>4"
@@ -131,7 +131,7 @@ def test_Chord_12():
     '''Set chord note heads to mixed numbers and pitches.
     '''
 
-    t = Chord([ ], (1,4))
+    t = Chord([], (1,4))
     t.note_heads = [pitchtools.NamedChromaticPitch(4), 3, pitchtools.NamedChromaticPitch(2)]
 
     assert t.format == "<d' ef' e'>4"

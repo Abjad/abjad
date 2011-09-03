@@ -117,7 +117,7 @@ def test_spannertools__withdraw_components_in_expr_from_crossing_spanners_03():
     _withdraw_components_in_expr_from_crossing_spanners(t.leaves[2:3])
 
     spanners = spannertools.get_spanners_contained_by_components(t.leaves[2:3])
-    assert spanners == set([ ])
+    assert spanners == set([])
 
     "Operation leaves score tree in weird state."
     "Both slur and trill are now discontiguous."

@@ -6,7 +6,7 @@ import os
 def _update_docs_release_string():
     docs_conf_file_name = os.path.join(ABJADPATH, 'docs', 'conf.py')
     docs_conf_file = file(docs_conf_file_name, 'r')
-    output_lines = [ ]
+    output_lines = []
     for input_line in docs_conf_file.readlines():
         if input_line.startswith('release ='):
             abjad_revision_string = cfgtools.get_abjad_revision_string()

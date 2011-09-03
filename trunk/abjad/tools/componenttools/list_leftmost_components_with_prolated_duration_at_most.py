@@ -35,7 +35,7 @@ def list_leftmost_components_with_prolated_duration_at_most(components, prolated
     assert componenttools.all_are_thread_contiguous_components(components)
 
     total_duration = durtools.Duration(0)
-    result = [ ]
+    result = []
     for component in components:
         cur_duration = component.prolated_duration
         if total_duration + cur_duration <= prolated_duration:

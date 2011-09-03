@@ -10,6 +10,6 @@ def test_intervaltreetools_calculate_mean_attack_of_intervals_01():
 
 
 def test_intervaltreetools_calculate_mean_attack_of_intervals_02():
-    tree = IntervalTree([ ])
+    tree = IntervalTree([])
     attack = calculate_mean_attack_of_intervals(tree)
     assert attack is None

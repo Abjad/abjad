@@ -33,7 +33,7 @@ def _give_music_from_donor_components_to_recipient_components(donors, recipient)
 
     ### otherwise recipient is empty container, so proceed
     ### collect music from all donor components
-    donor_music = [ ]
+    donor_music = []
     for donor in donors:
         #donor_music.extend(donor.music)
         donor_music.extend(getattr(donor, 'music', ()))

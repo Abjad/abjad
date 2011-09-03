@@ -11,13 +11,13 @@ def test_PitchArrayRow___add___01():
 
     '''
     [c'] [d'     ] [  ]
-    [         ] [ ] [e']
+    [         ] [] [e']
     '''
 
     new_row = array[0] + array[1]
 
     '''
-    [c'] [d'] [ ] [ ] [ ] [e']
+    [c'] [d'] [] [] [] [e']
     '''
 
     assert new_row.parent_array is None

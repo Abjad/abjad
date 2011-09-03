@@ -11,7 +11,7 @@ def test_PitchArrayColumn_has_voice_crossing_01():
 
     '''
     [  ] [d'] [bqf     ]
-    [g'      ] [fs'] [ ]
+    [g'      ] [fs'] []
     '''
 
     assert not array.columns[0].has_voice_crossing

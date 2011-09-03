@@ -135,7 +135,7 @@ class QGridQuantizer(_Quantizer):
     ### PRIVATE METHODS ###
 
     def _compare_q_events_to_q_grid(self, offsets, q_events, q_grid):
-        indices = [ ]
+        indices = []
         error = 0
 
         for i, offset in enumerate(offsets):
@@ -163,7 +163,7 @@ class QGridQuantizer(_Quantizer):
 
     def _divide_grid(self, grid, offsets):
         def recurse(grid, offsets):
-            results = [ ]
+            results = []
             indices = grid.find_divisible_indices(offsets)
             divisors = [self.search_tree.find_subtree_divisibility(
                 grid.find_parentage_of_index(index))
@@ -185,8 +185,8 @@ class QGridQuantizer(_Quantizer):
 
         for beatspan_number, group in q_event_groups.iteritems():
 
-            errors = [ ]
-            q_grids = [ ]
+            errors = []
+            q_grids = []
 
             mod_offsets = [Fraction(x.offset % self.beatspan_ms) / self.beatspan_ms for x in group]
 
@@ -210,8 +210,8 @@ class QGridQuantizer(_Quantizer):
         beatspan_numbers = sorted(best_q_grids.keys())
 
         # store indices of tie-chain starts
-        indices = [ ]
-        pitches = [ ]
+        indices = []
+        pitches = []
         carry = 0
         for beatspan_number in beatspan_numbers:
             q_grid = best_q_grids[beatspan_number]
@@ -244,7 +244,7 @@ class QGridQuantizer(_Quantizer):
                 container.extend(formatted)
 
         # add tie chains
-        tie_chains = [ ]
+        tie_chains = []
         for i, pair in enumerate(iterate_sequence_pairwise_strict(indices)):
             leaves = container.leaves[pair[0]:pair[1]]
             pitch = pitches[i]

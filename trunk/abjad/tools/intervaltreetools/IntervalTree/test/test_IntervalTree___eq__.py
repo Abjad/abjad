@@ -15,7 +15,7 @@ def test_IntervalTree___eq___02():
 
 
 def test_IntervalTree___eq___03():
-    a = IntervalTree([ ])
-    b = IntervalTree([ ])
+    a = IntervalTree([])
+    b = IntervalTree([])
     assert a == b
 

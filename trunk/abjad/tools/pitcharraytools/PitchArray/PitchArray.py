@@ -13,8 +13,8 @@ class PitchArray(_StrictComparator):
     '''
 
     def __init__(self, *args):
-        self._rows = [ ]
-        self._columns = [ ]
+        self._rows = []
+        self._columns = []
         if len(args) == 1:
             if isinstance(args[0], (tuple, list)):
                 self._init_by_cell_token_lists(*args)
@@ -29,7 +29,7 @@ class PitchArray(_StrictComparator):
             raise TypeError('must be pitch array.')
         if not self.depth == arg.depth:
             raise ValueError('array depth must match.')
-        new_array = PitchArray([ ])
+        new_array = PitchArray([])
         for self_row, arg_row in zip(self.rows, arg.rows):
             new_row = self_row + arg_row
             new_array.append_row(new_row)
@@ -113,7 +113,7 @@ class PitchArray(_StrictComparator):
 
     def _init_by_counts(self, row_count, column_count):
         for i in range(row_count):
-            row = PitchArrayRow([ ])
+            row = PitchArrayRow([])
             for j in range(column_count):
                 cell = PitchArrayCell()
                 row.append(cell)
@@ -121,7 +121,7 @@ class PitchArray(_StrictComparator):
 
     def _init_by_cell_token_lists(self, cell_token_lists):
         for cell_token_list in cell_token_lists:
-            row = PitchArrayRow([ ])
+            row = PitchArrayRow([])
             for cell_token in cell_token_list:
                 cell = self._parse_cell_token(cell_token)
                 row.append(cell)
@@ -142,14 +142,14 @@ class PitchArray(_StrictComparator):
 
     @property
     def cells(self):
-        cells = set([ ])
+        cells = set([])
         for row in self.rows:
             cells.update(row.cells)
         return cells
 
     @property
     def columns(self):
-        columns = [ ]
+        columns = []
         rows = self.rows
         for i, cells in enumerate(seqtools.zip_sequences_without_truncation(*self.rows)):
             column = PitchArrayColumn(cells)
@@ -183,7 +183,7 @@ class PitchArray(_StrictComparator):
 
     @property
     def pitches_by_row(self):
-        pitches = [ ]
+        pitches = []
         for row in self.rows:
             pitches.append(row.pitches)
         return tuple(pitches)
@@ -249,7 +249,7 @@ class PitchArray(_StrictComparator):
             raise ValueError('start row must not be greater than stop row.')
         if not start_j <= stop_j:
             raise ValueError('start column must not be greater than stop column.')
-        new_array = PitchArray([ ])
+        new_array = PitchArray([])
         rows = self.rows
         row_indices = range(start_i, stop_i)
         for row_index in row_indices:
@@ -269,7 +269,7 @@ class PitchArray(_StrictComparator):
         self_width = self.width
         missing_rows = depth - self_depth
         for i in range(missing_rows):
-            row = PitchArrayRow([ ])
+            row = PitchArrayRow([])
             row.pad_to_width(self_width)
             self.append_row(row)
 

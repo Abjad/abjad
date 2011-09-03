@@ -11,15 +11,15 @@ def test_PitchArrayRow_extend_01():
 
     '''
     [c'] [d'     ] [  ]
-    [         ] [ ] [e']
+    [         ] [] [e']
     '''
 
     array[0].extend([1, 1, 1])
     array[1].extend([3])
 
     '''
-    [c'] [d'     ] [  ] [ ] [ ] [ ]
-    [         ] [ ] [e'] [            ]
+    [c'] [d'     ] [  ] [] [] []
+    [         ] [] [e'] [            ]
     '''
 
     assert array[0].dimensions == (1, 7)

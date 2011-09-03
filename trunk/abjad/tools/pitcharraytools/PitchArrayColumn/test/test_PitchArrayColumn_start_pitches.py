@@ -11,7 +11,7 @@ def test_PitchArrayColumn_start_pitches_01():
 
     '''
     [  ] [d'] [bf bqf     ]
-    [g'      ] [fs'    ] [ ]
+    [g'      ] [fs'    ] []
     '''
 
     array.columns[0].start_pitches == (pitchtools.NamedChromaticPitch(7), )

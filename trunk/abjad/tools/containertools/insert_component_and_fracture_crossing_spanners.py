@@ -49,7 +49,7 @@ def insert_component_and_fracture_crossing_spanners(container, i, component):
     assert isinstance(i, int)
     assert isinstance(component, _Component)
 
-    result = [ ]
+    result = []
     component._parentage._switch(container)
     container._music.insert(i, component)
     if component._navigator._prev_bead:

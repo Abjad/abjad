@@ -37,7 +37,7 @@ def get_value_of_annotation_attached_to_component(component, name, default_value
     if not annotations:
         return default_value
 
-    with_correct_name = [ ]
+    with_correct_name = []
     for annotation in annotations:
         if annotation.name == name:
             with_correct_name.append(annotation)

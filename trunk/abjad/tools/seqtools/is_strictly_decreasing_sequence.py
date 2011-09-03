@@ -37,7 +37,7 @@ def is_strictly_decreasing_sequence(expr):
 
     True when `expr` is an empty sequence::
 
-        abjad> seqtools.is_strictly_decreasing_sequence([ ])
+        abjad> seqtools.is_strictly_decreasing_sequence([])
         True
 
     False `expr` is not a sequence::

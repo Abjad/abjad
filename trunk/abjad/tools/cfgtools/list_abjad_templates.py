@@ -19,7 +19,7 @@ def list_abjad_templates():
     Abjad templates are housed in ``abjad/templates``.
     '''
 
-    file_names = [ ]
+    file_names = []
     for file_name in os.listdir(os.path.join(ABJADPATH, 'templates')):
         if file_name.endswith('.ly'):
             if not file_name.startswith('_'):

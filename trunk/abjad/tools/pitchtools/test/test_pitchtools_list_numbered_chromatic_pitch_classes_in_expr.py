@@ -28,6 +28,6 @@ def test_pitchtools_list_numbered_chromatic_pitch_classes_in_expr_03():
 def test_pitchtools_list_numbered_chromatic_pitch_classes_in_expr_04():
     '''Works with empty chords.'''
 
-    chord = Chord([ ], (1, 4))
+    chord = Chord([], (1, 4))
     assert pitchtools.list_numbered_chromatic_pitch_classes_in_expr(chord) == ()
 

@@ -292,13 +292,13 @@ Abjad implements LilyPond ``{ }`` and ``<< >>`` in the container ``is_parallel``
 
 Some containers set ``is_parallel`` to false at initialization::
 
-    staff = Staff([ ])
+    staff = Staff([])
     staff.is_parallel
     False
 
 Other containers set ``is_parallel`` to true::
 
-    score = Score([ ])
+    score = Score([])
     score.is_parallel
     True
 

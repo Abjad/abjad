@@ -18,7 +18,7 @@ class _MeasureFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
         from abjad.tools.contexttools._get_context_setting_format_contributions import _get_context_setting_format_contributions
         from abjad.core.LilyPondGrobOverrideComponentPlugIn._get_grob_override_format_contributions import _get_grob_override_format_contributions
         from abjad.tools.marktools._get_lilypond_command_mark_format_contributions_for_slot import _get_lilypond_command_mark_format_contributions_for_slot
-        result = [ ]
+        result = []
         measure = self.formatter.container
         result.append(_get_comment_format_contributions_for_slot(measure, 'opening'))
         result.append(_get_grob_override_format_contributions(self._client._client))

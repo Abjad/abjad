@@ -13,7 +13,7 @@ def test_seqtools_all_are_numbers_02():
     '''True on empty sequence.
     '''
 
-    assert seqtools.all_are_numbers([ ])
+    assert seqtools.all_are_numbers([])
 
 
 def test_seqtools_all_are_numbers_03():

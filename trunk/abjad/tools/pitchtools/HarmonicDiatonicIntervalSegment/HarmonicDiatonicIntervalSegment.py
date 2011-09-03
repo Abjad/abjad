@@ -18,7 +18,7 @@ class HarmonicDiatonicIntervalSegment(_IntervalSegment):
             harmonic_diatonic_interval_tokens = arg.split()
         else:
             harmonic_diatonic_interval_tokens = arg
-        hdis = [ ]
+        hdis = []
         for token in harmonic_diatonic_interval_tokens:
             hdi = pitchtools.HarmonicDiatonicInterval(token)
             hdis.append(hdi)

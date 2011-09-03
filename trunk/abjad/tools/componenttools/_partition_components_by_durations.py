@@ -34,8 +34,8 @@ def _partition_components_by_durations(duration_type, components, durations,
     assert all([isinstance(x, (int, float, durtools.Duration)) for x in durations])
 
     len_durations = len(durations)
-    result = [ ]
-    part = [ ]
+    result = []
+    part = []
     cur_duration_idx = 0
     target_duration = durations[cur_duration_idx]
     cum_duration = durtools.Duration(0)
@@ -65,7 +65,7 @@ def _partition_components_by_durations(duration_type, components, durations,
         elif candidate_duration == target_duration:
             part.append(component)
             result.append(part)
-            part = [ ]
+            part = []
             cum_duration = durtools.Duration(0)
             cur_duration_idx += 1
             target_duration = _get_next(durations, cur_duration_idx, cyclic)
@@ -95,7 +95,7 @@ def _partition_components_by_durations(duration_type, components, durations,
             elif fill == 'greater':
                 part.append(component)
                 result.append(part)
-                part = [ ]
+                part = []
                 cum_duration = durtools.Duration(0)
                 cur_duration_idx += 1
                 target_duration = _get_next(durations, cur_duration_idx, cyclic)

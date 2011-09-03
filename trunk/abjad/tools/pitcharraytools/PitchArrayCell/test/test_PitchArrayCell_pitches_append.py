@@ -7,8 +7,8 @@ def test_PitchArrayCell_pitches_append_01():
     array = pitcharraytools.PitchArray([[1, 2, 1], [2, 1, 1]])
 
     '''
-    [ ] [      ] [ ]
-    [      ] [ ] [ ]
+    [] [      ] []
+    [      ] [] []
     '''
 
     array[0].cells[0].pitches.append(0)
@@ -17,7 +17,7 @@ def test_PitchArrayCell_pitches_append_01():
 
     '''
     [c'] [d'     ] [e']
-    [         ] [ ] [  ]
+    [         ] [] [  ]
     '''
 
     assert array[0].cells[0].pitches == [pitchtools.NamedChromaticPitch(0)]

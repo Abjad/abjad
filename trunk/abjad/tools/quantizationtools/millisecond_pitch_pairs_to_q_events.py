@@ -41,7 +41,7 @@ def millisecond_pitch_pairs_to_q_events(pairs):
 
     # fuse silences
     g = groupby(pairs, lambda x: x[1] is not None)
-    groups = [ ]
+    groups = []
     for value, group in g:
         if value:
             groups.extend(list(group))
@@ -53,7 +53,7 @@ def millisecond_pitch_pairs_to_q_events(pairs):
     offsets = cumulative_sums_zero([abs(x[0]) for x in groups])
 
     # build Q-events
-    q_events = [ ]
+    q_events = []
     for pair in zip(offsets, groups):
         offset = Offset(pair[0])
         # duration = abs(pair[1][0])

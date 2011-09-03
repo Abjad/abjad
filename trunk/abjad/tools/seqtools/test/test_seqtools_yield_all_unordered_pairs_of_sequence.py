@@ -18,8 +18,8 @@ def test_seqtools_yield_all_unordered_pairs_of_sequence_02():
 def test_seqtools_yield_all_unordered_pairs_of_sequence_03():
     '''Handles input of length less than 2.'''
 
-    assert list(seqtools.yield_all_unordered_pairs_of_sequence([1])) == [ ]
-    assert list(seqtools.yield_all_unordered_pairs_of_sequence([ ])) == [ ]
+    assert list(seqtools.yield_all_unordered_pairs_of_sequence([1])) == []
+    assert list(seqtools.yield_all_unordered_pairs_of_sequence([])) == []
 
 
 def test_seqtools_yield_all_unordered_pairs_of_sequence_04():

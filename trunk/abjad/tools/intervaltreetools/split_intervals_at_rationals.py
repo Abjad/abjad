@@ -47,7 +47,7 @@ def split_intervals_at_rationals(intervals, rationals):
         tangent_intervals = tree.find_intervals_starting_or_stopping_at_offset(rational)
         if tangent_intervals:
             intersecting_intervals = intersecting_intervals.difference(set(tangent_intervals))
-        splits = [ ]
+        splits = []
         for interval in intersecting_intervals:
             splits.extend(interval.split_at_rational(rational))
         tree = IntervalTree(set(tree[:]).difference(intersecting_intervals).union(set(splits)))

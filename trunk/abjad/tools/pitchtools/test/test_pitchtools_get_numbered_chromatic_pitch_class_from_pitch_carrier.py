@@ -19,7 +19,7 @@ def test_pitchtools_get_numbered_chromatic_pitch_class_from_pitch_carrier_02():
 def test_pitchtools_get_numbered_chromatic_pitch_class_from_pitch_carrier_03():
     '''Raises exception on empty chord.'''
 
-    chord = Chord([ ], (1, 4))
+    chord = Chord([], (1, 4))
     assert py.test.raises(MissingPitchError,
         'pitchtools.get_numbered_chromatic_pitch_class_from_pitch_carrier(chord)')
 

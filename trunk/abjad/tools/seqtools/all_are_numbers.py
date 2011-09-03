@@ -15,7 +15,7 @@ def all_are_numbers(expr):
 
     True when `expr` is an empty sequence::
 
-        abjad> seqtools.all_are_numbers([ ])
+        abjad> seqtools.all_are_numbers([])
         True
 
     False otherwise::

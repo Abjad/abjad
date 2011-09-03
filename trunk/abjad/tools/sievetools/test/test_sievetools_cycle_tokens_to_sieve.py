@@ -87,7 +87,7 @@ def test_sievetools_cycle_tokens_to_sieve_08():
     '''Works with no cycle tokens.'''
 
     sieve = sievetools.cycle_tokens_to_sieve()
-    assert sieve.rcs == [ ]
+    assert sieve.rcs == []
 
 
 def test_sievetools_cycle_tokens_to_sieve_09():
