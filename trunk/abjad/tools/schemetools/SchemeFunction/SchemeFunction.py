@@ -28,7 +28,7 @@ class SchemeFunction(_StrictComparator, _Immutable):
     ### OVERLOADS ###
 
     def __repr__(self):
-        return '%s(%s)' % (self.__class__.__name__, self._repr_contents_string)
+        return '%s(%s)' % (type(self).__name__, self._repr_contents_string)
 
     ### PRIVATE ATTRIBUTES ###
 

@@ -17,7 +17,7 @@ class LilyPondLanguageToken(_Immutable):
     ### OVERLOADS ###
 
     def __repr__(self):
-        return '%s(%s)' % (self.__class__.__name__, self.format)
+        return '%s(%s)' % (type(self).__name__, self.format)
 
     ### PUBLIC ATTRIBUTES ###
 

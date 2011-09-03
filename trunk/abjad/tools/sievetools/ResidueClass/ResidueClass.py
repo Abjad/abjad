@@ -83,7 +83,7 @@ class ResidueClass(_BaseResidueClass, _Immutable):
         return not self == expr
 
     def __repr__(self):
-        return '%s(%i, %i)' % (self.__class__.__name__, self.modulo, self.residue)
+        return '%s(%i, %i)' % (type(self).__name__, self.modulo, self.residue)
 
     ### PRIVATE METHODS ###
 

@@ -98,7 +98,7 @@ class PitchArrayCell(_StrictComparator):
 
     def __repr__(self):
         return '%s(%s)' % (
-            self.__class__.__name__, self._format_pitch_width_string)
+            type(self).__name__, self._format_pitch_width_string)
 
     def __str__(self):
         return self._format_string

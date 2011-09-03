@@ -28,5 +28,5 @@ class _Pitch(_Immutable, _UnaryComparator):
         return not self == arg
 
     def __repr__(self):
-        return '%s(%s)' % (self.__class__.__name__, self._format_string)
+        return '%s(%s)' % (type(self).__name__, self._format_string)
 

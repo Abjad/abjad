@@ -37,7 +37,7 @@ class _DiatonicInterval(_Interval, _Diatonic):
         return HarmonicDiatonicInterval(self.quality_string, self.number)
 
     def __eq__(self, arg):
-        if isinstance(arg, self.__class__):
+        if isinstance(arg, type(self)):
             if self.quality_string == arg.quality_string:
                 if self.number == arg.number:
                     return True
@@ -53,7 +53,7 @@ class _DiatonicInterval(_Interval, _Diatonic):
         return not self == arg
 
     def __repr__(self):
-        return "%s('%s')" % (self.__class__.__name__, self._format_string)
+        return "%s('%s')" % (type(self).__name__, self._format_string)
 
     def __str__(self):
         return self._format_string

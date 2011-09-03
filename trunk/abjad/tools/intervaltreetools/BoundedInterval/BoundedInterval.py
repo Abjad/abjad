@@ -42,7 +42,7 @@ class BoundedInterval(dict, _Immutable):
 
     def __repr__(self):
         return '%s(%s, %s, %s)' % \
-            (self.__class__.__name__, \
+            (type(self).__name__, \
             repr(self.low), \
             repr(self.high), \
             dict.__repr__(self))
@@ -137,7 +137,7 @@ class BoundedInterval(dict, _Immutable):
         assert 0 <= rational
         if rational != 1:
             new_magnitude = (self.high - self.low) * rational
-            return self.__class__(BoundedInterval(self.low, self.low + new_magnitude, self))
+            return type(self)(BoundedInterval(self.low, self.low + new_magnitude, self))
         else:
             return self
 
@@ -145,14 +145,14 @@ class BoundedInterval(dict, _Immutable):
         assert isinstance(rational, (int, Fraction))
         assert 0 <= rational
         if rational != self.magnitude:
-            return self.__class__(BoundedInterval(self.low, self.low + rational, self))
+            return type(self)(BoundedInterval(self.low, self.low + rational, self))
         else:
             return self
 
     def shift_by_rational(self, rational):
         assert isinstance(rational, (int, Fraction))
         if rational != 0:
-            return self.__class__(BoundedInterval(self.low + rational, self.high + rational, self))
+            return type(self)(BoundedInterval(self.low + rational, self.high + rational, self))
         else:
             return self
 
@@ -160,14 +160,14 @@ class BoundedInterval(dict, _Immutable):
         assert isinstance(rational, (int, Fraction))
         if rational != self.low:
             magnitude = self.high - self.low
-            return self.__class__(BoundedInterval(rational, rational + magnitude, self))
+            return type(self)(BoundedInterval(rational, rational + magnitude, self))
         else:
             return self
 
     def split_at_rational(self, rational):
         assert isinstance(rational, (int, Fraction))
         if self.low < rational < self.high:
-            return (self.__class__(BoundedInterval(self.low, rational, self)),
-                    self.__class__(BoundedInterval(rational, self.high, self)))
+            return (type(self)(BoundedInterval(self.low, rational, self)),
+                    type(self)(BoundedInterval(rational, self.high, self)))
         else:
             return (self,)

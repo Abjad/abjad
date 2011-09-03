@@ -9,9 +9,9 @@ class _BlockAttributed(object):
 
     def __repr__(self):
         if not len(self._user_attributes):
-            return '%s()' % self.__class__.__name__
+            return '%s()' % type(self).__name__
         else:
-            return '%s(%s)' % (self.__class__.__name__, len(self._user_attributes))
+            return '%s(%s)' % (type(self).__name__, len(self._user_attributes))
 
     ### PRIVATE ATTRIBUTES ###
 

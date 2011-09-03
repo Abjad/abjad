@@ -121,9 +121,9 @@ class Markup(Mark):
     def __repr__(self):
         if self._direction_string is not None:
             return '%s(%s, %s)' % (
-                self.__class__.__name__, repr(self._contents_string), repr(self._direction_string))
+                type(self).__name__, repr(self._contents_string), repr(self._direction_string))
         else:
-            return '%s(%s)' % (self.__class__.__name__, repr(self._contents_string))
+            return '%s(%s)' % (type(self).__name__, repr(self._contents_string))
 
     def __str__(self):
         return self.format

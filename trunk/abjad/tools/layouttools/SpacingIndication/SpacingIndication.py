@@ -44,7 +44,7 @@ class SpacingIndication(_StrictComparator, _Immutable):
         return not self == expr
 
     def __repr__(self):
-        return '%s(%s, %s)' % (self.__class__.__name__,
+        return '%s(%s, %s)' % (type(self).__name__,
             self.tempo_indication, self.proportional_notation_duration)
 
     ### PUBLIC ATTRIBUTES ###

@@ -67,7 +67,7 @@ class _Component(_StrictComparator):
             rhs = self.name
         else:
             rhs = id(self)
-        lhs = self.__class__.__name__
+        lhs = type(self).__name__
         return '%s-%s' % (lhs, rhs)
 
     @property

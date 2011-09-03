@@ -22,7 +22,7 @@ class SchemeMoment(_StrictComparator, _Immutable):
             object.__setattr__(self, '_duration', Fraction(args[0]))
         elif len(args) == 1 and isinstance(args[0], tuple):
             object.__setattr__(self, '_duration', Fraction(*args[0]))
-        elif len(args) == 1 and isinstance(args[0], self.__class__):
+        elif len(args) == 1 and isinstance(args[0], type(self)):
             object.__setattr__(self, '_duration', args[0].duration)
         elif len(args) == 2 and isinstance(args[0], int) and isinstance(args[1], int):
             object.__setattr__(self, '_duration', Fraction(*args))
@@ -69,7 +69,7 @@ class SchemeMoment(_StrictComparator, _Immutable):
         return not self == arg
 
     def __repr__(self):
-        return '%s(%s, %s)' % (self.__class__.__name__, self.duration.numerator, self.duration.denominator)
+        return '%s(%s, %s)' % (type(self).__name__, self.duration.numerator, self.duration.denominator)
 
     ### PUBLIC ATTRIBUTES ###
 

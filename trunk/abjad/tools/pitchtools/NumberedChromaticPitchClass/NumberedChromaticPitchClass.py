@@ -56,7 +56,7 @@ class NumberedChromaticPitchClass(_PitchClass):
         return type(self)(-abs(self))
 
     def __repr__(self):
-        return '%s(%s)' % (self.__class__.__name__, abs(self))
+        return '%s(%s)' % (type(self).__name__, abs(self))
 
     def __str__(self):
         return str(abs(self))

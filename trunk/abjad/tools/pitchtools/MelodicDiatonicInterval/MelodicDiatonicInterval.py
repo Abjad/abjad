@@ -65,7 +65,7 @@ class MelodicDiatonicInterval(_DiatonicInterval, _MelodicInterval):
         return type(self)(self.quality_string, -self.number)
 
     def __repr__(self):
-        return "%s('%s')" % (self.__class__.__name__, str(self))
+        return "%s('%s')" % (type(self).__name__, str(self))
 
     def __rmul__(self, arg):
         return self * arg

@@ -153,7 +153,7 @@ class PitchRange(_Immutable):
         return not self == arg
 
     def __repr__(self):
-        return '%s(%s, %s)' % (self.__class__.__name__, self._start, self._stop)
+        return '%s(%s, %s)' % (type(self).__name__, self._start, self._stop)
 
     ### PRIVATE METHODS ###
 

@@ -86,9 +86,9 @@ class LilyFile(list):
 
     def __repr__(self):
         if hasattr(self, 'score_block') and 1 <= len(self.score_block):
-            return '%s(%s)' % (self.__class__.__name__, self.score_block[0])
+            return '%s(%s)' % (type(self).__name__, self.score_block[0])
         else:
-            return '%s()' % self.__class__.__name__
+            return '%s()' % type(self).__name__
 
     ### PRIVATE ATTRIBUTES ###
 

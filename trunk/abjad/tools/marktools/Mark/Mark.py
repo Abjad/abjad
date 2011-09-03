@@ -44,7 +44,7 @@ class Mark(object):
     __deepcopy__ = __copy__
 
     def __delattr__(self, *args):
-        raise AttributeError('can not delete %s attributes.' % self.__class__.__name__)
+        raise AttributeError('can not delete %s attributes.' % type(self).__name__)
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):
@@ -55,7 +55,7 @@ class Mark(object):
         return not self == arg
 
     def __repr__(self):
-        return '%s(%s)%s' % (self.__class__.__name__,
+        return '%s(%s)%s' % (type(self).__name__,
             self._contents_repr_string, self._attachment_repr_string)
 
     ### PRIVATE ATTRIBUTES ###

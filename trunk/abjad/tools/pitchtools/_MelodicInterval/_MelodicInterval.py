@@ -15,7 +15,7 @@ class _MelodicInterval(_Interval):
         return pitchtools._HarmonicInterval._HarmonicInterval(self)
 
     def __eq__(self, arg):
-        if isinstance(arg, self.__class__):
+        if isinstance(arg, type(self)):
             if arg.number == self.number:
                 if arg.direction_number == self.direction_number:
                     return True

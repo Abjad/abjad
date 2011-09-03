@@ -96,7 +96,7 @@ class CyclicMatrix(Matrix):
         return self.rows[expr]
 
     def __repr__(self):
-        return '%s(%sx%s)' % (self.__class__.__name__, self._n_rows, self._n_columns)
+        return '%s(%sx%s)' % (type(self).__name__, self._n_rows, self._n_columns)
 
     ### PRIVATE METHODS ###
 

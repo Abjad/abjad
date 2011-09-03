@@ -97,7 +97,7 @@ class VerticalMoment(_Immutable):
         return not self == expr
 
     def __repr__(self):
-        return '%s(%s, <<%s>>)' % (self.__class__.__name__, self.prolated_offset, len(self.leaves))
+        return '%s(%s, <<%s>>)' % (type(self).__name__, self.prolated_offset, len(self.leaves))
 
     ### PRIVATE ATTRIBUTES ###
 

@@ -62,7 +62,7 @@ class NoteHead(_UnaryComparator):
         args = [repr(self._format_string)]
         args.extend(self.tweak._get_attribute_pairs())
         args = ', '.join([str(x) for x in args])
-        return '%s(%s)' % (self.__class__.__name__, args)
+        return '%s(%s)' % (type(self).__name__, args)
 
     def __str__(self):
         if self.written_pitch:

@@ -125,8 +125,8 @@ class PitchArrayRow(_StrictComparator):
         return not self == arg
 
     def __repr__(self):
-        #return '%s(%s)' % (self.__class__.__name__, self._format_contents_string)
-        return '%s(%s)' % (self.__class__.__name__, self._compact_summary)
+        #return '%s(%s)' % (type(self).__name__, self._format_contents_string)
+        return '%s(%s)' % (type(self).__name__, self._compact_summary)
 
     def __str__(self):
         result = [str(cell) for cell in self.cells]

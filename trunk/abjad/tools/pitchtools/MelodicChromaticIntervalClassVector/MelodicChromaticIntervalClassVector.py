@@ -38,7 +38,7 @@ class MelodicChromaticIntervalClassVector(_Vector):
 
     def __repr__(self):
         body = ', '.join(self._format_strings)
-        return '%s(%s)' % (self.__class__.__name__, body)
+        return '%s(%s)' % (type(self).__name__, body)
 
     def __str__(self):
         return '\n'.join(self._format_strings)

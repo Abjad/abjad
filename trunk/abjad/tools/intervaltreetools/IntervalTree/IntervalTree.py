@@ -85,9 +85,9 @@ class IntervalTree(_RedBlackTree):
     def __repr__(self):
         if self:
             intervals = [repr(interval) for interval in self._inorder]
-            return '%s([\n\t%s\n])' % (self.__class__.__name__, ',\n\t'.join(intervals))
+            return '%s([\n\t%s\n])' % (type(self).__name__, ',\n\t'.join(intervals))
         else:
-            return '%s([ ])' % self.__class__.__name__
+            return '%s([ ])' % type(self).__name__
 
     ### PRIVATE ATTRIBUTES
 

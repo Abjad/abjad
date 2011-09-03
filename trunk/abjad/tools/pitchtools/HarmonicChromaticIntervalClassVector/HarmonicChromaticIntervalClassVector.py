@@ -35,10 +35,10 @@ class HarmonicChromaticIntervalClassVector(_Vector):
     ### OVERLOADS ###
 
     def __repr__(self):
-        return '%s(%s)' % (self.__class__.__name__, self._contents_string)
+        return '%s(%s)' % (type(self).__name__, self._contents_string)
 
     def __setitem__(self, *args):
-        raise AttributeError('%s objects are immutable.' % self.__class__.__name__)
+        raise AttributeError('%s objects are immutable.' % type(self).__name__)
 
     def __str__(self):
         items = self.items()

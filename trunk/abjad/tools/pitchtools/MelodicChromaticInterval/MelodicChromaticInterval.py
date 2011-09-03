@@ -70,7 +70,7 @@ class MelodicChromaticInterval(_ChromaticInterval, _MelodicInterval):
         return type(self)(-self._number)
 
     def __repr__(self):
-        return '%s(%s)' % (self.__class__.__name__, self._format_string)
+        return '%s(%s)' % (type(self).__name__, self._format_string)
 
     def __str__(self):
         return self._format_string

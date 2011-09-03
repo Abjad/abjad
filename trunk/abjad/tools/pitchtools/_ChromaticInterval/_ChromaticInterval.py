@@ -29,16 +29,16 @@ class _ChromaticInterval(_Interval, _Chromatic):
         return HarmonicChromaticInterval(abs(self._number))
 
     def __add__(self, arg):
-        if isinstance(arg, self.__class__):
+        if isinstance(arg, type(self)):
             number = self.number + arg.number
-            return self.__class__(number)
-        raise TypeError('must be %s.'% self.__class__)
+            return type(self)(number)
+        raise TypeError('must be %s.'% type(self))
 
     def __copy__(self):
-        return self.__class__(self.number)
+        return type(self)(self.number)
 
     def __eq__(self, arg):
-        if isinstance(arg, self.__class__):
+        if isinstance(arg, type(self)):
             if self.number == arg.number:
                 return True
         return False
@@ -53,16 +53,16 @@ class _ChromaticInterval(_Interval, _Chromatic):
         return not self == arg
 
     def __repr__(self):
-        return '%s(%s)' % (self.__class__.__name__, self._number)
+        return '%s(%s)' % (type(self).__name__, self._number)
 
     def __str__(self):
         return '%s' % self.number
 
     def __sub__(self, arg):
-        if isinstance(arg, self.__class__):
+        if isinstance(arg, type(self)):
             number = self.number - arg.number
-            return self.__class__(number)
-        raise TypeError('must be %s' % self.__class__)
+            return type(self)(number)
+        raise TypeError('must be %s' % type(self))
 
     ### PUBLIC ATTRIBUTES ###
 

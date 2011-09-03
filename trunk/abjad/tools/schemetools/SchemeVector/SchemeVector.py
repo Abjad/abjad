@@ -24,7 +24,7 @@ class SchemeVector(tuple, _Immutable):
     ### OVERLOADS ###
 
     def __repr__(self):
-        return '%s(%s)' % (self.__class__.__name__, self._format_string)
+        return '%s(%s)' % (type(self).__name__, self._format_string)
 
     def __str__(self):
         return '(%s)' % self._output_string

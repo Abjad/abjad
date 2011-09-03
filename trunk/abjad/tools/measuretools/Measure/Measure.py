@@ -98,7 +98,7 @@ class Measure(Container):
     def __repr__(self):
         '''String form of measure with parentheses for interpreter display.
         '''
-        class_name = self.__class__.__name__
+        class_name = type(self).__name__
         forced_meter = contexttools.get_time_signature_mark_attached_to_component(self)
         summary = self._summary
         length = len(self)

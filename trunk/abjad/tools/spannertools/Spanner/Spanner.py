@@ -75,7 +75,7 @@ class Spanner(_StrictComparator):
         return self._components.__len__()
 
     def __repr__(self):
-        return '%s(%s)' % (self.__class__.__name__, self._compact_summary)
+        return '%s(%s)' % (type(self).__name__, self._compact_summary)
 
     ### PRIVATE ATTRIBUTES ###
 

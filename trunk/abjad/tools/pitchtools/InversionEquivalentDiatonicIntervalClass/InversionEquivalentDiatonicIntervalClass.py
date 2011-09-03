@@ -37,7 +37,7 @@ class InversionEquivalentDiatonicIntervalClass(_DiatonicIntervalClass):
     ### OVERLOADS ###
 
     def __eq__(self, arg):
-        if isinstance(arg, self.__class__):
+        if isinstance(arg, type(self)):
             if self.quality_string == arg.quality_string:
                 if self.number == arg.number:
                     return True

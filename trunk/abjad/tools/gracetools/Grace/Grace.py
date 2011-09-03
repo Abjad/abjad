@@ -103,7 +103,7 @@ class Grace(Container):
         return new
 
     def __repr__(self):
-        return '%s(%s)' % (self.__class__.__name__, self._summary)
+        return '%s(%s)' % (type(self).__name__, self._summary)
 
     ### PUBLIC ATTRIBUTES ###
 

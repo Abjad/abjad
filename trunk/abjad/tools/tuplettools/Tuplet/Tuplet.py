@@ -48,7 +48,7 @@ class Tuplet(Container):
         return (self.multiplier, )
 
     def __repr__(self):
-        return '%s(%s, [%s])' % (self.__class__.__name__, self.multiplier, self._summary)
+        return '%s(%s, [%s])' % (type(self).__name__, self.multiplier, self._summary)
 
     def __str__(self):
         if 0 < len(self):

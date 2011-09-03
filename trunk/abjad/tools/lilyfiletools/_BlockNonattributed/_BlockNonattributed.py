@@ -6,9 +6,9 @@ class _BlockNonattributed(list):
 
     def __repr__(self):
         if not len(self):
-            return '%s()' % self.__class__.__name__
+            return '%s()' % type(self).__name__
         else:
-            return '%s(%s)' % (self.__class__.__name__, len(self))
+            return '%s(%s)' % (type(self).__name__, len(self))
 
     ### PRIVATE ATTRIBUTES ###
 

@@ -47,7 +47,7 @@ class QEvent(_Immutable):
         return False
 
     def __repr__(self):
-        return '%s(%s)' % (self.__class__.__name__, self._format_string)
+        return '%s(%s)' % (type(self).__name__, self._format_string)
 
     ### PRIVATE ATTRIBUTES ###
 

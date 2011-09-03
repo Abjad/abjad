@@ -30,7 +30,7 @@ class FixedDurationTuplet(Tuplet):
         return (self.target_duration, )
 
     def __repr__(self):
-        return '%s(%s, [%s])' % (self.__class__.__name__, self.target_duration, self._summary)
+        return '%s(%s, [%s])' % (type(self).__name__, self.target_duration, self._summary)
 
     def __str__(self):
         if 0 < len(self):
