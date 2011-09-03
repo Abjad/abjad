@@ -242,7 +242,13 @@ contexttools
    tools/contexttools/get_tempo_marks_attached_to_component
    tools/contexttools/get_time_signature_mark_attached_to_component
    tools/contexttools/get_time_signature_marks_attached_to_component
+   tools/contexttools/is_component_with_clef_mark_attached
    tools/contexttools/is_component_with_context_mark_attached
+   tools/contexttools/is_component_with_dynamic_mark_attached
+   tools/contexttools/is_component_with_instrument_mark_attached
+   tools/contexttools/is_component_with_key_signature_mark_attached
+   tools/contexttools/is_component_with_staff_change_mark_attached
+   tools/contexttools/is_component_with_tempo_mark_attached
    tools/contexttools/is_component_with_time_signature_mark_attached
    tools/contexttools/iterate_contexts_backward_in_expr
    tools/contexttools/iterate_contexts_forward_in_expr

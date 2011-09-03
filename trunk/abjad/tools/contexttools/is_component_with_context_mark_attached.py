@@ -1,11 +1,12 @@
+from abjad.tools.componenttools._Component import _Component
 from abjad.tools.contexttools.ContextMark import ContextMark
 from abjad.tools.contexttools.get_context_marks_attached_to_component import get_context_marks_attached_to_component
 
 
-def is_component_with_context_mark_attached(component, klasses = (ContextMark, )):
+def is_component_with_context_mark_attached(expr, klasses = (ContextMark,)):
     r'''.. versionadded:: 2.0
 
-    True when context mark of `klasses` attaches to `component`::
+    True when `expr` is a component with context mark of `klasses` attached::
 
         abjad> staff = Staff("c'8 d'8 e'8 f'8")
         abjad> contexttools.TimeSignatureMark((4, 8))(staff[0])
@@ -29,9 +30,8 @@ def is_component_with_context_mark_attached(component, klasses = (ContextMark, )
     Return boolean.
     '''
 
-    context_marks_attached = get_context_marks_attached_to_component(component, klasses = klasses)
+    if isinstance(expr, _Component):
+        if len(get_context_marks_attached_to_component(expr, klasses = klasses)) == 1:
+            return True
 
-    if 1 <= len(context_marks_attached):
-        return True
-    else:
-        return False
+    return False
