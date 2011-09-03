@@ -51,8 +51,8 @@ def profile_expr(expr, sort_by = 'cum', num_lines = 12, strip_dirs = True):
        ``iotools.profile_expr()``.
     '''
 
-    ### NOTE: this try block was added because, for some strange reason,
-    ### Python 2.5.x doesn't come with 'pstats' installed in some Linux distros!
+    # NOTE: this try block was added because, for some strange reason,
+    # Python 2.5.x doesn't come with 'pstats' installed in some Linux distros!
     try:
         import cProfile
         import pstats

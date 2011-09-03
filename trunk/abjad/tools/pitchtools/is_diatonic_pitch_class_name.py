@@ -2,7 +2,7 @@ import re
 
 
 diatonic_pitch_class_name_regex_body = """
-    ([a-g,A-G])  ### exactly one lowercase a - g or uppercase A - G
+    ([a-g,A-G])  # exactly one lowercase a - g or uppercase A - G
     """
 
 diatonic_pitch_class_name_regex = re.compile('^%s$' %

@@ -1,5 +1,5 @@
-### TODO Implement optional period keyword.
-### TODO Read anchor_index and length values cyclically.
+# TODO Implement optional period keyword.
+# TODO Read anchor_index and length values cyclically.
 def overwrite_sequence_elements_at_indices(sequence, pairs):
     '''.. versionadded:: 1.1
 

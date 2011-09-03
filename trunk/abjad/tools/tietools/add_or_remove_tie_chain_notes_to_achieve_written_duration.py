@@ -11,8 +11,8 @@ from abjad.tools.tietools.remove_all_leaves_in_tie_chain_except_first import rem
 from abjad.tools import durtools
 
 
-### TODO: Inspect tietools.add_or_remove_tie_chain_notes_to_achieve_written_duration() carefully. ###
-###       Determine whether behavior is correct with LilyPond multipliers. ###
+# TODO: Inspect tietools.add_or_remove_tie_chain_notes_to_achieve_written_duration() carefully. #
+#       Determine whether behavior is correct with LilyPond multipliers. #
 
 def add_or_remove_tie_chain_notes_to_achieve_written_duration(tie_chain, new_written_duration):
     '''Change the written duration of tie chain,

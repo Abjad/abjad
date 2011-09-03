@@ -57,7 +57,7 @@ EXAMPLES
         <abjad>
         v = Voice(notetools.make_repeated_notes(8))
         spannertools.BeamSpanner(v)
-        write_expr_to_ly(v, 'example1') <hide ### this will insert an image. 
+        write_expr_to_ly(v, 'example1') <hide # this will insert an image. 
         show(v)
         </abjad>
 
@@ -72,7 +72,7 @@ EXAMPLES
 
 def _abjad_book( ):
 
-    ### get input parameters
+    # get input parameters
     try:
         opts, args = getopt.getopt(sys.argv[1:], '', ['skip-rendering'])
     except getopt.GetoptError, err:
@@ -80,7 +80,7 @@ def _abjad_book( ):
         print _usage( )
         sys.exit(2)
 
-    ### parse commandline options
+    # parse commandline options
     skip_rendering = False
     for o, a in opts:
        if o == '--skip-rendering':
@@ -88,7 +88,7 @@ def _abjad_book( ):
        else:
            assert False, 'unhandled option'
 
-    ### get input and output files
+    # get input and output files
     if len(args) < 2:
         print _usage( )
         sys.exit(2)
@@ -97,17 +97,17 @@ def _abjad_book( ):
     print "Processing '%s' ...." % fn
     print "Will write output to '%s'..." % out_fn
 
-    ### parse file name
+    # parse file name
     fn_dir = os.path.dirname(os.path.abspath(fn))
     fn = os.path.basename(fn)
    
-    ### chage to file dir and read input file
+    # chage to file dir and read input file
     os.chdir(fn_dir)
     file = open(fn, 'r')
-    lines = file.read( ).splitlines( ) ### send lines with no trailing '\n'
+    lines = file.read( ).splitlines( ) # send lines with no trailing '\n'
     file.close( )
 
-    ### create Abjad tag parser type based on file extension
+    # create Abjad tag parser type based on file extension
     if '.htm' in fn:
         a = _AbjadHTMLTag(lines, skip_rendering)
     elif '.tex' in fn:
@@ -115,7 +115,7 @@ def _abjad_book( ):
     elif '.rst' in fn:
         a = _AbjadReSTTag(lines, skip_rendering)
 
-    ### open and write to output file
+    # open and write to output file
     file = open(out_fn, 'w')
     file.writelines(a.process( ))
     file.close( )

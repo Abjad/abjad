@@ -35,14 +35,14 @@ def apply_beam_spanner_to_measure(measure):
     Return beam spanner.
     '''
 
-    ### check measure type
+    # check measure type
     if not isinstance(measure, Measure):
         raise TypeError('must be measure: %s' % measure)
 
-    ### apply beam spanner to measure
+    # apply beam spanner to measure
     beam = BeamSpanner(measure)
 
-    ### return beam spanner
+    # return beam spanner
     return beam
 
 

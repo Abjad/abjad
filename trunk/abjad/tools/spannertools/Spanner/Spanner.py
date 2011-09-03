@@ -62,7 +62,7 @@ class Spanner(_StrictComparator):
             new._set = copy.copy(self.set)
         return new
 
-    ### TODO: uncomment when copy regime is finished
+    # TODO: uncomment when copy regime is finished
     #__deepcopy__ = __copy__
 
     def __getitem__(self, expr):
@@ -111,7 +111,7 @@ class Spanner(_StrictComparator):
         #component.spanners._spanners.remove(self)
         component._spanners.remove(self)
 
-    ### TODO: Remove call to self.leaes ###
+    # TODO: Remove call to self.leaes #
     def _duration_offset_in_me(self, leaf):
         leaves = list(self.leaves)
         assert leaf in leaves
@@ -119,27 +119,27 @@ class Spanner(_StrictComparator):
         return sum([leaf.prolated_duration for leaf in prev])
 
     def _fracture_left(self, i):
-        ###left = self.copy(0, i - 1)
+        #left = self.copy(0, i - 1)
         #left = self.copy(self[:i])
         left = self._copy(self[:i])
-        ###right = self.copy(i, len(self))
+        #right = self.copy(i, len(self))
         #right = self.copy(self[i:])
         right = self._copy(self[i:])
         self._block_all_components()
         return self, left, right
 
     def _fracture_right(self, i):
-        ###left = self.copy(0, i)
+        #left = self.copy(0, i)
         #left = self.copy(self[:i+1])
         left = self._copy(self[:i+1])
-        ###right = self.copy(i + 1, len(self))
+        #right = self.copy(i + 1, len(self))
         #right = self.copy(self[i+1:])
         right = self._copy(self[i+1:])
         self._block_all_components()
         return self, left, right
 
     def _fuse_by_reference(self, spanner):
-        ###result = self.copy()
+        #result = self.copy()
         #result = self.copy(self[:])
         result = self._copy(self[:])
         result.extend(spanner.components)
@@ -154,8 +154,8 @@ class Spanner(_StrictComparator):
         components = components or []
         if isinstance(components, _Component):
             components = [components]
-        ### TODO: Author staff-level contiguity check in tools/check. ###
-        ###         Include optional staff-level contiguity check here. ###
+        # TODO: Author staff-level contiguity check in tools/check. #
+        #         Include optional staff-level contiguity check here. #
         if self._contiguity_constraint == 'thread':
             leaves = list(leaftools.iterate_leaves_forward_in_expr(components))
             assert componenttools.all_are_thread_contiguous_components(leaves)
@@ -186,7 +186,7 @@ class Spanner(_StrictComparator):
 
     def _is_my_first_leaf(self, leaf):
         from abjad.tools.spannertools.get_nth_leaf_in_spanner import get_nth_leaf_in_spanner
-        ### ! Full-leaf traversal extremely inefficient !
+        # ! Full-leaf traversal extremely inefficient !
         #leaves = self.leaves
         #return leaves and leaf is leaves[0]
         try:
@@ -197,7 +197,7 @@ class Spanner(_StrictComparator):
 
     def _is_my_last_leaf(self, leaf):
         from abjad.tools.spannertools.get_nth_leaf_in_spanner import get_nth_leaf_in_spanner
-        ### ! Full-leaf traversal extremely inefficient !
+        # ! Full-leaf traversal extremely inefficient !
         #leaves = self.leaves
         #return leaves and leaf is leaves[-1]
         try:
@@ -209,7 +209,7 @@ class Spanner(_StrictComparator):
     def _is_my_only_leaf(self, leaf):
         return self._is_my_first_leaf(leaf) and self._is_my_last_leaf(leaf)
 
-    ### TODO: Remove call to self.leaves ###
+    # TODO: Remove call to self.leaves #
     def _is_my_first(self, leaf, klass):
         if isinstance(leaf, klass):
             leaves = list(self.leaves)
@@ -220,7 +220,7 @@ class Spanner(_StrictComparator):
             return True
         return False
 
-    ### TODO: Remove call to self.leaves ###
+    # TODO: Remove call to self.leaves #
     def _is_my_last(self, leaf, klass):
         if isinstance(leaf, klass):
             leaves = list(self.leaves)
@@ -231,7 +231,7 @@ class Spanner(_StrictComparator):
             return True
         return False
 
-    ### TODO: Remove call to self.leaves ###
+    # TODO: Remove call to self.leaves #
     def _is_my_only(self, leaf, klass):
         return isinstance(leaf, klass) and len(self.leaves) == 1
 
@@ -314,7 +314,7 @@ class Spanner(_StrictComparator):
         from abjad.tools import componenttools
         result = []
         for component in self._components:
-            ### EXPERIMENTAL: expand to allow staff-level spanner eventually ###
+            # EXPERIMENTAL: expand to allow staff-level spanner eventually #
             for node in componenttools.iterate_components_depth_first(component):
                 if isinstance(node, _Leaf):
                     result.append(node)
@@ -454,7 +454,7 @@ class Spanner(_StrictComparator):
 
         self._sever_all_components()
 
-    ###def copy(self, start = None, stop = None):
+    #def copy(self, start = None, stop = None):
     #def copy(self, components):
     def _copy(self, components):
         '''Return copy of spanner with `components`.
@@ -468,12 +468,12 @@ class Spanner(_StrictComparator):
         result = copy.deepcopy(self)
         self._components = my_components
 
-###      if stop is not None:
-###         for component in self[start:stop + 1]:
-###            result._components.append(component)
-###      else:
-###         for component in self:
-###            result._components.append(component)
+#      if stop is not None:
+#         for component in self[start:stop + 1]:
+#            result._components.append(component)
+#      else:
+#         for component in self:
+#            result._components.append(component)
 
         for component in components:
             assert component in self
@@ -568,13 +568,13 @@ class Spanner(_StrictComparator):
         elif direction == 'right':
             return self._fracture_right(i)
         elif direction == 'both':
-            ###left = self.copy(0, i - 1)
+            #left = self.copy(0, i - 1)
             #left = self.copy(self[:i])
             left = self._copy(self[:i])
-            ###right = self.copy(i + 1, len(self))
+            #right = self.copy(i + 1, len(self))
             #right = self.copy(self[i+1:])
             right = self._copy(self[i+1:])
-            ###center = self.copy(i, i)
+            #center = self.copy(i, i)
             #center = self.copy(self[i:i+1])
             center = self._copy(self[i:i+1])
             self._block_all_components()

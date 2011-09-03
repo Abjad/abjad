@@ -51,9 +51,9 @@ def divide_leaf_meiotically(leaf, n = 2):
     Return none.
     '''
 
-    ### TODO: find a way to optimize this; either reimplement
-    ### componenttools.extend_in_parent_of_component_and_grow_spanners()
-    ### or come up with something else.
+    # TODO: find a way to optimize this; either reimplement
+    # componenttools.extend_in_parent_of_component_and_grow_spanners()
+    # or come up with something else.
 
     assert isinstance(leaf, _Leaf)
     assert mathtools.is_nonnegative_integer_power_of_two(n)

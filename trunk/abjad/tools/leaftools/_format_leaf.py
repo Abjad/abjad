@@ -110,7 +110,7 @@ def _get_nucleus(leaf):
     else:
         result.extend([x.format for x in note_heads])
         result = '<%s>%s' % (' '.join(result), chord._formatted_duration)
-    ### single string, but wrapped in list bc contribution
+    # single string, but wrapped in list bc contribution
     return ['nucleus', [result]]
 
 def _get_slot_1(leaf):

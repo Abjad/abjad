@@ -89,7 +89,7 @@ class IntervalTree(_RedBlackTree):
         else:
             return '%s([])' % type(self).__name__
 
-    ### PRIVATE ATTRIBUTES
+    # PRIVATE ATTRIBUTES
 
     @property
     def _inorder(self):

@@ -47,18 +47,18 @@ class MetricGridSpanner(Spanner):
 
     ### PRIVATE METHODS ###
 
-    ### DEPRECATED: DO NOT USE.
+    # DEPRECATED: DO NOT USE.
 #   def _fuse_tied_leaves_within_measures(self):
 #      from abjad.tools import leaftools
 #      from abjad.tools import spannertools
 #      from abjad.tools import tietools
-#      ### fuse tied notes
+#      # fuse tied notes
 #      meters = self.meters
 #      #meter = meters.next()
 #      meter, moffset, temp_hide = meters.next()
 #      leaves_in_meter = [[]]
 #      leaf = self.leaves[0]
-#      ### group leaves by measure.
+#      # group leaves by measure.
 #      while leaf:
 #         #if leaf._offset.start < meter._offset + meter.duration:
 #         if leaf._offset.start < moffset + meter.duration:
@@ -72,7 +72,7 @@ class MetricGridSpanner(Spanner):
 #               leaves_in_meter.append([])
 #            except StopIteration:
 #               break
-#      ### group together leaves in same measure that are tied together.
+#      # group together leaves in same measure that are tied together.
 #      for leaves in leaves_in_meter:
 #         result = [[]]
 #         if 0 < len(leaves):
@@ -98,10 +98,10 @@ class MetricGridSpanner(Spanner):
 #               else:
 #                  sp = None
 #               result.append([])
-#         ### fuse leaves
+#         # fuse leaves
 #         for r in result:
-#            ### keep last after graces, if any
-#            ### TODO: this is very hacky. Find better solution
+#            # keep last after graces, if any
+#            # TODO: this is very hacky. Find better solution
 #            if 0 < len(r):
 #               #r[0].grace.after = r[-1].grace.after
 #               #r[0].after_grace.extend(r[-1].after_grace)
@@ -160,7 +160,7 @@ class MetricGridSpanner(Spanner):
             while moffset < self.prolated_duration:
                 m = self._meters[i % len(self._meters)]
                 m = contexttools.TimeSignatureMark(m)
-                ### new attribute
+                # new attribute
                 #m._offset = moffset
                 if prev_meter and prev_meter == m:
                     #m.hide = True

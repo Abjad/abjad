@@ -171,7 +171,7 @@ class _Component(_StrictComparator):
         else:
             raise ValueError('\n\t: Unknown keyword argument plug-in name: "%s".' % plug_in_name)
 
-    ### MANGLED METHODS ###
+    # MANGLED METHODS #
 
     def __update_leaf_indices_and_measure_numbers_in_score_tree(self):
         '''Called only when updating prolated offset of score compoennts.
@@ -226,7 +226,7 @@ class _Component(_StrictComparator):
             component._offset._update_prolated_offset_values_of_component()
             component._prolated_offset_values_are_current = True
 
-    ### PRIVATE UPDATE METHODS ###
+    # PRIVATE UPDATE METHODS #
 
     def _allow_component_update(self):
         self._is_forbidden_to_update = False

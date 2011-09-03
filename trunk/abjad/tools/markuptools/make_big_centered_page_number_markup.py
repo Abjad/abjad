@@ -36,7 +36,7 @@ def make_big_centered_page_number_markup(text = None):
         contents = r'''
         \fill-line {
         \bold \fontsize #3 \concat {
-        %s " " \char ###x2014 " "
+        %s " " \char #x2014 " "
         \on-the-fly #print-page-number-check-first
         \fromproperty #'page:page-number-string } }''' % text
 

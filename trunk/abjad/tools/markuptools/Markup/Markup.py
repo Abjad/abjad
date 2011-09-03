@@ -3,7 +3,7 @@
 from abjad.tools.marktools.Mark import Mark
 
 
-### TODO: Make Markup.direction_string public and read / write.
+# TODO: Make Markup.direction_string public and read / write.
 
 #class Markup(ContextMark):
 class Markup(Mark):

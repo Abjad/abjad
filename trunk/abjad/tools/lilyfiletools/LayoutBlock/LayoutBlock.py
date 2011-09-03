@@ -12,7 +12,7 @@ class LayoutBlock(_BlockAttributed):
         self._escaped_name = r'\layout'
         self._contexts = []
 
-    ### PRIVATE ATTRIUBTES ###
+    # PRIVATE ATTRIUBTES #
 
     @property
     def _formatted_context_specifications(self):

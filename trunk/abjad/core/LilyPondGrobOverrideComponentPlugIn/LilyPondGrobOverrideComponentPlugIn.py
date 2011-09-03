@@ -76,14 +76,14 @@ class LilyPondGrobOverrideComponentPlugIn(_LilyPondComponentPlugIn):
         body_string = ' '
         skeleton_strings = self._get_skeleton_strings( )
         if skeleton_strings:
-            ### remove 'override__'
+            # remove 'override__'
             skeleton_strings = [x[10:] for x in skeleton_strings]
             skeleton_strings.sort( )
             body_string = ', '.join(skeleton_strings)
         return '%s(%s)' % (self.__class__.__name__, body_string)
 
     def __setattr__(self, attr, value):
-        ### make sure attr is valid grob name before setting value ###
+        # make sure attr is valid grob name before setting value #
         attr_value = getattr(self, attr)
         object.__setattr__(self, attr, value)
 

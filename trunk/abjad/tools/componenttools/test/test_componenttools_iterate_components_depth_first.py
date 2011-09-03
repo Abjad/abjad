@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-### NOTE: all tests operate on the following expression ###
+# NOTE: all tests operate on the following expression #
 
 t = Staff(notetools.make_repeated_notes(4))
 t.insert(2, Container(Voice(notetools.make_repeated_notes(2)) * 2))
@@ -37,7 +37,7 @@ def test_componenttools_iterate_components_depth_first_01():
         * no classes forbidden means all containers entered
     '''
 
-    ### LEFT-TO-RIGHT ###
+    # LEFT-TO-RIGHT #
 
     g = componenttools.iterate_components_depth_first(t[2])
 
@@ -60,7 +60,7 @@ def test_componenttools_iterate_components_depth_first_01():
     f'8
     '''
 
-    ### RIGHT-TO-LEFT ###
+    # RIGHT-TO-LEFT #
 
     g = componenttools.iterate_components_depth_first(t[2], direction = 'right')
 
@@ -89,7 +89,7 @@ def test_componenttools_iterate_components_depth_first_02():
     all elements above self._client
     '''
 
-    ### LEFT-TO-RIGHT ###
+    # LEFT-TO-RIGHT #
 
     g = componenttools.iterate_components_depth_first(t[2], capped = False)
 
@@ -118,7 +118,7 @@ def test_componenttools_iterate_components_depth_first_02():
     g'8
     '''
 
-    ### RIGHT-TO-LEFT ###
+    # RIGHT-TO-LEFT #
 
     g = componenttools.iterate_components_depth_first(t[2], capped = False, direction = 'right')
 
@@ -152,7 +152,7 @@ def test_componenttools_iterate_components_depth_first_03():
     '''Duplicates-allowed depth-first search: nodes yield every time they are traversed.
     '''
 
-    ### LEFT-TO-RIGHT ###
+    # LEFT-TO-RIGHT #
 
     g = componenttools.iterate_components_depth_first(t[2], unique = False)
 
@@ -187,7 +187,7 @@ def test_componenttools_iterate_components_depth_first_03():
     Container(Voice(d'8, ef'8), Voice(e'8, f'8))
     '''
 
-    ### RIGHT-TO-LEFT ###
+    # RIGHT-TO-LEFT #
 
     g = componenttools.iterate_components_depth_first(t[2], unique = False, direction = 'right')
 
@@ -228,7 +228,7 @@ def test_componenttools_iterate_components_depth_first_04():
     enter -- forbidden classes.
     '''
 
-    ### LEFT-TO-RIGHT ###
+    # LEFT-TO-RIGHT #
 
     g = componenttools.iterate_components_depth_first(t, forbid = 'parallel')
 
@@ -249,7 +249,7 @@ def test_componenttools_iterate_components_depth_first_04():
     g'8
     '''
 
-    ### RIGHT-TO-LEFT ###
+    # RIGHT-TO-LEFT #
 
     g = componenttools.iterate_components_depth_first(t, forbid = 'parallel', direction = 'right')
 
@@ -275,7 +275,7 @@ def test_componenttools_iterate_components_depth_first_05():
     '''Uncapped depth-first search with duplicates allowed.
     '''
 
-    ### LEFT-TO-RIGHT ###
+    # LEFT-TO-RIGHT #
 
     g = componenttools.iterate_components_depth_first(t[2], capped = False, unique = False)
 
@@ -320,7 +320,7 @@ def test_componenttools_iterate_components_depth_first_05():
     Staff{5}
     '''
 
-    ### RIGHT-TO-LEFT ###
+    # RIGHT-TO-LEFT #
 
     g = componenttools.iterate_components_depth_first(
         t[2], capped = False, unique = False, direction = 'right')
@@ -371,7 +371,7 @@ def test_componenttools_iterate_components_depth_first_06():
     '''Uncapped and restricted depth-first search.
     '''
 
-    ### LEFT-TO-RIGHT ###
+    # LEFT-TO-RIGHT #
 
     g = componenttools.iterate_components_depth_first(t[2], capped = False, forbid = 'parallel')
 
@@ -387,7 +387,7 @@ def test_componenttools_iterate_components_depth_first_06():
     g'8
     '''
 
-    ### RIGHT-TO-LEFT ###
+    # RIGHT-TO-LEFT #
 
     g = componenttools.iterate_components_depth_first(
         t[2], capped = False, forbid = 'parallel', direction = 'right')
@@ -409,7 +409,7 @@ def test_componenttools_iterate_components_depth_first_07():
     '''Restricted depth-first search with duplicates allowed.
     '''
 
-    ### LEFT-TO-RIGHT
+    # LEFT-TO-RIGHT
 
     g = componenttools.iterate_components_depth_first(t, forbid = 'parallel', unique = False)
 
@@ -440,7 +440,7 @@ def test_componenttools_iterate_components_depth_first_07():
     Staff{5}
     '''
 
-    ### RIGHT-TO-LEFT ###
+    # RIGHT-TO-LEFT #
 
     g = componenttools.iterate_components_depth_first(
         t, forbid = 'parallel', unique = False, direction = 'right')
@@ -477,7 +477,7 @@ def test_componenttools_iterate_components_depth_first_08():
     '''Uncapped but restricted depth-first serach with duplicates allowed.
     '''
 
-    ### LEFT-TO-RIGHT ###
+    # LEFT-TO-RIGHT #
 
     g = componenttools.iterate_components_depth_first(
         t[2], capped = False, forbid = 'parallel', unique = False)
@@ -499,7 +499,7 @@ def test_componenttools_iterate_components_depth_first_08():
     Staff{5}
     '''
 
-    ### RIGHT-TO-LEFT ###
+    # RIGHT-TO-LEFT #
 
     g = componenttools.iterate_components_depth_first(
         t[2], capped = False, forbid = 'parallel', unique = False, direction = 'right')

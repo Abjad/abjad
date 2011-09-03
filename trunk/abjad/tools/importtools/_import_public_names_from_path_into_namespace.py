@@ -21,7 +21,7 @@ def _import_public_names_from_path_into_namespace(path, namespace, package_root_
     for element in os.listdir(path):
         if os.path.isfile(os.path.join(path, element)):
             if not element.startswith('_') and element.endswith('.py'):
-                ### import function inside module
+                # import function inside module
                 submod = os.path.join(module, element[:-3])
                 functions = _get_public_names_in_module(submod)
                 for f in functions:

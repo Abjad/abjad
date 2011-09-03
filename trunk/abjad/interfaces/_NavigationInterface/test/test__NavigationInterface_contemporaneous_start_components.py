@@ -54,7 +54,7 @@ def test__NavigationInterface_contemporaneous_start_components_01( ):
     assert t[0][0] in result
 
 
-### NONSTRUCTURAL in new parallel --> context model.
+# NONSTRUCTURAL in new parallel --> context model.
 #def test__NavigationInterface_contemporaneous_start_components_02( ):
 #   '''With parallel containers.'''
 #

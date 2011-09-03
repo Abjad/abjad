@@ -1,6 +1,6 @@
 from abjad import *
 
-### create high level framework
+# create high level framework
 
 piano = PianoStaff([])
 
@@ -21,7 +21,7 @@ lower_measures = componenttools.copy_components_and_covered_spanners(upper_measu
 upper_staff.extend(upper_measures)
 lower_staff.extend(lower_measures)
 
-### add notes to upper measures
+# add notes to upper measures
 
 upper_measures[0].extend([Note(i, (1, 8)) for i in [9, 7, 5, 4]])
 upper_measures[1].extend(notetools.make_notes([2,7,5,4,2], [(1, 4)]+[(1, 8)]*4))
@@ -31,7 +31,7 @@ upper_measures[3].append(Note(2, (1, 2)))
 upper_measures[4].append(Note(2, (1, 2)))
 
 
-### add notes to lower measures
+# add notes to lower measures
 
 v2 = Voice(notetools.make_notes([-1, 2, 0], [(1, 4), (1, 8), (1, 8)]))
 v2[1].dynamics.mark = 'pp'
@@ -71,8 +71,8 @@ p = Container([v1b, v2b])
 p.is_parallel = True
 lower_measures[4].append(p)
 
-### embelish
-### upper staff
+# embelish
+# upper staff
 
 upper_measures[0][0].dynamics.mark = 'pp'
 spannertools.BeamSpanner(upper_measures[0])
@@ -91,7 +91,7 @@ DecrescendoSpanner(upper_staff.leaves[-2:])
 tx = Text(upper_staff.leaves[-7:])
 tx.bound_details__left__text = markuptools.Markup('ritard.')
 
-### lower staff
+# lower staff
 
 lower_staff.clef.forced = stafftools.Clef('bass')
 

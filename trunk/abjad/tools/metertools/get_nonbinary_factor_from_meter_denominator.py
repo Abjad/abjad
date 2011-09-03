@@ -35,13 +35,13 @@ def get_nonbinary_factor_from_meter_denominator(meter):
     '''
     from abjad.tools import contexttools
 
-    ### check input
+    # check input
     assert isinstance(meter, contexttools.TimeSignatureMark)
 
-    ### get nonbinary factor from meter denominator
+    # get nonbinary factor from meter denominator
     nonbinary_factor = mathtools.remove_powers_of_two(meter.denominator)
 
-    ### return nonbinary factor
+    # return nonbinary factor
     return nonbinary_factor
 
 

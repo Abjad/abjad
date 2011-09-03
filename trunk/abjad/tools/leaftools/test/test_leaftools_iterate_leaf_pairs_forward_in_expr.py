@@ -28,8 +28,8 @@ def test_leaftools_iterate_leaf_pairs_forward_in_expr_01():
     >>
     '''
 
-    ### make sure to show score if trying to verify test results     ###
-    ### as the integer indices below are difficult to keep in mind. ###
+    # make sure to show score if trying to verify test results     #
+    # as the integer indices below are difficult to keep in mind. #
 
     pairs = leaftools.iterate_leaf_pairs_forward_in_expr(score)
     pairs = list(pairs)

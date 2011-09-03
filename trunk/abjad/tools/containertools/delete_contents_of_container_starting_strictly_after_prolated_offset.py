@@ -40,17 +40,17 @@ def delete_contents_of_container_starting_strictly_after_prolated_offset(contain
         ``containertools.delete_contents_of_container_starting_strictly_after_prolated_offset()``.
     '''
 
-    ### get index
+    # get index
     try:
         element = get_first_element_starting_strictly_after_prolated_offset(container, prolated_offset)
         index = container.index(element)
 
-    ### return container if no index
+    # return container if no index
     except ValueError:
         return container
 
-    ### delete elements
+    # delete elements
     del(container[index:])
 
-    ### return container
+    # return container
     return container

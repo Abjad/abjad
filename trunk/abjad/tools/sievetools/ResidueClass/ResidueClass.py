@@ -92,8 +92,8 @@ class ResidueClass(_BaseResidueClass, _Immutable):
             raise TypeError('must be rc instance.')
         #self.modulo = rc.modulo # period
         #self.residue = rc.residue # phase
-        object.__setattr__(self, '_modulo', rc.modulo) ### period
-        object.__setattr__(self, '_residue', rc.residue) ### phase
+        object.__setattr__(self, '_modulo', rc.modulo) # period
+        object.__setattr__(self, '_residue', rc.residue) # phase
 
     def _init_by_modulo_and_residue(self, modulo, residue):
         if not 0 < modulo:
@@ -102,8 +102,8 @@ class ResidueClass(_BaseResidueClass, _Immutable):
             raise ValueError('abs(residue) must be < modulo')
         #self.modulo = modulo # period
         #self.residue = residue # phase
-        object.__setattr__(self, '_modulo', modulo) ### period
-        object.__setattr__(self, '_residue', residue) ### phase
+        object.__setattr__(self, '_modulo', modulo) # period
+        object.__setattr__(self, '_residue', residue) # phase
 
     ### PUBLIC ATTRIBUTES ###
 

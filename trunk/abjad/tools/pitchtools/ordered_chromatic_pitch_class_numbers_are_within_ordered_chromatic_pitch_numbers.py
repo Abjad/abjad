@@ -1,4 +1,4 @@
-### TODO: extend function to work on Abjad pitch instances.
+# TODO: extend function to work on Abjad pitch instances.
 def ordered_chromatic_pitch_class_numbers_are_within_ordered_chromatic_pitch_numbers(
     chromatic_pitch_class_numbers, chromatic_pitch_numbers):
     '''.. versionadded:: 1.1

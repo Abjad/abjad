@@ -42,14 +42,14 @@ def _process_test_module(test_module, path):
       if line.startswith('def test') or line.startswith('#def test'):
          test_cases_in_current_module += 1
    
-         ### TODO: replace this transform of test_case_name with a single regex ###
+         # TODO: replace this transform of test_case_name with a single regex #
          test_case_name = line.strip()
          if test_case_name.startswith('#'):
             test_case_name = test_case_name[1:]
          test_case_name = test_case_name.split('def ')[1]
          test_case_name = test_case_name.split('(')[0]
 
-         ### TODO: relace this transform of actual_test_case_name with a single regex ###
+         # TODO: relace this transform of actual_test_case_name with a single regex #
          actual_test_case_prefix = line.strip()
          if actual_test_case_prefix.startswith('#'):
             actual_test_case_prefix = actual_test_case_prefix[1:]

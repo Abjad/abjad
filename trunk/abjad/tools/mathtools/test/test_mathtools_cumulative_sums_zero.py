@@ -13,7 +13,7 @@ def test_mathtools_cumulative_sums_zero_01():
         [0, -10, 0, -10, 0]
 
 
-### Must allow generator input as l. ###
+# Must allow generator input as l. #
 
 #def test_mathtools_cumulative_sums_zero_02():
 #   '''Raise TypeError when l is neither tuple nor list.

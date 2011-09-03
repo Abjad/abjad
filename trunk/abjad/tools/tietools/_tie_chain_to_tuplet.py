@@ -43,10 +43,10 @@ def _tie_chain_to_tuplet(chain, divisions, prolation, dotted):
     else:
         raise ValueError('must be diminution or augmentation.')
 
-    ### find written duration of each note in tuplet
+    # find written duration of each note in tuplet
     written_durations = [x * basic_written_duration for x in divisions]
 
-    ### make tuplet notes
+    # make tuplet notes
     try:
         notes = [Note(0, x) for x in written_durations]
     except AssignabilityError:

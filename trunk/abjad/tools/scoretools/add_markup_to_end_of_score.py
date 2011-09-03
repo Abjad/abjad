@@ -28,7 +28,7 @@ def add_markup_to_end_of_score(score, markup, extra_offset = None):
     from abjad.tools import leaftools
 
     last_leaf = leaftools.get_nth_leaf_in_expr(score, -1)
-    ### TODO: copy markup direction from markup input
+    # TODO: copy markup direction from markup input
     markup = markuptools.Markup(markup, 'down')(last_leaf)
 
     if extra_offset is not None:

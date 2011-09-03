@@ -96,7 +96,7 @@ class HarmonicDiatonicInterval(_DiatonicInterval, _HarmonicInterval):
     def melodic_diatonic_interval_descending(self):
         return -self.melodic_diatonic_interval_ascending
 
-    ### TODO: this can be abstracted higher up the inheritence hierarchy
+    # TODO: this can be abstracted higher up the inheritence hierarchy
     @property
     def semitones(self):
         result = 0

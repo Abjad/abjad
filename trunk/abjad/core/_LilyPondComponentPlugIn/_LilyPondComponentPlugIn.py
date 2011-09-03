@@ -5,7 +5,7 @@ class _LilyPondComponentPlugIn(object):
     '''
 
     def __init__(self, **kwargs):
-        ### note_head__color = 'red' or staff__tuplet_full_length = True
+        # note_head__color = 'red' or staff__tuplet_full_length = True
         for key, value in kwargs.iteritems( ):
             proxy_name, attr_name = key.split('__')
             proxy = getattr(self, proxy_name)

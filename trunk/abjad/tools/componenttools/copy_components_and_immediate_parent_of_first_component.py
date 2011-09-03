@@ -123,7 +123,7 @@ def copy_components_and_immediate_parent_of_first_component(components):
 
     result.extend(new_components)
 
-    ### TODO: change hard-coded class name testing to isinstance testing instead
+    # TODO: change hard-coded class name testing to isinstance testing instead
     # new: resize result to match parent_multiplier, if resizable
     if result.__class__.__name__ == 'FixedDurationTuplet':
         result.target_duration = parent_multiplier * result.contents_duration

@@ -311,7 +311,7 @@ class QGridQuantizer(_Quantizer):
         for beatspan_number in beatspan_numbers:
             q_grid = best_q_grids[beatspan_number]
 
-            ### rolling over the carried events
+            # rolling over the carried events
             if carried:
                 if not q_grid[0]:
                     q_grid[0] = carried

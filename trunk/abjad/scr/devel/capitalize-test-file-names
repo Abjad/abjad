@@ -39,7 +39,7 @@ def _rename_test_file(short_file_name, full_file_name, old, new):
       os.system(first_command)
       #revised_new_full_file_name = new_full_file_name.replace('_tmp.py', '.py')
       #second_command = 'svn mv %s %s' % (new_full_file_name, revised_new_full_file_name)
-      ###print second_comand
+      #print second_comand
       #os.system(second_command)
    else:
       new_short_file_name = short_file_name.replace(old, new)

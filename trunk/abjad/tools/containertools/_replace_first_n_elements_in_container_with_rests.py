@@ -92,39 +92,39 @@ def _replace_first_n_elements_in_container_with_rests(container, i, rested_half,
     '''
     from abjad.tools import resttools
 
-    ### assert keyword values
+    # assert keyword values
     assert rested_half in ('left', 'right')
 
     if direction not in ('automatic', 'big-endian', 'little-endian'):
         raise ValueError('unknown direction: %s' % direction)
 
-    ### set rest chain direction based on rested part of container
+    # set rest chain direction based on rested part of container
     if direction == 'automatic':
         if rested_half == 'left':
             direction = 'little-endian'
         elif rested_half == 'right':
             direction = 'big-endian'
 
-    ### get elements to replace in container
+    # get elements to replace in container
     if rested_half == 'left':
         elements_to_replace = container[:i]
     elif rested_half == 'right':
         elements_to_replace = container[i:]
 
-    ### if there are elements to replace
+    # if there are elements to replace
     if elements_to_replace:
 
-        ### find preprolated duration of elements to replace
+        # find preprolated duration of elements to replace
         duration = sum([x.preprolated_duration for x in elements_to_replace])
 
-        ### construct rest chain equal in preprolated duration to replace
+        # construct rest chain equal in preprolated duration to replace
         rests = resttools.make_rests(duration, direction)
 
-        ### replace elements in rested_half of container with rest chain
+        # replace elements in rested_half of container with rest chain
         if rested_half == 'left':
             container[:i] = rests
         else:
             container[i:] = rests
 
-    ### return container
+    # return container
     return container

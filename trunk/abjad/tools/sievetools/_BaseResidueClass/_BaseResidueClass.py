@@ -4,7 +4,7 @@ class _BaseResidueClass(object):
 
     ### OVERLOADS ###
 
-    ### TODO: implement __neg__() ###
+    # TODO: implement __neg__() #
 
     def __and__(self, arg):
         assert isinstance(arg, _BaseResidueClass)

@@ -57,7 +57,7 @@ def color_leaf(leaf, color):
     from abjad.tools.notetools.Note import Note
     from abjad.tools.resttools.Rest import Rest
 
-    ### color leaf
+    # color leaf
     if isinstance(leaf, (Note, Chord)):
         leaf.override.accidental.color = color
         leaf.override.dots.color = color
@@ -66,7 +66,7 @@ def color_leaf(leaf, color):
         leaf.override.dots.color = color
         leaf.override.rest.color = color
 
-    ### return leaf
+    # return leaf
     return leaf
 
 

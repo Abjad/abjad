@@ -17,11 +17,11 @@ from fractions import Fraction
 import os
 import sys
 
-### import Abjad exceptions in Python __builtins__ namespace
+# import Abjad exceptions in Python __builtins__ namespace
 _exceptions_path = os.path.join(__path__[0], 'exceptions')
 _import_functions_in_package_to_namespace(_exceptions_path, __builtins__)
 
-### check for prompt preference
+# check for prompt preference
 from abjad.cfg._read_config_file import _read_config_file
 if _read_config_file( )['use_abjad_prompt']:
     sys.ps1 = 'abjad> '

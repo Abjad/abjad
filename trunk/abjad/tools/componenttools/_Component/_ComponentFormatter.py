@@ -4,9 +4,9 @@ from abjad.interfaces._Interface import _Interface
 
 class _ComponentFormatter(_Interface):
 
-    ### TODO: Implement _ComponentFormattNumberInterface ###
-    ### The 'number' attribute causes only leaf numbering but attaches
-    ### to _ComponentFormatter so that containers can number leaves.
+    # TODO: Implement _ComponentFormattNumberInterface #
+    # The 'number' attribute causes only leaf numbering but attaches
+    # to _ComponentFormatter so that containers can number leaves.
 
     __slots__ = ('_slots', )
 

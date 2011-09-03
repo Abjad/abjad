@@ -4,7 +4,7 @@ from abjad.tools.measuretools.append_spacer_skips_to_underfull_measures_in_expr 
 from abjad.tools.measuretools.get_next_measure_from_component import get_next_measure_from_component
 
 
-### TODO: fix bug in function that causes tied notes to become untied
+# TODO: fix bug in function that causes tied notes to become untied
 def replace_contents_of_measures_in_expr(expr, new_contents):
     r'''.. versionadded:: 1.1
 
@@ -64,31 +64,31 @@ def replace_contents_of_measures_in_expr(expr, new_contents):
         ``measuretools.replace_contents_of_measures_in_expr()``.
     '''
 
-    ### init return list
+    # init return list
     result = []
 
-    ### get first measure and first meter
+    # get first measure and first meter
     cur_measure = get_next_measure_from_component(expr)
     result.append(cur_measure)
     cur_meter = contexttools.get_effective_time_signature(cur_measure)
     del(cur_measure[:])
 
-    ### iterate new contents
+    # iterate new contents
     while new_contents:
 
-        ### find candidate duration of new element plus current measure
+        # find candidate duration of new element plus current measure
         cur_element = new_contents[0]
         multiplier = cur_meter.multiplier
         preprolated_duration = cur_element.preprolated_duration
         prolated_duration = multiplier * preprolated_duration
         candidate_duration = cur_measure.prolated_duration + prolated_duration
 
-        ### if new element fits in current measure
+        # if new element fits in current measure
         if candidate_duration <= cur_meter.duration:
             cur_element = new_contents.pop(0)
             cur_measure.append(cur_element)
 
-        ### otherwise restore currene measure and advance to next measure
+        # otherwise restore currene measure and advance to next measure
         else:
             cur_meter = contexttools.TimeSignatureMark(cur_meter)
             contexttools.detach_time_signature_marks_attached_to_component(cur_measure)
@@ -101,13 +101,13 @@ def replace_contents_of_measures_in_expr(expr, new_contents):
             cur_meter = contexttools.get_effective_time_signature(cur_measure)
             del(cur_measure[:])
 
-    ### restore last iterated measure
+    # restore last iterated measure
     cur_meter = contexttools.TimeSignatureMark(cur_meter)
     contexttools.detach_time_signature_marks_attached_to_component(cur_measure)
     cur_meter.attach(cur_measure)
     append_spacer_skips_to_underfull_measures_in_expr(cur_measure)
 
-    ### return iterated measures
+    # return iterated measures
     return result
 
 

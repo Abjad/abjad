@@ -42,13 +42,13 @@ def remove_markup_attached_to_component(component):
     Return tuple of zero or more markup objects.
     '''
 
-    ### get markup attached to component
+    # get markup attached to component
     result = get_markup_attached_to_component(component)
 
-    ### remove markup attached to component
+    # remove markup attached to component
     for mark in result:
         mark()
 
-    ### return removed markup
+    # return removed markup
     result = tuple(result)
     return result

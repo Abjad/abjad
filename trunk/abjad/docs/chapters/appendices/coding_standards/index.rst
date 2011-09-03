@@ -8,7 +8,7 @@ Indent with spaces, not with tabs. Use four spaces at a time::
 
 Introduce comments with three pound signs and a single space::
 
-    ### comment before foo
+    # comment before foo
     def foo(x, y):
         return x + y
 

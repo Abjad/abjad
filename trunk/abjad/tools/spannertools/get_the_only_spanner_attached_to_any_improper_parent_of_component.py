@@ -34,11 +34,11 @@ def get_the_only_spanner_attached_to_any_improper_parent_of_component(component,
     .. note:: function will usually be called with `klass` specifier set.
     '''
 
-    ### get spanners and count spanners
+    # get spanners and count spanners
     spanners = get_spanners_attached_to_any_improper_parent_of_component(component, klass)
     count = len(spanners)
 
-    ### raise or return
+    # raise or return
     if count == 0:
         raise MissingSpannerError
     elif count == 1:

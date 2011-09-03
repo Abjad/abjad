@@ -1,7 +1,7 @@
 from abjad.tools.mathtools.interpolate_divide import interpolate_divide
 
 
-### TODO: fix hyphen chains in API entry so Sphinx doesn't complain.
+# TODO: fix hyphen chains in API entry so Sphinx doesn't complain.
 def interpolate_divide_multiple(totals, key_values, exp='cosine'):
     '''.. versionadded:: 2.0
 
@@ -36,7 +36,7 @@ def interpolate_divide_multiple(totals, key_values, exp='cosine'):
         ``mathtools.interpolate_divide_multiple()``.
     '''
 
-    ### TODO: Here is the problematic example from the API entry.
+    # TODO: Here is the problematic example from the API entry.
     #    .      .     .    .  . ... .  .    .     .      .     .     .    .  . ...
     #    |--------------------|-------------------|---------------------|
     #            total[0]                    total[1]                total[2]
@@ -47,7 +47,7 @@ def interpolate_divide_multiple(totals, key_values, exp='cosine'):
     result = []
     for i in range(len(totals)):
         dts = interpolate_divide(totals[i], key_values[i], key_values[i+1], exp)
-        ### we want a flat list
+        # we want a flat list
         result.extend(dts)
     return result
 

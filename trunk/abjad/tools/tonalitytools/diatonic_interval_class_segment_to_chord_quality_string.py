@@ -21,18 +21,18 @@ def diatonic_interval_class_segment_to_chord_quality_string(dic_seg):
         Implement ``diatonic_interval_class_set_to_chord_quality_string()``.
     '''
 
-    ### Note: the repeated calls to repr() in the implementation of
-    ###         this function accommodate the fact that the Abjad
-    ###         DiatonicIntervalClassSegment inherits from the built-in
-    ###         Python list class, which is mutable and designed to
-    ###         to be unhashable, ie, not used as the key to a dictionary.
-    ###         Since repr() returns a string and since the repr()
-    ###         of different DiatonicIntervalClassSegments are guaranteed
-    ###         to be unique based on value, storing reprs as dictionary
-    ###         keys works fine.
+    # Note: the repeated calls to repr() in the implementation of
+    #         this function accommodate the fact that the Abjad
+    #         DiatonicIntervalClassSegment inherits from the built-in
+    #         Python list class, which is mutable and designed to
+    #         to be unhashable, ie, not used as the key to a dictionary.
+    #         Since repr() returns a string and since the repr()
+    #         of different DiatonicIntervalClassSegments are guaranteed
+    #         to be unique based on value, storing reprs as dictionary
+    #         keys works fine.
 
     dic_seg_to_quality_string = {
-        ### triads
+        # triads
         repr(pitchtools.InversionEquivalentDiatonicIntervalClassSegment([
             pitchtools.InversionEquivalentDiatonicIntervalClass('minor', 3),
             pitchtools.InversionEquivalentDiatonicIntervalClass('minor', 3),])): 'diminished',
@@ -45,7 +45,7 @@ def diatonic_interval_class_segment_to_chord_quality_string(dic_seg):
         repr(pitchtools.InversionEquivalentDiatonicIntervalClassSegment([
             pitchtools.InversionEquivalentDiatonicIntervalClass('major', 3),
             pitchtools.InversionEquivalentDiatonicIntervalClass('major', 3),])): 'augmented',
-        ### seventh chords
+        # seventh chords
         repr(pitchtools.InversionEquivalentDiatonicIntervalClassSegment([
             pitchtools.InversionEquivalentDiatonicIntervalClass('minor', 3),
             pitchtools.InversionEquivalentDiatonicIntervalClass('minor', 3),
@@ -66,7 +66,7 @@ def diatonic_interval_class_segment_to_chord_quality_string(dic_seg):
             pitchtools.InversionEquivalentDiatonicIntervalClass('major', 3),
             pitchtools.InversionEquivalentDiatonicIntervalClass('minor', 3),
             pitchtools.InversionEquivalentDiatonicIntervalClass('major', 3),])): 'major',
-        ### ninth chords
+        # ninth chords
         repr(pitchtools.InversionEquivalentDiatonicIntervalClassSegment([
             pitchtools.InversionEquivalentDiatonicIntervalClass('major', 3),
             pitchtools.InversionEquivalentDiatonicIntervalClass('minor', 3),

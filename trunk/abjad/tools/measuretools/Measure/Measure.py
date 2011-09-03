@@ -52,15 +52,15 @@ class Measure(Container):
         new = measuretools.fuse_measures([self, arg])
         return new
 
-    ### essentially the same as Container.__copy__.
-    ### the definition given here adds one line to remove
-    ### time signature immediately after instantiation
-    ### because the mark-copying code will then provide time signature.
+    # essentially the same as Container.__copy__.
+    # the definition given here adds one line to remove
+    # time signature immediately after instantiation
+    # because the mark-copying code will then provide time signature.
     def __copy__(self, *args):
         from abjad.tools import marktools
         from abjad.tools import markuptools
         new = type(self)(*self.__getnewargs__())
-        ### only this line differs from Container.__copy__
+        # only this line differs from Container.__copy__
         contexttools.detach_time_signature_marks_attached_to_component(new)
         if getattr(self, '_override', None) is not None:
             new._override = copy.copy(self.override)

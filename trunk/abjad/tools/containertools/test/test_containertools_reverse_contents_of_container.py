@@ -101,7 +101,7 @@ def test_containertools_reverse_contents_of_container_07():
     assert componenttools.is_well_formed_component(t)
 
 
-### TODO: Added componenttools.is_well_formed_component() check for measure contiguity. ###
+# TODO: Added componenttools.is_well_formed_component() check for measure contiguity. #
 
 def test_containertools_reverse_contents_of_container_08():
     '''Retrograde unable to apply because of measure contiguity.
@@ -128,7 +128,7 @@ def test_containertools_reverse_contents_of_container_08():
     }
     '''
 
-    ### TODO: Make MeasureContiguityError raise here ###
+    # TODO: Make MeasureContiguityError raise here #
 
 #   assert py.test.raises(MeasureContiguityError,
 #      'containertools.reverse_contents_of_container(t)')

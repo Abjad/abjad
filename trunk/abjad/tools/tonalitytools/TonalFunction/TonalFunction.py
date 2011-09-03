@@ -282,7 +282,7 @@ class TonalFunction(_Immutable):
     def root_scale_degree(self):
         return self._scale_degree
 
-    ### TODO: deprecate scale_degree in favor of root_scale_degree ###
+    # TODO: deprecate scale_degree in favor of root_scale_degree #
     @property
     def scale_degree(self):
         return self._scale_degree

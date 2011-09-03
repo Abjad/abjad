@@ -2,7 +2,7 @@ from abjad.tools.containertools.Container import Container
 from abjad.tools import componenttools
 
 
-### TODO: change interface to fuse.containers_by_name() to pass containers-to-be-fused explicitly.
+# TODO: change interface to fuse.containers_by_name() to pass containers-to-be-fused explicitly.
 def fuse_like_named_contiguous_containers_in_expr(expr):
     r'''Fuse like-named contiguous containers in `expr`::
 
@@ -75,8 +75,8 @@ def fuse_like_named_contiguous_containers_in_expr(expr):
         return None
 
 
-### TODO implement containers_by_reference as a simple, non-recursive
-### container fuser, like below:
+# TODO implement containers_by_reference as a simple, non-recursive
+# container fuser, like below:
 #def fuse_like_named_contiguous_containers_in_expr(expr):
 #   '''Fuse containers in self that are strictly contiguous
 #      and that have the same name.'''

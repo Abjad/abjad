@@ -14,10 +14,10 @@ def calculate_harmonic_diatonic_interval_from_named_chromatic_pitch_to_named_chr
     Return harmonic diatonic interval.
     '''
 
-    ### get melodic diatonic interval
+    # get melodic diatonic interval
     mdi = calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(
         pitch_carrier_1, pitch_carrier_2)
 
-    ### return harmonic diatonic interval
+    # return harmonic diatonic interval
     return mdi.harmonic_diatonic_interval
 

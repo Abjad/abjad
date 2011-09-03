@@ -61,7 +61,7 @@ class SchemeFunction(_StrictComparator, _Immutable):
                 body = "(%s '%s)" % (self.name, self.args[0])
             else:
                 raise ValueError
-        ### TODO: Generalize for many arguments + parsing ###
+        # TODO: Generalize for many arguments + parsing #
         else:
             raise NotImplementedError('multiple scheme arguments not yet implemented.')
         return '#' + body

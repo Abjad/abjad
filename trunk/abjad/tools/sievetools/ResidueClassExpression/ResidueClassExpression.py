@@ -8,19 +8,19 @@ import operator
 class ResidueClassExpression(_BaseResidueClass, _Immutable):
 
     def __init__(self, rcs, operator = 'or'):
-        ### init from other rc expression
+        # init from other rc expression
         if isinstance(rcs, ResidueClassExpression):
             #self.rcs = rcs.rcs[:]
             #self.operator = rcs.operator
             object.__setattr__(self, '_rcs', rcs.rcs[:])
             object.__setattr__(self, '_operator', rcs.operator)
-        ### init from rcs and operator
+        # init from rcs and operator
         else:
             #self.rcs = rcs[:]
             #self.operator = operator
             object.__setattr__(self, '_rcs', rcs[:])
             object.__setattr__(self, '_operator', operator)
-        ### sort rcs
+        # sort rcs
         self._sort_rcs()
 
     ### OVERLOADS ###
@@ -32,13 +32,13 @@ class ResidueClassExpression(_BaseResidueClass, _Immutable):
 
     ### PRIVATE METHODS ###
 
-    ### TB: _get_congruent_bases() might implement more cleanly
-    ### if the min and max parameters behaved more like the
-    ### start and stop parameters passed to slice() objects in
-    ### list slicing.
-    ### That is, ResidueClassExpression.get_congruent_bases(8) currently
-    ### returns a list of up to *nine* items; should probably
-    ### return a list of up to only *eight* items.
+    # TB: _get_congruent_bases() might implement more cleanly
+    # if the min and max parameters behaved more like the
+    # start and stop parameters passed to slice() objects in
+    # list slicing.
+    # That is, ResidueClassExpression.get_congruent_bases(8) currently
+    # returns a list of up to *nine* items; should probably
+    # return a list of up to only *eight* items.
     def _get_congruent_bases(self, min, max, op):
         if op is operator.iand:
             result = set(range(min, max + 1))
@@ -85,7 +85,7 @@ class ResidueClassExpression(_BaseResidueClass, _Immutable):
     @property
     def representative_congruent_bases(self):
         congruent_bases = self.get_congruent_bases(self.period)
-        ### remove redundant last element from get_congruent_bases()
+        # remove redundant last element from get_congruent_bases()
         congruent_bases = congruent_bases[:-1]
         return congruent_bases
 
@@ -154,10 +154,10 @@ class ResidueClassExpression(_BaseResidueClass, _Immutable):
         elif self.operator == 'and':
             return self._get_congruent_bases(min, max, operator.iand)
 
-    ### TB: the +1 adjustment is necessary here because of
-    ### _process_min_max_attribute() demands min strictly less than max;
-    ### that is, self.get_congruent_bases(0, 0) raises an exception;
-    ### so we workaround this with self.get_congruent_bases(-1, 1) instead.
+    # TB: the +1 adjustment is necessary here because of
+    # _process_min_max_attribute() demands min strictly less than max;
+    # that is, self.get_congruent_bases(0, 0) raises an exception;
+    # so we workaround this with self.get_congruent_bases(-1, 1) instead.
     def is_congruent_base(self, integer):
         tmp_min, tmp_max = -(abs(integer) + 1), abs(integer) + 1
         return integer in self.get_congruent_bases(tmp_min, tmp_max)

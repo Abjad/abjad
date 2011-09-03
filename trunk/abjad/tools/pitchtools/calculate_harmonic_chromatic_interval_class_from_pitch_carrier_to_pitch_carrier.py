@@ -14,10 +14,10 @@ def calculate_harmonic_chromatic_interval_class_from_pitch_carrier_to_pitch_carr
     Return harmonic chromatic interval-class.
     '''
 
-    ### get melodic chromatic interval
+    # get melodic chromatic interval
     mci = calculate_melodic_chromatic_interval_from_pitch_carrier_to_pitch_carrier(
         pitch_carrier_1, pitch_carrier_2)
 
-    ### return harmonic chromatic interval-class
+    # return harmonic chromatic interval-class
     return mci.harmonic_chromatic_interval.harmonic_chromatic_interval_class
 

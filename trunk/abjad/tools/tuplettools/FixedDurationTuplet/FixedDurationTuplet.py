@@ -16,10 +16,10 @@ class FixedDurationTuplet(Tuplet):
     __slots__ = ('_target_duration', )
 
     def __init__(self, duration, music = None, **kwargs):
-        ### new ###
+        # new #
         dummy_multiplier = 1
         Tuplet.__init__(self, dummy_multiplier, music)
-        ### end ###
+        # end #
         self._signifier = '@'
         self.target_duration = duration
         self._initialize_keyword_values(**kwargs)

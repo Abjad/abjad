@@ -31,7 +31,7 @@ def zip_sequences_cyclically(*sequences):
         ``seqtools.zip_sequences_cyclically()``.
     '''
 
-    ### make sure sequences are, in fact, all sequences
+    # make sure sequences are, in fact, all sequences
     new_sequences = []
     for sequence in sequences:
         if not isinstance(sequence, (list, tuple)):
@@ -39,14 +39,14 @@ def zip_sequences_cyclically(*sequences):
         else:
             new_sequences.append(sequence)
 
-    ### find length of longest sequence
+    # find length of longest sequence
     max_length = max([len(x) for x in new_sequences])
 
-    ### produce list of tuples
+    # produce list of tuples
     result = []
     for i in range(max_length):
         part = [x[i % len(x)] for x in new_sequences]
         result.append(tuple(part))
 
-    ### return result
+    # return result
     return result

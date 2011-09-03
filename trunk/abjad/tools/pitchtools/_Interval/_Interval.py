@@ -39,12 +39,12 @@ class _Interval(_Immutable):
     def cents(self):
         return 100 * self.semitones
 
-    ### TODO: remove
+    # TODO: remove
     @property
     def interval_class(self):
         pass
 
-    ### TODO: remove
+    # TODO: remove
     @property
     def number(self):
         return self._number

@@ -40,7 +40,7 @@ class NoteHead(_UnaryComparator):
 #            raise ValueError('\n\tCan not initialize note head from args "%s".' % str(args))
         self._client = _client
         self.written_pitch = written_pitch
-        ### must assign comparison attribute after written pitch initialization ###
+        # must assign comparison attribute after written pitch initialization #
         self._comparison_attribute = self.written_pitch
         for tweak_pair in tweak_pairs:
             key, value = tweak_pair

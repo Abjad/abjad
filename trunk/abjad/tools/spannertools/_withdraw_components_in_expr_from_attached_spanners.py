@@ -10,14 +10,14 @@ def _withdraw_components_in_expr_from_attached_spanners(components):
     '''
     from abjad.tools import componenttools
 
-    ### check components
+    # check components
     assert componenttools.all_are_thread_contiguous_components(components)
 
-    ### withdraw from contained spanners
+    # withdraw from contained spanners
     for component in componenttools.iterate_components_forward_in_expr(components, _Component):
         _withdraw_component_from_attached_spanners(component)
 
-    ### return components
+    # return components
     return components
 
 

@@ -95,27 +95,27 @@ def _are_thread_proper(component_1, component_2, klasses = (_Component)):
         Otherwise False.
     '''
 
-    ### if either input parameter are not Abjad tokens
+    # if either input parameter are not Abjad tokens
     if not isinstance(component_1, klasses) or \
         not isinstance(component_2, klasses):
         return False
 
-    ### if component_1 and component_2 do not share a thread
+    # if component_1 and component_2 do not share a thread
     first_thread = threadtools.component_to_thread_signature(component_1)
     if not first_thread == threadtools.component_to_thread_signature(component_2):
         #print 'not same thread!'
         return False
 
-    ### find component_1 offset end time and component_2 offset begin
+    # find component_1 offset end time and component_2 offset begin
     first_end = component_1._offset.stop
     second_begin = component_2._offset.start
 
-    ### if component_1 does not preced component_2
+    # if component_1 does not preced component_2
     if not first_end <= second_begin:
         #print 'not temporally ordered!'
         return False
 
-    ### if there exists an intervening component of the same thread
+    # if there exists an intervening component of the same thread
     dfs = iterate_components_depth_first(component_1, capped = False)
     for node in dfs:
         if node is component_2:
@@ -128,5 +128,5 @@ def _are_thread_proper(component_1, component_2, klasses = (_Component)):
                     (node, component_1, component_2)
                 return False
 
-    ### otherwise, return True
+    # otherwise, return True
     return True

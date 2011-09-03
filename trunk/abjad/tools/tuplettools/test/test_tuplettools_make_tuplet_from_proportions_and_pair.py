@@ -2,9 +2,9 @@ from abjad import *
 import py.test
 
 
-### TODO: Port forward to new style of tests. ###
+# TODO: Port forward to new style of tests. #
 
-### TEST TYPICAL DIVIDE ###
+# TEST TYPICAL DIVIDE #
 
 def test_tuplettools_make_tuplet_from_proportions_and_pair_01():
     t = tuplettools.make_tuplet_from_proportions_and_pair([1, 2, 4], (6, 16))
@@ -23,7 +23,7 @@ def test_tuplettools_make_tuplet_from_proportions_and_pair_04():
     assert str(t) == "{@ 19:16 c'16.., c'16.., r16, r64 @}"
 
 
-### TEST DIVIDE, DOUBLE LIST ###
+# TEST DIVIDE, DOUBLE LIST #
 
 def test_tuplettools_make_tuplet_from_proportions_and_pair_05():
     t = tuplettools.make_tuplet_from_proportions_and_pair([1, 2, 2], (12, 16))
@@ -42,7 +42,7 @@ def test_tuplettools_make_tuplet_from_proportions_and_pair_08():
     assert str(t) == "{@ 5:3 c'4, c'2, c'2 @}"
 
 
-### TEST DIVIDE, DOUBLE NUMERATOR ###
+# TEST DIVIDE, DOUBLE NUMERATOR #
 
 def test_tuplettools_make_tuplet_from_proportions_and_pair_09():
     t = tuplettools.make_tuplet_from_proportions_and_pair([2, 4, 4], (3, 16))
@@ -61,7 +61,7 @@ def test_tuplettools_make_tuplet_from_proportions_and_pair_12():
     assert str(t) == "{@ 5:6 c'4, c'2, c'2 @}"
 
 
-### TEST DIVIDE, DOUBLE DENOMINATOR ###
+# TEST DIVIDE, DOUBLE DENOMINATOR #
 
 def test_tuplettools_make_tuplet_from_proportions_and_pair_13():
     t = tuplettools.make_tuplet_from_proportions_and_pair([1, 2, 2], (6, 2))
@@ -80,7 +80,7 @@ def test_tuplettools_make_tuplet_from_proportions_and_pair_16():
     assert str(t) == "{@ 5:6 c'16, c'8, c'8 @}"
 
 
-### TEST DIVIDE, NO PROLATION ###
+# TEST DIVIDE, NO PROLATION #
 
 def test_tuplettools_make_tuplet_from_proportions_and_pair_17():
     t = tuplettools.make_tuplet_from_proportions_and_pair([1, -1, -1], (3, 16))
@@ -99,7 +99,7 @@ def test_tuplettools_make_tuplet_from_proportions_and_pair_20():
     assert str(t) == "{@ 1:1 c'16, c'16, c'16, c'16, r16, r16 @}"
 
 
-### TEST LONE DIVIDE ###
+# TEST LONE DIVIDE #
 
 def test_tuplettools_make_tuplet_from_proportions_and_pair_21():
     t = tuplettools.make_tuplet_from_proportions_and_pair([1], (6, 16))
@@ -118,7 +118,7 @@ def test_tuplettools_make_tuplet_from_proportions_and_pair_24():
     assert str(t) == "{r4.}"
 
 
-### TEST DIVIDE ASSERTIONS ###
+# TEST DIVIDE ASSERTIONS #
 
 def test_tuplettools_make_tuplet_from_proportions_and_pair_25():
     py.test.raises(ValueError, 'tuplettools.make_tuplet_from_proportions_and_pair([], (3, 16))')

@@ -44,7 +44,7 @@ def test_seqtools_truncate_sequence_to_sum_04():
     assert t == [2, 2, 1]
 
 
-### ERRORS ###
+# ERRORS #
 
 def test_seqtools_truncate_sequence_to_sum_05():
     '''Raise ValueError on negative total.'''

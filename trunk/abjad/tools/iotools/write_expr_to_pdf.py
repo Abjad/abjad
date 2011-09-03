@@ -18,7 +18,7 @@ def write_expr_to_pdf(expr, file_name, template = None, print_status = True):
     Return none.
     '''
 
-    ### massage file_name
+    # massage file_name
     file_name = os.path.expanduser(file_name)
     if not file_name.endswith('.pdf'):
         file_name += '.pdf'
@@ -26,7 +26,7 @@ def write_expr_to_pdf(expr, file_name, template = None, print_status = True):
     name, actual_format_time, actual_lily_file = _log_render_lilypond_input(
         expr, template = template)
 
-    ### copy PDF file to file_name
+    # copy PDF file to file_name
     pdf_name = name[:-3] + '.pdf'
     ABJADOUTPUT = _read_config_file()['abjad_output']
     full_path_pdf_name = os.path.join(ABJADOUTPUT, pdf_name)

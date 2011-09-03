@@ -194,8 +194,8 @@ class _NavigationInterface(_Interface):
                 componenttools.component_to_parentage_signature(self._client):
                 return node
 
-    ### TODO: Write tests for _NavigationInterface._prev_namesake.                                    ###
-    ###         Backwards depth first search has always had a bug that needs fixing. ###
+    # TODO: Write tests for _NavigationInterface._prev_namesake.                                    #
+    #         Backwards depth first search has always had a bug that needs fixing. #
 
     @property
     def _prev_namesake(self):
@@ -328,7 +328,7 @@ class _NavigationInterface(_Interface):
         from abjad.tools import componenttools
         return componenttools.all_are_components_in_same_thread([self._client, expr])
 
-    ### TODO: Move _NavigationInterface._rank to Parentage._rank ###
+    # TODO: Move _NavigationInterface._rank to Parentage._rank #
 
     def _rank(self):
         '''Returns the index of the caller (its position) in

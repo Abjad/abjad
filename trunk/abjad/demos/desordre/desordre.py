@@ -6,7 +6,7 @@ abstract = "A reconstruction of the first measures of Ligeti's 'Desordre'"
 
 statements = [ ]
 
-### statements
+# statements
 text = "Let's first see what we are after."
 code = 'open_file(desordre)'
 s = Statement(text, code)
@@ -120,7 +120,7 @@ s = Statement(text, code)
 statements.append(s)
 
 
-### presentation
+# presentation
 p = Presentation(title, abstract, statements)
 p.setup.append('from abjad import *')
 p.setup.append('from abjad.cfg.cfg import ABJADPATH')

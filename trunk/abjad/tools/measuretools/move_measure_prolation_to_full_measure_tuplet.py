@@ -30,21 +30,21 @@ def move_measure_prolation_to_full_measure_tuplet(expr):
     for measure in iterate_measures_forward_in_expr(expr):
         if contexttools.get_effective_time_signature(measure).is_nonbinary:
 
-            ### find meter and contents multipliers
+            # find meter and contents multipliers
             meter_multiplier = contexttools.get_effective_time_signature(measure).multiplier
             contents_multiplier = componenttools.get_likely_multiplier_of_components(measure[:])
 
-            ### update nonbinary meter to binary
+            # update nonbinary meter to binary
             binary_meter = metertools.meter_to_binary_meter(
                 contexttools.get_effective_time_signature(measure), contents_multiplier)
             contexttools.detach_time_signature_marks_attached_to_component(measure)
             binary_meter.attach(measure)
 
-            ### find target duration and create tuplet
+            # find target duration and create tuplet
             target_duration = meter_multiplier * measure.contents_duration
             tuplet = FixedDurationTuplet(target_duration, measure[:])
 
-            ### scale tuplet contents, if helpful
+            # scale tuplet contents, if helpful
             if contents_multiplier is not None:
                 #containertools.scale_contents_of_container(tuplet, ~contents_multiplier)
                 inverse_multiplier = durtools.Duration(

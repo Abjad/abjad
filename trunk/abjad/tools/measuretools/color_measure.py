@@ -46,18 +46,18 @@ def color_measure(measure, color = 'red'):
     Color names appear in LilyPond Learning Manual appendix B.5.
     '''
 
-    ### check measure type
+    # check measure type
     if not isinstance(measure, Measure):
         raise TypeError('must be measure: %s' % measure)
 
-    ### color measure
+    # color measure
     measure.override.beam.color = color
     measure.override.dots.color = color
     measure.override.staff.time_signature.color = color
     measure.override.note_head.color = color
     measure.override.stem.color = color
 
-    ### return measure
+    # return measure
     return measure
 
 

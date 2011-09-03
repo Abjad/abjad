@@ -3,8 +3,8 @@ import re
 
 
 melodic_diatonic_interval_abbreviation_regex_body = '''
-    ([+,-]?)  ### one plus, one minus, or neither
-    %s             ### followed by harmonic diatonic interval abbreviation
+    ([+,-]?)  # one plus, one minus, or neither
+    %s             # followed by harmonic diatonic interval abbreviation
     ''' % harmonic_diatonic_interval_abbreviation_regex_body
 
 melodic_diatonic_interval_abbreviation_regex = re.compile(

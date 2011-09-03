@@ -8,47 +8,47 @@ def _inspect_leaf_instance_attributes(instance):
     be doing very weird things to contradict either of these two assumptions.
     '''
 
-    ### inspect class attributes
+    # inspect class attributes
     class_attribute_names = dir(instance.__class__)
     read_only_class_properties = []
     read_write_class_properties = []
     for class_attribute_name in class_attribute_names:
-        ### ignore private class attributes
+        # ignore private class attributes
         if class_attribute_name.startswith('_'):
             continue
         class_attribute = getattr(instance.__class__, class_attribute_name)
-        ### ignore class methods
+        # ignore class methods
         if callable(class_attribute):
             continue
-        ### remember read-only class properties
+        # remember read-only class properties
         elif isinstance(class_attribute, property) and class_attribute.fset is None:
             read_only_class_properties.append(class_attribute_name)
-        ### remember read / write class properties
+        # remember read / write class properties
         elif isinstance(class_attribute, property) and class_attribute.fset is not None:
             read_write_class_properties.append(class_attribute_name)
-        ### handle exception
+        # handle exception
         else:
             message = 'user property set on class rather than instance: "%s".'
             raise ValueError(message % instance.__class__.__name__)
 
-    ### inspect instance attributes
+    # inspect instance attributes
     vanilla_instance_attributes = []
     instance_attribute_names = dir(instance)
     for instance_attribute_name in instance_attribute_names:
-        ### ignore private instance attributes
+        # ignore private instance attributes
         if instance_attribute_name.startswith('_'):
             continue
-        ### ignore class attributes
+        # ignore class attributes
         if instance_attribute_name in class_attribute_names:
             continue
         instance_attribute = getattr(instance, instance_attribute_name)
-        ### ignore instance methods
+        # ignore instance methods
         if callable(instance_attribute):
             continue
-        ### remember public instance attributes
+        # remember public instance attributes
         vanilla_instance_attributes.append(instance_attribute_name)
 
-    ### return instance attributes and class properties sorted by access type
+    # return instance attributes and class properties sorted by access type
     return vanilla_instance_attributes, read_only_class_properties, read_write_class_properties
 
 

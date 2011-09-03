@@ -15,7 +15,7 @@ from abjad.tools.quantizationtools.tempo_scaled_rationals_to_q_events import tem
 
 class _Quantizer(_Immutable):
 
-    ### OVERRIDES ###
+    # OVERRIDES #
 
     def __call__(self, args, **kwargs):
         # Q-events

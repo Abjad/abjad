@@ -76,9 +76,9 @@ def test_Container___add___06():
     '''
 
 
-### PARALLEL STRUCTURES ###
+# PARALLEL STRUCTURES #
 
-### NONSTRUCTURAL in new parallel --> context model.
+# NONSTRUCTURAL in new parallel --> context model.
 #def test_Container___add___07():
 #   '''Addition raises exception on parallels of notes.'''
 #   t1 = Container(Note("c'4")*2)
@@ -137,7 +137,7 @@ def test_Container___add___09():
     assert tadd.name == 'staffOne'
 
 
-### iadd ###
+# iadd #
 
 def test_Container___add___10():
     '''In place add makes a copy of right hand operand only.'''

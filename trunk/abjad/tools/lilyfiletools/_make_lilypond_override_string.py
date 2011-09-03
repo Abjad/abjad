@@ -10,7 +10,7 @@ def _make_lilypond_override_string(grob_name, grob_attribute, grob_value,
     Does not include once indicator.
     '''
 
-    ### parse input strings
+    # parse input strings
     grob_name = iotools.underscore_delimited_lowercase_to_uppercamelcase(grob_name)
     grob_attribute = _format_lilypond_attribute(grob_attribute)
     grob_value = _format_lilypond_value(grob_value)
@@ -24,6 +24,6 @@ def _make_lilypond_override_string(grob_name, grob_attribute, grob_value,
     else:
         once_prefix = ''
 
-    ### return override string
+    # return override string
     return r'%s\override %s%s %s = %s' % (
         once_prefix, context_prefix, grob_name, grob_attribute, grob_value)

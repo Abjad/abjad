@@ -96,7 +96,7 @@ class NamedChromaticPitchSet(_PitchSet):
 
     ### PUBLIC METHODS ###
 
-    ### TODO: Implement pitch set (axis) inversion. ###
+    # TODO: Implement pitch set (axis) inversion. #
 
     #def invert(self):
     #    '''Transpose all pcs in self by n.'''

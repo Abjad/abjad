@@ -55,10 +55,10 @@ def scale_measure_by_multiplier_and_adjust_meter(measure, multiplier = 1):
         containertools.scale_contents_of_container(measure, multiplier)
         if old_meter.is_nonbinary or not mathtools.is_nonnegative_integer_power_of_two(multiplier):
             new_pair = durtools.multiply_duration_pair_and_reduce_factors(old_pair, multiplier)
-        ### multiplier is a negative power of two, like 1/2, 1/4, etc.
+        # multiplier is a negative power of two, like 1/2, 1/4, etc.
         elif multiplier < durtools.Duration(0):
             new_pair = durtools.multiply_duration_pair(old_pair, multiplier)
-        ### multiplier is a nonnegative power of two, like 0, 1, 2, 4, etc.
+        # multiplier is a nonnegative power of two, like 0, 1, 2, 4, etc.
         elif durtools.Duration(0) < multiplier:
             new_pair = durtools.multiply_duration_pair_and_try_to_preserve_numerator(
                 old_pair, multiplier)

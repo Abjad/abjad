@@ -52,11 +52,11 @@ def named_chromatic_pitches_to_inversion_equivalent_chromatic_interval_class_num
 
     vector = {}
 
-    ### 12-ET pitches only
+    # 12-ET pitches only
     if all([isinstance(interval, int) for interval in intervals]):
         for i in range(7):
             vector[i] = intervals.count(i)
-    ### 24-ET pitches included
+    # 24-ET pitches included
     else:
         for i in range(13):
             if i % 2 == 0:

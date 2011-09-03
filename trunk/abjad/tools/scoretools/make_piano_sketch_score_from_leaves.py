@@ -63,7 +63,7 @@ def make_piano_sketch_score_from_leaves(leaves, lowest_treble_pitch = NamedChrom
     Return score, treble staff, bass staff.
     '''
 
-    ### make and configure score
+    # make and configure score
     score, treble_staff, bass_staff = make_piano_score_from_leaves(leaves, lowest_treble_pitch)
     score.override.time_signature.transparent = True
     score.override.bar_number.transparent = True
@@ -71,12 +71,12 @@ def make_piano_sketch_score_from_leaves(leaves, lowest_treble_pitch = NamedChrom
     score.override.span_bar.stencil = False
     contexttools.set_accidental_style_on_sequential_contexts_in_expr(score, 'forget')
 
-    ### make and configure lily file
+    # make and configure lily file
     lily_file = lilyfiletools.make_basic_lily_file(score)
     lily_file.layout_block.indent = 0
     lily_file.paper_block.tagline = markuptools.Markup('')
 
-    ### return score, treble staff, bass staff
+    # return score, treble staff, bass staff
     return score, treble_staff, bass_staff
 
 

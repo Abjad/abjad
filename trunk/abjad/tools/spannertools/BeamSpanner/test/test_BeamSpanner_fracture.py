@@ -70,7 +70,7 @@ def test_BeamSpanner_fracture_05():
     assert spannertools.get_beam_spanner_attached_to_component(t[0]) != spannertools.get_beam_spanner_attached_to_component(t[2])
     assert spannertools.get_beam_spanner_attached_to_component(t[2]) != spannertools.get_beam_spanner_attached_to_component(t[3])
 
-    componenttools.is_well_formed_component(t) ### check for Beam overlaps
+    componenttools.is_well_formed_component(t) # check for Beam overlaps
     assert t.format == "\\new Staff {\n\tc'8 [\n\tcs'8 ]\n\td'8 [ ]\n\tef'8 [\n\te'8 ]\n\tf'8\n\tfs'8\n\tg'8\n}"
 
     r'''
@@ -102,7 +102,7 @@ def test_BeamSpanner_fracture_06():
     assert len(spannertools.get_beam_spanner_attached_to_component(t[0])) == 1
     assert len(spannertools.get_beam_spanner_attached_to_component(t[1])) == 4
     assert spannertools.get_beam_spanner_attached_to_component(t[0]) != spannertools.get_beam_spanner_attached_to_component(t[1])
-    componenttools.is_well_formed_component(t) ### check for Beam overlaps
+    componenttools.is_well_formed_component(t) # check for Beam overlaps
     assert t.format == "\\new Staff {\n\tc'8 [ ]\n\tcs'8 [\n\td'8\n\tef'8\n\te'8 ]\n\tf'8\n\tfs'8\n\tg'8\n}"
     r'''
     \new Staff {
@@ -131,7 +131,7 @@ def test_BeamSpanner_fracture_07():
     assert len(spannertools.get_beam_spanner_attached_to_component(t[0])) == 4
     assert len(spannertools.get_beam_spanner_attached_to_component(t[4])) == 1
     assert spannertools.get_beam_spanner_attached_to_component(t[0]) != spannertools.get_beam_spanner_attached_to_component(t[4])
-    componenttools.is_well_formed_component(t) ### check for Beam overlaps
+    componenttools.is_well_formed_component(t) # check for Beam overlaps
     assert t.format == "\\new Staff {\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n\te'8 [ ]\n\tf'8\n\tfs'8\n\tg'8\n}"
 
     r'''
@@ -164,7 +164,7 @@ def test_BeamSpanner_fracture_08():
     assert len(spannertools.get_beam_spanner_attached_to_component(t[0])) == 4
     assert len(spannertools.get_beam_spanner_attached_to_component(t[4])) == 1
     assert spannertools.get_beam_spanner_attached_to_component(t[0]) != spannertools.get_beam_spanner_attached_to_component(t[4])
-    componenttools.is_well_formed_component(t) ### check for Beam overlaps
+    componenttools.is_well_formed_component(t) # check for Beam overlaps
     assert t.format == "\\new Staff {\n\tc'8 [\n\tcs'8\n\td'8\n\tef'8 ]\n\te'8 [ ]\n\tf'8\n\tfs'8\n\tg'8\n}"
 
     r'''

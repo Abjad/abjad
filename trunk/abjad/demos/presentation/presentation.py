@@ -36,12 +36,12 @@ class Presentation(object):
         Set live to True in live presentation. When live is True the commands
         are not executed, only displayed.
         '''
-        ### run setup code
-        ### TODO: there must be a better way to insert imports and variables
-        ### into the scope of this function.
+        # run setup code
+        # TODO: there must be a better way to insert imports and variables
+        # into the scope of this function.
         for expr in self.setup:
             exec(expr)
-        ###
+        #
         self._print_header( )
         for i, statement in enumerate(self.statements):
             raw_input('\n\n%d. %s\n' % (i+1, statement.text))

@@ -4,7 +4,7 @@ from abjad.tools.sievetools.ResidueClassExpression import ResidueClassExpression
 import py.test
 
 RC = ResidueClass
-### OR ###
+# OR #
 
 def test_ResidueClassExpression_01():
     '''boolean operator defaults to OR.'''
@@ -30,7 +30,7 @@ def test_ResidueClassExpression_03():
     assert t.get_congruent_bases(6) == [0,1,3,5,6]
 
 
-### AND ###
+# AND #
 
 def test_ResidueClassExpression_04():
 
@@ -49,7 +49,7 @@ def test_ResidueClassExpression_05():
     assert t.get_congruent_bases(6) == [3]
 
 
-### XOR ###
+# XOR #
 
 def test_ResidueClassExpression_06():
 

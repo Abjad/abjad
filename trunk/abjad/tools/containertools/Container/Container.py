@@ -131,8 +131,8 @@ class Container(_Component):
             assert componenttools.all_are_components([expr])
             old = self[i]
             spanners_receipt = spannertools.get_spanners_that_dominate_components([old])
-            ### must withdraw from spanners before parentage!
-            ### otherwise begin / end assessments don't work!
+            # must withdraw from spanners before parentage!
+            # otherwise begin / end assessments don't work!
             _withdraw_components_in_expr_from_crossing_spanners([expr])
             expr._parentage._switch(self)
             self._music.insert(i, expr)
@@ -155,8 +155,8 @@ class Container(_Component):
             spanners_receipt = spannertools.get_spanners_that_dominate_container_components_from_to(
                 self, start, stop)
             componenttools.remove_component_subtree_from_score_and_spanners(old)
-            ### must withdraw before setting in self!
-            ### otherwise circular withdraw ensues!
+            # must withdraw before setting in self!
+            # otherwise circular withdraw ensues!
             _withdraw_components_in_expr_from_crossing_spanners(expr)
             self._music[start:start] = expr
             for component in expr:

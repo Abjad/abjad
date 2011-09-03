@@ -47,12 +47,12 @@ def rational_to_equal_or_lesser_binary_rational(rational):
         ``durtools.rational_to_equal_or_lesser_binary_rational()``.
     '''
 
-    ### find exponent of denominator
+    # find exponent of denominator
     exponent = -int(math.floor(math.log(rational, 2)))
 
-    ### find written duration
+    # find written duration
     written_duration = Fraction(1, 2) ** exponent
 
-    ### return written duration
+    # return written duration
     return written_duration
 

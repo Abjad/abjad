@@ -3,7 +3,7 @@ from abjad.tools.mathtools import greatest_power_of_two_less_equal
 from abjad.tools.seqtools import truncate_runs_in_sequence
 
 
-### TODO: Maybe move get_likely_multiplier_of_components() from durtools to measuretools? ###
+# TODO: Maybe move get_likely_multiplier_of_components() from durtools to measuretools? #
 
 def get_likely_multiplier_of_components(components):
     r'''.. versionadded:: 2.0

@@ -17,7 +17,7 @@ class _MeasureFormatter(_ContainerFormatter):
     def _contents(self):
         result = []
         client = self._client
-        ### the class name test here is exclude scaleDurations from Anonymous and Dynamic measures
+        # the class name test here is exclude scaleDurations from Anonymous and Dynamic measures
         #if client.is_nonbinary and client.__class__.__name__ == 'Measure':
         if client.is_nonbinary and client.__class__.__name__ == 'Measure':
             result.append("\t\\scaleDurations #'(%s . %s) {" % (

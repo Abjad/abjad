@@ -3,8 +3,8 @@ import re
 
 
 harmonic_diatonic_interval_abbreviation_regex_body = '''
-    %s             ### exactly one diatonic quality abbreviation
-    (\d+)      ### followed by one or more digits
+    %s             # exactly one diatonic quality abbreviation
+    (\d+)      # followed by one or more digits
     ''' % diatonic_quality_abbreviation_regex_body
 
 harmonic_diatonic_interval_abbreviation_regex = re.compile(

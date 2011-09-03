@@ -6,7 +6,7 @@ import os
 def log():
     '''Open the LilyPond log file in operating system-specific text editor::
 
-        abjad> iotools.log() ### doctest: +SKIP
+        abjad> iotools.log() # doctest: +SKIP
 
     ::
 

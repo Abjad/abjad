@@ -65,7 +65,7 @@ class QGrid(_Immutable):
     def __getnewargs__(self):
         return self._definition, self._next
 
-    ### OVERRIDES ###
+    # OVERRIDES #
 
     def __eq__(self, other):
         if type(self) == type(other) and \

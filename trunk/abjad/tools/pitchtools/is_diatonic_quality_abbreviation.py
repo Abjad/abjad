@@ -2,11 +2,11 @@ import re
 
 
 diatonic_quality_abbreviation_regex_body = '''
-    (M|         ### major
-    m|          ### minor
-    P|          ### perfect
-    aug|        ### augmented
-    dim)        ### dimished
+    (M|         # major
+    m|          # minor
+    P|          # perfect
+    aug|        # augmented
+    dim)        # dimished
     '''
 
 diatonic_quality_abbreviation_regex = re.compile(

@@ -25,7 +25,7 @@ def yield_all_partitions_of_sequence(sequence):
     Return generator of newly created lists.
     '''
 
-    ### TODO: remove type restriction ###
+    # TODO: remove type restriction #
     if not isinstance(sequence, list):
         raise TypeError('%s must be list.' % sequence)
 

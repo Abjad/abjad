@@ -54,7 +54,7 @@ class TimeSignatureMark(ContextMark):
             self._has_default_target_context = True
         else:
             self._has_default_target_context = False
-        ### initialize numerator and denominator from *args
+        # initialize numerator and denominator from *args
         if len(args) == 1 and isinstance(args[0], type(self)):
             meter = args[0]
             numerator, denominator = meter.numerator, meter.denominator
@@ -70,7 +70,7 @@ class TimeSignatureMark(ContextMark):
         self._numerator = numerator
         self._denominator = denominator
 
-        ### initialize partial from **kwargs
+        # initialize partial from **kwargs
         partial = kwargs.get('partial', None)
         if not isinstance(partial, (type(None), durtools.Duration)):
             raise TypeError
@@ -80,13 +80,13 @@ class TimeSignatureMark(ContextMark):
         else:
             self._partial_repr_string = ''
 
-        ### initialize suppress from kwargs
+        # initialize suppress from kwargs
         suppress = kwargs.get('suppress', None)
         if not isinstance(suppress, (bool, type(None))):
             raise TypeError
         self.suppress = suppress
 
-        ### initialize derived attributes
+        # initialize derived attributes
         _multiplier = durtools.positive_integer_to_implied_prolation_multipler(self.denominator)
         self._multiplier = _multiplier
         self._is_nonbinary = not mathtools.is_nonnegative_integer_power_of_two(self.denominator)
@@ -97,7 +97,7 @@ class TimeSignatureMark(ContextMark):
         return type(self)((self.numerator, self.denominator),
             partial = self.partial, target_context = self.target_context)
 
-    ### note that this can not be defined on superclass
+    # note that this can not be defined on superclass
     __deepcopy__ = __copy__
 
     def __eq__(self, arg):

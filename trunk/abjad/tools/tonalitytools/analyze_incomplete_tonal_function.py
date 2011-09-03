@@ -4,7 +4,7 @@ from abjad.tools.tonalitytools.TonalFunction import TonalFunction
 from abjad.tools.tonalitytools.analyze_incomplete_chord import analyze_incomplete_chord
 
 
-### TODO: Write tests ###
+# TODO: Write tests #
 def analyze_incomplete_tonal_function(expr, key_signature):
     '''.. versionadded:: 2.0
 

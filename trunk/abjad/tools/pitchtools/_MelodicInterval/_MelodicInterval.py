@@ -27,7 +27,7 @@ class _MelodicInterval(_Interval):
     def __neg__(self):
         pass
 
-    ### PRIVATE ATTRIUBTES ###
+    # PRIVATE ATTRIUBTES #
 
     @property
     def _direction_symbol(self):

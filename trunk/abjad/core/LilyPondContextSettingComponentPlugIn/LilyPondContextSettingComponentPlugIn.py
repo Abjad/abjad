@@ -43,7 +43,7 @@ class LilyPondContextSettingComponentPlugIn(_LilyPondComponentPlugIn):
         body_string = ' '
         skeleton_strings = self._get_skeleton_strings( )
         if skeleton_strings:
-            ### remove 'set__'
+            # remove 'set__'
             skeleton_strings = [x[5:] for x in skeleton_strings]
             body_string = ', '.join(skeleton_strings)
         return '%s(%s)' % (self.__class__.__name__, body_string)

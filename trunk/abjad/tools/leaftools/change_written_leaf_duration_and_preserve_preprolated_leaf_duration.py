@@ -34,24 +34,24 @@ def change_written_leaf_duration_and_preserve_preprolated_leaf_duration(leaf, wr
         ``leaftools.change_written_leaf_duration_and_preserve_preprolated_leaf_duration()``.
     '''
 
-    ### check leaf type
+    # check leaf type
     if not isinstance(leaf, _Leaf):
         raise TypeError('must be leaf: %s' % leaf)
 
-    ### check written duration type
+    # check written duration type
     written_duration = durtools.Duration(written_duration)
 
-    ### change leaf written duration
+    # change leaf written duration
     previous = leaf.multiplied_duration
     leaf.written_duration = written_duration
 
-    ### change leaf multiplier if required
+    # change leaf multiplier if required
     leaf.duration_multiplier = None
     multiplier = previous / leaf.written_duration
     if multiplier != 1:
         leaf.duration_multiplier = multiplier
 
-    ### return leaf
+    # return leaf
     return leaf
 
 

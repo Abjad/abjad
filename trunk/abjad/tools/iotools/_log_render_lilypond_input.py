@@ -25,7 +25,7 @@ def _log_render_lilypond_input(expr, template = None):
     lily_time = 10
     format_time = 10
 
-    ### log score
+    # log score
     current_directory = os.path.abspath('.')
     ABJADOUTPUT = _read_config_file()['abjad_output']
     _verify_output_directory(ABJADOUTPUT)
@@ -33,7 +33,7 @@ def _log_render_lilypond_input(expr, template = None):
     name = get_next_output_file_name()
     outfile = open(name, 'w')
 
-    ### catch Abjad tight loops that result in excessive format time
+    # catch Abjad tight loops that result in excessive format time
     start_format_time = time.time()
     lily_file = _insert_expr_into_lily_file(expr, template = template)
     formatted_lily_file = lily_file.format
@@ -45,7 +45,7 @@ def _log_render_lilypond_input(expr, template = None):
     outfile.close()
 
     if getattr(lily_file, '_is_temporary', False):
-        ### TODO: eliminate this exception handler? ###
+        # TODO: eliminate this exception handler? #
         try:
             music = lily_file.score_block.pop()
             delattr(music, '_lily_file')
@@ -53,7 +53,7 @@ def _log_render_lilypond_input(expr, template = None):
             pass
         del(lily_file)
 
-    ### render
+    # render
     start_time = time.time()
     _run_lilypond(name, _read_config_file()['lilypond_path'])
     stop_time = time.time()
@@ -61,7 +61,7 @@ def _log_render_lilypond_input(expr, template = None):
 
     os.chdir(current_directory)
 
-    ### catch LilyPond taking a long time to render
+    # catch LilyPond taking a long time to render
     if lily_time <= actual_lily_time:
         print 'LilyPond processing time equal to %s seconds ...' % actual_lily_time
 

@@ -22,11 +22,11 @@ class _AbjadTag(_TagParser):
     def process(self):
         self._verify_tag( )
 
-        ### create temp directory to work in
+        # create temp directory to work in
         _create_directory('tmp_out')
         os.chdir('tmp_out')
 
-        ### start processing
+        # start processing
         self._parse( )
 
         if self.skipRendering:
@@ -34,7 +34,7 @@ class _AbjadTag(_TagParser):
         else:
             self._render_images( )
 
-        ### clean up directories
+        # clean up directories
         os.chdir('..')
         _create_directory('images')
         for element in os.listdir('tmp_out'):
@@ -113,12 +113,12 @@ class _AbjadTag(_TagParser):
         p = subprocess.Popen('lilypond --png -dresolution=300 %s' % filename,
             shell = True, stdout = subprocess.PIPE, stderr = subprocess.PIPE)
         out, err = p.communicate( )
-        ### NOTE: why popen and not system here?
+        # NOTE: why popen and not system here?
         output = 'convert %s.png -trim -resample 40%% %s.png'
         os.popen(output % (file_base, file_base))
 
 
-### HELPERS ###
+# HELPERS #
 
 def _create_directory(dir):
     if not os.path.isdir(dir):
@@ -127,7 +127,7 @@ def _create_directory(dir):
 
 def _extract_code_block(lines):
     for i, line in enumerate(reversed(lines)):
-        if line == '### START ###':
+        if line == '# START #':
             del(lines[0: -i])
             break
     return lines
@@ -137,7 +137,7 @@ def _execute_abjad_code(lines):
     p = subprocess.Popen('python', stdin = subprocess.PIPE,
         stdout = subprocess.PIPE, stderr = subprocess.PIPE)
 
-    ### debug:
+    # debug:
     #print os.linesep.join(lines)
 
     out, err = p.communicate(os.linesep.join(lines))

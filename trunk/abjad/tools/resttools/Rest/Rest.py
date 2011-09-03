@@ -12,7 +12,7 @@ class Rest(_Leaf):
 
     '''
 
-    ### TODO: add vertical positioning pitch only as needed ###
+    # TODO: add vertical positioning pitch only as needed #
     __slots__ = ('_vertical_positioning_pitch', )
 
     def __init__(self, *args, **kwargs):
@@ -34,7 +34,7 @@ class Rest(_Leaf):
         _Leaf.__init__(self, written_duration, lilypond_multiplier)
         self._initialize_keyword_values(**kwargs)
 
-    ### OVERRIDES ###
+    # OVERRIDES #
 
     #__deepcopy__ = __copy__
 

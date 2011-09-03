@@ -75,9 +75,9 @@ class Mark(object):
             #return ' '
             return ''
 
-    ### MANGLED METHODS ###
+    # MANGLED METHODS #
 
-    ### method must NOT be preceeded by __ so that child ContextMark objects can call it
+    # method must NOT be preceeded by __ so that child ContextMark objects can call it
     def _bind_start_component(self, start_component):
         #print 'binding MARK to start component ...'
         assert isinstance(start_component, _Component)

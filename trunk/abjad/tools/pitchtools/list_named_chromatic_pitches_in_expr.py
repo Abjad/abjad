@@ -27,7 +27,7 @@ def list_named_chromatic_pitches_in_expr(expr):
         result = []
         if hasattr(expr, 'written_pitches'):
             result.extend(expr.written_pitches)
-        ### for pitch arrays
+        # for pitch arrays
         elif hasattr(expr, 'pitches'):
             result.extend(expr.pitches)
         elif isinstance(expr, Spanner):

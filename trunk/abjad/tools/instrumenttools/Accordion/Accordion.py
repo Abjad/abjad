@@ -5,7 +5,7 @@ from abjad.tools.instrumenttools._KeyboardInstrument import _KeyboardInstrument
 from abjad.tools.instrumenttools._ReedInstrument import _ReedInstrument
 
 
-### TODO: figure out why resolution of effective context as staff group isn't working
+# TODO: figure out why resolution of effective context as staff group isn't working
 class Accordion(_KeyboardInstrument, _ReedInstrument):
     r'''.. versionadded 1.1.2
 

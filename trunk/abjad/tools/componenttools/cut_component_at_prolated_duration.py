@@ -4,9 +4,9 @@ from abjad.tools.componenttools.list_leftmost_components_with_prolated_duration_
 from abjad.tools import durtools
 
 
-### TODO: implement related function to cut from right edge.
-### TODO: implement related function to cut in middle.
-### TODO: allow large values of `prolated_duration` to empty container contents.
+# TODO: implement related function to cut from right edge.
+# TODO: implement related function to cut in middle.
+# TODO: allow large values of `prolated_duration` to empty container contents.
 def cut_component_at_prolated_duration(component, prolated_duration):
     r'''.. versionadded:: 2.0
 

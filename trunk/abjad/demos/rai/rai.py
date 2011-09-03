@@ -6,7 +6,7 @@ subtitle = "A reconstruction of the first few measure of Stephen Leman's 'Rai' "
 abstract = 'We are interested in having an irregular rhythmic sequence based on prime numbers. We will construct our score additively, concatenating durations regardless of any metric hierarchy.'
 
 
-### statements
+# statements
 statements = [ ]
 
 text = "We first define a sequence of primes."

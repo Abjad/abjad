@@ -93,7 +93,7 @@ def test_notetools_make_notes_09():
     assert t[1].written_duration == Duration(4, 16)
 
 
-### PROLATED NOTES ###
+# PROLATED NOTES #
 
 def test_notetools_make_notes_10():
     '''

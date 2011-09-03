@@ -40,14 +40,14 @@ def make_measures_with_full_measure_spacer_skips(meters):
     '''
     from abjad.tools.skiptools.Skip import Skip
 
-    ### check input
+    # check input
     meters = [contexttools.TimeSignatureMark(meter) for meter in meters]
 
-    ### make measures
+    # make measures
     measures = [Measure(meter, []) for meter in meters]
     fill_measures_in_expr_with_full_measure_spacer_skips(measures)
 
-    ### return measures
+    # return measures
     return measures
 
 

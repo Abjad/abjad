@@ -43,7 +43,7 @@ def get_spanners_attached_to_component(component, klass = None):
         ``spannertools.get_spanners_attached_to_component()``.
     '''
 
-    ### note: externalization of (old) component spanner aggregator 'spanners' property
+    # note: externalization of (old) component spanner aggregator 'spanners' property
     if klass is None:
         #return set(component.spanners.attached)
         #return set(component.spanners._spanners)

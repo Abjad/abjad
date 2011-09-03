@@ -96,7 +96,7 @@ Because this *cell* appears over and over again, we want to reuse this code to g
         marktools.LilyPondCommandMark('voiceOne')(v_higher)
         p = Container([v_lower, v_higher])
         p.is_parallel = True
-        ### make all 1/8 beats breakable
+        # make all 1/8 beats breakable
         for n in v_lower.leaves[:-1]:
             n.bar_line.kind = ''
         return p
@@ -159,11 +159,11 @@ Finally a function that will generate the whole opening section of the piece *DÃ
         '''Returns a complete PianoStaff with Ligeti music!'''
         assert len(pitches) == 2
         piano = PianoStaff([])
-        ### build the music...
+        # build the music...
         for hand in pitches:
             seq = staff_build(hand)
             piano.append(seq)
-        ### set clef and key signature to left hand staff...
+        # set clef and key signature to left hand staff...
         piano[1].clef.forced = stafftools.Clef('bass')
         piano[1].key_signature.forced = tonalitytools.KeySignature('b', 'major')
         return piano

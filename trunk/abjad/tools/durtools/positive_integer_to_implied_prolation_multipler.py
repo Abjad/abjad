@@ -2,7 +2,7 @@ from abjad.tools import mathtools
 from fractions import Fraction
 
 
-### TODO: respell function name correctly
+# TODO: respell function name correctly
 def positive_integer_to_implied_prolation_multipler(n):
     '''.. versionadded:: 1.1
 

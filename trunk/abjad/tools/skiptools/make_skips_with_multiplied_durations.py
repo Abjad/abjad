@@ -19,11 +19,11 @@ def make_skips_with_multiplied_durations(written_duration, multiplied_durations)
         ``skiptools.make_skips_with_multiplied_durations()``.
     '''
 
-    ### initialize skips and written duration
+    # initialize skips and written duration
     skips = []
     written_duration = durtools.Duration(written_duration)
 
-    ### make skips
+    # make skips
     for multiplied_duration in multiplied_durations:
         multiplied_duration = durtools.Duration(multiplied_duration)
         skip = Skip(written_duration)
@@ -31,5 +31,5 @@ def make_skips_with_multiplied_durations(written_duration, multiplied_durations)
         skip.duration_multiplier = multiplier
         skips.append(skip)
 
-    ### return skips
+    # return skips
     return skips

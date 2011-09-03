@@ -75,7 +75,7 @@ class Grace(Container):
     '''
 
     def __init__(self, music = None, kind = 'grace', **kwargs):
-        ### self._carrier is a reference to the Note carrying the Graces.
+        # self._carrier is a reference to the Note carrying the Graces.
         self._carrier = None
         Container.__init__(self, music)
         self._formatter = _GraceFormatter(self)

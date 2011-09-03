@@ -57,7 +57,7 @@ def make_sphinx_toc():
 #         result += '   %s\n' % doc_path
 #   result += '\n\n'
   
-   ### separate autoloading tools packages from manually loading tools packages
+   # separate autoloading tools packages from manually loading tools packages
    tools.sort(lambda x, y: cmp(x['module'], y['module']))
 
    manual_loading_tools = [ ]

@@ -28,28 +28,28 @@ def least_common_multiple(*integers):
 
 
 def _least_common_multiple_helper(m, n):
-    ### check input
+    # check input
     if not isinstance(m, int):
         raise TypeError
 
     if not isinstance(n, int):
         raise TypeError
 
-    ### find factors of m and n
+    # find factors of m and n
     factors_m = factors(m)
     factors_n = factors(n)
 
-    ### remove duplicated shared factors
+    # remove duplicated shared factors
     for x in factors_m:
         try:
             factors_n.remove(x)
         except ValueError:
             pass
 
-    ### calculate product of shared factors
+    # calculate product of shared factors
     result = 1
     for x in factors_m + factors_n:
         result *= x
 
-    ### return product
+    # return product
     return result

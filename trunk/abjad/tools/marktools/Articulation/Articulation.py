@@ -91,7 +91,7 @@ class Articulation(Mark):
 
     ### PRIVATE ATTRIBUTES ###
 
-    ### this causes unnecessary coupling to changeable lilypond codebase and is discouraged
+    # this causes unnecessary coupling to changeable lilypond codebase and is discouraged
     _articulations_supported = ('accent', 'marcato',
         'staccatissimo',        'espressivo'
         'staccato',             'tenuto'                 'portato'
@@ -109,7 +109,7 @@ class Articulation(Mark):
         '^', '+', '-', '|', '>', '.', '_',
         )
 
-    ### this causes unnecessary coupling to changeable lilypond codebase and is discouraged
+    # this causes unnecessary coupling to changeable lilypond codebase and is discouraged
     _shortcut_to_word = {
             '^':'marcato', '+':'stopped', '-':'tenuto', '|':'staccatissimo',
             '>':'accent', '.':'staccato', '_':'portato' }

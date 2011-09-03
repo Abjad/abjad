@@ -36,7 +36,7 @@ class MarkupCommand(_Immutable):
     Markup commands are immutable.
     '''
 
-    ### TODO: Implement a multi-line, indented version for human readability. ###
+    # TODO: Implement a multi-line, indented version for human readability. #
 
     __slots__ = ('_args', '_is_braced', '_command', '_markup')
 
@@ -63,7 +63,7 @@ class MarkupCommand(_Immutable):
         else:
             object.__setattr__(self, '_markup', markup)
 
-    ### OVERRIDES ###
+    # OVERRIDES #
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):

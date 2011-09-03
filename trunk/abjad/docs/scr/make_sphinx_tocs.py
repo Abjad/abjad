@@ -9,7 +9,7 @@ def make_sphinx_tocs(interactive = None):
    '''Walk entire Abjad codebase and make Sphinx TOCs automatically.
    '''
 
-   ### determine interactivity
+   # determine interactivity
    os.system('clear')
    api_doc_path = os.path.join(ABJADPATH, 'docs', 'chapters', 'api')
    modules_visited = [ ]
@@ -22,14 +22,14 @@ def make_sphinx_tocs(interactive = None):
    else:
       raise ValueError('unkonwn value for interactive: %s' % interactive)
 
-   ### make sphinx tocs
+   # make sphinx tocs
    os.system('clear')
    build_doc_tree(ABJADPATH, api_doc_path, interactive)
    toc = make_sphinx_toc()
    index = os.path.join(api_doc_path, 'index.rst')
    _write_file_interactive(toc, index, interactive)
 
-   ### print stop
+   # print stop
    print ''
    print '... Done.'
    print ''

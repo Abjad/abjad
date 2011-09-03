@@ -20,7 +20,7 @@ def chromatic_pitch_number_diatonic_pitch_class_name_to_alphabetic_accidental_ab
         ``pitchtools.chromatic_pitch_number_diatonic_pitch_class_name_to_alphabetic_accidental_abbreviation_octave_number_pair()``.
     '''
 
-    ### check input
+    # check input
     if not isinstance(chromatic_pitch_number, (int, long, float)):
         raise TypeError
 
@@ -30,18 +30,18 @@ def chromatic_pitch_number_diatonic_pitch_class_name_to_alphabetic_accidental_ab
     if not diatonic_pitch_class_name in ['c', 'd', 'e', 'f', 'g', 'a', 'b']:
         raise ValueError
 
-    ### find accidental semitones
+    # find accidental semitones
     pc = diatonic_pitch_class_name_to_chromatic_pitch_class_number(diatonic_pitch_class_name)
     nearest_neighbor = transpose_chromatic_pitch_class_number_by_octaves_to_nearest_neighbor_of_chromatic_pitch_number(chromatic_pitch_number, pc)
     semitones = chromatic_pitch_number - nearest_neighbor
 
-    ### find accidental alphabetic string
+    # find accidental alphabetic string
     alphabetic_string = Accidental._semitones_to_alphabetic_string[semitones]
 
-    ### find octave
+    # find octave
     octave = chromatic_pitch_number_and_accidental_semitones_to_octave_number(
         chromatic_pitch_number, semitones)
 
-    ### return unique pair of accidental string and octave
+    # return unique pair of accidental string and octave
     return alphabetic_string, octave
 

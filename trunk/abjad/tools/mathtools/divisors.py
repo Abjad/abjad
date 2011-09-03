@@ -45,25 +45,25 @@ def divisors(n):
     if n == 0:
         raise NotImplementedError('all numbers divide zero evenly.')
 
-    ### ensure positive n
+    # ensure positive n
     n = abs(n)
 
-    ### find all divisors from 1 to sqrt(n)
+    # find all divisors from 1 to sqrt(n)
     divisors = [1]
     for i in range(2, int(math.sqrt(n)) + 1):
         if n % i == 0:
             divisors.append(i)
 
-    ### find codivisors
+    # find codivisors
     codivisors = [n / i for i in reversed(divisors)]
 
-    ### remove duplciate divisor if n is perfect square
+    # remove duplciate divisor if n is perfect square
     if divisors[-1] == codivisors[0]:
         divisors.pop()
 
-    ### extend and sort divisors
+    # extend and sort divisors
     divisors.extend(codivisors)
     divisors.sort()
 
-    ### return divisors
+    # return divisors
     return divisors

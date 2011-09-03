@@ -4,7 +4,7 @@ from abjad.tools import scoretools
 from abjad.tools.instrumenttools._StringInstrument import _StringInstrument
 
 
-### TODO: make work at the right context
+# TODO: make work at the right context
 class Harp(_StringInstrument):
     r'''.. versionadded:: 2.0
 

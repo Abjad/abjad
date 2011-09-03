@@ -93,14 +93,14 @@ def iterate_thread_forward_from_component(component, klass = None):
         ``threadtools.iterate_thread_forward_from_component()``.
     '''
 
-    ### set default class
+    # set default class
     if klass is None:
         klass = _Component
 
-    ### save thread signature of input component
+    # save thread signature of input component
     component_thread_signature = component_to_thread_signature(component)
 
-    ### iterate component depth-first allowing to crawl UP into score
+    # iterate component depth-first allowing to crawl UP into score
     for x in iterate_components_depth_first(component, capped = False):
         if isinstance(x, klass):
             if component_to_thread_signature(x) == component_thread_signature:

@@ -45,8 +45,8 @@ def _get_context_mark_format_contributions_for_slot(component, slot):
         else:
             #result.append(mark_format)
             addenda.append(mark_format)
-        ### cosmetic mark is a hack to allow marks to format even without effective context;
-        ### currently used only in metric grid formatting
+        # cosmetic mark is a hack to allow marks to format even without effective context;
+        # currently used only in metric grid formatting
         if mark.effective_context is not None or \
             getattr(mark, '_is_cosmetic_mark', False) or \
             (isinstance(mark, TimeSignatureMark) and

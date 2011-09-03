@@ -15,11 +15,11 @@ def make_notes_with_multiplied_durations(pitch, written_duration, multiplied_dur
     Return list of notes.
     '''
 
-    ### initialize notes and written duration
+    # initialize notes and written duration
     notes = []
     written_duration = durtools.Duration(written_duration)
 
-    ### make notes
+    # make notes
     for multiplied_duration in multiplied_durations:
         try:
             multiplied_duration = durtools.Duration(multiplied_duration)
@@ -30,7 +30,7 @@ def make_notes_with_multiplied_durations(pitch, written_duration, multiplied_dur
         note.duration_multiplier = multiplier
         notes.append(note)
 
-    ### return notes
+    # return notes
     return notes
 
 

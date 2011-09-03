@@ -24,21 +24,21 @@ class NamedChromaticPitchClassSet(_PitchClassSet):
     def __new__(self, expr):
         from abjad.tools import pitchtools
         npcs = []
-        ### assume expr is iterable
+        # assume expr is iterable
         try:
             for x in expr:
                 try:
                     npcs.append(pitchtools.NamedChromaticPitchClass(x))
                 except TypeError:
-                    ### TODO: probably fix next line ###
+                    # TODO: probably fix next line #
                     npcs.extend(get_pitch_classes(x))
-        ### if expr is not iterable
+        # if expr is not iterable
         except TypeError:
-            ### assume expr can be turned into a single pc
+            # assume expr can be turned into a single pc
             try:
                 npc = pitchtools.NamedChromaticPitchClass(expr)
                 npcs.append(npc)
-            ### expr is a Rest or non-PC type
+            # expr is a Rest or non-PC type
             except TypeError:
                 npcs = []
         return frozenset.__new__(self, npcs)

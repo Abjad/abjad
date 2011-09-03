@@ -48,20 +48,20 @@ def list_time_signatures_of_measures_in_expr(components):
     from abjad.tools import contexttools
     from abjad.tools import measuretools
 
-    ### make sure components is a Python list of Abjad components
+    # make sure components is a Python list of Abjad components
     #assert componenttools.all_are_components(components)
 
-    ### create empty list to hold result
+    # create empty list to hold result
     result = []
 
-    ### iterate measures and store meter pairs
+    # iterate measures and store meter pairs
     for measure in measuretools.iterate_measures_forward_in_expr(components):
         meter = contexttools.get_effective_time_signature(measure)
         #pair = (meter.numerator, meter.denominator)
         #result.append(pair)
         result.append(meter)
 
-    ### return result
+    # return result
     return result
 
 

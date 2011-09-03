@@ -19,7 +19,7 @@ class Accidental(_StrictComparator, _Immutable):
 
     def __new__(klass, arg = ''):
         self = object.__new__(klass)
-        ### initializer symbolic string from arg
+        # initializer symbolic string from arg
         if arg in self._all_accidental_alphabetic_strings:
             _alphabetic_string = arg
         elif arg in self._all_accidental_symbolic_strings:
@@ -35,7 +35,7 @@ class Accidental(_StrictComparator, _Immutable):
         else:
             raise ValueError('can not initialize accidental from value: %s' % arg)
         object.__setattr__(self, '_alphabetic_string', _alphabetic_string)
-        ### initialize derived attributes
+        # initialize derived attributes
         _semitones = self._alphabetic_string_to_semitones[self.alphabetic_string]
         object.__setattr__(self, '_semitones', _semitones)
         _name = self._alphabetic_string_to_name[self.alphabetic_string]

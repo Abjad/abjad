@@ -42,7 +42,7 @@ def get_effective_context_mark(component, klass):
                 return contexttools.get_time_signature_mark_attached_to_component(component)
 
     #print 'getting effective context mark mark ...'
-    ### following line was tested to be completely unnecessary; remove after statal bug fix:
+    # following line was tested to be completely unnecessary; remove after statal bug fix:
     #component._update_prolated_offset_values_of_entire_score_tree_if_necessary()
     component._update_marks_of_entire_score_tree_if_necessary()
 

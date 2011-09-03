@@ -14,10 +14,10 @@ def calculate_melodic_counterpoint_interval_from_named_chromatic_pitch_to_named_
     Return melodic counterpoint interval.
     '''
 
-    ### get melodic diatonic interval
+    # get melodic diatonic interval
     mdi = calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(
         pitch_carrier_1, pitch_carrier_2)
 
-    ### return melodic counterpoint interval
+    # return melodic counterpoint interval
     return mdi.melodic_counterpoint_interval
 

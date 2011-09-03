@@ -25,10 +25,10 @@ def _insert_measure_padding(expr, front, back, klass, splice = False):
     #root = expr[0]._parentage.root
     root = componenttools.component_to_score_root(expr[0])
 
-    ### forbid updates because
-    ### componenttools.extend_in_parent_of_component_and_grow_spanners() and
-    ### componenttools.extend_left_in_parent_of_component_and_grow_spanners()
-    ### call self._offset.stop  ###
+    # forbid updates because
+    # componenttools.extend_in_parent_of_component_and_grow_spanners() and
+    # componenttools.extend_left_in_parent_of_component_and_grow_spanners()
+    # call self._offset.stop  #
     #root._update._forbid_component_update()
     root._update_prolated_offset_values_of_entire_score_tree_if_necessary()
     root._forbid_component_update()
@@ -55,7 +55,7 @@ def _insert_measure_padding(expr, front, back, klass, splice = False):
                     componenttools.extend_in_parent_of_component_and_do_not_grow_spanners(
                         stop_leaf, [klass.__class__(back)])
 
-    ### allow updates after all calls to spanner-growing functions are done ###
+    # allow updates after all calls to spanner-growing functions are done #
     #root._update._allow_component_update()
     root._mark_entire_score_tree_for_later_update('prolated')
     root._allow_component_update()

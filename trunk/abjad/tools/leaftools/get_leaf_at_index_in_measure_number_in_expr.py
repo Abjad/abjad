@@ -36,7 +36,7 @@ def get_leaf_at_index_in_measure_number_in_expr(expr, measure_number, leaf_index
     '''
     from abjad.tools.measuretools.get_one_indexed_measure_number_in_expr import get_one_indexed_measure_number_in_expr
 
-    ### return leaf in measure
+    # return leaf in measure
     return get_nth_leaf_in_expr(
         get_one_indexed_measure_number_in_expr(expr, measure_number), leaf_index)
 

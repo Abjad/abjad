@@ -33,7 +33,7 @@ class _OffsetInterface(_Interface):
             else:
                 #self._start_in_seconds = durtools.Duration(0)
                 self._start_in_seconds = durtools.Offset(0)
-            ### this one case is possible for containers only
+            # this one case is possible for containers only
             if self._start_in_seconds is None:
                 raise MissingTempoError
             self._stop_in_seconds = self._start_in_seconds + cur_duration_in_seconds

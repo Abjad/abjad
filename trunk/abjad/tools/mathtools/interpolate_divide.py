@@ -55,6 +55,6 @@ def interpolate_divide(total, start_frac, stop_frac, exp='cosine'):
         result.append(ip)
         partial_sum += ip
 
-    ### scale result to fit total exaclty
+    # scale result to fit total exaclty
     result = [x * total / sum(result) for x in result]
     return result

@@ -60,7 +60,7 @@ class InstrumentMark(ContextMark):
         contents_string = ', '.join([repr(markup._contents_string) for markup in markups])
         return contents_string
 
-    ### will probably need to change definition at some point ###
+    # will probably need to change definition at some point #
     @property
     def _target_context_name(self):
         return self.target_context.__name__

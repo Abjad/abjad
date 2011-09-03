@@ -38,10 +38,10 @@ def get_one_indexed_measure_number_in_expr(expr, measure_number):
     if measure_number < 1:
         raise ValueError('measure numbers allow only positive integers.')
 
-    ### calculate measure index
+    # calculate measure index
     measure_index = measure_number - 1
 
-    ### return measure
+    # return measure
     return get_nth_measure_in_expr(expr, measure_index)
 
 

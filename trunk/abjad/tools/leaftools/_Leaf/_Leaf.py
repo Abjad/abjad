@@ -8,7 +8,7 @@ import operator
 
 class _Leaf(_Component, _StrictComparator):
 
-    ### TODO: see if _grace and _after_grace can be removed ###
+    # TODO: see if _grace and _after_grace can be removed #
     __slots__ = ('_after_grace', '_grace', '_leaf_index',
         '_duration_multiplier', '_written_duration',
         '_written_pitch_indication_is_nonsemantic',

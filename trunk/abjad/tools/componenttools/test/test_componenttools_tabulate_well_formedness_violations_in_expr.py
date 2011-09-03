@@ -1,4 +1,4 @@
 from abjad import *
 
 
-### stub test module ###
+# stub test module #

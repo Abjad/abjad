@@ -4,7 +4,7 @@ from abjad.tools.pitchtools._Pitch import _Pitch
 from abjad.tools.pitchtools.is_chromatic_pitch_name import chromatic_pitch_name_regex
 
 
-### TODO: remove ###
+# TODO: remove #
 _accidental_spelling = _read_config_file()['accidental_spelling']
 
 class NamedChromaticPitch(_Pitch):
@@ -18,11 +18,11 @@ class NamedChromaticPitch(_Pitch):
     Named chromatic pitches are immutable.
     '''
 
-    ### TODO: remove ###
+    # TODO: remove #
     accidental_spelling = _accidental_spelling
 
-    ### calculate accidental_semitones, diatonic_pitch_number at init
-    ### so notehead sorting doesn't take forever later on
+    # calculate accidental_semitones, diatonic_pitch_number at init
+    # so notehead sorting doesn't take forever later on
     __slots__ = ('_accidental_semitones', '_chromatic_pitch_name', '_deviation', '_diatonic_pitch_number')
 
     def __new__(klass, *args, **kwargs):

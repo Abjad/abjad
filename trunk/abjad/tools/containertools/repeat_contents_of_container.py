@@ -56,11 +56,11 @@ def repeat_contents_of_container(container, total = 2):
     if not 0 <= total:
         raise ValueError('must be greater than or equal to zero: %s' % total)
 
-    ### empty container when total is zero
+    # empty container when total is zero
     if total == 0:
         del(container[:])
         return container
 
-    ### reproduce container contents when total is greater than zero
+    # reproduce container contents when total is greater than zero
     n = len(container)
     return repeat_last_n_elements_of_container(container, n = n, total = total)

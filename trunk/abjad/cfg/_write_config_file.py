@@ -22,7 +22,7 @@ def _write_config_file(path, dict):
     if not os.path.isdir(abjad_config_dir):
         os.mkdir(abjad_config_dir)
 
-    ### write file
+    # write file
     f = open(path, 'w')
 
     f.write(preamble)

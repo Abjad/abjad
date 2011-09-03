@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import iotools
 
 
-### What's the best way to test play?
+# What's the best way to test play?
 
 def test_iotools_play_01():
     '''A note can be played.'''

@@ -37,7 +37,7 @@ class ContextMark(Mark):
 
     __deepcopy__ = __copy__
 
-    ### MANGLED METHODS ###
+    # MANGLED METHODS #
 
     def __bind_correct_effective_context(self, correct_effective_context):
         self.__unbind_effective_context()

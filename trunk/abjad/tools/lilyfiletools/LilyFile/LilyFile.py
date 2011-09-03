@@ -189,7 +189,7 @@ class LilyFile(list):
             '''LilyPond default paper size.'''
             return self._default_paper_size
         def fset(self, args):
-            ### #(set-default-paper-size "11x17" 'landscape)
+            # #(set-default-paper-size "11x17" 'landscape)
             assert args is None or len(args) == 2
             self._default_paper_size = args
         return property(**locals())
