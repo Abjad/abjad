@@ -75,7 +75,7 @@ class MarkupCommand(_Immutable):
         return False
 
     def __repr__(self):
-        return '%s(%s, %s, %s)' % (type(self).__name__, repr(self.command), self.args, self.markup)
+        return '%s(%r, %s, %s)' % (type(self).__name__, self.command, self.args, self.markup)
 
     def __str__(self):
         return self.format

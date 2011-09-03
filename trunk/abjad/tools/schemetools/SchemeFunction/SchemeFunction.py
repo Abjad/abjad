@@ -35,7 +35,7 @@ class SchemeFunction(_StrictComparator, _Immutable):
     @property
     def _repr_contents_string(self):
         result = [ ]
-        result.append("%s" % repr(self.name))
+        result.append('%r' % self.name)
         result.extend(self.args)
         result = ', '.join(str(x) for x in result)
         return result

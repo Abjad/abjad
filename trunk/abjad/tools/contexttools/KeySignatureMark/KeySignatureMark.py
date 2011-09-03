@@ -62,7 +62,7 @@ class KeySignatureMark(ContextMark):
     @property
     #def _contents_name(self):
     def _contents_repr_string(self):
-        return "%s, %s" % (repr(self.tonic), repr(self.mode))
+        return "%r, %r" % (self.tonic, self.mode)
 
     ### PUBLIC ATTRIBUTES ###
 

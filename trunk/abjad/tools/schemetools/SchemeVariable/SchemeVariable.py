@@ -24,7 +24,7 @@ class SchemeVariable(_StrictComparator, _Immutable):
     ### OVERLOADS ###
 
     def __repr__(self):
-        return "%s(%s)" % (type(self).__name__, repr(self._string))
+        return "%s(%r)" % (type(self).__name__, self._string)
 
     def __str__(self):
         return self.format

@@ -49,7 +49,7 @@ class _Quantizer(_Immutable):
                 q_events = tempo_scaled_leaves_to_q_events(leaves)
 
         else:
-            raise ValueError("Can't quantize from %s" % repr(args))
+            raise ValueError("Can't quantize from %r" % args)
 
         if 'verbose' in kwargs and kwargs['verbose']:
             return self._quantize(q_events, verbose = True)

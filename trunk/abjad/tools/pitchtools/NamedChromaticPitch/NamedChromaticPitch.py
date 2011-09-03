@@ -166,10 +166,10 @@ class NamedChromaticPitch(_Pitch):
     def __repr__(self):
         if self.chromatic_pitch_class_name and not self.octave_number is None:
             if self.deviation_in_cents is None:
-                return '%s(%s)' % (type(self).__name__, repr(str(self)))
+                return '%s(%r)' % (type(self).__name__, str(self))
             else:
-                return '%s(%s, deviation = %s)' % (type(self).__name__,
-                    repr(str(self)), self.deviation_in_cents)
+                return '%s(%r, deviation = %s)' % (type(self).__name__,
+                    str(self), self.deviation_in_cents)
         else:
             return '%s()' % type(self).__name__
 

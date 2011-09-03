@@ -42,7 +42,7 @@ class SchemePair(tuple, _Immutable):
         result = [ ]
         for x in self:
             if isinstance(x, str):
-                result.append("%s" % repr(x))
+                result.append('%r' % x)
             else:
                 result.append(str(x))
         result = ', '.join(result)

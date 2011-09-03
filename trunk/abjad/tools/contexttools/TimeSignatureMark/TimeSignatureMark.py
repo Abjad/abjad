@@ -76,7 +76,7 @@ class TimeSignatureMark(ContextMark):
             raise TypeError
         self._partial = partial
         if partial is not None:
-            self._partial_repr_string = ', partial = %s' % repr(self._partial)
+            self._partial_repr_string = ', partial = %r' % self._partial
         else:
             self._partial_repr_string = ''
 

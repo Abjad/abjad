@@ -36,7 +36,7 @@ class SchemeNumber(_Immutable):
         return int(self.number)
 
     def __repr__(self):
-        return "%s(%s)" % (type(self).__name__, repr(self.number))
+        return "%s(%r)" % (type(self).__name__, self.number)
 
     def __str__(self):
         return self.format

@@ -26,4 +26,4 @@ class _IntervalNode(_RedBlackNode):
     ### OVERLOADS ###
 
     def __repr__(self):
-        return '%s(%s, %s)' % (type(self).__name__, self.key, repr(self.payload))
+        return '%s(%s, %r)' % (type(self).__name__, self.key, self.payload)

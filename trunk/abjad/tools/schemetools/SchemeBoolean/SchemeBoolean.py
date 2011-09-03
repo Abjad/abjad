@@ -29,7 +29,7 @@ class SchemeBoolean(_Immutable):
         return False
 
     def __repr__(self):
-        return "%s(%s)" % (type(self).__name__, repr(self.arg))
+        return "%s(%r)" % (type(self).__name__, self.arg)
 
     def __str__(self):
         return self.format

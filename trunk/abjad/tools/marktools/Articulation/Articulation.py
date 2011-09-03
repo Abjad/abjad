@@ -117,7 +117,7 @@ class Articulation(Mark):
     @property
     def _contents_repr_string(self):
         if self.direction_string is not None:
-            return '%s, %s' % (repr(self.name), repr(self.direction_string))
+            return '%r, %r' % (self.name, self.direction_string)
         else:
             return repr(self.name)
 

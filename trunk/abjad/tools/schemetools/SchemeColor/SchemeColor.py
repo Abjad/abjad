@@ -24,7 +24,7 @@ class SchemeColor(_StrictComparator, _Immutable):
     ### OVERLOADS ###
 
     def __repr__(self):
-        return '%s(%s)' % (type(self).__name__, repr(self.color_name))
+        return '%s(%r)' % (type(self).__name__, self.color_name)
 
     ### PUBLIC ATTRIBUTES ###
 

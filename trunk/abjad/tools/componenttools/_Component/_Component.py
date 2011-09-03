@@ -145,27 +145,27 @@ class _Component(_StrictComparator):
         names = attribute_chain[1:]
         if plug_in_name == 'duration':
             attribute_name = names[0]
-            command = 'self.%s.%s = %s' % (plug_in_name, attribute_name, repr(value))
+            command = 'self.%s.%s = %r' % (plug_in_name, attribute_name, value)
             print command
             if 'multiplier' not in command:
                 exec(command)
         elif plug_in_name == 'override':
             if len(names) == 2:
                 grob_name, attribute_name = names
-                exec('self.override.%s.%s = %s' % (grob_name, attribute_name, repr(value)))
+                exec('self.override.%s.%s = %r' % (grob_name, attribute_name, value))
             elif len(names) == 3:
                 context_name, grob_name, attribute_name = names
-                exec('self.override.%s.%s.%s = %s' % (
-                    context_name, grob_name, attribute_name, repr(value)))
+                exec('self.override.%s.%s.%s = %r' % (
+                    context_name, grob_name, attribute_name, value))
             else:
                 raise ValueError
         elif plug_in_name == 'set':
             if len(names) == 1:
                 setting_name = names[0]
-                exec('self.set.%s = %s' % (setting_name, repr(value)))
+                exec('self.set.%s = %r' % (setting_name, value))
             elif len(names) == 2:
                 context_name, setting_name = names
-                exec('self.set.%s.%s = %s' % (context_name, setting_name, repr(value)))
+                exec('self.set.%s.%s = %r' % (context_name, setting_name, value))
             else:
                 raise ValueError
         else:
