@@ -35,5 +35,3 @@ def is_component_with_context_mark_attached(component, klasses = (ContextMark, )
         return True
     else:
         return False
-
-

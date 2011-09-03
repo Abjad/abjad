@@ -217,9 +217,12 @@ contexttools
    tools/contexttools/detach_staff_change_marks_attached_to_component
    tools/contexttools/detach_tempo_marks_attached_to_component
    tools/contexttools/detach_time_signature_marks_attached_to_component
+   tools/contexttools/get_clef_mark_attached_to_component
    tools/contexttools/get_clef_marks_attached_to_component
+   tools/contexttools/get_context_mark_attached_to_component
    tools/contexttools/get_context_marks_attached_to_any_improper_parent_of_component
    tools/contexttools/get_context_marks_attached_to_component
+   tools/contexttools/get_dynamic_mark_attached_to_component
    tools/contexttools/get_dynamic_marks_attached_to_component
    tools/contexttools/get_effective_clef
    tools/contexttools/get_effective_context_mark
@@ -231,8 +234,11 @@ contexttools
    tools/contexttools/get_effective_time_signature
    tools/contexttools/get_instrument_mark_attached_to_component
    tools/contexttools/get_instrument_marks_attached_to_component
+   tools/contexttools/get_key_signature_mark_attached_to_component
    tools/contexttools/get_key_signature_marks_attached_to_component
+   tools/contexttools/get_staff_change_mark_attached_to_component
    tools/contexttools/get_staff_change_marks_attached_to_component
+   tools/contexttools/get_tempo_mark_attached_to_component
    tools/contexttools/get_tempo_marks_attached_to_component
    tools/contexttools/get_time_signature_mark_attached_to_component
    tools/contexttools/get_time_signature_marks_attached_to_component

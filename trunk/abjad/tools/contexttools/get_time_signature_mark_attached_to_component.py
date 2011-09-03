@@ -1,6 +1,5 @@
-from abjad.exceptions import ExtraMarkError
-from abjad.exceptions import MissingMarkError
 from abjad.tools.contexttools.TimeSignatureMark import TimeSignatureMark
+from abjad.tools.contexttools.get_context_mark_attached_to_component import get_context_mark_attached_to_component
 
 
 def get_time_signature_mark_attached_to_component(component):
@@ -31,16 +30,4 @@ def get_time_signature_mark_attached_to_component(component):
     Raise missing mark error when no time signature mark attaches to `component`.
     '''
 
-    result = []
-    for mark in component._marks_for_which_component_functions_as_start_component:
-        if isinstance(mark, TimeSignatureMark):
-            result.append(mark)
-
-    if len(result) == 0:
-        raise MissingMarkError
-    if 1 < len(result):
-        raise ExtraMarkError
-
-    result = result[0]
-
-    return result
+    return get_context_mark_attached_to_component(component, klasses=(TimeSignatureMark,))
