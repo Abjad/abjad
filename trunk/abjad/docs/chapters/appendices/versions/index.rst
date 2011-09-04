@@ -2,10 +2,80 @@ Version history
 ===============
 
 
+Abjad 2.3
+---------
+
+`Abjad 2.3.tar.gz <http://pypi.python.org/pypi/Abjad>`__ 
+
+(Release notes to be added.)
+
+
+Abjad 2.2
+---------
+
+(Release notes to be added.)
+
+
+Abjad 2.1
+---------
+
+(Release notes to be added.)
+
+
+Abjad 2.0
+---------
+
+Abjad 2.0 is the first public release of Abjad in more than two years. The new release of the system more than doubles the number of classes, functions and packages available in Abjad.
+
+* The API has been cleaned up and completely reorganized. Features have been organized into a collection of 39 different libraries::
+
+    cfgtools/          instrumenttools/   mathtools/         resttools/         tempotools/
+    chordtools/        intervaltreetools/ measuretools/      schemetools/       threadtools/
+    componenttools/    iotools/           metertools/        scoretools/        tietools/
+    containertools/    layouttools/       musicxmltools/     seqtools/          tonalitytools/
+    contexttools/      leaftools/         notetools/         sievetools/        tuplettools/
+    durtools/          lilyfiletools/     pitcharraytools/   skiptools/         verticalitytools/
+    gracetools/        marktools/         pitchtools/        spannertools/      voicetools/
+    importtools/       markuptools/       quantizationtools/ stafftools/
+
+* The name of almost every function in the public API has been changed to better indication what the function does. While this has the effect of making Abjad 2.0 largely non-backwards compatible with code written in Abjad 1.x, the longer and much more explicit function names in Abjad 2.0 make code used to structure complex scores dramatically easier to maintain and understand.
+
+* The ``contexttools``, ``instrumenttools``, ``intervaltreetools``, ``lilyfiletools``, ``marktools``, ``pitcharraytools``, ``quantizationtools``, ``sievetools``, ``tonalitytools`` and ``verticalitytools`` packages are completely new.
+
+* The classes implemented in the ``contexttools`` and ``marktools`` packages provide an object-oriented interfaces to clefs, time signatures, key signatures, articulations, tempo marks and other symbols stuck to the outside of the hierarchical score tree. The classes implemented in ``contexttools`` and ``marktools`` model information outside the score tree much the way that the classes implemented in ``spannertools`` implement object-oriented interfaces to beams, brackets, hairpins, glissandi and other line-like symbols.
+
+* The ``instrumenttools`` package provides an object-oriented model of most of the conventional instruments of the orchestra.
+
+* The ``intervaltreetools`` package implements a custom way of working with chunks of score during composition.
+
+* The ``lilyfiletools`` package implements an object-oriented interface to arbitrarily structured LilyPond input files.
+
+* The ``pitcharraytools`` package implements an object-oriented way of composing with pitches, pitch-classes and other pitch-related objects independent of rhythmic context.
+
+* The experimental ``quantizationtools`` package implements classes and functions for quantizing rhythmic events.
+
+* The ``sievetools`` package implements an object-oriented interface to the basics of Xenakis's system of sieves.
+
+* The ``tonalitytools`` package implements classes and methods to model the basics of functional harmonic analysis.
+
+* The ``verticalitytools`` package provides vertical-moment-based iteration and analysis of any score. 
+
+* The ``pitchtools`` package has grown considerably in size and functionality. Classes now exist to model named and numbered chromatic pitches (and pitch-classes), named and numbered diatonic pitches (and pitch-classes), melodic and harmonic diatonic intervals (and interval-classes), melodic and harmonic chromatic intervals (and interval-classes), as well as ordered segments and unordered sets of these and related objects. The package contains dozens of functions to create, inspect, iterate, analyze and transpose these classes and their collections.
+
+* The old ``listtools`` package has been renamed seqtools.
+
+* Dozens of new functions for cutting, pasting, partitioning, breaking, arranging and reordering score components have been added to the system. See the new functions in ``componenttools``, ``containertools``, ``leaftools``, ``measuretools`` and ``scoretools`` for details.
+
+* The core component classes modeling notes, rests, chords, tuplets, measures, voices, staves and scores have been reimplemented to consume dramatically less memory, making it much easier to work with arrays of hundreds and thousands of components.
+
+* Abjad core formatting logic has been optimized to make the formatting of scores with hundreds or thousands of events take much less time than before. 
+
+* The component duration interfaces have been replaced by more straightforward read-only component attributes.
+
+
 Abjad 1.1.1
 -----------
 
-`Abjad 1.1.1.tar.gz <http://pypi.python.org/pypi/Abjad>`__ 
 
 *   More complete documentation.
 
