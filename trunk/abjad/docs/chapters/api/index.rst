@@ -1338,10 +1338,10 @@ timesignaturetools
 .. toctree::
    :maxdepth: 1
 
-   tools/timesignaturetools/duration_and_possible_denominators_to_meter
-   tools/timesignaturetools/get_nonbinary_factor_from_meter_denominator
-   tools/timesignaturetools/is_meter_with_equivalent_binary_representation
-   tools/timesignaturetools/meter_to_binary_meter
+   tools/timesignaturetools/duration_and_possible_denominators_to_time_signature
+   tools/timesignaturetools/get_nonbinary_factor_from_time_signature_denominator
+   tools/timesignaturetools/is_time_signature_with_equivalent_binary_representation
+   tools/timesignaturetools/time_signature_to_binary_time_signature
 
 
 tonalitytools
