@@ -7,31 +7,44 @@ import pprint
 
 
 def _count_public_tools_functions():
-   tools_path = os.path.join(ABJADPATH, 'tools')
-   public_function_definition_lines = [ ]
-   private_function_definition_lines = [ ]
-   for path, subdirectories, files in os.walk(tools_path):
-      for f in files:
-         if f.endswith('.py'):
-            if not f.startswith(('test', '_')):
-               full_name = os.path.join(path, f)
-               for line in file(full_name, 'r').readlines():
-                  if line.startswith('def '):
-                     if line.startswith('def _'):
-                        private_function_definition_lines.append(line)
-                     else:
-                        public_function_definition_lines.append(line)
-   #print ''
-   #pprint.pprint(private_function_definition_lines)
-   #pprint.pprint(public_function_definition_lines)
-   #print ''
-   total_private = len(private_function_definition_lines)
-   total_public = len(public_function_definition_lines)
-   print 'Total private tools function definitions: %s' % total_private
-   print 'Total public tools function definitions:  %s' % total_public
-   print ''
-      
+    tools_path = os.path.join(ABJADPATH, 'tools')
+    public_function_definition_lines = []
+    private_function_definition_lines = []
+    public_class_definition_lines = []
+    private_class_definition_lines = []
+    for path, subdirectories, files in os.walk(tools_path):
+        for f in files:
+            if f.endswith('.py'):
+                if not f.startswith(('test', '_')):
+                    full_name = os.path.join(path, f)
+                    for line in file(full_name, 'r').readlines():
+                        if line.startswith('def '):
+                            if line.startswith('def _'):
+                                private_function_definition_lines.append(line)
+                            else:
+                                public_function_definition_lines.append(line)
+                        if line.startswith('class '):
+                            if line.startswith('class _'):
+                                private_class_definition_lines.append(line)
+                            else:
+                                public_class_definition_lines.append(line)
+    #print ''
+    #pprint.pprint(private_function_definition_lines)
+    #pprint.pprint(public_function_definition_lines)
+    #print ''
+    total_private_functions = len(private_function_definition_lines)
+    total_public_functions = len(public_function_definition_lines)
+    print 'Total private tools function definitions: %s' % total_private_functions
+    print 'Total public tools function definitions:  %s' % total_public_functions
+    print ''
+    total_private_classes = len(private_class_definition_lines)
+    total_public_classes = len(public_class_definition_lines)
+    print 'Total private tools class definitions: %s' % total_private_classes
+    print 'Total public tools class definitions:  %s' % total_public_classes
+    print ''
+    
+    
 
 if __name__ == '__main__':
-   iotools.clear_terminal()
-   _count_public_tools_functions()
+    iotools.clear_terminal()
+    _count_public_tools_functions()

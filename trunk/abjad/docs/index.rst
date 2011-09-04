@@ -107,7 +107,6 @@ Appendices
     chapters/appendices/bibliography/index
     chapters/appendices/versions/index
     chapters/appendices/installation/index
-    chapters/appendices/whatnext/index
 
 Abjad API
 ---------
