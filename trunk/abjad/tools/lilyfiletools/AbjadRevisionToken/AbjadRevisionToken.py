@@ -1,5 +1,5 @@
 from abjad.core import _Immutable
-from abjad.tools.cfgtools.get_abjad_revision_string import get_abjad_revision_string
+from abjad.tools.configurationtools.get_abjad_revision_string import get_abjad_revision_string
 
 
 class AbjadRevisionToken(_Immutable):

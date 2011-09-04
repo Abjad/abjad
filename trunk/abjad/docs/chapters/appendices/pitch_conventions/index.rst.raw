@@ -40,7 +40,7 @@ The code to generate this table is as follows::
 
     pitches = range(-12, 12 + 1)
 
-    cfgtools.set_default_accidental_spelling('sharps')
+    configurationtools.set_default_accidental_spelling('sharps')
 
     for i in pitches:
         note = Note(i, duration)
@@ -86,7 +86,7 @@ The code to generate this table is as follows::
     pitches.extend([0 + x for x in diatonic_pitches])
     pitches.extend([12 + x for x in diatonic_pitches])
     pitches.append(24)
-    cfgtools.set_default_accidental_spelling('sharps')
+    configurationtools.set_default_accidental_spelling('sharps')
 
     for i in pitches:
         note = Note(i, duration)

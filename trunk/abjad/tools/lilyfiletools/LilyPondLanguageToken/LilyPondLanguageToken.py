@@ -1,6 +1,6 @@
 from abjad.cfg._read_config_file import _read_config_file
 from abjad.core import _Immutable
-from abjad.tools.cfgtools.get_lilypond_version_string import get_lilypond_version_string
+from abjad.tools.configurationtools.get_lilypond_version_string import get_lilypond_version_string
 
 
 class LilyPondLanguageToken(_Immutable):

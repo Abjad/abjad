@@ -1,7 +1,7 @@
-from abjad.tools.cfgtools import *
+from abjad.tools.configurationtools import *
 
 
-def test_cfgtools_list_package_dependency_versions_01():
+def test_configurationtools_list_package_dependency_versions_01():
 
     deps = list_package_dependency_versions()
     assert isinstance(deps, dict)

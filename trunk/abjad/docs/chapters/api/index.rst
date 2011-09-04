@@ -944,19 +944,19 @@ Additional Abjad composition packages (load manually)
 
 
 
-cfgtools
+configurationtools
 
 .. toctree::
    :maxdepth: 1
 
-   tools/cfgtools/get_abjad_revision_string
-   tools/cfgtools/get_abjad_version_string
-   tools/cfgtools/get_lilypond_version_string
-   tools/cfgtools/get_python_version_string
-   tools/cfgtools/list_abjad_environment_variables
-   tools/cfgtools/list_abjad_templates
-   tools/cfgtools/list_package_dependency_versions
-   tools/cfgtools/set_default_accidental_spelling
+   tools/configurationtools/get_abjad_revision_string
+   tools/configurationtools/get_abjad_version_string
+   tools/configurationtools/get_lilypond_version_string
+   tools/configurationtools/get_python_version_string
+   tools/configurationtools/list_abjad_environment_variables
+   tools/configurationtools/list_abjad_templates
+   tools/configurationtools/list_package_dependency_versions
+   tools/configurationtools/set_default_accidental_spelling
 
 
 durationtools

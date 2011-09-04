@@ -7,11 +7,11 @@ def list_abjad_templates():
 
     List Abjad templates::
 
-        abjad> from abjad.tools import cfgtools
+        abjad> from abjad.tools import configurationtools
 
     ::
 
-        abjad> cfgtools.list_abjad_templates()
+        abjad> configurationtools.list_abjad_templates()
         ('coventry.ly', 'lagos.ly', 'oedo.ly', 'paris.ly', 'tangiers.ly', 'thebes.ly', 'tirnaveni.ly')
 
     Return tuple of zero or more strings.

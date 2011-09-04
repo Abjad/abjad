@@ -2,7 +2,7 @@ Abjad build checklist:
 
  1. Edit cfg/cfg.py and increment 'abjad_version_number'.
 
- 2. Edit tools/cfgtools/get_abjad_version_string.py and change the
+ 2. Edit tools/configurationtools/get_abjad_version_string.py and change the
     version number string given in the docstring.
 
  3. Edit docs/conf.py and increment 'version' and 'release'.

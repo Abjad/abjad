@@ -5,8 +5,8 @@ Abjad provides a number of score templates in the ``abjad/templates`` directory:
 
 ::
 
-	abjad> from abjad.tools import cfgtools
-	abjad> cfgtools.list_abjad_templates()
+	abjad> from abjad.tools import configurationtools
+	abjad> configurationtools.list_abjad_templates()
 	('coventry.ly', 'lagos.ly', 'oedo.ly', 'paris.ly', 'tangiers.ly', 'thebes.ly', 'tirnaveni.ly')
 
 

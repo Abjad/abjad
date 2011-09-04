@@ -6,11 +6,11 @@ def set_default_accidental_spelling(spelling = 'mixed'):
 
     Set default accidental spelling to sharps::
 
-        abjad> from abjad.tools import cfgtools
+        abjad> from abjad.tools import configurationtools
 
     ::
 
-        abjad> cfgtools.set_default_accidental_spelling('sharps')
+        abjad> configurationtools.set_default_accidental_spelling('sharps')
 
     ::
 
@@ -19,7 +19,7 @@ def set_default_accidental_spelling(spelling = 'mixed'):
 
     Set default accidental spelling to flats::
 
-        abjad> cfgtools.set_default_accidental_spelling('flats')
+        abjad> configurationtools.set_default_accidental_spelling('flats')
 
     ::
 
@@ -28,7 +28,7 @@ def set_default_accidental_spelling(spelling = 'mixed'):
 
     Set default accidental spelling to mixed::
 
-        abjad> cfgtools.set_default_accidental_spelling()
+        abjad> configurationtools.set_default_accidental_spelling()
 
     ::
 
@@ -43,7 +43,7 @@ def set_default_accidental_spelling(spelling = 'mixed'):
 
     .. versionchanged:: 2.0
         renamed ``pitchtools.change_default_accidental_spelling()`` to
-        ``cfgtools.set_default_accidental_spelling()``.
+        ``configurationtools.set_default_accidental_spelling()``.
     '''
 
     if spelling not in ('mixed', 'sharps', 'flats'):

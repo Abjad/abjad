@@ -2,5 +2,5 @@
 # scr/abj is merely an (undocumented) shortcut for scr/abjad
 
 python -i $1 -c "from abjad import *; \
-    from abjad.tools.cfgtools._get_abjad_startup_string import _get_abjad_startup_string; \
+    from abjad.tools.configurationtools._get_abjad_startup_string import _get_abjad_startup_string; \
     print _get_abjad_startup_string()"

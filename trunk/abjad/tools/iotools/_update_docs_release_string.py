@@ -1,5 +1,5 @@
 from abjad.cfg.cfg import ABJADPATH
-from abjad.tools import cfgtools
+from abjad.tools import configurationtools
 import os
 
 
@@ -9,7 +9,7 @@ def _update_docs_release_string():
     output_lines = []
     for input_line in docs_conf_file.readlines():
         if input_line.startswith('release ='):
-            abjad_revision_string = cfgtools.get_abjad_revision_string()
+            abjad_revision_string = configurationtools.get_abjad_revision_string()
             output_lines.append("release = '%s'\n" % abjad_revision_string)
         else:
             output_lines.append(input_line)

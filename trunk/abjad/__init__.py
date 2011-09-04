@@ -28,7 +28,7 @@ if _read_config_file( )['use_abjad_prompt']:
 del _read_config_file
 
 del cfg
-del cfgtools
+del configurationtools
 del core
 del durationtools
 del exceptions
