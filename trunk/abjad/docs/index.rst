@@ -10,10 +10,13 @@ Abjad helps composers build up complex pieces of music notation
 in an iterative and incremental way. 
 Use Abjad to create a symbolic representation of all the notes, 
 rests, staves, tuplets, beams and slurs in any score.
+Because Abjad extends the Python programming language,
+you can use Abjad to make systematic changes to your music as you work.
+And because Abjad wraps the powerful LilyPond music notation package,
+you can use Abjad to control the typographic details of the symbols on the page.
 
-.. note:: 
-    The Abjad documentation is a work in progress.
-    
+.. image:: chapters/examples/bartok/images/bartok-final.png
+
 
 Start here
 
@@ -83,6 +86,9 @@ Developer documentation
     chapters/developer_documentation/class_attributes/index
     chapters/developer_documentation/slots/index
     chapters/developer_documentation/coding_standards/index
+
+
+.. image:: chapters/appendices/pitch_conventions/images/chromatic-pitch-numbers.png
 
 Appendices
 
