@@ -1,5 +1,5 @@
-Slots
-=====
+Using slots
+===========
 
 
 Consider the definition of this class::

@@ -75,12 +75,11 @@ Developer documentation
     chapters/developer_documentation/documentation/index
     chapters/developer_documentation/tests/index
     chapters/developer_documentation/scripts/index
-    chapters/developer_documentation/optimization/timing/index
-    chapters/developer_documentation/optimization/profiling/index
-    chapters/developer_documentation/optimization/memory/index
-    chapters/developer_documentation/optimization/class_attributes/index
-    chapters/developer_documentation/optimization/slots/index
-    chapters/developer_documentation/todo/index
+    chapters/developer_documentation/timing/index
+    chapters/developer_documentation/profiling/index
+    chapters/developer_documentation/memory/index
+    chapters/developer_documentation/class_attributes/index
+    chapters/developer_documentation/slots/index
     chapters/developer_documentation/coding_standards/index
 
 Appendices
