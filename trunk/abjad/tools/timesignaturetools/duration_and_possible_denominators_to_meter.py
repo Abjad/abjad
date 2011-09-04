@@ -5,28 +5,28 @@ from abjad.tools import mathtools
 def duration_and_possible_denominators_to_meter(duration, denominators = None, factor = None):
     '''Make new meter equal to `duration`::
 
-        abjad> from abjad.tools import metertools
+        abjad> from abjad.tools import timesignaturetools
 
     ::
 
-        abjad> metertools.duration_and_possible_denominators_to_meter(Duration(3, 2))
+        abjad> timesignaturetools.duration_and_possible_denominators_to_meter(Duration(3, 2))
         TimeSignatureMark((3, 2))
 
     Make new meter equal to `duration` with denominator equal to the first possible element in `denominators`::
 
-        abjad> metertools.duration_and_possible_denominators_to_meter(Duration(3, 2), denominators = [5, 6, 7, 8])
+        abjad> timesignaturetools.duration_and_possible_denominators_to_meter(Duration(3, 2), denominators = [5, 6, 7, 8])
         TimeSignatureMark((9, 6))
 
     Make new meter equal to `duration` with denominator divisible by `factor`::
 
-        abjad> metertools.duration_and_possible_denominators_to_meter(Duration(3, 2), factor = 5)
+        abjad> timesignaturetools.duration_and_possible_denominators_to_meter(Duration(3, 2), factor = 5)
         TimeSignatureMark((15, 10))
 
     Return new meter.
 
     .. versionchanged:: 2.0
-        renamed ``metertools.make_best()`` to
-        ``metertools.duration_and_possible_denominators_to_meter()``.
+        renamed ``timesignaturetools.make_best()`` to
+        ``timesignaturetools.duration_and_possible_denominators_to_meter()``.
     '''
     from abjad.tools import contexttools
 

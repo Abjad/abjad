@@ -35,7 +35,7 @@ del exceptions
 del importtools
 del interfaces
 del mathtools
-del metertools
+del timesignaturetools
 del os
 del pitcharraytools
 del sequencetools

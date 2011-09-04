@@ -1,6 +1,6 @@
 from abjad.tools import contexttools
 from abjad.tools import durationtools
-from abjad.tools import metertools
+from abjad.tools import timesignaturetools
 from abjad.tools.measuretools.scale_contents_of_measures_in_expr import scale_contents_of_measures_in_expr
 
 
@@ -60,7 +60,7 @@ def scale_measure_denominator_and_adjust_measure_contents(measure, new_denominat
     old_meter_duration = contexttools.get_effective_time_signature(measure).duration
 
     # find new meter
-    new_meter = metertools.duration_and_possible_denominators_to_meter(
+    new_meter = timesignaturetools.duration_and_possible_denominators_to_meter(
         old_meter_duration, factor = new_denominator_factor)
 
     # find new measure multiplier

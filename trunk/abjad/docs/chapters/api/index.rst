@@ -1160,17 +1160,6 @@ mathtools
    tools/mathtools/yield_all_partitions_of_integer
 
 
-metertools
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/metertools/duration_and_possible_denominators_to_meter
-   tools/metertools/get_nonbinary_factor_from_meter_denominator
-   tools/metertools/is_meter_with_equivalent_binary_representation
-   tools/metertools/meter_to_binary_meter
-
-
 pitcharraytools
 
 .. toctree::
@@ -1342,6 +1331,17 @@ threadtools
    tools/threadtools/iterate_thread_backward_in_expr
    tools/threadtools/iterate_thread_forward_from_component
    tools/threadtools/iterate_thread_forward_in_expr
+
+
+timesignaturetools
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/timesignaturetools/duration_and_possible_denominators_to_meter
+   tools/timesignaturetools/get_nonbinary_factor_from_meter_denominator
+   tools/timesignaturetools/is_meter_with_equivalent_binary_representation
+   tools/timesignaturetools/meter_to_binary_meter
 
 
 tonalitytools

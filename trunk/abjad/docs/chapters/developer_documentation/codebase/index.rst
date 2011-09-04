@@ -19,7 +19,7 @@ reasoning implemented in Abjad resides. ::
     __init__.py       importtools       markuptools       quantizationtools stafftools
     configurationtools          instrumenttools   mathtools         resttools         tempotools
     chordtools        intervaltreetools measuretools      schemetools       threadtools
-    componenttools    iotools           metertools        scoretools        tietools
+    componenttools    iotools           timesignaturetools        scoretools        tietools
     containertools    layouttools       musicxmltools     sequencetools          tonalitytools
     contexttools      leaftools         notetools         sievetools        tuplettools
     durationtools          lilyfiletools     pitcharraytools   skiptools         verticalitytools

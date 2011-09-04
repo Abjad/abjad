@@ -1,5 +1,5 @@
 from abjad import *
-from abjad.tools import metertools
+from abjad.tools import timesignaturetools
 
 
 def test_measuretools_list_time_signatures_of_measures_in_expr_01():

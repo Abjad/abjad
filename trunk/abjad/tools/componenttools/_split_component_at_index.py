@@ -9,7 +9,7 @@ def _split_component_at_index(component, i, spanners = 'unfractured'):
     Use containertools.split_container_at_index_and_fracture_crossing_spanners() to fracture spanners.
     Use containertools.split_container_at_index_and_do_not_fracture_crossing_spanners() to leave spanners unchanged.
     '''
-    from abjad.tools import metertools
+    from abjad.tools import timesignaturetools
     from abjad.tools import spannertools
     from abjad.tools import contexttools
     from abjad.tools.containertools.Container import Container

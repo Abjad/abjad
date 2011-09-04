@@ -1,5 +1,5 @@
 from abjad.tools import mathtools
-from abjad.tools import metertools
+from abjad.tools import timesignaturetools
 from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_measures_forward_in_expr
 from abjad.tools import durationtools
 
@@ -35,7 +35,7 @@ def move_measure_prolation_to_full_measure_tuplet(expr):
             contents_multiplier = componenttools.get_likely_multiplier_of_components(measure[:])
 
             # update nonbinary meter to binary
-            binary_meter = metertools.meter_to_binary_meter(
+            binary_meter = timesignaturetools.meter_to_binary_meter(
                 contexttools.get_effective_time_signature(measure), contents_multiplier)
             contexttools.detach_time_signature_marks_attached_to_component(measure)
             binary_meter.attach(measure)

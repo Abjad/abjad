@@ -68,7 +68,7 @@ def make_sphinx_toc():
       'iotools',
       'layouttools',
       'mathtools',
-      'metertools',
+      'timesignaturetools',
       'pitcharraytools', 
       'sequencetools',
       'sievetools', 

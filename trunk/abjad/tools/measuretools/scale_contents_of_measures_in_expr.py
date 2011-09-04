@@ -1,7 +1,7 @@
 from abjad.tools import contexttools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
-from abjad.tools import metertools
+from abjad.tools import timesignaturetools
 from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_measures_forward_in_expr
 
 
@@ -36,7 +36,7 @@ def scale_contents_of_measures_in_expr(expr, multiplier = 1):
             old_denominator = old_meter.denominator
             old_duration = old_meter.duration
             new_duration = multiplier * old_duration
-            new_meter = metertools.duration_and_possible_denominators_to_meter(
+            new_meter = timesignaturetools.duration_and_possible_denominators_to_meter(
                 new_duration, [old_denominator], multiplier.denominator)
         contexttools.detach_time_signature_marks_attached_to_component(measure)
         new_meter.attach(measure)

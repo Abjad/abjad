@@ -8,7 +8,7 @@ from abjad.tools import lilyfiletools
 from abjad.tools import contexttools
 from abjad.tools import markuptools
 from abjad.tools import measuretools
-from abjad.tools import metertools
+from abjad.tools import timesignaturetools
 from abjad.tools import notetools
 from abjad.tools import pitcharraytools
 from abjad.tools import pitchtools

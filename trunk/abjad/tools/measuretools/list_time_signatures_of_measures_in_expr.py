@@ -3,7 +3,7 @@ def list_time_signatures_of_measures_in_expr(components):
 
     List time signatures of measures in `expr`::
 
-        abjad> from abjad.tools import metertools
+        abjad> from abjad.tools import timesignaturetools
 
     ::
 
