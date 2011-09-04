@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_durationtools_Duration___add___01():
+def test_durtools_Duration___add___01():
     '''Adding two durations returns a third duration.
     '''
 

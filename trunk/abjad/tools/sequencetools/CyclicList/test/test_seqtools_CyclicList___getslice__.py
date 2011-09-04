@@ -3,7 +3,7 @@ from abjad.tools import sequencetools
 import py.test
 
 
-def test_sequencetools_CyclicList___getslice___01():
+def test_seqtools_CyclicList___getslice___01():
 
     cyclic_list = sequencetools.CyclicList(range(3))
 
