@@ -89,7 +89,6 @@ Appendices
     :maxdepth: 1
 
     chapters/appendices/history/index
-    chapters/appendices/configuration/index
     chapters/appendices/input_output/index
     chapters/appendices/lilypond_multipliers/index
     chapters/appendices/lilypond_equivalencies/index

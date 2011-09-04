@@ -1,7 +1,6 @@
 From Trevor and Víctor
 ======================
 
-
 We are composers `Trevor Bača <http://www.trevorbaca.com>`_ and 
 `Víctor Adán <http://www.victoradan.net>`__, creators of Abjad,
 and our earliest collaborative work dates back to shared
@@ -101,7 +100,7 @@ development to bear on all parts of the compositional process.
 
 
 Why MIDI is not enough
-======================
+----------------------
 
 Given that Abjad models written musical score, it might seem odd for
 MIDI to be even mentioned in this manual. Yet, until fairly recently,
@@ -110,9 +109,8 @@ in a variety of software tools related to music notation and
 engraving.
 
 
-
-A very brief overview of midi
------------------------------
+A very brief overview of MIDI
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 MIDI (Musical Instrument Digital Interface) was first introduced in
 1981 by Dave Smith, the founder of Sequential Circuits. The original
@@ -134,7 +132,7 @@ these control changes as well as the most meaningful musical
 parameters in western music.
 
 With the subsequent proliferation of music production software, the
-SMF (Standard Midi File) was introduced to allow the recording and
+SMF (Standard MIDI File) was introduced to allow the recording and
 storage of the control data from a MIDI stream. The SMF required a
 time stamp to keep track of when control messages took place. These
 are called "delta-times" in the SMF specification.
@@ -150,9 +148,8 @@ parameters: duration, pitch and loudness. Such is the case of most
 piano music.
 
 
-
-Limitations of midi from the point of view of score modeling
-------------------------------------------------------------
+Limitations of MIDI from the point of view of score modeling
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 But, alas, there is much more information in a printed score that can
 not be practically encoded in a SMF. Common musical notions such as
@@ -176,9 +173,8 @@ attributes for an automated piano performance, they are not all the
 attributes of notes in a printed score.
 
 
-
-Written note durations vs. midi delta-times
--------------------------------------------
+Written note durations vs. MIDI time deltas
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Assume a fixed tempo has been set. Assume that all magnitudes are
 represented with (and limited to) rational numbers. A time interval
@@ -199,8 +195,9 @@ notated durations:
 
 .. image:: images/midi-1.png
 
-Written note pitch vs. midi note-on
------------------------------------
+
+Written note pitch vs. MIDI note-on
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 A similar thing happens with pitches. In MIDI, key (pitch) number 61
 is a half tone above middle C. But how is this pitch to be notated? As
@@ -216,7 +213,7 @@ a C sharp or a B flat?
 .. image:: images/midi-2.png
 
 Conclusion
-----------
+^^^^^^^^^^
 
 MIDI was not designed for score representation. MIDI is a simple
 communication protocol intended for real-time control. As such, it
@@ -225,14 +222,14 @@ information found in printed scores.
 
 
 Why LilyPond is right for Abjad
-===============================
+-------------------------------
 
 Early versions of Abjad wrote MIDI files for input to Finale and Sibelius.
 Later versions of Abjad wrote ``.pbx`` files for input into Leland Smith's SCORE.
 Over time we found LilyPond superior to Finale, Sibelius and SCORE.
 
 Nested tuplets works out of the box
------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 LilyPond uses a single construct to nest tuplets arbitrarily:
 
@@ -266,7 +263,7 @@ LilyPond uses a single construct to nest tuplets arbitrarily:
 LilyPond's tuplet input syntax works the same as any other recursive construct.
 
 Broken tuplets work out of the box
-----------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 LilyPond engraves tupletted notes interrupted by nontupletted notes correctly:
 
@@ -292,8 +289,9 @@ LilyPond engraves tupletted notes interrupted by nontupletted notes correctly:
 
 .. image:: images/lilypond-2.png
 
+
 Nonbinary meters work out of the box
-------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The rhythm above rewrites with time signatures in place of tuplets:
 
@@ -322,8 +320,9 @@ The time signatures ``4/28`` and ``3/28`` here have a denominator not
 equal to ``4``, ``8``, ``16`` or any other nonnegative integer power of two.
 Abjad calls such time signatures **nonbinary meters** and LilyPond engraves them correctly.
 
+
 Lilypond models the musical measure correctly
----------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Most engraving packages make the concept of the measure out to be
 more important than it should. We see evidence of this wherever an
