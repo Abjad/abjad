@@ -42,6 +42,6 @@ def detach_clef_marks_attached_to_component(component):
 
     marks = []
     for mark in get_clef_marks_attached_to_component(component):
-        mark.detach_mark()
+        mark.detach()
         marks.append(mark)
     return tuple(marks)

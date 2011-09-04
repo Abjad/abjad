@@ -61,10 +61,10 @@ print repr(marktools.get_annotations_attached_to_component(note)) <hide
 Detaching annotations from a component one at a time
 ----------------------------------------------------
 
-Use ``detach_mark()`` to detach annotations from a component one at a time:
+Use ``detach()`` to detach annotations from a component one at a time:
 
 <abjad>
-annotation.detach_mark()
+annotation.detach()
 </abjad>
 
 <abjad>

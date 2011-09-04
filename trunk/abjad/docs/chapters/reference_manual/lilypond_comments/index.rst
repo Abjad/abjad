@@ -115,7 +115,7 @@ Abjad returns a tuple of zero or more LilyPond comments.
 Detaching LilyPond comments from a component one at a time
 ----------------------------------------------------------
 
-Use ``detach_mark()`` to detach LilyPond comments from a component one at a time:
+Use ``detach()`` to detach LilyPond comments from a component one at a time:
 
 ::
 
@@ -124,7 +124,7 @@ Use ``detach_mark()`` to detach LilyPond comments from a component one at a time
 
 ::
 
-	abjad> comment_1.detach_mark()
+	abjad> comment_1.detach()
 	LilyPondComment('This is a LilyPond comment before a note.')
 
 

@@ -68,11 +68,11 @@ Or to get the instrument currently in effect for a component:
 Detaching instrument marks from a component one at a time
 ---------------------------------------------------------
 
-Use ``detach_mark()`` to detach instrument marks from a component one at a time:
+Use ``detach()`` to detach instrument marks from a component one at a time:
 
 ::
 
-	abjad> instrument_mark.detach_mark()
+	abjad> instrument_mark.detach()
 
 
 ::

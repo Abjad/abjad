@@ -51,6 +51,6 @@ def detach_tempo_marks_attached_to_component(component):
 
     marks = []
     for mark in get_tempo_marks_attached_to_component(component):
-        mark.detach_mark()
+        mark.detach()
         marks.append(mark)
     return tuple(marks)

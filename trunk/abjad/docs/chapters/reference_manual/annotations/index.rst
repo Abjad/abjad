@@ -68,11 +68,11 @@ Use mark tools to get all the annotations attached to a component:
 Detaching annotations from a component one at a time
 ----------------------------------------------------
 
-Use ``detach_mark()`` to detach annotations from a component one at a time:
+Use ``detach()`` to detach annotations from a component one at a time:
 
 ::
 
-	abjad> annotation.detach_mark()
+	abjad> annotation.detach()
 
 
 ::

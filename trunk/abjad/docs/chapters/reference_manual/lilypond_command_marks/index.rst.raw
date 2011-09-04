@@ -64,10 +64,10 @@ print marktools.get_lilypond_command_marks_attached_to_component(staff[-2]) <hid
 Detaching LilyPond command marks from components one at a time
 --------------------------------------------------------------
 
-Use ``detach_mark()`` to detach LilyPond command marks one at a time:
+Use ``detach()`` to detach LilyPond command marks one at a time:
 
 <abjad>
-lilypond_command_mark.detach_mark()
+lilypond_command_mark.detach()
 </abjad>
 
 <abjad>

@@ -250,7 +250,7 @@ Detaching a time signature mark is easy:
 
 ::
 
-    abjad> time_signature_mark.detach_mark()
+    abjad> time_signature_mark.detach()
     TimeSignatureMark(3, 4)
 
 The Abjad returns the mark we have just detached. And, observing the repr of the time signature mark, we see that the time signature mark has again changed state: the time signature mark has transitioned from attached to unattached. We confirm this like so:
@@ -311,12 +311,12 @@ To do this we'll first detach our ``2/4`` time signature mark ...
 
 ::
 
-	abjad> duple_time_signature_mark.detach_mark()
+	abjad> duple_time_signature_mark.detach()
 
 
 ::
 
-    abjad> duple_time_signature_mark.detach_mark()
+    abjad> duple_time_signature_mark.detach()
     TimeSignatureMark(2, 4)
 
 ... confirm that our staff is now time signatureless ...
@@ -660,7 +660,7 @@ and the time signature mark is callable because all context marks
 implement the special ``__call__()`` method.
 
 Note too that all context marks understand an *empty call* as a short-cut
-for ``detach_mark()``. Like this:
+for ``detach()``. Like this:
 
 
 ::

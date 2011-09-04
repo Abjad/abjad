@@ -70,11 +70,11 @@ Use ``marktools`` to get the lilypond_command_marks attached to a leaf:
 Detaching LilyPond command marks from components one at a time
 --------------------------------------------------------------
 
-Use ``detach_mark()`` to detach LilyPond command marks one at a time:
+Use ``detach()`` to detach LilyPond command marks one at a time:
 
 ::
 
-	abjad> lilypond_command_mark.detach_mark()
+	abjad> lilypond_command_mark.detach()
 
 
 ::

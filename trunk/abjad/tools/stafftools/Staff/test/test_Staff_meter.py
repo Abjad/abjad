@@ -53,6 +53,6 @@ def test_Staff_meter_04():
 
     t = Staff(Note("c'4") * 8)
     contexttools.TimeSignatureMark((2, 4))(t)
-    contexttools.get_effective_time_signature(t).detach_mark()
+    contexttools.get_effective_time_signature(t).detach()
     for leaf in t:
         assert contexttools.get_effective_time_signature(leaf) is None

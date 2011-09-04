@@ -46,7 +46,7 @@ def test_contexttools_get_effective_time_signature_03():
 
     t = Staff("c'8 d'8 e'8 f'8")
     time_signature = contexttools.TimeSignatureMark((2, 8))(t[0])
-    time_signature.detach_mark()
+    time_signature.detach()
 
     r'''
     \new Staff {

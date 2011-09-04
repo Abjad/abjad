@@ -78,10 +78,10 @@ print marktools.get_articulations_attached_to_component(staff[5]) <hide
 Detaching articulations from a leaf one at a time
 -------------------------------------------------
 
-Detach articulations by hand with ``detach_mark()``:
+Detach articulations by hand with ``detach()``:
 
 <abjad>
-articulation.detach_mark()
+articulation.detach()
 </abjad>
 
 <abjad>

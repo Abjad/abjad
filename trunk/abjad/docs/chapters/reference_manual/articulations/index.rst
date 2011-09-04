@@ -87,11 +87,11 @@ Use ``marktools`` to get the articulations attached to a leaf:
 Detaching articulations from a leaf one at a time
 -------------------------------------------------
 
-Detach articulations by hand with ``detach_mark()``:
+Detach articulations by hand with ``detach()``:
 
 ::
 
-	abjad> articulation.detach_mark()
+	abjad> articulation.detach()
 
 
 ::

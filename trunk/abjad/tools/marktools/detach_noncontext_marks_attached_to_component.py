@@ -45,7 +45,7 @@ def detach_noncontext_marks_attached_to_component(component):
 
     noncontext_marks = []
     for noncontext_mark in get_noncontext_marks_attached_to_component(component):
-        noncontext_mark.detach_mark()
+        noncontext_mark.detach()
         noncontext_marks.append(noncontext_mark)
 
     return tuple(noncontext_marks)

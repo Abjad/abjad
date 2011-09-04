@@ -32,7 +32,7 @@ class Mark(object):
 
     def __call__(self, *args):
         if len(args) == 0:
-            return self.detach_mark()
+            return self.detach()
         elif len(args) == 1:
             return self.attach(args[0])
         else:
@@ -135,7 +135,7 @@ class Mark(object):
         self._bind_start_component(start_component)
         return self
 
-    def detach_mark(self):
+    def detach(self):
         '''Detach mark::
 
             abjad> note = Note("c'4")
@@ -148,7 +148,7 @@ class Mark(object):
 
         ::
 
-            abjad> mark.detach_mark()
+            abjad> mark.detach()
             Mark()
 
         ::

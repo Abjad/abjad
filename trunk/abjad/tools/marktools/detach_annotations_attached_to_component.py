@@ -44,7 +44,7 @@ def detach_annotations_attached_to_component(component):
 
     annotations = []
     for annotation in get_annotations_attached_to_component(component):
-        annotation.detach_mark()
+        annotation.detach()
         annotations.append(annotation)
 
     return tuple(annotations)

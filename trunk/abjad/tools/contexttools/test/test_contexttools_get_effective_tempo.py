@@ -69,7 +69,7 @@ def test_contexttools_get_effective_tempo_04():
 
     staff = Staff([Note("c'4")])
     tempo = contexttools.TempoMark(Duration(1, 8), 38, target_context = Staff)(staff[0])
-    tempo.detach_mark()
+    tempo.detach()
 
 
     r'''

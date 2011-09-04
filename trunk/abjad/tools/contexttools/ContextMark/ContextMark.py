@@ -151,7 +151,7 @@ class ContextMark(Mark):
             raise ExtraMarkError('component already has context mark attached.')
         return Mark.attach(self, start_component)
 
-    def detach_mark(self):
+    def detach(self):
         '''Detach mark:
 
         ::
@@ -166,7 +166,7 @@ class ContextMark(Mark):
 
         ::
 
-            abjad> context_mark.detach_mark()
+            abjad> context_mark.detach()
             ContextMark()
 
         ::
@@ -176,7 +176,7 @@ class ContextMark(Mark):
 
         Return context mark.
         '''
-        Mark.detach_mark(self)
+        Mark.detach(self)
         self.__unbind_effective_context()
         return self
 

@@ -40,6 +40,6 @@ def detach_context_marks_attached_to_component(component, klasses = (ContextMark
     marks = []
     for mark in component._marks_for_which_component_functions_as_start_component[:]:
         if isinstance(mark, klasses):
-            mark.detach_mark()
+            mark.detach()
             marks.append(mark)
     return tuple(marks)

@@ -40,11 +40,11 @@ def detach_stem_tremolos_attached_to_component(component):
 
     stem_tremolos = []
 #    for stem_tremolo in get_stem_tremolo_attached_to_component(component):
-#        stem_tremolo.detach_mark()
+#        stem_tremolo.detach()
 #        stem_tremolos.append(stem_tremolo)
     try:
         stem_tremolo = get_stem_tremolo_attached_to_component(component)
-        stem_tremolo.detach_mark()
+        stem_tremolo.detach()
         stem_tremolos.append(stem_tremolo)
     except (MissingMarkError):
         pass

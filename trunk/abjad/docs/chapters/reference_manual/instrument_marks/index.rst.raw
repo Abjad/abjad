@@ -61,10 +61,10 @@ print repr(contexttools.get_effective_instrument(staff[1])) <hide
 Detaching instrument marks from a component one at a time
 ---------------------------------------------------------
 
-Use ``detach_mark()`` to detach instrument marks from a component one at a time:
+Use ``detach()`` to detach instrument marks from a component one at a time:
 
 <abjad>
-instrument_mark.detach_mark()
+instrument_mark.detach()
 </abjad>
 
 <abjad>

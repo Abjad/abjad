@@ -50,7 +50,7 @@ def detach_lilypond_comments_attached_to_component(component):
 
     comments = []
     for comment in get_lilypond_comments_attached_to_component(component):
-        comment.detach_mark()
+        comment.detach()
         comments.append(comment)
 
     return tuple(comments)

@@ -55,7 +55,7 @@ def test_contexttools_get_effective_clef_05():
     contexttools.ClefMark('treble')(t[0])
     contexttools.ClefMark('bass')(t[4])
     clef = contexttools.get_effective_clef(t[4])
-    clef.detach_mark()
+    clef.detach()
     for note in t:
         assert contexttools.get_effective_clef(note) == contexttools.ClefMark('treble')
 
@@ -120,7 +120,7 @@ def test_contexttools_get_effective_clef_08():
     t = Staff("c'8 d'8 e'8 f'8")
     contexttools.ClefMark('alto')(t[0])
     clef = contexttools.get_effective_clef(t[0])
-    clef.detach_mark()
+    clef.detach()
 
     for leaf in t:
         assert contexttools.get_effective_clef(leaf) is None
