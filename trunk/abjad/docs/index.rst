@@ -21,6 +21,7 @@ Start here
     :maxdepth: 1
 
     chapters/start_here/abjad/index
+    chapters/start_here/installation/index
 
 Examples
 
@@ -100,7 +101,6 @@ Appendices
     chapters/appendices/abjad_book/index
     chapters/appendices/bibliography/index
     chapters/appendices/versions/index
-    chapters/appendices/installation/index
 
 Abjad API
 ---------
