@@ -81,6 +81,7 @@ Developer documentation
     chapters/developer_documentation/optimization/class_attributes/index
     chapters/developer_documentation/optimization/slots/index
     chapters/developer_documentation/todo/index
+    chapters/developer_documentation/coding_standards/index
 
 Appendices
 
@@ -95,7 +96,6 @@ Appendices
     chapters/appendices/input_output/index
     chapters/appendices/lilypond_multipliers/index
     chapters/appendices/lilypond_equivalencies/index
-    chapters/appendices/coding_standards/index
     chapters/appendices/lists_of_numbers/index
     chapters/appendices/pitch_conventions/index
     chapters/appendices/pitch_deviation/index
@@ -103,7 +103,6 @@ Appendices
     chapters/appendices/templates/index
     chapters/appendices/text_alignment/index
     chapters/appendices/abjad_book/index
-    chapters/appendices/colors/index
     chapters/appendices/bibliography/index
     chapters/appendices/versions/index
     chapters/appendices/installation/index
