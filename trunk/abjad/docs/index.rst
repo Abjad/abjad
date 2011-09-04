@@ -41,6 +41,7 @@ Reference manual
     chapters/reference_manual/chords/index
     chapters/reference_manual/containers/index
     chapters/reference_manual/instrument_marks/index
+    chapters/reference_manual/io/index
     chapters/reference_manual/lilypond_command_marks/index
     chapters/reference_manual/lilypond_comments/index
     chapters/reference_manual/lilypond_files/index
@@ -89,7 +90,6 @@ Appendices
     :maxdepth: 1
 
     chapters/appendices/history/index
-    chapters/appendices/input_output/index
     chapters/appendices/lilypond_multipliers/index
     chapters/appendices/lilypond_equivalencies/index
     chapters/appendices/lists_of_numbers/index

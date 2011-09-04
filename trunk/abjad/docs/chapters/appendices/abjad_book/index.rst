@@ -1,5 +1,5 @@
-``abjad-book``
-==============
+Using ``abjad-book``
+====================
 
 ``abjad-book`` is an independent application included in every installation
 of Abjad. ``abjad-book`` allows you to write Abjad code in the middle
