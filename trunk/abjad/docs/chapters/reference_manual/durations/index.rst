@@ -1,8 +1,8 @@
-Duration conventions
-====================
+Durations
+=========
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 0
 
    introduction/index
    assignability/index

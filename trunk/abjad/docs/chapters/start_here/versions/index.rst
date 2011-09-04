@@ -5,21 +5,19 @@ Version history
 Abjad 2.3
 ---------
 
-`Abjad 2.3.tar.gz <http://pypi.python.org/pypi/Abjad>`__ 
-
-(Release notes to be added.)
+Released 2011-09-04. Additional release notes to be added.
 
 
 Abjad 2.2
 ---------
 
-(Release notes to be added.)
+Released 2011-08-28. Additional release notes to be added.
 
 
 Abjad 2.1
 ---------
 
-(Release notes to be added.)
+Release notes to be added.
 
 
 Abjad 2.0

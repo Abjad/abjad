@@ -25,6 +25,7 @@ Start here
 
     chapters/start_here/abjad/index
     chapters/start_here/installation/index
+    chapters/start_here/versions/index
 
 Examples
 
@@ -44,6 +45,7 @@ Reference manual
     chapters/reference_manual/articulations/index
     chapters/reference_manual/chords/index
     chapters/reference_manual/containers/index
+    chapters/reference_manual/durations/index
     chapters/reference_manual/instrument_marks/index
     chapters/reference_manual/io/index
     chapters/reference_manual/lilypond_command_marks/index
@@ -81,6 +83,7 @@ Developer documentation
     chapters/developer_documentation/documentation/index
     chapters/developer_documentation/tests/index
     chapters/developer_documentation/scripts/index
+    chapters/developer_documentation/abjad_book/index
     chapters/developer_documentation/timing/index
     chapters/developer_documentation/profiling/index
     chapters/developer_documentation/memory/index
@@ -96,15 +99,9 @@ Appendices
     :maxdepth: 1
 
     chapters/appendices/history/index
-    chapters/appendices/lilypond_multipliers/index
-    chapters/appendices/lilypond_equivalencies/index
-    chapters/appendices/pitch_conventions/index
-    chapters/appendices/duration_conventions/index
     chapters/appendices/templates/index
     chapters/appendices/text_alignment/index
-    chapters/appendices/abjad_book/index
     chapters/appendices/bibliography/index
-    chapters/appendices/versions/index
 
 Abjad API
 ---------
