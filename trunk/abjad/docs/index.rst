@@ -52,6 +52,7 @@ Reference manual
     chapters/reference_manual/measures/index
     chapters/reference_manual/notes/index
     chapters/reference_manual/named_chromatic_pitch/index
+    chapters/reference_manual/python_basics/index
     chapters/reference_manual/rests/index
     chapters/reference_manual/scores/index
     chapters/reference_manual/spanners/index
@@ -88,8 +89,6 @@ Developer documentation
     chapters/developer_documentation/coding_standards/index
 
 
-.. image:: chapters/appendices/pitch_conventions/images/chromatic-pitch-numbers.png
-
 Appendices
 
 .. toctree::
@@ -99,7 +98,6 @@ Appendices
     chapters/appendices/history/index
     chapters/appendices/lilypond_multipliers/index
     chapters/appendices/lilypond_equivalencies/index
-    chapters/appendices/lists_of_numbers/index
     chapters/appendices/pitch_conventions/index
     chapters/appendices/duration_conventions/index
     chapters/appendices/templates/index
