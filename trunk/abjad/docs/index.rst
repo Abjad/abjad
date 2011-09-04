@@ -89,8 +89,6 @@ Appendices
     :maxdepth: 1
 
     chapters/appendices/history/index
-    chapters/appendices/lilypond/index
-    chapters/appendices/midi_not_enough/index
     chapters/appendices/configuration/index
     chapters/appendices/input_output/index
     chapters/appendices/lilypond_multipliers/index
