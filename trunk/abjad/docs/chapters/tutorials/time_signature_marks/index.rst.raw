@@ -116,7 +116,7 @@ We'll do this in two separate steps and study each step to understand exactly wh
 First, we create a ``3/4`` time signature mark:
 
 <abjad>
-time_signature_mark = contexttools.TimeSignatureMark(3, 4)
+time_signature_mark = contexttools.TimeSignatureMark((3, 4))
 </abjad>
 
 If we ask the Abjad interpreter for the interpreter dispaly of
@@ -150,7 +150,7 @@ time_signature_mark.attach(staff) <hide
 ::
 
     abjad> time_signature_mark.attach(staff)
-    TimeSignatureMark(3, 4)(Staff{5})
+    TimeSignatureMark((3, 4))(Staff{5})
 
 Abjad responds immediately by returning the time signature mark we have just attached.
 
@@ -185,11 +185,11 @@ Indeed they do:
     abjad> for leaf in staff.leaves:
     ...      leaf, contexttools.get_effective_time_signature(leaf)
     ...
-    (Note("c'4"), TimeSignatureMark(3, 4)(Staff{5}))
-    (Note("d'4"), TimeSignatureMark(3, 4)(Staff{5}))
-    (Note("e'4"), TimeSignatureMark(3, 4)(Staff{5}))
-    (Note("f'4"), TimeSignatureMark(3, 4)(Staff{5}))
-    (Note("g'2"), TimeSignatureMark(3, 4)(Staff{5}))
+    (Note("c'4"), TimeSignatureMark((3, 4))(Staff{5}))
+    (Note("d'4"), TimeSignatureMark((3, 4))(Staff{5}))
+    (Note("e'4"), TimeSignatureMark((3, 4))(Staff{5}))
+    (Note("f'4"), TimeSignatureMark((3, 4))(Staff{5}))
+    (Note("g'2"), TimeSignatureMark((3, 4))(Staff{5}))
 
 So to briefly resume:
 
@@ -230,7 +230,7 @@ time_signature_mark.detach() <hide
 ::
 
     abjad> time_signature_mark.detach()
-    TimeSignatureMark(3, 4)
+    TimeSignatureMark((3, 4))
 
 The Abjad returns the mark we have just detached. And, observing the repr of the time signature mark, we see that the time signature mark has again changed state: the time signature mark has transitioned from attached to unattached. We confirm this like so:
 
@@ -255,15 +255,15 @@ We have a couple of options.
 We can simply create and attach a new time signature mark:
 
 <abjad>
-duple_time_signature_mark = contexttools.TimeSignatureMark(2, 4) <hide
+duple_time_signature_mark = contexttools.TimeSignatureMark((2, 4)) <hide
 duple_time_signature_mark.attach(staff) <hide
 </abjad>
 
 ::
 
-    abjad> duple_time_signature_mark = contexttools.TimeSignatureMark(2, 4)
+    abjad> duple_time_signature_mark = contexttools.TimeSignatureMark((2, 4))
     abjad> duple_time_signature_mark.attach(staff)
-    TimeSignatureMark(2, 4)(Staff{5})
+    TimeSignatureMark((2, 4))(Staff{5})
 
 <abjad>
 f(staff)
@@ -287,7 +287,7 @@ duple_time_signature_mark.detach()
 ::
 
     abjad> duple_time_signature_mark.detach()
-    TimeSignatureMark(2, 4)
+    TimeSignatureMark((2, 4))
 
 ... confirm that our staff is now time signatureless ...
 
@@ -309,7 +309,7 @@ time_signature_mark.attach(staff)
 ::
 
     abjad> time_signature_mark.attach(staff)
-    TimeSignatureMark(4, 4)(Staff{5})
+    TimeSignatureMark((4, 4))(Staff{5})
 
 ... change the numerator of our time signature mark ...
 
@@ -392,7 +392,7 @@ Now what about the ``2/4`` time signature mark?
 We create it in the usual way:
 
 <abjad>
-duple_time_signature_mark = contexttools.TimeSignatureMark(2, 4)
+duple_time_signature_mark = contexttools.TimeSignatureMark((2, 4))
 duple_time_signature_mark
 print repr(duple_time_signature_mark) <hide
 </abjad>
@@ -416,7 +416,7 @@ duple_time_signature_mark.attach(staff[4])
 ::
 
     abjad> duple_time_signature_mark.attach(staff[4])
-    TimeSignatureMark(2, 4)(g'2)
+    TimeSignatureMark((2, 4))(g'2)
 
 <abjad>
 f(staff)
@@ -459,7 +459,7 @@ contexttools.detach_context_marks_attached_to_component(staff) <hide
 ::
 
     abjad> contexttools.detach_context_marks_attached_to_component(staff)
-    (TimeSignatureMark(4, 4),)
+    (TimeSignatureMark((4, 4)),)
 
 <abjad>
 f(staff)
@@ -473,7 +473,7 @@ contexttools.detach_context_marks_attached_to_component(staff[4]) <hide
 
 ::
     abjad> contexttools.detach_context_marks_attached_to_component(staff[4])
-    (TimeSignatureMark(2, 4),)
+    (TimeSignatureMark((2, 4)),)
 
 <abjad>
 f(staff)
@@ -497,7 +497,7 @@ f(staff)
 So to recreate our ``3/4`` time signature we can do this ...
 
 <abjad>
-time_signature_mark = contexttools.TimeSignatureMark(3, 4)
+time_signature_mark = contexttools.TimeSignatureMark((3, 4))
 </abjad>
 
 ... and then use a short-cut to avoid calling ``time_signature_mark.attach()`` like this:
@@ -509,7 +509,7 @@ time_signature_mark(staff) <hide
 ::
 
     abjad> time_signature_mark(staff)
-    TimeSignatureMark(3, 4)(Staff{5})
+    TimeSignatureMark((3, 4))(Staff{5})
 
 <abjad>
 f(staff)
@@ -535,7 +535,7 @@ time_signature_mark() <hide
 ::
 
     abjad> time_signature_mark()
-    TimeSignatureMark(3, 4)
+    TimeSignatureMark((3, 4))
 
 <abjad>
 f(staff)
@@ -549,13 +549,13 @@ as a short-cut for attach() means that context marks
 can be created and attached in a single line:
 
 <abjad>
-contexttools.TimeSignatureMark(2, 4)(staff) <hide
+contexttools.TimeSignatureMark((2, 4))(staff) <hide
 </abjad>
 
 ::
 
-    abjad> contexttools.TimeSignatureMark(2, 4)(staff)
-    TimeSignatureMark(2, 4)(Staff{5})
+    abjad> contexttools.TimeSignatureMark((2, 4))(staff)
+    TimeSignatureMark((2, 4))(Staff{5})
 
 <abjad>
 f(staff)
@@ -563,7 +563,7 @@ f(staff)
 
 What's going on here?
 
-What's going on is that ``contexttools.TimeSignatureMark(2, 4)`` creates
+What's going on is that ``contexttools.TimeSignatureMark((2, 4))`` creates
 a time signature mark in the usual way and that -- immediately after this --
 the newly created time signature mark is available for us to call it against our staff.
 
@@ -571,6 +571,6 @@ This last short-cut form of ...
 
 ::
 
-    abjad> contexttools.TimeSignatureMark(2, 4)(staff)
+    abjad> contexttools.TimeSignatureMark((2, 4))(staff)
 
 ... is the usual way that you will see context marks of all sorts presented in the docs.

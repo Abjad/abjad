@@ -26,10 +26,10 @@ that appear in file output:
 ::
 
 	abjad> f(lily_file)
-	% Abjad revision 4651
-	% 2011-08-21 13:58
+	% Abjad revision 4746
+	% 2011-09-04 17:36
 	
-	\version "2.15.8"
+	\version "2.15.9"
 	\include "english.ly"
 	\include "/Users/trevorbaca/Documents/abjad/trunk/abjad/cfg/abjad.scm"
 	
@@ -56,10 +56,10 @@ Set default LilyPond paper size like this:
 ::
 
 	abjad> f(lily_file)
-	% Abjad revision 4651
-	% 2011-08-21 13:58
+	% Abjad revision 4746
+	% 2011-09-04 17:36
 	
-	\version "2.15.8"
+	\version "2.15.9"
 	\include "english.ly"
 	\include "/Users/trevorbaca/Documents/abjad/trunk/abjad/cfg/abjad.scm"
 	
@@ -88,10 +88,10 @@ Set global staff size like this:
 ::
 
 	abjad> f(lily_file)
-	% Abjad revision 4651
-	% 2011-08-21 13:58
+	% Abjad revision 4746
+	% 2011-09-04 17:36
 	
-	\version "2.15.8"
+	\version "2.15.9"
 	\include "english.ly"
 	\include "/Users/trevorbaca/Documents/abjad/trunk/abjad/cfg/abjad.scm"
 	

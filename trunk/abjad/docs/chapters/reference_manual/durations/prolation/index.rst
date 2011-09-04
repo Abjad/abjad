@@ -1,5 +1,5 @@
 Prolation
----------
+=========
 
 
 Abjad uses **prolation** as a cover term for rhythmic augmentation and diminution.
@@ -9,7 +9,7 @@ Western notation employs tuplet brackets and special types of time signature to 
 
 
 Tuplet prolation
-^^^^^^^^^^^^^^^^
+----------------
 
 Tuplets prolate their contents:
 
@@ -46,7 +46,7 @@ and prolated duration ``5/32``.
 
 
 Meter prolation
-^^^^^^^^^^^^^^^
+---------------
 
 Time signatures in western notation usually carry a denominator equal
 to a nonnegative integer power of ``2``.
@@ -92,7 +92,7 @@ and prolated duration ``1/10``.
 
 
 The prolation chain
-^^^^^^^^^^^^^^^^^^^
+-------------------
 
 Tuplets nest and combine freely with different types of meter.
 When two or more **prolation donors** conspire, the prolation factor they

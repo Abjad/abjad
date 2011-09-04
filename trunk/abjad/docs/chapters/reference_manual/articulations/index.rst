@@ -32,7 +32,7 @@ Use ``attach()`` to attach articulations to a leaf:
 	abjad> staff = Staff([])
 	abjad> key_signature = contexttools.KeySignatureMark('g', 'major')
 	abjad> key_signature.attach(staff)
-	time_signature = contexttools.TimeSignatureMark(2, 4, partial = Duration(1, 8))
+	time_signature = contexttools.TimeSignatureMark((2, 4), partial = Duration(1, 8))
 	abjad> time_signature.attach(staff)
 
 
@@ -305,12 +305,12 @@ above the staff:
 
 .. image:: images/articulations-8.png
 
-Set ``direction_string`` to ``'-'`` to allow LilyPond to position
+Set ``direction_string`` to none to allow LilyPond to position
 an articulation automatically:
 
 ::
 
-	abjad> articulation.direction_string = '-'
+	abjad> articulation.direction_string = None
 
 
 ::
@@ -355,7 +355,7 @@ Use ``copy.copy()`` to copy an articulation:
 ::
 
 	abjad> articulation_copy_1
-	Articulation('staccatissimo', '-')
+	Articulation('staccatissimo')
 
 
 ::
@@ -382,7 +382,7 @@ Articulations compare equal with equal direction name strings and direction stri
 	abjad> articulation.name
 	'staccatissimo'
 	abjad> articulation.direction_string
-	'-'
+	None
 
 
 ::
@@ -390,7 +390,7 @@ Articulations compare equal with equal direction name strings and direction stri
 	abjad> articulation_copy_1.name
 	'staccatissimo'
 	abjad> articulation_copy_1.direction_string
-	'-'
+	None
 
 
 ::

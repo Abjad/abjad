@@ -1,7 +1,3 @@
-Python basics
-=============
-
-
 Working with lists of numbers
 -----------------------------
 
