@@ -1,5 +1,5 @@
 from abjad import *
-from abjad.tools import seqtools
+from abjad.tools import sequencetools
 
 
 def test_componenttools_get_nth_component_in_expr_01():
@@ -8,7 +8,7 @@ def test_componenttools_get_nth_component_in_expr_01():
     durations = [Duration(n, 16) for n in range(1, 5)]
     notes = notetools.make_notes([0, 2, 4, 5], durations)
     rests = resttools.make_rests(durations)
-    leaves = seqtools.interlace_sequences(notes, rests)
+    leaves = sequencetools.interlace_sequences(notes, rests)
     staff.extend(leaves)
 
     r'''
@@ -44,7 +44,7 @@ def test_componenttools_get_nth_component_in_expr_02():
     durations = [Duration(n, 16) for n in range(1, 5)]
     notes = notetools.make_notes([0, 2, 4, 5], durations)
     rests = resttools.make_rests(durations)
-    leaves = seqtools.interlace_sequences(notes, rests)
+    leaves = sequencetools.interlace_sequences(notes, rests)
     staff.extend(leaves)
 
     r'''

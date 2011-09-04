@@ -11,7 +11,7 @@ def make_repeated_rests_from_time_signatures(time_signatures):
 
     Return two-dimensional list of newly constructed rest lists.
 
-    Use ``seqtools.flatten_sequence()`` to flatten output if required.
+    Use ``sequencetools.flatten_sequence()`` to flatten output if required.
     '''
 
     # init result

@@ -5,7 +5,7 @@ import os
 def _get_title_type_members(source_full_path):
 
    #print source_full_path
-   # starts as '/Users/foo/bar/abjad/trunk/abjad/tools/seqtools/do_stuff.py'
+   # starts as '/Users/foo/bar/abjad/trunk/abjad/tools/sequencetools/do_stuff.py'
 
    parts = [ ]
    for part in reversed(source_full_path.split(os.sep)):
@@ -15,7 +15,7 @@ def _get_title_type_members(source_full_path):
          parts.insert(0, part)
          break
 
-   # ends as 'abjad.tools.seqtools.do_stuff'
+   # ends as 'abjad.tools.sequencetools.do_stuff'
    parts = '.'.join(parts)
    parts = parts[:-3]
    #print parts

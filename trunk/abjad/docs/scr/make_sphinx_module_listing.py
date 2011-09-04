@@ -57,7 +57,7 @@ def make_sphinx_module_listing(package_path, file):
 
    for member in members:
 
-      # document public helper in tools package like seqtools.zip_sequences_cyclically
+      # document public helper in tools package like sequencetools.zip_sequences_cyclically
       if auto_type == 'autofunction' and 'tools' in module:
          result += '.. %s:: abjad.tools.%s\n' % (auto_type, page_title)
 

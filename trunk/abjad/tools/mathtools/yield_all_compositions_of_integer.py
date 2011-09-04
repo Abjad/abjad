@@ -40,7 +40,7 @@ def yield_all_compositions_of_integer(n):
         ``mathtools.yield_all_compositions_of_integer()``.
     '''
 
-    from abjad.tools.seqtools.yield_all_permutations_of_sequence import yield_all_permutations_of_sequence
+    from abjad.tools.sequencetools.yield_all_permutations_of_sequence import yield_all_permutations_of_sequence
 
     # Finds small values of n easily.
     # Takes ca. 4 seconds for n = 17.

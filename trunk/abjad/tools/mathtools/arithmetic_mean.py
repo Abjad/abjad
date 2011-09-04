@@ -26,7 +26,7 @@ def arithmetic_mean(sequence):
     Return number.
 
     .. versionchanged:: 2.0
-        renamed ``seqtools.arithmetic_mean()`` to
+        renamed ``sequencetools.arithmetic_mean()`` to
         ``mathtools.arithmetic_mean()``.
     '''
 

@@ -1,6 +1,6 @@
 from abjad.tools import durtools
 from abjad.tools.mathtools import greatest_power_of_two_less_equal
-from abjad.tools.seqtools import truncate_runs_in_sequence
+from abjad.tools.sequencetools import truncate_runs_in_sequence
 
 
 # TODO: Maybe move get_likely_multiplier_of_components() from durtools to measuretools? #

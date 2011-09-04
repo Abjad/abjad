@@ -1,5 +1,5 @@
 from abjad import *
-from abjad.tools import seqtools
+from abjad.tools import sequencetools
 
 
 def test_Measure_number_01():
@@ -33,7 +33,7 @@ def test_Measure_number_03():
     assert t[1].measure_number == 2
     assert t[2].measure_number == 3
 
-    new = seqtools.rotate_sequence(t, -1)
+    new = sequencetools.rotate_sequence(t, -1)
 
     r'''
     \new Staff {

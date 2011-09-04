@@ -14,9 +14,9 @@ def cumulative_sums_zero_pairwise(sequence):
     Return list of pairs.
 
     .. versionchanged:: 2.0
-        renamed ``seqtools.pairwise_cumulative_sums_zero()`` to
+        renamed ``sequencetools.pairwise_cumulative_sums_zero()`` to
         ``mathtools.cumulative_sums_zero_pairwise()``.
     '''
-    from abjad.tools import seqtools
+    from abjad.tools import sequencetools
 
-    return list(seqtools.iterate_sequence_pairwise_strict(cumulative_sums_zero(sequence)))
+    return list(sequencetools.iterate_sequence_pairwise_strict(cumulative_sums_zero(sequence)))

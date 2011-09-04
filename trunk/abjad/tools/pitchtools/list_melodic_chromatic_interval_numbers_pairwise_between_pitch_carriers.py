@@ -1,4 +1,4 @@
-from abjad.tools import seqtools
+from abjad.tools import sequencetools
 from abjad.tools.pitchtools.get_named_chromatic_pitch_from_pitch_carrier import get_named_chromatic_pitch_from_pitch_carrier
 from abjad.tools.pitchtools.is_pitch_carrier import is_pitch_carrier
 
@@ -71,9 +71,9 @@ def list_melodic_chromatic_interval_numbers_pairwise_between_pitch_carriers(
             raise TypeError('must be Abjad Pitch, Note, NoteHead or Chord.')
 
     if wrap:
-        pairs = seqtools.iterate_sequence_pairwise_wrapped(pitch_carriers)
+        pairs = sequencetools.iterate_sequence_pairwise_wrapped(pitch_carriers)
     else:
-        pairs = seqtools.iterate_sequence_pairwise_strict(pitch_carriers)
+        pairs = sequencetools.iterate_sequence_pairwise_strict(pitch_carriers)
 
     for first_carrier, second_carrier in pairs:
         first_pitch = get_named_chromatic_pitch_from_pitch_carrier(first_carrier)

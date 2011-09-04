@@ -4,11 +4,11 @@ import os
 def _module_path_to_doc_path(module_path):
    '''Transform a module path like
 
-      /Users/foo/abjad/trunk/abjad/tools/seqtools/zip_cyclic.py
+      /Users/foo/abjad/trunk/abjad/tools/sequencetools/zip_cyclic.py
 
    to a doc path like
 
-      tools/seqtools/zip_cyclic
+      tools/sequencetools/zip_cyclic
 
    for inclusion in the API TOC.
    '''

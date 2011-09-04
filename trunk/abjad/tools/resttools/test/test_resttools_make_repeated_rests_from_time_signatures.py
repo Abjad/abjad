@@ -1,5 +1,5 @@
 from abjad import *
-from abjad.tools import seqtools
+from abjad.tools import sequencetools
 
 
 def test_resttools_make_repeated_rests_from_time_signatures_01():
@@ -9,7 +9,7 @@ def test_resttools_make_repeated_rests_from_time_signatures_01():
     rests = resttools.make_repeated_rests_from_time_signatures([(2, 8), (3, 32)])
     assert len(rests) == 2
 
-    rests = seqtools.flatten_sequence(rests)
+    rests = sequencetools.flatten_sequence(rests)
     staff = Staff(rests)
 
     r'''

@@ -1,5 +1,5 @@
 from abjad.core import _Immutable
-from abjad.tools import seqtools
+from abjad.tools import sequencetools
 from abjad.tools.pitchtools.MelodicDiatonicInterval import MelodicDiatonicInterval
 from abjad.tools.pitchtools.MelodicDiatonicIntervalSegment import MelodicDiatonicIntervalSegment
 
@@ -53,19 +53,19 @@ class Mode(_Immutable):
         M2 = MelodicDiatonicInterval('major', 2)
         dorian = [M2, m2, M2, M2, M2, m2, M2]
         if mode_name == 'dorian':
-            mdi_segment.extend(seqtools.rotate_sequence(dorian, 0))
+            mdi_segment.extend(sequencetools.rotate_sequence(dorian, 0))
         elif mode_name == 'phrygian':
-            mdi_segment.extend(seqtools.rotate_sequence(dorian, -1))
+            mdi_segment.extend(sequencetools.rotate_sequence(dorian, -1))
         elif mode_name == 'lydian':
-            mdi_segment.extend(seqtools.rotate_sequence(dorian, -2))
+            mdi_segment.extend(sequencetools.rotate_sequence(dorian, -2))
         elif mode_name == 'mixolydian':
-            mdi_segment.extend(seqtools.rotate_sequence(dorian, -3))
+            mdi_segment.extend(sequencetools.rotate_sequence(dorian, -3))
         elif mode_name in ('aeolian', 'minor'):
-            mdi_segment.extend(seqtools.rotate_sequence(dorian, -4))
+            mdi_segment.extend(sequencetools.rotate_sequence(dorian, -4))
         elif mode_name == 'locrian':
-            mdi_segment.extend(seqtools.rotate_sequence(dorian, -5))
+            mdi_segment.extend(sequencetools.rotate_sequence(dorian, -5))
         elif mode_name in ('ionian', 'major'):
-            mdi_segment.extend(seqtools.rotate_sequence(dorian, -6))
+            mdi_segment.extend(sequencetools.rotate_sequence(dorian, -6))
         else:
             raise ValueError("unknown mode name string '%s'." % mode_name)
         #self._mode_name = mode_name

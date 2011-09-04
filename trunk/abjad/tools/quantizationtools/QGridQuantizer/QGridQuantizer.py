@@ -16,9 +16,9 @@ from abjad.tools.quantizationtools._Quantizer import _Quantizer
 from abjad.tools.quantizationtools.is_valid_beatspan import is_valid_beatspan
 from abjad.tools.quantizationtools.tempo_scaled_rational_to_milliseconds \
     import tempo_scaled_rational_to_milliseconds
-from abjad.tools.seqtools import flatten_sequence
-from abjad.tools.seqtools import iterate_sequence_pairwise_strict
-from abjad.tools.seqtools import yield_outer_product_of_sequences
+from abjad.tools.sequencetools import flatten_sequence
+from abjad.tools.sequencetools import iterate_sequence_pairwise_strict
+from abjad.tools.sequencetools import yield_outer_product_of_sequences
 from abjad.tools.spannertools import MultipartBeamSpanner
 from abjad.tools.tietools import TieSpanner
 from abjad.tools.tietools import get_tie_chain

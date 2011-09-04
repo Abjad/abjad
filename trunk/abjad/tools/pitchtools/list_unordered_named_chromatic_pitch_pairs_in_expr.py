@@ -1,4 +1,4 @@
-from abjad.tools import seqtools
+from abjad.tools import sequencetools
 from abjad.tools.pitchtools.list_named_chromatic_pitches_in_expr import list_named_chromatic_pitches_in_expr
 
 
@@ -20,6 +20,6 @@ def list_unordered_named_chromatic_pitch_pairs_in_expr(expr):
     Return generator.
     '''
 
-    for pair in seqtools.yield_all_unordered_pairs_of_sequence(sorted(list_named_chromatic_pitches_in_expr(expr))):
+    for pair in sequencetools.yield_all_unordered_pairs_of_sequence(sorted(list_named_chromatic_pitches_in_expr(expr))):
         yield pair
 

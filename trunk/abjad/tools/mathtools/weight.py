@@ -16,7 +16,7 @@ def weight(sequence, start = 0):
     Return nonnegative integer.
 
     .. versionchanged:: 2.0
-        renamed ``seqtools.weight()`` to
+        renamed ``sequencetools.weight()`` to
         ``mathtools.weight()``.
     '''
 

@@ -1,7 +1,7 @@
 from abjad.tools import durtools
 from abjad.tools import mathtools
 from abjad.tools import pitchtools
-from abjad.tools import seqtools
+from abjad.tools import sequencetools
 from abjad.tools import durtools
 from numbers import Number
 import fractions
@@ -72,8 +72,8 @@ def make_notes(pitches, durations, direction='big-endian'):
 
     # set lists of pitches and durations to the same length
     size = max(len(durations), len(pitches))
-    durations = seqtools.repeat_sequence_to_length(durations, size)
-    pitches = seqtools.repeat_sequence_to_length(pitches, size)
+    durations = sequencetools.repeat_sequence_to_length(durations, size)
+    pitches = sequencetools.repeat_sequence_to_length(pitches, size)
 
     durations = durtools.group_duration_tokens_by_implied_prolation(durations)
 

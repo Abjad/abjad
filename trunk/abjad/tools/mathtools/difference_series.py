@@ -11,7 +11,7 @@ def difference_series(sequence):
     Return list.
 
     .. versionchanged:: 2.0
-        renamed ``seqtools.difference_series()`` to
+        renamed ``sequencetools.difference_series()`` to
         ``mathtools.difference_series()``.
     '''
 

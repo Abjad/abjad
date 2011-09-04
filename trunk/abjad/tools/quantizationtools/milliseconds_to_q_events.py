@@ -1,7 +1,7 @@
 from abjad.tools.durtools import Offset
 from abjad.tools.mathtools import cumulative_sums_zero
 from abjad.tools.quantizationtools.QEvent import QEvent
-from abjad.tools.seqtools import sum_consecutive_sequence_elements_by_sign
+from abjad.tools.sequencetools import sum_consecutive_sequence_elements_by_sign
 
 
 def milliseconds_to_q_events(milliseconds):

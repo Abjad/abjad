@@ -1,5 +1,5 @@
 from abjad.core import _StrictComparator
-from abjad.tools import seqtools
+from abjad.tools import sequencetools
 from abjad.tools.pitcharraytools.PitchArrayCell.PitchArrayCell import PitchArrayCell
 from abjad.tools.pitcharraytools.PitchArrayColumn.PitchArrayColumn import PitchArrayColumn
 from abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow import PitchArrayRow
@@ -151,7 +151,7 @@ class PitchArray(_StrictComparator):
     def columns(self):
         columns = []
         rows = self.rows
-        for i, cells in enumerate(seqtools.zip_sequences_without_truncation(*self.rows)):
+        for i, cells in enumerate(sequencetools.zip_sequences_without_truncation(*self.rows)):
             column = PitchArrayColumn(cells)
             column._parent_array = self
             column._column_index = i
@@ -179,7 +179,7 @@ class PitchArray(_StrictComparator):
 
     @property
     def pitches(self):
-        return seqtools.flatten_sequence(self.pitches_by_row)
+        return sequencetools.flatten_sequence(self.pitches_by_row)
 
     @property
     def pitches_by_row(self):

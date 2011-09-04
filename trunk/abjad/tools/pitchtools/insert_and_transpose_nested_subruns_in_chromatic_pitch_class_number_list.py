@@ -1,4 +1,4 @@
-from abjad.tools import seqtools
+from abjad.tools import sequencetools
 from abjad.tools.pitchtools.get_named_chromatic_pitch_from_pitch_carrier import get_named_chromatic_pitch_from_pitch_carrier
 
 
@@ -36,10 +36,10 @@ def insert_and_transpose_nested_subruns_in_chromatic_pitch_class_number_list(not
     to allow inspection of the structural changes to *notes*
     immediately after the function returns.
     For this reason most calls to this function will be followed
-    by ``notes = seqtools.flatten_sequence(notes)``::
+    by ``notes = sequencetools.flatten_sequence(notes)``::
 
-        abjad> from abjad.tools import seqtools
-        abjad> notes = seqtools.flatten_sequence(notes)
+        abjad> from abjad.tools import sequencetools
+        abjad> notes = sequencetools.flatten_sequence(notes)
         abjad> notes
         [Note("c'4"), Note("f'4"), Note("g'4"), Note("d'4"), Note("e'4"), Note("c'4"), Note("fs'4"), Note("b'4"), Note("g'4"), Note("a'4"), Note("f'4"), Note("bf'4"), Note("fs'4"), Note("af'4"), Note("b'4"), Note("g'4"), Note("e'4")]
 
@@ -75,7 +75,7 @@ def insert_and_transpose_nested_subruns_in_chromatic_pitch_class_number_list(not
             anchor_written_duration = anchor_note.written_duration
             source_start_index = anchor_index + 1
             source_stop_index = source_start_index + subrun_length + 1
-            subrun_source = seqtools.iterate_sequence_cyclically_from_start_to_stop(
+            subrun_source = sequencetools.iterate_sequence_cyclically_from_start_to_stop(
                 notes, source_start_index, source_stop_index)
             subrun_intervals = _get_intervals_in_subrun(subrun_source)
             new_notes = _make_new_notes(
@@ -90,7 +90,7 @@ def insert_and_transpose_nested_subruns_in_chromatic_pitch_class_number_list(not
 def _get_intervals_in_subrun(subrun_source):
     subrun_source = list(subrun_source)
     result = [0]
-    for first, second in seqtools.iterate_sequence_pairwise_strict(subrun_source):
+    for first, second in sequencetools.iterate_sequence_pairwise_strict(subrun_source):
         first_pitch = get_named_chromatic_pitch_from_pitch_carrier(first)
         second_pitch = get_named_chromatic_pitch_from_pitch_carrier(second)
         interval = abs(second_pitch.numbered_chromatic_pitch) - \

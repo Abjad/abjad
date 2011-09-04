@@ -47,10 +47,10 @@ class Scale(NamedChromaticPitchClassSegment):
 
     @property
     def diatonic_interval_class_segment(self):
-        from abjad.tools import seqtools
+        from abjad.tools import sequencetools
         from abjad.tools import pitchtools
         dics = []
-        for left, right in seqtools.iterate_sequence_pairwise_wrapped(self):
+        for left, right in sequencetools.iterate_sequence_pairwise_wrapped(self):
             dic = left - right
             dics.append(dic)
         dicg = pitchtools.InversionEquivalentDiatonicIntervalClassSegment(dics)

@@ -11,8 +11,8 @@ from abjad.tools.mathtools import divisors
 from abjad.tools.mathtools import greatest_power_of_two_less_equal
 from abjad.tools.quantizationtools.QEvent import QEvent
 from abjad.tools.quantizationtools.is_valid_beatspan import is_valid_beatspan
-from abjad.tools.seqtools import all_are_numbers
-from abjad.tools.seqtools import flatten_sequence
+from abjad.tools.sequencetools import all_are_numbers
+from abjad.tools.sequencetools import flatten_sequence
 
 
 class QGrid(_Immutable):

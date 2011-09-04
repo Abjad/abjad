@@ -20,7 +20,7 @@ def cumulative_products(sequence):
     Return list.
 
     .. versionchanged:: 2.0
-        renamed ``seqtools.cumulative_products()`` to
+        renamed ``sequencetools.cumulative_products()`` to
         ``mathtools.cumulative_products()``.
     '''
 

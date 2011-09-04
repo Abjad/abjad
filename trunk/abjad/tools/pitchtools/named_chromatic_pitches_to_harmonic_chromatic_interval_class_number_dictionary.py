@@ -1,4 +1,4 @@
-from abjad.tools import seqtools
+from abjad.tools import sequencetools
 from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
 
 
@@ -26,7 +26,7 @@ def named_chromatic_pitches_to_harmonic_chromatic_interval_class_number_dictiona
             raise ValueError
         numbers.append(pitch.numbered_chromatic_pitch._chromatic_pitch_number)
 
-    pairs = seqtools.yield_all_unordered_pairs_of_sequence(numbers)
+    pairs = sequencetools.yield_all_unordered_pairs_of_sequence(numbers)
 
     intervals = []
 

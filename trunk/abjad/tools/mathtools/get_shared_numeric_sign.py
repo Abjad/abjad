@@ -26,7 +26,7 @@ def get_shared_numeric_sign(sequence):
     Return ``1``, ``-1``, ``0`` or none.
 
     .. versionchanged:: 2.0
-        renamed ``seqtools.sign()`` to
+        renamed ``sequencetools.sign()`` to
         ``mathtools.get_shared_numeric_sign()``.
     '''
 

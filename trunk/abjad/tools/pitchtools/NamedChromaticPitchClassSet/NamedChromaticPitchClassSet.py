@@ -118,10 +118,10 @@ class NamedChromaticPitchClassSet(_PitchClassSet):
 
     def order_by(self, npc_seg):
         from abjad.tools import pitchtools
-        from abjad.tools import seqtools
+        from abjad.tools import sequencetools
         if not len(self) == len(npc_seg):
             raise ValueError('set and segment must be of equal length.')
-        for npcs in seqtools.yield_all_permutations_of_sequence(self.named_chromatic_pitch_classes):
+        for npcs in sequencetools.yield_all_permutations_of_sequence(self.named_chromatic_pitch_classes):
             candidate_npc_seg = pitchtools.NamedChromaticPitchClassSegment(npcs)
             if candidate_npc_seg.is_equivalent_under_transposition(npc_seg):
                 return candidate_npc_seg

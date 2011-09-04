@@ -7,7 +7,7 @@ from abjad.tools.marktools._get_lilypond_command_mark_format_contributions_for_s
 from abjad.tools.markuptools._get_markup_format_contributions import _get_markup_format_contributions
 from abjad.tools.spannertools._get_spanner_format_contributions_for_leaf_slot import _get_spanner_format_contributions_for_leaf_slot
 from abjad.tools.marktools._get_stem_tremolo_format_contributions import _get_stem_tremolo_format_contributions
-from abjad.tools import seqtools
+from abjad.tools import sequencetools
 
 
 def _format_leaf(leaf):
@@ -86,7 +86,7 @@ def _get_leaf_body(leaf):
     result.append(_get_spanner_format_contributions_for_leaf_slot(client, 'right'))
     result.append(_get_comment_format_contributions_for_slot(client, 'right'))
     result = [x[1] for x in result]
-    result = seqtools.flatten_sequence(result)
+    result = sequencetools.flatten_sequence(result)
     result = [' '.join(result)]
     return ['leaf body', result]
 

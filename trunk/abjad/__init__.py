@@ -38,7 +38,7 @@ del mathtools
 del metertools
 del os
 del pitcharraytools
-del seqtools
+del sequencetools
 del sievetools
 del sys
 del threadtools

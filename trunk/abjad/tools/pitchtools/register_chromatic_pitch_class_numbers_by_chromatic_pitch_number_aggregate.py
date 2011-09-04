@@ -1,4 +1,4 @@
-from abjad.tools import seqtools
+from abjad.tools import sequencetools
 
 
 def register_chromatic_pitch_class_numbers_by_chromatic_pitch_number_aggregate(pitch_class_numbers, aggregate):
@@ -21,7 +21,7 @@ def register_chromatic_pitch_class_numbers_by_chromatic_pitch_number_aggregate(p
     if isinstance(pitch_class_numbers, list):
         result = [
             [p for p in aggregate if p % 12 == pc] for pc in [x % 12 for x in pitch_class_numbers]]
-        result = seqtools.flatten_sequence(result)
+        result = sequencetools.flatten_sequence(result)
     elif isinstance(pitch_class_numbers, int):
         result = [p for p in aggregate if p % 12 == pitch_class_numbers][0]
     else:

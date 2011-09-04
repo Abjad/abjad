@@ -4,7 +4,7 @@ from abjad.exceptions import AssignabilityError
 from abjad.tools import durtools
 from abjad.tools import leaftools
 from abjad.tools import mathtools
-from abjad.tools import seqtools
+from abjad.tools import sequencetools
 from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
 from abjad.tools.tuplettools.change_augmented_tuplets_in_expr_to_diminished import change_augmented_tuplets_in_expr_to_diminished
 from abjad.tools.tuplettools.change_diminished_tuplets_in_expr_to_augmented import change_diminished_tuplets_in_expr_to_augmented
@@ -15,7 +15,7 @@ def _make_tuplet_from_duration_with_proportions_and_avoid_dots(
     duration, divisions, prolation, direction = 'big-endian'):
 
     # reduce divisions relative to each other
-    divisions = seqtools.divide_sequence_elements_by_greatest_common_divisor(divisions)
+    divisions = sequencetools.divide_sequence_elements_by_greatest_common_divisor(divisions)
 
     # find basic prolated duration of note in tuplet
     #basic_prolated_duration = duration / sum(divisions)

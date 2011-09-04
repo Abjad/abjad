@@ -137,8 +137,8 @@ class NumberedChromaticPitchClassSegment(_PitchClassSegment):
 
         Return numbered chromatic pitch-class segment.
         '''
-        from abjad.tools import seqtools
-        pitch_classes = seqtools.rotate_sequence(tuple(self), n)
+        from abjad.tools import sequencetools
+        pitch_classes = sequencetools.rotate_sequence(tuple(self), n)
         return type(self)(pitch_classes)
 
     def transpose(self, n):

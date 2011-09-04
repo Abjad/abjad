@@ -2,7 +2,7 @@ from __future__ import division
 from abjad.tools import durtools
 from abjad.tools import mathtools
 from abjad.tools import pitchtools
-from abjad.tools import seqtools
+from abjad.tools import sequencetools
 from abjad.tools.leaftools._construct_tied_chord import _construct_tied_chord
 from abjad.tools.leaftools._construct_tied_note import _construct_tied_note
 from abjad.tools.leaftools._construct_tied_rest import _construct_tied_rest
@@ -121,10 +121,10 @@ def make_leaves(pitches, durations, direction='big-endian', tied_rests=False):
 
     # set lists of pitches and durations to the same length
     size = max(len(durations), len(pitches))
-    #durations = seqtools.resize(durations, size)
-    #pitches = seqtools.resize(pitches, size)
-    durations = seqtools.repeat_sequence_to_length(durations, size)
-    pitches = seqtools.repeat_sequence_to_length(pitches, size)
+    #durations = sequencetools.resize(durations, size)
+    #pitches = sequencetools.resize(pitches, size)
+    durations = sequencetools.repeat_sequence_to_length(durations, size)
+    pitches = sequencetools.repeat_sequence_to_length(pitches, size)
 
     durations = durtools.group_duration_tokens_by_implied_prolation(durations)
 

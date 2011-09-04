@@ -255,7 +255,7 @@ def _add_versionchanged(old_package, old_function, new_package, new_function):
 
 
 def _debug():
-   file_name = os.path.join(ABJADPATH, 'tools/seqtools/zip_nontruncating.py')
+   file_name = os.path.join(ABJADPATH, 'tools/sequencetools/zip_nontruncating.py')
    os.system('ls -l %s' % file_name)
    print ''
 

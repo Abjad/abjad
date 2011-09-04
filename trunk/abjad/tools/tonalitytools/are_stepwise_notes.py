@@ -1,7 +1,7 @@
 from abjad.tools.notetools.Note import Note
 from abjad.tools import componenttools
 from abjad.tools import pitchtools
-from abjad.tools import seqtools
+from abjad.tools import sequencetools
 
 
 def are_stepwise_notes(*expr):
@@ -27,7 +27,7 @@ def are_stepwise_notes(*expr):
         ``tonalitytools.are_stepwise_notes()``.
     '''
 
-    for left, right in seqtools.iterate_sequence_pairwise_strict(
+    for left, right in sequencetools.iterate_sequence_pairwise_strict(
         componenttools.iterate_components_forward_in_expr(expr, Note)):
         try:
             assert not (left.written_pitch == right.written_pitch)

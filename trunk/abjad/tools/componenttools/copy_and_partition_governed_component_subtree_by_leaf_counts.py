@@ -1,5 +1,5 @@
 from abjad.tools.mathtools import cumulative_sums_zero
-from abjad.tools.seqtools import iterate_sequence_pairwise_strict
+from abjad.tools.sequencetools import iterate_sequence_pairwise_strict
 
 
 # TODO: Implement in-place containertools.partition_components_by_counts() #

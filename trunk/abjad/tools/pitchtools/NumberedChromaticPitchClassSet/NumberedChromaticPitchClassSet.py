@@ -1,4 +1,4 @@
-from abjad.tools import seqtools
+from abjad.tools import sequencetools
 from abjad.tools.pitchtools._PitchClassSet import _PitchClassSet
 
 
@@ -88,7 +88,7 @@ class  NumberedChromaticPitchClassSet(_PitchClassSet):
         '''
         from abjad.tools import pitchtools
         interval_class_set = set([])
-        for first_pc, second_pc in seqtools.yield_all_unordered_pairs_of_sequence(self):
+        for first_pc, second_pc in sequencetools.yield_all_unordered_pairs_of_sequence(self):
             interval_class = first_pc - second_pc
             interval_class_set.add(interval_class)
         interval_class_set = pitchtools.InversionEquivalentChromaticIntervalClassSet(
@@ -107,7 +107,7 @@ class  NumberedChromaticPitchClassSet(_PitchClassSet):
         '''
         from abjad.tools import pitchtools
         interval_classes = []
-        for first_pc, second_pc in seqtools.yield_all_unordered_pairs_of_sequence(self):
+        for first_pc, second_pc in sequencetools.yield_all_unordered_pairs_of_sequence(self):
             interval_class = first_pc - second_pc
             interval_classes.append(interval_class)
         return pitchtools.InversionEquivalentChromaticIntervalClassVector(interval_classes)

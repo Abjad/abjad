@@ -70,7 +70,7 @@ def make_sphinx_toc():
       'mathtools',
       'metertools',
       'pitcharraytools', 
-      'seqtools',
+      'sequencetools',
       'sievetools', 
       'tempotools',
       'threadtools',

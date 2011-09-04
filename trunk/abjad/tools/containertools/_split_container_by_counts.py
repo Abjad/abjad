@@ -1,6 +1,6 @@
 from abjad.tools.containertools.Container import Container
 from abjad.tools.leaftools._Leaf import _Leaf
-from abjad.tools import seqtools
+from abjad.tools import sequencetools
 from abjad.tools.componenttools._split_component_at_index import _split_component_at_index
 from abjad.tools.componenttools.all_are_components import all_are_components
 
@@ -19,7 +19,7 @@ def _split_container_by_counts(components, counts, spanners = 'unfractured', cyc
     assert isinstance(components, Container)
     components = [components]
 
-    assert seqtools.all_are_positive_integers(counts)
+    assert sequencetools.all_are_positive_integers(counts)
 
     # handle empty counts boundary case
     if counts == []:
