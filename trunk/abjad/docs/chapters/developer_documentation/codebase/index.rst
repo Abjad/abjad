@@ -22,7 +22,7 @@ reasoning implemented in Abjad resides. ::
     componenttools    iotools           metertools        scoretools        tietools
     containertools    layouttools       musicxmltools     sequencetools          tonalitytools
     contexttools      leaftools         notetools         sievetools        tuplettools
-    durtools          lilyfiletools     pitcharraytools   skiptools         verticalitytools
+    durationtools          lilyfiletools     pitcharraytools   skiptools         verticalitytools
     gracetools        marktools         pitchtools        spannertools      voicetools
 
 

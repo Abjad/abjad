@@ -4,7 +4,7 @@ from abjad.core import _StrictComparator
 from abjad.interfaces import ParentageInterface
 from abjad.interfaces import _NavigationInterface
 from abjad.interfaces import _OffsetInterface
-from abjad.tools import durtools
+from abjad.tools import durationtools
 import copy
 import fractions
 

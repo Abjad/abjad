@@ -1,5 +1,5 @@
 from abjad import Fraction
-from abjad.tools.durtools import is_binary_rational
+from abjad.tools.durationtools import is_binary_rational
 from abjad.tools.mathtools import is_nonnegative_integer_power_of_two
 
 

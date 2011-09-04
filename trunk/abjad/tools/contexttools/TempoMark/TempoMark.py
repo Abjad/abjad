@@ -1,6 +1,6 @@
-from abjad.tools import durtools
+from abjad.tools import durationtools
 from abjad.tools.contexttools.ContextMark import ContextMark
-from abjad.tools import durtools
+from abjad.tools import durationtools
 import numbers
 
 
@@ -43,16 +43,16 @@ class TempoMark(ContextMark):
             self._target_context = Score
         if len(args) == 1 and isinstance(args[0], type(self)):
             tempo_indication = args[0]
-            duration = durtools.Duration(tempo_indication.duration)
+            duration = durationtools.Duration(tempo_indication.duration)
             units_per_minute = tempo_indication.units_per_minute
         elif len(args) == 2:
             duration, units_per_minute = args
-            #assert isinstance(duration, durtools.Duration)
+            #assert isinstance(duration, durationtools.Duration)
             try:
-                duration = durtools.Duration(duration)
+                duration = durationtools.Duration(duration)
             except TypeError:
-                duration = durtools.Duration(*duration)
-            assert isinstance(units_per_minute, (int, long, float, durtools.Duration))
+                duration = durationtools.Duration(*duration)
+            assert isinstance(units_per_minute, (int, long, float, durationtools.Duration))
             #duration = duration
             units_per_minute = units_per_minute
         else:
@@ -67,9 +67,9 @@ class TempoMark(ContextMark):
             new_quarters_per_minute = self.quarters_per_minute + expr.quarters_per_minute
             minimum_denominator = min((self.duration.denominator, expr.duration.denominator))
             new_units_per_minute, new_duration_denominator = \
-                durtools.rational_to_duration_pair_with_specified_integer_denominator(
+                durationtools.rational_to_duration_pair_with_specified_integer_denominator(
                 new_quarters_per_minute / 4, minimum_denominator)
-            new_duration = durtools.Duration(1, new_duration_denominator)
+            new_duration = durationtools.Duration(1, new_duration_denominator)
             new_tempo_indication = type(self)(new_duration, new_units_per_minute)
             return new_tempo_indication
 
@@ -89,9 +89,9 @@ class TempoMark(ContextMark):
         return False
 
     def __mul__(self, multiplier):
-        if isinstance(multiplier, (int, float, durtools.Duration)):
+        if isinstance(multiplier, (int, float, durationtools.Duration)):
             new_units_per_minute = multiplier * self.units_per_minute
-            new_duration = durtools.Duration(self.duration)
+            new_duration = durationtools.Duration(self.duration)
             new_tempo_indication = type(self)(new_duration, new_units_per_minute)
             return new_tempo_indication
 
@@ -100,9 +100,9 @@ class TempoMark(ContextMark):
             new_quarters_per_minute = self.quarters_per_minute - expr.quarters_per_minute
             minimum_denominator = min((self.duration.denominator, expr.duration.denominator))
             new_units_per_minute, new_duration_denominator = \
-                durtools.rational_to_duration_pair_with_specified_integer_denominator(
+                durationtools.rational_to_duration_pair_with_specified_integer_denominator(
                 new_quarters_per_minute / 4, minimum_denominator)
-            new_duration = durtools.Duration(1, new_duration_denominator)
+            new_duration = durationtools.Duration(1, new_duration_denominator)
             new_tempo_indication = type(self)(new_duration, new_units_per_minute)
             return new_tempo_indication
 
@@ -115,7 +115,7 @@ class TempoMark(ContextMark):
     @property
     def _dotted(self):
         '''Dotted numeral representation of duration.'''
-        return durtools.assignable_rational_to_lilypond_duration_string(self.duration)
+        return durationtools.assignable_rational_to_lilypond_duration_string(self.duration)
 
     @property
     def _equation(self):
@@ -144,9 +144,9 @@ class TempoMark(ContextMark):
             return self._duration
         def fset(self, duration):
             try:
-                duration = durtools.Duration(duration)
+                duration = durationtools.Duration(duration)
             except TypeError:
-                duration = durtools.Duration(*duration)
+                duration = durationtools.Duration(*duration)
             self._duration = duration
         return property(**locals())
 
@@ -174,7 +174,7 @@ class TempoMark(ContextMark):
 
         Return fraction.
         '''
-        return durtools.Duration(1, 4) / self.duration * self.units_per_minute
+        return durationtools.Duration(1, 4) / self.duration * self.units_per_minute
 
     @apply
     def units_per_minute():

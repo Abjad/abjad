@@ -1,4 +1,4 @@
-from abjad.tools.durtools import Duration
+from abjad.tools.durationtools import Duration
 
 
 # TODO: implement corresponding function to rest left half

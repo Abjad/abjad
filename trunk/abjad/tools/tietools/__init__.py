@@ -5,7 +5,7 @@
       abjad.components
       abjad.exceptions
       abjad.tools.componenttools
-      abjad.tools.durtools
+      abjad.tools.durationtools
       abjad.tools.spannertools
 '''
 

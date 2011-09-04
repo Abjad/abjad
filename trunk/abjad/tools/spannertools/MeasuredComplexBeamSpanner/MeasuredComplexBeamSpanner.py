@@ -1,6 +1,6 @@
 from abjad.tools.spannertools.ComplexBeamSpanner import ComplexBeamSpanner
 from abjad.tools.spannertools.MeasuredComplexBeamSpanner._MeasuredComplexBeamSpannerFormatInterface import _MeasuredComplexBeamSpannerFormatInterface
-from abjad.tools import durtools
+from abjad.tools import durationtools
 
 
 class MeasuredComplexBeamSpanner(ComplexBeamSpanner):

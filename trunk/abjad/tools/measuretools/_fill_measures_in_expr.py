@@ -1,9 +1,9 @@
 from abjad.tools.notetools.Note import Note
-from abjad.tools import durtools
+from abjad.tools import durationtools
 from abjad.tools import leaftools
 from abjad.tools import mathtools
 from abjad.tools.skiptools.Skip import Skip
-from abjad.tools import durtools
+from abjad.tools import durationtools
 from numbers import Number
 
 
@@ -44,7 +44,7 @@ def _fill_measures_in_expr(expr, mode, iterctrl = lambda measure, i: True):
         _measures_populate_meter_series(expr, iterctrl)
     elif mode == 'skip':
         _measures_populate_skip(expr, iterctrl)
-    #elif durtools.is_duration_token(mode):
+    #elif durationtools.is_duration_token(mode):
     elif isinstance(mode, (Number, tuplet)):
         _measures_populate_duration_train(expr, mode, iterctrl)
     elif mode is None:

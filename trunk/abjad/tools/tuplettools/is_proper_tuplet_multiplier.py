@@ -34,7 +34,7 @@ def is_proper_tuplet_multiplier(multiplier):
     aren't.
 
     .. versionchanged:: 2.0
-        renamed ``durtools.is_tuplet_multiplier()`` to
+        renamed ``durationtools.is_tuplet_multiplier()`` to
         ``tuplettools.is_proper_tuplet_multiplier()``.
     '''
 

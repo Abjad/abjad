@@ -1,4 +1,4 @@
-from abjad.tools import durtools
+from abjad.tools import durationtools
 
 
 def is_bar_line_crossing_leaf(leaf):

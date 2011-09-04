@@ -1,6 +1,6 @@
 from abjad.exceptions import MissingTempoError
 from abjad.interfaces._Interface import _Interface
-from abjad.tools import durtools
+from abjad.tools import durationtools
 
 
 class _OffsetInterface(_Interface):
@@ -31,8 +31,8 @@ class _OffsetInterface(_Interface):
             if prev:
                 self._start_in_seconds = prev._offset._stop_in_seconds
             else:
-                #self._start_in_seconds = durtools.Duration(0)
-                self._start_in_seconds = durtools.Offset(0)
+                #self._start_in_seconds = durationtools.Duration(0)
+                self._start_in_seconds = durationtools.Offset(0)
             # this one case is possible for containers only
             if self._start_in_seconds is None:
                 raise MissingTempoError
@@ -45,8 +45,8 @@ class _OffsetInterface(_Interface):
         if prev:
             self._start = prev._offset._stop
         else:
-            #self._start = durtools.Duration(0)
-            self._start = durtools.Offset(0)
+            #self._start = durationtools.Duration(0)
+            self._start = durationtools.Offset(0)
         self._stop = self._start + self._client.prolated_duration
 
     ### PUBLIC ATTRIBUTES ###

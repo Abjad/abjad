@@ -1,5 +1,5 @@
 from abjad.tools import contexttools
-from abjad.tools import durtools
+from abjad.tools import durationtools
 from abjad.tools.containertools.Container import Container
 from abjad.tools.measuretools.Measure._MeasureFormatter import _MeasureFormatter
 import copy
@@ -82,7 +82,7 @@ class Measure(Container):
         Container.__delitem__(self, i)
         try:
             naive_meter = self.preprolated_duration
-            better_meter = durtools.rational_to_duration_pair_with_specified_integer_denominator(
+            better_meter = durationtools.rational_to_duration_pair_with_specified_integer_denominator(
                 naive_meter, old_denominator)
             better_meter = contexttools.TimeSignatureMark(better_meter)
             contexttools.detach_time_signature_marks_attached_to_component(self)

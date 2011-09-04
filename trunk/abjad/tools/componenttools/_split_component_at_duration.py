@@ -1,8 +1,8 @@
 from abjad.exceptions import ContainmentError
-from abjad.tools import durtools
+from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools.componenttools._split_component_at_index import _split_component_at_index
-from abjad.tools import durtools
+from abjad.tools import durationtools
 
 
 def _split_component_at_duration(component, duration, spanners = 'unfractured', tie_after = False):
@@ -24,7 +24,7 @@ def _split_component_at_duration(component, duration, spanners = 'unfractured', 
         import fuse_leaves_in_tie_chain_by_immediate_parent_big_endian
     from abjad.tools.measuretools.Measure import Measure
 
-    duration = durtools.Duration(duration)
+    duration = durationtools.Duration(duration)
     assert 0 <= duration
 
     # if zero duration then return component
@@ -52,7 +52,7 @@ def _split_component_at_duration(component, duration, spanners = 'unfractured', 
         split_point_denominator = split_point_in_measure.denominator
         if measure.is_nonbinary:
             measure_multiplier = measure.multiplier
-            split_point_multiplier = durtools.positive_integer_to_implied_prolation_multipler(
+            split_point_multiplier = durationtools.positive_integer_to_implied_prolation_multipler(
                 split_point_denominator)
             if not measure_multiplier == split_point_multiplier:
                 raise NotImplementedError

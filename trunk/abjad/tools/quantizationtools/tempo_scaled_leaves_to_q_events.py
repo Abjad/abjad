@@ -4,7 +4,7 @@ from abjad import Rest
 from abjad.tools.componenttools import all_are_contiguous_components_in_same_thread
 from abjad.tools.contexttools import TempoMark
 from abjad.tools.contexttools import get_effective_tempo
-from abjad.tools.durtools import Offset
+from abjad.tools.durationtools import Offset
 from abjad.tools.quantizationtools.QEvent import QEvent
 from abjad.tools.quantizationtools.millisecond_pitch_pairs_to_q_events \
     import millisecond_pitch_pairs_to_q_events

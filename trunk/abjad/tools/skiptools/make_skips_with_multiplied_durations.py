@@ -1,4 +1,4 @@
-from abjad.tools import durtools
+from abjad.tools import durationtools
 from abjad.tools.skiptools.Skip import Skip
 
 
@@ -21,11 +21,11 @@ def make_skips_with_multiplied_durations(written_duration, multiplied_durations)
 
     # initialize skips and written duration
     skips = []
-    written_duration = durtools.Duration(written_duration)
+    written_duration = durationtools.Duration(written_duration)
 
     # make skips
     for multiplied_duration in multiplied_durations:
-        multiplied_duration = durtools.Duration(multiplied_duration)
+        multiplied_duration = durationtools.Duration(multiplied_duration)
         skip = Skip(written_duration)
         multiplier = multiplied_duration / written_duration
         skip.duration_multiplier = multiplier

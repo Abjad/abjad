@@ -1,4 +1,4 @@
-from abjad.tools import durtools
+from abjad.tools import durationtools
 from abjad.tools import mathtools
 
 
@@ -31,7 +31,7 @@ def is_meter_with_equivalent_binary_representation(expr):
         return False
 
     # express meter as rational and reduce to relatively prime terms
-    meter_as_rational = durtools.Duration(expr.numerator, expr.denominator)
+    meter_as_rational = durationtools.Duration(expr.numerator, expr.denominator)
 
     # return True if reduced meter denominator is power of two
     return mathtools.is_nonnegative_integer_power_of_two(meter_as_rational.denominator)

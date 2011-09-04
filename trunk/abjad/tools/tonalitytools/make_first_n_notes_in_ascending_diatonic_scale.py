@@ -1,10 +1,10 @@
 from abjad.tools.notetools.Note import Note
-from abjad.tools import durtools
+from abjad.tools import durationtools
 from abjad.tools import pitchtools
 from abjad.tools.notetools.make_notes import make_notes
 
 
-def make_first_n_notes_in_ascending_diatonic_scale(count, written_duration = durtools.Duration(1, 8), key_signature = None):
+def make_first_n_notes_in_ascending_diatonic_scale(count, written_duration = durationtools.Duration(1, 8), key_signature = None):
     r'''Construct `count` notes with `written_duration`
     according to `key_signature`::
 

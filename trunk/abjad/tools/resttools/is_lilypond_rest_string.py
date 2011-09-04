@@ -1,4 +1,4 @@
-from abjad.tools.durtools.is_lilypond_duration_string import lilypond_duration_string_regex_body
+from abjad.tools.durationtools.is_lilypond_duration_string import lilypond_duration_string_regex_body
 import re
 
 

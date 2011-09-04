@@ -1,5 +1,5 @@
 from abjad.checks._Check import _Check
-from abjad.tools import durtools
+from abjad.tools import durationtools
 
 
 class BeamedQuarterNoteCheck(_Check):
@@ -17,7 +17,7 @@ class BeamedQuarterNoteCheck(_Check):
                 beam = spannertools.get_beam_spanner_attached_to_component(leaf)
                 #if not beam.__class__.__name__ == 'DuratedComplexBeam':
                 if not isinstance(beam, spannertools.DuratedComplexBeamSpanner):
-                    flag_count = durtools.rational_to_flag_count(leaf.written_duration)
+                    flag_count = durationtools.rational_to_flag_count(leaf.written_duration)
                     if flag_count < 1:
                         violators.append(leaf)
         return violators, total

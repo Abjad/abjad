@@ -191,22 +191,22 @@ class Container(_Component):
 
     @property
     def contents_duration(self):
-        from abjad.tools import durtools
+        from abjad.tools import durationtools
         if self.is_parallel:
-            return max([durtools.Duration(0)] + [x.preprolated_duration for x in self])
+            return max([durationtools.Duration(0)] + [x.preprolated_duration for x in self])
         else:
-            duration = durtools.Duration(0)
+            duration = durationtools.Duration(0)
             for x in self:
                 duration += x.preprolated_duration
             return duration
 
     @property
     def duration_in_seconds(self):
-        from abjad.tools import durtools
+        from abjad.tools import durationtools
         if self.is_parallel:
-            return max([durtools.Duration(0)] + [x.duration_in_seconds for x in self])
+            return max([durationtools.Duration(0)] + [x.duration_in_seconds for x in self])
         else:
-            duration = durtools.Duration(0)
+            duration = durationtools.Duration(0)
             for leaf in self.leaves:
                 duration += leaf.duration_in_seconds
             return duration

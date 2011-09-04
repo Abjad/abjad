@@ -41,14 +41,14 @@ You can run ``abj-grep`` from any directory on your system; you needn't be
 in the Abjad source directories when you call ``abj-grep``. ::
 
     $ abj-grep 'is_assignable('
-    leaf/duration.py:111:            if not durtools.is_assignable(rational):
-    tempo/indication.py:67:            assert durtools.is_assignable(arg)
-    tools/check/are_scalable.py:12:            if not durtools.is_assignable(candidate_duration):
-    tools/durtools/is_assignable.py:5:def is_assignable(duration):
-    tools/durtools/prolated_to_written.py:2:from abjad.tools.durtools.is_assignable import is_assignable
-    tools/durtools/prolated_to_written.py:15:    if is_assignable(prolated_duration):
-    tools/tietools/duration_change.py:28:    if durtools.is_assignable(new_written_duration):
-    tools/tuplettools/contents_scale.py:30:    if durtools.is_assignable(multiplier):
+    leaf/duration.py:111:            if not durationtools.is_assignable(rational):
+    tempo/indication.py:67:            assert durationtools.is_assignable(arg)
+    tools/check/are_scalable.py:12:            if not durationtools.is_assignable(candidate_duration):
+    tools/durationtools/is_assignable.py:5:def is_assignable(duration):
+    tools/durationtools/prolated_to_written.py:2:from abjad.tools.durationtools.is_assignable import is_assignable
+    tools/durationtools/prolated_to_written.py:15:    if is_assignable(prolated_duration):
+    tools/tietools/duration_change.py:28:    if durationtools.is_assignable(new_written_duration):
+    tools/tuplettools/contents_scale.py:30:    if durationtools.is_assignable(multiplier):
 
 
 Removing old ``*.pyc`` files with ``abj-rmpycs``

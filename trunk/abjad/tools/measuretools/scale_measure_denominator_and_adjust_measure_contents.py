@@ -1,5 +1,5 @@
 from abjad.tools import contexttools
-from abjad.tools import durtools
+from abjad.tools import durationtools
 from abjad.tools import metertools
 from abjad.tools.measuretools.scale_contents_of_measures_in_expr import scale_contents_of_measures_in_expr
 
@@ -64,12 +64,12 @@ def scale_measure_denominator_and_adjust_measure_contents(measure, new_denominat
         old_meter_duration, factor = new_denominator_factor)
 
     # find new measure multiplier
-    new_measure_multiplier = durtools.positive_integer_to_implied_prolation_multipler(
+    new_measure_multiplier = durationtools.positive_integer_to_implied_prolation_multipler(
         new_denominator_factor)
 
     # inverse scale measure ... but throw away resultant meter
     numerator, denominator = new_measure_multiplier.numerator, new_measure_multiplier.denominator
-    inverse_measure_multiplier = durtools.Duration(denominator, numerator)
+    inverse_measure_multiplier = durationtools.Duration(denominator, numerator)
     scale_contents_of_measures_in_expr(measure, inverse_measure_multiplier)
 
     # assign new meter

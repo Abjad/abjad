@@ -1,7 +1,7 @@
-from abjad.tools import durtools
+from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools.contexttools.ContextMark import ContextMark
-from abjad.tools import durtools
+from abjad.tools import durationtools
 import numbers
 
 
@@ -58,7 +58,7 @@ class TimeSignatureMark(ContextMark):
         if len(args) == 1 and isinstance(args[0], type(self)):
             meter = args[0]
             numerator, denominator = meter.numerator, meter.denominator
-        elif len(args) == 1 and isinstance(args[0], durtools.Duration):
+        elif len(args) == 1 and isinstance(args[0], durationtools.Duration):
             numerator, denominator = args[0].numerator, args[0].denominator
         elif len(args) == 1 and isinstance(args[0], tuple):
             numerator, denominator = args[0][0], args[0][1]
@@ -72,7 +72,7 @@ class TimeSignatureMark(ContextMark):
 
         # initialize partial from **kwargs
         partial = kwargs.get('partial', None)
-        if not isinstance(partial, (type(None), durtools.Duration)):
+        if not isinstance(partial, (type(None), durationtools.Duration)):
             raise TypeError
         self._partial = partial
         if partial is not None:
@@ -87,7 +87,7 @@ class TimeSignatureMark(ContextMark):
         self.suppress = suppress
 
         # initialize derived attributes
-        _multiplier = durtools.positive_integer_to_implied_prolation_multipler(self.denominator)
+        _multiplier = durationtools.positive_integer_to_implied_prolation_multipler(self.denominator)
         self._multiplier = _multiplier
         self._is_nonbinary = not mathtools.is_nonnegative_integer_power_of_two(self.denominator)
 
@@ -194,7 +194,7 @@ class TimeSignatureMark(ContextMark):
 
         Return fraction.
         '''
-        return durtools.Duration(self.numerator, self.denominator)
+        return durationtools.Duration(self.numerator, self.denominator)
 
     @property
     def format(self):
@@ -213,7 +213,7 @@ class TimeSignatureMark(ContextMark):
         else:
             result = []
             result.append(r'\time %s/%s' % (self.numerator, self.denominator))
-            duration_string = durtools.assignable_rational_to_lilypond_duration_string(self.partial)
+            duration_string = durationtools.assignable_rational_to_lilypond_duration_string(self.partial)
             partial_directive = r'\partial %s' % duration_string
             result.append(partial_directive)
             return result

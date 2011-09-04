@@ -1,7 +1,7 @@
 from abjad.core import _Immutable
 from abjad.core import _StrictComparator
 from abjad.tools import tempotools
-from abjad.tools import durtools
+from abjad.tools import durationtools
 
 
 class SpacingIndication(_StrictComparator, _Immutable):
@@ -54,7 +54,7 @@ class SpacingIndication(_StrictComparator, _Immutable):
         '''Read-only proportional notation duration at 60 MM.'''
         indication = self.tempo_indication
         duration = self.proportional_notation_duration
-        scalar = indication.duration / indication.units_per_minute * 60 / durtools.Duration(1, 4)
+        scalar = indication.duration / indication.units_per_minute * 60 / durationtools.Duration(1, 4)
         return scalar * self.proportional_notation_duration
 
     @property

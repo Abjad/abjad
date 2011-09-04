@@ -63,7 +63,7 @@ Changes to the public interface:
 *   New public helpers: 
 
     *  ``construct.notes_curve()``
-    *  ``durtools.rationalize()``
+    *  ``durationtools.rationalize()``
     *  ``iterate.tie_chains()``
     *  ``list_helpers()``
     *  ``mathtools.interpolate_divide()``

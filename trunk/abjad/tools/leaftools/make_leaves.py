@@ -1,5 +1,5 @@
 from __future__ import division
-from abjad.tools import durtools
+from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import pitchtools
 from abjad.tools import sequencetools
@@ -7,7 +7,7 @@ from abjad.tools.leaftools._construct_tied_chord import _construct_tied_chord
 from abjad.tools.leaftools._construct_tied_note import _construct_tied_note
 from abjad.tools.leaftools._construct_tied_rest import _construct_tied_rest
 from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
-from abjad.tools import durtools
+from abjad.tools import durationtools
 from numbers import Number
 
 
@@ -112,12 +112,12 @@ def make_leaves(pitches, durations, direction='big-endian', tied_rests=False):
     if pitchtools.is_named_chromatic_pitch_token(pitches):
         pitches = [pitches]
 
-    #if durtools.is_duration_token(durations):
+    #if durationtools.is_duration_token(durations):
     if isinstance(durations, (Number, tuple)):
         durations = [durations]
 
     # change Durations to duration tokens.
-    durations = [durtools.duration_token_to_duration_pair(dur) for dur in durations]
+    durations = [durationtools.duration_token_to_duration_pair(dur) for dur in durations]
 
     # set lists of pitches and durations to the same length
     size = max(len(durations), len(pitches))
@@ -126,7 +126,7 @@ def make_leaves(pitches, durations, direction='big-endian', tied_rests=False):
     durations = sequencetools.repeat_sequence_to_length(durations, size)
     pitches = sequencetools.repeat_sequence_to_length(pitches, size)
 
-    durations = durtools.group_duration_tokens_by_implied_prolation(durations)
+    durations = durationtools.group_duration_tokens_by_implied_prolation(durations)
 
     result = []
     for ds in durations:
@@ -145,8 +145,8 @@ def make_leaves(pitches, durations, direction='big-endian', tied_rests=False):
             denominator = ds[0][1]
             numerator = mathtools.greatest_power_of_two_less_equal(denominator)
             multiplier = (numerator, denominator)
-            ratio = 1 / durtools.Duration(*multiplier)
-            ds = [ratio * durtools.Duration(*d) for d in ds]
+            ratio = 1 / durationtools.Duration(*multiplier)
+            ds = [ratio * durationtools.Duration(*d) for d in ds]
             # make leaves
             leaves = []
             for pch, dur in zip(ps, ds):

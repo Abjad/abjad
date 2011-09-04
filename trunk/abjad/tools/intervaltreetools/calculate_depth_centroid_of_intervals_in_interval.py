@@ -1,4 +1,4 @@
-from abjad.tools.durtools import Offset
+from abjad.tools.durationtools import Offset
 from abjad.tools.intervaltreetools.BoundedInterval import BoundedInterval
 from abjad.tools.intervaltreetools.IntervalTree import IntervalTree
 from abjad.tools.intervaltreetools.all_are_intervals_or_trees_or_empty import all_are_intervals_or_trees_or_empty

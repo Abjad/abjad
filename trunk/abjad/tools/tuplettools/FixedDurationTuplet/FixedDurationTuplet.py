@@ -1,5 +1,5 @@
 from abjad.tools.tuplettools.Tuplet.Tuplet import Tuplet
-from abjad.tools import durtools
+from abjad.tools import durationtools
 
 
 class FixedDurationTuplet(Tuplet):
@@ -61,11 +61,11 @@ class FixedDurationTuplet(Tuplet):
             return self._target_duration
         def fset(self, expr):
             if isinstance(expr, (int, long)):
-                rational = durtools.Duration(expr)
+                rational = durationtools.Duration(expr)
             elif isinstance(expr, tuple):
-                rational = durtools.Duration(*expr)
+                rational = durationtools.Duration(*expr)
             elif hasattr(expr, 'numerator') and hasattr(expr, 'denominator'):
-                rational = durtools.Duration(expr)
+                rational = durationtools.Duration(expr)
             else:
                 raise ValueError('Can not set tuplet rational from %s.' % str(expr))
             if 0 < rational:

@@ -1,4 +1,4 @@
-from abjad.tools.durtools.is_assignable_rational import is_assignable_rational
+from abjad.tools.durationtools.is_assignable_rational import is_assignable_rational
 
 
 def all_are_components_scalable_by_multiplier(components, multiplier):
@@ -19,7 +19,7 @@ def all_are_components_scalable_by_multiplier(components, multiplier):
     Return boolean.
 
     .. versionchanged:: 2.0
-        renamed ``durtools.are_scalable()`` to
+        renamed ``durationtools.are_scalable()`` to
         ``componenttools.all_are_components_scalable_by_multiplier()``.
     '''
 

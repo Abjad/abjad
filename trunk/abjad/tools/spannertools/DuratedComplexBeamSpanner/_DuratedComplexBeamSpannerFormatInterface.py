@@ -1,4 +1,4 @@
-from abjad.tools import durtools
+from abjad.tools import durationtools
 from abjad.tools.spannertools.ComplexBeamSpanner._ComplexBeamSpannerFormatInterface import _ComplexBeamSpannerFormatInterface
 
 
@@ -22,14 +22,14 @@ class _DuratedComplexBeamSpannerFormatInterface(_ComplexBeamSpannerFormatInterfa
                 assert isinstance(spanner.span, int)
                 left = spanner.span
                 #right = leaf.duration._flags
-                right = durtools.rational_to_flag_count(leaf.written_duration)
+                right = durationtools.rational_to_flag_count(leaf.written_duration)
             # just left of span gap
             elif spanner._duration_offset_in_me(leaf) + leaf.prolated_duration in \
                 spanner._span_points and not spanner._duration_offset_in_me(leaf) in \
                 spanner._span_points:
                 assert isinstance(spanner.span, int)
                 #left = leaf.duration._flags
-                left = durtools.rational_to_flag_count(leaf.written_duration)
+                left = durationtools.rational_to_flag_count(leaf.written_duration)
                 right = spanner.span
             else:
                 left, right = self._get_left_right_for_interior_leaf(leaf)

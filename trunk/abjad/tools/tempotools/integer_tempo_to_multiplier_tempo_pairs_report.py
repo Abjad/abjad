@@ -1,4 +1,4 @@
-from abjad.tools import durtools
+from abjad.tools import durationtools
 from abjad.tools.tempotools.integer_tempo_to_multiplier_tempo_pairs import integer_tempo_to_multiplier_tempo_pairs
 
 
@@ -51,7 +51,7 @@ def integer_tempo_to_multiplier_tempo_pairs_report(integer_tempo,
       integer_tempo, maximum_numerator, maximum_denominator)
 
     for multiplier, tempo in pairs:
-      prolation_string = durtools.rational_to_prolation_string(multiplier)
+      prolation_string = durationtools.rational_to_prolation_string(multiplier)
       print '%s\t%s' % (prolation_string, tempo)
 
 

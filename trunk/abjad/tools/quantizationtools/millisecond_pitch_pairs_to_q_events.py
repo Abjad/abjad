@@ -1,7 +1,7 @@
 from collections import Iterable
 from itertools import groupby
 from numbers import Number
-from abjad.tools.durtools import Offset
+from abjad.tools.durationtools import Offset
 from abjad.tools.mathtools import cumulative_sums_zero
 from abjad.tools.quantizationtools.QEvent import QEvent
 

@@ -1,4 +1,4 @@
-from abjad.tools import durtools
+from abjad.tools import durationtools
 from abjad.tools.componenttools.copy_components_and_fracture_crossing_spanners import copy_components_and_fracture_crossing_spanners
 
 
@@ -137,7 +137,7 @@ def copy_components_and_immediate_parent_of_first_component(components):
     if parent_denominator is not None:
         old_meter = contexttools.get_effective_time_signature(result)
         old_meter_pair = (old_meter.numerator, old_meter.denominator)
-        new_meter = durtools.rational_to_duration_pair_with_specified_integer_denominator(
+        new_meter = durationtools.rational_to_duration_pair_with_specified_integer_denominator(
             old_meter_pair, parent_denominator)
         new_time_signature = contexttools.TimeSignatureMark(new_meter)
         contexttools.detach_time_signature_marks_attached_to_component(result)

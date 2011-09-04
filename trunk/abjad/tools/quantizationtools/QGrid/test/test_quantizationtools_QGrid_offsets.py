@@ -1,4 +1,4 @@
-from abjad.tools.durtools import Offset
+from abjad.tools.durationtools import Offset
 from abjad.tools.quantizationtools import QGrid
 
 

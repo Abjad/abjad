@@ -2,7 +2,7 @@
 
    Modules in this package depend on, may freely import from, the following:
 
-      from abjad.tools import durtools
+      from abjad.tools import durationtools
       from abjad.tools import mathtools
 '''
 

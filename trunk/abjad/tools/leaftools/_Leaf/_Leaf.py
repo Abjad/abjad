@@ -1,4 +1,4 @@
-from abjad.tools import durtools
+from abjad.tools import durationtools
 from abjad.tools.componenttools._Component import _Component
 from abjad.core._StrictComparator import _StrictComparator
 import copy
@@ -19,7 +19,7 @@ class _Leaf(_Component, _StrictComparator):
         _Component.__init__(self)
         self._duration_multiplier = duration_multiplier
         self._leaf_index = None
-        self.written_duration = durtools.Duration(durtools.duration_token_to_duration_pair(written_duration))
+        self.written_duration = durationtools.Duration(durationtools.duration_token_to_duration_pair(written_duration))
         self.written_pitch_indication_is_nonsemantic = False
         self.written_pitch_indication_is_at_sounding_pitch = True
 
@@ -68,7 +68,7 @@ class _Leaf(_Component, _StrictComparator):
 
     @property
     def _formatted_duration(self):
-        duration_string = durtools.assignable_rational_to_lilypond_duration_string(self.written_duration)
+        duration_string = durationtools.assignable_rational_to_lilypond_duration_string(self.written_duration)
         if self.duration_multiplier is not None:
             return '%s * %s' % (duration_string, self.duration_multiplier)
         else:
@@ -139,7 +139,7 @@ class _Leaf(_Component, _StrictComparator):
             if self.duration_multiplier is not None:
                 return self.written_duration * self.duration_multiplier
             else:
-                return durtools.Duration(self.written_duration)
+                return durationtools.Duration(self.written_duration)
         else:
             return None
 
@@ -152,8 +152,8 @@ class _Leaf(_Component, _StrictComparator):
         def fget(self):
             return self._written_duration
         def fset(self, expr):
-            rational = durtools.Duration(expr)
-            if not durtools.is_assignable_rational(rational):
+            rational = durationtools.Duration(expr)
+            if not durationtools.is_assignable_rational(rational):
                 raise AssignabilityError('not assignable duration: "%s".' % str(rational))
             self._written_duration = rational
         return property(**locals())

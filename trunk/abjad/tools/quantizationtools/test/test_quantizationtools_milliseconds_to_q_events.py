@@ -1,4 +1,4 @@
-from abjad.tools.durtools import Offset
+from abjad.tools.durationtools import Offset
 from abjad.tools.mathtools import difference_series
 from abjad.tools.quantizationtools import QEvent
 from abjad.tools.quantizationtools import milliseconds_to_q_events

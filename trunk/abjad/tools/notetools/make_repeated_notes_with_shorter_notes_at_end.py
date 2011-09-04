@@ -1,9 +1,9 @@
 from abjad.tools.notetools.Note import Note
 from abjad.tools.notetools.make_notes import make_notes
-from abjad.tools import durtools
+from abjad.tools import durationtools
 
 
-def make_repeated_notes_with_shorter_notes_at_end(pitch, written_duration, total_duration, prolation = durtools.Duration(1)):
+def make_repeated_notes_with_shorter_notes_at_end(pitch, written_duration, total_duration, prolation = durationtools.Duration(1)):
     r'''Make repeated notes with `pitch` and `written_duration` summing to `total_duration` under `prolation`::
 
         abjad> voice = Voice(notetools.make_repeated_notes_with_shorter_notes_at_end(0, Duration(1, 16), Duration(4, 16)))
@@ -62,13 +62,13 @@ def make_repeated_notes_with_shorter_notes_at_end(pitch, written_duration, total
     '''
 
     prolated_duration = prolation * written_duration
-    current_duration = durtools.Duration(0)
+    current_duration = durationtools.Duration(0)
     result = []
     while current_duration + prolated_duration <= total_duration:
         result.append(Note(pitch, written_duration))
         current_duration += prolated_duration
     remainder_duration = total_duration - current_duration
-    if durtools.Duration(0) < remainder_duration:
+    if durationtools.Duration(0) < remainder_duration:
         multiplied_remainder = remainder_duration / prolation
         result.extend(make_notes(pitch, [multiplied_remainder]))
     return result

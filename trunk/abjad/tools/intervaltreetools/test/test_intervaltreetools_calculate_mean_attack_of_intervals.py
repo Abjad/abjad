@@ -1,4 +1,4 @@
-from abjad.tools.durtools import Offset
+from abjad.tools.durationtools import Offset
 from abjad.tools.intervaltreetools import *
 from abjad.tools.intervaltreetools._make_test_intervals import _make_test_intervals
 

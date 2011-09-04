@@ -1,12 +1,12 @@
 from abjad.tools.notetools.Note import Note
-from abjad.tools import durtools
+from abjad.tools import durationtools
 from abjad.tools import mathtools
-from abjad.tools import durtools
+from abjad.tools import durationtools
 import fractions
 
 
 def make_accelerating_notes_with_lilypond_multipliers(pitches, total, start, stop, exp='cosine',
-    written = durtools.Duration(1, 8)):
+    written = durationtools.Duration(1, 8)):
     '''Make accelerating notes with LilyPond multipliers::
 
         abjad> notetools.make_accelerating_notes_with_lilypond_multipliers([1,2], (1, 2), (1, 4), (1, 8))
@@ -33,10 +33,10 @@ def make_accelerating_notes_with_lilypond_multipliers(pitches, total, start, sto
         ``notetools.make_accelerating_notes_with_lilypond_multipliers()``.
     '''
 
-    total = fractions.Fraction(*durtools.duration_token_to_duration_pair(total))
-    start = fractions.Fraction(*durtools.duration_token_to_duration_pair(start))
-    stop = fractions.Fraction(*durtools.duration_token_to_duration_pair(stop))
-    written = durtools.Duration(*durtools.duration_token_to_duration_pair(written))
+    total = fractions.Fraction(*durationtools.duration_token_to_duration_pair(total))
+    start = fractions.Fraction(*durationtools.duration_token_to_duration_pair(start))
+    stop = fractions.Fraction(*durationtools.duration_token_to_duration_pair(stop))
+    written = durationtools.Duration(*durationtools.duration_token_to_duration_pair(written))
 
     dts = mathtools.interpolate_divide(total, start, stop, exp)
 

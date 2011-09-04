@@ -1,7 +1,7 @@
 import py.test
 from abjad import Fraction
 from abjad.tools.contexttools import TempoMark
-from abjad.tools.durtools import Offset
+from abjad.tools.durationtools import Offset
 from abjad.tools.quantizationtools import QGridSearchTree
 from abjad.tools.quantizationtools import QGridTempoLookup
 from abjad.tools.quantizationtools import tempo_scaled_rational_to_milliseconds

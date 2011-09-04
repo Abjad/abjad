@@ -1,4 +1,4 @@
-from abjad.tools import durtools
+from abjad.tools import durationtools
 
 
 def get_first_element_starting_strictly_after_prolated_offset(container, prolated_offset):
@@ -22,7 +22,7 @@ def get_first_element_starting_strictly_after_prolated_offset(container, prolate
         ``containertools.get_first_element_starting_strictly_after_prolated_offset()``.
     '''
 
-    prolated_offset = durtools.Duration(prolated_offset)
+    prolated_offset = durationtools.Duration(prolated_offset)
 
     for element in container:
         if prolated_offset < element._offset.start:

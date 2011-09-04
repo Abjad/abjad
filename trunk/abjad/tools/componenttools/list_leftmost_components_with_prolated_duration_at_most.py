@@ -1,4 +1,4 @@
-from abjad.tools import durtools
+from abjad.tools import durationtools
 
 
 def list_leftmost_components_with_prolated_duration_at_most(components, prolated_duration):
@@ -34,7 +34,7 @@ def list_leftmost_components_with_prolated_duration_at_most(components, prolated
 
     assert componenttools.all_are_thread_contiguous_components(components)
 
-    total_duration = durtools.Duration(0)
+    total_duration = durationtools.Duration(0)
     result = []
     for component in components:
         cur_duration = component.prolated_duration

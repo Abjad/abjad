@@ -1,5 +1,5 @@
 from abjad.tools.notetools.Note import Note
-from abjad.tools import durtools
+from abjad.tools import durationtools
 
 
 def make_notes_with_multiplied_durations(pitch, written_duration, multiplied_durations):
@@ -17,14 +17,14 @@ def make_notes_with_multiplied_durations(pitch, written_duration, multiplied_dur
 
     # initialize notes and written duration
     notes = []
-    written_duration = durtools.Duration(written_duration)
+    written_duration = durationtools.Duration(written_duration)
 
     # make notes
     for multiplied_duration in multiplied_durations:
         try:
-            multiplied_duration = durtools.Duration(multiplied_duration)
+            multiplied_duration = durationtools.Duration(multiplied_duration)
         except TypeError:
-            multiplied_duration = durtools.Duration(*multiplied_duration)
+            multiplied_duration = durationtools.Duration(*multiplied_duration)
         note = Note(pitch, written_duration)
         multiplier = multiplied_duration / written_duration
         note.duration_multiplier = multiplier

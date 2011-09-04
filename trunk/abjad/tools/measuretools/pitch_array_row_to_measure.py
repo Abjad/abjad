@@ -1,5 +1,5 @@
 from abjad.tools import contexttools
-from abjad.tools import durtools
+from abjad.tools import durationtools
 from abjad.tools.measuretools.Measure import Measure
 from abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow import PitchArrayRow
 
@@ -44,7 +44,7 @@ def pitch_array_row_to_measure(pitch_array_row, cell_duration_denominator = 8):
 
     meter = contexttools.TimeSignatureMark((pitch_array_row.width, cell_duration_denominator))
     measure = Measure(meter, [])
-    basic_cell_duration = durtools.Duration(1, cell_duration_denominator)
+    basic_cell_duration = durationtools.Duration(1, cell_duration_denominator)
     measure_pitches, measure_durations = [], []
     for cell in pitch_array_row.cells:
         cell_pitches = cell.pitches

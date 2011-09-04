@@ -1,8 +1,8 @@
 import copy
 from collections import Iterable
 from abjad import Fraction
-from abjad.tools.durtools import Duration
-from abjad.tools.durtools import Offset
+from abjad.tools.durationtools import Duration
+from abjad.tools.durationtools import Offset
 from abjad.tools.intervaltreetools.BoundedInterval import BoundedInterval
 from abjad.tools.intervaltreetools._IntervalNode import _IntervalNode
 from abjad.tools.intervaltreetools._RedBlackTree import _RedBlackTree

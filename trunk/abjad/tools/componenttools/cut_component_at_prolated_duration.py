@@ -1,7 +1,7 @@
 from abjad.tools.componenttools._Component import _Component
 from abjad.exceptions import NegativeDurationError
 from abjad.tools.componenttools.list_leftmost_components_with_prolated_duration_at_most import list_leftmost_components_with_prolated_duration_at_most
-from abjad.tools import durtools
+from abjad.tools import durationtools
 
 
 # TODO: implement related function to cut from right edge.
@@ -61,7 +61,7 @@ def cut_component_at_prolated_duration(component, prolated_duration):
     from abjad.tools import leaftools
 
     assert isinstance(component, _Component)
-    assert isinstance(prolated_duration, durtools.Duration)
+    assert isinstance(prolated_duration, durationtools.Duration)
 
     if component.prolated_duration <= prolated_duration:
         raise NegativeDurationError('component durations must be positive.')

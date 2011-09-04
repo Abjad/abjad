@@ -1,5 +1,5 @@
 from abjad.tools.componenttools._split_component_at_duration import _split_component_at_duration
-from abjad.tools import durtools
+from abjad.tools import durationtools
 
 
 # TODO: Take care of bug that unintentionally fractures ties. #
@@ -15,14 +15,14 @@ def _split_components_by_prolated_durations(components, durations,
     # check input
     assert componenttools.all_are_components(components)
     assert isinstance(durations, list)
-    assert all([isinstance(x, (int, float, durtools.Duration)) for x in durations])
+    assert all([isinstance(x, (int, float, durationtools.Duration)) for x in durations])
 
     # initialize loop variables
     result = []
     part = []
     duration_index = 0
     len_durations = len(durations)
-    cum_duration = durtools.Duration(0)
+    cum_duration = durationtools.Duration(0)
     xx = list(components[:])
 
     # loop and build partition parts
@@ -51,7 +51,7 @@ def _split_components_by_prolated_durations(components, durations,
             part.append(x)
             result.append(part)
             part = []
-            cum_duration = durtools.Duration(0)
+            cum_duration = durationtools.Duration(0)
             duration_index += 1
         # if current component exceeds duration of current part
         elif next_split_point < next_cum_duration:
@@ -66,7 +66,7 @@ def _split_components_by_prolated_durations(components, durations,
             part = []
             xx[0:0] = right_list
             duration_index += 1
-            cum_duration = durtools.Duration(0)
+            cum_duration = durationtools.Duration(0)
         # if current component does not fill duration of current part
         else:
             #print 'simple append %s' % x

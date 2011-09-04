@@ -1,4 +1,4 @@
-from abjad.tools import durtools
+from abjad.tools import durationtools
 from abjad.tools.leaftools._Leaf import _Leaf
 from abjad.tools.resttools.Rest import Rest
 from abjad.tools.skiptools.Skip import Skip
@@ -13,10 +13,10 @@ def _insert_measure_padding(expr, front, back, klass, splice = False):
     from abjad.tools import componenttools
     from abjad.tools import measuretools
 
-    if not isinstance(front, (durtools.Duration, type(None))):
+    if not isinstance(front, (durationtools.Duration, type(None))):
         raise ValueError
 
-    if not isinstance(back, (durtools.Duration, type(None))):
+    if not isinstance(back, (durationtools.Duration, type(None))):
         raise ValueError
 
     if not isinstance(klass, (Rest, Skip)):

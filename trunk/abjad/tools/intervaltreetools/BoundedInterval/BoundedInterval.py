@@ -1,7 +1,7 @@
 from abjad import Fraction
 from abjad.core import _Immutable
-from abjad.tools.durtools import Duration
-from abjad.tools.durtools import Offset
+from abjad.tools.durationtools import Duration
+from abjad.tools.durationtools import Offset
 
 class BoundedInterval(dict, _Immutable):
     '''A low / high pair, carrying some metadata.'''

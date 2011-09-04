@@ -1,7 +1,7 @@
 from abjad.core import LilyPondContextSettingComponentPlugIn
 from abjad.core import LilyPondGrobOverrideComponentPlugIn
 from abjad.core import _StrictComparator
-from abjad.tools import durtools
+from abjad.tools import durationtools
 from abjad.tools.spannertools.Spanner._SpannerFormatInterface import _SpannerFormatInterface
 from abjad.tools.spannertools.Spanner._SpannerOffsetInterface import _SpannerOffsetInterface
 import copy
@@ -287,7 +287,7 @@ class Spanner(_StrictComparator):
     @property
     def duration_in_seconds(self):
         '''Sum of duration of all leaves in spanner, in seconds.'''
-        duration = durtools.Duration(0)
+        duration = durationtools.Duration(0)
         for leaf in self.leaves:
             duration += leaf.duration_in_seconds
         return duration

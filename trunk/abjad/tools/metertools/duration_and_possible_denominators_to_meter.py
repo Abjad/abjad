@@ -1,4 +1,4 @@
-from abjad.tools import durtools
+from abjad.tools import durationtools
 from abjad.tools import mathtools
 
 
@@ -34,7 +34,7 @@ def duration_and_possible_denominators_to_meter(duration, denominators = None, f
         if factor is not None:
             denominators = [d for d in denominators if factor in mathtools.factors(d)]
         for desired_denominator in sorted(denominators):
-            candidate_pair = durtools.rational_to_duration_pair_with_specified_integer_denominator(
+            candidate_pair = durationtools.rational_to_duration_pair_with_specified_integer_denominator(
                 duration, desired_denominator)
             if candidate_pair[-1] == desired_denominator:
                 return contexttools.TimeSignatureMark(candidate_pair)

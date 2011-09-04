@@ -1,6 +1,6 @@
 from abjad import Fraction
 from abjad.tools.contexttools import TempoMark
-from abjad.tools.durtools import Duration
+from abjad.tools.durationtools import Duration
 
 
 def tempo_scaled_rational_to_milliseconds(rational, tempo):
@@ -13,7 +13,7 @@ def tempo_scaled_rational_to_milliseconds(rational, tempo):
         abjad> tempo_scaled_rational_to_milliseconds(Fraction(1, 4), tempo)
         Duration(1000, 1)
 
-    Return a :py:class:`~abjad.tools.durtools.Duration`.
+    Return a :py:class:`~abjad.tools.durationtools.Duration`.
     '''
 
     assert isinstance(rational, (int, Fraction))

@@ -1,8 +1,8 @@
-from abjad.tools import durtools
+from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import pitchtools
 from abjad.tools import sequencetools
-from abjad.tools import durtools
+from abjad.tools import durationtools
 from numbers import Number
 import fractions
 import math
@@ -53,7 +53,7 @@ def make_notes(pitches, durations, direction='big-endian'):
     if pitchtools.is_named_chromatic_pitch_token(pitches):
         pitches = [pitches]
 
-    #if durtools.is_duration_token(durations):
+    #if durationtools.is_duration_token(durations):
     if isinstance(durations, (Number, tuple)):
         durations = [durations]
 
@@ -68,14 +68,14 @@ def make_notes(pitches, durations, direction='big-endian'):
     # Durations should always reduce;
     # So tokens can represent tuplet multipliers or something
     # else that shouldn't reduce?
-    durations = [durtools.duration_token_to_duration_pair(dur) for dur in durations]
+    durations = [durationtools.duration_token_to_duration_pair(dur) for dur in durations]
 
     # set lists of pitches and durations to the same length
     size = max(len(durations), len(pitches))
     durations = sequencetools.repeat_sequence_to_length(durations, size)
     pitches = sequencetools.repeat_sequence_to_length(pitches, size)
 
-    durations = durtools.group_duration_tokens_by_implied_prolation(durations)
+    durations = durationtools.group_duration_tokens_by_implied_prolation(durations)
 
     result = []
     for ds in durations:
@@ -94,7 +94,7 @@ def make_notes(pitches, durations, direction='big-endian'):
             numerator = mathtools.greatest_power_of_two_less_equal(denominator)
             multiplier = (numerator, denominator)
             ratio = 1 / fractions.Fraction(*multiplier)
-            ds = [ratio * durtools.Duration(*d) for d in ds]
+            ds = [ratio * durationtools.Duration(*d) for d in ds]
             # make notes
             ns = _construct_unprolated_notes(ps, ds, direction)
             #t = Tuplet(multiplier, ns)

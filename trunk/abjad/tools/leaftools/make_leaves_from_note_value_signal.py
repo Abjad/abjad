@@ -1,5 +1,5 @@
 from abjad.tools.leaftools.make_leaves import make_leaves
-from abjad.tools import durtools
+from abjad.tools import durationtools
 
 
 def make_leaves_from_note_value_signal(
@@ -40,9 +40,9 @@ def make_leaves_from_note_value_signal(
         if note_value == 0:
             raise ValueError('note values must be nonzero.')
         elif 0 < note_value:
-            leaves = make_leaves([0], [durtools.Duration(note_value, denominator_of_signal)])
+            leaves = make_leaves([0], [durationtools.Duration(note_value, denominator_of_signal)])
         else:
-            leaves = make_leaves([None], [durtools.Duration(-note_value, denominator_of_signal)],
+            leaves = make_leaves([None], [durationtools.Duration(-note_value, denominator_of_signal)],
                 tied_rests = tied_rests)
         result.extend(leaves)
 

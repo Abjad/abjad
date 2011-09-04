@@ -959,54 +959,54 @@ cfgtools
    tools/cfgtools/set_default_accidental_spelling
 
 
-durtools
+durationtools
 
 .. toctree::
    :maxdepth: 1
 
-   tools/durtools/Duration/Duration
-   tools/durtools/Offset/Offset
-   tools/durtools/assignable_rational_to_dot_count
-   tools/durtools/assignable_rational_to_lilypond_duration_string
-   tools/durtools/duration_pair_to_prolation_string
-   tools/durtools/duration_token_to_big_endian_list_of_assignable_duration_pairs
-   tools/durtools/duration_token_to_duration_pair
-   tools/durtools/duration_token_to_rational
-   tools/durtools/duration_tokens_to_duration_pairs
-   tools/durtools/duration_tokens_to_duration_pairs_with_least_common_denominator
-   tools/durtools/duration_tokens_to_least_common_denominator
-   tools/durtools/duration_tokens_to_rationals
-   tools/durtools/group_duration_tokens_by_implied_prolation
-   tools/durtools/is_assignable_rational
-   tools/durtools/is_binary_rational
-   tools/durtools/is_duration_pair
-   tools/durtools/is_duration_token
-   tools/durtools/is_lilypond_duration_name
-   tools/durtools/is_lilypond_duration_string
-   tools/durtools/lilypond_duration_string_to_rational
-   tools/durtools/lilypond_duration_string_to_rational_list
-   tools/durtools/multiply_duration_pair
-   tools/durtools/multiply_duration_pair_and_reduce_factors
-   tools/durtools/multiply_duration_pair_and_try_to_preserve_numerator
-   tools/durtools/numeric_seconds_to_clock_string
-   tools/durtools/numeric_seconds_to_escaped_clock_string
-   tools/durtools/positive_integer_to_implied_prolation_multipler
-   tools/durtools/rational_to_duration_pair_with_multiple_of_specified_integer_denominator
-   tools/durtools/rational_to_duration_pair_with_specified_integer_denominator
-   tools/durtools/rational_to_equal_or_greater_assignable_rational
-   tools/durtools/rational_to_equal_or_greater_binary_rational
-   tools/durtools/rational_to_equal_or_lesser_assignable_rational
-   tools/durtools/rational_to_equal_or_lesser_binary_rational
-   tools/durtools/rational_to_flag_count
-   tools/durtools/rational_to_fraction_string
-   tools/durtools/rational_to_prolation_string
-   tools/durtools/rational_to_proper_fraction
-   tools/durtools/rewrite_rational_under_new_tempo
-   tools/durtools/yield_all_assignable_rationals_in_cantor_diagonalized_order
-   tools/durtools/yield_all_positive_integer_pairs_in_cantor_diagonalized_order
-   tools/durtools/yield_all_positive_rationals_in_cantor_diagonalized_order
-   tools/durtools/yield_all_positive_rationals_in_cantor_diagonalized_order_uniquely
-   tools/durtools/yield_all_prolation_rewrite_pairs_of_rational_in_cantor_diagonalized_order
+   tools/durationtools/Duration/Duration
+   tools/durationtools/Offset/Offset
+   tools/durationtools/assignable_rational_to_dot_count
+   tools/durationtools/assignable_rational_to_lilypond_duration_string
+   tools/durationtools/duration_pair_to_prolation_string
+   tools/durationtools/duration_token_to_big_endian_list_of_assignable_duration_pairs
+   tools/durationtools/duration_token_to_duration_pair
+   tools/durationtools/duration_token_to_rational
+   tools/durationtools/duration_tokens_to_duration_pairs
+   tools/durationtools/duration_tokens_to_duration_pairs_with_least_common_denominator
+   tools/durationtools/duration_tokens_to_least_common_denominator
+   tools/durationtools/duration_tokens_to_rationals
+   tools/durationtools/group_duration_tokens_by_implied_prolation
+   tools/durationtools/is_assignable_rational
+   tools/durationtools/is_binary_rational
+   tools/durationtools/is_duration_pair
+   tools/durationtools/is_duration_token
+   tools/durationtools/is_lilypond_duration_name
+   tools/durationtools/is_lilypond_duration_string
+   tools/durationtools/lilypond_duration_string_to_rational
+   tools/durationtools/lilypond_duration_string_to_rational_list
+   tools/durationtools/multiply_duration_pair
+   tools/durationtools/multiply_duration_pair_and_reduce_factors
+   tools/durationtools/multiply_duration_pair_and_try_to_preserve_numerator
+   tools/durationtools/numeric_seconds_to_clock_string
+   tools/durationtools/numeric_seconds_to_escaped_clock_string
+   tools/durationtools/positive_integer_to_implied_prolation_multipler
+   tools/durationtools/rational_to_duration_pair_with_multiple_of_specified_integer_denominator
+   tools/durationtools/rational_to_duration_pair_with_specified_integer_denominator
+   tools/durationtools/rational_to_equal_or_greater_assignable_rational
+   tools/durationtools/rational_to_equal_or_greater_binary_rational
+   tools/durationtools/rational_to_equal_or_lesser_assignable_rational
+   tools/durationtools/rational_to_equal_or_lesser_binary_rational
+   tools/durationtools/rational_to_flag_count
+   tools/durationtools/rational_to_fraction_string
+   tools/durationtools/rational_to_prolation_string
+   tools/durationtools/rational_to_proper_fraction
+   tools/durationtools/rewrite_rational_under_new_tempo
+   tools/durationtools/yield_all_assignable_rationals_in_cantor_diagonalized_order
+   tools/durationtools/yield_all_positive_integer_pairs_in_cantor_diagonalized_order
+   tools/durationtools/yield_all_positive_rationals_in_cantor_diagonalized_order
+   tools/durationtools/yield_all_positive_rationals_in_cantor_diagonalized_order_uniquely
+   tools/durationtools/yield_all_prolation_rewrite_pairs_of_rational_in_cantor_diagonalized_order
 
 
 intervaltreetools

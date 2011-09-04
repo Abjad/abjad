@@ -1,6 +1,6 @@
 from abjad.exceptions import AssignabilityError
 from abjad.tools import componenttools
-from abjad.tools import durtools
+from abjad.tools import durationtools
 from abjad.tools import mathtools
 
 
@@ -20,7 +20,7 @@ def _leaf_to_tuplet_with_proportions(l, divisions, prolation):
     basic_prolated_duration = target_duration / sum(divisions)
 
     # find basic written duration of note in tuplet
-    basic_written_duration = durtools.rational_to_equal_or_greater_assignable_rational(
+    basic_written_duration = durationtools.rational_to_equal_or_greater_assignable_rational(
         basic_prolated_duration)
 
     # find written duration of each note in tuplet
@@ -31,7 +31,7 @@ def _leaf_to_tuplet_with_proportions(l, divisions, prolation):
         notes = [Note(0, x) for x in written_durations]
     except AssignabilityError:
         denominator = target_duration._denominator
-        note_durations = [durtools.Duration(x, denominator) for x in divisions]
+        note_durations = [durationtools.Duration(x, denominator) for x in divisions]
         notes = make_notes(0, note_durations)
 
     # make tuplet

@@ -1,6 +1,6 @@
 from abjad.tools import componenttools
 from abjad.tools import contexttools
-from abjad.tools import durtools
+from abjad.tools import durationtools
 from abjad.tools import mathtools
 
 
@@ -38,43 +38,43 @@ def scale_measure_by_multiplier_and_adjust_meter(measure, multiplier = 1):
     old_multiplier = old_meter.multiplier
     old_multiplier_pair = (old_multiplier.numerator, old_multiplier.denominator)
 
-    multiplied_pair = durtools.multiply_duration_pair(old_multiplier_pair, multiplier)
-    reduced_pair = durtools.multiply_duration_pair_and_reduce_factors(
+    multiplied_pair = durationtools.multiply_duration_pair(old_multiplier_pair, multiplier)
+    reduced_pair = durationtools.multiply_duration_pair_and_reduce_factors(
         old_multiplier_pair, multiplier)
 
     if reduced_pair != multiplied_pair:
-        new_pair = durtools.multiply_duration_pair_and_try_to_preserve_numerator(
+        new_pair = durationtools.multiply_duration_pair_and_try_to_preserve_numerator(
             old_pair, multiplier)
         new_meter = contexttools.TimeSignatureMark(new_pair)
         contexttools.detach_time_signature_marks_attached_to_component(measure)
         new_meter.attach(measure)
-        remaining_multiplier = durtools.Duration(*reduced_pair)
-        if remaining_multiplier != durtools.Duration(1):
+        remaining_multiplier = durationtools.Duration(*reduced_pair)
+        if remaining_multiplier != durationtools.Duration(1):
             containertools.scale_contents_of_container(measure, remaining_multiplier)
     elif componenttools.all_are_components_scalable_by_multiplier(measure[:], multiplier):
         containertools.scale_contents_of_container(measure, multiplier)
         if old_meter.is_nonbinary or not mathtools.is_nonnegative_integer_power_of_two(multiplier):
-            new_pair = durtools.multiply_duration_pair_and_reduce_factors(old_pair, multiplier)
+            new_pair = durationtools.multiply_duration_pair_and_reduce_factors(old_pair, multiplier)
         # multiplier is a negative power of two, like 1/2, 1/4, etc.
-        elif multiplier < durtools.Duration(0):
-            new_pair = durtools.multiply_duration_pair(old_pair, multiplier)
+        elif multiplier < durationtools.Duration(0):
+            new_pair = durationtools.multiply_duration_pair(old_pair, multiplier)
         # multiplier is a nonnegative power of two, like 0, 1, 2, 4, etc.
-        elif durtools.Duration(0) < multiplier:
-            new_pair = durtools.multiply_duration_pair_and_try_to_preserve_numerator(
+        elif durationtools.Duration(0) < multiplier:
+            new_pair = durationtools.multiply_duration_pair_and_try_to_preserve_numerator(
                 old_pair, multiplier)
-        elif multiplier == durtools.Duration(0):
+        elif multiplier == durationtools.Duration(0):
             raise ZeroDivisionError
         new_meter = contexttools.TimeSignatureMark(new_pair)
         contexttools.detach_time_signature_marks_attached_to_component(measure)
         new_meter.attach(measure)
     else:
-        new_pair = durtools.multiply_duration_pair_and_try_to_preserve_numerator(
+        new_pair = durationtools.multiply_duration_pair_and_try_to_preserve_numerator(
             old_pair, multiplier)
         new_meter = contexttools.TimeSignatureMark(new_pair)
         contexttools.detach_time_signature_marks_attached_to_component(measure)
         new_meter.attach(measure)
         remaining_multiplier = multiplier / new_meter.multiplier
-        if remaining_multiplier != durtools.Duration(1):
+        if remaining_multiplier != durationtools.Duration(1):
             containertools.scale_contents_of_container(measure, remaining_multiplier)
     return measure
 

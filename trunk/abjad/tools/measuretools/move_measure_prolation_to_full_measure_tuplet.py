@@ -1,7 +1,7 @@
 from abjad.tools import mathtools
 from abjad.tools import metertools
 from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_measures_forward_in_expr
-from abjad.tools import durtools
+from abjad.tools import durationtools
 
 
 
@@ -47,7 +47,7 @@ def move_measure_prolation_to_full_measure_tuplet(expr):
             # scale tuplet contents, if helpful
             if contents_multiplier is not None:
                 #containertools.scale_contents_of_container(tuplet, ~contents_multiplier)
-                inverse_multiplier = durtools.Duration(
+                inverse_multiplier = durationtools.Duration(
                     contents_multiplier.denominator, contents_multiplier.numerator)
                 containertools.scale_contents_of_container(tuplet, inverse_multiplier)
 

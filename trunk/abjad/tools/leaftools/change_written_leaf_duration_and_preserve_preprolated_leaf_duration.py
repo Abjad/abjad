@@ -1,5 +1,5 @@
 from abjad.tools.leaftools._Leaf import _Leaf
-from abjad.tools import durtools
+from abjad.tools import durationtools
 
 
 def change_written_leaf_duration_and_preserve_preprolated_leaf_duration(leaf, written_duration):
@@ -39,7 +39,7 @@ def change_written_leaf_duration_and_preserve_preprolated_leaf_duration(leaf, wr
         raise TypeError('must be leaf: %s' % leaf)
 
     # check written duration type
-    written_duration = durtools.Duration(written_duration)
+    written_duration = durationtools.Duration(written_duration)
 
     # change leaf written duration
     previous = leaf.multiplied_duration

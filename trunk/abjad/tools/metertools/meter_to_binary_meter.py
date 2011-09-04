@@ -1,5 +1,5 @@
 from abjad.tools import contexttools
-from abjad.tools import durtools
+from abjad.tools import durationtools
 from abjad.tools import mathtools
 import fractions
 
@@ -41,7 +41,7 @@ def meter_to_binary_meter(nonbinary_meter, contents_multiplier = fractions.Fract
 
     # find binary pair
     nonbinary_pair = (nonbinary_meter.numerator, nonbinary_meter.denominator)
-    binary_pair = durtools.rational_to_duration_pair_with_specified_integer_denominator(
+    binary_pair = durationtools.rational_to_duration_pair_with_specified_integer_denominator(
         nonbinary_pair, binary_denominator)
 
     # return new binary meter

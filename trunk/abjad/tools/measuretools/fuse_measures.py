@@ -4,7 +4,7 @@ from abjad.tools import contexttools
 from abjad.tools import metertools
 from abjad.tools.componenttools._switch_components_to_parent import _switch_components_to_parent
 from abjad.tools.spannertools._give_spanners_that_dominate_donor_components_to_recipient_components import _give_spanners_that_dominate_donor_components_to_recipient_components
-from abjad.tools import durtools
+from abjad.tools import durationtools
 
 
 def fuse_measures(measures):
@@ -93,7 +93,7 @@ def fuse_measures(measures):
     parent, start, stop = componenttools.get_parent_and_start_stop_indices_of_components(measures)
 
     old_denominators = []
-    new_duration = durtools.Duration(0)
+    new_duration = durationtools.Duration(0)
     for measure in measures:
         effective_meter = contexttools.get_effective_time_signature(measure)
         old_denominators.append(effective_meter.denominator)

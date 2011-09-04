@@ -2,7 +2,7 @@ from abjad.tools.importtools._import_functions_in_package_to_namespace import _i
 from abjad.tools import *
 from abjad.tools.chordtools import Chord
 from abjad.tools.containertools import Container
-from abjad.tools.durtools import Duration
+from abjad.tools.durationtools import Duration
 from abjad.tools.iotools import f
 from abjad.tools.iotools import play
 from abjad.tools.iotools import show
@@ -30,7 +30,7 @@ del _read_config_file
 del cfg
 del cfgtools
 del core
-del durtools
+del durationtools
 del exceptions
 del importtools
 del interfaces

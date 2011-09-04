@@ -3,7 +3,7 @@ from abjad import Fraction
 from abjad.core import _Immutable
 from abjad.core import _ImmutableDictionary
 from abjad.tools.contexttools import TempoMark
-from abjad.tools.durtools import Offset
+from abjad.tools.durationtools import Offset
 from abjad.tools.quantizationtools.QGridSearchTree import QGridSearchTree
 from abjad.tools.quantizationtools.is_valid_beatspan import is_valid_beatspan
 from abjad.tools.quantizationtools.tempo_scaled_rational_to_milliseconds \
@@ -42,7 +42,7 @@ class QGridTempoLookup(_Immutable, _ImmutableDictionary):
 
     @property
     def beatspan(self):
-        '''The duration which the :py:class:`~abjad.tools.durtools.Offset`
+        '''The duration which the :py:class:`~abjad.tools.durationtools.Offset`
         objects comprising the keys of the `QGridTempoLookup` are offsets into.
         '''
 

@@ -1,6 +1,6 @@
 from abjad.tools.spannertools.ComplexBeamSpanner import ComplexBeamSpanner
 from abjad.tools.spannertools.DuratedComplexBeamSpanner._DuratedComplexBeamSpannerFormatInterface import _DuratedComplexBeamSpannerFormatInterface
-from abjad.tools import durtools
+from abjad.tools import durationtools
 
 
 class DuratedComplexBeamSpanner(ComplexBeamSpanner):
@@ -89,9 +89,9 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
             elif isinstance(arg, list):
                 for i, d in enumerate(arg):
                     if isinstance(d, tuple):
-                        arg[i] = durtools.Duration(*d)
+                        arg[i] = durationtools.Duration(*d)
                     else:
-                        arg[i] = durtools.Duration(d)
+                        arg[i] = durationtools.Duration(d)
                 self._durations = arg
             else:
                 raise ValueError('durations must be list of Durations, or None.')

@@ -1,5 +1,5 @@
 from abjad.core import _StrictComparator
-from abjad.tools import durtools
+from abjad.tools import durationtools
 
 
 class _SpannerOffsetInterface(_StrictComparator):

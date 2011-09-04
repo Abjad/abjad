@@ -1,4 +1,4 @@
-from abjad.tools import durtools
+from abjad.tools import durationtools
 
 
 def number_is_between_start_and_stop_offsets_of_component_in_seconds(timepoint, component):
@@ -27,7 +27,7 @@ def number_is_between_start_and_stop_offsets_of_component_in_seconds(timepoint, 
     '''
 
     try:
-        timepoint = durtools.Duration(timepoint)
+        timepoint = durationtools.Duration(timepoint)
     except TypeError:
         pass
 

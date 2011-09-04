@@ -1,4 +1,4 @@
-from abjad.tools import durtools
+from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools.componenttools.get_proper_parentage_of_component import get_proper_parentage_of_component
 from abjad.tools.componenttools.remove_component_subtree_from_score_and_spanners import remove_component_subtree_from_score_and_spanners
@@ -58,20 +58,20 @@ def remove_leaf_and_shrink_durated_parent_containers(leaf):
 
     prolated_leaf_duration = leaf.prolated_duration
     prolations = leaf._prolations
-    cur_prolation, i = durtools.Duration(1), 0
+    cur_prolation, i = durationtools.Duration(1), 0
     parent = leaf._parentage.parent
 
     while parent is not None and not parent.is_parallel:
         cur_prolation *= prolations[i]
         if isinstance(parent, FixedDurationTuplet):
             candidate_new_parent_dur = parent.target_duration - cur_prolation * leaf.written_duration
-            if durtools.Duration(0) < candidate_new_parent_dur:
+            if durationtools.Duration(0) < candidate_new_parent_dur:
                 parent.target_duration = candidate_new_parent_dur
         elif isinstance(parent, Measure):
             parent_time_signature = contexttools.get_time_signature_mark_attached_to_component(parent)
             old_denominator = parent_time_signature.denominator
             naive_meter = parent_time_signature.duration - prolated_leaf_duration
-            better_meter = durtools.rational_to_duration_pair_with_specified_integer_denominator(
+            better_meter = durationtools.rational_to_duration_pair_with_specified_integer_denominator(
                 naive_meter, old_denominator)
             better_meter = contexttools.TimeSignatureMark(better_meter)
             contexttools.detach_time_signature_marks_attached_to_component(parent)
@@ -79,8 +79,8 @@ def remove_leaf_and_shrink_durated_parent_containers(leaf):
             parent_time_signature = contexttools.get_time_signature_mark_attached_to_component(parent)
             new_denominator = parent_time_signature.denominator
 
-            old_prolation = durtools.positive_integer_to_implied_prolation_multipler(old_denominator)
-            new_prolation = durtools.positive_integer_to_implied_prolation_multipler(new_denominator)
+            old_prolation = durationtools.positive_integer_to_implied_prolation_multipler(old_denominator)
+            new_prolation = durationtools.positive_integer_to_implied_prolation_multipler(new_denominator)
             adjusted_prolation = old_prolation / new_prolation
             for x in parent:
                 if isinstance(x, FixedDurationTuplet):

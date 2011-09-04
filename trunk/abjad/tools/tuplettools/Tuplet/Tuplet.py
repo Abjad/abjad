@@ -1,4 +1,4 @@
-from abjad.tools import durtools
+from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools.containertools.Container import Container
 from abjad.tools.tuplettools.Tuplet._TupletFormatter import _TupletFormatter
@@ -67,7 +67,7 @@ class Tuplet(Container):
         if self.preferred_denominator is not None:
             inverse_multiplier = fractions.Fraction(
                 self.multiplier.denominator, self.multiplier.numerator)
-            d, n = durtools.rational_to_duration_pair_with_specified_integer_denominator(
+            d, n = durationtools.rational_to_duration_pair_with_specified_integer_denominator(
                 inverse_multiplier, self.preferred_denominator)
         else:
             n, d = self.multiplier.numerator, self.multiplier.denominator

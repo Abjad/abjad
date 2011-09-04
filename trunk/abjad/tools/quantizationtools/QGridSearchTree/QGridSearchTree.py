@@ -3,7 +3,7 @@ from abjad import Fraction
 from abjad.core import _Immutable
 from abjad.core import _ImmutableDictionary
 from abjad.tools.contexttools import TempoMark
-from abjad.tools.durtools import Offset
+from abjad.tools.durationtools import Offset
 from abjad.tools.mathtools import divisors
 from abjad.tools.quantizationtools.is_valid_beatspan import is_valid_beatspan
 from abjad.tools.quantizationtools.tempo_scaled_rational_to_milliseconds \
@@ -127,7 +127,7 @@ class QGridSearchTree(_Immutable, _ImmutableDictionary):
 
     @property
     def offsets(self):
-        '''An ordered tuple of all :py:class:`~abjad.tools.durtools.Offset`
+        '''An ordered tuple of all :py:class:`~abjad.tools.durationtools.Offset`
         objects which those :py:class:`~abjad.tools.quantizationtools.QGrid`
         objects governed by a specific `QGridSearchTree` can contain.
 

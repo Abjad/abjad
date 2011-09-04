@@ -1,5 +1,5 @@
 from abjad.checks._Check import _Check
-from abjad.tools import durtools
+from abjad.tools import durationtools
 
 
 class MisrepresentedFlagCheck(_Check):
@@ -10,7 +10,7 @@ class MisrepresentedFlagCheck(_Check):
         total = 0
         for leaf in leaftools.iterate_leaves_forward_in_expr(expr):
             total += 1
-            flags = durtools.rational_to_flag_count(leaf.written_duration)
+            flags = durationtools.rational_to_flag_count(leaf.written_duration)
             #if leaf.beam.counts is None:
             #   left, right = None, None
             #else:

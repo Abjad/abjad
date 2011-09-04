@@ -1,5 +1,5 @@
 from abjad.tools.leaftools._Leaf import _Leaf
-from abjad.tools import durtools
+from abjad.tools import durationtools
 
 
 def copy_written_duration_and_multiplier_from_leaf_to_leaf(source_leaf, target_leaf):
@@ -25,8 +25,8 @@ def copy_written_duration_and_multiplier_from_leaf_to_leaf(source_leaf, target_l
         raise TypeError('must be leaf.')
 
     # copy source leaf written duration and multiplier
-    written = durtools.Duration(source_leaf.written_duration)
-    multiplier = durtools.Duration(source_leaf.duration_multiplier)
+    written = durationtools.Duration(source_leaf.written_duration)
+    multiplier = durationtools.Duration(source_leaf.duration_multiplier)
 
     # set target leaf written duration and multiplier
     target_leaf.written_duration = written

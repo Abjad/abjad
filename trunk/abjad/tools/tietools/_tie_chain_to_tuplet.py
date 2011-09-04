@@ -1,6 +1,6 @@
 from abjad.exceptions import AssignabilityError
 from abjad.tools import componenttools
-from abjad.tools import durtools
+from abjad.tools import durationtools
 from abjad.tools import spannertools
 from abjad.tools.tietools.TieSpanner import TieSpanner
 from abjad.tools.tietools.get_preprolated_tie_chain_duration import get_preprolated_tie_chain_duration
@@ -28,17 +28,17 @@ def _tie_chain_to_tuplet(chain, divisions, prolation, dotted):
     if prolation == 'diminution':
         if dotted:
             basic_written_duration = \
-                durtools.rational_to_equal_or_greater_assignable_rational(prolated_duration)
+                durationtools.rational_to_equal_or_greater_assignable_rational(prolated_duration)
         else:
             basic_written_duration = \
-                durtools.rational_to_equal_or_greater_binary_rational(prolated_duration)
+                durationtools.rational_to_equal_or_greater_binary_rational(prolated_duration)
     elif prolation == 'augmentation':
         if dotted:
             basic_written_duration = \
-                durtools.rational_to_equal_or_lesser_assignable_rational(prolated_duration)
+                durationtools.rational_to_equal_or_lesser_assignable_rational(prolated_duration)
         else:
             basic_written_duration = \
-                durtools.rational_to_equal_or_lesser_binary_rational(
+                durationtools.rational_to_equal_or_lesser_binary_rational(
                 prolated_duration)
     else:
         raise ValueError('must be diminution or augmentation.')

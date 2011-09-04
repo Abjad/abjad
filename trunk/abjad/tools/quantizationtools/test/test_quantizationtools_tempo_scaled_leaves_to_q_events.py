@@ -3,8 +3,8 @@ from abjad import Note
 from abjad import Rest
 from abjad import Staff
 from abjad.tools.contexttools import TempoMark
-from abjad.tools.durtools import Duration
-from abjad.tools.durtools import Offset
+from abjad.tools.durationtools import Duration
+from abjad.tools.durationtools import Offset
 from abjad.tools.quantizationtools import QEvent
 from abjad.tools.quantizationtools import tempo_scaled_leaves_to_q_events
 from abjad.tools.skiptools import Skip

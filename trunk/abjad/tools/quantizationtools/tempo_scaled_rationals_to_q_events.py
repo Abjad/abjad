@@ -1,7 +1,7 @@
 from abjad import Fraction
 from abjad.tools.contexttools import TempoMark
-from abjad.tools.durtools import Duration
-from abjad.tools.durtools import Offset
+from abjad.tools.durationtools import Duration
+from abjad.tools.durationtools import Offset
 from abjad.tools.mathtools import cumulative_sums_zero
 from abjad.tools.quantizationtools.QEvent import QEvent
 from abjad.tools.quantizationtools.tempo_scaled_rational_to_milliseconds \

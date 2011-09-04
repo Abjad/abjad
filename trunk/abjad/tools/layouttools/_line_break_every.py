@@ -1,5 +1,5 @@
 from abjad.tools import componenttools
-from abjad.tools import durtools
+from abjad.tools import durationtools
 from abjad.tools import marktools
 from abjad.tools.measuretools.Measure import Measure
 
@@ -19,7 +19,7 @@ def _line_break_every(expr, line_duration, klass = Measure,
     '''
 
     prev = None
-    cum_duration = durtools.Duration(0)
+    cum_duration = durationtools.Duration(0)
     for cur in componenttools.iterate_components_forward_in_expr(expr, klass):
         # compress these 4 lines to only the 4th line after duration migration
         if kind == 'seconds':
@@ -41,7 +41,7 @@ def _line_break_every(expr, line_duration, klass = Measure,
             if add_empty_bars:
                 if cur.bar_line.kind is None:
                     cur.bar_line.kind = ''
-            cum_duration = durtools.Duration(0)
+            cum_duration = durationtools.Duration(0)
         else:
             if prev is not None:
                 marktools.LilyPondCommandMark('break', 'closing')(prev)

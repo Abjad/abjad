@@ -1,5 +1,5 @@
 from abjad.tools.notetools.Note import Note
-from abjad.tools import durtools
+from abjad.tools import durationtools
 
 
 def make_percussion_note(pitch, total_duration, max_note_duration = (1, 8)):
@@ -42,8 +42,8 @@ def make_percussion_note(pitch, total_duration, max_note_duration = (1, 8)):
     from abjad.tools.leaftools._construct_tied_rest import _construct_tied_rest
     from abjad.tools.resttools.Rest import Rest
 
-    total_duration = durtools.Duration(*durtools.duration_token_to_duration_pair(total_duration))
-    max_note_duration = durtools.Duration(*durtools.duration_token_to_duration_pair(max_note_duration))
+    total_duration = durationtools.Duration(*durationtools.duration_token_to_duration_pair(total_duration))
+    max_note_duration = durationtools.Duration(*durationtools.duration_token_to_duration_pair(max_note_duration))
 
     if max_note_duration < total_duration:
         rest_duration = total_duration - max_note_duration

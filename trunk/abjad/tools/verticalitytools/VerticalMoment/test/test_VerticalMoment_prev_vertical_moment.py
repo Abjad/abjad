@@ -1,5 +1,5 @@
 from abjad import *
-from abjad.tools import durtools
+from abjad.tools import durationtools
 from abjad.tools import verticalitytools
 
 
@@ -41,19 +41,19 @@ def test_VerticalMoment_prev_vertical_moment_01():
 
     last_leaf = score.leaves[-1]
     vertical_moment = verticalitytools.get_vertical_moment_starting_with_component(last_leaf)
-    assert vertical_moment.prolated_offset == durtools.Offset(3, 8)
+    assert vertical_moment.prolated_offset == durationtools.Offset(3, 8)
 
     vertical_moment = vertical_moment.prev_vertical_moment
-    assert vertical_moment.prolated_offset == durtools.Offset(1, 3)
+    assert vertical_moment.prolated_offset == durationtools.Offset(1, 3)
 
     vertical_moment = vertical_moment.prev_vertical_moment
-    assert vertical_moment.prolated_offset == durtools.Offset(1, 4)
+    assert vertical_moment.prolated_offset == durationtools.Offset(1, 4)
 
     vertical_moment = vertical_moment.prev_vertical_moment
-    assert vertical_moment.prolated_offset == durtools.Offset(1, 6)
+    assert vertical_moment.prolated_offset == durationtools.Offset(1, 6)
 
     vertical_moment = vertical_moment.prev_vertical_moment
-    assert vertical_moment.prolated_offset == durtools.Offset(1, 8)
+    assert vertical_moment.prolated_offset == durationtools.Offset(1, 8)
 
     vertical_moment = vertical_moment.prev_vertical_moment
-    assert vertical_moment.prolated_offset == durtools.Offset(0)
+    assert vertical_moment.prolated_offset == durationtools.Offset(0)

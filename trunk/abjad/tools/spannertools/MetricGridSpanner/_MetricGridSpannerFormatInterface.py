@@ -1,5 +1,5 @@
 from abjad.tools.spannertools.Spanner._SpannerFormatInterface import _SpannerFormatInterface
-from abjad.tools import durtools
+from abjad.tools import durationtools
 
 
 class _MetricGridSpannerFormatInterface(_SpannerFormatInterface):
@@ -51,7 +51,7 @@ class _MetricGridSpannerFormatInterface(_SpannerFormatInterface):
                 spanner._slicing_metersFound = True
                 result.append('<<')
                 for meter, moffset, temp_hide in m:
-                    s = Skip(durtools.Duration(1))
+                    s = Skip(durationtools.Duration(1))
                     #s.duration_multiplier = meter._offset - leaf._offset.start
                     s.duration_multiplier = moffset - leaf._offset.start
                     numerator, denominator = meter.numerator, meter.denominator
