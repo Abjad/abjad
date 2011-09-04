@@ -1,5 +1,5 @@
-Template gallery
-================
+LilyPond template gallery
+=========================
 
 Abjad provides a number of score templates in the ``abjad/templates`` directory:
 

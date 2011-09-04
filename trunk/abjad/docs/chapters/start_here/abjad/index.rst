@@ -21,7 +21,6 @@ LilyPond differs from other music engraving programs in a number of ways.
 LilyPond separates musical content from page layout.
 LiyPond affords typographic control over almost everything. 
 And LilyPond implements a powerfully correct model of the musical score.
-For more, see :doc:`/chapters/appendices/lilypond/index`.
 
 You can start working with Abjad right away because
 Abjad creates LilyPond files for you automatically.

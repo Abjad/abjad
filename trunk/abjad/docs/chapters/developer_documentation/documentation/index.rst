@@ -271,7 +271,7 @@ that are available to build. ::
 Inserting images with ``abjad-book``
 ------------------------------------
 
-Use :doc:`abjad-book</chapters/appendices/abjad_book/index>` to insert
+Use :doc:`abjad-book</chapters/developer_documentation/abjad_book/index>` to insert
 snippets of notation in the docs you write in reST.
 
 Embed Abjad code between open and close \<abjad\> \</abjad\> tags in your

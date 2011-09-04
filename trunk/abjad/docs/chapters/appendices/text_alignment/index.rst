@@ -1,5 +1,5 @@
-Text alignment
-==============
+LilyPond text alignment
+=======================
 
 LilyPond provides many ways to position text.
 
