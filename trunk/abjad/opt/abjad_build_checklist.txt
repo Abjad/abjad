@@ -49,7 +49,7 @@ Abjad build checklist:
     and change the line '[pypi]' to '[server-login]'. If you do
     not do this then this step will fail.)
     You must have Abjad package owner credentials for this step to work.
-    If you need Abjad package owner credential, talk to Trevor or Victor.
+    If you need Abjad package owner credentials, talk to Trevor or Victor.
     PyPI will respond with "Server response (200): OK".
 
 18. Remove 'dist' and 'Abjad-egginfo-x.y'.
