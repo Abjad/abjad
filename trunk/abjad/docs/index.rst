@@ -94,7 +94,6 @@ Appendices
     chapters/appendices/lilypond_equivalencies/index
     chapters/appendices/lists_of_numbers/index
     chapters/appendices/pitch_conventions/index
-    chapters/appendices/pitch_deviation/index
     chapters/appendices/duration_conventions/index
     chapters/appendices/templates/index
     chapters/appendices/text_alignment/index

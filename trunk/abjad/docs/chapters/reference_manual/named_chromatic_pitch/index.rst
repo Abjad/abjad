@@ -14,8 +14,9 @@ Named chromatic pitches are the everyday pitches attached to notes and chords:
 	NamedChromaticPitch("cs''")
 
 
-Creation
---------
+
+Creating pitches
+----------------
 
 Use pitch tools to create named chromatic pitches:
 
@@ -30,8 +31,9 @@ Use pitch tools to create named chromatic pitches:
 	NamedChromaticPitch("cs''")
 
 
-Name inspection
----------------
+
+Inspecting the name of a pitch
+------------------------------
 
 Use ``str()`` to get the name of named chromatic pitches:
 
@@ -41,8 +43,9 @@ Use ``str()`` to get the name of named chromatic pitches:
 	cs''
 
 
-Octave inspection
------------------
+
+Inspecting the octave of a pitch
+--------------------------------
 
 Get the octave number of named chromatic pitches with ``octave_number``:
 
@@ -52,8 +55,49 @@ Get the octave number of named chromatic pitches with ``octave_number``:
 	5
 
 
-Sorting
--------
+
+Working with pitch deviation
+----------------------------
+
+Use deviation to model the fact that two pitches differ by a fraction of a semitone:
+
+::
+
+	abjad> note_1 = Note(24, (1, 2))
+	abjad> note_2 = Note(24, (1, 2))
+	abjad> staff = Staff([note_1, note_2])
+
+
+::
+
+	abjad> show(staff)
+
+.. image:: images/pitch-deviation-1.png
+
+::
+
+	abjad> note_2.written_pitch = pitchtools.NamedChromaticPitch(24, deviation = -31)
+
+
+The pitch of the the first note is greater than the pitch of the second:
+
+::
+
+	abjad> note_1.written_pitch > note_2.written_pitch
+	True
+
+
+Use markup to include indications of pitch deviation in your score:
+
+::
+
+	abjad> markuptools.Markup(note_2.written_pitch.deviation_in_cents, 'up')(note_2)
+
+.. image:: images/pitch-deviation-2.png
+
+
+Sorting pitches
+---------------
 
 Named chromatic pitches sort by octave, diatonic pitch-class and accidental,
 in that order:
@@ -64,8 +108,9 @@ in that order:
 	True
 
 
-Pitch comparison
-----------------
+
+Comparing pitches
+-----------------
 
 Compare named chromatic pitches to each other:
 
@@ -111,8 +156,9 @@ Compare named chromatic pitches to each other:
 	True
 
 
-Pitch conversion
-----------------
+
+Converting one type of pitch to another
+---------------------------------------
 
 Convert any named chromatic pitch to a named diatonic pitch:
 
@@ -138,8 +184,9 @@ Or to a numbered diatonic pitch:
 	NumberedDiatonicPitch(7)
 
 
-Pitch-class conversion
-----------------------
+
+Converting pitches to pitch-classes
+-----------------------------------
 
 Convert any named chromatic pitch to a named chromatic pitch-class:
 
@@ -173,8 +220,9 @@ Or to a numbered diatonic pitch-class:
 	NumberedDiatonicPitchClass(0)
 
 
-Copying
--------
+
+Copying pitches
+---------------
 
 Use ``copy.copy()`` to copy named chromatic pitches:
 
@@ -189,10 +237,4 @@ Use ``copy.copy()`` to copy named chromatic pitches:
 	NamedChromaticPitch("cs''")
 
 
-Or use ``copy.deepcopy()`` to do the same thing:
-
-::
-
-	abjad> copy.deepcopy(named_chromatic_pitch)
-	NamedChromaticPitch("cs''")
-
+Or use ``copy.deepcopy()`` to do the same thing.

@@ -12,8 +12,9 @@ note.written_pitch
 print repr(note.written_pitch) <hide
 </abjad>
 
-Creation
---------
+
+Creating pitches
+----------------
 
 Use pitch tools to create named chromatic pitches:
 
@@ -26,8 +27,9 @@ named_chromatic_pitch
 print repr(named_chromatic_pitch) <hide
 </abjad>
 
-Name inspection
----------------
+
+Inspecting the name of a pitch
+------------------------------
 
 Use ``str()`` to get the name of named chromatic pitches:
 
@@ -36,8 +38,9 @@ str(named_chromatic_pitch)
 print str(named_chromatic_pitch) <hide
 </abjad>
 
-Octave inspection
------------------
+
+Inspecting the octave of a pitch
+--------------------------------
 
 Get the octave number of named chromatic pitches with ``octave_number``:
 
@@ -46,8 +49,44 @@ named_chromatic_pitch.octave_number
 print named_chromatic_pitch.octave_number <hide
 </abjad>
 
-Sorting
--------
+
+Working with pitch deviation
+----------------------------
+
+Use deviation to model the fact that two pitches differ by a fraction of a semitone:
+
+<abjad>
+note_1 = Note(24, (1, 2))
+note_2 = Note(24, (1, 2))
+staff = Staff([note_1, note_2])
+</abjad>
+
+<abjad>
+show(staff)
+iotools.write_expr_to_ly(staff, 'pitch-deviation-1') <hide
+</abjad>
+
+<abjad>
+note_2.written_pitch = pitchtools.NamedChromaticPitch(24, deviation = -31)
+</abjad>
+
+The pitch of the the first note is greater than the pitch of the second:
+
+<abjad>
+note_1.written_pitch > note_2.written_pitch
+print repr(note_1.written_pitch > note_2.written_pitch) <hide
+</abjad>
+
+Use markup to include indications of pitch deviation in your score:
+
+<abjad>
+markuptools.Markup(note_2.written_pitch.deviation_in_cents, 'up')(note_2)
+iotools.write_expr_to_ly(staff, 'pitch-deviation-2') <hide
+</abjad>
+
+
+Sorting pitches
+---------------
 
 Named chromatic pitches sort by octave, diatonic pitch-class and accidental,
 in that order:
@@ -57,8 +96,9 @@ pitchtools.NamedChromaticPitch('es') < pitchtools.NamedChromaticPitch('ff')
 print repr(pitchtools.NamedChromaticPitch('es') < pitchtools.NamedChromaticPitch('ff')) <hide
 </abjad>
 
-Pitch comparison
-----------------
+
+Comparing pitches
+-----------------
 
 Compare named chromatic pitches to each other:
 
@@ -97,8 +137,9 @@ named_chromatic_pitch_1 <= named_chromatic_pitch_2
 print repr(named_chromatic_pitch_1 <= named_chromatic_pitch_2) <hide
 </abjad>
 
-Pitch conversion
-----------------
+
+Converting one type of pitch to another
+---------------------------------------
 
 Convert any named chromatic pitch to a named diatonic pitch:
 
@@ -121,8 +162,9 @@ named_chromatic_pitch.numbered_diatonic_pitch
 print repr(named_chromatic_pitch.numbered_diatonic_pitch) <hide
 </abjad>
 
-Pitch-class conversion
-----------------------
+
+Converting pitches to pitch-classes
+-----------------------------------
 
 Convert any named chromatic pitch to a named chromatic pitch-class:
 
@@ -152,8 +194,9 @@ named_chromatic_pitch.numbered_diatonic_pitch_class
 print repr(named_chromatic_pitch.numbered_diatonic_pitch_class) <hide
 </abjad>
 
-Copying
--------
+
+Copying pitches
+---------------
 
 Use ``copy.copy()`` to copy named chromatic pitches:
 
@@ -166,9 +209,4 @@ copy.copy(named_chromatic_pitch)
 print repr(copy.copy(named_chromatic_pitch)) <hide
 </abjad>
 
-Or use ``copy.deepcopy()`` to do the same thing:
-
-<abjad>
-copy.deepcopy(named_chromatic_pitch)
-print repr(copy.deepcopy(named_chromatic_pitch)) <hide
-</abjad>
+Or use ``copy.deepcopy()`` to do the same thing.
