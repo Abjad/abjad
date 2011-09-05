@@ -1184,6 +1184,7 @@ sequencetools
    tools/sequencetools/CyclicMatrix/CyclicMatrix
    tools/sequencetools/CyclicTuple/CyclicTuple
    tools/sequencetools/Matrix/Matrix
+   tools/sequencetools/Tree/Tree
    tools/sequencetools/all_are_assignable_integers
    tools/sequencetools/all_are_equal
    tools/sequencetools/all_are_integer_equivalent_numbers
