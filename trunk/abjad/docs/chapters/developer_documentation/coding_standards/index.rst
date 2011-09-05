@@ -134,6 +134,8 @@ Preceed private class attributes with a single underscore::
         def _blah(self, x, y):
             ...
 
+Alphabetize method names.
+
 Use ``<`` less-than signs in preference to greater-than signs::
 
     if x < y < z:

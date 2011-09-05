@@ -27,8 +27,9 @@ def get_lilypond_version_string():
             lilypond = 'lilypond'
 
     command = lilypond + ' --version'
-    proc = subprocess.Popen(command, shell = True, stdout = subprocess.PIPE)
+    proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
     lilypond_version_string = proc.stdout.readline()
     lilypond_version_string = lilypond_version_string.split(' ')[-1]
     lilypond_version_string = lilypond_version_string.strip()
+
     return lilypond_version_string
