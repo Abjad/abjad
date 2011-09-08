@@ -72,8 +72,14 @@ def build_mozart_piano_staff( ):
     marktools.LilyPondCommandMark('bar "|."', 'closing')(treble_staff[-1])
     marktools.LilyPondCommandMark('bar "|."', 'closing')(bass_staff[-1])
 
-    # combine into a PianoStaff and return
-    return scoretools.PianoStaff([treble_staff, bass_staff])
+    # combine into a PianoStaff
+    piano_staff = scoretools.PianoStaff([treble_staff, bass_staff])
+
+    # add an instrument name via contexttools.InstrumentMark
+    contexttools.InstrumentMark('Katzenklavier', 'kk.',
+        target_context = scoretools.PianoStaff)(piano_staff)
+
+    return piano_staff
 
 
 def build_mozart_lily(piano_staff):
@@ -82,14 +88,13 @@ def build_mozart_lily(piano_staff):
     lily = lilyfiletools.make_basic_lily_file(piano_staff)
 
     # create some markup to use in our header block
-    title = "Ein Musickalisches Wuerfelspiel"
-    title_markup = markuptools.MarkupCommand('override', [schemetools.SchemePair('font-name', 'Helvetica Neue')], [title])
-    composer  = "W. A. Mozart (maybe?)"
+    title = markuptools.Markup('\\bold \\sans "Ein Musickalisches Wuerfelspiel"')
+    composer = schemetools.SchemeString("W. A. Mozart (maybe?)")
 
     # change various settings
     lily.global_staff_size = 12
-    lily.header_block.title = markuptools.Markup(title_markup)
-    lily.header_block.composer = schemetools.SchemeString('W. A. Mozart (maybe?!?)')
+    lily.header_block.title = title
+    lily.header_block.composer = composer
     lily.layout_block.ragged_right = True
     lily.paper_block.markup_system_spacing__basic_distance = 20
     lily.paper_block.paper_width = 180
