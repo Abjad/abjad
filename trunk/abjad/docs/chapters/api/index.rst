@@ -1225,6 +1225,7 @@ sequencetools
    tools/sequencetools/iterate_sequence_pairwise_cyclic
    tools/sequencetools/iterate_sequence_pairwise_strict
    tools/sequencetools/iterate_sequence_pairwise_wrapped
+   tools/sequencetools/join_subsequences
    tools/sequencetools/join_subsequences_by_sign_of_subsequence_elements
    tools/sequencetools/map_sequence_elements_to_canonic_tuples
    tools/sequencetools/map_sequence_elements_to_numbered_sublists
