@@ -56,6 +56,8 @@ class SchemePair(tuple, _Immutable):
                 vals.append("#t")
             elif isinstance(x, type(True)):
                 vals.append("#f")
+            elif isinstance(x, str) and ' ' in x:
+                vals.append('"%s"' % x)
             else:
                 vals.append(x)
         return '%s . %s' % (vals[0], vals[1])

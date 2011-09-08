@@ -40,7 +40,14 @@ class _BlockAttributed(object):
         result = []
         for key, value in sorted(vars(self).items()):
             if not key.startswith('_'):
-                formatted_key = key.replace('_', '-')
+                # format subkeys via double underscore
+                formatted_key = key.split('__')
+                for i, k in enumerate(formatted_key):
+                    formatted_key[i] = k.replace('_', '-')
+                    if 0 < i:
+                        formatted_key[i] = "#'%s" % formatted_key[i]
+                formatted_key = ' '.join(formatted_key)
+                # format value
                 formatted_value = _format_lilypond_value(value)
                 setting = '%s = %s' % (formatted_key, formatted_value)
                 result.append(setting)
