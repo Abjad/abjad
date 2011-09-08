@@ -35,6 +35,7 @@ Examples
     chapters/examples/bartok/index
     chapters/examples/ferneyhough/index
     chapters/examples/ligeti/index
+    chapters/examples/mozart/index
 
 Reference manual
 
