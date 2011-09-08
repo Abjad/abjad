@@ -42,6 +42,3 @@ class TextSpanner(Spanner):
     def __init__(self, components = None):
         Spanner.__init__(self, components)
         self._format = _TextSpannerFormatInterface(self)
-
-
-

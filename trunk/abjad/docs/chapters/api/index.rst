@@ -795,6 +795,7 @@ spannertools
    tools/spannertools/GlissandoSpanner/GlissandoSpanner
    tools/spannertools/HairpinSpanner/HairpinSpanner
    tools/spannertools/HiddenStaffSpanner/HiddenStaffSpanner
+   tools/spannertools/HorizontalBracketSpanner/HorizontalBracketSpanner
    tools/spannertools/MeasuredComplexBeamSpanner/MeasuredComplexBeamSpanner
    tools/spannertools/MetricGridSpanner/MetricGridSpanner
    tools/spannertools/MultipartBeamSpanner/MultipartBeamSpanner

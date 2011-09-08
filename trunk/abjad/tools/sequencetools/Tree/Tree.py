@@ -49,6 +49,9 @@ class Tree(list):
     ### OVERLOADS ###
 
     def __repr__(self):
+        return '%s(%s)' % (type(self).__name__, self)
+
+    def __str__(self):
         if self.payload is None:
             return '[%s]' % ', '.join([str(x) for x in self])
         else:

@@ -1,7 +1,7 @@
 from abjad.tools.spannertools.Spanner._SpannerFormatInterface import _SpannerFormatInterface
 
 
-class _TextSpannerFormatInterface(_SpannerFormatInterface):
+class _HorizontalBracketSpannerFormatInterface(_SpannerFormatInterface):
 
     def __init__(self, spanner):
         _SpannerFormatInterface.__init__(self, spanner)
@@ -13,7 +13,7 @@ class _TextSpannerFormatInterface(_SpannerFormatInterface):
         result = []
         spanner = self.spanner
         if spanner._is_my_first_leaf(leaf):
-            result.append(r'\startTextSpan')
+            result.append(r'\startGroup')
         if spanner._is_my_last_leaf(leaf):
-            result.append(r'\stopTextSpan')
+            result.append(r'\stopGroup')
         return result
