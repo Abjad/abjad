@@ -1,5 +1,5 @@
-Ferneyhough: Unsichtbare Farben
-===============================
+Ferneyhough: *Unsichtbare Farben*
+=================================
 
 Mikhïal Malt analyzes the rhythmic materials of Ferneyhough's `Unsichtbare Farben` in
 `The OM Composer's Book 2`.
@@ -124,4 +124,4 @@ And show the result:
 
 	abjad> show(lily_file)
 
-.. image:: images/fernyehouh-1.png
+.. image:: images/fernyehough-1.png

@@ -1,5 +1,5 @@
-Bartók: Mikrokosmos
-===================
+Bartók: *Mikrokosmos*
+=====================
 
 This example reconstructs the last five measures of Bartók's "Wandering"
 from *Mikrokosmos*, volume III.  

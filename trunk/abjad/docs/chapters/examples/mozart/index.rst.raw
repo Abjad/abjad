@@ -1,5 +1,5 @@
 Mozart: *Musikalisches Würfelspiel*
-=====================================
+===================================
 
 Mozart's dice game is a method for aleatorically generating sixteen-measure-long minuets.  For each measure, two six-sided dice are rolled, and the sum of 
 the dice used to look up a measure number in one of two tables (one for each half of the minuet).  The measure number then locates a single measure from a 

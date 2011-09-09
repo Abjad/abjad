@@ -88,7 +88,7 @@ def build_mozart_lily(piano_staff):
     lily = lilyfiletools.make_basic_lily_file(piano_staff)
 
     # create some markup to use in our header block
-    title = markuptools.Markup('\\bold \\sans "Ein Musickalisches Wuerfelspiel"')
+    title = markuptools.Markup('\\bold \\sans "Ein Musikalisches Wuerfelspiel"')
     composer = schemetools.SchemeString("W. A. Mozart (maybe?)")
 
     # change various settings

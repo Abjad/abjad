@@ -1,5 +1,5 @@
 Mozart: *Musikalisches Würfelspiel*
-=====================================
+===================================
 
 Mozart's dice game is a method for aleatorically generating sixteen-measure-long minuets.  For each measure, two six-sided dice are rolled, and the sum of 
 the dice used to look up a measure number in one of two tables (one for each half of the minuet).  The measure number then locates a single measure from a 
@@ -293,7 +293,7 @@ After storing all of the musical fragments into a corpus, concatenating those el
 	abjad> my_list = [1, 'b', 3]
 	abjad> my_result = [random.choice(my_list) for i in range(20)]
 	abjad> print my_result
-	['b', 3, 'b', 3, 3, 1, 3, 1, 'b', 'b', 1, 1, 'b', 'b', 1, 1, 1, 3, 3, 'b']
+	[1, 1, 'b', 1, 1, 1, 1, 3, 3, 3, 3, 1, 1, 'b', 'b', 3, 3, 'b', 3, 3]
 
 
 Our corpus is a list comprising sixteen sublists, one for each measure in the minuet.  To build our musical structure, we can simply iterate through the 
@@ -325,23 +325,23 @@ The result will be a *seventeen*-item-long list of measure definitions:
 
 	abjad> choices = choose_mozart_measures( )
 	abjad> for i, measure in enumerate(choices): print i, measure
-	0 {'b': '<c e>4 r8', 't': "g''8 c''8 e''8"}
-	1 {'b': 'c4 r8', 't': "e''16 d''16 e''16 g''16 c'''16 g''16"}
-	2 {'b': 'g,4 r8', 't': "b'8 d''8 g''8"}
-	3 {'b': 'c4 r8', 't': "<c'' e''>8 <c'' e''>16 <d'' f''>16 <e'' g''>8"}
-	4 {'b': 'c4 r8', 't': "d''8 a'8 ^\\turn fs''8"}
-	5 {'b': '<b, d>4 r8', 't': "g''16 b''16 g''16 d''16 b'8"}
-	6 {'b': 'c8 d8 d,8', 't': "e''16 g''16 d''16 g''16 a'16 fs''16"}
+	0 {'b': 'c4 r8', 't': "e''16 d''16 e''16 g''16 c'''16 g''16"}
+	1 {'b': 'c8 c8 c8', 't': "<e' c''>8 <e' c''>8 <e' c''>8"}
+	2 {'b': '<b, d>4 r8', 't': "g''16 fs''16 g''16 d''16 b'16 g'16"}
+	3 {'b': 'c4 r8', 't': "e''16 c''16 b'16 c''16 g'8"}
+	4 {'b': 'c4 r8', 't': "d''16 a'16 fs''16 d''16 a''16 fs''16"}
+	5 {'b': 'b,4 r8', 't': "g''8 b''16 g''16 d''16 g''16"}
+	6 {'b': 'c8 d8 d,8', 't': "<b' d''>16 ( <a' c''>16 ) <a' c''>16 ( <g' b'>16 ) <g' b'>16 ( <fs' a'>16 )"}
 	7 {'b': 'g,8 g16 f16 e16 d16', 't': "<g' b' d'' g''>4 r8"}
 	8 {'b': 'g,8 b16 g16 fs16 e16', 't': "<g' b' d'' g''>4 r8"}
-	9 {'b': 'd4 c8', 't': "d'16 fs'16 a'16 d''16 fs''16 a''16"}
-	10 {'b': '<b, g>4 r8', 't': "g''8 b''16 g''16 d''8"}
-	11 {'b': 'e4 e16 c16', 't': "c''16 g'16 c''16 e''16 g''16 <c'' e''>16"}
-	12 {'b': 'g4 g,8', 't': "<c'' e''>8 <b' d''>8 r8"}
-	13 {'b': '<c e>4 <e g>8', 't': "c''16 b'16 c''16 e''16 g'16 c''16"}
-	14 {'b': '<c e>4 r8', 't': "c''16 g'16 e''16 c''16 g''16 e''16"}
-	15 {'b': 'f4 g8', 't': "d''16 f''16 a''16 f''16 d''16 b'16"}
-	16 {'b': 'c8 g,8 c,8', 't': "c''4 r8"}
+	9 {'b': '<c a>4 <c a>8', 't': "fs''16 a''16 d'''16 a''16 fs''16 a''16"}
+	10 {'b': '<b, d>4 <b, d>8', 't': "g''16 b''16 d'''16 b''16 g''8"}
+	11 {'b': '<c g>4 <c e>8', 't': "e''8 g''16 e''16 c''8"}
+	12 {'b': 'g4 g,8', 't': "b'16 d''16 g''16 d''16 b'8"}
+	13 {'b': '<c e>16 g16 <c e>16 g16 <c e>16 g16', 't': "g'8 c''8 e''8"}
+	14 {'b': '<c e>16 g16 <c e>16 g16 <c e>16 g16', 't': "c''8 g'8 e''8"}
+	15 {'b': 'f4 g8', 't': "f''16 e''16 d''16 c''16 b'16 d''16"}
+	16 {'b': 'c4 c,8', 't': "c''8 c'8 r8"}
 
 
 The score
@@ -504,7 +504,7 @@ change the global staff size, paper size, staff spacing and so forth.
 	abjad> f(lily.header_block)
 	\header {
 		composer = #"W. A. Mozart (maybe?)"
-		title = \markup { \bold \sans "Ein Musickalisches Wuerfelspiel" }
+		title = \markup { \bold \sans "Ein Musikalisches Wuerfelspiel" }
 	}
 
 

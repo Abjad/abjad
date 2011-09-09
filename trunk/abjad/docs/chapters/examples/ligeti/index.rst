@@ -1,5 +1,5 @@
-Ligeti: Désordre
-================
+Ligeti: *Désordre*
+==================
 
 This example demonstrates the power of exploiting redundancy to model musical structure. The piece that concerns us here is Ligeti's *Désordre*: the first piano study from Book I. Specifically, we will focus on modeling the first section of the piece:
 
