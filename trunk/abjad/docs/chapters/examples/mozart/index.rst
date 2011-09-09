@@ -1,7 +1,7 @@
-Mozart: *Musickalisches Würfelspiel*
+Mozart: *Musikalisches Würfelspiel*
 =====================================
 
-Mozart's dice game is a method for aleatorically generating sixteen-measure-long *minuets*.  For each measure, two six-sided dice are rolled, and the sum of 
+Mozart's dice game is a method for aleatorically generating sixteen-measure-long minuets.  For each measure, two six-sided dice are rolled, and the sum of 
 the dice used to look up a measure number in one of two tables (one for each half of the minuet).  The measure number then locates a single measure from a 
 collection of musical fragments.  The fragments are concatenated together, and "music" results.
 
@@ -12,7 +12,7 @@ program <http://en.wikipedia.org/wiki/Hello_world_program>`_ which every program
    :align: center
    :width: 640px
 
-   A pen-and-paper implementation from the 20th century.
+   *Part of a pen-and-paper implementation from the 20th century.*
 
 .. note:: The musical dice game in question (*k516f*) has long been attributed to Mozart, albeit inconclusively.  Its actual provenance is a musicological 
    problem with which we are unconcerned here.
@@ -20,19 +20,19 @@ program <http://en.wikipedia.org/wiki/Hello_world_program>`_ which every program
 The materials
 -------------
 
-At the heart of the dice game is a large collection - or *corpus* - of musical fragments.  Each fragment is a single 3/8 measure, consisting of a treble 
-voice and a bass voice.  Traditionally these fragments are stored in a score, and located via two tables of measure numbers, which act as lookups, indexing 
-into that score.
+At the heart of the dice game is a large collection, *or corpus*, of musical fragments.  Each fragment is a single 3/8 measure, consisting of a treble voice 
+and a bass voice.  Traditionally, these fragments are stored in a "score", or "table of measures", and located via two tables of measure numbers, which act 
+as lookups, indexing into that collection.
 
 Duplicate measures in the original corpus are common.  Notably, the 8th measure - actually a pair of measures represent the first and second alternate ending 
-of the first half of the menuet - are always identical.  The last measure of the piece is similarly limited - there are only two possibilities rather than 
+of the first half of the minuet - are always identical.  The last measure of the piece is similarly limited - there are only two possibilities rather than 
 the usual eleven (for the numbers 2 to 12, being all the possible sums of two 6-sided dice).
 
 How might we store this corpus compactly?
 
 Some basic musical information in Abjad can be stored as strings, rather than actual collections of class instances.  Abjad can parse simple LilyPond strings 
-via `iotools.parse_lilypond_input_string`, which interprets a subset of LilyPond syntax, and understands basic concepts like notes, chords, rests and skips, 
-as well as beams, slurs, ties, and articulations.
+via :py:func:`abjad.tools.iotools.parse_lilypond_input_string`, which interprets a subset of LilyPond syntax, and understands basic concepts like notes, 
+chords, rests and skips, as well as beams, slurs, ties, and articulations.
 
 ::
 
@@ -53,9 +53,10 @@ voice will use the key 't' and the bass voice will use the key 'b'.
 	abjad> fragment = {'t': "g''8 ( e''8 c''8 )", 'b': '<c e>4 r8'}
 
 
-Our fragment dictionaries will then be packaged into a list of lists of fragment dictionaries.  That is to say, each of the sixteen measures in the piece 
-will be represented by a list of fragment dictionaries.  Furthermore, the 8th measure, which breaks the pattern, will simply be a list of two fragment 
-dictionaries.  The complete corpus looks like this:
+Instead of relying on measure number tables to find our fragments - as in the original implementation, we'll package our fragment dictionaries into a list of 
+lists of fragment dictionaries.  That is to say, each of the sixteen measures in the piece will be represented by a list of fragment dictionaries.  
+Furthermore, the 8th measure, which breaks the pattern, will simply be a list of two fragment dictionaries.  Structuring our information in this way lets 
+us avoid using measure number tables entirely; Python's list-indexing affordances will take care of that for us.  The complete corpus looks like this:
 
 
 ::
@@ -252,7 +253,8 @@ dictionaries.  The complete corpus looks like this:
         ],
     ]
 
-We can then "build" the treble and bass components of a measure like this:
+We can then use the :py:func:`~abjad.tools.iotools.parse_lilypond_input_string` function we saw earlier to "build" the treble and bass components of a 
+measure like this:
 
 ::
 
@@ -282,8 +284,8 @@ We can then "build" the treble and bass components of a measure like this:
 The structure
 -------------
 
-After storing all of the musical fragments into a *corpus*, concatenating those elements into a musical structure is relatively trivial.  We'll use the 
-`choice` function from Python's `random` module.  `random.choice` randomly selects one element from an input list.
+After storing all of the musical fragments into a corpus, concatenating those elements into a musical structure is relatively trivial.  We'll use the 
+:py:func:`~random.choice` function from Python's `random` module.  :py:func:`random.choice` randomly selects one element from an input list.
 
 ::
 
@@ -291,14 +293,14 @@ After storing all of the musical fragments into a *corpus*, concatenating those 
 	abjad> my_list = [1, 'b', 3]
 	abjad> my_result = [random.choice(my_list) for i in range(20)]
 	abjad> print my_result
-	[1, 3, 'b', 3, 1, 3, 'b', 'b', 3, 3, 'b', 1, 1, 3, 'b', 1, 'b', 3, 'b', 1]
+	['b', 3, 'b', 3, 3, 1, 3, 1, 'b', 'b', 1, 1, 'b', 'b', 1, 1, 1, 3, 3, 'b']
 
 
-Our *corpus* is a list comprising sixteen sublists, one for each measure in the minuet.  To build our musical structure, we can simply iterate through the 
+Our corpus is a list comprising sixteen sublists, one for each measure in the minuet.  To build our musical structure, we can simply iterate through the 
 corpus and call `choice` on each sublist, appending the chosen results to another list.  The only catch is that the *eighth* measure of our minuet is 
-actually the first-and-second-ending for the repeat of the first phrase.  The sublist of the *corpus* for measure eight contains *only* the first and second 
+actually the first-and-second-ending for the repeat of the first phrase.  The sublist of the corpus for measure eight contains *only* the first and second 
 ending definitions, and both of those measures should appear in the final piece, always in the same order.  We'll have to intercept that sublist while we 
-iterate through the *corpus* and apply some different logic.
+iterate through the corpus and apply some different logic.
 
 The easist way to intercept measure eight is to use the Python builtin `enumerate`, which allows you to iterate through a collection while also 
 getting the index of each element in that collection:
@@ -323,23 +325,23 @@ The result will be a *seventeen*-item-long list of measure definitions:
 
 	abjad> choices = choose_mozart_measures( )
 	abjad> for i, measure in enumerate(choices): print i, measure
-	0 {'b': '<c e>4 r8', 't': "g''8 f''16 e''16 d''16 c''16"}
-	1 {'b': '<c e>4 r8', 't': "c''8 g'8 e''8"}
-	2 {'b': 'g,4 r8', 't': "b'8 d''16 b'16 a'16 g'16"}
-	3 {'b': '<e g>4 r8', 't': "c''8 e''16 c''16 g''8"}
-	4 {'b': 'c8 c8 c8', 't': "<fs' d''>8 <fs' d''>8 <fs' d''>8"}
-	5 {'b': '<b, d>4 r8', 't': "g''8 b''16 g''16 d''16 b'16"}
-	6 {'b': 'c8 d8 d,8', 't': "e''16 c''16 b'16 a'16 g'16 fs'16"}
+	0 {'b': '<c e>4 r8', 't': "g''8 c''8 e''8"}
+	1 {'b': 'c4 r8', 't': "e''16 d''16 e''16 g''16 c'''16 g''16"}
+	2 {'b': 'g,4 r8', 't': "b'8 d''8 g''8"}
+	3 {'b': 'c4 r8', 't': "<c'' e''>8 <c'' e''>16 <d'' f''>16 <e'' g''>8"}
+	4 {'b': 'c4 r8', 't': "d''8 a'8 ^\\turn fs''8"}
+	5 {'b': '<b, d>4 r8', 't': "g''16 b''16 g''16 d''16 b'8"}
+	6 {'b': 'c8 d8 d,8', 't': "e''16 g''16 d''16 g''16 a'16 fs''16"}
 	7 {'b': 'g,8 g16 f16 e16 d16', 't': "<g' b' d'' g''>4 r8"}
 	8 {'b': 'g,8 b16 g16 fs16 e16', 't': "<g' b' d'' g''>4 r8"}
-	9 {'b': '<d fs>4 <c a>8', 't': "a'8 d''8 fs''8"}
-	10 {'b': '<b, d>4 <b, d>8', 't': "a''16 g''16 b''16 g''16 d''16 g''16"}
-	11 {'b': '<c g>4 <c e>8', 't': "e''8 g''16 e''16 c''8"}
-	12 {'b': '<g b>4 r8', 't': "d''16 b''16 g''16 d''16 b'8"}
-	13 {'b': '<c e>16 g16 <c e>16 g16 <c e>16 g16', 't': "c''8 g'8 e''8"}
-	14 {'b': '<c e>16 g16 <c e>16 g16 <c e>16 g16', 't': "g''8 c''8 e''8"}
-	15 {'b': 'f4 g8', 't': "f''16 d''16 a'8 b'8"}
-	16 {'b': 'c4 c,8', 't': "c''8 c'8 r8"}
+	9 {'b': 'd4 c8', 't': "d'16 fs'16 a'16 d''16 fs''16 a''16"}
+	10 {'b': '<b, g>4 r8', 't': "g''8 b''16 g''16 d''8"}
+	11 {'b': 'e4 e16 c16', 't': "c''16 g'16 c''16 e''16 g''16 <c'' e''>16"}
+	12 {'b': 'g4 g,8', 't': "<c'' e''>8 <b' d''>8 r8"}
+	13 {'b': '<c e>4 <e g>8', 't': "c''16 b'16 c''16 e''16 g'16 c''16"}
+	14 {'b': '<c e>4 r8', 't': "c''16 g'16 e''16 c''16 g''16 e''16"}
+	15 {'b': 'f4 g8', 't': "d''16 f''16 a''16 f''16 d''16 b'16"}
+	16 {'b': 'c8 g,8 c,8', 't': "c''4 r8"}
 
 
 The score
@@ -363,8 +365,8 @@ LilyPond's repeat structure in Abjad.  LilyPond structures its repeats something
     ...music after the repeat...
 
 What you see above is really just two containers, each with a little text ("\repeat volta n" and "alternative") prepended to their opening curly brace.  To 
-create that structure in Abjad, we'll need to use the `marktools.LilyPondCommandMark` class, which allows you to place LilyPond commands like "\bar" or 
-"\break" relative to any score component:
+create that structure in Abjad, we'll need to use the :py:class:`~abjad.tools.marktools.LilyPondCommandMark` class, which allows you to place LilyPond 
+commands like "\bar" or "\break" relative to any score component:
 
 ::
 
@@ -463,8 +465,9 @@ As you can see above, we've now got our randomized minuet.  However, we can stil
 controlling the overall *look* of a musical document, often through its `\header`, `\layout` and `\paper` blocks.  Abjad, in turn, gives us object-oriented 
 access to these settings through the its `lilyfiletools` module.
 
-We'll use `lilyfiletools.make_basic_lily_file` to wrap our piano staff inside a LilyFile instance.  From there we can access the other "blocks" of our 
-document to add a title, a composer's name, change the global staff size, paper size, staff spacing and so forth.
+We'll use :py:func:`abjad.tools.lilyfiletools.make_basic_lily_file` to wrap our :py:class:`~abjad.tools.scoretools.PianoStaff` inside a
+:py:class:`~abjad.tools.lilyfiletools.LilyFile` instance.  From there we can access the other "blocks" of our document to add a title, a composer's name, 
+change the global staff size, paper size, staff spacing and so forth.
 
 ::
 
@@ -474,7 +477,7 @@ document to add a title, a composer's name, change the global staff size, paper 
         lily = lilyfiletools.make_basic_lily_file(piano_staff)
 
         # create some markup to use in our header block
-        title = markuptools.Markup('\\bold \\sans "Ein Musickalisches Wuerfelspiel"')
+        title = markuptools.Markup('\\bold \\sans "Ein Musikalisches Wuerfelspiel"')
         composer = schemetools.SchemeString("W. A. Mozart (maybe?)")
 
         # change various settings 
