@@ -56,3 +56,47 @@ class Tree(list):
             return '[%s]' % ', '.join([str(x) for x in self])
         else:
             return repr(self.payload)
+
+    ### PUBLIC ATTRIBUTES ###
+
+    @property
+    def depth(self):
+        return len(self.parentage)
+
+    @property
+    def parentage(self):
+        result = []
+        cur = self.parent
+        while cur is not None:
+            result.append(cur)
+            cur = cur.parent
+        return result
+
+    ### PUBLIC METHODS ###
+
+    def iterate_at_depth(self, depth):
+        for x in self.iterate_depth_first():
+            if x.depth == depth:
+                yield x
+
+    def iterate_depth_first(self):
+        yield self
+        for x in self:
+            for y in x.iterate_depth_first():
+                yield y
+
+    def iterate_leaves(self):
+        for x in self.iterate_depth_first():
+            if not len(x):
+                yield x
+            
+    def iterate_payload(self):
+        for x in self:
+            if x.payload is not None:
+                yield x.payload
+            else:
+                for y in x:
+                    if y.payload is not None:
+                        yield y.payload
+                    for z in y.iterate_payload():
+                        yield z
