@@ -13,17 +13,17 @@ class Tree(list):
     ::
 
         abjad> tree
-        [0, 1, [2, 3, [4]], 5]
+        Tree([0, 1, [2, 3, [4]], 5])
 
     ::
 
         abjad> tree[2][2]
-        [4]
+        Tree([4])
 
     ::
 
         abjad> tree[2][2].parent
-        [2, 3, [4]]
+        Tree([2, 3, [4]])
 
     ::
     

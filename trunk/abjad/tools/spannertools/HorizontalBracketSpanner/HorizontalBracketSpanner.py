@@ -22,7 +22,9 @@ class HorizontalBracketSpanner(Spanner):
     ::
 
         abjad> f(voice)
-        \new Voice {
+        \new Voice \with {
+            \consists Horizontal_bracket_engraver
+        } {
             c'4 \startGroup
             d'4
             e'4
