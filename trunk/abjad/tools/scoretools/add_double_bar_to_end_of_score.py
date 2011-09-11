@@ -11,7 +11,7 @@ def add_double_bar_to_end_of_score(score):
     ::
 
         abjad> scoretools.add_double_bar_to_end_of_score(staff)
-        LilyPondCommandMark('bar "|."')(f'4)
+        BarLine('|.')(f'4)
 
     ::
 
@@ -29,8 +29,6 @@ def add_double_bar_to_end_of_score(score):
     from abjad.tools import leaftools
 
     last_leaf = leaftools.get_nth_leaf_in_expr(score, -1)
-    double_bar = marktools.LilyPondCommandMark('bar "|."', 'after')(last_leaf)
+    double_bar = marktools.BarLine('|.')(last_leaf)
 
     return double_bar
-
-

@@ -53,8 +53,7 @@ def parse_lilypond_input_string(note_entry_string):
         if waiting_on_bar_string:
             bar_string = eval(token)
             last_leaf = leaftools.get_nth_leaf_in_expr(container, -1)
-            bar_command_string = r'bar "%s"' % bar_string
-            marktools.LilyPondCommandMark(bar_command_string, 'closing')(last_leaf)
+            marktools.BarLine(bar_string)(last_leaf)
             waiting_on_bar_string = False
 
         elif waiting_on_clef_string:

@@ -338,11 +338,11 @@ LilyPond's repeat structure in Abjad.  LilyPond structures its repeats something
 
 What you see above is really just two containers, each with a little text ("\repeat volta n" and "alternative") prepended to their opening curly brace.  To 
 create that structure in Abjad, we'll need to use the :py:class:`~abjad.tools.marktools.LilyPondCommandMark` class, which allows you to place LilyPond 
-commands like "\bar" or "\break" relative to any score component:
+commands like "\break" relative to any score component:
 
 <abjad>
 con = Container("c'4 d'4 e'4 f'4")
-marktools.LilyPondCommandMark('bar "||"', 'after')(con)
+marktools.BarLine('||')(con)
 marktools.LilyPondCommandMark('break', 'right')(con[2])
 f(con)
 </abjad>
@@ -401,8 +401,8 @@ f(con)
         contexttools.ClefMark('bass')(bass_staff)
 
         # add the final double bar line at the end of each final measure
-        marktools.LilyPondCommandMark('bar "|."', 'closing')(treble_staff[-1])
-        marktools.LilyPondCommandMark('bar "|."', 'closing')(bass_staff[-1])
+        marktools.BarLine('|.')(treble_staff[-1])
+        marktools.BarLine('|.')(bass_staff[-1])
 
         # combine into a PianoStaff           
         piano_staff = scoretools.PianoStaff([treble_staff, bass_staff])

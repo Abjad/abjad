@@ -232,8 +232,8 @@ Let's add a double bar to the end of the piece:
 
 ::
 
-	lilypond_command_mark = marktools.LilyPondCommandMark('bar "|."', 'closing')
-	abjad> lilypond_command_mark.attach(lower_staff.leaves[-1])
+	abjad> bar_line = marktools.BarLine('|.')
+	abjad> bar_line.attach(lower_staff.leaves[-1])
 
 
 And see how things are coming out:

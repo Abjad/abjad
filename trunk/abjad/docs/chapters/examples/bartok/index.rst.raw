@@ -209,8 +209,8 @@ contexttools.DynamicMark('mp')(lower_measures[1][0][3])
 Let's add a double bar to the end of the piece:
 
 <abjad>
-lilypond_command_mark = marktools.LilyPondCommandMark('bar "|."', 'closing') 
-lilypond_command_mark.attach(lower_staff.leaves[-1])
+bar_line = marktools.BarLine('|.')
+bar_line.attach(lower_staff.leaves[-1])
 </abjad>
 
 And see how things are coming out:
