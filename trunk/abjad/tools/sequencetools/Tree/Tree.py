@@ -226,6 +226,14 @@ class Tree(_StrictComparator):
         '''
         return self.improper_parentage[-1]
 
+    @property
+    def width(self):
+        '''.. versionadded:: 2.4
+    
+        Number of leaves in tree.
+        '''
+        return len(list(self.iterate_at_level(-1))) 
+
     ### PUBLIC METHODS ###
 
     def iterate_at_level(self, level):
