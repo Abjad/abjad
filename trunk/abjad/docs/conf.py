@@ -44,7 +44,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Abjad'
-copyright = u'2008 - 2011, Víctor Adán, Trevor Bača'
+copyright = u'2008 - 2011, Víctor Adán, Trevor Bača, Josiah Oberholtzer'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -182,7 +182,7 @@ htmlhelp_basename = 'Abjaddoc'
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
   ('index', 'Abjad.tex', u'Abjad Documentation',
-   u'Víctor Adán, Trevor Bača', 'manual'),
+   u'Víctor Adán, Trevor Bača, Josiah Oberholtzer', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
