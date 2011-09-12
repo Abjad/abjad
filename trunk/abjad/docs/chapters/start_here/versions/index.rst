@@ -2,6 +2,23 @@ Version history
 ===============
 
 
+Abjad 2.4
+---------
+
+Released 2011-09-12. Built from r4769.
+
+* Added Mozart Musikalisches Wuerfelspiel.
+
+.. image:: ../../examples/mozart/images/mozart-lily.png
+
+* Added new ``Tree`` class to ``sequencetools`` to work with sequences whose elements have been grouped into arbitrarily many levels of containment.
+
+* Added new ``BarLine`` class to ``marktools`` package.
+* Added new ``HorizontalBracketSpanner`` to ``spannertools`` package.
+* Improved ``schemetools.SchemePair`` handling.
+* Extended ``LilyFile`` blocks with double underscore-delimited attributes.
+
+
 Abjad 2.3
 ---------
 
@@ -121,6 +138,11 @@ Abjad 2.0 is the first public release of Abjad in more than two years. The new r
 * Abjad core formatting logic has been optimized to make the formatting of scores with hundreds or thousands of events take much less time than before. 
 
 * The component duration interfaces have been replaced by more straightforward read-only component attributes.
+
+* Added Ferneyhough Unsichbare Farben example.
+
+.. image:: ../../examples/ferneyhough/images/ferneyhough-1.png
+
 
 
 Abjad 1.1.1

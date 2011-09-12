@@ -26,6 +26,8 @@ Abjad build checklist:
 
  9. Change to docs/_build/latex and run 'make all-pdf'.
     If any errors occur, fix and go back to (3.)
+    Open the docs/_build/latex/Abjad.pdf file that results.
+    Click around some to make everything looks OK.
 
 10. Copy docs/_build/latex/Abjad.pdf to docs/pdf/Abjad-x.y.pdf.
 
