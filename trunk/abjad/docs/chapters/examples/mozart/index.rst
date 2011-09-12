@@ -293,7 +293,7 @@ After storing all of the musical fragments into a corpus, concatenating those el
 	abjad> my_list = [1, 'b', 3]
 	abjad> my_result = [random.choice(my_list) for i in range(20)]
 	abjad> print my_result
-	['b', 1, 3, 3, 3, 'b', 3, 1, 3, 'b', 'b', 1, 1, 1, 1, 1, 'b', 3, 3, 1]
+	[3, 'b', 1, 3, 1, 'b', 'b', 'b', 1, 'b', 3, 1, 'b', 3, 1, 'b', 'b', 3, 'b', 3]
 
 
 Our corpus is a list comprising sixteen sublists, one for each measure in the minuet.  To build our musical structure, we can simply iterate through the 
@@ -325,22 +325,22 @@ The result will be a *seventeen*-item-long list of measure definitions:
 
 	abjad> choices = choose_mozart_measures( )
 	abjad> for i, measure in enumerate(choices): print i, measure
-	0 {'b': '<c e>4 r8', 't': "g''8 c''8 e''8"}
-	1 {'b': '<c e>4 r8', 't': "c'''16 b''16 c'''16 g''16 e''16 c''16"}
-	2 {'b': '<b, d>4 r8', 't': "g''16 fs''16 g''16 d''16 b'16 g'16"}
-	3 {'b': '<e g>4 r8', 't': "c''8 e''16 c''16 g'8"}
-	4 {'b': 'c8 c8 c8', 't': "<d'' fs''>8 <d'' fs''>8 <d'' fs''>8"}
+	0 {'b': '<c e>4 r8', 't': "c''16 b'16 c''16 e''16 g'16 c''16"}
+	1 {'b': 'c8 c8 c8', 't': "<e' c''>8 <e' c''>8 <e' c''>8"}
+	2 {'b': '<g b>4 r8', 't': "f''16 e''16 f''16 d''16 c''16 b'16"}
+	3 {'b': '<e g>4 r8', 't': "c''8 e''16 c''16 g''8"}
+	4 {'b': 'c8 c8 c8', 't': "<fs' d''>8 <d'' fs''>8 <fs'' a''>8"}
 	5 {'b': '<b, g>4 r8', 't': "d''8 d''16 g''16 b''8"}
-	6 {'b': 'c8 d8 d,8', 't': "c''16 e''16 g''16 d''16 a'16 fs''16"}
+	6 {'b': 'c8 d8 d,8', 't': "e''16 g''16 d''16 c''16 b'16 a'16"}
 	7 {'b': 'g,8 g16 f16 e16 d16', 't': "<g' b' d'' g''>4 r8"}
 	8 {'b': 'g,8 b16 g16 fs16 e16', 't': "<g' b' d'' g''>4 r8"}
-	9 {'b': '<d fs>4 <c fs>8', 't': "d'''8 a''16 fs''16 d''16 a'16"}
-	10 {'b': '<b, g>4 r8', 't': "g''8 b''16 g''16 d''8"}
-	11 {'b': '<c g>4 <c g>8', 't': "e''16 c''16 g'8 e''8"}
+	9 {'b': '<d fs>4 r8', 't': "d''16 a'16 d''8 fs''8"}
+	10 {'b': 'b,16 d16 g16 d16 b,16 g,16', 't': "g''8 g'8 g'8"}
+	11 {'b': '<c g>4 <c e>8', 't': "e''8 ( g''8 c'''8 )"}
 	12 {'b': 'g8 g,8 r8', 't': "g''16 e''16 d''16 b'16 g'8"}
-	13 {'b': '<c e>4 <e g>8', 't': "c''16 b'16 c''16 e''16 g'16 c''16"}
-	14 {'b': '<c e>16 g16 <c e>16 g16 <c e>16 g16', 't': "g''8 c''8 e''8"}
-	15 {'b': 'f4 g8', 't': "f''16 a''16 a'8 b'16 d''16"}
+	13 {'b': '<c e>16 g16 <c e>16 g16 <c e>16 g16', 't': "c''8 g'8 e''8"}
+	14 {'b': '<c e>4 r8', 't': "c''16 g'16 e''16 c''16 g''16 e''16"}
+	15 {'b': 'f4 g8', 't': "a'8 f''16 d''16 a'16 b'16"}
 	16 {'b': 'c8 g,8 c,8', 't': "c''4 r8"}
 
 
@@ -371,17 +371,30 @@ commands like "\break" relative to any score component:
 ::
 
 	abjad> con = Container("c'4 d'4 e'4 f'4")
-	abjad> marktools.BarLine('||')(con)
-	abjad> marktools.LilyPondCommandMark('break', 'right')(con[2])
+	abjad> marktools.LilyPondCommandMark('before-the-container', 'before')(con)
+	abjad> marktools.LilyPondCommandMark('after-the-container', 'after')(con)
+	abjad> marktools.LilyPondCommandMark('opening-of-the-container', 'opening')(con)
+	abjad> marktools.LilyPondCommandMark('closing-of-the-container', 'closing')(con)
+	abjad> marktools.LilyPondCommandMark('to-the-right-of-a-note', 'right')(con[2])
 	abjad> f(con)
+	\before-the-container
 	{
+		\opening-of-the-container
 		c'4
 		d'4
-		e'4 \break
+		e'4 \to-the-right-of-a-note
 		f'4
+		\closing-of-the-container
 	}
-	\bar "||"
+	\after-the-container
 
+
+Notice the second argument to each :py:class:`~abjad.tools.marktools.LilyPondCommandMark` above, like `before` and `closing`.  These are format slot 
+indications, which control where the command is placed in the LilyPond code relative to the score element it is attached to.  To mimic LilyPond's repeat 
+syntax, we'll have to create two :py:class:`~abjad.tools.marktools.LilyPondCommandMark` instances, both using the "before" format slot, insuring that their 
+command is placed before their container's opening curly brace.
+
+Now let's take a look at the code that puts our score together:
 
 ::
 

@@ -342,10 +342,20 @@ commands like "\break" relative to any score component:
 
 <abjad>
 con = Container("c'4 d'4 e'4 f'4")
-marktools.BarLine('||')(con)
-marktools.LilyPondCommandMark('break', 'right')(con[2])
+marktools.LilyPondCommandMark('before-the-container', 'before')(con)
+marktools.LilyPondCommandMark('after-the-container', 'after')(con)
+marktools.LilyPondCommandMark('opening-of-the-container', 'opening')(con)
+marktools.LilyPondCommandMark('closing-of-the-container', 'closing')(con)
+marktools.LilyPondCommandMark('to-the-right-of-a-note', 'right')(con[2])
 f(con)
 </abjad>
+
+Notice the second argument to each :py:class:`~abjad.tools.marktools.LilyPondCommandMark` above, like `before` and `closing`.  These are format slot 
+indications, which control where the command is placed in the LilyPond code relative to the score element it is attached to.  To mimic LilyPond's repeat 
+syntax, we'll have to create two :py:class:`~abjad.tools.marktools.LilyPondCommandMark` instances, both using the "before" format slot, insuring that their 
+command is placed before their container's opening curly brace.
+
+Now let's take a look at the code that puts our score together:
 
 ::
 
