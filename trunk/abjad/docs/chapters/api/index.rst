@@ -1184,6 +1184,7 @@ sequencetools
 
    tools/sequencetools/CyclicList/CyclicList
    tools/sequencetools/CyclicMatrix/CyclicMatrix
+   tools/sequencetools/CyclicTree/CyclicTree
    tools/sequencetools/CyclicTuple/CyclicTuple
    tools/sequencetools/Matrix/Matrix
    tools/sequencetools/Tree/Tree

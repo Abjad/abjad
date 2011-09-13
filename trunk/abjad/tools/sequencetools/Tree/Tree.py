@@ -110,7 +110,8 @@ class Tree(_StrictComparator):
     '''
 
     def __init__(self, expr):
-        self._children = []
+        #self._children = []
+        self._children = self._initialize_children_list()
         self.parent = None
         try:
             self.payload = None
@@ -152,7 +153,8 @@ class Tree(_StrictComparator):
 
     def __str__(self):
         if self.payload is None:
-            return '[%s]' % ', '.join([str(x) for x in self])
+            contents_to_display = self._children[:len(self)]
+            return '[%s]' % ', '.join([str(x) for x in contents_to_display])
         else:
             return repr(self.payload)
 
@@ -395,6 +397,9 @@ class Tree(_StrictComparator):
                         result.append(node)
         else:
             raise ValueError('not enough nodes remain at level %s.' % level)
+
+    def _initialize_children_list(self):
+        return []
 
     ### PUBLIC METHODS ###
 
