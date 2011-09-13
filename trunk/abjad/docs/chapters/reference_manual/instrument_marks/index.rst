@@ -22,7 +22,8 @@ Use ``contexttools`` to create instrument marks:
 Attaching instrument marks to a component
 -----------------------------------------
 
-Use ``attach()`` to attach any mark to a component:
+Use :py:meth:`~abjad.tools.marktools.Mark.attach` to attach any mark to a
+component:
 
 ::
 
@@ -68,7 +69,8 @@ Or to get the instrument currently in effect for a component:
 Detaching instrument marks from a component one at a time
 ---------------------------------------------------------
 
-Use ``detach()`` to detach instrument marks from a component one at a time:
+Use :py:meth:`~abjad.tools.marktools.Mark.detach` to detach
+instrument marks from a component one at a time:
 
 ::
 
@@ -132,7 +134,8 @@ Or use ``contexttools`` to detach instrument marks all at once:
 Inspecting the component to which an instrument mark is attached
 ----------------------------------------------------------------
 
-Use ``start_component`` to inspect the component to which an instrument mark is attached:
+Use :py:attr:`~abjad.tools.marktools.Mark.start_component`
+to inspect the component to which an instrument mark is attached:
 
 ::
 
@@ -156,7 +159,8 @@ Use ``start_component`` to inspect the component to which an instrument mark is 
 Inspecting the instrument name of an instrument mark
 ----------------------------------------------------
 
-Use ``instrument_name`` to get the instrument name of any instrument mark:
+Use :py:attr:`~abjad.tools.contexttools.InstrumentMark.instrument_name` to
+get the instrument name of any instrument mark:
 
 ::
 
@@ -168,7 +172,8 @@ Use ``instrument_name`` to get the instrument name of any instrument mark:
 Inspecting the short instrument name of an instrument mark
 ----------------------------------------------------------
 
-And use ``short_instrument_name`` to get the short instrument name of any instrument mark:
+And use :py:attr:`~abjad.tools.contexttools.InstrumentMark.short_instrument_name`
+to get the short instrument name of any instrument mark:
 
 ::
 

@@ -42,7 +42,7 @@ chords, rests and skips, as well as beams, slurs, ties, and articulations.
 
 .. image:: images/mozart-parsing-example.png
 
-So, instead of storing our musical information as Abjad components, we'll represent eacch fragment in the corpus as a pair of strings: one representing the 
+So, instead of storing our musical information as Abjad components, we'll represent each fragment in the corpus as a pair of strings: one representing the 
 bass voice contents, and the other representing the treble.  This pair of strings can be packaged together into a collection.  For this implementation, we'll 
 package them into a dictionary.  Python dictionaries are cheap, and often provide more clarity than lists; the composer does not have to rely on remembering 
 a convention for what data should appear in which position in a list - they can simply label that data semantically.  In our musical dictionary, the treble 
@@ -293,7 +293,7 @@ After storing all of the musical fragments into a corpus, concatenating those el
 	abjad> my_list = [1, 'b', 3]
 	abjad> my_result = [random.choice(my_list) for i in range(20)]
 	abjad> print my_result
-	[3, 'b', 1, 3, 1, 'b', 'b', 'b', 1, 'b', 3, 1, 'b', 3, 1, 'b', 'b', 3, 'b', 3]
+	['b', 1, 'b', 1, 1, 3, 'b', 1, 1, 3, 'b', 3, 'b', 3, 3, 1, 'b', 1, 3, 'b']
 
 
 Our corpus is a list comprising sixteen sublists, one for each measure in the minuet.  To build our musical structure, we can simply iterate through the 
@@ -325,23 +325,23 @@ The result will be a *seventeen*-item-long list of measure definitions:
 
 	abjad> choices = choose_mozart_measures( )
 	abjad> for i, measure in enumerate(choices): print i, measure
-	0 {'b': '<c e>4 r8', 't': "c''16 b'16 c''16 e''16 g'16 c''16"}
-	1 {'b': 'c8 c8 c8', 't': "<e' c''>8 <e' c''>8 <e' c''>8"}
-	2 {'b': '<g b>4 r8', 't': "f''16 e''16 f''16 d''16 c''16 b'16"}
-	3 {'b': '<e g>4 r8', 't': "c''8 e''16 c''16 g''8"}
-	4 {'b': 'c8 c8 c8', 't': "<fs' d''>8 <d'' fs''>8 <fs'' a''>8"}
-	5 {'b': '<b, g>4 r8', 't': "d''8 d''16 g''16 b''8"}
-	6 {'b': 'c8 d8 d,8', 't': "e''16 g''16 d''16 c''16 b'16 a'16"}
+	0 {'b': '<c e>4 r8', 't': "g'8 c''8 e''8"}
+	1 {'b': '<e g>4 r8', 't': "c''16 g'16 c''16 e''16 g'16 c''16"}
+	2 {'b': 'g4 r8', 't': "b'16 a'16 b'16 c''16 d''16 b'16"}
+	3 {'b': '<e g>4 r8', 't': "c''8 e''16 c''16 g'8"}
+	4 {'b': 'c8 c8 c8', 't': "<fs' d''>8 <fs' d''>8 <fs' d''>8"}
+	5 {'b': '<b, g>4 r8', 't': "a'8 fs'16 g'16 b'16 g''16"}
+	6 {'b': 'c8 d8 d,8', 't': "e''16 c'''16 b''16 g''16 a''16 fs''16"}
 	7 {'b': 'g,8 g16 f16 e16 d16', 't': "<g' b' d'' g''>4 r8"}
 	8 {'b': 'g,8 b16 g16 fs16 e16', 't': "<g' b' d'' g''>4 r8"}
-	9 {'b': '<d fs>4 r8', 't': "d''16 a'16 d''8 fs''8"}
-	10 {'b': 'b,16 d16 g16 d16 b,16 g,16', 't': "g''8 g'8 g'8"}
-	11 {'b': '<c g>4 <c e>8', 't': "e''8 ( g''8 c'''8 )"}
-	12 {'b': 'g8 g,8 r8', 't': "g''16 e''16 d''16 b'16 g'8"}
-	13 {'b': '<c e>16 g16 <c e>16 g16 <c e>16 g16', 't': "c''8 g'8 e''8"}
-	14 {'b': '<c e>4 r8', 't': "c''16 g'16 e''16 c''16 g''16 e''16"}
-	15 {'b': 'f4 g8', 't': "a'8 f''16 d''16 a'16 b'16"}
-	16 {'b': 'c8 g,8 c,8', 't': "c''4 r8"}
+	9 {'b': 'd,16 d16 cs16 d16 c16 d16', 't': "<a' d'' fs''>8 fs''4 ^\\tr"}
+	10 {'b': 'b,4 r8', 't': "g''8 b''16 d'''16 d''8"}
+	11 {'b': '<c g>4 <c e>8', 't': "e''8 g''16 e''16 c''8"}
+	12 {'b': 'g8 g,8 r8', 't': "<c'' e''>8 <b' d''>16 <g' b'>16 g'8"}
+	13 {'b': '<c e>16 g16 <c e>16 g16 <c e>16 g16', 't': "g''8 c''8 e''8"}
+	14 {'b': 'c8 c8 c8', 't': "<e' c''>8 <e' c''>8 <e' c''>8"}
+	15 {'b': 'f4 g8', 't': "d''16 f''16 a'16 d''16 b'16 d''16"}
+	16 {'b': 'c4 c,8', 't': "c''8 c'8 r8"}
 
 
 The score

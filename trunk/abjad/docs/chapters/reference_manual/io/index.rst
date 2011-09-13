@@ -6,7 +6,7 @@ Reopening Abjad PDFs
 --------------------
 
 After you build a piece of notation and open 
-with :func:`~abjad.tools.io.show` you will usually
+with :py:func:`~abjad.tools.iotools.show` you will usually
 close the resulting PDF and continue working, changing your
 output notation in an iterative and incremental way. ::
 
@@ -14,7 +14,7 @@ output notation in an iterative and incremental way. ::
    abjad> show(staff)
 
 But what if you need to go back and open the resulting PDF again?
-Abjad provides :func:`~abjad.tools.io.pdf` for precisely this purpose.
+Abjad provides :func:`~abjad.tools.iotools.pdf` for precisely this purpose.
 Type the following at the Abjad prompt to open the most recent
 PDF written by Abjad. ::
 
@@ -29,9 +29,9 @@ Looking at LilyPond output
 --------------------------
 
 Abjad generates a LilyPond ``.ly`` file for every Abjad expression
-that you build and :func:`~abjad.tools.io.show.show`.
+that you build and :func:`~abjad.tools.iotools.show`.
 To look at these LilyPond ``.ly`` files that Abjad builds
-behind the scenes, use :func:`~abjad.tools.io.ly.ly`. ::
+behind the scenes, use :func:`~abjad.tools.iotools.ly`. ::
 
    abjad> ly()
 
@@ -71,7 +71,7 @@ text editor to return to the Abjad interpreter.
 Looking at the LilyPond log
 ---------------------------
 
-If things go wrong when you call :func:`~abjad.tools.io.show` or one
+If things go wrong when you call :func:`~abjad.tools.iotools.show` or one
 of the other Abjad functions that call LilyPond behind the scenes,
 if may be helpful to examine the output that LilyPond writes to the
 LilyPond log. ::

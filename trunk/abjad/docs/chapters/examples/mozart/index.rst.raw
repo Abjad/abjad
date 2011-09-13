@@ -41,7 +41,7 @@ iotools.write_expr_to_ly(parsed_result, 'mozart-parsing-example') <hide
 show(parsed_result)
 </abjad>
 
-So, instead of storing our musical information as Abjad components, we'll represent eacch fragment in the corpus as a pair of strings: one representing the 
+So, instead of storing our musical information as Abjad components, we'll represent each fragment in the corpus as a pair of strings: one representing the 
 bass voice contents, and the other representing the treble.  This pair of strings can be packaged together into a collection.  For this implementation, we'll 
 package them into a dictionary.  Python dictionaries are cheap, and often provide more clarity than lists; the composer does not have to rely on remembering 
 a convention for what data should appear in which position in a list - they can simply label that data semantically.  In our musical dictionary, the treble 

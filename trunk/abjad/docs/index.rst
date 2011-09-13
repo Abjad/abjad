@@ -37,6 +37,18 @@ Examples
     chapters/examples/ligeti/index
     chapters/examples/mozart/index
 
+Tutorials
+
+.. toctree::
+    :numbered:
+
+    chapters/tutorials/lcs/index
+    chapters/tutorials/parentage/index
+    chapters/tutorials/threads/index
+    chapters/tutorials/grobs/index
+    chapters/tutorials/understanding_overrides/index
+    chapters/tutorials/time_signature_marks/index
+
 Reference manual
 
 .. toctree::
@@ -63,18 +75,6 @@ Reference manual
     chapters/reference_manual/tuplets/index
     chapters/reference_manual/voices/index
 
-Tutorials
-
-.. toctree::
-    :numbered:
-
-    chapters/tutorials/time_signature_marks/index
-    chapters/tutorials/lcs/index
-    chapters/tutorials/parentage/index
-    chapters/tutorials/threads/index
-    chapters/tutorials/grobs/index
-    chapters/tutorials/understanding_overrides/index
-
 Developer documentation
 
 .. toctree::
@@ -91,7 +91,6 @@ Developer documentation
     chapters/developer_documentation/class_attributes/index
     chapters/developer_documentation/slots/index
     chapters/developer_documentation/coding_standards/index
-
 
 Appendices
 
