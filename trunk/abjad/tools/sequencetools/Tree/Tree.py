@@ -355,51 +355,35 @@ class Tree(_StrictComparator):
         '''
         return len(list(self.iterate_at_level(-1))) 
 
-    ### PUBLIC METHODS ###
+    ### PRIVATE METHODS ###
 
-    ## TODO: make work with negative level
-    ## TODO: make work with negative n for rightward capture
-    ## TODO: implement get_next_n_complete_nodes_at_level()
-    def get_next_n_nodes_at_level(self, level, n):
-        r'''.. versionadded:: 2.4
-
-        Get next `n` nodes at `level` from node.
-
-        ::
-
-            abjad> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            abjad> tree = sequencetools.Tree(sequence)
-
-        Get next 4 nodes at level 2::
-
-            abjad> tree[0][0].get_next_n_nodes_at_level(2, 4)
-            [Tree(1), Tree(2), Tree(3), Tree(4)]
-
-        Get next 4 nodes at level 1::
-
-            abjad> tree[0][0].get_next_n_nodes_at_level(1, 4)
-            [Tree([1]), Tree([2, 3]), Tree([4, 5]), Tree([6, 7])]
-
-        Get next node at level 0::
-
-            abjad> tree[0][0].get_next_n_nodes_at_level(0, 1)
-            [Tree([[1], [2, 3], [4, 5], [6, 7]])]
-
-        Trim first node if necessary.
-
-        Return list of nodes.
-        '''
+    def _get_next_n_nodes_at_level_helper(self, n, level, nodes_must_be_complete = False):
         result = []
         self_is_found = False
+        first_node_returned_is_trimmed = False
         for node in self.root.iterate_depth_first():
             if len(result) == n:
+                if not first_node_returned_is_trimmed or \
+                    not nodes_must_be_complete:
+                    return result
+            if len(result) == n + 1:
                 return result
             if node is self:
                 self_is_found = True
-                if level < self.level:
+                # test whether node to return is higher in tree than self;
+                # or-clause allows for test of either nonnegative or negative level
+                if ((0 <= level) and level < self.level) or \
+                   ((level < 0) and level < self.negative_level):
+                    first_node_returned_is_trimmed = True
                     subtree_to_trim = node.parent
-                    while level < subtree_to_trim.level:
-                        subtree_to_trim = subtree_to_trim.parent
+                    # find subtree to trim where level is nonnegative
+                    if 0 <= level:
+                        while level < subtree_to_trim.level:
+                            subtree_to_trim = subtree_to_trim.parent
+                    # find subtree to trim where level is negative
+                    else:
+                        while subtree_to_trim.negative_level < level:
+                            subtree_to_trim = subtree_to_trim.parent
                     position_of_descendant = subtree_to_trim.get_position_of_descendant(node)
                     first_subtree = copy.deepcopy(subtree_to_trim)
                     reference_node = first_subtree.get_node_at_position(position_of_descendant)
@@ -410,7 +394,94 @@ class Tree(_StrictComparator):
                     if node.is_at_level(level):
                         result.append(node)
         else:
-            raise ValueError('not enough nodes at level %s remain.' % level)
+            raise ValueError('not enough nodes remain at level %s.' % level)
+
+    ### PUBLIC METHODS ###
+
+    def get_next_n_complete_nodes_at_level(self, n, level):
+        r'''.. versionadded:: 2.5
+
+        Get next `n` complete nodes at `level` from node.
+
+        ::
+
+            abjad> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
+            abjad> tree = sequencetools.Tree(sequence)
+
+        With nonnegative `level`:
+
+        Get next 4 nodes at level 2::
+
+            abjad> tree[0][0].get_next_n_complete_nodes_at_level(4, 2)
+            [Tree(1), Tree(2), Tree(3), Tree(4)]
+
+        Get next 3 nodes at level 1::
+
+            abjad> tree[0][0].get_next_n_complete_nodes_at_level(3, 1)
+            [Tree([1]), Tree([2, 3]), Tree([4, 5]), Tree([6, 7])]
+
+        With negative `level`:
+        
+        Get next 4 nodes at level -1::
+
+            abjad> tree[0][0].get_next_n_complete_nodes_at_level(4, -1)
+            [Tree(1), Tree(2), Tree(3), Tree(4)]
+
+        Get next 3 nodes at level -2::
+
+            abjad> tree[0][0].get_next_n_complete_nodes_at_level(3, -2)
+            [Tree([1]), Tree([2, 3]), Tree([4, 5]), Tree([6, 7])]
+
+        Trim first node if necessary.
+
+        Return list of nodes.
+        '''
+        return self._get_next_n_nodes_at_level_helper(n, level, nodes_must_be_complete = True)
+        
+    def get_next_n_nodes_at_level(self, n, level):
+        r'''.. versionadded:: 2.4
+
+        Get next `n` nodes at `level` from node.
+
+        ::
+
+            abjad> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
+            abjad> tree = sequencetools.Tree(sequence)
+
+        With nonnegative `level`:
+
+        Get next 4 nodes at level 2::
+
+            abjad> tree[0][0].get_next_n_nodes_at_level(4, 2)
+            [Tree(1), Tree(2), Tree(3), Tree(4)]
+
+        Get next 3 nodes at level 1::
+
+            abjad> tree[0][0].get_next_n_nodes_at_level(3, 1)
+            [Tree([1]), Tree([2, 3]), Tree([4, 5])]
+
+        Get next node at level 0::
+
+            abjad> tree[0][0].get_next_n_nodes_at_level(1, 0)
+            [Tree([[1], [2, 3], [4, 5], [6, 7]])]
+
+        With negative `level`:
+        
+        Get next 4 nodes at level -1::
+
+            abjad> tree[0][0].get_next_n_nodes_at_level(4, -1)
+            [Tree(1), Tree(2), Tree(3), Tree(4)]
+
+        Get next 3 nodes at level -2::
+
+            abjad> tree[0][0].get_next_n_nodes_at_level(3, -2)
+            [Tree([1]), Tree([2, 3]), Tree([4, 5])]
+
+        Trim first node if necessary.
+
+        Return list of nodes.
+        '''
+        return self._get_next_n_nodes_at_level_helper(n, level, nodes_must_be_complete = False)
 
     def get_node_at_position(self, position):
         '''.. versionadded:: 2.4
