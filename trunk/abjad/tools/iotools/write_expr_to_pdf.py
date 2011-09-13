@@ -33,4 +33,4 @@ def write_expr_to_pdf(expr, file_name, template = None, print_status = True):
     shutil.move(full_path_pdf_name, file_name)
 
     if print_status:
-        print 'PDF written to "%s" ...' % os.path.basename(file_name)
+        print 'PDF written to %r ...' % os.path.basename(file_name)
