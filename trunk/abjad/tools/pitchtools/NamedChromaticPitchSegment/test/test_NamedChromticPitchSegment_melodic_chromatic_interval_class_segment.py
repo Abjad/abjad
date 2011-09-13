@@ -12,4 +12,3 @@ def test_NamedChromticPitchSegment_melodic_chromatic_interval_class_segment_01()
         pitchtools.MelodicChromaticIntervalClass(1),
         pitchtools.MelodicChromaticIntervalClass(-8.5),
         pitchtools.MelodicChromaticIntervalClass(8.5)]
-

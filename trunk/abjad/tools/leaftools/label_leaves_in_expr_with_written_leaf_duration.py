@@ -21,5 +21,3 @@ def label_leaves_in_expr_with_written_leaf_duration(expr, markup_direction = 'do
     show = ['written']
     return _label_leaves_in_expr_with_leaf_durations(
         expr, markup_direction = markup_direction, show = show)
-
-

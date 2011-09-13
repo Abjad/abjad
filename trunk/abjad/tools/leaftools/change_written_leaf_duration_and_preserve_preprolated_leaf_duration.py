@@ -53,5 +53,3 @@ def change_written_leaf_duration_and_preserve_preprolated_leaf_duration(leaf, wr
 
     # return leaf
     return leaf
-
-

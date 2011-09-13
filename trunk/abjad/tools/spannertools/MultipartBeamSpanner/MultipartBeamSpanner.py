@@ -36,6 +36,3 @@ class MultipartBeamSpanner(BeamSpanner):
     def __init__(self, components = None):
         BeamSpanner.__init__(self, components)
         self._format = _MultipartBeamSpannerFormatInterface(self)
-
-
-

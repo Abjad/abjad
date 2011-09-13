@@ -48,5 +48,3 @@ def duration_and_possible_denominators_to_time_signature(duration, denominators 
             return contexttools.TimeSignatureMark((meter_numerator, meter_denominator))
     else:
         return contexttools.TimeSignatureMark(duration)
-
-

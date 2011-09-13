@@ -22,4 +22,3 @@ def get_prolated_tie_chain_duration(tie_chain):
         return tie_chain[0].tie.spanner.prolated_duration
     except MissingSpannerError:
         return tie_chain[0].prolated_duration
-

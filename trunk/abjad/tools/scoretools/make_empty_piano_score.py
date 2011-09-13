@@ -50,5 +50,3 @@ def make_empty_piano_score():
 
     # return score, treble staff, bass staff
     return score, treble_staff, bass_staff
-
-

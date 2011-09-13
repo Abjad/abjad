@@ -57,6 +57,3 @@ def test_DuratedComplexBeamSpanner_lone_03():
 
     assert componenttools.is_well_formed_component(t)
     assert t.format == "\\new Voice {\n\t\\set stemLeftBeamCount = #0\n\t\\set stemRightBeamCount = #1\n\tc'8 [\n\t\\set stemLeftBeamCount = #1\n\t\\set stemRightBeamCount = #0\n\td'8 ]\n}"
-
-
-

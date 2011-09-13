@@ -29,4 +29,3 @@ def chromatic_pitch_class_name_to_chromatic_pitch_class_number(chromatic_pitch_c
     chromatic_pitch_class_number %= 12
 
     return chromatic_pitch_class_number
-

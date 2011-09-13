@@ -23,4 +23,3 @@ def expr_to_melodic_chromatic_interval_segment(expr):
         mcis.append(mci)
 
     return MelodicChromaticIntervalSegment(mcis)
-

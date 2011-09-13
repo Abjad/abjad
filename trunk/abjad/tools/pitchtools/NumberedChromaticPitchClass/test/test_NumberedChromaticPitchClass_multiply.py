@@ -15,5 +15,3 @@ def test_NumberedChromaticPitchClass_multiply_01():
     assert pitchtools.NumberedChromaticPitchClass(9).multiply(5) == pitchtools.NumberedChromaticPitchClass(9)
     assert pitchtools.NumberedChromaticPitchClass(10).multiply(5) == pitchtools.NumberedChromaticPitchClass(2)
     assert pitchtools.NumberedChromaticPitchClass(11).multiply(5) == pitchtools.NumberedChromaticPitchClass(7)
-
-

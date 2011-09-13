@@ -53,5 +53,3 @@ def iterate_tie_chains_forward_in_expr(expr):
         #if not leaf.tie.spanned or leaf.tie.last:
         if not tie_spanners or tuple(tie_spanners)[0]._is_my_last_leaf(leaf):
             yield get_tie_chain(leaf)
-
-

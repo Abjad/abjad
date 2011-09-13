@@ -9,4 +9,3 @@ def test_pitchtools_inventory_aggregate_subsets_01():
     assert pitchtools.NumberedChromaticPitchClassSet([1, 2, 3]) in U_star
     assert pitchtools.NumberedChromaticPitchClassSet([3, 4, 8, 9, 11]) in U_star
     assert pitchtools.NumberedChromaticPitchClassSet(range(12)) in U_star
-

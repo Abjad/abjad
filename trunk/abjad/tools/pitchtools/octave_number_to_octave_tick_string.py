@@ -37,4 +37,3 @@ def octave_number_to_octave_tick_string(octave_number):
         return ''
     else:
         return (octave_number - 3) * "'"
-

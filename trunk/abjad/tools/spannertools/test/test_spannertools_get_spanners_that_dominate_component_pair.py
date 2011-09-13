@@ -81,6 +81,3 @@ def test_spannertools_get_spanners_that_dominate_component_pair_04():
 
     assert len(receipt) == 0
     assert receipt == set([])
-
-
-

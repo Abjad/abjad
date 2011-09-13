@@ -17,4 +17,3 @@ def test_pitchtools_NumberedChromaticPitchClassColorMap___repr___01():
         pitchtools.NumberedChromaticPitchClassColorMap)
     assert isinstance(numbered_chromatic_pitch_class_color_map_2,
         pitchtools.NumberedChromaticPitchClassColorMap)
-

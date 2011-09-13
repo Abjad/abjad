@@ -30,6 +30,3 @@ def get_nth_leaf_in_spanner(spanner, idx):
                 return leaf
 
     raise IndexError
-
-
-

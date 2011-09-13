@@ -31,4 +31,3 @@ def test_pitchtools_transpose_named_chromatic_pitch_by_melodic_chromatic_interva
     assert pitchtools.transpose_named_chromatic_pitch_by_melodic_chromatic_interval_and_respell(pitch, -1, -2) == pitchtools.NamedChromaticPitch('bf', 3)
     assert pitchtools.transpose_named_chromatic_pitch_by_melodic_chromatic_interval_and_respell(pitch, -1, -2.5) == pitchtools.NamedChromaticPitch('btqf', 3)
     assert pitchtools.transpose_named_chromatic_pitch_by_melodic_chromatic_interval_and_respell(pitch, -1, -3) == pitchtools.NamedChromaticPitch('bff', 3)
-

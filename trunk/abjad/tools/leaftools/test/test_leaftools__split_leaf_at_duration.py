@@ -309,8 +309,3 @@ def test_leaftools__split_leaf_at_duration_16():
     assert len(halves[1]) == 1
     assert len(halves[0][0].grace) == 1
     assert not hasattr(halves[1][0], 'grace')
-
-
-
-
-

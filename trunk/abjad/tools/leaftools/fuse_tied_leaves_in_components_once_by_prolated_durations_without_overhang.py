@@ -54,5 +54,3 @@ def fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(
 
         for chain in tie_chains:
             leaftools.fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(chain)
-
-

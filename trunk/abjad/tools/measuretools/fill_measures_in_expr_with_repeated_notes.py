@@ -21,6 +21,3 @@ def fill_measures_in_expr_with_repeated_notes(expr, written_duration, iterctrl =
             notes = notetools.make_repeated_notes_with_shorter_notes_at_end(
                 0, written_duration, total_duration, prolation)
             measure[:] = notes
-
-
-

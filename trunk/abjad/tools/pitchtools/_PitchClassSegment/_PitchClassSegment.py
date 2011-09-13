@@ -8,4 +8,3 @@ class _PitchClassSegment(_Segment):
     '''
 
     pass
-

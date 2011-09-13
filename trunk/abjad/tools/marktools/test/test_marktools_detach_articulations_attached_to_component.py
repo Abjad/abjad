@@ -13,4 +13,3 @@ def test_marktools_detach_articulations_attached_to_component_01():
     marktools.detach_articulations_attached_to_component(staff[0])
     articulations = marktools.get_articulations_attached_to_component(staff[0])
     assert len(articulations) == 0
-

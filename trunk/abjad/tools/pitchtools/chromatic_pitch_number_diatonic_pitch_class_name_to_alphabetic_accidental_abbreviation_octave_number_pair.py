@@ -44,4 +44,3 @@ def chromatic_pitch_number_diatonic_pitch_class_name_to_alphabetic_accidental_ab
 
     # return unique pair of accidental string and octave
     return alphabetic_string, octave
-

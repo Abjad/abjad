@@ -74,4 +74,3 @@ def test_pitchtools_iterate_named_chromatic_pitch_pairs_forward_in_expr_02():
     assert pairs[7] == (pitchtools.NamedChromaticPitch('e', 4), pitchtools.NamedChromaticPitch('f', 5))
     assert pairs[8] == (pitchtools.NamedChromaticPitch('e', 4), pitchtools.NamedChromaticPitch('g', 5))
     assert pairs[9] == (pitchtools.NamedChromaticPitch('f', 5), pitchtools.NamedChromaticPitch('g', 5))
-

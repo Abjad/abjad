@@ -17,4 +17,3 @@ def test_HarmonicDiatonicIntervalClass_invert_02():
     hdic = pitchtools.HarmonicDiatonicIntervalClass('perfect', 4)
     inversion = pitchtools.HarmonicDiatonicIntervalClass('perfect', 5)
     assert hdic.invert() == inversion
-

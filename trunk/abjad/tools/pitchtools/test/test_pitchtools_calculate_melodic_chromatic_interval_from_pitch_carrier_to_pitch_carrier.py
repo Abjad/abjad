@@ -29,4 +29,3 @@ def test_pitchtools_calculate_melodic_chromatic_interval_from_pitch_carrier_to_p
     mci = pitchtools.calculate_melodic_chromatic_interval_from_pitch_carrier_to_pitch_carrier(
         pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(9.5))
     assert mci == pitchtools.MelodicChromaticInterval(-2.5)
-

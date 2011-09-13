@@ -67,4 +67,3 @@ class NamedChromaticPitchVector(_Vector):
         pitches = [pitchtools.NamedChromaticPitch(key) for key, value in self.items()]
         pitches.sort()
         return pitches
-

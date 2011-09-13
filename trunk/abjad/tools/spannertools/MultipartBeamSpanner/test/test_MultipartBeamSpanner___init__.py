@@ -7,6 +7,3 @@ def test_MultipartBeamSpanner___init___01():
 
     beam = spannertools.MultipartBeamSpanner()
     assert isinstance(beam, spannertools.MultipartBeamSpanner)
-
-
-

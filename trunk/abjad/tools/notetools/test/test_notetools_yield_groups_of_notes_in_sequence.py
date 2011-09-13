@@ -9,5 +9,3 @@ def test_notetools_yield_groups_of_notes_in_sequence_01():
 
     assert note_groups[0] == (staff[0], staff[1])
     assert note_groups[1] == (staff[6], staff[7])
-
-

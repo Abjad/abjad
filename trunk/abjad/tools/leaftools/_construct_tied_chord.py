@@ -8,5 +8,3 @@ def _construct_tied_chord(pitches, dur, direction='big-endian'):
 
     from abjad.tools.chordtools.Chord import Chord
     return _construct_tied_leaf(Chord, dur, direction, pitches)
-
-

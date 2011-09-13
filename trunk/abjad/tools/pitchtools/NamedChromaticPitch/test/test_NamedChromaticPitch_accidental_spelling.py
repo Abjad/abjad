@@ -122,4 +122,3 @@ def test_NamedChromaticPitch_accidental_spelling_04():
     assert t.format == "\\new Staff {\n\tc'8\n\tcs'8\n\td'8\n\tds'8\n\te'8\n\tf'8\n\tc'8\n\tdf'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n}"
 
     pitchtools.NamedChromaticPitch.accidental_spelling = 'mixed'
-

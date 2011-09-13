@@ -16,4 +16,3 @@ def diatonic_pitch_number_to_diatonic_pitch_class_number(diatonic_pitch_number):
         raise TypeError
 
     return diatonic_pitch_number % 7
-

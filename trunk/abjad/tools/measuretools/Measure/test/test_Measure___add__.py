@@ -85,6 +85,3 @@ def test_Measure___add___02():
     assert len(t2) == 0
     assert componenttools.is_well_formed_component(t)
     assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'16 [\n\t\td'16 ]\n\t\tc'16 (\n\t\td'16 )\n\t}\n}"
-
-
-

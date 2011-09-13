@@ -10,4 +10,3 @@ class _NumberedPitchClass(_PitchClass, _Numbered):
     '''
 
     __slots__ = ()
-

@@ -124,5 +124,3 @@ class StaffChangeMark(ContextMark):
             assert isinstance(staff, Staff)
             self._staff = staff
         return property(**locals())
-
-

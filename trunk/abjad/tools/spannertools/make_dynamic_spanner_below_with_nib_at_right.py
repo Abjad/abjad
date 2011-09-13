@@ -46,6 +46,3 @@ def make_dynamic_spanner_below_with_nib_at_right(dynamic_text, components = None
     text_spanner.override.text_spanner.direction = 'down'
 
     return text_spanner
-
-
-

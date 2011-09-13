@@ -11,4 +11,3 @@ from abjad import *
 #
 #   interval = pitchtools.DiatonicInterval('minor', -3)
 #   assert -interval == pitchtools.DiatonicInterval('minor', 3)
-

@@ -48,6 +48,3 @@ def test_measuretools_iterate_measures_backward_in_expr_02():
     assert measures[0] is staff[2]
     assert measures[1] is staff[1]
     assert len(measures) == 2
-
-
-

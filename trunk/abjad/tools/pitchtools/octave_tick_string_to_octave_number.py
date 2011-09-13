@@ -27,4 +27,3 @@ def octave_tick_string_to_octave_number(tick_string):
         return 3 - len(tick_string)
     else:
         raise ValueError('incorrect tick string format.')
-

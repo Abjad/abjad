@@ -21,6 +21,3 @@ def get_spanners_on_components_or_component_children(components):
 
     # return spanners
     return spanners
-
-
-

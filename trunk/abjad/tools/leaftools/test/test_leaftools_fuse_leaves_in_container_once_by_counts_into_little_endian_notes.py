@@ -18,8 +18,3 @@ def test_leaftools_fuse_leaves_in_container_once_by_counts_into_little_endian_no
 
     assert componenttools.is_well_formed_component(t)
     assert t.format == "\\new Voice {\n\tc'8 ( ~\n\tc'2 )\n}"
-
-
-
-
-

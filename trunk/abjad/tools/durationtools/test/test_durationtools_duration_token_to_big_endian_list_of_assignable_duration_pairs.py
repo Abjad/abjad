@@ -15,4 +15,3 @@ def test_durationtools_duration_token_to_big_endian_list_of_assignable_duration_
     assert durationtools.duration_token_to_big_endian_list_of_assignable_duration_pairs((17, 16)) == ((16, 16), (1, 16))
     assert durationtools.duration_token_to_big_endian_list_of_assignable_duration_pairs((18, 16)) == ((16, 16), (2, 16))
     assert durationtools.duration_token_to_big_endian_list_of_assignable_duration_pairs((19, 16)) == ((16, 16), (3, 16))
-

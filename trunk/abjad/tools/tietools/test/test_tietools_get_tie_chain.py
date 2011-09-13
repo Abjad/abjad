@@ -22,5 +22,3 @@ def test_tietools_get_tie_chain_01():
     assert tietools.get_tie_chain(t[1]) == (t[1], )
     assert tietools.get_tie_chain(t[2]) == (t[2], t[3])
     assert tietools.get_tie_chain(t[3]) == (t[2], t[3])
-
-

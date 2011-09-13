@@ -52,8 +52,3 @@ def test_leaftools_scale_preprolated_leaf_duration_04():
     '''
 
     assert staff.format == "\\new Staff {\n\tc'8 [\n\t\\times 2/3 {\n\t\td'8\n\t}\n\te'8\n\tf'8 ]\n}"
-
-
-
-
-

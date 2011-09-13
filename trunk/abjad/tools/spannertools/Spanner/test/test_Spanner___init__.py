@@ -26,6 +26,3 @@ def test_Spanner___init___02():
 
     assert len(p) == 4
     assert p[:] == t[:]
-
-
-

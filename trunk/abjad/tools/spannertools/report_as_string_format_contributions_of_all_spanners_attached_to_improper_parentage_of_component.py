@@ -41,6 +41,3 @@ def report_as_string_format_contributions_of_all_spanners_attached_to_improper_p
                 for contribution in contributions:
                     result += '\t\t%s\n' % contribution
     return result
-
-
-

@@ -28,4 +28,3 @@ def test_NamedChromaticPitchClassSegment_transpose_01():
 
     major_seventh_ascending = pitchtools.MelodicDiatonicInterval('major', 7)
     assert npc_segment_2.transpose(major_seventh_ascending) == npc_segment_1
-

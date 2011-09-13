@@ -25,4 +25,3 @@ def test_durationtools_multiply_duration_pair_and_reduce_factors_04():
 def test_durationtools_multiply_duration_pair_and_reduce_factors_05():
     assert durationtools.multiply_duration_pair_and_reduce_factors(
         (5, 6), Fraction(6, 5)) == (1, 1)
-

@@ -35,4 +35,3 @@ def test_NumberedChromaticPitchClassSegment_rotate_03():
     assert pcseg.rotate(-4) == PCSeg([9, 2, 0, 6, 10, 4])
     assert pcseg.rotate(-5) == PCSeg([2, 0, 6, 10, 4, 9])
     assert pcseg.rotate(-6) == PCSeg([0, 6, 10, 4, 9, 2])
-

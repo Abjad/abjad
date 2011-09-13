@@ -98,6 +98,3 @@ def tet_rigid_measure_trim_06():
 
     assert componenttools.is_well_formed_component(t)
     assert t.format == "{\n\t\\time 5/18\n\t\\scaleDurations #'(8 . 9) {\n\t\td'16\n\t\te'8\n\t\tf'8\n\t}\n}"
-
-
-

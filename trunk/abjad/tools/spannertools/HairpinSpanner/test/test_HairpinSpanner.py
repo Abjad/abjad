@@ -166,6 +166,3 @@ def test_HairpinSpanner_07():
         r8
     }
     '''
-
-
-

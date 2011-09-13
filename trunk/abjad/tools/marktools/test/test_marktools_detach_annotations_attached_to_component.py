@@ -13,4 +13,3 @@ def test_marktools_detach_annotations_attached_to_component_01():
     marktools.detach_annotations_attached_to_component(staff[0])
     annotations = marktools.get_annotations_attached_to_component(staff[0])
     assert len(annotations) == 0
-

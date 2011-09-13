@@ -179,6 +179,3 @@ def test_spannertools_get_spanners_that_dominate_components_09():
 
     assert len(receipt) == 1
     assert (beam, 0) in receipt
-
-
-

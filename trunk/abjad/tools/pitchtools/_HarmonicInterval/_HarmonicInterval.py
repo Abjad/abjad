@@ -9,4 +9,3 @@ class _HarmonicInterval(_Interval, _Harmonic):
     '''
 
     pass
-

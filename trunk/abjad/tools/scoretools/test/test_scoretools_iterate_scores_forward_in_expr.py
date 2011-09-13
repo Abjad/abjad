@@ -12,6 +12,3 @@ def test_scoretools_iterate_scores_forward_in_expr_01():
 
     assert scores[0] is score_1
     assert scores[1] is score_2
-
-
-

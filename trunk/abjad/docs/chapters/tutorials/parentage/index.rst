@@ -70,4 +70,3 @@ Or to find whether a component has no (proper) parentage at all:
 
 	abjad> componenttools.is_orphan_component(note)
 	False
-

@@ -129,4 +129,3 @@ class NumberedChromaticPitch(_ChromaticPitch, _NumberedPitch):
         '''
         semitones = abs(self) + n
         return type(self)(semitones)
-

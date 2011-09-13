@@ -10,4 +10,3 @@ def _get_staff_ids_in_note_nodes(nodes):
         if id is not None and id not in ids:
             ids.append(id)
     return tuple(ids)
-

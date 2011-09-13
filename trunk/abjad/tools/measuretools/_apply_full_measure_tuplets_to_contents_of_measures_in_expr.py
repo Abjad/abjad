@@ -23,6 +23,3 @@ def _apply_full_measure_tuplets_to_contents_of_measures_in_expr(expr, supplement
         tuplet = FixedDurationTuplet(target_duration, measure[:])
         if supplement:
             tuplet.extend(copy.deepcopy(supplement))
-
-
-

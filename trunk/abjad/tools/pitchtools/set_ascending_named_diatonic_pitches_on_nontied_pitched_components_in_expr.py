@@ -64,4 +64,3 @@ def set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(
         dic = dicg[i % length]
         ascending_mdi = MelodicDiatonicInterval(dic.quality_string, dic.number)
         pitch += ascending_mdi
-

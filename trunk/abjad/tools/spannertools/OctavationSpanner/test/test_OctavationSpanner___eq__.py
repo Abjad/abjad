@@ -9,6 +9,3 @@ def test_OctavationSpanner___eq___01():
     spanner_2 = spannertools.OctavationSpanner()
 
     assert not spanner_1 == spanner_2
-
-
-

@@ -36,4 +36,3 @@ def test_BoundedInterval_scale_to_rational_05():
     i1 = BoundedInterval(3, 23)
     py.test.raises(AssertionError,
         'i2 = i1.scale_to_rational(-1)')
-

@@ -12,4 +12,3 @@ def test_Accidental_semitones_01():
     assert pitchtools.Accidental('f').semitones == -1
     assert pitchtools.Accidental('tqf').semitones == -1.5
     assert pitchtools.Accidental('ff').semitones == -2
-

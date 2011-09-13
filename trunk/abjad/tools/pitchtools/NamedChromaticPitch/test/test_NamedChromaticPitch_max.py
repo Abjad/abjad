@@ -9,4 +9,3 @@ def test_NamedChromaticPitch_max_01():
     max_pitch = max(written_pitches)
 
     assert max_pitch == pitchtools.NamedChromaticPitch('f', 4)
-

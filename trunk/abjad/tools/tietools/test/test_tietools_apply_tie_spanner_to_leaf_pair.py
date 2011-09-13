@@ -89,5 +89,3 @@ def test_tietools_apply_tie_spanner_to_leaf_pair_03():
 
     assert componenttools.is_well_formed_component(t)
     assert t.format == "\\new Voice {\n\tc'8\n\tc'8 ~\n\tc'8\n\tc'8\n}"
-
-

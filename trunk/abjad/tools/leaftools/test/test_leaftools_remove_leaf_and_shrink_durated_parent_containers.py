@@ -867,8 +867,3 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_26():
 
     assert componenttools.is_well_formed_component(t)
     assert t.format == "\\times 2/3 {\n\tc'2\n\tcs'2\n\t\\times 2/3 {\n\t\td'4\n\t\tef'4\n\t}\n}"
-
-
-
-
-

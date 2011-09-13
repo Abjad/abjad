@@ -54,4 +54,3 @@ def detach_lilypond_comments_attached_to_component(component):
         comments.append(comment)
 
     return tuple(comments)
-

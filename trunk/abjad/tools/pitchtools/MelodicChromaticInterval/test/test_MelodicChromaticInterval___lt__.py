@@ -19,4 +19,3 @@ def test_MelodicChromaticInterval___lt___02():
 
     assert interval_1 < interval_2
     assert not interval_2 < interval_1
-

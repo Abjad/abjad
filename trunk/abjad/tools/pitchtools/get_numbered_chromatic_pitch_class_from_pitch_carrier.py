@@ -25,4 +25,3 @@ def get_numbered_chromatic_pitch_class_from_pitch_carrier(pitch_carrier):
     pitch = get_named_chromatic_pitch_from_pitch_carrier(pitch_carrier)
     pitch_class = NumberedChromaticPitchClass(pitch)
     return pitch_class
-

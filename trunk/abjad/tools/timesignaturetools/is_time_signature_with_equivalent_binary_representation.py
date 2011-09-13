@@ -35,5 +35,3 @@ def is_time_signature_with_equivalent_binary_representation(expr):
 
     # return True if reduced meter denominator is power of two
     return mathtools.is_nonnegative_integer_power_of_two(meter_as_rational.denominator)
-
-

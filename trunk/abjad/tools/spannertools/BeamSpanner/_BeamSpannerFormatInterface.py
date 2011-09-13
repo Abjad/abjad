@@ -23,6 +23,3 @@ class _BeamSpannerFormatInterface(_SpannerFormatInterface):
         if spanner._is_my_last_leaf(leaf):
             result.append(']')
         return result
-
-
-

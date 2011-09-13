@@ -46,5 +46,3 @@ def test__Leaf_duration_compare_06():
     assert t.duration_multiplier == Duration(1, 8)
     assert t.duration_multiplier != (1, 8)
     assert t.duration_multiplier != 'foo'
-
-

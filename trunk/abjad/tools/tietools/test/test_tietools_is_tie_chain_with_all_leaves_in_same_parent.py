@@ -80,5 +80,3 @@ def test_tietools_is_tie_chain_with_all_leaves_in_same_parent_04():
         tietools.get_tie_chain(t.leaves[3]))
     assert tietools.is_tie_chain_with_all_leaves_in_same_parent(tietools.get_tie_chain(t.leaves[4]))
     assert tietools.is_tie_chain_with_all_leaves_in_same_parent(tietools.get_tie_chain(t.leaves[5]))
-
-

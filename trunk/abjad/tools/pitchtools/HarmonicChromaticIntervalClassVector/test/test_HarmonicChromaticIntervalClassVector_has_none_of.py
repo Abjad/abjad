@@ -11,4 +11,3 @@ def test_HarmonicChromaticIntervalClassVector_has_none_of_01():
     assert not civ.has_none_of([3, 4, 5])
     assert not civ.has_none_of([6, 7, 8])
     assert civ.has_none_of([9, 10, 11])
-

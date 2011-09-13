@@ -21,4 +21,3 @@ def test_pitchtools_list_inversion_equivalent_chromatic_interval_classes_pairwis
 
     assert iecics == [pitchtools.InversionEquivalentChromaticIntervalClass(2),
         pitchtools.InversionEquivalentChromaticIntervalClass(2), pitchtools.InversionEquivalentChromaticIntervalClass(1),         pitchtools.InversionEquivalentChromaticIntervalClass(2), pitchtools.InversionEquivalentChromaticIntervalClass(2),         pitchtools.InversionEquivalentChromaticIntervalClass(2), pitchtools.InversionEquivalentChromaticIntervalClass(1),         pitchtools.InversionEquivalentChromaticIntervalClass(0)]
-

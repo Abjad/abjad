@@ -9,6 +9,3 @@ def test_CrescendoSpanner___eq___01():
     spanner_2 = spannertools.CrescendoSpanner()
 
     assert not spanner_1 == spanner_2
-
-
-

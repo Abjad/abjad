@@ -9,4 +9,3 @@ def test_MelodicDiatonicInterval___rmul___01():
     assert 1 * major_second == pitchtools.MelodicDiatonicInterval('major', 2)
     assert 2 * major_second == pitchtools.MelodicDiatonicInterval('major', 3)
     assert 3 * major_second == pitchtools.MelodicDiatonicInterval('augmented', 4)
-

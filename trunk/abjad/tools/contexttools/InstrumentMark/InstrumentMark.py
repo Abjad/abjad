@@ -131,5 +131,3 @@ class InstrumentMark(ContextMark):
             assert isinstance(short_instrument_name, str)
             self._short_instrument_name = Markup(short_instrument_name)
         return property(**locals())
-
-

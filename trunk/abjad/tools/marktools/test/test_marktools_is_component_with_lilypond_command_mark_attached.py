@@ -35,4 +35,3 @@ def test_marktools_is_component_with_lilypond_command_mark_attached_03():
     assert not marktools.is_component_with_lilypond_command_mark_attached(staff[1], 'foo')
     assert not marktools.is_component_with_lilypond_command_mark_attached(staff[2], 'foo')
     assert not marktools.is_component_with_lilypond_command_mark_attached(staff[3], 'foo')
-

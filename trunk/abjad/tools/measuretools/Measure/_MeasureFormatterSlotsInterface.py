@@ -26,6 +26,3 @@ class _MeasureFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
         result.append(_get_context_mark_format_contributions_for_slot(measure, 'opening'))
         self._indent_slot_contributions(result)
         return tuple(result)
-
-
-

@@ -130,6 +130,3 @@ def test_measuretools_fuse_contiguous_measures_in_container_cyclically_by_counts
 
     assert componenttools.is_well_formed_component(t)
     assert t.format == "\\new Staff {\n\t{\n\t\t\\time 6/8\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t\tg'8\n\t\ta'8\n\t}\n\t{\n\t\t\\time 4/8\n\t\tb'8\n\t\tc''8\n\t\td''8\n\t\te''8\n\t}\n}"
-
-
-

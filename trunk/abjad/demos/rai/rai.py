@@ -72,4 +72,3 @@ if __name__ == '__main__':
 else:
     for expr in p.setup:
         exec(expr)
-

@@ -14,5 +14,3 @@ def test_StaffChangeMark_staff_01():
     lh_staff.name = 'LHStaff'
     staff_change.staff = lh_staff
     assert staff_change.staff is lh_staff
-
-

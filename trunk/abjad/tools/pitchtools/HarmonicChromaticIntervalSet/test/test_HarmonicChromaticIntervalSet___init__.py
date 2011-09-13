@@ -20,4 +20,3 @@ def test_HarmonicChromaticIntervalSet___init___02():
 
     assert repr(hcis) == 'HarmonicChromaticIntervalSet(0, 1, 14, 15, 28)'
     assert str(hcis) == '{0, 1, 14, 15, 28}'
-

@@ -17,4 +17,3 @@ def test_pitchtools_PitchRange___eq___02():
 
     assert not pr1 == pr2
     assert pr1 != pr2
-

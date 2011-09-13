@@ -179,6 +179,3 @@ def test_BeamSpanner_fracture_08():
         g'8
     }
     '''
-
-
-

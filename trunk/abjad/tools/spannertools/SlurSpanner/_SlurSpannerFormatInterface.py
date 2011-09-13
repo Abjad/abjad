@@ -17,6 +17,3 @@ class _SlurSpannerFormatInterface(_SpannerFormatInterface):
         if spanner._is_my_last_leaf(leaf):
             result.append(')')
         return result
-
-
-

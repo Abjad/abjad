@@ -24,4 +24,3 @@ def test_NamedChromaticPitch___sub___03():
 
     assert pitch_1 - pitch_2 == pitchtools.MelodicDiatonicInterval('major', -2)
     assert pitch_2 - pitch_1 == pitchtools.MelodicDiatonicInterval('major', 2)
-

@@ -10,5 +10,3 @@ def test__Leaf___setattr___01():
     leaf = _Leaf(Duration(1, 4))
 
     assert py.test.raises(AttributeError, "leaf.foo = 'bar'")
-
-

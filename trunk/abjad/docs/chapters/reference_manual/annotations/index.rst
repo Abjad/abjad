@@ -138,4 +138,3 @@ And use ``value`` to get the value of any annotation:
 
 	abjad> annotation.value
 	NamedChromaticPitch('bs')
-

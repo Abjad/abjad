@@ -56,6 +56,3 @@ def append_spacer_skip_to_underfull_measure(rigid_measure):
         rigid_measure.append(skip)
 
     return rigid_measure
-
-
-

@@ -12,5 +12,3 @@ def test_contexttools_get_context_marks_attached_to_any_improper_parent_of_compo
     assert len(context_marks) == 2
     assert clef in context_marks
     assert dynamic in context_marks
-
-

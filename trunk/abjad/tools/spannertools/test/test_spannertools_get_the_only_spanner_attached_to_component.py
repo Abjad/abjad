@@ -27,6 +27,3 @@ def test_spannertools_get_the_only_spanner_attached_to_component_01():
 
     assert py.test.raises(MissingSpannerError,
         'spannertools.get_the_only_spanner_attached_to_component(staff[-1])')
-
-
-

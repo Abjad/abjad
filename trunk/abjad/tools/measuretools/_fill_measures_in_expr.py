@@ -51,6 +51,3 @@ def _fill_measures_in_expr(expr, mode, iterctrl = lambda measure, i: True):
         _measures_populate_none(expr, iterctrl)
     else:
         raise ValueError('unknown measure population mode "%s".' % mode)
-
-
-

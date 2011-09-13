@@ -60,6 +60,3 @@ def multiply_contents_of_measures_in_expr(expr, n):
         time_signature = contexttools.TimeSignatureMark(new_pair)
         contexttools.detach_time_signature_marks_attached_to_component(measure)
         time_signature.attach(measure)
-
-
-

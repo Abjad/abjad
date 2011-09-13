@@ -40,4 +40,3 @@ def get_lilypond_comments_attached_to_component(component):
 
     result = tuple(result)
     return result
-

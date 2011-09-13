@@ -264,4 +264,3 @@ class Accidental(_StrictComparator, _Immutable):
         Return string.
         '''
         return self._symbolic_string
-

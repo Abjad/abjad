@@ -55,4 +55,3 @@ def lilypond_duration_string_to_rational(duration_string):
         rational += addend
 
     return rational
-

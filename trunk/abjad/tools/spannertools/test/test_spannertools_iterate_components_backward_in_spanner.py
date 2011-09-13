@@ -32,6 +32,3 @@ def test_spannertools_iterate_components_backward_in_spanner_01():
     assert components[3] is t[-2]
     assert components[4] is leaves[-3]
     assert components[5] is leaves[-4]
-
-
-

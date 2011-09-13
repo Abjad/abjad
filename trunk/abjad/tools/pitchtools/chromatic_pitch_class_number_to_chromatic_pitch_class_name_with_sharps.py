@@ -42,4 +42,3 @@ _pitch_class_number_to_pitch_class_name_sharps = {
         6:  'fs',    6.5: 'ftqs',   7: 'g',     7.5:  'gqs',
         8:  'gs',    8.5: 'gtqs',   9: 'a',     9.5:  'aqs',
         10: 'as',   10.5: 'atqs',  11: 'b',    11.5:  'bqs' }
-

@@ -37,8 +37,3 @@ def test_leaftools_label_leaves_in_expr_with_leaf_numbers_02():
 
     assert componenttools.is_well_formed_component(t)
     assert t.format == "\\new Staff {\n\tc'8 ^ \\markup { \\small 1 }\n\td'8 ^ \\markup { \\small 2 }\n\te'8 ^ \\markup { \\small 3 }\n\tf'8 ^ \\markup { \\small 4 }\n}"
-
-
-
-
-

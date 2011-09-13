@@ -48,4 +48,3 @@ class MelodicDiatonicIntervalSegment(_IntervalSegment):
     def melodic_chromatic_interval_segment(self):
         from abjad.tools import pitchtools
         return pitchtools.MelodicChromaticIntervalSegment(self.intervals)
-

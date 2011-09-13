@@ -11,5 +11,3 @@ def test_pitchtools_TwelveToneRow___mul___01():
     assert result == pitchtools.NumberedChromaticPitchClassSegment([
         0, 1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8,
         0, 1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8])
-
-

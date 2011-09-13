@@ -30,5 +30,3 @@ def label_leaves_in_expr_with_leaf_numbers(expr, markup_direction = 'down'):
         leaf_number = i + 1
         label = r'\small %s' % leaf_number
         markuptools.Markup(label, markup_direction)(leaf)
-
-

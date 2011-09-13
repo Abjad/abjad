@@ -17,4 +17,3 @@ def test_NumberedChromaticPitch___int___02():
 
     numbered_chromatic_pitch = pitchtools.NumberedChromaticPitch(13.5)
     assert py.test.raises(TypeError, 'int(numbered_chromatic_pitch)')
-

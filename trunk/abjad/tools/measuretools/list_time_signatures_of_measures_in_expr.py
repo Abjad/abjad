@@ -63,6 +63,3 @@ def list_time_signatures_of_measures_in_expr(components):
 
     # return result
     return result
-
-
-

@@ -135,4 +135,3 @@ def diatonic_interval_number_and_chromatic_interval_number_to_melodic_diatonic_i
         quality_string, diatonic_interval_number)
 
     return diatonic_interval
-

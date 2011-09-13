@@ -24,4 +24,3 @@ def transpose_chromatic_pitch_class_number_by_octaves_to_nearest_neighbor_of_chr
         return chromatic_pitch_number + up
     else:
         return chromatic_pitch_number - down
-

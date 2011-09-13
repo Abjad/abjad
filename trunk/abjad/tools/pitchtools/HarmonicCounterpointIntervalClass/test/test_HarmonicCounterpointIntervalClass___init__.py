@@ -105,4 +105,3 @@ def test_HarmonicCounterpointIntervalClass___init___04():
 
     hcpic = pitchtools.HarmonicCounterpointIntervalClass(-15)
     assert hcpic.number == 8
-

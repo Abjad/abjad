@@ -27,4 +27,3 @@ def list_named_chromatic_pitch_carriers_in_expr_sorted_by_numbered_chromatic_pit
             abs(list_named_chromatic_pitches_in_expr(y)[0].numbered_chromatic_pitch_class)))
 
     return result
-

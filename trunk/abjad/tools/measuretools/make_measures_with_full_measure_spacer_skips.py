@@ -49,6 +49,3 @@ def make_measures_with_full_measure_spacer_skips(meters):
 
     # return measures
     return measures
-
-
-

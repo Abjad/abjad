@@ -54,4 +54,3 @@ def pentatonic_pitch_number_to_chromatic_pitch_number(
     pclass = pentatonic_scale_degree % 5
     octave = pentatonic_scale_degree // 5
     return 12 * octave + penta[pclass] + transpose
-

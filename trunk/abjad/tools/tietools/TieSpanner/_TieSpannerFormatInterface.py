@@ -14,4 +14,3 @@ class _TieSpannerFormatInterface(_SpannerFormatInterface):
         if not self.spanner._is_my_last_leaf(leaf):
             result.append('~')
         return result
-

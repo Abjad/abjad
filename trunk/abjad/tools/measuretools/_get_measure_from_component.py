@@ -61,6 +61,3 @@ def _get_measure_from_component(component, direction):
             raise MissingMeasureError
     else:
         raise TypeError('"%s" is unknown Abjad component.' % component)
-
-
-

@@ -19,4 +19,3 @@ def test_pitchtools_transpose_chromatic_pitch_class_number_by_octaves_to_nearest
     assert pitchtools.transpose_chromatic_pitch_class_number_by_octaves_to_nearest_neighbor_of_chromatic_pitch_number(12, 9) == 9
     assert pitchtools.transpose_chromatic_pitch_class_number_by_octaves_to_nearest_neighbor_of_chromatic_pitch_number(12, 10) == 10
     assert pitchtools.transpose_chromatic_pitch_class_number_by_octaves_to_nearest_neighbor_of_chromatic_pitch_number(12, 11) == 11
-

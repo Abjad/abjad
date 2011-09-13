@@ -58,5 +58,3 @@ def test_Score___cmp___03():
     assert py.test.raises(NotImplementedError, comparison_string)
     comparison_string = "score >= 'foo'"
     assert py.test.raises(NotImplementedError, comparison_string)
-
-

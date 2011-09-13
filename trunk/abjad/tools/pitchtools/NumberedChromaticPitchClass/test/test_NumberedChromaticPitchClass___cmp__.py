@@ -32,4 +32,3 @@ def test_NumberedChromaticPitchClass___cmp___02():
     assert py.test.raises(NotImplementedError, 'pc1 <= pc2')
     assert py.test.raises(NotImplementedError, 'pc1 >  pc2')
     assert py.test.raises(NotImplementedError, 'pc1 >= pc2')
-

@@ -30,5 +30,3 @@ def label_leaves_in_expr_with_pitch_numbers(expr, markup_direction = 'down'):
             if pitch is not None:
                 pitch_number = r'\small %s' % pitch.chromatic_pitch_number
                 markuptools.Markup(pitch_number, markup_direction)(leaf)
-
-

@@ -54,4 +54,3 @@ def test_InversionEquivalentDiatonicIntervalClass__init_by_quality_string_and_nu
     assert str(pitchtools.InversionEquivalentDiatonicIntervalClass('minor', 13)) == 'M3'
     assert str(pitchtools.InversionEquivalentDiatonicIntervalClass('perfect', 12)) == 'P4'
     assert str(pitchtools.InversionEquivalentDiatonicIntervalClass('diminished', 12)) == 'aug4'
-

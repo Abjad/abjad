@@ -45,4 +45,3 @@ def test_MelodicDiatonicInterval___repr___02():
     interval = pitchtools.MelodicDiatonicInterval('minor', -3)
     repr = interval.__repr__()
     assert  repr == "MelodicDiatonicInterval('-m3')"
-

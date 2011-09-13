@@ -54,4 +54,3 @@ class HarmonicDiatonicIntervalSet(_IntervalSet):
     #def numbers(self):
     def harmonic_diatonic_interval_numbers(self):
         return set([interval.number for interval in self])
-

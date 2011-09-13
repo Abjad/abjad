@@ -114,4 +114,3 @@ def test_HarmonicDiatonicInterval_diatonic_interval_class_05():
     hdi = pitchtools.HarmonicDiatonicInterval('major', 14)
     dic = hdi.diatonic_interval_class
     assert dic == pitchtools.InversionEquivalentDiatonicIntervalClass('minor', 2)
-

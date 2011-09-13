@@ -17,4 +17,3 @@ def test_NamedChromaticPitchClass___sub___02():
 
     mdi = pitchtools.NamedChromaticPitchClass('cf') - pitchtools.NamedChromaticPitchClass('c')
     assert mdi == pitchtools.InversionEquivalentDiatonicIntervalClass('augmented', 1)
-

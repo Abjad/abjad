@@ -23,6 +23,3 @@ def test_DynamicTextSpanner_01():
     #assert t[1].dynamics.effective == 'f'
     #assert t[2].dynamics.effective == 'p'
     #assert t[3].dynamics.effective == 'p'
-
-
-

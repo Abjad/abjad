@@ -46,4 +46,3 @@ def chromatic_pitch_number_to_chromatic_pitch_name(
     chromatic_pitch_name = chromatic_pitch_class_name + octave_tick_string
 
     return chromatic_pitch_name
-

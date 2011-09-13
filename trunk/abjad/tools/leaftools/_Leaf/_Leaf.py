@@ -185,5 +185,3 @@ class _Leaf(_Component, _StrictComparator):
         def fget(self):
             return self._written_pitch_indication_is_at_sounding_pitch
         return property(**locals())
-
-

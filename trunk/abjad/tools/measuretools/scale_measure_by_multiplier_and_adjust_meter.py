@@ -77,6 +77,3 @@ def scale_measure_by_multiplier_and_adjust_meter(measure, multiplier = 1):
         if remaining_multiplier != durationtools.Duration(1):
             containertools.scale_contents_of_container(measure, remaining_multiplier)
     return measure
-
-
-

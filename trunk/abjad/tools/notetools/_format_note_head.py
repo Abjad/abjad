@@ -21,5 +21,3 @@ def _format_note_head(note_head):
 
     # return formatted note head
     return result
-
-

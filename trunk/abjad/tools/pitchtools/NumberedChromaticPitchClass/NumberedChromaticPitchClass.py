@@ -95,4 +95,3 @@ class NumberedChromaticPitchClass(_PitchClass):
     def transpose(self, n):
         '''Transpose pitch-class by n.'''
         return type(self)(abs(self) + n)
-

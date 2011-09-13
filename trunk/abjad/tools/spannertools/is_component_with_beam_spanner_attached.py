@@ -33,6 +33,3 @@ def is_component_with_beam_spanner_attached(expr):
         return False
 
     return bool(spannertools.get_spanners_attached_to_component(expr, spannertools.BeamSpanner))
-
-
-

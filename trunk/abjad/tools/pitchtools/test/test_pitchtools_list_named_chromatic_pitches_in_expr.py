@@ -52,5 +52,3 @@ def test_pitchtools_list_named_chromatic_pitches_in_expr_05():
 
     t = [pitchtools.NamedChromaticPitch(0), Note(2, (1, 4)), Chord([4, 6, 7], (1, 4))]
     assert pitchtools.list_named_chromatic_pitches_in_expr(t) == (pitchtools.NamedChromaticPitch('c', 4), pitchtools.NamedChromaticPitch('d', 4), pitchtools.NamedChromaticPitch('e', 4), pitchtools.NamedChromaticPitch('fs', 4), pitchtools.NamedChromaticPitch('g', 4))
-
-

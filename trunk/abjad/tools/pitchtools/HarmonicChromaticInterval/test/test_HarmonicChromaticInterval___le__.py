@@ -39,4 +39,3 @@ def test_HarmonicChromaticInterval___le___04():
 
     assert interval_1 <= interval_2
     assert interval_2 <= interval_1
-

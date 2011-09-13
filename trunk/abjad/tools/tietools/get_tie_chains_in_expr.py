@@ -42,4 +42,3 @@ def get_tie_chains_in_expr(components):
                 leaves_intersecting.append(leaf)
         result.append(tuple(leaves_intersecting))
     return result
-

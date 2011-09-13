@@ -14,4 +14,3 @@ def test_LilyPondTweaksReservoir___repr___01( ):
 
     assert isinstance(tweak_reservoir_1, LilyPondTweakReservoir)
     assert isinstance(tweak_reservoir_2, LilyPondTweakReservoir)
-

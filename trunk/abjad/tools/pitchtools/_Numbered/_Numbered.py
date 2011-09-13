@@ -5,4 +5,3 @@ class _Numbered(object):
     '''
 
     pass
-

@@ -50,4 +50,3 @@ def apply_octavation_spanner_to_pitched_components(expr,
         return octavation
     except NameError:
         return None
-

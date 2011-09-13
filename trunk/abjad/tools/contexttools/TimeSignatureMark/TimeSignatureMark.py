@@ -287,5 +287,3 @@ class TimeSignatureMark(ContextMark):
             assert isinstance(partial, (numbers.Number, type(None)))
             self._partial = partial
         return property(**locals())
-
-

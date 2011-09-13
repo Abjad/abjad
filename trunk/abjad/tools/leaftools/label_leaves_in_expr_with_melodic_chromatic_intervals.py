@@ -41,5 +41,3 @@ def label_leaves_in_expr_with_melodic_chromatic_intervals(expr, markup_direction
                 markuptools.Markup(mci, markup_direction)(note)
         except StopIteration:
             pass
-
-

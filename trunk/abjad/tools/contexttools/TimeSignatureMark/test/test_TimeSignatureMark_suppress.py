@@ -30,5 +30,3 @@ def test_TimeSignatureMark_suppress_02():
     contexttools.get_effective_time_signature(t).suppress = True
 
     assert py.test.raises(NonbinaryTimeSignatureSuppressionError, 't.format')
-
-

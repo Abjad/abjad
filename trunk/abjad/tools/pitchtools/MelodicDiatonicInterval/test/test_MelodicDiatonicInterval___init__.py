@@ -32,4 +32,3 @@ def test_MelodicDiatonicInterval___init___03():
 
     assert new is not mdi
     assert new == mdi
-

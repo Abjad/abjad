@@ -61,6 +61,3 @@ class BracketSpanner(TextSpanner):
         self.override.text_spanner.dash_fraction = 1
         self.override.text_spanner.staff_padding = 2
         self.override.text_spanner.thickness = 1.5
-
-
-

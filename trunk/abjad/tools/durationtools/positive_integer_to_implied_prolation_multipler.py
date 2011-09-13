@@ -41,4 +41,3 @@ def positive_integer_to_implied_prolation_multipler(n):
     '''
 
     return Fraction(mathtools.greatest_power_of_two_less_equal(n), n)
-

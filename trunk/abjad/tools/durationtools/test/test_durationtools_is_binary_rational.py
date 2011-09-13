@@ -32,4 +32,3 @@ def test_durationtools_is_binary_rational_02():
 
     assert not durationtools.is_binary_rational(1.0)
     assert not durationtools.is_binary_rational('foo')
-

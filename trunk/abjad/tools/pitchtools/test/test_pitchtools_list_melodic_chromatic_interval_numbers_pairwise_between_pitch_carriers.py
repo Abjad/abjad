@@ -27,4 +27,3 @@ def test_pitchtools_list_melodic_chromatic_interval_numbers_pairwise_between_pit
     t = pitchtools.list_melodic_chromatic_interval_numbers_pairwise_between_pitch_carriers(notes, wrap = True)
 
     assert t == [-1, -2, -2, -2, -1, -2, -2, 12]
-

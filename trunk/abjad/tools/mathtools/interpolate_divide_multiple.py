@@ -50,4 +50,3 @@ def interpolate_divide_multiple(totals, key_values, exp='cosine'):
         # we want a flat list
         result.extend(dts)
     return result
-

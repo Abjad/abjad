@@ -69,4 +69,3 @@ def test_NamedChromaticPitch_numbered_diatonic_pitch_05():
     assert not p1.numbered_diatonic_pitch >= p2.numbered_diatonic_pitch
     assert      p1.numbered_diatonic_pitch <  p2.numbered_diatonic_pitch
     assert      p1.numbered_diatonic_pitch <= p2.numbered_diatonic_pitch
-

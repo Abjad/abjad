@@ -20,4 +20,3 @@ def calculate_harmonic_chromatic_interval_class_from_pitch_carrier_to_pitch_carr
 
     # return harmonic chromatic interval-class
     return mci.harmonic_chromatic_interval.harmonic_chromatic_interval_class
-

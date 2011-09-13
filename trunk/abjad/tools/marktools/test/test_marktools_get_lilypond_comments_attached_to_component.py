@@ -23,4 +23,3 @@ def test_marktools_get_lilypond_comments_attached_to_component_01():
     assert comment_mark_1 in marks
     assert comment_mark_2 in marks
     assert len(marks) == 2
-

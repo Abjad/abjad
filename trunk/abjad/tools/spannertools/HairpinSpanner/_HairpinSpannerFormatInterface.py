@@ -39,6 +39,3 @@ class _HairpinSpannerFormatInterface(_SpannerFormatInterface):
                 elif effective_dynamic is None:
                     result.append('\\!')
         return result
-
-
-

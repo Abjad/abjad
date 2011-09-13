@@ -50,4 +50,3 @@ def test_marktools_get_lilypond_command_marks_attached_to_component_02():
 
     assert lilypond_command_mark_1 in marks
     assert len(marks) == 1
-

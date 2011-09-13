@@ -10,5 +10,3 @@ def test_KeySignatureMark_tonic_01():
 
     key_signature.tonic = 'd'
     key_signature.tonic = pitchtools.NamedChromaticPitchClass('d')
-
-

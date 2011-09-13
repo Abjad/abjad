@@ -18,4 +18,3 @@ class _ChromaticIntervalClass(_IntervalClass, _Chromatic):
 
     def __int__(self):
         return self._number
-

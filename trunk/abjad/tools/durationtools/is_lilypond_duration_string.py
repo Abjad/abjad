@@ -63,4 +63,3 @@ def is_lilypond_duration_string(expr):
     #print base, dots, multiplier
 
     return bool(lilypond_duration_string_regex.match(expr))
-

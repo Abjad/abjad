@@ -9,4 +9,3 @@ def test_NumberedDiatonicPitch___abs___01():
     assert abs(pitchtools.NumberedDiatonicPitch(7)) == 7
     assert abs(pitchtools.NumberedDiatonicPitch(13)) == 13
     assert abs(pitchtools.NumberedDiatonicPitch(14)) == 14
-

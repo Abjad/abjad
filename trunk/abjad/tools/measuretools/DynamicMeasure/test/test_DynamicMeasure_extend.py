@@ -20,6 +20,3 @@ def test_DynamicMeasure_extend_01():
     '''
 
     assert measure.format == "{\n\t\\time 5/8\n\tc'8\n\td'8\n\te'8\n\tfs'8\n\tgs'8\n}"
-
-
-

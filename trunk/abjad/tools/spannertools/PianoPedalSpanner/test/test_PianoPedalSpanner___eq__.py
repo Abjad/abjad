@@ -9,6 +9,3 @@ def test_PianoPedalSpanner___eq___01():
     spanner_2 = spannertools.PianoPedalSpanner()
 
     assert not spanner_1 == spanner_2
-
-
-

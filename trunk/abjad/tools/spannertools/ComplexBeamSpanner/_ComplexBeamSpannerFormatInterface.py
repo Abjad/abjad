@@ -128,6 +128,3 @@ class _ComplexBeamSpannerFormatInterface(_BeamSpannerFormatInterface):
                 not componenttools.is_beamable_component(leaf._navigator._next_bead):
                 result.append(']')
         return result
-
-
-

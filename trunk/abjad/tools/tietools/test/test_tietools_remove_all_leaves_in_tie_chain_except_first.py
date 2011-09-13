@@ -40,5 +40,3 @@ def test_tietools_remove_all_leaves_in_tie_chain_except_first_02():
 
     assert componenttools.is_well_formed_component(t)
     assert t.format == "\\new Staff {\n\tc'8\n}"
-
-

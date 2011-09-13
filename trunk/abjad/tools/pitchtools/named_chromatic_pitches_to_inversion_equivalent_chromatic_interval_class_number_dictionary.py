@@ -66,4 +66,3 @@ def named_chromatic_pitches_to_inversion_equivalent_chromatic_interval_class_num
             vector[key] = intervals.count(key)
 
     return vector
-

@@ -36,5 +36,3 @@ def get_effective_clef(component):
     '''
 
     return get_effective_context_mark(component, ClefMark)
-
-

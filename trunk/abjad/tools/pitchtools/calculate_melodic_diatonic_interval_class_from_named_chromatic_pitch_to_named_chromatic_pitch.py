@@ -20,4 +20,3 @@ def calculate_melodic_diatonic_interval_class_from_named_chromatic_pitch_to_name
 
     # return melodic diatonic interval-class
     return mdi.melodic_diatonic_interval_class
-

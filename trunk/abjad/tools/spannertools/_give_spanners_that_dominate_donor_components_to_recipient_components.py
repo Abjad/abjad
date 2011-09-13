@@ -23,6 +23,3 @@ def _give_spanners_that_dominate_donor_components_to_recipient_components(donor_
             spanner._remove(donor_component)
 
     return donor_components
-
-
-

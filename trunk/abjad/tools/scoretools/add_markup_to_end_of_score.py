@@ -35,5 +35,3 @@ def add_markup_to_end_of_score(score, markup, extra_offset = None):
         last_leaf.override.text_script.extra_offset = extra_offset
 
     return markup
-
-

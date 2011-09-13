@@ -80,7 +80,3 @@ def test_tietools_get_tie_chains_in_expr_08():
     chains = tietools.get_tie_chains_in_expr(t[:])
 
     assert chains == [tuple(t.leaves[0:8])]
-
-
-
-

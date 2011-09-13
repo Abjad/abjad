@@ -201,6 +201,3 @@ class Measure(Container):
         '''Measure contents duration times effective meter multiplier.'''
         from abjad.tools import contexttools
         return contexttools.get_effective_time_signature(self).multiplier * self.contents_duration
-
-
-

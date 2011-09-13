@@ -22,5 +22,3 @@ def test_notetools_make_repeated_notes_from_time_signature_02():
 
     assert componenttools.is_well_formed_component(staff)
     assert staff.format == "\\new Staff {\n\td''32\n\td''32\n\td''32\n\td''32\n\td''32\n}"
-
-

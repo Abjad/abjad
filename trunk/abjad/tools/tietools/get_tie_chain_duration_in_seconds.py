@@ -18,4 +18,3 @@ def get_tie_chain_duration_in_seconds(tie_chain):
         return tie_chain[0].tie.spanner.duration_in_seconds
     except MissingSpannerError:
         return tie_chain[0].duration_in_seconds
-

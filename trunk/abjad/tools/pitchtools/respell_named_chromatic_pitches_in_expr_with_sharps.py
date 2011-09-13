@@ -65,4 +65,3 @@ def _new_pitch_with_sharps(pitch):
         pitch.numbered_chromatic_pitch_class)
     pitch = type(pitch)(name, octave)
     return pitch
-

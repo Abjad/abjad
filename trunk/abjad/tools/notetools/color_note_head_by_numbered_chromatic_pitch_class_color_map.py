@@ -80,5 +80,3 @@ def _pc_number_to_color(pc):
         12: schemetools.SchemeColor('LimeGreen')}
 
     return pc_number_to_color.get(pc, None)
-
-

@@ -52,4 +52,3 @@ class _Interval(_Immutable):
     @property
     def semitones(self):
         pass
-

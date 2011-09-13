@@ -12,4 +12,3 @@ def is_chromatic_pitch_class_number(expr):
     '''
 
     return expr in [(n).__truediv__(2) for n in range(24)]
-

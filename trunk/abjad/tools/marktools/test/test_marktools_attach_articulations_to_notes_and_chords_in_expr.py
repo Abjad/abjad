@@ -16,4 +16,3 @@ def test_marktools_attach_articulations_to_notes_and_chords_in_expr_01():
     '''
 
     assert staff.format == "\\new Staff {\n\tc'8 -\\marcato -\\staccato\n\td'8 -\\marcato -\\staccato\n\te'8 -\\marcato -\\staccato\n\tf'8 -\\marcato -\\staccato\n}"
-

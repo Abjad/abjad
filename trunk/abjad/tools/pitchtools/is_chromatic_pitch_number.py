@@ -15,4 +15,3 @@ def is_chromatic_pitch_number(expr):
     if isinstance(expr, (int, long, float)):
         return expr % 0.5 == 0
     return False
-

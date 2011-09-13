@@ -27,4 +27,3 @@ def add_or_remove_tie_chain_notes_to_achieve_scaled_written_duration(tie_chain, 
 
     # assign new tie chain written duration and return tie chain
     return add_or_remove_tie_chain_notes_to_achieve_written_duration(tie_chain, new_written_duration)
-

@@ -17,4 +17,3 @@ def test_pitchtools_is_harmonic_diatonic_interval_abbreviation_02():
     assert not pitchtools.is_harmonic_diatonic_interval_abbreviation('-M2')
     assert not pitchtools.is_harmonic_diatonic_interval_abbreviation('x2')
     assert not pitchtools.is_harmonic_diatonic_interval_abbreviation(17)
-

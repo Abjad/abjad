@@ -55,6 +55,3 @@ def move_prolation_of_full_measure_tuplet_to_meter_of_measure(expr):
                 componenttools.move_parentage_and_spanners_from_components_to_components(
                     [tuplet], tuplet[:])
                 containertools.scale_contents_of_container(measure, written_adjustment)
-
-
-

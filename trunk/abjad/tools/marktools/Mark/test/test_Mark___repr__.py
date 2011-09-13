@@ -12,4 +12,3 @@ def test_Mark___repr___01():
     assert isinstance(mark_1, marktools.Mark)
     assert isinstance(mark_2, marktools.Mark)
     assert mark_1 == mark_2
-

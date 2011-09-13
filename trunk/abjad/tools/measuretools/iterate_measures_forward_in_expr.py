@@ -63,6 +63,3 @@ def iterate_measures_forward_in_expr(expr, start = 0, stop = None):
     '''
 
     return iterate_components_forward_in_expr(expr, Measure, start = start, stop = stop)
-
-
-

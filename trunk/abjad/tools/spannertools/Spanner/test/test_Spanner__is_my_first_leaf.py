@@ -81,6 +81,3 @@ def test_Spanner__is_my_first_leaf_02():
 #   assert py.test.raises(ContiguityError, 'p = spannertools.Spanner(t[:3])')
 #   #assert p._is_my_first_leaf(t[0])
 #   #assert p._is_my_last_leaf(t[1])
-
-
-

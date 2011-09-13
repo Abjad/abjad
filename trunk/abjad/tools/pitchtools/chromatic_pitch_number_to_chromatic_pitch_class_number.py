@@ -16,4 +16,3 @@ def chromatic_pitch_number_to_chromatic_pitch_class_number(chromatic_pitch_numbe
         raise TypeError
 
     return chromatic_pitch_number % 12
-

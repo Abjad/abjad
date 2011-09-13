@@ -9,6 +9,3 @@ def test_TrillSpanner___eq___01():
     spanner_2 = spannertools.TrillSpanner()
 
     assert not spanner_1 == spanner_2
-
-
-

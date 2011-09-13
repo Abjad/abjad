@@ -7,4 +7,3 @@ def _get_grob_revert_format_contributions(component):
     if not isinstance(component, _Leaf):
         result.extend(component.override._list_format_contributions('revert'))
     return ['grob reverts', result]
-

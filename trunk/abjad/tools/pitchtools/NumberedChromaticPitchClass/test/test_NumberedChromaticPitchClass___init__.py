@@ -90,4 +90,3 @@ def test_NumberedChromaticPitchClass___init___10():
     assert pitchtools.NumberedChromaticPitchClass('cs') == 1
     assert pitchtools.NumberedChromaticPitchClass('cf') == 11
     assert pitchtools.NumberedChromaticPitchClass('css') == 2
-

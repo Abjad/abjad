@@ -33,5 +33,3 @@ def get_first_score_in_improper_parentage_of_component(component):
 
     return componenttools.get_first_instance_of_klass_in_improper_parentage_of_component(
         component, Score)
-
-

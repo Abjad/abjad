@@ -52,4 +52,3 @@ class LilyPondGrobProxyContextWrapper(object):
 
     def __repr__(self):
         return '%s( )' % self.__class__.__name__
-

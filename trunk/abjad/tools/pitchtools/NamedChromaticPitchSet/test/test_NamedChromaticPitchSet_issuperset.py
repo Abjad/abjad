@@ -17,4 +17,3 @@ def test_NamedChromaticPitchSet_issuperset_02():
 
     assert pitch_set_1.issuperset(pitch_set_2)
     assert pitch_set_2.issuperset(pitch_set_1)
-

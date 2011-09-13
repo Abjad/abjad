@@ -28,4 +28,3 @@ def test_LilyPondGrobProxy___eq___01( ):
     assert not grob_proxy_3 == grob_proxy_1
     assert not grob_proxy_3 == grob_proxy_2
     assert      grob_proxy_3 == grob_proxy_3
-

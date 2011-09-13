@@ -71,4 +71,3 @@ def test_pitchtools_pentatonic_pitch_number_to_chromatic_pitch_number_04():
     '''Phase must be positive.'''
 
     assert py.test.raises(AssertionError, 'pitchtools.pentatonic_pitch_number_to_chromatic_pitch_number(0, 1, -3)')
-

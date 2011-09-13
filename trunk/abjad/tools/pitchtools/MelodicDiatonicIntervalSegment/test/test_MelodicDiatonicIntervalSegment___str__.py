@@ -13,4 +13,3 @@ def test_MelodicDiatonicIntervalSegment___str___01():
         pitchtools.MelodicDiatonicInterval('minor', 2),])
 
     assert str(mdi_segment) == '<+M2, +M2, +m2, +M2, +M2, +M2, +m2>'
-

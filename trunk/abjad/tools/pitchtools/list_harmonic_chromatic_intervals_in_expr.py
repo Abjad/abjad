@@ -32,4 +32,3 @@ def list_harmonic_chromatic_intervals_in_expr(expr):
         chromatic_intervals.append(chromatic_interval)
 
     return chromatic_intervals
-

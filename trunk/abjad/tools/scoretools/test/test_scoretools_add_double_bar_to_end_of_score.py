@@ -17,6 +17,3 @@ def test_scoretools_add_double_bar_to_end_of_score_01():
     '''
 
     assert staff.format == '\\new Staff {\n\tc\'4\n\td\'4\n\te\'4\n\tf\'4\n\t\\bar "|."\n}'
-
-
-

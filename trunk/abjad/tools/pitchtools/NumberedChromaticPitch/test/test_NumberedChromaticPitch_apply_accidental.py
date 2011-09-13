@@ -12,4 +12,3 @@ def test_NumberedChromaticPitch_apply_accidental_02():
 
     assert pitchtools.NumberedChromaticPitch(12).apply_accidental('quarter sharp') == 12.5
     assert pitchtools.NumberedChromaticPitch(12).apply_accidental('quarter flat') == 11.5
-

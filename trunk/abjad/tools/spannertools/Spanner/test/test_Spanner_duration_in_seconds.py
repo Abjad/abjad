@@ -31,6 +31,3 @@ def test_Spanner_duration_in_seconds_01():
     assert beam.duration_in_seconds == Duration(100, 21)
     assert crescendo.duration_in_seconds == Duration(40, 21)
     assert decrescendo.duration_in_seconds == Duration(20, 7)
-
-
-

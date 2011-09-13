@@ -12,4 +12,3 @@ def test_NamedChromaticPitchSet___eq___01():
     assert pset1 != pset3
     assert pset2 != pset3
     assert not pset1 != pset2
-

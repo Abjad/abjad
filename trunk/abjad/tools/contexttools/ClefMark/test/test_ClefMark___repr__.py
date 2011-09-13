@@ -7,5 +7,3 @@ def test_ClefMark___repr___01():
 
     repr = contexttools.ClefMark('treble').__repr__()
     assert isinstance(repr, str) and 0 < len(repr)
-
-

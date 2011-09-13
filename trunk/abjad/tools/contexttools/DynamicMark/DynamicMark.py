@@ -181,5 +181,3 @@ class DynamicMark(ContextMark):
         Return boolean.
         '''
         return arg in DynamicMark._dynamic_names
-
-

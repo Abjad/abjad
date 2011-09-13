@@ -26,4 +26,3 @@ def is_octave_tick_string(expr):
         return False
 
     return bool(octave_tick_regex.match(expr))
-

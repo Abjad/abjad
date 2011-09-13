@@ -9,5 +9,3 @@ def test_MelodicChromaticIntervalClassSegment___init___01():
     "MelodicChromaticIntervalClassSegment(+2, +2, +1, +2, +2, +2, +1)"
 
     assert mcicseg.interval_class_numbers == (2, 2, 1, 2, 2, 2, 1)
-
-

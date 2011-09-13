@@ -25,4 +25,3 @@ def numeric_seconds_to_clock_string(seconds):
     clock_string = "%s'%s\"" % (minutes, remaining_seconds)
 
     return clock_string
-

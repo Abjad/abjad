@@ -49,4 +49,3 @@ def test_NamedChromaticPitchSet___init___07():
     '''Works with chords.'''
 
     assert len(pitchtools.NamedChromaticPitchSet(Chord([12, 14, 18, 19], (1, 4)))) == 4
-

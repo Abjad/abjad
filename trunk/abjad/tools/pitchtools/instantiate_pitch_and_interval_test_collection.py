@@ -58,4 +58,3 @@ def instantiate_pitch_and_interval_test_collection():
     result.append(pitchtools.NumberedDiatonicPitch(1))
     result.append(pitchtools.NumberedDiatonicPitchClass(1))
     return result
-

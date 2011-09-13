@@ -9,4 +9,3 @@ def test_InversionEquivalentChromaticIntervalClass___copy___01():
 
     assert ic1 == new
     assert not ic1 is new
-

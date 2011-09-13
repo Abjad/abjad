@@ -59,5 +59,3 @@ def test_notetools_iterate_notes_backward_in_expr_02():
     assert notes[0] is staff[1][1]
     assert notes[1] is staff[1][0]
     assert len(notes) == 2
-
-

@@ -37,5 +37,3 @@ def _fuse_leaves_in_container_once_by_counts(container, counts, target_type = No
 
     # return container
     return container
-
-

@@ -139,6 +139,3 @@ def test_measuretools_fill_measures_in_expr_with_full_measure_spacer_skips_03():
 
     assert componenttools.is_well_formed_component(t)
     assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\t\\time 3/8\n\t\ts1 * 3/8\n\t}\n\t{\n\t\t\\time 4/8\n\t\ts1 * 1/2\n\t}\n}"
-
-
-

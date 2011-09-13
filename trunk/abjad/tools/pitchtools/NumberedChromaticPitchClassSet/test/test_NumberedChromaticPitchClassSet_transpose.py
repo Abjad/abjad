@@ -16,4 +16,3 @@ def test_NumberedChromaticPitchClassSet_transpose_01():
     assert pcset.transpose(9) == pitchtools.NumberedChromaticPitchClassSet([10, 11, 2])
     assert pcset.transpose(10) == pitchtools.NumberedChromaticPitchClassSet([11, 0, 3])
     assert pcset.transpose(11) == pitchtools.NumberedChromaticPitchClassSet([0, 1, 4])
-

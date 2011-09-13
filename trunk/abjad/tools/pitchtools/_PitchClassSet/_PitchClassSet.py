@@ -8,4 +8,3 @@ class _PitchClassSet(_Set):
     '''
 
     pass
-

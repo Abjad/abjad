@@ -18,4 +18,3 @@ def test_NumberedDiatonicPitch_numbered_diatonic_pitch_class_01():
     numbered_diatonic_pitch = pitchtools.NumberedDiatonicPitch(7)
     numbered_diatonic_pitch_class = numbered_diatonic_pitch.numbered_diatonic_pitch_class
     assert numbered_diatonic_pitch_class == pitchtools.NumberedDiatonicPitchClass(0)
-

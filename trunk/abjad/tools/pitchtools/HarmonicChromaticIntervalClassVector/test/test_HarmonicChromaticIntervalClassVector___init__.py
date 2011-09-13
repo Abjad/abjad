@@ -33,4 +33,3 @@ def test_HarmonicChromaticIntervalClassVector___init___01():
     assert CIV[9] == 0
     assert CIV[10] == 0
     assert CIV[11] == 0
-

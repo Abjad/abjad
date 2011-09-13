@@ -25,4 +25,3 @@ def diatonic_pitch_name_to_diatonic_pitch_number(diatonic_pitch_name):
     diatonic_pitch_number = 7 * (octave_number - 4) + diatonic_pitch_class_number
 
     return diatonic_pitch_number
-

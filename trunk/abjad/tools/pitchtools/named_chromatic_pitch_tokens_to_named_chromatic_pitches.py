@@ -13,4 +13,3 @@ def named_chromatic_pitch_tokens_to_named_chromatic_pitches(pitch_tokens):
     '''
 
     return [NamedChromaticPitch(pitch_token) for pitch_token in pitch_tokens]
-

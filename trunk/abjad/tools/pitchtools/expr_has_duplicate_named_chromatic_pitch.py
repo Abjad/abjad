@@ -18,4 +18,3 @@ def expr_has_duplicate_named_chromatic_pitch(expr):
     pitches = list_named_chromatic_pitches_in_expr(expr)
     pitch_set = NamedChromaticPitchSet(pitches)
     return not len(pitches) == len(pitch_set)
-

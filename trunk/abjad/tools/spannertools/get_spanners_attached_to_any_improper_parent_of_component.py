@@ -38,6 +38,3 @@ def get_spanners_attached_to_any_improper_parent_of_component(component, klass =
             elif isinstance(spanner, klass):
                 result.add(spanner)
     return result
-
-
-

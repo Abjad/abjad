@@ -10,4 +10,3 @@ def test_NamedChromaticPitchClassSet___hash___01():
         pitchtools.NamedChromaticPitchClass('e'),])
 
     assert hash(npc_set) == hash(repr(npc_set))
-

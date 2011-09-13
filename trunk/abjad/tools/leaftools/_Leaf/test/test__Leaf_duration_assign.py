@@ -35,5 +35,3 @@ def test__Leaf_duration_assign_05():
     t = Note(1, (1, 4))
     t.duration_multiplier = 2
     assert t.duration_multiplier == Duration(2, 1)
-
-

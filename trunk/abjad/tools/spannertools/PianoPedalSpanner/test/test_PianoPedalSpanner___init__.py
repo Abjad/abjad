@@ -7,6 +7,3 @@ def test_PianoPedalSpanner___init___01():
 
     pedal = spannertools.PianoPedalSpanner()
     assert isinstance(pedal, spannertools.PianoPedalSpanner)
-
-
-

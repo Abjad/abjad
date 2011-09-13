@@ -23,8 +23,3 @@ def test_leaftools_change_written_leaf_duration_and_preserve_preprolated_leaf_du
     leaftools.change_written_leaf_duration_and_preserve_preprolated_leaf_duration(
       n, Duration(15, 16))
     assert n.format == "c'2... * 4/15"
-
-
-
-
-

@@ -14,4 +14,3 @@ def test_NamedChromaticPitchClassSet_named_chromatic_pitch_classes_01():
     assert pitch_classes[0] == pitchtools.NamedChromaticPitchClass('c')
     assert pitch_classes[1] == pitchtools.NamedChromaticPitchClass('d')
     assert pitch_classes[2] == pitchtools.NamedChromaticPitchClass('e')
-

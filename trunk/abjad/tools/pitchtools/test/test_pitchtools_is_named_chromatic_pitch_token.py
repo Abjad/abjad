@@ -12,4 +12,3 @@ def test_pitchtools_is_named_chromatic_pitch_token_01():
 def test_pitchtools_is_named_chromatic_pitch_token_02():
 
     assert not pitchtools.is_named_chromatic_pitch_token('foo')
-

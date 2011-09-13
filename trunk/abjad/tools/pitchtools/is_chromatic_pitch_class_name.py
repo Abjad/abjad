@@ -29,4 +29,3 @@ def is_chromatic_pitch_class_name(expr):
         return False
 
     return bool(chromatic_pitch_class_name_regex.match(expr))
-

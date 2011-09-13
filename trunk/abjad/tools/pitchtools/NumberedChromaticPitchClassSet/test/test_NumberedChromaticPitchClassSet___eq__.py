@@ -12,4 +12,3 @@ def test_NumberedChromaticPitchClassSet___eq___01():
     assert pcset1 != pcset3
     assert pcset2 != pcset3
     assert not pcset1 != pcset2
-

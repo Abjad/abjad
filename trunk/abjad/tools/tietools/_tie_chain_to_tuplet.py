@@ -66,4 +66,3 @@ def _tie_chain_to_tuplet(chain, divisions, prolation, dotted):
 
     # return tuplet
     return tuplet
-

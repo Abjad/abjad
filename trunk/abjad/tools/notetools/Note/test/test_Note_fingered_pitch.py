@@ -23,5 +23,3 @@ def test_Note_fingered_pitch_01():
     assert staff[1].fingered_pitch == "e'"
     assert staff[2].fingered_pitch == "f'"
     assert staff[3].fingered_pitch == "g'"
-
-

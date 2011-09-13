@@ -68,5 +68,3 @@ def color_leaf(leaf, color):
 
     # return leaf
     return leaf
-
-

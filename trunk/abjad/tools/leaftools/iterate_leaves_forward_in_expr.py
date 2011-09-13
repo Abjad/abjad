@@ -73,5 +73,3 @@ def iterate_leaves_forward_in_expr(expr, start = 0, stop = None):
     '''
 
     return iterate_components_forward_in_expr(expr, _Leaf, start = start, stop = stop)
-
-

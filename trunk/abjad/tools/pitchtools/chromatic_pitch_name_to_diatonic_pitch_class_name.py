@@ -16,4 +16,3 @@ def chromatic_pitch_name_to_diatonic_pitch_class_name(chromatic_pitch_name):
         raise ValueError('\n\tNote chromatic pitch name: "%s".' % chromatic_pitch_name)
 
     return chromatic_pitch_name[0]
-

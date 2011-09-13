@@ -11,5 +11,3 @@ def test_KeySignatureMark_mode_01():
 
     key_signature.mode = 'minor'
     assert key_signature.mode == tonalitytools.Mode('minor')
-
-

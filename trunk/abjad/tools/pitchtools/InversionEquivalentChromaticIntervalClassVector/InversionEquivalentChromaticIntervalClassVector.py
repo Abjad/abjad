@@ -86,4 +86,3 @@ class InversionEquivalentChromaticIntervalClassVector(_Vector):
     @property
     def _unison_string(self):
         return self._twelve_tone_string.split()[0]
-

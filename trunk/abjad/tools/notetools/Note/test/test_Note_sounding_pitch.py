@@ -23,5 +23,3 @@ def test_Note_sounding_pitch_01():
     assert staff[1].sounding_pitch == "e''"
     assert staff[2].sounding_pitch == "f''"
     assert staff[3].sounding_pitch == "g''"
-
-

@@ -56,4 +56,3 @@ def test__StrictComparator___bool___04( ):
     assert bool(tuplettools.FixedDurationTuplet(Duration(2, 4), [ ]))
     #assert bool(Tuplet(Fraction(2, 3), [ ]))
     assert bool(Tuplet(Fraction(2, 3), [ ]))
-

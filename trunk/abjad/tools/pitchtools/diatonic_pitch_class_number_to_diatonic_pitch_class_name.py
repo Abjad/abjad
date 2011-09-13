@@ -21,4 +21,3 @@ def diatonic_pitch_class_number_to_diatonic_pitch_class_name(diatonic_pitch_clas
         return _diatonic_pitch_class_number_to_diatonic_pitch_class_name[diatonic_pitch_class_number]
     except KeyError:
         raise ValueError(error_message)
-

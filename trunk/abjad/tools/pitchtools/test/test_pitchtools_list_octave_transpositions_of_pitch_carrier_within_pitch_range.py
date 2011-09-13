@@ -34,4 +34,3 @@ def test_pitchtools_list_octave_transpositions_of_pitch_carrier_within_pitch_ran
         pitch_numbers, pitch_range)
 
     assert transpositions == [[0, 2, 4], [12, 14, 16], [24, 26, 28], [36, 38, 40]]
-

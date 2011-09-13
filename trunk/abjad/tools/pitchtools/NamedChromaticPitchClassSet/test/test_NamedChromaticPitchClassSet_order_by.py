@@ -8,4 +8,3 @@ def test_NamedChromaticPitchClassSet_order_by_01():
     ordered_set = npc_set.order_by(npc_seg)
 
     assert ordered_set == pitchtools.NamedChromaticPitchClassSegment(['b', 'e', 'c'])
-

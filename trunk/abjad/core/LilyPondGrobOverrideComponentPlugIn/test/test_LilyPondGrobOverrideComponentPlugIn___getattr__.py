@@ -8,4 +8,3 @@ def test_LilyPondGrobOverrideComponentPlugIn___getattr___01( ):
 
     note = Note("c'8")
     assert py.test.raises(Exception, 'note.override.foo')
-

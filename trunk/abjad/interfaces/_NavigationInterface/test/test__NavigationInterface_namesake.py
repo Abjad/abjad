@@ -108,6 +108,3 @@ def test__NavigationInterface_namesake_07( ):
     assert a[1]._navigator._next_namesake is b[1]
     assert a[0][1]._navigator._next_namesake is b[0][0]
     assert a[1][1]._navigator._next_namesake is b[1][0]
-
-
-

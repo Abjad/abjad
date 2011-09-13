@@ -7,5 +7,3 @@ def test_Presentation_01( ):
     '''
     s = Statement('Hello', 'x = 3')
     t = Presentation('Title', 'Abstract', [s])
-
-

@@ -151,4 +151,3 @@ class NumberedChromaticPitchClassSegment(_PitchClassSegment):
         Return numbered chromatic pitch-class segment.
         '''
         return type(self)([pc.transpose(n) for pc in self])
-

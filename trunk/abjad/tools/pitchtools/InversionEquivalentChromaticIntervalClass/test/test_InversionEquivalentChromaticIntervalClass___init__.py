@@ -50,4 +50,3 @@ def test_InversionEquivalentChromaticIntervalClass___init___03():
 
     ic = pitchtools.InversionEquivalentChromaticIntervalClass(5.5)
     assert ic.number == 5.5
-

@@ -8,4 +8,3 @@ class _Set(frozenset, _Immutable):
     '''
 
     pass
-

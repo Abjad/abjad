@@ -68,5 +68,3 @@ class _ContextFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
         result.append(_get_comment_format_contributions_for_slot(context, 'closing'))
         self._indent_slot_contributions(result)
         return tuple(result)
-
-

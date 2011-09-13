@@ -40,4 +40,3 @@ def is_binary_rational(rational):
 
     exponent = math.log(rational.denominator, 2)
     return int(exponent) == exponent
-

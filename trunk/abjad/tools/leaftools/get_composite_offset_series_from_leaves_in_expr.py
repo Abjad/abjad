@@ -47,5 +47,3 @@ def get_composite_offset_series_from_leaves_in_expr(expr):
     offsets.sort()
 
     return offsets
-
-

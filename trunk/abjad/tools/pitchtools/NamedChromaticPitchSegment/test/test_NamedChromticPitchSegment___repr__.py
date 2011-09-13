@@ -14,4 +14,3 @@ def test_NamedChromticPitchSegment___repr___01():
 
     assert isinstance(named_chromatic_pitch_segment_1, pitchtools.NamedChromaticPitchSegment)
     assert isinstance(named_chromatic_pitch_segment_2, pitchtools.NamedChromaticPitchSegment)
-

@@ -16,5 +16,3 @@ def test_notetools_make_repeated_notes_01():
     '''
 
     assert t.format == "\\new Voice {\n\tc'4 ~\n\tc'16\n\tc'4 ~\n\tc'16\n}"
-
-

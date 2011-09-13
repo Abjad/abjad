@@ -21,4 +21,3 @@ def test_pitchtools_inventory_inversion_equivalent_diatonic_interval_classes_01(
         pitchtools.InversionEquivalentDiatonicIntervalClass('perfect', 4),
         pitchtools.InversionEquivalentDiatonicIntervalClass('augmented', 4),
         ]
-

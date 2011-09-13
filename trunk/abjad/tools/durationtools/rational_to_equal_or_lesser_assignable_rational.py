@@ -58,4 +58,3 @@ def rational_to_equal_or_lesser_assignable_rational(rational):
         candidate = Fraction(cur_numerator, good_denominator)
 
     return candidate
-

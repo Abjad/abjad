@@ -48,5 +48,3 @@ def get_context_marks_attached_to_any_improper_parent_of_component(component):
                     result.add(mark)
 
     return result
-
-

@@ -36,5 +36,3 @@ def _leaf_to_tuplet_with_n_notes_of_equal_written_duration(l, divisions, prolati
 
     # return tuplet
     return tuplet
-
-

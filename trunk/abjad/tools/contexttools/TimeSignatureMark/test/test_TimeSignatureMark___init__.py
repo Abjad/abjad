@@ -21,5 +21,3 @@ def test_TimeSignatureMark___init___02():
     assert time_signature_1.format == '\\time 9/32'
     assert time_signature_2.format == '\\time 9/32'
     assert time_signature_1 is not time_signature_2
-
-

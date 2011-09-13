@@ -32,6 +32,3 @@ def get_spanners_that_dominate_container_components_from_to(container, start, st
         spanners_receipt = get_spanners_that_dominate_components(container[start:stop])
 
     return spanners_receipt
-
-
-

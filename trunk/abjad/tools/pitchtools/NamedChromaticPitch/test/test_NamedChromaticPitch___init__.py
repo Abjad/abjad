@@ -101,4 +101,3 @@ def test_NamedChromaticPitch___init___08():
     '''
 
     assert py.test.raises(Exception, 'pitchtools.NamedChromaticPitch()')
-

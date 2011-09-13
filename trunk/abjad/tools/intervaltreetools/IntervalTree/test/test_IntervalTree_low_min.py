@@ -14,4 +14,3 @@ def test_IntervalTree_low_min_02():
     '''low_min returns None if no intervals in tree.'''
     tree = IntervalTree([])
     assert tree.low_min is None
-

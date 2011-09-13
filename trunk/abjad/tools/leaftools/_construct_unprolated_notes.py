@@ -10,5 +10,3 @@ def _construct_unprolated_notes(pitches, durations, direction='big-endian'):
     for pitch, dur in zip(pitches, durations):
         result.extend(_construct_tied_note(pitch, dur, direction))
     return result
-
-

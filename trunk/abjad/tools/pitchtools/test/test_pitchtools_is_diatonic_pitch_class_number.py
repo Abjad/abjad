@@ -17,4 +17,3 @@ def test_pitchtools_is_diatonic_pitch_class_number_02():
     assert not pitchtools.is_diatonic_pitch_class_number(-1)
     assert not pitchtools.is_diatonic_pitch_class_number(7)
     assert not pitchtools.is_diatonic_pitch_class_number('foo')
-

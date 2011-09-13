@@ -14,4 +14,3 @@ def test_LilyPondGrobProxy___repr___01( ):
 
     assert isinstance(grob_proxy_1, LilyPondGrobProxy)
     assert isinstance(grob_proxy_2, LilyPondGrobProxy)
-

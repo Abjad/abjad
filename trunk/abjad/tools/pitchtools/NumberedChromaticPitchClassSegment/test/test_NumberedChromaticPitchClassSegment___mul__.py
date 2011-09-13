@@ -7,4 +7,3 @@ def test_NumberedChromaticPitchClassSegment___mul___01():
     ncpsc2 = ncpcs1 * 2
 
     assert ncpsc2 == pitchtools.NumberedChromaticPitchClassSegment([0, 1, 11, 9, 0, 1, 11, 9])
-

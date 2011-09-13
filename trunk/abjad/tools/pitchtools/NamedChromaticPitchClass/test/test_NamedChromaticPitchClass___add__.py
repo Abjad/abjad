@@ -19,4 +19,3 @@ def test_NamedChromaticPitchClass___add___01():
 
     new = npc + pitchtools.MelodicDiatonicInterval('major', -2)
     new == pitchtools.NamedChromaticPitchClass('bf')
-

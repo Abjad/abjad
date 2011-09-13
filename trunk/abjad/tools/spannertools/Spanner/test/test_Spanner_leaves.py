@@ -193,6 +193,3 @@ def test_Spanner_leaves_07():
 #   assert p.leaves[2] is t[3]
 #   assert p.leaves[3] is t[4]
 #   assert p.prolated_duration == Duration(6, 8)
-
-
-

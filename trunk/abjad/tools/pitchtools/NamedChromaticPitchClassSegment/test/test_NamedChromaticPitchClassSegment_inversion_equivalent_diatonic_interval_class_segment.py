@@ -9,4 +9,3 @@ def test_NamedChromaticPitchClassSegment_inversion_equivalent_diatonic_interval_
         pitchtools.InversionEquivalentDiatonicIntervalClass('major', 2),
         pitchtools.InversionEquivalentDiatonicIntervalClass('minor', 2)])
     npcseg.inversion_equivalent_diatonic_interval_class_segment == dicseg
-

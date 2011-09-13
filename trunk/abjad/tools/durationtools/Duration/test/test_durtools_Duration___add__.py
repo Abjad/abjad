@@ -7,4 +7,3 @@ def test_durtools_Duration___add___01():
 
     duration = Duration(1, 2) + Duration(1, 3)
     assert isinstance(duration, Duration)
-

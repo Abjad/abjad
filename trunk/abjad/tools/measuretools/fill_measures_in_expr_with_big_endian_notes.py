@@ -16,6 +16,3 @@ def fill_measures_in_expr_with_big_endian_notes(expr, iterctrl = None):
             written_duration = meter.duration / meter.multiplier
             notes = notetools.make_notes(0, written_duration)
             measure[:] = notes
-
-
-

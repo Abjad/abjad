@@ -433,4 +433,3 @@ def test__NavigationInterface_is_immediate_temporal_successor_of_13( ):
         }
     }
     '''
-

@@ -66,4 +66,3 @@ def test_marktools_detach_lilypond_command_marks_attached_to_component_02():
 
     assert componenttools.is_well_formed_component(staff)
     assert staff.format == "\\new Staff {\n\t\\slurUp\n\tc'8 (\n\td'8\n\te'8\n\tf'8 )\n}"
-

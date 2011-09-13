@@ -11,6 +11,3 @@ def test_BeamSpanner___copy___01():
     assert beam_1 is not beam_2
     assert len(beam_1) == 4
     assert len(beam_2) == 0
-
-
-

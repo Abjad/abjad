@@ -27,4 +27,3 @@ def test_MelodicDiatonicInterval_direction_string_02():
         'descending'
     assert pitchtools.MelodicDiatonicInterval('major', -3).direction_string == \
         'descending'
-

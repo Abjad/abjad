@@ -38,5 +38,3 @@ def make_repeated_notes(count, duration = durationtools.Duration(1, 8)):
     '''
 
     return make_notes([0] * count, [duration])
-
-

@@ -34,4 +34,3 @@ def multiply_duration_pair_and_try_to_preserve_numerator(pair, multiplier):
         result_numerator = pair[0] * candidate_result_denominator.denominator
         result_denominator = candidate_result_denominator.numerator
         return result_numerator, result_denominator
-

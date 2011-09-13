@@ -14,4 +14,3 @@ def test_NamedChromticPitchSegment_melodic_diatonic_interval_class_segment_01():
         pitchtools.MelodicDiatonicIntervalClass('minor', 2),
         pitchtools.MelodicDiatonicIntervalClass('minor', -6),
         pitchtools.MelodicDiatonicIntervalClass('minor', 6)]
-

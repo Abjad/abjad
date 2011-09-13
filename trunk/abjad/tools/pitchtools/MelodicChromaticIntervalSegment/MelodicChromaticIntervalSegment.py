@@ -80,4 +80,3 @@ class MelodicChromaticIntervalSegment(_IntervalSegment):
             if current < minimum:
                 minimum = current
         return pitchtools.HarmonicChromaticInterval(maximum - minimum)
-

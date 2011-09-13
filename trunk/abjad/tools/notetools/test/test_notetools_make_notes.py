@@ -150,5 +150,3 @@ def test_notetools_make_notes_12():
     assert t[0][1].written_duration == Duration(4, 8)
     assert t[0][2].written_duration == Duration(1, 4)
     assert t[1].written_duration == Duration(1, 8)
-
-

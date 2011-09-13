@@ -28,4 +28,3 @@ def is_named_chromatic_pitch_token(pitch_token):
         return True
     else:
         return False
-

@@ -14,4 +14,3 @@ def test_MelodicChromaticIntervalClassVector___init___01():
     '''
 
     assert len(mcicvector) == 13
-

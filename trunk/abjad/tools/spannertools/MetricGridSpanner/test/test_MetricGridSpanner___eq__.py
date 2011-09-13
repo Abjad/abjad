@@ -9,6 +9,3 @@ def test_MetricGridSpanner___eq___01():
     spanner_2 = spannertools.MetricGridSpanner()
 
     assert not spanner_1 == spanner_2
-
-
-

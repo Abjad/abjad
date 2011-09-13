@@ -154,6 +154,3 @@ def test_MetricGridSpanner_split_on_bar_05():
     assert v[2].written_duration == Duration(1, 4)
     ties = spannertools.get_spanners_attached_to_any_improper_child_of_component(v, tietools.TieSpanner)
     assert len(ties) == 2
-
-
-

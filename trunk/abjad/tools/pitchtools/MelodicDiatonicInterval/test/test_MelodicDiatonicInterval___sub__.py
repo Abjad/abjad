@@ -17,4 +17,3 @@ def test_MelodicDiatonicInterval___sub___01():
 
     difference = major_third_ascending - major_third_ascending
     assert difference == pitchtools.MelodicDiatonicInterval('perfect', 1)
-

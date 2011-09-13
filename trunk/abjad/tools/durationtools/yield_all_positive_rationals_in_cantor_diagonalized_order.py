@@ -40,4 +40,3 @@ def yield_all_positive_rationals_in_cantor_diagonalized_order():
         integer_pair = generator.next()
         rational = Fraction(*integer_pair)
         yield rational
-

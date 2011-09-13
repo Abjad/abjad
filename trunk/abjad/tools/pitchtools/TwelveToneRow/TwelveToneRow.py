@@ -52,4 +52,3 @@ class TwelveToneRow(NumberedChromaticPitchClassSegment):
     @property
     def _contents_string(self):
         return ', '.join([str(abs(pc)) for pc in self])
-

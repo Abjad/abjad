@@ -58,6 +58,3 @@ def set_measure_denominator_and_adjust_numerator(measure, denominator):
         new_meter.attach(measure)
 
     return measure
-
-
-

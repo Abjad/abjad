@@ -8,5 +8,3 @@ def test_NaturalHarmonic___setattr___01():
 
     natural_harmonic = notetools.NaturalHarmonic("cs'8.")
     assert py.test.raises(AttributeError, "natural_harmonic.foo = 'bar'")
-
-

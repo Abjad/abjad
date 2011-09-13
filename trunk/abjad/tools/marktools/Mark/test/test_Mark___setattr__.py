@@ -9,4 +9,3 @@ def test_Mark___setattr___01():
     mark = marktools.Mark()
 
     assert py.test.raises(AttributeError, "mark.foo = 'bar'")
-

@@ -27,4 +27,3 @@ def is_harmonic_diatonic_interval_abbreviation(expr):
         return False
 
     return bool(harmonic_diatonic_interval_abbreviation_regex.match(expr))
-

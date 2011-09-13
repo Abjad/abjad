@@ -39,6 +39,3 @@ class _MeasuredComplexBeamSpannerFormatInterface(_ComplexBeamSpannerFormatInterf
             if right is not None:
                 result.append(r'\set stemRightBeamCount = #%s' % right)
         return result
-
-
-

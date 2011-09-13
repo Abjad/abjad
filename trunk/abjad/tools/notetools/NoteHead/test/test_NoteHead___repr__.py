@@ -13,5 +13,3 @@ def test_NoteHead___repr___01():
     assert isinstance(note_head_2, notetools.NoteHead)
     assert note_head_1 == note_head_2
     assert note_head_1 is not note_head_2
-
-

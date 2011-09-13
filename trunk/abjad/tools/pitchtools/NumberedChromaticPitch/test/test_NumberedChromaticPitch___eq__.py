@@ -18,4 +18,3 @@ def test_NumberedChromaticPitch___eq___01():
     assert not r == p
     assert not r == q
     assert r == r
-

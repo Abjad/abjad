@@ -27,7 +27,3 @@ def _overdraw(expr, source_count = 1, total_reps = 2):
             componenttools.copy_components_and_fracture_crossing_spanners(source)
         else:
             pass
-
-
-
-

@@ -42,6 +42,3 @@ def test_measuretools_apply_beam_spanners_to_measures_in_expr_01():
 
     assert componenttools.is_well_formed_component(staff)
     assert staff.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 [\n\t\td'8 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ]\n\t}\n}"
-
-
-

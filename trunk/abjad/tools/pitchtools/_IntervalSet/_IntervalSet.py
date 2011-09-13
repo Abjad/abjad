@@ -8,4 +8,3 @@ class _IntervalSet(_Set):
     '''
 
     pass
-

@@ -13,4 +13,3 @@ def test_pitchtools_list_unordered_named_chromatic_pitch_pairs_in_expr_01():
     assert pairs[3] == (pitchtools.NamedChromaticPitch(1), pitchtools.NamedChromaticPitch(2))
     assert pairs[4] == (pitchtools.NamedChromaticPitch(1), pitchtools.NamedChromaticPitch(3))
     assert pairs[5] == (pitchtools.NamedChromaticPitch(2), pitchtools.NamedChromaticPitch(3))
-

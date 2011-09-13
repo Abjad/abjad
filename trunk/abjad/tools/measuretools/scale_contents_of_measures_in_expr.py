@@ -46,6 +46,3 @@ def scale_contents_of_measures_in_expr(expr, multiplier = 1):
         contents_multiplier = durationtools.Duration(
             multiplier.numerator, contents_multiplier_denominator)
         containertools.scale_contents_of_container(measure, contents_multiplier)
-
-
-

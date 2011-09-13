@@ -29,6 +29,3 @@ class _StaffLinesSpannerFormatInterface(_SpannerFormatInterface):
                     SchemeVector(*self.spanner.lines).format)
             result.append(r'\startStaff')
         return result
-
-
-

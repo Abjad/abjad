@@ -39,5 +39,3 @@ def yield_groups_of_notes_in_sequence(sequence):
     from abjad.tools import componenttools
 
     return componenttools.yield_topmost_components_of_klass_grouped_by_type(sequence, Note)
-
-

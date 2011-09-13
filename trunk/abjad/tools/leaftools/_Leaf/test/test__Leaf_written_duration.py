@@ -26,5 +26,3 @@ def test__Leaf_written_duration_01():
     t.written_duration = Duration(15)
     assert t.format == "cs'\\maxima..."
     assert py.test.raises(AssignabilityError, 'Note(1, 16)')
-
-

@@ -21,8 +21,3 @@ def test_leaftools_split_leaf_at_prolated_duration_and_rest_right_half_01():
 
     assert componenttools.is_well_formed_component(t)
     assert t.format == "\\new Staff {\n\tc'8 (\n\td'32\n\tr16.\n\te'8\n\tf'8 )\n}"
-
-
-
-
-

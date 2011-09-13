@@ -44,5 +44,3 @@ def iterate_contexts_backward_in_expr(expr, start = 0, stop = None):
 
     return componenttools.iterate_components_backward_in_expr(
         expr, _Context, start = start, stop = stop)
-
-

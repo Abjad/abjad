@@ -29,4 +29,3 @@ def test_pitchtools_chromatic_pitch_number_diatonic_pitch_class_name_to_alphabet
     assert t == ('', 5)
     t = pitchtools.chromatic_pitch_number_diatonic_pitch_class_name_to_alphabetic_accidental_abbreviation_octave_number_pair(14, 'e')
     assert t == ('ff', 5)
-

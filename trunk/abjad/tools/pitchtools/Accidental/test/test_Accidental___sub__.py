@@ -7,4 +7,3 @@ def test_Accidental___sub___01():
 
     assert m - m == pitchtools.Accidental('natural')
     assert m - m - m - m == pitchtools.Accidental('flat')
-

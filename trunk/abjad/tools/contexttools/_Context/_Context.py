@@ -170,5 +170,3 @@ class _Context(Container):
             assert isinstance(arg, (str, type(None)))
             self._name = arg
         return property(**locals())
-
-

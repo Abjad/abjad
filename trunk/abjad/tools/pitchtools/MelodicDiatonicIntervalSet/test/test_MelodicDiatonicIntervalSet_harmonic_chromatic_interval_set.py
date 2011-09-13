@@ -14,4 +14,3 @@ def test_MelodicDiatonicIntervalSet_harmonic_chromatic_interval_set_01():
     manual_hciset = pitchtools.HarmonicChromaticIntervalSet([1, 2])
 
     assert derived_hciset == manual_hciset
-

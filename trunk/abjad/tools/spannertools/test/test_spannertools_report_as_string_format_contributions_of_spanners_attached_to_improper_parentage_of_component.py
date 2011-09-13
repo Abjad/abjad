@@ -18,6 +18,3 @@ def test_spannertools_report_as_string_format_contributions_of_spanners_attached
     '''
 
     assert spannertools.report_as_string_format_contributions_of_all_spanners_attached_to_improper_parentage_of_component(staff[0]) == 'BeamSpanner\n\t_right\n\t\t[\nSlurSpanner\n\t_right\n\t\t(\nTrillSpanner\n\t_right\n\t\t\\startTrillSpan\n'
-
-
-

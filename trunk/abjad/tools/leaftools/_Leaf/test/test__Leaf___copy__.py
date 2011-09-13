@@ -74,5 +74,3 @@ def test__Leaf___copy___08():
     assert u.written_duration == t.leaves[5].written_duration
     assert id(u) != id(t.leaves[5])
     assert u.prolated_duration != t.leaves[5].prolated_duration
-
-

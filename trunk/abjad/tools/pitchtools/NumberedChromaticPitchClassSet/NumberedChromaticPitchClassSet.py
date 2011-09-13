@@ -203,4 +203,3 @@ class  NumberedChromaticPitchClassSet(_PitchClassSet):
         Return numbered chromatic pitch-class set.
         '''
         return type(self)([pc.transpose(n) for pc in self])
-

@@ -26,4 +26,3 @@ def lilypond_duration_string_to_rational_list(duration_string):
         rationals.append(rational)
 
     return rationals
-

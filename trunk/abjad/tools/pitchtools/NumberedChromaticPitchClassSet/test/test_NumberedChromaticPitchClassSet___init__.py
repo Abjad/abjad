@@ -28,4 +28,3 @@ def test_NumberedChromaticPitchClassSet___init___04():
     note = Note(13, (1, 4))
     pitch_class_set = pitchtools.NumberedChromaticPitchClassSet(note)
     assert len(pitch_class_set) == 1
-

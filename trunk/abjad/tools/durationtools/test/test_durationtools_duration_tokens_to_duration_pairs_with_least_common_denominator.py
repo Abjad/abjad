@@ -8,4 +8,3 @@ def test_durationtools_duration_tokens_to_duration_pairs_with_least_common_denom
     pairs = durationtools.duration_tokens_to_duration_pairs_with_least_common_denominator(tokens)
 
     assert pairs == [(8, 16), (48, 16), (3, 16), (5, 16)]
-

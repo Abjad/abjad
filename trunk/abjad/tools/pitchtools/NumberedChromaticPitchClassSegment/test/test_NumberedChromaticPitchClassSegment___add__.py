@@ -10,4 +10,3 @@ def test_NumberedChromaticPitchClassSegment___add___01():
     b = pitchtools.NumberedChromaticPitchClassSegment([3, 4, 5])
 
     assert a + b == pitchtools.NumberedChromaticPitchClassSegment([0, 1, 2, 3, 4, 5])
-

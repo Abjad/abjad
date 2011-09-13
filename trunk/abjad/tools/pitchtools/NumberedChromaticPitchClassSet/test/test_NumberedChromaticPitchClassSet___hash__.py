@@ -7,4 +7,3 @@ def test_NumberedChromaticPitchClassSet___hash___01():
     pcset = pitchtools.NumberedChromaticPitchClassSet([0, 1, 2])
 
     assert hash(pcset) == hash(repr(pcset))
-

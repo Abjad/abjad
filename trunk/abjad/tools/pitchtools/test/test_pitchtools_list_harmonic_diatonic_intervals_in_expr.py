@@ -11,4 +11,3 @@ def test_pitchtools_list_harmonic_diatonic_intervals_in_expr_01():
     numbers.sort()
 
     assert numbers == [2, 2, 2, 3, 3, 4]
-

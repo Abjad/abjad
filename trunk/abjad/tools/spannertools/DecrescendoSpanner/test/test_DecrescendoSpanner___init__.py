@@ -25,6 +25,3 @@ def test_DecrescendoSpanner___init___02():
     '''
 
     assert staff.format == "\\new Staff {\n\tc'8 \\>\n\td'8\n\te'8\n\tf'8 \\!\n\tg'2\n}"
-
-
-

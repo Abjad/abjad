@@ -184,6 +184,3 @@ def test_measuretools_move_prolation_of_full_measure_tuplet_to_meter_of_measure_
 
     assert componenttools.is_well_formed_component(t)
     assert t.format == "{\n\t\\time 15/48\n\t\\scaleDurations #'(2 . 3) {\n\t\tc'8 ~\n\t\tc'32\n\t\td'8 ~\n\t\td'32\n\t\te'8 ~\n\t\te'32\n\t}\n}"
-
-
-

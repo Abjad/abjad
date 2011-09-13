@@ -80,4 +80,3 @@ def test_NumberedDiatonicPitchClass___cmp___04():
     assert py.test.raises(NotImplementedError, comparison_string)
     comparison_string = 'numbered_diatonic_pitch_class_1 >= diatonic_pitch_class_number'
     assert py.test.raises(NotImplementedError, comparison_string)
-

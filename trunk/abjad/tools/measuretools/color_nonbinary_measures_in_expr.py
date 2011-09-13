@@ -79,6 +79,3 @@ def color_nonbinary_measures_in_expr(expr, color = 'red'):
 
     # return measures colored
     return measures_colored
-
-
-

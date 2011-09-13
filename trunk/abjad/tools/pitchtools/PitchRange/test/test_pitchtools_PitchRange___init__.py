@@ -70,4 +70,3 @@ def test_pitchtools_PitchRange___init___07():
     pitch_range_2 = pitchtools.PitchRange((-39, 48))
 
     assert pitch_range_1 == pitch_range_2
-

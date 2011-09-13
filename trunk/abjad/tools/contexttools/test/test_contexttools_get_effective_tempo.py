@@ -79,5 +79,3 @@ def test_contexttools_get_effective_tempo_04():
     '''
 
     assert staff.format == "\\new Staff {\n\tc'4\n}"
-
-

@@ -13,6 +13,3 @@ def test_measuretools_get_first_measure_in_proper_parentage_of_component_01():
 
     assert measuretools.get_first_measure_in_proper_parentage_of_component(measure) is None
     assert measuretools.get_first_measure_in_proper_parentage_of_component(staff) is None
-
-
-

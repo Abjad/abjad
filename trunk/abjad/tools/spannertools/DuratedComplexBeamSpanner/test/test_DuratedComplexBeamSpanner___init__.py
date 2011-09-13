@@ -7,6 +7,3 @@ def test_DuratedComplexBeamSpanner___init___01():
 
     beam = spannertools.DuratedComplexBeamSpanner()
     assert isinstance(beam, spannertools.DuratedComplexBeamSpanner)
-
-
-

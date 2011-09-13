@@ -22,4 +22,3 @@ def diatonic_pitch_class_number_to_chromatic_pitch_class_number(diatonic_pitch_c
             diatonic_pitch_class_number]
     except KeyError:
         raise ValueError(error_message)
-

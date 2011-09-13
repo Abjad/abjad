@@ -824,4 +824,3 @@ def test__NavigationInterface_bead_navigation_26( ):
         }
     }
     '''
-

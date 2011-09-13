@@ -19,4 +19,3 @@ def test_InversionEquivalentDiatonicIntervalClassSegment_is_tertian_02():
         pitchtools.InversionEquivalentDiatonicIntervalClass('diminshed', 3)])
 
     assert not dicseg.is_tertian
-

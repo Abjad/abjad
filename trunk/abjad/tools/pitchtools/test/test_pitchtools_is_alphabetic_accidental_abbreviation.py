@@ -30,4 +30,3 @@ def test_pitchtools_is_alphabetic_accidental_abbreviation_02():
 def test_pitchtools_is_alphabetic_accidental_abbreviation_03():
 
     assert not pitchtools.is_alphabetic_accidental_abbreviation(8)
-

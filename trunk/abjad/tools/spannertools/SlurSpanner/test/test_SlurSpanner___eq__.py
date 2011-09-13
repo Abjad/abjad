@@ -9,6 +9,3 @@ def test_SlurSpanner___eq___01():
     spanner_2 = spannertools.SlurSpanner()
 
     assert not spanner_1 == spanner_2
-
-
-

@@ -10,4 +10,3 @@ def test_NamedChromaticPitchClassSet_inversion_equivalent_diatonic_interval_clas
 
     assert dicv == pitchtools.InversionEquivalentDiatonicIntervalClassVector([
         pitchtools.NamedChromaticPitch('c', 4), pitchtools.NamedChromaticPitch('e', 4), pitchtools.NamedChromaticPitch('g', 4), pitchtools.NamedChromaticPitch('b', 4)])
-

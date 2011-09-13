@@ -53,6 +53,3 @@ def integer_tempo_to_multiplier_tempo_pairs_report(integer_tempo,
     for multiplier, tempo in pairs:
       prolation_string = durationtools.rational_to_prolation_string(multiplier)
       print '%s\t%s' % (prolation_string, tempo)
-
-
-

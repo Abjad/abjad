@@ -14,4 +14,3 @@ def test_durationtools_rational_to_prolation_string_01():
     assert durationtools.rational_to_prolation_string(Fraction(2, 4)) == '2:1'
     assert durationtools.rational_to_prolation_string(Fraction(3, 4)) == '4:3'
     assert durationtools.rational_to_prolation_string(Fraction(4, 4)) == '1:1'
-

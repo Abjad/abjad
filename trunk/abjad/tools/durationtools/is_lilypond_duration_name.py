@@ -34,4 +34,3 @@ def is_lilypond_duration_name(expr):
         return False
 
     return bool(lilypond_duration_name_regex.match(expr))
-

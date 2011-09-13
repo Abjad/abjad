@@ -36,4 +36,3 @@ def calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chro
         diatonic_interval = absolute_diatonic_interval
 
     return diatonic_interval
-

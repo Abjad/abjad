@@ -80,4 +80,3 @@ def _pitch_number_list_octave_transpositions(pitch_number_list, pitch_range):
 
     result.sort()
     return result
-

@@ -19,4 +19,3 @@ def chromatic_pitch_names_string_to_named_chromatic_pitch_list(chromatic_pitch_n
         pitches.append(pitch)
 
     return pitches
-

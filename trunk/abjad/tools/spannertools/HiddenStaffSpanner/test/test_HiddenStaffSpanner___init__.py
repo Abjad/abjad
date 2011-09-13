@@ -77,6 +77,3 @@ def test_HiddenStaffSpanner___init___03():
 
     assert componenttools.is_well_formed_component(t)
     assert t.format == "\\stopStaff\nc'8\n\\startStaff"
-
-
-

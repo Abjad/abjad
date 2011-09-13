@@ -52,4 +52,3 @@ def test_HarmonicChromaticIntervalClass___init___03():
     hci = pitchtools.HarmonicChromaticInterval(14)
     hcic = pitchtools.HarmonicChromaticIntervalClass(hci)
     assert hcic.number == 2
-

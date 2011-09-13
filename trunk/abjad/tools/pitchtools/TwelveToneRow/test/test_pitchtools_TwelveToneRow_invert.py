@@ -7,4 +7,3 @@ def test_pitchtools_TwelveToneRow_invert_01():
     inversion = pitchtools.TwelveToneRow([2, 0, 10, 6, 4, 5, 7, 9, 11, 3, 8, 1])
 
     assert row.invert() == inversion
-

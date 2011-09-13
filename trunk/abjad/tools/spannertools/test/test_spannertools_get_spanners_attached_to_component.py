@@ -31,6 +31,3 @@ def test_spannertools_get_spanners_attached_to_component_01():
 
     spanners = spannertools.get_spanners_attached_to_component(leaf, tietools.TieSpanner)
     assert spanners == set([])
-
-
-

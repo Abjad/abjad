@@ -66,4 +66,3 @@ class MelodicDiatonicIntervalSet(_IntervalSet):
     #def numbers(self):
     def melodic_diatonic_interval_numbers(self):
         return set([interval.number for interval in self])
-

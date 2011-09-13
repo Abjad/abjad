@@ -7,6 +7,3 @@ def test_SlurSpanner___init___01():
 
     slur = spannertools.SlurSpanner()
     assert isinstance(slur, spannertools.SlurSpanner)
-
-
-

@@ -30,4 +30,3 @@ def test_NumberedDiatonicPitchClass___init___03():
     diatonic_pitch_class_1 = pitchtools.NumberedDiatonicPitchClass(0)
     diatonic_pitch_class_2 = pitchtools.NumberedDiatonicPitchClass(diatonic_pitch_class_1)
     assert isinstance(diatonic_pitch_class_2, pitchtools.NumberedDiatonicPitchClass)
-

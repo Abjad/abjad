@@ -48,5 +48,3 @@ def remove_terminal_rests_from_sequence(sequence):
             result.insert(0, element)
 
     return result
-
-

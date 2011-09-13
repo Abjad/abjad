@@ -39,4 +39,3 @@ def test_pitchtools_suggest_clef_for_named_chromatic_pitches_05():
     staff = Staff(notetools.make_notes(range(-12, -6), [(1, 4)]))
 
     assert pitchtools.suggest_clef_for_named_chromatic_pitches(staff) == contexttools.ClefMark('bass')
-

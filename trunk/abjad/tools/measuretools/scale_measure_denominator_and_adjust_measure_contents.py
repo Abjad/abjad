@@ -78,6 +78,3 @@ def scale_measure_denominator_and_adjust_measure_contents(measure, new_denominat
 
     # return measure
     return measure
-
-
-

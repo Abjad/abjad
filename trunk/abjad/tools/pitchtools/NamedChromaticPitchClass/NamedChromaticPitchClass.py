@@ -173,4 +173,3 @@ class NamedChromaticPitchClass(_PitchClass):
             pitch, melodic_diatonic_interval)
         transposed_named_chromatic_pitch_class = transposed_pitch.named_chromatic_pitch_class
         return transposed_named_chromatic_pitch_class
-

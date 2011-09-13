@@ -53,5 +53,3 @@ def label_leaves_in_expr_with_pitch_class_numbers(expr, number = True, color = F
             markuptools.Markup(label, markup_direction)(note)
         if color:
             notetools.color_note_head_by_numbered_chromatic_pitch_class_color_map(note)
-
-

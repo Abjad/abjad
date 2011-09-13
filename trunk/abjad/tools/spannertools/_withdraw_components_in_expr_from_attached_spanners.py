@@ -19,6 +19,3 @@ def _withdraw_components_in_expr_from_attached_spanners(components):
 
     # return components
     return components
-
-
-

@@ -39,4 +39,3 @@ class _LilyPondObjectProxy(object):
         for attribute_name, attribute_value in self._get_attribute_pairs( ):
             result.append('%s = %s' % (attribute_name, repr(attribute_value)))
         return result
-

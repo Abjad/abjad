@@ -15,6 +15,3 @@ class _DynamicTextSpannerFormatInterface(_SpannerFormatInterface):
         if spanner._is_my_first_leaf(leaf):
             result.append(r'\%s' % spanner.mark)
         return result
-
-
-

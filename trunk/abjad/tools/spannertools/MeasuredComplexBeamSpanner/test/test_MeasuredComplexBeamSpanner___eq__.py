@@ -9,6 +9,3 @@ def test_MeasuredComplexBeamSpanner___eq___01():
     spanner_2 = spannertools.MeasuredComplexBeamSpanner()
 
     assert not spanner_1 == spanner_2
-
-
-

@@ -9,6 +9,3 @@ def test_HairpinSpanner___eq___01():
     spanner_2 = spannertools.HairpinSpanner()
 
     assert not spanner_1 == spanner_2
-
-
-

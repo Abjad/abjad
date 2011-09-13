@@ -20,4 +20,3 @@ def test_pitchtools_TwelveToneRow_transpose_01():
 
     new = pitchtools.TwelveToneRow([3, 5, 7, 11, 1, 0, 10, 8, 6, 2, 9, 4])
     assert row.transpose(5) == new
-

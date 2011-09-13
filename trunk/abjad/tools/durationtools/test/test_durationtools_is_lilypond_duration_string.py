@@ -28,4 +28,3 @@ def test_durationtools_is_lilypond_duration_string_03():
     assert not durationtools.is_lilypond_duration_string('foo')
     assert not durationtools.is_lilypond_duration_string('')
     assert not durationtools.is_lilypond_duration_string(12)
-

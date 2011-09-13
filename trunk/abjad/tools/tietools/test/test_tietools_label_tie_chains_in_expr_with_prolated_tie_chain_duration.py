@@ -22,5 +22,3 @@ def test_tietools_label_tie_chains_in_expr_with_prolated_tie_chain_duration_01()
 
     assert componenttools.is_well_formed_component(staff)
     assert staff.format == "\\new Staff {\n\t\\times 2/3 {\n\t\tc'8 _ \\markup { \\small 1/6 } ~\n\t\tc'8\n\t\tc'8 _ \\markup { \\small 5/24 } ~\n\t}\n\tc'8\n}"
-
-

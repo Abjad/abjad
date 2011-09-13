@@ -40,4 +40,3 @@ def scale_interval_offsets_by_rational(intervals, rational):
         x.shift_to_rational(((x.low - tree.low) * rational) + tree.low) \
             for x in tree
     ])
-

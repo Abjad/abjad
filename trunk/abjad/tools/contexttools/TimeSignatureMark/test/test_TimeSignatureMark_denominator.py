@@ -10,5 +10,3 @@ def test_TimeSignatureMark_denominator_01():
 
     meter.denominator = 16
     assert meter.denominator == 16
-
-

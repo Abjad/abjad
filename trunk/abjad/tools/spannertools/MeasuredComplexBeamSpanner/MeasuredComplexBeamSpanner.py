@@ -78,6 +78,3 @@ class MeasuredComplexBeamSpanner(ComplexBeamSpanner):
             assert isinstance(arg, (int, type(None)))
             self._span = arg
         return property(**locals())
-
-
-

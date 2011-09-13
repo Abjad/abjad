@@ -37,6 +37,3 @@ def test_spannertools_get_nth_leaf_in_spanner_01():
 
     assert py.test.raises(IndexError, 'spannertools.get_nth_leaf_in_spanner(p, 99)')
     assert py.test.raises(IndexError, 'spannertools.get_nth_leaf_in_spanner(p, -99)')
-
-
-

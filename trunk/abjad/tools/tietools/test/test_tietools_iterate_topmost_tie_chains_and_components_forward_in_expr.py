@@ -33,5 +33,3 @@ def test_tietools_iterate_topmost_tie_chains_and_components_forward_in_expr_01()
     assert chained_contents[2] is t[4]
     assert chained_contents[3] == tietools.get_tie_chain(t[5])
     assert chained_contents[4] == tietools.get_tie_chain(t[7])
-
-

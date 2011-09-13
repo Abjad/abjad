@@ -59,4 +59,3 @@ def test_NumberedDiatonicPitch___cmp___04():
     assert      numbered_diatonic_pitch_1 <= diatonic_pitch_number
     assert not numbered_diatonic_pitch_1 >  diatonic_pitch_number
     assert not numbered_diatonic_pitch_1 >= diatonic_pitch_number
-

@@ -15,5 +15,3 @@ def test_intervaltreetools_compute_logical_xor_of_intervals_02():
     logical_xor = compute_logical_xor_of_intervals(tree)
     assert len(logical_xor) == len(tree)
     assert logical_xor[0].signature == tree[0].signature
-
-

@@ -40,6 +40,3 @@ def test_spannertools_get_spanners_on_components_or_component_children_03():
     spanners = spannertools.get_spanners_on_components_or_component_children(t[:])
 
     assert spanners == set([])
-
-
-

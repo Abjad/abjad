@@ -60,4 +60,3 @@ def rational_to_equal_or_greater_binary_rational(rational):
 
     # return written duration
     return written_duration
-

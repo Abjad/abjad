@@ -24,4 +24,3 @@ def list_numbered_chromatic_pitch_classes_in_expr(expr):
     pitch_classes = [NumberedChromaticPitchClass(pitch) for pitch in pitches]
     pitch_classes = tuple(pitch_classes)
     return pitch_classes
-

@@ -97,4 +97,3 @@ class NamedChromaticPitchClassSegment(_PitchClassSegment):
 
     def transpose(self, melodic_diatonic_interval):
         return type(self)([npc + melodic_diatonic_interval  for npc in self])
-

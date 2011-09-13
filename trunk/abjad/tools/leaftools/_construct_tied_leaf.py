@@ -34,5 +34,3 @@ def _construct_tied_leaf(kind, dur, direction='big-endian', pitches=None, tied=T
         if tied:
             TieSpanner(result)
     return result
-
-

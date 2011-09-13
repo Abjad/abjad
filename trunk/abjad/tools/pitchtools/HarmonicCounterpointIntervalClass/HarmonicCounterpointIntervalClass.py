@@ -45,4 +45,3 @@ class HarmonicCounterpointIntervalClass(_CounterpointIntervalClass, _HarmonicInt
 
     def __ne__(self, arg):
         return not self == arg
-

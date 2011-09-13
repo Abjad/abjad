@@ -52,6 +52,3 @@ def get_next_measure_from_component(component):
     '''
 
     return _get_measure_from_component(component, '_next')
-
-
-

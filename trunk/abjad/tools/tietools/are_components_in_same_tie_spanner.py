@@ -33,4 +33,3 @@ def are_components_in_same_tie_spanner(components):
         return True
 
     return True
-

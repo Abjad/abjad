@@ -38,4 +38,3 @@ class _IntervalClass(_Immutable):
     @property
     def number(self):
         return self._number
-

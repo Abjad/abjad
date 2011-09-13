@@ -37,4 +37,3 @@ def get_annotations_attached_to_component(component):
 
     result = tuple(result)
     return result
-

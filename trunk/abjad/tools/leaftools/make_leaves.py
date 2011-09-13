@@ -155,5 +155,3 @@ def make_leaves(pitches, durations, direction='big-endian', tied_rests=False):
             t = Tuplet(multiplier, leaves)
             result.append(t)
     return result
-
-

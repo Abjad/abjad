@@ -40,5 +40,3 @@ def get_effective_tempo(component):
     '''
 
     return get_effective_context_mark(component, TempoMark)
-
-

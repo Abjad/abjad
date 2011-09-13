@@ -31,5 +31,3 @@ def _leaf_to_pitch_and_rhythm_skeleton(leaf, include_keyword_attributes = False)
     arguments.extend(keyword_attributes)
     arguments = ', '.join(arguments)
     return '%s(%s)' % (class_name, arguments)
-
-

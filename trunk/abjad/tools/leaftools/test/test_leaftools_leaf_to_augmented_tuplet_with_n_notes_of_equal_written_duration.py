@@ -19,8 +19,3 @@ def test_leaftools_leaf_to_augmented_tuplet_with_n_notes_of_equal_written_durati
     t = leaftools.leaf_to_augmented_tuplet_with_n_notes_of_equal_written_duration(Note(0, (3, 16)), 5)
     #assert t.format == "\\fraction \\times 6/5 {\n\tc'32\n\tc'32\n\tc'32\n\tc'32\n\tc'32\n}"
     assert t.format == "\\fraction \\times 8/5 {\n\tc'64.\n\tc'64.\n\tc'64.\n\tc'64.\n\tc'64.\n}"
-
-
-
-
-

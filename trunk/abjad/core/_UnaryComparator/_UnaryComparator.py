@@ -41,4 +41,3 @@ class _UnaryComparator(object):
             except (ValueError, TypeError):
                 return False
         return arg
-

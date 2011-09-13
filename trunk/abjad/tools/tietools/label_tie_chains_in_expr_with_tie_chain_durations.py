@@ -27,4 +27,3 @@ def label_tie_chains_in_expr_with_tie_chain_durations(expr, markup_direction = '
     show = ['written', 'prolated']
     return _label_leaves_in_expr_with_leaf_durations(
         expr, markup_direction = markup_direction, show = show, ties = 'together')
-

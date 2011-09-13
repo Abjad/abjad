@@ -46,4 +46,3 @@ def yield_all_positive_integer_pairs_in_cantor_diagonalized_order():
                 yield lhs, rhs
                 lhs -= 1
         n += 1
-

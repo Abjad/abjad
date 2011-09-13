@@ -46,6 +46,3 @@ def test_AnonymousMeasure_clef_change_01():
 
     assert componenttools.is_well_formed_component(t)
     assert t.format == '\\new Staff {\n\t\\clef "treble"\n\t{\n\t\t\\override Staff.TimeSignature #\'stencil = ##f\n\t\t\\time 1/4\n\t\tc\'8\n\t\td\'8\n\t\t\\revert Staff.TimeSignature #\'stencil\n\t}\n\t{\n\t\t\\override Staff.TimeSignature #\'stencil = ##f\n\t\t\\clef "bass"\n\t\t\\time 1/4\n\t\tc\'8\n\t\td\'8\n\t\t\\revert Staff.TimeSignature #\'stencil\n\t}\n\t{\n\t\t\\override Staff.TimeSignature #\'stencil = ##f\n\t\t\\clef "treble"\n\t\t\\time 1/4\n\t\tc\'8\n\t\td\'8\n\t\t\\revert Staff.TimeSignature #\'stencil\n\t}\n}'
-
-
-

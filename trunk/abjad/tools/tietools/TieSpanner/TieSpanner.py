@@ -22,4 +22,3 @@ class TieSpanner(Spanner):
     def __init__(self, music = None):
         Spanner.__init__(self, music)
         self._format = _TieSpannerFormatInterface(self)
-

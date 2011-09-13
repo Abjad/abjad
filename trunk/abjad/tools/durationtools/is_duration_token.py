@@ -27,4 +27,3 @@ def is_duration_token(expr):
         return True
     except (TypeError, ValueError, DurationError):
         return False
-

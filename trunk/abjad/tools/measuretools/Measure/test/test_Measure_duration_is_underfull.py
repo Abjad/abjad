@@ -13,6 +13,3 @@ def test_Measure_duration_is_underfull_01():
     contexttools.detach_time_signature_marks_attached_to_component(t)
     contexttools.TimeSignatureMark((3, 8))(t)
     assert not t.is_underfull
-
-
-

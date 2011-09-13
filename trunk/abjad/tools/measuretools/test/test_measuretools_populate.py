@@ -1,6 +1,1 @@
 from abjad import *
-
-
-
-
-

@@ -40,5 +40,3 @@ def iterate_notes_and_chords_backward_in_expr(expr, start = 0, stop = None):
 
     return componenttools.iterate_components_backward_in_expr(
         expr, (Note, Chord), start = start, stop = stop)
-
-

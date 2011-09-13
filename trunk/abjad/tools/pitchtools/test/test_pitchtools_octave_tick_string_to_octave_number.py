@@ -10,4 +10,3 @@ def test_pitchtools_octave_tick_string_to_octave_number_01():
     assert pitchtools.octave_tick_string_to_octave_number("'") == 4
     assert pitchtools.octave_tick_string_to_octave_number("''") == 5
     assert pitchtools.octave_tick_string_to_octave_number("'''") == 6
-

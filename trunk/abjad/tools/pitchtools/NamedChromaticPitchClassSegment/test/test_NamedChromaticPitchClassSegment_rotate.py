@@ -21,4 +21,3 @@ def test_NamedChromaticPitchClassSegment_rotate_01():
     assert npc_segment_1.rotate(-4) == npc_segment_2
     assert npc_segment_2.rotate(-1) == npc_segment_1
     assert npc_segment_2.rotate(4) == npc_segment_1
-

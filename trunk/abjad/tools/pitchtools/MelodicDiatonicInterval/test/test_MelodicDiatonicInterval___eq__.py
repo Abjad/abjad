@@ -16,4 +16,3 @@ def test_MelodicDiatonicInterval___eq___02():
     diatonic_interval_2 = pitchtools.MelodicDiatonicInterval('augmented', 1)
 
     assert not diatonic_interval_1 == diatonic_interval_2
-

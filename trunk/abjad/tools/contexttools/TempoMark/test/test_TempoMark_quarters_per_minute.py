@@ -13,5 +13,3 @@ def test_TempoMark_quarters_per_minute_02():
 
     t = contexttools.TempoMark(Duration(3, 32), 52.5)
     assert t.quarters_per_minute == 140.0
-
-

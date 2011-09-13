@@ -16,4 +16,3 @@ def test_NumberedChromaticPitch___add___02():
     p = pitchtools.NumberedChromaticPitch(12)
 
     assert p + 13 == pitchtools.NumberedChromaticPitch(25)
-

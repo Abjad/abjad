@@ -39,4 +39,3 @@ _pitch_class_number_to_pitch_class_name = {
     6:  'fs',     6.5: 'gqf',     7: 'g',      7.5:  'gqs',
     8:  'af',     8.5: 'aqf',     9: 'a',      9.5:  'aqs',
     10: 'bf',    10.5: 'bqf',    11: 'b',     11.5:  'bqs' }
-

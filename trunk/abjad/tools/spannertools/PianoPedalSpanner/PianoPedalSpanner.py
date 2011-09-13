@@ -95,6 +95,3 @@ class PianoPedalSpanner(Spanner):
                 raise ValueError("Style must be in %s" % self._styles)
             self._style = arg
         return property(**locals())
-
-
-

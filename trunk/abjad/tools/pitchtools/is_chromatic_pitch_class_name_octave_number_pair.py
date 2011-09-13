@@ -23,4 +23,3 @@ def is_chromatic_pitch_class_name_octave_number_pair(expr):
                 if isinstance(expr[1], (int, long)):
                     return True
     return False
-

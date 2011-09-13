@@ -27,5 +27,3 @@ def make_repeated_notes_from_time_signature(time_signature, pitch = "c'"):
 
     # make and return repeated notes
     return time_signature.numerator * Note(pitch, (1, time_signature.denominator))
-
-

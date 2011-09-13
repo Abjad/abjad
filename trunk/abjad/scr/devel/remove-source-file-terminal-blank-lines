@@ -10,7 +10,7 @@ def _remove_source_file_terminal_blank_lines():
    for path, subdirectories, files in os.walk('.'):
       for f in files:
          found_import_as_statement = False
-         if f.endswith(('.py', '.raw', '.rst')):
+         if f.endswith(('.py', '.ly', '.raw', '.rst')):
             full_file_name = os.path.join(path, f)
             file_pointer = file(full_file_name, 'r')
             lines = file_pointer.readlines()
@@ -24,7 +24,7 @@ def _remove_source_file_terminal_blank_lines():
                             lines.pop(-1)
                         else:
                             break
-                    file_pointer = file(full_file_name, 'r')
+                    file_pointer = file(full_file_name, 'w')
                     file_pointer.write(''.join(lines))
    print 'Total source files with terminal blank lines: %s' % total_source_files_with_blank_lines
    print 'Total source file-terminal blank lines:       %s' % total_blank_lines

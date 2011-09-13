@@ -23,8 +23,3 @@ def test_leaftools_leaf_to_augmented_tuplet_with_proportions_01():
 
     t = leaftools.leaf_to_augmented_tuplet_with_proportions(note, [1, 2, 2, 3, 3, 4])
     assert t.format == "\\fraction \\times 8/5 {\n\tc'128\n\tc'64\n\tc'64\n\tc'64.\n\tc'64.\n\tc'32\n}"
-
-
-
-
-

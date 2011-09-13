@@ -40,5 +40,3 @@ def get_effective_staff(component):
         return staff_change_mark.staff
 
     return componenttools.get_first_instance_of_klass_in_improper_parentage_of_component(component, Staff)
-
-

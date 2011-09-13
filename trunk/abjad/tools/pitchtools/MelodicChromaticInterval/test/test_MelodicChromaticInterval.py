@@ -9,4 +9,3 @@ def test_MelodicChromaticInterval_01():
     assert -i == pitchtools.MelodicChromaticInterval(-3)
     assert int(i) == 3
     assert float(i) == 3.0
-

@@ -8,4 +8,3 @@ def test_NamedChromaticPitchSet___contains___01():
 
     assert pitchtools.NamedChromaticPitch(14) in pset
     assert pitchtools.NamedChromaticPitch(15) not in pset
-

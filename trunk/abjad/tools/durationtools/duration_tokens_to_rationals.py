@@ -17,4 +17,3 @@ def duration_tokens_to_rationals(duration_tokens):
     '''
 
     return type(duration_tokens)([duration_token_to_rational(x) for x in duration_tokens])
-

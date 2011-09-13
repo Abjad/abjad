@@ -33,4 +33,3 @@ def chromatic_pitch_name_to_chromatic_pitch_number(chromatic_pitch_name):
     chromatic_pitch_number += chromatic_pitch_class_number + accidental.semitones
 
     return chromatic_pitch_number
-

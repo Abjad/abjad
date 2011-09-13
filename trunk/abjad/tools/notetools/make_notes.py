@@ -101,5 +101,3 @@ def make_notes(pitches, durations, direction='big-endian'):
             t = Tuplet(multiplier, ns)
             result.append(t)
     return result
-
-

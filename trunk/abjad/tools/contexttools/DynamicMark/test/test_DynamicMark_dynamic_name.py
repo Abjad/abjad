@@ -10,5 +10,3 @@ def test_DynamicMark_dynamic_name_01():
 
     dynamic.dynamic_name = 'p'
     assert dynamic.dynamic_name == 'p'
-
-

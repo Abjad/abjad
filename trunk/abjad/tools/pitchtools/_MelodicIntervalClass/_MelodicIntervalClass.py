@@ -45,4 +45,3 @@ class _MelodicIntervalClass(_IntervalClass, _Melodic):
             return ''
         else:
             return 'ascending'
-

@@ -310,4 +310,3 @@ def test_LilyPondContextSettingComponentPlugIn___setattr___13( ):
 
     assert componenttools.is_well_formed_component(t)
     assert t.format == '\\new Staff {\n}'
-

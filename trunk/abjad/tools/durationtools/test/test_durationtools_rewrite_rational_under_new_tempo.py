@@ -22,4 +22,3 @@ def test_durationtools_rewrite_rational_under_new_tempo_01():
     result = durationtools.rewrite_rational_under_new_tempo(
         Fraction(1, 24), tempo_indication_1, tempo_indication_2)
     assert result == Fraction(1, 16)
-

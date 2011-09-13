@@ -36,5 +36,3 @@ def test_tietools_add_or_remove_tie_chain_notes_to_achieve_written_duration_02()
 
     assert componenttools.is_well_formed_component(t)
     assert t.format == "\\new Staff {\n\tc'8 [ ]\n}"
-
-

@@ -35,4 +35,3 @@ def test_HarmonicDiatonicInterval_staff_spaces_02():
     assert pitchtools.HarmonicDiatonicInterval('minor', -7).staff_spaces == 6
     assert pitchtools.HarmonicDiatonicInterval('major', -7).staff_spaces == 6
     assert pitchtools.HarmonicDiatonicInterval('perfect', -8).staff_spaces == 7
-

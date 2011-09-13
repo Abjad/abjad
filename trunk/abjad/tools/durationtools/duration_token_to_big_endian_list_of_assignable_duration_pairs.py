@@ -37,4 +37,3 @@ def duration_token_to_big_endian_list_of_assignable_duration_pairs(duration_toke
     result = [(n, denominator)
         for n in mathtools.partition_integer_into_canonic_parts(numerator)]
     return tuple(result)
-

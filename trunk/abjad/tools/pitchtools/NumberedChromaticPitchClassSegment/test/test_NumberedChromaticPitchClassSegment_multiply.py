@@ -10,4 +10,3 @@ def test_NumberedChromaticPitchClassSegment_multiply_01():
     assert pcseg.multiply(1) == PCSeg([0, 6, 10, 4, 9, 2])
     assert pcseg.multiply(5) == PCSeg([0, 6, 2, 8, 9, 10])
     assert pcseg.multiply(7) == PCSeg([0, 6, 10, 4, 3, 2])
-

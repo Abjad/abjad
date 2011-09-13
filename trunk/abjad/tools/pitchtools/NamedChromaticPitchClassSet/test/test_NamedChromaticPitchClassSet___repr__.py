@@ -14,4 +14,3 @@ def test_NamedChromaticPitchClassSet___repr___01():
 
     assert isinstance(named_chromatic_pitch_class_set_1, pitchtools.NamedChromaticPitchClassSet)
     assert isinstance(named_chromatic_pitch_class_set_2, pitchtools.NamedChromaticPitchClassSet)
-

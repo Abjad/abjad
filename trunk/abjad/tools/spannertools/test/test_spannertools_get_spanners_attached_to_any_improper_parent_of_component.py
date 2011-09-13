@@ -21,6 +21,3 @@ def test_spannertools_get_spanners_attached_to_any_improper_parent_of_component_
         set([beam, slur, trill])
     assert spannertools.get_spanners_attached_to_any_improper_parent_of_component(staff) == \
         set([trill])
-
-
-

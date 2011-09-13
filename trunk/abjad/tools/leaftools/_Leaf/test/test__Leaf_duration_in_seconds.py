@@ -32,5 +32,3 @@ def test__Leaf_duration_in_seconds_02():
 
     t = Note("c'4")
     assert py.test.raises(MissingTempoError, 't.duration_in_seconds')
-
-

@@ -28,4 +28,3 @@ def is_diatonic_pitch_name(expr):
         return False
 
     return bool(diatonic_pitch_name_regex.match(expr))
-

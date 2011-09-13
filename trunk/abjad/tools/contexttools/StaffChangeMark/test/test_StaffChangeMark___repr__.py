@@ -10,5 +10,3 @@ def test_StaffChangeMark___repr___01():
     repr = contexttools.StaffChangeMark(staff).__repr__()
 
     assert isinstance(repr, str) and 0 < len(repr)
-
-

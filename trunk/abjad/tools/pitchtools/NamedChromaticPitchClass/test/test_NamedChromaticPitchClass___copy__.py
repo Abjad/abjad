@@ -9,4 +9,3 @@ def test_NamedChromaticPitchClass___copy___01():
 
     assert new == npc
     assert new is not npc
-

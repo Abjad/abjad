@@ -7,8 +7,3 @@ def test_leaftools_remove_terminal_rests_from_sequence_01():
     leaves = leaftools.remove_terminal_rests_from_sequence(staff)
 
     assert leaves == list(staff.leaves[:-2])
-
-
-
-
-

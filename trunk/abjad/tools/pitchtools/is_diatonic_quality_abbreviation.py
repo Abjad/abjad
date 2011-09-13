@@ -29,4 +29,3 @@ def is_diatonic_quality_abbreviation(expr):
         return False
 
     return bool(diatonic_quality_abbreviation_regex.match(expr))
-

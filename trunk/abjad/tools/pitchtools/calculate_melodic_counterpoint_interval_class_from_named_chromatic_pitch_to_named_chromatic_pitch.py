@@ -19,4 +19,3 @@ def calculate_melodic_counterpoint_interval_class_from_named_chromatic_pitch_to_
 
     # return melodic counterpoint interval-class
     return mdi.melodic_counterpoint_interval.melodic_counterpoint_interval_class
-

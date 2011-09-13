@@ -12,4 +12,3 @@ def test_durationtools_rational_to_flag_count_01():
     assert durationtools.rational_to_flag_count(Fraction(6, 64)) == 2
     assert durationtools.rational_to_flag_count(Fraction(7, 64)) == 2
     assert durationtools.rational_to_flag_count(Fraction(8, 64)) == 1
-

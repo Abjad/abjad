@@ -68,6 +68,3 @@ class _SpannerFormatInterface(_StrictComparator):
             print result
         else:
             return result
-
-
-

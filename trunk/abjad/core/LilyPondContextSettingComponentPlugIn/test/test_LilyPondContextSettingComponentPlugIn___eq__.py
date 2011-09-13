@@ -28,4 +28,3 @@ def test_LilyPondContextSettingComponentPlugIn___eq___01( ):
     assert not context_setting_component_plug_in_3 == context_setting_component_plug_in_1
     assert not context_setting_component_plug_in_3 == context_setting_component_plug_in_2
     assert      context_setting_component_plug_in_3 == context_setting_component_plug_in_3
-

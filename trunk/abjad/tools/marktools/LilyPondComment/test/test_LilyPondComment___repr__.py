@@ -12,4 +12,3 @@ def test_LilyPondComment___repr___01():
     assert isinstance(comment_1, marktools.LilyPondComment)
     assert isinstance(comment_2, marktools.LilyPondComment)
     assert comment_1 == comment_2
-

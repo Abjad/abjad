@@ -25,4 +25,3 @@ def test_LilyPondContextSettingComponentPlugIn___repr___02( ):
 
     assert repr(note.set) == \
         'LilyPondContextSettingComponentPlugIn(staff__tuplet_full_length = True)'
-

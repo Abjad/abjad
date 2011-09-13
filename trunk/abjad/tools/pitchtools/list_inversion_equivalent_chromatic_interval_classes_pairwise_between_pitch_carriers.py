@@ -94,4 +94,3 @@ def list_inversion_equivalent_chromatic_interval_classes_pairwise_between_pitch_
         result.append(iecic)
 
     return result
-

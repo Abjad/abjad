@@ -28,4 +28,3 @@ def _transpose_pitch_carrier_into_pitch_range(pitch_carrier, pitch_range):
     if pitch_carrier not in pitch_range:
         raise ValueError('can not transpose pitch carrier %s into pitch range.' % pitch_carrier)
     return pitch_carrier
-

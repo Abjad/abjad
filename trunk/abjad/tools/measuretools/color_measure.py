@@ -59,6 +59,3 @@ def color_measure(measure, color = 'red'):
 
     # return measure
     return measure
-
-
-

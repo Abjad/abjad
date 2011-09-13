@@ -35,5 +35,3 @@ class Score(_Context):
         self.context = 'Score'
         self.is_parallel = True
         self._initialize_keyword_values(**kwargs)
-
-

@@ -25,4 +25,3 @@ def test_pitchtools_expr_has_duplicate_named_chromatic_pitch_03():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     assert not pitchtools.expr_has_duplicate_named_chromatic_pitch(staff)
-

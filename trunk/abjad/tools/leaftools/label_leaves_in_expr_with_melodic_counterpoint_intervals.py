@@ -42,5 +42,3 @@ def label_leaves_in_expr_with_melodic_counterpoint_intervals(expr, markup_direct
                 markuptools.Markup(cpi, markup_direction)(note)
         except StopIteration:
             pass
-
-

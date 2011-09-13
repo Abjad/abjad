@@ -48,4 +48,3 @@ class MelodicCounterpointIntervalClass(_CounterpointIntervalClass, _MelodicInter
 
     def __ne__(self, arg):
         return not self == arg
-

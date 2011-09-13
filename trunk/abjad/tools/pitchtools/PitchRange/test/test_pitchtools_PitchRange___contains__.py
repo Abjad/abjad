@@ -188,4 +188,3 @@ def test_pitchtools_PitchRange___contains___15():
     '''
 
     assert staff in flute.traditional_range
-

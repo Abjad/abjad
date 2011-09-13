@@ -19,4 +19,3 @@ def test_Accidental_alphabetic_string_03():
 def test_Accidental_alphabetic_string_04():
     t = pitchtools.Accidental('!')
     assert t.alphabetic_string == '!'
-

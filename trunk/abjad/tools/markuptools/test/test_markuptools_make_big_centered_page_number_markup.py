@@ -14,4 +14,3 @@ def test_markuptools_make_big_centered_page_number_markup_01():
     '''
 
     assert markup.format == "\\markup { \n        \\fill-line {\n        \\bold \\fontsize #3 \\concat {\n        \\on-the-fly #print-page-number-check-first\n        \\fromproperty #'page:page-number-string } } }"
-

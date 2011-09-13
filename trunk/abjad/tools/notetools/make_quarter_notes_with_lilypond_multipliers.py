@@ -43,5 +43,3 @@ def make_quarter_notes_with_lilypond_multipliers(pitches, multiplied_durations):
         quarter_notes.append(quarter_note)
 
     return quarter_notes
-
-

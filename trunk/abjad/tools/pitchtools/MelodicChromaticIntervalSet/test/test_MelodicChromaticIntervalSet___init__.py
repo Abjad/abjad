@@ -21,4 +21,3 @@ def test_MelodicChromaticIntervalSet___init___02():
     assert repr(mcis) == 'MelodicChromaticIntervalSet(-13, -12, -11, 0, +1, +19)'
     assert str(mcis) == '{-13, -12, -11, 0, +1, +19}'
     assert len(mcis) == 6
-

@@ -54,4 +54,3 @@ class _RedBlackNode(object):
             else:
                 return self.grandparent.left
         return None
-

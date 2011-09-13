@@ -9,6 +9,3 @@ def test_DynamicMeasure___setattr___01():
     measure = measuretools.DynamicMeasure("c'8 d'8 e'8")
 
     assert py.test.raises(AttributeError, "measure.foo = 'bar'")
-
-
-

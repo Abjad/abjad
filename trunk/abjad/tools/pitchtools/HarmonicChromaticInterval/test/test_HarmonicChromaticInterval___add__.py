@@ -17,4 +17,3 @@ def test_HarmonicChromaticInterval___add___02():
 
     assert i - j == pitchtools.HarmonicChromaticInterval(11)
     assert j - i == pitchtools.HarmonicChromaticInterval(11)
-

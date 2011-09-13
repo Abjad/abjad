@@ -18,6 +18,3 @@ class _GlissandoSpannerFormatInterface(_SpannerFormatInterface):
         if not self.spanner._is_my_last_leaf(leaf) and isinstance(leaf, (Chord, Note)):
             result.append(r'\glissando')
         return result
-
-
-

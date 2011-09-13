@@ -186,6 +186,3 @@ class DynamicMeasure(Measure):
         '''
         Measure.extend(self, expr)
         self._update_time_signature()
-
-
-

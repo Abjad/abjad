@@ -12,8 +12,3 @@ def test_leaftools_get_leaf_at_index_in_measure_number_in_expr_01():
     assert leaftools.get_leaf_at_index_in_measure_number_in_expr(t, 2, 1) is t.leaves[3]
     assert leaftools.get_leaf_at_index_in_measure_number_in_expr(t, 3, 0) is t.leaves[4]
     assert leaftools.get_leaf_at_index_in_measure_number_in_expr(t, 3, 1) is t.leaves[5]
-
-
-
-
-

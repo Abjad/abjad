@@ -47,6 +47,3 @@ def test_measuretools_extend_measures_in_expr_and_apply_full_measure_tuplets_to_
 
     assert componenttools.is_well_formed_component(staff)
     assert staff.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\t\\times 4/5 {\n\t\t\tc'8\n\t\t\td'8\n\t\t\tr16\n\t\t}\n\t}\n\t{\n\t\t\\time 3/8\n\t\t\\fraction \\times 6/7 {\n\t\t\te'8\n\t\t\tf'8\n\t\t\tg'8\n\t\t\tr16\n\t\t}\n\t}\n}"
-
-
-

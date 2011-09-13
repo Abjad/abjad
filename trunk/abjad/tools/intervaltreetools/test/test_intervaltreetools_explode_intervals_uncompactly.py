@@ -23,4 +23,3 @@ def test_intervaltreetools_explode_intervals_uncompactly_03():
     xtrees = explode_intervals_uncompactly(tree)
     collapsed_tree = IntervalTree(xtrees)
     assert tree[:] == collapsed_tree[:]
-

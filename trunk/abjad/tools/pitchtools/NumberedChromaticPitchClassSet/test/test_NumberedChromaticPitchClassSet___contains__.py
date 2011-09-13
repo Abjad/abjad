@@ -10,4 +10,3 @@ def test_NumberedChromaticPitchClassSet___contains___01():
 
     assert pc1 in pcset
     assert pc2 not in pcset
-

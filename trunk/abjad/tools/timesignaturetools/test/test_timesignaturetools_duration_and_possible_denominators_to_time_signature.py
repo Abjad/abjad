@@ -33,5 +33,3 @@ def test_timesignaturetools_duration_and_possible_denominators_to_time_signature
 
     t = timesignaturetools.duration_and_possible_denominators_to_time_signature(Duration(3, 2), [7, 11, 13, 19])
     assert t == contexttools.TimeSignatureMark((3, 2))
-
-

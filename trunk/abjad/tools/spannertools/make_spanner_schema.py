@@ -61,6 +61,3 @@ def make_spanner_schema(components):
                 pass
 
     return schema
-
-
-

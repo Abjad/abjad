@@ -23,8 +23,3 @@ def test_leaftools_leaf_to_diminished_tuplet_with_proportions_01():
 
     t = leaftools.leaf_to_diminished_tuplet_with_proportions(note, [1, 2, 2, 3, 3, 4])
     assert t.format == "\\times 4/5 {\n\tc'64\n\tc'32\n\tc'32\n\tc'32.\n\tc'32.\n\tc'16\n}"
-
-
-
-
-

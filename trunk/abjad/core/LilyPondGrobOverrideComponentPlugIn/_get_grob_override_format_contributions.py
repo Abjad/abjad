@@ -14,4 +14,3 @@ def _get_grob_override_format_contributions(component):
             result.remove(override)
     result = ['grob overrides', result]
     return result
-

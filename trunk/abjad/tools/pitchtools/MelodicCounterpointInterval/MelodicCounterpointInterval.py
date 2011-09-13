@@ -53,4 +53,3 @@ class MelodicCounterpointInterval(_CounterpointInterval, _MelodicInterval):
     def melodic_counterpoint_interval_class(self):
         from abjad.tools import pitchtools
         return pitchtools.MelodicCounterpointIntervalClass(self)
-

@@ -7,4 +7,3 @@ def test_pitchtools_chromatic_pitch_names_string_to_named_chromatic_pitch_list_0
 
     assert pitches == [pitchtools.NamedChromaticPitch('c', 2), pitchtools.NamedChromaticPitch('c', 3),
         pitchtools.NamedChromaticPitch('c', 4), pitchtools.NamedChromaticPitch('c', 5)]
-

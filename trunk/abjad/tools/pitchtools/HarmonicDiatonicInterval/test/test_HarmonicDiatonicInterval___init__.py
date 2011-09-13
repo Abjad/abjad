@@ -50,4 +50,3 @@ def test_HarmonicDiatonicInterval___init___04():
 
     assert hdi is not mdi
     assert not hdi == mdi
-

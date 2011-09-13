@@ -43,6 +43,3 @@ def get_beam_spanner_attached_to_component(component):
     from abjad.tools import spannertools
 
     return spannertools.get_the_only_spanner_attached_to_component(component, spannertools.BeamSpanner)
-
-
-

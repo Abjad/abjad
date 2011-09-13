@@ -49,5 +49,3 @@ def test_NoteHead_written_pitch_04():
     assert n1.written_pitch == pitchtools.NamedChromaticPitch(14)
     assert n2.written_pitch == pitchtools.NamedChromaticPitch(14)
     assert n1.written_pitch is not n2.written_pitch
-
-

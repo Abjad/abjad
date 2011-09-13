@@ -11,4 +11,3 @@ def test_intervaltreetools_fuse_tangent_or_overlapping_intervals_01():
     actual_signatures = [interval.signature for interval in fused_tree]
     assert target_signatures == actual_signatures
     assert tree.magnitude == fused_tree.magnitude
-

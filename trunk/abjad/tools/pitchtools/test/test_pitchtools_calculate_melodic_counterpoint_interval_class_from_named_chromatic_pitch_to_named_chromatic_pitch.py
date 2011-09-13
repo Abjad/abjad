@@ -87,4 +87,3 @@ def test_pitchtools_calculate_melodic_counterpoint_interval_class_from_named_chr
     mcpi = pitchtools.calculate_melodic_counterpoint_interval_class_from_named_chromatic_pitch_to_named_chromatic_pitch(
         pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(11))
     assert mcpi == pitchtools.MelodicCounterpointIntervalClass(-2)
-

@@ -9,5 +9,3 @@ def test_Annotation___setattr___01():
     annotation = marktools.Annotation('foo')
 
     assert py.test.raises(AttributeError, "annotation.foo = 'bar'")
-
-

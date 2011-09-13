@@ -70,6 +70,3 @@ def apply_complex_beam_spanners_to_measures_in_expr(expr):
 
     # return beams created
     return beams_created
-
-
-

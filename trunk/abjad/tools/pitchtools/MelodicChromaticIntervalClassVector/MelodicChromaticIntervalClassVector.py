@@ -121,4 +121,3 @@ class MelodicChromaticIntervalClassVector(_Vector):
         right = ' '.join([str(x).rjust(3) for x in right])
         zero = ' '.rjust(3)
         return '%s   | %s   | %s' % (zero, left, right)
-

@@ -100,7 +100,3 @@ def test_BeamSpanner_span_differently_named_02():
     '''
 
     assert py.test.raises(AssertionError, 'p = spannertools.BeamSpanner([t[0][0], t[1][0]])')
-
-
-
-

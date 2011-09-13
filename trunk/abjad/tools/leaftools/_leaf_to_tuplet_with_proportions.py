@@ -54,5 +54,3 @@ def _leaf_to_tuplet_with_proportions(l, divisions, prolation):
 
     # return tuplet
     return tuplet
-
-

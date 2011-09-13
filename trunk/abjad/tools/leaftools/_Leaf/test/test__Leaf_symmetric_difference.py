@@ -128,5 +128,3 @@ def test__Leaf_symmetric_difference_12():
     assert v.written_pitch == 2
     assert v.written_duration == Duration(1, 4)
     assert t is not u is not v
-
-

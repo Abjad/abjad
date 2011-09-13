@@ -12,5 +12,3 @@ def test_NaturalHarmonic_01():
 
     assert t.written_pitch == pitchtools.NamedChromaticPitch(10)
     assert t.format == "\\once \\override NoteHead #'style = #'harmonic\nbf'4"
-
-

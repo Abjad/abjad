@@ -10,8 +10,3 @@ def test_leaftools_yield_groups_of_mixed_notes_and_chords_in_sequence_01():
     assert groups[0] == (staff[0], staff[1])
     assert groups[1] == (staff[4], staff[5], staff[6], staff[7])
     assert groups[2] == (staff[10], staff[11])
-
-
-
-
-

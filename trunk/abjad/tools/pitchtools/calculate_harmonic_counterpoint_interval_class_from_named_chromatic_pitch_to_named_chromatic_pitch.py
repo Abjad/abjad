@@ -23,4 +23,3 @@ def calculate_harmonic_counterpoint_interval_class_from_named_chromatic_pitch_to
 
     # return harmonic counterpoint interval-class
     return mdi.harmonic_counterpoint_interval.harmonic_counterpoint_interval_class
-

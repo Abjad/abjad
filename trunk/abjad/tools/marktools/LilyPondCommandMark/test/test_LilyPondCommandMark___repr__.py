@@ -12,4 +12,3 @@ def test_LilyPondCommandMark___repr___01():
     assert isinstance(lily_pond_command_mark_1, marktools.LilyPondCommandMark)
     assert isinstance(lily_pond_command_mark_2, marktools.LilyPondCommandMark)
     assert lily_pond_command_mark_1 == lily_pond_command_mark_2
-

@@ -78,6 +78,3 @@ def test_AnonymousMeasure_duration_interface_03():
     assert t.prolation == 1
 
     assert t.format == "{\n\t\\override Staff.TimeSignature #'stencil = ##f\n\t\\time 4/12\n\t\\times 2/3 {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t}\n\t\\revert Staff.TimeSignature #'stencil\n}"
-
-
-

@@ -145,5 +145,3 @@ class KeySignatureMark(ContextMark):
             tonic = pitchtools.NamedChromaticPitchClass(tonic)
             self._tonic = tonic
         return property(**locals())
-
-

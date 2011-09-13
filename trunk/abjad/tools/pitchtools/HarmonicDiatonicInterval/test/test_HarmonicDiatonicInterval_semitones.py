@@ -23,4 +23,3 @@ def test_HarmonicDiatonicInterval_semitones_02():
 
     assert pitchtools.HarmonicDiatonicInterval('major', 23).semitones == 38
     assert pitchtools.HarmonicDiatonicInterval('major', -23).semitones == 38
-

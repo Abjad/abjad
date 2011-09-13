@@ -8,8 +8,3 @@ def test_leaftools_list_written_durations_of_leaves_in_expr_01():
 
     assert durations == [Duration(1, 8), Duration(1, 8), Duration(1, 8),
       Duration(1, 8), Duration(1, 8), Duration(1, 8)]
-
-
-
-
-

@@ -7,4 +7,3 @@ def _import_test_file():
     r = ElementTree.parse(f).getroot()
     f.close()
     return r
-

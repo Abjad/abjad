@@ -17,5 +17,3 @@ def test_TempoMark___eq___02():
     t1 = contexttools.TempoMark(Duration(3, 32), 52)
     t2 = contexttools.TempoMark(Duration(6, 32), 104)
     assert not t1 == t2
-
-

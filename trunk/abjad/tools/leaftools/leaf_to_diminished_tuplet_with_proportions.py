@@ -24,5 +24,3 @@ def leaf_to_diminished_tuplet_with_proportions(leaf, proportions):
     '''
 
     return _leaf_to_tuplet_with_proportions(leaf, proportions, 'diminution')
-
-

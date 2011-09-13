@@ -59,6 +59,3 @@ def test_tempotools_integer_tempo_to_multiplier_tempo_pairs_04():
         (Fraction(3, 2), Fraction(78, 1)),
         (Fraction(7, 4), Fraction(91, 1)),
         (Fraction(2, 1), Fraction(104, 1))]
-
-
-

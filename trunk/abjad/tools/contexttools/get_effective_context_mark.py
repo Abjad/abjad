@@ -79,5 +79,3 @@ def get_effective_context_mark(component, klass):
                 break
     #print 'first winner is ', first_winner, '\n'
     return first_winner
-
-

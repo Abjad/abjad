@@ -49,4 +49,3 @@ def duration_token_to_duration_pair(duration_token):
         raise TypeError('token must be of tuple, list, int or Fraction.')
 
     return numerator, denominator
-

@@ -24,6 +24,3 @@ def test_Spanner_written_duration_01():
     assert beam.written_duration == Duration(4, 8)
     assert crescendo.written_duration == Duration(2, 8)
     assert decrescendo.written_duration == Duration(2, 8)
-
-
-

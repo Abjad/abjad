@@ -54,4 +54,3 @@ def chromatic_pitch_number_to_diatonic_pitch_class_name_alphabetic_accidental_ab
 
     # return uninque letter, accidental, octave triple
     return letter, accidental, octave
-

@@ -53,5 +53,3 @@ def test_timesignaturetools_time_signature_to_binary_time_signature_04():
     assert timesignaturetools.time_signature_to_binary_time_signature(contexttools.TimeSignatureMark((6, 24)), Duration(99)) == contexttools.TimeSignatureMark((2, 8))
     assert timesignaturetools.time_signature_to_binary_time_signature(contexttools.TimeSignatureMark((7, 24)), Duration(99)) == contexttools.TimeSignatureMark((7, 24))
     assert timesignaturetools.time_signature_to_binary_time_signature(contexttools.TimeSignatureMark((8, 24)), Duration(99)) == contexttools.TimeSignatureMark((8, 24))
-
-

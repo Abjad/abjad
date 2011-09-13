@@ -42,4 +42,3 @@ def set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(
                 chord.written_pitches = [pitch]
         else:
             pass
-

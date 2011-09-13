@@ -73,6 +73,3 @@ def test_Measure_duration_04():
     assert t.preprolated_duration == Duration(4, 10)
     assert t.prolated_duration == Duration(4, 10)
     assert t.prolation == 1
-
-
-

@@ -33,5 +33,3 @@ def label_notes_in_expr_with_note_indices(expr, markup_direction = 'down'):
     for i, note in enumerate(iterate_notes_forward_in_expr(expr)):
         label = r'\small %s' % i
         markuptools.Markup(label, markup_direction)(note)
-
-

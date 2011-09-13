@@ -34,6 +34,3 @@ def find_index_of_spanner_component_at_score_offset(spanner, score_offset):
             return spanner.index(component)
 
     raise SpannerPopulationError('no component in spanner at this score offset.')
-
-
-

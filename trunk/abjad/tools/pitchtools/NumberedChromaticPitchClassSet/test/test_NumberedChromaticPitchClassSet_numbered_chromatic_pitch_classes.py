@@ -14,4 +14,3 @@ def test_NumberedChromaticPitchClassSet_numbered_chromatic_pitch_classes_01():
     assert numbered_chromatic_pitch_classes[3] == 6
     assert numbered_chromatic_pitch_classes[4] == 9
     assert numbered_chromatic_pitch_classes[5] == 10
-

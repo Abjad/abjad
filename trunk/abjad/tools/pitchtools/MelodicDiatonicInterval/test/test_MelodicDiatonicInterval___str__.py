@@ -34,4 +34,3 @@ def test_MelodicDiatonicInterval___str___03():
     assert str(pitchtools.MelodicDiatonicInterval('minor', 3)) == '+m3'
     assert str(pitchtools.MelodicDiatonicInterval('major', 3)) == '+M3'
     assert str(pitchtools.MelodicDiatonicInterval('augmented', 3)) == '+aug3'
-

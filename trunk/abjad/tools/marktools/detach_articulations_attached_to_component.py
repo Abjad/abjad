@@ -47,4 +47,3 @@ def detach_articulations_attached_to_component(component):
         articulations.append(articulation)
 
     return tuple(articulations)
-

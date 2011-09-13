@@ -70,8 +70,3 @@ def test_leaftools_label_leaves_in_expr_with_melodic_chromatic_intervals_03():
 
     assert componenttools.is_well_formed_component(staff)
     assert staff.format == "\\new Staff {\n\tc'8 ^ \\markup { +25.5 }\n\tdqf'''8 ^ \\markup { -14 }\n\tbqs'8 ^ \\markup { -15.5 }\n\taf8 ^ \\markup { -10 }\n\tbf,8 ^ \\markup { +1 }\n\tb,8 ^ \\markup { +22 }\n\ta'8 ^ \\markup { +1 }\n\tbf'8 ^ \\markup { -3.5 }\n\tgqf'8 ^ \\markup { -1 }\n\tfqs'8\n}"
-
-
-
-
-

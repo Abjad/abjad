@@ -26,4 +26,3 @@ def test_pitchtools_is_diatonic_pitch_class_name_02():
 def test_pitchtools_is_diatonic_pitch_class_name_03():
 
     assert not pitchtools.is_diatonic_pitch_class_name(8)
-

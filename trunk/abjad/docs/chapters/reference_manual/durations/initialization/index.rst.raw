@@ -62,5 +62,3 @@ iotools.write_expr_to_ly(note, 'duration-initialization-5', 'oedo') <hide
 .. note::
 
     Abjad allows maxima note_heads as in `Note(0, (8, 1))`. LilyPond implements a `\maxima` command but does not supply a corresponding glyph for the note_head.
-
-

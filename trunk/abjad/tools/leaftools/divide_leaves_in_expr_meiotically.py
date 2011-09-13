@@ -59,5 +59,3 @@ def divide_leaves_in_expr_meiotically(expr, n = 2):
     # extend_in_parent_of_component_and_grow_spanners() #
     for leaf in iterate_leaves_backward_in_expr(expr):
         divide_leaf_meiotically(leaf, n)
-
-

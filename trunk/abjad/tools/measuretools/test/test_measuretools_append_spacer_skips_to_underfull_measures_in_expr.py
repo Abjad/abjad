@@ -42,6 +42,3 @@ def test_measuretools_append_spacer_skips_to_underfull_measures_in_expr_01():
 
     assert componenttools.is_well_formed_component(t)
     assert t.format == "\\new Staff {\n\t{\n\t\t\\time 3/8\n\t\tc'8\n\t\td'8\n\t\te'8\n\t}\n\t{\n\t\t\\time 4/8\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\ts1 * 1/8\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\ts1 * 1/4\n\t}\n}"
-
-
-

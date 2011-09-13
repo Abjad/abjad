@@ -54,4 +54,3 @@ class NumberedDiatonicPitchClass(_NumberedPitchClass, _DiatonicPitchClass):
         '''
         from abjad.tools import pitchtools
         return pitchtools.NamedDiatonicPitchClass(int(self))
-

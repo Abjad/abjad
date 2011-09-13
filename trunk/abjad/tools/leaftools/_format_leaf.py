@@ -152,5 +152,3 @@ def _get_slot_7(leaf):
     result.append(_get_lilypond_command_mark_format_contributions_for_slot(leaf, 'after'))
     result.append(_get_comment_format_contributions_for_slot(leaf, 'after'))
     return result
-
-

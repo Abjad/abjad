@@ -61,6 +61,3 @@ def test_Measure_number_03():
 
     assert componenttools.is_well_formed_component(new)
     assert new.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\tg'8\n\t\ta'8\n\t}\n\t{\n\t\t\\time 2/8\n\t\tc'8\n\t\td'8\n\t}\n}"
-
-
-

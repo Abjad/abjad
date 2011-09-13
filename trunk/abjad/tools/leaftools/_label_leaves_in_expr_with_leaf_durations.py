@@ -40,5 +40,3 @@ def _label_leaves_in_expr_with_leaf_durations(expr, markup_direction = 'down',
                     markuptools.Markup(label, markup_direction)(leaf)
         else:
             raise ValueError('unknown value for tie treatment.')
-
-

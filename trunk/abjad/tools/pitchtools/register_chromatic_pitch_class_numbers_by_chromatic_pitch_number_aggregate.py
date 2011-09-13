@@ -28,4 +28,3 @@ def register_chromatic_pitch_class_numbers_by_chromatic_pitch_number_aggregate(p
         raise TypeError('"%s" must be pitch-class number or list of pitch-class numbers.' %
             pitch_class_numbers)
     return result
-

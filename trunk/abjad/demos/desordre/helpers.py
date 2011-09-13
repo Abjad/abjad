@@ -88,5 +88,3 @@ def load_desordre_pitches(file):
                 runs.append(run)
             hand.append(runs)
     return result
-
-

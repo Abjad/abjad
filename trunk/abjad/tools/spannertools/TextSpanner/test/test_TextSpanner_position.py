@@ -92,6 +92,3 @@ def test_TextSpanner_position_05():
     '''
 
     assert t.format == "\\new Staff {\n\tc'8 \\startTextSpan\n\tc'8\n\tc'8\n\tc'8 \\stopTextSpan\n}"
-
-
-

@@ -8,4 +8,3 @@ class _Vector(_ImmutableDictionary):
     '''
 
     pass
-

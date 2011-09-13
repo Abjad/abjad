@@ -38,6 +38,3 @@ class _DuratedComplexBeamSpannerFormatInterface(_ComplexBeamSpannerFormatInterfa
             if right is not None:
                 result.append(r'\set stemRightBeamCount = #%s' % right)
         return result
-
-
-

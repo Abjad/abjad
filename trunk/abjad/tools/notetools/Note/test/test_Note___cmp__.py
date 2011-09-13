@@ -80,5 +80,3 @@ def test_Note___cmp___04():
     assert py.test.raises(NotImplementedError, comparison_string)
     comparison_string = 'note_1 >= pitch_duration_pair'
     assert py.test.raises(NotImplementedError, comparison_string)
-
-

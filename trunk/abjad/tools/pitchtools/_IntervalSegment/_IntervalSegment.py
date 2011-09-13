@@ -37,4 +37,3 @@ class _IntervalSegment(_Segment):
     def rotate(self, n):
         #self[:] = self[-n:] + self[:-n]
         return type(self)(self[-n:] + self[:-n])
-

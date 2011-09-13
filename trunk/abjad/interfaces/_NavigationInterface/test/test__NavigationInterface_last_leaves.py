@@ -57,4 +57,3 @@ def test__NavigationInterface_last_leaves_04( ):
     leaves = t._navigator._last_leaves
 
     assert len(leaves) == 0
-

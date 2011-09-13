@@ -105,4 +105,3 @@ def test_MelodicCounterpointIntervalClass___init___04():
 
     mcpic = pitchtools.MelodicCounterpointIntervalClass(-15)
     assert mcpic.number == -8
-

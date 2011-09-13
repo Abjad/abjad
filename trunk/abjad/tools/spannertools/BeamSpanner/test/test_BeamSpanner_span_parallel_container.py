@@ -165,6 +165,3 @@ def test_BeamSpanner_span_parallel_container_06():
         }
     }
     '''
-
-
-

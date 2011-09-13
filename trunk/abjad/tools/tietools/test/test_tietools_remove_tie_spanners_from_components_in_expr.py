@@ -33,5 +33,3 @@ def test_tietools_remove_tie_spanners_from_components_in_expr_02():
 
     result = tietools.remove_tie_spanners_from_components_in_expr([])
     assert result == []
-
-

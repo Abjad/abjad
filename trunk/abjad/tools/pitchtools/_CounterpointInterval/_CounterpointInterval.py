@@ -28,4 +28,3 @@ class _CounterpointInterval(_Interval, _Counterpoint):
     @property
     def semitones(self):
         raise NotImplementedError
-

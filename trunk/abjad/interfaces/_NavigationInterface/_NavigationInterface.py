@@ -379,4 +379,3 @@ class _NavigationInterface(_Interface):
             v.unvisit(self._client)
         elif hasattr(v, '_unvisit'):
             v._unvisit(self._client)
-

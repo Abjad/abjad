@@ -14,6 +14,3 @@ def test_scoretools_get_first_score_in_proper_parentage_of_component_01():
 
     assert scoretools.get_first_score_in_proper_parentage_of_component(staff) is score
     assert scoretools.get_first_score_in_proper_parentage_of_component(score) is None
-
-
-

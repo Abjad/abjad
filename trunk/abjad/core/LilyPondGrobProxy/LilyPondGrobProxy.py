@@ -9,4 +9,3 @@ class LilyPondGrobProxy(_LilyPondObjectProxy):
 
     def __copy__(self):
         return eval(repr(self))
-

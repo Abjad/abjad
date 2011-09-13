@@ -10,5 +10,3 @@ def test_contexttools_get_instrument_mark_attached_to_component_01():
     found_instrument_mark = contexttools.get_instrument_mark_attached_to_component(staff)
 
     assert found_instrument_mark is instrument_mark
-
-

@@ -9,4 +9,3 @@ def test_pitchtools_PitchRange___setattr___01():
     pitch_range = pitchtools.PitchRange(-12, 36)
 
     assert py.test.raises(AttributeError, "pitch_range.foo = 'bar'")
-

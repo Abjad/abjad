@@ -27,6 +27,3 @@ class _Immutable(object):
 
     def __setstate__(self, state):
         pass
-
-
-

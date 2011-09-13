@@ -52,4 +52,3 @@ def _transpose_pitch_by_melodic_diatonic_interval(pitch, mdi):
         diatonic_pitch_class_number)
     named_chromatic_pitch = NamedChromaticPitch(chromatic_pitch_number, diatonic_pitch_class_name)
     return type(pitch)(named_chromatic_pitch)
-

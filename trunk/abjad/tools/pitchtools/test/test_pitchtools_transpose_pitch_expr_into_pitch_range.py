@@ -19,4 +19,3 @@ def test_pitchtools_transpose_pitch_expr_into_pitch_range_02():
     pitch_range = pitchtools.PitchRange(0, 12)
 
     assert pitchtools.transpose_pitch_expr_into_pitch_range([-2, -1, 13, 14], pitch_range) == [10, 11, 1, 2]
-

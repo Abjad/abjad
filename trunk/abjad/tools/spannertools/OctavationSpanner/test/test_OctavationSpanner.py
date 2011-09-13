@@ -154,6 +154,3 @@ def test_OctavationSpanner_06():
         g'8
     }
     '''
-
-
-

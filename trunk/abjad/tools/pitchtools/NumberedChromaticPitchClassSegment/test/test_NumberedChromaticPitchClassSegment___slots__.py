@@ -10,4 +10,3 @@ def test_NumberedChromaticPitchClassSegment___slots___01():
     numbered_chromatic_pitch_class_segment = pitchtools.NumberedChromaticPitchClassSegment(cpns)
 
     assert py.test.raises(AttributeError, "numbered_chromatic_pitch_class_segment.foo = 'bar'")
-

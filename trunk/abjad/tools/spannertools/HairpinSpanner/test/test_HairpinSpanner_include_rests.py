@@ -48,6 +48,3 @@ def test_HairpinSpanner_include_rests_02():
 
     assert componenttools.is_well_formed_component(t)
     assert t.format == "\\new Staff {\n\tc'8 \\<\n\tcs'8\n\td'8\n\tef'8 \\!\n\tr8\n\tr8\n\tr8\n\tr8\n}"
-
-
-

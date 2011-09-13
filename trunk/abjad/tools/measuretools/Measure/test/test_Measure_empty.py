@@ -26,6 +26,3 @@ def test_Measure_empty_03():
     assert t.preprolated_duration == 0
     assert t.prolated_duration == 0
     assert not componenttools.is_well_formed_component(t)
-
-
-

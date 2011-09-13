@@ -37,5 +37,3 @@ def get_effective_instrument(component):
     '''
 
     return get_effective_context_mark(component, InstrumentMark)
-
-

@@ -43,6 +43,3 @@ def get_one_indexed_measure_number_in_expr(expr, measure_number):
 
     # return measure
     return get_nth_measure_in_expr(expr, measure_index)
-
-
-

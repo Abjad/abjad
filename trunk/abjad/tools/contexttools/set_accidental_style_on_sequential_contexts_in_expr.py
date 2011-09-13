@@ -39,5 +39,3 @@ def set_accidental_style_on_sequential_contexts_in_expr(expr, accidental_style):
         if context.is_semantic:
             if not context.is_parallel:
                 marktools.LilyPondCommandMark("#(set-accidental-style '%s)" % accidental_style)(context)
-
-

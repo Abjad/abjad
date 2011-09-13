@@ -42,5 +42,3 @@ def label_leaves_in_expr_with_melodic_diatonic_interval_classes(expr, markup_dir
                 markuptools.Markup(mdic, markup_direction)(note)
         except StopIteration:
             pass
-
-

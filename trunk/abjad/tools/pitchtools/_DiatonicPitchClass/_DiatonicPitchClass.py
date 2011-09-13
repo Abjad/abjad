@@ -26,4 +26,3 @@ class _DiatonicPitchClass(_PitchClass, _Diatonic):
 
     _diatonic_pitch_class_name_to_diatonic_pitch_class_number = {
         'c': 0, 'd': 1, 'e': 2, 'f': 3, 'g': 4, 'a': 5, 'b': 6}
-

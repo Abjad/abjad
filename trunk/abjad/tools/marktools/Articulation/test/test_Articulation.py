@@ -106,4 +106,3 @@ def test_Articulation_08():
     a = marktools.Articulation('|')
     assert a.name == '|'
     assert str(a) == r'-\staccatissimo'
-

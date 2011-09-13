@@ -20,5 +20,3 @@ def test_MelodicDiatonicIntervalSegment___init___01():
     assert mdi_segment[4] == pitchtools.MelodicDiatonicInterval('major', 2)
     assert mdi_segment[5] == pitchtools.MelodicDiatonicInterval('major', 2)
     assert mdi_segment[6] == pitchtools.MelodicDiatonicInterval('minor', 2)
-
-

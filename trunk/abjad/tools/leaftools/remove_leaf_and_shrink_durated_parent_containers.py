@@ -98,5 +98,3 @@ def remove_leaf_and_shrink_durated_parent_containers(leaf):
             remove_component_subtree_from_score_and_spanners([x])
         else:
             break
-
-

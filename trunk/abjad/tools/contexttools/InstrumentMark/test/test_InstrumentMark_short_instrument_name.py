@@ -10,5 +10,3 @@ def test_InstrumentMark_short_instrument_name_01():
 
     instrument.short_instrument_name = 'Alto Fl.'
     assert instrument.short_instrument_name == markuptools.Markup('Alto Fl.')
-
-

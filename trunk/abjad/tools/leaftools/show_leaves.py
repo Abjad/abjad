@@ -37,5 +37,3 @@ def show_leaves(leaves, template = None, suppress_pdf = False):
     show(score, template = template, suppress_pdf = suppress_pdf)
 
     return score
-
-

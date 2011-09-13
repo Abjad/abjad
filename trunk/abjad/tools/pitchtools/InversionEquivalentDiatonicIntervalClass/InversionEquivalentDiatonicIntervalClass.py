@@ -83,4 +83,3 @@ class InversionEquivalentDiatonicIntervalClass(_DiatonicIntervalClass):
             if 1 <= arg <= 4 or arg == 8:
                 return True
         return False
-

@@ -41,4 +41,3 @@ def get_lilypond_command_marks_attached_to_component(component, command_name = N
 
     result = tuple(result)
     return result
-

@@ -28,4 +28,3 @@ def is_alphabetic_accidental_abbreviation(expr):
         return False
 
     return bool(alphabetic_accidental_regex.match(expr))
-

@@ -18,4 +18,3 @@ def chromatic_pitch_class_name_to_diatonic_pitch_class_name_alphabetic_accidenta
         return chromatic_pitch_class_name, ''
     else:
         return chromatic_pitch_class_name[0], chromatic_pitch_class_name[1:]
-

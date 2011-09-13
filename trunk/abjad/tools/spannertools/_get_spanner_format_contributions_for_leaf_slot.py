@@ -34,6 +34,3 @@ def _get_spanner_format_contributions_for_leaf_slot(leaf, slot):
                     other_contributions.extend(contributions)
         result = stop_contributions + other_contributions
     return ['spanners', result]
-
-
-

@@ -38,4 +38,3 @@ def test_pitchtools_transpose_chromatic_pitch_number_by_octave_transposition_map
         t.append(pitchtools.transpose_chromatic_pitch_number_by_octave_transposition_mapping(pitch_number, mapping))
 
     assert t == [2, 2, 2, 14, 14, 14, 14]
-

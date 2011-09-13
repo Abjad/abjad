@@ -101,6 +101,3 @@ def test_Spanner__remove_03():
     spanner = spannertools.Spanner([Note("c'4")])
 
     assert py.test.raises(Exception, 'spanner._remove(note)')
-
-
-

@@ -11,7 +11,3 @@ def test_intervaltreetools_split_intervals_at_rationals_01():
     tree = IntervalTree([a, b])
     split = split_intervals_at_rationals(tree, splits)
     assert tree[:] == split[:]
-
-
-
-

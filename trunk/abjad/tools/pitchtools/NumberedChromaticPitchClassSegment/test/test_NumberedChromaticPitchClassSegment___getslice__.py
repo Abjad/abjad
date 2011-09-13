@@ -24,4 +24,3 @@ def test_NumberedChromaticPitchClassSegment___getslice___02():
 
     assert isinstance(numbered_chromatic_pitch_class_segment_2, NumberedChromaticPitchClassSegment)
     assert numbered_chromatic_pitch_class_segment_2 == NumberedChromaticPitchClassSegment(cpns[-2:])
-

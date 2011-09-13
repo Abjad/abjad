@@ -51,6 +51,3 @@ class _MeasureFormatter(_ContainerFormatter):
     @property
     def slots(self):
         return self._slots
-
-
-

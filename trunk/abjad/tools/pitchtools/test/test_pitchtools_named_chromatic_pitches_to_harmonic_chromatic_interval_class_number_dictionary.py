@@ -40,4 +40,3 @@ def test_pitchtools_named_chromatic_pitches_to_harmonic_chromatic_interval_class
         9: 0,
         10: 0,
         11: 0}
-

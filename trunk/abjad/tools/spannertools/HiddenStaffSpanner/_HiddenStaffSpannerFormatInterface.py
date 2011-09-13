@@ -16,6 +16,3 @@ class _HiddenStaffSpannerFormatInterface(_SpannerFormatInterface):
         if self.spanner._is_my_first_leaf(leaf):
             result.append(r'\stopStaff')
         return result
-
-
-

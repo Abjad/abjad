@@ -27,4 +27,3 @@ def test_HarmonicCounterpointInterval___init___03():
     assert repr(hcpi) == 'HarmonicCounterpointInterval(10)'
     assert str(hcpi) == '10'
     assert hcpi.number == 10
-

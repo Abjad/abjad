@@ -45,5 +45,3 @@ def color_leaves_in_expr(expr, color):
 
     for leaf in iterate_leaves_forward_in_expr(expr):
         color_leaf(leaf, color)
-
-

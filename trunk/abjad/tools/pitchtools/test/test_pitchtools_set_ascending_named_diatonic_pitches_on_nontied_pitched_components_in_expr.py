@@ -64,4 +64,3 @@ def test_pitchtools_set_ascending_named_diatonic_pitches_on_nontied_pitched_comp
 
     assert componenttools.is_well_formed_component(t)
     assert t.format == "\\new Staff {\n\tfs'8 ~\n\tfs'32\n\tgs'8 ~\n\tgs'32\n\tas'8 ~\n\tas'32\n\tb'8 ~\n\tb'32\n}"
-

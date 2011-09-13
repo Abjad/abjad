@@ -83,4 +83,3 @@ def test_HarmonicDiatonicInterval_harmonic_diatonic_interval_class_03():
     #assert diatonic_interval.harmonic_diatonic_interval_class == 3
     ic = diatonic_interval.harmonic_diatonic_interval_class
     assert ic == pitchtools.HarmonicDiatonicIntervalClass('major', 3)
-

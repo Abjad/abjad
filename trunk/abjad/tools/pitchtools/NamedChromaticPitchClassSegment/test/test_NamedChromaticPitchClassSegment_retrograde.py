@@ -19,4 +19,3 @@ def test_NamedChromaticPitchClassSegment_retrograde_01():
 
     assert npc_segment_1.retrograde() == npc_segment_2
     assert npc_segment_2.retrograde() == npc_segment_1
-

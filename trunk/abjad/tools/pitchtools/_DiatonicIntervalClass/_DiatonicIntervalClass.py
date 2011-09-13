@@ -57,4 +57,3 @@ class _DiatonicIntervalClass(_IntervalClass, _Diatonic):
     @property
     def quality_string(self):
         return self._quality_string
-

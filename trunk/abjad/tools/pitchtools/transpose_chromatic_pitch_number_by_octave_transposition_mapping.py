@@ -86,4 +86,3 @@ def transpose_chromatic_pitch_number_by_octave_transposition_mapping(chromatic_p
                 candidate_pitch_class = candidate_pitch % 12
                 if candidate_pitch_class == target_pitch_class:
                     return candidate_pitch
-

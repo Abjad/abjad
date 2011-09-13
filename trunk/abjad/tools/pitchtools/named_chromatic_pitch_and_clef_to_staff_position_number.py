@@ -22,4 +22,3 @@ def named_chromatic_pitch_and_clef_to_staff_position_number(pitch, clef):
     '''
 
     return abs(pitch.numbered_diatonic_pitch) + clef.middle_c_position
-

@@ -42,4 +42,3 @@ class InversionEquivalentDiatonicIntervalClassSegment(_IntervalSegment):
             if not dic.number == 3:
                 return False
         return True
-

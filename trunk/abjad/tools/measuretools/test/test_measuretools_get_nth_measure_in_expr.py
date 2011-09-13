@@ -39,6 +39,3 @@ def test_measuretools_get_nth_measure_in_expr_02():
     assert measuretools.get_nth_measure_in_expr(staff, -1) is staff[2]
     assert measuretools.get_nth_measure_in_expr(staff, -2) is staff[1]
     assert measuretools.get_nth_measure_in_expr(staff, -3) is staff[0]
-
-
-

@@ -29,4 +29,3 @@ def test_Accidental___eq___03():
 def test_Accidental___eq___04():
     '''Accidentals do not compare equal to a naked string.'''
     assert not pitchtools.Accidental('s') == 's'
-

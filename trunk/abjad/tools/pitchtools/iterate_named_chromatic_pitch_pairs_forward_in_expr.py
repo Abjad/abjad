@@ -104,4 +104,3 @@ def iterate_named_chromatic_pitch_pairs_forward_in_expr(expr):
         # iterate chord pitches if last leaf is chord
         for pair in pitchtools.list_unordered_named_chromatic_pitch_pairs_in_expr(leaf_pair_list[1]):
             yield pair
-

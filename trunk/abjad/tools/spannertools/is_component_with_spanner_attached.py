@@ -42,6 +42,3 @@ def is_component_with_spanner_attached(expr, klass = None):
                 if isinstance(spanner, klass):
                     return True
     return False
-
-
-

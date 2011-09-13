@@ -151,6 +151,3 @@ def test_measuretools_replace_contents_of_measures_in_expr_05():
 
     assert componenttools.is_well_formed_component(t)
     assert t.format == "\\new Staff {\n\t{\n\t\t\\time 1/8\n\t\tc'16\n\t\td'16\n\t}\n\t{\n\t\t\\time 1/8\n\t\te'16\n\t\tf'16\n\t}\n}"
-
-
-

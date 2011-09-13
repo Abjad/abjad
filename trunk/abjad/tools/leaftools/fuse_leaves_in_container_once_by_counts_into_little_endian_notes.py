@@ -9,5 +9,3 @@ def fuse_leaves_in_container_once_by_counts_into_little_endian_notes(container, 
 
     return _fuse_leaves_in_container_once_by_counts(container, counts,
         target_type = Note, direction = 'little-endian')
-
-

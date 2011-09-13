@@ -9,4 +9,3 @@ class _ChromaticPitch(_Pitch, _Chromatic):
     '''
 
     pass
-

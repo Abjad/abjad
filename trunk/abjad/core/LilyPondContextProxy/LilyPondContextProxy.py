@@ -6,4 +6,3 @@ class LilyPondContextProxy(_LilyPondObjectProxy):
 
     LilyPond context proxy.
     '''
-

@@ -10,4 +10,3 @@ def test_pitchtools_diatonic_pitch_class_number_to_chromatic_pitch_class_number_
     assert pitchtools.diatonic_pitch_class_number_to_chromatic_pitch_class_number(4) == 7
     assert pitchtools.diatonic_pitch_class_number_to_chromatic_pitch_class_number(5) == 9
     assert pitchtools.diatonic_pitch_class_number_to_chromatic_pitch_class_number(6) == 11
-

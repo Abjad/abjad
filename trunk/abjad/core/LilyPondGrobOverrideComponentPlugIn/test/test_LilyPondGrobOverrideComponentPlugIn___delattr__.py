@@ -56,4 +56,3 @@ def test_LilyPondGrobOverrideComponentPlugIn___delattr___03( ):
     del(t.override.time_signature)
 
     assert t.format == "c'4"
-

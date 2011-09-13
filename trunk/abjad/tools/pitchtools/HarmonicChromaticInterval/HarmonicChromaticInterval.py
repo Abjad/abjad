@@ -55,4 +55,3 @@ class HarmonicChromaticInterval(_ChromaticInterval, _HarmonicInterval):
         '''
         from abjad.tools import pitchtools
         return pitchtools.HarmonicChromaticIntervalClass(self)
-

@@ -23,5 +23,3 @@ def expr_has_leaf_with_dotted_written_duration(expr):
         if not leaf.written_duration._numerator == 1:
             return True
     return False
-
-

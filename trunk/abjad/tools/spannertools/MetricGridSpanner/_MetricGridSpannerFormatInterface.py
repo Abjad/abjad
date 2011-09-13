@@ -60,6 +60,3 @@ class _MetricGridSpannerFormatInterface(_SpannerFormatInterface):
                     container = Container([s])
                     result.append(container.format)
         return result
-
-
-

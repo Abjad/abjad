@@ -42,5 +42,3 @@ def label_leaves_in_expr_with_inversion_equivalent_chromatic_interval_classes(
                 markuptools.Markup(iecic, markup_direction)(note)
         except StopIteration:
             pass
-
-

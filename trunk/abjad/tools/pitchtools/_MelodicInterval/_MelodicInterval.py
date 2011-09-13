@@ -49,4 +49,3 @@ class _MelodicInterval(_Interval):
     @property
     def direction_string(self):
         return self._direction_string
-

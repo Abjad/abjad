@@ -235,5 +235,3 @@ class Note(_Leaf):
 #               pitch = pitchtools.NamedChromaticPitch(arg)
 #               self.note_head.written_pitch = pitch
 #      return property(**locals())
-
-

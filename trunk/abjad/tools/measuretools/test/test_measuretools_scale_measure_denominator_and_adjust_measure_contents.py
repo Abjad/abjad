@@ -127,6 +127,3 @@ def test_measuretools_scale_measure_denominator_and_adjust_measure_contents_04()
 
     assert componenttools.is_well_formed_component(t)
     assert t.format == "{\n\t\\time 9/36\n\t\\scaleDurations #'(8 . 9) {\n\t\tc'8 [ ~\n\t\tc'64\n\t\td'8 ~\n\t\td'64 ]\n\t}\n}"
-
-
-

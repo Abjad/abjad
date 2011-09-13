@@ -112,4 +112,3 @@ class NumberedDiatonicPitch(_DiatonicPitch, _NumberedPitch):
         tmp = pitchtools.diatonic_pitch_number_to_diatonic_pitch_class_number
         diatonic_pitch_class_number = tmp(self._diatonic_pitch_number)
         return pitchtools.NumberedDiatonicPitchClass(diatonic_pitch_class_number)
-

@@ -60,5 +60,3 @@ def get_nth_leaf_in_thread_from_leaf(leaf, n = 0):
                 break
 
     return current_leaf
-
-

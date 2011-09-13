@@ -19,4 +19,3 @@ def test_InversionEquivalentDiatonicIntervalClassVector___eq___01():
     assert dicv1 == dicv2
     assert not dicv1 == dicv3
     assert not dicv2 == dicv3
-

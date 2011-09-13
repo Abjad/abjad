@@ -19,4 +19,3 @@ def list_chromatic_pitch_numbers_in_expr(expr):
     pitch_numbers = tuple(pitch_numbers)
 
     return pitch_numbers
-

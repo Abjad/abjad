@@ -8,4 +8,3 @@ def test_MelodicCounterpointInterval_semitones_01():
     mcpi = pitchtools.MelodicCounterpointInterval(15)
 
     assert py.test.raises(NotImplementedError, 'mcpi.semitones')
-

@@ -17,4 +17,3 @@ def test_NamedChromaticPitchSet_issubset_02():
 
     assert pitch_set_1.issubset(pitch_set_2)
     assert pitch_set_2.issubset(pitch_set_1)
-

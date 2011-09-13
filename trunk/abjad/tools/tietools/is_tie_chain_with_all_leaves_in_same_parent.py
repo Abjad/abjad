@@ -38,4 +38,3 @@ def is_tie_chain_with_all_leaves_in_same_parent(expr):
     '''
 
     return is_tie_chain(expr) and componenttools.all_are_components_in_same_parent(list(expr))
-

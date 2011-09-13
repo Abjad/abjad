@@ -19,4 +19,3 @@ class HarmonicChromaticIntervalSegment(_IntervalSegment):
             hci = pitchtools.HarmonicChromaticInterval(token)
             hcis.append(hci)
         return tuple.__new__(self, hcis)
-

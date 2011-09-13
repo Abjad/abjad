@@ -13,6 +13,3 @@ def test_spannertools_is_component_with_beam_spanner_attached_02():
 
     assert not spannertools.is_component_with_beam_spanner_attached(Note("c'8"))
     assert not spannertools.is_component_with_beam_spanner_attached('foo')
-
-
-

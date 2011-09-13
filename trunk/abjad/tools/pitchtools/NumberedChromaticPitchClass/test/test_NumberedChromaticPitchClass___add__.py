@@ -86,4 +86,3 @@ def test_NumberedChromaticPitchClass___add___05():
     MCI = pitchtools.MelodicChromaticInterval
 
     assert pc + MCI(0) == pitchtools.NumberedChromaticPitchClass(0)
-

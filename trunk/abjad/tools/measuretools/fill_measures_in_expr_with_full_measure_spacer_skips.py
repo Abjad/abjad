@@ -19,6 +19,3 @@ def fill_measures_in_expr_with_full_measure_spacer_skips(expr, iterctrl = None):
             skip.duration_multiplier = meter.duration / meter.multiplier
             measure[:] = [skip]
             _withdraw_component_from_attached_spanners(measure)
-
-
-

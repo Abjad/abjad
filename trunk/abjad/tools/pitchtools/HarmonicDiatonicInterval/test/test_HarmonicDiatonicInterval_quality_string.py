@@ -14,4 +14,3 @@ def test_HarmonicDiatonicInterval_quality_string_01():
     assert pitchtools.HarmonicDiatonicInterval('diminished', 5).quality_string == \
         'diminished'
     assert pitchtools.HarmonicDiatonicInterval('perfect', 5).quality_string == 'perfect'
-

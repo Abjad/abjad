@@ -11,4 +11,3 @@ def test_InversionEquivalentDiatonicIntervalClassVector___init___01():
     assert dicv[pitchtools.InversionEquivalentDiatonicIntervalClass('minor', 3)] == 1
     assert dicv[pitchtools.InversionEquivalentDiatonicIntervalClass('major', 3)] == 1
     assert dicv[pitchtools.InversionEquivalentDiatonicIntervalClass('perfect', 4)] == 1
-

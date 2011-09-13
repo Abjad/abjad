@@ -67,8 +67,3 @@ def test_leaftools_get_nth_leaf_in_expr_02():
     assert leaftools.get_nth_leaf_in_expr(staff, -4) is staff[1][0]
     assert leaftools.get_nth_leaf_in_expr(staff, -5) is staff[0][1]
     assert leaftools.get_nth_leaf_in_expr(staff, -6) is staff[0][0]
-
-
-
-
-

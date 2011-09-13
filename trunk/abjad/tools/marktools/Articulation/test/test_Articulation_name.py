@@ -9,4 +9,3 @@ def test_Articulation_name_01():
     a.name = 'marcato'
 
     assert a.name == 'marcato'
-

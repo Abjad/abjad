@@ -20,4 +20,3 @@ def test_MelodicDiatonicInterval___mul___02():
 
     assert ascending_major_second * -1 == descending_major_second
     assert descending_major_second * -1 == ascending_major_second
-

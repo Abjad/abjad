@@ -60,4 +60,3 @@ def test_pitchtools_get_named_chromatic_pitch_from_pitch_carrier_08():
     pitch = pitchtools.get_named_chromatic_pitch_from_pitch_carrier(13)
 
     assert pitch == pitchtools.NamedChromaticPitch(13)
-

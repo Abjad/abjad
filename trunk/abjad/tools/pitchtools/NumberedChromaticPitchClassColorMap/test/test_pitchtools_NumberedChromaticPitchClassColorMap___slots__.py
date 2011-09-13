@@ -12,4 +12,3 @@ def test_pitchtools_NumberedChromaticPitchClassColorMap___slots___01():
         pitches, colors)
 
     assert py.test.raises(AttributeError, "numbered_chromatic_pitch_class_color_map.foo = 'bar'")
-

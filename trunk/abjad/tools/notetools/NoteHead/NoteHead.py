@@ -143,5 +143,3 @@ class NoteHead(_UnaryComparator):
         if not hasattr(self, '_tweak'):
             self._tweak = LilyPondTweakReservoir()
         return self._tweak
-
-

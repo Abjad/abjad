@@ -14,8 +14,3 @@ def test_leaftools_copy_written_duration_and_multiplier_from_leaf_to_leaf_01():
 
     assert rest.written_duration == Duration(1, 4)
     assert rest.duration_multiplier == Duration(1, 2)
-
-
-
-
-

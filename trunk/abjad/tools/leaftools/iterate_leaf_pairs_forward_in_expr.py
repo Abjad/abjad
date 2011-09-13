@@ -69,5 +69,3 @@ def iterate_leaf_pairs_forward_in_expr(expr):
     else:
         for pair in sequencetools.yield_all_unordered_pairs_of_sequence(moment_2.start_leaves):
             yield pair
-
-

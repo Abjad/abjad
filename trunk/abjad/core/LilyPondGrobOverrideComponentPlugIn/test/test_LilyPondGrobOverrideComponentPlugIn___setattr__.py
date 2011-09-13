@@ -1323,4 +1323,3 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___61( ):
 
     note = Note("c'8")
     assert py.test.raises(Exception, 'note.override.foo = True')
-

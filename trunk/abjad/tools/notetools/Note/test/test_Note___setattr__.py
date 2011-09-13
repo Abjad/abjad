@@ -9,5 +9,3 @@ def test_Note___setattr___01():
     note = Note("c'4")
 
     assert py.test.raises(AttributeError, "note.foo = 'bar'")
-
-

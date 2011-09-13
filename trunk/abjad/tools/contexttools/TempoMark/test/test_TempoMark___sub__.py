@@ -23,5 +23,3 @@ def test_TempoMark___sub___02():
 
     result = tempo_indication_2 - tempo_indication_1
     assert result == contexttools.TempoMark(Duration(1, 4), 6)
-
-

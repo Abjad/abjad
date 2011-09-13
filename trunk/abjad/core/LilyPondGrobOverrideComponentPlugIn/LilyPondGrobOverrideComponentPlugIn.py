@@ -136,4 +136,3 @@ class LilyPondGrobOverrideComponentPlugIn(_LilyPondComponentPlugIn):
                     _make_lilypond_revert_string(grob_name, attribute_name, context_name = context_name))
         result.sort( )
         return result
-

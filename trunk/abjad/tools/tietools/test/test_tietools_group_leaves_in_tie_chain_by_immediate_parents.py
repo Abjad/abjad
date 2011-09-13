@@ -57,5 +57,3 @@ def test_tietools_group_leaves_in_tie_chain_by_immediate_parents_03():
 
     assert len(parts) == 1
     assert parts[0] == [t]
-
-

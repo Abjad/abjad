@@ -74,6 +74,3 @@ class TrillSpanner(Spanner):
         def fset(self, arg):
             self.pitch = arg
         return property(**locals())
-
-
-

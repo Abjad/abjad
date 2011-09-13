@@ -10,5 +10,3 @@ def test_TempoMark_duration_01():
 
     tempo.duration = Duration(1, 4)
     assert tempo.duration == Duration(1, 4)
-
-

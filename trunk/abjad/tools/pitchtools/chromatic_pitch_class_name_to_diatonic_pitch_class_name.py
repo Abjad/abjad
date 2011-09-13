@@ -10,4 +10,3 @@ def chromatic_pitch_class_name_to_diatonic_pitch_class_name(chromatic_pitch_clas
     '''
 
     return chromatic_pitch_class_name[0]
-

@@ -58,6 +58,3 @@ def test_Measure___cmp___03():
     assert py.test.raises(NotImplementedError, comparison_string)
     comparison_string = "measure >= 'foo'"
     assert py.test.raises(NotImplementedError, comparison_string)
-
-
-

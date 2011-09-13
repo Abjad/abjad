@@ -9,4 +9,3 @@ def test_MelodicChromaticIntervalSegment_melodic_chromatic_interval_class_segmen
 
     numbers = [2, 2, 1, 2, 2, 2, 1]
     assert mcicseg == pitchtools.MelodicChromaticIntervalClassSegment(numbers)
-

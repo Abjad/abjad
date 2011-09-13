@@ -69,5 +69,3 @@ def test__Leaf_number_05():
     assert t[1].leaf_index == 1
     assert t[2].leaf_index == 2
     assert t[3].leaf_index == 3
-
-

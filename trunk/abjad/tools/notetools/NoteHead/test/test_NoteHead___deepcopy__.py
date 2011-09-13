@@ -15,5 +15,3 @@ def test_NoteHead___deepcopy___01():
     assert note_head_1 is not note_head_2
     assert note_head_1.tweak == note_head_2.tweak
     assert note_head_1.tweak is not note_head_2.tweak
-
-

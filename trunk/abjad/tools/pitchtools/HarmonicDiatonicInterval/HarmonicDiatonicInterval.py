@@ -119,4 +119,3 @@ class HarmonicDiatonicInterval(_DiatonicInterval, _HarmonicInterval):
         if self.quality_string == 'perfect' and self.number == 1:
             return 0
         return abs(_DiatonicInterval.staff_spaces.fget(self))
-

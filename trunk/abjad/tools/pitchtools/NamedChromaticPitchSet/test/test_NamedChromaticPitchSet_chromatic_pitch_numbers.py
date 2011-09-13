@@ -16,4 +16,3 @@ def test_NamedChromaticPitchSet_chromatic_pitch_numbers_02():
 
     pitch_set = pitchtools.NamedChromaticPitchSet([-10])
     assert pitch_set.chromatic_pitch_numbers == (-10, )
-

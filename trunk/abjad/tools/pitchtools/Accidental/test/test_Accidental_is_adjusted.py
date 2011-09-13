@@ -12,4 +12,3 @@ def test_Accidental_is_adjusted_02():
     assert not pitchtools.Accidental('natural').is_adjusted
     assert not pitchtools.Accidental('!').is_adjusted
     assert not pitchtools.Accidental('').is_adjusted
-

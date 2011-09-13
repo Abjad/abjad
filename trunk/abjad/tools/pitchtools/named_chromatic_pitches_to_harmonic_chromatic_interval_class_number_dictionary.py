@@ -41,4 +41,3 @@ def named_chromatic_pitches_to_harmonic_chromatic_interval_class_number_dictiona
         vector[i] = intervals.count(i)
 
     return vector
-

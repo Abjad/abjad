@@ -30,4 +30,3 @@ def list_harmonic_diatonic_intervals_in_expr(expr):
         diatonic_intervals.append(diatonic_interval)
 
     return diatonic_intervals
-

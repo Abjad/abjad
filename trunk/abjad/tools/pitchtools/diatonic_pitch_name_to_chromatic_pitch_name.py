@@ -16,4 +16,3 @@ def diatonic_pitch_name_to_chromatic_pitch_name(diatonic_pitch_name):
         raise TypeError
 
     return diatonic_pitch_name
-

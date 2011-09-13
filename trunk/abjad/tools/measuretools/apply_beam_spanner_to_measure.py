@@ -44,6 +44,3 @@ def apply_beam_spanner_to_measure(measure):
 
     # return beam spanner
     return beam
-
-
-

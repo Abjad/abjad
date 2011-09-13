@@ -31,5 +31,3 @@ def test_contexttools_detach_context_marks_attached_to_component_01():
 
     assert componenttools.is_well_formed_component(staff)
     assert staff.format == '\\new Staff {\n\t\\clef "treble"\n\tc\'8\n\td\'8\n\te\'8\n\tf\'8\n}'
-
-

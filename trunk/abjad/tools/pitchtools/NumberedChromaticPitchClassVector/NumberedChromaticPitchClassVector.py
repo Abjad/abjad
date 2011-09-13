@@ -148,4 +148,3 @@ class NumberedChromaticPitchClassVector(_Vector):
                 pitch_class = pitchtools.NumberedChromaticPitchClass(pitch_class_number)
                 pitch_classes.append(pitch_class)
         return pitch_classes
-

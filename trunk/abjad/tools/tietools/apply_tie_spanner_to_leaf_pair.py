@@ -70,4 +70,3 @@ def apply_tie_spanner_to_leaf_pair(left, right):
         right_tie_spanner.append_left(left)
     elif left_tie_spanner is None and right_tie_spanner is None:
         TieSpanner([left, right])
-

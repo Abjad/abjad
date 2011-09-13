@@ -20,4 +20,3 @@ def rational_to_fraction_string(rational):
         raise TypeError('must be rational.')
 
     return '%s/%s' % (rational.numerator, rational.denominator)
-

@@ -38,4 +38,3 @@ def get_marks_attached_to_component(component):
     marks = tuple(marks)
 
     return marks
-

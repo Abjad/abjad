@@ -20,5 +20,3 @@ def test_notetools_label_notes_in_expr_with_note_indices_01():
     '''
 
     assert staff.format == "\\new Staff {\n\tc'8 _ \\markup { \\small 0 }\n\td'8 _ \\markup { \\small 1 }\n\tr8\n\tr8\n\tg'8 _ \\markup { \\small 2 }\n\ta'8 _ \\markup { \\small 3 }\n\tr8\n\tc''8 _ \\markup { \\small 4 }\n}"
-
-

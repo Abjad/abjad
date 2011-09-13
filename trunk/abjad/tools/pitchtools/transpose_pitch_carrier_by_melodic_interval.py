@@ -45,4 +45,3 @@ def transpose_pitch_carrier_by_melodic_interval(pitch_carrier, melodic_interval)
     else:
         melodic_interval = MelodicChromaticInterval(melodic_interval)
         return _transpose_pitch_carrier_by_melodic_chromatic_interval(pitch_carrier, melodic_interval)
-

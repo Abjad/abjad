@@ -75,5 +75,3 @@ def test_Note___copy___04():
     assert grace_container_1 is not grace_container_2
     assert grace_container_1.kind == grace_container_2.kind == 'after'
     assert note_2.format == "\\afterGrace\nc'4\n{\n\td'32\n}"
-
-

@@ -105,6 +105,3 @@ def test_StaffLinesSpanner_format_03():
     '''
 
     assert staff.format == "\\new Staff {\n\tc'8\n\t\\stopStaff\n\t\\override Staff.StaffSymbol #'line-positions = #'(-1.5 0 1.5)\n\t\\startStaff\n\td'8\n\te'8\n\t\\stopStaff\n\t\\revert Staff.StaffSymbol #'line-positions\n\t\\startStaff\n\tf'8\n\tg'8\n\ta'8\n\tb'8\n\tc''8\n}"
-
-
-

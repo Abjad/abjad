@@ -49,4 +49,3 @@ def rational_to_duration_pair_with_specified_integer_denominator(duration, integ
         return (new_numerator.numerator, new_denominator.numerator)
     else:
         return (n, d)
-

@@ -78,5 +78,3 @@ def make_piano_sketch_score_from_leaves(leaves, lowest_treble_pitch = NamedChrom
 
     # return score, treble staff, bass staff
     return score, treble_staff, bass_staff
-
-

@@ -7,6 +7,3 @@ def test_StaffLinesSpanner___init___01():
 
     spanner = spannertools.StaffLinesSpanner()
     assert isinstance(spanner, spannertools.StaffLinesSpanner)
-
-
-

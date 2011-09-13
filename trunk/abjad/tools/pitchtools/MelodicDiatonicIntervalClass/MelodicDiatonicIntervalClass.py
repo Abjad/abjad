@@ -111,4 +111,3 @@ class MelodicDiatonicIntervalClass(_DiatonicIntervalClass, _MelodicIntervalClass
             return ''
         else:
             return 'ascending'
-

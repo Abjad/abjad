@@ -29,4 +29,3 @@ def test_NamedChromaticPitchClass___init___03():
     npc = pitchtools.NamedChromaticPitchClass(note_head)
 
     assert npc == pitchtools.NamedChromaticPitchClass('c')
-

@@ -47,4 +47,3 @@ class InversionEquivalentChromaticIntervalClassSet(_IntervalClassSet):
     #def numbers(self):
     def inversion_equivalent_chromatic_interval_class_numbers(self):
         return set([interval_class.number for interval_class in self])
-

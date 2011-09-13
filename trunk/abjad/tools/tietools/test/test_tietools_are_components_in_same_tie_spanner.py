@@ -21,5 +21,3 @@ def test_tietools_are_components_in_same_tie_spanner_01():
     assert tietools.are_components_in_same_tie_spanner(t[:1])
     assert not tietools.are_components_in_same_tie_spanner(t[-1:])
     assert not tietools.are_components_in_same_tie_spanner(t[:])
-
-

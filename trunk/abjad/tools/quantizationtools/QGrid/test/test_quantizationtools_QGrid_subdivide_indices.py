@@ -9,4 +9,3 @@ def test_quantizationtools_QGrid_subdivide_indices_01():
     c = b.subdivide_indices([(0, 2), (2, 5)])
     assert b == QGrid([[0, 0], 0], 0)
     assert c == QGrid([[[0, 0], 0], [0, 0, 0, 0, 0]], 0)
-

@@ -6,4 +6,3 @@ def _note_nodes_contain_rests(nodes):
     if filter(lambda x: x.find('rest') is not None, nodes):
         return True
     return False
-

@@ -30,4 +30,3 @@ def test_MelodicChromaticInterval___init___04():
     diatonic_interval = pitchtools.MelodicDiatonicInterval('perfect', 4)
     i = pitchtools.MelodicChromaticInterval(diatonic_interval)
     assert i.number == 5
-

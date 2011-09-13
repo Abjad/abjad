@@ -9,6 +9,3 @@ def test_MultipartBeamSpanner___eq___01():
     spanner_2 = spannertools.MultipartBeamSpanner()
 
     assert not spanner_1 == spanner_2
-
-
-

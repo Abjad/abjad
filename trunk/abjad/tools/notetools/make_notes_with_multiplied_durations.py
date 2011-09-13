@@ -32,5 +32,3 @@ def make_notes_with_multiplied_durations(pitch, written_duration, multiplied_dur
 
     # return notes
     return notes
-
-

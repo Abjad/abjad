@@ -7,6 +7,3 @@ def test_TextScriptSpanner___init___01():
 
     spanner = spannertools.TextScriptSpanner()
     assert isinstance(spanner, spannertools.TextScriptSpanner)
-
-
-

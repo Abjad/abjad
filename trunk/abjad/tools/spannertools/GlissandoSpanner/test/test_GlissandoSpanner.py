@@ -18,7 +18,3 @@ def test_GlissandoSpanner_01():
         g'8
     }
     '''
-
-
-
-

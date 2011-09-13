@@ -47,6 +47,3 @@ def test_HairpinSpanner___copy___02():
         ef'8 \!
     }
     '''
-
-
-

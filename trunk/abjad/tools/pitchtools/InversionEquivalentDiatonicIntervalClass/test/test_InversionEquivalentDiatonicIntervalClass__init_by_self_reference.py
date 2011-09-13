@@ -8,4 +8,3 @@ def test_InversionEquivalentDiatonicIntervalClass__init_by_self_reference_01():
 
     assert str(dic_1) == 'M2'
     assert str(dic_2) == 'M2'
-

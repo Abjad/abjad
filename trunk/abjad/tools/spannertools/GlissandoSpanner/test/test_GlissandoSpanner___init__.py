@@ -7,6 +7,3 @@ def test_GlissandoSpanner___init___01():
 
     glissando = spannertools.GlissandoSpanner()
     assert isinstance(glissando, spannertools.GlissandoSpanner)
-
-
-

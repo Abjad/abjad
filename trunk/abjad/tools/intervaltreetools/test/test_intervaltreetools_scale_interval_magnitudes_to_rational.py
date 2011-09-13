@@ -20,4 +20,3 @@ def test_intervaltreetools_scale_interval_magnitudes_to_rational_02():
     scalar = Fraction(5, 2)
     scaled = scale_interval_magnitudes_by_rational(tree, scalar)
     assert scaled == tree
-

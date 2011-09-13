@@ -40,5 +40,3 @@ def test_NoteHead___init___04():
 
     assert note_head.written_pitch == pitchtools.NamedChromaticPitch("cs''")
     assert note_head.tweak == tweak
-
-

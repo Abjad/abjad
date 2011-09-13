@@ -14,4 +14,3 @@ def test_NamedChromaticPitchClass_numbered_chromatic_pitch_class_01():
 
     npc = pitchtools.NamedChromaticPitchClass('cqs')
     assert npc.numbered_chromatic_pitch_class == pitchtools.NumberedChromaticPitchClass(0.5)
-

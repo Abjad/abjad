@@ -23,4 +23,3 @@ def test_NamedChromaticPitchClassSet___eq___01():
     assert npc_set_1 == npc_set_2
     assert npc_set_1 != npc_set_3
     assert npc_set_2 != npc_set_3
-

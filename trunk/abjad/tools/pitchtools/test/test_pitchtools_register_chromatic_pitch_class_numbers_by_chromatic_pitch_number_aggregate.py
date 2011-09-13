@@ -9,4 +9,3 @@ def test_pitchtools_register_chromatic_pitch_class_numbers_by_chromatic_pitch_nu
     result = pitchtools.register_chromatic_pitch_class_numbers_by_chromatic_pitch_number_aggregate(pcs, pitches)
 
     assert result == [10, 24, 26, 30, 20, 19, 29, 27, 37, 33, 40, 23]
-

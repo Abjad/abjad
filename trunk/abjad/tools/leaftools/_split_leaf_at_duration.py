@@ -62,5 +62,3 @@ def _split_leaf_at_duration(leaf, split_dur, spanners = 'unfractured', tie_after
         tietools.apply_tie_spanner_to_leaf_pair(leaf_left_of_split, leaf_right_of_split)
 
     return left_leaf_list, right_leaf_list
-
-

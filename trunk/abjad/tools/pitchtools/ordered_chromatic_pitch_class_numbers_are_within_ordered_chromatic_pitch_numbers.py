@@ -22,4 +22,3 @@ def ordered_chromatic_pitch_class_numbers_are_within_ordered_chromatic_pitch_num
     pcs_transposition = chromatic_pitch_numbers[pcs_start_index] - chromatic_pitch_class_numbers[0]
     transposed_pcs = [p + pcs_transposition for p in chromatic_pitch_class_numbers]
     return set(transposed_pcs).issubset(set(chromatic_pitch_numbers))
-

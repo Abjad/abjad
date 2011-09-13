@@ -9,5 +9,3 @@ def test_NoteHead___setattr___01():
     note_head = notetools.NoteHead("cs''")
 
     assert py.test.raises(AttributeError, "note_head.foo = 'bar'")
-
-

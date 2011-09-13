@@ -43,8 +43,3 @@ def test_leaftools_label_leaves_in_expr_with_melodic_diatonic_intervals_02():
     '''
 
     assert staff.format == "\\new Staff {\n\tc'8 ^ \\markup { +aug8 }\n\tcs''8 ^ \\markup { -M2 }\n\tb'8 ^ \\markup { -aug2 }\n\taf'8 ^ \\markup { -dim5 }\n\td'8 ^ \\markup { +m2 }\n\tef'8 ^ \\markup { +aug4 }\n\ta'8 ^ \\markup { +m2 }\n\tbf'8 ^ \\markup { -dim4 }\n\tfs'8 ^ \\markup { -aug1 }\n\tf'8\n}"
-
-
-
-
-

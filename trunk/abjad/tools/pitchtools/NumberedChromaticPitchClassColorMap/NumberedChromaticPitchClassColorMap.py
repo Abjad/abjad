@@ -83,4 +83,3 @@ class NumberedChromaticPitchClassColorMap(_Immutable):
             return self[key]
         except (KeyError, TypeError, ValueError):
             return alternative
-

@@ -35,8 +35,3 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_01():
     assert leaftools.get_nth_leaf_in_thread_from_leaf(staff.leaves[0], 7) is None
 
     assert leaftools.get_nth_leaf_in_thread_from_leaf(staff.leaves[0], -1) is None
-
-
-
-
-

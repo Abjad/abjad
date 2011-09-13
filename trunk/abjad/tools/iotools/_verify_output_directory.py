@@ -7,4 +7,3 @@ def _verify_output_directory(directory):
         Abjad will now create it to store all generated output files. \n\
         Press any key to continue.' % directory)
         os.makedirs(directory)
-

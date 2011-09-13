@@ -9,5 +9,3 @@ def test_ContextMark___setattr___01():
     context_mark = contexttools.ContextMark()
 
     assert py.test.raises(AttributeError, "context_mark.foo = 'bar'")
-
-

@@ -23,5 +23,3 @@ def test_intervaltreetools_group_overlapping_intervals_and_yield_groups_01():
         actual_signatures.append(signature_group)
 
     assert actual_signatures == target_signatures
-
-

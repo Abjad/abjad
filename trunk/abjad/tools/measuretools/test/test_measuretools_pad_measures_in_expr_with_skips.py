@@ -151,6 +151,3 @@ def test_measuretools_pad_measures_in_expr_with_skips_03():
 
     assert componenttools.is_well_formed_component(t)
     assert t.format == "{\n\t\\time 19/64\n\ts32 [\n\tc'8\n\td'8\n\ts64 ]\n}"
-
-
-

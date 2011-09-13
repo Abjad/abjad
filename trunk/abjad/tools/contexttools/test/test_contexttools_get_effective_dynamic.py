@@ -20,5 +20,3 @@ def test_contexttools_get_effective_dynamic_01():
     assert contexttools.get_effective_dynamic(staff[1]) is None
     assert contexttools.get_effective_dynamic(staff[2]) == contexttools.DynamicMark('f')
     assert contexttools.get_effective_dynamic(staff[3]) == contexttools.DynamicMark('f')
-
-

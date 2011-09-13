@@ -18,4 +18,3 @@ def test_NamedChromaticPitchSet_is_pitch_class_unique_03():
 
     assert pitchtools.NamedChromaticPitchSet([]).is_pitch_class_unique
     assert pitchtools.NamedChromaticPitchSet([13]).is_pitch_class_unique
-

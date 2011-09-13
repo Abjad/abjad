@@ -96,4 +96,3 @@ class Duration(Fraction):
 
     def __truediv__(self, *args):
         return type(self)(Fraction.__truediv__(self, *args))
-

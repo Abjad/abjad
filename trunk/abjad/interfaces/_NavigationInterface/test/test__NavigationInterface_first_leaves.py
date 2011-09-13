@@ -55,4 +55,3 @@ def test__NavigationInterface_first_leaves_04( ):
     t.is_parallel = True
     leaves = t._navigator._first_leaves
     assert len(leaves) == 0
-

@@ -9,4 +9,3 @@ def test_NumberedChromaticPitchClassSet_multiply_01():
         pitchtools.NumberedChromaticPitchClassSet([5, 6, 10])
     assert pitchtools.NumberedChromaticPitchClassSet([2, 3, 7]).multiply(5) == \
         pitchtools.NumberedChromaticPitchClassSet([3, 10, 11])
-

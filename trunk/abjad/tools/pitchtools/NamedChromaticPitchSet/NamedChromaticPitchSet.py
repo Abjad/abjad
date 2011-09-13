@@ -107,4 +107,3 @@ class NamedChromaticPitchSet(_PitchSet):
         from abjad.tools import pitchtools
         interval = pitchtools.MelodicChromaticInterval(n)
         return type(self)([transpose_by_chromatic_interval(pitch, interval) for pitch in self])
-

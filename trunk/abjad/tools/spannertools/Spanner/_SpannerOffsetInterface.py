@@ -25,6 +25,3 @@ class _SpannerOffsetInterface(_StrictComparator):
             return last._offset.stop
         else:
             return Duration(0)
-
-
-

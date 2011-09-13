@@ -9,5 +9,3 @@ def test_Score___setattr___01():
     score = Score([])
 
     assert py.test.raises(AttributeError, "score.foo = 'bar'")
-
-

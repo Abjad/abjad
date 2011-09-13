@@ -52,6 +52,3 @@ def get_spanners_attached_to_component(component, klass = None):
         #return set([x for x in component.spanners.attached if isinstance(x, klass)])
         #return set([x for x in component.spanners._spanners if isinstance(x, klass)])
         return set([x for x in component.spanners if isinstance(x, klass)])
-
-
-

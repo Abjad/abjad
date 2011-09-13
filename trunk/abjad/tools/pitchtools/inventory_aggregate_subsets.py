@@ -54,4 +54,3 @@ def inventory_aggregate_subsets():
         result.append(subset)
 
     return result
-

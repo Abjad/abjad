@@ -10,5 +10,3 @@ def test_ClefMark_clef_name_01():
 
     clef.clef_name = 'alto'
     assert clef.clef_name == 'alto'
-
-

@@ -16,4 +16,3 @@ def test_NamedChromaticPitch_deviation_in_cents_02():
 
     p = pitchtools.NamedChromaticPitch('bf', 4, -12.4)
     assert p.deviation_in_cents == -12.4
-

@@ -33,4 +33,3 @@ def test_pitchtools_named_chromatic_pitch_and_clef_to_staff_position_number_02()
     pitch = pitchtools.NamedChromaticPitch('e', 4)
     number = pitchtools.named_chromatic_pitch_and_clef_to_staff_position_number(pitch, clef)
     assert number == 2
-

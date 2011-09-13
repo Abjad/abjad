@@ -15,4 +15,3 @@ def test_pitchtools_transpose_chromatic_pitch_by_melodic_chromatic_interval_segm
         NumberedChromaticPitch(-3),
         NumberedChromaticPitch(-3)
     ]
-

@@ -26,6 +26,3 @@ def test_measuretools_apply_beam_spanner_to_measure_01():
 
     assert componenttools.is_well_formed_component(measure)
     assert measure.format == "{\n\t\\time 2/8\n\tc'8 [\n\tc'8 ]\n}"
-
-
-

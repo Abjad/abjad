@@ -28,6 +28,3 @@ def test_measuretools_make_measures_with_full_measure_spacer_skips_01():
     '''
 
     assert t.format == '\\new Staff {\n\t{\n\t\t\\time 1/8\n\t\ts1 * 1/8\n\t}\n\t{\n\t\t\\time 5/16\n\t\ts1 * 5/16\n\t}\n\t{\n\t\t\\time 5/16\n\t\ts1 * 5/16\n\t}\n\t{\n\t\t\\time 1/4\n\t\ts1 * 1/4\n\t}\n}'
-
-
-

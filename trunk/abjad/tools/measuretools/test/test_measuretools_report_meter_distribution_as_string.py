@@ -36,6 +36,3 @@ def test_measuretools_report_meter_distribution_as_string_01():
     '''
 
     assert report == '\t1/8\t1\n\t3/16\t1\n\t5/16\t2\n'
-
-
-

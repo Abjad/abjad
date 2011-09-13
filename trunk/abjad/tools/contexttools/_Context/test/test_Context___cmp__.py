@@ -59,5 +59,3 @@ def test_Context___cmp___03():
     assert py.test.raises(NotImplementedError, comparison_string)
     comparison_string = "context >= 'foo'"
     assert py.test.raises(NotImplementedError, comparison_string)
-
-

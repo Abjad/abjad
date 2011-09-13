@@ -28,4 +28,3 @@ def test_LilypondContextProxy___eq___01( ):
     assert not context_proxy_3 == context_proxy_1
     assert not context_proxy_3 == context_proxy_2
     assert      context_proxy_3 == context_proxy_3
-

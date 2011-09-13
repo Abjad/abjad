@@ -142,6 +142,3 @@ def test_PianoPedalSpanner_07():
 
     assert py.test.raises(ValueError, 'p.kind = "abc"')
     assert py.test.raises(ValueError, 'p.style = "abc"')
-
-
-

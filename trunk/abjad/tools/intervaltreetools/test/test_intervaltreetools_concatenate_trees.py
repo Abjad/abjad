@@ -36,4 +36,3 @@ def test_intervaltreetools_concatenate_trees_02():
 
     assert actual_signatures == target_signatures
     assert concatenated.magnitude == tree_a.magnitude + tree_b.magnitude + Fraction(1, 2)
-

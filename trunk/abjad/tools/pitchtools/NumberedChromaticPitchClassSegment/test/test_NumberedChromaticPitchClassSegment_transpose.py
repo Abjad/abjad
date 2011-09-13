@@ -12,4 +12,3 @@ def test_NumberedChromaticPitchClassSegment_transpose_01():
     assert pcseg.transpose(3) == PCSeg([3, 9, 1, 7, 0, 5])
     assert pcseg.transpose(4) == PCSeg([4, 10, 2, 8, 1, 6])
     assert pcseg.transpose(5) == PCSeg([5, 11, 3, 9, 2, 7])
-

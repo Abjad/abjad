@@ -23,5 +23,3 @@ def test_contexttools_get_effective_instrument_01():
     assert contexttools.get_effective_instrument(staff[1]) == flute
     assert contexttools.get_effective_instrument(staff[2]) == flute
     assert contexttools.get_effective_instrument(staff[3]) == flute
-
-

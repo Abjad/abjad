@@ -19,6 +19,3 @@ def test_measuretools_get_one_indexed_measure_number_in_expr_02():
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
     assert py.test.raises(ValueError, 'measuretools.get_one_indexed_measure_number_in_expr(t, -1)')
-
-
-

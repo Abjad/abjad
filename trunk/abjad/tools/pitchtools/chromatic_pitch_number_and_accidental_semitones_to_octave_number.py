@@ -18,4 +18,3 @@ def chromatic_pitch_number_and_accidental_semitones_to_octave_number(
     '''
 
     return int(math.floor((chromatic_pitch_number - accidental_semitones) / 12)) + 4
-

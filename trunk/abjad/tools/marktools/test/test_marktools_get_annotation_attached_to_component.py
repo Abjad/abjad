@@ -24,4 +24,3 @@ def test_marktools_get_annotation_attached_to_component_03():
     marktools.Annotation('more special information')(note)
 
     assert py.test.raises(ExtraMarkError, 'marktools.get_annotation_attached_to_component(note)')
-

@@ -33,6 +33,3 @@ def get_first_measure_in_proper_parentage_of_component(component):
 
     return componenttools.get_first_instance_of_klass_in_proper_parentage_of_component(
         component, Measure)
-
-
-

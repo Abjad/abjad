@@ -37,6 +37,3 @@ def get_spanners_attached_to_any_proper_parent_of_component(component, klass = N
             elif isinstance(spanner, klass):
                 result.add(spanner)
     return result
-
-
-

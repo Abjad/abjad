@@ -124,5 +124,3 @@ def test_contexttools_get_effective_clef_08():
 
     for leaf in t:
         assert contexttools.get_effective_clef(leaf) is None
-
-

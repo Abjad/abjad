@@ -9,4 +9,3 @@ def test_Articulation___setattr___01():
     articulation = marktools.Articulation('staccato')
 
     assert py.test.raises(AttributeError, "articulation.foo = 'bar'")
-

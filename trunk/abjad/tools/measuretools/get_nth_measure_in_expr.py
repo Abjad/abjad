@@ -56,6 +56,3 @@ def get_nth_measure_in_expr(expr, n = 0):
     '''
 
     return get_nth_component_in_expr(expr, Measure, n)
-
-
-

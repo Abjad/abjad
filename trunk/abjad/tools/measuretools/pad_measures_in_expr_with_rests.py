@@ -124,6 +124,3 @@ def pad_measures_in_expr_with_rests(expr, front, back, splice = False):
     klass_token = Rest((1, 4))
     result = _insert_measure_padding(expr, front, back, klass_token, splice = splice)
     return result
-
-
-

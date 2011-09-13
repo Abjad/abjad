@@ -71,6 +71,3 @@ def test_Measure_special_prolation_06():
     assert t.leaves[0].prolated_duration == Duration(1, 5)
     assert t.leaves[1].written_duration == Duration(1, 4)
     assert t.leaves[1].prolated_duration == Duration(4, 45)
-
-
-

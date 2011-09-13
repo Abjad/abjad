@@ -51,4 +51,3 @@ def _transpose_pitch_carrier_by_melodic_chromatic_interval(pitch_carrier, melodi
     else:
         #raise TypeError('must be Abjad pitch, note or chord.')
         return pitch_carrier
-

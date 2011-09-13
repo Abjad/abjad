@@ -25,4 +25,3 @@ def test_quantizationtools_QGrid___new___01():
 
     # tuple of Numbers
     t = QGrid([(0, 0.5, Fraction(-1, 4))], 0)
-

@@ -35,4 +35,3 @@ def test_MelodicDiatonicInterval_staff_spaces_02():
     assert pitchtools.MelodicDiatonicInterval('minor', -7).staff_spaces == -6
     assert pitchtools.MelodicDiatonicInterval('major', -7).staff_spaces == -6
     assert pitchtools.MelodicDiatonicInterval('perfect', -8).staff_spaces == -7
-

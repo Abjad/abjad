@@ -35,4 +35,3 @@ def test_pitchtools_apply_octavation_spanner_to_pitched_components_02():
     """
 
     assert t.format == "\\new Voice {\n\t\\ottava #1\n\tg'''4\n\t\\ottava #0\n}"
-

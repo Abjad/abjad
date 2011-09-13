@@ -120,4 +120,3 @@ def _make_new_notes(anchor_pitch, anchor_written_duration, subrun_intervals):
         new_note = notetools.Note(new_pc, anchor_written_duration)
         new_notes.append(new_note)
     return new_notes
-

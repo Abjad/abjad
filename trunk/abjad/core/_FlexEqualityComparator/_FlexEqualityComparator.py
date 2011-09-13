@@ -30,4 +30,3 @@ class _FlexEqualityComparator(_StrictComparator):
             except (ValueError, TypeError):
                 return False
         return arg
-

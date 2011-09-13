@@ -8,6 +8,3 @@ def test_spannertools_iterate_components_forward_in_spanner_01():
 
     notes = spannertools.iterate_components_forward_in_spanner(spanner, klass = Note)
     assert list(notes) == t[2:]
-
-
-

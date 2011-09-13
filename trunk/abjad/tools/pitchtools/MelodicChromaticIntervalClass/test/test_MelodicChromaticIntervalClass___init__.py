@@ -46,4 +46,3 @@ def test_MelodicChromaticIntervalClass___init___04():
     assert repr(mcic) == 'MelodicChromaticIntervalClass(+12)'
     assert str(mcic) == '+12'
     assert mcic.number == 12
-

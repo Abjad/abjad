@@ -67,5 +67,3 @@ And longas.
 .. note::
 
     Abjad allows maxima note_heads as in `Note(0, (8, 1))`. LilyPond implements a `\maxima` command but does not supply a corresponding glyph for the note_head.
-
-

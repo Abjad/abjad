@@ -7,6 +7,3 @@ def test_OctavationSpanner___init___01():
 
     octavation = spannertools.OctavationSpanner()
     assert isinstance(octavation, spannertools.OctavationSpanner)
-
-
-

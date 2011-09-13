@@ -36,5 +36,3 @@ def get_effective_key_signature(component):
     '''
 
     return get_effective_context_mark(component, KeySignatureMark)
-
-

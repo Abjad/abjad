@@ -10,5 +10,3 @@ def test_KeySignatureMark___init___01():
 
     assert ks.tonic == pitchtools.NamedChromaticPitchClass('g')
     assert ks.mode == tonalitytools.Mode('major')
-
-

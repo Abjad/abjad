@@ -79,5 +79,3 @@ def tie_chain_to_augmented_tuplet_with_proportions_and_avoid_dots(tie_chain, pro
     prolation, dotted = 'augmentation', False
     #return _tie_chain_arbitrarily(tie_chain, proportions, prolation, dotted)
     return _tie_chain_to_tuplet(tie_chain, proportions, prolation, dotted)
-
-

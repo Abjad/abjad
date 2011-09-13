@@ -46,6 +46,3 @@ def test_Spanner_pop_01():
 
     assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [\n\t\td'8\n\t}\n\t{\n\t\te'8\n\t\tf'8 ]\n\t}\n\t{\n\t\tg'8\n\t\ta'8\n\t}\n}"
     assert result is t[-1]
-
-
-

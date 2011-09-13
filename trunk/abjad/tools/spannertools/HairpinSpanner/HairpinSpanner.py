@@ -231,6 +231,3 @@ class HairpinSpanner(Spanner):
         Return boolean.
         '''
         return arg in HairpinSpanner._hairpin_shape_strings
-
-
-

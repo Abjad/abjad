@@ -9,4 +9,3 @@ def test_NumberedChromaticPitchClassSet_inversion_equivalent_chromatic_interval_
     "IntervalClassVector(0 | 1 4 2 4 2 2)"
 
     assert pcset.inversion_equivalent_chromatic_interval_class_vector == icvector
-

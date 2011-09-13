@@ -61,6 +61,3 @@ def get_spanners_attached_to_any_improper_child_of_component(component, klass = 
 
     # return result
     return result
-
-
-

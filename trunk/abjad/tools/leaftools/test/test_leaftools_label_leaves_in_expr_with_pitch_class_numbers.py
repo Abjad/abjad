@@ -41,8 +41,3 @@ def test_leaftools_label_leaves_in_expr_with_pitch_class_numbers_02():
 
     assert componenttools.is_well_formed_component(t)
     assert t.format == "\\new Staff {\n\t\\once \\override NoteHead #'color = #(x11-color 'red)\n\tc'8\n\t\\once \\override NoteHead #'color = #(x11-color 'orange)\n\td'8\n\t\\once \\override NoteHead #'color = #(x11-color 'ForestGreen)\n\te'8\n\t\\once \\override NoteHead #'color = #(x11-color 'MediumOrchid)\n\tf'8\n}"
-
-
-
-
-

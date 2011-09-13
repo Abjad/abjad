@@ -68,6 +68,3 @@ def append_spacer_skips_to_underfull_measures_in_expr(expr):
             append_spacer_skip_to_underfull_measure(rigid_measure)
             treated_measures.append(rigid_measure)
     return treated_measures
-
-
-

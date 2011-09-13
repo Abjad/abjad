@@ -15,4 +15,3 @@ def test_NumberedChromaticPitchClass_invert_01():
     assert pitchtools.NumberedChromaticPitchClass(9).invert() == pitchtools.NumberedChromaticPitchClass(3)
     assert pitchtools.NumberedChromaticPitchClass(10).invert() == pitchtools.NumberedChromaticPitchClass(2)
     assert pitchtools.NumberedChromaticPitchClass(11).invert() == pitchtools.NumberedChromaticPitchClass(1)
-

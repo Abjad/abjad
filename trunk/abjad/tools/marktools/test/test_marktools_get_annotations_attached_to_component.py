@@ -18,4 +18,3 @@ def test_marktools_get_annotations_attached_to_component_01():
 
     annotations = marktools.get_annotations_attached_to_component(staff[0])
     assert annotations == (annotation_1, annotation_2)
-

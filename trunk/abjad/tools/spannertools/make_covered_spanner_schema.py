@@ -61,6 +61,3 @@ def make_covered_spanner_schema(components):
                 pass
 
     return schema
-
-
-

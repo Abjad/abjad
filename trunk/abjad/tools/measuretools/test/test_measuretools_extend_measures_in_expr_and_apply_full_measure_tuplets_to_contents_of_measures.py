@@ -47,6 +47,3 @@ def test_measuretools_extend_measures_in_expr_and_apply_full_measure_tuplets_to_
 
     assert componenttools.is_well_formed_component(t)
     assert t.format == "{\n\t\\time 4/8\n\t\\times 2/3 {\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tr4\n\t}\n}"
-
-
-

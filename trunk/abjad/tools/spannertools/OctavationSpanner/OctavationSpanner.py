@@ -88,6 +88,3 @@ class OctavationSpanner(Spanner):
             assert isinstance(arg, (int, type(None)))
             self._stop = arg
         return property(**locals())
-
-
-

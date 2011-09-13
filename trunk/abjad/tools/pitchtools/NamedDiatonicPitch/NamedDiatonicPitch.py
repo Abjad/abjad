@@ -256,4 +256,3 @@ class NamedDiatonicPitch(_DiatonicPitch):
         from abjad.tools import pitchtools
         tmp = pitchtools.diatonic_pitch_name_to_diatonic_pitch_class_number
         return pitchtools.NumberedDiatonicPitchClass(tmp(self._diatonic_pitch_name))
-

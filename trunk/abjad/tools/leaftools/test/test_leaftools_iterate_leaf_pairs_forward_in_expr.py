@@ -50,8 +50,3 @@ def test_leaftools_iterate_leaf_pairs_forward_in_expr_01():
     assert pairs[12] == (score[1][1], score[0][4])
     assert pairs[13] == (score[1][1], score[1][2])
     assert pairs[14] == (score[0][4], score[1][2])
-
-
-
-
-

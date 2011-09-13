@@ -36,4 +36,3 @@ def test_NamedChromaticPitchClassSet___init___03():
         pitchtools.NamedChromaticPitchClass('cs')])
 
     assert npc_set_1 == npc_set_2
-

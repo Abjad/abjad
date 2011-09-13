@@ -43,4 +43,3 @@ def suggest_clef_for_named_chromatic_pitches(pitches, clefs = ['treble', 'bass']
         return contexttools.ClefMark('bass')
     else:
         return contexttools.ClefMark('treble')
-

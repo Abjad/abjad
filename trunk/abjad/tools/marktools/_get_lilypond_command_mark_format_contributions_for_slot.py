@@ -9,4 +9,3 @@ def _get_lilypond_command_mark_format_contributions_for_slot(component, slot):
         if comment_mark._format_slot == slot:
             result.append(comment_mark.format)
     return ['lilypond command marks', result]
-

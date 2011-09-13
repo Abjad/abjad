@@ -14,5 +14,3 @@ def test_ClefMark___init___01():
 def test_ClefMark___init___02():
 
     assert py.test.raises(TypeError, 'contexttools.ClefMark(1)')
-
-

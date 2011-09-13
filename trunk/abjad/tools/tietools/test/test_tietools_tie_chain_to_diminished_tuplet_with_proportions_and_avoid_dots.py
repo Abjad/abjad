@@ -74,5 +74,3 @@ def test_tietools_tie_chain_to_diminished_tuplet_with_proportions_and_avoid_dots
 
     assert componenttools.is_well_formed_component(t)
     assert t.format == "\\new Staff {\n\t\\fraction \\times 3/5 {\n\t\tc'16 [\n\t\tc'8\n\t\tc'8\n\t}\n\tc'16 ]\n}"
-
-

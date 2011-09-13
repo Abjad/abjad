@@ -46,6 +46,3 @@ def integer_tempo_to_multiplier_tempo_pairs(integer_tempo,
                 pairs.append(pair)
     pairs.sort()
     return pairs
-
-
-

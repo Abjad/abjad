@@ -22,6 +22,3 @@ def move_spanners_from_component_to_children_of_component(donor):
         donor._spanners.discard(spanner)
 
     return donor
-
-
-

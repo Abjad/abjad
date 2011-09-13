@@ -129,4 +129,3 @@ class MelodicChromaticInterval(_ChromaticInterval, _MelodicInterval):
         '''
         from abjad.tools import pitchtools
         return pitchtools.MelodicChromaticIntervalClass(self)
-

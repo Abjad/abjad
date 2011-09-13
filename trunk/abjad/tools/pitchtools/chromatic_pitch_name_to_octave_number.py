@@ -25,4 +25,3 @@ def chromatic_pitch_name_to_octave_number(chromatic_pitch_name):
     octave_number = octave_tick_string_to_octave_number(tick_string)
 
     return octave_number
-

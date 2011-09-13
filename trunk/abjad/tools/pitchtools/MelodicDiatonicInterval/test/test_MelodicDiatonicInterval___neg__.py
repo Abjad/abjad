@@ -11,4 +11,3 @@ def test_MelodicDiatonicInterval___neg___02():
 
     interval = pitchtools.MelodicDiatonicInterval('minor', -3)
     assert -interval == pitchtools.MelodicDiatonicInterval('minor', 3)
-

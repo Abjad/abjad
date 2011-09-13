@@ -52,6 +52,3 @@ def get_prev_measure_from_component(component):
     '''
 
     return _get_measure_from_component(component, '_prev')
-
-
-

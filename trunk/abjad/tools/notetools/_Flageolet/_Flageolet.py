@@ -12,5 +12,3 @@ class _Flageolet(object):
         '''Actual sound of the harmonic when played.
         '''
         raise Exception('Not Implemented')
-
-

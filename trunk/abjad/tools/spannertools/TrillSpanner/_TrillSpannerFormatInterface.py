@@ -29,6 +29,3 @@ class _TrillSpannerFormatInterface(_SpannerFormatInterface):
         if spanner._is_my_last_leaf(leaf):
             result.append(r'\stopTrillSpan')
         return result
-
-
-

@@ -21,6 +21,3 @@ def test_spannertools_get_spanners_attached_to_any_proper_parent_of_component_01
         set([trill])
     assert spannertools.get_spanners_attached_to_any_proper_parent_of_component(staff) == \
         set([])
-
-
-

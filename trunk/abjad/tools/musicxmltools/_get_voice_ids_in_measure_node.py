@@ -10,5 +10,3 @@ def _get_voice_ids_in_measure_node(node):
         if id is not None and id not in ids:
             ids.append(id)
     return tuple(ids)
-
-

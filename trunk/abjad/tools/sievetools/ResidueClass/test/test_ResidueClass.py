@@ -85,5 +85,3 @@ def test_ResidueClass_08():
 
     assert t.get_boolean_train(12) == [1] * 12
     assert t.get_boolean_train(-2, 12) == [1] * 14
-
-

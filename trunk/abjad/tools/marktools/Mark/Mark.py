@@ -160,4 +160,3 @@ class Mark(object):
         '''
         self.__unbind_start_component()
         return self
-

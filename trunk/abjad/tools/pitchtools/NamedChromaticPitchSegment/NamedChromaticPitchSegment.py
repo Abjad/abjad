@@ -176,4 +176,3 @@ class NamedChromaticPitchSegment(_PitchSegment):
         and emit new pitch segment.'''
         pitches = [pitch + melodic_interval for pitch in self]
         return type(self)(pitches)
-

@@ -22,4 +22,3 @@ def test_Statement_03( ):
     code = ['x = 3', 'y = x * 2']
     t = Statement(text, code)
     assert t.code == code
-

@@ -17,6 +17,3 @@ def _get_contemporaneous_measure(container, direction):
         if contents:
             return contents[0]
         raise MissingMeasureError
-
-
-

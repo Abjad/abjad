@@ -62,6 +62,3 @@ def test_TrillSpanner_pitch_03():
 
     assert componenttools.is_well_formed_component(t)
     assert t.format == "\\new Staff {\n\tc'8 \\startTrillSpan\n\td'8 \\stopTrillSpan\n\te'8\n\tf'8\n}"
-
-
-

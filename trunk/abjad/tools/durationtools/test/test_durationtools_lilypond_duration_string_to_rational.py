@@ -16,4 +16,3 @@ def test_durationtools_lilypond_duration_string_to_rational_02():
     assert durationtools.lilypond_duration_string_to_rational(r'\breve.') == Fraction(3, 1)
     assert durationtools.lilypond_duration_string_to_rational(r'\breve..') == Fraction(7, 2)
     assert durationtools.lilypond_duration_string_to_rational(r'\breve...') == Fraction(15, 4)
-

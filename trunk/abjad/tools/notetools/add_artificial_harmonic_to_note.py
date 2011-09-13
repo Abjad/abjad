@@ -61,5 +61,3 @@ def add_artificial_harmonic_to_note(note, melodic_diatonic_interval = perfect_fo
     chord[1].tweak.style = 'harmonic'
     componenttools.move_parentage_and_spanners_from_components_to_components([note], [chord])
     return chord
-
-

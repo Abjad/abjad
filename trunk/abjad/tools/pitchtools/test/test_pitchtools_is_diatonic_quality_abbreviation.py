@@ -14,4 +14,3 @@ def test_pitchtools_is_diatonic_quality_abbreviation_02():
 
     assert not pitchtools.is_diatonic_quality_abbreviation('x')
     assert not pitchtools.is_diatonic_quality_abbreviation(17)
-

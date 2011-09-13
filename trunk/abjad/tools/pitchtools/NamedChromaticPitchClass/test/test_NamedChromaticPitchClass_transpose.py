@@ -19,4 +19,3 @@ def test_NamedChromaticPitchClass_transpose_01():
 
     new = npc.transpose(pitchtools.MelodicDiatonicInterval('major', -2))
     new == pitchtools.NamedChromaticPitchClass('bf')
-

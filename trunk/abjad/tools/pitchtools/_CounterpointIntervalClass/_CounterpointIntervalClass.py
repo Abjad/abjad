@@ -18,4 +18,3 @@ class _CounterpointIntervalClass(_IntervalClass, _Counterpoint):
 
     def __int__(self):
         return self._number
-

@@ -33,8 +33,3 @@ def test_leaftools_get_composite_offset_series_from_leaves_in_expr_01():
 
     result = leaftools.get_composite_offset_series_from_leaves_in_expr(score)
     assert result == [Duration(0, 1), Duration(1, 12), Duration(1, 8), Duration(1, 6), Duration(1, 4), Duration(1, 3), Duration(3, 8), Duration(5, 12), Duration(1, 2)]
-
-
-
-
-

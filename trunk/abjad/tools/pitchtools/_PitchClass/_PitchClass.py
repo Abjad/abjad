@@ -12,4 +12,3 @@ class _PitchClass(_Immutable, _FlexEqualityComparator):
 
     def __hash__(self):
         return hash(repr(self))
-

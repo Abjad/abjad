@@ -25,6 +25,3 @@ class _OctavationSpannerFormatInterface(_SpannerFormatInterface):
         if spanner._is_my_first_leaf(leaf):
             result.append(r'\ottava #%s' % spanner.start)
         return result
-
-
-

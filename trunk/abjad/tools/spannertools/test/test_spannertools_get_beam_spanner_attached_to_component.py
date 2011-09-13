@@ -31,6 +31,3 @@ def test_spannertools_get_beam_spanner_attached_to_component_03():
     spannertools.BeamSpanner(staff.leaves)
 
     assert py.test.raises(ExtraSpannerError, 'spannertools.get_beam_spanner_attached_to_component(staff[0])')
-
-
-

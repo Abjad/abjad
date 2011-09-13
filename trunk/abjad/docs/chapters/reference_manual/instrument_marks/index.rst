@@ -179,4 +179,3 @@ to get the short instrument name of any instrument mark:
 
 	abjad> instrument_mark.short_instrument_name
 	Markup('Fl. ')
-

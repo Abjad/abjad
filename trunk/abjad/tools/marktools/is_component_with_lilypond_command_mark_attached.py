@@ -34,4 +34,3 @@ def is_component_with_lilypond_command_mark_attached(expr, command_name = None):
                 return True
 
     return False
-

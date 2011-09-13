@@ -19,4 +19,3 @@ class MelodicChromaticIntervalClassSegment(_IntervalClassSegment):
             mcic = pitchtools.MelodicChromaticIntervalClass(mcic_token)
             mcics.append(mcic)
         return tuple.__new__(self, mcics)
-

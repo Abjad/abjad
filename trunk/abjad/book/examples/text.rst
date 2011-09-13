@@ -19,4 +19,3 @@ Notice that in the second block of abjad code I can reference objects and variab
 
 
 And a final paragraph.
-

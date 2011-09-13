@@ -20,4 +20,3 @@ def all_are_chromatic_pitch_class_name_octave_number_pairs(expr):
         if all([is_named_chromatic_pitch_token(x) for x in expr]):
             return True
     return False
-

@@ -74,8 +74,3 @@ def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_big_endian_03():
       tietools.get_tie_chain(t))
     assert len(result) == 1
     assert componenttools.is_well_formed_component(t)
-
-
-
-
-

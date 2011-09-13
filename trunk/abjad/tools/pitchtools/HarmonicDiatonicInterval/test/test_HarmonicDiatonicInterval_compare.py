@@ -23,4 +23,3 @@ def test_HarmonicDiatonicInterval_compare_02():
     assert not hdi_1 >=  hdi_2
     assert      hdi_1 <  hdi_2
     assert      hdi_1 <= hdi_2
-

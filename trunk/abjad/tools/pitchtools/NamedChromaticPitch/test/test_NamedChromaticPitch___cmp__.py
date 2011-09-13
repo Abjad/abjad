@@ -103,4 +103,3 @@ def test_NamedChromaticPitch___cmp___09():
     assert      p1 >= p2
     assert not p1 <  p2
     assert not p1 <= p2
-

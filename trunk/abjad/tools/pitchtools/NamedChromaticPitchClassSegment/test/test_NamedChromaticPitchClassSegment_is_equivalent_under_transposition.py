@@ -18,4 +18,3 @@ def test_NamedChromaticPitchClassSegment_is_equivalent_under_transposition_01():
     assert not npc_seg_3.is_equivalent_under_transposition(npc_seg_1)
     assert not npc_seg_3.is_equivalent_under_transposition(npc_seg_2)
     assert npc_seg_3.is_equivalent_under_transposition(npc_seg_3)
-

@@ -122,5 +122,3 @@ def test__Leaf_set_minus_12():
     assert isinstance(v, Note)
     assert v.written_pitch == 2
     assert t is not u is not v
-
-

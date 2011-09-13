@@ -45,4 +45,3 @@ def test_Accidental___init___07():
     assert pitchtools.Accidental('#') == pitchtools.Accidental('sharp')
     assert pitchtools.Accidental('b') == pitchtools.Accidental('flat')
     assert pitchtools.Accidental('bb') == pitchtools.Accidental('double flat')
-

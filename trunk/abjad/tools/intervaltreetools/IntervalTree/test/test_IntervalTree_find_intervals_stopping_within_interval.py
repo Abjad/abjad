@@ -122,4 +122,3 @@ def test_IntervalTree_find_intervals_stopping_within_interval_10():
         tree = IntervalTree(blocks)
         actual_blocks = tree.find_intervals_stopping_within_interval(target_interval)
         assert expected_blocks == actual_blocks
-

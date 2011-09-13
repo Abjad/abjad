@@ -51,6 +51,3 @@ def test_notetools_make_percussion_note_04():
     assert t[1].written_duration == Duration(1, 32)
     assert not tietools.is_component_with_tie_spanner_attached(t[0])
     assert not tietools.is_component_with_tie_spanner_attached(t[1])
-
-
-

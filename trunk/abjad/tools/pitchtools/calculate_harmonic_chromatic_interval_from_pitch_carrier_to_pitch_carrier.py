@@ -20,4 +20,3 @@ def calculate_harmonic_chromatic_interval_from_pitch_carrier_to_pitch_carrier(
 
     # return harmonic chromatic interval
     return mci.harmonic_chromatic_interval
-

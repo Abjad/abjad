@@ -88,4 +88,3 @@ class HarmonicChromaticIntervalClassVector(_Vector):
             if self[chromatic_interval_number]:
                 return False
         return True
-

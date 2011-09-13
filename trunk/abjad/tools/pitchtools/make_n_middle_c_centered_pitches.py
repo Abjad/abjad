@@ -36,4 +36,3 @@ def make_n_middle_c_centered_pitches(n):
     tups = [divmod(x, 7) for x in centered]
     pitch_names = [letters[x[1]] + octave_number_to_octave_tick_string(x[0] + 4) for x in tups]
     return [NamedChromaticPitch(x) for x in pitch_names]
-

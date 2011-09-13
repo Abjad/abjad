@@ -198,5 +198,3 @@ class TempoMark(ContextMark):
             assert isinstance(units_per_minute, numbers.Number)
             self._units_per_minute = units_per_minute
         return property(**locals())
-
-

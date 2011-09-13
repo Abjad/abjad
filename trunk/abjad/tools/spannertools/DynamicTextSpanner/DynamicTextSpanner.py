@@ -59,6 +59,3 @@ class DynamicTextSpanner(Spanner):
             assert isinstance(arg, str)
             self._mark = arg
         return property(**locals())
-
-
-

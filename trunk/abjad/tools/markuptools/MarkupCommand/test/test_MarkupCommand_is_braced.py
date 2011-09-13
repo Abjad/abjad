@@ -14,4 +14,3 @@ def test_MarkupCommand_is_braced_02():
 def test_MarkupCommand_is_braced_03():
     mc = markuptools.MarkupCommand('concat', None, ['one', 'two', 'three'], is_braced = True)
     assert mc.is_braced == True
-

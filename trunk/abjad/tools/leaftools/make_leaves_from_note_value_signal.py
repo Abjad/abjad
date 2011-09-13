@@ -47,5 +47,3 @@ def make_leaves_from_note_value_signal(
         result.extend(leaves)
 
     return result
-
-

@@ -43,5 +43,3 @@ def is_bar_line_crossing_leaf(leaf):
         return True
 
     return False
-
-

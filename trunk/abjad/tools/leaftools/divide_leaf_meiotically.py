@@ -65,5 +65,3 @@ def divide_leaf_meiotically(leaf, n = 2):
     leaf.written_duration *= adjustment_multiplier
     for new_leaf in new_leaves:
         new_leaf.written_duration *= adjustment_multiplier
-
-

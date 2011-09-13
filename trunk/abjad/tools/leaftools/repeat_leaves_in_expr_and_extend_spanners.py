@@ -49,5 +49,3 @@ def repeat_leaves_in_expr_and_extend_spanners(expr, total = 1):
 
     for leaf in iterate_leaves_backward_in_expr(expr):
         repeat_leaf_and_extend_spanners(leaf, total)
-
-

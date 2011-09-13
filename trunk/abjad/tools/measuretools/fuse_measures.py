@@ -123,6 +123,3 @@ def fuse_measures(measures):
         parent.insert(start, new_measure)
 
     return new_measure
-
-
-

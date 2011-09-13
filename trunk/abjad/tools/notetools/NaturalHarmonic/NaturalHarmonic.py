@@ -32,5 +32,3 @@ class NaturalHarmonic(Note, _Flageolet):
 
     def __repr__(self):
         return '%s(%s, %s)' % (type(self).__name__, self.written_pitch, self._formatted_duration)
-
-

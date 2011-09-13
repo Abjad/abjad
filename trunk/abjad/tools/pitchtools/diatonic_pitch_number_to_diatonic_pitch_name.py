@@ -25,4 +25,3 @@ def diatonic_pitch_number_to_diatonic_pitch_name(diatonic_pitch_number):
     diatonic_pitch_name = diatonic_pitch_class_name + octave_tick_string
 
     return diatonic_pitch_name
-

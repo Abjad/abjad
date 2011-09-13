@@ -119,5 +119,3 @@ def _handle_read_write_property(property_host_name, property_host, property_name
     else:
         raise ValueError('unknonwn: "%s.%r".' % (property_host_name, attribute))
     return result
-
-

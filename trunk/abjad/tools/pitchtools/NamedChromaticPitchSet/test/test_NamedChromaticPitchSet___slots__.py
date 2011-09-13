@@ -10,4 +10,3 @@ def test_NamedChromaticPitchSet___slots___01():
     named_chromatic_pitch_set = pitchtools.NamedChromaticPitchSet(ncps)
 
     assert py.test.raises(AttributeError, "named_chromatic_pitch_set.foo = 'bar'")
-

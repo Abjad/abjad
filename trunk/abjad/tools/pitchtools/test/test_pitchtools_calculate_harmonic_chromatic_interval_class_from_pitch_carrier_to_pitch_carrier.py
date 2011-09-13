@@ -95,4 +95,3 @@ def test_pitchtools_calculate_harmonic_chromatic_interval_class_from_pitch_carri
     hcic = pitchtools.calculate_harmonic_chromatic_interval_class_from_pitch_carrier_to_pitch_carrier(
         pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(-2.5))
     assert hcic == pitchtools.HarmonicChromaticIntervalClass(2.5)
-

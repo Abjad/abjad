@@ -30,4 +30,3 @@ def test_pitchtools_get_numbered_chromatic_pitch_class_from_pitch_carrier_04():
     chord = Chord([13, 14, 15], (1, 4))
     assert py.test.raises(ExtraPitchError,
         'pitchtools.get_numbered_chromatic_pitch_class_from_pitch_carrier(chord)')
-

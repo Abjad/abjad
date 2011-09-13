@@ -96,6 +96,3 @@ def test_measuretools_move_measure_prolation_to_full_measure_tuplet_02():
 
     assert componenttools.is_well_formed_component(t)
     assert t.format == "{\n\t\\time 5/8\n\t\\fraction \\times 5/6 {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t\tg'8\n\t\ta'8\n\t}\n}"
-
-
-

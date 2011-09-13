@@ -23,4 +23,3 @@ def chromatic_pitch_name_to_diatonic_pitch_name(chromatic_pitch_name):
     diatonic_pitch_name = diatonic_pitch_class_name + octave_tick_string
 
     return diatonic_pitch_name
-

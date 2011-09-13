@@ -99,4 +99,3 @@ def test_pitchtools_calculate_melodic_chromatic_interval_class_from_pitch_carrie
     mcic = pitchtools.calculate_melodic_chromatic_interval_class_from_pitch_carrier_to_pitch_carrier(
         pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(9.5))
     assert mcic == pitchtools.MelodicChromaticIntervalClass(-2.5)
-

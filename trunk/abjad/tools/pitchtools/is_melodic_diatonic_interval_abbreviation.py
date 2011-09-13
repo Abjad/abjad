@@ -27,4 +27,3 @@ def is_melodic_diatonic_interval_abbreviation(expr):
         return False
 
     return bool(melodic_diatonic_interval_abbreviation_regex.match(expr))
-

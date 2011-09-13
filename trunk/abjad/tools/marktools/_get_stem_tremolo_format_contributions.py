@@ -15,4 +15,3 @@ def _get_stem_tremolo_format_contributions(component):
         result.append(stem_tremolo.format)
 
     return ['stem tremolo', result]
-

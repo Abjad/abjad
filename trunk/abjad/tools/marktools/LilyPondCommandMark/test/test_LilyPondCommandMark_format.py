@@ -159,4 +159,3 @@ def test_LilyPondCommandMark_format_11():
     marktools.LilyPondCommandMark('voiceOne')(t)
     marktools.LilyPondCommandMark('voiceTwo')(t[1])
     assert t.format == "\\new Voice {\n\t\\voiceOne\n\tc'8\n\t\\voiceTwo\n\tc'8\n\tc'8\n\tc'8\n}"
-

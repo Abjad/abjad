@@ -22,4 +22,3 @@ def expr_has_duplicate_numbered_chromatic_pitch_class(expr):
     pitch_classes = list_numbered_chromatic_pitch_classes_in_expr(expr)
     pitch_class_set = NumberedChromaticPitchClassSet(expr)
     return not len(pitch_classes) == len(pitch_class_set)
-

@@ -79,6 +79,3 @@ class StaffLinesSpanner(Spanner):
                 raise ValueError('StaffLinesSpanner requires either an int, '
                     'or a list/tuple of ints and/or floats.')
         return property(**locals())
-
-
-

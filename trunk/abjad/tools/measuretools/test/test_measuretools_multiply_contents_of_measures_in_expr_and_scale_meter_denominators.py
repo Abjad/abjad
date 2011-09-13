@@ -119,6 +119,3 @@ def test_measuretools_multiply_contents_of_measures_in_expr_and_scale_meter_deno
 
     assert componenttools.is_well_formed_component(t)
     assert t.format == "{\n\t\\time 6/64\n\tc'64 [\n\td'64\n\te'64 ]\n\tc'64 [\n\td'64\n\te'64 ]\n}"
-
-
-

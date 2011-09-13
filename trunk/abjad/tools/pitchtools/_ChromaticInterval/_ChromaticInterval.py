@@ -73,4 +73,3 @@ class _ChromaticInterval(_Interval, _Chromatic):
     @property
     def semitones(self):
         return self.number
-

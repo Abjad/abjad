@@ -7,6 +7,3 @@ def test_HairpinSpanner___init___01():
 
     hairpin = spannertools.HairpinSpanner()
     assert isinstance(hairpin, spannertools.HairpinSpanner)
-
-
-

@@ -26,4 +26,3 @@ def test_LilyPondTweaksReservoir___eq___01( ):
     assert not tweak_reservoir_3 == tweak_reservoir_1
     assert not tweak_reservoir_3 == tweak_reservoir_2
     assert      tweak_reservoir_3 == tweak_reservoir_3
-

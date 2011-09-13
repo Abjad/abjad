@@ -50,5 +50,3 @@ def _inspect_leaf_instance_attributes(instance):
 
     # return instance attributes and class properties sorted by access type
     return vanilla_instance_attributes, read_only_class_properties, read_write_class_properties
-
-

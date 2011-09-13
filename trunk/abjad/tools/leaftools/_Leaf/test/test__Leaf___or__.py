@@ -110,5 +110,3 @@ def test__Leaf___or___11():
     assert isinstance(v, Chord)
     assert v.written_pitches == (0, 2)
     assert t is not u is not v
-
-

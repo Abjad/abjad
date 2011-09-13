@@ -52,5 +52,3 @@ def iterate_tie_chains_backward_in_expr(expr):
         #if not leaf.tie.spanned or leaf.tie.first:
         if not(tie_spanners) or tuple(tie_spanners)[0]._is_my_first_leaf(leaf):
             yield get_tie_chain(leaf)
-
-

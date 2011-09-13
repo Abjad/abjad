@@ -12,4 +12,3 @@ def test_pitchtools_chromatic_pitch_class_name_to_chromatic_pitch_class_number_0
     assert pitchtools.chromatic_pitch_class_name_to_chromatic_pitch_class_number('cs') == 1
     assert pitchtools.chromatic_pitch_class_name_to_chromatic_pitch_class_number('ctqs') == 1.5
     assert pitchtools.chromatic_pitch_class_name_to_chromatic_pitch_class_number('css') == 2
-

@@ -18,6 +18,3 @@ def test_BeamSpanner_fuse_01():
     spanners = spannertools.get_spanners_attached_to_any_improper_child_of_component(t)
 
     assert len(spanners) == 1
-
-
-

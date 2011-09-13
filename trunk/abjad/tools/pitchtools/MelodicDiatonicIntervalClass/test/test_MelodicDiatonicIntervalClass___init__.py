@@ -25,4 +25,3 @@ def test_MelodicDiatonicIntervalClass___init___02():
 
     mdic = pitchtools.MelodicDiatonicIntervalClass('perfect', 1)
     assert str(mdic) == 'P1'
-

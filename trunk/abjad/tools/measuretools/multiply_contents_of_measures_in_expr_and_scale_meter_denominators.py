@@ -56,6 +56,3 @@ def multiply_contents_of_measures_in_expr_and_scale_meter_denominators(expr, con
         result.append(measure)
 
     return result
-
-
-

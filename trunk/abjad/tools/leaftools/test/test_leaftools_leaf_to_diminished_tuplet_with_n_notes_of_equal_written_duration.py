@@ -19,8 +19,3 @@ def test_leaftools_leaf_to_diminished_tuplet_with_n_notes_of_equal_written_durat
     # TODO: DECIDE ON DOTTED VALUES #
     #t = leaftools.leaf_to_diminished_tuplet_with_n_notes_of_equal_written_duration(Note(0, (3, 16)), 5)
     #assert t.format == "\\fraction \\times 3/5 {\n\tc'16\n\tc'16\n\tc'16\n\tc'16\n\tc'16\n}"
-
-
-
-
-

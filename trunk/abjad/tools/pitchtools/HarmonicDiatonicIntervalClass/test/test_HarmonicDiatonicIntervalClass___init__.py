@@ -64,4 +64,3 @@ def test_HarmonicDiatonicIntervalClass___init___04():
     hdic = pitchtools.HarmonicDiatonicIntervalClass(hdi)
     assert str(hdic) == 'm7'
     assert hdic.number == 7
-

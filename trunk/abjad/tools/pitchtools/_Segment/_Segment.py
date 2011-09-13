@@ -22,4 +22,3 @@ class _Segment(tuple, _Immutable):
 
     def __rmul__(self, n):
         return self * n
-

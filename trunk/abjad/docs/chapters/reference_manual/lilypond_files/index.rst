@@ -106,4 +106,3 @@ Set global staff size like this:
 			f'8
 		}
 	}
-

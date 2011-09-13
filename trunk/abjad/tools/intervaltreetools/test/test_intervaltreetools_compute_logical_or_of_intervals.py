@@ -18,4 +18,3 @@ def test_intervaltreetools_compute_logical_or_of_intervals_02():
     logical_or = compute_logical_or_of_intervals(tree)
     assert len(logical_or) == len(tree)
     assert logical_or[0].signature == tree[0].signature
-

@@ -46,6 +46,3 @@ def _report_meter_distribution(expr, delivery = 'screen'):
         return result
     else:
         raise ValueError("delivery must be 'screen' or 'string'.")
-
-
-

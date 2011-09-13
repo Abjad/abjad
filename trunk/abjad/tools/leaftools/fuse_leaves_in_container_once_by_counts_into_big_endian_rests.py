@@ -9,5 +9,3 @@ def fuse_leaves_in_container_once_by_counts_into_big_endian_rests(container, cou
 
     return _fuse_leaves_in_container_once_by_counts(container, counts,
         target_type = Rest, direction = 'big-endian')
-
-

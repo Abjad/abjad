@@ -12,4 +12,3 @@ def is_diatonic_pitch_number(expr):
     '''
 
     return isinstance(expr, (int, long))
-

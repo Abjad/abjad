@@ -19,4 +19,3 @@ def diatonic_pitch_number_to_chromatic_pitch_number(diatonic_pitch_number):
         diatonic_pitch_class_number)
 
     return octave * 12 + chromatic_pitch_class_number
-

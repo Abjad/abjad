@@ -23,4 +23,3 @@ def test_NamedChromticPitchSegment_transpose_02():
     "PitchSegment(c', cs', gs', a', cs', a')"
 
     assert new_pitch_segment.chromatic_pitch_numbers == [0, 1, 8, 9, 1, 9]
-

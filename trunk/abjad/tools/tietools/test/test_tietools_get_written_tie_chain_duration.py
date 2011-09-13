@@ -14,5 +14,3 @@ def test_tietools_get_written_tie_chain_duration_02():
 
     t = Note("c'4")
     assert tietools.get_written_tie_chain_duration(tietools.get_tie_chain(t)) == Duration(1, 4)
-
-

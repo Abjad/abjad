@@ -22,4 +22,3 @@ def test_componenttools_get_parent_and_start_stop_indices_of_components_03():
     assert parent is None
     assert start is None
     assert stop is None
-

@@ -13,4 +13,3 @@ def test_MelodicChromaticIntervalSegment_slope_02():
 def test_MelodicChromaticIntervalSegment_slope_03():
     mcis = MelodicChromaticIntervalSegment([1, 2, -3, 0, 2, -1, -1.5, 0.5])
     assert mcis.slope == 0
-

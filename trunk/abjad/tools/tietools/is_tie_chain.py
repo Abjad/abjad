@@ -20,4 +20,3 @@ def is_tie_chain(expr):
             return len(tie_spanners) == 1
 
     return False
-

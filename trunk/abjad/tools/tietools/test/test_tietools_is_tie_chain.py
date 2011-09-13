@@ -26,5 +26,3 @@ def test_tietools_is_tie_chain_04():
     assert tietools.is_tie_chain(tietools.get_tie_chain(t[1]))
     assert tietools.is_tie_chain(tietools.get_tie_chain(t[2]))
     assert tietools.is_tie_chain(tietools.get_tie_chain(t[3]))
-
-

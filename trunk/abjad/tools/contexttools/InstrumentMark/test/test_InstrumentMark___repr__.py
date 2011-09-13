@@ -19,5 +19,3 @@ def test_InstrumentMark___repr___02():
 
     assert isinstance(instrument_mark_1, contexttools.InstrumentMark)
     assert isinstance(instrument_mark_2, contexttools.InstrumentMark)
-
-

@@ -16,4 +16,3 @@ def diatonic_pitch_name_to_chromatic_pitch_number(diatonic_pitch_name):
     diatonic_pitch_number = diatonic_pitch_name_to_diatonic_pitch_number(diatonic_pitch_name)
 
     return diatonic_pitch_number_to_chromatic_pitch_number(diatonic_pitch_number)
-

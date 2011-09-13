@@ -53,4 +53,3 @@ def test_pitchtools_respell_named_chromatic_pitches_in_expr_with_flats_04():
     '''
 
     assert t.format == "\\new Staff {\n\tc''8\n\tb'8\n\tbf'8\n\ta'8\n\taf'8\n\tg'8\n\tgf'8\n\tf'8\n\te'8\n\tef'8\n\td'8\n\tdf'8\n}"
-

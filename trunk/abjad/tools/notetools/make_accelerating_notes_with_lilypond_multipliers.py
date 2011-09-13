@@ -50,5 +50,3 @@ def make_accelerating_notes_with_lilypond_multipliers(pitches, total, start, sto
         note.duration_multiplier = fractions.Fraction(dt / written)
         result.append(note)
     return result
-
-

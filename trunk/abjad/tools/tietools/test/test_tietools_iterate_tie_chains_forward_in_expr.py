@@ -43,5 +43,3 @@ def test_tietools_iterate_tie_chains_forward_in_expr_02():
     assert chains[1] == (t[1], )
     assert chains[2] == (t[2], )
     assert chains[3] == (t[3], )
-
-

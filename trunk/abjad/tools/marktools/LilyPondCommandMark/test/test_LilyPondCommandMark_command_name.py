@@ -10,4 +10,3 @@ def test_LilyPondCommandMark_command_name_01():
 
     lilypond_command.command_name = 'slurDashed'
     assert lilypond_command.command_name == 'slurDashed'
-

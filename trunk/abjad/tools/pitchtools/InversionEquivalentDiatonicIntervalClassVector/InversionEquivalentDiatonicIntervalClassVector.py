@@ -55,4 +55,3 @@ class InversionEquivalentDiatonicIntervalClassVector(_Vector):
             parts.append(part)
         contents_string = ', '.join(parts)
         return contents_string
-

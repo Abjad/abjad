@@ -9,4 +9,3 @@ def test_durationtools_lilypond_duration_string_to_rational_list_01():
 
     assert rationals == [
         Fraction(7, 32), Fraction(1, 32), Fraction(7, 32), Fraction(1, 32)]
-

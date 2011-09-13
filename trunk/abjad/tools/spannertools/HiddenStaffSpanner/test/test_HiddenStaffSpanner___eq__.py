@@ -9,6 +9,3 @@ def test_HiddenStaffSpanner___eq___01():
     spanner_2 = spannertools.HiddenStaffSpanner()
 
     assert not spanner_1 == spanner_2
-
-
-

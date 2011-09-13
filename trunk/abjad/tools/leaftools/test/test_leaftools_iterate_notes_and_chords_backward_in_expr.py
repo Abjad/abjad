@@ -12,8 +12,3 @@ def test_leaftools_iterate_notes_and_chords_backward_in_expr_01():
     assert notes_and_chords[0] is staff[3]
     assert notes_and_chords[1] is staff[1]
     assert notes_and_chords[2] is staff[0]
-
-
-
-
-

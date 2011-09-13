@@ -28,4 +28,3 @@ def test_LilyPondGrobOverrideComponentPlugIn___eq___01( ):
     assert not grob_override_component_plug_in_3 == grob_override_component_plug_in_1
     assert not grob_override_component_plug_in_3 == grob_override_component_plug_in_2
     assert      grob_override_component_plug_in_3 == grob_override_component_plug_in_3
-

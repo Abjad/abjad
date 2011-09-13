@@ -48,6 +48,3 @@ def test_Spanner_fracture_01():
         }
     }
     '''
-
-
-

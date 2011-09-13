@@ -33,5 +33,3 @@ def label_leaves_in_expr_with_tuplet_depth(expr, markup_direction = 'down'):
     for leaf in iterate_leaves_forward_in_expr(expr):
         label = r'\small %s' % componenttools.component_to_tuplet_depth(leaf)
         markuptools.Markup(label, markup_direction)(leaf)
-
-

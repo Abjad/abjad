@@ -38,4 +38,3 @@ def test_durationtools_group_duration_tokens_by_implied_prolation_07():
     t = durationtools.group_duration_tokens_by_implied_prolation([(1, 24), (2, 24), (3, 24),
         (4, 24), (5, 24), (6, 24)])
     assert t == [[(1, 24), (2, 24), (3, 24), (4, 24), (5, 24), (6, 24)]]
-

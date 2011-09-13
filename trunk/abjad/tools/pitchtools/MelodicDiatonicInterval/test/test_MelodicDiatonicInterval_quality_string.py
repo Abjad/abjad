@@ -21,4 +21,3 @@ def test_MelodicDiatonicInterval_quality_string_01():
         'diminished'
     assert pitchtools.MelodicDiatonicInterval('perfect', 5).quality_string == \
         'perfect'
-

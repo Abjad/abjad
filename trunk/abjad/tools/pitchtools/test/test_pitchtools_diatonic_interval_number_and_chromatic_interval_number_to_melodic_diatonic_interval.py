@@ -48,4 +48,3 @@ def test_pitchtools_diatonic_interval_number_and_chromatic_interval_number_to_me
     diatonic_interval = pitchtools.diatonic_interval_number_and_chromatic_interval_number_to_melodic_diatonic_interval(2, -3)
     assert diatonic_interval == pitchtools.MelodicDiatonicInterval(
         'augmented', -2)
-

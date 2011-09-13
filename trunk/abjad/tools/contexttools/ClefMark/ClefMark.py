@@ -114,5 +114,3 @@ class ClefMark(ContextMark):
         Return integer number of stafflines.
         '''
         return self._clef_name_to_middle_c_position[self._clef_name]
-
-

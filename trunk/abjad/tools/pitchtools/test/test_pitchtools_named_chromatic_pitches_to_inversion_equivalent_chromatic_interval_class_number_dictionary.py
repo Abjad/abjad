@@ -51,4 +51,3 @@ def test_pitchtools_named_chromatic_pitches_to_inversion_equivalent_chromatic_in
         5:   0,
         5.5: 0,
         6:   0}
-

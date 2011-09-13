@@ -15,4 +15,3 @@ def test_NamedChromaticPitch_numbered_diatonic_pitch_class_01():
     assert pitchtools.NamedChromaticPitch("a''").numbered_diatonic_pitch_class == 5
     assert pitchtools.NamedChromaticPitch("bf''").numbered_diatonic_pitch_class == 6
     assert pitchtools.NamedChromaticPitch("b''").numbered_diatonic_pitch_class == 6
-

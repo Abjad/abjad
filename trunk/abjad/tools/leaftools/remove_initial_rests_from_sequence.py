@@ -48,5 +48,3 @@ def remove_initial_rests_from_sequence(sequence):
             result.append(element)
 
     return result
-
-

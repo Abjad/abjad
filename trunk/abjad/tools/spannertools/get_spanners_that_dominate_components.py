@@ -41,6 +41,3 @@ def get_spanners_that_dominate_components(components):
                 receipt.add((spanner, index))
 
     return receipt
-
-
-

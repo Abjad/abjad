@@ -24,5 +24,3 @@ def iterate_scores_forward_in_expr(expr, start = 0, stop = None):
     '''
 
     return componenttools.iterate_components_forward_in_expr(expr, Score, start = start, stop = stop)
-
-

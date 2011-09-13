@@ -43,4 +43,3 @@ class HarmonicCounterpointInterval(_CounterpointInterval, _HarmonicInterval):
     def harmonic_counterpoint_interval_class(self):
         from abjad.tools import pitchtools
         return pitchtools.HarmonicCounterpointIntervalClass(self)
-

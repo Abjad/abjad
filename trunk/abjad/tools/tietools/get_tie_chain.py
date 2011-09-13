@@ -18,4 +18,3 @@ def get_tie_chain(component):
         return tuple(tie_spanners.pop().leaves)
     else:
         raise ExtraSpannerError
-

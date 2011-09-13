@@ -8,4 +8,3 @@ def test_NamedDiatonicPitch___slots___01():
 
     named_diatonic_pitch = pitchtools.NamedDiatonicPitch("c''")
     assert py.test.raises(AttributeError, "named_diatonic_pitch.foo = 'bar'")
-

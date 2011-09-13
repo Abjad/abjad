@@ -39,4 +39,3 @@ def test_HarmonicDiatonicIntervalSegment_rotate_02():
         pitchtools.HarmonicDiatonicInterval('minor', 2)])
 
     assert rotated == new
-

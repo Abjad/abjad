@@ -17,4 +17,3 @@ def test_NamedChromaticPitch_named_diatonic_pitch_01():
 
     assert pitchtools.NamedChromaticPitch("cs''").named_diatonic_pitch == \
         pitchtools.NamedDiatonicPitch("c''")
-

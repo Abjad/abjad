@@ -17,4 +17,3 @@ def test_NumberedChromaticPitchClassSet_is_transposed_superset_02():
 
     assert not big.is_transposed_superset(small)
     assert not small.is_transposed_superset(big)
-

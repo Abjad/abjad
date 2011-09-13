@@ -52,5 +52,3 @@ def test_timesignaturetools_is_time_signature_with_equivalent_binary_representat
     assert timesignaturetools.is_time_signature_with_equivalent_binary_representation(contexttools.TimeSignatureMark((6, 8)))
     assert timesignaturetools.is_time_signature_with_equivalent_binary_representation(contexttools.TimeSignatureMark((7, 8)))
     assert timesignaturetools.is_time_signature_with_equivalent_binary_representation(contexttools.TimeSignatureMark((8, 8)))
-
-

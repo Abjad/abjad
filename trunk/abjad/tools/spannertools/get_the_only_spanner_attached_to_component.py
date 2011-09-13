@@ -46,6 +46,3 @@ def get_the_only_spanner_attached_to_component(component, klass = None):
         return spanners_attached_to_component.pop()
     else:
         raise ExtraSpannerError
-
-
-

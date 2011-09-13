@@ -83,4 +83,3 @@ def list_melodic_chromatic_interval_numbers_pairwise_between_pitch_carriers(
         result.append(signed_interval)
 
     return result
-

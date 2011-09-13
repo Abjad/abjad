@@ -115,6 +115,3 @@ def fuse_contiguous_measures_in_container_cyclically_by_counts(container, counts
             part_index += 1
     finally:
         container._allow_component_update()
-
-
-

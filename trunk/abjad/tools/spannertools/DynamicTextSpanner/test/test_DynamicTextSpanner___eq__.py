@@ -9,6 +9,3 @@ def test_DynamicTextSpanner___eq___01():
     spanner_2 = spannertools.DynamicTextSpanner()
 
     assert not spanner_1 == spanner_2
-
-
-

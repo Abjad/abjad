@@ -49,5 +49,3 @@ def make_piano_score_from_leaves(leaves, lowest_treble_pitch = NamedChromaticPit
         bass_staff.append(bass_chord)
 
     return score, treble_staff, bass_staff
-
-

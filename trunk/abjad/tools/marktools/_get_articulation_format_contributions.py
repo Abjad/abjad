@@ -9,4 +9,3 @@ def _get_articulation_format_contributions(component):
         result.append(articulation.format)
     result.sort()
     return ['articulations', result]
-

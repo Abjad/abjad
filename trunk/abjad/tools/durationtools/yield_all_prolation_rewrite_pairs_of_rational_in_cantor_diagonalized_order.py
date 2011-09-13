@@ -70,4 +70,3 @@ def yield_all_prolation_rewrite_pairs_of_rational_in_cantor_diagonalized_order(
         if is_proper_tuplet_multiplier(prolation):
             pair = (prolation, written_duration)
             pairs.append(pair)
-

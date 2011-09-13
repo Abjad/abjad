@@ -13,4 +13,3 @@ def test_pitchtools_named_chromatic_pitch_tokens_to_named_chromatic_pitches_02()
     assert pitchtools.named_chromatic_pitch_tokens_to_named_chromatic_pitches([('df', 4)]) == [pitchtools.NamedChromaticPitch('df', 4)]
     assert pitchtools.named_chromatic_pitch_tokens_to_named_chromatic_pitches([pitchtools.NamedChromaticPitch('df', 4)]) == [pitchtools.NamedChromaticPitch('df', 4)]
     assert pitchtools.named_chromatic_pitch_tokens_to_named_chromatic_pitches([('df', 4), 0]) == [pitchtools.NamedChromaticPitch('df', 4), pitchtools.NamedChromaticPitch(0)]
-

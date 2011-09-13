@@ -162,4 +162,3 @@ class MelodicDiatonicInterval(_DiatonicInterval, _MelodicInterval):
             return 0
         elif self.direction_string == 'ascending':
             return self.number - 1
-

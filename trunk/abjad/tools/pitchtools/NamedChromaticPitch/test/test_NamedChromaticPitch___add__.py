@@ -15,4 +15,3 @@ def test_NamedChromaticPitch___add___02():
     chromatic_interval = pitchtools.MelodicChromaticInterval(1)
 
     assert pitch + chromatic_interval == pitchtools.NamedChromaticPitch('cs', 5)
-

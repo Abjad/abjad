@@ -43,5 +43,3 @@ def get_nonbinary_factor_from_time_signature_denominator(meter):
 
     # return nonbinary factor
     return nonbinary_factor
-
-

@@ -179,5 +179,3 @@ class ContextMark(Mark):
         Mark.detach(self)
         self.__unbind_effective_context()
         return self
-
-

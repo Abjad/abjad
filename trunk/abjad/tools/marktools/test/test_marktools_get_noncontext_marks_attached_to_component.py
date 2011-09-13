@@ -10,4 +10,3 @@ def test_marktools_get_noncontext_marks_attached_to_component_01():
     marks = marktools.get_noncontext_marks_attached_to_component(staff[0])
 
     assert marks == (articulation, )
-

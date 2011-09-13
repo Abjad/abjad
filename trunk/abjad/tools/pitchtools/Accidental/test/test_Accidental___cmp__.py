@@ -32,4 +32,3 @@ def test_Accidental___cmp___03():
     assert      k1 >= k2
     assert not k1 <  k2
     assert      k1 <= k2
-

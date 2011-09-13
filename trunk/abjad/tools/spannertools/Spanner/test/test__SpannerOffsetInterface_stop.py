@@ -19,6 +19,3 @@ def test__SpannerOffsetInterface_stop_01():
 
     assert beam._offset.stop == Duration(3, 8)
     assert glissando._offset.stop == Duration(4, 8)
-
-
-

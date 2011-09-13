@@ -20,4 +20,3 @@ def calculate_harmonic_counterpoint_interval_from_named_chromatic_pitch_to_named
 
     # return harmonic counterpoint interval
     return mdi.harmonic_counterpoint_interval
-

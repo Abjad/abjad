@@ -26,4 +26,3 @@ def test_durationtools_numeric_seconds_to_clock_string_02():
 def test_durationtools_numeric_seconds_to_clock_string_03():
 
     assert py.test.raises(ValueError, 'durationtools.numeric_seconds_to_clock_string(-1.5)')
-

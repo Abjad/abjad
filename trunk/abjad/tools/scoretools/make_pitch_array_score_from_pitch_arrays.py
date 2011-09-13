@@ -80,5 +80,3 @@ def make_pitch_array_score_from_pitch_arrays(pitch_arrays):
             staff.append(measure)
 
     return score
-
-

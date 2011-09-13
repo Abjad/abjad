@@ -11,4 +11,3 @@ def test_HarmonicChromaticInterval_01():
     assert float(i) == 3.0
 
     assert py.test.raises(TypeError, '-i')
-

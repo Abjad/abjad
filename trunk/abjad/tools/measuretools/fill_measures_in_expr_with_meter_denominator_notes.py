@@ -51,6 +51,3 @@ def fill_measures_in_expr_with_meter_denominator_notes(expr, iterctrl = None):
             numerator = meter.numerator
             notes = Note(0, (1, denominator)) * numerator
             measure[:] = notes
-
-
-

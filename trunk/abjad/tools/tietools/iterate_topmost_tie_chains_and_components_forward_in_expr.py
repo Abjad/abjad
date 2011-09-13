@@ -69,4 +69,3 @@ def iterate_topmost_tie_chains_and_components_forward_in_expr(expr):
                 yield component
     else:
         raise ValueError('input must be iterable.')
-

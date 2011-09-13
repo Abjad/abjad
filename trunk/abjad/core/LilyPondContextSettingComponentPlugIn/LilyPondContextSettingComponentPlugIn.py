@@ -78,4 +78,3 @@ class LilyPondContextSettingComponentPlugIn(_LilyPondComponentPlugIn):
                 attribute_name, attribute_value = name, value
                 result.append((attribute_name, attribute_value))
         return result
-

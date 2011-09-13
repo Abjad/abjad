@@ -51,4 +51,3 @@ def test_NumberedChromaticPitch___cmp___04():
     assert      q != p
     assert      q >  p
     assert      q >= p
-

@@ -8,4 +8,3 @@ def test_NamedChromaticPitchSet_numbered_chromatic_pitch_class_set_01():
 
     assert pset.numbered_chromatic_pitch_class_set == \
         pitchtools.NumberedChromaticPitchClassSet([0, 1, 2])
-

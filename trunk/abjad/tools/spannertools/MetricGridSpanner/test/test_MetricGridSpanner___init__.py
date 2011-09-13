@@ -7,6 +7,3 @@ def test_MetricGridSpanner___init___01():
 
     metric_grid = spannertools.MetricGridSpanner()
     assert isinstance(metric_grid, spannertools.MetricGridSpanner)
-
-
-

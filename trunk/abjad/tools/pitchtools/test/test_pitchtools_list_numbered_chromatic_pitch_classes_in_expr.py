@@ -30,4 +30,3 @@ def test_pitchtools_list_numbered_chromatic_pitch_classes_in_expr_04():
 
     chord = Chord([], (1, 4))
     assert pitchtools.list_numbered_chromatic_pitch_classes_in_expr(chord) == ()
-

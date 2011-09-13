@@ -10,5 +10,3 @@ def test_TempoMark_units_per_minute_01():
 
     tempo.units_per_minute = 56
     assert tempo.units_per_minute == 56
-
-

@@ -22,4 +22,3 @@ def is_pitch_carrier(expr):
     from abjad.tools.notetools.NoteHead import NoteHead
 
     return isinstance(expr, (NamedChromaticPitch, Note, NoteHead, Chord))
-

@@ -18,4 +18,3 @@ def test_Mode_melodic_diatonic_interval_segment_01():
     mdig = tonalitytools.Mode('lydian').melodic_diatonic_interval_segment
     intervals = [M2, M2, M2, m2, M2, M2, m2]
     assert mdig == pitchtools.MelodicDiatonicIntervalSegment(intervals)
-

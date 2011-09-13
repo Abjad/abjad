@@ -13,5 +13,3 @@ def test_contexttools_iterate_contexts_backward_in_expr_01():
     assert contexts[0] is staff
     assert contexts[1] is staff[1]
     assert contexts[2] is staff[0]
-
-

@@ -47,4 +47,3 @@ def group_leaves_in_tie_chain_by_immediate_parents(tie_chain):
 
     # return result
     return result
-

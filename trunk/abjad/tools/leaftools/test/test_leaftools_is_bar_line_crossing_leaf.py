@@ -23,8 +23,3 @@ def test_leaftools_is_bar_line_crossing_leaf_01():
     assert not leaftools.is_bar_line_crossing_leaf(t[1])
     assert leaftools.is_bar_line_crossing_leaf(t[2])
     assert not leaftools.is_bar_line_crossing_leaf(t[3])
-
-
-
-
-

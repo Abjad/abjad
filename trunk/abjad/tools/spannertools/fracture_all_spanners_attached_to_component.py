@@ -39,6 +39,3 @@ def fracture_all_spanners_attached_to_component(component, direction = 'both', k
         elif isinstance(spanner, klass):
             result.append(spanner.fracture(spanner.index(component), direction))
     return result
-
-
-

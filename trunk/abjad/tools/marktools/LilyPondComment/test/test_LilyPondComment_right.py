@@ -42,4 +42,3 @@ def test_LilyPondComment_right_02():
 
     assert componenttools.is_well_formed_component(t)
     assert t.format == "\\once \\override Beam #'thickness = #3\nc'8 % Leaf comments right here. % More comments right."
-

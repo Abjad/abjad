@@ -142,4 +142,3 @@ class _DiatonicInterval(_Interval, _Diatonic):
     @property
     def staff_spaces(self):
         return self.number - 1
-

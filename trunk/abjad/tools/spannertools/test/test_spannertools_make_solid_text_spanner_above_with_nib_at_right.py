@@ -26,6 +26,3 @@ def test_spannertools_make_solid_text_spanner_above_with_nib_at_right_01():
     '''
 
     assert t.format == "\\new Staff {\n\t\\override TextSpanner #'bound-details #'left #'text = \\markup { foo }\n\t\\override TextSpanner #'bound-details #'right #'text = #(markup #:draw-line '(0 . -1))\n\t\\override TextSpanner #'bound-details #'right-broken #'text = ##f\n\t\\override TextSpanner #'dash-fraction = #1\n\t\\override TextSpanner #'direction = #up\n\tc'8 \\startTextSpan\n\td'8\n\te'8\n\tf'8 \\stopTextSpan\n\t\\revert TextSpanner #'bound-details #'left #'text\n\t\\revert TextSpanner #'bound-details #'right #'text\n\t\\revert TextSpanner #'bound-details #'right-broken #'text\n\t\\revert TextSpanner #'dash-fraction\n\t\\revert TextSpanner #'direction\n}"
-
-
-

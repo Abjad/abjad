@@ -20,5 +20,3 @@ def test_pitchtools_make_n_middle_c_centered_pitches_03():
 def test_pitchtools_make_n_middle_c_centered_pitches_04():
     pitches = make_n_middle_c_centered_pitches(3)
     assert pitches == [NamedChromaticPitch('a'), NamedChromaticPitch("c'"), NamedChromaticPitch("e'")]
-
-

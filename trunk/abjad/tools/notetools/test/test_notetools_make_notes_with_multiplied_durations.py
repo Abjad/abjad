@@ -8,5 +8,3 @@ def test_notetools_make_notes_with_multiplied_durations_01():
     staff = Staff(notes)
 
     assert staff.format == "\\new Staff {\n\tc'4 * 2\n\tc'4 * 4/3\n\tc'4 * 1\n\tc'4 * 4/5\n}"
-
-

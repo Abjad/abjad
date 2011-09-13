@@ -17,4 +17,3 @@ def test_NumberedChromaticPitch___float___02():
     numbered_chromatic_pitch = pitchtools.NumberedChromaticPitch(13.5)
     assert isinstance(float(numbered_chromatic_pitch), float)
     assert float(numbered_chromatic_pitch) == 13.5
-

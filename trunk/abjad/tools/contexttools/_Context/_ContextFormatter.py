@@ -41,5 +41,3 @@ class _ContextFormatter(_ContainerFormatter):
     @property
     def slots(self):
         return self._slots
-
-

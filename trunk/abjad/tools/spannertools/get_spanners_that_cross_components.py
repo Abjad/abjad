@@ -35,6 +35,3 @@ def get_spanners_that_cross_components(components):
             crossing_spanners.add(spanner)
 
     return crossing_spanners
-
-
-

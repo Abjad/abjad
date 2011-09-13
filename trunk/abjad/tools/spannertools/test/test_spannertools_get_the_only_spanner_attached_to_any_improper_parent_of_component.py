@@ -28,6 +28,3 @@ def test_spannertools_get_the_only_spanner_attached_to_any_improper_parent_of_co
 
     assert spannertools.get_the_only_spanner_attached_to_any_improper_parent_of_component(
         staff[-1]) == trill
-
-
-

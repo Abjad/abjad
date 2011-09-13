@@ -44,4 +44,3 @@ def test_MelodicDiatonicIntervalClass___eq___03():
 
     assert not mdic_1 is mdic_2
     assert not mdic_2 is mdic_1
-

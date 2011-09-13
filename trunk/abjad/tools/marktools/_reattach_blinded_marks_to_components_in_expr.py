@@ -13,4 +13,3 @@ def _reattach_blinded_marks_to_components_in_expr(expr):
             mark._start_component = component
             #mark._bind_effective_context(mark.target_context)
             component._mark_entire_score_tree_for_later_update('marks')
-

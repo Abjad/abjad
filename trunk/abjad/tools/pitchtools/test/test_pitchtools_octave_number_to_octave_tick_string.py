@@ -13,4 +13,3 @@ def test_pitchtools_octave_number_to_octave_tick_string_01():
     assert pitchtools.octave_number_to_octave_tick_string(5) == "''"
     assert pitchtools.octave_number_to_octave_tick_string(6) == "'''"
     assert pitchtools.octave_number_to_octave_tick_string(7) == "''''"
-

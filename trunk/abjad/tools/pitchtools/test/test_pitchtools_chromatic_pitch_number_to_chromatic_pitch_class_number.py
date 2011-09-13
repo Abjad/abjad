@@ -9,4 +9,3 @@ def test_pitchtools_chromatic_pitch_number_to_chromatic_pitch_class_number_01():
     assert pitchtools.chromatic_pitch_number_to_chromatic_pitch_class_number(23) == 11
     assert pitchtools.chromatic_pitch_number_to_chromatic_pitch_class_number(24) == 0
     assert pitchtools.chromatic_pitch_number_to_chromatic_pitch_class_number(25) == 1
-

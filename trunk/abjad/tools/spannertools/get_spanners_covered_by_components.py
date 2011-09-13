@@ -30,6 +30,3 @@ def get_spanners_covered_by_components(components):
             result.discard(spanner)
 
     return result
-
-
-

@@ -71,6 +71,3 @@ def apply_durated_complex_beam_spanner_to_measures(measures):
         durations.append(measure.preprolated_duration)
     beam = DuratedComplexBeamSpanner(measures, durations = durations, span = 1)
     return beam
-
-
-

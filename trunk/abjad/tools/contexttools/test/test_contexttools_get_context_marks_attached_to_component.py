@@ -21,5 +21,3 @@ def test_contexttools_get_context_marks_attached_to_component_01():
 
     assert dynamic_mark in context_marks
     assert len(context_marks) == 1
-
-

@@ -505,4 +505,3 @@ class NamedChromaticPitch(_Pitch):
         '''
         from abjad.tools.pitchtools import NumberedChromaticPitchClass
         return NumberedChromaticPitchClass(self._chromatic_pitch_name)
-

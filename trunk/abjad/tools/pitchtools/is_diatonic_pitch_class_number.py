@@ -14,4 +14,3 @@ def is_diatonic_pitch_class_number(expr):
     if expr in range(7):
         return True
     return False
-

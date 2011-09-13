@@ -14,4 +14,3 @@ def test_LilypondContextProxy___repr___01( ):
 
     assert isinstance(context_proxy_1, LilyPondContextProxy)
     assert isinstance(context_proxy_2, LilyPondContextProxy)
-

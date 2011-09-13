@@ -30,4 +30,3 @@ def transpose_chromatic_pitch_by_melodic_chromatic_interval_segment(pitch, segme
     for interval in segment[1:]:
         pitches.append(pitches[-1].transpose(interval.number))
     return pitches
-

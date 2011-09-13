@@ -46,4 +46,3 @@ def test_LilypondContextProxy___setattr___02( ):
     '''
 
     assert score.format == "\\new Score <<\n\t\\new Staff {\n\t\tc'8\n\t\t\\set Score.tempoWholesPerMinute = #(ly:make-moment 24 1)\n\t\td'8\n\t\te'8\n\t\tf'8\n\t}\n>>"
-

@@ -39,4 +39,3 @@ def test_HarmonicCounterpointInterval_harmonic_counterpoint_interval_class_04():
     hcpi = pitchtools.HarmonicCounterpointInterval(10)
     hcpic = hcpi.harmonic_counterpoint_interval_class
     assert hcpic == pitchtools.HarmonicCounterpointIntervalClass(3)
-

@@ -13,4 +13,3 @@ def test_intervaltreetools_calculate_mean_release_of_intervals_02():
     tree = IntervalTree([])
     release = calculate_mean_release_of_intervals(tree)
     assert release is None
-

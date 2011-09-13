@@ -18,5 +18,3 @@ def test_timesignaturetools_get_nonbinary_factor_from_time_signature_denominator
     '''Return nonbinary factor in denominator of meter, else 1.'''
 
     assert timesignaturetools.get_nonbinary_factor_from_time_signature_denominator(contexttools.TimeSignatureMark((3, 8))) == 1
-
-

@@ -59,4 +59,3 @@ class MelodicChromaticIntervalClass(_ChromaticIntervalClass, _MelodicIntervalCla
 
     def __ne__(self, arg):
         return not self == arg
-

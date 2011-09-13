@@ -27,4 +27,3 @@ class InversionEquivalentChromaticIntervalClassSegment(_IntervalClassSegment):
     @property
     def _format_string(self):
         return ', '.join([str(x) for x in self])
-

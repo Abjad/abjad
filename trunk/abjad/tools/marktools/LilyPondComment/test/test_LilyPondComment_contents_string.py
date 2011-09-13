@@ -10,4 +10,3 @@ def test_LilyPondComment_contents_string_01():
 
     comment.contents_string = 'new contents string'
     assert comment.contents_string == 'new contents string'
-

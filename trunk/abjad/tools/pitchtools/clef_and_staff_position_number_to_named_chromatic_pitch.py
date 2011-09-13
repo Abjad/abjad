@@ -40,4 +40,3 @@ def clef_and_staff_position_number_to_named_chromatic_pitch(clef, staff_position
     pitch = NamedChromaticPitch(pitch_name, octave)
 
     return pitch
-

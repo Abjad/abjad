@@ -29,5 +29,3 @@ def test_contexttools_get_effective_key_signature_02():
 
     t = Staff("c'8 d'8 e'8 f'8")
     assert contexttools.get_effective_key_signature(t) is None
-
-

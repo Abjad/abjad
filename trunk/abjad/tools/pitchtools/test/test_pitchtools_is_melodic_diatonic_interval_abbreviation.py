@@ -14,4 +14,3 @@ def test_pitchtools_is_melodic_diatonic_interval_abbreviation_01():
 def test_pitchtools_is_melodic_diatonic_interval_abbreviation_02():
 
     assert not pitchtools.is_melodic_diatonic_interval_abbreviation(' M2')
-

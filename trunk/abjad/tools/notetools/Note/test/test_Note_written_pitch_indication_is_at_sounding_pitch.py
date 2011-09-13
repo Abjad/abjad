@@ -22,5 +22,3 @@ def test_Note_written_pitch_indication_is_at_sounding_pitch_03():
     note = Note("c'4")
 
     assert py.test.raises(TypeError, "note.written_pitch_indication_is_at_sounding_pitch = 'foo'")
-
-

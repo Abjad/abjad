@@ -41,4 +41,3 @@ def assignable_rational_to_dot_count(rational):
     dot_count = digit_sum - 1
 
     return dot_count
-

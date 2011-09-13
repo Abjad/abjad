@@ -11,4 +11,3 @@ def test_pitchtools_diatonic_pitch_class_name_to_chromatic_pitch_class_number_01
     assert pitchtools.diatonic_pitch_class_name_to_chromatic_pitch_class_number('g') == 7
     assert pitchtools.diatonic_pitch_class_name_to_chromatic_pitch_class_number('a') == 9
     assert pitchtools.diatonic_pitch_class_name_to_chromatic_pitch_class_number('b') == 11
-

@@ -66,4 +66,3 @@ def add_or_remove_tie_chain_notes_to_achieve_written_duration(tie_chain, new_wri
         Tuplet(multiplier, get_leaves_in_tie_chain(tie_chain))
 
     return get_tie_chain(tie_chain[0])
-

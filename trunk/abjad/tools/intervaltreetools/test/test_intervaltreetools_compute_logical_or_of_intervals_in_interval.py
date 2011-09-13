@@ -29,4 +29,3 @@ def test_intervaltreetools_compute_logical_or_of_intervals_in_interval_03():
     d = BoundedInterval(2001, 2010)
     logic = compute_logical_or_of_intervals_in_interval(tree, d)
     assert [x.signature for x in logic] == []
-

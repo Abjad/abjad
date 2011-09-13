@@ -8,4 +8,3 @@ def test_MelodicDiatonicInterval___add___01():
     new = mdi1 + mdi2
 
     assert new == pitchtools.MelodicDiatonicInterval('augmented', 4)
-

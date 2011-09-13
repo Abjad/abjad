@@ -23,5 +23,3 @@ def _get_context_setting_format_contributions(component):
             result.append(_format_lilypond_context_setting_in_with_block(name, value))
     result.sort()
     return ['context settings', result]
-
-

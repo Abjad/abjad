@@ -57,6 +57,3 @@ def test_Spanner___len___02():
     assert len(p) == 3
     assert len(p.components) == 3
     assert len(p.leaves) == 6
-
-
-

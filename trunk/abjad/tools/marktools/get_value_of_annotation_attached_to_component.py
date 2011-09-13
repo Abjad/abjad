@@ -49,4 +49,3 @@ def get_value_of_annotation_attached_to_component(component, name, default_value
         raise ExtraMarkError
 
     return with_correct_name[0].value
-

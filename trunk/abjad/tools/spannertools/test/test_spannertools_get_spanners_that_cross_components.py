@@ -66,6 +66,3 @@ def test_spannertools_get_spanners_that_cross_components_02():
 
     assert len(spanners) == 1
     assert beam in spanners
-
-
-

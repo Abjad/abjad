@@ -109,6 +109,3 @@ def replace_contents_of_measures_in_expr(expr, new_contents):
 
     # return iterated measures
     return result
-
-
-

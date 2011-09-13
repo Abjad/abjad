@@ -35,5 +35,3 @@ def get_effective_dynamic(component):
     '''
 
     return get_effective_context_mark(component, DynamicMark)
-
-

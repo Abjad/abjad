@@ -18,4 +18,3 @@ def test_IntervalTree___eq___03():
     a = IntervalTree([])
     b = IntervalTree([])
     assert a == b
-

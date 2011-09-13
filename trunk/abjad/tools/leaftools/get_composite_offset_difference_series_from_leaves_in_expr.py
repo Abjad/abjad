@@ -37,5 +37,3 @@ def get_composite_offset_difference_series_from_leaves_in_expr(expr):
     '''
 
     return list(mathtools.difference_series(get_composite_offset_series_from_leaves_in_expr(expr)))
-
-

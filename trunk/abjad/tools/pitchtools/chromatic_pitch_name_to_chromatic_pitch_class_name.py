@@ -22,4 +22,3 @@ def chromatic_pitch_name_to_chromatic_pitch_class_name(chromatic_pitch_name):
     chromatic_pitch_class_name = diatonic_pitch_class_name + alphabetic_accidental_abbreviation
 
     return chromatic_pitch_class_name
-

@@ -44,4 +44,3 @@ def inventory_inversion_equivalent_diatonic_interval_classes():
         InversionEquivalentDiatonicIntervalClass('perfect', 4),
         InversionEquivalentDiatonicIntervalClass('augmented', 4),
         ]
-

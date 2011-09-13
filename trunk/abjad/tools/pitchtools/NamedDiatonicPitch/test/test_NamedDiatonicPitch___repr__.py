@@ -13,4 +13,3 @@ def test_NamedDiatonicPitch___repr___01():
 
     assert isinstance(named_diatonic_pitch_1, pitchtools.NamedDiatonicPitch)
     assert isinstance(named_diatonic_pitch_2, pitchtools.NamedDiatonicPitch)
-

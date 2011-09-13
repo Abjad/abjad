@@ -54,5 +54,3 @@ def split_leaf_at_prolated_duration_and_rest_right_half(leaf, prolated_duration)
         move_parentage_and_spanners_from_components_to_components([leaf], [rest])
 
     return left, right
-
-

@@ -65,6 +65,3 @@ def test_spannertools_destroy_all_spanners_attached_to_component_02():
 
     assert componenttools.is_well_formed_component(staff)
     assert staff.format == "\\new Staff {\n\tc'8 ( \\startTrillSpan\n\td'8\n\te'8\n\tf'8 ) \\stopTrillSpan\n}"
-
-
-

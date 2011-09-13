@@ -75,5 +75,3 @@ def iterate_notes_backward_in_expr(expr, start = 0, stop = None):
     '''
 
     return iterate_components_backward_in_expr(expr, Note, start = start, stop = stop)
-
-

@@ -7,4 +7,3 @@ def test_Accidental___add___01():
 
     assert m + m == pitchtools.Accidental('sharp')
     assert m + m + m == pitchtools.Accidental('three-quarters sharp')
-

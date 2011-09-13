@@ -84,4 +84,3 @@ def get_named_chromatic_pitch_from_pitch_carrier(pitch_carrier):
             raise ExtraPitchError
     else:
         raise TypeError('%s must be Pitch, Note, NoteHead or Chord.' % pitch_carrier)
-

@@ -135,6 +135,3 @@ class ComplexBeamSpanner(BeamSpanner):
             assert isinstance(arg, bool) or arg in ('left', 'right', 'both')
             self._lone = arg
         return property(**locals())
-
-
-

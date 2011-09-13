@@ -42,4 +42,3 @@ def assignable_rational_to_lilypond_duration_string(rational):
     dotted_duration_string = undotted_duration_string + dot_string
 
     return dotted_duration_string
-

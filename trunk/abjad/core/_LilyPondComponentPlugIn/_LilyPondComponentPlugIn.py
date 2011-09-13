@@ -27,4 +27,3 @@ class _LilyPondComponentPlugIn(object):
         if skeleton_strings:
             body_string = ', '.join(skeleton_strings)
         return '%s(%s)' % (self.__class__.__name__, body_string)
-

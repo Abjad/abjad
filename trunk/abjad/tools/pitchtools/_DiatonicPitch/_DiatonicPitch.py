@@ -18,4 +18,3 @@ class _DiatonicPitch(_Pitch, _Diatonic):
 
     def __int__(self):
         return self._number
-

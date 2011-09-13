@@ -11,4 +11,3 @@ def test_NumberedChromaticPitchClass_apply_accidental_01():
     assert pc.apply_accidental('double flat') == pitchtools.NumberedChromaticPitchClass(9)
     assert pc.apply_accidental('quarter sharp') == pitchtools.NumberedChromaticPitchClass(11.5)
     assert pc.apply_accidental('quarter flat') == pitchtools.NumberedChromaticPitchClass(10.5)
-

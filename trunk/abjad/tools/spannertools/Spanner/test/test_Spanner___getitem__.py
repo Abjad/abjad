@@ -108,6 +108,3 @@ def test_Spanner___getitem___04():
     '''
 
     assert p[:] == t[:]
-
-
-

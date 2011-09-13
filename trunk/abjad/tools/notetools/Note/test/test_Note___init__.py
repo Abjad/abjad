@@ -161,5 +161,3 @@ def test_Note___init___14():
     assert isinstance(note, Note)
     assert t[1]._parentage.parent is t
     assert note._parentage.parent is None
-
-

@@ -70,6 +70,3 @@ def fracture_spanners_that_cross_components(components):
         fracture_all_spanners_attached_to_component(rightmost_component, direction = 'right')
 
     return components
-
-
-

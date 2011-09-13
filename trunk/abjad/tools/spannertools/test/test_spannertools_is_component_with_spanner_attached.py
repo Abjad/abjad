@@ -40,6 +40,3 @@ def test_spannertools_is_component_with_spanner_attached_02():
     '''
     assert spannertools.is_component_with_spanner_attached(staff[0], spannertools.BeamSpanner)
     assert not spannertools.is_component_with_spanner_attached(staff[0], spannertools.SlurSpanner)
-
-
-

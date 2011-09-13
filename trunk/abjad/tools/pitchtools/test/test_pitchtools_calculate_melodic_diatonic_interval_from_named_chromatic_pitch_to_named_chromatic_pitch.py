@@ -40,4 +40,3 @@ def test_pitchtools_calculate_melodic_diatonic_interval_from_named_chromatic_pit
     interval = pitchtools.calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(
         pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch('g', 4))
     assert interval == pitchtools.MelodicDiatonicInterval('perfect', -4)
-

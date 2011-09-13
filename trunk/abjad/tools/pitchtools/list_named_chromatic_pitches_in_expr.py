@@ -51,4 +51,3 @@ def list_named_chromatic_pitches_in_expr(expr):
                 elif hasattr(leaf, 'written_pitches'):
                     result.extend(leaf.written_pitches)
         return tuple(result)
-

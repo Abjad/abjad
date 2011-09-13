@@ -27,4 +27,3 @@ class _IntervalClassSegment(_Segment):
     @property
     def interval_classes(self):
         return tuple(self[:])
-

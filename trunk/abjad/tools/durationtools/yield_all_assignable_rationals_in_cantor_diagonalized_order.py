@@ -41,4 +41,3 @@ def yield_all_assignable_rationals_in_cantor_diagonalized_order():
         duration = generator.next()
         if is_assignable_rational(duration):
             yield duration
-

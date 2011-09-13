@@ -36,4 +36,3 @@ def is_duration_pair(arg):
         return True
     else:
         return False
-

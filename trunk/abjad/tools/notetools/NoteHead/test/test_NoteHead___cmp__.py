@@ -51,5 +51,3 @@ def test_NoteHead___cmp___04():
     assert      q != p
     assert      q >  p
     assert      q >= p
-
-

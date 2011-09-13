@@ -46,6 +46,3 @@ class _MultipartBeamSpannerFormatInterface(_BeamSpannerFormatInterface):
                     if next is not None and not componenttools.is_beamable_component(next):
                         result.append(']')
         return result
-
-
-

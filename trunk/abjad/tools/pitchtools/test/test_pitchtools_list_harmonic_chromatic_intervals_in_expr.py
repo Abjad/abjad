@@ -10,4 +10,3 @@ def test_pitchtools_list_harmonic_chromatic_intervals_in_expr_01():
     numbers = [hci.number for hci in intervals]
 
     assert numbers == [1, 2, 2, 3, 4, 5]
-

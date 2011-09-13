@@ -43,4 +43,3 @@ _pitch_class_name_to_pitch_class_number_flats = {
         6:  'gf',    6.5: 'gqf',     7: 'g',     7.5:  'atqf',
         8:  'af',    8.5: 'aqf',     9: 'a',     9.5:  'btqf',
         10: 'bf',   10.5: 'bqf',    11: 'b',    11.5:  'cqf' }
-

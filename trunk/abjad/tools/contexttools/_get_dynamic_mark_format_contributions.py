@@ -9,5 +9,3 @@ def _get_dynamic_mark_format_contributions(component):
         result.append(dynamic_mark.format)
     result.sort()
     return result
-
-

@@ -10,4 +10,3 @@ def test_layouttools_make_spacing_vector_01():
         schemetools.SchemePair('minimum_distance', 0),
         schemetools.SchemePair('padding', 12),
         schemetools.SchemePair('stretchability', 0))
-

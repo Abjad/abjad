@@ -482,6 +482,3 @@ def test_BeamSpanner_span_anonymous_15():
 
     assert py.test.raises(AssertionError, 'p = spannertools.BeamSpanner([t[0], t[1]])')
     assert py.test.raises(AssertionError, 'p = spannertools.BeamSpanner([t[1], t[2]])')
-
-
-

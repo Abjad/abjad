@@ -8,4 +8,3 @@ def test_NamedChromticPitchSegment_melodic_chromatic_interval_segment_01():
     intervals = [0.5, 7.5, 1, -8.5, 8.5]
     #assert result == [pitchtools.MelodicChromaticInterval(x) for x in intervals]
     assert result == pitchtools.MelodicChromaticIntervalSegment(intervals)
-

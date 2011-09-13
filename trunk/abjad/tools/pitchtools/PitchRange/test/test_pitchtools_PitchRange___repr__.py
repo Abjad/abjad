@@ -15,4 +15,3 @@ def test_pitchtools_PitchRange___repr___01():
 
     assert pitch_range_1 == pitch_range_2
     assert not pitch_range_1 is pitch_range_2
-

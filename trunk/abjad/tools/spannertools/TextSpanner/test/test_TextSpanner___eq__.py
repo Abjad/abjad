@@ -9,6 +9,3 @@ def test_TextSpanner___eq___01():
     spanner_2 = spannertools.TextSpanner()
 
     assert not spanner_1 == spanner_2
-
-
-

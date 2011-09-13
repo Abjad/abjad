@@ -18,5 +18,3 @@ def test_DynamicMark_dynamic_name_to_dynamic_ordinal_02():
     assert contexttools.DynamicMark.dynamic_name_to_dynamic_ordinal('sff') == 3
     assert contexttools.DynamicMark.dynamic_name_to_dynamic_ordinal('sp') == -2
     assert contexttools.DynamicMark.dynamic_name_to_dynamic_ordinal('sfz') == 2
-
-

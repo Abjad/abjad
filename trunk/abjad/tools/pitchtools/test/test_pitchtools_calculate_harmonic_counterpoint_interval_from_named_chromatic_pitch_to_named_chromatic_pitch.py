@@ -87,4 +87,3 @@ def test_pitchtools_calculate_harmonic_counterpoint_interval_from_named_chromati
     hcpi = pitchtools.calculate_harmonic_counterpoint_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(
         pitchtools.NamedChromaticPitch(12), pitchtools.NamedChromaticPitch(11))
     assert hcpi == pitchtools.HarmonicCounterpointInterval(2)
-

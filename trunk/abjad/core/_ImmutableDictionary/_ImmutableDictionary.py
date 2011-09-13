@@ -7,4 +7,3 @@ class _ImmutableDictionary(dict):
 
     def __setitem__(self, *args):
         raise AttributeError('objects are immutable: "%s".' % self.__class__.__name__)
-

@@ -14,4 +14,3 @@ def test_Annotation___copy___01():
     assert annotation_1.name == annotation_2.name == 'special dictionary'
     assert annotation_1.value == annotation_2.value == dictionary
     assert annotation_1.value is not annotation_2.value is not dictionary
-

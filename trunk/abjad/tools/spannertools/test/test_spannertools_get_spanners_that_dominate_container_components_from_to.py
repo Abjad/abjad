@@ -66,6 +66,3 @@ def test_spannertools_get_spanners_that_dominate_container_components_from_to_03
 
     assert len(receipt) == 1
     assert (glissando, 0) in receipt
-
-
-

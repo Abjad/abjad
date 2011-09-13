@@ -49,4 +49,3 @@ def detach_lilypond_command_marks_attached_to_component(component, command_name 
         mark.detach()
         marks.append(mark)
     return tuple(marks)
-

@@ -139,5 +139,3 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
             raise ValueError('unexpected output from notetools.make_notes.')
 
     return all_leaves
-
-

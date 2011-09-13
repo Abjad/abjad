@@ -15,4 +15,3 @@ def test_InversionEquivalentChromaticIntervalClass___eq___01():
 
     assert not ic3 == ic1
     assert not ic1 == ic3
-

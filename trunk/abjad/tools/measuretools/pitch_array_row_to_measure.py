@@ -60,6 +60,3 @@ def pitch_array_row_to_measure(pitch_array_row, cell_duration_denominator = 8):
     measure.extend(leaves)
 
     return measure
-
-
-

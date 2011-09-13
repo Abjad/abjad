@@ -245,4 +245,3 @@ class PitchRange(_Immutable):
         if self._stop is None:
             return True
         return self._stop[1] == 'inclusive'
-

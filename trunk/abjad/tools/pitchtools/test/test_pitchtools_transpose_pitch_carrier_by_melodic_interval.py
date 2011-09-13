@@ -67,4 +67,3 @@ def test_pitchtools_transpose_pitch_carrier_by_melodic_interval_07():
     rest = Rest('r4')
 
     assert pitchtools.transpose_pitch_carrier_by_melodic_interval(rest, '+m2') is rest
-

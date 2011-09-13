@@ -59,8 +59,3 @@ def test_leaftools_iterate_leaves_forward_in_expr_02():
     assert leaves[0] is staff[1][0]
     assert leaves[1] is staff[1][1]
     assert len(leaves) == 2
-
-
-
-
-

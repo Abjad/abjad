@@ -123,6 +123,3 @@ def test_spannertools__withdraw_components_in_expr_from_crossing_spanners_03():
     "Both slur and trill are now discontiguous."
 
     assert not componenttools.is_well_formed_component(t)
-
-
-

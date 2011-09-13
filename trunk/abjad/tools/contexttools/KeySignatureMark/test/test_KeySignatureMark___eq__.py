@@ -10,5 +10,3 @@ def test_KeySignatureMark___eq___01():
     assert ks1 == ks2
     assert not ks2 == ks3
     assert not ks3 == ks1
-
-

@@ -29,4 +29,3 @@ class _Pitch(_Immutable, _UnaryComparator):
 
     def __repr__(self):
         return '%s(%s)' % (type(self).__name__, self._format_string)
-

@@ -20,4 +20,3 @@ def test_NumberedChromaticPitchClass___sub___02():
 
     assert pc - ic == pitchtools.NumberedChromaticPitchClass(10)
     assert py.test.raises(TypeError, 'ic - pc')
-

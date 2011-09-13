@@ -28,5 +28,3 @@ def test__Leaf_multiplied_duration_03():
     assert t.written_duration == Duration(1, 4)
     assert t.duration_multiplier is None
     assert t.multiplied_duration == Duration(1, 4)
-
-

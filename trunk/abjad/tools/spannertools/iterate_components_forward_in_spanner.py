@@ -29,6 +29,3 @@ def iterate_components_forward_in_spanner(spanner, klass = _Component):
         for node in dfs:
             if isinstance(node, klass):
                 yield node
-
-
-

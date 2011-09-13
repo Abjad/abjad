@@ -45,4 +45,3 @@ def test_HarmonicDiatonicInterval___repr___02():
     interval = pitchtools.HarmonicDiatonicInterval('minor', -3)
     repr = interval.__repr__()
     assert  repr == "HarmonicDiatonicInterval('m3')"
-

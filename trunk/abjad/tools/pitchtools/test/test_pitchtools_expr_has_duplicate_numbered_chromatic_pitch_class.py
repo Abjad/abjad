@@ -17,4 +17,3 @@ def test_pitchtools_expr_has_duplicate_numbered_chromatic_pitch_class_02():
     assert not pitchtools.expr_has_duplicate_numbered_chromatic_pitch_class(Note(13, (1, 4)))
     assert not pitchtools.expr_has_duplicate_numbered_chromatic_pitch_class(Rest((1, 4)))
     assert not pitchtools.expr_has_duplicate_numbered_chromatic_pitch_class(skiptools.Skip((1, 4)))
-

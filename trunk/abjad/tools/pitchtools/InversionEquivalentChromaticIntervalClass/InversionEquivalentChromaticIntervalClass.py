@@ -69,4 +69,3 @@ class InversionEquivalentChromaticIntervalClass(_IntervalClass):
     #def number(self):
     def inversion_equivalent_chromatic_interval_number(self):
         return self._number
-

@@ -237,8 +237,3 @@ def test_leaftools_set_preprolated_leaf_duration_10():
 
     assert componenttools.is_well_formed_component(t)
     assert t.format == "c'8 * 5/3"
-
-
-
-
-

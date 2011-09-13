@@ -7,6 +7,3 @@ def test_DynamicTextSpanner___init___01():
 
     spanner = spannertools.DynamicTextSpanner()
     assert isinstance(spanner, spannertools.DynamicTextSpanner)
-
-
-

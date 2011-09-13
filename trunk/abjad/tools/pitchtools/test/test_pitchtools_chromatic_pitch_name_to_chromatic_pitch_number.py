@@ -14,4 +14,3 @@ def test_pitchtools_chromatic_pitch_name_to_chromatic_pitch_number_01():
     assert pitchtools.chromatic_pitch_name_to_chromatic_pitch_number("css''") == 14
 
     assert pitchtools.chromatic_pitch_name_to_chromatic_pitch_number("d''") == 14
-

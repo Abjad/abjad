@@ -52,5 +52,3 @@ def remove_outer_rests_from_sequence(sequence):
 
     result = result[initial_rests_to_remove:]
     return result
-
-

@@ -9,6 +9,3 @@ def test_ComplexBeamSpanner___eq___01():
     spanner_2 = spannertools.ComplexBeamSpanner()
 
     assert not spanner_1 == spanner_2
-
-
-

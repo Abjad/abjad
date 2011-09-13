@@ -57,5 +57,3 @@ def get_nth_leaf_in_expr(expr, n = 0):
     '''
 
     return get_nth_component_in_expr(expr, _Leaf, n)
-
-

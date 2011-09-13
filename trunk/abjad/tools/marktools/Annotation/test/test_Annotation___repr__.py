@@ -12,4 +12,3 @@ def test_Annotation___repr___01():
     assert isinstance(annotation_1, marktools.Annotation)
     assert isinstance(annotation_2, marktools.Annotation)
     assert annotation_1 == annotation_2
-

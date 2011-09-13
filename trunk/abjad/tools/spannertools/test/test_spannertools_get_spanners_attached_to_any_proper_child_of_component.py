@@ -33,6 +33,3 @@ def test_spannertools_get_spanners_attached_to_any_proper_child_of_component_01(
     spanners = spannertools.get_spanners_attached_to_any_proper_child_of_component(
         staff, spannertools.TrillSpanner)
     assert spanners == set([])
-
-
-

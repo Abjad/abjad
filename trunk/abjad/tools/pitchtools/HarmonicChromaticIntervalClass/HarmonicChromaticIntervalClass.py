@@ -40,4 +40,3 @@ class HarmonicChromaticIntervalClass(_ChromaticIntervalClass, _HarmonicIntervalC
 
     def __ne__(self, arg):
         return not self == arg
-

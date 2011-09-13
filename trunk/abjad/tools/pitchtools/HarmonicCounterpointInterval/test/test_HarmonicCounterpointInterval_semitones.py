@@ -8,4 +8,3 @@ def test_HarmonicCounterpointInterval_semitones_01():
     hcpi = pitchtools.HarmonicCounterpointInterval(15)
 
     assert py.test.raises(NotImplementedError, 'hcpi.semitones')
-

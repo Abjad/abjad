@@ -37,5 +37,3 @@ class StaffGroup(_Context):
         self.is_parallel = True
         self.context = 'StaffGroup'
         self._initialize_keyword_values(**kwargs)
-
-

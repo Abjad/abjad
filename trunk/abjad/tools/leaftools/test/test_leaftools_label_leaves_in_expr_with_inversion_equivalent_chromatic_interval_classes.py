@@ -22,8 +22,3 @@ def test_leaftools_label_leaves_in_expr_with_inversion_equivalent_chromatic_inte
     """
 
     assert staff.format == "\\new Staff {\n\tc'8 ^ \\markup { 1 }\n\tcs'''8 ^ \\markup { 2 }\n\tb'8 ^ \\markup { 2 }\n\taf8 ^ \\markup { 2 }\n\tbf,8 ^ \\markup { 1 }\n\tb,8 ^ \\markup { 2 }\n\ta'8 ^ \\markup { 1 }\n\tbf'8 ^ \\markup { 4 }\n\tfs'8 ^ \\markup { 1 }\n\tf'8\n}"
-
-
-
-
-

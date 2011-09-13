@@ -127,6 +127,3 @@ def test_spannertools__give_spanners_that_dominate_donor_components_to_recipient
 
     assert not componenttools.is_well_formed_component(t)
     assert not componenttools.is_well_formed_component(recipient)
-
-
-

@@ -3,4 +3,3 @@ class _Counterpoint(object):
     '''
 
     pass
-

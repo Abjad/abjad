@@ -32,4 +32,3 @@ def test_StemTremolo_format_03():
     assert t.format == "r4 :8"
     marktools.detach_stem_tremolos_attached_to_component(t)
     assert t.format == "r4"
-

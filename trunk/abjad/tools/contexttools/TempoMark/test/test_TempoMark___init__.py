@@ -33,5 +33,3 @@ def test_TempoMark___init___04():
 
     t = contexttools.TempoMark((3, 32), 52.5)
     assert t.format == '\\tempo 16.=52.5'
-
-

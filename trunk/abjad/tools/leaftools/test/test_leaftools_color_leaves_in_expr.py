@@ -25,8 +25,3 @@ def test_leaftools_color_leaves_in_expr_01():
     '''
 
     assert t.format == "\\new Staff {\n\t\\once \\override Accidental #'color = #red\n\t\\once \\override Dots #'color = #red\n\t\\once \\override NoteHead #'color = #red\n\tcs'8.\n\t\\once \\override Dots #'color = #red\n\t\\once \\override Rest #'color = #red\n\tr8.\n\ts8.\n\t\\once \\override Accidental #'color = #red\n\t\\once \\override Dots #'color = #red\n\t\\once \\override NoteHead #'color = #red\n\t<c' cs' a'>8.\n}"
-
-
-
-
-

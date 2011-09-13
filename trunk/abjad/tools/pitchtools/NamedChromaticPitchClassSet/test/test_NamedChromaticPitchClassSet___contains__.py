@@ -15,4 +15,3 @@ def test_NamedChromaticPitchClassSet___contains___01():
 
     assert not pitchtools.NamedChromaticPitchClass('cs') in npc_set
     assert not pitchtools.NamedChromaticPitchClass('cf') in npc_set
-

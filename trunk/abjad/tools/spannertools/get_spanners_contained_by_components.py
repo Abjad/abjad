@@ -19,6 +19,3 @@ def get_spanners_contained_by_components(components):
         #result.update(component.spanners.contained)
         result.update(get_spanners_attached_to_any_improper_child_of_component(component))
     return result
-
-
-

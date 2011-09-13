@@ -22,4 +22,3 @@ def test_NamedChromticPitchSegment___init___02():
     named_chromatic_pitch_segment = pitchtools.NamedChromaticPitchSegment(named_chromatic_pitches)
 
     assert isinstance(named_chromatic_pitch_segment, pitchtools.NamedChromaticPitchSegment)
-

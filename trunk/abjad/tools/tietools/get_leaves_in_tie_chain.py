@@ -19,4 +19,3 @@ def get_leaves_in_tie_chain(tie_chain):
         assert len(tie_chain) == 1
         leaves = (tie_chain[0], )
         return leaves
-

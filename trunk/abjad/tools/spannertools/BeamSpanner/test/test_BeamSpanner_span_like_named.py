@@ -157,7 +157,3 @@ def test_BeamSpanner_span_like_named_04():
         >>
     }
     '''
-
-
-
-

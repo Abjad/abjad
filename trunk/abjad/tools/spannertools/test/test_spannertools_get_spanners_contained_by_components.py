@@ -46,6 +46,3 @@ def test_spannertools_get_spanners_contained_by_components_01():
     assert len(spanners) == 2
     assert beam in spanners
     assert trill in spanners
-
-
-
