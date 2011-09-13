@@ -132,7 +132,7 @@ class Tree(_StrictComparator):
             if self.payload is not None or other.payload is not None:
                 return self.payload == other.payload
             if len(self) == len(other):
-                for x, y in zip(self, other):
+                for x, y in zip(self._noncyclic_children, other._noncyclic_children):
                     if not x == y:
                         return False
                 else:
@@ -153,10 +153,15 @@ class Tree(_StrictComparator):
 
     def __str__(self):
         if self.payload is None:
-            contents_to_display = self._children[:len(self)]
-            return '[%s]' % ', '.join([str(x) for x in contents_to_display])
+            return '[%s]' % ', '.join([str(x) for x in self._noncyclic_children])
         else:
             return repr(self.payload)
+
+    ### PRIVATE ATTRIBUTES ###
+
+    @property
+    def _noncyclic_children(self):
+        return list(self._children)
 
     ### PUBLIC ATTRIBUTES ###
 
