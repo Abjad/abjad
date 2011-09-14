@@ -61,6 +61,11 @@ class CyclicTree(Tree):
     All other interface attributes function as in ``Tree``.
     '''
 
+    ### OVERLOADS ###
+
+    def __iter__(self):
+        return self._noncyclic_children.__iter__()
+
     ### PRVATE METHODS ###
 
     def _initialize_children_list(self):

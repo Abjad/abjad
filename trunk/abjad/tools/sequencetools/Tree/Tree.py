@@ -110,7 +110,6 @@ class Tree(_StrictComparator):
     '''
 
     def __init__(self, expr):
-        #self._children = []
         self._children = self._initialize_children_list()
         self.parent = None
         try:
@@ -142,6 +141,12 @@ class Tree(_StrictComparator):
     def __getitem__(self, expr):
         return self._children[expr]
 
+    ## TODO: figure out why this breaks Tree.remove_to_root()
+#    def __getslice__(self, start_index, stop_index):
+#        result = []
+#        result = [self[n] for n in range(start_index, stop_index)]
+#        return result
+
     def __len__(self):
         return len(self._children)
 
@@ -162,6 +167,21 @@ class Tree(_StrictComparator):
     @property
     def _noncyclic_children(self):
         return list(self._children)
+
+    ### PRIVATE METHODS ###
+
+    def _initialize_and_wrap_nodes_with_type(self, expr, type_):
+        self._children = self._initialize_children_list()
+        self.parent = None
+        try:
+            self.payload = None
+            for element in expr:
+                #child = type(self)(element)
+                child = type_(element)
+                self._children.append(child)
+                child.parent = self
+        except TypeError:
+            self.payload = expr
 
     ### PUBLIC ATTRIBUTES ###
 
