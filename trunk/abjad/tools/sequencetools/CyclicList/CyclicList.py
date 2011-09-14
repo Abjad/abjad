@@ -38,7 +38,10 @@ class CyclicList(list):
     ### OVERLOADS ###
 
     def __getitem__(self, expr):
-        return list.__getitem__(self, expr % len(self))
+        if len(self):
+            return list.__getitem__(self, expr % len(self))
+        else:
+            raise IndexError
 
     def __getslice__(self, start_index, stop_index):
         result = []
