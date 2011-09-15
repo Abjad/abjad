@@ -23,7 +23,7 @@ class CyclicMatrix(Matrix):
     ::
 
         abjad> cyclic_matrix[2]
-        (20, 21, 22, 23)
+        CyclicTuple([20, 21, 22, 23])
 
     ::
 
@@ -33,7 +33,7 @@ class CyclicMatrix(Matrix):
     ::
 
         abjad> cyclic_matrix[99]
-        (0, 1, 2, 3)
+        CyclicTuple([0, 1, 2, 3])
 
     ::
 
@@ -52,7 +52,7 @@ class CyclicMatrix(Matrix):
     ::
 
         abjad> cyclic_matrix[2]
-        (20, 21, 22, 23)
+        CyclicTuple([20, 21, 22, 23])
 
     ::
 
@@ -62,7 +62,7 @@ class CyclicMatrix(Matrix):
     ::
 
         abjad> cyclic_matrix[99]
-        (0, 1, 2, 3)
+        CyclicTuple([0, 1, 2, 3])
 
     ::
 
@@ -129,7 +129,7 @@ class CyclicMatrix(Matrix):
         ::
 
             abjad> cyclic_matrix.columns
-            ((0, 10, 20), (1, 11, 21), (2, 12, 22), (3, 13, 23))
+            CyclicTuple([[0, 10, 20], [1, 11, 21], [2, 12, 22], [3, 13, 23]])
 
         Return cyclic tuple.
         '''
@@ -144,7 +144,7 @@ class CyclicMatrix(Matrix):
         ::
 
             abjad> cyclic_matrix.rows
-            ((0, 1, 2, 3), (10, 11, 12, 13), (20, 21, 22, 23))
+            CyclicTuple([[0, 1, 2, 3], [10, 11, 12, 13], [20, 21, 22, 23]])
 
         Return cyclic tuple.
         '''

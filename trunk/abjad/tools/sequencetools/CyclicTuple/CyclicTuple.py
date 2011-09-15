@@ -12,7 +12,7 @@ class CyclicTuple(tuple):
     ::
 
         abjad> cyclic_tuple
-        ('a', 'b', 'c', 'd')
+        CyclicTuple([a, b, c, d])
 
     ::
 
@@ -44,3 +44,9 @@ class CyclicTuple(tuple):
         result = []
         result = [self[n] for n in range(start_index, stop_index)]
         return tuple(result)
+
+    def __repr__(self):
+        return '%s(%s)' % (type(self).__name__, self)
+
+    def __str__(self):
+        return '[%s]' % ', '.join([str(x) for x in self])

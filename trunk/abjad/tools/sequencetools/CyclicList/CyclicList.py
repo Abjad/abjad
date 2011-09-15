@@ -12,7 +12,7 @@ class CyclicList(list):
     ::
 
         abjad> cyclic_list
-        ['a', 'b', 'c', 'd']
+        CyclicList([a, b, c, d])
 
     ::
 
@@ -47,3 +47,9 @@ class CyclicList(list):
         result = []
         result = [self[n] for n in range(start_index, stop_index)]
         return result
+
+    def __repr__(self):
+        return '%s(%s)' % (type(self).__name__, self)
+
+    def __str__(self):
+        return '[%s]' % ', '.join([str(x) for x in self])
