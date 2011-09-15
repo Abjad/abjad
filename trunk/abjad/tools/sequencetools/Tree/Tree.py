@@ -737,7 +737,7 @@ class Tree(_StrictComparator):
         node.parent = None
 
     def remove_to_root(self):
-        '''.. versionadded 2.4
+        r'''.. versionadded:: 2.4
 
         Remove node and all nodes left of node to root::
 
@@ -786,3 +786,34 @@ class Tree(_StrictComparator):
                         break
                     else:
                         sibling.parent.remove(sibling) 
+    
+    def to_nested_lists(self):
+        r'''.. versionadded:: 2.5
+
+        Change tree to nested lists::
+
+            abjad> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
+            abjad> tree = sequencetools.Tree(sequence)
+
+        ::
+
+            abjad> tree
+            Tree([[0, 1], [2, 3], [4, 5], [6, 7]])
+
+        ::
+
+            abjad> tree.to_nested_lists()
+            [[0, 1], [2, 3], [4, 5], [6, 7]]
+
+        Return list of lists.
+        '''
+        if self.payload is not None:
+            raise TypeError('leaf node is not iterable.')
+        else:
+            result = []
+            for child in self._noncyclic_children:
+                if child.payload is not None:
+                    result.append(child.payload)
+                else:
+                    result.append(child.to_nested_lists())
+            return result
