@@ -1,7 +1,7 @@
 import re
 
 
-class _LilyParser(object):
+class _LilyPondParser(object):
 
     _commands = (
         '\\bar',
