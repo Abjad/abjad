@@ -3,18 +3,17 @@ import re
 
 class _LilyPondParser(object):
 
-    _callbacks = {
-        'COMMAND': '_callback_command_token',
-        'OBJ': '_callback_obj_token',
-    }
+    _commands = (
+        '\\bar', '\\clef', '\\context', '\\key', '\\new', '\\time', '\\times'
+    )
 
-    _commands = {
+    _commands_arguments = {
         'BAR': ['STRING'],
         'CLEF': ['SYMBOL'],
         'CONTEXT': ['CONTEXT_TYPE', 'EQUALS', 'STRING'],
         'KEY': ['PITCHCLASS', 'SYMBOL'],
         'NEW': ['CONTEXT_TYPE'],
-        'TEMPO': ['UNSIGNED_INT', 'EQUALS', 'UNSIGNED_INT'],
+        'TEMPO': ['INTEGER', 'EQUALS', 'INTEGER'],
         'TIME': ['FRACTION'],
         'TIMES': ['FRACTION'],
     }
@@ -23,6 +22,13 @@ class _LilyPondParser(object):
         'Score',
         'Staff',
         'Voice',
+    )
+
+    _dynamics = (
+        '\\mp', '\\mf',
+        '\\fp', '\\sf', '\\sff', '\\sp', '\\spp', '\\sfz', '\\rfz',
+        '\\p', '\\pp', '\\ppp', '\\pppp', '\\ppppp',
+        '\\f', '\\ff', '\\fff', '\\ffff', '\\fffff'
     )
 
     _tokens = (
@@ -40,15 +46,14 @@ class _LilyPondParser(object):
         ('HAIRPIN_CRESC',    r'\\<'),
         ('HAIRPIN_DECRESC',  r'\\>'),
         ('HAIRPIN_STOP',     r'\\!'),
-        ('DYNAMIC',          r'\\(p+|f+|mp|mf|fp|sf|sff|sp|spp|sfz|rfz)$'),
-        ('COMMAND',          r'\\\w+'),
+        ('COMMAND',          r'\\[a-zA-Z]+'),
 
         ('CONTAINER_CLOSE',  r'}'),
         ('CONTAINER_OPEN',   r'{'),
         ('DIRECTION',        r'_|-|\^'),
 
         ('FRACTION',         r'[1-9]\d*/[1-9]\d*'),
-        ('UNSIGNED_INT',     r'[1-9]\d*'),
+        ('INTEGER',          r'[1-9]\d*'),
         ('DOTS',             r'\.+'),
 
         ('OCTAVE_DOWN',      r",+"),
@@ -61,9 +66,13 @@ class _LilyPondParser(object):
         ('STRING',           r'\".+\"'),
         ('TIE',              r'~'),
 
-        ('SYMBOL',           r'\w+$'),
-        ('OBJ',              r'[A-Z][a-zA-Z]+'),
+        ('SYMBOL',           r'\w+'),
     )
+
+    _token_callbacks = {
+        'COMMAND': '_callback_command_token',
+        'SYMBOL': '_callback_symbol_token',
+    }
 
     _regex = re.compile('|'.join(['(?P<%s>%s)' % (name, rule) for name, rule in _tokens]), re.MULTILINE)
 
@@ -80,18 +89,13 @@ class _LilyPondParser(object):
         pass
 
     def _callback_command_token(self, token, value):
-        if value in [
-            '\\bar',
-            '\\clef',
-            '\\context',
-            '\\key',
-            '\\new',
-            '\\time',
-            '\\times']:
+        if value in self._commands:
             token = value[1:].upper( )
+        elif value in self._dynamics:
+            token = 'DYNAMIC'
         return token, value
 
-    def _callback_obj_token(self, token, value):
+    def _callback_symbol_token(self, token, value):
         if value in [
             'Score',
             'Staff',
@@ -100,6 +104,9 @@ class _LilyPondParser(object):
         return token, value
 
     def _tokenize(self, lily_string):
+        '''Scan through `lily_string`, matching tokens and discarding whitespace.
+        Certain tokens have callbacks for finer-grain parsing.
+        '''
         tokens = [ ]
         position = 0
         while position < len(lily_string):
@@ -118,8 +125,8 @@ class _LilyPondParser(object):
             token = match.lastgroup
             value = match.group(match.lastgroup)
             # check for callbacks, add to token list
-            if token in self._callbacks:
-                callback = getattr(self, self._callbacks[token])
+            if token in self._token_callbacks:
+                callback = getattr(self, self._token_callbacks[token])
                 token, value = callback(token, value)
                 tokens.append(callback(token, value))
             else:
