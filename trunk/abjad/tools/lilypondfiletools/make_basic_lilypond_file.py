@@ -11,15 +11,15 @@ def make_basic_lilypond_file(music = None):
     Make basic LilyPond file with `music`::
 
         abjad> score = Score([Staff("c'8 d'8 e'8 f'8")])
-        abjad> lily_file = lilypondfiletools.make_basic_lilypond_file(score)
-        abjad> lily_file.header_block.composer = markuptools.Markup('Josquin')
-        abjad> lily_file.layout_block.indent = 0
-        abjad> lily_file.paper_block.top_margin = 15
-        abjad> lily_file.paper_block.left_margin = 15
+        abjad> lilypond_file = lilypondfiletools.make_basic_lilypond_file(score)
+        abjad> lilypond_file.header_block.composer = markuptools.Markup('Josquin')
+        abjad> lilypond_file.layout_block.indent = 0
+        abjad> lilypond_file.paper_block.top_margin = 15
+        abjad> lilypond_file.paper_block.left_margin = 15
 
     ::
 
-        abjad> f(lily_file) # doctest: +SKIP
+        abjad> f(lilypond_file) # doctest: +SKIP
         \header {
             composer = \markup { Josquin }
         }
@@ -47,22 +47,22 @@ def make_basic_lilypond_file(music = None):
     Return LilyPond file.
     '''
 
-    lily_file = LilyPondFile()
+    lilypond_file = LilyPondFile()
 
     header_block = HeaderBlock()
     layout_block = LayoutBlock()
     paper_block = PaperBlock()
     score_block = ScoreBlock()
 
-    lily_file.extend([header_block, layout_block, paper_block, score_block])
+    lilypond_file.extend([header_block, layout_block, paper_block, score_block])
 
-    lily_file.header_block = header_block
-    lily_file.layout_block = layout_block
-    lily_file.paper_block = paper_block
-    lily_file.score_block = score_block
+    lilypond_file.header_block = header_block
+    lilypond_file.layout_block = layout_block
+    lilypond_file.paper_block = paper_block
+    lilypond_file.score_block = score_block
 
     if music is not None:
         score_block.append(music)
-        music.lily_file = lily_file
+        music.lilypond_file = lilypond_file
 
-    return lily_file
+    return lilypond_file

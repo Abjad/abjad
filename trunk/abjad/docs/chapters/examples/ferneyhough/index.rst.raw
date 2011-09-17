@@ -95,7 +95,7 @@ Finally we make the score:
 <abjad>
 staff = stafftools.RhythmicStaff(music)
 score = Score([staff])
-lily_file = lilyfiletools.make_basic_lily_file(score)
+lilypond_file = lilyfiletools.make_basic_lilypond_file(score)
 </abjad>
 
 Configure containers:
@@ -117,20 +117,20 @@ score.override.bar_line.stencil = False
 Configure the LilyPond file:
 
 <abjad>
-lily_file.default_paper_size = '11x17', 'portrait'
-lily_file.global_staff_size = 12
-lily_file.layout_block.indent = 0
-lily_file.layout_block.ragged_right = True
-lily_file.paper_block.ragged_bottom = True
+lilypond_file.default_paper_size = '11x17', 'portrait'
+lilypond_file.global_staff_size = 12
+lilypond_file.layout_block.indent = 0
+lilypond_file.layout_block.ragged_right = True
+lilypond_file.paper_block.ragged_bottom = True
 space = schemetools.SchemePair('space', 18)
 stretchability = schemetools.SchemePair('stretchability', 0)
 vector = schemetools.SchemeVector(space, stretchability)
-lily_file.paper_block.between_system_spacing = vector
+lilypond_file.paper_block.between_system_spacing = vector
 </abjad>
 
 And show the result:
 
 <abjad>
-show(lily_file)
-iotools.write_expr_to_ly(lily_file, 'ferneyhough-1') <hide
+show(lilypond_file)
+iotools.write_expr_to_ly(lilypond_file, 'ferneyhough-1') <hide
 </abjad>

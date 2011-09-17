@@ -1,6 +1,6 @@
 from abjad.cfg._read_config_file import _read_config_file
 from abjad.tools import lilypondfiletools
-from abjad.tools.iotools._insert_expr_into_lily_file import _insert_expr_into_lily_file
+from abjad.tools.iotools._insert_expr_into_lilypond_file import _insert_expr_into_lilypond_file
 from abjad.tools.iotools._open_file import _open_file
 from abjad.tools.iotools._run_lilypond import _run_lilypond
 from abjad.tools.iotools._verify_output_directory import _verify_output_directory
@@ -26,10 +26,10 @@ def play(expr):
     os.chdir(ABJADOUTPUT)
     name = get_next_output_file_name()
     outfile = open(name, 'w')
-    lily_file = _insert_expr_into_lily_file(expr)
-    #score_block = lily_file.score.append(lilypondfiletools.MidiBlock())
-    lily_file.score_block.append(lilypondfiletools.MidiBlock())
-    outfile.write(lily_file.format)
+    lilypond_file = _insert_expr_into_lilypond_file(expr)
+    #score_block = lilypond_file.score.append(lilypondfiletools.MidiBlock())
+    lilypond_file.score_block.append(lilypondfiletools.MidiBlock())
+    outfile.write(lilypond_file.format)
     outfile.close()
     _run_lilypond(name, _read_config_file()['lilypond_path'])
     if os.name == 'nt':

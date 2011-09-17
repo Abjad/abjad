@@ -12,23 +12,23 @@ class LilyPondFile(list):
     Abjad model of LilyPond input file::
 
         abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> lily_file = lilypondfiletools.make_basic_lilypond_file(staff)
-        abjad> lily_file.file_initial_user_comments.append('File construct as an example.')
-        abjad> lily_file.file_initial_user_comments.append('Parts shown here for positioning.')
-        abjad> lily_file.file_initial_user_includes.append('external-settings-file-1.ly')
-        abjad> lily_file.file_initial_user_includes.append('external-settings-file-2.ly')
-        abjad> lily_file.default_paper_size = 'letter', 'portrait'
-        abjad> lily_file.global_staff_size = 16
-        abjad> lily_file.header_block.composer = markuptools.Markup('Josquin')
-        abjad> lily_file.header_block.title = markuptools.Markup('Missa sexti tonus')
-        abjad> lily_file.layout_block.indent = 0
-        abjad> lily_file.layout_block.left_margin = 15
-        abjad> lily_file.paper_block.oddFooterMarkup = markuptools.Markup('The odd-page footer')
-        abjad> lily_file.paper_block.evenFooterMarkup = markuptools.Markup('The even-page footer')
+        abjad> lilypond_file = lilypondfiletools.make_basic_lilypond_file(staff)
+        abjad> lilypond_file.file_initial_user_comments.append('File construct as an example.')
+        abjad> lilypond_file.file_initial_user_comments.append('Parts shown here for positioning.')
+        abjad> lilypond_file.file_initial_user_includes.append('external-settings-file-1.ly')
+        abjad> lilypond_file.file_initial_user_includes.append('external-settings-file-2.ly')
+        abjad> lilypond_file.default_paper_size = 'letter', 'portrait'
+        abjad> lilypond_file.global_staff_size = 16
+        abjad> lilypond_file.header_block.composer = markuptools.Markup('Josquin')
+        abjad> lilypond_file.header_block.title = markuptools.Markup('Missa sexti tonus')
+        abjad> lilypond_file.layout_block.indent = 0
+        abjad> lilypond_file.layout_block.left_margin = 15
+        abjad> lilypond_file.paper_block.oddFooterMarkup = markuptools.Markup('The odd-page footer')
+        abjad> lilypond_file.paper_block.evenFooterMarkup = markuptools.Markup('The even-page footer')
 
     ::
 
-        abjad> f(lily_file) # doctest: +SKIP
+        abjad> f(lilypond_file) # doctest: +SKIP
         % Abjad revision 3719
         % 2010-09-24 09:01
 

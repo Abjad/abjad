@@ -23,7 +23,7 @@ def write_expr_to_pdf(expr, file_name, template = None, print_status = True):
     if not file_name.endswith('.pdf'):
         file_name += '.pdf'
 
-    name, actual_format_time, actual_lily_file = _log_render_lilypond_input(
+    name, actual_format_time, actual_lilypond_file = _log_render_lilypond_input(
         expr, template = template)
 
     # copy PDF file to file_name

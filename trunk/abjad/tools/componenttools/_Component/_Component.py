@@ -16,7 +16,7 @@ class _Component(_StrictComparator):
         '_marks_for_which_component_functions_as_start_component', '_navigator',
         '_offset', '_offset_values_in_seconds_are_current', '_override', '_parentage',
         '_prolated_offset_values_are_current', '_set', '_spanners',
-        'lily_file', )
+        'lilypond_file', )
 
     def __init__(self):
         self._is_forbidden_to_update = False

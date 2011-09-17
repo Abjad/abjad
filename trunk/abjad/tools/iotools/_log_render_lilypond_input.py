@@ -1,6 +1,6 @@
 from abjad.cfg._read_config_file import _read_config_file
 from abjad.tools import lilypondfiletools
-from abjad.tools.iotools._insert_expr_into_lily_file import _insert_expr_into_lily_file
+from abjad.tools.iotools._insert_expr_into_lilypond_file import _insert_expr_into_lilypond_file
 from abjad.tools.iotools._run_lilypond import _run_lilypond
 from abjad.tools.iotools._verify_output_directory import _verify_output_directory
 from abjad.tools.iotools.get_next_output_file_name import get_next_output_file_name
@@ -35,23 +35,23 @@ def _log_render_lilypond_input(expr, template = None):
 
     # catch Abjad tight loops that result in excessive format time
     start_format_time = time.time()
-    lily_file = _insert_expr_into_lily_file(expr, template = template)
-    formatted_lily_file = lily_file.format
+    lilypond_file = _insert_expr_into_lilypond_file(expr, template = template)
+    formatted_lilypond_file = lilypond_file.format
     stop_format_time = time.time()
     actual_format_time = int(stop_format_time - start_format_time)
     if format_time <= actual_format_time:
         print 'Abjad format time equal to %s sec.' % actual_format_time
-    outfile.write(formatted_lily_file)
+    outfile.write(formatted_lilypond_file)
     outfile.close()
 
-    if getattr(lily_file, '_is_temporary', False):
+    if getattr(lilypond_file, '_is_temporary', False):
         # TODO: eliminate this exception handler? #
         try:
-            music = lily_file.score_block.pop()
-            delattr(music, '_lily_file')
+            music = lilypond_file.score_block.pop()
+            delattr(music, '_lilypond_file')
         except (IndexError, AttributeError):
             pass
-        del(lily_file)
+        del(lilypond_file)
 
     # render
     start_time = time.time()
