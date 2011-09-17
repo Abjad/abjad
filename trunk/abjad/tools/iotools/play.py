@@ -27,7 +27,6 @@ def play(expr):
     name = get_next_output_file_name()
     outfile = open(name, 'w')
     lilypond_file = _insert_expr_into_lilypond_file(expr)
-    #score_block = lilypond_file.score.append(lilypondfiletools.MIDIBlock())
     lilypond_file.score_block.append(lilypondfiletools.MIDIBlock())
     outfile.write(lilypond_file.format)
     outfile.close()

@@ -3,10 +3,10 @@ from abjad import *
 
 def test_MIDIBlock_01():
 
-    midi_block = lilypondfiletools.MIDIBlock()
+    MIDI_block = lilypondfiletools.MIDIBlock()
 
     r'''
-    \midi {}
+    \MIDI {}
     '''
 
-    assert midi_block.format == '\\midi {}'
+    assert MIDI_block.format == '\\MIDI {}'

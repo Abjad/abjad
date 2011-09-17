@@ -88,24 +88,24 @@
       <score-instrument id="P1-I14">
         <instrument-name>Choir Aahs</instrument-name>
       </score-instrument>
-      <midi-instrument id="P1-I14">
-        <midi-channel>1</midi-channel>
-        <midi-program>53</midi-program>
+      <MIDI-instrument id="P1-I14">
+        <MIDI-channel>1</MIDI-channel>
+        <MIDI-program>53</MIDI-program>
         <volume>80</volume>
         <pan>0</pan>
-      </midi-instrument>
+      </MIDI-instrument>
     </score-part>
     <score-part id="P2">
       <part-name>Piano</part-name>
       <score-instrument id="P2-I1">
         <instrument-name>Grand Piano</instrument-name>
       </score-instrument>
-      <midi-instrument id="P2-I1">
-        <midi-channel>2</midi-channel>
-        <midi-program>1</midi-program>
+      <MIDI-instrument id="P2-I1">
+        <MIDI-channel>2</MIDI-channel>
+        <MIDI-program>1</MIDI-program>
         <volume>80</volume>
         <pan>0</pan>
-      </midi-instrument>
+      </MIDI-instrument>
     </score-part>
   </part-list>
   <!--=========================================================-->

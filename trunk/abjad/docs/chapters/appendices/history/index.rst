@@ -111,7 +111,7 @@ engraving.
 
 
 
-A very brief overview of midi
+A very brief overview of MIDI
 -----------------------------
 
 MIDI (Musical Instrument Digital Interface) was first introduced in
@@ -151,7 +151,7 @@ piano music.
 
 
 
-Limitations of midi from the point of view of score modeling
+Limitations of MIDI from the point of view of score modeling
 ------------------------------------------------------------
 
 But, alas, there is much more information in a printed score that can
@@ -177,7 +177,7 @@ attributes of notes in a printed score.
 
 
 
-Written note durations vs. midi delta-times
+Written note durations vs. MIDI delta-times
 -------------------------------------------
 
 Assume a fixed tempo has been set. Assume that all magnitudes are
@@ -195,11 +195,11 @@ notated durations:
 	abjad> m3 = measuretools.AnonymousMeasure([Note(0, (1, 8))] + Note(0, (1, 16)) * 2)
 	abjad> tietools.TieSpanner(m3)
 	abjad> r = stafftools.RhythmicStaff([m1, m2, m3])
-	abjad> iotools.write_expr_to_ly(r, 'midi-1')
+	abjad> iotools.write_expr_to_ly(r, 'MIDI-1')
 
-.. image:: images/midi-1.png
+.. image:: images/MIDI-1.png
 
-Written note pitch vs. midi note-on
+Written note pitch vs. MIDI note-on
 -----------------------------------
 
 A similar thing happens with pitches. In MIDI, key (pitch) number 61
@@ -211,9 +211,9 @@ a C sharp or a B flat?
 	abjad> m1 = measuretools.AnonymousMeasure([Note(1, (1, 4))])
 	abjad> m2 = measuretools.AnonymousMeasure([Note(('df', 4), (1, 4))])
 	abjad> r = Staff([m1, m2])
-	abjad> iotools.write_expr_to_ly(r, 'midi-2')
+	abjad> iotools.write_expr_to_ly(r, 'MIDI-2')
 
-.. image:: images/midi-2.png
+.. image:: images/MIDI-2.png
 
 Conclusion
 ----------
