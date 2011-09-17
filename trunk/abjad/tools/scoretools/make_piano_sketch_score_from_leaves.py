@@ -1,5 +1,5 @@
 from abjad.tools import contexttools
-from abjad.tools import lilyfiletools
+from abjad.tools import lilypondfiletools
 from abjad.tools import markuptools
 from abjad.tools.pitchtools import NamedChromaticPitch
 from abjad.tools.scoretools.make_piano_score_from_leaves import make_piano_score_from_leaves
@@ -72,7 +72,7 @@ def make_piano_sketch_score_from_leaves(leaves, lowest_treble_pitch = NamedChrom
     contexttools.set_accidental_style_on_sequential_contexts_in_expr(score, 'forget')
 
     # make and configure lily file
-    lily_file = lilyfiletools.make_basic_lily_file(score)
+    lily_file = lilypondfiletools.make_basic_lily_file(score)
     lily_file.layout_block.indent = 0
     lily_file.paper_block.tagline = markuptools.Markup('')
 

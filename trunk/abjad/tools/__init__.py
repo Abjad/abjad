@@ -4,7 +4,7 @@ from abjad.tools import containertools
 from abjad.tools import contexttools
 from abjad.tools import gracetools
 from abjad.tools import instrumenttools
-from abjad.tools import lilyfiletools
+from abjad.tools import lilypondfiletools
 from abjad.tools import contexttools
 from abjad.tools import markuptools
 from abjad.tools import measuretools

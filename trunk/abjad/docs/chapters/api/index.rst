@@ -374,24 +374,24 @@ leaftools
    tools/leaftools/yield_groups_of_mixed_notes_and_chords_in_sequence
 
 
-lilyfiletools
+lilypondfiletools
 
 .. toctree::
    :maxdepth: 1
 
-   tools/lilyfiletools/AbjadRevisionToken/AbjadRevisionToken
-   tools/lilyfiletools/BookBlock/BookBlock
-   tools/lilyfiletools/BookpartBlock/BookpartBlock
-   tools/lilyfiletools/DateTimeToken/DateTimeToken
-   tools/lilyfiletools/HeaderBlock/HeaderBlock
-   tools/lilyfiletools/LayoutBlock/LayoutBlock
-   tools/lilyfiletools/LilyFile/LilyFile
-   tools/lilyfiletools/LilyPondLanguageToken/LilyPondLanguageToken
-   tools/lilyfiletools/LilyPondVersionToken/LilyPondVersionToken
-   tools/lilyfiletools/MidiBlock/MidiBlock
-   tools/lilyfiletools/PaperBlock/PaperBlock
-   tools/lilyfiletools/ScoreBlock/ScoreBlock
-   tools/lilyfiletools/make_basic_lily_file
+   tools/lilypondfiletools/AbjadRevisionToken/AbjadRevisionToken
+   tools/lilypondfiletools/BookBlock/BookBlock
+   tools/lilypondfiletools/BookpartBlock/BookpartBlock
+   tools/lilypondfiletools/DateTimeToken/DateTimeToken
+   tools/lilypondfiletools/HeaderBlock/HeaderBlock
+   tools/lilypondfiletools/LayoutBlock/LayoutBlock
+   tools/lilypondfiletools/LilyFile/LilyFile
+   tools/lilypondfiletools/LilyPondLanguageToken/LilyPondLanguageToken
+   tools/lilypondfiletools/LilyPondVersionToken/LilyPondVersionToken
+   tools/lilypondfiletools/MidiBlock/MidiBlock
+   tools/lilypondfiletools/PaperBlock/PaperBlock
+   tools/lilypondfiletools/ScoreBlock/ScoreBlock
+   tools/lilypondfiletools/make_basic_lily_file
 
 
 marktools

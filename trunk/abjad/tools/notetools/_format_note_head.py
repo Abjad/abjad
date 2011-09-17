@@ -1,6 +1,6 @@
 def _format_note_head(note_head):
-    from abjad.tools.lilyfiletools._format_lilypond_attribute import _format_lilypond_attribute
-    from abjad.tools.lilyfiletools._format_lilypond_value import _format_lilypond_value
+    from abjad.tools.lilypondfiletools._format_lilypond_attribute import _format_lilypond_attribute
+    from abjad.tools.lilypondfiletools._format_lilypond_value import _format_lilypond_value
     from abjad.tools.chordtools.Chord import Chord
 
     # make sure note head has pitch

@@ -1,4 +1,4 @@
-from abjad.tools import lilyfiletools
+from abjad.tools import lilypondfiletools
 from abjad.tools import markuptools
 from abjad.tools.iotools._template_name_to_template_path import _template_name_to_template_path
 
@@ -6,14 +6,14 @@ from abjad.tools.iotools._template_name_to_template_path import _template_name_t
 def _insert_expr_into_lily_file(expr, template = None, tagline = False):
     from abjad.tools.contexttools._Context import _Context
 
-    if isinstance(expr, lilyfiletools.LilyFile):
+    if isinstance(expr, lilypondfiletools.LilyFile):
         lily_file = expr
     elif isinstance(expr, _Context):
-        lily_file = lilyfiletools.make_basic_lily_file(expr)
+        lily_file = lilypondfiletools.make_basic_lily_file(expr)
         lily_file._is_temporary = True
     else:
-        lily_file = lilyfiletools.make_basic_lily_file()
-        score_block = lilyfiletools.ScoreBlock()
+        lily_file = lilypondfiletools.make_basic_lily_file()
+        score_block = lilypondfiletools.ScoreBlock()
         score_block.append(expr)
         # NOTE: don't quite understand the logic here.
         # why append a score_block and then set the score_block attribute

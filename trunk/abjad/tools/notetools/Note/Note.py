@@ -16,7 +16,7 @@ class Note(_Leaf):
     __slots__ = ('_note_head', '_pitch', )
 
     def __init__(self, *args, **kwargs):
-        from abjad.tools.lilyfiletools._lilypond_leaf_regex import _lilypond_leaf_regex
+        from abjad.tools.lilypondfiletools._lilypond_leaf_regex import _lilypond_leaf_regex
         if len(args) == 1 and isinstance(args[0], _Leaf):
             leaf = args[0]
             written_duration = leaf.written_duration

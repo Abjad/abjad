@@ -1,5 +1,5 @@
 from abjad.cfg._read_config_file import _read_config_file
-from abjad.tools import lilyfiletools
+from abjad.tools import lilypondfiletools
 from abjad.tools.iotools._insert_expr_into_lily_file import _insert_expr_into_lily_file
 from abjad.tools.iotools._open_file import _open_file
 from abjad.tools.iotools._run_lilypond import _run_lilypond
@@ -27,8 +27,8 @@ def play(expr):
     name = get_next_output_file_name()
     outfile = open(name, 'w')
     lily_file = _insert_expr_into_lily_file(expr)
-    #score_block = lily_file.score.append(lilyfiletools.MidiBlock())
-    lily_file.score_block.append(lilyfiletools.MidiBlock())
+    #score_block = lily_file.score.append(lilypondfiletools.MidiBlock())
+    lily_file.score_block.append(lilypondfiletools.MidiBlock())
     outfile.write(lily_file.format)
     outfile.close()
     _run_lilypond(name, _read_config_file()['lilypond_path'])
