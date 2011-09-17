@@ -2,7 +2,7 @@ from abjad import Fraction
 from abjad import Score
 from abjad import Staff
 from abjad.tools.contexttools import ClefMark
-from abjad.tools.lilypondfiletools import make_basic_lily_file
+from abjad.tools.lilypondfiletools import make_basic_lilypond_file
 from abjad.tools.pitchtools import make_n_middle_c_centered_pitches
 from abjad.tools.schemetools import SchemeMoment
 from abjad.tools.schemetools import SchemePair
@@ -48,7 +48,7 @@ def make_polyphonic_percussion_score_from_nonoverlapping_trees(trees, colorkey =
         SchemeVector('left', SchemePair('attach-dir', 0), SchemePair('padding', padding)))
     score.override.glissando.bound_details = bound_details
 
-    lily = make_basic_lily_file(score)
+    lily = make_basic_lilypond_file(score)
     lily.default_paper_size = ('11x17', 'landscape')
     lily.paper_block.ragged_right = True
 

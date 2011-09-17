@@ -9,10 +9,10 @@ def _insert_expr_into_lily_file(expr, template = None, tagline = False):
     if isinstance(expr, lilypondfiletools.LilyPondFile):
         lily_file = expr
     elif isinstance(expr, _Context):
-        lily_file = lilypondfiletools.make_basic_lily_file(expr)
+        lily_file = lilypondfiletools.make_basic_lilypond_file(expr)
         lily_file._is_temporary = True
     else:
-        lily_file = lilypondfiletools.make_basic_lily_file()
+        lily_file = lilypondfiletools.make_basic_lilypond_file()
         score_block = lilypondfiletools.ScoreBlock()
         score_block.append(expr)
         # NOTE: don't quite understand the logic here.

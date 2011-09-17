@@ -1,11 +1,11 @@
 from abjad import *
 
 
-def test_lilypondfiletools_make_basic_lily_file_01():
+def test_lilypondfiletools_make_basic_lilypond_file_01():
 
 
     score = Score([Staff("c'8 d'8 e'8 f'8")])
-    lily_file = lilypondfiletools.make_basic_lily_file(score)
+    lily_file = lilypondfiletools.make_basic_lilypond_file(score)
     lily_file.header_block.composer = markuptools.Markup('Josquin')
     lily_file.layout_block.indent = 0
     lily_file.paper_block.top_margin = 15

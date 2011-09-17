@@ -4,7 +4,7 @@ from abjad import *
 def test_LilyPondFile_format_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    lily_file = lilypondfiletools.make_basic_lily_file(staff)
+    lily_file = lilypondfiletools.make_basic_lilypond_file(staff)
     lily_file.file_initial_system_comments = []
     lily_file.file_initial_system_includes = []
     lily_file.file_initial_user_comments.append('User comments 1.')

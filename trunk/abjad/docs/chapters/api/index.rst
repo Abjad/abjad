@@ -391,7 +391,7 @@ lilypondfiletools
    tools/lilypondfiletools/MidiBlock/MidiBlock
    tools/lilypondfiletools/PaperBlock/PaperBlock
    tools/lilypondfiletools/ScoreBlock/ScoreBlock
-   tools/lilypondfiletools/make_basic_lily_file
+   tools/lilypondfiletools/make_basic_lilypond_file
 
 
 marktools
