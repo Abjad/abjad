@@ -1,9 +1,9 @@
 from abjad import *
 
 
-def test_MidiBlock_01():
+def test_MidiBlock_tmp_01():
 
-    midi_block = lilypondfiletools.MidiBlock()
+    midi_block = lilypondfiletools.MidiBlock_tmp()
 
     r'''
     \midi {}

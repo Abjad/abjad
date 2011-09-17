@@ -10,7 +10,7 @@ def test_ScoreBlock_01():
     score_block = lilypondfiletools.ScoreBlock()
     layout_block = lilypondfiletools.LayoutBlock()
     layout_block.is_formatted_when_empty = True
-    midi_block = lilypondfiletools.MidiBlock()
+    midi_block = lilypondfiletools.MidiBlock_tmp()
 
     score_block.append(score)
     score_block.append(layout_block)

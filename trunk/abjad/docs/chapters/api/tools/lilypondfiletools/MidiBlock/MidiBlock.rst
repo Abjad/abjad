@@ -1,7 +1,7 @@
-lilypondfiletools.MidiBlock
+lilypondfiletools.MidiBlock_tmp
 ===========================
 
-.. autoclass:: abjad.tools.lilypondfiletools.MidiBlock
+.. autoclass:: abjad.tools.lilypondfiletools.MidiBlock_tmp
    :members:
    :undoc-members:
    :show-inheritance:
