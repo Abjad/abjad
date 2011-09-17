@@ -388,7 +388,7 @@ lilypondfiletools
    tools/lilypondfiletools/LilyPondFile/LilyPondFile
    tools/lilypondfiletools/LilyPondLanguageToken/LilyPondLanguageToken
    tools/lilypondfiletools/LilyPondVersionToken/LilyPondVersionToken
-   tools/lilypondfiletools/MidiBlock_tmp/MidiBlock_tmp
+   tools/lilypondfiletools/MIDIBlock/MIDIBlock
    tools/lilypondfiletools/PaperBlock/PaperBlock
    tools/lilypondfiletools/ScoreBlock/ScoreBlock
    tools/lilypondfiletools/make_basic_lilypond_file

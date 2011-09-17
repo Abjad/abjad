@@ -1,7 +1,7 @@
 from abjad.tools.lilypondfiletools._BlockAttributed import _BlockAttributed
 
 
-class MidiBlock_tmp(_BlockAttributed):
+class MIDIBlock(_BlockAttributed):
     r'''.. versionadded:: 2.0
 
     Abjad model of LilyPond input file midi block.
