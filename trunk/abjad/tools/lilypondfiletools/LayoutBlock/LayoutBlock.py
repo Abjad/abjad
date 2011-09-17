@@ -1,14 +1,14 @@
-from abjad.tools.lilypondfiletools._BlockAttributed import _BlockAttributed
+from abjad.tools.lilypondfiletools._AttributedBlock import _AttributedBlock
 
 
-class LayoutBlock(_BlockAttributed):
+class LayoutBlock(_AttributedBlock):
     r'''.. versionadded:: 2.0
 
     Abjad model of LilyPond input file layout block.
     '''
 
     def __init__(self):
-        _BlockAttributed.__init__(self)
+        _AttributedBlock.__init__(self)
         self._escaped_name = r'\layout'
         self._contexts = []
 

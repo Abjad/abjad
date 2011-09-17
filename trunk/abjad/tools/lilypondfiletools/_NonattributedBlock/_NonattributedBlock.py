@@ -1,4 +1,4 @@
-class _BlockNonattributed(list):
+class _NonattributedBlock(list):
     r'''Abjad model of the LilyPond input file blocks with no attributes.
     '''
 

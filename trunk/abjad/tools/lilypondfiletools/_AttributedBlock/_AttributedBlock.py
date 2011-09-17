@@ -1,4 +1,4 @@
-class _BlockAttributed(object):
+class _AttributedBlock(object):
     '''Model of attribute block in LilyPond input file.
     '''
 
