@@ -15,7 +15,7 @@ Make a basic LilyPond input file with the ``lilyfiletools`` package:
 ::
 
     abjad> lily_file
-    LilyFile(Staff{4})
+    LilyPondFile(Staff{4})
 
 Inspecting file output
 ----------------------

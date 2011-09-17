@@ -16,7 +16,7 @@ Released 2011-09-12. Built from r4769.
 * Added new ``BarLine`` class to ``marktools`` package.
 * Added new ``HorizontalBracketSpanner`` to ``spannertools`` package.
 * Improved ``schemetools.SchemePair`` handling.
-* Extended ``LilyFile`` blocks with double underscore-delimited attributes.
+* Extended ``LilyPondFile`` blocks with double underscore-delimited attributes.
 
 
 Abjad 2.3

@@ -385,7 +385,7 @@ lilypondfiletools
    tools/lilypondfiletools/DateTimeToken/DateTimeToken
    tools/lilypondfiletools/HeaderBlock/HeaderBlock
    tools/lilypondfiletools/LayoutBlock/LayoutBlock
-   tools/lilypondfiletools/LilyFile/LilyFile
+   tools/lilypondfiletools/LilyPondFile/LilyPondFile
    tools/lilypondfiletools/LilyPondLanguageToken/LilyPondLanguageToken
    tools/lilypondfiletools/LilyPondVersionToken/LilyPondVersionToken
    tools/lilypondfiletools/MidiBlock/MidiBlock

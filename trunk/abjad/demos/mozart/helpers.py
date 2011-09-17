@@ -84,7 +84,7 @@ def build_mozart_piano_staff( ):
 
 def build_mozart_lily(piano_staff):
 
-    # wrap the PianoStaff with a LilyFile
+    # wrap the PianoStaff with a LilyPondFile
     lily = lilypondfiletools.make_basic_lily_file(piano_staff)
 
     # create some markup to use in our header block

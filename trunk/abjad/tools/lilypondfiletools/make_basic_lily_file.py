@@ -1,6 +1,6 @@
 from abjad.tools.lilypondfiletools.HeaderBlock import HeaderBlock
 from abjad.tools.lilypondfiletools.LayoutBlock import LayoutBlock
-from abjad.tools.lilypondfiletools.LilyFile import LilyFile
+from abjad.tools.lilypondfiletools.LilyPondFile import LilyPondFile
 from abjad.tools.lilypondfiletools.PaperBlock import PaperBlock
 from abjad.tools.lilypondfiletools.ScoreBlock import ScoreBlock
 
@@ -47,7 +47,7 @@ def make_basic_lily_file(music = None):
     Return LilyPond file.
     '''
 
-    lily_file = LilyFile()
+    lily_file = LilyPondFile()
 
     header_block = HeaderBlock()
     layout_block = LayoutBlock()

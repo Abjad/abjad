@@ -6,7 +6,7 @@ from abjad.tools.lilypondfiletools.LilyPondVersionToken import LilyPondVersionTo
 import os
 
 
-class LilyFile(list):
+class LilyPondFile(list):
     r'''.. versionadded:: 2.0
 
     Abjad model of LilyPond input file::

@@ -439,14 +439,14 @@ controlling the overall *look* of a musical document, often through its `\header
 access to these settings through the its `lilyfiletools` module.
 
 We'll use :py:func:`abjad.tools.lilyfiletools.make_basic_lily_file` to wrap our :py:class:`~abjad.tools.scoretools.PianoStaff` inside a
-:py:class:`~abjad.tools.lilyfiletools.LilyFile` instance.  From there we can access the other "blocks" of our document to add a title, a composer's name, 
+:py:class:`~abjad.tools.lilyfiletools.LilyPondFile` instance.  From there we can access the other "blocks" of our document to add a title, a composer's name, 
 change the global staff size, paper size, staff spacing and so forth.
 
 ::
 
     def build_mozart_lily(piano_staff):
 
-        # wrap the PianoStaff with a LilyFile
+        # wrap the PianoStaff with a LilyPondFile
         lily = lilyfiletools.make_basic_lily_file(piano_staff)
 
         # create some markup to use in our header block
