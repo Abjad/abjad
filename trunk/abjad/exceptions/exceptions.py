@@ -267,3 +267,15 @@ class WellFormednessError(Exception):
     '''Score not well formed.
     '''
     pass
+
+class LilyPondParserError(Exception):
+    '''Unable to parse input.'''
+    pass
+
+class UnknownTokenLilyPondParserError(LilyPondParserError):
+    '''Unable to identify token.'''
+    pass
+
+class UnmatchedBraceLilyPondParserError(LilyPondParserError):
+    '''Brace is unmatched.'''
+    pass
