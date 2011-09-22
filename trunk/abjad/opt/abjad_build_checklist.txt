@@ -5,6 +5,9 @@ Abjad build checklist:
     Edit docs/chapter/start_here/versions/indext.rst as appropriate.
     List new features and functionality.
     Highlight significant new functionality with a musical example.
+    Begin entries with an active verb in the simple past.
+    Order entries by leading verb: all adds together, all extensions together, etc.
+
     Commit.
 
  2. Edit cfg/cfg.py and increment 'abjad_version_number'.
@@ -14,25 +17,26 @@ Abjad build checklist:
 
  4. Edit docs/conf.py and increment 'version' and 'release'.
 
- 5. Run py.test. If any tests break, fix and repeat this step.
+ 5. Run abj-rmpycs. Then run py.test.
+    If any tests break, fix and repeat this step.
 
  6. Change to abjad/tools and run the following three scripts:
     replace-python-prompts-with-abjad-prompts
     run-doctest-on-all-modules-in-tree
     replace-abjad-prompts-with-python-prompts
-    If any tests break, fix and go back to (3.)
+    If any tests break, fix and go back to (5.)
 
  7. Change to abjad/docs and run 'make clean'.
     (This step is important. Failing to 'make clean' before building
-    the docs can cause the doc tarball made in step #18, below,
+    the docs can cause the doc tarball made in step #20, below,
     to exceed 10 megs. PyPI rejects doc tarballs greater than 10 megs.)
 
- 8. Run make-abjad-api. If any errors occur, fix and go back to (3.)
+ 8. Run make-abjad-api. If any errors occur, fix and go back to (5.)
 
- 9. Run 'make latex'. If any errors occur, fix and go back to (3.)
+ 9. Run 'make latex'. If any errors occur, fix and go back to (5.)
 
 10. Change to docs/_build/latex and run 'make all-pdf'.
-    If any errors occur, fix and go back to (3.)
+    If any errors occur, fix and go back to (5.)
     Open the docs/_build/latex/Abjad.pdf file that results.
     Click around some to make everything looks OK.
 
@@ -49,7 +53,7 @@ Abjad build checklist:
 16. Commit.
 
 17. Run 'python setup.py sdist'.
-    If any errors occur, fix and go back to (3.)
+    If any errors occur, fix and go back to (5.)
 
 18. Run 'python setup.py register sdist upload'
     Follow the login instructions provided by PyPI.

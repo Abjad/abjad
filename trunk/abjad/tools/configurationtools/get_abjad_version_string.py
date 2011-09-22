@@ -11,7 +11,7 @@ def get_abjad_version_string():
     ::
 
         abjad> configurationtools.get_abjad_version_string()
-        '2.4'
+        '2.5'
 
     Return string.
     '''
