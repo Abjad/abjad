@@ -67,6 +67,9 @@ Abjad build checklist:
     After you first register with PyPI you must view ~/.pypirc
     and change the line '[pypi]' to '[server-login]'. If you do
     not do this then this step will fail.)
+    (Also important. It appears that this bug is fixed under Python 2.7.
+    If you build under Python 2.7 leave the line '[pypi]' as is.
+    Do not change this line to '[server-login]'.)
     You must have Abjad package owner credentials for this step to work.
     If you need Abjad package owner credentials, talk to Trevor or Victor.
     PyPI will respond with "Server response (200): OK".
@@ -82,6 +85,8 @@ Abjad build checklist:
     from the context menu that appears.
     (Note that archiving just the docs/_build/html folder will not work.)
     Name the archive Archive.zip.
+    Check the size of the archive.
+    The archive must be less than 10 megs.
 
 22. Log in to The PyPI website at pypi.python.org with Abjad owner credentials.
     Click on the Abjad link to edit PyPI's information about the package.
@@ -117,4 +122,4 @@ Abjad build checklist:
 30. Author release announcement and mail to abjad-user@googlegroups.com.
     Release announcement should recapitulate version history.
     
-[2011-08-21, rev. 2011-08-30, 2011-09-12]
+[2011-08-21, rev. 2011-08-30, 2011-09-12, 2011-09-22]
