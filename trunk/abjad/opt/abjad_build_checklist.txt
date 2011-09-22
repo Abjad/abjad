@@ -28,7 +28,7 @@ Abjad build checklist:
 
  7. Change to abjad/docs and run 'make clean'.
     (This step is important. Failing to 'make clean' before building
-    the docs can cause the doc tarball made in step #20, below,
+    the docs can cause the doc tarball made in step #21, below,
     to exceed 10 megs. PyPI rejects doc tarballs greater than 10 megs.)
 
  8. Run make-abjad-api. If any errors occur, fix and go back to (5.)
@@ -50,12 +50,18 @@ Abjad build checklist:
 
 15. Edit setup.py and increment the 'version' string found there.
 
-16. Commit.
+16. Run "svn info"
+    Note the current revision of the working copy from which you are building.
+    Open docs/chapters/start_here/versions/index.rst again.
+    Check the build revision indicated there.
+    Make sure the build revision equals current revision + 1.
 
-17. Run 'python setup.py sdist'.
+17. Commit.
+
+18. Run 'python setup.py sdist'.
     If any errors occur, fix and go back to (5.)
 
-18. Run 'python setup.py register sdist upload'
+19. Run 'python setup.py register sdist upload'
     Follow the login instructions provided by PyPI.
     (Important. There is a bug in setup.py identified on the Internet.
     After you first register with PyPI you must view ~/.pypirc
@@ -65,11 +71,11 @@ Abjad build checklist:
     If you need Abjad package owner credentials, talk to Trevor or Victor.
     PyPI will respond with "Server response (200): OK".
 
-19. Remove 'dist' and 'Abjad-egginfo-x.y'.
+20. Remove 'dist' and 'Abjad-egginfo-x.y'.
     The directories are no longer needed after upload to PyPI.
     The directories should not be checked into the Abjad repository.
 
-20. Change to docs/_build/html and archive all 9 or 10 files and subdirectories therein.
+21. Change to docs/_build/html and archive all 9 or 10 files and subdirectories therein.
     You must create a single archive of all 9 or 10 files.
     Through the Finder on the Mac you can shift-click all 9 or 10 files,
     then control-click the selected files and choose "Compress 9 items"
@@ -77,38 +83,38 @@ Abjad build checklist:
     (Note that archiving just the docs/_build/html folder will not work.)
     Name the archive Archive.zip.
 
-21. Log in to The PyPI website at pypi.python.org with Abjad owner credentials.
+22. Log in to The PyPI website at pypi.python.org with Abjad owner credentials.
     Click on the Abjad link to edit PyPI's information about the package.
 
-22. At the bottom of the "Package 'Abjad' Editing" page, click on "Choose file"
+23. At the bottom of the "Package 'Abjad' Editing" page, click on "Choose file"
     and select docs/_build/html/Archive.zip. Then click on "Upload Documentation".
     PyPI will redirect to http://packages.python.org/Abjad/ and the newest version
     of the docs will appear. If it doesn't, debug and fix what went wrong.
 
-23. Click your browser's "back" button to return to the "Package 'Abjad' Editing" page.
+24. Click your browser's "back" button to return to the "Package 'Abjad' Editing" page.
     Then click on the "edit" link to the left of the entry for the new x.y version.
     This will take you to the "Submitting package information" page.
 
-24. Manually restore the diacritics in "Víctor Adán" and "Trevor Bača" in the "Author" field.
+25. Manually restore the diacritics in "Víctor Adán" and "Trevor Bača" in the "Author" field.
     (This is necessary because there's a bug in setup.py that fails on UNICODE metadata.
     So UNICODE characters must be added back in by hand on this page of the PyPI website
     rather than being more conveniently read from abjad/trunk/setup.py.)
     ("Josiah Oberholtzer" transmits fine here and doesn't have to be tweaked.)
 
-25. Manually restore the spaces after each of the keyword phrases in
+26. Manually restore the spaces after each of the keyword phrases in
     "music composition, music notation, formalized score control, lilypond"
     in the "Keywords" field. (Again, setup.py mangles these on upload to PyPI.)
 
-26. Click the "Add information" button at the bottom of the page to confirm.
+27. Click the "Add information" button at the bottom of the page to confirm.
     All PyPI editing and uploading is now complete.
 
-27. Click around PyPI to make sure everything looks correct.
+28. Click around PyPI to make sure everything looks correct.
     Then leave PyPI.
     
-28. Return to your Abjad sources and remove docs/_build/html/Archive.zip.
+29. Return to your Abjad sources and remove docs/_build/html/Archive.zip.
     The archive should not be checked in to the Abjad repository.
 
-29. Author release announcement and mail to abjad-user@googlegroups.com.
+30. Author release announcement and mail to abjad-user@googlegroups.com.
     Release announcement should recapitulate version history.
     
 [2011-08-21, rev. 2011-08-30, 2011-09-12]
