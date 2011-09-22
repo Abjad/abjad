@@ -329,6 +329,8 @@ leaftools
    tools/leaftools/get_composite_offset_difference_series_from_leaves_in_expr
    tools/leaftools/get_composite_offset_series_from_leaves_in_expr
    tools/leaftools/get_leaf_at_index_in_measure_number_in_expr
+   tools/leaftools/get_leaf_in_expr_with_maximum_prolated_duration
+   tools/leaftools/get_leaf_in_expr_with_minimum_prolated_duration
    tools/leaftools/get_nth_leaf_in_expr
    tools/leaftools/get_nth_leaf_in_thread_from_leaf
    tools/leaftools/is_bar_line_crossing_leaf
@@ -1114,6 +1116,7 @@ mathtools
 .. toctree::
    :maxdepth: 1
 
+   tools/mathtools/are_relatively_prime
    tools/mathtools/arithmetic_mean
    tools/mathtools/binomial_coefficient
    tools/mathtools/cumulative_products
