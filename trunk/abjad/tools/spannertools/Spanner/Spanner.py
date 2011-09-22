@@ -74,6 +74,12 @@ class Spanner(_StrictComparator):
     def __len__(self):
         return self._components.__len__()
 
+    def __lt__(self, other):
+        '''Trivial comparison to allow doctests to work.'''
+        if not isinstance(other, Spanner):
+            raise TypeError
+        return repr(self) < repr(other)
+
     def __repr__(self):
         return '%s(%s)' % (type(self).__name__, self._compact_summary)
 
