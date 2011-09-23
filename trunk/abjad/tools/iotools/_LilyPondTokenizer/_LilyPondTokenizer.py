@@ -5,8 +5,23 @@ from abjad.tools.iotools._LilyPondToken._LilyPondToken import _LilyPondToken
 
 class _LilyPondTokenizer(object):
 
+    _articulations = (
+        '\\accent', '\\accentus', '\\circulus', '\\coda', '\\downbow', '\\downmordent',
+        '\\downprall', '\\espressivo', '\\fermata', '\\flageolet', '\\halfopen',
+        '\\ictus', '\\lheel', '\\lineprall', '\\longfermata', '\\ltoe', '\\marcato',
+        '\\mordent', '\\open', '\\portato', '\\prall', '\\pralldown', '\\prallmordent',
+        '\\prallprall', '\\prallup', '\\reverseturn', '\\rheel', '\\rtoe', '\\segno',
+        '\\semicirculus', '\\shortfermata', '\\signumcongruentiae', '\\snappizzicato',
+        '\\staccatissimo', '\\staccato', '\\stopped', '\\tenuto', '\\thumb', '\\trill'
+        '\\turn', '\\upbow', '\\upmordent', '\\upprall', '\\varcoda', '\\verylongfermata',
+    )
+
+    _blocks = (
+        '\\book', '\\header', '\\layout', '\\midi', '\\score',
+    )
+
     _commands = (
-        '\\bar', '\\clef', '\\context', '\\key', '\\new', '\\time', '\\times',
+        '\\bar', '\\clef', '\\key', '\\markup', '\\time', '\\times',
     )
 
     _context_types = (
@@ -25,75 +40,83 @@ class _LilyPondTokenizer(object):
         '\\f', '\\ff', '\\fff', '\\ffff', '\\fffff'
     )
      
+    _keywords = (
+        '\\context', '\\include', '\\new', '\\once', '\\override',
+        '\\version', '\\with',
+    )
+
     _tokens = (
-        ('ARTICULATION',     r'(_|-|\^)(\^|\+|-\||>|\.|_)'),
-        ('BAR_CHECK',        r'\|'),
-        ('BEAM_CLOSE',       r']'),
-        ('BEAM_OPEN',        r'\['),
-        ('PARALLEL_CLOSE',   r'>>'),
-        ('PARALLEL_OPEN',    r'<<'),
-        ('CHORD_CLOSE',      r'>'),
-        ('CHORD_OPEN',       r'<'),
-        ('DOTS',             r'(\.\s*)+'),
-        ('EQUALS',           r'='),
-        ('HAIRPIN_CRESC',    r'\\<'),
-        ('HAIRPIN_DECRESC',  r'\\>'),
-        ('HAIRPIN_STOP',     r'\\!'),
-        ('COMMAND',          r'\\[a-zA-Z]+'),
-        ('CONTAINER_CLOSE',  r'}'),
-        ('CONTAINER_OPEN',   r'{'),
-        ('DIRECTION',        r'_|-|\^'),
-        ('FRACTION',         r'[1-9]\d*/[1-9]\d*'),
-        ('INTEGER',          r'[1-9]\d*'),
-        ('OCTAVE_DOWN',      r"(,\s*)+"),
-        ('OCTAVE_UP',        r"('\s*)+"),
-        ('PITCH_CLASS',      r"[a-g][q]?(s*|f*)"),
-        ('REST',             r'[rR]'),
-        ('SKIP',             r's'),
-        ('SLUR_CLOSE',       r'\)'),
-        ('SLUR_OPEN',        r'\('),
-        ('STRING',           r'\".+\"'),
-        ('TIE',              r'~'),
-        ('TREMOLO',          r':'),
-        ('SYMBOL',           r'\w+'),
+        ('ARTICULATION_SHORTCUT', r'(_|-|\^)\s*(\^|\+|-\||>|\.|_)'),
+        ('BAR_CHECK',             r'\|'),
+        ('BEAM_CLOSE',            r']'),
+        ('BEAM_OPEN',             r'\['),
+        ('PARALLEL_CLOSE',        r'>>'),
+        ('PARALLEL_OPEN',         r'<<'),
+        ('CHORD_CLOSE',           r'>'),
+        ('CHORD_OPEN',            r'<'),
+        ('DOTS',                  r'(\.\s*)+'),
+        ('EQUALS',                r'='),
+        ('HAIRPIN_CRESC',         r'\\<'),
+        ('HAIRPIN_DECRESC',       r'\\>'),
+        ('HAIRPIN_STOP',          r'\\!'),
+        ('COMMAND',               r'\\[a-zA-Z]+'),
+        ('CONTAINER_CLOSE',       r'}'),
+        ('CONTAINER_OPEN',        r'{'),
+        ('DIRECTION',             r'_|-|\^'),
+        ('FRACTION',              r'[1-9]\d*/[1-9]\d*'),
+        ('INTEGER',               r'[1-9]\d*'),
+        ('OCTAVE_DOWN',           r"(,\s*)+"),
+        ('OCTAVE_UP',             r"('\s*)+"),
+        ('PITCH_CLASS',           r"[a-g][q]?(s*|f*)"),
+        ('REST',                  r'[rR]'),
+        ('SKIP',                  r's'),
+        ('SLUR_CLOSE',            r'\)'),
+        ('SLUR_OPEN',             r'\('),
+        ('STRING',                r'\".+\"'),
+        ('TIE',                   r'~'),
+        ('TREMOLO',               r':'),
+        ('SYMBOL',                r'\w+'),
     )
 
     _token_callbacks = {
-        'COMMAND':     '_token_callback_command',
-        'DOTS':        '_token_callback_strip_whitespace',
-        'OCTAVE_DOWN': '_token_callback_strip_whitespace',
-        'OCTAVE_UP':   '_token_callback_strip_whitespace',
-        'SYMBOL':      '_token_callback_symbol',
+        'ARTICULATION_SHORTCUT': '_token_callback_strip_whitespace',
+        'COMMAND':               '_token_callback_command',
+        'DOTS':                  '_token_callback_strip_whitespace',
+        'OCTAVE_DOWN':           '_token_callback_strip_whitespace',
+        'OCTAVE_UP':             '_token_callback_strip_whitespace',
+        'SYMBOL':                '_token_callback_symbol',
     }
 
-    _regex = re.compile('|'.join(['(?P<%s>%s)' % (name, rule) for name, rule in _tokens]), re.MULTILINE)
+    _token_regex = re.compile('|'.join(['(?P<%s>%s)' % (name, rule) for name, rule in _tokens]), re.MULTILINE)
         
     _whitespace_regex = re.compile("\s*", re.MULTILINE)
 
-    ### PRIVATE METHODS ###
+    ### OVERRIDES ###
 
     def __call__(self, lily_string):
         tokens = [ ]
-        position = 0 
-        while position < len(lily_string):
-            # match whitespace, in order to skip  
-            match = self._whitespace_regex.match(lily_string, position)
-            if match:
-                position = match.end( )
-                if position == len(lily_string):
+        lines = lily_string.split('\n')
+        for line_number, line in enumerate(lines):
+            column = 0
+            while column < len(line):
+                match = self._whitespace_regex.match(line, column)
+                if match:
+                    column = match.end( )
+                if column == len(line):
                     break
-            # match token
-            match = self._regex.match(lily_string, position)
-            if match is None:
-                raise UnknownTokenLilyPondParserError(lily_string, position)
-            token = _LilyPondToken(match.lastgroup, match.group(match.lastgroup), position)
-            # set new position
-            position = match.end( )
-            # check for callbacks, add to token list
-            if token.kind in self._token_callbacks:
-                callback = getattr(self, self._token_callbacks[token.kind])
-                token = callback(token, lily_string)
-            tokens.append(token)
+                match = self._token_regex.match(line, column)
+                if match is None:
+                    raise UnknownTokenLilyPondParserError(lily_string, line_number, column)
+                token = _LilyPondToken(
+                    kind = match.lastgroup,
+                    value = match.group(match.lastgroup),
+                    line = line_number,
+                    column = column)
+                column = match.end( )
+                if token.kind in self._token_callbacks:
+                    callback = getattr(self, self._token_callbacks[token.kind])
+                    token = callback(token, lily_string)
+                tokens.append(token)
         return tokens
 
     ### PRIVATE METHODS ###
@@ -101,6 +124,10 @@ class _LilyPondTokenizer(object):
     def _token_callback_command(self, token, lily_string):
         if token.value in self._commands:
             return token._replace(kind = token.value[1:].upper( ))
+        elif token.value in self._keywords:
+            return token._replace(kind = 'KEYWORD')
+        elif token.value in self._articulations:
+            return token._replace(kind = 'ARTICULATION')
         elif token.value in ['\\longa', '\\breve', '\\maxima']:
             return token._replace(kind = 'DURATION')
         elif token.value in self._dynamics:
@@ -118,4 +145,3 @@ class _LilyPondTokenizer(object):
         if token.value in self._context_types:
             return token._replace(kind = 'CONTEXT_TYPE')
         return token
-

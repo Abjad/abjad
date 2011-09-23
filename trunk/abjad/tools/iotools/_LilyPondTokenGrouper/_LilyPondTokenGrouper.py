@@ -5,10 +5,14 @@ from abjad.tools.iotools._LilyPondToken._LilyPondToken import _LilyPondToken
 class _LilyPondTokenGrouper(object):
 
     def __call__(self, tokens, lily_string = ''):
+        # group sequential containers
+        # group parallel containers
+        # group directional marks (markup, articulations, etc.)
+        # group non-directional marks (dynamics, context marks)
         objects = self._group_containers(tokens, lily_string, 'CONTAINER_OPEN', 'CONTAINER_CLOSE')
         objects = self._group_containers(objects, lily_string, 'PARALLEL_OPEN', 'PARALLEL_CLOSE')
-        objects = self._group_leaves(objects, lily_string)
-        objects = self._group_marks(objects, lily_string)
+#        objects = self._group_marks(objects, lily_string)
+#        objects = self._group_leaves(objects, lily_string)
         return objects
 
     ### PRIVATE METHODS ###
@@ -61,7 +65,29 @@ class _LilyPondTokenGrouper(object):
         return objects
 
     def _group_leaves(self, objects, lily_string):
+        def recurse(objects):
+            result = [ ]
+            while idx < len(objects):
+                this = objects[idx]
+                if isinstance(this, list):
+                    result.append(recurse(this))
+                    idx += 1
+                elif isinstance(this, _LilyPondToken) and \
+                    this.kind in ['CHORD_OPEN', 'PITCH_CLASS', 'REST', 'SKIP']:
+                    # what happens if this runs into a pitch class sitting in a key-sig block?
+                    # or an identifier in a markup block?
+                    result.append(this)
+                    idx += 1
+                else:
+                    result.append(this)
+                    idx += 1
+            return result
         return objects
 
     def _group_marks(self, objects, lily_string):
-        return objects
+        def recurse(objects):
+            result = [ ]
+            while idx < len(objects):
+                this = objects[idx]
+            return result
+        return result
