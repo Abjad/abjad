@@ -21,7 +21,7 @@ class _LilyPondTokenizer(object):
     )
 
     _commands = (
-        '\\bar', '\\clef', '\\key', '\\markup', '\\time', '\\times',
+        '\\bar', '\\clef', '\\key', '\\markup', '\\tempo', '\\time', '\\times',
     )
 
     _context_types = (
@@ -67,7 +67,7 @@ class _LilyPondTokenizer(object):
         ('INTEGER',               r'[1-9]\d*'),
         ('OCTAVE_DOWN',           r"(,\s*)+"),
         ('OCTAVE_UP',             r"('\s*)+"),
-        ('PITCH_CLASS',           r"[a-g][q]?(s*|f*)"),
+        ('SYMBOL',                r'\w+'),
         ('REST',                  r'[rR]'),
         ('SKIP',                  r's'),
         ('SLUR_CLOSE',            r'\)'),
@@ -75,7 +75,6 @@ class _LilyPondTokenizer(object):
         ('STRING',                r'\".+\"'),
         ('TIE',                   r'~'),
         ('TREMOLO',               r':'),
-        ('SYMBOL',                r'\w+'),
     )
 
     _token_callbacks = {
@@ -144,4 +143,8 @@ class _LilyPondTokenizer(object):
     def _token_callback_symbol(self, token, lily_string):
         if token.value in self._context_types:
             return token._replace(kind = 'CONTEXT_TYPE')
+        else:
+            match = re.match(r"[a-g][q]?(s*|f*)", token.value)
+            if match is not None and match.end( ) == len(token.value):
+                token = token._replace(kind = 'PITCH_CLASS')
         return token

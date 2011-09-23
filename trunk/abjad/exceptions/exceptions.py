@@ -293,5 +293,5 @@ class UnmatchedBraceLilyPondParserError(LilyPondParserError):
     pass
 
 class UnparseableTokenLilyPondParserError(LilyPondParserError):
-    '''Token is recognized but not yet parseable.'''
+    '''Token is recognized but not parseable.'''
     pass
