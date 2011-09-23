@@ -36,7 +36,7 @@ class _LilyPondTokenGrouper(object):
 
                     elif token.kind == closing_token_kind:
                         if level != 1:
-                            raise UnmatchedBraceLilyPondParserError(token.position, lily_string)
+                            raise UnmatchedBraceLilyPondParserError(lily_string, token.line, token.column)
                         level -= 1
                         result.append(token)
                         idx += 1
@@ -56,7 +56,7 @@ class _LilyPondTokenGrouper(object):
                     idx += 1
 
             if level != 0:
-                raise UnmatchedBraceLilyPondParserError(result[0].position, lily_string)
+                raise UnmatchedBraceLilyPondParserError(lily_string, result[0].line, result[0].column)
             return result, idx
 
         objects = recurse(objects)[0]
