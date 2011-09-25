@@ -2,7 +2,7 @@ from abjad.tools.iotools._LilyPondLexer._LilyPondLexer import _LilyPondLexer
 from abjad.tools.iotools._LilyPondTokenGrouper._LilyPondTokenGrouper import _LilyPondTokenGrouper
 
 
-class _LilyPondParser(object):
+class _LilyPondTranslator(object):
 
     def __init__(self):
         self._lexer = _LilyPondLexer( )
