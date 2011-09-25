@@ -6,7 +6,7 @@ def test_MIDIBlock_01():
     MIDI_block = lilypondfiletools.MIDIBlock()
 
     r'''
-    \MIDI {}
+    \midi {}
     '''
 
-    assert MIDI_block.format == '\\MIDI {}'
+    assert MIDI_block.format == '\\midi {}'

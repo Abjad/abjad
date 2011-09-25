@@ -10,11 +10,11 @@ def test_ScoreBlock_01():
     score_block = lilypondfiletools.ScoreBlock()
     layout_block = lilypondfiletools.LayoutBlock()
     layout_block.is_formatted_when_empty = True
-    MIDI_block = lilypondfiletools.MIDIBlock()
+    midi_block = lilypondfiletools.MIDIBlock()
 
     score_block.append(score)
     score_block.append(layout_block)
-    score_block.append(MIDI_block)
+    score_block.append(midi_block)
 
     r'''
     \score {
@@ -27,8 +27,8 @@ def test_ScoreBlock_01():
             }
         >>
         \layout {}
-        \MIDI {}
+        \midi {}
     }
     '''
 
-    assert score_block.format == "\\score {\n\t\\new Score <<\n\t\t\\new Staff {\n\t\t\tc'8\n\t\t\td'8\n\t\t\te'8\n\t\t\tf'8\n\t\t}\n\t>>\n\t\\layout {}\n\t\\MIDI {}\n}"
+    assert score_block.format == "\\score {\n\t\\new Score <<\n\t\t\\new Staff {\n\t\t\tc'8\n\t\t\td'8\n\t\t\te'8\n\t\t\tf'8\n\t\t}\n\t>>\n\t\\layout {}\n\t\\midi {}\n}"

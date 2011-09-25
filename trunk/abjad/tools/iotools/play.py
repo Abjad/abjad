@@ -12,9 +12,12 @@ def play(expr):
     '''Play `expr`::
 
         abjad> note = Note("c'4")
+
+    ::
+
         abjad> iotools.play(note) # doctest: +SKIP
 
-    This input renders and then opens a one-note MIDI file.
+    This input creates and opens a one-note MIDI file.
 
     Abjad outputs MIDI files of the format ``filename.mid`` under Windows.
 
