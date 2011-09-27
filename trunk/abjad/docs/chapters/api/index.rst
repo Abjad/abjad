@@ -497,6 +497,7 @@ measuretools
    tools/measuretools/iterate_measures_forward_in_expr
    tools/measuretools/list_time_signatures_of_measures_in_expr
    tools/measuretools/make_measures_with_full_measure_spacer_skips
+   tools/measuretools/measure_to_one_line_input_string
    tools/measuretools/move_measure_prolation_to_full_measure_tuplet
    tools/measuretools/move_prolation_of_full_measure_tuplet_to_meter_of_measure
    tools/measuretools/multiply_contents_of_measures_in_expr
