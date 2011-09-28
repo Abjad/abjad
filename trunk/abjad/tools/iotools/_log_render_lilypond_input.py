@@ -8,17 +8,8 @@ import os
 import time
 
 
-def _log_render_lilypond_input(expr, template = None):
-    '''Private function that stores both .ly and .pdf files in the
-    ``abjad_output`` directory.
-
-    .. versionadded:: 2.0
-        New format_time keyword to message conditionally output
-        Abjad format time of `expr`.
-
-    .. versionchanged:: 2.0
-        Returns triple of name of file created, Abjad format time,
-        LilyPond render time.
+def _log_render_lilypond_input(expr, template=None, tagline=False):
+    '''Write both .ly and .pdf files to the ``abjad_output`` directory.
     '''
     from abjad.tools.contexttools._Context import _Context
 
@@ -35,7 +26,7 @@ def _log_render_lilypond_input(expr, template = None):
 
     # catch Abjad tight loops that result in excessive format time
     start_format_time = time.time()
-    lilypond_file = _insert_expr_into_lilypond_file(expr, template = template)
+    lilypond_file = _insert_expr_into_lilypond_file(expr, template=template, tagline=tagline)
     formatted_lilypond_file = lilypond_file.format
     stop_format_time = time.time()
     actual_format_time = int(stop_format_time - start_format_time)

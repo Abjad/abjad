@@ -3,7 +3,7 @@ from abjad.tools import markuptools
 from abjad.tools.iotools._template_name_to_template_path import _template_name_to_template_path
 
 
-def _insert_expr_into_lilypond_file(expr, template = None, tagline = False):
+def _insert_expr_into_lilypond_file(expr, template=None, tagline=False):
     from abjad.tools.contexttools._Context import _Context
 
     if isinstance(expr, lilypondfiletools.LilyPondFile):
