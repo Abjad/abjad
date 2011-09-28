@@ -1,7 +1,7 @@
 from abjad.tools.componenttools._Component import _Component
 
 
-def _report_component_format_contributions(component, verbose = False, output = 'screen'):
+def _report_component_format_contributions(component, verbose=False, output='screen'):
     r'''Read-only string report of all format-time contributions
     made to `component` by all the different parts of the Abjad
     system plumbing.

@@ -2,7 +2,7 @@ from abjad.tools.componenttools._Component import _Component
 from abjad.tools import durationtools
 
 
-def copy_governed_component_subtree_from_prolated_offset_to(component, start = 0, stop = None):
+def copy_governed_component_subtree_from_prolated_offset_to(component, start=0, stop=None):
     r'''.. versionadded:: 1.1
 
     Clone governed `component` subtree from `start` prolated duration

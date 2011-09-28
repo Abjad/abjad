@@ -2,7 +2,7 @@ from abjad.tools import durationtools
 from abjad.tools.componenttools.get_parent_and_start_stop_indices_of_components import get_parent_and_start_stop_indices_of_components
 
 
-def _split_component_at_index(component, i, spanners = 'unfractured'):
+def _split_component_at_index(component, i, spanners='unfractured'):
     '''General component index split algorithm.
     Works on leaves, tuplets, measures, contexts and unqualified containers.
     Keyword controls spanner behavior at split time.

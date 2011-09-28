@@ -1,4 +1,4 @@
-def tabulate_well_formedness_violations_in_expr(expr, allow_empty_containers = True):
+def tabulate_well_formedness_violations_in_expr(expr, allow_empty_containers=True):
     r'''.. versionadded:: 1.1
 
     Tabulate well-formedness violations in `expr`::

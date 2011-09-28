@@ -22,7 +22,7 @@ class MIDIBlock(_AttributedBlock):
 
     ::
 
-        abjad> f(lilypond_file)
+        abjad> f(lilypond_file.score_block)
         \score {
             \new Score <<
                 \new Staff {

@@ -2,7 +2,7 @@ from abjad.tools.componenttools.component_to_score_root import component_to_scor
 from abjad.tools.componenttools.iterate_timeline_backward_in_expr import iterate_timeline_backward_in_expr
 
 
-def iterate_timeline_backward_from_component(expr, klass = None):
+def iterate_timeline_backward_from_component(expr, klass=None):
     r'''.. versionadded:: 2.0
 
     Iterate timeline backward from `component`::

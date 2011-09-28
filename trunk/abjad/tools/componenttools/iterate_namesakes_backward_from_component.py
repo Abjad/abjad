@@ -1,4 +1,4 @@
-def iterate_namesakes_backward_from_component(component, start = 0, stop = None):
+def iterate_namesakes_backward_from_component(component, start=0, stop=None):
     r'''.. versionadded:: 2.0
 
     Iterate namesakes backward from `component`::

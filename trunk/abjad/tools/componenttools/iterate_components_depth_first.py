@@ -1,8 +1,8 @@
 import collections
 
 
-def iterate_components_depth_first(component, capped = True, unique = True,
-    forbid = None, direction = 'left'):
+def iterate_components_depth_first(component, capped=True, unique=True,
+    forbid=None, direction='left'):
     '''.. versionadded:: 1.1
 
     Iterate components depth-first from `component`.
@@ -44,7 +44,7 @@ def _next_node_depth_first(component, total):
         else:
             return None, None
 
-def _prev_node_depth_first(component, total = 0):
+def _prev_node_depth_first(component, total=0):
     '''If client has unvisited music, return prev unvisited node in client's music.
 
     If client has no univisited music and has a parent, return client's parent.

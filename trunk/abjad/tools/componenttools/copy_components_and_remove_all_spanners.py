@@ -4,7 +4,7 @@ from abjad.tools.marktools._reattach_blinded_marks_to_components_in_expr import 
 import copy
 
 
-def copy_components_and_remove_all_spanners(components, n = 1):
+def copy_components_and_remove_all_spanners(components, n=1):
     r'''.. versionadded:: 1.1
 
     Clone `components` and remove all spanners.

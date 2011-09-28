@@ -285,7 +285,7 @@ class Chord(_Leaf):
         for note_head_token in note_head_tokens:
             self.append(note_head_token)
 
-    def pop(self, i = -1):
+    def pop(self, i=-1):
         '''Remove note head at index `i` in chord::
 
             abjad> chord = Chord([4, 13, 17], (1, 4))

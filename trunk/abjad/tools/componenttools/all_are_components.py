@@ -2,7 +2,7 @@ from abjad.tools.componenttools._Component import _Component
 import types
 
 
-def all_are_components(expr, klasses = None):
+def all_are_components(expr, klasses=None):
     '''.. versionadded:: 1.1
 
     True when elements in `expr` are all components::

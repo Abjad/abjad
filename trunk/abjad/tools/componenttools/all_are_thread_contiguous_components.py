@@ -5,7 +5,7 @@ from abjad.tools.componenttools.iterate_components_depth_first import iterate_co
 import types
 
 
-def all_are_thread_contiguous_components(expr, klasses = None, allow_orphans = True):
+def all_are_thread_contiguous_components(expr, klasses=None, allow_orphans=True):
     r'''.. versionadded:: 1.1
 
     True when elements in `expr` are all thread-contiguous components::
@@ -82,7 +82,7 @@ def all_are_thread_contiguous_components(expr, klasses = None, allow_orphans = T
     return True
 
 
-def _are_thread_proper(component_1, component_2, klasses = (_Component)):
+def _are_thread_proper(component_1, component_2, klasses=(_Component)):
     '''True when
 
             1. component_1 and component_2 are both Abjad components,

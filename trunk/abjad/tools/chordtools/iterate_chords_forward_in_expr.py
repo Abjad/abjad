@@ -1,7 +1,7 @@
 from abjad.tools.chordtools.Chord import Chord
 
 
-def iterate_chords_forward_in_expr(expr, start = 0, stop = None):
+def iterate_chords_forward_in_expr(expr, start=0, stop=None):
     r'''.. versionadded:: 2.0
 
     Iterate chords forward in `expr`::

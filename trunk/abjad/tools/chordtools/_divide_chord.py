@@ -4,8 +4,8 @@ from abjad.tools.chordtools.change_defective_chord_to_note_or_rest import change
 import copy
 
 
-def _divide_chord(chord, pitch = pitchtools.NamedChromaticPitch('b', 3), 
-    attr = 'numbered_chromatic_pitch'):
+def _divide_chord(chord, pitch=pitchtools.NamedChromaticPitch('b', 3), 
+    attr='numbered_chromatic_pitch'):
     r'''Divide `chord` according to chromatic or diatonic pitch number of `pitch`.
 
     Return pair of newly created leaves.

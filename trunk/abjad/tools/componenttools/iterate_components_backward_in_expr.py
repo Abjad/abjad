@@ -1,7 +1,7 @@
 from abjad.tools.componenttools._Component import _Component
 
 
-def iterate_components_backward_in_expr(expr, klass = _Component, start = 0, stop = None):
+def iterate_components_backward_in_expr(expr, klass=_Component, start=0, stop=None):
     r'''.. versionadded:: 1.1
 
     Iterate components backward in `expr`::
@@ -70,7 +70,7 @@ def iterate_components_backward_in_expr(expr, klass = _Component, start = 0, sto
     return _subrange(_backward_generator(expr, klass), start, stop)
 
 
-def _subrange(iter, start = 0, stop = None):
+def _subrange(iter, start=0, stop=None):
     # if start<0, then 'stop-start' gives a funny result
     # dont have to check stop>=start, as xrange(stop-start) already handles that
     assert 0 <= start

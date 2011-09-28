@@ -5,7 +5,7 @@ from abjad.tools.componenttools._split_component_at_index import _split_componen
 from abjad.tools import durationtools
 
 
-def _split_component_at_duration(component, duration, spanners = 'unfractured', tie_after = False):
+def _split_component_at_duration(component, duration, spanners='unfractured', tie_after=False):
     '''General component duration split algorithm.
     Duration is interpreted as prolated duration.
     Works on leaves, tuplets, measures, context and unqualified containers.

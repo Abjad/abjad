@@ -41,7 +41,7 @@ class _ComponentFormatter(_Interface):
 
     ### PUBLIC METHODS ###
 
-    def report(self, verbose = False, output = 'screen'):
+    def report(self, verbose=False, output='screen'):
         '''Report format contributions.'''
         result = ''
         slots = self.slots
