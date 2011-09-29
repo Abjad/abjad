@@ -1,2 +1,10 @@
+import re
+
+
 class _LilyPondGrammar(object):
-    pass
+
+    terminals = { }
+
+    terminal_order = [ ]
+
+    nonterminals = { }

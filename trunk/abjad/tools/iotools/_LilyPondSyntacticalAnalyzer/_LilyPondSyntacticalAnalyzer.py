@@ -2,9 +2,11 @@ from abjad import *
 from abjad.exceptions import *
 from abjad.tools.iotools._LilyPondToken._LilyPondToken import _LilyPondToken
 from abjad.tools.sequencetools import flatten_sequence
+from abjad.tools.iotools._LilyPondParserComponent._LilyPondParserComponent \
+    import _LilyPondParserComponent
 
 
-class _LilyPondSyntacticalAnalyzer(object):
+class _LilyPondSyntacticalAnalyzer(_LilyPondParserComponent):
 
     def __call__(self, tokens, lily_string = ''):
         # group sequential containers
