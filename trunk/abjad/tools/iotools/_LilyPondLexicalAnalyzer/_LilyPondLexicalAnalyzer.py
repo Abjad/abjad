@@ -3,7 +3,7 @@ from abjad.exceptions import *
 from abjad.tools.iotools._LilyPondToken._LilyPondToken import _LilyPondToken
 
 
-class _LilyPondLexer(object):
+class _LilyPondLexicalAnalyzer(object):
 
     _articulations = (
         '\\accent', '\\accentus', '\\circulus', '\\coda', '\\downbow', '\\downmordent',

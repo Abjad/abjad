@@ -4,7 +4,7 @@ from abjad.tools.iotools._LilyPondToken._LilyPondToken import _LilyPondToken
 from abjad.tools.sequencetools import flatten_sequence
 
 
-class _LilyPondParser(object):
+class _LilyPondSyntacticalAnalyzer(object):
 
     def __call__(self, tokens, lily_string = ''):
         # group sequential containers
