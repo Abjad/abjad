@@ -3,8 +3,16 @@ import re
 
 class _LilyPondGrammar(object):
 
-    terminals = { }
+    start_symbol = 'lilypond'
 
-    terminal_order = [ ]
+    terminals = {
+        
+    }
 
-    nonterminals = { }
+    terminal_order = [
+
+    ]
+
+    nonterminals = {
+    
+    }
