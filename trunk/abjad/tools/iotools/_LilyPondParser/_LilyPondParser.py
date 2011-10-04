@@ -15,11 +15,11 @@ class _LilyPondParser(object):
     def __init__(self):
         self._grammar = _LilyPondGrammar( )
         self._input_string = ''
-        self._lexical_analyzer = _LilyPondLexicalAnalyzer(self)
-        self._semantic_analyzer = _LilyPondSemanticAnalyzer(self)
+        self._lexical_analyzer = _LilyPondLexicalAnalyzer( )
+        self._semantic_analyzer = _LilyPondSemanticAnalyzer( )
         self._symbol_table = [ ]
-        self._syntactical_analyzer = _LilyPondSyntacticalAnalyzer(self)
-        self._syntax_translator = _LilyPondSyntaxTranslator(self)
+        self._syntactical_analyzer = _LilyPondSyntacticalAnalyzer( )
+        self._syntax_translator = _LilyPondSyntaxTranslator( )
 
     ### OVERRIDES ###
 

@@ -1,11 +1,9 @@
 import re
 from abjad.exceptions import *
 from abjad.tools.iotools._LilyPondToken._LilyPondToken import _LilyPondToken
-from abjad.tools.iotools._LilyPondParserComponent._LilyPondParserComponent \
-    import _LilyPondParserComponent
 
 
-class _LilyPondLexicalAnalyzer(_LilyPondParserComponent):
+class _LilyPondLexicalAnalyzer(object):
 
     _articulations = (
         '\\accent', '\\accentus', '\\circulus', '\\coda', '\\downbow', '\\downmordent',
