@@ -4,39 +4,62 @@ from ply.lex import TOKEN
 
 class _LilyPondLexicalAnalyzer(object):
 
-    A               = '[a-zA-Z\200-\377]'
-    AA              = '%s|_' % A
-    N               = '[0-9]'
-    AN              = '%s|%s' % (AA, N)
-    ANY_CHAR        = '(.|\n)'
-    PUNCT           = "[?!:'`]"
-    ACCENT          = '''\\[`'"^]'''
-    NATIONAL        = '[\001-\006\021-\027\031\036]'
-    TEX             = '%s|-|%s|%s|%s' % (AA, PUNCT, ACCENT, NATIONAL)
-    WORD            = '%s%s*' % (A, AN)
-    DASHED_WORD     = '%s(%s|-)*' % (A, AN)
-    DASHED_KEY_WORD = '\\%s' % DASHED_WORD
-    ALPHAWORD       = '%s+' % A
-    DIGIT           = '%s' % N
-    UNSIGNED        = '%s+' % N
-    E_UNSIGNED      = '\\%s+' % N
-    FRACTION        = '%s+\/%s+' % (N, N)
-    INT             = '-?%s' % UNSIGNED
-    REAL            = '(%s\.%s*)|(-?\.%s+)' % (INT, N, N)
-    KEYWORD         = '\\%s' % WORD
-    WHITE           = '[ \n\t\f\r]'
-    HORIZONTALWHITE = '[ \t]'
-    BLACK           = '[^ \n\t\f\r]'
-    RESTNAME        = '[rs]'
-    NOTECOMMAND     = '\\%s+' % A
-    MARKUPCOMMAND   = '\\(%s|[-_])+' % A
-    LYRICS          = '(%s|%s)[^0-9 \t\n\r\f]*' % (AA, TEX)
-    ESCAPED         = '''[nt\\'"]'''
-    EXTENDER        = '__'
-    HYPHEN          = '--'
-    BOM_UTF8        = '\357\273\277'
+    states = (
+        # lexer.ll:115
+        # ('extratoken', 'exclusive'),
+        # ('chords', 'exclusive'),
+        # ('figures', 'exclusive'),
+        # ('incl', 'exclusive'),
+        # ('lyrics', 'exclusive'),
+        # ('lyric_quote ', 'exclusive'),
+        # ('longcomment', 'exclusive'),
+        # ('markup', 'exclusive'),
+        # ('notes', 'exclusive'),
+        # ('quote', 'exclusive'),
+        # ('sourcefileline', 'exclusive'),
+        # ('sourcefilename', 'exclusive'),
+        # ('version', 'exclusive'),
+        # not in lexer.ll (using abj crude scheme parsing)
+        # ('scheme', 'exclusive'),
+    )
+
+    # lexer.ll:129
+    A               = r'[a-zA-Z\200-\377]'
+    AA              = r'(%s|_)' % A
+    N               = r'[0-9]'
+    AN              = r'(%s|%s)' % (AA, N)
+    ANY_CHAR        = r'(.|\n)'
+    PUNCT           = r"[?!:'`]"
+    ACCENT          = r'''\\[`'"^]'''
+    NATIONAL        = r'[\001-\006\021-\027\031\036]'
+    TEX             = r'%s|-|%s|%s|%s' % (AA, PUNCT, ACCENT, NATIONAL)
+    WORD            = r'%s%s*' % (A, AN)
+    DASHED_WORD     = r'%s(%s|-)*' % (A, AN)
+    DASHED_KEY_WORD = r'\\%s' % DASHED_WORD
+
+    # lexer.ll:144
+    ALPHAWORD       = r'%s+' % A
+    DIGIT           = r'%s' % N
+    UNSIGNED        = r'%s+' % N
+    E_UNSIGNED      = r'\\%s+' % N
+    FRACTION        = r'%s+\/%s+' % (N, N)
+    INT             = r'-?%s' % UNSIGNED
+    REAL            = r'(%s\.%s*)|(-?\.%s+)' % (INT, N, N)
+    KEYWORD         = r'\\%s' % WORD
+    WHITE           = r'[ \n\t\f\r]'
+    HORIZONTALWHITE = r'[ \t]'
+    BLACK           = r'[^ \n\t\f\r]'
+    RESTNAME        = r'[rs]'
+    NOTECOMMAND     = r'\\%s+' % A
+    MARKUPCOMMAND   = r'\\(%s|[-_])+' % A
+    LYRICS          = r'(%s|%s)[^0-9 \t\n\r\f]*' % (AA, TEX)
+    ESCAPED         = r'''[nt\\'"]'''
+    EXTENDER        = r'__'
+    HYPHEN          = r'--'
+    BOM_UTF8        = r'\357\273\277'
 
     reserved = {
+        # parser.yy:182
         '\\accepts': 'ACCEPTS',
         '\\addlyrics': 'ADDLYRICS',
         '\\alias': 'ALIAS',
@@ -91,148 +114,101 @@ class _LilyPondLexicalAnalyzer(object):
         '\\type': 'TYPE',
         '\\unset': 'UNSET',
         '\\with': 'WITH',
+        # parser.yy:233
         '\\time': 'TIME_T',
         '\\new': 'NEWCONTEXT'
     }
 
-    tokens = ['NOTECOMMAND'] + reserved.values( )
+    tokens = [
+        # parser.yy:240
+        'CHORD_BASS', # "/+"
+        'CHORD_CARET', # "^"
+        'CHORD_COLON', # ":"
+        'CHORD_MINUS', # "-"
+        'CHORD_SLASH', # "/"
+        'ANGLE_OPEN', # "<"
+        'ANGLE_CLOSE', # ">"
+        'DOUBLE_ANGLE_OPEN', # "<<"
+        'DOUBLE_ANGLE_CLOSE', # ">>"
+        'E_BACKSLASH', # "\\"
+        'E_ANGLE_CLOSE', # "\\>"
+        'E_CHAR', # "\\C[haracter]"
+        'E_CLOSE', # "\\)"
+        'E_EXCLAMATION', # "\\!"
+        'E_BRACKET_OPEN', # "\\["
+        'E_OPEN', # "\\("
+        'E_BRACKET_CLOSE', # "\\]"
+        'E_ANGLE_OPEN', # "\\<"
+        'E_PLUS', # "\\+"
+        'E_TILDE', # "\\~"
+        'EXTENDER', # "__"
 
-#%token ACCEPTS "\\accepts"
-#%token ADDLYRICS "\\addlyrics"
-#%token ALIAS "\\alias"
-#%token ALTERNATIVE "\\alternative"
-#%token BOOK "\\book"
-#%token BOOKPART "\\bookpart"
-#%token CHANGE "\\change"
-#%token CHORDMODE "\\chordmode"
-#%token CHORDS "\\chords"
-#%token CONSISTS "\\consists"
-#%token CONTEXT "\\context"
-#%token DEFAULT "\\default"
-#%token DEFAULTCHILD "\\defaultchild"
-#%token DENIES "\\denies"
-#%token DESCRIPTION "\\description"
-#%token DRUMMODE "\\drummode"
-#%token DRUMS "\\drums"
-#%token FIGUREMODE "\\figuremode"
-#%token FIGURES "\\figures"
-#%token GROBDESCRIPTIONS "\\grobdescriptions"
-#%token HEADER "\\header"
-#%token INVALID "\\invalid"
-#%token KEY "\\key"
-#%token LAYOUT "\\layout"
-#%token LYRICMODE "\\lyricmode"
-#%token LYRICS "\\lyrics"
-#%token LYRICSTO "\\lyricsto"
-#%token MARK "\\mark"
-#%token MARKUP "\\markup"
-#%token MARKUPLINES "\\markuplines"
-#%token MIDI "\\midi"
-#%token NAME "\\name"
-#%token NOTEMODE "\\notemode"
-#%token OCTAVE "\\octave"
-#%token ONCE "\\once"
-#%token OVERRIDE "\\override"
-#%token PAPER "\\paper"
-#%token PARTIAL "\\partial"
-#%token RELATIVE "\\relative"
-#%token REMOVE "\\remove"
-#%token REPEAT "\\repeat"
-#%token REST "\\rest"
-#%token REVERT "\\revert"
-#%token SCORE "\\score"
-#%token SEQUENTIAL "\\sequential"
-#%token SET "\\set"
-#%token SIMULTANEOUS "\\simultaneous"
-#%token SKIP "\\skip"
-#%token TEMPO "\\tempo"
-#%token TIMES "\\times"
-#%token TRANSPOSE "\\transpose"
-#%token TYPE "\\type"
-#%token UNSET "\\unset"
-#%token WITH "\\with"
+        # parser.yy:
+        'FIGURE_CLOSE', # "\\>"
+        'FIGURE_OPEN', # "\\<"
+        'FIGURE_SPACE', # "_"
+        'HYPHEN', # "--"
 
-#%token TIME_T "\\time"
-#%token NEWCONTEXT "\\new"
+        # parser.yy:270
+        'CHORDMODIFIERS',
+        'LYRIC_MARKUP',
+        'MULTI_MEASURE_REST',
 
-#%token CHORD_BASS "/+"
-#%token CHORD_CARET "^"
-#%token CHORD_COLON ":"
-#%token CHORD_MINUS "-"
-#%token CHORD_SLASH "/"
+        # parser.yy:275
+        'E_UNSIGNED',
+        'UNSIGNED',
 
-#%token ANGLE_OPEN "<"
-#%token ANGLE_CLOSE ">"
-#%token DOUBLE_ANGLE_OPEN "<<"
-#%token DOUBLE_ANGLE_CLOSE ">>"
-#%token E_BACKSLASH "\\"
-#%token E_ANGLE_CLOSE "\\>"
-#%token E_CHAR "\\C[haracter]"
-#%token E_CLOSE "\\)"
-#%token E_EXCLAMATION "\\!"
-#%token E_BRACKET_OPEN "\\["
-#%token E_OPEN "\\("
-#%token E_BRACKET_CLOSE "\\]"
-#%token E_ANGLE_OPEN "\\<"
-#%token E_PLUS "\\+"
-#%token E_TILDE "\\~"
-#%token EXTENDER "__"
+        # parser.yy:278
+        'EXPECT_MARKUP', # "markup?"
+        'EXPECT_MUSIC', # "ly:music?"
+        'EXPECT_PITCH', # "ly:pitch?"
+        'EXPECT_DURATION', # "ly:duration?"
+        'EXPECT_SCM', # "scheme?"
+        'EXPECT_MARKUP_LIST', # "markup-list?"
+        'EXPECT_OPTIONAL', # "optional?"
+        'EXPECT_NO_MORE_ARGS',
 
-#%token FIGURE_CLOSE /* "\\>" */
-#%token FIGURE_OPEN /* "\\<" */
-#%token FIGURE_SPACE "_"
-#%token HYPHEN "--"
+        # parser.yy:289
+        'EMBEDDED_LILY',
 
-#%token CHORDMODIFIERS
-#%token LYRIC_MARKUP
-#%token MULTI_MEASURE_REST
+        # parser.yy:292
+        'BOOK_IDENTIFIER',
+        'CHORDMODIFIER_PITCH',
+        'CHORD_MODIFIER',
+        'CHORD_REPETITION',
+        'CONTEXT_DEF_IDENTIFIER',
+        'CONTEXT_MOD_IDENTIFIER',
+        'DRUM_PITCH',
+        'PITCH_IDENTIFIER',
+        'DURATION_IDENTIFIER',
+        'EVENT_IDENTIFIER',
+        'EVENT_FUNCTION',
+        'FRACTION',
+        'LYRICS_STRING',
+        'LYRIC_MARKUP_IDENTIFIER',
+        'MARKUP_FUNCTION',
+        'MARKUP_LIST_FUNCTION',
+        'MARKUP_IDENTIFIER',
+        'MARKUPLINES_IDENTIFIER',
+        'MUSIC_FUNCTION',
+        'MUSIC_IDENTIFIER',
+        'NOTENAME_PITCH',
+        'NUMBER_IDENTIFIER',
+        'OUTPUT_DEF_IDENTIFIER',
+        'REAL',
+        'RESTNAME',
+        'SCM_FUNCTION',
+        'SCM_IDENTIFIER',
+        'SCM_TOKEN',
+        'SCORE_IDENTIFIER',
+        'STRING',
+        'STRING_IDENTIFIER',
+        'TONICNAME_PITCH',
+    ] + reserved.values( )
 
-#%token <i> DIGIT
-#%token <i> E_UNSIGNED
-#%token <i> UNSIGNED
-
-#/* Artificial tokens, for more generic function syntax */
-#%token <i> EXPECT_MARKUP;
-#%token <i> EXPECT_MUSIC;
-#%token <i> EXPECT_SCM;
-#%token <i> EXPECT_MARKUP_LIST
-#/* After the last argument. */
-#%token <i> EXPECT_NO_MORE_ARGS;
-
-#%token <scm> BOOK_IDENTIFIER
-#%token <scm> CHORDMODIFIER_PITCH
-#%token <scm> CHORD_MODIFIER
-#%token <scm> CHORD_REPETITION
-#%token <scm> CONTEXT_DEF_IDENTIFIER
-#%token <scm> CONTEXT_MOD_IDENTIFIER
-#%token <scm> DRUM_PITCH
-#%token <scm> DURATION_IDENTIFIER
-#%token <scm> EVENT_IDENTIFIER
-#%token <scm> FRACTION
-#%token <scm> LYRICS_STRING
-#%token <scm> LYRIC_MARKUP_IDENTIFIER
-#%token <scm> MARKUP_FUNCTION
-#%token <scm> MARKUP_LIST_FUNCTION
-#%token <scm> MARKUP_IDENTIFIER
-#%token <scm> MARKUPLINES_IDENTIFIER
-#%token <scm> MUSIC_FUNCTION
-#%token <scm> MUSIC_IDENTIFIER
-#%token <scm> NOTENAME_PITCH
-#%token <scm> NUMBER_IDENTIFIER
-#%token <scm> OUTPUT_DEF_IDENTIFIER
-#%token <scm> REAL
-#%token <scm> RESTNAME
-#%token <scm> SCM_IDENTIFIER
-#%token <scm> SCM_TOKEN
-#%token <scm> SCORE_IDENTIFIER
-#%token <scm> STRING
-#%token <scm> STRING_IDENTIFIER
-#%token <scm> TONICNAME_PITCH
-
-#    @TOKEN(NOTECOMMAND)
-    def t_NOTECOMMAND(self, t):
-        r'''\\[a-zA-Z\200-\377]+'''
-        t.type = self.reserved.get(t.value, 'NOTECOMMAND')
+    @TOKEN(KEYWORD)
+    def t_KEYWORD(self, t):
+        t.type = self.reserved.get(t.value, 'KEYWORD')
         return t
     
     t_ignore = " \t"
