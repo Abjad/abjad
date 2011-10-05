@@ -58,8 +58,8 @@ class _LilyPondLexicalAnalyzer(object):
     HYPHEN          = r'--'
     BOM_UTF8        = r'\357\273\277'
 
-    reserved = {
-        # parser.yy:182
+    keywords = {
+        # parser.yy:182, lily-lexer.cc:39
         '\\accepts': 'ACCEPTS',
         '\\addlyrics': 'ADDLYRICS',
         '\\alias': 'ALIAS',
@@ -114,6 +114,7 @@ class _LilyPondLexicalAnalyzer(object):
         '\\type': 'TYPE',
         '\\unset': 'UNSET',
         '\\with': 'WITH',
+
         # parser.yy:233
         '\\time': 'TIME_T',
         '\\new': 'NEWCONTEXT'
@@ -143,7 +144,7 @@ class _LilyPondLexicalAnalyzer(object):
         'E_TILDE', # "\\~"
         'EXTENDER', # "__"
 
-        # parser.yy:
+        # parser.yy:265
         'FIGURE_CLOSE', # "\\>"
         'FIGURE_OPEN', # "\\<"
         'FIGURE_SPACE', # "_"
@@ -204,11 +205,17 @@ class _LilyPondLexicalAnalyzer(object):
         'STRING',
         'STRING_IDENTIFIER',
         'TONICNAME_PITCH',
-    ] + reserved.values( )
+    ] + keywords.values( )
+
+    literals = (
+        '!', "'", '(', ')', '*', '+', ',', '-', 
+        '.', '/', ':', '<', '=', '>', '?', '[', 
+        '\\', ']', '^', '_', '{', '|', '}', '~'
+    )
 
     @TOKEN(KEYWORD)
     def t_KEYWORD(self, t):
-        t.type = self.reserved.get(t.value, 'KEYWORD')
+        t.type = self.keywords.get(t.value, 'KEYWORD')
         return t
     
     t_ignore = " \t"
