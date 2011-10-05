@@ -436,10 +436,10 @@ The document
 
 As you can see above, we've now got our randomized minuet.  However, we can still go a bit further.  LilyPond provides a wide variety of settings for 
 controlling the overall *look* of a musical document, often through its `\header`, `\layout` and `\paper` blocks.  Abjad, in turn, gives us object-oriented 
-access to these settings through the its `lilyfiletools` module.
+access to these settings through the its `lilypondfiletools` module.
 
-We'll use :py:func:`abjad.tools.lilyfiletools.make_basic_lilypond_file` to wrap our :py:class:`~abjad.tools.scoretools.PianoStaff` inside a
-:py:class:`~abjad.tools.lilyfiletools.LilyPondFile` instance.  From there we can access the other "blocks" of our document to add a title, a composer's name, 
+We'll use :py:func:`abjad.tools.lilypondfiletools.make_basic_lilypond_file` to wrap our :py:class:`~abjad.tools.scoretools.PianoStaff` inside a
+:py:class:`~abjad.tools.lilypondfiletools.LilyPondFile` instance.  From there we can access the other "blocks" of our document to add a title, a composer's name, 
 change the global staff size, paper size, staff spacing and so forth.
 
 ::
@@ -447,7 +447,7 @@ change the global staff size, paper size, staff spacing and so forth.
     def build_mozart_lily(piano_staff):
 
         # wrap the PianoStaff with a LilyPondFile
-        lily = lilyfiletools.make_basic_lilypond_file(piano_staff)
+        lily = lilypondfiletools.make_basic_lilypond_file(piano_staff)
 
         # create some markup to use in our header block
         title = markuptools.Markup('\\bold \\sans "Ein Musikalisches Wuerfelspiel"')

@@ -38,6 +38,7 @@ chords, rests and skips, as well as beams, slurs, ties, and articulations.
 
 	lily_string = "c'4 ( d'4 <cs' e'>8 ) -. r8 <g' b' d''>4 ^\marcato ~ <g' b' d''>1"
 	abjad> parsed_result = iotools.parse_lilypond_input_string(lily_string)
+	LilyPond file written to 'mozart-parsing-example.ly' ...
 	abjad> show(parsed_result)
 
 .. image:: images/mozart-parsing-example.png
@@ -293,7 +294,7 @@ After storing all of the musical fragments into a corpus, concatenating those el
 	abjad> my_list = [1, 'b', 3]
 	abjad> my_result = [random.choice(my_list) for i in range(20)]
 	abjad> print my_result
-	['b', 1, 'b', 1, 1, 3, 'b', 1, 1, 3, 'b', 3, 'b', 3, 3, 1, 'b', 1, 3, 'b']
+	[1, 3, 3, 3, 1, 1, 1, 'b', 3, 'b', 1, 'b', 'b', 1, 3, 'b', 3, 1, 'b', 1]
 
 
 Our corpus is a list comprising sixteen sublists, one for each measure in the minuet.  To build our musical structure, we can simply iterate through the 
@@ -325,23 +326,23 @@ The result will be a *seventeen*-item-long list of measure definitions:
 
 	abjad> choices = choose_mozart_measures( )
 	abjad> for i, measure in enumerate(choices): print i, measure
-	0 {'b': '<c e>4 r8', 't': "g'8 c''8 e''8"}
-	1 {'b': '<e g>4 r8', 't': "c''16 g'16 c''16 e''16 g'16 c''16"}
-	2 {'b': 'g4 r8', 't': "b'16 a'16 b'16 c''16 d''16 b'16"}
-	3 {'b': '<e g>4 r8', 't': "c''8 e''16 c''16 g'8"}
-	4 {'b': 'c8 c8 c8', 't': "<fs' d''>8 <fs' d''>8 <fs' d''>8"}
+	0 {'b': '<c e>4 r8', 't': "e''16 c''16 g''16 e''16 c'''16 g''16"}
+	1 {'b': 'c8 c8 c8', 't': "<e' c''>8 <e' c''>8 <e' c''>8"}
+	2 {'b': 'g,4 r8', 't': "b'8 d''8 g''8"}
+	3 {'b': '<e g>4 r8', 't': "c''16 g'16 e''16 c''16 g''8"}
+	4 {'b': 'c4 r8', 't': "d''8 a'8 ^\\turn fs''8"}
 	5 {'b': '<b, g>4 r8', 't': "a'8 fs'16 g'16 b'16 g''16"}
-	6 {'b': 'c8 d8 d,8', 't': "e''16 c'''16 b''16 g''16 a''16 fs''16"}
+	6 {'b': 'c8 d8 d,8', 't': "e''16 a''16 g''16 b''16 fs''16 a''16"}
 	7 {'b': 'g,8 g16 f16 e16 d16', 't': "<g' b' d'' g''>4 r8"}
 	8 {'b': 'g,8 b16 g16 fs16 e16', 't': "<g' b' d'' g''>4 r8"}
-	9 {'b': 'd,16 d16 cs16 d16 c16 d16', 't': "<a' d'' fs''>8 fs''4 ^\\tr"}
-	10 {'b': 'b,4 r8', 't': "g''8 b''16 d'''16 d''8"}
-	11 {'b': '<c g>4 <c e>8', 't': "e''8 g''16 e''16 c''8"}
-	12 {'b': 'g8 g,8 r8', 't': "<c'' e''>8 <b' d''>16 <g' b'>16 g'8"}
-	13 {'b': '<c e>16 g16 <c e>16 g16 <c e>16 g16', 't': "g''8 c''8 e''8"}
-	14 {'b': 'c8 c8 c8', 't': "<e' c''>8 <e' c''>8 <e' c''>8"}
-	15 {'b': 'f4 g8', 't': "d''16 f''16 a'16 d''16 b'16 d''16"}
-	16 {'b': 'c4 c,8', 't': "c''8 c'8 r8"}
+	9 {'b': 'd4 c8', 't': "d'16 fs'16 a'16 d''16 fs''16 a''16"}
+	10 {'b': '<b, d>4 <b, g>8', 't': "g''16 b''16 g''8 d''8"}
+	11 {'b': '<c g>4 <c g>8', 't': "e''16 g''16 c'''16 g''16 e''16 c''16"}
+	12 {'b': 'g4 g,8', 't': "b'16 d''16 g''16 d''16 b'8"}
+	13 {'b': 'c8 c8 c8', 't': "<e' c''>8 <e' c''>8 <e' c''>8"}
+	14 {'b': '<c e>16 g16 <c e>16 g16 <c e>16 g16', 't': "e''8 ( c''8 g'8 )"}
+	15 {'b': 'f4 g8', 't': "f''16 d''16 a'8 b'8"}
+	16 {'b': 'c8 g,8 c,8', 't': "c''4 r8"}
 
 
 The score
@@ -465,6 +466,7 @@ Now let's take a look at the code that puts our score together:
 ::
 
 	abjad> piano_staff = build_mozart_piano_staff( )
+	LilyPond file written to 'mozart-piano-staff.ly' ...
 	abjad> show(piano_staff)
 
 .. image:: images/mozart-piano-staff.png
@@ -476,10 +478,10 @@ The document
 
 As you can see above, we've now got our randomized minuet.  However, we can still go a bit further.  LilyPond provides a wide variety of settings for 
 controlling the overall *look* of a musical document, often through its `\header`, `\layout` and `\paper` blocks.  Abjad, in turn, gives us object-oriented 
-access to these settings through the its `lilyfiletools` module.
+access to these settings through the its `lilypondfiletools` module.
 
-We'll use :py:func:`abjad.tools.lilyfiletools.make_basic_lilypond_file` to wrap our :py:class:`~abjad.tools.scoretools.PianoStaff` inside a
-:py:class:`~abjad.tools.lilyfiletools.LilyPondFile` instance.  From there we can access the other "blocks" of our document to add a title, a composer's name, 
+We'll use :py:func:`abjad.tools.lilypondfiletools.make_basic_lilypond_file` to wrap our :py:class:`~abjad.tools.scoretools.PianoStaff` inside a
+:py:class:`~abjad.tools.lilypondfiletools.LilyPondFile` instance.  From there we can access the other "blocks" of our document to add a title, a composer's name, 
 change the global staff size, paper size, staff spacing and so forth.
 
 ::
@@ -487,7 +489,7 @@ change the global staff size, paper size, staff spacing and so forth.
     def build_mozart_lily(piano_staff):
 
         # wrap the PianoStaff with a LilyPondFile
-        lily = lilyfiletools.make_basic_lilypond_file(piano_staff)
+        lily = lilypondfiletools.make_basic_lilypond_file(piano_staff)
 
         # create some markup to use in our header block
         title = markuptools.Markup('\\bold \\sans "Ein Musikalisches Wuerfelspiel"')
@@ -546,6 +548,7 @@ And now the final result:
 
 ::
 
+	LilyPond file written to 'mozart-lily.ly' ...
 	abjad> show(lily)
 
 .. image:: images/mozart-lily.png
