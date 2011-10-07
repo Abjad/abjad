@@ -1,5 +1,4 @@
 from fractions import Fraction
-from ply import lex
 from ply.lex import TOKEN
 import re
 
@@ -652,47 +651,3 @@ class _LilyPondLexicalAnalyzer(object):
 #   t_sourcefilename_error = t_error
     t_version_error = t_error
 #   t_scheme_error = t_error
-
-    def __init__(self, **kwargs):
-        self._lexer = lex.lex(module=self, **kwargs)
-
-    ### OVERRIDES ###
-
-    def __call__(self, input):
-        self._lexer.input(input)
-        # reset lexical state
-        while self._lexer.lexstatestack:
-            self._lexer.pop_state( )
-        self._lexer.push_state('notes')
-        # begin pushing tokens
-        while True:
-            token = self._lexer.token( )
-            if not token:
-                break
-            yield token
-        return
-
-    ### PUBLIC ATTRIBUTES ###
-
-    @property
-    def lineno(self):
-        # duck typing
-        return self._lexer.lineno
-
-    @property
-    def lexpos(self):
-        # duck typing
-        return self._lexer.lexpos
-
-    ### PUBLIC METHODS ###
-
-    def input(self, text):
-        # duck typing
-        self._lexer.input(input)
-        while self._lexer.lexstatestack:
-            self._lexer.pop_state( )
-        self._lexer.push_state('notes')
-
-    def token(self):
-        # duck typing
-        return self._lexer.token( )
