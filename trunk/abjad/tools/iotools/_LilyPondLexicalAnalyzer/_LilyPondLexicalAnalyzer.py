@@ -671,3 +671,28 @@ class _LilyPondLexicalAnalyzer(object):
                 break
             yield token
         return
+
+    ### PUBLIC ATTRIBUTES ###
+
+    @property
+    def lineno(self):
+        # duck typing
+        return self._lexer.lineno
+
+    @property
+    def lexpos(self):
+        # duck typing
+        return self._lexer.lexpos
+
+    ### PUBLIC METHODS ###
+
+    def input(self, text):
+        # duck typing
+        self._lexer.input(input)
+        while self._lexer.lexstatestack:
+            self._lexer.pop_state( )
+        self._lexer.push_state('notes')
+
+    def token(self):
+        # duck typing
+        return self._lexer.token( )
