@@ -1,30 +1,9 @@
-from ply import lex
-from ply import yacc
-import os
 from abjad.tools.iotools._LilyPondSyntaxNode import _LilyPondSyntaxNode as Node
 
 
-class _LilyPondSyntacticalAnalyzer( ):
+class _LilyPondSyntacticalDefinition(object):
 
-    def __init__(self):
-        try:
-            modname = os.path.split(os.path.splitext(__file__)[0])[1] + "_" + self.__class__.__name__
-        except:
-            modname = "parser"+"_"+self.__class__.__name__
-
-        self.tabmodule = modname + "_" + "parsetab"
-
-        lex.lex(module=self)
-        yacc.yacc(module=self,
-                  tabmodule=self.tabmodule)
-
-    ### OVERRIDES ###
-
-    def __call__(self, input):
-        self.names = { }
-        return yacc.parse(input)
-
-    ### PUBLIC METHODS ###
+    ### SYNTACTICAL RULES ###
 
     def p_lilypond(self, p):
         '''lilypond : empty

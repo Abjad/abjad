@@ -3,7 +3,7 @@ from ply.lex import TOKEN
 import re
 
 
-class _LilyPondLexicalAnalyzer(object):
+class _LilyPondLexicalDefinition(object):
 
     states = (
         # lexer.ll:115
