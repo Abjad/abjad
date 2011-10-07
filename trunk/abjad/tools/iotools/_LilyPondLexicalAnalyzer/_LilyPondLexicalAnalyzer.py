@@ -1,5 +1,7 @@
+from fractions import Fraction
 from ply import lex
 from ply.lex import TOKEN
+import re
 
 
 class _LilyPondLexicalAnalyzer(object):
@@ -14,11 +16,11 @@ class _LilyPondLexicalAnalyzer(object):
         # ('lyric_quote ', 'exclusive'),
         # ('longcomment', 'exclusive'),
         # ('markup', 'exclusive'),
-        # ('notes', 'exclusive'),
-        # ('quote', 'exclusive'),
+        ('notes', 'exclusive'),
+        ('quote', 'exclusive'),
         # ('sourcefileline', 'exclusive'),
         # ('sourcefilename', 'exclusive'),
-        # ('version', 'exclusive'),
+        ('version', 'exclusive'),
         # not in lexer.ll (using abj crude scheme parsing)
         # ('scheme', 'exclusive'),
     )
@@ -43,12 +45,12 @@ class _LilyPondLexicalAnalyzer(object):
     UNSIGNED        = r'%s+' % N
     E_UNSIGNED      = r'\\%s+' % N
     FRACTION        = r'%s+\/%s+' % (N, N)
-    INT             = r'-?%s' % UNSIGNED
-    REAL            = r'(%s\.%s*)|(-?\.%s+)' % (INT, N, N)
+    INT             = r'(-?%s)' % UNSIGNED
+    REAL            = r'((%s\.%s*)|(-?\.%s+))' % (INT, N, N)
     KEYWORD         = r'\\%s' % WORD
-    WHITE           = r'[ \n\t\f\r]'
-    HORIZONTALWHITE = r'[ \t]'
-    BLACK           = r'[^ \n\t\f\r]'
+    WHITE           = r'[ \n\t\f\r]' # only whitespace
+    HORIZONTALWHITE = r'[ \t]' # only non-line-breaking whitespace
+    BLACK           = r'[^ \n\t\f\r]' # only non-whitespace
     RESTNAME        = r'[rs]'
     NOTECOMMAND     = r'\\%s+' % A
     MARKUPCOMMAND   = r'\\(%s|[-_])+' % A
@@ -57,6 +59,10 @@ class _LilyPondLexicalAnalyzer(object):
     EXTENDER        = r'__'
     HYPHEN          = r'--'
     BOM_UTF8        = r'\357\273\277'
+
+    note_names = {
+        'english': re.compile('^[a-g](ss|s|ff|f|qf|qs)?$'),
+    }
 
     keywords = {
         # parser.yy:182, lily-lexer.cc:39
@@ -213,10 +219,15 @@ class _LilyPondLexicalAnalyzer(object):
         '\\', ']', '^', '_', '{', '|', '}', '~'
     )
 
+    string_accumulator = ''
+
     ### LEXICAL RULES ###
 
     # lexer.ll:165
     # <*>\r
+    def t_ANY_165(self, t):
+        r'\r'
+        pass
 
     # lexer.ll:169
     # <extratoken>{ANY_CHAR}
@@ -244,12 +255,23 @@ class _LilyPondLexicalAnalyzer(object):
 
     # lexer.ll:222
     # <INITIAL,chords,figures,incl,lyrics,markup,notes>{WHITE}+
+    def t_notes_222(self, t):
+        '[ \n\t\f\r]'
+        pass
 
     # lexer.ll:227
     # <INITIAL,notes,figures,chords,markup>\"
+    def t_notes_227(self, t):
+        r'\"'
+        t.lexer.push_state('quote')
+        self.string_accumulator = ''
+        pass
 
     # lexer.ll:233
     # <INITIAL,chords,lyrics,notes,figures>\\version{WHITE}*
+    def t_notes_233(self, t):
+        r'\\version'
+        t.lexer.push_state('version')
 
     # lexer.ll:236
     # <INITIAL,chords,lyrics,notes,figures>\\sourcefilename{WHITE}*
@@ -259,6 +281,12 @@ class _LilyPondLexicalAnalyzer(object):
 
     # lexer.ll:242
     # <version>\"[^"]*\"
+    def t_version_242(self, t):
+        r'\"[^"]*\"'
+        t.lexer.pop_state( )
+        t.type = 'STRING'
+        t.value = '\\version ' + t.value
+        return t
 
     # lexer.ll:256
     # <sourcefilename>\"[^"]*\"
@@ -268,6 +296,10 @@ class _LilyPondLexicalAnalyzer(object):
 
     # lexer.ll:278
     # <version>{ANY_CHAR}
+    @TOKEN(ANY_CHAR)
+    def t_version_278(self, t):
+        print("Illegal character '%s'" % t.value[0])
+        t.lexer.skip(1)
 
     # lexer.ll:282
     # <sourcefilename>{ANY_CHAR}
@@ -298,28 +330,55 @@ class _LilyPondLexicalAnalyzer(object):
 
     # lexer.ll:341
     # <incl,version,sourcefilename>\"[^"]*
+    def t_version_341(self, t):
+        r'"[^"]*'
+        raise Exception('End quote missing.')
 
     # lexer.ll:345
     # <chords,notes,figures>{RESTNAME}
+    @TOKEN(RESTNAME)
+    def t_notes_345(self, t):
+        t.type = 'RESTNAME'
+        return t
 
     # lexer.ll:350
     # <chords,notes,figures>R
+    def t_notes_350(self, t):
+        'R'
+        t.type = 'MULTI_MEASURE_REST'
+        return t
 
     # lexer.ll:353
     # <INITIAL,chords,figures,lyrics,markup,notes>#
 
     # lexer.ll:387
     # <INITIAL,notes,lyrics>\<\<
+    def t_notes_387(self, t):
+        r'\<\<'
+        t.type = 'DOUBLE_ANGLE_OPEN'
+        return t
 
     # lexer.ll:390
     # <INITIAL,notes,lyrics>\>\>
+    def t_notes_390(self, t):
+        r'\>\>'
+        t.type = 'DOUBLE_ANGLE_CLOSE'
+        return t
 
     # lexer.ll:396
     # <INITIAL,notes>\<
+    def t_notes_396(self, t):
+        r'\<'
+        t.type = 'ANGLE_OPEN'
+        return t
 
     # lexer.ll:399
     # <INITIAL,notes>\>
-
+    def t_notes_399(self, t):
+        r'\>'
+        t.type = 'ANGLE_CLOSE'
+        return t
+        
     # lexer.ll:405
     # <figures>_
 
@@ -331,30 +390,78 @@ class _LilyPondLexicalAnalyzer(object):
 
     # lexer.ll:417
     # <notes,figures>{ALPHAWORD}
+    @TOKEN(ALPHAWORD)
+    def t_notes_417(self, t):
+        if self.note_names['english'].match(t.value) is not None:
+            t.type = 'NOTENAME_PITCH'
+        else:
+            t.type = 'STRING'
+        return t
 
     # lexer.ll:421
     # <notes,figures>{NOTECOMMAND}
+    @TOKEN(NOTECOMMAND)
+    def t_notes_421(self, t):
+        if t.value in self.keywords:
+            t.type = self.keywords[t.value]
+            return t
+        print("Unknown command '%s'" % t.value)
+        pass
 
     # lexer.ll:424
     # <notes,figures>{FRACTION}
+    @TOKEN(FRACTION)
+    def t_notes_424(self, t):
+        t.type = 'FRACTION'
+        parts = t.value.split('/')
+        t.value = Fraction(int(parts[0]), int(parts[1]))
+        return t
 
     # lexer.ll:428
     # <notes,figures>{UNSIGNED}/\/|{UNSIGNED}
+    @TOKEN('%s/\/|%s' % (UNSIGNED, UNSIGNED))
+    def t_notes_428(self, t):
+        t.type = 'UNSIGNED'
+        t.value = int(t.value)
+        return t
 
     # lexer.ll:433
     # <notes,figures>{E_UNSIGNED}
+    @TOKEN(E_UNSIGNED)
+    def t_notes_433(self, t):
+        t.type = 'E_UNSIGNED'
+        t.value = int(t.value[1:])
+        return t
 
     # lexer.ll:440
     # <quote,lyric_quote>\\{ESCAPED}
+    @TOKEN('\\%s' % ESCAPED)
+    def t_quote_440(self, t):
+        self.string_accumulator += t.value
+        pass
 
     # lexer.ll:443
     # <quote,lyric_quote>[^\\""]+
+    def t_quote_443(self, t):
+        r'[^\\""]+'
+        self.string_accumulator += t.value
+        pass
 
     # lexer.ll:446
     # <quote,lyric_quote>\"
+    def t_quote_446(self, t):
+        r'\"'
+        t.lexer.pop_state( )
+        t.type = 'STRING'
+        t.value = self.string_accumulator
+        return t
 
     # lexer.ll:456
     # <quote,lyric_quote>.
+    def t_quote_456(self, t):
+        r'.'
+        self.string_accumulator += t.value
+        pass
 
     # lexer.ll:462
     # <lyrics>\"
@@ -439,12 +546,27 @@ class _LilyPondLexicalAnalyzer(object):
 
     # lexer.ll:651
     # -{UNSIGNED}|{REAL}
+    @TOKEN('%s|-%s' % (REAL, UNSIGNED))
+    def t_651(self, t):
+        t.type = 'REAL'
+        t.value = float(t.value)
+        return t
 
     # lexer.ll:661
     # -\.
+    def t_661(self, t):
+        '-\.'
+        t.type = 'REAL'
+        t.value = 0.0
+        return t
 
     # lexer.ll:666
     # {UNSIGNED}
+    @TOKEN(UNSIGNED)
+    def t_666(self, t):
+        t.type = 'UNSIGNED'
+        t.value = float(t.value)
+        return t
 
     # lexer.ll:672
     # [{}]
@@ -457,18 +579,56 @@ class _LilyPondLexicalAnalyzer(object):
 
     # lexer.ll:686
     # <INITIAL,lyrics,notes,figures>\\. 
+    def t_notes_686(self, t):
+        r'\\.'
+        if t.value[1] == '>':
+            t.type = 'E_ANGLE_CLOSE'
+        elif t.value[1] == '<':
+            t.type = 'E_ANGLE_OPEN'
+        elif t.value[1] == '!':
+            t.type = 'E_EXCLAMATION'
+        elif t.value[1] == '(':
+            t.type = 'E_OPEN'
+        elif t.value[1] == ')':
+            t.type = 'E_CLOSE'
+        elif t.value[1] == '[':
+            t.type = 'E_BRACKET_OPEN'
+        elif t.value[1] == '+':
+            t.type = 'E_PLUS'
+        elif t.value[1] == ']':
+            t.type = 'E_BRACKET_CLOSE'
+        elif t.value[1] == '~':
+            t.type = 'E_TILDE'
+        elif t.value[1] == '\\':
+            t.type = 'E_BACKSLASH'
+        else:
+            t.type = 'E_CHAR'
+        return t
 
     # lexer.ll:
     # <*>.716
+#    def t_ANY_716(self, t):
+#        r'.'
+#        raise Exception        
 
-    @TOKEN(KEYWORD)
-    def t_KEYWORD(self, t):
-        t.type = self.keywords.get(t.value, 'KEYWORD')
-        return t
-    
     ### DEFAULT RULES ###
 
-    t_ignore = " \t"
+    t_ignore = '[ \n\t\f\r]'
+
+#   t_extratoken_ignore = t_ignore
+#   t_chords_ignore = t_ignore
+#   t_figures_ignore = t_ignore
+#   t_incl_ignore = t_ignore
+#   t_lyrics_ignore = t_ignore
+#   t_lyric_quote_ignore = t_ignore
+#   t_longcomment_ignore = t_ignore
+#   t_markup_ignore = t_ignore
+    t_notes_ignore = t_ignore
+    t_quote_ignore = t_ignore
+#   t_sourcefileline_ignore = t_ignore
+#   t_sourcefilename_ignore = t_ignore
+    t_version_ignore = t_ignore
+#   t_scheme_ignore = t_ignore
 
     def t_newline(self, t):
         r'\n+'
@@ -478,6 +638,21 @@ class _LilyPondLexicalAnalyzer(object):
         print("Illegal character '%s'" % t.value[0])
         t.lexer.skip(1)
 
+#   t_extratoken_error = t_error
+#   t_chords_error = t_error
+#   t_figures_error = t_error
+#   t_incl_error = t_error
+#   t_lyrics_error = t_error
+#   t_lyric_quote_error = t_error
+#   t_longcomment_error = t_error
+#   t_markup_error = t_error
+    t_notes_error = t_error
+    t_quote_error = t_error
+#   t_sourcefileline_error = t_error
+#   t_sourcefilename_error = t_error
+    t_version_error = t_error
+#   t_scheme_error = t_error
+
     def __init__(self, **kwargs):
         self._lexer = lex.lex(module=self, **kwargs)
 
@@ -485,6 +660,11 @@ class _LilyPondLexicalAnalyzer(object):
 
     def __call__(self, input):
         self._lexer.input(input)
+        # reset lexical state
+        while self._lexer.lexstatestack:
+            self._lexer.pop_state( )
+        self._lexer.push_state('notes')
+        # begin pushing tokens
         while True:
             token = self._lexer.token( )
             if not token:
