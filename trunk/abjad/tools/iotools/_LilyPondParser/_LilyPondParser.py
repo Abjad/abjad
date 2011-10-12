@@ -5,6 +5,7 @@ from abjad.tools.iotools._LilyPondLexicalDefinition._LilyPondLexicalDefinition \
     import _LilyPondLexicalDefinition
 from abjad.tools.iotools._LilyPondSyntacticalDefinition._LilyPondSyntacticalDefinition \
     import _LilyPondSyntacticalDefinition
+from abjad.tools.iotools._LilyPondParser import _parser_tables
 
 
 class _LilyPondParser(object):
@@ -24,7 +25,7 @@ class _LilyPondParser(object):
             debug=0,
             module=syndef,
             outputdir=os.path.dirname(__file__),
-            tabmodule='_parser_tables',)
+            tabmodule=_parser_tables,)
 
         lexer.push_state('notes')
 
