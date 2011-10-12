@@ -1,61 +1,31 @@
-from abjad.tools.iotools._LilyPondSyntaxTranslator._LilyPondSyntaxTranslator \
-    import _LilyPondSyntaxTranslator
-from abjad.tools.iotools._LilyPondGrammar._LilyPondGrammar \
-    import _LilyPondGrammar
-from abjad.tools.iotools._LilyPondLexicalAnalyzer._LilyPondLexicalAnalyzer \
-    import _LilyPondLexicalAnalyzer
-from abjad.tools.iotools._LilyPondSemanticAnalyzer._LilyPondSemanticAnalyzer \
-    import _LilyPondSemanticAnalyzer
-from abjad.tools.iotools._LilyPondSyntacticalAnalyzer._LilyPondSyntacticalAnalyzer \
-    import _LilyPondSyntacticalAnalyzer
+import os
+from ply import lex
+from ply import yacc
+from abjad.tools.iotools._LilyPondLexicalDefinition._LilyPondLexicalDefinition \
+    import _LilyPondLexicalDefinition
+from abjad.tools.iotools._LilyPondSyntacticalDefinition._LilyPondSyntacticalDefinition \
+    import _LilyPondSyntacticalDefinition
 
 
 class _LilyPondParser(object):
 
     def __init__(self):
-        self._grammar = _LilyPondGrammar( )
-        self._input_string = ''
-        self._lexical_analyzer = _LilyPondLexicalAnalyzer( )
-        self._semantic_analyzer = _LilyPondSemanticAnalyzer( )
-        self._symbol_table = [ ]
-        self._syntactical_analyzer = _LilyPondSyntacticalAnalyzer( )
-        self._syntax_translator = _LilyPondSyntaxTranslator( )
+        self.table_path = os.path.join(os.path.dirname(__file__), '_tab.py')
 
     ### OVERRIDES ###
 
     def __call__(self, input_string):
-        self.input_string = input_string # store for error reporting, later
 
-        # convert input string into token stream
-        tokens = self._lexical_analyzer(input_string)
+        lexdef = _LilyPondLexicalDefinition( )
+        syndef = _LilyPondSyntacticalDefinition( )
 
-        # create concrete syntax tree, using simplified LilyPond context-free grammar
-        parse_tree = self._syntactical_analyzer(tokens)
+        lexer = lex.lex(object=lexdef)
+        parser = yacc.yacc(
+            debug=0,
+            module=syndef,
+            outputdir=os.path.dirname(__file__),
+            tabmodule='_parser_tables',)
 
-        # create abstract syntax tree, to cook out alternate syntaxes
-        syntax_tree = self._semantic_analyzer(parse_tree)
+        lexer.push_state('notes')
 
-        # translate abstract syntax tree into Abjad component tree
-        lily_file = self._syntax_translator(syntax_tree)
-
-        # reduce component tree to smallest necessary container
-        components = self._reduce_lily_file(lily_file)
-
-        return abjad_tree
-
-    ### PRIVATE METHODS ###
-
-    def _reduce_lily_file(self, lily_file):
-        return lily_file
-
-    ### PUBLIC ATTRIBUTES ###
-
-    @property
-    def input_string(self):
-        return self._input_string
-
-    @input_string.setter
-    def input_string(self, arg):
-        if not isinstance(arg, str) or not len(arg):
-            raise ValueError
-        self._input_string = arg
+        return parser.parse(input_string, lexer=lexer)

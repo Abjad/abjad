@@ -1,35 +1,21 @@
-from abjad.tools.iotools._LilyPondSyntaxNode import _LilyPondSyntaxNode as Node
+from abjad.tools.iotools._LilyPondSyntaxNode._LilyPondSyntaxNode import _LilyPondSyntaxNode as Node
 from abjad.tools.iotools._LilyPondLexicalDefinition._LilyPondLexicalDefinition import _LilyPondLexicalDefinition
 
 
 class _LilyPondSyntacticalDefinition(object):
 
-    ### SYNTACTICAL RULES ###
-
     tokens = _LilyPondLexicalDefinition.tokens
 
+    ### SYNTACTICAL RULES ###
+
     def p_lilypond(self, p):
-        '''lilypond : empty
+        '''lilypond : 
                     | lilypond toplevel_expression
                     | lilypond assignment
                     | lilypond error
                     | lilypond INVALID
         '''
-        #'''lilypond : empty
-        #            | lilypond toplevel_expression
-        #            | lilypond assignment
-        #            | lilypond error
-        #            | lilypond "\\invalid"
-        #'''
         p[0] = Node('lilypond', p[1:])
-
-
-    def p_object_id_setting(self, p):
-        '''object_id_setting : OBJECTID STRING
-        '''
-        #'''object_id_setting : "\\objectid" STRING
-        #'''
-        p[0] = Node('object_id_setting', p[1:])
 
 
     def p_toplevel_expression(self, p):
@@ -45,15 +31,38 @@ class _LilyPondSyntacticalDefinition(object):
         p[0] = Node('toplevel_expression', p[1:])
 
 
+    def p_embedded_scm_bare(self, p):
+        '''embedded_scm_bare : SCM_TOKEN
+                             | SCM_IDENTIFIER
+        '''
+        p[0] = Node('embedded_scm_bare', p[1:])
+
+
     def p_embedded_scm(self, p):
-        '''embedded_scm : SCM_TOKEN
-                        | SCM_IDENTIFIER
+        '''embedded_scm : embedded_scm_bare
+                        | scm_function_call
         '''
         p[0] = Node('embedded_scm', p[1:])
 
 
+    def p_scm_function_call(self, p):
+        '''scm_function_call : SCM_FUNCTION function_arglist
+        '''
+        p[0] = Node('scm_function_call', p[1:])
+
+
+    def p_embedded_lilypond(self, p):
+        '''embedded_lilypond : 
+                             | identifier_init
+                             | music music music_list
+                             | error
+                             | INVALID embedded_lilypond
+        '''
+        p[0] = Node('embedded_lilypond', p[1:])
+
+
     def p_lilypond_header_body(self, p):
-        '''lilypond_header_body : empty
+        '''lilypond_header_body : 
                                 | lilypond_header_body assignment
         '''
         p[0] = Node('lilypond_header_body', p[1:])
@@ -62,8 +71,6 @@ class _LilyPondSyntacticalDefinition(object):
     def p_lilypond_header(self, p):
         '''lilypond_header : HEADER '{' lilypond_header_body '}'
         '''
-        #'''lilypond_header : "\\header" '{' lilypond_header_body '}'
-        #'''
         p[0] = Node('lilypond_header', p[1:])
 
 
@@ -76,6 +83,7 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_assignment(self, p):
         '''assignment : assignment_id '=' identifier_init
+                      | assignment_id property_path '=' identifier_init
                       | embedded_scm
         '''
         p[0] = Node('assignment', p[1:])
@@ -88,61 +96,41 @@ class _LilyPondSyntacticalDefinition(object):
                            | output_def
                            | context_def_spec_block
                            | music
-                           | post_event
+                           | post_event_nofinger
                            | number_expression
                            | string
                            | embedded_scm
                            | full_markup
-                           | UNSIGNED
+                           | full_markup_list
+                           | context_modification
         '''
-        #'''identifier_init : score_block
-        #                   | book_block
-        #                   | bookpart_block
-        #                   | output_def
-        #                   | context_def_spec_block
-        #                   | music
-        #                   | post_event
-        #                   | number_expression
-        #                   | string
-        #                   | embedded_scm
-        #                   | full_markup
-        #                   | DIGIT
-        #'''
         p[0] = Node('identifier_init', p[1:])
 
 
     def p_context_def_spec_block(self, p):
         '''context_def_spec_block : CONTEXT '{' context_def_spec_body '}'
         '''
-        #'''context_def_spec_block : "\\context" '{' context_def_spec_body '}'
-        #'''
         p[0] = Node('context_def_spec_block', p[1:])
 
 
     def p_context_def_spec_body(self, p):
-        '''context_def_spec_body : empty
+        '''context_def_spec_body : 
                                  | CONTEXT_DEF_IDENTIFIER
                                  | context_def_spec_body GROBDESCRIPTIONS embedded_scm
                                  | context_def_spec_body context_mod
+                                 | context_def_spec_body context_modification
         '''
-        #'''context_def_spec_body : empty
-        #                         | CONTEXT_DEF_IDENTIFIER
-        #                         | context_def_spec_body "\\grobdescriptions" embedded_scm
-        #                         | context_def_spec_body context_mod
-        #'''
         p[0] = Node('context_def_spec_body', p[1:])
 
 
     def p_book_block(self, p):
         '''book_block : BOOK '{' book_body '}'
         '''
-        #'''book_block : "\\book" '{' book_body '}'
-        #'''
         p[0] = Node('book_block', p[1:])
 
 
     def p_book_body(self, p):
-        '''book_body : empty
+        '''book_body : 
                      | BOOK_IDENTIFIER
                      | book_body paper_block
                      | book_body bookpart_block
@@ -151,8 +139,8 @@ class _LilyPondSyntacticalDefinition(object):
                      | book_body full_markup
                      | book_body full_markup_list
                      | book_body lilypond_header
+                     | book_body embedded_scm
                      | book_body error
-                     | book_body object_id_setting
         '''
         p[0] = Node('book_body', p[1:])
 
@@ -160,13 +148,11 @@ class _LilyPondSyntacticalDefinition(object):
     def p_bookpart_block(self, p):
         '''bookpart_block : BOOKPART '{' bookpart_body '}'
         '''
-        #'''bookpart_block : "\\bookpart" '{' bookpart_body '}'
-        #'''
         p[0] = Node('bookpart_block', p[1:])
 
 
     def p_bookpart_body(self, p):
-        '''bookpart_body : empty
+        '''bookpart_body : 
                          | BOOK_IDENTIFIER
                          | bookpart_body paper_block
                          | bookpart_body score_block
@@ -174,8 +160,8 @@ class _LilyPondSyntacticalDefinition(object):
                          | bookpart_body full_markup
                          | bookpart_body full_markup_list
                          | bookpart_body lilypond_header
+                         | bookpart_body embedded_scm
                          | bookpart_body error
-                         | bookpart_body object_id_setting
         '''
         p[0] = Node('bookpart_body', p[1:])
 
@@ -183,15 +169,12 @@ class _LilyPondSyntacticalDefinition(object):
     def p_score_block(self, p):
         '''score_block : SCORE '{' score_body '}'
         '''
-        #'''score_block : "\\score" '{' score_body '}'
-        #'''
         p[0] = Node('score_block', p[1:])
 
 
     def p_score_body(self, p):
         '''score_body : music
                       | SCORE_IDENTIFIER
-                      | score_body object_id_setting
                       | score_body lilypond_header
                       | score_body output_def
                       | score_body error
@@ -216,10 +199,6 @@ class _LilyPondSyntacticalDefinition(object):
                            | MIDI
                            | LAYOUT
         '''
-        #'''output_def_head : "\\paper"
-        #                   | "\\midi"
-        #                   | "\\layout"
-        #'''
         p[0] = Node('output_def_head', p[1:])
 
 
@@ -240,28 +219,26 @@ class _LilyPondSyntacticalDefinition(object):
 
 
     def p_tempo_event(self, p):
-        '''tempo_event : TEMPO steno_duration '=' bare_unsigned
-                       | TEMPO string steno_duration '=' bare_unsigned
-                       | TEMPO full_markup steno_duration '=' bare_unsigned
-                       | TEMPO string
-                       | TEMPO full_markup
+        '''tempo_event : TEMPO steno_duration '=' tempo_range
+                       | TEMPO scalar_closed steno_duration '=' tempo_range
+                       | TEMPO scalar
         '''
-        #'''tempo_event : "\\tempo" steno_duration '=' bare_unsigned
-        #               | "\\tempo" string steno_duration '=' bare_unsigned
-        #               | "\\tempo" full_markup steno_duration '=' bare_unsigned
-        #               | "\\tempo" string
-        #               | "\\tempo" full_markup
-        #'''
         p[0] = Node('tempo_event', p[1:])
 
 
     def p_music_list(self, p):
-        '''music_list : empty
+        '''music_list : 
                       | music_list music
                       | music_list embedded_scm
                       | music_list error
         '''
         p[0] = Node('music_list', p[1:])
+
+
+    def p_braced_music_list(self, p):
+        '''braced_music_list : '{' music_list '}'
+        '''
+        p[0] = Node('braced_music_list', p[1:])
 
 
     def p_music(self, p):
@@ -271,87 +248,71 @@ class _LilyPondSyntacticalDefinition(object):
         p[0] = Node('music', p[1:])
 
 
-    def p_alternative_music(self, p):
-        '''alternative_music : empty
-                             | ALTERNATIVE '{' music_list '}'
-        '''
-        #'''alternative_music : empty
-        #                     | "\\alternative" '{' music_list '}'
-        #'''
-        p[0] = Node('alternative_music', p[1:])
-
-
     def p_repeated_music(self, p):
-        '''repeated_music : REPEAT simple_string unsigned_number music alternative_music
+        '''repeated_music : REPEAT simple_string unsigned_number music
+                          | REPEAT simple_string unsigned_number music ALTERNATIVE braced_music_list
         '''
-        #'''repeated_music : "\\repeat" simple_string unsigned_number music alternative_music
-        #'''
         p[0] = Node('repeated_music', p[1:])
 
 
     def p_sequential_music(self, p):
-        '''sequential_music : SEQUENTIAL '{' music_list '}'
-                            | '{' music_list '}'
+        '''sequential_music : SEQUENTIAL braced_music_list
+                            | braced_music_list
         '''
-        #'''sequential_music : "\\sequential" '{' music_list '}'
-        #                    | '{' music_list '}'
-        #'''
         p[0] = Node('sequential_music', p[1:])
 
 
     def p_simultaneous_music(self, p):
-        '''simultaneous_music : SIMULTANEOUS '{' music_list '}'
+        '''simultaneous_music : SIMULTANEOUS braced_music_list
                               | DOUBLE_ANGLE_OPEN music_list DOUBLE_ANGLE_CLOSE
         '''
-        #'''simultaneous_music : "\\simultaneous" '{' music_list '}'
-        #                      | "<<" music_list ">>"
-        #'''
         p[0] = Node('simultaneous_music', p[1:])
 
 
     def p_simple_music(self, p):
         '''simple_music : event_chord
-                        | MUSIC_IDENTIFIER
                         | music_property_def
                         | context_change
         '''
         p[0] = Node('simple_music', p[1:])
 
 
-#    def p_optional_context_mod(self, p):
-#        '''optional_context_mod : empty
-#        '''
-#        p[0] = Node('optional_context_mod', p[1:])
-
-
-#    def p_optional_context_mod(self, p):
-#        '''optional_context_mod : "\with"  '{' context_mod_list '}'
-#        '''
-#        p[0] = Node('optional_context_mod', p[1:])
+    def p_context_modification(self, p):
+        '''context_modification : WITH '{' context_mod_list '}'
+                                | WITH CONTEXT_MOD_IDENTIFIER
+                                | CONTEXT_MOD_IDENTIFIER
+        '''
+        p[0] = Node('context_modification', p[1:])
 
 
     def p_optional_context_mod(self, p):
-        '''optional_context_mod : empty
-                                | WITH '{' context_mod_list '}'
+        '''optional_context_mod : 
+                                | context_modification
         '''
-        #'''optional_context_mod : empty
-        #                        | "\with"  '{' context_mod_list '}'
-        #'''
         p[0] = Node('optional_context_mod', p[1:])
 
 
     def p_context_mod_list(self, p):
-        '''context_mod_list : empty
+        '''context_mod_list : 
                             | context_mod_list context_mod
+                            | context_mod_list CONTEXT_MOD_IDENTIFIER
         '''
         p[0] = Node('context_mod_list', p[1:])
 
 
     def p_composite_music(self, p):
-        '''composite_music : prefix_composite_music
-                           | grouped_music_list
+        '''composite_music : complex_music
+                           | closed_music
         '''
         p[0] = Node('composite_music', p[1:])
+
+
+    def p_closed_music(self, p):
+        '''closed_music : mode_changed_music
+                        | MUSIC_IDENTIFIER
+                        | grouped_music_list
+        '''
+        p[0] = Node('closed_music', p[1:])
 
 
     def p_grouped_music_list(self, p):
@@ -361,79 +322,123 @@ class _LilyPondSyntacticalDefinition(object):
         p[0] = Node('grouped_music_list', p[1:])
 
 
-    def p_function_scm_argument(self, p):
-        '''function_scm_argument : embedded_scm
-                                 | simple_string
-        '''
-        p[0] = Node('function_scm_argument', p[1:])
-
-
-    def p_function_arglist_music_last(self, p):
-        '''function_arglist_music_last : EXPECT_MUSIC function_arglist music
-        '''
-        p[0] = Node('function_arglist_music_last', p[1:])
-
-
-    def p_function_arglist_nonmusic_last(self, p):
-        '''function_arglist_nonmusic_last : EXPECT_MARKUP function_arglist full_markup
-                                          | EXPECT_SCM function_arglist function_scm_argument
-        '''
-        p[0] = Node('function_arglist_nonmusic_last', p[1:])
-
-
-    def p_function_arglist_nonmusic(self, p):
-        '''function_arglist_nonmusic : EXPECT_NO_MORE_ARGS
-                                     | EXPECT_MARKUP function_arglist_nonmusic full_markup
-                                     | EXPECT_SCM function_arglist_nonmusic function_scm_argument
-        '''
-        p[0] = Node('function_arglist_nonmusic', p[1:])
-
-
     def p_function_arglist(self, p):
-        '''function_arglist : EXPECT_NO_MORE_ARGS
-                            | function_arglist_music_last
-                            | function_arglist_nonmusic_last
+        '''function_arglist : function_arglist_bare
+                            | EXPECT_MUSIC function_arglist_optional music
+                            | EXPECT_SCM function_arglist_optional embedded_scm
         '''
         p[0] = Node('function_arglist', p[1:])
 
 
-    def p_generic_prefix_music_scm(self, p):
-        '''generic_prefix_music_scm : MUSIC_FUNCTION function_arglist
+    def p_function_arglist_optional(self, p):
+        '''function_arglist_optional : function_arglist_keep
+                                     | EXPECT_OPTIONAL EXPECT_MUSIC function_arglist_optional
+                                     | EXPECT_OPTIONAL EXPECT_PITCH function_arglist_optional
+                                     | EXPECT_OPTIONAL EXPECT_DURATION function_arglist_optional
+                                     | EXPECT_OPTIONAL EXPECT_MARKUP function_arglist_optional
+                                     | EXPECT_OPTIONAL EXPECT_SCM function_arglist_optional
         '''
-        p[0] = Node('generic_prefix_music_scm', p[1:])
+        p[0] = Node('function_arglist_optional', p[1:])
+
+
+    def p_function_arglist_keep(self, p):
+        '''function_arglist_keep : EXPECT_OPTIONAL EXPECT_MARKUP function_arglist_keep full_markup
+                                 | EXPECT_OPTIONAL EXPECT_MARKUP function_arglist_keep simple_string
+                                 | EXPECT_OPTIONAL EXPECT_PITCH function_arglist_keep pitch_also_in_chords
+                                 | EXPECT_OPTIONAL EXPECT_DURATION function_arglist_closed_keep duration_length
+                                 | EXPECT_OPTIONAL EXPECT_SCM function_arglist_keep simple_string
+                                 | EXPECT_OPTIONAL EXPECT_MUSIC function_arglist_keep closed_music
+                                 | EXPECT_OPTIONAL EXPECT_SCM function_arglist_keep embedded_scm
+                                 | function_arglist
+        '''
+        p[0] = Node('function_arglist_keep', p[1:])
+
+
+    def p_function_arglist_closed(self, p):
+        '''function_arglist_closed : function_arglist_bare
+                                   | EXPECT_MUSIC function_arglist_optional closed_music
+                                   | EXPECT_SCM function_arglist_optional embedded_scm_closed
+        '''
+        p[0] = Node('function_arglist_closed', p[1:])
+
+
+    def p_function_arglist_closed_optional(self, p):
+        '''function_arglist_closed_optional : function_arglist_closed_keep
+                                            | EXPECT_OPTIONAL EXPECT_MUSIC function_arglist_closed_optional
+                                            | EXPECT_OPTIONAL EXPECT_PITCH function_arglist_closed_optional
+                                            | EXPECT_OPTIONAL EXPECT_DURATION function_arglist_closed_optional
+                                            | EXPECT_OPTIONAL EXPECT_MARKUP function_arglist_closed_optional
+                                            | EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed_optional
+        '''
+        p[0] = Node('function_arglist_closed_optional', p[1:])
+
+
+    def p_function_arglist_closed_keep(self, p):
+        '''function_arglist_closed_keep : EXPECT_OPTIONAL EXPECT_MARKUP function_arglist_keep full_markup
+                                        | EXPECT_OPTIONAL EXPECT_MARKUP function_arglist_keep simple_string
+                                        | EXPECT_OPTIONAL EXPECT_PITCH function_arglist_keep pitch_also_in_chords
+                                        | EXPECT_OPTIONAL EXPECT_DURATION function_arglist_closed_keep duration_length
+                                        | EXPECT_OPTIONAL EXPECT_SCM function_arglist_keep simple_string
+                                        | EXPECT_OPTIONAL EXPECT_MUSIC function_arglist_keep closed_music
+                                        | EXPECT_OPTIONAL EXPECT_SCM function_arglist_keep embedded_scm_closed
+                                        | function_arglist_closed
+        '''
+        p[0] = Node('function_arglist_closed_keep', p[1:])
+
+
+    def p_embedded_scm_closed(self, p):
+        '''embedded_scm_closed : embedded_scm_bare
+                               | scm_function_call_closed
+        '''
+        p[0] = Node('embedded_scm_closed', p[1:])
+
+
+    def p_scm_function_call_closed(self, p):
+        '''scm_function_call_closed : SCM_FUNCTION function_arglist_closed
+        '''
+        p[0] = Node('scm_function_call_closed', p[1:])
+
+
+    def p_function_arglist_bare(self, p):
+        '''function_arglist_bare : EXPECT_NO_MORE_ARGS
+                                 | EXPECT_MARKUP function_arglist_optional full_markup
+                                 | EXPECT_MARKUP function_arglist_optional simple_string
+                                 | EXPECT_PITCH function_arglist_optional pitch_also_in_chords
+                                 | EXPECT_DURATION function_arglist_closed_optional duration_length
+                                 | EXPECT_SCM function_arglist_optional simple_string
+        '''
+        p[0] = Node('function_arglist_bare', p[1:])
+
+
+    def p_music_function_call(self, p):
+        '''music_function_call : MUSIC_FUNCTION function_arglist
+        '''
+        p[0] = Node('music_function_call', p[1:])
 
 
     def p_optional_id(self, p):
-        '''optional_id : empty
+        '''optional_id : 
                        | '=' simple_string
         '''
         p[0] = Node('optional_id', p[1:])
 
 
-    def p_prefix_composite_music(self, p):
-        '''prefix_composite_music : generic_prefix_music_scm
-                                  | CONTEXT simple_string optional_id optional_context_mod music
-                                  | NEWCONTEXT simple_string optional_id optional_context_mod music
-                                  | TIMES fraction music
-                                  | repeated_music
-                                  | TRANSPOSE pitch_also_in_chords pitch_also_in_chords music
-                                  | mode_changing_head grouped_music_list
-                                  | mode_changing_head_with_context optional_context_mod grouped_music_list
-                                  | relative_music
-                                  | re_rhythmed_music
+    def p_complex_music(self, p):
+        '''complex_music : music_function_call
+                         | CONTEXT simple_string optional_id optional_context_mod music
+                         | NEWCONTEXT simple_string optional_id optional_context_mod music
+                         | TIMES fraction music
+                         | repeated_music
+                         | re_rhythmed_music
         '''
-        #'''prefix_composite_music : generic_prefix_music_scm
-        #                          | "\context" simple_string optional_id optional_context_mod music
-        #                          | "\new" simple_string optional_id optional_context_mod music
-        #                          | "\times" fraction music
-        #                          | repeated_music
-        #                          | "\transpose" pitch_also_in_chords pitch_also_in_chords music
-        #                          | mode_changing_head grouped_music_list
-        #                          | mode_changing_head_with_context optional_context_mod grouped_music_list
-        #                          | relative_music
-        #                          | re_rhythmed_music
-        #'''
-        p[0] = Node('prefix_composite_music', p[1:])
+        p[0] = Node('complex_music', p[1:])
+
+
+    def p_mode_changed_music(self, p):
+        '''mode_changed_music : mode_changing_head grouped_music_list
+                              | mode_changing_head_with_context optional_context_mod grouped_music_list
+        '''
+        p[0] = Node('mode_changed_music', p[1:])
 
 
     def p_mode_changing_head(self, p):
@@ -443,12 +448,6 @@ class _LilyPondSyntacticalDefinition(object):
                               | CHORDMODE
                               | LYRICMODE
         '''
-        #'''mode_changing_head : "\notemode"
-        #                      | "\drummode"
-        #                      | "\figuremode"
-        #                      | "\chordmode"
-        #                      | "\lyricmode"
-        #'''
         p[0] = Node('mode_changing_head', p[1:])
 
 
@@ -458,79 +457,32 @@ class _LilyPondSyntacticalDefinition(object):
                                            | CHORDS
                                            | LYRICS
         '''
-        #'''mode_changing_head_with_context : "\drums"
-        #                                   | "\figures"
-        #                                   | "\chords"
-        #                                   | "\lyrics"
-        #'''
         p[0] = Node('mode_changing_head_with_context', p[1:])
 
 
-    def p_relative_music(self, p):
-        '''relative_music : RELATIVE absolute_pitch music
-                          | RELATIVE composite_music
-        '''
-        #'''relative_music : "\relative" absolute_pitch music
-        #                  | "\relative" composite_music
-        #'''
-        p[0] = Node('relative_music', p[1:])
-
-
-#    def p_new_lyrics(self, p):
-#        '''new_lyrics : "\addlyrics"  grouped_music_list
-#        '''
-#        p[0] = Node('new_lyrics', p[1:])
-
-
-#    def p_new_lyrics(self, p):
-#        '''new_lyrics : new_lyrics "\addlyrics"  grouped_music_list
-#        '''
-#        p[0] = Node('new_lyrics', p[1:])
-
-
     def p_new_lyrics(self, p):
-        '''new_lyrics : ADDLYRICS  grouped_music_list
-                      | new_lyrics ADDLYRICS  grouped_music_list
+        '''new_lyrics : ADDLYRICS closed_music
+                      | new_lyrics ADDLYRICS closed_music
         '''
-        #'''new_lyrics : "\addlyrics"  grouped_music_list
-        #              | new_lyrics "\addlyrics"  grouped_music_list
-        #'''
         p[0] = Node('new_lyrics', p[1:])
 
 
-#    def p_re_rhythmed_music(self, p):
-#        '''re_rhythmed_music : grouped_music_list new_lyrics
-#        '''
-#        p[0] = Node('re_rhythmed_music', p[1:])
-
-
-#    def p_re_rhythmed_music(self, p):
-#        '''re_rhythmed_music : "\lyricsto" simple_string  music
-#        '''
-#        p[0] = Node('re_rhythmed_music', p[1:])
-
-
     def p_re_rhythmed_music(self, p):
-        '''re_rhythmed_music : grouped_music_list new_lyrics
-                             | LYRICSTO simple_string  music
+        '''re_rhythmed_music : closed_music new_lyrics
+                             | LYRICSTO simple_string music
         '''
-        #'''re_rhythmed_music : grouped_music_list new_lyrics
-        #                     | "\lyricsto" simple_string  music
-        #'''
         p[0] = Node('re_rhythmed_music', p[1:])
 
 
     def p_context_change(self, p):
         '''context_change : CHANGE STRING '=' STRING
         '''
-        #'''context_change : "\change" STRING '=' STRING
-        #'''
         p[0] = Node('context_change', p[1:])
 
 
     def p_property_path_revved(self, p):
-        '''property_path_revved : embedded_scm
-                                | property_path_revved embedded_scm
+        '''property_path_revved : embedded_scm_closed
+                                | property_path_revved embedded_scm_closed
         '''
         p[0] = Node('property_path_revved', p[1:])
 
@@ -544,14 +496,9 @@ class _LilyPondSyntacticalDefinition(object):
     def p_property_operation(self, p):
         '''property_operation : STRING '=' scalar
                               | UNSET simple_string
-                              | OVERRIDE simple_string property_path '=' embedded_scm
+                              | OVERRIDE simple_string property_path '=' scalar
                               | REVERT simple_string embedded_scm
         '''
-        #'''property_operation : STRING '=' scalar
-        #                      | "\unset" simple_string
-        #                      | "\override" simple_string property_path '=' embedded_scm
-        #                      | "\revert" simple_string embedded_scm
-        #'''
         p[0] = Node('property_operation', p[1:])
 
 
@@ -566,22 +513,13 @@ class _LilyPondSyntacticalDefinition(object):
                            | DESCRIPTION
                            | NAME
         '''
-        #'''context_def_mod : "\consists"
-        #                   | "\remove"
-        #                   | "\accepts"
-        #                   | "\defaultchild"
-        #                   | "\denies"
-        #                   | "\alias"
-        #                   | "\type"
-        #                   | "\description"
-        #                   | "\name"
-        #'''
         p[0] = Node('context_def_mod', p[1:])
 
 
     def p_context_mod(self, p):
         '''context_mod : property_operation
                        | context_def_mod STRING
+                       | context_def_mod embedded_scm
         '''
         p[0] = Node('context_mod', p[1:])
 
@@ -599,11 +537,6 @@ class _LilyPondSyntacticalDefinition(object):
                                      | SET context_prop_spec '=' scalar
                                      | UNSET context_prop_spec
         '''
-        #'''simple_music_property_def : "\override" context_prop_spec property_path '=' scalar
-        #                             | "\revert" context_prop_spec embedded_scm
-        #                             | "\set" context_prop_spec '=' scalar
-        #                             | "\unset" context_prop_spec
-        #'''
         p[0] = Node('simple_music_property_def', p[1:])
 
 
@@ -611,9 +544,6 @@ class _LilyPondSyntacticalDefinition(object):
         '''music_property_def : simple_music_property_def
                               | ONCE simple_music_property_def
         '''
-        #'''music_property_def : simple_music_property_def
-        #                      | "\once" simple_music_property_def
-        #'''
         p[0] = Node('music_property_def', p[1:])
 
 
@@ -633,26 +563,33 @@ class _LilyPondSyntacticalDefinition(object):
         p[0] = Node('simple_string', p[1:])
 
 
-    def p_scalar(self, p):
-        '''scalar : string
-                  | LYRICS_STRING
-                  | bare_number
-                  | embedded_scm
-                  | full_markup
-                  | UNSIGNED
+    def p_scalar_bare(self, p):
+        '''scalar_bare : string
+                       | lyric_element
+                       | bare_number
+                       | embedded_scm_bare
+                       | full_markup
         '''
-        #'''scalar : string
-        #          | LYRICS_STRING
-        #          | bare_number
-        #          | embedded_scm
-        #          | full_markup
-        #          | DIGIT
-        #'''
+        p[0] = Node('scalar_bare', p[1:])
+
+
+    def p_scalar(self, p):
+        '''scalar : scalar_bare
+                  | scm_function_call
+        '''
         p[0] = Node('scalar', p[1:])
+
+
+    def p_scalar_closed(self, p):
+        '''scalar_closed : scalar_bare
+                         | scm_function_call_closed
+        '''
+        p[0] = Node('scalar_closed', p[1:])
 
 
     def p_event_chord(self, p):
         '''event_chord : simple_chord_elements post_events
+                       | CHORD_REPETITION optional_notemode_duration post_events
                        | MULTI_MEASURE_REST optional_notemode_duration post_events
                        | command_element
                        | note_chord_element
@@ -667,13 +604,13 @@ class _LilyPondSyntacticalDefinition(object):
 
 
     def p_chord_body(self, p):
-        '''chord_body : "<" chord_body_elements ">"
+        '''chord_body : ANGLE_OPEN chord_body_elements ANGLE_CLOSE
         '''
         p[0] = Node('chord_body', p[1:])
 
 
     def p_chord_body_elements(self, p):
-        '''chord_body_elements : empty
+        '''chord_body_elements : 
                                | chord_body_elements chord_body_element
         '''
         p[0] = Node('chord_body_elements', p[1:])
@@ -687,49 +624,65 @@ class _LilyPondSyntacticalDefinition(object):
         p[0] = Node('chord_body_element', p[1:])
 
 
-    def p_music_function_identifier_musicless_prefix(self, p):
-        '''music_function_identifier_musicless_prefix : MUSIC_FUNCTION
+    def p_music_function_chord_body_arglist(self, p):
+        '''music_function_chord_body_arglist : function_arglist_bare
+                                             | EXPECT_MUSIC music_function_chord_body_arglist chord_body_element
+                                             | EXPECT_SCM function_arglist_optional embedded_scm_chord_body
         '''
-        p[0] = Node('music_function_identifier_musicless_prefix', p[1:])
+        p[0] = Node('music_function_chord_body_arglist', p[1:])
+
+
+    def p_embedded_scm_chord_body(self, p):
+        '''embedded_scm_chord_body : embedded_scm_bare
+                                   | SCM_FUNCTION music_function_chord_body_arglist
+        '''
+        p[0] = Node('embedded_scm_chord_body', p[1:])
 
 
     def p_music_function_chord_body(self, p):
-        '''music_function_chord_body : music_function_identifier_musicless_prefix EXPECT_MUSIC function_arglist_nonmusic chord_body_element
-                                     | music_function_identifier_musicless_prefix function_arglist_nonmusic
+        '''music_function_chord_body : MUSIC_FUNCTION music_function_chord_body_arglist
         '''
         p[0] = Node('music_function_chord_body', p[1:])
 
 
+    def p_music_function_event_arglist(self, p):
+        '''music_function_event_arglist : function_arglist_bare
+                                        | EXPECT_MUSIC music_function_event_arglist post_event
+                                        | EXPECT_SCM function_arglist_optional embedded_scm_event
+        '''
+        p[0] = Node('music_function_event_arglist', p[1:])
+
+
+    def p_embedded_scm_event(self, p):
+        '''embedded_scm_event : embedded_scm_bare
+                              | SCM_FUNCTION music_function_event_arglist
+        '''
+        p[0] = Node('embedded_scm_event', p[1:])
+
+
     def p_music_function_event(self, p):
-        '''music_function_event : music_function_identifier_musicless_prefix EXPECT_MUSIC function_arglist_nonmusic post_event
-                                | music_function_identifier_musicless_prefix function_arglist_nonmusic
+        '''music_function_event : MUSIC_FUNCTION music_function_event_arglist
         '''
         p[0] = Node('music_function_event', p[1:])
 
 
+    def p_event_function_event(self, p):
+        '''event_function_event : EVENT_FUNCTION music_function_event_arglist
+        '''
+        p[0] = Node('event_function_event', p[1:])
+
+
     def p_command_element(self, p):
         '''command_element : command_event
-                           | SKIP duration_length
                            | E_BRACKET_OPEN
                            | E_BRACKET_CLOSE
-                           | "\"
+                           | E_BACKSLASH
                            | '|'
-                           | PARTIAL duration_length
                            | TIME_T fraction
                            | MARK scalar
         '''
-        #'''command_element : command_event
-        #                   | "\skip" duration_length
-        #                   | "\["
-        #                   | "\]"
-        #                   | "\"
-        #                   | '|'
-        #                   | "\partial" duration_length
-        #                   | "\time" fraction
-        #                   | "\mark" scalar
-        #'''
         p[0] = Node('command_element', p[1:])
-    
+
 
     def p_command_event(self, p):
         '''command_event : E_TILDE
@@ -738,39 +691,32 @@ class _LilyPondSyntacticalDefinition(object):
                          | KEY DEFAULT
                          | KEY NOTENAME_PITCH SCM_IDENTIFIER
         '''
-        #'''command_event : "\~"
-        #                 | "\mark" "\default"
-        #                 | tempo_event
-        #                 | "\key" "\default"
-        #                 | "\key" NOTENAME_PITCH SCM_IDENTIFIER
-        #'''
         p[0] = Node('command_event', p[1:])
 
 
     def p_post_events(self, p):
-        '''post_events : empty
+        '''post_events : 
                        | post_events post_event
         '''
         p[0] = Node('post_events', p[1:])
 
 
-    def p_post_event(self, p):
-        '''post_event : direction_less_event
-                      | '-' music_function_event
-                      | HYPHEN
-                      | EXTENDER
-                      | script_dir direction_reqd_event
-                      | script_dir direction_less_event
-                      | string_number_event
+    def p_post_event_nofinger(self, p):
+        '''post_event_nofinger : direction_less_event
+                               | script_dir music_function_event
+                               | HYPHEN
+                               | EXTENDER
+                               | script_dir direction_reqd_event
+                               | script_dir direction_less_event
+                               | string_number_event
         '''
-        #'''post_event : direction_less_event
-        #              | '-' music_function_event
-        #              | "--"
-        #              | "__"
-        #              | script_dir direction_reqd_event
-        #              | script_dir direction_less_event
-        #              | string_number_event
-        #'''
+        p[0] = Node('post_event_nofinger', p[1:])
+
+
+    def p_post_event(self, p):
+        '''post_event : post_event_nofinger
+                      | script_dir fingering
+        '''
         p[0] = Node('post_event', p[1:])
 
 
@@ -792,17 +738,6 @@ class _LilyPondSyntacticalDefinition(object):
                                | E_ANGLE_CLOSE
                                | E_ANGLE_OPEN
         '''
-        #'''direction_less_char : '['
-        #                       | ']'
-        #                       | '~'
-        #                       | '('
-        #                       | ')'
-        #                       | "\!"
-        #                       | "\("
-        #                       | "\)"
-        #                       | "\>"
-        #                       | "\<"
-        #'''
         p[0] = Node('direction_less_char', p[1:])
 
 
@@ -810,6 +745,7 @@ class _LilyPondSyntacticalDefinition(object):
         '''direction_less_event : direction_less_char
                                 | EVENT_IDENTIFIER
                                 | tremolo_type
+                                | event_function_event
         '''
         p[0] = Node('direction_less_event', p[1:])
 
@@ -822,7 +758,7 @@ class _LilyPondSyntacticalDefinition(object):
 
 
     def p_octave_check(self, p):
-        '''octave_check : empty
+        '''octave_check : 
                         | '='
                         | '=' sub_quotes
                         | '=' sup_quotes
@@ -862,6 +798,7 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_pitch(self, p):
         '''pitch : steno_pitch
+                 | PITCH_IDENTIFIER
         '''
         p[0] = Node('pitch', p[1:])
 
@@ -876,13 +813,14 @@ class _LilyPondSyntacticalDefinition(object):
     def p_gen_text_def(self, p):
         '''gen_text_def : full_markup
                         | string
-                        | UNSIGNED
         '''
-        #'''gen_text_def : full_markup
-        #                | string
-        #                | DIGIT
-        #'''
         p[0] = Node('gen_text_def', p[1:])
+
+
+    def p_fingering(self, p):
+        '''fingering : UNSIGNED
+        '''
+        p[0] = Node('fingering', p[1:])
 
 
     def p_script_abbreviation(self, p):
@@ -905,12 +843,6 @@ class _LilyPondSyntacticalDefinition(object):
         p[0] = Node('script_dir', p[1:])
 
 
-    def p_absolute_pitch(self, p):
-        '''absolute_pitch : steno_pitch
-        '''
-        p[0] = Node('absolute_pitch', p[1:])
-
-
     def p_duration_length(self, p):
         '''duration_length : multiplied_duration
         '''
@@ -918,7 +850,7 @@ class _LilyPondSyntacticalDefinition(object):
 
 
     def p_optional_notemode_duration(self, p):
-        '''optional_notemode_duration : empty
+        '''optional_notemode_duration : 
                                       | multiplied_duration
         '''
         p[0] = Node('optional_notemode_duration', p[1:])
@@ -947,7 +879,7 @@ class _LilyPondSyntacticalDefinition(object):
 
 
     def p_dots(self, p):
-        '''dots : empty
+        '''dots : 
                 | dots '.'
         '''
         p[0] = Node('dots', p[1:])
@@ -965,11 +897,6 @@ class _LilyPondSyntacticalDefinition(object):
                        | STRING
                        | full_markup
         '''
-        #'''bass_number : DIGIT
-        #               | UNSIGNED
-        #               | STRING
-        #               | full_markup
-        #'''
         p[0] = Node('bass_number', p[1:])
 
 
@@ -995,13 +922,8 @@ class _LilyPondSyntacticalDefinition(object):
         '''figured_bass_modification : E_PLUS
                                      | E_EXCLAMATION
                                      | '/'
-                                     | "\"
+                                     | E_BACKSLASH
         '''
-        #'''figured_bass_modification : "\+"
-        #                             | "\!"
-        #                             | '/'
-        #                             | "\"
-        #'''
         p[0] = Node('figured_bass_modification', p[1:])
 
 
@@ -1013,7 +935,7 @@ class _LilyPondSyntacticalDefinition(object):
 
 
     def p_figure_list(self, p):
-        '''figure_list : empty
+        '''figure_list : 
                        | figure_list br_bass_figure
         '''
         p[0] = Node('figure_list', p[1:])
@@ -1026,12 +948,9 @@ class _LilyPondSyntacticalDefinition(object):
 
 
     def p_optional_rest(self, p):
-        '''optional_rest : empty
+        '''optional_rest : 
                          | REST
         '''
-        #'''optional_rest : empty
-        #                 | "\rest"
-        #'''
         p[0] = Node('optional_rest', p[1:])
 
 
@@ -1067,23 +986,18 @@ class _LilyPondSyntacticalDefinition(object):
 
 
     def p_chord_items(self, p):
-        '''chord_items : empty
+        '''chord_items : 
                        | chord_items chord_item
         '''
         p[0] = Node('chord_items', p[1:])
 
 
     def p_chord_separator(self, p):
-        '''chord_separator : ":"
-                           | "^"
-                           | "/" steno_tonic_pitch
+        '''chord_separator : CHORD_COLON
+                           | CHORD_CARET
+                           | CHORD_SLASH steno_tonic_pitch
                            | CHORD_BASS steno_tonic_pitch
         '''
-        #'''chord_separator : ":"
-        #                   | "^"
-        #                   | "/" steno_tonic_pitch
-        #                   | "/+" steno_tonic_pitch
-        #'''
         p[0] = Node('chord_separator', p[1:])
 
 
@@ -1108,6 +1022,13 @@ class _LilyPondSyntacticalDefinition(object):
                        | bare_unsigned "-"
         '''
         p[0] = Node('step_number', p[1:])
+
+
+    def p_tempo_range(self, p):
+        '''tempo_range : bare_unsigned
+                       | bare_unsigned '~' bare_unsigned
+        '''
+        p[0] = Node('tempo_range', p[1:])
 
 
     def p_number_expression(self, p):
@@ -1146,9 +1067,6 @@ class _LilyPondSyntacticalDefinition(object):
     def p_bare_unsigned(self, p):
         '''bare_unsigned : UNSIGNED
         '''
-        #'''bare_unsigned : UNSIGNED
-        #                 | DIGIT
-        #'''
         p[0] = Node('bare_unsigned', p[1:])
 
 
@@ -1160,63 +1078,37 @@ class _LilyPondSyntacticalDefinition(object):
 
 
     def p_exclamations(self, p):
-        '''exclamations : empty
+        '''exclamations : 
                         | exclamations '!'
         '''
         p[0] = Node('exclamations', p[1:])
 
 
     def p_questions(self, p):
-        '''questions : empty
+        '''questions : 
                      | questions '?'
         '''
         p[0] = Node('questions', p[1:])
 
 
-#    def p_lyric_markup(self, p):
-#        '''lyric_markup : LYRIC_MARKUP_IDENTIFIER
-#        '''
-#        p[0] = Node('lyric_markup', p[1:])
-
-
-#    def p_lyric_markup(self, p):
-#        '''lyric_markup : LYRIC_MARKUP  markup_top
-#        '''
-#        p[0] = Node('lyric_markup', p[1:])
-
-
     def p_lyric_markup(self, p):
         '''lyric_markup : LYRIC_MARKUP_IDENTIFIER
-                        | LYRIC_MARKUP  markup_top
+                        | LYRIC_MARKUP markup_top
         '''
         p[0] = Node('lyric_markup', p[1:])
 
 
     def p_full_markup_list(self, p):
-        '''full_markup_list : MARKUPLINES  markup_list
+        '''full_markup_list : MARKUPLINES_IDENTIFIER
+                            | MARKUPLINES markup_list
         '''
         p[0] = Node('full_markup_list', p[1:])
-
-
-#    def p_full_markup(self, p):
-#        '''full_markup : MARKUP_IDENTIFIER
-#        '''
-#        p[0] = Node('full_markup', p[1:])
-
-
-#    def p_full_markup(self, p):
-#        '''full_markup : "\markup"  markup_top
-#        '''
-#        p[0] = Node('full_markup', p[1:])
 
 
     def p_full_markup(self, p):
         '''full_markup : MARKUP_IDENTIFIER
                        | MARKUP markup_top
         '''
-        #'''full_markup : MARKUP_IDENTIFIER
-        #               | "\markup"  markup_top
-        #'''
         p[0] = Node('full_markup', p[1:])
 
 
@@ -1229,7 +1121,8 @@ class _LilyPondSyntacticalDefinition(object):
 
 
     def p_markup_list(self, p):
-        '''markup_list : markup_composed_list
+        '''markup_list : MARKUPLINES_IDENTIFIER
+                       | markup_composed_list
                        | markup_braced_list
                        | markup_command_list
         '''
@@ -1249,7 +1142,7 @@ class _LilyPondSyntacticalDefinition(object):
 
 
     def p_markup_braced_list_body(self, p):
-        '''markup_braced_list_body : empty
+        '''markup_braced_list_body : 
                                    | markup_braced_list_body markup
                                    | markup_braced_list_body markup_list
         '''
@@ -1257,19 +1150,28 @@ class _LilyPondSyntacticalDefinition(object):
 
 
     def p_markup_command_list(self, p):
-        '''markup_command_list : MARKUP_LIST_HEAD_EMPTY
-                               | MARKUP_LIST_HEAD_LIST0 markup_list
-                               | MARKUP_LIST_HEAD_SCM0 embedded_scm
-                               | MARKUP_LIST_HEAD_SCM0_LIST1 embedded_scm markup_list
-                               | MARKUP_LIST_HEAD_SCM0_SCM1_LIST2 embedded_scm embedded_scm markup_list
+        '''markup_command_list : MARKUP_LIST_FUNCTION markup_command_list_arguments
         '''
         p[0] = Node('markup_command_list', p[1:])
 
 
+    def p_markup_command_basic_arguments(self, p):
+        '''markup_command_basic_arguments : EXPECT_MARKUP_LIST markup_command_list_arguments markup_list
+                                          | EXPECT_SCM markup_command_list_arguments embedded_scm_closed
+                                          | EXPECT_NO_MORE_ARGS
+        '''
+        p[0] = Node('markup_command_basic_arguments', p[1:])
+
+
+    def p_markup_command_list_arguments(self, p):
+        '''markup_command_list_arguments : markup_command_basic_arguments
+                                         | EXPECT_MARKUP markup_command_list_arguments markup
+        '''
+        p[0] = Node('markup_command_list_arguments', p[1:])
+
+
     def p_markup_head_1_item(self, p):
-        '''markup_head_1_item : MARKUP_HEAD_MARKUP0
-                              | MARKUP_HEAD_SCM0_MARKUP1 embedded_scm
-                              | MARKUP_HEAD_SCM0_SCM1_MARKUP2 embedded_scm embedded_scm
+        '''markup_head_1_item : MARKUP_FUNCTION EXPECT_MARKUP markup_command_list_arguments
         '''
         p[0] = Node('markup_head_1_item', p[1:])
 
@@ -1279,39 +1181,6 @@ class _LilyPondSyntacticalDefinition(object):
                               | markup_head_1_list markup_head_1_item
         '''
         p[0] = Node('markup_head_1_list', p[1:])
-
-
-#    def p_simple_markup(self, p):
-#        '''simple_markup : STRING
-#                         | MARKUP_IDENTIFIER
-#                         | LYRIC_MARKUP_IDENTIFIER
-#                         | STRING_IDENTIFIER
-#        '''
-#        p[0] = Node('simple_markup', p[1:])
-
-
-#    def p_simple_markup(self, p):
-#        '''simple_markup : SCORE '{' score_body '}'
-#                         | MARKUP_HEAD_SCM0 embedded_scm
-#                         | MARKUP_HEAD_SCM0_SCM1_SCM2 embedded_scm embedded_scm embedded_scm
-#                         | MARKUP_HEAD_SCM0_SCM1 embedded_scm embedded_scm
-#                         | MARKUP_HEAD_SCM0_MARKUP1_MARKUP2 embedded_scm markup markup
-#                         | MARKUP_HEAD_SCM0_SCM1_MARKUP2_MARKUP3 embedded_scm embedded_scm markup markup
-#                         | MARKUP_HEAD_EMPTY
-#                         | MARKUP_HEAD_LIST0 markup_list
-#                         | MARKUP_HEAD_MARKUP0_MARKUP1 markup markup
-#        '''
-#        #'''simple_markup : "\score" '{' score_body '}'
-#        #                 | MARKUP_HEAD_SCM0 embedded_scm
-#        #                 | MARKUP_HEAD_SCM0_SCM1_SCM2 embedded_scm embedded_scm embedded_scm
-#        #                 | MARKUP_HEAD_SCM0_SCM1 embedded_scm embedded_scm
-#        #                 | MARKUP_HEAD_SCM0_MARKUP1_MARKUP2 embedded_scm markup markup
-#        #                 | MARKUP_HEAD_SCM0_SCM1_MARKUP2_MARKUP3 embedded_scm embedded_scm markup markup
-#        #                 | MARKUP_HEAD_EMPTY
-#        #                 | MARKUP_HEAD_LIST0 markup_list
-#        #                 | MARKUP_HEAD_MARKUP0_MARKUP1 markup markup
-#        #'''
-#        p[0] = Node('simple_markup', p[1:])
 
 
     def p_simple_markup(self, p):
@@ -1330,17 +1199,4 @@ class _LilyPondSyntacticalDefinition(object):
                   | simple_markup
         '''
         p[0] = Node('markup', p[1:])
-
-
-    def p_empty(self, p):
-        '''empty :
-        '''
-        p[0] = Node('empty', p[1:])
-
-
-    def p_error(self, p):
-        if p:
-            print("Syntax error at '%s'" % p.value)
-        else:
-            print("Syntax error at EOF")
 
