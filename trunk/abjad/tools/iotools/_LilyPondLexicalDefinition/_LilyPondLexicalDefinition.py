@@ -13,7 +13,7 @@ class _LilyPondLexicalDefinition(object):
         # ('incl', 'exclusive'),
         # ('lyrics', 'exclusive'),
         # ('lyric_quote ', 'exclusive'),
-        # ('longcomment', 'exclusive'),
+        ('longcomment', 'exclusive'),
         # ('markup', 'exclusive'),
         ('notes', 'exclusive'),
         ('quote', 'exclusive'),
@@ -122,7 +122,10 @@ class _LilyPondLexicalDefinition(object):
 
         # parser.yy:233
         '\\time': 'TIME_T',
-        '\\new': 'NEWCONTEXT'
+        '\\new': 'NEWCONTEXT',
+
+        # ???
+        '\\objectid': 'OBJECTID',
     }
 
     tokens = [
@@ -239,18 +242,34 @@ class _LilyPondLexicalDefinition(object):
 
     # lexer.ll:210
     # <INITIAL,chords,figures,incl,lyrics,markup,notes>"%{"
+    def t_notes_210(self, t):
+        r'%{'
+        t.lexer.push_state('longcomment')
+        pass
 
     # lexer.ll:214
     # <INITIAL,chords,figures,incl,lyrics,markup,notes>%[^{\n\r][^\n\r]*[\n\r]
+    def t_notes_214(self, t):
+        r'%[^{\n\r][^\n\r]*[\n\r]'
+        pass
 
     #lexer.ll:216
     # <INITIAL,chords,figures,incl,lyrics,markup,notes>%[^{\n\r]
+    def t_notes_216(self, t):
+        r'%[^{\n\r]'
+        pass
 
     #lexer.ll:218
     # <INITIAL,chords,figures,incl,lyrics,markup,notes>%[\n\r]
+    def t_notes_218(self, t):
+        r'%[\n\r]'
+        pass
 
     # lexer.ll:220
     # <INITIAL,chords,figures,incl,lyrics,markup,notes>%[^{\n\r][^\n\r]*
+    def t_notes_220(self, t):
+        r'%[^{\n\r][^\n\r]*'
+        pass
 
     # lexer.ll:222
     # <INITIAL,chords,figures,incl,lyrics,markup,notes>{WHITE}+
@@ -308,12 +327,21 @@ class _LilyPondLexicalDefinition(object):
 
     # lexer.ll:291
     # <longcomment>[^\%]*
+    def t_longcomment_291(self, t):
+        r'[^\%]+'
+        pass
 
     # lexer.ll:293
     # <longcomment>\%*[^}%]*
+    def t_longcomment_293(self, t):
+        r'\%+[^}%]*'
+        pass
 
     # lexer.ll:296
     # <longcomment>"%"+"}"
+    def t_longcomment_296(self, t):
+        r'%}'
+        t.lexer.pop_state( )
 
     # lexer.ll:302
     # <INITIAL,chords,lyrics,notes,figures>\\maininput
@@ -620,7 +648,7 @@ class _LilyPondLexicalDefinition(object):
 #   t_incl_ignore = t_ignore
 #   t_lyrics_ignore = t_ignore
 #   t_lyric_quote_ignore = t_ignore
-#   t_longcomment_ignore = t_ignore
+    t_longcomment_ignore = t_ignore
 #   t_markup_ignore = t_ignore
     t_notes_ignore = t_ignore
     t_quote_ignore = t_ignore
@@ -643,7 +671,7 @@ class _LilyPondLexicalDefinition(object):
 #   t_incl_error = t_error
 #   t_lyrics_error = t_error
 #   t_lyric_quote_error = t_error
-#   t_longcomment_error = t_error
+    t_longcomment_error = t_error
 #   t_markup_error = t_error
     t_notes_error = t_error
     t_quote_error = t_error
