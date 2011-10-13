@@ -4,6 +4,9 @@ from abjad.tools.iotools._LilyPondLexicalDefinition._LilyPondLexicalDefinition i
 
 class _LilyPondSyntacticalDefinition(object):
 
+    def __init__(self):
+        self.assignments = { }
+
     tokens = _LilyPondLexicalDefinition.tokens
 
     ### SYNTACTICAL RULES ###

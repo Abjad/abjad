@@ -86,7 +86,7 @@ class _LilyPondLexicalDefinition(object):
         '\\figures': 'FIGURES',
         '\\grobdescriptions': 'GROBDESCRIPTIONS',
         '\\header': 'HEADER',
-        '\\invalid': 'INVALID',
+        '\\version-error': 'INVALID',
         '\\key': 'KEY',
         '\\layout': 'LAYOUT',
         '\\lyricmode': 'LYRICMODE',
@@ -98,12 +98,10 @@ class _LilyPondLexicalDefinition(object):
         '\\midi': 'MIDI',
         '\\name': 'NAME',
         '\\notemode': 'NOTEMODE',
-        '\\octave': 'OCTAVE',
         '\\once': 'ONCE',
         '\\override': 'OVERRIDE',
         '\\paper': 'PAPER',
         '\\partial': 'PARTIAL',
-        '\\relative': 'RELATIVE',
         '\\remove': 'REMOVE',
         '\\repeat': 'REPEAT',
         '\\rest': 'REST',
@@ -112,10 +110,8 @@ class _LilyPondLexicalDefinition(object):
         '\\sequential': 'SEQUENTIAL',
         '\\set': 'SET',
         '\\simultaneous': 'SIMULTANEOUS',
-        '\\skip': 'SKIP',
         '\\tempo': 'TEMPO',
         '\\times': 'TIMES',
-        '\\transpose': 'TRANSPOSE',
         '\\type': 'TYPE',
         '\\unset': 'UNSET',
         '\\with': 'WITH',
@@ -125,7 +121,7 @@ class _LilyPondLexicalDefinition(object):
         '\\new': 'NEWCONTEXT',
 
         # ???
-        '\\objectid': 'OBJECTID',
+#        '\\objectid': 'OBJECTID',
     }
 
     tokens = [
