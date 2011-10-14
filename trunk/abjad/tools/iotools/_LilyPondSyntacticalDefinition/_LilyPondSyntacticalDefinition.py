@@ -236,7 +236,12 @@ class _LilyPondSyntacticalDefinition(object):
                       | music_list embedded_scm
                       | music_list error
         '''
-        p[0] = Node('music_list', p[1:])
+        if len(p) == 1:
+            p[0] = Node('music_list', [ ])
+        else:
+            music = list(p[1].value)
+            music.append(p[2])
+            p[0] = Node('music_list', music)
 
 
     def p_braced_music_list(self, p):
@@ -774,14 +779,20 @@ class _LilyPondSyntacticalDefinition(object):
         '''sup_quotes : "'"
                       | sup_quotes "'"
         '''
-        p[0] = Node('sup_quotes', p[1:])
+        if len(p) == 2:
+            p[0] = Node('sup_quotes', 1)
+        else:
+            p[0] = Node('sup_quotes', p[1].value + 1)
 
 
     def p_sub_quotes(self, p):
         '''sub_quotes : ','
                       | sub_quotes ','
         '''
-        p[0] = Node('sub_quotes', p[1:])
+        if len(p) == 2:
+            p[0] = Node('sub_quotes', 1)
+        else:
+            p[0] = Node('sub_quotes', p[1].value + 1)
 
 
     def p_steno_pitch(self, p):
@@ -886,7 +897,10 @@ class _LilyPondSyntacticalDefinition(object):
         '''dots : 
                 | dots '.'
         '''
-        p[0] = Node('dots', p[1:])
+        if len(p) == 1:
+            p[0] = Node('dots', 0)
+        else:
+            p[0] = Node('dots', p[1].value + 1)
 
 
     def p_tremolo_type(self, p):
@@ -1101,14 +1115,20 @@ class _LilyPondSyntacticalDefinition(object):
         '''exclamations : 
                         | exclamations '!'
         '''
-        p[0] = Node('exclamations', p[1:])
+        if len(p) == 1:
+            p[0] = Node('exclamations', 0)
+        else:
+            p[0] = Node('exclamations', p[1].value + 1)
 
 
     def p_questions(self, p):
         '''questions : 
                      | questions '?'
         '''
-        p[0] = Node('questions', p[1:])
+        if len(p) == 1:
+            p[0] = Node('questions', 0)
+        else:
+            p[0] = Node('questions', p[1].value + 1)
 
 
     def p_lyric_markup(self, p):
