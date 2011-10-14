@@ -15,7 +15,7 @@ class _LilyPondSyntaxNode(object):
     ### OVERRIDES ###
 
     def __repr__(self):
-        return '%s(%s, <%s>)' % (type(self).__name__, self.type, type(self.value))
+        return '%s(%s, %s)' % (type(self).__name__, self.type, type(self.value))
 
     def __str__(self):
         return '\n'.join(self._format_pieces)
@@ -26,15 +26,14 @@ class _LilyPondSyntaxNode(object):
     def _format_pieces(self):
         space = '  '
         result = [ ]
-        result.append('%s: [' % self.type)
-        if isinstance(self.value, Iterable) and \
-            any([isinstance(x, type(self)) for x in self.value]):
+        if isinstance(self.value, tuple):
+            result.append('%s: [' % self.type)
             for child in self.value:
                 if isinstance(child, type(self)):
                     result.extend(['%s%s' % (space, x) for x in child._format_pieces])
                 else:
                     result.append('%s%s' % (space, child))
+            result[-1] += ' ]'
         else:
-            result.append('%s%s' % (space, self.value))
-        result[-1] += ' ]'
+            result.append('%s: %s' % (self.type, self.value))
         return result

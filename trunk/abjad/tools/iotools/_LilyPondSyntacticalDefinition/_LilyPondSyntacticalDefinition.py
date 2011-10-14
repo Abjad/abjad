@@ -19,7 +19,13 @@ class _LilyPondSyntacticalDefinition(object):
                     | lilypond error
                     | lilypond INVALID
         '''
-        p[0] = Node('lilypond', p[1:])
+        if len(p) == 1:
+            p[0] = Node('lilypond', [ ])
+        else:
+            items = list(p[1].value)
+            if p[2] is not None:
+                items.append(p[2])
+            p[0] = Node('lilypond', items)
 
 
     def p_toplevel_expression(self, p):
@@ -69,7 +75,12 @@ class _LilyPondSyntacticalDefinition(object):
         '''lilypond_header_body : 
                                 | lilypond_header_body assignment
         '''
-        p[0] = Node('lilypond_header_body', p[1:])
+        if len(p) == 1:
+            p[0] = Node('lilypond_header_body', [ ])
+        else:
+            items = list(p[1].value)
+            items.append(p[2])
+            p[0] = Node('lilypond_header_body', items)
 
 
     def p_lilypond_header(self, p):
@@ -90,7 +101,7 @@ class _LilyPondSyntacticalDefinition(object):
                       | assignment_id property_path '=' identifier_init
                       | embedded_scm
         '''
-        self.client.assignments[p[1][0]] = p[3][0]
+        self.client.assignments[p[1].value[0]] = p[3].value[0]
 
 
     def p_identifier_init(self, p):
@@ -239,9 +250,9 @@ class _LilyPondSyntacticalDefinition(object):
         if len(p) == 1:
             p[0] = Node('music_list', [ ])
         else:
-            music = list(p[1].value)
-            music.append(p[2])
-            p[0] = Node('music_list', music)
+            items = list(p[1].value)
+            items.append(p[2])
+            p[0] = Node('music_list', items)
 
 
     def p_braced_music_list(self, p):
@@ -321,7 +332,11 @@ class _LilyPondSyntacticalDefinition(object):
                         | MUSIC_IDENTIFIER
                         | grouped_music_list
         '''
-        p[0] = Node('closed_music', p[1:])
+        if type(p[1]) == str:
+            id = p[1][1:]
+            p[0] = Node('closed_music', [self.client.assignments[id]])
+        else:
+            p[0] = Node('closed_music', p[1:])
 
 
     def p_grouped_music_list(self, p):
@@ -707,7 +722,13 @@ class _LilyPondSyntacticalDefinition(object):
         '''post_events : 
                        | post_events post_event
         '''
-        p[0] = Node('post_events', p[1:])
+        if len(p) == 1:
+            p[0] = Node('post_events', [ ])
+        else:
+            items = list(p[1].value)
+            items.append(p[2])
+            p[0] = Node('post_events', items)
+
 
 
     def p_post_event_nofinger(self, p):
@@ -1055,11 +1076,11 @@ class _LilyPondSyntacticalDefinition(object):
                              | number_term
         '''
         if len(p) == 2:
-            p[0] = p[1]
+            p[0] = Node('number_expression', p[1])
         elif p[2] == '+':
-            p[0] = p[1] + p[3]
+            p[0] = Node('number_expression', p[1].value + p[3])
         else:
-            p[0] = p[1] - p[3]
+            p[0] = Node('number_expression', p[1].value - p[3])
 
 
     def p_number_term(self, p):

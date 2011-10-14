@@ -428,13 +428,9 @@ class _LilyPondLexicalDefinition(object):
     # <notes,figures>{NOTECOMMAND}
     @TOKEN(NOTECOMMAND)
     def t_notes_421(self, t):
-        if t.value in self.keywords:
-            t.type = self.keywords[t.value]
-            return t
-        elif t.value[1:] in self.client.assignments:
-            print("Unknown command '%s'" % t.value)            
-        print("Unknown command '%s'" % t.value)
-        pass
+        lookup = self.scan_escaped_word(t)
+        t.type = lookup
+        return t
 
     # lexer.ll:424
     # <notes,figures>{FRACTION}
@@ -689,27 +685,33 @@ class _LilyPondLexicalDefinition(object):
 
     def scan_escaped_word(self, t):
         if t.value in self.keywords:
-            return self.keywords[t.value]
+            value = self.keywords[t.value]
+            if t.lexer.current_state( ) == 'lyrics' and value == 'MARKUP':
+                return 'LYRIC_MARKUP'
+            return value
 
         if t.value[1:] in self.client.assignments:
-            v = self.client.assignments[t.value[1:]]
+            node = self.client.assignments[t.value[1:]]
 
-            lookup = {
-                ' ': 'BOOK_IDENTIFIER',
-                ' ': 'CONTEXT_DEF_IDENTIFIER',
-                ' ': 'CONTEXT_MOD_IDENTIFIER',
-                ' ': 'PITCH_IDENTIFIER',
-                ' ': 'DURATION_IDENTIFIER',
-                ' ': 'EVENT_IDENTIFIER',
-                ' ': 'LYRIC_MARKUP_IDENTIFIER',
-                ' ': 'MARKUP_IDENTIFIER',
-                ' ': 'MARKUPLINES_IDENTIFIER',
-                ' ': 'MUSIC_IDENTIFIER',
-                ' ': 'NUMBER_IDENTIFIER',
-                ' ': 'OUTPUT_DEF_IDENTIFIER',
-                ' ': 'SCM_IDENTIFIER',
-                ' ': 'SCORE_IDENTIFIER',
-                ' ': 'STRING_IDENTIFIER',
+            identifier_lookup = {
+                'book_block': 'BOOK_IDENTIFIER',
+                'bookpart_block': 'BOOK_IDENTIFIER',
+                'context_def_spec_block': 'CONTEXT_DEF_IDENTIFIER',
+                'context_modification': 'CONTEXT_MOD_IDENTIFIER',
+                'post_event_nofinger': 'EVENT_IDENTIFIER',
+                'full_markup': 'MARKUP_IDENTIFIER',
+                'full_markup_list': 'MARKUPLINES_IDENTIFIER',
+                'music': 'MUSIC_IDENTIFIER',
+                'number_expression': 'NUMBER_IDENTIFIER',
+                'output_def': 'OUTPUT_DEF_IDENTIFIER',
+                'embedded_scm': 'SCM_IDENTIFIER',
+                'score_block': 'SCORE_IDENTIFIER',
+                'string': 'STRING_IDENTIFIER',
+                # 'PITCH_IDENTIFIER' ?
+                # 'DURATION_IDENTIFIER' ?
+                # 'LYRIC_MARKUP_IDENTIFIER' ?
             }
 
-            
+            return identifier_lookup[node.type]
+
+        raise Exception('Unknown escaped word "%s".' % t.value)
