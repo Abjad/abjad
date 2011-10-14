@@ -5,6 +5,9 @@ import re
 
 class _LilyPondLexicalDefinition(object):
 
+    def __init__(self, client):
+        self.client = client
+
     states = (
         # lexer.ll:115
         # ('extratoken', 'exclusive'),
@@ -428,6 +431,8 @@ class _LilyPondLexicalDefinition(object):
         if t.value in self.keywords:
             t.type = self.keywords[t.value]
             return t
+        elif t.value[1:] in self.client.assignments:
+            print("Unknown command '%s'" % t.value)            
         print("Unknown command '%s'" % t.value)
         pass
 
@@ -675,3 +680,36 @@ class _LilyPondLexicalDefinition(object):
 #   t_sourcefilename_error = t_error
     t_version_error = t_error
 #   t_scheme_error = t_error
+
+    def scan_bare_word(self, t):
+        if t.lexer.current_state( ) in ('notes',):
+            if self.note_names['english'].match(t.value) is not None:
+                return 'NOTENAME_PITCH'
+        return 'STRING'        
+
+    def scan_escaped_word(self, t):
+        if t.value in self.keywords:
+            return self.keywords[t.value]
+
+        if t.value[1:] in self.client.assignments:
+            v = self.client.assignments[t.value[1:]]
+
+            lookup = {
+                ' ': 'BOOK_IDENTIFIER',
+                ' ': 'CONTEXT_DEF_IDENTIFIER',
+                ' ': 'CONTEXT_MOD_IDENTIFIER',
+                ' ': 'PITCH_IDENTIFIER',
+                ' ': 'DURATION_IDENTIFIER',
+                ' ': 'EVENT_IDENTIFIER',
+                ' ': 'LYRIC_MARKUP_IDENTIFIER',
+                ' ': 'MARKUP_IDENTIFIER',
+                ' ': 'MARKUPLINES_IDENTIFIER',
+                ' ': 'MUSIC_IDENTIFIER',
+                ' ': 'NUMBER_IDENTIFIER',
+                ' ': 'OUTPUT_DEF_IDENTIFIER',
+                ' ': 'SCM_IDENTIFIER',
+                ' ': 'SCORE_IDENTIFIER',
+                ' ': 'STRING_IDENTIFIER',
+            }
+
+            

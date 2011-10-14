@@ -1,11 +1,12 @@
+from abjad import *
 from abjad.tools.iotools._LilyPondSyntaxNode._LilyPondSyntaxNode import _LilyPondSyntaxNode as Node
 from abjad.tools.iotools._LilyPondLexicalDefinition._LilyPondLexicalDefinition import _LilyPondLexicalDefinition
 
 
 class _LilyPondSyntacticalDefinition(object):
 
-    def __init__(self):
-        self.assignments = { }
+    def __init__(self, client):
+        self.client = client
 
     tokens = _LilyPondLexicalDefinition.tokens
 
@@ -89,7 +90,7 @@ class _LilyPondSyntacticalDefinition(object):
                       | assignment_id property_path '=' identifier_init
                       | embedded_scm
         '''
-        p[0] = Node('assignment', p[1:])
+        self.client.assignments[p[1][0]] = p[3][0]
 
 
     def p_identifier_init(self, p):
@@ -1039,7 +1040,12 @@ class _LilyPondSyntacticalDefinition(object):
                              | number_expression '-' number_term
                              | number_term
         '''
-        p[0] = Node('number_expression', p[1:])
+        if len(p) == 2:
+            p[0] = p[1]
+        elif p[2] == '+':
+            p[0] = p[1] + p[3]
+        else:
+            p[0] = p[1] - p[3]
 
 
     def p_number_term(self, p):
@@ -1047,14 +1053,22 @@ class _LilyPondSyntacticalDefinition(object):
                        | number_factor '*' number_factor
                        | number_factor '/' number_factor
         '''
-        p[0] = Node('number_term', p[1:])
+        if len(p) == 2:
+            p[0] = p[1]
+        elif p[2] == '*':
+            p[0] = p[1] * p[3]
+        else:
+            p[0] = p[1] / p[3]
 
 
     def p_number_factor(self, p):
         '''number_factor : '-' number_factor
                          | bare_number
         '''
-        p[0] = Node('number_factor', p[1:])
+        if p[1] == '-':
+            p[0] = p[2] * -1.
+        else:
+            p[0] = p[1]
 
 
     def p_bare_number(self, p):
@@ -1064,20 +1078,23 @@ class _LilyPondSyntacticalDefinition(object):
                        | REAL NUMBER_IDENTIFIER
                        | UNSIGNED NUMBER_IDENTIFIER
         '''
-        p[0] = Node('bare_number', p[1:])
+        p[0] = p[1]
 
 
     def p_bare_unsigned(self, p):
         '''bare_unsigned : UNSIGNED
         '''
-        p[0] = Node('bare_unsigned', p[1:])
+        p[0] = p[1]
 
 
     def p_unsigned_number(self, p):
         '''unsigned_number : bare_unsigned
                            | NUMBER_IDENTIFIER
         '''
-        p[0] = Node('unsigned_number', p[1:])
+        if hasattr(p[1], 'value'):
+            p[0] = self.client.assignments[p[1].value[1:]]
+        else:
+            p[0] = p[1]
 
 
     def p_exclamations(self, p):
