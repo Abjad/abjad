@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_MIDIBlock_tmp_01():
+def test_MIDIBlock_01():
 
     MIDI_block = lilypondfiletools.MIDIBlock()
 
