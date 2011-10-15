@@ -1082,6 +1082,9 @@ iotools
    tools/iotools/format_input_lines_as_regression_test
    tools/iotools/get_last_output_file_name
    tools/iotools/get_next_output_file_name
+   tools/iotools/is_lowercamelcase_string
+   tools/iotools/is_underscore_delimited_lowercase_string
+   tools/iotools/is_uppercamelcase_string
    tools/iotools/log
    tools/iotools/ly
    tools/iotools/parse_lilypond_input_string
