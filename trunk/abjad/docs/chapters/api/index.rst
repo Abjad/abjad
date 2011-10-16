@@ -384,6 +384,7 @@ lilypondfiletools
    tools/lilypondfiletools/AbjadRevisionToken/AbjadRevisionToken
    tools/lilypondfiletools/BookBlock/BookBlock
    tools/lilypondfiletools/BookpartBlock/BookpartBlock
+   tools/lilypondfiletools/ContextBlock/ContextBlock
    tools/lilypondfiletools/DateTimeToken/DateTimeToken
    tools/lilypondfiletools/HeaderBlock/HeaderBlock
    tools/lilypondfiletools/LayoutBlock/LayoutBlock

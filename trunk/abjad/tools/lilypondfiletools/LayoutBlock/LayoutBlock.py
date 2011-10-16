@@ -32,9 +32,17 @@ class LayoutBlock(_AttributedBlock):
     def __init__(self):
         _AttributedBlock.__init__(self)
         self._escaped_name = r'\layout'
+        self._context_blocks = []
         self._contexts = []
 
     # PRIVATE ATTRIUBTES #
+
+    @property
+    def _formatted_context_blocks(self):
+        result = []
+        for context_block in self.context_blocks:
+            result.extend(context_block._format_pieces)
+        return result
 
     @property
     def _formatted_context_specifications(self):
@@ -49,5 +57,37 @@ class LayoutBlock(_AttributedBlock):
     ### PUBLIC ATTRIBUTES ###
 
     @property
+    def context_blocks(self):
+        r'''Read-only list of context blocks::
+
+            abjad> layout_block = lilypondfiletools.LayoutBlock()
+
+        ::
+
+            abjad> context_block = lilypondfiletools.ContextBlock('Score')
+            abjad> context_block.override.bar_number.transparent = True
+
+        ::
+
+            abjad> context_block.override.time_signature.break_visibility = schemetools.SchemeVariable('end-of-line-invisible')
+            abjad> layout_block.context_blocks.append(context_block)
+    
+        ::
+
+            abjad> f(layout_block)
+            \layout {
+                \context {
+                    \Score
+                    \override BarNumber #'transparent = ##t
+                    \override TimeSignature #'break-visibility = #end-of-line-invisible
+                }
+            }
+
+        Return list.
+        '''
+        return self._context_blocks
+
+    @property
     def contexts(self):
+        r'''DEPRECATED. USE CONTEXT_BLOCKS INSTEAD.'''
         return self._contexts

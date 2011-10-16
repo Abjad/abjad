@@ -18,7 +18,8 @@ class _AttributedBlock(object):
     @property
     def _format_pieces(self):
         result = []
-        if not self._formatted_user_attributes and not getattr(self, 'contexts', None):
+        if not self._formatted_user_attributes and not getattr(self, 'contexts', None) \
+            and not getattr(self, 'context_blocks', None):
             if self.is_formatted_when_empty:
                 result.append('%s {}' % self._escaped_name)
                 return result
@@ -31,6 +32,9 @@ class _AttributedBlock(object):
         formatted_attributes = self._formatted_user_attributes
         formatted_attributes = ['\t' + x for x in formatted_attributes]
         result.extend(formatted_attributes)
+        formatted_context_blocks = getattr(self, '_formatted_context_blocks', [])
+        formatted_context_blocks = ['\t' + line for line in formatted_context_blocks]
+        result.extend(formatted_context_blocks)
         result.append('}')
         return result
 
