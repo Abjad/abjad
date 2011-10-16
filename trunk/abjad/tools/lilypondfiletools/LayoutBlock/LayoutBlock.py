@@ -4,7 +4,29 @@ from abjad.tools.lilypondfiletools._AttributedBlock import _AttributedBlock
 class LayoutBlock(_AttributedBlock):
     r'''.. versionadded:: 2.0
 
-    Abjad model of LilyPond input file layout block.
+    Abjad model of LilyPond input file layout block::
+
+        abjad> layout_block = lilypondfiletools.LayoutBlock()
+
+    ::
+
+        abjad> layout_block
+        LayoutBlock()
+
+    ::
+
+        abjad> layout_block.indent = 0
+        abjad> layout_block.ragged_right = True
+
+    ::
+
+        abjad> f(layout_block)
+        \layout {
+            indent = #0
+            ragged-right = ##t
+        }
+
+    Return layout block.
     '''
 
     def __init__(self):

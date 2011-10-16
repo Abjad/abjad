@@ -4,7 +4,21 @@ from abjad.tools.lilypondfiletools._NonattributedBlock import _NonattributedBloc
 class BookBlock(_NonattributedBlock):
     r'''.. versionadded:: 2.0
 
-    Abjad model of LilyPond input file book block.
+    Abjad model of LilyPond input file book block::
+
+        abjad> book_block = lilypondfiletools.BookBlock()
+
+    ::
+
+        abjad> book_block
+        BookBlock()
+
+    ::
+
+        abjad> f(book_block)
+        \book {}
+
+    Return book block.
     '''
 
     def __init__(self):

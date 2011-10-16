@@ -5,7 +5,29 @@ import types
 class PaperBlock(_AttributedBlock):
     r'''.. versionadded:: 2.0
 
-    Abjad model of LilyPond input file paper block.
+    Abjad model of LilyPond input file paper block::
+
+        abjad> paper_block = lilypondfiletools.PaperBlock()
+
+    ::
+
+        abjad> paper_block
+        PaperBlock()
+
+    ::
+
+        abjad> paper_block.print_page_number = True
+        abjad> paper_block.print_first_page_number = False
+
+    ::
+
+        abjad> f(paper_block)
+        \paper {
+            print-first-page-number = ##f
+            print-page-number = ##t
+        }
+
+    Return paper block.
     '''
 
     def __init__(self):

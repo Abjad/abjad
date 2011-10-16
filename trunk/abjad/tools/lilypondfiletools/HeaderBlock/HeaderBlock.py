@@ -7,6 +7,14 @@ class HeaderBlock(_AttributedBlock):
     Abjad model of LilyPond input file header block::
 
         abjad> header_block = lilypondfiletools.HeaderBlock()
+
+    ::
+
+        abjad> header_block
+        HeaderBlock()
+
+    ::
+
         abjad> header_block.composer = markuptools.Markup('Josquin')
         abjad> header_block.title = markuptools.Markup('Missa sexti tonus')
 
