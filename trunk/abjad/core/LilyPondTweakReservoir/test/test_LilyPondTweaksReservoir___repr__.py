@@ -2,7 +2,7 @@ from abjad import *
 from abjad.core.LilyPondTweakReservoir import LilyPondTweakReservoir
 
 
-def test_LilyPondTweaksReservoir___repr___01( ):
+def test_LilyPondTweaksReservoir___repr___01():
     '''LilyPond grob proxy repr is evaluable.
     '''
 

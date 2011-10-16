@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_LilyPondGrobOverrideComponentPlugIn___delattr___01( ):
+def test_LilyPondGrobOverrideComponentPlugIn___delattr___01():
 
     note = Note("c'4")
     note.override.accidental.color = 'red'
@@ -26,7 +26,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___delattr___01( ):
     assert note.format == "\\once \\override Dots #'thicknes = #2\nc'4"
 
 
-def test_LilyPondGrobOverrideComponentPlugIn___delattr___02( ):
+def test_LilyPondGrobOverrideComponentPlugIn___delattr___02():
     '''Delete LilyPond Rest grob override.
     '''
 
@@ -46,7 +46,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___delattr___02( ):
     assert t.format == "\\new Staff {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
-def test_LilyPondGrobOverrideComponentPlugIn___delattr___03( ):
+def test_LilyPondGrobOverrideComponentPlugIn___delattr___03():
     '''Delete LilyPond TimeSignature grob override.
     '''
 

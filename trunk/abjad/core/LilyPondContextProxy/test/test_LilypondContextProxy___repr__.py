@@ -2,7 +2,7 @@ from abjad import *
 from abjad.core.LilyPondContextProxy import LilyPondContextProxy
 
 
-def test_LilypondContextProxy___repr___01( ):
+def test_LilypondContextProxy___repr___01():
     '''LilyPond component proxy repr is evaluable.
     '''
 

@@ -2,7 +2,7 @@ from abjad import *
 from abjad.core import LilyPondGrobOverrideComponentPlugIn
 
 
-def test_LilyPondGrobOverrideComponentPlugIn___repr___01( ):
+def test_LilyPondGrobOverrideComponentPlugIn___repr___01():
     '''LilyPond grob override component plug-in repr is evaluable.
     '''
 
@@ -16,7 +16,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___repr___01( ):
     assert isinstance(grob_override_component_plug_in_2, LilyPondGrobOverrideComponentPlugIn)
 
 
-def test_LilyPondGrobOverrideComponentPlugIn___repr___02( ):
+def test_LilyPondGrobOverrideComponentPlugIn___repr___02():
     '''LilyPond grob override component plug-in repr does not truncate override strings.
     '''
 

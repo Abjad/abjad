@@ -2,7 +2,7 @@ from abjad import *
 from abjad.core import LilyPondContextSettingComponentPlugIn
 
 
-def test_LilyPondContextSettingComponentPlugIn___repr___01( ):
+def test_LilyPondContextSettingComponentPlugIn___repr___01():
     '''LilyPond context setting component plug-in repr is evaluable.
     '''
 
@@ -16,7 +16,7 @@ def test_LilyPondContextSettingComponentPlugIn___repr___01( ):
     assert isinstance(context_setting_component_plug_in_2, LilyPondContextSettingComponentPlugIn)
 
 
-def test_LilyPondContextSettingComponentPlugIn___repr___02( ):
+def test_LilyPondContextSettingComponentPlugIn___repr___02():
     '''LilyPond context setting component plug-in looks like this.
     '''
 

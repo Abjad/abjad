@@ -60,25 +60,25 @@ class LilyPondGrobOverrideComponentPlugIn(_LilyPondComponentPlugIn):
             try:
                 return vars(self)['_' + name]
             except KeyError:
-                context = LilyPondGrobProxyContextWrapper( )
+                context = LilyPondGrobProxyContextWrapper()
                 vars(self)['_' + name] = context
                 return context
         elif name in type(self)._known_lilypond_grob_names:
             try:
                 return vars(self)[name]
             except KeyError:
-                vars(self)[name] = LilyPondGrobProxy( )
+                vars(self)[name] = LilyPondGrobProxy()
                 return vars(self)[name]
         else:
             return vars(self)[name]
 
     def __repr__(self):
         body_string = ' '
-        skeleton_strings = self._get_skeleton_strings( )
+        skeleton_strings = self._get_skeleton_strings()
         if skeleton_strings:
             # remove 'override__'
             skeleton_strings = [x[10:] for x in skeleton_strings]
-            skeleton_strings.sort( )
+            skeleton_strings.sort()
             body_string = ', '.join(skeleton_strings)
         return '%s(%s)' % (self.__class__.__name__, body_string)
 
@@ -90,22 +90,22 @@ class LilyPondGrobOverrideComponentPlugIn(_LilyPondComponentPlugIn):
     ### PRIVATE ATTRIBUTES ###
 
     def _get_attribute_tuples(self):
-        result = [ ]
-        for name, value in vars(self).iteritems( ):
+        result = []
+        for name, value in vars(self).iteritems():
             if isinstance(value, LilyPondGrobProxy):
                 grob_name, grob_proxy = name, value
-                for attribute_name, attribute_value in vars(grob_proxy).iteritems( ):
+                for attribute_name, attribute_value in vars(grob_proxy).iteritems():
                     result.append((grob_name, attribute_name, attribute_value))
             else:
                 context_name, context_proxy = name.strip('_'), value
-                for grob_name, grob_proxy in vars(context_proxy).iteritems( ):
-                    for attribute_name, attribute_value in vars(grob_proxy).iteritems( ):
+                for grob_name, grob_proxy in vars(context_proxy).iteritems():
+                    for attribute_name, attribute_value in vars(grob_proxy).iteritems():
                         result.append((context_name, grob_name, attribute_name, attribute_value))
         return tuple(result)
 
     def _get_skeleton_strings(self):
-        skeleton_strings = [ ]
-        grob_override_tuples = self._get_attribute_tuples( )
+        skeleton_strings = []
+        grob_override_tuples = self._get_attribute_tuples()
         for grob_override_tuple in grob_override_tuples:
             most = '__'.join(grob_override_tuple[:-1])
             value = grob_override_tuple[-1]
@@ -119,8 +119,8 @@ class LilyPondGrobOverrideComponentPlugIn(_LilyPondComponentPlugIn):
         from abjad.tools.lilypondfiletools._make_lilypond_override_string import _make_lilypond_override_string
         from abjad.tools.lilypondfiletools._make_lilypond_revert_string import _make_lilypond_revert_string
         assert contribution_type in ('override', 'revert')
-        result = [ ]
-        for attribute_tuple in self._get_attribute_tuples( ):
+        result = []
+        for attribute_tuple in self._get_attribute_tuples():
             if len(attribute_tuple) == 3:
                 context_name = None
                 grob_name, attribute_name, attribute_value = attribute_tuple
@@ -134,5 +134,5 @@ class LilyPondGrobOverrideComponentPlugIn(_LilyPondComponentPlugIn):
             else:
                 result.append(
                     _make_lilypond_revert_string(grob_name, attribute_name, context_name = context_name))
-        result.sort( )
+        result.sort()
         return result

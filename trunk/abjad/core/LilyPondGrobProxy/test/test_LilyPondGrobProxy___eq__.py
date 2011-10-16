@@ -2,7 +2,7 @@ from abjad import *
 import copy
 
 
-def test_LilyPondGrobProxy___eq___01( ):
+def test_LilyPondGrobProxy___eq___01():
 
     note_1 = Note("c'4")
     note_1.override.note_head.color = 'red'

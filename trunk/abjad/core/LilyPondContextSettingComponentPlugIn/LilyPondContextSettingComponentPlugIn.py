@@ -29,7 +29,7 @@ class LilyPondContextSettingComponentPlugIn(_LilyPondComponentPlugIn):
             try:
                 return vars(self)['_' + name]
             except KeyError:
-                context = LilyPondContextProxy( )
+                context = LilyPondContextProxy()
                 vars(self)['_' + name] = context
                 return context
         else:
@@ -41,7 +41,7 @@ class LilyPondContextSettingComponentPlugIn(_LilyPondComponentPlugIn):
 
     def __repr__(self):
         body_string = ' '
-        skeleton_strings = self._get_skeleton_strings( )
+        skeleton_strings = self._get_skeleton_strings()
         if skeleton_strings:
             # remove 'set__'
             skeleton_strings = [x[5:] for x in skeleton_strings]
@@ -51,8 +51,8 @@ class LilyPondContextSettingComponentPlugIn(_LilyPondComponentPlugIn):
     ### PRIVATE METHODS ###
 
     def _get_skeleton_strings(self):
-        result = [ ]
-        for attribute_tuple in self._get_attribute_tuples( ):
+        result = []
+        for attribute_tuple in self._get_attribute_tuples():
             if len(attribute_tuple) == 2:
                 attribute_name, attribute_value = attribute_tuple
                 result.append('%s = %s' % (attribute_name, repr(attribute_value)))
@@ -66,13 +66,13 @@ class LilyPondContextSettingComponentPlugIn(_LilyPondComponentPlugIn):
         return result
 
     def _get_attribute_tuples(self):
-        result = [ ]
-        for name, value in vars(self).iteritems( ):
+        result = []
+        for name, value in vars(self).iteritems():
             if isinstance(value, LilyPondContextProxy):
                 prefixed_context_name = name
                 context_name = prefixed_context_name.strip('_')
                 context_proxy = value
-                for attribute_name, attribute_value in context_proxy._get_attribute_pairs( ):
+                for attribute_name, attribute_value in context_proxy._get_attribute_pairs():
                     result.append((context_name, attribute_name, attribute_value))
             else:
                 attribute_name, attribute_value = name, value

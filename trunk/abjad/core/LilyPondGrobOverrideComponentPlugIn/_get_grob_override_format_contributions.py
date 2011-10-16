@@ -3,7 +3,7 @@ def _get_grob_override_format_contributions(component):
     '''
     from abjad.tools.leaftools._Leaf import _Leaf
 
-    result = [ ]
+    result = []
     if isinstance(component, _Leaf):
         is_once = True
     else:

@@ -5,7 +5,7 @@ class _StrictComparator(object):
     comparison behavior by default.
     '''
 
-    __slots__ = ( )
+    __slots__ = ()
 
     ### OVERLOADS ###
 

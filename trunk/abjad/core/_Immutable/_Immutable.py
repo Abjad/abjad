@@ -7,7 +7,7 @@ class _Immutable(object):
         make sure none has a dict defined and taking up memory in the namespace of the object.
     '''
 
-    __slots__ = ( )
+    __slots__ = ()
 
     ### OVERLOADS ###
 
@@ -20,7 +20,7 @@ class _Immutable(object):
         raise AttributeError('objects are immutable: "%s".' % self.__class__.__name__)
 
     def __getstate__(self):
-        return { }
+        return {}
 
     def __setattr__(self, *args):
         raise AttributeError('objects are immutable: "%s".' % self.__class__.__name__)

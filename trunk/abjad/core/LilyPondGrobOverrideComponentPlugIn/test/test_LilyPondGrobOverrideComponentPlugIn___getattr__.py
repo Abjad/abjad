@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def test_LilyPondGrobOverrideComponentPlugIn___getattr___01( ):
+def test_LilyPondGrobOverrideComponentPlugIn___getattr___01():
     '''Getting unknown grob name raises exception.
     '''
 

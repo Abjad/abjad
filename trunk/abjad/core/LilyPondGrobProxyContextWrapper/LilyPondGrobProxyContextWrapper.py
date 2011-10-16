@@ -44,11 +44,11 @@ class LilyPondGrobProxyContextWrapper(object):
             return vars(self)[name]
         except KeyError:
             if name in type(self)._known_lilypond_grob_names:
-                vars(self)[name] = LilyPondGrobProxy( )
+                vars(self)[name] = LilyPondGrobProxy()
                 return vars(self)[name]
             else:
                 raise AttributeError('object can have only LilyPond grob attributes: "%s".' %
                     self.__class__.__name__)
 
     def __repr__(self):
-        return '%s( )' % self.__class__.__name__
+        return '%s()' % self.__class__.__name__
