@@ -34,7 +34,10 @@ def _remove_files(skip_files, files):
 
 
 def replace_in_files(dir, old, new, skip_dirs=['.svn'], confirm=True):
-   skip_files = ['replace-in-files', '.pyc', '.png', '.jpg', '.jpeg', '.gif', '.ly', '.ps', '.pdf', '.tex']
+   skip_files = ['replace-in-files', '.pyc', 
+      '.png', '.jpg', '.jpeg', '.gif', '.ps', '.pdf', 
+      '.ly', '.tex', '.nb', '.txt', '.rtf',
+      ]
    print 'Replacing ...'
    print '   "%s"' % old
    print '   "%s"' % new
