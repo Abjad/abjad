@@ -1084,6 +1084,7 @@ iotools
    tools/iotools/get_last_output_file_name
    tools/iotools/get_next_output_file_name
    tools/iotools/is_lowercamelcase_string
+   tools/iotools/is_space_delimited_lowercase_string
    tools/iotools/is_underscore_delimited_lowercase_string
    tools/iotools/is_uppercamelcase_string
    tools/iotools/log
