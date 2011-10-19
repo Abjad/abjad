@@ -130,18 +130,18 @@ class Markup(Mark):
 
     ### PUBLIC ATTRIBUTES ###
 
-#   @property
-#   def contents_string(self):
-#      r'''Read-only contents string of markup:
-#
-#      ::
-#
-#         abjad> markup = markuptools.Markup(r'\bold { "This is markup text." }')
-#         abjad> markup.contents_string
-#         '\\bold { "This is markup text." }'
-#      '''
-#      return self._contents_string
-#
+    @property
+    def contents_string(self):
+        r'''Read-only contents string of markup:
+
+        ::
+
+            abjad> markup = markuptools.Markup(r'\bold { "This is markup text." }')
+            abjad> markup.contents_string
+            '\\bold { "This is markup text." }'
+        '''
+        return self._contents_string
+
 #   @property
 #   def direction_string(self):
 #      r'''Read-only direction string of markup:

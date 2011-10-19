@@ -302,6 +302,8 @@ instrumenttools
    tools/instrumenttools/Violin/Violin
    tools/instrumenttools/Xylophone/Xylophone
    tools/instrumenttools/iterate_notes_and_chords_in_expr_outside_traditional_instrument_ranges
+   tools/instrumenttools/list_instrument_names
+   tools/instrumenttools/list_instruments
    tools/instrumenttools/notes_and_chords_in_expr_are_on_expected_clefs
    tools/instrumenttools/notes_and_chords_in_expr_are_within_traditional_instrument_ranges
    tools/instrumenttools/transpose_notes_and_chords_in_expr_from_fingered_pitch_to_sounding_pitch
