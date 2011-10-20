@@ -1,7 +1,8 @@
 import re
 
 
-underscore_delimited_lowercase_regex = re.compile('^(([a-z]+[_]+)*[a-z]+)?$')
+underscore_delimited_lowercase_regex_body = '(([a-z]+[_]+)*[a-z]+)?'
+underscore_delimited_lowercase_regex = re.compile('^%s$' % underscore_delimited_lowercase_regex_body)
 
 def is_underscore_delimited_lowercase_string(expr):
     r'''.. versionadded:: 2.5
