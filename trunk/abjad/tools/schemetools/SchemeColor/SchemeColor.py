@@ -15,6 +15,8 @@ class SchemeColor(_StrictComparator, _Immutable):
 
     def __new__(klass, color_name):
         self = object.__new__(klass)
+        if isinstance(color_name, klass):
+            color_name = color_name.color_name
         object.__setattr__(self, 'color_name', color_name)
         return self
 
