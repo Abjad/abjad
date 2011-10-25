@@ -288,7 +288,7 @@ instrumenttools
    tools/instrumenttools/Glockenspiel/Glockenspiel
    tools/instrumenttools/Guitar/Guitar
    tools/instrumenttools/Harp/Harp
-   tools/instrumenttools/HumanMusician/HumanMusician
+   tools/instrumenttools/Performer/Performer
    tools/instrumenttools/Marimba/Marimba
    tools/instrumenttools/Oboe/Oboe
    tools/instrumenttools/Piano/Piano
