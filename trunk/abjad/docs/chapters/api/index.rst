@@ -757,6 +757,7 @@ scoretools
    :maxdepth: 1
 
    tools/scoretools/GrandStaff/GrandStaff
+   tools/scoretools/InstrumentationSpecifier/InstrumentationSpecifier
    tools/scoretools/Performer/Performer
    tools/scoretools/PianoStaff/PianoStaff
    tools/scoretools/Score/Score

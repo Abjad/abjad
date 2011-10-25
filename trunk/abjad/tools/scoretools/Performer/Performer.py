@@ -22,10 +22,14 @@ class Performer(object):
     ### OVERLOADS ###
 
     def __repr__(self):
+        values = []
         if self.designation is not None:
-            return '%s(%r)' % (type(self).__name__, self.designation)
-        else:
-            return '%s()' % type(self).__name__
+            values.append(self.designation)
+        if self.instruments:
+            values.append(self.instruments)
+        values = [repr(value) for value in values]
+        values = ', '.join(values)
+        return '%s(%s)' % (type(self).__name__, values)
 
     ### PUBLIC ATTRIBUTES ###
 
