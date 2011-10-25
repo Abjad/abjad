@@ -1,7 +1,27 @@
 class InstrumentationSpecifier(object):
     r'''.. versionadded:: 2.5
 
-    Abjad model of score instrumentation.
+    Abjad model of score instrumentation::
+
+        abjad> flute = scoretools.Performer('Flute')
+        abjad> flute.instruments.append(instrumenttools.Flute())
+        abjad> flute.instruments.append(instrumenttools.AltoFlute())
+
+    ::
+
+        abjad> guitar = scoretools.Performer('Guitar')
+        abjad> guitar.instruments.append(instrumenttools.Guitar())
+
+    ::
+
+        abjad> instrumentation_specifier = scoretools.InstrumentationSpecifier([flute, guitar])
+
+    ::
+
+        abjad> instrumentation_specifier
+        InstrumentationSpecifier([Performer('Flute', [Flute(), AltoFlute()]), Performer('Guitar', [Guitar()])])
+
+    Return instrumentation specifier.
     '''
 
     def __init__(self, performers=None):
@@ -16,7 +36,10 @@ class InstrumentationSpecifier(object):
 
     @property
     def instruments(self):
-        r'''Read-only list of instruments derived from performers.
+        r'''Read-only list of instruments derived from performers::
+
+            abjad> instrumentation_specifier.instruments
+            [Flute(), AltoFlute(), Guitar()]
 
         Return list.
         '''        
@@ -27,15 +50,21 @@ class InstrumentationSpecifier(object):
 
     @property
     def instrument_count(self):
-        r'''Read-only number of instruments in score.
+        r'''Read-only number of instruments in score::
     
+            abjad> instrumentation_specifier.instruments
+            3
+
         Return nonnegative integer.
         '''
         return len(self.instruments)
 
     @property
     def performer_count(self):
-        r'''Read-only number of performers in score.
+        r'''Read-only number of performers in score::
+
+            abjad> instrumentation_specifier.instruments
+            2
 
         Return nonnegative integer.
         '''
@@ -44,7 +73,10 @@ class InstrumentationSpecifier(object):
     @apply
     def performers():
         def fget(self):
-            r'''Read / write list of performers in score.
+            r'''Read / write list of performers in score::
+
+                abjad> instrumentation_specifier.performers
+                [Performer('Flute', [Flute(), AltoFlute()]), Performer('Guitar', [Guitar()])]
 
             Return list.
             '''
