@@ -288,7 +288,6 @@ instrumenttools
    tools/instrumenttools/Glockenspiel/Glockenspiel
    tools/instrumenttools/Guitar/Guitar
    tools/instrumenttools/Harp/Harp
-   tools/instrumenttools/Performer/Performer
    tools/instrumenttools/Marimba/Marimba
    tools/instrumenttools/Oboe/Oboe
    tools/instrumenttools/Piano/Piano
@@ -758,6 +757,7 @@ scoretools
    :maxdepth: 1
 
    tools/scoretools/GrandStaff/GrandStaff
+   tools/scoretools/Performer/Performer
    tools/scoretools/PianoStaff/PianoStaff
    tools/scoretools/Score/Score
    tools/scoretools/StaffGroup/StaffGroup
