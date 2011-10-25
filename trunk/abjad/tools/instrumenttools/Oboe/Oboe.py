@@ -1,4 +1,5 @@
 from abjad.tools import contexttools
+from abjad.tools import markuptools
 from abjad.tools import pitchtools
 from abjad.tools.instrumenttools._DoubleReedInstrument import _DoubleReedInstrument
 
@@ -13,7 +14,7 @@ class Oboe(_DoubleReedInstrument):
     ::
 
         abjad> instrumenttools.Oboe()(staff)
-        Oboe('Oboe', 'Ob.')(Staff{4})
+        Oboe()(Staff{4})
 
     ::
 
@@ -30,9 +31,10 @@ class Oboe(_DoubleReedInstrument):
     The oboe targets staff context by default.
     '''
 
-    def __init__(self,
-        instrument_name = 'Oboe', short_instrument_name = 'Ob.', target_context = None):
+    def __init__(self, instrument_name=None, short_instrument_name=None, target_context=None):
         _DoubleReedInstrument.__init__(self, instrument_name, short_instrument_name, target_context)
+        self._default_instrument_name = markuptools.Markup('Oboe')
+        self._default_short_instrument_name = markuptools.Markup('Ob.')
         self.sounding_pitch_of_written_middle_c = pitchtools.NamedChromaticPitch("c'")
         self.primary_clefs = [contexttools.ClefMark('treble')]
         self._copy_primary_clefs_to_all_clefs()

@@ -1,4 +1,5 @@
 from abjad.tools import contexttools
+from abjad.tools import markuptools
 from abjad.tools import pitchtools
 from abjad.tools.instrumenttools._StringInstrument import _StringInstrument
 
@@ -13,7 +14,7 @@ class Violin(_StringInstrument):
     ::
 
         abjad> instrumenttools.Violin()(staff)
-        Violin('Violin', 'Vn.')(Staff{4})
+        Violin()(Staff{4})
 
     ::
 
@@ -30,9 +31,10 @@ class Violin(_StringInstrument):
     The violin targets staff context by default.
     '''
 
-    def __init__(self,
-        instrument_name = 'Violin', short_instrument_name = 'Vn.', target_context = None):
+    def __init__(self, instrument_name=None, short_instrument_name=None, target_context=None):
         _StringInstrument.__init__(self, instrument_name, short_instrument_name, target_context)
+        self._default_instrument_name = markuptools.Markup('Violin')
+        self._default_short_instrument_name = markuptools.Markup('Vn.')
         self.sounding_pitch_of_written_middle_c = pitchtools.NamedChromaticPitch("c'")
         self.primary_clefs = [contexttools.ClefMark('treble')]
         self._copy_primary_clefs_to_all_clefs()

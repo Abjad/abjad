@@ -1,4 +1,5 @@
 from abjad.tools import contexttools
+from abjad.tools import markuptools
 from abjad.tools import pitchtools
 from abjad.tools import scoretools
 from abjad.tools.instrumenttools._KeyboardInstrument import _KeyboardInstrument
@@ -16,7 +17,7 @@ class Accordion(_KeyboardInstrument, _ReedInstrument):
     ::
 
         abjad> instrumenttools.Accordion(target_context = Staff)(staff)
-        Accordion('Accordion', 'Acc.')(Staff{4})
+        Accordion()(Staff{4})
 
     ::
 
@@ -33,11 +34,12 @@ class Accordion(_KeyboardInstrument, _ReedInstrument):
     The accordion targets piano staff context by default.
     '''
 
-    def __init__( self,
-        instrument_name = 'Accordion', short_instrument_name = 'Acc.', target_context = None):
+    def __init__(self, instrument_name=None, short_instrument_name=None, target_context=None):
         if target_context is None:
             target_context = scoretools.PianoStaff
         _KeyboardInstrument.__init__(self, instrument_name, short_instrument_name, target_context)
+        self._default_instrument_name = markuptools.Markup('Accordion')
+        self._default_short_instrument_name = markuptools.Markup('Acc.')
         self.primary_clefs = [contexttools.ClefMark('treble'), contexttools.ClefMark('bass')]
         self._copy_primary_clefs_to_all_clefs()
         self.traditional_range = (-32, 48)

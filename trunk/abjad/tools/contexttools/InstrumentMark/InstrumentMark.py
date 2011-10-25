@@ -36,8 +36,10 @@ class InstrumentMark(ContextMark):
         ContextMark.__init__(self, target_context = target_context)
         if self.target_context is None:
             self._target_context = Staff
-        self._instrument_name = Markup(instrument_name)
-        self._short_instrument_name = Markup(short_instrument_name)
+        self._default_instrument_name = None
+        self._default_short_instrument_name = None
+        self.instrument_name = instrument_name
+        self.short_instrument_name = short_instrument_name
 
     ### OVERLOADS ###
 
@@ -56,8 +58,15 @@ class InstrumentMark(ContextMark):
 
     @property
     def _contents_repr_string(self):
-        markups = (self.instrument_name, self.short_instrument_name)
-        contents_string = ', '.join([repr(markup._contents_string) for markup in markups])
+        markups = []
+        if self.instrument_name != self.default_instrument_name:
+            markups.append(self.instrument_name)
+        if self.short_instrument_name != self.default_short_instrument_name:
+            markups.append(self.short_instrument_name)
+        if not markups:
+            contents_string = ''
+        else:
+            contents_string = ', '.join([repr(markup._contents_string) for markup in markups])
         return contents_string
 
     # will probably need to change definition at some point #
@@ -66,6 +75,22 @@ class InstrumentMark(ContextMark):
         return self.target_context.__name__
 
     ### PUBLIC ATTRIBUTES ###
+
+    @property
+    def default_instrument_name(self):
+        r'''Read-only default instrument name.
+
+        Return string.
+        '''
+        return self._default_instrument_name
+
+    @property
+    def default_short_instrument_name(self):
+        r'''Read-only default short instrument name.
+
+        Return string.
+        '''
+        return self._default_short_instrument_name
 
     @property
     def format(self):
@@ -101,11 +126,17 @@ class InstrumentMark(ContextMark):
 
             Return markup.
             '''
-            return self._instrument_name
+            if self._instrument_name is None:
+                return self.default_instrument_name
+            else:
+                return self._instrument_name
         def fset(self, instrument_name):
             from abjad.tools.markuptools import Markup
-            assert isinstance(instrument_name, str)
-            self._instrument_name = Markup(instrument_name)
+            assert isinstance(instrument_name, (str, type(None)))
+            if instrument_name is None:
+                self._instrument_name = instrument_name
+            else:
+                self._instrument_name = Markup(instrument_name)
         return property(**locals())
 
     @apply
@@ -125,9 +156,15 @@ class InstrumentMark(ContextMark):
 
             Return markup.
             '''
-            return self._short_instrument_name
+            if self._short_instrument_name is None:
+                return self.default_short_instrument_name
+            else:
+                return self._short_instrument_name
         def fset(self, short_instrument_name):
             from abjad.tools.markuptools import Markup
-            assert isinstance(short_instrument_name, str)
-            self._short_instrument_name = Markup(short_instrument_name)
+            assert isinstance(short_instrument_name, (str, type(None)))
+            if short_instrument_name is None:
+                self._short_instrument_name = short_instrument_name
+            else:
+                self._short_instrument_name = Markup(short_instrument_name)
         return property(**locals())

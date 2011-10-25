@@ -1,4 +1,5 @@
 from abjad.tools import contexttools
+from abjad.tools import markuptools
 from abjad.tools import pitchtools
 from abjad.tools.instrumenttools.Clarinet import Clarinet
 
@@ -13,7 +14,7 @@ class EFlatClarinet(Clarinet):
     ::
 
         abjad> instrumenttools.EFlatClarinet()(staff)
-        EFlatClarinet('Clarinet in E-flat', 'Cl. E-flat')(Staff{4})
+        EFlatClarinet()(Staff{4})
 
     ::
 
@@ -30,9 +31,10 @@ class EFlatClarinet(Clarinet):
     The E-flat clarinet targets staff context by default.
     '''
 
-    def __init__(self, instrument_name = 'Clarinet in E-flat',
-        short_instrument_name = 'Cl. E-flat', target_context = None):
+    def __init__(self, instrument_name=None, short_instrument_name=None, target_context=None):
         Clarinet.__init__(self, instrument_name, short_instrument_name, target_context)
+        self._default_instrument_name = markuptools.Markup('Clarinet in E-flat')
+        self._default_short_instrument_name = markuptools.Markup('Cl. E-flat')
         self.sounding_pitch_of_fingered_middle_c = pitchtools.NamedChromaticPitch("ef'")
         self.primary_clefs = [contexttools.ClefMark('treble')]
         self._copy_primary_clefs_to_all_clefs()

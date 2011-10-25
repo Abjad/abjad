@@ -1,4 +1,5 @@
 from abjad.tools import contexttools
+from abjad.tools import markuptools
 from abjad.tools import pitchtools
 from abjad.tools.instrumenttools.Clarinet import Clarinet
 
@@ -13,7 +14,7 @@ class BassClarinet(Clarinet):
     ::
 
         abjad> instrumenttools.BassClarinet()(staff)
-        BassClarinet('Bass Clarinet', 'Bass Cl.')(Staff{4})
+        BassClarinet()(Staff{4})
 
     ::
 
@@ -30,9 +31,10 @@ class BassClarinet(Clarinet):
     The bass clarinet targets staff context by default.
     '''
 
-    def __init__(self,
-        instrument_name = 'Bass Clarinet', short_instrument_name = 'Bass Cl.', target_context = None):
+    def __init__(self, instrument_name=None, short_instrument_name=None, target_context=None):
         Clarinet.__init__(self, instrument_name, short_instrument_name, target_context)
+        self._default_instrument_name = markuptools.Markup('Bass Clarinet')
+        self._default_short_instrument_name = markuptools.Markup('Bass Cl.')
         self.sounding_pitch_of_fingered_middle_c = pitchtools.NamedChromaticPitch('bf,')
         self.primary_clefs = [contexttools.ClefMark('treble')]
         self.all_clefs = [contexttools.ClefMark('treble'), contexttools.ClefMark('bass')]

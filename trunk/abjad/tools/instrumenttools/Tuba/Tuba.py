@@ -1,4 +1,5 @@
 from abjad.tools import contexttools
+from abjad.tools import markuptools
 from abjad.tools import pitchtools
 from abjad.tools.instrumenttools._BrassInstrument import _BrassInstrument
 
@@ -15,7 +16,7 @@ class Tuba(_BrassInstrument):
     ::
 
         abjad> instrumenttools.Tuba()(staff)
-        Tuba('Tuba', 'Tb.')(Staff{4})
+        Tuba()(Staff{4})
 
     ::
 
@@ -33,9 +34,10 @@ class Tuba(_BrassInstrument):
     The tuba targets staff context by default.
     '''
 
-    def __init__(self,
-        instrument_name = 'Tuba', short_instrument_name = 'Tb.', target_context = None):
+    def __init__(self, instrument_name=None, short_instrument_name=None, target_context=None):
         _BrassInstrument.__init__(self, instrument_name, short_instrument_name, target_context)
+        self._default_instrument_name = markuptools.Markup('Tuba')
+        self._default_short_instrument_name = markuptools.Markup('Tb.')
         self.sounding_pitch_of_written_middle_c = pitchtools.NamedChromaticPitch("c'")
         self.primary_clefs = [contexttools.ClefMark('bass')]
         self._copy_primary_clefs_to_all_clefs()

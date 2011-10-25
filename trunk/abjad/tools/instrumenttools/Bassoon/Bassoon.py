@@ -1,4 +1,5 @@
 from abjad.tools import contexttools
+from abjad.tools import markuptools
 from abjad.tools.instrumenttools._DoubleReedInstrument import _DoubleReedInstrument
 
 
@@ -14,7 +15,7 @@ class Bassoon(_DoubleReedInstrument):
     ::
 
         abjad> instrumenttools.Bassoon()(staff)
-        Bassoon('Bassoon', 'Bsn.')(Staff{4})
+        Bassoon()(Staff{4})
 
     ::
 
@@ -32,9 +33,10 @@ class Bassoon(_DoubleReedInstrument):
     The bassoon targets staff context by default.
     '''
 
-    def __init__(self,
-        instrument_name = 'Bassoon', short_instrument_name = 'Bsn.', target_context = None):
+    def __init__(self, instrument_name=None, short_instrument_name=None, target_context=None):
         _DoubleReedInstrument.__init__(self, instrument_name, short_instrument_name, target_context)
+        self._default_instrument_name = markuptools.Markup('Bassoon')
+        self._default_short_instrument_name = markuptools.Markup('Bsn.')
         self.primary_clefs = [contexttools.ClefMark('bass')]
         self.all_clefs = [contexttools.ClefMark('bass'), contexttools.ClefMark('tenor')]
         self.traditional_range = (-26, 15)

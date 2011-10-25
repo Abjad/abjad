@@ -1,3 +1,4 @@
+from abjad.tools import markuptools
 from abjad.tools import pitchtools
 from abjad.tools.instrumenttools.Flute import Flute
 
@@ -12,7 +13,7 @@ class BassFlute(Flute):
     ::
 
         abjad> instrumenttools.BassFlute()(staff)
-        BassFlute('Bass Flute', 'Bass Fl.')(Staff{4})
+        BassFlute()(Staff{4})
 
     ::
 
@@ -29,8 +30,9 @@ class BassFlute(Flute):
     The bass flute targets staff context by default.
     '''
 
-    def __init__(self,
-        instrument_name = 'Bass Flute', short_instrument_name = 'Bass Fl.', target_context = None):
+    def __init__(self, instrument_name=None, short_instrument_name=None, target_context=None):
         Flute.__init__(self, instrument_name, short_instrument_name, target_context)
+        self._default_instrument_name = markuptools.Markup('Bass Flute')
+        self._default_short_instrument_name = markuptools.Markup('Bass Fl.')
         self.sounding_pitch_of_fingered_middle_c = pitchtools.NamedChromaticPitch('c')
         self.traditional_range = (-12, 24)

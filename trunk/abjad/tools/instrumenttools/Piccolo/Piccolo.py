@@ -1,3 +1,4 @@
+from abjad.tools import markuptools
 from abjad.tools import pitchtools
 from abjad.tools.instrumenttools.Flute import Flute
 
@@ -12,7 +13,7 @@ class Piccolo(Flute):
     ::
 
         abjad> instrumenttools.Piccolo()(staff)
-        Piccolo('Piccolo', 'Picc.')(Staff{4})
+        Piccolo()(Staff{4})
 
     ::
 
@@ -29,8 +30,9 @@ class Piccolo(Flute):
     The piccolo targets staff context by default.
     '''
 
-    def __init__(self,
-        instrument_name = 'Piccolo', short_instrument_name = 'Picc.', target_context = None):
+    def __init__(self, instrument_name=None, short_instrument_name=None, target_context=None):
         Flute.__init__(self, instrument_name, short_instrument_name, target_context)
+        self._default_instrument_name = markuptools.Markup('Piccolo')
+        self._default_short_instrument_name = markuptools.Markup('Picc.')
         self.sounding_pitch_of_fingered_middle_c = pitchtools.NamedChromaticPitch("c''")
         self.traditional_range = (14, 48)

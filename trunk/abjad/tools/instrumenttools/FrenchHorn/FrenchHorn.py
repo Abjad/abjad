@@ -1,4 +1,5 @@
 from abjad.tools import contexttools
+from abjad.tools import markuptools
 from abjad.tools import pitchtools
 from abjad.tools.instrumenttools._BrassInstrument import _BrassInstrument
 from abjad.tools.instrumenttools._WindInstrument import _WindInstrument
@@ -14,7 +15,7 @@ class FrenchHorn(_BrassInstrument, _WindInstrument):
     ::
 
         abjad> instrumenttools.FrenchHorn()(staff)
-        FrenchHorn('French Horn', 'Fr. hn.')(Staff{4})
+        FrenchHorn()(Staff{4})
 
     ::
 
@@ -31,9 +32,10 @@ class FrenchHorn(_BrassInstrument, _WindInstrument):
     The French horn targets staff context by default.
     '''
 
-    def __init__(self,
-        instrument_name = 'French Horn', short_instrument_name = 'Fr. hn.', target_context = None):
+    def __init__(self, instrument_name=None, short_instrument_name=None, target_context=None):
         _BrassInstrument.__init__(self, instrument_name, short_instrument_name, target_context)
+        self._default_instrument_name = markuptools.Markup('French Horn')
+        self._default_short_instrument_name = markuptools.Markup('Fr. hn.')
         self.sounding_pitch_of_fingered_middle_c = pitchtools.NamedChromaticPitch('f')
         self.primary_clefs = [contexttools.ClefMark('treble'), contexttools.ClefMark('bass')]
         self._copy_primary_clefs_to_all_clefs()

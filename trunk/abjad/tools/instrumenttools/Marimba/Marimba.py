@@ -1,4 +1,5 @@
 from abjad.tools import contexttools
+from abjad.tools import markuptools
 from abjad.tools import pitchtools
 from abjad.tools.instrumenttools._PercussionInstrument import _PercussionInstrument
 
@@ -13,7 +14,7 @@ class Marimba(_PercussionInstrument):
     ::
 
         abjad> instrumenttools.Marimba()(staff)
-        Marimba('Marimba', 'Mb.')(Staff{4})
+        Marimba()(Staff{4})
 
     ::
 
@@ -30,9 +31,10 @@ class Marimba(_PercussionInstrument):
     The marimba targets staff context by default.
     '''
 
-    def __init__(self,
-        instrument_name = 'Marimba', short_instrument_name = 'Mb.', target_context = None):
+    def __init__(self, instrument_name=None, short_instrument_name=None, target_context=None):
         _PercussionInstrument.__init__(self, instrument_name, short_instrument_name, target_context)
+        self._default_instrument_name = markuptools.Markup('Marimba')
+        self._default_short_instrument_name = markuptools.Markup('Mb.')
         self.sounding_pitch_of_written_middle_c = pitchtools.NamedChromaticPitch("c'")
         self.primary_clefs = [contexttools.ClefMark('treble'), contexttools.ClefMark('bass')]
         self._copy_primary_clefs_to_all_clefs()
