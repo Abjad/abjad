@@ -22,14 +22,32 @@ class Performer(object):
     ### OVERLOADS ###
 
     def __repr__(self):
+        return self._repr_helper(include_tools_package=False)
+
+    ### PRIVATE ATTRIBUTES ###
+
+    @property
+    def _repr_with_tools_package(self):
+        return self._repr_helper(include_tools_package=True)
+
+    ### PRIVATE METHODS ####
+
+    def _repr_helper(self, include_tools_package=False):
         values = []
         if self.designation is not None:
-            values.append(self.designation)
+            values.append(repr(self.designation))
         if self.instruments:
-            values.append(self.instruments)
-        values = [repr(value) for value in values]
+            if include_tools_package:
+                instruments = [x._repr_with_tools_package for x in self.instruments]
+            else:
+                instruments = self.instruments[:]
+            values.append(repr(instruments))
         values = ', '.join(values)
-        return '%s(%s)' % (type(self).__name__, values)
+        if include_tools_package:
+            tools_package = self.__module__.split('.')[-3]
+            return '{}.{}({})'.format(tools_package, type(self).__name__, values)
+        else:
+            return '{}({})'.format(type(self).__name__, values)
 
     ### PUBLIC ATTRIBUTES ###
 

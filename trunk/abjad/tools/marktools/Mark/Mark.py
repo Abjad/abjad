@@ -72,8 +72,12 @@ class Mark(object):
         if hasattr(self, 'contents'):
             return repr(self.contents)
         else:
-            #return ' '
             return ''
+
+    @property
+    def _repr_with_tools_package(self):
+        tools_package = self.__module__.split('.')[-3]
+        return '{}.{}'.format(tools_package, repr(self))
 
     # MANGLED METHODS #
 
