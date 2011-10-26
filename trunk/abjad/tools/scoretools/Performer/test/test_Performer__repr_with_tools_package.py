@@ -8,4 +8,4 @@ def test_Performer__repr_with_tools_package_01():
     performer.instruments.append(instrumenttools.AltoFlute())
 
     assert performer._repr_with_tools_package == \
-        "scoretools.Performer('Flute', ['instrumenttools.Flute()', 'instrumenttools.AltoFlute()'])"
+        "scoretools.Performer('Flute', [instrumenttools.Flute(), instrumenttools.AltoFlute()])"

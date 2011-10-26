@@ -27,5 +27,5 @@ def test_InstrumentationSpecifier__get_multiline_repr_02():
 
     assert specifier._get_multiline_repr(include_tools_package=True) == [
         'scoretools.InstrumentationSpecifier([',
-        "    scoretools.Performer('Flute', ['instrumenttools.Flute()', 'instrumenttools.AltoFlute()']),",
-        "    scoretools.Performer('Guitar', ['instrumenttools.Guitar()'])])"]
+        "    scoretools.Performer('Flute', [instrumenttools.Flute(), instrumenttools.AltoFlute()]),",
+        "    scoretools.Performer('Guitar', [instrumenttools.Guitar()])])"]

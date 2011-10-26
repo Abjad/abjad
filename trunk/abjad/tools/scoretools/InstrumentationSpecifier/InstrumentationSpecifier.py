@@ -29,8 +29,16 @@ class InstrumentationSpecifier(object):
 
     ### OVERLOADS ###
     
+    def __eq__(self, other):
+        if isinstance(other, type(self)):
+            if sorted(self.performers) == sorted(other.performers):
+                return True
+        return False
+
+    def __ne__(self, other):
+        return not self == other
+
     def __repr__(self):
-        #return '{}({!r})'.format(type(self).__name__, self.performers)
         return self._repr_helper()
 
     ### PRIVATE ATTRIBUTES ###
@@ -64,8 +72,8 @@ class InstrumentationSpecifier(object):
         class_name = type(self).__name__
         if include_tools_package:
             tools_package = self.__module__.split('.')[-3]
-            performers = [x._repr_with_tools_package for x in self.performers]
-            return '{}.{}({!r})'.format(tools_package, class_name, performers)
+            performers = ', '.join([x._repr_with_tools_package for x in self.performers])
+            return '{}.{}([{}])'.format(tools_package, class_name, performers)
         else:
             return '{}({!r})'.format(class_name, self.performers)
 

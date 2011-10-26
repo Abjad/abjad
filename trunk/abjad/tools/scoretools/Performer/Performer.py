@@ -21,6 +21,16 @@ class Performer(object):
 
     ### OVERLOADS ###
 
+    def __eq__(self, other):
+        if isinstance(other, type(self)):
+            if self.designation == other.designation:
+                if sorted(self.instruments) == sorted(other.instruments):
+                    return True
+        return False
+
+    def __ne__(self, other):
+        return not self == other
+
     def __repr__(self):
         return self._repr_helper(include_tools_package=False)
 
@@ -38,10 +48,11 @@ class Performer(object):
             values.append(repr(self.designation))
         if self.instruments:
             if include_tools_package:
-                instruments = [x._repr_with_tools_package for x in self.instruments]
+                instruments = ', '.join([x._repr_with_tools_package for x in self.instruments])
+                instruments = '[{}]'.format(instruments)
             else:
-                instruments = self.instruments[:]
-            values.append(repr(instruments))
+                instruments = str(self.instruments[:])
+            values.append(instruments)
         values = ', '.join(values)
         if include_tools_package:
             tools_package = self.__module__.split('.')[-3]
