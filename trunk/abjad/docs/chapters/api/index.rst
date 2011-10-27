@@ -1428,6 +1428,14 @@ Unstable Abjad composition packages (load manually)
 
 
 
+lilypondparsertools
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/lilypondparsertools/LilyPondParser/LilyPondParser
+
+
 quantizationtools
 
 .. toctree::
