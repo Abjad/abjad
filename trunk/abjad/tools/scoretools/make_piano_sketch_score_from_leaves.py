@@ -65,7 +65,7 @@ def make_piano_sketch_score_from_leaves(leaves, lowest_treble_pitch = NamedChrom
 
     # make and configure score
     score, treble_staff, bass_staff = make_piano_score_from_leaves(leaves, lowest_treble_pitch)
-    score.override.time_signature.transparent = True
+    score.override.time_signature.stencil = False
     score.override.bar_number.transparent = True
     score.override.bar_line.stencil = False
     score.override.span_bar.stencil = False

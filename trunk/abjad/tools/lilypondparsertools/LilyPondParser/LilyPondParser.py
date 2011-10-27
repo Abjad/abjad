@@ -1,13 +1,13 @@
 import os
 from ply import lex
 from ply import yacc
-from abjad.tools.iotools._LilyPondLexicalDefinition._LilyPondLexicalDefinition \
+from abjad.tools.lilypondparsertools._LilyPondLexicalDefinition._LilyPondLexicalDefinition \
     import _LilyPondLexicalDefinition
-from abjad.tools.iotools._LilyPondSyntacticalDefinition._LilyPondSyntacticalDefinition \
+from abjad.tools.lilypondparsertools._LilyPondSyntacticalDefinition._LilyPondSyntacticalDefinition \
     import _LilyPondSyntacticalDefinition
 
 
-class _LilyPondParser(object):
+class LilyPondParser(object):
 
     def __init__(self):
         self.assignment = { }

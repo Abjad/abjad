@@ -1,6 +1,6 @@
 from abjad import *
-from abjad.tools.iotools._LilyPondSyntaxNode._LilyPondSyntaxNode import _LilyPondSyntaxNode as Node
-from abjad.tools.iotools._LilyPondLexicalDefinition._LilyPondLexicalDefinition import _LilyPondLexicalDefinition
+from abjad.tools.lilypondparsertools._LilyPondSyntaxNode._LilyPondSyntaxNode import _LilyPondSyntaxNode as Node
+from abjad.tools.lilypondparsertools._LilyPondLexicalDefinition._LilyPondLexicalDefinition import _LilyPondLexicalDefinition
 
 
 class _LilyPondSyntacticalDefinition(object):
