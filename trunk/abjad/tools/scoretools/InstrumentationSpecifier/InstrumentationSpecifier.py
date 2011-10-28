@@ -31,7 +31,9 @@ class InstrumentationSpecifier(object):
     
     def __eq__(self, other):
         if isinstance(other, type(self)):
-            if sorted(self.performers) == sorted(other.performers):
+            # TODO: implement perform sort
+            #if sorted(self.performers) == sorted(other.performers):
+            if self.performers == other.performers:
                 return True
         return False
 
