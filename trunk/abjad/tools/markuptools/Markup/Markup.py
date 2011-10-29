@@ -101,6 +101,10 @@ class Markup(Mark):
 
     _style_strings = ('backslash', 'scheme')
 
+    @property
+    def _format_pieces(self):
+        return [r'\markup { %s }' % self.contents_string]
+
     ### OVERLOADS ###
 
     def __copy__(self, *args):
