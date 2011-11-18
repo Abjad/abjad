@@ -15,15 +15,15 @@ class Performer(object):
     At present the class is a list of instruments.
     '''
 
-    def __init__(self, designation=None, instruments=None):
-        self.designation = designation
+    def __init__(self, name=None, instruments=None):
+        self.name = name
         self.instruments = instruments
 
     ### OVERLOADS ###
 
     def __eq__(self, other):
         if isinstance(other, type(self)):
-            if self.designation == other.designation:
+            if self.name == other.name:
                 if sorted(self.instruments) == sorted(other.instruments):
                     return True
         return False
@@ -44,8 +44,8 @@ class Performer(object):
 
     def _repr_helper(self, include_tools_package=False):
         values = []
-        if self.designation is not None:
-            values.append(repr(self.designation))
+        if self.name is not None:
+            values.append(repr(self.name))
         if self.instruments:
             if include_tools_package:
                 instruments = ', '.join([x._repr_with_tools_package for x in self.instruments])
@@ -61,26 +61,6 @@ class Performer(object):
             return '{}({})'.format(type(self).__name__, values)
 
     ### PUBLIC ATTRIBUTES ###
-
-    @apply
-    def designation():
-        def fget(self):
-            r'''Score designation of performer::
-
-                abjad> performer = instrumenttools.Performer('Flutist')
-
-            ::
-
-                abjad> performer.designation
-                'Flutist'
-
-            Return string.
-            '''
-            return self._designation
-        def fset(self, designation):
-            assert isinstance(designation, (str, type(None)))
-            self._designation = designation
-        return property(**locals())
 
     @apply
     def instruments():
@@ -110,4 +90,24 @@ class Performer(object):
                 self._instruments = instruments[:]
             else:
                 raise TypeError('instruments %r must be list or none.' % instruments)
+        return property(**locals())
+
+    @apply
+    def name():
+        def fget(self):
+            r'''Score name of performer::
+
+                abjad> performer = instrumenttools.Performer('Flutist')
+
+            ::
+
+                abjad> performer.name
+                'Flutist'
+
+            Return string.
+            '''
+            return self._name
+        def fset(self, name):
+            assert isinstance(name, (str, type(None)))
+            self._name = name
         return property(**locals())
