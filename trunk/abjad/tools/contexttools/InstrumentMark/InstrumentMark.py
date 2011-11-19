@@ -107,7 +107,7 @@ class InstrumentMark(ContextMark):
 
         Return string.
         '''
-        return self.default_short_instrument_name.contents_string
+        return self.default_short_instrument_name_markup.contents_string
 
     @property
     def default_short_instrument_name_markup(self):
