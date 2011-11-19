@@ -30,16 +30,23 @@ class InstrumentMark(ContextMark):
 
     _format_slot = 'opening'
 
-    def __init__(self, instrument_name_markup, short_instrument_name_markup, target_context = None):
+    def __init__(self, instrument_name, short_instrument_name, 
+        instrument_name_markup=None, short_instrument_name_markup=None, target_context = None):
         from abjad.tools.stafftools.Staff import Staff
         from abjad.tools.markuptools import Markup
         ContextMark.__init__(self, target_context = target_context)
         if self.target_context is None:
             self._target_context = Staff
+        #self._default_instrument_name = None
         self._default_instrument_name_markup = None
+        #self._default_short_instrument_name = None
         self._default_short_instrument_name_markup = None
-        self.instrument_name_markup = instrument_name_markup
-        self.short_instrument_name_markup = short_instrument_name_markup
+        self.instrument_name = instrument_name
+        if instrument_name_markup is None:
+            self.instrument_name_markup = instrument_name
+        self.short_instrument_name = short_instrument_name
+        if short_instrument_name_markup is None:
+            self.short_instrument_name_markup = short_instrument_name
 
     ### OVERLOADS ###
 
@@ -77,12 +84,28 @@ class InstrumentMark(ContextMark):
     ### PUBLIC ATTRIBUTES ###
 
     @property
+    def default_instrument_name(self):
+        r'''Read-only default instrument name.
+
+        Return string.
+        '''
+        return self.default_instrument_name_markup.contents_string
+
+    @property
     def default_instrument_name_markup(self):
         r'''Read-only default instrument name.
 
         Return markup.
         '''
         return self._default_instrument_name_markup
+
+    @property
+    def default_short_instrument_name(self):
+        r'''Read-only default short instrument name.
+
+        Return string.
+        '''
+        return self.default_short_instrument_name.contents_string
 
     @property
     def default_short_instrument_name_markup(self):
@@ -108,6 +131,33 @@ class InstrumentMark(ContextMark):
         result.append(r'\set %s.instrumentName = %s' % (self._target_context_name, self.instrument_name_markup))
         result.append(r'\set %s.shortInstrumentName = %s' % (self._target_context_name, self.short_instrument_name_markup))
         return result
+
+    # will need to make intelligently interact with instrument_name_markup at some point
+    @apply
+    def instrument_name():
+        def fget(self):
+            r'''Get instrument name::
+
+                abjad> instrument = contexttools.InstrumentMark('Flute', 'Fl.')
+                abjad> instrument.instrument_name
+                'Flute'
+
+            Set instrument name::
+
+                abjad> instrument.instrument_name = 'Alto Flute'
+                abjad> instrument.instrument_name
+                Markup('Alto Flute')
+
+            Return string.
+            '''
+            if self._instrument_name is None:
+                return self.default_instrument_name
+            else:
+                return self._instrument_name
+        def fset(self, instrument_name):
+            assert isinstance(instrument_name, (str, type(None)))
+            self._instrument_name = instrument_name
+        return property(**locals())
 
     @apply
     def instrument_name_markup():
@@ -137,6 +187,32 @@ class InstrumentMark(ContextMark):
                 self._instrument_name_markup = instrument_name_markup
             else:
                 self._instrument_name_markup = Markup(instrument_name_markup)
+        return property(**locals())
+
+    @apply
+    def short_instrument_name():
+        def fget(self):
+            r'''Get short instrument name::
+
+                abjad> instrument = contexttools.InstrumentMark('Flute', 'Fl.')
+                abjad> instrument.short_instrument_name
+                'Fl.'
+
+            Set short instrument name::
+
+                abjad> instrument.short_instrument_name = 'Alto Fl.'
+                abjad> instrument.short_instrument_name
+                'Alto Fl.'
+
+            Return string.
+            '''
+            if self._short_instrument_name is None:
+                return self.default_short_instrument_name
+            else:
+                return self._short_instrument_name
+        def fset(self, short_instrument_name):
+            assert isinstance(short_instrument_name, (str, type(None)))
+            self._short_instrument_name = short_instrument_name
         return property(**locals())
 
     @apply
