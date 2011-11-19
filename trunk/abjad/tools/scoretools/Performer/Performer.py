@@ -92,6 +92,46 @@ class Performer(object):
                 raise TypeError('instruments %r must be list or none.' % instruments)
         return property(**locals())
 
+    @property
+    def instrument_count(self):
+        r'''Read-only number of instruments to be played by performer::
+
+            abjad> performer = instrumenttools.Performer('Flutist')
+
+        ::
+
+            abjad> performer.instruments.append(instrumenttools.Flute())
+            abjad> performer.instruments.append(instrumenttools.Piccolo())
+
+        ::
+
+            abjad> performer.instrument_count
+            2
+
+        Return nonnegative integer
+        '''
+        return len(self.instruments)
+
+    @property
+    def is_doubling(self):
+        r'''Is performer to play more than one instrument? ::
+
+            abjad> performer = instrumenttools.Performer('Flutist')
+
+        ::
+
+            abjad> performer.instruments.append(instrumenttools.Flute())
+            abjad> performer.instruments.append(instrumenttools.Piccolo())
+
+        ::
+
+            abjad> performer.is_doubling
+            True
+
+        Return boolean.
+        '''
+        return 1 < self.instrument_count
+
     @apply
     def name():
         def fget(self):
