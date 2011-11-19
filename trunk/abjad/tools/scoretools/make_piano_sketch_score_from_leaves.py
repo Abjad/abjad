@@ -20,7 +20,7 @@ def make_piano_sketch_score_from_leaves(leaves, lowest_treble_pitch = NamedChrom
             \override BarLine #'stencil = ##f
             \override BarNumber #'transparent = ##t
             \override SpanBar #'stencil = ##f
-            \override TimeSignature #'transparent = ##t
+            \override TimeSignature #'stencil = ##f
         } <<
             \new PianoStaff <<
                 \context Staff = "treble" {

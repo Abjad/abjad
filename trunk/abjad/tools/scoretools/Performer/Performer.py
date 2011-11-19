@@ -6,7 +6,7 @@ class Performer(object):
 
     Abjad model of performer::
 
-        abjad> instrumenttools.Performer('Flutist')
+        abjad> scoretools.Performer('Flutist')
         Performer('Flutist')
 
     The purpose of the class is to model things like
@@ -67,7 +67,7 @@ class Performer(object):
         def fget(self):
             r'''List of instruments to be played by performer::
 
-                abjad> performer = instrumenttools.Performer('Flutist')
+                abjad> performer = scoretools.Performer('Flutist')
 
             ::
 
@@ -77,7 +77,7 @@ class Performer(object):
             ::
 
                 abjad> performer.instruments
-                [Flute('Flute', 'Fl.'), Piccolo('Piccolo', 'Picc.')]
+                [Flute(), Piccolo()]
 
             Return list.
             '''
@@ -96,7 +96,7 @@ class Performer(object):
     def instrument_count(self):
         r'''Read-only number of instruments to be played by performer::
 
-            abjad> performer = instrumenttools.Performer('Flutist')
+            abjad> performer = scoretools.Performer('Flutist')
 
         ::
 
@@ -116,7 +116,7 @@ class Performer(object):
     def is_doubling(self):
         r'''Is performer to play more than one instrument? ::
 
-            abjad> performer = instrumenttools.Performer('Flutist')
+            abjad> performer = scoretools.Performer('Flutist')
 
         ::
 
@@ -137,7 +137,7 @@ class Performer(object):
         def fget(self):
             r'''Score name of performer::
 
-                abjad> performer = instrumenttools.Performer('Flutist')
+                abjad> performer = scoretools.Performer('Flutist')
 
             ::
 

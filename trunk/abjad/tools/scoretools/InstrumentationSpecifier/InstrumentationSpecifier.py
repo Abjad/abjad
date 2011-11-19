@@ -99,7 +99,7 @@ class InstrumentationSpecifier(object):
     def instrument_count(self):
         r'''Read-only number of instruments in score::
     
-            abjad> instrumentation_specifier.instruments
+            abjad> instrumentation_specifier.instrument_count
             3
 
         Return nonnegative integer.
@@ -110,7 +110,7 @@ class InstrumentationSpecifier(object):
     def performer_count(self):
         r'''Read-only number of performers in score::
 
-            abjad> instrumentation_specifier.instruments
+            abjad> instrumentation_specifier.performer_count
             2
 
         Return nonnegative integer.

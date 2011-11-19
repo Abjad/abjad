@@ -143,6 +143,8 @@ class Markup(Mark):
             abjad> markup = markuptools.Markup(r'\bold { "This is markup text." }')
             abjad> markup.contents_string
             '\\bold { "This is markup text." }'
+
+        Return string
         '''
         return self._contents_string
 

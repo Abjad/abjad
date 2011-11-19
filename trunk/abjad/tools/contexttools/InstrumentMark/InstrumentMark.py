@@ -37,10 +37,12 @@ class InstrumentMark(ContextMark):
         ContextMark.__init__(self, target_context = target_context)
         if self.target_context is None:
             self._target_context = Staff
-        #self._default_instrument_name = None
+        self._default_instrument_name = None
         self._default_instrument_name_markup = None
-        #self._default_short_instrument_name = None
+        self._default_short_instrument_name = None
         self._default_short_instrument_name_markup = None
+        self._instrument_name_markup = None
+        self._short_instrument_name_markup = None
         self.instrument_name = instrument_name
         if instrument_name_markup is None:
             self.instrument_name_markup = instrument_name
@@ -146,7 +148,7 @@ class InstrumentMark(ContextMark):
 
                 abjad> instrument.instrument_name = 'Alto Flute'
                 abjad> instrument.instrument_name
-                Markup('Alto Flute')
+                'Alto Flute'
 
             Return string.
             '''

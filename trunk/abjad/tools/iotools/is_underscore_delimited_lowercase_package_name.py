@@ -15,12 +15,12 @@ def is_underscore_delimited_lowercase_package_name(expr):
 
     True when `expr` is a string and is underscore-delimited lowercase package name::
 
-        abjad> iotools.is_underscore_delimited_lowercase_string('foo.bar.blah_package')
+        abjad> iotools.is_underscore_delimited_lowercase_package_name('foo.bar.blah_package')
         True
     
     False otherwise::
 
-        abjad> iotools.is_underscore_delimited_lowercase_string('foo.bar.BlahPackage')
+        abjad> iotools.is_underscore_delimited_lowercase_package_name('foo.bar.BlahPackage')
         False
 
     Return boolean.
