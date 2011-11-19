@@ -17,7 +17,7 @@ class LilyPondGrobProxyContextWrapper(object):
         'dot_column', 'dots', 'double_percent_repeat', 'double_percent_repeat_counter',
         'dynamic_line_spanner', 'dynamic_text', 'dynamic_text_spanner', 'episema', 'fingering',
         'fret_board', 'glissando', 'grace_spacing', 'grid_line', 'grid_point', 'hairpin',
-        'harmonic_parentheses_item', 'horizontal_bracket', 'instrument_name', 'instrument_switch',
+        'harmonic_parentheses_item', 'horizontal_bracket', 'instrument_name_markup', 'instrument_switch',
         'key_cancellation', 'key_signature', 'laissez_vibrer_tie', 'laissez_vibrer_tie_column',
         'ledger_line_spanner', 'left_edge', 'ligature_bracket', 'lyric_extender', 'lyric_hyphen',
         'lyric_space', 'lyric_text', 'measure_grouping', 'melody_item', 'mensural_ligature',

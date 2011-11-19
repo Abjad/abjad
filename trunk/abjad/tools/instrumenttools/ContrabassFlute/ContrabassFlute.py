@@ -30,9 +30,9 @@ class ContrabassFlute(Flute):
     The contrabass flute targets staff context by default.
     '''
 
-    def __init__(self, instrument_name=None, short_instrument_name=None, target_context=None):
-        Flute.__init__(self, instrument_name, short_instrument_name, target_context)
-        self._default_instrument_name = markuptools.Markup('Contrabass Flute')
-        self._default_short_instrument_name = markuptools.Markup('Cbass Fl.')
+    def __init__(self, instrument_name_markup=None, short_instrument_name_markup=None, target_context=None):
+        Flute.__init__(self, instrument_name_markup, short_instrument_name_markup, target_context)
+        self._default_instrument_name_markup = markuptools.Markup('Contrabass Flute')
+        self._default_short_instrument_name_markup = markuptools.Markup('Cbass Fl.')
         self.sounding_pitch_of_fingered_middle_c = pitchtools.NamedChromaticPitch('g,')
         self.traditional_range = (-17, 19)

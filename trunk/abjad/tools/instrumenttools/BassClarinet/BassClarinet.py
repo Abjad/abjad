@@ -31,10 +31,10 @@ class BassClarinet(Clarinet):
     The bass clarinet targets staff context by default.
     '''
 
-    def __init__(self, instrument_name=None, short_instrument_name=None, target_context=None):
-        Clarinet.__init__(self, instrument_name, short_instrument_name, target_context)
-        self._default_instrument_name = markuptools.Markup('Bass Clarinet')
-        self._default_short_instrument_name = markuptools.Markup('Bass Cl.')
+    def __init__(self, instrument_name_markup=None, short_instrument_name_markup=None, target_context=None):
+        Clarinet.__init__(self, instrument_name_markup, short_instrument_name_markup, target_context)
+        self._default_instrument_name_markup = markuptools.Markup('Bass Clarinet')
+        self._default_short_instrument_name_markup = markuptools.Markup('Bass Cl.')
         self.sounding_pitch_of_fingered_middle_c = pitchtools.NamedChromaticPitch('bf,')
         self.primary_clefs = [contexttools.ClefMark('treble')]
         self.all_clefs = [contexttools.ClefMark('treble'), contexttools.ClefMark('bass')]

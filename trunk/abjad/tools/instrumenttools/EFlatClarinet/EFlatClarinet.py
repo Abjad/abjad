@@ -31,10 +31,10 @@ class EFlatClarinet(Clarinet):
     The E-flat clarinet targets staff context by default.
     '''
 
-    def __init__(self, instrument_name=None, short_instrument_name=None, target_context=None):
-        Clarinet.__init__(self, instrument_name, short_instrument_name, target_context)
-        self._default_instrument_name = markuptools.Markup('Clarinet in E-flat')
-        self._default_short_instrument_name = markuptools.Markup('Cl. E-flat')
+    def __init__(self, instrument_name_markup=None, short_instrument_name_markup=None, target_context=None):
+        Clarinet.__init__(self, instrument_name_markup, short_instrument_name_markup, target_context)
+        self._default_instrument_name_markup = markuptools.Markup('Clarinet in E-flat')
+        self._default_short_instrument_name_markup = markuptools.Markup('Cl. E-flat')
         self.sounding_pitch_of_fingered_middle_c = pitchtools.NamedChromaticPitch("ef'")
         self.primary_clefs = [contexttools.ClefMark('treble')]
         self._copy_primary_clefs_to_all_clefs()

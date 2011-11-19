@@ -140,22 +140,22 @@ print repr(instrument_mark.start_component) <hide
 Inspecting the instrument name of an instrument mark
 ----------------------------------------------------
 
-Use :py:attr:`~abjad.tools.contexttools.InstrumentMark.instrument_name` to
+Use :py:attr:`~abjad.tools.contexttools.InstrumentMark.instrument_name_markup` to
 get the instrument name of any instrument mark:
 
 <abjad>
-instrument_mark.instrument_name
-print repr(instrument_mark.instrument_name) <hide
+instrument_mark.instrument_name_markup
+print repr(instrument_mark.instrument_name_markup) <hide
 </abjad>
 
 
 Inspecting the short instrument name of an instrument mark
 ----------------------------------------------------------
 
-And use :py:attr:`~abjad.tools.contexttools.InstrumentMark.short_instrument_name`
+And use :py:attr:`~abjad.tools.contexttools.InstrumentMark.short_instrument_name_markup`
 to get the short instrument name of any instrument mark:
 
 <abjad>
-instrument_mark.short_instrument_name
-print repr(instrument_mark.short_instrument_name) <hide
+instrument_mark.short_instrument_name_markup
+print repr(instrument_mark.short_instrument_name_markup) <hide
 </abjad>

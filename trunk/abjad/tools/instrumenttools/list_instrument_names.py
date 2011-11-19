@@ -46,6 +46,6 @@ def list_instrument_names(klasses=None):
 
     for instrument_class in list_instruments():
         instrument = instrument_class()
-        instrument_names.append(instrument.instrument_name.contents_string)
+        instrument_names.append(instrument.instrument_name_markup.contents_string)
     
     return instrument_names

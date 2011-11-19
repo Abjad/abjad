@@ -159,12 +159,12 @@ to inspect the component to which an instrument mark is attached:
 Inspecting the instrument name of an instrument mark
 ----------------------------------------------------
 
-Use :py:attr:`~abjad.tools.contexttools.InstrumentMark.instrument_name` to
+Use :py:attr:`~abjad.tools.contexttools.InstrumentMark.instrument_name_markup` to
 get the instrument name of any instrument mark:
 
 ::
 
-	abjad> instrument_mark.instrument_name
+	abjad> instrument_mark.instrument_name_markup
 	Markup('Flute ')
 
 
@@ -172,10 +172,10 @@ get the instrument name of any instrument mark:
 Inspecting the short instrument name of an instrument mark
 ----------------------------------------------------------
 
-And use :py:attr:`~abjad.tools.contexttools.InstrumentMark.short_instrument_name`
+And use :py:attr:`~abjad.tools.contexttools.InstrumentMark.short_instrument_name_markup`
 to get the short instrument name of any instrument mark:
 
 ::
 
-	abjad> instrument_mark.short_instrument_name
+	abjad> instrument_mark.short_instrument_name_markup
 	Markup('Fl. ')
