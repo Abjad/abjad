@@ -33,10 +33,13 @@ class Bassoon(_DoubleReedInstrument):
     The bassoon targets staff context by default.
     '''
 
-    def __init__(self, instrument_name_markup=None, short_instrument_name_markup=None, target_context=None):
-        _DoubleReedInstrument.__init__(self, instrument_name_markup, short_instrument_name_markup, target_context)
-        self._default_instrument_name_markup = markuptools.Markup('Bassoon')
-        self._default_short_instrument_name_markup = markuptools.Markup('Bsn.')
+    def __init__(self, instrument_name=None, short_instrument_name=None,
+        instrument_name_markup=None, short_instrument_name_markup=None, target_context=None):
+        _DoubleReedInstrument.__init__(self, instrument_name, short_instrument_name,
+            instrument_name_markup=instrument_name_markup, 
+            short_instrument_name_markup=short_instrument_name_markup, target_context=target_context)
+        self._default_instrument_name = 'bassoon'
+        self._default_short_instrument_name = 'bsn.'
         self.primary_clefs = [contexttools.ClefMark('bass')]
         self.all_clefs = [contexttools.ClefMark('bass'), contexttools.ClefMark('tenor')]
         self.traditional_range = (-26, 15)

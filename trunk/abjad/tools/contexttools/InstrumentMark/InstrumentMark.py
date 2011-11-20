@@ -1,4 +1,5 @@
 from abjad.tools.contexttools.ContextMark import ContextMark
+from abjad.tools import iotools
 
 
 class InstrumentMark(ContextMark):
@@ -31,18 +32,16 @@ class InstrumentMark(ContextMark):
     _format_slot = 'opening'
 
     def __init__(self, instrument_name, short_instrument_name, 
-        instrument_name_markup=None, short_instrument_name_markup=None, target_context = None):
+        instrument_name_markup=None, short_instrument_name_markup=None, target_context=None):
         from abjad.tools.stafftools.Staff import Staff
         from abjad.tools.markuptools import Markup
-        ContextMark.__init__(self, target_context = target_context)
+        ContextMark.__init__(self, target_context=target_context)
         if self.target_context is None:
             self._target_context = Staff
         self._default_instrument_name = None
         self._default_instrument_name_markup = None
         self._default_short_instrument_name = None
         self._default_short_instrument_name_markup = None
-        self._instrument_name_markup = None
-        self._short_instrument_name_markup = None
         self.instrument_name = instrument_name
         if instrument_name_markup is None:
             self.instrument_name_markup = instrument_name
@@ -67,15 +66,15 @@ class InstrumentMark(ContextMark):
 
     @property
     def _contents_repr_string(self):
-        markups = []
-        if self.instrument_name_markup != self.default_instrument_name_markup:
-            markups.append(self.instrument_name_markup)
-        if self.short_instrument_name_markup != self.default_short_instrument_name_markup:
-            markups.append(self.short_instrument_name_markup)
-        if not markups:
+        names = []
+        if self.instrument_name != self.default_instrument_name:
+            names.append(self.instrument_name)
+        if self.short_instrument_name != self.default_short_instrument_name:
+            names.append(self.short_instrument_name)
+        if not names:
             contents_string = ''
         else:
-            contents_string = ', '.join([repr(markup._contents_string) for markup in markups])
+            contents_string = ', '.join([repr(name) for name in names])
         return contents_string
 
     # will probably need to change definition at some point #
@@ -91,15 +90,7 @@ class InstrumentMark(ContextMark):
 
         Return string.
         '''
-        return self.default_instrument_name_markup.contents_string
-
-    @property
-    def default_instrument_name_markup(self):
-        r'''Read-only default instrument name.
-
-        Return markup.
-        '''
-        return self._default_instrument_name_markup
+        return self._default_instrument_name
 
     @property
     def default_short_instrument_name(self):
@@ -107,15 +98,7 @@ class InstrumentMark(ContextMark):
 
         Return string.
         '''
-        return self.default_short_instrument_name_markup.contents_string
-
-    @property
-    def default_short_instrument_name_markup(self):
-        r'''Read-only default short instrument name.
-
-        Return markup.
-        '''
-        return self._default_short_instrument_name_markup
+        return self._default_short_instrument_name
 
     @property
     def format(self):
@@ -178,8 +161,9 @@ class InstrumentMark(ContextMark):
 
             Return markup.
             '''
+            from abjad.tools.markuptools import Markup
             if self._instrument_name_markup is None:
-                return self.default_instrument_name_markup
+                return Markup(iotools.capitalize_string(self.instrument_name))
             else:
                 return self._instrument_name_markup
         def fset(self, instrument_name_markup):
@@ -234,8 +218,9 @@ class InstrumentMark(ContextMark):
 
             Return markup.
             '''
+            from abjad.tools.markuptools import Markup
             if self._short_instrument_name_markup is None:
-                return self.default_short_instrument_name_markup
+                return Markup(iotools.capitalize_string(self.short_instrument_name))
             else:
                 return self._short_instrument_name_markup
         def fset(self, short_instrument_name_markup):

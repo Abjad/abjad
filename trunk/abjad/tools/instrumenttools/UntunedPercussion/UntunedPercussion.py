@@ -31,10 +31,13 @@ class UntunedPercussion(_PercussionInstrument):
     Untuned percussion targets the staff context by default.
     '''
 
-    def __init__(self, instrument_name_markup=None, short_instrument_name_markup=None, target_context=None):
-        _PercussionInstrument.__init__(self, instrument_name_markup, short_instrument_name_markup, target_context)
-        self._default_instrument_name_markup = markuptools.Markup('Percussion')
-        self._default_short_instrument_name_markup = markuptools.Markup('Perc.')
+    def __init__(self, instrument_name=None, short_instrument_name=None,
+        instrument_name_markup=None, short_instrument_name_markup=None, target_context=None):
+        _PercussionInstrument.__init__(self, instrument_name, short_instrument_name,
+            instrument_name_markup=instrument_name_markup, 
+            short_instrument_name_markup=short_instrument_name_markup, target_context=target_context)
+        self._default_instrument_name = 'percussion'
+        self._default_short_instrument_name = 'perc.'
         self.sounding_pitch_of_written_middle_c = pitchtools.NamedChromaticPitch("c'")
         self.primary_clefs = [contexttools.ClefMark('percussion')]
         self._copy_primary_clefs_to_all_clefs()

@@ -34,10 +34,13 @@ class Cello(_StringInstrument):
     The cello targets staff context by default.
     '''
 
-    def __init__(self, instrument_name_markup=None, short_instrument_name_markup=None, target_context=None):
-        _StringInstrument.__init__(self, instrument_name_markup, short_instrument_name_markup, target_context)
-        self._default_instrument_name_markup = markuptools.Markup('Cello')
-        self._default_short_instrument_name_markup = markuptools.Markup('Vc.')
+    def __init__(self, instrument_name=None, short_instrument_name=None,
+        instrument_name_markup=None, short_instrument_name_markup=None, target_context=None):
+        _StringInstrument.__init__(self, instrument_name, short_instrument_name,
+            instrument_name_markup=instrument_name_markup, 
+            short_instrument_name_markup=short_instrument_name_markup, target_context=target_context)
+        self._default_instrument_name = 'cello'
+        self._default_short_instrument = 'vc.'
         self.sounding_pitch_of_written_middle_c = pitchtools.NamedChromaticPitch("c'")
         self.primary_clefs = [contexttools.ClefMark('bass')]
         self.all_clefs = [
