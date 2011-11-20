@@ -8,7 +8,7 @@ class _Instrument(contexttools.InstrumentMark):
     Abjad model of the musical instrument.
     '''
 
-    def __init__(self, instrument_name, short_instrument_name, 
+    def __init__(self, instrument_name=None, short_instrument_name=None, 
         instrument_name_markup=None, short_instrument_name_markup=None, target_context=None):
         self.sounding_pitch_of_fingered_middle_c = pitchtools.NamedChromaticPitch("c'")
         contexttools.InstrumentMark.__init__(self, instrument_name, short_instrument_name,
