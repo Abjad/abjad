@@ -1,4 +1,4 @@
-def capitalize_string(string):
+def capitalize_string_start(string):
     r'''.. versionadded:: 2.5
 
     Capitalize `string`::
@@ -7,7 +7,7 @@ def capitalize_string(string):
 
     ::
 
-        abjad> iotools.capitalize_string(string)
+        abjad> iotools.capitalize_string_start(string)
         'Violin I'
 
     Function differs from built-in ``string.capitalize()``.

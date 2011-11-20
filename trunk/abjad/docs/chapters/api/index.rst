@@ -1081,7 +1081,7 @@ iotools
 .. toctree::
    :maxdepth: 1
 
-   tools/iotools/capitalize_string
+   tools/iotools/capitalize_string_start
    tools/iotools/clear_terminal
    tools/iotools/f
    tools/iotools/format_input_lines_as_doc_string
