@@ -168,7 +168,7 @@ class InstrumentMark(ContextMark):
                 return self._instrument_name_markup
         def fset(self, instrument_name_markup):
             from abjad.tools.markuptools import Markup
-            assert isinstance(instrument_name_markup, (str, type(None)))
+            assert isinstance(instrument_name_markup, (str, type(Markup('')), type(None)))
             if instrument_name_markup is None:
                 self._instrument_name_markup = instrument_name_markup
             else:
@@ -225,7 +225,7 @@ class InstrumentMark(ContextMark):
                 return self._short_instrument_name_markup
         def fset(self, short_instrument_name_markup):
             from abjad.tools.markuptools import Markup
-            assert isinstance(short_instrument_name_markup, (str, type(None)))
+            assert isinstance(short_instrument_name_markup, (str, type(Markup('')), type(None)))
             if short_instrument_name_markup is None:
                 self._short_instrument_name_markup = short_instrument_name_markup
             else:
