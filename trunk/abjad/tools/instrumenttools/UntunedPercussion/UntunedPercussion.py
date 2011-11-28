@@ -20,7 +20,7 @@ class UntunedPercussion(_PercussionInstrument):
 
         abjad> f(staff)
         \new Staff {
-            \set Staff.instrumentName = \markup { Percussion }
+            \set Staff.instrumentName = \markup { Untuned percussion }
             \set Staff.shortInstrumentName = \markup { Perc. }
             c'8
             d'8
@@ -36,7 +36,7 @@ class UntunedPercussion(_PercussionInstrument):
         _PercussionInstrument.__init__(self, instrument_name, short_instrument_name,
             instrument_name_markup=instrument_name_markup, 
             short_instrument_name_markup=short_instrument_name_markup, target_context=target_context)
-        self._default_instrument_name = 'percussion'
+        self._default_instrument_name = 'untuned percussion'
         self._default_short_instrument_name = 'perc.'
         self.sounding_pitch_of_written_middle_c = pitchtools.NamedChromaticPitch("c'")
         self.primary_clefs = [contexttools.ClefMark('percussion')]
