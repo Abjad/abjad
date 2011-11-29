@@ -20,8 +20,8 @@ class BassClarinet(Clarinet):
 
         abjad> f(staff)
         \new Staff {
-            \set Staff.instrumentName = \markup { Bass Clarinet }
-            \set Staff.shortInstrumentName = \markup { Bass Cl. }
+            \set Staff.instrumentName = \markup { Bass clarinet }
+            \set Staff.shortInstrumentName = \markup { Bass cl. }
             c'8
             d'8
             e'8

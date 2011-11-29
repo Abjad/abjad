@@ -41,7 +41,7 @@ class Cello(_StringInstrument):
             short_instrument_name_markup=short_instrument_name_markup, target_context=target_context)
         self._default_instrument_name = 'cello'
         self._default_performer_names = ('cellist',)
-        self._default_short_instrument = 'vc.'
+        self._default_short_instrument_name = 'vc.'
         self.sounding_pitch_of_written_middle_c = pitchtools.NamedChromaticPitch("c'")
         self.primary_clefs = [contexttools.ClefMark('bass')]
         self.all_clefs = [

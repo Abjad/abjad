@@ -20,7 +20,7 @@ class EnglishHorn(Oboe):
 
         abjad> f(staff)
         \new Staff {
-            \set Staff.instrumentName = \markup { English Horn }
+            \set Staff.instrumentName = \markup { English horn }
             \set Staff.shortInstrumentName = \markup { Eng. hn. }
             c'8
             d'8

@@ -21,7 +21,7 @@ class FrenchHorn(_BrassInstrument, _WindInstrument):
 
         abjad> f(staff)
         \new Staff {
-            \set Staff.instrumentName = \markup { French Horn }
+            \set Staff.instrumentName = \markup { French horn }
             \set Staff.shortInstrumentName = \markup { Fr. hn. }
             c'8
             d'8

@@ -19,8 +19,8 @@ class AltoFlute(Flute):
 
         abjad> f(staff)
         \new Staff {
-            \set Staff.instrumentName = \markup { Alto Flute }
-            \set Staff.shortInstrumentName = \markup { Alt. Fl. }
+            \set Staff.instrumentName = \markup { Alto flute }
+            \set Staff.shortInstrumentName = \markup { Alt. fl. }
             c'8
             d'8
             e'8

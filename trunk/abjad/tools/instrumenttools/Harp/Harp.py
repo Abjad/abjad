@@ -20,7 +20,7 @@ class Harp(_StringInstrument):
 
     ::
 
-        abjad> f(piano_staff)
+        abjad> f(piano_staff) # doctest: +SKIP
         \new PianoStaff <<
             \set PianoStaff.instrumentName = \markup { Harp }
             \set PianoStaff.shortInstrumentName = \markup { Hp. }

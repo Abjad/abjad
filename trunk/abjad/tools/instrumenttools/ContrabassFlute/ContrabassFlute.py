@@ -19,8 +19,8 @@ class ContrabassFlute(Flute):
 
         abjad> f(staff)
         \new Staff {
-            \set Staff.instrumentName = \markup { Contrabass Flute }
-            \set Staff.shortInstrumentName = \markup { Cbass Fl. }
+            \set Staff.instrumentName = \markup { Contrabass flute }
+            \set Staff.shortInstrumentName = \markup { Cbass. fl. }
             c'8
             d'8
             e'8
