@@ -89,3 +89,22 @@ class _Instrument(contexttools.InstrumentMark):
         def fget(self):
             return self._traditional_range
         return property(**locals())
+
+    ### PUBLIC METHODS ###
+
+    def get_default_performer_name(self, locale='en-us'):
+        r'''.. versionadded:: 2.5
+
+        Get default player name.
+
+        Available values for `locale` are ``'en-us'`` and ``'en-uk'``.
+        '''
+        if locale == 'en-us':
+            return self._default_performer_names[0]
+        elif locale == 'en-uk':
+            if 1 <= len(self._default_performer_names):
+                return self._default_performer_names[1]
+            else:
+                return self._default_performer_names[0]
+        else:
+            raise ValueError

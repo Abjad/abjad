@@ -40,6 +40,7 @@ class Contrabass(_StringInstrument):
             instrument_name_markup=instrument_name_markup, 
             short_instrument_name_markup=short_instrument_name_markup, target_context=target_context)
         self._default_instrument_name = 'contrabass'
+        self._default_performer_names = ('bassist',)
         self._default_short_instrument_name = 'vb.'
         self.sounding_pitch_of_fingered_middle_c = pitchtools.NamedChromaticPitch('c')
         self.primary_clefs = [contexttools.ClefMark('bass')]

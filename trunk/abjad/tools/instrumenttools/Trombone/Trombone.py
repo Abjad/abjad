@@ -40,6 +40,7 @@ class Trombone(_BrassInstrument):
             instrument_name_markup=instrument_name_markup, 
             short_instrument_name_markup=short_instrument_name_markup, target_context=target_context)
         self._default_instrument_name = 'trombone'
+        self._default_performer_names = ('trombonist',)
         self._default_short_instrument_name = 'trb.'
         self.sounding_pitch_of_written_middle_c = pitchtools.NamedChromaticPitch("c'")
         self.primary_clefs = [contexttools.ClefMark('bass'), contexttools.ClefMark('tenor')]

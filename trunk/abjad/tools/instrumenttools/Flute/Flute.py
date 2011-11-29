@@ -37,6 +37,7 @@ class Flute(_WindInstrument):
             instrument_name_markup=instrument_name_markup, 
             short_instrument_name_markup=short_instrument_name_markup, target_context=target_context)
         self._default_instrument_name = 'flute'
+        self._default_performer_names = ('flutist', 'flautist',)
         self._default_short_instrument_name = 'fl.'
         self.sounding_pitch_of_written_middle_c = pitchtools.NamedChromaticPitch("c'")
         self.primary_clefs = [contexttools.ClefMark('treble')]

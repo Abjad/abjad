@@ -41,6 +41,7 @@ class Accordion(_KeyboardInstrument, _ReedInstrument):
             instrument_name_markup=instrument_name_markup, 
             short_instrument_name_markup=short_instrument_name_markup, target_context=target_context)
         self._default_instrument_name = 'accordion'
+        self._default_performer_names = ('accordionist',)
         self._default_short_instrument_name = 'acc.'
         self.primary_clefs = [contexttools.ClefMark('treble'), contexttools.ClefMark('bass')]
         self._copy_primary_clefs_to_all_clefs()

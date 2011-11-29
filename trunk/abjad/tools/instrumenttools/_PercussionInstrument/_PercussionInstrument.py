@@ -7,4 +7,6 @@ class _PercussionInstrument(_Instrument):
     Abjad model of percussion instruments.
     '''
 
-    pass
+    def __init__(self, **kwargs):
+        _Instrument.__init__(self, **kwargs)
+        self._default_performer_names = ('percussionist',)

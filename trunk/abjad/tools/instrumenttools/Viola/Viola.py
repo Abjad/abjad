@@ -40,6 +40,7 @@ class Viola(_StringInstrument):
             instrument_name_markup=instrument_name_markup, 
             short_instrument_name_markup=short_instrument_name_markup, target_context=target_context)
         self._default_instrument_name = 'viola'
+        self._default_performer_names = ('violist',)
         self._default_short_instrument_name = 'va.'
         self.sounding_pitch_of_written_middle_c = pitchtools.NamedChromaticPitch("c'")
         self.primary_clefs = [contexttools.ClefMark('alto')]

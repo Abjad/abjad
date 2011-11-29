@@ -38,6 +38,7 @@ class FrenchHorn(_BrassInstrument, _WindInstrument):
             instrument_name_markup=instrument_name_markup, 
             short_instrument_name_markup=short_instrument_name_markup, target_context=target_context)
         self._default_instrument_name = 'French horn'
+        self._default_performer_names = ('hornist',)
         self._default_short_instrument_name = 'Fr. hn.'
         self.sounding_pitch_of_fingered_middle_c = pitchtools.NamedChromaticPitch('f')
         self.primary_clefs = [contexttools.ClefMark('treble'), contexttools.ClefMark('bass')]
