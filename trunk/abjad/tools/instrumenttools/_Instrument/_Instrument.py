@@ -13,6 +13,7 @@ class _Instrument(contexttools.InstrumentMark):
         self.sounding_pitch_of_fingered_middle_c = pitchtools.NamedChromaticPitch("c'")
         contexttools.InstrumentMark.__init__(self, instrument_name, short_instrument_name,
             instrument_name_markup=None, short_instrument_name_markup=None, target_context=None)
+        self._default_performer_names = None
 
     ### PRIVATE METHODS ###
 
@@ -99,7 +100,10 @@ class _Instrument(contexttools.InstrumentMark):
 
         Available values for `locale` are ``'en-us'`` and ``'en-uk'``.
         '''
-        if locale == 'en-us':
+        if self._default_performer_names is None:
+            performer_name = '{} player'.format(self.default_instrument_name)
+            return performer_name
+        elif locale == 'en-us':
             return self._default_performer_names[0]
         elif locale == 'en-uk':
             if 1 <= len(self._default_performer_names):
