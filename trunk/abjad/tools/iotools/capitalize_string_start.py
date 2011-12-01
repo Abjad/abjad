@@ -22,4 +22,10 @@ def capitalize_string_start(string):
     Return newly constructed string.
     '''
 
-    return string[0].upper() + string[1:]
+    if not isinstance(string, str):
+        raise TypeError
+
+    if not string:
+        return string
+    else:
+        return string[0].upper() + string[1:]
