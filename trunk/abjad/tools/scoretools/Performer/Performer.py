@@ -45,13 +45,13 @@ class Performer(object):
     def _repr_helper(self, include_tools_package=False):
         values = []
         if self.name is not None:
-            values.append(repr(self.name))
+            values.append('name={!r}'.format(self.name))
         if self.instruments:
             if include_tools_package:
                 instruments = ', '.join([x._repr_with_tools_package for x in self.instruments])
-                instruments = '[{}]'.format(instruments)
+                instruments = 'instruments=[{}]'.format(instruments)
             else:
-                instruments = str(self.instruments[:])
+                instruments = 'instruments={}'.format(str(self.instruments[:]))
             values.append(instruments)
         values = ', '.join(values)
         if include_tools_package:
