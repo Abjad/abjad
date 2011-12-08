@@ -163,7 +163,7 @@ class InstrumentMark(ContextMark):
             '''
             from abjad.tools.markuptools import Markup
             if self._instrument_name_markup is None:
-                return Markup(iotools.capitalize_string_start(self.instrument_name))
+                return Markup(self.instrument_name)
             else:
                 return self._instrument_name_markup
         def fset(self, instrument_name_markup):
@@ -220,7 +220,7 @@ class InstrumentMark(ContextMark):
             '''
             from abjad.tools.markuptools import Markup
             if self._short_instrument_name_markup is None:
-                return Markup(iotools.capitalize_string_start(self.short_instrument_name))
+                return Markup(self.short_instrument_name)
             else:
                 return self._short_instrument_name_markup
         def fset(self, short_instrument_name_markup):

@@ -4,7 +4,9 @@ from abjad import *
 def test_instrumenttools_transpose_notes_and_chords_in_expr_from_sounding_pitch_to_fingered_pitch_01():
 
     staff = Staff("<c' e' g'>4 d'4 r4 e'4")
-    instrumenttools.Clarinet()(staff)
+    clarinet = instrumenttools.Clarinet()(staff)
+    clarinet.instrument_name_markup = 'Clarinet'
+    clarinet.short_instrument_name_markup = 'Cl.'
 
     for leaf in staff.leaves:
         if isinstance(leaf, (Note, Chord)):
