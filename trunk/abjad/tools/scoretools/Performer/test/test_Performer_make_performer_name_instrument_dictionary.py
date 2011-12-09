@@ -10,4 +10,4 @@ def test_Performer_make_performer_name_instrument_dictionary_01():
     assert 'guitarist' in dictionary
     assert 'violinist' in dictionary
 
-    assert dictionary['bassoonist'] == [instrumenttools.Bassoon(), instrumenttools.Contrabassoon()]
+    assert dictionary['bassoonist'] == [instrumenttools.Bassoon, instrumenttools.Contrabassoon]

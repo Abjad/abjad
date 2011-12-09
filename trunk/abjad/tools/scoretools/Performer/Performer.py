@@ -133,16 +133,43 @@ class Performer(object):
         '''
         return 1 < self.instrument_count
 
-    # TODO: implement me and write tests
     @property
     def likely_instruments_based_on_performer_name(self):
-        result = []
-        return result
+        r'''.. versionadded:: 2.5
 
-    # TODO: implement me and write tests
+        Likely instruments based on performer name::
+
+            abjad> flutist = scoretools.Performer(name='flustist')
+            abjad> for likely_instrument in flutist.likely_instruments_based_on_performer_name:
+            ...     likely_instrument
+            ... 
+            <class 'abjad.tools.instrumenttools.AltoFlute.AltoFlute.AltoFlute'>
+            <class 'abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute'>
+            <class 'abjad.tools.instrumenttools.ContrabassFlute.ContrabassFlute.ContrabassFlute'>
+            <class 'abjad.tools.instrumenttools.Flute.Flute.Flute'>
+            <class 'abjad.tools.instrumenttools.Piccolo.Piccolo.Piccolo'>
+
+        Return list.
+        '''
+        dictionary = self.make_performer_name_instrument_dictionary()
+        return dictionary[self.name]
+
     @property
     def most_likely_instrument_based_on_performer_name(self):
-        return None
+        r'''.. versionadded:: 2.5
+
+        Most likely instrument based on performer name::
+
+            abjad> flutist = scoretools.Performer(name='flutist')    
+            abjad> flutist.most_likely_instrument_based_on_performer_name
+            <class 'abjad.tools.instrumenttools.Flute.Flute.Flute'>
+
+        Return instrument class.
+        '''
+        for likely_instrument_class in self.likely_instruments_based_on_performer_name:
+            likely_instrument = likely_instrument_class()
+            if likely_instrument.is_primary_instrument:
+                return likely_instrument_class
 
     @apply
     def name():
@@ -167,14 +194,21 @@ class Performer(object):
     ### PUBLIC METHODS ###
 
     # TODO: return ordered dict instead of unordered dict
+    # TODO: then add usage example that will pass doctests
     def make_performer_name_instrument_dictionary(self, locale=None):
+        r'''.. versionadded:: 2.5
+
+        Make performer name / instrument dictionary.
+    
+        Return dictionary.
+        '''
         from abjad.tools import instrumenttools
         result = {}
         for instrument_class in instrumenttools.list_instruments():
             instrument = instrument_class()
             performer_name = instrument.get_default_performer_name(locale=locale)
             if performer_name in result:
-                result[performer_name].append(instrument)
+                result[performer_name].append(instrument_class)
             else:
-                result[performer_name] = [instrument]
+                result[performer_name] = [instrument_class]
         return result
