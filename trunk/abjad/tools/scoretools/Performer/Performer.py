@@ -6,11 +6,11 @@ class Performer(object):
 
     Abjad model of performer::
 
-        abjad> scoretools.Performer('Flutist')
-        Performer('Flutist')
+        abjad> scoretools.Performer('flutist')
+        Performer('flutist')
 
     The purpose of the class is to model things like
-    Flute I doubling piccolo and alto flute.
+    flute I doubling piccolo and alto flute.
 
     At present the class is a list of instruments.
     '''
@@ -42,6 +42,7 @@ class Performer(object):
 
     ### PRIVATE METHODS ####
 
+
     def _repr_helper(self, include_tools_package=False):
         values = []
         if self.name is not None:
@@ -67,7 +68,7 @@ class Performer(object):
         def fget(self):
             r'''List of instruments to be played by performer::
 
-                abjad> performer = scoretools.Performer('Flutist')
+                abjad> performer = scoretools.Performer('flutist')
 
             ::
 
@@ -96,7 +97,7 @@ class Performer(object):
     def instrument_count(self):
         r'''Read-only number of instruments to be played by performer::
 
-            abjad> performer = scoretools.Performer('Flutist')
+            abjad> performer = scoretools.Performer('flutist')
 
         ::
 
@@ -116,7 +117,7 @@ class Performer(object):
     def is_doubling(self):
         r'''Is performer to play more than one instrument? ::
 
-            abjad> performer = scoretools.Performer('Flutist')
+            abjad> performer = scoretools.Performer('flutist')
 
         ::
 
@@ -132,17 +133,28 @@ class Performer(object):
         '''
         return 1 < self.instrument_count
 
+    # TODO: implement me and write tests
+    @property
+    def likely_instruments_based_on_performer_name(self):
+        result = []
+        return result
+
+    # TODO: implement me and write tests
+    @property
+    def most_likely_instrument_based_on_performer_name(self):
+        return None
+
     @apply
     def name():
         def fget(self):
             r'''Score name of performer::
 
-                abjad> performer = scoretools.Performer('Flutist')
+                abjad> performer = scoretools.Performer('flutist')
 
             ::
 
                 abjad> performer.name
-                'Flutist'
+                'flutist'
 
             Return string.
             '''
@@ -151,3 +163,18 @@ class Performer(object):
             assert isinstance(name, (str, type(None)))
             self._name = name
         return property(**locals())
+
+    ### PUBLIC METHODS ###
+
+    # TODO: return ordered dict instead of unordered dict
+    def make_performer_name_instrument_dictionary(self, locale=None):
+        from abjad.tools import instrumenttools
+        result = {}
+        for instrument_class in instrumenttools.list_instruments():
+            instrument = instrument_class()
+            performer_name = instrument.get_default_performer_name(locale=locale)
+            if performer_name in result:
+                result[performer_name].append(instrument)
+            else:
+                result[performer_name] = [instrument]
+        return result
