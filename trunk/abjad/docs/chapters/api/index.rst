@@ -1158,6 +1158,7 @@ mathtools
    tools/mathtools/interpolate_linear
    tools/mathtools/is_assignable_integer
    tools/mathtools/is_dotted_integer
+   tools/mathtools/is_integer_equivalent_expr
    tools/mathtools/is_integer_equivalent_number
    tools/mathtools/is_negative_integer
    tools/mathtools/is_nonnegative_integer
