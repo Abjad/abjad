@@ -152,7 +152,11 @@ class Performer(object):
         Return list.
         '''
         dictionary = self.make_performer_name_instrument_dictionary()
-        return dictionary[self.name]
+        try:
+            result = dictionary[self.name]
+        except KeyError:
+            result = []
+        return result
 
     @property
     def most_likely_instrument_based_on_performer_name(self):
