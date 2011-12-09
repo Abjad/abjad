@@ -40,6 +40,7 @@ class Vibraphone(_PercussionInstrument):
         self._default_instrument_name = 'vibraphone'
         self._default_performer_names = ('vibraphonist',)
         self._default_short_instrument_name = 'vibr.'
+        self._is_primary_instrument = False
         self.sounding_pitch_of_written_middle_c = pitchtools.NamedChromaticPitch("c'")
         self.primary_clefs = [contexttools.ClefMark('treble')]
         self._copy_primary_clefs_to_all_clefs()

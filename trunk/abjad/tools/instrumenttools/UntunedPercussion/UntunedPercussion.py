@@ -39,6 +39,7 @@ class UntunedPercussion(_PercussionInstrument):
             short_instrument_name_markup=short_instrument_name_markup, target_context=target_context)
         self._default_instrument_name = 'untuned percussion'
         self._default_short_instrument_name = 'perc.'
+        self._is_primary_instrument = False
         self.sounding_pitch_of_written_middle_c = pitchtools.NamedChromaticPitch("c'")
         self.primary_clefs = [contexttools.ClefMark('percussion')]
         self._copy_primary_clefs_to_all_clefs()

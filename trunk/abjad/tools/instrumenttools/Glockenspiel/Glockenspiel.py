@@ -39,6 +39,7 @@ class Glockenspiel(_PercussionInstrument):
             short_instrument_name_markup=short_instrument_name_markup, target_context=target_context)
         self._default_instrument_name = 'glockenspiel'
         self._default_short_instrument_name = 'gkspl.'
+        self._is_primary_instrument = False
         self.sounding_pitch_of_fingered_middle_c = pitchtools.NamedChromaticPitch("c'''")
         self.primary_clefs = [contexttools.ClefMark('treble')]
         self._copy_primary_clefs_to_all_clefs()

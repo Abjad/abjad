@@ -39,6 +39,7 @@ class Clarinet(_SingleReedInstrument):
         self._default_instrument_name = 'clarinet'
         self._default_performer_names = ('clarinetist', 'clarinettist',)
         self._default_short_instrument_name = 'cl.'
+        self._is_primary_instrument = True
         self.sounding_pitch_of_fingered_middle_c = pitchtools.NamedChromaticPitch('bf')
         self.primary_clefs = [contexttools.ClefMark('treble')]
         self._copy_primary_clefs_to_all_clefs()

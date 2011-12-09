@@ -14,6 +14,7 @@ class _Instrument(contexttools.InstrumentMark):
         contexttools.InstrumentMark.__init__(self, instrument_name, short_instrument_name,
             instrument_name_markup=None, short_instrument_name_markup=None, target_context=None)
         self._default_performer_names = None
+        self._is_primary_instrument = False
 
     ### PRIVATE METHODS ###
 
@@ -43,6 +44,13 @@ class _Instrument(contexttools.InstrumentMark):
         '''
         return pitchtools.NamedChromaticPitch("c'") - self.sounding_pitch_of_fingered_middle_c
 
+    @property
+    def is_primary_instrument(self):
+        return self._is_primary_instrument
+
+    @property
+    def is_secondary_instrument(self):
+        return not self.is_primary_instrument
 
     @property
     def is_transposing(self):

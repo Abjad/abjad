@@ -40,6 +40,7 @@ class Xylophone(_PercussionInstrument):
         self._default_instrument_name = 'xylophone'
         self._default_performer_names = ('xylophonist',)
         self._default_short_instrument_name = 'xyl.'
+        self._is_primary_instrument = False
         self.sounding_pitch_of_fingered_middle_c = pitchtools.NamedChromaticPitch("c''")
         self.primary_clefs = [contexttools.ClefMark('treble')]
         self._copy_primary_clefs_to_all_clefs()

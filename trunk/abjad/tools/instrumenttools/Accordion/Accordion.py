@@ -43,6 +43,7 @@ class Accordion(_KeyboardInstrument, _ReedInstrument):
         self._default_instrument_name = 'accordion'
         self._default_performer_names = ('accordionist',)
         self._default_short_instrument_name = 'acc.'
+        self._is_primary_instrument = True
         self.primary_clefs = [contexttools.ClefMark('treble'), contexttools.ClefMark('bass')]
         self._copy_primary_clefs_to_all_clefs()
         self.traditional_range = (-32, 48)
