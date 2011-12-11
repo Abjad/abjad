@@ -300,6 +300,7 @@ instrumenttools
    tools/instrumenttools/Viola/Viola
    tools/instrumenttools/Violin/Violin
    tools/instrumenttools/Xylophone/Xylophone
+   tools/instrumenttools/default_instrument_name_to_instrument_class
    tools/instrumenttools/iterate_notes_and_chords_in_expr_outside_traditional_instrument_ranges
    tools/instrumenttools/list_instrument_names
    tools/instrumenttools/list_instruments
