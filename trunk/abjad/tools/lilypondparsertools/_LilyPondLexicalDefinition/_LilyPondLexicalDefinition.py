@@ -376,11 +376,27 @@ class _LilyPondLexicalDefinition(object):
         t.type = 'MULTI_MEASURE_REST'
         return t
 
+    def t_INITIAL_markup_notes_353_boolean(self, t):
+        '\#\#(t|f)'
+        t.type = 'SCM_TOKEN'
+        if t.value[2] == 't':
+            t.value = True
+        else:
+            t.value = False
+        return t
+
+    @TOKEN("\#'%s" % DASHED_WORD)
+    def t_INITIAL_markup_notes_353_identifier(self, t):
+        t.type = 'SCM_IDENTIFIER'
+        t.value = t.value[2:]
+        return t
+
     # lexer.ll:353
     # <INITIAL,chords,figures,lyrics,markup,notes>#
     def t_INITIAL_markup_notes_353(self, t):
         '\#'
         t.type = 'SCHEME_START'
+        t.lexer.push_state('INITIAL')
         return t
 
     # lexer.ll:387

@@ -74623,7 +74623,7 @@ S'p_optional_context_mod'
 p330
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p331
-I309
+I310
 tp332
 a(S'optional_context_mod -> context_modification'
 p333
@@ -74631,7 +74631,7 @@ g329
 I1
 g330
 g331
-I310
+I311
 tp334
 a(S'context_mod_list -> <empty>'
 p335
@@ -74642,7 +74642,7 @@ S'p_context_mod_list'
 p337
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p338
-I316
+I317
 tp339
 a(S'context_mod_list -> context_mod_list context_mod'
 p340
@@ -74650,7 +74650,7 @@ g336
 I2
 g337
 g338
-I317
+I318
 tp341
 a(S'context_mod_list -> context_mod_list CONTEXT_MOD_IDENTIFIER'
 p342
@@ -74658,7 +74658,7 @@ g336
 I2
 g337
 g338
-I318
+I319
 tp343
 a(S'composite_music -> complex_music'
 p344
@@ -74669,7 +74669,7 @@ S'p_composite_music'
 p346
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p347
-I324
+I325
 tp348
 a(S'composite_music -> closed_music'
 p349
@@ -74677,7 +74677,7 @@ g345
 I1
 g346
 g347
-I325
+I326
 tp350
 a(S'closed_music -> mode_changed_music'
 p351
@@ -74688,7 +74688,7 @@ S'p_closed_music'
 p353
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p354
-I331
+I332
 tp355
 a(S'closed_music -> MUSIC_IDENTIFIER'
 p356
@@ -74696,7 +74696,7 @@ g352
 I1
 g353
 g354
-I332
+I333
 tp357
 a(S'closed_music -> grouped_music_list'
 p358
@@ -74704,7 +74704,7 @@ g352
 I1
 g353
 g354
-I333
+I334
 tp359
 a(S'grouped_music_list -> simultaneous_music'
 p360
@@ -74715,7 +74715,7 @@ S'p_grouped_music_list'
 p362
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p363
-I343
+I344
 tp364
 a(S'grouped_music_list -> sequential_music'
 p365
@@ -74723,7 +74723,7 @@ g361
 I1
 g362
 g363
-I344
+I345
 tp366
 a(S'function_arglist -> function_arglist_bare'
 p367
@@ -74734,7 +74734,7 @@ S'p_function_arglist'
 p369
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p370
-I350
+I351
 tp371
 a(S'function_arglist -> EXPECT_MUSIC function_arglist_optional music'
 p372
@@ -74742,7 +74742,7 @@ g368
 I3
 g369
 g370
-I351
+I352
 tp373
 a(S'function_arglist -> EXPECT_SCM function_arglist_optional embedded_scm'
 p374
@@ -74750,7 +74750,7 @@ g368
 I3
 g369
 g370
-I352
+I353
 tp375
 a(S'function_arglist_optional -> function_arglist_keep'
 p376
@@ -74761,7 +74761,7 @@ S'p_function_arglist_optional'
 p378
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p379
-I358
+I359
 tp380
 a(S'function_arglist_optional -> EXPECT_OPTIONAL EXPECT_MUSIC function_arglist_optional'
 p381
@@ -74769,7 +74769,7 @@ g377
 I3
 g378
 g379
-I359
+I360
 tp382
 a(S'function_arglist_optional -> EXPECT_OPTIONAL EXPECT_PITCH function_arglist_optional'
 p383
@@ -74777,7 +74777,7 @@ g377
 I3
 g378
 g379
-I360
+I361
 tp384
 a(S'function_arglist_optional -> EXPECT_OPTIONAL EXPECT_DURATION function_arglist_optional'
 p385
@@ -74785,7 +74785,7 @@ g377
 I3
 g378
 g379
-I361
+I362
 tp386
 a(S'function_arglist_optional -> EXPECT_OPTIONAL EXPECT_MARKUP function_arglist_optional'
 p387
@@ -74793,7 +74793,7 @@ g377
 I3
 g378
 g379
-I362
+I363
 tp388
 a(S'function_arglist_optional -> EXPECT_OPTIONAL EXPECT_SCM function_arglist_optional'
 p389
@@ -74801,7 +74801,7 @@ g377
 I3
 g378
 g379
-I363
+I364
 tp390
 a(S'function_arglist_keep -> EXPECT_OPTIONAL EXPECT_MARKUP function_arglist_keep full_markup'
 p391
@@ -74812,7 +74812,7 @@ S'p_function_arglist_keep'
 p393
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p394
-I369
+I370
 tp395
 a(S'function_arglist_keep -> EXPECT_OPTIONAL EXPECT_MARKUP function_arglist_keep simple_string'
 p396
@@ -74820,7 +74820,7 @@ g392
 I4
 g393
 g394
-I370
+I371
 tp397
 a(S'function_arglist_keep -> EXPECT_OPTIONAL EXPECT_PITCH function_arglist_keep pitch_also_in_chords'
 p398
@@ -74828,7 +74828,7 @@ g392
 I4
 g393
 g394
-I371
+I372
 tp399
 a(S'function_arglist_keep -> EXPECT_OPTIONAL EXPECT_DURATION function_arglist_closed_keep duration_length'
 p400
@@ -74836,7 +74836,7 @@ g392
 I4
 g393
 g394
-I372
+I373
 tp401
 a(S'function_arglist_keep -> EXPECT_OPTIONAL EXPECT_SCM function_arglist_keep simple_string'
 p402
@@ -74844,7 +74844,7 @@ g392
 I4
 g393
 g394
-I373
+I374
 tp403
 a(S'function_arglist_keep -> EXPECT_OPTIONAL EXPECT_MUSIC function_arglist_keep closed_music'
 p404
@@ -74852,7 +74852,7 @@ g392
 I4
 g393
 g394
-I374
+I375
 tp405
 a(S'function_arglist_keep -> EXPECT_OPTIONAL EXPECT_SCM function_arglist_keep embedded_scm'
 p406
@@ -74860,7 +74860,7 @@ g392
 I4
 g393
 g394
-I375
+I376
 tp407
 a(S'function_arglist_keep -> function_arglist'
 p408
@@ -74868,7 +74868,7 @@ g392
 I1
 g393
 g394
-I376
+I377
 tp409
 a(S'function_arglist_closed -> function_arglist_bare'
 p410
@@ -74879,7 +74879,7 @@ S'p_function_arglist_closed'
 p412
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p413
-I382
+I383
 tp414
 a(S'function_arglist_closed -> EXPECT_MUSIC function_arglist_optional closed_music'
 p415
@@ -74887,7 +74887,7 @@ g411
 I3
 g412
 g413
-I383
+I384
 tp416
 a(S'function_arglist_closed -> EXPECT_SCM function_arglist_optional embedded_scm_closed'
 p417
@@ -74895,7 +74895,7 @@ g411
 I3
 g412
 g413
-I384
+I385
 tp418
 a(S'function_arglist_closed_optional -> function_arglist_closed_keep'
 p419
@@ -74906,7 +74906,7 @@ S'p_function_arglist_closed_optional'
 p421
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p422
-I390
+I391
 tp423
 a(S'function_arglist_closed_optional -> EXPECT_OPTIONAL EXPECT_MUSIC function_arglist_closed_optional'
 p424
@@ -74914,7 +74914,7 @@ g420
 I3
 g421
 g422
-I391
+I392
 tp425
 a(S'function_arglist_closed_optional -> EXPECT_OPTIONAL EXPECT_PITCH function_arglist_closed_optional'
 p426
@@ -74922,7 +74922,7 @@ g420
 I3
 g421
 g422
-I392
+I393
 tp427
 a(S'function_arglist_closed_optional -> EXPECT_OPTIONAL EXPECT_DURATION function_arglist_closed_optional'
 p428
@@ -74930,7 +74930,7 @@ g420
 I3
 g421
 g422
-I393
+I394
 tp429
 a(S'function_arglist_closed_optional -> EXPECT_OPTIONAL EXPECT_MARKUP function_arglist_closed_optional'
 p430
@@ -74938,7 +74938,7 @@ g420
 I3
 g421
 g422
-I394
+I395
 tp431
 a(S'function_arglist_closed_optional -> EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed_optional'
 p432
@@ -74946,7 +74946,7 @@ g420
 I3
 g421
 g422
-I395
+I396
 tp433
 a(S'function_arglist_closed_keep -> EXPECT_OPTIONAL EXPECT_MARKUP function_arglist_keep full_markup'
 p434
@@ -74957,7 +74957,7 @@ S'p_function_arglist_closed_keep'
 p436
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p437
-I401
+I402
 tp438
 a(S'function_arglist_closed_keep -> EXPECT_OPTIONAL EXPECT_MARKUP function_arglist_keep simple_string'
 p439
@@ -74965,7 +74965,7 @@ g435
 I4
 g436
 g437
-I402
+I403
 tp440
 a(S'function_arglist_closed_keep -> EXPECT_OPTIONAL EXPECT_PITCH function_arglist_keep pitch_also_in_chords'
 p441
@@ -74973,7 +74973,7 @@ g435
 I4
 g436
 g437
-I403
+I404
 tp442
 a(S'function_arglist_closed_keep -> EXPECT_OPTIONAL EXPECT_DURATION function_arglist_closed_keep duration_length'
 p443
@@ -74981,7 +74981,7 @@ g435
 I4
 g436
 g437
-I404
+I405
 tp444
 a(S'function_arglist_closed_keep -> EXPECT_OPTIONAL EXPECT_SCM function_arglist_keep simple_string'
 p445
@@ -74989,7 +74989,7 @@ g435
 I4
 g436
 g437
-I405
+I406
 tp446
 a(S'function_arglist_closed_keep -> EXPECT_OPTIONAL EXPECT_MUSIC function_arglist_keep closed_music'
 p447
@@ -74997,7 +74997,7 @@ g435
 I4
 g436
 g437
-I406
+I407
 tp448
 a(S'function_arglist_closed_keep -> EXPECT_OPTIONAL EXPECT_SCM function_arglist_keep embedded_scm_closed'
 p449
@@ -75005,7 +75005,7 @@ g435
 I4
 g436
 g437
-I407
+I408
 tp450
 a(S'function_arglist_closed_keep -> function_arglist_closed'
 p451
@@ -75013,7 +75013,7 @@ g435
 I1
 g436
 g437
-I408
+I409
 tp452
 a(S'embedded_scm_closed -> embedded_scm_bare'
 p453
@@ -75024,7 +75024,7 @@ S'p_embedded_scm_closed'
 p455
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p456
-I414
+I415
 tp457
 a(S'embedded_scm_closed -> scm_function_call_closed'
 p458
@@ -75032,7 +75032,7 @@ g454
 I1
 g455
 g456
-I415
+I416
 tp459
 a(S'scm_function_call_closed -> SCM_FUNCTION function_arglist_closed'
 p460
@@ -75043,7 +75043,7 @@ S'p_scm_function_call_closed'
 p462
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p463
-I421
+I422
 tp464
 a(S'function_arglist_bare -> EXPECT_NO_MORE_ARGS'
 p465
@@ -75054,7 +75054,7 @@ S'p_function_arglist_bare'
 p467
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p468
-I427
+I428
 tp469
 a(S'function_arglist_bare -> EXPECT_MARKUP function_arglist_optional full_markup'
 p470
@@ -75062,7 +75062,7 @@ g466
 I3
 g467
 g468
-I428
+I429
 tp471
 a(S'function_arglist_bare -> EXPECT_MARKUP function_arglist_optional simple_string'
 p472
@@ -75070,7 +75070,7 @@ g466
 I3
 g467
 g468
-I429
+I430
 tp473
 a(S'function_arglist_bare -> EXPECT_PITCH function_arglist_optional pitch_also_in_chords'
 p474
@@ -75078,7 +75078,7 @@ g466
 I3
 g467
 g468
-I430
+I431
 tp475
 a(S'function_arglist_bare -> EXPECT_DURATION function_arglist_closed_optional duration_length'
 p476
@@ -75086,7 +75086,7 @@ g466
 I3
 g467
 g468
-I431
+I432
 tp477
 a(S'function_arglist_bare -> EXPECT_SCM function_arglist_optional simple_string'
 p478
@@ -75094,7 +75094,7 @@ g466
 I3
 g467
 g468
-I432
+I433
 tp479
 a(S'music_function_call -> MUSIC_FUNCTION function_arglist'
 p480
@@ -75105,7 +75105,7 @@ S'p_music_function_call'
 p482
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p483
-I438
+I439
 tp484
 a(S'optional_id -> <empty>'
 p485
@@ -75116,7 +75116,7 @@ S'p_optional_id'
 p487
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p488
-I444
+I445
 tp489
 a(S'optional_id -> = simple_string'
 p490
@@ -75124,7 +75124,7 @@ g486
 I2
 g487
 g488
-I445
+I446
 tp491
 a(S'complex_music -> music_function_call'
 p492
@@ -75135,7 +75135,7 @@ S'p_complex_music'
 p494
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p495
-I451
+I452
 tp496
 a(S'complex_music -> CONTEXT simple_string optional_id optional_context_mod music'
 p497
@@ -75143,7 +75143,7 @@ g493
 I5
 g494
 g495
-I452
+I453
 tp498
 a(S'complex_music -> NEWCONTEXT simple_string optional_id optional_context_mod music'
 p499
@@ -75151,7 +75151,7 @@ g493
 I5
 g494
 g495
-I453
+I454
 tp500
 a(S'complex_music -> TIMES fraction music'
 p501
@@ -75159,7 +75159,7 @@ g493
 I3
 g494
 g495
-I454
+I455
 tp502
 a(S'complex_music -> repeated_music'
 p503
@@ -75167,7 +75167,7 @@ g493
 I1
 g494
 g495
-I455
+I456
 tp504
 a(S'complex_music -> re_rhythmed_music'
 p505
@@ -75175,7 +75175,7 @@ g493
 I1
 g494
 g495
-I456
+I457
 tp506
 a(S'mode_changed_music -> mode_changing_head grouped_music_list'
 p507
@@ -75186,7 +75186,7 @@ S'p_mode_changed_music'
 p509
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p510
-I462
+I463
 tp511
 a(S'mode_changed_music -> mode_changing_head_with_context optional_context_mod grouped_music_list'
 p512
@@ -75194,7 +75194,7 @@ g508
 I3
 g509
 g510
-I463
+I464
 tp513
 a(S'mode_changing_head -> NOTEMODE'
 p514
@@ -75205,7 +75205,7 @@ S'p_mode_changing_head'
 p516
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p517
-I469
+I470
 tp518
 a(S'mode_changing_head -> DRUMMODE'
 p519
@@ -75213,7 +75213,7 @@ g515
 I1
 g516
 g517
-I470
+I471
 tp520
 a(S'mode_changing_head -> FIGUREMODE'
 p521
@@ -75221,7 +75221,7 @@ g515
 I1
 g516
 g517
-I471
+I472
 tp522
 a(S'mode_changing_head -> CHORDMODE'
 p523
@@ -75229,7 +75229,7 @@ g515
 I1
 g516
 g517
-I472
+I473
 tp524
 a(S'mode_changing_head -> LYRICMODE'
 p525
@@ -75237,7 +75237,7 @@ g515
 I1
 g516
 g517
-I473
+I474
 tp526
 a(S'mode_changing_head_with_context -> DRUMS'
 p527
@@ -75248,7 +75248,7 @@ S'p_mode_changing_head_with_context'
 p529
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p530
-I479
+I480
 tp531
 a(S'mode_changing_head_with_context -> FIGURES'
 p532
@@ -75256,7 +75256,7 @@ g528
 I1
 g529
 g530
-I480
+I481
 tp533
 a(S'mode_changing_head_with_context -> CHORDS'
 p534
@@ -75264,7 +75264,7 @@ g528
 I1
 g529
 g530
-I481
+I482
 tp535
 a(S'mode_changing_head_with_context -> LYRICS'
 p536
@@ -75272,7 +75272,7 @@ g528
 I1
 g529
 g530
-I482
+I483
 tp537
 a(S'new_lyrics -> ADDLYRICS closed_music'
 p538
@@ -75283,7 +75283,7 @@ S'p_new_lyrics'
 p540
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p541
-I488
+I489
 tp542
 a(S'new_lyrics -> new_lyrics ADDLYRICS closed_music'
 p543
@@ -75291,7 +75291,7 @@ g539
 I3
 g540
 g541
-I489
+I490
 tp544
 a(S're_rhythmed_music -> closed_music new_lyrics'
 p545
@@ -75302,7 +75302,7 @@ S'p_re_rhythmed_music'
 p547
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p548
-I495
+I496
 tp549
 a(S're_rhythmed_music -> LYRICSTO simple_string music'
 p550
@@ -75310,7 +75310,7 @@ g546
 I3
 g547
 g548
-I496
+I497
 tp551
 a(S'context_change -> CHANGE STRING = STRING'
 p552
@@ -75321,7 +75321,7 @@ S'p_context_change'
 p554
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p555
-I502
+I503
 tp556
 a(S'property_path_revved -> embedded_scm_closed'
 p557
@@ -75332,7 +75332,7 @@ S'p_property_path_revved'
 p559
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p560
-I508
+I509
 tp561
 a(S'property_path_revved -> property_path_revved embedded_scm_closed'
 p562
@@ -75340,7 +75340,7 @@ g558
 I2
 g559
 g560
-I509
+I510
 tp563
 a(S'property_path -> property_path_revved'
 p564
@@ -75351,7 +75351,7 @@ S'p_property_path'
 p566
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p567
-I515
+I516
 tp568
 a(S'property_operation -> STRING = scalar'
 p569
@@ -75362,7 +75362,7 @@ S'p_property_operation'
 p571
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p572
-I521
+I522
 tp573
 a(S'property_operation -> UNSET simple_string'
 p574
@@ -75370,7 +75370,7 @@ g570
 I2
 g571
 g572
-I522
+I523
 tp575
 a(S'property_operation -> OVERRIDE simple_string property_path = scalar'
 p576
@@ -75378,7 +75378,7 @@ g570
 I5
 g571
 g572
-I523
+I524
 tp577
 a(S'property_operation -> REVERT simple_string embedded_scm'
 p578
@@ -75386,7 +75386,7 @@ g570
 I3
 g571
 g572
-I524
+I525
 tp579
 a(S'context_def_mod -> CONSISTS'
 p580
@@ -75397,7 +75397,7 @@ S'p_context_def_mod'
 p582
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p583
-I530
+I531
 tp584
 a(S'context_def_mod -> REMOVE'
 p585
@@ -75405,7 +75405,7 @@ g581
 I1
 g582
 g583
-I531
+I532
 tp586
 a(S'context_def_mod -> ACCEPTS'
 p587
@@ -75413,7 +75413,7 @@ g581
 I1
 g582
 g583
-I532
+I533
 tp588
 a(S'context_def_mod -> DEFAULTCHILD'
 p589
@@ -75421,7 +75421,7 @@ g581
 I1
 g582
 g583
-I533
+I534
 tp590
 a(S'context_def_mod -> DENIES'
 p591
@@ -75429,7 +75429,7 @@ g581
 I1
 g582
 g583
-I534
+I535
 tp592
 a(S'context_def_mod -> ALIAS'
 p593
@@ -75437,7 +75437,7 @@ g581
 I1
 g582
 g583
-I535
+I536
 tp594
 a(S'context_def_mod -> TYPE'
 p595
@@ -75445,7 +75445,7 @@ g581
 I1
 g582
 g583
-I536
+I537
 tp596
 a(S'context_def_mod -> DESCRIPTION'
 p597
@@ -75453,7 +75453,7 @@ g581
 I1
 g582
 g583
-I537
+I538
 tp598
 a(S'context_def_mod -> NAME'
 p599
@@ -75461,7 +75461,7 @@ g581
 I1
 g582
 g583
-I538
+I539
 tp600
 a(S'context_mod -> property_operation'
 p601
@@ -75472,7 +75472,7 @@ S'p_context_mod'
 p603
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p604
-I544
+I545
 tp605
 a(S'context_mod -> context_def_mod STRING'
 p606
@@ -75480,7 +75480,7 @@ g602
 I2
 g603
 g604
-I545
+I546
 tp607
 a(S'context_mod -> context_def_mod embedded_scm'
 p608
@@ -75488,7 +75488,7 @@ g602
 I2
 g603
 g604
-I546
+I547
 tp609
 a(S'context_prop_spec -> simple_string'
 p610
@@ -75499,7 +75499,7 @@ S'p_context_prop_spec'
 p612
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p613
-I552
+I553
 tp614
 a(S'context_prop_spec -> simple_string . simple_string'
 p615
@@ -75507,7 +75507,7 @@ g611
 I3
 g612
 g613
-I553
+I554
 tp616
 a(S'simple_music_property_def -> OVERRIDE context_prop_spec property_path = scalar'
 p617
@@ -75518,7 +75518,7 @@ S'p_simple_music_property_def'
 p619
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p620
-I559
+I560
 tp621
 a(S'simple_music_property_def -> REVERT context_prop_spec embedded_scm'
 p622
@@ -75526,7 +75526,7 @@ g618
 I3
 g619
 g620
-I560
+I561
 tp623
 a(S'simple_music_property_def -> SET context_prop_spec = scalar'
 p624
@@ -75534,7 +75534,7 @@ g618
 I4
 g619
 g620
-I561
+I562
 tp625
 a(S'simple_music_property_def -> UNSET context_prop_spec'
 p626
@@ -75542,7 +75542,7 @@ g618
 I2
 g619
 g620
-I562
+I563
 tp627
 a(S'music_property_def -> simple_music_property_def'
 p628
@@ -75553,7 +75553,7 @@ S'p_music_property_def'
 p630
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p631
-I568
+I569
 tp632
 a(S'music_property_def -> ONCE simple_music_property_def'
 p633
@@ -75561,7 +75561,7 @@ g629
 I2
 g630
 g631
-I569
+I570
 tp634
 a(S'string -> STRING'
 p635
@@ -75572,7 +75572,7 @@ S'p_string'
 p637
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p638
-I575
+I576
 tp639
 a(S'string -> STRING_IDENTIFIER'
 p640
@@ -75580,7 +75580,7 @@ g636
 I1
 g637
 g638
-I576
+I577
 tp641
 a(S'string -> string + string'
 p642
@@ -75588,7 +75588,7 @@ g636
 I3
 g637
 g638
-I577
+I578
 tp643
 a(S'simple_string -> STRING'
 p644
@@ -75599,7 +75599,7 @@ S'p_simple_string'
 p646
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p647
-I583
+I584
 tp648
 a(S'simple_string -> LYRICS_STRING'
 p649
@@ -75607,7 +75607,7 @@ g645
 I1
 g646
 g647
-I584
+I585
 tp650
 a(S'simple_string -> STRING_IDENTIFIER'
 p651
@@ -75615,7 +75615,7 @@ g645
 I1
 g646
 g647
-I585
+I586
 tp652
 a(S'scalar_bare -> string'
 p653
@@ -75626,7 +75626,7 @@ S'p_scalar_bare'
 p655
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p656
-I591
+I592
 tp657
 a(S'scalar_bare -> lyric_element'
 p658
@@ -75634,7 +75634,7 @@ g654
 I1
 g655
 g656
-I592
+I593
 tp659
 a(S'scalar_bare -> bare_number'
 p660
@@ -75642,7 +75642,7 @@ g654
 I1
 g655
 g656
-I593
+I594
 tp661
 a(S'scalar_bare -> embedded_scm_bare'
 p662
@@ -75650,7 +75650,7 @@ g654
 I1
 g655
 g656
-I594
+I595
 tp663
 a(S'scalar_bare -> full_markup'
 p664
@@ -75658,7 +75658,7 @@ g654
 I1
 g655
 g656
-I595
+I596
 tp665
 a(S'scalar -> scalar_bare'
 p666
@@ -75669,7 +75669,7 @@ S'p_scalar'
 p668
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p669
-I601
+I602
 tp670
 a(S'scalar -> scm_function_call'
 p671
@@ -75677,7 +75677,7 @@ g667
 I1
 g668
 g669
-I602
+I603
 tp672
 a(S'scalar_closed -> scalar_bare'
 p673
@@ -75688,7 +75688,7 @@ S'p_scalar_closed'
 p675
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p676
-I608
+I609
 tp677
 a(S'scalar_closed -> scm_function_call_closed'
 p678
@@ -75696,7 +75696,7 @@ g674
 I1
 g675
 g676
-I609
+I610
 tp679
 a(S'event_chord -> simple_chord_elements post_events'
 p680
@@ -75707,7 +75707,7 @@ S'p_event_chord'
 p682
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p683
-I615
+I616
 tp684
 a(S'event_chord -> CHORD_REPETITION optional_notemode_duration post_events'
 p685
@@ -75715,7 +75715,7 @@ g681
 I3
 g682
 g683
-I616
+I617
 tp686
 a(S'event_chord -> MULTI_MEASURE_REST optional_notemode_duration post_events'
 p687
@@ -75723,7 +75723,7 @@ g681
 I3
 g682
 g683
-I617
+I618
 tp688
 a(S'event_chord -> command_element'
 p689
@@ -75731,7 +75731,7 @@ g681
 I1
 g682
 g683
-I618
+I619
 tp690
 a(S'event_chord -> note_chord_element'
 p691
@@ -75739,7 +75739,7 @@ g681
 I1
 g682
 g683
-I619
+I620
 tp692
 a(S'note_chord_element -> chord_body optional_notemode_duration post_events'
 p693
@@ -75750,7 +75750,7 @@ S'p_note_chord_element'
 p695
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p696
-I625
+I626
 tp697
 a(S'chord_body -> ANGLE_OPEN chord_body_elements ANGLE_CLOSE'
 p698
@@ -75761,7 +75761,7 @@ S'p_chord_body'
 p700
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p701
-I631
+I632
 tp702
 a(S'chord_body_elements -> <empty>'
 p703
@@ -75772,7 +75772,7 @@ S'p_chord_body_elements'
 p705
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p706
-I637
+I638
 tp707
 a(S'chord_body_elements -> chord_body_elements chord_body_element'
 p708
@@ -75780,7 +75780,7 @@ g704
 I2
 g705
 g706
-I638
+I639
 tp709
 a(S'chord_body_element -> pitch exclamations questions octave_check post_events'
 p710
@@ -75791,7 +75791,7 @@ S'p_chord_body_element'
 p712
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p713
-I644
+I645
 tp714
 a(S'chord_body_element -> DRUM_PITCH post_events'
 p715
@@ -75799,7 +75799,7 @@ g711
 I2
 g712
 g713
-I645
+I646
 tp716
 a(S'chord_body_element -> music_function_chord_body'
 p717
@@ -75807,7 +75807,7 @@ g711
 I1
 g712
 g713
-I646
+I647
 tp718
 a(S'music_function_chord_body_arglist -> function_arglist_bare'
 p719
@@ -75818,7 +75818,7 @@ S'p_music_function_chord_body_arglist'
 p721
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p722
-I652
+I653
 tp723
 a(S'music_function_chord_body_arglist -> EXPECT_MUSIC music_function_chord_body_arglist chord_body_element'
 p724
@@ -75826,7 +75826,7 @@ g720
 I3
 g721
 g722
-I653
+I654
 tp725
 a(S'music_function_chord_body_arglist -> EXPECT_SCM function_arglist_optional embedded_scm_chord_body'
 p726
@@ -75834,7 +75834,7 @@ g720
 I3
 g721
 g722
-I654
+I655
 tp727
 a(S'embedded_scm_chord_body -> embedded_scm_bare'
 p728
@@ -75845,7 +75845,7 @@ S'p_embedded_scm_chord_body'
 p730
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p731
-I660
+I661
 tp732
 a(S'embedded_scm_chord_body -> SCM_FUNCTION music_function_chord_body_arglist'
 p733
@@ -75853,7 +75853,7 @@ g729
 I2
 g730
 g731
-I661
+I662
 tp734
 a(S'music_function_chord_body -> MUSIC_FUNCTION music_function_chord_body_arglist'
 p735
@@ -75864,7 +75864,7 @@ S'p_music_function_chord_body'
 p737
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p738
-I667
+I668
 tp739
 a(S'music_function_event_arglist -> function_arglist_bare'
 p740
@@ -75875,7 +75875,7 @@ S'p_music_function_event_arglist'
 p742
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p743
-I673
+I674
 tp744
 a(S'music_function_event_arglist -> EXPECT_MUSIC music_function_event_arglist post_event'
 p745
@@ -75883,7 +75883,7 @@ g741
 I3
 g742
 g743
-I674
+I675
 tp746
 a(S'music_function_event_arglist -> EXPECT_SCM function_arglist_optional embedded_scm_event'
 p747
@@ -75891,7 +75891,7 @@ g741
 I3
 g742
 g743
-I675
+I676
 tp748
 a(S'embedded_scm_event -> embedded_scm_bare'
 p749
@@ -75902,7 +75902,7 @@ S'p_embedded_scm_event'
 p751
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p752
-I681
+I682
 tp753
 a(S'embedded_scm_event -> SCM_FUNCTION music_function_event_arglist'
 p754
@@ -75910,7 +75910,7 @@ g750
 I2
 g751
 g752
-I682
+I683
 tp755
 a(S'music_function_event -> MUSIC_FUNCTION music_function_event_arglist'
 p756
@@ -75921,7 +75921,7 @@ S'p_music_function_event'
 p758
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p759
-I688
+I689
 tp760
 a(S'event_function_event -> EVENT_FUNCTION music_function_event_arglist'
 p761
@@ -75932,7 +75932,7 @@ S'p_event_function_event'
 p763
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p764
-I694
+I695
 tp765
 a(S'command_element -> command_event'
 p766
@@ -75943,7 +75943,7 @@ S'p_command_element'
 p768
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p769
-I700
+I701
 tp770
 a(S'command_element -> E_BRACKET_OPEN'
 p771
@@ -75951,7 +75951,7 @@ g767
 I1
 g768
 g769
-I701
+I702
 tp772
 a(S'command_element -> E_BRACKET_CLOSE'
 p773
@@ -75959,7 +75959,7 @@ g767
 I1
 g768
 g769
-I702
+I703
 tp774
 a(S'command_element -> E_BACKSLASH'
 p775
@@ -75967,7 +75967,7 @@ g767
 I1
 g768
 g769
-I703
+I704
 tp776
 a(S'command_element -> |'
 p777
@@ -75975,7 +75975,7 @@ g767
 I1
 g768
 g769
-I704
+I705
 tp778
 a(S'command_element -> TIME_T fraction'
 p779
@@ -75983,7 +75983,7 @@ g767
 I2
 g768
 g769
-I705
+I706
 tp780
 a(S'command_element -> MARK scalar'
 p781
@@ -75991,7 +75991,7 @@ g767
 I2
 g768
 g769
-I706
+I707
 tp782
 a(S'command_event -> E_TILDE'
 p783
@@ -76002,7 +76002,7 @@ S'p_command_event'
 p785
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p786
-I712
+I713
 tp787
 a(S'command_event -> MARK DEFAULT'
 p788
@@ -76010,7 +76010,7 @@ g784
 I2
 g785
 g786
-I713
+I714
 tp789
 a(S'command_event -> tempo_event'
 p790
@@ -76018,7 +76018,7 @@ g784
 I1
 g785
 g786
-I714
+I715
 tp791
 a(S'command_event -> KEY DEFAULT'
 p792
@@ -76026,7 +76026,7 @@ g784
 I2
 g785
 g786
-I715
+I716
 tp793
 a(S'command_event -> KEY NOTENAME_PITCH SCM_IDENTIFIER'
 p794
@@ -76034,7 +76034,7 @@ g784
 I3
 g785
 g786
-I716
+I717
 tp795
 a(S'post_events -> <empty>'
 p796
@@ -76045,7 +76045,7 @@ S'p_post_events'
 p798
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p799
-I722
+I723
 tp800
 a(S'post_events -> post_events post_event'
 p801
@@ -76053,7 +76053,7 @@ g797
 I2
 g798
 g799
-I723
+I724
 tp802
 a(S'post_event_nofinger -> direction_less_event'
 p803
@@ -76064,7 +76064,7 @@ S'p_post_event_nofinger'
 p805
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p806
-I735
+I736
 tp807
 a(S'post_event_nofinger -> script_dir music_function_event'
 p808
@@ -76072,7 +76072,7 @@ g804
 I2
 g805
 g806
-I736
+I737
 tp809
 a(S'post_event_nofinger -> HYPHEN'
 p810
@@ -76080,7 +76080,7 @@ g804
 I1
 g805
 g806
-I737
+I738
 tp811
 a(S'post_event_nofinger -> EXTENDER'
 p812
@@ -76088,7 +76088,7 @@ g804
 I1
 g805
 g806
-I738
+I739
 tp813
 a(S'post_event_nofinger -> script_dir direction_reqd_event'
 p814
@@ -76096,7 +76096,7 @@ g804
 I2
 g805
 g806
-I739
+I740
 tp815
 a(S'post_event_nofinger -> script_dir direction_less_event'
 p816
@@ -76104,7 +76104,7 @@ g804
 I2
 g805
 g806
-I740
+I741
 tp817
 a(S'post_event_nofinger -> string_number_event'
 p818
@@ -76112,7 +76112,7 @@ g804
 I1
 g805
 g806
-I741
+I742
 tp819
 a(S'post_event -> post_event_nofinger'
 p820
@@ -76123,7 +76123,7 @@ S'p_post_event'
 p822
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p823
-I747
+I748
 tp824
 a(S'post_event -> script_dir fingering'
 p825
@@ -76131,7 +76131,7 @@ g821
 I2
 g822
 g823
-I748
+I749
 tp826
 a(S'string_number_event -> E_UNSIGNED'
 p827
@@ -76142,7 +76142,7 @@ S'p_string_number_event'
 p829
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p830
-I754
+I755
 tp831
 a(S'direction_less_char -> ['
 p832
@@ -76153,7 +76153,7 @@ S'p_direction_less_char'
 p834
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p835
-I760
+I761
 tp836
 a(S'direction_less_char -> ]'
 p837
@@ -76161,7 +76161,7 @@ g833
 I1
 g834
 g835
-I761
+I762
 tp838
 a(S'direction_less_char -> ~'
 p839
@@ -76169,7 +76169,7 @@ g833
 I1
 g834
 g835
-I762
+I763
 tp840
 a(S'direction_less_char -> ('
 p841
@@ -76177,7 +76177,7 @@ g833
 I1
 g834
 g835
-I763
+I764
 tp842
 a(S'direction_less_char -> )'
 p843
@@ -76185,7 +76185,7 @@ g833
 I1
 g834
 g835
-I764
+I765
 tp844
 a(S'direction_less_char -> E_EXCLAMATION'
 p845
@@ -76193,7 +76193,7 @@ g833
 I1
 g834
 g835
-I765
+I766
 tp846
 a(S'direction_less_char -> E_OPEN'
 p847
@@ -76201,7 +76201,7 @@ g833
 I1
 g834
 g835
-I766
+I767
 tp848
 a(S'direction_less_char -> E_CLOSE'
 p849
@@ -76209,7 +76209,7 @@ g833
 I1
 g834
 g835
-I767
+I768
 tp850
 a(S'direction_less_char -> E_ANGLE_CLOSE'
 p851
@@ -76217,7 +76217,7 @@ g833
 I1
 g834
 g835
-I768
+I769
 tp852
 a(S'direction_less_char -> E_ANGLE_OPEN'
 p853
@@ -76225,7 +76225,7 @@ g833
 I1
 g834
 g835
-I769
+I770
 tp854
 a(S'direction_less_event -> direction_less_char'
 p855
@@ -76236,7 +76236,7 @@ S'p_direction_less_event'
 p857
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p858
-I775
+I776
 tp859
 a(S'direction_less_event -> EVENT_IDENTIFIER'
 p860
@@ -76244,7 +76244,7 @@ g856
 I1
 g857
 g858
-I776
+I777
 tp861
 a(S'direction_less_event -> tremolo_type'
 p862
@@ -76252,7 +76252,7 @@ g856
 I1
 g857
 g858
-I777
+I778
 tp863
 a(S'direction_less_event -> event_function_event'
 p864
@@ -76260,7 +76260,7 @@ g856
 I1
 g857
 g858
-I778
+I779
 tp865
 a(S'direction_reqd_event -> gen_text_def'
 p866
@@ -76271,7 +76271,7 @@ S'p_direction_reqd_event'
 p868
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p869
-I784
+I785
 tp870
 a(S'direction_reqd_event -> script_abbreviation'
 p871
@@ -76279,7 +76279,7 @@ g867
 I1
 g868
 g869
-I785
+I786
 tp872
 a(S'octave_check -> <empty>'
 p873
@@ -76290,7 +76290,7 @@ S'p_octave_check'
 p875
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p876
-I791
+I792
 tp877
 a(S'octave_check -> ='
 p878
@@ -76298,7 +76298,7 @@ g874
 I1
 g875
 g876
-I792
+I793
 tp879
 a(S'octave_check -> = sub_quotes'
 p880
@@ -76306,7 +76306,7 @@ g874
 I2
 g875
 g876
-I793
+I794
 tp881
 a(S'octave_check -> = sup_quotes'
 p882
@@ -76314,7 +76314,7 @@ g874
 I2
 g875
 g876
-I794
+I795
 tp883
 a(S"sup_quotes -> '"
 p884
@@ -76325,7 +76325,7 @@ S'p_sup_quotes'
 p886
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p887
-I800
+I801
 tp888
 a(S"sup_quotes -> sup_quotes '"
 p889
@@ -76333,7 +76333,7 @@ g885
 I2
 g886
 g887
-I801
+I802
 tp890
 a(S'sub_quotes -> ,'
 p891
@@ -76344,7 +76344,7 @@ S'p_sub_quotes'
 p893
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p894
-I810
+I811
 tp895
 a(S'sub_quotes -> sub_quotes ,'
 p896
@@ -76352,7 +76352,7 @@ g892
 I2
 g893
 g894
-I811
+I812
 tp897
 a(S'steno_pitch -> NOTENAME_PITCH'
 p898
@@ -76363,7 +76363,7 @@ S'p_steno_pitch'
 p900
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p901
-I820
+I821
 tp902
 a(S'steno_pitch -> NOTENAME_PITCH sup_quotes'
 p903
@@ -76371,7 +76371,7 @@ g899
 I2
 g900
 g901
-I821
+I822
 tp904
 a(S'steno_pitch -> NOTENAME_PITCH sub_quotes'
 p905
@@ -76379,7 +76379,7 @@ g899
 I2
 g900
 g901
-I822
+I823
 tp906
 a(S'steno_tonic_pitch -> TONICNAME_PITCH'
 p907
@@ -76390,7 +76390,7 @@ S'p_steno_tonic_pitch'
 p909
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p910
-I828
+I829
 tp911
 a(S'steno_tonic_pitch -> TONICNAME_PITCH sup_quotes'
 p912
@@ -76398,7 +76398,7 @@ g908
 I2
 g909
 g910
-I829
+I830
 tp913
 a(S'steno_tonic_pitch -> TONICNAME_PITCH sub_quotes'
 p914
@@ -76406,7 +76406,7 @@ g908
 I2
 g909
 g910
-I830
+I831
 tp915
 a(S'pitch -> steno_pitch'
 p916
@@ -76417,7 +76417,7 @@ S'p_pitch'
 p918
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p919
-I836
+I837
 tp920
 a(S'pitch -> PITCH_IDENTIFIER'
 p921
@@ -76425,7 +76425,7 @@ g917
 I1
 g918
 g919
-I837
+I838
 tp922
 a(S'pitch_also_in_chords -> pitch'
 p923
@@ -76436,7 +76436,7 @@ S'p_pitch_also_in_chords'
 p925
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p926
-I843
+I844
 tp927
 a(S'pitch_also_in_chords -> steno_tonic_pitch'
 p928
@@ -76444,7 +76444,7 @@ g924
 I1
 g925
 g926
-I844
+I845
 tp929
 a(S'gen_text_def -> full_markup'
 p930
@@ -76455,7 +76455,7 @@ S'p_gen_text_def'
 p932
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p933
-I850
+I851
 tp934
 a(S'gen_text_def -> string'
 p935
@@ -76463,7 +76463,7 @@ g931
 I1
 g932
 g933
-I851
+I852
 tp936
 a(S'fingering -> UNSIGNED'
 p937
@@ -76474,7 +76474,7 @@ S'p_fingering'
 p939
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p940
-I857
+I858
 tp941
 a(S'script_abbreviation -> ^'
 p942
@@ -76485,7 +76485,7 @@ S'p_script_abbreviation'
 p944
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p945
-I863
+I864
 tp946
 a(S'script_abbreviation -> +'
 p947
@@ -76493,7 +76493,7 @@ g943
 I1
 g944
 g945
-I864
+I865
 tp948
 a(S'script_abbreviation -> -'
 p949
@@ -76501,7 +76501,7 @@ g943
 I1
 g944
 g945
-I865
+I866
 tp950
 a(S'script_abbreviation -> |'
 p951
@@ -76509,7 +76509,7 @@ g943
 I1
 g944
 g945
-I866
+I867
 tp952
 a(S'script_abbreviation -> >'
 p953
@@ -76517,7 +76517,7 @@ g943
 I1
 g944
 g945
-I867
+I868
 tp954
 a(S'script_abbreviation -> .'
 p955
@@ -76525,7 +76525,7 @@ g943
 I1
 g944
 g945
-I868
+I869
 tp956
 a(S'script_abbreviation -> _'
 p957
@@ -76533,7 +76533,7 @@ g943
 I1
 g944
 g945
-I869
+I870
 tp958
 a(S'script_dir -> _'
 p959
@@ -76544,7 +76544,7 @@ S'p_script_dir'
 p961
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p962
-I875
+I876
 tp963
 a(S'script_dir -> ^'
 p964
@@ -76552,7 +76552,7 @@ g960
 I1
 g961
 g962
-I876
+I877
 tp965
 a(S'script_dir -> -'
 p966
@@ -76560,7 +76560,7 @@ g960
 I1
 g961
 g962
-I877
+I878
 tp967
 a(S'duration_length -> multiplied_duration'
 p968
@@ -76571,7 +76571,7 @@ S'p_duration_length'
 p970
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p971
-I883
+I884
 tp972
 a(S'optional_notemode_duration -> <empty>'
 p973
@@ -76582,7 +76582,7 @@ S'p_optional_notemode_duration'
 p975
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p976
-I889
+I890
 tp977
 a(S'optional_notemode_duration -> multiplied_duration'
 p978
@@ -76590,7 +76590,7 @@ g974
 I1
 g975
 g976
-I890
+I891
 tp979
 a(S'steno_duration -> bare_unsigned dots'
 p980
@@ -76601,7 +76601,7 @@ S'p_steno_duration'
 p982
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p983
-I896
+I897
 tp984
 a(S'steno_duration -> DURATION_IDENTIFIER dots'
 p985
@@ -76609,7 +76609,7 @@ g981
 I2
 g982
 g983
-I897
+I898
 tp986
 a(S'multiplied_duration -> steno_duration'
 p987
@@ -76620,7 +76620,7 @@ S'p_multiplied_duration'
 p989
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p990
-I903
+I904
 tp991
 a(S'multiplied_duration -> multiplied_duration * bare_unsigned'
 p992
@@ -76628,7 +76628,7 @@ g988
 I3
 g989
 g990
-I904
+I905
 tp993
 a(S'multiplied_duration -> multiplied_duration * FRACTION'
 p994
@@ -76636,7 +76636,7 @@ g988
 I3
 g989
 g990
-I905
+I906
 tp995
 a(S'fraction -> FRACTION'
 p996
@@ -76647,7 +76647,7 @@ S'p_fraction'
 p998
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p999
-I911
+I912
 tp1000
 a(S'fraction -> UNSIGNED / UNSIGNED'
 p1001
@@ -76655,7 +76655,7 @@ g997
 I3
 g998
 g999
-I912
+I913
 tp1002
 a(S'dots -> <empty>'
 p1003
@@ -76666,7 +76666,7 @@ S'p_dots'
 p1005
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p1006
-I918
+I919
 tp1007
 a(S'dots -> dots .'
 p1008
@@ -76674,7 +76674,7 @@ g1004
 I2
 g1005
 g1006
-I919
+I920
 tp1009
 a(S'tremolo_type -> :'
 p1010
@@ -76685,7 +76685,7 @@ S'p_tremolo_type'
 p1012
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p1013
-I928
+I929
 tp1014
 a(S'tremolo_type -> : bare_unsigned'
 p1015
@@ -76693,7 +76693,7 @@ g1011
 I2
 g1012
 g1013
-I929
+I930
 tp1016
 a(S'bass_number -> UNSIGNED'
 p1017
@@ -76704,7 +76704,7 @@ S'p_bass_number'
 p1019
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p1020
-I935
+I936
 tp1021
 a(S'bass_number -> STRING'
 p1022
@@ -76712,7 +76712,7 @@ g1018
 I1
 g1019
 g1020
-I936
+I937
 tp1023
 a(S'bass_number -> full_markup'
 p1024
@@ -76720,7 +76720,7 @@ g1018
 I1
 g1019
 g1020
-I937
+I938
 tp1025
 a(S'figured_bass_alteration -> -'
 p1026
@@ -76731,7 +76731,7 @@ S'p_figured_bass_alteration'
 p1028
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p1029
-I943
+I944
 tp1030
 a(S'figured_bass_alteration -> +'
 p1031
@@ -76739,7 +76739,7 @@ g1027
 I1
 g1028
 g1029
-I944
+I945
 tp1032
 a(S'figured_bass_alteration -> !'
 p1033
@@ -76747,7 +76747,7 @@ g1027
 I1
 g1028
 g1029
-I945
+I946
 tp1034
 a(S'bass_figure -> _'
 p1035
@@ -76758,7 +76758,7 @@ S'p_bass_figure'
 p1037
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p1038
-I951
+I952
 tp1039
 a(S'bass_figure -> bass_number'
 p1040
@@ -76766,7 +76766,7 @@ g1036
 I1
 g1037
 g1038
-I952
+I953
 tp1041
 a(S'bass_figure -> bass_figure ]'
 p1042
@@ -76774,7 +76774,7 @@ g1036
 I2
 g1037
 g1038
-I953
+I954
 tp1043
 a(S'bass_figure -> bass_figure figured_bass_alteration'
 p1044
@@ -76782,7 +76782,7 @@ g1036
 I2
 g1037
 g1038
-I954
+I955
 tp1045
 a(S'bass_figure -> bass_figure figured_bass_modification'
 p1046
@@ -76790,7 +76790,7 @@ g1036
 I2
 g1037
 g1038
-I955
+I956
 tp1047
 a(S'figured_bass_modification -> E_PLUS'
 p1048
@@ -76801,7 +76801,7 @@ S'p_figured_bass_modification'
 p1050
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p1051
-I961
+I962
 tp1052
 a(S'figured_bass_modification -> E_EXCLAMATION'
 p1053
@@ -76809,7 +76809,7 @@ g1049
 I1
 g1050
 g1051
-I962
+I963
 tp1054
 a(S'figured_bass_modification -> /'
 p1055
@@ -76817,7 +76817,7 @@ g1049
 I1
 g1050
 g1051
-I963
+I964
 tp1056
 a(S'figured_bass_modification -> E_BACKSLASH'
 p1057
@@ -76825,7 +76825,7 @@ g1049
 I1
 g1050
 g1051
-I964
+I965
 tp1058
 a(S'br_bass_figure -> bass_figure'
 p1059
@@ -76836,7 +76836,7 @@ S'p_br_bass_figure'
 p1061
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p1062
-I970
+I971
 tp1063
 a(S'br_bass_figure -> [ bass_figure'
 p1064
@@ -76844,7 +76844,7 @@ g1060
 I2
 g1061
 g1062
-I971
+I972
 tp1065
 a(S'figure_list -> <empty>'
 p1066
@@ -76855,7 +76855,7 @@ S'p_figure_list'
 p1068
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p1069
-I977
+I978
 tp1070
 a(S'figure_list -> figure_list br_bass_figure'
 p1071
@@ -76863,7 +76863,7 @@ g1067
 I2
 g1068
 g1069
-I978
+I979
 tp1072
 a(S'figure_spec -> FIGURE_OPEN figure_list FIGURE_CLOSE'
 p1073
@@ -76874,7 +76874,7 @@ S'p_figure_spec'
 p1075
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p1076
-I984
+I985
 tp1077
 a(S'optional_rest -> <empty>'
 p1078
@@ -76885,7 +76885,7 @@ S'p_optional_rest'
 p1080
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p1081
-I990
+I991
 tp1082
 a(S'optional_rest -> REST'
 p1083
@@ -76893,7 +76893,7 @@ g1079
 I1
 g1080
 g1081
-I991
+I992
 tp1084
 a(S'simple_element -> pitch exclamations questions octave_check optional_notemode_duration optional_rest'
 p1085
@@ -76904,7 +76904,7 @@ S'p_simple_element'
 p1087
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p1088
-I997
+I998
 tp1089
 a(S'simple_element -> DRUM_PITCH optional_notemode_duration'
 p1090
@@ -76912,7 +76912,7 @@ g1086
 I2
 g1087
 g1088
-I998
+I999
 tp1091
 a(S'simple_element -> RESTNAME optional_notemode_duration'
 p1092
@@ -76920,7 +76920,7 @@ g1086
 I2
 g1087
 g1088
-I999
+I1000
 tp1093
 a(S'simple_element -> lyric_element optional_notemode_duration'
 p1094
@@ -76928,7 +76928,7 @@ g1086
 I2
 g1087
 g1088
-I1000
+I1001
 tp1095
 a(S'simple_chord_elements -> simple_element'
 p1096
@@ -76939,7 +76939,7 @@ S'p_simple_chord_elements'
 p1098
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p1099
-I1006
+I1007
 tp1100
 a(S'simple_chord_elements -> new_chord'
 p1101
@@ -76947,7 +76947,7 @@ g1097
 I1
 g1098
 g1099
-I1007
+I1008
 tp1102
 a(S'simple_chord_elements -> figure_spec optional_notemode_duration'
 p1103
@@ -76955,7 +76955,7 @@ g1097
 I2
 g1098
 g1099
-I1008
+I1009
 tp1104
 a(S'lyric_element -> lyric_markup'
 p1105
@@ -76966,7 +76966,7 @@ S'p_lyric_element'
 p1107
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p1108
-I1014
+I1015
 tp1109
 a(S'lyric_element -> LYRICS_STRING'
 p1110
@@ -76974,7 +76974,7 @@ g1106
 I1
 g1107
 g1108
-I1015
+I1016
 tp1111
 a(S'new_chord -> steno_tonic_pitch optional_notemode_duration'
 p1112
@@ -76985,7 +76985,7 @@ S'p_new_chord'
 p1114
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p1115
-I1021
+I1022
 tp1116
 a(S'new_chord -> steno_tonic_pitch optional_notemode_duration chord_separator chord_items'
 p1117
@@ -76993,7 +76993,7 @@ g1113
 I4
 g1114
 g1115
-I1022
+I1023
 tp1118
 a(S'chord_items -> <empty>'
 p1119
@@ -77004,7 +77004,7 @@ S'p_chord_items'
 p1121
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p1122
-I1028
+I1029
 tp1123
 a(S'chord_items -> chord_items chord_item'
 p1124
@@ -77012,7 +77012,7 @@ g1120
 I2
 g1121
 g1122
-I1029
+I1030
 tp1125
 a(S'chord_separator -> CHORD_COLON'
 p1126
@@ -77023,7 +77023,7 @@ S'p_chord_separator'
 p1128
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p1129
-I1035
+I1036
 tp1130
 a(S'chord_separator -> CHORD_CARET'
 p1131
@@ -77031,7 +77031,7 @@ g1127
 I1
 g1128
 g1129
-I1036
+I1037
 tp1132
 a(S'chord_separator -> CHORD_SLASH steno_tonic_pitch'
 p1133
@@ -77039,7 +77039,7 @@ g1127
 I2
 g1128
 g1129
-I1037
+I1038
 tp1134
 a(S'chord_separator -> CHORD_BASS steno_tonic_pitch'
 p1135
@@ -77047,7 +77047,7 @@ g1127
 I2
 g1128
 g1129
-I1038
+I1039
 tp1136
 a(S'chord_item -> chord_separator'
 p1137
@@ -77058,7 +77058,7 @@ S'p_chord_item'
 p1139
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p1140
-I1044
+I1045
 tp1141
 a(S'chord_item -> step_numbers'
 p1142
@@ -77066,7 +77066,7 @@ g1138
 I1
 g1139
 g1140
-I1045
+I1046
 tp1143
 a(S'chord_item -> CHORD_MODIFIER'
 p1144
@@ -77074,7 +77074,7 @@ g1138
 I1
 g1139
 g1140
-I1046
+I1047
 tp1145
 a(S'step_numbers -> step_number'
 p1146
@@ -77085,7 +77085,7 @@ S'p_step_numbers'
 p1148
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p1149
-I1052
+I1053
 tp1150
 a(S'step_numbers -> step_numbers . step_number'
 p1151
@@ -77093,7 +77093,7 @@ g1147
 I3
 g1148
 g1149
-I1053
+I1054
 tp1152
 a(S'step_number -> bare_unsigned'
 p1153
@@ -77104,7 +77104,7 @@ S'p_step_number'
 p1155
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p1156
-I1059
+I1060
 tp1157
 a(S'step_number -> bare_unsigned +'
 p1158
@@ -77112,7 +77112,7 @@ g1154
 I2
 g1155
 g1156
-I1060
+I1061
 tp1159
 a(S'step_number -> bare_unsigned -'
 p1160
@@ -77120,7 +77120,7 @@ g1154
 I2
 g1155
 g1156
-I1061
+I1062
 tp1161
 a(S'tempo_range -> bare_unsigned'
 p1162
@@ -77131,7 +77131,7 @@ S'p_tempo_range'
 p1164
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p1165
-I1067
+I1068
 tp1166
 a(S'tempo_range -> bare_unsigned ~ bare_unsigned'
 p1167
@@ -77139,7 +77139,7 @@ g1163
 I3
 g1164
 g1165
-I1068
+I1069
 tp1168
 a(S'number_expression -> number_expression + number_term'
 p1169
@@ -77150,7 +77150,7 @@ S'p_number_expression'
 p1171
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p1172
-I1074
+I1075
 tp1173
 a(S'number_expression -> number_expression - number_term'
 p1174
@@ -77158,7 +77158,7 @@ g1170
 I3
 g1171
 g1172
-I1075
+I1076
 tp1175
 a(S'number_expression -> number_term'
 p1176
@@ -77166,7 +77166,7 @@ g1170
 I1
 g1171
 g1172
-I1076
+I1077
 tp1177
 a(S'number_term -> number_factor'
 p1178
@@ -77177,7 +77177,7 @@ S'p_number_term'
 p1180
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p1181
-I1087
+I1088
 tp1182
 a(S'number_term -> number_factor * number_factor'
 p1183
@@ -77185,7 +77185,7 @@ g1179
 I3
 g1180
 g1181
-I1088
+I1089
 tp1184
 a(S'number_term -> number_factor / number_factor'
 p1185
@@ -77193,7 +77193,7 @@ g1179
 I3
 g1180
 g1181
-I1089
+I1090
 tp1186
 a(S'number_factor -> - number_factor'
 p1187
@@ -77204,7 +77204,7 @@ S'p_number_factor'
 p1189
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p1190
-I1100
+I1101
 tp1191
 a(S'number_factor -> bare_number'
 p1192
@@ -77212,7 +77212,7 @@ g1188
 I1
 g1189
 g1190
-I1101
+I1102
 tp1193
 a(S'bare_number -> UNSIGNED'
 p1194
@@ -77223,7 +77223,7 @@ S'p_bare_number'
 p1196
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p1197
-I1110
+I1111
 tp1198
 a(S'bare_number -> REAL'
 p1199
@@ -77231,7 +77231,7 @@ g1195
 I1
 g1196
 g1197
-I1111
+I1112
 tp1200
 a(S'bare_number -> NUMBER_IDENTIFIER'
 p1201
@@ -77239,7 +77239,7 @@ g1195
 I1
 g1196
 g1197
-I1112
+I1113
 tp1202
 a(S'bare_unsigned -> UNSIGNED'
 p1203
@@ -77250,7 +77250,7 @@ S'p_bare_unsigned'
 p1205
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p1206
-I1124
+I1125
 tp1207
 a(S'unsigned_number -> bare_unsigned'
 p1208
@@ -77261,7 +77261,7 @@ S'p_unsigned_number'
 p1210
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p1211
-I1130
+I1131
 tp1212
 a(S'unsigned_number -> NUMBER_IDENTIFIER'
 p1213
@@ -77269,7 +77269,7 @@ g1209
 I1
 g1210
 g1211
-I1131
+I1132
 tp1214
 a(S'exclamations -> <empty>'
 p1215
@@ -77280,7 +77280,7 @@ S'p_exclamations'
 p1217
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p1218
-I1140
+I1141
 tp1219
 a(S'exclamations -> exclamations !'
 p1220
@@ -77288,7 +77288,7 @@ g1216
 I2
 g1217
 g1218
-I1141
+I1142
 tp1221
 a(S'questions -> <empty>'
 p1222
@@ -77299,7 +77299,7 @@ S'p_questions'
 p1224
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p1225
-I1150
+I1151
 tp1226
 a(S'questions -> questions ?'
 p1227
@@ -77307,7 +77307,7 @@ g1223
 I2
 g1224
 g1225
-I1151
+I1152
 tp1228
 a(S'lyric_markup -> LYRIC_MARKUP_IDENTIFIER'
 p1229
@@ -77318,7 +77318,7 @@ S'p_lyric_markup'
 p1231
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p1232
-I1160
+I1161
 tp1233
 a(S'lyric_markup -> LYRIC_MARKUP markup_top'
 p1234
@@ -77326,7 +77326,7 @@ g1230
 I2
 g1231
 g1232
-I1161
+I1162
 tp1235
 a(S'full_markup_list -> MARKUPLINES_IDENTIFIER'
 p1236
@@ -77337,7 +77337,7 @@ S'p_full_markup_list'
 p1238
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p1239
-I1167
+I1168
 tp1240
 a(S'full_markup_list -> MARKUPLINES markup_list'
 p1241
@@ -77345,7 +77345,7 @@ g1237
 I2
 g1238
 g1239
-I1168
+I1169
 tp1242
 a(S'full_markup -> MARKUP_IDENTIFIER'
 p1243
@@ -77356,7 +77356,7 @@ S'p_full_markup'
 p1245
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p1246
-I1174
+I1175
 tp1247
 a(S'full_markup -> MARKUP markup_top'
 p1248
@@ -77364,7 +77364,7 @@ g1244
 I2
 g1245
 g1246
-I1175
+I1176
 tp1249
 a(S'markup_top -> markup_list'
 p1250
@@ -77375,7 +77375,7 @@ S'p_markup_top'
 p1252
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p1253
-I1181
+I1182
 tp1254
 a(S'markup_top -> markup_head_1_list simple_markup'
 p1255
@@ -77383,7 +77383,7 @@ g1251
 I2
 g1252
 g1253
-I1182
+I1183
 tp1256
 a(S'markup_top -> simple_markup'
 p1257
@@ -77391,7 +77391,7 @@ g1251
 I1
 g1252
 g1253
-I1183
+I1184
 tp1258
 a(S'markup_list -> MARKUPLINES_IDENTIFIER'
 p1259
@@ -77402,7 +77402,7 @@ S'p_markup_list'
 p1261
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p1262
-I1189
+I1190
 tp1263
 a(S'markup_list -> markup_composed_list'
 p1264
@@ -77410,7 +77410,7 @@ g1260
 I1
 g1261
 g1262
-I1190
+I1191
 tp1265
 a(S'markup_list -> markup_braced_list'
 p1266
@@ -77418,7 +77418,7 @@ g1260
 I1
 g1261
 g1262
-I1191
+I1192
 tp1267
 a(S'markup_list -> markup_command_list'
 p1268
@@ -77426,7 +77426,7 @@ g1260
 I1
 g1261
 g1262
-I1192
+I1193
 tp1269
 a(S'markup_composed_list -> markup_head_1_list markup_braced_list'
 p1270
@@ -77437,7 +77437,7 @@ S'p_markup_composed_list'
 p1272
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p1273
-I1198
+I1199
 tp1274
 a(S'markup_braced_list -> { markup_braced_list_body }'
 p1275
@@ -77448,7 +77448,7 @@ S'p_markup_braced_list'
 p1277
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p1278
-I1204
+I1205
 tp1279
 a(S'markup_braced_list_body -> <empty>'
 p1280
@@ -77459,7 +77459,7 @@ S'p_markup_braced_list_body'
 p1282
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p1283
-I1210
+I1211
 tp1284
 a(S'markup_braced_list_body -> markup_braced_list_body markup'
 p1285
@@ -77467,7 +77467,7 @@ g1281
 I2
 g1282
 g1283
-I1211
+I1212
 tp1286
 a(S'markup_braced_list_body -> markup_braced_list_body markup_list'
 p1287
@@ -77475,7 +77475,7 @@ g1281
 I2
 g1282
 g1283
-I1212
+I1213
 tp1288
 a(S'markup_command_list -> MARKUP_LIST_FUNCTION markup_command_list_arguments'
 p1289
@@ -77486,7 +77486,7 @@ S'p_markup_command_list'
 p1291
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p1292
-I1218
+I1219
 tp1293
 a(S'markup_command_basic_arguments -> EXPECT_MARKUP_LIST markup_command_list_arguments markup_list'
 p1294
@@ -77497,7 +77497,7 @@ S'p_markup_command_basic_arguments'
 p1296
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p1297
-I1224
+I1225
 tp1298
 a(S'markup_command_basic_arguments -> EXPECT_SCM markup_command_list_arguments embedded_scm_closed'
 p1299
@@ -77505,7 +77505,7 @@ g1295
 I3
 g1296
 g1297
-I1225
+I1226
 tp1300
 a(S'markup_command_basic_arguments -> EXPECT_NO_MORE_ARGS'
 p1301
@@ -77513,7 +77513,7 @@ g1295
 I1
 g1296
 g1297
-I1226
+I1227
 tp1302
 a(S'markup_command_list_arguments -> markup_command_basic_arguments'
 p1303
@@ -77524,7 +77524,7 @@ S'p_markup_command_list_arguments'
 p1305
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p1306
-I1232
+I1233
 tp1307
 a(S'markup_command_list_arguments -> EXPECT_MARKUP markup_command_list_arguments markup'
 p1308
@@ -77532,7 +77532,7 @@ g1304
 I3
 g1305
 g1306
-I1233
+I1234
 tp1309
 a(S'markup_head_1_item -> MARKUP_FUNCTION EXPECT_MARKUP markup_command_list_arguments'
 p1310
@@ -77543,7 +77543,7 @@ S'p_markup_head_1_item'
 p1312
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p1313
-I1239
+I1240
 tp1314
 a(S'markup_head_1_list -> markup_head_1_item'
 p1315
@@ -77554,7 +77554,7 @@ S'p_markup_head_1_list'
 p1317
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p1318
-I1245
+I1246
 tp1319
 a(S'markup_head_1_list -> markup_head_1_list markup_head_1_item'
 p1320
@@ -77562,7 +77562,7 @@ g1316
 I2
 g1317
 g1318
-I1246
+I1247
 tp1321
 a(S'simple_markup -> STRING'
 p1322
@@ -77573,7 +77573,7 @@ S'p_simple_markup'
 p1324
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p1325
-I1252
+I1253
 tp1326
 a(S'simple_markup -> MARKUP_IDENTIFIER'
 p1327
@@ -77581,7 +77581,7 @@ g1323
 I1
 g1324
 g1325
-I1253
+I1254
 tp1328
 a(S'simple_markup -> LYRIC_MARKUP_IDENTIFIER'
 p1329
@@ -77589,7 +77589,7 @@ g1323
 I1
 g1324
 g1325
-I1254
+I1255
 tp1330
 a(S'simple_markup -> STRING_IDENTIFIER'
 p1331
@@ -77597,7 +77597,7 @@ g1323
 I1
 g1324
 g1325
-I1255
+I1256
 tp1332
 a(S'simple_markup -> SCORE { score_body }'
 p1333
@@ -77605,7 +77605,7 @@ g1323
 I4
 g1324
 g1325
-I1256
+I1257
 tp1334
 a(S'simple_markup -> MARKUP_FUNCTION markup_command_basic_arguments'
 p1335
@@ -77613,7 +77613,7 @@ g1323
 I2
 g1324
 g1325
-I1257
+I1258
 tp1336
 a(S'markup -> markup_head_1_list simple_markup'
 p1337
@@ -77624,7 +77624,7 @@ S'p_markup'
 p1339
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p1340
-I1263
+I1264
 tp1341
 a(S'markup -> simple_markup'
 p1342
@@ -77632,28 +77632,28 @@ g1338
 I1
 g1339
 g1340
-I1264
+I1265
 tp1343
 a(S'string -> SCHEME_START string'
 p1344
 S'string'
 p1345
 I2
-S'p_abj_scheme_string'
+S'p_scheme_string'
 p1346
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p1347
-I1271
+I1272
 tp1348
 a(S'bare_number -> SCHEME_START bare_number'
 p1349
 S'bare_number'
 p1350
 I2
-S'p_abj_scheme_number'
+S'p_scheme_number'
 p1351
 S'/Users/josiah/Documents/library/python/abjad/tools/lilypondparsertools/_LilyPondSyntacticalDefinition/_LilyPondSyntacticalDefinition.py'
 p1352
-I1275
+I1276
 tp1353
 a.

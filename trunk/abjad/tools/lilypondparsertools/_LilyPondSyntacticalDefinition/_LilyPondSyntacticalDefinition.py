@@ -1268,10 +1268,12 @@ class _LilyPondSyntacticalDefinition(object):
 
     ### NON-LILYPOND-DERIVED SCHEME PARSING ###
 
-    def p_abj_scheme_string(self, p):
+    def p_scheme_string(self, p):
         '''string : SCHEME_START string'''
         p[0] = Node('string', p[1:])
+        p.lexer.pop_state( )
 
-    def p_abj_scheme_number(self, p):
+    def p_scheme_number(self, p):
         '''bare_number : SCHEME_START bare_number'''
         p[0] = p[2]
+        p.lexer.pop_state( )
