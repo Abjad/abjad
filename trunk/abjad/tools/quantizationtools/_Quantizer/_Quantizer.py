@@ -20,7 +20,7 @@ class _Quantizer(_Immutable):
     def __call__(self, args, **kwargs):
         # Q-events
         if all([isinstance(x, QEvent) for x in args]):
-            q_events = list(sorted(args, key = lambda x: (x.offset, x.duration)))
+            q_events = list(sorted(args, key = lambda x: x.offset))
 
         # tempo-scaled rationals
         elif all([isinstance(x, (int, Fraction)) for x in args]) and \

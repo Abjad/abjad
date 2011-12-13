@@ -134,7 +134,7 @@ class QGridQuantizer(_Quantizer):
 
     ### PRIVATE METHODS ###
 
-    def _compare_q_events_to_q_grid(self, offsets, q_events, q_grid):
+    def _compare_q_events_to_q_grid(self, offsets, q_events, q_grid, verbose = False):
         indices = []
         error = 0
 
@@ -161,7 +161,7 @@ class QGridQuantizer(_Quantizer):
 
         return error
 
-    def _divide_grid(self, grid, offsets):
+    def _divide_grid(self, grid, offsets, verbose = False):
         def recurse(grid, offsets):
             results = []
             indices = grid.find_divisible_indices(offsets)
@@ -180,7 +180,7 @@ class QGridQuantizer(_Quantizer):
             return results
         return recurse(grid, offsets)
 
-    def _find_best_q_grid_foreach_q_event_group(self, q_event_groups):
+    def _find_best_q_grid_foreach_q_event_group(self, q_event_groups, verbose = False):
         best_q_grids = {}
 
         for beatspan_number, group in q_event_groups.iteritems():
@@ -206,7 +206,7 @@ class QGridQuantizer(_Quantizer):
 
         return best_q_grids
 
-    def _format_all_q_grids(self, best_q_grids):
+    def _format_all_q_grids(self, best_q_grids, verbose = False):
         beatspan_numbers = sorted(best_q_grids.keys())
 
         # store indices of tie-chain starts
@@ -291,14 +291,14 @@ class QGridQuantizer(_Quantizer):
 
         return container
 
-    def _group_q_events_by_beatspan(self, q_events):
+    def _group_q_events_by_beatspan(self, q_events, verbose = False):
         g = groupby(q_events, lambda x: x.offset // self.beatspan_ms)
         grouped_q_events = {}
         for value, group in g:
             grouped_q_events[value] = list(group)
         return grouped_q_events
 
-    def _regroup_and_fill_out_best_q_grids(self, best_q_grids):
+    def _regroup_and_fill_out_best_q_grids(self, best_q_grids, verbose = False):
         '''Shift events which have been quantized to the last offset
         of one `QGrid` to the first offset of the subsequent grid.
         '''
@@ -339,10 +339,10 @@ class QGridQuantizer(_Quantizer):
 
     def _quantize(self, q_events, verbose = False):
 
-        grouped_q_events = self._group_q_events_by_beatspan(q_events)
-        best_q_grids = self._find_best_q_grid_foreach_q_event_group(grouped_q_events)
-        best_q_grids = self._regroup_and_fill_out_best_q_grids(best_q_grids)
-        container = self._format_all_q_grids(best_q_grids)
+        grouped_q_events = self._group_q_events_by_beatspan(q_events, verbose = verbose)
+        best_q_grids = self._find_best_q_grid_foreach_q_event_group(grouped_q_events, verbose = verbose)
+        best_q_grids = self._regroup_and_fill_out_best_q_grids(best_q_grids, verbose = verbose)
+        container = self._format_all_q_grids(best_q_grids, verbose = verbose)
 
         return container
 
