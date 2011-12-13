@@ -509,13 +509,19 @@ class _LilyPondSyntacticalDefinition(object):
         '''property_path_revved : embedded_scm_closed
                                 | property_path_revved embedded_scm_closed
         '''
-        p[0] = Node('property_path_revved', p[1:])
+        if len(p) == 2:
+            p[0] = Node('property_path_revved', [p[1]])
+        else:
+            items = list(p[1].value)
+            items.append(p[2])
+            p[0] = Node('property_path_revved', items)
+
 
 
     def p_property_path(self, p):
         '''property_path : property_path_revved
         '''
-        p[0] = Node('property_path', p[1:])
+        p[0] = Node('property_path', p[1].value)
 
 
     def p_property_operation(self, p):
