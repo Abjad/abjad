@@ -10,6 +10,8 @@ def retain_sequence_elements_at_indices(sequence, indices):
         abjad> sequencetools.retain_sequence_elements_at_indices(range(20), [1, 16, 17, 18])
         [1, 16, 17, 18]
 
+    Return sequence elements in the order they appear in `sequence`.
+
     Ignore negative indices.
 
     Return list.

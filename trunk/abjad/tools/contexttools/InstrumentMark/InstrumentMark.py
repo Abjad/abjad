@@ -117,7 +117,6 @@ class InstrumentMark(ContextMark):
         result.append(r'\set %s.shortInstrumentName = %s' % (self._target_context_name, self.short_instrument_name_markup))
         return result
 
-    # will need to make intelligently interact with instrument_name_markup at some point
     @apply
     def instrument_name():
         def fget(self):
@@ -163,7 +162,7 @@ class InstrumentMark(ContextMark):
             '''
             from abjad.tools.markuptools import Markup
             if self._instrument_name_markup is None:
-                return Markup(self.instrument_name)
+                return Markup(iotools.capitalize_string_start(self.instrument_name))
             else:
                 return self._instrument_name_markup
         def fset(self, instrument_name_markup):
@@ -220,7 +219,7 @@ class InstrumentMark(ContextMark):
             '''
             from abjad.tools.markuptools import Markup
             if self._short_instrument_name_markup is None:
-                return Markup(self.short_instrument_name)
+                return Markup(iotools.capitalize_string_start(self.short_instrument_name))
             else:
                 return self._short_instrument_name_markup
         def fset(self, short_instrument_name_markup):
