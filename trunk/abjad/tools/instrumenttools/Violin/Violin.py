@@ -31,13 +31,10 @@ class Violin(_StringInstrument):
     The violin targets staff context by default.
     '''
 
-    def __init__(self, instrument_name=None, short_instrument_name=None,
-        instrument_name_markup=None, short_instrument_name_markup=None, target_context=None):
-        _StringInstrument.__init__(self, instrument_name, short_instrument_name,
-            instrument_name_markup=instrument_name_markup, 
-            short_instrument_name_markup=short_instrument_name_markup, target_context=target_context)
+    def __init__(self, **kwargs):
+        _StringInstrument.__init__(self, **kwargs)
         self._default_instrument_name = 'violin'
-        self._default_performer_names = ('violinist',)
+        self._default_performer_names.append('violinist')
         self._default_short_instrument_name = 'vn.'
         self._is_primary_instrument = True
         self.sounding_pitch_of_written_middle_c = pitchtools.NamedChromaticPitch("c'")

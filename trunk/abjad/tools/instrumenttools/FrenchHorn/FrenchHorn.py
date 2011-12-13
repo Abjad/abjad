@@ -32,13 +32,10 @@ class FrenchHorn(_BrassInstrument, _WindInstrument):
     The French horn targets staff context by default.
     '''
 
-    def __init__(self, instrument_name=None, short_instrument_name=None,
-        instrument_name_markup=None, short_instrument_name_markup=None, target_context=None):
-        _BrassInstrument.__init__(self, instrument_name, short_instrument_name,
-            instrument_name_markup=instrument_name_markup, 
-            short_instrument_name_markup=short_instrument_name_markup, target_context=target_context)
+    def __init__(self, **kwargs):
+        _BrassInstrument.__init__(self, **kwargs)
         self._default_instrument_name = 'French horn'
-        self._default_performer_names = ('hornist',)
+        self._default_performer_names.append('hornist')
         self._default_short_instrument_name = 'Fr. hn.'
         self._is_primary_instrument = True
         self.sounding_pitch_of_fingered_middle_c = pitchtools.NamedChromaticPitch('f')

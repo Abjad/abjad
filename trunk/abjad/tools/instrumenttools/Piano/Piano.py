@@ -38,15 +38,12 @@ class Piano(_KeyboardInstrument):
     The piano target piano staff context by default.
     '''
 
-    def __init__(self, instrument_name=None, short_instrument_name=None,
-        instrument_name_markup=None, short_instrument_name_markup=None, target_context=None):
+    def __init__(self, target_context=None, **kwargs):
         if target_context is None:
             target_context = scoretools.PianoStaff
-        _KeyboardInstrument.__init__(self, instrument_name, short_instrument_name,
-            instrument_name_markup=instrument_name_markup, 
-            short_instrument_name_markup=short_instrument_name_markup, target_context=target_context)
+        _KeyboardInstrument.__init__(self, target_context=target_context, **kwargs)
         self._default_instrument_name = 'piano'
-        self._default_performer_names = ('pianist',)
+        self._default_performer_names.append('pianist')
         self._default_short_instrument_name = 'pf.'
         self._is_primary_instrument = True
         self.sounding_pitch_of_written_middle_c = pitchtools.NamedChromaticPitch("c'")

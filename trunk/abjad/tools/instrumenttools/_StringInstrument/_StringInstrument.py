@@ -7,4 +7,7 @@ class _StringInstrument(_Instrument):
     Abjad model of string instruments.
     '''
 
-    pass
+    def __init__(self, **kwargs):
+        _Instrument.__init__(self, **kwargs)
+        self._default_instrument_name = 'string instrument'
+        self._default_performer_names.append('string player')

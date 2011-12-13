@@ -31,13 +31,10 @@ class Clarinet(_SingleReedInstrument):
     The clarinet targets staff context by default.
     '''
 
-    def __init__(self, instrument_name=None, short_instrument_name=None,
-        instrument_name_markup=None, short_instrument_name_markup=None, target_context=None):
-        _SingleReedInstrument.__init__(self, instrument_name, short_instrument_name,
-            instrument_name_markup=instrument_name_markup, 
-            short_instrument_name_markup=short_instrument_name_markup, target_context=target_context)
+    def __init__(self, **kwargs):
+        _SingleReedInstrument.__init__(self, **kwargs)
         self._default_instrument_name = 'clarinet'
-        self._default_performer_names = ('clarinetist', 'clarinettist',)
+        self._default_performer_names.extend(['clarinettist', 'clarinetist'])
         self._default_short_instrument_name = 'cl.'
         self._is_primary_instrument = True
         self.sounding_pitch_of_fingered_middle_c = pitchtools.NamedChromaticPitch('bf')

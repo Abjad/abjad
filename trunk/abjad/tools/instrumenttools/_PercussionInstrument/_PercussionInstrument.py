@@ -9,4 +9,5 @@ class _PercussionInstrument(_Instrument):
 
     def __init__(self, **kwargs):
         _Instrument.__init__(self, **kwargs)
-        self._default_performer_names = ('percussionist',)
+        self._default_instrument_name = 'percussion instrument'
+        self._default_performer_names.append('percussionist')

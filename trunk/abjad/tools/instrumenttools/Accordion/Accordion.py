@@ -33,15 +33,12 @@ class Accordion(_KeyboardInstrument, _ReedInstrument):
     The accordion targets piano staff context by default.
     '''
 
-    def __init__(self, instrument_name=None, short_instrument_name=None,
-        instrument_name_markup=None, short_instrument_name_markup=None, target_context=None):
+    def __init__(self, target_context=None, **kwargs):
         if target_context is None:
             target_context = scoretools.PianoStaff
-        _KeyboardInstrument.__init__(self, instrument_name, short_instrument_name,
-            instrument_name_markup=instrument_name_markup, 
-            short_instrument_name_markup=short_instrument_name_markup, target_context=target_context)
+        _KeyboardInstrument.__init__(self, target_context=target_context, **kwargs)
         self._default_instrument_name = 'accordion'
-        self._default_performer_names = ('accordionist',)
+        self._default_performer_names.append('accordionist')
         self._default_short_instrument_name = 'acc.'
         self._is_primary_instrument = True
         self.primary_clefs = [contexttools.ClefMark('treble'), contexttools.ClefMark('bass')]

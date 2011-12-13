@@ -38,7 +38,7 @@ class Xylophone(_PercussionInstrument):
             instrument_name_markup=instrument_name_markup, 
             short_instrument_name_markup=short_instrument_name_markup, target_context=target_context)
         self._default_instrument_name = 'xylophone'
-        self._default_performer_names = ('xylophonist',)
+        self._default_performer_names.append('xylophonist')
         self._default_short_instrument_name = 'xyl.'
         self._is_primary_instrument = False
         self.sounding_pitch_of_fingered_middle_c = pitchtools.NamedChromaticPitch("c''")

@@ -7,4 +7,7 @@ class _ReedInstrument(_Instrument):
     Abjad model of reed instruments.
     '''
 
-    pass
+    def __init__(self, **kwargs):
+        _Instrument.__init__(self, **kwargs)
+        self._default_instrument_name = 'reed instrument'
+        self._default_performer_names.append('reed player')

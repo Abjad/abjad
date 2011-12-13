@@ -34,11 +34,8 @@ class Contrabassoon(Bassoon):
     The contrabassoon targets staff context by default.
     '''
 
-    def __init__(self, instrument_name=None, short_instrument_name=None,
-        instrument_name_markup=None, short_instrument_name_markup=None, target_context=None):
-        Bassoon.__init__(self, instrument_name, short_instrument_name, 
-            instrument_name_markup=instrument_name_markup, 
-            short_instrument_name_markup=short_instrument_name_markup, target_context=target_context)
+    def __init__(self, **kwargs):
+        Bassoon.__init__(self, **kwargs)
         self._default_instrument_name = 'contrabassoon'
         self._default_short_instrument_name = 'contrabsn.'
         self._is_primary_instrument = False

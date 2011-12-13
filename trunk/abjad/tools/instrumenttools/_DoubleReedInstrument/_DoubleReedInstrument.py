@@ -7,4 +7,7 @@ class _DoubleReedInstrument(_ReedInstrument):
     Abjad model of double-reed instruments.
     '''
 
-    pass
+    def __init__(self, **kwargs):
+        _ReedInstrument.__init__(self, **kwargs)
+        self._default_instrument_name = 'double reed instrument'
+        self._default_performer_names.append('double reed player')

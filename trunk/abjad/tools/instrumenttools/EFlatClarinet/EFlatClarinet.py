@@ -31,11 +31,8 @@ class EFlatClarinet(Clarinet):
     The E-flat clarinet targets staff context by default.
     '''
 
-    def __init__(self, instrument_name=None, short_instrument_name=None, 
-        instrument_name_markup=None, short_instrument_name_markup=None, target_context=None):
-        Clarinet.__init__(self, instrument_name, short_instrument_name,
-            instrument_name_markup=instrument_name_markup, 
-            short_instrument_name_markup=short_instrument_name_markup, target_context=target_context)
+    def __init__(self, **kwargs):
+        Clarinet.__init__(self, **kwargs)
         self._default_instrument_name = 'clarinet in E-flat'
         self._default_short_instrument_name = 'cl. E-flat'
         self._is_primary_instrument = False

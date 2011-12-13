@@ -210,9 +210,10 @@ class Performer(object):
         result = {}
         for instrument_class in instrumenttools.list_instruments():
             instrument = instrument_class()
-            performer_name = instrument.get_default_performer_name(locale=locale)
-            if performer_name in result:
-                result[performer_name].append(instrument_class)
-            else:
-                result[performer_name] = [instrument_class]
+            #performer_name = instrument.get_default_performer_name(locale=locale)
+            for performer_name in instrument.get_performer_names():
+                if performer_name in result:
+                    result[performer_name].append(instrument_class)
+                else:
+                    result[performer_name] = [instrument_class]
         return result

@@ -7,4 +7,7 @@ class _KeyboardInstrument(_Instrument):
     Abjad model of keyboard instruments.
     '''
 
-    pass
+    def __init__(self, **kwargs):
+        _Instrument.__init__(self, **kwargs)
+        self._default_instrument_name = 'keyboard instrument'
+        self._default_performer_names.append('keyboardist')

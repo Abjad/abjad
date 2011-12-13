@@ -13,7 +13,7 @@ class _Instrument(contexttools.InstrumentMark):
         self.sounding_pitch_of_fingered_middle_c = pitchtools.NamedChromaticPitch("c'")
         contexttools.InstrumentMark.__init__(self, instrument_name, short_instrument_name,
             instrument_name_markup=None, short_instrument_name_markup=None, target_context=None)
-        self._default_performer_names = None
+        self._default_performer_names = ['instrumentalist']
         self._is_primary_instrument = False
 
     ### PRIVATE METHODS ###
@@ -112,12 +112,25 @@ class _Instrument(contexttools.InstrumentMark):
         if self._default_performer_names is None:
             performer_name = '{} player'.format(self.default_instrument_name)
             return performer_name
-        elif locale == 'en-us':
-            return self._default_performer_names[0]
-        elif locale == 'en-uk':
-            if 1 <= len(self._default_performer_names):
-                return self._default_performer_names[1]
-            else:
-                return self._default_performer_names[0]
+#        elif locale == 'en-us':
+#            return self._default_performer_names[0]
+#        elif locale == 'en-uk':
+#            if 1 <= len(self._default_performer_names):
+#                return self._default_performer_names[1]
+#            else:
+#                return self._default_performer_names[0]
+#        else:
+#            raise ValueError
         else:
-            raise ValueError
+            return self._default_performer_names[-1]
+
+    def get_performer_names(self):
+        r'''.. versionadded:: 2.5
+
+        Get performer names.
+        '''
+        if self._default_performer_names is None:
+            performer_name = '{} player'.format(self.default_instrument_name)
+            return [performer_name]
+        else:
+            return self._default_performer_names[:]

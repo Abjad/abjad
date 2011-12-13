@@ -7,4 +7,7 @@ class _WindInstrument(_Instrument):
     Abjad model of the wind instrument.
     '''
 
-    pass
+    def __init__(self, **kwargs):
+        _Instrument.__init__(self, **kwargs)
+        self._default_instrument_name = 'wind instrument'
+        self._default_performer_names.append('wind player')
