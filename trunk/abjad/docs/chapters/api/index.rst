@@ -772,6 +772,7 @@ scoretools
    tools/scoretools/iterate_scores_backward_in_expr
    tools/scoretools/iterate_scores_forward_in_expr
    tools/scoretools/list_performer_names
+   tools/scoretools/list_primary_performer_names
    tools/scoretools/make_empty_piano_score
    tools/scoretools/make_piano_score_from_leaves
    tools/scoretools/make_piano_sketch_score_from_leaves
