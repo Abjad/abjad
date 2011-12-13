@@ -303,6 +303,7 @@ class _LilyPondSyntacticalDefinition(object):
                                 | CONTEXT_MOD_IDENTIFIER
         '''
         p[0] = Node('context_modification', p[1:])
+        p.lexer.pop_state( )
 
 
     def p_optional_context_mod(self, p):
@@ -1107,11 +1108,15 @@ class _LilyPondSyntacticalDefinition(object):
 
 
     def p_bare_number(self, p):
+#        '''bare_number : UNSIGNED
+#                       | REAL
+#                       | NUMBER_IDENTIFIER
+#                       | REAL NUMBER_IDENTIFIER
+#                       | UNSIGNED NUMBER_IDENTIFIER
+#        '''
         '''bare_number : UNSIGNED
                        | REAL
                        | NUMBER_IDENTIFIER
-                       | REAL NUMBER_IDENTIFIER
-                       | UNSIGNED NUMBER_IDENTIFIER
         '''
         p[0] = p[1]
 
@@ -1261,3 +1266,12 @@ class _LilyPondSyntacticalDefinition(object):
         '''
         p[0] = Node('markup', p[1:])
 
+    ### NON-LILYPOND-DERIVED SCHEME PARSING ###
+
+    def p_abj_scheme_string(self, p):
+        '''string : SCHEME_START string'''
+        p[0] = Node('string', p[1:])
+
+    def p_abj_scheme_number(self, p):
+        '''bare_number : SCHEME_START bare_number'''
+        p[0] = p[2]

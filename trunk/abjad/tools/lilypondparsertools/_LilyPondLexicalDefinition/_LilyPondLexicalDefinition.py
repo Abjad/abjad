@@ -10,21 +10,19 @@ class _LilyPondLexicalDefinition(object):
 
     states = (
         # lexer.ll:115
-        # ('extratoken', 'exclusive'),
-        # ('chords', 'exclusive'),
-        # ('figures', 'exclusive'),
-        # ('incl', 'exclusive'),
-        # ('lyrics', 'exclusive'),
-        # ('lyric_quote ', 'exclusive'),
+#        ('extratoken', 'exclusive'),
+#        ('chords', 'exclusive'),
+#        ('figures', 'exclusive'),
+#        ('incl', 'exclusive'),
+#        ('lyrics', 'exclusive'),
+#        ('lyric_quote ', 'exclusive'),
         ('longcomment', 'exclusive'),
-        # ('markup', 'exclusive'),
+        ('markup', 'exclusive'),
         ('notes', 'exclusive'),
         ('quote', 'exclusive'),
-        # ('sourcefileline', 'exclusive'),
-        # ('sourcefilename', 'exclusive'),
+#        ('sourcefileline', 'exclusive'),
+#        ('sourcefilename', 'exclusive'),
         ('version', 'exclusive'),
-        # not in lexer.ll (using abj crude scheme parsing)
-        # ('scheme', 'exclusive'),
     )
 
     # lexer.ll:129
@@ -45,10 +43,10 @@ class _LilyPondLexicalDefinition(object):
     ALPHAWORD       = r'%s+' % A
     DIGIT           = r'%s' % N
     UNSIGNED        = r'%s+' % N
-    E_UNSIGNED      = r'\\%s+' % N
-    FRACTION        = r'%s+\/%s+' % (N, N)
     INT             = r'(-?%s)' % UNSIGNED
     REAL            = r'((%s\.%s*)|(-?\.%s+))' % (INT, N, N)
+    E_UNSIGNED      = r'\\%s+' % N
+    FRACTION        = r'%s+\/%s+' % (N, N)
     KEYWORD         = r'\\%s' % WORD
     WHITE           = r'[ \n\t\f\r]' # only whitespace
     HORIZONTALWHITE = r'[ \t]' # only non-line-breaking whitespace
@@ -63,7 +61,7 @@ class _LilyPondLexicalDefinition(object):
     BOM_UTF8        = r'\357\273\277'
 
     note_names = {
-        'english': re.compile('^[a-g](ss|s|ff|f|qf|qs)?$'),
+        'english': re.compile('^[a-g](ss|s|ff|f|tqf|tqs|qf|qs)?$'),
     }
 
     keywords = {
@@ -212,6 +210,10 @@ class _LilyPondLexicalDefinition(object):
         'STRING',
         'STRING_IDENTIFIER',
         'TONICNAME_PITCH',
+
+        # for abjad scheme parsing
+        'SCHEME_START',
+
     ] + keywords.values( )
 
     literals = (
@@ -241,44 +243,44 @@ class _LilyPondLexicalDefinition(object):
 
     # lexer.ll:210
     # <INITIAL,chords,figures,incl,lyrics,markup,notes>"%{"
-    def t_notes_210(self, t):
+    def t_INITIAL_notes_210(self, t):
         r'%{'
         t.lexer.push_state('longcomment')
         pass
 
     # lexer.ll:214
     # <INITIAL,chords,figures,incl,lyrics,markup,notes>%[^{\n\r][^\n\r]*[\n\r]
-    def t_notes_214(self, t):
+    def t_INITIAL_notes_214(self, t):
         r'%[^{\n\r][^\n\r]*[\n\r]'
         pass
 
     #lexer.ll:216
     # <INITIAL,chords,figures,incl,lyrics,markup,notes>%[^{\n\r]
-    def t_notes_216(self, t):
+    def t_INITIAL_notes_216(self, t):
         r'%[^{\n\r]'
         pass
 
     #lexer.ll:218
     # <INITIAL,chords,figures,incl,lyrics,markup,notes>%[\n\r]
-    def t_notes_218(self, t):
+    def t_INITIAL_notes_218(self, t):
         r'%[\n\r]'
         pass
 
     # lexer.ll:220
     # <INITIAL,chords,figures,incl,lyrics,markup,notes>%[^{\n\r][^\n\r]*
-    def t_notes_220(self, t):
+    def t_INITIAL_notes_220(self, t):
         r'%[^{\n\r][^\n\r]*'
         pass
 
     # lexer.ll:222
     # <INITIAL,chords,figures,incl,lyrics,markup,notes>{WHITE}+
-    def t_notes_222(self, t):
+    def t_INITIAL_notes_222(self, t):
         '[ \n\t\f\r]'
         pass
 
     # lexer.ll:227
     # <INITIAL,notes,figures,chords,markup>\"
-    def t_notes_227(self, t):
+    def t_INITIAL_notes_227(self, t):
         r'\"'
         t.lexer.push_state('quote')
         self.string_accumulator = ''
@@ -286,7 +288,7 @@ class _LilyPondLexicalDefinition(object):
 
     # lexer.ll:233
     # <INITIAL,chords,lyrics,notes,figures>\\version{WHITE}*
-    def t_notes_233(self, t):
+    def t_INITIAL_notes_233(self, t):
         r'\\version'
         t.lexer.push_state('version')
 
@@ -376,31 +378,35 @@ class _LilyPondLexicalDefinition(object):
 
     # lexer.ll:353
     # <INITIAL,chords,figures,lyrics,markup,notes>#
+    def t_INITIAL_markup_notes_353(self, t):
+        '\#'
+        t.type = 'SCHEME_START'
+        return t
 
     # lexer.ll:387
     # <INITIAL,notes,lyrics>\<\<
-    def t_notes_387(self, t):
+    def t_INITIAL_notes_387(self, t):
         r'\<\<'
         t.type = 'DOUBLE_ANGLE_OPEN'
         return t
 
     # lexer.ll:390
     # <INITIAL,notes,lyrics>\>\>
-    def t_notes_390(self, t):
+    def t_INITIAL_notes_390(self, t):
         r'\>\>'
         t.type = 'DOUBLE_ANGLE_CLOSE'
         return t
 
     # lexer.ll:396
     # <INITIAL,notes>\<
-    def t_notes_396(self, t):
+    def t_INITIAL_notes_396(self, t):
         r'\<'
         t.type = 'ANGLE_OPEN'
         return t
 
     # lexer.ll:399
     # <INITIAL,notes>\>
-    def t_notes_399(self, t):
+    def t_INITIAL_notes_399(self, t):
         r'\>'
         t.type = 'ANGLE_CLOSE'
         return t
@@ -564,21 +570,35 @@ class _LilyPondLexicalDefinition(object):
 
     # lexer.ll:643
     # <INITIAL>{DASHED_WORD}
+    @TOKEN(DASHED_WORD)
+    def t_INITIAL_643(self, t):
+        t.type = self.scan_bare_word(t)
+        return t        
 
     # lexer.ll:646
     # <INITIAL>{DASHED_KEY_WORD}
+    @TOKEN(DASHED_KEY_WORD)
+    def t_INITIAL_646(self, t):
+        t.type = self.scan_escaped_word(t)
+        return t
 
     # lexer.ll:651
     # -{UNSIGNED}|{REAL}
-    @TOKEN('%s|-%s' % (REAL, UNSIGNED))
-    def t_651(self, t):
+    @TOKEN(REAL)
+    def t_ANY_651_a(self, t):
+        t.type = 'REAL'
+        t.value = float(t.value)
+        return t
+
+    @TOKEN('-%s' % UNSIGNED)
+    def t_ANY_651_b(self, t):
         t.type = 'REAL'
         t.value = float(t.value)
         return t
 
     # lexer.ll:661
     # -\.
-    def t_661(self, t):
+    def t_ANY_661(self, t):
         '-\.'
         t.type = 'REAL'
         t.value = 0.0
@@ -587,7 +607,7 @@ class _LilyPondLexicalDefinition(object):
     # lexer.ll:666
     # {UNSIGNED}
     @TOKEN(UNSIGNED)
-    def t_666(self, t):
+    def t_ANY_666(self, t):
         t.type = 'UNSIGNED'
         t.value = float(t.value)
         return t
@@ -603,7 +623,7 @@ class _LilyPondLexicalDefinition(object):
 
     # lexer.ll:686
     # <INITIAL,lyrics,notes,figures>\\. 
-    def t_notes_686(self, t):
+    def t_INITIAL_notes_686(self, t):
         r'\\.'
         if t.value[1] == '>':
             t.type = 'E_ANGLE_CLOSE'
@@ -639,20 +659,19 @@ class _LilyPondLexicalDefinition(object):
 
     t_ignore = '[ \n\t\f\r]'
 
-#   t_extratoken_ignore = t_ignore
-#   t_chords_ignore = t_ignore
-#   t_figures_ignore = t_ignore
-#   t_incl_ignore = t_ignore
-#   t_lyrics_ignore = t_ignore
-#   t_lyric_quote_ignore = t_ignore
+    #    t_extratoken_ignore = t_ignore
+    #    t_chords_ignore = t_ignore
+    #    t_figures_ignore = t_ignore
+    #    t_incl_ignore = t_ignore
+    #    t_lyrics_ignore = t_ignore
+    #    t_lyric_quote_ignore = t_ignore
     t_longcomment_ignore = t_ignore
-#   t_markup_ignore = t_ignore
+    t_markup_ignore = t_ignore
     t_notes_ignore = t_ignore
     t_quote_ignore = t_ignore
-#   t_sourcefileline_ignore = t_ignore
-#   t_sourcefilename_ignore = t_ignore
+    #    t_sourcefileline_ignore = t_ignore
+    #    t_sourcefilename_ignore = t_ignore
     t_version_ignore = t_ignore
-#   t_scheme_ignore = t_ignore
 
     def t_newline(self, t):
         r'\n+'
@@ -662,20 +681,19 @@ class _LilyPondLexicalDefinition(object):
         print("Illegal character '%s'" % t.value[0])
         t.lexer.skip(1)
 
-#   t_extratoken_error = t_error
-#   t_chords_error = t_error
-#   t_figures_error = t_error
-#   t_incl_error = t_error
-#   t_lyrics_error = t_error
-#   t_lyric_quote_error = t_error
+    #    t_extratoken_error = t_error
+    #    t_chords_error = t_error
+    #    t_figures_error = t_error
+    #    t_incl_error = t_error
+    #    t_lyrics_error = t_error
+    #    t_lyric_quote_error = t_error
     t_longcomment_error = t_error
-#   t_markup_error = t_error
+    t_markup_error = t_error
     t_notes_error = t_error
     t_quote_error = t_error
-#   t_sourcefileline_error = t_error
-#   t_sourcefilename_error = t_error
+    #    t_sourcefileline_error = t_error
+    #    t_sourcefilename_error = t_error
     t_version_error = t_error
-#   t_scheme_error = t_error
 
     def scan_bare_word(self, t):
         if t.lexer.current_state( ) in ('notes',):
@@ -688,6 +706,8 @@ class _LilyPondLexicalDefinition(object):
             value = self.keywords[t.value]
             if t.lexer.current_state( ) == 'lyrics' and value == 'MARKUP':
                 return 'LYRIC_MARKUP'
+            elif value == 'WITH':
+                t.lexer.push_state('INITIAL')
             return value
 
         if t.value[1:] in self.client.assignments:
