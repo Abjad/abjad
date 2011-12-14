@@ -439,22 +439,6 @@ class NamedChromaticPitch(_Pitch):
         return NamedChromaticPitchClass(self._chromatic_pitch_name)
 
     @property
-    def octave_number(self):
-        '''Read-only integer octave number::
-
-            abjad> named_chromatic_pitch = pitchtools.NamedChromaticPitch("cs''")
-            abjad> named_chromatic_pitch.octave_number
-            5
-
-        Return integer.
-        '''
-        from abjad.tools import pitchtools
-        from abjad.tools.pitchtools.is_chromatic_pitch_name import chromatic_pitch_name_regex
-        groups = chromatic_pitch_name_regex.match(self._chromatic_pitch_name).groups()
-        octave_tick_string = groups[-1]
-        return pitchtools.octave_tick_string_to_octave_number(octave_tick_string)
-
-    @property
     def numbered_diatonic_pitch(self):
         '''Read-only numbered diatonic pitch::
 
@@ -505,3 +489,36 @@ class NamedChromaticPitch(_Pitch):
         '''
         from abjad.tools.pitchtools import NumberedChromaticPitchClass
         return NumberedChromaticPitchClass(self._chromatic_pitch_name)
+
+    @property
+    def octave_number(self):
+        '''Read-only integer octave number::
+
+            abjad> named_chromatic_pitch = pitchtools.NamedChromaticPitch("cs''")
+            abjad> named_chromatic_pitch.octave_number
+            5
+
+        Return integer.
+        '''
+        from abjad.tools import pitchtools
+        from abjad.tools.pitchtools.is_chromatic_pitch_name import chromatic_pitch_name_regex
+        groups = chromatic_pitch_name_regex.match(self._chromatic_pitch_name).groups()
+        octave_tick_string = groups[-1]
+        return pitchtools.octave_tick_string_to_octave_number(octave_tick_string)
+
+    @property
+    def pitch_class_octave_label(self):
+        '''Read-only pitch-class / octave label::
+
+            abjad> named_chromatic_pitch = pitchtools.NamedChromaticPitch("cs''")
+            abjad> named_chromatic_pitch.pitch_class_octave_label
+            C#5
+
+        Return string.
+        '''
+        result = []
+        result.append(self.diatonic_pitch_class_name.upper())
+        result.append(self._accidental.symbolic_string)
+        result.append(str(self.octave_number))
+        result = ''.join(result)
+        return result

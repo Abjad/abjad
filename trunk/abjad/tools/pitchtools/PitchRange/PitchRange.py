@@ -155,12 +155,27 @@ class PitchRange(_Immutable):
     def __repr__(self):
         return '%s(%s, %s)' % (type(self).__name__, self._start, self._stop)
 
+    ### PRIVATE ATTRIBUTES ###
+
+    @property
+    def _close_bracket_string(self):
+        if self.stop_pitch_is_included_in_range:
+            return ']'
+        else:
+            return ')'
+
+    @property
+    def _open_bracket_string(self):
+        if self.start_pitch_is_included_in_range:
+            return '['
+        else:
+            return '('
+
     ### PRIVATE METHODS ###
 
     def _contains_pitch(self, pitch):
         from abjad.tools import pitchtools
         if isinstance(pitch, numbers.Number):
-            #pitch = pitchtools.NumberedChromaticPitch(pitch)
             pitch = pitchtools.NamedChromaticPitch(pitch)
         elif isinstance(pitch, str):
             pitch = pitchtools.NamedChromaticPitch(pitch)
@@ -188,7 +203,46 @@ class PitchRange(_Immutable):
                 else:
                     return self.start_pitch < pitch < self.stop_pitch
 
+    
     ### PUBLIC ATTRIBUTES ###
+
+    @property
+    def one_line_named_chromatic_pitch_repr(self):
+        r'''Read-only one-line named chromatic pitch repr of pitch of range::
+
+            abjad> pitch_range = pitchtools.PitchRange(-12, 36)
+            abjad> pitch_range.one_line_named_chromatic_pitch_repr
+            '[C3, C7]'
+
+        Return string.
+        '''
+        result = []
+        result.append(self._open_bracket_string)
+        result.append(self.start_pitch.pitch_class_octave_label)
+        result.append(', ')
+        result.append(self.stop_pitch.pitch_class_octave_label)
+        result.append(self._close_bracket_string)
+        result = ''.join(result)
+        return result
+
+    @property
+    def one_line_numbered_chromatic_pitch_repr(self):
+        r'''Read-only one-line numbered chromatic pitch repr of pitch of range::
+
+            abjad> pitch_range = pitchtools.PitchRange(-12, 36)
+            abjad> pitch_range.one_line_named_chromatic_pitch_repr
+            '[-12, 36]'
+
+        Return string.
+        '''
+        result = []
+        result.append(self._open_bracket_string)
+        result.append(str(self.start_pitch.numbered_chromatic_pitch))
+        result.append(', ')
+        result.append(str(self.stop_pitch.numbered_chromatic_pitch))
+        result.append(self._close_bracket_string)
+        result = ''.join(result)
+        return result
 
     @property
     def start_pitch(self):
