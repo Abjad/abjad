@@ -50,4 +50,4 @@ class Harp(_StringInstrument):
         self.sounding_pitch_of_written_middle_c = pitchtools.NamedChromaticPitch("c'")
         self.primary_clefs = [contexttools.ClefMark('treble'), contexttools.ClefMark('bass')]
         self._copy_primary_clefs_to_all_clefs()
-        self.traditional_range = (-37, 44)
+        self._traditional_pitch_range = pitchtools.PitchRange(-37, 44)

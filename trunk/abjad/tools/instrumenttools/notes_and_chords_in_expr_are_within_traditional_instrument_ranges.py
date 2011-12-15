@@ -34,7 +34,7 @@ def notes_and_chords_in_expr_are_within_traditional_instrument_ranges(expr):
 
     for note_or_chord in leaftools.iterate_notes_and_chords_forward_in_expr(expr):
         instrument = get_effective_instrument(note_or_chord)
-        if note_or_chord not in instrument.traditional_range:
+        if note_or_chord not in instrument.traditional_pitch_range:
             return False
     else:
         return True

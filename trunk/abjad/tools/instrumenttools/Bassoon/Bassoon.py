@@ -1,5 +1,6 @@
 from abjad.tools import contexttools
 from abjad.tools import markuptools
+from abjad.tools import pitchtools
 from abjad.tools.instrumenttools._DoubleReedInstrument import _DoubleReedInstrument
 
 
@@ -41,4 +42,4 @@ class Bassoon(_DoubleReedInstrument):
         self._is_primary_instrument = True
         self.primary_clefs = [contexttools.ClefMark('bass')]
         self.all_clefs = [contexttools.ClefMark('bass'), contexttools.ClefMark('tenor')]
-        self.traditional_range = (-26, 15)
+        self._traditional_pitch_range = pitchtools.PitchRange(-26, 15)

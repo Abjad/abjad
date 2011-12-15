@@ -44,7 +44,7 @@ class UntunedPercussion(_PercussionInstrument):
         self.sounding_pitch_of_written_middle_c = pitchtools.NamedChromaticPitch("c'")
         self.primary_clefs = [contexttools.ClefMark('percussion')]
         self._copy_primary_clefs_to_all_clefs()
-        self.traditional_range = (-48, 39)
+        self._traditional_pitch_range = pitchtools.PitchRange(-48, 39)
 
     ### CLASS ATTRIBUTES ###
 

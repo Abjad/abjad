@@ -45,4 +45,4 @@ class Viola(_StringInstrument):
         self.all_clefs = [
             contexttools.ClefMark('alto'),
             contexttools.ClefMark('treble')]
-        self.traditional_range = (-12, 28)
+        self._traditional_pitch_range = pitchtools.PitchRange(-12, 28)

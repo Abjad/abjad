@@ -36,4 +36,4 @@ class BassFlute(Flute):
         self._default_short_instrument_name = 'bass fl.'
         self._is_primary_instrument = False
         self.sounding_pitch_of_fingered_middle_c = pitchtools.NamedChromaticPitch('c')
-        self.traditional_range = (-12, 24)
+        self._traditional_pitch_range = pitchtools.PitchRange(-12, 24)

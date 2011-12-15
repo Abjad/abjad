@@ -43,4 +43,4 @@ class Tuba(_BrassInstrument):
         self.sounding_pitch_of_written_middle_c = pitchtools.NamedChromaticPitch("c'")
         self.primary_clefs = [contexttools.ClefMark('bass')]
         self._copy_primary_clefs_to_all_clefs()
-        self.traditional_range = (-34, 5)
+        self._traditional_pitch_range = pitchtools.PitchRange(-34, 5)

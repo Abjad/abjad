@@ -46,4 +46,4 @@ class Cello(_StringInstrument):
             contexttools.ClefMark('bass'),
             contexttools.ClefMark('tenor'),
             contexttools.ClefMark('treble')]
-        self.traditional_range = (-24, 19)
+        self._traditional_pitch_range = pitchtools.PitchRange(-24, 19)

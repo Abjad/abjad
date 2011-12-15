@@ -39,4 +39,4 @@ class EFlatClarinet(Clarinet):
         self.sounding_pitch_of_fingered_middle_c = pitchtools.NamedChromaticPitch("ef'")
         self.primary_clefs = [contexttools.ClefMark('treble')]
         self._copy_primary_clefs_to_all_clefs()
-        self.traditional_range = (-7, 36)
+        self._traditional_pitch_range = pitchtools.PitchRange(-7, 36)

@@ -43,4 +43,4 @@ class Trombone(_BrassInstrument):
         self.sounding_pitch_of_written_middle_c = pitchtools.NamedChromaticPitch("c'")
         self.primary_clefs = [contexttools.ClefMark('bass'), contexttools.ClefMark('tenor')]
         self._copy_primary_clefs_to_all_clefs()
-        self.traditional_range = (-20, 15)
+        self._traditional_pitch_range = pitchtools.PitchRange(-20, 15)

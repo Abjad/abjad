@@ -15,6 +15,7 @@ class _Instrument(contexttools.InstrumentMark):
             instrument_name_markup=None, short_instrument_name_markup=None, target_context=None)
         self._default_performer_names = ['instrumentalist']
         self._is_primary_instrument = False
+        self._pitch_range = None
 
     ### PRIVATE METHODS ###
 
@@ -61,6 +62,22 @@ class _Instrument(contexttools.InstrumentMark):
         return not self.sounding_pitch_of_fingered_middle_c == pitchtools.NamedChromaticPitch("c'")
 
     @apply
+    def pitch_range():
+        def fset(self, pitch_range):
+            r'''Read / write pitch range.
+
+            Return pitch range.
+            '''
+            if pitch_range is not None:
+                pitch_range = pitchtools.PitchRange(pitch_range)
+            self._pitch_range = pitch_range
+        def fget(self):
+            if self._pitch_range is None:
+                return self.traditional_pitch_range
+            return self._pitch_range
+        return property(**locals())
+
+    @apply
     def primary_clefs():
         def fset(self, clefs):
             r'''Read / write primary clefs.
@@ -86,18 +103,13 @@ class _Instrument(contexttools.InstrumentMark):
             return self._sounding_pitch_of_fingered_middle_c
         return property(**locals())
 
-    @apply
-    def traditional_range():
-        def fset(self, range):
-            r'''Read / write traditional range.
+    @property
+    def traditional_pitch_range(self):
+        r'''Read-only traditional pitch range.
 
-            Return pitch range.
-            '''
-            range = pitchtools.PitchRange(range)
-            self._traditional_range = range
-        def fget(self):
-            return self._traditional_range
-        return property(**locals())
+        Return pitch range.
+        '''
+        return self._traditional_pitch_range
 
     ### PUBLIC METHODS ###
 

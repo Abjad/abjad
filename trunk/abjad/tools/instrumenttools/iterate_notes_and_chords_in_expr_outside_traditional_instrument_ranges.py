@@ -27,5 +27,5 @@ def iterate_notes_and_chords_in_expr_outside_traditional_instrument_ranges(expr)
         instrument = get_effective_instrument(note_or_chord)
         if instrument is None:
             raise MissingInstrumentError
-        if note_or_chord not in instrument.traditional_range:
+        if note_or_chord not in instrument.traditional_pitch_range:
             yield note_or_chord

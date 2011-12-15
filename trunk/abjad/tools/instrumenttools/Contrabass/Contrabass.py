@@ -43,4 +43,4 @@ class Contrabass(_StringInstrument):
         self.sounding_pitch_of_fingered_middle_c = pitchtools.NamedChromaticPitch('c')
         self.primary_clefs = [contexttools.ClefMark('bass')]
         self.all_clefs = [contexttools.ClefMark('bass'), contexttools.ClefMark('treble')]
-        self.traditional_range = (-32, 2)
+        self._traditional_pitch_range = pitchtools.PitchRange(-32, 2)

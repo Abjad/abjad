@@ -36,4 +36,4 @@ class Piccolo(Flute):
         self._default_short_instrument_name = 'picc.'
         self._is_primary_instrument = False
         self.sounding_pitch_of_fingered_middle_c = pitchtools.NamedChromaticPitch("c''")
-        self.traditional_range = (14, 48)
+        self._traditional_pitch_range = pitchtools.PitchRange(14, 48)

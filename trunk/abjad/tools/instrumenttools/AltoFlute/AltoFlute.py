@@ -36,4 +36,4 @@ class AltoFlute(Flute):
         self._default_short_instrument_name = 'alt. fl.'
         self._is_primary_instrument = False
         self.sounding_pitch_of_fingered_middle_c = pitchtools.NamedChromaticPitch("g")
-        self.traditional_range = (-5, 31)
+        self._traditional_pitch_range = pitchtools.PitchRange(-5, 31)
