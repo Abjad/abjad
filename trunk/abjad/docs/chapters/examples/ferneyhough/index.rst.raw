@@ -95,7 +95,7 @@ Finally we make the score:
 <abjad>
 staff = stafftools.RhythmicStaff(music)
 score = Score([staff])
-lilypond_file = lilyfiletools.make_basic_lilypond_file(score)
+lilypond_file = lilypondfiletools.make_basic_lilypond_file(score)
 </abjad>
 
 Configure containers:

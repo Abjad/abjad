@@ -23,7 +23,7 @@ class _LexerProxy(object):
     def push_state(self, state):
         self._lexer.push_state(state)
 
-    def push_token(self, token):
+    def push_extra_token(self, token):
         self._token_stack.append(token)
 
     def token(self):
