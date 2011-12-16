@@ -9,13 +9,22 @@
         (symbol<? (car x) (car y)))))
 
 
+  (define (display-value key value)
+    (cond
+      ((number? value)
+        (display (format "        '~A': ~A,\n" key value)))
+      ((or (symbol? value) (string? value))
+        (display (format "        '~A': '~A',\n" key value)))
+      ((list? value)
+        (display (format "        '~A': (~A,),\n"
+          key
+          (string-join (map (lambda (x) (format "'~A'" x)) value) ", "))))))
+
+
   (define (document-music-function obj-pair) 
     (let*
-
       ; DECLARATIONS
-      (
-
-      (func-name (car obj-pair))
+      ((func-name (car obj-pair))
       (music-func (cdr obj-pair))
       (func (ly:music-function-extract music-func))
       (arg-names
@@ -28,9 +37,7 @@
           (format "(~A,)" (string-join (map (lambda (x)
             (format "'~A'" x))
             signature-syms) ", "))
-          "None"))
-      )
-
+          "None")))
       ; BODY
       (begin
         (display (format "    '~A': {\n" func-name))
@@ -42,9 +49,27 @@
   (define (document-prob obj-pair) 
     (let*
       ; DECLARATIONS
-      ()
+      ((prob-name (car obj-pair))
+      (prob (cdr obj-pair))
+      (immutables (ly:prob-immutable-properties prob))
+      (mutables (ly:prob-mutable-properties prob))
+      (articulation-type (ly:assoc-get 'articulation-type mutables #f))
+      (name (ly:assoc-get 'name immutables #f))
+      (context-type (ly:assoc-get 'context-type mutables #f))
+      (span-direction (ly:assoc-get 'span-direction mutables #f))
+      (text (ly:assoc-get 'text mutables #f))
+      (types (ly:assoc-get 'types immutables #f)))
       ; BODY
-      ()))
+      (begin
+        (display (format "    '~A': {,\n" prob-name))
+        (display-value "articulation-type" articulation-type)
+        (display-value "context-type" context-type)
+        (display-value "name" name)
+        (display-value "span-direction" span-direction)
+        (display-value "text" text)
+        (display (format "        'type': 'ly:prob?',\n"))
+        (display-value "types" types)
+        (display "    },\n"))))
 
 
   (define (document-alias obj-pair) 
@@ -62,15 +87,26 @@
         (display (format "    '~A': None,\n" name)))))
 
 
-  (define (document-other obj-pair) '())
+  (define (document-other obj-pair) 
+    (let*
+      ((name (car obj-pair))
+      (value (cdr obj-pair))
+      (formatted-value
+        (cond
+          ((number? value) value)
+          ((string? value) (format "'~A'" value))
+          (else "None"))))
+      ;BODY
+      (begin
+        (display (format "    '~A': ~A,\n" name formatted-value)))))
 
 
   (define (document-object obj-pair)
     (cond
       ((ly:music-function? (cdr obj-pair))
         (document-music-function obj-pair))
-;      ((ly:prob? (cdr obj-pair))
-;        (document-prob obj-pair))
+      ((ly:prob? (cdr obj-pair))
+        (document-prob obj-pair))
       ((string? (cdr obj-pair))
         (document-alias obj-pair))
     (else 
