@@ -1168,6 +1168,7 @@ class _LilyPondSyntacticalDefinition(object):
                         | LYRIC_MARKUP markup_top
         '''
         p[0] = Node('lyric_markup', p[1:])
+        self.client.lexer.pop_state( )
 
 
     def p_full_markup_list(self, p):
@@ -1175,6 +1176,7 @@ class _LilyPondSyntacticalDefinition(object):
                             | MARKUPLINES markup_list
         '''
         p[0] = Node('full_markup_list', p[1:])
+        self.client.lexer.pop_state( )
 
 
     def p_full_markup(self, p):
@@ -1182,6 +1184,7 @@ class _LilyPondSyntacticalDefinition(object):
                        | MARKUP markup_top
         '''
         p[0] = Node('full_markup', p[1:])
+        self.client.lexer.pop_state( )
 
 
     def p_markup_top(self, p):
