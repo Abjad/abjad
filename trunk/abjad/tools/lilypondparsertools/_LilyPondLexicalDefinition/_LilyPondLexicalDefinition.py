@@ -2,9 +2,10 @@ from fractions import Fraction
 from ply.lex import TOKEN
 from ply.lex import LexToken
 import re
+from abjad.ly.py.current_module import current_module
 from abjad.ly.py.markup_functions import markup_functions
 from abjad.ly.py.markup_functions import markup_list_functions
-from abjad.ly.py.current_module import current_module
+from abjad.ly.py.language_pitch_names import language_pitch_names
 
 
 class _LilyPondLexicalDefinition(object):
@@ -64,10 +65,6 @@ class _LilyPondLexicalDefinition(object):
     EXTENDER        = r'__'
     HYPHEN          = r'--'
     BOM_UTF8        = r'\357\273\277'
-
-    note_names = {
-        'english': re.compile('^[a-g](ss|s|ff|f|tqf|tqs|qf|qs)?$'),
-    }
 
     keywords = {
         # parser.yy:182, lily-lexer.cc:39
@@ -226,6 +223,8 @@ class _LilyPondLexicalDefinition(object):
         '.', '/', ':', '<', '=', '>', '?', '[', 
         '\\', ']', '^', '_', '{', '|', '}', '~'
     )
+
+    pitch_names = language_pitch_names['nederlands']
 
     string_accumulator = ''
 
@@ -445,8 +444,9 @@ class _LilyPondLexicalDefinition(object):
     # <notes,figures>{ALPHAWORD}
     @TOKEN(ALPHAWORD)
     def t_notes_417(self, t):
-        if self.note_names['english'].match(t.value) is not None:
+        if t.value in self.pitch_names:
             t.type = 'NOTENAME_PITCH'
+            t.value = self.pitch_names[t.value]
         else:
             t.type = 'STRING'
         return t
@@ -769,7 +769,7 @@ class _LilyPondLexicalDefinition(object):
 
     def scan_bare_word(self, t):
         if t.lexer.current_state( ) in ('notes',):
-            if self.note_names['english'].match(t.value) is not None:
+            if t.value in self.pitch_names:
                 return 'NOTENAME_PITCH'
         return 'STRING'        
 

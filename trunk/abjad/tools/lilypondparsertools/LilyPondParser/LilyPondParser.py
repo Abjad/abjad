@@ -1,5 +1,6 @@
 import os
 from ply import yacc
+from abjad.ly.py.language_pitch_names import language_pitch_names
 from abjad.tools.lilypondparsertools._LexerProxy._LexerProxy import _LexerProxy
 from abjad.tools.lilypondparsertools._LilyPondLexicalDefinition._LilyPondLexicalDefinition \
     import _LilyPondLexicalDefinition
@@ -25,11 +26,8 @@ class LilyPondParser(object):
     ### OVERRIDES ###
 
     def __call__(self, input_string):
-
         self.assignments = { }
-
+        self.lexdef.pitch_names = language_pitch_names['english']
         self.lexer.push_state('notes')
-
         concrete_syntax_tree = self.parser.parse(input_string, lexer=self.lexer)
-
         return concrete_syntax_tree
