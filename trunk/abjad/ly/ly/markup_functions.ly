@@ -34,10 +34,10 @@
     (signature-syms (map (lambda (x) (procedure-name x)) signature))
     (signature-string
       (if (< 0 (length signature))
-        (format "(~A,)" (string-join (map (lambda (x)
+        (format "[~A]" (string-join (map (lambda (x)
           (format "'~A'" x))
           signature-syms) ", "))
-        "None")))
+        "[ ]")))
     (display (format "    '~A': ~A,\n" proc-name signature-string))))
 
 

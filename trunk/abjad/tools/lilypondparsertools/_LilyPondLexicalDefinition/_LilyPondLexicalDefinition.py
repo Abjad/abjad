@@ -1,6 +1,10 @@
 from fractions import Fraction
 from ply.lex import TOKEN
+from ply.lex import LexToken
 import re
+from abjad.ly.py.markup_functions import markup_functions
+from abjad.ly.py.markup_functions import markup_list_functions
+from abjad.ly.py.current_module import current_module
 
 
 class _LilyPondLexicalDefinition(object):
@@ -23,6 +27,7 @@ class _LilyPondLexicalDefinition(object):
 #        ('sourcefileline', 'exclusive'),
 #        ('sourcefilename', 'exclusive'),
         ('version', 'exclusive'),
+        ('scheme', 'exclusive'),
     )
 
     # lexer.ll:129
@@ -565,15 +570,62 @@ class _LilyPondLexicalDefinition(object):
 
     # lexer.ll:545
     # <markup>\\score
+    def t_markup_545(self, t):
+        r'\\score'
+        t.type = 'SCORE'
+        return t
 
     # lexer.ll:548
     # <markup>{MARKUPCOMMAND}
+    @TOKEN(MARKUPCOMMAND)
+    def t_markup_548(self, t):
+        value = t.value[1:]
+
+        if value in markup_functions or value in markup_list_functions:
+            if value in markup_functions:
+                t.type = 'MARKUP_FUNCTION'
+                signature = markup_functions[value]
+            else:
+                t.type = 'MARKUP_LIST_FUNCTION'
+                signature = markup_list_functions[value]
+
+            token = LexToken( )
+            token.type = 'EXPECT_NO_MORE_ARGS'
+            token.value = None
+            self.client.lexer.push_extra_token(token)
+
+            for predicate in reversed(signature):
+                token = LexToken( )
+                token.value = None
+                token.lineno = t.lineno
+                token.lexpos = t.lexpos
+                if predicate in ['markup?', 'cheap-markup?']:
+                    token.type = 'EXPECT_MARKUP'
+                elif predicate == 'markup-list?':
+                    token.type = 'EXPECT_MARKUP_LIST'
+                else:
+                    token.type = 'EXPECT_SCM'
+                    token.value = predicate
+                self.client.lexer.push_extra_token(token)
+
+        else:
+            t.type = self.scan_escaped_word(t)
+
+        return t
 
     # lexer.ll:598
     # <markup>[{}]
+#    def t_markup_598(self, t):
+#        r'[{}]'
+#        t.type = t.value
+#        return t
 
     # lexer.ll:601
     # <markup>[^#{}\"\\ \t\n\r\f]+
+    def t_markup_601(self, t):
+        r'[^#{}\"\\ \t\n\r\f]+'
+        t.type = 'STRING'
+        return t
 
     # lexer.ll:614
     # <markup>.
@@ -689,6 +741,8 @@ class _LilyPondLexicalDefinition(object):
     #    t_sourcefilename_ignore = t_ignore
     t_version_ignore = t_ignore
 
+    t_scheme_ignore = t_ignore
+
     def t_newline(self, t):
         r'\n+'
         t.lexer.lineno += t.value.count("\n")
@@ -711,6 +765,8 @@ class _LilyPondLexicalDefinition(object):
     #    t_sourcefilename_error = t_error
     t_version_error = t_error
 
+    t_scheme_error = t_error
+
     def scan_bare_word(self, t):
         if t.lexer.current_state( ) in ('notes',):
             if self.note_names['english'].match(t.value) is not None:
@@ -718,12 +774,24 @@ class _LilyPondLexicalDefinition(object):
         return 'STRING'        
 
     def scan_escaped_word(self, t):
+        # first, check against LilyPond's keywords
+        # second, check the list of assignments (as we allow overwriting)
+        # third, check against "current_module"
+        #    push extra tokens if the result is a music function
+        #    otherwise, return SCM_IDENTIFIER
+        # failing all else, return STRING
+
         if t.value in self.keywords:
             value = self.keywords[t.value]
-            if t.lexer.current_state( ) == 'lyrics' and value == 'MARKUP':
-                return 'LYRIC_MARKUP'
+
+            if value == 'MARKUP':
+                t.lexer.push_state('markup')
+                if t.lexer.current_state( ) == 'lyrics':
+                    return 'LYRIC_MARKUP'
+
             elif value == 'WITH':
                 t.lexer.push_state('INITIAL')
+
             return value
 
         if t.value[1:] in self.client.assignments:
