@@ -818,4 +818,41 @@ class _LilyPondLexicalDefinition(object):
 
             return identifier_lookup[node.type]
 
-        raise Exception('Unknown escaped word "%s".' % t.value)
+        if t.value[1:] not in current_module:
+            raise Exception('Unknown escaped word "%s".' % t.value)
+
+        lookup = current_module[t.value[1:]]
+
+        if 'type' in lookup and lookup['type'] == 'ly:music-function?':
+            # push extra tokens
+
+            token = LexToken( )
+            token.type = 'EXPECT_NO_MORE_ARGS'
+            token.value = None
+            token.lineno = t.lineno
+            token.lexpos = t.lexpos
+            self.client.lexer.push_extra_token(token)
+
+            for predicate in reversed(lookup['signature']):
+                token = LexToken( )
+                token.value = None
+                token.lineno = t.lineno
+                token.lexpos = t.lexpos
+
+                if predicate == 'ly:music?':
+                    token.type = 'EXPECT_MUSIC'
+                elif predicate == 'ly:pitch?':
+                    token.type = 'EXPECT_PITCH'
+                elif predicate == 'ly:duration?':
+                    token.type = 'EXPECT_DURATION'
+                elif predicate in ['markup?', 'cheap-markup?']:
+                    token.type = 'EXPECT_MARKUP'
+                else:
+                    token.type = 'EXPECT_SCM'
+
+                self.client.lexer.push_extra_token(token)
+
+            return 'MUSIC_FUNCTION'
+
+        # what do we do with events?
+        return 'SCM_IDENTIFIER'
