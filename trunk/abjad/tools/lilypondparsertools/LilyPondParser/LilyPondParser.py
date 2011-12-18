@@ -1,7 +1,12 @@
 import os
 from ply import yacc
 from abjad.tools.durationtools import Duration
+
+from abjad.ly.py.current_module import current_module
 from abjad.ly.py.language_pitch_names import language_pitch_names
+from abjad.ly.py.markup_functions import markup_functions
+from abjad.ly.py.markup_functions import markup_list_functions
+
 from abjad.tools.lilypondparsertools._LexerProxy._LexerProxy import _LexerProxy
 from abjad.tools.lilypondparsertools._LilyPondLexicalDefinition._LilyPondLexicalDefinition \
     import _LilyPondLexicalDefinition
@@ -24,9 +29,14 @@ class LilyPondParser(object):
             outputdir=self.output_path,
             picklefile=self.pickle_path)
 
+        self.current_module = current_module
+        self.language_pitch_names = language_pitch_names
+        self.markup_functions = markup_functions
+        self.markup_list_functions = markup_list_functions
+
         self.assignments = { }
         self.parser_variables = {
-            'duration': Duration(1, 4),
+            'default_duration': Duration(1, 4),
             'language': 'english',
         }
 
@@ -48,6 +58,6 @@ class LilyPondParser(object):
         self.assignments = { }
         self.lexer.push_state('notes')
         self.parser_variables = {
-            'duration': Duration(1, 4),
+            'default_duration': Duration(1, 4),
             'language': 'english',
         }

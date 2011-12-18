@@ -1,4 +1,5 @@
 from abjad import *
+from abjad.tools import durationtools
 from abjad.tools.lilypondparsertools._LilyPondSyntaxNode._LilyPondSyntaxNode import _LilyPondSyntaxNode as Node
 from abjad.tools.lilypondparsertools._LilyPondLexicalDefinition._LilyPondLexicalDefinition import _LilyPondLexicalDefinition
 
@@ -908,14 +909,38 @@ class _LilyPondSyntacticalDefinition(object):
         '''optional_notemode_duration : 
                                       | multiplied_duration
         '''
-        p[0] = Node('optional_notemode_duration', p[1:])
+        if len(p) == 1:
+            p[0] = self.client.parser_variables['default_duration']
+        else:
+            p[0] = p[1]
+            self.client.parser_variables['default_duration'] = p[1]
 
 
     def p_steno_duration(self, p):
         '''steno_duration : bare_unsigned dots
                           | DURATION_IDENTIFIER dots
         '''
-        p[0] = Node('steno_duration', p[1:])
+        rh = self._build_right_hand_side(p)
+        dots = p[2]
+
+        # bare_unsigned dots
+        if isinstance(rh[0], int):
+            token = str(p[1]) + '.' * dots
+            duration = Duration(durationtools.duration_token_to_rational(token))
+
+        # DURATION_IDENTIFIER dots
+        else:
+            id = p[1][1:]
+            if id in self.client.assignments:
+                duration = self.client.assignments[id]
+            else:
+                duration = self.client.current_module[id]
+            if dots:
+                token = durationtools.assignable_rational_to_lilypond_duration_string(duration)
+                token += '.' * dots
+                duration = Duration(durationtools.duration_token_to_rational(token))
+        
+        p[0] = duration
 
 
     def p_multiplied_duration(self, p):
@@ -923,14 +948,20 @@ class _LilyPondSyntacticalDefinition(object):
                                | multiplied_duration '*' bare_unsigned
                                | multiplied_duration '*' FRACTION
         '''
-        p[0] = Node('multiplied_duration', p[1:])
+        if len(p) == 2:
+            p[0] = p[1]
+        else:
+            p[0] = (p[1], p[3])
 
 
     def p_fraction(self, p):
         '''fraction : FRACTION
                     | UNSIGNED '/' UNSIGNED
         '''
-        p[0] = Node('fraction', p[1:])
+        if len(p) == 2:
+            p[0] = p[1]
+        else:
+            p[0] = Fraction(p[1], p[3])
 
 
     def p_dots(self, p):
@@ -938,9 +969,13 @@ class _LilyPondSyntacticalDefinition(object):
                 | dots '.'
         '''
         if len(p) == 1:
-            p[0] = Node('dots', 0)
+            p[0] = 0
         else:
-            p[0] = Node('dots', p[1].value + 1)
+            p[0] = p[1] + 1
+#        if len(p) == 1:
+#            p[0] = Node('dots', 0)
+#        else:
+#            p[0] = Node('dots', p[1].value + 1)
 
 
     def p_tremolo_type(self, p):
@@ -1327,8 +1362,8 @@ class _LilyPondSyntacticalDefinition(object):
     def _build_right_hand_side(self, p):
         rh = [ ]
         for x in p[1:]:
-            if isinstance(x, str):
-                rh.append(x)
-            else:
+            if hasattr(x, 'type'):
                 rh.append(x.type)
+            else:
+                rh.append(x)
         return tuple(rh)

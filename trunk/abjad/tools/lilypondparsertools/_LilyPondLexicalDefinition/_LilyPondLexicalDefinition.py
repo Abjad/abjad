@@ -2,10 +2,6 @@ from fractions import Fraction
 from ply.lex import TOKEN
 from ply.lex import LexToken
 from abjad.tools.durationtools import Duration
-from abjad.ly.py.current_module import current_module
-from abjad.ly.py.markup_functions import markup_functions
-from abjad.ly.py.markup_functions import markup_list_functions
-from abjad.ly.py.language_pitch_names import language_pitch_names
 
 
 class _LilyPondLexicalDefinition(object):
@@ -442,7 +438,8 @@ class _LilyPondLexicalDefinition(object):
     # <notes,figures>{ALPHAWORD}
     @TOKEN(ALPHAWORD)
     def t_notes_417(self, t):
-        pitch_names = self.client.parser_variables['language']
+        language = self.client.parser_variables['language']
+        pitch_names = self.client.language_pitch_names[language]
         if t.value in pitch_names:
             t.type = 'NOTENAME_PITCH'
             t.value = pitch_names[t.value]
@@ -580,13 +577,14 @@ class _LilyPondLexicalDefinition(object):
     def t_markup_548(self, t):
         value = t.value[1:]
 
-        if value in markup_functions or value in markup_list_functions:
-            if value in markup_functions:
+        if value in self.client.markup_functions or \
+            value in self.client.markup_list_functions:
+            if value in self.client.markup_functions:
                 t.type = 'MARKUP_FUNCTION'
-                signature = markup_functions[value]
+                signature = self.client.markup_functions[value]
             else:
                 t.type = 'MARKUP_LIST_FUNCTION'
-                signature = markup_list_functions[value]
+                signature = self.client.markup_list_functions[value]
 
             token = LexToken( )
             token.type = 'EXPECT_NO_MORE_ARGS'
@@ -769,7 +767,8 @@ class _LilyPondLexicalDefinition(object):
     def scan_bare_word(self, t):
         if t.lexer.current_state( ) in ('notes',):
 
-            pitch_names = self.client.parser_variables['language']
+            language = self.client.parser_variables['language']
+            pitch_names = self.client.language_pitch_names[language]
             if t.value in pitch_names:
                 t.type = 'NOTENAME_PITCH'
 
@@ -825,10 +824,10 @@ class _LilyPondLexicalDefinition(object):
 
         # then, check for it in the "current_module" dictionary
         # which we've dumped out of LilyPond
-        if t.value[1:] not in current_module:
+        if t.value[1:] not in self.client.current_module:
             raise Exception('Unknown escaped word "%s".' % t.value)
 
-        lookup = current_module[t.value[1:]]
+        lookup = self.client.current_module[t.value[1:]]
 
         # if the lookup resolves to a function definition,
         # we have to push artificial tokens onto the token stack.
