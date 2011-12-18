@@ -1,3 +1,6 @@
+from abjad.tools.durationtools import Duration
+
+
 current_module = {
     '$current-book': None,
     '$current-bookpart': None,
@@ -48,7 +51,7 @@ current_module = {
         'types': ('context-specification', 'general-music', 'music-wrapper-music',),
     },
     'allowPageTurn': {
-        'signature': None,
+        'signature': ( ),
         'type': 'ly:music-function?',
     },
     'applyContext': {
@@ -238,10 +241,10 @@ current_module = {
         'types': ('general-music', 'break-span-event', 'break-dynamic-span-event', 'event',),
     },
     'breathe': {
-        'signature': None,
+        'signature': ( ),
         'type': 'ly:music-function?',
     },
-    'breve': None,
+    'breve': Duration(2, 1),
     'cadenzaOff': {
         'name': 'SequentialMusic',
         'type': 'ly:prob?',
@@ -314,7 +317,7 @@ current_module = {
         'type': 'ly:music-function?',
     },
     'cueClefUnset': {
-        'signature': None,
+        'signature': ( ),
         'type': 'ly:music-function?',
     },
     'cueDuring': {
@@ -382,7 +385,7 @@ current_module = {
     'default-fret-table': None,
     'default-repeat-chord': None,
     'defaultNoteHeads': {
-        'signature': None,
+        'signature': ( ),
         'type': 'ly:music-function?',
     },
     'defaultStringTunings': None,
@@ -748,7 +751,7 @@ current_module = {
         'types': ('general-music', 'sequential-music',),
     },
     'harmonicsOn': {
-        'signature': None,
+        'signature': ( ),
         'type': 'ly:music-function?',
     },
     'hideNotes': {
@@ -827,7 +830,7 @@ current_module = {
         'type': 'ly:music-function?',
     },
     'languageRestore': {
-        'signature': None,
+        'signature': ( ),
         'type': 'ly:music-function?',
     },
     'languageSaveAndChange': {
@@ -854,7 +857,7 @@ current_module = {
         'types': ('general-music', 'event', 'articulation-event', 'script-event',),
     },
     'locrian': None,
-    'longa': None,
+    'longa': Duration(4, 1),
     'longfermata': {
         'articulation-type': 'longfermata',
         'name': 'ArticulationEvent',
@@ -893,7 +896,7 @@ current_module = {
         'type': 'ly:prob?',
         'types': ('general-music', 'event', 'articulation-event', 'script-event',),
     },
-    'maxima': None,
+    'maxima': Duration(8, 1),
     'melisma': {
         'context-type': 'Bottom',
         'name': 'ContextSpeccedMusic',
@@ -980,11 +983,11 @@ current_module = {
         'types': ('general-music', 'event-chord', 'simultaneous-music',),
     },
     'noPageBreak': {
-        'signature': None,
+        'signature': ( ),
         'type': 'ly:music-function?',
     },
     'noPageTurn': {
-        'signature': None,
+        'signature': ( ),
         'type': 'ly:music-function?',
     },
     'normalsize': {
@@ -1036,11 +1039,11 @@ current_module = {
         'types': ('general-music', 'event', 'dynamic-event', 'absolute-dynamic-event',),
     },
     'pageBreak': {
-        'signature': None,
+        'signature': ( ),
         'type': 'ly:music-function?',
     },
     'pageTurn': {
-        'signature': None,
+        'signature': ( ),
         'type': 'ly:music-function?',
     },
     'palmMute': {
@@ -1053,7 +1056,7 @@ current_module = {
         'types': ('general-music', 'sequential-music',),
     },
     'palmMuteOn': {
-        'signature': None,
+        'signature': ( ),
         'type': 'ly:music-function?',
     },
     'parallelMusic': {
@@ -1216,11 +1219,11 @@ current_module = {
         'type': 'ly:music-function?',
     },
     'pointAndClickOff': {
-        'signature': None,
+        'signature': ( ),
         'type': 'ly:music-function?',
     },
     'pointAndClickOn': {
-        'signature': None,
+        'signature': ( ),
         'type': 'ly:music-function?',
     },
     'portato': {
@@ -1708,7 +1711,7 @@ current_module = {
     },
     'tab-repeat-chord': None,
     'tabChordRepetition': {
-        'signature': None,
+        'signature': ( ),
         'type': 'ly:music-function?',
     },
     'tabFullNotation': {
@@ -2020,7 +2023,7 @@ current_module = {
         'types': ('general-music', 'sequential-music',),
     },
     'xNotesOn': {
-        'signature': None,
+        'signature': ( ),
         'type': 'ly:music-function?',
     },
 }

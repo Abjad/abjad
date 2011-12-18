@@ -224,8 +224,6 @@ class _LilyPondLexicalDefinition(object):
         '\\', ']', '^', '_', '{', '|', '}', '~'
     )
 
-    pitch_names = language_pitch_names['nederlands']
-
     string_accumulator = ''
 
     ### LEXICAL RULES ###
@@ -444,9 +442,10 @@ class _LilyPondLexicalDefinition(object):
     # <notes,figures>{ALPHAWORD}
     @TOKEN(ALPHAWORD)
     def t_notes_417(self, t):
-        if t.value in self.pitch_names:
+        pitch_names = self.client.parser_variables['language']
+        if t.value in pitch_names:
             t.type = 'NOTENAME_PITCH'
-            t.value = self.pitch_names[t.value]
+            t.value = pitch_names[t.value]
         else:
             t.type = 'STRING'
         return t
@@ -653,20 +652,20 @@ class _LilyPondLexicalDefinition(object):
     # lexer.ll:651
     # -{UNSIGNED}|{REAL}
     @TOKEN(REAL)
-    def t_ANY_651_a(self, t):
+    def t_651_a(self, t):
         t.type = 'REAL'
         t.value = float(t.value)
         return t
 
     @TOKEN('-%s' % UNSIGNED)
-    def t_ANY_651_b(self, t):
+    def t_651_b(self, t):
         t.type = 'REAL'
         t.value = float(t.value)
         return t
 
     # lexer.ll:661
     # -\.
-    def t_ANY_661(self, t):
+    def t_661(self, t):
         '-\.'
         t.type = 'REAL'
         t.value = 0.0
@@ -675,7 +674,7 @@ class _LilyPondLexicalDefinition(object):
     # lexer.ll:666
     # {UNSIGNED}
     @TOKEN(UNSIGNED)
-    def t_ANY_666(self, t):
+    def t_666(self, t):
         t.type = 'UNSIGNED'
         t.value = float(t.value)
         return t
@@ -769,8 +768,11 @@ class _LilyPondLexicalDefinition(object):
 
     def scan_bare_word(self, t):
         if t.lexer.current_state( ) in ('notes',):
-            if t.value in self.pitch_names:
-                return 'NOTENAME_PITCH'
+
+            pitch_names = self.client.parser_variables['language']
+            if t.value in pitch_names:
+                t.type = 'NOTENAME_PITCH'
+
         return 'STRING'        
 
     def scan_escaped_word(self, t):
@@ -781,6 +783,7 @@ class _LilyPondLexicalDefinition(object):
         #    otherwise, return SCM_IDENTIFIER
         # failing all else, return STRING
 
+        # first, check for it in the keyword list
         if t.value in self.keywords:
             value = self.keywords[t.value]
 
@@ -794,6 +797,8 @@ class _LilyPondLexicalDefinition(object):
 
             return value
 
+        # then, check for it in the assignments list 
+        # (anything assigned in the input string)
         if t.value[1:] in self.client.assignments:
             node = self.client.assignments[t.value[1:]]
 
@@ -818,27 +823,28 @@ class _LilyPondLexicalDefinition(object):
 
             return identifier_lookup[node.type]
 
+        # then, check for it in the "current_module" dictionary
+        # which we've dumped out of LilyPond
         if t.value[1:] not in current_module:
             raise Exception('Unknown escaped word "%s".' % t.value)
 
         lookup = current_module[t.value[1:]]
 
+        # if the lookup resolves to a function definition,
+        # we have to push artificial tokens onto the token stack.
+        # the tokens are pushed in reverse order (LIFO).
         if 'type' in lookup and lookup['type'] == 'ly:music-function?':
-            # push extra tokens
-
             token = LexToken( )
             token.type = 'EXPECT_NO_MORE_ARGS'
             token.value = None
             token.lineno = t.lineno
             token.lexpos = t.lexpos
             self.client.lexer.push_extra_token(token)
-
             for predicate in reversed(lookup['signature']):
                 token = LexToken( )
                 token.value = None
                 token.lineno = t.lineno
                 token.lexpos = t.lexpos
-
                 if predicate == 'ly:music?':
                     token.type = 'EXPECT_MUSIC'
                 elif predicate == 'ly:pitch?':
@@ -849,10 +855,12 @@ class _LilyPondLexicalDefinition(object):
                     token.type = 'EXPECT_MARKUP'
                 else:
                     token.type = 'EXPECT_SCM'
-
                 self.client.lexer.push_extra_token(token)
-
             return 'MUSIC_FUNCTION'
+
+        # we also check for other types, to handle \longa, \breve etc.
+        elif isinstance(lookup, Duration):
+            return 'DURATION_IDENTIFIER'
 
         # what do we do with events?
         return 'SCM_IDENTIFIER'

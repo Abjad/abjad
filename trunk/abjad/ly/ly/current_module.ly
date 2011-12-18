@@ -35,7 +35,7 @@
         (format "(~A,)" (string-join (map (lambda (x)
           (format "'~A'" x))
           signature-syms) ", "))
-        "None")))
+        "( )")))
     ; BODY
     (begin
       (display (format "    '~A': {\n" func-name))
@@ -85,6 +85,17 @@
       (display (format "    '~A': None,\n" name)))))
 
 
+#(define (document-duration obj-pair)
+  (let*
+    ((name (car obj-pair))
+    (value (cdr obj-pair))
+    (moment (ly:duration-length value))
+    (numerator (ly:moment-main-numerator moment))
+    (denominator (ly:moment-main-denominator moment)))
+    ; BODY
+    (display (format "    '~A': Duration(~A, ~A),\n" name numerator denominator))))
+
+
 #(define (document-other obj-pair) 
   (let*
     ((name (car obj-pair))
@@ -94,7 +105,7 @@
         ((number? value) value)
         ((string? value) (format "'~A'" value))
         (else "None"))))
-    ;BODY
+    ; BODY
     (begin
       (display (format "    '~A': ~A,\n" name formatted-value)))))
 
@@ -107,10 +118,13 @@
       (document-prob obj-pair))
     ((string? (cdr obj-pair))
       (document-alias obj-pair))
+    ((ly:duration? (cdr obj-pair))
+      (document-duration obj-pair))
   (else 
     (document-other obj-pair))))
 
 
+#(display "from abjad.tools.durationtools import Duration\n\n\n")
 #(display "current_module = {\n")
 #(for-each document-object current-module-sorted)
 #(display "}")

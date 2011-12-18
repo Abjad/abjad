@@ -19,14 +19,8 @@ class _LilyPondSyntacticalDefinition(object):
                     | lilypond error
                     | lilypond INVALID
         '''
-        if len(p) == 1:
-            p[0] = Node('lilypond', [ ])
-        else:
-            items = list(p[1].value)
-            if p[2] is not None:
-                items.append(p[2])
-            p[0] = Node('lilypond', items)
-
+        self._build_chain_from_zero(p, 'lilypond')
+    
 
     def p_toplevel_expression(self, p):
         '''toplevel_expression : lilypond_header
@@ -1239,7 +1233,8 @@ class _LilyPondSyntacticalDefinition(object):
                                    | markup_braced_list_body markup
                                    | markup_braced_list_body markup_list
         '''
-        p[0] = Node('markup_braced_list_body', p[1:])
+        self._build_chain_from_zero(p, 'markup_braced_list_body')
+        # p[0] = Node('markup_braced_list_body', p[1:])
 
 
     def p_markup_command_list(self, p):
@@ -1293,14 +1288,47 @@ class _LilyPondSyntacticalDefinition(object):
         '''
         p[0] = Node('markup', p[1:])
 
+
     ### NON-LILYPOND-DERIVED SCHEME PARSING ###
+
 
     def p_scheme_string(self, p):
         '''string : SCHEME_START string'''
         p[0] = Node('string', p[1:])
         p.lexer.pop_state( )
 
+
     def p_scheme_number(self, p):
         '''bare_number : SCHEME_START bare_number'''
         p[0] = p[2]
         p.lexer.pop_state( )
+
+
+    ### ASSISTANCE FUNCTIONS ###
+
+    def _build_chain_from_zero(self, p, node_name):
+        if len(p) == 1:
+            p[0] = Node(node_name, [ ])   
+        else:
+            items = list(p[1].value)
+            if p[2] is not None:
+                items.append(p[2])
+            p[0] = Node(node_name, items)
+
+    def _build_chain_from_one(self, p, node_name):
+        if len(p) == 2:
+            p[0] = Node(node_name, [p[1]])
+        else:
+            items = list(p[1].value)
+            if p[2] is not None:
+                items.append(p[2])
+            p[0] = Node(node_name, items)
+
+    def _build_right_hand_side(self, p):
+        rh = [ ]
+        for x in p[1:]:
+            if isinstance(x, str):
+                rh.append(x)
+            else:
+                rh.append(x.type)
+        return tuple(rh)
