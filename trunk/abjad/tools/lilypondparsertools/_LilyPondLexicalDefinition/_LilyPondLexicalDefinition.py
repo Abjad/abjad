@@ -1,7 +1,7 @@
 from fractions import Fraction
 from ply.lex import TOKEN
 from ply.lex import LexToken
-import re
+from abjad.tools.durationtools import Duration
 from abjad.ly.py.current_module import current_module
 from abjad.ly.py.markup_functions import markup_functions
 from abjad.ly.py.markup_functions import markup_list_functions
@@ -833,7 +833,8 @@ class _LilyPondLexicalDefinition(object):
         # if the lookup resolves to a function definition,
         # we have to push artificial tokens onto the token stack.
         # the tokens are pushed in reverse order (LIFO).
-        if 'type' in lookup and lookup['type'] == 'ly:music-function?':
+        if isinstance(lookup, dict) and 'type' in lookup \
+            and lookup['type'] == 'ly:music-function?':
             token = LexToken( )
             token.type = 'EXPECT_NO_MORE_ARGS'
             token.value = None
