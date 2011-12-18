@@ -875,7 +875,20 @@ class _LilyPondSyntacticalDefinition(object):
                                | '.'
                                | '_'
         '''
-        p[0] = Node('script_abbreviation', p[1:])
+        if p[1] == '^':
+            p[0] = 'Hat'
+        elif p[1] == '+':
+            p[0] = 'Plus'
+        elif p[1] == '-':
+            p[0] = 'Dash'
+        elif p[1] == '|':
+            p[0] = 'Bar'
+        elif p[1] == '>':
+            p[0] = 'Larger'
+        elif p[1] == '.':
+            p[0] = 'Dot'
+        elif p[1] == '_':
+            p[0] = 'Underscore'
 
 
     def p_script_dir(self, p):
@@ -883,7 +896,12 @@ class _LilyPondSyntacticalDefinition(object):
                       | '^'
                       | '-'
         '''
-        p[0] = Node('script_dir', p[1:])
+        if p[1] == '_':
+            p[0] = 'down'
+        elif p[0] == '^':
+            p[0] = 'up'
+        else:
+            p[0] = 'center'
 
 
     def p_duration_length(self, p):
