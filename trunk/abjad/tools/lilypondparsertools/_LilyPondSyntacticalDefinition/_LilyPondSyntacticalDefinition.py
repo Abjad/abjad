@@ -827,7 +827,13 @@ class _LilyPondSyntacticalDefinition(object):
                        | NOTENAME_PITCH sup_quotes
                        | NOTENAME_PITCH sub_quotes
         '''
-        p[0] = Node('steno_pitch', p[1:])
+        name = str(p[1])                 
+        if 3 == len(p):
+            if p[2].type == 'sup_quotes':
+                name += "'" * p[2].value
+            else:
+                name += "," * p[2].value
+        p[0] = pitchtools.NamedChromaticPitch(name)
 
 
     def p_steno_tonic_pitch(self, p):
@@ -835,21 +841,34 @@ class _LilyPondSyntacticalDefinition(object):
                              | TONICNAME_PITCH sup_quotes
                              | TONICNAME_PITCH sub_quotes
         '''
-        p[0] = Node('steno_tonic_pitch', p[1:])
+        name = str(p[1])
+        if 3 == len(p):
+            if p[2].type == 'sup_quotes':
+                name += "'" * p[2].value
+            else:
+                name += "," * p[2].value
+        p[0] = pitchtools.NamedChromaticPitch(name)
 
 
     def p_pitch(self, p):
         '''pitch : steno_pitch
                  | PITCH_IDENTIFIER
         '''
-        p[0] = Node('pitch', p[1:])
+        if isinstance(p[1], pitchtools.NamedChromaticPitch):
+            p[0] = Node('pitch', p[1])
+        else:
+            id = p[1][1:]
+            if id in self.client.assignments:
+                p[0] = Node('pitch', self.client.assignments[id])
+            else:
+                p[0] = Node('pitch', self.client.current_module[id])
 
 
     def p_pitch_also_in_chords(self, p):
         '''pitch_also_in_chords : pitch
                                 | steno_tonic_pitch
         '''
-        p[0] = Node('pitch_also_in_chords', p[1:])
+        p[0] = p[1]
 
 
     def p_gen_text_def(self, p):
@@ -978,10 +997,6 @@ class _LilyPondSyntacticalDefinition(object):
             p[0] = 0
         else:
             p[0] = p[1] + 1
-#        if len(p) == 1:
-#            p[0] = Node('dots', 0)
-#        else:
-#            p[0] = Node('dots', p[1].value + 1)
 
 
     def p_tremolo_type(self, p):
@@ -1059,7 +1074,20 @@ class _LilyPondSyntacticalDefinition(object):
                           | RESTNAME optional_notemode_duration
                           | lyric_element optional_notemode_duration
         '''
-        p[0] = Node('simple_element', p[1:])
+        rh = self._build_right_hand_side(p)
+        if rh[0] == 'pitch':
+            pitch = p[1].value
+            duration = p[5].value[0]
+            p[0] = Note(pitch, duration)
+            if 2 == len(p[5].value):
+                p[0].duration_multiplier = p[5].value[1]
+        elif rh[0] == 'r':
+            duration = p[2].value[0]
+            p[0] = Rest(duration)
+            if 2 == len(p[2].value):
+                p[0].duration_multiplier = p[2].value[1]
+        else:
+            raise Exception('Drum- and Lyrics-modes are not supported.')
 
 
     def p_simple_chord_elements(self, p):

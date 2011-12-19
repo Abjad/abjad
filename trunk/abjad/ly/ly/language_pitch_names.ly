@@ -36,7 +36,7 @@
     (abj-accidental (ly:assoc-get ly-alteration alterations))
     (pitch-name (format "~A~A" abj-pitch-name abj-accidental)))
     ; BODY
-    (display (format "        '~A': NamedChromaticPitch('~A'),\n"
+    (display (format "        '~A': NamedChromaticPitchClass('~A'),\n"
       ly-pitch-name pitch-name))))
 
 #(define handle-language (lambda (x) (begin
@@ -48,7 +48,7 @@
 %%% MAIN %%%
 
 #(begin
-  (display "from abjad.tools.pitchtools import NamedChromaticPitch\n\n\n")
+  (display "from abjad.tools.pitchtools import NamedChromaticPitchClass\n\n\n")
   (display "language_pitch_names = {")
   (map handle-language language-pitch-names)
   (display "\n}"))
