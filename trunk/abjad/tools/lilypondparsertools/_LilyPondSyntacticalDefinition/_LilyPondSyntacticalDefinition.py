@@ -795,7 +795,16 @@ class _LilyPondSyntacticalDefinition(object):
                         | '=' sub_quotes
                         | '=' sup_quotes
         '''
-        p[0] = Node('octave_check', p[1:])
+        rh = self._build_right_hand_side(p)
+        check = None
+        if 2 == len(rh):
+            if rh[1] == 'sub_quotes':
+                check = p[2].value * -1
+            elif rh[1] == 'sup_quotes':
+                check = p[2].value
+        elif 1 == len(rh):
+            check = 0
+        p[0] = Node('octave_check', check)
 
 
     def p_sup_quotes(self, p):
