@@ -632,14 +632,15 @@ class _LilyPondSyntacticalDefinition(object):
     def p_chord_body(self, p):
         '''chord_body : ANGLE_OPEN chord_body_elements ANGLE_CLOSE
         '''
-        p[0] = Node('chord_body', p[1:])
+        p[0] = Node('chord_body', p[2].value)
 
 
     def p_chord_body_elements(self, p):
         '''chord_body_elements : 
                                | chord_body_elements chord_body_element
         '''
-        p[0] = Node('chord_body_elements', p[1:])
+        self._build_chain_from_zero(p, 'chord_body_elements')
+        # p[0] = Node('chord_body_elements', p[1:])
 
 
     def p_chord_body_element(self, p):
@@ -724,13 +725,7 @@ class _LilyPondSyntacticalDefinition(object):
         '''post_events : 
                        | post_events post_event
         '''
-        if len(p) == 1:
-            p[0] = Node('post_events', [ ])
-        else:
-            items = list(p[1].value)
-            items.append(p[2])
-            p[0] = Node('post_events', items)
-
+        self._build_chain_from_zero(p, 'post_events')
 
 
     def p_post_event_nofinger(self, p):
@@ -958,9 +953,11 @@ class _LilyPondSyntacticalDefinition(object):
                                | multiplied_duration '*' FRACTION
         '''
         if len(p) == 2:
-            p[0] = p[1]
+            p[0] = Node('multiplied_duration', [p[1]])
+        elif 1 == len(p[1].value):
+            p[0] = Node('multiplied_duration', [p[1].value[0], p[3]])
         else:
-            p[0] = (p[1], p[3])
+            p[0] = Node('multiplied_duration', [p[1].value[0], p[1].value[1] * p[3]])
 
 
     def p_fraction(self, p):
@@ -1278,7 +1275,6 @@ class _LilyPondSyntacticalDefinition(object):
                                    | markup_braced_list_body markup_list
         '''
         self._build_chain_from_zero(p, 'markup_braced_list_body')
-        # p[0] = Node('markup_braced_list_body', p[1:])
 
 
     def p_markup_command_list(self, p):

@@ -32,7 +32,7 @@ class _LilyPondSyntaxNode(object):
                 if isinstance(child, type(self)):
                     result.extend(['%s%s' % (space, x) for x in child._format_pieces])
                 else:
-                    result.append('%s%s' % (space, child))
+                    result.append('%s%s' % (space, repr(child)))
             result[-1] += ' ]'
         else:
             result.append('%s: %s' % (self.type, self.value))

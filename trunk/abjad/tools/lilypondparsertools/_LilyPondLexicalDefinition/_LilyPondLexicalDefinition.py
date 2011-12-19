@@ -832,31 +832,35 @@ class _LilyPondLexicalDefinition(object):
         # if the lookup resolves to a function definition,
         # we have to push artificial tokens onto the token stack.
         # the tokens are pushed in reverse order (LIFO).
-        if isinstance(lookup, dict) and 'type' in lookup \
-            and lookup['type'] == 'ly:music-function?':
-            token = LexToken( )
-            token.type = 'EXPECT_NO_MORE_ARGS'
-            token.value = None
-            token.lineno = t.lineno
-            token.lexpos = t.lexpos
-            self.client.lexer.push_extra_token(token)
-            for predicate in reversed(lookup['signature']):
+        if isinstance(lookup, dict) and 'type' in lookup:
+
+            if lookup['type'] == 'ly:music-function?':
                 token = LexToken( )
+                token.type = 'EXPECT_NO_MORE_ARGS'
                 token.value = None
                 token.lineno = t.lineno
                 token.lexpos = t.lexpos
-                if predicate == 'ly:music?':
-                    token.type = 'EXPECT_MUSIC'
-                elif predicate == 'ly:pitch?':
-                    token.type = 'EXPECT_PITCH'
-                elif predicate == 'ly:duration?':
-                    token.type = 'EXPECT_DURATION'
-                elif predicate in ['markup?', 'cheap-markup?']:
-                    token.type = 'EXPECT_MARKUP'
-                else:
-                    token.type = 'EXPECT_SCM'
                 self.client.lexer.push_extra_token(token)
-            return 'MUSIC_FUNCTION'
+                for predicate in reversed(lookup['signature']):
+                    token = LexToken( )
+                    token.value = None
+                    token.lineno = t.lineno
+                    token.lexpos = t.lexpos
+                    if predicate == 'ly:music?':
+                        token.type = 'EXPECT_MUSIC'
+                    elif predicate == 'ly:pitch?':
+                        token.type = 'EXPECT_PITCH'
+                    elif predicate == 'ly:duration?':
+                        token.type = 'EXPECT_DURATION'
+                    elif predicate in ['markup?', 'cheap-markup?']:
+                        token.type = 'EXPECT_MARKUP'
+                    else:
+                        token.type = 'EXPECT_SCM'
+                    self.client.lexer.push_extra_token(token)
+                return 'MUSIC_FUNCTION'
+
+            elif lookup['type'] == 'ly:prob?' and 'event' in lookup['types']:
+                return 'EVENT_IDENTIFIER'
 
         # we also check for other types, to handle \longa, \breve etc.
         elif isinstance(lookup, Duration):

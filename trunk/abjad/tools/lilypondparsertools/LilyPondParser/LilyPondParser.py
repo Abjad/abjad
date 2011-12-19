@@ -12,6 +12,8 @@ from abjad.tools.lilypondparsertools._LilyPondLexicalDefinition._LilyPondLexical
     import _LilyPondLexicalDefinition
 from abjad.tools.lilypondparsertools._LilyPondSyntacticalDefinition._LilyPondSyntacticalDefinition \
     import _LilyPondSyntacticalDefinition
+from abjad.tools.lilypondparsertools._LilyPondSyntaxNode._LilyPondSyntaxNode \
+    import _LilyPondSyntaxNode as Node
 
 
 class LilyPondParser(object):
@@ -34,11 +36,12 @@ class LilyPondParser(object):
         self.markup_functions = markup_functions
         self.markup_list_functions = markup_list_functions
 
-        self.assignments = { }
-        self.parser_variables = {
-            'default_duration': Duration(1, 4),
-            'language': 'english',
-        }
+        self._reset( )
+#        self.assignments = { }
+#        self.parser_variables = {
+#            'default_duration': Duration(1, 4),
+#            'language': 'english',
+#        }
 
     ### OVERRIDES ###
 
@@ -55,9 +58,11 @@ class LilyPondParser(object):
         except:
             pass
 
-        self.assignments = { }
         self.lexer.push_state('notes')
+
+        self.assignments = { }
+        self.spanner_attachments = { }
         self.parser_variables = {
-            'default_duration': Duration(1, 4),
+            'default_duration': Node('multiplied_duration', [Duration(1, 4)]),
             'language': 'english',
         }
