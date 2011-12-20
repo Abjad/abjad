@@ -25,9 +25,6 @@
     ((func-name (car obj-pair))
     (music-func (cdr obj-pair))
     (func (ly:music-function-extract music-func))
-    (arg-names
-      (map symbol->string 
-        (cddr (cadr (procedure-source func)))))
     (signature (object-property func 'music-function-signature))
     (signature-syms (map (lambda (x) (procedure-name x)) signature))
     (signature-string

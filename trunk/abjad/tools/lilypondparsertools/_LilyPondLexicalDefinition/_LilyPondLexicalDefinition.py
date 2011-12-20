@@ -834,6 +834,13 @@ class _LilyPondLexicalDefinition(object):
         # the tokens are pushed in reverse order (LIFO).
         if isinstance(lookup, dict) and 'type' in lookup:
 
+            signature = lookup['signature']
+            funtype = 'SCM_FUNCTION'
+            if signature[0] == 'ly:music?':
+                funtype = 'MUSIC_FUNCTION'
+            elif signature[0] == 'ly:event?':
+                funtype = 'EVENT_FUNCTION'
+
             if lookup['type'] == 'ly:music-function?':
                 token = LexToken( )
                 token.type = 'EXPECT_NO_MORE_ARGS'
@@ -841,12 +848,14 @@ class _LilyPondLexicalDefinition(object):
                 token.lineno = t.lineno
                 token.lexpos = t.lexpos
                 self.client.lexer.push_extra_token(token)
-                for predicate in reversed(lookup['signature']):
+                for predicate in signature:
                     token = LexToken( )
                     token.value = None
                     token.lineno = t.lineno
                     token.lexpos = t.lexpos
-                    if predicate == 'ly:music?':
+                    if predicate == 'optional?':
+                        token.type = 'EXPECT_OPTIONAL'
+                    elif predicate == 'ly:music?':
                         token.type = 'EXPECT_MUSIC'
                     elif predicate == 'ly:pitch?':
                         token.type = 'EXPECT_PITCH'
@@ -857,7 +866,8 @@ class _LilyPondLexicalDefinition(object):
                     else:
                         token.type = 'EXPECT_SCM'
                     self.client.lexer.push_extra_token(token)
-                return 'MUSIC_FUNCTION'
+
+                return funtype
 
             elif lookup['type'] == 'ly:prob?' and 'event' in lookup['types']:
                 return 'EVENT_IDENTIFIER'
