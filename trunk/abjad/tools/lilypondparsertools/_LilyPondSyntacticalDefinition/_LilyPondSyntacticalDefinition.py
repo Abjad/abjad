@@ -47,7 +47,7 @@ class _LilyPondSyntacticalDefinition(object):
         '''embedded_scm : embedded_scm_bare
                         | scm_function_call
         '''
-        p[0] = Node('embedded_scm', p[1:])
+        p[0] = Node('embedded_scm', [p[1]])
 
 
     def p_scm_function_call(self, p):
@@ -347,7 +347,15 @@ class _LilyPondSyntacticalDefinition(object):
                             | EXPECT_MUSIC function_arglist_optional music
                             | EXPECT_SCM function_arglist_optional embedded_scm
         '''
-        p[0] = Node('function_arglist', p[1:])
+        if 2 == len(p):
+            if p[1] is None:
+                p[0] = Node('function_arglist', [ ])
+            else:
+                p[0] = Node('function_arglist', p[1])
+        else:
+            items = list(p[2].value)
+            items.append(p[3])
+            p[0] = Node('function_arglist', items)
 
 
     def p_function_arglist_optional(self, p):
@@ -358,7 +366,10 @@ class _LilyPondSyntacticalDefinition(object):
                                      | EXPECT_OPTIONAL EXPECT_MARKUP function_arglist_optional
                                      | EXPECT_OPTIONAL EXPECT_SCM function_arglist_optional
         '''
-        p[0] = Node('function_arglist_optional', p[1:])
+        if 2 == len(p):
+            p[0] = p[1]
+        else:
+            p[0] = p[3]
 
 
     def p_function_arglist_keep(self, p):
@@ -371,7 +382,12 @@ class _LilyPondSyntacticalDefinition(object):
                                  | EXPECT_OPTIONAL EXPECT_SCM function_arglist_keep embedded_scm
                                  | function_arglist
         '''
-        p[0] = Node('function_arglist_keep', p[1:])
+        if 2 == len(p):
+            p[0] = p[1]
+        else:
+            items = list(p[3])
+            items.append(p[4])
+            p[0] = items
 
 
     def p_function_arglist_closed(self, p):
@@ -379,7 +395,12 @@ class _LilyPondSyntacticalDefinition(object):
                                    | EXPECT_MUSIC function_arglist_optional closed_music
                                    | EXPECT_SCM function_arglist_optional embedded_scm_closed
         '''
-        p[0] = Node('function_arglist_closed', p[1:])
+        if 2 == len(p):
+            p[0] = p[1]
+        else:
+            items = list(p[2])
+            items.append(p[3])
+            p[0] = items
 
 
     def p_function_arglist_closed_optional(self, p):
@@ -390,7 +411,10 @@ class _LilyPondSyntacticalDefinition(object):
                                             | EXPECT_OPTIONAL EXPECT_MARKUP function_arglist_closed_optional
                                             | EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed_optional
         '''
-        p[0] = Node('function_arglist_closed_optional', p[1:])
+        if 2 == len(p):
+            p[0] = p[1]
+        else:
+            p[0] = p[3]
 
 
     def p_function_arglist_closed_keep(self, p):
@@ -403,7 +427,12 @@ class _LilyPondSyntacticalDefinition(object):
                                         | EXPECT_OPTIONAL EXPECT_SCM function_arglist_keep embedded_scm_closed
                                         | function_arglist_closed
         '''
-        p[0] = Node('function_arglist_closed_keep', p[1:])
+        if 2 == len(p):
+            p[0] = p[1]
+        else:
+            items = list(p[3])
+            items.append(p[4])
+            p[0] = items
 
 
     def p_embedded_scm_closed(self, p):
@@ -427,7 +456,12 @@ class _LilyPondSyntacticalDefinition(object):
                                  | EXPECT_DURATION function_arglist_closed_optional duration_length
                                  | EXPECT_SCM function_arglist_optional simple_string
         '''
-        p[0] = Node('function_arglist_bare', p[1:])
+        if 2 == len(p):
+            p[0] = p[1]
+        else:
+            items = list(p[2])
+            items.append(p[3])
+            p[0] = p[3]
 
 
     def p_music_function_call(self, p):

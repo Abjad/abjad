@@ -28,10 +28,6 @@ class _LexerProxy(object):
 
     def token(self):
         if self._token_stack:
-            tok = self._token_stack.pop( )
-#            print tok
-#            return tok
-        tok = self._lexer.token( )
-#        print tok
-#        return tok
+            return self._token_stack.pop( )
+        return self._lexer.token( )
 
