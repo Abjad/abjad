@@ -1111,6 +1111,7 @@ iotools
    tools/iotools/save_last_ly_as
    tools/iotools/save_last_pdf_as
    tools/iotools/show
+   tools/iotools/strip_diacritics_from_binary_string
    tools/iotools/underscore_delimited_lowercase_to_lowercamelcase
    tools/iotools/underscore_delimited_lowercase_to_uppercamelcase
    tools/iotools/uppercamelcase_to_underscore_delimited_lowercase
