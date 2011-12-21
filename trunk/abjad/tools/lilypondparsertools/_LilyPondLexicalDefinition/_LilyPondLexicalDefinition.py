@@ -216,8 +216,8 @@ class _LilyPondLexicalDefinition(object):
 
     literals = (
         '!', "'", '(', ')', '*', '+', ',', '-', 
-        '.', '/', ':', '<', '=', '>', '?', '[', 
-        '\\', ']', '^', '_', '{', '|', '}', '~'
+        '.', '/', ':', '<', '=', '>', '?', '[',
+        '\\', '^', '_', '{', '|', '}', '~', ']',
     )
 
     string_accumulator = ''
@@ -722,7 +722,7 @@ class _LilyPondLexicalDefinition(object):
 
     ### DEFAULT RULES ###
 
-    t_ignore = '[ \n\t\f\r]'
+    t_ignore = '' # let the grammar handle ignoring things
 
     #    t_extratoken_ignore = t_ignore
     #    t_chords_ignore = t_ignore
@@ -764,6 +764,7 @@ class _LilyPondLexicalDefinition(object):
 
     t_scheme_error = t_error
 
+
     def scan_bare_word(self, t):
         if t.lexer.current_state( ) in ('notes',):
 
@@ -774,13 +775,8 @@ class _LilyPondLexicalDefinition(object):
 
         return 'STRING'        
 
+
     def scan_escaped_word(self, t):
-        # first, check against LilyPond's keywords
-        # second, check the list of assignments (as we allow overwriting)
-        # third, check against "current_module"
-        #    push extra tokens if the result is a music function
-        #    otherwise, return SCM_IDENTIFIER
-        # failing all else, return STRING
 
         # first, check for it in the keyword list
         if t.value in self.keywords:
@@ -834,20 +830,22 @@ class _LilyPondLexicalDefinition(object):
         # the tokens are pushed in reverse order (LIFO).
         if isinstance(lookup, dict) and 'type' in lookup:
 
-            signature = lookup['signature']
-            funtype = 'SCM_FUNCTION'
-            if signature[0] == 'ly:music?':
-                funtype = 'MUSIC_FUNCTION'
-            elif signature[0] == 'ly:event?':
-                funtype = 'EVENT_FUNCTION'
-
             if lookup['type'] == 'ly:music-function?':
+
+                signature = lookup['signature']
+                funtype = 'SCM_FUNCTION'
+                if signature[0] == 'ly:music?':
+                    funtype = 'MUSIC_FUNCTION'
+                elif signature[0] == 'ly:event?':
+                    funtype = 'EVENT_FUNCTION'
+
                 token = LexToken( )
                 token.type = 'EXPECT_NO_MORE_ARGS'
                 token.value = None
                 token.lineno = t.lineno
                 token.lexpos = t.lexpos
                 self.client.lexer.push_extra_token(token)
+
                 for predicate in signature:
                     token = LexToken( )
                     token.value = None

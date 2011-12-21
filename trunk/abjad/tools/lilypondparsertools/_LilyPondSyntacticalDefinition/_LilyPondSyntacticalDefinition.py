@@ -950,7 +950,7 @@ class _LilyPondSyntacticalDefinition(object):
         '''
         if p[1] == '_':
             p[0] = 'down'
-        elif p[0] == '^':
+        elif p[1] == '^':
             p[0] = 'up'
         else:
             p[0] = 'center'
