@@ -19,7 +19,7 @@ def _extract_token_names_from_parser_tab_hh(filepath):
                 number = int(parts[2][:-1])
             else:
                 number = int(parts[2])
-            token_ids[number] = name
+            token_names[number] = name
 
         if text == 'enum yytokentype {':
             in_enum = True
