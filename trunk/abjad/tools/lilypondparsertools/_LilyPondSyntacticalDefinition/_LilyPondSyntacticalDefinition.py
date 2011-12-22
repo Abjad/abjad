@@ -1,15 +1,14 @@
 from abjad import *
 from abjad.tools import durationtools
 from abjad.tools.lilypondparsertools._LilyPondSyntaxNode._LilyPondSyntaxNode import _LilyPondSyntaxNode as Node
-from abjad.tools.lilypondparsertools._LilyPondLexicalDefinition._LilyPondLexicalDefinition import _LilyPondLexicalDefinition
 
 
 class _LilyPondSyntacticalDefinition(object):
 
     def __init__(self, client):
         self.client = client
+        self.tokens = self.client.lexdef.tokens
 
-    tokens = _LilyPondLexicalDefinition.tokens
 
     ### SYNTACTICAL RULES ###
 
