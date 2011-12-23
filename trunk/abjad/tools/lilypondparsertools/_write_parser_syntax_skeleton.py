@@ -18,25 +18,51 @@ def _write_parser_syntax_skeleton(skeleton_path, parser_output_path, parser_tab_
 
     f.write('from abjad import *\n')
     f.write('from abjad.tools import durationtools\n')
-    f.write('from abjad.tools.lilypondparsertools._LilyPondSyntaxNode._LilyPondSyntaxNode /\n')
+    f.write('from abjad.tools.lilypondparsertools._LilyPondSyntaxNode._LilyPondSyntaxNode \\\n')
     f.write('    import _LilyPondSyntaxNode as Node\n\n\n')
     f.write('class _LilyPondSyntacticalDefinition(object):\n\n')
     f.write('    def __init__(self, client):\n')
     f.write('        self.client = client\n')
     f.write('        self.tokens = self.client.lexdef.tokens\n\n\n')
-    f.write("    start_symbol = 'lilypond'\n\n\n")
+    f.write("    start_symbol = 'start_symbol'\n\n\n")
+
+    # how to extract associativity from parser?
+    f.write("    precedence = (\n")
+    f.write("        ('nonassoc', 'COMPOSITE'),\n")
+    f.write("        ('nonassoc', 'REPEAT'),\n")
+    f.write("        ('nonassoc', 'ALTERNATIVE'),\n")
+    f.write("        ('left', 'ADDLYRICS'),\n")
+    f.write("        ('nonassoc', 'DEFAULT'),\n")
+    f.write("        ('nonassoc', 'FUNCTION_ARGLIST'),\n")
+    f.write("        ('right', 'PITCH_IDENTIFIER', 'NOTENAME_PITCH', 'TONICNAME_PITCH', 'UNSIGNED', 'REAL', 'DURATION_IDENTIFIER', ':'),\n")
+    f.write("        ('nonassoc', 'NUMBER_IDENTIFIER', '/'),\n")
+    f.write("    )\n\n\n")
+
     f.write('    ### SYNTACTICAL RULES (ALPHABETICAL) ###\n\n\n')
 
-    current_nonterminal = None
+    current_nonterminal = 'start_symbol'
+
+    ly_keys = sorted(filter(lambda x: x.startswith('p_start_symbol'), productions.keys( )))
+    for key in ly_keys:
+        funcname = key
+        docstring = productions[key]
+        f.write('    def %s(self, p):\n' % funcname)
+        f.write("        %r\n" % docstring)
+        f.write("        p[0] = Node('%s', p[1:])\n\n\n" % current_nonterminal)
 
     for funcname, docstring in sorted(productions.iteritems( )):
         nonterminal = funcname.split('__')[0][2:]    
-        if current_nonterminal is None or nonterminal != current_nonterminal:
+        if nonterminal == 'start_symbol':
+            continue
+        if nonterminal != current_nonterminal:
             current_nonterminal = nonterminal
             f.write('    ### %s ###\n\n\n' % current_nonterminal)
         f.write('    def %s(self, p):\n' % funcname)
         f.write("        %r\n" % docstring)
         f.write("        p[0] = Node('%s', p[1:])\n\n\n" % current_nonterminal)
 
-    f.close( )
 
+    f.write('    def p_error(self, p):\n')
+    f.write('        pass\n\n')
+
+    f.close( )

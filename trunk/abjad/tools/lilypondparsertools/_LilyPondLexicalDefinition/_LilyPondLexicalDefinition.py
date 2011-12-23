@@ -83,24 +83,19 @@ class _LilyPondLexicalDefinition(object):
         '\\drums': 'DRUMS',
         '\\figuremode': 'FIGUREMODE',
         '\\figures': 'FIGURES',
-        '\\grobdescriptions': 'GROBDESCRIPTIONS',
         '\\header': 'HEADER',
         '\\version-error': 'INVALID',
-        '\\key': 'KEY',
         '\\layout': 'LAYOUT',
         '\\lyricmode': 'LYRICMODE',
         '\\lyrics': 'LYRICS',
         '\\lyricsto': 'LYRICSTO',
-        '\\mark': 'MARK',
         '\\markup': 'MARKUP',
-        '\\markuplines': 'MARKUPLINES',
+        '\\markuplist': 'MARKUPLIST',
         '\\midi': 'MIDI',
         '\\name': 'NAME',
         '\\notemode': 'NOTEMODE',
-        '\\once': 'ONCE',
         '\\override': 'OVERRIDE',
         '\\paper': 'PAPER',
-        '\\partial': 'PARTIAL',
         '\\remove': 'REMOVE',
         '\\repeat': 'REPEAT',
         '\\rest': 'REST',
@@ -110,13 +105,11 @@ class _LilyPondLexicalDefinition(object):
         '\\set': 'SET',
         '\\simultaneous': 'SIMULTANEOUS',
         '\\tempo': 'TEMPO',
-        '\\times': 'TIMES',
         '\\type': 'TYPE',
         '\\unset': 'UNSET',
         '\\with': 'WITH',
 
         # parser.yy:233
-        '\\time': 'TIME_T',
         '\\new': 'NEWCONTEXT',
 
         # ???
@@ -124,7 +117,6 @@ class _LilyPondLexicalDefinition(object):
     }
 
     tokens = [
-        # parser.yy:240
         'CHORD_BASS', # "/+"
         'CHORD_CARET', # "^"
         'CHORD_COLON', # ":"
@@ -147,37 +139,30 @@ class _LilyPondLexicalDefinition(object):
         'E_TILDE', # "\\~"
         'EXTENDER', # "__"
 
-        # parser.yy:265
         'FIGURE_CLOSE', # "\\>"
         'FIGURE_OPEN', # "\\<"
         'FIGURE_SPACE', # "_"
         'HYPHEN', # "--"
 
-        # parser.yy:270
-        'CHORDMODIFIERS',
         'LYRIC_MARKUP',
         'MULTI_MEASURE_REST',
 
-        # parser.yy:275
         'E_UNSIGNED',
         'UNSIGNED',
 
-        # parser.yy:278
         'EXPECT_MARKUP', # "markup?"
-        'EXPECT_MUSIC', # "ly:music?"
         'EXPECT_PITCH', # "ly:pitch?"
         'EXPECT_DURATION', # "ly:duration?"
         'EXPECT_SCM', # "scheme?"
+        'BACKUP', # "(backed-up?)"
+        'REPARSE', # "(reparsed?)"
         'EXPECT_MARKUP_LIST', # "markup-list?"
         'EXPECT_OPTIONAL', # "optional?"
-        'EXPECT_NO_MORE_ARGS',
+        'EXPECT_NO_MORE_ARGS', #
 
-        # parser.yy:289
-        'EMBEDDED_LILY',
+        'EMBEDDED_LILY', # "#{"
 
-        # parser.yy:292
         'BOOK_IDENTIFIER',
-        'CHORDMODIFIER_PITCH',
         'CHORD_MODIFIER',
         'CHORD_REPETITION',
         'CONTEXT_DEF_IDENTIFIER',
@@ -189,11 +174,12 @@ class _LilyPondLexicalDefinition(object):
         'EVENT_FUNCTION',
         'FRACTION',
         'LYRICS_STRING',
+        'LYRIC_ELEMENT',
         'LYRIC_MARKUP_IDENTIFIER',
         'MARKUP_FUNCTION',
         'MARKUP_LIST_FUNCTION',
         'MARKUP_IDENTIFIER',
-        'MARKUPLINES_IDENTIFIER',
+        'MARKUPLIST_IDENTIFIER',
         'MUSIC_FUNCTION',
         'MUSIC_IDENTIFIER',
         'NOTENAME_PITCH',

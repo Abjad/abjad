@@ -26,7 +26,7 @@ def _extract_productions_from_parser_output(filepath):
 
         parts = text.split( )[1:]
 
-        if parts[0].startswith(('$', 'start_symbol')):
+        if parts[0].startswith('$'):
             continue
 
         elif parts[0] == '|':
@@ -35,9 +35,10 @@ def _extract_productions_from_parser_output(filepath):
 
         else:
             nonterminal = parts[0][:-1]
-            productions[nonterminal] = [ ]
-            right_hand = parts[1:]
+            if nonterminal not in productions:
+                productions[nonterminal] = [ ]
 
+            right_hand = parts[1:]
             if right_hand[0] == '/*': # /* empty */
                 productions[nonterminal].append([ ])
             else:

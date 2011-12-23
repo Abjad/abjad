@@ -37,11 +37,6 @@ class LilyPondParser(object):
         self.markup_list_functions = markup_list_functions
 
         self._reset( )
-#        self.assignments = { }
-#        self.parser_variables = {
-#            'default_duration': Duration(1, 4),
-#            'language': 'english',
-#        }
 
     ### OVERRIDES ###
 
@@ -66,3 +61,38 @@ class LilyPondParser(object):
             'default_duration': Node('multiplied_duration', [Duration(1, 4)]),
             'language': 'english',
         }
+
+    def _build_chain_from_zero(self, p, node_name):
+        if len(p) == 1:
+            p[0] = Node(node_name, [ ])
+        else:
+            items = list(p[1].value)
+            if p[2] is not None:
+                items.append(p[2])
+            p[0] = Node(node_name, items)
+
+    def _build_chain_from_one(self, p, node_name):
+        if len(p) == 2:
+            p[0] = Node(node_name, [p[1]])
+        else:
+            items = list(p[1].value)
+            if p[2] is not None:
+                items.append(p[2])
+            p[0] = Node(node_name, items)
+
+    def _build_right_hand_side(self, p):
+        rh = [ ]
+        for x in p[1:]:
+            if hasattr(x, 'type'):
+                rh.append(x.type)
+            else:
+                rh.append(x)
+        return tuple(rh)
+
+    def _resolve_identifier(self, identifier):
+        name = identifier[1:]
+        if name in self.client.assignments:
+            return self.client.assignments[name]
+        else:
+            return self.client.current_module[name]
+        raise Exception('Unknown identifer: %s' % identifier)
