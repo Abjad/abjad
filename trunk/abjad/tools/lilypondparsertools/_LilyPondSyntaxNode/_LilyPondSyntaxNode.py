@@ -7,10 +7,7 @@ class _LilyPondSyntaxNode(object):
 
     def __init__(self, type, value = [ ]):
         self.type = type
-        if isinstance(value, list):
-            self.value = tuple(value)
-        else:
-            self.value = value
+        self.value = value
 
     ### OVERRIDES ###
 
@@ -28,22 +25,29 @@ class _LilyPondSyntaxNode(object):
         return '%s(%s, %s)' % (type(self).__name__, self.type, type(self.value))
 
     def __str__(self):
-        return '\n'.join(self._format_pieces)
+        return '\n'.join(self._format(self))
 
-    ### PRIVATE ATTRIBUTES ###
 
-    @property
-    def _format_pieces(self):
-        space = '  '
+    def _format(self, obj, indent = 0):
+        space = '.  ' * indent
         result = [ ]
-        if isinstance(self.value, tuple):
-            result.append('%s: [' % self.type)
-            for child in self.value:
-                if isinstance(child, type(self)):
-                    result.extend(['%s%s' % (space, x) for x in child._format_pieces])
-                else:
-                    result.append('%s%s' % (space, repr(child)))
+
+        if isinstance(obj, type(self)):
+            if isinstance(obj.value, (list, tuple)):
+                result.append('%s<%s>: [' % (space, obj.type))
+                for x in obj.value:
+                    result.extend(self._format(x, indent + 1))
+                result[-1] += ' ]'
+            else:
+                result.append('%s<%s>: %r' % (space, obj.type, obj.value))
+
+        elif isinstance(obj, (list, tuple)):
+            result.append('%s[' % space)
+            for x in obj:
+                result.extend(self._format(x, indent + 1))
             result[-1] += ' ]'
+
         else:
-            result.append('%s: %s' % (self.type, self.value))
+            result.append('%s%r' % (space, obj))
+
         return result

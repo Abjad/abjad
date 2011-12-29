@@ -272,8 +272,8 @@ class _LilyPondLexicalDefinition(object):
 
     # lexer.ll:233
     # <INITIAL,chords,lyrics,notes,figures>\\version{WHITE}*
+    @TOKEN('\\version%s*' % WHITE)
     def t_INITIAL_notes_233(self, t):
-        r'\\version'
         t.lexer.push_state('version')
 
     # lexer.ll:236
@@ -424,11 +424,13 @@ class _LilyPondLexicalDefinition(object):
     # <notes,figures>{ALPHAWORD}
     @TOKEN(ALPHAWORD)
     def t_notes_417(self, t):
-        language = self.client.parser_variables['language']
-        pitch_names = self.client.language_pitch_names[language]
+        language = self.client._parser_variables['language']
+        pitch_names = self.client._language_pitch_names[language]
         if t.value in pitch_names:
             t.type = 'NOTENAME_PITCH'
             t.value = pitch_names[t.value]
+        elif t.value == 'q' and self.client._parser_variables['last_chord']:
+            t.type = 'CHORD_REPETITION'
         else:
             t.type = 'STRING'
         return t
@@ -563,19 +565,19 @@ class _LilyPondLexicalDefinition(object):
     def t_markup_548(self, t):
         value = t.value[1:]
 
-        if value in self.client.markup_functions or \
-            value in self.client.markup_list_functions:
-            if value in self.client.markup_functions:
+        if value in self.client._markup_functions or \
+            value in self.client._markup_list_functions:
+            if value in self.client._markup_functions:
                 t.type = 'MARKUP_FUNCTION'
-                signature = self.client.markup_functions[value]
+                signature = self.client._markup_functions[value]
             else:
                 t.type = 'MARKUP_LIST_FUNCTION'
-                signature = self.client.markup_list_functions[value]
+                signature = self.client._markup_list_functions[value]
 
             token = LexToken( )
             token.type = 'EXPECT_NO_MORE_ARGS'
             token.value = None
-            self.client.lexer.push_extra_token(token)
+            self.client._lexer.push_extra_token(token)
 
             for predicate in reversed(signature):
                 token = LexToken( )
@@ -589,7 +591,7 @@ class _LilyPondLexicalDefinition(object):
                 else:
                     token.type = 'EXPECT_SCM'
                     token.value = predicate
-                self.client.lexer.push_extra_token(token)
+                self.client._lexer.push_extra_token(token)
 
         else:
             t.type = self.scan_escaped_word(t)
@@ -753,12 +755,12 @@ class _LilyPondLexicalDefinition(object):
 
     def scan_bare_word(self, t):
         if t.lexer.current_state( ) in ('notes',):
-
-            language = self.client.parser_variables['language']
-            pitch_names = self.client.language_pitch_names[language]
+            language = self.client._parser_variables['language']
+            pitch_names = self.client._language_pitch_names[language]
             if t.value in pitch_names:
                 t.type = 'NOTENAME_PITCH'
-
+            elif t.value == 'q' and self.client._parser_variables['last_chord']:
+                t.type = 'CHORD_REPETITION'
         return 'STRING'        
 
 
@@ -780,8 +782,8 @@ class _LilyPondLexicalDefinition(object):
 
         # then, check for it in the assignments list 
         # (anything assigned in the input string)
-        if t.value[1:] in self.client.assignments:
-            node = self.client.assignments[t.value[1:]]
+        if t.value[1:] in self.client._assignments:
+            node = self.client._assignments[t.value[1:]]
 
             identifier_lookup = {
                 'book_block': 'BOOK_IDENTIFIER',
@@ -806,10 +808,10 @@ class _LilyPondLexicalDefinition(object):
 
         # then, check for it in the "current_module" dictionary
         # which we've dumped out of LilyPond
-        if t.value[1:] not in self.client.current_module:
+        if t.value[1:] not in self.client._current_module:
             raise Exception('Unknown escaped word "%s".' % t.value)
 
-        lookup = self.client.current_module[t.value[1:]]
+        lookup = self.client._current_module[t.value[1:]]
 
         # if the lookup resolves to a function definition,
         # we have to push artificial tokens onto the token stack.
@@ -830,7 +832,7 @@ class _LilyPondLexicalDefinition(object):
                 token.value = None
                 token.lineno = t.lineno
                 token.lexpos = t.lexpos
-                self.client.lexer.push_extra_token(token)
+                self.client._lexer.push_extra_token(token)
 
                 for predicate in signature:
                     token = LexToken( )
@@ -849,7 +851,7 @@ class _LilyPondLexicalDefinition(object):
                         token.type = 'EXPECT_MARKUP'
                     else:
                         token.type = 'EXPECT_SCM'
-                    self.client.lexer.push_extra_token(token)
+                    self.client._lexer.push_extra_token(token)
 
                 return funtype
 

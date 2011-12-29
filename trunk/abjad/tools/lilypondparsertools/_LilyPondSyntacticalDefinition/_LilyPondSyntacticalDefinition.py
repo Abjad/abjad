@@ -1,5 +1,7 @@
 from abjad import *
 from abjad.tools import durationtools
+from abjad.tools.lilypondparsertools._LilyPondEvent._LilyPondEvent \
+    import _LilyPondEvent as Event
 from abjad.tools.lilypondparsertools._LilyPondSyntaxNode._LilyPondSyntaxNode \
     import _LilyPondSyntaxNode as Node
 
@@ -8,7 +10,7 @@ class _LilyPondSyntacticalDefinition(object):
 
     def __init__(self, client):
         self.client = client
-        self.tokens = self.client.lexdef.tokens
+        self.tokens = self.client._lexdef.tokens
 
 
     start_symbol = 'start_symbol'
@@ -36,7 +38,12 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_start_symbol__lilypond(self, p):
         'start_symbol : lilypond'
-        p[0] = Node('start_symbol', p[1:])
+        if 1 < len(p[1]):
+            lily = lilypondfiletools.LilyPondFile( )
+            lily.extend(p[1])
+            p[0] = lily
+        else:
+            p[0] = p[1][0]
 
 
     ### assignment ###
@@ -75,17 +82,17 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_bare_number__REAL__NUMBER_IDENTIFIER(self, p):
         'bare_number : REAL NUMBER_IDENTIFIER'
-        p[0] = Node('bare_number', p[1:])
+        p[0] = p[1]
 
 
     def p_bare_number__UNSIGNED__NUMBER_IDENTIFIER(self, p):
         'bare_number : UNSIGNED NUMBER_IDENTIFIER'
-        p[0] = Node('bare_number', p[1:])
+        p[0] = p[1]
 
 
     def p_bare_number__bare_number_closed(self, p):
         'bare_number : bare_number_closed'
-        p[0] = Node('bare_number', p[1:])
+        p[0] = p[1]
 
 
     ### bare_number_closed ###
@@ -93,17 +100,17 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_bare_number_closed__NUMBER_IDENTIFIER(self, p):
         'bare_number_closed : NUMBER_IDENTIFIER'
-        p[0] = Node('bare_number_closed', p[1:])
+        p[0] = self.client._resolve_identifier(p[1])
 
 
     def p_bare_number_closed__REAL(self, p):
         'bare_number_closed : REAL'
-        p[0] = Node('bare_number_closed', p[1:])
+        p[0] = p[1]
 
 
     def p_bare_number_closed__UNSIGNED(self, p):
         'bare_number_closed : UNSIGNED'
-        p[0] = Node('bare_number_closed', p[1:])
+        p[0] = p[1]
 
 
     ### bare_unsigned ###
@@ -305,7 +312,7 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_braced_music_list__Chr123__music_list__Chr125(self, p):
         "braced_music_list : '{' music_list '}'"
-        p[0] = Node('braced_music_list', p[1:])
+        p[0] = p[2]
 
 
     ### chord_body ###
@@ -313,7 +320,7 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_chord_body__ANGLE_OPEN__chord_body_elements__ANGLE_CLOSE(self, p):
         'chord_body : ANGLE_OPEN chord_body_elements ANGLE_CLOSE'
-        p[0] = Node('chord_body', p[1:])
+        p[0] = p[2]
 
 
     ### chord_body_element ###
@@ -333,18 +340,17 @@ class _LilyPondSyntacticalDefinition(object):
         'chord_body_element : pitch exclamations questions octave_check post_events'
         p[0] = Node('chord_body_element', p[1:])
 
-
     ### chord_body_elements ###
 
 
     def p_chord_body_elements__Empty(self, p):
         'chord_body_elements : '
-        p[0] = Node('chord_body_elements', p[1:])
+        p[0] = [ ]
 
 
     def p_chord_body_elements__chord_body_elements__chord_body_element(self, p):
         'chord_body_elements : chord_body_elements chord_body_element'
-        p[0] = Node('chord_body_elements', p[1:])
+        p[0] = p[1] + [p[2]]
 
 
     ### chord_item ###
@@ -419,22 +425,22 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_command_element__Chr124(self, p):
         "command_element : '|'"
-        p[0] = Node('command_element', p[1:])
+        p[0] = Event('BarCheck')
 
 
     def p_command_element__E_BACKSLASH(self, p):
         'command_element : E_BACKSLASH'
-        p[0] = Node('command_element', p[1:])
+        p[0] = Event('VoiceSeparator')
 
 
     def p_command_element__E_BRACKET_CLOSE(self, p):
         'command_element : E_BRACKET_CLOSE'
-        p[0] = Node('command_element', p[1:])
+        raise Exception('Ligatures not supported.')
 
 
     def p_command_element__E_BRACKET_OPEN(self, p):
         'command_element : E_BRACKET_OPEN'
-        p[0] = Node('command_element', p[1:])
+        raise Exception('Ligatures not supported.')
 
 
     def p_command_element__command_event(self, p):
@@ -447,7 +453,7 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_command_event__E_TILDE(self, p):
         'command_event : E_TILDE'
-        p[0] = Node('command_event', p[1:])
+        raise Exception('Pes or Flexa events not supported.')
 
 
     def p_command_event__tempo_event(self, p):
@@ -460,7 +466,15 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_complex_music__complex_music_prefix__music(self, p):
         'complex_music : complex_music_prefix music'
-        p[0] = Node('complex_music', p[1:])
+        if not self.client._collapse:
+            p[0] = Node('complex_music', p[1:])
+            return
+        context = p[1][1]
+        optional_id = p[1][2]
+        optional_context_mod = p[1][3]
+        music = p[2]
+        p[0] = self.client._construct_context_specced_music(
+            context, optional_id, optional_context_mod, music)
 
 
     def p_complex_music__music_function_call(self, p):
@@ -488,6 +502,21 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_complex_music_prefix__NEWCONTEXT__simple_string__optional_id__optional_context_mod(self, p):
         'complex_music_prefix : NEWCONTEXT simple_string optional_id optional_context_mod'
+        # context_names = {
+        #     'GrandStaff': scoretools.GrandStaff,
+        #     'PianoStaff': scoretools.PianoStaff,
+        #     'Score': Score,
+        #     'Staff': Staff,
+        #     'StaffGroup': scoretools.StaffGroup,
+        #     'Voice': Voice,
+        # }
+        # if p[2] in context_names:
+        #     context = context_names[p[2]]( )
+        # else:
+        #     raise Exception('Unsupported Context type: %s' % p[2])
+        # if p[3]:
+        #     context.name = p[3]
+        # p[0] = context
         p[0] = Node('complex_music_prefix', p[1:])
 
 
@@ -496,12 +525,12 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_composite_music__complex_music(self, p):
         'composite_music : complex_music'
-        p[0] = Node('composite_music', p[1:])
+        p[0] = p[1]
 
 
     def p_composite_music__music_bare(self, p):
         'composite_music : music_bare'
-        p[0] = Node('composite_music', p[1:])
+        p[0] = p[1]
 
 
     ### context_change ###
@@ -619,22 +648,22 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_context_mod_list__Empty(self, p):
         'context_mod_list : '
-        p[0] = Node('context_mod_list', p[1:])
+        p[0] = Node('context_mod_list', [ ])
 
 
     def p_context_mod_list__context_mod_list__CONTEXT_MOD_IDENTIFIER(self, p):
         'context_mod_list : context_mod_list CONTEXT_MOD_IDENTIFIER'
-        p[0] = Node('context_mod_list', p[1:])
+        p[0] = Node('context_mod_list', p[1].value + [p[2]])
 
 
     def p_context_mod_list__context_mod_list__context_mod(self, p):
         'context_mod_list : context_mod_list context_mod'
-        p[0] = Node('context_mod_list', p[1:])
+        p[0] = Node('context_mod_list', p[1].value + [p[2]])
 
 
     def p_context_mod_list__context_mod_list__embedded_scm(self, p):
         'context_mod_list : context_mod_list embedded_scm'
-        p[0] = Node('context_mod_list', p[1:])
+        p[0] = Node('context_mod_list', p[1].value + [p[2]])
 
 
     ### context_modification ###
@@ -653,6 +682,7 @@ class _LilyPondSyntacticalDefinition(object):
     def p_context_modification__WITH__Chr123__context_mod_list__Chr125(self, p):
         "context_modification : WITH '{' context_mod_list '}'"
         p[0] = Node('context_modification', p[1:])
+        self.client._lexer.pop_state( )
 
 
     def p_context_modification__WITH__embedded_scm_closed(self, p):
@@ -678,52 +708,52 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_direction_less_char__Chr126(self, p):
         "direction_less_char : '~'"
-        p[0] = Node('direction_less_char', p[1:])
+        p[0] = self.client._resolve_event_identifier('tildeSymbol')
 
 
     def p_direction_less_char__Chr40(self, p):
         "direction_less_char : '('"
-        p[0] = Node('direction_less_char', p[1:])
+        p[0] = self.client._resolve_event_identifier('parenthesisOpenSymbol')
 
 
     def p_direction_less_char__Chr41(self, p):
         "direction_less_char : ')'"
-        p[0] = Node('direction_less_char', p[1:])
+        p[0] = self.client._resolve_event_identifier('parenthesisCloseSymbol')
 
 
     def p_direction_less_char__Chr91(self, p):
         "direction_less_char : '['"
-        p[0] = Node('direction_less_char', p[1:])
+        p[0] = self.client._resolve_event_identifier('bracketOpenSymbol')
 
 
     def p_direction_less_char__Chr93(self, p):
         "direction_less_char : ']'"
-        p[0] = Node('direction_less_char', p[1:])
+        p[0] = self.client._resolve_event_identifier('bracketCloseSymbol')
 
 
     def p_direction_less_char__E_ANGLE_CLOSE(self, p):
         'direction_less_char : E_ANGLE_CLOSE'
-        p[0] = Node('direction_less_char', p[1:])
+        p[0] = self.client._resolve_event_identifier('escapedBiggerSymbol')
 
 
     def p_direction_less_char__E_ANGLE_OPEN(self, p):
         'direction_less_char : E_ANGLE_OPEN'
-        p[0] = Node('direction_less_char', p[1:])
+        p[0] = self.client._resolve_event_identifier('escapedSmallerSymbol')
 
 
     def p_direction_less_char__E_CLOSE(self, p):
         'direction_less_char : E_CLOSE'
-        p[0] = Node('direction_less_char', p[1:])
+        p[0] = self.client._resolve_event_identifier('escapedParenthesisCloseSymbol')
 
 
     def p_direction_less_char__E_EXCLAMATION(self, p):
         'direction_less_char : E_EXCLAMATION'
-        p[0] = Node('direction_less_char', p[1:])
+        p[0] = self.client._resolve_event_identifier('escapedExclamationSymbol')
 
 
     def p_direction_less_char__E_OPEN(self, p):
         'direction_less_char : E_OPEN'
-        p[0] = Node('direction_less_char', p[1:])
+        p[0] = self.client._resolve_event_identifier('escapedParenthesisOpenSymbol')
 
 
     ### direction_less_event ###
@@ -731,12 +761,12 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_direction_less_event__EVENT_IDENTIFIER(self, p):
         'direction_less_event : EVENT_IDENTIFIER'
-        p[0] = Node('direction_less_event', p[1:])
+        p[0] = self.client._resolve_event_identifier(p[1])
 
 
     def p_direction_less_event__direction_less_char(self, p):
         'direction_less_event : direction_less_char'
-        p[0] = Node('direction_less_event', p[1:])
+        p[0] = p[1]
 
 
     def p_direction_less_event__event_function_event(self, p):
@@ -746,7 +776,7 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_direction_less_event__tremolo_type(self, p):
         'direction_less_event : tremolo_type'
-        p[0] = Node('direction_less_event', p[1:])
+        p[0] = p[1]
 
 
     ### direction_reqd_event ###
@@ -754,12 +784,12 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_direction_reqd_event__gen_text_def(self, p):
         'direction_reqd_event : gen_text_def'
-        p[0] = Node('direction_reqd_event', p[1:])
+        p[0] = p[1]
 
 
     def p_direction_reqd_event__script_abbreviation(self, p):
         'direction_reqd_event : script_abbreviation'
-        p[0] = Node('direction_reqd_event', p[1:])
+        p[0] = p[1]
 
 
     ### dots ###
@@ -982,27 +1012,39 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_event_chord__CHORD_REPETITION__optional_notemode_duration__post_events(self, p):
         'event_chord : CHORD_REPETITION optional_notemode_duration post_events'
-        p[0] = Node('event_chord', p[1:])
+        pitches = self.client._parser_variables['last_chord']
+        duration = p[2][0]
+        chord = Chord(pitches, duration)
+        if 1 < len(p[2]):
+            chord.duration_multiplier = p[2][1]
+        self.client._process_post_events(chord, p[3])
+        p[0] = chord
 
 
     def p_event_chord__MULTI_MEASURE_REST__optional_notemode_duration__post_events(self, p):
         'event_chord : MULTI_MEASURE_REST optional_notemode_duration post_events'
-        p[0] = Node('event_chord', p[1:])
+        rest = resttools.MultiMeasureRest(p[2][0])
+        if 1 < len(p[2]):
+            rest.duration_multiplier = p[2][1]
+        self.client._process_post_events(rest, p[3])
+        p[0] = rest
 
 
     def p_event_chord__command_element(self, p):
         'event_chord : command_element'
-        p[0] = Node('event_chord', p[1:])
+        p[0] = p[1]
 
 
     def p_event_chord__note_chord_element(self, p):
         'event_chord : note_chord_element'
-        p[0] = Node('event_chord', p[1:])
+        self.client._parser_variables['last_chord'] = p[1].written_pitches
+        p[0] = p[1]
 
 
     def p_event_chord__simple_chord_elements__post_events(self, p):
         'event_chord : simple_chord_elements post_events'
-        p[0] = Node('event_chord', p[1:])
+        self.client._process_post_events(p[1], p[2])
+        p[0] = p[1]
 
 
     ### event_function_event ###
@@ -1018,12 +1060,12 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_exclamations__Empty(self, p):
         'exclamations : '
-        p[0] = Node('exclamations', p[1:])
+        p[0] = ''
 
 
     def p_exclamations__exclamations__Chr33(self, p):
         "exclamations : exclamations '!'"
-        p[0] = Node('exclamations', p[1:])
+        p[0] = p[1] + '!'
 
 
     ### figure_list ###
@@ -1119,7 +1161,7 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_full_markup__MARKUP__markup_top(self, p):
         'full_markup : MARKUP markup_top'
-        p[0] = Node('full_markup', p[1:])
+        p[0] = markuptools.Markup(p[2])
 
 
     ### full_markup_list ###
@@ -1547,12 +1589,12 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_gen_text_def__full_markup(self, p):
         'gen_text_def : full_markup'
-        p[0] = Node('gen_text_def', p[1:])
+        p[0] = p[1]
 
 
     def p_gen_text_def__simple_string(self, p):
         'gen_text_def : simple_string'
-        p[0] = Node('gen_text_def', p[1:])
+        p[0] = markuptools.Markup(p[1])
 
 
     ### grouped_music_list ###
@@ -1560,12 +1602,12 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_grouped_music_list__sequential_music(self, p):
         'grouped_music_list : sequential_music'
-        p[0] = Node('grouped_music_list', p[1:])
+        p[0] = p[1]
 
 
     def p_grouped_music_list__simultaneous_music(self, p):
         'grouped_music_list : simultaneous_music'
-        p[0] = Node('grouped_music_list', p[1:])
+        p[0] = p[1]
 
 
     ### identifier_init ###
@@ -1641,27 +1683,27 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_lilypond__Empty(self, p):
         'lilypond : '
-        p[0] = Node('lilypond', p[1:])
+        p[0] = Node('lilypond', [ ])
 
 
     def p_lilypond__lilypond__INVALID(self, p):
         'lilypond : lilypond INVALID'
-        p[0] = Node('lilypond', p[1:])
+        p[0] = Node('lilypond', p[1].value + [p[2]])
 
 
     def p_lilypond__lilypond__assignment(self, p):
         'lilypond : lilypond assignment'
-        p[0] = Node('lilypond', p[1:])
+        p[0] = Node('lilypond', p[1].value + [p[2]])
 
 
     def p_lilypond__lilypond__error(self, p):
         'lilypond : lilypond error'
-        p[0] = Node('lilypond', p[1:])
+        p[0] = Node('lilypond', p[1].value + [p[2]])
 
 
     def p_lilypond__lilypond__toplevel_expression(self, p):
         'lilypond : lilypond toplevel_expression'
-        p[0] = Node('lilypond', p[1:])
+        p[0] = Node('lilypond', p[1].value + [p[2]])
 
 
     ### lilypond_header ###
@@ -1973,22 +2015,22 @@ class _LilyPondSyntacticalDefinition(object):
     def p_multiplied_duration__multiplied_duration__Chr42__FRACTION(self, p):
         "multiplied_duration : multiplied_duration '*' FRACTION"
         if 1 == len(p[1]):
-            p[0] = Node('multiplied_duration', [p[1][0], p[3]])
+            p[0] = (p[1][0], p[3],)
         else:
-            p[0] = Node('multiplied_duration', [p[1][0], p[1][1] * p[3]])
+            p[0] = (p[1][0], p[1][1] * p[3],)
 
 
     def p_multiplied_duration__multiplied_duration__Chr42__bare_unsigned(self, p):
         "multiplied_duration : multiplied_duration '*' bare_unsigned"
         if 1 == len(p[1]):
-            p[0] = Node('multiplied_duration', [p[1][0], p[3]])
+            p[0] = (p[1][0], p[3],)
         else:
-            p[0] = Node('multiplied_duration', [p[1][0], p[1][1] * p[3]])
+            p[0] = (p[1][0], p[1][1] * p[3],)
 
 
     def p_multiplied_duration__steno_duration(self, p):
         'multiplied_duration : steno_duration'
-        p[0] = Node('multiplied_duration', [p[1]])
+        p[0] = (p[1],)
 
 
     ### music ###
@@ -1996,17 +2038,17 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_music__composite_music(self, p):
         'music : composite_music %prec COMPOSITE'
-        p[0] = Node('music', p[1:])
+        p[0] = p[1]
 
 
     def p_music__lyric_element_music(self, p):
         'music : lyric_element_music'
-        p[0] = Node('music', p[1:])
+        p[0] = p[1]
 
 
     def p_music__simple_music(self, p):
         'music : simple_music'
-        p[0] = Node('music', p[1:])
+        p[0] = p[1]
 
 
     ### music_arg ###
@@ -2032,7 +2074,7 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_music_bare__grouped_music_list(self, p):
         'music_bare : grouped_music_list'
-        p[0] = Node('music_bare', p[1:])
+        p[0] = p[1]
 
 
     def p_music_bare__mode_changed_music(self, p):
@@ -2082,22 +2124,22 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_music_list__Empty(self, p):
         'music_list : '
-        p[0] = Node('music_list', p[1:])
+        p[0] = [ ]
 
 
     def p_music_list__music_list__embedded_scm(self, p):
         'music_list : music_list embedded_scm'
-        p[0] = Node('music_list', p[1:])
+        p[0] = p[1] + [p[2]]
 
 
     def p_music_list__music_list__error(self, p):
         'music_list : music_list error'
-        p[0] = Node('music_list', p[1:])
+        p[0] = p[1] + [p[2]]
 
 
     def p_music_list__music_list__music(self, p):
         'music_list : music_list music'
-        p[0] = Node('music_list', p[1:])
+        p[0] = p[1] + [p[2]]
 
 
     ### music_property_def ###
@@ -2139,7 +2181,18 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_note_chord_element__chord_body__optional_notemode_duration__post_events(self, p):
         'note_chord_element : chord_body optional_notemode_duration post_events'
-        p[0] = Node('note_chord_element', p[1:])
+        pitches = [ ]
+        post_events = [ ]
+        for node in p[1]:
+            if 5 == len(node):
+                pitches.append(node[0])
+                post_events.extend(node[4])
+        post_events.extend(p[3])
+        chord = Chord(pitches, p[2][0])
+        if 1 < len(p[2]):
+            chord.duration_multiplier = p[2][1]
+        self.client._process_post_events(chord, post_events)
+        p[0] = chord
 
 
     ### number_expression ###
@@ -2147,17 +2200,17 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_number_expression__number_expression__Chr43__number_term(self, p):
         "number_expression : number_expression '+' number_term"
-        p[0] = Node('number_expression', p[1:])
+        p[0] = float(p[1]) + p[3]
 
 
     def p_number_expression__number_expression__Chr45__number_term(self, p):
         "number_expression : number_expression '-' number_term"
-        p[0] = Node('number_expression', p[1:])
+        p[0] = float(p[1]) - p[3]
 
 
     def p_number_expression__number_term(self, p):
         'number_expression : number_term'
-        p[0] = Node('number_expression', p[1:])
+        p[0] = p[1]
 
 
     ### number_factor ###
@@ -2165,12 +2218,12 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_number_factor__Chr45__number_factor(self, p):
         "number_factor : '-' number_factor"
-        p[0] = Node('number_factor', p[1:])
+        p[0] = -1 * p[2]
 
 
     def p_number_factor__bare_number(self, p):
         'number_factor : bare_number'
-        p[0] = Node('number_factor', p[1:])
+        p[0] = p[1]
 
 
     ### number_term ###
@@ -2178,17 +2231,17 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_number_term__number_factor(self, p):
         'number_term : number_factor'
-        p[0] = Node('number_term', p[1:])
+        p[0] = p[1]
 
 
     def p_number_term__number_factor__Chr42__number_factor(self, p):
         "number_term : number_factor '*' number_factor"
-        p[0] = Node('number_term', p[1:])
+        p[0] = float(p[1]) * p[3]
 
 
     def p_number_term__number_factor__Chr47__number_factor(self, p):
         "number_term : number_factor '/' number_factor"
-        p[0] = Node('number_term', p[1:])
+        p[0] = float(p[1]) / p[3]
 
 
     ### octave_check ###
@@ -2219,12 +2272,12 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_optional_context_mod__Empty(self, p):
         'optional_context_mod : '
-        p[0] = Node('optional_context_mod', p[1:])
+        p[0] = None
 
 
     def p_optional_context_mod__context_modification(self, p):
         'optional_context_mod : context_modification'
-        p[0] = Node('optional_context_mod', p[1:])
+        p[0] = p[1]
 
 
     ### optional_id ###
@@ -2232,12 +2285,12 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_optional_id__Empty(self, p):
         'optional_id : '
-        p[0] = Node('optional_id', p[1:])
+        p[0] = None
 
 
     def p_optional_id__Chr61__simple_string(self, p):
         "optional_id : '=' simple_string"
-        p[0] = Node('optional_id', p[1:])
+        p[0] = p[2]
 
 
     ### optional_notemode_duration ###
@@ -2245,25 +2298,25 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_optional_notemode_duration__Empty(self, p):
         'optional_notemode_duration : '
-        p[0] = Node('optional_notemode_duration', p[1:])
+        p[0] = self.client._parser_variables['default_duration']
 
 
     def p_optional_notemode_duration__multiplied_duration(self, p):
         'optional_notemode_duration : multiplied_duration'
-        p[0] = Node('optional_notemode_duration', p[1:])
-
+        p[0] = p[1]
+        self.client._parser_variables['default_duration'] = p[1]
 
     ### optional_rest ###
 
 
     def p_optional_rest__Empty(self, p):
         'optional_rest : '
-        p[0] = Node('optional_rest', p[1:])
+        p[0] = False
 
 
     def p_optional_rest__REST(self, p):
         'optional_rest : REST'
-        p[0] = Node('optional_rest', p[1:])
+        p[0] = True
 
 
     ### output_def ###
@@ -2341,12 +2394,12 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_pitch__PITCH_IDENTIFIER(self, p):
         'pitch : PITCH_IDENTIFIER'
-        p[0] = Node('pitch', p[1:])
+        p[0] = self.client._resolve_identifier(p[1])
 
 
     def p_pitch__steno_pitch(self, p):
         'pitch : steno_pitch'
-        p[0] = Node('pitch', p[1:])
+        p[0] = p[1]
 
 
     ### pitch_also_in_chords ###
@@ -2354,12 +2407,12 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_pitch_also_in_chords__pitch(self, p):
         'pitch_also_in_chords : pitch'
-        p[0] = Node('pitch_also_in_chords', p[1:])
+        p[0] = p[1]
 
 
     def p_pitch_also_in_chords__steno_tonic_pitch(self, p):
         'pitch_also_in_chords : steno_tonic_pitch'
-        p[0] = Node('pitch_also_in_chords', p[1:])
+        p[0] = p[1]
 
 
     ### post_event ###
@@ -2367,12 +2420,13 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_post_event__Chr45__fingering(self, p):
         "post_event : '-' fingering"
-        p[0] = Node('post_event', p[1:])
+        p[0] = None
 
 
     def p_post_event__post_event_nofinger(self, p):
         'post_event : post_event_nofinger'
-        p[0] = Node('post_event', p[1:])
+        print repr(p[1])
+        p[0] = p[1]
 
 
     ### post_event_nofinger ###
@@ -2380,47 +2434,49 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_post_event_nofinger__Chr94__fingering(self, p):
         "post_event_nofinger : '^' fingering"
-        p[0] = Node('post_event_nofinger', p[1:])
+        p[0] = None
 
 
     def p_post_event_nofinger__Chr95__fingering(self, p):
         "post_event_nofinger : '_' fingering"
-        p[0] = Node('post_event_nofinger', p[1:])
+        p[0] = None
 
 
     def p_post_event_nofinger__EXTENDER(self, p):
         'post_event_nofinger : EXTENDER'
-        p[0] = Node('post_event_nofinger', p[1:])
+        p[0] = None
 
 
     def p_post_event_nofinger__HYPHEN(self, p):
         'post_event_nofinger : HYPHEN'
-        p[0] = Node('post_event_nofinger', p[1:])
+        p[0] = None
 
 
     def p_post_event_nofinger__direction_less_event(self, p):
         'post_event_nofinger : direction_less_event'
-        p[0] = Node('post_event_nofinger', p[1:])
+        p[0] = p[1]
 
 
     def p_post_event_nofinger__script_dir__direction_less_event(self, p):
         'post_event_nofinger : script_dir direction_less_event'
-        p[0] = Node('post_event_nofinger', p[1:])
+        p[2].direction_string = p[1]
+        p[0] = p[2]
 
 
     def p_post_event_nofinger__script_dir__direction_reqd_event(self, p):
         'post_event_nofinger : script_dir direction_reqd_event'
-        p[0] = Node('post_event_nofinger', p[1:])
+        p[2].direction_string = p[1]
+        p[0] = p[2]
 
 
     def p_post_event_nofinger__script_dir__music_function_event(self, p):
         'post_event_nofinger : script_dir music_function_event'
-        p[0] = Node('post_event_nofinger', p[1:])
+        p[0] = p[2]
 
 
     def p_post_event_nofinger__string_number_event(self, p):
         'post_event_nofinger : string_number_event'
-        p[0] = Node('post_event_nofinger', p[1:])
+        p[0] = None
 
 
     ### post_events ###
@@ -2428,12 +2484,12 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_post_events__Empty(self, p):
         'post_events : '
-        p[0] = Node('post_events', p[1:])
+        p[0] = [ ]
 
 
     def p_post_events__post_events__post_event(self, p):
         'post_events : post_events post_event'
-        p[0] = Node('post_events', p[1:])
+        p[0] = p[1] + [p[2]]
 
 
     ### property_operation ###
@@ -2441,7 +2497,11 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_property_operation__OVERRIDE__simple_string__property_path__Chr61__scalar(self, p):
         "property_operation : OVERRIDE simple_string property_path '=' scalar"
-        p[0] = Node('property_operation', p[1:])
+        keyword = 'OVERRIDE'
+        context = p[2]
+        property_path = p[3]
+        value = p[5]
+        p[0] = _ContextModification(keyword, context, property_path, value)
 
 
     def p_property_operation__REVERT__simple_string__embedded_scm(self, p):
@@ -2472,12 +2532,12 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_property_path_revved__embedded_scm_closed(self, p):
         'property_path_revved : embedded_scm_closed'
-        p[0] = Node('property_path_revved', p[1:])
+        p[0] = Node('property_path_revved', [p[1]])
 
 
     def p_property_path_revved__property_path_revved__embedded_scm_closed(self, p):
         'property_path_revved : property_path_revved embedded_scm_closed'
-        p[0] = Node('property_path_revved', p[1:])
+        p[0] = Node('property_path_revved', p[1].value + [p[2]])
 
 
     ### questions ###
@@ -2485,12 +2545,12 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_questions__Empty(self, p):
         'questions : '
-        p[0] = Node('questions', p[1:])
+        p[0] = ''
 
 
     def p_questions__questions__Chr63(self, p):
         "questions : questions '?'"
-        p[0] = Node('questions', p[1:])
+        p[0] = p[1] + '?'
 
 
     ### re_rhythmed_music ###
@@ -2524,17 +2584,17 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_scalar__bare_number(self, p):
         'scalar : bare_number'
-        p[0] = Node('scalar', p[1:])
+        p[0] = p[1]
 
 
     def p_scalar__embedded_scm_arg(self, p):
         'scalar : embedded_scm_arg'
-        p[0] = Node('scalar', p[1:])
+        p[0] = p[1]
 
 
     def p_scalar__lyric_element(self, p):
         'scalar : lyric_element'
-        p[0] = Node('scalar', p[1:])
+        p[0] = p[1]
 
 
     ### scalar_closed ###
@@ -2542,17 +2602,17 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_scalar_closed__bare_number(self, p):
         'scalar_closed : bare_number'
-        p[0] = Node('scalar_closed', p[1:])
+        p[0] = p[1]
 
 
     def p_scalar_closed__embedded_scm_arg_closed(self, p):
         'scalar_closed : embedded_scm_arg_closed'
-        p[0] = Node('scalar_closed', p[1:])
+        p[0] = p[1]
 
 
     def p_scalar_closed__lyric_element(self, p):
         'scalar_closed : lyric_element'
-        p[0] = Node('scalar_closed', p[1:])
+        p[0] = p[1]
 
 
     ### scm_function_call ###
@@ -2612,37 +2672,44 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_script_abbreviation__ANGLE_CLOSE(self, p):
         'script_abbreviation : ANGLE_CLOSE'
-        p[0] = Node('script_abbreviation', p[1:])
+        kind = self.client._current_module['dashLarger']['alias']
+        p[0] = marktools.Articulation(kind)
 
 
     def p_script_abbreviation__Chr124(self, p):
         "script_abbreviation : '|'"
-        p[0] = Node('script_abbreviation', p[1:])
+        kind = self.client._current_module['dashBar']['alias']
+        p[0] = marktools.Articulation(kind)
 
 
     def p_script_abbreviation__Chr43(self, p):
         "script_abbreviation : '+'"
-        p[0] = Node('script_abbreviation', p[1:])
+        kind = self.client._current_module['dashPlus']['alias']
+        p[0] = marktools.Articulation(kind)
 
 
     def p_script_abbreviation__Chr45(self, p):
         "script_abbreviation : '-'"
-        p[0] = Node('script_abbreviation', p[1:])
+        kind = self.client._current_module['dashDash']['alias']
+        p[0] = marktools.Articulation(kind)
 
 
     def p_script_abbreviation__Chr46(self, p):
         "script_abbreviation : '.'"
-        p[0] = Node('script_abbreviation', p[1:])
+        kind = self.client._current_module['dashDot']['alias']
+        p[0] = marktools.Articulation(kind)
 
 
     def p_script_abbreviation__Chr94(self, p):
         "script_abbreviation : '^'"
-        p[0] = Node('script_abbreviation', p[1:])
+        kind = self.client._current_module['dashHat']['alias']
+        p[0] = marktools.Articulation(kind)
 
 
     def p_script_abbreviation__Chr95(self, p):
         "script_abbreviation : '_'"
-        p[0] = Node('script_abbreviation', p[1:])
+        kind = self.client._current_module['dashUnderscore']['alias']
+        p[0] = marktools.Articulation(kind)
 
 
     ### script_dir ###
@@ -2650,17 +2717,17 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_script_dir__Chr45(self, p):
         "script_dir : '-'"
-        p[0] = Node('script_dir', p[1:])
+        p[0] = p[1]
 
 
     def p_script_dir__Chr94(self, p):
         "script_dir : '^'"
-        p[0] = Node('script_dir', p[1:])
+        p[0] = p[1]
 
 
     def p_script_dir__Chr95(self, p):
         "script_dir : '_'"
-        p[0] = Node('script_dir', p[1:])
+        p[0] = p[1]
 
 
     ### sequential_music ###
@@ -2668,13 +2735,19 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_sequential_music__SEQUENTIAL__braced_music_list(self, p):
         'sequential_music : SEQUENTIAL braced_music_list'
-        p[0] = Node('sequential_music', p[1:])
+        if not self.client._collapse:
+            p[0] = Node('sequential_music', p[2])
+            return
+        p[0] = self.client._construct_sequential_music(p[2])
 
 
     def p_sequential_music__braced_music_list(self, p):
         'sequential_music : braced_music_list'
-        p[0] = Node('sequential_music', p[1:])
-
+        if not self.client._collapse:
+            p[0] = Node('sequential_music', p[1])
+            return
+        p[0] = self.client._construct_sequential_music(p[1])
+            
 
     ### simple_chord_elements ###
 
@@ -2691,7 +2764,7 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_simple_chord_elements__simple_element(self, p):
         'simple_chord_elements : simple_element'
-        p[0] = Node('simple_chord_elements', p[1:])
+        p[0] = p[1]
 
 
     ### simple_element ###
@@ -2699,17 +2772,31 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_simple_element__DRUM_PITCH__optional_notemode_duration(self, p):
         'simple_element : DRUM_PITCH optional_notemode_duration'
-        p[0] = Node('simple_element', p[1:])
+        raise Exception('Drum pitches not supported.')
 
 
     def p_simple_element__RESTNAME__optional_notemode_duration(self, p):
         'simple_element : RESTNAME optional_notemode_duration'
-        p[0] = Node('simple_element', p[1:])
+        if p[1] == 'r':
+            rest = Rest(p[2][0])
+        else:
+            rest = skiptools.Skip(p[2][0])
+        if 1 < len(p[2]):
+            rest.duration_multiplier = p[2][1]
+        p[0] = rest
 
 
     def p_simple_element__pitch__exclamations__questions__octave_check__optional_notemode_duration__optional_rest(self, p):
         'simple_element : pitch exclamations questions octave_check optional_notemode_duration optional_rest'
-        p[0] = Node('simple_element', p[1:])
+        if not p[6]:
+            leaf = Note(p[1], p[5][0])
+        else:
+            leaf = Rest(p[5][0])
+            resttools.set_vertical_positioning_pitch_on_rest(leaf, p[1])
+        if 1 < len(p[5]):
+            leaf.duration_multiplier = p[5][1]        
+        # TODO: handle exclamations, questions, octave_check
+        p[0] = leaf
 
 
     ### simple_markup ###
@@ -2755,17 +2842,17 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_simple_music__context_change(self, p):
         'simple_music : context_change'
-        p[0] = Node('simple_music', p[1:])
+        p[0] = p[1]
 
 
     def p_simple_music__event_chord(self, p):
         'simple_music : event_chord'
-        p[0] = Node('simple_music', p[1:])
+        p[0] = p[1]
 
 
     def p_simple_music__music_property_def(self, p):
         'simple_music : music_property_def'
-        p[0] = Node('simple_music', p[1:])
+        p[0] = p[1]
 
 
     ### simple_music_property_def ###
@@ -2796,17 +2883,17 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_simple_string__LYRICS_STRING(self, p):
         'simple_string : LYRICS_STRING'
-        p[0] = Node('simple_string', p[1:])
+        p[0] = p[1]
 
 
     def p_simple_string__STRING(self, p):
         'simple_string : STRING'
-        p[0] = Node('simple_string', p[1:])
+        p[0] = p[1]
 
 
     def p_simple_string__STRING_IDENTIFIER(self, p):
         'simple_string : STRING_IDENTIFIER'
-        p[0] = Node('simple_string', p[1:])
+        p[0] = self.client._resolve_identifier(p[1])
 
 
     ### simultaneous_music ###
@@ -2814,12 +2901,18 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_simultaneous_music__DOUBLE_ANGLE_OPEN__music_list__DOUBLE_ANGLE_CLOSE(self, p):
         'simultaneous_music : DOUBLE_ANGLE_OPEN music_list DOUBLE_ANGLE_CLOSE'
-        p[0] = Node('simultaneous_music', p[1:])
+        if not self.client._collapse:
+            p[0] = Node('simultaneous_music', p[2])
+            return
+        p[0] = self.client._construct_simultaneous_music(p[2])
 
 
     def p_simultaneous_music__SIMULTANEOUS__braced_music_list(self, p):
         'simultaneous_music : SIMULTANEOUS braced_music_list'
-        p[0] = Node('simultaneous_music', p[1:])
+        if not self.client._collapse:
+            p[0] = Node('simultaneous_music', p[2])
+            return
+        p[0] = self.client._construct_simultaneous_music(p[2])
 
 
     ### steno_duration ###
@@ -2850,17 +2943,17 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_steno_pitch__NOTENAME_PITCH(self, p):
         'steno_pitch : NOTENAME_PITCH'
-        p[0] = Node('steno_pitch', p[1:])
+        p[0] = pitchtools.NamedChromaticPitch(str(p[1]))
 
 
     def p_steno_pitch__NOTENAME_PITCH__sub_quotes(self, p):
         'steno_pitch : NOTENAME_PITCH sub_quotes'
-        p[0] = Node('steno_pitch', p[1:])
+        p[0] = pitchtools.NamedChromaticPitch(str(p[1]) + ',' * p[2])
 
 
     def p_steno_pitch__NOTENAME_PITCH__sup_quotes(self, p):
         'steno_pitch : NOTENAME_PITCH sup_quotes'
-        p[0] = Node('steno_pitch', p[1:])
+        p[0] = pitchtools.NamedChromaticPitch(str(p[1]) + '\'' * p[2])
 
 
     ### steno_tonic_pitch ###
@@ -2943,12 +3036,12 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_sub_quotes__Chr44(self, p):
         "sub_quotes : ','"
-        p[0] = Node('sub_quotes', p[1:])
+        p[0] = 1
 
 
     def p_sub_quotes__sub_quotes__Chr44(self, p):
         "sub_quotes : sub_quotes ','"
-        p[0] = Node('sub_quotes', p[1:])
+        p[0] = p[1] + 1
 
 
     ### sup_quotes ###
@@ -2956,12 +3049,12 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_sup_quotes__Chr39(self, p):
         "sup_quotes : '\\''"
-        p[0] = Node('sup_quotes', p[1:])
+        p[0] = 1
 
 
     def p_sup_quotes__sup_quotes__Chr39(self, p):
         "sup_quotes : sup_quotes '\\''"
-        p[0] = Node('sup_quotes', p[1:])
+        p[0] = p[1] + 1
 
 
     ### tempo_event ###
@@ -2987,12 +3080,12 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_tempo_range__bare_unsigned(self, p):
         'tempo_range : bare_unsigned'
-        p[0] = Node('tempo_range', p[1:])
+        p[0] = (p[1],)
 
 
     def p_tempo_range__bare_unsigned__Chr126__bare_unsigned(self, p):
         "tempo_range : bare_unsigned '~' bare_unsigned"
-        p[0] = Node('tempo_range', p[1:])
+        p[0] = (p[1], p[3],)
 
 
     ### toplevel_expression ###
@@ -3000,42 +3093,42 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_toplevel_expression__book_block(self, p):
         'toplevel_expression : book_block'
-        p[0] = Node('toplevel_expression', p[1:])
+        p[0] = p[1]
 
 
     def p_toplevel_expression__bookpart_block(self, p):
         'toplevel_expression : bookpart_block'
-        p[0] = Node('toplevel_expression', p[1:])
+        p[0] = p[1]
 
 
     def p_toplevel_expression__composite_music(self, p):
         'toplevel_expression : composite_music'
-        p[0] = Node('toplevel_expression', p[1:])
+        p[0] = p[1]
 
 
     def p_toplevel_expression__full_markup(self, p):
         'toplevel_expression : full_markup'
-        p[0] = Node('toplevel_expression', p[1:])
+        p[0] = p[1]
 
 
     def p_toplevel_expression__full_markup_list(self, p):
         'toplevel_expression : full_markup_list'
-        p[0] = Node('toplevel_expression', p[1:])
+        p[0] = p[1]
 
 
     def p_toplevel_expression__lilypond_header(self, p):
         'toplevel_expression : lilypond_header'
-        p[0] = Node('toplevel_expression', p[1:])
+        p[0] = p[1]
 
 
     def p_toplevel_expression__output_def(self, p):
         'toplevel_expression : output_def'
-        p[0] = Node('toplevel_expression', p[1:])
+        p[0] = p[1]
 
 
     def p_toplevel_expression__score_block(self, p):
         'toplevel_expression : score_block'
-        p[0] = Node('toplevel_expression', p[1:])
+        p[0] = p[1]
 
 
     ### tremolo_type ###
@@ -3043,12 +3136,12 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_tremolo_type__Chr58(self, p):
         "tremolo_type : ':'"
-        p[0] = Node('tremolo_type', p[1:])
+        p[0] = None
 
 
     def p_tremolo_type__Chr58__bare_unsigned(self, p):
         "tremolo_type : ':' bare_unsigned"
-        p[0] = Node('tremolo_type', p[1:])
+        p[0] = marktools.StemTremolo(p[2])
 
 
     ### unsigned_number ###
@@ -3056,12 +3149,12 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_unsigned_number__NUMBER_IDENTIFIER(self, p):
         'unsigned_number : NUMBER_IDENTIFIER'
-        p[0] = Node('unsigned_number', p[1:])
+        p[0] = self.client._resolve_identifier(p[1])
 
 
     def p_unsigned_number__UNSIGNED(self, p):
         'unsigned_number : UNSIGNED'
-        p[0] = Node('unsigned_number', p[1:])
+        p[0] = p[1]
 
 
     def p_error(self, p):
