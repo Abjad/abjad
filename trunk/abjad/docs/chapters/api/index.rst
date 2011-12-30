@@ -686,6 +686,7 @@ pitchtools
    tools/pitchtools/is_pitch_carrier
    tools/pitchtools/is_pitch_class_octave_number_string
    tools/pitchtools/is_symbolic_accidental_string
+   tools/pitchtools/is_symbolic_pitch_range_string
    tools/pitchtools/iterate_named_chromatic_pitch_pairs_forward_in_expr
    tools/pitchtools/list_chromatic_pitch_numbers_in_expr
    tools/pitchtools/list_harmonic_chromatic_intervals_in_expr
