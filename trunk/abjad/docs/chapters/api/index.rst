@@ -706,6 +706,7 @@ pitchtools
    tools/pitchtools/ordered_chromatic_pitch_class_numbers_are_within_ordered_chromatic_pitch_numbers
    tools/pitchtools/pentatonic_pitch_number_to_chromatic_pitch_number
    tools/pitchtools/permute_named_chromatic_pitch_carrier_list_by_twelve_tone_row
+   tools/pitchtools/pitch_class_octave_number_string_to_chromatic_pitch_name
    tools/pitchtools/register_chromatic_pitch_class_numbers_by_chromatic_pitch_number_aggregate
    tools/pitchtools/respell_named_chromatic_pitches_in_expr_with_flats
    tools/pitchtools/respell_named_chromatic_pitches_in_expr_with_sharps

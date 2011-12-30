@@ -3,7 +3,7 @@ from abjad.tools import tonalitytools
 
 
 def test_Mode___init___01():
-    '''Init with mode name string.'''
+    '''Init with mode name.'''
 
     mode = tonalitytools.Mode('dorian')
     assert mode.mode_name == 'dorian'

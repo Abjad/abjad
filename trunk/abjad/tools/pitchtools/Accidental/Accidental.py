@@ -19,7 +19,7 @@ class Accidental(_StrictComparator, _Immutable):
 
     def __new__(klass, arg = ''):
         self = object.__new__(klass)
-        # initializer symbolic string from arg
+        # initialize symbolic string from arg
         if arg in self._all_accidental_alphabetic_strings:
             _alphabetic_string = arg
         elif arg in self._all_accidental_symbolic_strings:
@@ -231,7 +231,7 @@ class Accidental(_StrictComparator, _Immutable):
 
     @property
     def name(self):
-        '''Read-only name string of accidental::
+        '''Read-only name of accidental::
 
             abjad> accidental = pitchtools.Accidental('s')
             abjad> accidental.name

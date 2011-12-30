@@ -20,7 +20,7 @@ class Mode(_Immutable):
             #self._init_with_mode_name(arg.mode_name)
             mode_name = arg.mode_name
         else:
-            raise TypeError('%s must be mode instance or mode name string.' % arg)
+            raise TypeError('%s must be mode instance or mode name.' % arg)
         mdi_segment = self._init_with_mode_name(mode_name)
         object.__setattr__(self, '_melodic_diatonic_interval_segment', mdi_segment)
         object.__setattr__(self, '_mode_name', mode_name)
@@ -67,7 +67,7 @@ class Mode(_Immutable):
         elif mode_name in ('ionian', 'major'):
             mdi_segment.extend(sequencetools.rotate_sequence(dorian, -6))
         else:
-            raise ValueError("unknown mode name string '%s'." % mode_name)
+            raise ValueError("unknown mode name '%s'." % mode_name)
         #self._mode_name = mode_name
         #self._melodic_diatonic_interval_segment = MelodicDiatonicIntervalSegment(mdi_segment)
         return MelodicDiatonicIntervalSegment(mdi_segment)

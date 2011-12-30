@@ -97,13 +97,13 @@ class DynamicMark(ContextMark):
     @apply
     def dynamic_name():
         def fget(self):
-            r'''Get dynamic name string::
+            r'''Get dynamic name::
 
                 abjad> dynamic = contexttools.DynamicMark('f')
                 abjad> dynamic.dynamic_name
                 'f'
 
-            Set dynamic name string::
+            Set dynamic name::
 
                 abjad> dynamic.dynamic_name = 'p'
                 abjad> dynamic.dynamic_name

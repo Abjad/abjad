@@ -375,7 +375,7 @@ Or use ``copy.deepcopy()`` to do the same thing.
 Comparing articulations
 -----------------------
 
-Articulations compare equal with equal direction name strings and direction strings:
+Articulations compare equal with equal direction names and direction strings:
 
 ::
 

@@ -67,13 +67,13 @@ class ClefMark(ContextMark):
     @apply
     def clef_name():
         def fget(self):
-            r'''Get clef name string::
+            r'''Get clef name::
 
                 abjad> clef = contexttools.ClefMark('treble')
                 abjad> clef.clef_name
                 'treble'
 
-            Set clef name string::
+            Set clef name::
 
                 abjad> clef.clef_name = 'alto'
                 abjad> clef.clef_name

@@ -78,13 +78,13 @@ class LilyPondCommandMark(Mark):
     @apply
     def command_name():
         def fget(self):
-            '''Get command name string of LilyPond command mark::
+            '''Get command name of LilyPond command mark::
 
                 abjad> lilypond_command = marktools.LilyPondCommandMark('slurDotted')
                 abjad> lilypond_command.command_name
                 'slurDotted'
 
-            Set command name string of LilyPond command mark::
+            Set command name of LilyPond command mark::
 
                 abjad> lilypond_command.command_name = 'slurDashed'
                 abjad> lilypond_command.command_name

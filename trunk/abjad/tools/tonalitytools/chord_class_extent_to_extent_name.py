@@ -1,7 +1,7 @@
 def chord_class_extent_to_extent_name(extent):
     '''.. versionadded:: 2.0
 
-    Change integer chord class `extent` to extent name string. ::
+    Change integer chord class `extent` to extent name. ::
 
         abjad> from abjad.tools import tonalitytools
 

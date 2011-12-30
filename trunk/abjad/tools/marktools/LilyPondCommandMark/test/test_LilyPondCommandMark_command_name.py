@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_LilyPondCommandMark_command_name_01():
-    '''LilyPondCommandMark command name string is read / write.
+    '''LilyPondCommandMark command name is read / write.
     '''
 
     lilypond_command = marktools.LilyPondCommandMark('slurDotted')

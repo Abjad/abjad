@@ -26,7 +26,7 @@ def test_Chord_note_heads_02():
 
 
 def test_Chord_note_heads_03():
-    '''Note head can be assigned with a LilyPond-style note name string.
+    '''Note head can be assigned with a LilyPond-style note name.
     '''
 
     t = Chord([0], (1, 4))

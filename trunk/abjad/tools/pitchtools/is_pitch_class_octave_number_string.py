@@ -3,10 +3,10 @@ import re
 
 # TODO: add quartertone support
 pitch_class_octave_number_regex_body = """
-    [A-G]{1,1}                      # exactly one diatonic pitch-class letter
-    [#|b]{0,1}                      # plus 0 or 1 accidental names
-    [-]{0,1}                        # plus an optional negative sign
-    [0-9]+                          # plus one or more digits
+    ([A-G]{1,1})                      # exactly one diatonic pitch-class letter
+    ([#]{0,2}|[b]{0,2})                      # plus 0 or 1 accidental names
+    ([-]{0,1}                        # plus an optional negative sign
+    [0-9]+)                          # plus one or more digits
     """
 
 pitch_class_octave_number_regex = re.compile('^%s$' % pitch_class_octave_number_regex_body, re.VERBOSE)

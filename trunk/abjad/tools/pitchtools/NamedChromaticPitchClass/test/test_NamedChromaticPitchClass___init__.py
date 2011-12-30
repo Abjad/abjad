@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_NamedChromaticPitchClass___init___01():
-    '''Init from name string.'''
+    '''Init from name.'''
 
     assert pitchtools.NamedChromaticPitchClass('c') == 'c'
     assert pitchtools.NamedChromaticPitchClass('cs') == 'cs'

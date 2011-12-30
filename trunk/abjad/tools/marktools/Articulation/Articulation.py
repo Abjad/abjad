@@ -161,13 +161,13 @@ class Articulation(Mark):
     @apply
     def name():
         def fget(self):
-            '''Get name string of articulation::
+            '''Get name of articulation::
 
                 abjad> articulation = marktools.Articulation('staccato', 'up')
                 abjad> articulation.name
                 'staccato'
 
-            Set name string of articulation::
+            Set name of articulation::
 
                 abjad> articulation.name = 'marcato'
                 abjad> articulation.name
