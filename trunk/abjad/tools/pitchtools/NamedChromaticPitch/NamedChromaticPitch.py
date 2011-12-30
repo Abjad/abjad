@@ -279,7 +279,7 @@ class NamedChromaticPitch(_Pitch):
     def _init_by_pitch_class_octave_number_string(self, pitch_class_octave_number_string):
         from abjad.tools import pitchtools
         chromatic_pitch_name = pitchtools.pitch_class_octave_number_string_to_chromatic_pitch_name(
-        pitch_class_octave_number_string)
+            pitch_class_octave_number_string)
         object.__setattr__(self, '_chromatic_pitch_name', chromatic_pitch_name)
 
     ### PUBLIC ATTRIBUTES ###

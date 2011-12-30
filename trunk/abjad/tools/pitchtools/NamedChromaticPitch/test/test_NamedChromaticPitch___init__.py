@@ -6,11 +6,8 @@ def test_NamedChromaticPitch___init___01():
     '''Init by name and octave.'''
 
     p = pitchtools.NamedChromaticPitch('df', 5)
-    #assert p.numbered_diatonic_pitch == 8
     assert p.format == "df''"
-    #assert p.diatonic_pitch_class_name == 'd'
     assert p.named_chromatic_pitch_class == pitchtools.NamedChromaticPitchClass('df')
-    #assert p.pitch_number == 13
     assert p.octave_number == 5
     assert p.numbered_chromatic_pitch_class == pitchtools.NumberedChromaticPitchClass(1)
 
@@ -29,11 +26,8 @@ def test_NamedChromaticPitch___init___03():
 
     p = pitchtools.NamedChromaticPitch(13)
 
-    #assert p.numbered_diatonic_pitch == 7
     assert p.format == "cs''"
-    #assert p.diatonic_pitch_class_name == 'c'
     assert p.named_chromatic_pitch_class == pitchtools.NamedChromaticPitchClass('cs')
-    #assert p.pitch_number == 13
     assert p.octave_number == 5
     assert p.numbered_chromatic_pitch_class == pitchtools.NumberedChromaticPitchClass(1)
 
@@ -44,11 +38,8 @@ def test_NamedChromaticPitch___init___04():
 
     p = pitchtools.NamedChromaticPitch(13, 'd')
 
-    #assert p.numbered_diatonic_pitch == 8
     assert p.format == "df''"
-    #assert p.diatonic_pitch_class_name == 'd'
     assert p.named_chromatic_pitch_class == pitchtools.NamedChromaticPitchClass('df')
-    #assert p.pitch_number == 13
     assert p.octave_number == 5
     assert p.numbered_chromatic_pitch_class == pitchtools.NumberedChromaticPitchClass(1)
 
@@ -59,11 +50,8 @@ def test_NamedChromaticPitch___init___05():
 
     p = pitchtools.NamedChromaticPitch(('df', 5))
 
-    #assert p.numbered_diatonic_pitch == 8
     assert p.format == "df''"
-    #assert p.diatonic_pitch_class_name == 'd'
     assert p.named_chromatic_pitch_class == pitchtools.NamedChromaticPitchClass('df')
-    #assert p.pitch_number == 13
     assert p.octave_number == 5
     assert p.numbered_chromatic_pitch_class == pitchtools.NumberedChromaticPitchClass(1)
 
@@ -87,16 +75,22 @@ def test_NamedChromaticPitch___init___07():
     r = pitchtools.NamedChromaticPitch('df', 5)
     p = pitchtools.NamedChromaticPitch(r)
 
-    #assert p.numbered_diatonic_pitch == 8
     assert p.format == "df''"
-    #assert p.diatonic_pitch_class_name == 'd'
     assert p.named_chromatic_pitch_class == pitchtools.NamedChromaticPitchClass('df')
-    #assert p.pitch_number == 13
     assert p.octave_number == 5
     assert p.numbered_chromatic_pitch_class == pitchtools.NumberedChromaticPitchClass(1)
 
 
 def test_NamedChromaticPitch___init___08():
+    '''Init by pitch-class / octave number string.'''
+
+    assert pitchtools.NamedChromaticPitch('A4') == pitchtools.NamedChromaticPitch("a'")
+    assert pitchtools.NamedChromaticPitch('C#2') == pitchtools.NamedChromaticPitch('cs,')
+    assert pitchtools.NamedChromaticPitch('D~4') == pitchtools.NamedChromaticPitch("dqf'")
+    assert pitchtools.NamedChromaticPitch('A0') == pitchtools.NamedChromaticPitch('a,,,')
+
+
+def test_NamedChromaticPitch___init___09():
     '''Empty pitches now allowed.
     '''
 
