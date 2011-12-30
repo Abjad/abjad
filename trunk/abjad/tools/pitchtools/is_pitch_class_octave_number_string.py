@@ -1,4 +1,4 @@
-from abjad.tools.pitchtools.is_symbolic_accidental_string import symbolic_accidental_regex_body
+from abjad.tools.pitchtools.is_symbolic_accidental_string import symbolic_accidental_string_regex_body
 import re
 
 
@@ -7,7 +7,7 @@ pitch_class_octave_number_regex_body = """
     %s                # plus an optional symbolic accidental string
     ([-]?           # plus an optional negative sign
     [0-9]+)         # plus one or more digits
-    """ % symbolic_accidental_regex_body
+    """ % symbolic_accidental_string_regex_body
 
 pitch_class_octave_number_regex = re.compile('^%s$' % pitch_class_octave_number_regex_body, re.VERBOSE)
 

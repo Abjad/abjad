@@ -1,7 +1,7 @@
 import re
 
 
-symbolic_accidental_regex_body = """
+symbolic_accidental_string_regex_body = """
     ([#]{1,2}       # # or ## for sharp or double sharp
     |[b]{1,2}       # or b or bb for flat or double flat
     |[#]?[+]        # or + or #+ for qs and tqs
@@ -10,7 +10,7 @@ symbolic_accidental_regex_body = """
     )
     """
 
-symbolic_accidental_regex = re.compile('^%s$' % symbolic_accidental_regex_body, re.VERBOSE)
+symbolic_accidental_string_regex = re.compile('^%s$' % symbolic_accidental_string_regex_body, re.VERBOSE)
 
 def is_symbolic_accidental_string(expr):
     '''.. versionadded:: 2.5
@@ -30,4 +30,4 @@ def is_symbolic_accidental_string(expr):
     if not isinstance(expr, str):
         return False
 
-    return bool(symbolic_accidental_regex.match(expr))
+    return bool(symbolic_accidental_string_regex.match(expr))
