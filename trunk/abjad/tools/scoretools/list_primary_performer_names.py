@@ -3,25 +3,26 @@ def list_primary_performer_names():
     
     List performer names::
 
-        abjad> for performer_name in scoretools.list_primary_performer_names():
-        ...     performer_name
+        abjad> for pair in scoretools.list_primary_performer_names():
+        ...     pair
         ... 
-        'accordionist'
-        'bassist'
-        'bassoonist'
-        'cellist'
-        'clarinetist'
-        'flutist'
-        'guitarist'
-        'harpist'
-        'hornist'
-        'oboist'
-        'pianist'
-        'trombonist'
-        'trumpeter'
-        'tubist'
-        'violinist'
-        'violist'
+        ('accordionist', 'acc.')
+        ('bassist', 'vb.')
+        ('bassoonist', 'bsn.')
+        ('cellist', 'vc.')
+        ('clarinetist', 'cl.')
+        ('flutist', 'fl.')
+        ('guitarist', 'gt.')
+        ('harpist', 'hp.')
+        ('harpsichordist', 'hpschd.')
+        ('hornist', 'Fr. hn.')
+        ('oboist', 'ob.')
+        ('pianist', 'pf.')
+        ('trombonist', 'trb.')
+        ('trumpeter', 'tp.')
+        ('tubist', 'tb.')
+        ('violinist', 'vn.')
+        ('violist', 'va.')
 
     Return list.
     '''
@@ -33,6 +34,8 @@ def list_primary_performer_names():
         instrument = instrument_class()    
         if instrument.is_primary_instrument:
             performer_name = instrument.get_default_performer_name()
-            performer_names.add(performer_name)
+            performer_abbreviation = instrument.default_short_instrument_name
+            #performer_names.add(performer_name)
+            performer_names.add((performer_name, performer_abbreviation))
     
     return list(sorted(performer_names))
