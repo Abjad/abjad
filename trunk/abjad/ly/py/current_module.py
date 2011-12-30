@@ -23,7 +23,7 @@ current_module = {
         'type': 'ly:music-function?',
     },
     'accidentalStyle': {
-        'signature': ('ly:music?', 'optional?'', 'symbol?', 'string?',),
+        'signature': ('ly:music?', 'optional?', 'symbol?', 'string?',),
         'type': 'ly:music-function?',
     },
     'add-toc-item!': None,
@@ -827,7 +827,7 @@ current_module = {
         'type': 'ly:music-function?',
     },
     'key': {
-        'signature': ('ly:music?', 'optional?'', 'ly:pitch?', 'optional?'', 'list?',),
+        'signature': ('ly:music?', 'optional?', 'ly:pitch?', 'optional?', 'list?',),
         'type': 'ly:music-function?',
     },
     'killCues': {
@@ -911,7 +911,7 @@ current_module = {
         'types': ('general-music', 'event', 'articulation-event', 'script-event',),
     },
     'mark': {
-        'signature': ('ly:music?', 'optional?'', 'scheme?',),
+        'signature': ('ly:music?', 'optional?', 'scheme?',),
         'type': 'ly:music-function?',
     },
     'maxima': Duration(8, 1),
@@ -1356,7 +1356,7 @@ current_module = {
         'type': 'ly:music-function?',
     },
     'relative': {
-        'signature': ('ly:music?', 'optional?'', 'ly:pitch?', 'ly:music?',),
+        'signature': ('ly:music?', 'optional?', 'ly:pitch?', 'ly:music?',),
         'type': 'ly:music-function?',
     },
     'removeWithTag': {
@@ -1442,7 +1442,7 @@ current_module = {
         'types': ('general-music', 'sequential-music',),
     },
     'settingsFrom': {
-        'signature': ('scheme?', 'optional?'', 'symbol?', 'ly:music?',),
+        'signature': ('scheme?', 'optional?', 'symbol?', 'ly:music?',),
         'type': 'ly:music-function?',
     },
     'sf': {
@@ -1914,7 +1914,7 @@ current_module = {
     },
     'timbales-style': None,
     'time': {
-        'signature': ('ly:music?', 'optional?'', 'number-list?', 'fraction?',),
+        'signature': ('ly:music?', 'optional?', 'number-list?', 'fraction?',),
         'type': 'ly:music-function?',
     },
     'times': {

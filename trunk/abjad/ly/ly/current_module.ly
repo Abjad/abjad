@@ -33,7 +33,7 @@
         (procedure-name (car signature)))))
     (cdr-signature-syms (flatten-list (map (lambda (x)
       (if (pair? x)
-        (cons 'optional?' (procedure-name (car x)))
+        (cons "optional?" (procedure-name (car x)))
         (procedure-name x)))
       (cdr signature))))
     (signature-syms (append car-signature-syms cdr-signature-syms))
