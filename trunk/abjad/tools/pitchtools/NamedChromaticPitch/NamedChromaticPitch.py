@@ -63,7 +63,7 @@ class NamedChromaticPitch(_Pitch):
         object.__setattr__(self, '_diatonic_pitch_number', diatonic_pitch_number)
         groups = chromatic_pitch_name_regex.match(self._chromatic_pitch_name).groups()
         alphabetic_accidental_abbreviation = groups[1]
-        accidental_semitones = Accidental._alphabetic_string_to_semitones[alphabetic_accidental_abbreviation]
+        accidental_semitones = Accidental._alphabetic_accidental_abbreviation_to_semitones[alphabetic_accidental_abbreviation]
         object.__setattr__(self, '_accidental_semitones', accidental_semitones)
         return self
 

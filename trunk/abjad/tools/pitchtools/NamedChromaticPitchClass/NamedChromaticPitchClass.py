@@ -106,7 +106,7 @@ class NamedChromaticPitchClass(_PitchClass):
         accidental_to_symbol = {
             '': '', 's': '#', 'f': 'b', 'ss': '###', 'ff': 'bb',
             'qs': 'qs', 'qf': 'qf', 'tqs': 'tqs', 'tqf': 'tqf'}
-        symbol = accidental_to_symbol[self._accidental.alphabetic_string]
+        symbol = accidental_to_symbol[self._accidental.alphabetic_accidental_abbreviation]
         return self._diatonic_pitch_class_name + symbol
 
     ### PRIVATE METHODS ###
@@ -155,7 +155,7 @@ class NamedChromaticPitchClass(_PitchClass):
         from abjad.tools import pitchtools
         accidental = pitchtools.Accidental(accidental)
         new_accidental = self._accidental + accidental
-        new_name = self._diatonic_pitch_class_name + new_accidental.alphabetic_string
+        new_name = self._diatonic_pitch_class_name + new_accidental.alphabetic_accidental_abbreviation
         return type(self)(new_name)
 
     def transpose(self, melodic_diatonic_interval):
