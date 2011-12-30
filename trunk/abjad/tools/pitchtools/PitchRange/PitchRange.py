@@ -36,6 +36,8 @@ class PitchRange(_Immutable):
                 indicator = 'exclusive'
             stop = (args[0].stop_pitch, indicator)
             object.__setattr__(self, '_stop', stop)
+        elif len(args) == 1 and isinstance(args[0], str):
+            self._init_by_symbolic_pitch_range_string(*args)
         elif len(args) == 1 and isinstance(args[0], (tuple, list)):
             start, stop = args[0]
             type(self).__init__(self, start, stop)
@@ -155,6 +157,16 @@ class PitchRange(_Immutable):
     def __repr__(self):
         return '%s(%s, %s)' % (type(self).__name__, self._start, self._stop)
 
+    ### PRIVATE CLASS ATTRIBUTES ###
+
+    _start_punctuation_to_inclusivity_string = {
+        '[': 'inclusive',
+        '(': 'exclusive'}
+
+    _stop_punctuation_to_inclusivity_string = {
+        ']': 'inclusive',
+        ')': 'exclusive'}
+
     ### PRIVATE ATTRIBUTES ###
 
     @property
@@ -202,6 +214,21 @@ class PitchRange(_Immutable):
                     return self.start_pitch < pitch <= self.stop_pitch
                 else:
                     return self.start_pitch < pitch < self.stop_pitch
+
+    def _init_by_symbolic_pitch_range_string(self, symbolic_pitch_range_string):
+        from abjad.tools import pitchtools
+        from abjad.tools.pitchtools.is_symbolic_pitch_range_string import symbolic_pitch_range_string_regex
+        assert pitchtools.is_symbolic_pitch_range_string(symbolic_pitch_range_string)
+        groups = symbolic_pitch_range_string_regex.match(symbolic_pitch_range_string).groups()
+        start_punctuation = groups[0]
+        start_pitch_string = groups[1]
+        stop_pitch_string = groups[8]
+        stop_punctuation = groups[-1]
+        start_inclusivity_string = self._start_punctuation_to_inclusivity_string[start_punctuation]
+        stop_inclusivity_string = self._stop_punctuation_to_inclusivity_string[stop_punctuation]
+        start_pair = (start_pitch_string, start_inclusivity_string)
+        stop_pair = (stop_pitch_string, stop_inclusivity_string)
+        type(self).__init__(self, start_pair, stop_pair)
 
     
     ### PUBLIC ATTRIBUTES ###

@@ -86,3 +86,13 @@ def test_pitchtools_PitchRange___init___09():
     pitch_range_2 = pitchtools.PitchRange((-39, 48))
 
     assert pitch_range_1 == pitch_range_2
+
+
+def test_pitchtools_PitchRange___init___10():
+    '''Init from symbolic pitch range string.
+    '''
+
+    assert pitchtools.PitchRange('[A0, C8]') == pitchtools.PitchRange(
+        ('A0', 'inclusive'), ('C8', 'inclusive'))
+    assert pitchtools.PitchRange("(a, cs'')") == pitchtools.PitchRange(
+        ('a', 'exclusive'), ("cs''", 'exclusive'))
