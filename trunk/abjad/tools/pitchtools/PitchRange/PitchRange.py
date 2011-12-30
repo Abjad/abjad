@@ -8,7 +8,7 @@ class PitchRange(_Immutable):
     Abjad model of pitch range::
 
         abjad> pitchtools.PitchRange(-12, 36)
-        PitchRange((NamedChromaticPitch('c'), 'inclusive'), (NamedChromaticPitch("c''''"), 'inclusive'))
+        PitchRange('[C3, C7]')
 
     Init from pitch numbers, pitch names, pitch instances or other pitch range objects.
 
@@ -155,7 +155,8 @@ class PitchRange(_Immutable):
         return not self == arg
 
     def __repr__(self):
-        return '%s(%s, %s)' % (type(self).__name__, self._start, self._stop)
+        #return '%s(%s, %s)' % (type(self).__name__, self._start, self._stop)
+        return '{}({!r})'.format(type(self).__name__, self.one_line_named_chromatic_pitch_repr)
 
     ### PRIVATE CLASS ATTRIBUTES ###
 
