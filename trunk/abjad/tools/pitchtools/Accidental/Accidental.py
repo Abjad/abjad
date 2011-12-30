@@ -129,28 +129,28 @@ class Accidental(_StrictComparator, _Immutable):
     }
 
     _alphabetic_string_to_symbolic_string = {
-        'ff': 'bb',
-        'tqf': 'b+',
-        'f': 'b',
-        'qf': 'b-',
-        '': '',
-        '!': '!',
-        'qs': '#-',
-        's': '#',
-        'tqs': '#+',
-        'ss': '##',
+        'ff'  : 'bb',
+        'tqf' : 'b~',
+        'f'   : 'b',
+        'qf'  : '~',
+        ''    : '',
+        '!'   : '!',
+        'qs'  : '+',
+        's'   : '#',
+        'tqs' : '#+',
+        'ss'  : '##',
     }
 
     _name_to_alphabetic_string = {
         'double sharp'            : 'ss',
-        'three-quarters sharp'  : 'tqs',
-        'sharp'                     : 's',
+        'three-quarters sharp'    : 'tqs',
+        'sharp'                   : 's',
         'quarter sharp'           : 'qs',
-        'natural'                   : '',
+        'natural'                 : '',
         'forced natural'          : '!',
         'quarter flat'            : 'qf',
-        'flat'                        : 'f',
-        'three-quarters flat'   : 'tqf',
+        'flat'                    : 'f',
+        'three-quarters flat'     : 'tqf',
         'double flat'             :  'ff',
     }
 
@@ -170,13 +170,13 @@ class Accidental(_StrictComparator, _Immutable):
         ''   : '',
         '!'  : '!',
         'bb' : 'ff',
-        'b+' : 'tqf',
+        'b~' : 'tqf',
         'b'  : 'f',
-        'b-' : 'qf',
-        '###' : 'ss',
+        '~'  : 'qf',
+        '##' : 'ss',
         '#+' : 'tqs',
         '#'  : 's',
-        '#-' : 'qs',
+        '+'  : 'qs',
     }
 
     @property
