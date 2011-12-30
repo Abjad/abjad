@@ -149,6 +149,8 @@ class LilyPondParser(object):
         name = lookup['name']
         if name == 'ArticulationEvent':
             return marktools.Articulation(lookup['articulation-type'])
+        elif name == 'AbsoluteDynamicEvent':
+            return contexttools.DynamicMark(lookup['text'])
         event = Event(name)
         if 'span-direction' in lookup:
             if lookup['span-direction'] == -1:
