@@ -138,7 +138,7 @@ class Accidental(_StrictComparator, _Immutable):
         'qs': '#-',
         's': '#',
         'tqs': '#+',
-        'ss': '###',
+        'ss': '##',
     }
 
     _name_to_alphabetic_string = {
