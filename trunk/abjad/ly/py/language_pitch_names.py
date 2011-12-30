@@ -1,6 +1,8 @@
 from abjad.tools.pitchtools import NamedChromaticPitchClass
 
 
+lilypond_version = "2.15.23"
+
 language_pitch_names = {
     'nederlands':  {
         'ceses': NamedChromaticPitchClass('cff'),

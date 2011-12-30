@@ -1,6 +1,8 @@
 from abjad.tools.durationtools import Duration
 
 
+lilypond_version = "2.15.23"
+
 current_module = {
     '$current-book': None,
     '$current-bookpart': None,
@@ -9,6 +11,7 @@ current_module = {
     '$defaultmidi': None,
     '$defaultpaper': None,
     '%module-public-interface': None,
+    'RemoveEmptyStaves': None,
     'accent': {
         'articulation-type': 'accent',
         'name': 'ArticulationEvent',
@@ -16,25 +19,29 @@ current_module = {
         'types': ('general-music', 'event', 'articulation-event', 'script-event',),
     },
     'acciaccatura': {
-        'signature': ('ly:music?',),
+        'signature': ('ly:music?', 'ly:music?',),
+        'type': 'ly:music-function?',
+    },
+    'accidentalStyle': {
+        'signature': ('ly:music?', 'optional?'', 'symbol?', 'string?',),
         'type': 'ly:music-function?',
     },
     'add-toc-item!': None,
     'addChordShape': {
-        'signature': ('symbol?', 'pair?', 'string-or-pair?',),
+        'signature': ('ly:music?', 'symbol?', 'pair?', 'string-or-pair?',),
         'type': 'ly:music-function?',
     },
     'addInstrumentDefinition': {
-        'signature': ('string?', 'list?',),
+        'signature': ('void?', 'string?', 'list?',),
         'type': 'ly:music-function?',
     },
     'addQuote': {
-        'signature': ('string?', 'ly:music?',),
+        'signature': ('void?', 'string?', 'ly:music?',),
         'type': 'ly:music-function?',
     },
     'aeolian': None,
     'afterGrace': {
-        'signature': ('ly:music?', 'ly:music?',),
+        'signature': ('ly:music?', 'ly:music?', 'ly:music?',),
         'type': 'ly:music-function?',
     },
     'afterGraceFraction': None,
@@ -51,23 +58,27 @@ current_module = {
         'types': ('context-specification', 'general-music', 'music-wrapper-music',),
     },
     'allowPageTurn': {
-        'signature': ( ),
+        'signature': ('ly:music?',),
+        'type': 'ly:music-function?',
+    },
+    'appendToTag': {
+        'signature': ('ly:music?', 'symbol?', 'ly:music?', 'ly:music?',),
         'type': 'ly:music-function?',
     },
     'applyContext': {
-        'signature': ('procedure?',),
+        'signature': ('ly:music?', 'procedure?',),
         'type': 'ly:music-function?',
     },
     'applyMusic': {
-        'signature': ('procedure?', 'ly:music?',),
+        'signature': ('ly:music?', 'procedure?', 'ly:music?',),
         'type': 'ly:music-function?',
     },
     'applyOutput': {
-        'signature': ('symbol?', 'procedure?',),
+        'signature': ('ly:music?', 'symbol?', 'procedure?',),
         'type': 'ly:music-function?',
     },
     'appoggiatura': {
-        'signature': ('ly:music?',),
+        'signature': ('ly:music?', 'ly:music?',),
         'type': 'ly:music-function?',
     },
     'arpeggio': {
@@ -106,11 +117,11 @@ current_module = {
         'types': ('general-music', 'sequential-music',),
     },
     'assertBeamQuant': {
-        'signature': ('pair?', 'pair?',),
+        'signature': ('ly:music?', 'pair?', 'pair?',),
         'type': 'ly:music-function?',
     },
     'assertBeamSlope': {
-        'signature': ('procedure?',),
+        'signature': ('ly:music?', 'procedure?',),
         'type': 'ly:music-function?',
     },
     'autoBeamOff': {
@@ -125,12 +136,20 @@ current_module = {
         'type': 'ly:prob?',
         'types': ('context-specification', 'general-music', 'music-wrapper-music',),
     },
+    'autoFootnote': {
+        'signature': ('ly:music?', 'number-pair?', 'cheap-markup?',),
+        'type': 'ly:music-function?',
+    },
+    'autoFootnoteGrob': {
+        'signature': ('ly:music?', 'symbol?', 'number-pair?', 'cheap-markup?',),
+        'type': 'ly:music-function?',
+    },
     'autochange': {
-        'signature': ('ly:music?',),
+        'signature': ('ly:music?', 'ly:music?',),
         'type': 'ly:music-function?',
     },
     'balloonGrobText': {
-        'signature': ('symbol?', 'number-pair?', 'cheap-markup?',),
+        'signature': ('ly:music?', 'symbol?', 'number-pair?', 'cheap-markup?',),
         'type': 'ly:music-function?',
     },
     'balloonLengthOff': {
@@ -144,7 +163,7 @@ current_module = {
         'types': ('general-music', 'sequential-music',),
     },
     'balloonText': {
-        'signature': ('number-pair?', 'cheap-markup?',),
+        'signature': ('ly:music?', 'number-pair?', 'cheap-markup?',),
         'type': 'ly:music-function?',
     },
     'banjo-c-tuning': None,
@@ -153,11 +172,11 @@ current_module = {
     'banjo-open-dm-tuning': None,
     'banjo-open-g-tuning': None,
     'bar': {
-        'signature': ('string?',),
+        'signature': ('ly:music?', 'string?',),
         'type': 'ly:music-function?',
     },
     'barNumberCheck': {
-        'signature': ('integer?',),
+        'signature': ('ly:music?', 'integer?',),
         'type': 'ly:music-function?',
     },
     'baritone-ukulele-tuning': None,
@@ -195,7 +214,7 @@ current_module = {
         'types': ('context-specification', 'general-music', 'music-wrapper-music',),
     },
     'bendAfter': {
-        'signature': ('real?',),
+        'signature': ('ly:music?', 'real?',),
         'type': 'ly:music-function?',
     },
     'bigger': 1,
@@ -208,11 +227,11 @@ current_module = {
     'book-score-handler': None,
     'book-text-handler': None,
     'bookOutputName': {
-        'signature': ('string?',),
+        'signature': ('void?', 'string?',),
         'type': 'ly:music-function?',
     },
     'bookOutputSuffix': {
-        'signature': ('string?',),
+        'signature': ('void?', 'string?',),
         'type': 'ly:music-function?',
     },
     'bookpart-music-handler': None,
@@ -241,7 +260,7 @@ current_module = {
         'types': ('general-music', 'break-span-event', 'break-dynamic-span-event', 'event',),
     },
     'breathe': {
-        'signature': ( ),
+        'signature': ('ly:music?',),
         'type': 'ly:music-function?',
     },
     'breve': Duration(2, 1),
@@ -257,16 +276,11 @@ current_module = {
     },
     'cello-tuning': None,
     'center': 0,
-    'chord->tuning': None,
     'chord-shape': None,
     'chord-shape-table': None,
-    'chordGlissando': {
-        'signature': ('ly:music?', 'ly:music?',),
-        'type': 'ly:music-function?',
-    },
     'chordmodifiers': None,
     'clef': {
-        'signature': ('string?',),
+        'signature': ('ly:music?', 'string?',),
         'type': 'ly:music-function?',
     },
     'coda': {
@@ -276,7 +290,7 @@ current_module = {
         'types': ('general-music', 'event', 'articulation-event', 'script-event',),
     },
     'compoundMeter': {
-        'signature': ('pair?',),
+        'signature': ('ly:music?', 'pair?',),
         'type': 'ly:music-function?',
     },
     'compressFullBarRests': {
@@ -286,10 +300,6 @@ current_module = {
         'types': ('context-specification', 'general-music', 'music-wrapper-music',),
     },
     'congas-style': None,
-    'contextStringTuning': {
-        'signature': ('symbol?', 'ly:music?',),
-        'type': 'ly:music-function?',
-    },
     'cr': {
         'name': 'CrescendoEvent',
         'span-direction': -1,
@@ -313,19 +323,19 @@ current_module = {
         'types': ('general-music', 'sequential-music',),
     },
     'cueClef': {
-        'signature': ('string?',),
+        'signature': ('ly:music?', 'string?',),
         'type': 'ly:music-function?',
     },
     'cueClefUnset': {
-        'signature': ( ),
+        'signature': ('ly:music?',),
         'type': 'ly:music-function?',
     },
     'cueDuring': {
-        'signature': ('string?', 'ly:dir?', 'ly:music?',),
+        'signature': ('ly:music?', 'string?', 'ly:dir?', 'ly:music?',),
         'type': 'ly:music-function?',
     },
     'cueDuringWithClef': {
-        'signature': ('string?', 'ly:dir?', 'string?', 'ly:music?',),
+        'signature': ('ly:music?', 'string?', 'ly:dir?', 'string?', 'ly:music?',),
         'type': 'ly:music-function?',
     },
     'dashBar': {
@@ -357,7 +367,7 @@ current_module = {
         'type': 'alias',
     },
     'deadNote': {
-        'signature': ('ly:music?',),
+        'signature': ('ly:music?', 'ly:music?',),
         'type': 'ly:music-function?',
     },
     'deadNotesOff': {
@@ -385,7 +395,7 @@ current_module = {
     'default-fret-table': None,
     'default-repeat-chord': None,
     'defaultNoteHeads': {
-        'signature': ( ),
+        'signature': ('ly:music?',),
         'type': 'ly:music-function?',
     },
     'defaultStringTunings': None,
@@ -442,11 +452,11 @@ current_module = {
         'types': ('general-music', 'sequential-music',),
     },
     'displayLilyMusic': {
-        'signature': ('ly:music?',),
+        'signature': ('ly:music?', 'ly:music?',),
         'type': 'ly:music-function?',
     },
     'displayMusic': {
-        'signature': ('ly:music?',),
+        'signature': ('ly:music?', 'ly:music?',),
         'type': 'ly:music-function?',
     },
     'dorian': None,
@@ -516,7 +526,7 @@ current_module = {
         'types': ('general-music', 'sequential-music',),
     },
     'endSpanners': {
-        'signature': ('ly:music?',),
+        'signature': ('ly:music?', 'ly:music?',),
         'type': 'ly:music-function?',
     },
     'endcr': {
@@ -617,7 +627,7 @@ current_module = {
         'types': ('general-music', 'event', 'dynamic-event', 'absolute-dynamic-event',),
     },
     'featherDurations': {
-        'signature': ('ly:moment?', 'ly:music?',),
+        'signature': ('ly:music?', 'ly:moment?', 'ly:music?',),
         'type': 'ly:music-function?',
     },
     'fermata': {
@@ -662,11 +672,11 @@ current_module = {
         'types': ('general-music', 'event', 'articulation-event', 'script-event',),
     },
     'footnote': {
-        'signature': ('number-pair?', 'cheap-markup?', 'cheap-markup?',),
+        'signature': ('ly:music?', 'number-pair?', 'cheap-markup?', 'cheap-markup?',),
         'type': 'ly:music-function?',
     },
     'footnoteGrob': {
-        'signature': ('symbol?', 'number-pair?', 'cheap-markup?', 'cheap-markup?',),
+        'signature': ('ly:music?', 'symbol?', 'number-pair?', 'cheap-markup?', 'cheap-markup?',),
         'type': 'ly:music-function?',
     },
     'four-string-banjo': None,
@@ -711,7 +721,11 @@ current_module = {
         'types': ('general-music', 'glissando-event', 'event',),
     },
     'grace': {
-        'signature': ('ly:music?',),
+        'signature': ('ly:music?', 'ly:music?',),
+        'type': 'ly:music-function?',
+    },
+    'grobdescriptions': {
+        'signature': ('scheme?', 'list?',),
         'type': 'ly:music-function?',
     },
     'guitar-asus4-tuning': None,
@@ -734,15 +748,15 @@ current_module = {
         'types': ('general-music', 'event', 'harmonic-event',),
     },
     'harmonicByFret': {
-        'signature': ('number?', 'ly:music?',),
+        'signature': ('ly:music?', 'number?', 'ly:music?',),
         'type': 'ly:music-function?',
     },
     'harmonicByRatio': {
-        'signature': ('number?', 'ly:music?',),
+        'signature': ('ly:music?', 'number?', 'ly:music?',),
         'type': 'ly:music-function?',
     },
     'harmonicNote': {
-        'signature': ('ly:music?',),
+        'signature': ('ly:music?', 'ly:music?',),
         'type': 'ly:music-function?',
     },
     'harmonicsOff': {
@@ -751,7 +765,7 @@ current_module = {
         'types': ('general-music', 'sequential-music',),
     },
     'harmonicsOn': {
-        'signature': ( ),
+        'signature': ('ly:music?',),
         'type': 'ly:music-function?',
     },
     'hideNotes': {
@@ -795,11 +809,11 @@ current_module = {
     'input-file-name': None,
     'instrument-definitions': None,
     'instrumentSwitch': {
-        'signature': ('string?',),
+        'signature': ('ly:music?', 'string?',),
         'type': 'ly:music-function?',
     },
     'inversion': {
-        'signature': ('ly:music?', 'ly:music?', 'ly:music?',),
+        'signature': ('ly:music?', 'ly:pitch?', 'ly:pitch?', 'ly:music?',),
         'type': 'ly:music-function?',
     },
     'ionian': None,
@@ -809,15 +823,19 @@ current_module = {
         'types': ('general-music', 'sequential-music',),
     },
     'keepWithTag': {
-        'signature': ('symbol?', 'ly:music?',),
+        'signature': ('ly:music?', 'symbol?', 'ly:music?',),
+        'type': 'ly:music-function?',
+    },
+    'key': {
+        'signature': ('ly:music?', 'optional?'', 'ly:pitch?', 'optional?'', 'list?',),
         'type': 'ly:music-function?',
     },
     'killCues': {
-        'signature': ('ly:music?',),
+        'signature': ('ly:music?', 'ly:music?',),
         'type': 'ly:music-function?',
     },
     'label': {
-        'signature': ('symbol?',),
+        'signature': ('ly:music?', 'symbol?',),
         'type': 'ly:music-function?',
     },
     'laissezVibrer': {
@@ -826,15 +844,15 @@ current_module = {
         'types': ('general-music', 'event', 'laissez-vibrer-event',),
     },
     'language': {
-        'signature': ('string?',),
+        'signature': ('void?', 'string?',),
         'type': 'ly:music-function?',
     },
     'languageRestore': {
-        'signature': ( ),
+        'signature': ('void?',),
         'type': 'ly:music-function?',
     },
     'languageSaveAndChange': {
-        'signature': ('string?',),
+        'signature': ('void?', 'string?',),
         'type': 'ly:music-function?',
     },
     'large': {
@@ -878,15 +896,11 @@ current_module = {
     'make-simple-dash-definition': None,
     'make-table-of-contents-markup-list': None,
     'makeClusters': {
-        'signature': ('ly:music?',),
+        'signature': ('ly:music?', 'ly:music?',),
         'type': 'ly:music-function?',
     },
-    'makeDefaultStringTunings': {
-        'signature': ('cheap-list?',),
-        'type': 'ly:music-function?',
-    },
-    'makeStringTuning': {
-        'signature': ('symbol?', 'ly:music?',),
+    'makeDefaultStringTuning': {
+        'signature': ('void?', 'symbol?', 'list?',),
         'type': 'ly:music-function?',
     },
     'mandolin-tuning': None,
@@ -895,6 +909,10 @@ current_module = {
         'name': 'ArticulationEvent',
         'type': 'ly:prob?',
         'types': ('general-music', 'event', 'articulation-event', 'script-event',),
+    },
+    'mark': {
+        'signature': ('ly:music?', 'optional?'', 'scheme?',),
+        'type': 'ly:music-function?',
     },
     'maxima': Duration(8, 1),
     'melisma': {
@@ -943,11 +961,11 @@ current_module = {
     'minor': None,
     'mixolydian': None,
     'modalInversion': {
-        'signature': ('ly:music?', 'ly:music?', 'ly:music?', 'ly:music?',),
+        'signature': ('ly:music?', 'ly:pitch?', 'ly:pitch?', 'ly:music?', 'ly:music?',),
         'type': 'ly:music-function?',
     },
     'modalTranspose': {
-        'signature': ('ly:music?', 'ly:music?', 'ly:music?', 'ly:music?',),
+        'signature': ('ly:music?', 'ly:pitch?', 'ly:pitch?', 'ly:music?', 'ly:music?',),
         'type': 'ly:music-function?',
     },
     'mordent': {
@@ -963,7 +981,7 @@ current_module = {
         'types': ('general-music', 'event', 'dynamic-event', 'absolute-dynamic-event',),
     },
     'musicMap': {
-        'signature': ('procedure?', 'ly:music?',),
+        'signature': ('ly:music?', 'procedure?', 'ly:music?',),
         'type': 'ly:music-function?',
     },
     'musicQuotes': None,
@@ -983,11 +1001,11 @@ current_module = {
         'types': ('general-music', 'event-chord', 'simultaneous-music',),
     },
     'noPageBreak': {
-        'signature': ( ),
+        'signature': ('ly:music?',),
         'type': 'ly:music-function?',
     },
     'noPageTurn': {
-        'signature': ( ),
+        'signature': ('ly:music?',),
         'type': 'ly:music-function?',
     },
     'normalsize': {
@@ -1003,7 +1021,11 @@ current_module = {
         'types': ('context-specification', 'general-music', 'music-wrapper-music',),
     },
     'octaveCheck': {
-        'signature': ('ly:music?',),
+        'signature': ('ly:music?', 'ly:pitch?',),
+        'type': 'ly:music-function?',
+    },
+    'once': {
+        'signature': ('ly:music?', 'ly:music?',),
         'type': 'ly:music-function?',
     },
     'oneVoice': {
@@ -1019,17 +1041,17 @@ current_module = {
         'types': ('general-music', 'event', 'articulation-event', 'script-event',),
     },
     'ottava': {
-        'signature': ('integer?',),
+        'signature': ('ly:music?', 'integer?',),
         'type': 'ly:music-function?',
     },
     'output-empty-score-list': None,
     'output-suffix': None,
     'overrideProperty': {
-        'signature': ('string?', 'symbol?', 'scheme?',),
+        'signature': ('ly:music?', 'string?', 'symbol?', 'scheme?',),
         'type': 'ly:music-function?',
     },
     'overrideTimeSignatureSettings': {
-        'signature': ('pair?', 'pair?', 'cheap-list?', 'cheap-list?',),
+        'signature': ('ly:music?', 'pair?', 'pair?', 'cheap-list?', 'cheap-list?',),
         'type': 'ly:music-function?',
     },
     'p': {
@@ -1039,15 +1061,15 @@ current_module = {
         'types': ('general-music', 'event', 'dynamic-event', 'absolute-dynamic-event',),
     },
     'pageBreak': {
-        'signature': ( ),
+        'signature': ('ly:music?',),
         'type': 'ly:music-function?',
     },
     'pageTurn': {
-        'signature': ( ),
+        'signature': ('ly:music?',),
         'type': 'ly:music-function?',
     },
     'palmMute': {
-        'signature': ('ly:music?',),
+        'signature': ('ly:music?', 'ly:music?',),
         'type': 'ly:music-function?',
     },
     'palmMuteOff': {
@@ -1056,11 +1078,11 @@ current_module = {
         'types': ('general-music', 'sequential-music',),
     },
     'palmMuteOn': {
-        'signature': ( ),
+        'signature': ('ly:music?',),
         'type': 'ly:music-function?',
     },
     'parallelMusic': {
-        'signature': ('list?', 'ly:music?',),
+        'signature': ('void?', 'list?', 'ly:music?',),
         'type': 'ly:music-function?',
     },
     'parenthesisCloseSymbol': {
@@ -1076,13 +1098,13 @@ current_module = {
         'types': ('general-music', 'span-event', 'event', 'slur-event',),
     },
     'parenthesize': {
-        'signature': ('ly:music?',),
+        'signature': ('ly:music?', 'ly:music?',),
         'type': 'ly:music-function?',
     },
     'parser': None,
     'partCombineListener': None,
     'partcombine': {
-        'signature': ('ly:music?', 'ly:music?',),
+        'signature': ('ly:music?', 'ly:music?', 'ly:music?',),
         'type': 'ly:music-function?',
     },
     'partcombineApart': {
@@ -1115,8 +1137,12 @@ current_module = {
         'type': 'ly:prob?',
         'types': ('general-music', 'event-chord', 'simultaneous-music',),
     },
+    'partcombineDown': {
+        'signature': ('ly:music?', 'ly:music?', 'ly:music?',),
+        'type': 'ly:music-function?',
+    },
     'partcombineForce': {
-        'signature': ('symbol-or-boolean?', 'boolean?',),
+        'signature': ('ly:music?', 'symbol-or-boolean?', 'boolean?',),
         'type': 'ly:music-function?',
     },
     'partcombineSoloI': {
@@ -1149,6 +1175,14 @@ current_module = {
         'type': 'ly:prob?',
         'types': ('general-music', 'event-chord', 'simultaneous-music',),
     },
+    'partcombineUp': {
+        'signature': ('ly:music?', 'ly:music?', 'ly:music?',),
+        'type': 'ly:music-function?',
+    },
+    'partial': {
+        'signature': ('ly:music?', 'ly:duration?',),
+        'type': 'ly:music-function?',
+    },
     'partialJazzExceptions': None,
     'partialJazzMusic': {
         'name': 'SequentialMusic',
@@ -1157,7 +1191,7 @@ current_module = {
     },
     'percussion-style': None,
     'phrasingSlurDashPattern': {
-        'signature': ('number?', 'number?',),
+        'signature': ('ly:music?', 'number?', 'number?',),
         'type': 'ly:music-function?',
     },
     'phrasingSlurDashed': {
@@ -1215,15 +1249,19 @@ current_module = {
         'types': ('general-music', 'bar-check',),
     },
     'pitchedTrill': {
-        'signature': ('ly:music?', 'ly:music?',),
+        'signature': ('ly:music?', 'ly:music?', 'ly:music?',),
         'type': 'ly:music-function?',
     },
     'pointAndClickOff': {
-        'signature': ( ),
+        'signature': ('ly:music?',),
         'type': 'ly:music-function?',
     },
     'pointAndClickOn': {
-        'signature': ( ),
+        'signature': ('ly:music?',),
+        'type': 'ly:music-function?',
+    },
+    'pointAndClickTypes': {
+        'signature': ('void?', 'list-or-symbol?',),
         'type': 'ly:music-function?',
     },
     'portato': {
@@ -1309,12 +1347,20 @@ current_module = {
         'type': 'ly:prob?',
         'types': ('context-specification', 'general-music', 'music-wrapper-music',),
     },
+    'pushToTag': {
+        'signature': ('ly:music?', 'symbol?', 'ly:music?', 'ly:music?',),
+        'type': 'ly:music-function?',
+    },
     'quoteDuring': {
-        'signature': ('string?', 'ly:music?',),
+        'signature': ('ly:music?', 'string?', 'ly:music?',),
+        'type': 'ly:music-function?',
+    },
+    'relative': {
+        'signature': ('ly:music?', 'optional?'', 'ly:pitch?', 'ly:music?',),
         'type': 'ly:music-function?',
     },
     'removeWithTag': {
-        'signature': ('symbol?', 'ly:music?',),
+        'signature': ('ly:music?', 'symbol?', 'ly:music?',),
         'type': 'ly:music-function?',
     },
     'repeatTie': {
@@ -1323,11 +1369,11 @@ current_module = {
         'types': ('general-music', 'event', 'repeat-tie-event',),
     },
     'resetRelativeOctave': {
-        'signature': ('ly:music?',),
+        'signature': ('ly:music?', 'ly:pitch?',),
         'type': 'ly:music-function?',
     },
     'retrograde': {
-        'signature': ('ly:music?',),
+        'signature': ('ly:music?', 'ly:music?',),
         'type': 'ly:music-function?',
     },
     'reverseturn': {
@@ -1337,7 +1383,7 @@ current_module = {
         'types': ('general-music', 'event', 'articulation-event', 'script-event',),
     },
     'revertTimeSignatureSettings': {
-        'signature': ('pair?',),
+        'signature': ('ly:music?', 'pair?',),
         'type': 'ly:music-function?',
     },
     'rfz': {
@@ -1354,7 +1400,7 @@ current_module = {
     },
     'right': 1,
     'rightHandFinger': {
-        'signature': ('number-or-string?',),
+        'signature': ('ly:music?', 'number-or-string?',),
         'type': 'ly:music-function?',
     },
     'rtoe': {
@@ -1376,7 +1422,7 @@ current_module = {
         'types': ('context-specification', 'general-music', 'music-wrapper-music',),
     },
     'scaleDurations': {
-        'signature': ('number-pair?', 'ly:music?',),
+        'signature': ('ly:music?', 'fraction?', 'ly:music?',),
         'type': 'ly:music-function?',
     },
     'segno': {
@@ -1394,6 +1440,10 @@ current_module = {
         'name': 'SequentialMusic',
         'type': 'ly:prob?',
         'types': ('general-music', 'sequential-music',),
+    },
+    'settingsFrom': {
+        'signature': ('scheme?', 'optional?'', 'symbol?', 'ly:music?',),
+        'type': 'ly:music-function?',
     },
     'sf': {
         'name': 'AbsoluteDynamicEvent',
@@ -1420,7 +1470,7 @@ current_module = {
         'types': ('general-music', 'event', 'dynamic-event', 'absolute-dynamic-event',),
     },
     'shiftDurations': {
-        'signature': ('integer?', 'integer?', 'ly:music?',),
+        'signature': ('ly:music?', 'integer?', 'integer?', 'ly:music?',),
         'type': 'ly:music-function?',
     },
     'shiftOff': {
@@ -1470,8 +1520,16 @@ current_module = {
         'type': 'ly:prob?',
         'types': ('general-music', 'event', 'articulation-event', 'script-event',),
     },
+    'skip': {
+        'signature': ('ly:music?', 'ly:duration?',),
+        'type': 'ly:music-function?',
+    },
+    'slashedGrace': {
+        'signature': ('ly:music?', 'ly:music?',),
+        'type': 'ly:music-function?',
+    },
     'slurDashPattern': {
-        'signature': ('number?', 'number?',),
+        'signature': ('ly:music?', 'number?', 'number?',),
         'type': 'ly:music-function?',
     },
     'slurDashed': {
@@ -1566,7 +1624,7 @@ current_module = {
         'types': ('general-music', 'event', 'dynamic-event', 'absolute-dynamic-event',),
     },
     'spacingTweaks': {
-        'signature': ('list?',),
+        'signature': ('ly:music?', 'list?',),
         'type': 'ly:music-function?',
     },
     'spp': {
@@ -1603,11 +1661,22 @@ current_module = {
         'type': 'ly:prob?',
         'types': ('general-music', 'sequential-music',),
     },
+    'startGraceSlur': {
+        'name': 'SlurEvent',
+        'span-direction': -1,
+        'type': 'ly:prob?',
+        'types': ('general-music', 'span-event', 'event', 'slur-event',),
+    },
     'startGroup': {
         'name': 'NoteGroupingEvent',
         'span-direction': -1,
         'type': 'ly:prob?',
         'types': ('general-music', 'event', 'note-grouping-event',),
+    },
+    'startSlashedGraceMusic': {
+        'name': 'SequentialMusic',
+        'type': 'ly:prob?',
+        'types': ('general-music', 'sequential-music',),
     },
     'startStaff': {
         'name': 'EventChord',
@@ -1660,11 +1729,22 @@ current_module = {
         'type': 'ly:prob?',
         'types': ('general-music', 'sequential-music',),
     },
+    'stopGraceSlur': {
+        'name': 'SlurEvent',
+        'span-direction': 1,
+        'type': 'ly:prob?',
+        'types': ('general-music', 'span-event', 'event', 'slur-event',),
+    },
     'stopGroup': {
         'name': 'NoteGroupingEvent',
         'span-direction': 1,
         'type': 'ly:prob?',
         'types': ('general-music', 'event', 'note-grouping-event',),
+    },
+    'stopSlashedGraceMusic': {
+        'name': 'SequentialMusic',
+        'type': 'ly:prob?',
+        'types': ('general-music', 'sequential-music',),
     },
     'stopStaff': {
         'name': 'EventChord',
@@ -1690,11 +1770,15 @@ current_module = {
         'types': ('general-music', 'event', 'articulation-event', 'script-event',),
     },
     'storePredefinedDiagram': {
-        'signature': ('hash-table?', 'ly:music?', 'pair?', 'string-or-pair?',),
+        'signature': ('ly:music?', 'hash-table?', 'ly:music?', 'pair?', 'string-or-pair?',),
+        'type': 'ly:music-function?',
+    },
+    'stringTuning': {
+        'signature': ('scheme?', 'ly:music?',),
         'type': 'ly:music-function?',
     },
     'styledNoteHeads': {
-        'signature': ('symbol?', 'list-or-symbol?', 'ly:music?',),
+        'signature': ('ly:music?', 'symbol?', 'list-or-symbol?', 'ly:music?',),
         'type': 'ly:music-function?',
     },
     'sustainOff': {
@@ -1711,7 +1795,7 @@ current_module = {
     },
     'tab-repeat-chord': None,
     'tabChordRepetition': {
-        'signature': ( ),
+        'signature': ('ly:music?',),
         'type': 'ly:music-function?',
     },
     'tabFullNotation': {
@@ -1721,7 +1805,7 @@ current_module = {
     },
     'table-of-contents-markup-list': None,
     'tag': {
-        'signature': ('symbol?', 'ly:music?',),
+        'signature': ('ly:music?', 'symbol?', 'ly:music?',),
         'type': 'ly:music-function?',
     },
     'teeny': {
@@ -1772,7 +1856,7 @@ current_module = {
         'types': ('general-music', 'event', 'articulation-event', 'script-event',),
     },
     'tieDashPattern': {
-        'signature': ('number?', 'number?',),
+        'signature': ('ly:music?', 'number?', 'number?',),
         'type': 'ly:music-function?',
     },
     'tieDashed': {
@@ -1829,6 +1913,14 @@ current_module = {
         'types': ('general-music', 'tie-event', 'event',),
     },
     'timbales-style': None,
+    'time': {
+        'signature': ('ly:music?', 'optional?'', 'number-list?', 'fraction?',),
+        'type': 'ly:music-function?',
+    },
+    'times': {
+        'signature': ('ly:music?', 'fraction?', 'ly:music?',),
+        'type': 'ly:music-function?',
+    },
     'tiny': {
         'context-type': 'Bottom',
         'name': 'ContextSpeccedMusic',
@@ -1837,7 +1929,7 @@ current_module = {
     },
     'toc-items': None,
     'tocItem': {
-        'signature': ('cheap-markup?',),
+        'signature': ('ly:music?', 'cheap-markup?',),
         'type': 'ly:music-function?',
     },
     'tocItemWithDotsMarkup': None,
@@ -1848,12 +1940,16 @@ current_module = {
     'toplevel-score-handler': None,
     'toplevel-scores': None,
     'toplevel-text-handler': None,
+    'transpose': {
+        'signature': ('ly:music?', 'ly:pitch?', 'ly:pitch?', 'ly:music?',),
+        'type': 'ly:music-function?',
+    },
     'transposedCueDuring': {
-        'signature': ('string?', 'ly:dir?', 'ly:music?', 'ly:music?',),
+        'signature': ('ly:music?', 'string?', 'ly:dir?', 'ly:pitch?', 'ly:music?',),
         'type': 'ly:music-function?',
     },
     'transposition': {
-        'signature': ('ly:music?',),
+        'signature': ('ly:music?', 'ly:pitch?',),
         'type': 'ly:music-function?',
     },
     'treCorde': {
@@ -1893,7 +1989,7 @@ current_module = {
         'types': ('general-music', 'event', 'articulation-event', 'script-event',),
     },
     'tweak': {
-        'signature': ('symbol?', 'scheme?', 'ly:music?',),
+        'signature': ('ly:music?', 'symbol?', 'scheme?', 'ly:music?',),
         'type': 'ly:music-function?',
     },
     'ukulele-d-tuning': None,
@@ -1910,7 +2006,7 @@ current_module = {
         'types': ('general-music', 'event', 'pedal-event', 'una-corda-event',),
     },
     'unfoldRepeats': {
-        'signature': ('ly:music?',),
+        'signature': ('ly:music?', 'ly:music?',),
         'type': 'ly:music-function?',
     },
     'up': 1,
@@ -1996,6 +2092,10 @@ current_module = {
         'type': 'ly:prob?',
         'types': ('general-music', 'sequential-music',),
     },
+    'void': {
+        'signature': ('void?', 'scheme?',),
+        'type': 'ly:music-function?',
+    },
     'walkerHeads': {
         'context-type': 'Bottom',
         'name': 'ContextSpeccedMusic',
@@ -2010,11 +2110,11 @@ current_module = {
     },
     'whiteTriangleMarkup': None,
     'withMusicProperty': {
-        'signature': ('symbol?', 'scheme?', 'ly:music?',),
+        'signature': ('ly:music?', 'symbol?', 'scheme?', 'ly:music?',),
         'type': 'ly:music-function?',
     },
     'xNote': {
-        'signature': ('ly:music?',),
+        'signature': ('ly:music?', 'ly:music?',),
         'type': 'ly:music-function?',
     },
     'xNotesOff': {
@@ -2023,7 +2123,7 @@ current_module = {
         'types': ('general-music', 'sequential-music',),
     },
     'xNotesOn': {
-        'signature': ( ),
+        'signature': ('ly:music?',),
         'type': 'ly:music-function?',
     },
 }

@@ -1,6 +1,9 @@
+lilypond_version = "2.15.23"
+
 markup_functions = {
     'abs-fontsize': ['number?', 'cheap-markup?'],
     'arrow-head': ['integer?', 'ly:dir?', 'boolean?'],
+    'auto-footnote': ['cheap-markup?', 'cheap-markup?'],
     'backslashed-digit': ['integer?'],
     'beam': ['number?', 'number?', 'number?'],
     'bold': ['cheap-markup?'],
@@ -70,7 +73,7 @@ markup_functions = {
     'note': ['string?', 'number?'],
     'null': [ ],
     'number': ['cheap-markup?'],
-    'on-the-fly': ['symbol?', 'cheap-markup?'],
+    'on-the-fly': ['procedure?', 'cheap-markup?'],
     'override': ['pair?', 'cheap-markup?'],
     'pad-around': ['number?', 'cheap-markup?'],
     'pad': ['number?', 'cheap-markup?'],
@@ -82,8 +85,10 @@ markup_functions = {
     'path': ['number?', 'list?'],
     'pattern': ['integer?', 'integer?', 'number?', 'cheap-markup?'],
     'postscript': ['string?'],
+    'property-recursive': ['symbol?'],
     'put-adjacent': ['integer?', 'ly:dir?', 'cheap-markup?', 'cheap-markup?'],
     'raise': ['number?', 'cheap-markup?'],
+    'replace': ['list?', 'cheap-markup?'],
     'right-align': ['cheap-markup?'],
     'right-brace': ['number?'],
     'right-column': ['markup-list?'],
@@ -136,8 +141,8 @@ markup_list_functions = {
     'override-lines': ['pair?', 'markup-list?'],
     'wordwrap-internal': ['boolean?', 'markup-list?'],
     'column-lines': ['markup-list?'],
-    'justified-lines': ['markup-list?'],
-    'wordwrap-lines': ['markup-list?'],
     'wordwrap-string-internal': ['boolean?', 'string?'],
+    'wordwrap-lines': ['markup-list?'],
     'table-of-contents': [ ],
+    'justified-lines': ['markup-list?'],
 }

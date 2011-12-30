@@ -1,4 +1,5 @@
-\version "2.14.1"
+\version "2.15.23"
+
 
 #(define current-module-sorted
   (sort
@@ -26,7 +27,16 @@
     (music-func (cdr obj-pair))
     (func (ly:music-function-extract music-func))
     (signature (object-property func 'music-function-signature))
-    (signature-syms (map (lambda (x) (procedure-name x)) signature))
+    (car-signature-syms (list
+      (if (pair? (car signature))
+        (procedure-name (car (car signature)))
+        (procedure-name (car signature)))))
+    (cdr-signature-syms (flatten-list (map (lambda (x)
+      (if (pair? x)
+        (cons 'optional?' (procedure-name (car x)))
+        (procedure-name x)))
+      (cdr signature))))
+    (signature-syms (append car-signature-syms cdr-signature-syms))
     (signature-string
       (if (< 0 (length signature))
         (format "(~A,)" (string-join (map (lambda (x)
