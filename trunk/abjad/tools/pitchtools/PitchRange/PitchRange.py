@@ -10,7 +10,7 @@ class PitchRange(_Immutable):
         abjad> pitchtools.PitchRange(-12, 36)
         PitchRange((NamedChromaticPitch('c'), 'inclusive'), (NamedChromaticPitch("c''''"), 'inclusive'))
 
-    Init from pitch numbers, pitch instances or other pitch range objects.
+    Init from pitch numbers, pitch names, pitch instances or other pitch range objects.
 
     Pitch ranges implement all six Python rich comparators.
 
@@ -44,7 +44,7 @@ class PitchRange(_Immutable):
             start, stop = args
             if start is None:
                 start = start
-            elif isinstance(start, (int, long, float)):
+            elif isinstance(start, (int, long, float, str)):
                 pitch = pitchtools.NamedChromaticPitch(start)
                 start = (pitch, 'inclusive')
             else:
@@ -56,7 +56,7 @@ class PitchRange(_Immutable):
             object.__setattr__(self, '_start', start)
             if stop is None:
                 stop = stop
-            elif isinstance(stop, (int, long, float)):
+            elif isinstance(stop, (int, long, float, str)):
                 pitch = pitchtools.NamedChromaticPitch(stop)
                 stop = (pitch, 'inclusive')
             else:

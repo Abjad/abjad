@@ -50,6 +50,22 @@ def test_pitchtools_PitchRange___init___05():
 
 
 def test_pitchtools_PitchRange___init___06():
+    '''Init from pitch names.'''
+
+    pr = pitchtools.PitchRange("c'", ("c''", 'exclusive'))
+    assert pr._start == (pitchtools.NamedChromaticPitch("c'"), 'inclusive')
+    assert pr._stop == (pitchtools.NamedChromaticPitch("c''"), 'exclusive')
+
+
+def test_pitchtools_PitchRange___init___07():
+    '''Init from pitch-class / octave number strings.'''
+
+    pr = pitchtools.PitchRange('A0', 'C8')
+    assert pr._start == (pitchtools.NamedChromaticPitch('a,,,'), 'inclusive')
+    assert pr._stop == (pitchtools.NamedChromaticPitch("c'''''"), 'inclusive')
+
+
+def test_pitchtools_PitchRange___init___08():
     '''Init pitch range from other pitch range.
     '''
 
@@ -62,7 +78,7 @@ def test_pitchtools_PitchRange___init___06():
     assert pitch_range_1 is not pitch_range_2
 
 
-def test_pitchtools_PitchRange___init___07():
+def test_pitchtools_PitchRange___init___09():
     '''Init pitch range from pair.
     '''
 
