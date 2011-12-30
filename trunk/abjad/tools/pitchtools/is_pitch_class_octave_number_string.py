@@ -1,13 +1,13 @@
+from abjad.tools.pitchtools.is_symbolic_accidental_string import symbolic_accidental_regex_body
 import re
 
 
-# TODO: add quartertone support
 pitch_class_octave_number_regex_body = """
-    ([A-G]{1,1})                      # exactly one diatonic pitch-class letter
-    ([#]{0,2}|[b]{0,2})                      # plus 0 or 1 accidental names
-    ([-]{0,1}                        # plus an optional negative sign
-    [0-9]+)                          # plus one or more digits
-    """
+    ([A-G])         # exactly one diatonic pitch-class letter
+    %s                # plus an optional symbolic accidental string
+    ([-]?           # plus an optional negative sign
+    [0-9]+)         # plus one or more digits
+    """ % symbolic_accidental_regex_body
 
 pitch_class_octave_number_regex = re.compile('^%s$' % pitch_class_octave_number_regex_body, re.VERBOSE)
 
@@ -19,7 +19,9 @@ def is_pitch_class_octave_number_string(expr):
         abjad> pitchtools.is_pitch_class_octave_number_string('C#2')
         True
 
-    The regex ... underlies this predicate.
+    Quartertone accidentals are supported.
+
+    The regex ``^([A-G])([#]{1,2}|[b]{1,2}|[#]?[+]|[b]?[~]|)([-]?[0-9]+)$`` underlies this predicate.
 
     Return boolean.
     '''
