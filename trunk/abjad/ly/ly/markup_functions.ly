@@ -51,6 +51,7 @@
 #(define all-markup-list-functions (map car (hash-table->alist markup-list-functions)))
 
 
+#(display (format "lilypond_version = \"~A\"\n\n" (lilypond-version)))
 #(display "markup_functions = {\n")
 #(map document-procedure all-markup-functions)
 #(display "}\n\n")

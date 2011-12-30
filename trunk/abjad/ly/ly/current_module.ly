@@ -122,6 +122,7 @@
 
 
 #(display "from abjad.tools.durationtools import Duration\n\n\n")
+#(display (format "lilypond_version = \"~A\"\n\n" (lilypond-version)))
 #(display "current_module = {\n")
 #(for-each document-object current-module-sorted)
 #(display "}")
