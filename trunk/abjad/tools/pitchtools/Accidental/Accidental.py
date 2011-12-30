@@ -15,15 +15,15 @@ class Accidental(_StrictComparator, _Immutable):
     Accidentals are immutable.
     '''
 
-    __slots__ = ('_alphabetic_accidental_abbreviation', '_is_adjusted', '_name', '_semitones', '_symbolic_string')
+    __slots__ = ('_alphabetic_accidental_abbreviation', '_is_adjusted', '_name', '_semitones', '_symbolic_accidental_string')
 
     def __new__(klass, arg = ''):
         self = object.__new__(klass)
         # initialize symbolic string from arg
         if arg in self._all_accidental_alphabetic_accidental_abbreviations:
             _alphabetic_accidental_abbreviation = arg
-        elif arg in self._all_accidental_symbolic_strings:
-            _alphabetic_accidental_abbreviation = self._symbolic_string_to_alphabetic_accidental_abbreviation[arg]
+        elif arg in self._all_accidental_symbolic_accidental_strings:
+            _alphabetic_accidental_abbreviation = self._symbolic_accidental_string_to_alphabetic_accidental_abbreviation[arg]
         elif arg in self._all_accidental_names:
             _alphabetic_accidental_abbreviation = self._name_to_alphabetic_accidental_abbreviation[arg]
         elif arg in self._all_accidental_semitone_values:
@@ -42,8 +42,8 @@ class Accidental(_StrictComparator, _Immutable):
         object.__setattr__(self, '_name', _name)
         _is_adjusted = not self.semitones == 0
         object.__setattr__(self, '_is_adjusted', _is_adjusted)
-        _symbolic_string = self._alphabetic_accidental_abbreviation_to_symbolic_string[self.alphabetic_accidental_abbreviation]
-        object.__setattr__(self, '_symbolic_string', _symbolic_string)
+        _symbolic_accidental_string = self._alphabetic_accidental_abbreviation_to_symbolic_accidental_string[self.alphabetic_accidental_abbreviation]
+        object.__setattr__(self, '_symbolic_accidental_string', _symbolic_accidental_string)
         return self
 
     def __getnewargs__(self):
@@ -100,7 +100,7 @@ class Accidental(_StrictComparator, _Immutable):
 
     @property
     def _all_accidental_alphabetic_accidental_abbreviations(self):
-        return self._alphabetic_accidental_abbreviation_to_symbolic_string.keys()
+        return self._alphabetic_accidental_abbreviation_to_symbolic_accidental_string.keys()
 
     _alphabetic_accidental_abbreviation_to_name = {
         'ss'  : 'double sharp',
@@ -128,7 +128,7 @@ class Accidental(_StrictComparator, _Immutable):
         'ss'  : 2,
     }
 
-    _alphabetic_accidental_abbreviation_to_symbolic_string = {
+    _alphabetic_accidental_abbreviation_to_symbolic_accidental_string = {
         'ff'  : 'bb',
         'tqf' : 'b~',
         'f'   : 'b',
@@ -166,7 +166,7 @@ class Accidental(_StrictComparator, _Immutable):
         2    : 'ss',
     }
 
-    _symbolic_string_to_alphabetic_accidental_abbreviation = {
+    _symbolic_accidental_string_to_alphabetic_accidental_abbreviation = {
         ''   : '',
         '!'  : '!',
         'bb' : 'ff',
@@ -188,8 +188,8 @@ class Accidental(_StrictComparator, _Immutable):
         return self._semitones_to_alphabetic_accidental_abbreviation.keys()
 
     @property
-    def _all_accidental_symbolic_strings(self):
-        return self._symbolic_string_to_alphabetic_accidental_abbreviation.keys()
+    def _all_accidental_symbolic_accidental_strings(self):
+        return self._symbolic_accidental_string_to_alphabetic_accidental_abbreviation.keys()
 
     ### PUBLIC ATTRIBUTES ###
 
@@ -254,13 +254,13 @@ class Accidental(_StrictComparator, _Immutable):
         return self._semitones
 
     @property
-    def symbolic_string(self):
+    def symbolic_accidental_string(self):
         '''Read-only symbolic string of accidental::
 
             abjad> accidental = pitchtools.Accidental('s')
-            abjad> accidental.symbolic_string
+            abjad> accidental.symbolic_accidental_string
             '#'
 
         Return string.
         '''
-        return self._symbolic_string
+        return self._symbolic_accidental_string

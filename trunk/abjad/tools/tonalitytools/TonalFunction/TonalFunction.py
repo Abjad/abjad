@@ -294,7 +294,7 @@ class TonalFunction(_Immutable):
     @property
     def symbolic_string(self):
         result = ''
-        result += self.scale_degree.accidental.symbolic_string
+        result += self.scale_degree.accidental.symbolic_accidental_string
         result += self._roman_numeral_string
         result += self._quality_symbolic_string
         result += self.figured_bass_string

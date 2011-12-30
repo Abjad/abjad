@@ -525,7 +525,7 @@ class NamedChromaticPitch(_Pitch):
         '''
         result = []
         result.append(self.diatonic_pitch_class_name.upper())
-        result.append(self._accidental.symbolic_string)
+        result.append(self._accidental.symbolic_accidental_string)
         result.append(str(self.octave_number))
         result = ''.join(result)
         return result
