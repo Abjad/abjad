@@ -1,13 +1,13 @@
 from abjad.tools import contexttools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
-from abjad.tools.instrumenttools._BrassInstrument import _BrassInstrument
+from abjad.tools.instrumenttools._Trombone._Trombone import _Trombone
 
 
-class Trombone(_BrassInstrument):
+class TenorTrombone(_Trombone):
     r'''.. versionadded:: 2.0
 
-    Abjad model of the trombone::
+    Abjad model of the tenor trombone::
 
         abjad> staff = Staff("c'8 d'8 e'8 f'8")
         abjad> contexttools.ClefMark('bass')(staff)
@@ -15,30 +15,29 @@ class Trombone(_BrassInstrument):
 
     ::
 
-        abjad> instrumenttools.Trombone()(staff)
-        Trombone()(Staff{4})
+        abjad> instrumenttools.TenorTrombone()(staff)
+        TenorTrombone()(Staff{4})
 
     ::
 
         abjad> f(staff)
         \new Staff {
             \clef "bass"
-            \set Staff.instrumentName = \markup { Trombone }
-            \set Staff.shortInstrumentName = \markup { Trb. }
+            \set Staff.instrumentName = \markup { Tenor trombone }
+            \set Staff.shortInstrumentName = \markup { Ten. trb. }
             c'8
             d'8
             e'8
             f'8
         }
 
-    The trombone targets staff context by default.
+    The tenor trombone targets staff context by default.
     '''
 
     def __init__(self, **kwargs):
-        _BrassInstrument.__init__(self, **kwargs)
-        self._default_instrument_name = 'trombone'
-        self._default_performer_names.append('trombonist')
-        self._default_short_instrument_name = 'trb.'
+        _Trombone.__init__(self, **kwargs)
+        self._default_instrument_name = 'tenor trombone'
+        self._default_short_instrument_name = 'ten. trb.'
         self._is_primary_instrument = True
         self.sounding_pitch_of_written_middle_c = pitchtools.NamedChromaticPitch("c'")
         self.primary_clefs = [contexttools.ClefMark('bass'), contexttools.ClefMark('tenor')]

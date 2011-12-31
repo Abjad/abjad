@@ -293,7 +293,7 @@ instrumenttools
    tools/instrumenttools/Oboe/Oboe
    tools/instrumenttools/Piano/Piano
    tools/instrumenttools/Piccolo/Piccolo
-   tools/instrumenttools/Trombone/Trombone
+   tools/instrumenttools/TenorTrombone/TenorTrombone
    tools/instrumenttools/Trumpet/Trumpet
    tools/instrumenttools/Tuba/Tuba
    tools/instrumenttools/UntunedPercussion/UntunedPercussion

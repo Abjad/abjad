@@ -18,7 +18,7 @@ def list_primary_performer_names():
         ('hornist', 'Fr. hn.')
         ('oboist', 'ob.')
         ('pianist', 'pf.')
-        ('trombonist', 'trb.')
+        ('trombonist', 'ten. trb.')
         ('trumpeter', 'tp.')
         ('tubist', 'tb.')
         ('violinist', 'vn.')
@@ -35,7 +35,6 @@ def list_primary_performer_names():
         if instrument.is_primary_instrument:
             performer_name = instrument.get_default_performer_name()
             performer_abbreviation = instrument.default_short_instrument_name
-            #performer_names.add(performer_name)
             performer_names.add((performer_name, performer_abbreviation))
     
     return list(sorted(performer_names))
