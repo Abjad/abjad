@@ -273,8 +273,10 @@ instrumenttools
 
    tools/instrumenttools/Accordion/Accordion
    tools/instrumenttools/AltoFlute/AltoFlute
+   tools/instrumenttools/AltoTrombone/AltoTrombone
    tools/instrumenttools/BassClarinet/BassClarinet
    tools/instrumenttools/BassFlute/BassFlute
+   tools/instrumenttools/BassTrombone/BassTrombone
    tools/instrumenttools/Bassoon/Bassoon
    tools/instrumenttools/Cello/Cello
    tools/instrumenttools/Clarinet/Clarinet
