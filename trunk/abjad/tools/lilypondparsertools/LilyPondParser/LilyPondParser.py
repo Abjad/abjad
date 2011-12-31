@@ -9,6 +9,7 @@ from abjad.ly.py.current_module import current_module
 from abjad.ly.py.language_pitch_names import language_pitch_names
 from abjad.ly.py.markup_functions import markup_functions
 from abjad.ly.py.markup_functions import markup_list_functions
+from abjad.tools.lilypondparsertools._GuileProxy._GuileProxy import _GuileProxy
 from abjad.tools.lilypondparsertools._LexerProxy._LexerProxy import _LexerProxy
 from abjad.tools.lilypondparsertools._LilyPondLexicalDefinition._LilyPondLexicalDefinition \
     import _LilyPondLexicalDefinition
@@ -38,6 +39,7 @@ class LilyPondParser(object):
 
         self._collapse = True
 
+        self._guile = _GuileProxy(self)
         self._current_module = current_module
         self._language_pitch_names = language_pitch_names
         self._markup_functions = markup_functions
@@ -81,7 +83,7 @@ class LilyPondParser(object):
 
 
     def _construct_sequential_music(self, music):
-        return Voice(filter(lambda x: isinstance(x, _Component), music))
+        return Container(filter(lambda x: isinstance(x, _Component), music))
 
 
     def _construct_simultaneous_music(self, music):
@@ -91,7 +93,7 @@ class LilyPondParser(object):
                     return True
             return False
         
-        con = Voice()
+        con = Container()
         con.is_parallel = True
      
         groups = [ ]
@@ -102,19 +104,17 @@ class LilyPondParser(object):
         if 1 == len(groups):
             for x in groups[0]:
                 if isinstance(x, _Leaf):
-                    v = Voice()
-                    v.append(x)
-                    con.append(v)
+                    con.append(Container([x]))
                 else:
                     con.append(x)
         else:
             for group in groups:
+                # multiple musics to be grouped into a container
                 if 1 < len(group):
-                    con.append(Voice(group))
-                elif isinstance(group[0], Container):
-                    con.append(group[0])
+                    con.append(Container(group))
+                # one music
                 else:
-                    con.append(Voice(group))
+                    con.append(group[0])
 
         return con
 

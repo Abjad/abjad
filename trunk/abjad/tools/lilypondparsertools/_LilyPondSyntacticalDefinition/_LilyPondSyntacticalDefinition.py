@@ -2425,7 +2425,6 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_post_event__post_event_nofinger(self, p):
         'post_event : post_event_nofinger'
-        print repr(p[1])
         p[0] = p[1]
 
 
