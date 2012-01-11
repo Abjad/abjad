@@ -45,16 +45,18 @@ class LilyPondParser(object):
         self._markup_functions = markup_functions
         self._markup_list_functions = markup_list_functions
 
-        self._reset( )
+        self._reset()
 
 
     ### OVERRIDES ###
 
 
     def __call__(self, input_string):
-        self._reset( )
-        concrete_syntax_tree = self._parser.parse(input_string, lexer=self._lexer)
-        return concrete_syntax_tree
+        self._reset()
+        result = self._parser.parse(input_string, lexer=self._lexer)
+        if self._leaf_attachments:
+            self._construct_spanners(result)
+        return result
 
 
     ### PRIVATE METHODS ###
@@ -69,16 +71,20 @@ class LilyPondParser(object):
             'Voice': Voice,
         }
         if context in known_contexts:
-            context = known_contexts[context]( )
+            context = known_contexts[context]()
+        else:
+            raise Exception('Context type %s not supported.' % context)
+
         if optional_id is not None:
             context.name = optional_id        
         if optional_context_mod is not None:
             pass # TODO
+        context.is_parallel = music.is_parallel
+
         while len(music):
             component = music.pop(0)
             context.append(component)
-        print [type(x) for x in context]
-        context.is_parallel = music.is_parallel
+
         return context
 
 
@@ -102,21 +108,39 @@ class LilyPondParser(object):
                 groups.append(filter(lambda x: isinstance(x, _Component), list(group)))
 
         if 1 == len(groups):
+            print 'NUMBER ONE'
             for x in groups[0]:
                 if isinstance(x, _Leaf):
-                    con.append(Container([x]))
+                    con.append(Voice[x])
+                elif not isinstance(x, _Context):
+                    con.append(Voice(x[:]))
                 else:
                     con.append(x)
+
         else:
             for group in groups:
-                # multiple musics to be grouped into a container
                 if 1 < len(group):
-                    con.append(Container(group))
-                # one music
+                    con.append(Voice(group))
+                elif not isinstance(group[0], _Context):
+                    con.append(Voice(group[0][:]))
                 else:
                     con.append(group[0])
 
         return con
+
+
+    def _construct_spanners(self):
+        pass
+
+
+    def _get_leaf_attachments(self, leaf, kind = None):
+        if leaf not in self._leaf_attachments:
+            return [ ]
+        events = self._leaf_attachments[leaf]
+        spanners = filter(lambda x: x.name.endswith('SpanEvent', 'TieEvent'), events)
+        if kind:
+            spanners = filter(lambda x: x.name == kind)
+        return spanners            
 
 
     def _process_post_events(self, leaf, post_events):
@@ -124,9 +148,9 @@ class LilyPondParser(object):
             if hasattr(post_event, '__call__'):
                 post_event(leaf)
             else:
-                if leaf not in self._spanner_attachments:
-                    self._spanner_attachments[leaf] = [ ]
-                self._spanner_attachments[leaf].append(post_event)
+                if leaf not in self._leaf_attachments:
+                    self._leaf_attachments[leaf] = [ ]
+                self._leaf_attachments[leaf].append(post_event)
 
 
     def _reset(self):
@@ -136,7 +160,7 @@ class LilyPondParser(object):
             pass
         self._lexer.push_state('notes')
         self._assignments = { }
-        self._spanner_attachments = { }
+        self._leaf_attachments = { }
         self._parser_variables = {
             'default_duration': Node('multiplied_duration', [Duration(1, 4)]),
             'language': 'english',
