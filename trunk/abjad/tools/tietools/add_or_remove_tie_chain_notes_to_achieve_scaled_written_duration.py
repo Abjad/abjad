@@ -6,8 +6,8 @@ from abjad.tools import durationtools
 
 def add_or_remove_tie_chain_notes_to_achieve_scaled_written_duration(tie_chain, multiplier):
     '''Scale tie chain by multiplier.
-        Wraps tie_chain_duration_change.
-        Returns tie chain.
+    Wraps tie_chain_duration_change.
+    Returns tie chain.
 
     .. versionchanged:: 2.0
         renamed ``tietools.duration_scale()`` to

@@ -3,9 +3,9 @@ from abjad.tools.spannertools.get_spanners_covered_by_components import get_span
 
 def withdraw_components_from_spanners_covered_by_components(components):
     '''Find every spanner covered by 'components'.
-        Withdraw all components in 'components' from covered spanners.
-        Return 'components'.
-        The operation always leaves all score trees in tact.
+    Withdraw all components in 'components' from covered spanners.
+    Return 'components'.
+    The operation always leaves all score trees in tact.
 
     .. versionchanged:: 2.0
         renamed ``spannertools.withdraw_from_covered()`` to
