@@ -1123,6 +1123,7 @@ iotools
    tools/iotools/strip_diacritics_from_binary_string
    tools/iotools/underscore_delimited_lowercase_to_lowercamelcase
    tools/iotools/underscore_delimited_lowercase_to_uppercamelcase
+   tools/iotools/uppercamelcase_to_space_delimited_lowercase
    tools/iotools/uppercamelcase_to_underscore_delimited_lowercase
    tools/iotools/write_expr_to_ly
    tools/iotools/write_expr_to_ly_and_to_pdf_and_show
