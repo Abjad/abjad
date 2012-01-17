@@ -1181,6 +1181,7 @@ mathtools
    tools/mathtools/is_nonnegative_integer_power_of_two
    tools/mathtools/is_positive_integer
    tools/mathtools/is_positive_integer_equivalent_number
+   tools/mathtools/is_positive_integer_power_of_two
    tools/mathtools/least_common_multiple
    tools/mathtools/least_multiple_greater_equal
    tools/mathtools/least_power_of_two_greater_equal
