@@ -37,8 +37,6 @@ class LilyPondParser(object):
             outputdir=self._output_path,
             picklefile=self._pickle_path)
 
-        self._collapse = True
-
         self._guile = _GuileProxy(self)
         self._current_module = current_module
         self._language_pitch_names = language_pitch_names
@@ -158,9 +156,10 @@ class LilyPondParser(object):
             self._parser.restart( )
         except:
             pass
-        self._lexer.push_state('notes')
         self._assignments = { }
+        self._chord_pitch_orders = { }
         self._leaf_attachments = { }
+        self._lexer.push_state('notes')
         self._parser_variables = {
             'default_duration': Node('multiplied_duration', [Duration(1, 4)]),
             'language': 'english',

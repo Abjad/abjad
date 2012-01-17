@@ -1015,6 +1015,7 @@ class _LilyPondSyntacticalDefinition(object):
         pitches = self.client._parser_variables['last_chord']
         duration = p[2][0]
         chord = Chord(pitches, duration)
+        self.client._chord_pitch_orders[chord] = pitches
         if 1 < len(p[2]):
             chord.duration_multiplier = p[2][1]
         self.client._process_post_events(chord, p[3])
@@ -2189,6 +2190,7 @@ class _LilyPondSyntacticalDefinition(object):
                 post_events.extend(node[4])
         post_events.extend(p[3])
         chord = Chord(pitches, p[2][0])
+        self.client._chord_pitch_orders[chord] = pitches
         if 1 < len(p[2]):
             chord.duration_multiplier = p[2][1]
         self.client._process_post_events(chord, post_events)
