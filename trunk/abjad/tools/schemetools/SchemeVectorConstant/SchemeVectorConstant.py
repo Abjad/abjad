@@ -39,9 +39,9 @@ class SchemeVectorConstant(tuple, _Immutable):
     def _output_string(self):
         vals = []
         for x in self:
-            if isinstance(x, type(True)) and x:
+            if isinstance(x, bool) and x:
                 vals.append("#t")
-            elif isinstance(x, type(True)):
+            elif isinstance(x, bool):
                 vals.append("#f")
             else:
                 vals.append(x)

@@ -152,7 +152,7 @@ class _Context(Container):
             '''
             return self._is_nonsemantic
         def fset(self, arg):
-            if not isinstance(arg, type(True)):
+            if not isinstance(arg, bool):
                 raise TypeError
             self._is_nonsemantic = arg
         return property(**locals())

@@ -144,7 +144,7 @@ class DynamicMeasure(Measure):
         '''
             return self._suppress_meter
         def fset(self, arg):
-            assert isinstance(arg, (type(True), type(None)))
+            assert isinstance(arg, (bool, type(None)))
             self._suppress_meter = arg
             self._update_time_signature()
         return property(**locals())

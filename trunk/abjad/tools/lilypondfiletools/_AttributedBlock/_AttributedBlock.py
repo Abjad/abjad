@@ -75,7 +75,7 @@ class _AttributedBlock(object):
         def fget(self):
             return self._is_formatted_when_empty
         def fset(self, arg):
-            if isinstance(arg, type(True)):
+            if isinstance(arg, bool):
                 self._is_formatted_when_empty = arg
             else:
                 raise TypeError

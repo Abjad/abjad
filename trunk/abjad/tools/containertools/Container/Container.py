@@ -264,7 +264,7 @@ class Container(_Component):
             from abjad.tools.contexttools._Context import _Context
             from abjad.tools import componenttools
             #assert isinstance(expr, (bool, type(None)))
-            assert isinstance(expr, type(True))
+            assert isinstance(expr, bool)
             if expr == True:
                 assert componenttools.all_are_components(self._music, klasses = (_Context, ))
             self._parallel = expr

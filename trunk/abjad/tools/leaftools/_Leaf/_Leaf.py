@@ -165,7 +165,7 @@ class _Leaf(_Component, _StrictComparator):
 
             setting this value to true sets sounding pitch indicator to false.
             '''
-            if not isinstance(arg, type(True)):
+            if not isinstance(arg, bool):
                 raise TypeError
             self._written_pitch_indication_is_nonsemantic = arg
             if arg == True:
@@ -179,7 +179,7 @@ class _Leaf(_Component, _StrictComparator):
         def fset(self, arg):
             '''Read / write flag to be set to false when pitch indication is transposed.
             '''
-            if not isinstance(arg, type(True)):
+            if not isinstance(arg, bool):
                 raise TypeError
             self._written_pitch_indication_is_at_sounding_pitch = arg
         def fget(self):
