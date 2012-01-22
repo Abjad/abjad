@@ -827,6 +827,8 @@ class _LilyPondLexicalDefinition(object):
                 elif signature[0] == 'ly:event?':
                     funtype = 'EVENT_FUNCTION'
 
+                print t.value[1:], funtype, signature
+
                 token = LexToken( )
                 token.type = 'EXPECT_NO_MORE_ARGS'
                 token.value = None
@@ -834,15 +836,19 @@ class _LilyPondLexicalDefinition(object):
                 token.lexpos = t.lexpos
                 self.client._lexer.push_extra_token(token)
 
-                for predicate in signature:
+                optional = False
+                for predicate in signature[1:]:
+                    if predicate == 'optional?':
+                        optional = True
+                        continue
+
                     token = LexToken( )
                     token.value = None
                     token.lineno = t.lineno
                     token.lexpos = t.lexpos
-                    if predicate == 'optional?':
-                        token.type = 'EXPECT_OPTIONAL'
-                    elif predicate == 'ly:music?':
-                        token.type = 'EXPECT_MUSIC'
+
+                    if predicate == 'ly:music?':
+                        token.type = 'EXPECT_SCM' # ?!?!
                     elif predicate == 'ly:pitch?':
                         token.type = 'EXPECT_PITCH'
                     elif predicate == 'ly:duration?':
@@ -851,7 +857,17 @@ class _LilyPondLexicalDefinition(object):
                         token.type = 'EXPECT_MARKUP'
                     else:
                         token.type = 'EXPECT_SCM'
+
                     self.client._lexer.push_extra_token(token)
+
+                    if optional:
+                        optional_token = LexToken( )
+                        optional_token.value = None
+                        optional_token.lineno = t.lineno
+                        optional_token.lexpos = t.lexpos
+                        optional_token.type = 'EXPECT_OPTIONAL'                        
+                        self.client._lexer.push_extra_token(optional_token)
+                        optional = False
 
                 return funtype
 

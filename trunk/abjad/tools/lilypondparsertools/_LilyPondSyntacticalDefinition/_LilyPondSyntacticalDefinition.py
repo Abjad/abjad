@@ -466,9 +466,6 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_complex_music__complex_music_prefix__music(self, p):
         'complex_music : complex_music_prefix music'
-        if not self.client._collapse:
-            p[0] = Node('complex_music', p[1:])
-            return
         context = p[1][1]
         optional_id = p[1][2]
         optional_context_mod = p[1][3]
@@ -479,7 +476,7 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_complex_music__music_function_call(self, p):
         'complex_music : music_function_call'
-        p[0] = Node('complex_music', p[1:])
+        p[0] = p[1]
 
 
     def p_complex_music__re_rhythmed_music(self, p):
@@ -502,21 +499,6 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_complex_music_prefix__NEWCONTEXT__simple_string__optional_id__optional_context_mod(self, p):
         'complex_music_prefix : NEWCONTEXT simple_string optional_id optional_context_mod'
-        # context_names = {
-        #     'GrandStaff': scoretools.GrandStaff,
-        #     'PianoStaff': scoretools.PianoStaff,
-        #     'Score': Score,
-        #     'Staff': Staff,
-        #     'StaffGroup': scoretools.StaffGroup,
-        #     'Voice': Voice,
-        # }
-        # if p[2] in context_names:
-        #     context = context_names[p[2]]( )
-        # else:
-        #     raise Exception('Unsupported Context type: %s' % p[2])
-        # if p[3]:
-        #     context.name = p[3]
-        # p[0] = context
         p[0] = Node('complex_music_prefix', p[1:])
 
 
@@ -810,7 +792,7 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_duration_length__multiplied_duration(self, p):
         'duration_length : multiplied_duration'
-        p[0] = Node('duration_length', p[1:])
+        p[0] = p[1]
 
 
     ### embedded_lilypond ###
@@ -859,17 +841,17 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_embedded_scm_arg__embedded_scm_bare_arg(self, p):
         'embedded_scm_arg : embedded_scm_bare_arg'
-        p[0] = Node('embedded_scm_arg', p[1:])
+        p[0] = p[1]
 
 
     def p_embedded_scm_arg__music_arg(self, p):
         'embedded_scm_arg : music_arg'
-        p[0] = Node('embedded_scm_arg', p[1:])
+        p[0] = p[1]
 
 
     def p_embedded_scm_arg__scm_function_call(self, p):
         'embedded_scm_arg : scm_function_call'
-        p[0] = Node('embedded_scm_arg', p[1:])
+        p[0] = p[1]
 
 
     ### embedded_scm_arg_closed ###
@@ -877,17 +859,17 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_embedded_scm_arg_closed__closed_music(self, p):
         'embedded_scm_arg_closed : closed_music'
-        p[0] = Node('embedded_scm_arg_closed', p[1:])
+        p[0] = p[1]
 
 
     def p_embedded_scm_arg_closed__embedded_scm_bare_arg(self, p):
         'embedded_scm_arg_closed : embedded_scm_bare_arg'
-        p[0] = Node('embedded_scm_arg_closed', p[1:])
+        p[0] = p[1]
 
 
     def p_embedded_scm_arg_closed__scm_function_call_closed(self, p):
         'embedded_scm_arg_closed : scm_function_call_closed'
-        p[0] = Node('embedded_scm_arg_closed', p[1:])
+        p[0] = p[1]
 
 
     ### embedded_scm_bare ###
@@ -895,12 +877,12 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_embedded_scm_bare__SCM_IDENTIFIER(self, p):
         'embedded_scm_bare : SCM_IDENTIFIER'
-        p[0] = Node('embedded_scm_bare', p[1:])
+        p[0] = self.client._resolve_identifier(p[1])
 
 
     def p_embedded_scm_bare__SCM_TOKEN(self, p):
         'embedded_scm_bare : SCM_TOKEN'
-        p[0] = Node('embedded_scm_bare', p[1:])
+        p[0] = p[1]
 
 
     ### embedded_scm_bare_arg ###
@@ -908,57 +890,57 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_embedded_scm_bare_arg__STRING(self, p):
         'embedded_scm_bare_arg : STRING'
-        p[0] = Node('embedded_scm_bare_arg', p[1:])
+        p[0] = p[1]
 
 
     def p_embedded_scm_bare_arg__STRING_IDENTIFIER(self, p):
         'embedded_scm_bare_arg : STRING_IDENTIFIER'
-        p[0] = Node('embedded_scm_bare_arg', p[1:])
+        p[0] = self.client._resolve_identifier(p[1])
 
 
     def p_embedded_scm_bare_arg__book_block(self, p):
         'embedded_scm_bare_arg : book_block'
-        p[0] = Node('embedded_scm_bare_arg', p[1:])
+        p[0] = p[1]
 
 
     def p_embedded_scm_bare_arg__bookpart_block(self, p):
         'embedded_scm_bare_arg : bookpart_block'
-        p[0] = Node('embedded_scm_bare_arg', p[1:])
+        p[0] = p[1]
 
 
     def p_embedded_scm_bare_arg__context_def_spec_block(self, p):
         'embedded_scm_bare_arg : context_def_spec_block'
-        p[0] = Node('embedded_scm_bare_arg', p[1:])
+        p[0] = p[1]
 
 
     def p_embedded_scm_bare_arg__context_modification(self, p):
         'embedded_scm_bare_arg : context_modification'
-        p[0] = Node('embedded_scm_bare_arg', p[1:])
+        p[0] = p[1]
 
 
     def p_embedded_scm_bare_arg__embedded_scm_bare(self, p):
         'embedded_scm_bare_arg : embedded_scm_bare'
-        p[0] = Node('embedded_scm_bare_arg', p[1:])
+        p[0] = p[1]
 
 
     def p_embedded_scm_bare_arg__full_markup(self, p):
         'embedded_scm_bare_arg : full_markup'
-        p[0] = Node('embedded_scm_bare_arg', p[1:])
+        p[0] = p[1]
 
 
     def p_embedded_scm_bare_arg__full_markup_list(self, p):
         'embedded_scm_bare_arg : full_markup_list'
-        p[0] = Node('embedded_scm_bare_arg', p[1:])
+        p[0] = p[1]
 
 
     def p_embedded_scm_bare_arg__output_def(self, p):
         'embedded_scm_bare_arg : output_def'
-        p[0] = Node('embedded_scm_bare_arg', p[1:])
+        p[0] = p[1]
 
 
     def p_embedded_scm_bare_arg__score_block(self, p):
         'embedded_scm_bare_arg : score_block'
-        p[0] = Node('embedded_scm_bare_arg', p[1:])
+        p[0] = p[1]
 
 
     ### embedded_scm_chord_body ###
@@ -971,27 +953,27 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_embedded_scm_chord_body__bare_number(self, p):
         'embedded_scm_chord_body : bare_number'
-        p[0] = Node('embedded_scm_chord_body', p[1:])
+        p[0] = p[1]
 
 
     def p_embedded_scm_chord_body__chord_body_element(self, p):
         'embedded_scm_chord_body : chord_body_element'
-        p[0] = Node('embedded_scm_chord_body', p[1:])
+        p[0] = p[1]
 
 
     def p_embedded_scm_chord_body__embedded_scm_bare_arg(self, p):
         'embedded_scm_chord_body : embedded_scm_bare_arg'
-        p[0] = Node('embedded_scm_chord_body', p[1:])
+        p[0] = p[1]
 
 
     def p_embedded_scm_chord_body__fraction(self, p):
         'embedded_scm_chord_body : fraction'
-        p[0] = Node('embedded_scm_chord_body', p[1:])
+        p[0] = p[1]
 
 
     def p_embedded_scm_chord_body__lyric_element(self, p):
         'embedded_scm_chord_body : lyric_element'
-        p[0] = Node('embedded_scm_chord_body', p[1:])
+        p[0] = p[1]
 
 
     ### embedded_scm_closed ###
@@ -999,12 +981,12 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_embedded_scm_closed__embedded_scm_bare(self, p):
         'embedded_scm_closed : embedded_scm_bare'
-        p[0] = Node('embedded_scm_closed', p[1:])
+        p[0] = p[1]
 
 
     def p_embedded_scm_closed__scm_function_call_closed(self, p):
         'embedded_scm_closed : scm_function_call_closed'
-        p[0] = Node('embedded_scm_closed', p[1:])
+        p[0] = p[1]
 
 
     ### event_chord ###
@@ -1144,12 +1126,12 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_fraction__FRACTION(self, p):
         'fraction : FRACTION'
-        p[0] = Node('fraction', p[1:])
+        p[0] = p[1]
 
 
     def p_fraction__UNSIGNED__Chr47__UNSIGNED(self, p):
         "fraction : UNSIGNED '/' UNSIGNED"
-        p[0] = Node('fraction', p[1:])
+        p[0] = Fraction(p[1], p[3])
 
 
     ### full_markup ###
@@ -1183,12 +1165,12 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_function_arglist__function_arglist_common(self, p):
         'function_arglist : function_arglist_common'
-        p[0] = Node('function_arglist', p[1:])
+        p[0] = p[1]
 
 
     def p_function_arglist__function_arglist_nonbackup(self, p):
         'function_arglist : function_arglist_nonbackup'
-        p[0] = Node('function_arglist', p[1:])
+        p[0] = p[1]
 
 
     ### function_arglist_backup ###
@@ -1196,82 +1178,82 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_DURATION__function_arglist_closed_keep__duration_length(self, p):
         'function_arglist_backup : EXPECT_OPTIONAL EXPECT_DURATION function_arglist_closed_keep duration_length'
-        p[0] = Node('function_arglist_backup', p[1:])
+        p[0] = p[3] + [p[4]]
 
 
     def p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_PITCH__function_arglist_keep__pitch_also_in_chords(self, p):
         'function_arglist_backup : EXPECT_OPTIONAL EXPECT_PITCH function_arglist_keep pitch_also_in_chords'
-        p[0] = Node('function_arglist_backup', p[1:])
+        p[0] = p[3] + [p[4]]
 
 
     def p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_backup__BACKUP(self, p):
         'function_arglist_backup : EXPECT_OPTIONAL EXPECT_SCM function_arglist_backup BACKUP'
-        p[0] = Node('function_arglist_backup', p[1:])
+        p[0] = p[3] + [p[1]]
 
 
     def p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed_keep__Chr45__NUMBER_IDENTIFIER(self, p):
         "function_arglist_backup : EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed_keep '-' NUMBER_IDENTIFIER"
-        p[0] = Node('function_arglist_backup', p[1:])
+        p[0] = p[3] + [-1 * self.client._resolve_identifier(p[5])]
 
 
     def p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed_keep__Chr45__REAL(self, p):
         "function_arglist_backup : EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed_keep '-' REAL"
-        p[0] = Node('function_arglist_backup', p[1:])
+        p[0] = p[3] + [-1 * p[5]]
 
 
     def p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed_keep__Chr45__UNSIGNED(self, p):
         "function_arglist_backup : EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed_keep '-' UNSIGNED"
-        p[0] = Node('function_arglist_backup', p[1:])
+        p[0] = p[3] + [-1 * p[5]]
 
 
     def p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed_keep__FRACTION(self, p):
         'function_arglist_backup : EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed_keep FRACTION'
-        p[0] = Node('function_arglist_backup', p[1:])
+        p[0] = p[3] + [p[4]]
 
 
     def p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed_keep__NUMBER_IDENTIFIER(self, p):
         'function_arglist_backup : EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed_keep NUMBER_IDENTIFIER'
-        p[0] = Node('function_arglist_backup', p[1:])
+        p[0] = p[3] + [self.client._resolve_identifier(p[4])]
 
 
     def p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed_keep__REAL(self, p):
         'function_arglist_backup : EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed_keep REAL'
-        p[0] = Node('function_arglist_backup', p[1:])
+        p[0] = p[3] + [p[4]]
 
 
     def p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed_keep__UNSIGNED(self, p):
         'function_arglist_backup : EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed_keep UNSIGNED'
-        p[0] = Node('function_arglist_backup', p[1:])
+        p[0] = p[3] + [p[4]]
 
 
     def p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed_keep__post_event_nofinger(self, p):
         'function_arglist_backup : EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed_keep post_event_nofinger'
-        p[0] = Node('function_arglist_backup', p[1:])
+        p[0] = p[3] + [p[4]]
 
 
     def p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_keep__embedded_scm_arg_closed(self, p):
         'function_arglist_backup : EXPECT_OPTIONAL EXPECT_SCM function_arglist_keep embedded_scm_arg_closed'
-        p[0] = Node('function_arglist_backup', p[1:])
+        p[0] = p[3] + [p[4]]
 
 
     def p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_keep__lyric_element(self, p):
         'function_arglist_backup : EXPECT_OPTIONAL EXPECT_SCM function_arglist_keep lyric_element'
-        p[0] = Node('function_arglist_backup', p[1:])
+        p[0] = p[3] + [p[4]]
 
 
     def p_function_arglist_backup__function_arglist_backup__REPARSE__bare_number(self, p):
         'function_arglist_backup : function_arglist_backup REPARSE bare_number'
-        p[0] = Node('function_arglist_backup', p[1:])
+        p[0] = p[1] + [p[3]]
 
 
     def p_function_arglist_backup__function_arglist_backup__REPARSE__embedded_scm_arg_closed(self, p):
         'function_arglist_backup : function_arglist_backup REPARSE embedded_scm_arg_closed'
-        p[0] = Node('function_arglist_backup', p[1:])
+        p[0] = p[1] + [p[3]]
 
 
     def p_function_arglist_backup__function_arglist_backup__REPARSE__fraction(self, p):
         'function_arglist_backup : function_arglist_backup REPARSE fraction'
-        p[0] = Node('function_arglist_backup', p[1:])
+        p[0] = p[1] + [p[3]]
 
 
     ### function_arglist_bare ###
@@ -1279,32 +1261,32 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_function_arglist_bare__EXPECT_DURATION__function_arglist_closed_optional__duration_length(self, p):
         'function_arglist_bare : EXPECT_DURATION function_arglist_closed_optional duration_length'
-        p[0] = Node('function_arglist_bare', p[1:])
+        p[0] = p[2] + [p[3]]
 
 
     def p_function_arglist_bare__EXPECT_NO_MORE_ARGS(self, p):
         'function_arglist_bare : EXPECT_NO_MORE_ARGS'
-        p[0] = Node('function_arglist_bare', p[1:])
+        p[0] = [ ]
 
 
     def p_function_arglist_bare__EXPECT_OPTIONAL__EXPECT_DURATION__function_arglist_skip__DEFAULT(self, p):
         'function_arglist_bare : EXPECT_OPTIONAL EXPECT_DURATION function_arglist_skip DEFAULT'
-        p[0] = Node('function_arglist_bare', p[1:])
+        p[0] = p[3] + [p[1]]
 
 
     def p_function_arglist_bare__EXPECT_OPTIONAL__EXPECT_PITCH__function_arglist_skip__DEFAULT(self, p):
         'function_arglist_bare : EXPECT_OPTIONAL EXPECT_PITCH function_arglist_skip DEFAULT'
-        p[0] = Node('function_arglist_bare', p[1:])
+        p[0] = p[3] + [p[1]]
 
 
     def p_function_arglist_bare__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_skip__DEFAULT(self, p):
         'function_arglist_bare : EXPECT_OPTIONAL EXPECT_SCM function_arglist_skip DEFAULT'
-        p[0] = Node('function_arglist_bare', p[1:])
+        p[0] = p[3] + [p[1]]
 
 
     def p_function_arglist_bare__EXPECT_PITCH__function_arglist_optional__pitch_also_in_chords(self, p):
         'function_arglist_bare : EXPECT_PITCH function_arglist_optional pitch_also_in_chords'
-        p[0] = Node('function_arglist_bare', p[1:])
+        p[0] = p[2] + [p[3]]
 
 
     ### function_arglist_closed ###
@@ -1312,12 +1294,12 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_function_arglist_closed__function_arglist_closed_common(self, p):
         'function_arglist_closed : function_arglist_closed_common'
-        p[0] = Node('function_arglist_closed', p[1:])
+        p[0] = p[1]
 
 
     def p_function_arglist_closed__function_arglist_nonbackup(self, p):
         'function_arglist_closed : function_arglist_nonbackup'
-        p[0] = Node('function_arglist_closed', p[1:])
+        p[0] = p[1]
 
 
     ### function_arglist_closed_common ###
@@ -1325,47 +1307,47 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_function_arglist_closed_common__EXPECT_SCM__function_arglist_closed_optional__Chr45__NUMBER_IDENTIFIER(self, p):
         "function_arglist_closed_common : EXPECT_SCM function_arglist_closed_optional '-' NUMBER_IDENTIFIER"
-        p[0] = Node('function_arglist_closed_common', p[1:])
+        p[0] = p[2] + [-1 * self.client._resolve_identifier(p[4])]
 
 
     def p_function_arglist_closed_common__EXPECT_SCM__function_arglist_closed_optional__Chr45__REAL(self, p):
         "function_arglist_closed_common : EXPECT_SCM function_arglist_closed_optional '-' REAL"
-        p[0] = Node('function_arglist_closed_common', p[1:])
+        p[0] = p[2] + [-1 * p[4]]
 
 
     def p_function_arglist_closed_common__EXPECT_SCM__function_arglist_closed_optional__Chr45__UNSIGNED(self, p):
         "function_arglist_closed_common : EXPECT_SCM function_arglist_closed_optional '-' UNSIGNED"
-        p[0] = Node('function_arglist_closed_common', p[1:])
+        p[0] = p[2] + [-1 * p[4]]
 
 
     def p_function_arglist_closed_common__EXPECT_SCM__function_arglist_closed_optional__bare_number(self, p):
         'function_arglist_closed_common : EXPECT_SCM function_arglist_closed_optional bare_number'
-        p[0] = Node('function_arglist_closed_common', p[1:])
+        p[0] = p[2] + [p[3]]
 
 
     def p_function_arglist_closed_common__EXPECT_SCM__function_arglist_closed_optional__fraction(self, p):
         'function_arglist_closed_common : EXPECT_SCM function_arglist_closed_optional fraction'
-        p[0] = Node('function_arglist_closed_common', p[1:])
+        p[0] = p[2] + [p[3]]
 
 
     def p_function_arglist_closed_common__EXPECT_SCM__function_arglist_closed_optional__post_event_nofinger(self, p):
         'function_arglist_closed_common : EXPECT_SCM function_arglist_closed_optional post_event_nofinger'
-        p[0] = Node('function_arglist_closed_common', p[1:])
+        p[0] = p[2] + [p[3]]
 
 
     def p_function_arglist_closed_common__EXPECT_SCM__function_arglist_optional__embedded_scm_arg_closed(self, p):
         'function_arglist_closed_common : EXPECT_SCM function_arglist_optional embedded_scm_arg_closed'
-        p[0] = Node('function_arglist_closed_common', p[1:])
+        p[0] = p[2] + [p[3]]
 
 
     def p_function_arglist_closed_common__EXPECT_SCM__function_arglist_optional__lyric_element(self, p):
         'function_arglist_closed_common : EXPECT_SCM function_arglist_optional lyric_element'
-        p[0] = Node('function_arglist_closed_common', p[1:])
+        p[0] = p[2] + [p[3]]
 
 
     def p_function_arglist_closed_common__function_arglist_bare(self, p):
         'function_arglist_closed_common : function_arglist_bare'
-        p[0] = Node('function_arglist_closed_common', p[1:])
+        p[0] = p[1]
 
 
     ### function_arglist_closed_keep ###
@@ -1373,12 +1355,12 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_function_arglist_closed_keep__function_arglist_backup(self, p):
         'function_arglist_closed_keep : function_arglist_backup'
-        p[0] = Node('function_arglist_closed_keep', p[1:])
+        p[0] = p[1]
 
 
     def p_function_arglist_closed_keep__function_arglist_closed_common(self, p):
         'function_arglist_closed_keep : function_arglist_closed_common'
-        p[0] = Node('function_arglist_closed_keep', p[1:])
+        p[0] = p[1]
 
 
     ### function_arglist_closed_optional ###
@@ -1386,22 +1368,22 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_function_arglist_closed_optional__EXPECT_OPTIONAL__EXPECT_DURATION__function_arglist_closed_optional(self, p):
         'function_arglist_closed_optional : EXPECT_OPTIONAL EXPECT_DURATION function_arglist_closed_optional'
-        p[0] = Node('function_arglist_closed_optional', p[1:])
+        p[0] = p[3] + [p[1]]
 
 
     def p_function_arglist_closed_optional__EXPECT_OPTIONAL__EXPECT_PITCH__function_arglist_closed_optional(self, p):
         'function_arglist_closed_optional : EXPECT_OPTIONAL EXPECT_PITCH function_arglist_closed_optional'
-        p[0] = Node('function_arglist_closed_optional', p[1:])
+        p[0] = p[3] + [p[1]]
 
 
     def p_function_arglist_closed_optional__function_arglist_backup__BACKUP(self, p):
         'function_arglist_closed_optional : function_arglist_backup BACKUP'
-        p[0] = Node('function_arglist_closed_optional', p[1:])
+        p[0] = p[1]
 
 
     def p_function_arglist_closed_optional__function_arglist_closed_keep(self, p):
         'function_arglist_closed_optional : function_arglist_closed_keep %prec FUNCTION_ARGLIST'
-        p[0] = Node('function_arglist_closed_optional', p[1:])
+        p[0] = p[1]
 
 
     ### function_arglist_common ###
@@ -1409,37 +1391,37 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_function_arglist_common__EXPECT_SCM__function_arglist_closed_optional__bare_number(self, p):
         'function_arglist_common : EXPECT_SCM function_arglist_closed_optional bare_number'
-        p[0] = Node('function_arglist_common', p[1:])
+        p[0] = p[2] + [p[3]]
 
 
     def p_function_arglist_common__EXPECT_SCM__function_arglist_closed_optional__fraction(self, p):
         'function_arglist_common : EXPECT_SCM function_arglist_closed_optional fraction'
-        p[0] = Node('function_arglist_common', p[1:])
+        p[0] = p[2] + [p[3]]
 
 
     def p_function_arglist_common__EXPECT_SCM__function_arglist_closed_optional__post_event_nofinger(self, p):
         'function_arglist_common : EXPECT_SCM function_arglist_closed_optional post_event_nofinger'
-        p[0] = Node('function_arglist_common', p[1:])
+        p[0] = p[2] + [p[3]]
 
 
     def p_function_arglist_common__EXPECT_SCM__function_arglist_optional__embedded_scm_arg(self, p):
         'function_arglist_common : EXPECT_SCM function_arglist_optional embedded_scm_arg'
-        p[0] = Node('function_arglist_common', p[1:])
+        p[0] = p[2] + [p[3]]
 
 
     def p_function_arglist_common__function_arglist_bare(self, p):
         'function_arglist_common : function_arglist_bare'
-        p[0] = Node('function_arglist_common', p[1:])
+        p[0] = p[1]
 
 
     def p_function_arglist_common__function_arglist_common_lyric(self, p):
         'function_arglist_common : function_arglist_common_lyric'
-        p[0] = Node('function_arglist_common', p[1:])
+        p[0] = p[1]
 
 
     def p_function_arglist_common__function_arglist_common_minus(self, p):
         'function_arglist_common : function_arglist_common_minus'
-        p[0] = Node('function_arglist_common', p[1:])
+        p[0] = p[1]
 
 
     ### function_arglist_common_lyric ###
@@ -1447,12 +1429,12 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_function_arglist_common_lyric__EXPECT_SCM__function_arglist_optional__lyric_element(self, p):
         'function_arglist_common_lyric : EXPECT_SCM function_arglist_optional lyric_element'
-        p[0] = Node('function_arglist_common_lyric', p[1:])
+        p[0] = p[2] + [p[3]]
 
 
     def p_function_arglist_common_lyric__function_arglist_common_lyric__REPARSE__lyric_element_arg(self, p):
         'function_arglist_common_lyric : function_arglist_common_lyric REPARSE lyric_element_arg'
-        p[0] = Node('function_arglist_common_lyric', p[1:])
+        p[0] = p[1] + [p[3]]
 
 
     ### function_arglist_common_minus ###
@@ -1460,22 +1442,22 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_function_arglist_common_minus__EXPECT_SCM__function_arglist_closed_optional__Chr45__NUMBER_IDENTIFIER(self, p):
         "function_arglist_common_minus : EXPECT_SCM function_arglist_closed_optional '-' NUMBER_IDENTIFIER"
-        p[0] = Node('function_arglist_common_minus', p[1:])
+        p[0] = p[2] + [-1 * self.client._resolve_identifier(p[4])]
 
 
     def p_function_arglist_common_minus__EXPECT_SCM__function_arglist_closed_optional__Chr45__REAL(self, p):
         "function_arglist_common_minus : EXPECT_SCM function_arglist_closed_optional '-' REAL"
-        p[0] = Node('function_arglist_common_minus', p[1:])
+        p[0] = p[2] + [-1 * p[3]]
 
 
     def p_function_arglist_common_minus__EXPECT_SCM__function_arglist_closed_optional__Chr45__UNSIGNED(self, p):
         "function_arglist_common_minus : EXPECT_SCM function_arglist_closed_optional '-' UNSIGNED"
-        p[0] = Node('function_arglist_common_minus', p[1:])
+        p[0] = p[2] + [-1 * p[3]]
 
 
     def p_function_arglist_common_minus__function_arglist_common_minus__REPARSE__bare_number(self, p):
         'function_arglist_common_minus : function_arglist_common_minus REPARSE bare_number'
-        p[0] = Node('function_arglist_common_minus', p[1:])
+        p[0] = p[1] + [p[3]]
 
 
     ### function_arglist_keep ###
@@ -1483,12 +1465,12 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_function_arglist_keep__function_arglist_backup(self, p):
         'function_arglist_keep : function_arglist_backup'
-        p[0] = Node('function_arglist_keep', p[1:])
+        p[0] = p[1]
 
 
     def p_function_arglist_keep__function_arglist_common(self, p):
         'function_arglist_keep : function_arglist_common'
-        p[0] = Node('function_arglist_keep', p[1:])
+        p[0] = p[1]
 
 
     ### function_arglist_nonbackup ###
@@ -1496,47 +1478,47 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_function_arglist_nonbackup__EXPECT_OPTIONAL__EXPECT_DURATION__function_arglist_closed__duration_length(self, p):
         'function_arglist_nonbackup : EXPECT_OPTIONAL EXPECT_DURATION function_arglist_closed duration_length'
-        p[0] = Node('function_arglist_nonbackup', p[1:])
+        p[0] = p[3] + [p[4]]
 
 
     def p_function_arglist_nonbackup__EXPECT_OPTIONAL__EXPECT_PITCH__function_arglist__pitch_also_in_chords(self, p):
         'function_arglist_nonbackup : EXPECT_OPTIONAL EXPECT_PITCH function_arglist pitch_also_in_chords'
-        p[0] = Node('function_arglist_nonbackup', p[1:])
+        p[0] = p[3] + [p[4]]
 
 
     def p_function_arglist_nonbackup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist__embedded_scm_arg_closed(self, p):
         'function_arglist_nonbackup : EXPECT_OPTIONAL EXPECT_SCM function_arglist embedded_scm_arg_closed'
-        p[0] = Node('function_arglist_nonbackup', p[1:])
+        p[0] = p[3] + [p[4]]
 
 
     def p_function_arglist_nonbackup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed__Chr45__NUMBER_IDENTIFIER(self, p):
         "function_arglist_nonbackup : EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed '-' NUMBER_IDENTIFIER"
-        p[0] = Node('function_arglist_nonbackup', p[1:])
+        p[0] = p[3] + [-1 * self.client._resolve_identifier(p[4])]
 
 
     def p_function_arglist_nonbackup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed__Chr45__REAL(self, p):
         "function_arglist_nonbackup : EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed '-' REAL"
-        p[0] = Node('function_arglist_nonbackup', p[1:])
+        p[0] = p[3] + [-1 * p[4]]
 
 
     def p_function_arglist_nonbackup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed__Chr45__UNSIGNED(self, p):
         "function_arglist_nonbackup : EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed '-' UNSIGNED"
-        p[0] = Node('function_arglist_nonbackup', p[1:])
+        p[0] = p[3] + [-1 * p[4]]
 
 
     def p_function_arglist_nonbackup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed__FRACTION(self, p):
         'function_arglist_nonbackup : EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed FRACTION'
-        p[0] = Node('function_arglist_nonbackup', p[1:])
+        p[0] = p[3] + [p[4]]
 
 
     def p_function_arglist_nonbackup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed__bare_number_closed(self, p):
         'function_arglist_nonbackup : EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed bare_number_closed'
-        p[0] = Node('function_arglist_nonbackup', p[1:])
+        p[0] = p[3] + [p[4]]
 
 
     def p_function_arglist_nonbackup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed__post_event_nofinger(self, p):
         'function_arglist_nonbackup : EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed post_event_nofinger'
-        p[0] = Node('function_arglist_nonbackup', p[1:])
+        p[0] = p[3] + [p[4]]
 
 
     ### function_arglist_optional ###
@@ -1544,22 +1526,22 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_function_arglist_optional__EXPECT_OPTIONAL__EXPECT_DURATION__function_arglist_optional(self, p):
         'function_arglist_optional : EXPECT_OPTIONAL EXPECT_DURATION function_arglist_optional'
-        p[0] = Node('function_arglist_optional', p[1:])
+        p[0] = p[3] + [p[1]]
 
 
     def p_function_arglist_optional__EXPECT_OPTIONAL__EXPECT_PITCH__function_arglist_optional(self, p):
         'function_arglist_optional : EXPECT_OPTIONAL EXPECT_PITCH function_arglist_optional'
-        p[0] = Node('function_arglist_optional', p[1:])
+        p[0] = p[3] + [p[1]]
 
 
     def p_function_arglist_optional__function_arglist_backup__BACKUP(self, p):
         'function_arglist_optional : function_arglist_backup BACKUP'
-        p[0] = Node('function_arglist_optional', p[1:])
+        p[0] = p[1]
 
 
     def p_function_arglist_optional__function_arglist_keep(self, p):
         'function_arglist_optional : function_arglist_keep %prec FUNCTION_ARGLIST'
-        p[0] = Node('function_arglist_optional', p[1:])
+        p[0] = p[1]
 
 
     ### function_arglist_skip ###
@@ -1567,22 +1549,22 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_function_arglist_skip__EXPECT_OPTIONAL__EXPECT_DURATION__function_arglist_skip(self, p):
         'function_arglist_skip : EXPECT_OPTIONAL EXPECT_DURATION function_arglist_skip %prec FUNCTION_ARGLIST'
-        p[0] = Node('function_arglist_skip', p[1:])
+        p[0] = p[3] + [p[1]]
 
 
     def p_function_arglist_skip__EXPECT_OPTIONAL__EXPECT_PITCH__function_arglist_skip(self, p):
         'function_arglist_skip : EXPECT_OPTIONAL EXPECT_PITCH function_arglist_skip %prec FUNCTION_ARGLIST'
-        p[0] = Node('function_arglist_skip', p[1:])
+        p[0] = p[3] + [p[1]]
 
 
-    def p_function_arglist_skip__EXPECT_SCM__EXPECT_DURATION__function_arglist_skip(self, p):
-        'function_arglist_skip : EXPECT_SCM EXPECT_DURATION function_arglist_skip %prec FUNCTION_ARGLIST'
-        p[0] = Node('function_arglist_skip', p[1:])
+    def p_function_arglist_skip__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_skip(self, p):
+        'function_arglist_skip : EXPECT_OPTIONAL EXPECT_SCM function_arglist_skip %prec FUNCTION_ARGLIST'
+        p[0] = p[3] + [p[1]]
 
 
     def p_function_arglist_skip__function_arglist_common(self, p):
         'function_arglist_skip : function_arglist_common'
-        p[0] = Node('function_arglist_skip', p[1:])
+        p[0] = p[1]
 
 
     ### gen_text_def ###
@@ -2057,12 +2039,12 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_music_arg__composite_music(self, p):
         'music_arg : composite_music %prec COMPOSITE'
-        p[0] = Node('music_arg', p[1:])
+        p[0] = p[1]
 
 
     def p_music_arg__simple_music(self, p):
         'music_arg : simple_music'
-        p[0] = Node('music_arg', p[1:])
+        p[0] = p[1]
 
 
     ### music_bare ###
@@ -2088,7 +2070,7 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_music_function_call__MUSIC_FUNCTION__function_arglist(self, p):
         'music_function_call : MUSIC_FUNCTION function_arglist'
-        p[0] = Node('music_function_call', p[1:])
+        p[0] = self.client._guile(p[1], p[2])
 
 
     ### music_function_chord_body ###
@@ -2104,12 +2086,12 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_music_function_chord_body_arglist__EXPECT_SCM__music_function_chord_body_arglist__embedded_scm_chord_body(self, p):
         'music_function_chord_body_arglist : EXPECT_SCM music_function_chord_body_arglist embedded_scm_chord_body'
-        p[0] = Node('music_function_chord_body_arglist', p[1:])
+        p[0] = p[2] + [p[3]]
 
 
     def p_music_function_chord_body_arglist__function_arglist_bare(self, p):
         'music_function_chord_body_arglist : function_arglist_bare'
-        p[0] = Node('music_function_chord_body_arglist', p[1:])
+        p[0] = p[1]
 
 
     ### music_function_event ###
@@ -2736,17 +2718,11 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_sequential_music__SEQUENTIAL__braced_music_list(self, p):
         'sequential_music : SEQUENTIAL braced_music_list'
-        if not self.client._collapse:
-            p[0] = Node('sequential_music', p[2])
-            return
         p[0] = self.client._construct_sequential_music(p[2])
 
 
     def p_sequential_music__braced_music_list(self, p):
         'sequential_music : braced_music_list'
-        if not self.client._collapse:
-            p[0] = Node('sequential_music', p[1])
-            return
         p[0] = self.client._construct_sequential_music(p[1])
             
 
@@ -2902,17 +2878,11 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_simultaneous_music__DOUBLE_ANGLE_OPEN__music_list__DOUBLE_ANGLE_CLOSE(self, p):
         'simultaneous_music : DOUBLE_ANGLE_OPEN music_list DOUBLE_ANGLE_CLOSE'
-        if not self.client._collapse:
-            p[0] = Node('simultaneous_music', p[2])
-            return
         p[0] = self.client._construct_simultaneous_music(p[2])
 
 
     def p_simultaneous_music__SIMULTANEOUS__braced_music_list(self, p):
         'simultaneous_music : SIMULTANEOUS braced_music_list'
-        if not self.client._collapse:
-            p[0] = Node('simultaneous_music', p[2])
-            return
         p[0] = self.client._construct_simultaneous_music(p[2])
 
 
