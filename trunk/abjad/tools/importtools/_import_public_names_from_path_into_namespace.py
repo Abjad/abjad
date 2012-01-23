@@ -25,7 +25,13 @@ def _import_public_names_from_path_into_namespace(path, namespace, package_root_
                 submod = os.path.join(module, element[:-3])
                 functions = _get_public_names_in_module(submod)
                 for f in functions:
-                    namespace[f.__name__] = f
+                    #namespace[f.__name__] = f
+                    # handle decorated public function (like with @require)
+                    if f.__name__ == 'wrapper':
+                        name = f.func_closure[0].cell_contents.__name__
+                    else:
+                        name = f.__name__
+                    namespace[name] = f
         elif os.path.isdir(os.path.join(path, element)):
             if not element in ('.svn', 'test', '__pycache__'):
                 #exec('from %s import %s' % (module, element))

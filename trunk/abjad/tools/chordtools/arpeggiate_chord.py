@@ -1,6 +1,9 @@
 from abjad.tools.chordtools.Chord import Chord
+#from abjad.tools.iotools._require import _require
 
 
+# TODO: make Sphinx work with decorated public functions in the API
+#_require(Chord)
 def arpeggiate_chord(chord):
     '''.. versionadded:: 1.1
 
