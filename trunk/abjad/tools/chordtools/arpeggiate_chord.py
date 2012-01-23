@@ -15,7 +15,6 @@ def arpeggiate_chord(chord):
         abjad> chordtools.arpeggiate_chord(chord)
         [Note("c'8"), Note("d''8"), Note("ef''8")]
 
-
     Arpeggiated notes inherit `chord` written duration.
 
     Arpeggiated notes do not inherit other `chord` attributes.

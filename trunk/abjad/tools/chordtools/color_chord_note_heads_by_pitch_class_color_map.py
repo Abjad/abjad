@@ -1,7 +1,10 @@
-from abjad.tools.chordtools.Chord import Chord
 from abjad.tools import pitchtools
+from abjad.tools.chordtools.Chord import Chord
+from abjad.tools.iotools.require import require
+from abjad.tools.notetools.Note import Note
 
 
+@require((Chord, Note), pitchtools.NumberedChromaticPitchClassColorMap)
 def color_chord_note_heads_by_pitch_class_color_map(chord, color_map):
     r'''.. versionadded:: 2.0
 
@@ -66,9 +69,6 @@ def color_chord_note_heads_by_pitch_class_color_map(chord, color_map):
         renamed ``chordtools.color_note_heads_by_pc()`` to
         ``chordtools.color_chord_note_heads_by_pitch_class_color_map()``.
     '''
-    from abjad.tools import notetools
-
-    assert isinstance(color_map, pitchtools.NumberedChromaticPitchClassColorMap)
 
     if isinstance(chord, Chord):
         for note_head in chord:
@@ -76,7 +76,7 @@ def color_chord_note_heads_by_pitch_class_color_map(chord, color_map):
             color = color_map.get(pc, None)
             if color is not None:
                 note_head.tweak.color = color
-    elif isinstance(chord, notetools.Note):
+    elif isinstance(chord, Note):
         note = chord
         note_head = note.note_head
         pc = note_head.written_pitch.numbered_chromatic_pitch_class

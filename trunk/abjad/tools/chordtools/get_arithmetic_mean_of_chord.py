@@ -1,3 +1,8 @@
+from abjad.tools.chordtools.Chord import Chord
+from abjad.tools.iotools.require import require
+
+
+@require(Chord)
 def get_arithmetic_mean_of_chord(chord):
     '''.. versionadded:: 2.0
 

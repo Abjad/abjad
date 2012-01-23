@@ -1,6 +1,7 @@
 import types
 
 
+# TODO: figure out how to handle functions with **kwargs
 def require(*tests):
     r'''.. versionadded:: 2.6
 

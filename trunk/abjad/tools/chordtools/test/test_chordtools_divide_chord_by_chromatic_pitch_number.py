@@ -135,7 +135,8 @@ def test_chordtools_divide_chord_by_chromatic_pitch_number_09():
     '''
 
     t = Rest((1, 4))
-    treble, bass = chordtools.divide_chord_by_chromatic_pitch_number(t)
+    pitch = pitchtools.NamedChromaticPitch(('b', 3))
+    treble, bass = chordtools.divide_chord_by_chromatic_pitch_number(t, pitch)
     assert isinstance(treble, Rest)
     assert treble.format == Rest((1, 4)).format
     assert isinstance(bass, Rest)

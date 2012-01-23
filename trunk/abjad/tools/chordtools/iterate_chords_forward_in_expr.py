@@ -1,6 +1,8 @@
 from abjad.tools.chordtools.Chord import Chord
+from abjad.tools.iotools.require import require
 
 
+@require(object)
 def iterate_chords_forward_in_expr(expr, start=0, stop=None):
     r'''.. versionadded:: 2.0
 
