@@ -26,9 +26,9 @@ def _import_public_names_from_path_into_namespace(path, namespace, package_root_
                 functions = _get_public_names_in_module(submod)
                 for f in functions:
                     #namespace[f.__name__] = f
-                    # handle decorated public function (like with @require)
+                    # handle public function decorated with @require
                     if f.__name__ == 'wrapper':
-                        name = f.func_closure[0].cell_contents.__name__
+                        name = f.func_closure[1].cell_contents.__name__
                     else:
                         name = f.__name__
                     namespace[name] = f

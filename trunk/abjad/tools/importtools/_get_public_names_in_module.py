@@ -11,9 +11,9 @@ def _get_public_names_in_module(module_file):
         if not key.startswith('_'):
             #if getattr(value, '__module__', None) == module_file:
             #    result.append(value)
-            # handle decorated public function (like with @require)
+            # handle public function decorated with @require
             if getattr(value, 'func_closure', None):
-                module_name = getattr(value.func_closure[0].cell_contents, '__module__', None)
+                module_name = getattr(value.func_closure[1].cell_contents, '__module__', None)
             # handle plain old function
             else:
                 module_name = getattr(value, '__module__', None)
