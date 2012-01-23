@@ -1,9 +1,8 @@
 from abjad.tools.chordtools.Chord import Chord
-#from abjad.tools.iotools._require import _require
+from abjad.tools.iotools.require import require
 
 
-# TODO: make Sphinx work with decorated public functions in the API
-#_require(Chord)
+@require(Chord)
 def arpeggiate_chord(chord):
     '''.. versionadded:: 1.1
 
@@ -28,8 +27,6 @@ def arpeggiate_chord(chord):
         ``chordtools.arpeggiate_chord()``.
     '''
     from abjad.tools.notetools.Note import Note
-
-    assert isinstance(chord, Chord)
 
     result = []
     chord_written_duration = chord.written_duration

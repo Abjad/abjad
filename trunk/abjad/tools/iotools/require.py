@@ -1,11 +1,11 @@
-def _require(*types):
+def require(*types):
     r'''.. versionadded:: 2.6
 
     NOTE: this code is experimental in Abjad 2.6 and should not yet
     be applied to functions in the public API.
 
-    Work remains to be done to investigate Sphinx's
-    interactions with this type of decorator.
+    Work remains to be done to investigate how to retrieve
+    the types and predicates passed to this decorator.
 
     Return a decorator function that requires specified types.
 
@@ -33,5 +33,7 @@ def _require(*types):
                         ''' % (a, '\n'.join(str(x) for x in t))
                 assert isinstance(a, t), '%s is not a %s type' % (a, t)
             return func(*args)
+        # point Sphinx to correct docstring
+        wrapper.__doc__ = func.__doc__
         return wrapper
     return deco

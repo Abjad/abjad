@@ -1133,6 +1133,7 @@ iotools
    tools/iotools/redo
    tools/iotools/remove_abjad___pycache___directories
    tools/iotools/remove_abjad_pyc_files
+   tools/iotools/require
    tools/iotools/save_last_ly_as
    tools/iotools/save_last_pdf_as
    tools/iotools/show
