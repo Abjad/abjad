@@ -149,6 +149,7 @@ containertools
 
    tools/containertools/Cluster/Cluster
    tools/containertools/Container/Container
+   tools/containertools/all_are_containers
    tools/containertools/color_contents_of_container
    tools/containertools/delete_contents_of_container
    tools/containertools/delete_contents_of_container_starting_at_or_after_prolated_offset
@@ -320,6 +321,7 @@ leaftools
 .. toctree::
    :maxdepth: 1
 
+   tools/leaftools/all_are_leaves
    tools/leaftools/change_written_leaf_duration_and_preserve_preprolated_leaf_duration
    tools/leaftools/color_leaf
    tools/leaftools/color_leaves_in_expr
@@ -477,6 +479,7 @@ measuretools
    tools/measuretools/AnonymousMeasure/AnonymousMeasure
    tools/measuretools/DynamicMeasure/DynamicMeasure
    tools/measuretools/Measure/Measure
+   tools/measuretools/all_are_measures
    tools/measuretools/append_spacer_skip_to_underfull_measure
    tools/measuretools/append_spacer_skips_to_underfull_measures_in_expr
    tools/measuretools/apply_beam_spanner_to_measure
@@ -532,6 +535,7 @@ notetools
    tools/notetools/Note/Note
    tools/notetools/NoteHead/NoteHead
    tools/notetools/add_artificial_harmonic_to_note
+   tools/notetools/all_are_notes
    tools/notetools/color_note_head_by_numbered_chromatic_pitch_class_color_map
    tools/notetools/iterate_notes_backward_in_expr
    tools/notetools/iterate_notes_forward_in_expr
@@ -734,6 +738,7 @@ resttools
 
    tools/resttools/MultiMeasureRest/MultiMeasureRest
    tools/resttools/Rest/Rest
+   tools/resttools/all_are_rests
    tools/resttools/is_lilypond_rest_string
    tools/resttools/iterate_rests_backward_in_expr
    tools/resttools/iterate_rests_forward_in_expr
@@ -776,6 +781,7 @@ scoretools
    tools/scoretools/StaffGroup/StaffGroup
    tools/scoretools/add_double_bar_to_end_of_score
    tools/scoretools/add_markup_to_end_of_score
+   tools/scoretools/all_are_scores
    tools/scoretools/get_first_score_in_improper_parentage_of_component
    tools/scoretools/get_first_score_in_proper_parentage_of_component
    tools/scoretools/iterate_scores_backward_in_expr
@@ -794,6 +800,7 @@ skiptools
    :maxdepth: 1
 
    tools/skiptools/Skip/Skip
+   tools/skiptools/all_are_skips
    tools/skiptools/iterate_skips_backward_in_expr
    tools/skiptools/iterate_skips_forward_in_expr
    tools/skiptools/make_repeated_skips_from_time_signature
@@ -874,6 +881,7 @@ stafftools
 
    tools/stafftools/RhythmicStaff/RhythmicStaff
    tools/stafftools/Staff/Staff
+   tools/stafftools/all_are_staves
    tools/stafftools/get_first_staff_in_improper_parentage_of_component
    tools/stafftools/get_first_staff_in_proper_parentage_of_component
    tools/stafftools/iterate_staves_backward_in_expr
@@ -924,6 +932,7 @@ tuplettools
 
    tools/tuplettools/FixedDurationTuplet/FixedDurationTuplet
    tools/tuplettools/Tuplet/Tuplet
+   tools/tuplettools/all_are_tuplets
    tools/tuplettools/beam_bottommost_tuplets_in_expr
    tools/tuplettools/change_augmented_tuplets_in_expr_to_diminished
    tools/tuplettools/change_diminished_tuplets_in_expr_to_augmented
@@ -951,6 +960,7 @@ voicetools
    :maxdepth: 1
 
    tools/voicetools/Voice/Voice
+   tools/voicetools/all_are_voices
    tools/voicetools/get_first_voice_in_improper_parentage_of_component
    tools/voicetools/get_first_voice_in_proper_parentage_of_component
    tools/voicetools/iterate_semantic_voices_backward_in_expr
