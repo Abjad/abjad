@@ -1,6 +1,7 @@
 from fractions import Fraction
 
 
+# TODO: allow Duration('8..') initialization
 class Duration(Fraction):
     '''.. versionadded:: 2.0
 

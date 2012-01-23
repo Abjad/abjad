@@ -1,0 +1,44 @@
+#! /usr/bin/env python
+
+from abjad.tools import iotools
+import os
+
+
+def _main():
+   total_modules_examined = 0
+   nonalphabetized_module_names = []
+   for path, subdirectories, file_names in os.walk('.'):
+      for file_name in file_names:
+         if file_name.endswith('.py'):
+            total_modules_examined += 1
+            full_file_name = os.path.join(path, file_name)
+            file_pointer = file(full_file_name, 'r')
+            found_class_keyword, found_def_keyword = False, False
+            method_definition_lines = []
+            for line in file_pointer.readlines():
+                if line.startswith('class '):
+                    found_class_keyword = True
+                if line.startswith('    def '):
+                    found_def_keyword = True
+                    method_definition_lines.append(line)
+                if line.startswith('    ### '):
+                    if not method_definition_lines == list(sorted(method_definition_lines)):
+                        nonalphabetized_module_names.append(full_file_name)
+                        continue
+                    method_definition_lines = []
+                if found_def_keyword and not found_class_keyword:
+                    continue
+            file_pointer.close()
+   if nonalphabetized_module_names:
+      print nonalphabetized_module_names
+      print ''
+   print 'Total modules with nonalphabetized methods: {}'.format(len(nonalphabetized_module_names))
+   print 'Total modules examined: {}'.format(total_modules_examined)
+   print ''
+
+
+if __name__ == '__main__':
+   iotools.clear_terminal()
+   print 'Finding class definitions with nonalphabetized methods ...'
+   print ''
+   _main()

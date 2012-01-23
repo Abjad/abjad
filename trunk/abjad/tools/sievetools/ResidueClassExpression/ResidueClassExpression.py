@@ -5,6 +5,7 @@ from abjad.tools.sievetools._process_min_max_attribute import _process_min_max_a
 import operator
 
 
+# TODO: change name to Sieve
 class ResidueClassExpression(_BaseResidueClass, _Immutable):
 
     def __init__(self, rcs, operator = 'or'):

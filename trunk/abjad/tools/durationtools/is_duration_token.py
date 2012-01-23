@@ -5,7 +5,7 @@ from abjad.tools.durationtools.duration_token_to_duration_pair import duration_t
 def is_duration_token(expr):
     '''.. versionadded:: 2.0
 
-    True when `expr` has the form of an Abjad duration pair::
+    True when `expr` has the form of an Abjad duration token::
 
         abjad> from abjad.tools import durationtools
 

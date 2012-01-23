@@ -17,6 +17,7 @@ chordtools
    :maxdepth: 1
 
    tools/chordtools/Chord/Chord
+   tools/chordtools/all_are_chords
    tools/chordtools/arpeggiate_chord
    tools/chordtools/change_defective_chord_to_note_or_rest
    tools/chordtools/color_chord_note_heads_by_pitch_class_color_map
@@ -262,6 +263,7 @@ gracetools
    :maxdepth: 1
 
    tools/gracetools/Grace/Grace
+   tools/gracetools/all_are_grace_containers
    tools/gracetools/detach_grace_containers_attached_to_leaf
    tools/gracetools/get_grace_containers_attached_to_leaf
    tools/gracetools/iterate_components_and_grace_containers_forward_in_expr
@@ -462,6 +464,7 @@ markuptools
 
    tools/markuptools/Markup/Markup
    tools/markuptools/MarkupCommand/MarkupCommand
+   tools/markuptools/all_are_markup
    tools/markuptools/combine_markup_commands
    tools/markuptools/get_down_markup_attached_to_component
    tools/markuptools/get_markup_attached_to_component
@@ -609,6 +612,7 @@ pitchtools
    tools/pitchtools/PitchRange/PitchRange
    tools/pitchtools/TwelveToneRow/TwelveToneRow
    tools/pitchtools/all_are_chromatic_pitch_class_name_octave_number_pairs
+   tools/pitchtools/all_are_named_chromatic_pitch_tokens
    tools/pitchtools/alphabetic_accidental_abbreviation_to_symbolic_accidental_string
    tools/pitchtools/apply_accidental_to_named_chromatic_pitch
    tools/pitchtools/apply_octavation_spanner_to_pitched_components
@@ -838,6 +842,7 @@ spannertools
    tools/spannertools/TextScriptSpanner/TextScriptSpanner
    tools/spannertools/TextSpanner/TextSpanner
    tools/spannertools/TrillSpanner/TrillSpanner
+   tools/spannertools/all_are_spanners
    tools/spannertools/destroy_all_spanners_attached_to_component
    tools/spannertools/find_index_of_spanner_component_at_score_offset
    tools/spannertools/find_spanner_component_starting_at_exactly_score_offset
@@ -1000,6 +1005,8 @@ durationtools
 
    tools/durationtools/Duration/Duration
    tools/durationtools/Offset/Offset
+   tools/durationtools/all_are_duration_tokens
+   tools/durationtools/all_are_durations
    tools/durationtools/assignable_rational_to_dot_count
    tools/durationtools/assignable_rational_to_lilypond_duration_string
    tools/durationtools/duration_pair_to_prolation_string
@@ -1217,6 +1224,7 @@ pitcharraytools
    tools/pitcharraytools/PitchArrayCell/PitchArrayCell
    tools/pitcharraytools/PitchArrayColumn/PitchArrayColumn
    tools/pitcharraytools/PitchArrayRow/PitchArrayRow
+   tools/pitcharraytools/all_are_pitch_arrays
    tools/pitcharraytools/concatenate_pitch_arrays
    tools/pitcharraytools/list_nonspanning_subarrays_of_pitch_array
    tools/pitcharraytools/make_empty_pitch_array_from_list_of_pitch_lists
@@ -1360,6 +1368,7 @@ sievetools
 
    tools/sievetools/ResidueClass/ResidueClass
    tools/sievetools/ResidueClassExpression/ResidueClassExpression
+   tools/sievetools/all_are_residue_class_expressions
    tools/sievetools/cycle_tokens_to_sieve
 
 

@@ -2,6 +2,7 @@ from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import Named
 from abjad.tools.pitchtools.is_chromatic_pitch_class_name_octave_number_pair import is_chromatic_pitch_class_name_octave_number_pair
 
 
+# TODO: extend with strings like "c" and "A4"
 def is_named_chromatic_pitch_token(pitch_token):
     '''.. versionadded:: 1.1
 
