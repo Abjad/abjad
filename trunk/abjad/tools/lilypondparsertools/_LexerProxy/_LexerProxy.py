@@ -9,7 +9,8 @@ class _LexerProxy(object):
     on artificial tokens to stand as placeholders for arguments.
     '''
 
-    def __init__(self, **kwargs):
+    def __init__(self, client, **kwargs):
+        self.client = client
         self._lexer = lex.lex(
             **kwargs)
         self._token_stack = [ ]
@@ -27,7 +28,17 @@ class _LexerProxy(object):
         self._token_stack.append(token)
 
     def token(self):
+        print '\n'
+        print 'SYMSTACK:\n%s' % '\n'.join(['\t%s' % x for x in self.client._parser.symstack])
+        print 'LOOKAHEAD: %s' % self.client._parser.lookahead
+        print 'LA STACK:  %s' % self.client._parser.lookaheadstack
+
         if self._token_stack:
-            return self._token_stack.pop( )
-        return self._lexer.token( )
+            token = self._token_stack.pop( )
+        else:
+            token = self._lexer.token( )
+
+        print 'NEWTOKEN:  %s' % token
+
+        return token
 

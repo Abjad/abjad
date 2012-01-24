@@ -10,6 +10,7 @@ class _GuileProxy(object):
     ### OVERRIDES ###
 
     def __call__(self, function_name, args):
+        print '_GuileProxy: %s, %s' % (function_name, args)
         if hasattr(self, function_name[1:]):
             result = getattr(self, function_name[1:])(*args)
             # print result

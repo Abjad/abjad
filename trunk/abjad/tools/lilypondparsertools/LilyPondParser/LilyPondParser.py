@@ -1,6 +1,10 @@
-import os
 import itertools
-from ply import yacc
+import logging
+import os
+
+from ply import lex, yacc
+from ply.lex import LexToken
+
 from abjad import *
 from abjad.tools.componenttools._Component import _Component
 from abjad.tools.contexttools._Context import _Context
@@ -19,10 +23,15 @@ from abjad.tools.lilypondparsertools._LilyPondEvent._LilyPondEvent \
     import _LilyPondEvent as Event
 from abjad.tools.lilypondparsertools._LilyPondSyntaxNode._LilyPondSyntaxNode \
     import _LilyPondSyntaxNode as Node
+from abjad.tools.lilypondparsertools._parse import _parse
 
+
+# apply monkey patch
+yacc.LRParser.parse_monkey_patch = _parse
 
 
 class LilyPondParser(object):
+
 
     def __init__(self):
         self._lexdef = _LilyPondLexicalDefinition(self)
@@ -30,9 +39,17 @@ class LilyPondParser(object):
         self._output_path = os.path.dirname(__file__)
         self._pickle_path = os.path.join(self._output_path, '_parsetab.pkl')
 
-        self._lexer = _LexerProxy(object=self._lexdef)
+        logging.basicConfig(
+            level = logging.DEBUG,
+            filename = "parselog.txt",
+            filemode = "w",
+            format = "%(filename)10s:%(lineno)4d:%(message)s"
+        )
+        self._logger = logging.getLogger()
+
+        self._lexer = lex.lex(object=self._lexdef)
         self._parser = yacc.yacc(
-            debug=0,
+            debug=self._logger,
             module=self._syndef,
             outputdir=self._output_path,
             picklefile=self._pickle_path)
@@ -51,13 +68,38 @@ class LilyPondParser(object):
 
     def __call__(self, input_string):
         self._reset()
-        result = self._parser.parse(input_string, lexer=self._lexer)
+
+        # use the monkeypatched function
+        result = self._parser.parse_monkey_patch(input_string, lexer=self._lexer, debug=self._logger)
+
+        # clean up
         if self._leaf_attachments:
             self._construct_spanners(result)
         return result
 
 
     ### PRIVATE METHODS ###
+
+
+    def _backup_token(self, token_type, token_value):
+        # push the current lookahead back onto the lookaheadstack
+        self._push_extra_token(self._parser.lookahead)
+
+        # create the backup token, set as new lookahead
+        backup = LexToken( )
+        backup.type = 'BACKUP'
+        backup.value = '(backed-up?)'
+        backup.lexpos = 0
+        backup.lineno = 0
+        self._parser.lookahead = backup
+
+        if token_type:
+            token = LexToken( )
+            token.type = token_type
+            token.value = token_value
+            token.lexpos = 0
+            token.lineno = 0
+            self._push_extra_token(token)
 
 
     def _construct_context_specced_music(self, context, optional_id, optional_context_mod, music):
@@ -151,6 +193,29 @@ class LilyPondParser(object):
                 self._leaf_attachments[leaf].append(post_event)
 
 
+    def _push_extra_token(self, token):
+        self._parser.lookaheadstack.append(token)
+
+
+    def _reparse_token(self, predicate, token_type, token_value):
+        # push the current lookahead back onto the lookaheadstack
+        self._push_extra_token(self._parser.lookahead)
+
+        token = LexToken( )
+        token.type = token_type
+        token.value = token_value
+        token.lexpos = 0
+        token.lineno = 0
+        self._push_extra_token(token)
+
+        reparse = LexToken( )
+        reparse.type = 'REPARSE'
+        reparse.value = predicate
+        reparse.lineno = 0
+        reparse.lexpos = 0
+        self._parser.lookahead = reparse
+
+
     def _reset(self):
         try:
             self._parser.restart( )
@@ -197,3 +262,39 @@ class LilyPondParser(object):
         else:
             return self._current_module[name]
         raise Exception('Unknown identifer: %s' % identifier)
+
+
+    def _test_scheme_predicate(self, predicate, value):
+        predicates = {
+            'boolean?':           lambda x: isinstance(x, bool),
+            'cheap-list?':        lambda x: isinstance(x, (list, tuple)),
+            #'cheap-markup?':      lambda x: True,,
+            'fraction?':          lambda x: isinstance(x, Fraction),
+            #'hash-table?':        lambda x: True,
+            'integer?':           lambda x: isinstance(x, int),
+            #'list-or-symbol?':    lambda x: True,
+            'list?':              lambda x: isinstance(x, (list, tuple)),
+            #'ly:dir?':            lambda x: True,
+            'ly:duration?':       lambda x: True,
+            #'ly:moment?':         lambda x: True,
+            'ly:music?':          lambda x: True,
+            'ly:pitch?':          lambda x: True,
+            'number-list?':       lambda x: isinstance(x, (list, tuple)) and \
+                                            all([isinstance(y, (int, float)) for y in x]),
+            #'number-or-string?':  lambda x: True,
+            #'number-pair?':       lambda x: True,
+            #'number?':            lambda x: True,
+            #'optional?':          lambda x: True,
+            #'pair?':              lambda x: True,
+            #'procedure?':         lambda x: True,
+            'real?':              lambda x: isinstance(x, (int, float)),
+            'scheme?':            lambda x: True,
+            #'string-or-pair?':    lambda x: True,
+            'string?':            lambda x: isinstance(x, str),
+            #'symbol-or-boolean?': lambda x: True,
+            #'symbol?':            lambda x: True,
+            'void?':              lambda x: isinstance(x, type(None)),
+        }
+        if predicate in predicates:
+            return predicates[predicate](value)
+        return True

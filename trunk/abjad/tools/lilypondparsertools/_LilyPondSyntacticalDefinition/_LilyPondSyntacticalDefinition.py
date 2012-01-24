@@ -1189,71 +1189,118 @@ class _LilyPondSyntacticalDefinition(object):
     def p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_backup__BACKUP(self, p):
         'function_arglist_backup : EXPECT_OPTIONAL EXPECT_SCM function_arglist_backup BACKUP'
         p[0] = p[3] + [p[1]]
+        self.client._backup_token(False, None)
 
 
     def p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed_keep__Chr45__NUMBER_IDENTIFIER(self, p):
         "function_arglist_backup : EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed_keep '-' NUMBER_IDENTIFIER"
-        p[0] = p[3] + [-1 * self.client._resolve_identifier(p[5])]
+        n = -1 * self.client._resolve_identifier(p[5])
+        if self.client._test_scheme_predicate(p[2], n):
+            p[0] = p[3] + [p[1]]
+        else:
+            self.client._backup_token(NUMBER_IDENTIFIER, n)
 
 
     def p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed_keep__Chr45__REAL(self, p):
         "function_arglist_backup : EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed_keep '-' REAL"
-        p[0] = p[3] + [-1 * p[5]]
+        n = -1 * p[5]
+        if self.client._test_scheme_predicate(p[2], n):
+            self.client._reparse_token(p[2], 'REAL', n)
+            p[0] = p[3]
+        else:
+            self.client._backup_token('REAL', n)
 
 
     def p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed_keep__Chr45__UNSIGNED(self, p):
         "function_arglist_backup : EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed_keep '-' UNSIGNED"
-        p[0] = p[3] + [-1 * p[5]]
+        n = -1 * p[5]
+        if self.client._test_scheme_predicates(p[2], n):
+            self.client._reparse_token(p[2], 'REAL', n)
+            p[0] = p[3]
+        else:
+            # This should actually create a FingeringEvent, and test that against the predicate
+            self.client._backup_token('REAL', n)
+            p[0] = p[3] + [p[1]]
 
 
     def p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed_keep__FRACTION(self, p):
         'function_arglist_backup : EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed_keep FRACTION'
-        p[0] = p[3] + [p[4]]
+        if self.client._test_scheme_predicate(p[2], p[4]):
+            p[0] = p[3] + [p[4]]
+        else:
+            p[0] = p[3] + [p[1]]
+            self.client._backup_token('FRACTION', p[4])
 
 
     def p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed_keep__NUMBER_IDENTIFIER(self, p):
         'function_arglist_backup : EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed_keep NUMBER_IDENTIFIER'
-        p[0] = p[3] + [self.client._resolve_identifier(p[4])]
+        if self.client._test_scheme_predicate(p[2], p[4]):
+            p[0] = p[3] + [p[4]]
+        else:
+            p[0] = p[3] + [p[1]]
+            self.client._backup_token('NUMBER_IDENTIFIER', p[4])
 
 
     def p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed_keep__REAL(self, p):
         'function_arglist_backup : EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed_keep REAL'
-        p[0] = p[3] + [p[4]]
+        if self.client._test_scheme_predicate(p[2], p[4]):
+            p[0] = p[3]         
+            self.client._reparse_token(p[2], 'REAL', p[4])
+        else:
+            p[0] = p[3] + [p[1]]
+            self.client._backup_token('REAL', p[4])
 
 
     def p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed_keep__UNSIGNED(self, p):
         'function_arglist_backup : EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed_keep UNSIGNED'
-        p[0] = p[3] + [p[4]]
+        if self.client._test_scheme_predicate(p[2], p[4]):
+            p[0] = p[3]
+            self.client._reparse_token(p[2], 'UNSIGNED', p[4])
+        else:
+            p[0] = p[3] + [p[1]]
+            self.client._backup_token('UNSIGNED', p[4])
 
 
     def p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed_keep__post_event_nofinger(self, p):
         'function_arglist_backup : EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed_keep post_event_nofinger'
-        p[0] = p[3] + [p[4]]
+        if self.client._test_scheme_predicate(p[2], p[4]):
+            p[0] = p[3] + [p[4]]
+        else:
+            p[0] = p[3] + [p[1]]
+            self.client._backup_token('EVENT_IDENTIFIER', p[4])
 
 
     def p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_keep__embedded_scm_arg_closed(self, p):
         'function_arglist_backup : EXPECT_OPTIONAL EXPECT_SCM function_arglist_keep embedded_scm_arg_closed'
-        p[0] = p[3] + [p[4]]
+        if self.client._test_scheme_predicate(p[2], p[4]):
+            p[0] = p[3] + [p[4]]
+        else:
+            p[0] = p[3] + [p[1]]
+            self.client._backup_token('SCM_IDENTIFIER', p[4])
 
 
     def p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_keep__lyric_element(self, p):
         'function_arglist_backup : EXPECT_OPTIONAL EXPECT_SCM function_arglist_keep lyric_element'
-        p[0] = p[3] + [p[4]]
+        if self.client._test_scheme_predicate(p[2], p[4]):
+            p[0] = p[3] + [p[4]]
+        else:
+            p[0] = p[3] + [p[1]]
+            self.client._backup_token('LYRICS_STRING', p[4])
 
 
     def p_function_arglist_backup__function_arglist_backup__REPARSE__bare_number(self, p):
         'function_arglist_backup : function_arglist_backup REPARSE bare_number'
-        p[0] = p[1] + [p[3]]
+        p[0] = self.client._check_scheme_argument(p[1], p[3], p[2])
 
 
     def p_function_arglist_backup__function_arglist_backup__REPARSE__embedded_scm_arg_closed(self, p):
         'function_arglist_backup : function_arglist_backup REPARSE embedded_scm_arg_closed'
-        p[0] = p[1] + [p[3]]
+        p[0] = self.client._check_scheme_argument(p[1], p[3], p[2])
 
 
     def p_function_arglist_backup__function_arglist_backup__REPARSE__fraction(self, p):
         'function_arglist_backup : function_arglist_backup REPARSE fraction'
-        p[0] = p[1] + [p[3]]
+        p[0] = self.client._check_scheme_argument(p[1], p[3], p[2])
 
 
     ### function_arglist_bare ###
