@@ -11,6 +11,7 @@ def all_are_pitch_arrays(expr):
     ::
 
         abjad> pitch_array = pitcharraytools.PitchArray([[1, 2, 1], [2, 1, 1]])
+
     ::
 
         abjad> pitch_arraytools.all_are_pitch_arrays([pitch_array])
