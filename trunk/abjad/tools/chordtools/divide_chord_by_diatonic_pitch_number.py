@@ -1,10 +1,10 @@
 from abjad.tools.chordtools._divide_chord import _divide_chord
 from abjad.tools.chordtools.Chord import Chord
-from abjad.tools.iotools.require import require
+from abjad.decorators import requires
 from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
 
 
-@require(Chord, NamedChromaticPitch)
+@requires(Chord, NamedChromaticPitch)
 def divide_chord_by_diatonic_pitch_number(chord, pitch=NamedChromaticPitch('b', 3)):
     r'''.. versionadded:: 1.1
 

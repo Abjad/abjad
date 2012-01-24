@@ -1,9 +1,9 @@
 from abjad.tools.componenttools.all_are_components import all_are_components
 from abjad.tools.chordtools.Chord import Chord
-from abjad.tools.iotools.require import require
+from abjad.decorators import requires
 
 
-@require(object)
+@requires(object)
 def all_are_chords(expr):
     '''.. versionadded:: 2.6
 

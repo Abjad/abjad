@@ -1,10 +1,10 @@
 from abjad.tools import pitchtools
 from abjad.tools.chordtools.Chord import Chord
-from abjad.tools.iotools.require import require
+from abjad.decorators import requires
 from abjad.tools.notetools.Note import Note
 
 
-@require((Chord, Note), pitchtools.NumberedChromaticPitchClassColorMap)
+@requires((Chord, Note), pitchtools.NumberedChromaticPitchClassColorMap)
 def color_chord_note_heads_by_pitch_class_color_map(chord, color_map):
     r'''.. versionadded:: 2.0
 

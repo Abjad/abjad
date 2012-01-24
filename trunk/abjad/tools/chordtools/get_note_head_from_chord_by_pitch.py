@@ -1,13 +1,13 @@
 from abjad.exceptions import ExtraNoteHeadError
 from abjad.exceptions import MissingNoteHeadError
 from abjad.tools.chordtools.Chord import Chord
-from abjad.tools.iotools.require import require
+from abjad.decorators import requires
 from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
 from abjad.tools import pitchtools
 from numbers import Number
 
 
-@require(Chord, pitchtools.is_named_chromatic_pitch_token)
+@requires(Chord, pitchtools.is_named_chromatic_pitch_token)
 def get_note_head_from_chord_by_pitch(chord, pitch):
     '''.. versionadded:: 2.0
 

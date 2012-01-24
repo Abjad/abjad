@@ -2,7 +2,7 @@ import types
 
 
 # TODO: figure out how to handle functions with **kwargs
-def require(*tests):
+def requires(*tests):
     r'''.. versionadded:: 2.6
 
     Function decorator to require input parameter `tests`.
@@ -10,11 +10,11 @@ def require(*tests):
     Example::
 
         abjad> from abjad.tools import mathtools
-        abjad> from abjad.tools.iotools.require import require
+        abjad> from abjad.decorators import requires
 
     ::
 
-        abjad> @require(mathtools.is_nonnegative_integer, str)
+        abjad> @requires(mathtools.is_nonnegative_integer, str)
         abjad> def multiply_string(n, string): return n * string
 
     ::
@@ -42,7 +42,7 @@ def require(*tests):
     '''
     def deco(func):
         '''
-        Decorator function to be returned from require().  
+        Decorator function to be returned from requires().  
         Returns a function wrapper that validates arguments.
         '''
         def wrapper (*args):

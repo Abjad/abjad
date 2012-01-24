@@ -1,10 +1,10 @@
 from abjad.tools import mathtools
 from abjad.tools.chordtools.Chord import Chord
 from abjad.tools.chordtools.change_defective_chord_to_note_or_rest import change_defective_chord_to_note_or_rest
-from abjad.tools.iotools.require import require
+from abjad.decorators import requires
 
 
-@require(Chord)
+@requires(Chord)
 def yield_all_subchords_of_chord(chord):
     '''.. versionadded:: 2.0
 
