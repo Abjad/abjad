@@ -52,7 +52,8 @@ class LilyPondParser(object):
             debug=self._logger,
             module=self._syndef,
             outputdir=self._output_path,
-            picklefile=self._pickle_path)
+            picklefile=self._pickle_path
+        )
 
         self._guile = _GuileProxy(self)
         self._current_module = current_module
@@ -70,7 +71,11 @@ class LilyPondParser(object):
         self._reset()
 
         # use the monkeypatched function
-        result = self._parser.parse_monkey_patch(input_string, lexer=self._lexer, debug=self._logger)
+        result = self._parser.parse_monkey_patch(
+            input_string,
+            lexer=self._lexer,
+            debug=self._logger,
+        )
 
         # clean up
         if self._leaf_attachments:
@@ -169,8 +174,8 @@ class LilyPondParser(object):
         return con
 
 
-    def _construct_spanners(self):
-        pass
+    def _construct_spanners(self, result):
+        return result
 
 
     def _get_leaf_attachments(self, leaf, kind = None):
