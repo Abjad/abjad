@@ -4,6 +4,7 @@ from abjad.tools.contexttools._Context import _Context
 
 class _GuileProxy(object):
 
+
     def __init__(self, client):
         self.client = client
 
@@ -79,7 +80,8 @@ class _GuileProxy(object):
     # pitchedTrill
 
 
-    # relative
+    def relative(self, pitch, music):
+        return music
 
 
     def slashedGrace(self, music):
@@ -98,7 +100,8 @@ class _GuileProxy(object):
         return tuplettools.Tuplet(fraction, [music])
 
 
-    # transpose
+    def transpose(self, to_pitch, from_pitch, music):
+        return music
 
 
     # transposition
@@ -107,3 +110,34 @@ class _GuileProxy(object):
     # tweak
 
     
+    ### HELPER FUNCTIONS ###
+
+
+    def _is_unrelativable(self, music):
+        annotations = marktools.get_annotations_attached_to_component(music)
+        if 'UnrelativableMusic' in [x.name for x in annotations]:
+            return True
+        return False
+
+
+    def _make_unrelativable(self, music):
+        if not is_unrelativable(music):
+            marktools.Annotation('UnrelativableMusic')(music)
+
+
+    def _to_relative_octave(self, pitch, reference):
+        if pitch.chromatic_pitch_class_number > reference.chromatic_pitch_class_number:
+            up_pitch = pitchtools.NamedChromaticPitch(
+                pitch.chromatic_pitch_class_name, reference.octave_number)
+            down_pitch = pitchtools.NamedChromaticPitch(
+                pitch.chromatic_pitch_class_name, reference.octave_number - 1)
+        else:
+            up_pitch = pitchtools.NamedChromaticPitch(
+                pitch.chromatic_pitch_class_name, reference.octave_number + 1)
+            down_pitch = pitchtools.NamedChromaticPitch(
+                pitch.chromatic_pitch_class_name, reference.octave_number)
+        if abs(up_pitch.chromatic_pitch_class_number - reference.chromatic_pitch_class_number) < \
+            abs(down_pitch.chromatic_pitch_class_number - reference.chromatic_pitch_class_number):
+            return up_pitch + 12 * (pitch.octave_number - 4)
+        else:
+            return down_pitch + 12 * (pitch.octave_number - 4)
