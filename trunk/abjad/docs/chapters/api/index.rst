@@ -276,10 +276,13 @@ instrumenttools
 
    tools/instrumenttools/Accordion/Accordion
    tools/instrumenttools/AltoFlute/AltoFlute
+   tools/instrumenttools/AltoSaxophone/AltoSaxophone
    tools/instrumenttools/AltoTrombone/AltoTrombone
    tools/instrumenttools/BFlatClarinet/BFlatClarinet
+   tools/instrumenttools/BaritoneSaxophone/BaritoneSaxophone
    tools/instrumenttools/BassClarinet/BassClarinet
    tools/instrumenttools/BassFlute/BassFlute
+   tools/instrumenttools/BassSaxophone/BassSaxophone
    tools/instrumenttools/BassTrombone/BassTrombone
    tools/instrumenttools/Bassoon/Bassoon
    tools/instrumenttools/Cello/Cello
@@ -287,6 +290,7 @@ instrumenttools
    tools/instrumenttools/Contrabass/Contrabass
    tools/instrumenttools/ContrabassClarinet/ContrabassClarinet
    tools/instrumenttools/ContrabassFlute/ContrabassFlute
+   tools/instrumenttools/ContrabassSaxophone/ContrabassSaxophone
    tools/instrumenttools/Contrabassoon/Contrabassoon
    tools/instrumenttools/EFlatClarinet/EFlatClarinet
    tools/instrumenttools/EnglishHorn/EnglishHorn
@@ -300,6 +304,9 @@ instrumenttools
    tools/instrumenttools/Oboe/Oboe
    tools/instrumenttools/Piano/Piano
    tools/instrumenttools/Piccolo/Piccolo
+   tools/instrumenttools/SopraninoSaxophone/SopraninoSaxophone
+   tools/instrumenttools/SopranoSaxophone/SopranoSaxophone
+   tools/instrumenttools/TenorSaxophone/TenorSaxophone
    tools/instrumenttools/TenorTrombone/TenorTrombone
    tools/instrumenttools/Trumpet/Trumpet
    tools/instrumenttools/Tuba/Tuba
