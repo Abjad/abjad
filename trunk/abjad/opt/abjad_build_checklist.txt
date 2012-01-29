@@ -39,9 +39,10 @@ Abjad build checklist:
 11. Change to docs/_build/latex and run 'make all-pdf'.
     If any errors occur, fix and go back to (6.)
     Open the docs/_build/latex/Abjad.pdf file that results.
-    Click around some to make everything looks OK.
+    Click around some to make sure everything looks OK.
 
 12. Copy docs/_build/latex/Abjad.pdf to docs/pdf/Abjad-x-y.pdf.
+    Do this with 'cp' and not with 'svn cp'.
 
 13. Add docs/pdf/Abajd-x-y.pdf to svn.
 

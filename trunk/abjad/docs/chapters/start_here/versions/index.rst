@@ -5,7 +5,7 @@ Version history
 Abjad 2.6
 ---------
 
-Released 2012-01-29. Built from r4977.
+Released 2012-01-29. Built from r4979.
 
 * Added top-level ``decorators`` directory with ``requires`` decorator.
   The ``requires`` decorator renders the following two function definitions equivalent::
