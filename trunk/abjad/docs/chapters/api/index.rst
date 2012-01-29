@@ -283,7 +283,9 @@ instrumenttools
    tools/instrumenttools/BassTrombone/BassTrombone
    tools/instrumenttools/Bassoon/Bassoon
    tools/instrumenttools/Cello/Cello
+   tools/instrumenttools/ClarinetInA/ClarinetInA
    tools/instrumenttools/Contrabass/Contrabass
+   tools/instrumenttools/ContrabassClarinet/ContrabassClarinet
    tools/instrumenttools/ContrabassFlute/ContrabassFlute
    tools/instrumenttools/Contrabassoon/Contrabassoon
    tools/instrumenttools/EFlatClarinet/EFlatClarinet
