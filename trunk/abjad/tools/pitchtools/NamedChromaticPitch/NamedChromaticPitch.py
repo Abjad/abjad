@@ -519,7 +519,7 @@ class NamedChromaticPitch(_Pitch):
 
             abjad> named_chromatic_pitch = pitchtools.NamedChromaticPitch("cs''")
             abjad> named_chromatic_pitch.pitch_class_octave_label
-            C#5
+            'C#5'
 
         Return string.
         '''

@@ -22,22 +22,22 @@ Abjad build checklist:
     If any tests break, fix and repeat this step.
 
  7. Change to abjad/tools and run the following three scripts:
-    replace-python-prompts-with-abjad-prompts
-    run-doctest-on-all-modules-in-tree
     replace-abjad-prompts-with-python-prompts
-    If any tests break, fix and go back to (5.)
+    run-doctest-on-all-modules-in-tree
+    replace-python-prompts-with-abjad-prompts
+    If any tests break, fix and go back to (6.)
 
  8. Change to abjad/docs and run 'make clean'.
     (This step is important. Failing to 'make clean' before building
-    the docs can cause the doc tarball made in step #21, below,
+    the docs can cause the doc tarball made below in (22.)
     to exceed 10 megs. PyPI rejects doc tarballs greater than 10 megs.)
 
- 9. Run make-abjad-api. If any errors occur, fix and go back to (5.)
+ 9. Run make-abjad-api. If any errors occur, fix and go back to (6.)
 
-10. Run 'make latex'. If any errors occur, fix and go back to (5.)
+10. Run 'make latex'. If any errors occur, fix and go back to (6.)
 
 11. Change to docs/_build/latex and run 'make all-pdf'.
-    If any errors occur, fix and go back to (5.)
+    If any errors occur, fix and go back to (6.)
     Open the docs/_build/latex/Abjad.pdf file that results.
     Click around some to make everything looks OK.
 
@@ -60,7 +60,7 @@ Abjad build checklist:
 18. Commit.
 
 19. Run 'python setup.py sdist'.
-    If any errors occur, fix and go back to (5.)
+    If any errors occur, fix and go back to (6.)
 
 20. Run 'python setup.py register sdist upload'
     Follow the login instructions provided by PyPI.

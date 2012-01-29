@@ -24,7 +24,7 @@ class BassTrombone(_Trombone):
         \new Staff {
             \clef "bass"
             \set Staff.instrumentName = \markup { Bass trombone }
-            \set Staff.shortInstrumentName = \markup { bs. trb. }
+            \set Staff.shortInstrumentName = \markup { Bass trb. }
             c'8
             d'8
             e'8
@@ -37,7 +37,7 @@ class BassTrombone(_Trombone):
     def __init__(self, **kwargs):
         _Trombone.__init__(self, **kwargs)
         self._default_instrument_name = 'bass trombone'
-        self._default_short_instrument_name = 'bs. trb.'
+        self._default_short_instrument_name = 'bass trb.'
         self._is_primary_instrument = False
         self.sounding_pitch_of_written_middle_c = pitchtools.NamedChromaticPitch("c'")
         self.primary_clefs = [contexttools.ClefMark('bass')]

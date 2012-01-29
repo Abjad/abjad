@@ -15,12 +15,12 @@ def all_are_named_chromatic_pitch_tokens(expr):
 
     True when `expr` is an empty sequence::
 
-        abjad> pitchtools.named_chromatic_pitch_tokentools([])
+        abjad> pitchtools.all_are_named_chromatic_pitch_tokens([])
         True
 
     Otherwise false::
 
-        abjad> pitchtools.named_chromatic_pitch_tokentools('foo')
+        abjad> pitchtools.all_are_named_chromatic_pitch_tokens('foo')
         False
 
     Return boolean.

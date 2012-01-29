@@ -19,17 +19,17 @@ def all_are_residue_class_expressions(expr):
 
     ::
 
-        abjad> residue_class_expressiontools.all_are_residue_class_expressions([sieve])
+        abjad> sievetools.all_are_residue_class_expressions([sieve])
         True
 
     True when `expr` is an empty sequence::
 
-        abjad> residue_class_expressiontools.all_are_residue_class_expressions([])
+        abjad> sievetools.all_are_residue_class_expressions([])
         True
 
     Otherwise false::
 
-        abjad> residue_class_expressiontools.all_are_residue_class_expressions('foo')
+        abjad> sievetools.all_are_residue_class_expressions('foo')
         False
 
     Return boolean.

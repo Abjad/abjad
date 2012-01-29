@@ -4,7 +4,8 @@ from abjad.decorators import requires
 from abjad.tools.notetools.Note import Note
 
 
-@requires((Chord, Note), pitchtools.NumberedChromaticPitchClassColorMap)
+@requires(object, pitchtools.NumberedChromaticPitchClassColorMap)
+# TODO: change name to color_chord_note_heads_in_expr_by_pitch_class_color_map()
 def color_chord_note_heads_by_pitch_class_color_map(chord, color_map):
     r'''.. versionadded:: 2.0
 

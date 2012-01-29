@@ -12,7 +12,8 @@ def is_integer_equivalent_expr(expr):
 
     ::
 
-        abjad> mathtools.is_integer_equivalent_number(12.0)
+        abjad> mathtools.is_integer_equivalent_expr(12.0)
+        True
 
     True when `expr` evaluates to an integer::
 

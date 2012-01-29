@@ -7,11 +7,12 @@ def all_are_grace_containers(expr):
 
     True when `expr` is a sequence of Abjad grace containers::
 
-        abjad> graces = [Grace("<c' e' g'>4"), Grace("<c' f' a'>4")]
+        abjad> graces = [gracetools.Grace("<c' e' g'>4"), gracetools.Grace("<c' f' a'>4")]
         abjad> voice = Voice("c'8 d'8 e'8 f'8")
         abjad> grace_notes = [Note("c'16"), Note("d'16")]
         abjad> grace_container = gracetools.Grace(grace_notes, kind = 'grace')
         abjad> grace_container(voice[1])
+        Note("d'8")
 
     ::
 
@@ -39,7 +40,7 @@ def all_are_grace_containers(expr):
 
     Otherwise false::
 
-        abjad> gracetools.all_are_grace_containes('foo')
+        abjad> gracetools.all_are_grace_containers('foo')
         False
 
     Return boolean.

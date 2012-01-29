@@ -14,17 +14,17 @@ def all_are_pitch_arrays(expr):
 
     ::
 
-        abjad> pitch_arraytools.all_are_pitch_arrays([pitch_array])
+        abjad> pitcharraytools.all_are_pitch_arrays([pitch_array])
         True
 
     True when `expr` is an empty sequence::
 
-        abjad> pitch_arraytools.all_are_pitch_arrays([])
+        abjad> pitcharraytools.all_are_pitch_arrays([])
         True
 
     Otherwise false::
 
-        abjad> pitch_arraytools.all_are_pitch_arrays('foo')
+        abjad> pitcharraytools.all_are_pitch_arrays('foo')
         False
 
     Return boolean.

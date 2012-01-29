@@ -258,7 +258,7 @@ class PitchRange(_Immutable):
         r'''Read-only one-line numbered chromatic pitch repr of pitch of range::
 
             abjad> pitch_range = pitchtools.PitchRange(-12, 36)
-            abjad> pitch_range.one_line_named_chromatic_pitch_repr
+            abjad> pitch_range.one_line_numbered_chromatic_pitch_repr
             '[-12, 36]'
 
         Return string.

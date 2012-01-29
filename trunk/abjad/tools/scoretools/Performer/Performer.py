@@ -6,8 +6,8 @@ class Performer(object):
 
     Abjad model of performer::
 
-        abjad> scoretools.Performer('flutist')
-        Performer('flutist')
+        abjad> scoretools.Performer(name='flutist')
+        Performer(name='flutist')
 
     The purpose of the class is to model things like
     flute I doubling piccolo and alto flute.
@@ -139,7 +139,7 @@ class Performer(object):
 
         Likely instruments based on performer name::
 
-            abjad> flutist = scoretools.Performer(name='flustist')
+            abjad> flutist = scoretools.Performer(name='flutist')
             abjad> for likely_instrument in flutist.likely_instruments_based_on_performer_name:
             ...     likely_instrument
             ... 

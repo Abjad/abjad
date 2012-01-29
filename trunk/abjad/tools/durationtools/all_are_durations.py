@@ -6,6 +6,10 @@ def all_are_durations(expr):
 
     True when `expr` is a sequence of Abjad durations::
 
+        abjad> from abjad.tools import durationtools
+
+    ::
+
         abjad> durations = [Duration((3, 16)), Duration((4, 16))]
 
     ::

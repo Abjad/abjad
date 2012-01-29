@@ -19,7 +19,7 @@ class InstrumentationSpecifier(object):
     ::
 
         abjad> instrumentation_specifier
-        InstrumentationSpecifier([Performer('Flute', [Flute(), AltoFlute()]), Performer('Guitar', [Guitar()])])
+        InstrumentationSpecifier([Performer(name='Flute', instruments=[Flute(), AltoFlute()]), Performer(name='Guitar', instruments=[Guitar()])])
 
     Return instrumentation specifier.
     '''
@@ -123,7 +123,7 @@ class InstrumentationSpecifier(object):
             r'''Read / write list of performers in score::
 
                 abjad> instrumentation_specifier.performers
-                [Performer('Flute', [Flute(), AltoFlute()]), Performer('Guitar', [Guitar()])]
+                [Performer(name='Flute', instruments=[Flute(), AltoFlute()]), Performer(name='Guitar', instruments=[Guitar()])]
 
             Return list.
             '''

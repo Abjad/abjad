@@ -10,17 +10,19 @@ def list_primary_instruments():
         ...     primary_instrument
         ... 
         <class 'abjad.tools.instrumenttools.Accordion.Accordion.Accordion'>
+        <class 'abjad.tools.instrumenttools.AltoSaxophone.AltoSaxophone.AltoSaxophone'>
+        <class 'abjad.tools.instrumenttools.BFlatClarinet.BFlatClarinet.BFlatClarinet'>
         <class 'abjad.tools.instrumenttools.Bassoon.Bassoon.Bassoon'>
         <class 'abjad.tools.instrumenttools.Cello.Cello.Cello'>
-        <class 'abjad.tools.instrumenttools.Clarinet.Clarinet.Clarinet'>
         <class 'abjad.tools.instrumenttools.Contrabass.Contrabass.Contrabass'>
         <class 'abjad.tools.instrumenttools.Flute.Flute.Flute'>
         <class 'abjad.tools.instrumenttools.FrenchHorn.FrenchHorn.FrenchHorn'>
         <class 'abjad.tools.instrumenttools.Guitar.Guitar.Guitar'>
         <class 'abjad.tools.instrumenttools.Harp.Harp.Harp'>
+        <class 'abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord'>
         <class 'abjad.tools.instrumenttools.Oboe.Oboe.Oboe'>
         <class 'abjad.tools.instrumenttools.Piano.Piano.Piano'>
-        <class 'abjad.tools.instrumenttools.Trombone.Trombone.Trombone'>
+        <class 'abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone'>
         <class 'abjad.tools.instrumenttools.Trumpet.Trumpet.Trumpet'>
         <class 'abjad.tools.instrumenttools.Tuba.Tuba.Tuba'>
         <class 'abjad.tools.instrumenttools.Viola.Viola.Viola'>
