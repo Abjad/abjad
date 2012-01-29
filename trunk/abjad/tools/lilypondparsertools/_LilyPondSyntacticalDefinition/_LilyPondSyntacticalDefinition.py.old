@@ -1,6 +1,6 @@
 from abjad import *
 from abjad.tools import durationtools
-from abjad.tools.lilypondparsertools._LilyPondSyntaxNode._LilyPondSyntaxNode import _LilyPondSyntaxNode as Node
+from abjad.tools.lilypondparsertools._SyntaxNode._SyntaxNode import _SyntaxNode as Node
 
 
 class _LilyPondSyntacticalDefinition(object):

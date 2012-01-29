@@ -1,7 +1,7 @@
 from collections import Iterable
 
 
-class _LilyPondSyntaxNode(object):
+class _SyntaxNode(object):
 
     __slots__ = ('type', 'value')
 

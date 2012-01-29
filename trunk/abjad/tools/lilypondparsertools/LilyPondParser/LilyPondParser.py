@@ -14,15 +14,14 @@ from abjad.ly.py.language_pitch_names import language_pitch_names
 from abjad.ly.py.markup_functions import markup_functions
 from abjad.ly.py.markup_functions import markup_list_functions
 from abjad.tools.lilypondparsertools._GuileProxy._GuileProxy import _GuileProxy
-from abjad.tools.lilypondparsertools._LexerProxy._LexerProxy import _LexerProxy
 from abjad.tools.lilypondparsertools._LilyPondLexicalDefinition._LilyPondLexicalDefinition \
     import _LilyPondLexicalDefinition
 from abjad.tools.lilypondparsertools._LilyPondSyntacticalDefinition._LilyPondSyntacticalDefinition \
     import _LilyPondSyntacticalDefinition
 from abjad.tools.lilypondparsertools._LilyPondEvent._LilyPondEvent \
     import _LilyPondEvent as Event
-from abjad.tools.lilypondparsertools._LilyPondSyntaxNode._LilyPondSyntaxNode \
-    import _LilyPondSyntaxNode as Node
+from abjad.tools.lilypondparsertools._SyntaxNode._SyntaxNode \
+    import _SyntaxNode as Node
 from abjad.tools.lilypondparsertools._parse import _parse
 
 
@@ -61,14 +60,14 @@ class LilyPondParser(object):
         self._markup_functions = markup_functions
         self._markup_list_functions = markup_list_functions
 
-        self._reset()
+        self._reset_parser_variables()
 
 
     ### OVERRIDES ###
 
 
     def __call__(self, input_string):
-        self._reset()
+        self._reset_parser_variables()
 
         # use the monkeypatched function
         result = self._parser.parse_monkey_patch(
@@ -80,6 +79,9 @@ class LilyPondParser(object):
         # clean up
         if self._leaf_attachments:
             self._construct_spanners(result)
+        for annotation in self._annotations:
+            annotation.detach( )
+
         return result
 
 
@@ -221,11 +223,12 @@ class LilyPondParser(object):
         self._parser.lookahead = reparse
 
 
-    def _reset(self):
+    def _reset_parser_variables(self):
         try:
             self._parser.restart( )
         except:
             pass
+        self._annotations = [ ]
         self._assignments = { }
         self._chord_pitch_orders = { }
         self._leaf_attachments = { }
@@ -233,8 +236,9 @@ class LilyPondParser(object):
         self._parser_variables = {
             'default_duration': Node('multiplied_duration', [Duration(1, 4)]),
             'language': 'english',
-            'last_chord': ['c', 'g', "c'"], # LilyPond's default!
+            'last_chord': Chord("<c g c'>4"), # LilyPond's default!
         }
+        self._repeated_chords = { }
 
 
     def _resolve_event_identifier(self, identifier):

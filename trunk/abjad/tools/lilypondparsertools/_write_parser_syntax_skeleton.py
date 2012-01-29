@@ -18,8 +18,8 @@ def _write_parser_syntax_skeleton(skeleton_path, parser_output_path, parser_tab_
 
     f.write('from abjad import *\n')
     f.write('from abjad.tools import durationtools\n')
-    f.write('from abjad.tools.lilypondparsertools._LilyPondSyntaxNode._LilyPondSyntaxNode \\\n')
-    f.write('    import _LilyPondSyntaxNode as Node\n\n\n')
+    f.write('from abjad.tools.lilypondparsertools._SyntaxNode._SyntaxNode \\\n')
+    f.write('    import _SyntaxNode as Node\n\n\n')
     f.write('class _LilyPondSyntacticalDefinition(object):\n\n')
     f.write('    def __init__(self, client):\n')
     f.write('        self.client = client\n')

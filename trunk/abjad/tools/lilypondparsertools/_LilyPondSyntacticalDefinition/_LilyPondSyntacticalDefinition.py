@@ -2,8 +2,8 @@ from abjad import *
 from abjad.tools import durationtools
 from abjad.tools.lilypondparsertools._LilyPondEvent._LilyPondEvent \
     import _LilyPondEvent as Event
-from abjad.tools.lilypondparsertools._LilyPondSyntaxNode._LilyPondSyntaxNode \
-    import _LilyPondSyntaxNode as Node
+from abjad.tools.lilypondparsertools._SyntaxNode._SyntaxNode \
+    import _SyntaxNode as Node
 
 
 class _LilyPondSyntacticalDefinition(object):
@@ -994,13 +994,22 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_event_chord__CHORD_REPETITION__optional_notemode_duration__post_events(self, p):
         'event_chord : CHORD_REPETITION optional_notemode_duration post_events'
-        pitches = self.client._parser_variables['last_chord']
+        pitches = self.client._parser_variables['last_chord'].written_pitches
         duration = p[2][0]
         chord = Chord(pitches, duration)
         self.client._chord_pitch_orders[chord] = pitches
         if 1 < len(p[2]):
             chord.duration_multiplier = p[2][1]
         self.client._process_post_events(chord, p[3])
+        # repeated chords are unrelativable, and we keep a reference to the annotation,
+        # in order to quickly detach annotations after parsing has finished
+        annotation = marktools.Annotation('UnrelativableMusic')(chord)
+        self.client._annotations.append(annotation)
+        # we also need to keep track of what chord this chord is repeating, in case that
+        # chord is relativized
+        if self.client._parser_variables['last_chord'] not in self.client._repeated_chords:
+            self.client._repeated_chords[self.client._parser_variables['last_chord']] = [ ]
+        self.client._repeated_chords[self.client._parser_variables['last_chord']].append(chord)
         p[0] = chord
 
 
@@ -1020,7 +1029,7 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_event_chord__note_chord_element(self, p):
         'event_chord : note_chord_element'
-        self.client._parser_variables['last_chord'] = p[1].written_pitches
+        self.client._parser_variables['last_chord'] = p[1]
         p[0] = p[1]
 
 
