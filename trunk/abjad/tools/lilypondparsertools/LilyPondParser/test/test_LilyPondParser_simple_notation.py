@@ -3,7 +3,7 @@ from abjad.tools.lilypondparsertools import LilyPondParser
 
 
 
-def test_LilyPondParser_leaves_01( ):
+def test_LilyPondParser_simple_notation_01( ):
     '''LilyPondParser can create the five basic types of leaves.'''
     parser = LilyPondParser( )
     target = Container("c4 r4 s4 R4 <c e g>4")
@@ -11,7 +11,7 @@ def test_LilyPondParser_leaves_01( ):
     assert result.format == target.format
 
 
-def test_LilyPondParser_leaves_02( ):
+def test_LilyPondParser_simple_notation_02( ):
     '''LilyPondParser understands dots.'''
     parser = LilyPondParser( )
     target = Container("c4 c8 c16 c32 c4. c8. c16. c32. c4.. c8.. c16.. c32..")
@@ -19,7 +19,7 @@ def test_LilyPondParser_leaves_02( ):
     assert result.format == target.format
 
 
-def test_LilyPondParser_leaves_03( ):
+def test_LilyPondParser_simple_notation_03( ):
     '''LilyPondParser understands octave ticks.'''
     parser = LilyPondParser( )
     target = Container("c,,,4 c,,4 c,4 c4 c'4 c''4 c'''4")
@@ -27,7 +27,7 @@ def test_LilyPondParser_leaves_03( ):
     assert result.format == target.format
 
 
-def test_LilyPondParser_leaves_04( ):
+def test_LilyPondParser_simple_notation_04( ):
     '''LilyPondParser understand a variety of note names.'''
     parser = LilyPondParser( )
     target = Container('cff4 ctqf4 cf4 cqf4 c4 cqs4 cs4 ctqs4 css4')
@@ -35,7 +35,7 @@ def test_LilyPondParser_leaves_04( ):
     assert result.format == target.format
 
 
-def test_LilyPondParser_leaves_05( ):
+def test_LilyPondParser_simple_notation_05( ):
     '''LilyPondParser understands default durations.'''
     parser = LilyPondParser( )
     target = Container('c4 c16.. c16.. c8. c8.')
@@ -44,7 +44,7 @@ def test_LilyPondParser_leaves_05( ):
     assert result.format == target.format
 
 
-def test_LilyPondParser_leaves_06( ):
+def test_LilyPondParser_simple_notation_06( ):
     '''LilyPondParser understands chord repetition.'''
     parser = LilyPondParser( )
     target = Container('<e g bf>4 <e g bf>4 <e g bf>4 <c e g>4 <c e g>4')
