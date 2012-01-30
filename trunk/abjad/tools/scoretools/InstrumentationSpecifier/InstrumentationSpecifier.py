@@ -82,6 +82,17 @@ class InstrumentationSpecifier(object):
     ### PUBLIC ATTRIBUTES ###
 
     @property
+    def instrument_count(self):
+        r'''Read-only number of instruments in score::
+    
+            abjad> instrumentation_specifier.instrument_count
+            3
+
+        Return nonnegative integer.
+        '''
+        return len(self.instruments)
+
+    @property
     def instruments(self):
         r'''Read-only list of instruments derived from performers::
 
@@ -94,17 +105,6 @@ class InstrumentationSpecifier(object):
         for performer in self.performers:
             instruments.extend(performer.instruments)
         return instruments
-
-    @property
-    def instrument_count(self):
-        r'''Read-only number of instruments in score::
-    
-            abjad> instrumentation_specifier.instrument_count
-            3
-
-        Return nonnegative integer.
-        '''
-        return len(self.instruments)
 
     @property
     def performer_count(self):

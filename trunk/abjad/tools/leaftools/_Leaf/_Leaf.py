@@ -159,6 +159,18 @@ class _Leaf(_Component, _StrictComparator):
         return property(**locals())
 
     @apply
+    def written_pitch_indication_is_at_sounding_pitch():
+        def fset(self, arg):
+            '''Read / write flag to be set to false when pitch indication is transposed.
+            '''
+            if not isinstance(arg, bool):
+                raise TypeError
+            self._written_pitch_indication_is_at_sounding_pitch = arg
+        def fget(self):
+            return self._written_pitch_indication_is_at_sounding_pitch
+        return property(**locals())
+
+    @apply
     def written_pitch_indication_is_nonsemantic():
         def fset(self, arg):
             '''Read / write flag to be set when using leaves only graphically.
@@ -172,16 +184,4 @@ class _Leaf(_Component, _StrictComparator):
                 self.written_pitch_indication_is_at_sounding_pitch = False
         def fget(self):
             return self._written_pitch_indication_is_nonsemantic
-        return property(**locals())
-
-    @apply
-    def written_pitch_indication_is_at_sounding_pitch():
-        def fset(self, arg):
-            '''Read / write flag to be set to false when pitch indication is transposed.
-            '''
-            if not isinstance(arg, bool):
-                raise TypeError
-            self._written_pitch_indication_is_at_sounding_pitch = arg
-        def fget(self):
-            return self._written_pitch_indication_is_at_sounding_pitch
         return property(**locals())

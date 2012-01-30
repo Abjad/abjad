@@ -38,9 +38,6 @@ class Duration(Fraction):
 
     ### OVERLOADS ###
 
-    def __repr__(self):
-        return '%s(%s, %s)' % (type(self).__name__, self.numerator, self.denominator)
-
     def __abs__(self, *args):
         return type(self)(Fraction.__abs__(self, *args))
 
@@ -76,6 +73,9 @@ class Duration(Fraction):
 
     def __rdivmod__(self, *args):
         return type(self)(Fraction.__rdivmod__(self, *args))
+
+    def __repr__(self):
+        return '%s(%s, %s)' % (type(self).__name__, self.numerator, self.denominator)
 
     def __rmod__(self, *args):
         return type(self)(Fraction.__rmod__(self, *args))

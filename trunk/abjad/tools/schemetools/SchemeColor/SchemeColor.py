@@ -20,10 +20,10 @@ class SchemeColor(_StrictComparator, _Immutable):
         object.__setattr__(self, 'color_name', color_name)
         return self
 
+    ### OVERLOADS ###
+
     def __getnewargs__(self):
         return (self.color_name,)
-
-    ### OVERLOADS ###
 
     def __repr__(self):
         return '%s(%r)' % (type(self).__name__, self.color_name)

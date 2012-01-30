@@ -225,24 +225,6 @@ class Tree(_StrictComparator):
         return max(levels) - self.level + 1
 
     @property
-    def level(self):
-        '''.. versionadded:: 2.4
-
-        Level of node::
-
-            abjad> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            abjad> tree = sequencetools.Tree(sequence)
-
-        ::
-
-            abjad> tree[1].level
-            1
-
-        Return nonnegative integer.
-        '''
-        return len(self.proper_parentage)
-
-    @property
     def improper_parentage(self):
         '''.. versionadded:: 2.4
 
@@ -285,6 +267,24 @@ class Tree(_StrictComparator):
             return self.parent._children.index(self)
         else:
             return None
+
+    @property
+    def level(self):
+        '''.. versionadded:: 2.4
+
+        Level of node::
+
+            abjad> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
+            abjad> tree = sequencetools.Tree(sequence)
+
+        ::
+
+            abjad> tree[1].level
+            1
+
+        Return nonnegative integer.
+        '''
+        return len(self.proper_parentage)
 
     @property
     def negative_level(self):

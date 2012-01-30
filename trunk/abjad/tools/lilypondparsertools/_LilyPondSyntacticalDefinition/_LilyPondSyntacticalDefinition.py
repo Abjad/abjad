@@ -178,13 +178,13 @@ class _LilyPondSyntacticalDefinition(object):
     ### book_body ###
 
 
-    def p_book_body__Empty(self, p):
-        'book_body : '
+    def p_book_body__BOOK_IDENTIFIER(self, p):
+        'book_body : BOOK_IDENTIFIER'
         p[0] = Node('book_body', p[1:])
 
 
-    def p_book_body__BOOK_IDENTIFIER(self, p):
-        'book_body : BOOK_IDENTIFIER'
+    def p_book_body__Empty(self, p):
+        'book_body : '
         p[0] = Node('book_body', p[1:])
 
 
@@ -244,13 +244,13 @@ class _LilyPondSyntacticalDefinition(object):
     ### bookpart_body ###
 
 
-    def p_bookpart_body__Empty(self, p):
-        'bookpart_body : '
+    def p_bookpart_body__BOOK_IDENTIFIER(self, p):
+        'bookpart_body : BOOK_IDENTIFIER'
         p[0] = Node('bookpart_body', p[1:])
 
 
-    def p_bookpart_body__BOOK_IDENTIFIER(self, p):
-        'bookpart_body : BOOK_IDENTIFIER'
+    def p_bookpart_body__Empty(self, p):
+        'bookpart_body : '
         p[0] = Node('bookpart_body', p[1:])
 
 
@@ -582,13 +582,13 @@ class _LilyPondSyntacticalDefinition(object):
     ### context_def_spec_body ###
 
 
-    def p_context_def_spec_body__Empty(self, p):
-        'context_def_spec_body : '
+    def p_context_def_spec_body__CONTEXT_DEF_IDENTIFIER(self, p):
+        'context_def_spec_body : CONTEXT_DEF_IDENTIFIER'
         p[0] = Node('context_def_spec_body', p[1:])
 
 
-    def p_context_def_spec_body__CONTEXT_DEF_IDENTIFIER(self, p):
-        'context_def_spec_body : CONTEXT_DEF_IDENTIFIER'
+    def p_context_def_spec_body__Empty(self, p):
+        'context_def_spec_body : '
         p[0] = Node('context_def_spec_body', p[1:])
 
 
@@ -2287,11 +2287,6 @@ class _LilyPondSyntacticalDefinition(object):
     ### octave_check ###
 
 
-    def p_octave_check__Empty(self, p):
-        'octave_check : '
-        p[0] = Node('octave_check', p[1:])
-
-
     def p_octave_check__Chr61(self, p):
         "octave_check : '='"
         p[0] = Node('octave_check', p[1:])
@@ -2304,6 +2299,11 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_octave_check__Chr61__sup_quotes(self, p):
         "octave_check : '=' sup_quotes"
+        p[0] = Node('octave_check', p[1:])
+
+
+    def p_octave_check__Empty(self, p):
+        'octave_check : '
         p[0] = Node('octave_check', p[1:])
 
 
@@ -2323,14 +2323,14 @@ class _LilyPondSyntacticalDefinition(object):
     ### optional_id ###
 
 
-    def p_optional_id__Empty(self, p):
-        'optional_id : '
-        p[0] = None
-
-
     def p_optional_id__Chr61__simple_string(self, p):
         "optional_id : '=' simple_string"
         p[0] = p[2]
+
+
+    def p_optional_id__Empty(self, p):
+        'optional_id : '
+        p[0] = None
 
 
     ### optional_notemode_duration ###
@@ -3174,6 +3174,10 @@ class _LilyPondSyntacticalDefinition(object):
     ### unsigned_number ###
 
 
+    def p_error(self, p):
+        pass
+
+
     def p_unsigned_number__NUMBER_IDENTIFIER(self, p):
         'unsigned_number : NUMBER_IDENTIFIER'
         p[0] = self.client._resolve_identifier(p[1])
@@ -3182,8 +3186,3 @@ class _LilyPondSyntacticalDefinition(object):
     def p_unsigned_number__UNSIGNED(self, p):
         'unsigned_number : UNSIGNED'
         p[0] = p[1]
-
-
-    def p_error(self, p):
-        pass
-

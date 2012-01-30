@@ -44,6 +44,8 @@ class QGridSearchTree(_Immutable, _ImmutableDictionary):
         self._init_offsets(definition)
         return self
 
+    ### OVERLOADS ###
+
     def __getnewargs__(self):
         return self.definition
 

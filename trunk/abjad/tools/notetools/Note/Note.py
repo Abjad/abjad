@@ -141,41 +141,6 @@ class Note(_Leaf):
                 self._note_head = note_head
         return property(**locals())
 
-    @apply
-    def written_pitch():
-        def fget(self):
-            '''Get named pitch of note::
-
-                abjad> note = Note(13, (3, 16))
-                abjad> note.written_pitch
-                NamedChromaticPitch("cs''")
-
-            Set named pitch of note::
-
-                abjad> note = Note(13, (3, 16))
-                abjad> note.written_pitch = 14
-                abjad> note
-                Note("d''8.")
-
-            '''
-            if self.note_head is not None and hasattr(self.note_head, 'written_pitch'):
-                return self._note_head.written_pitch
-            else:
-                return None
-        def fset(self, arg):
-            from abjad.tools import pitchtools
-            from abjad.tools.notetools.NoteHead import NoteHead
-            if arg is None:
-                if self.note_head is not None:
-                    self.note_head.written_pitch = None
-            else:
-                if self.note_head is None:
-                    self.note_head = NoteHead(self, written_pitch = None)
-                else:
-                    pitch = pitchtools.NamedChromaticPitch(arg)
-                    self.note_head.written_pitch = pitch
-        return property(**locals())
-
     @property
     def sounding_pitch(self):
         r'''Read-only sounding pitch of note::
@@ -215,23 +180,37 @@ class Note(_Leaf):
             sounding_pitch = pitchtools.transpose_pitch_carrier_by_melodic_interval(self.written_pitch, t_n)
             return sounding_pitch
 
-#   @apply
-#   def written_pitch():
-#      def fget(self):
-#         if self.note_head is not None and hasattr(self.note_head, 'written_pitch'):
-#            return self._note_head.written_pitch
-#         else:
-#            return None
-#      def fset(self, arg):
-#         from abjad.tools import pitchtools
-#         from abjad.tools.notetools.NoteHead import NoteHead
-#         if arg is None:
-#            if self.note_head is not None:
-#               self.note_head.written_pitch = None
-#         else:
-#            if self.note_head is None:
-#               self.note_head = NoteHead(self, written_pitch = None)
-#            else:
-#               pitch = pitchtools.NamedChromaticPitch(arg)
-#               self.note_head.written_pitch = pitch
-#      return property(**locals())
+    @apply
+    def written_pitch():
+        def fget(self):
+            '''Get named pitch of note::
+
+                abjad> note = Note(13, (3, 16))
+                abjad> note.written_pitch
+                NamedChromaticPitch("cs''")
+
+            Set named pitch of note::
+
+                abjad> note = Note(13, (3, 16))
+                abjad> note.written_pitch = 14
+                abjad> note
+                Note("d''8.")
+
+            '''
+            if self.note_head is not None and hasattr(self.note_head, 'written_pitch'):
+                return self._note_head.written_pitch
+            else:
+                return None
+        def fset(self, arg):
+            from abjad.tools import pitchtools
+            from abjad.tools.notetools.NoteHead import NoteHead
+            if arg is None:
+                if self.note_head is not None:
+                    self.note_head.written_pitch = None
+            else:
+                if self.note_head is None:
+                    self.note_head = NoteHead(self, written_pitch = None)
+                else:
+                    pitch = pitchtools.NamedChromaticPitch(arg)
+                    self.note_head.written_pitch = pitch
+        return property(**locals())

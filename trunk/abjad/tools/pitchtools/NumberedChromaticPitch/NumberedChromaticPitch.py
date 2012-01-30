@@ -30,9 +30,6 @@ class NumberedChromaticPitch(_ChromaticPitch, _NumberedPitch):
         object.__setattr__(self, '_comparison_attribute', chromatic_pitch_number)
         return self
 
-    def __getnewargs__(self):
-        return (self._chromatic_pitch_number, )
-
     ### OVERLOADS ###
 
     def __abs__(self):
@@ -45,6 +42,9 @@ class NumberedChromaticPitch(_ChromaticPitch, _NumberedPitch):
 
     def __float__(self):
         return float(self._chromatic_pitch_number)
+
+    def __getnewargs__(self):
+        return (self._chromatic_pitch_number, )
 
     def __hash__(self):
         return hash(repr(self))

@@ -30,13 +30,13 @@ class TwelveToneRow(NumberedChromaticPitchClassSegment):
     def __copy__(self):
         return type(self)(self)
 
-    def __getslice__(self, start, stop):
-        return NumberedChromaticPitchClassSegment(tuple.__getslice__(self, start, stop))
-
     def __eq__(self, arg):
         if isinstance(arg, type(self)):
             return tuple(self) == tuple(arg)
         return False
+
+    def __getslice__(self, start, stop):
+        return NumberedChromaticPitchClassSegment(tuple.__getslice__(self, start, stop))
 
     def __mul__(self, n):
         return NumberedChromaticPitchClassSegment(tuple.__mul__(self, n))

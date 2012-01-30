@@ -121,10 +121,6 @@ class PitchArrayCell(_StrictComparator):
             return ' '
 
     @property
-    def _format_row_column_repr_string(self):
-        return self._format_pitch_width_string
-
-    @property
     def _format_pitch_width_string(self):
         if self.pitches:
             if self.width == 1:
@@ -133,6 +129,10 @@ class PitchArrayCell(_StrictComparator):
                 return '%s %s' % (self._pitch_string, self._width_string)
         else:
             return self._width_string
+
+    @property
+    def _format_row_column_repr_string(self):
+        return self._format_pitch_width_string
 
     @property
     def _format_string(self):
@@ -154,15 +154,15 @@ class PitchArrayCell(_StrictComparator):
         return True
 
     @property
-    def _width_string(self):
-        return 'x%s' % self.width
-
-    @property
     def _pitch_string(self):
         if self.pitches:
             return ' '.join([str(pitch) for pitch in self.pitches])
         else:
             return ''
+
+    @property
+    def _width_string(self):
+        return 'x%s' % self.width
 
     ### PRIVATE METHODS ###
 

@@ -298,6 +298,15 @@ class QGridQuantizer(_Quantizer):
             grouped_q_events[value] = list(group)
         return grouped_q_events
 
+    def _quantize(self, q_events, verbose = False):
+
+        grouped_q_events = self._group_q_events_by_beatspan(q_events, verbose = verbose)
+        best_q_grids = self._find_best_q_grid_foreach_q_event_group(grouped_q_events, verbose = verbose)
+        best_q_grids = self._regroup_and_fill_out_best_q_grids(best_q_grids, verbose = verbose)
+        container = self._format_all_q_grids(best_q_grids, verbose = verbose)
+
+        return container
+
     def _regroup_and_fill_out_best_q_grids(self, best_q_grids, verbose = False):
         '''Shift events which have been quantized to the last offset
         of one `QGrid` to the first offset of the subsequent grid.
@@ -336,15 +345,6 @@ class QGridQuantizer(_Quantizer):
                 best_q_grids[i] = QGrid([0], 0)
 
         return best_q_grids
-
-    def _quantize(self, q_events, verbose = False):
-
-        grouped_q_events = self._group_q_events_by_beatspan(q_events, verbose = verbose)
-        best_q_grids = self._find_best_q_grid_foreach_q_event_group(grouped_q_events, verbose = verbose)
-        best_q_grids = self._regroup_and_fill_out_best_q_grids(best_q_grids, verbose = verbose)
-        container = self._format_all_q_grids(best_q_grids, verbose = verbose)
-
-        return container
 
     ### PUBLIC ATTRIBUTES ###
 

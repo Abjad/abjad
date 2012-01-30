@@ -19,9 +19,6 @@ class SchemeNumber(_Immutable):
         object.__setattr__(self, 'number', number)
         return self
 
-    def __getnewargs__(self):
-        return (self.number, )
-
     ### OVERLOADS ###
 
     def __eq__(self, arg):
@@ -31,6 +28,9 @@ class SchemeNumber(_Immutable):
 
     def __float__(self):
         return float(self.number)
+
+    def __getnewargs__(self):
+        return (self.number, )
 
     def __int__(self):
         return int(self.number)

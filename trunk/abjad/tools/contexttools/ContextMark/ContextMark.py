@@ -37,7 +37,7 @@ class ContextMark(Mark):
 
     __deepcopy__ = __copy__
 
-    # MANGLED METHODS #
+    ### MANGLED METHODS ###
 
     def __bind_correct_effective_context(self, correct_effective_context):
         self.__unbind_effective_context()
@@ -47,11 +47,6 @@ class ContextMark(Mark):
         self._effective_context = correct_effective_context
         correct_effective_context._mark_entire_score_tree_for_later_update('marks')
 
-    def _bind_start_component(self, start_component):
-        #print 'binding CONTEXT MARK to start component ...'
-        Mark._bind_start_component(self, start_component)
-        self._start_component._mark_entire_score_tree_for_later_update('marks')
-
     def __unbind_effective_context(self):
         effective_context = self._effective_context
         if effective_context is not None:
@@ -60,6 +55,11 @@ class ContextMark(Mark):
             except ValueError:
                 pass
         self._effective_context = None
+
+    def _bind_start_component(self, start_component):
+        #print 'binding CONTEXT MARK to start component ...'
+        Mark._bind_start_component(self, start_component)
+        self._start_component._mark_entire_score_tree_for_later_update('marks')
 
     ### PRIVATE ATTRIBUTES ###
 

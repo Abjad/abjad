@@ -18,10 +18,10 @@ class SchemeVariable(_StrictComparator, _Immutable):
         object.__setattr__(self, '_string', string)
         return self
 
+    ### OVERLOADS ###
+
     def __getnewargs__(self):
         return (self._string, )
-
-    ### OVERLOADS ###
 
     def __repr__(self):
         return "%s(%r)" % (type(self).__name__, self._string)

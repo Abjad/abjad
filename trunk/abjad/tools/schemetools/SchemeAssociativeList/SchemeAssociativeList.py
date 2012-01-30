@@ -23,10 +23,10 @@ class SchemeAssociativeList(tuple, _Immutable):
         self = tuple.__new__(klass, args_as_pairs)
         return self
 
+    ### OVERLOADS ###
+
     def __getnewargs__(self):
         return tuple(self)
-
-    ### OVERLOADS ###
 
     def __repr__(self):
         return '%s(%s)' % (type(self).__name__, self._format_string)

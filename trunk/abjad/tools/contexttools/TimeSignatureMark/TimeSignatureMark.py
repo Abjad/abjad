@@ -219,6 +219,18 @@ class TimeSignatureMark(ContextMark):
             return result
 
     @property
+    def is_nonbinary(self):
+        r'''Read-only indicator true when time siganture mark is nonbinary::
+
+            abjad> time_signature = contexttools.TimeSignatureMark((3, 8))
+            abjad> time_signature.is_nonbinary
+            False
+
+        Return boolean.
+        '''
+        return self._is_nonbinary
+
+    @property
     def multiplier(self):
         r'''Read-only multiplier of time signature mark::
 
@@ -252,18 +264,6 @@ class TimeSignatureMark(ContextMark):
             assert isinstance(numerator, int)
             self._numerator = numerator
         return property(**locals())
-
-    @property
-    def is_nonbinary(self):
-        r'''Read-only indicator true when time siganture mark is nonbinary::
-
-            abjad> time_signature = contexttools.TimeSignatureMark((3, 8))
-            abjad> time_signature.is_nonbinary
-            False
-
-        Return boolean.
-        '''
-        return self._is_nonbinary
 
     @apply
     def partial():

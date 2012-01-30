@@ -63,7 +63,7 @@ class MarkupCommand(_Immutable):
         else:
             object.__setattr__(self, '_markup', markup)
 
-    # OVERRIDES #
+    ### OVERRIDES ###
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):

@@ -117,6 +117,35 @@ class Spanner(_StrictComparator):
         #component.spanners._spanners.remove(self)
         component._spanners.remove(self)
 
+    #def copy(self, start = None, stop = None):
+    #def copy(self, components):
+    def _copy(self, components):
+        '''Return copy of spanner with `components`.
+
+        `components` must be an iterable of components already
+        contained in spanner.
+        '''
+
+        my_components = self._components[:]
+        self._components = []
+        result = copy.deepcopy(self)
+        self._components = my_components
+
+#      if stop is not None:
+#         for component in self[start:stop + 1]:
+#            result._components.append(component)
+#      else:
+#         for component in self:
+#            result._components.append(component)
+
+        for component in components:
+            assert component in self
+        for component in components:
+            result._components.append(component)
+
+        result._unblock_all_components()
+        return result
+
     # TODO: Remove call to self.leaes #
     def _duration_offset_in_me(self, leaf):
         leaves = list(self.leaves)
@@ -190,31 +219,6 @@ class Spanner(_StrictComparator):
         else:
             return False
 
-    def _is_my_first_leaf(self, leaf):
-        from abjad.tools.spannertools.get_nth_leaf_in_spanner import get_nth_leaf_in_spanner
-        # ! Full-leaf traversal extremely inefficient !
-        #leaves = self.leaves
-        #return leaves and leaf is leaves[0]
-        try:
-            first_leaf = get_nth_leaf_in_spanner(self, 0)
-            return leaf is first_leaf
-        except IndexError:
-            return False
-
-    def _is_my_last_leaf(self, leaf):
-        from abjad.tools.spannertools.get_nth_leaf_in_spanner import get_nth_leaf_in_spanner
-        # ! Full-leaf traversal extremely inefficient !
-        #leaves = self.leaves
-        #return leaves and leaf is leaves[-1]
-        try:
-            last_leaf = get_nth_leaf_in_spanner(self, -1)
-            return leaf is last_leaf
-        except IndexError:
-            False
-
-    def _is_my_only_leaf(self, leaf):
-        return self._is_my_first_leaf(leaf) and self._is_my_last_leaf(leaf)
-
     # TODO: Remove call to self.leaves #
     def _is_my_first(self, leaf, klass):
         if isinstance(leaf, klass):
@@ -225,6 +229,17 @@ class Spanner(_StrictComparator):
                     return False
             return True
         return False
+
+    def _is_my_first_leaf(self, leaf):
+        from abjad.tools.spannertools.get_nth_leaf_in_spanner import get_nth_leaf_in_spanner
+        # ! Full-leaf traversal extremely inefficient !
+        #leaves = self.leaves
+        #return leaves and leaf is leaves[0]
+        try:
+            first_leaf = get_nth_leaf_in_spanner(self, 0)
+            return leaf is first_leaf
+        except IndexError:
+            return False
 
     # TODO: Remove call to self.leaves #
     def _is_my_last(self, leaf, klass):
@@ -237,9 +252,23 @@ class Spanner(_StrictComparator):
             return True
         return False
 
+    def _is_my_last_leaf(self, leaf):
+        from abjad.tools.spannertools.get_nth_leaf_in_spanner import get_nth_leaf_in_spanner
+        # ! Full-leaf traversal extremely inefficient !
+        #leaves = self.leaves
+        #return leaves and leaf is leaves[-1]
+        try:
+            last_leaf = get_nth_leaf_in_spanner(self, -1)
+            return leaf is last_leaf
+        except IndexError:
+            False
+
     # TODO: Remove call to self.leaves #
     def _is_my_only(self, leaf, klass):
         return isinstance(leaf, klass) and len(self.leaves) == 1
+
+    def _is_my_only_leaf(self, leaf):
+        return self._is_my_first_leaf(leaf) and self._is_my_last_leaf(leaf)
 
     def _remove(self, component):
         '''Remove 'component' from spanner.
@@ -459,35 +488,6 @@ class Spanner(_StrictComparator):
         '''
 
         self._sever_all_components()
-
-    #def copy(self, start = None, stop = None):
-    #def copy(self, components):
-    def _copy(self, components):
-        '''Return copy of spanner with `components`.
-
-        `components` must be an iterable of components already
-        contained in spanner.
-        '''
-
-        my_components = self._components[:]
-        self._components = []
-        result = copy.deepcopy(self)
-        self._components = my_components
-
-#      if stop is not None:
-#         for component in self[start:stop + 1]:
-#            result._components.append(component)
-#      else:
-#         for component in self:
-#            result._components.append(component)
-
-        for component in components:
-            assert component in self
-        for component in components:
-            result._components.append(component)
-
-        result._unblock_all_components()
-        return result
 
     def extend(self, components):
         '''Add iterable `components` to right of spanner::

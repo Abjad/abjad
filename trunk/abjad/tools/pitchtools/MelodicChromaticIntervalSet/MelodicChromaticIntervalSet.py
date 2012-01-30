@@ -44,11 +44,9 @@ class MelodicChromaticIntervalSet(_IntervalSet):
         return pitchtools.HarmonicChromaticIntervalSet(self)
 
     @property
-    #def intervals(self):
-    def melodic_chromatic_intervals(self):
-        return set(self)
-
-    @property
-    #def numbers(self):
     def melodic_chromatic_interval_numbers(self):
         return set([interval.number for interval in self])
+
+    @property
+    def melodic_chromatic_intervals(self):
+        return set(self)

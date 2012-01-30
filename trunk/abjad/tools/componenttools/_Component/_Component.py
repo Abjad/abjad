@@ -58,10 +58,6 @@ class _Component(_StrictComparator):
     ### PRIVATE ATTRIBUTES ###
 
     @property
-    def _format_pieces(self):
-        return self._formatter._format_pieces
-
-    @property
     def _ID(self):
         if getattr(self, 'name', None) is not None:
             rhs = self.name
@@ -69,6 +65,10 @@ class _Component(_StrictComparator):
             rhs = id(self)
         lhs = type(self).__name__
         return '%s-%s' % (lhs, rhs)
+
+    @property
+    def _format_pieces(self):
+        return self._formatter._format_pieces
 
     @property
     def _prolations(self):
@@ -171,7 +171,7 @@ class _Component(_StrictComparator):
         else:
             raise ValueError('\n\t: Unknown keyword argument plug-in name: "%s".' % plug_in_name)
 
-    # MANGLED METHODS #
+    ### MANGLED METHODS ###
 
     def __update_leaf_indices_and_measure_numbers_in_score_tree(self):
         '''Called only when updating prolated offset of score compoennts.

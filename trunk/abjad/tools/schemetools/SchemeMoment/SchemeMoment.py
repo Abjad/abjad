@@ -30,9 +30,6 @@ class SchemeMoment(_StrictComparator, _Immutable):
             raise TypeError('can not intialize scheme moment from "%s".' % str(args))
         return self
 
-    def __getnewargs__(self):
-        return (self.duration, )
-
     ### OVERLOADS ###
 
     def __eq__(self, arg):
@@ -46,6 +43,9 @@ class SchemeMoment(_StrictComparator, _Immutable):
             if self.duration >= arg.duration:
                 return True
         return False
+
+    def __getnewargs__(self):
+        return (self.duration, )
 
     def __gt__(self, arg):
         if isinstance(arg, type(self)):

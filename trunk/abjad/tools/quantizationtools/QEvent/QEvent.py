@@ -34,10 +34,7 @@ class QEvent(_Immutable):
 
         return self
 
-    def __getnewargs__(self):
-        return self.offset, self.value
-
-    # OVERRIDES #
+    ### OVERRIDES ###
 
     def __eq__(self, other):
         if type(self) == type(other):
@@ -45,6 +42,9 @@ class QEvent(_Immutable):
                 if self.value == other.value:
                     return True
         return False
+
+    def __getnewargs__(self):
+        return self.offset, self.value
 
     def __repr__(self):
         return '%s(%s)' % (type(self).__name__, self._format_string)

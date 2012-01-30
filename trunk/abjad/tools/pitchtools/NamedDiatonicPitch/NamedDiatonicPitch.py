@@ -64,18 +64,6 @@ class NamedDiatonicPitch(_DiatonicPitch):
     ### PUBLIC ATTRIBUTES ###
 
     @property
-    def chromatic_pitch_name(self):
-        '''Read-only chromatic pitch name::
-
-            abjad> pitchtools.NamedDiatonicPitch("c''").chromatic_pitch_name
-            "c''"
-
-        Return string.
-        '''
-        from abjad.tools import pitchtools
-        return pitchtools.diatonic_pitch_name_to_chromatic_pitch_name(self.diatonic_pitch_name)
-
-    @property
     def chromatic_pitch_class_name(self):
         '''Read-only chromatic pitch-class name::
 
@@ -86,18 +74,6 @@ class NamedDiatonicPitch(_DiatonicPitch):
         '''
         from abjad.tools import pitchtools
         return pitchtools.diatonic_pitch_name_to_chromatic_pitch_class_name(self.diatonic_pitch_name)
-
-    @property
-    def chromatic_pitch_number(self):
-        '''Read-only chromatic pitch number::
-
-            abjad> pitchtools.NamedDiatonicPitch("c''").chromatic_pitch_number
-            12
-
-        Return integer.
-        '''
-        from abjad.tools import pitchtools
-        return pitchtools.diatonic_pitch_name_to_chromatic_pitch_number(self.diatonic_pitch_name)
 
     @property
     def chromatic_pitch_class_number(self):
@@ -113,6 +89,30 @@ class NamedDiatonicPitch(_DiatonicPitch):
             self.diatonic_pitch_name)
 
     @property
+    def chromatic_pitch_name(self):
+        '''Read-only chromatic pitch name::
+
+            abjad> pitchtools.NamedDiatonicPitch("c''").chromatic_pitch_name
+            "c''"
+
+        Return string.
+        '''
+        from abjad.tools import pitchtools
+        return pitchtools.diatonic_pitch_name_to_chromatic_pitch_name(self.diatonic_pitch_name)
+
+    @property
+    def chromatic_pitch_number(self):
+        '''Read-only chromatic pitch number::
+
+            abjad> pitchtools.NamedDiatonicPitch("c''").chromatic_pitch_number
+            12
+
+        Return integer.
+        '''
+        from abjad.tools import pitchtools
+        return pitchtools.diatonic_pitch_name_to_chromatic_pitch_number(self.diatonic_pitch_name)
+
+    @property
     def diatonic_pitch_class_name(self):
         '''Read-only diatonic pitch-class name::
 
@@ -125,17 +125,6 @@ class NamedDiatonicPitch(_DiatonicPitch):
         return pitchtools.diatonic_pitch_name_to_diatonic_pitch_class_name(self.diatonic_pitch_name)
 
     @property
-    def diatonic_pitch_name(self):
-        '''Read-only diatonic pitch name::
-
-            abjad> pitchtools.NamedDiatonicPitch("c''").diatonic_pitch_name
-            "c''"
-
-        Return string.
-        '''
-        return self._diatonic_pitch_name
-
-    @property
     def diatonic_pitch_class_number(self):
         '''Read-only diatonic pitch-class number::
 
@@ -146,6 +135,17 @@ class NamedDiatonicPitch(_DiatonicPitch):
         '''
         from abjad.tools import pitchtools
         return pitchtools.diatonic_pitch_name_to_diatonic_pitch_class_number(self.diatonic_pitch_name)
+
+    @property
+    def diatonic_pitch_name(self):
+        '''Read-only diatonic pitch name::
+
+            abjad> pitchtools.NamedDiatonicPitch("c''").diatonic_pitch_name
+            "c''"
+
+        Return string.
+        '''
+        return self._diatonic_pitch_name
 
     @property
     def diatonic_pitch_number(self):

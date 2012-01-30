@@ -116,12 +116,6 @@ class MelodicDiatonicInterval(_DiatonicInterval, _MelodicInterval):
         return pitchtools.HarmonicDiatonicInterval(self)
 
     @property
-    #def interval_class(self):
-    def melodic_diatonic_interval_class(self):
-        from abjad.tools import pitchtools
-        return pitchtools.MelodicDiatonicIntervalClass(self)
-
-    @property
     def inversion_equivalent_chromatic_interval_class(self):
         from abjad.tools import pitchtools
         n = self.semitones
@@ -141,10 +135,14 @@ class MelodicDiatonicInterval(_DiatonicInterval, _MelodicInterval):
         return pitchtools.MelodicCounterpointInterval(self.number)
 
     @property
+    def melodic_diatonic_interval_class(self):
+        from abjad.tools import pitchtools
+        return pitchtools.MelodicDiatonicIntervalClass(self)
+
+    @property
     def semitones(self):
         result = 0
         interval_class_number_to_semitones = {1: 0,  2: 1,  3: 3, 4: 5, 5: 7, 6: 8, 7: 10, 8: 0}
-        #interval_class_number = abs(self.interval_class.number)
         interval_class_number = abs(self.melodic_diatonic_interval_class.number)
         result += interval_class_number_to_semitones[interval_class_number]
         result += (abs(self.number) - 1) / 7 * 12

@@ -111,12 +111,12 @@ class _DiatonicInterval(_Interval, _Diatonic):
         return ((abs(self.number) - 1) % 7) + 1
 
     @property
-    def number(self):
-        return self._number
-
-    @property
     def interval_string(self):
         return self._interval_string
+
+    @property
+    def number(self):
+        return self._number
 
     @property
     def quality_string(self):

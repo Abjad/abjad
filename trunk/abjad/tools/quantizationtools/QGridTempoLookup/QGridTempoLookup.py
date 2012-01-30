@@ -35,6 +35,8 @@ class QGridTempoLookup(_Immutable, _ImmutableDictionary):
         object.__setattr__(self, '_beatspan', beatspan)
         object.__setattr__(self, '_tempo', tempo)
 
+    ### OVERLOADS ###
+
     def __getnewargs__(self):
         return tuple(self.keys()), self.beatspan, self.tempo
 

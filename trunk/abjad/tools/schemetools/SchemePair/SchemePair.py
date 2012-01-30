@@ -23,10 +23,10 @@ class SchemePair(tuple, _Immutable):
             raise TypeError('can not initialize Scheme pair from "%s".' % str(args))
         return self
 
+    ### OVERLOADS ###
+
     def __getnewargs__(self):
         return tuple(self)
-
-    ### OVERLOADS ###
 
     def __repr__(self):
         return '%s(%s)' % (type(self).__name__, self._format_string)

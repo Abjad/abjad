@@ -63,6 +63,26 @@ class Performer(object):
 
     ### PUBLIC ATTRIBUTES ###
 
+    @property
+    def instrument_count(self):
+        r'''Read-only number of instruments to be played by performer::
+
+            abjad> performer = scoretools.Performer('flutist')
+
+        ::
+
+            abjad> performer.instruments.append(instrumenttools.Flute())
+            abjad> performer.instruments.append(instrumenttools.Piccolo())
+
+        ::
+
+            abjad> performer.instrument_count
+            2
+
+        Return nonnegative integer
+        '''
+        return len(self.instruments)
+
     @apply
     def instruments():
         def fget(self):
@@ -92,26 +112,6 @@ class Performer(object):
             else:
                 raise TypeError('instruments %r must be list or none.' % instruments)
         return property(**locals())
-
-    @property
-    def instrument_count(self):
-        r'''Read-only number of instruments to be played by performer::
-
-            abjad> performer = scoretools.Performer('flutist')
-
-        ::
-
-            abjad> performer.instruments.append(instrumenttools.Flute())
-            abjad> performer.instruments.append(instrumenttools.Piccolo())
-
-        ::
-
-            abjad> performer.instrument_count
-            2
-
-        Return nonnegative integer
-        '''
-        return len(self.instruments)
 
     @property
     def is_doubling(self):

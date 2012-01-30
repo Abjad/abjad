@@ -97,11 +97,6 @@ class NamedChromaticPitchClassSet(_PitchClassSet):
         return pitchtools.InversionEquivalentDiatonicIntervalClassVector(pitches)
 
     @property
-    def numbered_chromatic_pitch_class_set(self):
-        from abjad.tools import pitchtools
-        return pitchtools.NumberedChromaticPitchClassSet(self)
-
-    @property
     def named_chromatic_pitch_classes(self):
         '''Read-only named chromatic pitch-classes::
 
@@ -113,6 +108,11 @@ class NamedChromaticPitchClassSet(_PitchClassSet):
         '''
         result = list(self)
         return tuple(self._sort_self())
+
+    @property
+    def numbered_chromatic_pitch_class_set(self):
+        from abjad.tools import pitchtools
+        return pitchtools.NumberedChromaticPitchClassSet(self)
 
     ### PUBLIC METHODS ###
 

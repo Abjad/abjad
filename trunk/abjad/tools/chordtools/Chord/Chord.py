@@ -164,28 +164,6 @@ class Chord(_Leaf):
             self.extend(note_head_tokens)
         return property(**locals())
 
-    @apply
-    def written_pitches():
-        def fget(self):
-            '''Get read-only tuple of pitches in chord::
-
-                abjad> chord = Chord([7, 12, 16], (1, 4))
-                abjad> chord.written_pitches
-                (NamedChromaticPitch("g'"), NamedChromaticPitch("c''"), NamedChromaticPitch("e''"))
-
-            Set chord pitches from any iterable::
-
-                abjad> chord = Chord([7, 12, 16], (1, 4))
-                abjad> chord.written_pitches = [0, 2, 6]
-                abjad> chord
-                Chord("<c' d' fs'>4")
-
-            '''
-            return tuple([note_head.written_pitch for note_head in self])
-        def fset(self, pitch_tokens):
-            self.note_heads = pitch_tokens
-        return property(**locals())
-
     @property
     def sounding_pitches(self):
         r"""Read-only sounding pitches::
@@ -223,6 +201,28 @@ class Chord(_Leaf):
             sounding_pitches = [pitchtools.transpose_pitch_carrier_by_melodic_interval(pitch, t_n)
                 for pitch in self.written_pitches]
             return tuple(sounding_pitches)
+
+    @apply
+    def written_pitches():
+        def fget(self):
+            '''Get read-only tuple of pitches in chord::
+
+                abjad> chord = Chord([7, 12, 16], (1, 4))
+                abjad> chord.written_pitches
+                (NamedChromaticPitch("g'"), NamedChromaticPitch("c''"), NamedChromaticPitch("e''"))
+
+            Set chord pitches from any iterable::
+
+                abjad> chord = Chord([7, 12, 16], (1, 4))
+                abjad> chord.written_pitches = [0, 2, 6]
+                abjad> chord
+                Chord("<c' d' fs'>4")
+
+            '''
+            return tuple([note_head.written_pitch for note_head in self])
+        def fset(self, pitch_tokens):
+            self.note_heads = pitch_tokens
+        return property(**locals())
 
     ### PUBLIC METHODS ### 
 

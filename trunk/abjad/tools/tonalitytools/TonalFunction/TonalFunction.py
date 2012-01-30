@@ -147,6 +147,34 @@ class TonalFunction(_Immutable):
 
     ### PRIVATE METHODS ###
 
+    def _get_quality_name(self, uppercase, quality_string, extent):
+        if quality_string == 'o':
+            return 'diminished'
+        elif quality_string == '@':
+            return 'half diminished'
+        elif quality_string == '+':
+            return 'augmented'
+        elif quality_string == 'M':
+            return 'major'
+        elif quality_string == 'm':
+            return 'minor'
+        elif extent == 5:
+            if quality_string == '' and uppercase:
+                return 'major'
+            elif quality_string == '' and not uppercase:
+                return 'minor'
+            else:
+                raise ValueError
+        elif extent == 7:
+            if quality_string == '' and uppercase:
+                return 'dominant'
+            elif quality_string == '' and not uppercase:
+                return 'minor'
+            else:
+                raise ValueError
+        else:
+            raise ValueError
+
     def _init_by_reference(self, tonal_function):
         args = (tonal_function.scale_degree, tonal_function.quality,
             tonal_function.extent, tonal_function.inversion)
@@ -202,34 +230,6 @@ class TonalFunction(_Immutable):
         #self._suspension = SuspensionIndicator(suspension)
         suspension = SuspensionIndicator(suspension)
         return scale_degree, quality, extent, inversion, suspension
-
-    def _get_quality_name(self, uppercase, quality_string, extent):
-        if quality_string == 'o':
-            return 'diminished'
-        elif quality_string == '@':
-            return 'half diminished'
-        elif quality_string == '+':
-            return 'augmented'
-        elif quality_string == 'M':
-            return 'major'
-        elif quality_string == 'm':
-            return 'minor'
-        elif extent == 5:
-            if quality_string == '' and uppercase:
-                return 'major'
-            elif quality_string == '' and not uppercase:
-                return 'minor'
-            else:
-                raise ValueError
-        elif extent == 7:
-            if quality_string == '' and uppercase:
-                return 'dominant'
-            elif quality_string == '' and not uppercase:
-                return 'minor'
-            else:
-                raise ValueError
-        else:
-            raise ValueError
 
     ### PUBLIC ATTRIBUTES ###
 

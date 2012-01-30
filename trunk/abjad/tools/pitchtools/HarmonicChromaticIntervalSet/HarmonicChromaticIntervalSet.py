@@ -40,11 +40,9 @@ class HarmonicChromaticIntervalSet(_IntervalSet):
     ### PUBLIC ATTRIBUTES ###
 
     @property
-    #def intervals(self):
-    def harmonic_chromatic_intervals(self):
-        return set(self)
-
-    @property
-    #def numbers(self):
     def harmonic_chromatic_interval_numbers(self):
         return set([interval.number for interval in self])
+
+    @property
+    def harmonic_chromatic_intervals(self):
+        return set(self)

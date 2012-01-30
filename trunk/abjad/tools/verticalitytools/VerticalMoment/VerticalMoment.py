@@ -168,17 +168,6 @@ class VerticalMoment(_Immutable):
         return next_vertical_moment
 
     @property
-    def notes(self):
-        '''Read-only tuple of zero or more notes
-        at vertical moment.'''
-        result = []
-        for component in self.components:
-            if isinstance(component, Note):
-                result.append(component)
-        result = tuple(result)
-        return result
-
-    @property
     def next_vertical_moment(self):
         '''Read-only reference to next vertical moment forward in time.'''
         from abjad.tools import componenttools
@@ -191,6 +180,17 @@ class VerticalMoment(_Immutable):
         next_vertical_moment = verticalitytools.get_vertical_moment_starting_with_component(
             next_leaf)
         return next_vertical_moment
+
+    @property
+    def notes(self):
+        '''Read-only tuple of zero or more notes
+        at vertical moment.'''
+        result = []
+        for component in self.components:
+            if isinstance(component, Note):
+                result.append(component)
+        result = tuple(result)
+        return result
 
     @property
     def overlap_components(self):

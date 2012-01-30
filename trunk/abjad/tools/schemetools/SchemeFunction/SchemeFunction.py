@@ -20,12 +20,12 @@ class SchemeFunction(_StrictComparator, _Immutable):
             object.__setattr__(self, 'args', [])
         return self
 
+    ### OVERLOADS ###
+
     def __getnewargs__(self):
         newargs = [self.name]
         newargs.extend(self.args)
         return tuple(newargs)
-
-    ### OVERLOADS ###
 
     def __repr__(self):
         return '%s(%s)' % (type(self).__name__, self._repr_contents_string)

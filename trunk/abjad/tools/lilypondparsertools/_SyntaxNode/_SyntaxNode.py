@@ -11,14 +11,14 @@ class _SyntaxNode(object):
 
     ### OVERRIDES ###
 
-    def __len__(self):
-        if isinstance(self.value, (list, tuple)):
-            return len(self.value)
-        raise Exception
-
     def __getitem__(self, item):
         if isinstance(self.value, (list, tuple)):
             return self.value[item]
+        raise Exception
+
+    def __len__(self):
+        if isinstance(self.value, (list, tuple)):
+            return len(self.value)
         raise Exception
 
     def __repr__(self):

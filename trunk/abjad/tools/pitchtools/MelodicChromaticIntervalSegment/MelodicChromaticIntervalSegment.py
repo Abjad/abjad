@@ -39,13 +39,13 @@ class MelodicChromaticIntervalSegment(_IntervalSegment):
         return pitchtools.MelodicChromaticIntervalClassSegment(self)
 
     @property
-    def melodic_chromatic_interval_numbers(self):
-        return tuple([mci.number for mci in self])
-
-    @property
     def melodic_chromatic_interval_class_vector(self):
         from abjad.tools import pitchtools
         return pitchtools.MelodicChromaticIntervalClassVector(self)
+
+    @property
+    def melodic_chromatic_interval_numbers(self):
+        return tuple([mci.number for mci in self])
 
     @property
     def slope(self):

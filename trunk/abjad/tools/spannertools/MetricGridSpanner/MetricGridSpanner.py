@@ -180,6 +180,15 @@ class MetricGridSpanner(Spanner):
 
     ### PUBLIC METHODS ###
 
+    def split_on_bar(self):
+        '''Temporarily unavailable.
+        '''
+        from abjad.tools import componenttools
+        leaves = [leaf for leaf in self.leaves if self.splitting_condition(leaf)]
+        componenttools.split_components_cyclically_by_prolated_durations_and_do_not_fracture_crossing_spanners(
+            leaves, [x[0].duration for x in self.meters], tie_after = True)
+        #self._fuse_tied_leaves_within_measures()
+
     def splitting_condition(self, leaf):
         r'''User-definable boolean function to determine whether leaf should be split::
 
@@ -221,12 +230,3 @@ class MetricGridSpanner(Spanner):
         Function defaults to return true.
         '''
         return True
-
-    def split_on_bar(self):
-        '''Temporarily unavailable.
-        '''
-        from abjad.tools import componenttools
-        leaves = [leaf for leaf in self.leaves if self.splitting_condition(leaf)]
-        componenttools.split_components_cyclically_by_prolated_durations_and_do_not_fracture_crossing_spanners(
-            leaves, [x[0].duration for x in self.meters], tie_after = True)
-        #self._fuse_tied_leaves_within_measures()

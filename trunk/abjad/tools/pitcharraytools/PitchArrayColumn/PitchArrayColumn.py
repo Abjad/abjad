@@ -123,17 +123,16 @@ class PitchArrayColumn(_StrictComparator):
         return False
 
     @property
-    def _start_cells(self):
-        column_index = self.column_index
-        return self._cells_starting_at_index(column_index)
-
-    @property
     def _start_cell_conditional_pitch_strings(self):
         result = [
             cell._conditional_pitch_string for cell in self._start_cells]
         result = tuple(result)
         return result
 
+    @property
+    def _start_cells(self):
+        column_index = self.column_index
+        return self._cells_starting_at_index(column_index)
 
     ### PRIVATE METHODS ###
 

@@ -116,6 +116,20 @@ class LilyPondFile(list):
         return result
 
     @property
+    def _formatted_file_initial_scheme_settings(self):
+        result = []
+        default_paper_size = self.default_paper_size
+        if default_paper_size is not None:
+            dimension, orientation = default_paper_size
+            result.append("#(set-default-paper-size \"%s\" '%s)" % (dimension, orientation))
+        global_staff_size = self.global_staff_size
+        if global_staff_size is not None:
+            result.append('#(set-global-staff-size %s)' % global_staff_size)
+        if result:
+            result = ['\n'.join(result)]
+        return result
+
+    @property
     def _formatted_file_initial_system_comments(self):
         result = []
         for x in self.file_initial_system_comments:
@@ -137,20 +151,6 @@ class LilyPondFile(list):
                 result.append(r'\include "%s"' % file_initial_include)
             else:
                 result.append(file_initial_include.format)
-        if result:
-            result = ['\n'.join(result)]
-        return result
-
-    @property
-    def _formatted_file_initial_scheme_settings(self):
-        result = []
-        default_paper_size = self.default_paper_size
-        if default_paper_size is not None:
-            dimension, orientation = default_paper_size
-            result.append("#(set-default-paper-size \"%s\" '%s)" % (dimension, orientation))
-        global_staff_size = self.global_staff_size
-        if global_staff_size is not None:
-            result.append('#(set-global-staff-size %s)' % global_staff_size)
         if result:
             result = ['\n'.join(result)]
         return result

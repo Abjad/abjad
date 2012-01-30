@@ -58,11 +58,9 @@ class MelodicDiatonicIntervalSet(_IntervalSet):
         return pitchtools.MelodicChromaticIntervalSet(self)
 
     @property
-    #def intervals(self):
-    def melodic_diatonic_intervals(self):
-        return set(self)
-
-    @property
-    #def numbers(self):
     def melodic_diatonic_interval_numbers(self):
         return set([interval.number for interval in self])
+
+    @property
+    def melodic_diatonic_intervals(self):
+        return set(self)

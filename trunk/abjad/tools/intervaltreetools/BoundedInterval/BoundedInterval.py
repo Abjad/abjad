@@ -90,18 +90,18 @@ class BoundedInterval(dict, _Immutable):
         else:
             return interval.high - self.low
 
-    def is_container_of_interval(self, interval):
-        '''True if interval contains `interval`.'''
-        assert isinstance(interval, BoundedInterval)
-        if self.low <= interval.low and interval.high <= self.high:
-            return True
-        else:
-            return False
-
     def is_contained_by_interval(self, interval):
         '''True if interval is contained by `interval`.'''
         assert isinstance(interval, BoundedInterval)
         if interval.low <= self.low and self.high <= interval.high:
+            return True
+        else:
+            return False
+
+    def is_container_of_interval(self, interval):
+        '''True if interval contains `interval`.'''
+        assert isinstance(interval, BoundedInterval)
+        if self.low <= interval.low and interval.high <= self.high:
             return True
         else:
             return False

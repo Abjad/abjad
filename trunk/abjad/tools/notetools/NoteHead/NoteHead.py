@@ -105,6 +105,20 @@ class NoteHead(_UnaryComparator):
         '''
         return self.written_pitch
 
+    @property
+    def tweak(self):
+        '''Read-only LilyPond tweak reservoir::
+
+            abjad> note_head = notetools.NoteHead("cs''")
+            abjad> note_head.tweak
+            LilyPondTweakReservoir()
+
+        Return LilyPond tweak reservoir.
+        '''
+        if not hasattr(self, '_tweak'):
+            self._tweak = LilyPondTweakReservoir()
+        return self._tweak
+
     @apply
     def written_pitch():
         def fget(self):
@@ -129,17 +143,3 @@ class NoteHead(_UnaryComparator):
             written_pitch = pitchtools.NamedChromaticPitch(arg)
             self._written_pitch = written_pitch
         return property(**locals())
-
-    @property
-    def tweak(self):
-        '''Read-only LilyPond tweak reservoir::
-
-            abjad> note_head = notetools.NoteHead("cs''")
-            abjad> note_head.tweak
-            LilyPondTweakReservoir()
-
-        Return LilyPond tweak reservoir.
-        '''
-        if not hasattr(self, '_tweak'):
-            self._tweak = LilyPondTweakReservoir()
-        return self._tweak

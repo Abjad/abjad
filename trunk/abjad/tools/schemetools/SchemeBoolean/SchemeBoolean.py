@@ -18,15 +18,15 @@ class SchemeBoolean(_Immutable):
         object.__setattr__(self, 'arg', bool(arg))
         return self
 
-    def __getnewargs__(self):
-        return (self.arg, )
-
     ### OVERLOADS ###
 
     def __eq__(self, arg):
         if isinstance(arg, SchemeBoolean):
             return arg.arg == self.arg
         return False
+
+    def __getnewargs__(self):
+        return (self.arg, )
 
     def __repr__(self):
         return "%s(%r)" % (type(self).__name__, self.arg)

@@ -62,10 +62,7 @@ class QGrid(_Immutable):
         object.__setattr__(self, '_offsets', self._expand_offsets())
         return self
 
-    def __getnewargs__(self):
-        return self._definition, self._next
-
-    # OVERRIDES #
+    ### OVERRIDES ###
 
     def __eq__(self, other):
         if type(self) == type(other) and \
@@ -85,6 +82,9 @@ class QGrid(_Immutable):
         for i, x in enumerate(self):
             if i == item:
                 return x
+
+    def __getnewargs__(self):
+        return self._definition, self._next
 
     def __iter__(self):
         seq = flatten_sequence(self._definition, klasses=list)
@@ -232,6 +232,33 @@ class QGrid(_Immutable):
 
     ### PUBLIC METHODS ###
 
+    def find_divisible_indices(self, points):
+        '''Given a list of numbers 0 <= n <= 1, return a list of indices in self
+        which countain those points, as though they were segments.
+
+        ::
+
+            abjad> from abjad.tools.quantizationtools import QGrid
+            abjad> q = QGrid([0, [0, 0]], 0)
+            abjad> q.offsets
+            (Offset(0, 1), Offset(1, 2), Offset(3, 4), Offset(1, 1))
+            abjad> points = [0.1, 0.9]
+            abjad> q.find_divisible_indices(points)
+            [0, 2]
+
+        Returns a list.
+        '''
+
+        assert all_are_numbers(points)
+        points = filter(lambda x: 0 <= x <= 1, points)
+        offsets = self.offsets
+        indices = []
+        for i in range(len(offsets) - 1):
+            filtered = filter(lambda x: offsets[i] < x < offsets[i + 1], points)
+            if filtered:
+                indices.append(i)
+        return indices
+
     def find_parentage_of_index(self, index):
         '''Return a tuple of the lengths of each container containing `index`,
         from the topmost to the bottommost.
@@ -275,33 +302,6 @@ class QGrid(_Immutable):
                     count += 1
             return count, results
         return tuple(recurse(self.definition, index, 0)[1])
-
-    def find_divisible_indices(self, points):
-        '''Given a list of numbers 0 <= n <= 1, return a list of indices in self
-        which countain those points, as though they were segments.
-
-        ::
-
-            abjad> from abjad.tools.quantizationtools import QGrid
-            abjad> q = QGrid([0, [0, 0]], 0)
-            abjad> q.offsets
-            (Offset(0, 1), Offset(1, 2), Offset(3, 4), Offset(1, 1))
-            abjad> points = [0.1, 0.9]
-            abjad> q.find_divisible_indices(points)
-            [0, 2]
-
-        Returns a list.
-        '''
-
-        assert all_are_numbers(points)
-        points = filter(lambda x: 0 <= x <= 1, points)
-        offsets = self.offsets
-        indices = []
-        for i in range(len(offsets) - 1):
-            filtered = filter(lambda x: offsets[i] < x < offsets[i + 1], points)
-            if filtered:
-                indices.append(i)
-        return indices
 
     def format_for_beatspan(self, beatspan = Fraction(1, 4)):
         '''Return an Abjad container, whose structure mirrors the

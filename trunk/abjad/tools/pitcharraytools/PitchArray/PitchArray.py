@@ -111,19 +111,19 @@ class PitchArray(_StrictComparator):
         result = ' '.join(result)
         return result
 
-    def _init_by_counts(self, row_count, column_count):
-        for i in range(row_count):
-            row = PitchArrayRow([])
-            for j in range(column_count):
-                cell = PitchArrayCell()
-                row.append(cell)
-            self.append_row(row)
-
     def _init_by_cell_token_lists(self, cell_token_lists):
         for cell_token_list in cell_token_lists:
             row = PitchArrayRow([])
             for cell_token in cell_token_list:
                 cell = self._parse_cell_token(cell_token)
+                row.append(cell)
+            self.append_row(row)
+
+    def _init_by_counts(self, row_count, column_count):
+        for i in range(row_count):
+            row = PitchArrayRow([])
+            for j in range(column_count):
+                cell = PitchArrayCell()
                 row.append(cell)
             self.append_row(row)
 

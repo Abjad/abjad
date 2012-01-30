@@ -51,9 +51,6 @@ class Accidental(_StrictComparator, _Immutable):
         object.__setattr__(self, '_symbolic_accidental_string', _symbolic_accidental_string)
         return self
 
-    def __getnewargs__(self):
-        return (self.alphabetic_accidental_abbreviation,)
-
     ### OVERLOADS ###
 
     def __add__(self, arg):
@@ -70,6 +67,9 @@ class Accidental(_StrictComparator, _Immutable):
 
     def __ge__(self, arg):
         return self.semitones >= arg.semitones
+
+    def __getnewargs__(self):
+        return (self.alphabetic_accidental_abbreviation,)
 
     def __gt__(self, arg):
         return self.semitones > arg.semitones

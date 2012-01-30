@@ -140,16 +140,6 @@ class _RedBlackTree(object):
         if not y.red:
             self._delete_fixup(x)
 
-    def _find_maximum(self, node):
-        while node.right != self._sentinel:
-            node = node.right
-        return node
-
-    def _find_minimum(self, node):
-        while node.left != self._sentinel:
-            node = node.left
-        return node
-
     def _find_by_key(self, key):
         node = self._root
         while node != self._sentinel:
@@ -160,6 +150,16 @@ class _RedBlackTree(object):
             else:
                 node = node.right
         return None
+
+    def _find_maximum(self, node):
+        while node.right != self._sentinel:
+            node = node.right
+        return node
+
+    def _find_minimum(self, node):
+        while node.left != self._sentinel:
+            node = node.left
+        return node
 
     def _find_predecessor(self, node):
         if node.left != self._sentinel:

@@ -79,15 +79,7 @@ class Mark(object):
         tools_package = self.__module__.split('.')[-3]
         return '{}.{}'.format(tools_package, repr(self))
 
-    # MANGLED METHODS #
-
-    # method must NOT be preceeded by __ so that child ContextMark objects can call it
-    def _bind_start_component(self, start_component):
-        #print 'binding MARK to start component ...'
-        assert isinstance(start_component, _Component)
-        self.__unbind_start_component()
-        start_component._marks_for_which_component_functions_as_start_component.append(self)
-        self._start_component = start_component
+    ### MANGLED METHODS ###
 
     def __unbind_start_component(self):
         start_component = self._start_component
@@ -97,6 +89,14 @@ class Mark(object):
             except ValueError:
                 pass
         self._start_component = None
+
+    # method must NOT be preceeded by __ so that child ContextMark objects can call it
+    def _bind_start_component(self, start_component):
+        #print 'binding MARK to start component ...'
+        assert isinstance(start_component, _Component)
+        self.__unbind_start_component()
+        start_component._marks_for_which_component_functions_as_start_component.append(self)
+        self._start_component = start_component
 
     ### PUBLIC ATTRIBUTES ###
 

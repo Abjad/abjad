@@ -51,13 +51,6 @@ class ResidueClass(_BaseResidueClass, _Immutable):
         else:
             return False
 
-    def __gt__(self, expr):
-        if not isinstance(expr, ResidueClass):
-            raise TypeError('must be residue class.')
-        if self.modulo == expr.modulo:
-            return expr.residue < self.residue
-        return expr.modulo < self.modulo
-
     def __ge__(self, expr):
         if not isinstance(expr, ResidueClass):
             raise TypeError('must be residue class.')
@@ -65,12 +58,12 @@ class ResidueClass(_BaseResidueClass, _Immutable):
             return expr.residue <= self.residue
         return expr.modulo <= self.modulo
 
-    def __lt__(self, expr):
+    def __gt__(self, expr):
         if not isinstance(expr, ResidueClass):
             raise TypeError('must be residue class.')
         if self.modulo == expr.modulo:
-            return self.residue < expr.residue
-        return self.modulo < expr.modulo
+            return expr.residue < self.residue
+        return expr.modulo < self.modulo
 
     def __le__(self, expr):
         if not isinstance(expr, ResidueClass):
@@ -79,6 +72,13 @@ class ResidueClass(_BaseResidueClass, _Immutable):
             return self.residue <= expr.residue
         return self.modulo <= expr.modulo
 
+    def __lt__(self, expr):
+        if not isinstance(expr, ResidueClass):
+            raise TypeError('must be residue class.')
+        if self.modulo == expr.modulo:
+            return self.residue < expr.residue
+        return self.modulo < expr.modulo
+
     def __ne__(self, expr):
         return not self == expr
 
@@ -86,14 +86,6 @@ class ResidueClass(_BaseResidueClass, _Immutable):
         return '%s(%i, %i)' % (type(self).__name__, self.modulo, self.residue)
 
     ### PRIVATE METHODS ###
-
-    def _init_by_rc_instance(self, rc):
-        if not isinstance(rc, ResidueClass):
-            raise TypeError('must be rc instance.')
-        #self.modulo = rc.modulo # period
-        #self.residue = rc.residue # phase
-        object.__setattr__(self, '_modulo', rc.modulo) # period
-        object.__setattr__(self, '_residue', rc.residue) # phase
 
     def _init_by_modulo_and_residue(self, modulo, residue):
         if not 0 < modulo:
@@ -104,6 +96,14 @@ class ResidueClass(_BaseResidueClass, _Immutable):
         #self.residue = residue # phase
         object.__setattr__(self, '_modulo', modulo) # period
         object.__setattr__(self, '_residue', residue) # phase
+
+    def _init_by_rc_instance(self, rc):
+        if not isinstance(rc, ResidueClass):
+            raise TypeError('must be rc instance.')
+        #self.modulo = rc.modulo # period
+        #self.residue = rc.residue # phase
+        object.__setattr__(self, '_modulo', rc.modulo) # period
+        object.__setattr__(self, '_residue', rc.residue) # phase
 
     ### PUBLIC ATTRIBUTES ###
 
