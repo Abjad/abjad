@@ -22,12 +22,26 @@ def _main():
                     found_def_keyword = True
                     method_definition_lines.append(line)
                 if line.startswith('    ### '):
-                    if not method_definition_lines == list(sorted(method_definition_lines)):
+                    sorted_method_definition_lines = list(sorted(method_definition_lines))
+                    if not method_definition_lines == sorted_method_definition_lines:
                         nonalphabetized_module_names.append(full_file_name)
-                        continue
+                        for a, b in zip(method_definition_lines, sorted_method_definition_lines):
+                            if a != b:
+                                print a, b
+                                break
+                        method_definition_lines = []
+                        break
                     method_definition_lines = []
                 if found_def_keyword and not found_class_keyword:
                     continue
+            else:
+                sorted_method_definition_lines = list(sorted(method_definition_lines))
+                if not method_definition_lines == list(sorted(method_definition_lines)):
+                    nonalphabetized_module_names.append(full_file_name)
+                    for a, b in zip(method_definition_lines, sorted_method_definition_lines):
+                        if a != b:
+                            print a, b
+                            break
             file_pointer.close()
    if nonalphabetized_module_names:
       print nonalphabetized_module_names
