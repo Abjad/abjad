@@ -6,7 +6,7 @@ from ply.yacc import (
     format_stack_entry
 )
 
-def _parse(self, input=None, lexer=None, debug=None, tracking=0, tokenfunc=None):
+def _parse_debug(self, input=None, lexer=None, debug=None, tracking=0, tokenfunc=None):
     self.lookahead = None            # Current lookahead symbol
     actions = self.action            # Local reference to action table (to avoid lookup on self.)
     goto    = self.goto              # Local reference to goto table (to avoid lookup on self.)
@@ -15,7 +15,7 @@ def _parse(self, input=None, lexer=None, debug=None, tracking=0, tokenfunc=None)
     errorcount = 0                   # Used during error recovery 
 
     # --! DEBUG
-    # debug.info("PLY: PARSE DEBUG START")
+    debug.info("PLY: PARSE DEBUG START")
     # --! DEBUG
 
     # Set up the lexer and parser objects on pslice
@@ -57,8 +57,8 @@ def _parse(self, input=None, lexer=None, debug=None, tracking=0, tokenfunc=None)
         # the next token off of the lookaheadstack or from the lexer
 
         # --! DEBUG
-        # debug.debug('')
-        # debug.debug('State  : %s', state)
+        debug.debug('')
+        debug.debug('State  : %s', state)
         # --! DEBUG
 
         if not self.lookahead:
@@ -71,8 +71,8 @@ def _parse(self, input=None, lexer=None, debug=None, tracking=0, tokenfunc=None)
                 self.lookahead.type = "$end"
 
         # --! DEBUG
-        # debug.debug('Stack  : %s',
-        #             ("%s . %s" % (" ".join([xx.type for xx in symstack][1:]), str(self.lookahead))).lstrip())
+        debug.debug('Stack  : %s',
+                    ("%s . %s" % (" ".join([xx.type for xx in symstack][1:]), str(self.lookahead))).lstrip())
         # --! DEBUG
 
         # Check the action table
@@ -92,7 +92,7 @@ def _parse(self, input=None, lexer=None, debug=None, tracking=0, tokenfunc=None)
                 state = t
                 
                 # --! DEBUG
-                # debug.debug("Action : Shift and goto state %s", t)
+                debug.debug("Action : Shift and goto state %s", t)
                 # --! DEBUG
 
                 symstack.append(self.lookahead)
@@ -114,11 +114,10 @@ def _parse(self, input=None, lexer=None, debug=None, tracking=0, tokenfunc=None)
                 sym.value = None
 
                 # --! DEBUG
-                # if plen:
-                #     debug.info("Action : Reduce rule [%s] with %s and goto state %d", p.str, "["+",".join([format_stack_entry(_v.value) for _v in symstack[-plen:]])+"]",-t)
-                # else:
-                #     debug.info("Action : Reduce rule [%s] with %s and goto state %d", p.str, [],-t)
-                #    
+                if plen:
+                    debug.info("Action : Reduce rule [%s] with %s and goto state %d", p.str, "["+",".join([format_stack_entry(_v.value) for _v in symstack[-plen:]])+"]",-t)
+                else:
+                    debug.info("Action : Reduce rule [%s] with %s and goto state %d", p.str, [],-t)
                 # --! DEBUG
 
                 if plen:
@@ -149,7 +148,7 @@ def _parse(self, input=None, lexer=None, debug=None, tracking=0, tokenfunc=None)
                         del statestack[-plen:]
                         p.callable(pslice)
                         # --! DEBUG
-                        # debug.info("Result : %s", format_result(pslice[0]))
+                        debug.info("Result : %s", format_result(pslice[0]))
                         # --! DEBUG
                         symstack.append(sym)
                         state = goto[statestack[-1]][pname]
@@ -188,7 +187,7 @@ def _parse(self, input=None, lexer=None, debug=None, tracking=0, tokenfunc=None)
                         # Call the grammar rule with our special slice object
                         p.callable(pslice)
                         # --! DEBUG
-                        # debug.info("Result : %s", format_result(pslice[0]))
+                        debug.info("Result : %s", format_result(pslice[0]))
                         # --! DEBUG
                         symstack.append(sym)
                         state = goto[statestack[-1]][pname]
@@ -210,16 +209,16 @@ def _parse(self, input=None, lexer=None, debug=None, tracking=0, tokenfunc=None)
                 n = symstack[-1]
                 result = getattr(n,"value",None)
                 # --! DEBUG
-                # debug.info("Done   : Returning %s", format_result(result))
-                # debug.info("PLY: PARSE DEBUG END")
+                debug.info("Done   : Returning %s", format_result(result))
+                debug.info("PLY: PARSE DEBUG END")
                 # --! DEBUG
                 return result
 
         if t == None:
 
             # --! DEBUG
-            # debug.error('Error  : %s',
-            #             ("%s . %s" % (" ".join([xx.type for xx in symstack][1:]), str(self.lookahead))).lstrip())
+            debug.error('Error  : %s',
+                        ("%s . %s" % (" ".join([xx.type for xx in symstack][1:]), str(self.lookahead))).lstrip())
             # --! DEBUG
 
             # We have some kind of parsing error here.  To handle

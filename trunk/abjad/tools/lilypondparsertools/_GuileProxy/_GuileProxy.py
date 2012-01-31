@@ -14,10 +14,8 @@ class _GuileProxy(object):
 
     def __call__(self, function_name, args):
         signature = self.client._current_module[function_name[1:]]['signature'][1:]
-        print '_GuileProxy: %s, %s, %s' % (function_name, signature, args)
         if hasattr(self, function_name[1:]):
             result = getattr(self, function_name[1:])(*args)
-            # print result
             return result
         raise Exception("LilyPondParser can't emulate music function %s." % function_name)
 
@@ -45,7 +43,7 @@ class _GuileProxy(object):
 
 
     def breathe(self):
-        return marktools.LilyPondCommandMark('breathe', 'before')
+        return marktools.LilyPondCommandMark('breathe', 'after')
 
 
     def clef(self, string):
@@ -64,7 +62,7 @@ class _GuileProxy(object):
 
     def language(self, string):
         if string in self.client._language_pitch_names:
-            self.client._parser_variables['language'] = string
+            self.client._pitch_names = self._client._language_pitch_names[string]
 
 
     def makeClusters(self, music):
@@ -75,6 +73,10 @@ class _GuileProxy(object):
         if label is None:
             label = '\default'
         return marktools.LilyPondCommandMark('mark %s' % label)
+
+
+    def oneVoice(self):
+        return marktools.LilyPondCommandMark('oneVoice')
 
 
     # pitchedTrill
@@ -115,10 +117,16 @@ class _GuileProxy(object):
         
         pitch = recurse(music, pitch)
 
-        annotation = self._make_unrelativable(music)
-        self.client._annotations.append(annotation)
+        self._make_unrelativable(music)
 
         return music
+
+
+    def skip(self, duration):
+        leaf = skiptools.Skip(duration.duration)
+        if duration.multiplier is not None:
+            leaf.duration_multiplier = duration.multiplier
+        return leaf
 
 
     def slashedGrace(self, music):
@@ -128,18 +136,19 @@ class _GuileProxy(object):
 
 
     def time(self, number_list, fraction):
-        return contexttools.TimeSignatureMark(fraction)
+        n, d = fraction.numerator, fraction.denominator
+        return contexttools.TimeSignatureMark((n, d))
 
 
     def times(self, fraction, music):
+        n, d  = fraction.numerator, fraction.denominator
         if not isinstance(music, _Context):
-            return tuplettools.Tuplet(fraction, music[:])
-        return tuplettools.Tuplet(fraction, [music])
+            return tuplettools.Tuplet((n, d), music[:])
+        return tuplettools.Tuplet((n, d), [music])
 
 
     def transpose(self, from_pitch, to_pitch, music):
-        annotation = self._make_unrelativable(music)
-        self.client._annotations.append(annotation)
+        self._make_unrelativable(music)
 
         interval = from_pitch - to_pitch
 
@@ -167,7 +176,23 @@ class _GuileProxy(object):
 
     # tweak
 
-    
+
+    def voiceOne(self):
+        return marktools.LilyPondCommandMark('voiceOne')
+
+
+    def voiceFour(self):    
+        return marktools.LilyPondCommandMark('voiceTwo')
+
+
+    def voiceThree(self):
+        return marktools.LilyPondCommandMark('voiceThree')
+
+
+    def voiceTwo(self):
+        return marktools.LilyPondCommandMark('voiceFour')
+
+
     ### HELPER FUNCTIONS ###
 
 
@@ -196,7 +221,7 @@ class _GuileProxy(object):
 
     def _make_unrelativable(self, music):
         if not self._is_unrelativable(music):
-            return marktools.Annotation('UnrelativableMusic')(music)
+            marktools.Annotation('UnrelativableMusic')(music)
         
 
     def _to_relative_octave(self, pitch, reference):

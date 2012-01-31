@@ -1,4 +1,7 @@
 class _LilyPondDuration(object):
-    def __init__(self, duration, multiplier = None)
+
+    __slots__ = ('duration', 'multiplier')
+
+    def __init__(self, duration, multiplier = None):
         self.duration = duration
-        self.multiplier = multiplier 
+        self.multiplier = multiplier

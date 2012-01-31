@@ -1,7 +1,12 @@
-from fractions import Fraction
+import copy
+
 from ply.lex import TOKEN
 from ply.lex import LexToken
-from abjad.tools.durationtools import Duration
+
+from abjad.tools.lilypondparsertools._LilyPondDuration._LilyPondDuration \
+    import _LilyPondDuration
+from abjad.tools.lilypondparsertools._LilyPondFraction._LilyPondFraction \
+    import _LilyPondFraction
 
 
 class _LilyPondLexicalDefinition(object):
@@ -64,40 +69,40 @@ class _LilyPondLexicalDefinition(object):
 
     keywords = {
         # parser.yy:182, lily-lexer.cc:39
-        '\\accepts': 'ACCEPTS',
-        '\\addlyrics': 'ADDLYRICS',
-        '\\alias': 'ALIAS',
-        '\\alternative': 'ALTERNATIVE',
-        '\\book': 'BOOK',
-        '\\bookpart': 'BOOKPART',
+#        '\\accepts': 'ACCEPTS',
+#        '\\addlyrics': 'ADDLYRICS',
+#        '\\alias': 'ALIAS',
+#        '\\alternative': 'ALTERNATIVE',
+#        '\\book': 'BOOK',
+#        '\\bookpart': 'BOOKPART',
         '\\change': 'CHANGE',
-        '\\chordmode': 'CHORDMODE',
-        '\\chords': 'CHORDS',
-        '\\consists': 'CONSISTS',
+#        '\\chordmode': 'CHORDMODE',
+#        '\\chords': 'CHORDS',
+#        '\\consists': 'CONSISTS',
         '\\context': 'CONTEXT',
         '\\default': 'DEFAULT',
-        '\\defaultchild': 'DEFAULTCHILD',
-        '\\denies': 'DENIES',
-        '\\description': 'DESCRIPTION',
-        '\\drummode': 'DRUMMODE',
-        '\\drums': 'DRUMS',
-        '\\figuremode': 'FIGUREMODE',
-        '\\figures': 'FIGURES',
-        '\\header': 'HEADER',
-        '\\version-error': 'INVALID',
-        '\\layout': 'LAYOUT',
-        '\\lyricmode': 'LYRICMODE',
-        '\\lyrics': 'LYRICS',
-        '\\lyricsto': 'LYRICSTO',
+#        '\\defaultchild': 'DEFAULTCHILD',
+#        '\\denies': 'DENIES',
+#        '\\description': 'DESCRIPTION',
+#        '\\drummode': 'DRUMMODE',
+#        '\\drums': 'DRUMS',
+#        '\\figuremode': 'FIGUREMODE',
+#        '\\figures': 'FIGURES',
+#        '\\header': 'HEADER',
+#        '\\version-error': 'INVALID',
+#        '\\layout': 'LAYOUT',
+#        '\\lyricmode': 'LYRICMODE',
+#        '\\lyrics': 'LYRICS',
+#        '\\lyricsto': 'LYRICSTO',
         '\\markup': 'MARKUP',
         '\\markuplist': 'MARKUPLIST',
-        '\\midi': 'MIDI',
-        '\\name': 'NAME',
-        '\\notemode': 'NOTEMODE',
+#        '\\midi': 'MIDI',
+#        '\\name': 'NAME',
+#        '\\notemode': 'NOTEMODE',
         '\\override': 'OVERRIDE',
-        '\\paper': 'PAPER',
-        '\\remove': 'REMOVE',
-        '\\repeat': 'REPEAT',
+#        '\\paper': 'PAPER',
+#        '\\remove': 'REMOVE',
+#        '\\repeat': 'REPEAT',
         '\\rest': 'REST',
         '\\revert': 'REVERT',
         '\\score': 'SCORE',
@@ -105,7 +110,7 @@ class _LilyPondLexicalDefinition(object):
         '\\set': 'SET',
         '\\simultaneous': 'SIMULTANEOUS',
         '\\tempo': 'TEMPO',
-        '\\type': 'TYPE',
+#        '\\type': 'TYPE',
         '\\unset': 'UNSET',
         '\\with': 'WITH',
 
@@ -117,34 +122,34 @@ class _LilyPondLexicalDefinition(object):
     }
 
     tokens = [
-        'CHORD_BASS', # "/+"
-        'CHORD_CARET', # "^"
-        'CHORD_COLON', # ":"
-        'CHORD_MINUS', # "-"
-        'CHORD_SLASH', # "/"
+#        'CHORD_BASS', # "/+"
+#        'CHORD_CARET', # "^"
+#        'CHORD_COLON', # ":"
+#        'CHORD_MINUS', # "-"
+#        'CHORD_SLASH', # "/"
         'ANGLE_OPEN', # "<"
         'ANGLE_CLOSE', # ">"
         'DOUBLE_ANGLE_OPEN', # "<<"
         'DOUBLE_ANGLE_CLOSE', # ">>"
         'E_BACKSLASH', # "\\"
         'E_ANGLE_CLOSE', # "\\>"
-        'E_CHAR', # "\\C[haracter]"
+#        'E_CHAR', # "\\C[haracter]"
         'E_CLOSE', # "\\)"
         'E_EXCLAMATION', # "\\!"
         'E_BRACKET_OPEN', # "\\["
         'E_OPEN', # "\\("
         'E_BRACKET_CLOSE', # "\\]"
         'E_ANGLE_OPEN', # "\\<"
-        'E_PLUS', # "\\+"
-        'E_TILDE', # "\\~"
+#        'E_PLUS', # "\\+"
+#        'E_TILDE', # "\\~"
         'EXTENDER', # "__"
 
-        'FIGURE_CLOSE', # "\\>"
-        'FIGURE_OPEN', # "\\<"
-        'FIGURE_SPACE', # "_"
+#        'FIGURE_CLOSE', # "\\>"
+#        'FIGURE_OPEN', # "\\<"
+#        'FIGURE_SPACE', # "_"
         'HYPHEN', # "--"
 
-        'LYRIC_MARKUP',
+#        'LYRIC_MARKUP',
         'MULTI_MEASURE_REST',
 
         'E_UNSIGNED',
@@ -160,22 +165,22 @@ class _LilyPondLexicalDefinition(object):
         'EXPECT_OPTIONAL', # "optional?"
         'EXPECT_NO_MORE_ARGS', #
 
-        'EMBEDDED_LILY', # "#{"
+#        'EMBEDDED_LILY', # "#{"
 
-        'BOOK_IDENTIFIER',
-        'CHORD_MODIFIER',
+#        'BOOK_IDENTIFIER',
+#        'CHORD_MODIFIER',
         'CHORD_REPETITION',
         'CONTEXT_DEF_IDENTIFIER',
         'CONTEXT_MOD_IDENTIFIER',
-        'DRUM_PITCH',
+#        'DRUM_PITCH',
         'PITCH_IDENTIFIER',
         'DURATION_IDENTIFIER',
         'EVENT_IDENTIFIER',
         'EVENT_FUNCTION',
         'FRACTION',
-        'LYRICS_STRING',
-        'LYRIC_ELEMENT',
-        'LYRIC_MARKUP_IDENTIFIER',
+#        'LYRICS_STRING',
+#        'LYRIC_ELEMENT',
+#        'LYRIC_MARKUP_IDENTIFIER',
         'MARKUP_FUNCTION',
         'MARKUP_LIST_FUNCTION',
         'MARKUP_IDENTIFIER',
@@ -184,7 +189,7 @@ class _LilyPondLexicalDefinition(object):
         'MUSIC_IDENTIFIER',
         'NOTENAME_PITCH',
         'NUMBER_IDENTIFIER',
-        'OUTPUT_DEF_IDENTIFIER',
+#        'OUTPUT_DEF_IDENTIFIER',
         'REAL',
         'RESTNAME',
         'SCM_FUNCTION',
@@ -194,10 +199,6 @@ class _LilyPondLexicalDefinition(object):
         'STRING',
         'STRING_IDENTIFIER',
         'TONICNAME_PITCH',
-
-        # for abjad scheme parsing
-        'SCHEME_START',
-
     ] + keywords.values( )
 
     literals = (
@@ -272,9 +273,10 @@ class _LilyPondLexicalDefinition(object):
 
     # lexer.ll:233
     # <INITIAL,chords,lyrics,notes,figures>\\version{WHITE}*
-    @TOKEN('\\version%s*' % WHITE)
     def t_INITIAL_notes_233(self, t):
+        r'\\version[ \n\t\f\r]*'
         t.lexer.push_state('version')
+        pass
 
     # lexer.ll:236
     # <INITIAL,chords,lyrics,notes,figures>\\sourcefilename{WHITE}*
@@ -287,9 +289,7 @@ class _LilyPondLexicalDefinition(object):
     def t_version_242(self, t):
         r'\"[^"]*\"'
         t.lexer.pop_state( )
-        t.type = 'STRING'
-        t.value = '\\version ' + t.value
-        return t
+        pass
 
     # lexer.ll:256
     # <sourcefilename>\"[^"]*\"
@@ -348,17 +348,17 @@ class _LilyPondLexicalDefinition(object):
 
     # lexer.ll:345
     # <chords,notes,figures>{RESTNAME}
-    @TOKEN(RESTNAME)
-    def t_notes_345(self, t):
-        t.type = 'RESTNAME'
-        return t
+#    @TOKEN(RESTNAME)
+#    def t_notes_345(self, t):
+#        t.type = 'RESTNAME'
+#        return t
 
     # lexer.ll:350
     # <chords,notes,figures>R
-    def t_notes_350(self, t):
-        'R'
-        t.type = 'MULTI_MEASURE_REST'
-        return t
+#    def t_notes_350(self, t):
+#        'R'
+#        t.type = 'MULTI_MEASURE_REST'
+#        return t
 
     def t_INITIAL_markup_notes_353_boolean(self, t):
         '\#\#(t|f)'
@@ -377,11 +377,11 @@ class _LilyPondLexicalDefinition(object):
 
     # lexer.ll:353
     # <INITIAL,chords,figures,lyrics,markup,notes>#
-    def t_INITIAL_markup_notes_353(self, t):
-        '\#'
-        t.type = 'SCHEME_START'
-        t.lexer.push_state('INITIAL')
-        return t
+#    def t_INITIAL_markup_notes_353(self, t):
+#        '\#'
+#        t.type = 'SCHEME_START'
+#        t.lexer.push_state('INITIAL')
+#        return t
 
     # lexer.ll:387
     # <INITIAL,notes,lyrics>\<\<
@@ -424,12 +424,15 @@ class _LilyPondLexicalDefinition(object):
     # <notes,figures>{ALPHAWORD}
     @TOKEN(ALPHAWORD)
     def t_notes_417(self, t):
-        language = self.client._parser_variables['language']
-        pitch_names = self.client._language_pitch_names[language]
+        pitch_names = self.client._pitch_names
         if t.value in pitch_names:
             t.type = 'NOTENAME_PITCH'
             t.value = pitch_names[t.value]
-        elif t.value == 'q' and self.client._parser_variables['last_chord']:
+        elif t.value in ['r', 's']:
+            t.type = 'RESTNAME'
+        elif t.value == 'R':
+            t.type = 'MULTI_MEASURE_REST'
+        elif t.value == 'q' and self.client._last_chord:
             t.type = 'CHORD_REPETITION'
         else:
             t.type = 'STRING'
@@ -439,8 +442,7 @@ class _LilyPondLexicalDefinition(object):
     # <notes,figures>{NOTECOMMAND}
     @TOKEN(NOTECOMMAND)
     def t_notes_421(self, t):
-        lookup = self.scan_escaped_word(t)
-        t.type = lookup
+        t.type = self.scan_escaped_word(t)
         return t
 
     # lexer.ll:424
@@ -449,7 +451,7 @@ class _LilyPondLexicalDefinition(object):
     def t_notes_424(self, t):
         t.type = 'FRACTION'
         parts = t.value.split('/')
-        t.value = Fraction(int(parts[0]), int(parts[1]))
+        t.value = _LilyPondFraction(int(parts[0]), int(parts[1]))
         return t
 
     # lexer.ll:428
@@ -755,13 +757,12 @@ class _LilyPondLexicalDefinition(object):
 
     def scan_bare_word(self, t):
         if t.lexer.current_state( ) in ('notes',):
-            language = self.client._parser_variables['language']
-            pitch_names = self.client._language_pitch_names[language]
+            pitch_names = self.client._pitch_names
             if t.value in pitch_names:
                 t.type = 'NOTENAME_PITCH'
-            elif t.value == 'q' and self.client._parser_variables['last_chord']:
+            elif t.value == 'q' and self.client._last_chord:
                 t.type = 'CHORD_REPETITION'
-        return 'STRING'        
+        return 'STRING'
 
 
     def scan_escaped_word(self, t):
@@ -783,7 +784,8 @@ class _LilyPondLexicalDefinition(object):
         # then, check for it in the assignments list 
         # (anything assigned in the input string)
         if t.value[1:] in self.client._assignments:
-            node = self.client._assignments[t.value[1:]]
+
+            lookup = self.client._assignments[t.value[1:]]
 
             identifier_lookup = {
                 'book_block': 'BOOK_IDENTIFIER',
@@ -804,7 +806,9 @@ class _LilyPondLexicalDefinition(object):
                 # 'LYRIC_MARKUP_IDENTIFIER' ?
             }
 
-            return identifier_lookup[node.type]
+            t.value = copy.deepcopy(lookup.value)
+
+            return identifier_lookup[lookup.type]
 
         # then, check for it in the "current_module" dictionary
         # which we've dumped out of LilyPond
@@ -874,8 +878,10 @@ class _LilyPondLexicalDefinition(object):
                 return 'EVENT_IDENTIFIER'
 
         # we also check for other types, to handle \longa, \breve etc.
-        elif isinstance(lookup, Duration):
+        elif isinstance(lookup, _LilyPondDuration):
+            t.value = copy.copy(lookup)
             return 'DURATION_IDENTIFIER'
 
-        # what do we do with events?
+        # else...
+        t.value = copy.copy(lookup)
         return 'SCM_IDENTIFIER'

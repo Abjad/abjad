@@ -14,51 +14,70 @@ from abjad.ly.py.language_pitch_names import language_pitch_names
 from abjad.ly.py.markup_functions import markup_functions
 from abjad.ly.py.markup_functions import markup_list_functions
 from abjad.tools.lilypondparsertools._GuileProxy._GuileProxy import _GuileProxy
-from abjad.tools.lilypondparsertools._LilyPondLexicalDefinition._LilyPondLexicalDefinition \
-    import _LilyPondLexicalDefinition
-from abjad.tools.lilypondparsertools._LilyPondSyntacticalDefinition._LilyPondSyntacticalDefinition \
-    import _LilyPondSyntacticalDefinition
-from abjad.tools.lilypondparsertools._LilyPondEvent._LilyPondEvent \
-    import _LilyPondEvent as Event
-from abjad.tools.lilypondparsertools._SyntaxNode._SyntaxNode \
-    import _SyntaxNode as Node
+from abjad.tools.lilypondparsertools._LilyPondDuration._LilyPondDuration import _LilyPondDuration
+from abjad.tools.lilypondparsertools._LilyPondEvent._LilyPondEvent import _LilyPondEvent
+from abjad.tools.lilypondparsertools._LilyPondLexicalDefinition._LilyPondLexicalDefinition import _LilyPondLexicalDefinition
+from abjad.tools.lilypondparsertools._LilyPondSyntacticalDefinition._LilyPondSyntacticalDefinition import _LilyPondSyntacticalDefinition
+from abjad.tools.lilypondparsertools._SyntaxNode._SyntaxNode import _SyntaxNode as Node
 from abjad.tools.lilypondparsertools._parse import _parse
+from abjad.tools.lilypondparsertools._parse_debug import _parse_debug
 
 
 # apply monkey patch
-yacc.LRParser.parse_monkey_patch = _parse
+yacc.LRParser._monkey_patch_parse = _parse
+yacc.LRParser._monkey_patch_parse_debug = _parse_debug
 
 
 class LilyPondParser(object):
 
 
-    def __init__(self):
-        self._lexdef = _LilyPondLexicalDefinition(self)
-        self._syndef = _LilyPondSyntacticalDefinition(self)
-        self._output_path = os.path.dirname(__file__)
-        self._pickle_path = os.path.join(self._output_path, '_parsetab.pkl')
+    def __init__(self, default_language='english', debug=False):
 
-        logging.basicConfig(
-            level = logging.DEBUG,
-            filename = "parselog.txt",
-            filemode = "w",
-            format = "%(filename)10s:%(lineno)4d:%(message)s"
-        )
-        self._logger = logging.getLogger()
-
-        self._lexer = lex.lex(object=self._lexdef)
-        self._parser = yacc.yacc(
-            debug=self._logger,
-            module=self._syndef,
-            outputdir=self._output_path,
-            picklefile=self._pickle_path
-        )
-
+        # LilyPond emulation data
         self._guile = _GuileProxy(self)
         self._current_module = current_module
         self._language_pitch_names = language_pitch_names
         self._markup_functions = markup_functions
         self._markup_list_functions = markup_list_functions
+
+        self.default_language = default_language
+        self._debug = bool(debug)
+
+        # parser and lexer rules
+        self._lexdef = _LilyPondLexicalDefinition(self)
+        self._syndef = _LilyPondSyntacticalDefinition(self)
+
+        # output paths
+        self._output_path = os.path.dirname(__file__)
+        self._pickle_path = os.path.join(self._output_path, '_parsetab.pkl')
+        self._logger_path = os.path.join(self._output_path, 'parselog.txt')
+
+        # setup a logging
+        if self._debug:
+            logging.basicConfig(
+                level = logging.DEBUG,
+                filename = self._logger_path,
+                filemode = 'w',
+                format = '%(filename)10s:%(lineno)8d:%(message)s'
+            )
+            self._logger = logging.getLogger()
+        else:
+            self._logger = logging.getLogger()
+            self._logger.addHandler(logging.NullHandler())
+
+        # setup PLY objects
+        self._lexer = lex.lex(
+            debug=True,
+            debuglog=self._logger,
+            object=self._lexdef,
+        )
+        self._parser = yacc.yacc(
+            debug=True,
+            debuglog=self._logger,
+            module=self._syndef,
+            outputdir=self._output_path,
+            picklefile=self._pickle_path,
+        )
 
         self._reset_parser_variables()
 
@@ -67,28 +86,46 @@ class LilyPondParser(object):
 
 
     def __call__(self, input_string):
+        if os.path.exists(self._logger_path):
+            os.remove(self._logger_path)
+
         self._reset_parser_variables()
 
-        # use the monkeypatched function
-        result = self._parser.parse_monkey_patch(
-            input_string,
-            lexer=self._lexer,
-            debug=self._logger,
-        )
+        if self._debug:
+            result = self._parser._monkey_patch_parse_debug(
+                input_string, 
+                lexer=self._lexer,
+                debug=self._logger)
+        else:
+            result = self._parser._monkey_patch_parse(
+                input_string,
+                lexer=self._lexer)
 
-        # clean up
-        if self._leaf_attachments:
-            self._construct_spanners(result)
-        for annotation in self._annotations:
-            annotation.detach( )
+        self._construct_spanners(result)
 
         return result
+
+
+    ### PUBLIC ATTRIBUTES ###
+
+    
+    @apply
+    def default_language():
+        def fset(self, arg):
+            assert arg in self._language_pitch_names.keys( )
+            self._default_language = arg
+        def fget(self):
+            return self._default_language
+        return property(**locals( ))
 
 
     ### PRIVATE METHODS ###
 
 
     def _backup_token(self, token_type, token_value):
+        if self._debug:
+            self._logger.info('Extra  : Backing up')
+
         # push the current lookahead back onto the lookaheadstack
         self._push_extra_token(self._parser.lookahead)
 
@@ -111,14 +148,16 @@ class LilyPondParser(object):
 
     def _construct_context_specced_music(self, context, optional_id, optional_context_mod, music):
         known_contexts = {
+            'ChoirStaff': scoretools.StaffGroup,
             'GrandStaff': scoretools.GrandStaff,
             'PianoStaff': scoretools.PianoStaff,
             'Score': Score,
             'Staff': Staff,
+            'StaffGroup': scoretools.StaffGroup,
             'Voice': Voice,
         }
         if context in known_contexts:
-            context = known_contexts[context]()
+            context = known_contexts[context]([ ])
         else:
             raise Exception('Context type %s not supported.' % context)
 
@@ -136,58 +175,97 @@ class LilyPondParser(object):
 
 
     def _construct_sequential_music(self, music):
-        return Container(filter(lambda x: isinstance(x, _Component), music))
+        # mark sorting could be rewritten into a single list, using tuplets,
+        # with t[0] being 'forward' or 'backward' and t[1] being the mark, as
+        # this better preserves attachment order.  Not clear if we need it.
+
+        container = Container()
+        previous_leaf = None
+        apply_forward = [ ]
+        apply_backward = [ ]
+
+        # sort events into forward or backwards attaching, and attach them to
+        # the proper leaf
+        for x in music:
+            if isinstance(x, _Component):
+                for mark in apply_forward:
+                    if hasattr(mark, '__call__'):
+                        mark(x)
+                if previous_leaf:
+                    for mark in apply_backward:
+                        if hasattr(mark, '__call__'):
+                            mark(previous_leaf)
+                else:
+                    for mark in apply_backward:
+                        if hasattr(mark, '__call__'):
+                            mark.format_slot = 'before'
+                            mark(x)
+                apply_forward = [ ]
+                apply_backward = [ ]
+                previous_leaf = x
+                container.append(x)
+            else:
+                if isinstance(x, marktools.BarLine):
+                    apply_backward.append(x)
+                elif isinstance(x, marktools.LilyPondCommandMark) and \
+                    x.command_name in ['breathe']:
+                        apply_backward.append(x)
+                else:
+                    apply_forward.append(x)
+
+        # attach remaining events to last leaf, or to the container itself if
+        # there were no leaves
+        if previous_leaf:
+            for mark in apply_forward:
+                if hasattr(mark, '__call__'):
+                    mark.format_slot = 'after'
+                    mark(previous_leaf)
+            for mark in apply_backward:
+                if hasattr(mark, '__call__'):
+                    mark(previous_leaf)
+        else:
+            for mark in apply_forward:
+                if hasattr(mark, '__call__'):
+                    mark.format_slot = 'opening'
+                    mark(container)
+            for mark in apply_backward:
+                if hasattr(mark, '__call__'):
+                    mark.format_slot = 'opening'
+                    mark(container)
+
+        return container
 
 
     def _construct_simultaneous_music(self, music):
         def is_separator(x):
-            if isinstance(x, Event):
+            if isinstance(x, _LilyPondEvent):
                 if x.name == 'VoiceSeparator':
                     return True
             return False
         
-        con = Container()
-        con.is_parallel = True
-     
+        container = Container()
+        container.is_parallel = True
+
+        # check for voice separators     
         groups = [ ]
         for value, group in itertools.groupby(music, is_separator):
             if not value:
-                groups.append(filter(lambda x: isinstance(x, _Component), list(group)))
+                groups.append(list(group))
 
+        # without voice separators
         if 1 == len(groups):
-            print 'NUMBER ONE'
-            for x in groups[0]:
-                if isinstance(x, _Leaf):
-                    con.append(Voice[x])
-                elif not isinstance(x, _Context):
-                    con.append(Voice(x[:]))
-                else:
-                    con.append(x)
-
+            assert all([isinstance(x, _Context) for x in groups[0]])
+            container.extend(groups[0])
+        # with voice separators
         else:
             for group in groups:
-                if 1 < len(group):
-                    con.append(Voice(group))
-                elif not isinstance(group[0], _Context):
-                    con.append(Voice(group[0][:]))
-                else:
-                    con.append(group[0])
+                container.append(Voice(self._construct_sequential_music(group)[:]))
 
-        return con
+        return container
 
 
     def _construct_spanners(self, result):
         return result
-
-
-    def _get_leaf_attachments(self, leaf, kind = None):
-        if leaf not in self._leaf_attachments:
-            return [ ]
-        events = self._leaf_attachments[leaf]
-        spanners = filter(lambda x: x.name.endswith('SpanEvent', 'TieEvent'), events)
-        if kind:
-            spanners = filter(lambda x: x.name == kind)
-        return spanners            
 
 
     def _process_post_events(self, leaf, post_events):
@@ -195,9 +273,13 @@ class LilyPondParser(object):
             if hasattr(post_event, '__call__'):
                 post_event(leaf)
             else:
-                if leaf not in self._leaf_attachments:
-                    self._leaf_attachments[leaf] = [ ]
-                self._leaf_attachments[leaf].append(post_event)
+                annotation = filter(lambda x: x.name is 'spanners',
+                    marktools.get_annotations_attached_to_component(leaf))
+                if not annotation:
+                    annotation = marktools.Annotation('spanners', [ ])(leaf)
+                else:
+                    annotation = annotation[0]
+                annotation.value.append(post_event)
 
 
     def _push_extra_token(self, token):
@@ -205,6 +287,9 @@ class LilyPondParser(object):
 
 
     def _reparse_token(self, predicate, token_type, token_value):
+        if self._debug:
+            self._logger.info('Extra  : Reparsing')
+
         # push the current lookahead back onto the lookaheadstack
         self._push_extra_token(self._parser.lookahead)
 
@@ -228,27 +313,23 @@ class LilyPondParser(object):
             self._parser.restart( )
         except:
             pass
-        self._annotations = [ ]
         self._assignments = { }
         self._chord_pitch_orders = { }
-        self._leaf_attachments = { }
         self._lexer.push_state('notes')
-        self._parser_variables = {
-            'default_duration': Node('multiplied_duration', [Duration(1, 4)]),
-            'language': 'english',
-            'last_chord': Chord("<c g c'>4"), # LilyPond's default!
-        }
+        self._default_duration = _LilyPondDuration(Duration(1, 4), None)
+        self._last_chord = Chord("<c g c'>4") # LilyPond's default!
+        self._pitch_names = self._language_pitch_names[self.default_language]
         self._repeated_chords = { }
 
 
     def _resolve_event_identifier(self, identifier):
-        lookup = self._resolve_identifier(identifier)
+        lookup = self._current_module[identifier] # without any leading slash
         name = lookup['name']
         if name == 'ArticulationEvent':
             return marktools.Articulation(lookup['articulation-type'])
         elif name == 'AbsoluteDynamicEvent':
             return contexttools.DynamicMark(lookup['text'])
-        event = Event(name)
+        event = _LilyPondEvent(name)
         if 'span-direction' in lookup:
             if lookup['span-direction'] == -1:
                 event.span_direction = 'start'
@@ -257,37 +338,21 @@ class LilyPondParser(object):
         return event
 
 
-    def _resolve_identifier(self, identifier):
-        name = identifier
-        if name.startswith('\\'):
-            name = name[1:]
-        if name in self._assignments:
-            return self._assignments[name]
-        else:
-            return self._current_module[name]
-        raise Exception('Unknown identifer: %s' % identifier)
-        if name in self._assignments:
-            return self._assignments[name]
-        else:
-            return self._current_module[name]
-        raise Exception('Unknown identifer: %s' % identifier)
-
-
     def _test_scheme_predicate(self, predicate, value):
         predicates = {
             'boolean?':           lambda x: isinstance(x, bool),
             'cheap-list?':        lambda x: isinstance(x, (list, tuple)),
             #'cheap-markup?':      lambda x: True,,
-            'fraction?':          lambda x: isinstance(x, Fraction),
+            'fraction?':          lambda x: isinstance(x, _LilyPondFraction),
             #'hash-table?':        lambda x: True,
             'integer?':           lambda x: isinstance(x, int),
             #'list-or-symbol?':    lambda x: True,
             'list?':              lambda x: isinstance(x, (list, tuple)),
             #'ly:dir?':            lambda x: True,
-            'ly:duration?':       lambda x: True,
+            'ly:duration?':       lambda x: isinstance(x, _LilyPondDuration),
             #'ly:moment?':         lambda x: True,
-            'ly:music?':          lambda x: True,
-            'ly:pitch?':          lambda x: True,
+            'ly:music?':          lambda x: isinstance(x, (_Component, marktools.Mark)),
+            'ly:pitch?':          lambda x: isinstance(x, pitchtools.NamedChromaticPitch),
             'number-list?':       lambda x: isinstance(x, (list, tuple)) and \
                                             all([isinstance(y, (int, float)) for y in x]),
             #'number-or-string?':  lambda x: True,
@@ -299,7 +364,7 @@ class LilyPondParser(object):
             'real?':              lambda x: isinstance(x, (int, float)),
             'scheme?':            lambda x: True,
             #'string-or-pair?':    lambda x: True,
-            'string?':            lambda x: isinstance(x, str),
+            'string?':            lambda x: isinstance(x, (str, unicode)),
             #'symbol-or-boolean?': lambda x: True,
             #'symbol?':            lambda x: True,
             'void?':              lambda x: isinstance(x, type(None)),
