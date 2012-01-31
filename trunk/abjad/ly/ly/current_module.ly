@@ -100,7 +100,7 @@
     (numerator (ly:moment-main-numerator moment))
     (denominator (ly:moment-main-denominator moment)))
     ; BODY
-    (display (format "    '~A': Duration(~A, ~A),\n" name numerator denominator))))
+    (display (format "    '~A': _LilyPondDuration(Duration(~A, ~A), None),\n" name numerator denominator))))
 
 
 #(define (document-other obj-pair) 
@@ -111,7 +111,7 @@
       (cond
         ((number? value) value)
         ((string? value) (format "'~A'" value))
-        (else "None"))))
+        (else (format "'~A'" name)))))
     ; BODY
     (begin
       (display (format "    '~A': ~A,\n" name formatted-value)))))
@@ -131,7 +131,9 @@
     (document-other obj-pair))))
 
 
-#(display "from abjad.tools.durationtools import Duration\n\n\n")
+#(display "from abjad.tools.durationtools import Duration\n")
+#(display "from abjad.tools.lilypondparsertools._LilyPondDuration._LilyPondDuration \\\n")
+#(display "    import _LilyPondDuration\n\n\n")
 #(display (format "lilypond_version = \"~A\"\n\n" (lilypond-version)))
 #(display "current_module = {\n")
 #(for-each document-object current-module-sorted)
