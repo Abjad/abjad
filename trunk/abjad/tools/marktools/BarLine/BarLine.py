@@ -31,10 +31,15 @@ class BarLine(LilyPondCommandMark):
     Return bar line.
     '''
 
-    def __init__(self, bar_line_string = '|'):
+    def __init__(self, bar_line_string='|', format_slot='after'):
         self.bar_line_string = bar_line_string
         command_name = 'bar "%s"' % bar_line_string
-        LilyPondCommandMark.__init__(self, command_name, 'after')
+        LilyPondCommandMark.__init__(self, command_name, format_slot)
+
+    ## OVERRIDE ##
+
+    def __copy__(self, *args):
+        return type(self)(self.bar_line_string, format_slot=self.format_slot)
 
     ## PRIVATE ATTRIBUTES ##
 
