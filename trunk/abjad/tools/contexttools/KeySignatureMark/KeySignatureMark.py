@@ -47,6 +47,10 @@ class KeySignatureMark(ContextMark):
 
     ### OVERLOADS ###
 
+    def __copy__(self, *args):
+        return type(self)(self._tonic, self._mode,
+            target_context = self._target_context)
+
     def __eq__(self, arg):
         if isinstance(arg, type(self)):
             if self.tonic == arg.tonic:
