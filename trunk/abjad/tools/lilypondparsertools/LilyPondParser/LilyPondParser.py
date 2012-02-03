@@ -21,6 +21,7 @@ from abjad.tools.lilypondparsertools._LilyPondSyntacticalDefinition._LilyPondSyn
 from abjad.tools.lilypondparsertools._SyntaxNode._SyntaxNode import _SyntaxNode as Node
 from abjad.tools.lilypondparsertools._parse import _parse
 from abjad.tools.lilypondparsertools._parse_debug import _parse_debug
+from abjad.tools.sequencetools import iterate_sequence_pairwise_wrapped
 
 
 # apply monkey patch
@@ -133,13 +134,19 @@ class LilyPondParser(object):
         spanners = { }
 
         # traverse all leaves
-        for leaf in music.leaves:
+        leaves = music.leaves
+        first_leaf = None
+        if leaves:
+            first_leaf = leaves[0]
+        for leaf, next_leaf in iterate_sequence_pairwise_wrapped(leaves):
 
             span_events = _get_span_events(leaf)
-            starting_events = filter(lambda x: x.span_direction is 'start', span_events)
-            stopping_events = filter(lambda x: x.span_direction is 'stop', span_events)
+            directed_events = filter(lambda x: hasattr(x, 'span_direction'), span_events)
+            starting_events = filter(lambda x: x.span_direction is 'start', directed_events)
+            stopping_events = filter(lambda x: x.span_direction is 'stop', directed_events)
+            undirected_events = filter(lambda x: not hasattr(x, 'span_direction'), span_events)
 
-            # open spanners
+            # open directed spanners
             for span_event in starting_events:
                 klass = _span_event_name_to_spanner_class(span_event.name)
                 if klass not in spanners:
@@ -149,15 +156,26 @@ class LilyPondParser(object):
                     spanners[klass].append(klass( ))
                 elif 0 == len(spanners[klass]):
                     spanners[klass].append(klass( ))
+
                 else:
                     raise Exception('%s is already covered by a %s.' % (leaf, klass.__name__))
                             
-            # append leaf to all open spanners
+            # append leaf to all open directed spanners
             for instances in spanners.itervalues( ):
                 for instance in instances:
-                    instance.append(leaf)                    
+                    instance.append(leaf)
 
-            # close spanners 
+            # apply undirected spanners (Tie, Glissando etc.)
+            if next_leaf is not first_leaf: # while we are not wrapping
+                for span_event in undirected_events:
+                    klass = _span_event_name_to_spanner_class(span_event.name)
+                    previous_spanners = filter(lambda x: isinstance(x, klass), leaf.spanners)
+                    if previous_spanners:
+                        previous_spanners[0].append(next_leaf)
+                    else:
+                        klass([leaf, next_leaf])
+
+            # close directed spanners 
             for span_event in stopping_events:
                 klass = _span_event_name_to_spanner_class(span_event.name)
                 if klass not in spanners or not len(spanners[klass]):
@@ -403,7 +421,7 @@ class LilyPondParser(object):
         elif name is 'SlurEvent':
             return spannertools.SlurSpanner
         elif name is 'TieEvent':
-            return spannertools.TieSpanner
+            return tietools.TieSpanner
         elif name is 'TrillSpanEvent':
             return spannertools.TrillSpanner
         raise Exception('Abjad cannot associate a spanner class with %s' % name)
