@@ -103,7 +103,7 @@ class LilyPondParser(object):
                 lexer=self._lexer)
 
         for x in result:
-            if isinstance(x, _Component):
+            if isinstance(x, Container):
                 self._apply_spanners(x)
             elif isinstance(x, lilypondfiletools.ScoreBlock):
                 for y in x:
