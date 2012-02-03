@@ -101,7 +101,7 @@ class LilyPondParser(object):
                 input_string,
                 lexer=self._lexer)
 
-        self._construct_spanners(result)
+        self._apply_spanners(result)
 
         return result
 
@@ -120,6 +120,54 @@ class LilyPondParser(object):
 
 
     ### PRIVATE METHODS ###
+
+
+    def _apply_spanners(self, music):
+
+        # get local reference to methods
+        _get_span_events = self._get_span_events
+        _spanner_class_can_nest = self._spanner_class_can_nest
+        _span_event_name_to_spanner_class = self._span_event_name_to_spanner_class
+
+        # dictionary of spanner classes and instances
+        spanners = { }
+
+        # traverse all leaves
+        for leaf in music.leaves:
+
+            span_events = _get_span_events(leaf)
+            starting_events = filter(lambda x: x.span_direction is 'start', span_events)
+            stopping_events = filter(lambda x: x.span_direction is 'stop', span_events)
+
+            # open spanners
+            for span_event in starting_events:
+                klass = _span_event_name_to_spanner_class(span_event.name)
+                if klass not in spanners:
+                    spanners[klass] = [ ]
+                can_nest = _spanner_class_can_nest(klass)
+                if can_nest:
+                    spanners[klass].append(klass( ))
+                elif 0 == len(spanners[klass]):
+                    spanners[klass].append(klass( ))
+                else:
+                    raise Exception('%s is already covered by a %s.' % (leaf, klass.__name__))
+                            
+            # append leaf to all open spanners
+            for instances in spanners.itervalues( ):
+                for instance in instances:
+                    instance.append(leaf)                    
+
+            # close spanners 
+            for span_event in stopping_events:
+                klass = _span_event_name_to_spanner_class(span_event.name)
+                if klass not in spanners or not len(spanners[klass]):
+                    raise Exception('Trying to end unbegun %s at %s' % (klass.__name__, leaf))
+                spanners[klass].pop( )
+
+        # check for unterminated spanners
+        for klass, instances in spanners.iteritems( ):
+            if instances:
+                raise Exception('Unterminated %s.' % klass.__name__)
 
 
     def _backup_token(self, token_type, token_value):
@@ -264,8 +312,14 @@ class LilyPondParser(object):
         return container
 
 
-    def _construct_spanners(self, result):
-        return result
+    def _get_span_events(self, leaf):
+        annotations = marktools.get_annotations_attached_to_component(leaf)
+        if annotations:
+            spanners_annotations = filter(lambda x: x.name is 'spanners', annotations)
+            if 1 < len(spanners_annotations):
+                raise Exception('Multiple span events lists attached to %s' % leaf)
+            return spanners_annotations[0].value
+        return [ ]
 
 
     def _process_post_events(self, leaf, post_events):
@@ -336,6 +390,28 @@ class LilyPondParser(object):
             else:
                 event.span_direction = 'stop'
         return event
+
+
+    def _span_event_name_to_spanner_class(self, name):
+        if name is 'BeamEvent':
+            return spannertools.BeamSpanner
+        elif name is 'GlissandoEvent':
+            return spannertools.GlissandoSpanner
+        elif name is 'NoteGroupingEvent':
+            return spannertools.HorizontalBracketSpanner
+        elif name is 'SlurEvent':
+            return spannertools.SlurSpanner
+        elif name is 'TieEvent':
+            return spannertools.TieSpanner
+        elif name is 'TrillSpanEvent':
+            return spannertools.TrillSpanner
+        raise Exception('Abjad cannot associate a spanner class with %s' % name)
+
+
+    def _spanner_class_can_nest(self, spanner_class):
+        if spanner_class is spannertools.HorizontalBracketSpanner:
+            return True
+        return False
 
 
     def _test_scheme_predicate(self, predicate, value):
