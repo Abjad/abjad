@@ -316,9 +316,10 @@ class LilyPondParser(object):
         annotations = marktools.get_annotations_attached_to_component(leaf)
         if annotations:
             spanners_annotations = filter(lambda x: x.name is 'spanners', annotations)
-            if 1 < len(spanners_annotations):
+            if 1 == len(spanners_annotations):
+                return spanners_annotations[0].value
+            elif 1 < len(spanners_annotations):
                 raise Exception('Multiple span events lists attached to %s' % leaf)
-            return spanners_annotations[0].value
         return [ ]
 
 
