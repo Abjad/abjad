@@ -102,7 +102,12 @@ class LilyPondParser(object):
                 input_string,
                 lexer=self._lexer)
 
-        self._apply_spanners(result)
+        for x in result:
+            if isinstance(x, _Component):
+                self._apply_spanners(x)
+            elif isinstance(x, lilypondfiletools.ScoreBlock):
+                for y in x:
+                    self._apply_spanners(y)
 
         return result
 
@@ -418,8 +423,12 @@ class LilyPondParser(object):
             return spannertools.GlissandoSpanner
         elif name is 'NoteGroupingEvent':
             return spannertools.HorizontalBracketSpanner
+        elif name is 'PhrasingSlurEvent':
+            return spannertools.PhrasingSlurSpanner
         elif name is 'SlurEvent':
             return spannertools.SlurSpanner
+        elif name is 'TextSpanEvent':
+            return spannertools.TextSpanner
         elif name is 'TieEvent':
             return tietools.TieSpanner
         elif name is 'TrillSpanEvent':
