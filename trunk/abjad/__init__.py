@@ -4,6 +4,7 @@ from abjad.tools.chordtools import Chord
 from abjad.tools.containertools import Container
 from abjad.tools.durationtools import Duration
 from abjad.tools.iotools import f
+from abjad.tools.iotools import p
 from abjad.tools.iotools import play
 from abjad.tools.iotools import show
 from abjad.tools.measuretools import Measure
