@@ -62,8 +62,7 @@ def desordre_cell(pitches):
     p.is_parallel = True
     # make all 1/8 beats breakable
     for n in v_lower.leaves[:-1]:
-        #n.bar_line.kind = ''
-        marktools.LilyPondCommandMark('bar ""', 'closing')(n)
+        marktools.BarLine('')(n)
     return p
 
 
