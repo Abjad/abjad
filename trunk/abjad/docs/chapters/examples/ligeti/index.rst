@@ -73,6 +73,10 @@ Finally we combine the two voices in a parallel Container:
 
 This results in the complete *Désordre* *cell*:
 
+::
+
+	LilyPond file written to 'desordre-cell.ly' ...
+
 .. image:: images/desordre-cell.png
 
 Because this *cell* appears over and over again, we want to reuse this code to generate any number of these *cells*. We here encapsulate it in a function that will take only a list of pitches::
@@ -100,7 +104,7 @@ Because this *cell* appears over and over again, we want to reuse this code to g
         p.is_parallel = True
         # make all 1/8 beats breakable
         for n in v_lower.leaves[:-1]:
-            n.bar_line.kind = ''
+            marktools.BarLine('')(n)
         return p
 
 Now we can call this function to create any number of *cells*. That was actually the hardest part of reconstructing the opening of Ligeti's *Désordre*. Because the repetition of patters occurs also at the level of measures and staves, we will now define functions to create these other higher level constructs.
@@ -115,9 +119,13 @@ We define a function to create a measure from a list of lists of numbers::
             - `pitches` is a list of lists of number (e.g., [[1, 2, 3], [2, 3, 4]])
         The function returns a DynamicMeasure.
         '''
-        result = DynamicMeasure([])
+        result = measuretools.DynamicMeasure([ ])
         for seq in pitches:
             result.append(desordre_cell(seq))
+        # make denominator 8
+        if contexttools.get_effective_time_signature(result).denominator == 1:
+            result.denominator = 8
+        return result
 
 The function is very simple. It simply creates a DynamicMeasure and then populates it with *cells* that are created internally with the function previously defined. The function takes a list `pitches` which is actually a list of lists of pitches (e.g., ``[[1,2,3], [2,3,4]]``. The list of lists of pitches is iterated to create each of the *cells* to be appended to the DynamicMeasures. We could have defined the function to take ready made *cells* directly, but we are building the hierarchy of functions so that we can pass simple lists of lists of numbers to generate the full structure.
 To construct a Ligeti measure we would call the function like so:
@@ -125,6 +133,7 @@ To construct a Ligeti measure we would call the function like so:
 ::
 
 	abjad> measure = measure_build([[0, 4, 7], [0, 4, 7, 9], [4, 7, 9, 11]])
+	LilyPond file written to 'desordre-measure.ly' ...
 	abjad> show(Staff([measure]))
 
 .. image:: images/desordre-measure.png
@@ -149,6 +158,7 @@ As with measures, we can now create full measure sequences with this new functio
 
 	abjad> pitches = [[[-1, 4, 5], [-1, 4, 5, 7, 9]], [[0, 7, 9], [-1, 4, 5, 7, 9]]]
 	abjad> staff = staff_build(pitches)
+	LilyPond file written to 'desordre-staff.ly' ...
 	abjad> show(staff)
 
 .. image:: images/desordre-staff.png
@@ -182,6 +192,7 @@ The final result:
 	abjad> bottom = [[[-9, -4, -2], [-9, -4, -2, 1, 3]], [[-6, -2, 1], [-9, -4, -2, 1, 3]], [[-4, -2, 1, 3, 6], [-4, -2, 1]], [[-9, -6, -4, -2, 1, 3, 6, 1]], [[-6, -2, 1], [-6, -2, 1, 3, -2]], [[-4, 1, 3], [-6, 3, 6, -6, -4]], [[-14, -11, -9, -6, -4], [-14, -11, -9]], [[-11, -2, 1, -6, -4, -2, 1, 3]], [[-6, 1, 3], [-6, -4, -2, 1, 3]]]
 	abjad> 
 	abjad> desordre = desordre_build([top, bottom])
+	LilyPond file written to 'desordre-final.ly' ...
 	abjad> show(desordre)
 
 .. image:: images/desordre-final.png
