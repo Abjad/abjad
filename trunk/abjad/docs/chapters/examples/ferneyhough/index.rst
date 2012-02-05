@@ -66,13 +66,14 @@ And then we make the rhythms:
 
 ::
 
+    music = []
     for proportion in proportions:
         tuplets = []
         for n in range(1, 6 + 1):
             tuplet = make_tuplet(duration, proportion)
             divide_tuplet(tuplet, n)
             tuplets.append(tuplet)
-        staff.extend(tuplets)
+        music.extend(tuplets)
 
 The score
 ---------
@@ -83,7 +84,7 @@ Finally we make the score:
 
 	abjad> staff = stafftools.RhythmicStaff(music)
 	abjad> score = Score([staff])
-	abjad> lilypond_file = lilyfiletools.make_basic_lilypond_file(score)
+	abjad> lilypond_file = lilypondfiletools.make_basic_lilypond_file(score)
 
 
 Configure containers:
@@ -103,6 +104,13 @@ Configure containers:
 	abjad> score.override.bar_line.stencil = False
 
 
+Import layout tools:
+
+::
+
+	abjad> from abjad.tools import layouttools
+
+
 Configure the LilyPond file:
 
 ::
@@ -112,10 +120,7 @@ Configure the LilyPond file:
 	abjad> lilypond_file.layout_block.indent = 0
 	abjad> lilypond_file.layout_block.ragged_right = True
 	abjad> lilypond_file.paper_block.ragged_bottom = True
-	abjad> space = schemetools.SchemePair('space', 18)
-	abjad> stretchability = schemetools.SchemePair('stretchability', 0)
-	abjad> vector = schemetools.SchemeVector(space, stretchability)
-	abjad> lilypond_file.paper_block.between_system_spacing = vector
+	abjad> lilypond_file.paper_block.system_system_spacing = layouttools.make_spacing_vector(0, 0, 8, 0)
 
 
 And show the result:

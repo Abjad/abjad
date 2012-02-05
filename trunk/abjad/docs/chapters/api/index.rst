@@ -1135,6 +1135,7 @@ iotools
    tools/iotools/is_uppercamelcase_string
    tools/iotools/log
    tools/iotools/ly
+   tools/iotools/p
    tools/iotools/parse_lilypond_input_string
    tools/iotools/pdf
    tools/iotools/play

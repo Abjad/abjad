@@ -79,13 +79,14 @@ for proportion in proportions: <hide
 
 ::
 
+    music = []
     for proportion in proportions:
         tuplets = []
         for n in range(1, 6 + 1):
             tuplet = make_tuplet(duration, proportion)
             divide_tuplet(tuplet, n)
             tuplets.append(tuplet)
-        staff.extend(tuplets)
+        music.extend(tuplets)
 
 The score
 ---------
@@ -114,6 +115,12 @@ score.override.time_signature.stencil = False
 score.override.bar_line.stencil = False
 </abjad>
 
+Import layout tools:
+
+<abjad>
+from abjad.tools import layouttools
+</abjad>
+
 Configure the LilyPond file:
 
 <abjad>
@@ -122,15 +129,12 @@ lilypond_file.global_staff_size = 12
 lilypond_file.layout_block.indent = 0
 lilypond_file.layout_block.ragged_right = True
 lilypond_file.paper_block.ragged_bottom = True
-space = schemetools.SchemePair('space', 18)
-stretchability = schemetools.SchemePair('stretchability', 0)
-vector = schemetools.SchemeVector(space, stretchability)
-lilypond_file.paper_block.between_system_spacing = vector
+lilypond_file.paper_block.system_system_spacing = layouttools.make_spacing_vector(0, 0, 8, 0)
 </abjad>
 
 And show the result:
 
 <abjad>
 show(lilypond_file)
-iotools.write_expr_to_ly(lilypond_file, 'ferneyhough-1') <hide
+iotools.write_expr_to_ly(lilypond_file, 'ferneyhough-1', print_status=False) <hide
 </abjad>
