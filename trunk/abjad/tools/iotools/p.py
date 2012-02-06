@@ -3,7 +3,7 @@ def p(*args):
 
     Parse `args` as LilyPond string::
 
-        abjad> p("{c'4 d'4 e'4 f'4 }")
+        abjad> p("{c'4 d'4 e'4 f'4}")
         {c'4, d'4, e'4, f'4}
 
     ::
@@ -16,6 +16,13 @@ def p(*args):
             e'4
             f'4
         }
+
+    A pitch-name language may also be specified.
+
+    ::
+
+        abjad> p("{c'8 des' e' fis'}", 'nederlands')
+        {c'8, df'8, e'8, fs'8}
 
     Return Abjad expression.
     '''
