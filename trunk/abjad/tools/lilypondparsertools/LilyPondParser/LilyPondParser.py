@@ -102,12 +102,15 @@ class LilyPondParser(object):
                 input_string,
                 lexer=self._lexer)
 
-        for x in result:
-            if isinstance(x, Container):
-                self._apply_spanners(x)
-            elif isinstance(x, lilypondfiletools.ScoreBlock):
-                for y in x:
-                    self._apply_spanners(y)
+        if isinstance(result, Container):
+            self._apply_spanners(result)
+        else:
+            for x in result:
+                if isinstance(x, Container):
+                    self._apply_spanners(x)
+                elif isinstance(x, lilypondfiletools.ScoreBlock):
+                    for y in x:
+                        self._apply_spanners(y)
 
         return result
 
@@ -132,11 +135,10 @@ class LilyPondParser(object):
 
         # get local reference to methods
         _get_span_events = self._get_span_events
-        _spanner_class_can_nest = self._spanner_class_can_nest
         _span_event_name_to_spanner_class = self._span_event_name_to_spanner_class
 
         # dictionary of spanner classes and instances
-        spanners = { }
+        all_spanners = { }
 
         # traverse all leaves
         leaves = music.leaves
@@ -146,49 +148,123 @@ class LilyPondParser(object):
         for leaf, next_leaf in iterate_sequence_pairwise_wrapped(leaves):
 
             span_events = _get_span_events(leaf)
-            directed_events = filter(lambda x: hasattr(x, 'span_direction'), span_events)
-            starting_events = filter(lambda x: x.span_direction is 'start', directed_events)
-            stopping_events = filter(lambda x: x.span_direction is 'stop', directed_events)
-            undirected_events = filter(lambda x: not hasattr(x, 'span_direction'), span_events)
+            directed_events = { }
 
-            # open directed spanners
-            for span_event in starting_events:
+            # sort span events into directed and undirected groups
+            for span_event in span_events:
                 klass = _span_event_name_to_spanner_class(span_event.name)
-                if klass not in spanners:
-                    spanners[klass] = [ ]
-                can_nest = _spanner_class_can_nest(klass)
-                if can_nest:
-                    spanners[klass].append(klass( ))
-                elif 0 == len(spanners[klass]):
-                    spanners[klass].append(klass( ))
 
-                else:
-                    raise Exception('%s is already covered by a %s.' % (leaf, klass.__name__))
-                            
-            # append leaf to all open directed spanners
-            for instances in spanners.itervalues( ):
-                for instance in instances:
-                    instance.append(leaf)
+                # group directed span events by their Abjad spanner class
+                if hasattr(span_event, 'span_direction'):
+                    if klass not in directed_events:
+                        directed_events[klass] = [span_event]
+                    else:
+                        directed_events[klass].append(span_event)
+                    if klass not in all_spanners:
+                        all_spanners[klass] = [ ]
 
-            # apply undirected spanners (Tie, Glissando etc.)
-            if next_leaf is not first_leaf: # while we are not wrapping
-                for span_event in undirected_events:
-                    klass = _span_event_name_to_spanner_class(span_event.name)
+                # or apply undirected event immediately (i.e. ties, glisses)
+                elif next_leaf is not first_leaf: # so long as we are not wrapping yet
                     previous_spanners = filter(lambda x: isinstance(x, klass), leaf.spanners)
                     if previous_spanners:
                         previous_spanners[0].append(next_leaf)
                     else:
                         klass([leaf, next_leaf])
 
-            # close directed spanners 
-            for span_event in stopping_events:
-                klass = _span_event_name_to_spanner_class(span_event.name)
-                if klass not in spanners or not len(spanners[klass]):
-                    raise Exception('Trying to end unbegun %s at %s' % (klass.__name__, leaf))
-                spanners[klass].pop( )
+                # otherwise throw an error
+                else:
+                    raise Exception('Unterminated %s at %s.' % (klass.__name__, leaf))
+
+            # check for DynamicMarks, and terminate any hairpin
+            dynamics = contexttools.get_dynamic_marks_attached_to_component(leaf)
+            if dynamics and all_spanners[spannertools.HairpinSpanner]:
+                all_spanners[spannertools.HairpinSpanner][0].append(leaf)
+                all_spanners[spannertools.HairpinSpanner].pop( )
+
+            # loop through directed events, handling each as necessary
+            for klass, events in directed_events.iteritems( ):
+
+                starting_events = filter(lambda x: x.span_direction is 'start', events)
+                stopping_events = filter(lambda x: x.span_direction is 'stop', events)
+
+                if klass is spannertools.BeamSpanner:
+                    # A beam may begin and end on the same leaf
+                    # but only one beam spanner may cover any given leaf,
+                    # and starting events are processed before ending ones
+                    for event in starting_events:
+                        if all_spanners[klass]:
+                            raise Exception('Already have beam.')
+                        all_spanners[klass].append(klass( ))
+                    for event in stopping_events:
+                        if all_spanners[klass]:
+                            all_spanners[klass][0].append(leaf)
+                            all_spanners[klass].pop( )
+
+                elif klass is spannertools.HairpinSpanner:
+                    # Dynamic events can be ended many times,
+                    # but only one may start on a given leaf,
+                    # and the event must start and end on separate leaves.
+                    # If a hairpin already exists and another starts,
+                    # the pre-existant spanner is ended.
+                    for event in stopping_events:
+                        if all_spanners[klass]:
+                            all_spanners[klass][0].append(leaf)
+                            all_spanners[klass].pop( )
+                    if 1 == len(starting_events):
+                        if all_spanners[klass]:
+                            all_spanners[klass][0].append(leaf)
+                            all_spanners[klass].pop( )
+                        shape = '<'
+                        if starting_events[0].name is 'DecrescendoEvent':
+                            shape = '>'
+                        all_spanners[klass].append(klass([], shape))
+                    elif 1 < len(starting_events):
+                        raise Exception('Simultaneous dynamic-span events.')
+                    
+                elif klass in [spannertools.SlurSpanner, spannertools.PhrasingSlurSpanner,
+                    spannertools.TextSpanner, spannertools.TrillSpanner]:
+                    # These engravers process stop events before start events,
+                    # they must contain more than one leaf,
+                    # however, they can stop on a leaf and start on the same leaf.
+                    for event in stopping_events:                    
+                        if all_spanners[klass]:
+                            all_spanners[klass][0].append(leaf)
+                            all_spanners[klass].pop( )
+                        else:
+                            raise Exception('Cannot end %s.' % klass.__name__)
+                    for event in starting_events:
+                        if not all_spanners[klass]:
+                            all_spanners[klass].append(klass( ))
+                        else:
+                            raise Exception('Already have %s.' % klass.__name__)
+
+                elif klass is spannertools.HorizontalBracketSpanner:
+                    # Brackets can nest, meaning
+                    # multiple brackets can begin or end on a leaf
+                    # but cannot both begin and end on the same leaf
+                    # and therefore a bracket cannot cover a single leaf
+                    has_starting_events = bool(len(starting_events))
+                    for event in starting_events:
+                        all_spanners[klass].append(klass( ))
+                    if stopping_events:
+                        if not has_starting_events:
+                            for event in stopping_events:
+                                if all_spanners[klass]:
+                                    all_spanners[klass][-1].append(leaf)
+                                    all_spanners[klass].pop( )
+                                else:
+                                    raise Exception('Do not have that many brackets.')
+                        else:
+                            raise Exception('Conflicting note group events.')
+
+            # append leaf to all tracked spanners,
+            # filter out to-be-closed spanners
+            for klass, instances in all_spanners.iteritems( ):
+                for instance in instances:
+                    instance.append(leaf)
 
         # check for unterminated spanners
-        for klass, instances in spanners.iteritems( ):
+        for klass, instances in all_spanners.iteritems( ):
             if instances:
                 raise Exception('Unterminated %s.' % klass.__name__)
 
@@ -417,29 +493,21 @@ class LilyPondParser(object):
 
 
     def _span_event_name_to_spanner_class(self, name):
-        if name is 'BeamEvent':
-            return spannertools.BeamSpanner
-        elif name is 'GlissandoEvent':
-            return spannertools.GlissandoSpanner
-        elif name is 'NoteGroupingEvent':
-            return spannertools.HorizontalBracketSpanner
-        elif name is 'PhrasingSlurEvent':
-            return spannertools.PhrasingSlurSpanner
-        elif name is 'SlurEvent':
-            return spannertools.SlurSpanner
-        elif name is 'TextSpanEvent':
-            return spannertools.TextSpanner
-        elif name is 'TieEvent':
-            return tietools.TieSpanner
-        elif name is 'TrillSpanEvent':
-            return spannertools.TrillSpanner
+        spanners = {
+            'BeamEvent': spannertools.BeamSpanner,
+            'CrescendoEvent': spannertools.HairpinSpanner,
+            'DecrescendoEvent': spannertools.HairpinSpanner,
+            'GlissandoEvent': spannertools.GlissandoSpanner,
+            'NoteGroupingEvent': spannertools.HorizontalBracketSpanner,
+            'PhrasingSlurEvent': spannertools.PhrasingSlurSpanner,
+            'SlurEvent': spannertools.SlurSpanner,
+            'TextSpanEvent': spannertools.TextSpanner,
+            'TieEvent': tietools.TieSpanner,
+            'TrillSpanEvent': spannertools.TrillSpanner,
+        }
+        if name in spanners:
+            return spanners[name]
         raise Exception('Abjad cannot associate a spanner class with %s' % name)
-
-
-    def _spanner_class_can_nest(self, spanner_class):
-        if spanner_class is spannertools.HorizontalBracketSpanner:
-            return True
-        return False
 
 
     def _test_scheme_predicate(self, predicate, value):
