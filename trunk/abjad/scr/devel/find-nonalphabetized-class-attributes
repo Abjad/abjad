@@ -14,31 +14,31 @@ def _main():
             full_file_name = os.path.join(path, file_name)
             file_pointer = file(full_file_name, 'r')
             found_class_keyword, found_def_keyword = False, False
-            method_definition_lines = []
+            attribute_definition_lines = []
             for line in file_pointer.readlines():
                 if line.startswith('class '):
                     found_class_keyword = True
                 if line.startswith('    def '):
                     found_def_keyword = True
-                    method_definition_lines.append(line)
+                    attribute_definition_lines.append(line)
                 if line.startswith('    ### '):
-                    sorted_method_definition_lines = list(sorted(method_definition_lines))
-                    if not method_definition_lines == sorted_method_definition_lines:
+                    sorted_attribute_definition_lines = list(sorted(attribute_definition_lines))
+                    if not attribute_definition_lines == sorted_attribute_definition_lines:
                         nonalphabetized_module_names.append(full_file_name)
-                        for a, b in zip(method_definition_lines, sorted_method_definition_lines):
+                        for a, b in zip(attribute_definition_lines, sorted_attribute_definition_lines):
                             if a != b:
                                 print a, b
                                 break
-                        method_definition_lines = []
+                        attribute_definition_lines = []
                         break
-                    method_definition_lines = []
+                    attribute_definition_lines = []
                 if found_def_keyword and not found_class_keyword:
                     continue
             else:
-                sorted_method_definition_lines = list(sorted(method_definition_lines))
-                if not method_definition_lines == list(sorted(method_definition_lines)):
+                sorted_attribute_definition_lines = list(sorted(attribute_definition_lines))
+                if not attribute_definition_lines == list(sorted(attribute_definition_lines)):
                     nonalphabetized_module_names.append(full_file_name)
-                    for a, b in zip(method_definition_lines, sorted_method_definition_lines):
+                    for a, b in zip(attribute_definition_lines, sorted_attribute_definition_lines):
                         if a != b:
                             print a, b
                             break
@@ -46,13 +46,13 @@ def _main():
    if nonalphabetized_module_names:
       print nonalphabetized_module_names
       print ''
-   print 'Total modules with nonalphabetized methods: {}'.format(len(nonalphabetized_module_names))
+   print 'Total modules with nonalphabetized attributes: {}'.format(len(nonalphabetized_module_names))
    print 'Total modules examined: {}'.format(total_modules_examined)
    print ''
 
 
 if __name__ == '__main__':
    iotools.clear_terminal()
-   print 'Finding class definitions with nonalphabetized methods ...'
+   print 'Finding classes with nonalphabetized attributes ...'
    print ''
    _main()
