@@ -51,7 +51,7 @@ class DynamicMark(ContextMark):
         return ContextMark.__call__(self, *args)
 
     def __copy__(self, *args):
-        return type(self)(self._dynamic_name, target_contex = self.target_context)
+        return type(self)(self._dynamic_name, target_context = self.target_context)
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):
