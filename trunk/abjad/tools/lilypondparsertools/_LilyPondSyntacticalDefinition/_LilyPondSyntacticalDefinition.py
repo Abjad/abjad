@@ -453,7 +453,7 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_command_element__command_event(self, p):
         'command_element : command_event'
-        p[0] = Node('command_element', p[1:])
+        p[0] = p[1]
 
 
     ### command_event ###
@@ -466,7 +466,7 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_command_event__tempo_event(self, p):
         'command_event : tempo_event'
-        p[0] = Node('command_event', p[1:])
+        p[0] = p[1]
 
 
     ### complex_music ###
@@ -3100,17 +3100,17 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_tempo_event__TEMPO__scalar(self, p):
         'tempo_event : TEMPO scalar'
-        p[0] = Node('tempo_event', p[1:])
+        p[0] = contexttools.TempoMark(str(p[2]))
 
 
     def p_tempo_event__TEMPO__scalar_closed__steno_duration__Chr61__tempo_range(self, p):
         "tempo_event : TEMPO scalar_closed steno_duration '=' tempo_range"
-        p[0] = Node('tempo_event', p[1:])
+        p[0] = contexttools.TempoMark(str(p[2]), p[3].duration, p[5])
 
 
     def p_tempo_event__TEMPO__steno_duration__Chr61__tempo_range(self, p):
         "tempo_event : TEMPO steno_duration '=' tempo_range"
-        p[0] = Node('tempo_event', p[1:])
+        p[0] = contexttools.TempoMark(p[2].duration, p[4])
 
 
     ### tempo_range ###
@@ -3118,12 +3118,12 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_tempo_range__bare_unsigned(self, p):
         'tempo_range : bare_unsigned'
-        p[0] = (p[1],)
+        p[0] = p[1]
 
 
     def p_tempo_range__bare_unsigned__Chr126__bare_unsigned(self, p):
         "tempo_range : bare_unsigned '~' bare_unsigned"
-        p[0] = (p[1], p[3],)
+        p[0] = (p[1], p[3])
 
 
     ### toplevel_expression ###
