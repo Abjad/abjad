@@ -13,7 +13,11 @@ class PitchRange(_Immutable):
     Initalize from pitch numbers, pitch names, pitch instances, one-line reprs 
     or other pitch range objects.
 
-    Pitch ranges implement all six Python comparators.
+    Pitch ranges test for equality and inequality against other pitch ranges.
+
+    Pitch ranges test less than, greater than, less-equal and greater-equal against pitches.
+    
+    Pitch ranges do not sort relative to other pitch ranges.
 
     Pitch ranges are immutable.
     """

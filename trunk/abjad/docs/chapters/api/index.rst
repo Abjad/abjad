@@ -619,6 +619,7 @@ pitchtools
    tools/pitchtools/NumberedDiatonicPitch/NumberedDiatonicPitch
    tools/pitchtools/NumberedDiatonicPitchClass/NumberedDiatonicPitchClass
    tools/pitchtools/PitchRange/PitchRange
+   tools/pitchtools/PitchRangeInventory/PitchRangeInventory
    tools/pitchtools/TwelveToneRow/TwelveToneRow
    tools/pitchtools/all_are_chromatic_pitch_class_name_octave_number_pairs
    tools/pitchtools/all_are_named_chromatic_pitch_tokens
