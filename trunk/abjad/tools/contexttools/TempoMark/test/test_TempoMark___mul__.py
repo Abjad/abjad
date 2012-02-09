@@ -1,3 +1,4 @@
+import py.test
 from abjad import *
 
 
@@ -38,3 +39,17 @@ def test_TempoMark___mul___02():
 
     result = tempo_indication * 4
     assert result == contexttools.TempoMark(Duration(1, 4), 240)
+
+
+def test_TempoMark___mul___03():
+
+    tempo_indication_1 = contexttools.TempoMark('Langsam')
+    py.test.raises(ImpreciseTempoError, "tempo_indication_1 * Duration(1, 2)")
+
+
+def test_TempoMark___mul___04():
+
+    tempo_indication_1 = contexttools.TempoMark(Duration(1, 8), (90, 92))
+    py.test.raises(ImpreciseTempoError, "tempo_indication_1 * Duration(1, 2)")
+
+

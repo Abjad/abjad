@@ -39,31 +39,56 @@ class TempoMark(ContextMark):
     def __init__(self, *args, **kwargs):
         from abjad.tools.scoretools.Score import Score
         ContextMark.__init__(self, **kwargs)
+
         if self.target_context is None:
             self._target_context = Score
+
         if len(args) == 1 and isinstance(args[0], type(self)):
             tempo_indication = args[0]
             duration = durationtools.Duration(tempo_indication.duration)
+            textual_indication = tempo_indication.textual_indication
             units_per_minute = tempo_indication.units_per_minute
-        elif len(args) == 2:
-            duration, units_per_minute = args
+
+        elif len(args) == 1 and isinstance(args[0], str):
+            duration = None
+            textual_indication = args[0]
+            units_per_minute = None
+            assert isinstance(textual_indication, (str, type(None)))
+
+        elif len(args) in [2, 3]:
+            if len(args) == 3:
+                textual_indication, duration, units_per_minute = args
+            else:
+                textual_indication = None
+                duration, units_per_minute = args
+
+            assert isinstance(textual_indication, (str, type(None)))
+
             #assert isinstance(duration, durationtools.Duration)
             try:
                 duration = durationtools.Duration(duration)
             except TypeError:
                 duration = durationtools.Duration(*duration)
-            assert isinstance(units_per_minute, (int, long, float, durationtools.Duration))
-            #duration = duration
-            units_per_minute = units_per_minute
+
+            assert isinstance(units_per_minute, (int, long, float, durationtools.Duration, list, tuple))
+            if isinstance(units_per_minute, (list, tuple)):
+                assert len(units_per_minute) == 2
+                assert all([isinstance(x, (int, long, float, durationtools.Duration)) for x in units_per_minute])
+                units_per_minute = tuple(sorted(units_per_minute))
+
         else:
             raise ValueError('can not initialize tempo indication.')
+
         object.__setattr__(self, '_duration', duration)
+        object.__setattr__(self, '_textual_indication', textual_indication)
         object.__setattr__(self, '_units_per_minute', units_per_minute)
 
     ### OVERLOADS ###
 
     def __add__(self, expr):
         if isinstance(expr, type(self)):
+            if self.is_imprecise or expr.is_imprecise:
+                raise ImpreciseTempoError
             new_quarters_per_minute = self.quarters_per_minute + expr.quarters_per_minute
             minimum_denominator = min((self.duration.denominator, expr.duration.denominator))
             new_units_per_minute, new_duration_denominator = \
@@ -74,22 +99,27 @@ class TempoMark(ContextMark):
             return new_tempo_indication
 
     def __copy__(self, *args):
-        return type(self)(self.duration, self.units_per_minute, target_context = self.target_context)
+        return type(self)(self.textual_indication, self.duration, self.units_per_minute, target_context = self.target_context)
 
     def __div__(self, expr):
         if isinstance(expr, type(self)):
+            if self.is_imprecise or expr.is_imprecise:
+                raise ImpreciseTempoError
             return self.quarters_per_minute / expr.quarters_per_minute
         raise TypeError('must be tempo indication.')
 
     def __eq__(self, expr):
         if isinstance(expr, type(self)):
             if self.duration == expr.duration:
-                if self.units_per_minute == expr.units_per_minute:
-                    return True
+                if self.textual_indication == expr.textual_indication:
+                    if self.units_per_minute == expr.units_per_minute:
+                        return True
         return False
 
     def __mul__(self, multiplier):
         if isinstance(multiplier, (int, float, durationtools.Duration)):
+            if self.is_imprecise:
+                raise ImpreciseTempoError
             new_units_per_minute = multiplier * self.units_per_minute
             new_duration = durationtools.Duration(self.duration)
             new_tempo_indication = type(self)(new_duration, new_units_per_minute)
@@ -97,6 +127,8 @@ class TempoMark(ContextMark):
 
     def __sub__(self, expr):
         if isinstance(expr, type(self)):
+            if self.is_imprecise or expr.is_imprecise:
+                raise ImpreciseTempoError
             new_quarters_per_minute = self.quarters_per_minute - expr.quarters_per_minute
             minimum_denominator = min((self.duration.denominator, expr.duration.denominator))
             new_units_per_minute, new_duration_denominator = \
@@ -110,6 +142,8 @@ class TempoMark(ContextMark):
 
     @property
     def _contents_repr_string(self):
+        if self.textual_indication:
+            return '%r, %s, %s' % (self.textual_indication, self._dotted, self.units_per_minute)
         return '%s, %s' % (self._dotted, self.units_per_minute)
 
     @property
@@ -120,6 +154,8 @@ class TempoMark(ContextMark):
     @property
     def _equation(self):
         '''Dotted numeral and units per minute together around equal sign.'''
+        if isinstance(self.units_per_minute, tuple):
+            return '%s=%s~%s' % (self._dotted, self.units_per_minute[0], self.units_per_minute[1])
         return '%s=%s' % (self._dotted, self.units_per_minute)
 
     ### PUBLIC ATTRIBUTES ###
@@ -139,14 +175,15 @@ class TempoMark(ContextMark):
                 abjad> tempo.duration
                 Duration(1, 4)
 
-            Return duration.
+            Return duration, or None if tempo mark is imprecise.
             '''
             return self._duration
         def fset(self, duration):
-            try:
-                duration = durationtools.Duration(duration)
-            except TypeError:
-                duration = durationtools.Duration(*duration)
+            if duration is not None:
+                try:
+                    duration = durationtools.Duration(duration)
+                except TypeError:
+                    duration = durationtools.Duration(*duration)
             self._duration = duration
         return property(**locals())
 
@@ -159,10 +196,57 @@ class TempoMark(ContextMark):
             abjad> tempo = contexttools.TempoMark(Duration(1, 8), 52)
             abjad> tempo.format
             '\\tempo 8=52'
+            abjad> tempo.textual_indication = 'Gingerly'
+            abjad> tempo.format
+            '\\tempo "Gingerly" 8=52'
+            abjad> tempo.units_per_minute = (52, 56)
+            abjad> tempo.format
+            '\\tempo "Gingerly" 8=52~56'
 
         Return string.
         '''
-        return r'\tempo %s' % self._equation
+        text, equation = None, None
+
+        if self.textual_indication is not None:
+            text = '"%s"' % self.textual_indication
+
+        if self.duration is not None and self.units_per_minute is not None:
+            equation = self._equation
+
+        if text and equation:
+            return r'\tempo %s %s' % (text, equation)
+        elif equation:
+            return r'\tempo %s' % equation
+        elif text:
+            return r'\tempo %s' % text
+        else:
+            return r'\tempo \default'
+
+    @property
+    def is_imprecise(self):
+        r'''True if tempo mark is entirely textual, or if tempo mark's
+        units_per_minute is a range:
+
+        ::
+
+            abjad> TempoMark(4, 60).is_imprecise
+            False
+            abjad> TempoMark('Langsam', 4, 60).is_imprecise
+            False
+            abjad> TempoMark('Langsam').is_imprecise
+            True
+            abjad> TempoMark('Langsam', 4, (35, 50)).is_imprecise
+            True
+            abjad> TempoMark(4, (35, 50)).is_imprecise
+            True
+
+        Return boolean.
+        '''
+        if self.duration is not None:
+            if self.units_per_minute is not None:
+                if not isinstance(self.units_per_minute, tuple):
+                    return False
+        return True
 
     @property
     def quarters_per_minute(self):
@@ -172,9 +256,33 @@ class TempoMark(ContextMark):
             abjad> tempo.quarters_per_minute
             Duration(104, 1)
 
-        Return fraction.
+        Return fraction, or tuple if units_per_minute is a range, or None if tempo mark is imprecise.
         '''
+        if self.is_imprecise:
+            return None
+
+        if isinstance(self.units_per_minute, tuple):
+            low = durationtools.Duration(1, 4) / self.duration * self.units_per_minute[0]
+            high = durationtools.Duration(1, 4) / self.duration * self.units_per_minute[1]
+            return (low, high)
         return durationtools.Duration(1, 4) / self.duration * self.units_per_minute
+
+    @apply
+    def textual_indication():
+        def fget(self):
+            r'''Get textual indication of tempo mark::
+
+                abjad> tempo = contexttools.TempoMark('Langsam', Duration(1, 8), 52)
+                abjad> tempo.textual_indication
+                Langsam
+            
+            Return string or None.
+            '''
+            return self._textual_indication
+        def fset(self, textual_indication):
+            assert isinstance(textual_indication, (str, type(None)))
+            self._textual_indication = textual_indication
+        return property(**locals())
 
     @apply
     def units_per_minute():
@@ -195,6 +303,10 @@ class TempoMark(ContextMark):
             '''
             return self._units_per_minute
         def fset(self, units_per_minute):
-            assert isinstance(units_per_minute, numbers.Number)
+            assert isinstance(units_per_minute, (numbers.Number, list, tuple, type(None)))
+            if isinstance(units_per_minute, (list, tuple)):
+                assert len(units_per_minute) == 2
+                assert all([isinstance(x, numbers.Number) for x in units_per_minute])
+                units_per_minute = tuple(sorted(units_per_minute))
             self._units_per_minute = units_per_minute
         return property(**locals())
