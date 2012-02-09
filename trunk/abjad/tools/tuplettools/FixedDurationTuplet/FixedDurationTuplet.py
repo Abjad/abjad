@@ -35,7 +35,7 @@ class FixedDurationTuplet(Tuplet):
 
     def __str__(self):
         if 0 < len(self):
-            return '{%s %s %s %s}' % (self._signifier, self.ratio, self._summary, self._signifier)
+            return '{%s %s %s %s}' % (self._signifier, self.ratio_string, self._summary, self._signifier)
         else:
             return '{%s %s %s}' % (self._signifier, self.target_duration, self._signifier)
 

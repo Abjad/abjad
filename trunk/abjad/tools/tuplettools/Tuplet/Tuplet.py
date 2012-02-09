@@ -52,7 +52,7 @@ class Tuplet(Container):
 
     def __str__(self):
         if 0 < len(self):
-            return '{%s %s %s %s}' % (self._signifier, self.ratio, self._summary, self._signifier)
+            return '{%s %s %s %s}' % (self._signifier, self.ratio_string, self._summary, self._signifier)
         else:
             return '{%s %s %s}' % (self._signifier, self.multiplier, self._signifier)
 
@@ -205,7 +205,7 @@ class Tuplet(Container):
                 }
 
             This has the effect of rendering no
-            no tuplet bracket and no tuplet ratio while preserving the rhythmic
+            no tuplet bracket and no tuplet number while preserving the rhythmic
             value of the tuplet and the contents of the tuplet.
 
             Return boolean or none.
@@ -324,13 +324,12 @@ class Tuplet(Container):
         '''
         return self.multiplied_duration
 
-    # TODO: rename to ratio_string
     @property
-    def ratio(self):
+    def ratio_string(self):
         '''Read-only tuplet multiplier formatted with colon as ratio::
 
             abjad> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
-            abjad> tuplet.ratio
+            abjad> tuplet.ratio_string
             '3:2'
 
         Return string.
