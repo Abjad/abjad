@@ -10,14 +10,15 @@ class PitchRange(_Immutable):
         abjad> pitchtools.PitchRange(-12, 36)
         PitchRange('[C3, C7]')
 
-    Init from pitch numbers, pitch names, pitch instances or other pitch range objects.
+    Initalize from pitch numbers, pitch names, pitch instances, one-line reprs 
+    or other pitch range objects.
 
-    Pitch ranges implement all six Python rich comparators.
+    Pitch ranges implement all six Python comparators.
 
     Pitch ranges are immutable.
     """
 
-    def __init__(self, *args):
+    def __init__(self, *args, **kwargs):
         from abjad.tools import pitchtools
         if len(args) == 0:
             object.__setattr__(self, '_start', None)
@@ -68,6 +69,10 @@ class PitchRange(_Immutable):
                 pitch = pitchtools.NamedChromaticPitch(pitch)
                 stop = (pitch, containment)
             object.__setattr__(self, '_stop', stop)
+        pitch_range_name = kwargs.get('pitch_range_name')
+        object.__setattr__(self, '_pitch_range_name', pitch_range_name)
+        pitch_range_name_markup = kwargs.get('pitch_range_name_markup')
+        object.__setattr__(self, '_pitch_range_name_markup', pitch_range_name_markup)
 
     ### OVERLOADS ###
 
@@ -155,8 +160,11 @@ class PitchRange(_Immutable):
         return not self == arg
 
     def __repr__(self):
-        #return '%s(%s, %s)' % (type(self).__name__, self._start, self._stop)
-        return '{}({!r})'.format(type(self).__name__, self.one_line_named_chromatic_pitch_repr)
+        if self._keyword_argument_repr_string:
+            return '{}({!r}, {})'.format(type(self).__name__, 
+                self.one_line_named_chromatic_pitch_repr, self._keyword_argument_repr_string)
+        else:
+            return '{}({!r})'.format(type(self).__name__, self.one_line_named_chromatic_pitch_repr)
 
     ### PRIVATE CLASS ATTRIBUTES ###
 
@@ -169,6 +177,16 @@ class PitchRange(_Immutable):
         ')': 'exclusive'}
 
     ### PRIVATE ATTRIBUTES ###
+
+    @property
+    def _keyword_argument_repr_string(self):
+        result = []
+        if self._pitch_range_name:
+            result.append('pitch_range_name={!r}'.format(self._pitch_range_name))
+        if self._pitch_range_name_markup:
+            result.append('pitch_range_name_markup={!r}'.format(self._pitch_range_name_markup))
+        result = ', '.join(result)
+        return result
 
     @property
     def _close_bracket_string(self):
@@ -271,6 +289,40 @@ class PitchRange(_Immutable):
         result.append(self._close_bracket_string)
         result = ''.join(result)
         return result
+
+    @property
+    def pitch_range_name(self):
+        r'''.. versionadded:: 2.7
+
+        Read-only name of pitch range::
+
+            abjad> pitch_range = pitchtools.PitchRange(-12, 36, pitch_range_name='four-octave range')
+            abjad> pitch_range.pitch_range_name
+            'four-octave range'
+
+        Return string or none.
+        '''
+        return self._pitch_range_name
+
+    @property
+    def pitch_range_name_markup(self):
+        r'''.. versionadded:: 2.7
+
+        Read-only markup of pitch range name::
+
+            abjad> pitch_range = pitchtools.PitchRange(-12, 36, pitch_range_name_markup=Markup('four-octave range'))
+            abjad> pitch_range.pitch_range_name
+            Markup('four-octave range')
+
+        Default to `pitch_range_name` when `pitch_range_name_markup` not set explicitly.
+
+        Return markup or none.
+        '''
+        from abjad.tools import markuptools
+        if self._pitch_range_name_markup:
+            return self._pitch_range_name_markup
+        elif self.pitch_range_name:
+            return markuptools.Markup(self.pitch_range_name)
 
     @property
     def start_pitch(self):

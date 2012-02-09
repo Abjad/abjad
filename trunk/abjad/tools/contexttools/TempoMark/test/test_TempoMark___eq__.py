@@ -19,7 +19,7 @@ def test_TempoMark___eq___02():
     assert not t1 == t2
 
 
-def test_TempoMark___eq___01():
+def test_TempoMark___eq___03():
     '''Tempo indications also compare textual indications.'''
 
     t1 = contexttools.TempoMark('Langsam', Duration(3, 32), 52)
