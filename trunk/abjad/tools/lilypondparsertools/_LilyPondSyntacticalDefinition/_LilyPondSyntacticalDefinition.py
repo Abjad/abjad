@@ -1,4 +1,5 @@
 from abjad import *
+from abjad.exceptions import LilyPondParserError
 from abjad.tools import durationtools
 from abjad.tools.lilypondparsertools._LilyPondDuration._LilyPondDuration \
     import _LilyPondDuration
@@ -3199,4 +3200,5 @@ class _LilyPondSyntacticalDefinition(object):
 
 
     def p_error(self, p):
-        print "Syntax error at %s" % p
+        raise LilyPondParserError
+        #print "Syntax error at %s" % p
