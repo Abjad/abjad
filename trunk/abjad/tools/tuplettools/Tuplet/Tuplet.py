@@ -107,7 +107,7 @@ class Tuplet(Container):
 
             ::
 
-                abjad> tulet.force_fraction = True
+                abjad> tuplet.force_fraction = True
 
             ::
 
@@ -221,7 +221,7 @@ class Tuplet(Container):
         '''Read-only boolean true when multiplier numerator is not power of two. Otherwise false::
 
             abjad> tuplet = Tuplet((3, 5), "c'8 d'8 e'8 f'8 g'8")
-            abjad> tuplet.is_binary
+            abjad> tuplet.is_nonbinary
             True
 
         Return boolean.

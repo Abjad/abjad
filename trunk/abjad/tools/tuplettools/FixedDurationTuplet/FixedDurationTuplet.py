@@ -59,7 +59,7 @@ class FixedDurationTuplet(Tuplet):
             '''Read-only multiplier of tuplet::
 
                 abjad> tuplet = tuplettools.FixedDurationTuplet((1, 4), "c'8 d'8 e'8")
-                abajd> tuplet.multiplier
+                abjad> tuplet.multiplier
                 Fraction(2, 3)
 
             Return fraction.
@@ -93,6 +93,7 @@ class FixedDurationTuplet(Tuplet):
             ::
 
                 abjad> tuplet.target_duration = Duration(5, 8)
+                abjad> f(tuplet)
                 \fraction \times 5/3 {
                     c'8
                     d'8

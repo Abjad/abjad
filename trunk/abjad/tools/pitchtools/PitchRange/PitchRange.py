@@ -310,8 +310,12 @@ class PitchRange(_Immutable):
 
         Read-only markup of pitch range name::
 
+            abjad> from abjad.tools.markuptools import Markup
+
+        ::
+
             abjad> pitch_range = pitchtools.PitchRange(-12, 36, pitch_range_name_markup=Markup('four-octave range'))
-            abjad> pitch_range.pitch_range_name
+            abjad> pitch_range.pitch_range_name_markup
             Markup('four-octave range')
 
         Default to `pitch_range_name` when `pitch_range_name_markup` not set explicitly.
