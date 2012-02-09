@@ -42,11 +42,27 @@ class FixedDurationTuplet(Tuplet):
 
     @property
     def multiplied_duration(self):
+        '''Read-only multiplied duration of tuplet::
+
+            abjad> tuplet = tuplettools.FixedDurationTuplet((1, 4), "c'8 d'8 e'8")
+            abjad> tuplet.multiplied_duration
+            Duration(1, 4)
+
+        Return duration.
+        '''
         return self.target_duration
 
     @apply
     def multiplier():
         def fget(self):
+            '''Read-only multiplier of tuplet::
+
+                abjad> tuplet = tuplettools.FixedDurationTuplet((1, 4), "c'8 d'8 e'8")
+                abajd> tuplet.multiplier
+                Duration(2, 3)
+
+            Return fraction.
+            '''
             if 0 < len(self):
                 return self.target_duration / self.contents_duration
             else:
@@ -58,6 +74,32 @@ class FixedDurationTuplet(Tuplet):
     @apply
     def target_duration():
         def fget(self):
+            r'''Read / write target duration of fixed-duration tuplet::
+
+                abjad> tuplet = tuplettools.FixedDurationTuplet((1, 4), "c'8 d'8 e'8")
+                abjad> tuplet.target_duration
+                Duration(1, 4)
+
+            ::
+
+                abjad> f(tuplet)
+                \times 2/3 {
+                    c'8
+                    d'8
+                    e'8
+                }
+
+            ::
+
+                abjad> tuplet.target_duration = Duration(5, 8)
+                \fraction \times 5/3 {
+                    c'8
+                    d'8
+                    e'8
+                }
+
+            Return duration.
+            '''
             return self._target_duration
         def fset(self, expr):
             if isinstance(expr, (int, long)):
