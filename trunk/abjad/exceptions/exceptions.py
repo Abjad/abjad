@@ -270,28 +270,8 @@ class WellFormednessError(Exception):
 
 class LilyPondParserError(Exception):
     '''Unable to parse input.'''
-    def __init__(self, lily_string = None, line_number = None, column_number = None):
-        self.lily_string = lily_string
-        self.line_number = line_number
-        self.column_number = column_number
-    def __str__(self):
-        if self.lily_string:
-            return '%s at line %d, column %d:\n    %s\n    %s' % \
-                (self.__doc__[:-1],
-                self.line_number,
-                self.column_number,
-                self.lily_string.split('\n')[self.line_number],
-                ' ' * self.column_number + '^')
-        return self.__doc__
-
-class UnknownTokenLilyPondParserError(LilyPondParserError):
-    '''Unable to identify token.'''
     pass
 
-class UnmatchedBraceLilyPondParserError(LilyPondParserError):
-    '''Brace is unmatched.'''
-    pass
-
-class UnparseableTokenLilyPondParserError(LilyPondParserError):
-    '''Token is recognized but not parseable.'''
+class ImpreciseTempoError(TempoError):
+    '''TempoMark is imprecise.'''
     pass
