@@ -310,8 +310,12 @@ class LilyPondParser(object):
 
         if optional_id is not None:
             context.name = optional_id        
+
         if optional_context_mod is not None:
+            for x in optional_context_mod:
+                print x
             pass # TODO
+
         context.is_parallel = music.is_parallel
 
         while len(music):

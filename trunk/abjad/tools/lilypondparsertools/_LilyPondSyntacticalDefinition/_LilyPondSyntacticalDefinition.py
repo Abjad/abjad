@@ -631,7 +631,7 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_context_mod__property_operation(self, p):
         'context_mod : property_operation'
-        p[0] = Node('context_mod', p[1:])
+        p[0] = p[1]
 
 
     ### context_mod_list ###
@@ -639,22 +639,22 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_context_mod_list__Empty(self, p):
         'context_mod_list : '
-        p[0] = Node('context_mod_list', [ ])
+        p[0] = [ ]
 
 
     def p_context_mod_list__context_mod_list__CONTEXT_MOD_IDENTIFIER(self, p):
         'context_mod_list : context_mod_list CONTEXT_MOD_IDENTIFIER'
-        p[0] = Node('context_mod_list', p[1].value + [p[2]])
+        p[0] = p[1] + [p[2]]
 
 
     def p_context_mod_list__context_mod_list__context_mod(self, p):
         'context_mod_list : context_mod_list context_mod'
-        p[0] = Node('context_mod_list', p[1].value + [p[2]])
+        p[0] = p[1] + [p[2]]
 
 
     def p_context_mod_list__context_mod_list__embedded_scm(self, p):
         'context_mod_list : context_mod_list embedded_scm'
-        p[0] = Node('context_mod_list', p[1].value + [p[2]])
+        p[0] = p[1] + [p[2]]
 
 
     ### context_modification ###
@@ -662,23 +662,23 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_context_modification__CONTEXT_MOD_IDENTIFIER(self, p):
         'context_modification : CONTEXT_MOD_IDENTIFIER'
-        p[0] = Node('context_modification', p[1:])
+        p[0] = [p[1]]
 
 
     def p_context_modification__WITH__CONTEXT_MOD_IDENTIFIER(self, p):
         'context_modification : WITH CONTEXT_MOD_IDENTIFIER'
-        p[0] = Node('context_modification', p[1:])
+        p[0] = [p[2]]
 
 
     def p_context_modification__WITH__Chr123__context_mod_list__Chr125(self, p):
         "context_modification : WITH '{' context_mod_list '}'"
-        p[0] = Node('context_modification', p[1:])
+        p[0] = p[3]
         self.client._lexer.pop_state( )
 
 
     def p_context_modification__WITH__embedded_scm_closed(self, p):
         'context_modification : WITH embedded_scm_closed'
-        p[0] = Node('context_modification', p[1:])
+        p[0] = [p[2]]
 
 
     ### context_prop_spec ###
@@ -2321,7 +2321,7 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_optional_context_mod__Empty(self, p):
         'optional_context_mod : '
-        p[0] = None
+        p[0] = [ ]
 
 
     def p_optional_context_mod__context_modification(self, p):
@@ -2545,26 +2545,34 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_property_operation__OVERRIDE__simple_string__property_path__Chr61__scalar(self, p):
         "property_operation : OVERRIDE simple_string property_path '=' scalar"
-        keyword = 'OVERRIDE'
-        context = p[2]
-        property_path = p[3]
-        value = p[5]
-        p[0] = _ContextModification(keyword, context, property_path, value)
+        p[0] = Event('PropertyOperation',
+            keyword='override', 
+            context=p[2], 
+            property=p[3],
+            value=p[5])
 
 
     def p_property_operation__REVERT__simple_string__embedded_scm(self, p):
         'property_operation : REVERT simple_string embedded_scm'
-        p[0] = Node('property_operation', p[1:])
+        p[0] = Event('PropertyOperation',
+            keyword='revert', 
+            context=p[2], 
+            property=p[3])
 
 
     def p_property_operation__STRING__Chr61__scalar(self, p):
         "property_operation : STRING '=' scalar"
-        p[0] = Node('property_operation', p[1:])
+        p[0] = Event('PropertyOperation',
+            keyword='set',
+            property=p[1],
+            value=p[2])
 
 
     def p_property_operation__UNSET__simple_string(self, p):
         'property_operation : UNSET simple_string'
-        p[0] = Node('property_operation', p[1:])
+        p[0] = Event('PropertyOperation',
+            keyword='unset',
+            property=p[2])
 
 
     ### property_path ###
@@ -2572,7 +2580,7 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_property_path__property_path_revved(self, p):
         'property_path : property_path_revved'
-        p[0] = Node('property_path', p[1:])
+        p[0] = p[1]
 
 
     ### property_path_revved ###
@@ -2580,12 +2588,12 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_property_path_revved__embedded_scm_closed(self, p):
         'property_path_revved : embedded_scm_closed'
-        p[0] = Node('property_path_revved', [p[1]])
+        p[0] = [p[1]]
 
 
     def p_property_path_revved__property_path_revved__embedded_scm_closed(self, p):
         'property_path_revved : property_path_revved embedded_scm_closed'
-        p[0] = Node('property_path_revved', p[1].value + [p[2]])
+        p[0] = p[1] + [p[2]]
 
 
     ### questions ###
