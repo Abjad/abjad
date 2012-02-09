@@ -142,9 +142,14 @@ class TempoMark(ContextMark):
 
     @property
     def _contents_repr_string(self):
+        result = []
         if self.textual_indication:
-            return '%r, %s, %s' % (self.textual_indication, self._dotted, self.units_per_minute)
-        return '%s, %s' % (self._dotted, self.units_per_minute)
+            result.append(repr(self.textual_indication))
+        if self.duration:
+            result.append(self._dotted)
+        if self.units_per_minute:
+            result.append(repr(self.units_per_minute))
+        return ', '.join(result)
 
     @property
     def _dotted(self):

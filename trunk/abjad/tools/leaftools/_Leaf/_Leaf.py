@@ -106,7 +106,7 @@ class _Leaf(_Component, _StrictComparator):
         from abjad.exceptions import MissingTempoError
         from abjad.tools import contexttools
         tempo = contexttools.get_effective_tempo(self)
-        if tempo is not None:
+        if tempo is not None and not tempo.is_imprecise:
             return self.prolated_duration / tempo.duration / tempo.units_per_minute * 60
         raise MissingTempoError
 
