@@ -30,7 +30,82 @@ yacc.LRParser._monkey_patch_parse_debug = _parse_debug
 
 
 class LilyPondParser(object):
+    r'''Parses a subset of LilyPond input syntax:
 
+    ::
+
+        abjad> from abjad.tools.lilypondparsertools import LilyPondParser
+        abjad> parser = LilyPondParser( )
+        abjad> input = r"\new Staff { c'4 ( d'8 e' fs'2) \fermata }"
+        abjad> result = parser(input)
+        abjad> f(result)
+        \new Staff {
+            c'4 (
+            d'8
+            e'8
+            fs'2 -\fermata )
+        }
+
+    LilyPondParser defaults to English note names, but any of the other
+    languages supported by LilyPond may be used:
+
+    ::
+
+        abjad> parser = LilyPondParser('nederlands')
+        abjad> input = '{ c des e fis }'
+        abjad> result = parser(input)
+        abjad> f(result)
+        {
+            c4
+            df4
+            e4
+            fs4
+        }
+
+    Briefly, LilyPondParser understands theses aspects of LilyPond syntax:
+
+    - Notes, chords, rests, skips and multi-measure rests
+    - Durations, dots, and multipliers
+    - All pitchnames, and octave ticks
+    - Simple markup (i.e. ``c'4 ^ "hello!"``)
+    - Most articulations
+    - Most spanners, including beams, slurs, phrasing slurs, ties, and glissandi
+    - Most context types via ``\new`` and ``\context``, as well as context ids (i.e. ``\new Staff = "foo" { }``)
+    - Variable assignment (i.e. ``global = { \time 3/4 } \new Staff { \global }``)
+    - Many music functions:
+        - ``\acciaccatura``
+        - ``\appoggiatura``
+        - ``\bar``
+        - ``\breathe``
+        - ``\clef``
+        - ``\grace``
+        - ``\key``
+        - ``\transpose``
+        - ``\language``
+        - ``\makeClusters``
+        - ``\mark``
+        - ``\oneVoice``
+        - ``\relative``
+        - ``\skip``
+        - ``\slashedGrace``
+        - ``\time``
+        - ``\times``
+        - ``\transpose``
+        - ``\voiceOne``, ``\voiceTwo``, ``\voiceThree``, ``\voiceFour``
+
+    LilyPondParser currently **DOES NOT** understand many other aspects of LilyPond syntax:
+
+    - ``\markup``
+    - ``\book``, ``\bookpart``, ``\header``, ``\layout``, ``\midi`` and ``\paper``
+    - ``\repeat`` and ``\alternative``
+    - Lyrics
+    - ``\chordmode``, ``\drummode`` or ``\figuremode``
+    - Property operations, such as ``\override``, ``\revert``, ``\set``, ``\unset``, and ``\once``
+    - Music functions which generate or extensively mutate musical structures
+    - **Any Scheme statement!**
+
+    Returns LilyPondParser instance.
+    '''
 
     def __init__(self, default_language='english', debug=False):
 
@@ -117,14 +192,47 @@ class LilyPondParser(object):
 
     ### PUBLIC ATTRIBUTES ###
 
+
+    @property
+    def available_languages(self):
+        '''Tuple of pitch-name languages supported by LilyPondParser:
+
+        ::
+
+            abjad> from abjad.tools.lilypondparsertools import LilyPondParser
+            abjad> parser = LilyPondParser( )
+            abjad> parser.available_languages
+            ('catalan', 'deutsch', 'english', 'espanol', 'italiano', 'nederlands', 'norsk', 'portugues', 'suomi', 'svenska', 'vlaams')
+
+        Return tuple.
+        '''
+        return tuple(sorted(self._language_pitch_names.keys( )))
+
     
     @apply
     def default_language():
-        def fset(self, arg):
-            assert arg in self._language_pitch_names.keys( )
-            self._default_language = arg
         def fget(self):
+            '''Read/write attribute to set parser's default pitch-name language:
+
+            ::
+
+                abjad> from abjad.tools.lilypondparsertools import LilyPondParser
+                abjad> parser = LilyPondParser( )
+                abjad> parser.default_language
+                'english'
+                abjad> parser('{ c df e fs }')
+                {c4, df4, e4, fs4}
+                abjad> parser.default_language = 'nederlands'
+                abjad> parser.default_language
+                'nederlands'
+                abjad> parser('{ c des e fis }')
+                {c4, df4, e4, fs4}
+
+            '''
             return self._default_language
+        def fset(self, arg):
+            assert arg in self.available_languages
+            self._default_language = arg
         return property(**locals( ))
 
 
