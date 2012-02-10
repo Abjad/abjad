@@ -117,6 +117,20 @@ class InstrumentationSpecifier(object):
         '''
         return len(self.performers)
 
+    @property
+    def performer_name_string(self):
+        r'''Read-only string of performer names::
+
+            abjad> instrumentation_specifier.performer_name_string
+            'Flute, Guitar'
+
+        Return string.
+        '''
+        if self.performers:
+            return ', '.join([performer.name for performer in self.performers])
+        else:
+            return ''
+
     @apply
     def performers():
         def fget(self):

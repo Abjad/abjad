@@ -175,6 +175,7 @@ class Performer(object):
             if likely_instrument.is_primary_instrument:
                 return likely_instrument_class
 
+    # TODO: change name to Performer.performer_name
     @apply
     def name():
         def fget(self):
