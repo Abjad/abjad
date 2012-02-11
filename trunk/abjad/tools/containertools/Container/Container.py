@@ -24,9 +24,9 @@ class Container(_Component):
 
     def __init__(self, music = None, **kwargs):
         _Component.__init__(self)
+        self._parallel = False
         self._initialize_music(music)
         self._formatter = _ContainerFormatter(self)
-        self._parallel = False
         self._initialize_keyword_values(**kwargs)
 
     ### OVERLOADS ###
@@ -143,8 +143,7 @@ class Container(_Component):
         # slice assignment
         else:
             if isinstance(expr, str):
-                container = iotools.parse_lilypond_input_string(expr)
-                expr = container[:]
+                expr = self._parse_string(expr)[:]
             assert componenttools.all_are_components(expr)
             if i.start == i.stop and i.start is not None \
                 and i.stop is not None and i.start <= -len(self):
@@ -322,9 +321,14 @@ class Container(_Component):
                 parent._music.insert(index, self)
                 self._parentage._switch(parent)
         elif isinstance(music, str):
-            music_container = iotools.parse_lilypond_input_string(music)
+            parsed = self._parse_string(music)
             self._music = []
-            self[:] = music_container.music
+            self.is_parallel = parsed.is_parallel
+            if self.is_parallel:
+                for x in parsed:
+                    self.append(x)
+            else:
+                self[:] = parsed.music
         else:
             raise TypeError('can not initialize container from "%s".' % str(music))
 
@@ -333,6 +337,15 @@ class Container(_Component):
 
     def _is_one_of_my_last_leaves(self, leaf):
         return leaf in self._navigator._contemporaneous_stop_contents
+
+    def _parse_string(self, string):
+        from abjad.tools.lilypondparsertools import LilyPondParser
+        input = string.strip()
+        if not input.startswith(('{', '\\new', '\\context')) and not input.endswith('}'):
+            input = '{ %s }' % input
+        parsed = LilyPondParser()(input)
+        assert isinstance(parsed, Container)
+        return parsed
 
     ### PUBLIC METHODS ###
 

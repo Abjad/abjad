@@ -60,7 +60,7 @@ def test_sequencetools_rotate_sequence_05():
     '''Rotate notes.
     '''
 
-    notes_1 = iotools.parse_lilypond_input_string("c'8 d'8 e'8 f'8")
+    notes_1 = iotools.p("{ c'8 d'8 e'8 f'8 }")
     notes_2 = sequencetools.rotate_sequence(notes_1, -1)
 
     for note in notes_2:
