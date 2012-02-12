@@ -112,13 +112,13 @@ def test_Container_extend_05():
 
 
 def test_Container_extend_06():
-    '''Trying to extend container with noncontainer raises TypeError.
+    '''Trying to extend container with noncontainer raises exception.
     '''
 
     t = Voice("c'8 d'8")
     spannertools.BeamSpanner(t[:])
 
-    assert py.test.raises(TypeError, 't.extend(Note(4, (1, 4)))')
+    assert py.test.raises(Exception, 't.extend(Note(4, (1, 4)))')
     assert py.test.raises(AssertionError, "t.extend(Chord([2, 3, 5], (1, 4)))")
 
 

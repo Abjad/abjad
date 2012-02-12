@@ -156,7 +156,9 @@ class Container(_Component):
             # must withdraw before setting in self!
             # otherwise circular withdraw ensues!
             _withdraw_components_in_expr_from_crossing_spanners(expr)
-            self._music[start:start] = expr
+            # to make pychecker happy
+            #self._music[start:start] = expr
+            self._music.__setitem__(slice(start, start), expr)
             for component in expr:
                 component._parentage._switch(self)
             for spanner, index in spanners_receipt:
@@ -378,7 +380,9 @@ class Container(_Component):
 
         Return none.
         '''
-        self[len(self):len(self)] = [component]
+        # to make pychecker happy
+        #self[len(self):len(self)] = [component]
+        self.__setitem__(slice(len(self), len(self)), [component])
 
     def extend(self, expr):
         '''Extend `expr` against container::
@@ -416,8 +420,10 @@ class Container(_Component):
         .. versionadded:: 2.3
             ``expr`` may now be a LilyPond input string.
         '''
-        self[len(self):len(self)] = expr[:]
         #return self
+        # to make pychecker happy
+        #self[len(self):len(self)] = expr[:]
+        self.__setitem__(slice(len(self), len(self)), expr.__getitem__(slice(0, len(expr))))
 
     def index(self, component):
         '''Index `component` in container::
@@ -474,8 +480,10 @@ class Container(_Component):
 
         Return none.
         '''
-        self[i:i] = [component]
-
+        # to make pychecker happy
+        #self[i:i] = [component]
+        self.__setitem__(slice(i, i), [component])
+        
     def pop(self, i = -1):
         '''Pop component at index `i` from container::
 
