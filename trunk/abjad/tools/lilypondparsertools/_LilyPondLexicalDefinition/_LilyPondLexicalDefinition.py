@@ -425,6 +425,7 @@ class _LilyPondLexicalDefinition(object):
     @TOKEN(ALPHAWORD)
     def t_notes_417(self, t):
         pitch_names = self.client._pitch_names
+        print self.client._pitch_names.keys( )
         if t.value in pitch_names:
             t.type = 'NOTENAME_PITCH'
             t.value = pitch_names[t.value]

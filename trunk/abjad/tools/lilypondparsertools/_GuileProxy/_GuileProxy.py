@@ -1,5 +1,6 @@
 from abjad import *
 from abjad.tools.contexttools._Context import _Context
+from abjad.tools.leaftools._Leaf import _Leaf
 
 
 class _GuileProxy(object):
@@ -62,7 +63,13 @@ class _GuileProxy(object):
 
     def language(self, string):
         if string in self.client._language_pitch_names:
-            self.client._pitch_names = self._client._language_pitch_names[string]
+            self.client._pitch_names = self.client._language_pitch_names[string]
+        # try reparsing the next note name, if a note name immediately follows
+        lookahead = self.client._parser.lookahead
+        if lookahead.type == 'STRING':
+            if lookahead.value in self.client._pitch_names:
+                lookahead.type = 'NOTENAME_PITCH'
+                lookahead.value = self.client._pitch_names[lookahead.value]
 
 
     def makeClusters(self, music):
@@ -142,10 +149,9 @@ class _GuileProxy(object):
 
     def times(self, fraction, music):
         n, d  = fraction.numerator, fraction.denominator
-        if not isinstance(music, _Context):
+        if not isinstance(music, _Context) and not isinstance(music, _Leaf):
             return tuplettools.Tuplet((n, d), music[:])
         return tuplettools.Tuplet((n, d), [music])
-
 
     def transpose(self, from_pitch, to_pitch, music):
         self._make_unrelativable(music)

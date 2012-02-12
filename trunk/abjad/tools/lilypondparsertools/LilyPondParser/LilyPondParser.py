@@ -102,7 +102,7 @@ class LilyPondParser(object):
     - ``\chordmode``, ``\drummode`` or ``\figuremode``
     - Property operations, such as ``\override``, ``\revert``, ``\set``, ``\unset``, and ``\once``
     - Music functions which generate or extensively mutate musical structures
-    - **Any Scheme statement!**
+    - Embedded Scheme statements (anything beginning with ``#``)
 
     Returns LilyPondParser instance.
     '''

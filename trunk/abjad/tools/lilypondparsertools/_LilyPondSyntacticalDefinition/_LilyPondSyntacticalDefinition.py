@@ -68,9 +68,9 @@ class _LilyPondSyntacticalDefinition(object):
 #        p[0] = [p[1], p[3]]
 
 
-#    def p_assignment__embedded_scm(self, p):
-#        'assignment : embedded_scm'
-#        p[0] = None
+    def p_assignment__embedded_scm(self, p):
+        'assignment : embedded_scm'
+        p[0] = None
 
 
     ### assignment_id ###
@@ -840,12 +840,12 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_embedded_scm__embedded_scm_bare(self, p):
         'embedded_scm : embedded_scm_bare'
-        p[0] = Node('embedded_scm', p[1:])
+        p[0] = p[1]
 
 
     def p_embedded_scm__scm_function_call(self, p):
         'embedded_scm : scm_function_call'
-        p[0] = Node('embedded_scm', p[1:])
+        p[0] = p[1]
 
 
     ### embedded_scm_arg ###
@@ -928,6 +928,7 @@ class _LilyPondSyntacticalDefinition(object):
     def p_embedded_scm_bare_arg__context_modification(self, p):
         'embedded_scm_bare_arg : context_modification'
         p[0] = p[1]
+
 
 
     def p_embedded_scm_bare_arg__embedded_scm_bare(self, p):
@@ -2676,7 +2677,7 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_scm_function_call__SCM_FUNCTION__function_arglist(self, p):
         'scm_function_call : SCM_FUNCTION function_arglist'
-        p[0] = Node('scm_function_call', p[1:])
+        p[0] = self.client._guile(p[1], p[2])
 
 
     ### scm_function_call_closed ###
@@ -2684,7 +2685,7 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_scm_function_call_closed__SCM_FUNCTION__function_arglist_closed(self, p):
         'scm_function_call_closed : SCM_FUNCTION function_arglist_closed %prec FUNCTION_ARGLIST'
-        p[0] = Node('scm_function_call_closed', p[1:])
+        p[0] = self.client._guile(p[1], p[2])
 
 
     ### score_block ###
@@ -3208,5 +3209,7 @@ class _LilyPondSyntacticalDefinition(object):
 
 
     def p_error(self, p):
+        print p
         raise LilyPondParserError
         #print "Syntax error at %s" % p
+
