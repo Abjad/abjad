@@ -348,7 +348,7 @@ class PitchRange(_Immutable):
 
     @property
     def start_pitch_is_included_in_range(self):
-        '''True when start pitch is included in range. Otherwise false::
+        '''Read-only boolean true when start pitch is included in range. Otherwise false::
 
             abjad> pitch_range = pitchtools.PitchRange(-12, 36)
             abjad> pitch_range.start_pitch_is_included_in_range
@@ -376,7 +376,7 @@ class PitchRange(_Immutable):
 
     @property
     def stop_pitch_is_included_in_range(self):
-        '''True when stop pitch is included in range. Otherwise false::
+        '''Read-only boolean true when stop pitch is included in range. Otherwise false::
 
             abjad> pitch_range = pitchtools.PitchRange(-12, 36)
             abjad> pitch_range.stop_pitch_is_included_in_range
