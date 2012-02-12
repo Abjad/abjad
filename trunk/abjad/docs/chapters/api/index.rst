@@ -1078,9 +1078,9 @@ intervaltreetools
    tools/intervaltreetools/calculate_mean_attack_of_intervals
    tools/intervaltreetools/calculate_mean_release_of_intervals
    tools/intervaltreetools/calculate_min_mean_and_max_depth_of_intervals
-   tools/intervaltreetools/calculate_min_mean_and_max_magnitude_of_intervals
+   tools/intervaltreetools/calculate_min_mean_and_max_durations_of_intervals
    tools/intervaltreetools/calculate_sustain_centroid_of_intervals
-   tools/intervaltreetools/clip_interval_magnitudes_to_range
+   tools/intervaltreetools/clip_interval_durations_to_range
    tools/intervaltreetools/compute_depth_of_intervals
    tools/intervaltreetools/compute_depth_of_intervals_in_interval
    tools/intervaltreetools/compute_logical_and_of_intervals
@@ -1106,10 +1106,10 @@ intervaltreetools
    tools/intervaltreetools/resolve_overlaps_between_nonoverlapping_trees
    tools/intervaltreetools/resolve_overlaps_between_nonoverlapping_trees_excluding_remainders_less_than_rational
    tools/intervaltreetools/round_interval_bounds_to_nearest_multiple_of_rational
-   tools/intervaltreetools/scale_aggregate_magnitude_by_rational
-   tools/intervaltreetools/scale_aggregate_magnitude_to_rational
-   tools/intervaltreetools/scale_interval_magnitudes_by_rational
-   tools/intervaltreetools/scale_interval_magnitudes_to_rational
+   tools/intervaltreetools/scale_aggregate_duration_by_rational
+   tools/intervaltreetools/scale_aggregate_duration_to_rational
+   tools/intervaltreetools/scale_interval_durations_by_rational
+   tools/intervaltreetools/scale_interval_durations_to_rational
    tools/intervaltreetools/scale_interval_offsets_by_rational
    tools/intervaltreetools/shift_aggregate_offset_by_rational
    tools/intervaltreetools/shift_aggregate_offset_to_rational
