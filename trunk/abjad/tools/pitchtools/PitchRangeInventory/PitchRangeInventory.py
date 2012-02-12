@@ -34,7 +34,7 @@ class PitchRangeInventory(list):
     def append(self, pitch_range_token):
         '''Change `pitch_range_token` to pitch range and append::
 
-            abjad> pitch_range_inventory = pitchtools.PitchRangeInventory(['[A0, C8]')  
+            abjad> pitch_range_inventory = pitchtools.PitchRangeInventory(['[A0, C8]'])  
             abjad> pitch_range_inventory.append('[C3, F#5]')
 
         ::
@@ -50,7 +50,7 @@ class PitchRangeInventory(list):
     def extend(self, pitch_range_tokens):
         '''Change `pitch_range_tokens` to pitch ranges and extend::
 
-            abjad> pitch_range_inventory = pitchtools.PitchRangeInventory(['[A0, C8]')  
+            abjad> pitch_range_inventory = pitchtools.PitchRangeInventory(['[A0, C8]'])  
             abjad> pitch_range_inventory.extend(['[C3, F#5]', '[C#4, C#5]'])
 
         ::
