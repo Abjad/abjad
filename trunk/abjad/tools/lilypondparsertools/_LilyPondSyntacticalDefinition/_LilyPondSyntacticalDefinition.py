@@ -442,14 +442,14 @@ class _LilyPondSyntacticalDefinition(object):
         p[0] = Event('VoiceSeparator')
 
 
-    def p_command_element__E_BRACKET_CLOSE(self, p):
-        'command_element : E_BRACKET_CLOSE'
-        raise Exception('Ligatures not supported.')
+#    def p_command_element__E_BRACKET_CLOSE(self, p):
+#        'command_element : E_BRACKET_CLOSE'
+#        raise Exception('Ligatures not supported.')
 
 
-    def p_command_element__E_BRACKET_OPEN(self, p):
-        'command_element : E_BRACKET_OPEN'
-        raise Exception('Ligatures not supported.')
+#    def p_command_element__E_BRACKET_OPEN(self, p):
+#        'command_element : E_BRACKET_OPEN'
+#        raise Exception('Ligatures not supported.')
 
 
     def p_command_element__command_event(self, p):
@@ -1215,7 +1215,7 @@ class _LilyPondSyntacticalDefinition(object):
         if self.client._test_scheme_predicate(p[2], n):
             p[0] = p[3] + [p[1]]
         else:
-            self.client._backup_token(NUMBER_IDENTIFIER, n)
+            self.client._backup_token('NUMBER_IDENTIFIER', n)
 
 
     def p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed_keep__Chr45__REAL(self, p):

@@ -16,6 +16,7 @@ from abjad.ly.py.markup_functions import markup_list_functions
 from abjad.tools.lilypondparsertools._GuileProxy._GuileProxy import _GuileProxy
 from abjad.tools.lilypondparsertools._LilyPondDuration._LilyPondDuration import _LilyPondDuration
 from abjad.tools.lilypondparsertools._LilyPondEvent._LilyPondEvent import _LilyPondEvent
+from abjad.tools.lilypondparsertools._LilyPondFraction._LilyPondFraction import _LilyPondFraction
 from abjad.tools.lilypondparsertools._LilyPondLexicalDefinition._LilyPondLexicalDefinition import _LilyPondLexicalDefinition
 from abjad.tools.lilypondparsertools._LilyPondSyntacticalDefinition._LilyPondSyntacticalDefinition import _LilyPondSyntacticalDefinition
 from abjad.tools.lilypondparsertools._SyntaxNode._SyntaxNode import _SyntaxNode as Node
@@ -292,8 +293,8 @@ class LilyPondParser(object):
             # loop through directed events, handling each as necessary
             for klass, events in directed_events.iteritems( ):
 
-                starting_events = filter(lambda x: x.span_direction is 'start', events)
-                stopping_events = filter(lambda x: x.span_direction is 'stop', events)
+                starting_events = filter(lambda x: x.span_direction == 'start', events)
+                stopping_events = filter(lambda x: x.span_direction == 'stop', events)
 
                 if klass is spannertools.BeamSpanner:
                     # A beam may begin and end on the same leaf
@@ -323,7 +324,7 @@ class LilyPondParser(object):
                             all_spanners[klass][0].append(leaf)
                             all_spanners[klass].pop( )
                         shape = '<'
-                        if starting_events[0].name is 'DecrescendoEvent':
+                        if starting_events[0].name == 'DecrescendoEvent':
                             shape = '>'
                         all_spanners[klass].append(klass([], shape))
                     elif 1 < len(starting_events):
@@ -526,7 +527,7 @@ class LilyPondParser(object):
     def _get_span_events(self, leaf):
         annotations = marktools.get_annotations_attached_to_component(leaf)
         if annotations:
-            spanners_annotations = filter(lambda x: x.name is 'spanners', annotations)
+            spanners_annotations = filter(lambda x: x.name == 'spanners', annotations)
             if 1 == len(spanners_annotations):
                 return spanners_annotations[0].value
             elif 1 < len(spanners_annotations):
@@ -539,7 +540,7 @@ class LilyPondParser(object):
             if hasattr(post_event, '__call__'):
                 post_event(leaf)
             else:
-                annotation = filter(lambda x: x.name is 'spanners',
+                annotation = filter(lambda x: x.name == 'spanners',
                     marktools.get_annotations_attached_to_component(leaf))
                 if not annotation:
                     annotation = marktools.Annotation('spanners', [ ])(leaf)
