@@ -1,5 +1,3 @@
-from abjad.exceptions import ExtraMarkError
-from abjad.exceptions import MissingMarkError
 from abjad.tools.marktools.get_marks_attached_to_component import get_marks_attached_to_component
 
 

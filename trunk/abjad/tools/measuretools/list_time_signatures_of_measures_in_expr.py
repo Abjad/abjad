@@ -44,7 +44,6 @@ def list_time_signatures_of_measures_in_expr(components):
         renamed ``measuretools.list_time_signatures_of_mesures_in_expr()`` to
         ``measuretools.list_time_signatures_of_measures_in_expr()``.
     '''
-    from abjad.tools import componenttools
     from abjad.tools import contexttools
     from abjad.tools import measuretools
 

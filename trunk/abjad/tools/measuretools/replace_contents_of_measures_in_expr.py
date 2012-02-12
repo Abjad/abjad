@@ -71,7 +71,9 @@ def replace_contents_of_measures_in_expr(expr, new_contents):
     cur_measure = get_next_measure_from_component(expr)
     result.append(cur_measure)
     cur_meter = contexttools.get_effective_time_signature(cur_measure)
-    del(cur_measure[:])
+    # to avoide pychecker slice assignment error
+    #del(cur_measure[:])
+    cur_measure.__delitem__(slice(0, len(cur_measure)))
 
     # iterate new contents
     while new_contents:
@@ -99,7 +101,9 @@ def replace_contents_of_measures_in_expr(expr, new_contents):
                 raise StopIteration
             result.append(cur_measure)
             cur_meter = contexttools.get_effective_time_signature(cur_measure)
-            del(cur_measure[:])
+            # to avoid pychecker slice assignment error
+            #del(cur_measure[:])
+            cur_measure.__delitem__(slice(0, len(cur_measure)))
 
     # restore last iterated measure
     cur_meter = contexttools.TimeSignatureMark(cur_meter)

@@ -77,7 +77,6 @@ def fuse_measures(measures):
         ``measuretools.fuse_measures()``.
     '''
     from abjad.tools.measuretools.Measure import Measure
-    from abjad.tools import componenttools
 
     assert componenttools.all_are_contiguous_components_in_same_parent(measures,
         klasses = (Measure, ))

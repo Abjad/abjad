@@ -1,4 +1,4 @@
-def weight(sequence, start = 0):
+def weight(sequence):
     '''Sum of the absolute value of the elements in `sequence`::
 
         abjad> from abjad.tools import mathtools
@@ -7,11 +7,6 @@ def weight(sequence, start = 0):
 
         abjad> mathtools.weight([-1, -2, 3, 4, 5])
         15
-
-    Absolute value of `start`::
-
-        abjad> mathtools.weight([])
-        0
 
     Return nonnegative integer.
 

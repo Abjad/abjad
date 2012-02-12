@@ -29,7 +29,7 @@ def is_component_with_noncontext_mark_attached(expr):
     from abjad.tools.componenttools._Component import _Component
 
     if isinstance(expr, _Component):
-        for noncontext_mark in get_noncontext_marks_attached_to_component(expr):
+        if get_noncontext_marks_attached_to_component(expr):
             return True
 
     return False

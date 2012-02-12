@@ -30,19 +30,17 @@ def cumulative_signed_weights(sequence):
 
     for x in sequence:
         try:
-            next = abs(prev) + abs(x)
+            next_element = abs(prev) + abs(x)
             prev_sign = sign(prev)
         except NameError:
-            next = abs(x)
+            next_element = abs(x)
             prev_sign = 0
         sign_x = sign(x)
         if sign_x == -1:
-            next *= sign_x
+            next_element *= sign_x
         elif sign_x == 0:
-            next *= prev_sign
-        #yield next
-        result.append(next)
-        prev = next
+            next_element *= prev_sign
+        result.append(next_element)
+        prev = next_element
 
-    #raise StopIteration
     return result

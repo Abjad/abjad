@@ -84,7 +84,6 @@ class Markup(Mark):
         Mark.__init__(self)
         if isinstance(arg, str):
             contents_string = arg
-            style_string = style_string
         elif isinstance(arg, Markup):
             contents_string = arg._contents_string
             style_string = arg._style_string

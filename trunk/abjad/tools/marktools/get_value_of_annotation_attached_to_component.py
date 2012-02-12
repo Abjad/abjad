@@ -1,4 +1,3 @@
-from abjad.exceptions import ExtraMarkError
 from abjad.tools.marktools.get_annotations_attached_to_component import get_annotations_attached_to_component
 
 

@@ -1,7 +1,6 @@
 from abjad.tools import contexttools
 from abjad.tools import durationtools
 from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_measures_forward_in_expr
-from abjad.tools import durationtools
 
 
 def multiply_contents_of_measures_in_expr(expr, n):

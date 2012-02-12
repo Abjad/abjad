@@ -10,7 +10,6 @@ def _leaf_to_tuplet_with_proportions(l, divisions, prolation):
     '''
     from abjad.tools.notetools.make_notes import make_notes
     from abjad.tools.notetools.Note import Note
-    from abjad.tools.tuplettools import FixedDurationTuplet
     from abjad.tools import tuplettools
 
     # find target duration of fixed-duration tuplet

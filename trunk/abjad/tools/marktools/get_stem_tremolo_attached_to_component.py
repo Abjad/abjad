@@ -1,6 +1,4 @@
 from abjad.tools.marktools.StemTremolo import StemTremolo
-from abjad.exceptions import ExtraMarkError
-from abjad.exceptions import MissingMarkError
 
 
 def get_stem_tremolo_attached_to_component(component):

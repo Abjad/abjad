@@ -261,7 +261,7 @@ class Spanner(_StrictComparator):
             last_leaf = get_nth_leaf_in_spanner(self, -1)
             return leaf is last_leaf
         except IndexError:
-            False
+            return False
 
     # TODO: Remove call to self.leaves #
     def _is_my_only(self, leaf, klass):
@@ -507,10 +507,10 @@ class Spanner(_StrictComparator):
         '''
 
         from abjad.tools import componenttools
-        input = self[-1:]
-        input.extend(components)
+        component_input = self[-1:]
+        component_input.extend(components)
         if self._contiguity_constraint == 'thread':
-            assert componenttools.all_are_thread_contiguous_components(input)
+            assert componenttools.all_are_thread_contiguous_components(component_input)
         for component in components:
             self.append(component)
 
@@ -532,8 +532,8 @@ class Spanner(_StrictComparator):
         '''
 
         from abjad.tools import componenttools
-        input = components + self[:1]
-        assert componenttools.all_are_thread_contiguous_components(input)
+        component_input = components + self[:1]
+        assert componenttools.all_are_thread_contiguous_components(component_input)
         for component in reversed(components):
             self.append_left(component)
 

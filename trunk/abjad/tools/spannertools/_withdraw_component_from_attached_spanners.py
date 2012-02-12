@@ -3,5 +3,4 @@ def _withdraw_component_from_attached_spanners(component):
     '''
 
     for spanner in component.spanners:
-        index = spanner.index(component)
         spanner._remove(component)

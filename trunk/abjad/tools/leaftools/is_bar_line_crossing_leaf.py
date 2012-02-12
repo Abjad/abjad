@@ -42,7 +42,6 @@ def is_bar_line_crossing_leaf(leaf):
     partial = getattr(meter, 'partial', Duration(0))
     
     shifted_start = (leaf._offset.start - partial) % meter_duration
-    shifted_stop = (leaf._offset.stop - partial) % meter_duration
 
     if meter_duration < shifted_start + leaf.prolated_duration:
          return True

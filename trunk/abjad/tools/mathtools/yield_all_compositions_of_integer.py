@@ -40,8 +40,6 @@ def yield_all_compositions_of_integer(n):
         ``mathtools.yield_all_compositions_of_integer()``.
     '''
 
-    from abjad.tools.sequencetools.yield_all_permutations_of_sequence import yield_all_permutations_of_sequence
-
     # Finds small values of n easily.
     # Takes ca. 4 seconds for n = 17.
 
@@ -50,9 +48,9 @@ def yield_all_compositions_of_integer(n):
     x = 0
     string_length = n
     while x < 2 ** (n - 1):
-        string = integer_to_binary_string(x)
-        string = string.zfill(string_length)
-        l = [int(c) for c in list(string)]
+        binary_string = integer_to_binary_string(x)
+        binary_string = binary_string.zfill(string_length)
+        l = [int(c) for c in list(binary_string)]
         partition = []
         g = itertools.groupby(l, lambda x: x)
         for value, group in g:

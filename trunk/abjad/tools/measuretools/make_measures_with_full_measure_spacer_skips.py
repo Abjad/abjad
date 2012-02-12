@@ -38,7 +38,6 @@ def make_measures_with_full_measure_spacer_skips(meters):
         renamed ``measuretools.make()`` to
         ``measuretools.make_measures_with_full_measure_spacer_skips()``.
     '''
-    from abjad.tools.skiptools.Skip import Skip
 
     # check input
     meters = [contexttools.TimeSignatureMark(meter) for meter in meters]
