@@ -137,16 +137,18 @@ class IntervalTree(_RedBlackTree):
         return None
 
     @property
-    def stop(self):
-        '''The maximum stop value of all intervals in the tree.
-        Alias of latest_stop.'''
-        return self.latest_stop
+    def duration(self):
+        '''Absolute difference of the stop and start values of the tree.'''
+        if self:
+            return Duration(self.latest_stop - self.earliest_start)
+        else:
+            return Duration(0)
 
     @property
-    def latest_stop(self):
-        '''The maximum stop value of all intervals in the tree.'''
+    def earliest_start(self):
+        '''The minimum start value of all intervals in the tree.'''
         if self:
-            return Offset(self._root.latest_stop)
+            return Offset(self._find_minimum(self._root).key)
         else:
             return None
 
@@ -159,12 +161,6 @@ class IntervalTree(_RedBlackTree):
             return None
 
     @property
-    def start(self):
-        '''The minimum start value of all intervals in the tree.
-        Alias of earliest_start.'''
-        return self.earliest_start
-
-    @property
     def latest_start(self):
         '''The maximum start value of all intervals in the tree.'''
         if self:
@@ -173,20 +169,24 @@ class IntervalTree(_RedBlackTree):
             return None
 
     @property
-    def earliest_start(self):
-        '''The minimum start value of all intervals in the tree.'''
+    def latest_stop(self):
+        '''The maximum stop value of all intervals in the tree.'''
         if self:
-            return Offset(self._find_minimum(self._root).key)
+            return Offset(self._root.latest_stop)
         else:
             return None
 
     @property
-    def duration(self):
-        '''Absolute difference of the stop and start values of the tree.'''
-        if self:
-            return Duration(self.latest_stop - self.earliest_start)
-        else:
-            return Duration(0)
+    def start(self):
+        '''The minimum start value of all intervals in the tree.
+        Alias of earliest_start.'''
+        return self.earliest_start
+
+    @property
+    def stop(self):
+        '''The maximum stop value of all intervals in the tree.
+        Alias of latest_stop.'''
+        return self.latest_stop
 
     ### PRIVATE METHODS ###
 

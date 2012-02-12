@@ -59,16 +59,6 @@ class BoundedInterval(dict, _Immutable):
         return Offset(self.stop + self.start) / 2
 
     @property
-    def stop(self):
-        '''stop bound.'''
-        return self._stop
-
-    @property
-    def start(self):
-        '''start bound.'''
-        return self._start
-
-    @property
     def duration(self):
         '''stop bound minus start bound.'''
         return Duration(self.stop - self.start)
@@ -77,6 +67,16 @@ class BoundedInterval(dict, _Immutable):
     def signature(self):
         '''Tuple of start bound and stop bound.'''
         return (self.start, self.stop)
+
+    @property
+    def start(self):
+        '''start bound.'''
+        return self._start
+
+    @property
+    def stop(self):
+        '''stop bound.'''
+        return self._stop
 
     ### PUBLIC METHODS ###
 
