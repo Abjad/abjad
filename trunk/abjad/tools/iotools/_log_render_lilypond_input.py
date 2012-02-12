@@ -11,7 +11,6 @@ import time
 def _log_render_lilypond_input(expr, template=None, tagline=False):
     '''Write both .ly and .pdf files to the ``abjad_output`` directory.
     '''
-    from abjad.tools.contexttools._Context import _Context
 
     lily_time = 10
     format_time = 10

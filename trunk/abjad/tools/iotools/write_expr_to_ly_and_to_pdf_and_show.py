@@ -23,8 +23,6 @@ def write_expr_to_ly_and_to_pdf_and_show(expr, name, template = None, write = Tr
         ``io.write_expr_to_ly_and_to_pdf_and_show()``.
     '''
 
-    lily_time = 10
-
     if write:
         write_expr_to_ly(expr, name + '.ly', template = template)
         write_expr_to_pdf(expr, name + '.pdf', template = template)

@@ -58,7 +58,6 @@ class Measure(Container):
     # because the mark-copying code will then provide time signature.
     def __copy__(self, *args):
         from abjad.tools import marktools
-        from abjad.tools import markuptools
         new = type(self)(*self.__getnewargs__())
         # only this line differs from Container.__copy__
         contexttools.detach_time_signature_marks_attached_to_component(new)

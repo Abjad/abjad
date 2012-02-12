@@ -53,7 +53,6 @@ def format_input_lines_as_regression_test(input_lines, tab_width = 3):
     tab = ' ' * tab_width
     start = tab
     lines = input_lines.split('\n')
-    last_line_index = len(lines) - 1
     most = ''
     for i, line in enumerate(lines):
         if line == '':

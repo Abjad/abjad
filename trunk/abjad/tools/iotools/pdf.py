@@ -30,7 +30,7 @@ def pdf(target = -1):
         target_str = '%04d' % target
         target_pdf = os.path.join(ABJADOUTPUT, target_str + '.pdf')
     elif isinstance(target, str):
-        target_pdf = os.path.join(ABJADOUPUT, target)
+        target_pdf = os.path.join(ABJADOUTPUT, target)
     else:
         raise ValueError('can not get target pdf name from %s.' % target)
 

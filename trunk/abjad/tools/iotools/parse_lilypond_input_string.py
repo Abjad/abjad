@@ -17,8 +17,6 @@ def parse_lilypond_input_string(note_entry_string):
     Do not parse tuplets, measures or other complex LilyPond input.
     '''
     from abjad.tools.containertools.Container import Container
-    from abjad.tools.voicetools.Voice import Voice
-    from abjad.exceptions import MissingSpannerError
     from abjad.tools import contexttools
     from abjad.tools import marktools
     from abjad.tools.lilypondfiletools._parse_chord_entry_token import _parse_chord_entry_token
@@ -108,9 +106,7 @@ def parse_lilypond_input_string(note_entry_string):
             elif token == '~':
                 last_leaf = leaftools.get_nth_leaf_in_expr(container, -1)
                 try:
-                    #tie_spanner = last_leaf.tie.spanner
-                    tie_spanner = spannertools.get_the_only_spanner_attached_to_component(
-                        last_leaf, TieSpanner)
+                    spannertools.get_the_only_spanner_attached_to_component(last_leaf, TieSpanner)
                 except MissingSpannerError:
                     TieSpanner([last_leaf])
                 tie_next_leaf = True

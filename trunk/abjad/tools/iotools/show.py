@@ -28,9 +28,6 @@ def show(expr, template = None, return_timing = False, suppress_pdf = False):
     You may change this by setting the ``abjad_output`` variable in the ``config.py`` file.
     '''
 
-    lily_time = 10
-    format_time = 10
-
     name, actual_format_time, actual_lily_time = _log_render_lilypond_input(expr, template = template)
 
     # do not open PDF if we're running py.test regression battery

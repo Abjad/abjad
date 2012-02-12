@@ -12,10 +12,10 @@ def remove_abjad_pyc_files():
 
     project_root = ABJADPATH.rstrip('abjad')
 
-    for root, dirs, files in os.walk(project_root):
+    for root, dirs, file_names in os.walk(project_root):
         if '.svn' in dirs:
             dirs.remove('.svn')
-        for file in files:
-            if file.endswith('.pyc'):
-                file_full_path = os.path.join(root, file)
+        for file_name in file_names:
+            if file_name.endswith('.pyc'):
+                file_full_path = os.path.join(root, file_name)
                 os.remove(file_full_path)

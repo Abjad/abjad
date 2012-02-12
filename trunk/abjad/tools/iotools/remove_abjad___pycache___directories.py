@@ -13,10 +13,10 @@ def remove_abjad___pycache___directories():
 
     project_root = ABJADPATH.rstrip('abjad')
 
-    for root, dirs, files in os.walk(project_root):
-        if '.svn' in dirs:
-            dirs.remove('.svn')
-        for dir in dirs:
-            if dir == '__pycache__':
-                file_full_path = os.path.join(root, dir)
+    for root, directories, files in os.walk(project_root):
+        if '.svn' in directories:
+            directories.remove('.svn')
+        for directory in directories:
+            if directory == '__pycache__':
+                file_full_path = os.path.join(root, directory)
                 shutil.rmtree(file_full_path)
