@@ -1,4 +1,3 @@
-from abjad.exceptions import PitchError
 from abjad.tools.pitchtools.octave_tick_string_to_octave_number import octave_tick_string_to_octave_number
 import re
 

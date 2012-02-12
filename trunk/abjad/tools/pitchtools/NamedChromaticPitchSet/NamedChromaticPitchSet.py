@@ -12,7 +12,7 @@ class NamedChromaticPitchSet(_PitchSet):
     Named chromatic pitch sets are immutable.
     '''
 
-    def __new__(self, pitch_tokens):
+    def __new__(klass, pitch_tokens):
         from abjad.tools import notetools
         from abjad.tools import pitchtools
         pitches = []
@@ -23,7 +23,7 @@ class NamedChromaticPitchSet(_PitchSet):
             else:
                 pitch = pitchtools.NamedChromaticPitch(token)
                 pitches.append(pitch)
-        return frozenset.__new__(self, pitches)
+        return frozenset.__new__(klass, pitches)
 
     ### OVERLOADS ###
 
@@ -106,4 +106,5 @@ class NamedChromaticPitchSet(_PitchSet):
         '''Transpose all pcs in self by n.'''
         from abjad.tools import pitchtools
         interval = pitchtools.MelodicChromaticInterval(n)
-        return type(self)([transpose_by_chromatic_interval(pitch, interval) for pitch in self])
+        return type(self)([
+            pitchtools.transpose_pitch_carrier_by_melodic_interval(pitch, interval) for pitch in self])

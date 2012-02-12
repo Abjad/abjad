@@ -1,5 +1,4 @@
 from fractions import Fraction
-import types
 
 
 def sum_sequence_elements_at_indices(sequence, pairs, period = None, overhang = True):

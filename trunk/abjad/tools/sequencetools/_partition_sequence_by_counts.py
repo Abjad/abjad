@@ -57,12 +57,12 @@ def _partition_sequence_by_counts(sequence, counts, cyclic = False, overhang = F
 
     result = []
 
-    if cyclic == True:
-        if overhang == True:
+    if cyclic:
+        if overhang:
             counts = repeat_sequence_to_weight_exactly(counts, len(sequence))
         else:
             counts = repeat_sequence_to_weight_at_most(counts, len(sequence))
-    elif overhang == True:
+    elif overhang:
         weight_counts = mathtools.weight(counts)
         len_sequence = len(sequence)
         if weight_counts < len_sequence:
@@ -70,14 +70,6 @@ def _partition_sequence_by_counts(sequence, counts, cyclic = False, overhang = F
             counts.append(len(sequence) - weight_counts)
 
     for start, stop in cumulative_sums_zero_pairwise(counts):
-#      if copy_elements:
-#         part = []
-#         for element in sequence[start:stop]:
-#            part.append(copy.copy(element))
-#         part = type(sequence)(part)
-#         result.append(part)
-#      else:
-#         result.append(sequence[start:stop])
         result.append(type(sequence)(sequence[start:stop]))
 
     return result

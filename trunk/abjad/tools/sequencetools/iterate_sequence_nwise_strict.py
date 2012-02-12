@@ -13,9 +13,9 @@ def iterate_sequence_nwise_strict(sequence, n):
     Return generator.
     '''
 
-    buffer = []
+    element_buffer = []
     for element in sequence:
-        buffer.append(element)
-        if len(buffer) == n:
-            yield tuple(buffer)
-            buffer.pop(0)
+        element_buffer.append(element)
+        if len(element_buffer) == n:
+            yield tuple(element_buffer)
+            element_buffer.pop(0)

@@ -13,13 +13,13 @@ class MelodicChromaticIntervalSegment(_IntervalSegment):
     Melodic chromatic interval segments are immutable.
     '''
 
-    def __new__(self, mci_tokens):
+    def __new__(klass, mci_tokens):
         from abjad.tools import pitchtools
         mcis = []
         for token in mci_tokens:
             mci = pitchtools.MelodicChromaticInterval(token)
             mcis.append(mci)
-        return tuple.__new__(self, mcis)
+        return tuple.__new__(klass, mcis)
 
     ### OVERLOADS ###
 

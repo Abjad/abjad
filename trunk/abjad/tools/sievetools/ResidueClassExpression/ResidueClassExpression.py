@@ -40,13 +40,13 @@ class ResidueClassExpression(_BaseResidueClass, _Immutable):
     # That is, ResidueClassExpression.get_congruent_bases(8) currently
     # returns a list of up to *nine* items; should probably
     # return a list of up to only *eight* items.
-    def _get_congruent_bases(self, min, max, op):
+    def _get_congruent_bases(self, minimum, maximum, op):
         if op is operator.iand:
-            result = set(range(min, max + 1))
+            result = set(range(minimum, maximum + 1))
         else:
             result = set([])
         for rc in self.rcs:
-            op(result, set(rc.get_congruent_bases(min, max)))
+            op(result, set(rc.get_congruent_bases(minimum, maximum)))
         return sorted(result)
 
     def _sort_rcs(self):
@@ -115,10 +115,10 @@ class ResidueClassExpression(_BaseResidueClass, _Immutable):
         Return list.
         '''
 
-        min, max = _process_min_max_attribute(*min_max)
+        minimum, maximum = _process_min_max_attribute(*min_max)
         result = []
-        cb = self.get_congruent_bases(min, max)
-        for i in range(min, max ):
+        cb = self.get_congruent_bases(minimum, maximum)
+        for i in range(minimum, maximum ):
             if i in cb:
                 result.append(1)
             else:
@@ -147,13 +147,13 @@ class ResidueClassExpression(_BaseResidueClass, _Immutable):
         Return list.
         '''
 
-        min, max = _process_min_max_attribute(*min_max)
+        minimum, maximum = _process_min_max_attribute(*min_max)
         if self.operator == 'or':
-            return self._get_congruent_bases(min, max, operator.ior)
+            return self._get_congruent_bases(minimum, maximum, operator.ior)
         elif self.operator == 'xor':
-            return self._get_congruent_bases(min, max, operator.ixor)
+            return self._get_congruent_bases(minimum, maximum, operator.ixor)
         elif self.operator == 'and':
-            return self._get_congruent_bases(min, max, operator.iand)
+            return self._get_congruent_bases(minimum, maximum, operator.iand)
 
     # TB: the +1 adjustment is necessary here because of
     # _process_min_max_attribute() demands min strictly less than max;

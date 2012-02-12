@@ -22,7 +22,6 @@ class _BaseResidueClass(object):
 
     def _operate(self, arg, op):
         from abjad.tools.sievetools.ResidueClassExpression import ResidueClassExpression
-        from abjad.tools.sievetools.ResidueClass import ResidueClass
         if isinstance(self, ResidueClassExpression) and self.operator == op:
             argA = self.rcs
         else:

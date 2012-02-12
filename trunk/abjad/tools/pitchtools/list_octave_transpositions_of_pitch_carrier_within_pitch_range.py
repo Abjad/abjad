@@ -66,16 +66,16 @@ def _pitch_number_list_octave_transpositions(pitch_number_list, pitch_range):
     stop_pitch_number = abs(pitch_range.stop_pitch.numbered_chromatic_pitch)
     R = set(range(start_pitch_number, stop_pitch_number + 1))
     while ps.issubset(R):
-        next = list(ps)
-        next.sort()
-        result.extend([next])
+        next_pitch_number = list(ps)
+        next_pitch_number.sort()
+        result.extend([next_pitch_number])
         ps = set([p + 12 for p in ps])
 
     ps = set([p - 12 for p in pitch_number_list])
     while ps.issubset(R):
-        next = list(ps)
-        next.sort()
-        result.extend([next])
+        next_pitch_number = list(ps)
+        next_pitch_number.sort()
+        result.extend([next_pitch_number])
         ps = set([p - 12 for p in ps])
 
     result.sort()

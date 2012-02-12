@@ -1,5 +1,3 @@
-from abjad.exceptions import ExtraPitchError
-from abjad.exceptions import MissingPitchError
 from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
 import numbers
 

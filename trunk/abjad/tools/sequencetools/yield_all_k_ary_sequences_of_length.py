@@ -33,5 +33,7 @@ def yield_all_k_ary_sequences_of_length(k, length):
         result = list(mathtools.integer_to_base_k_tuple(rank, k))
         n_leading_zeros = length - len(result)
         leading_zeros = n_leading_zeros * [0]
-        result[0:0] = leading_zeros
+        # to avoid pychecker slice assignment bug
+        #result[0:0] = leading_zeros
+        result.__setitem__(slice(0, 0), leading_zeros)
         yield tuple(result)

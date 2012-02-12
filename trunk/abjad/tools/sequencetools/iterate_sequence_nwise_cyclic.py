@@ -24,23 +24,23 @@ def iterate_sequence_nwise_cyclic(sequence, n):
     Return generator.
     '''
 
-    buffer = []
+    element_buffer = []
     long_enough = False
     for element in sequence:
-        buffer.append(element)
+        element_buffer.append(element)
         if not long_enough:
-            if n <= len(buffer):
+            if n <= len(element_buffer):
                 long_enough = True
         if long_enough:
-            yield tuple(buffer[-n:])
+            yield tuple(element_buffer[-n:])
 
-    len_sequence = len(buffer)
+    len_sequence = len(element_buffer)
     cur = len_sequence - n + 1
     while True:
         output = []
         for local_offset in range(n):
             index = (cur + local_offset) % len_sequence
-            output.append(buffer[index])
+            output.append(element_buffer[index])
         yield tuple(output)
         cur += 1
         cur %= len_sequence

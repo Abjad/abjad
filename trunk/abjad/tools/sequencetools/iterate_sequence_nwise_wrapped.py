@@ -14,14 +14,14 @@ def iterate_sequence_nwise_wrapped(sequence, n):
     '''
 
     first_n_minus_1 = []
-    buffer = []
+    element_buffer = []
     for element in sequence:
-        buffer.append(element)
-        if len(buffer) == n:
-            yield tuple(buffer)
-            buffer.pop(0)
+        element_buffer.append(element)
+        if len(element_buffer) == n:
+            yield tuple(element_buffer)
+            element_buffer.pop(0)
         if len(first_n_minus_1) < n - 1:
             first_n_minus_1.append(element)
-    buffer = buffer + first_n_minus_1
+    element_buffer = element_buffer + first_n_minus_1
     for x in range(n - 1):
-        yield tuple(buffer[x:x+n])
+        yield tuple(element_buffer[x:x+n])

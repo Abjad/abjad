@@ -1,5 +1,4 @@
 from __future__ import division
-import math
 
 
 def zip_sequences_cyclically(*sequences):

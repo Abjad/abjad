@@ -57,7 +57,6 @@ def insert_and_transpose_nested_subruns_in_chromatic_pitch_class_number_list(not
         renamed ``pitchtools.insert_transposed_pc_subruns()`` to
         ``pitchtools.insert_and_transpose_nested_subruns_in_chromatic_pitch_class_number_list()``.
     '''
-    from abjad.tools import componenttools
     from abjad.tools.notetools.Note import Note
 
     assert isinstance(notes, list)

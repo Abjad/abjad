@@ -1,5 +1,4 @@
 import sys
-import types
 
 
 def replace_sequence_elements_cyclically_with_new_material(sequence, indices, new_material):

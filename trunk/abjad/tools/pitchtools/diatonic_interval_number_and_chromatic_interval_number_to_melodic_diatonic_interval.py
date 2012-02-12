@@ -1,4 +1,3 @@
-from abjad.exceptions import IntervalError
 from abjad.tools import mathtools
 from abjad.tools.pitchtools.MelodicDiatonicInterval import MelodicDiatonicInterval
 

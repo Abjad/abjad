@@ -22,7 +22,7 @@ class  NumberedChromaticPitchClassSet(_PitchClassSet):
     Numbered chromatic pitch-class sets are immutable.
     '''
 
-    def __new__(self, expr):
+    def __new__(klass, expr):
         from abjad.tools import pitchtools
         pcs = []
         # assume expr is iterable
@@ -31,7 +31,8 @@ class  NumberedChromaticPitchClassSet(_PitchClassSet):
                 try:
                     pcs.append(pitchtools.NumberedChromaticPitchClass(x))
                 except TypeError:
-                    pcs.extend(get_pitch_classes(x))
+                    #pcs.extend(get_pitch_classes(x))
+                    pcs.extend(pitchtools.get_numbered_chromatic_pitch_classes_from_pitch_carrier(x))
         # if expr is not iterable
         except TypeError:
             # assume expr can be turned into a single pc
@@ -41,7 +42,7 @@ class  NumberedChromaticPitchClassSet(_PitchClassSet):
             # expr is a Rest or non-PC type
             except TypeError:
                 pcs = []
-        return frozenset.__new__(self, pcs)
+        return frozenset.__new__(klass, pcs)
 
     ### OVERLOADS ###
 

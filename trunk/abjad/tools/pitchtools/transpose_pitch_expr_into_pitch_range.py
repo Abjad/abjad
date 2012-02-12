@@ -1,5 +1,4 @@
 from abjad.tools.pitchtools.transpose_pitch_carrier_by_melodic_interval import transpose_pitch_carrier_by_melodic_interval
-import copy
 
 
 def transpose_pitch_expr_into_pitch_range(pitch_expr, pitch_range):
