@@ -14,9 +14,9 @@ def test_intervaltreetools_scale_interval_offsets_by_rational_01():
     assert scaled[0] == BoundedInterval(0, 10, {'a': 1})
     assert scaled[1] == BoundedInterval(Fraction(25, 6), Fraction(21, 2), {'b': 2})
     assert scaled[2] == BoundedInterval(Fraction(25, 2), Fraction(227, 14), {'c': 3})
-    assert scaled[0].magnitude == a.magnitude
-    assert scaled[1].magnitude == b.magnitude
-    assert scaled[2].magnitude == c.magnitude
+    assert scaled[0].duration == a.duration
+    assert scaled[1].duration == b.duration
+    assert scaled[2].duration == c.duration
 
 def test_intervaltreetools_scale_interval_offsets_by_rational_02():
     tree = IntervalTree([])

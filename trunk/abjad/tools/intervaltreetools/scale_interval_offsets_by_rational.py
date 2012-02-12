@@ -5,7 +5,7 @@ from abjad import Fraction
 
 def scale_interval_offsets_by_rational(intervals, rational):
     '''Scale the offset of each interval in `intervals` by
-    `rational`, maintaining the lowest offset in `intervals` ::
+    `rational`, maintaining the startest offset in `intervals` ::
 
         abjad> from abjad.tools import intervaltreetools
         abjad> from abjad.tools.intervaltreetools import BoundedInterval
@@ -37,6 +37,6 @@ def scale_interval_offsets_by_rational(intervals, rational):
         return tree
 
     return IntervalTree([
-        x.shift_to_rational(((x.low - tree.low) * rational) + tree.low) \
+        x.shift_to_rational(((x.start - tree.start) * rational) + tree.start) \
             for x in tree
     ])

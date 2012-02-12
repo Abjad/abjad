@@ -4,44 +4,44 @@ from abjad import Fraction
 import py.test
 
 
-def test_intervaltreetools_clip_interval_magnitudes_to_range_01():
-    low = None
-    high = None
+def test_intervaltreetools_clip_interval_durations_to_range_01():
+    start = None
+    stop = None
     tree = IntervalTree(_make_test_intervals())
-    clipped = clip_interval_magnitudes_to_range(tree, low, high)
+    clipped = clip_interval_durations_to_range(tree, start, stop)
     assert clipped[:] == tree[:]
-    assert sorted([x.low for x in tree]) == sorted([x.low for x in clipped])
+    assert sorted([x.start for x in tree]) == sorted([x.start for x in clipped])
 
 
-def test_intervaltreetools_clip_interval_magnitudes_to_range_02():
-    low = Fraction(3, 4)
-    high = None
+def test_intervaltreetools_clip_interval_durations_to_range_02():
+    start = Fraction(3, 4)
+    stop = None
     tree = IntervalTree(_make_test_intervals())
-    clipped = clip_interval_magnitudes_to_range(tree, low, high)
-    assert all([low <= x.magnitude for x in clipped])
-    assert sorted([x.low for x in tree]) == sorted([x.low for x in clipped])
+    clipped = clip_interval_durations_to_range(tree, start, stop)
+    assert all([start <= x.duration for x in clipped])
+    assert sorted([x.start for x in tree]) == sorted([x.start for x in clipped])
 
 
-def test_intervaltreetools_clip_interval_magnitudes_to_range_03():
-    low = None
-    high = Fraction(1, 5)
+def test_intervaltreetools_clip_interval_durations_to_range_03():
+    start = None
+    stop = Fraction(1, 5)
     tree = IntervalTree(_make_test_intervals())
-    clipped = clip_interval_magnitudes_to_range(tree, low, high)
-    assert all([x.magnitude <= high for x in clipped])
-    assert sorted([x.low for x in tree]) == sorted([x.low for x in clipped])
+    clipped = clip_interval_durations_to_range(tree, start, stop)
+    assert all([x.duration <= stop for x in clipped])
+    assert sorted([x.start for x in tree]) == sorted([x.start for x in clipped])
 
 
-def test_intervaltreetools_clip_interval_magnitudes_to_range_04():
-    low = Fraction(1, 7)
-    high = Fraction(1, 3)
+def test_intervaltreetools_clip_interval_durations_to_range_04():
+    start = Fraction(1, 7)
+    stop = Fraction(1, 3)
     tree = IntervalTree(_make_test_intervals())
-    clipped = clip_interval_magnitudes_to_range(tree, low, high)
-    assert all([low <= x.magnitude <= high for x in clipped])
-    assert sorted([x.low for x in tree]) == sorted([x.low for x in clipped])
+    clipped = clip_interval_durations_to_range(tree, start, stop)
+    assert all([start <= x.duration <= stop for x in clipped])
+    assert sorted([x.start for x in tree]) == sorted([x.start for x in clipped])
 
 
-def test_intervaltreetools_clip_interval_magnitudes_to_range_05():
-    low = Fraction(1, 3)
-    high = Fraction(1, 7)
+def test_intervaltreetools_clip_interval_durations_to_range_05():
+    start = Fraction(1, 3)
+    stop = Fraction(1, 7)
     tree = IntervalTree(_make_test_intervals())
-    py.test.raises(AssertionError, "clipped = clip_interval_magnitudes_to_range(tree, low, high)")
+    py.test.raises(AssertionError, "clipped = clip_interval_durations_to_range(tree, start, stop)")

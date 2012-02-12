@@ -37,20 +37,22 @@ def compute_depth_of_intervals_in_interval(intervals, interval):
     else:
         tree = IntervalTree(intervals)
 
-    if interval.high <= tree.low or tree.high <= interval.low:
-        return IntervalTree([BoundedInterval(interval.low, interval.high, {'depth': 0})])
+    if interval.stop <= tree.start or tree.stop <= interval.start:
+        return IntervalTree([BoundedInterval(interval.start, interval.stop, {'depth': 0})])
     else:
         bounds = list(get_all_unique_bounds_in_intervals(tree))
-        if interval.low < tree.low:
-            bounds.insert(0, interval.low)
-        elif tree.low < interval.low:
-            bounds = filter(lambda x: interval.low <= x, bounds)
-            bounds.insert(0, interval.low)
-        if tree.high < interval.high:
-            bounds.append(interval.high)
-        elif interval.high < tree.high:
-            bounds = filter(lambda x: x <= interval.high, bounds)
-            bounds.append(interval.high)
+        if interval.start < tree.start:
+            bounds.insert(0, interval.start)
+        elif tree.start < interval.start:
+            #bounds = filter(lambda x: interval.start <= x, bounds)
+            bounds = [x for x in bounds if interval.start <= x]
+            bounds.insert(0, interval.start)
+        if tree.stop < interval.stop:
+            bounds.append(interval.stop)
+        elif interval.stop < tree.stop:
+            #bounds = filter(lambda x: x <= interval.stop, bounds)
+            bounds = [x for x in bounds if x <= interval.stop]
+            bounds.append(interval.stop)
         bounds = sorted(list(set(bounds)))
 
     intervals = []
@@ -59,8 +61,10 @@ def compute_depth_of_intervals_in_interval(intervals, interval):
         target = BoundedInterval(pair[0], pair[1], {})
         found = tree.find_intervals_intersecting_or_tangent_to_interval(target)
         if found:
-            target['depth'] = len(filter( \
-                lambda x: not x.low == target.high and not x.high == target.low, found))
+#            target['depth'] = len(filter( \
+#                lambda x: (not x.start == target.stop and not x.stop == target.start), found))
+            target['depth'] = len([x for x in found \
+                if (not x.start == target.stop and not x.stop == target.start)])
         else:
             target['depth'] = 0
         intervals.append(target)

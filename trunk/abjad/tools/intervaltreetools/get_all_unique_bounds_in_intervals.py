@@ -13,8 +13,8 @@ def get_all_unique_bounds_in_intervals(intervals):
 
     values = []
     for interval in tree:
-        if interval.low not in values:
-            values.append(interval.low)
-        if interval.high not in values:
-            values.append(interval.high)
+        if interval.start not in values:
+            values.append(interval.start)
+        if interval.stop not in values:
+            values.append(interval.stop)
     return tuple(sorted(values))

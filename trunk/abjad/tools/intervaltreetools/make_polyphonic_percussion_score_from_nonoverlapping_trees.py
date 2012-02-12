@@ -20,13 +20,13 @@ def make_polyphonic_percussion_score_from_nonoverlapping_trees(trees, colorkey =
         all([isinstance(tree, IntervalTree) for tree in trees])
 
     pitches = make_n_middle_c_centered_pitches(len(trees))
-    bounds = BoundedInterval(min([x.low for x in trees]), max([x.high for x in trees]))
+    #bounds = BoundedInterval(min([x.start for x in trees]), max([x.stop for x in trees]))
     voices = []
     for zipped in zip(trees, pitches):
         tree = zipped[0]
         pitch = zipped[1]
         voice = _make_voice_from_nonoverlapping_intervals(tree, \
-            colorkey = colorkey, bounds = bounds, pitch = pitch)
+            colorkey = colorkey, pitch = pitch)
         voices.append(voice)
 
     staff = Staff(voices)

@@ -14,4 +14,4 @@ def calculate_mean_attack_of_intervals(intervals):
         tree = IntervalTree(intervals)
     if not tree:
         return None
-    return Offset(sum([i.low for i in tree])) / len(tree)
+    return Offset(sum([i.start for i in tree])) / len(tree)

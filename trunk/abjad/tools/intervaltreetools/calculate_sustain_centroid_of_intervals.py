@@ -5,7 +5,7 @@ from abjad.tools.intervaltreetools.all_are_intervals_or_trees_or_empty import al
 
 def calculate_sustain_centroid_of_intervals(intervals):
     '''Return a weighted mean, such that the centroid of each interval
-    in `intervals` are the values, and the weights are their magnitudes.
+    in `intervals` are the values, and the weights are their durations.
     '''
 
     assert all_are_intervals_or_trees_or_empty(intervals)
@@ -15,6 +15,6 @@ def calculate_sustain_centroid_of_intervals(intervals):
         tree = IntervalTree(intervals)
     if not tree:
         return None
-    weighted_centroids = sum([(x.centroid * x.magnitude) for x in tree])
-    sum_of_weights = sum([x.magnitude for x in tree])
+    weighted_centroids = sum([(x.center * x.duration) for x in tree])
+    sum_of_weights = sum([x.duration for x in tree])
     return Offset(weighted_centroids) / sum_of_weights

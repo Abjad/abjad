@@ -13,4 +13,4 @@ def calculate_mean_release_of_intervals(intervals):
         tree = IntervalTree(intervals)
     if not tree:
         return None
-    return Offset(sum([i.high for i in tree])) / len(tree)
+    return Offset(sum([i.stop for i in tree])) / len(tree)

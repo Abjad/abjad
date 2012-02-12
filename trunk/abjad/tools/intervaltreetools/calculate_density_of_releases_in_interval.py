@@ -6,7 +6,7 @@ from abjad import Fraction
 
 def calculate_density_of_releases_in_interval(intervals, interval):
     '''Return a Fraction of the number of releases in `interval`
-    divided by the magnitude of `interval`.
+    divided by the duration of `interval`.
     '''
 
     assert all_are_intervals_or_trees_or_empty(intervals)
@@ -17,4 +17,4 @@ def calculate_density_of_releases_in_interval(intervals, interval):
         tree = IntervalTree(intervals)
 
     return Fraction(len(tree.find_intervals_stopping_within_interval(interval))) \
-        / interval.magnitude
+        / interval.duration

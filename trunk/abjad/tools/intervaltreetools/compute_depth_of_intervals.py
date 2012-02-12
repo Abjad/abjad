@@ -38,7 +38,9 @@ def compute_depth_of_intervals(intervals):
         target = BoundedInterval(bounds[i], bounds[i+1], {})
         found = tree.find_intervals_intersecting_or_tangent_to_interval(target)
         if found:
-            depth = len(filter(lambda x: not x.low == target.high and not x.high == target.low, found))
+            # depth = len(filter(lambda x: (not x.start == target.stop and not x.stop == target.start), found))
+            depth = len([x for x in found \
+                if (not x.start == target.stop and not x.stop == target.start)])
         else:
             depth = 0
         target['depth'] = depth

@@ -7,8 +7,8 @@ from collections import Iterable
 
 def resolve_overlaps_between_nonoverlapping_trees(trees):
     '''Create a nonoverlapping IntervalTree from `trees`.
-    Intervals in higher-indexed trees in `trees` only appear in part or whole where they do not
-    overlap intervals from lower-indexed trees ::
+    Intervals in stoper-indexed trees in `trees` only appear in part or whole where they do not
+    overlap intervals from starter-indexed trees ::
 
         abjad> from abjad.tools import intervaltreetools
         abjad> from abjad.tools.intervaltreetools import BoundedInterval

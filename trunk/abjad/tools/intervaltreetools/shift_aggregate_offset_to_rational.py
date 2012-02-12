@@ -32,11 +32,9 @@ def shift_aggregate_offset_to_rational(intervals, rational):
         tree = intervals
     else:
         tree = IntervalTree(intervals)
-    if not tree or rational == tree.low:
+    if not tree or rational == tree.start:
         return tree
 
-    shift = rational - tree.low
-
     return IntervalTree([
-        x.shift_by_rational(rational - tree.low) for x in tree
+        x.shift_by_rational(rational - tree.start) for x in tree
     ])

@@ -7,5 +7,5 @@ def test_BoundedInterval_signature_01():
 
 
 def test_BoundedInterval_signature_02():
-    i = BoundedInterval(-30, 3, {'hellow': 'world!'})
+    i = BoundedInterval(-30, 3, {'helstart': 'world!'})
     assert i.signature == (-30, 3)

@@ -16,7 +16,7 @@ def test_intervaltreetools_concatenate_trees_01():
     actual_signatures = [interval.signature for interval in concatenated]
 
     assert actual_signatures == target_signatures
-    assert concatenated.magnitude == tree_a.magnitude + tree_b.magnitude
+    assert concatenated.duration == tree_a.duration + tree_b.duration
     assert a.signature == (0, 10)
     assert b.signature == (5, 15)
     assert c.signature == (10, 20)
@@ -35,4 +35,4 @@ def test_intervaltreetools_concatenate_trees_02():
     actual_signatures = [interval.signature for interval in concatenated]
 
     assert actual_signatures == target_signatures
-    assert concatenated.magnitude == tree_a.magnitude + tree_b.magnitude + Fraction(1, 2)
+    assert concatenated.duration == tree_a.duration + tree_b.duration + Fraction(1, 2)

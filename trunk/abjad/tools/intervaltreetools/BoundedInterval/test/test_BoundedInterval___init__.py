@@ -3,7 +3,7 @@ import py.test
 
 
 def test_BoundedInterval___init___01():
-    '''High offset must be greater than low offset.'''
+    '''High offset must be greater than start offset.'''
     py.test.raises(AssertionError,
         "i = BoundedInterval(0, -10, 'this should fail.')")
 
@@ -20,11 +20,11 @@ def test_BoundedInterval___init___03():
     assert i1 is not i2
 
 def test_BoundedInterval___init___04():
-    '''BoundedIntervals can be instantiated with just a low and high offset.'''
+    '''BoundedIntervals can be instantiated with just a start and stop offset.'''
     i = BoundedInterval(0, 10)
 
 def test_BoundedInterval___init___05():
-    '''BoundedIntervals can be instantiated with low offset, high offset and dictionary.'''
+    '''BoundedIntervals can be instantiated with start offset, stop offset and dictionary.'''
     i = BoundedInterval(0, 10, {'hello': 'world!'})
 
 def test_BoundedInterval___init___06():

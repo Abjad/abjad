@@ -7,9 +7,9 @@ from abjad import Fraction
 
 
 def calculate_depth_density_of_intervals_in_interval(intervals, interval):
-    '''Return a Fraction, of the magnitude of each interval in the
+    '''Return a Fraction, of the duration of each interval in the
     depth tree of `intervals` within `interval`, multiplied by the depth at that interval,
-    divided by the overall magnitude of `intervals`.
+    divided by the overall duration of `intervals`.
     '''
 
     assert all_are_intervals_or_trees_or_empty(intervals)
@@ -19,13 +19,13 @@ def calculate_depth_density_of_intervals_in_interval(intervals, interval):
     else:
         tree = IntervalTree(intervals)
 
-    split_tree = split_intervals_at_rationals(tree, [interval.low, interval.high])
+    split_tree = split_intervals_at_rationals(tree, [interval.start, interval.stop])
     split_tree = IntervalTree(split_tree.find_intervals_starting_and_stopping_within_interval(interval))
 
     if not split_tree:
         return Fraction(0)
-    return Fraction(sum([x.magnitude for x in split_tree])) / interval.magnitude
+    return Fraction(sum([x.duration for x in split_tree])) / interval.duration
 
 #   depth = compute_depth_of_intervals_in_interval(tree, interval)
-#   return Fraction(sum([x.magnitude * x['depth'] for x in depth])) \
-#      / depth.magnitude
+#   return Fraction(sum([x.duration * x['depth'] for x in depth])) \
+#      / depth.duration

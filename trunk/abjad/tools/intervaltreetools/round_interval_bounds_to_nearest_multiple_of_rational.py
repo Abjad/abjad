@@ -16,10 +16,10 @@ def round_interval_bounds_to_nearest_multiple_of_rational(intervals, rational):
 
     intervals = []
     for interval in tree:
-        low = Fraction(int(round(interval.low / rational))) * rational
-        high = Fraction(int(round(interval.high / rational))) * rational
-        if low == high:
-            high = low + rational
-        intervals.append(interval.shift_to_rational(low).scale_to_rational(high - low))
+        start = Fraction(int(round(interval.start / rational))) * rational
+        stop = Fraction(int(round(interval.stop / rational))) * rational
+        if start == stop:
+            stop = start + rational
+        intervals.append(interval.shift_to_rational(start).scale_to_rational(stop - start))
 
     return IntervalTree(intervals)

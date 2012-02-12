@@ -8,7 +8,7 @@ class _IntervalNode(_RedBlackNode):
     Duplicate payloads are supported by maintaining a list of BoundedIntervals
     '''
 
-    __slots__ = ('high_max', 'high_min', 'key',
+    __slots__ = ('latest_stop', 'earliest_stop', 'key',
                 'left', 'parent', 'payload', 'red', 'right', )
 
     def __init__(self, key, intervals = None):

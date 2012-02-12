@@ -3,9 +3,9 @@ from abjad.tools.intervaltreetools.all_are_intervals_or_trees_or_empty import al
 from abjad import Fraction
 
 
-def scale_aggregate_magnitude_by_rational(intervals, rational):
-    '''Scale the aggregate magnitude of all intervals in `intervals` by
-    `rational`, maintaining the original low offset ::
+def scale_aggregate_duration_by_rational(intervals, rational):
+    '''Scale the aggregate duration of all intervals in `intervals` by
+    `rational`, maintaining the original start offset ::
 
         abjad> from abjad.tools import intervaltreetools
         abjad> from abjad.tools.intervaltreetools import BoundedInterval
@@ -17,7 +17,7 @@ def scale_aggregate_magnitude_by_rational(intervals, rational):
         abjad> b = BoundedInterval(6, 12)
         abjad> c = BoundedInterval(9, 16)
         abjad> tree = IntervalTree([a, b, c])
-        abjad> intervaltreetools.scale_aggregate_magnitude_by_rational(tree, Fraction(1, 3))
+        abjad> intervaltreetools.scale_aggregate_duration_by_rational(tree, Fraction(1, 3))
         IntervalTree([
             BoundedInterval(Offset(-1, 1), Offset(1, 3), {}),
             BoundedInterval(Offset(4, 3), Offset(10, 3), {}),
@@ -38,6 +38,6 @@ def scale_aggregate_magnitude_by_rational(intervals, rational):
 
     return IntervalTree([
         x.shift_to_rational(
-            ((x.low - tree.low) * rational) + tree.low).scale_by_rational(rational)\
+            ((x.start - tree.start) * rational) + tree.start).scale_by_rational(rational)\
             for x in tree
     ])

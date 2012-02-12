@@ -12,27 +12,27 @@ def test_BoundedInterval_scale_by_rational_01():
     assert i1 == i2
 
 def test_BoundedInterval_scale_by_rational_02():
-    '''BoundedInterval magnitude can be scaled with ints.'''
+    '''BoundedInterval duration can be scaled with ints.'''
     i1 = BoundedInterval(3, 23)
     i2 = i1.scale_by_rational(2)
-    assert i2.low == 3
-    assert i2.magnitude == 40
+    assert i2.start == 3
+    assert i2.duration == 40
 
 def test_BoundedInterval_scale_by_rational_03():
-    '''BoundedInterval magnitude can be scaled with Fractions.'''
+    '''BoundedInterval duration can be scaled with Fractions.'''
     i1 = BoundedInterval(3, 23)
     i2 = i1.scale_by_rational(Fraction(1, 2))
-    assert i2.low == 3
-    assert i2.magnitude == 10
+    assert i2.start == 3
+    assert i2.duration == 10
 
 def test_BoundedInterval_scale_by_rational_04():
-    '''BoundedInterval magnitude cannot be scaled to zero.'''
+    '''BoundedInterval duration cannot be scaled to zero.'''
     i1 = BoundedInterval(3, 23)
     assert py.test.raises(AssertionError,
         'i1.scale_by_rational(0)')
 
 def test_BoundedInterval_scale_by_rational_05():
-    '''BoundedInterval magnitude cannot be scaled with negatives.'''
+    '''BoundedInterval duration cannot be scaled with negatives.'''
     i1 = BoundedInterval(3, 23)
     assert py.test.raises(AssertionError,
         'i2 = i1.scale_by_rational(-1)')

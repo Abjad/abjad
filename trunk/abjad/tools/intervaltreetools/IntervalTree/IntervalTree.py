@@ -37,7 +37,6 @@ class IntervalTree(_RedBlackTree):
         self._sentinel.right = self._sentinel
         self._sentinel.parent = self._sentinel
         self._root = self._sentinel
-#        self._intervals = []
         self._insert(intervals)
 
     ### OVERLOADS ###
@@ -116,90 +115,89 @@ class IntervalTree(_RedBlackTree):
         assert all([isinstance(x, BoundedInterval) for x in intervals])
 
         for interval in intervals:
-            node = self._find_by_key(interval.low)
+            node = self._find_by_key(interval.start)
             if node is not None:
                 node.payload.append(interval)
             else:
-                node = _IntervalNode(interval.low, interval)
+                node = _IntervalNode(interval.start, interval)
                 node.left = self._sentinel
                 node.right = self._sentinel
                 node.parent = self._sentinel
                 self._insert_node(node)
-#            self._intervals.append(interval)
-        self._update_high_extrema()
+        self._update_stop_extrema()
 
     ### PUBLIC ATTRIBUTES ###
 
     @property
     def bounds(self):
-        '''The lowest and highest values of the tree returned as a
+        '''The startest and stopest values of the tree returned as a
         BoundedInterval.'''
         if self:
-            return BoundedInterval(self.low, self.high)
+            return BoundedInterval(self.start, self.stop)
         return None
 
     @property
-    def high(self):
-        '''The maximum high value of all intervals in the tree.
-        Alias of high_max.'''
-        return self.high_max
+    def stop(self):
+        '''The maximum stop value of all intervals in the tree.
+        Alias of latest_stop.'''
+        return self.latest_stop
 
     @property
-    def high_max(self):
-        '''The maximum high value of all intervals in the tree.'''
+    def latest_stop(self):
+        '''The maximum stop value of all intervals in the tree.'''
         if self:
-            return Offset(self._root.high_max)
+            return Offset(self._root.latest_stop)
         else:
             return None
 
     @property
-    def high_min(self):
-        '''The minimum high value of all intervals in the tree.'''
+    def earliest_stop(self):
+        '''The minimum stop value of all intervals in the tree.'''
         if self:
-            return Offset(self._root.high_min)
+            return Offset(self._root.earliest_stop)
         else:
             return None
 
     @property
-    def low(self):
-        '''The minimum low value of all intervals in the tree.
-        Alias of low_min.'''
-        return self.low_min
+    def start(self):
+        '''The minimum start value of all intervals in the tree.
+        Alias of earliest_start.'''
+        return self.earliest_start
 
     @property
-    def low_max(self):
-        '''The maximum low value of all intervals in the tree.'''
+    def latest_start(self):
+        '''The maximum start value of all intervals in the tree.'''
         if self:
             return Offset(self._find_maximum(self._root).key)
         else:
             return None
 
     @property
-    def low_min(self):
-        '''The minimum low value of all intervals in the tree.'''
+    def earliest_start(self):
+        '''The minimum start value of all intervals in the tree.'''
         if self:
             return Offset(self._find_minimum(self._root).key)
         else:
             return None
 
     @property
-    def magnitude(self):
-        '''Absolute difference of the high and low values of the tree.'''
+    def duration(self):
+        '''Absolute difference of the stop and start values of the tree.'''
         if self:
-            return Duration(self.high_max - self.low_min)
+            return Duration(self.latest_stop - self.earliest_start)
         else:
             return Duration(0)
 
     ### PRIVATE METHODS ###
 
-    def _update_high_extrema(self):
+    def _update_stop_extrema(self):
         def recurse(node):
-            max = min = node.payload[0].high
+            max = min = node.payload[0].stop
             for interval in node.payload[1:]:
-                if max < interval.high:
-                    max = interval.high
-                if interval.high < min:
-                    min = interval.high
+                if max < interval.stop:
+                    max = interval.stop
+                if interval.stop < min:
+                    min = interval.stop
             if node.left != self._sentinel:
                 left_max, left_min = recurse(node.left)
                 if max < left_max:
@@ -212,57 +210,57 @@ class IntervalTree(_RedBlackTree):
                     max = right_max
                 if right_min < min:
                     min = right_min
-            node.high_max = max
-            node.high_min = min
+            node.latest_stop = max
+            node.earliest_stop = min
             return max, min
         if self._root != self._sentinel:
             recurse(self._root)
 
-### PUBLIC METHODS ###
+    ### PUBLIC METHODS ###
 
     def find_intervals_intersecting_or_tangent_to_interval(self, *args):
-        def recurse(node, low, high):
+        def recurse(node, start, stop):
             intervals = []
             if node == self._sentinel:
                 return intervals
-            if node.key <= high and low <= node.high_max:
+            if node.key <= stop and start <= node.latest_stop:
                 for interval in node.payload:
-                    if interval.low <= high and low <= interval.high:
+                    if interval.start <= stop and start <= interval.stop:
                         intervals.append(interval)
             if node.left != self._sentinel \
-                and self._find_minimum(node.left).key <= high \
-                and low <= node.left.high_max:
-                intervals.extend(recurse(node.left, low, high))
+                and self._find_minimum(node.left).key <= stop \
+                and start <= node.left.latest_stop:
+                intervals.extend(recurse(node.left, start, stop))
             if node.right != self._sentinel \
-                and self._find_minimum(node.right).key <= high \
-                and low <= node.right.high_max:
-                intervals.extend(recurse(node.right, low, high))
+                and self._find_minimum(node.right).key <= stop \
+                and start <= node.right.latest_stop:
+                intervals.extend(recurse(node.right, start, stop))
             return intervals
         if len(args) == 1:
             assert isinstance(args[0], BoundedInterval)
-            low, high = args[0].low, args[0].high
+            start, stop = args[0].start, args[0].stop
         elif len(args) == 2:
-            low, high = args[0], args[1]
-            assert all([isinstance(x, (int, Fraction)) for x in (low, high)])
-            assert low <= high
+            start, stop = args[0], args[1]
+            assert all([isinstance(x, (int, Fraction)) for x in (start, stop)])
+            assert start <= stop
         else:
             raise ValueError
-        return tuple(sorted(recurse(self._root, low, high), key=lambda x: x.signature))
+        return tuple(sorted(recurse(self._root, start, stop), key=lambda x: x.signature))
 
     def find_intervals_intersecting_or_tangent_to_offset(self, offset):
         def recurse(node, offset):
             intervals = []
             if node == self._sentinel:
                 return intervals
-            if node.key <= offset and offset <= node.high_max:
+            if node.key <= offset and offset <= node.latest_stop:
                 for interval in node.payload:
-                    if interval.low <= offset and offset <= interval.high:
+                    if interval.start <= offset and offset <= interval.stop:
                         intervals.append(interval)
             if node.left != self._sentinel and self._find_minimum(node.left).key <= offset \
-                and offset <= node.left.high_max:
+                and offset <= node.left.latest_stop:
                 intervals.extend(recurse(node.left, offset))
             if node.right != self._sentinel and self._find_minimum(node.right).key <= offset \
-                and offset <= node.right.high_max:
+                and offset <= node.right.latest_stop:
                 intervals.extend(recurse(node.right, offset))
             return intervals
         assert isinstance(offset, (int, Fraction))
@@ -284,33 +282,33 @@ class IntervalTree(_RedBlackTree):
         return tuple(sorted(recurse(self._root, offset), key=lambda x: x.signature))
 
     def find_intervals_starting_and_stopping_within_interval(self, *args):
-        def recurse(node, low, high):
+        def recurse(node, start, stop):
             intervals = []
             if node == self._sentinel:
                 return intervals
-            if low <= node.key and node.high_min <= high:
+            if start <= node.key and node.earliest_stop <= stop:
                 for interval in node.payload:
-                    if low <= interval.low and interval.high <= high:
+                    if start <= interval.start and interval.stop <= stop:
                         intervals.append(interval)
             if node.left != self._sentinel \
-                and low <= self._find_maximum(node.left).key \
-                and node.left.high_min <= high:
-                intervals.extend(recurse(node.left, low, high))
+                and start <= self._find_maximum(node.left).key \
+                and node.left.earliest_stop <= stop:
+                intervals.extend(recurse(node.left, start, stop))
             if node.right != self._sentinel \
-                and low <= self._find_maximum(node.right).key \
-                and node.right.high_min <= high:
-                intervals.extend(recurse(node.right, low, high))
+                and start <= self._find_maximum(node.right).key \
+                and node.right.earliest_stop <= stop:
+                intervals.extend(recurse(node.right, start, stop))
             return intervals
         if len(args) == 1:
             assert isinstance(args[0], BoundedInterval)
-            low, high = args[0].low, args[0].high
+            start, stop = args[0].start, args[0].stop
         elif len(args) == 2:
-            low, high = args[0], args[1]
-            assert all([isinstance(x, (int, Fraction)) for x in (low, high)])
-            assert low <= high
+            start, stop = args[0], args[1]
+            assert all([isinstance(x, (int, Fraction)) for x in (start, stop)])
+            assert start <= stop
         else:
             raise ValueError
-        return tuple(sorted(recurse(self._root, low, high), key=lambda x: x.signature))
+        return tuple(sorted(recurse(self._root, start, stop), key=lambda x: x.signature))
 
     def find_intervals_starting_at_offset(self, offset):
         assert isinstance(offset, (int, Fraction))
@@ -340,58 +338,58 @@ class IntervalTree(_RedBlackTree):
             intervals = []
             if node == self._sentinel:
                 return intervals
-            if node.key <= offset and offset <= node.high_max:
+            if node.key <= offset and offset <= node.latest_stop:
                 for interval in node.payload:
-                    if interval.low == offset or interval.high == offset:
+                    if interval.start == offset or interval.stop == offset:
                         intervals.append(interval)
-            if node.left != self._sentinel and offset <= node.left.high_max:
+            if node.left != self._sentinel and offset <= node.left.latest_stop:
                 intervals.extend(recurse(node.left, offset))
             if node.right != self._sentinel and self._find_minimum(node.right).key <= offset \
-                and offset <= node.right.high_max:
+                and offset <= node.right.latest_stop:
                 intervals.extend(recurse(node.right, offset))
             return intervals
         assert isinstance(offset, (int, Fraction))
         return tuple(sorted(recurse(self._root, offset), key=lambda x: x.signature))
 
     def find_intervals_starting_within_interval(self, *args):
-        def recurse(node, low, high):
+        def recurse(node, start, stop):
             intervals = []
             if node == self._sentinel:
                 return intervals
-            if low <= node.key <= high:
+            if start <= node.key <= stop:
                 intervals.extend(node.payload)
             if node.left != self._sentinel and \
-                low <= self._find_maximum(node.left).key and \
-                self._find_minimum(node.left).key <= high:
-                intervals.extend(recurse(node.left, low, high))
+                start <= self._find_maximum(node.left).key and \
+                self._find_minimum(node.left).key <= stop:
+                intervals.extend(recurse(node.left, start, stop))
             if node.right != self._sentinel and \
-                low <= self._find_maximum(node.right).key and \
-                self._find_minimum(node.right).key <= high:
-                intervals.extend(recurse(node.right, low, high))
+                start <= self._find_maximum(node.right).key and \
+                self._find_minimum(node.right).key <= stop:
+                intervals.extend(recurse(node.right, start, stop))
             return intervals
         if len(args) == 1:
             assert isinstance(args[0], BoundedInterval)
-            low, high = args[0].low, args[0].high
+            start, stop = args[0].start, args[0].stop
         elif len(args) == 2:
-            low, high = args[0], args[1]
-            assert all([isinstance(x, (int, Fraction)) for x in (low, high)])
-            assert low <= high
+            start, stop = args[0], args[1]
+            assert all([isinstance(x, (int, Fraction)) for x in (start, stop)])
+            assert start <= stop
         else:
             raise ValueError
-        return tuple(sorted(recurse(self._root, low, high), key=lambda x: x.signature))
+        return tuple(sorted(recurse(self._root, start, stop), key=lambda x: x.signature))
 
     def find_intervals_stopping_after_offset(self, offset):
         def recurse(node, offset):
             intervals = []
             if node == self._sentinel:
                 return intervals
-            if offset < node.high_max:
+            if offset < node.latest_stop:
                 for interval in node.payload:
-                    if offset < interval.high:
+                    if offset < interval.stop:
                         intervals.append(interval)
-            if node.left != self._sentinel and offset < node.left.high_max:
+            if node.left != self._sentinel and offset < node.left.latest_stop:
                 intervals.extend(recurse(node.left, offset))
-            if node.right != self._sentinel and offset < node.right.high_max:
+            if node.right != self._sentinel and offset < node.right.latest_stop:
                 intervals.extend(recurse(node.right, offset))
             return intervals
         assert isinstance(offset, (int, Fraction))
@@ -402,13 +400,13 @@ class IntervalTree(_RedBlackTree):
             intervals = []
             if node == self._sentinel:
                 return intervals
-            if node.high_min <= offset and offset <= node.high_max:
+            if node.earliest_stop <= offset and offset <= node.latest_stop:
                 for interval in node.payload:
-                    if interval.high == offset:
+                    if interval.stop == offset:
                         intervals.append(interval)
-            if node.left != self._sentinel and offset <= node.left.high_max:
+            if node.left != self._sentinel and offset <= node.left.latest_stop:
                 intervals.extend(recurse(node.left, offset))
-            if node.right != self._sentinel and node.right.high_min <= offset:
+            if node.right != self._sentinel and node.right.earliest_stop <= offset:
                 intervals.extend(recurse(node.right, offset))
             return intervals
         assert isinstance(offset, (int, Fraction))
@@ -419,43 +417,43 @@ class IntervalTree(_RedBlackTree):
             intervals = []
             if node == self._sentinel:
                 return intervals
-            if node.key <= offset and node.high_min < offset:
+            if node.key <= offset and node.earliest_stop < offset:
                 for interval in node.payload:
-                    if interval.high < offset:
+                    if interval.stop < offset:
                         intervals.append(interval)
-            if node.left != self._sentinel and node.left.high_min < offset:
+            if node.left != self._sentinel and node.left.earliest_stop < offset:
                 intervals.extend(recurse(node.left, offset))
-            if node.right != self._sentinel and node.right.high_min < offset:
+            if node.right != self._sentinel and node.right.earliest_stop < offset:
                 intervals.extend(recurse(node.right, offset))
             return intervals
         assert isinstance(offset, (int, Fraction))
         return tuple(sorted(recurse(self._root, offset), key=lambda x: x.signature))
 
     def find_intervals_stopping_within_interval(self, *args):
-        def recurse(node, low, high):
+        def recurse(node, start, stop):
             intervals = []
             if node == self._sentinel:
                 return intervals
-            if low <= node.high_max and node.high_min <= high:
+            if start <= node.latest_stop and node.earliest_stop <= stop:
                 for interval in node.payload:
-                    if low <= interval.high <= high:
+                    if start <= interval.stop <= stop:
                         intervals.append(interval)
             if node.left != self._sentinel and \
-                low <= node.left.high_max and \
-                node.left.high_min <= high:
-                intervals.extend(recurse(node.left, low, high))
+                start <= node.left.latest_stop and \
+                node.left.earliest_stop <= stop:
+                intervals.extend(recurse(node.left, start, stop))
             if node.right != self._sentinel and \
-                low <= node.right.high_max and \
-                node.right.high_min <= high:
-                intervals.extend(recurse(node.right, low, high))
+                start <= node.right.latest_stop and \
+                node.right.earliest_stop <= stop:
+                intervals.extend(recurse(node.right, start, stop))
             return intervals
         if len(args) == 1:
             assert isinstance(args[0], BoundedInterval)
-            low, high = args[0].low, args[0].high
+            start, stop = args[0].start, args[0].stop
         elif len(args) == 2:
-            low, high = args[0], args[1]
-            assert all([isinstance(x, (int, Fraction)) for x in (low, high)])
-            assert low <= high
+            start, stop = args[0], args[1]
+            assert all([isinstance(x, (int, Fraction)) for x in (start, stop)])
+            assert start <= stop
         else:
             raise ValueError
-        return tuple(sorted(recurse(self._root, low, high), key=lambda x: x.signature))
+        return tuple(sorted(recurse(self._root, start, stop), key=lambda x: x.signature))

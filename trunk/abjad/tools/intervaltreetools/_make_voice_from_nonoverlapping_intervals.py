@@ -11,7 +11,7 @@ from abjad.tools.intervaltreetools.compute_depth_of_intervals import compute_dep
 from abjad.tools.intervaltreetools.compute_depth_of_intervals_in_interval import compute_depth_of_intervals_in_interval
 
 
-def _make_voice_from_nonoverlapping_intervals(intervals, colorkey = None, bounds = None, pitch = None):
+def _make_voice_from_nonoverlapping_intervals(intervals, colorkey = None, pitch = None):
 
     assert all_are_intervals_or_trees_or_empty(intervals)
     if isinstance(intervals, IntervalTree):
@@ -24,12 +24,7 @@ def _make_voice_from_nonoverlapping_intervals(intervals, colorkey = None, bounds
 
     voice = Voice([])
 
-#   if bounds is None:
-#      depth_tree = compute_depth_of_intervals(tree)
-#   else:
-#      depth_tree = compute_depth_of_intervals_in_interval(tree, bounds)
-
-    depth_tree = compute_depth_of_intervals_in_interval(tree, BoundedInterval(0, tree.high))
+    depth_tree = compute_depth_of_intervals_in_interval(tree, BoundedInterval(0, tree.stop))
 
     if pitch is None:
         pitch = 0
@@ -38,11 +33,11 @@ def _make_voice_from_nonoverlapping_intervals(intervals, colorkey = None, bounds
         if depth_interval['depth'] == 0:
             if i == 0:
                 rest = Rest(1)
-                rest.duration_multiplier = depth_interval.magnitude
+                rest.duration_multiplier = depth_interval.duration
                 voice.append(rest)
             else:
                 note = Note(pitch, 1)
-                note.duration_multiplier = depth_interval.magnitude
+                note.duration_multiplier = depth_interval.duration
                 note.override.note_head.transparent = True
                 voice.append(note)
                 GlissandoSpanner(voice[-2:])
@@ -52,15 +47,15 @@ def _make_voice_from_nonoverlapping_intervals(intervals, colorkey = None, bounds
 #                voice.append(note)
 #                GlissandoSpanner(voice[-2:])
 #                rest = Rest(1)
-#                rest.duration_multiplier = depth_interval.magnitude
+#                rest.duration_multiplier = depth_interval.duration
 #                voice.append(rest)
 
         elif depth_interval['depth'] == 1:
             note = Note(pitch, 1)
-            note.duration_multiplier = depth_interval.magnitude
+            note.duration_multiplier = depth_interval.duration
             if colorkey is not None:
                 try:
-                    original_interval = tree.find_intervals_starting_at_offset(depth_interval.low)[0]
+                    original_interval = tree.find_intervals_starting_at_offset(depth_interval.start)[0]
                     color = SchemeColor(original_interval[colorkey])
                     note.override.note_head.color = color
                     note.override.glissando.color = color

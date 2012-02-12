@@ -8,8 +8,8 @@ from abjad import Fraction
 
 def resolve_overlaps_between_nonoverlapping_trees_excluding_remainders_less_than_rational(trees, rational):
     '''Create a nonoverlapping IntervalTree from `trees`.
-    Intervals in higher-indexed trees in `trees` only appear in part or whole where they do not
-    overlap intervals from lower-indexed trees, and then only where their magnitudes are equal to or greater than
+    Intervals in stoper-indexed trees in `trees` only appear in part or whole where they do not
+    overlap intervals from starter-indexed trees, and then only where their durations are equal to or greater than
     `rational` ::
 
         abjad> from abjad.tools import intervaltreetools
@@ -39,7 +39,8 @@ def resolve_overlaps_between_nonoverlapping_trees_excluding_remainders_less_than
     for tree in trees[1:]:
         xor = compute_logical_xor_of_intervals([tree, rtree])
         masked = mask_intervals_with_intervals(tree, xor)
-        rtree._insert(filter(lambda x: rational <= x.magnitude, masked))
+        #rtree._insert(filter(lambda x: rational <= x.duration, masked))
+        rtree._insert([x for x in masked if rational <= x.duration])
 
     assert all_intervals_are_nonoverlapping(rtree)
 

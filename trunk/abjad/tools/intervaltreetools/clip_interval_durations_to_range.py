@@ -3,7 +3,7 @@ from abjad.tools.intervaltreetools.all_are_intervals_or_trees_or_empty import al
 from abjad import Fraction
 
 
-def clip_interval_magnitudes_to_range(intervals, min = None, max = None):
+def clip_interval_durations_to_range(intervals, min = None, max = None):
     assert all_are_intervals_or_trees_or_empty(intervals)
     assert all([isinstance(x, (int, Fraction, type(None))) for x in [min, max]])
     if isinstance(min, (int, Fraction)):
@@ -22,9 +22,9 @@ def clip_interval_magnitudes_to_range(intervals, min = None, max = None):
 
     intervals = []
     for interval in tree:
-        if min is not None and interval.magnitude < min:
+        if min is not None and interval.duration < min:
             intervals.append(interval.scale_to_rational(min))
-        elif max is not None and max < interval.magnitude:
+        elif max is not None and max < interval.duration:
             intervals.append(interval.scale_to_rational(max))
         else:
             intervals.append(interval)

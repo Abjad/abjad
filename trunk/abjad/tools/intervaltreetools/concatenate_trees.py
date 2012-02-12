@@ -15,7 +15,7 @@ def concatenate_trees(trees, padding = 0):
     for tree in trees[1:]:
         output_tree = IntervalTree([
             output_tree,
-            shift_aggregate_offset_to_rational(tree, output_tree.high_max + padding)
+            shift_aggregate_offset_to_rational(tree, output_tree.latest_stop + padding)
         ])
 
     return output_tree

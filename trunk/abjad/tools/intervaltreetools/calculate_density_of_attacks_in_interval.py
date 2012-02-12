@@ -6,7 +6,7 @@ from abjad import Fraction
 
 def calculate_density_of_attacks_in_interval(intervals, interval):
     '''Return a Fraction of number of attacks in `interval`
-    over the magnitude of `interval`.'''
+    over the duration of `interval`.'''
 
     assert all_are_intervals_or_trees_or_empty(intervals)
     assert isinstance(interval, BoundedInterval)
@@ -16,4 +16,4 @@ def calculate_density_of_attacks_in_interval(intervals, interval):
         tree = IntervalTree(intervals)
 
     return len(tree.find_intervals_starting_within_interval(interval)) \
-        / interval.magnitude
+        / interval.duration

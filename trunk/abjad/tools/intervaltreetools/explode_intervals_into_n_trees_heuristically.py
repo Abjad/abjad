@@ -24,7 +24,7 @@ def explode_intervals_into_n_trees_heuristically(intervals, n):
         return [tree]
 
     # cache
-    treebounds = BoundedInterval(tree.low, tree.high)
+    treebounds = BoundedInterval(tree.start, tree.stop)
     xtrees = [IntervalTree(tree[0])]
     densities = [calculate_depth_density_of_intervals_in_interval(xtrees[0], treebounds)]
     logical_ors = [compute_logical_or_of_intervals(xtrees[0])]
@@ -35,8 +35,6 @@ def explode_intervals_into_n_trees_heuristically(intervals, n):
 
     # loop through intervals
     for interval in tree[1:]:
-
-#      print interval
 
         empty_trees = []
         nonoverlapping_trees = []
@@ -54,29 +52,23 @@ def explode_intervals_into_n_trees_heuristically(intervals, n):
             else:
                 overlapping_trees.append((i, xtree, density, logical_or))
 
-#      print '\t...tested'
-
         if len(empty_trees):
             i = empty_trees[0][0]
-#         print '\t...empty'
         elif len(nonoverlapping_trees):
             nonoverlapping_trees = sorted(nonoverlapping_trees, key = lambda x: x[2])
             i = nonoverlapping_trees[0][0]
-#         print '\t...nonoverlapping'
         else:
             overlapping_trees = sorted(overlapping_trees, \
                 key = lambda x: x[3][-1].get_overlap_with_interval(interval))
-            overlapping_trees = filter( \
-                lambda x: x[3][-1].magnitude == overlapping_trees[0][3][-1].magnitude,
-                overlapping_trees)
+#            overlapping_trees = filter( \
+#                lambda x: x[3][-1].duration == overlapping_trees[0][3][-1].duration,
+#                overlapping_trees)
+            overlapping_trees = [x for x in overlapping_trees \
+                if x[3][-1].duration == overlapping_trees[0][3][-1].duration]
             i = overlapping_trees[0][0]
-#         print '\t...overlapping'
 
         xtrees[i]._insert(interval)
-#      print '\t...inserted'
         densities[i] = calculate_depth_density_of_intervals_in_interval(xtrees[i], treebounds)
-#      print '\t...calculated depth'
         logical_ors[i] = compute_logical_or_of_intervals(xtrees[i])
-#      print '\t...computed logical or'
 
     return xtrees

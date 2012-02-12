@@ -7,7 +7,7 @@ from abjad.tools.intervaltreetools.compute_depth_of_intervals import compute_dep
 def calculate_min_mean_and_max_depth_of_intervals(intervals):
     '''Return a 3-tuple of the minimum, mean and maximum depth of `intervals`.
     If `intervals` is empty, return None.  "Mean" in this case is a weighted mean,
-    where the magnitudes of the intervals in depth tree of `intervals` are the weights
+    where the durations of the intervals in depth tree of `intervals` are the weights
     '''
 
     assert all_are_intervals_or_trees_or_empty(intervals)

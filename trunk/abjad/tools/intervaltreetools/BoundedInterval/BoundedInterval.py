@@ -4,32 +4,36 @@ from abjad.tools.durationtools import Duration
 from abjad.tools.durationtools import Offset
 
 class BoundedInterval(dict, _Immutable):
-    '''A low / high pair, carrying some metadata.'''
+    '''A start / stop pair, carrying some metadata.'''
 
-    __slots__ = ('_high', '_low', )
+    __slots__ = ('_stop', '_start', )
 
     def __init__(self, *args):
         dict.__init__(self)
+
         if len(args) == 1 and isinstance(args[0], BoundedInterval):
-            low, high, data = args[0].low, args[0].high, args[0]
+            start, stop, data = args[0].start, args[0].stop, args[0]
         elif len(args) == 2:
-            low, high, data = args[0], args[1], {}
+            start, stop, data = args[0], args[1], {}
         elif len(args) == 3:
-            low, high, data = args[0], args[1], args[2]
-        assert isinstance(low, (int, Fraction))
-        assert isinstance(high, (int, Fraction))
-        assert low < high
+            start, stop, data = args[0], args[1], args[2]
+
+        assert isinstance(start, (int, Fraction))
+        assert isinstance(stop, (int, Fraction))
+        assert start < stop
         assert isinstance(data, dict)
-        object.__setattr__(self, '_low', Offset(low))
-        object.__setattr__(self, '_high', Offset(high))
+
+        object.__setattr__(self, '_start', Offset(start))
+        object.__setattr__(self, '_stop', Offset(stop))
+
         self.update(data)
 
     ### OVERLOADS ###
 
     def __eq__(self, other):
         if type(other) == type(self):
-            if other.low == self.low:
-                if other.high == self.high:
+            if other.start == self.start:
+                if other.stop == self.stop:
                     if dict.__eq__(self, other):
                         return True
         return False
@@ -43,36 +47,36 @@ class BoundedInterval(dict, _Immutable):
     def __repr__(self):
         return '%s(%s, %s, %s)' % \
             (type(self).__name__, \
-            repr(self.low), \
-            repr(self.high), \
+            repr(self.start), \
+            repr(self.stop), \
             dict.__repr__(self))
 
     ### PUBLIC ATTRIBUTES ###
 
     @property
-    def centroid(self):
-        '''Center point of low and high bounds.'''
-        return Offset(self.high + self.low) / 2
+    def center(self):
+        '''Center point of start and stop bounds.'''
+        return Offset(self.stop + self.start) / 2
 
     @property
-    def high(self):
-        '''High bound.'''
-        return self._high
+    def stop(self):
+        '''stop bound.'''
+        return self._stop
 
     @property
-    def low(self):
-        '''Low bound.'''
-        return self._low
+    def start(self):
+        '''start bound.'''
+        return self._start
 
     @property
-    def magnitude(self):
-        '''High bound minus low bound.'''
-        return Duration(self.high - self.low)
+    def duration(self):
+        '''stop bound minus start bound.'''
+        return Duration(self.stop - self.start)
 
     @property
     def signature(self):
-        '''Tuple of low bound and high bound.'''
-        return (self.low, self.high)
+        '''Tuple of start bound and stop bound.'''
+        return (self.start, self.stop)
 
     ### PUBLIC METHODS ###
 
@@ -82,18 +86,18 @@ class BoundedInterval(dict, _Immutable):
         if not self.is_overlapped_by_interval(interval):
             return 0
         elif self.is_container_of_interval(interval):
-            return interval.magnitude
+            return interval.duration
         elif self.is_contained_by_interval(interval):
-            return self.magnitude
-        elif self.low < interval.low:
-            return self.high - interval.low
+            return self.duration
+        elif self.start < interval.start:
+            return self.stop - interval.start
         else:
-            return interval.high - self.low
+            return interval.stop - self.start
 
     def is_contained_by_interval(self, interval):
         '''True if interval is contained by `interval`.'''
         assert isinstance(interval, BoundedInterval)
-        if interval.low <= self.low and self.high <= interval.high:
+        if interval.start <= self.start and self.stop <= interval.stop:
             return True
         else:
             return False
@@ -101,7 +105,7 @@ class BoundedInterval(dict, _Immutable):
     def is_container_of_interval(self, interval):
         '''True if interval contains `interval`.'''
         assert isinstance(interval, BoundedInterval)
-        if self.low <= interval.low and interval.high <= self.high:
+        if self.start <= interval.start and interval.stop <= self.stop:
             return True
         else:
             return False
@@ -113,13 +117,13 @@ class BoundedInterval(dict, _Immutable):
             return True
         elif self.is_contained_by_interval(interval):
             return True
-        elif self.low < interval.low < self.high:
+        elif self.start < interval.start < self.stop:
             return True
-        elif self.low == interval.low:
+        elif self.start == interval.start:
             return True
-        elif self.high == interval.high:
+        elif self.stop == interval.stop:
             return True
-        elif self.low < interval.high < self.high:
+        elif self.start < interval.stop < self.stop:
             return True
         else:
             return False
@@ -127,7 +131,7 @@ class BoundedInterval(dict, _Immutable):
     def is_tangent_to_interval(self, interval):
         '''True if interval is tangent to `interval`.'''
         assert isinstance(interval, BoundedInterval)
-        if self.high == interval.low or interval.high == self.low:
+        if self.stop == interval.start or interval.stop == self.start:
             return True
         else:
             return False
@@ -136,38 +140,38 @@ class BoundedInterval(dict, _Immutable):
         assert isinstance(rational, (int, Fraction))
         assert 0 <= rational
         if rational != 1:
-            new_magnitude = (self.high - self.low) * rational
-            return type(self)(BoundedInterval(self.low, self.low + new_magnitude, self))
+            new_duration = (self.stop - self.start) * rational
+            return type(self)(BoundedInterval(self.start, self.start + new_duration, self))
         else:
             return self
 
     def scale_to_rational(self, rational):
         assert isinstance(rational, (int, Fraction))
         assert 0 <= rational
-        if rational != self.magnitude:
-            return type(self)(BoundedInterval(self.low, self.low + rational, self))
+        if rational != self.duration:
+            return type(self)(BoundedInterval(self.start, self.start + rational, self))
         else:
             return self
 
     def shift_by_rational(self, rational):
         assert isinstance(rational, (int, Fraction))
         if rational != 0:
-            return type(self)(BoundedInterval(self.low + rational, self.high + rational, self))
+            return type(self)(BoundedInterval(self.start + rational, self.stop + rational, self))
         else:
             return self
 
     def shift_to_rational(self, rational):
         assert isinstance(rational, (int, Fraction))
-        if rational != self.low:
-            magnitude = self.high - self.low
-            return type(self)(BoundedInterval(rational, rational + magnitude, self))
+        if rational != self.start:
+            duration = self.stop - self.start
+            return type(self)(BoundedInterval(rational, rational + duration, self))
         else:
             return self
 
     def split_at_rational(self, rational):
         assert isinstance(rational, (int, Fraction))
-        if self.low < rational < self.high:
-            return (type(self)(BoundedInterval(self.low, rational, self)),
-                    type(self)(BoundedInterval(rational, self.high, self)))
+        if self.start < rational < self.stop:
+            return (type(self)(BoundedInterval(self.start, rational, self)),
+                    type(self)(BoundedInterval(rational, self.stop, self)))
         else:
             return (self,)

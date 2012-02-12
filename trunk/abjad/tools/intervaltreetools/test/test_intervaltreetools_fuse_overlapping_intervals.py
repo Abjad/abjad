@@ -10,4 +10,4 @@ def test_intervaltreetools_fuse_overlapping_intervals_01():
     target_signatures = [(0, 3), (5, 13), (15, 23), (25, 30), (32, 34), (34, 37)]
     actual_signatures = [interval.signature for interval in fused_tree]
     assert target_signatures == actual_signatures
-    assert tree.magnitude == fused_tree.magnitude
+    assert tree.duration == fused_tree.duration

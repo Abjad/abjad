@@ -38,5 +38,5 @@ def fuse_overlapping_intervals(intervals):
         group_overlapping_intervals_and_yield_groups(tree)]
 
     return IntervalTree([
-        BoundedInterval(tree.low_min, tree.high_max) for tree in trees
+        BoundedInterval(tree.earliest_start, tree.latest_stop) for tree in trees
     ])

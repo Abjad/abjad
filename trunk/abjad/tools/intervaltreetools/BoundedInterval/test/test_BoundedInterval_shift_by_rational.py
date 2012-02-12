@@ -14,12 +14,12 @@ def test_BoundedInterval_shift_by_rational_02():
     '''BoundedIntervals can be shifted by ints.'''
     i1 = BoundedInterval(3, 23)
     i2 = i1.shift_by_rational(2)
-    assert i2.low == 5
-    assert i2.magnitude == i1.magnitude
+    assert i2.start == 5
+    assert i2.duration == i1.duration
 
 def test_BoundedInterval_shift_by_rational_03():
     '''BoundedIntervals can be shifted by fractions.'''
     i1 = BoundedInterval(3, 23)
     i2 = i1.shift_by_rational(Fraction(1, 5))
-    assert i2.low == Fraction(16, 5)
-    assert i2.magnitude == i1.magnitude
+    assert i2.start == Fraction(16, 5)
+    assert i2.duration == i1.duration

@@ -12,7 +12,7 @@ def all_intervals_are_nonoverlapping(intervals):
         tree = IntervalTree(intervals)
 
     for i in range(1, len(tree)):
-        if tree[i].low < tree[i -1].high:
+        if tree[i].start < tree[i -1].stop:
             return False
 
     return True
