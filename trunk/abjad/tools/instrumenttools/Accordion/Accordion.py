@@ -5,30 +5,35 @@ from abjad.tools.instrumenttools._KeyboardInstrument import _KeyboardInstrument
 from abjad.tools.instrumenttools._ReedInstrument import _ReedInstrument
 
 
-# TODO: figure out why resolution of effective context as staff group isn't working
 class Accordion(_KeyboardInstrument, _ReedInstrument):
     r'''.. versionadded 1.1.2
 
     Abjad model of the accordion::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
+        abjad> piano_staff = scoretools.PianoStaff([Staff("c'8 d'8 e'8 f'8"), Staff("c'4 b4")])
 
     ::
 
-        abjad> instrumenttools.Accordion(target_context = Staff)(staff)
-        Accordion()(Staff{4})
+        abjad> instrumenttools.Accordion()(piano_staff)
+        Accordion()(PianoStaff<<2>>)
 
     ::
 
-        abjad> f(staff)
-        \new Staff {
-            \set Staff.instrumentName = \markup { Accordion }
-            \set Staff.shortInstrumentName = \markup { Acc. }
-            c'8
-            d'8
-            e'8
-            f'8
-        }
+        abjad> f(piano_staff)
+        \new PianoStaff <<
+            \set PianoStaff.instrumentName = \markup { Accordion }
+            \set PianoStaff.shortInstrumentName = \markup { Acc. }
+            \new Staff {
+                c'8
+                d'8
+                e'8
+                f'8
+            }
+            \new Staff {
+                c'4
+                b4
+            }
+        >>
 
     The accordion targets piano staff context by default.
     '''

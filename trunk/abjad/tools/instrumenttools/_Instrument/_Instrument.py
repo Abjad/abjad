@@ -12,7 +12,9 @@ class _Instrument(contexttools.InstrumentMark):
         instrument_name_markup=None, short_instrument_name_markup=None, target_context=None):
         self.sounding_pitch_of_fingered_middle_c = pitchtools.NamedChromaticPitch("c'")
         contexttools.InstrumentMark.__init__(self, instrument_name, short_instrument_name,
-            instrument_name_markup=None, short_instrument_name_markup=None, target_context=None)
+            instrument_name_markup=instrument_name_markup, 
+            short_instrument_name_markup=short_instrument_name_markup, 
+            target_context=target_context)
         self._default_performer_names = ['instrumentalist']
         self._is_primary_instrument = False
         self._pitch_range = None

@@ -19,10 +19,10 @@ class Harpsichord(_KeyboardInstrument):
 
     ::
 
-        abjad> f(piano_staff) # doctest: +SKIP
+        abjad> f(piano_staff)
         \new PianoStaff <<
-            %%% \set Staff.instrumentName = \markup { Harpsichord } %%%
-            %%% \set Staff.shortInstrumentName = \markup { Hpschd. } %%%
+            \set PianoStaff.instrumentName = \markup { Harpsichord }
+            \set PianoStaff.shortInstrumentName = \markup { Hpschd. }
             \new Staff {
                 c'8
                 d'8

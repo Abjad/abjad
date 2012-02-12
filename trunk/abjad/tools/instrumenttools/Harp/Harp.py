@@ -5,7 +5,6 @@ from abjad.tools import scoretools
 from abjad.tools.instrumenttools._StringInstrument import _StringInstrument
 
 
-# TODO: make work at the right context
 class Harp(_StringInstrument):
     r'''.. versionadded:: 2.0
 
@@ -20,7 +19,7 @@ class Harp(_StringInstrument):
 
     ::
 
-        abjad> f(piano_staff) # doctest: +SKIP
+        abjad> f(piano_staff)
         \new PianoStaff <<
             \set PianoStaff.instrumentName = \markup { Harp }
             \set PianoStaff.shortInstrumentName = \markup { Hp. }

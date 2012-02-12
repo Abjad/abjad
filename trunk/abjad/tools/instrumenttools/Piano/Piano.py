@@ -19,7 +19,7 @@ class Piano(_KeyboardInstrument):
 
     ::
 
-        abjad> f(piano_staff) # doctest: +SKIP
+        abjad> f(piano_staff)
         \new PianoStaff <<
             \set PianoStaff.instrumentName = \markup { Piano }
             \set PianoStaff.shortInstrumentName = \markup { Pf. }
