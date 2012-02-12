@@ -139,7 +139,6 @@ class _Component(_StrictComparator):
             self._set_keyword_value(key, value)
 
     def _set_keyword_value(self, key, value):
-        from fractions import Fraction
         attribute_chain = key.split('__')
         plug_in_name = attribute_chain[0]
         names = attribute_chain[1:]

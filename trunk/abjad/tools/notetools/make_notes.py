@@ -2,11 +2,8 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import pitchtools
 from abjad.tools import sequencetools
-from abjad.tools import durationtools
 from numbers import Number
 import fractions
-import math
-import operator
 
 
 def make_notes(pitches, durations, direction='big-endian'):
@@ -89,7 +86,6 @@ def make_notes(pitches, durations, direction='big-endian'):
             result.extend(_construct_unprolated_notes(ps, ds, direction))
         else:
             # compute prolation
-            #denominator = reduce(operator.mul, factors)
             denominator = ds[0][1]
             numerator = mathtools.greatest_power_of_two_less_equal(denominator)
             multiplier = (numerator, denominator)
@@ -97,7 +93,6 @@ def make_notes(pitches, durations, direction='big-endian'):
             ds = [ratio * durationtools.Duration(*d) for d in ds]
             # make notes
             ns = _construct_unprolated_notes(ps, ds, direction)
-            #t = Tuplet(multiplier, ns)
             t = Tuplet(multiplier, ns)
             result.append(t)
     return result

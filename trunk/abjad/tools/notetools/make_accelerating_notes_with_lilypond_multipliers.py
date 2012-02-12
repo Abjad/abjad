@@ -1,7 +1,6 @@
 from abjad.tools.notetools.Note import Note
 from abjad.tools import durationtools
 from abjad.tools import mathtools
-from abjad.tools import durationtools
 import fractions
 
 

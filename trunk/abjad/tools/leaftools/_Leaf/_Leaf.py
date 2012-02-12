@@ -63,6 +63,10 @@ class _Leaf(_Component, _StrictComparator):
     ### PRIVATE ATTRIBUTES ###
 
     @property
+    def _compact_representation(self):
+        return '({})'.format(self._formatted_duration)
+
+    @property
     def _format_pieces(self):
         return self.format.split('\n')
 

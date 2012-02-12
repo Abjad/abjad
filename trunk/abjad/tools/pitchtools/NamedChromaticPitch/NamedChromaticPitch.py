@@ -269,7 +269,6 @@ class NamedChromaticPitch(_Pitch):
             pitch_number, diatonic_pitch_class_name)
 
     def _init_by_named_chromatic_pitch(self, named_chromatic_pitch):
-        from abjad.tools import pitchtools
         object.__setattr__(self, '_chromatic_pitch_name', named_chromatic_pitch._chromatic_pitch_name)
         object.__setattr__(self, '_deviation', named_chromatic_pitch.deviation_in_cents)
 

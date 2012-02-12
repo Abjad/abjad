@@ -1,5 +1,3 @@
-from abjad.exceptions import ExtraNoteHeadError
-from abjad.exceptions import MissingNoteHeadError
 from abjad.tools.chordtools.Chord import Chord
 from abjad.decorators import requires
 from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch

@@ -1,5 +1,3 @@
-from abjad.exceptions import ExtraPitchError
-from abjad.exceptions import MissingPitchError
 from abjad.tools import schemetools
 from abjad.tools.pitchtools.get_named_chromatic_pitch_from_pitch_carrier import get_named_chromatic_pitch_from_pitch_carrier
 

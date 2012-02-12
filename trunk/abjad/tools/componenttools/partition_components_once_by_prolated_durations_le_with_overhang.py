@@ -9,7 +9,7 @@ def partition_components_once_by_prolated_durations_le_with_overhang(
     or are just less than `prolated_durations`, with overhang.
     '''
 
-    parts = _partition_components_by_durations('prolated', components, prolated_duration,
-        fill = 'less', cyclic = False, overhang = True)
+    parts = _partition_components_by_durations('prolated', components, prolated_durations,
+        fill='less', cyclic=False, overhang=True)
 
     return parts
