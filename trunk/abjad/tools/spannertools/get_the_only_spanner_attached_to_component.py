@@ -1,5 +1,3 @@
-from abjad.exceptions import ExtraSpannerError
-from abjad.exceptions import MissingSpannerError
 from abjad.tools.spannertools.get_spanners_attached_to_component import get_spanners_attached_to_component
 
 

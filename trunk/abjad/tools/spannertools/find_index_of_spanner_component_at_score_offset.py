@@ -1,6 +1,3 @@
-from abjad.exceptions import SpannerPopulationError
-
-
 def find_index_of_spanner_component_at_score_offset(spanner, score_offset):
     r'''Return index of component in 'spanner' that begins at exactly 'score_offset'::
 

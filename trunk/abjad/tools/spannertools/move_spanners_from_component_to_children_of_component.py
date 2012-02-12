@@ -14,7 +14,9 @@ def move_spanners_from_component_to_children_of_component(donor):
     #for spanner in list(donor.spanners._spanners):
     for spanner in donor.spanners:
         i = spanner.index(donor)
-        spanner._components[i:i+1] = children
+        # to avoid pychecker slice assignment bug
+        #spanner._components[i:i+1] = children
+        spanner._components.__setitem__(slice(i, i + 1), children)
         for child in children:
             #child.spanners._add(spanner)
             child._spanners.add(spanner)
