@@ -1,4 +1,3 @@
-from abjad.exceptions import TonalHarmonyError
 from abjad.tools import pitchtools
 
 

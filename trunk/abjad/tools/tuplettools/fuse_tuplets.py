@@ -1,6 +1,5 @@
 from abjad.tools.containertools.Container import Container
 from abjad.tools.tuplettools.Tuplet import Tuplet
-from abjad.exceptions import TupletFuseError
 from abjad.tools.componenttools.component_to_score_root import component_to_score_root
 from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
 from abjad.tools import durationtools
@@ -68,7 +67,6 @@ def fuse_tuplets(tuplets):
 
     from abjad.tools import componenttools
     from abjad.tools import containertools
-    from abjad.tools import scoretools
 
     assert componenttools.all_are_contiguous_components_in_same_parent(tuplets, klasses = (Tuplet))
 

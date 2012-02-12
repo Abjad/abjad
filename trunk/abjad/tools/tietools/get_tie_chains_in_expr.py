@@ -1,4 +1,3 @@
-from abjad.exceptions import MissingSpannerError
 from abjad.tools import componenttools
 from abjad.tools import spannertools
 from abjad.tools.tietools.TieSpanner import TieSpanner

@@ -188,5 +188,5 @@ class ChordClass(NamedChromaticPitchClassSet):
 
     ### PUBLIC METHODS ###
 
-    def transpose(self, mdi):
+    def transpose(self):
         raise Exception(NotImplemented)

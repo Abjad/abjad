@@ -72,7 +72,6 @@ def iterate_vertical_moments_backward_in_expr(governor):
         renamed ``iterate.vertical_moments_backward_in_expr()`` to
         ``verticalitytools.iterate_vertical_moments_backward_in_expr()``.
     '''
-    from abjad.tools.verticalitytools.VerticalMoment import VerticalMoment
 
     moments_in_governor = []
     for component in iterate_components_forward_in_expr(governor, _Component):

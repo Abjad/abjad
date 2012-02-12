@@ -8,7 +8,6 @@ from abjad.tools.tietools.get_preprolated_tie_chain_duration import get_preprola
 from abjad.tools.tietools.get_tie_chain import get_tie_chain
 from abjad.tools.tietools.is_tie_chain import is_tie_chain
 from abjad.tools.tietools.remove_all_leaves_in_tie_chain_except_first import remove_all_leaves_in_tie_chain_except_first
-from abjad.tools import durationtools
 
 
 # TODO: Inspect tietools.add_or_remove_tie_chain_notes_to_achieve_written_duration() carefully. #

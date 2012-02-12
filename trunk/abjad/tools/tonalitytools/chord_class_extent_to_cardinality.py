@@ -1,6 +1,3 @@
-from abjad.exceptions import TonalHarmonyError
-
-
 def chord_class_extent_to_cardinality(extent):
     '''..versionadded:: 2.0
 

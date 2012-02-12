@@ -1,4 +1,3 @@
-from abjad.exceptions import MissingSpannerError
 from abjad.tools.tietools.is_tie_chain import is_tie_chain
 
 

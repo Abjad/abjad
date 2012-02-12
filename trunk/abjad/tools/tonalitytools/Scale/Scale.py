@@ -13,7 +13,7 @@ class Scale(NamedChromaticPitchClassSegment):
     Abjad model of diatonic scale.
     '''
 
-    def __new__(self, *args):
+    def __new__(klass, *args):
         if len(args) == 1 and isinstance(args[0], KeySignatureMark):
             key_signature = args[0]
         elif len(args) == 1 and isinstance(args[0], Scale):
@@ -26,7 +26,7 @@ class Scale(NamedChromaticPitchClassSegment):
         for mdi in key_signature.mode.melodic_diatonic_interval_segment[:-1]:
             named_chromatic_pitch_class = npcs[-1] + mdi
             npcs.append(named_chromatic_pitch_class)
-        new = tuple.__new__(self, npcs)
+        new = tuple.__new__(klass, npcs)
         tuple.__setattr__(new, '_key_signature', key_signature)
         return new
 

@@ -1,14 +1,13 @@
 from abjad.tools.containertools.Container import Container
-from abjad.tools.notetools.Note import Note
-from abjad.tools.resttools.Rest import Rest
-from abjad.exceptions import AssignabilityError
 from abjad.tools import leaftools
 from abjad.tools import mathtools
+from abjad.tools import notetools
+from abjad.tools import resttools
 from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
 import math
 
 
-def make_tuplet_from_proportions_and_pair(l, (n, d), together = False):
+def make_tuplet_from_proportions_and_pair(l, (n, d)):
     '''Divide `(n, d)` according to `l`.
 
     Where no prolation is necessary, return container. ::
@@ -59,12 +58,12 @@ def make_tuplet_from_proportions_and_pair(l, (n, d), together = False):
     if len(l) == 1:
         if 0 < l[0]:
             try:
-                return Container([Note(0, duration)])
+                return Container([notetools.Note(0, duration)])
             except AssignabilityError:
                 return Container(notetools.make_notes(0, duration))
         elif l[0] < 0:
             try:
-                return Container([Rest(duration)])
+                return Container([resttools.Rest(duration)])
             except AssignabilityError:
                 return Container(resttools.make_rests(duration))
         else:
@@ -79,9 +78,9 @@ def make_tuplet_from_proportions_and_pair(l, (n, d), together = False):
                 raise ValueError('no divide zero values.')
             if 0 < x:
                 try:
-                    music.append(Note(0, (x, denominator)))
+                    music.append(notetools.Note(0, (x, denominator)))
                 except AssignabilityError:
                     music.extend(notetools.make_notes(0, (x, denominator)))
             else:
-                music.append(Rest((-x, denominator)))
+                music.append(resttools.Rest((-x, denominator)))
         return FixedDurationTuplet(duration, music)

@@ -71,7 +71,6 @@ def iterate_vertical_moments_forward_in_expr(governor):
         renamed ``iterate.vertical_moments_forward_in_expr()`` to
         ``verticalitytools.iterate_vertical_moments_forward_in_expr()``.
     '''
-    from abjad.tools.verticalitytools.VerticalMoment import VerticalMoment
 
     # OPTIMIZED DROP-IN REPLACEMENT #
     for x in _yield_vertical_moments_forward_in_expr(governor):

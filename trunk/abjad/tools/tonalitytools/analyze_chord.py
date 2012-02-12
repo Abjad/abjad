@@ -1,4 +1,3 @@
-from abjad.exceptions import TonalHarmonyError
 from abjad.tools import pitchtools
 from abjad.tools.tonalitytools.ChordClass import ChordClass
 from abjad.tools.tonalitytools.chord_class_cardinality_to_extent import chord_class_cardinality_to_extent

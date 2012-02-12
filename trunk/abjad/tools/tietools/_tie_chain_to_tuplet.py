@@ -14,7 +14,8 @@ def _tie_chain_to_tuplet(chain, divisions, prolation, dotted):
 
     .. todo:: move to tuplettools.
     '''
-    from abjad.tools.notetools.Note import Note
+    from abjad.tools import durationtools
+    from abjad.tools import notetools
     from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
 
     # find target duration of fixed-duration tuplet
@@ -48,10 +49,10 @@ def _tie_chain_to_tuplet(chain, divisions, prolation, dotted):
 
     # make tuplet notes
     try:
-        notes = [Note(0, x) for x in written_durations]
+        notes = [notetools.Note(0, x) for x in written_durations]
     except AssignabilityError:
         denominator = target_duration._denominator
-        note_durations = [Duration(x, denominator) for x in divisions]
+        note_durations = [durationtools.Duration(x, denominator) for x in divisions]
         notes = notetools.make_notes(0, note_durations)
 
     # make tuplet
