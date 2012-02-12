@@ -61,17 +61,17 @@ class QGridQuantizer(_Quantizer):
     ::
 
         abjad> q = QGridQuantizer()
-        abjad> source = Staff("c'4 d'4 e'4. r'8 <c' e' g'>2. <d' g' b'>4")
-        abjad> source_tempo = contexttools.TempoMark((1, 4), 54)
-        abjad> result = q(source[:], tempo = source_tempo)
+        abjad> source = Staff("c'4 d'4 e'4. r'8 <c' e' g'>2. <d' g' b'>4") # doctest: +SKIP
+        abjad> source_tempo = contexttools.TempoMark((1, 4), 54) # doctest: +SKIP
+        abjad> result = q(source[:], tempo = source_tempo) # doctest: +SKIP
 
     ::
 
         abjad> q = QGridQuantizer()
-        abjad> source = Staff("c'4 d'4 e'4. r'8 <c' e' g'>2. <d' g' b'>4")
-        abjad> t = contexttools.TempoMark((1, 8), 34, target_context = Staff)(source)
-        abjad> t = contexttools.TempoMark((1, 4), 135, target_context = Staff)(source[3])
-        abjad> result = q(source[:])
+        abjad> source = Staff("c'4 d'4 e'4. r'8 <c' e' g'>2. <d' g' b'>4") # doctest: +SKIP
+        abjad> t = contexttools.TempoMark((1, 8), 34, target_context = Staff)(source) # doctest: +SKIP
+        abjad> t = contexttools.TempoMark((1, 4), 135, target_context = Staff)(source[3]) # doctest: +SKIP
+        abjad> result = q(source[:]) # doctest: +SKIP
 
     `QGridQuantizer` can quantize lists of millisecond durations.  Negative values can be used
     to indicate silences.
