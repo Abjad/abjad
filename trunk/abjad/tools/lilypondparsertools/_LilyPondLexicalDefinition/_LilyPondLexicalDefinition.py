@@ -344,7 +344,7 @@ class _LilyPondLexicalDefinition(object):
     # <incl,version,sourcefilename>\"[^"]*
     def t_version_341(self, t):
         r'"[^"]*'
-        raise Exception('End quote missing.')
+        raise Exception('End quote missing: %s' % t)
 
     # lexer.ll:345
     # <chords,notes,figures>{RESTNAME}

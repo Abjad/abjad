@@ -9,10 +9,6 @@ from abjad import *
 from abjad.tools.componenttools._Component import _Component
 from abjad.tools.contexttools._Context import _Context
 from abjad.tools.leaftools._Leaf import _Leaf
-from abjad.ly.py.current_module import current_module
-from abjad.ly.py.language_pitch_names import language_pitch_names
-from abjad.ly.py.markup_functions import markup_functions
-from abjad.ly.py.markup_functions import markup_list_functions
 from abjad.tools.lilypondparsertools._GuileProxy._GuileProxy import _GuileProxy
 from abjad.tools.lilypondparsertools._LilyPondDuration._LilyPondDuration import _LilyPondDuration
 from abjad.tools.lilypondparsertools._LilyPondEvent._LilyPondEvent import _LilyPondEvent
@@ -109,6 +105,11 @@ class LilyPondParser(object):
     '''
 
     def __init__(self, default_language='english', debug=False):
+
+        from abjad.ly.py.current_module import current_module
+        from abjad.ly.py.language_pitch_names import language_pitch_names
+        from abjad.ly.py.markup_functions import markup_functions
+        from abjad.ly.py.markup_functions import markup_list_functions
 
         # LilyPond emulation data
         self._guile = _GuileProxy(self)
@@ -300,11 +301,11 @@ class LilyPondParser(object):
                     # A beam may begin and end on the same leaf
                     # but only one beam spanner may cover any given leaf,
                     # and starting events are processed before ending ones
-                    for event in starting_events:
+                    for _ in starting_events:
                         if all_spanners[klass]:
                             raise Exception('Already have beam.')
                         all_spanners[klass].append(klass( ))
-                    for event in stopping_events:
+                    for _ in stopping_events:
                         if all_spanners[klass]:
                             all_spanners[klass][0].append(leaf)
                             all_spanners[klass].pop( )
@@ -315,7 +316,7 @@ class LilyPondParser(object):
                     # and the event must start and end on separate leaves.
                     # If a hairpin already exists and another starts,
                     # the pre-existant spanner is ended.
-                    for event in stopping_events:
+                    for _ in stopping_events:
                         if all_spanners[klass]:
                             all_spanners[klass][0].append(leaf)
                             all_spanners[klass].pop( )
@@ -335,13 +336,13 @@ class LilyPondParser(object):
                     # These engravers process stop events before start events,
                     # they must contain more than one leaf,
                     # however, they can stop on a leaf and start on the same leaf.
-                    for event in stopping_events:                    
+                    for _ in stopping_events:                    
                         if all_spanners[klass]:
                             all_spanners[klass][0].append(leaf)
                             all_spanners[klass].pop( )
                         else:
                             raise Exception('Cannot end %s.' % klass.__name__)
-                    for event in starting_events:
+                    for _ in starting_events:
                         if not all_spanners[klass]:
                             all_spanners[klass].append(klass( ))
                         else:
@@ -353,11 +354,11 @@ class LilyPondParser(object):
                     # but cannot both begin and end on the same leaf
                     # and therefore a bracket cannot cover a single leaf
                     has_starting_events = bool(len(starting_events))
-                    for event in starting_events:
+                    for _ in starting_events:
                         all_spanners[klass].append(klass( ))
                     if stopping_events:
                         if not has_starting_events:
-                            for event in stopping_events:
+                            for _ in stopping_events:
                                 if all_spanners[klass]:
                                     all_spanners[klass][-1].append(leaf)
                                     all_spanners[klass].pop( )

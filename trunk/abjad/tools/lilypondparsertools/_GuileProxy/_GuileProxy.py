@@ -14,7 +14,7 @@ class _GuileProxy(object):
 
 
     def __call__(self, function_name, args):
-        signature = self.client._current_module[function_name[1:]]['signature'][1:]
+        #signature = self.client._current_module[function_name[1:]]['signature'][1:]
         if hasattr(self, function_name[1:]):
             result = getattr(self, function_name[1:])(*args)
             return result
@@ -143,6 +143,8 @@ class _GuileProxy(object):
 
 
     def time(self, number_list, fraction):
+        if number_list:
+            print number_list
         n, d = fraction.numerator, fraction.denominator
         return contexttools.TimeSignatureMark((n, d))
 
