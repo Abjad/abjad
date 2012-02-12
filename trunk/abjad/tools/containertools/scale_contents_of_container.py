@@ -99,7 +99,6 @@ def scale_contents_of_container(container, multiplier):
         ``containertools.scale_contents_of_container()``.
     '''
     from abjad.tools import tuplettools
-    from abjad.tools.tuplettools import FixedDurationTuplet
     from abjad.tools.measuretools.Measure import Measure
 
     for expr in tietools.iterate_topmost_tie_chains_and_components_forward_in_expr(container[:]):

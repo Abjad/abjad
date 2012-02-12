@@ -57,14 +57,14 @@ def fuse_like_named_contiguous_containers_in_expr(expr):
     expr = Container(expr)
 
     g = componenttools.iterate_components_depth_first(expr, direction = 'right')
-    for cmp in g:
-        next = cmp._navigator._next_namesake
-        if isinstance(next, Container) and not next.is_parallel and \
-            not isinstance(next, Tuplet) and \
+    for component in g:
+        next_component = component._navigator._next_namesake
+        if isinstance(next_component, Container) and not next_component.is_parallel and \
+            not isinstance(next_component, Tuplet) and \
             componenttools.all_are_contiguous_components_in_same_score(
-                [cmp, next], allow_orphans = True):
-            cmp.extend(next)
-            componenttools.remove_component_subtree_from_score_and_spanners([next])
+                [component, next_component], allow_orphans = True):
+            component.extend(next_component)
+            componenttools.remove_component_subtree_from_score_and_spanners([next_component])
             merged = True
     if merged:
         #print expr
@@ -82,8 +82,8 @@ def fuse_like_named_contiguous_containers_in_expr(expr):
 #      and that have the same name.'''
 #
 #   result = expr[0]
-#   for cmp in expr[1:]:
-#      if isinstance(cmp, Container) and not cmp.is_parallel:
-#         componenttools.remove_component_subtree_from_score_and_spanners([cmp])
-#         result.extend(cmp)
+#   for component in expr[1:]:
+#      if isinstance(component, Container) and not component.is_parallel:
+#         componenttools.remove_component_subtree_from_score_and_spanners([component])
+#         result.extend(component)
 #   return result

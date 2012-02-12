@@ -1,6 +1,3 @@
-from abjad.exceptions import MissingComponentError
-
-
 def get_element_starting_at_exactly_prolated_offset(container, prolated_offset):
     '''.. versionadded:: 2.0
 
