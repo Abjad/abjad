@@ -25,7 +25,9 @@ def _give_donor_components_position_in_parent_to_recipient_components(donors, re
     if parent is None:
         return donors
 
-    parent._music[start:start] = recipients
+    # to avoid pychecker slice assignment error
+    #parent._music[start:start] = recipients
+    parent._music.__setitem__(slice(start, start), recipients)
     _switch_components_to_parent(recipients, parent)
     _switch_components_to_parent(donors, None)
 

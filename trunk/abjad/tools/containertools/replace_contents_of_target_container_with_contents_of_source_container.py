@@ -78,6 +78,10 @@ def replace_contents_of_target_container_with_contents_of_source_container(targe
     Return `target_container`.
     '''
 
-    target_container[:] = source_container[:]
+    # to avoid pychecker slice assignment error
+    #target_container[:] = source_container[:]
+    target_container.__setitem__(
+        slice(0, len(target_container)), 
+        source_container.__getitem__(slice(0, len(source_container))))
 
     return target_container

@@ -40,6 +40,8 @@ def delete_contents_of_container(container):
         raise TypeError('must be container.')
 
     contents = container[:]
-    del(container[:])
+    # to avoid pychecker slice assignment error
+    #del(container[:])
+    container.__delitem__(slice(0, len(container)))
 
     return contents

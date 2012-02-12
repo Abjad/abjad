@@ -58,7 +58,9 @@ def repeat_contents_of_container(container, total = 2):
 
     # empty container when total is zero
     if total == 0:
-        del(container[:])
+        # to avoid pychecker slice assignment error
+        #del(container[:])
+        container.__delitem__(slice(0, len(container)))
         return container
 
     # reproduce container contents when total is greater than zero

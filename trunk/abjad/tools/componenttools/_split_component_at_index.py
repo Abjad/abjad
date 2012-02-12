@@ -79,7 +79,9 @@ def _split_component_at_index(component, i, spanners='unfractured'):
     # incorporate left and right parents in score, if possible
     parent, start, stop = get_parent_and_start_stop_indices_of_components([component])
     if parent is not None:
-        parent._music[start:stop+1] = nonempty_halves
+        # to avoid pychecker slice assignment error
+        #parent._music[start:stop+1] = nonempty_halves
+        parent._music.__setitem__(slice(start, stop + 1), nonempty_halves)
         for part in nonempty_halves:
             part._parentage._switch(parent)
     else:

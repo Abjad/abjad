@@ -1,5 +1,4 @@
 from abjad.cfg import cfg
-import pprint
 import types
 
 
