@@ -34,7 +34,6 @@ class InstrumentMark(ContextMark):
     def __init__(self, instrument_name, short_instrument_name, 
         instrument_name_markup=None, short_instrument_name_markup=None, target_context=None):
         from abjad.tools.stafftools.Staff import Staff
-        from abjad.tools.markuptools import Markup
         ContextMark.__init__(self, target_context=target_context)
         if self.target_context is None:
             self._target_context = Staff

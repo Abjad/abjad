@@ -38,7 +38,6 @@ class DynamicMark(ContextMark):
     ### OVERLOADS ###
 
     def __call__(self, *args):
-        from abjad.exceptions import WellFormednessError
         from abjad.tools import spannertools
         if len(args) == 1:
             dynamic_spanners = \

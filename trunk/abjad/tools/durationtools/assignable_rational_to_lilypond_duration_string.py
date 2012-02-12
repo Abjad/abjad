@@ -1,4 +1,3 @@
-from abjad.exceptions import AssignabilityError
 from abjad.tools.durationtools.assignable_rational_to_dot_count import assignable_rational_to_dot_count
 from abjad.tools.durationtools.is_assignable_rational import is_assignable_rational
 from abjad.tools.durationtools.rational_to_equal_or_lesser_binary_rational import rational_to_equal_or_lesser_binary_rational

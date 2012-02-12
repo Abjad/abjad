@@ -1,4 +1,3 @@
-from abjad.exceptions import MissingInstrumentError
 from abjad.tools import pitchtools
 from abjad.tools import voicetools
 from abjad.tools.contexttools.get_effective_instrument import get_effective_instrument

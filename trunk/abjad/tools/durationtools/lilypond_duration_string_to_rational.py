@@ -1,4 +1,3 @@
-from abjad.exceptions import DurationError
 from fractions import Fraction
 import re
 

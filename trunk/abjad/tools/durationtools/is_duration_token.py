@@ -1,4 +1,3 @@
-from abjad.exceptions import DurationError
 from abjad.tools.durationtools.duration_token_to_duration_pair import duration_token_to_duration_pair
 
 

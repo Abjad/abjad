@@ -1,7 +1,7 @@
 from abjad.tools.instrumenttools.list_instruments import list_instruments
 
 
-def list_instrument_names(klasses=None):
+def list_instrument_names():
     r'''.. versionadded:: 2.5
 
     List instrument names::

@@ -1,4 +1,3 @@
-from abjad.exceptions import AssignabilityError
 from abjad.tools import mathtools
 from abjad.tools.durationtools.is_assignable_rational import is_assignable_rational
 
