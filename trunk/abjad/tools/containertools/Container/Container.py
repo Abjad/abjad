@@ -123,7 +123,6 @@ class Container(_Component):
         This operation leaves all score trees always in tact.
         '''
         from abjad.tools import componenttools
-        from abjad.tools import iotools
         from abjad.tools import spannertools
         from abjad.tools.spannertools._withdraw_components_in_expr_from_crossing_spanners import _withdraw_components_in_expr_from_crossing_spanners
         # item assignment
@@ -309,7 +308,6 @@ class Container(_Component):
 
     def _initialize_music(self, music):
         from abjad.tools import componenttools
-        from abjad.tools import iotools
         from abjad.tools.componenttools._switch_components_to_parent import _switch_components_to_parent
         music = music or []
         if componenttools.all_are_contiguous_components_in_same_thread(music):
@@ -340,10 +338,10 @@ class Container(_Component):
 
     def _parse_string(self, string):
         from abjad.tools.lilypondparsertools import LilyPondParser
-        input = string.strip()
-        if not input.startswith(('{', '\\new', '\\context')) and not input.endswith('}'):
-            input = '{ %s }' % input
-        parsed = LilyPondParser()(input)
+        user_input = string.strip()
+        if not user_input.startswith(('{', '\\new', '\\context')) and not user_input.endswith('}'):
+            user_input = '{ %s }' % user_input
+        parsed = LilyPondParser()(user_input)
         assert isinstance(parsed, Container)
         return parsed
 

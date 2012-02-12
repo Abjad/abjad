@@ -38,15 +38,15 @@ class _Context(Container):
             #summary = ' '
             summary = ''
         if self.is_parallel:
-            open, close = '<<', '>>'
+            open_bracket_string, close_bracket_string = '<<', '>>'
         else:
-            open, close = '{', '}'
+            open_bracket_string, close_bracket_string = '{', '}'
         name = self.name
         if name is not None:
             name = '-"%s"' % name
         else:
             name = ''
-        return '%s%s%s%s%s' % (self.context, name, open, summary, close)
+        return '%s%s%s%s%s' % (self.context, name, open_bracket_string, summary, close_bracket_string)
 
     ### PUBLIC ATTRIBUTES ###
 
