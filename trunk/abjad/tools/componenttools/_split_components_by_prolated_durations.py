@@ -64,7 +64,9 @@ def _split_components_by_prolated_durations(components, durations,
             part.extend(left_list)
             result.append(part)
             part = []
-            xx[0:0] = right_list
+            # to avoid slice assignment pychecker errors
+            #xx[0:0] = right_list
+            xx.__setitem__(slice(0, 0), right_list)
             duration_index += 1
             cum_duration = durationtools.Duration(0)
         # if current component does not fill duration of current part

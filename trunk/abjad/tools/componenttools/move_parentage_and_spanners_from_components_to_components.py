@@ -25,7 +25,9 @@ def move_parentage_and_spanners_from_components_to_components(donors, recipients
 
     parent, start, stop = componenttools.get_parent_and_start_stop_indices_of_components(donors)
     if parent:
-        parent[start:stop+1] = recipients
+        # to avoid slice assignment pychecker errors
+        #parent[start:stop+1] = recipients
+        parent.__setitem__(slice(start, stop + 1), recipients)
         return donors
     else:
         _give_spanners_that_dominate_donor_components_to_recipient_components(donors, recipients)

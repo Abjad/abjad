@@ -36,5 +36,7 @@ def extend_left_in_parent_of_component_and_do_not_grow_spanners(component, compo
     assert all_are_components(components)
     parent, start, stop = get_parent_and_start_stop_indices_of_components([component])
     if parent is not None:
-        parent[start:start] = components
+        # to avoid slice assignment pychecker errors
+        #parent[start:start] = components
+        parent.__setitem__(slice(start, start), components)
     return components + [component]

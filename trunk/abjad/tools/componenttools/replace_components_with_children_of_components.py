@@ -53,7 +53,9 @@ def replace_components_with_children_of_components(components):
     assert componenttools.all_are_components(components)
 
     for component in components:
-        parent, start, stop = componenttools.get_parent_and_start_stop_indices_of_components(
-            [component])
-        result = parent[start:stop+1] = list(getattr(component, 'music', ()))
+        parent, start, stop = componenttools.get_parent_and_start_stop_indices_of_components([component])
+        # to avoid slice assigment errors in pychecker
+        #result = parent[start:stop+1] = list(getattr(component, 'music', ()))
+        music_list = list(getattr(component, 'music', ()))
+        result = parent.__setitem__(slice(start, stop + 1), music_list)
     return components
