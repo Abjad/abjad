@@ -8,12 +8,10 @@ def is_beamable_component(expr):
 
     Return boolean.
     '''
-    from abjad.tools.leaftools._Leaf import _Leaf
     from abjad.tools.chordtools.Chord import Chord
     from abjad.tools.notetools.Note import Note
     from abjad.tools import durationtools
 
-    #if isinstance(expr, _Leaf):
     if isinstance(expr, (Note, Chord)):
         if 0 < durationtools.rational_to_flag_count(expr.written_duration):
             return True

@@ -23,7 +23,6 @@ def all_are_components_in_same_score(expr, klasses=None, allow_orphans=True):
     '''
 
     if not isinstance(expr, (list, tuple, types.GeneratorType)):
-        #raise TypeError('Must be list of Abjad components.')
         return False
 
     if klasses is None:
@@ -36,7 +35,6 @@ def all_are_components_in_same_score(expr, klasses=None, allow_orphans=True):
     if not isinstance(first, klasses):
         return False
 
-    first_parent = first._parentage.parent
     first_score = component_to_score_root(first)
     for element in expr[1:]:
         if not isinstance(element, klasses):

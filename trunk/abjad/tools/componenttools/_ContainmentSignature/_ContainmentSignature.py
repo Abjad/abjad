@@ -26,8 +26,8 @@ class _ContainmentSignature(_StrictComparator):
         return not self == arg
 
     def __repr__(self):
-        str = self.__str__()
-        return '<' + ' * '.join(str.split('\n')) + ' >'
+        string = self.__str__()
+        return '<' + ' * '.join(string.split('\n')) + ' >'
 
     def __str__(self):
         result = []

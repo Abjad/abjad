@@ -72,10 +72,10 @@ def move_component_subtree_to_right_in_immediate_parent_of_component(component):
         parent = component._parentage.parent
         parent_index = parent.index(component)
         try:
-            next = parent[parent_index + 1]
+            next_component = parent[parent_index + 1]
         except IndexError:
             return
-        parent._music[parent_index] = next
+        parent._music[parent_index] = next_component
         parent._music[parent_index + 1] = component
 
     # swap positions in spanners ... tricky!
@@ -84,10 +84,10 @@ def move_component_subtree_to_right_in_immediate_parent_of_component(component):
         component_spanners[spanner] = spanner.index(component)
         spanner._sever_component(component)
     next_spanners = {}
-    for spanner in next.spanners:
-        next_spanners[spanner] = spanner.index(next)
-        spanner._sever_component(next)
+    for spanner in next_component.spanners:
+        next_spanners[spanner] = spanner.index(next_component)
+        spanner._sever_component(next_component)
     for key, value in next_spanners.items():
         key._insert(value, component)
     for key, value in component_spanners.items():
-        key._insert(value, next)
+        key._insert(value, next_component)

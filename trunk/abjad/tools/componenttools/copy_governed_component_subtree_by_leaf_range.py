@@ -1,6 +1,3 @@
-from abjad.exceptions import ContiguityError
-
-
 def copy_governed_component_subtree_by_leaf_range(component, start=0, stop=None):
     r'''.. versionadded:: 1.1
 
@@ -61,7 +58,6 @@ def copy_governed_component_subtree_by_leaf_range(component, start=0, stop=None)
         renamed ``componenttools.clone_governed_component_subtree_by_leaf_range()`` to
         ``componenttools.copy_governed_component_subtree_by_leaf_range()``.
     '''
-    from abjad.tools.containertools.Container import Container
     from abjad.tools.leaftools._Leaf import _Leaf
     from abjad.tools import leaftools
     from abjad.tools.componenttools.copy_components_and_fracture_crossing_spanners import copy_components_and_fracture_crossing_spanners

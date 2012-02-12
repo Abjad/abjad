@@ -1,5 +1,4 @@
 from abjad.tools.componenttools._Component import _Component
-from abjad.exceptions import NegativeDurationError
 from abjad.tools.componenttools.list_leftmost_components_with_prolated_duration_at_most import list_leftmost_components_with_prolated_duration_at_most
 from abjad.tools import durationtools
 
@@ -70,8 +69,7 @@ def cut_component_at_prolated_duration(component, prolated_duration):
         new_prolated_duration = component.prolated_duration - prolated_duration
         prolation = component.prolation
         new_written_duration = new_prolated_duration / prolation
-        result = leaftools.set_preprolated_leaf_duration(
-            component, new_written_duration)
+        leaftools.set_preprolated_leaf_duration(component, new_written_duration)
     else:
         container = component
         components, accumulated_duration = \

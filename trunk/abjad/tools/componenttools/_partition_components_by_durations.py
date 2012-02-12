@@ -33,7 +33,6 @@ def _partition_components_by_durations(duration_type, components, durations,
     durations = _durations
     assert all([isinstance(x, (int, float, durationtools.Duration)) for x in durations])
 
-    len_durations = len(durations)
     result = []
     part = []
     cur_duration_idx = 0

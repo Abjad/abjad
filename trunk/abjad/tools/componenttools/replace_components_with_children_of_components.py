@@ -57,5 +57,5 @@ def replace_components_with_children_of_components(components):
         # to avoid slice assigment errors in pychecker
         #result = parent[start:stop+1] = list(getattr(component, 'music', ()))
         music_list = list(getattr(component, 'music', ()))
-        result = parent.__setitem__(slice(start, stop + 1), music_list)
+        parent.__setitem__(slice(start, stop + 1), music_list)
     return components

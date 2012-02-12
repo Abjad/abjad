@@ -34,7 +34,6 @@ class _Component(_StrictComparator):
 
     def __copy__(self, *args):
         from abjad.tools import marktools
-        from abjad.tools import markuptools
         new = type(self)(*self.__getnewargs__())
         if getattr(self, '_override', None) is not None:
             new._override = copy.copy(self.override)
