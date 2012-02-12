@@ -265,7 +265,11 @@ class Chord(_Leaf):
 
         Return none.
         '''
-        del(self[:])
+        # these two statements are equivalent;
+        # the slice assignment version casues pychecker to blow an exception
+        # wherease the explicit call to __delitem__ doesn't.
+        #del(self[:])
+        self.__delitem__(slice(0, len(self)))
 
     def extend(self, note_head_tokens):
         '''Extend chord with `note_head_tokens`::
