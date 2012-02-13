@@ -2514,7 +2514,14 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_post_event_nofinger__script_dir__direction_reqd_event(self, p):
         'post_event_nofinger : script_dir direction_reqd_event'
-        p[2].direction_string = p[1]
+        # TODO: Give marks, markup and spanners the same direction_string functionality. #
+        if isinstance(p[2], markuptools.Markup):
+            if p[1] == '^':
+                p[2]._direction_string = 'up'
+            elif p[1] == '_':
+                p[2]._direction_string = 'down'
+        else:
+            p[2].direction_string = p[1]
         p[0] = p[2]
 
 

@@ -287,7 +287,8 @@ class LilyPondParser(object):
 
             # check for DynamicMarks, and terminate any hairpin
             dynamics = contexttools.get_dynamic_marks_attached_to_component(leaf)
-            if dynamics and all_spanners[spannertools.HairpinSpanner]:
+            if dynamics and spannertools.HairpinSpanner in all_spanners and \
+                all_spanners[spannertools.HairpinSpanner]:
                 all_spanners[spannertools.HairpinSpanner][0].append(leaf)
                 all_spanners[spannertools.HairpinSpanner].pop( )
 

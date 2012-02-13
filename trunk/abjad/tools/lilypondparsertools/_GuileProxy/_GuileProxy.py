@@ -146,7 +146,7 @@ class _GuileProxy(object):
         if number_list:
             print number_list
         n, d = fraction.numerator, fraction.denominator
-        return contexttools.TimeSignatureMark((n, d))
+        return contexttools.TimeSignatureMark((n, d), target_context=Staff)
 
 
     def times(self, fraction, music):
