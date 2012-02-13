@@ -224,6 +224,7 @@ class _GuileProxy(object):
                 pitch = self._to_relative_octave(chord_pitch, pitch)
                 chord_pitches[i] = pitch
             leaf.written_pitches = chord_pitches
+            pitch = min(leaf.written_pitches)
         return pitch
 
 

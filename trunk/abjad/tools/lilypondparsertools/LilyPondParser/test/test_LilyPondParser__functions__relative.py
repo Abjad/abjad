@@ -70,3 +70,26 @@ def test_LilyPondParser__function__relative_03():
     parser = LilyPondParser()
     result = parser(input)
     assert target.format == result.format and target is not result
+
+
+def test_LilyPondParser__function__relative_04():
+    pitches = [["a'", "c''", "e''"], ["f'", "a'", "c''"], ["a'", "c''", "e''"], ["f''", "a''", "c'''"], ["b", "b'", "e''"]]
+    target = Container(leaftools.make_leaves(pitches, 1))
+
+    # from http://lilypond.org/doc/v2.14/Documentation/b0/lily-b788d67f.ly
+    # notes in a chord are relative the first note of that chord
+    # the first note of a chord is relative the bottom note of the previous chord
+
+    r"""{
+        <a' c'' e''>1
+        <f' a' c''>1
+        <a' c'' e''>1
+        <f'' a'' c'''>1
+        <b b' e''>1
+    }
+    """
+
+    input = r'''\relative c'' { <a c e>1 <f a c> <a c e> <f' a c> <b, e b,> }'''
+    parser = LilyPondParser()
+    result = parser(input)
+    assert target.format == result.format and target is not result
