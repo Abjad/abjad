@@ -1,12 +1,12 @@
-import py.test
 from abjad import *
 from abjad.tools.lilypondparsertools import LilyPondParser
 
 
-py.test.skip('Not yet written.')
-def _01():
-    target = None
+def test_LilyPondParser__misc__version_string_01():
+    '''Version strings are ignored.'''
+    target = Staff()
+    input = r'''\version "2.14.2" \new Staff { }'''
     parser = LilyPondParser()
-    result = parser(target.format)
+    result = parser(input)
     assert target.format == result.format and target is not result
 

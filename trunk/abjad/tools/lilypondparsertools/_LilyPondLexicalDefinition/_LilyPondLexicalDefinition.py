@@ -231,6 +231,7 @@ class _LilyPondLexicalDefinition(object):
     def t_INITIAL_notes_210(self, t):
         r'%{'
         t.lexer.push_state('longcomment')
+        print 'ENTERING LONGCOMMENT'
         pass
 
     # lexer.ll:214
@@ -310,23 +311,27 @@ class _LilyPondLexicalDefinition(object):
     # lexer.ll:286
     # <sourcefileline>{ANY_CHAR}
 
+    # lexer.ll:296
+    # <longcomment>"%"+"}"
+    def t_longcomment_296(self, t):
+        r'%}'
+        print 'EXITING THE COMMENT'
+        t.lexer.pop_state( )
+        pass
+
     # lexer.ll:291
     # <longcomment>[^\%]*
     def t_longcomment_291(self, t):
-        r'[^\%]+'
+        r'[^%]+'
+        print 'INSIDE THE COMMENT:', t
         pass
 
     # lexer.ll:293
     # <longcomment>\%*[^}%]*
     def t_longcomment_293(self, t):
-        r'\%+[^}%]*'
+        r'%+[^}%]*'
+        print 'STILL INSIDE THE COMMENT:', t
         pass
-
-    # lexer.ll:296
-    # <longcomment>"%"+"}"
-    def t_longcomment_296(self, t):
-        r'%}'
-        t.lexer.pop_state( )
 
     # lexer.ll:302
     # <INITIAL,chords,lyrics,notes,figures>\\maininput
