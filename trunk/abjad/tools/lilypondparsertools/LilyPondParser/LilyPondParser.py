@@ -101,6 +101,10 @@ class LilyPondParser(object):
     - Music functions which generate or extensively mutate musical structures
     - Embedded Scheme statements (anything beginning with ``#``)
 
+    Other limitations include:
+
+    - failure to relativize or transpose music which contains double-sharps or -flats
+
     Returns LilyPondParser instance.
     '''
 
