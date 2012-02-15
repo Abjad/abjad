@@ -231,7 +231,6 @@ class _LilyPondLexicalDefinition(object):
     def t_INITIAL_notes_210(self, t):
         r'%{'
         t.lexer.push_state('longcomment')
-        print 'ENTERING LONGCOMMENT'
         pass
 
     # lexer.ll:214
@@ -315,7 +314,6 @@ class _LilyPondLexicalDefinition(object):
     # <longcomment>"%"+"}"
     def t_longcomment_296(self, t):
         r'%}'
-        print 'EXITING THE COMMENT'
         t.lexer.pop_state( )
         pass
 
@@ -323,14 +321,12 @@ class _LilyPondLexicalDefinition(object):
     # <longcomment>[^\%]*
     def t_longcomment_291(self, t):
         r'[^%]+'
-        print 'INSIDE THE COMMENT:', t
         pass
 
     # lexer.ll:293
     # <longcomment>\%*[^}%]*
     def t_longcomment_293(self, t):
         r'%+[^}%]*'
-        print 'STILL INSIDE THE COMMENT:', t
         pass
 
     # lexer.ll:302
@@ -430,7 +426,6 @@ class _LilyPondLexicalDefinition(object):
     @TOKEN(ALPHAWORD)
     def t_notes_417(self, t):
         pitch_names = self.client._pitch_names
-        #print self.client._pitch_names.keys( )
         if t.value in pitch_names:
             t.type = 'NOTENAME_PITCH'
             t.value = pitch_names[t.value]
