@@ -2066,7 +2066,7 @@ class _LilyPondSyntacticalDefinition(object):
         if p[1].multiplier is not None:
             p[0] = _LilyPondDuration(p[1].duration, p[1].multiplier * p[3])
         else:
-            p[0] = _LilyPondDuration(p[1].duration, p[1].multiplier)
+            p[0] = _LilyPondDuration(p[1].duration, Fraction(p[3].numerator, p[3].denominator))
 
 
     def p_multiplied_duration__multiplied_duration__Chr42__bare_unsigned(self, p):
@@ -2074,7 +2074,7 @@ class _LilyPondSyntacticalDefinition(object):
         if p[1].multiplier is not None:
             p[0] = _LilyPondDuration(p[1].duration, p[1].multiplier * p[3])
         else:
-            p[0] = _LilyPondDuration(p[1].duration, p[1].multiplier)
+            p[0] = _LilyPondDuration(p[1].duration, p[3])
 
 
     def p_multiplied_duration__steno_duration(self, p):
