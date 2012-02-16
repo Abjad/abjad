@@ -25,7 +25,7 @@ def test_LilyPondParser__functions__relative_01():
     assert target.format == result.format and target is not result
 
 
-def test_LilyPondParser__function__relative_02():
+def test_LilyPondParser__functions__relative_02():
     pitches = [11, 12, 11, 14, 11, 16, 11, 9, 11, 7, 11, 5]
     target = Container(notetools.make_notes(pitches, (1, 4)))
 
@@ -51,7 +51,7 @@ def test_LilyPondParser__function__relative_02():
     assert target.format == result.format and target is not result
 
 
-def test_LilyPondParser__function__relative_03():
+def test_LilyPondParser__functions__relative_03():
     pitches = [9, -3, 12, 5, 7, 31, 9, 17]
     target = Container(notetools.make_notes(pitches, (1, 4)))
 
@@ -73,7 +73,7 @@ def test_LilyPondParser__function__relative_03():
     assert target.format == result.format and target is not result
 
 
-def test_LilyPondParser__function__relative_04():
+def test_LilyPondParser__functions__relative_04():
     pitches = [["a'", "c''", "e''"], ["f'", "a'", "c''"], ["a'", "c''", "e''"], ["f''", "a''", "c'''"], ["b", "b'", "e''"]]
     target = Container(leaftools.make_leaves(pitches, 1))
 
@@ -92,7 +92,7 @@ def test_LilyPondParser__function__relative_04():
     assert target.format == result.format and target is not result
 
 
-def test_LilyPondParser__function__relative_05():
+def test_LilyPondParser__functions__relative_05():
     pitches = ["c", "f", "b", "e'", "a'", "d''", "g''", "c'''"]
     target = Container(notetools.make_notes(pitches, [(1, 4)]))
 
@@ -114,7 +114,7 @@ def test_LilyPondParser__function__relative_05():
     assert target.format == result.format and target is not result
 
 
-def test_LilyPondParser__function__relative_06():
+def test_LilyPondParser__functions__relative_06():
     py.test.skip()
     # \relative { <c e g> b c q } etc.
 
@@ -128,7 +128,7 @@ def test_LilyPondParser__function__relative_06():
     assert target.format == result.format and target is not result
 
 
-def test_LilyPondParser__function__relative_07():
+def test_LilyPondParser__functions__relative_07():
     target = Container([
         Note("c'", (1, 4)), Note("d'", (1, 4)), Note("e'", (1, 4)), Note("f'", (1, 4)), Container([
             Note("c''", (1, 4)), Note("d''", (1, 4)), Note("e''", (1, 4)), Note("f''", (1, 4)),
@@ -155,7 +155,7 @@ def test_LilyPondParser__function__relative_07():
     assert target.format == result.format and target is not result
 
 
-def test_LilyPondParser__function__relative_08():
+def test_LilyPondParser__functions__relative_08():
     target = Container([
         Note("d'", (1, 4)), Note("e'", (1, 4)), Container([
             Note("e", (1, 4)), Note("fs", (1, 4)), Container([
@@ -184,7 +184,7 @@ def test_LilyPondParser__function__relative_08():
     assert target.format == result.format and target is not result
 
 
-def test_LilyPondParser__function__relative_09():
+def test_LilyPondParser__functions__relative_09():
     target = Container([
         Note("c'", (1, 4)),
         Chord(["c'", "e'", "g'"], (1, 4)),
@@ -206,7 +206,7 @@ def test_LilyPondParser__function__relative_09():
     assert target.format == result.format and target is not result
 
 
-def test_LilyPondParser__function__relative_10():
+def test_LilyPondParser__functions__relative_10():
     py.test.skip('Abjad cannot yet diatonically transpose double-sharp or double-flat pitches.')
     # http://lilypond.org/doc/v2.15/Documentation/c6/lily-8d84e2b9.ly
     pitches = ["c''", "fs''", "c''", "gf'", "b'", "ess''", "b'", "fff'"]
