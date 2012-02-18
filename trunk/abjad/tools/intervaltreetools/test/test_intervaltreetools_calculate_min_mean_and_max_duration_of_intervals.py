@@ -1,3 +1,5 @@
+import py
+py.test.skip('calculate_min_and_max_duration_of_intervals appears to be removed.')
 from abjad.tools.intervaltreetools import IntervalTree
 from abjad.tools.intervaltreetools import calculate_min_mean_and_max_duration_of_intervals
 from abjad.tools.intervaltreetools._make_test_intervals import _make_test_intervals
