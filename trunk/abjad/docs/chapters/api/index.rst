@@ -418,6 +418,19 @@ lilypondfiletools
    tools/lilypondfiletools/make_basic_lilypond_file
 
 
+lyricstools
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/lyricstools/AddLyrics/AddLyrics
+   tools/lyricstools/LyricExtender/LyricExtender
+   tools/lyricstools/LyricHyphen/LyricHyphen
+   tools/lyricstools/LyricSpace/LyricSpace
+   tools/lyricstools/LyricText/LyricText
+   tools/lyricstools/Lyrics/Lyrics
+
+
 marktools
 
 .. toctree::
@@ -1259,6 +1272,8 @@ sequencetools
    tools/sequencetools/all_are_nonnegative_integer_powers_of_two
    tools/sequencetools/all_are_nonnegative_integers
    tools/sequencetools/all_are_numbers
+   tools/sequencetools/all_are_pairs
+   tools/sequencetools/all_are_pairs_of_types
    tools/sequencetools/all_are_positive_integer_equivalent_numbers
    tools/sequencetools/all_are_positive_integers
    tools/sequencetools/all_are_unequal
