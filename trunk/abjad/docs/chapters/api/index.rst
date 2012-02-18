@@ -418,17 +418,12 @@ lilypondfiletools
    tools/lilypondfiletools/make_basic_lilypond_file
 
 
-lyricstools
+lilypondparsertools
 
 .. toctree::
    :maxdepth: 1
 
-   tools/lyricstools/AddLyrics/AddLyrics
-   tools/lyricstools/LyricExtender/LyricExtender
-   tools/lyricstools/LyricHyphen/LyricHyphen
-   tools/lyricstools/LyricSpace/LyricSpace
-   tools/lyricstools/LyricText/LyricText
-   tools/lyricstools/Lyrics/Lyrics
+   tools/lilypondparsertools/LilyPondParser/LilyPondParser
 
 
 marktools
@@ -1493,12 +1488,17 @@ Unstable Abjad composition packages (load manually)
 
 
 
-lilypondparsertools
+lyricstools
 
 .. toctree::
    :maxdepth: 1
 
-   tools/lilypondparsertools/LilyPondParser/LilyPondParser
+   tools/lyricstools/AddLyrics/AddLyrics
+   tools/lyricstools/LyricExtender/LyricExtender
+   tools/lyricstools/LyricHyphen/LyricHyphen
+   tools/lyricstools/LyricSpace/LyricSpace
+   tools/lyricstools/LyricText/LyricText
+   tools/lyricstools/Lyrics/Lyrics
 
 
 quantizationtools

@@ -80,7 +80,7 @@ def make_sphinx_toc():
 
    unstable_tools = [ ]
    unstable_tools_names = (
-      'lilypondparsertools',
+      'lyricstools',
       'musicxmltools', 
       'quantizationtools',
    )
