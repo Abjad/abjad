@@ -1,8 +1,8 @@
 from abjad.tools.componenttools._Component import _Component
-from abjad.tools.marktools.Mark import Mark
+from abjad.tools.marktools._DirectedMark._DirectedMark import _DirectedMark
 
 
-class Articulation(Mark):
+class Articulation(_DirectedMark):
     '''Abjad model of musical articulation::
 
         abjad> note = Note("c'4")
@@ -24,7 +24,6 @@ class Articulation(Mark):
 
     def __init__(self, *args):
         assert len(args) in range(3)
-        Mark.__init__(self)
         if 2 <= len(args):
             assert isinstance(args[0], (str, type(None)))
             assert isinstance(args[1], (str, type(None)))
@@ -47,32 +46,21 @@ class Articulation(Mark):
         else:
             string, direction = None, None
 
-        if direction in ('^', 'up'):
-            direction = '^'
-        elif direction in ('_', 'down'):
-            direction = '_'
-        elif direction in ('-', 'default'):
-            direction = '-'
-        elif direction is None:
-            direction = None
-        else:
-            raise ValueError('can not set articulation direction.')
-
-        object.__setattr__(self, '_string', string)
-        object.__setattr__(self, '_direction', direction)
+        _DirectedMark.__init__(self, direction=direction)
+        self._string = string
         self._format_slot = 'right'
 
     ### OVERLOADS ###
 
     def __copy__(self, *args):
-        return type(self)(self.name, self.direction_string)
+        return type(self)(self.name, self.direction)
 
     __deepcopy__ = __copy__
 
     def __eq__(self, expr):
         if isinstance(expr, type(self)):
             if expr.name == self.name:
-                if self.direction_string == expr.direction_string:
+                if self.direction == expr.direction:
                     return True
         return False
 
@@ -81,11 +69,11 @@ class Articulation(Mark):
             string = self._shortcut_to_word.get(self.name)
             if not string:
                 string = self.name
-            if self.direction_string is None:
-                direction_string = '-'
+            if self.direction is None:
+                direction = '-'
             else:
-                direction_string = self.direction_string
-            return '%s\%s' % (direction_string, string)
+                direction = self.direction
+            return '%s\%s' % (direction, string)
         else:
             return ''
 
@@ -116,35 +104,12 @@ class Articulation(Mark):
 
     @property
     def _contents_repr_string(self):
-        if self.direction_string is not None:
-            return '%r, %r' % (self.name, self.direction_string)
+        if self.direction is not None:
+            return '%r, %r' % (self.name, self.direction)
         else:
             return repr(self.name)
 
     ### PUBLIC ATTRIBUTES ###
-
-    @apply
-    def direction_string():
-        def fget(self):
-            '''Get direction string of articulation::
-
-                abjad> articulation = marktools.Articulation('staccato')
-                abjad> articulation.direction_string is None
-                True
-
-            Set direction string of articulation::
-
-                abjad> articulation.direction_string = '^'
-                abjad> articulation.direction_string
-                '^'
-
-            Set string.
-            '''
-            return self._direction
-        def fset(self, direction_string):
-            assert isinstance(direction_string, (str, type(None)))
-            self._direction = direction_string
-        return property(**locals())
 
     @property
     def format(self):

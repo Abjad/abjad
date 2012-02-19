@@ -28,6 +28,9 @@ class Performer(object):
                     return True
         return False
 
+    def __hash__(self):
+        return hash((type(self).__name__, self.name, tuple(self.instruments)))
+
     def __ne__(self, other):
         return not self == other
 

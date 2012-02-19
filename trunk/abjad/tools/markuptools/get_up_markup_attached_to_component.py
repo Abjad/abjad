@@ -24,7 +24,7 @@ def get_up_markup_attached_to_component(component):
 
     markups = get_markup_attached_to_component(component)
     for markup in markups:
-        if markup._direction_string == 'up':
+        if markup.direction == '^':
             result.append(markup)
 
     return tuple(result)

@@ -8,13 +8,13 @@ def test_Articulation_01():
 
     a = marktools.Articulation()
     assert a.name == None
-    assert a.direction_string is None
+    assert a.direction is None
     a = marktools.Articulation('^\\marcato')
     assert a.name == 'marcato'
-    assert a.direction_string == '^'
+    assert a.direction == '^'
     a = marktools.Articulation('legato', 'down')
     assert a.name == 'legato'
-    assert a.direction_string == '_'
+    assert a.direction == '_'
 
 
 def test_Articulation_02():
@@ -24,7 +24,7 @@ def test_Articulation_02():
     t = Note("c'4")
     a = marktools.Articulation('staccato')(t)
     assert a.name == 'staccato'
-    assert a.direction_string is None
+    assert a.direction is None
 
 
 def test_Articulation_03():
@@ -43,7 +43,7 @@ def test_Articulation_04():
 
     t = Note("c'4")
     a = marktools.Articulation('staccato', None)(t)
-    assert a.direction_string is None
+    assert a.direction is None
     assert str(a) == r'-\staccato'
 
 
@@ -53,11 +53,11 @@ def test_Articulation_05():
 
     t = Note("c'4")
     a = marktools.Articulation('staccato', 'up')(t)
-    assert a.direction_string == '^'
+    assert a.direction == '^'
     assert str(a) == r'^\staccato'
 
     a = marktools.Articulation('staccato', '^')
-    assert a.direction_string == '^'
+    assert a.direction == '^'
     assert str(a) == r'^\staccato'
 
 
@@ -67,11 +67,11 @@ def test_Articulation_06():
 
     t = Note("c'4")
     a = marktools.Articulation('staccato', 'down')(t)
-    assert a.direction_string == '_'
+    assert a.direction == '_'
     assert str(a) == r'_\staccato'
 
     a = marktools.Articulation('staccato', '_')
-    assert a.direction_string == '_'
+    assert a.direction == '_'
     assert str(a) == r'_\staccato'
 
 
@@ -81,11 +81,11 @@ def test_Articulation_07():
 
     t = Note("c'4")
     a = marktools.Articulation('staccato')
-    assert a.direction_string is None
+    assert a.direction is None
     assert str(a) == r'-\staccato'
 
     a = marktools.Articulation('staccato', '-')
-    assert a.direction_string == '-'
+    assert a.direction == '-'
     assert str(a) == r'-\staccato'
 
 

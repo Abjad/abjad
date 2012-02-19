@@ -1,6 +1,6 @@
 from abjad.tools import durationtools
 from abjad.tools.mathtools import greatest_power_of_two_less_equal
-from abjad.tools.sequencetools import truncate_runs_in_sequence
+from abjad.tools.sequencetools.truncate_runs_in_sequence import truncate_runs_in_sequence
 
 
 # TODO: Maybe move get_likely_multiplier_of_components() from durationtools to measuretools? #

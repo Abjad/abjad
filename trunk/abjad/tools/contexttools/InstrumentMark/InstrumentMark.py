@@ -61,6 +61,9 @@ class InstrumentMark(ContextMark):
                     return True
         return False
 
+    def __hash__(self):
+        return hash((type(self).__name__, self.instrument_name_markup, self.short_instrument_name_markup))
+
     ### PRIVATE ATTRIBUTES ###
 
     @property
