@@ -12,5 +12,8 @@ class _TieSpannerFormatInterface(_SpannerFormatInterface):
         '''Spanner format contribution right of leaf.'''
         result = []
         if not self.spanner._is_my_last_leaf(leaf):
-            result.append('~')
+            if self.spanner.direction is not None:
+                result.append('%s ~' % self.spanner.direction)
+            else:
+                result.append('~')
         return result
