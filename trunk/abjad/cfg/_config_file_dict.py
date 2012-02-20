@@ -40,6 +40,10 @@ _config_file_dict = {
             "# When None your environment should know how to open MIDIs.",
         'value': None,
     },
+    'text_editor': {
+        'comment': "# When None your environment should know how to open text files (i.e. *.ly)",
+        'value': None,
+    },
     'use_abjad_prompt': {
         'comment': "# If true, change prompt to 'abjad>', otherwise keep Python's default prompt.",
         'value': True,
