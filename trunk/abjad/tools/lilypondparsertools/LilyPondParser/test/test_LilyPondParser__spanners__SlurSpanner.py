@@ -65,3 +65,22 @@ def test_LilyPondParser__spanners__SlurSpanner_06():
     '''Nested.'''
     input = '{ c ( c ( c ) c ) }'
     assert py.test.raises(Exception, 'LilyPondParser()(input)')
+
+
+def test_LilyPondParser__spanners__SlurSpanner_07():
+    '''With direction.'''
+    target = Container(notetools.make_notes([0] * 4, [(1, 4)]))
+    spannertools.SlurSpanner(target[:3], direction='down')
+    spannertools.SlurSpanner(target[2:], direction='up')
+
+    r'''{
+        c'4 _ (
+        c'4
+        c'4 ) ^ (
+        c'4 )
+    }
+    '''
+
+    parser = LilyPondParser()
+    result = parser(target.format)
+    assert target.format == result.format and target is not result

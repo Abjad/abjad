@@ -283,7 +283,10 @@ class LilyPondParser(object):
                     if previous_spanners:
                         previous_spanners[0].append(next_leaf)
                     else:
-                        klass([leaf, next_leaf])
+                        if hasattr(span_event, 'direction') and hasattr(klass, 'direction'):
+                            klass([leaf, next_leaf], direction=span_event.direction)
+                        else:
+                            klass([leaf, next_leaf])
 
                 # otherwise throw an error
                 else:
@@ -306,10 +309,13 @@ class LilyPondParser(object):
                     # A beam may begin and end on the same leaf
                     # but only one beam spanner may cover any given leaf,
                     # and starting events are processed before ending ones
-                    for _ in starting_events:
+                    for event in starting_events:
                         if all_spanners[klass]:
                             raise Exception('Already have beam.')
-                        all_spanners[klass].append(klass( ))
+                        if hasattr(event, 'direction'):
+                            all_spanners[klass].append(klass(direction=event.direction))
+                        else:
+                            all_spanners[klass].append(klass( ))
                     for _ in stopping_events:
                         if all_spanners[klass]:
                             all_spanners[klass][0].append(leaf)
@@ -330,9 +336,13 @@ class LilyPondParser(object):
                             all_spanners[klass][0].append(leaf)
                             all_spanners[klass].pop( )
                         shape = '<'
-                        if starting_events[0].name == 'DecrescendoEvent':
+                        event = starting_events[0]
+                        if event.name == 'DecrescendoEvent':
                             shape = '>'
-                        all_spanners[klass].append(klass([], shape))
+                        if hasattr(event, 'direction'):
+                            all_spanners[klass].append(klass([], shape, direction=event.direction))
+                        else:
+                            all_spanners[klass].append(klass([], shape))
                     elif 1 < len(starting_events):
                         raise Exception('Simultaneous dynamic-span events.')
                     
@@ -347,9 +357,12 @@ class LilyPondParser(object):
                             all_spanners[klass].pop( )
                         else:
                             raise Exception('Cannot end %s.' % klass.__name__)
-                    for _ in starting_events:
+                    for event in starting_events:
                         if not all_spanners[klass]:
-                            all_spanners[klass].append(klass( ))
+                            if hasattr(event, 'direction') and hasattr(klass, 'direction'):
+                                all_spanners[klass].append(klass(direction=event.direction))
+                            else:
+                                all_spanners[klass].append(klass())
                         else:
                             raise Exception('Already have %s.' % klass.__name__)
 
@@ -373,7 +386,6 @@ class LilyPondParser(object):
                             raise Exception('Conflicting note group events.')
 
             # append leaf to all tracked spanners,
-            # filter out to-be-closed spanners
             for klass, instances in all_spanners.iteritems( ):
                 for instance in instances:
                     instance.append(leaf)

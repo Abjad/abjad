@@ -80,3 +80,24 @@ def test_LilyPondParser__spanners__HairpinSpanner_06():
     '''No double dynamic spans permitted.'''
     input = r'{ c \< \> c c c \! }'
     assert py.test.raises(Exception, 'LilyPondParser()(input)')
+
+
+def test_LilyPondParser__spanners__HairpinSpanner_01():
+    '''With direction.'''
+    target = Staff(notetools.make_notes([0] * 5, [(1, 4)]))
+    spannertools.HairpinSpanner(target[:3], '<', direction = 'up')
+    spannertools.HairpinSpanner(target[2:], '>', direction = 'down')
+    contexttools.DynamicMark('ppp')(target[-1])
+
+    r'''\new Staff {
+        c'4 ^ \<
+        c'4
+        c'4 \! _ \>
+        c'4
+        c'4 \ppp
+    }
+    '''
+
+    parser = LilyPondParser()
+    result = parser(target.format)
+    assert target.format == result.format and target is not result

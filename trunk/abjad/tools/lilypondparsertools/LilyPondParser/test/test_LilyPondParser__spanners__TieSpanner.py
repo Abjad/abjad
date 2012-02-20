@@ -19,3 +19,21 @@ def test_LilyPondParser__spanners__TieSpanner_02():
 def test_LilyPondParser__spanners__TieSpanner_03():
     input = r'{ ~ c }'
     assert py.test.raises(Exception, 'LilyPondParser()(input)')
+
+
+def test_LilyPondParser__spanners__TieSpanner_01():
+    '''With direction.'''
+    target = Container([Note(0, 1), Note(0, 1)])
+    tietools.TieSpanner(target[:], direction='up')
+    parser = LilyPondParser()
+    result = parser(target.format)
+    assert target.format == result.format and target is not result
+
+
+def test_LilyPondParser__spanners__TieSpanner_01():
+    '''With direction.'''
+    target = Container([Note(0, 1), Note(0, 1)])
+    tietools.TieSpanner(target[:], direction='down')
+    parser = LilyPondParser()
+    result = parser(target.format)
+    assert target.format == result.format and target is not result

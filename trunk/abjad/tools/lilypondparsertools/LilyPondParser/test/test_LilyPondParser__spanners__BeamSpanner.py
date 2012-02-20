@@ -82,3 +82,22 @@ def test_LilyPondParser__spanners__BeamSpanner_06():
     input = "{ c'4 c'4 c'4 c'4 ] }"
     result = LilyPondParser()(input)
     assert not result[-1].spanners
+
+
+def test_LilyPondParser__spanners__BeamSpanner_07():
+    '''With direction.'''
+    target = Container(notetools.make_notes([0] * 4, [(1, 4)]))
+    spannertools.BeamSpanner(target[0:3], direction='up')
+    spannertools.BeamSpanner(target[3:], direction='down')
+
+    r'''{
+        c'4 ^ [
+        c'4 
+        c'4 ]
+        c'4 _ [ ]
+    }
+    '''
+
+    parser = LilyPondParser()
+    result = parser(target.format)
+    assert target.format == result.format and target is not result
