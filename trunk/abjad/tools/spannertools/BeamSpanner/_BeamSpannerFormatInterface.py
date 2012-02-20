@@ -19,7 +19,10 @@ class _BeamSpannerFormatInterface(_SpannerFormatInterface):
         result = []
         spanner = self.spanner
         if spanner._is_my_first_leaf(leaf):
-            result.append('[')
+            if spanner.direction is not None:
+                result.append('%s [' % spanner.direction)
+            else:
+                result.append('[')
         if spanner._is_my_last_leaf(leaf):
             result.append(']')
         return result

@@ -40,8 +40,8 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
     Return durated complex beam spanner.
     '''
 
-    def __init__(self, components = None, durations = None, span = 1, lone = False):
-        ComplexBeamSpanner.__init__(self, components = components)
+    def __init__(self, components = None, durations = None, span = 1, lone = False, direction = None):
+        ComplexBeamSpanner.__init__(self, components = components, direction = direction)
         self._format = _DuratedComplexBeamSpannerFormatInterface(self)
         self.durations = durations
         self.lone = lone

@@ -20,6 +20,9 @@ class _MultipartBeamSpannerFormatInterface(_BeamSpannerFormatInterface):
         from abjad.tools import leaftools
         result = []
         spanner = self.spanner
+        direction_string = ''
+        if spanner.direction is not None:
+            direction_string = '%s ' % spanner.direction
         if componenttools.is_beamable_component(leaf):
             if 1 < len(spanner.leaves):
                 prev = leaftools.get_nth_leaf_in_thread_from_leaf(leaf, -1)
@@ -31,12 +34,12 @@ class _MultipartBeamSpannerFormatInterface(_BeamSpannerFormatInterface):
                 if spanner._is_my_first_leaf(leaf):
                     if next is not None:
                         if componenttools.is_beamable_component(next):
-                            result.append('[')
+                            result.append('%s[' % direction_string)
                 else:
                     if prev is not None:
                         if not componenttools.is_beamable_component(prev):
                             if next is not None:
-                                result.append('[')
+                                result.append('%s[' % direction_string)
                 if spanner._is_my_last_leaf(leaf):
                     if prev is not None:
                         if componenttools.is_beamable_component(prev):

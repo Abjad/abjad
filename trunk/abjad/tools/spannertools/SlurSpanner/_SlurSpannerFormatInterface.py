@@ -13,7 +13,11 @@ class _SlurSpannerFormatInterface(_SpannerFormatInterface):
         result = []
         spanner = self.spanner
         if spanner._is_my_first_leaf(leaf):
-            result.append('(')
+            direction = spanner.direction
+            if direction is not None:
+                result.append('%s (' % direction)
+            else:
+                result.append('(')
         if spanner._is_my_last_leaf(leaf):
             result.append(')')
         return result

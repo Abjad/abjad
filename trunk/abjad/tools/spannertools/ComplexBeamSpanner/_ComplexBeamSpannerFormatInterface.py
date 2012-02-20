@@ -114,11 +114,17 @@ class _ComplexBeamSpannerFormatInterface(_BeamSpannerFormatInterface):
             # lone
             if spanner._is_my_only_leaf(leaf):
                 if spanner.lone:
-                    result.append('[')
+                    if spanner.direction is not None:
+                        result.append('%s [' % spanner.direction)
+                    else:
+                        result.append('[')
             # otherwise
             elif spanner._is_my_first_leaf(leaf) or not leaf._navigator._prev_bead or \
                 not componenttools.is_beamable_component(leaf._navigator._prev_bead):
-                result.append('[')
+                if spanner.direction is not None:
+                    result.append('%s [' % spanner.direction)
+                else:
+                    result.append('[')
             # lone
             if spanner._is_my_only_leaf(leaf):
                 if spanner.lone:

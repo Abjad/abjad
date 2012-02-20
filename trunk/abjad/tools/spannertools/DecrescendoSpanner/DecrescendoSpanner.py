@@ -71,6 +71,7 @@ class DecrescendoSpanner(HairpinSpanner):
     Return decrescendo spanner.
     '''
 
-    def __init__(self, components = None, include_rests = True):
+    def __init__(self, components = None, include_rests = True, direction = None):
         HairpinSpanner.__init__(
-            self, components = components, descriptor = '>', include_rests = include_rests)
+            self, components = components, descriptor = '>', include_rests = include_rests,
+            direction = direction)

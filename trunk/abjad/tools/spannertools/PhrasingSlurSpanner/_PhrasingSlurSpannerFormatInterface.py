@@ -13,7 +13,10 @@ class _PhrasingSlurSpannerFormatInterface(_SpannerFormatInterface):
         result = []
         spanner = self.spanner
         if spanner._is_my_first_leaf(leaf):
-            result.append(r'\(')
+            if spanner.direction is not None:
+                result.append(r'%s \(' % spanner.direction)
+            else:
+                result.append(r'\(')
         if spanner._is_my_last_leaf(leaf):
             result.append(r'\)')
         return result

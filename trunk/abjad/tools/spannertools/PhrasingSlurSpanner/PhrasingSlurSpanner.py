@@ -1,8 +1,8 @@
 from abjad.tools.spannertools.PhrasingSlurSpanner._PhrasingSlurSpannerFormatInterface import _PhrasingSlurSpannerFormatInterface
-from abjad.tools.spannertools.Spanner import Spanner
+from abjad.tools.spannertools._DirectedSpanner._DirectedSpanner import _DirectedSpanner
 
 
-class PhrasingSlurSpanner(Spanner):
+class PhrasingSlurSpanner(_DirectedSpanner):
     r'''Abjad phrasing slur spanner::
 
         abjad> staff = Staff("c'8 d'8 e'8 f'8")
@@ -25,6 +25,6 @@ class PhrasingSlurSpanner(Spanner):
     Return phrasing slur spanner.
     '''
 
-    def __init__(self, components = None):
-        Spanner.__init__(self, components)
+    def __init__(self, components = None, direction = None):
+        _DirectedSpanner.__init__(self, components, direction)
         self._format = _PhrasingSlurSpannerFormatInterface(self)
