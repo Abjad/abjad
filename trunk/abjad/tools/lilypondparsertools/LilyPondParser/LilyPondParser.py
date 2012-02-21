@@ -441,13 +441,18 @@ class LilyPondParser(object):
         if optional_context_mod is not None:
             for x in optional_context_mod:
                 print x
-            pass # TODO
+            pass # TODO: Implement context mods on contexts. #
 
         context.is_parallel = music.is_parallel
 
+        # add children
         while len(music):
             component = music.pop(0)
             context.append(component)
+
+        marks = music.marks
+        for mark in marks:
+            mark(context)
 
         return context
 

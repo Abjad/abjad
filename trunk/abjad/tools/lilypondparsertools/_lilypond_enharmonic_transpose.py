@@ -5,6 +5,12 @@ from abjad.tools.pitchtools.octave_number_to_octave_tick_string import octave_nu
 
 
 def _lilypond_enharmonic_transpose(pitch_a, pitch_b, pitch_c):
+    if not isinstance(pitch_a, NamedChromaticPitch):
+        pitch_a = NamedChromaticPitch(pitch_a)
+    if not isinstance(pitch_b, NamedChromaticPitch):
+        pitch_b = NamedChromaticPitch(pitch_b)
+    if not isinstance(pitch_c, NamedChromaticPitch):
+        pitch_c = NamedChromaticPitch(pitch_c)
 
     scale = [0., 2., 4., 5., 7., 9., 11.]
 
@@ -50,7 +56,7 @@ def _lilypond_enharmonic_transpose(pitch_a, pitch_b, pitch_c):
     # print 'NEW(norm):', new_oct, new_step, new_alt
 
     octave_ticks = octave_number_to_octave_tick_string(new_oct)
-    pitch_class_name = str(NamedDiatonicPitchClass(new_step))
+    pitch_class_name = str(NamedDiatonicPitchClass(int(new_step)))
     accidental = str(Accidental(new_alt))
 
     tmp_pitch = NamedChromaticPitch(pitch_class_name + accidental + octave_ticks)
@@ -67,7 +73,7 @@ def _lilypond_enharmonic_transpose(pitch_a, pitch_b, pitch_c):
     # print 'NEW(norm):', new_oct, new_step, new_alt
 
     octave_ticks = octave_number_to_octave_tick_string(new_oct)
-    pitch_class_name = str(NamedDiatonicPitchClass(new_step))
+    pitch_class_name = str(NamedDiatonicPitchClass(int(new_step)))
     accidental = str(Accidental(new_alt))
 
     return NamedChromaticPitch(pitch_class_name + accidental + octave_ticks)
