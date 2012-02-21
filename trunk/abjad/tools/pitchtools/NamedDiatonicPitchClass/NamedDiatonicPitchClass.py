@@ -29,7 +29,7 @@ class NamedDiatonicPitchClass(_DiatonicPitchClass):
             tmp = pitchtools.diatonic_pitch_number_to_diatonic_pitch_class_name
             diatonic_pitch_class_name = tmp(arg)
         else:
-            raise TypeError('\n\tCan not initialize naemd diatonic pitch-class from "%s".' % arg)
+            raise TypeError('\n\tCan not initialize named diatonic pitch-class from %r.' % arg)
         object.__setattr__(self, '_diatonic_pitch_class_name', diatonic_pitch_class_name)
         object.__setattr__(self, '_comparison_attribute', diatonic_pitch_class_name)
         object.__setattr__(self, '_format_string', repr(diatonic_pitch_class_name))
