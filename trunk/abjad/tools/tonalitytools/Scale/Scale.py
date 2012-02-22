@@ -4,6 +4,8 @@ from abjad.tools.pitchtools.MelodicDiatonicIntervalSegment import MelodicDiatoni
 from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
 from abjad.tools.pitchtools.NamedChromaticPitchClass import NamedChromaticPitchClass
 from abjad.tools.pitchtools.NamedChromaticPitchClassSegment import NamedChromaticPitchClassSegment
+from abjad.tools.pitchtools.NamedChromaticPitchSet import NamedChromaticPitchSet
+from abjad.tools.pitchtools.PitchRange import PitchRange
 from abjad.tools.tonalitytools.ScaleDegree import ScaleDegree
 
 
@@ -39,7 +41,7 @@ class Scale(NamedChromaticPitchClassSegment):
 
     @property
     def _capital_name(self):
-        letter = self.key_signature.tonic.name.title()
+        letter = str(self.key_signature.tonic).title()
         mode = self.key_signature.mode.mode_name.title()
         return '%s%s' % (letter, mode)
 
@@ -89,6 +91,22 @@ class Scale(NamedChromaticPitchClassSegment):
         return self[0]
 
     ### PUBLIC METHODS ###
+
+    def create_named_chromatic_pitch_set_in_pitch_range(self, pitch_range):
+        if not isinstance(pitch_range, PitchRange):
+            pitch_range = PitchRange(sorted(pitch_range))
+        low = pitch_range.start_pitch.octave_number
+        high = pitch_range.stop_pitch.octave_number
+        pitches = [ ]
+        octave = low
+        while octave <= high:
+            for x in self:
+                pitch = NamedChromaticPitch(x, octave)
+                if pitch_range.start_pitch <= pitch and \
+                    pitch <= pitch_range.stop_pitch:
+                    pitches.append(pitch)
+            octave += 1
+        return NamedChromaticPitchSet(pitches)
 
     def named_chromatic_pitch_class_to_scale_degree(self, *args):
         foreign_pitch_class = NamedChromaticPitchClass(*args)
