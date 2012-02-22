@@ -15,6 +15,7 @@ from abjad.tools.lilypondparsertools._LilyPondEvent._LilyPondEvent import _LilyP
 from abjad.tools.lilypondparsertools._LilyPondFraction._LilyPondFraction import _LilyPondFraction
 from abjad.tools.lilypondparsertools._LilyPondLexicalDefinition._LilyPondLexicalDefinition import _LilyPondLexicalDefinition
 from abjad.tools.lilypondparsertools._LilyPondSyntacticalDefinition._LilyPondSyntacticalDefinition import _LilyPondSyntacticalDefinition
+from abjad.tools.lilypondparsertools._NullHandler._NullHandler import _NullHandler
 from abjad.tools.lilypondparsertools._SyntaxNode._SyntaxNode import _SyntaxNode as Node
 from abjad.tools.lilypondparsertools._parse import _parse
 from abjad.tools.lilypondparsertools._parse_debug import _parse_debug
@@ -145,7 +146,7 @@ class LilyPondParser(object):
             self._logger = logging.getLogger()
         else:
             self._logger = logging.getLogger()
-            self._logger.addHandler(logging.NullHandler())
+            self._logger.addHandler(_NullHandler()) # use custom NullHandler for 2.6 compatibility
 
         # setup PLY objects
         self._lexer = lex.lex(
