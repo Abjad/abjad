@@ -325,3 +325,25 @@ class TempoMark(ContextMark):
                 units_per_minute = tuple(sorted(units_per_minute))
             self._units_per_minute = units_per_minute
         return property(**locals())
+
+    ### PUBLIC METHODS ###
+
+    def is_tempo_mark_token(self, expr):
+        '''True when `expr` has the form of a tempo mark initializer::
+
+            abjad> tempo_mark = contexttools.TempoMark(Duration(1, 4), 72)
+            abjad> tempo_mark.is_tempo_mark_token((Duration(1, 4), 84))
+            True
+
+        Otherwise false::
+
+            abjad> tempo_mark.is_tempo_mark_token(84)
+            False
+
+        Return boolean.
+        '''
+        try:
+            tempo_mark = type(self)(expr)
+            return isinstance(tempo_mark, type(self))
+        except:
+            return False
