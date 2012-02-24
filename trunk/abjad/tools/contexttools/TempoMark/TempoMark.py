@@ -146,7 +146,8 @@ class TempoMark(ContextMark):
         if self.textual_indication:
             result.append(repr(self.textual_indication))
         if self.duration:
-            result.append(self._dotted)
+            #result.append(self._dotted)
+            result.append(repr(self.duration))
         if self.units_per_minute:
             result.append(repr(self.units_per_minute))
         return ', '.join(result)
