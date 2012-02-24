@@ -210,6 +210,7 @@ contexttools
    tools/contexttools/KeySignatureMark/KeySignatureMark
    tools/contexttools/StaffChangeMark/StaffChangeMark
    tools/contexttools/TempoMark/TempoMark
+   tools/contexttools/TempoMarkInventory/TempoMarkInventory
    tools/contexttools/TimeSignatureMark/TimeSignatureMark
    tools/contexttools/detach_clef_marks_attached_to_component
    tools/contexttools/detach_context_marks_attached_to_component
