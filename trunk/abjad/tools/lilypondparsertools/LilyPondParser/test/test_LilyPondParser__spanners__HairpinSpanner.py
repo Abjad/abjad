@@ -82,7 +82,7 @@ def test_LilyPondParser__spanners__HairpinSpanner_06():
     assert py.test.raises(Exception, 'LilyPondParser()(input)')
 
 
-def test_LilyPondParser__spanners__HairpinSpanner_01():
+def test_LilyPondParser__spanners__HairpinSpanner_07():
     '''With direction.'''
     target = Staff(notetools.make_notes([0] * 5, [(1, 4)]))
     spannertools.HairpinSpanner(target[:3], '<', direction = 'up')
