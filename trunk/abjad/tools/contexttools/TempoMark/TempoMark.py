@@ -32,6 +32,8 @@ class TempoMark(ContextMark):
         >>
 
     Tempo marks target **score** context by default.
+
+    Initialization allows many different types of input argument structure.
     '''
 
     _format_slot = 'opening'
@@ -55,6 +57,13 @@ class TempoMark(ContextMark):
             units_per_minute = None
             assert isinstance(textual_indication, (str, type(None)))
 
+        elif len(args) == 1 and isinstance(args[0], tuple) and len(args[0]) == 2:
+            textual_indication = None
+            duration, units_per_minute = args[0]
+
+        elif len(args) == 1 and isinstance(args[0], tuple) and len(args[0]) == 3:
+            textual_indication, duration, units_per_minute = args[0]
+
         elif len(args) in [2, 3]:
             if len(args) == 3:
                 textual_indication, duration, units_per_minute = args
@@ -64,7 +73,6 @@ class TempoMark(ContextMark):
 
             assert isinstance(textual_indication, (str, type(None)))
 
-            #assert isinstance(duration, durationtools.Duration)
             try:
                 duration = durationtools.Duration(duration)
             except TypeError:

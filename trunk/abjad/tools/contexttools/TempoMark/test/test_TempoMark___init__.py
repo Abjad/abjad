@@ -54,3 +54,17 @@ def test_TempoMark___init___07():
 
     t = contexttools.TempoMark('Quick', Duration(1, 4), (120, 133))
     assert t.format == '\\tempo "Quick" 4=120~133'
+
+
+def test_TempoMark___init___08():
+    '''Init tempo mark from length-2 tuple.'''
+
+    t = contexttools.TempoMark((Duration(1, 4), (120, 133)))
+    assert t.format == '\\tempo 4=120~133'
+    
+
+def test_TempoMark___init___09():
+    '''Init tempo mark from length-3 tuple.'''
+
+    t = contexttools.TempoMark(('Quick', Duration(1, 4), (120, 133)))
+    assert t.format == '\\tempo "Quick" 4=120~133'
