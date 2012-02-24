@@ -71,21 +71,22 @@ class TempoMark(ContextMark):
                 textual_indication = None
                 duration, units_per_minute = args
 
-            assert isinstance(textual_indication, (str, type(None)))
+        else:
+            raise ValueError('can not initialize tempo indication.')
 
+        assert isinstance(textual_indication, (str, type(None)))
+
+        if duration:
             try:
                 duration = durationtools.Duration(duration)
             except TypeError:
                 duration = durationtools.Duration(*duration)
 
-            assert isinstance(units_per_minute, (int, long, float, durationtools.Duration, list, tuple))
-            if isinstance(units_per_minute, (list, tuple)):
-                assert len(units_per_minute) == 2
-                assert all([isinstance(x, (int, long, float, durationtools.Duration)) for x in units_per_minute])
-                units_per_minute = tuple(sorted(units_per_minute))
-
-        else:
-            raise ValueError('can not initialize tempo indication.')
+        assert isinstance(units_per_minute, (int, long, float, durationtools.Duration, list, tuple, type(None)))
+        if isinstance(units_per_minute, (list, tuple)):
+            assert len(units_per_minute) == 2
+            assert all([isinstance(x, (int, long, float, durationtools.Duration)) for x in units_per_minute])
+            units_per_minute = tuple(sorted(units_per_minute))
 
         object.__setattr__(self, '_duration', duration)
         object.__setattr__(self, '_textual_indication', textual_indication)
