@@ -6,4 +6,4 @@ import sys
 
 
 iotools.clear_terminal()
-os.system('grep -Irn "%s" * | grep -v svn | grep -v docs' % sys.argv[1])
+os.system('grep -Irn "%s" * | grep -v svn-base | grep -v svn\/ | grep -v docs' % sys.argv[1])
