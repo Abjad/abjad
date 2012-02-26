@@ -1,9 +1,8 @@
-from abjad.core import _Immutable
-from abjad.core import _StrictComparator
 from fractions import Fraction
+from abjad.tools.schemetools.Scheme import Scheme
 
 
-class SchemeMoment(_StrictComparator, _Immutable):
+class SchemeMoment(Scheme):
     '''Abjad model of LilyPond moment::
 
         abjad> schemetools.SchemeMoment(1, 68)
@@ -14,54 +13,51 @@ class SchemeMoment(_StrictComparator, _Immutable):
     Scheme moments are immutable.
     '''
 
-    __slots__ = ('_duration')
-
-    def __new__(klass, *args):
-        self = object.__new__(klass)
+    def __new__(klass, *args, **kwargs):
         if len(args) == 1 and isinstance(args[0], (Fraction, int, long)):
-            object.__setattr__(self, '_duration', Fraction(args[0]))
+            args = Fraction(args[0])
         elif len(args) == 1 and isinstance(args[0], tuple):
-            object.__setattr__(self, '_duration', Fraction(*args[0]))
-        elif len(args) == 1 and isinstance(args[0], type(self)):
-            object.__setattr__(self, '_duration', args[0].duration)
+            args = Fraction(*args[0])
+        elif len(args) == 1 and isinstance(args[0], klass):
+            args = args[0].duration
         elif len(args) == 2 and isinstance(args[0], int) and isinstance(args[1], int):
-            object.__setattr__(self, '_duration', Fraction(*args))
+            args = Fraction(*args)
         else:
             raise TypeError('can not intialize scheme moment from "%s".' % str(args))
-        return self
+        return Scheme.__new__(klass, args, **kwargs)
 
     ### OVERLOADS ###
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):
-            if self.duration == arg.duration:
+            if self._value == arg._value:
                 return True
         return False
 
     def __ge__(self, arg):
         if isinstance(arg, type(self)):
-            if self.duration >= arg.duration:
+            if self._value >= arg._value:
                 return True
         return False
 
     def __getnewargs__(self):
-        return (self.duration, )
+        return (self._value,)
 
     def __gt__(self, arg):
         if isinstance(arg, type(self)):
-            if self.duration > arg.duration:
+            if self._value > arg._value:
                 return True
         return False
 
     def __le__(self, arg):
         if isinstance(arg, type(self)):
-            if self.duration <= arg.duration:
+            if self._value <= arg._value:
                 return True
         return False
 
     def __lt__(self, arg):
         if isinstance(arg, type(self)):
-            if self.duration < arg.duration:
+            if self._value < arg._value:
                 return True
         return False
 
@@ -69,7 +65,14 @@ class SchemeMoment(_StrictComparator, _Immutable):
         return not self == arg
 
     def __repr__(self):
-        return '%s(%s, %s)' % (type(self).__name__, self.duration.numerator, self.duration.denominator)
+        return '%s(%s, %s)' % (type(self).__name__, self._value.numerator, self._value.denominator)
+
+    ### PRIVATE ATTRIBUTES ###
+
+    @property
+    def _formatted_value(self):
+        numerator, denominator = self._value.numerator, self._value.denominator
+        return '(ly:make-moment %s %s)' % (numerator, denominator)
 
     ### PUBLIC ATTRIBUTES ###
 
@@ -83,17 +86,4 @@ class SchemeMoment(_StrictComparator, _Immutable):
 
         Return duration.
         '''
-        return self._duration
-
-    @property
-    def format(self):
-        '''LilyPond input format of scheme moment::
-
-            abjad> scheme_moment = schemetools.SchemeMoment(1, 68)
-            abjad> scheme_moment.format
-            '#(ly:make-moment 1 68)'
-
-        Return string.
-        '''
-        numerator, denominator = self.duration.numerator, self.duration.denominator
-        return '#(ly:make-moment %s %s)' % (numerator, denominator)
+        return self._value

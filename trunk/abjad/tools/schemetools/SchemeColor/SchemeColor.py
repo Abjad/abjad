@@ -1,8 +1,7 @@
-from abjad.core import _Immutable
-from abjad.core import _StrictComparator
+from abjad.tools.schemetools.Scheme import Scheme
 
 
-class SchemeColor(_StrictComparator, _Immutable):
+class SchemeColor(Scheme):
     '''Abjad model of Scheme color::
 
         abjad> schemetools.SchemeColor('ForestGreen')
@@ -11,33 +10,8 @@ class SchemeColor(_StrictComparator, _Immutable):
     Scheme colors are immutable.
     '''
 
-    __slots__ = ('color_name',)
-
-    def __new__(klass, color_name):
-        self = object.__new__(klass)
-        if isinstance(color_name, klass):
-            color_name = color_name.color_name
-        object.__setattr__(self, 'color_name', color_name)
-        return self
-
-    ### OVERLOADS ###
-
-    def __getnewargs__(self):
-        return (self.color_name,)
-
-    def __repr__(self):
-        return '%s(%r)' % (type(self).__name__, self.color_name)
-
-    ### PUBLIC ATTRIBUTES ###
+    ### PRIVATE ATTRIBUTES ###
 
     @property
-    def format(self):
-        '''LilyPond input format of Scheme color::
-
-            abjad> scheme_color = schemetools.SchemeColor('ForestGreen')
-            abjad> scheme_color.format
-            "#(x11-color 'ForestGreen)"
-
-        Return string.
-        '''
-        return "#(x11-color '%s)" % self.color_name
+    def _formatted_value(self):
+        return "(x11-color '%s)" % self._value

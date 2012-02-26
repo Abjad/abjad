@@ -1,7 +1,7 @@
-from abjad.core import _Immutable
+from abjad.tools.schemetools.Scheme import Scheme
 
 
-class SchemePair(tuple, _Immutable):
+class SchemePair(Scheme):
     '''Abjad model of Scheme pair::
 
         abjad> schemetools.SchemePair('spacing', 4)
@@ -12,66 +12,29 @@ class SchemePair(tuple, _Immutable):
     Scheme pairs are immutable.
     '''
 
-    def __new__(klass, *args):
+    def __new__(klass, *args, **kwargs):
         if len(args) == 1 and isinstance(args[0], SchemePair):
-            self = tuple.__new__(klass, args[0][:])
+            args = args[0]._value
         elif len(args) == 1 and isinstance(args[0], tuple):
-            self = tuple.__new__(klass, args[0][:])
+            args = args[0][:]
         elif len(args) == 2:
-            self = tuple.__new__(klass, args)
+            args = args
         else:
             raise TypeError('can not initialize Scheme pair from "%s".' % str(args))
+
+        self = Scheme.__new__(klass, *args, **kwargs)
+        #self = object.__new__(klass)
+        #object.__setattr__(self, '_value', args)
         return self
-
-    ### OVERLOADS ###
-
-    def __getnewargs__(self):
-        return tuple(self)
-
-    def __repr__(self):
-        return '%s(%s)' % (type(self).__name__, self._format_string)
-
-    def __str__(self):
-        return '(%s)' % self._output_string
 
     ### PRIVATE ATTRIBUTES ###
 
     @property
-    def _format_string(self):
-        #return ', '.join([str(x) for x in self])
-        result = []
-        for x in self:
-            if isinstance(x, str):
-                result.append('%r' % x)
-            else:
-                result.append(str(x))
-        result = ', '.join(result)
-        return result
-
-    @property
-    def _output_string(self):
-        vals = []
-        for x in self:
-            if isinstance(x, bool) and x:
-                vals.append("#t")
-            elif isinstance(x, bool):
-                vals.append("#f")
-            elif isinstance(x, str) and ' ' in x:
-                vals.append('"%s"' % x)
-            else:
-                vals.append(x)
-        return '%s . %s' % (vals[0], vals[1])
+    def _formatted_value(self):
+        return '(%s . %s)' % tuple([Scheme._format_value(x) for x in self._value])
 
     ### PUBLIC ATTRIBUTES ###
 
     @property
     def format(self):
-        '''LilyPond input format of Scheme pair::
-
-            abjad> scheme_pair = schemetools.SchemePair('spacing', 4)
-            abjad> scheme_pair.format
-            "#'(spacing . 4)"
-
-        Return string.
-        '''
-        return "#'%s" % self.__str__()
+        return "#'%s" % self._formatted_value 
