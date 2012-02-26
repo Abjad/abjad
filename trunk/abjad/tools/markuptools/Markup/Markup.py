@@ -67,7 +67,7 @@ class Markup(_DirectedMark):
         abjad> f(note)
         c'4 \markup { \bold { "This is markup text." } }
 
-    Set `direction` to ``'up'``, ``'down'``, ``'neutral'`` or none.
+    Set `direction` to ``'up'``, ``'down'``, ``'neutral'``, ``'^'``, ``'_'``, ``'-'`` or None.
 
     Set `style_string` to ``'backslash'`` or ``'scheme'``.
 
@@ -158,12 +158,12 @@ class Markup(_DirectedMark):
         result = ''
         if self._style_string == 'backslash':
             result = r'\markup { %s }' % self._contents_string
+            if self._direction is not None:
+                result = '%s %s' % (self._direction, result)
         elif self._style_string == 'scheme':
             result = '#%s' % self._contents_string
         else:
             raise ValueError('unknown markup style string: "%s".' % self._style_string)
-        if self._direction is not None:
-            result = '%s %s' % (self._direction, result)
         return result
 
 #   @property

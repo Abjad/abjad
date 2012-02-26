@@ -34,7 +34,7 @@ def combine_markup_commands(*commands):
     if 1 == len(commands):
         return commands[0]
 
-    combined = MarkupCommand('combine', None, commands[:2], is_braced = False)
+    combined = MarkupCommand('combine', commands[0], commands[1])
     for command in commands[2:]:
-        combined = MarkupCommand('combine', None, [combined, command], is_braced = False)
+        combined = MarkupCommand('combine', combined, command)
     return combined
