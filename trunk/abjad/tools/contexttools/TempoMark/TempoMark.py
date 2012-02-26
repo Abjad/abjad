@@ -155,7 +155,6 @@ class TempoMark(ContextMark):
         if self.textual_indication:
             result.append(repr(self.textual_indication))
         if self.duration:
-            #result.append(self._dotted)
             result.append(repr(self.duration))
         if self.units_per_minute:
             result.append(repr(self.units_per_minute))
@@ -172,6 +171,10 @@ class TempoMark(ContextMark):
         if isinstance(self.units_per_minute, tuple):
             return '%s=%s~%s' % (self._dotted, self.units_per_minute[0], self.units_per_minute[1])
         return '%s=%s' % (self._dotted, self.units_per_minute)
+
+    @property
+    def _one_line_menuing_summary(self):
+        return self.format.lstrip(r'\tempo ')
 
     ### PUBLIC ATTRIBUTES ###
 
