@@ -80,6 +80,14 @@ class Scheme(_Immutable, _StrictComparator):
 
     @property
     def format(self):
+        '''Hash-mark-prepended format of Scheme::
+
+            abjad> from abjad.tools.schemetools import Scheme
+            abjad> Scheme(True).format
+            '##t'
+
+        Returns string.
+        '''
         if self._quoting is not None:
             return '#' + self._quoting + self._formatted_value
         return '#%s' % self._formatted_value
