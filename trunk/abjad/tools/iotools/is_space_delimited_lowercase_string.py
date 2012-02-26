@@ -1,7 +1,7 @@
 import re
 
 
-space_delimited_lowercase_regex = re.compile('^(([a-z]+[ ]+)*[a-z]+)?$')
+space_delimited_lowercase_regex = re.compile('^(([a-z,0-9]+[ ]+)*[a-z,0-9]+)?$')
 
 def is_space_delimited_lowercase_string(expr):
     r'''.. versionadded:: 2.5

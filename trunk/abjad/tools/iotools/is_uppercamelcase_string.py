@@ -1,7 +1,7 @@
 import re
 
 
-uppercamelcase_regex = re.compile('^([A-Z]+[a-z]*)*$')
+uppercamelcase_regex = re.compile('^([A-Z,0-9]+[a-z,0-9]*)*$')
 
 def is_uppercamelcase_string(expr):
     r'''.. versionadded:: 2.5
