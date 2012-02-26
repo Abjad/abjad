@@ -94,7 +94,8 @@ class Scale(NamedChromaticPitchClassSegment):
 
     def create_named_chromatic_pitch_set_in_pitch_range(self, pitch_range):
         if not isinstance(pitch_range, PitchRange):
-            pitch_range = PitchRange(sorted(pitch_range))
+            pitch_range = PitchRange(float(NamedChromaticPitch(pitch_range[0])), \
+                float(NamedChromaticPitch(pitch_range[1])))
         low = pitch_range.start_pitch.octave_number
         high = pitch_range.stop_pitch.octave_number
         pitches = [ ]
