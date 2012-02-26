@@ -19,7 +19,7 @@ class ContextBlock(_AttributedBlock):
 
         abjad> context_block.context_name = 'Score'
         abjad> context_block.override.bar_number.transparent = True
-        abjad> context_block.override.time_signature.break_visibility = schemetools.SchemeVariable('end-of-line-invisible')
+        abjad> context_block.override.time_signature.break_visibility = schemetools.Scheme('end-of-line-invisible')
         abjad> context_block.set.proportionalNotationDuration = schemetools.SchemeMoment((1, 45))
 
     ::

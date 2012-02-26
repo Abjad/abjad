@@ -16,11 +16,15 @@ class _NonattributedBlock(list):
     def _format_pieces(self):
         result = []
         if not len(self):
-            result.append(r'%s {}' % self._escaped_name)
+            if self._is_formatted_when_empty:
+                result.append(r'%s {}' % self._escaped_name)
         else:
             result.append(r'%s {' % self._escaped_name)
             for x in self:
-                result.extend(['\t' + piece for piece in x._format_pieces])
+                if hasattr(x, '_format_pieces'):
+                    result.extend(['\t' + piece for piece in x._format_pieces])
+                elif isinstance(x, str):
+                    result.append('\t%s' % x)
             result.append('}')
         return result
 
@@ -29,3 +33,14 @@ class _NonattributedBlock(list):
     @property
     def format(self):
         return '\n'.join(self._format_pieces)
+
+    @apply
+    def is_formatted_when_empty():
+        def fget(self):
+            return self._is_formatted_when_empty
+        def fset(self, arg):
+            if isinstance(arg, bool):
+                self._is_formatted_when_empty = arg
+            else:
+                raise TypeError
+        return property(**locals())

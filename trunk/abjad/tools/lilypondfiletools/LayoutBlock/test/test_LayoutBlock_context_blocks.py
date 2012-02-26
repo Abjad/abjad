@@ -7,7 +7,7 @@ def test_LayoutBlock_context_blocks_01():
     layout_block = lilypondfiletools.LayoutBlock()
     context_block = lilypondfiletools.ContextBlock('Score')
     context_block.override.bar_number.transparent = True
-    context_block.override.time_signature.break_visibility = schemetools.SchemeVariable('end-of-line-invisible')
+    context_block.override.time_signature.break_visibility = schemetools.Scheme('end-of-line-invisible')
     layout_block.context_blocks.append(context_block)
 
     r'''

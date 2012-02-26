@@ -32,3 +32,10 @@ def test_ScoreBlock_01():
     '''
 
     assert score_block.format == "\\score {\n\t\\new Score <<\n\t\t\\new Staff {\n\t\t\tc'8\n\t\t\td'8\n\t\t\te'8\n\t\t\tf'8\n\t\t}\n\t>>\n\t\\layout {}\n\t\\midi {}\n}"
+
+
+def test_ScoreBlock_02():
+    '''ScoreBlock does not format when empty by default.'''
+
+    score_block = lilypondfiletools.ScoreBlock()
+    assert score_block.format == ''

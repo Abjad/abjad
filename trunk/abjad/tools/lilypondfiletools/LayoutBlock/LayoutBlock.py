@@ -69,7 +69,7 @@ class LayoutBlock(_AttributedBlock):
 
         ::
 
-            abjad> context_block.override.time_signature.break_visibility = schemetools.SchemeVariable('end-of-line-invisible')
+            abjad> context_block.override.time_signature.break_visibility = schemetools.Scheme('end-of-line-invisible')
             abjad> layout_block.context_blocks.append(context_block)
     
         ::

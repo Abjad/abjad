@@ -15,8 +15,19 @@ class ScoreBlock(_NonattributedBlock):
 
     ::
 
+        abjad> score_block.append(Staff([]))
         abjad> f(score_block)
-        \score {}
+        \score {
+            Staff {
+            }
+        }
+
+    ScoreBlocks does not format when empty, as this generates a 
+    parser error in LilyPond::
+
+        abjad> score_block = lilypondfiletools.ScoreBlock()
+        abjad> score_block.format == ''
+        True
 
     Return score block.
     '''
@@ -24,3 +35,4 @@ class ScoreBlock(_NonattributedBlock):
     def __init__(self):
         _NonattributedBlock.__init__(self)
         self._escaped_name = r'\score'
+        self._is_formatted_when_empty = False

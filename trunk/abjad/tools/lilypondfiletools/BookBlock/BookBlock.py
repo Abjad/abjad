@@ -24,3 +24,4 @@ class BookBlock(_NonattributedBlock):
     def __init__(self):
         _NonattributedBlock.__init__(self)
         self._escaped_name = r'\book'
+        self._is_formatted_when_empty = True
