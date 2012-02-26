@@ -27,5 +27,8 @@ def _get_markup_format_contributions(component):
             column = r'%s \markup { \column { %s } }' % (direction, contents)
             result.append(column)
         else:
-            result.append(markup_list[0].format)
+            if markup_list[0].direction is None:
+                result.append('- %s' % markup_list[0].format)
+            else:
+                result.append(markup_list[0].format)
     return ['markup', result]
