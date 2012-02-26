@@ -7,8 +7,9 @@ class SchemeAssociativeList(Scheme):
 
     Abjad model of Scheme associative list::
 
-        abjad> schemetools.SchemeAssociativeList(('space', 2), ('padding', 0.5))
-        SchemeAssociativeList((SchemePair('space', 2), SchemePair('padding', 0.5)))
+        abjad> from abjad.tools.schemetools import SchemeAssociativeList
+        abjad> SchemeAssociativeList(('space', 2), ('padding', 0.5))
+        SchemeAssociativeList((SchemePair(('space', 2)), SchemePair(('padding', 0.5))))
 
     Scheme associative lists are immutable.
     '''
@@ -20,4 +21,4 @@ class SchemeAssociativeList(Scheme):
                 raise TypeError('must be Python pair or Scheme pair: "%s".' % str(arg))
             arg_as_pair = SchemePair(*arg)
             args_as_pairs.append(arg_as_pair)
-        return Scheme.__new__(klass, args_as_pairs, **{'quoting': "'"})
+        return Scheme.__new__(klass, *args_as_pairs, **{'quoting': "'"})

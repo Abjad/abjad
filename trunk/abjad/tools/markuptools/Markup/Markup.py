@@ -65,7 +65,7 @@ class Markup(_DirectedMark):
     ::
 
         abjad> f(note)
-        c'4 \markup { \bold { "This is markup text." } }
+        c'4 - \markup { \bold { "This is markup text." } }
 
     Set `direction` to ``'up'``, ``'down'``, ``'neutral'``, ``'^'``, ``'_'``, ``'-'`` or None.
 

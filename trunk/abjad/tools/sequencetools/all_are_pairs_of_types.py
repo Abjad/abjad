@@ -12,12 +12,12 @@ def all_are_pairs_of_types(expr, first_type, second_type):
 
     True when `expr` is an empty sequence::
 
-        abjad> sequencetools.all_are_pairs_of_types([])
+        abjad> sequencetools.all_are_pairs_of_types([], float, str)
         True
 
     False otherwise::
 
-        abjad> sequencetools.all_are_pairs_of_types('foo')
+        abjad> sequencetools.all_are_pairs_of_types('foo', float, str)
         False
 
     Return boolean.

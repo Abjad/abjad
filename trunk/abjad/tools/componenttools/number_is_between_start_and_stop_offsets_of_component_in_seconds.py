@@ -8,7 +8,7 @@ def number_is_between_start_and_stop_offsets_of_component_in_seconds(timepoint, 
 
         abjad> staff = Staff("c'8 d'8 e'8 f'8")
         abjad> contexttools.TempoMark(Duration(1, 2), 60, target_context = Staff)(staff)
-        TempoMark(2, 60)(Staff{4})
+        TempoMark(Duration(1, 2), 60)(Staff{4})
 
     ::
 

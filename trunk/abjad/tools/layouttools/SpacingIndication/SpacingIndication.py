@@ -18,7 +18,7 @@ class SpacingIndication(_StrictComparator, _Immutable):
         abjad> tempo = contexttools.TempoMark(Duration(1, 8), 44)
         abjad> spacing_indication = layouttools.SpacingIndication(tempo, Duration(1, 68))
         abjad> spacing_indication
-        SpacingIndication(TempoMark(8, 44), 1/68)
+        SpacingIndication(TempoMark(Duration(1, 8), 44), 1/68)
 
     Spacing indications are immutable.
     '''

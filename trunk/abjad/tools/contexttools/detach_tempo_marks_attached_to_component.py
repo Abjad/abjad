@@ -14,7 +14,7 @@ def detach_tempo_marks_attached_to_component(component):
 
         abjad> tempo_mark = contexttools.TempoMark(Duration(1, 8), 52)
         abjad> tempo_mark.attach(staff)
-        TempoMark(8, 52)(Staff{4})
+        TempoMark(Duration(1, 8), 52)(Staff{4})
 
     ::
 
@@ -32,7 +32,7 @@ def detach_tempo_marks_attached_to_component(component):
     ::
 
         abjad> contexttools.detach_tempo_marks_attached_to_component(staff)
-        (TempoMark(8, 52),)
+        (TempoMark(Duration(1, 8), 52),)
 
     ::
 

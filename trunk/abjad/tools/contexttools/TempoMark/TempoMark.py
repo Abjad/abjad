@@ -16,7 +16,7 @@ class TempoMark(ContextMark):
     ::
 
         abjad> contexttools.TempoMark(Duration(1, 8), 52)(staff[0])
-        TempoMark(8, 52)(c'8)
+        TempoMark(Duration(1, 8), 52)(c'8)
 
     ::
 
@@ -247,7 +247,7 @@ class TempoMark(ContextMark):
 
         ::
 
-            abjad> contexttools.TempoMark(4, 60).is_imprecise
+            abjad> contexttools.TempoMark(Duration(1, 4), 60).is_imprecise
             False
             abjad> contexttools.TempoMark('Langsam', 4, 60).is_imprecise
             False
@@ -255,7 +255,7 @@ class TempoMark(ContextMark):
             True
             abjad> contexttools.TempoMark('Langsam', 4, (35, 50)).is_imprecise
             True
-            abjad> contexttools.TempoMark(4, (35, 50)).is_imprecise
+            abjad> contexttools.TempoMark(Duration(1, 4), (35, 50)).is_imprecise
             True
 
         Return boolean.

@@ -11,7 +11,7 @@ def get_effective_tempo(component):
         abjad> staff = Staff("c'8 d'8 e'8 f'8")
         abjad> score.append(staff)
         abjad> contexttools.TempoMark(Duration(1, 8), 52)(staff[0])
-        TempoMark(8, 52)(c'8)
+        TempoMark(Duration(1, 8), 52)(c'8)
 
     ::
 
@@ -31,10 +31,10 @@ def get_effective_tempo(component):
         abjad> for note in staff:
         ...     print note, contexttools.get_effective_tempo(note)
         ...
-        c'8 TempoMark(8, 52)(c'8)
-        d'8 TempoMark(8, 52)(c'8)
-        e'8 TempoMark(8, 52)(c'8)
-        f'8 TempoMark(8, 52)(c'8)
+        c'8 TempoMark(Duration(1, 8), 52)(c'8)
+        d'8 TempoMark(Duration(1, 8), 52)(c'8)
+        e'8 TempoMark(Duration(1, 8), 52)(c'8)
+        f'8 TempoMark(Duration(1, 8), 52)(c'8)
 
     Return tempo mark or none.
     '''

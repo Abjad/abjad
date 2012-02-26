@@ -9,7 +9,7 @@ def is_component_with_key_signature_mark_attached(expr):
 
         abjad> staff = Staff("c'8 d'8 e'8 f'8")
         abjad> contexttools.KeySignatureMark('c', 'major')(staff)
-        KeySignatureMark(NamedChromaticPitchClass('c'), Mode(major))(Staff{4})
+        KeySignatureMark(NamedChromaticPitchClass('c'), Mode('major'))(Staff{4})
 
     ::
 

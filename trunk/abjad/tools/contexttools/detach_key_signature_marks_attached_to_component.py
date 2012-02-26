@@ -9,7 +9,7 @@ def detach_key_signature_marks_attached_to_component(component):
         abjad> staff = Staff("c'4 d'4 e'4 f'4")
         abjad> key_signature_mark = contexttools.KeySignatureMark('c', 'major')
         abjad> key_signature_mark.attach(staff)
-        KeySignatureMark(NamedChromaticPitchClass('c'), Mode(major))(Staff{4})
+        KeySignatureMark(NamedChromaticPitchClass('c'), Mode('major'))(Staff{4})
 
     ::
 
@@ -25,7 +25,7 @@ def detach_key_signature_marks_attached_to_component(component):
     ::
 
         abjad> contexttools.detach_key_signature_marks_attached_to_component(staff)
-        (KeySignatureMark(NamedChromaticPitchClass('c'), Mode(major)),)
+        (KeySignatureMark(NamedChromaticPitchClass('c'), Mode('major')),)
 
     ::
 

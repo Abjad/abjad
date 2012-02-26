@@ -18,7 +18,7 @@ class ScoreBlock(_NonattributedBlock):
         abjad> score_block.append(Staff([]))
         abjad> f(score_block)
         \score {
-            Staff {
+            \new Staff {
             }
         }
 

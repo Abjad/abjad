@@ -9,7 +9,7 @@ def get_key_signature_marks_attached_to_component(component):
 
         abjad> staff = Staff("c'8 d'8 e'8 f'8")
         abjad> contexttools.KeySignatureMark('c', 'major')(staff)
-        KeySignatureMark(NamedChromaticPitchClass('c'), Mode(major))(Staff{4})
+        KeySignatureMark(NamedChromaticPitchClass('c'), Mode('major'))(Staff{4})
 
     ::
 
@@ -25,7 +25,7 @@ def get_key_signature_marks_attached_to_component(component):
     ::
 
         abjad> contexttools.get_key_signature_marks_attached_to_component(staff)
-        (KeySignatureMark(NamedChromaticPitchClass('c'), Mode(major))(Staff{4}),)
+        (KeySignatureMark(NamedChromaticPitchClass('c'), Mode('major'))(Staff{4}),)
 
     Return tuple of zero or more key signature marks.
     '''

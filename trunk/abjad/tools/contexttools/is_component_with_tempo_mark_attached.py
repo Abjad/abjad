@@ -14,7 +14,7 @@ def is_component_with_tempo_mark_attached(expr):
     ::
 
         abjad> contexttools.TempoMark(Duration(1, 8), 52)(staff)
-        TempoMark(8, 52)(Staff{4})
+        TempoMark(Duration(1, 8), 52)(Staff{4})
 
     ::
 

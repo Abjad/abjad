@@ -24,4 +24,4 @@ def list_abjad_templates():
         if file_name.endswith('.ly'):
             if not file_name.startswith('_'):
                 file_names.append(file_name)
-    return tuple(file_names)
+    return tuple(sorted(file_names))

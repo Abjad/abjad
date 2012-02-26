@@ -5,7 +5,7 @@ class SchemePair(Scheme):
     '''Abjad model of Scheme pair::
 
         abjad> schemetools.SchemePair('spacing', 4)
-        SchemePair('spacing', 4)
+        SchemePair(('spacing', 4))
 
     Initialize Scheme pairs with a tuple, two separate values or another Scheme pair.
 

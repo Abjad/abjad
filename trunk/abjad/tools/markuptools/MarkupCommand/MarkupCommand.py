@@ -32,7 +32,7 @@ class MarkupCommand(_Immutable):
     ::
 
         abjad> f(note)
-        c'4 \markup { \combine \rotate #60 \line { \rounded-box hello? wow! } \draw-circle #2.5 #0.1 ##f }
+        c'4 - \markup { \combine \rotate #60 \line { \rounded-box hello? wow! } \draw-circle #2.5 #0.1 ##f }
 
     Markup commands are immutable.
     '''

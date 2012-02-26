@@ -11,7 +11,7 @@ class KeySignatureMark(ContextMark):
     ::
 
         abjad> contexttools.KeySignatureMark('e', 'major')(staff)
-        KeySignatureMark(NamedChromaticPitchClass('e'), Mode(major))(Staff{4})
+        KeySignatureMark(NamedChromaticPitchClass('e'), Mode('major'))(Staff{4})
 
     ::
 
@@ -91,13 +91,13 @@ class KeySignatureMark(ContextMark):
 
                 abjad> key_signature = contexttools.KeySignatureMark('e', 'major')
                 abjad> key_signature.mode
-                Mode(major)
+                Mode('major')
 
             Set mode of key signature::
 
                 abjad> key_signature.mode = 'minor'
                 abjad> key_signature.mode
-                Mode(minor)
+                Mode('minor')
 
             Return mode.
             '''

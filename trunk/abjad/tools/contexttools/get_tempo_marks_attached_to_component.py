@@ -14,7 +14,7 @@ def get_tempo_marks_attached_to_component(component):
     ::
 
         abjad> contexttools.TempoMark(Duration(1, 8), 52)(staff)
-        TempoMark(8, 52)(Staff{4})
+        TempoMark(Duration(1, 8), 52)(Staff{4})
 
     ::
 
@@ -32,7 +32,7 @@ def get_tempo_marks_attached_to_component(component):
     ::
 
         abjad> contexttools.get_tempo_marks_attached_to_component(staff)
-        (TempoMark(8, 52)(Staff{4}),)
+        (TempoMark(Duration(1, 8), 52)(Staff{4}),)
 
     Return tuple of zero or more tempo marks.
     '''

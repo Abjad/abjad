@@ -13,7 +13,7 @@ def numeric_seconds_to_escaped_clock_string(seconds):
         abjad> note = Note("c'4")
         abjad> clock_string = durationtools.numeric_seconds_to_escaped_clock_string(117)
         abjad> markuptools.Markup('"%s"' % clock_string, 'up')(note)
-        Markup('"1\'57\\""', 'up')
+        Markup('"1\'57\\""', '^')
 
     ::
 
