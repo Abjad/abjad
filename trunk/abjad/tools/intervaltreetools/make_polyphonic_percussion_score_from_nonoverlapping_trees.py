@@ -4,9 +4,9 @@ from abjad import Staff
 from abjad.tools.contexttools import ClefMark
 from abjad.tools.lilypondfiletools import make_basic_lilypond_file
 from abjad.tools.pitchtools import make_n_middle_c_centered_pitches
+from abjad.tools.schemetools import Scheme
 from abjad.tools.schemetools import SchemeMoment
 from abjad.tools.schemetools import SchemePair
-from abjad.tools.schemetools import SchemeVector
 from abjad.tools.intervaltreetools.BoundedInterval import BoundedInterval
 from abjad.tools.intervaltreetools.IntervalTree import IntervalTree
 from abjad.tools.intervaltreetools._make_voice_from_nonoverlapping_intervals import _make_voice_from_nonoverlapping_intervals
@@ -43,9 +43,8 @@ def make_polyphonic_percussion_score_from_nonoverlapping_trees(trees, colorkey =
     score.override.glissando.breakable = True
     score.set.proportional_notation_duration = SchemeMoment(Fraction(1, 32))
     padding = 0.5
-    bound_details = SchemeVector( \
-        SchemeVector('right', SchemePair('attach-dir', 0), SchemePair('padding', padding)),
-        SchemeVector('left', SchemePair('attach-dir', 0), SchemePair('padding', padding)))
+    bound_details = Scheme(('right', SchemePair('attach-dir', 0), SchemePair('padding', padding)),
+        ('left', SchemePair('attach-dir', 0), SchemePair('padding', padding)), quoting="'")
     score.override.glissando.bound_details = bound_details
 
     lily = make_basic_lilypond_file(score)
