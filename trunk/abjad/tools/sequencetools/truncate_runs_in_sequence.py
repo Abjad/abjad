@@ -30,7 +30,7 @@ def truncate_runs_in_sequence(sequence):
     if not isinstance(sequence, list):
         raise TypeError
 
-    assert all([isinstance(x, (int, float, Fraction)) for x in sequence])
+    assert all([isinstance(x, (int, float, long, Fraction)) for x in sequence])
 
     result = []
 
