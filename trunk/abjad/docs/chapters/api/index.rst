@@ -778,15 +778,11 @@ schemetools
 .. toctree::
    :maxdepth: 1
 
+   tools/schemetools/Scheme/Scheme
    tools/schemetools/SchemeAssociativeList/SchemeAssociativeList
-   tools/schemetools/SchemeBoolean/SchemeBoolean
    tools/schemetools/SchemeColor/SchemeColor
-   tools/schemetools/SchemeFunction/SchemeFunction
    tools/schemetools/SchemeMoment/SchemeMoment
-   tools/schemetools/SchemeNumber/SchemeNumber
    tools/schemetools/SchemePair/SchemePair
-   tools/schemetools/SchemeString/SchemeString
-   tools/schemetools/SchemeVariable/SchemeVariable
    tools/schemetools/SchemeVector/SchemeVector
    tools/schemetools/SchemeVectorConstant/SchemeVectorConstant
 
