@@ -161,6 +161,21 @@ class TempoMark(ContextMark):
         return ', '.join(result)
 
     @property
+    def _contents_repr_string_with_tools_package(self):
+        result = []
+        result = []
+        if self.textual_indication:
+            result.append(getattr(
+                self.textual_indication, '_repr_with_tools_pacakge', repr(self.textual_indication)))
+        if self.duration:
+            result.append(getattr(
+                self.duration, '_repr_with_tools_package', repr(self.duration)))
+        if self.units_per_minute:
+            result.append(getattr(
+                self.units_per_minute, '_repr_with_tools_package', repr(self.units_per_minute)))
+        return ', '.join(result)
+        
+    @property
     def _dotted(self):
         '''Dotted numeral representation of duration.'''
         return durationtools.assignable_rational_to_lilypond_duration_string(self.duration)
