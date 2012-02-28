@@ -3,11 +3,13 @@ Abjad build checklist:
  1. Open docs/chapters/start_here/versions/index.rst.
     Run "svn log --limit 30 | less" (or 40 or whatever) and read output.
     Or run "svn log --revision 4083:4977" and read output in chronological order.
-    Edit docs/chapter/start_here/versions/indext.rst as appropriate.
+    Edit docs/chapters/start_here/versions/indext.rst as appropriate.
     List new features and functionality.
     Highlight significant new functionality with a musical example.
     Begin entries with an active verb in the simple past.
-    Order entries by leading verb: all adds together, all extensions together, etc.
+    Order entries by leading verb.
+    List adds first and extensions second.
+    List changes in user syntax last.
 
  2. Commit.
 
