@@ -84,7 +84,7 @@ Abjad build checklist:
     If you need Abjad package owner credentials, talk to Trevor or Victor.
     PyPI will respond with "Server response (200): OK".
 
-23. Remove 'dist' and 'Abjad-egginfo-x.y'.
+23. Remove 'dist' and 'Abjad.egg-info'.
     The directories are no longer needed after upload to PyPI.
     The directories should not be checked into the Abjad repository.
 
