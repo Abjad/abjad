@@ -40,6 +40,10 @@ class Performer(object):
     ### PRIVATE ATTRIBUTES ###
 
     @property
+    def _one_line_menuing_summary(self):
+        return self.name
+            
+    @property
     def _repr_with_tools_package(self):
         return self._repr_helper(include_tools_package=True)
 
