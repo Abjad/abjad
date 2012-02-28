@@ -79,6 +79,10 @@ class InstrumentMark(ContextMark):
             contents_string = ', '.join([repr(name) for name in names])
         return contents_string
 
+    @property
+    def _one_line_menuing_summary(self):
+        return self.instrument_name
+
     # will probably need to change definition at some point #
     @property
     def _target_context_name(self):
