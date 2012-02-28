@@ -33,8 +33,8 @@ Abjad build checklist:
 
  9. Change to abjad/docs and run 'make clean'.
     (This step is important. Failing to 'make clean' before building
-    the docs can cause the doc tarball made below in (23.)
-    to exceed 10 megs. PyPI rejects doc tarballs greater than 10 megs.)
+    the docs can cause the doc tarball made below to exceed 10 megs.
+    PyPI rejects doc tarballs greater than 10 megs.)
 
 10. Run make-abjad-api. If any errors occur, fix and go back to (7.)
 

@@ -85,9 +85,9 @@ But until then check the API if the manual doesn't yet have what you need.
 Once you understand the basics about how to work with Abjad you should
 spend some time with the :doc:`Abjad API </chapters/api/index>`.
 The API documents all the functionality available in the system.
-Abjad comprises about 153,000 lines of code.
+Abjad comprises about 168,000 lines of code.
 About half of these implement the automated tests that check the correctness of Abjad.
-The rest of the code implements 39 packages comprising 197 classes and 941 functions.
+The rest of the code implements 39 packages comprising 221 classes and 1029 functions.
 All of these are documented in the API.
 
 

@@ -5,7 +5,8 @@ Version history
 Abjad 2.7
 ---------
 
-Released 2012-02-27. Built from r5097.
+Released 2012-02-27. Built from r5097. 
+Implements 221 public classes and 1029 public functions totalling 168,000 lines of code.
 
 - Added ``lilypondparsertools.LilyPondParser`` class, which arses a subset of LilyPond input syntax::
 
@@ -306,7 +307,8 @@ Released 2012-02-27. Built from r5097.
 Abjad 2.6
 ---------
 
-Released 2012-01-29. Built from r4979.
+Released 2012-01-29. Built from r4979. 
+Implements 197 public classes and 941 public functions totalling 153,000 lines of code.
 
 * Added top-level ``decorators`` directory with ``requires`` decorator.
   The ``requires`` decorator renders the following two function definitions equivalent::
