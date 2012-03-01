@@ -391,6 +391,8 @@ leaftools
    tools/leaftools/remove_terminal_rests_from_sequence
    tools/leaftools/repeat_leaf_and_extend_spanners
    tools/leaftools/repeat_leaves_in_expr_and_extend_spanners
+   tools/leaftools/replace_leaves_in_expr_with_named_parallel_voices
+   tools/leaftools/replace_leaves_in_expr_with_parallel_voices
    tools/leaftools/scale_preprolated_leaf_duration
    tools/leaftools/set_preprolated_leaf_duration
    tools/leaftools/show_leaves
@@ -769,6 +771,7 @@ resttools
    tools/resttools/make_repeated_rests_from_time_signature
    tools/resttools/make_repeated_rests_from_time_signatures
    tools/resttools/make_rests
+   tools/resttools/replace_leaves_in_expr_with_rests
    tools/resttools/set_vertical_positioning_pitch_on_rest
    tools/resttools/yield_groups_of_rests_in_sequence
 

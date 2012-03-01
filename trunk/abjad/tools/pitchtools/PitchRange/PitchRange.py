@@ -183,6 +183,24 @@ class PitchRange(_Immutable):
     ### PRIVATE ATTRIBUTES ###
 
     @property
+    def _class_name(self):
+        return type(self).__name__
+
+    @property
+    def _class_name_with_tools_package(self):
+        return '{}.{}'.format(self._tools_package, self._class_name)
+
+    @property
+    def _repr_with_tools_package(self):
+        return '{}({!r})'.format(self._class_name_with_tools_package, self.one_line_named_chromatic_pitch_repr)
+
+    @property
+    def _tools_package(self):
+        for part in reversed(self.__module__.split('.')):
+            if not part == self._class_name:
+                return part
+
+    @property
     def _keyword_argument_repr_string(self):
         result = []
         if self._pitch_range_name:

@@ -29,6 +29,35 @@ class PitchRangeInventory(list):
     def __repr__(self):
         return '{}({})'.format(type(self).__name__, list.__repr__(self))
 
+    ### PRIVATE ATTRIBUTES ###
+
+    @property
+    def _class_name(self):
+        return type(self).__name__
+
+    @property
+    def _class_name_with_tools_package(self):
+        return '{}.{}'.format(self._tools_package, self._class_name)
+
+    @property
+    def _contents_repr_with_tools_package(self):
+        part_reprs = []
+        for element in self:
+            part_repr = getattr(element, '_repr_with_tools_package', repr(element))
+            part_reprs.append(part_repr)
+        return ', '.join(part_reprs)
+
+    @property
+    def _repr_with_tools_package(self):
+        return '{}([{}])'.format(
+            self._class_name_with_tools_package, self._contents_repr_with_tools_package)
+
+    @property
+    def _tools_package(self):
+        for part in reversed(self.__module__.split('.')):
+            if not part == self._class_name:
+                return part
+
     ### PUBLIC METHODS ###
 
     def append(self, pitch_range_token):
