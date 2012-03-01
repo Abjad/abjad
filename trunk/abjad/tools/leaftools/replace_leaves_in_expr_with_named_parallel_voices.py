@@ -5,7 +5,7 @@ from abjad.tools.leaftools import iterate_leaves_forward_in_expr
 
 
 def replace_leaves_in_expr_with_named_parallel_voices(expr, upper_name, lower_name):
-    '''Replace leaves in `expr` with two parallel voices containing copies of
+    r'''Replace leaves in `expr` with two parallel voices containing copies of
     leaves in `expr`, with the upper voice named `upper_name` and the lower
     voice named `lower_name`:
 
@@ -19,8 +19,14 @@ def replace_leaves_in_expr_with_named_parallel_voices(expr, upper_name, lower_na
             c4
             c4
         }
+
+    ::
+
         abjad> leaftools.replace_leaves_in_expr_with_named_parallel_voices(c.leaves[1:3], 'upper', 'lower')
         ([Note('c4'), Note('c4')], [Note('c4'), Note('c4')])
+
+    ::
+
         abjad> f(c)
         {
             c4
@@ -44,8 +50,30 @@ def replace_leaves_in_expr_with_named_parallel_voices(expr, upper_name, lower_na
 
         abjad> c = p(r'{ c8 \times 2/3 { c8 c c } \times 4/5 { c16 c c c c } c8 }')
         abjad> f(c)
+        {
+            c8
+            \times 2/3 {
+                c8
+                c8
+                c8
+            }
+            \times 4/5 {
+                c16
+                c16
+                c16
+                c16
+                c16
+            }
+            c8
+        }
+
+    ::
+
         abjad> leaftools.replace_leaves_in_expr_with_named_parallel_voices(c.leaves[2:7], 'upper', 'lower')
         ([Note('c8'), Note('c8'), Note('c16'), Note('c16'), Note('c16')], [Note('c8'), Note('c8'), Note('c16'), Note('c16'), Note('c16')])
+
+    ::
+
         abjad> f(c)
         {
             c8
