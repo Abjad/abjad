@@ -5,7 +5,7 @@ from abjad.tools.constraintstools._Constraint._Constraint import _Constraint
 from abjad.tools.constraintstools._SolutionNode._SolutionNode import _SolutionNode as Node
 
 
-class InfiniteStreamSolver(object):
+class VariableLengthStreamSolver(object):
     '''A solver which behaves similarly to the ``FiniteStreamSolver`` except that
     it can produce solutions of variable rather than fixed lengths.
 
@@ -24,7 +24,7 @@ class InfiniteStreamSolver(object):
         abjad> domain = Domain([1, 2, 3, 4], 1)
         abjad> target_sum = GlobalConstraint(lambda x: sum(x) == 5)
         abjad> boundary_sum = GlobalConstraint(lambda x: sum(x) < 6)
-        abjad> solver = InfiniteStreamSolver(domain, [boundary_sum], [target_sum])
+        abjad> solver = VariableLengthStreamSolver(domain, [boundary_sum], [target_sum])
         abjad> for x in solver: x
         ...
         (1, 1, 1, 1, 1)
@@ -43,9 +43,9 @@ class InfiniteStreamSolver(object):
         (3, 2)
         (4, 1)
         
-    ``InfiniteStreamSolvers`` are immutable.
+    ``VariableLengthStreamSolvers`` are immutable.
 
-    Returns ``InfiniteStreamSolver`` instance.
+    Returns ``VariableLengthStreamSolver`` instance.
     '''
 
     def __init__(self, domain, constraints, terminators, randomize=False):

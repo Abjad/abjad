@@ -5,12 +5,12 @@ from abjad.tools.constraintstools._Constraint._Constraint import _Constraint
 from abjad.tools.constraintstools._SolutionNode._SolutionNode import _SolutionNode as Node
 
 
-class FiniteStreamSolver(object):
+class FixedLengthStreamSolver(object):
     r'''Recursive tree-traversal-based finite-domain constraints solver:
 
     ::
 
-        abjad> from abjad.tools.constraintstools import FiniteStreamSolver
+        abjad> from abjad.tools.constraintstools import FixedLengthStreamSolver
         abjad> from abjad.tools.constraintstools import Domain
         abjad> from abjad.tools.constraintstools import GlobalCountsConstraint
         abjad> from abjad.tools.constraintstools import RelativeIndexConstraint
@@ -22,9 +22,9 @@ class FiniteStreamSolver(object):
         abjad> domain = Domain([1, 2, 3, 4], 4)
         abjad> all_unique = GlobalCountsConstraint(lambda x: all([y == 1 for y in x.values()]))
         abjad> max_interval = RelativeIndexConstraint([0, 1], lambda x, y: abs(x - y) < 3)
-        abjad> solver = FiniteStreamSolver(domain, [all_unique, max_interval])
+        abjad> solver = FixedLengthStreamSolver(domain, [all_unique, max_interval])
 
-    Generate solutions by iterating over the ``FiniteStreamSolver``.
+    Generate solutions by iterating over the ``FixedLengthStreamSolver``.
 
     ::
 
@@ -48,7 +48,7 @@ class FiniteStreamSolver(object):
     ::
 
         abjad> domain = Domain([1, 2, 3, 4], 100)
-        abjad> solver = FiniteStreamSolver(domain, [all_unique])
+        abjad> solver = FixedLengthStreamSolver(domain, [all_unique])
         abjad> [x for x in solver]
         []
 
@@ -57,11 +57,11 @@ class FiniteStreamSolver(object):
 
     ::
 
-        abjad> random_solver = FiniteStreamSolver(domain, [all_unique, max_interval], randomize=True)
+        abjad> random_solver = FixedLengthStreamSolver(domain, [all_unique, max_interval], randomize=True)
 
-    ``FiniteStreamSolvers`` are immutable.
+    ``FixedLengthStreamSolvers`` are immutable.
 
-    Returns ``FiniteStreamSolver`` instance.
+    Returns ``FixedLengthStreamSolver`` instance.
     '''
 
     def __init__(self, domain, constraints, randomize=False):
