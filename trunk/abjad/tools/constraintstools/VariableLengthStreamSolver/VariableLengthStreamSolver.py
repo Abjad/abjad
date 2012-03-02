@@ -3,9 +3,10 @@ import random
 from abjad.tools.constraintstools.Domain import Domain
 from abjad.tools.constraintstools._Constraint._Constraint import _Constraint
 from abjad.tools.constraintstools._SolutionNode._SolutionNode import _SolutionNode as Node
+from abjad.tools.constraintstools._Solver._Solver import _Solver
 
 
-class VariableLengthStreamSolver(object):
+class VariableLengthStreamSolver(_Solver):
     '''A solver which behaves similarly to the ``FiniteStreamSolver`` except that
     it can produce solutions of variable rather than fixed lengths.
 
@@ -52,10 +53,10 @@ class VariableLengthStreamSolver(object):
         assert isinstance(domain, Domain)
         assert all([isinstance(x, _Constraint) for x in constraints])
         assert all([isinstance(x, _Constraint) for x in terminators])
-        self._domain = domain
-        self._constraints = tuple(constraints)
-        self._terminators = tuple(terminators)
-        self._randomize = bool(randomize)
+        object.__setattr__(self, '_domain', domain)
+        object.__setattr__(self, '_constraints', tuple(constraints))
+        object.__setattr__(self, '_terminators', tuple(terminators))
+        object.__setattr__(self, '_randomize', bool(randomize))
 
     ### OVERRIDES ###
 
@@ -98,9 +99,25 @@ class VariableLengthStreamSolver(object):
     ### PUBLIC ATTRIBUTES ###
 
     @property
-    def solutions(self):
-        return [x for x in self.iterator]
+    def constraints(self):
+        return self._constraints
+
+    @property
+    def domain(self):
+        return self._domain
 
     @property
     def iterator(self):
         return self.__iter__()
+
+    @property
+    def randomize(self):
+        return self._randomize
+
+    @property
+    def solutions(self):
+        return [x for x in self.iterator]
+
+    @property
+    def terminators(self):
+        return self._terminators

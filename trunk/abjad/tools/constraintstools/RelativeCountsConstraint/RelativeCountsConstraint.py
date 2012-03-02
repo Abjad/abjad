@@ -75,7 +75,7 @@ class RelativeCountsConstraint(_Constraint):
 
     @property
     def _format_string(self):
-        return '%d, %r' % (self._indices, self._predicate)
+        return '%r, %r' % (self._indices, self._predicate)
 
     ### PUBLIC ATTRIBUTES ###
 

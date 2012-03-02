@@ -3,9 +3,10 @@ import random
 from abjad.tools.constraintstools.Domain import Domain
 from abjad.tools.constraintstools._Constraint._Constraint import _Constraint
 from abjad.tools.constraintstools._SolutionNode._SolutionNode import _SolutionNode as Node
+from abjad.tools.constraintstools._Solver._Solver import _Solver
 
 
-class FixedLengthStreamSolver(object):
+class FixedLengthStreamSolver(_Solver):
     r'''Recursive tree-traversal-based finite-domain constraints solver:
 
     ::
@@ -64,12 +65,14 @@ class FixedLengthStreamSolver(object):
     Returns ``FixedLengthStreamSolver`` instance.
     '''
 
+    __slots__ = ('_constraints', '_domain', '_randomize')
+
     def __init__(self, domain, constraints, randomize=False):
         assert isinstance(domain, Domain)
         assert all([isinstance(x, _Constraint) for x in constraints])
-        self._domain = domain
-        self._constraints = tuple(constraints)
-        self._randomize = bool(randomize)
+        object.__setattr__(self, '_domain', domain)
+        object.__setattr__(self, '_constraints', tuple(constraints))
+        object.__setattr__(self, '_randomize', bool(randomize))
 
     ### OVERRIDES ###
 
@@ -110,9 +113,22 @@ class FixedLengthStreamSolver(object):
     ### PUBLIC ATTRIBUTES ###
 
     @property
-    def solutions(self):
-        return [x for x in self.iterator]
+    def constraints(self):
+        return self._constraints
+
+    @property
+    def domain(self):
+        return self._domain
 
     @property
     def iterator(self):
         return self.__iter__()
+
+    @property
+    def randomize(self):
+        return self._randomize
+
+    @property
+    def solutions(self):
+        return [x for x in self.iterator]
+
