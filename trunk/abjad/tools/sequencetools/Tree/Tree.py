@@ -168,6 +168,14 @@ class Tree(_StrictComparator):
     def _noncyclic_children(self):
         return list(self._children)
 
+    @property
+    def _repr_with_tools_package(self):
+        for part in reversed(type(self).__module__.split('.')):
+            if not part == type(self).__name__:
+                tools_package = part
+                break
+        return '{}.{}({})'.format(tools_package, type(self).__name__, self)
+
     ### PRIVATE METHODS ###
 
     def _initialize_and_wrap_nodes_with_type(self, expr, type_):
