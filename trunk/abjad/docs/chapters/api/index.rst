@@ -1490,6 +1490,20 @@ Unstable Abjad composition packages (load manually)
 
 
 
+constraintstools
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/constraintstools/AbsoluteIndexConstraint/AbsoluteIndexConstraint
+   tools/constraintstools/Domain/Domain
+   tools/constraintstools/FiniteStreamSolver/FiniteStreamSolver
+   tools/constraintstools/GlobalConstraint/GlobalConstraint
+   tools/constraintstools/GlobalCountsConstraint/GlobalCountsConstraint
+   tools/constraintstools/RelativeCountsConstraint/RelativeCountsConstraint
+   tools/constraintstools/RelativeIndexConstraint/RelativeIndexConstraint
+
+
 lyricstools
 
 .. toctree::
