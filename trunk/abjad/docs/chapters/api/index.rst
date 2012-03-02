@@ -1497,12 +1497,12 @@ constraintstools
 
    tools/constraintstools/AbsoluteIndexConstraint/AbsoluteIndexConstraint
    tools/constraintstools/Domain/Domain
-   tools/constraintstools/FiniteStreamSolver/FiniteStreamSolver
+   tools/constraintstools/FixedLengthStreamSolver/FixedLengthStreamSolver
    tools/constraintstools/GlobalConstraint/GlobalConstraint
    tools/constraintstools/GlobalCountsConstraint/GlobalCountsConstraint
-   tools/constraintstools/InfiniteStreamSolver/InfiniteStreamSolver
    tools/constraintstools/RelativeCountsConstraint/RelativeCountsConstraint
    tools/constraintstools/RelativeIndexConstraint/RelativeIndexConstraint
+   tools/constraintstools/VariableLengthStreamSolver/VariableLengthStreamSolver
 
 
 lyricstools
