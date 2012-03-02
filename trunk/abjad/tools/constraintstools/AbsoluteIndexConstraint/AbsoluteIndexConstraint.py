@@ -78,5 +78,5 @@ class AbsoluteIndexConstraint(_Constraint):
         return self._max_index
 
     @property
-    def predicate
+    def predicate(self):
         return self._predicate

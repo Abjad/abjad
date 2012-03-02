@@ -1,4 +1,4 @@
-rom abjad.tools.constraintstools._Constraint._Constraint import _Constraint
+from abjad.tools.constraintstools._Constraint._Constraint import _Constraint
 
 
 class RelativeCountsConstraint(_Constraint):
