@@ -36,12 +36,12 @@ class GlobalCountsConstraint(_Constraint):
     Returns ``GlobalCountsConstraint`` instance.
     '''
 
-    __slots__ = ('procedure')
+    __slots__ = ('_predicate')
 
-    def __init__(self, procedure):
-        assert isinstance(procedure, type(lambda: None))
-        assert procedure.func_code.co_argcount == 1
-        object.__setattr__(self, 'procedure', procedure)
+    def __init__(self, predicate):
+        assert isinstance(predicate, type(lambda: None))
+        assert predicate.func_code.co_argcount == 1
+        object.__setattr__(self, '_predicate', predicate)
 
     ### OVERRIDES ###
 
@@ -52,10 +52,16 @@ class GlobalCountsConstraint(_Constraint):
                 counts[x] = 1
             else:
                 counts[x] += 1
-        return self.procedure(counts)
+        return self._predicate(counts)
 
     ### PRIVATE ATTRIBUTES ###
 
     @property
     def _format_string(self):
-        return '%r' % self.procedure
+        return '%r' % self._predicate
+
+    ### PUBLIC ATTRIBUTES ###
+
+    @property
+    def predicate(self):
+        return self._predicate

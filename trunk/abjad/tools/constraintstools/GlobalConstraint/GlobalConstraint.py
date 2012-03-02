@@ -31,20 +31,26 @@ class GlobalConstraint(_Constraint):
     Returns ``GlobalConstraint`` instance.
     '''
 
-    __slots__ = ('procedure')
+    __slots__ = ('_predicate')
 
-    def __init__(self, procedure):
-        assert isinstance(procedure, type(lambda: None))
-        assert procedure.func_code.co_argcount == 1
-        object.__setattr__(self, 'procedure', procedure)
+    def __init__(self, predicate):
+        assert isinstance(predicate, type(lambda: None))
+        assert predicate.func_code.co_argcount == 1
+        object.__setattr__(self, '_predicate', predicate)
 
     ### OVERRIDES ###
 
     def __call__(self, solution):
-        return self.procedure(solution)
+        return self._predicate(solution)
 
     ### PRIVATE ATTRIBUTES ###
 
     @property
     def _format_string(self):
-        return '%r' % self.procedure
+        return '%r' % self._predicate
+
+    ### PUBLIC ATTRIBUTES ###
+
+    @property
+    def predicate(self):
+        return self._predicate

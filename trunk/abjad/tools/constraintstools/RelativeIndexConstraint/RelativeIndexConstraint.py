@@ -36,9 +36,9 @@ class RelativeIndexConstraint(_Constraint):
     Returns ``RelativeIndexConstraint`` instance.
     '''
 
-    __slots__ = ('index_span', 'indices', 'procedure')
+    __slots__ = ('_index_span', '_indices', '_predicate')
 
-    def __init__(self, indices, procedure):
+    def __init__(self, indices, predicate):
         if isinstance(indices, int):
             assert 1 < indices
             indices = range(indices)
@@ -49,23 +49,37 @@ class RelativeIndexConstraint(_Constraint):
             indices = [x - min_indices for x in indices]
         else:
             raise Exception('Cannot determine indices from %s' % indices)
-        object.__setattr__(self, 'indices', tuple(indices))
-        object.__setattr__(self, 'index_span', max(indices) - min(indices) + 1)
+        object.__setattr__(self, '_indices', tuple(indices))
+        object.__setattr__(self, '_index_span', max(indices) - min(indices) + 1)
 
-        assert isinstance(procedure, type(lambda: None))
-        assert procedure.func_code.co_argcount == len(indices)
-        object.__setattr__(self, 'procedure', procedure)
+        assert isinstance(predicate, type(lambda: None))
+        assert predicate.func_code.co_argcount == len(indices)
+        object.__setattr__(self, '_predicate', predicate)
 
     ### OVERRIDES ###
 
     def __call__(self, solution):
-        if len(solution) < self.index_span:
+        if len(solution) < self._index_span:
             return True
-        items = solution[-self.index_span:]
-        return self.procedure(*[items[i] for i in self.indices])
+        items = solution[-self._index_span:]
+        return self._predicate(*[items[i] for i in self._indices])
 
     ### PRIVATE ATTRIBUTES ###
 
     @property
     def _format_string(self):
-        return '%r, %r' % (self.indices, self.procedure)
+        return '%r, %r' % (self._indices, self._predicate)
+
+    ### PUBLIC ATTRIBUTES ###
+
+    @property
+    def index_span(self):
+        return self._index_span
+
+    @property
+    def indices(self):
+        return self._indices
+
+    @property
+    def predicate(self):
+        return self._predicate
