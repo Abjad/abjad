@@ -6,7 +6,7 @@ from abjad.tools.constraintstools._SolutionNode._SolutionNode import _SolutionNo
 
 
 class FiniteStreamSolver(object):
-    '''Recursive tree-traversal-based finite-domain constraints solver:::
+    r'''Recursive tree-traversal-based finite-domain constraints solver:
 
     ::
 
