@@ -1500,6 +1500,7 @@ constraintstools
    tools/constraintstools/FiniteStreamSolver/FiniteStreamSolver
    tools/constraintstools/GlobalConstraint/GlobalConstraint
    tools/constraintstools/GlobalCountsConstraint/GlobalCountsConstraint
+   tools/constraintstools/InfiniteStreamSolver/InfiniteStreamSolver
    tools/constraintstools/RelativeCountsConstraint/RelativeCountsConstraint
    tools/constraintstools/RelativeIndexConstraint/RelativeIndexConstraint
 
