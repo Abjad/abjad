@@ -54,7 +54,7 @@ class FixedLengthStreamSolver(_Solver):
         []
 
     Can be instantiated with boolean ``randomized`` keyword, in order to
-    randomized the domain on each iteration run:
+    randomize the domain on each iteration run:
 
     ::
 
@@ -78,7 +78,7 @@ class FixedLengthStreamSolver(_Solver):
 
     def __iter__(self):
         if self._randomized:
-            domain = self._domain.randomizedd()
+            domain = self._domain.randomized()
         else:
             domain = self._domain
         constraints = self._constraints

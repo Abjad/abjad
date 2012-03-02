@@ -62,7 +62,7 @@ class VariableLengthStreamSolver(_Solver):
 
     def __iter__(self):
         if self._randomized:
-            domain = self._domain.randomizedd()
+            domain = self._domain.randomized()
         else:
             domain = self._domain
         constraints = self._constraints
