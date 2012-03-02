@@ -53,32 +53,32 @@ class FixedLengthStreamSolver(_Solver):
         abjad> [x for x in solver]
         []
 
-    Can be instantiated with boolean ``randomize`` keyword, in order to
-    randomize the domain on each iteration run:
+    Can be instantiated with boolean ``randomized`` keyword, in order to
+    randomized the domain on each iteration run:
 
     ::
 
-        abjad> random_solver = FixedLengthStreamSolver(domain, [all_unique, max_interval], randomize=True)
+        abjad> random_solver = FixedLengthStreamSolver(domain, [all_unique, max_interval], randomized=True)
 
     ``FixedLengthStreamSolvers`` are immutable.
 
     Returns ``FixedLengthStreamSolver`` instance.
     '''
 
-    __slots__ = ('_constraints', '_domain', '_randomize')
+    __slots__ = ('_constraints', '_domain', '_randomized')
 
-    def __init__(self, domain, constraints, randomize=False):
+    def __init__(self, domain, constraints, randomized=False):
         assert isinstance(domain, Domain)
         assert all([isinstance(x, _Constraint) for x in constraints])
         object.__setattr__(self, '_domain', domain)
         object.__setattr__(self, '_constraints', tuple(constraints))
-        object.__setattr__(self, '_randomize', bool(randomize))
+        object.__setattr__(self, '_randomized', bool(randomized))
 
     ### OVERRIDES ###
 
     def __iter__(self):
-        if self._randomize:
-            domain = self._domain.randomized()
+        if self._randomized:
+            domain = self._domain.randomizedd()
         else:
             domain = self._domain
         constraints = self._constraints
@@ -125,8 +125,8 @@ class FixedLengthStreamSolver(_Solver):
         return self.__iter__()
 
     @property
-    def randomize(self):
-        return self._randomize
+    def randomized(self):
+        return self._randomized
 
     @property
     def solutions(self):

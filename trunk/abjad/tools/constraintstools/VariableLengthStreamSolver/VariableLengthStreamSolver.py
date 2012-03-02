@@ -49,20 +49,20 @@ class VariableLengthStreamSolver(_Solver):
     Returns ``VariableLengthStreamSolver`` instance.
     '''
 
-    def __init__(self, domain, constraints, terminators, randomize=False):
+    def __init__(self, domain, constraints, terminators, randomized=False):
         assert isinstance(domain, Domain)
         assert all([isinstance(x, _Constraint) for x in constraints])
         assert all([isinstance(x, _Constraint) for x in terminators])
         object.__setattr__(self, '_domain', domain)
         object.__setattr__(self, '_constraints', tuple(constraints))
         object.__setattr__(self, '_terminators', tuple(terminators))
-        object.__setattr__(self, '_randomize', bool(randomize))
+        object.__setattr__(self, '_randomized', bool(randomized))
 
     ### OVERRIDES ###
 
     def __iter__(self):
-        if self._randomize:
-            domain = self._domain.randomized()
+        if self._randomized:
+            domain = self._domain.randomizedd()
         else:
             domain = self._domain
         constraints = self._constraints
@@ -111,8 +111,8 @@ class VariableLengthStreamSolver(_Solver):
         return self.__iter__()
 
     @property
-    def randomize(self):
-        return self._randomize
+    def randomized(self):
+        return self._randomized
 
     @property
     def solutions(self):
