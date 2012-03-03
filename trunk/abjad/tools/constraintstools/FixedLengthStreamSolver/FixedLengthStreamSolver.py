@@ -71,7 +71,7 @@ class FixedLengthStreamSolver(_Solver):
         assert isinstance(domain, Domain)
         assert all([isinstance(x, _Constraint) for x in constraints])
         object.__setattr__(self, '_domain', domain)
-        object.__setattr__(self, '_constraints', tuple(constraints))
+        object.__setattr__(self, '_constraints', tuple(sorted(constraints, key=lambda x: x._sort_tuple)))
         object.__setattr__(self, '_randomized', bool(randomized))
 
     ### OVERRIDES ###
@@ -86,24 +86,27 @@ class FixedLengthStreamSolver(_Solver):
         def recurse(node):
             solution = node.solution
 
-            # if the node does not fulfill constraints, 
-            # we just pass - this is a dead end.
-            if not all([constraint(solution) for constraint in constraints]):
-                #node.invalidate( )
-                pass
+            # if the node does not fulfill constraints, this is a dead end.
+            # constraints are applied in order; we bail on first false result.
+            valid = True
+            for constraint in constraints:
+                if not constraint(solution):
+                    valid = False
+                    break
 
-            # if we find a complete solution, yield it
-            elif len(solution) == len(domain):
-                yield solution
+            if valid:
+                # else, if we find a complete solution, yield it
+                if len(solution) == len(domain):
+                    yield solution
 
-            # and if we find an incomplete solution,
-            # create child nodes, and recurse into them.
-            else:
-                for x in domain[len(solution)]:
-                    child = Node(x, node)
-                    node.append(child)
-                    for y in recurse(child):
-                        yield y
+                # and if we find an incomplete solution,
+                # create child nodes, and recurse into them.
+                else:
+                    for x in domain[len(solution)]:
+                        child = Node(x, node)
+                        node.append(child)
+                        for y in recurse(child):
+                            yield y
 
         for x in domain[0]:
             node = Node(x)

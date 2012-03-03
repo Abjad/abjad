@@ -54,8 +54,8 @@ class VariableLengthStreamSolver(_Solver):
         assert all([isinstance(x, _Constraint) for x in constraints])
         assert all([isinstance(x, _Constraint) for x in terminators])
         object.__setattr__(self, '_domain', domain)
-        object.__setattr__(self, '_constraints', tuple(constraints))
-        object.__setattr__(self, '_terminators', tuple(terminators))
+        object.__setattr__(self, '_constraints', tuple(sorted(constraints, key=lambda x: x._sort_tuple)))
+        object.__setattr__(self, '_terminators', tuple(sorted(terminators, key=lambda x: x._sort_tuple)))
         object.__setattr__(self, '_randomized', bool(randomized))
 
     ### OVERRIDES ###
@@ -71,16 +71,23 @@ class VariableLengthStreamSolver(_Solver):
         def recurse(node):
             solution = node.solution
 
-            # if the node does not fulfill constraints, 
-            # we just pass - this is a dead end.
-            if not all([constraint(solution) for constraint in constraints]):
-                #node.invalidate( )
-                pass
+            # if the node does not fulfill constraints, this is a dead end.
+            # constraints are applied in order; we bail on first false result.
+            valid = True
+            for constraint in constraints:
+                if not constraint(solution):  
+                    valid = False
+                    break
 
-            else:
+            if valid:
 
-                # if we find a complete solution, yield it
-                if all([terminator(solution) for terminator in terminators]):
+                # then we test terminators in the same manner
+                for terminator in terminators:
+                    if not terminator(solution):
+                        valid = False
+                        break
+
+                if valid:                
                     yield solution
 
                 # and if we find an incomplete solution,
