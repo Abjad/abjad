@@ -1,7 +1,7 @@
-from abjad.tools.constraintstools._Constraint._Constraint import _Constraint
+from abjad.tools.constraintstools._RelativeConstraint._RelativeConstraint import _RelativeConstraint
 
 
-class RelativeIndexConstraint(_Constraint):
+class RelativeIndexConstraint(_RelativeConstraint):
     r'''A constraint for a relatively positioned group of items, i.e. every
     adjacent pair of two items.  The constraint is applied against the last
     possible grouping in a solution, with the understanding that it has been
@@ -36,26 +36,6 @@ class RelativeIndexConstraint(_Constraint):
     Returns ``RelativeIndexConstraint`` instance.
     '''
 
-    __slots__ = ('_index_span', '_indices', '_predicate')
-
-    def __init__(self, indices, predicate):
-        if isinstance(indices, int):
-            assert 1 < indices
-            indices = range(indices)
-        elif isinstance(indices, (list, tuple)):
-            indices = sorted(set(indices))
-            assert 1 < len(indices)
-            min_indices = min(indices)
-            indices = [x - min_indices for x in indices]
-        else:
-            raise Exception('Cannot determine indices from %s' % indices)
-        object.__setattr__(self, '_indices', tuple(indices))
-        object.__setattr__(self, '_index_span', max(indices) - min(indices) + 1)
-
-        assert isinstance(predicate, type(lambda: None))
-        assert predicate.func_code.co_argcount == len(indices)
-        object.__setattr__(self, '_predicate', predicate)
-
     ### OVERRIDES ###
 
     def __call__(self, solution):
@@ -63,23 +43,3 @@ class RelativeIndexConstraint(_Constraint):
             return True
         items = solution[-self._index_span:]
         return self._predicate(*[items[i] for i in self._indices])
-
-    ### PRIVATE ATTRIBUTES ###
-
-    @property
-    def _format_string(self):
-        return '%r, %r' % (self._indices, self._predicate)
-
-    ### PUBLIC ATTRIBUTES ###
-
-    @property
-    def index_span(self):
-        return self._index_span
-
-    @property
-    def indices(self):
-        return self._indices
-
-    @property
-    def predicate(self):
-        return self._predicate

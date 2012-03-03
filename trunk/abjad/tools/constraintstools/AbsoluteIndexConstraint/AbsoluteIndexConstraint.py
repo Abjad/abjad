@@ -1,7 +1,7 @@
-from abjad.tools.constraintstools._Constraint._Constraint import _Constraint
+from abjad.tools.constraintstools._AbsoluteConstraint._AbsoluteConstraint import _AbsoluteConstraint
 
 
-class AbsoluteIndexConstraint(_Constraint):
+class AbsoluteIndexConstraint(_AbsoluteConstraint):
     '''A constraint for an absolutely positioned item or group of items in a
     solution:
 
@@ -36,24 +36,6 @@ class AbsoluteIndexConstraint(_Constraint):
     Returns ``AbsoluteIndexConstraint`` instance.
     '''
 
-    __slots__ = ('_indices', '_max_index', '_predicate')
-
-    def __init__(self, indices, predicate):
-        if isinstance(indices, int):
-            assert 0 <= indices
-            indices = [indices]
-        elif isinstance(indices, (list, tuple)):
-            indices = sorted(set(indices))
-            assert all([0 <= x for x in indices])
-        else:
-            raise Exception('Cannot determine indices from %s' % indices)
-        object.__setattr__(self, '_indices', indices)
-        object.__setattr__(self, '_max_index', max(indices))
-
-        assert isinstance(predicate, type(lambda: None))
-        assert predicate.func_code.co_argcount == len(indices)
-        object.__setattr__(self, '_predicate', predicate)
-
     ### OVERRIDES ###
 
     def __call__(self, solution):
@@ -61,22 +43,3 @@ class AbsoluteIndexConstraint(_Constraint):
             return True
         return self._predicate(*[solution[i] for i in self._indices])
 
-    ### PRIVATE ATTRIBUTES ###
-
-    @property
-    def _format_string(self):
-        return '%r, %r' % (self._indices, self._predicate)
-
-    ### PUBLIC ATTRIBUTES ###
-
-    @property
-    def indices(self):
-        return self._indices
-
-    @property
-    def max_index(self):
-        return self._max_index
-
-    @property
-    def predicate(self):
-        return self._predicate

@@ -1,7 +1,7 @@
-from abjad.tools.constraintstools._Constraint._Constraint import _Constraint
+from abjad.tools.constraintstools._RelativeConstraint._RelativeConstraint import _RelativeConstraint
 
 
-class RelativeCountsConstraint(_Constraint):
+class RelativeCountsConstraint(_RelativeConstraint):
     '''A constraint which is applied against a dictionary whose keys are the 
     values in a set of items from a given solution, and whose values are the
     counts of those keys.  The constraint is always applied against the last
@@ -34,26 +34,6 @@ class RelativeCountsConstraint(_Constraint):
     Returns ``RelativeCountsConstraint`` instance.
     '''
 
-    __slots__ = ('_index_span', '_indices', '_predicate')
-
-    def __init__(self, indices, predicate):
-        if isinstance(indices, int):
-            assert 1 < indices
-            indices = range(indices)
-        elif isinstance(indices, (list, tuple)):
-            indices = sorted(set(indices))
-            assert 1 < len(indices)
-            min_indices = min(indices)
-            indices = [x - min_indices for x in indices]
-        else:
-            raise Exception('Cannot determine indices from %s' % indices)
-        object.__setattr__(self, '_indices', tuple(indices))
-        object.__setattr__(self, '_index_span', max(indices) - min(indices) + 1)
-
-        assert isinstance(predicate, type(lambda: None))
-        assert predicate.func_code.co_argcount == 1
-        object.__setattr__(self, '_predicate', predicate)
-
     ### OVERRIDES ###
 
     def __call__(self, solution):
@@ -70,23 +50,3 @@ class RelativeCountsConstraint(_Constraint):
                 counts[x] += 1
 
         return self._predicate(counts)
-
-    ### PRIVATE ATTRIBUTES ###
-
-    @property
-    def _format_string(self):
-        return '%r, %r' % (self._indices, self._predicate)
-
-    ### PUBLIC ATTRIBUTES ###
-
-    @property
-    def index_span(self):
-        return self._index_span
-
-    @property
-    def indices(self):
-        return self._indices
-
-    @property
-    def predicate(self):
-        return self._predicate

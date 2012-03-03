@@ -1,7 +1,7 @@
-from abjad.tools.constraintstools._Constraint._Constraint import _Constraint
+from abjad.tools.constraintstools._GlobalConstraint._GlobalConstraint import _GlobalConstraint
 
 
-class GlobalCountsConstraint(_Constraint):
+class GlobalCountsConstraint(_GlobalConstraint):
     '''A constraint which is applied against a dictionary whose keys are the 
     values in a given solution, and whose values are the counts of those keys:
 
@@ -36,13 +36,6 @@ class GlobalCountsConstraint(_Constraint):
     Returns ``GlobalCountsConstraint`` instance.
     '''
 
-    __slots__ = ('_predicate')
-
-    def __init__(self, predicate):
-        assert isinstance(predicate, type(lambda: None))
-        assert predicate.func_code.co_argcount == 1
-        object.__setattr__(self, '_predicate', predicate)
-
     ### OVERRIDES ###
 
     def __call__(self, solution):
@@ -53,15 +46,3 @@ class GlobalCountsConstraint(_Constraint):
             else:
                 counts[x] += 1
         return self._predicate(counts)
-
-    ### PRIVATE ATTRIBUTES ###
-
-    @property
-    def _format_string(self):
-        return '%r' % self._predicate
-
-    ### PUBLIC ATTRIBUTES ###
-
-    @property
-    def predicate(self):
-        return self._predicate
