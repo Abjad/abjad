@@ -1,7 +1,8 @@
+from abjad.core._ImmutableAbjadObject import _ImmutableAbjadObject
 from abjad.tools.componenttools._Component import _Component
 
 
-class Mark(object):
+class Mark(_ImmutableAbjadObject):
     '''.. versionadded:: 2.0
 
     Abstract class from which concrete marks inherit::

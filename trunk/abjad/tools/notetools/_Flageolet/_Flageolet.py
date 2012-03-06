@@ -1,4 +1,7 @@
-class _Flageolet(object):
+from abjad.core._ImmutableAbjadObject import _ImmutableAbjadObject
+
+
+class _Flageolet(_ImmutableAbjadObject):
     '''Abjad model of both natural and artificial harmonics.
     Abstract base class.
     '''

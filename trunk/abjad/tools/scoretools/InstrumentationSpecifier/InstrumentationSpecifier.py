@@ -1,4 +1,7 @@
-class InstrumentationSpecifier(object):
+from abjad.core._MutableAbjadObject import _MutableAbjadObject
+
+
+class InstrumentationSpecifier(_MutableAbjadObject):
     r'''.. versionadded:: 2.5
 
     Abjad model of score instrumentation::

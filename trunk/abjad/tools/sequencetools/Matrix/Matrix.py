@@ -1,4 +1,7 @@
-class Matrix(object):
+from abjad.core._MutableAbjadObject import _MutableAbjadObject
+
+
+class Matrix(_MutableAbjadObject):
     '''.. versionadded:: 2.0
 
     Abjad model of matrix.
