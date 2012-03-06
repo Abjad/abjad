@@ -16,8 +16,9 @@ class OctaveTranspositionMapping(list, _MutableAbjadObject):
     Octave transposition mappings inherit from list and are mutable.
     '''
 
-    def __init__(self, arg_list):
+    def __init__(self, arg_list=None):
         list.__init__(self)
+        arg_list = arg_list or []
         self.extend(arg_list)
 
     ### OVERLOADS ###

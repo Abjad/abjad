@@ -19,3 +19,14 @@ def test_OctaveTranspositionMapping___init___02():
     assert isinstance(mapping_1, pitchtools.OctaveTranspositionMapping)
     assert isinstance(mapping_2, pitchtools.OctaveTranspositionMapping)
     assert mapping_1 == mapping_2
+
+
+def test_OctaveTranspositionMapping___init___03():
+    '''Init empty.
+    '''
+
+    mapping = pitchtools.OctaveTranspositionMapping()
+    assert isinstance(mapping, pitchtools.OctaveTranspositionMapping)
+
+    mapping = pitchtools.OctaveTranspositionMapping([])
+    assert isinstance(mapping, pitchtools.OctaveTranspositionMapping)
