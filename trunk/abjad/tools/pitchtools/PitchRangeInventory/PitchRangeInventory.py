@@ -1,7 +1,8 @@
+from abjad.core._MutableAbjadObject import _MutableAbjadObject
 from abjad.tools.pitchtools.PitchRange import PitchRange
 
 
-class PitchRangeInventory(list):
+class PitchRangeInventory(list, _MutableAbjadObject):
     r'''.. versionadded:: 2.7
 
     Abjad model of an ordered list of pitch ranges::
@@ -15,29 +16,25 @@ class PitchRangeInventory(list):
     def __init__(self, pitch_range_tokens=None):
         list.__init__(self)
         pitch_range_tokens = pitch_range_tokens or []
-        pitch_ranges = []
-        for pitch_range_token in pitch_range_tokens:
-            pitch_ranges.append(PitchRange(pitch_range_token))
-        self.extend(pitch_ranges)
+        self.extend(pitch_range_tokens)
 
     ### OVERLOADS ###
 
-    def __contains__(self, pitch_range_token):
-        pitch_range = PitchRange(pitch_range_token)
-        return list.__contains__(self, pitch_range)
+    def __contains__(self, expr):
+        try:
+            pitch_range = PitchRange(expr)
+            return list.__contains__(self, pitch_range)
+        except ValueError:
+            return False
 
     def __repr__(self):
-        return '{}({})'.format(type(self).__name__, list.__repr__(self))
+        return '{}({})'.format(self.class_name, list.__repr__(self))
 
     ### PRIVATE ATTRIBUTES ###
 
     @property
-    def _class_name(self):
-        return type(self).__name__
-
-    @property
     def _class_name_with_tools_package(self):
-        return '{}.{}'.format(self._tools_package, self._class_name)
+        return '{}.{}'.format(self._tools_package, self.class_name)
 
     @property
     def _contents_repr_with_tools_package(self):
@@ -55,7 +52,7 @@ class PitchRangeInventory(list):
     @property
     def _tools_package(self):
         for part in reversed(self.__module__.split('.')):
-            if not part == self._class_name:
+            if not part == self.class_name:
                 return part
 
     ### PUBLIC METHODS ###
@@ -89,7 +86,5 @@ class PitchRangeInventory(list):
 
         Return none.
         '''
-        pitch_ranges = []
         for pitch_range_token in pitch_range_tokens:
-            pitch_ranges.append(PitchRange(pitch_range_token))
-        list.extend(self, pitch_ranges)
+            self.append(pitch_range_token)

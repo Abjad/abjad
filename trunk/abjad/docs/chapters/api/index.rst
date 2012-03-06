@@ -631,6 +631,7 @@ pitchtools
    tools/pitchtools/NumberedDiatonicPitchClass/NumberedDiatonicPitchClass
    tools/pitchtools/OctaveTranspositionMapping/OctaveTranspositionMapping
    tools/pitchtools/OctaveTranspositionMappingComponent/OctaveTranspositionMappingComponent
+   tools/pitchtools/OctaveTranspositionMappingInventory/OctaveTranspositionMappingInventory
    tools/pitchtools/PitchRange/PitchRange
    tools/pitchtools/PitchRangeInventory/PitchRangeInventory
    tools/pitchtools/TwelveToneRow/TwelveToneRow
