@@ -1,4 +1,8 @@
-class _Immutable(object):
+from abjad.core._ImmutableAbjadObject import _ImmutableAbjadObject
+
+
+#class _Immutable(object):
+class _Immutable(_ImmutableAbjadObject):
     '''.. versionadded:: 2.0
 
     Base from which immutable custom classes can inherit.
@@ -17,13 +21,15 @@ class _Immutable(object):
     __deepcopy__ = __copy__
 
     def __delattr__(self, *args):
-        raise AttributeError('objects are immutable: "%s".' % self.__class__.__name__)
+        #raise AttributeError('objects are immutable: "%s".' % self.__class__.__name__)
+        raise AttributeError('objects are immutable: "{}".'.format(self.class_name))
 
     def __getstate__(self):
         return {}
 
     def __setattr__(self, *args):
-        raise AttributeError('objects are immutable: "%s".' % self.__class__.__name__)
+        #raise AttributeError('objects are immutable: "%s".' % self.__class__.__name__)
+        raise AttributeError('objects are immutable: "{}".'.format(self.class_name))
 
     def __setstate__(self, state):
         pass

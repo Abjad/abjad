@@ -1,4 +1,8 @@
-class _LilyPondComponentPlugIn(object):
+from abjad.core._MutableAbjadObject import _MutableAbjadObject
+
+
+#class _LilyPondComponentPlugIn(object):
+class _LilyPondComponentPlugIn(_MutableAbjadObject):
     '''.. versionadded:: 2.0
 
     Shared LilyPond grob proxy and LilyPond context proxy functionality.

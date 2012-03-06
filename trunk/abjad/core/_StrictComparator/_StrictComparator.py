@@ -1,4 +1,8 @@
-class _StrictComparator(object):
+from abjad.core._ImmutableAbjadObject import _ImmutableAbjadObject
+
+
+#class _StrictComparator(object):
+class _StrictComparator(_ImmutableAbjadObject):
     '''Mix-in base class to confer strict comparison behavior
     to any custom class. Note that this class will be unnecessary
     in some future release because Python 3.0 implements strict

@@ -1,4 +1,8 @@
-class _UnaryComparator(object):
+from abjad.core._ImmutableAbjadObject import _ImmutableAbjadObject
+
+
+#class _UnaryComparator(object):
+class _UnaryComparator(_ImmutableAbjadObject):
     '''Mix-in base class to confer unary comparison behavior to any custom class.
     '''
 
