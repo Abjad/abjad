@@ -1,1 +1,63 @@
+from abjad.core._MutableAbjadObject import _MutableAbjadObject
+from abjad.tools.pitchtools.NumberedChromaticPitch import NumberedChromaticPitch
+from abjad.tools.pitchtools.PitchRange import PitchRange
 
+
+class OctaveTranspositionMappingComponent(_MutableAbjadObject):
+    '''.. versionadded:: 2.8
+
+    Octave transposition mapping component::
+
+        abjad> pitchtools.OctaveTranspositionMappingComponent('[A0, C8]', 15)
+        OctaveTranspositionMappingComponent('[A0, C8]', 15)
+
+    Octave transposition mapping components are mutable.
+    '''
+
+    def __init__(self, *args):
+        if len(args) == 1 and isinstance(args[0], tuple):
+            source_pitch_range, target_octave_start_pitch = args[0]
+        elif len(args) == 1 and isinstance(args[0], type(self)):
+            source_pitch_range = args[0].source_pitch_range
+            target_octave_start_pitch = args[0].target_octave_start_pitch
+        elif len(args) == 2:
+            source_pitch_range, target_octave_start_pitch = args
+        else:
+            raise ValueError(repr(args))
+        self.source_pitch_range = source_pitch_range
+        self.target_octave_start_pitch = target_octave_start_pitch
+
+    ### OVERLOADS ###
+
+    def __eq__(self, other):
+        if isinstance(other, type(self)):
+            if self.source_pitch_range == other.source_pitch_range:
+                if self.target_octave_start_pitch == other.target_octave_start_pitch:
+                    return True
+        return False
+
+    def __ne__(self, other):
+        return not self == other
+
+    def __repr__(self):
+        return '{}({!r}, {})'.format(self.class_name, 
+            self.source_pitch_range.one_line_named_chromatic_pitch_repr, 
+            self.target_octave_start_pitch)
+
+    ### READ / WRITE ATTRIBUTES ###
+
+    @apply
+    def source_pitch_range():
+        def fget(self):
+            return self._source_pitch_range
+        def fset(self, source_pitch_range):
+            self._source_pitch_range = PitchRange(source_pitch_range)
+        return property(**locals())
+
+    @apply
+    def target_octave_start_pitch():
+        def fget(self):
+            return self._target_octave_start_pitch
+        def fset(self, target_octave_start_pitch):
+            self._target_octave_start_pitch = NumberedChromaticPitch(target_octave_start_pitch)
+        return property(**locals())
