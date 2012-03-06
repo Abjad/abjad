@@ -2,6 +2,7 @@ from abjad.tools.importtools._import_structured_package import _import_structure
 
 _import_structured_package(__path__[0], globals())
 
+from _AbjadObject import _AbjadObject
 from _FlexEqualityComparator import _FlexEqualityComparator
 from _Immutable import _Immutable
 from _ImmutableDictionary import _ImmutableDictionary
