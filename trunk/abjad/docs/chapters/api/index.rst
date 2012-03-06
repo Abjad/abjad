@@ -629,6 +629,7 @@ pitchtools
    tools/pitchtools/NumberedChromaticPitchClassVector/NumberedChromaticPitchClassVector
    tools/pitchtools/NumberedDiatonicPitch/NumberedDiatonicPitch
    tools/pitchtools/NumberedDiatonicPitchClass/NumberedDiatonicPitchClass
+   tools/pitchtools/OctaveTranspositionMapping/OctaveTranspositionMapping
    tools/pitchtools/OctaveTranspositionMappingComponent/OctaveTranspositionMappingComponent
    tools/pitchtools/PitchRange/PitchRange
    tools/pitchtools/PitchRangeInventory/PitchRangeInventory

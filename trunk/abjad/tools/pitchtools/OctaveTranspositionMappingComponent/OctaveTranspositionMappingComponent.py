@@ -11,6 +11,11 @@ class OctaveTranspositionMappingComponent(_MutableAbjadObject):
         abjad> pitchtools.OctaveTranspositionMappingComponent('[A0, C8]', 15)
         OctaveTranspositionMappingComponent('[A0, C8]', 15)
 
+    Initialize from input parameters separately or as a pair.
+
+    Model ``pitchtools.transpose_chromatic_pitch_number_by_octave_transposition_mapping`` input part.
+    (See the docs for that function.)
+
     Octave transposition mapping components are mutable.
     '''
 
@@ -40,7 +45,13 @@ class OctaveTranspositionMappingComponent(_MutableAbjadObject):
         return not self == other
 
     def __repr__(self):
-        return '{}({!r}, {})'.format(self.class_name, 
+        return '{}{}'.format(self.class_name, self._input_argument_token)
+
+    ### PRIVATE ATTRIBUTES ###
+
+    @property
+    def _input_argument_token(self):
+        return '({!r}, {})'.format(
             self.source_pitch_range.one_line_named_chromatic_pitch_repr, 
             self.target_octave_start_pitch)
 
@@ -49,6 +60,14 @@ class OctaveTranspositionMappingComponent(_MutableAbjadObject):
     @apply
     def source_pitch_range():
         def fget(self):
+            '''Read / write source pitch range::
+
+                abjad> mapping_component = pitchtools.OctaveTranspositionMappingComponent('[A0, C8]', 15)
+                abjad> mapping_component.source_pitch_range
+                PitchRange('[A0, C8]')
+
+            Return pitch range or none.
+            '''
             return self._source_pitch_range
         def fset(self, source_pitch_range):
             self._source_pitch_range = PitchRange(source_pitch_range)
@@ -57,6 +76,14 @@ class OctaveTranspositionMappingComponent(_MutableAbjadObject):
     @apply
     def target_octave_start_pitch():
         def fget(self):
+            '''Read / write target octave start pitch::
+
+                abjad> mapping_component = pitchtools.OctaveTranspositionMappingComponent('[A0, C8]', 15)
+                abjad> mapping_component.target_octave_start_pitch
+                NumberedChromaticPitch(15)
+
+            Return numbered chromatic pitch or none.
+            '''
             return self._target_octave_start_pitch
         def fset(self, target_octave_start_pitch):
             self._target_octave_start_pitch = NumberedChromaticPitch(target_octave_start_pitch)
