@@ -1,12 +1,12 @@
 from abjad import *
 
 
-def test_pitchtools_PitchRange___init___01():
-    '''Init infinite pitch range.'''
-
-    pr = pitchtools.PitchRange()
-    assert pr._start is None
-    assert pr._stop is None
+#def test_pitchtools_PitchRange___init___01():
+#    '''Init infinite pitch range.'''
+#
+#    pr = pitchtools.PitchRange()
+#    assert pr._start is None
+#    assert pr._stop is None
 
 
 def test_pitchtools_PitchRange___init___02():
