@@ -1,4 +1,4 @@
-from abjad.tools.intervaltreetools.BoundedInterval import BoundedInterval
+from abjad.tools.intervaltreetools.TimeInterval import TimeInterval
 from abjad.tools.intervaltreetools.IntervalTree import IntervalTree
 from abjad.tools.intervaltreetools.all_are_intervals_or_trees_or_empty import all_are_intervals_or_trees_or_empty
 from abjad.tools.intervaltreetools.compute_depth_of_intervals import compute_depth_of_intervals

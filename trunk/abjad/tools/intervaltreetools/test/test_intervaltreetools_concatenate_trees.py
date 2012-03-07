@@ -5,9 +5,9 @@ import py.test
 
 
 def test_intervaltreetools_concatenate_trees_01():
-    a = BoundedInterval(0, 10)
-    b = BoundedInterval(5, 15)
-    c = BoundedInterval(10, 20)
+    a = TimeInterval(0, 10)
+    b = TimeInterval(5, 15)
+    c = TimeInterval(10, 20)
     tree_a = IntervalTree([a, b, c])
     tree_b = IntervalTree([a, b, c])
     concatenated = concatenate_trees([tree_a, tree_b])
@@ -22,9 +22,9 @@ def test_intervaltreetools_concatenate_trees_01():
     assert c.signature == (10, 20)
 
 def test_intervaltreetools_concatenate_trees_02():
-    a = BoundedInterval(0, 10)
-    b = BoundedInterval(5, 15)
-    c = BoundedInterval(10, 20)
+    a = TimeInterval(0, 10)
+    b = TimeInterval(5, 15)
+    c = TimeInterval(10, 20)
     tree_a = IntervalTree([a, b, c])
     tree_b = IntervalTree([a, b, c])
     concatenated = concatenate_trees([tree_a, tree_b], padding = Fraction(1, 2))

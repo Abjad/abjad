@@ -11,20 +11,20 @@ def resolve_overlaps_between_nonoverlapping_trees(trees):
     overlap intervals from starter-indexed trees ::
 
         abjad> from abjad.tools import intervaltreetools
-        abjad> from abjad.tools.intervaltreetools import BoundedInterval
+        abjad> from abjad.tools.intervaltreetools import TimeInterval
         abjad> from abjad.tools.intervaltreetools import IntervalTree
 
     ::
 
-        abjad> a = IntervalTree(BoundedInterval(0, 4, {'a': 1}))
-        abjad> b = IntervalTree(BoundedInterval(1, 5, {'b': 2}))
-        abjad> c = IntervalTree(BoundedInterval(2, 6, {'c': 3}))
-        abjad> d = IntervalTree(BoundedInterval(1, 3, {'d': 4}))
+        abjad> a = IntervalTree(TimeInterval(0, 4, {'a': 1}))
+        abjad> b = IntervalTree(TimeInterval(1, 5, {'b': 2}))
+        abjad> c = IntervalTree(TimeInterval(2, 6, {'c': 3}))
+        abjad> d = IntervalTree(TimeInterval(1, 3, {'d': 4}))
         abjad> intervaltreetools.resolve_overlaps_between_nonoverlapping_trees([a, b, c, d])
         IntervalTree([
-            BoundedInterval(Offset(0, 1), Offset(4, 1), {'a': 1}),
-            BoundedInterval(Offset(4, 1), Offset(5, 1), {'b': 2}),
-            BoundedInterval(Offset(5, 1), Offset(6, 1), {'c': 3})
+            TimeInterval(Offset(0, 1), Offset(4, 1), {'a': 1}),
+            TimeInterval(Offset(4, 1), Offset(5, 1), {'b': 2}),
+            TimeInterval(Offset(5, 1), Offset(6, 1), {'c': 3})
         ])
 
     Return interval tree.

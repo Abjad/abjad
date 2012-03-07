@@ -4,20 +4,20 @@ import py.test
 
 
 def test_intervaltreetools_all_intervals_are_contiguous_01():
-    a = BoundedInterval(0, 10)
-    b = BoundedInterval(10, 20)
-    c = BoundedInterval(20, 30)
+    a = TimeInterval(0, 10)
+    b = TimeInterval(10, 20)
+    c = TimeInterval(20, 30)
     tree = IntervalTree([a, b, c])
     assert all_intervals_are_contiguous(tree)
 
 def test_intervaltreetools_all_intervals_are_contiguous_02():
-    a = BoundedInterval(0, 10)
-    b = BoundedInterval(5, 15)
+    a = TimeInterval(0, 10)
+    b = TimeInterval(5, 15)
     tree = IntervalTree([a, b])
     assert not all_intervals_are_contiguous(tree)
 
 def test_intervaltreetools_all_intervals_are_contiguous_03():
-    a = BoundedInterval(0, 10)
-    b = BoundedInterval(15, 25)
+    a = TimeInterval(0, 10)
+    b = TimeInterval(15, 25)
     tree = IntervalTree([a, b])
     assert not all_intervals_are_contiguous(tree)

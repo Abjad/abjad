@@ -8,35 +8,35 @@ def test_intervaltreetools_all_are_intervals_or_trees_or_empty_01():
 
 
 def test_intervaltreetools_all_are_intervals_or_trees_or_empty_02():
-    interval = BoundedInterval(0, 10)
+    interval = TimeInterval(0, 10)
     assert all_are_intervals_or_trees_or_empty(interval)
 
 
 def test_intervaltreetools_all_are_intervals_or_trees_or_empty_03():
     tree = IntervalTree([])
-    other_tree = IntervalTree([BoundedInterval(2001, 2010)])
-    interval = BoundedInterval(0, 10)
+    other_tree = IntervalTree([TimeInterval(2001, 2010)])
+    interval = TimeInterval(0, 10)
     assert all_are_intervals_or_trees_or_empty([tree, other_tree, interval])
 
 
 def test_intervaltreetools_all_are_intervals_or_trees_or_empty_04():
     tree = IntervalTree([])
-    other_tree = IntervalTree([BoundedInterval(2001, 2010)])
-    interval = BoundedInterval(0, 10)
+    other_tree = IntervalTree([TimeInterval(2001, 2010)])
+    interval = TimeInterval(0, 10)
     assert all_are_intervals_or_trees_or_empty([tree, [[other_tree], interval], []])
 
 
 def test_intervaltreetools_all_are_intervals_or_trees_or_empty_05():
     tree = IntervalTree([])
-    other_tree = IntervalTree([BoundedInterval(2001, 2010)])
-    interval = BoundedInterval(0, 10)
+    other_tree = IntervalTree([TimeInterval(2001, 2010)])
+    interval = TimeInterval(0, 10)
     assert all_are_intervals_or_trees_or_empty([tree, [[other_tree], interval], [], [[interval]]])
 
 
 def test_intervaltreetools_all_are_intervals_or_trees_or_empty_06():
     tree = IntervalTree([])
-    other_tree = IntervalTree([BoundedInterval(2001, 2010)])
-    interval = BoundedInterval(0, 10)
+    other_tree = IntervalTree([TimeInterval(2001, 2010)])
+    interval = TimeInterval(0, 10)
     assert not all_are_intervals_or_trees_or_empty([tree, [[other_tree], interval], [], [2]])
 
 

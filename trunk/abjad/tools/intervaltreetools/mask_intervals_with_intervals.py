@@ -1,4 +1,4 @@
-from abjad.tools.intervaltreetools.BoundedInterval import BoundedInterval
+from abjad.tools.intervaltreetools.TimeInterval import TimeInterval
 from abjad.tools.intervaltreetools.IntervalTree import IntervalTree
 from abjad.tools.intervaltreetools.all_are_intervals_or_trees_or_empty import all_are_intervals_or_trees_or_empty
 from abjad.tools.intervaltreetools.compute_logical_not_of_intervals_in_interval import compute_logical_not_of_intervals_in_interval
@@ -12,19 +12,19 @@ def mask_intervals_with_intervals(masked_intervals, mask_intervals):
     defined in `mask_intervals`, while maintaining `masked_intervals`' payload contents ::
 
         abjad> from abjad.tools import intervaltreetools
-        abjad> from abjad.tools.intervaltreetools import BoundedInterval
+        abjad> from abjad.tools.intervaltreetools import TimeInterval
         abjad> from abjad.tools.intervaltreetools import IntervalTree
 
     ::
 
-        abjad> a = BoundedInterval(0, 10, {'a': 1})
-        abjad> b = BoundedInterval(5, 15, {'b': 2})
+        abjad> a = TimeInterval(0, 10, {'a': 1})
+        abjad> b = TimeInterval(5, 15, {'b': 2})
         abjad> tree = IntervalTree([a, b])
-        abjad> mask = BoundedInterval(4, 11)
+        abjad> mask = TimeInterval(4, 11)
         abjad> intervaltreetools.mask_intervals_with_intervals(tree, mask)
         IntervalTree([
-            BoundedInterval(Offset(4, 1), Offset(10, 1), {'a': 1}),
-            BoundedInterval(Offset(5, 1), Offset(11, 1), {'b': 2})
+            TimeInterval(Offset(4, 1), Offset(10, 1), {'a': 1}),
+            TimeInterval(Offset(5, 1), Offset(11, 1), {'b': 2})
         ])
 
     Return interval tree.
@@ -51,7 +51,7 @@ def mask_intervals_with_intervals(masked_intervals, mask_intervals):
 
     start = min(mask_tree.start, masked_tree.start)
     stop = max(mask_tree.stop, masked_tree.stop)
-    not_mask_tree = compute_logical_not_of_intervals_in_interval(mask_tree, BoundedInterval(start, stop))
+    not_mask_tree = compute_logical_not_of_intervals_in_interval(mask_tree, TimeInterval(start, stop))
 
     if not not_mask_tree:
         return masked_tree

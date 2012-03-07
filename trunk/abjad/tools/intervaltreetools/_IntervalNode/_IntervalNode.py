@@ -1,11 +1,11 @@
-from abjad.tools.intervaltreetools.BoundedInterval import BoundedInterval
+from abjad.tools.intervaltreetools.TimeInterval import TimeInterval
 from abjad.tools.intervaltreetools._RedBlackNode import _RedBlackNode
 from abjad import Fraction
 
 
 class _IntervalNode(_RedBlackNode):
     '''A red-black node in an IntervalTree.
-    Duplicate payloads are supported by maintaining a list of BoundedIntervals
+    Duplicate payloads are supported by maintaining a list of TimeIntervals
     '''
 
     __slots__ = ('latest_stop', 'earliest_stop', 'key',
@@ -16,12 +16,12 @@ class _IntervalNode(_RedBlackNode):
         _RedBlackNode.__init__(self, key)
         self.payload = []
         if isinstance(intervals, (list, set, tuple)):
-            assert all([isinstance(interval, BoundedInterval) for interval in intervals])
+            assert all([isinstance(interval, TimeInterval) for interval in intervals])
             self.payload.extend(intervals)
-        elif isinstance(intervals, (BoundedInterval, type(None))):
+        elif isinstance(intervals, (TimeInterval, type(None))):
             self.payload.append(intervals)
         else:
-            raise ValueError('_IntervalNode only accepts single or multiple instances of BoundedInterval.')
+            raise ValueError('_IntervalNode only accepts single or multiple instances of TimeInterval.')
 
     ### OVERLOADS ###
 

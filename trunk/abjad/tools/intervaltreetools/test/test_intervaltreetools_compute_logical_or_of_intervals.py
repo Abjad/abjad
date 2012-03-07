@@ -14,7 +14,7 @@ def test_intervaltreetools_compute_logical_or_of_intervals_01():
     assert actual_signatures == target_signatures
 
 def test_intervaltreetools_compute_logical_or_of_intervals_02():
-    tree = IntervalTree(BoundedInterval(5, 10))
+    tree = IntervalTree(TimeInterval(5, 10))
     logical_or = compute_logical_or_of_intervals(tree)
     assert len(logical_or) == len(tree)
     assert logical_or[0].signature == tree[0].signature

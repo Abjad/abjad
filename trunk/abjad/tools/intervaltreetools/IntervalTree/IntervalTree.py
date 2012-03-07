@@ -3,7 +3,7 @@ from collections import Iterable
 from abjad import Fraction
 from abjad.tools.durationtools import Duration
 from abjad.tools.durationtools import Offset
-from abjad.tools.intervaltreetools.BoundedInterval import BoundedInterval
+from abjad.tools.intervaltreetools.TimeInterval import TimeInterval
 from abjad.tools.intervaltreetools._IntervalNode import _IntervalNode
 from abjad.tools.intervaltreetools._RedBlackTree import _RedBlackTree
 
@@ -18,12 +18,12 @@ class IntervalTree(_RedBlackTree):
     process, such as locating overlapping intervals.
 
     IntervalTrees can be instantiated without contents, or from a mixed
-    collection of other IntervalTrees and / or BoundedIntervals.  The input
+    collection of other IntervalTrees and / or TimeIntervals.  The input
     will be parsed recursively ::
 
         abjad> from abjad.tools.intervaltreetools import IntervalTree
-        abjad> from abjad.tools.intervaltreetools import BoundedInterval
-        abjad> bi = BoundedInterval(0, 10)
+        abjad> from abjad.tools.intervaltreetools import TimeInterval
+        abjad> bi = TimeInterval(0, 10)
         abjad> tree = IntervalTree([bi])
 
     '''
@@ -105,14 +105,14 @@ class IntervalTree(_RedBlackTree):
 
     def _insert(self, args):
         def recurse(x):
-            if isinstance(x, BoundedInterval): # BoundedIntervals are Iterable!
+            if isinstance(x, TimeInterval): # TimeIntervals are Iterable!
                 return [x]
             elif isinstance(x, Iterable) and \
             not isinstance(x, (basestring)):
                 return [a for i in x for a in recurse(i)]
 
         intervals = recurse(args)
-        assert all([isinstance(x, BoundedInterval) for x in intervals])
+        assert all([isinstance(x, TimeInterval) for x in intervals])
 
         for interval in intervals:
             node = self._find_by_key(interval.start)
@@ -131,9 +131,9 @@ class IntervalTree(_RedBlackTree):
     @property
     def bounds(self):
         '''The startest and stopest values of the tree returned as a
-        BoundedInterval.'''
+        TimeInterval.'''
         if self:
-            return BoundedInterval(self.start, self.stop)
+            return TimeInterval(self.start, self.stop)
         return None
 
     @property
@@ -237,7 +237,7 @@ class IntervalTree(_RedBlackTree):
                 intervals.extend(recurse(node.right, start, stop))
             return intervals
         if len(args) == 1:
-            assert isinstance(args[0], BoundedInterval)
+            assert isinstance(args[0], TimeInterval)
             start, stop = args[0].start, args[0].stop
         elif len(args) == 2:
             start, stop = args[0], args[1]
@@ -300,7 +300,7 @@ class IntervalTree(_RedBlackTree):
                 intervals.extend(recurse(node.right, start, stop))
             return intervals
         if len(args) == 1:
-            assert isinstance(args[0], BoundedInterval)
+            assert isinstance(args[0], TimeInterval)
             start, stop = args[0].start, args[0].stop
         elif len(args) == 2:
             start, stop = args[0], args[1]
@@ -368,7 +368,7 @@ class IntervalTree(_RedBlackTree):
                 intervals.extend(recurse(node.right, start, stop))
             return intervals
         if len(args) == 1:
-            assert isinstance(args[0], BoundedInterval)
+            assert isinstance(args[0], TimeInterval)
             start, stop = args[0].start, args[0].stop
         elif len(args) == 2:
             start, stop = args[0], args[1]
@@ -448,7 +448,7 @@ class IntervalTree(_RedBlackTree):
                 intervals.extend(recurse(node.right, start, stop))
             return intervals
         if len(args) == 1:
-            assert isinstance(args[0], BoundedInterval)
+            assert isinstance(args[0], TimeInterval)
             start, stop = args[0].start, args[0].stop
         elif len(args) == 2:
             start, stop = args[0], args[1]

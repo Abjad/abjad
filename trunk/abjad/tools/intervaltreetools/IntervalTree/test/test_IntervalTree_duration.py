@@ -3,9 +3,9 @@ import py.test
 
 
 def test_IntervalTree_duration_01():
-    a = BoundedInterval(-1, 2)
-    b = BoundedInterval(0, 1)
-    c = BoundedInterval(1, 3)
+    a = TimeInterval(-1, 2)
+    b = TimeInterval(0, 1)
+    c = TimeInterval(1, 3)
 
     tree = IntervalTree(a)
     assert tree.duration == 3

@@ -8,23 +8,23 @@ def split_intervals_at_rationals(intervals, rationals):
     `rationals` ::
 
         abjad> from abjad.tools import intervaltreetools
-        abjad> from abjad.tools.intervaltreetools import BoundedInterval
+        abjad> from abjad.tools.intervaltreetools import TimeInterval
         abjad> from abjad.tools.intervaltreetools import IntervalTree
 
     ::
 
-        abjad> a = BoundedInterval(-1, 3)
-        abjad> b = BoundedInterval(6, 12)
-        abjad> c = BoundedInterval(9, 16)
+        abjad> a = TimeInterval(-1, 3)
+        abjad> b = TimeInterval(6, 12)
+        abjad> c = TimeInterval(9, 16)
         abjad> tree = IntervalTree([a, b, c])
         abjad> intervaltreetools.split_intervals_at_rationals(tree, [1, Fraction(19, 2)])
         IntervalTree([
-            BoundedInterval(Offset(-1, 1), Offset(1, 1), {}),
-            BoundedInterval(Offset(1, 1), Offset(3, 1), {}),
-            BoundedInterval(Offset(6, 1), Offset(19, 2), {}),
-            BoundedInterval(Offset(9, 1), Offset(19, 2), {}),
-            BoundedInterval(Offset(19, 2), Offset(12, 1), {}),
-            BoundedInterval(Offset(19, 2), Offset(16, 1), {})
+            TimeInterval(Offset(-1, 1), Offset(1, 1), {}),
+            TimeInterval(Offset(1, 1), Offset(3, 1), {}),
+            TimeInterval(Offset(6, 1), Offset(19, 2), {}),
+            TimeInterval(Offset(9, 1), Offset(19, 2), {}),
+            TimeInterval(Offset(19, 2), Offset(12, 1), {}),
+            TimeInterval(Offset(19, 2), Offset(16, 1), {})
         ])
 
     Return interval tree.
@@ -49,7 +49,7 @@ def split_intervals_at_rationals(intervals, rationals):
             intersecting_intervals = intersecting_intervals.difference(set(tangent_intervals))
         splits = []
         for interval in intersecting_intervals:
-            splits.extend(interval.split_at_rational(rational))
+            splits.extend(interval.split_at_rationals(rational))
         tree = IntervalTree(set(tree[:]).difference(intersecting_intervals).union(set(splits)))
 
     return tree

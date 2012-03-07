@@ -7,7 +7,7 @@ from abjad.tools.pitchtools import make_n_middle_c_centered_pitches
 from abjad.tools.schemetools import Scheme
 from abjad.tools.schemetools import SchemeMoment
 from abjad.tools.schemetools import SchemePair
-from abjad.tools.intervaltreetools.BoundedInterval import BoundedInterval
+from abjad.tools.intervaltreetools.TimeInterval import TimeInterval
 from abjad.tools.intervaltreetools.IntervalTree import IntervalTree
 from abjad.tools.intervaltreetools._make_voice_from_nonoverlapping_intervals import _make_voice_from_nonoverlapping_intervals
 from collections import Iterable
@@ -20,7 +20,7 @@ def make_polyphonic_percussion_score_from_nonoverlapping_trees(trees, colorkey =
         all([isinstance(tree, IntervalTree) for tree in trees])
 
     pitches = make_n_middle_c_centered_pitches(len(trees))
-    #bounds = BoundedInterval(min([x.start for x in trees]), max([x.stop for x in trees]))
+    #bounds = TimeInterval(min([x.start for x in trees]), max([x.stop for x in trees]))
     voices = []
     for zipped in zip(trees, pitches):
         tree = zipped[0]

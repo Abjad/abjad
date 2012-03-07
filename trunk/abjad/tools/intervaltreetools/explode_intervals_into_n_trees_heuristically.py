@@ -1,4 +1,4 @@
-from abjad.tools.intervaltreetools.BoundedInterval import BoundedInterval
+from abjad.tools.intervaltreetools.TimeInterval import TimeInterval
 from abjad.tools.intervaltreetools.IntervalTree import IntervalTree
 from abjad.tools.intervaltreetools.all_are_intervals_or_trees_or_empty import all_are_intervals_or_trees_or_empty
 from abjad.tools.intervaltreetools.calculate_depth_density_of_intervals_in_interval import calculate_depth_density_of_intervals_in_interval
@@ -24,7 +24,7 @@ def explode_intervals_into_n_trees_heuristically(intervals, n):
         return [tree]
 
     # cache
-    treebounds = BoundedInterval(tree.start, tree.stop)
+    treebounds = TimeInterval(tree.start, tree.stop)
     xtrees = [IntervalTree(tree[0])]
     densities = [calculate_depth_density_of_intervals_in_interval(xtrees[0], treebounds)]
     logical_ors = [compute_logical_or_of_intervals(xtrees[0])]

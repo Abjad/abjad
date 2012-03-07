@@ -3,9 +3,9 @@ from abjad.tools.intervaltreetools._make_test_intervals import _make_test_interv
 
 
 def test_intervaltreetools_make_polyphonic_percussion_score_from_nonoverlapping_trees_01():
-    a = BoundedInterval(0, 3, {})
-    b = BoundedInterval(6, 12, {})
-    c = BoundedInterval(9, 15, {})
+    a = TimeInterval(0, 3, {})
+    b = TimeInterval(6, 12, {})
+    c = TimeInterval(9, 15, {})
     tree = IntervalTree([a, b, c])
     trees = explode_intervals_compactly(tree)
     lily = make_polyphonic_percussion_score_from_nonoverlapping_trees(trees)

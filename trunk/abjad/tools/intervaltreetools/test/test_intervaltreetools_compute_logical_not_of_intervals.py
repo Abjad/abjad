@@ -11,6 +11,6 @@ def test_intervaltreetools_compute_logical_not_of_intervals_01():
     assert actual_signatures == target_signatures
 
 def test_intervaltreetools_compute_logical_not_of_intervals_02():
-    tree = IntervalTree(BoundedInterval(5, 10))
+    tree = IntervalTree(TimeInterval(5, 10))
     logical_not = compute_logical_not_of_intervals(tree)
     assert not len(logical_not)

@@ -1,11 +1,11 @@
 from abjad.tools.intervaltreetools import *
-from abjad.tools.intervaltreetools import BoundedInterval
+from abjad.tools.intervaltreetools import TimeInterval
 from abjad.tools.intervaltreetools._make_test_intervals import _make_test_intervals
 
 
 def test_IntervalTree_find_intervals_stopping_within_interval_01():
     blocks = _make_test_intervals()
-    target_interval = BoundedInterval(-10, 0)
+    target_interval = TimeInterval(-10, 0)
     expected_payloads = ()
     expected_blocks = tuple(sorted(filter(lambda x: x.keys()[0] in expected_payloads, blocks),
         key = lambda x: x.signature))
@@ -17,7 +17,7 @@ def test_IntervalTree_find_intervals_stopping_within_interval_01():
 
 def test_IntervalTree_find_intervals_stopping_within_interval_02():
     blocks = _make_test_intervals()
-    target_interval = BoundedInterval(0, 9)
+    target_interval = TimeInterval(0, 9)
     expected_payloads = ('a', 'd',)
     expected_blocks = tuple(sorted(filter(lambda x: x.keys()[0] in expected_payloads, blocks),
         key = lambda x: x.signature))
@@ -29,7 +29,7 @@ def test_IntervalTree_find_intervals_stopping_within_interval_02():
 
 def test_IntervalTree_find_intervals_stopping_within_interval_03():
     blocks = _make_test_intervals()
-    target_interval = BoundedInterval(4, 19)
+    target_interval = TimeInterval(4, 19)
     expected_payloads = ('b', 'c', 'd', 'g',)
     expected_blocks = tuple(sorted(filter(lambda x: x.keys()[0] in expected_payloads, blocks),
         key = lambda x: x.signature))
@@ -41,7 +41,7 @@ def test_IntervalTree_find_intervals_stopping_within_interval_03():
 
 def test_IntervalTree_find_intervals_stopping_within_interval_04():
     blocks = _make_test_intervals()
-    target_interval = BoundedInterval(6, 10)
+    target_interval = TimeInterval(6, 10)
     expected_payloads = ('c', 'd',)
     expected_blocks = tuple(sorted(filter(lambda x: x.keys()[0] in expected_payloads, blocks),
         key = lambda x: x.signature))
@@ -53,7 +53,7 @@ def test_IntervalTree_find_intervals_stopping_within_interval_04():
 
 def test_IntervalTree_find_intervals_stopping_within_interval_05():
     blocks = _make_test_intervals()
-    target_interval = BoundedInterval(13, 15)
+    target_interval = TimeInterval(13, 15)
     expected_payloads = ('b',)
     expected_blocks = tuple(sorted(filter(lambda x: x.keys()[0] in expected_payloads, blocks),
         key = lambda x: x.signature))
@@ -65,7 +65,7 @@ def test_IntervalTree_find_intervals_stopping_within_interval_05():
 
 def test_IntervalTree_find_intervals_stopping_within_interval_06():
     blocks = _make_test_intervals()
-    target_interval = BoundedInterval(14, 25)
+    target_interval = TimeInterval(14, 25)
     expected_payloads = ('e', 'f', 'g', 'h',)
     expected_blocks = tuple(sorted(filter(lambda x: x.keys()[0] in expected_payloads, blocks),
         key = lambda x: x.signature))
@@ -77,7 +77,7 @@ def test_IntervalTree_find_intervals_stopping_within_interval_06():
 
 def test_IntervalTree_find_intervals_stopping_within_interval_07():
     blocks = _make_test_intervals()
-    target_interval = BoundedInterval(19, 26)
+    target_interval = TimeInterval(19, 26)
     expected_payloads = ('e', 'f', 'g', 'h',)
     expected_blocks = tuple(sorted(filter(lambda x: x.keys()[0] in expected_payloads, blocks),
         key = lambda x: x.signature))
@@ -89,7 +89,7 @@ def test_IntervalTree_find_intervals_stopping_within_interval_07():
 
 def test_IntervalTree_find_intervals_stopping_within_interval_08():
     blocks = _make_test_intervals()
-    target_interval = BoundedInterval(24, 31)
+    target_interval = TimeInterval(24, 31)
     expected_payloads = ('i', 'j',)
     expected_blocks = tuple(sorted(filter(lambda x: x.keys()[0] in expected_payloads, blocks),
         key = lambda x: x.signature))
@@ -101,7 +101,7 @@ def test_IntervalTree_find_intervals_stopping_within_interval_08():
 
 def test_IntervalTree_find_intervals_stopping_within_interval_09():
     blocks = _make_test_intervals()
-    target_interval = BoundedInterval(26, 29)
+    target_interval = TimeInterval(26, 29)
     expected_payloads = ('j',)
     expected_blocks = tuple(sorted(filter(lambda x: x.keys()[0] in expected_payloads, blocks),
         key = lambda x: x.signature))
@@ -113,7 +113,7 @@ def test_IntervalTree_find_intervals_stopping_within_interval_09():
 
 def test_IntervalTree_find_intervals_stopping_within_interval_10():
     blocks = _make_test_intervals()
-    target_interval = BoundedInterval(30, 40)
+    target_interval = TimeInterval(30, 40)
     expected_payloads = ('i', 'k', 'l',)
     expected_blocks = tuple(sorted(filter(lambda x: x.keys()[0] in expected_payloads, blocks),
         key = lambda x: x.signature))

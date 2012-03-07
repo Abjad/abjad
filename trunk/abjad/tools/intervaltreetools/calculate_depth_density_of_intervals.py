@@ -12,14 +12,14 @@ def calculate_depth_density_of_intervals(intervals):
     The depth density of a single interval is 1 ::
 
         abjad> from abjad.tools import intervaltreetools
-        abjad> from abjad.tools.intervaltreetools import BoundedInterval
+        abjad> from abjad.tools.intervaltreetools import TimeInterval
         abjad> from abjad.tools.intervaltreetools import IntervalTree
 
     ::
 
-        abjad> a = BoundedInterval(0, 1)
-        abjad> b = BoundedInterval(0, 1)
-        abjad> c = BoundedInterval(Fraction(1, 2), 1)
+        abjad> a = TimeInterval(0, 1)
+        abjad> b = TimeInterval(0, 1)
+        abjad> c = TimeInterval(Fraction(1, 2), 1)
         abjad> intervaltreetools.calculate_depth_density_of_intervals(a)
         Duration(1, 1)
         abjad> intervaltreetools.calculate_depth_density_of_intervals([a, b])
