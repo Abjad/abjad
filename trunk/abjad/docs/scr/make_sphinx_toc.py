@@ -86,6 +86,11 @@ def make_sphinx_toc():
       'quantizationtools',
    )
 
+   hidden_tools = [ ]
+   hidden_tools_names = (
+      'lilypondproxytools',
+   )
+
    for dictionary in tools[:]:
       for tools_name in manual_loading_tools_names:
          if tools_name in dictionary['module']:
@@ -95,6 +100,10 @@ def make_sphinx_toc():
          if tools_name in dictionary['module']:
             unstable_tools.append(dictionary)
             tools.remove(dictionary)   
+      for tools_name in hidden_tools_names:
+         if tools_name in dictionary['module']:
+            hidden_tools.append(dictionary)
+            tools.remove(dictionary)
 
    section_title = 'Abjad composition packages'
    result += '%s\n' % section_title

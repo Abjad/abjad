@@ -16,7 +16,7 @@ def build_doc_tree(ABJADPATH, api_doc_path, interactive):
          
          # remove directories that should not document
          for directory in directories[:]:
-            if directory in ('.svn', 'test'):
+            if directory in ('.svn', 'test', 'lilypondproxytools'):
                directories.remove(directory)
             elif directory.startswith('_'):
                directories.remove(directory)
