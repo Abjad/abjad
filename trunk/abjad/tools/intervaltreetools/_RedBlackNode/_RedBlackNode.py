@@ -1,4 +1,7 @@
-class _RedBlackNode(object):
+from abjad.core import _ImmutableAbjadObject
+
+
+class _RedBlackNode(_ImmutableAbjadObject):
 
     __slots__ = ('key', 'left', 'red', 'right', 'parent', 'payload',)
 

@@ -1,7 +1,8 @@
+from abjad.core import _ImmutableAbjadObject
 from abjad.tools.intervaltreetools._RedBlackNode import _RedBlackNode
 
 
-class _RedBlackTree(object):
+class _RedBlackTree(_ImmutableAbjadObject):
 
     __slots__ = ('_root', '_sentinel')
 
