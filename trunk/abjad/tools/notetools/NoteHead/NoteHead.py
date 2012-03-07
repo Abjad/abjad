@@ -1,6 +1,6 @@
 import copy
-from abjad.mixins import LilyPondTweakReservoir
 from abjad.mixins import _UnaryComparator
+from abjad.tools.lilypondproxytools import LilyPondTweakReservoir
 
 
 class NoteHead(_UnaryComparator):

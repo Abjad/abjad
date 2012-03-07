@@ -1,5 +1,5 @@
 from abjad import *
-from abjad.mixins import LilyPondGrobOverrideComponentPlugIn
+from abjad.tools.lilypondproxytools import LilyPondGrobOverrideComponentPlugIn
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___repr___01():

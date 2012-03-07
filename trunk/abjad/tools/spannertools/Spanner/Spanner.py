@@ -1,5 +1,5 @@
-from abjad.mixins import LilyPondContextSettingComponentPlugIn
-from abjad.mixins import LilyPondGrobOverrideComponentPlugIn
+from abjad.tools.lilypondproxytools import LilyPondContextSettingComponentPlugIn
+from abjad.tools.lilypondproxytools import LilyPondGrobOverrideComponentPlugIn
 from abjad.mixins import _StrictComparator
 from abjad.tools import durationtools
 from abjad.tools.spannertools.Spanner._SpannerFormatInterface import _SpannerFormatInterface

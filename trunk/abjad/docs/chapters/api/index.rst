@@ -430,6 +430,19 @@ lilypondparsertools
    tools/lilypondparsertools/LilyPondParser/LilyPondParser
 
 
+lilypondproxytools
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/lilypondproxytools/LilyPondContextProxy/LilyPondContextProxy
+   tools/lilypondproxytools/LilyPondContextSettingComponentPlugIn/LilyPondContextSettingComponentPlugIn
+   tools/lilypondproxytools/LilyPondGrobOverrideComponentPlugIn/LilyPondGrobOverrideComponentPlugIn
+   tools/lilypondproxytools/LilyPondGrobProxy/LilyPondGrobProxy
+   tools/lilypondproxytools/LilyPondGrobProxyContextWrapper/LilyPondGrobProxyContextWrapper
+   tools/lilypondproxytools/LilyPondTweakReservoir/LilyPondTweakReservoir
+
+
 marktools
 
 .. toctree::
