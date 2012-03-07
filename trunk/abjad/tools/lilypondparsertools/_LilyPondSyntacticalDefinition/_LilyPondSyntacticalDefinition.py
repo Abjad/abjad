@@ -3210,6 +3210,6 @@ class _LilyPondSyntacticalDefinition(object):
 
 
     def p_error(self, p):
+        #print p
         raise LilyPondParserError
-        #print "Syntax error at %s" % p
 
