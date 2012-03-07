@@ -37,3 +37,7 @@ class ClefMarkInventory(ObjectInventory):
     @property
     def _item_class(self):
         return ClefMark
+
+    @property
+    def _one_line_menuing_summary(self):
+        return ', '.join([clef_mark.clef_name for clef_mark in self])
