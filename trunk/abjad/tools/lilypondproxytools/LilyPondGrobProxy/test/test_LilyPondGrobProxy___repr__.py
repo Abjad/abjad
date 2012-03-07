@@ -1,5 +1,5 @@
 from abjad import *
-from abjad.mixins.LilyPondGrobProxy import LilyPondGrobProxy
+from abjad.tools.lilypondproxytools.LilyPondGrobProxy import LilyPondGrobProxy
 
 
 def test_LilyPondGrobProxy___repr___01():

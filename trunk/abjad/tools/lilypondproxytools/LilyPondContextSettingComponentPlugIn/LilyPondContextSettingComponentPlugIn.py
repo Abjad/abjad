@@ -1,5 +1,5 @@
-from abjad.mixins.LilyPondContextProxy.LilyPondContextProxy import LilyPondContextProxy
-from abjad.mixins._LilyPondComponentPlugIn import _LilyPondComponentPlugIn
+from abjad.tools.lilypondproxytools.LilyPondContextProxy.LilyPondContextProxy import LilyPondContextProxy
+from abjad.tools.lilypondproxytools._LilyPondComponentPlugIn import _LilyPondComponentPlugIn
 
 
 class LilyPondContextSettingComponentPlugIn(_LilyPondComponentPlugIn):

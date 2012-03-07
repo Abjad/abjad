@@ -1,4 +1,4 @@
-from abjad.mixins.LilyPondGrobProxy import LilyPondGrobProxy
+from abjad.tools.lilypondproxytools.LilyPondGrobProxy import LilyPondGrobProxy
 
 
 class LilyPondGrobProxyContextWrapper(object):

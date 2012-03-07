@@ -1,5 +1,5 @@
 from abjad import *
-from abjad.mixins.LilyPondTweakReservoir import LilyPondTweakReservoir
+from abjad.tools.lilypondproxytools.LilyPondTweakReservoir import LilyPondTweakReservoir
 
 
 def test_NoteHead___init___01():

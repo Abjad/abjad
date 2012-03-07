@@ -1,4 +1,4 @@
-from abjad.mixins._LilyPondObjectProxy import _LilyPondObjectProxy
+from abjad.tools.lilypondproxytools._LilyPondObjectProxy import _LilyPondObjectProxy
 
 
 class LilyPondTweakReservoir(_LilyPondObjectProxy):

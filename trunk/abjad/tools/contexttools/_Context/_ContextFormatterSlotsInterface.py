@@ -10,7 +10,7 @@ class _ContextFormatterSlotsInterface(_ContainerFormatterSlotsInterface):
 
     @property
     def slot_2(self):
-        from abjad.mixins.LilyPondGrobOverrideComponentPlugIn._get_grob_override_format_contributions import _get_grob_override_format_contributions
+        from abjad.tools.lilypondproxytools.LilyPondGrobOverrideComponentPlugIn._get_grob_override_format_contributions import _get_grob_override_format_contributions
         from abjad.tools.contexttools._get_context_setting_format_contributions import _get_context_setting_format_contributions
         result = []
         formatter = self.formatter
