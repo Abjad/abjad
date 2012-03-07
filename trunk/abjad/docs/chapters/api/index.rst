@@ -259,6 +259,14 @@ contexttools
    tools/contexttools/set_accidental_style_on_sequential_contexts_in_expr
 
 
+datastructuretools
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/datastructuretools/ObjectInventory/ObjectInventory
+
+
 gracetools
 
 .. toctree::
