@@ -64,7 +64,7 @@ def make_sphinx_toc():
    manual_loading_tools_names = (
       'configurationtools',
       'durationtools',
-      'intervaltreetools', 
+      'timeintervaltools', 
       'iotools',
       'layouttools',
       'mathtools',
