@@ -191,6 +191,10 @@ class PitchRange(_Immutable):
         return '{}.{}'.format(self._tools_package, self._class_name)
 
     @property
+    def _one_line_menuing_summary(self):
+        return self.one_line_named_chromatic_pitch_repr
+
+    @property
     def _repr_with_tools_package(self):
         return '{}({!r})'.format(self._class_name_with_tools_package, self.one_line_named_chromatic_pitch_repr)
 

@@ -204,6 +204,7 @@ contexttools
    :maxdepth: 1
 
    tools/contexttools/ClefMark/ClefMark
+   tools/contexttools/ClefMarkInventory/ClefMarkInventory
    tools/contexttools/ContextMark/ContextMark
    tools/contexttools/DynamicMark/DynamicMark
    tools/contexttools/InstrumentMark/InstrumentMark
@@ -1503,6 +1504,7 @@ constraintstools
    tools/constraintstools/FixedLengthStreamSolver/FixedLengthStreamSolver
    tools/constraintstools/GlobalConstraint/GlobalConstraint
    tools/constraintstools/GlobalCountsConstraint/GlobalCountsConstraint
+   tools/constraintstools/GlobalReferenceConstraint/GlobalReferenceConstraint
    tools/constraintstools/RelativeCountsConstraint/RelativeCountsConstraint
    tools/constraintstools/RelativeIndexConstraint/RelativeIndexConstraint
    tools/constraintstools/VariableLengthStreamSolver/VariableLengthStreamSolver

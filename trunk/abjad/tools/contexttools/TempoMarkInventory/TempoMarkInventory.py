@@ -1,7 +1,8 @@
+from abjad.core._MutableAbjadObject import _MutableAbjadObject
 from abjad.tools.contexttools.TempoMark import TempoMark
 
 
-class TempoMarkInventory(list):
+class TempoMarkInventory(list, _MutableAbjadObject):
     r'''.. versionadded:: 2.7
 
     Abjad model of an ordered list of tempo marks::
@@ -9,7 +10,7 @@ class TempoMarkInventory(list):
         abjad> contexttools.TempoMarkInventory([('Andante', Duration(1, 8), 72), ('Allegro', Duration(1, 8), 84)])
         TempoMarkInventory([TempoMark('Andante', Duration(1, 8), 72), TempoMark('Allegro', Duration(1, 8), 84)])
 
-    Tempo mark inventories are mutable.
+    Tempo mark inventories inherit from list and are mutable.
     '''
 
     def __init__(self, tempo_mark_tokens=None):
@@ -27,17 +28,13 @@ class TempoMarkInventory(list):
         return list.__contains__(self, tempo_mark)
 
     def __repr__(self):
-        return '{}({})'.format(self._class_name, list.__repr__(self))
+        return '{}({})'.format(self.class_name, list.__repr__(self))
 
     ### PRIVATE ATTRIBUTES ###
 
     @property
-    def _class_name(self):
-        return type(self).__name__
-
-    @property
     def _class_name_with_tools_package(self):
-        return '{}.{}'.format(self._tools_package, self._class_name)
+        return '{}.{}'.format(self._tools_package, self.class_name)
 
     @property
     def _contents_repr_with_tools_package(self):
@@ -55,7 +52,7 @@ class TempoMarkInventory(list):
     @property
     def _tools_package(self):
         for part in reversed(self.__module__.split('.')):
-            if not part == self._class_name:
+            if not part == self.class_name:
                 return part
         
     ### PUBLIC METHODS ###
