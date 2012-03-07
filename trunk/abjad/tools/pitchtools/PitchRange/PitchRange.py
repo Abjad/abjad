@@ -290,9 +290,11 @@ class PitchRange(_Immutable):
         '''
         result = []
         result.append(self._open_bracket_string)
-        result.append(self.start_pitch.pitch_class_octave_label)
-        result.append(', ')
-        result.append(self.stop_pitch.pitch_class_octave_label)
+        if self.start_pitch:
+            result.append(self.start_pitch.pitch_class_octave_label)
+            result.append(', ')
+        if self.stop_pitch:
+            result.append(self.stop_pitch.pitch_class_octave_label)
         result.append(self._close_bracket_string)
         result = ''.join(result)
         return result

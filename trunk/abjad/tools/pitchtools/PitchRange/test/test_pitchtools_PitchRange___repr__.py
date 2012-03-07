@@ -25,3 +25,11 @@ def test_pitchtools_PitchRange___repr___02():
 
     pitch_range = pitchtools.PitchRange(-12, 36, pitch_range_name_markup=Markup('four-octave range'))
     assert repr(pitch_range) == "PitchRange('[C3, C7]', pitch_range_name_markup=Markup('four-octave range'))"
+
+
+def test_pitchtools_PitchRange___repr___03():
+    '''Repr works on empty pitch range.
+    '''
+
+    pitch_range == pitchtools.PitchRange()
+    assert repr(pitch_range) == "PitchRange('[]')"
