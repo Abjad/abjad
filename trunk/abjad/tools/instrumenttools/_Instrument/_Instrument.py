@@ -22,7 +22,7 @@ class _Instrument(contexttools.InstrumentMark):
     ### PRIVATE METHODS ###
 
     def _copy_primary_clefs_to_all_clefs(self):
-        self.all_clefs = [contexttools.ClefMark(clef) for clef in self.primary_clefs]
+        self.all_clefs = contexttools.ClefMarkInventory(self.primary_clefs)
 
     ### PUBLIC ATTRIBUTES ###
 
@@ -33,8 +33,7 @@ class _Instrument(contexttools.InstrumentMark):
 
             Return tuple of clefs.
             '''
-            clefs = [contexttools.ClefMark(clef) for clef in clefs]
-            self._all_clefs = clefs
+            self._all_clefs = contexttools.ClefMarkInventory(clefs)
         def fget(self):
             return self._all_clefs
         return property(**locals())
@@ -86,8 +85,7 @@ class _Instrument(contexttools.InstrumentMark):
 
             Return tuple of clefs.
             '''
-            clefs = [contexttools.ClefMark(clef) for clef in clefs]
-            self._primary_clefs = clefs
+            self._primary_clefs = contexttools.ClefMarkInventory(clefs)
         def fget(self):
             return self._primary_clefs
         return property(**locals())
