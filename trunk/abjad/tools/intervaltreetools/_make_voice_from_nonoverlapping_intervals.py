@@ -4,7 +4,7 @@ from abjad import Voice
 from abjad.tools.schemetools import SchemeColor
 from abjad.tools.spannertools import GlissandoSpanner
 from abjad.tools.intervaltreetools.TimeInterval import TimeInterval
-from abjad.tools.intervaltreetools.IntervalTree import IntervalTree
+from abjad.tools.intervaltreetools.TimeIntervalTree import TimeIntervalTree
 from abjad.tools.intervaltreetools.all_are_intervals_or_trees_or_empty import all_are_intervals_or_trees_or_empty
 from abjad.tools.intervaltreetools.all_intervals_are_nonoverlapping import all_intervals_are_nonoverlapping
 from abjad.tools.intervaltreetools.compute_depth_of_intervals import compute_depth_of_intervals
@@ -14,10 +14,10 @@ from abjad.tools.intervaltreetools.compute_depth_of_intervals_in_interval import
 def _make_voice_from_nonoverlapping_intervals(intervals, colorkey = None, pitch = None):
 
     assert all_are_intervals_or_trees_or_empty(intervals)
-    if isinstance(intervals, IntervalTree):
+    if isinstance(intervals, TimeIntervalTree):
         tree = intervals
     else:
-        tree = IntervalTree(intervals)
+        tree = TimeIntervalTree(intervals)
     if not tree:
         return Voice([])
     assert all_intervals_are_nonoverlapping(tree)

@@ -1,4 +1,4 @@
-from abjad.tools.intervaltreetools.IntervalTree import IntervalTree
+from abjad.tools.intervaltreetools.TimeIntervalTree import TimeIntervalTree
 from abjad.tools.intervaltreetools.all_are_intervals_or_trees_or_empty import all_are_intervals_or_trees_or_empty
 from abjad import Fraction
 
@@ -7,10 +7,10 @@ def round_interval_bounds_to_nearest_multiple_of_rational(intervals, rational):
     assert all_are_intervals_or_trees_or_empty(intervals)
     assert isinstance(rational, (int, Fraction)) and 0 < rational
 
-    if isinstance(intervals, IntervalTree):
+    if isinstance(intervals, TimeIntervalTree):
         tree = intervals
     else:
-        tree = IntervalTree(intervals)
+        tree = TimeIntervalTree(intervals)
     if not tree:
         return tree
 
@@ -22,4 +22,4 @@ def round_interval_bounds_to_nearest_multiple_of_rational(intervals, rational):
             stop = start + rational
         intervals.append(interval.shift_to_rational(start).scale_to_rational(stop - start))
 
-    return IntervalTree(intervals)
+    return TimeIntervalTree(intervals)

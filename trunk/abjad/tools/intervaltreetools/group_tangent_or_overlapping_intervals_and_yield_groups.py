@@ -1,4 +1,4 @@
-from abjad.tools.intervaltreetools.IntervalTree import IntervalTree
+from abjad.tools.intervaltreetools.TimeIntervalTree import TimeIntervalTree
 from abjad.tools.intervaltreetools.all_are_intervals_or_trees_or_empty import all_are_intervals_or_trees_or_empty
 
 
@@ -8,12 +8,12 @@ def group_tangent_or_overlapping_intervals_and_yield_groups(intervals):
     '''
 
     assert all_are_intervals_or_trees_or_empty(intervals)
-    if isinstance(intervals, IntervalTree):
+    if isinstance(intervals, TimeIntervalTree):
         tree = intervals
     else:
-        tree = IntervalTree(intervals)
+        tree = TimeIntervalTree(intervals)
     if not tree:
-        yield IntervalTree([])
+        yield TimeIntervalTree([])
         return
 
     groups = []

@@ -5,12 +5,12 @@ import py.test
 
 
 def test_intervaltreetools_calculate_density_of_attacks_in_interval_01():
-    tree = IntervalTree(_make_test_intervals())
+    tree = TimeIntervalTree(_make_test_intervals())
     assert calculate_density_of_releases_in_interval(tree,
         TimeInterval(-2, -1)) == 0
 
 
 def test_intervaltreetools_calculate_density_of_attacks_in_interval_02():
-    tree = IntervalTree(_make_test_intervals())
+    tree = TimeIntervalTree(_make_test_intervals())
     assert calculate_density_of_releases_in_interval(tree,
         TimeInterval(0, 37)) == Fraction(12, 37)

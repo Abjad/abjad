@@ -1,5 +1,5 @@
 from abjad.tools.durationtools import Offset
-from abjad.tools.intervaltreetools.IntervalTree import IntervalTree
+from abjad.tools.intervaltreetools.TimeIntervalTree import TimeIntervalTree
 from abjad.tools.intervaltreetools.all_are_intervals_or_trees_or_empty import all_are_intervals_or_trees_or_empty
 from abjad.tools.intervaltreetools.compute_depth_of_intervals import compute_depth_of_intervals
 
@@ -12,10 +12,10 @@ def calculate_depth_centroid_of_intervals(intervals):
     '''
 
     assert all_are_intervals_or_trees_or_empty(intervals)
-    if isinstance(intervals, IntervalTree):
+    if isinstance(intervals, TimeIntervalTree):
         tree = intervals
     else:
-        tree = IntervalTree(intervals)
+        tree = TimeIntervalTree(intervals)
     if not tree:
         return None
     depth = compute_depth_of_intervals(tree)

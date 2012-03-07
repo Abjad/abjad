@@ -1,5 +1,5 @@
 from abjad.tools.intervaltreetools.TimeInterval import TimeInterval
-from abjad.tools.intervaltreetools.IntervalTree import IntervalTree
+from abjad.tools.intervaltreetools.TimeIntervalTree import TimeIntervalTree
 from abjad.tools.intervaltreetools.all_are_intervals_or_trees_or_empty import all_are_intervals_or_trees_or_empty
 from abjad.tools.intervaltreetools.calculate_depth_density_of_intervals_in_interval import calculate_depth_density_of_intervals_in_interval
 from abjad.tools.intervaltreetools.compute_logical_or_of_intervals import compute_logical_or_of_intervals
@@ -13,25 +13,25 @@ def explode_intervals_into_n_trees_heuristically(intervals, n):
 
     assert all_are_intervals_or_trees_or_empty(intervals)
     assert isinstance(n, int) and 0 < n
-    if isinstance(intervals, IntervalTree):
+    if isinstance(intervals, TimeIntervalTree):
         tree = intervals
     else:
-        tree = IntervalTree(intervals)
+        tree = TimeIntervalTree(intervals)
 
     if not tree:
-        return [IntervalTree([])] * n
+        return [TimeIntervalTree([])] * n
     elif n == 1:
         return [tree]
 
     # cache
     treebounds = TimeInterval(tree.start, tree.stop)
-    xtrees = [IntervalTree(tree[0])]
+    xtrees = [TimeIntervalTree(tree[0])]
     densities = [calculate_depth_density_of_intervals_in_interval(xtrees[0], treebounds)]
     logical_ors = [compute_logical_or_of_intervals(xtrees[0])]
     for i in range(1, n):
-        xtrees.append(IntervalTree([]))
+        xtrees.append(TimeIntervalTree([]))
         densities.append(0)
-        logical_ors.append(IntervalTree([]))
+        logical_ors.append(TimeIntervalTree([]))
 
     # loop through intervals
     for interval in tree[1:]:

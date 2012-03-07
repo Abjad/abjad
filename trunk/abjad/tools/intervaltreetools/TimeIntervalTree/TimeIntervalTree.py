@@ -8,7 +8,7 @@ from abjad.tools.intervaltreetools._IntervalNode import _IntervalNode
 from abjad.tools.intervaltreetools._RedBlackTree import _RedBlackTree
 
 
-class IntervalTree(_RedBlackTree):
+class TimeIntervalTree(_RedBlackTree):
     '''An augmented red-black tree for storing and searching for intervals of
     time (rather than pitch).
 
@@ -17,14 +17,14 @@ class IntervalTree(_RedBlackTree):
     built-in collections, this class reduces the complexity of the search
     process, such as locating overlapping intervals.
 
-    IntervalTrees can be instantiated without contents, or from a mixed
-    collection of other IntervalTrees and / or TimeIntervals.  The input
+    TimeIntervalTrees can be instantiated without contents, or from a mixed
+    collection of other TimeIntervalTrees and / or TimeIntervals.  The input
     will be parsed recursively ::
 
-        abjad> from abjad.tools.intervaltreetools import IntervalTree
+        abjad> from abjad.tools.intervaltreetools import TimeIntervalTree
         abjad> from abjad.tools.intervaltreetools import TimeInterval
         abjad> bi = TimeInterval(0, 10)
-        abjad> tree = IntervalTree([bi])
+        abjad> tree = TimeIntervalTree([bi])
 
     '''
 
@@ -48,7 +48,7 @@ class IntervalTree(_RedBlackTree):
             return False
 
     def __copy__(self):
-        return IntervalTree([copy.copy(x) for x in self])
+        return TimeIntervalTree([copy.copy(x) for x in self])
 
     def __eq__(self, other):
         if type(self) == type(other):

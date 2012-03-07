@@ -1,4 +1,4 @@
-from abjad.tools.intervaltreetools.IntervalTree import IntervalTree
+from abjad.tools.intervaltreetools.TimeIntervalTree import TimeIntervalTree
 from abjad.tools.intervaltreetools.all_are_intervals_or_trees_or_empty import all_are_intervals_or_trees_or_empty
 from abjad import Fraction
 
@@ -13,10 +13,10 @@ def clip_interval_durations_to_range(intervals, min = None, max = None):
     if isinstance(min, (int, Fraction)) and isinstance(max, (int, Fraction)):
         assert min <= max
 
-    if isinstance(intervals, IntervalTree):
+    if isinstance(intervals, TimeIntervalTree):
         tree = intervals
     else:
-        tree = IntervalTree(intervals)
+        tree = TimeIntervalTree(intervals)
     if not tree:
         return tree
 
@@ -29,4 +29,4 @@ def clip_interval_durations_to_range(intervals, min = None, max = None):
         else:
             intervals.append(interval)
 
-    return IntervalTree(intervals)
+    return TimeIntervalTree(intervals)

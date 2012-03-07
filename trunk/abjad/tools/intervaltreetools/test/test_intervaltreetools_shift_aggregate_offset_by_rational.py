@@ -6,7 +6,7 @@ import py.test
 
 def test_intervaltreetools_shift_aggregate_offset_by_rational_01():
     rational = 0
-    tree = IntervalTree(_make_test_intervals())
+    tree = TimeIntervalTree(_make_test_intervals())
 
     shifted = shift_aggregate_offset_by_rational(tree, rational)
 
@@ -15,7 +15,7 @@ def test_intervaltreetools_shift_aggregate_offset_by_rational_01():
 
 def test_intervaltreetools_shift_aggregate_offset_by_rational_02():
     rational = Fraction(1, 2)
-    tree = IntervalTree(_make_test_intervals())
+    tree = TimeIntervalTree(_make_test_intervals())
 
     shifted = shift_aggregate_offset_by_rational(tree, rational)
 
@@ -25,7 +25,7 @@ def test_intervaltreetools_shift_aggregate_offset_by_rational_02():
 
 def test_intervaltreetools_shift_aggregate_offset_by_rational_03():
     rational = Fraction(-1, 2)
-    tree = IntervalTree(_make_test_intervals())
+    tree = TimeIntervalTree(_make_test_intervals())
 
     shifted = shift_aggregate_offset_by_rational(tree, rational)
 
@@ -35,7 +35,7 @@ def test_intervaltreetools_shift_aggregate_offset_by_rational_03():
 
 def test_intervaltreetools_shift_aggregate_offset_by_rational_04():
     rational = Fraction(-1, 2)
-    tree = IntervalTree(_make_test_intervals())
+    tree = TimeIntervalTree(_make_test_intervals())
 
     shifted = shift_aggregate_offset_by_rational(tree, rational)
     shifted = shift_aggregate_offset_by_rational(shifted, rational)

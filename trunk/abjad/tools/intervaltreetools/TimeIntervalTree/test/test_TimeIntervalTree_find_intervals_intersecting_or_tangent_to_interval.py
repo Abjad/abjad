@@ -1,93 +1,93 @@
 from abjad.tools.intervaltreetools import *
-from abjad.tools.intervaltreetools import TimeInterval
+from abjad.tools.intervaltreetools.TimeInterval import TimeInterval
 from abjad.tools.intervaltreetools._make_test_intervals import _make_test_intervals
 
 
-def test_IntervalTree_find_intervals_stopping_within_interval_01():
+def test_TimeIntervalTree_find_intervals_intersecting_or_tangent_to_interval_01():
     blocks = _make_test_intervals()
     target_interval = TimeInterval(-10, 0)
-    expected_payloads = ()
+    expected_payloads = ('a',)
     expected_blocks = tuple(sorted(filter(lambda x: x.keys()[0] in expected_payloads, blocks),
         key = lambda x: x.signature))
     for i in range(len(blocks)):
         blocks.append(blocks.pop(0)) # rotate to permute tree construction
-        tree = IntervalTree(blocks)
-        actual_blocks = tree.find_intervals_stopping_within_interval(target_interval)
+        tree = TimeIntervalTree(blocks)
+        actual_blocks = tree.find_intervals_intersecting_or_tangent_to_interval(target_interval)
         assert expected_blocks == actual_blocks
 
-def test_IntervalTree_find_intervals_stopping_within_interval_02():
+def test_TimeIntervalTree_find_intervals_intersecting_or_tangent_to_interval_02():
     blocks = _make_test_intervals()
     target_interval = TimeInterval(0, 9)
-    expected_payloads = ('a', 'd',)
+    expected_payloads = ('a', 'b', 'c', 'd',)
     expected_blocks = tuple(sorted(filter(lambda x: x.keys()[0] in expected_payloads, blocks),
         key = lambda x: x.signature))
     for i in range(len(blocks)):
         blocks.append(blocks.pop(0)) # rotate to permute tree construction
-        tree = IntervalTree(blocks)
-        actual_blocks = tree.find_intervals_stopping_within_interval(target_interval)
+        tree = TimeIntervalTree(blocks)
+        actual_blocks = tree.find_intervals_intersecting_or_tangent_to_interval(target_interval)
         assert expected_blocks == actual_blocks
 
-def test_IntervalTree_find_intervals_stopping_within_interval_03():
+def test_TimeIntervalTree_find_intervals_intersecting_or_tangent_to_interval_03():
     blocks = _make_test_intervals()
     target_interval = TimeInterval(4, 19)
-    expected_payloads = ('b', 'c', 'd', 'g',)
+    expected_payloads = ('b', 'c', 'd', 'e', 'f', 'g', 'h',)
     expected_blocks = tuple(sorted(filter(lambda x: x.keys()[0] in expected_payloads, blocks),
         key = lambda x: x.signature))
     for i in range(len(blocks)):
         blocks.append(blocks.pop(0)) # rotate to permute tree construction
-        tree = IntervalTree(blocks)
-        actual_blocks = tree.find_intervals_stopping_within_interval(target_interval)
+        tree = TimeIntervalTree(blocks)
+        actual_blocks = tree.find_intervals_intersecting_or_tangent_to_interval(target_interval)
         assert expected_blocks == actual_blocks
 
-def test_IntervalTree_find_intervals_stopping_within_interval_04():
+def test_TimeIntervalTree_find_intervals_intersecting_or_tangent_to_interval_04():
     blocks = _make_test_intervals()
     target_interval = TimeInterval(6, 10)
-    expected_payloads = ('c', 'd',)
+    expected_payloads = ('b', 'c', 'd',)
     expected_blocks = tuple(sorted(filter(lambda x: x.keys()[0] in expected_payloads, blocks),
         key = lambda x: x.signature))
     for i in range(len(blocks)):
         blocks.append(blocks.pop(0)) # rotate to permute tree construction
-        tree = IntervalTree(blocks)
-        actual_blocks = tree.find_intervals_stopping_within_interval(target_interval)
+        tree = TimeIntervalTree(blocks)
+        actual_blocks = tree.find_intervals_intersecting_or_tangent_to_interval(target_interval)
         assert expected_blocks == actual_blocks
 
-def test_IntervalTree_find_intervals_stopping_within_interval_05():
+def test_TimeIntervalTree_find_intervals_intersecting_or_tangent_to_interval_05():
     blocks = _make_test_intervals()
     target_interval = TimeInterval(13, 15)
-    expected_payloads = ('b',)
+    expected_payloads = ('b', 'e',)
     expected_blocks = tuple(sorted(filter(lambda x: x.keys()[0] in expected_payloads, blocks),
         key = lambda x: x.signature))
     for i in range(len(blocks)):
         blocks.append(blocks.pop(0)) # rotate to permute tree construction
-        tree = IntervalTree(blocks)
-        actual_blocks = tree.find_intervals_stopping_within_interval(target_interval)
+        tree = TimeIntervalTree(blocks)
+        actual_blocks = tree.find_intervals_intersecting_or_tangent_to_interval(target_interval)
         assert expected_blocks == actual_blocks
 
-def test_IntervalTree_find_intervals_stopping_within_interval_06():
+def test_TimeIntervalTree_find_intervals_intersecting_or_tangent_to_interval_06():
     blocks = _make_test_intervals()
     target_interval = TimeInterval(14, 25)
-    expected_payloads = ('e', 'f', 'g', 'h',)
+    expected_payloads = ('e', 'f', 'g', 'h', 'i',)
     expected_blocks = tuple(sorted(filter(lambda x: x.keys()[0] in expected_payloads, blocks),
         key = lambda x: x.signature))
     for i in range(len(blocks)):
         blocks.append(blocks.pop(0)) # rotate to permute tree construction
-        tree = IntervalTree(blocks)
-        actual_blocks = tree.find_intervals_stopping_within_interval(target_interval)
+        tree = TimeIntervalTree(blocks)
+        actual_blocks = tree.find_intervals_intersecting_or_tangent_to_interval(target_interval)
         assert expected_blocks == actual_blocks
 
-def test_IntervalTree_find_intervals_stopping_within_interval_07():
+def test_TimeIntervalTree_find_intervals_intersecting_or_tangent_to_interval_07():
     blocks = _make_test_intervals()
     target_interval = TimeInterval(19, 26)
-    expected_payloads = ('e', 'f', 'g', 'h',)
+    expected_payloads = ('e', 'f', 'g', 'h', 'i', 'j',)
     expected_blocks = tuple(sorted(filter(lambda x: x.keys()[0] in expected_payloads, blocks),
         key = lambda x: x.signature))
     for i in range(len(blocks)):
         blocks.append(blocks.pop(0)) # rotate to permute tree construction
-        tree = IntervalTree(blocks)
-        actual_blocks = tree.find_intervals_stopping_within_interval(target_interval)
+        tree = TimeIntervalTree(blocks)
+        actual_blocks = tree.find_intervals_intersecting_or_tangent_to_interval(target_interval)
         assert expected_blocks == actual_blocks
 
-def test_IntervalTree_find_intervals_stopping_within_interval_08():
+def test_TimeIntervalTree_find_intervals_intersecting_or_tangent_to_interval_08():
     blocks = _make_test_intervals()
     target_interval = TimeInterval(24, 31)
     expected_payloads = ('i', 'j',)
@@ -95,23 +95,23 @@ def test_IntervalTree_find_intervals_stopping_within_interval_08():
         key = lambda x: x.signature))
     for i in range(len(blocks)):
         blocks.append(blocks.pop(0)) # rotate to permute tree construction
-        tree = IntervalTree(blocks)
-        actual_blocks = tree.find_intervals_stopping_within_interval(target_interval)
+        tree = TimeIntervalTree(blocks)
+        actual_blocks = tree.find_intervals_intersecting_or_tangent_to_interval(target_interval)
         assert expected_blocks == actual_blocks
 
-def test_IntervalTree_find_intervals_stopping_within_interval_09():
+def test_TimeIntervalTree_find_intervals_intersecting_or_tangent_to_interval_09():
     blocks = _make_test_intervals()
     target_interval = TimeInterval(26, 29)
-    expected_payloads = ('j',)
+    expected_payloads = ('i', 'j',)
     expected_blocks = tuple(sorted(filter(lambda x: x.keys()[0] in expected_payloads, blocks),
         key = lambda x: x.signature))
     for i in range(len(blocks)):
         blocks.append(blocks.pop(0)) # rotate to permute tree construction
-        tree = IntervalTree(blocks)
-        actual_blocks = tree.find_intervals_stopping_within_interval(target_interval)
+        tree = TimeIntervalTree(blocks)
+        actual_blocks = tree.find_intervals_intersecting_or_tangent_to_interval(target_interval)
         assert expected_blocks == actual_blocks
 
-def test_IntervalTree_find_intervals_stopping_within_interval_10():
+def test_TimeIntervalTree_find_intervals_intersecting_or_tangent_to_interval_10():
     blocks = _make_test_intervals()
     target_interval = TimeInterval(30, 40)
     expected_payloads = ('i', 'k', 'l',)
@@ -119,6 +119,6 @@ def test_IntervalTree_find_intervals_stopping_within_interval_10():
         key = lambda x: x.signature))
     for i in range(len(blocks)):
         blocks.append(blocks.pop(0)) # rotate to permute tree construction
-        tree = IntervalTree(blocks)
-        actual_blocks = tree.find_intervals_stopping_within_interval(target_interval)
+        tree = TimeIntervalTree(blocks)
+        actual_blocks = tree.find_intervals_intersecting_or_tangent_to_interval(target_interval)
         assert expected_blocks == actual_blocks

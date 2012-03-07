@@ -6,17 +6,17 @@ import py.test
 def test_intervaltreetools_all_intervals_are_nonoverlapping_01():
     a = TimeInterval(0, 10)
     b = TimeInterval(10, 20)
-    tree = IntervalTree([a, b])
+    tree = TimeIntervalTree([a, b])
     assert all_intervals_are_nonoverlapping(tree)
 
 def test_intervaltreetools_all_intervals_are_nonoverlapping_02():
     a = TimeInterval(0, 10)
     b = TimeInterval(5, 15)
-    tree = IntervalTree([a, b])
+    tree = TimeIntervalTree([a, b])
     assert not all_intervals_are_nonoverlapping(tree)
 
 def test_intervaltreetools_all_intervals_are_nonoverlapping_03():
     a = TimeInterval(0, 10)
     b = TimeInterval(15, 25)
-    tree = IntervalTree([a, b])
+    tree = TimeIntervalTree([a, b])
     assert all_intervals_are_nonoverlapping(tree)

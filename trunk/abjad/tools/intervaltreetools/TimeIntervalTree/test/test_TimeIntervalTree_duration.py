@@ -2,28 +2,28 @@ from abjad.tools.intervaltreetools import *
 import py.test
 
 
-def test_IntervalTree_duration_01():
+def test_TimeIntervalTree_duration_01():
     a = TimeInterval(-1, 2)
     b = TimeInterval(0, 1)
     c = TimeInterval(1, 3)
 
-    tree = IntervalTree(a)
+    tree = TimeIntervalTree(a)
     assert tree.duration == 3
 
-    tree = IntervalTree(b)
+    tree = TimeIntervalTree(b)
     assert tree.duration == 1
 
-    tree = IntervalTree(c)
+    tree = TimeIntervalTree(c)
     assert tree.duration == 2
 
-    tree = IntervalTree([a, b])
+    tree = TimeIntervalTree([a, b])
     assert tree.duration == 3
 
-    tree = IntervalTree([a, c])
+    tree = TimeIntervalTree([a, c])
     assert tree.duration == 4
 
-    tree = IntervalTree([b, c])
+    tree = TimeIntervalTree([b, c])
     assert tree.duration == 3
 
-    tree = IntervalTree([a, b, c])
+    tree = TimeIntervalTree([a, b, c])
     assert tree.duration == 4

@@ -4,7 +4,7 @@ from abjad import Fraction
 
 
 class _IntervalNode(_RedBlackNode):
-    '''A red-black node in an IntervalTree.
+    '''A red-black node in an TimeIntervalTree.
     Duplicate payloads are supported by maintaining a list of TimeIntervals
     '''
 

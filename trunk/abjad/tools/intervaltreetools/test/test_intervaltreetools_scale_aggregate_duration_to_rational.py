@@ -7,7 +7,7 @@ import py.test
 def test_intervaltreetools_scale_aggregate_duration_to_rational_01():
     a = TimeInterval(Fraction(-1, 2), 1)
     b = TimeInterval(2, Fraction(7, 3))
-    tree = IntervalTree([a, b])
+    tree = TimeIntervalTree([a, b])
     rational = 3
     result = scale_aggregate_duration_to_rational(tree, rational)
     assert result.duration == 3
@@ -17,7 +17,7 @@ def test_intervaltreetools_scale_aggregate_duration_to_rational_01():
 def test_intervaltreetools_scale_aggregate_duration_to_rational_02():
     a = TimeInterval(Fraction(-1, 2), 1)
     b = TimeInterval(2, Fraction(7, 3))
-    tree = IntervalTree([a, b])
+    tree = TimeIntervalTree([a, b])
     rational = -1
     py.test.raises(AssertionError,
         "result = scale_aggregate_duration_to_rational(tree, rational)")
@@ -25,7 +25,7 @@ def test_intervaltreetools_scale_aggregate_duration_to_rational_02():
 def test_intervaltreetools_scale_aggregate_duration_to_rational_03():
     a = TimeInterval(Fraction(-1, 2), 1)
     b = TimeInterval(2, Fraction(7, 3))
-    tree = IntervalTree([a, b])
+    tree = TimeIntervalTree([a, b])
     rational = 0
     py.test.raises(AssertionError,
         "result = scale_aggregate_duration_to_rational(tree, rational)")

@@ -1,6 +1,6 @@
 from abjad.tools.sequencetools import iterate_sequence_pairwise_strict
 from abjad.tools.intervaltreetools.TimeInterval import TimeInterval
-from abjad.tools.intervaltreetools.IntervalTree import IntervalTree
+from abjad.tools.intervaltreetools.TimeIntervalTree import TimeIntervalTree
 from abjad.tools.intervaltreetools.all_are_intervals_or_trees_or_empty import all_are_intervals_or_trees_or_empty
 from abjad.tools.intervaltreetools.get_all_unique_bounds_in_intervals import get_all_unique_bounds_in_intervals
 from abjad.tools.intervaltreetools.split_intervals_at_rationals import split_intervals_at_rationals
@@ -14,10 +14,10 @@ def compute_depth_of_intervals_in_interval(intervals, interval):
         abjad> a = TimeInterval(0, 3)
         abjad> b = TimeInterval(6, 12)
         abjad> c = TimeInterval(9, 15)
-        abjad> tree = IntervalTree([a, b, c])
+        abjad> tree = TimeIntervalTree([a, b, c])
         abjad> d = TimeInterval(-1, 16)
         abjad> compute_depth_of_intervals_in_interval(tree, d)
-        IntervalTree([
+        TimeIntervalTree([
             TimeInterval(Offset(-1, 1), Offset(0, 1), {'depth': 0}),
             TimeInterval(Offset(0, 1), Offset(3, 1), {'depth': 1}),
             TimeInterval(Offset(3, 1), Offset(6, 1), {'depth': 0}),
@@ -32,13 +32,13 @@ def compute_depth_of_intervals_in_interval(intervals, interval):
 
     assert all_are_intervals_or_trees_or_empty(intervals)
     assert isinstance(interval, TimeInterval)
-    if isinstance(intervals, IntervalTree):
+    if isinstance(intervals, TimeIntervalTree):
         tree = intervals
     else:
-        tree = IntervalTree(intervals)
+        tree = TimeIntervalTree(intervals)
 
     if interval.stop <= tree.start or tree.stop <= interval.start:
-        return IntervalTree([TimeInterval(interval.start, interval.stop, {'depth': 0})])
+        return TimeIntervalTree([TimeInterval(interval.start, interval.stop, {'depth': 0})])
     else:
         bounds = list(get_all_unique_bounds_in_intervals(tree))
         if interval.start < tree.start:
@@ -69,4 +69,4 @@ def compute_depth_of_intervals_in_interval(intervals, interval):
             target['depth'] = 0
         intervals.append(target)
 
-    return IntervalTree(intervals)
+    return TimeIntervalTree(intervals)

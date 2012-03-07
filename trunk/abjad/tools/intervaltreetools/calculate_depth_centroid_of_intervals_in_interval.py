@@ -1,6 +1,6 @@
 from abjad.tools.durationtools import Offset
 from abjad.tools.intervaltreetools.TimeInterval import TimeInterval
-from abjad.tools.intervaltreetools.IntervalTree import IntervalTree
+from abjad.tools.intervaltreetools.TimeIntervalTree import TimeIntervalTree
 from abjad.tools.intervaltreetools.all_are_intervals_or_trees_or_empty import all_are_intervals_or_trees_or_empty
 from abjad.tools.intervaltreetools.compute_depth_of_intervals_in_interval import compute_depth_of_intervals_in_interval
 
@@ -13,10 +13,10 @@ def calculate_depth_centroid_of_intervals_in_interval(intervals, interval):
 
     assert all_are_intervals_or_trees_or_empty(intervals)
     assert isinstance(interval, TimeInterval)
-    if isinstance(intervals, IntervalTree):
+    if isinstance(intervals, TimeIntervalTree):
         tree = intervals
     else:
-        tree = IntervalTree(intervals)
+        tree = TimeIntervalTree(intervals)
     depth = compute_depth_of_intervals_in_interval(tree, interval)
     weighted_centroids = sum([x.center * x['depth'] for x in depth])
     sum_of_weights = sum([x['depth'] for x in depth])

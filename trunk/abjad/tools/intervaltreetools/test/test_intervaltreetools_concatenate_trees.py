@@ -8,8 +8,8 @@ def test_intervaltreetools_concatenate_trees_01():
     a = TimeInterval(0, 10)
     b = TimeInterval(5, 15)
     c = TimeInterval(10, 20)
-    tree_a = IntervalTree([a, b, c])
-    tree_b = IntervalTree([a, b, c])
+    tree_a = TimeIntervalTree([a, b, c])
+    tree_b = TimeIntervalTree([a, b, c])
     concatenated = concatenate_trees([tree_a, tree_b])
 
     target_signatures = [(0, 10), (5, 15), (10, 20), (20, 30), (25, 35), (30, 40)]
@@ -25,8 +25,8 @@ def test_intervaltreetools_concatenate_trees_02():
     a = TimeInterval(0, 10)
     b = TimeInterval(5, 15)
     c = TimeInterval(10, 20)
-    tree_a = IntervalTree([a, b, c])
-    tree_b = IntervalTree([a, b, c])
+    tree_a = TimeIntervalTree([a, b, c])
+    tree_b = TimeIntervalTree([a, b, c])
     concatenated = concatenate_trees([tree_a, tree_b], padding = Fraction(1, 2))
 
     target_signatures =  [(0, 10), (5, 15), (10, 20), \

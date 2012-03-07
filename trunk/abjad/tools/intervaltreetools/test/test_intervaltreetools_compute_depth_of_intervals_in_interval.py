@@ -6,7 +6,7 @@ def test_intervaltreetools_compute_depth_of_intervals_in_interval_01():
     a = TimeInterval(0, 3)
     b = TimeInterval(6, 12)
     c = TimeInterval(9, 15)
-    tree = IntervalTree([a, b, c])
+    tree = TimeIntervalTree([a, b, c])
     d = TimeInterval(1, 14)
     depth = compute_depth_of_intervals_in_interval(tree, d)
     assert [(x.signature, x['depth']) for x in depth] == \
@@ -17,7 +17,7 @@ def test_intervaltreetools_compute_depth_of_intervals_in_interval_02():
     a = TimeInterval(0, 3)
     b = TimeInterval(6, 12)
     c = TimeInterval(9, 15)
-    tree = IntervalTree([a, b, c])
+    tree = TimeIntervalTree([a, b, c])
     d = TimeInterval(-1, 16)
     depth = compute_depth_of_intervals_in_interval(tree, d)
     assert [(x.signature, x['depth']) for x in depth] == \
@@ -28,7 +28,7 @@ def test_intervaltreetools_compute_depth_of_intervals_in_interval_03():
     a = TimeInterval(0, 3)
     b = TimeInterval(6, 12)
     c = TimeInterval(9, 15)
-    tree = IntervalTree([a, b, c])
+    tree = TimeIntervalTree([a, b, c])
     d = TimeInterval(2001, 2010)
     depth = compute_depth_of_intervals_in_interval(tree, d)
     assert [(x.signature, x['depth']) for x in depth] == \

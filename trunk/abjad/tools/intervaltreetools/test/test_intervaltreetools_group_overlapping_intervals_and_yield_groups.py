@@ -4,7 +4,7 @@ import py.test
 
 
 def test_intervaltreetools_group_overlapping_intervals_and_yield_groups_01():
-    tree = IntervalTree(_make_test_intervals())
+    tree = TimeIntervalTree(_make_test_intervals())
 
     target_signatures = [
         [(0, 3)],

@@ -8,7 +8,7 @@ def test_intervaltreetools_scale_interval_offsets_by_rational_01():
     a = TimeInterval(0, 10, {'a': 1})
     b = TimeInterval(Fraction(5, 3), 8, {'b': 2})
     c = TimeInterval(5, Fraction(61, 7), {'c': 3})
-    tree = IntervalTree([a, b, c])
+    tree = TimeIntervalTree([a, b, c])
     scalar = Fraction(5, 2)
     scaled = scale_interval_offsets_by_rational(tree, scalar)
     assert scaled[0] == TimeInterval(0, 10, {'a': 1})
@@ -19,7 +19,7 @@ def test_intervaltreetools_scale_interval_offsets_by_rational_01():
     assert scaled[2].duration == c.duration
 
 def test_intervaltreetools_scale_interval_offsets_by_rational_02():
-    tree = IntervalTree([])
+    tree = TimeIntervalTree([])
     scalar = Fraction(5, 2)
     scaled = scale_interval_offsets_by_rational(tree, scalar)
     assert scaled == tree

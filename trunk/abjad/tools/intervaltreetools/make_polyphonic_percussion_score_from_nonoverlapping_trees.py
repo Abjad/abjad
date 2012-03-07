@@ -8,7 +8,7 @@ from abjad.tools.schemetools import Scheme
 from abjad.tools.schemetools import SchemeMoment
 from abjad.tools.schemetools import SchemePair
 from abjad.tools.intervaltreetools.TimeInterval import TimeInterval
-from abjad.tools.intervaltreetools.IntervalTree import IntervalTree
+from abjad.tools.intervaltreetools.TimeIntervalTree import TimeIntervalTree
 from abjad.tools.intervaltreetools._make_voice_from_nonoverlapping_intervals import _make_voice_from_nonoverlapping_intervals
 from collections import Iterable
 
@@ -17,7 +17,7 @@ def make_polyphonic_percussion_score_from_nonoverlapping_trees(trees, colorkey =
     '''Make a polyphonic percussion score from a collections of non-overlapping trees.'''
 
     assert isinstance(trees, Iterable) and len(trees) and \
-        all([isinstance(tree, IntervalTree) for tree in trees])
+        all([isinstance(tree, TimeIntervalTree) for tree in trees])
 
     pitches = make_n_middle_c_centered_pitches(len(trees))
     #bounds = TimeInterval(min([x.start for x in trees]), max([x.stop for x in trees]))

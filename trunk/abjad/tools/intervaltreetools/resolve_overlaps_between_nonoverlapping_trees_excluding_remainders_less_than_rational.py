@@ -1,4 +1,4 @@
-from abjad.tools.intervaltreetools.IntervalTree import IntervalTree
+from abjad.tools.intervaltreetools.TimeIntervalTree import TimeIntervalTree
 from abjad.tools.intervaltreetools.all_intervals_are_nonoverlapping import all_intervals_are_nonoverlapping
 from abjad.tools.intervaltreetools.compute_logical_xor_of_intervals import compute_logical_xor_of_intervals
 from abjad.tools.intervaltreetools.mask_intervals_with_intervals import mask_intervals_with_intervals
@@ -7,22 +7,22 @@ from abjad import Fraction
 
 
 def resolve_overlaps_between_nonoverlapping_trees_excluding_remainders_less_than_rational(trees, rational):
-    '''Create a nonoverlapping IntervalTree from `trees`.
+    '''Create a nonoverlapping TimeIntervalTree from `trees`.
     Intervals in stoper-indexed trees in `trees` only appear in part or whole where they do not
     overlap intervals from starter-indexed trees, and then only where their durations are equal to or greater than
     `rational` ::
 
         abjad> from abjad.tools import intervaltreetools
         abjad> from abjad.tools.intervaltreetools import TimeInterval
-        abjad> from abjad.tools.intervaltreetools import IntervalTree
+        abjad> from abjad.tools.intervaltreetools import TimeIntervalTree
 
     ::
 
-        abjad> a = IntervalTree(TimeInterval(0, 1, {'a': 1}))
-        abjad> b = IntervalTree(TimeInterval(Fraction(1, 32), Fraction(33, 32), {'b': 2}))
-        abjad> c = IntervalTree(TimeInterval(Fraction(1, 16), Fraction(17, 16), {'c': 3}))
+        abjad> a = TimeIntervalTree(TimeInterval(0, 1, {'a': 1}))
+        abjad> b = TimeIntervalTree(TimeInterval(Fraction(1, 32), Fraction(33, 32), {'b': 2}))
+        abjad> c = TimeIntervalTree(TimeInterval(Fraction(1, 16), Fraction(17, 16), {'c': 3}))
         abjad> intervaltreetools.resolve_overlaps_between_nonoverlapping_trees_excluding_remainders_less_than_rational([a, b, c], Fraction(1, 16))
-        IntervalTree([
+        TimeIntervalTree([
             TimeInterval(Offset(0, 1), Offset(1, 1), {'a': 1}),
             TimeInterval(Offset(1, 1), Offset(17, 16), {'c': 3})
         ])
@@ -31,7 +31,7 @@ def resolve_overlaps_between_nonoverlapping_trees_excluding_remainders_less_than
     '''
 
     assert isinstance(trees, Iterable) and len(trees) \
-        and all([isinstance(x, IntervalTree) for x in trees]) \
+        and all([isinstance(x, TimeIntervalTree) for x in trees]) \
         and all([all_intervals_are_nonoverlapping(x) for x in trees])
     assert isinstance(rational, (int, Fraction)) and 0 <= rational
 

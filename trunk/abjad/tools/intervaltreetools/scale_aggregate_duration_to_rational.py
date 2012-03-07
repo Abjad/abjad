@@ -1,4 +1,4 @@
-from abjad.tools.intervaltreetools.IntervalTree import IntervalTree
+from abjad.tools.intervaltreetools.TimeIntervalTree import TimeIntervalTree
 from abjad.tools.intervaltreetools.all_are_intervals_or_trees_or_empty import all_are_intervals_or_trees_or_empty
 from abjad import Fraction
 
@@ -9,16 +9,16 @@ def scale_aggregate_duration_to_rational(intervals, rational):
 
         abjad> from abjad.tools import intervaltreetools
         abjad> from abjad.tools.intervaltreetools import TimeInterval
-        abjad> from abjad.tools.intervaltreetools import IntervalTree
+        abjad> from abjad.tools.intervaltreetools import TimeIntervalTree
 
     ::
 
         abjad> a = TimeInterval(-1, 3)
         abjad> b = TimeInterval(6, 12)
         abjad> c = TimeInterval(9, 16)
-        abjad> tree = IntervalTree([a, b, c])
+        abjad> tree = TimeIntervalTree([a, b, c])
         abjad> intervaltreetools.scale_aggregate_duration_to_rational(tree, Fraction(16, 7))
-        IntervalTree([
+        TimeIntervalTree([
             TimeInterval(Offset(-1, 1), Offset(-55, 119), {}),
             TimeInterval(Offset(-1, 17), Offset(89, 119), {}),
             TimeInterval(Offset(41, 119), Offset(9, 7), {})
@@ -29,16 +29,16 @@ def scale_aggregate_duration_to_rational(intervals, rational):
 
     assert isinstance(rational, (int, Fraction)) and 0 < rational
     assert all_are_intervals_or_trees_or_empty(intervals)
-    if isinstance(intervals, IntervalTree):
+    if isinstance(intervals, TimeIntervalTree):
         tree = intervals
     else:
-        tree = IntervalTree(intervals)
+        tree = TimeIntervalTree(intervals)
     if not tree or tree.duration == rational:
         return tree
 
     ratio = rational / tree.duration
 
-    return IntervalTree([
+    return TimeIntervalTree([
         x.shift_to_rational(
             ((x.start - tree.start) * ratio) + tree.start).scale_by_rational(ratio) \
             for x in tree
