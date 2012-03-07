@@ -85,14 +85,18 @@ class FixedLengthStreamSolver(_Solver):
 
         def recurse(node):
             solution = node.solution
+            #print '\n%r\n' % [str(x) for x in solution]
 
             # if the node does not fulfill constraints, this is a dead end.
             # constraints are applied in order; we bail on first false result.
             valid = True
             for constraint in constraints:
+                #print '\t%r' % constraint,
                 if not constraint(solution):
                     valid = False
+                    #print '...False'
                     break
+                #print '...True'
 
             if valid:
                 # else, if we find a complete solution, yield it

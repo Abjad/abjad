@@ -22,7 +22,6 @@ class _RelativeConstraint(_Constraint):
         object.__setattr__(self, '_index_span', max(indices) - min(indices) + 1)
 
         assert isinstance(predicate, type(lambda: None))
-#        assert predicate.func_code.co_argcount == len(indices)
         object.__setattr__(self, '_predicate', predicate)
 
     ### PRIVATE ATTRIBUTES ###

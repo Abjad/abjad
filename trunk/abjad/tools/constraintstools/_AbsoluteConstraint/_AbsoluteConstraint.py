@@ -20,7 +20,6 @@ class _AbsoluteConstraint(_Constraint):
         object.__setattr__(self, '_max_index', max(indices))
 
         assert isinstance(predicate, type(lambda: None))
-#        assert predicate.func_code.co_argcount == len(indices)
         object.__setattr__(self, '_predicate', predicate)
 
     ### PRIVATE ATTRIBUTES ###
