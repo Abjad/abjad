@@ -1,5 +1,5 @@
 from abjad import Fraction
-from abjad.core import _Immutable
+from abjad.mixins import _Immutable
 from abjad.tools.durationtools import Duration
 from abjad.tools.durationtools import Offset
 
