@@ -4,7 +4,7 @@ from abjad import Fraction
 import py.test
 
 
-def test_timeintervaltools_scale_interval_offsets_by_rational_01():
+def test_intervaltreetools_scale_interval_offsets_by_rational_01():
     a = TimeInterval(0, 10, {'a': 1})
     b = TimeInterval(Fraction(5, 3), 8, {'b': 2})
     c = TimeInterval(5, Fraction(61, 7), {'c': 3})
@@ -18,7 +18,7 @@ def test_timeintervaltools_scale_interval_offsets_by_rational_01():
     assert scaled[1].duration == b.duration
     assert scaled[2].duration == c.duration
 
-def test_timeintervaltools_scale_interval_offsets_by_rational_02():
+def test_intervaltreetools_scale_interval_offsets_by_rational_02():
     tree = TimeIntervalTree([])
     scalar = Fraction(5, 2)
     scaled = scale_interval_offsets_by_rational(tree, scalar)

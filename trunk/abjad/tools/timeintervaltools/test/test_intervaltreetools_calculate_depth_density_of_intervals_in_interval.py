@@ -3,7 +3,7 @@ from abjad.tools.timeintervaltools import *
 import py.test
 
 
-def test_timeintervaltools_calculate_depth_density_of_intervals_in_interval_01():
+def test_intervaltreetools_calculate_depth_density_of_intervals_in_interval_01():
     a = TimeInterval(0, 10)
     b = TimeInterval(5, 15)
     c = TimeInterval(20, 25)
@@ -11,7 +11,7 @@ def test_timeintervaltools_calculate_depth_density_of_intervals_in_interval_01()
         TimeInterval(-10, -5)) == 0
 
 
-def test_timeintervaltools_calculate_depth_density_of_intervals_in_interval_02():
+def test_intervaltreetools_calculate_depth_density_of_intervals_in_interval_02():
     a = TimeInterval(0, 10)
     b = TimeInterval(5, 15)
     c = TimeInterval(20, 25)
@@ -19,7 +19,7 @@ def test_timeintervaltools_calculate_depth_density_of_intervals_in_interval_02()
         TimeInterval(30, 40)) == 0
 
 
-def test_timeintervaltools_calculate_depth_density_of_intervals_in_interval_03():
+def test_intervaltreetools_calculate_depth_density_of_intervals_in_interval_03():
     a = TimeInterval(0, 10)
     b = TimeInterval(5, 15)
     c = TimeInterval(20, 25)
@@ -27,7 +27,7 @@ def test_timeintervaltools_calculate_depth_density_of_intervals_in_interval_03()
         TimeInterval(0, 5)) == 1
 
 
-def test_timeintervaltools_calculate_depth_density_of_intervals_in_interval_04():
+def test_intervaltreetools_calculate_depth_density_of_intervals_in_interval_04():
     a = TimeInterval(0, 10)
     b = TimeInterval(5, 15)
     c = TimeInterval(20, 25)
@@ -35,7 +35,7 @@ def test_timeintervaltools_calculate_depth_density_of_intervals_in_interval_04()
         TimeInterval(0, 10)) == Fraction(3, 2)
 
 
-def test_timeintervaltools_calculate_depth_density_of_intervals_in_interval_05():
+def test_intervaltreetools_calculate_depth_density_of_intervals_in_interval_05():
     a = TimeInterval(0, 10)
     b = TimeInterval(5, 15)
     c = TimeInterval(20, 25)
@@ -43,7 +43,7 @@ def test_timeintervaltools_calculate_depth_density_of_intervals_in_interval_05()
         TimeInterval(0, 15)) == Fraction(4, 3)
 
 
-def test_timeintervaltools_calculate_depth_density_of_intervals_in_interval_06():
+def test_intervaltreetools_calculate_depth_density_of_intervals_in_interval_06():
     a = TimeInterval(0, 10)
     b = TimeInterval(5, 15)
     c = TimeInterval(20, 25)
@@ -51,7 +51,7 @@ def test_timeintervaltools_calculate_depth_density_of_intervals_in_interval_06()
         TimeInterval(0, 20)) == 1
 
 
-def test_timeintervaltools_calculate_depth_density_of_intervals_in_interval_07():
+def test_intervaltreetools_calculate_depth_density_of_intervals_in_interval_07():
     a = TimeInterval(0, 10)
     b = TimeInterval(5, 15)
     c = TimeInterval(20, 25)

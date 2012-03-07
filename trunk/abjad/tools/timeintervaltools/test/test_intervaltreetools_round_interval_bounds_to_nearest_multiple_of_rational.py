@@ -4,7 +4,7 @@ from abjad import Fraction
 import py.test
 
 
-def test_timeintervaltools_round_interval_bounds_to_nearest_multiple_of_rational_01():
+def test_intervaltreetools_round_interval_bounds_to_nearest_multiple_of_rational_01():
     tree = TimeIntervalTree([
         TimeInterval(Fraction(1, 4), Fraction(7, 8)),
         TimeInterval(Fraction(1, 3), Fraction(5, 3))
@@ -17,7 +17,7 @@ def test_timeintervaltools_round_interval_bounds_to_nearest_multiple_of_rational
     ])
 
 
-def test_timeintervaltools_round_interval_bounds_to_nearest_multiple_of_rational_02():
+def test_intervaltreetools_round_interval_bounds_to_nearest_multiple_of_rational_02():
     tree = TimeIntervalTree([
         TimeInterval(Fraction(1, 4), Fraction(7, 8)),
         TimeInterval(Fraction(1, 3), Fraction(5, 3))
@@ -30,7 +30,7 @@ def test_timeintervaltools_round_interval_bounds_to_nearest_multiple_of_rational
     ])
 
 
-def test_timeintervaltools_round_interval_bounds_to_nearest_multiple_of_rational_03():
+def test_intervaltreetools_round_interval_bounds_to_nearest_multiple_of_rational_03():
     tree = TimeIntervalTree([
         TimeInterval(Fraction(1, 4), Fraction(7, 8)),
         TimeInterval(Fraction(1, 3), Fraction(5, 3))
@@ -43,7 +43,7 @@ def test_timeintervaltools_round_interval_bounds_to_nearest_multiple_of_rational
     ])
 
 
-def test_timeintervaltools_round_interval_bounds_to_nearest_multiple_of_rational_04():
+def test_intervaltreetools_round_interval_bounds_to_nearest_multiple_of_rational_04():
     tree = TimeIntervalTree([
         TimeInterval(Fraction(1, 4), Fraction(7, 8)),
         TimeInterval(Fraction(1, 3), Fraction(5, 3))
@@ -51,7 +51,7 @@ def test_timeintervaltools_round_interval_bounds_to_nearest_multiple_of_rational
     py.test.raises(AssertionError, "result = round_interval_bounds_to_nearest_multiple_of_rational(tree, 0)")
 
 
-def test_timeintervaltools_round_interval_bounds_to_nearest_multiple_of_rational_05():
+def test_intervaltreetools_round_interval_bounds_to_nearest_multiple_of_rational_05():
     tree = TimeIntervalTree([])
     result = round_interval_bounds_to_nearest_multiple_of_rational(tree, 1)
     assert result == tree

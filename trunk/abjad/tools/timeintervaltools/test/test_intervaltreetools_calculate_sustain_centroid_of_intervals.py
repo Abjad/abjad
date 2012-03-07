@@ -3,13 +3,13 @@ from abjad.tools.timeintervaltools._make_test_intervals import _make_test_interv
 from abjad import Fraction
 
 
-def test_timeintervaltools_calculate_sustain_centroid_of_intervals_01():
+def test_intervaltreetools_calculate_sustain_centroid_of_intervals_01():
     tree = TimeIntervalTree(_make_test_intervals())
     result = calculate_sustain_centroid_of_intervals(tree)
     assert result == Fraction(1619, 90)
 
 
-def test_timeintervaltools_calculate_sustain_centroid_of_intervals_02():
+def test_intervaltreetools_calculate_sustain_centroid_of_intervals_02():
     tree = TimeIntervalTree([])
     result = calculate_sustain_centroid_of_intervals(tree)
     assert result is None

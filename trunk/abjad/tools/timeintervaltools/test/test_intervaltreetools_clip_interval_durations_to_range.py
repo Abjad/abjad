@@ -4,7 +4,7 @@ from abjad import Fraction
 import py.test
 
 
-def test_timeintervaltools_clip_interval_durations_to_range_01():
+def test_intervaltreetools_clip_interval_durations_to_range_01():
     start = None
     stop = None
     tree = TimeIntervalTree(_make_test_intervals())
@@ -13,7 +13,7 @@ def test_timeintervaltools_clip_interval_durations_to_range_01():
     assert sorted([x.start for x in tree]) == sorted([x.start for x in clipped])
 
 
-def test_timeintervaltools_clip_interval_durations_to_range_02():
+def test_intervaltreetools_clip_interval_durations_to_range_02():
     start = Fraction(3, 4)
     stop = None
     tree = TimeIntervalTree(_make_test_intervals())
@@ -22,7 +22,7 @@ def test_timeintervaltools_clip_interval_durations_to_range_02():
     assert sorted([x.start for x in tree]) == sorted([x.start for x in clipped])
 
 
-def test_timeintervaltools_clip_interval_durations_to_range_03():
+def test_intervaltreetools_clip_interval_durations_to_range_03():
     start = None
     stop = Fraction(1, 5)
     tree = TimeIntervalTree(_make_test_intervals())
@@ -31,7 +31,7 @@ def test_timeintervaltools_clip_interval_durations_to_range_03():
     assert sorted([x.start for x in tree]) == sorted([x.start for x in clipped])
 
 
-def test_timeintervaltools_clip_interval_durations_to_range_04():
+def test_intervaltreetools_clip_interval_durations_to_range_04():
     start = Fraction(1, 7)
     stop = Fraction(1, 3)
     tree = TimeIntervalTree(_make_test_intervals())
@@ -40,7 +40,7 @@ def test_timeintervaltools_clip_interval_durations_to_range_04():
     assert sorted([x.start for x in tree]) == sorted([x.start for x in clipped])
 
 
-def test_timeintervaltools_clip_interval_durations_to_range_05():
+def test_intervaltreetools_clip_interval_durations_to_range_05():
     start = Fraction(1, 3)
     stop = Fraction(1, 7)
     tree = TimeIntervalTree(_make_test_intervals())

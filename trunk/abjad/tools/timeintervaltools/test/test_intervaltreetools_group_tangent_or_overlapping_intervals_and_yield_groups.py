@@ -3,7 +3,7 @@ from abjad.tools.timeintervaltools._make_test_intervals import _make_test_interv
 import py.test
 
 
-def test_timeintervaltools_group_tangent_or_overlapping_intervals_and_yield_groups_01():
+def test_intervaltreetools_group_tangent_or_overlapping_intervals_and_yield_groups_01():
     tree = TimeIntervalTree(_make_test_intervals())
 
     target_signatures = [

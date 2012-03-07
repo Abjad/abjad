@@ -2,7 +2,7 @@ from abjad import Fraction
 from abjad.tools.timeintervaltools import *
 
 
-def test_timeintervaltools_make_monophonic_percussion_score_from_nonoverlapping_intervals_01():
+def test_intervaltreetools_make_monophonic_percussion_score_from_nonoverlapping_intervals_01():
     a = TimeInterval(0, Fraction(3, 4), {})
     b = TimeInterval(Fraction(5, 4), Fraction(7, 4), {})
     tree = TimeIntervalTree([a, b])

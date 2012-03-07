@@ -4,7 +4,7 @@ from abjad import Fraction
 import py.test
 
 
-def test_timeintervaltools_split_intervals_at_rationals_01():
+def test_intervaltreetools_split_intervals_at_rationals_01():
     splits = [-1, 16]
     a = TimeInterval(0, 10)
     b = TimeInterval(5, 15)
