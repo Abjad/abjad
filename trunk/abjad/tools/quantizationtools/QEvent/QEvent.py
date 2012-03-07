@@ -1,6 +1,6 @@
 from collections import Iterable
 from numbers import Number
-from abjad.core import _Immutable
+from abjad.mixins import _Immutable
 
 
 class QEvent(_Immutable):

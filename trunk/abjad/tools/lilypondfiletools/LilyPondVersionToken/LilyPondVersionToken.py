@@ -1,4 +1,4 @@
-from abjad.core import _Immutable
+from abjad.mixins import _Immutable
 from abjad.tools.configurationtools.get_lilypond_version_string import get_lilypond_version_string
 
 

@@ -1,5 +1,5 @@
 import random
-from abjad.core import _Immutable
+from abjad.mixins import _Immutable
 
 
 class Domain(_Immutable):

@@ -1,4 +1,4 @@
-from abjad.core import _Immutable
+from abjad.mixins import _Immutable
 from abjad.tools import componenttools
 from abjad.tools import durationtools
 from abjad.tools.chordtools.Chord import Chord

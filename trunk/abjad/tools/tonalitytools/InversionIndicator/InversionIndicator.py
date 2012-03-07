@@ -1,4 +1,4 @@
-from abjad.core import _Immutable
+from abjad.mixins import _Immutable
 
 
 class InversionIndicator(_Immutable):

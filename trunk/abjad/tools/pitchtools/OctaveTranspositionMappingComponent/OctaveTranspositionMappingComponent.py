@@ -1,4 +1,4 @@
-from abjad.core._MutableAbjadObject import _MutableAbjadObject
+from abjad.mixins._MutableAbjadObject import _MutableAbjadObject
 from abjad.tools.pitchtools.NumberedChromaticPitch import NumberedChromaticPitch
 from abjad.tools.pitchtools.PitchRange import PitchRange
 

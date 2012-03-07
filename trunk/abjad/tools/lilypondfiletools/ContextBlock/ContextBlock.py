@@ -1,6 +1,6 @@
 from abjad.tools.lilypondfiletools._AttributedBlock import _AttributedBlock
-from abjad.core import LilyPondContextSettingComponentPlugIn
-from abjad.core import LilyPondGrobOverrideComponentPlugIn
+from abjad.mixins import LilyPondContextSettingComponentPlugIn
+from abjad.mixins import LilyPondGrobOverrideComponentPlugIn
 
 
 class ContextBlock(_AttributedBlock):

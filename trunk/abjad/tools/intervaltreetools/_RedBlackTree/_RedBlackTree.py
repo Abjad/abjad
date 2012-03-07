@@ -1,4 +1,4 @@
-from abjad.core import _ImmutableAbjadObject
+from abjad.mixins import _ImmutableAbjadObject
 from abjad.tools.intervaltreetools._RedBlackNode import _RedBlackNode
 
 

@@ -1,4 +1,4 @@
-from abjad.core import _ImmutableAbjadObject
+from abjad.mixins import _ImmutableAbjadObject
 
 
 class _RedBlackNode(_ImmutableAbjadObject):

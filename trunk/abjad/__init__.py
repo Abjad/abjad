@@ -30,12 +30,12 @@ del _read_config_file
 
 del cfg
 del configurationtools
-del core
 del durationtools
 del exceptions
 del importtools
 del interfaces
 del mathtools
+del mixins
 del timesignaturetools
 del os
 del pitcharraytools

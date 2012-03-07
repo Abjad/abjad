@@ -1,5 +1,5 @@
-from abjad.core import _FlexEqualityComparator
-from abjad.core import _Immutable
+from abjad.mixins import _FlexEqualityComparator
+from abjad.mixins import _Immutable
 
 
 class _PitchClass(_Immutable, _FlexEqualityComparator):

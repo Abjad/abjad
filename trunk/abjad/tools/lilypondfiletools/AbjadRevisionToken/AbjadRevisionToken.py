@@ -1,4 +1,4 @@
-from abjad.core import _Immutable
+from abjad.mixins import _Immutable
 from abjad.tools.configurationtools.get_abjad_revision_string import get_abjad_revision_string
 
 

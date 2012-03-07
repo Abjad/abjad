@@ -1,4 +1,4 @@
-from abjad.core import _StrictComparator
+from abjad.mixins import _StrictComparator
 from abjad.tools import durationtools
 
 

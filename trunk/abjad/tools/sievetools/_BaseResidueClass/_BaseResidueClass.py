@@ -1,4 +1,4 @@
-from abjad.core._MutableAbjadObject import _MutableAbjadObject
+from abjad.mixins._MutableAbjadObject import _MutableAbjadObject
 
 
 class _BaseResidueClass(_MutableAbjadObject):

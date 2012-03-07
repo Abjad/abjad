@@ -1,5 +1,5 @@
-from abjad.core import _Immutable
-from abjad.core import _UnaryComparator
+from abjad.mixins import _Immutable
+from abjad.mixins import _UnaryComparator
 
 
 class _Pitch(_Immutable, _UnaryComparator):

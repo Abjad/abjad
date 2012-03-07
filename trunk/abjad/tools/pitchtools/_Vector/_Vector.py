@@ -1,4 +1,4 @@
-from abjad.core import _ImmutableDictionary
+from abjad.mixins import _ImmutableDictionary
 
 
 class _Vector(_ImmutableDictionary):

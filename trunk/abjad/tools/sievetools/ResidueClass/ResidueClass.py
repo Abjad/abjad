@@ -1,4 +1,4 @@
-from abjad.core import _Immutable
+from abjad.mixins import _Immutable
 from abjad.tools.sievetools._BaseResidueClass import _BaseResidueClass
 from abjad.tools.sievetools._process_min_max_attribute import _process_min_max_attribute
 
