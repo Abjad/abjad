@@ -54,6 +54,11 @@ class OctaveTranspositionMappingComponent(_MutableAbjadObject):
         return '({!r}, {})'.format(
             self.source_pitch_range.one_line_named_chromatic_pitch_repr, 
             self.target_octave_start_pitch)
+    
+    @property
+    def _one_line_menuing_summary(self):
+        return '{} => {}'.format(
+            self.source_pitch_range.one_line_named_chromatic_pitch_repr, self.target_octave_start_pitch)
 
     ### READ / WRITE ATTRIBUTES ###
 
