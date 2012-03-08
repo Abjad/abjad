@@ -25,7 +25,20 @@ class OctaveTranspositionMapping(ObjectInventory):
         else:
             return '{}([{}])'.format(self.class_name, self._repr_contents_string)
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE READ-ONLY PROPERTIES ###
+
+    @property
+    def _item_class(self):
+        return OctaveTranspositionMappingComponent
+
+    @property
+    def _one_line_menuing_summary(self):
+        name = self.inventory_name or 'mapping'
+        contents = []
+        for mapping_component in self:
+            contents.append(mapping_component._one_line_menuing_summary)
+        contents_string = ', '.join(contents)
+        return '{}: {}'.format(name, contents_string)
 
     @property
     def _repr_contents_string(self):
@@ -33,9 +46,3 @@ class OctaveTranspositionMapping(ObjectInventory):
         for mapping_component in self:
             result.append(mapping_component._input_argument_token)
         return ', '.join(result)
-
-    ### PRIVATE READ-ONLY PROPERTIES ###
-
-    @property
-    def _item_class(self):
-        return OctaveTranspositionMappingComponent
