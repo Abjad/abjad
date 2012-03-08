@@ -446,6 +446,7 @@ marktools
    tools/marktools/Annotation/Annotation
    tools/marktools/Articulation/Articulation
    tools/marktools/BarLine/BarLine
+   tools/marktools/BendAfter/BendAfter
    tools/marktools/LilyPondCommandMark/LilyPondCommandMark
    tools/marktools/LilyPondComment/LilyPondComment
    tools/marktools/Mark/Mark
