@@ -1,16 +1,18 @@
+from collections import MutableMapping
+import copy
 from abjad import Fraction
 from abjad.mixins import _Immutable
 from abjad.tools.durationtools import Duration
 from abjad.tools.durationtools import Offset
+from abjad.tools.timeintervaltools._TimeIntervalMixin._TimeIntervalMixin import _TimeIntervalMixin
 
-class TimeInterval(dict, _Immutable):
+
+class TimeInterval(_TimeIntervalMixin, MutableMapping):
     '''A start / stop pair, carrying some metadata.'''
 
-    __slots__ = ('_stop', '_start', )
+    __slots__ = ('_data', '_start', '_stop')
 
     def __init__(self, *args):
-        dict.__init__(self)
-
         if len(args) == 1 and isinstance(args[0], TimeInterval):
             start, stop, data = args[0].start, args[0].stop, args[0]
         elif len(args) == 2:
@@ -18,38 +20,50 @@ class TimeInterval(dict, _Immutable):
         elif len(args) == 3:
             start, stop, data = args[0], args[1], args[2]
 
-        assert isinstance(start, (int, Fraction))
-        assert isinstance(stop, (int, Fraction))
+        start, stop = Offset(start), Offset(stop)
         assert start < stop
+        if isinstance(data, type(self)):
+            data = data._data
         assert isinstance(data, dict)
 
-        object.__setattr__(self, '_start', Offset(start))
-        object.__setattr__(self, '_stop', Offset(stop))
-
-        self.update(data)
+        object.__setattr__(self, '_start', start)
+        object.__setattr__(self, '_stop', stop)
+        object.__setattr__(self, '_data', copy.copy(data))
 
     ### OVERLOADS ###
 
+    def __delitem__(self, item):
+        self._data.__delitem__(item)
+
     def __eq__(self, other):
-        if type(other) == type(self):
-            if other.start == self.start:
-                if other.stop == self.stop:
-                    if dict.__eq__(self, other):
-                        return True
+        if type(other) == type(self) and \
+            other.start == self.start and \
+            other.stop == self.stop and \
+            other._data == self._data:
+                return True
         return False
+
+    def __getitem__(self, item):
+        return self._data.__getitem__(item)
 
     def __hash__(self):
         return id(self)
+
+    def __iter__(self):
+        for x in self._data:
+            yield x
+
+    def __len__(self):
+        return len(self._data)
 
     def __ne__(self, other):
         return not self.__eq__(other)
 
     def __repr__(self):
-        return '%s(%s, %s, %s)' % \
-            (type(self).__name__, \
-            repr(self.start), \
-            repr(self.stop), \
-            dict.__repr__(self))
+        return '%s(%r, %r, %r)' % (self.class_name, self.start, self.stop, self._data)
+
+    def __setitem__(self, item, value):
+        self._data.__setitem__(item, value)
 
     ### PUBLIC ATTRIBUTES ###
 
@@ -184,4 +198,4 @@ class TimeInterval(dict, _Immutable):
             intervals = new_intervals
             new_intervals = [ ]
 
-        return tuple(sorted(intervals))
+        return tuple(sorted(intervals, key=lambda x: x.signature))

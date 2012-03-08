@@ -14,8 +14,8 @@ def test_timeintervaltools_mask_intervals_with_intervals_01():
     target_signatures = [(5, 9), (6, 10)]
     actual_signatures = [interval.signature for interval in result]
     assert target_signatures == actual_signatures
-    assert dict.__eq__(result[0], a)
-    assert dict.__eq__(result[1], b)
+    assert result[0]._data == a._data
+    assert result[1]._data == b._data
 #   assert result[0] == a
 #   assert result[1] == b
 
