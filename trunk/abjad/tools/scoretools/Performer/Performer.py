@@ -42,7 +42,15 @@ class Performer(_MutableAbjadObject):
 
     @property
     def _one_line_menuing_summary(self):
-        return self.name
+        if not self.instruments:
+            result = '{}: no instruments'.format(self.name)
+        elif len(self.instruments) == 1 and self.name == \
+            self.instruments[0].instrument_name:
+            result = '{}'.format(self.name)
+        else:
+            instruments = ', '.join([x.instrument_name for x in self.instruments])
+            result = '{}: {}'.format(self.name, instruments)
+        return result
             
     @property
     def _repr_with_tools_package(self):
