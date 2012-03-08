@@ -275,3 +275,7 @@ class LilyPondParserError(Exception):
 class ImpreciseTempoError(TempoError):
     '''TempoMark is imprecise.'''
     pass
+
+class NotImplementedError(Exception):
+    '''Method or attribute is not implemented.'''
+    pass
