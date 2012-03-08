@@ -14,15 +14,21 @@ class ObjectInventory(list, _MutableAbjadObject):
 
     This class is an abstract base class that can not instantiate and should be subclassed.
     '''
+
+    ### CLASS ATTRIBUTES ###
+
     __metaclass__ = ABCMeta
 
-    def __init__(self, tokens=None):
+    ### INITIALIZER ###
+
+    def __init__(self, tokens=None, inventory_name=None):
         list.__init__(self)
         tokens = tokens or []
         items = []
         for token in tokens:
             items.append(self._item_class(token))
         self.extend(items)
+        self.inventory_name = inventory_name
 
     ### OVERLOADS ###
 
@@ -64,6 +70,19 @@ class ObjectInventory(list, _MutableAbjadObject):
         for part in reversed(self.__module__.split('.')):
             if not part == self.class_name:
                 return part
+
+    ### READ / WRITE PUBLIC ATTRIBUTES ###
+
+    @apply
+    def inventory_name():
+        def fget(self):
+            '''Read / write name of inventory.
+            '''
+            return self._inventory_name
+        def fset(self, _inventory_name):
+            assert isinstance(_inventory_name, (str, type(None)))
+            self._inventory_name = _inventory_name
+        return property(**locals())
 
     ### PUBLIC METHODS ###
 

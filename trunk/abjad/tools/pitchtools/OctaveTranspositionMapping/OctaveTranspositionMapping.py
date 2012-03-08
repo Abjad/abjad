@@ -2,6 +2,7 @@ from abjad.mixins._MutableAbjadObject import _MutableAbjadObject
 from abjad.tools.pitchtools.OctaveTranspositionMappingComponent import OctaveTranspositionMappingComponent
 
 
+# TODO: inherit from ObjectInventory
 class OctaveTranspositionMapping(list, _MutableAbjadObject):
     '''.. versionadded:: 2.8
 
