@@ -1,4 +1,5 @@
 from abjad.tools.marktools.Articulation import Articulation
+from abjad.tools.marktools.BendAfter import BendAfter
 
 
 def get_articulations_attached_to_component(component):
@@ -32,7 +33,7 @@ def get_articulations_attached_to_component(component):
 
     result = []
     for mark in component._marks_for_which_component_functions_as_start_component:
-        if isinstance(mark, Articulation):
+        if isinstance(mark, (Articulation, BendAfter)):
             result.append(mark)
 
     result = tuple(result)
