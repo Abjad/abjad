@@ -2,7 +2,7 @@ from abjad.tools.constraintstools._GlobalConstraint._GlobalConstraint import _Gl
 
 
 class GlobalReferenceConstraint(_GlobalConstraint):
-    '''A global constraint with an arbitrary external reference:
+    r'''A global constraint with an arbitrary external reference:
 
     ::
 
@@ -19,11 +19,14 @@ class GlobalReferenceConstraint(_GlobalConstraint):
         abjad> constraint = GlobalReferenceConstraint(reference, predicate)
 
     ::
+
         abjad> constraint([-1, 10, 3.5])
         True
         abjad> constraint([-1, 1, 2, 3, 23])
         False
         
+    ``GlobalReferenceConstraints`` are immutable.    
+
     Returns ``GlobalReferenceConstraint`` instance.
     '''
 
