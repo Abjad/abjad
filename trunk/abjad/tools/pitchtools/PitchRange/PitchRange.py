@@ -184,12 +184,11 @@ class PitchRange(_Immutable):
     ### PRIVATE ATTRIBUTES ###
 
     @property
-    def _one_line_menuing_summary(self):
-        return self.one_line_named_chromatic_pitch_repr
-
-    @property
-    def _repr_with_tools_package(self):
-        return '{}({!r})'.format(self._class_name_with_tools_package, self.one_line_named_chromatic_pitch_repr)
+    def _close_bracket_string(self):
+        if self.stop_pitch_is_included_in_range:
+            return ']'
+        else:
+            return ')'
 
     @property
     def _kwargs_string(self):
@@ -202,11 +201,8 @@ class PitchRange(_Immutable):
         return result
 
     @property
-    def _close_bracket_string(self):
-        if self.stop_pitch_is_included_in_range:
-            return ']'
-        else:
-            return ')'
+    def _one_line_menuing_summary(self):
+        return self.one_line_named_chromatic_pitch_repr
 
     @property
     def _open_bracket_string(self):
@@ -214,6 +210,10 @@ class PitchRange(_Immutable):
             return '['
         else:
             return '('
+
+    @property
+    def _repr_with_tools_package(self):
+        return '{}({!r})'.format(self._class_name_with_tools_package, self.one_line_named_chromatic_pitch_repr)
 
     ### PRIVATE METHODS ###
 

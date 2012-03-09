@@ -22,12 +22,25 @@ class _ImmutableAbjadObject(object):
         return '{}.{}'.format(self._tools_package, self.class_name)
 
     @property
+    def _keyword_argument_name_value_strings(self):
+        result = []
+        for name in self._keyword_argument_names:
+            value = getattr(self, name)
+            string = '{}={!r}'.format(name, value)
+            result.append(string)
+        return tuple(result)
+
+    @property
     def _keyword_argument_names(self):
         return ()
 
     @property
-    def _mandatory_argument_names(self):
+    def _mandatory_argument_values(self):
         return ()
+
+    @property
+    def _one_line_menuing_summary(self):
+        return str(self)
 
     @property
     def _repr_with_tools_package(self):
