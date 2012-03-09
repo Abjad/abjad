@@ -165,9 +165,9 @@ class PitchRange(_Immutable):
         return not self == arg
 
     def __repr__(self):
-        if self._keyword_argument_repr_string:
+        if self._kwargs_string:
             return '{}({!r}, {})'.format(type(self).__name__, 
-                self.one_line_named_chromatic_pitch_repr, self._keyword_argument_repr_string)
+                self.one_line_named_chromatic_pitch_repr, self._kwargs_string)
         else:
             return '{}({!r})'.format(type(self).__name__, self.one_line_named_chromatic_pitch_repr)
 
@@ -184,14 +184,6 @@ class PitchRange(_Immutable):
     ### PRIVATE ATTRIBUTES ###
 
     @property
-    def _class_name(self):
-        return type(self).__name__
-
-    @property
-    def _class_name_with_tools_package(self):
-        return '{}.{}'.format(self._tools_package, self._class_name)
-
-    @property
     def _one_line_menuing_summary(self):
         return self.one_line_named_chromatic_pitch_repr
 
@@ -200,13 +192,7 @@ class PitchRange(_Immutable):
         return '{}({!r})'.format(self._class_name_with_tools_package, self.one_line_named_chromatic_pitch_repr)
 
     @property
-    def _tools_package(self):
-        for part in reversed(self.__module__.split('.')):
-            if not part == self._class_name:
-                return part
-
-    @property
-    def _keyword_argument_repr_string(self):
+    def _kwargs_string(self):
         result = []
         if self._pitch_range_name:
             result.append('pitch_range_name={!r}'.format(self._pitch_range_name))
