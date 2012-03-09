@@ -21,6 +21,14 @@ class _MutableAbjadObject(object):
         return '{}.{}'.format(self._tools_package, self.class_name)
 
     @property
+    def _keyword_argument_names(self):
+        return ()
+
+    @property
+    def _mandatory_argument_names(self):
+        return ()
+
+    @property
     def _repr_with_tools_package(self):
         return '{}.{}'.format(self._tools_package, repr(self))
 
