@@ -69,14 +69,6 @@ class Mark(_ImmutableAbjadObject):
             return '(%s)' % str(self.start_component)
 
     @property
-    def _class_name(self):
-        return type(self).__name__
-
-    @property
-    def _class_name_with_tools_package(self):
-        return '{}.{}'.format(self._tools_package, self._class_name)
-
-    @property
     def _contents_repr_string(self):
         if hasattr(self, 'contents'):
             return repr(self.contents)
@@ -98,12 +90,6 @@ class Mark(_ImmutableAbjadObject):
     def _repr_with_tools_package(self):
         return '{}({}){}'.format(self._class_name_with_tools_package,
             self._contents_repr_string_with_tools_package, self._attachment_repr_string)
-
-    @property
-    def _tools_package(self):
-        for part in reversed(self.__module__.split('.')):
-            if not part == self._class_name:
-                return part
 
     ### MANGLED METHODS ###
 
