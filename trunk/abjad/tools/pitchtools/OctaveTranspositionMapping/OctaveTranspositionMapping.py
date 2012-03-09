@@ -21,9 +21,9 @@ class OctaveTranspositionMapping(ObjectInventory):
     def __repr__(self):
         if self.inventory_name:
             return '{}([{}], inventory_name={!r})'.format(
-                self.class_name, self._repr_contents_string, self.inventory_name)
+                self._class_name, self._repr_contents_string, self.inventory_name)
         else:
-            return '{}([{}])'.format(self.class_name, self._repr_contents_string)
+            return '{}([{}])'.format(self._class_name, self._repr_contents_string)
 
     ### PRIVATE READ-ONLY PROPERTIES ###
 

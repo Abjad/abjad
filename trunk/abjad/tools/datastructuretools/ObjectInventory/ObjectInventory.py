@@ -46,9 +46,9 @@ class ObjectInventory(list, _MutableAbjadObject):
 
     def __repr__(self):
         if self._kwargs_string:
-            return '{}({}, {})'.format(self.class_name, list.__repr__(self), self._kwargs_string)
+            return '{}({}, {})'.format(self._class_name, list.__repr__(self), self._kwargs_string)
         else:
-            return '{}({})'.format(self.class_name, list.__repr__(self))
+            return '{}({})'.format(self._class_name, list.__repr__(self))
 
     ### READ-ONLY PRIVATE ATTRIBUTES ###
 

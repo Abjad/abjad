@@ -45,7 +45,7 @@ class OctaveTranspositionMappingComponent(_MutableAbjadObject):
         return not self == other
 
     def __repr__(self):
-        return '{}{}'.format(self.class_name, self._input_argument_token)
+        return '{}{}'.format(self._class_name, self._input_argument_token)
 
     ### PRIVATE ATTRIBUTES ###
 

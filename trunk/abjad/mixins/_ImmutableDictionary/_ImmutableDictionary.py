@@ -15,7 +15,7 @@ class _ImmutableDictionary(dict, _ImmutableAbjadObject):
     ### OVERLOADS ###
 
     def __delitem__(self, *args):
-        raise AttributeError('objects are immutable: "{}".'.format(self.class_name))
+        raise AttributeError('objects are immutable: "{}".'.format(self._class_name))
 
     def __setitem__(self, *args):
-        raise AttributeError('objects are immutable: "{}".'.format(self.class_name))
+        raise AttributeError('objects are immutable: "{}".'.format(self._class_name))

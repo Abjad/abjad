@@ -17,8 +17,12 @@ class _MutableAbjadObject(object):
     ### PRIVATE READ-ONLY ATTRIBUTES ###
 
     @property
+    def _class_name(self):
+        return type(self).__name__ 
+
+    @property
     def _class_name_with_tools_package(self):
-        return '{}.{}'.format(self._tools_package, self.class_name)
+        return '{}.{}'.format(self._tools_package, self._class_name)
 
     @property
     def _keyword_argument_name_value_strings(self):
@@ -48,11 +52,5 @@ class _MutableAbjadObject(object):
     @property
     def _tools_package(self):
         for part in reversed(self.__module__.split('.')):
-            if not part == self.class_name:
+            if not part == self._class_name:
                 return part
-    
-    ### PUBLIC READ-ONLY ATTRIBUTES ###
-
-    @property
-    def class_name(self):
-        return type(self).__name__ 

@@ -60,7 +60,7 @@ class TimeInterval(_TimeIntervalMixin, MutableMapping):
         return not self.__eq__(other)
 
     def __repr__(self):
-        return '%s(%r, %r, %r)' % (self.class_name, self.start, self.stop, self._data)
+        return '%s(%r, %r, %r)' % (self._class_name, self.start, self.stop, self._data)
 
     def __setitem__(self, item, value):
         self._data.__setitem__(item, value)

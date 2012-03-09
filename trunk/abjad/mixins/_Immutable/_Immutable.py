@@ -24,13 +24,13 @@ class _Immutable(_ImmutableAbjadObject):
     __deepcopy__ = __copy__
 
     def __delattr__(self, *args):
-        raise AttributeError('objects are immutable: "{}".'.format(self.class_name))
+        raise AttributeError('objects are immutable: "{}".'.format(self._class_name))
 
     def __getstate__(self):
         return {}
 
     def __setattr__(self, *args):
-        raise AttributeError('objects are immutable: "{}".'.format(self.class_name))
+        raise AttributeError('objects are immutable: "{}".'.format(self._class_name))
 
     def __setstate__(self, state):
         pass
