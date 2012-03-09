@@ -80,15 +80,15 @@ class Mark(_ImmutableAbjadObject):
         if hasattr(self, 'contents'):
             part_reprs = []
             for element in self.contents:
-                part_repr = getattr(element, '_repr_with_tools_package', repr(element))
+                part_repr = getattr(element, '_fully_qualified_repr', repr(element))
                 part_reprs.append(part_repr)
             return ', '.join(part_reprs)
         else:
             return ''
 
     @property
-    def _repr_with_tools_package(self):
-        return '{}({}){}'.format(self._class_name_with_tools_package,
+    def _fully_qualified_repr(self):
+        return '{}({}){}'.format(self._fully_qualified_class_name,
             self._contents_repr_string_with_tools_package, self._attachment_repr_string)
 
     ### MANGLED METHODS ###

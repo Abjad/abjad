@@ -53,10 +53,10 @@ class ObjectInventory(list, _MutableAbjadObject):
     ### READ-ONLY PRIVATE ATTRIBUTES ###
 
     @property
-    def _contents_repr_with_tools_package(self):
+    def _contents_fully_qualified_repr(self):
         part_reprs = []
         for element in self:
-            part_repr = getattr(element, '_repr_with_tools_package', repr(element))
+            part_repr = getattr(element, '_fully_qualified_repr', repr(element))
             part_reprs.append(part_repr)
         return ', '.join(part_reprs)
 
@@ -72,9 +72,9 @@ class ObjectInventory(list, _MutableAbjadObject):
         return ', '.join(result)
 
     @property
-    def _repr_with_tools_package(self):
+    def _fully_qualified_repr(self):
         return '{}([{}])'.format(
-            self._class_name_with_tools_package, self._contents_repr_with_tools_package)
+            self._fully_qualified_class_name, self._contents_fully_qualified_repr)
 
     ### READ / WRITE PUBLIC ATTRIBUTES ###
 

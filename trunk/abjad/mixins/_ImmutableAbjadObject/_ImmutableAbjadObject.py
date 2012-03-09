@@ -22,8 +22,12 @@ class _ImmutableAbjadObject(object):
         return type(self).__name__
 
     @property
-    def _class_name_with_tools_package(self):
+    def _fully_qualified_class_name(self):
         return '{}.{}'.format(self._tools_package, self._class_name)
+
+    @property
+    def _fully_qualified_repr(self):
+        return '{}.{}'.format(self._tools_package, repr(self))
 
     @property
     def _keyword_argument_name_value_strings(self):
@@ -39,16 +43,19 @@ class _ImmutableAbjadObject(object):
         return ()
 
     @property
+    def _keyword_argument_values(self):
+        result = []
+        for name in self._keyword_argument_names:
+            result.append(getattr(self, name))
+        return result
+
+    @property
     def _mandatory_argument_values(self):
         return ()
 
     @property
     def _one_line_menuing_summary(self):
         return str(self)
-
-    @property
-    def _repr_with_tools_package(self):
-        return '{}.{}'.format(self._tools_package, repr(self))
 
     @property
     def _tools_package(self):

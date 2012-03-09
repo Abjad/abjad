@@ -53,7 +53,7 @@ class Performer(_MutableAbjadObject):
         return result
             
     @property
-    def _repr_with_tools_package(self):
+    def _fully_qualified_repr(self):
         return self._repr_helper(include_tools_package=True)
 
     ### PRIVATE METHODS ####
@@ -65,7 +65,7 @@ class Performer(_MutableAbjadObject):
             values.append('name={!r}'.format(self.name))
         if self.instruments:
             if include_tools_package:
-                instruments = ', '.join([x._repr_with_tools_package for x in self.instruments])
+                instruments = ', '.join([x._fully_qualified_repr for x in self.instruments])
                 instruments = 'instruments=[{}]'.format(instruments)
             else:
                 instruments = 'instruments={}'.format(str(self.instruments[:]))
