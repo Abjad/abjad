@@ -91,6 +91,10 @@ class Mark(_ImmutableAbjadObject):
         return '{}({}){}'.format(self._fully_qualified_class_name,
             self._contents_repr_string_with_tools_package, self._attachment_repr_string)
 
+    @property
+    def _one_line_menuing_summary(self):
+        return repr(self)
+
     ### MANGLED METHODS ###
 
     def __unbind_start_component(self):
