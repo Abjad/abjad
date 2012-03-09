@@ -23,12 +23,17 @@ class ObjectInventory(list, _MutableAbjadObject):
 
     def __init__(self, tokens=None, inventory_name=None):
         list.__init__(self)
-        tokens = tokens or []
-        items = []
-        for token in tokens:
-            items.append(self._item_class(token))
-        self.extend(items)
-        self.inventory_name = inventory_name
+        if isinstance(tokens, type(self)):
+            for token in tokens:
+                self.append(self._item_class(token))
+            self.inventory_name = tokens.inventory_name or inventory_name
+        else:
+            tokens = tokens or []
+            items = []
+            for token in tokens:
+                items.append(self._item_class(token))
+            self.extend(items)
+            self.inventory_name = inventory_name
 
     ### OVERLOADS ###
 
