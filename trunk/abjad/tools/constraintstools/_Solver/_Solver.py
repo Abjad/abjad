@@ -32,10 +32,9 @@ class _Solver(_Immutable):
         solutions = []
         iter = self.iterator
         for _ in xrange(n):
-            solution = iter.next()
-            if solution:
-                solutions.append(solution)
-            else:
+            try:
+                solutions.append(iter.next( ))
+            except StopIteration:
                 break
         return tuple(solutions)
 
