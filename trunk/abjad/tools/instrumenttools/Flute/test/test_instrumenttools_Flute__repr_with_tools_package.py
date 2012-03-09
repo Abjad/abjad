@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_instrumenttools_Flute__fully_qualified_repr_01():
+def test_instrumenttools_Flute__repr_with_tools_package_01():
 
     flute = instrumenttools.Flute()
 

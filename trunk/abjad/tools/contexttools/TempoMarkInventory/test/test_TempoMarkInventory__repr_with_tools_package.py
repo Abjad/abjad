@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_TempoMarkInventory__fully_qualified_repr_01():
+def test_TempoMarkInventory__repr_with_tools_package_01():
 
     tempo_mark_inventory = contexttools.TempoMarkInventory([('Allegro', (1, 4), 84)])
 

@@ -1,7 +1,7 @@
 from abjad.tools import sequencetools
 
 
-def test_sequencetools_CyclicTree__fully_qualified_repr_01():
+def test_sequencetools_CyclicTree__repr_with_tools_package_01():
 
     cyclic_tree = sequencetools.CyclicTree([[1, 2, 3], [4, 5]])
 

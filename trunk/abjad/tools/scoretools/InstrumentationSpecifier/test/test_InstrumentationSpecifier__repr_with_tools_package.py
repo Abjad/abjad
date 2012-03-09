@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_InstrumentationSpecifier__fully_qualified_repr_01():
+def test_InstrumentationSpecifier__repr_with_tools_package_01():
 
     flute = scoretools.Performer('Flute')
     flute.instruments.append(instrumenttools.Flute())
