@@ -30,6 +30,10 @@ class _ImmutableAbjadObject(object):
         return '{}.{}'.format(self._tools_package, repr(self))
 
     @property
+    def _fully_qualified_repr_pieces(self):
+        return [self._fully_qualified_repr]
+
+    @property
     def _keyword_argument_name_value_strings(self):
         result = []
         for name in self._keyword_argument_names:
@@ -56,6 +60,10 @@ class _ImmutableAbjadObject(object):
     @property
     def _one_line_menuing_summary(self):
         return str(self)
+
+    @property
+    def _repr_pieces(self):
+        return [repr(self)]
 
     @property
     def _tools_package(self):
