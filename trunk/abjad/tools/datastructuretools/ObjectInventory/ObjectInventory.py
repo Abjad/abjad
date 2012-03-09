@@ -40,7 +40,10 @@ class ObjectInventory(list, _MutableAbjadObject):
         return list.__contains__(self, item)        
 
     def __repr__(self):
-        return '{}({})'.format(self.class_name, list.__repr__(self))
+        if self._kwargs_string:
+            return '{}({}, {})'.format(self.class_name, list.__repr__(self), self._kwargs_string)
+        else:
+            return '{}({})'.format(self.class_name, list.__repr__(self))
 
     ### READ-ONLY PRIVATE ATTRIBUTES ###
 
@@ -59,6 +62,13 @@ class ObjectInventory(list, _MutableAbjadObject):
     @abstractproperty
     def _item_class(self):
         pass
+
+    @property
+    def _kwargs_string(self):
+        result = []
+        if self.inventory_name:
+            result.append('inventory_name={!r}'.format(self.inventory_name))
+        return ', '.join(result)
 
     @property
     def _repr_with_tools_package(self):
