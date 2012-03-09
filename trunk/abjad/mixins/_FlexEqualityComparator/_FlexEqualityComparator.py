@@ -1,12 +1,16 @@
+from abc import ABCMeta
 from abjad.mixins._StrictComparator import _StrictComparator
 
 
 class _FlexEqualityComparator(_StrictComparator):
-    '''Mix-in base class to confer a certain type of comparator behavior to any custom class.
+    '''Mix-in abstract base class to confer a certain type of comparator behavior to any custom class.
     Flex equality comparators raise not implemented error on gt, lt, ge, le.
     Flex equality comparators attempt type coercion on eq, ne.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
+    __metaclass__ = ABCMeta
     __slots__ = ('_comparison_attribute', '_format_string')
 
     ### OVERLOADS ###

@@ -1,11 +1,14 @@
+from abc import ABCMeta
 from abjad.mixins._ImmutableAbjadObject import _ImmutableAbjadObject
 
 
-#class _UnaryComparator(object):
 class _UnaryComparator(_ImmutableAbjadObject):
-    '''Mix-in base class to confer unary comparison behavior to any custom class.
+    '''Mix-in abstact base class to confer unary comparison behavior to any custom class.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
+    __metaclass__ = ABCMeta
     __slots__ = ('_comparison_attribute', '_format_string')
 
     ### OVERLOADS ###
