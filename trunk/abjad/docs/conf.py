@@ -36,6 +36,8 @@ todo_include_todos = True
 # autodoc
 autodoc_member_order = 'groupwise'
 
+exclude_members = ['__abstactmethods__', '__class__', '__metaclass__', '__module__', '__sizeof__', '__subclasshook__']
+
 # For sphinx.ext.intersphinx
 intersphinx_mapping = {'python': ('http://docs.python.org/2.7', None)}
 
