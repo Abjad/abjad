@@ -1,6 +1,5 @@
 from abjad.tools import durationtools
 from abjad.tools.componenttools._Component import _Component
-from abjad.mixins._StrictComparator import _StrictComparator
 import copy
 import fractions
 import operator
