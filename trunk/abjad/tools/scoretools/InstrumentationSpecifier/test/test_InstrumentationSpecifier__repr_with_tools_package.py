@@ -10,4 +10,4 @@ def test_InstrumentationSpecifier__repr_with_tools_package_01():
     guitar.instruments.append(instrumenttools.Guitar())
     specifier = scoretools.InstrumentationSpecifier([flute, guitar])
     
-    assert specifier._fully_qualified_repr == "scoretools.InstrumentationSpecifier([scoretools.Performer(name='Flute', instruments=[instrumenttools.Flute(), instrumenttools.AltoFlute()]), scoretools.Performer(name='Guitar', instruments=[instrumenttools.Guitar()])])"
+    assert specifier._tools_package_qualified_repr == "scoretools.InstrumentationSpecifier([scoretools.Performer(name='Flute', instruments=[instrumenttools.Flute(), instrumenttools.AltoFlute()]), scoretools.Performer(name='Guitar', instruments=[instrumenttools.Guitar()])])"

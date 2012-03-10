@@ -21,16 +21,16 @@ class _MutableAbjadObject(object):
         return type(self).__name__ 
 
     @property
-    def _fully_qualified_class_name(self):
+    def _tools_package_qualified_class_name(self):
         return '{}.{}'.format(self._tools_package, self._class_name)
 
     @property
-    def _fully_qualified_repr(self):
+    def _tools_package_qualified_repr(self):
         return '{}.{}'.format(self._tools_package, repr(self))
 
     @property
-    def _fully_qualified_repr_pieces(self):
-        return [self._fully_qualified_repr]
+    def _tools_package_qualified_repr_pieces(self):
+        return [self._tools_package_qualified_repr]
         
     @property
     def _keyword_argument_name_value_strings(self):

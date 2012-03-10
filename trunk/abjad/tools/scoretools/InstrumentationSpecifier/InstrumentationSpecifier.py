@@ -49,7 +49,7 @@ class InstrumentationSpecifier(_MutableAbjadObject):
     ### PRIVATE ATTRIBUTES ###
 
     @property
-    def _fully_qualified_repr(self):
+    def _tools_package_qualified_repr(self):
         return self._repr_helper(include_tools_package=True)
 
     ### PRIVATE METHODS ###
@@ -77,7 +77,7 @@ class InstrumentationSpecifier(_MutableAbjadObject):
         class_name = type(self).__name__
         if include_tools_package:
             tools_package = self.__module__.split('.')[-3]
-            performers = ', '.join([x._fully_qualified_repr for x in self.performers])
+            performers = ', '.join([x._tools_package_qualified_repr for x in self.performers])
             return '{}.{}([{}])'.format(tools_package, class_name, performers)
         else:
             return '{}({!r})'.format(class_name, self.performers)

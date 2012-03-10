@@ -212,8 +212,8 @@ class PitchRange(_Immutable):
             return '('
 
     @property
-    def _fully_qualified_repr(self):
-        return '{}({!r})'.format(self._fully_qualified_class_name, self.one_line_named_chromatic_pitch_repr)
+    def _tools_package_qualified_repr(self):
+        return '{}({!r})'.format(self._tools_package_qualified_class_name, self.one_line_named_chromatic_pitch_repr)
 
     ### PRIVATE METHODS ###
 

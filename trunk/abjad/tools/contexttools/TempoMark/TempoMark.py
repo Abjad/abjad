@@ -169,10 +169,10 @@ class TempoMark(ContextMark):
                 self.textual_indication, '_repr_with_tools_pacakge', repr(self.textual_indication)))
         if self.duration:
             result.append(getattr(
-                self.duration, '_fully_qualified_repr', repr(self.duration)))
+                self.duration, '_tools_package_qualified_repr', repr(self.duration)))
         if self.units_per_minute:
             result.append(getattr(
-                self.units_per_minute, '_fully_qualified_repr', repr(self.units_per_minute)))
+                self.units_per_minute, '_tools_package_qualified_repr', repr(self.units_per_minute)))
         return ', '.join(result)
         
     @property
