@@ -1,3 +1,4 @@
+from abc import ABCMeta
 from abc import abstractmethod
 from abc import abstractproperty
 from abjad import Duration
@@ -8,6 +9,8 @@ from abjad.tools.timeintervaltools._TimeIntervalMixin._TimeIntervalMixin \
 
 
 class _TimeIntervalAggregateMixin(_TimeIntervalMixin):
+
+    __metaclass__ = ABCMeta
 
     ### OVERRIDES ###
 
@@ -30,19 +33,19 @@ class _TimeIntervalAggregateMixin(_TimeIntervalMixin):
         return Duration(0)
 
     @abstractproperty
-    def earliest_start
+    def earliest_start(self):
         raise NotImplementedError
 
     @abstractproperty
-    def earliest_stop
+    def earliest_stop(self):
         raise NotImplementedError
 
     @abstractproperty
-    def latest_start
+    def latest_start(self):
         raise NotImplementedError
 
     @abstractproperty
-    def latest_stop
+    def latest_stop(self):
         raise NotImplementedError
 
     ### PUBLIC METHODS ###
