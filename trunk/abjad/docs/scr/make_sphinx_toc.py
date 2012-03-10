@@ -77,6 +77,7 @@ def make_sphinx_toc():
       'threadtools',
       'tonalitytools', 
       'verticalitytools',
+      'wellformednesstools',
       )
 
    unstable_tools = [ ]
