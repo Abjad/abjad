@@ -197,7 +197,7 @@ notated durations:
 	abjad> r = stafftools.RhythmicStaff([m1, m2, m3])
 	abjad> iotools.write_expr_to_ly(r, 'MIDI-1')
 
-.. image:: images/MIDI-1.png
+.. image:: images/midi-1.png
 
 Written note pitch vs. MIDI note-on
 -----------------------------------
@@ -213,7 +213,7 @@ a C sharp or a B flat?
 	abjad> r = Staff([m1, m2])
 	abjad> iotools.write_expr_to_ly(r, 'MIDI-2')
 
-.. image:: images/MIDI-2.png
+.. image:: images/midi-2.png
 
 Conclusion
 ----------

@@ -63,6 +63,8 @@ def make_sphinx_module_listing(package_path, file):
 
       # document public class in tools package like pitchtools.NamedChromaticPitchClass
       elif auto_type == 'autoclass' and 'tools' in module:
+         result += '.. inheritance-diagram:: %s\n' % module
+         result += '   :private-bases:\n'
          result += '.. %s:: abjad.tools.%s\n' % (auto_type, page_title)   
          result = _append_class_options(result)
 

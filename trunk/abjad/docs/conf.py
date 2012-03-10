@@ -22,13 +22,29 @@ import sys, os
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = ['sphinx.ext.autodoc', 'sphinx.ext.todo', 'sphinx.ext.coverage', 'sphinx.ext.intersphinx']
+extensions = [
+    'sphinx.ext.autodoc',
+    'sphinx.ext.todo',
+    'sphinx.ext.coverage',
+    'sphinx.ext.intersphinx',
+    'abjad.docs.ext.inheritance_diagram'
+]
 
 # For sphinx.ext.todo
 todo_include_todos = True
 
+# autodoc
+autodoc_member_order = 'groupwise'
+
 # For sphinx.ext.intersphinx
 intersphinx_mapping = {'python': ('http://docs.python.org/2.7', None)}
+
+# inheritance_diagrams
+inheritance_graph_attrs = {
+    'fontsize': 11,
+    'rankdir': 'TB',
+    'ratio': 'compress'
+}
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
