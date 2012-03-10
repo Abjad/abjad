@@ -1,7 +1,27 @@
 def list_checks():
     '''.. versionadded:: 2.8
 
-    List checks.
+    List checks::
+
+        abjad> for check in list_checks(): check
+        ... 
+        BeamedQuarterNoteCheck()
+        DiscontiguousSpannerCheck()
+        DuplicateIdCheck()
+        EmptyContainerCheck()
+        IntermarkedHairpinCheck()
+        MisduratedMeasureCheck()
+        MisfilledMeasureCheck()
+        MispitchedTieCheck()
+        MisrepresentedFlagCheck()
+        MissingParentCheck()
+        NestedMeasureCheck()
+        OverlappingBeamCheck()
+        OverlappingGlissandoCheck()
+        OverlappingOctavationCheck()
+        ShortHairpinCheck()
+
+    Return list of checks.
     '''
     from abjad import checks
     

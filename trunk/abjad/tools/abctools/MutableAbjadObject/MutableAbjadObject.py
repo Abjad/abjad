@@ -14,6 +14,11 @@ class MutableAbjadObject(object):
 
     __metaclass__ = ABCMeta
 
+    ### OVERLOADS ###
+
+    def __repr__(self):
+        return '{}()'.format(self._class_name)
+
     ### PRIVATE READ-ONLY ATTRIBUTES ###
 
     @property

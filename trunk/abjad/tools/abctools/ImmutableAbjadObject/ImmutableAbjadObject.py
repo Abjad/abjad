@@ -15,6 +15,11 @@ class ImmutableAbjadObject(object):
     __metaclass__ = ABCMeta
     __slots__ = ()
 
+    ### OVERLOADS ###
+
+    def __repr__(self):
+        return '{}()'.format(self._class_name)
+
     ### PRIVATE READ-ONLY ATTRIBUTES ###
 
     @property
