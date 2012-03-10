@@ -1,5 +1,5 @@
 from abjad import *
-from abjad.checks import MisduratedMeasureCheck
+from abjad.tools.wellformednesstools import MisduratedMeasureCheck
 
 
 checker = MisduratedMeasureCheck()

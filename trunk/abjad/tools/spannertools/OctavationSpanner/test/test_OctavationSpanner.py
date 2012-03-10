@@ -1,5 +1,5 @@
 from abjad import *
-from abjad.checks import OverlappingOctavationCheck
+from abjad.tools.wellformednesstools import OverlappingOctavationCheck
 
 
 def test_OctavationSpanner_01():

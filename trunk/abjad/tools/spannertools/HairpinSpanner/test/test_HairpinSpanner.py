@@ -1,6 +1,6 @@
 from abjad import *
-from abjad.checks import IntermarkedHairpinCheck
-from abjad.checks import ShortHairpinCheck
+from abjad.tools.wellformednesstools import IntermarkedHairpinCheck
+from abjad.tools.wellformednesstools import ShortHairpinCheck
 import py.test
 
 

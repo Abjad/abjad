@@ -36,7 +36,7 @@ def tabulate_well_formedness_violations_in_expr(expr):
 
     Beamed quarter notes are not well formed.
     '''
-    from abjad import checks
+    from abjad.tools import wellformednesstools
 
-    for checker in checks.list_checks():
+    for checker in wellformednesstools.list_checks():
         checker.report(expr)

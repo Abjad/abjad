@@ -25,13 +25,13 @@ def is_well_formed_component(expr, allow_empty_containers=True):
 
     Return boolean.
     '''
-    from abjad import checks
+    from abjad.tools import wellformednesstools
 
     if not isinstance(expr, _Component):
         return False
 
     results = []
-    for checker in checks.list_checks():
+    for checker in wellformednesstools.list_checks():
         if allow_empty_containers:
             if getattr(checker, 'runtime', False) == 'composition':
                 continue

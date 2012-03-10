@@ -1508,6 +1508,30 @@ verticalitytools
    tools/verticalitytools/label_vertical_moments_in_expr_with_pitch_numbers
 
 
+wellformednesstools
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/wellformednesstools/BeamedQuarterNoteCheck/BeamedQuarterNoteCheck
+   tools/wellformednesstools/Check/Check
+   tools/wellformednesstools/DiscontiguousSpannerCheck/DiscontiguousSpannerCheck
+   tools/wellformednesstools/DuplicateIdCheck/DuplicateIdCheck
+   tools/wellformednesstools/EmptyContainerCheck/EmptyContainerCheck
+   tools/wellformednesstools/IntermarkedHairpinCheck/IntermarkedHairpinCheck
+   tools/wellformednesstools/MisduratedMeasureCheck/MisduratedMeasureCheck
+   tools/wellformednesstools/MisfilledMeasureCheck/MisfilledMeasureCheck
+   tools/wellformednesstools/MispitchedTieCheck/MispitchedTieCheck
+   tools/wellformednesstools/MisrepresentedFlagCheck/MisrepresentedFlagCheck
+   tools/wellformednesstools/MissingParentCheck/MissingParentCheck
+   tools/wellformednesstools/NestedMeasureCheck/NestedMeasureCheck
+   tools/wellformednesstools/OverlappingBeamCheck/OverlappingBeamCheck
+   tools/wellformednesstools/OverlappingGlissandoCheck/OverlappingGlissandoCheck
+   tools/wellformednesstools/OverlappingOctavationCheck/OverlappingOctavationCheck
+   tools/wellformednesstools/ShortHairpinCheck/ShortHairpinCheck
+   tools/wellformednesstools/list_checks
+
+
 
 Unstable Abjad composition packages (load manually)
 ---------------------------------------------------
