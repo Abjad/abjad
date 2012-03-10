@@ -1,4 +1,4 @@
-from abjad.mixins import _ImmutableAbjadObject
+from abjad.tools.abctools import _ImmutableAbjadObject
 from abjad.tools.timeintervaltools._RedBlackNode import _RedBlackNode
 
 

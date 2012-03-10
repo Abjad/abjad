@@ -1,4 +1,4 @@
-from abjad.mixins import _Immutable
+from abjad.tools.abctools import _Immutable
 from abjad.tools.pitchtools import Accidental
 import re
 

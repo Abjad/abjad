@@ -1,4 +1,4 @@
-from abjad.mixins import _Immutable
+from abjad.tools.abctools import _Immutable
 from abjad.tools import sequencetools
 from abjad.tools.pitchtools.MelodicDiatonicInterval import MelodicDiatonicInterval
 from abjad.tools.pitchtools.MelodicDiatonicIntervalSegment import MelodicDiatonicIntervalSegment

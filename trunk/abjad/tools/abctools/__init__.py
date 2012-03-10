@@ -3,3 +3,10 @@ from abjad.tools.importtools._import_structured_package import _import_structure
 _import_structured_package(__path__[0], globals())
 
 from _UnaryComparator import _UnaryComparator
+from _FlexEqualityComparator import _FlexEqualityComparator
+from _Immutable import _Immutable
+from _ImmutableAbjadObject import _ImmutableAbjadObject
+from _ImmutableDictionary import _ImmutableDictionary
+from _MutableAbjadObject import _MutableAbjadObject
+from _StrictComparator import _StrictComparator
+from fractions import Fraction

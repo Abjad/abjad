@@ -1,6 +1,6 @@
 from abc import ABCMeta
 from abc import abstractproperty
-from abjad.mixins._MutableAbjadObject import _MutableAbjadObject
+from abjad.tools.abctools._MutableAbjadObject import _MutableAbjadObject
 
 
 class ObjectInventory(list, _MutableAbjadObject):

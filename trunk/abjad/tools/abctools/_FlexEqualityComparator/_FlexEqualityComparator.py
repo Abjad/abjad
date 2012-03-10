@@ -1,5 +1,5 @@
 from abc import ABCMeta
-from abjad.mixins._StrictComparator import _StrictComparator
+from abjad.tools.abctools._StrictComparator import _StrictComparator
 
 
 class _FlexEqualityComparator(_StrictComparator):

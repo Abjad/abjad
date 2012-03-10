@@ -1,4 +1,4 @@
-from abjad.mixins import _StrictComparator
+from abjad.tools.abctools import _StrictComparator
 from abjad.tools.pitcharraytools.PitchArrayCell.PitchArrayCell import PitchArrayCell
 from abjad.tools.pitchtools.PitchRange.PitchRange import PitchRange
 import copy

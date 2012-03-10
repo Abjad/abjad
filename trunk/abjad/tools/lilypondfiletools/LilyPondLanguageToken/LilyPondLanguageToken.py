@@ -1,5 +1,5 @@
 from abjad.cfg._read_config_file import _read_config_file
-from abjad.mixins import _Immutable
+from abjad.tools.abctools import _Immutable
 from abjad.tools.configurationtools.get_lilypond_version_string import get_lilypond_version_string
 
 

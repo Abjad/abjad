@@ -36,7 +36,6 @@ del importtools
 del interfaces
 del lilypondproxytools
 del mathtools
-del mixins
 del timesignaturetools
 del os
 del pitcharraytools

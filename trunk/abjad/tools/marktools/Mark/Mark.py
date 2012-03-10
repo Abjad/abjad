@@ -1,4 +1,4 @@
-from abjad.mixins._ImmutableAbjadObject import _ImmutableAbjadObject
+from abjad.tools.abctools._ImmutableAbjadObject import _ImmutableAbjadObject
 from abjad.tools.componenttools._Component import _Component
 
 

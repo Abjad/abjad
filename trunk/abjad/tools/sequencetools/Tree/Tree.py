@@ -1,4 +1,4 @@
-from abjad.mixins._StrictComparator import _StrictComparator
+from abjad.tools.abctools._StrictComparator import _StrictComparator
 import copy
 
 

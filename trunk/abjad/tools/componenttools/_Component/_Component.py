@@ -1,6 +1,6 @@
 from abjad.tools.lilypondproxytools import LilyPondContextSettingComponentPlugIn
 from abjad.tools.lilypondproxytools import LilyPondGrobOverrideComponentPlugIn
-from abjad.mixins import _StrictComparator
+from abjad.tools.abctools import _StrictComparator
 from abjad.interfaces import ParentageInterface
 from abjad.interfaces import _NavigationInterface
 from abjad.interfaces import _OffsetInterface

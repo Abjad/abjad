@@ -1,4 +1,4 @@
-from abjad.mixins import _StrictComparator
+from abjad.tools.abctools import _StrictComparator
 
 
 class _SpannerFormatInterface(_StrictComparator):

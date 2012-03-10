@@ -1,4 +1,4 @@
-from abjad.mixins._MutableAbjadObject import _MutableAbjadObject
+from abjad.tools.abctools._MutableAbjadObject import _MutableAbjadObject
 from fractions import Fraction
 
 

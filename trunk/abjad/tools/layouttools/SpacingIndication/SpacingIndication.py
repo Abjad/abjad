@@ -1,5 +1,5 @@
-from abjad.mixins import _Immutable
-from abjad.mixins import _StrictComparator
+from abjad.tools.abctools import _Immutable
+from abjad.tools.abctools import _StrictComparator
 from abjad.tools import tempotools
 from abjad.tools import durationtools
 

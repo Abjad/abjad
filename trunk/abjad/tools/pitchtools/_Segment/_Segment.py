@@ -1,4 +1,4 @@
-from abjad.mixins import _Immutable
+from abjad.tools.abctools import _Immutable
 
 
 class _Segment(tuple, _Immutable):
