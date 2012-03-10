@@ -8,5 +8,4 @@ from _ImmutableAbjadObject import _ImmutableAbjadObject
 from _ImmutableDictionary import _ImmutableDictionary
 from _MutableAbjadObject import _MutableAbjadObject
 from _StrictComparator import _StrictComparator
-from _UnaryComparator import _UnaryComparator
 from fractions import Fraction

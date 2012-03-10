@@ -1,5 +1,5 @@
 import copy
-from abjad.mixins import _UnaryComparator
+from abjad.tools.abctools._UnaryComparator import _UnaryComparator
 from abjad.tools.lilypondproxytools import LilyPondTweakReservoir
 
 
