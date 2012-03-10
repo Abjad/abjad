@@ -1,8 +1,8 @@
-from abjad.checks._Check import _Check
+from abjad.checks.Check import Check
 from abjad.tools.spannertools import HairpinSpanner
 
 
-class IntermarkedHairpinCheck(_Check):
+class IntermarkedHairpinCheck(Check):
     '''Are there any dynamic marks in the middle of a hairpin?
     '''
 

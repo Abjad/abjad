@@ -1,9 +1,9 @@
-from abjad.checks._Check import _Check
+from abjad.checks.Check import Check
 from abjad.tools.componenttools._Component import _Component
 from abjad.tools import sequencetools
 
 
-class DuplicateIDCheck(_Check):
+class DuplicateIDCheck(Check):
 
     def _run(self, expr):
         from abjad.tools import componenttools

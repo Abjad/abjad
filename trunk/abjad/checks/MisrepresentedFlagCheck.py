@@ -1,8 +1,8 @@
-from abjad.checks._Check import _Check
+from abjad.checks.Check import Check
 from abjad.tools import durationtools
 
 
-class MisrepresentedFlagCheck(_Check):
+class MisrepresentedFlagCheck(Check):
 
     def _run(self, expr):
         from abjad.tools import leaftools

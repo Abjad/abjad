@@ -1,7 +1,7 @@
-from abjad.checks._Check import _Check
+from abjad.checks.Check import Check
 
 
-class MisfilledMeasureCheck(_Check):
+class MisfilledMeasureCheck(Check):
     '''For each (rigid) measure,
     does effective meter duration equal preprolated duration?
     '''

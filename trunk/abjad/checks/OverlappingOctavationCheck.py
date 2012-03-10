@@ -1,8 +1,8 @@
-from abjad.checks._Check import _Check
+from abjad.checks.Check import Check
 from abjad.tools.spannertools import OctavationSpanner
 
 
-class OverlappingOctavationCheck(_Check):
+class OverlappingOctavationCheck(Check):
     '''Octavation spanners must not overlap.'''
 
     def _run(self, expr):

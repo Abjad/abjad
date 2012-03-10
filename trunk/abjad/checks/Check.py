@@ -1,13 +1,15 @@
+from abc import ABCMeta
 from abjad.tools.abctools import StrictComparator
 import re
 
 
-class _Check(StrictComparator):
+class Check(StrictComparator):
+    
+    ### CLASS ATTRIBUTES ###
 
-    def __init__(self):
-        pass
+    __metaclass__ = ABCMeta
 
-    ### PRIVATE ATTRIBUTES ###
+    ### READ-ONLY PRIVATE ATTRIBUTES ###
 
     @property
     def _message(self):
@@ -16,7 +18,7 @@ class _Check(StrictComparator):
         parts = parts[:-1]
         return ' '.join([p.lower( ) for p in parts])
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC METHODS ###
 
     def check(self, expr):
         return not self.violators(expr)

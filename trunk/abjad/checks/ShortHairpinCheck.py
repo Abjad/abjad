@@ -1,8 +1,8 @@
-from abjad.checks._Check import _Check
+from abjad.checks.Check import Check
 from abjad.tools.spannertools import HairpinSpanner
 
 
-class ShortHairpinCheck(_Check):
+class ShortHairpinCheck(Check):
     '''Hairpins must span at least two leaves.
     '''
 

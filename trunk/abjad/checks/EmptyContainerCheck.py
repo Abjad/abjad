@@ -1,7 +1,7 @@
-from abjad.checks._Check import _Check
+from abjad.checks.Check import Check
 
 
-class EmptyContainerCheck(_Check):
+class EmptyContainerCheck(Check):
 
     runtime = 'composition'
 

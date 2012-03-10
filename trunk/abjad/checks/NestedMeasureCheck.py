@@ -1,8 +1,8 @@
-from abjad.checks._Check import _Check
+from abjad.checks.Check import Check
 from abjad.tools.measuretools.Measure import Measure
 
 
-class NestedMeasureCheck(_Check):
+class NestedMeasureCheck(Check):
     '''Do we have any nested measures?'''
 
     def _run(self, expr):

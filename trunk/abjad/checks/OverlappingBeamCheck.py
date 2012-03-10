@@ -1,8 +1,8 @@
-from abjad.checks._Check import _Check
+from abjad.checks.Check import Check
 from abjad.tools.spannertools import BeamSpanner
 
 
-class OverlappingBeamCheck(_Check):
+class OverlappingBeamCheck(Check):
     '''Beams must not overlap.
     '''
 

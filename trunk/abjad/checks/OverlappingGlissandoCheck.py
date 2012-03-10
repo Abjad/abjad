@@ -1,8 +1,8 @@
-from abjad.checks._Check import _Check
+from abjad.checks.Check import Check
 from abjad.tools.spannertools import GlissandoSpanner
 
 
-class OverlappingGlissandoCheck(_Check):
+class OverlappingGlissandoCheck(Check):
     '''Glissandi must not overlap.
     Dove-tailed glissandi are OK.'''
 
