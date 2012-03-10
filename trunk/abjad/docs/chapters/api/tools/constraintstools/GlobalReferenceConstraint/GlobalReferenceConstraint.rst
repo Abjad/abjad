@@ -4,8 +4,8 @@ constraintstools.GlobalReferenceConstraint
 .. inheritance-diagram:: abjad.tools.constraintstools.GlobalReferenceConstraint.GlobalReferenceConstraint
    :private-bases:
 .. autoclass:: abjad.tools.constraintstools.GlobalReferenceConstraint
+   :show-inheritance:
    :members:
    :undoc-members:
-   :show-inheritance:
    :inherited-members:
    :special-members:

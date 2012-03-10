@@ -4,8 +4,8 @@ pitchtools.MelodicChromaticIntervalClass
 .. inheritance-diagram:: abjad.tools.pitchtools.MelodicChromaticIntervalClass.MelodicChromaticIntervalClass
    :private-bases:
 .. autoclass:: abjad.tools.pitchtools.MelodicChromaticIntervalClass
+   :show-inheritance:
    :members:
    :undoc-members:
-   :show-inheritance:
    :inherited-members:
    :special-members:

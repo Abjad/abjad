@@ -4,8 +4,8 @@ containertools.Container
 .. inheritance-diagram:: abjad.tools.containertools.Container.Container
    :private-bases:
 .. autoclass:: abjad.tools.containertools.Container
+   :show-inheritance:
    :members:
    :undoc-members:
-   :show-inheritance:
    :inherited-members:
    :special-members:

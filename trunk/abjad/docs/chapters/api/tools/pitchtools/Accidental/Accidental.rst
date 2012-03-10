@@ -4,8 +4,8 @@ pitchtools.Accidental
 .. inheritance-diagram:: abjad.tools.pitchtools.Accidental.Accidental
    :private-bases:
 .. autoclass:: abjad.tools.pitchtools.Accidental
+   :show-inheritance:
    :members:
    :undoc-members:
-   :show-inheritance:
    :inherited-members:
    :special-members:

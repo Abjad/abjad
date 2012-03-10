@@ -4,8 +4,8 @@ lilypondfiletools.LilyPondVersionToken
 .. inheritance-diagram:: abjad.tools.lilypondfiletools.LilyPondVersionToken.LilyPondVersionToken
    :private-bases:
 .. autoclass:: abjad.tools.lilypondfiletools.LilyPondVersionToken
+   :show-inheritance:
    :members:
    :undoc-members:
-   :show-inheritance:
    :inherited-members:
    :special-members:

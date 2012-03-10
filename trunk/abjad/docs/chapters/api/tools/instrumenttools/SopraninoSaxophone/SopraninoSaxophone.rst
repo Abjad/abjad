@@ -4,8 +4,8 @@ instrumenttools.SopraninoSaxophone
 .. inheritance-diagram:: abjad.tools.instrumenttools.SopraninoSaxophone.SopraninoSaxophone
    :private-bases:
 .. autoclass:: abjad.tools.instrumenttools.SopraninoSaxophone
+   :show-inheritance:
    :members:
    :undoc-members:
-   :show-inheritance:
    :inherited-members:
    :special-members:

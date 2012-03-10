@@ -4,8 +4,8 @@ quantizationtools.QGrid
 .. inheritance-diagram:: abjad.tools.quantizationtools.QGrid.QGrid
    :private-bases:
 .. autoclass:: abjad.tools.quantizationtools.QGrid
+   :show-inheritance:
    :members:
    :undoc-members:
-   :show-inheritance:
    :inherited-members:
    :special-members:

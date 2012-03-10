@@ -4,8 +4,8 @@ spannertools.HorizontalBracketSpanner
 .. inheritance-diagram:: abjad.tools.spannertools.HorizontalBracketSpanner.HorizontalBracketSpanner
    :private-bases:
 .. autoclass:: abjad.tools.spannertools.HorizontalBracketSpanner
+   :show-inheritance:
    :members:
    :undoc-members:
-   :show-inheritance:
    :inherited-members:
    :special-members:

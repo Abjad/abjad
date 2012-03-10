@@ -4,8 +4,8 @@ marktools.BendAfter
 .. inheritance-diagram:: abjad.tools.marktools.BendAfter.BendAfter
    :private-bases:
 .. autoclass:: abjad.tools.marktools.BendAfter
+   :show-inheritance:
    :members:
    :undoc-members:
-   :show-inheritance:
    :inherited-members:
    :special-members:
