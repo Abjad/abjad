@@ -1,8 +1,8 @@
-from abjad.tools.abctools._MutableAbjadObject import _MutableAbjadObject
+from abjad.tools.abctools.MutableAbjadObject import MutableAbjadObject
 
 
 #class _LilyPondObjectProxy(object):
-class _LilyPondObjectProxy(_MutableAbjadObject):
+class _LilyPondObjectProxy(MutableAbjadObject):
     '''.. versionadded:: 2.0
 
     Shared LilyPond grob proxy and LilyPond context proxy functionality.

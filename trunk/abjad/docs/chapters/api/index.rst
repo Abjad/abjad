@@ -1013,6 +1013,20 @@ Additional Abjad composition packages (load manually)
 
 
 
+abctools
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/abctools/FlexEqualityComparator/FlexEqualityComparator
+   tools/abctools/Immutable/Immutable
+   tools/abctools/ImmutableAbjadObject/ImmutableAbjadObject
+   tools/abctools/ImmutableDictionary/ImmutableDictionary
+   tools/abctools/MutableAbjadObject/MutableAbjadObject
+   tools/abctools/StrictComparator/StrictComparator
+   tools/abctools/UnaryComparator/UnaryComparator
+
+
 configurationtools
 
 .. toctree::

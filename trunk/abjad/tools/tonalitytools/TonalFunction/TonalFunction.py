@@ -1,4 +1,4 @@
-from abjad.tools.abctools import _Immutable
+from abjad.tools.abctools import Immutable
 from abjad.tools import markuptools
 from abjad.tools.tonalitytools.ExtentIndicator import ExtentIndicator
 from abjad.tools.tonalitytools.InversionIndicator import InversionIndicator
@@ -8,7 +8,7 @@ from abjad.tools.tonalitytools.SuspensionIndicator import SuspensionIndicator
 import re
 
 
-class TonalFunction(_Immutable):
+class TonalFunction(Immutable):
     '''.. versionadded:: 2.0
 
     Abjad model of functions in tonal harmony: I, I6, I64, V, V7, V43, V42,

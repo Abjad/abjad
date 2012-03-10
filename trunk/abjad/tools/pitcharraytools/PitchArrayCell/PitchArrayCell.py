@@ -1,8 +1,8 @@
-from abjad.tools.abctools import _StrictComparator
+from abjad.tools.abctools import StrictComparator
 from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
 
 
-class PitchArrayCell(_StrictComparator):
+class PitchArrayCell(StrictComparator):
     '''.. versionadded 1.1.2
 
     One cell in a pitch array. ::

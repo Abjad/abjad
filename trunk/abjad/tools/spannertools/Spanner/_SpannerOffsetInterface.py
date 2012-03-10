@@ -1,8 +1,8 @@
-from abjad.tools.abctools import _StrictComparator
+from abjad.tools.abctools import StrictComparator
 from abjad.tools import durationtools
 
 
-class _SpannerOffsetInterface(_StrictComparator):
+class _SpannerOffsetInterface(StrictComparator):
 
     def __init__(self, client):
         self._client = client

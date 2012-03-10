@@ -1,7 +1,7 @@
-from abjad.tools.abctools import _Immutable
+from abjad.tools.abctools import Immutable
 
 
-class _Set(frozenset, _Immutable):
+class _Set(frozenset, Immutable):
     '''.. versionadded:: 2.0
 
     Music-theoretic set base class.

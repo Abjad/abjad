@@ -1,8 +1,8 @@
-from abjad.tools.abctools import _FlexEqualityComparator
-from abjad.tools.abctools import _Immutable
+from abjad.tools.abctools import FlexEqualityComparator
+from abjad.tools.abctools import Immutable
 
 
-class _PitchClass(_Immutable, _FlexEqualityComparator):
+class _PitchClass(Immutable, FlexEqualityComparator):
     '''.. versionadded:: 2.0
 
     Pitch-class base class.

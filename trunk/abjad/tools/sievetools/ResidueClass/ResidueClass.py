@@ -1,9 +1,9 @@
-from abjad.tools.abctools import _Immutable
+from abjad.tools.abctools import Immutable
 from abjad.tools.sievetools._BaseResidueClass import _BaseResidueClass
 from abjad.tools.sievetools._process_min_max_attribute import _process_min_max_attribute
 
 
-class ResidueClass(_BaseResidueClass, _Immutable):
+class ResidueClass(_BaseResidueClass, Immutable):
     '''Residue class (or congruence class).
     Residue classes form the basis of Xenakis sieves. They can be used to
     construct any complex periodic integer (or boolean) sequence as a

@@ -1,9 +1,9 @@
-from abjad.tools.abctools._MutableAbjadObject import _MutableAbjadObject
+from abjad.tools.abctools.MutableAbjadObject import MutableAbjadObject
 from fractions import Fraction
 
 
 # TODO: allow Duration('8..') initialization
-class Duration(Fraction, _MutableAbjadObject):
+class Duration(Fraction, MutableAbjadObject):
     '''.. versionadded:: 2.0
 
     Abjad model of musical duration::

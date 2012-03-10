@@ -1,7 +1,7 @@
-from abjad.tools.abctools import _Immutable
+from abjad.tools.abctools import Immutable
 
 
-class QualityIndicator(_Immutable):
+class QualityIndicator(Immutable):
     '''.. versionadded:: 2.0
 
     Indicator of chord quality, such as major, minor, dominant,

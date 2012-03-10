@@ -1,6 +1,6 @@
 from abjad.tools.lilypondproxytools import LilyPondContextSettingComponentPlugIn
 from abjad.tools.lilypondproxytools import LilyPondGrobOverrideComponentPlugIn
-from abjad.tools.abctools import _StrictComparator
+from abjad.tools.abctools import StrictComparator
 from abjad.interfaces import ParentageInterface
 from abjad.interfaces import _NavigationInterface
 from abjad.interfaces import _OffsetInterface
@@ -9,7 +9,7 @@ import copy
 import fractions
 
 
-class _Component(_StrictComparator):
+class _Component(StrictComparator):
 
     __slots__ = ('_duration', '_is_forbidden_to_update', '_marks_are_current',
         '_marks_for_which_component_functions_as_effective_context',

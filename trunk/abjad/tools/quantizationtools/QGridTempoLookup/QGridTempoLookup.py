@@ -1,7 +1,7 @@
 from collections import Iterable
 from abjad import Fraction
-from abjad.tools.abctools import _Immutable
-from abjad.tools.abctools import _ImmutableDictionary
+from abjad.tools.abctools import Immutable
+from abjad.tools.abctools import ImmutableDictionary
 from abjad.tools.contexttools import TempoMark
 from abjad.tools.durationtools import Offset
 from abjad.tools.quantizationtools.QGridSearchTree import QGridSearchTree
@@ -10,7 +10,7 @@ from abjad.tools.quantizationtools.tempo_scaled_rational_to_milliseconds \
     import tempo_scaled_rational_to_milliseconds
 
 
-class QGridTempoLookup(_Immutable, _ImmutableDictionary):
+class QGridTempoLookup(Immutable, ImmutableDictionary):
     '''A utility class for matching fractional offsets within a beat
     to their tempo-scaled (real-time) millisecond values.
 

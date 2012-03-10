@@ -1,10 +1,10 @@
 from abc import ABCMeta
-from abjad.tools.abctools._ImmutableAbjadObject import _ImmutableAbjadObject
+from abjad.tools.abctools.ImmutableAbjadObject import ImmutableAbjadObject
 
 
 # TODO: write code to check all Abjad system objects with slots and
 #       make sure none has a dict defined and taking up memory in the namespace of the object.
-class _Immutable(_ImmutableAbjadObject):
+class Immutable(ImmutableAbjadObject):
     '''.. versionadded:: 2.0
 
     Abstract base from which immutable custom classes can inherit.

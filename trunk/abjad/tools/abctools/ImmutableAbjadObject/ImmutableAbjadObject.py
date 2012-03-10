@@ -2,12 +2,12 @@ from abc import ABCMeta
 from abc import abstractproperty
 
 
-class _ImmutableAbjadObject(object):
+class ImmutableAbjadObject(object):
     '''.. versionadded:: 2.8
     
     Abstract base class for system-global functionality.
 
-    _MutableAbjadObject and _ImmutableAbjadObject differ only in the implementation of __slots__.
+    MutableAbjadObject and ImmutableAbjadObject differ only in the implementation of __slots__.
     '''
     
     ### CLASS ATTRIBUTES ###

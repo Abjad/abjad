@@ -1,4 +1,4 @@
-from abjad.tools.abctools import _Immutable
+from abjad.tools.abctools import Immutable
 from abjad.tools import componenttools
 from abjad.tools import durationtools
 from abjad.tools.chordtools.Chord import Chord
@@ -7,7 +7,7 @@ from abjad.tools.measuretools.Measure import Measure
 from abjad.tools.notetools.Note import Note
 
 
-class VerticalMoment(_Immutable):
+class VerticalMoment(Immutable):
     r'''.. versionadded: 1.1.2
 
     Everything happening at a single moment in musical time::

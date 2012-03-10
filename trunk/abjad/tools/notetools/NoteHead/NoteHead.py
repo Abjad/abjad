@@ -1,9 +1,9 @@
 import copy
-from abjad.tools.abctools._UnaryComparator import _UnaryComparator
+from abjad.tools.abctools.UnaryComparator import UnaryComparator
 from abjad.tools.lilypondproxytools import LilyPondTweakReservoir
 
 
-class NoteHead(_UnaryComparator):
+class NoteHead(UnaryComparator):
     r'''Abjad model of a note head:
 
     ::

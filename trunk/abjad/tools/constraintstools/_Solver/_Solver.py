@@ -1,7 +1,7 @@
-from abjad.tools.abctools import _Immutable
+from abjad.tools.abctools import Immutable
 
 
-class _Solver(_Immutable):
+class _Solver(Immutable):
 
     ### PUBLIC ATTRIBUTES ###
 

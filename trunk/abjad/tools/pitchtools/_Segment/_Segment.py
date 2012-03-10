@@ -1,7 +1,7 @@
-from abjad.tools.abctools import _Immutable
+from abjad.tools.abctools import Immutable
 
 
-class _Segment(tuple, _Immutable):
+class _Segment(tuple, Immutable):
     '''.. versionadded:: 2.0
 
     Mix-in base class for ordered collections of pitch objects.

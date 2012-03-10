@@ -1,10 +1,10 @@
-from abjad.tools.abctools import _Immutable
+from abjad.tools.abctools import Immutable
 from abjad.tools import sequencetools
 from abjad.tools.pitchtools.MelodicDiatonicInterval import MelodicDiatonicInterval
 from abjad.tools.pitchtools.MelodicDiatonicIntervalSegment import MelodicDiatonicIntervalSegment
 
 
-class Mode(_Immutable):
+class Mode(Immutable):
     '''.. versionadded:: 2.0
 
     Diatonic mode. Can be extended for nondiatonic mode.

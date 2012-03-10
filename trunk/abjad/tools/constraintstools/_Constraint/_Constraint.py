@@ -1,7 +1,7 @@
-from abjad.tools.abctools import _Immutable
+from abjad.tools.abctools import Immutable
 
 
-class _Constraint(_Immutable):
+class _Constraint(Immutable):
 
     __slots__ = ('_kind', '_predicate')    
 

@@ -1,7 +1,7 @@
-from abjad.tools.abctools import _Immutable
+from abjad.tools.abctools import Immutable
 
 
-class _Interval(_Immutable):
+class _Interval(Immutable):
     '''.. versionadded:: 2.0
 
     Interval base class.

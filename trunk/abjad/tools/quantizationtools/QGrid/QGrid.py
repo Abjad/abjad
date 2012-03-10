@@ -5,7 +5,7 @@ from abjad import Container
 from abjad import Fraction
 from abjad import Note
 from abjad import Tuplet
-from abjad.tools.abctools import _Immutable
+from abjad.tools.abctools import Immutable
 from abjad.tools.durationtools import Offset
 from abjad.tools.mathtools import divisors
 from abjad.tools.mathtools import greatest_power_of_two_less_equal
@@ -15,7 +15,7 @@ from abjad.tools.sequencetools import all_are_numbers
 from abjad.tools.sequencetools import flatten_sequence
 
 
-class QGrid(_Immutable):
+class QGrid(Immutable):
     '''Abjad model of a QGrid, a nesting division structure which
     assists certain quantization algorithms.
 

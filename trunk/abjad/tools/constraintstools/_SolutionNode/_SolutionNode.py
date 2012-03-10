@@ -1,7 +1,7 @@
-from abjad.tools.abctools import _Immutable
+from abjad.tools.abctools import Immutable
 
 
-class _SolutionNode(_Immutable):
+class _SolutionNode(Immutable):
 
     __slots__ = ('_children', '_parent', '_valid', '_value')
 

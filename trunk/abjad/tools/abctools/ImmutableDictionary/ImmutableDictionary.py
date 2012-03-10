@@ -1,8 +1,8 @@
 from abc import ABCMeta
-from abjad.tools.abctools._ImmutableAbjadObject import _ImmutableAbjadObject
+from abjad.tools.abctools.ImmutableAbjadObject import ImmutableAbjadObject
 
 
-class _ImmutableDictionary(dict, _ImmutableAbjadObject):
+class ImmutableDictionary(dict, ImmutableAbjadObject):
     '''.. versionadded:: 2.0
     
     Abstract base class.

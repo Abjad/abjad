@@ -1,7 +1,7 @@
-from abjad.tools.abctools import _Immutable
+from abjad.tools.abctools import Immutable
 
 
-class InversionIndicator(_Immutable):
+class InversionIndicator(Immutable):
     '''.. versionadded:: 2.0
 
     Indicator of the inversion of tertian chords: 5, 63, 64 and

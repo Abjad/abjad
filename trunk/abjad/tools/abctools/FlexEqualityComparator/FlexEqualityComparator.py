@@ -1,8 +1,8 @@
 from abc import ABCMeta
-from abjad.tools.abctools._StrictComparator import _StrictComparator
+from abjad.tools.abctools.StrictComparator import StrictComparator
 
 
-class _FlexEqualityComparator(_StrictComparator):
+class FlexEqualityComparator(StrictComparator):
     '''Mix-in abstract base class to confer a certain type of comparator behavior to any custom class.
     Flex equality comparators raise not implemented error on gt, lt, ge, le.
     Flex equality comparators attempt type coercion on eq, ne.

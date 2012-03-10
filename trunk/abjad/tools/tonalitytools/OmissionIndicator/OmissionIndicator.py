@@ -1,7 +1,7 @@
-from abjad.tools.abctools import _Immutable
+from abjad.tools.abctools import Immutable
 
 
-class OmissionIndicator(_Immutable):
+class OmissionIndicator(Immutable):
     '''.. versionadded:: 2.0
 
     Indicator of missing chord tones.

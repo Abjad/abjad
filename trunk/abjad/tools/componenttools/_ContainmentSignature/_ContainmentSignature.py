@@ -1,7 +1,7 @@
-from abjad.tools.abctools import _StrictComparator
+from abjad.tools.abctools import StrictComparator
 
 
-class _ContainmentSignature(_StrictComparator):
+class _ContainmentSignature(StrictComparator):
 
     def __init__(self):
         self._root = None

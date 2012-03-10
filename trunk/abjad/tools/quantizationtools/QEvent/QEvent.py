@@ -1,9 +1,9 @@
 from collections import Iterable
 from numbers import Number
-from abjad.tools.abctools import _Immutable
+from abjad.tools.abctools import Immutable
 
 
-class QEvent(_Immutable):
+class QEvent(Immutable):
     '''A utility class for quantization comprising an offset time in milliseconds,
     and some pitch information: a Number representing a single pitch, None representing silence,
     or an Iterable comprised of Numbers representing a chord.

@@ -1,7 +1,7 @@
-from abjad.tools.abctools._ImmutableAbjadObject import _ImmutableAbjadObject
+from abjad.tools.abctools.ImmutableAbjadObject import ImmutableAbjadObject
 
 
-class _Flageolet(_ImmutableAbjadObject):
+class _Flageolet(ImmutableAbjadObject):
     '''Abjad model of both natural and artificial harmonics.
     Abstract base class.
     '''

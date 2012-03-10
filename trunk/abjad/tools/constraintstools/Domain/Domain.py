@@ -1,8 +1,8 @@
 import random
-from abjad.tools.abctools import _Immutable
+from abjad.tools.abctools import Immutable
 
 
-class Domain(_Immutable):
+class Domain(Immutable):
     '''A two-dimensional constraints search domain:
 
     ::

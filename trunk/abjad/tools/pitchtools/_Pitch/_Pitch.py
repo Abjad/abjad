@@ -1,8 +1,8 @@
-from abjad.tools.abctools import _Immutable
-from abjad.tools.abctools._UnaryComparator import _UnaryComparator
+from abjad.tools.abctools import Immutable
+from abjad.tools.abctools.UnaryComparator import UnaryComparator
 
 
-class _Pitch(_Immutable, _UnaryComparator):
+class _Pitch(Immutable, UnaryComparator):
     '''.. versionadded:: 2.0
 
     Pitch base class.

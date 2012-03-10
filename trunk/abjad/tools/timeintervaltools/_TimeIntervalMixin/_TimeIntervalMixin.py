@@ -1,10 +1,10 @@
 from abc import ABCMeta
 from abc import abstractmethod
 from abjad import Duration
-from abjad.tools.abctools import _ImmutableAbjadObject
+from abjad.tools.abctools import ImmutableAbjadObject
 
 
-class _TimeIntervalMixin(_ImmutableAbjadObject):
+class _TimeIntervalMixin(ImmutableAbjadObject):
 
     __metaclass__ = ABCMeta
 

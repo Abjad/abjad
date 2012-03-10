@@ -1,7 +1,7 @@
-from abjad.tools.abctools import _Immutable
+from abjad.tools.abctools import Immutable
 
 
-class DoublingIndicator(_Immutable):
+class DoublingIndicator(Immutable):
     '''.. versionadded:: 2.0
 
     Indicator of chord doubling.

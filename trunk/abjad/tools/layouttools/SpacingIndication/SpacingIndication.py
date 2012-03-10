@@ -1,10 +1,10 @@
-from abjad.tools.abctools import _Immutable
-from abjad.tools.abctools import _StrictComparator
+from abjad.tools.abctools import Immutable
+from abjad.tools.abctools import StrictComparator
 from abjad.tools import tempotools
 from abjad.tools import durationtools
 
 
-class SpacingIndication(_StrictComparator, _Immutable):
+class SpacingIndication(StrictComparator, Immutable):
     '''Spacing indication token.
 
     LilyPond ``Score.proportionalNotationDuration``

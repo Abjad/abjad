@@ -1,8 +1,8 @@
-from abjad.tools.abctools import _ImmutableAbjadObject
+from abjad.tools.abctools import ImmutableAbjadObject
 from abjad.tools.timeintervaltools._RedBlackNode import _RedBlackNode
 
 
-class _RedBlackTree(_ImmutableAbjadObject):
+class _RedBlackTree(ImmutableAbjadObject):
 
     def __init__(self):
         self._sentinel = _RedBlackNode()

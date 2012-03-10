@@ -1,8 +1,8 @@
-from abjad.tools.abctools import _Immutable
+from abjad.tools.abctools import Immutable
 import numbers
 
 
-class PitchRange(_Immutable):
+class PitchRange(Immutable):
     r""".. versionadded:: 2.0
 
     Abjad model of pitch range::

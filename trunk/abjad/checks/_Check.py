@@ -1,8 +1,8 @@
-from abjad.tools.abctools import _StrictComparator
+from abjad.tools.abctools import StrictComparator
 import re
 
 
-class _Check(_StrictComparator):
+class _Check(StrictComparator):
 
     def __init__(self):
         pass

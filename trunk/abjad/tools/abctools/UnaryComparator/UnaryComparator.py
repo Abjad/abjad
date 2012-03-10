@@ -1,8 +1,8 @@
 from abc import ABCMeta
-from abjad.tools.abctools._ImmutableAbjadObject import _ImmutableAbjadObject
+from abjad.tools.abctools.ImmutableAbjadObject import ImmutableAbjadObject
 
 
-class _UnaryComparator(_ImmutableAbjadObject):
+class UnaryComparator(ImmutableAbjadObject):
     '''Mix-in abstact base class to confer unary comparison behavior to any custom class.
     '''
 

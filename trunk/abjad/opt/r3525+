@@ -1,7 +1,7 @@
-r3525+: custom _Immutable v. Python __slots__ 
+r3525+: custom Immutable v. Python __slots__ 
 
 
-%%% With custom _Immutable: %%%
+%%% With custom Immutable: %%%
 
 MEMORY:
 
@@ -52,7 +52,7 @@ CONCLUSIONS:
    * Immutable Clef takes 588 bytes; slots Clef takes only 452 bytes
    * Immutable Clef takes 3 function calls; slots Clef takes the same 3 function calls
 
-Slots saves memory versus _Immutable.
+Slots saves memory versus Immutable.
 
 PS: same holds on instantiating 1000 Clef objects:
 

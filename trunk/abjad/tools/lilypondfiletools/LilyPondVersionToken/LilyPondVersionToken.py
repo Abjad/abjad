@@ -1,8 +1,8 @@
-from abjad.tools.abctools import _Immutable
+from abjad.tools.abctools import Immutable
 from abjad.tools.configurationtools.get_lilypond_version_string import get_lilypond_version_string
 
 
-class LilyPondVersionToken(_Immutable):
+class LilyPondVersionToken(Immutable):
     r'''.. versionadded:: 2.0
 
     LilyPond version token::

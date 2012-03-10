@@ -1,9 +1,9 @@
-from abjad.tools.abctools._MutableAbjadObject import _MutableAbjadObject
+from abjad.tools.abctools.MutableAbjadObject import MutableAbjadObject
 from abjad.tools.pitchtools.NumberedChromaticPitch import NumberedChromaticPitch
 from abjad.tools.pitchtools.PitchRange import PitchRange
 
 
-class OctaveTranspositionMappingComponent(_MutableAbjadObject):
+class OctaveTranspositionMappingComponent(MutableAbjadObject):
     '''.. versionadded:: 2.8
 
     Octave transposition mapping component::
