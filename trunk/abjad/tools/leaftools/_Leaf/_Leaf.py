@@ -6,7 +6,7 @@ import fractions
 import operator
 
 
-class _Leaf(_Component, _StrictComparator):
+class _Leaf(_Component):
 
     # TODO: see if _grace and _after_grace can be removed #
     __slots__ = ('_after_grace', '_grace', '_leaf_index',
