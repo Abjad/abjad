@@ -21,10 +21,9 @@ def list_badly_formed_components_in_expr(expr):
 
     Return newly created list of zero or more components.
     '''
-    from abjad import checks as _checks
+    from abjad import checks
 
     badly_formed_components = []
-    for key, value in sorted(vars(_checks).items()):
-        checker = value()
+    for checker in checks.list_checks():
         badly_formed_components.extend(checker.violators(expr))
     return badly_formed_components

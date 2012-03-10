@@ -3,7 +3,7 @@ from abjad.tools.componenttools._Component import _Component
 from abjad.tools import sequencetools
 
 
-class DuplicateIDCheck(Check):
+class DuplicateIdCheck(Check):
 
     def _run(self, expr):
         from abjad.tools import componenttools
