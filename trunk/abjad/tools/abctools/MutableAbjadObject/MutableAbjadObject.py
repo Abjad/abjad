@@ -5,9 +5,11 @@ from abc import abstractproperty
 class MutableAbjadObject(object):
     '''.. versionadded:: 2.8
 
-    Abstract base class for system-global functionality.
+    Mutable Abjad object.
 
-    MutableAbjadObject and ImmutableAbjadObject differ only in the implementation of __slots__.
+    Abstract base class from which mutable custom classes can inherit.
+
+    All Abjad classes should inherit from this class or from ``ImmutableAbjadObject``.
     '''
 
     ### CLASS ATTRIBUTES ###
