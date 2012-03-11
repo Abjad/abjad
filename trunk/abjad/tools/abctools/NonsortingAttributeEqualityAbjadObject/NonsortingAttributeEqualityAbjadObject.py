@@ -6,11 +6,11 @@ from abjad.tools.abctools.NonsortingIdEqualityAbjadObject import NonsortingIdEqu
 class NonsortingAttributeEqualityAbjadObject(NonsortingIdEqualityAbjadObject):
     '''.. versionadded:: 2.0
 
-    Abstract base class to confer nonsorting attribute-equality comparability to any custom class.
+    Abstract base class to confer nonsorting attribute-equality to any custom class.
 
-    Nonsorting objects raise exceptions on gt, ge, lt, le.
+    Nonsorting objects raise exceptions on ``__gt__``, ``__ge__``, ``__lt__``, ``__le__``.
 
-    Attribute-equality comparators compare equal only with equal comparison attributes.
+    Attribute-equality objects compare equal only with equal comparison attributes.
     '''
 
     ### CLASS ATTRIBUTES ###
@@ -21,13 +21,25 @@ class NonsortingAttributeEqualityAbjadObject(NonsortingIdEqualityAbjadObject):
     ### OVERLOADS ###
 
     def __eq__(self, arg):
+        '''Initialize new object from `arg` and evaluate comparison attributes.
+
+        Return boolean.
+        '''
         arg = self._massage_comparison_arg(arg)
         return arg and self._comparison_attribute == arg._comparison_attribute
 
     def __ne__(self, arg):
+        '''Initialize new object from `arg` and evaluate comparison attributes.
+
+        Return boolean.
+        '''
         return not self == arg
 
     def __repr__(self):
+        '''Interpreter representation of object defined equal to class name and format string.
+
+        Return string.
+        '''
         return '%s(%s)' % (self.__class__.__name__, self._format_string)
 
     ### PRIVATE METHODS ###

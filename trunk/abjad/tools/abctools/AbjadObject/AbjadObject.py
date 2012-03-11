@@ -2,7 +2,7 @@ from abc import ABCMeta
 
 
 class AbjadObject(object):
-    '''.. versionadded:: 2.8
+    '''.. versionadded:: 2.0
 
     Abstract base class from which all custom classes should inherit.
     '''
@@ -15,9 +15,8 @@ class AbjadObject(object):
     ### OVERLOADS ###
 
     def __repr__(self):
-        '''Interpreter representation of Abjad object.
-
-        Default to class name, mandatory arguments, keyword arguments.
+        '''Interpreter representation of Abjad object defaulting to 
+        class name, mandatory arguments, keyword arguments.
 
         Return string.
         '''
