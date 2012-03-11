@@ -28,8 +28,11 @@ if _read_config_file( )['use_abjad_prompt']:
     sys.ps1 = 'abjad> '
 del _read_config_file
 
+del abctools
 del cfg
 del configurationtools
+del datastructuretools
+del decoratortools
 del durationtools
 del exceptions
 del importtools

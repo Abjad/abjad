@@ -70,6 +70,7 @@ def make_sphinx_toc():
       'timeintervaltools', 
       'iotools',
       'layouttools',
+      'lilypondparsertools',
       'mathtools',
       'timesignaturetools',
       'pitcharraytools', 

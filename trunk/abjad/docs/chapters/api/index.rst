@@ -424,14 +424,6 @@ lilypondfiletools
    tools/lilypondfiletools/make_basic_lilypond_file
 
 
-lilypondparsertools
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/lilypondparsertools/LilyPondParser/LilyPondParser
-
-
 marktools
 
 .. toctree::
@@ -1157,6 +1149,14 @@ layouttools
    tools/layouttools/make_spacing_vector
    tools/layouttools/set_line_breaks_cyclically_by_line_duration_ge
    tools/layouttools/set_line_breaks_cyclically_by_line_duration_in_seconds_ge
+
+
+lilypondparsertools
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/lilypondparsertools/LilyPondParser/LilyPondParser
 
 
 mathtools
