@@ -1,9 +1,9 @@
-abctools.StrictComparator
-=========================
+abctools.NonsortingIdEqualityComparatorAbjadObject
+==================================================
 
-.. inheritance-diagram:: abjad.tools.abctools.StrictComparator.StrictComparator
+.. inheritance-diagram:: abjad.tools.abctools.NonsortingIdEqualityComparatorAbjadObject.NonsortingIdEqualityComparatorAbjadObject
    :private-bases:
-.. autoclass:: abjad.tools.abctools.StrictComparator
+.. autoclass:: abjad.tools.abctools.NonsortingIdEqualityComparatorAbjadObject
    :members:
    :undoc-members:
    :inherited-members:

@@ -1021,10 +1021,10 @@ abctools
    :maxdepth: 1
 
    tools/abctools/AbjadObject/AbjadObject
-   tools/abctools/FlexEqualityComparator/FlexEqualityComparator
    tools/abctools/ImmutableAbjadObject/ImmutableAbjadObject
-   tools/abctools/StrictComparator/StrictComparator
-   tools/abctools/UnaryComparator/UnaryComparator
+   tools/abctools/NonsortingAttributeEqualityComparatorAbjadObject/NonsortingAttributeEqualityComparatorAbjadObject
+   tools/abctools/NonsortingIdEqualityComparatorAbjadObject/NonsortingIdEqualityComparatorAbjadObject
+   tools/abctools/SortableAttributeEqualityComparatorAbjadObject/SortableAttributeEqualityComparatorAbjadObject
 
 
 configurationtools

@@ -1,8 +1,8 @@
-from abjad.tools.abctools.StrictComparator import StrictComparator
+from abjad.tools.abctools.NonsortingIdEqualityComparatorAbjadObject import NonsortingIdEqualityComparatorAbjadObject
 import copy
 
 
-class Tree(StrictComparator):
+class Tree(NonsortingIdEqualityComparatorAbjadObject):
     r'''.. versionadded:: 2.4
 
     Abjad data structure to work with a sequence whose elements have been

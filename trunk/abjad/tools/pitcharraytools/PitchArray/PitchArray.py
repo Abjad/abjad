@@ -1,4 +1,4 @@
-from abjad.tools.abctools import StrictComparator
+from abjad.tools.abctools import NonsortingIdEqualityComparatorAbjadObject
 from abjad.tools import sequencetools
 from abjad.tools.pitcharraytools.PitchArrayCell.PitchArrayCell import PitchArrayCell
 from abjad.tools.pitcharraytools.PitchArrayColumn.PitchArrayColumn import PitchArrayColumn
@@ -6,7 +6,7 @@ from abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow import PitchArrayRo
 from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
 
 
-class PitchArray(StrictComparator):
+class PitchArray(NonsortingIdEqualityComparatorAbjadObject):
     '''.. versionadded:: 2.0
 
     Two-dimensional array of pitches.

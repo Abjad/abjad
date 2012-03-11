@@ -1,7 +1,7 @@
 from abc import ABCMeta
 from abjad.tools.lilypondproxytools import LilyPondContextSettingComponentPlugIn
 from abjad.tools.lilypondproxytools import LilyPondGrobOverrideComponentPlugIn
-from abjad.tools.abctools import StrictComparator
+from abjad.tools.abctools import NonsortingIdEqualityComparatorAbjadObject
 from abjad.interfaces import ParentageInterface
 from abjad.interfaces import _NavigationInterface
 from abjad.interfaces import _OffsetInterface
@@ -10,7 +10,7 @@ import copy
 import fractions
 
 
-class Component(StrictComparator):
+class Component(NonsortingIdEqualityComparatorAbjadObject):
     __metaclass__ = ABCMeta
 
     __slots__ = ('_duration', '_is_forbidden_to_update', '_marks_are_current',

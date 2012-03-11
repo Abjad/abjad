@@ -1,9 +1,9 @@
-abctools.UnaryComparator
-========================
+abctools.NonsortingAttributeEqualityComparatorAbjadObject
+=========================================================
 
-.. inheritance-diagram:: abjad.tools.abctools.UnaryComparator.UnaryComparator
+.. inheritance-diagram:: abjad.tools.abctools.NonsortingAttributeEqualityComparatorAbjadObject.NonsortingAttributeEqualityComparatorAbjadObject
    :private-bases:
-.. autoclass:: abjad.tools.abctools.UnaryComparator
+.. autoclass:: abjad.tools.abctools.NonsortingAttributeEqualityComparatorAbjadObject
    :members:
    :undoc-members:
    :inherited-members:

@@ -1,9 +1,9 @@
 from abc import ABCMeta
-from abjad.tools.abctools.StrictComparator import StrictComparator
+from abjad.tools.abctools.NonsortingIdEqualityComparatorAbjadObject import NonsortingIdEqualityComparatorAbjadObject
 
 
 # TODO: inherit from AbjadObject directly
-class FlexEqualityComparator(StrictComparator):
+class NonsortingAttributeEqualityComparatorAbjadObject(NonsortingIdEqualityComparatorAbjadObject):
     '''.. versionadded:: 2.0
 
     Abstract base class to confer nonsorting attribute-equality comparability to any custom class.

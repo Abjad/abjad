@@ -2,7 +2,7 @@ from abc import ABCMeta
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class UnaryComparator(AbjadObject):
+class SortableAttributeEqualityComparatorAbjadObject(AbjadObject):
     '''.. versionadded:: 2.0
 
     Abstact base class to confer sortable attribute-equality comparability to any custom class.

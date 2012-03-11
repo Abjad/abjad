@@ -1,9 +1,9 @@
-abctools.FlexEqualityComparator
-===============================
+abctools.SortableAttributeEqualityComparatorAbjadObject
+=======================================================
 
-.. inheritance-diagram:: abjad.tools.abctools.FlexEqualityComparator.FlexEqualityComparator
+.. inheritance-diagram:: abjad.tools.abctools.SortableAttributeEqualityComparatorAbjadObject.SortableAttributeEqualityComparatorAbjadObject
    :private-bases:
-.. autoclass:: abjad.tools.abctools.FlexEqualityComparator
+.. autoclass:: abjad.tools.abctools.SortableAttributeEqualityComparatorAbjadObject
    :members:
    :undoc-members:
    :inherited-members:
