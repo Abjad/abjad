@@ -1,5 +1,5 @@
 from abjad.tools.containertools.Container import Container
-from abjad.tools.componenttools._Component import _Component
+from abjad.tools.componenttools.Component import Component
 
 
 def insert_component_and_fracture_crossing_spanners(container, i, component):
@@ -47,7 +47,7 @@ def insert_component_and_fracture_crossing_spanners(container, i, component):
         raise TypeError('must be container: %s' % container)
 
     assert isinstance(i, int)
-    assert isinstance(component, _Component)
+    assert isinstance(component, Component)
 
     result = []
     component._parentage._switch(container)

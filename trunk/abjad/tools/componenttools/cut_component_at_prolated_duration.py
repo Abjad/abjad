@@ -1,4 +1,4 @@
-from abjad.tools.componenttools._Component import _Component
+from abjad.tools.componenttools.Component import Component
 from abjad.tools.componenttools.list_leftmost_components_with_prolated_duration_at_most import list_leftmost_components_with_prolated_duration_at_most
 from abjad.tools import durationtools
 
@@ -59,7 +59,7 @@ def cut_component_at_prolated_duration(component, prolated_duration):
     from abjad.tools.leaftools._Leaf import _Leaf
     from abjad.tools import leaftools
 
-    assert isinstance(component, _Component)
+    assert isinstance(component, Component)
     assert isinstance(prolated_duration, durationtools.Duration)
 
     if component.prolated_duration <= prolated_duration:

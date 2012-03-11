@@ -1,4 +1,4 @@
-from abjad.tools.componenttools._Component import _Component
+from abjad.tools.componenttools.Component import Component
 import types
 
 
@@ -32,7 +32,7 @@ def all_are_components(expr, klasses=None):
         return False
 
     if klasses is None:
-        klasses = _Component
+        klasses = Component
 
     for element in expr:
         if not isinstance(element, klasses):

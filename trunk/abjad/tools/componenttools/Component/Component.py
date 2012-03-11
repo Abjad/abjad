@@ -10,7 +10,7 @@ import copy
 import fractions
 
 
-class _Component(StrictComparator):
+class Component(StrictComparator):
     __metaclass__ = ABCMeta
 
     __slots__ = ('_duration', '_is_forbidden_to_update', '_marks_are_current',

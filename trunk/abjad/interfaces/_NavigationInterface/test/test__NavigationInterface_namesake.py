@@ -1,5 +1,5 @@
 from abjad import *
-from abjad.tools.componenttools._Component import _Component
+from abjad.tools.componenttools.Component import Component
 
 # next_namesake #
 

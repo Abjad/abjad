@@ -26,7 +26,7 @@ def is_component_with_mark_attached(expr):
 
     Return boolean.
     '''
-    from abjad.tools.componenttools._Component import _Component
+    from abjad.tools.componenttools.Component import Component
 
-    if isinstance(expr, _Component):
+    if isinstance(expr, Component):
         return bool(get_marks_attached_to_component(expr))

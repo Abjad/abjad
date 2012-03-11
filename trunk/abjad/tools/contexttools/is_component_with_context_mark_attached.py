@@ -1,4 +1,4 @@
-from abjad.tools.componenttools._Component import _Component
+from abjad.tools.componenttools.Component import Component
 from abjad.tools.contexttools.ContextMark import ContextMark
 from abjad.tools.contexttools.get_context_marks_attached_to_component import get_context_marks_attached_to_component
 
@@ -30,7 +30,7 @@ def is_component_with_context_mark_attached(expr, klasses = (ContextMark,)):
     Return boolean.
     '''
 
-    if isinstance(expr, _Component):
+    if isinstance(expr, Component):
         if len(get_context_marks_attached_to_component(expr, klasses = klasses)) == 1:
             return True
 

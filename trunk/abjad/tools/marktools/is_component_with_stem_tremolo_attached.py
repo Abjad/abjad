@@ -26,9 +26,9 @@ def is_component_with_stem_tremolo_attached(expr):
 
     Return boolean.
     '''
-    from abjad.tools.componenttools._Component import _Component
+    from abjad.tools.componenttools.Component import Component
 
-    if isinstance(expr, _Component):
+    if isinstance(expr, Component):
         try:
             get_stem_tremolo_attached_to_component(expr)
             return True

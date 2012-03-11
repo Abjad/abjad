@@ -1,4 +1,4 @@
-from abjad.tools.componenttools._Component import _Component
+from abjad.tools.componenttools.Component import Component
 
 
 def _report_component_format_contributions(component, verbose=False, output='screen'):
@@ -16,7 +16,7 @@ def _report_component_format_contributions(component, verbose=False, output='scr
 
     if isinstance(component, _Leaf):
         return _report_leaf_format_contributors(component)
-    if isinstance(component, _Component):
+    if isinstance(component, Component):
         return component._formatter.report(verbose = verbose, output = output)
     elif isinstance(component, Spanner):
         return component._format.report(output = output)

@@ -1,5 +1,5 @@
 from abjad.tools.containertools.Container import Container
-from abjad.tools.componenttools._Component import _Component
+from abjad.tools.componenttools.Component import Component
 from abjad.tools import durationtools
 
 
@@ -10,7 +10,7 @@ def _yield_vertical_moments_forward_in_expr(expr):
     '''
     from abjad.tools.verticalitytools.VerticalMoment import VerticalMoment
 
-    if not isinstance(expr, _Component):
+    if not isinstance(expr, Component):
         raise TypeError('must be Abjad component.')
 
     governors = (expr, )
@@ -24,7 +24,7 @@ def _yield_vertical_moments_forward_in_expr(expr):
 
 
 def _buffer_components_starting_with(component, buffer, stop_offsets):
-    if not isinstance(component, _Component):
+    if not isinstance(component, Component):
         raise TypeError('must be Abjad component.')
     buffer.append(component)
     stop_offsets.append(component._offset.stop)
@@ -39,7 +39,7 @@ def _buffer_components_starting_with(component, buffer, stop_offsets):
 
 def _next_in_parent(component):
     from abjad.tools import componenttools
-    if not isinstance(component, _Component):
+    if not isinstance(component, Component):
         raise TypeError('must be component.')
     parent, start, stop = componenttools.get_parent_and_start_stop_indices_of_components([component])
     assert start == stop

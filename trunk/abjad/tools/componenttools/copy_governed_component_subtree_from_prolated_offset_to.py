@@ -1,4 +1,4 @@
-from abjad.tools.componenttools._Component import _Component
+from abjad.tools.componenttools.Component import Component
 from abjad.tools import durationtools
 
 
@@ -100,7 +100,7 @@ def copy_governed_component_subtree_from_prolated_offset_to(component, start=0, 
     '''
     from abjad.tools.leaftools._Leaf import _Leaf
     from abjad.tools.containertools.Container import Container
-    assert isinstance(component, _Component)
+    assert isinstance(component, Component)
     start = durationtools.Duration(*durationtools.duration_token_to_duration_pair(start))
     if start < 0:
         start = durationtools.Duration(0)

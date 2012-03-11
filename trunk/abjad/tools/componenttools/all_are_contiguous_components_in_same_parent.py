@@ -1,4 +1,4 @@
-from abjad.tools.componenttools._Component import _Component
+from abjad.tools.componenttools.Component import Component
 from abjad.tools.componenttools.is_orphan_component import is_orphan_component
 import types
 
@@ -28,7 +28,7 @@ def all_are_contiguous_components_in_same_parent(expr, klasses=None, allow_orpha
         return False
 
     if klasses is None:
-        klasses = _Component
+        klasses = Component
 
     if len(expr) == 0:
         return True

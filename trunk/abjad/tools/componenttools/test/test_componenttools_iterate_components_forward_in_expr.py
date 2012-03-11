@@ -1,5 +1,5 @@
 from abjad import *
-from abjad.tools.componenttools._Component import _Component
+from abjad.tools.componenttools.Component import Component
 from abjad.tools.leaftools._Leaf import _Leaf
 
 
@@ -42,8 +42,8 @@ def test_componenttools_iterate_components_forward_in_expr_05():
 def test_componenttools_iterate_components_forward_in_expr_06():
     '''Yield all nodes in tree.'''
     t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
-    #from abjad.tools.componenttools._Component import _Component
-    iter = componenttools.iterate_components_forward_in_expr(t, _Component)
+    #from abjad.tools.componenttools.Component import Component
+    iter = componenttools.iterate_components_forward_in_expr(t, Component)
     assert len(list(iter)) == 13
 
 

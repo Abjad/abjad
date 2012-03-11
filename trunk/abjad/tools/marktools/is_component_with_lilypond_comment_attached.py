@@ -26,9 +26,9 @@ def is_component_with_lilypond_comment_attached(expr, comment_contents_string = 
 
     Return boolean.
     '''
-    from abjad.tools.componenttools._Component import _Component
+    from abjad.tools.componenttools.Component import Component
 
-    if isinstance(expr, _Component):
+    if isinstance(expr, Component):
         for comment in get_lilypond_comments_attached_to_component(expr):
             if comment.contents_string == comment_contents_string or \
                 comment_contents_string is None:

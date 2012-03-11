@@ -1,4 +1,4 @@
-from abjad.tools.componenttools._Component import _Component
+from abjad.tools.componenttools.Component import Component
 from abjad.tools.componenttools.iterate_components_depth_first import iterate_components_depth_first
 from abjad.tools.threadtools.component_to_thread_signature import component_to_thread_signature
 
@@ -95,7 +95,7 @@ def iterate_thread_forward_from_component(component, klass = None):
 
     # set default class
     if klass is None:
-        klass = _Component
+        klass = Component
 
     # save thread signature of input component
     component_thread_signature = component_to_thread_signature(component)

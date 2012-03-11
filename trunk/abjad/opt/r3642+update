@@ -75,7 +75,7 @@ world value of n this equals O(n) effectively.
 
    ncalls  tottime  percall  cumtime  percall filename:lineno(function)
         1    0.000    0.000    0.020    0.020 <string>:1(<module>)
-      4/1    0.000    0.000    0.020    0.020 _Component.py:106(format)
+      4/1    0.000    0.000    0.020    0.020 Component.py:106(format)
    683/22    0.001    0.000    0.014    0.001 {getattr}
       4/1    0.000    0.000    0.013    0.013 _ComponentFormatter.py:35(format)
       4/1    0.000    0.000    0.013    0.013 _ComponentFormatter.py:21(_format_pieces)
@@ -84,7 +84,7 @@ world value of n this equals O(n) effectively.
       2/1    0.000    0.000    0.010    0.010 _ContainerFormatterSlotsInterface.py:67(slot_4)
       2/1    0.000    0.000    0.010    0.010 _ContainerFormatter.py:26(_contents)
        14    0.000    0.000    0.008    0.001 _ComponentFormatterSlotsInterface.py:83(contributions)
-     19/5    0.000    0.000    0.007    0.001 _Component.py:468(_update_marks_of_entire_score_tree_if_necessary)
-      3/1    0.000    0.000    0.006    0.006 _Component.py:405(__update_offset_values_in_seconds_of_entire_score_tree)
+     19/5    0.000    0.000    0.007    0.001 Component.py:468(_update_marks_of_entire_score_tree_if_necessary)
+      3/1    0.000    0.000    0.006    0.006 Component.py:405(__update_offset_values_in_seconds_of_entire_score_tree)
 
 These 7000 function calls result from iotools.profile_expr('staff.format').

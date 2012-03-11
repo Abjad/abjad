@@ -1,4 +1,4 @@
-from abjad.tools.componenttools._Component import _Component
+from abjad.tools.componenttools.Component import Component
 
 
 def component_to_pitch_and_rhythm_skeleton(component):
@@ -79,7 +79,7 @@ def component_to_pitch_and_rhythm_skeleton(component):
     from abjad.tools.containertools._container_to_pitch_and_rhythm_skeleton import _container_to_pitch_and_rhythm_skeleton
     from abjad.tools.leaftools._leaf_to_pitch_and_rhythm_skeleton import _leaf_to_pitch_and_rhythm_skeleton
 
-    if not isinstance(component, _Component):
+    if not isinstance(component, Component):
         raise TypeError('must be Abjad component.')
 
     if isinstance(component, _Leaf):

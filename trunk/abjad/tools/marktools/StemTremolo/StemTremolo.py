@@ -1,4 +1,4 @@
-from abjad.tools.componenttools._Component import _Component
+from abjad.tools.componenttools.Component import Component
 from abjad.tools import mathtools
 from abjad.tools.marktools.Mark import Mark
 

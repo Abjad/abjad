@@ -1,5 +1,5 @@
 from abjad import *
-from abjad.tools.componenttools._Component import _Component
+from abjad.tools.componenttools.Component import Component
 import py.test
 
 
@@ -31,7 +31,7 @@ def test_componenttools_all_are_components_in_same_parent_01():
 
     assert not componenttools.all_are_components_in_same_parent(t.leaves)
     assert not componenttools.all_are_components_in_same_parent(
-        list(componenttools.iterate_components_forward_in_expr(t, _Component)))
+        list(componenttools.iterate_components_forward_in_expr(t, Component)))
 
 
 def test_componenttools_all_are_components_in_same_parent_02():

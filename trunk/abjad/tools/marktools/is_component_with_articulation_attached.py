@@ -26,9 +26,9 @@ def is_component_with_articulation_attached(expr, articulation_name = None):
 
     Return boolean.
     '''
-    from abjad.tools.componenttools._Component import _Component
+    from abjad.tools.componenttools.Component import Component
 
-    if isinstance(expr, _Component):
+    if isinstance(expr, Component):
         for articulation in get_articulations_attached_to_component(expr):
             if articulation.name == articulation_name or articulation_name is None:
                 return True

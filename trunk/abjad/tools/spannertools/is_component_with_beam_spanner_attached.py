@@ -26,10 +26,10 @@ def is_component_with_beam_spanner_attached(expr):
         renamed ``beamtools.is_component_with_beam_spanner_attached()`` to
         ``spannertools.is_component_with_beam_spanner_attached()``.
     '''
-    from abjad.tools.componenttools._Component import _Component
+    from abjad.tools.componenttools.Component import Component
     from abjad.tools import spannertools
 
-    if not isinstance(expr, _Component):
+    if not isinstance(expr, Component):
         return False
 
     return bool(spannertools.get_spanners_attached_to_component(expr, spannertools.BeamSpanner))

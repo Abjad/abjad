@@ -1,9 +1,9 @@
 from abjad.tools.containertools.Container._ContainerFormatter import _ContainerFormatter
-from abjad.tools.componenttools._Component import _Component
+from abjad.tools.componenttools.Component import Component
 import copy
 
 
-class Container(_Component):
+class Container(Component):
     '''Abjad model of a music container:
 
     ::
@@ -23,7 +23,7 @@ class Container(_Component):
     __slots__ = ('_formatter', '_music', '_parallel', )
 
     def __init__(self, music = None, **kwargs):
-        _Component.__init__(self)
+        Component.__init__(self)
         self._parallel = False
         self._initialize_music(music)
         self._formatter = _ContainerFormatter(self)
@@ -53,7 +53,7 @@ class Container(_Component):
             return False
 
     def __copy__(self, *args):
-        new = _Component.__copy__(self, *args)
+        new = Component.__copy__(self, *args)
         new.is_parallel = self.is_parallel
         return new
 

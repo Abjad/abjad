@@ -1,4 +1,4 @@
-from abjad.tools.componenttools._Component import _Component
+from abjad.tools.componenttools.Component import Component
 from abjad.tools.componenttools.iterate_components_forward_in_expr import iterate_components_forward_in_expr
 from abjad.tools import durationtools
 
@@ -54,7 +54,7 @@ def list_improper_contents_of_component_that_cross_prolated_offset(component, pr
     Return list.
     '''
 
-    assert isinstance(component, _Component)
+    assert isinstance(component, Component)
     assert isinstance(prolated_offset, (int, float, durationtools.Duration))
 
     result = []
@@ -64,7 +64,7 @@ def list_improper_contents_of_component_that_cross_prolated_offset(component, pr
 
     boundary_time = component._offset.start + prolated_offset
 
-    for x in iterate_components_forward_in_expr(component, _Component):
+    for x in iterate_components_forward_in_expr(component, Component):
         x_start = x._offset.start
         x_stop = x._offset.stop
         if x_start < boundary_time < x_stop:

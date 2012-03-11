@@ -26,9 +26,9 @@ def is_component_with_annotation_attached(expr, annotation_name = None, annotati
 
     Return boolean.
     '''
-    from abjad.tools.componenttools._Component import _Component
+    from abjad.tools.componenttools.Component import Component
 
-    if isinstance(expr, _Component):
+    if isinstance(expr, Component):
         for annotation in get_annotations_attached_to_component(expr):
             if annotation.name == annotation_name or annotation_name is None:
                 if annotation.value == annotation_value or annotation_value is None:

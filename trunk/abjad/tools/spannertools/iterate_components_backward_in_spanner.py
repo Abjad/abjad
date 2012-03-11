@@ -1,8 +1,8 @@
-from abjad.tools.componenttools._Component import _Component
+from abjad.tools.componenttools.Component import Component
 from abjad.tools.spannertools.Spanner import Spanner
 
 
-def iterate_components_backward_in_spanner(spanner, klass = _Component):
+def iterate_components_backward_in_spanner(spanner, klass = Component):
     '''.. versionadded:: 2.0
 
     Yield components in `spanner` one at a time from left to right. ::

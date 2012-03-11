@@ -1,7 +1,7 @@
-from abjad.tools.componenttools._Component import _Component
+from abjad.tools.componenttools.Component import Component
 
 
-def iterate_components_forward_in_expr(expr, klass=_Component, start=0, stop=None):
+def iterate_components_forward_in_expr(expr, klass=Component, start=0, stop=None):
     r'''.. versionadded:: 1.1
 
     Iterate components forward in `expr`::
@@ -85,7 +85,7 @@ def iterate_components_forward_in_expr(expr, klass=_Component, start=0, stop=Non
         ``componenttools.iterate_components_forward_in_expr()``.
 
     .. versionchanged:: 2.0
-        `klass` now defaults to ``_Component``.
+        `klass` now defaults to ``Component``.
     '''
 
     return _subrange(_forward_generator(expr, klass), start, stop)

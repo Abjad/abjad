@@ -6,7 +6,7 @@ from ply import lex, yacc
 from ply.lex import LexToken
 
 from abjad import *
-from abjad.tools.componenttools._Component import _Component
+from abjad.tools.componenttools.Component import Component
 from abjad.tools.contexttools._Context import _Context
 from abjad.tools.leaftools._Leaf import _Leaf
 from abjad.tools.lilypondparsertools._GuileProxy._GuileProxy import _GuileProxy
@@ -467,7 +467,7 @@ class LilyPondParser(object):
         # sort events into forward or backwards attaching, and attach them to
         # the proper leaf
         for x in music:
-            if isinstance(x, _Component):
+            if isinstance(x, Component):
                 for mark in apply_forward:
                     if hasattr(mark, '__call__'):
                         mark(x)
@@ -656,7 +656,7 @@ class LilyPondParser(object):
             #'ly:dir?':            lambda x: True,
             'ly:duration?':       lambda x: isinstance(x, _LilyPondDuration),
             #'ly:moment?':         lambda x: True,
-            'ly:music?':          lambda x: isinstance(x, (_Component, marktools.Mark)),
+            'ly:music?':          lambda x: isinstance(x, (Component, marktools.Mark)),
             'ly:pitch?':          lambda x: isinstance(x, pitchtools.NamedChromaticPitch),
             'number-list?':       lambda x: isinstance(x, (list, tuple)) and \
                                             all([isinstance(y, (int, float)) for y in x]),

@@ -1,4 +1,4 @@
-from abjad.tools.componenttools._Component import _Component
+from abjad.tools.componenttools.Component import Component
 from abjad.tools import threadtools
 from abjad.tools.componenttools.is_orphan_component import is_orphan_component
 from abjad.tools.componenttools.iterate_components_depth_first import iterate_components_depth_first
@@ -46,7 +46,7 @@ def all_are_thread_contiguous_components(expr, klasses=None, allow_orphans=True)
         return False
 
     if klasses is None:
-        klasses = _Component
+        klasses = Component
 
     if len(expr) == 0:
         return True
@@ -82,7 +82,7 @@ def all_are_thread_contiguous_components(expr, klasses=None, allow_orphans=True)
     return True
 
 
-def _are_thread_proper(component_1, component_2, klasses=(_Component)):
+def _are_thread_proper(component_1, component_2, klasses=(Component)):
     '''True when
 
             1. component_1 and component_2 are both Abjad components,

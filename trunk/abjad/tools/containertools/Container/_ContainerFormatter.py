@@ -1,5 +1,5 @@
 from abjad.tools.containertools.Container._ContainerFormatterSlotsInterface import _ContainerFormatterSlotsInterface
-from abjad.tools.componenttools._Component._ComponentFormatter import _ComponentFormatter
+from abjad.tools.componenttools.Component._ComponentFormatter import _ComponentFormatter
 
 
 class _ContainerFormatter(_ComponentFormatter):

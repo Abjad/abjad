@@ -1,5 +1,5 @@
 from abjad.tools.abctools.ImmutableAbjadObject import ImmutableAbjadObject
-from abjad.tools.componenttools._Component import _Component
+from abjad.tools.componenttools.Component import Component
 
 
 class Mark(ImmutableAbjadObject):
@@ -109,7 +109,7 @@ class Mark(ImmutableAbjadObject):
     # method must NOT be preceeded by __ so that child ContextMark objects can call it
     def _bind_start_component(self, start_component):
         #print 'binding MARK to start component ...'
-        assert isinstance(start_component, _Component)
+        assert isinstance(start_component, Component)
         self.__unbind_start_component()
         start_component._marks_for_which_component_functions_as_start_component.append(self)
         self._start_component = start_component

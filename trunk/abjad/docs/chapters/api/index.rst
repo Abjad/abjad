@@ -36,6 +36,7 @@ componenttools
 .. toctree::
    :maxdepth: 1
 
+   tools/componenttools/Component/Component
    tools/componenttools/all_are_components
    tools/componenttools/all_are_components_in_same_parent
    tools/componenttools/all_are_components_in_same_score

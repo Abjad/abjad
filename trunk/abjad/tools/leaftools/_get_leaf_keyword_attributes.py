@@ -1,4 +1,4 @@
-from abjad.tools.componenttools._Component import _Component
+from abjad.tools.componenttools.Component import Component
 from abjad.exceptions import MissingSpannerError
 from abjad.exceptions import MissingTempoError
 from abjad.interfaces._Interface import _Interface
@@ -6,7 +6,7 @@ from abjad.tools.leaftools._inspect_leaf_instance_attributes import _inspect_lea
 from abjad.tools import durationtools
 
 
-_types_forbidden_to_write_as_keyword_values = (_Component, _Interface)
+_types_forbidden_to_write_as_keyword_values = (Component, _Interface)
 
 def _get_leaf_keyword_attributes(leaf):
     result = []

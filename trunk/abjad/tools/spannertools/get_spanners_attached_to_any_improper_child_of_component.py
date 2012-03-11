@@ -45,7 +45,7 @@ def get_spanners_attached_to_any_improper_child_of_component(component, klass = 
         renamed ``spannertools.get_all_spanners_attached_to_any_improper_children_of_component()`` to
         ``spannertools.get_spanners_attached_to_any_improper_child_of_component()``.
     '''
-    from abjad.tools.componenttools._Component import _Component
+    from abjad.tools.componenttools.Component import Component
     from abjad.tools import componenttools
 
     # note: externalization of (old) component spanner aggregator 'contained' property
@@ -55,7 +55,7 @@ def get_spanners_attached_to_any_improper_child_of_component(component, klass = 
     result.update(get_spanners_attached_to_component(component, klass))
 
     # iterate proper children of component
-    children = componenttools.iterate_components_forward_in_expr(component, _Component)
+    children = componenttools.iterate_components_forward_in_expr(component, Component)
     for child in children:
         result.update(get_spanners_attached_to_component(child, klass))
 

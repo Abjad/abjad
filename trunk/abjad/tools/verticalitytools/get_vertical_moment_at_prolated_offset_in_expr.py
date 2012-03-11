@@ -1,4 +1,4 @@
-from abjad.tools.componenttools._Component import _Component
+from abjad.tools.componenttools.Component import Component
 from abjad.tools import componenttools
 from abjad.tools.componenttools.iterate_components_forward_in_expr import iterate_components_forward_in_expr
 
@@ -58,11 +58,11 @@ def get_vertical_moment_at_prolated_offset_in_expr(governor, prolated_offset):
 
     governors = []
     message = 'must be Abjad component or list or tuple of Abjad components.'
-    if isinstance(governor, _Component):
+    if isinstance(governor, Component):
         governors.append(governor)
     elif isinstance(governor, (list, tuple)):
         for x in governor:
-            if isinstance(x, _Component):
+            if isinstance(x, Component):
                 governors.append(x)
             else:
                 raise TypeError(message)
@@ -76,7 +76,7 @@ def get_vertical_moment_at_prolated_offset_in_expr(governor, prolated_offset):
 
     components = []
     for governor in governors:
-        for component in iterate_components_forward_in_expr(governor, _Component):
+        for component in iterate_components_forward_in_expr(governor, Component):
             if component._offset.start <= prolated_offset:
                 if prolated_offset < component._offset.stop:
                     components.append(component)

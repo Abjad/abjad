@@ -1,4 +1,4 @@
-from abjad.tools.componenttools._Component import _Component
+from abjad.tools.componenttools.Component import Component
 from abjad.tools.componenttools.iterate_components_forward_in_expr import iterate_components_forward_in_expr
 
 
@@ -32,10 +32,10 @@ def get_first_component_in_expr_with_name(expr, name):
         Function operates only on component name.
     '''
 
-    if not isinstance(expr, (_Component, list, tuple)):
+    if not isinstance(expr, (Component, list, tuple)):
         raise TypeError('must be tuple, list or Abjad comonent.')
 
-    for component in iterate_components_forward_in_expr(expr, _Component):
+    for component in iterate_components_forward_in_expr(expr, Component):
         if name is None or getattr(component, 'name', None) == name:
             return component
 

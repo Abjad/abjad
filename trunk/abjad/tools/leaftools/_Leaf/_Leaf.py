@@ -1,12 +1,12 @@
 from abc import ABCMeta
 from abjad.tools import durationtools
-from abjad.tools.componenttools._Component import _Component
+from abjad.tools.componenttools.Component import Component
 import copy
 import fractions
 import operator
 
 
-class _Leaf(_Component):
+class _Leaf(Component):
     __metaclass__ = ABCMeta
 
     # TODO: see if _grace and _after_grace can be removed #
@@ -17,7 +17,7 @@ class _Leaf(_Component):
         'after_grace', 'grace', )
 
     def __init__(self, written_duration, duration_multiplier = None):
-        _Component.__init__(self)
+        Component.__init__(self)
         self._duration_multiplier = duration_multiplier
         self._leaf_index = None
         self.written_duration = durationtools.Duration(durationtools.duration_token_to_duration_pair(written_duration))
@@ -31,7 +31,7 @@ class _Leaf(_Component):
 
     def __copy__(self, *args):
         from abjad.tools import gracetools
-        new = _Component.__copy__(self, *args)
+        new = Component.__copy__(self, *args)
         for grace_container in gracetools.get_grace_containers_attached_to_leaf(self):
             new_grace_container = copy.deepcopy(grace_container)
             new_grace_container(new)

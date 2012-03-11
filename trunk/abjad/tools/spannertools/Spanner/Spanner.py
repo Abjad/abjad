@@ -183,11 +183,11 @@ class Spanner(StrictComparator):
         return [(self, spanner, result)]
 
     def _initialize_components(self, components):
-        from abjad.tools.componenttools._Component import _Component
+        from abjad.tools.componenttools.Component import Component
         from abjad.tools import componenttools
         from abjad.tools import leaftools
         components = components or []
-        if isinstance(components, _Component):
+        if isinstance(components, Component):
             components = [components]
         # TODO: Author staff-level contiguity check in tools/check. #
         #         Include optional staff-level contiguity check here. #
