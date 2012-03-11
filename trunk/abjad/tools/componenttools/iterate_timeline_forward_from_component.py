@@ -38,10 +38,10 @@ def iterate_timeline_forward_from_component(expr, klass=None):
 
     .. todo:: optimize to avoid behind-the-scenes full-score traversal.
     '''
-    from abjad.tools.leaftools._Leaf import _Leaf
+    from abjad.tools.leaftools.Leaf import Leaf
 
     if klass is None:
-        klass = _Leaf
+        klass = Leaf
 
     root = component_to_score_root(expr)
     component_generator = iterate_timeline_forward_in_expr(root, klass = klass)

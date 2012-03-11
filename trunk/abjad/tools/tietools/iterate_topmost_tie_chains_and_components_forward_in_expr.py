@@ -1,5 +1,5 @@
 from abjad.tools.containertools.Container import Container
-from abjad.tools.leaftools._Leaf import _Leaf
+from abjad.tools.leaftools.Leaf import Leaf
 from abjad.tools import spannertools
 from abjad.tools.tietools.TieSpanner import TieSpanner
 from abjad.tools.tietools.get_tie_chain import get_tie_chain
@@ -51,14 +51,14 @@ def iterate_topmost_tie_chains_and_components_forward_in_expr(expr):
         ``tietools.iterate_topmost_tie_chains_and_components_forward_in_expr()``.
     '''
 
-    if isinstance(expr, _Leaf):
+    if isinstance(expr, Leaf):
         if len(get_tie_chain(expr)) == 1:
             yield get_tie_chain(expr)
         else:
             raise TieChainError('can not have only one leaf in tie chain.')
     elif isinstance(expr, (list, Container)):
         for component in expr:
-            if isinstance(component, _Leaf):
+            if isinstance(component, Leaf):
                 tie_spanners = spannertools.get_spanners_attached_to_component(
                     component, TieSpanner)
                 #if not component.tie.spanned or component.tie.last:

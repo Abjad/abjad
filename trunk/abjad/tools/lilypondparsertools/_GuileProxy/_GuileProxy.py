@@ -1,6 +1,6 @@
 from abjad import *
 from abjad.tools.contexttools._Context import _Context
-from abjad.tools.leaftools._Leaf import _Leaf
+from abjad.tools.leaftools.Leaf import Leaf
 from abjad.tools.lilypondparsertools._lilypond_enharmonic_transpose import _lilypond_enharmonic_transpose
 from abjad.tools.pitchtools import NamedChromaticPitch
 
@@ -151,7 +151,7 @@ class _GuileProxy(object):
 
     def times(self, fraction, music):
         n, d  = fraction.numerator, fraction.denominator
-        if not isinstance(music, _Context) and not isinstance(music, _Leaf):
+        if not isinstance(music, _Context) and not isinstance(music, Leaf):
             return tuplettools.Tuplet((n, d), music[:])
         return tuplettools.Tuplet((n, d), [music])
 

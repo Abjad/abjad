@@ -1,5 +1,5 @@
 from abjad.tools.componenttools.all_are_components import all_are_components
-from abjad.tools.leaftools._Leaf import _Leaf
+from abjad.tools.leaftools.Leaf import Leaf
 
 
 def all_are_leaves(expr):
@@ -29,4 +29,4 @@ def all_are_leaves(expr):
     Function wraps ``componenttools.all_are_components()``.
     '''
 
-    return all_are_components(expr, klasses=(_Leaf,))
+    return all_are_components(expr, klasses=(Leaf,))

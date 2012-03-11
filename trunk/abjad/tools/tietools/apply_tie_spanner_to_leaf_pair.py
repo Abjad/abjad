@@ -1,4 +1,4 @@
-from abjad.tools.leaftools._Leaf import _Leaf
+from abjad.tools.leaftools.Leaf import Leaf
 from abjad.tools import spannertools
 from abjad.tools.tietools.TieSpanner import TieSpanner
 from abjad.tools.tietools.are_components_in_same_tie_spanner import are_components_in_same_tie_spanner
@@ -41,8 +41,8 @@ def apply_tie_spanner_to_leaf_pair(left, right):
         ``tietools.apply_tie_spanner_to_leaf_pair()``.
     '''
 
-    assert isinstance(left, _Leaf)
-    assert isinstance(right, _Leaf)
+    assert isinstance(left, Leaf)
+    assert isinstance(right, Leaf)
 
     if are_components_in_same_tie_spanner([left, right]):
         return

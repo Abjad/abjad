@@ -1,4 +1,4 @@
-from abjad.tools.leaftools._Leaf import _Leaf
+from abjad.tools.leaftools.Leaf import Leaf
 from abjad.tools import durationtools
 from abjad.tools import leaftools
 from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
@@ -28,7 +28,7 @@ def scale_contents_of_tuplets_in_expr_by_multiplier(tuplet, multiplier):
     # if multiplier is note head assignable, scale contents graphically
     if durationtools.is_assignable_rational(multiplier):
         for component in tuplet[:]:
-            if isinstance(component, _Leaf):
+            if isinstance(component, Leaf):
                 leaftools.scale_preprolated_leaf_duration(component, multiplier)
 
     # otherwise doctor up tuplet multiplier, if necessary

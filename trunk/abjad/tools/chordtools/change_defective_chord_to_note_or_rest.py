@@ -1,9 +1,9 @@
 from abjad.tools.chordtools.Chord import Chord
-from abjad.tools.leaftools._Leaf import _Leaf
+from abjad.tools.leaftools.Leaf import Leaf
 from abjad.tools.decoratortools import requires
 
 
-@requires(_Leaf)
+@requires(Leaf)
 def change_defective_chord_to_note_or_rest(chord):
     '''.. versionadded:: 1.1
 

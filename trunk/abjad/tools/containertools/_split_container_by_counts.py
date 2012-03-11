@@ -1,5 +1,5 @@
 from abjad.tools.containertools.Container import Container
-from abjad.tools.leaftools._Leaf import _Leaf
+from abjad.tools.leaftools.Leaf import Leaf
 from abjad.tools import sequencetools
 from abjad.tools.componenttools._split_component_at_index import _split_component_at_index
 from abjad.tools.componenttools.all_are_components import all_are_components
@@ -51,7 +51,7 @@ def _split_container_by_counts(components, counts, spanners = 'unfractured', cyc
         except IndexError:
             break
         # if current component is a leaf, add to part
-        if isinstance(x, _Leaf):
+        if isinstance(x, Leaf):
             part.append(x)
             cum_comp_in_this_part += 1
             comp_still_needed = count - cum_comp_in_this_part

@@ -11,14 +11,14 @@ def _split_component_at_index(component, i, spanners='unfractured'):
     '''
     from abjad.tools import spannertools
     from abjad.tools import contexttools
-    from abjad.tools.leaftools._Leaf import _Leaf
+    from abjad.tools.leaftools.Leaf import Leaf
     from abjad.tools.containertools.set_container_multiplier import set_container_multiplier
     from abjad.tools.measuretools.Measure import Measure
     from abjad.tools.tuplettools.Tuplet import Tuplet
     from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
 
     # convenience leaf index split definition
-    if isinstance(component, _Leaf):
+    if isinstance(component, Leaf):
         #raise Exception # debug
         if i <= 0:
             if spanners == 'fractured':

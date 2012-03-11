@@ -1,8 +1,8 @@
 from abc import ABCMeta
-from abjad.tools.leaftools._Leaf import _Leaf
+from abjad.tools.leaftools.Leaf import Leaf
 
 
-class _LyricLeaf(_Leaf):
+class _LyricLeaf(Leaf):
     __metaclass__ = ABCMeta
 
     pass

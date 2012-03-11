@@ -6,7 +6,7 @@ import fractions
 import operator
 
 
-class _Leaf(Component):
+class Leaf(Component):
     __metaclass__ = ABCMeta
 
     # TODO: see if _grace and _after_grace can be removed #
@@ -88,7 +88,7 @@ class _Leaf(Component):
             self._set = copy.copy(leaf.set)
 
     def _operate(self, arg, operator):
-        assert isinstance(arg, _Leaf)
+        assert isinstance(arg, Leaf)
         from abjad.tools import leaftools
         from abjad.tools import pitchtools
         self_pairs = set(pitchtools.list_named_chromatic_pitches_in_expr(self))

@@ -2,11 +2,11 @@ def _get_context_setting_format_contributions(component):
     '''Sorted list of format-time context settings.
     '''
     result = []
-    from abjad.tools.leaftools._Leaf import _Leaf
+    from abjad.tools.leaftools.Leaf import Leaf
     from abjad.tools.measuretools.Measure import Measure
     from abjad.tools.lilypondfiletools._format_lilypond_context_setting_inline import _format_lilypond_context_setting_inline
     from abjad.tools.lilypondfiletools._format_lilypond_context_setting_in_with_block import _format_lilypond_context_setting_in_with_block
-    if isinstance(component, (_Leaf, Measure)):
+    if isinstance(component, (Leaf, Measure)):
         for name, value in vars(component.set).iteritems():
             # if we've found a leaf LilyPondContextNamespace
             if name.startswith('_'):

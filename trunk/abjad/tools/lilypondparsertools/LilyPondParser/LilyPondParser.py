@@ -8,7 +8,7 @@ from ply.lex import LexToken
 from abjad import *
 from abjad.tools.componenttools.Component import Component
 from abjad.tools.contexttools._Context import _Context
-from abjad.tools.leaftools._Leaf import _Leaf
+from abjad.tools.leaftools.Leaf import Leaf
 from abjad.tools.lilypondparsertools._GuileProxy._GuileProxy import _GuileProxy
 from abjad.tools.lilypondparsertools._LilyPondDuration._LilyPondDuration import _LilyPondDuration
 from abjad.tools.lilypondparsertools._LilyPondEvent._LilyPondEvent import _LilyPondEvent

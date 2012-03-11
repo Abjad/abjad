@@ -18,20 +18,20 @@ class _NumberingInterface(_Interface):
 
     def _update_component(self):
         '''Update number of any one node in score.'''
-        from abjad.tools.leaftools._Leaf import _Leaf
+        from abjad.tools.leaftools.Leaf import Leaf
         from abjad.tools.measuretools.Measure import Measure
         client = self._client
-        if isinstance(client, _Leaf):
+        if isinstance(client, Leaf):
             self._update_leaf_number( )
         elif isinstance(client, Measure):
             self._update_measure_number( )
 
     def _update_leaf_number(self):
         '''Update (zero-indexed) number of any one leaf in score.'''
-        from abjad.tools.leaftools._Leaf import _Leaf
+        from abjad.tools.leaftools.Leaf import Leaf
         prevLeaf = self._client.prev
         if prevLeaf:
-            assert isinstance(prevLeaf, _Leaf)
+            assert isinstance(prevLeaf, Leaf)
             self._leaf = prevLeaf._numbering._leaf + 1
         else:
             self._leaf = 0

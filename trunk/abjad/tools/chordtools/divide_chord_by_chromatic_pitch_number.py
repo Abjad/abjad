@@ -1,12 +1,12 @@
 from abjad.tools.chordtools._divide_chord import _divide_chord
 from abjad.tools.chordtools.Chord import Chord
 from abjad.tools.decoratortools import requires
-from abjad.tools.leaftools._Leaf import _Leaf
+from abjad.tools.leaftools.Leaf import Leaf
 from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
 from abjad.tools import pitchtools
 
 
-@requires(_Leaf, pitchtools.is_named_chromatic_pitch_token)
+@requires(Leaf, pitchtools.is_named_chromatic_pitch_token)
 def divide_chord_by_chromatic_pitch_number(chord, pitch=NamedChromaticPitch('b', 3)):
     r'''.. versionadded:: 1.1
 

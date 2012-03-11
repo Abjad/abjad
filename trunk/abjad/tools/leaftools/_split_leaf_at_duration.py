@@ -1,4 +1,4 @@
-from abjad.tools.leaftools._Leaf import _Leaf
+from abjad.tools.leaftools.Leaf import Leaf
 from abjad.tools.leaftools.set_preprolated_leaf_duration import set_preprolated_leaf_duration
 from abjad.tools import durationtools
 
@@ -15,7 +15,7 @@ def _split_leaf_at_duration(leaf, split_dur, spanners = 'unfractured', tie_after
     from abjad.tools import spannertools
     from abjad.tools import tietools
 
-    assert isinstance(leaf, _Leaf)
+    assert isinstance(leaf, Leaf)
     split_dur = durationtools.Duration(split_dur)
 
     leaf_multiplied_duration = leaf.multiplied_duration

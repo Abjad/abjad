@@ -2,7 +2,7 @@ from abjad.tools.abctools import Immutable
 from abjad.tools import componenttools
 from abjad.tools import durationtools
 from abjad.tools.chordtools.Chord import Chord
-from abjad.tools.leaftools._Leaf import _Leaf
+from abjad.tools.leaftools.Leaf import Leaf
 from abjad.tools.measuretools.Measure import Measure
 from abjad.tools.notetools.Note import Note
 
@@ -138,7 +138,7 @@ class VerticalMoment(Immutable):
         at vertical moment.'''
         result = []
         for component in self.components:
-            if isinstance(component, _Leaf):
+            if isinstance(component, Leaf):
                 result.append(component)
         result = tuple(result)
         return result
@@ -207,7 +207,7 @@ class VerticalMoment(Immutable):
     def overlap_leaves(self):
         '''Read-only tuple of leaves in vertical moment
         starting before vertical moment, ordered by score index.'''
-        result = [x for x in self.overlap_components if isinstance(x, _Leaf)]
+        result = [x for x in self.overlap_components if isinstance(x, Leaf)]
         result = tuple(result)
         return result
 
@@ -285,7 +285,7 @@ class VerticalMoment(Immutable):
     def start_leaves(self):
         '''Read-only tuple of leaves in vertical moment
         starting with vertical moment, ordered by score index.'''
-        result = [x for x in self.start_components if isinstance(x, _Leaf)]
+        result = [x for x in self.start_components if isinstance(x, Leaf)]
         result = tuple(result)
         return result
 

@@ -1,10 +1,10 @@
 def _get_grob_override_format_contributions(component):
     '''Alphabetized list of LilyPond grob overrides.
     '''
-    from abjad.tools.leaftools._Leaf import _Leaf
+    from abjad.tools.leaftools.Leaf import Leaf
 
     result = []
-    if isinstance(component, _Leaf):
+    if isinstance(component, Leaf):
         is_once = True
     else:
         is_once = False

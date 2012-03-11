@@ -1,4 +1,4 @@
-from abjad.tools.leaftools._Leaf import _Leaf
+from abjad.tools.leaftools.Leaf import Leaf
 
 
 def get_nth_leaf_in_thread_from_leaf(leaf, n = 0):
@@ -41,7 +41,7 @@ def get_nth_leaf_in_thread_from_leaf(leaf, n = 0):
     Return leaf or none.
     '''
 
-    if not isinstance(leaf, _Leaf):
+    if not isinstance(leaf, Leaf):
         return None
 
     current_leaf = leaf

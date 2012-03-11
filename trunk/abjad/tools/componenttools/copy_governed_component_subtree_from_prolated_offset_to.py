@@ -98,7 +98,7 @@ def copy_governed_component_subtree_from_prolated_offset_to(component, start=0, 
         renamed ``componenttools.clone_governed_component_subtree_from_prolated_duration_to()`` to
         ``componenttools.copy_governed_component_subtree_from_prolated_offset_to()``.
     '''
-    from abjad.tools.leaftools._Leaf import _Leaf
+    from abjad.tools.leaftools.Leaf import Leaf
     from abjad.tools.containertools.Container import Container
     assert isinstance(component, Component)
     start = durationtools.Duration(*durationtools.duration_token_to_duration_pair(start))
@@ -109,7 +109,7 @@ def copy_governed_component_subtree_from_prolated_offset_to(component, start=0, 
     else:
         stop = durationtools.Duration(*durationtools.duration_token_to_duration_pair(stop))
     assert start <= stop
-    if isinstance(component, _Leaf):
+    if isinstance(component, Leaf):
         return _scopy_leaf(component, start, stop)
     elif isinstance(component, Container):
         return _scopy_container(component, start, stop)

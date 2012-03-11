@@ -10,12 +10,12 @@ def _divide_chord(chord, pitch=pitchtools.NamedChromaticPitch('b', 3),
 
     Return pair of newly created leaves.
     '''
-    from abjad.tools.leaftools._Leaf import _Leaf
+    from abjad.tools.leaftools.Leaf import Leaf
     from abjad.tools import markuptools
     from abjad.tools import notetools
     from abjad.tools import resttools
 
-    if not isinstance(chord, _Leaf):
+    if not isinstance(chord, Leaf):
         raise TypeError('%s is not a note, rest or chord.' % str(chord))
 
     pitch = pitchtools.NamedChromaticPitch(pitch)

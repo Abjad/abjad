@@ -1,4 +1,4 @@
-from abjad.tools.leaftools._Leaf import _Leaf
+from abjad.tools.leaftools.Leaf import Leaf
 from abjad.tools import componenttools
 from abjad.tools import durationtools
 
@@ -92,7 +92,7 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
     from abjad.tools import spannertools
     from abjad.tools.tuplettools.Tuplet import Tuplet
 
-    assert isinstance(leaf, _Leaf)
+    assert isinstance(leaf, Leaf)
     #assert isinstance(new_preprolated_duration, durationtools.Duration)
     new_preprolated_duration = durationtools.Duration(new_preprolated_duration)
 
@@ -107,7 +107,7 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
         all_leaves = [leaf]
     except AssignabilityError:
         duration_tokens = make_notes(0, new_preprolated_duration)
-        if isinstance(duration_tokens[0], _Leaf):
+        if isinstance(duration_tokens[0], Leaf):
             num_tied_leaves = len(duration_tokens) - 1
             tied_leaves = componenttools.copy_components_and_remove_all_spanners(
                 [leaf], num_tied_leaves)

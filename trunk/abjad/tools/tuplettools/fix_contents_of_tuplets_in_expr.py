@@ -1,5 +1,5 @@
 from abjad.tools.tuplettools.Tuplet import Tuplet
-from abjad.tools.leaftools._Leaf import _Leaf
+from abjad.tools.leaftools.Leaf import Leaf
 from abjad.tools import leaftools
 from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
 from abjad.tools import durationtools
@@ -33,7 +33,7 @@ def fix_contents_of_tuplets_in_expr(tuplet):
 
     # scale leaves in tuplet by power of two
     for component in tuplet[:]:
-        if isinstance(component, _Leaf):
+        if isinstance(component, Leaf):
             old_written_duration = component.written_duration
             new_written_duration = leaf_multiplier * old_written_duration
             leaftools.set_preprolated_leaf_duration(

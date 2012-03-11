@@ -1,5 +1,5 @@
 from abjad.tools.resttools.Rest import Rest
-from abjad.tools.leaftools._Leaf import _Leaf
+from abjad.tools.leaftools.Leaf import Leaf
 
 
 class MultiMeasureRest(Rest):

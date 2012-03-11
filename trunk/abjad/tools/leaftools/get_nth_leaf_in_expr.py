@@ -1,4 +1,4 @@
-from abjad.tools.leaftools._Leaf import _Leaf
+from abjad.tools.leaftools.Leaf import Leaf
 from abjad.tools.componenttools.get_nth_component_in_expr import get_nth_component_in_expr
 
 
@@ -56,4 +56,4 @@ def get_nth_leaf_in_expr(expr, n = 0):
     Return leaf of none.
     '''
 
-    return get_nth_component_in_expr(expr, _Leaf, n)
+    return get_nth_component_in_expr(expr, Leaf, n)

@@ -1,6 +1,6 @@
 from abjad.tools.containertools.Container import Container
 from abjad.tools.measuretools.Measure import Measure
-from abjad.tools.leaftools._Leaf import _Leaf
+from abjad.tools.leaftools.Leaf import Leaf
 from abjad.exceptions import MeasureContiguityError
 from abjad.exceptions import MissingMeasureError
 from abjad.tools.componenttools.get_proper_parentage_of_component import get_proper_parentage_of_component
@@ -33,7 +33,7 @@ def _get_measure_from_component(component, direction):
     of `component`, raise :exc:`MissingMeasureError`.
     '''
 
-    if isinstance(component, _Leaf):
+    if isinstance(component, Leaf):
         for parent in get_proper_parentage_of_component(component):
             if isinstance(parent, Measure):
                 return parent

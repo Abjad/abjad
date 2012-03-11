@@ -345,13 +345,13 @@ class Spanner(StrictComparator):
             specific iteration tools.
         '''
 
-        from abjad.tools.leaftools._Leaf import _Leaf
+        from abjad.tools.leaftools.Leaf import Leaf
         from abjad.tools import componenttools
         result = []
         for component in self._components:
             # EXPERIMENTAL: expand to allow staff-level spanner eventually #
             for node in componenttools.iterate_components_depth_first(component):
-                if isinstance(node, _Leaf):
+                if isinstance(node, Leaf):
                     result.append(node)
         result = tuple(result)
         return result

@@ -23,9 +23,9 @@ def all_are_components_scalable_by_multiplier(components, multiplier):
         ``componenttools.all_are_components_scalable_by_multiplier()``.
     '''
 
-    from abjad.tools.leaftools._Leaf import _Leaf
+    from abjad.tools.leaftools.Leaf import Leaf
     for component in components:
-        if isinstance(component, _Leaf):
+        if isinstance(component, Leaf):
             candidate_duration = multiplier * component.written_duration
             if not is_assignable_rational(candidate_duration):
                 return False

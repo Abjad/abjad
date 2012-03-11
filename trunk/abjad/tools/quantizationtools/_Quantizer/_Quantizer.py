@@ -5,7 +5,7 @@ from abjad.tools.abctools import Immutable
 from abjad.tools.containertools import Container
 from abjad.tools.contexttools import TempoMark
 from abjad.tools.contexttools import get_effective_tempo
-from abjad.tools.leaftools._Leaf import _Leaf
+from abjad.tools.leaftools.Leaf import Leaf
 from abjad.tools.quantizationtools.QEvent import QEvent
 from abjad.tools.quantizationtools.milliseconds_to_q_events import milliseconds_to_q_events
 from abjad.tools.quantizationtools.millisecond_pitch_pairs_to_q_events import millisecond_pitch_pairs_to_q_events
@@ -39,7 +39,7 @@ class _Quantizer(Immutable):
             q_events = millisecond_pitch_pairs_to_q_events(args)
 
         # tempo-scaled leaves
-        elif all([isinstance(x, _Leaf) for x in args]):
+        elif all([isinstance(x, Leaf) for x in args]):
             leaves = args
             if 'tempo' in kwargs:
                 q_events = tempo_scaled_leaves_to_q_events(leaves, kwargs['tempo'])

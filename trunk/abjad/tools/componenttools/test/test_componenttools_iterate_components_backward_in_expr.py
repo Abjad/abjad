@@ -1,5 +1,5 @@
 from abjad import *
-from abjad.tools.leaftools._Leaf import _Leaf
+from abjad.tools.leaftools.Leaf import Leaf
 
 
 def test_componenttools_iterate_components_backward_in_expr_01():
@@ -33,8 +33,8 @@ def test_componenttools_iterate_components_backward_in_expr_04():
 def test_componenttools_iterate_components_backward_in_expr_05():
     '''Yield leaves based on names higher in inheritence hierarchy.'''
     t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
-    from abjad.tools.leaftools._Leaf import _Leaf
-    iter = componenttools.iterate_components_backward_in_expr(t, _Leaf)
+    from abjad.tools.leaftools.Leaf import Leaf
+    iter = componenttools.iterate_components_backward_in_expr(t, Leaf)
     assert len(list(iter)) == 9
 
 
@@ -74,7 +74,7 @@ def test_componenttools_iterate_components_backward_in_expr_08():
     }
     '''
 
-    leaves = list(componenttools.iterate_components_backward_in_expr(t, _Leaf, 3))
+    leaves = list(componenttools.iterate_components_backward_in_expr(t, Leaf, 3))
 
     assert leaves[0] is t.leaves[2]
     assert leaves[1] is t.leaves[1]
@@ -102,7 +102,7 @@ def test_componenttools_iterate_components_backward_in_expr_09():
     }
     '''
 
-    leaves = list(componenttools.iterate_components_backward_in_expr(t, _Leaf, 0, 3))
+    leaves = list(componenttools.iterate_components_backward_in_expr(t, Leaf, 0, 3))
 
     assert leaves[0] is t.leaves[5]
     assert leaves[1] is t.leaves[4]
@@ -131,7 +131,7 @@ def test_componenttools_iterate_components_backward_in_expr_10():
     }
     '''
 
-    leaves = list(componenttools.iterate_components_backward_in_expr(t, _Leaf, 1, 5))
+    leaves = list(componenttools.iterate_components_backward_in_expr(t, Leaf, 1, 5))
 
     assert leaves[0] is t.leaves[4]
     assert leaves[1] is t.leaves[3]

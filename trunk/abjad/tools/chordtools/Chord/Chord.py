@@ -1,9 +1,9 @@
-from abjad.tools.leaftools._Leaf import _Leaf
+from abjad.tools.leaftools.Leaf import Leaf
 import copy
 import re
 
 
-class Chord(_Leaf):
+class Chord(Leaf):
     '''Abjad model of a chord:
 
     ::
@@ -17,7 +17,7 @@ class Chord(_Leaf):
     __slots__ = ('_note_heads', '_written_pitches', )
 
     def __init__(self, *args, **kwargs):
-        if len(args) == 1 and isinstance(args[0], _Leaf):
+        if len(args) == 1 and isinstance(args[0], Leaf):
             leaf = args[0]
             written_duration = leaf.written_duration
             lilypond_multiplier = leaf.duration_multiplier
@@ -40,7 +40,7 @@ class Chord(_Leaf):
             written_pitches, written_duration, lilypond_multiplier = args
         else:
             raise ValueError('can not initialize chord from "%s".' % str(args))
-        _Leaf.__init__(self, written_duration, lilypond_multiplier)
+        Leaf.__init__(self, written_duration, lilypond_multiplier)
         self.written_pitches = written_pitches
         self._initialize_keyword_values(**kwargs)
 
@@ -52,7 +52,7 @@ class Chord(_Leaf):
         return note_head in self.note_heads
 
     def __copy__(self, *args):
-        new = _Leaf.__copy__(self)
+        new = Leaf.__copy__(self)
         new.clear()
         for note_head in self.note_heads:
             new_note_head = copy.copy(note_head)
@@ -70,7 +70,7 @@ class Chord(_Leaf):
     def __getnewargs__(self):
         result = []
         result.append(self.written_pitches)
-        result.extend(_Leaf.__getnewargs__(self))
+        result.extend(Leaf.__getnewargs__(self))
         return tuple(result)
 
     def __len__(self):

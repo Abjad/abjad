@@ -1,5 +1,5 @@
 from abjad.tools.containertools.Container import Container
-from abjad.tools.leaftools._Leaf import _Leaf
+from abjad.tools.leaftools.Leaf import Leaf
 from abjad.tools.gracetools.Grace._GraceFormatter import _GraceFormatter
 
 
@@ -86,7 +86,7 @@ class Grace(Container):
     ### OVERLOADS ###
 
     def __call__(self, arg):
-        if not isinstance(arg, _Leaf):
+        if not isinstance(arg, Leaf):
             raise TypeError('object to which grace container attaches much be leaf: "%s".' % arg)
         if self.kind == 'after':
             arg._after_grace = self

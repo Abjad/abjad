@@ -1,5 +1,5 @@
 from abjad.tools import durationtools
-from abjad.tools.leaftools._Leaf import _Leaf
+from abjad.tools.leaftools.Leaf import Leaf
 from abjad.tools.resttools.Rest import Rest
 from abjad.tools.skiptools.Skip import Skip
 
@@ -36,7 +36,7 @@ def _insert_measure_padding(expr, front, back, klass, splice = False):
     for measure in measuretools.iterate_measures_forward_in_expr(expr):
         if front is not None:
             start_components = measure._navigator._contemporaneous_start_contents
-            start_leaves = [x for x in start_components if isinstance(x, _Leaf)]
+            start_leaves = [x for x in start_components if isinstance(x, Leaf)]
             for start_leaf in start_leaves:
                 if splice:
                     componenttools.extend_left_in_parent_of_component_and_grow_spanners(
@@ -46,7 +46,7 @@ def _insert_measure_padding(expr, front, back, klass, splice = False):
                         start_leaf, [klass.__class__(front)])
         if back is not None:
             stop_components = measure._navigator._contemporaneous_stop_contents
-            stop_leaves = [x for x in stop_components if isinstance(x, _Leaf)]
+            stop_leaves = [x for x in stop_components if isinstance(x, Leaf)]
             for stop_leaf in stop_leaves:
                 if splice:
                     componenttools.extend_in_parent_of_component_and_grow_spanners(

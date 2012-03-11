@@ -56,7 +56,7 @@ def cut_component_at_prolated_duration(component, prolated_duration):
 
     Return none.
     '''
-    from abjad.tools.leaftools._Leaf import _Leaf
+    from abjad.tools.leaftools.Leaf import Leaf
     from abjad.tools import leaftools
 
     assert isinstance(component, Component)
@@ -65,7 +65,7 @@ def cut_component_at_prolated_duration(component, prolated_duration):
     if component.prolated_duration <= prolated_duration:
         raise NegativeDurationError('component durations must be positive.')
 
-    if isinstance(component, _Leaf):
+    if isinstance(component, Leaf):
         new_prolated_duration = component.prolated_duration - prolated_duration
         prolation = component.prolation
         new_written_duration = new_prolated_duration / prolation

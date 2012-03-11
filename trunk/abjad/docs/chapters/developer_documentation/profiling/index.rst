@@ -19,7 +19,7 @@ Profile code with ``profile_expr()`` in the ``iotools`` package::
             1    0.000    0.000    0.001    0.001 NoteHead.py:18(__init__)
             1    0.000    0.000    0.001    0.001 NoteHead.py:121(fset)
             1    0.000    0.000    0.001    0.001 NamedChromaticPitch.py:28(__new__)
-            1    0.000    0.000    0.000    0.000 _Leaf.py:18(__init__)
+            1    0.000    0.000    0.000    0.000 Leaf.py:18(__init__)
             1    0.000    0.000    0.000    0.000 chromatic_pitch_name_to_diatonic_pitch_numbe
             1    0.000    0.000    0.000    0.000 octave_tick_string_to_octave_number.py:4(oct
             1    0.000    0.000    0.000    0.000 re.py:134(match)

@@ -12,7 +12,7 @@ def _split_component_at_duration(component, duration, spanners='unfractured', ti
     Keyword controls spanner behavior at split-time.
     '''
     from abjad.tools.containertools.Container import Container
-    from abjad.tools.leaftools._Leaf import _Leaf
+    from abjad.tools.leaftools.Leaf import Leaf
     from abjad.tools import leaftools
     from abjad.tools import measuretools
     from abjad.tools import spannertools
@@ -76,8 +76,8 @@ def _split_component_at_duration(component, duration, spanners='unfractured', ti
     did_split_leaf = False
 
     # if split point necessitates leaf split
-    if isinstance(bottom, _Leaf):
-        assert isinstance(bottom, _Leaf)
+    if isinstance(bottom, Leaf):
+        assert isinstance(bottom, Leaf)
         did_split_leaf = True
         split_point_in_bottom = global_split_point - bottom._offset.start
         left_list, right_list = _split_leaf_at_duration(bottom,

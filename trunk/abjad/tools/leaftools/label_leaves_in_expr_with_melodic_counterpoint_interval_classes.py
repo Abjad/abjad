@@ -1,4 +1,4 @@
-from abjad.tools.leaftools._Leaf import _Leaf
+from abjad.tools.leaftools.Leaf import Leaf
 from abjad.tools import componenttools
 
 
@@ -31,7 +31,7 @@ def label_leaves_in_expr_with_melodic_counterpoint_interval_classes(expr, markup
     from abjad.tools import pitchtools
 
     for note in componenttools.iterate_components_forward_in_expr(expr, Note):
-        thread_iterator = threadtools.iterate_thread_forward_from_component(note, _Leaf)
+        thread_iterator = threadtools.iterate_thread_forward_from_component(note, Leaf)
         try:
             thread_iterator.next()
             next_leaf = thread_iterator.next()

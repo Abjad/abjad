@@ -1,4 +1,4 @@
-from abjad.tools.leaftools._Leaf import _Leaf
+from abjad.tools.leaftools.Leaf import Leaf
 from abjad.tools import durationtools
 
 
@@ -35,7 +35,7 @@ def change_written_leaf_duration_and_preserve_preprolated_leaf_duration(leaf, wr
     '''
 
     # check leaf type
-    if not isinstance(leaf, _Leaf):
+    if not isinstance(leaf, Leaf):
         raise TypeError('must be leaf: %s' % leaf)
 
     # check written duration type

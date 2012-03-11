@@ -1,9 +1,9 @@
-from abjad.tools.leaftools._Leaf import _Leaf
+from abjad.tools.leaftools.Leaf import Leaf
 import copy
 import re
 
 
-class Note(_Leaf):
+class Note(Leaf):
     '''Abjad model of a note:
 
     ::
@@ -17,7 +17,7 @@ class Note(_Leaf):
 
     def __init__(self, *args, **kwargs):
         from abjad.tools.lilypondfiletools._lilypond_leaf_regex import _lilypond_leaf_regex
-        if len(args) == 1 and isinstance(args[0], _Leaf):
+        if len(args) == 1 and isinstance(args[0], Leaf):
             leaf = args[0]
             written_duration = leaf.written_duration
             lilypond_multiplier = leaf.duration_multiplier
@@ -41,7 +41,7 @@ class Note(_Leaf):
             pitch, written_duration, lilypond_multiplier = args
         else:
             raise ValueError('can not initialize note from "%s".' % str(args))
-        _Leaf.__init__(self, written_duration, lilypond_multiplier)
+        Leaf.__init__(self, written_duration, lilypond_multiplier)
         self.note_head = pitch
         self._initialize_keyword_values(**kwargs)
 
@@ -52,7 +52,7 @@ class Note(_Leaf):
     def __getnewargs__(self):
         result = []
         result.append(self.written_pitch)
-        result.extend(_Leaf.__getnewargs__(self))
+        result.extend(Leaf.__getnewargs__(self))
         return tuple(result)
 
     ### PRIVATE ATTRIBUTES ###

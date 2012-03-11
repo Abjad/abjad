@@ -17,8 +17,8 @@ class NoteHead(UnaryComparator):
     __slots__ = ('_client', '_written_pitch', '_tweak')
 
     def __init__(self, *args):
-        from abjad.tools.leaftools._Leaf import _Leaf
-        if isinstance(args[0], (type(None), _Leaf)):
+        from abjad.tools.leaftools.Leaf import Leaf
+        if isinstance(args[0], (type(None), Leaf)):
             _client, written_pitch, tweak_pairs = args[0], args[1], args[2:]
         else:
             _client, written_pitch, tweak_pairs = None, args[0], args[1:]

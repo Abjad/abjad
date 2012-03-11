@@ -1,8 +1,8 @@
-from abjad.tools.leaftools._Leaf import _Leaf
+from abjad.tools.leaftools.Leaf import Leaf
 import copy
 
 
-class Skip(_Leaf):
+class Skip(Leaf):
     '''Abjad model of a LilyPond skip:
 
     ::
@@ -16,7 +16,7 @@ class Skip(_Leaf):
     __slots__ = ()
 
     def __init__(self, *args, **kwargs):
-        if len(args) == 1 and isinstance(args[0], _Leaf):
+        if len(args) == 1 and isinstance(args[0], Leaf):
             leaf = args[0]
             written_duration = leaf.written_duration
             lilypond_multiplier = leaf.duration_multiplier
@@ -31,7 +31,7 @@ class Skip(_Leaf):
             written_duration, lilypond_multiplier = args
         else:
             raise ValueError('can not initialize rest from "%s".' % str(args))
-        _Leaf.__init__(self, written_duration, lilypond_multiplier)
+        Leaf.__init__(self, written_duration, lilypond_multiplier)
         self._initialize_keyword_values(**kwargs)
 
     # OVERRIDES #

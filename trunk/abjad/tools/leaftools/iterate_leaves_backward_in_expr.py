@@ -1,4 +1,4 @@
-from abjad.tools.leaftools._Leaf import _Leaf
+from abjad.tools.leaftools.Leaf import Leaf
 from abjad.tools.componenttools.iterate_components_backward_in_expr import iterate_components_backward_in_expr
 
 
@@ -72,4 +72,4 @@ def iterate_leaves_backward_in_expr(expr, start = 0, stop = None):
     Return generator.
     '''
 
-    return iterate_components_backward_in_expr(expr, _Leaf, start = start, stop = stop)
+    return iterate_components_backward_in_expr(expr, Leaf, start = start, stop = stop)

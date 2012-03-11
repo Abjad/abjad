@@ -1,4 +1,4 @@
-from abjad.tools.leaftools._Leaf import _Leaf
+from abjad.tools.leaftools.Leaf import Leaf
 from abjad.tools import componenttools
 from abjad.tools import mathtools
 from abjad.tools import durationtools
@@ -54,7 +54,7 @@ def divide_leaf_meiotically(leaf, n = 2):
     # componenttools.extend_in_parent_of_component_and_grow_spanners()
     # or come up with something else.
 
-    assert isinstance(leaf, _Leaf)
+    assert isinstance(leaf, Leaf)
     assert mathtools.is_nonnegative_integer_power_of_two(n)
     assert 0 < n
 
