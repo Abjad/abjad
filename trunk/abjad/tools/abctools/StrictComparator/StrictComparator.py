@@ -8,7 +8,7 @@ class StrictComparator(AbjadObject):
     Abstract base class to confer strict comparison behavior to any custom class.
 
     Abjad classes inheriting from this class should also inherit from
-    either ``AbjadObject`` or ``ImmutableAbjadObject``.
+    either ``AbjadObject`` or ``AbjadObject``.
 
     This class will be unnecessary when Abjad migrates to Python 3.x
     because Python 3.x implements strict comparison behavior by default.

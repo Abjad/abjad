@@ -1,8 +1,8 @@
 from abc import ABCMeta
-from abjad.tools.abctools.ImmutableAbjadObject import ImmutableAbjadObject
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class Immutable(ImmutableAbjadObject):
+class Immutable(AbjadObject):
     '''.. versionadded:: 2.0
 
     Abstract base from which immutable custom classes can inherit.
