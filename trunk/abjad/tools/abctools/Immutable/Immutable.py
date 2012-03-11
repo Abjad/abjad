@@ -2,8 +2,6 @@ from abc import ABCMeta
 from abjad.tools.abctools.ImmutableAbjadObject import ImmutableAbjadObject
 
 
-# TODO: write code to check all Abjad system objects with slots and
-#       make sure none has a dict defined and taking up memory in the namespace of the object.
 class Immutable(ImmutableAbjadObject):
     '''.. versionadded:: 2.0
 

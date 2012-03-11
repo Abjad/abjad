@@ -10,7 +10,8 @@ from abjad.tools.quantizationtools.tempo_scaled_rational_to_milliseconds \
     import tempo_scaled_rational_to_milliseconds
 
 
-class QGridTempoLookup(Immutable, ImmutableDictionary):
+#class QGridTempoLookup(Immutable, ImmutableDictionary):
+class QGridTempoLookup(ImmutableDictionary):
     '''A utility class for matching fractional offsets within a beat
     to their tempo-scaled (real-time) millisecond values.
 

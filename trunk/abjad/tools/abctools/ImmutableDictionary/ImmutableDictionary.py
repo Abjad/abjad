@@ -1,21 +1,12 @@
-from abc import ABCMeta
-from abjad.tools.abctools.ImmutableAbjadObject import ImmutableAbjadObject
+from abjad.tools.abctools.Immutable import Immutable
 
 
-class ImmutableDictionary(dict, ImmutableAbjadObject):
+class ImmutableDictionary(dict, Immutable):
     '''.. versionadded:: 2.0
     
-    Abstract base class.
+    Immutable dictionary.
+
+    The class disallows item set and item deletion after initialization.
     '''
 
-    ### CLASS ATTRIBUTES ###
-
-    __metaclass__ = ABCMeta
-
-    ### OVERLOADS ###
-
-    def __delitem__(self, *args):
-        raise AttributeError('objects are immutable: "{}".'.format(self._class_name))
-
-    def __setitem__(self, *args):
-        raise AttributeError('objects are immutable: "{}".'.format(self._class_name))
+    pass

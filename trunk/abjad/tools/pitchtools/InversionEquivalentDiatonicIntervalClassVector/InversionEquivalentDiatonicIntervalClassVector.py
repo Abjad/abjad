@@ -18,13 +18,11 @@ class InversionEquivalentDiatonicIntervalClassVector(_Vector):
     '''
 
     def __init__(self, expr):
-        self.all_dics = inventory_inversion_equivalent_diatonic_interval_classes()
+        object.__setattr__(self, 'all_dics', inventory_inversion_equivalent_diatonic_interval_classes())
         for dic in self.all_dics:
-            #self[dic] = 0
             dict.__setitem__(self, dic, 0)
         for hdi in list_harmonic_diatonic_intervals_in_expr(expr):
             dic = hdi.diatonic_interval_class
-            #self[dic] += 1
             dict.__setitem__(self, dic, self[dic] + 1)
 
     ### OVERLOADS ###
