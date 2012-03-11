@@ -6,7 +6,6 @@ from UnaryComparator import UnaryComparator
 from FlexEqualityComparator import FlexEqualityComparator
 from Immutable import Immutable
 from ImmutableAbjadObject import ImmutableAbjadObject
-from ImmutableDictionary import ImmutableDictionary
 from MutableAbjadObject import MutableAbjadObject
 from StrictComparator import StrictComparator
 from fractions import Fraction

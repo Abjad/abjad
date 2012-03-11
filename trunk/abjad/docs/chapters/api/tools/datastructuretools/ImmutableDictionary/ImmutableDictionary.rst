@@ -1,9 +1,9 @@
-abctools.ImmutableDictionary
-============================
+datastructuretools.ImmutableDictionary
+======================================
 
-.. inheritance-diagram:: abjad.tools.abctools.ImmutableDictionary.ImmutableDictionary
+.. inheritance-diagram:: abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary
    :private-bases:
-.. autoclass:: abjad.tools.abctools.ImmutableDictionary
+.. autoclass:: abjad.tools.datastructuretools.ImmutableDictionary
    :members:
    :undoc-members:
    :inherited-members:

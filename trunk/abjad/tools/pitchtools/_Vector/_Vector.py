@@ -1,5 +1,5 @@
 from abc import ABCMeta
-from abjad.tools.abctools import ImmutableDictionary
+from abjad.tools.datastructuretools import ImmutableDictionary
 
 
 class _Vector(ImmutableDictionary):
