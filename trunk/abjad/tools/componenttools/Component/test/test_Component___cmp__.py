@@ -3,7 +3,7 @@ from abjad.tools.componenttools.Component import Component
 import py.test
 
 
-def testComponent___cmp___01():
+def test_Component___cmp___01():
     '''Compare component to itself.
     '''
 
@@ -22,7 +22,7 @@ def testComponent___cmp___01():
     assert py.test.raises(NotImplementedError, comparison_string)
 
 
-def testComponent___cmp___02():
+def test_Component___cmp___02():
     '''Compare components.
     '''
 
@@ -42,7 +42,7 @@ def testComponent___cmp___02():
     assert py.test.raises(NotImplementedError, comparison_string)
 
 
-def testComponent___cmp___03():
+def test_Component___cmp___03():
     '''Compare component to foreign type.
     '''
 

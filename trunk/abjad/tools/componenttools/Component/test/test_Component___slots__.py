@@ -3,7 +3,7 @@ from abjad.tools.componenttools.Component import Component
 import py.test
 
 
-def testComponent___slots___01():
+def test_Component___slots___01():
     '''Slots constraint component attributes.
     '''
 

@@ -3,7 +3,7 @@ from abjad.tools.leaftools.Leaf import Leaf
 import py.test
 
 
-def test_Leaf___setattr___01():
+def test__Leaf___setattr___01():
     '''Slots constrain leaf attributes.
     '''
 

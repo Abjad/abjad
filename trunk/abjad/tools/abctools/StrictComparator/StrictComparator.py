@@ -1,12 +1,16 @@
 from abc import ABCMeta
-from abjad.tools.abctools.ImmutableAbjadObject import ImmutableAbjadObject
 
 
-class StrictComparator(ImmutableAbjadObject):
-    '''Mix-in abstract base class to confer strict comparison behavior
-    to any custom class. Note that this class will be unnecessary
-    in some future release because Python 3.0 implements strict
-    comparison behavior by default.
+class StrictComparator(object):
+    '''.. versionadded:: 2.8
+
+    Abstract base class to confer strict comparison behavior to any custom class.
+
+    Abjad classes inheriting from this class should also inherit from
+    either ``MutableAbjadObject`` or ``ImmutableAbjadObject``.
+
+    This class will be unnecessary when Abjad migrates to Python 3.x
+    because Python 3.x implements strict comparison behavior by default.
     '''
 
     ### CLASS ATTRIBUTES ###
