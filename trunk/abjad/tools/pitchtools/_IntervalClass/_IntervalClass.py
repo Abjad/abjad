@@ -1,8 +1,8 @@
 from abc import ABCMeta
-from abjad.tools.abctools import Immutable
+from abjad.tools.abctools import ImmutableAbjadObject
 
 
-class _IntervalClass(Immutable):
+class _IntervalClass(ImmutableAbjadObject):
     '''.. versionadded:: 2.0
 
     Interval-class base class.

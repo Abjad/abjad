@@ -1,7 +1,7 @@
-from abjad.tools.abctools import Immutable
+from abjad.tools.abctools import ImmutableAbjadObject
 
 
-class NumberedChromaticPitchClassColorMap(Immutable):
+class NumberedChromaticPitchClassColorMap(ImmutableAbjadObject):
     '''.. versionadded:: 2.0
 
     Abjad model of a numbered chromatic pitch-class color map::

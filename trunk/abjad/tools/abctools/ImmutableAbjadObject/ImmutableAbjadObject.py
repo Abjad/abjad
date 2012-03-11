@@ -2,7 +2,7 @@ from abc import ABCMeta
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class Immutable(AbjadObject):
+class ImmutableAbjadObject(AbjadObject):
     '''.. versionadded:: 2.0
 
     Abstract base from which immutable custom classes can inherit.

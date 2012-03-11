@@ -1,7 +1,7 @@
-r3525+: custom Immutable v. Python __slots__ 
+r3525+: custom ImmutableAbjadObject v. Python __slots__ 
 
 
-%%% With custom Immutable: %%%
+%%% With custom ImmutableAbjadObject: %%%
 
 MEMORY:
 
@@ -49,10 +49,10 @@ FUNCTION CALLS:
 
 CONCLUSIONS:
 
-   * Immutable Clef takes 588 bytes; slots Clef takes only 452 bytes
-   * Immutable Clef takes 3 function calls; slots Clef takes the same 3 function calls
+   * ImmutableAbjadObject Clef takes 588 bytes; slots Clef takes only 452 bytes
+   * ImmutableAbjadObject Clef takes 3 function calls; slots Clef takes the same 3 function calls
 
-Slots saves memory versus Immutable.
+Slots saves memory versus ImmutableAbjadObject.
 
 PS: same holds on instantiating 1000 Clef objects:
 

@@ -1,7 +1,7 @@
 from collections import Iterable
 from numbers import Number
 from abjad import Fraction
-from abjad.tools.abctools import Immutable
+from abjad.tools.abctools import ImmutableAbjadObject
 from abjad.tools.containertools import Container
 from abjad.tools.contexttools import TempoMark
 from abjad.tools.contexttools import get_effective_tempo
@@ -13,7 +13,7 @@ from abjad.tools.quantizationtools.tempo_scaled_leaves_to_q_events import tempo_
 from abjad.tools.quantizationtools.tempo_scaled_rationals_to_q_events import tempo_scaled_rationals_to_q_events
 
 
-class _Quantizer(Immutable):
+class _Quantizer(ImmutableAbjadObject):
 
     # OVERRIDES #
 

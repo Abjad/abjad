@@ -1,9 +1,9 @@
 from abc import ABCMeta
 from abjad.tools.abctools import FlexEqualityComparator
-from abjad.tools.abctools import Immutable
+from abjad.tools.abctools import ImmutableAbjadObject
 
 
-class _PitchClass(Immutable, FlexEqualityComparator):
+class _PitchClass(ImmutableAbjadObject, FlexEqualityComparator):
     '''.. versionadded:: 2.0
 
     Pitch-class base class.

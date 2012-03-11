@@ -1,8 +1,8 @@
-from abjad.tools.abctools import Immutable
+from abjad.tools.abctools import ImmutableAbjadObject
 from abjad.tools.abctools import StrictComparator
 
 
-class Scheme(Immutable, StrictComparator):
+class Scheme(ImmutableAbjadObject, StrictComparator):
     '''Abjad model of Scheme code::
 
         abjad> from abjad.tools.schemetools import Scheme

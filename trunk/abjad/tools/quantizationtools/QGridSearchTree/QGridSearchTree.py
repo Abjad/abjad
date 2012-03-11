@@ -1,6 +1,6 @@
 from copy import deepcopy
 from abjad import Fraction
-from abjad.tools.abctools import Immutable
+from abjad.tools.abctools import ImmutableAbjadObject
 from abjad.tools.datastructuretools import ImmutableDictionary
 from abjad.tools.contexttools import TempoMark
 from abjad.tools.durationtools import Offset
@@ -10,7 +10,7 @@ from abjad.tools.quantizationtools.tempo_scaled_rational_to_milliseconds \
     import tempo_scaled_rational_to_milliseconds
 
 
-#class QGridSearchTree(Immutable, ImmutableDictionary):
+#class QGridSearchTree(ImmutableAbjadObject, ImmutableDictionary):
 class QGridSearchTree(ImmutableDictionary):
     '''A utility class for defining the permissible divisions of a collection
     of :py:class:`~abjad.tools.quantizationtools.QGrid` objects.

@@ -26,10 +26,10 @@ def test_StrictComparator___cmp___01():
 
 
 def test_StrictComparator___cmp___02():
-    '''Immutable strict comparator.
+    '''ImmutableAbjadObject strict comparator.
     '''
 
-    class Foo(abctools.Immutable, abctools.StrictComparator):
+    class Foo(abctools.ImmutableAbjadObject, abctools.StrictComparator):
         pass
 
     foo_1 = Foo()

@@ -1,8 +1,8 @@
-from abjad.tools.abctools import Immutable
+from abjad.tools.abctools import ImmutableAbjadObject
 import time
 
 
-class DateTimeToken(Immutable):
+class DateTimeToken(ImmutableAbjadObject):
     '''.. versionadded:: 2.0
 
     Date time token::

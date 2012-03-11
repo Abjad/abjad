@@ -1,8 +1,8 @@
 from abc import ABCMeta
-from abjad.tools.abctools import Immutable
+from abjad.tools.abctools import ImmutableAbjadObject
 
 
-class _Set(frozenset, Immutable):
+class _Set(frozenset, ImmutableAbjadObject):
     '''.. versionadded:: 2.0
 
     Music-theoretic set base class.

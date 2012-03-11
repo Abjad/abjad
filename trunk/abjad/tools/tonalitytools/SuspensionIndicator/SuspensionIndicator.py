@@ -1,9 +1,9 @@
-from abjad.tools.abctools import Immutable
+from abjad.tools.abctools import ImmutableAbjadObject
 from abjad.tools.tonalitytools.ScaleDegree import ScaleDegree
 import re
 
 
-class SuspensionIndicator(Immutable):
+class SuspensionIndicator(ImmutableAbjadObject):
     '''.. versionadded:: 2.0
 
     Indicator of 9-8, 7-6, 4-3, 2-1 and other types of

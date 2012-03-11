@@ -1,10 +1,10 @@
-from abjad.tools.abctools.Immutable import Immutable
+from abjad.tools.abctools.ImmutableAbjadObject import ImmutableAbjadObject
 
 
-class ImmutableDictionary(dict, Immutable):
+class ImmutableDictionary(dict, ImmutableAbjadObject):
     '''.. versionadded:: 2.0
     
-    Immutable dictionary::
+    ImmutableAbjadObject dictionary::
 
         abjad> from abjad.tools import datastructuretools
 

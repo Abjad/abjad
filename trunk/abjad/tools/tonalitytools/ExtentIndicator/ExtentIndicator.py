@@ -1,7 +1,7 @@
-from abjad.tools.abctools import Immutable
+from abjad.tools.abctools import ImmutableAbjadObject
 
 
-class ExtentIndicator(Immutable):
+class ExtentIndicator(ImmutableAbjadObject):
     '''.. versionadded:: 2.0
 
     Indicator of chord extent, such as triad, seventh chord, ninth chord,

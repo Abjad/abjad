@@ -1,9 +1,9 @@
-from abjad.tools.abctools import Immutable
+from abjad.tools.abctools import ImmutableAbjadObject
 from abjad.tools.pitchtools import Accidental
 import re
 
 
-class ScaleDegree(Immutable):
+class ScaleDegree(ImmutableAbjadObject):
     '''.. versionadded:: 2.0
 
     Abjad model of diatonic scale degrees 1, 2, 3, 4, 5, 6, 7 and

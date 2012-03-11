@@ -1,4 +1,4 @@
-from abjad.tools.abctools import Immutable
+from abjad.tools.abctools import ImmutableAbjadObject
 from abjad.tools import mathtools
 from abjad.tools.sievetools._BaseResidueClass import _BaseResidueClass
 from abjad.tools.sievetools._process_min_max_attribute import _process_min_max_attribute
@@ -6,7 +6,7 @@ import operator
 
 
 # TODO: change name to Sieve
-class ResidueClassExpression(_BaseResidueClass, Immutable):
+class ResidueClassExpression(_BaseResidueClass, ImmutableAbjadObject):
 
     def __init__(self, rcs, operator = 'or'):
         # init from other rc expression

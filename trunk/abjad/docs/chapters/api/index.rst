@@ -1022,7 +1022,7 @@ abctools
 
    tools/abctools/AbjadObject/AbjadObject
    tools/abctools/FlexEqualityComparator/FlexEqualityComparator
-   tools/abctools/Immutable/Immutable
+   tools/abctools/ImmutableAbjadObject/ImmutableAbjadObject
    tools/abctools/StrictComparator/StrictComparator
    tools/abctools/UnaryComparator/UnaryComparator
 

@@ -1,8 +1,8 @@
-from abjad.tools.abctools import Immutable
+from abjad.tools.abctools import ImmutableAbjadObject
 from abjad.tools.abctools import StrictComparator
 
 
-class Accidental(StrictComparator, Immutable):
+class Accidental(StrictComparator, ImmutableAbjadObject):
     '''.. versionadded:: 2.0
 
     Abjad model of the accidental:
