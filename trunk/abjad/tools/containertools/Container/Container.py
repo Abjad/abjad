@@ -340,9 +340,8 @@ class Container(Component):
 
     def _parse_string(self, string):
         from abjad.tools.lilypondparsertools import LilyPondParser
-        user_input = string.strip()
-        if not user_input.startswith(('{', '\\new', '\\context')) and not user_input.endswith('}'):
-            user_input = '{ %s }' % user_input
+        user_input = '{ %s }' % string.strip()
+        print user_input
         parsed = LilyPondParser()(user_input)
         assert isinstance(parsed, Container)
         return parsed
