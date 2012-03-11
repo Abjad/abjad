@@ -1,3 +1,4 @@
+from abc import ABCMeta
 from abjad.tools import mathtools
 from abjad.tools.pitchtools._Chromatic import _Chromatic
 from abjad.tools.pitchtools._Interval import _Interval
@@ -9,6 +10,7 @@ class _ChromaticInterval(_Interval, _Chromatic):
     Chromatic interval base class.
     '''
 
+    __metaclass__ = ABCMeta
     __slots__ = ('_number', )
 
     def __new__(klass, arg):

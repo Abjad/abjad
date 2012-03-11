@@ -1,12 +1,13 @@
+from abc import ABCMeta
 from abjad.tools.abctools.MutableAbjadObject import MutableAbjadObject
 
 
-#class _LilyPondComponentPlugIn(object):
 class _LilyPondComponentPlugIn(MutableAbjadObject):
     '''.. versionadded:: 2.0
 
     Shared LilyPond grob proxy and LilyPond context proxy functionality.
     '''
+    __metaclass__ = ABCMeta
 
     def __init__(self, **kwargs):
         # note_head__color = 'red' or staff__tuplet_full_length = True

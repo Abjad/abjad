@@ -1,3 +1,4 @@
+from abc import ABCMeta
 from abjad.tools.abctools import Immutable
 from abjad.tools.abctools.UnaryComparator import UnaryComparator
 
@@ -8,6 +9,7 @@ class _Pitch(Immutable, UnaryComparator):
     Pitch base class.
     '''
 
+    __metaclass__ = ABCMeta
     __slots__ = ('_format_string', )
 
     ### OVERLOADS ###

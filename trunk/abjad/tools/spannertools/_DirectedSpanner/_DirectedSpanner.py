@@ -1,8 +1,11 @@
+from abc import ABCMeta
 from abjad.tools.spannertools.Spanner import Spanner
 
 
 class _DirectedSpanner(Spanner):
     
+    __metaclass__ = ABCMeta
+
     def __init__(self, components=[], direction=None):
         Spanner.__init__(self, components)
         self.direction = direction

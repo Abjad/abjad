@@ -1,6 +1,10 @@
+from abc import ABCMeta
+
+
 class _NonattributedBlock(list):
     r'''Abjad model of the LilyPond input file blocks with no attributes.
     '''
+    __metaclass__ = ABCMeta
 
     ### OVERLOADS ###
 

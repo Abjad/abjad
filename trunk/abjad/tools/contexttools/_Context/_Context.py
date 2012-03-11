@@ -1,3 +1,4 @@
+from abc import ABCMeta
 from abjad.tools.containertools.Container import Container
 from abjad.tools.contexttools._Context._ContextFormatter import _ContextFormatter
 import copy
@@ -6,7 +7,7 @@ import copy
 class _Context(Container):
     '''Abjad model of a horizontal layer of music.
     '''
-
+    __metaclass__ = ABCMeta 
     __slots__ = ('_context', '_engraver_consists', '_engraver_removals',
         '_is_nonsemantic', '_name', )
 

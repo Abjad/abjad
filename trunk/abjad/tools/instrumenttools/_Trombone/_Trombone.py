@@ -1,3 +1,4 @@
+from abc import ABCMeta
 from abjad.tools.instrumenttools._BrassInstrument import _BrassInstrument
 
 
@@ -6,6 +7,7 @@ class _Trombone(_BrassInstrument):
 
     Abjad model of the family of trombones.
     '''
+    __metaclass__ = ABCMeta
 
     def __init__(self, **kwargs):
         _BrassInstrument.__init__(self, **kwargs)

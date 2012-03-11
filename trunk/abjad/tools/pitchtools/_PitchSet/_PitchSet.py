@@ -1,3 +1,4 @@
+from abc import ABCMeta
 from abjad.tools.pitchtools._Set import _Set
 
 
@@ -6,5 +7,7 @@ class _PitchSet(_Set):
 
     Pitch set base class.
     '''
+
+    __metaclass__ = ABCMeta
 
     pass

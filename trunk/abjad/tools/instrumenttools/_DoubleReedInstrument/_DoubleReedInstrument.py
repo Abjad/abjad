@@ -1,3 +1,4 @@
+from abc import ABCMeta
 from abjad.tools.instrumenttools._ReedInstrument import _ReedInstrument
 
 
@@ -6,6 +7,7 @@ class _DoubleReedInstrument(_ReedInstrument):
 
     Abjad model of double-reed instruments.
     '''
+    __metaclass__ = ABCMeta
 
     def __init__(self, **kwargs):
         _ReedInstrument.__init__(self, **kwargs)

@@ -1,3 +1,4 @@
+from abc import ABCMeta
 from abjad.tools.pitchtools._Diatonic import _Diatonic
 from abjad.tools.pitchtools._PitchClass import _PitchClass
 
@@ -7,6 +8,7 @@ class _DiatonicPitchClass(_PitchClass, _Diatonic):
 
     Diatonic pitch-class base class.
     '''
+    __metaclass__ = ABCMeta
 
     ### OVERLOADS ###
 

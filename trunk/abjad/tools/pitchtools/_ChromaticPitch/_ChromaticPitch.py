@@ -1,3 +1,4 @@
+from abc import ABCMeta
 from abjad.tools.pitchtools._Chromatic import _Chromatic
 from abjad.tools.pitchtools._Pitch import _Pitch
 
@@ -7,5 +8,6 @@ class _ChromaticPitch(_Pitch, _Chromatic):
 
     Chromatic pitch base class.
     '''
+    __metaclass__ = ABCMeta
 
     pass

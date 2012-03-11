@@ -1,3 +1,4 @@
+from abc import ABCMeta
 from abjad.tools.abctools import Immutable
 
 
@@ -6,6 +7,7 @@ class _IntervalClass(Immutable):
 
     Interval-class base class.
     '''
+    __metaclass__ = ABCMeta
 
     ### OVERLOADS ###
 

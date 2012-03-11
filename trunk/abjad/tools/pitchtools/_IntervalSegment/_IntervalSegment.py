@@ -1,3 +1,4 @@
+from abc import ABCMeta
 from abjad.tools.pitchtools._Segment import _Segment
 
 
@@ -7,6 +8,7 @@ class _IntervalSegment(_Segment):
     Class of abstract ordered collection of interval instances
     from which concrete classes inherit.
     '''
+    __metaclass__ = ABCMeta
 
     ### OVERLOADS ###
 

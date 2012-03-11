@@ -1,3 +1,4 @@
+from abc import ABCMeta
 from abjad.tools import durationtools
 from abjad.tools.componenttools._Component import _Component
 import copy
@@ -6,6 +7,7 @@ import operator
 
 
 class _Leaf(_Component):
+    __metaclass__ = ABCMeta
 
     # TODO: see if _grace and _after_grace can be removed #
     __slots__ = ('_after_grace', '_grace', '_leaf_index',

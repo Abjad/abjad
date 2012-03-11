@@ -1,3 +1,4 @@
+from abc import ABCMeta
 from abjad.tools.abctools import Immutable
 
 
@@ -6,6 +7,8 @@ class _Segment(tuple, Immutable):
 
     Mix-in base class for ordered collections of pitch objects.
     '''
+    
+    __metaclass__ = ABCMeta
 
     ### OVERLOADS ###
 

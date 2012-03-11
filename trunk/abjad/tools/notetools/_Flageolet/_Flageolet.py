@@ -1,3 +1,4 @@
+from abc import ABCMeta
 from abjad.tools.abctools.ImmutableAbjadObject import ImmutableAbjadObject
 
 
@@ -6,6 +7,7 @@ class _Flageolet(ImmutableAbjadObject):
     Abstract base class.
     '''
 
+    __metaclass__ = ABCMeta
     __slots__ = ()
 
     ### PUBLIC ATTRIBUTES ###

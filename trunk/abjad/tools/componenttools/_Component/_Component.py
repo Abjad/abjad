@@ -1,3 +1,4 @@
+from abc import ABCMeta
 from abjad.tools.lilypondproxytools import LilyPondContextSettingComponentPlugIn
 from abjad.tools.lilypondproxytools import LilyPondGrobOverrideComponentPlugIn
 from abjad.tools.abctools import StrictComparator
@@ -10,6 +11,7 @@ import fractions
 
 
 class _Component(StrictComparator):
+    __metaclass__ = ABCMeta
 
     __slots__ = ('_duration', '_is_forbidden_to_update', '_marks_are_current',
         '_marks_for_which_component_functions_as_effective_context',

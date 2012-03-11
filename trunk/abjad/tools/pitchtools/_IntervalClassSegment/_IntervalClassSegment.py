@@ -1,3 +1,4 @@
+from abc import ABCMeta
 from abjad.tools.pitchtools._Segment import _Segment
 
 
@@ -6,6 +7,7 @@ class _IntervalClassSegment(_Segment):
 
     Interval-class segment base class.
     '''
+    __metaclass__ = ABCMeta
 
     ### OVERLOADS ###
 

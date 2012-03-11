@@ -1,9 +1,12 @@
+from abc import ABCMeta
 from abjad.tools.abctools.MutableAbjadObject import MutableAbjadObject
 
 
 class _BaseResidueClass(MutableAbjadObject):
     '''Abstract base class for ResidueClass and ResidueClassExpression.
     '''
+
+    __metaclass__ = ABCMeta
 
     ### OVERLOADS ###
 

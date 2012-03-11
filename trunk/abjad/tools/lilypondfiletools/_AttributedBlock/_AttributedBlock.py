@@ -1,6 +1,10 @@
+from abc import ABCMeta
+
+
 class _AttributedBlock(object):
     '''Model of attribute block in LilyPond input file.
     '''
+    __metaclass__ = ABCMeta
 
     def __init__(self):
         self._is_formatted_when_empty = False

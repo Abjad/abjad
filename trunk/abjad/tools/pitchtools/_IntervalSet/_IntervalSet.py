@@ -1,3 +1,4 @@
+from abc import ABCMeta
 from abjad.tools.pitchtools._Set import _Set
 
 
@@ -6,5 +7,6 @@ class _IntervalSet(_Set):
 
     Abstract interval set.
     '''
+    __metaclass__ = ABCMeta
 
     pass

@@ -1,12 +1,13 @@
+from abc import ABCMeta
 from abjad.tools.abctools.MutableAbjadObject import MutableAbjadObject
 
 
-#class _LilyPondObjectProxy(object):
 class _LilyPondObjectProxy(MutableAbjadObject):
     '''.. versionadded:: 2.0
 
     Shared LilyPond grob proxy and LilyPond context proxy functionality.
     '''
+    __metaclass__ = ABCMeta
 
     def __init__(self, **kwargs):
         for key, value in kwargs.iteritems():
@@ -26,7 +27,6 @@ class _LilyPondObjectProxy(MutableAbjadObject):
         return not self == arg
 
     def __repr__(self):
-        #body_string = ' '
         body_string = ''
         skeleton_strings = self._get_skeleton_strings()
         if skeleton_strings:

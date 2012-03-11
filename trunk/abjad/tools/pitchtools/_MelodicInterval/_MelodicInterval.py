@@ -1,3 +1,4 @@
+from abc import ABCMeta
 from abjad.tools.pitchtools._Interval import _Interval
 from abjad.tools.pitchtools._Melodic import _Melodic
 
@@ -7,6 +8,7 @@ class _MelodicInterval(_Interval):
 
     Melodic interval base class.
     '''
+    __metaclass__ = ABCMeta
 
     ### OVERLOADS ###
 

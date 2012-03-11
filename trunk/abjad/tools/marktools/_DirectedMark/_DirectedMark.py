@@ -1,8 +1,10 @@
+from abc import ABCMeta
 from abjad.tools.marktools.Mark import Mark
 
 
 class _DirectedMark(Mark):
 
+    __metaclass__ = ABCMeta
     __slots__ = ('_direction', '_format_slot')
 
     def __init__(self, *args, **kwargs):

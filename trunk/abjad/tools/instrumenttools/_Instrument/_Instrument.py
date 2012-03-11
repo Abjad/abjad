@@ -1,3 +1,4 @@
+from abc import ABCMeta
 from abjad.tools import contexttools
 from abjad.tools import pitchtools
 
@@ -7,6 +8,7 @@ class _Instrument(contexttools.InstrumentMark):
 
     Abjad model of the musical instrument.
     '''
+    __metaclass__ = ABCMeta
 
     def __init__(self, instrument_name=None, short_instrument_name=None, 
         instrument_name_markup=None, short_instrument_name_markup=None, target_context=None):

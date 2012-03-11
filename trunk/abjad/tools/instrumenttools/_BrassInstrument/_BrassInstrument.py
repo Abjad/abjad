@@ -1,3 +1,4 @@
+from abc import ABCMeta
 from abjad.tools.instrumenttools._Instrument import _Instrument
 
 
@@ -6,6 +7,7 @@ class _BrassInstrument(_Instrument):
 
     Abjad model of brass instruments.
     '''
+    __metaclass__ = ABCMeta
 
     def __init__(self, **kwargs):
         _Instrument.__init__(self, **kwargs)
