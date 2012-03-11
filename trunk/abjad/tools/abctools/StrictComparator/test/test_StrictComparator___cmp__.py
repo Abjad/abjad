@@ -7,7 +7,7 @@ def test_StrictComparator___cmp___01():
     '''Mutable strict comparator.
     '''
 
-    class Foo(abctools.AbjadObject, abctools.StrictComparator):
+    class Foo(abctools.StrictComparator):
         pass
 
     foo_1 = Foo()

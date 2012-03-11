@@ -1,8 +1,9 @@
 from abc import ABCMeta
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class UnaryComparator(object):
-    '''.. versionadded:: 2.8
+class UnaryComparator(AbjadObject):
+    '''.. versionadded:: 2.0
 
     Abstact base class to confer unary comparison behavior to any custom class.
 

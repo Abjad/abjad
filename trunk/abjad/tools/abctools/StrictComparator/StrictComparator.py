@@ -1,8 +1,9 @@
 from abc import ABCMeta
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class StrictComparator(object):
-    '''.. versionadded:: 2.8
+class StrictComparator(AbjadObject):
+    '''.. versionadded:: 2.0
 
     Abstract base class to confer strict comparison behavior to any custom class.
 

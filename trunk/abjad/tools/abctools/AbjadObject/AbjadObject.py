@@ -15,6 +15,12 @@ class AbjadObject(object):
     ### OVERLOADS ###
 
     def __repr__(self):
+        '''Interpreter representation of Abjad object.
+
+        Default to class name, mandatory arguments, keyword arguments.
+
+        Return string.
+        '''
         return '{}()'.format(self._class_name)
 
     ### PRIVATE READ-ONLY ATTRIBUTES ###
