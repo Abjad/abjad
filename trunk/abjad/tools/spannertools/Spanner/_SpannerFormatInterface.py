@@ -1,7 +1,7 @@
-from abjad.tools.abctools import NonsortingIdEqualityComparatorAbjadObject
+from abjad.tools.abctools import NonsortingIdEqualityAbjadObject
 
 
-class _SpannerFormatInterface(NonsortingIdEqualityComparatorAbjadObject):
+class _SpannerFormatInterface(NonsortingIdEqualityAbjadObject):
     '''Abstract base class.
     Model format interface for all Abjad spanners.
     '''

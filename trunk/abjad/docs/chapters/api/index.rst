@@ -1022,9 +1022,9 @@ abctools
 
    tools/abctools/AbjadObject/AbjadObject
    tools/abctools/ImmutableAbjadObject/ImmutableAbjadObject
-   tools/abctools/NonsortingAttributeEqualityComparatorAbjadObject/NonsortingAttributeEqualityComparatorAbjadObject
-   tools/abctools/NonsortingIdEqualityComparatorAbjadObject/NonsortingIdEqualityComparatorAbjadObject
-   tools/abctools/SortableAttributeEqualityComparatorAbjadObject/SortableAttributeEqualityComparatorAbjadObject
+   tools/abctools/NonsortingAttributeEqualityAbjadObject/NonsortingAttributeEqualityAbjadObject
+   tools/abctools/NonsortingIdEqualityAbjadObject/NonsortingIdEqualityAbjadObject
+   tools/abctools/SortableAttributeEqualityAbjadObject/SortableAttributeEqualityAbjadObject
 
 
 configurationtools

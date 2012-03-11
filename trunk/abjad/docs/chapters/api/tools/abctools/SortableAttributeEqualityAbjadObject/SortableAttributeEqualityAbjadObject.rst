@@ -1,9 +1,9 @@
-abctools.SortableAttributeEqualityComparatorAbjadObject
-=======================================================
+abctools.SortableAttributeEqualityAbjadObject
+=============================================
 
-.. inheritance-diagram:: abjad.tools.abctools.SortableAttributeEqualityComparatorAbjadObject.SortableAttributeEqualityComparatorAbjadObject
+.. inheritance-diagram:: abjad.tools.abctools.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject
    :private-bases:
-.. autoclass:: abjad.tools.abctools.SortableAttributeEqualityComparatorAbjadObject
+.. autoclass:: abjad.tools.abctools.SortableAttributeEqualityAbjadObject
    :members:
    :undoc-members:
    :inherited-members:

@@ -2,7 +2,7 @@ from abc import ABCMeta
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class NonsortingIdEqualityComparatorAbjadObject(AbjadObject):
+class NonsortingIdEqualityAbjadObject(AbjadObject):
     '''.. versionadded:: 2.0
 
     Abstract base class to confer nonsorting ID-equality comparability to any custom class.

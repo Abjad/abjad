@@ -1,9 +1,9 @@
 import copy
-from abjad.tools.abctools.SortableAttributeEqualityComparatorAbjadObject import SortableAttributeEqualityComparatorAbjadObject
+from abjad.tools.abctools.SortableAttributeEqualityAbjadObject import SortableAttributeEqualityAbjadObject
 from abjad.tools.lilypondproxytools import LilyPondTweakReservoir
 
 
-class NoteHead(SortableAttributeEqualityComparatorAbjadObject):
+class NoteHead(SortableAttributeEqualityAbjadObject):
     r'''Abjad model of a note head:
 
     ::

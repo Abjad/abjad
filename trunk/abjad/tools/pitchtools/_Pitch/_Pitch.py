@@ -1,9 +1,9 @@
 from abc import ABCMeta
 from abjad.tools.abctools import ImmutableAbjadObject
-from abjad.tools.abctools.SortableAttributeEqualityComparatorAbjadObject import SortableAttributeEqualityComparatorAbjadObject
+from abjad.tools.abctools.SortableAttributeEqualityAbjadObject import SortableAttributeEqualityAbjadObject
 
 
-class _Pitch(ImmutableAbjadObject, SortableAttributeEqualityComparatorAbjadObject):
+class _Pitch(ImmutableAbjadObject, SortableAttributeEqualityAbjadObject):
     '''.. versionadded:: 2.0
 
     Pitch base class.

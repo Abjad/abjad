@@ -3,11 +3,11 @@ from abjad.tools import abctools
 import py
 
 
-def test_NonsortingIdEqualityComparatorAbjadObject___cmp___01():
+def test_NonsortingIdEqualityAbjadObject___cmp___01():
     '''Mutable strict comparator.
     '''
 
-    class Foo(abctools.NonsortingIdEqualityComparatorAbjadObject):
+    class Foo(abctools.NonsortingIdEqualityAbjadObject):
         pass
 
     foo_1 = Foo()
@@ -25,11 +25,11 @@ def test_NonsortingIdEqualityComparatorAbjadObject___cmp___01():
     assert py.test.raises(Exception, 'foo_1 >= foo_2')
 
 
-def test_NonsortingIdEqualityComparatorAbjadObject___cmp___02():
+def test_NonsortingIdEqualityAbjadObject___cmp___02():
     '''ImmutableAbjadObject strict comparator.
     '''
 
-    class Foo(abctools.ImmutableAbjadObject, abctools.NonsortingIdEqualityComparatorAbjadObject):
+    class Foo(abctools.ImmutableAbjadObject, abctools.NonsortingIdEqualityAbjadObject):
         pass
 
     foo_1 = Foo()
