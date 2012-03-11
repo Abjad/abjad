@@ -10,7 +10,7 @@ def requires(*tests):
     Example::
 
         abjad> from abjad.tools import mathtools
-        abjad> from abjad.decorators import requires
+        abjad> from abjad.tools.decoratortools import requires
 
     ::
 

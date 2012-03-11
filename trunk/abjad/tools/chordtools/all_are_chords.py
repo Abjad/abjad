@@ -1,6 +1,6 @@
 from abjad.tools.componenttools.all_are_components import all_are_components
 from abjad.tools.chordtools.Chord import Chord
-from abjad.decorators import requires
+from abjad.tools.decoratortools import requires
 
 
 @requires(object)

@@ -1,5 +1,5 @@
 from abjad.tools.chordtools.Chord import Chord
-from abjad.decorators import requires
+from abjad.tools.decoratortools import requires
 
 
 @requires(lambda x: hasattr(x, '__contains__'))

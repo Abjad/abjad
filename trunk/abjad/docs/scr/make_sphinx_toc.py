@@ -65,6 +65,7 @@ def make_sphinx_toc():
       'abctools',
       'configurationtools',
       'datastructuretools',
+      'decoratortools',
       'durationtools',
       'timeintervaltools', 
       'iotools',

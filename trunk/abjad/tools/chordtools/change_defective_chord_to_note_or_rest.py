@@ -1,6 +1,6 @@
 from abjad.tools.chordtools.Chord import Chord
 from abjad.tools.leaftools._Leaf import _Leaf
-from abjad.decorators import requires
+from abjad.tools.decoratortools import requires
 
 
 @requires(_Leaf)

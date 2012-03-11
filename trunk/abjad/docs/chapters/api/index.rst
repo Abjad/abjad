@@ -1042,6 +1042,14 @@ datastructuretools
    tools/datastructuretools/ObjectInventory/ObjectInventory
 
 
+decoratortools
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/decoratortools/requires
+
+
 durationtools
 
 .. toctree::

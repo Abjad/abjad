@@ -1,6 +1,6 @@
 from abjad.tools.chordtools._divide_chord import _divide_chord
 from abjad.tools.chordtools.Chord import Chord
-from abjad.decorators import requires
+from abjad.tools.decoratortools import requires
 from abjad.tools.leaftools._Leaf import _Leaf
 from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
 from abjad.tools import pitchtools

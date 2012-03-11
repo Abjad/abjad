@@ -1,6 +1,6 @@
 from abjad.tools import pitchtools
 from abjad.tools.chordtools.Chord import Chord
-from abjad.decorators import requires
+from abjad.tools.decoratortools import requires
 from abjad.tools.notetools.Note import Note
 
 

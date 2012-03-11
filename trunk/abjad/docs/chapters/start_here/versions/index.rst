@@ -313,7 +313,7 @@ Implements 197 public classes and 941 public functions totalling 153,000 lines o
 * Added top-level ``decorators`` directory with ``requires`` decorator.
   The ``requires`` decorator renders the following two function definitions equivalent::
 
-    from abjad.decorators import requires
+    from abjad.tools.decoratortools import requires
 
   ::
 
