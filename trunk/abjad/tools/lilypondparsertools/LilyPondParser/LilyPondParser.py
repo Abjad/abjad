@@ -6,6 +6,7 @@ from ply import lex, yacc
 from ply.lex import LexToken
 
 from abjad import *
+from abjad.tools.abctools import MutableAbjadObject
 from abjad.tools.componenttools.Component import Component
 from abjad.tools.contexttools._Context import _Context
 from abjad.tools.leaftools.Leaf import Leaf
@@ -27,7 +28,7 @@ yacc.LRParser._monkey_patch_parse = _parse
 yacc.LRParser._monkey_patch_parse_debug = _parse_debug
 
 
-class LilyPondParser(object):
+class LilyPondParser(MutableAbjadObject):
     r'''Parses a subset of LilyPond input syntax:
 
     ::
