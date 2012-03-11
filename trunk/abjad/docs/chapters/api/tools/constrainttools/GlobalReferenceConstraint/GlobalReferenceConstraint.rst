@@ -1,9 +1,9 @@
-constraintstools.FixedLengthStreamSolver
-========================================
+constrainttools.GlobalReferenceConstraint
+=========================================
 
-.. inheritance-diagram:: abjad.tools.constraintstools.FixedLengthStreamSolver.FixedLengthStreamSolver
+.. inheritance-diagram:: abjad.tools.constrainttools.GlobalReferenceConstraint.GlobalReferenceConstraint
    :private-bases:
-.. autoclass:: abjad.tools.constraintstools.FixedLengthStreamSolver
+.. autoclass:: abjad.tools.constrainttools.GlobalReferenceConstraint
    :members:
    :undoc-members:
    :inherited-members:

@@ -1,9 +1,9 @@
-constraintstools.VariableLengthStreamSolver
-===========================================
+constrainttools.VariableLengthStreamSolver
+==========================================
 
-.. inheritance-diagram:: abjad.tools.constraintstools.VariableLengthStreamSolver.VariableLengthStreamSolver
+.. inheritance-diagram:: abjad.tools.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver
    :private-bases:
-.. autoclass:: abjad.tools.constraintstools.VariableLengthStreamSolver
+.. autoclass:: abjad.tools.constrainttools.VariableLengthStreamSolver
    :members:
    :undoc-members:
    :inherited-members:

@@ -1,9 +1,9 @@
-constraintstools.GlobalReferenceConstraint
-==========================================
+constrainttools.GlobalConstraint
+================================
 
-.. inheritance-diagram:: abjad.tools.constraintstools.GlobalReferenceConstraint.GlobalReferenceConstraint
+.. inheritance-diagram:: abjad.tools.constrainttools.GlobalConstraint.GlobalConstraint
    :private-bases:
-.. autoclass:: abjad.tools.constraintstools.GlobalReferenceConstraint
+.. autoclass:: abjad.tools.constrainttools.GlobalConstraint
    :members:
    :undoc-members:
    :inherited-members:

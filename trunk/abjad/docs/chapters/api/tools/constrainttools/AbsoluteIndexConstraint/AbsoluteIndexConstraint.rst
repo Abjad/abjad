@@ -1,9 +1,9 @@
-constraintstools.AbsoluteIndexConstraint
-========================================
+constrainttools.AbsoluteIndexConstraint
+=======================================
 
-.. inheritance-diagram:: abjad.tools.constraintstools.AbsoluteIndexConstraint.AbsoluteIndexConstraint
+.. inheritance-diagram:: abjad.tools.constrainttools.AbsoluteIndexConstraint.AbsoluteIndexConstraint
    :private-bases:
-.. autoclass:: abjad.tools.constraintstools.AbsoluteIndexConstraint
+.. autoclass:: abjad.tools.constrainttools.AbsoluteIndexConstraint
    :members:
    :undoc-members:
    :inherited-members:

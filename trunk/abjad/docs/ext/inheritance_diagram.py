@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 r"""
-    sphinx.ext.inheritance_diagram
-    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    abjad.docs.ext.inhertiance_diagram
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    Derived from sphinx.ext.inheritance_diagram
 
     Defines a docutils directive for inserting inheritance diagrams.
 

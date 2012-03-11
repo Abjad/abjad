@@ -144,6 +144,22 @@ componenttools
    tools/componenttools/yield_topmost_components_of_klass_grouped_by_type
 
 
+constrainttools
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/constrainttools/AbsoluteIndexConstraint/AbsoluteIndexConstraint
+   tools/constrainttools/Domain/Domain
+   tools/constrainttools/FixedLengthStreamSolver/FixedLengthStreamSolver
+   tools/constrainttools/GlobalConstraint/GlobalConstraint
+   tools/constrainttools/GlobalCountsConstraint/GlobalCountsConstraint
+   tools/constrainttools/GlobalReferenceConstraint/GlobalReferenceConstraint
+   tools/constrainttools/RelativeCountsConstraint/RelativeCountsConstraint
+   tools/constrainttools/RelativeIndexConstraint/RelativeIndexConstraint
+   tools/constrainttools/VariableLengthStreamSolver/VariableLengthStreamSolver
+
+
 containertools
 
 .. toctree::
@@ -1549,22 +1565,6 @@ Unstable Abjad composition packages (load manually)
 .. toctree::
    :maxdepth: 1
 
-
-
-constraintstools
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/constraintstools/AbsoluteIndexConstraint/AbsoluteIndexConstraint
-   tools/constraintstools/Domain/Domain
-   tools/constraintstools/FixedLengthStreamSolver/FixedLengthStreamSolver
-   tools/constraintstools/GlobalConstraint/GlobalConstraint
-   tools/constraintstools/GlobalCountsConstraint/GlobalCountsConstraint
-   tools/constraintstools/GlobalReferenceConstraint/GlobalReferenceConstraint
-   tools/constraintstools/RelativeCountsConstraint/RelativeCountsConstraint
-   tools/constraintstools/RelativeIndexConstraint/RelativeIndexConstraint
-   tools/constraintstools/VariableLengthStreamSolver/VariableLengthStreamSolver
 
 
 lyricstools

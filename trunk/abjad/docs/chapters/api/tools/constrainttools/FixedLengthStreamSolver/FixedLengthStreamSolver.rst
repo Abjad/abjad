@@ -1,9 +1,9 @@
-constraintstools.RelativeCountsConstraint
-=========================================
+constrainttools.FixedLengthStreamSolver
+=======================================
 
-.. inheritance-diagram:: abjad.tools.constraintstools.RelativeCountsConstraint.RelativeCountsConstraint
+.. inheritance-diagram:: abjad.tools.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver
    :private-bases:
-.. autoclass:: abjad.tools.constraintstools.RelativeCountsConstraint
+.. autoclass:: abjad.tools.constrainttools.FixedLengthStreamSolver
    :members:
    :undoc-members:
    :inherited-members:

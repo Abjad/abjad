@@ -1,9 +1,9 @@
-constraintstools.Domain
-=======================
+constrainttools.RelativeCountsConstraint
+========================================
 
-.. inheritance-diagram:: abjad.tools.constraintstools.Domain.Domain
+.. inheritance-diagram:: abjad.tools.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint
    :private-bases:
-.. autoclass:: abjad.tools.constraintstools.Domain
+.. autoclass:: abjad.tools.constrainttools.RelativeCountsConstraint
    :members:
    :undoc-members:
    :inherited-members:

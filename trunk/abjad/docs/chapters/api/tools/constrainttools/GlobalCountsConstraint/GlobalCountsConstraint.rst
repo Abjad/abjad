@@ -1,9 +1,9 @@
-constraintstools.GlobalConstraint
-=================================
+constrainttools.GlobalCountsConstraint
+======================================
 
-.. inheritance-diagram:: abjad.tools.constraintstools.GlobalConstraint.GlobalConstraint
+.. inheritance-diagram:: abjad.tools.constrainttools.GlobalCountsConstraint.GlobalCountsConstraint
    :private-bases:
-.. autoclass:: abjad.tools.constraintstools.GlobalConstraint
+.. autoclass:: abjad.tools.constrainttools.GlobalCountsConstraint
    :members:
    :undoc-members:
    :inherited-members:

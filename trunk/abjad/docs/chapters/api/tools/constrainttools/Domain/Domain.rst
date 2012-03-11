@@ -1,9 +1,9 @@
-constraintstools.RelativeIndexConstraint
-========================================
+constrainttools.Domain
+======================
 
-.. inheritance-diagram:: abjad.tools.constraintstools.RelativeIndexConstraint.RelativeIndexConstraint
+.. inheritance-diagram:: abjad.tools.constrainttools.Domain.Domain
    :private-bases:
-.. autoclass:: abjad.tools.constraintstools.RelativeIndexConstraint
+.. autoclass:: abjad.tools.constrainttools.Domain
    :members:
    :undoc-members:
    :inherited-members:
