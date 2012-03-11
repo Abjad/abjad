@@ -1,7 +1,7 @@
-from abjad.tools.abctools.MutableAbjadObject import MutableAbjadObject
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class InstrumentationSpecifier(MutableAbjadObject):
+class InstrumentationSpecifier(AbjadObject):
     r'''.. versionadded:: 2.5
 
     Abjad model of score instrumentation::

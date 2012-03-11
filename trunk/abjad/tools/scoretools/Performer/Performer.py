@@ -1,8 +1,8 @@
-from abjad.tools.abctools.MutableAbjadObject import MutableAbjadObject
+from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.instrumenttools._Instrument import _Instrument
 
 
-class Performer(MutableAbjadObject):
+class Performer(AbjadObject):
     r'''.. versionadded:: 2.5
 
     Abjad model of performer::

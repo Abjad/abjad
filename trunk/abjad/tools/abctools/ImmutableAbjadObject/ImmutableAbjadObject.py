@@ -9,7 +9,7 @@ class ImmutableAbjadObject(object):
 
     Abstract base class from which immutable custom classes can inherit.
     
-    All Abjad classes should inherit from this class or from ``MutableAbjadObject``.
+    All Abjad classes should inherit from this class or from ``AbjadObject``.
     '''
     
     ### CLASS ATTRIBUTES ###

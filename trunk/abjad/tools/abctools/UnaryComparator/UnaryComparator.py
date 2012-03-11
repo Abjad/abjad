@@ -7,7 +7,7 @@ class UnaryComparator(object):
     Abstact base class to confer unary comparison behavior to any custom class.
 
     Abjad classes inheriting from this class should also inherit from
-    either ``MutableAbjadObject`` or ``ImmutableAbjadObject``.
+    either ``AbjadObject`` or ``ImmutableAbjadObject``.
     '''
 
     ### CLASS ATTRIBUTES ###

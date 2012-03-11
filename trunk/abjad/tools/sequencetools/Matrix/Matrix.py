@@ -1,7 +1,7 @@
-from abjad.tools.abctools.MutableAbjadObject import MutableAbjadObject
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class Matrix(MutableAbjadObject):
+class Matrix(AbjadObject):
     '''.. versionadded:: 2.0
 
     Abjad model of matrix.

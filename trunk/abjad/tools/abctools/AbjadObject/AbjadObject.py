@@ -1,20 +1,16 @@
 from abc import ABCMeta
-from abc import abstractproperty
 
 
-class MutableAbjadObject(object):
+class AbjadObject(object):
     '''.. versionadded:: 2.8
 
-    Mutable Abjad object.
-
-    Abstract base class from which mutable custom classes can inherit.
-
-    All Abjad classes should inherit from this class or from ``ImmutableAbjadObject``.
+    Abstract base class from which all custom classes should inherit.
     '''
 
     ### CLASS ATTRIBUTES ###
 
     __metaclass__ = ABCMeta
+    __slots__ = ()
 
     ### OVERLOADS ###
 
@@ -27,18 +23,6 @@ class MutableAbjadObject(object):
     def _class_name(self):
         return type(self).__name__ 
 
-    @property
-    def _tools_package_qualified_class_name(self):
-        return '{}.{}'.format(self._tools_package, self._class_name)
-
-    @property
-    def _tools_package_qualified_repr(self):
-        return '{}.{}'.format(self._tools_package, repr(self))
-
-    @property
-    def _tools_package_qualified_repr_pieces(self):
-        return [self._tools_package_qualified_repr]
-        
     @property
     def _keyword_argument_name_value_strings(self):
         result = []
@@ -76,3 +60,15 @@ class MutableAbjadObject(object):
         for part in reversed(self.__module__.split('.')):
             if not part == self._class_name:
                 return part
+
+    @property
+    def _tools_package_qualified_class_name(self):
+        return '{}.{}'.format(self._tools_package, self._class_name)
+
+    @property
+    def _tools_package_qualified_repr(self):
+        return '{}.{}'.format(self._tools_package, repr(self))
+
+    @property
+    def _tools_package_qualified_repr_pieces(self):
+        return [self._tools_package_qualified_repr]

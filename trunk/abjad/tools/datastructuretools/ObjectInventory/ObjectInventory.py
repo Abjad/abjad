@@ -1,9 +1,9 @@
 from abc import ABCMeta
 from abc import abstractproperty
-from abjad.tools.abctools.MutableAbjadObject import MutableAbjadObject
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class ObjectInventory(list, MutableAbjadObject):
+class ObjectInventory(list, AbjadObject):
     '''.. versionadded:: 2.8
 
     Ordered collection of custom objects.

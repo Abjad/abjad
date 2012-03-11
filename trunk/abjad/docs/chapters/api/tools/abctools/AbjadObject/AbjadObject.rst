@@ -1,9 +1,9 @@
-abctools.MutableAbjadObject
-===========================
+abctools.AbjadObject
+====================
 
-.. inheritance-diagram:: abjad.tools.abctools.MutableAbjadObject.MutableAbjadObject
+.. inheritance-diagram:: abjad.tools.abctools.AbjadObject.AbjadObject
    :private-bases:
-.. autoclass:: abjad.tools.abctools.MutableAbjadObject
+.. autoclass:: abjad.tools.abctools.AbjadObject
    :members:
    :undoc-members:
    :inherited-members:
