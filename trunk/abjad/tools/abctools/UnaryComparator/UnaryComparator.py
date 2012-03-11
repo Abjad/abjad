@@ -5,10 +5,10 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 class UnaryComparator(AbjadObject):
     '''.. versionadded:: 2.0
 
-    Abstact base class to confer unary comparison behavior to any custom class.
+    Abstact base class to confer sortable attribute-equality comparability to any custom class.
 
-    Abjad classes inheriting from this class should also inherit from
-    either ``AbjadObject`` or ``AbjadObject``.
+    Sortable attribute-equality comparators implement eq, ne, gt, ge, lt, le against
+    a single comparison attribute.
     '''
 
     ### CLASS ATTRIBUTES ###

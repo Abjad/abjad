@@ -2,10 +2,15 @@ from abc import ABCMeta
 from abjad.tools.abctools.StrictComparator import StrictComparator
 
 
+# TODO: inherit from AbjadObject directly
 class FlexEqualityComparator(StrictComparator):
-    '''Mix-in abstract base class to confer a certain type of comparator behavior to any custom class.
-    Flex equality comparators raise not implemented error on gt, lt, ge, le.
-    Flex equality comparators attempt type coercion on eq, ne.
+    '''.. versionadded:: 2.0
+
+    Abstract base class to confer nonsorting attribute-equality comparability to any custom class.
+
+    Nonsorting objects raise exceptions on gt, ge, lt, le.
+
+    Attribute-equality comparators compare equal only with equal comparison attributes.
     '''
 
     ### CLASS ATTRIBUTES ###
