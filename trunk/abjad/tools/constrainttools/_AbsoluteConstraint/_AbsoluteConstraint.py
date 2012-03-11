@@ -1,4 +1,4 @@
-from abjad.tools.constraintstools._Constraint._Constraint import _Constraint
+from abjad.tools.constrainttools._Constraint._Constraint import _Constraint
 
 
 class _AbsoluteConstraint(_Constraint):

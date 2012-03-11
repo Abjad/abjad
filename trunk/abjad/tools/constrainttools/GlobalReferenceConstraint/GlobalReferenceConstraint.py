@@ -1,4 +1,4 @@
-from abjad.tools.constraintstools._GlobalConstraint._GlobalConstraint import _GlobalConstraint
+from abjad.tools.constrainttools._GlobalConstraint._GlobalConstraint import _GlobalConstraint
 
 
 class GlobalReferenceConstraint(_GlobalConstraint):
@@ -6,7 +6,7 @@ class GlobalReferenceConstraint(_GlobalConstraint):
 
     ::
 
-        abjad> from abjad.tools.constraintstools import GlobalReferenceConstraint
+        abjad> from abjad.tools.constrainttools import GlobalReferenceConstraint
     
     Its predicate function should accept two arguments, the first being the
     current solution, and the second for the external reference provided at

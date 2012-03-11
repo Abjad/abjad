@@ -1,9 +1,9 @@
 import random
 
-from abjad.tools.constraintstools.Domain import Domain
-from abjad.tools.constraintstools._Constraint._Constraint import _Constraint
-from abjad.tools.constraintstools._SolutionNode._SolutionNode import _SolutionNode as Node
-from abjad.tools.constraintstools._Solver._Solver import _Solver
+from abjad.tools.constrainttools.Domain import Domain
+from abjad.tools.constrainttools._Constraint._Constraint import _Constraint
+from abjad.tools.constrainttools._SolutionNode._SolutionNode import _SolutionNode as Node
+from abjad.tools.constrainttools._Solver._Solver import _Solver
 
 
 class VariableLengthStreamSolver(_Solver):
@@ -21,7 +21,7 @@ class VariableLengthStreamSolver(_Solver):
 
     ::
 
-        abjad> from abjad.tools.constraintstools import *
+        abjad> from abjad.tools.constrainttools import *
         abjad> domain = Domain([1, 2, 3, 4], 1)
         abjad> target_sum = GlobalConstraint(lambda x: sum(x) == 5)
         abjad> boundary_sum = GlobalConstraint(lambda x: sum(x) < 6)

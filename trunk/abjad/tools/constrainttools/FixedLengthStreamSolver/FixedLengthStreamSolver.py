@@ -1,9 +1,9 @@
 import random
 
-from abjad.tools.constraintstools.Domain import Domain
-from abjad.tools.constraintstools._Constraint._Constraint import _Constraint
-from abjad.tools.constraintstools._SolutionNode._SolutionNode import _SolutionNode as Node
-from abjad.tools.constraintstools._Solver._Solver import _Solver
+from abjad.tools.constrainttools.Domain import Domain
+from abjad.tools.constrainttools._Constraint._Constraint import _Constraint
+from abjad.tools.constrainttools._SolutionNode._SolutionNode import _SolutionNode as Node
+from abjad.tools.constrainttools._Solver._Solver import _Solver
 
 
 class FixedLengthStreamSolver(_Solver):
@@ -11,10 +11,10 @@ class FixedLengthStreamSolver(_Solver):
 
     ::
 
-        abjad> from abjad.tools.constraintstools import FixedLengthStreamSolver
-        abjad> from abjad.tools.constraintstools import Domain
-        abjad> from abjad.tools.constraintstools import GlobalCountsConstraint
-        abjad> from abjad.tools.constraintstools import RelativeIndexConstraint
+        abjad> from abjad.tools.constrainttools import FixedLengthStreamSolver
+        abjad> from abjad.tools.constrainttools import Domain
+        abjad> from abjad.tools.constrainttools import GlobalCountsConstraint
+        abjad> from abjad.tools.constrainttools import RelativeIndexConstraint
 
     Instantiates from a ``Domain``, and a sequence of ``Constraints``.
 

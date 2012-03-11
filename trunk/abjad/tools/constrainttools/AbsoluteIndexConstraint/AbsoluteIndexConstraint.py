@@ -1,4 +1,4 @@
-from abjad.tools.constraintstools._AbsoluteConstraint._AbsoluteConstraint import _AbsoluteConstraint
+from abjad.tools.constrainttools._AbsoluteConstraint._AbsoluteConstraint import _AbsoluteConstraint
 
 
 class AbsoluteIndexConstraint(_AbsoluteConstraint):
@@ -7,7 +7,7 @@ class AbsoluteIndexConstraint(_AbsoluteConstraint):
 
     ::
 
-        abjad> from abjad.tools.constraintstools import AbsoluteIndexConstraint
+        abjad> from abjad.tools.constrainttools import AbsoluteIndexConstraint
 
     Instantiated from an index, or sequence of indices, and a function which
     takes as many arguments as indices were given:

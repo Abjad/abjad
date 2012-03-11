@@ -1,4 +1,4 @@
-from abjad.tools.constraintstools._RelativeConstraint._RelativeConstraint import _RelativeConstraint
+from abjad.tools.constrainttools._RelativeConstraint._RelativeConstraint import _RelativeConstraint
 
 
 class RelativeCountsConstraint(_RelativeConstraint):
@@ -10,7 +10,7 @@ class RelativeCountsConstraint(_RelativeConstraint):
 
     ::
 
-        abjad> from abjad.tools.constraintstools import RelativeCountsConstraint
+        abjad> from abjad.tools.constrainttools import RelativeCountsConstraint
 
     Instantiated from an integer representing a contiguous index range, or a 
     sequence of indices, and a function which takes as many arguments as

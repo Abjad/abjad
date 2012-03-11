@@ -7,7 +7,7 @@ class Domain(Immutable):
 
     ::
 
-        abjad> from abjad.tools.constraintstools import Domain
+        abjad> from abjad.tools.constrainttools import Domain
     
     May be instantiated from a non-empty sequence of non-empty sequences.
 

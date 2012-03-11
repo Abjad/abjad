@@ -1,4 +1,4 @@
-from abjad.tools.constraintstools._GlobalConstraint._GlobalConstraint import _GlobalConstraint
+from abjad.tools.constrainttools._GlobalConstraint._GlobalConstraint import _GlobalConstraint
 
 
 class GlobalConstraint(_GlobalConstraint):
@@ -6,7 +6,7 @@ class GlobalConstraint(_GlobalConstraint):
 
     ::
 
-        abjad> from abjad.tools.constraintstools import GlobalConstraint
+        abjad> from abjad.tools.constrainttools import GlobalConstraint
 
     Instantiated from a function which takes a single argument, representing an
     entire solution.

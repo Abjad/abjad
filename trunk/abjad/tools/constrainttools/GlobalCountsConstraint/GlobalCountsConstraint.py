@@ -1,4 +1,4 @@
-from abjad.tools.constraintstools._GlobalConstraint._GlobalConstraint import _GlobalConstraint
+from abjad.tools.constrainttools._GlobalConstraint._GlobalConstraint import _GlobalConstraint
 
 
 class GlobalCountsConstraint(_GlobalConstraint):
@@ -7,7 +7,7 @@ class GlobalCountsConstraint(_GlobalConstraint):
 
     ::
 
-        abjad> from abjad.tools.constraintstools import GlobalCountsConstraint
+        abjad> from abjad.tools.constrainttools import GlobalCountsConstraint
 
     Instantiated from a lambda or function which takes a dictionary as its one
     and only argument:
