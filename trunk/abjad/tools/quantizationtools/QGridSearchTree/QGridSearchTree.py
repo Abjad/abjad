@@ -1,6 +1,5 @@
 from copy import deepcopy
 from abjad import Fraction
-from abjad.tools.abctools import ImmutableAbjadObject
 from abjad.tools.datastructuretools import ImmutableDictionary
 from abjad.tools.contexttools import TempoMark
 from abjad.tools.durationtools import Offset

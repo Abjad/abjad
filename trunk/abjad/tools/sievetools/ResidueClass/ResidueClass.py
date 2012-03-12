@@ -1,9 +1,8 @@
-from abjad.tools.abctools import ImmutableAbjadObject
 from abjad.tools.sievetools._BaseResidueClass import _BaseResidueClass
 from abjad.tools.sievetools._process_min_max_attribute import _process_min_max_attribute
 
 
-class ResidueClass(_BaseResidueClass, ImmutableAbjadObject):
+class ResidueClass(_BaseResidueClass):
     '''Residue class (or congruence class).
     Residue classes form the basis of Xenakis sieves. They can be used to
     construct any complex periodic integer (or boolean) sequence as a
@@ -34,6 +33,8 @@ class ResidueClass(_BaseResidueClass, ImmutableAbjadObject):
 
     Return residue class.
     '''
+
+    __slots__ = ('_modulo', '_residue')
 
     def __init__(self, *args):
         if len(args) == 1:

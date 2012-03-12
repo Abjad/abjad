@@ -1,7 +1,6 @@
 from collections import MutableMapping
 import copy
 from abjad import Fraction
-from abjad.tools.abctools import ImmutableAbjadObject
 from abjad.tools.durationtools import Duration
 from abjad.tools.durationtools import Offset
 from abjad.tools.timeintervaltools._TimeIntervalMixin._TimeIntervalMixin import _TimeIntervalMixin

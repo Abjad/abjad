@@ -7,6 +7,7 @@ class _BaseResidueClass(AbjadObject):
     '''
 
     __metaclass__ = ABCMeta
+    __slots__ = ()
 
     ### OVERLOADS ###
 
