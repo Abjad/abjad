@@ -1022,7 +1022,6 @@ abctools
 
    tools/abctools/AbjadObject/AbjadObject
    tools/abctools/AttributeEqualityAbjadObject/AttributeEqualityAbjadObject
-   tools/abctools/ImmutableAbjadObject/ImmutableAbjadObject
    tools/abctools/SortableAttributeEqualityAbjadObject/SortableAttributeEqualityAbjadObject
 
 
