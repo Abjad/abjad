@@ -154,12 +154,14 @@ class _NavigationInterface(_Interface):
         '''
         from abjad.tools import componenttools
         next = self._next_sibling
-        if next:
+        #if next:
+        if next is not None:
             return next
         else:
             for p in componenttools.get_proper_parentage_of_component(self._client):
                 next = p._navigator._next_sibling
-                if next:
+                #if next:
+                if next is not None:
                     return next
 
     @property
@@ -246,12 +248,14 @@ class _NavigationInterface(_Interface):
         '''
         from abjad.tools import componenttools
         prev = self._prev_sibling
-        if prev:
+        #if prev:
+        if prev is not None:
             return prev
         else:
             for p in componenttools.get_proper_parentage_of_component(self._client):
                 prev = p._navigator._prev_sibling
-                if prev:
+                #if prev:
+                if prev is not None:
                     return prev
 
     @property

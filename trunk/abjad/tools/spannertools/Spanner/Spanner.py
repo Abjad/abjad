@@ -186,7 +186,6 @@ class Spanner(AbjadObject):
         from abjad.tools.componenttools.Component import Component
         from abjad.tools import componenttools
         from abjad.tools import leaftools
-        #components = components or []
         if isinstance(components, Component):
             components = [components]
         elif not components:

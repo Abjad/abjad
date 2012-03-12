@@ -36,10 +36,10 @@ class _ContainmentSignature(AbjadObject):
                 return ''
             else:
                 return x
-        result.append('        root: %s (%s)' % (self._root_str, self._root))
+        result.append('      root: %s (%s)' % (self._root_str, self._root))
         result.append('     score: %s' % helper(self._score))
         result.append('staffgroup: %s' % helper(self._staffgroup))
         result.append('     staff: %s' % helper(self._staff))
         result.append('     voice: %s' % helper(self._voice))
-        result.append('        self: %s' % helper(self._self))
+        result.append('      self: %s' % helper(self._self))
         return '\n'.join(result)

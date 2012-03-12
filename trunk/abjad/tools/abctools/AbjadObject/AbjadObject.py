@@ -62,12 +62,14 @@ class AbjadObject(object):
         '''
         return not self == arg
 
-    # TODO: this should be removed but will need to be tested carefully
+    # TODO: remove.
     def __nonzero__(self):
         '''Defined equal to true.
 
-        Return boolean.
+        .. note:: deprecated.
         '''
+        #if hasattr(self, '__len__') and not len(self):
+        #    raise Exception
         return True
 
     def __repr__(self):

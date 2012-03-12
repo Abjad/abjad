@@ -28,7 +28,8 @@ class _OffsetInterface(_Interface):
         try:
             cur_duration_in_seconds = self._client.duration_in_seconds
             prev = self._client._navigator._prev
-            if prev:
+            #if prev:
+            if prev is not None:
                 self._start_in_seconds = prev._offset._stop_in_seconds
             else:
                 #self._start_in_seconds = durationtools.Duration(0)
@@ -42,7 +43,8 @@ class _OffsetInterface(_Interface):
 
     def _update_prolated_offset_values_of_component(self):
         prev = self._client._navigator._prev
-        if prev:
+        #if prev:
+        if prev is not None:
             self._start = prev._offset._stop
         else:
             #self._start = durationtools.Duration(0)

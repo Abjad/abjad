@@ -311,7 +311,8 @@ class Container(Component):
     def _initialize_music(self, music):
         from abjad.tools import componenttools
         from abjad.tools.componenttools._switch_components_to_parent import _switch_components_to_parent
-        music = music or []
+        if music is None:
+            music = []
         if componenttools.all_are_contiguous_components_in_same_thread(music):
             parent, index, stop_index = componenttools.get_parent_and_start_stop_indices_of_components(
                 music)
