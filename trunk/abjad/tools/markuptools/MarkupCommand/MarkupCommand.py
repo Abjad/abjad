@@ -1,8 +1,8 @@
-from abjad.tools.abctools import ImmutableAbjadObject
+from abjad.tools.abctools import AbjadObject
 from abjad.tools.schemetools import Scheme
 
 
-class MarkupCommand(ImmutableAbjadObject):
+class MarkupCommand(AbjadObject):
     r'''Abjad model of a LilyPond markup command::
 
         abjad> circle = markuptools.MarkupCommand('draw-circle', 2.5, 0.1, False)

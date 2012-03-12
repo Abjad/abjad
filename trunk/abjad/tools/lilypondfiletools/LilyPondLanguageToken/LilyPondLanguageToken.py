@@ -1,9 +1,9 @@
 from abjad.cfg._read_config_file import _read_config_file
-from abjad.tools.abctools import ImmutableAbjadObject
+from abjad.tools.abctools import AbjadObject
 from abjad.tools.configurationtools.get_lilypond_version_string import get_lilypond_version_string
 
 
-class LilyPondLanguageToken(ImmutableAbjadObject):
+class LilyPondLanguageToken(AbjadObject):
     r'''.. versionadded:: 2.0
 
     LilyPond language token::

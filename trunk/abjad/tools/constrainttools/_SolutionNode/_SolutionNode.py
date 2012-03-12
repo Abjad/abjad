@@ -1,7 +1,7 @@
-from abjad.tools.abctools import ImmutableAbjadObject
+from abjad.tools.abctools import AbjadObject
 
 
-class _SolutionNode(ImmutableAbjadObject):
+class _SolutionNode(AbjadObject):
 
     __slots__ = ('_children', '_parent', '_valid', '_value')
 

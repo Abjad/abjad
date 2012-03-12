@@ -1,8 +1,8 @@
-from abjad.tools.abctools import ImmutableAbjadObject
+from abjad.tools.abctools import AbjadObject
 from abjad.tools.configurationtools.get_abjad_revision_string import get_abjad_revision_string
 
 
-class AbjadRevisionToken(ImmutableAbjadObject):
+class AbjadRevisionToken(AbjadObject):
     '''.. versionadded:: 2.0
 
     Abjad version token::

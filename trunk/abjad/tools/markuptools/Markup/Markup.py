@@ -1,5 +1,3 @@
-#from abjad.tools.componenttools.Component import Component
-#from abjad.tools.contexttools.ContextMark import ContextMark
 from abjad.tools.marktools._DirectedMark._DirectedMark import _DirectedMark
 
 
@@ -77,7 +75,6 @@ class Markup(_DirectedMark):
     __slots__ = ('_contents_string', '_direction', '_format_slot', '_style_string')
 
     def __init__(self, arg, direction = None, style_string = 'backslash'):
-        #ContextMark.__init__(self, target_context = Component)
         if isinstance(arg, str):
             contents_string = arg
         elif isinstance(arg, Markup):
@@ -85,7 +82,6 @@ class Markup(_DirectedMark):
             style_string = arg._style_string
         else:
             contents_string = str(arg)
-
         _DirectedMark.__init__(self, direction=direction)
         self._contents_string = contents_string
         self._style_string = style_string
