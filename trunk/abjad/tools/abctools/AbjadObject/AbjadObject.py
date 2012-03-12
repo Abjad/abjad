@@ -62,15 +62,15 @@ class AbjadObject(object):
         '''
         return not self == arg
 
-    # TODO: remove.
-    def __nonzero__(self):
-        '''Defined equal to true.
-
-        .. note:: deprecated.
-        '''
-        #if hasattr(self, '__len__') and not len(self):
-        #    raise Exception
-        return True
+#    # TODO: remove.
+#    def __nonzero__(self):
+#        '''Defined equal to true.
+#
+#        .. note:: deprecated.
+#        '''
+#        #if hasattr(self, '__len__') and not len(self):
+#        #    raise Exception
+#        return True
 
     def __repr__(self):
         '''Interpreter representation of Abjad object defaulting to 
