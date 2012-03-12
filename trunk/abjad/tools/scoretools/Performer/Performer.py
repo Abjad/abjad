@@ -25,7 +25,7 @@ class Performer(AbjadObject):
     def __eq__(self, other):
         if isinstance(other, type(self)):
             if self.name == other.name:
-                if sorted(self.instruments) == sorted(other.instruments):
+                if self.instruments == other.instruments:
                     return True
         return False
 

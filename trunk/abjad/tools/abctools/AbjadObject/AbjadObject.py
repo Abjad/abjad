@@ -5,6 +5,12 @@ class AbjadObject(object):
     '''.. versionadded:: 2.0
 
     Abstract base class from which all custom classes should inherit.
+
+    Abajd objects raise exceptions on ``__gt__``, ``__ge__``, ``__lt__``, ``__le__``.
+
+    Abjad objects compare equal only with equal object IDs.
+
+    Authors of custom classes should override these behaviors as required.
     '''
 
     ### CLASS ATTRIBUTES ###
@@ -13,6 +19,56 @@ class AbjadObject(object):
     __slots__ = ()
 
     ### OVERLOADS ###
+
+    def __eq__(self, arg):
+        '''True when ``id(self)`` equals ``id(arg)``.
+
+        Return boolean.
+        '''
+        return id(self) == id(arg)
+
+    def __ge__(self, arg):
+        '''Nonsorting objects do not implement this method.
+        
+        Raise exception.
+        '''
+        raise NotImplementedError('Greater-equal not implemented on "{!r}".'.format(arg))
+
+    def __gt__(self, arg):
+        '''Nonsorting objects do not implement this method.
+    
+        Raise exception
+        '''
+        raise NotImplementedError('Greater-than not implemented on "{!r}".'.format(arg))
+
+    def __le__(self, arg):
+        '''Nonsorting objects do not implement this method.
+    
+        Raise exception.
+        '''
+        raise NotImplementedError('Less-equal not implemented on "{!r}".'.format(arg))
+
+    def __lt__(self, arg):
+        '''Nonsorting objects do not implement this method.
+
+        Raise exception.
+        '''
+        raise NotImplementedError('Less-than not implemented on "{!r}".'.format(arg))
+
+    def __ne__(self, arg):
+        '''True when ``id(self)`` does not equal ``id(arg)``.
+
+        Return boolean.
+        '''
+        return not self == arg
+
+    # TODO: should this be elimiated?
+    def __nonzero__(self):
+        '''Defined equal to true.
+
+        Return boolean.
+        '''
+        return True
 
     def __repr__(self):
         '''Interpreter representation of Abjad object defaulting to 
