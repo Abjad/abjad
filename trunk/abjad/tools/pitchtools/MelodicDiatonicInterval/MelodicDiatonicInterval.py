@@ -14,6 +14,8 @@ class MelodicDiatonicInterval(_DiatonicInterval, _MelodicInterval):
     Melodic diatonic intervals are immutable.
     '''
 
+    __slots__ = ('_quality_string', '_number', )
+
     def __new__(klass, *args):
         from abjad.tools.pitchtools.is_melodic_diatonic_interval_abbreviation import melodic_diatonic_interval_abbreviation_regex
         self = object.__new__(klass)

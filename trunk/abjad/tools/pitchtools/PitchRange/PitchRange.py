@@ -1,8 +1,8 @@
-from abjad.tools.abctools import ImmutableAbjadObject
+from abjad.tools.abctools import AbjadObject
 import numbers
 
 
-class PitchRange(ImmutableAbjadObject):
+class PitchRange(AbjadObject):
     r""".. versionadded:: 2.0
 
     Abjad model of pitch range::
@@ -21,6 +21,8 @@ class PitchRange(ImmutableAbjadObject):
 
     Pitch ranges are immutable.
     """
+
+    __slots__ = ('_start', '_stop', '_pitch_range_name', '_pitch_range_name_markup', )
 
     def __init__(self, *args, **kwargs):
         from abjad.tools import pitchtools

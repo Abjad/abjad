@@ -8,7 +8,9 @@ class _MelodicInterval(_Interval):
 
     Melodic interval base class.
     '''
+
     __metaclass__ = ABCMeta
+    __slots__ = ()
 
     ### OVERLOADS ###
 

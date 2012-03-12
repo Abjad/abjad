@@ -10,7 +10,9 @@ class _DiatonicInterval(_Interval, _Diatonic):
 
     Diatonic interval base class.
     '''
+
     __metaclass__ = ABCMeta
+    __slots__ = ('_number', '_quality_string')
 
     def __new__(klass, quality_string, number):
         self = object.__new__(klass)
