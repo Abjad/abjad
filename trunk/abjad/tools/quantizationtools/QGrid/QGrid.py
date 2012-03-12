@@ -1,11 +1,8 @@
-import copy
-from collections import Iterable
-from numbers import Number
 from abjad import Container
 from abjad import Fraction
 from abjad import Note
 from abjad import Tuplet
-from abjad.tools.abctools import ImmutableAbjadObject
+from abjad.tools.abctools import AbjadObject
 from abjad.tools.durationtools import Offset
 from abjad.tools.mathtools import divisors
 from abjad.tools.mathtools import greatest_power_of_two_less_equal
@@ -13,9 +10,12 @@ from abjad.tools.quantizationtools.QEvent import QEvent
 from abjad.tools.quantizationtools.is_valid_beatspan import is_valid_beatspan
 from abjad.tools.sequencetools import all_are_numbers
 from abjad.tools.sequencetools import flatten_sequence
+from collections import Iterable
+from numbers import Number
+import copy
 
 
-class QGrid(ImmutableAbjadObject):
+class QGrid(AbjadObject):
     '''Abjad model of a QGrid, a nesting division structure which
     assists certain quantization algorithms.
 
