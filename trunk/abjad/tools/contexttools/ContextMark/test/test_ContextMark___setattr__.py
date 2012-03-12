@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def testContextMark___setattr___01():
+def test_ContextMark___setattr___01():
     '''Slots constraint context mark attributes.
     '''
 

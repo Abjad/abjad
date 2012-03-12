@@ -3,7 +3,7 @@ from abjad.tools.contexttools.Context import Context
 import py.test
 
 
-def testContext___cmp___01():
+def test_Context___cmp___01():
     '''Compare context to itself.
     '''
 
@@ -22,7 +22,7 @@ def testContext___cmp___01():
     assert py.test.raises(NotImplementedError, comparison_string)
 
 
-def testContext___cmp___02():
+def test_Context___cmp___02():
     '''Compare contexts.
     '''
 
@@ -42,7 +42,7 @@ def testContext___cmp___02():
     assert py.test.raises(NotImplementedError, comparison_string)
 
 
-def testContext___cmp___03():
+def test_Context___cmp___03():
     '''Compare context to foreign type.
     '''
 

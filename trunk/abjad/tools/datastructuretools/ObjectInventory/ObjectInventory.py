@@ -60,11 +60,6 @@ class ObjectInventory(list, AbjadObject):
             part_reprs.append(part_repr)
         return ', '.join(part_reprs)
 
-    @property
-    def _tools_package_qualified_repr(self):
-        return '{}([{}])'.format(
-            self._tools_package_qualified_class_name, self._contents_tools_package_qualified_repr)
-
     @abstractproperty
     def _item_class(self):
         pass
@@ -89,6 +84,29 @@ class ObjectInventory(list, AbjadObject):
                     result.append('\t{}'.format(repr_piece))
                 result.append('\t{},'.format(repr_pieces[-1]))
             for repr_piece in self[-1]._repr_pieces:
+                result.append('\t{}'.format(repr_piece))
+            result.append('])')
+        return result
+
+    # TODO: reimplement based on tools package qualified repr pieces
+    @property
+    def _tools_package_qualified_repr(self):
+        return '{}([{}])'.format(
+            self._tools_package_qualified_class_name, self._contents_tools_package_qualified_repr)
+
+    @property
+    def _tools_package_qualified_repr_pieces(self):
+        result = []
+        if len(self) == 0:
+            result.append(repr(self))
+        else:
+            result.append('{}(['.format(self._tools_package_qualified_class_name))
+            for item in self[:-1]:
+                repr_pieces = item._tools_package_qualified_repr_pieces
+                for repr_piece in repr_pieces[:-1]:
+                    result.append('\t{}'.format(repr_piece))
+                result.append('\t{},'.format(repr_pieces[-1]))
+            for repr_piece in self[-1]._tools_package_qualified_repr_pieces:
                 result.append('\t{}'.format(repr_piece))
             result.append('])')
         return result
