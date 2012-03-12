@@ -22,6 +22,8 @@ class  NumberedChromaticPitchClassSet(_PitchClassSet):
     Numbered chromatic pitch-class sets are immutable.
     '''
 
+    __slots__ = ()
+
     def __new__(klass, expr):
         from abjad.tools import pitchtools
         pcs = []

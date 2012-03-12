@@ -13,6 +13,8 @@ class NamedChromaticPitchSegment(_PitchSegment):
     Named chromtic pitch segments are immutable.
     '''
 
+    __slots__ = ()
+
     def __new__(self, *args):
         from abjad.tools import pitchtools
         if len(args) == 1 and isinstance(args[0], str):

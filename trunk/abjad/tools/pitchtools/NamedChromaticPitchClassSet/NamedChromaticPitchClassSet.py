@@ -21,6 +21,8 @@ class NamedChromaticPitchClassSet(_PitchClassSet):
     Named chromatic pitch-class sets are immutable.
     '''
 
+    __slots__ = ()
+
     def __new__(self, expr):
         from abjad.tools import pitchtools
         npcs = []

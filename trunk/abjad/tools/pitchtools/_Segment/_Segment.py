@@ -1,14 +1,15 @@
 from abc import ABCMeta
-from abjad.tools.abctools import ImmutableAbjadObject
+from abjad.tools.abctools import AbjadObject
 
 
-class _Segment(tuple, ImmutableAbjadObject):
+class _Segment(tuple, AbjadObject):
     '''.. versionadded:: 2.0
 
     Mix-in base class for ordered collections of pitch objects.
     '''
     
     __metaclass__ = ABCMeta
+    __slots__ = ()
 
     ### OVERLOADS ###
 

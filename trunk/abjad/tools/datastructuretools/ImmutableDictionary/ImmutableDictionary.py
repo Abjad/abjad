@@ -1,10 +1,10 @@
-from abjad.tools.abctools.ImmutableAbjadObject import ImmutableAbjadObject
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class ImmutableDictionary(dict, ImmutableAbjadObject):
+class ImmutableDictionary(dict, AbjadObject):
     '''.. versionadded:: 2.0
     
-    ImmutableAbjadObject dictionary::
+    Immutable dictionary::
 
         abjad> from abjad.tools import datastructuretools
 
@@ -34,6 +34,8 @@ class ImmutableDictionary(dict, ImmutableAbjadObject):
 
     Return immutable dictionary.
     '''
+
+    __slots__ = ()
 
     ### OVERLOADS ###
 

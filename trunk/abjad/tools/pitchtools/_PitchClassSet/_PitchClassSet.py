@@ -9,5 +9,4 @@ class _PitchClassSet(_Set):
     '''
 
     __metaclass__ = ABCMeta
-
-    pass
+    __slots__ = ()

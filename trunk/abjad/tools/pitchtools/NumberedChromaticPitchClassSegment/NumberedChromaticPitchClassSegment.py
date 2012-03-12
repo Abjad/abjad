@@ -13,6 +13,8 @@ class NumberedChromaticPitchClassSegment(_PitchClassSegment):
     Numbered chromatic pitch-class segments are immutable.
     '''
 
+    __slots__ = ()
+
     def __new__(self, pitch_class_tokens):
         from abjad.tools import pitchtools
         pitch_classes = [pitchtools.NumberedChromaticPitchClass(x) for x in pitch_class_tokens]
