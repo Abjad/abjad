@@ -78,7 +78,6 @@ def make_sphinx_toc():
       'sievetools', 
       'tempotools',
       'threadtools',
-      'tonalitytools', 
       'verticalitytools',
       'wellformednesstools',
       )
@@ -88,6 +87,7 @@ def make_sphinx_toc():
       'constraintstools',
       'lyricstools',
       'musicxmltools', 
+      'tonalitytools',
       'quantizationtools',
    )
 
