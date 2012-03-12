@@ -2,8 +2,7 @@ from abc import ABCMeta
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-# TODO: inherit from AbjadObject directly
-class NonsortingAttributeEqualityAbjadObject(AbjadObject):
+class AttributeEqualityAbjadObject(AbjadObject):
     '''.. versionadded:: 2.0
 
     Abstract base class to confer nonsorting attribute-equality to any custom class.

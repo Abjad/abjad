@@ -1021,8 +1021,8 @@ abctools
    :maxdepth: 1
 
    tools/abctools/AbjadObject/AbjadObject
+   tools/abctools/AttributeEqualityAbjadObject/AttributeEqualityAbjadObject
    tools/abctools/ImmutableAbjadObject/ImmutableAbjadObject
-   tools/abctools/NonsortingAttributeEqualityAbjadObject/NonsortingAttributeEqualityAbjadObject
    tools/abctools/SortableAttributeEqualityAbjadObject/SortableAttributeEqualityAbjadObject
 
 

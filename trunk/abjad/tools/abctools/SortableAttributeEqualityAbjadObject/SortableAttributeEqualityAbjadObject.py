@@ -2,6 +2,7 @@ from abc import ABCMeta
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
+# TODO: inherit from AttributeEqualityAbjadObject
 class SortableAttributeEqualityAbjadObject(AbjadObject):
     '''.. versionadded:: 2.0
 

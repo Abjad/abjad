@@ -1,9 +1,9 @@
-abctools.NonsortingAttributeEqualityAbjadObject
-===============================================
+abctools.AttributeEqualityAbjadObject
+=====================================
 
-.. inheritance-diagram:: abjad.tools.abctools.NonsortingAttributeEqualityAbjadObject.NonsortingAttributeEqualityAbjadObject
+.. inheritance-diagram:: abjad.tools.abctools.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject
    :private-bases:
-.. autoclass:: abjad.tools.abctools.NonsortingAttributeEqualityAbjadObject
+.. autoclass:: abjad.tools.abctools.AttributeEqualityAbjadObject
    :members:
    :undoc-members:
    :inherited-members:
