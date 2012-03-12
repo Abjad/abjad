@@ -1,4 +1,4 @@
-from abjad.tools.contexttools._Context import _Context
+from abjad.tools.contexttools.Context import Context
 
 
 def get_context_marks_attached_to_any_improper_parent_of_component(component):
@@ -44,7 +44,7 @@ def get_context_marks_attached_to_any_improper_parent_of_component(component):
         for mark in component.marks:
             #if mark.target_context is not None:
             if getattr(mark, 'target_context', None) is not None:
-                if issubclass(mark.target_context, _Context):
+                if issubclass(mark.target_context, Context):
                     result.add(mark)
 
     return result

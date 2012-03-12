@@ -222,6 +222,7 @@ contexttools
 
    tools/contexttools/ClefMark/ClefMark
    tools/contexttools/ClefMarkInventory/ClefMarkInventory
+   tools/contexttools/Context/Context
    tools/contexttools/ContextMark/ContextMark
    tools/contexttools/DynamicMark/DynamicMark
    tools/contexttools/InstrumentMark/InstrumentMark

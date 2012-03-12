@@ -1,4 +1,4 @@
-from abjad.tools.contexttools._Context._Context import _Context
+from abjad.tools.contexttools.Context.Context import Context
 
 
 def iterate_contexts_backward_in_expr(expr, start = 0, stop = None):
@@ -43,4 +43,4 @@ def iterate_contexts_backward_in_expr(expr, start = 0, stop = None):
     from abjad.tools import componenttools
 
     return componenttools.iterate_components_backward_in_expr(
-        expr, _Context, start = start, stop = stop)
+        expr, Context, start = start, stop = stop)

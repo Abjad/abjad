@@ -1,7 +1,7 @@
-from abjad.tools.contexttools._Context import _Context
+from abjad.tools.contexttools.Context import Context
 
 
-class StaffGroup(_Context):
+class StaffGroup(Context):
     r'''Abjad model of staff group::
 
         abjad> staff_1 = Staff("c'4 d'4 e'4 f'4 g'1")
@@ -33,7 +33,7 @@ class StaffGroup(_Context):
     '''
 
     def __init__(self, music = [], **kwargs):
-        _Context.__init__(self, music)
+        Context.__init__(self, music)
         self.is_parallel = True
         self.context = 'StaffGroup'
         self._initialize_keyword_values(**kwargs)

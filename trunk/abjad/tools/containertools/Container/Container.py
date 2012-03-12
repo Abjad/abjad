@@ -261,12 +261,12 @@ class Container(Component):
             '''
             return self._parallel
         def fset(self, expr):
-            from abjad.tools.contexttools._Context import _Context
+            from abjad.tools.contexttools.Context import Context
             from abjad.tools import componenttools
             #assert isinstance(expr, (bool, type(None)))
             assert isinstance(expr, bool)
             if expr == True:
-                assert componenttools.all_are_components(self._music, klasses = (_Context, ))
+                assert componenttools.all_are_components(self._music, klasses = (Context, ))
             self._parallel = expr
             self._mark_entire_score_tree_for_later_update('prolated')
         return property(**locals())

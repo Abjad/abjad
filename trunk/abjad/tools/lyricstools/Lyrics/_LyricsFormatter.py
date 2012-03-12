@@ -1,4 +1,4 @@
-from abjad.tools.contexttools._Context._ContextFormatter import _ContextFormatter
+from abjad.tools.contexttools.Context._ContextFormatter import _ContextFormatter
 
 
 class _LyricsFormatter(_ContextFormatter):

@@ -8,7 +8,7 @@ from ply.lex import LexToken
 from abjad import *
 from abjad.tools.abctools import AbjadObject
 from abjad.tools.componenttools.Component import Component
-from abjad.tools.contexttools._Context import _Context
+from abjad.tools.contexttools.Context import Context
 from abjad.tools.leaftools.Leaf import Leaf
 from abjad.tools.lilypondparsertools._GuileProxy._GuileProxy import _GuileProxy
 from abjad.tools.lilypondparsertools._LilyPondDuration._LilyPondDuration import _LilyPondDuration
@@ -535,7 +535,7 @@ class LilyPondParser(AbjadObject):
 
         # without voice separators
         if 1 == len(groups):
-            assert all([isinstance(x, _Context) for x in groups[0]])
+            assert all([isinstance(x, Context) for x in groups[0]])
             container.extend(groups[0])
         # with voice separators
         else:

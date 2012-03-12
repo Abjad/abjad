@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_ContextMark___repr___01():
+def testContextMark___repr___01():
     '''Context mark returns a nonempty string repr.
     '''
 

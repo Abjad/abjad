@@ -1,7 +1,7 @@
-from abjad.tools.contexttools._Context import _Context
+from abjad.tools.contexttools.Context import Context
 
 
-class Staff(_Context):
+class Staff(Context):
     r'''Abjad model of a staff:
 
     ::
@@ -21,6 +21,6 @@ class Staff(_Context):
     __slots__ = ()
 
     def __init__(self, music = None, **kwargs):
-        _Context.__init__(self, music)
+        Context.__init__(self, music)
         self.context = 'Staff'
         self._initialize_keyword_values(**kwargs)

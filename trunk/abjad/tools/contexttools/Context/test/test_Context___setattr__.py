@@ -1,12 +1,12 @@
 from abjad import *
-from abjad.tools.contexttools._Context import _Context
+from abjad.tools.contexttools.Context import Context
 import py.test
 
 
-def test_Context___setattr___01():
+def testContext___setattr___01():
     '''Slots constrain context attributes.
     '''
 
-    context = _Context([])
+    context = Context([])
 
     assert py.test.raises(AttributeError, "context.foo = 'bar'")

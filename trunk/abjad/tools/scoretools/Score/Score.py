@@ -1,7 +1,7 @@
-from abjad.tools.contexttools._Context import _Context
+from abjad.tools.contexttools.Context import Context
 
 
-class Score(_Context):
+class Score(Context):
     r'''Abjad model of a score:
 
     ::
@@ -31,7 +31,7 @@ class Score(_Context):
     __slots__ = ()
 
     def __init__(self, music = None, **kwargs):
-        _Context.__init__(self, music)
+        Context.__init__(self, music)
         self.context = 'Score'
         self.is_parallel = True
         self._initialize_keyword_values(**kwargs)

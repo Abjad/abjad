@@ -17,7 +17,7 @@ def profile_expr(expr, sort_by = 'cum', num_lines = 12, strip_dirs = True):
                 1    0.000    0.000    0.003    0.003 make_repeated_notes.py:5(make_repeated_notes)
                 1    0.001    0.001    0.003    0.003 make_notes.py:12(make_notes)
                 1    0.000    0.000    0.003    0.003 Staff.py:21(__init__)
-                1    0.000    0.000    0.003    0.003 _Context.py:11(__init__)
+                1    0.000    0.000    0.003    0.003 Context.py:11(__init__)
                 1    0.000    0.000    0.003    0.003 Container.py:23(__init__)
                 1    0.000    0.000    0.003    0.003 Container.py:271(_initialize_music)
                 2    0.000    0.000    0.002    0.001 all_are_thread_contiguous_components.py:9(all_are_thread_contiguous_components)

@@ -1,7 +1,7 @@
-from abjad.tools.contexttools._Context import _Context
+from abjad.tools.contexttools.Context import Context
 
 
-class Voice(_Context):
+class Voice(Context):
     r'''Abjad model of a voice:
 
     ::
@@ -21,6 +21,6 @@ class Voice(_Context):
     __slots__ = ()
 
     def __init__(self, music = None, **kwargs):
-        _Context.__init__(self, music)
+        Context.__init__(self, music)
         self.context = 'Voice'
         self._initialize_keyword_values(**kwargs)
