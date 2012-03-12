@@ -1,10 +1,10 @@
-from abjad.tools.abctools import ImmutableAbjadObject
+from abjad.tools.abctools import AbjadObject
 from abjad.tools import sequencetools
 from abjad.tools.pitchtools.MelodicDiatonicInterval import MelodicDiatonicInterval
 from abjad.tools.pitchtools.MelodicDiatonicIntervalSegment import MelodicDiatonicIntervalSegment
 
 
-class Mode(ImmutableAbjadObject):
+class Mode(AbjadObject):
     '''.. versionadded:: 2.0
 
     Diatonic mode. Can be extended for nondiatonic mode.
@@ -12,12 +12,12 @@ class Mode(ImmutableAbjadObject):
     Modes with different ascending and descending forms not yet implemented.
     '''
 
+    __slots__ = ('_melodic_diatonic_interval_segment', '_mode_name')
+
     def __init__(self, arg):
         if isinstance(arg, str):
-            #self._init_with_mode_name(arg)
             mode_name = arg
         elif isinstance(arg, Mode):
-            #self._init_with_mode_name(arg.mode_name)
             mode_name = arg.mode_name
         else:
             raise TypeError('%s must be mode instance or mode name.' % arg)

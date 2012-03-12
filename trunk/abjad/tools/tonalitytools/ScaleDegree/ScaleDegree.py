@@ -1,14 +1,16 @@
-from abjad.tools.abctools import ImmutableAbjadObject
+from abjad.tools.abctools import AbjadObject
 from abjad.tools.pitchtools import Accidental
 import re
 
 
-class ScaleDegree(ImmutableAbjadObject):
+class ScaleDegree(AbjadObject):
     '''.. versionadded:: 2.0
 
     Abjad model of diatonic scale degrees 1, 2, 3, 4, 5, 6, 7 and
     also chromatic alterations including flat-2, flat-3, flat-6, etc.
     '''
+
+    __slots__ = ('_accidental', '_number')
 
     def __init__(self, *args):
         if len(args) == 1 and isinstance(args[0], type(self)):

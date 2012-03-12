@@ -1,9 +1,9 @@
-from abjad.tools.abctools import ImmutableAbjadObject
+from abjad.tools.abctools import AbjadObject
 from abjad.tools.tonalitytools.ScaleDegree import ScaleDegree
 import re
 
 
-class SuspensionIndicator(ImmutableAbjadObject):
+class SuspensionIndicator(AbjadObject):
     '''.. versionadded:: 2.0
 
     Indicator of 9-8, 7-6, 4-3, 2-1 and other types of
@@ -11,6 +11,8 @@ class SuspensionIndicator(ImmutableAbjadObject):
 
     Value object that can not be changed after instantiation.
     '''
+
+    __slots__ = ('_start', '_stop')
 
     def __init__(self, *args):
         if len(args) == 0:

@@ -1,4 +1,4 @@
-from abjad.tools.abctools import ImmutableAbjadObject
+from abjad.tools.abctools import AbjadObject
 from abjad.tools import markuptools
 from abjad.tools.tonalitytools.ExtentIndicator import ExtentIndicator
 from abjad.tools.tonalitytools.InversionIndicator import InversionIndicator
@@ -8,14 +8,16 @@ from abjad.tools.tonalitytools.SuspensionIndicator import SuspensionIndicator
 import re
 
 
-class TonalFunction(ImmutableAbjadObject):
+class TonalFunction(AbjadObject):
     '''.. versionadded:: 2.0
 
     Abjad model of functions in tonal harmony: I, I6, I64, V, V7, V43, V42,
     bII, bII6, etc., also i, i6, i64, v, v7, etc.
 
-    Value object that can not be cahnged after instantiation.
+    Value object that can not be changed after instantiation.
     '''
+
+    __slots__ = ('_extent', '_inversion', '_quality', '_scale_degree', '_suspension')
 
     def __init__(self, *args):
         if len(args) == 1 and isinstance(args[0], type(self)):

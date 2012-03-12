@@ -1,13 +1,13 @@
-from abjad.tools.abctools import ImmutableAbjadObject
 from abjad.tools import componenttools
 from abjad.tools import durationtools
+from abjad.tools.abctools import AbjadObject
 from abjad.tools.chordtools.Chord import Chord
 from abjad.tools.leaftools.Leaf import Leaf
 from abjad.tools.measuretools.Measure import Measure
 from abjad.tools.notetools.Note import Note
 
 
-class VerticalMoment(ImmutableAbjadObject):
+class VerticalMoment(AbjadObject):
     r'''.. versionadded: 1.1.2
 
     Everything happening at a single moment in musical time::
@@ -53,22 +53,20 @@ class VerticalMoment(ImmutableAbjadObject):
 
     Vertical moments are immutable.
     '''
+    
+    __slots__ = ('_components', '_governors', '_prolated_offset')
 
     def __init__(self, prolated_offset, governors, components):
         prolated_offset = durationtools.Offset(prolated_offset)
         assert isinstance(governors, tuple)
         assert isinstance(components, tuple)
-        #self._prolated_offset = prolated_offset
         object.__setattr__(self, '_prolated_offset', prolated_offset)
-        #self._governors = tuple(governors)
         object.__setattr__(self, '_governors', tuple(governors))
         components = list(components)
         components.sort(
             lambda x, y: cmp(
-            #x.score.index, y.score.index))
             componenttools.component_to_score_index(x),
             componenttools.component_to_score_index(y)))
-        #self._components = tuple(components)
         object.__setattr__(self, '_components', tuple(components))
 
     ### OVERLOADS ###

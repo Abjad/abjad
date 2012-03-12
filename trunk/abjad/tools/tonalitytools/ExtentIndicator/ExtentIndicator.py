@@ -1,7 +1,7 @@
-from abjad.tools.abctools import ImmutableAbjadObject
+from abjad.tools.abctools import AbjadObject
 
 
-class ExtentIndicator(ImmutableAbjadObject):
+class ExtentIndicator(AbjadObject):
     '''.. versionadded:: 2.0
 
     Indicator of chord extent, such as triad, seventh chord, ninth chord,
@@ -10,14 +10,14 @@ class ExtentIndicator(ImmutableAbjadObject):
     Value object that can not be changed after instantiation.
     '''
 
+    __slots__ = ('_number', )
+
     def __init__(self, arg):
         if isinstance(arg, (int, long)):
             if arg not in self._acceptable_number:
                 raise ValueError('can not initialize extent indicator: %s' % arg)
-            #self._number = arg
             number = arg
         elif isinstance(arg, type(self)):
-            #self._number = arg.number
             number = arg.number
         object.__setattr__(self, '_number', number)
 

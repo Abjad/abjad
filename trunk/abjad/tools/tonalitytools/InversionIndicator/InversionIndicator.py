@@ -1,7 +1,7 @@
-from abjad.tools.abctools import ImmutableAbjadObject
+from abjad.tools.abctools import AbjadObject
 
 
-class InversionIndicator(ImmutableAbjadObject):
+class InversionIndicator(AbjadObject):
     '''.. versionadded:: 2.0
 
     Indicator of the inversion of tertian chords: 5, 63, 64 and
@@ -11,13 +11,13 @@ class InversionIndicator(ImmutableAbjadObject):
     Value object that can not be changed once initialized.
     '''
 
+    __slots__ = ('_number')
+
     def __init__(self, arg = 0):
         if isinstance(arg, (int, long)):
-            #self._number = arg
             number = arg
         elif isinstance(arg, str):
             number = self._inversion_name_to_inversion_number[arg]
-            #self._number = number
         else:
             raise ValueError('can not initialize inversion indicator.')
         object.__setattr__(self, '_number', number)
