@@ -10,6 +10,8 @@ class SchemeColor(Scheme):
     Scheme colors are immutable.
     '''
 
+    __slots__ = ()
+
     ### PRIVATE ATTRIBUTES ###
 
     @property

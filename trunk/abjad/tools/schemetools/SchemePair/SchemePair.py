@@ -12,6 +12,8 @@ class SchemePair(Scheme):
     Scheme pairs are immutable.
     '''
 
+    __slots__ = ()
+
     def __new__(klass, *args, **kwargs):
         if len(args) == 1 and isinstance(args[0], SchemePair):
             args = args[0]._value
@@ -21,10 +23,7 @@ class SchemePair(Scheme):
             args = args
         else:
             raise TypeError('can not initialize Scheme pair from "%s".' % str(args))
-
         self = Scheme.__new__(klass, *args, **kwargs)
-        #self = object.__new__(klass)
-        #object.__setattr__(self, '_value', args)
         return self
 
     ### PRIVATE ATTRIBUTES ###

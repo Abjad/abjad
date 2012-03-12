@@ -14,6 +14,8 @@ class SchemeAssociativeList(Scheme):
     Scheme associative lists are immutable.
     '''
 
+    __slots__ = ()
+
     def __new__(klass, *args, **kwargs):
         args_as_pairs = []
         for arg in args:

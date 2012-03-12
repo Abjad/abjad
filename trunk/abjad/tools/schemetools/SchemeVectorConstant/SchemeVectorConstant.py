@@ -14,5 +14,7 @@ class SchemeVectorConstant(Scheme):
     Scheme vector constants are immutable.
     '''
 
+    __slots__ = ()
+
     def __new__(klass, *args):
         return Scheme.__new__(klass, *args, **{'quoting': "'#"})

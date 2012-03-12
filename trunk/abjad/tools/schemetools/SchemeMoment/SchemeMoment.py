@@ -13,6 +13,8 @@ class SchemeMoment(Scheme):
     Scheme moments are immutable.
     '''
 
+    __slots__ = ()
+
     def __new__(klass, *args, **kwargs):
         if len(args) == 1 and isinstance(args[0], (Fraction, int, long)):
             args = Fraction(args[0])
