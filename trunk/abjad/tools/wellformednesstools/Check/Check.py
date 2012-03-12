@@ -1,9 +1,9 @@
 from abc import ABCMeta
-from abjad.tools.abctools import NonsortingIdEqualityAbjadObject
+from abjad.tools.abctools import AbjadObject
 import re
 
 
-class Check(NonsortingIdEqualityAbjadObject):
+class Check(AbjadObject):
     
     ### CLASS ATTRIBUTES ###
 

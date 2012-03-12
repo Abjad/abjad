@@ -28,28 +28,28 @@ class AbjadObject(object):
         return id(self) == id(arg)
 
     def __ge__(self, arg):
-        '''Nonsorting objects do not implement this method.
+        '''Abjad objects by default do not implement this method.
         
         Raise exception.
         '''
         raise NotImplementedError('Greater-equal not implemented on "{!r}".'.format(arg))
 
     def __gt__(self, arg):
-        '''Nonsorting objects do not implement this method.
+        '''Abjad objects by default do not implement this method.
     
         Raise exception
         '''
         raise NotImplementedError('Greater-than not implemented on "{!r}".'.format(arg))
 
     def __le__(self, arg):
-        '''Nonsorting objects do not implement this method.
+        '''Abjad objects by default do not implement this method.
     
         Raise exception.
         '''
         raise NotImplementedError('Less-equal not implemented on "{!r}".'.format(arg))
 
     def __lt__(self, arg):
-        '''Nonsorting objects do not implement this method.
+        '''Abjad objects by default do not implement this method.
 
         Raise exception.
         '''

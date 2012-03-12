@@ -1,13 +1,13 @@
 from abjad.tools.lilypondproxytools import LilyPondContextSettingComponentPlugIn
 from abjad.tools.lilypondproxytools import LilyPondGrobOverrideComponentPlugIn
-from abjad.tools.abctools import NonsortingIdEqualityAbjadObject
+from abjad.tools.abctools import AbjadObject
 from abjad.tools import durationtools
 from abjad.tools.spannertools.Spanner._SpannerFormatInterface import _SpannerFormatInterface
 from abjad.tools.spannertools.Spanner._SpannerOffsetInterface import _SpannerOffsetInterface
 import copy
 
 
-class Spanner(NonsortingIdEqualityAbjadObject):
+class Spanner(AbjadObject):
     '''Any type of notation object that stretches horizontally
     and encompasses some number of notes, rest, chords, tuplets,
     measures, voices or other Abjad components.

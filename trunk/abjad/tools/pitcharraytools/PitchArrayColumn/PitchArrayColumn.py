@@ -1,9 +1,9 @@
-from abjad.tools.abctools import NonsortingIdEqualityAbjadObject
+from abjad.tools.abctools import AbjadObject
 from abjad.tools import sequencetools
 from abjad.tools.pitcharraytools.PitchArrayCell.PitchArrayCell import PitchArrayCell
 
 
-class PitchArrayColumn(NonsortingIdEqualityAbjadObject):
+class PitchArrayColumn(AbjadObject):
     '''.. versionadded:: 2.0
 
     Column in a pitch array::

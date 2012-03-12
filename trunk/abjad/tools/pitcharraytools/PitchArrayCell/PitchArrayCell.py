@@ -1,8 +1,8 @@
-from abjad.tools.abctools import NonsortingIdEqualityAbjadObject
+from abjad.tools.abctools import AbjadObject
 from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
 
 
-class PitchArrayCell(NonsortingIdEqualityAbjadObject):
+class PitchArrayCell(AbjadObject):
     '''.. versionadded 1.1.2
 
     One cell in a pitch array. ::

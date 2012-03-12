@@ -1,8 +1,8 @@
-from abjad.tools.abctools import NonsortingIdEqualityAbjadObject
+from abjad.tools.abctools import AbjadObject
 from abjad.tools import durationtools
 
 
-class _SpannerOffsetInterface(NonsortingIdEqualityAbjadObject):
+class _SpannerOffsetInterface(AbjadObject):
 
     def __init__(self, client):
         self._client = client

@@ -1,8 +1,7 @@
-from abjad.tools.abctools import ImmutableAbjadObject
-from abjad.tools.abctools import NonsortingIdEqualityAbjadObject
+from abjad.tools.abctools import AbjadObject
 
 
-class Accidental(NonsortingIdEqualityAbjadObject, ImmutableAbjadObject):
+class Accidental(AbjadObject):
     '''.. versionadded:: 2.0
 
     Abjad model of the accidental:

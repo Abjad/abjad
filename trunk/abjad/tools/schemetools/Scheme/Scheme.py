@@ -1,8 +1,8 @@
 from abjad.tools.abctools import ImmutableAbjadObject
-from abjad.tools.abctools import NonsortingIdEqualityAbjadObject
+from abjad.tools.abctools import AbjadObject
 
 
-class Scheme(ImmutableAbjadObject, NonsortingIdEqualityAbjadObject):
+class Scheme(ImmutableAbjadObject, AbjadObject):
     '''Abjad model of Scheme code::
 
         abjad> from abjad.tools.schemetools import Scheme

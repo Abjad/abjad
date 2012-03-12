@@ -10,7 +10,6 @@ from abjad.tools.quantizationtools.tempo_scaled_rational_to_milliseconds \
     import tempo_scaled_rational_to_milliseconds
 
 
-#class QGridSearchTree(ImmutableAbjadObject, ImmutableDictionary):
 class QGridSearchTree(ImmutableDictionary):
     '''A utility class for defining the permissible divisions of a collection
     of :py:class:`~abjad.tools.quantizationtools.QGrid` objects.

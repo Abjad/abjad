@@ -1,7 +1,7 @@
-from abjad.tools.abctools import NonsortingIdEqualityAbjadObject
+from abjad.tools.abctools import AbjadObject
 
 
-class _ContainmentSignature(NonsortingIdEqualityAbjadObject):
+class _ContainmentSignature(AbjadObject):
 
     def __init__(self):
         self._root = None

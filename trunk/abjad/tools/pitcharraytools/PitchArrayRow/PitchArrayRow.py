@@ -1,10 +1,10 @@
-from abjad.tools.abctools import NonsortingIdEqualityAbjadObject
+from abjad.tools.abctools import AbjadObject
 from abjad.tools.pitcharraytools.PitchArrayCell.PitchArrayCell import PitchArrayCell
 from abjad.tools.pitchtools.PitchRange.PitchRange import PitchRange
 import copy
 
 
-class PitchArrayRow(NonsortingIdEqualityAbjadObject):
+class PitchArrayRow(AbjadObject):
     '''.. versionadded:: 2.0
 
     One row in pitch array. ::
