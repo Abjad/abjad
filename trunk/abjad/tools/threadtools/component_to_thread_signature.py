@@ -1,4 +1,3 @@
-#from abjad.interfaces.ParentageInterface.containment import _ContainmentSignature
 from abjad.tools.componenttools._ContainmentSignature import _ContainmentSignature
 
 
@@ -15,14 +14,14 @@ def component_to_thread_signature(component):
     signature = _ContainmentSignature()
     signature._self = component._ID
     for component in componenttools.get_improper_parentage_of_component(component):
-        if isinstance(component, Voice) and not signature._voice:
+        if isinstance(component, Voice) and signature._voice is None:
             signature._voice = component._ID
-        elif isinstance(component, Staff) and not signature._staff:
+        elif isinstance(component, Staff) and signature._staff is None:
             numeric_id = '%s-%s' % (component.__class__.__name__, id(component))
             signature._staff = numeric_id
-        elif isinstance(component, StaffGroup) and not signature._staffgroup:
+        elif isinstance(component, StaffGroup) and signature._staffgroup is None:
             signature._staffgroup = component._ID
-        elif isinstance(component, Score) and not signature._score:
+        elif isinstance(component, Score) and signature._score is None:
             signature._score = component._ID
     else:
         '''Root components must be manifestly equal to compare True.'''

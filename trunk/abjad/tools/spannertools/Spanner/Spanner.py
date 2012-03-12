@@ -186,9 +186,11 @@ class Spanner(AbjadObject):
         from abjad.tools.componenttools.Component import Component
         from abjad.tools import componenttools
         from abjad.tools import leaftools
-        components = components or []
+        #components = components or []
         if isinstance(components, Component):
             components = [components]
+        elif not components:
+            components = []
         # TODO: Author staff-level contiguity check in tools/check. #
         #         Include optional staff-level contiguity check here. #
         if self._contiguity_constraint == 'thread':

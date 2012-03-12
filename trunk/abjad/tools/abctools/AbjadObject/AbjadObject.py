@@ -62,7 +62,7 @@ class AbjadObject(object):
         '''
         return not self == arg
 
-    # TODO: should this be elimiated?
+    # TODO: this should be removed but will need to be tested carefully
     def __nonzero__(self):
         '''Defined equal to true.
 
