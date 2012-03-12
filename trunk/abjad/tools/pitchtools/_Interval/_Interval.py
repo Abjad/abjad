@@ -1,15 +1,15 @@
 from abc import ABCMeta
-from abjad.tools.abctools.ImmutableAbjadObject import ImmutableAbjadObject
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class _Interval(ImmutableAbjadObject):
+class _Interval(AbjadObject):
     '''.. versionadded:: 2.0
 
     Interval base class.
     '''
 
     __metaclass__ = ABCMeta
-    __slots__ = ()
+    __slots__ = ('_format_string', )
 
     ### OVERLOADS ###
 

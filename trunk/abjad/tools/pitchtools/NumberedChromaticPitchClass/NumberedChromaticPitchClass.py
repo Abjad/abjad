@@ -46,6 +46,11 @@ class NumberedChromaticPitchClass(_PitchClass):
             raise TypeError('must be melodic chromatic interval.')
         return type(self)(abs(self) + arg.number % 12)
 
+    def __copy__(self, *args):
+        return type(self)(self)
+
+    __deepcopy__ = __copy__
+
     def __float__(self):
         return float(self._chromatic_pitch_class_number)
 

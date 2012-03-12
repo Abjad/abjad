@@ -1,15 +1,15 @@
 from abc import ABCMeta
 from abjad.tools.abctools import AttributeEqualityAbjadObject
-from abjad.tools.abctools import ImmutableAbjadObject
 
 
-class _PitchClass(ImmutableAbjadObject, AttributeEqualityAbjadObject):
+class _PitchClass(AttributeEqualityAbjadObject):
     '''.. versionadded:: 2.0
 
     Pitch-class base class.
     '''
 
     __metaclass__ = ABCMeta
+    __slots__ = ()
 
     ### OVERLOADS ###
 

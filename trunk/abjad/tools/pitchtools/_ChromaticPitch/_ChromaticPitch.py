@@ -8,6 +8,6 @@ class _ChromaticPitch(_Pitch, _Chromatic):
 
     Chromatic pitch base class.
     '''
-    __metaclass__ = ABCMeta
 
-    pass
+    __metaclass__ = ABCMeta
+    __slots__ = ()

@@ -50,6 +50,11 @@ class MelodicDiatonicInterval(_DiatonicInterval, _MelodicInterval):
         return pitchtools.calculate_melodic_diatonic_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(
             dummy_pitch, new_pitch)
 
+    def __copy__(self, *args):
+        return type(self)(self.quality_string, self.number)
+
+    __deepcopy__ = __copy__
+
     def __mul__(self, arg):
         from abjad.tools import pitchtools
         if not isinstance(arg, (int, long)):

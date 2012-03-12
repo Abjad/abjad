@@ -8,7 +8,9 @@ class _DiatonicPitchClass(_PitchClass, _Diatonic):
 
     Diatonic pitch-class base class.
     '''
+
     __metaclass__ = ABCMeta
+    __slots__ = ()
 
     ### OVERLOADS ###
 

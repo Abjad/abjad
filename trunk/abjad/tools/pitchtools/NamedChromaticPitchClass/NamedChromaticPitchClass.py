@@ -53,8 +53,10 @@ class NamedChromaticPitchClass(_PitchClass):
         new = pitchtools.transpose_pitch_carrier_by_melodic_interval(dummy, mdi)
         return new.named_chromatic_pitch_class
 
-    def __copy__(self):
+    def __copy__(self, *args):
         return type(self)(self)
+
+    __deepcopy__ = __copy__
 
     def __float__(self):
         return float(self.numbered_chromatic_pitch_class)

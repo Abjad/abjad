@@ -13,7 +13,8 @@ class NumberedDiatonicPitchClass(_NumberedPitchClass, _DiatonicPitchClass):
     Numbered diatonic pitch-classes are immutable.
     '''
 
-    __slots__ = ('_diatonic_pitch_class_number', )
+    __slots__ = ('_comparison_attribute', '_diatonic_pitch_class_number', '_format_string',
+        '_number')
 
     def __new__(klass, arg):
         from abjad.tools import mathtools
