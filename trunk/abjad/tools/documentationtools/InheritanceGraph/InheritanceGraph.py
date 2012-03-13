@@ -31,11 +31,11 @@ class InheritanceGraph(ImmutableDictionary):
         (<class '__main__.D'>, ())
         (<class '__main__.E'>, ())
 
-    ``InheritanceGraph`` may be instantiated from or more instances, classes or
+    ``InheritanceGraph`` may be instantiated from one or more instances, classes or
     modules.  If instantiated from a module, all public classes in that module
     will be taken into the graph.
 
-    Return ``InheritanceGraph`` instance.
+    Returns ``InheritanceGraph`` instance.
     '''
 
     def __init__(self, *args):
