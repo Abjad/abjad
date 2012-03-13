@@ -12,7 +12,7 @@ class _MelodicInterval(_Interval):
     __metaclass__ = ABCMeta
     __slots__ = ()
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __abs__(self):
         from abjad.tools import pitchtools
@@ -44,7 +44,7 @@ class _MelodicInterval(_Interval):
         else:
             raise ValueError
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def direction_number(self):

@@ -29,7 +29,7 @@ class Container(Component):
         self._formatter = _ContainerFormatter(self)
         self._initialize_keyword_values(**kwargs)
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __add__(self, expr):
         '''Concatenate containers self and expr.
@@ -166,7 +166,7 @@ class Container(Component):
                     spanner._insert(index, component)
                     component._spanners.add(spanner)
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _compact_representation(self):
@@ -187,7 +187,7 @@ class Container(Component):
             #return ' '
             return ''
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def contents_duration(self):

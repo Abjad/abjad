@@ -11,7 +11,7 @@ class _Pitch(SortableAttributeEqualityAbjadObject):
     __metaclass__ = ABCMeta
     __slots__ = ('_format_string', )
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __abs__(self):
         raise NotImplementedError('TODO: all pitch-related classes must implement abs.')

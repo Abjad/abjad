@@ -14,7 +14,7 @@ class _ContainerFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
                 for i, contribution in enumerate(contributions):
                     contributions[i] = '\t' + contribution
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def slot_1(self):

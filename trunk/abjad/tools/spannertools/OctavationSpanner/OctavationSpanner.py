@@ -36,7 +36,7 @@ class OctavationSpanner(Spanner):
         self.start = start
         self.stop = stop
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @apply
     def start():

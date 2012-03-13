@@ -45,13 +45,13 @@ class BendAfter(Mark):
     def __str__(self):
         return r"- \bendAfter #'%s" % self.bend_amount
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _contents_repr_string(self):
         return '%s' % self.bend_amount
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def format(self):

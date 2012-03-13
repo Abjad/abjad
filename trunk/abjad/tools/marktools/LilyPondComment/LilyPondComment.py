@@ -53,7 +53,7 @@ class LilyPondComment(Mark):
         else:
             raise ValueError('Can not initialize LilyPond comment.')
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
         return type(self)(self._contents_string)
@@ -65,13 +65,13 @@ class LilyPondComment(Mark):
             return self._contents_string == arg._contents_string
         return False
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _contents_repr_string(self):
         return repr(self._contents_string)
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @apply
     def contents_string():

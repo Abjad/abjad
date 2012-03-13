@@ -194,7 +194,7 @@ class LilyPondParser(AbjadObject):
         return result
 
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
 
     @property

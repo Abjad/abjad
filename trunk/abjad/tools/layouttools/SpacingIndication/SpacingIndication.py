@@ -26,7 +26,7 @@ class SpacingIndication(AbjadObject):
         object.__setattr__(self, '_tempo_indication', tempo_indication)
         object.__setattr__(self, '_proportional_notation_duration', proportional_notation_duration)
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
         '''Spacing indications compare equal when
@@ -46,7 +46,7 @@ class SpacingIndication(AbjadObject):
         return '%s(%s, %s)' % (type(self).__name__,
             self.tempo_indication, self.proportional_notation_duration)
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def normalized_spacing_duration(self):

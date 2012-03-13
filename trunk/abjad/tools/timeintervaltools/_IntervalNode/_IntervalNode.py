@@ -23,7 +23,7 @@ class _IntervalNode(_RedBlackNode):
         else:
             raise ValueError('_IntervalNode only accepts single or multiple instances of TimeInterval.')
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __repr__(self):
         return '%s(%s, %r)' % (type(self).__name__, self.key, self.payload)

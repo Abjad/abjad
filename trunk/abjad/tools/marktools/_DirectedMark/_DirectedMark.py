@@ -14,7 +14,7 @@ class _DirectedMark(Mark):
         else:
             self.direction = None
     
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @apply
     def direction():

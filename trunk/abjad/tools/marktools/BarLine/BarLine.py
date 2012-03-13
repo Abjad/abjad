@@ -41,13 +41,13 @@ class BarLine(LilyPondCommandMark):
     def __copy__(self, *args):
         return type(self)(self.bar_line_string, format_slot=self.format_slot)
 
-    ## PRIVATE ATTRIBUTES ##
+    ## PRIVATE PROPERTIES ##
 
     @property
     def _contents_repr_string(self):
         return repr(self.bar_line_string)
 
-    ## PUBLIC ATTRIBUTES ##
+    ## PUBLIC PROPERTIES ##
 
     @apply
     def bar_line_string():

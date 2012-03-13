@@ -41,7 +41,7 @@ class NamedChromaticPitchClass(_PitchClass):
         object.__setattr__(self, '_comparison_attribute', chromatic_pitch_class_name)
         return self
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __abs__(self):
         return abs(self.numbered_chromatic_pitch_class)
@@ -81,7 +81,7 @@ class NamedChromaticPitchClass(_PitchClass):
         dic = pitchtools.InversionEquivalentDiatonicIntervalClass(mdi.quality_string, mdi.number)
         return dic
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _accidental(self):
@@ -128,7 +128,7 @@ class NamedChromaticPitchClass(_PitchClass):
             'a', 'af', 'as', 'aqf', 'aqs', 'atqf', 'atqs', 'aff', 'ass',
             'b', 'bf', 'bs', 'bqf', 'bqs', 'btqf', 'btqs', 'bff', 'bss')
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def numbered_chromatic_pitch_class(self):

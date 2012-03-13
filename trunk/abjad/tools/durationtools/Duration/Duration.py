@@ -37,7 +37,7 @@ class Duration(Fraction, AbjadObject):
                     raise TypeError
         return self
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __abs__(self, *args):
         return type(self)(Fraction.__abs__(self, *args))

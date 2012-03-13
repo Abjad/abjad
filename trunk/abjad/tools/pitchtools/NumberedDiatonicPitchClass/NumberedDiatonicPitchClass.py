@@ -35,7 +35,7 @@ class NumberedDiatonicPitchClass(_NumberedPitchClass, _DiatonicPitchClass):
         object.__setattr__(self, '_format_string', diatonic_pitch_class_number)
         return self
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __repr__(self):
         return '%s(%s)' % (type(self).__name__, str(self))

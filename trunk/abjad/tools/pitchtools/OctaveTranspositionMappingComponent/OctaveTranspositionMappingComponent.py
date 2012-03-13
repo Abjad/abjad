@@ -32,7 +32,7 @@ class OctaveTranspositionMappingComponent(AbjadObject):
         self.source_pitch_range = source_pitch_range
         self.target_octave_start_pitch = target_octave_start_pitch
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __eq__(self, other):
         if isinstance(other, type(self)):
@@ -47,7 +47,7 @@ class OctaveTranspositionMappingComponent(AbjadObject):
     def __repr__(self):
         return '{}{}'.format(self._class_name, self._input_argument_token)
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _input_argument_token(self):

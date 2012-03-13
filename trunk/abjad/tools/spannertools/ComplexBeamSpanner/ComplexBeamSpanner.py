@@ -48,7 +48,7 @@ class ComplexBeamSpanner(BeamSpanner):
         self._format = _ComplexBeamSpannerFormatInterface(self)
         self.lone = lone
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @apply
     def lone():

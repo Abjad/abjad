@@ -44,7 +44,7 @@ class ResidueClass(_BaseResidueClass):
         else:
             raise ValueError('unknown init arguments.')
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __eq__(self, exp):
         if isinstance(exp, ResidueClass):
@@ -106,7 +106,7 @@ class ResidueClass(_BaseResidueClass):
         object.__setattr__(self, '_modulo', rc.modulo) # period
         object.__setattr__(self, '_residue', rc.residue) # phase
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def modulo(self):

@@ -42,7 +42,7 @@ class PitchArrayColumn(AbjadObject):
         self._parent_array = None
         self.extend(cells)
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __eq__(self, arg):
         if isinstance(arg, PitchArrayColumn):
@@ -66,7 +66,7 @@ class PitchArrayColumn(AbjadObject):
         result = '\n'.join(result)
         return result
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _column_format_max_string_width(self):
@@ -145,7 +145,7 @@ class PitchArrayColumn(AbjadObject):
         return result
 
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def cell_tokens(self):

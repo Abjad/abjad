@@ -12,7 +12,7 @@ class _RedBlackTree(AbjadObject):
         self._sentinel.parent = self._sentinel
         self._root = self._sentinel
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __repr__(self):
         return '%s()' % (type(self).__name__)

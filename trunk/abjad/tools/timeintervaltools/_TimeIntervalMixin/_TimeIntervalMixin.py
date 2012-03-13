@@ -10,7 +10,7 @@ class _TimeIntervalMixin(AbjadObject):
 
     __slots__ = ('_start', '_stop')
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def center(self):

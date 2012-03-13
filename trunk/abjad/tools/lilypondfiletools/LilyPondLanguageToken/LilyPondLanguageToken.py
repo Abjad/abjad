@@ -14,12 +14,12 @@ class LilyPondLanguageToken(AbjadObject):
     Return LilyPond language token.
     '''
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __repr__(self):
         return '%s(%s)' % (type(self).__name__, self.format)
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def format(self):

@@ -81,7 +81,7 @@ class PitchRange(AbjadObject):
         pitch_range_name_markup = kwargs.get('pitch_range_name_markup')
         object.__setattr__(self, '_pitch_range_name_markup', pitch_range_name_markup)
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __contains__(self, arg):
         from abjad.tools import containertools
@@ -183,7 +183,7 @@ class PitchRange(AbjadObject):
         ']': 'inclusive',
         ')': 'exclusive'}
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _close_bracket_string(self):
@@ -265,7 +265,7 @@ class PitchRange(AbjadObject):
         type(self).__init__(self, start_pair, stop_pair)
 
     
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def one_line_named_chromatic_pitch_repr(self):

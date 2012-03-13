@@ -10,7 +10,7 @@ class _MelodicIntervalClass(_IntervalClass, _Melodic):
     '''
     __metaclass__ = ABCMeta
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _format_string(self):

@@ -6,7 +6,7 @@ class _NonattributedBlock(list):
     '''
     __metaclass__ = ABCMeta
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __repr__(self):
         if not len(self):
@@ -14,7 +14,7 @@ class _NonattributedBlock(list):
         else:
             return '%s(%s)' % (type(self).__name__, len(self))
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _format_pieces(self):
@@ -32,7 +32,7 @@ class _NonattributedBlock(list):
             result.append('}')
         return result
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def format(self):

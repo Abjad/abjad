@@ -37,7 +37,7 @@ class DynamicMeasure(Measure):
         self._suppress_meter = False
         self._update_time_signature()
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __getnewargs__(self):
         return ()
@@ -56,7 +56,7 @@ class DynamicMeasure(Measure):
         meter.attach(self)
         self._time_signature_is_current = True
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @apply
     def denominator():

@@ -9,7 +9,7 @@ class _NavigationInterface(_Interface):
     def __init__(self, client):
         self._client = client
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _contemporaneous_start_components(self):

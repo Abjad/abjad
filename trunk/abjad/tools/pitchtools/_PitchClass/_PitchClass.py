@@ -11,7 +11,7 @@ class _PitchClass(AttributeEqualityAbjadObject):
     __metaclass__ = ABCMeta
     __slots__ = ()
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __hash__(self):
         return hash(repr(self))

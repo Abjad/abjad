@@ -50,7 +50,7 @@ class Scheme(AbjadObject):
         object.__setattr__(self, '_value', args)
         return self
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __eq__(self, other):
         if type(self) == type(other):
@@ -69,13 +69,13 @@ class Scheme(AbjadObject):
             return self._quoting + self._formatted_value
         return self._formatted_value
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _formatted_value(self):
         return Scheme._format_value(self._value)
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def format(self):

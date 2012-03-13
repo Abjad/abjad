@@ -62,7 +62,7 @@ class MarkupCommand(AbjadObject):
     def __str__(self):
         return self.format
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _format_pieces(self):
@@ -100,7 +100,7 @@ class MarkupCommand(AbjadObject):
             string = string[:-1] + '"'
         return string
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def args(self):

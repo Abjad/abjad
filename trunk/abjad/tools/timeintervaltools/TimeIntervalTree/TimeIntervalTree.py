@@ -41,7 +41,7 @@ class TimeIntervalTree(_RedBlackTree, _TimeIntervalAggregateMixin):
         self._root = self._sentinel
         self._insert(intervals)
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __contains__(self, item):
         if item in self._inorder:
@@ -131,7 +131,7 @@ class TimeIntervalTree(_RedBlackTree, _TimeIntervalAggregateMixin):
                 self._insert_node(node)
         self._update_stop_extrema()
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def bounds(self):

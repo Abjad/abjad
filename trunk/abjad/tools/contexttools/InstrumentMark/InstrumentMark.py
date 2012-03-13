@@ -48,7 +48,7 @@ class InstrumentMark(ContextMark):
         if short_instrument_name_markup is None:
             self.short_instrument_name_markup = short_instrument_name
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
         return type(self)(self._instrument_name_markup, self._short_instrument_name_markup,
@@ -64,7 +64,7 @@ class InstrumentMark(ContextMark):
     def __hash__(self):
         return hash((type(self).__name__, self.instrument_name_markup, self.short_instrument_name_markup))
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _contents_repr_string(self):
@@ -88,7 +88,7 @@ class InstrumentMark(ContextMark):
     def _target_context_name(self):
         return self.target_context.__name__
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def default_instrument_name(self):

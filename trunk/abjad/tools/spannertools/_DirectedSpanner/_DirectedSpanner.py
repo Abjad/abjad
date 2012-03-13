@@ -10,7 +10,7 @@ class _DirectedSpanner(Spanner):
         Spanner.__init__(self, components)
         self.direction = direction
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @apply
     def direction():

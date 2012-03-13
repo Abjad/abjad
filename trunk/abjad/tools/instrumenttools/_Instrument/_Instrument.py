@@ -26,7 +26,7 @@ class _Instrument(contexttools.InstrumentMark):
     def _copy_primary_clefs_to_all_clefs(self):
         self.all_clefs = contexttools.ClefMarkInventory(self.primary_clefs)
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @apply
     def all_clefs():

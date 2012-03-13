@@ -42,12 +42,12 @@ class InversionEquivalentChromaticIntervalClassVector(_Vector):
         else:
             raise ValueError('can not initiailize vector.')
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __repr__(self):
         return '%s(%s)' % (type(self).__name__, self._format_string)
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _format_string(self):

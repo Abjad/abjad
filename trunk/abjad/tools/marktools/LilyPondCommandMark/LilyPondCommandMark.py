@@ -55,7 +55,7 @@ class LilyPondCommandMark(Mark):
         else:
             raise ValueError('Can not initialize LilyPond command mark.')
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
         return type(self)(self._command_name)
@@ -67,13 +67,13 @@ class LilyPondCommandMark(Mark):
             return self._command_name == arg._command_name
         return False
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _contents_repr_string(self):
         return repr(self.command_name)
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @apply
     def command_name():

@@ -6,13 +6,13 @@ class _SpannerFormatInterface(AbjadObject):
     Model format interface for all Abjad spanners.
     '''
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __init__(self, spanner):
         '''Bind to spanner client.'''
         self._spanner = spanner
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def spanner(self):

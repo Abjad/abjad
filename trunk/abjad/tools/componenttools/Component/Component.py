@@ -11,6 +11,9 @@ import fractions
 
 
 class Component(AbjadObject):
+
+    ### CLASS ATTRIBUTES ###
+
     __metaclass__ = ABCMeta
 
     __slots__ = ('_duration', '_is_forbidden_to_update', '_marks_are_current',
@@ -19,6 +22,8 @@ class Component(AbjadObject):
         '_offset', '_offset_values_in_seconds_are_current', '_override', '_parentage',
         '_prolated_offset_values_are_current', '_set', '_spanners',
         'lilypond_file', )
+
+    ### INITIALIZER ###
 
     def __init__(self):
         self._is_forbidden_to_update = False
@@ -32,7 +37,7 @@ class Component(AbjadObject):
         self._prolated_offset_values_are_current = False
         self._spanners = set([])
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
         from abjad.tools import marktools
@@ -56,7 +61,7 @@ class Component(AbjadObject):
     def __rmul__(self, n):
         return self * n
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _ID(self):
@@ -80,7 +85,7 @@ class Component(AbjadObject):
             parent = parent._parentage.parent
         return result
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def format(self):
@@ -226,7 +231,7 @@ class Component(AbjadObject):
             component._offset._update_prolated_offset_values_of_component()
             component._prolated_offset_values_are_current = True
 
-    # PRIVATE UPDATE METHODS #
+    ### PRIVATE UPDATE METHODS ###
 
     def _allow_component_update(self):
         self._is_forbidden_to_update = False

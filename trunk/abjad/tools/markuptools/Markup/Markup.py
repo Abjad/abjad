@@ -87,7 +87,7 @@ class Markup(_DirectedMark):
         self._style_string = style_string
         self._format_slot = 'right'
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     _style_strings = ('backslash', 'scheme')
 
@@ -95,7 +95,7 @@ class Markup(_DirectedMark):
     def _format_pieces(self):
         return [r'\markup { %s }' % self.contents_string]
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
         return type(self)(self._contents_string,
@@ -125,7 +125,7 @@ class Markup(_DirectedMark):
     def __str__(self):
         return self.format
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def contents_string(self):

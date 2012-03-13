@@ -10,7 +10,7 @@ class _ChromaticIntervalClass(_IntervalClass, _Chromatic):
     '''
     __metaclass__ = ABCMeta
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __abs__(self):
         return type(self)(abs(self._number))

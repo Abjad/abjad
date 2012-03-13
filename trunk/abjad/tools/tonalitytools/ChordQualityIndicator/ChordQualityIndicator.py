@@ -29,12 +29,12 @@ class ChordQualityIndicator(HarmonicDiatonicIntervalSegment):
         tuple.__setattr__(new, '_quality_string', quality_string)
         return new
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __repr__(self):
         return '%s(%s)' % (self._title_case_name, self._format_string)
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _acceptable_ninth_qualities(self):
@@ -144,7 +144,7 @@ class ChordQualityIndicator(HarmonicDiatonicIntervalSegment):
 #      else:
 #         raise ValueError('unknown inversion indicator: %s' % inversion)
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def cardinality(self):

@@ -20,7 +20,7 @@ class Performer(AbjadObject):
         self.name = name
         self.instruments = instruments
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __eq__(self, other):
         if isinstance(other, type(self)):
@@ -38,7 +38,7 @@ class Performer(AbjadObject):
     def __repr__(self):
         return self._repr_helper(include_tools_package=False)
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _one_line_menuing_summary(self):
@@ -77,7 +77,7 @@ class Performer(AbjadObject):
         else:
             return '{}({})'.format(type(self).__name__, values)
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def instrument_count(self):

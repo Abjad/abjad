@@ -34,7 +34,7 @@ class NumberedChromaticPitchClass(_PitchClass):
         object.__setattr__(self, '_comparison_attribute', number)
         return self
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __abs__(self):
         return self._chromatic_pitch_class_number

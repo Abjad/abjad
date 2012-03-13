@@ -30,7 +30,7 @@ class InstrumentationSpecifier(AbjadObject):
     def __init__(self, performers=None):
         self.performers = performers
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
     
     def __eq__(self, other):
         if isinstance(other, type(self)):
@@ -46,7 +46,7 @@ class InstrumentationSpecifier(AbjadObject):
     def __repr__(self):
         return self._repr_helper()
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _tools_package_qualified_repr(self):
@@ -82,7 +82,7 @@ class InstrumentationSpecifier(AbjadObject):
         else:
             return '{}({!r})'.format(class_name, self.performers)
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def instrument_count(self):

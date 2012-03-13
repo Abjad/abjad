@@ -46,7 +46,7 @@ class  NumberedChromaticPitchClassSet(_PitchClassSet):
                 pcs = []
         return frozenset.__new__(klass, pcs)
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):
@@ -69,7 +69,7 @@ class  NumberedChromaticPitchClassSet(_PitchClassSet):
     def __str__(self):
         return '{%s}' % self._format_string
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _format_string(self):
@@ -77,7 +77,7 @@ class  NumberedChromaticPitchClassSet(_PitchClassSet):
         result.sort(lambda x, y: cmp(abs(x), abs(y)))
         return ', '.join([str(x) for x in result])
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def inversion_equivalent_chromatic_interval_class_set(self):

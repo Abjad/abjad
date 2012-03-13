@@ -24,7 +24,7 @@ class _ChromaticInterval(_Interval, _Chromatic):
         object.__setattr__(self, '_number', _number)
         return self
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __abs__(self):
         from abjad.tools.pitchtools.HarmonicChromaticInterval import HarmonicChromaticInterval
@@ -66,7 +66,7 @@ class _ChromaticInterval(_Interval, _Chromatic):
             return type(self)(number)
         raise TypeError('must be %s' % type(self))
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def number(self):

@@ -29,7 +29,7 @@ class Mark(AbjadObject):
         else:
             raise ValueError('can not initialize mark.')
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __call__(self, *args):
         if len(args) == 0:
@@ -59,7 +59,7 @@ class Mark(AbjadObject):
         return '%s(%s)%s' % (type(self).__name__,
             self._contents_repr_string, self._attachment_repr_string)
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _attachment_repr_string(self):
@@ -114,7 +114,7 @@ class Mark(AbjadObject):
         start_component._marks_for_which_component_functions_as_start_component.append(self)
         self._start_component = start_component
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def start_component(self):

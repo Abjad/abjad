@@ -12,7 +12,7 @@ class _ContainmentSignature(AbjadObject):
         self._staffgroup = None
         self._voice = None
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __eq__(self, arg):
         return isinstance(arg, _ContainmentSignature) and \

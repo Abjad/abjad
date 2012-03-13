@@ -40,7 +40,7 @@ class ContextBlock(_AttributedBlock):
         self._escaped_name = r'\context'
         self.context_name = context_name
         
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _format_pieces(self):
@@ -56,7 +56,7 @@ class ContextBlock(_AttributedBlock):
         result.append('}')
         return result
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @apply
     def context_name():

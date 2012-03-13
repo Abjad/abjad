@@ -14,7 +14,7 @@ class DoublingIndicator(AbjadObject):
     def __init__(self, doublings):
         object.__setattr__(self, '_doublings', doublings)
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def doublings(self):

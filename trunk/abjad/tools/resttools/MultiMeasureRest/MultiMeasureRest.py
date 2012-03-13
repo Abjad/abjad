@@ -15,13 +15,13 @@ class MultiMeasureRest(Rest):
 
     __slots__ = ()
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _compact_representation(self):
         return 'R%s' % self._formatted_duration
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def _body(self):

@@ -25,7 +25,7 @@ class Mode(AbjadObject):
         object.__setattr__(self, '_melodic_diatonic_interval_segment', mdi_segment)
         object.__setattr__(self, '_mode_name', mode_name)
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __eq__(self, arg):
         if not isinstance(arg, type(self)):
@@ -72,7 +72,7 @@ class Mode(AbjadObject):
         #self._melodic_diatonic_interval_segment = MelodicDiatonicIntervalSegment(mdi_segment)
         return MelodicDiatonicIntervalSegment(mdi_segment)
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def melodic_diatonic_interval_segment(self):

@@ -37,7 +37,7 @@ class ImmutableDictionary(dict, AbjadObject):
 
     __slots__ = ()
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __delitem__(self, *args):
         raise AttributeError('{} objects are immutable.'.format(self._class_name))

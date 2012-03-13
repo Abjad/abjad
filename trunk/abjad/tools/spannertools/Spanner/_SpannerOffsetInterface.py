@@ -7,7 +7,7 @@ class _SpannerOffsetInterface(AbjadObject):
     def __init__(self, client):
         self._client = client
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def start(self):

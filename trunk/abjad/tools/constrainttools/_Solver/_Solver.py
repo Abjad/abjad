@@ -3,7 +3,7 @@ from abjad.tools.abctools import AbjadObject
 
 class _Solver(AbjadObject):
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def constraints(self):

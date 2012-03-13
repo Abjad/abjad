@@ -20,7 +20,7 @@ class NamedChromaticPitchClassSegment(_PitchClassSegment):
         npcs = [pitchtools.NamedChromaticPitchClass(x) for x in named_chromatic_pitch_class_tokens]
         return tuple.__new__(self, npcs)
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __repr__(self):
         return '%s([%s])' % (type(self).__name__, self._repr_string)
@@ -28,7 +28,7 @@ class NamedChromaticPitchClassSegment(_PitchClassSegment):
     def __str__(self):
         return '<%s>' % self._format_string
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _format_string(self):
@@ -38,7 +38,7 @@ class NamedChromaticPitchClassSegment(_PitchClassSegment):
     def _repr_string(self):
         return ', '.join([repr(str(x)) for x in self])
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     #def diatonic_interval_class_segment(self):

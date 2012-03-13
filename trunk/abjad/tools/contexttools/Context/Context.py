@@ -20,7 +20,7 @@ class Context(Container):
         self._name = None
         self.is_nonsemantic = False
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
         new = Container.__copy__(self, *args)
@@ -51,7 +51,7 @@ class Context(Container):
             name = ''
         return '%s%s%s%s%s' % (self.context, name, open_bracket_string, summary, close_bracket_string)
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @apply
     def context():

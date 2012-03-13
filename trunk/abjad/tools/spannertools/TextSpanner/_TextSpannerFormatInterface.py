@@ -6,7 +6,7 @@ class _TextSpannerFormatInterface(_SpannerFormatInterface):
     def __init__(self, spanner):
         _SpannerFormatInterface.__init__(self, spanner)
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     def _right(self, leaf):
         '''Spanner format contribution right of leaf.'''

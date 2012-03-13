@@ -44,7 +44,7 @@ class GlobalReferenceConstraint(_GlobalConstraint):
     def __call__(self, solution):
         return self._predicate(solution, self._reference)
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def reference(self):

@@ -7,8 +7,10 @@ import operator
 
 
 class Leaf(Component):
-    __metaclass__ = ABCMeta
 
+    ### CLASS ATTRIBUTES ##
+
+    __metaclass__ = ABCMeta
     # TODO: see if _grace and _after_grace can be removed #
     __slots__ = ('_after_grace', '_grace', '_leaf_index',
         '_duration_multiplier', '_written_duration',
@@ -16,15 +18,18 @@ class Leaf(Component):
         '_written_pitch_indication_is_at_sounding_pitch',
         'after_grace', 'grace', )
 
+    ### INITIALIZER ###
+
     def __init__(self, written_duration, duration_multiplier = None):
         Component.__init__(self)
         self._duration_multiplier = duration_multiplier
         self._leaf_index = None
-        self.written_duration = durationtools.Duration(durationtools.duration_token_to_duration_pair(written_duration))
+        self.written_duration = durationtools.Duration(
+            durationtools.duration_token_to_duration_pair(written_duration))
         self.written_pitch_indication_is_nonsemantic = False
         self.written_pitch_indication_is_at_sounding_pitch = True
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __and__(self, arg):
         return self._operate(arg, operator.__and__)
@@ -61,7 +66,7 @@ class Leaf(Component):
     def __xor__(self, arg):
         return self._operate(arg, operator.__xor__)
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _compact_representation(self):
@@ -104,7 +109,7 @@ class Leaf(Component):
         leaf = leaves[0]
         return leaf
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def duration_in_seconds(self):

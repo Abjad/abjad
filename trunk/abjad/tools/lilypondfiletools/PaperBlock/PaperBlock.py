@@ -35,7 +35,7 @@ class PaperBlock(_AttributedBlock):
         self._escaped_name = r'\paper'
         self.minimal_page_breaking = None
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _formatted_user_attributes(self):
@@ -45,7 +45,7 @@ class PaperBlock(_AttributedBlock):
         result.extend(_AttributedBlock._formatted_user_attributes.fget(self))
         return result
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @apply
     def minimal_page_breaking():

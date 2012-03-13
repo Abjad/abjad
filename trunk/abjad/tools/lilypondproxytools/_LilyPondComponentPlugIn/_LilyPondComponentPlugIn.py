@@ -16,7 +16,7 @@ class _LilyPondComponentPlugIn(AbjadObject):
             proxy = getattr(self, proxy_name)
             setattr(proxy, attr_name, value)
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):

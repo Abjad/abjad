@@ -91,7 +91,7 @@ class TimeSignatureMark(ContextMark):
         self._multiplier = _multiplier
         self._is_nonbinary = not mathtools.is_nonnegative_integer_power_of_two(self.denominator)
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
         return type(self)((self.numerator, self.denominator),
@@ -151,13 +151,13 @@ class TimeSignatureMark(ContextMark):
     def __str__(self):
         return '%s/%s' % (self.numerator, self.denominator)
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _contents_repr_string(self):
         return '%s/%s' % (self.numerator, self.denominator)
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @apply
     def denominator():

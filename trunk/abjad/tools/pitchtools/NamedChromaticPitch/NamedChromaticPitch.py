@@ -67,7 +67,7 @@ class NamedChromaticPitch(_Pitch):
         object.__setattr__(self, '_accidental_semitones', accidental_semitones)
         return self
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __abs__(self):
         return abs(self.numbered_chromatic_pitch)
@@ -192,7 +192,7 @@ class NamedChromaticPitch(_Pitch):
             interval = arg
             return pitchtools.transpose_pitch_carrier_by_melodic_interval(self, -interval)
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _accidental(self):
@@ -283,7 +283,7 @@ class NamedChromaticPitch(_Pitch):
             pitch_class_octave_number_string)
         object.__setattr__(self, '_chromatic_pitch_name', chromatic_pitch_name)
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def chromatic_pitch_class_name(self):

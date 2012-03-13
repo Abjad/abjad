@@ -25,7 +25,7 @@ class FixedDurationTuplet(Tuplet):
         self.target_duration = duration
         self._initialize_keyword_values(**kwargs)
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __getnewargs__(self):
         return (self.target_duration, )
@@ -39,7 +39,7 @@ class FixedDurationTuplet(Tuplet):
         else:
             return '{%s %s %s}' % (self._signifier, self.target_duration, self._signifier)
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def multiplied_duration(self):

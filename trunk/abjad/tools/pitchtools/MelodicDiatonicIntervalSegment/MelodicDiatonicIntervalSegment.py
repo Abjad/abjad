@@ -24,7 +24,7 @@ class MelodicDiatonicIntervalSegment(_IntervalSegment):
             mdis.append(mdi)
         return tuple.__new__(self, mdis)
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __copy__(self):
         return type(self)(self.intervals)
@@ -32,7 +32,7 @@ class MelodicDiatonicIntervalSegment(_IntervalSegment):
     def __repr__(self):
         return "%s('%s')" % (type(self).__name__, ' '.join([str(x) for x in self]))
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def harmonic_chromatic_interval_segment(self):

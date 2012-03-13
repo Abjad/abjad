@@ -16,7 +16,7 @@ class _OffsetInterface(_Interface):
         self._stop = None
         self._stop_in_seconds = None
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _component(self):
@@ -51,7 +51,7 @@ class _OffsetInterface(_Interface):
             self._start = durationtools.Offset(0)
         self._stop = self._start + self._client.prolated_duration
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def start(self):

@@ -94,7 +94,7 @@ class PitchArrayCell(AbjadObject):
         self._pitches.extend(pitches)
         self._width = width
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __repr__(self):
         return '%s(%s)' % (
@@ -103,7 +103,7 @@ class PitchArrayCell(AbjadObject):
     def __str__(self):
         return self._format_string
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _composite_column_width(self):
@@ -214,7 +214,7 @@ class PitchArrayCell(AbjadObject):
         parent_row.remove(self)
         return self
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def column_indices(self):

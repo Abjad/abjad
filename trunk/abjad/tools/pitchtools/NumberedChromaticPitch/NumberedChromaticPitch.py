@@ -30,7 +30,7 @@ class NumberedChromaticPitch(_ChromaticPitch, _NumberedPitch):
         object.__setattr__(self, '_comparison_attribute', chromatic_pitch_number)
         return self
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __abs__(self):
         return self._chromatic_pitch_number
@@ -66,7 +66,7 @@ class NumberedChromaticPitch(_ChromaticPitch, _NumberedPitch):
         semitones = abs(self) - abs(arg)
         return type(self)(semitones)
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def chromatic_pitch_number(self):

@@ -9,7 +9,7 @@ class _TupletFormatter(_ContainerFormatter):
         self.label = None
         self._slots = _TupletFormatterSlotsInterface(self)
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _fraction(self):
@@ -21,7 +21,7 @@ class _TupletFormatter(_ContainerFormatter):
                     return r'\fraction '
         return ''
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def slots(self):

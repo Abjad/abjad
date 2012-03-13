@@ -40,7 +40,7 @@ class TonalFunction(AbjadObject):
         object.__setattr__(self, '_inversion', inversion)
         object.__setattr__(self, '_suspension', suspension)
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):
@@ -58,7 +58,7 @@ class TonalFunction(AbjadObject):
     def __repr__(self):
         return self._format_string
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _accidental_name(self):
@@ -233,7 +233,7 @@ class TonalFunction(AbjadObject):
         suspension = SuspensionIndicator(suspension)
         return scale_degree, quality, extent, inversion, suspension
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def bass_scale_degree(self):

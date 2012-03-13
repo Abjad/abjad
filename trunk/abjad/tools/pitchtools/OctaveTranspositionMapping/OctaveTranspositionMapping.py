@@ -16,7 +16,7 @@ class OctaveTranspositionMapping(ObjectInventory):
     Octave transposition mappings implement the list interface and are mutable.
     '''
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __repr__(self):
         if self.inventory_name:

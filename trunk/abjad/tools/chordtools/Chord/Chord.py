@@ -44,7 +44,7 @@ class Chord(Leaf):
         self.written_pitches = written_pitches
         self._initialize_keyword_values(**kwargs)
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __contains__(self, arg):
         from abjad.tools.notetools.NoteHead import NoteHead
@@ -86,7 +86,7 @@ class Chord(Leaf):
         self._note_heads[i] = note_head
         self._note_heads.sort()
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _compact_representation(self):
@@ -98,7 +98,7 @@ class Chord(Leaf):
         '''
         return ' '.join([str(x) for x in self])
 
-    ### PUBLIC ATTRIBUTES ### 
+    ### PUBLIC PROPERTIES ### 
 
     @property
     def fingered_pitches(self):

@@ -10,7 +10,7 @@ class _Flageolet(AbjadObject):
     __metaclass__ = ABCMeta
     __slots__ = ()
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def suono_reale(self):

@@ -35,7 +35,7 @@ class ObjectInventory(list, AbjadObject):
             self.extend(items)
             self.inventory_name = inventory_name
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __contains__(self, token):
         try:

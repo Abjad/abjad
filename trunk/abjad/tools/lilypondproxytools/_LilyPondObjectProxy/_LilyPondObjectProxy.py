@@ -13,7 +13,7 @@ class _LilyPondObjectProxy(AbjadObject):
         for key, value in kwargs.iteritems():
             setattr(self, key, value)
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __copy__(self):
         return eval(repr(self))

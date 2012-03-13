@@ -9,7 +9,7 @@ class _AttributedBlock(object):
     def __init__(self):
         self._is_formatted_when_empty = False
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __repr__(self):
         if not len(self._user_attributes):
@@ -17,7 +17,7 @@ class _AttributedBlock(object):
         else:
             return '%s(%s)' % (type(self).__name__, len(self._user_attributes))
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _format_pieces(self):
@@ -68,7 +68,7 @@ class _AttributedBlock(object):
         user_attributes.sort()
         return user_attributes
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def format(self):

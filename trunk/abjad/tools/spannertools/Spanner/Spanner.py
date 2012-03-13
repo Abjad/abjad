@@ -44,7 +44,7 @@ class Spanner(AbjadObject):
         #self._set = LilyPondContextSettingComponentPlugIn()
         self._initialize_components(components)
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __contains__(self, expr):
         #return self._components.__contains__(expr)
@@ -83,7 +83,7 @@ class Spanner(AbjadObject):
     def __repr__(self):
         return '%s(%s)' % (type(self).__name__, self._compact_summary)
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _compact_summary(self):
@@ -304,7 +304,7 @@ class Spanner(AbjadObject):
         #component.spanners._add(self)
         component._spanners.add(self)
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def components(self):

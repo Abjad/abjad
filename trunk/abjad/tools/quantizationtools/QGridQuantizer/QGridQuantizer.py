@@ -346,7 +346,7 @@ class QGridQuantizer(_Quantizer):
 
         return best_q_grids
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def beatspan(self):

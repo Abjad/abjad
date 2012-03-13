@@ -11,7 +11,7 @@ class _IntervalClass(AbjadObject):
     __metaclass__ = ABCMeta
     __slots__ = ()
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __abs__(self):
         return type(self)(abs(self._number))
@@ -31,13 +31,13 @@ class _IntervalClass(AbjadObject):
     def __str__(self):
         return self._format_string
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _format_string(self):
         return str(self.number)
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def number(self):

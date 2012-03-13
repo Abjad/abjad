@@ -50,7 +50,7 @@ class PitchArrayRow(AbjadObject):
         self._cells = []
         self.extend(cells)
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __add__(self, arg):
         if not isinstance(arg, PitchArrayRow):
@@ -133,7 +133,7 @@ class PitchArrayRow(AbjadObject):
         result = ' '.join(result)
         return result
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _compact_summary(self):
@@ -160,7 +160,7 @@ class PitchArrayRow(AbjadObject):
         result = ', '.join(result)
         return result
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def cell_tokens(self):

@@ -12,7 +12,7 @@ class _DiatonicPitchClass(_PitchClass, _Diatonic):
     __metaclass__ = ABCMeta
     __slots__ = ()
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __abs__(self):
         return self._number
@@ -23,7 +23,7 @@ class _DiatonicPitchClass(_PitchClass, _Diatonic):
     def __int__(self):
         return self._number
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     _diatonic_pitch_class_number_to_diatonic_pitch_class_name = {
         0: 'c', 1: 'd', 2: 'e', 3: 'f', 4: 'g', 5: 'a', 6: 'b'}

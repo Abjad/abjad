@@ -9,7 +9,7 @@ class _BaseResidueClass(AbjadObject):
     __metaclass__ = ABCMeta
     __slots__ = ()
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     # TODO: implement __neg__() #
 

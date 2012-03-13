@@ -89,7 +89,7 @@ Organize the definitions of core classes into the five following major sections 
         def __init__(self, x, y):
             ...
 
-        ### OVERLOADS ###
+        ### SPECIAL METHODS ###
 
         def __repr__(self):
             ...
@@ -97,13 +97,13 @@ Organize the definitions of core classes into the five following major sections 
         def __str__(self):
             ...
 
-        ### PRIVATE ATTRIBUTES ###
+        ### PRIVATE PROPERTIES ###
 
         @property
         def _foo(self):
             ...
 
-        ### PUBLIC ATTRIBUTES ###
+        ### PUBLIC PROPERTIES ###
 
         @property
         def bar(self):
@@ -123,7 +123,7 @@ Preceed private class attributes with a single underscore::
 
     class FooBar(object):
 
-        ### PRIVATE ATTRIBUTES ###
+        ### PRIVATE PROPERTIES ###
 
         @property
         def _foo(self):

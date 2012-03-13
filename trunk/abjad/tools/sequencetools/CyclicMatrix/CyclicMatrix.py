@@ -90,7 +90,7 @@ class CyclicMatrix(Matrix):
         self._n_rows = len(rows)
         self._n_columns = len(columns)
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __getitem__(self, expr):
         return self.rows[expr]
@@ -118,7 +118,7 @@ class CyclicMatrix(Matrix):
         columns = CyclicTuple(columns)
         return rows, columns
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def columns(self):

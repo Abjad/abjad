@@ -121,7 +121,7 @@ class Tree(AbjadObject):
         except TypeError:
             self.payload = expr
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __contains__(self, expr):
         return expr in self._children
@@ -162,7 +162,7 @@ class Tree(AbjadObject):
         else:
             return repr(self.payload)
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _noncyclic_children(self):
@@ -191,7 +191,7 @@ class Tree(AbjadObject):
         except TypeError:
             self.payload = expr
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def children(self):

@@ -92,7 +92,7 @@ class TempoMark(ContextMark):
         object.__setattr__(self, '_textual_indication', textual_indication)
         object.__setattr__(self, '_units_per_minute', units_per_minute)
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __add__(self, expr):
         if isinstance(expr, type(self)):
@@ -147,7 +147,7 @@ class TempoMark(ContextMark):
             new_tempo_indication = type(self)(new_duration, new_units_per_minute)
             return new_tempo_indication
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _contents_repr_string(self):
@@ -191,7 +191,7 @@ class TempoMark(ContextMark):
     def _one_line_menuing_summary(self):
         return self.format.lstrip(r'\tempo ')
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @apply
     def duration():

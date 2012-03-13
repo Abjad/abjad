@@ -34,7 +34,7 @@ class HarmonicDiatonicInterval(_DiatonicInterval, _HarmonicInterval):
         object.__setattr__(self, '_number', _number)
         return self
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
         return type(self)(self)
@@ -75,7 +75,7 @@ class HarmonicDiatonicInterval(_DiatonicInterval, _HarmonicInterval):
     def __str__(self):
         return '%s%s' % (self._quality_abbreviation, self.number)
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     #def counterpoint_interval(self):

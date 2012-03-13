@@ -50,7 +50,7 @@ class Accidental(AbjadObject):
         object.__setattr__(self, '_symbolic_accidental_string', _symbolic_accidental_string)
         return self
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __add__(self, arg):
         if not isinstance(arg, type(self)):
@@ -100,7 +100,7 @@ class Accidental(AbjadObject):
         semitones = self.semitones - arg.semitones
         return type(self)(semitones)
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _all_accidental_alphabetic_accidental_abbreviations(self):
@@ -165,7 +165,7 @@ class Accidental(AbjadObject):
     def _all_accidental_semitone_values(self):
         return self._semitones_to_alphabetic_accidental_abbreviation.keys()
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def alphabetic_accidental_abbreviation(self):

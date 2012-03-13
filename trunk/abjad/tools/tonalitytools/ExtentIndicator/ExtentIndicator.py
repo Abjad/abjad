@@ -21,7 +21,7 @@ class ExtentIndicator(AbjadObject):
             number = arg.number
         object.__setattr__(self, '_number', number)
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):
@@ -35,13 +35,13 @@ class ExtentIndicator(AbjadObject):
     def __repr__(self):
         return '%s(%s)' % (type(self).__name__, self.number)
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     _acceptable_number = (5, 7, 9)
 
     _extent_number_to_extent_name = {5: 'triad', 7: 'seventh', 9: 'ninth', }
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def name(self):

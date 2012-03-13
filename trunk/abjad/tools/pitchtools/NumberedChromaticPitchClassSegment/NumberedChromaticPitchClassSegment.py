@@ -20,7 +20,7 @@ class NumberedChromaticPitchClassSegment(_PitchClassSegment):
         pitch_classes = [pitchtools.NumberedChromaticPitchClass(x) for x in pitch_class_tokens]
         return tuple.__new__(self, pitch_classes)
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __repr__(self):
         return '%s([%s])' % (type(self).__name__, self._repr_string)
@@ -28,7 +28,7 @@ class NumberedChromaticPitchClassSegment(_PitchClassSegment):
     def __str__(self):
         return '<%s>' % self._format_string
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _format_string(self):
@@ -38,7 +38,7 @@ class NumberedChromaticPitchClassSegment(_PitchClassSegment):
     def _repr_string(self):
         return self._format_string
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def inversion_equivalent_chromatic_interval_class_segment(self):

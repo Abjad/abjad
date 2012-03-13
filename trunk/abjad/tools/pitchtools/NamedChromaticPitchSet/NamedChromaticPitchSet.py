@@ -27,7 +27,7 @@ class NamedChromaticPitchSet(_PitchSet):
                 pitches.append(pitch)
         return frozenset.__new__(klass, pitches)
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):
@@ -47,7 +47,7 @@ class NamedChromaticPitchSet(_PitchSet):
     def __str__(self):
         return '{%s}' % ' '.join([str(pitch) for pitch in self.named_chromatic_pitches])
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _format_string(self):
@@ -57,7 +57,7 @@ class NamedChromaticPitchSet(_PitchSet):
     def _repr_string(self):
         return ', '.join([repr(str(pitch)) for pitch in self.named_chromatic_pitches])
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     #def numbers(self):

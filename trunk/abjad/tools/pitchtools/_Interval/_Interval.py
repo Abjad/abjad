@@ -11,7 +11,7 @@ class _Interval(AbjadObject):
     __metaclass__ = ABCMeta
     __slots__ = ('_format_string', )
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __abs__(self):
         raise NotImplementedError('abs needs to be implemented on %s.' % type(self))
@@ -31,13 +31,13 @@ class _Interval(AbjadObject):
     def __str__(self):
         return str(self.number)
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _format_string(self):
         return str(self.number)
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def cents(self):

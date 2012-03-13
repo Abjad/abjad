@@ -4,16 +4,23 @@ import re
 
 
 class Note(Leaf):
-    '''Abjad model of a note:
+    '''.. versionadded:: 1.0
+
+    Abjad model of a note:
 
     ::
 
         abjad> Note(13, (3, 16))
         Note("cs''8.")
 
+    Notes are immutable.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
     __slots__ = ('_note_head', '_pitch', )
+
+    ### INITIALIZER ###
 
     def __init__(self, *args, **kwargs):
         from abjad.tools.lilypondfiletools._lilypond_leaf_regex import _lilypond_leaf_regex
@@ -45,7 +52,7 @@ class Note(Leaf):
         self.note_head = pitch
         self._initialize_keyword_values(**kwargs)
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     #__deepcopy__ = __copy__
 
@@ -55,7 +62,7 @@ class Note(Leaf):
         result.extend(Leaf.__getnewargs__(self))
         return tuple(result)
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _body(self):
@@ -70,7 +77,7 @@ class Note(Leaf):
     def _compact_representation(self):
         return self._body[0]
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def fingered_pitch(self):

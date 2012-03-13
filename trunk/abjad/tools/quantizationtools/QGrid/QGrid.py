@@ -125,7 +125,7 @@ class QGrid(AbjadObject):
         else:
             recurse(self._definition, item, value, 0)
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _format_string(self):
@@ -176,7 +176,7 @@ class QGrid(AbjadObject):
                 return True
         return False
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def definition(self):

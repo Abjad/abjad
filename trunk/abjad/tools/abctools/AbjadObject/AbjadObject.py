@@ -18,7 +18,7 @@ class AbjadObject(object):
     __metaclass__ = ABCMeta
     __slots__ = ()
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __eq__(self, arg):
         '''True when ``id(self)`` equals ``id(arg)``.

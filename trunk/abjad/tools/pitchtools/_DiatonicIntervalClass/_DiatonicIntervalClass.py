@@ -10,7 +10,7 @@ class _DiatonicIntervalClass(_IntervalClass, _Diatonic):
     '''
     __metaclass__ = ABCMeta
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __abs__(self):
         from abjad.tools.pitchtools.HarmonicDiatonicIntervalClass import HarmonicDiatonicIntervalClass
@@ -28,7 +28,7 @@ class _DiatonicIntervalClass(_IntervalClass, _Diatonic):
     def __str__(self):
         return self._format_string
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     _acceptable_quality_strings = ('perfect', 'major', 'minor', 'diminished', 'augmented')
 
@@ -54,7 +54,7 @@ class _DiatonicIntervalClass(_IntervalClass, _Diatonic):
     def _quality_abbreviation(self):
         return self._quality_string_to_quality_abbreviation[self._quality_string]
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def quality_string(self):

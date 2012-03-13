@@ -13,12 +13,12 @@ class _RedBlackNode(AbjadObject):
         self.red = True
         self.right = None
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __repr__(self):
         return '%s(%s, %r)' % (type(self).__name__, self.key, self.payload)
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def grandparent(self):

@@ -25,7 +25,7 @@ class NumberedChromaticPitchClassColorMap(AbjadObject):
         self._init_color_dictionary()
         return self
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __getitem__(self, pc):
         from abjad.tools import pitchtools
@@ -50,7 +50,7 @@ class NumberedChromaticPitchClassColorMap(AbjadObject):
                     raise KeyError('Duplicated pitch-class %s in color dictionary.' % pc)
                 self._color_dictionary[abs(pc)] = color
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def colors(self):

@@ -130,7 +130,7 @@ class MetricGridSpanner(Spanner):
                 else:
                     break
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @apply
     def meters():

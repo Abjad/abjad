@@ -35,7 +35,7 @@ class DynamicMark(ContextMark):
             self._target_context = Staff
         self._dynamic_name = dynamic_name
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __call__(self, *args):
         from abjad.tools import spannertools
@@ -57,7 +57,7 @@ class DynamicMark(ContextMark):
             return self._dynamic_name == arg._dynamic_name
         return False
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     _composite_dynamic_name_to_steady_state_dynamic_name = {
         'fp': 'p', 'sf': 'f', 'sff': 'ff',
@@ -91,7 +91,7 @@ class DynamicMark(ContextMark):
         2: 'f', 3: 'ff', 4: 'fff', 5: 'ffff', 6: 'fffff',
         }
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @apply
     def dynamic_name():

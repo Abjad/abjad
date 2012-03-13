@@ -11,7 +11,7 @@ class _Segment(tuple, AbjadObject):
     __metaclass__ = ABCMeta
     __slots__ = ()
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __add__(self, arg):
         return type(self)(tuple(self) + tuple(arg))

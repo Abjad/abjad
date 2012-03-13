@@ -32,7 +32,7 @@ class ChordClass(NamedChromaticPitchClassSet):
         object.__setattr__(self, '_bass', bass)
         return self
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):
@@ -50,7 +50,7 @@ class ChordClass(NamedChromaticPitchClassSet):
         quality = self.quality_indicator._title_case_name
         return root + quality
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _markup_root(self):
@@ -91,7 +91,7 @@ class ChordClass(NamedChromaticPitchClassSet):
         else:
             return ''
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def bass(self):

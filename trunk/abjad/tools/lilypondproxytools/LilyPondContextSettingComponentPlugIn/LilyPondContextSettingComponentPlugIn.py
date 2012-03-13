@@ -16,7 +16,7 @@ class LilyPondContextSettingComponentPlugIn(_LilyPondComponentPlugIn):
         'rhythmic_staff', 'score', 'staff', 'staff_group', 'tab_staff',
         'tab_voice', 'vaticana_staff', 'vaticana_voice', 'voice'])
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __getattr__(self, name):
         if name.startswith('_'):

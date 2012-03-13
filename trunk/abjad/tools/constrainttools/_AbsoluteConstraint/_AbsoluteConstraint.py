@@ -22,13 +22,13 @@ class _AbsoluteConstraint(_Constraint):
         assert isinstance(predicate, type(lambda: None))
         object.__setattr__(self, '_predicate', predicate)
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _format_string(self):
         return '%r, %r' % (self._indices, self._predicate)
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def indices(self):

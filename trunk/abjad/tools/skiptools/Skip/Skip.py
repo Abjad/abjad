@@ -38,7 +38,7 @@ class Skip(Leaf):
 
     #__deepcopy__ = __copy__
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _body(self):

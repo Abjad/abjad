@@ -103,7 +103,7 @@ class VariableLengthStreamSolver(_Solver):
             for y in recurse(node):
                 yield y
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def terminators(self):

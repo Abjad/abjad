@@ -10,7 +10,7 @@ class _Constraint(AbjadObject):
     def __repr__(self):
         return '%s(%s)' % (type(self).__name__, self._format_string)
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _sort_tuple(self):
@@ -23,7 +23,7 @@ class _Constraint(AbjadObject):
         else:
             raise Exception('Cannot generate sort tuple for %r.' % self)
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def kind(self):

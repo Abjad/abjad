@@ -83,7 +83,7 @@ class Grace(Container):
         self.kind = kind
         self._initialize_keyword_values(**kwargs)
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __call__(self, arg):
         if not isinstance(arg, Leaf):
@@ -105,7 +105,7 @@ class Grace(Container):
     def __repr__(self):
         return '%s(%s)' % (type(self).__name__, self._summary)
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @apply
     def kind():

@@ -22,7 +22,7 @@ class PitchArray(AbjadObject):
             if all([isinstance(arg, int) for arg in args]):
                 self._init_by_counts(*args)
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __add__(self, arg):
         if not isinstance(arg, PitchArray):
@@ -93,7 +93,7 @@ class PitchArray(AbjadObject):
     def __str__(self):
         return self._two_by_two_format_string
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _two_by_two_format_string(self):
@@ -130,7 +130,7 @@ class PitchArray(AbjadObject):
     def _parse_cell_token(self, cell_token):
         return PitchArrayCell(cell_token)
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def cell_tokens_by_row(self):

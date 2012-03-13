@@ -25,7 +25,7 @@ class ResidueClassExpression(_BaseResidueClass):
         # sort rcs
         self._sort_rcs()
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __repr__(self):
         opdic = {'and':' & ', 'or':' | ', 'xor':' ^ '}
@@ -55,7 +55,7 @@ class ResidueClassExpression(_BaseResidueClass):
         if all([isinstance(rc, ResidueClass) for rc in self.rcs]):
             self.rcs.sort()
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def operator(self):

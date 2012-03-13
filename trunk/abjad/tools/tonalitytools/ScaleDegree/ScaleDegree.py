@@ -29,7 +29,7 @@ class ScaleDegree(AbjadObject):
         object.__setattr__(self, '_accidental', accidental)
         object.__setattr__(self, '_number', number)
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):
@@ -47,7 +47,7 @@ class ScaleDegree(AbjadObject):
     def __str__(self):
         return self._compact_format_string
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _acceptable_numbers(self):
@@ -65,7 +65,7 @@ class ScaleDegree(AbjadObject):
         parts.append(str(self.number))
         return ', '.join(parts)
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     _numeral_to_number_name = {
         1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five', 6: 'six',
@@ -127,7 +127,7 @@ class ScaleDegree(AbjadObject):
         #self._number = number
         return accidental, number
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def accidental(self):

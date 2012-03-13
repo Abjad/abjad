@@ -45,7 +45,7 @@ class NamedChromaticPitchClassSet(_PitchClassSet):
                 npcs = []
         return frozenset.__new__(self, npcs)
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):
@@ -68,7 +68,7 @@ class NamedChromaticPitchClassSet(_PitchClassSet):
     def __str__(self):
         return '{%s}' % self._format_string
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _format_string(self):
@@ -90,7 +90,7 @@ class NamedChromaticPitchClassSet(_PitchClassSet):
         result.sort(helper)
         return result
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def inversion_equivalent_diatonic_interval_class_vector(self):

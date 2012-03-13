@@ -46,7 +46,7 @@ class NoteHead(SortableAttributeEqualityAbjadObject):
             key, value = tweak_pair
             setattr(self.tweak, key, copy.copy(value))
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
         return type(self)(*self.__getnewargs__())
@@ -70,7 +70,7 @@ class NoteHead(SortableAttributeEqualityAbjadObject):
         else:
             return ''
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _format_string(self):
@@ -78,7 +78,7 @@ class NoteHead(SortableAttributeEqualityAbjadObject):
             return str(self.written_pitch)
         return ' '
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def format(self):

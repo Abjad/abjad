@@ -23,7 +23,7 @@ class _SolutionNode(AbjadObject):
     def __repr__(self):
         return '%s(%s)' % (type(self).__name__, self.value)
         
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def children(self):

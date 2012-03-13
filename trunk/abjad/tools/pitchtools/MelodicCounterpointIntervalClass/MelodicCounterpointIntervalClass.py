@@ -38,7 +38,7 @@ class MelodicCounterpointIntervalClass(_CounterpointIntervalClass, _MelodicInter
             object.__setattr__(self, '_number', number)
         return self
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):

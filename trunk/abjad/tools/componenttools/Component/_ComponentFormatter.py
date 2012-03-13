@@ -15,7 +15,7 @@ class _ComponentFormatter(_Interface):
         self._slots = _ComponentFormatterSlotsInterface(self)
         #self.number = False
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _format_pieces(self):
@@ -29,7 +29,7 @@ class _ComponentFormatter(_Interface):
         result.extend(self.slots.contributions('slot_7'))
         return result
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def format(self):

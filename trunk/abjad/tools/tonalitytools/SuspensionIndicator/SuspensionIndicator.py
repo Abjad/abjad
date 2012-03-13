@@ -32,7 +32,7 @@ class SuspensionIndicator(AbjadObject):
         object.__setattr__(self, '_start', start)
         object.__setattr__(self, '_stop', stop)
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):
@@ -56,7 +56,7 @@ class SuspensionIndicator(AbjadObject):
         else:
             return ''
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     _symbolic_string_regex = re.compile(r'([#|b]?\d+)-([#|b]?\d+)')
 
@@ -91,7 +91,7 @@ class SuspensionIndicator(AbjadObject):
         #self._stop = None
         return None, None
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def chord_name(self):

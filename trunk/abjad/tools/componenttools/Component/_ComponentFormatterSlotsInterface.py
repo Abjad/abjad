@@ -35,7 +35,7 @@ class _ComponentFormatterSlotsInterface(_Interface):
         else:
             return result
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def formatter(self):

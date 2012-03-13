@@ -16,7 +16,7 @@ class SortableAttributeEqualityAbjadObject(AttributeEqualityAbjadObject):
     __metaclass__ = ABCMeta
     __slots__ = ('_comparison_attribute', '_format_string')
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __ge__(self, arg):
         '''Initialize new object from `arg` and evaluate comparison attributes.

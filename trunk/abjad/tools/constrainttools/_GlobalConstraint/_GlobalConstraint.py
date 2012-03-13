@@ -9,7 +9,7 @@ class _GlobalConstraint(_Constraint):
         assert predicate.func_code.co_argcount == 1
         object.__setattr__(self, '_predicate', predicate)
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _format_string(self):

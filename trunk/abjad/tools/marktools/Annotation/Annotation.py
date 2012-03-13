@@ -58,7 +58,7 @@ class Annotation(Mark):
         else:
             raise ValueError('unknown annotation initialization signature.')
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
         return type(self)(self.name, self.value)
@@ -72,7 +72,7 @@ class Annotation(Mark):
                     return True
         return False
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _contents_repr_string(self):
@@ -80,7 +80,7 @@ class Annotation(Mark):
             return repr(self.name)
         return ', '.join([repr(self.name), repr(self.value)])
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @apply
     def name():

@@ -23,12 +23,12 @@ class NamedChromaticPitchSegment(_PitchSegment):
             pitches = [pitchtools.NamedChromaticPitch(x) for x in args[0]]
         return tuple.__new__(self, pitches)
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __repr__(self):
         return '%s("%s")' % (type(self).__name__, self._repr_string)
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _contents_string(self):
@@ -38,7 +38,7 @@ class NamedChromaticPitchSegment(_PitchSegment):
     def _repr_string(self):
         return ' '.join([str(x) for x in self])
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def chromatic_pitch_numbers(self):

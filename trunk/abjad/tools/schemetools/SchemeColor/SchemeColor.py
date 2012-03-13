@@ -12,7 +12,7 @@ class SchemeColor(Scheme):
 
     __slots__ = ()
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _formatted_value(self):

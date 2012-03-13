@@ -29,7 +29,7 @@ class TimeInterval(_TimeIntervalMixin, MutableMapping):
         object.__setattr__(self, '_stop', stop)
         object.__setattr__(self, '_data', copy.copy(data))
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __delitem__(self, item):
         self._data.__delitem__(item)
@@ -64,7 +64,7 @@ class TimeInterval(_TimeIntervalMixin, MutableMapping):
     def __setitem__(self, item, value):
         self._data.__setitem__(item, value)
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def center(self):

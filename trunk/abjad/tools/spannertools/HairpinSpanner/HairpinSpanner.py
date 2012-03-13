@@ -81,7 +81,7 @@ class HairpinSpanner(_DirectedSpanner):
         self.start_dynamic_string = start_dynamic_string
         self.stop_dynamic_string = stop_dynamic_string
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     _hairpin_shape_strings = ('<', '>')
 
@@ -116,7 +116,7 @@ class HairpinSpanner(_DirectedSpanner):
         assert shape in ('<', '>')
         return start, shape, stop
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @apply
     def include_rests():

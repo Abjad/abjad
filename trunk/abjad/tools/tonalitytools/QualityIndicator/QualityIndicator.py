@@ -17,7 +17,7 @@ class QualityIndicator(AbjadObject):
             raise ValueError('can not initialize quality indicator.')
         object.__setattr__(self, '_quality_string', quality_string)
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):
@@ -31,7 +31,7 @@ class QualityIndicator(AbjadObject):
     def __repr__(self):
         return '%s(%s)' % (type(self).__name__, self.quality_string)
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     _acceptable_quality_strings = (
         'major', 'minor', 'augmented', 'diminished',
@@ -40,7 +40,7 @@ class QualityIndicator(AbjadObject):
 
     _uppercase_quality_strings = ('major', 'augmented', 'dominant')
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def is_uppercase(self):

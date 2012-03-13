@@ -30,7 +30,7 @@ class ContextMark(Mark):
                 raise TypeError('target context "%s" must be context class.' % target_context)
         self._target_context = target_context
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
         return type(self)(target_context = self._target_context)
@@ -61,7 +61,7 @@ class ContextMark(Mark):
         Mark._bind_start_component(self, start_component)
         self._start_component._mark_entire_score_tree_for_later_update('marks')
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _target_context_name(self):
@@ -100,7 +100,7 @@ class ContextMark(Mark):
         if current_effective_context is not correct_effective_context:
             self.__bind_correct_effective_context(correct_effective_context)
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def effective_context(self):

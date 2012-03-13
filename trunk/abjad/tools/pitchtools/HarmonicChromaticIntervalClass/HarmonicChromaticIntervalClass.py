@@ -30,7 +30,7 @@ class HarmonicChromaticIntervalClass(_ChromaticIntervalClass, _HarmonicIntervalC
         object.__setattr__(self, '_number', number)
         return self
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):

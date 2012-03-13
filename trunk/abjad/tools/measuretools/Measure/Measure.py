@@ -41,7 +41,7 @@ class Measure(Container):
         time_signature.attach(self)
         self._initialize_keyword_values(**kwargs)
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __add__(self, arg):
         '''Add two measures together in-score or outside-of-score.
@@ -125,7 +125,7 @@ class Measure(Container):
         else:
             return '| |'
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _compact_representation(self):
@@ -134,7 +134,7 @@ class Measure(Container):
         '''
         return '|%s(%s)|' % (contexttools.get_effective_time_signature(self), len(self))
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def is_binary(self):

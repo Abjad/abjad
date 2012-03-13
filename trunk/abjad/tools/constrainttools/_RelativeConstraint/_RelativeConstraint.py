@@ -24,13 +24,13 @@ class _RelativeConstraint(_Constraint):
         assert isinstance(predicate, type(lambda: None))
         object.__setattr__(self, '_predicate', predicate)
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _format_string(self):
         return '%r, %r' % (self._indices, self._predicate)
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def index_span(self):

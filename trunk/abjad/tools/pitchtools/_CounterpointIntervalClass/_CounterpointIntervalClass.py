@@ -10,7 +10,7 @@ class _CounterpointIntervalClass(_IntervalClass, _Counterpoint):
     '''
     __metaclass__ = ABCMeta
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __abs__(self):
         return type(self)(abs(self._number))

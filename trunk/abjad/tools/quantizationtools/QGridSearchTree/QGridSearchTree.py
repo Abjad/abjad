@@ -43,7 +43,7 @@ class QGridSearchTree(ImmutableDictionary):
         self._init_offsets(definition)
         return self
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __getnewargs__(self):
         return self.definition
@@ -124,7 +124,7 @@ class QGridSearchTree(ImmutableDictionary):
             13: None,            # 1/13
         }
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def offsets(self):

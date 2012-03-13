@@ -50,7 +50,7 @@ class Articulation(_DirectedMark):
         self._string = string
         self._format_slot = 'right'
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
         return type(self)(self.name, self.direction)
@@ -77,7 +77,7 @@ class Articulation(_DirectedMark):
         else:
             return ''
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     # this causes unnecessary coupling to changeable lilypond codebase and is discouraged
     _articulations_supported = ('accent', 'marcato',
@@ -109,7 +109,7 @@ class Articulation(_DirectedMark):
         else:
             return repr(self.name)
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def format(self):

@@ -10,7 +10,7 @@ class _IntervalSegment(_Segment):
     '''
     __metaclass__ = ABCMeta
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __repr__(self):
         return '%s(%s)' % (type(self).__name__, self._format_string)
@@ -18,13 +18,13 @@ class _IntervalSegment(_Segment):
     def __str__(self):
         return '<%s>' % self._format_string
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _format_string(self):
         return ', '.join([str(x) for x in self])
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def interval_classes(self):

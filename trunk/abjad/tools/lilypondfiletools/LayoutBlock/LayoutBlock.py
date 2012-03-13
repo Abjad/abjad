@@ -54,7 +54,7 @@ class LayoutBlock(_AttributedBlock):
             result.append('}')
         return result
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def context_blocks(self):

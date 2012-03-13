@@ -82,7 +82,7 @@ class LilyPondFile(list):
         self.default_paper_size = None
         self.global_staff_size = None
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __repr__(self):
         if hasattr(self, 'score_block') and 1 <= len(self.score_block):
@@ -90,7 +90,7 @@ class LilyPondFile(list):
         else:
             return '%s()' % type(self).__name__
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _format_pieces(self):
@@ -181,7 +181,7 @@ class LilyPondFile(list):
             result = ['\n'.join(result)]
         return result
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @apply
     def default_paper_size():

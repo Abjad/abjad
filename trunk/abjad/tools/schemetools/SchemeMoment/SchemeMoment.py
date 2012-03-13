@@ -28,7 +28,7 @@ class SchemeMoment(Scheme):
             raise TypeError('can not intialize scheme moment from "%s".' % str(args))
         return Scheme.__new__(klass, args, **kwargs)
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):
@@ -69,14 +69,14 @@ class SchemeMoment(Scheme):
     def __repr__(self):
         return '%s(%s, %s)' % (type(self).__name__, self._value.numerator, self._value.denominator)
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _formatted_value(self):
         numerator, denominator = self._value.numerator, self._value.denominator
         return '(ly:make-moment %s %s)' % (numerator, denominator)
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def duration(self):

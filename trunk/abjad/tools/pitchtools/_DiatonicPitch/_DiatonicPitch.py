@@ -12,7 +12,7 @@ class _DiatonicPitch(_Pitch, _Diatonic):
     __metaclass__ = ABCMeta
     __slots__ = ()
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __abs__(self):
         return self._number

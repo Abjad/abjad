@@ -45,7 +45,7 @@ class KeySignatureMark(ContextMark):
         self._tonic = tonic
         self._mode = mode
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
         return type(self)(self._tonic, self._mode,
@@ -61,14 +61,14 @@ class KeySignatureMark(ContextMark):
     def __str__(self):
         return '%s-%s' % (self.tonic, self.mode)
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     #def _contents_name(self):
     def _contents_repr_string(self):
         return "%r, %r" % (self.tonic, self.mode)
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def format(self):

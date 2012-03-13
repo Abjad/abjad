@@ -26,13 +26,13 @@ class SchemePair(Scheme):
         self = Scheme.__new__(klass, *args, **kwargs)
         return self
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _formatted_value(self):
         return '(%s . %s)' % tuple([Scheme._format_value(x) for x in self._value])
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def format(self):

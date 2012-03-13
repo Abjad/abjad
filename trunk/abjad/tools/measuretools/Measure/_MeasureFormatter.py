@@ -11,7 +11,7 @@ class _MeasureFormatter(_ContainerFormatter):
         _ContainerFormatter.__init__(self, client)
         self._slots = _MeasureFormatterSlotsInterface(self)
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _contents(self):
@@ -31,7 +31,7 @@ class _MeasureFormatter(_ContainerFormatter):
             result.extend(_ContainerFormatter._contents.fget(self))
         return result
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def format(self):

@@ -47,7 +47,7 @@ class LilyPondGrobOverrideComponentPlugIn(_LilyPondComponentPlugIn):
         'vaticana_ligature', 'vertical_alignment', 'vertical_axis_group', 'voice_follower',
         'volta_bracket', 'volta_bracket_spanner'])
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __getattr__(self, name):
         if name.startswith('_'):
@@ -87,7 +87,7 @@ class LilyPondGrobOverrideComponentPlugIn(_LilyPondComponentPlugIn):
         attr_value = getattr(self, attr)
         object.__setattr__(self, attr, value)
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     def _get_attribute_tuples(self):
         result = []

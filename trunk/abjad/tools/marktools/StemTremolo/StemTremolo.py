@@ -35,7 +35,7 @@ class StemTremolo(Mark):
         else:
             raise ValueError('can not initialize stem tremolo.')
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
         return type(self)(self.tremolo_flags)
@@ -51,13 +51,13 @@ class StemTremolo(Mark):
     def __str__(self):
         return ':%s' % str(self.tremolo_flags)
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _contents_repr_string(self):
         return '%s' % self.tremolo_flags
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def format(self):

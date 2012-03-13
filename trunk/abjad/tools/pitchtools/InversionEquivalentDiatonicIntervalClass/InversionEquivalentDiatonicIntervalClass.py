@@ -34,7 +34,7 @@ class InversionEquivalentDiatonicIntervalClass(_DiatonicIntervalClass):
             raise ValueError('can not initialize diatonic interval-class.')
         return self
 
-    ### OVERLOADS ###
+    ### SPECIAL METHODS ###
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):
