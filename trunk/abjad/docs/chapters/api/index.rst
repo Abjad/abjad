@@ -1058,6 +1058,14 @@ decoratortools
    tools/decoratortools/requires
 
 
+documentationtools
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/documentationtools/InheritanceGraph/InheritanceGraph
+
+
 durationtools
 
 .. toctree::
