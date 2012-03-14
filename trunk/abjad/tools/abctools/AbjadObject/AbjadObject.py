@@ -62,23 +62,13 @@ class AbjadObject(object):
         '''
         return not self == arg
 
-#    # TODO: remove.
-#    def __nonzero__(self):
-#        '''Defined equal to true.
-#
-#        .. note:: deprecated.
-#        '''
-#        #if hasattr(self, '__len__') and not len(self):
-#        #    raise Exception
-#        return True
-
     def __repr__(self):
         '''Interpreter representation of Abjad object defaulting to 
         class name, mandatory arguments, keyword arguments.
 
         Return string.
         '''
-        return '{}()'.format(self._class_name)
+        return '{}({})'.format(self._class_name, self._contents_repr_string)
 
     ### PRIVATE READ-ONLY ATTRIBUTES ###
 
@@ -87,12 +77,22 @@ class AbjadObject(object):
         return type(self).__name__ 
 
     @property
+    def _contents_repr_string(self):
+        result = []
+        if self._mandatory_argument_repr_string:
+            result.append(self._mandatory_argument_repr_string)
+        if self._keyword_argument_repr_string:
+            result.append(self._keyword_argument_repr_string)
+        return ', '.join(result)
+
+    @property
     def _keyword_argument_name_value_strings(self):
         result = []
         for name in self._keyword_argument_names:
             value = getattr(self, name)
-            string = '{}={!r}'.format(name, value)
-            result.append(string)
+            if value is not None:
+                string = '{}={!r}'.format(name, value)
+                result.append(string)
         return tuple(result)
 
     @property
@@ -100,11 +100,19 @@ class AbjadObject(object):
         return ()
 
     @property
+    def _keyword_argument_repr_string(self):
+        return ', '.join(self._keyword_argument_name_value_strings)
+
+    @property
     def _keyword_argument_values(self):
         result = []
         for name in self._keyword_argument_names:
             result.append(getattr(self, name))
         return result
+
+    @property
+    def _mandatory_argument_repr_string(self):
+        return ', '.join([repr(x) for x in self._mandatory_argument_values])
 
     @property
     def _mandatory_argument_values(self):
