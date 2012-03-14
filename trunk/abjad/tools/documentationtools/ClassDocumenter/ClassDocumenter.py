@@ -81,69 +81,30 @@ class ClassDocumenter(AbjadObject):
         module_name = '%s.%s' % (self.cls.__module__, self.cls.__name__)
 
         result = []
-
-        result.append(stripped_class_name)
-        result.append('=' * len(stripped_class_name))
-        result.append('')
-
-        result.append('.. inheritance-diagram:: %s' % module_name)
-        result.append('   :private-bases:')
-        result.append('')
-
+        result.extend(self._format_heading(stripped_class_name, '='))
+        result.extend(self._format_inheritance_diagram())
         result.append('.. autoclass:: %s' % module_name)
         result.append('')
 
         if self.readonly_properties:
-            result.append('Read-only Properties')
-            result.append('--------------------')
-            result.append('')
+            result.extend(self._format_heading('Read-only Properties', '-'))
             for attr in self.readonly_properties:
-                result.append('.. autoattribute:: %s.%s' % (module_name, attr.name))
-                result.append('')
-                if attr in self.inherited_attributes:
-                    result.append('   .. note:: Inherited from %s' %
-                        self._shrink_module_name('%s.%s' %
-                            (attr.defining_class.__module__, attr.defining_class.__name__)))
-                    result.append('')
+                result.extend(self._format_attribute(attr, 'attribute'))
 
         if self.readwrite_properties:
-            result.append('Read/write Properties')
-            result.append('---------------------')
-            result.append('')
+            result.extend(self._format_heading('Read/write Properties', '-'))
             for attr in self.readwrite_properties:
-                result.append('.. autoattribute:: %s.%s' % (module_name, attr.name))
-                result.append('')
-                if attr in self.inherited_attributes:
-                    result.append('   .. note:: Inherited from %s' %
-                        self._shrink_module_name('%s.%s' %
-                            (attr.defining_class.__module__, attr.defining_class.__name__)))
-                    result.append('')
+                result.extend(self._format_attribute(attr, 'attribute'))
 
         if self.methods:
-            result.append('Methods')
-            result.append('-------')
-            result.append('')
+            result.extend(self._format_heading('Methods', '-'))
             for attr in self.methods:
-                result.append('.. automethod:: %s.%s' % (module_name, attr.name))
-                result.append('')
-                if attr in self.inherited_attributes:
-                    result.append('   .. note:: Inherited from %s' %
-                        self._shrink_module_name('%s.%s' %
-                            (attr.defining_class.__module__, attr.defining_class.__name__)))
-                    result.append('')
+                result.extend(self._format_attribute(attr, 'method'))
 
         if self.special_methods:
-            result.append('Special Methods')
-            result.append('---------------')
-            result.append('')
+            result.extend(self._format_heading('Special Methods', '-'))
             for attr in self.special_methods:
-                result.append('.. automethod:: %s.%s' % (module_name, attr.name))
-                result.append('')
-                if attr in self.inherited_attributes:
-                    result.append('   .. note:: Inherited from %s' %
-                        self._shrink_module_name('%s.%s' %
-                            (attr.defining_class.__module__, attr.defining_class.__name__)))
-                    result.append('')
+                result.extend(self._format_attribute(attr, 'method'))
 
         return '\n'.join(result)
 
@@ -153,6 +114,29 @@ class ClassDocumenter(AbjadObject):
         if attr.defining_class is not self._cls:
             return True
         return False
+
+    def _format_attribute(self, attr, kind):
+        module_name = '%s.%s' % (self.cls.__module__, self.cls.__name__)
+        result = []
+        result.append('.. auto%s:: %s.%s' % (kind, module_name, attr.name))
+        result.append('')
+        if attr in self.inherited_attributes:
+            result.append('   .. note:: Inherited from %s' %
+                self._shrink_module_name('%s.%s' %
+                    (attr.defining_class.__module__, attr.defining_class.__name__)))
+            result.append('')
+        return result
+
+    def _format_heading(self, text, character='='):
+        return [text, character * len(text), '']
+
+    def _format_inheritance_diagram(self):
+        module_name = '%s.%s' % (self.cls.__module__, self.cls.__name__)
+        return [
+            '.. inheritance-diagram:: %s' % module_name,
+            '   :private-bases:',
+            '',
+        ]
 
     def _shrink_module_name(self, module):
         if self.prefix and module.startswith(self.prefix):
