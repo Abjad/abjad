@@ -5,9 +5,11 @@ def test_AbjadObject___repr___01():
 
     class Foo(abctools.AbjadObject):
         def __init__(self, x, y, flavor=None):
+            tmp_1 = 'foo'
             self.x = x
             self.y = y
             self.flavor = flavor
+            tmp_2 = 'bar'
         @property
         def _keyword_argument_names(self):
             return ('flavor', )

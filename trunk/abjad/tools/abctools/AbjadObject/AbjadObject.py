@@ -104,7 +104,11 @@ class AbjadObject(object):
         if initializer.func_defaults:
             keyword_argument_count = len(initializer.func_defaults)
             initializer_code = initializer.func_code
-            return initializer_code.co_varnames[-keyword_argument_count:]
+            mandatory_argument_count = (
+                initializer_code.co_argcount - keyword_argument_count - 1)
+            start_index = 1 + mandatory_argument_count
+            stop_index = start_index + keyword_argument_count
+            return initializer_code.co_varnames[start_index:stop_index]
         else:
             return ()
 
