@@ -231,3 +231,35 @@ class HairpinSpanner(_DirectedSpanner):
         Return boolean.
         '''
         return arg in HairpinSpanner._hairpin_shape_strings
+
+    @staticmethod
+    def is_hairpin_token(arg):
+        '''True when `arg` is a hairpin token. Otherwise false::
+
+            abjad> spannertools.HairpinSpanner.is_hairpin_token(('p', '<', 'f'))
+            True
+
+        ::
+
+            abjad> spannertools.HairpinSpanner.is_hairpin_token(('f', '<', 'p'))
+            False
+
+        Return boolean.
+        ''' 
+        from abjad.tools import contexttools
+        if isinstance(arg, tuple) and \
+            len(arg) == 3 and \
+            (not arg[0] or contexttools.DynamicMark.is_dynamic_name(arg[0])) and \
+            HairpinSpanner.is_hairpin_shape_string(arg[1]) and \
+            (not arg[2] or contexttools.DynamicMark.is_dynamic_name(arg[2])):
+            if arg[0] and arg[2]:
+                start_ordinal = contexttools.DynamicMark.dynamic_name_to_dynamic_ordinal(arg[0])
+                stop_ordinal = contexttools.DynamicMark.dynamic_name_to_dynamic_ordinal(arg[2])
+                if arg[1] == '<':
+                    return start_ordinal < stop_ordinal
+                else:
+                    return stop_ordinal < start_ordinal
+            else:
+                return True
+        else:
+            return False

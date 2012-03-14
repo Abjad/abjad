@@ -1063,6 +1063,7 @@ documentationtools
 .. toctree::
    :maxdepth: 1
 
+   tools/documentationtools/ClassDocumenter/ClassDocumenter
    tools/documentationtools/InheritanceGraph/InheritanceGraph
 
 
