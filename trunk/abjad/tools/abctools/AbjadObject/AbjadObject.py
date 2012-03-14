@@ -79,10 +79,13 @@ class AbjadObject(object):
     @property
     def _contents_repr_string(self):
         result = []
-        if self._mandatory_argument_repr_string:
-            result.append(self._mandatory_argument_repr_string)
-        if self._keyword_argument_repr_string:
-            result.append(self._keyword_argument_repr_string)
+        mandatory_argument_repr_string = [repr(x) for x in self._mandatory_argument_values]
+        mandatory_argument_repr_string = ', '.join(mandatory_argument_repr_string)
+        if mandatory_argument_repr_string:
+            result.append(mandatory_argument_repr_string)
+        keyword_argument_repr_string = ', '.join(self._keyword_argument_name_value_strings)
+        if keyword_argument_repr_string:
+            result.append(keyword_argument_repr_string)
         return ', '.join(result)
 
     @property
@@ -97,11 +100,13 @@ class AbjadObject(object):
 
     @property
     def _keyword_argument_names(self):
-        return ()
-
-    @property
-    def _keyword_argument_repr_string(self):
-        return ', '.join(self._keyword_argument_name_value_strings)
+        initializer = type(self).__init__.__func__
+        if initializer.func_defaults:
+            keyword_argument_count = len(initializer.func_defaults)
+            initializer_code = initializer.func_code
+            return initializer_code.co_varnames[-keyword_argument_count:]
+        else:
+            return ()
 
     @property
     def _keyword_argument_values(self):
@@ -111,12 +116,23 @@ class AbjadObject(object):
         return result
 
     @property
-    def _mandatory_argument_repr_string(self):
-        return ', '.join([repr(x) for x in self._mandatory_argument_values])
+    def _mandatory_argument_names(self):
+        initializer = type(self).__init__.__func__
+        if initializer.func_defaults:
+            keyword_argument_count = len(initializer.func_defaults)
+        else:
+            keyword_argument_count = 0
+        initializer_code = initializer.func_code
+        mandatory_argument_count = (initializer_code.co_argcount - keyword_argument_count - 1)
+        start_index, stop_index = 1, 1 + mandatory_argument_count
+        return initializer_code.co_varnames[start_index:stop_index]
 
     @property
     def _mandatory_argument_values(self):
-        return ()
+        result = []
+        for name in self._mandatory_argument_names:
+            result.append(getattr(self, name))
+        return tuple(result)
 
     @property
     def _one_line_menuing_summary(self):
