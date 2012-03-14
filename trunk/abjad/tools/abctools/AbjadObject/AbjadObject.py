@@ -1,4 +1,5 @@
 from abc import ABCMeta
+import types
 
 
 class AbjadObject(object):
@@ -94,8 +95,9 @@ class AbjadObject(object):
         for name in self._keyword_argument_names:
             value = getattr(self, name)
             if value is not None:
-                string = '{}={!r}'.format(name, value)
-                result.append(string)
+                if not isinstance(value, types.MethodType):
+                    string = '{}={!r}'.format(name, value)
+                    result.append(string)
         return tuple(result)
 
     @property
