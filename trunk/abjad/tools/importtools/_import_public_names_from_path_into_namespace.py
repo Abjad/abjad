@@ -35,8 +35,9 @@ def _import_public_names_from_path_into_namespace(path, namespace, package_root_
         elif os.path.isdir(os.path.join(path, element)):
             if not element in ('.svn', 'test', '__pycache__'):
                 #exec('from %s import %s' % (module, element))
-                submod = '.'.join([module, element])
-                namespace[element] = __import__(submod, fromlist =['*'])
+                if os.path.exists(os.path.join(path, element, '__init__.py')):
+                    submod = '.'.join([module, element])
+                    namespace[element] = __import__(submod, fromlist =['*'])
         else:
             raise ImportError('Not a dir, not a file, what is %s?' % element)
 
