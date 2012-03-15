@@ -4,7 +4,6 @@ from abjad.tools import pitchtools
 from abjad.tools.instrumenttools._PercussionInstrument import _PercussionInstrument
 
 
-# TODO: extend class definition to allow for custom target context in repr
 class Marimba(_PercussionInstrument):
     r'''.. versionadded:: 2.0
 
@@ -32,12 +31,8 @@ class Marimba(_PercussionInstrument):
     The marimba targets staff context by default.
     '''
 
-    def __init__(self, instrument_name=None, short_instrument_name=None,
-        instrument_name_markup=None, short_instrument_name_markup=None, target_context=None):
-        _PercussionInstrument.__init__(self, instrument_name=instrument_name, 
-            short_instrument_name=short_instrument_name,
-            instrument_name_markup=instrument_name_markup, 
-            short_instrument_name_markup=short_instrument_name_markup, target_context=target_context)
+    def __init__(self, **kwargs):
+        _PercussionInstrument.__init__(self, **kwargs)
         self._default_instrument_name = 'marimba'
         self._default_short_instrument_name = 'mb.'
         self._is_primary_instrument = False
@@ -45,15 +40,3 @@ class Marimba(_PercussionInstrument):
         self.primary_clefs = [contexttools.ClefMark('treble'), contexttools.ClefMark('bass')]
         self._copy_primary_clefs_to_all_clefs()
         self._traditional_pitch_range = pitchtools.PitchRange(-19, 36)
-
-
-    ### PRIVATE READ-ONLY PROPERTIES ###
-
-    # TODO: extend class definition to allow for custom target context in repr
-    @property
-    def _keyword_argument_names(self):
-        return ()
-
-    @property
-    def _mandatory_argument_values(self):
-        return ()
