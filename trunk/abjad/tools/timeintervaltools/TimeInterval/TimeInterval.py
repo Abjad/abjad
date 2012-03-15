@@ -3,10 +3,10 @@ import copy
 from abjad import Fraction
 from abjad.tools.durationtools import Duration
 from abjad.tools.durationtools import Offset
-from abjad.tools.timeintervaltools._TimeIntervalMixin._TimeIntervalMixin import _TimeIntervalMixin
+from abjad.tools.timeintervaltools.TimeIntervalMixin import TimeIntervalMixin
 
 
-class TimeInterval(_TimeIntervalMixin, MutableMapping):
+class TimeInterval(TimeIntervalMixin, MutableMapping):
     '''A start / stop pair, carrying some metadata.'''
 
     __slots__ = ('_data', '_start', '_stop')
@@ -93,62 +93,6 @@ class TimeInterval(_TimeIntervalMixin, MutableMapping):
 
     ### PUBLIC METHODS ###
 
-    def get_overlap_with_interval(self, interval):
-        '''Return amount of overlap with `interval`.'''
-        assert isinstance(interval, type(self))
-        if not self.is_overlapped_by_interval(interval):
-            return 0
-        elif self.is_container_of_interval(interval):
-            return interval.duration
-        elif self.is_contained_by_interval(interval):
-            return self.duration
-        elif self.start < interval.start:
-            return self.stop - interval.start
-        else:
-            return interval.stop - self.start
-
-    def is_contained_by_interval(self, interval):
-        '''True if interval is contained by `interval`.'''
-        assert isinstance(interval, type(self))
-        if interval.start <= self.start and self.stop <= interval.stop:
-            return True
-        else:
-            return False
-
-    def is_container_of_interval(self, interval):
-        '''True if interval contains `interval`.'''
-        assert isinstance(interval, type(self))
-        if self.start <= interval.start and interval.stop <= self.stop:
-            return True
-        else:
-            return False
-
-    def is_overlapped_by_interval(self, interval):
-        '''True if interval is overlapped by `interval`.'''
-        assert isinstance(interval, type(self))
-        if self.is_container_of_interval(interval):
-            return True
-        elif self.is_contained_by_interval(interval):
-            return True
-        elif self.start < interval.start < self.stop:
-            return True
-        elif self.start == interval.start:
-            return True
-        elif self.stop == interval.stop:
-            return True
-        elif self.start < interval.stop < self.stop:
-            return True
-        else:
-            return False
-
-    def is_tangent_to_interval(self, interval):
-        '''True if interval is tangent to `interval`.'''
-        assert isinstance(interval, type(self))
-        if self.stop == interval.start or interval.stop == self.start:
-            return True
-        else:
-            return False
-
     def scale_by_rational(self, rational):
         assert isinstance(rational, (int, Fraction))
         assert 0 <= rational
@@ -193,7 +137,7 @@ class TimeInterval(_TimeIntervalMixin, MutableMapping):
                     new_intervals.append(type(self)(interval.start, rational, self))
                     new_intervals.append(type(self)(rational, interval.stop, self))
                 else:
-                    new_intervals.append(interval)
+                    new_intervals.append(type(self)(interval))
             intervals = new_intervals
             new_intervals = [ ]
 

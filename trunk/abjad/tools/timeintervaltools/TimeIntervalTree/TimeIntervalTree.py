@@ -4,13 +4,12 @@ from abjad import Fraction
 from abjad.tools.durationtools import Duration
 from abjad.tools.durationtools import Offset
 from abjad.tools.timeintervaltools.TimeInterval import TimeInterval
-from abjad.tools.timeintervaltools._TimeIntervalAggregateMixin._TimeIntervalAggregateMixin \
-    import _TimeIntervalAggregateMixin
+from abjad.tools.timeintervaltools.TimeIntervalAggregateMixin import TimeIntervalAggregateMixin
 from abjad.tools.timeintervaltools._IntervalNode import _IntervalNode
 from abjad.tools.timeintervaltools._RedBlackTree import _RedBlackTree
 
 
-class TimeIntervalTree(_RedBlackTree, _TimeIntervalAggregateMixin):
+class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
     '''An augmented red-black tree for storing and searching for intervals of
     time (rather than pitch).
 
@@ -25,8 +24,10 @@ class TimeIntervalTree(_RedBlackTree, _TimeIntervalAggregateMixin):
 
         abjad> from abjad.tools.timeintervaltools import TimeIntervalTree
         abjad> from abjad.tools.timeintervaltools import TimeInterval
-        abjad> bi = TimeInterval(0, 10)
-        abjad> tree = TimeIntervalTree([bi])
+        abjad> interval_one = TimeInterval(0, 10)
+        abjad> interval_two = TimeInterval(1, 8)
+        abjad> interval_three = TimeInterval(3, 13)
+        abjad> tree = TimeIntervalTree([interval_one, interval_two, interval_three])
 
     '''
 
@@ -564,7 +565,7 @@ class TimeIntervalTree(_RedBlackTree, _TimeIntervalAggregateMixin):
         return tuple(sorted(recurse(self._root, start, stop), key=lambda x: x.signature))
 
     def scale_by_rational(self, rational):
-        rational = Fraction(rational)
+        rational = Duration(rational)
         return TimeIntervalTree([
             x.shift_to_rational(
                 ((x.start - self.start) * rational) + self.start).scale_by_rational(rational)\
@@ -572,7 +573,7 @@ class TimeIntervalTree(_RedBlackTree, _TimeIntervalAggregateMixin):
         ])
 
     def scale_to_rational(self, rational):
-        rational = Fraction(rational)
+        rational = Duration(rational)
         ratio = rational / self.duration
         return TimeIntervalTree([
             x.shift_to_rational(
@@ -580,18 +581,45 @@ class TimeIntervalTree(_RedBlackTree, _TimeIntervalAggregateMixin):
                 for x in self])
 
     def shift_by_rational(self, rational):
-        rational = Fraction(rational)
+        rational = Offset(rational)
         return TimeIntervalTree([
             x.shift_by_rational(rational) for x in self
         ])
 
     def shift_to_rational(self, rational):
-        rational = Fraction(rational)
+        rational = Offset(rational)
         return TimeIntervalTree([
             x.shift_by_rational(rational - self.start) for x in self
         ])
 
     def split_at_rationals(self, *rationals):
         assert 0 < len(rationals)
-        rationals = tuple(sorted([Fraction(x) for x in rationals]))
-        intervals = [x.split_at_rationals(rationals) for x in self]
+        rationals = tuple(sorted([Offset(x) for x in rationals]))
+
+        trees = []
+        intervals = self[:]
+        before = []
+        after = []
+        for rational in rationals:
+            for interval in intervals:
+                splits = interval.split_at_rationals(rational)
+                if len(splits) == 1:
+                    if splits[0].stop <= rational:
+                        before.append(splits[0])
+                    elif rational <= splits[0].start:
+                        after.append(splits[0])
+                else:
+                    before.append(splits[0])
+                    after.append(splits[1])
+
+            if before:
+                trees.append(TimeIntervalTree(before))
+
+            intervals = after
+            before = []
+            after = []
+
+        if intervals:
+            trees.append(TimeIntervalTree(intervals))
+
+        return tuple(trees)

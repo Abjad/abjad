@@ -4,21 +4,22 @@ from abc import abstractproperty
 from abjad import Duration
 from abjad.exceptions import NotImplementedError
 from abjad.tools.timeintervaltools.TimeInterval import TimeInterval
-from abjad.tools.timeintervaltools._TimeIntervalMixin._TimeIntervalMixin \
-    import _TimeIntervalMixin
+from abjad.tools.timeintervaltools.TimeIntervalMixin import TimeIntervalMixin
 
 
-class _TimeIntervalAggregateMixin(_TimeIntervalMixin):
+class TimeIntervalAggregateMixin(TimeIntervalMixin):
+
+    ### CLASS ATTRIBUTES ###
 
     __metaclass__ = ABCMeta
 
-    ### OVERRIDES ###
+    ### SPECIAL METHODS ###
 
     @abstractmethod
     def __nonzero__(self):
         raise NotImplementedError
 
-    ### PUBLIC ATTRIBUTES
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def bounds(self):

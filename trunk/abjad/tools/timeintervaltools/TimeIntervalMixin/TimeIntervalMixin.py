@@ -4,11 +4,11 @@ from abjad import Duration
 from abjad.tools.abctools import AbjadObject
 
 
-class _TimeIntervalMixin(AbjadObject):
+class TimeIntervalMixin(AbjadObject):
+
+    ### CLASS ATTRIBUTES ###
 
     __metaclass__ = ABCMeta
-
-    __slots__ = ('_start', '_stop')
 
     ### PUBLIC PROPERTIES ###
 
@@ -41,7 +41,7 @@ class _TimeIntervalMixin(AbjadObject):
 
     def get_overlap_with_interval(self, interval):
         '''Return amount of overlap with `interval`.'''
-        assert isinstance(interval, _TimeIntervalMixin)
+        assert isinstance(interval, TimeIntervalMixin)
         if not self.is_overlapped_by_interval(interval):
             return 0
         elif self.is_container_of_interval(interval):
@@ -55,7 +55,7 @@ class _TimeIntervalMixin(AbjadObject):
 
     def is_contained_by_interval(self, interval):
         '''True if interval is contained by `interval`.'''
-        assert isinstance(interval, _TimeIntervalMixin)
+        assert isinstance(interval, TimeIntervalMixin)
         if interval.start <= self.start and self.stop <= interval.stop:
             return True
         else:
@@ -63,7 +63,7 @@ class _TimeIntervalMixin(AbjadObject):
 
     def is_container_of_interval(self, interval):
         '''True if interval contains `interval`.'''
-        assert isinstance(interval, _TimeIntervalMixin)
+        assert isinstance(interval, TimeIntervalMixin)
         if self.start <= interval.start and interval.stop <= self.stop:
             return True
         else:
@@ -71,7 +71,7 @@ class _TimeIntervalMixin(AbjadObject):
 
     def is_overlapped_by_interval(self, interval):
         '''True if interval is overlapped by `interval`.'''
-        assert isinstance(interval, _TimeIntervalMixin)
+        assert isinstance(interval, TimeIntervalMixin)
         if self.is_container_of_interval(interval):
             return True
         elif self.is_contained_by_interval(interval):
@@ -88,7 +88,7 @@ class _TimeIntervalMixin(AbjadObject):
 
     def is_tangent_to_interval(self, interval):
         '''True if interval is tangent to `interval`.'''
-        assert isinstance(interval, _TimeIntervalMixin)
+        assert isinstance(interval, TimeIntervalMixin)
         if self.stop == interval.start or interval.stop == self.start:
             return True
         else:
