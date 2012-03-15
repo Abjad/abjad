@@ -64,24 +64,6 @@ class ObjectInventory(list, AbjadObject):
             result.append('inventory_name={!r}'.format(self.inventory_name))
         return ', '.join(result)
 
-    # TODO: deprecate in favor of AbjadObject?
-    @property
-    def _repr_pieces(self):
-        result = []
-        if len(self) == 0:
-            result.append(repr(self))
-        else:
-            result.append('{}(['.format(self._class_name))
-            for item in self[:-1]:
-                repr_pieces = item._repr_pieces
-                for repr_piece in repr_pieces[:-1]:
-                    result.append('\t{}'.format(repr_piece))
-                result.append('\t{},'.format(repr_pieces[-1]))
-            for repr_piece in self[-1]._repr_pieces:
-                result.append('\t{}'.format(repr_piece))
-            result.append('])')
-        return result
-
     ### READ / WRITE PUBLIC ATTRIBUTES ###
 
     @apply

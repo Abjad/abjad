@@ -209,11 +209,6 @@ class PitchRange(AbjadObject):
         else:
             return '('
 
-    # TODO: deprecate in favor of AbjadObject?
-    @property
-    def _tools_package_qualified_repr(self):
-        return '{}({!r})'.format(self._tools_package_qualified_class_name, self.one_line_named_chromatic_pitch_repr)
-
     ### PRIVATE METHODS ###
 
     def _contains_pitch(self, pitch):
