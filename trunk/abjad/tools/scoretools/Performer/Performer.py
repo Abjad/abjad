@@ -1,5 +1,6 @@
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.instrumenttools._Instrument import _Instrument
+from abjad.tools.instrumenttools.InstrumentInventory import InstrumentInventory
 
 
 class Performer(AbjadObject):
@@ -17,6 +18,7 @@ class Performer(AbjadObject):
     '''
 
     def __init__(self, name=None, instruments=None):
+        self._instruments = InstrumentInventory()
         self.name = name
         self.instruments = instruments
 
@@ -58,23 +60,23 @@ class Performer(AbjadObject):
 
     ### PRIVATE METHODS ####
 
-    def _repr_helper(self, include_tools_package=False):
-        values = []
-        if self.name is not None:
-            values.append('name={!r}'.format(self.name))
-        if self.instruments:
-            if include_tools_package:
-                instruments = ', '.join([x._tools_package_qualified_repr for x in self.instruments])
-                instruments = 'instruments=[{}]'.format(instruments)
-            else:
-                instruments = 'instruments={}'.format(str(self.instruments[:]))
-            values.append(instruments)
-        values = ', '.join(values)
-        if include_tools_package:
-            tools_package = self.__module__.split('.')[-3]
-            return '{}.{}({})'.format(tools_package, type(self).__name__, values)
-        else:
-            return '{}({})'.format(type(self).__name__, values)
+#    def _repr_helper(self, include_tools_package=False):
+#        values = []
+#        if self.name is not None:
+#            values.append('name={!r}'.format(self.name))
+#        if self.instruments:
+#            if include_tools_package:
+#                instruments = ', '.join([x._tools_package_qualified_repr for x in self.instruments])
+#                instruments = 'instruments=[{}]'.format(instruments)
+#            else:
+#                instruments = 'instruments={}'.format(str(self.instruments[:]))
+#            values.append(instruments)
+#        values = ', '.join(values)
+#        if include_tools_package:
+#            tools_package = self.__module__.split('.')[-3]
+#            return '{}.{}({})'.format(tools_package, type(self).__name__, values)
+#        else:
+#            return '{}({})'.format(type(self).__name__, values)
 
     ### PUBLIC PROPERTIES ###
 
@@ -120,10 +122,11 @@ class Performer(AbjadObject):
             return self._instruments
         def fset(self, instruments):
             if instruments is None:
-                self._instruments = []
+                self._instruments[:] = []
             elif isinstance(instruments, list):
                 assert all([isinstance(x, _Instrument) for x in instruments])
-                self._instruments = instruments[:]
+                #self._instruments = instruments[:]
+                self._instruments[:] = instruments[:]
             else:
                 raise TypeError('instruments %r must be list or none.' % instruments)
         return property(**locals())

@@ -66,6 +66,18 @@ class NumberedChromaticPitch(_ChromaticPitch, _NumberedPitch):
         semitones = abs(self) - abs(arg)
         return type(self)(semitones)
 
+    ### PRIVATE READ-ONLY PROPERTIES ###
+
+    @property
+    def _keyword_argument_names(self):
+        return ()
+
+    @property
+    def _mandatory_argument_values(self):
+        return (
+            self.chromatic_pitch_number,
+            )
+
     ### PUBLIC PROPERTIES ###
 
     @property

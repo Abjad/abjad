@@ -11,21 +11,33 @@ def test_OctaveTranspositionMappingInventory__tools_package_qualified_indented_r
     pitchtools.OctaveTranspositionMappingInventory([
         pitchtools.OctaveTranspositionMapping([
             pitchtools.OctaveTranspositionMappingComponent(
-                pitchtools.PitchRange('[A0, C4)'),
-                pitchtools.NumberedChromaticPitch(15)
+                pitchtools.PitchRange(
+                    '[A0, C4)'
+                    ),
+                pitchtools.NumberedChromaticPitch(
+                    15
+                    )
                 ),
             pitchtools.OctaveTranspositionMappingComponent(
-                pitchtools.PitchRange('[C4, C8)'),
-                pitchtools.NumberedChromaticPitch(27)
+                pitchtools.PitchRange(
+                    '[C4, C8)'
+                    ),
+                pitchtools.NumberedChromaticPitch(
+                    27
+                    )
                 )
-        ]),
+            ]),
         pitchtools.OctaveTranspositionMapping([
             pitchtools.OctaveTranspositionMappingComponent(
-                pitchtools.PitchRange('[A0, C8]'),
-                pitchtools.NumberedChromaticPitch(-18)
+                pitchtools.PitchRange(
+                    '[A0, C8]'
+                    ),
+                pitchtools.NumberedChromaticPitch(
+                    -18
+                    )
                 )
+            ])
         ])
-    ])
     '''
 
-    assert inventory._tools_package_qualified_indented_repr == "pitchtools.OctaveTranspositionMappingInventory([\n\tpitchtools.OctaveTranspositionMapping([\n\t\tpitchtools.OctaveTranspositionMappingComponent(\n\t\t\tpitchtools.PitchRange('[A0, C4)'),\n\t\t\tpitchtools.NumberedChromaticPitch(15)\n\t\t\t),\n\t\tpitchtools.OctaveTranspositionMappingComponent(\n\t\t\tpitchtools.PitchRange('[C4, C8)'),\n\t\t\tpitchtools.NumberedChromaticPitch(27)\n\t\t\t)\n\t\t]),\n\tpitchtools.OctaveTranspositionMapping([\n\t\tpitchtools.OctaveTranspositionMappingComponent(\n\t\t\tpitchtools.PitchRange('[A0, C8]'),\n\t\t\tpitchtools.NumberedChromaticPitch(-18)\n\t\t\t)\n\t\t])\n\t])"
+    assert inventory._tools_package_qualified_indented_repr == "pitchtools.OctaveTranspositionMappingInventory([\n\tpitchtools.OctaveTranspositionMapping([\n\t\tpitchtools.OctaveTranspositionMappingComponent(\n\t\t\tpitchtools.PitchRange(\n\t\t\t\t'[A0, C4)'\n\t\t\t\t),\n\t\t\tpitchtools.NumberedChromaticPitch(\n\t\t\t\t15\n\t\t\t\t)\n\t\t\t),\n\t\tpitchtools.OctaveTranspositionMappingComponent(\n\t\t\tpitchtools.PitchRange(\n\t\t\t\t'[C4, C8)'\n\t\t\t\t),\n\t\t\tpitchtools.NumberedChromaticPitch(\n\t\t\t\t27\n\t\t\t\t)\n\t\t\t)\n\t\t]),\n\tpitchtools.OctaveTranspositionMapping([\n\t\tpitchtools.OctaveTranspositionMappingComponent(\n\t\t\tpitchtools.PitchRange(\n\t\t\t\t'[A0, C8]'\n\t\t\t\t),\n\t\t\tpitchtools.NumberedChromaticPitch(\n\t\t\t\t-18\n\t\t\t\t)\n\t\t\t)\n\t\t])\n\t])"

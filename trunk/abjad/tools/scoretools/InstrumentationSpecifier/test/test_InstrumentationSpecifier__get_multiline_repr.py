@@ -1,4 +1,6 @@
 from abjad import *
+import py
+py.test.skip('deprecated.')
 
 
 def test_InstrumentationSpecifier__get_multiline_repr_01():
