@@ -98,3 +98,16 @@ class Duration(Fraction, AbjadObject):
 
     def __truediv__(self, *args):
         return type(self)(Fraction.__truediv__(self, *args))
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _keyword_argument_names(self):
+        return ()
+
+    @property
+    def _mandatory_argument_values(self):
+        result = []
+        result.append(self.numerator)
+        result.append(self.denominator)
+        return tuple(result)

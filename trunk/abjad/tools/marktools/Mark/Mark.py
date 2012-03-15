@@ -69,29 +69,6 @@ class Mark(AbjadObject):
             return '(%s)' % str(self.start_component)
 
     @property
-    def _contents_repr_string(self):
-        if hasattr(self, 'contents'):
-            return repr(self.contents)
-        else:
-            return ''
-
-    @property
-    def _contents_repr_string_with_tools_package(self):
-        if hasattr(self, 'contents'):
-            part_reprs = []
-            for element in self.contents:
-                part_repr = getattr(element, '_tools_package_qualified_repr', repr(element))
-                part_reprs.append(part_repr)
-            return ', '.join(part_reprs)
-        else:
-            return ''
-
-    @property
-    def _tools_package_qualified_repr(self):
-        return '{}({}){}'.format(self._tools_package_qualified_class_name,
-            self._contents_repr_string_with_tools_package, self._attachment_repr_string)
-
-    @property
     def _one_line_menuing_summary(self):
         return repr(self)
 

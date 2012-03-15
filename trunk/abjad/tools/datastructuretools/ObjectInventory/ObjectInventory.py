@@ -52,18 +52,11 @@ class ObjectInventory(list, AbjadObject):
 
     ### READ-ONLY PRIVATE ATTRIBUTES ###
 
-    @property
-    def _contents_tools_package_qualified_repr(self):
-        part_reprs = []
-        for element in self:
-            part_repr = getattr(element, '_tools_package_qualified_repr', repr(element))
-            part_reprs.append(part_repr)
-        return ', '.join(part_reprs)
-
     @abstractproperty
     def _item_class(self):
         pass
 
+    # TODO: deprecate in favor of AbjadObject?
     @property
     def _kwargs_string(self):
         result = []
@@ -71,6 +64,7 @@ class ObjectInventory(list, AbjadObject):
             result.append('inventory_name={!r}'.format(self.inventory_name))
         return ', '.join(result)
 
+    # TODO: deprecate in favor of AbjadObject?
     @property
     def _repr_pieces(self):
         result = []
@@ -88,29 +82,6 @@ class ObjectInventory(list, AbjadObject):
             result.append('])')
         return result
 
-    # TODO: reimplement based on tools package qualified repr pieces
-    @property
-    def _tools_package_qualified_repr(self):
-        return '{}([{}])'.format(
-            self._tools_package_qualified_class_name, self._contents_tools_package_qualified_repr)
-
-    @property
-    def _tools_package_qualified_repr_pieces(self):
-        result = []
-        if len(self) == 0:
-            result.append(repr(self))
-        else:
-            result.append('{}(['.format(self._tools_package_qualified_class_name))
-            for item in self[:-1]:
-                repr_pieces = item._tools_package_qualified_repr_pieces
-                for repr_piece in repr_pieces[:-1]:
-                    result.append('\t{}'.format(repr_piece))
-                result.append('\t{},'.format(repr_pieces[-1]))
-            for repr_piece in self[-1]._tools_package_qualified_repr_pieces:
-                result.append('\t{}'.format(repr_piece))
-            result.append('])')
-        return result
-
     ### READ / WRITE PUBLIC ATTRIBUTES ###
 
     @apply
@@ -123,6 +94,31 @@ class ObjectInventory(list, AbjadObject):
             assert isinstance(_inventory_name, (str, type(None)))
             self._inventory_name = _inventory_name
         return property(**locals())
+
+    ### PRIVATE METHODS ###
+
+    def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
+        result = []
+        if len(self) == 0:
+            result.append(repr(self))
+        else:
+            if is_indented:
+                prefix = '\t'
+            else:
+                prefix = ''
+            result.append('{}(['.format(self._tools_package_qualified_class_name))
+            for item in self[:-1]:
+                repr_pieces = item._get_tools_package_qualified_repr_pieces(is_indented=is_indented)
+                for repr_piece in repr_pieces[:-1]:
+                    result.append('{}{}'.format(prefix, repr_piece))
+                if is_indented:
+                    result.append('{}{},'.format(prefix, repr_pieces[-1]))
+                else:
+                    result.append('{}{}, '.format(prefix, repr_pieces[-1]))
+            for repr_piece in self[-1]._get_tools_package_qualified_repr_pieces(is_indented=is_indented):
+                result.append('{}{}'.format(prefix, repr_piece))
+            result.append('{}])'.format(prefix))
+        return result
 
     ### PUBLIC METHODS ###
 

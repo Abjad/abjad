@@ -166,13 +166,6 @@ class PitchRange(AbjadObject):
     def __ne__(self, arg):
         return not self == arg
 
-    def __repr__(self):
-        if self._kwargs_string:
-            return '{}({!r}, {})'.format(type(self).__name__, 
-                self.one_line_named_chromatic_pitch_repr, self._kwargs_string)
-        else:
-            return '{}({!r})'.format(type(self).__name__, self.one_line_named_chromatic_pitch_repr)
-
     ### PRIVATE CLASS ATTRIBUTES ###
 
     _start_punctuation_to_inclusivity_string = {
@@ -193,14 +186,17 @@ class PitchRange(AbjadObject):
             return ')'
 
     @property
-    def _kwargs_string(self):
+    def _keyword_argument_names(self):
         result = []
-        if self._pitch_range_name:
-            result.append('pitch_range_name={!r}'.format(self._pitch_range_name))
-        if self._pitch_range_name_markup:
-            result.append('pitch_range_name_markup={!r}'.format(self._pitch_range_name_markup))
-        result = ', '.join(result)
-        return result
+        result.append('pitch_range_name')
+        result.append('pitch_range_name_markup')
+        return tuple(result)
+
+    @property
+    def _mandatory_argument_values(self):
+        result = []
+        result.append(self.one_line_named_chromatic_pitch_repr)
+        return tuple(result)
 
     @property
     def _one_line_menuing_summary(self):
@@ -213,6 +209,7 @@ class PitchRange(AbjadObject):
         else:
             return '('
 
+    # TODO: deprecate in favor of AbjadObject?
     @property
     def _tools_package_qualified_repr(self):
         return '{}({!r})'.format(self._tools_package_qualified_class_name, self.one_line_named_chromatic_pitch_repr)

@@ -108,7 +108,9 @@ class TempoMark(ContextMark):
             return new_tempo_indication
 
     def __copy__(self, *args):
-        return type(self)(self.textual_indication, self.duration, self.units_per_minute, target_context = self.target_context)
+        return type(self)(
+            self.textual_indication, self.duration, self.units_per_minute, 
+            target_context=self.target_context)
 
     def __div__(self, expr):
         if isinstance(expr, type(self)):
@@ -150,32 +152,6 @@ class TempoMark(ContextMark):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _contents_repr_string(self):
-        result = []
-        if self.textual_indication:
-            result.append(repr(self.textual_indication))
-        if self.duration:
-            result.append(repr(self.duration))
-        if self.units_per_minute:
-            result.append(repr(self.units_per_minute))
-        return ', '.join(result)
-
-    @property
-    def _contents_repr_string_with_tools_package(self):
-        result = []
-        result = []
-        if self.textual_indication:
-            result.append(getattr(
-                self.textual_indication, '_repr_with_tools_pacakge', repr(self.textual_indication)))
-        if self.duration:
-            result.append(getattr(
-                self.duration, '_tools_package_qualified_repr', repr(self.duration)))
-        if self.units_per_minute:
-            result.append(getattr(
-                self.units_per_minute, '_tools_package_qualified_repr', repr(self.units_per_minute)))
-        return ', '.join(result)
-        
-    @property
     def _dotted(self):
         '''Dotted numeral representation of duration.'''
         return durationtools.assignable_rational_to_lilypond_duration_string(self.duration)
@@ -190,6 +166,17 @@ class TempoMark(ContextMark):
     @property
     def _one_line_menuing_summary(self):
         return self.format.lstrip(r'\tempo ')
+
+    @property
+    def _mandatory_argument_values(self):
+        result = []
+        if self.textual_indication:
+            result.append(self.textual_indication)
+        if self.duration:
+            result.append(self.duration)
+        if self.units_per_minute:
+            result.append(self.units_per_minute)
+        return tuple(result)
 
     ### PUBLIC PROPERTIES ###
 
