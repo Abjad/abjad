@@ -1,8 +1,8 @@
 import inspect
-from abjad.tools.abctools import AbjadObject
+from abjad.tools.documentationtools.Documenter import Documenter
 
 
-class ClassDocumenter(AbjadObject):
+class ClassDocumenter(Documenter):
     '''ClassDocumenter generates an ReST API entry for a given class:
 
     ::
@@ -26,17 +26,15 @@ class ClassDocumenter(AbjadObject):
         '__sizeof__', '__subclasshook__'
     )
 
-    __slots__ = ('_cls', '_data', '_inherited_attributes', 
-        '_methods', '_prefix', '_readonly_properties', 
+    __slots__ = ('_data', '_inherited_attributes', 
+        '_methods', '_object', '_prefix', '_readonly_properties', 
         '_readwrite_properties', '_special_methods')
 
     ### INITIALIZER ###
 
-    def __init__(self, cls, prefix = 'abjad.tools.'):
-        assert isinstance(cls, type)
-        assert isinstance(prefix, (str, type(None)))
-        self._cls = cls
-        self._prefix = prefix
+    def __init__(self, obj, prefix = 'abjad.tools.'):
+        assert isinstance(obj, type)
+        Documenter.__init__(self, obj, prefix)
 
         data = []
         inherited_attributes = []
@@ -45,7 +43,7 @@ class ClassDocumenter(AbjadObject):
         readwrite_properties = []
         special_methods = []
 
-        attrs = inspect.classify_class_attrs(self._cls)
+        attrs = inspect.classify_class_attrs(self._object)
         for attr in attrs:
             if self._attribute_is_inherited(attr):
                 inherited_attributes.append(attr)
@@ -77,8 +75,13 @@ class ClassDocumenter(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self):
-        stripped_class_name = self._shrink_module_name(self.cls.__module__)
-        module_name = '%s.%s' % (self.cls.__module__, self.cls.__name__)
+        '''Generate documentation.
+
+        Returns string.
+        '''
+
+        stripped_class_name = self._shrink_module_name(self.object.__module__)
+        module_name = '%s.%s' % (self.object.__module__, self.object.__name__)
 
         result = []
         result.extend(self._format_heading(stripped_class_name, '='))
@@ -111,12 +114,12 @@ class ClassDocumenter(AbjadObject):
     ### PRIVATE METHODS ###
 
     def _attribute_is_inherited(self, attr):
-        if attr.defining_class is not self._cls:
+        if attr.defining_class is not self._object:
             return True
         return False
 
     def _format_attribute(self, attr, kind):
-        module_name = '%s.%s' % (self.cls.__module__, self.cls.__name__)
+        module_name = '%s.%s' % (self._object.__module__, self._object.__name__)
         result = []
         result.append('.. auto%s:: %s.%s' % (kind, module_name, attr.name))
         result.append('')
@@ -127,32 +130,15 @@ class ClassDocumenter(AbjadObject):
             result.append('')
         return result
 
-    def _format_heading(self, text, character='='):
-        return [text, character * len(text), '']
-
     def _format_inheritance_diagram(self):
-        module_name = '%s.%s' % (self.cls.__module__, self.cls.__name__)
+        module_name = '%s.%s' % (self._object.__module__, self._object.__name__)
         return [
             '.. inheritance-diagram:: %s' % module_name,
             '   :private-bases:',
             '',
         ]
 
-    def _shrink_module_name(self, module):
-        if self.prefix and module.startswith(self.prefix):
-            module = module.partition(self.prefix)[-1]
-        parts = module.split('.')
-        unique = [parts[0]]
-        for part in parts[1:]:
-            if part != unique[-1]:
-                unique.append(part)
-        return '.'.join(unique)
-
     ### PUBLIC ATTRIBUTES ###
-
-    @property
-    def cls(self):
-        return self._cls
 
     @property
     def data(self):
@@ -165,10 +151,6 @@ class ClassDocumenter(AbjadObject):
     @property
     def methods(self):
         return self._methods
-
-    @property
-    def prefix(self):
-        return self._prefix
 
     @property
     def readonly_properties(self):
