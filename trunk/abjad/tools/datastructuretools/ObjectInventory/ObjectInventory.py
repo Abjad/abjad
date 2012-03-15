@@ -45,10 +45,7 @@ class ObjectInventory(list, AbjadObject):
         return list.__contains__(self, item)        
 
     def __repr__(self):
-        if self._kwargs_string:
-            return '{}({}, {})'.format(self._class_name, list.__repr__(self), self._kwargs_string)
-        else:
-            return '{}({})'.format(self._class_name, list.__repr__(self))
+        return AbjadObject.__repr__(self)
 
     ### READ-ONLY PRIVATE ATTRIBUTES ###
 
@@ -56,13 +53,17 @@ class ObjectInventory(list, AbjadObject):
     def _item_class(self):
         pass
 
-    # TODO: deprecate in favor of AbjadObject?
     @property
-    def _kwargs_string(self):
-        result = []
-        if self.inventory_name:
-            result.append('inventory_name={!r}'.format(self.inventory_name))
-        return ', '.join(result)
+    def _keyword_argument_names(self):
+        return (
+            'inventory_name',
+            )
+
+    @property
+    def _mandatory_argument_values(self):
+        return (
+            list(self),
+            ) 
 
     ### READ / WRITE PUBLIC ATTRIBUTES ###
 
