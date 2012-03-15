@@ -74,7 +74,7 @@ class Markup(_DirectedMark):
 
     __slots__ = ('_contents_string', '_direction', '_format_slot', '_style_string')
 
-    def __init__(self, arg, direction = None, style_string = 'backslash'):
+    def __init__(self, arg, direction=None, style_string='backslash'):
         if isinstance(arg, str):
             contents_string = arg
         elif isinstance(arg, Markup):
@@ -125,6 +125,21 @@ class Markup(_DirectedMark):
     def __str__(self):
         return self.format
 
+    ### PRIVATE READ-ONLY PROPERTIES ###
+
+    @property
+    def _keyword_argument_names(self):
+        return (
+            'direction',
+            'style_string',
+            )
+
+    @property
+    def _mandatory_argument_values(self):
+        return (
+            self.contents_string,
+            )
+
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -162,14 +177,6 @@ class Markup(_DirectedMark):
             raise ValueError('unknown markup style string: "%s".' % self._style_string)
         return result
 
-#   @property
-#   def style_string(self):
-#      r'''Read-only style string of markup:
-#
-#      ::
-#
-#         abjad> markup = markuptools.Markup(r'\bold { "This is markup text." }')
-#         abjad> markup.style_string
-#         'backslash'
-#      '''
-#      return self._style_string
+    @property
+    def style_string(self):
+        return self._style_string

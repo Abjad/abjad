@@ -77,7 +77,7 @@ class ObjectInventory(list, AbjadObject):
     def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
         result = []
         if len(self) == 0:
-            result.append(repr(self))
+            result.append('{}.{!r}'.format(self._tools_package, self))
         else:
             if is_indented:
                 prefix = '\t'
