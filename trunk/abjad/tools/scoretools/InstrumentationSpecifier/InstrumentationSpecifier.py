@@ -45,45 +45,6 @@ class InstrumentationSpecifier(AbjadObject):
     def __ne__(self, other):
         return not self == other
 
-#    def __repr__(self):
-#        return self._repr_helper()
-
-#    ### PRIVATE PROPERTIES ###
-#
-#    @property
-#    def _tools_package_qualified_repr(self):
-#        return self._repr_helper(include_tools_package=True)
-
-    ### PRIVATE METHODS ###
-
-#    def _get_multiline_repr(self, include_tools_package=False):
-#        result = []
-#        if not self.performer_count:
-#            result.append(self._repr_helper(include_tools_package=include_tools_package))
-#        else:
-#            class_name = type(self).__name__
-#            if include_tools_package:
-#                tools_package = self.__module__.split('.')[-3]
-#                result.append('{}.{}(['.format(tools_package, class_name))
-#            else:
-#                result.append('{}(['.format(class_name))
-#            for performer in self.performers[:-1]:
-#                result.append('    {},'.format(
-#                    performer._repr_helper(include_tools_package=include_tools_package)))
-#            result.append('    {}])'.format(
-#                self.performers[-1]._repr_helper(include_tools_package=include_tools_package)))
-#            return result
-#        return result
-#            
-#    def _repr_helper(self, include_tools_package=False):
-#        class_name = type(self).__name__
-#        if include_tools_package:
-#            tools_package = self.__module__.split('.')[-3]
-#            performers = ', '.join([x._tools_package_qualified_repr for x in self.performers])
-#            return '{}.{}([{}])'.format(tools_package, class_name, performers)
-#        else:
-#            return '{}({!r})'.format(class_name, self.performers)
-
     ### PUBLIC PROPERTIES ###
 
     @property
