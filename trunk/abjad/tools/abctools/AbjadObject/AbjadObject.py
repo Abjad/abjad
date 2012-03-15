@@ -188,15 +188,17 @@ class AbjadObject(object):
         for name in self._keyword_argument_names:
             value = getattr(self, name)
             if value is not None:
-                if hasattr(value, '_get_tools_package_qualified_repr_pieces'):
-                    pieces = value._get_tools_package_qualified_repr_pieces(is_indented=is_indented)
-                    result.append('{}{}={}'.format(prefix, name, pieces[0]))
-                    for piece in pieces[1:]:
-                        result.append('{}{}'.format(prefix, piece)) 
-                elif hasattr(value, '_tools_package'):
-                    result.append('{}{}={}.{!r}{}'.format(prefix, name, value._tools_package, value, suffix))
-                else:
-                    result.append('{}{}={!r}{}'.format(prefix, name, value, suffix))
+                if not isinstance(value, types.MethodType):
+                    if hasattr(value, '_get_tools_package_qualified_repr_pieces'):
+                        pieces = value._get_tools_package_qualified_repr_pieces(is_indented=is_indented)
+                        result.append('{}{}={}'.format(prefix, name, pieces[0]))
+                        for piece in pieces[1:]:
+                            result.append('{}{}'.format(prefix, piece)) 
+                    elif hasattr(value, '_tools_package'):
+                        result.append('{}{}={}.{!r}{}'.format(
+                            prefix, name, value._tools_package, value, suffix))
+                    else:
+                        result.append('{}{}={!r}{}'.format(prefix, name, value, suffix))
         if result:
             result[-1] = result[-1].rstrip(' ')
             result[-1] = result[-1].rstrip(',')
