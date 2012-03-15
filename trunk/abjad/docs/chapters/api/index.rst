@@ -1065,6 +1065,7 @@ documentationtools
 .. toctree::
    :maxdepth: 1
 
+   tools/documentationtools/APICrawler/APICrawler
    tools/documentationtools/ClassDocumenter/ClassDocumenter
    tools/documentationtools/Documenter/Documenter
    tools/documentationtools/FunctionDocumenter/FunctionDocumenter
