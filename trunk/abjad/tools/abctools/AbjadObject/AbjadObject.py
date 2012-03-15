@@ -191,7 +191,7 @@ class AbjadObject(object):
                 elif hasattr(value, '_tools_package'):
                     result.append('{}{}={}.{!r}'.format(prefix, name, value._tools_package, value))
                 else:
-                    result.append('{}{}={!r}'.format(name, value))
+                    result.append('{}{}={!r}'.format(prefix, name, value))
         return result
 
     def _get_tools_package_qualified_repr_pieces(self, is_indented=True):

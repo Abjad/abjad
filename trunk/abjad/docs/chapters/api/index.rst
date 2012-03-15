@@ -320,6 +320,7 @@ instrumenttools
    tools/instrumenttools/Guitar/Guitar
    tools/instrumenttools/Harp/Harp
    tools/instrumenttools/Harpsichord/Harpsichord
+   tools/instrumenttools/InstrumentInventory/InstrumentInventory
    tools/instrumenttools/Marimba/Marimba
    tools/instrumenttools/Oboe/Oboe
    tools/instrumenttools/Piano/Piano
@@ -1064,6 +1065,8 @@ documentationtools
    :maxdepth: 1
 
    tools/documentationtools/ClassDocumenter/ClassDocumenter
+   tools/documentationtools/Documenter/Documenter
+   tools/documentationtools/FunctionDocumenter/FunctionDocumenter
    tools/documentationtools/InheritanceGraph/InheritanceGraph
 
 

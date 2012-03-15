@@ -35,8 +35,8 @@ class Performer(AbjadObject):
     def __ne__(self, other):
         return not self == other
 
-    def __repr__(self):
-        return self._repr_helper(include_tools_package=False)
+#    def __repr__(self):
+#        return self._repr_helper(include_tools_package=False)
 
     ### PRIVATE PROPERTIES ###
 
@@ -52,12 +52,11 @@ class Performer(AbjadObject):
             result = '{}: {}'.format(self.name, instruments)
         return result
             
-    @property
-    def _tools_package_qualified_repr(self):
-        return self._repr_helper(include_tools_package=True)
+#    @property
+#    def _tools_package_qualified_repr(self):
+#        return self._repr_helper(include_tools_package=True)
 
     ### PRIVATE METHODS ####
-
 
     def _repr_helper(self, include_tools_package=False):
         values = []
