@@ -16,5 +16,5 @@ class PitchRangeInventory(ObjectInventory):
     ### PRIVATE READ-ONLY PROPERTIES ###
 
     @property   
-    def _item_class(self):
+    def _item_callable(self):
         return PitchRange

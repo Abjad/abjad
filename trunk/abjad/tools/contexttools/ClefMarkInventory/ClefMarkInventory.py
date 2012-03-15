@@ -35,7 +35,7 @@ class ClefMarkInventory(ObjectInventory):
     ### PRIVATE READ-ONLY ATTRIBUTES ###
 
     @property
-    def _item_class(self):
+    def _item_callable(self):
         return ClefMark
 
     @property

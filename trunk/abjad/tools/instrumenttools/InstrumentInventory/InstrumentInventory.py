@@ -16,9 +16,4 @@ class InstrumentInventory(ObjectInventory):
     Instrument inventories implement list interface and are mutable.
     '''
 
-    ### PRIVATE READ-ONLY PROPERTIES ###
-
-    # TODO: possibly abstract up to ObjectInventory as default
-    @property
-    def _item_class(self):
-        return lambda x: x
+    pass

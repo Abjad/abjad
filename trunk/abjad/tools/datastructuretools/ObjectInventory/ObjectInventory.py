@@ -1,5 +1,3 @@
-from abc import ABCMeta
-from abc import abstractproperty
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
@@ -15,23 +13,19 @@ class ObjectInventory(list, AbjadObject):
     This class is an abstract base class that can not instantiate and should be subclassed.
     '''
 
-    ### CLASS ATTRIBUTES ###
-
-    __metaclass__ = ABCMeta
-
     ### INITIALIZER ###
 
     def __init__(self, tokens=None, inventory_name=None):
         list.__init__(self)
         if isinstance(tokens, type(self)):
             for token in tokens:
-                self.append(self._item_class(token))
+                self.append(self._item_callable(token))
             self.inventory_name = tokens.inventory_name or inventory_name
         else:
             tokens = tokens or []
             items = []
             for token in tokens:
-                items.append(self._item_class(token))
+                items.append(self._item_callable(token))
             self.extend(items)
             self.inventory_name = inventory_name
 
@@ -39,7 +33,7 @@ class ObjectInventory(list, AbjadObject):
 
     def __contains__(self, token):
         try:
-            item = self._item_class(token)
+            item = self._item_callable(token)
         except ValueError:
             return False
         return list.__contains__(self, item)        
@@ -49,9 +43,9 @@ class ObjectInventory(list, AbjadObject):
 
     ### READ-ONLY PRIVATE ATTRIBUTES ###
 
-    @abstractproperty
-    def _item_class(self):
-        pass
+    @property
+    def _item_callable(self):
+        return lambda x: x
 
     @property
     def _keyword_argument_names(self):
@@ -91,15 +85,24 @@ class ObjectInventory(list, AbjadObject):
                 prefix = ''
             result.append('{}(['.format(self._tools_package_qualified_class_name))
             for item in self[:-1]:
-                repr_pieces = item._get_tools_package_qualified_repr_pieces(is_indented=is_indented)
-                for repr_piece in repr_pieces[:-1]:
-                    result.append('{}{}'.format(prefix, repr_piece))
-                if is_indented:
-                    result.append('{}{},'.format(prefix, repr_pieces[-1]))
+                if hasattr(item, '_get_tools_package_qualified_repr_pieces'):
+                    repr_pieces = item._get_tools_package_qualified_repr_pieces(is_indented=is_indented)
+                    for repr_piece in repr_pieces[:-1]:
+                        result.append('{}{}'.format(prefix, repr_piece))
+                    if is_indented:
+                        result.append('{}{},'.format(prefix, repr_pieces[-1]))
+                    else:
+                        result.append('{}{}, '.format(prefix, repr_pieces[-1]))
                 else:
-                    result.append('{}{}, '.format(prefix, repr_pieces[-1]))
-            for repr_piece in self[-1]._get_tools_package_qualified_repr_pieces(is_indented=is_indented):
-                result.append('{}{}'.format(prefix, repr_piece))
+                    if is_indented:
+                        result.append('{}{},'.format(prefix, repr(item)))
+                    else:
+                        result.append('{}{}, '.format(prefix, repr(item)))
+            if hasattr(self[-1], '_get_tools_package_qualified_repr_pieces'):
+                for repr_piece in self[-1]._get_tools_package_qualified_repr_pieces(is_indented=is_indented):
+                    result.append('{}{}'.format(prefix, repr_piece))
+            else:
+                result.append('{}{}'.format(prefix, repr(self[-1])))
             result.append('{}])'.format(prefix))
         return result
 
@@ -108,7 +111,7 @@ class ObjectInventory(list, AbjadObject):
     def append(self, token):
         '''Change `token` to item and append.
         '''
-        item = self._item_class(token)
+        item = self._item_callable(token)
         list.append(self, item)
 
     def extend(self, tokens):
