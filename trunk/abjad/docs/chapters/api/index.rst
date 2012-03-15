@@ -1430,6 +1430,8 @@ timeintervaltools
    :maxdepth: 1
 
    tools/timeintervaltools/TimeInterval/TimeInterval
+   tools/timeintervaltools/TimeIntervalAggregateMixin/TimeIntervalAggregateMixin
+   tools/timeintervaltools/TimeIntervalMixin/TimeIntervalMixin
    tools/timeintervaltools/TimeIntervalTree/TimeIntervalTree
    tools/timeintervaltools/all_are_intervals_or_trees_or_empty
    tools/timeintervaltools/all_intervals_are_contiguous
