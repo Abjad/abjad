@@ -191,11 +191,14 @@ class AbjadObject(object):
                 if not isinstance(value, types.MethodType):
                     if hasattr(value, '_get_tools_package_qualified_repr_pieces'):
                         pieces = value._get_tools_package_qualified_repr_pieces(is_indented=is_indented)
-                        assert 2 < len(pieces)
-                        result.append('{}{}={}'.format(prefix, name, pieces[0]))
-                        for piece in pieces[1:-1]:
-                            result.append('{}{}'.format(prefix, piece)) 
-                        result.append('{}{}{}'.format(prefix, pieces[-1], suffix))
+                        if len(pieces) == 1:
+                            result.append('{}{}={}{}'.format(prefix, name, pieces[0], suffix))
+                        else:
+                            assert 3 <= len(pieces)
+                            result.append('{}{}={}'.format(prefix, name, pieces[0]))
+                            for piece in pieces[1:-1]:
+                                result.append('{}{}'.format(prefix, piece)) 
+                            result.append('{}{}{}'.format(prefix, pieces[-1], suffix))
                     elif hasattr(value, '_tools_package'):
                         result.append('{}{}={}.{!r}{}'.format(
                             prefix, name, value._tools_package, value, suffix))
