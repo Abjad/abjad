@@ -5,6 +5,7 @@ from abjad.tools import scoretools
 from abjad.tools.instrumenttools._KeyboardInstrument import _KeyboardInstrument
 
 
+# TODO: extend class definition to allow for custom target context in repr
 class Piano(_KeyboardInstrument):
     r'''.. versionadded:: 2.0
 
@@ -50,3 +51,14 @@ class Piano(_KeyboardInstrument):
         self.primary_clefs = [contexttools.ClefMark('treble'), contexttools.ClefMark('bass')]
         self._copy_primary_clefs_to_all_clefs()
         self._traditional_pitch_range = pitchtools.PitchRange(-39, 48)
+
+    ### PRIVATE READ-ONLY PROPERTIES ###
+
+    # TODO: extend class definition to allow for custom target context in repr
+    @property
+    def _keyword_argument_names(self):
+        return ()
+
+    @property
+    def _mandatory_argument_values(self):
+        return ()
