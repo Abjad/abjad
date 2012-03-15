@@ -815,6 +815,7 @@ scoretools
    tools/scoretools/GrandStaff/GrandStaff
    tools/scoretools/InstrumentationSpecifier/InstrumentationSpecifier
    tools/scoretools/Performer/Performer
+   tools/scoretools/PerformerInventory/PerformerInventory
    tools/scoretools/PianoStaff/PianoStaff
    tools/scoretools/Score/Score
    tools/scoretools/StaffGroup/StaffGroup
