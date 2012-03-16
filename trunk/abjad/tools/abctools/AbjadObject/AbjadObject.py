@@ -171,20 +171,19 @@ class AbjadObject(object):
 
     def _get_tools_package_qualified_argument_repr_pieces(self, is_indented=True):
         result = []
+        result.extend(self._get_tools_package_qualified_mandatory_argument_repr_pieces(is_indented=is_indented))
+        result.extend(self._get_tools_package_qualified_keyword_argument_repr_pieces(is_indented=is_indented))
+        if result:
+            result[-1] = result[-1].rstrip(' ')
+            result[-1] = result[-1].rstrip(',')
+        return result
+
+    def _get_tools_package_qualified_keyword_argument_repr_pieces(self, is_indented=True):
+        result = []
         if is_indented:
             prefix, suffix = '\t', ','
         else:
             prefix, suffix = '', ', '
-        for value in self._mandatory_argument_values:
-            if hasattr(value, '_get_tools_package_qualified_repr_pieces'):
-                pieces = value._get_tools_package_qualified_repr_pieces(is_indented=is_indented)
-                for piece in pieces[:-1]:
-                    result.append('{}{}'.format(prefix, piece))
-                result.append('{}{}{}'.format(prefix, pieces[-1], suffix))
-            elif hasattr(value, '_tools_package'):
-                result.append('{}{}.{!r}{}'.format(prefix, value._tools_package, value, suffix))
-            else:
-                result.append('{}{!r}{}'.format(prefix, value, suffix))
         for name in self._keyword_argument_names:
             value = getattr(self, name)
             if value is not None:
@@ -204,15 +203,29 @@ class AbjadObject(object):
                             prefix, name, value._tools_package, value, suffix))
                     else:
                         result.append('{}{}={!r}{}'.format(prefix, name, value, suffix))
-        if result:
-            result[-1] = result[-1].rstrip(' ')
-            result[-1] = result[-1].rstrip(',')
+        return result
+
+    def _get_tools_package_qualified_mandatory_argument_repr_pieces(self, is_indented=True):
+        result = []
+        if is_indented:
+            prefix, suffix = '\t', ','
+        else:
+            prefix, suffix = '', ', '
+        for value in self._mandatory_argument_values:
+            if hasattr(value, '_get_tools_package_qualified_repr_pieces'):
+                pieces = value._get_tools_package_qualified_repr_pieces(is_indented=is_indented)
+                for piece in pieces[:-1]:
+                    result.append('{}{}'.format(prefix, piece))
+                result.append('{}{}{}'.format(prefix, pieces[-1], suffix))
+            elif hasattr(value, '_tools_package'):
+                result.append('{}{}.{!r}{}'.format(prefix, value._tools_package, value, suffix))
+            else:
+                result.append('{}{!r}{}'.format(prefix, value, suffix))
         return result
 
     def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
         result = []
-        argument_repr_pieces = self._get_tools_package_qualified_argument_repr_pieces(
-            is_indented=is_indented)
+        argument_repr_pieces = self._get_tools_package_qualified_argument_repr_pieces(is_indented=is_indented)
         if len(argument_repr_pieces) == 0:
             result.append('{}()'.format(self._tools_package_qualified_class_name))
         else:

@@ -1,4 +1,5 @@
 from abjad.tools.abctools.AbjadObject import AbjadObject
+import types
 
 
 class ObjectInventory(list, AbjadObject):
@@ -41,7 +42,7 @@ class ObjectInventory(list, AbjadObject):
     def __repr__(self):
         return AbjadObject.__repr__(self)
 
-    ### READ-ONLY PRIVATE ATTRIBUTES ###
+    ### PRIVATE READ-ONLY ATTRIBUTES ###
 
     @property
     def _item_callable(self):
@@ -59,7 +60,7 @@ class ObjectInventory(list, AbjadObject):
             list(self),
             ) 
 
-    ### READ / WRITE PUBLIC ATTRIBUTES ###
+    ### PUBLIC READ / WRITE ATTRIBUTES ###
 
     @apply
     def inventory_name():
@@ -74,15 +75,22 @@ class ObjectInventory(list, AbjadObject):
 
     ### PRIVATE METHODS ###
 
+    # TODO: extend with keyword arguments
     def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
         result = []
-        if len(self) == 0:
-            result.append('{}.{!r}'.format(self._tools_package, self))
+        if is_indented:
+            prefix = '\t'
         else:
-            if is_indented:
-                prefix = '\t'
+            prefix = ''
+        if len(self) == 0:
+            if len(self._keyword_argument_name_value_strings) == 0:
+                result.append('{}.{!r}'.format(self._tools_package, self))
             else:
-                prefix = ''
+                result.append('{}([],'.format(self._tools_package_qualified_class_name))
+                result.extend(self._get_tools_package_qualified_keyword_argument_repr_pieces(
+                    is_indented=is_indented))
+                result.append('{})'.format(prefix))
+        else:
             result.append('{}(['.format(self._tools_package_qualified_class_name))
             for item in self[:-1]:
                 if hasattr(item, '_get_tools_package_qualified_repr_pieces'):
