@@ -77,12 +77,10 @@ class AbjadObject(object):
     def _class_name(self):
         return type(self).__name__ 
 
-    # TODO: streamline with ObjectInventory._contents_repr_string
     @property
     def _contents_repr_string(self):
         result = []
-        mandatory_argument_repr_string = [repr(x) for x in self._mandatory_argument_values]
-        mandatory_argument_repr_string = ', '.join(mandatory_argument_repr_string)
+        mandatory_argument_repr_string = self._mandatory_argument_repr_string
         if mandatory_argument_repr_string:
             result.append(mandatory_argument_repr_string)
         keyword_argument_repr_string = ', '.join(self._keyword_argument_name_value_strings)
@@ -133,6 +131,12 @@ class AbjadObject(object):
         mandatory_argument_count = (initializer_code.co_argcount - keyword_argument_count - 1)
         start_index, stop_index = 1, 1 + mandatory_argument_count
         return initializer_code.co_varnames[start_index:stop_index]
+
+    @property
+    def _mandatory_argument_repr_string(self):
+        mandatory_argument_repr_string = [repr(x) for x in self._mandatory_argument_values]
+        mandatory_argument_repr_string = ', '.join(mandatory_argument_repr_string)
+        return mandatory_argument_repr_string
 
     @property
     def _mandatory_argument_values(self):

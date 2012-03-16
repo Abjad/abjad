@@ -44,20 +44,6 @@ class ObjectInventory(list, AbjadObject):
 
     ### PRIVATE READ-ONLY ATTRIBUTES ###
 
-    # TODO: streamline with AbjadObject._contents_repr_string
-    @property
-    def _contents_repr_string(self):
-        result = []
-        mandatory_argument_repr_string = [repr(x) for x in self._mandatory_argument_values]
-        mandatory_argument_repr_string = ', '.join(mandatory_argument_repr_string)
-        mandatory_argument_repr_string = '[{}]'.format(mandatory_argument_repr_string)
-        if mandatory_argument_repr_string:
-            result.append(mandatory_argument_repr_string)
-        keyword_argument_repr_string = ', '.join(self._keyword_argument_name_value_strings)
-        if keyword_argument_repr_string:
-            result.append(keyword_argument_repr_string)
-        return ', '.join(result)
-
     @property
     def _item_callable(self):
         return lambda x: x
@@ -68,6 +54,13 @@ class ObjectInventory(list, AbjadObject):
         return (
             'inventory_name',
             )
+
+    @property
+    def _mandatory_argument_repr_string(self):
+        mandatory_argument_repr_string = [repr(x) for x in self._mandatory_argument_values]
+        mandatory_argument_repr_string = ', '.join(mandatory_argument_repr_string)
+        mandatory_argument_repr_string = '[{}]'.format(mandatory_argument_repr_string)
+        return mandatory_argument_repr_string
 
     @property
     def _mandatory_argument_values(self):
@@ -88,7 +81,6 @@ class ObjectInventory(list, AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    # TODO: write tests for four all combinations of parameter implemented below
     def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
         result = []
         if is_indented:
