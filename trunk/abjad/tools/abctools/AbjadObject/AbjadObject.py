@@ -168,6 +168,11 @@ class AbjadObject(object):
         repr_pieces = self._get_tools_package_qualified_repr_pieces(is_indented=False)
         return ''.join(repr_pieces)
 
+    # temporary alias to be removed after development
+    @property
+    def _z(self):
+        return self._tools_package_qualified_indented_repr
+
     ### PRIVATE METHODS ###
 
     # TODO: remove this method and include the two calls in self._get_tools_package_qualified_repr_pieces()
