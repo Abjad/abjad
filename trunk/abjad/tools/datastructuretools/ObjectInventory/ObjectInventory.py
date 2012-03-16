@@ -44,10 +44,25 @@ class ObjectInventory(list, AbjadObject):
 
     ### PRIVATE READ-ONLY ATTRIBUTES ###
 
+    # TODO: streamline with AbjadObject._contents_repr_string
+    @property
+    def _contents_repr_string(self):
+        result = []
+        mandatory_argument_repr_string = [repr(x) for x in self._mandatory_argument_values]
+        mandatory_argument_repr_string = ', '.join(mandatory_argument_repr_string)
+        mandatory_argument_repr_string = '[{}]'.format(mandatory_argument_repr_string)
+        if mandatory_argument_repr_string:
+            result.append(mandatory_argument_repr_string)
+        keyword_argument_repr_string = ', '.join(self._keyword_argument_name_value_strings)
+        if keyword_argument_repr_string:
+            result.append(keyword_argument_repr_string)
+        return ', '.join(result)
+
     @property
     def _item_callable(self):
         return lambda x: x
 
+    # TODO: inherit from superclass property and likewise for all subclasses systemwide
     @property
     def _keyword_argument_names(self):
         return (
@@ -56,9 +71,7 @@ class ObjectInventory(list, AbjadObject):
 
     @property
     def _mandatory_argument_values(self):
-        return (
-            list(self),
-            ) 
+        return tuple(self)
 
     ### PUBLIC READ / WRITE ATTRIBUTES ###
 
@@ -75,43 +88,41 @@ class ObjectInventory(list, AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    # TODO: extend with keyword arguments
+    # TODO: write tests for four all combinations of parameter implemented below
     def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
         result = []
         if is_indented:
             prefix = '\t'
         else:
             prefix = ''
-        if len(self) == 0:
-            if len(self._keyword_argument_name_value_strings) == 0:
-                result.append('{}.{!r}'.format(self._tools_package, self))
-            else:
-                result.append('{}([],'.format(self._tools_package_qualified_class_name))
-                result.extend(self._get_tools_package_qualified_keyword_argument_repr_pieces(
-                    is_indented=is_indented))
-                result.append('{})'.format(prefix))
-        else:
+        mandatories = self._get_tools_package_qualified_mandatory_argument_repr_pieces(is_indented=is_indented)
+        keywords = self._get_tools_package_qualified_keyword_argument_repr_pieces(is_indented=is_indented)
+        if not mandatories and not keywords:
+            result.append('{}([])'.format(self._tools_package_qualified_class_name))
+        elif not mandatories and keywords:
+            result.append('{}([],'.format(self._tools_package_qualified_class_name))
+            keywords[-1] = keywords[-1].rstrip(' ')
+            keywords[-1] = keywords[-1].rstrip(',')
+            result.extend(keywords)
+            result.append('{})'.format(prefix))
+        elif mandatories and not keywords:
             result.append('{}(['.format(self._tools_package_qualified_class_name))
-            for item in self[:-1]:
-                if hasattr(item, '_get_tools_package_qualified_repr_pieces'):
-                    repr_pieces = item._get_tools_package_qualified_repr_pieces(is_indented=is_indented)
-                    for repr_piece in repr_pieces[:-1]:
-                        result.append('{}{}'.format(prefix, repr_piece))
-                    if is_indented:
-                        result.append('{}{},'.format(prefix, repr_pieces[-1]))
-                    else:
-                        result.append('{}{}, '.format(prefix, repr_pieces[-1]))
-                else:
-                    if is_indented:
-                        result.append('{}{},'.format(prefix, repr(item)))
-                    else:
-                        result.append('{}{}, '.format(prefix, repr(item)))
-            if hasattr(self[-1], '_get_tools_package_qualified_repr_pieces'):
-                for repr_piece in self[-1]._get_tools_package_qualified_repr_pieces(is_indented=is_indented):
-                    result.append('{}{}'.format(prefix, repr_piece))
-            else:
-                result.append('{}{}'.format(prefix, repr(self[-1])))
+            mandatories[-1] = mandatories[-1].rstrip(' ')
+            mandatories[-1] = mandatories[-1].rstrip(',')
+            result.extend(mandatories)
             result.append('{}])'.format(prefix))
+        elif mandatories and keywords:
+            result.append('{}(['.format(self._tools_package_qualified_class_name))
+            mandatories[-1] = mandatories[-1].rstrip(' ')
+            mandatories[-1] = mandatories[-1].rstrip(',')
+            result.extend(mandatories)
+            result.append('{}],'.format(prefix))
+            keywords[-1] = keywords[-1].rstrip(' ')
+            keywords[-1] = keywords[-1].rstrip(',')
+            result.extend(keywords)
+            result.append('{})'.format(prefix))
+        else:
+            raise ValueError("how'd we get here?")
         return result
 
     ### PUBLIC METHODS ###

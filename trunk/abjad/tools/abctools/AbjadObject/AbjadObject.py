@@ -77,6 +77,7 @@ class AbjadObject(object):
     def _class_name(self):
         return type(self).__name__ 
 
+    # TODO: streamline with ObjectInventory._contents_repr_string
     @property
     def _contents_repr_string(self):
         result = []
@@ -169,6 +170,7 @@ class AbjadObject(object):
 
     ### PRIVATE METHODS ###
 
+    # TODO: remove this method and include the two calls in self._get_tools_package_qualified_repr_pieces()
     def _get_tools_package_qualified_argument_repr_pieces(self, is_indented=True):
         result = []
         result.extend(self._get_tools_package_qualified_mandatory_argument_repr_pieces(is_indented=is_indented))
