@@ -3,7 +3,6 @@
 from abjad.cfg.cfg import ABJADPATH
 from abjad.tools import iotools
 from abjad.tools.iotools._update_docs_release_string import _update_docs_release_string
-from abjad.tools.iotools._write_abjad_version_file import _write_abjad_version_file
 import os
 
 
@@ -16,12 +15,6 @@ os.chdir(project_root)
 iotools.clear_terminal()
 os.system('svn update')
 os.chdir(start_directory)
-
-# write version file
-_write_abjad_version_file()
-
-# update docs release string
-#_update_docs_release_string()
 
 # remove Abjad *.pyc files
 iotools.remove_abjad_pyc_files()

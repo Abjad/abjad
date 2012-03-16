@@ -1,4 +1,5 @@
-from abjad.cfg.cfg import ABJADVERSIONFILE
+from abjad.cfg.cfg import ABJADPATH
+import subprocess
 
 
 def get_abjad_revision_string():
@@ -7,9 +8,11 @@ def get_abjad_revision_string():
     Get Abjad revision string::
 
         abjad> configurationtools.get_abjad_revision_string() # doctest: +SKIP
-        '4392'
+        '5280'
 
     Return string.
     '''
 
-    return file(ABJADVERSIONFILE, 'r').read().strip()
+    command = 'svnversion {}'.format(ABJADPATH)
+    proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    return proc.stdout.readlines()[0].strip().strip('M')
