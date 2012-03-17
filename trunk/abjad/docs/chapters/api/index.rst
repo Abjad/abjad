@@ -7,7 +7,8 @@ Abjad composition packages
 .. toctree::
    :maxdepth: 1
 
-chordtools
+:py:mod:`chordtools <abjad.tools.chordtools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
@@ -26,7 +27,8 @@ chordtools
    tools/chordtools/yield_all_subchords_of_chord
    tools/chordtools/yield_groups_of_chords_in_sequence
 
-componenttools
+:py:mod:`componenttools <abjad.tools.componenttools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
@@ -138,7 +140,8 @@ componenttools
    tools/componenttools/yield_topmost_components_grouped_by_type
    tools/componenttools/yield_topmost_components_of_klass_grouped_by_type
 
-containertools
+:py:mod:`containertools <abjad.tools.containertools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
@@ -192,7 +195,8 @@ containertools
    tools/containertools/split_container_once_by_counts_and_do_not_fracture_crossing_spanners
    tools/containertools/split_container_once_by_counts_and_fracture_crossing_spanners
 
-contexttools
+:py:mod:`contexttools <abjad.tools.contexttools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
@@ -253,7 +257,8 @@ contexttools
    tools/contexttools/iterate_contexts_forward_in_expr
    tools/contexttools/set_accidental_style_on_sequential_contexts_in_expr
 
-gracetools
+:py:mod:`gracetools <abjad.tools.gracetools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
@@ -264,7 +269,8 @@ gracetools
    tools/gracetools/get_grace_containers_attached_to_leaf
    tools/gracetools/iterate_components_and_grace_containers_forward_in_expr
 
-instrumenttools
+:py:mod:`instrumenttools <abjad.tools.instrumenttools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
@@ -322,7 +328,8 @@ instrumenttools
    tools/instrumenttools/transpose_notes_and_chords_in_expr_from_fingered_pitch_to_sounding_pitch
    tools/instrumenttools/transpose_notes_and_chords_in_expr_from_sounding_pitch_to_fingered_pitch
 
-leaftools
+:py:mod:`leaftools <abjad.tools.leaftools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
@@ -394,7 +401,8 @@ leaftools
    tools/leaftools/split_leaf_at_prolated_duration_and_rest_right_half
    tools/leaftools/yield_groups_of_mixed_notes_and_chords_in_sequence
 
-lilypondfiletools
+:py:mod:`lilypondfiletools <abjad.tools.lilypondfiletools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
@@ -414,7 +422,8 @@ lilypondfiletools
    tools/lilypondfiletools/ScoreBlock/ScoreBlock
    tools/lilypondfiletools/make_basic_lilypond_file
 
-marktools
+:py:mod:`marktools <abjad.tools.marktools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
@@ -462,7 +471,8 @@ marktools
    tools/marktools/is_component_with_noncontext_mark_attached
    tools/marktools/is_component_with_stem_tremolo_attached
 
-markuptools
+:py:mod:`markuptools <abjad.tools.markuptools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
@@ -478,7 +488,8 @@ markuptools
    tools/markuptools/remove_markup_attached_to_component
    tools/markuptools/remove_markup_from_leaves_in_expr
 
-measuretools
+:py:mod:`measuretools <abjad.tools.measuretools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
@@ -532,7 +543,8 @@ measuretools
    tools/measuretools/scale_measure_denominator_and_adjust_measure_contents
    tools/measuretools/set_measure_denominator_and_adjust_numerator
 
-notetools
+:py:mod:`notetools <abjad.tools.notetools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
@@ -557,7 +569,8 @@ notetools
    tools/notetools/make_repeated_notes_with_shorter_notes_at_end
    tools/notetools/yield_groups_of_notes_in_sequence
 
-pitchtools
+:py:mod:`pitchtools <abjad.tools.pitchtools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
@@ -740,7 +753,8 @@ pitchtools
    tools/pitchtools/transpose_pitch_carrier_by_melodic_interval
    tools/pitchtools/transpose_pitch_expr_into_pitch_range
 
-resttools
+:py:mod:`resttools <abjad.tools.resttools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
@@ -759,7 +773,8 @@ resttools
    tools/resttools/set_vertical_positioning_pitch_on_rest
    tools/resttools/yield_groups_of_rests_in_sequence
 
-schemetools
+:py:mod:`schemetools <abjad.tools.schemetools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
@@ -772,7 +787,8 @@ schemetools
    tools/schemetools/SchemeVector/SchemeVector
    tools/schemetools/SchemeVectorConstant/SchemeVectorConstant
 
-scoretools
+:py:mod:`scoretools <abjad.tools.scoretools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
@@ -798,7 +814,8 @@ scoretools
    tools/scoretools/make_piano_sketch_score_from_leaves
    tools/scoretools/make_pitch_array_score_from_pitch_arrays
 
-skiptools
+:py:mod:`skiptools <abjad.tools.skiptools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
@@ -813,7 +830,8 @@ skiptools
    tools/skiptools/replace_leaves_in_expr_with_skips
    tools/skiptools/yield_groups_of_skips_in_sequence
 
-spannertools
+:py:mod:`spannertools <abjad.tools.spannertools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
@@ -877,7 +895,8 @@ spannertools
    tools/spannertools/report_as_string_format_contributions_of_all_spanners_attached_to_improper_parentage_of_component
    tools/spannertools/withdraw_components_from_spanners_covered_by_components
 
-stafftools
+:py:mod:`stafftools <abjad.tools.stafftools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
@@ -891,7 +910,8 @@ stafftools
    tools/stafftools/iterate_staves_forward_in_expr
    tools/stafftools/make_rhythmic_sketch_staff
 
-tietools
+:py:mod:`tietools <abjad.tools.tietools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
@@ -925,7 +945,8 @@ tietools
    tools/tietools/tie_chain_to_diminished_tuplet_with_proportions_and_avoid_dots
    tools/tietools/tie_chain_to_diminished_tuplet_with_proportions_and_encourage_dots
 
-tuplettools
+:py:mod:`tuplettools <abjad.tools.tuplettools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
@@ -953,7 +974,8 @@ tuplettools
    tools/tuplettools/scale_contents_of_tuplets_in_expr_by_multiplier
    tools/tuplettools/set_denominator_of_tuplets_in_expr_to_at_least
 
-voicetools
+:py:mod:`voicetools <abjad.tools.voicetools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
@@ -973,7 +995,8 @@ Additional Abjad composition packages (load manually)
 .. toctree::
    :maxdepth: 1
 
-abctools
+:py:mod:`abctools <abjad.tools.abctools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
@@ -982,7 +1005,8 @@ abctools
    tools/abctools/AttributeEqualityAbjadObject/AttributeEqualityAbjadObject
    tools/abctools/SortableAttributeEqualityAbjadObject/SortableAttributeEqualityAbjadObject
 
-configurationtools
+:py:mod:`configurationtools <abjad.tools.configurationtools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
@@ -996,7 +1020,8 @@ configurationtools
    tools/configurationtools/list_package_dependency_versions
    tools/configurationtools/set_default_accidental_spelling
 
-datastructuretools
+:py:mod:`datastructuretools <abjad.tools.datastructuretools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
@@ -1004,14 +1029,16 @@ datastructuretools
    tools/datastructuretools/ImmutableDictionary/ImmutableDictionary
    tools/datastructuretools/ObjectInventory/ObjectInventory
 
-decoratortools
+:py:mod:`decoratortools <abjad.tools.decoratortools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
 
    tools/decoratortools/requires
 
-documentationtools
+:py:mod:`documentationtools <abjad.tools.documentationtools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
@@ -1023,7 +1050,8 @@ documentationtools
    tools/documentationtools/FunctionDocumenter/FunctionDocumenter
    tools/documentationtools/InheritanceGraph/InheritanceGraph
 
-durationtools
+:py:mod:`durationtools <abjad.tools.durationtools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
@@ -1074,7 +1102,8 @@ durationtools
    tools/durationtools/yield_all_positive_rationals_in_cantor_diagonalized_order_uniquely
    tools/durationtools/yield_all_prolation_rewrite_pairs_of_rational_in_cantor_diagonalized_order
 
-iotools
+:py:mod:`iotools <abjad.tools.iotools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
@@ -1118,7 +1147,8 @@ iotools
    tools/iotools/write_expr_to_pdf
    tools/iotools/z
 
-layouttools
+:py:mod:`layouttools <abjad.tools.layouttools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
@@ -1128,14 +1158,16 @@ layouttools
    tools/layouttools/set_line_breaks_cyclically_by_line_duration_ge
    tools/layouttools/set_line_breaks_cyclically_by_line_duration_in_seconds_ge
 
-lilypondparsertools
+:py:mod:`lilypondparsertools <abjad.tools.lilypondparsertools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
 
    tools/lilypondparsertools/LilyPondParser/LilyPondParser
 
-mathtools
+:py:mod:`mathtools <abjad.tools.mathtools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
@@ -1190,7 +1222,8 @@ mathtools
    tools/mathtools/yield_all_compositions_of_integer
    tools/mathtools/yield_all_partitions_of_integer
 
-pitcharraytools
+:py:mod:`pitcharraytools <abjad.tools.pitcharraytools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
@@ -1205,7 +1238,8 @@ pitcharraytools
    tools/pitcharraytools/make_empty_pitch_array_from_list_of_pitch_lists
    tools/pitcharraytools/make_populated_pitch_array_from_list_of_pitch_lists
 
-sequencetools
+:py:mod:`sequencetools <abjad.tools.sequencetools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
@@ -1336,7 +1370,8 @@ sequencetools
    tools/sequencetools/zip_sequences_cyclically
    tools/sequencetools/zip_sequences_without_truncation
 
-sievetools
+:py:mod:`sievetools <abjad.tools.sievetools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
@@ -1346,7 +1381,8 @@ sievetools
    tools/sievetools/all_are_residue_class_expressions
    tools/sievetools/cycle_tokens_to_sieve
 
-tempotools
+:py:mod:`tempotools <abjad.tools.tempotools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
@@ -1354,7 +1390,8 @@ tempotools
    tools/tempotools/integer_tempo_to_multiplier_tempo_pairs
    tools/tempotools/integer_tempo_to_multiplier_tempo_pairs_report
 
-threadtools
+:py:mod:`threadtools <abjad.tools.threadtools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
@@ -1365,7 +1402,8 @@ threadtools
    tools/threadtools/iterate_thread_forward_from_component
    tools/threadtools/iterate_thread_forward_in_expr
 
-timeintervaltools
+:py:mod:`timeintervaltools <abjad.tools.timeintervaltools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
@@ -1423,7 +1461,8 @@ timeintervaltools
    tools/timeintervaltools/shift_aggregate_offset_to_rational
    tools/timeintervaltools/split_intervals_at_rationals
 
-timesignaturetools
+:py:mod:`timesignaturetools <abjad.tools.timesignaturetools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
@@ -1433,7 +1472,8 @@ timesignaturetools
    tools/timesignaturetools/is_time_signature_with_equivalent_binary_representation
    tools/timesignaturetools/time_signature_to_binary_time_signature
 
-verticalitytools
+:py:mod:`verticalitytools <abjad.tools.verticalitytools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
@@ -1451,7 +1491,8 @@ verticalitytools
    tools/verticalitytools/label_vertical_moments_in_expr_with_numbered_chromatic_pitch_classes
    tools/verticalitytools/label_vertical_moments_in_expr_with_pitch_numbers
 
-wellformednesstools
+:py:mod:`wellformednesstools <abjad.tools.wellformednesstools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
@@ -1480,7 +1521,8 @@ Unstable Abjad composition packages (load manually)
 .. toctree::
    :maxdepth: 1
 
-constrainttools
+:py:mod:`constrainttools <abjad.tools.constrainttools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
@@ -1495,7 +1537,8 @@ constrainttools
    tools/constrainttools/RelativeIndexConstraint/RelativeIndexConstraint
    tools/constrainttools/VariableLengthStreamSolver/VariableLengthStreamSolver
 
-lyricstools
+:py:mod:`lyricstools <abjad.tools.lyricstools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
@@ -1507,7 +1550,8 @@ lyricstools
    tools/lyricstools/LyricText/LyricText
    tools/lyricstools/Lyrics/Lyrics
 
-quantizationtools
+:py:mod:`quantizationtools <abjad.tools.quantizationtools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
@@ -1524,7 +1568,8 @@ quantizationtools
    tools/quantizationtools/tempo_scaled_rational_to_milliseconds
    tools/quantizationtools/tempo_scaled_rationals_to_q_events
 
-tonalitytools
+:py:mod:`tonalitytools <abjad.tools.tonalitytools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. toctree::
    :maxdepth: 1
