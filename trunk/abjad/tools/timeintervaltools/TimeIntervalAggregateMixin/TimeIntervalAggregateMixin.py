@@ -13,25 +13,7 @@ class TimeIntervalAggregateMixin(TimeIntervalMixin):
 
     __metaclass__ = ABCMeta
 
-    ### SPECIAL METHODS ###
-
-    @abstractmethod
-    def __nonzero__(self):
-        raise NotImplementedError
-
     ### PUBLIC ATTRIBUTES ###
-
-    @property
-    def bounds(self):
-        if self:
-            return TimeInterval(self.start, self.stop)
-        return None        
-
-    @property
-    def duration(self):
-        if self:
-            return Duration(self.stop - self.start)
-        return Duration(0)
 
     @abstractproperty
     def earliest_start(self):

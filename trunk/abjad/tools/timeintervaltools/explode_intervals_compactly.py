@@ -10,7 +10,7 @@ def explode_intervals_compactly(intervals):
     Returns an array of `TimeIntervalTree` instances.
 
     The algorithm will attempt to insert the exploded intervals
-    into the startest-indexed resultant tree with free space.
+    into the lowest-indexed resultant tree with free space.
     '''
 
     assert all_are_intervals_or_trees_or_empty(intervals)

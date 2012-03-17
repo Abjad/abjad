@@ -28,10 +28,17 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
         abjad> interval_two = TimeInterval(1, 8)
         abjad> interval_three = TimeInterval(3, 13)
         abjad> tree = TimeIntervalTree([interval_one, interval_two, interval_three])
+        abjad> tree
+        TimeIntervalTree([
+            TimeInterval(Offset(0, 1), Offset(10, 1), {}),
+            TimeInterval(Offset(1, 1), Offset(8, 1), {}),
+            TimeInterval(Offset(3, 1), Offset(13, 1), {})
+        ])
 
+    Return `TimeIntervalTree` instance.
     '''
 
-    __slots__ = ('_root', '_sentinel')
+    __slots__ = ('_root', '_sentinel', '_start', '_stop')
 
     def __init__(self, intervals = []):
         self._sentinel = _IntervalNode(0)
@@ -41,6 +48,8 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
         self._sentinel.parent = self._sentinel
         self._root = self._sentinel
         self._insert(intervals)
+        self._start = self.earliest_start
+        self._stop = self.latest_stop
 
     ### SPECIAL METHODS ###
 
@@ -133,26 +142,6 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
         self._update_stop_extrema()
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def bounds(self):
-        '''The startest and stopest values of the tree returned as a
-        ``TimeInterval`` instance:
-
-        ::
-
-            abjad> from abjad.tools.timeintervaltools import *
-            abjad> ti1 = TimeInterval(1, 2)
-            abjad> ti2 = TimeInterval(3, (7, 2))
-            abjad> tree = TimeIntervalTree([ti1, ti2])
-            abjad> tree.bounds
-            TimeInterval(Offset(1, 1), Offset(7, 2), {})
-
-        Returns ``TimeInterval`` instance, or None if tree is empty.
-        '''
-        if self:
-            return TimeInterval(self.start, self.stop)
-        return None
 
     @property
     def duration(self):
@@ -255,44 +244,6 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
             return Offset(self._root.latest_stop)
         else:
             return None
-
-    @property
-    def start(self):
-        '''The minimum start value of all intervals in the tree:
-
-        ::
-
-            abjad> from abjad.tools.timeintervaltools import *
-            abjad> ti1 = TimeInterval(1, 2)
-            abjad> ti2 = TimeInterval(3, (7, 2))
-            abjad> tree = TimeIntervalTree([ti1, ti2])
-            abjad> tree.start
-            Offset(1, 1)
-
-        Alias of earliest_start.
-
-        Returns ``Offset`` instance, or None if tree is empty.
-        '''
-        return self.earliest_start
-
-    @property
-    def stop(self):
-        '''The maximum stop value of all intervals in the tree:
-
-        ::
-
-            abjad> from abjad.tools.timeintervaltools import *
-            abjad> ti1 = TimeInterval(1, 2)
-            abjad> ti2 = TimeInterval(3, (7, 2))
-            abjad> tree = TimeIntervalTree([ti1, ti2])
-            abjad> tree.stop
-            Offset(7, 2)
-
-        Alias of latest_stop.
-
-        Returns ``Offset`` instance, or None if tree is empty.
-        '''
-        return self.latest_stop
 
     ### PRIVATE METHODS ###
 
