@@ -121,13 +121,14 @@ class AbjadAPIGenerator(abctools.AbjadObject):
         return [text, character * len(text), '']
 
     def _create_package_title(self, package_name):
-        return [
-            package_name,
-            '',
+        result = self._create_heading(':py:mod:`%s <abjad.tools.%s>`' % 
+            (package_name, package_name), '~')
+        result.extend([
             '.. toctree::',
             '   :maxdepth: 1',
             ''
-        ]
+        ])
+        return result
 
     def _create_section_title(self, title):
         result = self._create_heading(title, '-')
