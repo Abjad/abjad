@@ -15,6 +15,17 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.quantizationtools.QGrid.QGrid.QGrid.offsets
 
+Methods
+-------
+
+.. automethod:: abjad.tools.quantizationtools.QGrid.QGrid.QGrid.find_divisible_indices
+
+.. automethod:: abjad.tools.quantizationtools.QGrid.QGrid.QGrid.find_parentage_of_index
+
+.. automethod:: abjad.tools.quantizationtools.QGrid.QGrid.QGrid.format_for_beatspan
+
+.. automethod:: abjad.tools.quantizationtools.QGrid.QGrid.QGrid.subdivide_indices
+
 Special Methods
 ---------------
 
@@ -65,11 +76,3 @@ Special Methods
 .. automethod:: abjad.tools.quantizationtools.QGrid.QGrid.QGrid.__str__
 
    .. note:: Inherited from `__builtin__.object`
-
-.. automethod:: abjad.tools.quantizationtools.QGrid.QGrid.QGrid.find_divisible_indices
-
-.. automethod:: abjad.tools.quantizationtools.QGrid.QGrid.QGrid.find_parentage_of_index
-
-.. automethod:: abjad.tools.quantizationtools.QGrid.QGrid.QGrid.format_for_beatspan
-
-.. automethod:: abjad.tools.quantizationtools.QGrid.QGrid.QGrid.subdivide_indices

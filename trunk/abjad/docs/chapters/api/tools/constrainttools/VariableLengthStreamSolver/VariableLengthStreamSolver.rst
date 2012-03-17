@@ -31,6 +31,13 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver.terminators
 
+Methods
+-------
+
+.. automethod:: abjad.tools.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver.get_le_n_solutions
+
+   .. note:: Inherited from :py:class:`constrainttools._Solver <abjad.tools.constrainttools._Solver._Solver._Solver>`
+
 Special Methods
 ---------------
 
@@ -79,7 +86,3 @@ Special Methods
 .. automethod:: abjad.tools.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver.__str__
 
    .. note:: Inherited from `__builtin__.object`
-
-.. automethod:: abjad.tools.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver.get_le_n_solutions
-
-   .. note:: Inherited from :py:class:`constrainttools._Solver <abjad.tools.constrainttools._Solver._Solver._Solver>`

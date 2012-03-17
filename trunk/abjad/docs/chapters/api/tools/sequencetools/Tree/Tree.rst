@@ -29,6 +29,31 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.sequencetools.Tree.Tree.Tree.width
 
+Methods
+-------
+
+.. automethod:: abjad.tools.sequencetools.Tree.Tree.Tree.get_next_n_complete_nodes_at_level
+
+.. automethod:: abjad.tools.sequencetools.Tree.Tree.Tree.get_next_n_nodes_at_level
+
+.. automethod:: abjad.tools.sequencetools.Tree.Tree.Tree.get_node_at_position
+
+.. automethod:: abjad.tools.sequencetools.Tree.Tree.Tree.get_position_of_descendant
+
+.. automethod:: abjad.tools.sequencetools.Tree.Tree.Tree.is_at_level
+
+.. automethod:: abjad.tools.sequencetools.Tree.Tree.Tree.iterate_at_level
+
+.. automethod:: abjad.tools.sequencetools.Tree.Tree.Tree.iterate_depth_first
+
+.. automethod:: abjad.tools.sequencetools.Tree.Tree.Tree.iterate_payload
+
+.. automethod:: abjad.tools.sequencetools.Tree.Tree.Tree.remove
+
+.. automethod:: abjad.tools.sequencetools.Tree.Tree.Tree.remove_to_root
+
+.. automethod:: abjad.tools.sequencetools.Tree.Tree.Tree.to_nested_lists
+
 Special Methods
 ---------------
 
@@ -73,25 +98,3 @@ Special Methods
    .. note:: Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.sequencetools.Tree.Tree.Tree.__str__
-
-.. automethod:: abjad.tools.sequencetools.Tree.Tree.Tree.get_next_n_complete_nodes_at_level
-
-.. automethod:: abjad.tools.sequencetools.Tree.Tree.Tree.get_next_n_nodes_at_level
-
-.. automethod:: abjad.tools.sequencetools.Tree.Tree.Tree.get_node_at_position
-
-.. automethod:: abjad.tools.sequencetools.Tree.Tree.Tree.get_position_of_descendant
-
-.. automethod:: abjad.tools.sequencetools.Tree.Tree.Tree.is_at_level
-
-.. automethod:: abjad.tools.sequencetools.Tree.Tree.Tree.iterate_at_level
-
-.. automethod:: abjad.tools.sequencetools.Tree.Tree.Tree.iterate_depth_first
-
-.. automethod:: abjad.tools.sequencetools.Tree.Tree.Tree.iterate_payload
-
-.. automethod:: abjad.tools.sequencetools.Tree.Tree.Tree.remove
-
-.. automethod:: abjad.tools.sequencetools.Tree.Tree.Tree.remove_to_root
-
-.. automethod:: abjad.tools.sequencetools.Tree.Tree.Tree.to_nested_lists

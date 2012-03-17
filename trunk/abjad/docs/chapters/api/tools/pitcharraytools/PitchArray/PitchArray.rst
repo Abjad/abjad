@@ -39,6 +39,29 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.width
 
+Methods
+-------
+
+.. automethod:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.append_column
+
+.. automethod:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.append_row
+
+.. automethod:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.apply_pitches_by_row
+
+.. automethod:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.copy_subarray
+
+.. automethod:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.has_spanning_cell_over_index
+
+.. automethod:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.pad_to_depth
+
+.. automethod:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.pad_to_width
+
+.. automethod:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.pop_column
+
+.. automethod:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.pop_row
+
+.. automethod:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.remove_row
+
 Special Methods
 ---------------
 
@@ -87,23 +110,3 @@ Special Methods
 .. automethod:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.__setitem__
 
 .. automethod:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.__str__
-
-.. automethod:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.append_column
-
-.. automethod:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.append_row
-
-.. automethod:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.apply_pitches_by_row
-
-.. automethod:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.copy_subarray
-
-.. automethod:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.has_spanning_cell_over_index
-
-.. automethod:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.pad_to_depth
-
-.. automethod:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.pad_to_width
-
-.. automethod:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.pop_column
-
-.. automethod:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.pop_row
-
-.. automethod:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.remove_row

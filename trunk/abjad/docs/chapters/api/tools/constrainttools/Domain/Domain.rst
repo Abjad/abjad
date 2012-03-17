@@ -6,6 +6,11 @@ constrainttools.Domain
 
 .. autoclass:: abjad.tools.constrainttools.Domain.Domain.Domain
 
+Methods
+-------
+
+.. automethod:: abjad.tools.constrainttools.Domain.Domain.Domain.randomized
+
 Special Methods
 ---------------
 
@@ -58,5 +63,3 @@ Special Methods
 .. automethod:: abjad.tools.constrainttools.Domain.Domain.Domain.__str__
 
    .. note:: Inherited from `__builtin__.object`
-
-.. automethod:: abjad.tools.constrainttools.Domain.Domain.Domain.randomized

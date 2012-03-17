@@ -50,6 +50,53 @@ Read/write Properties
 
 .. autoattribute:: abjad.tools.spannertools.MetricGridSpanner.MetricGridSpanner.MetricGridSpanner.meters
 
+Methods
+-------
+
+.. automethod:: abjad.tools.spannertools.MetricGridSpanner.MetricGridSpanner.MetricGridSpanner.append
+
+   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
+.. automethod:: abjad.tools.spannertools.MetricGridSpanner.MetricGridSpanner.MetricGridSpanner.append_left
+
+   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
+.. automethod:: abjad.tools.spannertools.MetricGridSpanner.MetricGridSpanner.MetricGridSpanner.clear
+
+   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
+.. automethod:: abjad.tools.spannertools.MetricGridSpanner.MetricGridSpanner.MetricGridSpanner.extend
+
+   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
+.. automethod:: abjad.tools.spannertools.MetricGridSpanner.MetricGridSpanner.MetricGridSpanner.extend_left
+
+   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
+.. automethod:: abjad.tools.spannertools.MetricGridSpanner.MetricGridSpanner.MetricGridSpanner.fracture
+
+   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
+.. automethod:: abjad.tools.spannertools.MetricGridSpanner.MetricGridSpanner.MetricGridSpanner.fuse
+
+   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
+.. automethod:: abjad.tools.spannertools.MetricGridSpanner.MetricGridSpanner.MetricGridSpanner.index
+
+   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
+.. automethod:: abjad.tools.spannertools.MetricGridSpanner.MetricGridSpanner.MetricGridSpanner.pop
+
+   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
+.. automethod:: abjad.tools.spannertools.MetricGridSpanner.MetricGridSpanner.MetricGridSpanner.pop_left
+
+   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
+.. automethod:: abjad.tools.spannertools.MetricGridSpanner.MetricGridSpanner.MetricGridSpanner.split_on_bar
+
+.. automethod:: abjad.tools.spannertools.MetricGridSpanner.MetricGridSpanner.MetricGridSpanner.splitting_condition
+
 Special Methods
 ---------------
 
@@ -108,47 +155,3 @@ Special Methods
 .. automethod:: abjad.tools.spannertools.MetricGridSpanner.MetricGridSpanner.MetricGridSpanner.__str__
 
    .. note:: Inherited from `__builtin__.object`
-
-.. automethod:: abjad.tools.spannertools.MetricGridSpanner.MetricGridSpanner.MetricGridSpanner.append
-
-   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
-
-.. automethod:: abjad.tools.spannertools.MetricGridSpanner.MetricGridSpanner.MetricGridSpanner.append_left
-
-   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
-
-.. automethod:: abjad.tools.spannertools.MetricGridSpanner.MetricGridSpanner.MetricGridSpanner.clear
-
-   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
-
-.. automethod:: abjad.tools.spannertools.MetricGridSpanner.MetricGridSpanner.MetricGridSpanner.extend
-
-   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
-
-.. automethod:: abjad.tools.spannertools.MetricGridSpanner.MetricGridSpanner.MetricGridSpanner.extend_left
-
-   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
-
-.. automethod:: abjad.tools.spannertools.MetricGridSpanner.MetricGridSpanner.MetricGridSpanner.fracture
-
-   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
-
-.. automethod:: abjad.tools.spannertools.MetricGridSpanner.MetricGridSpanner.MetricGridSpanner.fuse
-
-   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
-
-.. automethod:: abjad.tools.spannertools.MetricGridSpanner.MetricGridSpanner.MetricGridSpanner.index
-
-   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
-
-.. automethod:: abjad.tools.spannertools.MetricGridSpanner.MetricGridSpanner.MetricGridSpanner.pop
-
-   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
-
-.. automethod:: abjad.tools.spannertools.MetricGridSpanner.MetricGridSpanner.MetricGridSpanner.pop_left
-
-   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
-
-.. automethod:: abjad.tools.spannertools.MetricGridSpanner.MetricGridSpanner.MetricGridSpanner.split_on_bar
-
-.. automethod:: abjad.tools.spannertools.MetricGridSpanner.MetricGridSpanner.MetricGridSpanner.splitting_condition

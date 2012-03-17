@@ -88,6 +88,25 @@ Read/write Properties
 
    .. note:: Inherited from :py:class:`instrumenttools._Instrument <abjad.tools.instrumenttools._Instrument._Instrument._Instrument>`
 
+Methods
+-------
+
+.. automethod:: abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord.attach
+
+   .. note:: Inherited from :py:class:`contexttools.ContextMark <abjad.tools.contexttools.ContextMark.ContextMark.ContextMark>`
+
+.. automethod:: abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord.detach
+
+   .. note:: Inherited from :py:class:`contexttools.ContextMark <abjad.tools.contexttools.ContextMark.ContextMark.ContextMark>`
+
+.. automethod:: abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord.get_default_performer_name
+
+   .. note:: Inherited from :py:class:`instrumenttools._Instrument <abjad.tools.instrumenttools._Instrument._Instrument._Instrument>`
+
+.. automethod:: abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord.get_performer_names
+
+   .. note:: Inherited from :py:class:`instrumenttools._Instrument <abjad.tools.instrumenttools._Instrument._Instrument._Instrument>`
+
 Special Methods
 ---------------
 
@@ -138,19 +157,3 @@ Special Methods
 .. automethod:: abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord.__str__
 
    .. note:: Inherited from `__builtin__.object`
-
-.. automethod:: abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord.attach
-
-   .. note:: Inherited from :py:class:`contexttools.ContextMark <abjad.tools.contexttools.ContextMark.ContextMark.ContextMark>`
-
-.. automethod:: abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord.detach
-
-   .. note:: Inherited from :py:class:`contexttools.ContextMark <abjad.tools.contexttools.ContextMark.ContextMark.ContextMark>`
-
-.. automethod:: abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord.get_default_performer_name
-
-   .. note:: Inherited from :py:class:`instrumenttools._Instrument <abjad.tools.instrumenttools._Instrument._Instrument._Instrument>`
-
-.. automethod:: abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord.get_performer_names
-
-   .. note:: Inherited from :py:class:`instrumenttools._Instrument <abjad.tools.instrumenttools._Instrument._Instrument._Instrument>`

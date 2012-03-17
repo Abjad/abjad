@@ -17,6 +17,41 @@ Read-only Properties
 
    .. note:: Inherited from :py:class:`pitchtools.NumberedChromaticPitchClassSegment <abjad.tools.pitchtools.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment>`
 
+Methods
+-------
+
+.. automethod:: abjad.tools.pitchtools.TwelveToneRow.TwelveToneRow.TwelveToneRow.alpha
+
+   .. note:: Inherited from :py:class:`pitchtools.NumberedChromaticPitchClassSegment <abjad.tools.pitchtools.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment>`
+
+.. automethod:: abjad.tools.pitchtools.TwelveToneRow.TwelveToneRow.TwelveToneRow.count
+
+   .. note:: Inherited from `__builtin__.tuple`
+
+.. automethod:: abjad.tools.pitchtools.TwelveToneRow.TwelveToneRow.TwelveToneRow.index
+
+   .. note:: Inherited from `__builtin__.tuple`
+
+.. automethod:: abjad.tools.pitchtools.TwelveToneRow.TwelveToneRow.TwelveToneRow.invert
+
+   .. note:: Inherited from :py:class:`pitchtools.NumberedChromaticPitchClassSegment <abjad.tools.pitchtools.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment>`
+
+.. automethod:: abjad.tools.pitchtools.TwelveToneRow.TwelveToneRow.TwelveToneRow.multiply
+
+   .. note:: Inherited from :py:class:`pitchtools.NumberedChromaticPitchClassSegment <abjad.tools.pitchtools.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment>`
+
+.. automethod:: abjad.tools.pitchtools.TwelveToneRow.TwelveToneRow.TwelveToneRow.retrograde
+
+   .. note:: Inherited from :py:class:`pitchtools.NumberedChromaticPitchClassSegment <abjad.tools.pitchtools.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment>`
+
+.. automethod:: abjad.tools.pitchtools.TwelveToneRow.TwelveToneRow.TwelveToneRow.rotate
+
+   .. note:: Inherited from :py:class:`pitchtools.NumberedChromaticPitchClassSegment <abjad.tools.pitchtools.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment>`
+
+.. automethod:: abjad.tools.pitchtools.TwelveToneRow.TwelveToneRow.TwelveToneRow.transpose
+
+   .. note:: Inherited from :py:class:`pitchtools.NumberedChromaticPitchClassSegment <abjad.tools.pitchtools.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment>`
+
 Special Methods
 ---------------
 
@@ -83,37 +118,5 @@ Special Methods
    .. note:: Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.pitchtools.TwelveToneRow.TwelveToneRow.TwelveToneRow.__str__
-
-   .. note:: Inherited from :py:class:`pitchtools.NumberedChromaticPitchClassSegment <abjad.tools.pitchtools.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment>`
-
-.. automethod:: abjad.tools.pitchtools.TwelveToneRow.TwelveToneRow.TwelveToneRow.alpha
-
-   .. note:: Inherited from :py:class:`pitchtools.NumberedChromaticPitchClassSegment <abjad.tools.pitchtools.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment>`
-
-.. automethod:: abjad.tools.pitchtools.TwelveToneRow.TwelveToneRow.TwelveToneRow.count
-
-   .. note:: Inherited from `__builtin__.tuple`
-
-.. automethod:: abjad.tools.pitchtools.TwelveToneRow.TwelveToneRow.TwelveToneRow.index
-
-   .. note:: Inherited from `__builtin__.tuple`
-
-.. automethod:: abjad.tools.pitchtools.TwelveToneRow.TwelveToneRow.TwelveToneRow.invert
-
-   .. note:: Inherited from :py:class:`pitchtools.NumberedChromaticPitchClassSegment <abjad.tools.pitchtools.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment>`
-
-.. automethod:: abjad.tools.pitchtools.TwelveToneRow.TwelveToneRow.TwelveToneRow.multiply
-
-   .. note:: Inherited from :py:class:`pitchtools.NumberedChromaticPitchClassSegment <abjad.tools.pitchtools.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment>`
-
-.. automethod:: abjad.tools.pitchtools.TwelveToneRow.TwelveToneRow.TwelveToneRow.retrograde
-
-   .. note:: Inherited from :py:class:`pitchtools.NumberedChromaticPitchClassSegment <abjad.tools.pitchtools.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment>`
-
-.. automethod:: abjad.tools.pitchtools.TwelveToneRow.TwelveToneRow.TwelveToneRow.rotate
-
-   .. note:: Inherited from :py:class:`pitchtools.NumberedChromaticPitchClassSegment <abjad.tools.pitchtools.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment>`
-
-.. automethod:: abjad.tools.pitchtools.TwelveToneRow.TwelveToneRow.TwelveToneRow.transpose
 
    .. note:: Inherited from :py:class:`pitchtools.NumberedChromaticPitchClassSegment <abjad.tools.pitchtools.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment>`

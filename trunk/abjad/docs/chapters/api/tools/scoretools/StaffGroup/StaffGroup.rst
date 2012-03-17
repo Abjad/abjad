@@ -92,6 +92,33 @@ Read/write Properties
 
    .. note:: Inherited from :py:class:`contexttools.Context <abjad.tools.contexttools.Context.Context.Context>`
 
+Methods
+-------
+
+.. automethod:: abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.append
+
+   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
+
+.. automethod:: abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.extend
+
+   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
+
+.. automethod:: abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.index
+
+   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
+
+.. automethod:: abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.insert
+
+   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
+
+.. automethod:: abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.pop
+
+   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
+
+.. automethod:: abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.remove
+
+   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
+
 Special Methods
 ---------------
 
@@ -182,27 +209,3 @@ Special Methods
 .. automethod:: abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.__str__
 
    .. note:: Inherited from `__builtin__.object`
-
-.. automethod:: abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.append
-
-   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
-
-.. automethod:: abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.extend
-
-   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
-
-.. automethod:: abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.index
-
-   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
-
-.. automethod:: abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.insert
-
-   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
-
-.. automethod:: abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.pop
-
-   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
-
-.. automethod:: abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.remove
-
-   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`

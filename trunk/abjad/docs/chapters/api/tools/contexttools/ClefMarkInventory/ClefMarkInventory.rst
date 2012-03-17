@@ -13,6 +13,45 @@ Read/write Properties
 
    .. note:: Inherited from :py:class:`datastructuretools.ObjectInventory <abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory>`
 
+Methods
+-------
+
+.. automethod:: abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.append
+
+   .. note:: Inherited from :py:class:`datastructuretools.ObjectInventory <abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory>`
+
+.. automethod:: abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.count
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.extend
+
+   .. note:: Inherited from :py:class:`datastructuretools.ObjectInventory <abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory>`
+
+.. automethod:: abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.index
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.insert
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.pop
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.remove
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.reverse
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.sort
+
+   .. note:: Inherited from `__builtin__.list`
+
 Special Methods
 ---------------
 
@@ -115,39 +154,3 @@ Special Methods
 .. automethod:: abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.__str__
 
    .. note:: Inherited from `__builtin__.object`
-
-.. automethod:: abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.append
-
-   .. note:: Inherited from :py:class:`datastructuretools.ObjectInventory <abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory>`
-
-.. automethod:: abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.count
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.extend
-
-   .. note:: Inherited from :py:class:`datastructuretools.ObjectInventory <abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory>`
-
-.. automethod:: abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.index
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.insert
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.pop
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.remove
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.reverse
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.sort
-
-   .. note:: Inherited from `__builtin__.list`

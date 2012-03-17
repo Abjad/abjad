@@ -26,6 +26,45 @@ Read/write Properties
 
 .. autoattribute:: abjad.tools.lilypondfiletools.LilyPondFile.LilyPondFile.LilyPondFile.global_staff_size
 
+Methods
+-------
+
+.. automethod:: abjad.tools.lilypondfiletools.LilyPondFile.LilyPondFile.LilyPondFile.append
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.lilypondfiletools.LilyPondFile.LilyPondFile.LilyPondFile.count
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.lilypondfiletools.LilyPondFile.LilyPondFile.LilyPondFile.extend
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.lilypondfiletools.LilyPondFile.LilyPondFile.LilyPondFile.index
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.lilypondfiletools.LilyPondFile.LilyPondFile.LilyPondFile.insert
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.lilypondfiletools.LilyPondFile.LilyPondFile.LilyPondFile.pop
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.lilypondfiletools.LilyPondFile.LilyPondFile.LilyPondFile.remove
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.lilypondfiletools.LilyPondFile.LilyPondFile.LilyPondFile.reverse
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.lilypondfiletools.LilyPondFile.LilyPondFile.LilyPondFile.sort
+
+   .. note:: Inherited from `__builtin__.list`
+
 Special Methods
 ---------------
 
@@ -126,39 +165,3 @@ Special Methods
 .. automethod:: abjad.tools.lilypondfiletools.LilyPondFile.LilyPondFile.LilyPondFile.__str__
 
    .. note:: Inherited from `__builtin__.object`
-
-.. automethod:: abjad.tools.lilypondfiletools.LilyPondFile.LilyPondFile.LilyPondFile.append
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.lilypondfiletools.LilyPondFile.LilyPondFile.LilyPondFile.count
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.lilypondfiletools.LilyPondFile.LilyPondFile.LilyPondFile.extend
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.lilypondfiletools.LilyPondFile.LilyPondFile.LilyPondFile.index
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.lilypondfiletools.LilyPondFile.LilyPondFile.LilyPondFile.insert
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.lilypondfiletools.LilyPondFile.LilyPondFile.LilyPondFile.pop
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.lilypondfiletools.LilyPondFile.LilyPondFile.LilyPondFile.remove
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.lilypondfiletools.LilyPondFile.LilyPondFile.LilyPondFile.reverse
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.lilypondfiletools.LilyPondFile.LilyPondFile.LilyPondFile.sort
-
-   .. note:: Inherited from `__builtin__.list`

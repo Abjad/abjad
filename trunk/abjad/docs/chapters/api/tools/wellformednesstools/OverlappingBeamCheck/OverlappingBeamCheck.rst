@@ -6,6 +6,21 @@ wellformednesstools.OverlappingBeamCheck
 
 .. autoclass:: abjad.tools.wellformednesstools.OverlappingBeamCheck.OverlappingBeamCheck.OverlappingBeamCheck
 
+Methods
+-------
+
+.. automethod:: abjad.tools.wellformednesstools.OverlappingBeamCheck.OverlappingBeamCheck.OverlappingBeamCheck.check
+
+   .. note:: Inherited from :py:class:`wellformednesstools.Check <abjad.tools.wellformednesstools.Check.Check.Check>`
+
+.. automethod:: abjad.tools.wellformednesstools.OverlappingBeamCheck.OverlappingBeamCheck.OverlappingBeamCheck.report
+
+   .. note:: Inherited from :py:class:`wellformednesstools.Check <abjad.tools.wellformednesstools.Check.Check.Check>`
+
+.. automethod:: abjad.tools.wellformednesstools.OverlappingBeamCheck.OverlappingBeamCheck.OverlappingBeamCheck.violators
+
+   .. note:: Inherited from :py:class:`wellformednesstools.Check <abjad.tools.wellformednesstools.Check.Check.Check>`
+
 Special Methods
 ---------------
 
@@ -52,15 +67,3 @@ Special Methods
 .. automethod:: abjad.tools.wellformednesstools.OverlappingBeamCheck.OverlappingBeamCheck.OverlappingBeamCheck.__str__
 
    .. note:: Inherited from `__builtin__.object`
-
-.. automethod:: abjad.tools.wellformednesstools.OverlappingBeamCheck.OverlappingBeamCheck.OverlappingBeamCheck.check
-
-   .. note:: Inherited from :py:class:`wellformednesstools.Check <abjad.tools.wellformednesstools.Check.Check.Check>`
-
-.. automethod:: abjad.tools.wellformednesstools.OverlappingBeamCheck.OverlappingBeamCheck.OverlappingBeamCheck.report
-
-   .. note:: Inherited from :py:class:`wellformednesstools.Check <abjad.tools.wellformednesstools.Check.Check.Check>`
-
-.. automethod:: abjad.tools.wellformednesstools.OverlappingBeamCheck.OverlappingBeamCheck.OverlappingBeamCheck.violators
-
-   .. note:: Inherited from :py:class:`wellformednesstools.Check <abjad.tools.wellformednesstools.Check.Check.Check>`

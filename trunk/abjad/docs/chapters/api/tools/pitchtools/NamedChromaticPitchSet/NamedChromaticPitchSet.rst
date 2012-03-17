@@ -21,6 +21,43 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet.numbered_chromatic_pitch_classes
 
+Methods
+-------
+
+.. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet.copy
+
+   .. note:: Inherited from `__builtin__.frozenset`
+
+.. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet.difference
+
+   .. note:: Inherited from `__builtin__.frozenset`
+
+.. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet.intersection
+
+   .. note:: Inherited from `__builtin__.frozenset`
+
+.. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet.isdisjoint
+
+   .. note:: Inherited from `__builtin__.frozenset`
+
+.. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet.issubset
+
+   .. note:: Inherited from `__builtin__.frozenset`
+
+.. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet.issuperset
+
+   .. note:: Inherited from `__builtin__.frozenset`
+
+.. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet.symmetric_difference
+
+   .. note:: Inherited from `__builtin__.frozenset`
+
+.. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet.transpose
+
+.. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet.union
+
+   .. note:: Inherited from `__builtin__.frozenset`
+
 Special Methods
 ---------------
 
@@ -105,39 +142,5 @@ Special Methods
    .. note:: Inherited from `__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet.__xor__
-
-   .. note:: Inherited from `__builtin__.frozenset`
-
-.. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet.copy
-
-   .. note:: Inherited from `__builtin__.frozenset`
-
-.. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet.difference
-
-   .. note:: Inherited from `__builtin__.frozenset`
-
-.. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet.intersection
-
-   .. note:: Inherited from `__builtin__.frozenset`
-
-.. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet.isdisjoint
-
-   .. note:: Inherited from `__builtin__.frozenset`
-
-.. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet.issubset
-
-   .. note:: Inherited from `__builtin__.frozenset`
-
-.. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet.issuperset
-
-   .. note:: Inherited from `__builtin__.frozenset`
-
-.. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet.symmetric_difference
-
-   .. note:: Inherited from `__builtin__.frozenset`
-
-.. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet.transpose
-
-.. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSet.NamedChromaticPitchSet.NamedChromaticPitchSet.union
 
    .. note:: Inherited from `__builtin__.frozenset`

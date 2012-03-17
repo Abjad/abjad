@@ -13,6 +13,13 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass.residue
 
+Methods
+-------
+
+.. automethod:: abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass.get_boolean_train
+
+.. automethod:: abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass.get_congruent_bases
+
 Special Methods
 ---------------
 
@@ -57,7 +64,3 @@ Special Methods
 .. automethod:: abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass.__xor__
 
    .. note:: Inherited from :py:class:`sievetools._BaseResidueClass <abjad.tools.sievetools._BaseResidueClass._BaseResidueClass._BaseResidueClass>`
-
-.. automethod:: abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass.get_boolean_train
-
-.. automethod:: abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass.get_congruent_bases

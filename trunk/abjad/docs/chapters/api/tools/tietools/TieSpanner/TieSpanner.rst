@@ -52,6 +52,49 @@ Read/write Properties
 
    .. note:: Inherited from :py:class:`spannertools._DirectedSpanner <abjad.tools.spannertools._DirectedSpanner._DirectedSpanner._DirectedSpanner>`
 
+Methods
+-------
+
+.. automethod:: abjad.tools.tietools.TieSpanner.TieSpanner.TieSpanner.append
+
+   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
+.. automethod:: abjad.tools.tietools.TieSpanner.TieSpanner.TieSpanner.append_left
+
+   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
+.. automethod:: abjad.tools.tietools.TieSpanner.TieSpanner.TieSpanner.clear
+
+   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
+.. automethod:: abjad.tools.tietools.TieSpanner.TieSpanner.TieSpanner.extend
+
+   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
+.. automethod:: abjad.tools.tietools.TieSpanner.TieSpanner.TieSpanner.extend_left
+
+   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
+.. automethod:: abjad.tools.tietools.TieSpanner.TieSpanner.TieSpanner.fracture
+
+   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
+.. automethod:: abjad.tools.tietools.TieSpanner.TieSpanner.TieSpanner.fuse
+
+   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
+.. automethod:: abjad.tools.tietools.TieSpanner.TieSpanner.TieSpanner.index
+
+   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
+.. automethod:: abjad.tools.tietools.TieSpanner.TieSpanner.TieSpanner.pop
+
+   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
+.. automethod:: abjad.tools.tietools.TieSpanner.TieSpanner.TieSpanner.pop_left
+
+   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
 Special Methods
 ---------------
 
@@ -110,43 +153,3 @@ Special Methods
 .. automethod:: abjad.tools.tietools.TieSpanner.TieSpanner.TieSpanner.__str__
 
    .. note:: Inherited from `__builtin__.object`
-
-.. automethod:: abjad.tools.tietools.TieSpanner.TieSpanner.TieSpanner.append
-
-   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
-
-.. automethod:: abjad.tools.tietools.TieSpanner.TieSpanner.TieSpanner.append_left
-
-   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
-
-.. automethod:: abjad.tools.tietools.TieSpanner.TieSpanner.TieSpanner.clear
-
-   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
-
-.. automethod:: abjad.tools.tietools.TieSpanner.TieSpanner.TieSpanner.extend
-
-   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
-
-.. automethod:: abjad.tools.tietools.TieSpanner.TieSpanner.TieSpanner.extend_left
-
-   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
-
-.. automethod:: abjad.tools.tietools.TieSpanner.TieSpanner.TieSpanner.fracture
-
-   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
-
-.. automethod:: abjad.tools.tietools.TieSpanner.TieSpanner.TieSpanner.fuse
-
-   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
-
-.. automethod:: abjad.tools.tietools.TieSpanner.TieSpanner.TieSpanner.index
-
-   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
-
-.. automethod:: abjad.tools.tietools.TieSpanner.TieSpanner.TieSpanner.pop
-
-   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
-
-.. automethod:: abjad.tools.tietools.TieSpanner.TieSpanner.TieSpanner.pop_left
-
-   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`

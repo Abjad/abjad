@@ -22,6 +22,17 @@ Read/write Properties
 
 .. autoattribute:: abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment.format_slot
 
+Methods
+-------
+
+.. automethod:: abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment.attach
+
+   .. note:: Inherited from :py:class:`marktools.Mark <abjad.tools.marktools.Mark.Mark.Mark>`
+
+.. automethod:: abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment.detach
+
+   .. note:: Inherited from :py:class:`marktools.Mark <abjad.tools.marktools.Mark.Mark.Mark>`
+
 Special Methods
 ---------------
 
@@ -70,11 +81,3 @@ Special Methods
 .. automethod:: abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment.__str__
 
    .. note:: Inherited from `__builtin__.object`
-
-.. automethod:: abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment.attach
-
-   .. note:: Inherited from :py:class:`marktools.Mark <abjad.tools.marktools.Mark.Mark.Mark>`
-
-.. automethod:: abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment.detach
-
-   .. note:: Inherited from :py:class:`marktools.Mark <abjad.tools.marktools.Mark.Mark.Mark>`

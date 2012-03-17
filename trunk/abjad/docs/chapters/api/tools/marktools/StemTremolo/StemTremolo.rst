@@ -20,6 +20,17 @@ Read/write Properties
 
 .. autoattribute:: abjad.tools.marktools.StemTremolo.StemTremolo.StemTremolo.tremolo_flags
 
+Methods
+-------
+
+.. automethod:: abjad.tools.marktools.StemTremolo.StemTremolo.StemTremolo.attach
+
+   .. note:: Inherited from :py:class:`marktools.Mark <abjad.tools.marktools.Mark.Mark.Mark>`
+
+.. automethod:: abjad.tools.marktools.StemTremolo.StemTremolo.StemTremolo.detach
+
+   .. note:: Inherited from :py:class:`marktools.Mark <abjad.tools.marktools.Mark.Mark.Mark>`
+
 Special Methods
 ---------------
 
@@ -66,11 +77,3 @@ Special Methods
    .. note:: Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.marktools.StemTremolo.StemTremolo.StemTremolo.__str__
-
-.. automethod:: abjad.tools.marktools.StemTremolo.StemTremolo.StemTremolo.attach
-
-   .. note:: Inherited from :py:class:`marktools.Mark <abjad.tools.marktools.Mark.Mark.Mark>`
-
-.. automethod:: abjad.tools.marktools.StemTremolo.StemTremolo.StemTremolo.detach
-
-   .. note:: Inherited from :py:class:`marktools.Mark <abjad.tools.marktools.Mark.Mark.Mark>`

@@ -11,6 +11,13 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.pitchtools.NamedChromaticPitchClass.NamedChromaticPitchClass.NamedChromaticPitchClass.numbered_chromatic_pitch_class
 
+Methods
+-------
+
+.. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClass.NamedChromaticPitchClass.NamedChromaticPitchClass.apply_accidental
+
+.. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClass.NamedChromaticPitchClass.NamedChromaticPitchClass.transpose
+
 Special Methods
 ---------------
 
@@ -63,7 +70,3 @@ Special Methods
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClass.NamedChromaticPitchClass.NamedChromaticPitchClass.__str__
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClass.NamedChromaticPitchClass.NamedChromaticPitchClass.__sub__
-
-.. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClass.NamedChromaticPitchClass.NamedChromaticPitchClass.apply_accidental
-
-.. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClass.NamedChromaticPitchClass.NamedChromaticPitchClass.transpose

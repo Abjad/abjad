@@ -43,6 +43,21 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.tonalitytools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.rotation
 
+Methods
+-------
+
+.. automethod:: abjad.tools.tonalitytools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.count
+
+   .. note:: Inherited from `__builtin__.tuple`
+
+.. automethod:: abjad.tools.tonalitytools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.index
+
+   .. note:: Inherited from `__builtin__.tuple`
+
+.. automethod:: abjad.tools.tonalitytools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.rotate
+
+   .. note:: Inherited from :py:class:`pitchtools._IntervalSegment <abjad.tools.pitchtools._IntervalSegment._IntervalSegment._IntervalSegment>`
+
 Special Methods
 ---------------
 
@@ -117,17 +132,5 @@ Special Methods
    .. note:: Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.tonalitytools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.__str__
-
-   .. note:: Inherited from :py:class:`pitchtools._IntervalSegment <abjad.tools.pitchtools._IntervalSegment._IntervalSegment._IntervalSegment>`
-
-.. automethod:: abjad.tools.tonalitytools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.count
-
-   .. note:: Inherited from `__builtin__.tuple`
-
-.. automethod:: abjad.tools.tonalitytools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.index
-
-   .. note:: Inherited from `__builtin__.tuple`
-
-.. automethod:: abjad.tools.tonalitytools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.rotate
 
    .. note:: Inherited from :py:class:`pitchtools._IntervalSegment <abjad.tools.pitchtools._IntervalSegment._IntervalSegment._IntervalSegment>`

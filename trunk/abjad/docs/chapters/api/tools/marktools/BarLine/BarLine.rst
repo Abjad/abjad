@@ -30,6 +30,17 @@ Read/write Properties
 
    .. note:: Inherited from :py:class:`marktools.LilyPondCommandMark <abjad.tools.marktools.LilyPondCommandMark.LilyPondCommandMark.LilyPondCommandMark>`
 
+Methods
+-------
+
+.. automethod:: abjad.tools.marktools.BarLine.BarLine.BarLine.attach
+
+   .. note:: Inherited from :py:class:`marktools.Mark <abjad.tools.marktools.Mark.Mark.Mark>`
+
+.. automethod:: abjad.tools.marktools.BarLine.BarLine.BarLine.detach
+
+   .. note:: Inherited from :py:class:`marktools.Mark <abjad.tools.marktools.Mark.Mark.Mark>`
+
 Special Methods
 ---------------
 
@@ -80,11 +91,3 @@ Special Methods
 .. automethod:: abjad.tools.marktools.BarLine.BarLine.BarLine.__str__
 
    .. note:: Inherited from `__builtin__.object`
-
-.. automethod:: abjad.tools.marktools.BarLine.BarLine.BarLine.attach
-
-   .. note:: Inherited from :py:class:`marktools.Mark <abjad.tools.marktools.Mark.Mark.Mark>`
-
-.. automethod:: abjad.tools.marktools.BarLine.BarLine.BarLine.detach
-
-   .. note:: Inherited from :py:class:`marktools.Mark <abjad.tools.marktools.Mark.Mark.Mark>`

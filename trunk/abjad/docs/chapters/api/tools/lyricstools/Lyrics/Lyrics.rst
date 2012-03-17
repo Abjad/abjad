@@ -92,6 +92,33 @@ Read/write Properties
 
    .. note:: Inherited from :py:class:`contexttools.Context <abjad.tools.contexttools.Context.Context.Context>`
 
+Methods
+-------
+
+.. automethod:: abjad.tools.lyricstools.Lyrics.Lyrics.Lyrics.append
+
+   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
+
+.. automethod:: abjad.tools.lyricstools.Lyrics.Lyrics.Lyrics.extend
+
+   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
+
+.. automethod:: abjad.tools.lyricstools.Lyrics.Lyrics.Lyrics.index
+
+   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
+
+.. automethod:: abjad.tools.lyricstools.Lyrics.Lyrics.Lyrics.insert
+
+   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
+
+.. automethod:: abjad.tools.lyricstools.Lyrics.Lyrics.Lyrics.pop
+
+   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
+
+.. automethod:: abjad.tools.lyricstools.Lyrics.Lyrics.Lyrics.remove
+
+   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
+
 Special Methods
 ---------------
 
@@ -182,27 +209,3 @@ Special Methods
 .. automethod:: abjad.tools.lyricstools.Lyrics.Lyrics.Lyrics.__str__
 
    .. note:: Inherited from `__builtin__.object`
-
-.. automethod:: abjad.tools.lyricstools.Lyrics.Lyrics.Lyrics.append
-
-   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
-
-.. automethod:: abjad.tools.lyricstools.Lyrics.Lyrics.Lyrics.extend
-
-   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
-
-.. automethod:: abjad.tools.lyricstools.Lyrics.Lyrics.Lyrics.index
-
-   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
-
-.. automethod:: abjad.tools.lyricstools.Lyrics.Lyrics.Lyrics.insert
-
-   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
-
-.. automethod:: abjad.tools.lyricstools.Lyrics.Lyrics.Lyrics.pop
-
-   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
-
-.. automethod:: abjad.tools.lyricstools.Lyrics.Lyrics.Lyrics.remove
-
-   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`

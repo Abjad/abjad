@@ -6,6 +6,17 @@ sequencetools.CyclicTuple
 
 .. autoclass:: abjad.tools.sequencetools.CyclicTuple.CyclicTuple.CyclicTuple
 
+Methods
+-------
+
+.. automethod:: abjad.tools.sequencetools.CyclicTuple.CyclicTuple.CyclicTuple.count
+
+   .. note:: Inherited from `__builtin__.tuple`
+
+.. automethod:: abjad.tools.sequencetools.CyclicTuple.CyclicTuple.CyclicTuple.index
+
+   .. note:: Inherited from `__builtin__.tuple`
+
 Special Methods
 ---------------
 
@@ -76,11 +87,3 @@ Special Methods
    .. note:: Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.sequencetools.CyclicTuple.CyclicTuple.CyclicTuple.__str__
-
-.. automethod:: abjad.tools.sequencetools.CyclicTuple.CyclicTuple.CyclicTuple.count
-
-   .. note:: Inherited from `__builtin__.tuple`
-
-.. automethod:: abjad.tools.sequencetools.CyclicTuple.CyclicTuple.CyclicTuple.index
-
-   .. note:: Inherited from `__builtin__.tuple`

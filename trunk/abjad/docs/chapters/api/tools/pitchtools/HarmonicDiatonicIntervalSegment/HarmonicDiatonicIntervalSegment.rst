@@ -23,6 +23,21 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSegment.HarmonicDiatonicIntervalSegment.HarmonicDiatonicIntervalSegment.melodic_diatonic_interval_segment
 
+Methods
+-------
+
+.. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSegment.HarmonicDiatonicIntervalSegment.HarmonicDiatonicIntervalSegment.count
+
+   .. note:: Inherited from `__builtin__.tuple`
+
+.. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSegment.HarmonicDiatonicIntervalSegment.HarmonicDiatonicIntervalSegment.index
+
+   .. note:: Inherited from `__builtin__.tuple`
+
+.. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSegment.HarmonicDiatonicIntervalSegment.HarmonicDiatonicIntervalSegment.rotate
+
+   .. note:: Inherited from :py:class:`pitchtools._IntervalSegment <abjad.tools.pitchtools._IntervalSegment._IntervalSegment._IntervalSegment>`
+
 Special Methods
 ---------------
 
@@ -97,17 +112,5 @@ Special Methods
    .. note:: Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSegment.HarmonicDiatonicIntervalSegment.HarmonicDiatonicIntervalSegment.__str__
-
-   .. note:: Inherited from :py:class:`pitchtools._IntervalSegment <abjad.tools.pitchtools._IntervalSegment._IntervalSegment._IntervalSegment>`
-
-.. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSegment.HarmonicDiatonicIntervalSegment.HarmonicDiatonicIntervalSegment.count
-
-   .. note:: Inherited from `__builtin__.tuple`
-
-.. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSegment.HarmonicDiatonicIntervalSegment.HarmonicDiatonicIntervalSegment.index
-
-   .. note:: Inherited from `__builtin__.tuple`
-
-.. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSegment.HarmonicDiatonicIntervalSegment.HarmonicDiatonicIntervalSegment.rotate
 
    .. note:: Inherited from :py:class:`pitchtools._IntervalSegment <abjad.tools.pitchtools._IntervalSegment._IntervalSegment._IntervalSegment>`

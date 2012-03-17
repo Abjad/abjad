@@ -13,6 +13,45 @@ Read/write Properties
 
    .. note:: Inherited from :py:class:`datastructuretools.ObjectInventory <abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory>`
 
+Methods
+-------
+
+.. automethod:: abjad.tools.pitchtools.OctaveTranspositionMapping.OctaveTranspositionMapping.OctaveTranspositionMapping.append
+
+   .. note:: Inherited from :py:class:`datastructuretools.ObjectInventory <abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory>`
+
+.. automethod:: abjad.tools.pitchtools.OctaveTranspositionMapping.OctaveTranspositionMapping.OctaveTranspositionMapping.count
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.pitchtools.OctaveTranspositionMapping.OctaveTranspositionMapping.OctaveTranspositionMapping.extend
+
+   .. note:: Inherited from :py:class:`datastructuretools.ObjectInventory <abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory>`
+
+.. automethod:: abjad.tools.pitchtools.OctaveTranspositionMapping.OctaveTranspositionMapping.OctaveTranspositionMapping.index
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.pitchtools.OctaveTranspositionMapping.OctaveTranspositionMapping.OctaveTranspositionMapping.insert
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.pitchtools.OctaveTranspositionMapping.OctaveTranspositionMapping.OctaveTranspositionMapping.pop
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.pitchtools.OctaveTranspositionMapping.OctaveTranspositionMapping.OctaveTranspositionMapping.remove
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.pitchtools.OctaveTranspositionMapping.OctaveTranspositionMapping.OctaveTranspositionMapping.reverse
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.pitchtools.OctaveTranspositionMapping.OctaveTranspositionMapping.OctaveTranspositionMapping.sort
+
+   .. note:: Inherited from `__builtin__.list`
+
 Special Methods
 ---------------
 
@@ -113,39 +152,3 @@ Special Methods
 .. automethod:: abjad.tools.pitchtools.OctaveTranspositionMapping.OctaveTranspositionMapping.OctaveTranspositionMapping.__str__
 
    .. note:: Inherited from `__builtin__.object`
-
-.. automethod:: abjad.tools.pitchtools.OctaveTranspositionMapping.OctaveTranspositionMapping.OctaveTranspositionMapping.append
-
-   .. note:: Inherited from :py:class:`datastructuretools.ObjectInventory <abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory>`
-
-.. automethod:: abjad.tools.pitchtools.OctaveTranspositionMapping.OctaveTranspositionMapping.OctaveTranspositionMapping.count
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.pitchtools.OctaveTranspositionMapping.OctaveTranspositionMapping.OctaveTranspositionMapping.extend
-
-   .. note:: Inherited from :py:class:`datastructuretools.ObjectInventory <abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory>`
-
-.. automethod:: abjad.tools.pitchtools.OctaveTranspositionMapping.OctaveTranspositionMapping.OctaveTranspositionMapping.index
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.pitchtools.OctaveTranspositionMapping.OctaveTranspositionMapping.OctaveTranspositionMapping.insert
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.pitchtools.OctaveTranspositionMapping.OctaveTranspositionMapping.OctaveTranspositionMapping.pop
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.pitchtools.OctaveTranspositionMapping.OctaveTranspositionMapping.OctaveTranspositionMapping.remove
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.pitchtools.OctaveTranspositionMapping.OctaveTranspositionMapping.OctaveTranspositionMapping.reverse
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.pitchtools.OctaveTranspositionMapping.OctaveTranspositionMapping.OctaveTranspositionMapping.sort
-
-   .. note:: Inherited from `__builtin__.list`

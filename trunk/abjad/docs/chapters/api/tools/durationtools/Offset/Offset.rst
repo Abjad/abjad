@@ -25,6 +25,17 @@ Read-only Properties
 
    .. note:: Inherited from `numbers.Real`
 
+Methods
+-------
+
+.. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.conjugate
+
+   .. note:: Inherited from `numbers.Real`
+
+.. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.limit_denominator
+
+   .. note:: Inherited from `fractions.Fraction`
+
 Special Methods
 ---------------
 
@@ -169,13 +180,5 @@ Special Methods
    .. note:: Inherited from :py:class:`durationtools.Duration <abjad.tools.durationtools.Duration.Duration.Duration>`
 
 .. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.__trunc__
-
-   .. note:: Inherited from `fractions.Fraction`
-
-.. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.conjugate
-
-   .. note:: Inherited from `numbers.Real`
-
-.. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.limit_denominator
 
    .. note:: Inherited from `fractions.Fraction`

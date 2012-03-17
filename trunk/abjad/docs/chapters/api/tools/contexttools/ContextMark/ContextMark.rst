@@ -17,6 +17,13 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.contexttools.ContextMark.ContextMark.ContextMark.target_context
 
+Methods
+-------
+
+.. automethod:: abjad.tools.contexttools.ContextMark.ContextMark.ContextMark.attach
+
+.. automethod:: abjad.tools.contexttools.ContextMark.ContextMark.ContextMark.detach
+
 Special Methods
 ---------------
 
@@ -67,7 +74,3 @@ Special Methods
 .. automethod:: abjad.tools.contexttools.ContextMark.ContextMark.ContextMark.__str__
 
    .. note:: Inherited from `__builtin__.object`
-
-.. automethod:: abjad.tools.contexttools.ContextMark.ContextMark.ContextMark.attach
-
-.. automethod:: abjad.tools.contexttools.ContextMark.ContextMark.ContextMark.detach

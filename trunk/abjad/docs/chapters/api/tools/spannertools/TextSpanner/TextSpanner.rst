@@ -45,6 +45,49 @@ Read-only Properties
 
    .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
 
+Methods
+-------
+
+.. automethod:: abjad.tools.spannertools.TextSpanner.TextSpanner.TextSpanner.append
+
+   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
+.. automethod:: abjad.tools.spannertools.TextSpanner.TextSpanner.TextSpanner.append_left
+
+   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
+.. automethod:: abjad.tools.spannertools.TextSpanner.TextSpanner.TextSpanner.clear
+
+   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
+.. automethod:: abjad.tools.spannertools.TextSpanner.TextSpanner.TextSpanner.extend
+
+   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
+.. automethod:: abjad.tools.spannertools.TextSpanner.TextSpanner.TextSpanner.extend_left
+
+   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
+.. automethod:: abjad.tools.spannertools.TextSpanner.TextSpanner.TextSpanner.fracture
+
+   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
+.. automethod:: abjad.tools.spannertools.TextSpanner.TextSpanner.TextSpanner.fuse
+
+   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
+.. automethod:: abjad.tools.spannertools.TextSpanner.TextSpanner.TextSpanner.index
+
+   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
+.. automethod:: abjad.tools.spannertools.TextSpanner.TextSpanner.TextSpanner.pop
+
+   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
+.. automethod:: abjad.tools.spannertools.TextSpanner.TextSpanner.TextSpanner.pop_left
+
+   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
 Special Methods
 ---------------
 
@@ -103,43 +146,3 @@ Special Methods
 .. automethod:: abjad.tools.spannertools.TextSpanner.TextSpanner.TextSpanner.__str__
 
    .. note:: Inherited from `__builtin__.object`
-
-.. automethod:: abjad.tools.spannertools.TextSpanner.TextSpanner.TextSpanner.append
-
-   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
-
-.. automethod:: abjad.tools.spannertools.TextSpanner.TextSpanner.TextSpanner.append_left
-
-   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
-
-.. automethod:: abjad.tools.spannertools.TextSpanner.TextSpanner.TextSpanner.clear
-
-   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
-
-.. automethod:: abjad.tools.spannertools.TextSpanner.TextSpanner.TextSpanner.extend
-
-   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
-
-.. automethod:: abjad.tools.spannertools.TextSpanner.TextSpanner.TextSpanner.extend_left
-
-   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
-
-.. automethod:: abjad.tools.spannertools.TextSpanner.TextSpanner.TextSpanner.fracture
-
-   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
-
-.. automethod:: abjad.tools.spannertools.TextSpanner.TextSpanner.TextSpanner.fuse
-
-   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
-
-.. automethod:: abjad.tools.spannertools.TextSpanner.TextSpanner.TextSpanner.index
-
-   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
-
-.. automethod:: abjad.tools.spannertools.TextSpanner.TextSpanner.TextSpanner.pop
-
-   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
-
-.. automethod:: abjad.tools.spannertools.TextSpanner.TextSpanner.TextSpanner.pop_left
-
-   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`

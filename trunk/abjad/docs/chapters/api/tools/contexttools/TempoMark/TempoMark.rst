@@ -36,6 +36,19 @@ Read/write Properties
 
 .. autoattribute:: abjad.tools.contexttools.TempoMark.TempoMark.TempoMark.units_per_minute
 
+Methods
+-------
+
+.. automethod:: abjad.tools.contexttools.TempoMark.TempoMark.TempoMark.attach
+
+   .. note:: Inherited from :py:class:`contexttools.ContextMark <abjad.tools.contexttools.ContextMark.ContextMark.ContextMark>`
+
+.. automethod:: abjad.tools.contexttools.TempoMark.TempoMark.TempoMark.detach
+
+   .. note:: Inherited from :py:class:`contexttools.ContextMark <abjad.tools.contexttools.ContextMark.ContextMark.ContextMark>`
+
+.. automethod:: abjad.tools.contexttools.TempoMark.TempoMark.TempoMark.is_tempo_mark_token
+
 Special Methods
 ---------------
 
@@ -92,13 +105,3 @@ Special Methods
    .. note:: Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.contexttools.TempoMark.TempoMark.TempoMark.__sub__
-
-.. automethod:: abjad.tools.contexttools.TempoMark.TempoMark.TempoMark.attach
-
-   .. note:: Inherited from :py:class:`contexttools.ContextMark <abjad.tools.contexttools.ContextMark.ContextMark.ContextMark>`
-
-.. automethod:: abjad.tools.contexttools.TempoMark.TempoMark.TempoMark.detach
-
-   .. note:: Inherited from :py:class:`contexttools.ContextMark <abjad.tools.contexttools.ContextMark.ContextMark.ContextMark>`
-
-.. automethod:: abjad.tools.contexttools.TempoMark.TempoMark.TempoMark.is_tempo_mark_token

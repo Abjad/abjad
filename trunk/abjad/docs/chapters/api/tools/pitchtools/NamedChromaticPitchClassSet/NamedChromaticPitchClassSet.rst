@@ -15,6 +15,45 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.numbered_chromatic_pitch_class_set
 
+Methods
+-------
+
+.. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.copy
+
+   .. note:: Inherited from `__builtin__.frozenset`
+
+.. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.difference
+
+   .. note:: Inherited from `__builtin__.frozenset`
+
+.. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.intersection
+
+   .. note:: Inherited from `__builtin__.frozenset`
+
+.. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.isdisjoint
+
+   .. note:: Inherited from `__builtin__.frozenset`
+
+.. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.issubset
+
+   .. note:: Inherited from `__builtin__.frozenset`
+
+.. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.issuperset
+
+   .. note:: Inherited from `__builtin__.frozenset`
+
+.. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.order_by
+
+.. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.symmetric_difference
+
+   .. note:: Inherited from `__builtin__.frozenset`
+
+.. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.transpose
+
+.. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.union
+
+   .. note:: Inherited from `__builtin__.frozenset`
+
 Special Methods
 ---------------
 
@@ -97,41 +136,5 @@ Special Methods
    .. note:: Inherited from `__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.__xor__
-
-   .. note:: Inherited from `__builtin__.frozenset`
-
-.. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.copy
-
-   .. note:: Inherited from `__builtin__.frozenset`
-
-.. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.difference
-
-   .. note:: Inherited from `__builtin__.frozenset`
-
-.. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.intersection
-
-   .. note:: Inherited from `__builtin__.frozenset`
-
-.. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.isdisjoint
-
-   .. note:: Inherited from `__builtin__.frozenset`
-
-.. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.issubset
-
-   .. note:: Inherited from `__builtin__.frozenset`
-
-.. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.issuperset
-
-   .. note:: Inherited from `__builtin__.frozenset`
-
-.. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.order_by
-
-.. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.symmetric_difference
-
-   .. note:: Inherited from `__builtin__.frozenset`
-
-.. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.transpose
-
-.. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.union
 
    .. note:: Inherited from `__builtin__.frozenset`

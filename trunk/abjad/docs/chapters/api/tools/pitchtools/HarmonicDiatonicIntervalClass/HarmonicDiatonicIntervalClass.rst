@@ -17,6 +17,11 @@ Read-only Properties
 
    .. note:: Inherited from :py:class:`pitchtools._DiatonicIntervalClass <abjad.tools.pitchtools._DiatonicIntervalClass._DiatonicIntervalClass._DiatonicIntervalClass>`
 
+Methods
+-------
+
+.. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalClass.HarmonicDiatonicIntervalClass.HarmonicDiatonicIntervalClass.invert
+
 Special Methods
 ---------------
 
@@ -69,5 +74,3 @@ Special Methods
    .. note:: Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalClass.HarmonicDiatonicIntervalClass.HarmonicDiatonicIntervalClass.__str__
-
-.. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalClass.HarmonicDiatonicIntervalClass.HarmonicDiatonicIntervalClass.invert

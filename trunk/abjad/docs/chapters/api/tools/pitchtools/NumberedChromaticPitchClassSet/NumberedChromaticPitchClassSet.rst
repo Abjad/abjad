@@ -17,6 +17,51 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.pitchtools.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.prime_form
 
+Methods
+-------
+
+.. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.copy
+
+   .. note:: Inherited from `__builtin__.frozenset`
+
+.. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.difference
+
+   .. note:: Inherited from `__builtin__.frozenset`
+
+.. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.intersection
+
+   .. note:: Inherited from `__builtin__.frozenset`
+
+.. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.invert
+
+.. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.is_transposed_subset
+
+.. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.is_transposed_superset
+
+.. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.isdisjoint
+
+   .. note:: Inherited from `__builtin__.frozenset`
+
+.. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.issubset
+
+   .. note:: Inherited from `__builtin__.frozenset`
+
+.. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.issuperset
+
+   .. note:: Inherited from `__builtin__.frozenset`
+
+.. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.multiply
+
+.. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.symmetric_difference
+
+   .. note:: Inherited from `__builtin__.frozenset`
+
+.. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.transpose
+
+.. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.union
+
+   .. note:: Inherited from `__builtin__.frozenset`
+
 Special Methods
 ---------------
 
@@ -99,47 +144,5 @@ Special Methods
    .. note:: Inherited from `__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.__xor__
-
-   .. note:: Inherited from `__builtin__.frozenset`
-
-.. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.copy
-
-   .. note:: Inherited from `__builtin__.frozenset`
-
-.. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.difference
-
-   .. note:: Inherited from `__builtin__.frozenset`
-
-.. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.intersection
-
-   .. note:: Inherited from `__builtin__.frozenset`
-
-.. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.invert
-
-.. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.is_transposed_subset
-
-.. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.is_transposed_superset
-
-.. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.isdisjoint
-
-   .. note:: Inherited from `__builtin__.frozenset`
-
-.. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.issubset
-
-   .. note:: Inherited from `__builtin__.frozenset`
-
-.. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.issuperset
-
-   .. note:: Inherited from `__builtin__.frozenset`
-
-.. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.multiply
-
-.. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.symmetric_difference
-
-   .. note:: Inherited from `__builtin__.frozenset`
-
-.. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.transpose
-
-.. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.NumberedChromaticPitchClassSet.union
 
    .. note:: Inherited from `__builtin__.frozenset`

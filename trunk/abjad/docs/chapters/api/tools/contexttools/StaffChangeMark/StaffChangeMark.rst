@@ -28,6 +28,17 @@ Read/write Properties
 
 .. autoattribute:: abjad.tools.contexttools.StaffChangeMark.StaffChangeMark.StaffChangeMark.staff
 
+Methods
+-------
+
+.. automethod:: abjad.tools.contexttools.StaffChangeMark.StaffChangeMark.StaffChangeMark.attach
+
+   .. note:: Inherited from :py:class:`contexttools.ContextMark <abjad.tools.contexttools.ContextMark.ContextMark.ContextMark>`
+
+.. automethod:: abjad.tools.contexttools.StaffChangeMark.StaffChangeMark.StaffChangeMark.detach
+
+   .. note:: Inherited from :py:class:`contexttools.ContextMark <abjad.tools.contexttools.ContextMark.ContextMark.ContextMark>`
+
 Special Methods
 ---------------
 
@@ -76,11 +87,3 @@ Special Methods
 .. automethod:: abjad.tools.contexttools.StaffChangeMark.StaffChangeMark.StaffChangeMark.__str__
 
    .. note:: Inherited from `__builtin__.object`
-
-.. automethod:: abjad.tools.contexttools.StaffChangeMark.StaffChangeMark.StaffChangeMark.attach
-
-   .. note:: Inherited from :py:class:`contexttools.ContextMark <abjad.tools.contexttools.ContextMark.ContextMark.ContextMark>`
-
-.. automethod:: abjad.tools.contexttools.StaffChangeMark.StaffChangeMark.StaffChangeMark.detach
-
-   .. note:: Inherited from :py:class:`contexttools.ContextMark <abjad.tools.contexttools.ContextMark.ContextMark.ContextMark>`

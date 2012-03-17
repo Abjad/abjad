@@ -98,6 +98,31 @@ Read/write Properties
 
 .. autoattribute:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.suppress_meter
 
+Methods
+-------
+
+.. automethod:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.append
+
+   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
+
+.. automethod:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.extend
+
+.. automethod:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.index
+
+   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
+
+.. automethod:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.insert
+
+   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
+
+.. automethod:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.pop
+
+   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
+
+.. automethod:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.remove
+
+   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
+
 Special Methods
 ---------------
 
@@ -188,25 +213,3 @@ Special Methods
 .. automethod:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.__str__
 
    .. note:: Inherited from :py:class:`measuretools.Measure <abjad.tools.measuretools.Measure.Measure.Measure>`
-
-.. automethod:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.append
-
-   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
-
-.. automethod:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.extend
-
-.. automethod:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.index
-
-   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
-
-.. automethod:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.insert
-
-   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
-
-.. automethod:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.pop
-
-   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
-
-.. automethod:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.remove
-
-   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`

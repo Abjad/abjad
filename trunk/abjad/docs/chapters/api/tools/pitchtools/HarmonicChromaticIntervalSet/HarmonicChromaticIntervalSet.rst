@@ -13,6 +13,41 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.pitchtools.HarmonicChromaticIntervalSet.HarmonicChromaticIntervalSet.HarmonicChromaticIntervalSet.harmonic_chromatic_intervals
 
+Methods
+-------
+
+.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSet.HarmonicChromaticIntervalSet.HarmonicChromaticIntervalSet.copy
+
+   .. note:: Inherited from `__builtin__.frozenset`
+
+.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSet.HarmonicChromaticIntervalSet.HarmonicChromaticIntervalSet.difference
+
+   .. note:: Inherited from `__builtin__.frozenset`
+
+.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSet.HarmonicChromaticIntervalSet.HarmonicChromaticIntervalSet.intersection
+
+   .. note:: Inherited from `__builtin__.frozenset`
+
+.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSet.HarmonicChromaticIntervalSet.HarmonicChromaticIntervalSet.isdisjoint
+
+   .. note:: Inherited from `__builtin__.frozenset`
+
+.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSet.HarmonicChromaticIntervalSet.HarmonicChromaticIntervalSet.issubset
+
+   .. note:: Inherited from `__builtin__.frozenset`
+
+.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSet.HarmonicChromaticIntervalSet.HarmonicChromaticIntervalSet.issuperset
+
+   .. note:: Inherited from `__builtin__.frozenset`
+
+.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSet.HarmonicChromaticIntervalSet.HarmonicChromaticIntervalSet.symmetric_difference
+
+   .. note:: Inherited from `__builtin__.frozenset`
+
+.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSet.HarmonicChromaticIntervalSet.HarmonicChromaticIntervalSet.union
+
+   .. note:: Inherited from `__builtin__.frozenset`
+
 Special Methods
 ---------------
 
@@ -101,37 +136,5 @@ Special Methods
    .. note:: Inherited from `__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSet.HarmonicChromaticIntervalSet.HarmonicChromaticIntervalSet.__xor__
-
-   .. note:: Inherited from `__builtin__.frozenset`
-
-.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSet.HarmonicChromaticIntervalSet.HarmonicChromaticIntervalSet.copy
-
-   .. note:: Inherited from `__builtin__.frozenset`
-
-.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSet.HarmonicChromaticIntervalSet.HarmonicChromaticIntervalSet.difference
-
-   .. note:: Inherited from `__builtin__.frozenset`
-
-.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSet.HarmonicChromaticIntervalSet.HarmonicChromaticIntervalSet.intersection
-
-   .. note:: Inherited from `__builtin__.frozenset`
-
-.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSet.HarmonicChromaticIntervalSet.HarmonicChromaticIntervalSet.isdisjoint
-
-   .. note:: Inherited from `__builtin__.frozenset`
-
-.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSet.HarmonicChromaticIntervalSet.HarmonicChromaticIntervalSet.issubset
-
-   .. note:: Inherited from `__builtin__.frozenset`
-
-.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSet.HarmonicChromaticIntervalSet.HarmonicChromaticIntervalSet.issuperset
-
-   .. note:: Inherited from `__builtin__.frozenset`
-
-.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSet.HarmonicChromaticIntervalSet.HarmonicChromaticIntervalSet.symmetric_difference
-
-   .. note:: Inherited from `__builtin__.frozenset`
-
-.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSet.HarmonicChromaticIntervalSet.HarmonicChromaticIntervalSet.union
 
    .. note:: Inherited from `__builtin__.frozenset`

@@ -11,6 +11,13 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.marktools.Mark.Mark.Mark.start_component
 
+Methods
+-------
+
+.. automethod:: abjad.tools.marktools.Mark.Mark.Mark.attach
+
+.. automethod:: abjad.tools.marktools.Mark.Mark.Mark.detach
+
 Special Methods
 ---------------
 
@@ -51,7 +58,3 @@ Special Methods
 .. automethod:: abjad.tools.marktools.Mark.Mark.Mark.__str__
 
    .. note:: Inherited from `__builtin__.object`
-
-.. automethod:: abjad.tools.marktools.Mark.Mark.Mark.attach
-
-.. automethod:: abjad.tools.marktools.Mark.Mark.Mark.detach

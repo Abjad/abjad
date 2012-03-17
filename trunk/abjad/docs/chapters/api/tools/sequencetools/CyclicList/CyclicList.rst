@@ -6,6 +6,45 @@ sequencetools.CyclicList
 
 .. autoclass:: abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList
 
+Methods
+-------
+
+.. automethod:: abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.append
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.count
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.extend
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.index
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.insert
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.pop
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.remove
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.reverse
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.sort
+
+   .. note:: Inherited from `__builtin__.list`
+
 Special Methods
 ---------------
 
@@ -100,39 +139,3 @@ Special Methods
    .. note:: Inherited from `__builtin__.list`
 
 .. automethod:: abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.__str__
-
-.. automethod:: abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.append
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.count
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.extend
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.index
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.insert
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.pop
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.remove
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.reverse
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.sequencetools.CyclicList.CyclicList.CyclicList.sort
-
-   .. note:: Inherited from `__builtin__.list`

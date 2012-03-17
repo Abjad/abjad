@@ -52,6 +52,49 @@ Read/write Properties
 
 .. autoattribute:: abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.stop
 
+Methods
+-------
+
+.. automethod:: abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.append
+
+   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
+.. automethod:: abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.append_left
+
+   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
+.. automethod:: abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.clear
+
+   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
+.. automethod:: abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.extend
+
+   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
+.. automethod:: abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.extend_left
+
+   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
+.. automethod:: abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.fracture
+
+   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
+.. automethod:: abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.fuse
+
+   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
+.. automethod:: abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.index
+
+   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
+.. automethod:: abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.pop
+
+   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
+.. automethod:: abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.pop_left
+
+   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
 Special Methods
 ---------------
 
@@ -110,43 +153,3 @@ Special Methods
 .. automethod:: abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.__str__
 
    .. note:: Inherited from `__builtin__.object`
-
-.. automethod:: abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.append
-
-   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
-
-.. automethod:: abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.append_left
-
-   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
-
-.. automethod:: abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.clear
-
-   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
-
-.. automethod:: abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.extend
-
-   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
-
-.. automethod:: abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.extend_left
-
-   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
-
-.. automethod:: abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.fracture
-
-   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
-
-.. automethod:: abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.fuse
-
-   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
-
-.. automethod:: abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.index
-
-   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
-
-.. automethod:: abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.pop
-
-   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
-
-.. automethod:: abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.pop_left
-
-   .. note:: Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`

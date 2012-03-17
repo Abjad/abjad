@@ -6,6 +6,15 @@ wellformednesstools.Check
 
 .. autoclass:: abjad.tools.wellformednesstools.Check.Check.Check
 
+Methods
+-------
+
+.. automethod:: abjad.tools.wellformednesstools.Check.Check.Check.check
+
+.. automethod:: abjad.tools.wellformednesstools.Check.Check.Check.report
+
+.. automethod:: abjad.tools.wellformednesstools.Check.Check.Check.violators
+
 Special Methods
 ---------------
 
@@ -52,9 +61,3 @@ Special Methods
 .. automethod:: abjad.tools.wellformednesstools.Check.Check.Check.__str__
 
    .. note:: Inherited from `__builtin__.object`
-
-.. automethod:: abjad.tools.wellformednesstools.Check.Check.Check.check
-
-.. automethod:: abjad.tools.wellformednesstools.Check.Check.Check.report
-
-.. automethod:: abjad.tools.wellformednesstools.Check.Check.Check.violators

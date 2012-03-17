@@ -13,6 +13,45 @@ Read/write Properties
 
    .. note:: Inherited from :py:class:`datastructuretools.ObjectInventory <abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory>`
 
+Methods
+-------
+
+.. automethod:: abjad.tools.pitchtools.PitchRangeInventory.PitchRangeInventory.PitchRangeInventory.append
+
+   .. note:: Inherited from :py:class:`datastructuretools.ObjectInventory <abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory>`
+
+.. automethod:: abjad.tools.pitchtools.PitchRangeInventory.PitchRangeInventory.PitchRangeInventory.count
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.pitchtools.PitchRangeInventory.PitchRangeInventory.PitchRangeInventory.extend
+
+   .. note:: Inherited from :py:class:`datastructuretools.ObjectInventory <abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory>`
+
+.. automethod:: abjad.tools.pitchtools.PitchRangeInventory.PitchRangeInventory.PitchRangeInventory.index
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.pitchtools.PitchRangeInventory.PitchRangeInventory.PitchRangeInventory.insert
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.pitchtools.PitchRangeInventory.PitchRangeInventory.PitchRangeInventory.pop
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.pitchtools.PitchRangeInventory.PitchRangeInventory.PitchRangeInventory.remove
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.pitchtools.PitchRangeInventory.PitchRangeInventory.PitchRangeInventory.reverse
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.pitchtools.PitchRangeInventory.PitchRangeInventory.PitchRangeInventory.sort
+
+   .. note:: Inherited from `__builtin__.list`
+
 Special Methods
 ---------------
 
@@ -115,39 +154,3 @@ Special Methods
 .. automethod:: abjad.tools.pitchtools.PitchRangeInventory.PitchRangeInventory.PitchRangeInventory.__str__
 
    .. note:: Inherited from `__builtin__.object`
-
-.. automethod:: abjad.tools.pitchtools.PitchRangeInventory.PitchRangeInventory.PitchRangeInventory.append
-
-   .. note:: Inherited from :py:class:`datastructuretools.ObjectInventory <abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory>`
-
-.. automethod:: abjad.tools.pitchtools.PitchRangeInventory.PitchRangeInventory.PitchRangeInventory.count
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.pitchtools.PitchRangeInventory.PitchRangeInventory.PitchRangeInventory.extend
-
-   .. note:: Inherited from :py:class:`datastructuretools.ObjectInventory <abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory>`
-
-.. automethod:: abjad.tools.pitchtools.PitchRangeInventory.PitchRangeInventory.PitchRangeInventory.index
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.pitchtools.PitchRangeInventory.PitchRangeInventory.PitchRangeInventory.insert
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.pitchtools.PitchRangeInventory.PitchRangeInventory.PitchRangeInventory.pop
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.pitchtools.PitchRangeInventory.PitchRangeInventory.PitchRangeInventory.remove
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.pitchtools.PitchRangeInventory.PitchRangeInventory.PitchRangeInventory.reverse
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.pitchtools.PitchRangeInventory.PitchRangeInventory.PitchRangeInventory.sort
-
-   .. note:: Inherited from `__builtin__.list`

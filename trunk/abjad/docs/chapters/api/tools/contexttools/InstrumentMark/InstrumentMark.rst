@@ -38,6 +38,17 @@ Read/write Properties
 
 .. autoattribute:: abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark.short_instrument_name_markup
 
+Methods
+-------
+
+.. automethod:: abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark.attach
+
+   .. note:: Inherited from :py:class:`contexttools.ContextMark <abjad.tools.contexttools.ContextMark.ContextMark.ContextMark>`
+
+.. automethod:: abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark.detach
+
+   .. note:: Inherited from :py:class:`contexttools.ContextMark <abjad.tools.contexttools.ContextMark.ContextMark.ContextMark>`
+
 Special Methods
 ---------------
 
@@ -84,11 +95,3 @@ Special Methods
 .. automethod:: abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark.__str__
 
    .. note:: Inherited from `__builtin__.object`
-
-.. automethod:: abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark.attach
-
-   .. note:: Inherited from :py:class:`contexttools.ContextMark <abjad.tools.contexttools.ContextMark.ContextMark.ContextMark>`
-
-.. automethod:: abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark.detach
-
-   .. note:: Inherited from :py:class:`contexttools.ContextMark <abjad.tools.contexttools.ContextMark.ContextMark.ContextMark>`

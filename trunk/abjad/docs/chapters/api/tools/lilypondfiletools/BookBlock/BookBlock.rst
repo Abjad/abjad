@@ -20,6 +20,45 @@ Read/write Properties
 
    .. note:: Inherited from :py:class:`lilypondfiletools._NonattributedBlock <abjad.tools.lilypondfiletools._NonattributedBlock._NonattributedBlock._NonattributedBlock>`
 
+Methods
+-------
+
+.. automethod:: abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.append
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.count
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.extend
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.index
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.insert
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.pop
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.remove
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.reverse
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.sort
+
+   .. note:: Inherited from `__builtin__.list`
+
 Special Methods
 ---------------
 
@@ -122,39 +161,3 @@ Special Methods
 .. automethod:: abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.__str__
 
    .. note:: Inherited from `__builtin__.object`
-
-.. automethod:: abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.append
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.count
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.extend
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.index
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.insert
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.pop
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.remove
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.reverse
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.sort
-
-   .. note:: Inherited from `__builtin__.list`

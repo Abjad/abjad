@@ -21,6 +21,11 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.tonalitytools.ScaleDegree.ScaleDegree.ScaleDegree.title_string
 
+Methods
+-------
+
+.. automethod:: abjad.tools.tonalitytools.ScaleDegree.ScaleDegree.ScaleDegree.apply_accidental
+
 Special Methods
 ---------------
 
@@ -59,5 +64,3 @@ Special Methods
    .. note:: Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.tonalitytools.ScaleDegree.ScaleDegree.ScaleDegree.__str__
-
-.. automethod:: abjad.tools.tonalitytools.ScaleDegree.ScaleDegree.ScaleDegree.apply_accidental

@@ -6,6 +6,21 @@ wellformednesstools.MispitchedTieCheck
 
 .. autoclass:: abjad.tools.wellformednesstools.MispitchedTieCheck.MispitchedTieCheck.MispitchedTieCheck
 
+Methods
+-------
+
+.. automethod:: abjad.tools.wellformednesstools.MispitchedTieCheck.MispitchedTieCheck.MispitchedTieCheck.check
+
+   .. note:: Inherited from :py:class:`wellformednesstools.Check <abjad.tools.wellformednesstools.Check.Check.Check>`
+
+.. automethod:: abjad.tools.wellformednesstools.MispitchedTieCheck.MispitchedTieCheck.MispitchedTieCheck.report
+
+   .. note:: Inherited from :py:class:`wellformednesstools.Check <abjad.tools.wellformednesstools.Check.Check.Check>`
+
+.. automethod:: abjad.tools.wellformednesstools.MispitchedTieCheck.MispitchedTieCheck.MispitchedTieCheck.violators
+
+   .. note:: Inherited from :py:class:`wellformednesstools.Check <abjad.tools.wellformednesstools.Check.Check.Check>`
+
 Special Methods
 ---------------
 
@@ -52,15 +67,3 @@ Special Methods
 .. automethod:: abjad.tools.wellformednesstools.MispitchedTieCheck.MispitchedTieCheck.MispitchedTieCheck.__str__
 
    .. note:: Inherited from `__builtin__.object`
-
-.. automethod:: abjad.tools.wellformednesstools.MispitchedTieCheck.MispitchedTieCheck.MispitchedTieCheck.check
-
-   .. note:: Inherited from :py:class:`wellformednesstools.Check <abjad.tools.wellformednesstools.Check.Check.Check>`
-
-.. automethod:: abjad.tools.wellformednesstools.MispitchedTieCheck.MispitchedTieCheck.MispitchedTieCheck.report
-
-   .. note:: Inherited from :py:class:`wellformednesstools.Check <abjad.tools.wellformednesstools.Check.Check.Check>`
-
-.. automethod:: abjad.tools.wellformednesstools.MispitchedTieCheck.MispitchedTieCheck.MispitchedTieCheck.violators
-
-   .. note:: Inherited from :py:class:`wellformednesstools.Check <abjad.tools.wellformednesstools.Check.Check.Check>`

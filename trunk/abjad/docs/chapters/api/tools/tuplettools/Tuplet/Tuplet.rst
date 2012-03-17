@@ -88,6 +88,33 @@ Read/write Properties
 
 .. autoattribute:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.preferred_denominator
 
+Methods
+-------
+
+.. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.append
+
+   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
+
+.. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.extend
+
+   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
+
+.. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.index
+
+   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
+
+.. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.insert
+
+   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
+
+.. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.pop
+
+   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
+
+.. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.remove
+
+   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
+
 Special Methods
 ---------------
 
@@ -172,27 +199,3 @@ Special Methods
    .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
 
 .. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.__str__
-
-.. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.append
-
-   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
-
-.. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.extend
-
-   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
-
-.. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.index
-
-   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
-
-.. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.insert
-
-   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
-
-.. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.pop
-
-   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
-
-.. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.remove
-
-   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`

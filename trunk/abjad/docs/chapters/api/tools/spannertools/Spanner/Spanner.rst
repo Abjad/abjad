@@ -27,6 +27,29 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.spannertools.Spanner.Spanner.Spanner.written_duration
 
+Methods
+-------
+
+.. automethod:: abjad.tools.spannertools.Spanner.Spanner.Spanner.append
+
+.. automethod:: abjad.tools.spannertools.Spanner.Spanner.Spanner.append_left
+
+.. automethod:: abjad.tools.spannertools.Spanner.Spanner.Spanner.clear
+
+.. automethod:: abjad.tools.spannertools.Spanner.Spanner.Spanner.extend
+
+.. automethod:: abjad.tools.spannertools.Spanner.Spanner.Spanner.extend_left
+
+.. automethod:: abjad.tools.spannertools.Spanner.Spanner.Spanner.fracture
+
+.. automethod:: abjad.tools.spannertools.Spanner.Spanner.Spanner.fuse
+
+.. automethod:: abjad.tools.spannertools.Spanner.Spanner.Spanner.index
+
+.. automethod:: abjad.tools.spannertools.Spanner.Spanner.Spanner.pop
+
+.. automethod:: abjad.tools.spannertools.Spanner.Spanner.Spanner.pop_left
+
 Special Methods
 ---------------
 
@@ -75,23 +98,3 @@ Special Methods
 .. automethod:: abjad.tools.spannertools.Spanner.Spanner.Spanner.__str__
 
    .. note:: Inherited from `__builtin__.object`
-
-.. automethod:: abjad.tools.spannertools.Spanner.Spanner.Spanner.append
-
-.. automethod:: abjad.tools.spannertools.Spanner.Spanner.Spanner.append_left
-
-.. automethod:: abjad.tools.spannertools.Spanner.Spanner.Spanner.clear
-
-.. automethod:: abjad.tools.spannertools.Spanner.Spanner.Spanner.extend
-
-.. automethod:: abjad.tools.spannertools.Spanner.Spanner.Spanner.extend_left
-
-.. automethod:: abjad.tools.spannertools.Spanner.Spanner.Spanner.fracture
-
-.. automethod:: abjad.tools.spannertools.Spanner.Spanner.Spanner.fuse
-
-.. automethod:: abjad.tools.spannertools.Spanner.Spanner.Spanner.index
-
-.. automethod:: abjad.tools.spannertools.Spanner.Spanner.Spanner.pop
-
-.. automethod:: abjad.tools.spannertools.Spanner.Spanner.Spanner.pop_left

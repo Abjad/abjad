@@ -11,6 +11,41 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.pitchtools.HarmonicDiatonicIntervalClassSet.HarmonicDiatonicIntervalClassSet.HarmonicDiatonicIntervalClassSet.harmonic_diatonic_interval_classes
 
+Methods
+-------
+
+.. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalClassSet.HarmonicDiatonicIntervalClassSet.HarmonicDiatonicIntervalClassSet.copy
+
+   .. note:: Inherited from `__builtin__.frozenset`
+
+.. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalClassSet.HarmonicDiatonicIntervalClassSet.HarmonicDiatonicIntervalClassSet.difference
+
+   .. note:: Inherited from `__builtin__.frozenset`
+
+.. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalClassSet.HarmonicDiatonicIntervalClassSet.HarmonicDiatonicIntervalClassSet.intersection
+
+   .. note:: Inherited from `__builtin__.frozenset`
+
+.. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalClassSet.HarmonicDiatonicIntervalClassSet.HarmonicDiatonicIntervalClassSet.isdisjoint
+
+   .. note:: Inherited from `__builtin__.frozenset`
+
+.. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalClassSet.HarmonicDiatonicIntervalClassSet.HarmonicDiatonicIntervalClassSet.issubset
+
+   .. note:: Inherited from `__builtin__.frozenset`
+
+.. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalClassSet.HarmonicDiatonicIntervalClassSet.HarmonicDiatonicIntervalClassSet.issuperset
+
+   .. note:: Inherited from `__builtin__.frozenset`
+
+.. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalClassSet.HarmonicDiatonicIntervalClassSet.HarmonicDiatonicIntervalClassSet.symmetric_difference
+
+   .. note:: Inherited from `__builtin__.frozenset`
+
+.. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalClassSet.HarmonicDiatonicIntervalClassSet.HarmonicDiatonicIntervalClassSet.union
+
+   .. note:: Inherited from `__builtin__.frozenset`
+
 Special Methods
 ---------------
 
@@ -99,37 +134,5 @@ Special Methods
    .. note:: Inherited from `__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalClassSet.HarmonicDiatonicIntervalClassSet.HarmonicDiatonicIntervalClassSet.__xor__
-
-   .. note:: Inherited from `__builtin__.frozenset`
-
-.. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalClassSet.HarmonicDiatonicIntervalClassSet.HarmonicDiatonicIntervalClassSet.copy
-
-   .. note:: Inherited from `__builtin__.frozenset`
-
-.. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalClassSet.HarmonicDiatonicIntervalClassSet.HarmonicDiatonicIntervalClassSet.difference
-
-   .. note:: Inherited from `__builtin__.frozenset`
-
-.. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalClassSet.HarmonicDiatonicIntervalClassSet.HarmonicDiatonicIntervalClassSet.intersection
-
-   .. note:: Inherited from `__builtin__.frozenset`
-
-.. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalClassSet.HarmonicDiatonicIntervalClassSet.HarmonicDiatonicIntervalClassSet.isdisjoint
-
-   .. note:: Inherited from `__builtin__.frozenset`
-
-.. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalClassSet.HarmonicDiatonicIntervalClassSet.HarmonicDiatonicIntervalClassSet.issubset
-
-   .. note:: Inherited from `__builtin__.frozenset`
-
-.. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalClassSet.HarmonicDiatonicIntervalClassSet.HarmonicDiatonicIntervalClassSet.issuperset
-
-   .. note:: Inherited from `__builtin__.frozenset`
-
-.. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalClassSet.HarmonicDiatonicIntervalClassSet.HarmonicDiatonicIntervalClassSet.symmetric_difference
-
-   .. note:: Inherited from `__builtin__.frozenset`
-
-.. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalClassSet.HarmonicDiatonicIntervalClassSet.HarmonicDiatonicIntervalClassSet.union
 
    .. note:: Inherited from `__builtin__.frozenset`

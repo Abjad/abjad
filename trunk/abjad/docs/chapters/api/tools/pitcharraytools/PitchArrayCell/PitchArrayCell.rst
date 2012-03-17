@@ -40,6 +40,11 @@ Read/write Properties
 
 .. autoattribute:: abjad.tools.pitcharraytools.PitchArrayCell.PitchArrayCell.PitchArrayCell.pitches
 
+Methods
+-------
+
+.. automethod:: abjad.tools.pitcharraytools.PitchArrayCell.PitchArrayCell.PitchArrayCell.matches_cell
+
 Special Methods
 ---------------
 
@@ -82,5 +87,3 @@ Special Methods
    .. note:: Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.pitcharraytools.PitchArrayCell.PitchArrayCell.PitchArrayCell.__str__
-
-.. automethod:: abjad.tools.pitcharraytools.PitchArrayCell.PitchArrayCell.PitchArrayCell.matches_cell

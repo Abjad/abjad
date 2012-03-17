@@ -24,6 +24,11 @@ Read/write Properties
 
 .. autoattribute:: abjad.tools.scoretools.Performer.Performer.Performer.name
 
+Methods
+-------
+
+.. automethod:: abjad.tools.scoretools.Performer.Performer.Performer.make_performer_name_instrument_dictionary
+
 Special Methods
 ---------------
 
@@ -64,5 +69,3 @@ Special Methods
 .. automethod:: abjad.tools.scoretools.Performer.Performer.Performer.__str__
 
    .. note:: Inherited from `__builtin__.object`
-
-.. automethod:: abjad.tools.scoretools.Performer.Performer.Performer.make_performer_name_instrument_dictionary

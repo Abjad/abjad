@@ -6,6 +6,21 @@ wellformednesstools.IntermarkedHairpinCheck
 
 .. autoclass:: abjad.tools.wellformednesstools.IntermarkedHairpinCheck.IntermarkedHairpinCheck.IntermarkedHairpinCheck
 
+Methods
+-------
+
+.. automethod:: abjad.tools.wellformednesstools.IntermarkedHairpinCheck.IntermarkedHairpinCheck.IntermarkedHairpinCheck.check
+
+   .. note:: Inherited from :py:class:`wellformednesstools.Check <abjad.tools.wellformednesstools.Check.Check.Check>`
+
+.. automethod:: abjad.tools.wellformednesstools.IntermarkedHairpinCheck.IntermarkedHairpinCheck.IntermarkedHairpinCheck.report
+
+   .. note:: Inherited from :py:class:`wellformednesstools.Check <abjad.tools.wellformednesstools.Check.Check.Check>`
+
+.. automethod:: abjad.tools.wellformednesstools.IntermarkedHairpinCheck.IntermarkedHairpinCheck.IntermarkedHairpinCheck.violators
+
+   .. note:: Inherited from :py:class:`wellformednesstools.Check <abjad.tools.wellformednesstools.Check.Check.Check>`
+
 Special Methods
 ---------------
 
@@ -52,15 +67,3 @@ Special Methods
 .. automethod:: abjad.tools.wellformednesstools.IntermarkedHairpinCheck.IntermarkedHairpinCheck.IntermarkedHairpinCheck.__str__
 
    .. note:: Inherited from `__builtin__.object`
-
-.. automethod:: abjad.tools.wellformednesstools.IntermarkedHairpinCheck.IntermarkedHairpinCheck.IntermarkedHairpinCheck.check
-
-   .. note:: Inherited from :py:class:`wellformednesstools.Check <abjad.tools.wellformednesstools.Check.Check.Check>`
-
-.. automethod:: abjad.tools.wellformednesstools.IntermarkedHairpinCheck.IntermarkedHairpinCheck.IntermarkedHairpinCheck.report
-
-   .. note:: Inherited from :py:class:`wellformednesstools.Check <abjad.tools.wellformednesstools.Check.Check.Check>`
-
-.. automethod:: abjad.tools.wellformednesstools.IntermarkedHairpinCheck.IntermarkedHairpinCheck.IntermarkedHairpinCheck.violators
-
-   .. note:: Inherited from :py:class:`wellformednesstools.Check <abjad.tools.wellformednesstools.Check.Check.Check>`

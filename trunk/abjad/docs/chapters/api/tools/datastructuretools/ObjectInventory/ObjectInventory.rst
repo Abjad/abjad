@@ -11,6 +11,41 @@ Read/write Properties
 
 .. autoattribute:: abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.inventory_name
 
+Methods
+-------
+
+.. automethod:: abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.append
+
+.. automethod:: abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.count
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.extend
+
+.. automethod:: abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.index
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.insert
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.pop
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.remove
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.reverse
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.sort
+
+   .. note:: Inherited from `__builtin__.list`
+
 Special Methods
 ---------------
 
@@ -109,35 +144,3 @@ Special Methods
 .. automethod:: abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.__str__
 
    .. note:: Inherited from `__builtin__.object`
-
-.. automethod:: abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.append
-
-.. automethod:: abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.count
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.extend
-
-.. automethod:: abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.index
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.insert
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.pop
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.remove
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.reverse
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.sort
-
-   .. note:: Inherited from `__builtin__.list`

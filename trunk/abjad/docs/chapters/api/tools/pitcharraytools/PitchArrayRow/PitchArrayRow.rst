@@ -38,6 +38,33 @@ Read/write Properties
 
 .. autoattribute:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.pitch_range
 
+Methods
+-------
+
+.. automethod:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.append
+
+.. automethod:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.apply_pitches
+
+.. automethod:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.copy_subrow
+
+.. automethod:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.empty_pitches
+
+.. automethod:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.extend
+
+.. automethod:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.has_spanning_cell_over_index
+
+.. automethod:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.index
+
+.. automethod:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.merge
+
+.. automethod:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.pad_to_width
+
+.. automethod:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.pop
+
+.. automethod:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.remove
+
+.. automethod:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.withdraw
+
 Special Methods
 ---------------
 
@@ -84,27 +111,3 @@ Special Methods
    .. note:: Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.__str__
-
-.. automethod:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.append
-
-.. automethod:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.apply_pitches
-
-.. automethod:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.copy_subrow
-
-.. automethod:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.empty_pitches
-
-.. automethod:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.extend
-
-.. automethod:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.has_spanning_cell_over_index
-
-.. automethod:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.index
-
-.. automethod:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.merge
-
-.. automethod:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.pad_to_width
-
-.. automethod:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.pop
-
-.. automethod:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.remove
-
-.. automethod:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.withdraw

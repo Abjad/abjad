@@ -24,6 +24,17 @@ Read/write Properties
 
 .. autoattribute:: abjad.tools.marktools.Articulation.Articulation.Articulation.name
 
+Methods
+-------
+
+.. automethod:: abjad.tools.marktools.Articulation.Articulation.Articulation.attach
+
+   .. note:: Inherited from :py:class:`marktools.Mark <abjad.tools.marktools.Mark.Mark.Mark>`
+
+.. automethod:: abjad.tools.marktools.Articulation.Articulation.Articulation.detach
+
+   .. note:: Inherited from :py:class:`marktools.Mark <abjad.tools.marktools.Mark.Mark.Mark>`
+
 Special Methods
 ---------------
 
@@ -70,11 +81,3 @@ Special Methods
    .. note:: Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.marktools.Articulation.Articulation.Articulation.__str__
-
-.. automethod:: abjad.tools.marktools.Articulation.Articulation.Articulation.attach
-
-   .. note:: Inherited from :py:class:`marktools.Mark <abjad.tools.marktools.Mark.Mark.Mark>`
-
-.. automethod:: abjad.tools.marktools.Articulation.Articulation.Articulation.detach
-
-   .. note:: Inherited from :py:class:`marktools.Mark <abjad.tools.marktools.Mark.Mark.Mark>`

@@ -6,6 +6,21 @@ wellformednesstools.MisrepresentedFlagCheck
 
 .. autoclass:: abjad.tools.wellformednesstools.MisrepresentedFlagCheck.MisrepresentedFlagCheck.MisrepresentedFlagCheck
 
+Methods
+-------
+
+.. automethod:: abjad.tools.wellformednesstools.MisrepresentedFlagCheck.MisrepresentedFlagCheck.MisrepresentedFlagCheck.check
+
+   .. note:: Inherited from :py:class:`wellformednesstools.Check <abjad.tools.wellformednesstools.Check.Check.Check>`
+
+.. automethod:: abjad.tools.wellformednesstools.MisrepresentedFlagCheck.MisrepresentedFlagCheck.MisrepresentedFlagCheck.report
+
+   .. note:: Inherited from :py:class:`wellformednesstools.Check <abjad.tools.wellformednesstools.Check.Check.Check>`
+
+.. automethod:: abjad.tools.wellformednesstools.MisrepresentedFlagCheck.MisrepresentedFlagCheck.MisrepresentedFlagCheck.violators
+
+   .. note:: Inherited from :py:class:`wellformednesstools.Check <abjad.tools.wellformednesstools.Check.Check.Check>`
+
 Special Methods
 ---------------
 
@@ -52,15 +67,3 @@ Special Methods
 .. automethod:: abjad.tools.wellformednesstools.MisrepresentedFlagCheck.MisrepresentedFlagCheck.MisrepresentedFlagCheck.__str__
 
    .. note:: Inherited from `__builtin__.object`
-
-.. automethod:: abjad.tools.wellformednesstools.MisrepresentedFlagCheck.MisrepresentedFlagCheck.MisrepresentedFlagCheck.check
-
-   .. note:: Inherited from :py:class:`wellformednesstools.Check <abjad.tools.wellformednesstools.Check.Check.Check>`
-
-.. automethod:: abjad.tools.wellformednesstools.MisrepresentedFlagCheck.MisrepresentedFlagCheck.MisrepresentedFlagCheck.report
-
-   .. note:: Inherited from :py:class:`wellformednesstools.Check <abjad.tools.wellformednesstools.Check.Check.Check>`
-
-.. automethod:: abjad.tools.wellformednesstools.MisrepresentedFlagCheck.MisrepresentedFlagCheck.MisrepresentedFlagCheck.violators
-
-   .. note:: Inherited from :py:class:`wellformednesstools.Check <abjad.tools.wellformednesstools.Check.Check.Check>`

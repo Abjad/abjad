@@ -6,6 +6,77 @@ documentationtools.InheritanceGraph
 
 .. autoclass:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph
 
+Methods
+-------
+
+.. automethod:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.clear
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.copy
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.get
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.has_key
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.items
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.iteritems
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.iterkeys
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.itervalues
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.keys
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.pop
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.popitem
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.setdefault
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.update
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.values
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.viewitems
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.viewkeys
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.viewvalues
+
+   .. note:: Inherited from `__builtin__.dict`
+
 Special Methods
 ---------------
 
@@ -76,71 +147,3 @@ Special Methods
 .. automethod:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.__str__
 
    .. note:: Inherited from `__builtin__.object`
-
-.. automethod:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.clear
-
-   .. note:: Inherited from `__builtin__.dict`
-
-.. automethod:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.copy
-
-   .. note:: Inherited from `__builtin__.dict`
-
-.. automethod:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.get
-
-   .. note:: Inherited from `__builtin__.dict`
-
-.. automethod:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.has_key
-
-   .. note:: Inherited from `__builtin__.dict`
-
-.. automethod:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.items
-
-   .. note:: Inherited from `__builtin__.dict`
-
-.. automethod:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.iteritems
-
-   .. note:: Inherited from `__builtin__.dict`
-
-.. automethod:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.iterkeys
-
-   .. note:: Inherited from `__builtin__.dict`
-
-.. automethod:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.itervalues
-
-   .. note:: Inherited from `__builtin__.dict`
-
-.. automethod:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.keys
-
-   .. note:: Inherited from `__builtin__.dict`
-
-.. automethod:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.pop
-
-   .. note:: Inherited from `__builtin__.dict`
-
-.. automethod:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.popitem
-
-   .. note:: Inherited from `__builtin__.dict`
-
-.. automethod:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.setdefault
-
-   .. note:: Inherited from `__builtin__.dict`
-
-.. automethod:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.update
-
-   .. note:: Inherited from `__builtin__.dict`
-
-.. automethod:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.values
-
-   .. note:: Inherited from `__builtin__.dict`
-
-.. automethod:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.viewitems
-
-   .. note:: Inherited from `__builtin__.dict`
-
-.. automethod:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.viewkeys
-
-   .. note:: Inherited from `__builtin__.dict`
-
-.. automethod:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.viewvalues
-
-   .. note:: Inherited from `__builtin__.dict`

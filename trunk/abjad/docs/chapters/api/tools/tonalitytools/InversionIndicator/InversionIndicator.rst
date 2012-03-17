@@ -15,6 +15,11 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.tonalitytools.InversionIndicator.InversionIndicator.InversionIndicator.title
 
+Methods
+-------
+
+.. automethod:: abjad.tools.tonalitytools.InversionIndicator.InversionIndicator.InversionIndicator.extent_to_figured_bass_string
+
 Special Methods
 ---------------
 
@@ -55,5 +60,3 @@ Special Methods
 .. automethod:: abjad.tools.tonalitytools.InversionIndicator.InversionIndicator.InversionIndicator.__str__
 
    .. note:: Inherited from `__builtin__.object`
-
-.. automethod:: abjad.tools.tonalitytools.InversionIndicator.InversionIndicator.InversionIndicator.extent_to_figured_bass_string

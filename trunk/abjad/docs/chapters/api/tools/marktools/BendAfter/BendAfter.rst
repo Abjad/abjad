@@ -20,6 +20,17 @@ Read/write Properties
 
 .. autoattribute:: abjad.tools.marktools.BendAfter.BendAfter.BendAfter.bend_amount
 
+Methods
+-------
+
+.. automethod:: abjad.tools.marktools.BendAfter.BendAfter.BendAfter.attach
+
+   .. note:: Inherited from :py:class:`marktools.Mark <abjad.tools.marktools.Mark.Mark.Mark>`
+
+.. automethod:: abjad.tools.marktools.BendAfter.BendAfter.BendAfter.detach
+
+   .. note:: Inherited from :py:class:`marktools.Mark <abjad.tools.marktools.Mark.Mark.Mark>`
+
 Special Methods
 ---------------
 
@@ -66,11 +77,3 @@ Special Methods
    .. note:: Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.marktools.BendAfter.BendAfter.BendAfter.__str__
-
-.. automethod:: abjad.tools.marktools.BendAfter.BendAfter.BendAfter.attach
-
-   .. note:: Inherited from :py:class:`marktools.Mark <abjad.tools.marktools.Mark.Mark.Mark>`
-
-.. automethod:: abjad.tools.marktools.BendAfter.BendAfter.BendAfter.detach
-
-   .. note:: Inherited from :py:class:`marktools.Mark <abjad.tools.marktools.Mark.Mark.Mark>`

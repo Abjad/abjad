@@ -6,6 +6,21 @@ wellformednesstools.MissingParentCheck
 
 .. autoclass:: abjad.tools.wellformednesstools.MissingParentCheck.MissingParentCheck.MissingParentCheck
 
+Methods
+-------
+
+.. automethod:: abjad.tools.wellformednesstools.MissingParentCheck.MissingParentCheck.MissingParentCheck.check
+
+   .. note:: Inherited from :py:class:`wellformednesstools.Check <abjad.tools.wellformednesstools.Check.Check.Check>`
+
+.. automethod:: abjad.tools.wellformednesstools.MissingParentCheck.MissingParentCheck.MissingParentCheck.report
+
+   .. note:: Inherited from :py:class:`wellformednesstools.Check <abjad.tools.wellformednesstools.Check.Check.Check>`
+
+.. automethod:: abjad.tools.wellformednesstools.MissingParentCheck.MissingParentCheck.MissingParentCheck.violators
+
+   .. note:: Inherited from :py:class:`wellformednesstools.Check <abjad.tools.wellformednesstools.Check.Check.Check>`
+
 Special Methods
 ---------------
 
@@ -52,15 +67,3 @@ Special Methods
 .. automethod:: abjad.tools.wellformednesstools.MissingParentCheck.MissingParentCheck.MissingParentCheck.__str__
 
    .. note:: Inherited from `__builtin__.object`
-
-.. automethod:: abjad.tools.wellformednesstools.MissingParentCheck.MissingParentCheck.MissingParentCheck.check
-
-   .. note:: Inherited from :py:class:`wellformednesstools.Check <abjad.tools.wellformednesstools.Check.Check.Check>`
-
-.. automethod:: abjad.tools.wellformednesstools.MissingParentCheck.MissingParentCheck.MissingParentCheck.report
-
-   .. note:: Inherited from :py:class:`wellformednesstools.Check <abjad.tools.wellformednesstools.Check.Check.Check>`
-
-.. automethod:: abjad.tools.wellformednesstools.MissingParentCheck.MissingParentCheck.MissingParentCheck.violators
-
-   .. note:: Inherited from :py:class:`wellformednesstools.Check <abjad.tools.wellformednesstools.Check.Check.Check>`

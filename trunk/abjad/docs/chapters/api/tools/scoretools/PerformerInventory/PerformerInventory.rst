@@ -13,6 +13,45 @@ Read/write Properties
 
    .. note:: Inherited from :py:class:`datastructuretools.ObjectInventory <abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory>`
 
+Methods
+-------
+
+.. automethod:: abjad.tools.scoretools.PerformerInventory.PerformerInventory.PerformerInventory.append
+
+   .. note:: Inherited from :py:class:`datastructuretools.ObjectInventory <abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory>`
+
+.. automethod:: abjad.tools.scoretools.PerformerInventory.PerformerInventory.PerformerInventory.count
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.scoretools.PerformerInventory.PerformerInventory.PerformerInventory.extend
+
+   .. note:: Inherited from :py:class:`datastructuretools.ObjectInventory <abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory>`
+
+.. automethod:: abjad.tools.scoretools.PerformerInventory.PerformerInventory.PerformerInventory.index
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.scoretools.PerformerInventory.PerformerInventory.PerformerInventory.insert
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.scoretools.PerformerInventory.PerformerInventory.PerformerInventory.pop
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.scoretools.PerformerInventory.PerformerInventory.PerformerInventory.remove
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.scoretools.PerformerInventory.PerformerInventory.PerformerInventory.reverse
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.scoretools.PerformerInventory.PerformerInventory.PerformerInventory.sort
+
+   .. note:: Inherited from `__builtin__.list`
+
 Special Methods
 ---------------
 
@@ -115,39 +154,3 @@ Special Methods
 .. automethod:: abjad.tools.scoretools.PerformerInventory.PerformerInventory.PerformerInventory.__str__
 
    .. note:: Inherited from `__builtin__.object`
-
-.. automethod:: abjad.tools.scoretools.PerformerInventory.PerformerInventory.PerformerInventory.append
-
-   .. note:: Inherited from :py:class:`datastructuretools.ObjectInventory <abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory>`
-
-.. automethod:: abjad.tools.scoretools.PerformerInventory.PerformerInventory.PerformerInventory.count
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.scoretools.PerformerInventory.PerformerInventory.PerformerInventory.extend
-
-   .. note:: Inherited from :py:class:`datastructuretools.ObjectInventory <abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory>`
-
-.. automethod:: abjad.tools.scoretools.PerformerInventory.PerformerInventory.PerformerInventory.index
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.scoretools.PerformerInventory.PerformerInventory.PerformerInventory.insert
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.scoretools.PerformerInventory.PerformerInventory.PerformerInventory.pop
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.scoretools.PerformerInventory.PerformerInventory.PerformerInventory.remove
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.scoretools.PerformerInventory.PerformerInventory.PerformerInventory.reverse
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.scoretools.PerformerInventory.PerformerInventory.PerformerInventory.sort
-
-   .. note:: Inherited from `__builtin__.list`

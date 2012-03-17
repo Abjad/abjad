@@ -84,6 +84,19 @@ Read/write Properties
 
 .. autoattribute:: abjad.tools.chordtools.Chord.Chord.Chord.written_pitches
 
+Methods
+-------
+
+.. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.append
+
+.. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.clear
+
+.. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.extend
+
+.. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.pop
+
+.. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.remove
+
 Special Methods
 ---------------
 
@@ -164,13 +177,3 @@ Special Methods
 .. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.__xor__
 
    .. note:: Inherited from :py:class:`leaftools.Leaf <abjad.tools.leaftools.Leaf.Leaf.Leaf>`
-
-.. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.append
-
-.. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.clear
-
-.. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.extend
-
-.. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.pop
-
-.. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.remove

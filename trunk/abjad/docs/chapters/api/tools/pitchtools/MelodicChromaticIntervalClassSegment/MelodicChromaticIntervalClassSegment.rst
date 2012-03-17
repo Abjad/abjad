@@ -17,6 +17,17 @@ Read-only Properties
 
    .. note:: Inherited from :py:class:`pitchtools._IntervalClassSegment <abjad.tools.pitchtools._IntervalClassSegment._IntervalClassSegment._IntervalClassSegment>`
 
+Methods
+-------
+
+.. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.count
+
+   .. note:: Inherited from `__builtin__.tuple`
+
+.. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.index
+
+   .. note:: Inherited from `__builtin__.tuple`
+
 Special Methods
 ---------------
 
@@ -95,11 +106,3 @@ Special Methods
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.__str__
 
    .. note:: Inherited from `__builtin__.object`
-
-.. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.count
-
-   .. note:: Inherited from `__builtin__.tuple`
-
-.. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.index
-
-   .. note:: Inherited from `__builtin__.tuple`

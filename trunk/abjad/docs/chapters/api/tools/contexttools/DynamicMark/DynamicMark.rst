@@ -28,6 +28,17 @@ Read/write Properties
 
 .. autoattribute:: abjad.tools.contexttools.DynamicMark.DynamicMark.DynamicMark.dynamic_name
 
+Methods
+-------
+
+.. automethod:: abjad.tools.contexttools.DynamicMark.DynamicMark.DynamicMark.attach
+
+   .. note:: Inherited from :py:class:`contexttools.ContextMark <abjad.tools.contexttools.ContextMark.ContextMark.ContextMark>`
+
+.. automethod:: abjad.tools.contexttools.DynamicMark.DynamicMark.DynamicMark.detach
+
+   .. note:: Inherited from :py:class:`contexttools.ContextMark <abjad.tools.contexttools.ContextMark.ContextMark.ContextMark>`
+
 Special Methods
 ---------------
 
@@ -74,11 +85,3 @@ Special Methods
 .. automethod:: abjad.tools.contexttools.DynamicMark.DynamicMark.DynamicMark.__str__
 
    .. note:: Inherited from `__builtin__.object`
-
-.. automethod:: abjad.tools.contexttools.DynamicMark.DynamicMark.DynamicMark.attach
-
-   .. note:: Inherited from :py:class:`contexttools.ContextMark <abjad.tools.contexttools.ContextMark.ContextMark.ContextMark>`
-
-.. automethod:: abjad.tools.contexttools.DynamicMark.DynamicMark.DynamicMark.detach
-
-   .. note:: Inherited from :py:class:`contexttools.ContextMark <abjad.tools.contexttools.ContextMark.ContextMark.ContextMark>`

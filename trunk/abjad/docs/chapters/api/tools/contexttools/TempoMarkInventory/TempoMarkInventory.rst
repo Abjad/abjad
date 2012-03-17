@@ -13,6 +13,45 @@ Read/write Properties
 
    .. note:: Inherited from :py:class:`datastructuretools.ObjectInventory <abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory>`
 
+Methods
+-------
+
+.. automethod:: abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.append
+
+   .. note:: Inherited from :py:class:`datastructuretools.ObjectInventory <abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory>`
+
+.. automethod:: abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.count
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.extend
+
+   .. note:: Inherited from :py:class:`datastructuretools.ObjectInventory <abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory>`
+
+.. automethod:: abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.index
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.insert
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.pop
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.remove
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.reverse
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.sort
+
+   .. note:: Inherited from `__builtin__.list`
+
 Special Methods
 ---------------
 
@@ -115,39 +154,3 @@ Special Methods
 .. automethod:: abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.__str__
 
    .. note:: Inherited from `__builtin__.object`
-
-.. automethod:: abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.append
-
-   .. note:: Inherited from :py:class:`datastructuretools.ObjectInventory <abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory>`
-
-.. automethod:: abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.count
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.extend
-
-   .. note:: Inherited from :py:class:`datastructuretools.ObjectInventory <abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory>`
-
-.. automethod:: abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.index
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.insert
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.pop
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.remove
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.reverse
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.sort
-
-   .. note:: Inherited from `__builtin__.list`

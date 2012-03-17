@@ -38,6 +38,17 @@ Read/write Properties
 
 .. autoattribute:: abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark.partial
 
+Methods
+-------
+
+.. automethod:: abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark.attach
+
+   .. note:: Inherited from :py:class:`contexttools.ContextMark <abjad.tools.contexttools.ContextMark.ContextMark.ContextMark>`
+
+.. automethod:: abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark.detach
+
+   .. note:: Inherited from :py:class:`contexttools.ContextMark <abjad.tools.contexttools.ContextMark.ContextMark.ContextMark>`
+
 Special Methods
 ---------------
 
@@ -74,11 +85,3 @@ Special Methods
    .. note:: Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark.__str__
-
-.. automethod:: abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark.attach
-
-   .. note:: Inherited from :py:class:`contexttools.ContextMark <abjad.tools.contexttools.ContextMark.ContextMark.ContextMark>`
-
-.. automethod:: abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark.detach
-
-   .. note:: Inherited from :py:class:`contexttools.ContextMark <abjad.tools.contexttools.ContextMark.ContextMark.ContextMark>`

@@ -49,6 +49,53 @@ Read-only Properties
 
    .. note:: Inherited from :py:class:`sequencetools.Tree <abjad.tools.sequencetools.Tree.Tree.Tree>`
 
+Methods
+-------
+
+.. automethod:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.get_next_n_complete_nodes_at_level
+
+   .. note:: Inherited from :py:class:`sequencetools.Tree <abjad.tools.sequencetools.Tree.Tree.Tree>`
+
+.. automethod:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.get_next_n_nodes_at_level
+
+   .. note:: Inherited from :py:class:`sequencetools.Tree <abjad.tools.sequencetools.Tree.Tree.Tree>`
+
+.. automethod:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.get_node_at_position
+
+   .. note:: Inherited from :py:class:`sequencetools.Tree <abjad.tools.sequencetools.Tree.Tree.Tree>`
+
+.. automethod:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.get_position_of_descendant
+
+   .. note:: Inherited from :py:class:`sequencetools.Tree <abjad.tools.sequencetools.Tree.Tree.Tree>`
+
+.. automethod:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.is_at_level
+
+   .. note:: Inherited from :py:class:`sequencetools.Tree <abjad.tools.sequencetools.Tree.Tree.Tree>`
+
+.. automethod:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.iterate_at_level
+
+   .. note:: Inherited from :py:class:`sequencetools.Tree <abjad.tools.sequencetools.Tree.Tree.Tree>`
+
+.. automethod:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.iterate_depth_first
+
+   .. note:: Inherited from :py:class:`sequencetools.Tree <abjad.tools.sequencetools.Tree.Tree.Tree>`
+
+.. automethod:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.iterate_payload
+
+   .. note:: Inherited from :py:class:`sequencetools.Tree <abjad.tools.sequencetools.Tree.Tree.Tree>`
+
+.. automethod:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.remove
+
+   .. note:: Inherited from :py:class:`sequencetools.Tree <abjad.tools.sequencetools.Tree.Tree.Tree>`
+
+.. automethod:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.remove_to_root
+
+   .. note:: Inherited from :py:class:`sequencetools.Tree <abjad.tools.sequencetools.Tree.Tree.Tree>`
+
+.. automethod:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.to_nested_lists
+
+   .. note:: Inherited from :py:class:`sequencetools.Tree <abjad.tools.sequencetools.Tree.Tree.Tree>`
+
 Special Methods
 ---------------
 
@@ -107,49 +154,5 @@ Special Methods
    .. note:: Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.__str__
-
-   .. note:: Inherited from :py:class:`sequencetools.Tree <abjad.tools.sequencetools.Tree.Tree.Tree>`
-
-.. automethod:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.get_next_n_complete_nodes_at_level
-
-   .. note:: Inherited from :py:class:`sequencetools.Tree <abjad.tools.sequencetools.Tree.Tree.Tree>`
-
-.. automethod:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.get_next_n_nodes_at_level
-
-   .. note:: Inherited from :py:class:`sequencetools.Tree <abjad.tools.sequencetools.Tree.Tree.Tree>`
-
-.. automethod:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.get_node_at_position
-
-   .. note:: Inherited from :py:class:`sequencetools.Tree <abjad.tools.sequencetools.Tree.Tree.Tree>`
-
-.. automethod:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.get_position_of_descendant
-
-   .. note:: Inherited from :py:class:`sequencetools.Tree <abjad.tools.sequencetools.Tree.Tree.Tree>`
-
-.. automethod:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.is_at_level
-
-   .. note:: Inherited from :py:class:`sequencetools.Tree <abjad.tools.sequencetools.Tree.Tree.Tree>`
-
-.. automethod:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.iterate_at_level
-
-   .. note:: Inherited from :py:class:`sequencetools.Tree <abjad.tools.sequencetools.Tree.Tree.Tree>`
-
-.. automethod:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.iterate_depth_first
-
-   .. note:: Inherited from :py:class:`sequencetools.Tree <abjad.tools.sequencetools.Tree.Tree.Tree>`
-
-.. automethod:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.iterate_payload
-
-   .. note:: Inherited from :py:class:`sequencetools.Tree <abjad.tools.sequencetools.Tree.Tree.Tree>`
-
-.. automethod:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.remove
-
-   .. note:: Inherited from :py:class:`sequencetools.Tree <abjad.tools.sequencetools.Tree.Tree.Tree>`
-
-.. automethod:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.remove_to_root
-
-   .. note:: Inherited from :py:class:`sequencetools.Tree <abjad.tools.sequencetools.Tree.Tree.Tree>`
-
-.. automethod:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.to_nested_lists
 
    .. note:: Inherited from :py:class:`sequencetools.Tree <abjad.tools.sequencetools.Tree.Tree.Tree>`

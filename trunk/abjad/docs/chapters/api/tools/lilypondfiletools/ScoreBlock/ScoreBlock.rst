@@ -20,6 +20,45 @@ Read/write Properties
 
    .. note:: Inherited from :py:class:`lilypondfiletools._NonattributedBlock <abjad.tools.lilypondfiletools._NonattributedBlock._NonattributedBlock._NonattributedBlock>`
 
+Methods
+-------
+
+.. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.append
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.count
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.extend
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.index
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.insert
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.pop
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.remove
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.reverse
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.sort
+
+   .. note:: Inherited from `__builtin__.list`
+
 Special Methods
 ---------------
 
@@ -122,39 +161,3 @@ Special Methods
 .. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.__str__
 
    .. note:: Inherited from `__builtin__.object`
-
-.. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.append
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.count
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.extend
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.index
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.insert
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.pop
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.remove
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.reverse
-
-   .. note:: Inherited from `__builtin__.list`
-
-.. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.sort
-
-   .. note:: Inherited from `__builtin__.list`

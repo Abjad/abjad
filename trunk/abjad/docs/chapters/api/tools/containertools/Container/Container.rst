@@ -56,6 +56,21 @@ Read/write Properties
 
 .. autoattribute:: abjad.tools.containertools.Container.Container.Container.is_parallel
 
+Methods
+-------
+
+.. automethod:: abjad.tools.containertools.Container.Container.Container.append
+
+.. automethod:: abjad.tools.containertools.Container.Container.Container.extend
+
+.. automethod:: abjad.tools.containertools.Container.Container.Container.index
+
+.. automethod:: abjad.tools.containertools.Container.Container.Container.insert
+
+.. automethod:: abjad.tools.containertools.Container.Container.Container.pop
+
+.. automethod:: abjad.tools.containertools.Container.Container.Container.remove
+
 Special Methods
 ---------------
 
@@ -126,15 +141,3 @@ Special Methods
 .. automethod:: abjad.tools.containertools.Container.Container.Container.__str__
 
    .. note:: Inherited from `__builtin__.object`
-
-.. automethod:: abjad.tools.containertools.Container.Container.Container.append
-
-.. automethod:: abjad.tools.containertools.Container.Container.Container.extend
-
-.. automethod:: abjad.tools.containertools.Container.Container.Container.index
-
-.. automethod:: abjad.tools.containertools.Container.Container.Container.insert
-
-.. automethod:: abjad.tools.containertools.Container.Container.Container.pop
-
-.. automethod:: abjad.tools.containertools.Container.Container.Container.remove

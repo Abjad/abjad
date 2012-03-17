@@ -17,6 +17,21 @@ Read-only Properties
 
    .. note:: Inherited from :py:class:`pitchtools._IntervalSegment <abjad.tools.pitchtools._IntervalSegment._IntervalSegment._IntervalSegment>`
 
+Methods
+-------
+
+.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.count
+
+   .. note:: Inherited from `__builtin__.tuple`
+
+.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.index
+
+   .. note:: Inherited from `__builtin__.tuple`
+
+.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.rotate
+
+   .. note:: Inherited from :py:class:`pitchtools._IntervalSegment <abjad.tools.pitchtools._IntervalSegment._IntervalSegment._IntervalSegment>`
+
 Special Methods
 ---------------
 
@@ -93,17 +108,5 @@ Special Methods
    .. note:: Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.__str__
-
-   .. note:: Inherited from :py:class:`pitchtools._IntervalSegment <abjad.tools.pitchtools._IntervalSegment._IntervalSegment._IntervalSegment>`
-
-.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.count
-
-   .. note:: Inherited from `__builtin__.tuple`
-
-.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.index
-
-   .. note:: Inherited from `__builtin__.tuple`
-
-.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.rotate
 
    .. note:: Inherited from :py:class:`pitchtools._IntervalSegment <abjad.tools.pitchtools._IntervalSegment._IntervalSegment._IntervalSegment>`

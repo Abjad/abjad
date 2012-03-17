@@ -41,6 +41,47 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.root_string
 
+Methods
+-------
+
+.. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.copy
+
+   .. note:: Inherited from `__builtin__.frozenset`
+
+.. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.difference
+
+   .. note:: Inherited from `__builtin__.frozenset`
+
+.. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.intersection
+
+   .. note:: Inherited from `__builtin__.frozenset`
+
+.. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.isdisjoint
+
+   .. note:: Inherited from `__builtin__.frozenset`
+
+.. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.issubset
+
+   .. note:: Inherited from `__builtin__.frozenset`
+
+.. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.issuperset
+
+   .. note:: Inherited from `__builtin__.frozenset`
+
+.. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.order_by
+
+   .. note:: Inherited from :py:class:`pitchtools.NamedChromaticPitchClassSet <abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet>`
+
+.. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.symmetric_difference
+
+   .. note:: Inherited from `__builtin__.frozenset`
+
+.. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.transpose
+
+.. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.union
+
+   .. note:: Inherited from `__builtin__.frozenset`
+
 Special Methods
 ---------------
 
@@ -127,43 +168,5 @@ Special Methods
    .. note:: Inherited from `__builtin__.frozenset`
 
 .. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.__xor__
-
-   .. note:: Inherited from `__builtin__.frozenset`
-
-.. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.copy
-
-   .. note:: Inherited from `__builtin__.frozenset`
-
-.. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.difference
-
-   .. note:: Inherited from `__builtin__.frozenset`
-
-.. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.intersection
-
-   .. note:: Inherited from `__builtin__.frozenset`
-
-.. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.isdisjoint
-
-   .. note:: Inherited from `__builtin__.frozenset`
-
-.. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.issubset
-
-   .. note:: Inherited from `__builtin__.frozenset`
-
-.. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.issuperset
-
-   .. note:: Inherited from `__builtin__.frozenset`
-
-.. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.order_by
-
-   .. note:: Inherited from :py:class:`pitchtools.NamedChromaticPitchClassSet <abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet>`
-
-.. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.symmetric_difference
-
-   .. note:: Inherited from `__builtin__.frozenset`
-
-.. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.transpose
-
-.. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.union
 
    .. note:: Inherited from `__builtin__.frozenset`

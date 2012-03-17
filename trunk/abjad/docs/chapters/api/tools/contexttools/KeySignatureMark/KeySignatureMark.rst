@@ -32,6 +32,17 @@ Read/write Properties
 
 .. autoattribute:: abjad.tools.contexttools.KeySignatureMark.KeySignatureMark.KeySignatureMark.tonic
 
+Methods
+-------
+
+.. automethod:: abjad.tools.contexttools.KeySignatureMark.KeySignatureMark.KeySignatureMark.attach
+
+   .. note:: Inherited from :py:class:`contexttools.ContextMark <abjad.tools.contexttools.ContextMark.ContextMark.ContextMark>`
+
+.. automethod:: abjad.tools.contexttools.KeySignatureMark.KeySignatureMark.KeySignatureMark.detach
+
+   .. note:: Inherited from :py:class:`contexttools.ContextMark <abjad.tools.contexttools.ContextMark.ContextMark.ContextMark>`
+
 Special Methods
 ---------------
 
@@ -78,11 +89,3 @@ Special Methods
    .. note:: Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.contexttools.KeySignatureMark.KeySignatureMark.KeySignatureMark.__str__
-
-.. automethod:: abjad.tools.contexttools.KeySignatureMark.KeySignatureMark.KeySignatureMark.attach
-
-   .. note:: Inherited from :py:class:`contexttools.ContextMark <abjad.tools.contexttools.ContextMark.ContextMark.ContextMark>`
-
-.. automethod:: abjad.tools.contexttools.KeySignatureMark.KeySignatureMark.KeySignatureMark.detach
-
-   .. note:: Inherited from :py:class:`contexttools.ContextMark <abjad.tools.contexttools.ContextMark.ContextMark.ContextMark>`

@@ -104,6 +104,33 @@ Read/write Properties
 
    .. note:: Inherited from :py:class:`measuretools.DynamicMeasure <abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure>`
 
+Methods
+-------
+
+.. automethod:: abjad.tools.measuretools.AnonymousMeasure.AnonymousMeasure.AnonymousMeasure.append
+
+   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
+
+.. automethod:: abjad.tools.measuretools.AnonymousMeasure.AnonymousMeasure.AnonymousMeasure.extend
+
+   .. note:: Inherited from :py:class:`measuretools.DynamicMeasure <abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure>`
+
+.. automethod:: abjad.tools.measuretools.AnonymousMeasure.AnonymousMeasure.AnonymousMeasure.index
+
+   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
+
+.. automethod:: abjad.tools.measuretools.AnonymousMeasure.AnonymousMeasure.AnonymousMeasure.insert
+
+   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
+
+.. automethod:: abjad.tools.measuretools.AnonymousMeasure.AnonymousMeasure.AnonymousMeasure.pop
+
+   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
+
+.. automethod:: abjad.tools.measuretools.AnonymousMeasure.AnonymousMeasure.AnonymousMeasure.remove
+
+   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
+
 Special Methods
 ---------------
 
@@ -194,27 +221,3 @@ Special Methods
 .. automethod:: abjad.tools.measuretools.AnonymousMeasure.AnonymousMeasure.AnonymousMeasure.__str__
 
    .. note:: Inherited from :py:class:`measuretools.Measure <abjad.tools.measuretools.Measure.Measure.Measure>`
-
-.. automethod:: abjad.tools.measuretools.AnonymousMeasure.AnonymousMeasure.AnonymousMeasure.append
-
-   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
-
-.. automethod:: abjad.tools.measuretools.AnonymousMeasure.AnonymousMeasure.AnonymousMeasure.extend
-
-   .. note:: Inherited from :py:class:`measuretools.DynamicMeasure <abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure>`
-
-.. automethod:: abjad.tools.measuretools.AnonymousMeasure.AnonymousMeasure.AnonymousMeasure.index
-
-   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
-
-.. automethod:: abjad.tools.measuretools.AnonymousMeasure.AnonymousMeasure.AnonymousMeasure.insert
-
-   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
-
-.. automethod:: abjad.tools.measuretools.AnonymousMeasure.AnonymousMeasure.AnonymousMeasure.pop
-
-   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
-
-.. automethod:: abjad.tools.measuretools.AnonymousMeasure.AnonymousMeasure.AnonymousMeasure.remove
-
-   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`

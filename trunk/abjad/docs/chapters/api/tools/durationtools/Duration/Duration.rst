@@ -25,6 +25,17 @@ Read-only Properties
 
    .. note:: Inherited from `numbers.Real`
 
+Methods
+-------
+
+.. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.conjugate
+
+   .. note:: Inherited from `numbers.Real`
+
+.. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.limit_denominator
+
+   .. note:: Inherited from `fractions.Fraction`
+
 Special Methods
 ---------------
 
@@ -129,13 +140,5 @@ Special Methods
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__truediv__
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__trunc__
-
-   .. note:: Inherited from `fractions.Fraction`
-
-.. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.conjugate
-
-   .. note:: Inherited from `numbers.Real`
-
-.. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.limit_denominator
 
    .. note:: Inherited from `fractions.Fraction`

@@ -26,6 +26,17 @@ Read/write Properties
 
    .. note:: Inherited from :py:class:`marktools._DirectedMark <abjad.tools.marktools._DirectedMark._DirectedMark._DirectedMark>`
 
+Methods
+-------
+
+.. automethod:: abjad.tools.markuptools.Markup.Markup.Markup.attach
+
+   .. note:: Inherited from :py:class:`marktools.Mark <abjad.tools.marktools.Mark.Mark.Mark>`
+
+.. automethod:: abjad.tools.markuptools.Markup.Markup.Markup.detach
+
+   .. note:: Inherited from :py:class:`marktools.Mark <abjad.tools.marktools.Mark.Mark.Mark>`
+
 Special Methods
 ---------------
 
@@ -66,11 +77,3 @@ Special Methods
    .. note:: Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.markuptools.Markup.Markup.Markup.__str__
-
-.. automethod:: abjad.tools.markuptools.Markup.Markup.Markup.attach
-
-   .. note:: Inherited from :py:class:`marktools.Mark <abjad.tools.marktools.Mark.Mark.Mark>`
-
-.. automethod:: abjad.tools.markuptools.Markup.Markup.Markup.detach
-
-   .. note:: Inherited from :py:class:`marktools.Mark <abjad.tools.marktools.Mark.Mark.Mark>`

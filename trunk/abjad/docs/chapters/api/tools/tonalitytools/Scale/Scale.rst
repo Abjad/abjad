@@ -51,6 +51,39 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.tonalitytools.Scale.Scale.Scale.tonic
 
+Methods
+-------
+
+.. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.count
+
+   .. note:: Inherited from `__builtin__.tuple`
+
+.. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.create_named_chromatic_pitch_set_in_pitch_range
+
+.. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.index
+
+   .. note:: Inherited from `__builtin__.tuple`
+
+.. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.is_equivalent_under_transposition
+
+   .. note:: Inherited from :py:class:`pitchtools.NamedChromaticPitchClassSegment <abjad.tools.pitchtools.NamedChromaticPitchClassSegment.NamedChromaticPitchClassSegment.NamedChromaticPitchClassSegment>`
+
+.. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.named_chromatic_pitch_class_to_scale_degree
+
+.. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.retrograde
+
+   .. note:: Inherited from :py:class:`pitchtools.NamedChromaticPitchClassSegment <abjad.tools.pitchtools.NamedChromaticPitchClassSegment.NamedChromaticPitchClassSegment.NamedChromaticPitchClassSegment>`
+
+.. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.rotate
+
+   .. note:: Inherited from :py:class:`pitchtools.NamedChromaticPitchClassSegment <abjad.tools.pitchtools.NamedChromaticPitchClassSegment.NamedChromaticPitchClassSegment.NamedChromaticPitchClassSegment>`
+
+.. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.scale_degree_to_named_chromatic_pitch_class
+
+.. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.transpose
+
+   .. note:: Inherited from :py:class:`pitchtools.NamedChromaticPitchClassSegment <abjad.tools.pitchtools.NamedChromaticPitchClassSegment.NamedChromaticPitchClassSegment.NamedChromaticPitchClassSegment>`
+
 Special Methods
 ---------------
 
@@ -125,35 +158,5 @@ Special Methods
    .. note:: Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.__str__
-
-   .. note:: Inherited from :py:class:`pitchtools.NamedChromaticPitchClassSegment <abjad.tools.pitchtools.NamedChromaticPitchClassSegment.NamedChromaticPitchClassSegment.NamedChromaticPitchClassSegment>`
-
-.. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.count
-
-   .. note:: Inherited from `__builtin__.tuple`
-
-.. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.create_named_chromatic_pitch_set_in_pitch_range
-
-.. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.index
-
-   .. note:: Inherited from `__builtin__.tuple`
-
-.. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.is_equivalent_under_transposition
-
-   .. note:: Inherited from :py:class:`pitchtools.NamedChromaticPitchClassSegment <abjad.tools.pitchtools.NamedChromaticPitchClassSegment.NamedChromaticPitchClassSegment.NamedChromaticPitchClassSegment>`
-
-.. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.named_chromatic_pitch_class_to_scale_degree
-
-.. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.retrograde
-
-   .. note:: Inherited from :py:class:`pitchtools.NamedChromaticPitchClassSegment <abjad.tools.pitchtools.NamedChromaticPitchClassSegment.NamedChromaticPitchClassSegment.NamedChromaticPitchClassSegment>`
-
-.. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.rotate
-
-   .. note:: Inherited from :py:class:`pitchtools.NamedChromaticPitchClassSegment <abjad.tools.pitchtools.NamedChromaticPitchClassSegment.NamedChromaticPitchClassSegment.NamedChromaticPitchClassSegment>`
-
-.. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.scale_degree_to_named_chromatic_pitch_class
-
-.. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.transpose
 
    .. note:: Inherited from :py:class:`pitchtools.NamedChromaticPitchClassSegment <abjad.tools.pitchtools.NamedChromaticPitchClassSegment.NamedChromaticPitchClassSegment.NamedChromaticPitchClassSegment>`
