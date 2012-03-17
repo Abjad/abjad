@@ -565,6 +565,71 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
         return tuple(sorted(recurse(self._root, start, stop), key=lambda x: x.signature))
 
     def scale_by_rational(self, rational):
+        '''Scale aggregate duration of tree by `rational`:
+
+        ::
+
+            abjad> from abjad.tools.timeintervaltools import TimeInterval
+            abjad> from abjad.tools.timeintervaltools import TimeIntervalTree
+
+        ::
+
+            abjad> one = TimeInterval(0, 1, {'name': 'one'})
+            abjad> two = TimeInterval((1, 2), (5, 2), {'name': 'two'})
+            abjad> three = TimeInterval(2, 4, {'name': 'three'})
+            abjad> tree = TimeIntervalTree([one, two, three])
+            abjad> tree
+            TimeIntervalTree([
+                TimeInterval(Offset(0, 1), Offset(1, 1), {'name': 'one'}),
+                TimeInterval(Offset(1, 2), Offset(5, 2), {'name': 'two'}),
+                TimeInterval(Offset(2, 1), Offset(4, 1), {'name': 'three'})
+            ])
+
+        ::
+
+            abjad> result = tree.scale_by_rational((2, 3))
+            abjad> result
+            TimeIntervalTree([
+                TimeInterval(Offset(0, 1), Offset(2, 3), {'name': 'one'}),
+                TimeInterval(Offset(1, 3), Offset(5, 3), {'name': 'two'}),
+                TimeInterval(Offset(4, 3), Offset(8, 3), {'name': 'three'})
+            ])
+
+        Scaling works regardless of the starting offset of the `TimeIntervalTree`:
+
+        ::
+
+            abjad> zero = TimeInterval(-4, 0, {'name': 'zero'})
+            abjad> tree = TimeIntervalTree([zero, one, two, three])
+            abjad> tree
+            TimeIntervalTree([
+                TimeInterval(Offset(-4, 1), Offset(0, 1), {'name': 'zero'}),
+                TimeInterval(Offset(0, 1), Offset(1, 1), {'name': 'one'}),
+                TimeInterval(Offset(1, 2), Offset(5, 2), {'name': 'two'}),
+                TimeInterval(Offset(2, 1), Offset(4, 1), {'name': 'three'})
+            ])
+
+        ::
+
+            abjad> result = tree.scale_by_rational(2)
+            abjad> result
+            TimeIntervalTree([
+                TimeInterval(Offset(-4, 1), Offset(4, 1), {'name': 'zero'}),
+                TimeInterval(Offset(4, 1), Offset(6, 1), {'name': 'one'}),
+                TimeInterval(Offset(5, 1), Offset(9, 1), {'name': 'two'}),
+                TimeInterval(Offset(8, 1), Offset(12, 1), {'name': 'three'})
+            ])
+
+        ::
+
+            abjad> result.start == tree.start
+            True
+            abjad> result.duration == tree.duration * 2
+            True
+
+        Return `TimeIntervalTree` instance.
+        '''
+
         rational = Duration(rational)
         return TimeIntervalTree([
             x.shift_to_rational(
@@ -573,6 +638,72 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
         ])
 
     def scale_to_rational(self, rational):
+        '''Scale aggregate duration of tree to `rational`:
+
+        ::
+
+            abjad> from abjad.tools.timeintervaltools import TimeInterval
+            abjad> from abjad.tools.timeintervaltools import TimeIntervalTree
+
+        ::
+
+            abjad> one = TimeInterval(0, 1, {'name': 'one'})
+            abjad> two = TimeInterval((1, 2), (5, 2), {'name': 'two'})
+            abjad> three = TimeInterval(2, 4, {'name': 'three'})
+            abjad> tree = TimeIntervalTree([one, two, three])
+            abjad> tree
+            TimeIntervalTree([
+                TimeInterval(Offset(0, 1), Offset(1, 1), {'name': 'one'}),
+                TimeInterval(Offset(1, 2), Offset(5, 2), {'name': 'two'}),
+                TimeInterval(Offset(2, 1), Offset(4, 1), {'name': 'three'})
+            ])
+
+        ::
+
+            abjad> result = tree.scale_to_rational(1)
+            abjad> result
+            TimeIntervalTree([
+                TimeInterval(Offset(0, 1), Offset(1, 4), {'name': 'one'}),
+                TimeInterval(Offset(1, 8), Offset(5, 8), {'name': 'two'}),
+                TimeInterval(Offset(1, 2), Offset(1, 1), {'name': 'three'})
+            ])
+
+        ::
+
+            abjad> result.scale_to_rational(10)
+            TimeIntervalTree([
+                TimeInterval(Offset(0, 1), Offset(5, 2), {'name': 'one'}),
+                TimeInterval(Offset(5, 4), Offset(25, 4), {'name': 'two'}),
+                TimeInterval(Offset(5, 1), Offset(10, 1), {'name': 'three'})
+            ])
+
+        Scaling works regardless of the starting offset of the `TimeIntervalTree`:
+
+        ::
+
+            abjad> zero = TimeInterval(-4, 0, {'name': 'zero'})
+            abjad> tree = TimeIntervalTree([zero, one, two, three])
+            abjad> tree
+            TimeIntervalTree([
+                TimeInterval(Offset(-4, 1), Offset(0, 1), {'name': 'zero'}),
+                TimeInterval(Offset(0, 1), Offset(1, 1), {'name': 'one'}),
+                TimeInterval(Offset(1, 2), Offset(5, 2), {'name': 'two'}),
+                TimeInterval(Offset(2, 1), Offset(4, 1), {'name': 'three'})
+            ])
+
+        ::
+
+            abjad> tree.scale_to_rational(4)
+            TimeIntervalTree([
+                TimeInterval(Offset(-4, 1), Offset(-2, 1), {'name': 'zero'}),
+                TimeInterval(Offset(-2, 1), Offset(-3, 2), {'name': 'one'}),
+                TimeInterval(Offset(-7, 4), Offset(-3, 4), {'name': 'two'}),
+                TimeInterval(Offset(-1, 1), Offset(0, 1), {'name': 'three'})
+            ])
+
+        Return `TimeIntervalTree` instance.
+        '''
+
         rational = Duration(rational)
         ratio = rational / self.duration
         return TimeIntervalTree([
@@ -581,18 +712,150 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
                 for x in self])
 
     def shift_by_rational(self, rational):
+        '''Shift aggregate offset of tree by `rational`:
+
+        ::
+
+            abjad> from abjad.tools.timeintervaltools import TimeInterval
+            abjad> from abjad.tools.timeintervaltools import TimeIntervalTree
+
+        ::
+
+            abjad> one = TimeInterval(0, 1, {'name': 'one'})
+            abjad> two = TimeInterval((1, 2), (5, 2), {'name': 'two'})
+            abjad> three = TimeInterval(2, 4, {'name': 'three'})
+            abjad> tree = TimeIntervalTree([one, two, three])
+            abjad> tree
+            TimeIntervalTree([
+                TimeInterval(Offset(0, 1), Offset(1, 1), {'name': 'one'}),
+                TimeInterval(Offset(1, 2), Offset(5, 2), {'name': 'two'}),
+                TimeInterval(Offset(2, 1), Offset(4, 1), {'name': 'three'})
+            ])
+
+        ::
+
+            abjad> result = tree.shift_by_rational(-2.5)
+            abjad> result
+            TimeIntervalTree([
+                TimeInterval(Offset(-5, 2), Offset(-3, 2), {'name': 'one'}),
+                TimeInterval(Offset(-2, 1), Offset(0, 1), {'name': 'two'}),
+                TimeInterval(Offset(-1, 2), Offset(3, 2), {'name': 'three'})
+            ])
+            abjad> result.shift_by_rational(6)
+            TimeIntervalTree([
+                TimeInterval(Offset(7, 2), Offset(9, 2), {'name': 'one'}),
+                TimeInterval(Offset(4, 1), Offset(6, 1), {'name': 'two'}),
+                TimeInterval(Offset(11, 2), Offset(15, 2), {'name': 'three'})
+            ])
+
+        Return `TimeIntervalTree` instance.
+        '''
+
+
         rational = Offset(rational)
         return TimeIntervalTree([
             x.shift_by_rational(rational) for x in self
         ])
 
     def shift_to_rational(self, rational):
+        '''Shift aggregate offset of tree to `rational`:
+
+        ::
+
+            abjad> from abjad.tools.timeintervaltools import TimeInterval
+            abjad> from abjad.tools.timeintervaltools import TimeIntervalTree
+
+        ::
+
+            abjad> one = TimeInterval(0, 1, {'name': 'one'})
+            abjad> two = TimeInterval((1, 2), (5, 2), {'name': 'two'})
+            abjad> three = TimeInterval(2, 4, {'name': 'three'})
+            abjad> tree = TimeIntervalTree([one, two, three])
+            abjad> tree
+            TimeIntervalTree([
+                TimeInterval(Offset(0, 1), Offset(1, 1), {'name': 'one'}),
+                TimeInterval(Offset(1, 2), Offset(5, 2), {'name': 'two'}),
+                TimeInterval(Offset(2, 1), Offset(4, 1), {'name': 'three'})
+            ])
+
+        ::
+
+            abjad> result = tree.shift_to_rational(100)
+            abjad> result
+            TimeIntervalTree([
+                TimeInterval(Offset(100, 1), Offset(101, 1), {'name': 'one'}),
+                TimeInterval(Offset(201, 2), Offset(205, 2), {'name': 'two'}),
+                TimeInterval(Offset(102, 1), Offset(104, 1), {'name': 'three'})
+            ])
+
+        Return `TimeIntervalTree` instance.
+        '''
+
         rational = Offset(rational)
         return TimeIntervalTree([
             x.shift_by_rational(rational - self.start) for x in self
         ])
 
     def split_at_rationals(self, *rationals):
+        '''Split tree at each rational in `rationals`:
+
+        ::
+
+            abjad> from abjad.tools.timeintervaltools import TimeInterval
+            abjad> from abjad.tools.timeintervaltools import TimeIntervalTree
+
+        ::
+
+            abjad> one = TimeInterval(0, 1, {'name': 'one'})
+            abjad> two = TimeInterval((1, 2), (5, 2), {'name': 'two'})
+            abjad> three = TimeInterval(2, 4, {'name': 'three'})
+            abjad> tree = TimeIntervalTree([one, two, three])
+            abjad> tree
+            TimeIntervalTree([
+                TimeInterval(Offset(0, 1), Offset(1, 1), {'name': 'one'}),
+                TimeInterval(Offset(1, 2), Offset(5, 2), {'name': 'two'}),
+                TimeInterval(Offset(2, 1), Offset(4, 1), {'name': 'three'})
+            ])
+
+        ::
+
+            abjad> result = tree.split_at_rationals(1, 2, 3)
+            abjad> len(result)
+            4
+
+        ::
+
+            abjad> result[0]
+            TimeIntervalTree([
+                TimeInterval(Offset(0, 1), Offset(1, 1), {'name': 'one'}),
+                TimeInterval(Offset(1, 2), Offset(1, 1), {'name': 'two'})
+            ])
+
+        ::
+
+            abjad> result[1]
+            TimeIntervalTree([
+                TimeInterval(Offset(1, 1), Offset(2, 1), {'name': 'two'})
+            ])
+
+        ::
+
+            abjad> result[2]
+            TimeIntervalTree([
+                TimeInterval(Offset(2, 1), Offset(5, 2), {'name': 'two'}),
+                TimeInterval(Offset(2, 1), Offset(3, 1), {'name': 'three'})
+            ])
+
+        ::
+
+            abjad> result[3]
+            TimeIntervalTree([
+                TimeInterval(Offset(3, 1), Offset(4, 1), {'name': 'three'})
+            ])
+
+        Return tuple of `TimeIntervalTree` instances.
+        '''
+
         assert 0 < len(rationals)
         rationals = tuple(sorted([Offset(x) for x in rationals]))
 
