@@ -9,6 +9,10 @@ documentationtools.FunctionDocumenter
 Read-only Properties
 --------------------
 
+.. autoattribute:: abjad.tools.documentationtools.FunctionDocumenter.FunctionDocumenter.FunctionDocumenter.module_name
+
+   .. note:: Inherited from :py:class:`documentationtools.Documenter <abjad.tools.documentationtools.Documenter.Documenter.Documenter>`
+
 .. autoattribute:: abjad.tools.documentationtools.FunctionDocumenter.FunctionDocumenter.FunctionDocumenter.object
 
    .. note:: Inherited from :py:class:`documentationtools.Documenter <abjad.tools.documentationtools.Documenter.Documenter.Documenter>`

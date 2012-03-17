@@ -13,7 +13,13 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.inherited_attributes
 
+.. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.is_abstract
+
 .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.methods
+
+.. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.module_name
+
+   .. note:: Inherited from :py:class:`documentationtools.Documenter <abjad.tools.documentationtools.Documenter.Documenter.Documenter>`
 
 .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.object
 

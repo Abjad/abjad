@@ -9,6 +9,8 @@ documentationtools.Documenter
 Read-only Properties
 --------------------
 
+.. autoattribute:: abjad.tools.documentationtools.Documenter.Documenter.Documenter.module_name
+
 .. autoattribute:: abjad.tools.documentationtools.Documenter.Documenter.Documenter.object
 
 .. autoattribute:: abjad.tools.documentationtools.Documenter.Documenter.Documenter.prefix
