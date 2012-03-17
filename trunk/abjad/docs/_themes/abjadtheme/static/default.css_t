@@ -227,6 +227,10 @@ p.admonition-title:after {
     content: ":";
 }
 
+p.rubric {
+    margin-top: 15px;
+}
+
 pre {
     padding: 5px;
     background-color: {{ theme_codebgcolor }};
