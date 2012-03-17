@@ -1,3 +1,4 @@
+from abc import ABCMeta
 import inspect
 from abjad.tools.documentationtools.Documenter import Documenter
 
@@ -147,6 +148,10 @@ class ClassDocumenter(Documenter):
     @property
     def inherited_attributes(self):
         return self._inherited_attributes
+
+    @property
+    def is_abstract(self):
+        return inspect.isabstract(self.object)
 
     @property
     def methods(self):

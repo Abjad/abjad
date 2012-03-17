@@ -82,9 +82,9 @@ class APICrawler(abctools.AbjadObject):
                     file_handler.close()
 
                 # add module of documenter's documentary subject to visited modules list
-                visited_modules.append(obj.object.__module__)
+                visited_modules.append(obj)
 
-        return tuple(sorted(visited_modules))
+        return tuple(sorted(visited_modules, key=lambda x: x.module_name))
 
     ### PRIVATE METHODS ###
 

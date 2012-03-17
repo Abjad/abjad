@@ -41,6 +41,10 @@ class Documenter(abctools.AbjadObject):
     ### PUBLIC ATTRIBUTES ###
 
     @property
+    def module_name(self):
+        return '%s.%s' % (self._object.__module__, self._object.__name__)
+
+    @property
     def object(self):
         return self._object
 
