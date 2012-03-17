@@ -63,12 +63,23 @@ class APICrawler(abctools.AbjadObject):
 
             # process files
             for file in files:
+
+                # get documenter
                 code_fullpath = os.path.join(current_root, file)
                 docs_fullpath = code_fullpath.replace(self.code_root, self.docs_root).replace('.py', '.rst')
                 obj = self._get_documenter_for_file(current_root, file)
-                file_handler = open(docs_fullpath, 'w')
-                file_handler.write(obj())
+                new_docs = obj()
+
+                # read old docs
+                file_handler = open(docs_fullpath, 'r')
+                old_docs = file_handler.read()
                 file_handler.close()
+
+                # only overwrite if changed
+                if new_docs != old_docs:
+                    file_handler = open(docs_fullpath, 'w')
+                    file_handler.write(new_docs)
+                    file_handler.close()
 
                 # add module of documenter's documentary subject to visited modules list
                 visited_modules.append(obj.object.__module__)
