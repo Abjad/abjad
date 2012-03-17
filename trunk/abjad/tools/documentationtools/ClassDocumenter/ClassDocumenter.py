@@ -48,15 +48,11 @@ class ClassDocumenter(Documenter):
             if self._attribute_is_inherited(attr):
                 inherited_attributes.append(attr)
             if attr.kind == 'method':
-                if inspect.isroutine(attr.object):
-                    if attr.name not in self._ignored_special_methods:
-                        if attr.name.startswith('_'):
-                            if attr.name.startswith('__'):
-                                special_methods.append(attr)
-                        else:
-                            special_methods.append(attr)
-                else:
-                    methods.append(attr)
+                if attr.name not in self._ignored_special_methods:
+                    if attr.name.startswith('__'):
+                        special_methods.append(attr)
+                    elif not attr.name.startswith('_'):
+                        methods.append(attr)
             elif attr.kind == 'property' and not attr.name.startswith('_'):
                 if attr.object.fset is None:
                     readonly_properties.append(attr)
