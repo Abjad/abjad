@@ -9,6 +9,10 @@ timeintervaltools.TimeInterval
 Read-only Properties
 --------------------
 
+.. autoattribute:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.bounds
+
+   .. note:: Inherited from :py:class:`timeintervaltools.TimeIntervalMixin <abjad.tools.timeintervaltools.TimeIntervalMixin.TimeIntervalMixin.TimeIntervalMixin>`
+
 .. autoattribute:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.center
 
 .. autoattribute:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.duration
@@ -140,6 +144,10 @@ Special Methods
    .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.__ne__
+
+.. automethod:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.__nonzero__
+
+   .. note:: Inherited from :py:class:`timeintervaltools.TimeIntervalMixin <abjad.tools.timeintervaltools.TimeIntervalMixin.TimeIntervalMixin.TimeIntervalMixin>`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.__repr__
 
