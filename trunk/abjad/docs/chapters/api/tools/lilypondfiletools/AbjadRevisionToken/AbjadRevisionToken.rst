@@ -1,34 +1,57 @@
 lilypondfiletools.AbjadRevisionToken
 ====================================
 
-.. inheritance-diagram:: abjad.tools.lilypondfiletools.AbjadRevisionToken.AbjadRevisionToken
+.. inheritance-diagram:: abjad.tools.lilypondfiletools.AbjadRevisionToken.AbjadRevisionToken.AbjadRevisionToken
    :private-bases:
-.. autoclass:: abjad.tools.lilypondfiletools.AbjadRevisionToken
-   :members:
-   :undoc-members:
-   :inherited-members:
-   :special-members:
-   :exclude-members:
-       __abstractmethods__,
-       __class__,
-       __copy__,
-       __deepcopy__,
-       __delattr__,
-       __dict__,
-       __format__,
-       __getattribute__,
-       __getnewargs__,
-       __getstate__,
-       __hash__,
-       __init__,
-       __metaclass__,
-       __module__,
-       __new__,
-       __reduce__,
-       __reduce_ex__,
-       __setattr__,
-       __setstate__,
-       __sizeof__,
-       __slots__,
-       __subclasshook__,
-       __weakref__,
+
+.. autoclass:: abjad.tools.lilypondfiletools.AbjadRevisionToken.AbjadRevisionToken.AbjadRevisionToken
+
+Read-only Properties
+--------------------
+
+.. autoattribute:: abjad.tools.lilypondfiletools.AbjadRevisionToken.AbjadRevisionToken.AbjadRevisionToken.format
+
+Special Methods
+---------------
+
+.. automethod:: abjad.tools.lilypondfiletools.AbjadRevisionToken.AbjadRevisionToken.AbjadRevisionToken.__delattr__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.lilypondfiletools.AbjadRevisionToken.AbjadRevisionToken.AbjadRevisionToken.__eq__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.lilypondfiletools.AbjadRevisionToken.AbjadRevisionToken.AbjadRevisionToken.__ge__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.lilypondfiletools.AbjadRevisionToken.AbjadRevisionToken.AbjadRevisionToken.__gt__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.lilypondfiletools.AbjadRevisionToken.AbjadRevisionToken.AbjadRevisionToken.__hash__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.lilypondfiletools.AbjadRevisionToken.AbjadRevisionToken.AbjadRevisionToken.__le__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.lilypondfiletools.AbjadRevisionToken.AbjadRevisionToken.AbjadRevisionToken.__lt__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.lilypondfiletools.AbjadRevisionToken.AbjadRevisionToken.AbjadRevisionToken.__ne__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.lilypondfiletools.AbjadRevisionToken.AbjadRevisionToken.AbjadRevisionToken.__repr__
+
+.. automethod:: abjad.tools.lilypondfiletools.AbjadRevisionToken.AbjadRevisionToken.AbjadRevisionToken.__setattr__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.lilypondfiletools.AbjadRevisionToken.AbjadRevisionToken.AbjadRevisionToken.__str__
+
+   .. note:: Inherited from `__builtin__.object`

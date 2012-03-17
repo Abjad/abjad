@@ -1,34 +1,66 @@
 wellformednesstools.MisduratedMeasureCheck
 ==========================================
 
-.. inheritance-diagram:: abjad.tools.wellformednesstools.MisduratedMeasureCheck.MisduratedMeasureCheck
+.. inheritance-diagram:: abjad.tools.wellformednesstools.MisduratedMeasureCheck.MisduratedMeasureCheck.MisduratedMeasureCheck
    :private-bases:
-.. autoclass:: abjad.tools.wellformednesstools.MisduratedMeasureCheck
-   :members:
-   :undoc-members:
-   :inherited-members:
-   :special-members:
-   :exclude-members:
-       __abstractmethods__,
-       __class__,
-       __copy__,
-       __deepcopy__,
-       __delattr__,
-       __dict__,
-       __format__,
-       __getattribute__,
-       __getnewargs__,
-       __getstate__,
-       __hash__,
-       __init__,
-       __metaclass__,
-       __module__,
-       __new__,
-       __reduce__,
-       __reduce_ex__,
-       __setattr__,
-       __setstate__,
-       __sizeof__,
-       __slots__,
-       __subclasshook__,
-       __weakref__,
+
+.. autoclass:: abjad.tools.wellformednesstools.MisduratedMeasureCheck.MisduratedMeasureCheck.MisduratedMeasureCheck
+
+Special Methods
+---------------
+
+.. automethod:: abjad.tools.wellformednesstools.MisduratedMeasureCheck.MisduratedMeasureCheck.MisduratedMeasureCheck.__delattr__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.wellformednesstools.MisduratedMeasureCheck.MisduratedMeasureCheck.MisduratedMeasureCheck.__eq__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.wellformednesstools.MisduratedMeasureCheck.MisduratedMeasureCheck.MisduratedMeasureCheck.__ge__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.wellformednesstools.MisduratedMeasureCheck.MisduratedMeasureCheck.MisduratedMeasureCheck.__gt__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.wellformednesstools.MisduratedMeasureCheck.MisduratedMeasureCheck.MisduratedMeasureCheck.__hash__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.wellformednesstools.MisduratedMeasureCheck.MisduratedMeasureCheck.MisduratedMeasureCheck.__le__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.wellformednesstools.MisduratedMeasureCheck.MisduratedMeasureCheck.MisduratedMeasureCheck.__lt__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.wellformednesstools.MisduratedMeasureCheck.MisduratedMeasureCheck.MisduratedMeasureCheck.__ne__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.wellformednesstools.MisduratedMeasureCheck.MisduratedMeasureCheck.MisduratedMeasureCheck.__repr__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.wellformednesstools.MisduratedMeasureCheck.MisduratedMeasureCheck.MisduratedMeasureCheck.__setattr__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.wellformednesstools.MisduratedMeasureCheck.MisduratedMeasureCheck.MisduratedMeasureCheck.__str__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.wellformednesstools.MisduratedMeasureCheck.MisduratedMeasureCheck.MisduratedMeasureCheck.check
+
+   .. note:: Inherited from :py:class:`wellformednesstools.Check <abjad.tools.wellformednesstools.Check.Check.Check>`
+
+.. automethod:: abjad.tools.wellformednesstools.MisduratedMeasureCheck.MisduratedMeasureCheck.MisduratedMeasureCheck.report
+
+   .. note:: Inherited from :py:class:`wellformednesstools.Check <abjad.tools.wellformednesstools.Check.Check.Check>`
+
+.. automethod:: abjad.tools.wellformednesstools.MisduratedMeasureCheck.MisduratedMeasureCheck.MisduratedMeasureCheck.violators
+
+   .. note:: Inherited from :py:class:`wellformednesstools.Check <abjad.tools.wellformednesstools.Check.Check.Check>`

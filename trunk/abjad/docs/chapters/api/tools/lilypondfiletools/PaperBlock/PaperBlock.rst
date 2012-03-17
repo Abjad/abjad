@@ -1,34 +1,46 @@
 lilypondfiletools.PaperBlock
 ============================
 
-.. inheritance-diagram:: abjad.tools.lilypondfiletools.PaperBlock.PaperBlock
+.. inheritance-diagram:: abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock
    :private-bases:
-.. autoclass:: abjad.tools.lilypondfiletools.PaperBlock
-   :members:
-   :undoc-members:
-   :inherited-members:
-   :special-members:
-   :exclude-members:
-       __abstractmethods__,
-       __class__,
-       __copy__,
-       __deepcopy__,
-       __delattr__,
-       __dict__,
-       __format__,
-       __getattribute__,
-       __getnewargs__,
-       __getstate__,
-       __hash__,
-       __init__,
-       __metaclass__,
-       __module__,
-       __new__,
-       __reduce__,
-       __reduce_ex__,
-       __setattr__,
-       __setstate__,
-       __sizeof__,
-       __slots__,
-       __subclasshook__,
-       __weakref__,
+
+.. autoclass:: abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock
+
+Read-only Properties
+--------------------
+
+.. autoattribute:: abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock.format
+
+   .. note:: Inherited from :py:class:`lilypondfiletools._AttributedBlock <abjad.tools.lilypondfiletools._AttributedBlock._AttributedBlock._AttributedBlock>`
+
+Read/write Properties
+---------------------
+
+.. autoattribute:: abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock.is_formatted_when_empty
+
+   .. note:: Inherited from :py:class:`lilypondfiletools._AttributedBlock <abjad.tools.lilypondfiletools._AttributedBlock._AttributedBlock._AttributedBlock>`
+
+.. autoattribute:: abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock.minimal_page_breaking
+
+Special Methods
+---------------
+
+.. automethod:: abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock.__delattr__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock.__hash__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock.__repr__
+
+   .. note:: Inherited from :py:class:`lilypondfiletools._AttributedBlock <abjad.tools.lilypondfiletools._AttributedBlock._AttributedBlock._AttributedBlock>`
+
+.. automethod:: abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock.__setattr__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock.__str__
+
+   .. note:: Inherited from `__builtin__.object`

@@ -1,15 +1,11 @@
 Abjad API
 =========
 
-.. toctree::
-
 Abjad composition packages
 --------------------------
 
 .. toctree::
    :maxdepth: 1
-
-
 
 chordtools
 
@@ -29,7 +25,6 @@ chordtools
    tools/chordtools/iterate_chords_forward_in_expr
    tools/chordtools/yield_all_subchords_of_chord
    tools/chordtools/yield_groups_of_chords_in_sequence
-
 
 componenttools
 
@@ -143,23 +138,6 @@ componenttools
    tools/componenttools/yield_topmost_components_grouped_by_type
    tools/componenttools/yield_topmost_components_of_klass_grouped_by_type
 
-
-constrainttools
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/constrainttools/AbsoluteIndexConstraint/AbsoluteIndexConstraint
-   tools/constrainttools/Domain/Domain
-   tools/constrainttools/FixedLengthStreamSolver/FixedLengthStreamSolver
-   tools/constrainttools/GlobalConstraint/GlobalConstraint
-   tools/constrainttools/GlobalCountsConstraint/GlobalCountsConstraint
-   tools/constrainttools/GlobalReferenceConstraint/GlobalReferenceConstraint
-   tools/constrainttools/RelativeCountsConstraint/RelativeCountsConstraint
-   tools/constrainttools/RelativeIndexConstraint/RelativeIndexConstraint
-   tools/constrainttools/VariableLengthStreamSolver/VariableLengthStreamSolver
-
-
 containertools
 
 .. toctree::
@@ -213,7 +191,6 @@ containertools
    tools/containertools/split_container_cyclically_by_counts_and_fracture_crossing_spanners
    tools/containertools/split_container_once_by_counts_and_do_not_fracture_crossing_spanners
    tools/containertools/split_container_once_by_counts_and_fracture_crossing_spanners
-
 
 contexttools
 
@@ -276,7 +253,6 @@ contexttools
    tools/contexttools/iterate_contexts_forward_in_expr
    tools/contexttools/set_accidental_style_on_sequential_contexts_in_expr
 
-
 gracetools
 
 .. toctree::
@@ -287,7 +263,6 @@ gracetools
    tools/gracetools/detach_grace_containers_attached_to_leaf
    tools/gracetools/get_grace_containers_attached_to_leaf
    tools/gracetools/iterate_components_and_grace_containers_forward_in_expr
-
 
 instrumenttools
 
@@ -346,7 +321,6 @@ instrumenttools
    tools/instrumenttools/notes_and_chords_in_expr_are_within_traditional_instrument_ranges
    tools/instrumenttools/transpose_notes_and_chords_in_expr_from_fingered_pitch_to_sounding_pitch
    tools/instrumenttools/transpose_notes_and_chords_in_expr_from_sounding_pitch_to_fingered_pitch
-
 
 leaftools
 
@@ -420,7 +394,6 @@ leaftools
    tools/leaftools/split_leaf_at_prolated_duration_and_rest_right_half
    tools/leaftools/yield_groups_of_mixed_notes_and_chords_in_sequence
 
-
 lilypondfiletools
 
 .. toctree::
@@ -440,7 +413,6 @@ lilypondfiletools
    tools/lilypondfiletools/PaperBlock/PaperBlock
    tools/lilypondfiletools/ScoreBlock/ScoreBlock
    tools/lilypondfiletools/make_basic_lilypond_file
-
 
 marktools
 
@@ -490,7 +462,6 @@ marktools
    tools/marktools/is_component_with_noncontext_mark_attached
    tools/marktools/is_component_with_stem_tremolo_attached
 
-
 markuptools
 
 .. toctree::
@@ -506,7 +477,6 @@ markuptools
    tools/markuptools/make_big_centered_page_number_markup
    tools/markuptools/remove_markup_attached_to_component
    tools/markuptools/remove_markup_from_leaves_in_expr
-
 
 measuretools
 
@@ -562,7 +532,6 @@ measuretools
    tools/measuretools/scale_measure_denominator_and_adjust_measure_contents
    tools/measuretools/set_measure_denominator_and_adjust_numerator
 
-
 notetools
 
 .. toctree::
@@ -587,7 +556,6 @@ notetools
    tools/notetools/make_repeated_notes_from_time_signatures
    tools/notetools/make_repeated_notes_with_shorter_notes_at_end
    tools/notetools/yield_groups_of_notes_in_sequence
-
 
 pitchtools
 
@@ -772,7 +740,6 @@ pitchtools
    tools/pitchtools/transpose_pitch_carrier_by_melodic_interval
    tools/pitchtools/transpose_pitch_expr_into_pitch_range
 
-
 resttools
 
 .. toctree::
@@ -792,7 +759,6 @@ resttools
    tools/resttools/set_vertical_positioning_pitch_on_rest
    tools/resttools/yield_groups_of_rests_in_sequence
 
-
 schemetools
 
 .. toctree::
@@ -805,7 +771,6 @@ schemetools
    tools/schemetools/SchemePair/SchemePair
    tools/schemetools/SchemeVector/SchemeVector
    tools/schemetools/SchemeVectorConstant/SchemeVectorConstant
-
 
 scoretools
 
@@ -833,7 +798,6 @@ scoretools
    tools/scoretools/make_piano_sketch_score_from_leaves
    tools/scoretools/make_pitch_array_score_from_pitch_arrays
 
-
 skiptools
 
 .. toctree::
@@ -848,7 +812,6 @@ skiptools
    tools/skiptools/make_skips_with_multiplied_durations
    tools/skiptools/replace_leaves_in_expr_with_skips
    tools/skiptools/yield_groups_of_skips_in_sequence
-
 
 spannertools
 
@@ -914,7 +877,6 @@ spannertools
    tools/spannertools/report_as_string_format_contributions_of_all_spanners_attached_to_improper_parentage_of_component
    tools/spannertools/withdraw_components_from_spanners_covered_by_components
 
-
 stafftools
 
 .. toctree::
@@ -928,7 +890,6 @@ stafftools
    tools/stafftools/iterate_staves_backward_in_expr
    tools/stafftools/iterate_staves_forward_in_expr
    tools/stafftools/make_rhythmic_sketch_staff
-
 
 tietools
 
@@ -964,7 +925,6 @@ tietools
    tools/tietools/tie_chain_to_diminished_tuplet_with_proportions_and_avoid_dots
    tools/tietools/tie_chain_to_diminished_tuplet_with_proportions_and_encourage_dots
 
-
 tuplettools
 
 .. toctree::
@@ -993,7 +953,6 @@ tuplettools
    tools/tuplettools/scale_contents_of_tuplets_in_expr_by_multiplier
    tools/tuplettools/set_denominator_of_tuplets_in_expr_to_at_least
 
-
 voicetools
 
 .. toctree::
@@ -1008,15 +967,11 @@ voicetools
    tools/voicetools/iterate_voices_backward_in_expr
    tools/voicetools/iterate_voices_forward_in_expr
 
-
-
 Additional Abjad composition packages (load manually)
 -----------------------------------------------------
 
 .. toctree::
    :maxdepth: 1
-
-
 
 abctools
 
@@ -1026,7 +981,6 @@ abctools
    tools/abctools/AbjadObject/AbjadObject
    tools/abctools/AttributeEqualityAbjadObject/AttributeEqualityAbjadObject
    tools/abctools/SortableAttributeEqualityAbjadObject/SortableAttributeEqualityAbjadObject
-
 
 configurationtools
 
@@ -1042,7 +996,6 @@ configurationtools
    tools/configurationtools/list_package_dependency_versions
    tools/configurationtools/set_default_accidental_spelling
 
-
 datastructuretools
 
 .. toctree::
@@ -1051,7 +1004,6 @@ datastructuretools
    tools/datastructuretools/ImmutableDictionary/ImmutableDictionary
    tools/datastructuretools/ObjectInventory/ObjectInventory
 
-
 decoratortools
 
 .. toctree::
@@ -1059,18 +1011,17 @@ decoratortools
 
    tools/decoratortools/requires
 
-
 documentationtools
 
 .. toctree::
    :maxdepth: 1
 
    tools/documentationtools/APICrawler/APICrawler
+   tools/documentationtools/AbjadAPIGenerator/AbjadAPIGenerator
    tools/documentationtools/ClassDocumenter/ClassDocumenter
    tools/documentationtools/Documenter/Documenter
    tools/documentationtools/FunctionDocumenter/FunctionDocumenter
    tools/documentationtools/InheritanceGraph/InheritanceGraph
-
 
 durationtools
 
@@ -1123,7 +1074,6 @@ durationtools
    tools/durationtools/yield_all_positive_rationals_in_cantor_diagonalized_order_uniquely
    tools/durationtools/yield_all_prolation_rewrite_pairs_of_rational_in_cantor_diagonalized_order
 
-
 iotools
 
 .. toctree::
@@ -1168,7 +1118,6 @@ iotools
    tools/iotools/write_expr_to_pdf
    tools/iotools/z
 
-
 layouttools
 
 .. toctree::
@@ -1179,14 +1128,12 @@ layouttools
    tools/layouttools/set_line_breaks_cyclically_by_line_duration_ge
    tools/layouttools/set_line_breaks_cyclically_by_line_duration_in_seconds_ge
 
-
 lilypondparsertools
 
 .. toctree::
    :maxdepth: 1
 
    tools/lilypondparsertools/LilyPondParser/LilyPondParser
-
 
 mathtools
 
@@ -1243,7 +1190,6 @@ mathtools
    tools/mathtools/yield_all_compositions_of_integer
    tools/mathtools/yield_all_partitions_of_integer
 
-
 pitcharraytools
 
 .. toctree::
@@ -1258,7 +1204,6 @@ pitcharraytools
    tools/pitcharraytools/list_nonspanning_subarrays_of_pitch_array
    tools/pitcharraytools/make_empty_pitch_array_from_list_of_pitch_lists
    tools/pitcharraytools/make_populated_pitch_array_from_list_of_pitch_lists
-
 
 sequencetools
 
@@ -1391,7 +1336,6 @@ sequencetools
    tools/sequencetools/zip_sequences_cyclically
    tools/sequencetools/zip_sequences_without_truncation
 
-
 sievetools
 
 .. toctree::
@@ -1402,7 +1346,6 @@ sievetools
    tools/sievetools/all_are_residue_class_expressions
    tools/sievetools/cycle_tokens_to_sieve
 
-
 tempotools
 
 .. toctree::
@@ -1410,7 +1353,6 @@ tempotools
 
    tools/tempotools/integer_tempo_to_multiplier_tempo_pairs
    tools/tempotools/integer_tempo_to_multiplier_tempo_pairs_report
-
 
 threadtools
 
@@ -1422,7 +1364,6 @@ threadtools
    tools/threadtools/iterate_thread_backward_in_expr
    tools/threadtools/iterate_thread_forward_from_component
    tools/threadtools/iterate_thread_forward_in_expr
-
 
 timeintervaltools
 
@@ -1482,7 +1423,6 @@ timeintervaltools
    tools/timeintervaltools/shift_aggregate_offset_to_rational
    tools/timeintervaltools/split_intervals_at_rationals
 
-
 timesignaturetools
 
 .. toctree::
@@ -1492,7 +1432,6 @@ timesignaturetools
    tools/timesignaturetools/get_nonbinary_factor_from_time_signature_denominator
    tools/timesignaturetools/is_time_signature_with_equivalent_binary_representation
    tools/timesignaturetools/time_signature_to_binary_time_signature
-
 
 verticalitytools
 
@@ -1511,7 +1450,6 @@ verticalitytools
    tools/verticalitytools/label_vertical_moments_in_expr_with_interval_class_vectors
    tools/verticalitytools/label_vertical_moments_in_expr_with_numbered_chromatic_pitch_classes
    tools/verticalitytools/label_vertical_moments_in_expr_with_pitch_numbers
-
 
 wellformednesstools
 
@@ -1536,15 +1474,26 @@ wellformednesstools
    tools/wellformednesstools/ShortHairpinCheck/ShortHairpinCheck
    tools/wellformednesstools/list_checks
 
-
-
 Unstable Abjad composition packages (load manually)
 ---------------------------------------------------
 
 .. toctree::
    :maxdepth: 1
 
+constrainttools
 
+.. toctree::
+   :maxdepth: 1
+
+   tools/constrainttools/AbsoluteIndexConstraint/AbsoluteIndexConstraint
+   tools/constrainttools/Domain/Domain
+   tools/constrainttools/FixedLengthStreamSolver/FixedLengthStreamSolver
+   tools/constrainttools/GlobalConstraint/GlobalConstraint
+   tools/constrainttools/GlobalCountsConstraint/GlobalCountsConstraint
+   tools/constrainttools/GlobalReferenceConstraint/GlobalReferenceConstraint
+   tools/constrainttools/RelativeCountsConstraint/RelativeCountsConstraint
+   tools/constrainttools/RelativeIndexConstraint/RelativeIndexConstraint
+   tools/constrainttools/VariableLengthStreamSolver/VariableLengthStreamSolver
 
 lyricstools
 
@@ -1557,7 +1506,6 @@ lyricstools
    tools/lyricstools/LyricSpace/LyricSpace
    tools/lyricstools/LyricText/LyricText
    tools/lyricstools/Lyrics/Lyrics
-
 
 quantizationtools
 
@@ -1575,7 +1523,6 @@ quantizationtools
    tools/quantizationtools/tempo_scaled_leaves_to_q_events
    tools/quantizationtools/tempo_scaled_rational_to_milliseconds
    tools/quantizationtools/tempo_scaled_rationals_to_q_events
-
 
 tonalitytools
 

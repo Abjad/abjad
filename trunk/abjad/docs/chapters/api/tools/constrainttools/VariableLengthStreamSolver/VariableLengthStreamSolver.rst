@@ -1,34 +1,85 @@
 constrainttools.VariableLengthStreamSolver
 ==========================================
 
-.. inheritance-diagram:: abjad.tools.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver
+.. inheritance-diagram:: abjad.tools.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver
    :private-bases:
-.. autoclass:: abjad.tools.constrainttools.VariableLengthStreamSolver
-   :members:
-   :undoc-members:
-   :inherited-members:
-   :special-members:
-   :exclude-members:
-       __abstractmethods__,
-       __class__,
-       __copy__,
-       __deepcopy__,
-       __delattr__,
-       __dict__,
-       __format__,
-       __getattribute__,
-       __getnewargs__,
-       __getstate__,
-       __hash__,
-       __init__,
-       __metaclass__,
-       __module__,
-       __new__,
-       __reduce__,
-       __reduce_ex__,
-       __setattr__,
-       __setstate__,
-       __sizeof__,
-       __slots__,
-       __subclasshook__,
-       __weakref__,
+
+.. autoclass:: abjad.tools.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver
+
+Read-only Properties
+--------------------
+
+.. autoattribute:: abjad.tools.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver.constraints
+
+   .. note:: Inherited from :py:class:`constrainttools._Solver <abjad.tools.constrainttools._Solver._Solver._Solver>`
+
+.. autoattribute:: abjad.tools.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver.domain
+
+   .. note:: Inherited from :py:class:`constrainttools._Solver <abjad.tools.constrainttools._Solver._Solver._Solver>`
+
+.. autoattribute:: abjad.tools.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver.iterator
+
+   .. note:: Inherited from :py:class:`constrainttools._Solver <abjad.tools.constrainttools._Solver._Solver._Solver>`
+
+.. autoattribute:: abjad.tools.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver.randomized
+
+   .. note:: Inherited from :py:class:`constrainttools._Solver <abjad.tools.constrainttools._Solver._Solver._Solver>`
+
+.. autoattribute:: abjad.tools.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver.solutions
+
+   .. note:: Inherited from :py:class:`constrainttools._Solver <abjad.tools.constrainttools._Solver._Solver._Solver>`
+
+.. autoattribute:: abjad.tools.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver.terminators
+
+Special Methods
+---------------
+
+.. automethod:: abjad.tools.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver.__delattr__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver.__eq__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver.__ge__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver.__gt__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver.__hash__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver.__iter__
+
+.. automethod:: abjad.tools.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver.__le__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver.__lt__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver.__ne__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver.__repr__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver.__setattr__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver.__str__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver.get_le_n_solutions
+
+   .. note:: Inherited from :py:class:`constrainttools._Solver <abjad.tools.constrainttools._Solver._Solver._Solver>`

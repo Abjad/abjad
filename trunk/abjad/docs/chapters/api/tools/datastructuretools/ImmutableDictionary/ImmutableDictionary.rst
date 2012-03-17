@@ -1,34 +1,142 @@
 datastructuretools.ImmutableDictionary
 ======================================
 
-.. inheritance-diagram:: abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary
+.. inheritance-diagram:: abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary
    :private-bases:
-.. autoclass:: abjad.tools.datastructuretools.ImmutableDictionary
-   :members:
-   :undoc-members:
-   :inherited-members:
-   :special-members:
-   :exclude-members:
-       __abstractmethods__,
-       __class__,
-       __copy__,
-       __deepcopy__,
-       __delattr__,
-       __dict__,
-       __format__,
-       __getattribute__,
-       __getnewargs__,
-       __getstate__,
-       __hash__,
-       __init__,
-       __metaclass__,
-       __module__,
-       __new__,
-       __reduce__,
-       __reduce_ex__,
-       __setattr__,
-       __setstate__,
-       __sizeof__,
-       __slots__,
-       __subclasshook__,
-       __weakref__,
+
+.. autoclass:: abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary
+
+Special Methods
+---------------
+
+.. automethod:: abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.__cmp__
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.__contains__
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.__delattr__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.__delitem__
+
+.. automethod:: abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.__eq__
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.__ge__
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.__getitem__
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.__gt__
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.__iter__
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.__le__
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.__len__
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.__lt__
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.__ne__
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.__repr__
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.__setattr__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.__setitem__
+
+.. automethod:: abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.__str__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.clear
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.copy
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.get
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.has_key
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.items
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.iteritems
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.iterkeys
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.itervalues
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.keys
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.pop
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.popitem
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.setdefault
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.update
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.values
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.viewitems
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.viewkeys
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.viewvalues
+
+   .. note:: Inherited from `__builtin__.dict`

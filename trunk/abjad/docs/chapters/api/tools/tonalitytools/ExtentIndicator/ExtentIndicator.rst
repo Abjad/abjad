@@ -1,34 +1,55 @@
 tonalitytools.ExtentIndicator
 =============================
 
-.. inheritance-diagram:: abjad.tools.tonalitytools.ExtentIndicator.ExtentIndicator
+.. inheritance-diagram:: abjad.tools.tonalitytools.ExtentIndicator.ExtentIndicator.ExtentIndicator
    :private-bases:
-.. autoclass:: abjad.tools.tonalitytools.ExtentIndicator
-   :members:
-   :undoc-members:
-   :inherited-members:
-   :special-members:
-   :exclude-members:
-       __abstractmethods__,
-       __class__,
-       __copy__,
-       __deepcopy__,
-       __delattr__,
-       __dict__,
-       __format__,
-       __getattribute__,
-       __getnewargs__,
-       __getstate__,
-       __hash__,
-       __init__,
-       __metaclass__,
-       __module__,
-       __new__,
-       __reduce__,
-       __reduce_ex__,
-       __setattr__,
-       __setstate__,
-       __sizeof__,
-       __slots__,
-       __subclasshook__,
-       __weakref__,
+
+.. autoclass:: abjad.tools.tonalitytools.ExtentIndicator.ExtentIndicator.ExtentIndicator
+
+Read-only Properties
+--------------------
+
+.. autoattribute:: abjad.tools.tonalitytools.ExtentIndicator.ExtentIndicator.ExtentIndicator.name
+
+.. autoattribute:: abjad.tools.tonalitytools.ExtentIndicator.ExtentIndicator.ExtentIndicator.number
+
+Special Methods
+---------------
+
+.. automethod:: abjad.tools.tonalitytools.ExtentIndicator.ExtentIndicator.ExtentIndicator.__delattr__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.tonalitytools.ExtentIndicator.ExtentIndicator.ExtentIndicator.__eq__
+
+.. automethod:: abjad.tools.tonalitytools.ExtentIndicator.ExtentIndicator.ExtentIndicator.__ge__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.tonalitytools.ExtentIndicator.ExtentIndicator.ExtentIndicator.__gt__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.tonalitytools.ExtentIndicator.ExtentIndicator.ExtentIndicator.__hash__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.tonalitytools.ExtentIndicator.ExtentIndicator.ExtentIndicator.__le__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.tonalitytools.ExtentIndicator.ExtentIndicator.ExtentIndicator.__lt__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.tonalitytools.ExtentIndicator.ExtentIndicator.ExtentIndicator.__ne__
+
+.. automethod:: abjad.tools.tonalitytools.ExtentIndicator.ExtentIndicator.ExtentIndicator.__repr__
+
+.. automethod:: abjad.tools.tonalitytools.ExtentIndicator.ExtentIndicator.ExtentIndicator.__setattr__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.tonalitytools.ExtentIndicator.ExtentIndicator.ExtentIndicator.__str__
+
+   .. note:: Inherited from `__builtin__.object`

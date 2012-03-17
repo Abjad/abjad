@@ -1,34 +1,105 @@
 pitchtools.MelodicChromaticIntervalClassSegment
 ===============================================
 
-.. inheritance-diagram:: abjad.tools.pitchtools.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment
+.. inheritance-diagram:: abjad.tools.pitchtools.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment
    :private-bases:
-.. autoclass:: abjad.tools.pitchtools.MelodicChromaticIntervalClassSegment
-   :members:
-   :undoc-members:
-   :inherited-members:
-   :special-members:
-   :exclude-members:
-       __abstractmethods__,
-       __class__,
-       __copy__,
-       __deepcopy__,
-       __delattr__,
-       __dict__,
-       __format__,
-       __getattribute__,
-       __getnewargs__,
-       __getstate__,
-       __hash__,
-       __init__,
-       __metaclass__,
-       __module__,
-       __new__,
-       __reduce__,
-       __reduce_ex__,
-       __setattr__,
-       __setstate__,
-       __sizeof__,
-       __slots__,
-       __subclasshook__,
-       __weakref__,
+
+.. autoclass:: abjad.tools.pitchtools.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment
+
+Read-only Properties
+--------------------
+
+.. autoattribute:: abjad.tools.pitchtools.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.interval_class_numbers
+
+   .. note:: Inherited from :py:class:`pitchtools._IntervalClassSegment <abjad.tools.pitchtools._IntervalClassSegment._IntervalClassSegment._IntervalClassSegment>`
+
+.. autoattribute:: abjad.tools.pitchtools.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.interval_classes
+
+   .. note:: Inherited from :py:class:`pitchtools._IntervalClassSegment <abjad.tools.pitchtools._IntervalClassSegment._IntervalClassSegment._IntervalClassSegment>`
+
+Special Methods
+---------------
+
+.. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.__add__
+
+   .. note:: Inherited from :py:class:`pitchtools._Segment <abjad.tools.pitchtools._Segment._Segment._Segment>`
+
+.. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.__contains__
+
+   .. note:: Inherited from `__builtin__.tuple`
+
+.. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.__delattr__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.__eq__
+
+   .. note:: Inherited from `__builtin__.tuple`
+
+.. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.__ge__
+
+   .. note:: Inherited from `__builtin__.tuple`
+
+.. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.__getitem__
+
+   .. note:: Inherited from `__builtin__.tuple`
+
+.. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.__getslice__
+
+   .. note:: Inherited from :py:class:`pitchtools._Segment <abjad.tools.pitchtools._Segment._Segment._Segment>`
+
+.. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.__gt__
+
+   .. note:: Inherited from `__builtin__.tuple`
+
+.. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.__hash__
+
+   .. note:: Inherited from `__builtin__.tuple`
+
+.. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.__iter__
+
+   .. note:: Inherited from `__builtin__.tuple`
+
+.. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.__le__
+
+   .. note:: Inherited from `__builtin__.tuple`
+
+.. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.__len__
+
+   .. note:: Inherited from `__builtin__.tuple`
+
+.. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.__lt__
+
+   .. note:: Inherited from `__builtin__.tuple`
+
+.. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.__mul__
+
+   .. note:: Inherited from :py:class:`pitchtools._Segment <abjad.tools.pitchtools._Segment._Segment._Segment>`
+
+.. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.__ne__
+
+   .. note:: Inherited from `__builtin__.tuple`
+
+.. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.__repr__
+
+   .. note:: Inherited from :py:class:`pitchtools._IntervalClassSegment <abjad.tools.pitchtools._IntervalClassSegment._IntervalClassSegment._IntervalClassSegment>`
+
+.. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.__rmul__
+
+   .. note:: Inherited from :py:class:`pitchtools._Segment <abjad.tools.pitchtools._Segment._Segment._Segment>`
+
+.. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.__setattr__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.__str__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.count
+
+   .. note:: Inherited from `__builtin__.tuple`
+
+.. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.index
+
+   .. note:: Inherited from `__builtin__.tuple`

@@ -1,34 +1,144 @@
 pitchtools.InversionEquivalentChromaticIntervalClassVector
 ==========================================================
 
-.. inheritance-diagram:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector
+.. inheritance-diagram:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector
    :private-bases:
-.. autoclass:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassVector
-   :members:
-   :undoc-members:
-   :inherited-members:
-   :special-members:
-   :exclude-members:
-       __abstractmethods__,
-       __class__,
-       __copy__,
-       __deepcopy__,
-       __delattr__,
-       __dict__,
-       __format__,
-       __getattribute__,
-       __getnewargs__,
-       __getstate__,
-       __hash__,
-       __init__,
-       __metaclass__,
-       __module__,
-       __new__,
-       __reduce__,
-       __reduce_ex__,
-       __setattr__,
-       __setstate__,
-       __sizeof__,
-       __slots__,
-       __subclasshook__,
-       __weakref__,
+
+.. autoclass:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector
+
+Special Methods
+---------------
+
+.. automethod:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.__cmp__
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.__contains__
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.__delattr__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.__delitem__
+
+   .. note:: Inherited from :py:class:`datastructuretools.ImmutableDictionary <abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary>`
+
+.. automethod:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.__eq__
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.__ge__
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.__getitem__
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.__gt__
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.__iter__
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.__le__
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.__len__
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.__lt__
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.__ne__
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.__repr__
+
+.. automethod:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.__setattr__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.__setitem__
+
+   .. note:: Inherited from :py:class:`datastructuretools.ImmutableDictionary <abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary>`
+
+.. automethod:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.__str__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.clear
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.copy
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.get
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.has_key
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.items
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.iteritems
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.iterkeys
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.itervalues
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.keys
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.pop
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.popitem
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.setdefault
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.update
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.values
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.viewitems
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.viewkeys
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.viewvalues
+
+   .. note:: Inherited from `__builtin__.dict`

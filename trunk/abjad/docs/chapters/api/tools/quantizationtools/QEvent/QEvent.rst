@@ -1,34 +1,57 @@
 quantizationtools.QEvent
 ========================
 
-.. inheritance-diagram:: abjad.tools.quantizationtools.QEvent.QEvent
+.. inheritance-diagram:: abjad.tools.quantizationtools.QEvent.QEvent.QEvent
    :private-bases:
-.. autoclass:: abjad.tools.quantizationtools.QEvent
-   :members:
-   :undoc-members:
-   :inherited-members:
-   :special-members:
-   :exclude-members:
-       __abstractmethods__,
-       __class__,
-       __copy__,
-       __deepcopy__,
-       __delattr__,
-       __dict__,
-       __format__,
-       __getattribute__,
-       __getnewargs__,
-       __getstate__,
-       __hash__,
-       __init__,
-       __metaclass__,
-       __module__,
-       __new__,
-       __reduce__,
-       __reduce_ex__,
-       __setattr__,
-       __setstate__,
-       __sizeof__,
-       __slots__,
-       __subclasshook__,
-       __weakref__,
+
+.. autoclass:: abjad.tools.quantizationtools.QEvent.QEvent.QEvent
+
+Read-only Properties
+--------------------
+
+.. autoattribute:: abjad.tools.quantizationtools.QEvent.QEvent.QEvent.offset
+
+.. autoattribute:: abjad.tools.quantizationtools.QEvent.QEvent.QEvent.value
+
+Special Methods
+---------------
+
+.. automethod:: abjad.tools.quantizationtools.QEvent.QEvent.QEvent.__delattr__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.quantizationtools.QEvent.QEvent.QEvent.__eq__
+
+.. automethod:: abjad.tools.quantizationtools.QEvent.QEvent.QEvent.__ge__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.quantizationtools.QEvent.QEvent.QEvent.__gt__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.quantizationtools.QEvent.QEvent.QEvent.__hash__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.quantizationtools.QEvent.QEvent.QEvent.__le__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.quantizationtools.QEvent.QEvent.QEvent.__lt__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.quantizationtools.QEvent.QEvent.QEvent.__ne__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.quantizationtools.QEvent.QEvent.QEvent.__repr__
+
+.. automethod:: abjad.tools.quantizationtools.QEvent.QEvent.QEvent.__setattr__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.quantizationtools.QEvent.QEvent.QEvent.__str__
+
+   .. note:: Inherited from `__builtin__.object`

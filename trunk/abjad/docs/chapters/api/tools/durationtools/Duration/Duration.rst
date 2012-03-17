@@ -1,34 +1,141 @@
 durationtools.Duration
 ======================
 
-.. inheritance-diagram:: abjad.tools.durationtools.Duration.Duration
+.. inheritance-diagram:: abjad.tools.durationtools.Duration.Duration.Duration
    :private-bases:
-.. autoclass:: abjad.tools.durationtools.Duration
-   :members:
-   :undoc-members:
-   :inherited-members:
-   :special-members:
-   :exclude-members:
-       __abstractmethods__,
-       __class__,
-       __copy__,
-       __deepcopy__,
-       __delattr__,
-       __dict__,
-       __format__,
-       __getattribute__,
-       __getnewargs__,
-       __getstate__,
-       __hash__,
-       __init__,
-       __metaclass__,
-       __module__,
-       __new__,
-       __reduce__,
-       __reduce_ex__,
-       __setattr__,
-       __setstate__,
-       __sizeof__,
-       __slots__,
-       __subclasshook__,
-       __weakref__,
+
+.. autoclass:: abjad.tools.durationtools.Duration.Duration.Duration
+
+Read-only Properties
+--------------------
+
+.. autoattribute:: abjad.tools.durationtools.Duration.Duration.Duration.denominator
+
+   .. note:: Inherited from `fractions.Fraction`
+
+.. autoattribute:: abjad.tools.durationtools.Duration.Duration.Duration.imag
+
+   .. note:: Inherited from `numbers.Real`
+
+.. autoattribute:: abjad.tools.durationtools.Duration.Duration.Duration.numerator
+
+   .. note:: Inherited from `fractions.Fraction`
+
+.. autoattribute:: abjad.tools.durationtools.Duration.Duration.Duration.real
+
+   .. note:: Inherited from `numbers.Real`
+
+Special Methods
+---------------
+
+.. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__abs__
+
+.. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__add__
+
+.. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__complex__
+
+   .. note:: Inherited from `numbers.Real`
+
+.. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__delattr__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__div__
+
+.. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__divmod__
+
+.. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__eq__
+
+   .. note:: Inherited from `fractions.Fraction`
+
+.. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__float__
+
+   .. note:: Inherited from `numbers.Rational`
+
+.. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__floordiv__
+
+   .. note:: Inherited from `fractions.Fraction`
+
+.. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__ge__
+
+   .. note:: Inherited from `fractions.Fraction`
+
+.. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__gt__
+
+   .. note:: Inherited from `fractions.Fraction`
+
+.. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__hash__
+
+   .. note:: Inherited from `fractions.Fraction`
+
+.. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__le__
+
+   .. note:: Inherited from `fractions.Fraction`
+
+.. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__lt__
+
+   .. note:: Inherited from `fractions.Fraction`
+
+.. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__mod__
+
+.. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__mul__
+
+.. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__ne__
+
+   .. note:: Inherited from `numbers.Complex`
+
+.. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__neg__
+
+.. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__nonzero__
+
+   .. note:: Inherited from `fractions.Fraction`
+
+.. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__pos__
+
+.. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__pow__
+
+.. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__radd__
+
+.. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__rdiv__
+
+.. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__rdivmod__
+
+.. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__repr__
+
+.. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__rfloordiv__
+
+   .. note:: Inherited from `fractions.Fraction`
+
+.. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__rmod__
+
+.. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__rmul__
+
+.. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__rpow__
+
+.. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__rsub__
+
+.. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__rtruediv__
+
+.. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__setattr__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__str__
+
+   .. note:: Inherited from `fractions.Fraction`
+
+.. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__sub__
+
+.. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__truediv__
+
+.. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__trunc__
+
+   .. note:: Inherited from `fractions.Fraction`
+
+.. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.conjugate
+
+   .. note:: Inherited from `numbers.Real`
+
+.. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.limit_denominator
+
+   .. note:: Inherited from `fractions.Fraction`

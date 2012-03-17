@@ -1,34 +1,54 @@
 tonalitytools.OmissionIndicator
 ===============================
 
-.. inheritance-diagram:: abjad.tools.tonalitytools.OmissionIndicator.OmissionIndicator
+.. inheritance-diagram:: abjad.tools.tonalitytools.OmissionIndicator.OmissionIndicator.OmissionIndicator
    :private-bases:
-.. autoclass:: abjad.tools.tonalitytools.OmissionIndicator
-   :members:
-   :undoc-members:
-   :inherited-members:
-   :special-members:
-   :exclude-members:
-       __abstractmethods__,
-       __class__,
-       __copy__,
-       __deepcopy__,
-       __delattr__,
-       __dict__,
-       __format__,
-       __getattribute__,
-       __getnewargs__,
-       __getstate__,
-       __hash__,
-       __init__,
-       __metaclass__,
-       __module__,
-       __new__,
-       __reduce__,
-       __reduce_ex__,
-       __setattr__,
-       __setstate__,
-       __sizeof__,
-       __slots__,
-       __subclasshook__,
-       __weakref__,
+
+.. autoclass:: abjad.tools.tonalitytools.OmissionIndicator.OmissionIndicator.OmissionIndicator
+
+Special Methods
+---------------
+
+.. automethod:: abjad.tools.tonalitytools.OmissionIndicator.OmissionIndicator.OmissionIndicator.__delattr__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.tonalitytools.OmissionIndicator.OmissionIndicator.OmissionIndicator.__eq__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.tonalitytools.OmissionIndicator.OmissionIndicator.OmissionIndicator.__ge__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.tonalitytools.OmissionIndicator.OmissionIndicator.OmissionIndicator.__gt__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.tonalitytools.OmissionIndicator.OmissionIndicator.OmissionIndicator.__hash__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.tonalitytools.OmissionIndicator.OmissionIndicator.OmissionIndicator.__le__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.tonalitytools.OmissionIndicator.OmissionIndicator.OmissionIndicator.__lt__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.tonalitytools.OmissionIndicator.OmissionIndicator.OmissionIndicator.__ne__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.tonalitytools.OmissionIndicator.OmissionIndicator.OmissionIndicator.__repr__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.tonalitytools.OmissionIndicator.OmissionIndicator.OmissionIndicator.__setattr__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.tonalitytools.OmissionIndicator.OmissionIndicator.OmissionIndicator.__str__
+
+   .. note:: Inherited from `__builtin__.object`

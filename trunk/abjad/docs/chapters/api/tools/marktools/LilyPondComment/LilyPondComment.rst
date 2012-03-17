@@ -1,34 +1,80 @@
 marktools.LilyPondComment
 =========================
 
-.. inheritance-diagram:: abjad.tools.marktools.LilyPondComment.LilyPondComment
+.. inheritance-diagram:: abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment
    :private-bases:
-.. autoclass:: abjad.tools.marktools.LilyPondComment
-   :members:
-   :undoc-members:
-   :inherited-members:
-   :special-members:
-   :exclude-members:
-       __abstractmethods__,
-       __class__,
-       __copy__,
-       __deepcopy__,
-       __delattr__,
-       __dict__,
-       __format__,
-       __getattribute__,
-       __getnewargs__,
-       __getstate__,
-       __hash__,
-       __init__,
-       __metaclass__,
-       __module__,
-       __new__,
-       __reduce__,
-       __reduce_ex__,
-       __setattr__,
-       __setstate__,
-       __sizeof__,
-       __slots__,
-       __subclasshook__,
-       __weakref__,
+
+.. autoclass:: abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment
+
+Read-only Properties
+--------------------
+
+.. autoattribute:: abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment.format
+
+.. autoattribute:: abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment.start_component
+
+   .. note:: Inherited from :py:class:`marktools.Mark <abjad.tools.marktools.Mark.Mark.Mark>`
+
+Read/write Properties
+---------------------
+
+.. autoattribute:: abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment.contents_string
+
+.. autoattribute:: abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment.format_slot
+
+Special Methods
+---------------
+
+.. automethod:: abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment.__call__
+
+   .. note:: Inherited from :py:class:`marktools.Mark <abjad.tools.marktools.Mark.Mark.Mark>`
+
+.. automethod:: abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment.__delattr__
+
+   .. note:: Inherited from :py:class:`marktools.Mark <abjad.tools.marktools.Mark.Mark.Mark>`
+
+.. automethod:: abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment.__eq__
+
+.. automethod:: abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment.__ge__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment.__gt__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment.__hash__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment.__le__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment.__lt__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment.__ne__
+
+   .. note:: Inherited from :py:class:`marktools.Mark <abjad.tools.marktools.Mark.Mark.Mark>`
+
+.. automethod:: abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment.__repr__
+
+   .. note:: Inherited from :py:class:`marktools.Mark <abjad.tools.marktools.Mark.Mark.Mark>`
+
+.. automethod:: abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment.__setattr__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment.__str__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment.attach
+
+   .. note:: Inherited from :py:class:`marktools.Mark <abjad.tools.marktools.Mark.Mark.Mark>`
+
+.. automethod:: abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment.detach
+
+   .. note:: Inherited from :py:class:`marktools.Mark <abjad.tools.marktools.Mark.Mark.Mark>`

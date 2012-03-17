@@ -1,34 +1,61 @@
 schemetools.SchemeAssociativeList
 =================================
 
-.. inheritance-diagram:: abjad.tools.schemetools.SchemeAssociativeList.SchemeAssociativeList
+.. inheritance-diagram:: abjad.tools.schemetools.SchemeAssociativeList.SchemeAssociativeList.SchemeAssociativeList
    :private-bases:
-.. autoclass:: abjad.tools.schemetools.SchemeAssociativeList
-   :members:
-   :undoc-members:
-   :inherited-members:
-   :special-members:
-   :exclude-members:
-       __abstractmethods__,
-       __class__,
-       __copy__,
-       __deepcopy__,
-       __delattr__,
-       __dict__,
-       __format__,
-       __getattribute__,
-       __getnewargs__,
-       __getstate__,
-       __hash__,
-       __init__,
-       __metaclass__,
-       __module__,
-       __new__,
-       __reduce__,
-       __reduce_ex__,
-       __setattr__,
-       __setstate__,
-       __sizeof__,
-       __slots__,
-       __subclasshook__,
-       __weakref__,
+
+.. autoclass:: abjad.tools.schemetools.SchemeAssociativeList.SchemeAssociativeList.SchemeAssociativeList
+
+Read-only Properties
+--------------------
+
+.. autoattribute:: abjad.tools.schemetools.SchemeAssociativeList.SchemeAssociativeList.SchemeAssociativeList.format
+
+   .. note:: Inherited from :py:class:`schemetools.Scheme <abjad.tools.schemetools.Scheme.Scheme.Scheme>`
+
+Special Methods
+---------------
+
+.. automethod:: abjad.tools.schemetools.SchemeAssociativeList.SchemeAssociativeList.SchemeAssociativeList.__delattr__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.schemetools.SchemeAssociativeList.SchemeAssociativeList.SchemeAssociativeList.__eq__
+
+   .. note:: Inherited from :py:class:`schemetools.Scheme <abjad.tools.schemetools.Scheme.Scheme.Scheme>`
+
+.. automethod:: abjad.tools.schemetools.SchemeAssociativeList.SchemeAssociativeList.SchemeAssociativeList.__ge__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.schemetools.SchemeAssociativeList.SchemeAssociativeList.SchemeAssociativeList.__gt__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.schemetools.SchemeAssociativeList.SchemeAssociativeList.SchemeAssociativeList.__hash__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.schemetools.SchemeAssociativeList.SchemeAssociativeList.SchemeAssociativeList.__le__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.schemetools.SchemeAssociativeList.SchemeAssociativeList.SchemeAssociativeList.__lt__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.schemetools.SchemeAssociativeList.SchemeAssociativeList.SchemeAssociativeList.__ne__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.schemetools.SchemeAssociativeList.SchemeAssociativeList.SchemeAssociativeList.__repr__
+
+   .. note:: Inherited from :py:class:`schemetools.Scheme <abjad.tools.schemetools.Scheme.Scheme.Scheme>`
+
+.. automethod:: abjad.tools.schemetools.SchemeAssociativeList.SchemeAssociativeList.SchemeAssociativeList.__setattr__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.schemetools.SchemeAssociativeList.SchemeAssociativeList.SchemeAssociativeList.__str__
+
+   .. note:: Inherited from :py:class:`schemetools.Scheme <abjad.tools.schemetools.Scheme.Scheme.Scheme>`

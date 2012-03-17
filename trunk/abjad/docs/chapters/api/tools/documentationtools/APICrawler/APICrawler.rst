@@ -1,34 +1,67 @@
 documentationtools.APICrawler
 =============================
 
-.. inheritance-diagram:: abjad.tools.documentationtools.APICrawler.APICrawler
+.. inheritance-diagram:: abjad.tools.documentationtools.APICrawler.APICrawler.APICrawler
    :private-bases:
-.. autoclass:: abjad.tools.documentationtools.APICrawler
-   :members:
-   :undoc-members:
-   :inherited-members:
-   :special-members:
-   :exclude-members:
-       __abstractmethods__,
-       __class__,
-       __copy__,
-       __deepcopy__,
-       __delattr__,
-       __dict__,
-       __format__,
-       __getattribute__,
-       __getnewargs__,
-       __getstate__,
-       __hash__,
-       __init__,
-       __metaclass__,
-       __module__,
-       __new__,
-       __reduce__,
-       __reduce_ex__,
-       __setattr__,
-       __setstate__,
-       __sizeof__,
-       __slots__,
-       __subclasshook__,
-       __weakref__,
+
+.. autoclass:: abjad.tools.documentationtools.APICrawler.APICrawler.APICrawler
+
+Read-only Properties
+--------------------
+
+.. autoattribute:: abjad.tools.documentationtools.APICrawler.APICrawler.APICrawler.code_root
+
+.. autoattribute:: abjad.tools.documentationtools.APICrawler.APICrawler.APICrawler.docs_root
+
+.. autoattribute:: abjad.tools.documentationtools.APICrawler.APICrawler.APICrawler.ignored_directories
+
+.. autoattribute:: abjad.tools.documentationtools.APICrawler.APICrawler.APICrawler.root_package_name
+
+Special Methods
+---------------
+
+.. automethod:: abjad.tools.documentationtools.APICrawler.APICrawler.APICrawler.__call__
+
+.. automethod:: abjad.tools.documentationtools.APICrawler.APICrawler.APICrawler.__delattr__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.documentationtools.APICrawler.APICrawler.APICrawler.__eq__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.documentationtools.APICrawler.APICrawler.APICrawler.__ge__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.documentationtools.APICrawler.APICrawler.APICrawler.__gt__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.documentationtools.APICrawler.APICrawler.APICrawler.__hash__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.documentationtools.APICrawler.APICrawler.APICrawler.__le__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.documentationtools.APICrawler.APICrawler.APICrawler.__lt__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.documentationtools.APICrawler.APICrawler.APICrawler.__ne__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.documentationtools.APICrawler.APICrawler.APICrawler.__repr__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.documentationtools.APICrawler.APICrawler.APICrawler.__setattr__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.documentationtools.APICrawler.APICrawler.APICrawler.__str__
+
+   .. note:: Inherited from `__builtin__.object`

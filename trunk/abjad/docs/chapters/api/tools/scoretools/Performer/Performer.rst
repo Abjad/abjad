@@ -1,34 +1,68 @@
 scoretools.Performer
 ====================
 
-.. inheritance-diagram:: abjad.tools.scoretools.Performer.Performer
+.. inheritance-diagram:: abjad.tools.scoretools.Performer.Performer.Performer
    :private-bases:
-.. autoclass:: abjad.tools.scoretools.Performer
-   :members:
-   :undoc-members:
-   :inherited-members:
-   :special-members:
-   :exclude-members:
-       __abstractmethods__,
-       __class__,
-       __copy__,
-       __deepcopy__,
-       __delattr__,
-       __dict__,
-       __format__,
-       __getattribute__,
-       __getnewargs__,
-       __getstate__,
-       __hash__,
-       __init__,
-       __metaclass__,
-       __module__,
-       __new__,
-       __reduce__,
-       __reduce_ex__,
-       __setattr__,
-       __setstate__,
-       __sizeof__,
-       __slots__,
-       __subclasshook__,
-       __weakref__,
+
+.. autoclass:: abjad.tools.scoretools.Performer.Performer.Performer
+
+Read-only Properties
+--------------------
+
+.. autoattribute:: abjad.tools.scoretools.Performer.Performer.Performer.instrument_count
+
+.. autoattribute:: abjad.tools.scoretools.Performer.Performer.Performer.is_doubling
+
+.. autoattribute:: abjad.tools.scoretools.Performer.Performer.Performer.likely_instruments_based_on_performer_name
+
+.. autoattribute:: abjad.tools.scoretools.Performer.Performer.Performer.most_likely_instrument_based_on_performer_name
+
+Read/write Properties
+---------------------
+
+.. autoattribute:: abjad.tools.scoretools.Performer.Performer.Performer.instruments
+
+.. autoattribute:: abjad.tools.scoretools.Performer.Performer.Performer.name
+
+Special Methods
+---------------
+
+.. automethod:: abjad.tools.scoretools.Performer.Performer.Performer.__delattr__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.scoretools.Performer.Performer.Performer.__eq__
+
+.. automethod:: abjad.tools.scoretools.Performer.Performer.Performer.__ge__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.scoretools.Performer.Performer.Performer.__gt__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.scoretools.Performer.Performer.Performer.__hash__
+
+.. automethod:: abjad.tools.scoretools.Performer.Performer.Performer.__le__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.scoretools.Performer.Performer.Performer.__lt__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.scoretools.Performer.Performer.Performer.__ne__
+
+.. automethod:: abjad.tools.scoretools.Performer.Performer.Performer.__repr__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.scoretools.Performer.Performer.Performer.__setattr__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.scoretools.Performer.Performer.Performer.__str__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.scoretools.Performer.Performer.Performer.make_performer_name_instrument_dictionary

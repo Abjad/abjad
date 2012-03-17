@@ -1,34 +1,142 @@
 pitchtools.HarmonicChromaticIntervalClassVector
 ===============================================
 
-.. inheritance-diagram:: abjad.tools.pitchtools.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector
+.. inheritance-diagram:: abjad.tools.pitchtools.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector
    :private-bases:
-.. autoclass:: abjad.tools.pitchtools.HarmonicChromaticIntervalClassVector
-   :members:
-   :undoc-members:
-   :inherited-members:
-   :special-members:
-   :exclude-members:
-       __abstractmethods__,
-       __class__,
-       __copy__,
-       __deepcopy__,
-       __delattr__,
-       __dict__,
-       __format__,
-       __getattribute__,
-       __getnewargs__,
-       __getstate__,
-       __hash__,
-       __init__,
-       __metaclass__,
-       __module__,
-       __new__,
-       __reduce__,
-       __reduce_ex__,
-       __setattr__,
-       __setstate__,
-       __sizeof__,
-       __slots__,
-       __subclasshook__,
-       __weakref__,
+
+.. autoclass:: abjad.tools.pitchtools.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector
+
+Special Methods
+---------------
+
+.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.__cmp__
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.__contains__
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.__delattr__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.__delitem__
+
+   .. note:: Inherited from :py:class:`datastructuretools.ImmutableDictionary <abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary>`
+
+.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.__eq__
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.__ge__
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.__getitem__
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.__gt__
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.__iter__
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.__le__
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.__len__
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.__lt__
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.__ne__
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.__repr__
+
+.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.__setattr__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.__setitem__
+
+.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.__str__
+
+.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.clear
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.copy
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.get
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.has_key
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.has_none_of
+
+.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.items
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.iteritems
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.iterkeys
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.itervalues
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.keys
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.pop
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.popitem
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.setdefault
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.update
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.values
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.viewitems
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.viewkeys
+
+   .. note:: Inherited from `__builtin__.dict`
+
+.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.viewvalues
+
+   .. note:: Inherited from `__builtin__.dict`

@@ -1,34 +1,153 @@
 instrumenttools.InstrumentInventory
 ===================================
 
-.. inheritance-diagram:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory
+.. inheritance-diagram:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory
    :private-bases:
-.. autoclass:: abjad.tools.instrumenttools.InstrumentInventory
-   :members:
-   :undoc-members:
-   :inherited-members:
-   :special-members:
-   :exclude-members:
-       __abstractmethods__,
-       __class__,
-       __copy__,
-       __deepcopy__,
-       __delattr__,
-       __dict__,
-       __format__,
-       __getattribute__,
-       __getnewargs__,
-       __getstate__,
-       __hash__,
-       __init__,
-       __metaclass__,
-       __module__,
-       __new__,
-       __reduce__,
-       __reduce_ex__,
-       __setattr__,
-       __setstate__,
-       __sizeof__,
-       __slots__,
-       __subclasshook__,
-       __weakref__,
+
+.. autoclass:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory
+
+Read/write Properties
+---------------------
+
+.. autoattribute:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.inventory_name
+
+   .. note:: Inherited from :py:class:`datastructuretools.ObjectInventory <abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory>`
+
+Special Methods
+---------------
+
+.. automethod:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.__add__
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.__contains__
+
+   .. note:: Inherited from :py:class:`datastructuretools.ObjectInventory <abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory>`
+
+.. automethod:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.__delattr__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.__delitem__
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.__delslice__
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.__eq__
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.__ge__
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.__getitem__
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.__getslice__
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.__gt__
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.__iadd__
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.__imul__
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.__iter__
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.__le__
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.__len__
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.__lt__
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.__mul__
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.__ne__
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.__repr__
+
+   .. note:: Inherited from :py:class:`datastructuretools.ObjectInventory <abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory>`
+
+.. automethod:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.__reversed__
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.__rmul__
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.__setattr__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.__setitem__
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.__setslice__
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.__str__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.append
+
+   .. note:: Inherited from :py:class:`datastructuretools.ObjectInventory <abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory>`
+
+.. automethod:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.count
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.extend
+
+   .. note:: Inherited from :py:class:`datastructuretools.ObjectInventory <abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory>`
+
+.. automethod:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.index
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.insert
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.pop
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.remove
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.reverse
+
+   .. note:: Inherited from `__builtin__.list`
+
+.. automethod:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.sort
+
+   .. note:: Inherited from `__builtin__.list`

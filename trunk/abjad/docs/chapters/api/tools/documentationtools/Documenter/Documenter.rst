@@ -1,34 +1,63 @@
 documentationtools.Documenter
 =============================
 
-.. inheritance-diagram:: abjad.tools.documentationtools.Documenter.Documenter
+.. inheritance-diagram:: abjad.tools.documentationtools.Documenter.Documenter.Documenter
    :private-bases:
-.. autoclass:: abjad.tools.documentationtools.Documenter
-   :members:
-   :undoc-members:
-   :inherited-members:
-   :special-members:
-   :exclude-members:
-       __abstractmethods__,
-       __class__,
-       __copy__,
-       __deepcopy__,
-       __delattr__,
-       __dict__,
-       __format__,
-       __getattribute__,
-       __getnewargs__,
-       __getstate__,
-       __hash__,
-       __init__,
-       __metaclass__,
-       __module__,
-       __new__,
-       __reduce__,
-       __reduce_ex__,
-       __setattr__,
-       __setstate__,
-       __sizeof__,
-       __slots__,
-       __subclasshook__,
-       __weakref__,
+
+.. autoclass:: abjad.tools.documentationtools.Documenter.Documenter.Documenter
+
+Read-only Properties
+--------------------
+
+.. autoattribute:: abjad.tools.documentationtools.Documenter.Documenter.Documenter.object
+
+.. autoattribute:: abjad.tools.documentationtools.Documenter.Documenter.Documenter.prefix
+
+Special Methods
+---------------
+
+.. automethod:: abjad.tools.documentationtools.Documenter.Documenter.Documenter.__call__
+
+.. automethod:: abjad.tools.documentationtools.Documenter.Documenter.Documenter.__delattr__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.documentationtools.Documenter.Documenter.Documenter.__eq__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.documentationtools.Documenter.Documenter.Documenter.__ge__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.documentationtools.Documenter.Documenter.Documenter.__gt__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.documentationtools.Documenter.Documenter.Documenter.__hash__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.documentationtools.Documenter.Documenter.Documenter.__le__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.documentationtools.Documenter.Documenter.Documenter.__lt__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.documentationtools.Documenter.Documenter.Documenter.__ne__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.documentationtools.Documenter.Documenter.Documenter.__repr__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.documentationtools.Documenter.Documenter.Documenter.__setattr__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.documentationtools.Documenter.Documenter.Documenter.__str__
+
+   .. note:: Inherited from `__builtin__.object`

@@ -1,34 +1,75 @@
 quantizationtools.QGrid
 =======================
 
-.. inheritance-diagram:: abjad.tools.quantizationtools.QGrid.QGrid
+.. inheritance-diagram:: abjad.tools.quantizationtools.QGrid.QGrid.QGrid
    :private-bases:
-.. autoclass:: abjad.tools.quantizationtools.QGrid
-   :members:
-   :undoc-members:
-   :inherited-members:
-   :special-members:
-   :exclude-members:
-       __abstractmethods__,
-       __class__,
-       __copy__,
-       __deepcopy__,
-       __delattr__,
-       __dict__,
-       __format__,
-       __getattribute__,
-       __getnewargs__,
-       __getstate__,
-       __hash__,
-       __init__,
-       __metaclass__,
-       __module__,
-       __new__,
-       __reduce__,
-       __reduce_ex__,
-       __setattr__,
-       __setstate__,
-       __sizeof__,
-       __slots__,
-       __subclasshook__,
-       __weakref__,
+
+.. autoclass:: abjad.tools.quantizationtools.QGrid.QGrid.QGrid
+
+Read-only Properties
+--------------------
+
+.. autoattribute:: abjad.tools.quantizationtools.QGrid.QGrid.QGrid.definition
+
+.. autoattribute:: abjad.tools.quantizationtools.QGrid.QGrid.QGrid.next
+
+.. autoattribute:: abjad.tools.quantizationtools.QGrid.QGrid.QGrid.offsets
+
+Special Methods
+---------------
+
+.. automethod:: abjad.tools.quantizationtools.QGrid.QGrid.QGrid.__delattr__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.quantizationtools.QGrid.QGrid.QGrid.__eq__
+
+.. automethod:: abjad.tools.quantizationtools.QGrid.QGrid.QGrid.__ge__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.quantizationtools.QGrid.QGrid.QGrid.__getitem__
+
+.. automethod:: abjad.tools.quantizationtools.QGrid.QGrid.QGrid.__gt__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.quantizationtools.QGrid.QGrid.QGrid.__hash__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.quantizationtools.QGrid.QGrid.QGrid.__iter__
+
+.. automethod:: abjad.tools.quantizationtools.QGrid.QGrid.QGrid.__le__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.quantizationtools.QGrid.QGrid.QGrid.__len__
+
+.. automethod:: abjad.tools.quantizationtools.QGrid.QGrid.QGrid.__lt__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.quantizationtools.QGrid.QGrid.QGrid.__ne__
+
+   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.quantizationtools.QGrid.QGrid.QGrid.__repr__
+
+.. automethod:: abjad.tools.quantizationtools.QGrid.QGrid.QGrid.__setattr__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.quantizationtools.QGrid.QGrid.QGrid.__setitem__
+
+.. automethod:: abjad.tools.quantizationtools.QGrid.QGrid.QGrid.__str__
+
+   .. note:: Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.quantizationtools.QGrid.QGrid.QGrid.find_divisible_indices
+
+.. automethod:: abjad.tools.quantizationtools.QGrid.QGrid.QGrid.find_parentage_of_index
+
+.. automethod:: abjad.tools.quantizationtools.QGrid.QGrid.QGrid.format_for_beatspan
+
+.. automethod:: abjad.tools.quantizationtools.QGrid.QGrid.QGrid.subdivide_indices
