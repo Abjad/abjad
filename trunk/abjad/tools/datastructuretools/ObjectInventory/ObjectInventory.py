@@ -48,12 +48,13 @@ class ObjectInventory(list, AbjadObject):
     def _item_callable(self):
         return lambda x: x
 
-    # TODO: inherit from superclass property and likewise for all subclasses systemwide
     @property
     def _keyword_argument_names(self):
-        return (
+        result = []
+        result.extend([
             'inventory_name',
-            )
+            ])
+        return result
 
     @property
     def _mandatory_argument_repr_string(self):
