@@ -6,6 +6,7 @@ from abjad.tools.documentationtools.FunctionDocumenter import FunctionDocumenter
 
 
 class APICrawler(abctools.AbjadObject):
+    '''Generates directories containing ReST to parallel directories containing code.'''
 
     ### CLASS ATTRIBUTES ###
 
@@ -32,6 +33,7 @@ class APICrawler(abctools.AbjadObject):
         assert os.path.exists(self.code_root)
         assert os.path.exists(self.docs_root)
 
+        visited_modules = [ ]
         for current_root, directories, files in os.walk(self.code_root):
 
             # filter directories
@@ -67,6 +69,11 @@ class APICrawler(abctools.AbjadObject):
                 file_handler = open(docs_fullpath, 'w')
                 file_handler.write(obj())
                 file_handler.close()
+
+                # add module of documenter's documentary subject to visited modules list
+                visited_modules.append(obj.object.__module__)
+
+        return tuple(sorted(visited_modules))
 
     ### PRIVATE METHODS ###
 

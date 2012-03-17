@@ -30,6 +30,8 @@ class FunctionDocumenter(Documenter):
 
     def __init__(self, obj, prefix = 'abjad.tools.'):
         assert isinstance(obj, types.FunctionType)
+        if obj.__name__ == 'wrapper':
+            obj = obj.func_closure[1].cell_contents
         Documenter.__init__(self, obj, prefix)
 
     ### SPECIAL METHODS ###
