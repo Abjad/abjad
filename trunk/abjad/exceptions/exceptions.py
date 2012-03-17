@@ -279,3 +279,7 @@ class ImpreciseTempoError(TempoError):
 class NotImplementedError(Exception):
     '''Method or attribute is not implemented.'''
     pass
+
+class UnboundedTimeIntervalError(Exception):
+    '''TimeInterval has no bounds.'''
+    pass
