@@ -71,9 +71,12 @@ class APICrawler(abctools.AbjadObject):
                 new_docs = obj()
 
                 # read old docs
-                file_handler = open(docs_fullpath, 'r')
-                old_docs = file_handler.read()
-                file_handler.close()
+                if os.path.exists(docs_fullpath):
+                    file_handler = open(docs_fullpath, 'r')
+                    old_docs = file_handler.read()
+                    file_handler.close()
+                else:
+                    old_docs = None
 
                 # only overwrite if changed
                 if new_docs != old_docs:
