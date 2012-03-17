@@ -179,16 +179,6 @@ class AbjadObject(object):
 
     ### PRIVATE METHODS ###
 
-    # TODO: remove this method and include the two calls in self._get_tools_package_qualified_repr_pieces()
-    def _get_tools_package_qualified_argument_repr_pieces(self, is_indented=True):
-        result = []
-        result.extend(self._get_tools_package_qualified_mandatory_argument_repr_pieces(is_indented=is_indented))
-        result.extend(self._get_tools_package_qualified_keyword_argument_repr_pieces(is_indented=is_indented))
-        if result:
-            result[-1] = result[-1].rstrip(' ')
-            result[-1] = result[-1].rstrip(',')
-        return result
-
     def _get_tools_package_qualified_keyword_argument_repr_pieces(self, is_indented=True):
         result = []
         if is_indented:
@@ -236,7 +226,14 @@ class AbjadObject(object):
 
     def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
         result = []
-        argument_repr_pieces = self._get_tools_package_qualified_argument_repr_pieces(is_indented=is_indented)
+        argument_repr_pieces = []
+        argument_repr_pieces.extend(
+            self._get_tools_package_qualified_mandatory_argument_repr_pieces(is_indented=is_indented))
+        argument_repr_pieces.extend(
+            self._get_tools_package_qualified_keyword_argument_repr_pieces(is_indented=is_indented))
+        if argument_repr_pieces:
+            argument_repr_pieces[-1] = argument_repr_pieces[-1].rstrip(' ')
+            argument_repr_pieces[-1] = argument_repr_pieces[-1].rstrip(',')
         if len(argument_repr_pieces) == 0:
             result.append('{}()'.format(self._tools_package_qualified_class_name))
         else:
