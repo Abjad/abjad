@@ -15,10 +15,12 @@ def list_instruments(klasses=None):
         <class 'abjad.tools.instrumenttools.AltoTrombone.AltoTrombone.AltoTrombone'>
         <class 'abjad.tools.instrumenttools.BFlatClarinet.BFlatClarinet.BFlatClarinet'>
         <class 'abjad.tools.instrumenttools.BaritoneSaxophone.BaritoneSaxophone.BaritoneSaxophone'>
+        <class 'abjad.tools.instrumenttools.BaritoneVoice.BaritoneVoice.BaritoneVoice'>
         <class 'abjad.tools.instrumenttools.BassClarinet.BassClarinet.BassClarinet'>
         <class 'abjad.tools.instrumenttools.BassFlute.BassFlute.BassFlute'>
         <class 'abjad.tools.instrumenttools.BassSaxophone.BassSaxophone.BassSaxophone'>
         <class 'abjad.tools.instrumenttools.BassTrombone.BassTrombone.BassTrombone'>
+        <class 'abjad.tools.instrumenttools.BassVoice.BassVoice.BassVoice'>
         <class 'abjad.tools.instrumenttools.Bassoon.Bassoon.Bassoon'>
         <class 'abjad.tools.instrumenttools.Cello.Cello.Cello'>
         <class 'abjad.tools.instrumenttools.ClarinetInA.ClarinetInA.ClarinetInA'>
@@ -27,6 +29,7 @@ def list_instruments(klasses=None):
         <class 'abjad.tools.instrumenttools.ContrabassFlute.ContrabassFlute.ContrabassFlute'>
         <class 'abjad.tools.instrumenttools.ContrabassSaxophone.ContrabassSaxophone.ContrabassSaxophone'>
         <class 'abjad.tools.instrumenttools.Contrabassoon.Contrabassoon.Contrabassoon'>
+        <class 'abjad.tools.instrumenttools.ContraltoVoice.ContraltoVoice.ContraltoVoice'>
         <class 'abjad.tools.instrumenttools.EFlatClarinet.EFlatClarinet.EFlatClarinet'>
         <class 'abjad.tools.instrumenttools.EnglishHorn.EnglishHorn.EnglishHorn'>
         <class 'abjad.tools.instrumenttools.Flute.Flute.Flute'>
@@ -36,13 +39,16 @@ def list_instruments(klasses=None):
         <class 'abjad.tools.instrumenttools.Harp.Harp.Harp'>
         <class 'abjad.tools.instrumenttools.Harpsichord.Harpsichord.Harpsichord'>
         <class 'abjad.tools.instrumenttools.Marimba.Marimba.Marimba'>
+        <class 'abjad.tools.instrumenttools.MezzoSopranoVoice.MezzoSopranoVoice.MezzoSopranoVoice'>
         <class 'abjad.tools.instrumenttools.Oboe.Oboe.Oboe'>
         <class 'abjad.tools.instrumenttools.Piano.Piano.Piano'>
         <class 'abjad.tools.instrumenttools.Piccolo.Piccolo.Piccolo'>
         <class 'abjad.tools.instrumenttools.SopraninoSaxophone.SopraninoSaxophone.SopraninoSaxophone'>
         <class 'abjad.tools.instrumenttools.SopranoSaxophone.SopranoSaxophone.SopranoSaxophone'>
+        <class 'abjad.tools.instrumenttools.SopranoVoice.SopranoVoice.SopranoVoice'>
         <class 'abjad.tools.instrumenttools.TenorSaxophone.TenorSaxophone.TenorSaxophone'>
         <class 'abjad.tools.instrumenttools.TenorTrombone.TenorTrombone.TenorTrombone'>
+        <class 'abjad.tools.instrumenttools.TenorVoice.TenorVoice.TenorVoice'>
         <class 'abjad.tools.instrumenttools.Trumpet.Trumpet.Trumpet'>
         <class 'abjad.tools.instrumenttools.Tuba.Tuba.Tuba'>
         <class 'abjad.tools.instrumenttools.UntunedPercussion.UntunedPercussion.UntunedPercussion'>
