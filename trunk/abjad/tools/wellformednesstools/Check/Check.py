@@ -10,6 +10,11 @@ class Check(AbjadObject):
 
     __metaclass__ = ABCMeta
 
+    ### INITIALIZER ###
+
+    def __init__(self):
+        pass
+
     ### READ-ONLY PRIVATE ATTRIBUTES ###
 
     @property
