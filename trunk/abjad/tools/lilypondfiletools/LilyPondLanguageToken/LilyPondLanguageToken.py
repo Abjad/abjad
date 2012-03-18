@@ -14,6 +14,11 @@ class LilyPondLanguageToken(AbjadObject):
     Return LilyPond language token.
     '''
 
+    ### INITIALIZER ###
+
+    def __init__(self):
+        pass
+
     ### SPECIAL METHODS ###
 
     def __repr__(self):
