@@ -17,7 +17,9 @@ def _import_contents_of_public_packages_in_path_into_namespace(
     for name in os.listdir(path):
         fullname = os.path.join(path, name)
         if os.path.isdir(fullname):
-            if name[0].isupper() and os.path.exists(os.path.join(fullname, '__init__.py')):
+            if name[0].isupper() and \
+                os.path.exists(os.path.join(fullname, '__init__.py')) and \
+                os.path.exists(os.path.join(fullname, '%s.py' % name)):
                 class_package = '.'.join([parent_package, name])
                 class_module = '.'.join([class_package, name])
                 public_names = _get_public_names_in_module(class_module)
