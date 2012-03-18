@@ -13,6 +13,11 @@ class LilyPondVersionToken(AbjadObject):
     Return LilyPond version token.
     '''
 
+    ### INITIALIZER ###
+
+    def __init__(self):
+        pass
+
     ### SPECIAL METHODS ###
 
     def __repr__(self):
