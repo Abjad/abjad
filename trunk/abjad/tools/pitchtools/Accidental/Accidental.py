@@ -17,9 +17,8 @@ class Accidental(AbjadObject):
     __slots__ = ('_alphabetic_accidental_abbreviation', '_is_adjusted', '_name', 
         '_semitones', '_symbolic_accidental_string')
 
-    def __new__(klass, arg = ''):
+    def __init__(self, arg = ''):
         from abjad.tools import pitchtools
-        self = object.__new__(klass)
         # initialize symbolic string from arg
         if pitchtools.is_alphabetic_accidental_abbreviation(arg):
             _alphabetic_accidental_abbreviation = arg
@@ -48,7 +47,6 @@ class Accidental(AbjadObject):
             pitchtools.alphabetic_accidental_abbreviation_to_symbolic_accidental_string(
             self.alphabetic_accidental_abbreviation)
         object.__setattr__(self, '_symbolic_accidental_string', _symbolic_accidental_string)
-        return self
 
     ### SPECIAL METHODS ###
 

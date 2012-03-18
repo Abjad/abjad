@@ -14,9 +14,8 @@ class NumberedChromaticPitchClass(_PitchClass):
 
     __slots__ = ('_chromatic_pitch_class_number', )
 
-    def __new__(klass, arg):
+    def __init__(self, arg):
         from abjad.tools import pitchtools
-        self = object.__new__(klass)
         if pitchtools.is_chromatic_pitch_number(arg):
             number = pitchtools.chromatic_pitch_number_to_chromatic_pitch_class_number(arg)
         elif isinstance(arg, type(self)):
@@ -32,7 +31,6 @@ class NumberedChromaticPitchClass(_PitchClass):
             number = abs(pitch.numbered_chromatic_pitch) % 12
         object.__setattr__(self, '_chromatic_pitch_class_number', number)
         object.__setattr__(self, '_comparison_attribute', number)
-        return self
 
     ### SPECIAL METHODS ###
 

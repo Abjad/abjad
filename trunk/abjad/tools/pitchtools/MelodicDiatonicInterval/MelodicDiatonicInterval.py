@@ -16,9 +16,8 @@ class MelodicDiatonicInterval(_DiatonicInterval, _MelodicInterval):
 
     __slots__ = ('_quality_string', '_number', )
 
-    def __new__(klass, *args):
+    def __init__(self, *args):
         from abjad.tools.pitchtools.is_melodic_diatonic_interval_abbreviation import melodic_diatonic_interval_abbreviation_regex
-        self = object.__new__(klass)
         if len(args) == 1 and isinstance(args[0], type(self)):
             quality_string = args[0].quality_string
             number = args[0].number
@@ -33,7 +32,6 @@ class MelodicDiatonicInterval(_DiatonicInterval, _MelodicInterval):
             quality_string, number = args
         object.__setattr__(self, '_quality_string', quality_string)
         object.__setattr__(self, '_number', number)
-        return self
 
     ### SPECIAL METHODS ###
 

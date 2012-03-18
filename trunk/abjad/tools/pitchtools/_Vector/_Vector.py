@@ -9,5 +9,3 @@ class _Vector(ImmutableDictionary):
     '''
 
     __metaclass__ = ABCMeta
-
-    pass

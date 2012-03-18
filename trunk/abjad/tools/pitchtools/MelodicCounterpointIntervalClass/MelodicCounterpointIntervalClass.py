@@ -16,9 +16,8 @@ class MelodicCounterpointIntervalClass(_CounterpointIntervalClass, _MelodicInter
 
     __slots__ = ('_number', )
 
-    def __new__(klass, token):
+    def __init__(self, token):
         from abjad.tools import pitchtools
-        self = object.__new__(klass)
         if isinstance(token, int):
             number = token
         elif isinstance(token, pitchtools._CounterpointInterval._CounterpointInterval):
@@ -36,7 +35,6 @@ class MelodicCounterpointIntervalClass(_CounterpointIntervalClass, _MelodicInter
                 number = 8
             number *= sign
             object.__setattr__(self, '_number', number)
-        return self
 
     ### SPECIAL METHODS ###
 

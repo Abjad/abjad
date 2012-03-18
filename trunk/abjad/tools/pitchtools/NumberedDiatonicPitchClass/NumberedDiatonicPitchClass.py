@@ -16,10 +16,9 @@ class NumberedDiatonicPitchClass(_NumberedPitchClass, _DiatonicPitchClass):
     __slots__ = ('_comparison_attribute', '_diatonic_pitch_class_number', '_format_string',
         '_number')
 
-    def __new__(klass, arg):
+    def __init__(self, arg):
         from abjad.tools import mathtools
         from abjad.tools import pitchtools
-        self = object.__new__(klass)
         if hasattr(arg, '_diatonic_pitch_class_number'):
             diatonic_pitch_class_number = arg._diatonic_pitch_class_number
         elif pitchtools.is_chromatic_pitch_name(arg):
@@ -33,7 +32,6 @@ class NumberedDiatonicPitchClass(_NumberedPitchClass, _DiatonicPitchClass):
         object.__setattr__(self, '_number', diatonic_pitch_class_number)
         object.__setattr__(self, '_comparison_attribute', diatonic_pitch_class_number)
         object.__setattr__(self, '_format_string', diatonic_pitch_class_number)
-        return self
 
     ### SPECIAL METHODS ###
 

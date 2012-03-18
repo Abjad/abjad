@@ -15,9 +15,8 @@ class NumberedChromaticPitch(_ChromaticPitch, _NumberedPitch):
 
     __slots__ = ('_chromatic_pitch_number', )
 
-    def __new__(klass, arg):
+    def __init__(self, arg):
         from abjad.tools import pitchtools
-        self = object.__new__(klass)
         if hasattr(arg, '_chromatic_pitch_number'):
             chromatic_pitch_number = arg._chromatic_pitch_number
         elif pitchtools.is_chromatic_pitch_number(arg):
@@ -28,7 +27,6 @@ class NumberedChromaticPitch(_ChromaticPitch, _NumberedPitch):
             raise TypeError('can not initialize numbered chromatic pitch from "%s".' % arg)
         object.__setattr__(self, '_chromatic_pitch_number', chromatic_pitch_number)
         object.__setattr__(self, '_comparison_attribute', chromatic_pitch_number)
-        return self
 
     ### SPECIAL METHODS ###
 

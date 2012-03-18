@@ -1,4 +1,5 @@
 from abc import ABCMeta
+from abc import abstractmethod
 from abjad.exceptions import IntervalError
 from abjad.tools import mathtools
 from abjad.tools.pitchtools._Diatonic import _Diatonic
@@ -14,8 +15,7 @@ class _DiatonicInterval(_Interval, _Diatonic):
     __metaclass__ = ABCMeta
     __slots__ = ('_number', '_quality_string')
 
-    def __new__(klass, quality_string, number):
-        self = object.__new__(klass)
+    def __init__(self, quality_string, number):
         if quality_string == 'diminished':
             if abs(number) == 1:
                 raise IntervalError('diminished unison makes no sense.')
@@ -32,7 +32,6 @@ class _DiatonicInterval(_Interval, _Diatonic):
         else:
             raise ValueError('interval must be integer.')
         object.__setattr__(self, '_number', number)
-        return self
 
     ### SPECIAL METHODS ###
 

@@ -13,9 +13,8 @@ class InversionEquivalentDiatonicIntervalClass(_DiatonicIntervalClass):
     Inversion-equivalent diatonic interval-classes are immutable.
     '''
 
-    def __new__(klass, *args):
+    def __init__(self, *args):
         from abjad.tools.pitchtools.is_melodic_diatonic_interval_abbreviation import melodic_diatonic_interval_abbreviation_regex
-        self = object.__new__(klass)
         if len(args) == 1 and isinstance(args[0], type(self)):
             self._init_by_self_reference(args[0])
         elif len(args) == 1 and isinstance(args[0], str):
@@ -27,12 +26,11 @@ class InversionEquivalentDiatonicIntervalClass(_DiatonicIntervalClass):
             number = int(number_string)
             self._init_by_quality_string_and_number(quality_string, number)
         elif len(args) == 1 and isinstance(args[0], tuple):
-            self = self.__new__(klass, *args[0])
+            self._init_by_quality_string_and_number(*args[0])
         elif len(args) == 2:
             self._init_by_quality_string_and_number(*args)
         else:
             raise ValueError('can not initialize diatonic interval-class.')
-        return self
 
     ### SPECIAL METHODS ###
 

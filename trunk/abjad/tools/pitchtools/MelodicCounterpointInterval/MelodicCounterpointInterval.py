@@ -13,8 +13,7 @@ class MelodicCounterpointInterval(_CounterpointInterval, _MelodicInterval):
     Melodic counterpoint intervals are immutable.
     '''
 
-    def __new__(klass, number):
-        self = object.__new__(klass)
+    def __init__(self, number):
         if not isinstance(number, int):
             raise TypeError('must be integer.')
         if number == 0:
@@ -22,7 +21,6 @@ class MelodicCounterpointInterval(_CounterpointInterval, _MelodicInterval):
         if abs(number) == 1:
             number = 1
         object.__setattr__(self, '_number', number)
-        return self
 
     ### SPECIAL METHODS ###
 

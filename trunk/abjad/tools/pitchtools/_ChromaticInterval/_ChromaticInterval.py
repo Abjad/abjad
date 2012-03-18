@@ -1,4 +1,5 @@
 from abc import ABCMeta
+from abc import abstractmethod
 from abjad.tools import mathtools
 from abjad.tools.pitchtools._Chromatic import _Chromatic
 from abjad.tools.pitchtools._Interval import _Interval
@@ -13,8 +14,7 @@ class _ChromaticInterval(_Interval, _Chromatic):
     __metaclass__ = ABCMeta
     __slots__ = ('_number', )
 
-    def __new__(klass, arg):
-        self = object.__new__(klass)
+    def __init__(self, arg):
         if isinstance(arg, (int, float, long)):
             _number = arg
         elif isinstance(arg, _Interval):
@@ -22,7 +22,6 @@ class _ChromaticInterval(_Interval, _Chromatic):
         else:
             raise TypeError('%s must be number or interval.' % arg)
         object.__setattr__(self, '_number', _number)
-        return self
 
     ### SPECIAL METHODS ###
 

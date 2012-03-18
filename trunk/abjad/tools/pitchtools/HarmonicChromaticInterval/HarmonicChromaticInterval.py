@@ -14,10 +14,9 @@ class HarmonicChromaticInterval(_ChromaticInterval, _HarmonicInterval):
     Harmonic chromatic intervals are immutable.
     '''
 
-    def __new__(klass, arg):
-        self = _ChromaticInterval.__new__(klass, arg)
+    def __init__(self, arg):
+        _ChromaticInterval.__init__(self, arg)
         object.__setattr__(self, '_number', abs(self._number))
-        return self
 
     ### SPECIAL METHODS ###
 

@@ -14,9 +14,8 @@ class MelodicChromaticInterval(_ChromaticInterval, _MelodicInterval):
     Melodic chromatic intervals are immutable.
     '''
 
-    def __new__(klass, arg):
+    def __init__(self, arg):
         from abjad.tools import pitchtools
-        self = object.__new__(klass)
         if isinstance(arg, (int, float, long)):
             number = arg
         elif isinstance(arg, pitchtools._Interval._Interval):
@@ -24,7 +23,6 @@ class MelodicChromaticInterval(_ChromaticInterval, _MelodicInterval):
         else:
             raise TypeError('%s must be number or interval.' % arg)
         object.__setattr__(self, '_number', number)
-        return self
 
     ### SPECIAL METHODS ###
 

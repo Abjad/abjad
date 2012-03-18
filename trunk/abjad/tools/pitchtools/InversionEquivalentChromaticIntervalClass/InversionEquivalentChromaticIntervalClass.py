@@ -15,8 +15,7 @@ class InversionEquivalentChromaticIntervalClass(_IntervalClass):
 
     __slots__ = ('_number', )
 
-    def __new__(klass, interval_class_token):
-        self = object.__new__(klass)
+    def __init__(self, interval_class_token):
         if isinstance(interval_class_token, type(self)):
             _number = interval_class_token.number
         elif isinstance(interval_class_token, numbers.Number):
@@ -26,7 +25,6 @@ class InversionEquivalentChromaticIntervalClass(_IntervalClass):
         else:
             raise TypeError('must be interval-class instance or number.')
         object.__setattr__(self, '_number', _number)
-        return self
 
     ### SPECIAL METHODS ###
 

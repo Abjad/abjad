@@ -21,6 +21,12 @@ class AbjadObject(object):
     __metaclass__ = ABCMeta
     __slots__ = ()
 
+    ### INITIALIZER ###
+
+    @abstractmethod
+    def __init__(self, *args, **kwargs):
+        pass
+
     ### SPECIAL METHODS ###
 
     def __eq__(self, arg):

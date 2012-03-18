@@ -16,14 +16,12 @@ class NumberedChromaticPitchClassColorMap(AbjadObject):
 
     __slots__ = ('_color_dictionary', '_colors', '_pitch_iterables', )
 
-    def __new__(klass, pitch_iterables, colors):
-        self = object.__new__(klass)
+    def __init__(self, pitch_iterables, colors):
         assert len(pitch_iterables) == len(colors)
         object.__setattr__(self, '_pitch_iterables', pitch_iterables)
         object.__setattr__(self, '_colors', colors)
         object.__setattr__(self, '_color_dictionary', {})
         self._init_color_dictionary()
-        return self
 
     ### SPECIAL METHODS ###
 

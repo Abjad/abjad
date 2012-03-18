@@ -1,4 +1,5 @@
 from abc import ABCMeta
+from abc import abstractmethod
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 

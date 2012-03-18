@@ -1,4 +1,5 @@
 from abc import ABCMeta
+from abc import abstractmethod
 from abjad.tools.pitchtools._Interval import _Interval
 from abjad.tools.pitchtools._Melodic import _Melodic
 

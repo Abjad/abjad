@@ -30,9 +30,8 @@ class NamedChromaticPitch(_Pitch):
         '_diatonic_pitch_number',
         )
 
-    def __new__(klass, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
         from abjad.tools import pitchtools
-        self = object.__new__(klass)
         _deviation_in_cents = kwargs.get('deviation_in_cents', None)
         object.__setattr__(self, '_deviation_in_cents', _deviation_in_cents)
         if len(args) == 1 and isinstance(args[0], (int, long, float)):
@@ -72,7 +71,6 @@ class NamedChromaticPitch(_Pitch):
         accidental_semitones = Accidental._alphabetic_accidental_abbreviation_to_semitones[
             alphabetic_accidental_abbreviation]
         object.__setattr__(self, '_accidental_semitones', accidental_semitones)
-        return self
 
     ### SPECIAL METHODS ###
 

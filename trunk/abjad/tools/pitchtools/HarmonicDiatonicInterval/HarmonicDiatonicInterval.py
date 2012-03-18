@@ -14,9 +14,8 @@ class HarmonicDiatonicInterval(_DiatonicInterval, _HarmonicInterval):
     Harmonic diatonic intervals are immutable.
     '''
 
-    def __new__(klass, *args):
+    def __init__(self, *args):
         from abjad.tools.pitchtools.is_harmonic_diatonic_interval_abbreviation import harmonic_diatonic_interval_abbreviation_regex
-        self = object.__new__(klass)
         if len(args) == 1 and isinstance(args[0], _DiatonicInterval):
             _quality_string = args[0].quality_string
             _number = abs(args[0].number)
@@ -32,7 +31,6 @@ class HarmonicDiatonicInterval(_DiatonicInterval, _HarmonicInterval):
             _number = abs(args[1])
         object.__setattr__(self, '_quality_string', _quality_string)
         object.__setattr__(self, '_number', _number)
-        return self
 
     ### SPECIAL METHODS ###
 

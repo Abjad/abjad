@@ -15,9 +15,8 @@ class MelodicChromaticIntervalClass(_ChromaticIntervalClass, _MelodicIntervalCla
     Melodic chromatic interval-classes are immutable.
     '''
 
-    def __new__(klass, token):
+    def __init__(self, token):
         from abjad.tools import pitchtools
-        self = object.__new__(klass)
         if isinstance(token, numbers.Number):
             sign = mathtools.sign(token)
             abs_token = abs(token)
@@ -47,7 +46,6 @@ class MelodicChromaticIntervalClass(_ChromaticIntervalClass, _MelodicIntervalCla
         else:
             raise ValueError('must be number, interval or interval-class.')
         object.__setattr__(self, '_number', number)
-        return self
 
     ### SPECIAL METHODS ###
 
