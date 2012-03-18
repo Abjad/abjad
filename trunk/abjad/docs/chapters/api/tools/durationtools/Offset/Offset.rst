@@ -65,7 +65,7 @@ Special Methods
 
 .. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.__eq__
 
-   .. note:: Inherited from `fractions.Fraction`
+   .. note:: Inherited from :py:class:`durationtools.Duration <abjad.tools.durationtools.Duration.Duration.Duration>`
 
 .. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.__float__
 
@@ -77,11 +77,11 @@ Special Methods
 
 .. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.__ge__
 
-   .. note:: Inherited from `fractions.Fraction`
+   .. note:: Inherited from :py:class:`durationtools.Duration <abjad.tools.durationtools.Duration.Duration.Duration>`
 
 .. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.__gt__
 
-   .. note:: Inherited from `fractions.Fraction`
+   .. note:: Inherited from :py:class:`durationtools.Duration <abjad.tools.durationtools.Duration.Duration.Duration>`
 
 .. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.__hash__
 
@@ -89,11 +89,11 @@ Special Methods
 
 .. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.__le__
 
-   .. note:: Inherited from `fractions.Fraction`
+   .. note:: Inherited from :py:class:`durationtools.Duration <abjad.tools.durationtools.Duration.Duration.Duration>`
 
 .. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.__lt__
 
-   .. note:: Inherited from `fractions.Fraction`
+   .. note:: Inherited from :py:class:`durationtools.Duration <abjad.tools.durationtools.Duration.Duration.Duration>`
 
 .. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.__mod__
 
@@ -105,7 +105,7 @@ Special Methods
 
 .. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.__ne__
 
-   .. note:: Inherited from `numbers.Complex`
+   .. note:: Inherited from :py:class:`durationtools.Duration <abjad.tools.durationtools.Duration.Duration.Duration>`
 
 .. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.__neg__
 

@@ -57,8 +57,6 @@ Special Methods
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__eq__
 
-   .. note:: Inherited from `fractions.Fraction`
-
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__float__
 
    .. note:: Inherited from `numbers.Rational`
@@ -69,11 +67,7 @@ Special Methods
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__ge__
 
-   .. note:: Inherited from `fractions.Fraction`
-
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__gt__
-
-   .. note:: Inherited from `fractions.Fraction`
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__hash__
 
@@ -81,19 +75,13 @@ Special Methods
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__le__
 
-   .. note:: Inherited from `fractions.Fraction`
-
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__lt__
-
-   .. note:: Inherited from `fractions.Fraction`
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__mod__
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__mul__
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__ne__
-
-   .. note:: Inherited from `numbers.Complex`
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__neg__
 

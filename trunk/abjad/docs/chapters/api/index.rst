@@ -466,6 +466,13 @@ Abjad composition packages
 :py:mod:`lilypondfiletools <abjad.tools.lilypondfiletools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+.. rubric:: lilypondfiletools abstract classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/lilypondfiletools/LilyPondLanguageToken/LilyPondLanguageToken
+
 .. rubric:: lilypondfiletools concrete classes
 
 .. toctree::
@@ -479,7 +486,6 @@ Abjad composition packages
    tools/lilypondfiletools/HeaderBlock/HeaderBlock
    tools/lilypondfiletools/LayoutBlock/LayoutBlock
    tools/lilypondfiletools/LilyPondFile/LilyPondFile
-   tools/lilypondfiletools/LilyPondLanguageToken/LilyPondLanguageToken
    tools/lilypondfiletools/LilyPondVersionToken/LilyPondVersionToken
    tools/lilypondfiletools/MIDIBlock/MIDIBlock
    tools/lilypondfiletools/PaperBlock/PaperBlock
@@ -1174,13 +1180,14 @@ Additional Abjad composition packages (load manually)
 :py:mod:`abctools <abjad.tools.abctools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: abctools concrete classes
+.. rubric:: abctools abstract classes
 
 .. toctree::
    :maxdepth: 1
 
    tools/abctools/AbjadObject/AbjadObject
    tools/abctools/AttributeEqualityAbjadObject/AttributeEqualityAbjadObject
+   tools/abctools/ImmutableAbjadObject/ImmutableAbjadObject
    tools/abctools/SortableAttributeEqualityAbjadObject/SortableAttributeEqualityAbjadObject
 
 :py:mod:`configurationtools <abjad.tools.configurationtools>`
