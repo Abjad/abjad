@@ -35,10 +35,9 @@ class Scheme(AbjadObject):
 
     __slots__ = ('_quoting', '_value',)
 
-    def __new__(klass, *args, **kwargs):
-        self = object.__new__(klass)
+    def __init__(self, *args, **kwargs):
         if 1 == len(args):
-            if isinstance(args[0], klass):
+            if isinstance(args[0], type(self)):
                 args = args[0]._value
             else:
                 args = args[0]
@@ -48,7 +47,6 @@ class Scheme(AbjadObject):
             assert all([x in ("'", ',', '@', '`', '#') for x in quoting])
         object.__setattr__(self, '_quoting', quoting)
         object.__setattr__(self, '_value', args)
-        return self
 
     ### SPECIAL METHODS ###
 

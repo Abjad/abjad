@@ -15,18 +15,18 @@ class SchemeMoment(Scheme):
 
     __slots__ = ()
 
-    def __new__(klass, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
         if len(args) == 1 and isinstance(args[0], (Fraction, int, long)):
             args = Fraction(args[0])
         elif len(args) == 1 and isinstance(args[0], tuple):
             args = Fraction(*args[0])
-        elif len(args) == 1 and isinstance(args[0], klass):
+        elif len(args) == 1 and isinstance(args[0], type(self)):
             args = args[0].duration
         elif len(args) == 2 and isinstance(args[0], int) and isinstance(args[1], int):
             args = Fraction(*args)
         else:
             raise TypeError('can not intialize scheme moment from "%s".' % str(args))
-        return Scheme.__new__(klass, args, **kwargs)
+        Scheme.__init__(self, args, **kwargs)
 
     ### SPECIAL METHODS ###
 

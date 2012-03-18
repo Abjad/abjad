@@ -14,7 +14,7 @@ class SchemePair(Scheme):
 
     __slots__ = ()
 
-    def __new__(klass, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
         if len(args) == 1 and isinstance(args[0], SchemePair):
             args = args[0]._value
         elif len(args) == 1 and isinstance(args[0], tuple):
@@ -23,8 +23,7 @@ class SchemePair(Scheme):
             args = args
         else:
             raise TypeError('can not initialize Scheme pair from "%s".' % str(args))
-        self = Scheme.__new__(klass, *args, **kwargs)
-        return self
+        Scheme.__init__(self, *args, **kwargs)
 
     ### PRIVATE PROPERTIES ###
 

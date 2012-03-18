@@ -16,11 +16,11 @@ class SchemeAssociativeList(Scheme):
 
     __slots__ = ()
 
-    def __new__(klass, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
         args_as_pairs = []
         for arg in args:
             if not isinstance(arg, (tuple, SchemePair)):
                 raise TypeError('must be Python pair or Scheme pair: "%s".' % str(arg))
             arg_as_pair = SchemePair(*arg)
             args_as_pairs.append(arg_as_pair)
-        return Scheme.__new__(klass, *args_as_pairs, **{'quoting': "'"})
+        Scheme.__init__(self, *args_as_pairs, **{'quoting': "'"})

@@ -16,5 +16,5 @@ class SchemeVectorConstant(Scheme):
 
     __slots__ = ()
 
-    def __new__(klass, *args):
-        return Scheme.__new__(klass, *args, **{'quoting': "'#"})
+    def __init__(self, *args):
+        Scheme.__init__(self, *args, **{'quoting': "'#"})
