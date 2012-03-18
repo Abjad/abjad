@@ -13,8 +13,7 @@ class QEvent(AbjadObject):
 
     __slots__ = ('_offset', '_value')
 
-    def __new__(klass, *args):
-        self = object.__new__(klass)
+    def __init__(self, *args):
 
         if len(args) == 2:
             offset = args[0]
@@ -31,8 +30,6 @@ class QEvent(AbjadObject):
 
         object.__setattr__(self, '_value', value)
         object.__setattr__(self, '_offset', offset)
-
-        return self
 
     ### OVERRIDES ###
 

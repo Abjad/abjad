@@ -33,15 +33,13 @@ class QGridSearchTree(ImmutableDictionary):
 
     __slots__ = ('_offsets')
 
-    def __new__(klass, definition = None):
-        self = dict.__new__(klass)
+    def __init__(self, definition = None):
         if definition is None:
             definition = self._make_standard_search_tree()
         elif not self._is_valid_search_tree_definition(definition):
             raise ValueError('Search tree definition is invalid: check for primes, malformed subtrees.')
         self._init_immutable_dictionary_recursively(definition)
         self._init_offsets(definition)
-        return self
 
     ### SPECIAL METHODS ###
 

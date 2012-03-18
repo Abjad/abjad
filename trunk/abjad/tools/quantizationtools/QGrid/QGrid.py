@@ -53,14 +53,12 @@ class QGrid(AbjadObject):
 
     __slots__ = ('_definition', '_next', '_offsets')
 
-    def __new__(klass, definition, next):
-        self = object.__new__(klass)
+    def __init__(self, definition, next):
         assert self._is_valid_grid_definition(definition)
         assert self._is_valid_grid_value(next)
         object.__setattr__(self, '_definition', definition)
         object.__setattr__(self, '_next', next)
         object.__setattr__(self, '_offsets', self._expand_offsets())
-        return self
 
     ### OVERRIDES ###
 
