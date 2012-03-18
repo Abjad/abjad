@@ -122,7 +122,7 @@ class AbjadAPIGenerator(abctools.AbjadObject):
         result = []
         result.extend(self._create_package_title(package_name))
         if package_modules['abstract_classes']:
-            result.append('.. rubric:: %s abstract alasses\n' % package_name)
+            result.append('.. rubric:: %s abstract classes\n' % package_name)
             result.extend(self._create_toc_directive())
             for obj in package_modules['abstract_classes']:
                 result.append(self._module_name_to_toc_entry(obj.module_name))
