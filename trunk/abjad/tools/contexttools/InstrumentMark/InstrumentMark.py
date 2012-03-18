@@ -31,8 +31,12 @@ class InstrumentMark(ContextMark):
 
     _format_slot = 'opening'
 
-    def __init__(self, instrument_name, short_instrument_name, 
-        instrument_name_markup=None, short_instrument_name_markup=None, target_context=None):
+    def __init__(self, 
+        instrument_name, 
+        short_instrument_name, 
+        instrument_name_markup=None, 
+        short_instrument_name_markup=None, 
+        target_context=None):
         from abjad.tools.stafftools.Staff import Staff
         ContextMark.__init__(self, target_context=target_context)
         if self.target_context is None:
@@ -42,11 +46,9 @@ class InstrumentMark(ContextMark):
         self._default_short_instrument_name = None
         self._default_short_instrument_name_markup = None
         self.instrument_name = instrument_name
-        if instrument_name_markup is None:
-            self.instrument_name_markup = instrument_name
+        self.instrument_name_markup = instrument_name_markup or instrument_name
         self.short_instrument_name = short_instrument_name
-        if short_instrument_name_markup is None:
-            self.short_instrument_name_markup = short_instrument_name
+        self.short_instrument_name_markup = short_instrument_name_markup or short_instrument_name
 
     ### SPECIAL METHODS ###
 
