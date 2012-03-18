@@ -1,9 +1,9 @@
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.abctools import ImmutableAbjadObject
 from fractions import Fraction
 
 
 # TODO: allow Duration('8..') initialization
-class Duration(Fraction, AbjadObject):
+class Duration(ImmutableAbjadObject, Fraction):
     '''.. versionadded:: 2.0
 
     Abjad model of musical duration::
@@ -51,6 +51,21 @@ class Duration(Fraction, AbjadObject):
     def __divmod__(self, *args):
         return type(self)(Fraction.__divmod__(self, *args))
 
+    def __eq__(self, arg):
+        return Fraction.__eq__(self, arg)
+
+    def __ge__(self, arg):
+        return Fraction.__ge__(self, arg)
+
+    def __gt__(self, arg):
+        return Fraction.__gt__(self, arg)        
+
+    def __le__(self, arg):
+        return Fraction.__le__(self, arg)
+
+    def __lt__(self, arg):
+        return Fraction.__lt__(self, arg)
+
     def __mod__(self, *args):
         return type(self)(Fraction.__mod__(self, *args))
 
@@ -59,6 +74,9 @@ class Duration(Fraction, AbjadObject):
 
     def __neg__(self, *args):
         return type(self)(Fraction.__neg__(self, *args))
+
+    def __ne__(self, arg):
+        return Fraction.__ne__(self, arg)
 
     def __pos__(self, *args):
         return type(self)(Fraction.__pos__(self, *args))
