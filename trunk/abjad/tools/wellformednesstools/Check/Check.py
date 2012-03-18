@@ -1,4 +1,5 @@
 from abc import ABCMeta
+from abc import abstractmethod
 from abjad.tools.abctools import AbjadObject
 import re
 
@@ -17,6 +18,12 @@ class Check(AbjadObject):
         parts = re.findall("[A-Z][a-z]*", name)
         parts = parts[:-1]
         return ' '.join([p.lower( ) for p in parts])
+
+    ### PRIVATE METHODS ###
+
+    @abstractmethod
+    def _run(self, expr):
+        raise NotImplemented
 
     ### PUBLIC METHODS ###
 
