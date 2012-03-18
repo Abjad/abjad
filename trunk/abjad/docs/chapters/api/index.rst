@@ -323,10 +323,12 @@ Abjad composition packages
    tools/instrumenttools/AltoTrombone/AltoTrombone
    tools/instrumenttools/BFlatClarinet/BFlatClarinet
    tools/instrumenttools/BaritoneSaxophone/BaritoneSaxophone
+   tools/instrumenttools/BaritoneVoice/BaritoneVoice
    tools/instrumenttools/BassClarinet/BassClarinet
    tools/instrumenttools/BassFlute/BassFlute
    tools/instrumenttools/BassSaxophone/BassSaxophone
    tools/instrumenttools/BassTrombone/BassTrombone
+   tools/instrumenttools/BassVoice/BassVoice
    tools/instrumenttools/Bassoon/Bassoon
    tools/instrumenttools/Cello/Cello
    tools/instrumenttools/ClarinetInA/ClarinetInA
@@ -335,6 +337,7 @@ Abjad composition packages
    tools/instrumenttools/ContrabassFlute/ContrabassFlute
    tools/instrumenttools/ContrabassSaxophone/ContrabassSaxophone
    tools/instrumenttools/Contrabassoon/Contrabassoon
+   tools/instrumenttools/ContraltoVoice/ContraltoVoice
    tools/instrumenttools/EFlatClarinet/EFlatClarinet
    tools/instrumenttools/EnglishHorn/EnglishHorn
    tools/instrumenttools/Flute/Flute
@@ -345,13 +348,16 @@ Abjad composition packages
    tools/instrumenttools/Harpsichord/Harpsichord
    tools/instrumenttools/InstrumentInventory/InstrumentInventory
    tools/instrumenttools/Marimba/Marimba
+   tools/instrumenttools/MezzoSopranoVoice/MezzoSopranoVoice
    tools/instrumenttools/Oboe/Oboe
    tools/instrumenttools/Piano/Piano
    tools/instrumenttools/Piccolo/Piccolo
    tools/instrumenttools/SopraninoSaxophone/SopraninoSaxophone
    tools/instrumenttools/SopranoSaxophone/SopranoSaxophone
+   tools/instrumenttools/SopranoVoice/SopranoVoice
    tools/instrumenttools/TenorSaxophone/TenorSaxophone
    tools/instrumenttools/TenorTrombone/TenorTrombone
+   tools/instrumenttools/TenorVoice/TenorVoice
    tools/instrumenttools/Trumpet/Trumpet
    tools/instrumenttools/Tuba/Tuba
    tools/instrumenttools/UntunedPercussion/UntunedPercussion
@@ -1635,7 +1641,7 @@ Additional Abjad composition packages (load manually)
 :py:mod:`timeintervaltools <abjad.tools.timeintervaltools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: timeintervaltools abstract alasses
+.. rubric:: timeintervaltools abstract classes
 
 .. toctree::
    :maxdepth: 1
@@ -1749,13 +1755,19 @@ Additional Abjad composition packages (load manually)
 :py:mod:`wellformednesstools <abjad.tools.wellformednesstools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+.. rubric:: wellformednesstools abstract classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/wellformednesstools/Check/Check
+
 .. rubric:: wellformednesstools concrete classes
 
 .. toctree::
    :maxdepth: 1
 
    tools/wellformednesstools/BeamedQuarterNoteCheck/BeamedQuarterNoteCheck
-   tools/wellformednesstools/Check/Check
    tools/wellformednesstools/DiscontiguousSpannerCheck/DiscontiguousSpannerCheck
    tools/wellformednesstools/DuplicateIdCheck/DuplicateIdCheck
    tools/wellformednesstools/EmptyContainerCheck/EmptyContainerCheck
