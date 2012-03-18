@@ -27,17 +27,6 @@ class _Instrument(contexttools.InstrumentMark):
         self._is_primary_instrument = False
         self._pitch_range = None
 
-    ### PRIVATE READ-ONLY ATTRIBUTES ###
-
-    @property
-    def _keyword_argument_names(self):
-        return (
-            'instrument_name',
-            'instrument_name_markup',
-            'short_instrument_name',
-            'short_instrument_name_markup',
-            )
-
     ### PRIVATE METHODS ###
 
     def _copy_primary_clefs_to_all_clefs(self):

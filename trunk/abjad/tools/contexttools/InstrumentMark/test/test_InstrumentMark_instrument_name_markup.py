@@ -6,7 +6,7 @@ def test_InstrumentMark_instrument_name_markup_01():
     '''
 
     instrument = contexttools.InstrumentMark('flute', 'fl.')
-    assert instrument.instrument_name_markup == markuptools.Markup('flute')
+    assert instrument.instrument_name_markup == markuptools.Markup('Flute')
 
     instrument.instrument_name_markup = 'alto flute'
     assert instrument.instrument_name_markup == markuptools.Markup('alto flute')

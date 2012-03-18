@@ -45,10 +45,10 @@ class InstrumentMark(ContextMark):
         self._default_instrument_name_markup = None
         self._default_short_instrument_name = None
         self._default_short_instrument_name_markup = None
-        self.instrument_name = instrument_name
-        self.instrument_name_markup = instrument_name_markup or instrument_name
-        self.short_instrument_name = short_instrument_name
-        self.short_instrument_name_markup = short_instrument_name_markup or short_instrument_name
+        self._instrument_name = instrument_name
+        self._instrument_name_markup = instrument_name_markup
+        self._short_instrument_name = short_instrument_name
+        self._short_instrument_name_markup = short_instrument_name_markup
 
     ### SPECIAL METHODS ###
 
@@ -70,16 +70,24 @@ class InstrumentMark(ContextMark):
 
     @property
     def _contents_repr_string(self):
-        names = []
-        if self.instrument_name != self.default_instrument_name:
-            names.append(self.instrument_name)
-        if self.short_instrument_name != self.default_short_instrument_name:
-            names.append(self.short_instrument_name)
-        if not names:
-            contents_string = ''
-        else:
-            contents_string = ', '.join([repr(name) for name in names])
-        return contents_string
+        result = []
+        for keyword_argument_name in self._keyword_argument_names:
+            private_keyword_argument_name = '_{}'.format(keyword_argument_name)
+            private_keyword_argument_value = getattr(self, private_keyword_argument_name, None)
+            if private_keyword_argument_value is not None:
+                string = '{}={!r}'.format(keyword_argument_name, private_keyword_argument_value)
+                result.append(string)
+        result = ', '.join(result)
+        return result
+
+    @property
+    def _keyword_argument_names(self):
+        return (
+            'instrument_name',
+            'instrument_name_markup',
+            'short_instrument_name',
+            'short_instrument_name_markup',
+            )
 
     @property
     def _one_line_menuing_summary(self):
