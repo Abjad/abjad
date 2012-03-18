@@ -17,6 +17,7 @@ class AbjadObject(object):
 
     ### CLASS ATTRIBUTES ###
 
+    _has_default_attribute_values = False
     __metaclass__ = ABCMeta
     __slots__ = ()
 
@@ -191,7 +192,11 @@ class AbjadObject(object):
         else:
             prefix, suffix = '', ', '
         for name in self._keyword_argument_names:
-            value = getattr(self, name)
+            if self._has_default_attribute_values:
+                private_keyword_argument_name = '_{}'.format(name)
+                value = getattr(self, private_keyword_argument_name)
+            else:
+                value = getattr(self, name)
             if value is not None:
                 if not isinstance(value, types.MethodType):
                     if hasattr(value, '_get_tools_package_qualified_repr_pieces'):
