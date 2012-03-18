@@ -38,6 +38,6 @@ class BaritoneVoice(_Voice):
         self._default_short_instrument_name = 'baritone'
         self._is_primary_instrument = True
         self.sounding_pitch_of_written_middle_c = pitchtools.NamedChromaticPitch("c'")
-        self.primary_clefs = [contexttools.ClefMark('baritone')]
+        self.primary_clefs = [contexttools.ClefMark('bass')]
         self._copy_primary_clefs_to_all_clefs()
         self._traditional_pitch_range = pitchtools.PitchRange(('A2', 'A4'))
