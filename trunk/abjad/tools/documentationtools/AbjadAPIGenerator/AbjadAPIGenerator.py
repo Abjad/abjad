@@ -60,6 +60,11 @@ class AbjadAPIGenerator(abctools.AbjadObject):
         'tonalitytools',
     )
     
+    ### INITIALIZER ###
+
+    def __init__(self):
+        pass
+
     ### SPECIAL METHODS ###
 
     def __call__(self, verbose=False):
