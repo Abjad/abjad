@@ -33,5 +33,18 @@ def test_Markup___init___04():
     '''Init markup with scheme style string.
     '''
 
-    markup = markuptools.Markup("(markup #:draw-line '(0 . -1))", style_string = 'scheme')
+    markup = markuptools.Markup("(markup #:draw-line '(0 . -1))", style_string='scheme')
     assert markup.format == "#(markup #:draw-line '(0 . -1))"
+
+
+def test_Markup___init___05():
+    '''Preserve all keywords when initializing from other markup instance.
+    '''
+
+    markup_1 = markuptools.Markup(
+        'foo contents string', direction='up', markup_name='foo', style_string='backslash')
+    markup_2 = markuptools.Markup(markup_1)
+
+    assert markup_1 == markup_2
+    assert repr(markup_1) == repr(markup_2)
+    assert markup_1._storage_format == markup_2._storage_format

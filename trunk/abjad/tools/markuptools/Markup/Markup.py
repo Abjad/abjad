@@ -79,14 +79,16 @@ class Markup(_DirectedMark):
 
     ### INITIALIZER ###
 
-    def __init__(self, arg, direction=None, markup_name=None, style_string=None):
-        if isinstance(arg, str):
-            contents_string = arg
-        elif isinstance(arg, Markup):
-            contents_string = arg._contents_string
-            style_string = arg._style_string
+    def __init__(self, argument, direction=None, markup_name=None, style_string=None):
+        if isinstance(argument, str):
+            contents_string = argument
+        elif isinstance(argument, Markup):
+            contents_string = argument._contents_string
+            direction = argument._direction
+            markup_name = argument._markup_name
+            style_string = argument._style_string
         else:
-            contents_string = str(arg)
+            contents_string = str(argument)
         _DirectedMark.__init__(self, direction=direction)
         self._contents_string = contents_string
         self._style_string = style_string
@@ -111,30 +113,22 @@ class Markup(_DirectedMark):
 
     __deepcopy__ = __copy__
 
-    def __eq__(self, arg):
-        if isinstance(arg, type(self)):
-            if self.format == arg.format:
+    def __eq__(self, expr):
+        if isinstance(expr, type(self)):
+            if self.format == expr.format:
                 return True
         return False
 
     def __hash__(self):
         return hash((type(self).__name__, self.format))
 
-    def __ne__(self, arg):
-        return not self == arg
+    def __ne__(self, expr):
+        return not self == expr
 
     def __str__(self):
         return self.format
 
     ### PRIVATE READ-ONLY PROPERTIES ###
-
-    @property
-    def _keyword_argument_names(self):
-        return (
-            'direction',
-            'markup_name',
-            'style_string',
-            )
 
     @property
     def _mandatory_argument_values(self):
