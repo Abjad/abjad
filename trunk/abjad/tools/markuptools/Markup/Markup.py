@@ -20,7 +20,7 @@ class Markup(_DirectedMark):
 
     Initialize Scheme-style markup from string::
 
-        abjad> markup = markuptools.Markup("(markup #:draw-line '(0 . -1))", style_string = 'scheme')
+        abjad> markup = markuptools.Markup("(markup #:draw-line '(0 . -1))", style_string='scheme')
 
     ::
 
@@ -67,14 +67,19 @@ class Markup(_DirectedMark):
 
     Set `direction` to ``'up'``, ``'down'``, ``'neutral'``, ``'^'``, ``'_'``, ``'-'`` or None.
 
-    Set `style_string` to ``'backslash'`` or ``'scheme'``.
+    Set `style_string` to ``'backslash'``, ``'scheme'`` or none. Default to ``'backslash'``.
 
     Markup objects are immutable.
     '''
 
-    __slots__ = ('_contents_string', '_direction', '_format_slot', '_markup_name', '_style_string')
+    ### CLASS ATTRIBUTES ###
 
-    def __init__(self, arg, direction=None, markup_name=None, style_string='backslash'):
+    __slots__ = ('_contents_string', '_direction', '_format_slot', '_markup_name', '_style_string')
+    _style_strings = ('backslash', 'scheme')
+
+    ### INITIALIZER ###
+
+    def __init__(self, arg, direction=None, markup_name=None, style_string=None):
         if isinstance(arg, str):
             contents_string = arg
         elif isinstance(arg, Markup):
@@ -90,8 +95,6 @@ class Markup(_DirectedMark):
 
     ### PRIVATE PROPERTIES ###
 
-    _style_strings = ('backslash', 'scheme')
-
     @property
     def _format_pieces(self):
         return [r'\markup { %s }' % self.contents_string]
@@ -99,8 +102,12 @@ class Markup(_DirectedMark):
     ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
-        return type(self)(self._contents_string,
-            direction = self._direction, style_string = self._style_string)
+        return type(self)(
+            self._contents_string,
+            direction=self._direction, 
+            markup_name=self._markup_name,
+            style_string=self._style_string
+            )
 
     __deepcopy__ = __copy__
 
@@ -169,14 +176,14 @@ class Markup(_DirectedMark):
         Return string.
         '''
         result = ''
-        if self._style_string == 'backslash':
-            result = r'\markup { %s }' % self._contents_string
-            if self._direction is not None:
-                result = '%s %s' % (self._direction, result)
-        elif self._style_string == 'scheme':
-            result = '#%s' % self._contents_string
+        if self.style_string in (None, 'backslash'):
+            result = r'\markup { %s }' % self.contents_string
+            if self.direction is not None:
+                result = '%s %s' % (self.direction, result)
+        elif self.style_string == 'scheme':
+            result = '#%s' % self.contents_string
         else:
-            raise ValueError('unknown markup style string: "%s".' % self._style_string)
+            raise ValueError('unknown markup style string: "%s".' % self.style_string)
         return result
 
     @property
