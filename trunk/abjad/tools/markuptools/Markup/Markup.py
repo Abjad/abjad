@@ -181,7 +181,7 @@ class Markup(_DirectedMark):
 
     @property
     def markup_name(self):
-        r'''Read-only name of markup.
+        r'''Read-only name of markup::
 
             abjad> markup = markuptools.Markup(r'\bold { allegro ma non troppo }', markup_name='non troppo')
 
