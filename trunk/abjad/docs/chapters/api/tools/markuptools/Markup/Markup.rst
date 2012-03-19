@@ -13,6 +13,8 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.markuptools.Markup.Markup.Markup.format
 
+.. autoattribute:: abjad.tools.markuptools.Markup.Markup.Markup.markup_name
+
 .. autoattribute:: abjad.tools.markuptools.Markup.Markup.Markup.start_component
 
    .. note:: Inherited from :py:class:`marktools.Mark <abjad.tools.marktools.Mark.Mark.Mark>`

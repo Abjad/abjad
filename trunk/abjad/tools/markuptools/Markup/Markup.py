@@ -72,9 +72,9 @@ class Markup(_DirectedMark):
     Markup objects are immutable.
     '''
 
-    __slots__ = ('_contents_string', '_direction', '_format_slot', '_style_string')
+    __slots__ = ('_contents_string', '_direction', '_format_slot', '_markup_name', '_style_string')
 
-    def __init__(self, arg, direction=None, style_string='backslash'):
+    def __init__(self, arg, direction=None, markup_name=None, style_string='backslash'):
         if isinstance(arg, str):
             contents_string = arg
         elif isinstance(arg, Markup):
@@ -86,6 +86,7 @@ class Markup(_DirectedMark):
         self._contents_string = contents_string
         self._style_string = style_string
         self._format_slot = 'right'
+        self._markup_name = markup_name
 
     ### PRIVATE PROPERTIES ###
 
@@ -131,6 +132,7 @@ class Markup(_DirectedMark):
     def _keyword_argument_names(self):
         return (
             'direction',
+            'markup_name',
             'style_string',
             )
 
@@ -140,7 +142,7 @@ class Markup(_DirectedMark):
             self.contents_string,
             )
 
-    ### PUBLIC PROPERTIES ###
+    ### PUBLIC READ-ONLY PROPERTIES ###
 
     @property
     def contents_string(self):
@@ -178,5 +180,22 @@ class Markup(_DirectedMark):
         return result
 
     @property
+    def markup_name(self):
+        r'''Read-only name of markup.
+
+            abjad> markup = markuptools.Markup(r'\bold { allegro ma non troppo }', markup_name='non troppo')
+
+        ::
+
+            abjad> markup.markup_name
+            'non troppo'
+
+        Return string or none.
+        '''
+        return self._markup_name
+
+    @property
     def style_string(self):
+        '''Read-only style string of markup.
+        '''
         return self._style_string
