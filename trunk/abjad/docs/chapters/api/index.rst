@@ -560,6 +560,7 @@ Abjad composition packages
 
    tools/markuptools/Markup/Markup
    tools/markuptools/MarkupCommand/MarkupCommand
+   tools/markuptools/MarkupInventory/MarkupInventory
 
 .. rubric:: markuptools functions
 
