@@ -74,6 +74,8 @@ Special Methods
 
 .. automethod:: abjad.tools.markuptools.Markup.Markup.Markup.__repr__
 
+   .. note:: Inherited from :py:class:`marktools.Mark <abjad.tools.marktools.Mark.Mark.Mark>`
+
 .. automethod:: abjad.tools.markuptools.Markup.Markup.Markup.__setattr__
 
    .. note:: Inherited from `__builtin__.object`

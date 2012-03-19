@@ -25,7 +25,7 @@ class Markup(_DirectedMark):
     ::
 
         abjad> markup
-        Markup("(markup #:draw-line '(0 . -1))")
+        Markup("(markup #:draw-line '(0 . -1))", style_string='scheme')
 
     ::
 
@@ -34,8 +34,8 @@ class Markup(_DirectedMark):
 
     Initialize any markup from existing markup::
 
-        abjad> markup_1 = markuptools.Markup('foo', direction = 'up')
-        abjad> markup_2 = markuptools.Markup(markup_1, direction = 'down')
+        abjad> markup_1 = markuptools.Markup('foo', direction='up')
+        abjad> markup_2 = markuptools.Markup(markup_1, direction='down')
 
     ::
 
@@ -122,13 +122,6 @@ class Markup(_DirectedMark):
 
     def __ne__(self, arg):
         return not self == arg
-
-    def __repr__(self):
-        if self._direction is not None:
-            return '%s(%r, %r)' % (type(self).__name__, 
-                self._contents_string, self._direction)
-        else:
-            return '%s(%r)' % (type(self).__name__, self._contents_string)
 
     def __str__(self):
         return self.format
