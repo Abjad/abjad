@@ -10,12 +10,13 @@ class APICrawler(abctools.AbjadObject):
 
     ### CLASS ATTRIBUTES ###
 
-    __slots__ = ('_code_root', '_docs_root', '_ignored_directories', '_root_package_name')
+    __slots__ = ('_code_root', '_docs_root', '_ignored_directories', '_prefix', '_root_package_name')
 
     ### INITIALIZER ###
 
     def __init__(self, code_root, docs_root, root_package_name,
-        ignored_directories = ['test', '.svn', '__pycache__']):
+        ignored_directories = ['test', '.svn', '__pycache__'],
+        prefix='abjad.tools.'):
         assert os.path.exists(code_root)
         assert os.path.exists(docs_root)
         assert root_package_name in code_root.split(os.path.sep)
@@ -23,6 +24,7 @@ class APICrawler(abctools.AbjadObject):
         self._docs_root = os.path.abspath(docs_root)
         self._ignored_directories = ignored_directories
         self._root_package_name = root_package_name
+        self._prefix = prefix
 
     ### SPECIAL METHODS ###
 
@@ -65,9 +67,10 @@ class APICrawler(abctools.AbjadObject):
             for file in files:
 
                 # get documenter
+                print current_root, file
+                obj = self._get_documenter_for_file(current_root, file)
                 code_fullpath = os.path.join(current_root, file)
                 docs_fullpath = code_fullpath.replace(self.code_root, self.docs_root).replace('.py', '.rst')
-                obj = self._get_documenter_for_file(current_root, file)
                 new_docs = obj()
 
                 # read old docs
@@ -107,9 +110,9 @@ class APICrawler(abctools.AbjadObject):
         obj = getattr(module, object_name)
 
         if isinstance(obj, types.TypeType):
-            return ClassDocumenter(obj)
+            return ClassDocumenter(obj, prefix=self.prefix)
         elif isinstance(obj, types.FunctionType):
-            return FunctionDocumenter(obj)
+            return FunctionDocumenter(obj, prefix=self.prefix)
         raise Exception("Don't know how to document %r." % obj)
 
     ### PUBLIC ATTRIBUTES ###
@@ -125,6 +128,10 @@ class APICrawler(abctools.AbjadObject):
     @property
     def ignored_directories(self):
         return self._ignored_directories
+
+    @property
+    def prefix(self):
+        return self._prefix
 
     @property
     def root_package_name(self):
