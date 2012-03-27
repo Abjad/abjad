@@ -15,6 +15,8 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.documentationtools.APICrawler.APICrawler.APICrawler.ignored_directories
 
+.. autoattribute:: abjad.tools.documentationtools.APICrawler.APICrawler.APICrawler.prefix
+
 .. autoattribute:: abjad.tools.documentationtools.APICrawler.APICrawler.APICrawler.root_package_name
 
 Special Methods
