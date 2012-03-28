@@ -21,6 +21,8 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark.multiplier
 
+.. autoattribute:: abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark.pair
+
 .. autoattribute:: abjad.tools.contexttools.TimeSignatureMark.TimeSignatureMark.TimeSignatureMark.start_component
 
    .. note:: Inherited from :py:class:`marktools.Mark <abjad.tools.marktools.Mark.Mark.Mark>`

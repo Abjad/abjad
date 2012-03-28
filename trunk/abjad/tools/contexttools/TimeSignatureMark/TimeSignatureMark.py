@@ -47,17 +47,22 @@ class TimeSignatureMark(ContextMark):
     def __init__(self, *args, **kwargs):
         from abjad.tools.stafftools.Staff import Staff
         target_context = kwargs.get('target_context', None)
-        ContextMark.__init__(self, target_context = target_context)
+        ContextMark.__init__(self, target_context=target_context)
         if self.target_context is None:
             self._target_context = Staff
         if self._target_context == Staff:
             self._has_default_target_context = True
         else:
             self._has_default_target_context = False
+
+        partial, suppress = None, None
+
         # initialize numerator and denominator from *args
         if len(args) == 1 and isinstance(args[0], type(self)):
             time_signature = args[0]
             numerator, denominator = time_signature.numerator, time_signature.denominator
+            partial = time_signature.partial
+            suppress = time_signature.suppress
         elif len(args) == 1 and isinstance(args[0], durationtools.Duration):
             numerator, denominator = args[0].numerator, args[0].denominator
         elif len(args) == 1 and isinstance(args[0], tuple):
@@ -66,22 +71,22 @@ class TimeSignatureMark(ContextMark):
         #elif len(args) == 2 and all([isinstance(x, int) for x in args]):
         #    numerator, denominator = args[0], args[1]
         else:
-            raise TypeError('invalid time_signature initialization.')
+            raise TypeError('invalid time_signature initialization: {!r}.'.format(args))
         self._numerator = numerator
         self._denominator = denominator
 
         # initialize partial from **kwargs
-        partial = kwargs.get('partial', None)
+        partial = partial or kwargs.get('partial', None)
         if not isinstance(partial, (type(None), durationtools.Duration)):
             raise TypeError
         self._partial = partial
         if partial is not None:
-            self._partial_repr_string = ', partial = %r' % self._partial
+            self._partial_repr_string = ', partial=%r' % self._partial
         else:
             self._partial_repr_string = ''
 
         # initialize suppress from kwargs
-        suppress = kwargs.get('suppress', None)
+        suppress = suppress or kwargs.get('suppress', None)
         if not isinstance(suppress, (bool, type(None))):
             raise TypeError
         self.suppress = suppress
@@ -113,6 +118,8 @@ class TimeSignatureMark(ContextMark):
             return self.duration >= arg.duration
         else:
             raise TypeError
+
+    # TODO: define __getnewargs__?
 
     def __gt__(self, arg):
         if isinstance(arg, type(self)):
@@ -156,6 +163,17 @@ class TimeSignatureMark(ContextMark):
     @property
     def _contents_repr_string(self):
         return '%s/%s' % (self.numerator, self.denominator)
+
+    @property
+    def _keyword_argument_names(self):
+        return (
+            'partial',
+            'suppress',
+            )
+
+    @property
+    def _mandatory_argument_values(self):
+        return (self.pair, )
 
     ### PUBLIC PROPERTIES ###
 
@@ -264,6 +282,20 @@ class TimeSignatureMark(ContextMark):
             assert isinstance(numerator, int)
             self._numerator = numerator
         return property(**locals())
+
+    @property
+    def pair(self):
+        '''.. versionadded:: 2.8
+
+        Read-only numerator / denominator pair of time signature::
+
+            abjad> time_signature = contexttools.TimeSignatureMark((3, 8))
+            abjad> time_signature.pair
+            (3, 8)
+
+        Return length-``2`` tuple.
+        '''
+        return (self.numerator, self.denominator)
 
     @apply
     def partial():

@@ -16,8 +16,20 @@ def test_TimeSignatureMark___init___02():
 
     time_signature_1 = contexttools.TimeSignatureMark((9, 32))
     time_signature_2 = contexttools.TimeSignatureMark(time_signature_1)
+
     assert isinstance(time_signature_1, contexttools.TimeSignatureMark)
     assert isinstance(time_signature_2, contexttools.TimeSignatureMark)
     assert time_signature_1.format == '\\time 9/32'
     assert time_signature_2.format == '\\time 9/32'
     assert time_signature_1 is not time_signature_2
+
+
+def test_TimeSignatureMark___init___03():
+    '''Initialize time signature mark from other time signature instance with partial.
+    '''
+
+    time_signature_1 = contexttools.TimeSignatureMark((9, 32), partial=Duration(1, 32))
+    time_signature_2 = contexttools.TimeSignatureMark(time_signature_1)
+
+    assert time_signature_1 == time_signature_2
+    assert not time_signature_1 is time_signature_2
