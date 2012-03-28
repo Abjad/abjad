@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import sequencetools
 
 
-def test_sequencetools_Tree_to_nested_lists_01():
+def test_Tree_to_nested_lists_01():
 
     sequence_1 = [[0, 1], [2, 3]]
     tree_1 = sequencetools.Tree(sequence_1)

@@ -165,6 +165,14 @@ class Tree(AbjadObject):
     ### PRIVATE PROPERTIES ###
 
     @property
+    def _input_argument(self):
+        return eval(str(self))
+
+    @property
+    def _mandatory_argument_values(self):
+        return (self._input_argument, )
+
+    @property
     def _noncyclic_children(self):
         return list(self._children)
 
