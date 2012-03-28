@@ -9,6 +9,7 @@ class LilyPondGrobOverrideComponentPlugIn(_LilyPondComponentPlugIn):
     LilyPond grob override component plug-in.
     '''
 
+    # TODO: derive from parser
     _known_lilypond_context_names = set([
         'choir_staff', 'chord_names', 'cue_voice', 'devnull', 'drum_staff',
         'drum_voice', 'dynamics', 'figured_bass', 'fret_boards', 'global',
@@ -17,7 +18,9 @@ class LilyPondGrobOverrideComponentPlugIn(_LilyPondComponentPlugIn):
         'rhythmic_staff', 'score', 'staff', 'staff_group', 'tab_staff',
         'tab_voice', 'vaticana_staff', 'vaticana_voice', 'voice'])
 
-    _known_lilypond_grob_names = set(['accidental', 'accidental_cautionary', 'accidental_placement',
+    # TODO: derive from parser
+    _known_lilypond_grob_names = set([
+        'accidental', 'accidental_cautionary', 'accidental_placement',
         'accidental_suggestion', 'ambitus', 'ambitus_accidental', 'ambitus_line',
         'ambitus_note_head', 'arpeggio', 'balloon_text_item', 'bar_line', 'bar_number',
         'bass_figure', 'bass_figure_alignment', 'bass_figure_alignment_positioning',
@@ -26,7 +29,7 @@ class LilyPondGrobOverrideComponentPlugIn(_LilyPondComponentPlugIn):
         'clef', 'cluster_spanner', 'cluster_spanner_beacon', 'combine_text_script', 'custos',
         'dot_column', 'dots', 'double_percent_repeat', 'double_percent_repeat_counter',
         'dynamic_line_spanner', 'dynamic_text', 'dynamic_text_spanner', 'episema', 'fingering',
-        'fret_board', 'glissando', 'grace_spacing', 'grid_line', 'grid_point', 'hairpin',
+        'flag', 'fret_board', 'glissando', 'grace_spacing', 'grid_line', 'grid_point', 'hairpin',
         'harmonic_parentheses_item', 'horizontal_bracket', 'instrument_name', 'instrument_switch',
         'key_cancellation', 'key_signature', 'laissez_vibrer_tie', 'laissez_vibrer_tie_column',
         'ledger_line_spanner', 'left_edge', 'ligature_bracket', 'lyric_extender', 'lyric_hyphen',
