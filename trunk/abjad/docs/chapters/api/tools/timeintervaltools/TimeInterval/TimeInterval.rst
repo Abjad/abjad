@@ -82,6 +82,8 @@ Methods
 
    .. note:: Inherited from `_abcoll.MutableMapping`
 
+.. automethod:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.quantize_to_rational
+
 .. automethod:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.scale_by_rational
 
 .. automethod:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.scale_to_rational

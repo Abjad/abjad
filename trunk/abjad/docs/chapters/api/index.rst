@@ -1651,7 +1651,6 @@ Additional Abjad composition packages (load manually)
 
    tools/timeintervaltools/TimeIntervalAggregateMixin/TimeIntervalAggregateMixin
    tools/timeintervaltools/TimeIntervalMixin/TimeIntervalMixin
-   tools/timeintervaltools/TimeIntervalTreeDictionary/TimeIntervalTreeDictionary
 
 .. rubric:: timeintervaltools concrete classes
 
@@ -1660,6 +1659,7 @@ Additional Abjad composition packages (load manually)
 
    tools/timeintervaltools/TimeInterval/TimeInterval
    tools/timeintervaltools/TimeIntervalTree/TimeIntervalTree
+   tools/timeintervaltools/TimeIntervalTreeDictionary/TimeIntervalTreeDictionary
 
 .. rubric:: timeintervaltools functions
 

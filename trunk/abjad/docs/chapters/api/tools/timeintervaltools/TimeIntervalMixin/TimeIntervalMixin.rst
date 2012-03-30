@@ -34,6 +34,8 @@ Methods
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalMixin.TimeIntervalMixin.TimeIntervalMixin.is_tangent_to_interval
 
+.. automethod:: abjad.tools.timeintervaltools.TimeIntervalMixin.TimeIntervalMixin.TimeIntervalMixin.quantize_to_rational
+
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalMixin.TimeIntervalMixin.TimeIntervalMixin.scale_by_rational
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalMixin.TimeIntervalMixin.TimeIntervalMixin.scale_to_rational

@@ -25,19 +25,11 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.earliest_start
 
-   .. note:: Inherited from :py:class:`timeintervaltools.TimeIntervalAggregateMixin <abjad.tools.timeintervaltools.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin>`
-
 .. autoattribute:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.earliest_stop
-
-   .. note:: Inherited from :py:class:`timeintervaltools.TimeIntervalAggregateMixin <abjad.tools.timeintervaltools.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin>`
 
 .. autoattribute:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.latest_start
 
-   .. note:: Inherited from :py:class:`timeintervaltools.TimeIntervalAggregateMixin <abjad.tools.timeintervaltools.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin>`
-
 .. autoattribute:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.latest_stop
-
-   .. note:: Inherited from :py:class:`timeintervaltools.TimeIntervalAggregateMixin <abjad.tools.timeintervaltools.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin>`
 
 .. autoattribute:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.signature
 
@@ -50,6 +42,8 @@ Read-only Properties
 .. autoattribute:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.stop
 
    .. note:: Inherited from :py:class:`timeintervaltools.TimeIntervalMixin <abjad.tools.timeintervaltools.TimeIntervalMixin.TimeIntervalMixin.TimeIntervalMixin>`
+
+.. autoattribute:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.trees
 
 Methods
 -------
@@ -64,51 +58,27 @@ Methods
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.find_intervals_intersecting_or_tangent_to_interval
 
-   .. note:: Inherited from :py:class:`timeintervaltools.TimeIntervalAggregateMixin <abjad.tools.timeintervaltools.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin>`
-
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.find_intervals_intersecting_or_tangent_to_offset
-
-   .. note:: Inherited from :py:class:`timeintervaltools.TimeIntervalAggregateMixin <abjad.tools.timeintervaltools.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin>`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.find_intervals_starting_after_offset
 
-   .. note:: Inherited from :py:class:`timeintervaltools.TimeIntervalAggregateMixin <abjad.tools.timeintervaltools.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin>`
-
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.find_intervals_starting_and_stopping_within_interval
-
-   .. note:: Inherited from :py:class:`timeintervaltools.TimeIntervalAggregateMixin <abjad.tools.timeintervaltools.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin>`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.find_intervals_starting_at_offset
 
-   .. note:: Inherited from :py:class:`timeintervaltools.TimeIntervalAggregateMixin <abjad.tools.timeintervaltools.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin>`
-
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.find_intervals_starting_before_offset
-
-   .. note:: Inherited from :py:class:`timeintervaltools.TimeIntervalAggregateMixin <abjad.tools.timeintervaltools.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin>`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.find_intervals_starting_or_stopping_at_offset
 
-   .. note:: Inherited from :py:class:`timeintervaltools.TimeIntervalAggregateMixin <abjad.tools.timeintervaltools.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin>`
-
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.find_intervals_starting_within_interval
-
-   .. note:: Inherited from :py:class:`timeintervaltools.TimeIntervalAggregateMixin <abjad.tools.timeintervaltools.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin>`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.find_intervals_stopping_after_offset
 
-   .. note:: Inherited from :py:class:`timeintervaltools.TimeIntervalAggregateMixin <abjad.tools.timeintervaltools.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin>`
-
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.find_intervals_stopping_at_offset
-
-   .. note:: Inherited from :py:class:`timeintervaltools.TimeIntervalAggregateMixin <abjad.tools.timeintervaltools.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin>`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.find_intervals_stopping_before_offset
 
-   .. note:: Inherited from :py:class:`timeintervaltools.TimeIntervalAggregateMixin <abjad.tools.timeintervaltools.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin>`
-
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.find_intervals_stopping_within_interval
-
-   .. note:: Inherited from :py:class:`timeintervaltools.TimeIntervalAggregateMixin <abjad.tools.timeintervaltools.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin.TimeIntervalAggregateMixin>`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.get
 
