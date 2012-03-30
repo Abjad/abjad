@@ -199,6 +199,12 @@ class TimeIntervalMixin(AbjadObject):
             return False
 
     @abstractmethod
+    def quantize_to_rational(self, rational):
+        if self.start is None or self.stop is None:
+            raise UnboundedTimeIntervalError
+        raise NotImplementedErro
+
+    @abstractmethod
     def scale_by_rational(self, rational):
         if self.start is None or self.stop is None:
             raise UnboundedTimeIntervalError

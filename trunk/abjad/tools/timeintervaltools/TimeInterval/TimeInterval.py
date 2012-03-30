@@ -93,9 +93,18 @@ class TimeInterval(TimeIntervalMixin, MutableMapping):
 
     ### PUBLIC METHODS ###
 
+    def quantize_to_rational(self, rational):
+        rational = Duration(rational)
+        assert 0 < rational
+        start = Offset(int(round(interval.start / rational))) * rational
+        stop = Offset(int(round(interval.stop / rational))) * rational
+        if start == stop:
+            stop = start + rational
+        return type(self)(start, stop, self)
+
     def scale_by_rational(self, rational):
         assert isinstance(rational, (int, Fraction))
-        assert 0 <= rational
+        assert 0 < rational
         if rational != 1:
             new_duration = (self.stop - self.start) * rational
             return type(self)(TimeInterval(self.start, self.start + new_duration, self))
@@ -104,7 +113,7 @@ class TimeInterval(TimeIntervalMixin, MutableMapping):
 
     def scale_to_rational(self, rational):
         assert isinstance(rational, (int, Fraction))
-        assert 0 <= rational
+        assert 0 < rational
         if rational != self.duration:
             return type(self)(TimeInterval(self.start, self.start + rational, self))
         else:
