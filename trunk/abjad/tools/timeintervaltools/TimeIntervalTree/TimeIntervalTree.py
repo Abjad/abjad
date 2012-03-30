@@ -38,7 +38,11 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
     Return `TimeIntervalTree` instance.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
     __slots__ = ('_root', '_sentinel', '_start', '_stop')
+
+    ### INITIALIZER ###
 
     def __init__(self, intervals = []):
         self._sentinel = _IntervalNode(0)
@@ -94,6 +98,23 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
             return 0
 
     def __nonzero__(self):
+        '''`TimeIntervalTree` evaluates to True if it contains any intervals:
+
+        ::
+
+            abjad> from abjad.tools.timeintervaltools import *
+            abjad> true_tree = TimeIntervalTree([TimeInterval(0, 1)])
+            abjad> false_tree = TimeIntervalTree([])
+
+        ::
+
+            abjad> bool(true_tree)
+            True
+            abjad> bool(false_tree)
+            False
+
+        Return boolean.
+        '''
         return bool(len(self))
 
     def __repr__(self):
@@ -103,7 +124,7 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
         else:
             return '%s([])' % type(self).__name__
 
-    # PRIVATE ATTRIBUTES
+    ### PRIVATE ATTRIBUTES ###
 
     @property
     def _inorder(self):
@@ -115,31 +136,6 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
             return tuple(intervals)
         else:
             return ()
-
-    ### PRIVATE METHODS ###
-
-    def _insert(self, args):
-        def recurse(x):
-            if isinstance(x, TimeInterval): # TimeIntervals are Iterable!
-                return [x]
-            elif isinstance(x, Iterable) and \
-            not isinstance(x, (basestring)):
-                return [a for i in x for a in recurse(i)]
-
-        intervals = recurse(args)
-        assert all([isinstance(x, TimeInterval) for x in intervals])
-
-        for interval in intervals:
-            node = self._find_by_key(interval.start)
-            if node is not None:
-                node.payload.append(interval)
-            else:
-                node = _IntervalNode(interval.start, interval)
-                node.left = self._sentinel
-                node.right = self._sentinel
-                node.parent = self._sentinel
-                self._insert_node(node)
-        self._update_stop_extrema()
 
     ### PUBLIC PROPERTIES ###
 
@@ -158,7 +154,7 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
         Empty trees have a duration of 0.
 
-        Returns ``Duration`` instance.
+        Return ``Duration`` instance.
         '''
         if self:
             return Duration(self.latest_stop - self.earliest_start)
@@ -178,7 +174,7 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
             abjad> tree.earliest_start
             Offset(1, 1)
 
-        Returns ``Offset`` instance, or None if tree is empty.
+        Return ``Offset`` instance, or None if tree is empty.
         '''
         if self:
             return Offset(self._find_minimum(self._root).key)
@@ -198,7 +194,7 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
             abjad> tree.earliest_stop
             Offset(2, 1)
 
-        Returns ``Offset`` instance, or None if tree is empty.
+        Return ``Offset`` instance, or None if tree is empty.
         '''
         if self:
             return Offset(self._root.earliest_stop)
@@ -218,7 +214,7 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
             abjad> tree.latest_start
             Offset(3, 1)
 
-        Returns ``Offset`` instance, or None if tree is empty.
+        Return ``Offset`` instance, or None if tree is empty.
         '''
         if self:
             return Offset(self._find_maximum(self._root).key)
@@ -238,7 +234,7 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
             abjad> tree.latest_stop
             Offset(7, 2)
 
-        Returns ``Offset`` instance, or None if tree is empty.
+        Return ``Offset`` instance, or None if tree is empty.
         '''
         if self:
             return Offset(self._root.latest_stop)
@@ -246,6 +242,29 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
             return None
 
     ### PRIVATE METHODS ###
+
+    def _insert(self, args):
+        def recurse(x):
+            if isinstance(x, TimeInterval):
+                return [x]
+            elif isinstance(x, Iterable) and \
+            not isinstance(x, (basestring)):
+                return [a for i in x for a in recurse(i)]
+
+        intervals = recurse(args)
+        assert all([isinstance(x, TimeInterval) for x in intervals])
+
+        for interval in intervals:
+            node = self._find_by_key(interval.start)
+            if node is not None:
+                node.payload.append(interval)
+            else:
+                node = _IntervalNode(interval.start, interval)
+                node.left = self._sentinel
+                node.right = self._sentinel
+                node.parent = self._sentinel
+                self._insert_node(node)
+        self._update_stop_extrema()
 
     def _update_stop_extrema(self):
         def recurse(node):
@@ -276,6 +295,11 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
     ### PUBLIC METHODS ###
 
     def find_intervals_intersecting_or_tangent_to_interval(self, *args):
+        '''
+
+        Return `TimeIntervalTree` instance.
+        '''
+
         def recurse(node, start, stop):
             intervals = []
             if node == self._sentinel:
@@ -293,6 +317,7 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
                 and start <= node.right.latest_stop:
                 intervals.extend(recurse(node.right, start, stop))
             return intervals
+
         if len(args) == 1:
             assert isinstance(args[0], TimeInterval)
             start, stop = args[0].start, args[0].stop
@@ -302,9 +327,15 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
             assert start <= stop
         else:
             raise ValueError
-        return tuple(sorted(recurse(self._root, start, stop), key=lambda x: x.signature))
+
+        return type(self)(recurse(self._root, start, stop))
 
     def find_intervals_intersecting_or_tangent_to_offset(self, offset):
+        '''
+
+        Return `TimeIntervalTree` instance.
+        '''
+
         def recurse(node, offset):
             intervals = []
             if node == self._sentinel:
@@ -320,10 +351,16 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
                 and offset <= node.right.latest_stop:
                 intervals.extend(recurse(node.right, offset))
             return intervals
-        assert isinstance(offset, (int, Fraction))
-        return tuple(sorted(recurse(self._root, offset), key=lambda x: x.signature))
+
+        offset = Offset(offset)
+        return type(self)(recurse(self._root, offset))
 
     def find_intervals_starting_after_offset(self, offset):
+        '''
+
+        Return `TimeIntervalTree` instance.
+        '''
+
         def recurse(node, offset):
             intervals = []
             if node == self._sentinel:
@@ -335,10 +372,16 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
             if node.right != self._sentinel:
                 intervals.extend(recurse(node.right, offset))
             return intervals
-        assert isinstance(offset, (int, Fraction))
-        return tuple(sorted(recurse(self._root, offset), key=lambda x: x.signature))
+
+        offset = Offset(offset)
+        return type(self)(recurse(self._root, offset))
 
     def find_intervals_starting_and_stopping_within_interval(self, *args):
+        '''
+
+        Return `TimeIntervalTree` instance.
+        '''
+
         def recurse(node, start, stop):
             intervals = []
             if node == self._sentinel:
@@ -356,6 +399,7 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
                 and node.right.earliest_stop <= stop:
                 intervals.extend(recurse(node.right, start, stop))
             return intervals
+
         if len(args) == 1:
             assert isinstance(args[0], TimeInterval)
             start, stop = args[0].start, args[0].stop
@@ -365,17 +409,28 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
             assert start <= stop
         else:
             raise ValueError
-        return tuple(sorted(recurse(self._root, start, stop), key=lambda x: x.signature))
+
+        return type(self)(recurse(self._root, start, stop))
 
     def find_intervals_starting_at_offset(self, offset):
-        assert isinstance(offset, (int, Fraction))
+        '''
+
+        Return `TimeIntervalTree` instance.
+        '''
+
+        offset = Offset(offset)
         node = self._find_by_key(offset)
+        intervals = []
         if node is not None and node != self._sentinel:
-            return tuple(sorted(node.payload, key=lambda x: x.signature))
-        else:
-            return ()
+            intervals = node.payload
+        return type(self)(intervals)
 
     def find_intervals_starting_before_offset(self, offset):
+        '''
+
+        Return `TimeIntervalTree` instance.
+        '''
+
         def recurse(node, offset):
             intervals = []
             if node == self._sentinel:
@@ -387,10 +442,16 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
             if node.right != self._sentinel and self._find_minimum(node.right).key < offset:
                 intervals.extend(recurse(node.right, offset))
             return intervals
-        assert isinstance(offset, (int, Fraction))
-        return tuple(sorted(recurse(self._root, offset), key=lambda x: x.signature))
+
+        offset = Offset(offset)
+        return type(self)(recurse(self._root, offset))
 
     def find_intervals_starting_or_stopping_at_offset(self, offset):
+        '''
+
+        Return `TimeIntervalTree` instance.
+        '''
+
         def recurse(node, offset):
             intervals = []
             if node == self._sentinel:
@@ -405,10 +466,16 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
                 and offset <= node.right.latest_stop:
                 intervals.extend(recurse(node.right, offset))
             return intervals
-        assert isinstance(offset, (int, Fraction))
-        return tuple(sorted(recurse(self._root, offset), key=lambda x: x.signature))
+
+        offset = Offset(offset)
+        return type(self)(recurse(self._root, offset))
 
     def find_intervals_starting_within_interval(self, *args):
+        '''
+
+        Return `TimeIntervalTree` instance.
+        '''
+
         def recurse(node, start, stop):
             intervals = []
             if node == self._sentinel:
@@ -424,6 +491,7 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
                 self._find_minimum(node.right).key <= stop:
                 intervals.extend(recurse(node.right, start, stop))
             return intervals
+
         if len(args) == 1:
             assert isinstance(args[0], TimeInterval)
             start, stop = args[0].start, args[0].stop
@@ -433,9 +501,15 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
             assert start <= stop
         else:
             raise ValueError
-        return tuple(sorted(recurse(self._root, start, stop), key=lambda x: x.signature))
+
+        return type(self)(recurse(self._root, start, stop))
 
     def find_intervals_stopping_after_offset(self, offset):
+        '''
+
+        Return `TimeIntervalTree` instance.
+        '''
+
         def recurse(node, offset):
             intervals = []
             if node == self._sentinel:
@@ -449,10 +523,16 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
             if node.right != self._sentinel and offset < node.right.latest_stop:
                 intervals.extend(recurse(node.right, offset))
             return intervals
-        assert isinstance(offset, (int, Fraction))
-        return tuple(sorted(recurse(self._root, offset), key=lambda x: x.signature))
+
+        offset = Offset(offset)
+        return type(self)(recurse(self._root, offset))
 
     def find_intervals_stopping_at_offset(self, offset):
+        '''
+
+        Return `TimeIntervalTree` instance.
+        '''
+
         def recurse(node, offset):
             intervals = []
             if node == self._sentinel:
@@ -466,10 +546,16 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
             if node.right != self._sentinel and node.right.earliest_stop <= offset:
                 intervals.extend(recurse(node.right, offset))
             return intervals
-        assert isinstance(offset, (int, Fraction))
-        return tuple(sorted(recurse(self._root, offset), key=lambda x: x.signature))
+
+        offset = Offset(offset)
+        return type(self)(recurse(self._root, offset))
 
     def find_intervals_stopping_before_offset(self, offset):
+        '''
+
+        Return `TimeIntervalTree` instance.
+        '''
+
         def recurse(node, offset):
             intervals = []
             if node == self._sentinel:
@@ -483,10 +569,16 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
             if node.right != self._sentinel and node.right.earliest_stop < offset:
                 intervals.extend(recurse(node.right, offset))
             return intervals
-        assert isinstance(offset, (int, Fraction))
-        return tuple(sorted(recurse(self._root, offset), key=lambda x: x.signature))
+
+        offset = Offset(offset)
+        return type(self)(recurse(self._root, offset))
 
     def find_intervals_stopping_within_interval(self, *args):
+        '''
+
+        Return `TimeIntervalTree` instance.
+        '''
+
         def recurse(node, start, stop):
             intervals = []
             if node == self._sentinel:
@@ -504,6 +596,7 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
                 node.right.earliest_stop <= stop:
                 intervals.extend(recurse(node.right, start, stop))
             return intervals
+
         if len(args) == 1:
             assert isinstance(args[0], TimeInterval)
             start, stop = args[0].start, args[0].stop
@@ -513,7 +606,24 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
             assert start <= stop
         else:
             raise ValueError
-        return tuple(sorted(recurse(self._root, start, stop), key=lambda x: x.signature))
+
+        return type(self)(recurse(self._root, start, stop))
+
+    def quantize_to_rational(self, rational):
+        '''Quantize all intervals in tree to a multiple (1 or more) of `rational`.
+
+        Return `TimeIntervalTree` instance.
+        '''
+
+        rational = Duration(rational)
+        intervals = []
+        for interval in self:
+            start = Offset(int(round(interval.start / rational))) * rational
+            stop = Offset(int(round(interval.stop / rational))) * rational
+            if start == stop:
+                stop = start + rational
+            intervals.append(interval.shift_to_rational(start).scale_to_rational(stop - start))
+        return type(self)(intervals)
 
     def scale_by_rational(self, rational):
         '''Scale aggregate duration of tree by `rational`:
@@ -582,7 +692,7 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
         '''
 
         rational = Duration(rational)
-        return TimeIntervalTree([
+        return type(self)([
             x.shift_to_rational(
                 ((x.start - self.start) * rational) + self.start).scale_by_rational(rational)\
                 for x in self
@@ -657,7 +767,7 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
         rational = Duration(rational)
         ratio = rational / self.duration
-        return TimeIntervalTree([
+        return type(self)([
             x.shift_to_rational(
                 ((x.start - self.start) * ratio) + self.start).scale_by_rational(ratio) \
                 for x in self])
@@ -702,9 +812,8 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
         Return `TimeIntervalTree` instance.
         '''
 
-
         rational = Offset(rational)
-        return TimeIntervalTree([
+        return type(self)([
             x.shift_by_rational(rational) for x in self
         ])
 
@@ -743,7 +852,7 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
         '''
 
         rational = Offset(rational)
-        return TimeIntervalTree([
+        return type(self)([
             x.shift_by_rational(rational - self.start) for x in self
         ])
 
@@ -808,7 +917,8 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
         '''
 
         assert 0 < len(rationals)
-        rationals = tuple(sorted([Offset(x) for x in rationals]))
+        rationals = sorted([Offset(x) for x in rationals])
+        rationals = [x for x in rationals if self.start < x < self.stop]
 
         trees = []
         intervals = self[:]
@@ -827,13 +937,13 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
                     after.append(splits[1])
 
             if before:
-                trees.append(TimeIntervalTree(before))
+                trees.append(type(self)(before))
 
             intervals = after
             before = []
             after = []
 
         if intervals:
-            trees.append(TimeIntervalTree(intervals))
+            trees.append(type(self)(intervals))
 
         return tuple(trees)
