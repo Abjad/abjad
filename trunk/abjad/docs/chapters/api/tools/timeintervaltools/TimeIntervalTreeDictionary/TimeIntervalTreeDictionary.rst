@@ -233,8 +233,6 @@ Special Methods
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.__repr__
 
-   .. note:: Inherited from `__builtin__.dict`
-
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.__setattr__
 
    .. note:: Inherited from `__builtin__.object`
