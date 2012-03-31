@@ -11,7 +11,6 @@ class RhythmicStaff(Staff):
 
     ### INITIALIZER ###
 
-    # TODO: do not use list in initializer! use none instead!
-    def __init__(self, music=[], **kwargs):
+    def __init__(self, music=None, **kwargs):
         Staff.__init__(self, music, **kwargs)
         self.context_name = 'RhythmicStaff'
