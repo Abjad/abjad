@@ -16,14 +16,15 @@ class Context(Container):
 
     ### INITIALIZER ###
 
-    def __init__(self, music=None, context_name='Context'):
+    def __init__(self, music=None, context_name='Context', name=None):
         Container.__init__(self, music)
         #self._context_name = 'Context'
         self.context_name = context_name
         self._formatter = _ContextFormatter(self)
         self._engraver_consists = set([])
         self._engraver_removals = set([])
-        self._name = None
+        #self._name = None
+        self.name = None
         self.is_nonsemantic = False
 
     ### SPECIAL METHODS ###
@@ -62,6 +63,9 @@ class Context(Container):
         if 'context_name' in kwargs:
             self.context_name = kwargs['context_name']
             del(kwargs['context_name'])
+        if 'name' in kwargs:
+            self.name = kwargs['name']
+            del(kwargs['name'])
         Container._initialize_keyword_values(self, **kwargs)
 
     ### PUBLIC PROPERTIES ###
@@ -180,7 +184,8 @@ class Context(Container):
     @apply
     def name():
         def fget(self):
-            '''Read-write name of component. Must be string or none.'''
+            '''Read-write name of context. Must be string or none.
+            '''
             return self._name
         def fset(self, arg):
             assert isinstance(arg, (str, type(None)))
