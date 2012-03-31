@@ -32,6 +32,10 @@ class GrandStaff(StaffGroup):
     Return grand staff.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
+    __slots__ = ()
+
     ### INITIALIZER ###
 
     def __init__(self, music):

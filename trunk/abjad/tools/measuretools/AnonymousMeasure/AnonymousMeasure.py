@@ -44,8 +44,12 @@ class AnonymousMeasure(DynamicMeasure):
     Return anonymous measure.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
     __slots__ = ()
 
-    def __init__(self, music = None, **kwargs):
+    ### INITIALIZER ###
+
+    def __init__(self, music=None, **kwargs):
         DynamicMeasure.__init__(self, music = music, **kwargs)
         self.override.staff.time_signature.stencil = False

@@ -32,9 +32,13 @@ class StaffGroup(Context):
     Return staff group.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
+    __slots__ = ()
+
     ### INITIALIZER ###
 
-    def __init__(self, music = [], **kwargs):
+    def __init__(self, music=None, **kwargs):
         Context.__init__(self, music)
         self.is_parallel = True
         self.context_name = 'StaffGroup'

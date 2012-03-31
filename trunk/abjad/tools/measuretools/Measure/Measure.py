@@ -31,9 +31,13 @@ class Measure(Container):
     Return measure object.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
     __slots__ = ('_measure_number', )
 
-    def __init__(self, meter, music = None, **kwargs):
+    ### INITIALIZER ###
+
+    def __init__(self, meter, music=None, **kwargs):
         Container.__init__(self, music)
         self._formatter = _MeasureFormatter(self)
         self._measure_number = None

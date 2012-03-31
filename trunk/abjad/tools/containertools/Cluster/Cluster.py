@@ -26,7 +26,13 @@ class Cluster(Container):
     Return cluster object.
     '''
 
-    def __init__(self, music = None, **kwargs):
+    ### CLASS ATTRIBUTES ###
+
+    __slots__ = ()
+
+    ### INITIALIZER ###
+
+    def __init__(self, music=None, **kwargs):
         Container.__init__(self, music)
         self.is_parallel = False
         self._formatter = _ClusterFormatter(self)

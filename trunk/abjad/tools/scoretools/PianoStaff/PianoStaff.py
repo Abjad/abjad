@@ -31,9 +31,13 @@ class PianoStaff(StaffGroup):
 
     Return piano staff.
     '''
+    
+    ### CLASS ATTRIBUTES ###
+
+    __slots__ = ()
 
     ### INITIALIZER ###
 
-    def __init__(self, music):
+    def __init__(self, music=None):
         StaffGroup.__init__(self, music)
         self.context_name = 'PianoStaff'

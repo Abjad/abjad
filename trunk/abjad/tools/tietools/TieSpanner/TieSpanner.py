@@ -19,6 +19,8 @@ class TieSpanner(_DirectedSpanner):
     Return tie spanner.
     '''
 
-    def __init__(self, music = None, direction = None):
+    ### INITIALIZER ###
+
+    def __init__(self, music=None, direction=None):
         _DirectedSpanner.__init__(self, music, direction)
         self._format = _TieSpannerFormatInterface(self)

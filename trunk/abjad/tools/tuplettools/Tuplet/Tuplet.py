@@ -21,10 +21,14 @@ class Tuplet(Container):
     Return tuplet object.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
     __slots__ = ('_force_fraction', '_is_invisible', '_multiplier', '_preferred_denominator',
         '_signifier', )
 
-    def __init__(self, multiplier, music = None, **kwargs):
+    ### INITIALIZER ###
+
+    def __init__(self, multiplier, music=None, **kwargs):
         Container.__init__(self, music)
         self.multiplier = multiplier
         self._force_fraction = None

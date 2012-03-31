@@ -24,7 +24,7 @@ class Voice(Context):
 
     ### INITIALIZER ###
 
-    def __init__(self, music = None, **kwargs):
+    def __init__(self, music=None, **kwargs):
         Context.__init__(self, music)
         self.context_name = 'Voice'
         self._initialize_keyword_values(**kwargs)

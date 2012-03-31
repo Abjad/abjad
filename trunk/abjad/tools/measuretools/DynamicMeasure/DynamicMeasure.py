@@ -28,10 +28,14 @@ class DynamicMeasure(Measure):
     Return dynamic measure.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
     __slots__ = ('_denominator', '_time_signature_is_current', '_suppress_meter', )
 
-    def __init__(self, music = None, **kwargs):
-        Measure.__init__(self, meter = (99, 99), music = music, **kwargs)
+    ### INITIALIZER ###
+
+    def __init__(self, music=None, **kwargs):
+        Measure.__init__(self, meter=(99, 99), music=music, **kwargs)
         self._denominator = None
         self._time_signature_is_current = False
         self._suppress_meter = False

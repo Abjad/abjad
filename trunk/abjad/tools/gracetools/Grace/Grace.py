@@ -74,12 +74,17 @@ class Grace(Container):
     Use ``Grace()`` to attach grace containers to nongrace notes, rests and chords.
     '''
 
-    def __init__(self, music = None, kind = 'grace', **kwargs):
-        # self._carrier is a reference to the Note carrying the Graces.
+    ### CLASS ATTRIBUTES ###
+
+    __slots__ = ('_carrier', '_kind', )
+
+    ### INITIALIZER ###
+
+    def __init__(self, music=None, kind='grace', **kwargs):
+        # self._carrier is a reference to the leaf carrying grace music
         self._carrier = None
         Container.__init__(self, music)
         self._formatter = _GraceFormatter(self)
-        #self.kind = 'grace'
         self.kind = kind
         self._initialize_keyword_values(**kwargs)
 
