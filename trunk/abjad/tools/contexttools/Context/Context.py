@@ -16,9 +16,10 @@ class Context(Container):
 
     ### INITIALIZER ###
 
-    def __init__(self, music=None):
+    def __init__(self, music=None, context_name='Context'):
         Container.__init__(self, music)
-        self._context_name = 'Context'
+        #self._context_name = 'Context'
+        self.context_name = context_name
         self._formatter = _ContextFormatter(self)
         self._engraver_consists = set([])
         self._engraver_removals = set([])
@@ -54,6 +55,14 @@ class Context(Container):
         else:
             name = ''
         return '%s%s%s%s%s' % (self.context_name, name, open_bracket_string, summary, close_bracket_string)
+
+    ### PRIVATE METHODS ###
+
+    def _initialize_keyword_values(self, **kwargs):
+        if 'context_name' in kwargs:
+            self.context_name = kwargs['context_name']
+            del(kwargs['context_name'])
+        Container._initialize_keyword_values(self, **kwargs)
 
     ### PUBLIC PROPERTIES ###
 
