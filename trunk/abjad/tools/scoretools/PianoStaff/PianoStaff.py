@@ -32,6 +32,8 @@ class PianoStaff(StaffGroup):
     Return piano staff.
     '''
 
+    ### INITIALIZER ###
+
     def __init__(self, music):
         StaffGroup.__init__(self, music)
-        self.context = 'PianoStaff'
+        self.context_name = 'PianoStaff'

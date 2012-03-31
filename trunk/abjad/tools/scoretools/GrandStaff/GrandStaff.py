@@ -32,6 +32,8 @@ class GrandStaff(StaffGroup):
     Return grand staff.
     '''
 
+    ### INITIALIZER ###
+
     def __init__(self, music):
         StaffGroup.__init__(self, music)
-        self.context = 'GrandStaff'
+        self.context_name = 'GrandStaff'

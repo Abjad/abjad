@@ -76,7 +76,7 @@ Read-only Properties
 Read/write Properties
 ---------------------
 
-.. autoattribute:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.context
+.. autoattribute:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.context_name
 
    .. note:: Inherited from :py:class:`contexttools.Context <abjad.tools.contexttools.Context.Context.Context>`
 

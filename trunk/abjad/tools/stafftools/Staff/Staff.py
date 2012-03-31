@@ -18,9 +18,13 @@ class Staff(Context):
     Return staff object.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
     __slots__ = ()
 
-    def __init__(self, music = None, **kwargs):
+    ### INITIALIZER ###
+
+    def __init__(self, music=None, **kwargs):
         Context.__init__(self, music)
-        self.context = 'Staff'
+        self.context_name = 'Staff'
         self._initialize_keyword_values(**kwargs)

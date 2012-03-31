@@ -70,7 +70,7 @@ Read-only Properties
 Read/write Properties
 ---------------------
 
-.. autoattribute:: abjad.tools.contexttools.Context.Context.Context.context
+.. autoattribute:: abjad.tools.contexttools.Context.Context.Context.context_name
 
 .. autoattribute:: abjad.tools.contexttools.Context.Context.Context.is_nonsemantic
 

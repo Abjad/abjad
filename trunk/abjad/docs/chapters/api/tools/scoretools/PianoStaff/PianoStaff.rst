@@ -76,7 +76,7 @@ Read-only Properties
 Read/write Properties
 ---------------------
 
-.. autoattribute:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.context
+.. autoattribute:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.context_name
 
    .. note:: Inherited from :py:class:`contexttools.Context <abjad.tools.contexttools.Context.Context.Context>`
 

@@ -32,8 +32,10 @@ class StaffGroup(Context):
     Return staff group.
     '''
 
+    ### INITIALIZER ###
+
     def __init__(self, music = [], **kwargs):
         Context.__init__(self, music)
         self.is_parallel = True
-        self.context = 'StaffGroup'
+        self.context_name = 'StaffGroup'
         self._initialize_keyword_values(**kwargs)

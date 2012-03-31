@@ -76,7 +76,7 @@ Read-only Properties
 Read/write Properties
 ---------------------
 
-.. autoattribute:: abjad.tools.stafftools.Staff.Staff.Staff.context
+.. autoattribute:: abjad.tools.stafftools.Staff.Staff.Staff.context_name
 
    .. note:: Inherited from :py:class:`contexttools.Context <abjad.tools.contexttools.Context.Context.Context>`
 

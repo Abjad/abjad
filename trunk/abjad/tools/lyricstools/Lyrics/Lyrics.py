@@ -6,5 +6,5 @@ class Lyrics(Context):
 
     def __init__(self, music=[]):
         Context.__init__(self, music)
-        self.context = 'Lyrics'
+        self.context_name = 'Lyrics'
         self._formatter = _LyricsFormatter(self)

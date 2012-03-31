@@ -20,9 +20,13 @@ class Container(Component):
     Return container object.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
     __slots__ = ('_formatter', '_music', '_parallel', )
 
-    def __init__(self, music = None, **kwargs):
+    ### INITIALIZER ###
+
+    def __init__(self, music=None, **kwargs):
         Component.__init__(self)
         self._parallel = False
         self._initialize_music(music)

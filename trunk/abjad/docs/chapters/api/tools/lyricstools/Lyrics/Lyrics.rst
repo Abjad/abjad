@@ -76,7 +76,7 @@ Read-only Properties
 Read/write Properties
 ---------------------
 
-.. autoattribute:: abjad.tools.lyricstools.Lyrics.Lyrics.Lyrics.context
+.. autoattribute:: abjad.tools.lyricstools.Lyrics.Lyrics.Lyrics.context_name
 
    .. note:: Inherited from :py:class:`contexttools.Context <abjad.tools.contexttools.Context.Context.Context>`
 

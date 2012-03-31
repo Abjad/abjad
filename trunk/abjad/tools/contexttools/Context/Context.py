@@ -7,13 +7,18 @@ import copy
 class Context(Container):
     '''Abjad model of a horizontal layer of music.
     '''
+
+    ### CLASS ATTRIBUTES ###
+
     __metaclass__ = ABCMeta 
-    __slots__ = ('_context', '_engraver_consists', '_engraver_removals',
+    __slots__ = ('_context_name', '_engraver_consists', '_engraver_removals',
         '_is_nonsemantic', '_name', )
 
-    def __init__(self, music = None):
+    ### INITIALIZER ###
+
+    def __init__(self, music=None):
         Container.__init__(self, music)
-        self._context = 'Context'
+        self._context_name = 'Context'
         self._formatter = _ContextFormatter(self)
         self._engraver_consists = set([])
         self._engraver_removals = set([])
@@ -38,7 +43,6 @@ class Context(Container):
         if 0 < len(self):
             summary = str(len(self))
         else:
-            #summary = ' '
             summary = ''
         if self.is_parallel:
             open_bracket_string, close_bracket_string = '<<', '>>'
@@ -49,18 +53,18 @@ class Context(Container):
             name = '-"%s"' % name
         else:
             name = ''
-        return '%s%s%s%s%s' % (self.context, name, open_bracket_string, summary, close_bracket_string)
+        return '%s%s%s%s%s' % (self.context_name, name, open_bracket_string, summary, close_bracket_string)
 
     ### PUBLIC PROPERTIES ###
 
     @apply
-    def context():
+    def context_name():
         def fget(self):
             '''Read / write name of context as a string.'''
-            return self._context
+            return self._context_name
         def fset(self, arg):
             assert isinstance(arg, str)
-            self._context = arg
+            self._context_name = arg
         return property(**locals())
 
     @property

@@ -18,9 +18,13 @@ class Voice(Context):
     Return voice object.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
     __slots__ = ()
+
+    ### INITIALIZER ###
 
     def __init__(self, music = None, **kwargs):
         Context.__init__(self, music)
-        self.context = 'Voice'
+        self.context_name = 'Voice'
         self._initialize_keyword_values(**kwargs)

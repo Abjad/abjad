@@ -28,9 +28,9 @@ class _ContextFormatter(_ContainerFormatter):
     def _invocation(self):
         client = self._client
         if client.name is not None:
-            return r'\context %s = "%s"' % (client.context, client.name)
+            return r'\context %s = "%s"' % (client.context_name, client.name)
         else:
-            return r'\new %s' % client.context
+            return r'\new %s' % client.context_name
 
     ### PUBLIC PROPERTIES ###
 

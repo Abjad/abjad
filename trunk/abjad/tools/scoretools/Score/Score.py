@@ -28,10 +28,14 @@ class Score(Context):
     Return score object.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
     __slots__ = ()
 
-    def __init__(self, music = None, **kwargs):
+    ### INITIALIZER ###
+
+    def __init__(self, music=None, **kwargs):
         Context.__init__(self, music)
-        self.context = 'Score'
+        self.context_name = 'Score'
         self.is_parallel = True
         self._initialize_keyword_values(**kwargs)

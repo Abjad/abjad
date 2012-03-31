@@ -5,8 +5,13 @@ class RhythmicStaff(Staff):
     '''Abjad model of a rhythmic staff.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
     __slots__ = ()
 
-    def __init__(self, music = [], **kwargs):
+    ### INITIALIZER ###
+
+    # TODO: do not use list in initializer! use none instead!
+    def __init__(self, music=[], **kwargs):
         Staff.__init__(self, music, **kwargs)
-        self.context = 'RhythmicStaff'
+        self.context_name = 'RhythmicStaff'
