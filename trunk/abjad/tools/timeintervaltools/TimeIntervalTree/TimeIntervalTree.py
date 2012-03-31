@@ -52,14 +52,15 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
     ### INITIALIZER ###
 
-    def __init__(self, intervals = []):
+    def __init__(self, intervals = None):
         self._sentinel = _IntervalNode(0)
         self._sentinel.red = True
         self._sentinel.left = self._sentinel
         self._sentinel.right = self._sentinel
         self._sentinel.parent = self._sentinel
         self._root = self._sentinel
-        self._insert(intervals)
+        if intervals is not None:
+            self._insert(intervals)
         self._start = self.earliest_start
         self._stop = self.latest_stop
 
@@ -740,7 +741,7 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
         return type(self)(recurse(self._root, offset))
 
     def find_intervals_stopping_at_offset(self, offset):
-        '''Find all intervals in tree starting at `offset`:
+        '''Find all intervals in tree stopping at `offset`:
 
         ::
 
