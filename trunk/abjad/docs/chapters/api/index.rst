@@ -1241,6 +1241,7 @@ Additional Abjad composition packages (load manually)
    tools/documentationtools/FunctionDocumenter/FunctionDocumenter
    tools/documentationtools/InheritanceGraph/InheritanceGraph
    tools/documentationtools/ModuleCrawler/ModuleCrawler
+   tools/documentationtools/Pipe/Pipe
 
 :py:mod:`durationtools <abjad.tools.durationtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
