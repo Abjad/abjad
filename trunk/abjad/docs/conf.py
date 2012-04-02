@@ -28,6 +28,7 @@ extensions = [
     'sphinx.ext.todo',
     'sphinx.ext.coverage',
     'sphinx.ext.intersphinx',
+    'sphinx.ext.viewcode',
 ]
 
 # For sphinx.ext.todo

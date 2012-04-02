@@ -1,10 +1,22 @@
 import select
 import subprocess
+from abjad.tools import abctools
 
 
-class Pipe(subprocess.Popen):
+class Pipe(abctools.AbjadObject, subprocess.Popen):
+    '''A two-way, non-blocking pipe for interprocess communication:
 
-    def __init__(self, exe, args=None, timeout=0):
+    ::
+
+        abjad> from abjad.tools.documentationtools import Pipe
+        abjad> pipe = Pipe('python', ['-i'])
+        abjad> pipe.write('my_list = [1, 2, 3]\n')
+        abjad> pipe.write('print my_list')
+
+    Return `Pipe` instance.
+    '''
+
+    def __init__(self, exe='python', args=['-i'], timeout=0):
         self.timeout = timeout
         argv = [exe]
         if args != None:
