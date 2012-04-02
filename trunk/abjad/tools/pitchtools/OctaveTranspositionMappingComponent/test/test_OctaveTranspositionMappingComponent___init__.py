@@ -25,3 +25,11 @@ def test_OctaveTranspositionMappingComponent___init___03():
     component_2 = pitchtools.OctaveTranspositionMappingComponent(component_1)
     assert isinstance(component_1, pitchtools.OctaveTranspositionMappingComponent)    
     assert isinstance(component_2, pitchtools.OctaveTranspositionMappingComponent)    
+
+
+def test_OctaveTranspositionMappingComponent___init___04():
+    '''Init from string.
+    '''
+
+    component = pitchtools.OctaveTranspositionMappingComponent('[A0, C8] => 15')
+    assert isinstance(component, pitchtools.OctaveTranspositionMappingComponent)    
