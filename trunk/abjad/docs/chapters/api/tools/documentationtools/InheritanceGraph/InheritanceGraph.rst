@@ -6,6 +6,11 @@ documentationtools.InheritanceGraph
 
 .. autoclass:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.root_class
+
 Methods
 -------
 
