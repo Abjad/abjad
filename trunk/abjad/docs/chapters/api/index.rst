@@ -1234,8 +1234,10 @@ Additional Abjad composition packages (load manually)
 
    tools/documentationtools/APICrawler/APICrawler
    tools/documentationtools/AbjadAPIGenerator/AbjadAPIGenerator
+   tools/documentationtools/ClassCrawler/ClassCrawler
    tools/documentationtools/ClassDocumenter/ClassDocumenter
    tools/documentationtools/Documenter/Documenter
+   tools/documentationtools/FunctionCrawler/FunctionCrawler
    tools/documentationtools/FunctionDocumenter/FunctionDocumenter
    tools/documentationtools/InheritanceGraph/InheritanceGraph
    tools/documentationtools/ModuleCrawler/ModuleCrawler
