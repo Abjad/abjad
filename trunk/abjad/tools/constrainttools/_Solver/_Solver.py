@@ -3,6 +3,10 @@ from abjad.tools.abctools import AbjadObject
 
 class _Solver(AbjadObject):
 
+    ### CLASS ATTRIBUTES ###
+
+    __slots__ = ()
+
     ### PUBLIC PROPERTIES ###
 
     @property

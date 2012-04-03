@@ -8,7 +8,11 @@ class _MelodicIntervalClass(_IntervalClass, _Melodic):
 
     Melodic interval-class base class.
     '''
+
+    ### CLASS ATTRIBUTES ###
+
     __metaclass__ = ABCMeta
+    __slots__ = ()
 
     ### PRIVATE PROPERTIES ###
 
@@ -16,7 +20,7 @@ class _MelodicIntervalClass(_IntervalClass, _Melodic):
     def _format_string(self):
         return '%s%s' % (self.direction_symbol, abs(self.number))
 
-    # PUBLIC ATTRIUBTES #
+    ### PUBLIC ATTRIUBTES ###
 
     @property
     def direction_number(self):

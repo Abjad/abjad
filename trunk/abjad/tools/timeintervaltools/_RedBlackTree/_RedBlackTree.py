@@ -4,6 +4,12 @@ from abjad.tools.timeintervaltools._RedBlackNode import _RedBlackNode
 
 class _RedBlackTree(AbjadObject):
 
+    ### CLASS ATTRIBUTES ###
+
+    __slots__ = ()
+
+    ### INITIALIZER ###
+
     def __init__(self):
         self._sentinel = _RedBlackNode()
         self._sentinel.red = True

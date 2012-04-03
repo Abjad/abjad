@@ -8,7 +8,11 @@ class _CounterpointIntervalClass(_IntervalClass, _Counterpoint):
 
     Counterpoint interval-class base class.
     '''
+
+    ### CLASS ATTRIBUTES ###
+    
     __metaclass__ = ABCMeta
+    __slots__ = ()
 
     ### SPECIAL METHODS ###
 

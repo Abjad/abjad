@@ -12,6 +12,7 @@ class TimeIntervalAggregateMixin(TimeIntervalMixin):
     ### CLASS ATTRIBUTES ###
 
     __metaclass__ = ABCMeta
+    __slots__ = ()
 
     ### PUBLIC ATTRIBUTES ###
 
