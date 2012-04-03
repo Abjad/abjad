@@ -80,10 +80,10 @@ class InheritanceGraph(ImmutableDictionary):
 
         klasses = []
         for x in args:
-            if isinstance(x, type):
+            if isinstance(x, types.TypeType):
                 klasses.append(x)
             elif type(x).__name__ == 'module':
-                klasses.extend([klass for klass in x.__dict__.values() if isinstance(klass, type)])
+                klasses.extend([klass for klass in x.__dict__.values() if isinstance(klass, types.TypeType)])
             else:
                 klasses.append(x.__class__)
 
@@ -107,7 +107,7 @@ class InheritanceGraph(ImmutableDictionary):
             graph = {self.root_class: []}
 
             def _recurse(klass):
-                if self.root_class in inspect.getmro(klass):
+                if self.root_class in inspect.getmro(klass) and klass not in graph:                    
                     graph[klass] = []
                 for base in klass.__bases__:
                     if base in graph:
