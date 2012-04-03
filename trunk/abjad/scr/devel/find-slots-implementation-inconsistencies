@@ -1,0 +1,47 @@
+#! /usr/bin/env python
+
+import inspect
+import os
+from abjad.cfg.cfg import ABJADPATH
+from abjad.tools.abctools import AbjadObject
+from abjad.tools.documentationtools import ClassCrawler
+from abjad.tools.documentationtools import InheritanceGraph
+
+
+def _shorten_class_name(klass):
+    parts = klass.__module__.split('.')[2:]
+    return '%s.%s' % (parts[0], parts[1])
+
+def _find_inconsistencies():
+    tools_path = os.path.join(ABJADPATH, 'tools')
+    classes = ClassCrawler(tools_path)()
+    graph = InheritanceGraph(*classes, root_class=AbjadObject)
+
+    bad_arcs = []
+
+    for parent, children in graph.iteritems():
+        parent_attrs = inspect.classify_class_attrs(parent)
+        parent_slots_def = [x for x in parent_attrs
+            if x.name == '__slots__'][0].defining_class
+
+        for child in children:
+            child_attrs = inspect.classify_class_attrs(child)
+            child_slots_def = [x for x in child_attrs
+                if x.name == '__slots__'][0].defining_class
+
+            if child_slots_def == child and parent_slots_def != parent:
+                bad_arcs.append((parent, child))
+
+    if bad_arcs:
+        print '%d bad __slots__ relationships found:' % len(bad_arcs)
+        for parent, child in bad_arcs:
+            print '\t%s -> %s' % (_shorten_class_name(parent), _shorten_class_name(child))
+    else:
+        print 'No bad __slots__ relationships found.'
+
+    return graph
+
+
+if __name__ == '__main__':
+    os.system('clear')
+    graph = _find_inconsistencies()
