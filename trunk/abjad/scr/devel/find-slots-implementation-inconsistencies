@@ -34,7 +34,7 @@ def _find_inconsistencies():
 
     if bad_arcs:
         print '%d bad __slots__ relationships found:' % len(bad_arcs)
-        for parent, child in bad_arcs:
+        for parent, child in sorted(bad_arcs, key=lambda x: (x[0].__module__, x[1].__module__)):
             print '\t%s -> %s' % (_shorten_class_name(parent), _shorten_class_name(child))
     else:
         print 'No bad __slots__ relationships found.'
