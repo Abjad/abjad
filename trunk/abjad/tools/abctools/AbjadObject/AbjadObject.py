@@ -195,6 +195,12 @@ class AbjadObject(object):
 
     ### PRIVATE METHODS ###
 
+    def _debug(self, value, annotation=None):
+        if annotation is None:
+            print 'debug: {!r}'.format(value)
+        else:
+            print 'debug ({}): {!r}'.format(annotation, value)
+
     def _get_tools_package_qualified_keyword_argument_repr_pieces(self, is_indented=True):
         result = []
         if is_indented:
