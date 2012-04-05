@@ -893,6 +893,16 @@ Abjad composition packages
    tools/resttools/set_vertical_positioning_pitch_on_rest
    tools/resttools/yield_groups_of_rests_in_sequence
 
+:py:mod:`rhythmtreetools <abjad.tools.rhythmtreetools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: rhythmtreetools functions
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/rhythmtreetools/parse_rtm_syntax
+
 :py:mod:`schemetools <abjad.tools.schemetools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
