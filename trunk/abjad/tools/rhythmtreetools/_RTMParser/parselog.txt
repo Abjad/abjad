@@ -1,9 +1,0 @@
-    lex.py:     909:lex: tokens   = ('LPAREN', 'NUMBER', 'RPAREN')
-    lex.py:     910:lex: literals = ''
-    lex.py:     911:lex: states   = {'INITIAL': 'inclusive'}
-    lex.py:     938:lex: Adding rule t_NUMBER -> '\d+' (state 'INITIAL')
-    lex.py:     938:lex: Adding rule t_newline -> '\n+' (state 'INITIAL')
-    lex.py:     944:lex: Adding rule t_LPAREN -> '\(' (state 'INITIAL')
-    lex.py:     944:lex: Adding rule t_RPAREN -> '\)' (state 'INITIAL')
-    lex.py:     951:lex: ==== MASTER REGEXS FOLLOW ====
-    lex.py:     960:lex: state 'INITIAL' : regex[0] = '(?P<t_NUMBER>\d+)|(?P<t_newline>\n+)|(?P<t_LPAREN>\()|(?P<t_RPAREN>\))'

@@ -9,8 +9,9 @@ from abjad.tools.tuplettools import remove_trivial_tuplets_in_expr
 
 class _RTMNode(object):
 
-    def __init__(self, value, children):
-        self._pulses_consumed = int(value)
+    def __init__(self, pulses_consumed, children):
+        assert 0 < pulses_consumed
+        self._pulses_consumed = int(pulses_consumed)
         self._children = tuple(children)
 
     def __call__(self, duration=Duration(1, 4)):

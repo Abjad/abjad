@@ -11,7 +11,7 @@ class _RTMParser(object):
 
     ### LEX SETUP ###
 
-    tokens = ('LPAREN', 'NUMBER', 'RPAREN')
+    tokens = ('LPAREN', 'INTEGER', 'RPAREN')
     t_LPAREN = r'\('
     t_RPAREN = r'\)'
     t_ignore = ' \n\t\r'
@@ -66,14 +66,9 @@ class _RTMParser(object):
 
     ### LEX METHODS ###
 
-    def t_NUMBER(self, t):
-        r'\d+'
-        try:
-            t.value = int(t.value)
-        except ValueError:
-            print("Integer value too large %s" % t.value)
-            t.value = 0
-        #print "parsed number %s" % repr(t.value)
+    def t_INTEGER(self, t):
+        r'(-?[1-9]\d*)'
+        t.value = int(t.value)
         return t
 
     def t_newline(self, t):
@@ -86,8 +81,8 @@ class _RTMParser(object):
 
     ### YACC METHODS ###
 
-    def p_node__LPAREN__NUMBER__node_list_closed__RPAREN(self, p):
-        '''node : LPAREN NUMBER node_list_closed RPAREN'''
+    def p_node__LPAREN__INTEGER__node_list_closed__RPAREN(self, p):
+        '''node : LPAREN INTEGER node_list_closed RPAREN'''
         p[0] = Node(p[2], p[3])
 
     def p_node_list_closed__LPAREN__node_list__RPAREN(self, p):
@@ -102,8 +97,8 @@ class _RTMParser(object):
         '''node_list : node_list node_list_item'''
         p[0] = p[1] + [p[2]]
 
-    def p_node_list_item__NUMBER(self, p):
-        '''node_list_item : NUMBER'''
+    def p_node_list_item__INTEGER(self, p):
+        '''node_list_item : INTEGER'''
         p[0] = p[1]
 
     def p_node_list_item__node(self, p):
