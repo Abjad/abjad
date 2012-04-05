@@ -4,6 +4,7 @@ from abjad.tools.notetools import make_notes
 from abjad.tools.resttools import make_rests
 from abjad.tools.tuplettools import FixedDurationTuplet
 from abjad.tools.tuplettools import fix_contents_of_tuplets_in_expr
+from abjad.tools.tuplettools import remove_trivial_tuplets_in_expr
 
 
 class _RTMNode(object):
@@ -27,7 +28,9 @@ class _RTMNode(object):
                     tuplet.append(recurse(x, Duration(x.pulses_consumed, denominator)))
             return tuplet
 
-        return recurse(self, duration * self._pulses_consumed)
+        result = recurse(self, duration * self._pulses_consumed)
+        remove_trivial_tuplets_in_expr(result)
+        return result
 
     def __iter__(self):
         for x in self.children:
