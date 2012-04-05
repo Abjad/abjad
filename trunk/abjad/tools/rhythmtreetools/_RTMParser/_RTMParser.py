@@ -22,7 +22,7 @@ class _RTMParser(object):
 
     ### INITIALIZER ###
 
-    def __init__(self, debug=True):
+    def __init__(self, debug=False):
         self.output_path = os.path.dirname(__file__)
         self.pickle_path = os.path.join(self.output_path, '_parsetab.pkl')
         self.logger_path = os.path.join(self.output_path, 'parselog.txt')
