@@ -18,7 +18,7 @@ class _RTMParser(object):
 
     ### YACC SETUP ###
 
-    start = 'node'
+    start = 'nodes'
 
     ### INITIALIZER ###
 
@@ -80,6 +80,14 @@ class _RTMParser(object):
         t.lexer.skip(1)
 
     ### YACC METHODS ###
+
+    def p_nodes__EMPTY(self, p):
+        '''nodes : '''
+        p[0] = []
+
+    def p_nodes__nodes__node(self, p):
+        '''nodes : nodes node'''
+        p[0] = p[1] + [p[2]]
 
     def p_node__LPAREN__INTEGER__node_list_closed__RPAREN(self, p):
         '''node : LPAREN INTEGER node_list_closed RPAREN'''

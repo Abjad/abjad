@@ -38,7 +38,7 @@ class _RTMNode(object):
             yield x
 
     def __repr__(self):
-        return '(%d (%s))' % (self.value, ' '.join([repr(x) for x in self.children]))
+        return '(%d (%s))' % (self.pulses_consumed, ' '.join([repr(x) for x in self.children]))
 
     ### PUBLIC ATTRIBUTES ###
 
