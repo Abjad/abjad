@@ -47,6 +47,7 @@ del scoretemplatetools
 del sequencetools
 del sievetools
 del sys
+del timetokentools
 del threadtools
 del tonalitytools
 del tools
