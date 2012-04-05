@@ -2,7 +2,7 @@ from abjad.tools import contexttools
 from abjad.tools import scoretools
 from abjad.tools import stafftools
 from abjad.tools import voicetools
-from scf.templates.ScoreTemplate import ScoreTemplate
+from abjad.tools.scoretemplatetools.ScoreTemplate import ScoreTemplate
 
 
 class StringQuartetScoreTemplate(ScoreTemplate):
