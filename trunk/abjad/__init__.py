@@ -43,6 +43,7 @@ del mathtools
 del timesignaturetools
 del os
 del pitcharraytools
+del scoretemplatetools
 del sequencetools
 del sievetools
 del sys

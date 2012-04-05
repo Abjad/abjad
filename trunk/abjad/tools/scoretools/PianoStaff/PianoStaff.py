@@ -38,6 +38,6 @@ class PianoStaff(StaffGroup):
 
     ### INITIALIZER ###
 
-    def __init__(self, music=None):
-        StaffGroup.__init__(self, music)
+    def __init__(self, music=None, **kwargs):
+        StaffGroup.__init__(self, music, **kwargs)
         self.context_name = 'PianoStaff'

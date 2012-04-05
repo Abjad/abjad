@@ -909,6 +909,24 @@ Abjad composition packages
    tools/schemetools/SchemeVector/SchemeVector
    tools/schemetools/SchemeVectorConstant/SchemeVectorConstant
 
+:py:mod:`scoretemplatetools <abjad.tools.scoretemplatetools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: scoretemplatetools abstract classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/scoretemplatetools/ScoreTemplate/ScoreTemplate
+
+.. rubric:: scoretemplatetools concrete classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/scoretemplatetools/StringQuartetScoreTemplate/StringQuartetScoreTemplate
+   tools/scoretemplatetools/TwoStaffPianoScoreTemplate/TwoStaffPianoScoreTemplate
+
 :py:mod:`scoretools <abjad.tools.scoretools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
