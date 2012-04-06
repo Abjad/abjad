@@ -1,9 +1,20 @@
 #!/usr/bin/env python
 
+import os
+from abjad.cfg.cfg import ABJADPATH
 from abjad.tools.documentationtools import AbjadAPIGenerator
-from make_html_docs import make_html_docs
 
 
 if __name__ == '__main__':
     AbjadAPIGenerator()(verbose=True)
-    make_html_docs()
+
+    # print greeting
+    print 'Now building the HTML docs ...'
+    print ''
+
+    # change to docs directory because makefile lives there
+    docs_directory = os.path.join(ABJADPATH, 'docs')
+    os.chdir(docs_directory)
+
+    # make html docs
+    os.system('make html')
