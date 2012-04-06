@@ -29,12 +29,6 @@ class TimeTokenMaker(AbjadObject):
         seeds = self._none_to_new_list(seeds)
         return duration_pairs, seeds
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _tools_package(self):
-        return 'handlers.kaleids'
-
     ### PRIVATE METHODS ###
 
     def _make_secondary_duration_pairs(self, duration_pairs, secondary_divisions):
