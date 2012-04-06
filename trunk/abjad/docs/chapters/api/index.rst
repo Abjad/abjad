@@ -893,16 +893,6 @@ Abjad composition packages
    tools/resttools/set_vertical_positioning_pitch_on_rest
    tools/resttools/yield_groups_of_rests_in_sequence
 
-:py:mod:`rhythmtreetools <abjad.tools.rhythmtreetools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. rubric:: rhythmtreetools functions
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/rhythmtreetools/parse_rtm_syntax
-
 :py:mod:`schemetools <abjad.tools.schemetools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -1134,35 +1124,6 @@ Abjad composition packages
    tools/tietools/tie_chain_to_augmented_tuplet_with_proportions_and_encourage_dots
    tools/tietools/tie_chain_to_diminished_tuplet_with_proportions_and_avoid_dots
    tools/tietools/tie_chain_to_diminished_tuplet_with_proportions_and_encourage_dots
-
-:py:mod:`timetokentools <abjad.tools.timetokentools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. rubric:: timetokentools abstract classes
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/timetokentools/BurnishedTimeTokenMaker/BurnishedTimeTokenMaker
-   tools/timetokentools/IncisedTimeTokenMaker/IncisedTimeTokenMaker
-   tools/timetokentools/OutputIncisedTimeTokenMaker/OutputIncisedTimeTokenMaker
-   tools/timetokentools/TimeTokenMaker/TimeTokenMaker
-   tools/timetokentools/TokenIncisedTimeTokenMaker/TokenIncisedTimeTokenMaker
-
-.. rubric:: timetokentools concrete classes
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/timetokentools/NoteFilledTimeTokenMaker/NoteFilledTimeTokenMaker
-   tools/timetokentools/OutputBurnishedSignalFilledTimeTokenMaker/OutputBurnishedSignalFilledTimeTokenMaker
-   tools/timetokentools/OutputIncisedNoteFilledTimeTokenMaker/OutputIncisedNoteFilledTimeTokenMaker
-   tools/timetokentools/OutputIncisedRestFilledTimeTokenMaker/OutputIncisedRestFilledTimeTokenMaker
-   tools/timetokentools/RestFilledTimeTokenMaker/RestFilledTimeTokenMaker
-   tools/timetokentools/SignalFilledTimeTokenMaker/SignalFilledTimeTokenMaker
-   tools/timetokentools/TokenBurnishedSignalFilledTimeTokenMaker/TokenBurnishedSignalFilledTimeTokenMaker
-   tools/timetokentools/TokenIncisedNoteFilledTimeTokenMaker/TokenIncisedNoteFilledTimeTokenMaker
-   tools/timetokentools/TokenIncisedRestFilledTimeTokenMaker/TokenIncisedRestFilledTimeTokenMaker
 
 :py:mod:`tuplettools <abjad.tools.tuplettools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1518,6 +1479,16 @@ Additional Abjad composition packages (load manually)
    tools/pitcharraytools/make_empty_pitch_array_from_list_of_pitch_lists
    tools/pitcharraytools/make_populated_pitch_array_from_list_of_pitch_lists
 
+:py:mod:`rhythmtreetools <abjad.tools.rhythmtreetools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: rhythmtreetools functions
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/rhythmtreetools/parse_rtm_syntax
+
 :py:mod:`sequencetools <abjad.tools.sequencetools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -1788,6 +1759,35 @@ Additional Abjad composition packages (load manually)
    tools/timesignaturetools/get_nonbinary_factor_from_time_signature_denominator
    tools/timesignaturetools/is_time_signature_with_equivalent_binary_representation
    tools/timesignaturetools/time_signature_to_binary_time_signature
+
+:py:mod:`timetokentools <abjad.tools.timetokentools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: timetokentools abstract classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/timetokentools/BurnishedTimeTokenMaker/BurnishedTimeTokenMaker
+   tools/timetokentools/IncisedTimeTokenMaker/IncisedTimeTokenMaker
+   tools/timetokentools/OutputIncisedTimeTokenMaker/OutputIncisedTimeTokenMaker
+   tools/timetokentools/TimeTokenMaker/TimeTokenMaker
+   tools/timetokentools/TokenIncisedTimeTokenMaker/TokenIncisedTimeTokenMaker
+
+.. rubric:: timetokentools concrete classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/timetokentools/NoteFilledTimeTokenMaker/NoteFilledTimeTokenMaker
+   tools/timetokentools/OutputBurnishedSignalFilledTimeTokenMaker/OutputBurnishedSignalFilledTimeTokenMaker
+   tools/timetokentools/OutputIncisedNoteFilledTimeTokenMaker/OutputIncisedNoteFilledTimeTokenMaker
+   tools/timetokentools/OutputIncisedRestFilledTimeTokenMaker/OutputIncisedRestFilledTimeTokenMaker
+   tools/timetokentools/RestFilledTimeTokenMaker/RestFilledTimeTokenMaker
+   tools/timetokentools/SignalFilledTimeTokenMaker/SignalFilledTimeTokenMaker
+   tools/timetokentools/TokenBurnishedSignalFilledTimeTokenMaker/TokenBurnishedSignalFilledTimeTokenMaker
+   tools/timetokentools/TokenIncisedNoteFilledTimeTokenMaker/TokenIncisedNoteFilledTimeTokenMaker
+   tools/timetokentools/TokenIncisedRestFilledTimeTokenMaker/TokenIncisedRestFilledTimeTokenMaker
 
 :py:mod:`verticalitytools <abjad.tools.verticalitytools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
