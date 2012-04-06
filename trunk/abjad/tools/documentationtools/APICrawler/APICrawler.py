@@ -53,7 +53,7 @@ class APICrawler(abctools.AbjadObject):
             docs_directory = code_directory.replace(self.code_root, self.docs_root)
             if not os.path.exists(docs_directory):
                 print 'CREATING DIRECTORY: %s' % docs_directory
-                os.mkdir(docs_directory)
+                os.makedirs(docs_directory)
 
             # create ReST, if changed
             docs_file = '%s.rst' % module.__file__.rpartition('.py')[0].replace(self.code_root, self.docs_root)

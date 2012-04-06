@@ -37,12 +37,14 @@ class AbjadAPIGenerator(abctools.AbjadObject):
         'lilypondparsertools',
         'mathtools',
         'pitcharraytools',
+        'rhythmtreetools',
         'sequencetools',
         'sievetools',
         'tempotools',
         'threadtools',
         'timeintervaltools',
         'timesignaturetools',
+        'timetokentools',
         'verticalitytools',
         'wellformednesstools'
     )
@@ -167,7 +169,7 @@ class AbjadAPIGenerator(abctools.AbjadObject):
         manual = {}
         unstable = {}
 
-        for obj in objects:
+        for obj in sorted(objects, key=lambda x: x.module_name):
             tools_package = obj.module_name.split('.')[2]
 
             collection = None
