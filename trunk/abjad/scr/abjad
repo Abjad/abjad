@@ -1,4 +1,7 @@
 python -i $1 -c "from abjad import *; \
     from abjad.tools.configurationtools._get_abjad_startup_string import _get_abjad_startup_string; \
     print _get_abjad_startup_string(); \
-    del _get_abjad_startup_string"
+    del _get_abjad_startup_string; \
+    from abjad.tools.configurationtools._change_abjad_prompt import _change_abjad_prompt; \
+    _change_abjad_prompt(); \
+    del _change_abjad_prompt;"
