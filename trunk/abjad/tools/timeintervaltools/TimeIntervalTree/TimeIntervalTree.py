@@ -214,6 +214,10 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
             return None
 
     @property
+    def intervals(self):
+        return tuple(self[:])
+
+    @property
     def latest_start(self):
         '''The maximum start value of all intervals in the tree:
 

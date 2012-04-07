@@ -25,6 +25,10 @@ class TimeIntervalAggregateMixin(TimeIntervalMixin):
         raise NotImplementedError
 
     @abstractproperty
+    def intervals(self):
+        raise NotImplementedError
+
+    @abstractproperty
     def latest_start(self):
         raise NotImplementedError
 

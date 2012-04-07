@@ -42,6 +42,12 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
         })
 
 
+    `TimeIntervalTreeDictionary` can be instantiated from one or more other
+    `TimeIntervalTreeDictionary` instances, whose trees will be fused if they
+    share keys.  It can also be instantiated from a regular dictionary whose
+    values are `TimeIntervalTree` instances, or from a list of pairs where the
+    second value of each pair is a `TimeIntervalTree` instance.
+
     `TimeIntervalTreeDictionary` supports the same set of methods and
     properties as `TimeIntervalTree` and `TimeInterval`, including searching
     for intervals, quantizing, scaling, shifting and splitting.
@@ -59,13 +65,29 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
     #### INITIALIZER ###
 
     def __init__(self, *args):
-        #assert 0 < len(args)
+        # should be the same
         if len(args) == 1 and isinstance(args[0], type(self)):
-            dict.update(self, args)
-            object.__setattr__(self, '_composite_tree', args[0].composite_tree)
-            object.__setattr__(self, '_start', args[0].start)
-            object.__setattr__(self, '_stop', args[0].stop)
+            result = args[0]
+            dict.update(self, result)
+            object.__setattr__(self, '_composite_tree', result.composite_tree)
+            object.__setattr__(self, '_start', result.start)
+            object.__setattr__(self, '_stop', result.stop)
 
+        # fuse dictionaries keywise
+        elif 1 < len(args) and all([isinstance(x, type(self)) for x in args]):
+            result = { }
+            for arg in args:
+                for key, tree in arg.iteritems():
+                    if key in result:
+                        result[key] = TimeIntervalTree([result[key], tree])
+                    else:
+                        result[key] = tree
+            dict.update(self, result)
+            object.__setattr__(self, '_composite_tree', TimeIntervalTree(self.values()))
+            object.__setattr__(self, '_start', self.composite_tree.start)
+            object.__setattr__(self, '_stop', self.composite_tree.stop)
+
+        # unpack a regular dict as pairs, or simply accept pairs
         else:
             if isinstance(args[0], dict):
                 args = args[0].items( )
@@ -175,6 +197,10 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
         Return `Offset` instance.
         '''
         return self.composite_tree.earliest_stop
+
+    @property
+    def intervals(self):
+        return tuple(self.composite_tree[:])
 
     @property
     def latest_start(self):
