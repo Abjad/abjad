@@ -283,3 +283,7 @@ class NotImplementedError(Exception):
 class UnboundedTimeIntervalError(Exception):
     '''TimeInterval has no bounds.'''
     pass
+
+class CyclicNodeError(Exception):
+    '''Node is in cyclic relationship.'''
+    pass
