@@ -9,20 +9,31 @@ class Digraph(AbjadObject):
 
     ::
 
-        abjad> from abjad.tools.datastructuretools import Digraph
+        >>> from abjad.tools.datastructuretools import Digraph
 
     ::
 
-        abjad> edges = [('a', 'b'), ('a', 'c'), ('a', 'f'), ('c', 'd'), ('d', 'e'), ('e', 'c')]
-        abjad> digraph = Digraph(edges)
-        abjad> digraph.root_nodes
+        >>> edges = [('a', 'b'), ('a', 'c'), ('a', 'f'), ('c', 'd'), ('d', 'e'), ('e', 'c')]
+        >>> digraph = Digraph(edges)
+        >>> digraph.root_nodes
         ('a',)
-        abjad> digraph.terminal_nodes
+        >>> digraph.terminal_nodes
         ('b', 'f')
-        abjad> digraph.cyclic_nodes
+        >>> digraph.cyclic_nodes
         ('c', 'd', 'e')
-        abjad> digraph.is_cyclic
+        >>> digraph.is_cyclic
         True
+
+    The digraph can also be partitioned according to connections:
+
+    ::
+
+        >>> edges = [('a', 'b'), ('a', 'c'), ('b', 'c'), ('b', 'd'), ('d', 'e')]
+        >>> edges.extend([('f', 'h'), ('g', 'h')])
+        >>> edges.append(('i', 'j'))
+        >>> digraph = Digraph(edges)
+        >>> digraph.partition()
+        [['a', 'b', 'c', 'd', 'e'], ['f', 'g', 'h'], ['i', 'j']]        
 
     Return `Digraph` instance.
     '''
@@ -62,6 +73,34 @@ class Digraph(AbjadObject):
         self._cyclic_nodes = self._find_cyclic_nodes()
         self._root_nodes = tuple(sorted([child for child in child_graph if not child_graph[child]]))
         self._terminal_nodes = tuple(sorted([parent for parent in parent_graph if not parent_graph[parent]]))
+
+    ### PUBLIC ATTRIBUTES ###
+
+    @property
+    def child_graph(self):
+        return self._child_graph
+
+    @property
+    def cyclic_nodes(self):
+        return self._cyclic_nodes
+
+    @property
+    def is_cyclic(self):
+        if self.cyclic_nodes:
+            return True
+        return False
+
+    @property
+    def parent_graph(self):
+        return self._parent_graph
+
+    @property
+    def root_nodes(self):
+        return self._root_nodes
+
+    @property
+    def terminal_nodes(self):
+        return self._terminal_nodes
 
     ### PRIVATE METHODS ###
 
@@ -103,30 +142,28 @@ class Digraph(AbjadObject):
 
         return ()
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC METHODS ###
 
-    @property
-    def child_graph(self):
-        return self._child_graph
+    def partition(self):
+        remaining = self.parent_graph.keys()
+        graphs = []
 
-    @property
-    def cyclic_nodes(self):
-        return self._cyclic_nodes
+        def recurse(node):
+            if node not in remaining:
+                return []
 
-    @property
-    def is_cyclic(self):
-        if self.cyclic_nodes:
-            return True
-        return False
+            remaining.remove(node)
+            result = [node]
+    
+            for child in self.parent_graph[node]:
+                result.extend(recurse(child))
+            for parent in self.child_graph[node]:
+                result.extend(recurse(parent))
 
-    @property
-    def parent_graph(self):
-        return self._parent_graph
+            return result
 
-    @property
-    def root_nodes(self):
-        return self._root_nodes
+        while remaining:
+            node = remaining[0]
+            graphs.append(list(sorted(recurse(node))))
 
-    @property
-    def terminal_nodes(self):
-        return self._terminal_nodes
+        return graphs
