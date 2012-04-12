@@ -30,6 +30,8 @@ Methods
 
 .. automethod:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph.partition
 
+.. automethod:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph.reverse
+
 Special Methods
 ---------------
 
@@ -38,8 +40,6 @@ Special Methods
    .. note:: Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph.__eq__
-
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph.__ge__
 
@@ -62,8 +62,6 @@ Special Methods
    .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph.__ne__
-
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph.__repr__
 
