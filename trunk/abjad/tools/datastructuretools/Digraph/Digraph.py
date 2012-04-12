@@ -9,39 +9,25 @@ class Digraph(AbjadObject):
 
     ::
 
-        >>> from abjad.tools.datastructuretools import Digraph
+        abjad> from abjad.tools.datastructuretools import Digraph
 
     ::
 
-        >>> edges = [('a', 'b'), ('a', 'c'), ('a', 'f'), ('c', 'd'), ('d', 'e'), ('e', 'c')]
-        >>> digraph = Digraph(edges)
-        >>> digraph
+        abjad> edges = [('a', 'b'), ('a', 'c'), ('a', 'f'), ('c', 'd'), ('d', 'e'), ('e', 'c')]
+        abjad> digraph = Digraph(edges)
+        abjad> digraph
         Digraph(edges=[('a', 'c'), ('a', 'b'), ('a', 'f'), ('c', 'd'), ('d', 'e'), ('e', 'c')])
 
     ::
 
-        >>> digraph.root_nodes
+        abjad> digraph.root_nodes
         ('a',)
-        >>> digraph.terminal_nodes
+        abjad> digraph.terminal_nodes
         ('b', 'f')
-        >>> digraph.cyclic_nodes
+        abjad> digraph.cyclic_nodes
         ('c', 'd', 'e')
-        >>> digraph.is_cyclic
+        abjad> digraph.is_cyclic
         True
-
-    The digraph can also be partitioned according to connections:
-
-    ::
-
-        >>> edges = [('a', 'b'), ('a', 'c'), ('b', 'c'), ('b', 'd'), ('d', 'e')]
-        >>> edges.extend([('f', 'h'), ('g', 'h')])
-        >>> edges.append(('i', 'j'))
-        >>> digraph = Digraph(edges)
-        >>> for graph in digraph.partition(): graph
-        ... 
-        Digraph(edges=[('a', 'c'), ('a', 'b'), ('b', 'c'), ('b', 'd'), ('d', 'e')])
-        Digraph(edges=[('f', 'h'), ('g', 'h')])
-        Digraph(edges=[('i', 'j')])
 
     Return `Digraph` instance.
     '''
@@ -86,14 +72,18 @@ class Digraph(AbjadObject):
 
     @property
     def child_graph(self):
+        '''A dictionary representation of the digraph where the keys are
+        child nodes, and where each value is the set of that child's parents.'''
         return self._child_graph
 
     @property
     def cyclic_nodes(self):
+        '''A tuple of those nodes which partake in a cycle.'''
         return self._cyclic_nodes
 
     @property
     def edges(self):
+        '''A tuple of all edges in the graph.'''
         edges = []
         for node in self.nodes:
             for child in self.parent_graph[node]:
@@ -102,24 +92,30 @@ class Digraph(AbjadObject):
 
     @property
     def is_cyclic(self):
+        '''Return True if the digraph contains any cycles.'''
         if self.cyclic_nodes:
             return True
         return False
 
     @property
     def nodes(self):
+        '''A tuple of all nodes in the graph.'''
         return tuple(sorted(self.parent_graph.keys()))
 
     @property
     def parent_graph(self):
+        '''A dictionary representation of the digraph where the keys are
+        parent nodes, and where each value is the set of that parent's children.'''
         return self._parent_graph
 
     @property
     def root_nodes(self):
+        '''A tuple of those nodes which have no parents.'''
         return self._root_nodes
 
     @property
     def terminal_nodes(self):
+        '''A tuple of those nodes which have no children.'''
         return self._terminal_nodes
 
     ### PRIVATE METHODS ###
@@ -165,21 +161,39 @@ class Digraph(AbjadObject):
     ### PUBLIC METHODS ###
 
     def partition(self):
+        '''Partition the digraph into a list of digraphs according to connectivity:
+
+        ::
+
+            abjad> from abjad.tools.datastructuretools import Digraph
+
+        ::
+
+            abjad> edges = [('a', 'b'), ('a', 'c'), ('b', 'c'), ('b', 'd'), ('d', 'e')]
+            abjad> edges.extend([('f', 'h'), ('g', 'h')])
+            abjad> edges.append(('i', 'j'))
+            abjad> digraph = Digraph(edges)
+            abjad> for graph in digraph.partition(): graph
+            ... 
+            Digraph(edges=[('a', 'c'), ('a', 'b'), ('b', 'c'), ('b', 'd'), ('d', 'e')])
+            Digraph(edges=[('f', 'h'), ('g', 'h')])
+            Digraph(edges=[('i', 'j')])
+
+        Return list of `Digraph` instances.
+        '''
+
         remaining = self.parent_graph.keys()
         graphs = []
 
         def recurse(node):
             if node not in remaining:
                 return []
-
             remaining.remove(node)
             result = [node]
-    
             for child in self.parent_graph[node]:
                 result.extend(recurse(child))
             for parent in self.child_graph[node]:
                 result.extend(recurse(parent))
-
             return result
 
         while remaining:
