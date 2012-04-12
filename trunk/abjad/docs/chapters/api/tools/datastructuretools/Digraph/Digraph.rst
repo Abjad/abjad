@@ -13,13 +13,22 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph.cyclic_nodes
 
+.. autoattribute:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph.edges
+
 .. autoattribute:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph.is_cyclic
+
+.. autoattribute:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph.nodes
 
 .. autoattribute:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph.parent_graph
 
 .. autoattribute:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph.root_nodes
 
 .. autoattribute:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph.terminal_nodes
+
+Methods
+-------
+
+.. automethod:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph.partition
 
 Special Methods
 ---------------

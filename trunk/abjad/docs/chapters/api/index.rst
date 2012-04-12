@@ -1229,6 +1229,7 @@ Additional Abjad composition packages (load manually)
 .. toctree::
    :maxdepth: 1
 
+   tools/datastructuretools/Digraph/Digraph
    tools/datastructuretools/ImmutableDictionary/ImmutableDictionary
    tools/datastructuretools/ObjectInventory/ObjectInventory
 
