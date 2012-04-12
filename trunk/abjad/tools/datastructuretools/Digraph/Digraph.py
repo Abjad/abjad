@@ -45,6 +45,8 @@ class Digraph(AbjadObject):
         parent_graph = { }
         child_graph = { }
 
+        edges = set([tuple(edge) for edge in edges])
+
         for parent, child in edges:
             # populate parent-wise graph
             if parent not in parent_graph:
@@ -67,6 +69,17 @@ class Digraph(AbjadObject):
         self._cyclic_nodes = self._find_cyclic_nodes()
         self._root_nodes = tuple(sorted([child for child in child_graph if not child_graph[child]]))
         self._terminal_nodes = tuple(sorted([parent for parent in parent_graph if not parent_graph[parent]]))
+
+    ### SPECIAL METHODS ###
+
+    def __eq__(self, other):
+        if type(self) == type(other):
+            if self.edges == other.edges:
+                return True
+        return False
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
 
     ### PUBLIC ATTRIBUTES ###
 
