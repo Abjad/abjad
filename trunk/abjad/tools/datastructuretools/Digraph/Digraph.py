@@ -15,6 +15,11 @@ class Digraph(AbjadObject):
 
         >>> edges = [('a', 'b'), ('a', 'c'), ('a', 'f'), ('c', 'd'), ('d', 'e'), ('e', 'c')]
         >>> digraph = Digraph(edges)
+        >>> digraph
+        Digraph(edges=[('a', 'c'), ('a', 'b'), ('a', 'f'), ('c', 'd'), ('d', 'e'), ('e', 'c')])
+
+    ::
+
         >>> digraph.root_nodes
         ('a',)
         >>> digraph.terminal_nodes
@@ -32,8 +37,11 @@ class Digraph(AbjadObject):
         >>> edges.extend([('f', 'h'), ('g', 'h')])
         >>> edges.append(('i', 'j'))
         >>> digraph = Digraph(edges)
-        >>> digraph.partition()
-        [['a', 'b', 'c', 'd', 'e'], ['f', 'g', 'h'], ['i', 'j']]        
+        >>> for graph in digraph.partition(): graph
+        ... 
+        Digraph(edges=[('a', 'c'), ('a', 'b'), ('b', 'c'), ('b', 'd'), ('d', 'e')])
+        Digraph(edges=[('f', 'h'), ('g', 'h')])
+        Digraph(edges=[('i', 'j')])
 
     Return `Digraph` instance.
     '''
@@ -85,10 +93,22 @@ class Digraph(AbjadObject):
         return self._cyclic_nodes
 
     @property
+    def edges(self):
+        edges = []
+        for node in self.nodes:
+            for child in self.parent_graph[node]:
+                edges.append((node, child))
+        return edges
+
+    @property
     def is_cyclic(self):
         if self.cyclic_nodes:
             return True
         return False
+
+    @property
+    def nodes(self):
+        return tuple(sorted(self.parent_graph.keys()))
 
     @property
     def parent_graph(self):
@@ -164,6 +184,11 @@ class Digraph(AbjadObject):
 
         while remaining:
             node = remaining[0]
-            graphs.append(list(sorted(recurse(node))))
+            graph = list(sorted(recurse(node)))
+            edges = []
+            for node in graph:
+                for child in self.parent_graph[node]:
+                    edges.append((node, child))
+            graphs.append(type(self)(edges))
 
         return graphs
