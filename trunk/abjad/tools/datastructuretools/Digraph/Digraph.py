@@ -169,6 +169,8 @@ class Digraph(AbjadObject):
             if not roots and not terminals and parent_graph:
                 return tuple(sorted(parent_graph.keys()))
 
+        if parent_graph:
+           return tuple(sorted(parent_graph.keys()))
         return ()
 
     ### PUBLIC METHODS ###
