@@ -206,3 +206,26 @@ class Digraph(AbjadObject):
             graphs.append(type(self)(edges))
 
         return graphs
+
+    def reverse(self):
+        '''Reverse all edges in the graph:
+
+        ::
+
+            abjad> from abjad.tools.datastructuretools import Digraph
+
+        ::
+
+            abjad> edges = [('a', 'b'), ('b', 'c'), ('b', 'd')]
+            abjad> digraph = Digraph(edges)
+            abjad> digraph
+            Digraph(edges=[('a', 'b'), ('b', 'c'), ('b', 'd')])
+
+        ::
+
+            abjad> digraph.reverse()
+            Digraph(edges=[('b', 'a'), ('c', 'b'), ('d', 'b')])
+
+        Return `Digraph` instance.
+        '''
+        return type(self)([(tail, head) for head, tail in self.edges])
