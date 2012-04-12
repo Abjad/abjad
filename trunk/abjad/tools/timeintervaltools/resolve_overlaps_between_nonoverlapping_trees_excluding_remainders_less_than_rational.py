@@ -8,7 +8,7 @@ from abjad import Fraction
 
 def resolve_overlaps_between_nonoverlapping_trees_excluding_remainders_less_than_rational(trees, rational):
     '''Create a nonoverlapping TimeIntervalTree from `trees`.
-    Intervals in stoper-indexed trees in `trees` only appear in part or whole where they do not
+    Intervals in higher-indexed trees in `trees` only appear in part or whole where they do not
     overlap intervals from starter-indexed trees, and then only where their durations are equal to or greater than
     `rational` ::
 

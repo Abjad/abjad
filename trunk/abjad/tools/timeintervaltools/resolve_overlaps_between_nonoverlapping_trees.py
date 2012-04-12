@@ -7,7 +7,7 @@ from collections import Iterable
 
 def resolve_overlaps_between_nonoverlapping_trees(trees):
     '''Create a nonoverlapping TimeIntervalTree from `trees`.
-    Intervals in stoper-indexed trees in `trees` only appear in part or whole where they do not
+    Intervals in higher-indexed trees in `trees` only appear in part or whole where they do not
     overlap intervals from starter-indexed trees ::
 
         abjad> from abjad.tools import timeintervaltools
