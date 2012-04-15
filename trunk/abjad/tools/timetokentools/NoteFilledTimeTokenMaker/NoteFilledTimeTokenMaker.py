@@ -6,6 +6,7 @@ class NoteFilledTimeTokenMaker(TokenIncisedNoteFilledTimeTokenMaker):
 
     Note-filled time-token maker::
 
+        abjad> from abjad.tools import sequencetools
         abjad> from abjad.tools import timetokentools
     
     ::
@@ -21,7 +22,7 @@ class NoteFilledTimeTokenMaker(TokenIncisedNoteFilledTimeTokenMaker):
     ::
 
         abjad> staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(duration_tokens))
-        abjad> measuretools.replace_contents_of_measures_in_expr(staff, leaves)
+        abjad> measures = measuretools.replace_contents_of_measures_in_expr(staff, leaves)
 
     ::
 

@@ -12,6 +12,11 @@ class OutputIncisedRestFilledTimeTokenMaker(OutputIncisedTimeTokenMaker):
 
     Configure the time-token maker on initialization::
 
+        abjad> from abjad.tools import sequencetools
+        abjad> from abjad.tools import timetokentools
+
+    ::
+
         abjad> prefix_signal, prefix_lengths = [8], [2]
         abjad> suffix_signal, suffix_lengths = [3], [4]
         abjad> denominator = 32
@@ -26,7 +31,7 @@ class OutputIncisedRestFilledTimeTokenMaker(OutputIncisedTimeTokenMaker):
     The resulting Abjad objects can be included in any score and the time-token maker can be reused::
 
         abjad> staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(duration_tokens))
-        abjad> measuretools.replace_contents_of_measures_in_expr(staff, leaves)
+        abjad> measures = measuretools.replace_contents_of_measures_in_expr(staff, leaves)
 
     ::
 

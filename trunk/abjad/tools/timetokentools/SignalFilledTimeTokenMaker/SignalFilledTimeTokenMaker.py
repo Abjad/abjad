@@ -8,6 +8,11 @@ class SignalFilledTimeTokenMaker(TokenBurnishedSignalFilledTimeTokenMaker):
 
     Configure the time-token maker at initialization::
 
+        abjad> from abjad.tools import sequencetools
+        abjad> from abjad.tools import timetokentools
+
+    ::
+
         abjad> pattern, denominator, prolation_addenda = [-1, 4, -2, 3], 16, [3, 4]
         abjad> maker = timetokentools.SignalFilledTimeTokenMaker(pattern, denominator, prolation_addenda)
 
@@ -21,7 +26,7 @@ class SignalFilledTimeTokenMaker(TokenBurnishedSignalFilledTimeTokenMaker):
 
         abjad> music = sequencetools.flatten_sequence(music)
         abjad> staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(duration_tokens))
-        abjad> measuretools.replace_contents_of_measures_in_expr(staff, music)
+        abjad> measures = measuretools.replace_contents_of_measures_in_expr(staff, music)
 
     ::
 

@@ -6,10 +6,15 @@ class TokenIncisedNoteFilledTimeTokenMaker(TokenIncisedTimeTokenMaker):
 
     Token-incised note-filled time-token maker::
 
+        abjad> from abjad.tools import sequencetools
+        abjad> from abjad.tools import timetokentools
+
+    ::
+
         abjad> prefix_signal, prefix_lengths = [-8], [0, 1]
         abjad> suffix_signal, suffix_lengths = [-1], [1]
         abjad> denominator = 32
-        abjad> maker = TokenIncisedNoteFilledTimeTokenMaker(prefix_signal, prefix_lengths, suffix_signal, suffix_lengths, denominator)
+        abjad> maker = timetokentools.TokenIncisedNoteFilledTimeTokenMaker(prefix_signal, prefix_lengths, suffix_signal, suffix_lengths, denominator)
 
     ::
 
@@ -20,7 +25,7 @@ class TokenIncisedNoteFilledTimeTokenMaker(TokenIncisedTimeTokenMaker):
     ::
 
         abjad> staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(duration_tokens))
-        abjad> measuretools.replace_contents_of_measures_in_expr(staff, leaves)
+        abjad> measures = measuretools.replace_contents_of_measures_in_expr(staff, leaves)
 
     ::
 
