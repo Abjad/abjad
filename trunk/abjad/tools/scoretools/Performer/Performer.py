@@ -9,7 +9,7 @@ class Performer(AbjadObject):
     Abjad model of performer::
 
         abjad> scoretools.Performer(name='flutist')
-        Performer(name='flutist')
+        Performer(name='flutist', instruments=InstrumentInventory([]))
 
     The purpose of the class is to model things like
     flute I doubling piccolo and alto flute.
@@ -115,7 +115,7 @@ class Performer(AbjadObject):
             ::
 
                 abjad> performer.instruments
-                [Flute(), Piccolo()]
+                InstrumentInventory([Flute(), Piccolo()])
 
             Return list.
             '''

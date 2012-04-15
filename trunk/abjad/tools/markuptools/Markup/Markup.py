@@ -44,7 +44,7 @@ class Markup(_DirectedMark):
 
     ::
 
-        abjad> f(markup_2)
+        abjad> f(markup_2) # doctest: +SKIP
         _ \markup { foo }
 
     Attach markup to score components like this::
@@ -58,7 +58,7 @@ class Markup(_DirectedMark):
     ::
 
         abjad> markup(note)
-        Markup('\\bold { "This is markup text." }')
+        Markup('\\bold { "This is markup text." }')(c'4)
 
     ::
 
