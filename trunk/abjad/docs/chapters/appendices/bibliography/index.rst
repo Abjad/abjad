@@ -43,7 +43,7 @@ Bibliography
 .. [Malt2008] Mikhaïl Malt.
    Some Considerations on Brian Ferneyhough's Musical Language Through His Use of CAC --
    Part I: Time and Rhythmic Structures.
-   In [BressonAgonAssayag2008]_.
+   In Bresson, Agon and Assayag (2008).
 
 .. [Morris1987] Robert Morris. 
    Composition with Pitch-Classes. Yale University Press, New Haven. 1987.
