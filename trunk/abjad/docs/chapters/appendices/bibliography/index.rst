@@ -4,7 +4,7 @@ Bibliography
 .. [Adan2006] Víctor Adán.
    Music <-> Geometry <-> Meta-Music. Draft February 12, 2006.
 
-.. [AgonAssayagBresson2006]. Carlos Agon, Gérard Assayag, Jean Bresson.
+.. [AgonAssayagBresson2006] Carlos Agon, Gérard Assayag, Jean Bresson.
    The OM Composer's Book 1. Éditions Delatour, Paris. 2006.    
 
 .. [AgonHaddadAssayag2002] Carlos Agon, Karim Haddad & Gerard Assayag. 

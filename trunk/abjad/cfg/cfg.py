@@ -16,4 +16,5 @@ HOME = os.environ.get('HOME') or os.environ.get('HOMEPATH') or os.environ.get('A
 ABJADCONFIG = os.path.join(HOME, '.abjad', 'config.py')
 ABJADPATH = os.path.abspath(os.path.dirname(__file__).rstrip('cfg'))
 
-abjad_version_number = '2.7'
+# TOOD: take this from abjad/__init__.py so the value is not duplicated
+abjad_version_number = '2.8'
