@@ -2,11 +2,94 @@ Version history
 ===============
 
 
+Abjad 2.8
+---------
+
+Released 2012-04-16. Built from r5418.
+Implements 306 public classes and 1037 functions totalling 178,000 lines of code.
+
+Significant documentation improvements appear in this release.
+
+- A ``[source]`` link now accompanies all classes and functions in the API:
+
+  .. image:: images/arpeggiate-chord-source-listing.png
+
+  Users may now use the HTML version of the docs to browse the source
+  code of all parts the Abjad API.
+
+- Inheritance diagrams now accompany all classes in the API:
+
+  .. image:: images/multimeasure-rest-inheritance-graph.png
+
+Added the new ``constrainttools`` API. 
+
+- This release of the ``constrainttools`` package implements the following classes::
+
+    constrainttools.AbsoluteIndexConstraint
+    constrainttools.Domain
+    constrainttools.FixedLengthStreamSolver
+    constrainttools.GlobalConstraint
+    constrainttools.GlobalCountsConstraint
+    constrainttools.GlobalReferenceConstraint
+    constrainttools.RelativeCountsConstraint
+    constrainttools.RelativeIndexConstraint
+    constrainttools.VariableLengthStreamSolver
+
+- Example::
+
+    abjad> from abjad.tools.constraintstools import *
+
+  ::
+
+    abjad> domain = Domain([1, 2, 3, 4], 4)
+
+  ::
+
+    abjad> all_unique = GlobalCountsConstraint(lambda x: all([y == 1 for y in x.values()]))
+    abjad> max_interval = RelativeIndexConstraint([0, 1], lambda x, y: abs(x - y) < 3)
+    abjad> solver = FiniteStreamSolver(domain, [all_unique, max_interval])
+
+  ::
+
+    abjad> for solution in solver: print solution
+    ... 
+    (1, 2, 3, 4)
+    (1, 2, 4, 3)
+    (1, 3, 2, 4)
+    (1, 3, 4, 2)
+    (2, 1, 3, 4)
+    (2, 4, 3, 1)
+    (3, 1, 2, 4)
+    (3, 4, 2, 1)
+    (4, 2, 1, 3)
+    (4, 2, 3, 1)
+    (4, 3, 1, 2)
+    (4, 3, 2, 1)
+
+- The ``constrainttools`` package is considered unstable and will be subject
+  to changes in the next releases of Abjad.
+
+Additional new functionality:
+
+- Added ``resttools.replace_leaves_in_expr_with_rests()``.
+
+- Added ``leaftools.replace_leaves_in_expr_with_parallel_voices()``.
+
+- Added ``leaftools.replace_leaves_in_expr_with_named_parallel_voices()``.
+
+  Use the functions listed above to replace leaves in an expression with parallel
+  voices containing copies of those leaves in both voices. This is useful for
+  generating stemmed-glissandi structures.
+
+- Added ``pitchtools.OctaveTranspositionMapping`` class.
+
+
+
 Abjad 2.7
 ---------
 
 Released 2012-02-27. Built from r5100. 
-Implements 221 public classes and 1029 public functions totalling 168,000 lines of code.
+Implements 221 public classes and 1029 functions totalling 168,000 lines of code.
 
 - Added ``lilypondparsertools.LilyPondParser`` class, which arses a subset of LilyPond input syntax::
 

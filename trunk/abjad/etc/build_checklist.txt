@@ -3,7 +3,7 @@ Abjad build checklist:
  1. Open docs/chapters/start_here/versions/index.rst.
     Run "svn log --limit 30 | less" (or 40 or whatever) and read output.
     Or run "svn log --revision 4083:4977" and read output in chronological order.
-    Edit docs/chapters/start_here/versions/indext.rst as appropriate.
+    Edit docs/chapters/start_here/versions/index.rst as appropriate.
     List new features and functionality.
     Highlight significant new functionality with a musical example.
     Begin entries with an active verb in the simple past.
@@ -12,7 +12,7 @@ Abjad build checklist:
     List changes in user syntax last.
 
  2. Open doc/chapters/start_here/abjad/index.rst.
-    Run "scr/devel/count-tools" and "scf/devel/count-source-lines".
+    Run "scr/devel/count-tools" and "scr/devel/count-source-lines".
     Added a sentence detailing the output of these scripts to this chapter.
 
  3. Commit.
