@@ -20,7 +20,7 @@ class InstrumentMark(ContextMark):
     ::
 
         abjad> contexttools.InstrumentMark('Flute', 'Fl.')(staff)
-        InstrumentMark('Flute', 'Fl.')(Staff{4})
+        InstrumentMark(instrument_name='Flute', short_instrument_name='Fl.')(Staff{4})
 
     ::
 

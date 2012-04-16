@@ -9,7 +9,7 @@ def get_instrument_marks_attached_to_component(component):
 
         abjad> staff = Staff("c'8 d'8 e'8 f'8")
         abjad> contexttools.InstrumentMark('Flute', 'Fl.')(staff)
-        InstrumentMark('Flute', 'Fl.')(Staff{4})
+        InstrumentMark(instrument_name='Flute', short_instrument_name='Fl.')(Staff{4})
 
     ::
 
@@ -26,7 +26,7 @@ def get_instrument_marks_attached_to_component(component):
     ::
 
         abjad> contexttools.get_instrument_marks_attached_to_component(staff)
-        (InstrumentMark('Flute', 'Fl.')(Staff{4}),)
+        (InstrumentMark(instrument_name='Flute', short_instrument_name='Fl.')(Staff{4}),)
 
     Return tuple of zero or more instrument marks.
     '''

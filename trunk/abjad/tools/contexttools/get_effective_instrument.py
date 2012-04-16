@@ -9,7 +9,7 @@ def get_effective_instrument(component):
 
         abjad> staff = Staff("c'8 d'8 e'8 f'8")
         abjad> contexttools.InstrumentMark('Flute', 'Fl.')(staff)
-        InstrumentMark('Flute', 'Fl.')(Staff{4})
+        InstrumentMark(instrument_name='Flute', short_instrument_name='Fl.')(Staff{4})
 
     ::
 
@@ -28,10 +28,10 @@ def get_effective_instrument(component):
         abjad> for note in staff:
         ...     print note, contexttools.get_effective_instrument(note)
         ...
-        c'8 InstrumentMark('Flute', 'Fl.')(Staff{4})
-        d'8 InstrumentMark('Flute', 'Fl.')(Staff{4})
-        e'8 InstrumentMark('Flute', 'Fl.')(Staff{4})
-        f'8 InstrumentMark('Flute', 'Fl.')(Staff{4})
+        c'8 InstrumentMark(instrument_name='Flute', short_instrument_name='Fl.')(Staff{4})
+        d'8 InstrumentMark(instrument_name='Flute', short_instrument_name='Fl.')(Staff{4})
+        e'8 InstrumentMark(instrument_name='Flute', short_instrument_name='Fl.')(Staff{4})
+        f'8 InstrumentMark(instrument_name='Flute', short_instrument_name='Fl.')(Staff{4})
 
     Return instrument mark or none.
     '''

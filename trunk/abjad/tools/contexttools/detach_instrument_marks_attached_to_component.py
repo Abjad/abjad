@@ -9,7 +9,7 @@ def detach_instrument_marks_attached_to_component(component):
         abjad> staff = Staff("c'4 d'4 e'4 f'4")
         abjad> instrument_mark = contexttools.InstrumentMark('Violin ', 'Vn. ')
         abjad> instrument_mark.attach(staff)
-        InstrumentMark('Violin ', 'Vn. ')(Staff{4})
+        InstrumentMark(instrument_name='Violin ', short_instrument_name='Vn. ')(Staff{4})
 
     ::
 
@@ -26,7 +26,7 @@ def detach_instrument_marks_attached_to_component(component):
     ::
 
         abjad> contexttools.detach_instrument_marks_attached_to_component(staff)
-        (InstrumentMark('Violin ', 'Vn. '),)
+        (InstrumentMark(instrument_name='Violin ', short_instrument_name='Vn. '),)
 
     ::
 
