@@ -33,7 +33,7 @@ class InheritanceGraph(ImmutableDictionary):
     ::
 
         abjad> for parent, children in sorted(graph.items()):
-        ...     parent, children
+        ...     parent, tuple(sorted(children))
         (<type 'object'>, (<class '__main__.A'>,))
         (<class '__main__.A'>, (<class '__main__.B'>, <class '__main__.F'>))
         (<class '__main__.B'>, (<class '__main__.C'>, <class '__main__.D'>))
@@ -54,7 +54,7 @@ class InheritanceGraph(ImmutableDictionary):
 
         abjad> graph = InheritanceGraph(A, B, C, D, E, F, root_class=B)
         abjad> for parent, children in sorted(graph.items()):
-        ...     parent, children
+        ...     parent, tuple(sorted(children))
         (<class '__main__.B'>, (<class '__main__.C'>, <class '__main__.D'>))
         (<class '__main__.C'>, (<class '__main__.E'>,))
         (<class '__main__.D'>, (<class '__main__.E'>,))

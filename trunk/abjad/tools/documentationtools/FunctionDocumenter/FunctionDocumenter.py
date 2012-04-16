@@ -16,8 +16,9 @@ class FunctionDocumenter(Documenter):
         abjad> print documenter()
         notetools.make_notes
         ====================
-
-        .. autofunction:: abjad.tools.notetools.make_notes
+        <BLANKLINE>
+        .. autofunction:: abjad.tools.notetools.make_notes.make_notes
+        <BLANKLINE> 
 
     Returns ``FunctionDocumenter``` instance.
     '''
