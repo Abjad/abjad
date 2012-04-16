@@ -24,12 +24,12 @@ class ImmutableDictionary(dict, AbjadObject):
 
     ::
 
-        abjad> dictionary.size = 'large'
+        abjad> dictionary.size = 'large' # doctest: +SKIP
         AttributeError: ImmutableDictionary objects are immutable.
 
     ::
 
-        abjad> dictionary['size'] = 'large'
+        abjad> dictionary['size'] = 'large' # doctest: +SKIP
         AttributeError: ImmutableDictionary objects are immutable.
 
     Return immutable dictionary.
