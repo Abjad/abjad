@@ -5,7 +5,7 @@ Version history
 Abjad 2.8
 ---------
 
-Released 2012-04-16. Built from r5418.
+Released 2012-04-16. Built from r5421.
 Implements 306 public classes and 1037 functions totalling 178,000 lines of code.
 
 Many documentation improvements appear in this release.
