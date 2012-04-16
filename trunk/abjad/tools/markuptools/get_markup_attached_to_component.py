@@ -9,9 +9,9 @@ def get_markup_attached_to_component(component):
         abjad> staff = Staff("c'8 d'8 e'8 f'8")
         abjad> slur = spannertools.SlurSpanner(staff[:])
         abjad> markuptools.Markup('foo')(staff[0])
-        Markup('foo')
+        Markup('foo')(c'8)
         abjad> markuptools.Markup('bar')(staff[0])
-        Markup('bar')
+        Markup('bar')(c'8)
 
     ::
 
@@ -26,7 +26,7 @@ def get_markup_attached_to_component(component):
     ::
 
         abjad> markuptools.get_markup_attached_to_component(staff[0])
-        (Markup('foo'), Markup('bar'))
+        (Markup('foo')(c'8), Markup('bar')(c'8))
 
     Return tuple of zero or more markup objects.
     '''

@@ -8,14 +8,14 @@ def get_down_markup_attached_to_component(component):
 
         abjad> chord = Chord([-11, 2, 5], (1, 4))
         abjad> markuptools.Markup('UP', 'up')(chord)
-        Markup('UP', '^')
+        Markup('UP', direction='^')(<cs d' f'>4)
         abjad> markuptools.Markup('DOWN', 'down')(chord)
-        Markup('DOWN', '_')
+        Markup('DOWN', direction='_')(<cs d' f'>4)
 
     ::
 
         abjad> markuptools.get_down_markup_attached_to_component(chord)
-        (Markup('DOWN', '_'),)
+        (Markup('DOWN', direction='_')(<cs d' f'>4),)
 
     Return tuple of zero or more markup objects.
     '''
