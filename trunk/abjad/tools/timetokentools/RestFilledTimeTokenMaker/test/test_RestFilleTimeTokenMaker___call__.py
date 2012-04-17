@@ -3,7 +3,7 @@ from abjad.tools import sequencetools
 from abjad.tools import timetokentools
 
 
-def test_RestFilledTimeTokenMaker___cal___01():
+def test_RestFilleTimeTokenMaker___call___01():
 
     maker = timetokentools.RestFilledTimeTokenMaker()
 

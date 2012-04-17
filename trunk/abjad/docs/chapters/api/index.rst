@@ -525,6 +525,7 @@ Abjad composition packages
    tools/marktools/detach_lilypond_command_marks_attached_to_component
    tools/marktools/detach_lilypond_comments_attached_to_component
    tools/marktools/detach_marks_attached_to_component
+   tools/marktools/detach_marks_attached_to_components_in_expr
    tools/marktools/detach_noncontext_marks_attached_to_component
    tools/marktools/detach_stem_tremolos_attached_to_component
    tools/marktools/get_annotation_attached_to_component
@@ -537,6 +538,7 @@ Abjad composition packages
    tools/marktools/get_lilypond_comments_attached_to_component
    tools/marktools/get_mark_attached_to_component
    tools/marktools/get_marks_attached_to_component
+   tools/marktools/get_marks_attached_to_components_in_expr
    tools/marktools/get_noncontext_mark_attached_to_component
    tools/marktools/get_noncontext_marks_attached_to_component
    tools/marktools/get_stem_tremolo_attached_to_component
