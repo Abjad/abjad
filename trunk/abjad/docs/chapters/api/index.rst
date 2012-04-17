@@ -307,6 +307,7 @@ Abjad composition packages
 
    tools/gracetools/all_are_grace_containers
    tools/gracetools/detach_grace_containers_attached_to_leaf
+   tools/gracetools/detach_grace_containers_attached_to_leaves_in_expr
    tools/gracetools/get_grace_containers_attached_to_leaf
    tools/gracetools/iterate_components_and_grace_containers_forward_in_expr
 

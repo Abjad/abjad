@@ -10,7 +10,7 @@ def all_are_grace_containers(expr):
         abjad> graces = [gracetools.GraceContainer("<c' e' g'>4"), gracetools.GraceContainer("<c' f' a'>4")]
         abjad> voice = Voice("c'8 d'8 e'8 f'8")
         abjad> grace_notes = [Note("c'16"), Note("d'16")]
-        abjad> grace_container = gracetools.GraceContainer(grace_notes, kind = 'grace')
+        abjad> grace_container = gracetools.GraceContainer(grace_notes, kind='grace')
         abjad> grace_container(voice[1])
         Note("d'8")
 
