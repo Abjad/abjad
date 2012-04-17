@@ -9,6 +9,7 @@ from abjad import *
 from abjad.tools.abctools import AbjadObject
 from abjad.tools.componenttools.Component import Component
 from abjad.tools.contexttools.Context import Context
+from abjad.tools.gracetools.GraceContainer import GraceContainer
 from abjad.tools.leaftools.Leaf import Leaf
 from abjad.tools.lilypondparsertools._GuileProxy._GuileProxy import _GuileProxy
 from abjad.tools.lilypondparsertools._LilyPondDuration._LilyPondDuration import _LilyPondDuration
@@ -468,7 +469,7 @@ class LilyPondParser(AbjadObject):
         # sort events into forward or backwards attaching, and attach them to
         # the proper leaf
         for x in music:
-            if isinstance(x, Component):
+            if isinstance(x, Component) and not isinstance(x, GraceContainer):
                 for mark in apply_forward:
                     if hasattr(mark, '__call__'):
                         mark(x)
