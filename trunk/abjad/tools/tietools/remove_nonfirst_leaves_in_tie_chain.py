@@ -5,13 +5,17 @@ from abjad.tools.tietools.get_tie_chain import get_tie_chain
 from abjad.tools.tietools.is_tie_chain import is_tie_chain
 
 
-def remove_all_leaves_in_tie_chain_except_first(tie_chain):
+def remove_nonfirst_leaves_in_tie_chain(tie_chain):
     '''Detach all leaves of tie chain after the first.
     Unspan and return length-1 tie chain.
 
     .. versionchanged:: 2.0
         renamed ``tietools.truncate()`` to
-        ``tietools.remove_all_leaves_in_tie_chain_except_first()``.
+        ``tietools.remove_nonfirst_leaves_in_tie_chain()``.
+
+    .. versionchanged:: 2.9
+        renamed ``tietools.remove_all_leaves_in_tie_chain_except_first()`` to
+        ``tietools.remove_nonfirst_leaves_in_tie_chain()``.
     '''
 
     assert is_tie_chain(tie_chain)

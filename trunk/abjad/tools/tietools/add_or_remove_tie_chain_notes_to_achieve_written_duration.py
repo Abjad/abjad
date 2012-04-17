@@ -7,7 +7,7 @@ from abjad.tools.tietools.get_leaves_in_tie_chain import get_leaves_in_tie_chain
 from abjad.tools.tietools.get_preprolated_tie_chain_duration import get_preprolated_tie_chain_duration
 from abjad.tools.tietools.get_tie_chain import get_tie_chain
 from abjad.tools.tietools.is_tie_chain import is_tie_chain
-from abjad.tools.tietools.remove_all_leaves_in_tie_chain_except_first import remove_all_leaves_in_tie_chain_except_first
+from abjad.tools.tietools.remove_nonfirst_leaves_in_tie_chain import remove_nonfirst_leaves_in_tie_chain
 
 
 # TODO: Inspect tietools.add_or_remove_tie_chain_notes_to_achieve_written_duration() carefully. #
@@ -32,7 +32,7 @@ def add_or_remove_tie_chain_notes_to_achieve_written_duration(tie_chain, new_wri
 
     if durationtools.is_assignable_rational(new_written_duration):
         tie_chain[0].written_duration = new_written_duration
-        remove_all_leaves_in_tie_chain_except_first(tie_chain)
+        remove_nonfirst_leaves_in_tie_chain(tie_chain)
     elif durationtools.is_binary_rational(new_written_duration):
         duration_tokens = notetools.make_notes(0, [new_written_duration])
         for leaf, token in zip(tie_chain, duration_tokens):

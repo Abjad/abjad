@@ -1120,7 +1120,7 @@ Abjad composition packages
    tools/tietools/label_tie_chains_in_expr_with_prolated_tie_chain_duration
    tools/tietools/label_tie_chains_in_expr_with_tie_chain_durations
    tools/tietools/label_tie_chains_in_expr_with_written_tie_chain_duration
-   tools/tietools/remove_all_leaves_in_tie_chain_except_first
+   tools/tietools/remove_nonfirst_leaves_in_tie_chain
    tools/tietools/remove_tie_spanners_from_components_in_expr
    tools/tietools/tie_chain_to_augmented_tuplet_with_proportions_and_avoid_dots
    tools/tietools/tie_chain_to_augmented_tuplet_with_proportions_and_encourage_dots

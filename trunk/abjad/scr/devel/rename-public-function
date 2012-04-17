@@ -239,9 +239,9 @@ def _add_versionchanged(old_package, old_function, new_package, new_function):
    this_abjad_minor_version = abjad_version_number.split('.')[-1]
    next_abjad_minor_version = int(this_abjad_minor_version) + 1
    next_abjad_version_number = '{}.{}'.format(this_abjad_major_version, next_abjad_minor_version)
-   version_lines.append('   .. versionchanged:: {}'.format(abjad_version_number))
-   version_lines.append('      renamed ``{}`` to'.format(old_qualified_function_name))
-   version_lines.append('      ``{}``.'.format(new_qualified_function_name))
+   version_lines.append('    .. versionchanged:: {}'.format(next_abjad_version_number))
+   version_lines.append('        renamed ``{}`` to'.format(old_qualified_function_name))
+   version_lines.append('        ``{}``.'.format(new_qualified_function_name))
    version_string = '\n'.join(version_lines)
    version_string += '\n'
    new_module_lines.insert(close_docstring_index, version_string)
