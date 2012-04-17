@@ -15,5 +15,6 @@ def get_abjad_version_string():
 
     Return string.
     '''
+    import abjad
 
-    return vars(cfg)['abjad_version_string']
+    return abjad.__version__

@@ -20,6 +20,5 @@ def list_abjad_environment_variables():
     for key, value in sorted(vars(cfg).items()):
         if not isinstance(value, types.ModuleType):
             if not key.startswith('_'):
-                if not key == 'abjad_version_string':
-                    result.append((key, value))
+                result.append((key, value))
     return tuple(result)

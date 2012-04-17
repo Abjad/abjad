@@ -1,7 +1,7 @@
 #! /usr/bin/env python
 
-from abjad.cfg.cfg import abjad_version_string
 from abjad.cfg.cfg import ABJADPATH
+from abjad.tools import configurationtools
 from abjad.tools import iotools
 import os
 
@@ -233,6 +233,7 @@ def _add_versionchanged(old_package, old_function, new_package, new_function):
     new_qualified_function_name = '{}.{}()'.format(new_package, new_function)
     version_lines = [ ]
     version_lines.append('')
+    abjad_version_string = configurationtools.get_abjad_version_string()
     this_abjad_major_version = abjad_version_string.split('.')[0]
     this_abjad_minor_version = abjad_version_string.split('.')[-1]
     next_abjad_minor_version = int(this_abjad_minor_version) + 1

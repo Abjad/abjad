@@ -12,9 +12,5 @@ import os
 # As a final fallback, accept the setting of APPDATA under Windows.
 #HOME = os.environ.get('HOME') or os.environ.get('APPDATA') or os.environ.get('HOMEPATH')
 HOME = os.environ.get('HOME') or os.environ.get('HOMEPATH') or os.environ.get('APPDATA')
-
 ABJADCONFIG = os.path.join(HOME, '.abjad', 'config.py')
 ABJADPATH = os.path.abspath(os.path.dirname(__file__).rstrip('cfg'))
-
-# TOOD: take this from abjad/__init__.py so the value is not duplicated
-abjad_version_string = '2.8'
