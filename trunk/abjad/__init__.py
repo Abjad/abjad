@@ -1,13 +1,20 @@
+import platform
+
+_python_version = platform.python_version()
+if not _python_version.startswith('2.7'):
+    print 'WARNING: Abjad no longer supports versions of Python less than 2.7!'
+    print 'WARNING: Please upgrade your version of Python to 2.7!'
+
 from abjad.tools.importtools._import_functions_in_package_to_namespace import _import_functions_in_package_to_namespace
 from abjad.tools import *
 from abjad.tools.chordtools import Chord
 from abjad.tools.containertools import Container
 from abjad.tools.durationtools import Duration
 from abjad.tools.iotools import f
-from abjad.tools.iotools import z
 from abjad.tools.iotools import p
 from abjad.tools.iotools import play
 from abjad.tools.iotools import show
+from abjad.tools.iotools import z
 from abjad.tools.measuretools import Measure
 from abjad.tools.notetools import Note
 from abjad.tools.resttools import Rest
@@ -23,12 +30,6 @@ import sys
 _exceptions_path = os.path.join(__path__[0], 'exceptions')
 _import_functions_in_package_to_namespace(_exceptions_path, __builtins__)
 
-# check for prompt preference
-#from abjad.cfg._read_config_file import _read_config_file
-#if _read_config_file( )['use_abjad_prompt']:
-#    sys.ps1 = 'abjad> '
-#del _read_config_file
-
 del abctools
 del cfg
 del configurationtools
@@ -43,6 +44,7 @@ del mathtools
 del timesignaturetools
 del os
 del pitcharraytools
+del platform
 del scoretemplatetools
 del sequencetools
 del sievetools
