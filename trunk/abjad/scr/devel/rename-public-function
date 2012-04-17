@@ -1,31 +1,31 @@
 #! /usr/bin/env python
 
+from abjad.cfg.cfg import abjad_version_number
 from abjad.cfg.cfg import ABJADPATH
 from abjad.tools import iotools
-ABJADVERSION = '2.0'
 import os
 import pprint
 
 
 def _get_old_package_and_function():
    while True:
-      full_helper_name = raw_input('Enter current helper name: ')
-      if '.' not in full_helper_name:
+      qualified_function_name = raw_input('Enter current tools package-qualified function name: ')
+      if '.' not in qualified_function_name:
          print ''
-         print 'Helper not in package.function format: %s' % full_helper_name
+         print 'Input not in toolspackage.function format: {!r}'.format(qualified_function_name)
          print ''
          continue
-      helper_parts = full_helper_name.split('.')
-      old_package = helper_parts[0].lower()
-      old_function = helper_parts[1].lower()
+      qualified_function_name_parts = qualified_function_name.split('.')
+      old_package = qualified_function_name_parts[0].lower()
+      old_function = qualified_function_name_parts[1].lower()
       if old_package not in _get_packages():
          print ''
-         print 'Error: can not find %s in Abjad tools.' % old_package
+         print 'Error: can not find {!r} in Abjad tools.'.format(old_package)
          print ''
          continue
       if old_function not in _get_functions():
          print ''
-         print 'Error: can not find %s in %s.' % (old_function, old_package)
+         print 'Error: can not find {!r} in {!r}.'.format(old_function, old_package)
          print ''
          continue
       return old_package, old_function
@@ -33,26 +33,21 @@ def _get_old_package_and_function():
 
 def _get_new_package_and_function():
    while True:
-      message = 'Enter new helper name:     '
-      helper_name = raw_input(message)
-      if '.' not in helper_name:
+      message = 'Enter new tools package-qualified function name:     '
+      qualified_function_name = raw_input(message)
+      if '.' not in qualified_function_name:
          print ''
-         print 'Helper not in package.function format: %s' % helper_name
+         print 'Input not in toolspackage.function format: {!r}'.format(qualified_function_name)
          print ''
          continue
-      helper_parts = helper_name.split('.')
-      new_package = helper_parts[0].lower()
-      new_function = helper_parts[1].lower()
+      qualified_function_name_parts = qualified_function_name.split('.')
+      new_package = qualified_function_name_parts[0].lower()
+      new_function = qualified_function_name_parts[1].lower()
       if new_package not in _get_packages():
          print ''
-         print 'Error: can not find %s in Abjad packages.' % new_package
+         print 'Error: can not find {!r} in Abjad packages.'.format(new_package)
          print ''
          continue
-#      if new_function in _get_functions():
-#         print ''
-#         print 'Error: %s already exists in Abjad functions.' % new_function
-#         print ''
-#         continue
       return new_package, new_function
 
 
@@ -81,9 +76,9 @@ def _confirm_name_changes(old_package, old_function, new_package, new_module):
    print ''
    print 'Is ...'
    print ''
-   print '   %s.%s()' % (old_package, old_function)
+   print '   {}.{}()'.format(old_package, old_function)
    print '   ===>'
-   print '   %s.%s()' % (new_package, new_function)
+   print '   {}.{}()'.format(new_package, new_function)
    print ''
    input = raw_input('... correct? ')
    print ''
@@ -101,7 +96,7 @@ def _rename_old_api_page(old_package, old_function, new_package, new_module):
    old_api_path = os.path.join(api_path, old_package, old_rst_file)
    new_rst_file = new_function + '.rst'
    new_api_path = os.path.join(api_path, new_package, new_rst_file)
-   command = 'svn --force mv %s %s > /dev/null' % (old_api_path, new_api_path)
+   command = 'svn --force mv {} {} > /dev/null'.format(old_api_path, new_api_path)
    os.system(command)
    print ''
 
@@ -111,14 +106,14 @@ def _make_new_api_page(new_package, new_function):
    content_lines = [ ]
    api_path = os.path.join(ABJADPATH, 'docs', 'chapters', 'api')
    api_path = os.path.join(api_path, 'tools')
-   new_helper = '%s.%s' % (new_package, new_function)
-   content_lines.append(new_helper)
-   content_lines.append('=' * len(new_helper))
+   new_qualified_function_name = '{}.{}'.format(new_package, new_function)
+   content_lines.append(new_qualified_function_name)
+   content_lines.append('=' * len(new_qualified_function_name))
    content_lines.append('')
-   new_dot_path = 'abjad.tools.%s.%s' % (new_package, new_function)
-   content_lines.append('.. automodule:: %s' % new_dot_path)
+   new_dot_path = 'abjad.tools.{}.{}'.format(new_package, new_function)
+   content_lines.append('.. automodule:: {}'.format(new_dot_path))
    content_lines.append('')
-   content_lines.append('.. autofunction:: %s' % new_dot_path)
+   content_lines.append('.. autofunction:: {}'.format(new_dot_path))
    content_string = '\n'.join(content_lines)
    new_rst_file = new_function + '.rst'
    new_api_path = os.path.join(api_path, new_package, new_rst_file)
@@ -134,7 +129,7 @@ def _update_api_toc(old_package, old_function, new_package, new_function):
    api_toc_file_name = os.path.join(api_path, 'index.rst')
    api_toc_file = file(api_toc_file_name, 'r')
    new_lines = [ ]
-   old_line_suffix = '%s/%s\n' % (old_package, old_function)
+   old_line_suffix = '{}/{}\n'.format(old_package, old_function)
    old_line = None
    for line in api_toc_file.readlines():
       if line.endswith(old_line_suffix):
@@ -142,12 +137,12 @@ def _update_api_toc(old_package, old_function, new_package, new_function):
       else:
          new_lines.append(line)
    if old_line is None:
-      print 'could not find API toc line ending in %s' % old_line_suffix
+      print 'could not find API toc line ending in {}.'.format(old_line_suffix)
       raise SystemExit
    api_toc_file.close()
    new_line = old_line.replace(old_package, new_package)
    new_line = new_line.replace(old_function, new_function)
-   package_tag = 'tools/%s' % new_package
+   package_tag = 'tools/{}'.format(new_package)
    package_lines = [x for x in new_lines if package_tag in x]
    package_lines.append(new_line)
    package_lines.sort()
@@ -175,46 +170,45 @@ def _rename_old_module(old_package, old_function, new_package, new_function):
    old_path = os.path.join(ABJADPATH, 'tools', old_package, old_module)
    new_module = new_function + '.py'
    new_path = os.path.join(ABJADPATH, 'tools', new_package, new_module)
-   command = 'svn --force mv %s %s > /dev/null' % (old_path, new_path)
+   command = 'svn --force mv {} {} > /dev/null'.format(old_path, new_path)
    os.system(command)
    print ''
 
 def _rename_old_test_file(old_package, old_function, new_package, new_function):
    print 'Renaming old test file ...'
-   old_test_file = 'test_%s_%s.py' % (old_package, old_function)
+   old_test_file = 'test_{}_{}.py'.format(old_package, old_function)
    old_path = os.path.join(ABJADPATH, 'tools', old_package, 'test')
    old_path = os.path.join(old_path, old_test_file)
-   new_test_file = 'test_%s_%s.py' % (new_package, new_function)
+   new_test_file = 'test_{}_{}.py'.format(new_package, new_function)
    new_path = os.path.join(ABJADPATH, 'tools', new_package, 'test')
    new_path = os.path.join(new_path, new_test_file)
-   command = 'svn --force mv %s %s > /dev/null' % (old_path, new_path)
+   command = 'svn --force mv {} {} > /dev/null'.format(old_path, new_path)
    os.system(command)
    print ''
 
 
-def _update_codebase(
-   old_package, old_function, new_package, new_function):
+def _update_codebase(old_package, old_function, new_package, new_function):
    print 'Updating codebase ...'
-   dir = ABJADPATH
+   directory = ABJADPATH
 
-   old_text = '%s.%s' % (old_package, old_function)
-   new_text = '%s.%s' % (new_package, new_function)
-   command = 'replace-in-files %s "%s" "%s" false' % (dir, old_text, new_text)
+   old_text = '{}.{}'.format(old_package, old_function)
+   new_text = '{}.{}'.format(new_package, new_function)
+   command = 'replace-in-files {} "{}" "{}" false'.format(directory, old_text, new_text)
    os.system(command)
 
-   old_text = '%s_%s' % (old_package, old_function)
-   new_text = '%s_%s' % (new_package, new_function)
-   command = 'replace-in-files %s "%s" "%s" false' % (dir, old_text, new_text)
+   old_text = '{}_{}'.format(old_package, old_function)
+   new_text = '{}_{}'.format(new_package, new_function)
+   command = 'replace-in-files {} "{}" "{}" false'.format(directory, old_text, new_text)
    os.system(command)
 
-   old_text = ' %s(' % old_function
-   new_text = ' %s(' % new_function
-   command = 'replace-in-files %s "%s" "%s" false' % (dir, old_text, new_text)
+   old_text = ' {}('.format(old_function)
+   new_text = ' {}('.format(new_function)
+   command = 'replace-in-files {} "{}" "{}" false'.format(directory, old_text, new_text)
    os.system(command)
 
-   old_text = 'import %s' % old_function
-   new_text = 'import %s' % new_function
-   command = 'replace-in-files %s "%s" "%s" false' % (dir, old_text, new_text)
+   old_text = 'import {}'.format(old_function)
+   new_text = 'import {}'.format(new_function)
+   command = 'replace-in-files {} "{}" "{}" false'.format(directory, old_text, new_text)
    os.system(command)
 
    print ''
@@ -229,21 +223,25 @@ def _add_versionchanged(old_package, old_function, new_package, new_function):
    new_module_pointer.close()
    close_docstring_index = None
    for i, line in enumerate(new_module_lines):
-      if line == "   '''\n":
+      if line == "    '''\n":
          close_docstring_index = i
          break
    if close_docstring_index is None:
       print ''
-      print 'Error: can not find close docstring for %s.' % new_module
+      print 'Error: can not find close docstring for {}.'.format(new_module)
       print ''
       raise SystemExit
-   old_helper = '%s.%s()' % (old_package, old_function)
-   new_helper = '%s.%s()' % (new_package, new_function)
+   old_qualified_function_name = '{}.{}()'.format(old_package, old_function)
+   new_qualified_function_name = '{}.{}()'.format(new_package, new_function)
    version_lines = [ ]
    version_lines.append('')
-   version_lines.append('   .. versionchanged:: %s' % ABJADVERSION)
-   version_lines.append('      renamed ``%s`` to' % old_helper)
-   version_lines.append('      ``%s``.' % new_helper)
+   this_abjad_major_version = abjad_version_string.split('.')[0]
+   this_abjad_minor_version = abjad_version_string.split('.')[-1]
+   next_abjad_minor_version = int(this_abjad_minor_version) + 1
+   next_abjad_version_string = '{}.{}'.format(this_abjad_major_version, next_abjad_minor_version)
+   version_lines.append('   .. versionchanged:: {}'.format(abjad_version_string))
+   version_lines.append('      renamed ``{}`` to'.format(old_qualified_function_name))
+   version_lines.append('      ``{}``.'.format(new_qualified_function_name))
    version_string = '\n'.join(version_lines)
    version_string += '\n'
    new_module_lines.insert(close_docstring_index, version_string)
@@ -256,7 +254,7 @@ def _add_versionchanged(old_package, old_function, new_package, new_function):
 
 def _debug():
    file_name = os.path.join(ABJADPATH, 'tools/sequencetools/zip_nontruncating.py')
-   os.system('ls -l %s' % file_name)
+   os.system('ls -l {}'.format(file_name))
    print ''
 
 
