@@ -1,16 +1,17 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-#from distutils.core import setup
+from abjad.tools import configurationtools
 from ez_setup import use_setuptools
+
 # following line must come before import setup
 use_setuptools()
-from setuptools import setup, find_packages
+from setuptools import find_packages
+from setuptools import setup
 
 
-# TODO: derive Abjad version string programmatically
 setup(name = 'Abjad', 
-    version = '2.8',
+    version = configurationtools.get_abjad_version_string(),
     description = 'Abjad is a Python API for Formalized Score Control.',
     long_description = 'Abjad is an interactive software system designed to help composers build up complex pieces of music notation in an iterative and incremental way. Use Abjad to create a symbolic representation of all the notes, rests, staves, tuplets, beams and slurs in any score. Because Abjad extends the Python programming language, you can use Abjad to make systematic changes to your music as you work. And because Abjad wraps the powerful LilyPond music notation package, you can use Abjad to control the typographic details of all the symbols on the page.',
     author = 'Victor Adan, Trevor Baca, Josiah Oberholtzer',
