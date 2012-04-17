@@ -858,6 +858,7 @@ Abjad composition packages
    tools/pitchtools/respell_named_chromatic_pitches_in_expr_with_sharps
    tools/pitchtools/set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr
    tools/pitchtools/set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr
+   tools/pitchtools/set_written_pitch_of_pitched_components_in_expr
    tools/pitchtools/suggest_clef_for_named_chromatic_pitches
    tools/pitchtools/symbolic_accidental_string_to_alphabetic_accidental_abbreviation
    tools/pitchtools/transpose_chromatic_pitch_by_melodic_chromatic_interval_segment

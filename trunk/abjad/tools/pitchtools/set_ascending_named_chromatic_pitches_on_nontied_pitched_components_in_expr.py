@@ -28,17 +28,15 @@ def set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(
         renamed ``pitchtools.chromaticize()`` to
         ``pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr()``.
     '''
+    from abjad.tools import chordtools
+    from abjad.tools import notetools
     from abjad.tools import tietools
-    from abjad.tools.chordtools.Chord import Chord
-    from abjad.tools.notetools.Note import Note
 
-    for i, x in enumerate(tietools.iterate_tie_chains_forward_in_expr(expr)):
+    for i, tie_chain in enumerate(tietools.iterate_tie_chains_forward_in_expr(expr)):
         pitch = i
-        if isinstance(x[0], Note):
-            for note in x:
+        if isinstance(tie_chain[0], notetools.Note):
+            for note in tie_chain:
                 note.written_pitch = pitch
-        elif isinstance(x[0], Chord):
-            for chord in x:
+        elif isinstance(tie_chain[0], chordtools.Chord):
+            for chord in tie_chain:
                 chord.written_pitches = [pitch]
-        else:
-            pass
