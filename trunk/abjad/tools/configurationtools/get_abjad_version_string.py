@@ -16,4 +16,4 @@ def get_abjad_version_string():
     Return string.
     '''
 
-    return vars(cfg)['abjad_version_number']
+    return vars(cfg)['abjad_version_string']

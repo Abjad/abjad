@@ -17,5 +17,4 @@ ABJADCONFIG = os.path.join(HOME, '.abjad', 'config.py')
 ABJADPATH = os.path.abspath(os.path.dirname(__file__).rstrip('cfg'))
 
 # TOOD: take this from abjad/__init__.py so the value is not duplicated
-# TODO: rename this to abjad_version_string
-abjad_version_number = '2.8'
+abjad_version_string = '2.8'
