@@ -53,10 +53,10 @@ def insert_component_and_fracture_crossing_spanners(container, i, component):
     component._parentage._switch(container)
     container._music.insert(i, component)
     if component._navigator._prev_bead:
-        result.extend(spannertools.fracture_all_spanners_attached_to_component(
+        result.extend(spannertools.fracture_spanners_attached_to_component(
             component._navigator._prev_bead, direction = 'right'))
     if component._navigator._next_bead:
-        result.extend(spannertools.fracture_all_spanners_attached_to_component(
+        result.extend(spannertools.fracture_spanners_attached_to_component(
             component._navigator._next_bead, direction = 'left'))
 
     return result

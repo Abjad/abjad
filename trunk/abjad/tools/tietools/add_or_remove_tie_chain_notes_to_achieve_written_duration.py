@@ -44,7 +44,7 @@ def add_or_remove_tie_chain_notes_to_achieve_written_duration(tie_chain, new_wri
                 componenttools.remove_component_subtree_from_score_and_spanners([leaf])
         elif len(tie_chain) < len(duration_tokens):
             #tie_chain[0].tie.unspan()
-            spannertools.destroy_all_spanners_attached_to_component(tie_chain[0], TieSpanner)
+            spannertools.destroy_spanners_attached_to_component(tie_chain[0], TieSpanner)
             difference = len(duration_tokens) - len(tie_chain)
             extra_leaves = tie_chain[0] * difference
             _withdraw_components_from_attached_spanners(extra_leaves)

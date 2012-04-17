@@ -21,6 +21,6 @@ def remove_all_leaves_in_tie_chain_except_first(tie_chain):
 
     first = tie_chain[0]
 
-    spannertools.destroy_all_spanners_attached_to_component(first, TieSpanner)
+    spannertools.destroy_spanners_attached_to_component(first, TieSpanner)
 
     return get_tie_chain(first)

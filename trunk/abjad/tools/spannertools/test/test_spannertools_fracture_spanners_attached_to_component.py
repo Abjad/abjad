@@ -1,8 +1,8 @@
 from abjad import *
 
 
-def test_spannertools_destroy_all_spanners_attached_to_component_01():
-    '''Destory all spanners attached to component.
+def test_spannertools_fracture_spanners_attached_to_component_01():
+    '''Without klass keyword.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
@@ -19,23 +19,23 @@ def test_spannertools_destroy_all_spanners_attached_to_component_01():
     }
     '''
 
-    spannertools.destroy_all_spanners_attached_to_component(staff[0])
+    spannertools.fracture_spanners_attached_to_component(staff[1], 'right')
 
     r'''
     \new Staff {
-        c'8 \startTrillSpan
-        d'8
-        e'8
-        f'8 \stopTrillSpan
+        c'8 [ ( \startTrillSpan
+        d'8 ] )
+        e'8 [ (
+        f'8 ] ) \stopTrillSpan
     }
     '''
 
     assert componenttools.is_well_formed_component(staff)
-    assert staff.format == "\\new Staff {\n\tc'8 \\startTrillSpan\n\td'8\n\te'8\n\tf'8 \\stopTrillSpan\n}"
+    assert staff.format == "\\new Staff {\n\tc'8 [ ( \\startTrillSpan\n\td'8 ] )\n\te'8 [ (\n\tf'8 ] ) \\stopTrillSpan\n}"
 
 
-def test_spannertools_destroy_all_spanners_attached_to_component_02():
-    '''Destroy all spanners of klass attached to component.
+def test_spannertools_fracture_spanners_attached_to_component_02():
+    '''With klass keyword.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
@@ -52,16 +52,16 @@ def test_spannertools_destroy_all_spanners_attached_to_component_02():
     }
     '''
 
-    spannertools.destroy_all_spanners_attached_to_component(staff[0], spannertools.BeamSpanner)
+    spannertools.fracture_spanners_attached_to_component(staff[1], 'right', spannertools.BeamSpanner)
 
     r'''
     \new Staff {
-        c'8 ( \startTrillSpan
-        d'8
-        e'8
-        f'8 ) \stopTrillSpan
+        c'8 [ ( \startTrillSpan
+        d'8 ]
+        e'8 [
+        f'8 ] ) \stopTrillSpan
     }
     '''
 
     assert componenttools.is_well_formed_component(staff)
-    assert staff.format == "\\new Staff {\n\tc'8 ( \\startTrillSpan\n\td'8\n\te'8\n\tf'8 ) \\stopTrillSpan\n}"
+    assert staff.format == "\\new Staff {\n\tc'8 [ ( \\startTrillSpan\n\td'8 ]\n\te'8 [\n\tf'8 ] ) \\stopTrillSpan\n}"

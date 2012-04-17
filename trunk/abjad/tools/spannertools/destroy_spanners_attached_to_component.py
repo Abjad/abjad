@@ -1,7 +1,7 @@
 from abjad.tools.spannertools.get_spanners_attached_to_component import get_spanners_attached_to_component
 
 
-def destroy_all_spanners_attached_to_component(component, klass = None):
+def destroy_spanners_attached_to_component(component, klass = None):
     r'''.. versionadded:: 1.1
 
     Destroy all spanners attached to `component`::
@@ -20,7 +20,7 @@ def destroy_all_spanners_attached_to_component(component, klass = None):
 
     ::
 
-        abjad> spannertools.destroy_all_spanners_attached_to_component(staff[0])
+        abjad> spannertools.destroy_spanners_attached_to_component(staff[0])
         abjad> f(staff)
         \new Staff {
             c'8 \startTrillSpan

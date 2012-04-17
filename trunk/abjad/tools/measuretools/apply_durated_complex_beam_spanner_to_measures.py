@@ -67,7 +67,7 @@ def apply_durated_complex_beam_spanner_to_measures(measures):
     durations = []
     for measure in measures:
         #measure.beam.unspan()
-        spannertools.destroy_all_spanners_attached_to_component(measure, spannertools.BeamSpanner)
+        spannertools.destroy_spanners_attached_to_component(measure, spannertools.BeamSpanner)
         durations.append(measure.preprolated_duration)
     beam = DuratedComplexBeamSpanner(measures, durations = durations, span = 1)
     return beam

@@ -1026,10 +1026,10 @@ Abjad composition packages
    :maxdepth: 1
 
    tools/spannertools/all_are_spanners
-   tools/spannertools/destroy_all_spanners_attached_to_component
+   tools/spannertools/destroy_spanners_attached_to_component
    tools/spannertools/find_index_of_spanner_component_at_score_offset
    tools/spannertools/find_spanner_component_starting_at_exactly_score_offset
-   tools/spannertools/fracture_all_spanners_attached_to_component
+   tools/spannertools/fracture_spanners_attached_to_component
    tools/spannertools/fracture_spanners_that_cross_components
    tools/spannertools/get_beam_spanner_attached_to_component
    tools/spannertools/get_nth_leaf_in_spanner

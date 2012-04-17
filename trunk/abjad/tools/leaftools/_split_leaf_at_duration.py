@@ -51,7 +51,7 @@ def _split_leaf_at_duration(leaf, split_dur, spanners = 'unfractured', tie_after
 
     if spanners == 'fractured':
         #leaf_left_of_split.spanners.fracture(direction = 'right')
-        spannertools.fracture_all_spanners_attached_to_component(
+        spannertools.fracture_spanners_attached_to_component(
             leaf_left_of_split, direction = 'right')
     elif spanners == 'unfractured':
         pass

@@ -105,7 +105,7 @@ def _split_component_at_duration(component, duration, spanners='unfractured', ti
     # fracture leaf spanners if requested
     if spanners == 'fractured':
         #right.spanners.fracture(direction = 'left')
-        spannertools.fracture_all_spanners_attached_to_component(right, direction = 'left')
+        spannertools.fracture_spanners_attached_to_component(right, direction = 'left')
 
     # crawl back up through container duration crossers
     # split each container duration crosser
