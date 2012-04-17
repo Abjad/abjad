@@ -105,7 +105,7 @@ class MetricGridSpanner(Spanner):
 #            if 0 < len(r):
 #               #r[0].grace.after = r[-1].grace.after
 #               #r[0].after_grace.extend(r[-1].after_grace)
-#               gracetools.Grace([r[-1]], kind = 'after')(r[0])
+#               gracetools.GraceContainer([r[-1]], kind = 'after')(r[0])
 #            leaftools.fuse_leaves_big_endian(r)
 
     def _matching_meter(self, leaf):

@@ -8,13 +8,13 @@ def iterate_components_and_grace_containers_forward_in_expr(expr, klass):
     ::
 
         abjad> grace_notes = [Note("c'16"), Note("d'16")]
-        abjad> gracetools.Grace(grace_notes, kind = 'grace')(voice[1])
+        abjad> gracetools.GraceContainer(grace_notes, kind = 'grace')(voice[1])
         Note("d'8")
 
     ::
 
         abjad> after_grace_notes = [Note("e'16"), Note("f'16")]
-        abjad> gracetools.Grace(after_grace_notes, kind = 'after')(voice[1])
+        abjad> gracetools.GraceContainer(after_grace_notes, kind = 'after')(voice[1])
         Note("d'8")
 
     ::

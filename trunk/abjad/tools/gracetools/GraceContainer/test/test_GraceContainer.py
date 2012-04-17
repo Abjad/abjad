@@ -2,10 +2,10 @@ from abjad import *
 import py.test
 
 
-def test_Grace_01():
+def test_GraceContainer_01():
     '''Grace music is a container.'''
 
-    t = gracetools.Grace([Note(0, (1, 16)), Note(2, (1, 16)), Note(4, (1, 16))])
+    t = gracetools.GraceContainer([Note(0, (1, 16)), Note(2, (1, 16)), Note(4, (1, 16))])
 
     assert isinstance(t, Container)
     assert len(t) == 3
@@ -20,12 +20,12 @@ def test_Grace_01():
     '''
 
 
-def test_Grace_02():
-    '''Grace.kind is managed attribute.
-        Grace.kind knows about "after", "grace",
+def test_GraceContainer_02():
+    '''GraceContainer.kind is managed attribute.
+        GraceContainer.kind knows about "after", "grace",
         "acciaccatura", "appoggiatura"'''
 
-    t = gracetools.Grace([Note(0, (1, 16)), Note(2, (1, 16)), Note(4, (1, 16))])
+    t = gracetools.GraceContainer([Note(0, (1, 16)), Note(2, (1, 16)), Note(4, (1, 16))])
     t.kind = 'acciaccatura'
     assert t.kind == 'acciaccatura'
     t.kind = 'grace'
@@ -37,10 +37,10 @@ def test_Grace_02():
     assert py.test.raises(AssertionError, 't.kind = "blah"')
 
 
-def test_Grace_03():
+def test_GraceContainer_03():
     '''Grace formats correctly as grace.'''
 
-    t = gracetools.Grace(notetools.make_repeated_notes(3))
+    t = gracetools.GraceContainer(notetools.make_repeated_notes(3))
     t.kind = 'grace'
     assert t.format == "\\grace {\n\tc'8\n\tc'8\n\tc'8\n}"
 
@@ -53,10 +53,10 @@ def test_Grace_03():
     '''
 
 
-def test_Grace_04():
+def test_GraceContainer_04():
     '''Grace formats correctly as acciaccatura.'''
 
-    t = gracetools.Grace(notetools.make_repeated_notes(3))
+    t = gracetools.GraceContainer(notetools.make_repeated_notes(3))
     t.kind = 'acciaccatura'
     assert t.format == "\\acciaccatura {\n\tc'8\n\tc'8\n\tc'8\n}"
 
@@ -69,10 +69,10 @@ def test_Grace_04():
     '''
 
 
-def test_Grace_05():
+def test_GraceContainer_05():
     '''Grace formats correctly as appoggiatura.'''
 
-    t = gracetools.Grace(notetools.make_repeated_notes(3))
+    t = gracetools.GraceContainer(notetools.make_repeated_notes(3))
     t.kind = 'appoggiatura'
     assert t.format == "\\appoggiatura {\n\tc'8\n\tc'8\n\tc'8\n}"
 
@@ -85,10 +85,10 @@ def test_Grace_05():
     '''
 
 
-def test_Grace_06():
+def test_GraceContainer_06():
     '''Grace formats correctly as after grace.'''
 
-    t = gracetools.Grace(notetools.make_repeated_notes(3))
+    t = gracetools.GraceContainer(notetools.make_repeated_notes(3))
     t.kind = 'after'
     assert t.format == "{\n\tc'8\n\tc'8\n\tc'8\n}"
 
@@ -101,20 +101,20 @@ def test_Grace_06():
     '''
 
 
-def test_Grace_07():
+def test_GraceContainer_07():
     '''Grace containers can be appended.'''
 
-    t = gracetools.Grace(notetools.make_repeated_notes(2))
+    t = gracetools.GraceContainer(notetools.make_repeated_notes(2))
     n = Note(1, (1, 4))
     t.append(n)
     assert len(t) == 3
     assert t[-1] is n
 
 
-def test_Grace_08():
+def test_GraceContainer_08():
     '''Grace containers can be extended.'''
 
-    t = gracetools.Grace(notetools.make_repeated_notes(2))
+    t = gracetools.GraceContainer(notetools.make_repeated_notes(2))
     ns = Note(1, (1, 4)) * 2
     t.extend(ns)
     assert len(t) == 4

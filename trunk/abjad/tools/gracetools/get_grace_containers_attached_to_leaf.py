@@ -4,9 +4,9 @@ def get_grace_containers_attached_to_leaf(leaf):
     Get grace containers attached to leaf::
 
         abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> gracetools.Grace([Note("cs'16")], kind = 'grace')(staff[1])
+        abjad> gracetools.GraceContainer([Note("cs'16")], kind = 'grace')(staff[1])
         Note("d'8")
-        abjad> gracetools.Grace([Note("ds'16")], kind = 'after')(staff[1])
+        abjad> gracetools.GraceContainer([Note("ds'16")], kind = 'after')(staff[1])
         Note("d'8")
 
     ::
@@ -29,7 +29,7 @@ def get_grace_containers_attached_to_leaf(leaf):
     ::
 
         abjad> gracetools.get_grace_containers_attached_to_leaf(staff[1])
-        (Grace(cs'16), Grace(ds'16))
+        (GraceContainer(cs'16), GraceContainer(ds'16))
 
     Return tuple.
     '''

@@ -277,7 +277,7 @@ def test_leaftools__split_leaf_at_duration_14():
     '''After grace notes are removed from first leaf in bipartition.'''
 
     t = Note("c'4")
-    gracetools.Grace([Note(0, (1, 32))], kind = 'after')(t)
+    gracetools.GraceContainer([Note(0, (1, 32))], kind = 'after')(t)
     halves = _split_leaf_at_duration(t, Duration(1, 8))
 
     assert not hasattr(halves[0][0], 'after_grace')
@@ -288,7 +288,7 @@ def test_leaftools__split_leaf_at_duration_15():
     '''After grace notes are removed from first tied leaves in bipartition.'''
 
     t = Note("c'4")
-    gracetools.Grace([Note(0, (1, 32))], kind = 'after')(t)
+    gracetools.GraceContainer([Note(0, (1, 32))], kind = 'after')(t)
     halves = _split_leaf_at_duration(t, Duration(5, 32))
 
     assert len(halves) == 2
@@ -302,7 +302,7 @@ def test_leaftools__split_leaf_at_duration_16():
     '''Grace notes are removed from second leaf in bipartition.'''
 
     t = Note("c'4")
-    gracetools.Grace([Note(0, (1, 32))])(t)
+    gracetools.GraceContainer([Note(0, (1, 32))])(t)
     halves = _split_leaf_at_duration(t, Duration(1, 16))
 
     assert len(halves[0]) == 1

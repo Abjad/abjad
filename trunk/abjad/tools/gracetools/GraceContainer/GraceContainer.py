@@ -1,9 +1,9 @@
 from abjad.tools.containertools.Container import Container
 from abjad.tools.leaftools.Leaf import Leaf
-from abjad.tools.gracetools.Grace._GraceFormatter import _GraceFormatter
+from abjad.tools.gracetools.GraceContainer._GraceFormatter import _GraceFormatter
 
 
-class Grace(Container):
+class GraceContainer(Container):
     r'''Abjad model of grace music::
 
         abjad> voice = Voice("c'8 d'8 e'8 f'8")
@@ -23,7 +23,7 @@ class Grace(Container):
     ::
 
         abjad> grace_notes = [Note("c'16"), Note("d'16")]
-        abjad> gracetools.Grace(grace_notes, kind = 'grace')(voice[1])
+        abjad> gracetools.GraceContainer(grace_notes, kind = 'grace')(voice[1])
         Note("d'8")
 
     ::
@@ -44,7 +44,7 @@ class Grace(Container):
     ::
 
         abjad> after_grace_notes = [Note("e'16"), Note("f'16")]
-        abjad> gracetools.Grace(after_grace_notes, kind = 'after')(voice[1])
+        abjad> gracetools.GraceContainer(after_grace_notes, kind = 'after')(voice[1])
         Note("d'8")
 
     ::
@@ -71,7 +71,7 @@ class Grace(Container):
 
     Grace containers override the special ``__call__`` method.
 
-    Use ``Grace()`` to attach grace containers to nongrace notes, rests and chords.
+    Use ``GraceContainer()`` to attach grace containers to nongrace notes, rests and chords.
     '''
 
     ### CLASS ATTRIBUTES ###
@@ -118,7 +118,7 @@ class Grace(Container):
             r'''Get `kind` of grace container::
 
                 abjad> staff = Staff("c'8 d'8 e'8 f'8")
-                abjad> gracetools.Grace([Note("cs'16")], kind = 'grace')(staff[1])
+                abjad> gracetools.GraceContainer([Note("cs'16")], kind = 'grace')(staff[1])
                 Note("d'8")
                 abjad> grace_container = staff[1].grace
                 abjad> grace_container.kind
@@ -129,7 +129,7 @@ class Grace(Container):
             Set `kind` of grace container::
 
                 abjad> staff = Staff("c'8 d'8 e'8 f'8")
-                abjad> gracetools.Grace([Note("cs'16")], kind = 'grace')(staff[1])
+                abjad> gracetools.GraceContainer([Note("cs'16")], kind = 'grace')(staff[1])
                 Note("d'8")
                 abjad> grace_container = staff[1].grace
                 abjad> grace_container.kind = 'acciaccatura'
@@ -152,7 +152,7 @@ class Grace(Container):
         r'''Detach grace container from leaf::
 
             abjad> staff = Staff("c'8 d'8 e'8 f'8")
-            abjad> grace_container = gracetools.Grace([Note("cs'16")], kind = 'grace')
+            abjad> grace_container = gracetools.GraceContainer([Note("cs'16")], kind = 'grace')
             abjad> grace_container(staff[1])
             Note("d'8")
             abjad> f(staff)
@@ -169,7 +169,7 @@ class Grace(Container):
         ::
 
             abjad> grace_container.detach()
-            Grace()
+            GraceContainer()
             abjad> f(staff)
             \new Staff {
                 c'8

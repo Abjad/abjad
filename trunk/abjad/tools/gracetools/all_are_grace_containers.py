@@ -1,5 +1,5 @@
 from abjad.tools.componenttools.all_are_components import all_are_components
-from abjad.tools.gracetools.Grace import Grace
+from abjad.tools.gracetools.GraceContainer import GraceContainer
 
 
 def all_are_grace_containers(expr):
@@ -7,10 +7,10 @@ def all_are_grace_containers(expr):
 
     True when `expr` is a sequence of Abjad grace containers::
 
-        abjad> graces = [gracetools.Grace("<c' e' g'>4"), gracetools.Grace("<c' f' a'>4")]
+        abjad> graces = [gracetools.GraceContainer("<c' e' g'>4"), gracetools.GraceContainer("<c' f' a'>4")]
         abjad> voice = Voice("c'8 d'8 e'8 f'8")
         abjad> grace_notes = [Note("c'16"), Note("d'16")]
-        abjad> grace_container = gracetools.Grace(grace_notes, kind = 'grace')
+        abjad> grace_container = gracetools.GraceContainer(grace_notes, kind = 'grace')
         abjad> grace_container(voice[1])
         Note("d'8")
 

@@ -49,7 +49,7 @@ def test_Note___copy___04():
     '''
 
     note_1 = Note("c'4")
-    grace_container_1 = gracetools.Grace([Note("d'32")], kind = 'after')
+    grace_container_1 = gracetools.GraceContainer([Note("d'32")], kind = 'after')
     grace_container_1(note_1)
 
     r'''

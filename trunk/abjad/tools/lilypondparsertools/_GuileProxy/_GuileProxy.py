@@ -27,7 +27,7 @@ class _GuileProxy(object):
 
 
     def acciaccatura(self, music):
-        grace = gracetools.Grace(music[:])
+        grace = gracetools.GraceContainer(music[:])
         grace.kind = 'acciaccatura'
         return grace
 
@@ -36,7 +36,7 @@ class _GuileProxy(object):
 
 
     def appoggiatura(self, music):
-        grace = gracetools.Grace(music[:])
+        grace = gracetools.GraceContainer(music[:])
         grace.kind = 'appoggiatura'
         return grace
 
@@ -54,7 +54,7 @@ class _GuileProxy(object):
 
 
     def grace(self, music):
-        return gracetools.Grace(music[:])
+        return gracetools.GraceContainer(music[:])
 
 
     def key(self, notename_pitch, number_list):
@@ -138,8 +138,8 @@ class _GuileProxy(object):
         return leaf
 
 
-    def slashedGrace(self, music):
-        grace = gracetools.Grace(music[:])
+    def slashedGraceContainer(self, music):
+        grace = gracetools.GraceContainer(music[:])
         grace.kind = 'slashedGrace'
         return grace
 

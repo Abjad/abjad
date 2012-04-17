@@ -298,7 +298,7 @@ Abjad composition packages
 .. toctree::
    :maxdepth: 1
 
-   tools/gracetools/Grace/Grace
+   tools/gracetools/GraceContainer/GraceContainer
 
 .. rubric:: gracetools functions
 
