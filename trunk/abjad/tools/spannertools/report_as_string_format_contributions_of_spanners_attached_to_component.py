@@ -1,12 +1,10 @@
-from abjad.tools.spannertools.get_spanners_attached_to_any_improper_parent_of_component import get_spanners_attached_to_any_improper_parent_of_component
+from abjad.tools.spannertools.get_spanners_attached_to_component import get_spanners_attached_to_component
 
 
-def report_as_string_format_contributions_of_all_spanners_attached_to_improper_parentage_of_component(
-    component, klass = None):
+def report_as_string_format_contributions_of_spanners_attached_to_component(component, klass = None):
     r'''.. versionadded:: 1.1
 
-    Report as string format contributions of all spanners attached to improper
-    parentage of `component`::
+    Report as string format contributions of all spanners attached to `component`::
 
         abjad> staff = Staff("c'8 d'8 e'8 f'8")
         abjad> beam = spannertools.BeamSpanner(staff.leaves)
@@ -22,15 +20,19 @@ def report_as_string_format_contributions_of_all_spanners_attached_to_improper_p
 
     ::
 
-        abjad> spannertools.report_as_string_format_contributions_of_all_spanners_attached_to_component(staff[0])
+        abjad> spannertools.report_as_string_format_contributions_of_spanners_attached_to_component(staff[0])
         'BeamSpanner\n\t_right\n\t\t[\nSlurSpanner\n\t_right\n\t\t(\n'
 
     Return string.
+
+    .. versionchanged:: 2.9
+        renamed ``spannertools.report_as_string_format_contributions_of_all_spanners_attached_to_component()`` to
+        ``spannertools.report_as_string_format_contributions_of_spanners_attached_to_component()``.
     '''
 
     result = ''
     locations = ('_before', '_left', '_right', '_after')
-    spanners = list(get_spanners_attached_to_any_improper_parent_of_component(component, klass))
+    spanners = list(get_spanners_attached_to_component(component, klass))
     spanners.sort(lambda x, y: cmp(x.__class__.__name__, y.__class__.__name__))
     for spanner in spanners:
         result += '%s\n' % spanner.__class__.__name__

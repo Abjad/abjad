@@ -56,7 +56,7 @@ class Component(AbjadObject):
 
     def __mul__(self, n):
         from abjad.tools import componenttools
-        return componenttools.copy_components_and_remove_all_spanners([self], n)
+        return componenttools.copy_components_and_remove_spanners([self], n)
 
     def __rmul__(self, n):
         return self * n

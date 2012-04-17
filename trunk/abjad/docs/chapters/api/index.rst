@@ -71,7 +71,7 @@ Abjad composition packages
    tools/componenttools/copy_components_and_covered_spanners
    tools/componenttools/copy_components_and_fracture_crossing_spanners
    tools/componenttools/copy_components_and_immediate_parent_of_first_component
-   tools/componenttools/copy_components_and_remove_all_spanners
+   tools/componenttools/copy_components_and_remove_spanners
    tools/componenttools/copy_governed_component_subtree_by_leaf_range
    tools/componenttools/copy_governed_component_subtree_from_prolated_offset_to
    tools/componenttools/cut_component_at_prolated_duration
@@ -1057,8 +1057,8 @@ Abjad composition packages
    tools/spannertools/make_solid_text_spanner_below_with_nib_at_right
    tools/spannertools/make_spanner_schema
    tools/spannertools/move_spanners_from_component_to_children_of_component
-   tools/spannertools/report_as_string_format_contributions_of_all_spanners_attached_to_component
-   tools/spannertools/report_as_string_format_contributions_of_all_spanners_attached_to_improper_parentage_of_component
+   tools/spannertools/report_as_string_format_contributions_of_spanners_attached_to_component
+   tools/spannertools/report_as_string_format_contributions_of_spanners_attached_to_improper_parentage_of_component
    tools/spannertools/withdraw_components_from_spanners_covered_by_components
 
 :py:mod:`stafftools <abjad.tools.stafftools>`
