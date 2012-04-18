@@ -16,8 +16,7 @@ def _split_components_by_prolated_durations(components, durations,
 
     # check input
     assert componenttools.all_are_components(components)
-    assert isinstance(durations, list)
-    assert all([isinstance(x, (int, float, durationtools.Duration)) for x in durations])
+    assert durationtools.all_are_durations(durations)
 
     # initialize loop variables
     result = []
@@ -61,7 +60,7 @@ def _split_components_by_prolated_durations(components, durations,
             local_split_duration = next_split_point - cum_duration
             #print cum_duration, next_split_point, x, part, local_split_duration
             left_list, right_list = _split_component_at_duration(x, local_split_duration,
-                spanners = spanners, tie_after = tie_after)
+                spanners=spanners, tie_after=tie_after)
             #print 'left_list, right_list %s, %s' % (left_list, right_list)
             part.extend(left_list)
             result.append(part)

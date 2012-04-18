@@ -32,6 +32,8 @@ def _split_component_at_duration(component, duration, spanners='unfractured', ti
     duration = durationtools.Duration(duration)
     assert 0 <= duration
 
+    print component, duration # debug
+
     # if zero duration then return component
     if duration == 0:
         # TODO: This one case should be ([], component) #
@@ -86,7 +88,7 @@ def _split_component_at_duration(component, duration, spanners='unfractured', ti
         did_split_leaf = True
         split_point_in_bottom = global_split_point - bottom._offset.start
         left_list, right_list = _split_leaf_at_duration(bottom,
-            split_point_in_bottom, spanners = spanners, tie_after = tie_after)
+            split_point_in_bottom, spanners=spanners, tie_after=tie_after)
         right = right_list[0]
         leaf_right_of_split = right
         leaf_left_of_split = left_list[-1]
@@ -109,8 +111,8 @@ def _split_component_at_duration(component, duration, spanners='unfractured', ti
 
     # fracture leaf spanners if requested
     if spanners == 'fractured':
-        #right.spanners.fracture(direction = 'left')
-        spannertools.fracture_spanners_attached_to_component(right, direction = 'left')
+        #right.spanners.fracture(direction='left')
+        spannertools.fracture_spanners_attached_to_component(right, direction='left')
 
     # crawl back up through container duration crossers
     # split each container duration crosser
@@ -118,7 +120,7 @@ def _split_component_at_duration(component, duration, spanners='unfractured', ti
         assert isinstance(cur, Container)
         prev = right
         i = cur.index(prev)
-        left, right = _split_component_at_index(cur, i, spanners = spanners)
+        left, right = _split_component_at_index(cur, i, spanners=spanners)
 
     # NOTE: If tie chain here is convenience, then fusing is good.
     #         If tie chain here is user-given, then fusing is less good.
