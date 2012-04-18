@@ -29,7 +29,7 @@ def _split_component_at_duration(component, duration, spanners='unfractured', ti
 
     # if zero duration then return component
     if duration == 0:
-        # TODO: This one case should be ([], component) #
+        # TODO: this one case should be ([], component)
         return (component, )
 
     # get global position of duration split in score
@@ -85,54 +85,50 @@ def _split_component_at_duration(component, duration, spanners='unfractured', ti
         right = right_list[0]
         leaf_right_of_split = right
         leaf_left_of_split = left_list[-1]
-        containers = contents[:-1]
-        if not len(containers):
+        duration_crossing_containers = contents[:-1]
+        if not len(duration_crossing_containers):
             return left_list, right_list
     # if split point falls between leaves
     # then find leaf to immediate right of split point
-    # in order to start upward crawl through containers
+    # in order to start upward crawl through duration-crossing containers
     else:
-        containers = contents[:]
+        duration_crossing_containers = contents[:]
         for leaf in leaftools.iterate_leaves_forward_in_expr(bottom):
             if leaf._offset.start == global_split_point:
-                right = leaf
-                leaf_right_of_split = right
-                leaf_left_of_split = right._navigator._prev_bead
+                leaf_right_of_split = leaf
+                leaf_left_of_split = leaf_right_of_split._navigator._prev_bead
                 break
         else:
-            raise ContainmentError('can not split empty container.')
+            raise ContainmentError('can not split empty container {!r}.'.format(bottom))
 
     # fracture leaf spanners if requested
     if spanners == 'fractured':
-        #right.spanners.fracture(direction='left')
-        spannertools.fracture_spanners_attached_to_component(right, direction='left')
+        spannertools.fracture_spanners_attached_to_component(leaf_right_of_split, direction='left')
 
-    # crawl back up through container duration crossers
-    # split each container duration crosser
-    for cur in reversed(containers):
-        assert isinstance(cur, containertools.Container)
+    # crawl back up through duration-crossing containers and split each
+    prev = leaf_right_of_split
+    for duration_crossing_container in reversed(duration_crossing_containers):
+        assert isinstance(duration_crossing_container, containertools.Container)
+        i = duration_crossing_container.index(prev)
+        left, right = _split_component_at_index(duration_crossing_container, i, spanners=spanners)
         prev = right
-        i = cur.index(prev)
-        left, right = _split_component_at_index(cur, i, spanners=spanners)
 
     # NOTE: If tie chain here is convenience, then fusing is good.
-    #         If tie chain here is user-given, then fusing is less good.
-    #         Maybe later model difference between user tie chains and not.
+    #       If tie chain here is user-given, then fusing is less good.
+    #       Maybe later model difference between user tie chains and not.
     leaftools.fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(
         tietools.get_tie_chain(leaf_left_of_split))
     leaftools.fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(
         tietools.get_tie_chain(leaf_right_of_split))
 
-    # crawl above will kill any tie applied to leaves
+    # crawl above will kill any tie applied to leaves;
     # reapply tie here if necessary
-    # TODO: Possibly replace this with tietools.apply_tie_spanner_to_leaf_pair()? #
+    # TODO: Possibly replace this with tietools.apply_tie_spanner_to_leaf_pair()?
     if did_split_leaf:
         if tie_after:
             leaves_at_split = [leaf_left_of_split, leaf_right_of_split]
             if not tietools.are_components_in_same_tie_spanner(leaves_at_split):
-                #if all([x.tie.spanned for x in leaves_at_split]):
                 if all([tietools.is_component_with_tie_spanner_attached(x) for x in leaves_at_split]):
-                    #leaf_left_of_split.tie.spanner.fuse(leaf_right_of_split.tie.spanner)
                     leaf_left_of_split_tie_spanner = \
                         spannertools.get_the_only_spanner_attached_to_component(
                         leaf_left_of_split, tietools.TieSpanner)

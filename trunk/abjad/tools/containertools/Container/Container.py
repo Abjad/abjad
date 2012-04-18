@@ -450,7 +450,7 @@ class Container(Component):
             if element is component:
                 return i
         else:
-            raise ValueError('component "%s" not in Abjad container.' % component)
+            raise ValueError('component {!r} not in Abjad container {!r}.'.format(component, self))
 
     def insert(self, i, component):
         '''Insert `component` in container at index `i`::
