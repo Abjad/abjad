@@ -2,12 +2,16 @@ from abjad.tools import durationtools
 from abjad.tools.componenttools.get_parent_and_start_stop_indices_of_components import get_parent_and_start_stop_indices_of_components
 
 
+# TODO: is there any reason not to make this public?
 def _split_component_at_index(component, i, spanners='unfractured'):
-    '''General component index split algorithm.
+    '''.. versionadded:: 1.1
+
+    General component index split algorithm.
     Works on leaves, tuplets, measures, contexts and unqualified containers.
     Keyword controls spanner behavior at split time.
     Use containertools.split_container_at_index_and_fracture_crossing_spanners() to fracture spanners.
-    Use containertools.split_container_at_index_and_do_not_fracture_crossing_spanners() to leave spanners unchanged.
+    Use containertools.split_container_at_index_and_do_not_fracture_crossing_spanners() 
+        to leave spanners unchanged.
     '''
     from abjad.tools import spannertools
     from abjad.tools import contexttools

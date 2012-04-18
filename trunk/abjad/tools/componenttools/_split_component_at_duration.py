@@ -1,12 +1,11 @@
 from abjad.exceptions import ContainmentError
 from abjad.tools import durationtools
 from abjad.tools import mathtools
-from abjad.tools.componenttools._split_component_at_index import _split_component_at_index
-from abjad.tools import durationtools
 
 
+# TODO: is there any reason not to make this public?
 def _split_component_at_duration(component, duration, spanners='unfractured', tie_after=False):
-    '''.. versionadded:: 2.0
+    '''.. versionadded:: 1.1
         
     Split `component` at prolated `duration`.
 
@@ -16,23 +15,17 @@ def _split_component_at_duration(component, duration, spanners='unfractured', ti
 
     Return pair of left and right part-lists.
     '''
-    from abjad.tools.containertools.Container import Container
-    from abjad.tools.leaftools.Leaf import Leaf
+    from abjad.tools import componenttools
+    from abjad.tools import containertools
     from abjad.tools import leaftools
     from abjad.tools import measuretools
     from abjad.tools import spannertools
     from abjad.tools import tietools
-    from abjad.tools.componenttools.list_improper_contents_of_component_that_cross_prolated_offset \
-        import list_improper_contents_of_component_that_cross_prolated_offset
+    from abjad.tools.componenttools._split_component_at_index import _split_component_at_index
     from abjad.tools.leaftools._split_leaf_at_duration import _split_leaf_at_duration
-    from abjad.tools.leaftools.fuse_leaves_in_tie_chain_by_immediate_parent_big_endian \
-        import fuse_leaves_in_tie_chain_by_immediate_parent_big_endian
-    from abjad.tools.measuretools.Measure import Measure
 
     duration = durationtools.Duration(duration)
     assert 0 <= duration
-
-    print component, duration # debug
 
     # if zero duration then return component
     if duration == 0:
@@ -43,12 +36,12 @@ def _split_component_at_duration(component, duration, spanners='unfractured', ti
     global_split_point = component._offset.start + duration
 
     # get duration crossers, if any
-    contents = list_improper_contents_of_component_that_cross_prolated_offset(component, duration)
+    contents = componenttools.list_improper_contents_of_component_that_cross_prolated_offset(component, duration)
 
     #print component, global_split_point, contents
 
     # get duration crossing measures, if any
-    measures = [x for x in contents if isinstance(x, Measure)]
+    measures = [x for x in contents if isinstance(x, measuretools.Measure)]
 
     # if we must split a binary measure at a nonbinary split point
     # go ahead and transform the binary measure to nonbinary equiavlent now;
@@ -72,7 +65,7 @@ def _split_component_at_duration(component, duration, spanners='unfractured', ti
             measuretools.scale_measure_denominator_and_adjust_measure_contents(
                 measure, nonbinary_product)
             # rederive duration crosses with possibly new measure contents
-            contents = list_improper_contents_of_component_that_cross_prolated_offset(
+            contents = componenttools.list_improper_contents_of_component_that_cross_prolated_offset(
                 component, duration)
     elif 1 < len(measures):
         raise ContainmentError('measures can not nest.')
@@ -83,8 +76,8 @@ def _split_component_at_duration(component, duration, spanners='unfractured', ti
     did_split_leaf = False
 
     # if split point necessitates leaf split
-    if isinstance(bottom, Leaf):
-        assert isinstance(bottom, Leaf)
+    if isinstance(bottom, leaftools.Leaf):
+        assert isinstance(bottom, leaftools.Leaf)
         did_split_leaf = True
         split_point_in_bottom = global_split_point - bottom._offset.start
         left_list, right_list = _split_leaf_at_duration(bottom,
@@ -117,7 +110,7 @@ def _split_component_at_duration(component, duration, spanners='unfractured', ti
     # crawl back up through container duration crossers
     # split each container duration crosser
     for cur in reversed(containers):
-        assert isinstance(cur, Container)
+        assert isinstance(cur, containertools.Container)
         prev = right
         i = cur.index(prev)
         left, right = _split_component_at_index(cur, i, spanners=spanners)
@@ -125,9 +118,9 @@ def _split_component_at_duration(component, duration, spanners='unfractured', ti
     # NOTE: If tie chain here is convenience, then fusing is good.
     #         If tie chain here is user-given, then fusing is less good.
     #         Maybe later model difference between user tie chains and not.
-    fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(
+    leaftools.fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(
         tietools.get_tie_chain(leaf_left_of_split))
-    fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(
+    leaftools.fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(
         tietools.get_tie_chain(leaf_right_of_split))
 
     # crawl above will kill any tie applied to leaves

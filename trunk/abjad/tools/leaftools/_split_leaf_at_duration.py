@@ -3,7 +3,7 @@ from abjad.tools.leaftools.set_preprolated_leaf_duration import set_preprolated_
 from abjad.tools import durationtools
 
 
-def _split_leaf_at_duration(leaf, split_dur, spanners = 'unfractured', tie_after = False):
+def _split_leaf_at_duration(leaf, split_dur, spanners='unfractured', tie_after=False):
     '''Split leaf into left and right lists.
     Left list may be list of one note, many tied notes, or tuplet.
     Right list may be list of one note, many tied notes, or tuplet.
@@ -36,7 +36,7 @@ def _split_leaf_at_duration(leaf, split_dur, spanners = 'unfractured', tie_after
     # TODO: maybe replace with logic to move marktools.Articulation #
     #new_leaf.articulations[:] = []
     contexttools.detach_context_marks_attached_to_component(new_leaf,
-        klasses = (contexttools.DynamicMark, ))
+        klasses=(contexttools.DynamicMark, ))
     #leaf.after_grace[:] = []
     if hasattr(leaf, 'after_grace'):
         delattr(leaf, '_after_grace')
@@ -50,9 +50,8 @@ def _split_leaf_at_duration(leaf, split_dur, spanners = 'unfractured', tie_after
     leaf_right_of_split = right_leaf_list[0]
 
     if spanners == 'fractured':
-        #leaf_left_of_split.spanners.fracture(direction = 'right')
-        spannertools.fracture_spanners_attached_to_component(
-            leaf_left_of_split, direction = 'right')
+        #leaf_left_of_split.spanners.fracture(direction='right')
+        spannertools.fracture_spanners_attached_to_component(leaf_left_of_split, direction='right')
     elif spanners == 'unfractured':
         pass
     else:
