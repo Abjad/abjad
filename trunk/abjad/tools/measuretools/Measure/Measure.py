@@ -10,7 +10,7 @@ class Measure(Container):
 
     Abjad model of a measure::
 
-        abjad> measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
+        abjad> measure = Measure((4, 8), "c'8 d' e' f'")
 
     ::
 
@@ -142,11 +142,25 @@ class Measure(Container):
 
     @property
     def is_binary(self):
+        '''True when measure time signature denominator is an integer power of 2::
+
+            abjad> measure = Measure((5, 8), "c'8 d' e' f' g'")
+            abjad> measure.is_binary
+            True
+
+        Otherwise false::
+
+            abjad> measure = Measure((5, 9), "c'8 d' e' f' g'")
+            abjad> measure.is_binary
+            False
+
+        Return boolean.
+        '''
         return not self.is_nonbinary
 
     @property
     def is_full(self):
-        '''True when meter matches duration of measure::
+        '''True when prolated duration equals time signature duration::
 
             abjad> measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
 
@@ -155,14 +169,7 @@ class Measure(Container):
             abjad> measure.is_full
             True
 
-        False otherwise::
-
-            abjad> measure = Measure((4, 8), "c'8 d'8 e'8")
-
-        ::
-
-            abjad> measure.is_full
-            False
+        Otherwise false.
 
         Return boolean.
         '''
@@ -170,14 +177,38 @@ class Measure(Container):
 
     @property
     def is_nonbinary(self):
+        '''True when measure time signature denominator is not an integer power of 2::
+
+            abjad> measure = Measure((5, 9), "c'8 d' e' f' g'")
+            abjad> measure.is_binary
+            True
+    
+        Otherwise false::
+
+            abjad> measure = Measure((5, 8), "c'8 d' e' f' g'")
+            abjad> measure.is_binary
+            True
+
+        Return boolean.
+        '''
         return contexttools.get_effective_time_signature(self).is_nonbinary
 
     @property
     def is_overfull(self):
         '''.. versionadded:: 1.1
 
-        True when prolated duration is greater than
-        effective meter duration.
+        True when prolated duration is greater than time signature duration::
+
+            abjad> measure = Measure((3, 4), "c'4 d' e' f'")
+
+        ::
+
+            abjad> measure.is_overfull
+            True
+
+        Otherwise false.
+
+        Return boolean.
         '''
         return contexttools.get_effective_time_signature(self).duration < self.prolated_duration
 
@@ -185,22 +216,90 @@ class Measure(Container):
     def is_underfull(self):
         '''.. versionadded:: 1.1
 
-        True when prolated duration is less than
-        effective meter duration.
+        True when prolated duration is less than time signature duration::
+
+            abjad> measure = Measure((3, 4), "c'4 d'")
+
+        ::
+
+            abjad> measure.is_underfull
+            True
+
+        Otherwise false.
+
+        Return boolean.
         '''
         return self.prolated_duration < contexttools.get_effective_time_signature(self).duration
 
     @property
     def measure_number(self):
+        r'''1-indexed measure number::
+
+            abjad> staff = Staff()
+            abjad> staff.append(Measure((3, 4), "c' d' e'"))
+            abjad> staff.append(Measure((2, 4), "f' g'"))
+
+        ::
+
+            abjad> f(staff)
+            \new Staff {
+                {
+                    \time 3/4
+                    c'4
+                    d'4
+                    e'4
+                }
+                {
+                    \time 2/4
+                    f'4
+                    g'4
+                }
+            }
+
+        ::
+
+            abjad> staff[0].measure_number
+            1
+
+        ::
+
+            abjad> staff[1].measure_number
+            2
+
+        Return positive integer.
+        '''
         self._update_prolated_offset_values_of_entire_score_tree_if_necessary()
         return self._measure_number
 
     @property
     def multiplier(self):
+        '''Multiplier of measure time signature::
+
+            abjad> measure = Measure((5, 12), "c'8 d' e' f' g'")
+
+        ::
+
+            abjad> measure.multiplier
+            Fraction(2, 3)
+
+        Return fraction.
+        '''
         return contexttools.get_effective_time_signature(self).multiplier
 
     @property
     def preprolated_duration(self):
-        '''Measure contents duration times effective meter multiplier.'''
+        '''Preprolated duration of measure::
+
+            abjad> measure = Measure((5, 12), "c'8 d' e' f' g'")
+
+        ::
+
+            abjad> measure.preprolated_duration
+            Duration(5, 12)
+
+        Equal measure contents duration times time signature multiplier.
+
+        Return duration.
+        '''
         from abjad.tools import contexttools
         return contexttools.get_effective_time_signature(self).multiplier * self.contents_duration
