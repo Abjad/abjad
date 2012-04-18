@@ -101,12 +101,21 @@ def _split_component_at_duration(component, duration, spanners='unfractured', ti
         else:
             raise ContainmentError('can not split empty container {!r}.'.format(bottom))
 
+    # find component to right of split that is also immediate child of last duration-crossing container
+    for component in componenttools.get_improper_parentage_of_component(leaf_right_of_split):
+        if component.parent is duration_crossing_containers[-1]:
+            highest_level_component_right_of_split = component
+            break
+    else:
+        raise ValueError('should we be able to get here?')
+
     # fracture leaf spanners if requested
     if spanners == 'fractured':
         spannertools.fracture_spanners_attached_to_component(leaf_right_of_split, direction='left')
 
     # crawl back up through duration-crossing containers and split each
-    prev = leaf_right_of_split
+    #prev = leaf_right_of_split
+    prev = highest_level_component_right_of_split
     for duration_crossing_container in reversed(duration_crossing_containers):
         assert isinstance(duration_crossing_container, containertools.Container)
         i = duration_crossing_container.index(prev)

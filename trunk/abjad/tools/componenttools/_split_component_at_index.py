@@ -3,6 +3,7 @@ from abjad.tools.componenttools.get_parent_and_start_stop_indices_of_components 
 
 
 # TODO: is there any reason not to make this public?
+# TODO: and shouldn't this be named split_container_at_index()?
 def _split_component_at_index(component, i, spanners='unfractured'):
     '''.. versionadded:: 1.1
 

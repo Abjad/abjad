@@ -2,8 +2,7 @@ from abjad.tools.componenttools._split_component_at_duration import _split_compo
 from abjad.tools import durationtools
 
 
-# TODO: fix bug that unintentionally fractures ties. #
-
+# TODO: fix bug that unintentionally fractures ties.
 def _split_components_by_prolated_durations(components, durations,
     spanners='unfractured', cyclic=False, tie_after=False):
     '''..versionadded:: 2.0
@@ -16,7 +15,7 @@ def _split_components_by_prolated_durations(components, durations,
 
     # check input
     assert componenttools.all_are_components(components)
-    assert durationtools.all_are_durations(durations)
+    assert durationtools.all_are_duration_tokens(durations)
 
     # initialize loop variables
     result = []
