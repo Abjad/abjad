@@ -2,13 +2,15 @@ from abjad.tools.componenttools._split_component_at_duration import _split_compo
 from abjad.tools import durationtools
 
 
-# TODO: Take care of bug that unintentionally fractures ties. #
+# TODO: fix bug that unintentionally fractures ties. #
 
 def _split_components_by_prolated_durations(components, durations,
-    spanners = 'unfractured', cyclic = False, tie_after = False):
-    '''Partition Python list of components according to durations.
-        Interpret durations as prolated durations.
-        Return list of newly split parts.
+    spanners='unfractured', cyclic=False, tie_after=False):
+    '''..versionadded:: 2.0
+    
+    Split `components` by prolated `durations`.
+
+    Return list of newly split parts.
     '''
     from abjad.tools import componenttools
 

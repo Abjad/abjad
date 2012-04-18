@@ -2,7 +2,7 @@ from abjad.tools.componenttools._split_components_by_prolated_durations import _
 
 
 def split_components_once_by_prolated_durations_and_fracture_crossing_spanners(
-    components, durations, tie_after = False):
+    components, durations, tie_after=False):
     r'''.. versionadded:: 1.1
 
     Split `components` once by prolated `durations` and fracture crossing spanners::
@@ -60,4 +60,4 @@ def split_components_once_by_prolated_durations_and_fracture_crossing_spanners(
     '''
 
     return _split_components_by_prolated_durations(components, durations,
-        spanners = 'fractured', tie_after = tie_after)
+        spanners='fractured', tie_after=tie_after)

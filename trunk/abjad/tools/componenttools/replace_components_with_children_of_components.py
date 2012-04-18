@@ -10,6 +10,8 @@ def replace_components_with_children_of_components(components):
         abjad> spannertools.BeamSpanner(staff.leaves)
         BeamSpanner(c'8, d'8, e'8, f'8)
 
+    ::
+
         abjad> f(staff)
         \new Staff {
             {
@@ -40,9 +42,6 @@ def replace_components_with_children_of_components(components):
         }
 
     Return `components`.
-
-    .. note:: should be renamed to
-        ``componenttools.remove_components_from_score_shallow()``
 
     .. versionchanged:: 2.0
         renamed ``componenttools.slip()`` to

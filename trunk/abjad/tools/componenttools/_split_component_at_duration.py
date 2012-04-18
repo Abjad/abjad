@@ -6,10 +6,15 @@ from abjad.tools import durationtools
 
 
 def _split_component_at_duration(component, duration, spanners='unfractured', tie_after=False):
-    '''General component duration split algorithm.
-    Duration is interpreted as prolated duration.
-    Works on leaves, tuplets, measures, context and unqualified containers.
-    Keyword controls spanner behavior at split-time.
+    '''.. versionadded:: 2.0
+        
+    Split `component` at prolated `duration`.
+
+    General component duration split algorithm.
+    Works on leaves, tuplets, measures, contexts and unqualified containers.
+    Keywords control spanner behavior at split-time.
+
+    Return pair of left and right part-lists.
     '''
     from abjad.tools.containertools.Container import Container
     from abjad.tools.leaftools.Leaf import Leaf
