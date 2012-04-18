@@ -82,9 +82,15 @@ Separate bound method definitions with a single empty line::
         def bar_baz(self):
             ...
 
-Organize the definitions of core classes into the five following major sections plus initialization::
+Organize the definitions of core classes into the nine following major sections::
 
     class FooBar(object):
+
+        ### CLASS ATTRIBUTES ###
+
+        special_enumeration = ('foo', 'bar', 'blah')
+
+        ### INITIALIZER ###
 
         def __init__(self, x, y):
             ...
@@ -97,42 +103,49 @@ Organize the definitions of core classes into the five following major sections 
         def __str__(self):
             ...
 
-        ### PRIVATE PROPERTIES ###
+        ### READ-ONLY PRIVATE PROPERTIES ###
 
         @property
         def _foo(self):
             ...
 
-        ### PUBLIC PROPERTIES ###
+        ### READ / WRITE PRIVATE PROPERTIES ###
 
-        @property
-        def bar(self):
-            ...
+        @apply
+        def _bar():
+            def fget(self):
+                ...
+            def fset(self, expr):
+                ...
+            return property(**locals())
 
         ### PRIVATE METHODS ###
 
         def _blah(self, x, y):
             ...
+
+        ### READ-ONLY PUBLIC PROPERTIES ###
+
+        @property
+        def foo(self):
+            ...
+
+        ### READ / WRITE PUBLIC PROPERTIES ###
+
+        @apply
+        def bar():
+            def fget(self):
+                ...
+            def fset(self, expr):
+                ...
+            return property(**locals())
 
         ### PUBLIC METHODS ###
 
-        def baz(self, z):
+        def blah(self, expr):
             ...
 
-Preceed private class attributes with a single underscore::
-
-    class FooBar(object):
-
-        ### PRIVATE PROPERTIES ###
-
-        @property
-        def _foo(self):
-            ...
-
-        ### PRIVATE METHODS ###
-
-        def _blah(self, x, y):
-            ...
+Preceed private class attributes with a single underscore.
 
 Alphabetize method names.
 
