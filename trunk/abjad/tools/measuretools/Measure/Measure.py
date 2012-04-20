@@ -33,12 +33,13 @@ class Measure(Container):
 
     ### CLASS ATTRIBUTES ###
 
-    __slots__ = ('_measure_number', )
+    __slots__ = ('_automatically_update_time_signature', '_measure_number', )
 
     ### INITIALIZER ###
 
     def __init__(self, meter, music=None, **kwargs):
         Container.__init__(self, music)
+        self._automatically_update_time_signature = False
         self._formatter = _MeasureFormatter(self)
         self._measure_number = None
         time_signature = contexttools.TimeSignatureMark(meter)
@@ -76,27 +77,29 @@ class Measure(Container):
         return new
 
     def __delitem__(self, i):
-        '''Container deletion with meter adjustment.
+        '''Container deletion with optional time signature adjustment.
         '''
         try:
             old_denominator = contexttools.get_effective_time_signature(self).denominator
         except AttributeError:
             pass
         Container.__delitem__(self, i)
-        try:
-            naive_meter = self.preprolated_duration
-            better_meter = durationtools.rational_to_duration_pair_with_specified_integer_denominator(
-                naive_meter, old_denominator)
-            better_meter = contexttools.TimeSignatureMark(better_meter)
-            contexttools.detach_time_signature_marks_attached_to_component(self)
-            better_meter.attach(self)
-        except (AttributeError, UnboundLocalError):
-            pass
+        if self.automatically_update_time_signature:
+            try:
+                naive_meter = self.preprolated_duration
+                better_meter = durationtools.rational_to_duration_pair_with_specified_integer_denominator(
+                    naive_meter, old_denominator)
+                better_meter = contexttools.TimeSignatureMark(better_meter)
+                contexttools.detach_time_signature_marks_attached_to_component(self)
+                better_meter.attach(self)
+            except (AttributeError, UnboundLocalError):
+                pass
 
     def __getnewargs__(self):
         time_signature = contexttools.get_effective_time_signature(self)
-        pair = (time_signature.numerator, time_signature.denominator)
-        return (pair, )
+        #pair = (time_signature.numerator, time_signature.denominator)
+        #return (pair, )
+        return (time_signature.pair, )
 
     def __repr__(self):
         '''String form of measure with parentheses for interpreter display.
@@ -129,7 +132,7 @@ class Measure(Container):
         else:
             return '| |'
 
-    ### PRIVATE PROPERTIES ###
+    ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
     def _compact_representation(self):
@@ -138,7 +141,7 @@ class Measure(Container):
         '''
         return '|%s(%s)|' % (contexttools.get_effective_time_signature(self), len(self))
 
-    ### PUBLIC PROPERTIES ###
+    ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def is_binary(self):
@@ -303,3 +306,24 @@ class Measure(Container):
         '''
         from abjad.tools import contexttools
         return contexttools.get_effective_time_signature(self).multiplier * self.contents_duration
+
+    ### READ / WRITE PUBLIC PROPERTIES ###
+
+    @apply
+    def automatically_update_time_signature():
+        def fget(self):
+            '''..versionadded:: 2.9
+
+            Read / write flag to indicate whether time signature
+            should update automatically following contents-changing operations
+            like ``append()``, ``extend()``, ``pop()``, ``del()`` and so on.
+            
+            Default to false.
+
+            Return boolean.
+            '''
+            return self._automatically_update_time_signature
+        def fset(self, expr):
+            assert isinstance(expr, bool)
+            self._automatically_update_time_signature = expr
+        return property(**locals()) 

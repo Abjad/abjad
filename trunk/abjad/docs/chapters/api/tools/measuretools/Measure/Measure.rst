@@ -76,6 +76,8 @@ Read-only Properties
 Read/write Properties
 ---------------------
 
+.. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.automatically_update_time_signature
+
 .. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.is_parallel
 
    .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`

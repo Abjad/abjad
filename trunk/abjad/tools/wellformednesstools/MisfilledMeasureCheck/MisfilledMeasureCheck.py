@@ -2,16 +2,15 @@ from abjad.tools.wellformednesstools.Check import Check
 
 
 class MisfilledMeasureCheck(Check):
-    '''For each (rigid) measure,
-    does effective meter duration equal preprolated duration?
+    '''Check that time signature duration equals measure contents duration for every measure.
     '''
 
     def _run(self, expr):
         from abjad.tools import componenttools
-        from abjad.tools.measuretools.Measure import Measure
-        violators = [ ]
+        from abjad.tools import measuretools
+        violators = []
         total, bad = 0, 0
-        for t in componenttools.iterate_components_forward_in_expr(expr, Measure):
+        for t in componenttools.iterate_components_forward_in_expr(expr, measuretools.Measure):
             if not t.is_full:
                 violators.append(t)
                 bad += 1
