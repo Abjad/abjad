@@ -25,6 +25,8 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.is_full
 
+.. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.is_misfilled
+
 .. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.is_nonbinary
 
 .. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.is_overfull
@@ -76,7 +78,7 @@ Read-only Properties
 Read/write Properties
 ---------------------
 
-.. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.automatically_update_time_signature
+.. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.automatically_adjust_time_signature
 
 .. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.is_parallel
 

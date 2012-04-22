@@ -190,6 +190,42 @@ class Measure(Container):
         return contexttools.get_effective_time_signature(self).duration == self.preprolated_duration
 
     @property
+    def is_misfilled(self):
+        '''.. versionadded:: 2.9
+
+        True when measure is either underfull or overfull::
+
+            abjad> measure = Measure((3, 4), "c' d' e' f'")
+
+        ::
+
+            abjad> measure
+            Measure(3/4, [c'4, d'4, e'4, f'4])
+
+        ::
+
+            abjad> measure.is_misfilled
+            True
+
+        Otherwise false::
+
+            abjad> measure = Measure((3, 4), "c' d' e'")
+
+        ::
+
+            abjad> measure
+            Measure(3/4, [c'4, d'4, e'4])
+
+        ::
+
+            abjad> measure.is_misfilled
+            False
+
+        Return boolean.
+        '''
+        return self.is_underfull or self.is_overfull
+
+    @property
     def is_nonbinary(self):
         '''True when measure time signature denominator is not an integer power of 2::
 

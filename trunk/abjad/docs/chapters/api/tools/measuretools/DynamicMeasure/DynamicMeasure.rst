@@ -29,6 +29,10 @@ Read-only Properties
 
    .. note:: Inherited from :py:class:`measuretools.Measure <abjad.tools.measuretools.Measure.Measure.Measure>`
 
+.. autoattribute:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.is_misfilled
+
+   .. note:: Inherited from :py:class:`measuretools.Measure <abjad.tools.measuretools.Measure.Measure.Measure>`
+
 .. autoattribute:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.is_nonbinary
 
    .. note:: Inherited from :py:class:`measuretools.Measure <abjad.tools.measuretools.Measure.Measure.Measure>`
@@ -90,7 +94,7 @@ Read-only Properties
 Read/write Properties
 ---------------------
 
-.. autoattribute:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.automatically_update_time_signature
+.. autoattribute:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.automatically_adjust_time_signature
 
    .. note:: Inherited from :py:class:`measuretools.Measure <abjad.tools.measuretools.Measure.Measure.Measure>`
 

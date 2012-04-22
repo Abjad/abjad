@@ -10,9 +10,9 @@ class MisfilledMeasureCheck(Check):
         from abjad.tools import measuretools
         violators = []
         total, bad = 0, 0
-        for t in componenttools.iterate_components_forward_in_expr(expr, measuretools.Measure):
-            if not t.is_full:
-                violators.append(t)
+        for measure in componenttools.iterate_components_forward_in_expr(expr, measuretools.Measure):
+            if measure.is_misfilled:
+                violators.append(measure)
                 bad += 1
             total += 1
         return violators, total
