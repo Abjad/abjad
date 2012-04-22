@@ -77,28 +77,21 @@ class Measure(Container):
         return new
 
     def __delitem__(self, i):
-        '''Container deletion with optional time signature adjustment.
+        '''Container item deletion with optional time signature adjustment.
         '''
-        try:
-            old_denominator = contexttools.get_effective_time_signature(self).denominator
-        except AttributeError:
-            pass
+        old_time_signature = contexttools.get_effective_time_signature(self)
+        old_denominator = getattr(old_time_signature, 'denominator', None)
         Container.__delitem__(self, i)
         if self.automatically_update_time_signature:
-            try:
-                naive_meter = self.preprolated_duration
-                better_meter = durationtools.rational_to_duration_pair_with_specified_integer_denominator(
-                    naive_meter, old_denominator)
-                better_meter = contexttools.TimeSignatureMark(better_meter)
-                contexttools.detach_time_signature_marks_attached_to_component(self)
-                better_meter.attach(self)
-            except (AttributeError, UnboundLocalError):
-                pass
+            naive_meter = self.preprolated_duration
+            better_meter = durationtools.rational_to_duration_pair_with_specified_integer_denominator(
+                naive_meter, old_denominator)
+            better_meter = contexttools.TimeSignatureMark(better_meter)
+            contexttools.detach_time_signature_marks_attached_to_component(self)
+            better_meter.attach(self)
 
     def __getnewargs__(self):
         time_signature = contexttools.get_effective_time_signature(self)
-        #pair = (time_signature.numerator, time_signature.denominator)
-        #return (pair, )
         return (time_signature.pair, )
 
     def __repr__(self):
