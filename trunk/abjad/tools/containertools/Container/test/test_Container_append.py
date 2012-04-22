@@ -52,10 +52,10 @@ def test_Container_append_03():
     t = Voice("c'8 d'8 e'8")
     spannertools.BeamSpanner(t[:])
 
-    assert py.test.raises(AssertionError, "t.append('foo')")
-    assert py.test.raises(AssertionError, "t.append(99)")
-    assert py.test.raises(AssertionError, "t.append([])")
-    assert py.test.raises(AssertionError, "t.append([Note(0, (1, 8))])")
+    assert py.test.raises(Exception, "t.append('foo')")
+    assert py.test.raises(Exception, "t.append(99)")
+    assert py.test.raises(Exception, "t.append([])")
+    assert py.test.raises(Exception, "t.append([Note(0, (1, 8))])")
 
 
 def test_Container_append_04():

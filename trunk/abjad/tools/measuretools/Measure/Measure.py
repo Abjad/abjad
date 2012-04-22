@@ -38,8 +38,10 @@ class Measure(Container):
     ### INITIALIZER ###
 
     def __init__(self, meter, music=None, **kwargs):
-        Container.__init__(self, music)
+        # TODO: change 'update' to 'adjust' (or something else)
+        # set time signature adjustment indicator before initialization contents
         self._automatically_update_time_signature = False
+        Container.__init__(self, music)
         self._formatter = _MeasureFormatter(self)
         self._measure_number = None
         time_signature = contexttools.TimeSignatureMark(meter)
@@ -89,6 +91,24 @@ class Measure(Container):
             better_meter = contexttools.TimeSignatureMark(better_meter)
             contexttools.detach_time_signature_marks_attached_to_component(self)
             better_meter.attach(self)
+
+#    def __setitem__(self, i, expr):
+#        '''Container setitem logic with optional time signature adjustment.
+#
+#        .. versionchanged:: 2.9
+#            Measure setitem logic now adjusts time signatue automatically
+#            when ``adjust_time_signature_automatically`` is true.
+#        '''
+#        old_time_signature = contexttools.get_effective_time_signature(self)
+#        old_denominator = getattr(old_time_signature, 'denominator', None)
+#        Container.__setitem__(self, i, expr)
+#        if self.automatically_update_time_signature:
+#            naive_meter = self.preprolated_duration
+#            better_meter = durationtools.rational_to_duration_pair_with_specified_integer_denominator(
+#                naive_meter, old_denominator)
+#            better_meter = contexttools.TimeSignatureMark(better_meter)
+#            contexttools.detach_time_signature_marks_attached_to_component(self)
+#            better_meter.attach(self)
 
     def __getnewargs__(self):
         time_signature = contexttools.get_effective_time_signature(self)

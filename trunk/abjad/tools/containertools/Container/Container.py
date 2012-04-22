@@ -128,7 +128,8 @@ class Container(Component):
         '''
         from abjad.tools import componenttools
         from abjad.tools import spannertools
-        from abjad.tools.spannertools._withdraw_components_in_expr_from_crossing_spanners import _withdraw_components_in_expr_from_crossing_spanners
+        from abjad.tools.spannertools._withdraw_components_in_expr_from_crossing_spanners import \
+            _withdraw_components_in_expr_from_crossing_spanners
         # item assignment
         if isinstance(i, int):
             assert componenttools.all_are_components([expr])
@@ -147,6 +148,8 @@ class Container(Component):
         else:
             if isinstance(expr, str):
                 expr = self._parse_string(expr)[:]
+            elif isinstance(expr, list) and len(expr) == 1 and isinstance(expr[0], str):
+                expr = self._parse_string(expr[0])[:]
             assert componenttools.all_are_components(expr)
             if i.start == i.stop and i.start is not None \
                 and i.stop is not None and i.start <= -len(self):
