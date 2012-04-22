@@ -8,7 +8,7 @@ def test_Measure___delitem___01():
     '''
 
     measure = Measure((4, 8), Note(0, (1, 8)) * 4)
-    measure.automatically_update_time_signature = True
+    measure.automatically_adjust_time_signature = True
     del(measure[:1])
 
     assert componenttools.is_well_formed_component(measure)
@@ -22,7 +22,7 @@ def test_Measure___delitem___02():
     '''
 
     measure = Measure((4, 8), Note(0, (1, 8)) * 4)
-    measure.automatically_update_time_signature = True
+    measure.automatically_adjust_time_signature = True
     del(measure[-1:])
 
     assert componenttools.is_well_formed_component(measure)
@@ -36,7 +36,7 @@ def test_Measure___delitem___03():
     '''
 
     measure = Measure((4, 8), Note(0, (1, 8)) * 4)
-    measure.automatically_update_time_signature = True
+    measure.automatically_adjust_time_signature = True
     del(measure[:2])
 
     assert componenttools.is_well_formed_component(measure)
@@ -50,7 +50,7 @@ def test_Measure___delitem___04():
     '''
 
     measure = Measure((4, 8), Note(0, (1, 16)) * 2 + Note(0, (1, 8)) * 3)
-    measure.automatically_update_time_signature = True
+    measure.automatically_adjust_time_signature = True
     del(measure[:1])
 
     assert componenttools.is_well_formed_component(measure)
@@ -64,7 +64,7 @@ def test_Measure___delitem___05():
     '''
 
     measure = Measure((4, 9), "c'8 d'8 e'8 f'8")
-    measure.automatically_update_time_signature = True
+    measure.automatically_adjust_time_signature = True
     del(measure[:1])
 
     r'''
@@ -89,7 +89,7 @@ def test_Measure___delitem___06():
     '''
 
     measure = Measure((3, 9), "c'16 d'16 e'8 f'8")
-    measure.automatically_update_time_signature = True
+    measure.automatically_adjust_time_signature = True
 
     r'''
     {

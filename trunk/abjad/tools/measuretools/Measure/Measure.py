@@ -33,14 +33,13 @@ class Measure(Container):
 
     ### CLASS ATTRIBUTES ###
 
-    __slots__ = ('_automatically_update_time_signature', '_measure_number', )
+    __slots__ = ('_automatically_adjust_time_signature', '_measure_number', )
 
     ### INITIALIZER ###
 
     def __init__(self, meter, music=None, **kwargs):
-        # TODO: change 'update' to 'adjust' (or something else)
-        # set time signature adjustment indicator before initialization contents
-        self._automatically_update_time_signature = False
+        # set time signature adjustment indicator before contents initialization
+        self._automatically_adjust_time_signature = False
         Container.__init__(self, music)
         self._formatter = _MeasureFormatter(self)
         self._measure_number = None
@@ -84,31 +83,7 @@ class Measure(Container):
         old_time_signature = contexttools.get_effective_time_signature(self)
         old_denominator = getattr(old_time_signature, 'denominator', None)
         Container.__delitem__(self, i)
-        if self.automatically_update_time_signature:
-            naive_meter = self.preprolated_duration
-            better_meter = durationtools.rational_to_duration_pair_with_specified_integer_denominator(
-                naive_meter, old_denominator)
-            better_meter = contexttools.TimeSignatureMark(better_meter)
-            contexttools.detach_time_signature_marks_attached_to_component(self)
-            better_meter.attach(self)
-
-#    def __setitem__(self, i, expr):
-#        '''Container setitem logic with optional time signature adjustment.
-#
-#        .. versionchanged:: 2.9
-#            Measure setitem logic now adjusts time signatue automatically
-#            when ``adjust_time_signature_automatically`` is true.
-#        '''
-#        old_time_signature = contexttools.get_effective_time_signature(self)
-#        old_denominator = getattr(old_time_signature, 'denominator', None)
-#        Container.__setitem__(self, i, expr)
-#        if self.automatically_update_time_signature:
-#            naive_meter = self.preprolated_duration
-#            better_meter = durationtools.rational_to_duration_pair_with_specified_integer_denominator(
-#                naive_meter, old_denominator)
-#            better_meter = contexttools.TimeSignatureMark(better_meter)
-#            contexttools.detach_time_signature_marks_attached_to_component(self)
-#            better_meter.attach(self)
+        self._conditionally_adjust_time_signature(old_denominator)
 
     def __getnewargs__(self):
         time_signature = contexttools.get_effective_time_signature(self)
@@ -129,6 +104,18 @@ class Measure(Container):
             return '%s([%s])' % (class_name, summary)
         else:
             return '%s()' % class_name
+
+#    def __setitem__(self, i, expr):
+#        '''Container setitem logic with optional time signature adjustment.
+#
+#        .. versionchanged:: 2.9
+#            Measure setitem logic now adjusts time signatue automatically
+#            when ``adjust_time_signature_automatically`` is true.
+#        '''
+#        old_time_signature = contexttools.get_effective_time_signature(self)
+#        old_denominator = getattr(old_time_signature, 'denominator', None)
+#        Container.__setitem__(self, i, expr)
+#        self._conditionally_adjust_time_signature(old_denominator)
 
     def __str__(self):
         '''String form of measure with pipes for single string display.
@@ -153,6 +140,17 @@ class Measure(Container):
         potentially many spanned measures one after the other.
         '''
         return '|%s(%s)|' % (contexttools.get_effective_time_signature(self), len(self))
+
+    ### PRIVATE METHODS ###
+
+    def _conditionally_adjust_time_signature(self, old_denominator):
+        if self.automatically_adjust_time_signature:
+            naive_meter = self.preprolated_duration
+            better_meter = durationtools.rational_to_duration_pair_with_specified_integer_denominator(
+                naive_meter, old_denominator)
+            better_meter = contexttools.TimeSignatureMark(better_meter)
+            contexttools.detach_time_signature_marks_attached_to_component(self)
+            better_meter.attach(self)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -323,7 +321,7 @@ class Measure(Container):
     ### READ / WRITE PUBLIC PROPERTIES ###
 
     @apply
-    def automatically_update_time_signature():
+    def automatically_adjust_time_signature():
         def fget(self):
             '''..versionadded:: 2.9
 
@@ -335,8 +333,8 @@ class Measure(Container):
 
             Return boolean.
             '''
-            return self._automatically_update_time_signature
+            return self._automatically_adjust_time_signature
         def fset(self, expr):
             assert isinstance(expr, bool)
-            self._automatically_update_time_signature = expr
+            self._automatically_adjust_time_signature = expr
         return property(**locals()) 
