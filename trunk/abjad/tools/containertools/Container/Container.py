@@ -132,6 +132,10 @@ class Container(Component):
             _withdraw_components_in_expr_from_crossing_spanners
         # item assignment
         if isinstance(i, int):
+            if isinstance(expr, str):
+                expr = self._parse_string(expr)[:]
+                assert len(expr) == 1
+                expr = expr[0]
             assert componenttools.all_are_components([expr])
             old = self[i]
             spanners_receipt = spannertools.get_spanners_that_dominate_components([old])
