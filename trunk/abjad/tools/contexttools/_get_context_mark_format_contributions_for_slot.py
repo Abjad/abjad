@@ -1,9 +1,7 @@
 def _get_context_mark_format_contributions_for_slot(component, slot):
-    from abjad.tools.leaftools.Leaf import Leaf
-    from abjad.tools.measuretools.Measure import Measure
     from abjad.tools import componenttools
     from abjad.tools import contexttools
-    from abjad.tools.contexttools.TimeSignatureMark import TimeSignatureMark
+    from abjad.tools import measuretools
 
     result = []
     marks = set([])
@@ -13,9 +11,23 @@ def _get_context_mark_format_contributions_for_slot(component, slot):
     for candidate in candidates:
         if candidate._format_slot == slot:
             if candidate.start_component is not None:
-                if isinstance(candidate.start_component, Measure):
+                if isinstance(candidate.start_component, measuretools.Measure):
                     if candidate.start_component is component:
-                        marks.add(candidate)
+                        if not isinstance(candidate, contexttools.TimeSignatureMark):
+                            marks.add(candidate)
+                        else:
+                            marks.add(candidate)
+#                        elif component.always_format_time_signature:
+#                            marks.add(candidate)
+#                        else:
+#                            prev_measure = measuretools.get_prev_measure_from_component(candidate.start_component)
+#                            if prev_measure is not None:
+#                                prev_effective_time_signature = contexttools.get_effective_time_signature(
+#                                    prev_measure)
+#                            else:
+#                                prev_effective_time_signature = None
+#                            if not candidate == prev_effective_time_signature:
+#                                marks.add(candidate)
                 elif candidate._format_slot == 'right':
                     if candidate.start_component is component:
                         marks.add(candidate)
@@ -40,17 +52,15 @@ def _get_context_mark_format_contributions_for_slot(component, slot):
         addenda = []
         mark_format = mark.format
         if isinstance(mark_format, (tuple, list)):
-            #result.extend(mark_format)
             addenda.extend(mark_format)
         else:
-            #result.append(mark_format)
             addenda.append(mark_format)
         # cosmetic mark is a hack to allow marks to format even without effective context;
         # currently used only in metric grid formatting
         if mark.effective_context is not None or \
             getattr(mark, '_is_cosmetic_mark', False) or \
-            (isinstance(mark, TimeSignatureMark) and
-            isinstance(mark.start_component, Measure)):
+            (isinstance(mark, contexttools.TimeSignatureMark) and
+            isinstance(mark.start_component, measuretools.Measure)):
             result.extend(addenda)
         else:
             addenda = [r'%%% ' + addendum + r' %%%' for addendum in addenda]

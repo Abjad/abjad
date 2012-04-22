@@ -28,11 +28,12 @@ def get_effective_context_mark(component, klass):
     '''
     from abjad.tools import componenttools
     from abjad.tools import contexttools
-    from abjad.tools.contexttools.TimeSignatureMark import TimeSignatureMark
-    from abjad.tools.measuretools.Measure import Measure
+    from abjad.tools import measuretools
 
-    if klass == TimeSignatureMark:
-        if isinstance(component, Measure):
+    assert isinstance(component, componenttools.Component)
+
+    if klass == contexttools.TimeSignatureMark:
+        if isinstance(component, measuretools.Measure):
             if not getattr(component, '_time_signature_is_current', True):
                 component._update_time_signature()
             if contexttools.is_component_with_time_signature_mark_attached(component):
@@ -54,8 +55,8 @@ def get_effective_context_mark(component, klass):
                 #print 'mark.effective_context is %s ...' % mark.effective_context
                 if mark.effective_context is not None:
                     candidate_marks.add(mark)
-                elif isinstance(mark, TimeSignatureMark):
-                    if isinstance(mark.start_component, Measure):
+                elif isinstance(mark, contexttools.TimeSignatureMark):
+                    if isinstance(mark.start_component, measuretools.Measure):
                         candidate_marks.add(mark)
     #print 'unsorted canddiate marks %s ...' % candidate_marks
     candidate_marks = sorted(candidate_marks,

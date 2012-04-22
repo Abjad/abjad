@@ -33,7 +33,8 @@ class Measure(Container):
 
     ### CLASS ATTRIBUTES ###
 
-    __slots__ = ('_automatically_adjust_time_signature', '_measure_number', )
+    __slots__ = ('_always_format_time_signature', '_automatically_adjust_time_signature', 
+        '_measure_number', )
 
     ### INITIALIZER ###
 
@@ -41,6 +42,7 @@ class Measure(Container):
         # set time signature adjustment indicator before contents initialization
         self._automatically_adjust_time_signature = False
         Container.__init__(self, music)
+        self._always_format_time_signature = False
         self._formatter = _MeasureFormatter(self)
         self._measure_number = None
         time_signature = contexttools.TimeSignatureMark(meter)
@@ -355,6 +357,26 @@ class Measure(Container):
         return contexttools.get_effective_time_signature(self).multiplier * self.contents_duration
 
     ### READ / WRITE PUBLIC PROPERTIES ###
+
+    @apply
+    def always_format_time_signature():
+        def fget(self):
+            '''.. versionadded:: 2.9
+        
+            Read / write flag to indicate whether time signature
+            should appear in LilyPond format even when not expected.
+
+            Set to true when necessary to print the same signature repeatedly.
+
+            Default to false.
+
+            Return boolean.
+            '''
+            return self._always_format_time_signature
+        def fset(self, expr):
+            assert isinstance(expr, bool)
+            self._always_format_time_signature = expr
+        return property(**locals())
 
     @apply
     def automatically_adjust_time_signature():
