@@ -190,6 +190,4 @@ Special Methods
 
 .. automethod:: abjad.tools.measuretools.Measure.Measure.Measure.__setitem__
 
-   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
-
 .. automethod:: abjad.tools.measuretools.Measure.Measure.Measure.__str__

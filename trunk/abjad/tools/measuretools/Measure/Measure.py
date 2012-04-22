@@ -105,17 +105,17 @@ class Measure(Container):
         else:
             return '%s()' % class_name
 
-#    def __setitem__(self, i, expr):
-#        '''Container setitem logic with optional time signature adjustment.
-#
-#        .. versionchanged:: 2.9
-#            Measure setitem logic now adjusts time signatue automatically
-#            when ``adjust_time_signature_automatically`` is true.
-#        '''
-#        old_time_signature = contexttools.get_effective_time_signature(self)
-#        old_denominator = getattr(old_time_signature, 'denominator', None)
-#        Container.__setitem__(self, i, expr)
-#        self._conditionally_adjust_time_signature(old_denominator)
+    def __setitem__(self, i, expr):
+        '''Container setitem logic with optional time signature adjustment.
+
+        .. versionchanged:: 2.9
+            Measure setitem logic now adjusts time signatue automatically
+            when ``adjust_time_signature_automatically`` is true.
+        '''
+        old_time_signature = contexttools.get_effective_time_signature(self)
+        old_denominator = getattr(old_time_signature, 'denominator', None)
+        Container.__setitem__(self, i, expr)
+        self._conditionally_adjust_time_signature(old_denominator)
 
     def __str__(self):
         '''String form of measure with pipes for single string display.
@@ -359,11 +359,27 @@ class Measure(Container):
     @apply
     def automatically_adjust_time_signature():
         def fget(self):
-            '''..versionadded:: 2.9
+            '''.. versionadded:: 2.9
 
             Read / write flag to indicate whether time signature
-            should update automatically following contents-changing operations
-            like ``append()``, ``extend()``, ``pop()``, ``del()`` and so on.
+            should update automatically following contents-changing operations::
+
+                abjad> measure = Measure((3, 4), "c' d' e'")
+
+            ::
+
+                abjad> measure
+                Measure(3/4, [c'4, d'4, e'4])
+
+            ::
+
+                abjad> measure.automatically_adjust_time_signature = True
+                abjad> measure.append('r')
+
+            ::
+
+                abjad> measure
+                Measure(4/4, [c'4, d'4, e'4, r4])
             
             Default to false.
 

@@ -224,7 +224,7 @@ Special Methods
 
 .. automethod:: abjad.tools.measuretools.AnonymousMeasure.AnonymousMeasure.AnonymousMeasure.__setitem__
 
-   .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
+   .. note:: Inherited from :py:class:`measuretools.Measure <abjad.tools.measuretools.Measure.Measure.Measure>`
 
 .. automethod:: abjad.tools.measuretools.AnonymousMeasure.AnonymousMeasure.AnonymousMeasure.__str__
 
