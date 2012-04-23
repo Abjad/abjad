@@ -14,6 +14,7 @@ def test_AnonymousMeasure_clef_change_01():
     contexttools.ClefMark('bass')(t[-1])
     t.append(measuretools.AnonymousMeasure("c'8 d'8"))
     contexttools.ClefMark('treble')(t[-1])
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
     \new Staff {

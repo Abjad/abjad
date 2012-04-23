@@ -22,10 +22,13 @@ def test_measuretools_fill_measures_in_expr_with_full_measure_spacer_skips_01():
 
 def test_measuretools_fill_measures_in_expr_with_full_measure_spacer_skips_02():
     '''Populate measures conditionally.
-        Iteration control tests index of iteration.'''
+
+    Iteration control tests index of iteration.
+    '''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
     \new Staff {
@@ -86,7 +89,9 @@ def test_measuretools_fill_measures_in_expr_with_full_measure_spacer_skips_02():
 
 def test_measuretools_fill_measures_in_expr_with_full_measure_spacer_skips_03():
     '''Populate measures conditionally.
-        Iteration control tests measure length.'''
+
+    Iteration control tests measure length.
+    '''
 
     t = Staff([
         Measure((2, 8), "c'8 d'8"),

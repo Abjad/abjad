@@ -2,7 +2,8 @@ from abjad import *
 
 
 def test_measuretools_multiply_contents_of_measures_in_expr_01():
-    '''Spin one measure out three times.'''
+    '''Multiply contents of measure 3 times.
+    '''
 
     t = Measure((3, 8), "c'8 d'8 e'8")
     measuretools.multiply_contents_of_measures_in_expr(t, 3)
@@ -27,10 +28,12 @@ def test_measuretools_multiply_contents_of_measures_in_expr_01():
 
 
 def test_measuretools_multiply_contents_of_measures_in_expr_02():
-    '''Spin multiples measures out twice each.'''
+    '''Multiply contents of each measure 3 times.
+    '''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
     \new Staff {

@@ -96,6 +96,10 @@ Read-only Properties
 Read/write Properties
 ---------------------
 
+.. autoattribute:: abjad.tools.measuretools.AnonymousMeasure.AnonymousMeasure.AnonymousMeasure.always_format_time_signature
+
+   .. note:: Inherited from :py:class:`measuretools.Measure <abjad.tools.measuretools.Measure.Measure.Measure>`
+
 .. autoattribute:: abjad.tools.measuretools.AnonymousMeasure.AnonymousMeasure.AnonymousMeasure.automatically_adjust_time_signature
 
    .. note:: Inherited from :py:class:`measuretools.Measure <abjad.tools.measuretools.Measure.Measure.Measure>`

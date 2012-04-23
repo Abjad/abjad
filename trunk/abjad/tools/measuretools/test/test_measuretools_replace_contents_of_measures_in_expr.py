@@ -127,6 +127,7 @@ def test_measuretools_replace_contents_of_measures_in_expr_05():
     '''Populate measures even when not enough total measures.'''
 
     t = Staff(measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (1, 8)]))
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
     notes = [Note("c'16"), Note("d'16"), Note("e'16"), Note("f'16"), Note("g'16"), Note("a'16")]
 
     try:

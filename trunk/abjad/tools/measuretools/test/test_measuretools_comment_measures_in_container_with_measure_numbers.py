@@ -7,6 +7,7 @@ def test_measuretools_comment_measures_in_container_with_measure_numbers_01():
 
     staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
     measuretools.comment_measures_in_container_with_measure_numbers(staff)
 
     r'''
@@ -45,6 +46,7 @@ def test_measuretools_comment_measures_in_container_with_measure_numbers_02():
 
     staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
     measuretools.comment_measures_in_container_with_measure_numbers(staff[1])
 
     r'''

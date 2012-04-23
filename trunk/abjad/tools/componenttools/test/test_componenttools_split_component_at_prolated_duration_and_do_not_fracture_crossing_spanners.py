@@ -8,6 +8,7 @@ def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture
     spannertools.BeamSpanner(t[0])
     spannertools.BeamSpanner(t[1])
     spannertools.SlurSpanner(t.leaves)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
     \new Staff {
@@ -56,6 +57,7 @@ def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture
     spannertools.BeamSpanner(t[0])
     spannertools.BeamSpanner(t[1])
     spannertools.SlurSpanner(t.leaves)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
     \new Staff {
@@ -107,6 +109,7 @@ def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture
     spannertools.BeamSpanner(t[0])
     spannertools.BeamSpanner(t[1])
     spannertools.SlurSpanner(t.leaves)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
     \new Staff {
@@ -160,13 +163,15 @@ def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture
 
 def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners_04():
     '''Duration split one leaf in score.
-        Do not fracture spanners. But do tie after split.'''
+    Do not fracture spanners. But do tie after split.
+    '''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
     spannertools.BeamSpanner(t[0])
     spannertools.BeamSpanner(t[1])
     spannertools.SlurSpanner(t.leaves)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
     \new Staff {
@@ -211,13 +216,15 @@ def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture
 
 def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners_05():
     '''Duration split one measure in score.
-        Do not fracture spanners. But do add tie after split.'''
+    Do not fracture spanners. But do add tie after split.
+    '''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
     spannertools.BeamSpanner(t[0])
     spannertools.BeamSpanner(t[1])
     spannertools.SlurSpanner(t.leaves)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
     \new Staff {
@@ -265,13 +272,15 @@ def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture
 
 def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners_06():
     '''Duration split binary measure in score at nonbinary split point.
-        Do not fracture spanners and do not tie leaves after split.'''
+    Do not fracture spanners and do not tie leaves after split.
+    '''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
     spannertools.BeamSpanner(t[0])
     spannertools.BeamSpanner(t[1])
     spannertools.SlurSpanner(t.leaves)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
     \new Staff {
@@ -323,13 +332,15 @@ def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture
 
 def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners_07():
     '''Duration split binary measure in score at nonbinary split point.
-        Do fracture spanners and do tie leaves after split.'''
+    Do fracture spanners and do tie leaves after split.
+    '''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
     spannertools.BeamSpanner(t[0])
     spannertools.BeamSpanner(t[1])
     spannertools.SlurSpanner(t.leaves)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
     \new Staff {
@@ -347,7 +358,8 @@ def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture
     '''
 
     d = Duration(1, 5)
-    halves = componenttools.split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners(t[0], d, tie_after = True)
+    halves = componenttools.split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners(
+        t[0], d, tie_after=True)
 
     r'''
     \new Staff {

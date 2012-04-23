@@ -198,6 +198,7 @@ def test_containertools_scale_contents_of_container_07():
     '''
 
     containertools.scale_contents_of_container(t, Duration(2))
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
     \new Voice {
@@ -223,6 +224,7 @@ def test_containertools_scale_contents_of_container_08():
 
     t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
     \new Voice {
@@ -240,6 +242,7 @@ def test_containertools_scale_contents_of_container_08():
     '''
 
     containertools.scale_contents_of_container(t, Duration(5, 4))
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
     \new Voice {

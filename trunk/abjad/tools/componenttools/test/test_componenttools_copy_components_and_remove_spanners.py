@@ -11,6 +11,7 @@ def test_componenttools_copy_components_and_remove_spanners_01():
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
     beam = spannertools.BeamSpanner(t[:2] + t[2][:] + t[3][:])
     slur = spannertools.SlurSpanner(t[0][:] + t[1][:] + t[2:])
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
     \new Voice {
@@ -39,6 +40,7 @@ def test_componenttools_copy_components_and_remove_spanners_01():
 
     result = componenttools.copy_components_and_remove_spanners([t])
     voice = result[0]
+    measuretools.set_always_format_time_signature_of_measures_in_expr(voice)
 
     r'''
     \new Voice {
@@ -80,6 +82,7 @@ def test_componenttools_copy_components_and_remove_spanners_02():
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
     beam = spannertools.BeamSpanner(t[:2] + t[2][:] + t[3][:])
     slur = spannertools.SlurSpanner(t[0][:] + t[1][:] + t[2:])
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
     \new Voice {
@@ -108,6 +111,7 @@ def test_componenttools_copy_components_and_remove_spanners_02():
 
     result = componenttools.copy_components_and_remove_spanners(t[1:])
     new = Voice(result)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(new)
 
     r'''
     \new Voice {
@@ -136,14 +140,16 @@ def test_componenttools_copy_components_and_remove_spanners_02():
 
 def test_componenttools_copy_components_and_remove_spanners_03():
     '''Withdraw components from spanners.
-        Deepcopy unspanned components.
-        Reapply spanners to components.
-        Return unspanned copy.'''
+    Deepcopy unspanned components.
+    Reapply spanners to components.
+    Return unspanned copy.
+    '''
 
     t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
     beam = spannertools.BeamSpanner(t[:2] + t[2][:] + t[3][:])
     slur = spannertools.SlurSpanner(t[0][:] + t[1][:] + t[2:])
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
     \new Voice {
@@ -172,6 +178,7 @@ def test_componenttools_copy_components_and_remove_spanners_03():
 
     result = componenttools.copy_components_and_remove_spanners(t.leaves[:6])
     new = Voice(result)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(new)
 
     r'''
     \new Voice {
@@ -191,14 +198,16 @@ def test_componenttools_copy_components_and_remove_spanners_03():
 
 def test_componenttools_copy_components_and_remove_spanners_04():
     '''Withdraw components from spanners.
-        Deepcopy unspanned components.
-        Reapply spanners to components.
-        Return unspanned copy.'''
+    Deepcopy unspanned components.
+    Reapply spanners to components.
+    Return unspanned copy.
+    '''
 
     t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
     beam = spannertools.BeamSpanner(t[:2] + t[2][:] + t[3][:])
     slur = spannertools.SlurSpanner(t[0][:] + t[1][:] + t[2:])
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
     \new Voice {
@@ -227,6 +236,7 @@ def test_componenttools_copy_components_and_remove_spanners_04():
 
     result = componenttools.copy_components_and_remove_spanners(t[-2:])
     new = Voice(result)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(new)
 
     r'''
     \new Voice {
@@ -250,15 +260,17 @@ def test_componenttools_copy_components_and_remove_spanners_04():
 
 def test_componenttools_copy_components_and_remove_spanners_05():
     '''Withdraw components from spanners.
-        Deepcopy unspanned components.
-        Reapply spanners to components.
-        Return unspanned copy.
-        Use optional 'n' argument for multiple copies.'''
+    Deepcopy unspanned components.
+    Reapply spanners to components.
+    Return unspanned copy.
+    Use optional 'n' argument for multiple copies.
+    '''
 
     t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
     beam = spannertools.BeamSpanner(t[:2] + t[2][:] + t[3][:])
     slur = spannertools.SlurSpanner(t[0][:] + t[1][:] + t[2:])
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
     \new Voice {
@@ -287,6 +299,7 @@ def test_componenttools_copy_components_and_remove_spanners_05():
 
     result = componenttools.copy_components_and_remove_spanners(t[-2:], 3)
     new = Voice(result)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(new)
 
     r'''
     \new Voice {

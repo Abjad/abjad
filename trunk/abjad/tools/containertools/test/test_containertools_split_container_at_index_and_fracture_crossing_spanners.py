@@ -282,6 +282,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
     spannertools.BeamSpanner(t[0])
     spannertools.BeamSpanner(t[1])
     slur = spannertools.SlurSpanner(t.leaves)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
     \new Staff {
@@ -299,6 +300,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
     '''
 
     left, right = containertools.split_container_at_index_and_fracture_crossing_spanners(t[0], 1)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
     \new Staff {
@@ -323,13 +325,16 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
 
 
 def test_containertools_split_container_at_index_and_fracture_crossing_spanners_08():
-    '''Index split left of leaf in score and fracture spanners.'''
+    '''Index split left of leaf in score and fracture spanners.
+    '''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
     spannertools.BeamSpanner(t[0])
     spannertools.BeamSpanner(t[1])
     slur = spannertools.SlurSpanner(t.leaves)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
+
 
     r'''
     \new Staff {
@@ -371,13 +376,15 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
 
 
 def test_containertools_split_container_at_index_and_fracture_crossing_spanners_09():
-    '''Index split right of leaf in score and fracture spanners.'''
+    '''Index split right of leaf in score and fracture spanners.
+    '''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
     spannertools.BeamSpanner(t[0])
     spannertools.BeamSpanner(t[1])
     slur = spannertools.SlurSpanner(t.leaves)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
     \new Staff {
@@ -420,12 +427,14 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
 
 def test_containertools_split_container_at_index_and_fracture_crossing_spanners_10():
     '''Index split nonbinary measure in score.
-        Fractured spanners but do not tie over split locus.
-        Measure contents necessitate denominator change.'''
+    Fractured spanners but do not tie over split locus.
+    Measure contents necessitate denominator change.
+    '''
 
     t = Staff([Measure((3, 12), "c'8. d'8.")])
     spannertools.BeamSpanner(t[0])
     spannertools.SlurSpanner(t.leaves)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
     \new Staff {
@@ -440,6 +449,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
     '''
 
     halves = containertools.split_container_at_index_and_fracture_crossing_spanners(t[0], 1)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
     \new Staff {
@@ -465,12 +475,14 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
 
 def test_containertools_split_container_at_index_and_fracture_crossing_spanners_11():
     '''Index split binary measure in score.
-        Fractured spanners but do not tie over split locus.
-        Measure contents necessitate denominator change.'''
+    Fractured spanners but do not tie over split locus.
+    Measure contents necessitate denominator change.
+    '''
 
     t = Staff([Measure((3, 8), "c'8. d'8.")])
     spannertools.BeamSpanner(t[0])
     spannertools.SlurSpanner(t.leaves)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
     \new Staff {
@@ -483,6 +495,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
     '''
 
     halves = containertools.split_container_at_index_and_fracture_crossing_spanners(t[0], 1)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
     \new Staff {

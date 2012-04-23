@@ -5,11 +5,13 @@ from abjad.tools.leaftools.Leaf import Leaf
 
 def test_layouttools_set_line_breaks_cyclically_by_line_duration_ge_01():
     '''Iterate klasses in expr and accumulate prolated duration.
-        Add line break after every total le line duration.'''
+    Add line break after every total le line duration.
+    '''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
     layouttools.set_line_breaks_cyclically_by_line_duration_ge(t, Duration(4, 8))
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
     \new Staff {
@@ -44,11 +46,13 @@ def test_layouttools_set_line_breaks_cyclically_by_line_duration_ge_01():
 
 def test_layouttools_set_line_breaks_cyclically_by_line_duration_ge_02():
     '''Iterate klasses in expr and accumulate prolated duration.
-        Add line break after every total le line duration.'''
+    Add line break after every total le line duration.
+    '''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
     layouttools.set_line_breaks_cyclically_by_line_duration_ge(t, Duration(1, 8), klass = Leaf)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
     \new Staff {

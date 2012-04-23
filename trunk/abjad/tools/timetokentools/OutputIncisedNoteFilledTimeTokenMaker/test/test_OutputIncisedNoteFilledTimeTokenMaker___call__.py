@@ -17,6 +17,7 @@ def test_OutputIncisedNoteFilledTimeTokenMaker___call___01():
 
     staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(duration_tokens))
     measuretools.replace_contents_of_measures_in_expr(staff, leaves)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''
     \new Staff {
@@ -59,6 +60,7 @@ def test_OutputIncisedNoteFilledTimeTokenMaker___call___02():
 
     staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(duration_tokens))
     measuretools.replace_contents_of_measures_in_expr(staff, leaves)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''
     \new Staff {
@@ -99,6 +101,7 @@ def test_OutputIncisedNoteFilledTimeTokenMaker___call___03():
 
     staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(duration_tokens))
     measuretools.replace_contents_of_measures_in_expr(staff, leaves)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''
     \new Staff {
@@ -139,6 +142,7 @@ def test_OutputIncisedNoteFilledTimeTokenMaker___call___04():
 
     staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(duration_tokens))
     measuretools.replace_contents_of_measures_in_expr(staff, leaves)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''
     \new Staff {
@@ -170,7 +174,6 @@ def test_OutputIncisedNoteFilledTimeTokenMaker___call___04():
 
 def test_OutputIncisedNoteFilledTimeTokenMaker___call___05():
 
-
     prefix_signal, prefix_lengths = [-1], [1]
     suffix_signal, suffix_lengths = [-1], [1]
     denominator = 8
@@ -186,6 +189,7 @@ def test_OutputIncisedNoteFilledTimeTokenMaker___call___05():
 
     staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(duration_tokens))
     measuretools.replace_contents_of_measures_in_expr(staff, leaves)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''
     \new Staff {

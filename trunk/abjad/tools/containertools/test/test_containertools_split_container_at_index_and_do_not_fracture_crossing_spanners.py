@@ -305,13 +305,15 @@ def test_containertools_split_container_at_index_and_do_not_fracture_crossing_sp
 
 
 def test_containertools_split_container_at_index_and_do_not_fracture_crossing_spanners_10():
-    '''Index split left of leaf in score and do not fracture spanners.'''
+    '''Index split left of leaf in score and do not fracture spanners.
+    '''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
     spannertools.BeamSpanner(t[0])
     spannertools.BeamSpanner(t[1])
     slur = spannertools.SlurSpanner(t.leaves)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
     \new Staff {
@@ -355,13 +357,15 @@ def test_containertools_split_container_at_index_and_do_not_fracture_crossing_sp
 
 
 def test_containertools_split_container_at_index_and_do_not_fracture_crossing_spanners_11():
-    '''Index split right of leaf in score and do not fracture spanners.'''
+    '''Index split right of leaf in score and do not fracture spanners.
+    '''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
     spannertools.BeamSpanner(t[0])
     spannertools.BeamSpanner(t[1])
     slur = spannertools.SlurSpanner(t.leaves)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
     \new Staff {

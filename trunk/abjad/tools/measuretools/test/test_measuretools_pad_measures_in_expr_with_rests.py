@@ -5,6 +5,7 @@ import py.test
 def test_measuretools_pad_measures_in_expr_with_rests_01():
 
     t = Staff(measuretools.AnonymousMeasure("c'8 d'8") * 2)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
     \new Staff {
@@ -62,6 +63,7 @@ def test_measuretools_pad_measures_in_expr_with_rests_02():
     measure.is_parallel = True
     t = Staff(measure * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
     \new Staff {
@@ -132,12 +134,12 @@ def test_measuretools_pad_measures_in_expr_with_rests_02():
 
 
 def test_measuretools_pad_measures_in_expr_with_rests_03():
-    '''Set splice = True to extend edge spanners over newly insert rests.
+    '''Set splice to true to extend edge spanners over newly insert rests.
     '''
 
     t = measuretools.DynamicMeasure("c'8 d'8")
     spannertools.BeamSpanner(t[:])
-    measuretools.pad_measures_in_expr_with_rests(t, Duration(1, 32), Duration(1, 64), splice = True)
+    measuretools.pad_measures_in_expr_with_rests(t, Duration(1, 32), Duration(1, 64), splice=True)
 
     r'''
     {

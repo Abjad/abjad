@@ -22,7 +22,8 @@ def test_containertools_repeat_last_n_elements_of_container_01():
     }
     '''
 
-    containertools.repeat_last_n_elements_of_container(t, n = 1, total = 4)
+    containertools.repeat_last_n_elements_of_container(t, n=1, total=4)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
     \new Voice {

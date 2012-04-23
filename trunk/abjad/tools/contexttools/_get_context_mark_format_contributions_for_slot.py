@@ -15,19 +15,17 @@ def _get_context_mark_format_contributions_for_slot(component, slot):
                     if candidate.start_component is component:
                         if not isinstance(candidate, contexttools.TimeSignatureMark):
                             marks.add(candidate)
-                        else:
+                        elif component.always_format_time_signature:
                             marks.add(candidate)
-#                        elif component.always_format_time_signature:
-#                            marks.add(candidate)
-#                        else:
-#                            prev_measure = measuretools.get_prev_measure_from_component(candidate.start_component)
-#                            if prev_measure is not None:
-#                                prev_effective_time_signature = contexttools.get_effective_time_signature(
-#                                    prev_measure)
-#                            else:
-#                                prev_effective_time_signature = None
-#                            if not candidate == prev_effective_time_signature:
-#                                marks.add(candidate)
+                        else:
+                            prev_measure = measuretools.get_prev_measure_from_component(candidate.start_component)
+                            if prev_measure is not None:
+                                prev_effective_time_signature = contexttools.get_effective_time_signature(
+                                    prev_measure)
+                            else:
+                                prev_effective_time_signature = None
+                            if not candidate == prev_effective_time_signature:
+                                marks.add(candidate)
                 elif candidate._format_slot == 'right':
                     if candidate.start_component is component:
                         marks.add(candidate)

@@ -3,7 +3,8 @@ import py.test
 
 
 def test_componenttools_copy_governed_component_subtree_by_leaf_range_01():
-    '''Copy consecutive notes across tuplet boundary, in staff.'''
+    '''Copy consecutive notes across tuplet boundary, in staff.
+    '''
 
     t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
@@ -305,10 +306,12 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_09():
 
 
 def test_componenttools_copy_governed_component_subtree_by_leaf_range_10():
-    '''Copy consecutive leaves across measure boundary.'''
+    '''Copy consecutive leaves across measure boundary.
+    '''
 
     t = Staff(Measure((3, 8), notetools.make_repeated_notes(3)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
     \new Staff {
@@ -328,6 +331,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_10():
     '''
 
     u = componenttools.copy_governed_component_subtree_by_leaf_range(t, 2, 4)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(u)
 
     r'''
     \new Staff {
@@ -392,6 +396,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_12():
 
     t = Staff(Measure((3, 8), notetools.make_repeated_notes(3)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
     \new Staff {
@@ -411,6 +416,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_12():
     '''
 
     u = componenttools.copy_governed_component_subtree_by_leaf_range(t[1], 1, 3)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(u)
 
     r'''
     \new Staff {
@@ -433,6 +439,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_13():
 
     t = Staff(Measure((3, 9), notetools.make_repeated_notes(3)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
     \new Staff {
@@ -456,6 +463,7 @@ def test_componenttools_copy_governed_component_subtree_by_leaf_range_13():
     '''
 
     u = componenttools.copy_governed_component_subtree_by_leaf_range(t[1], 1, 3)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(u)
 
     r'''
     \new Staff {

@@ -78,6 +78,8 @@ Read-only Properties
 Read/write Properties
 ---------------------
 
+.. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.always_format_time_signature
+
 .. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.automatically_adjust_time_signature
 
 .. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.is_parallel

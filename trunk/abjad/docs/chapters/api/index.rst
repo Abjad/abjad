@@ -640,6 +640,7 @@ Abjad composition packages
    tools/measuretools/scale_contents_of_measures_in_expr
    tools/measuretools/scale_measure_by_multiplier_and_adjust_meter
    tools/measuretools/scale_measure_denominator_and_adjust_measure_contents
+   tools/measuretools/set_always_format_time_signature_of_measures_in_expr
    tools/measuretools/set_measure_denominator_and_adjust_numerator
 
 :py:mod:`notetools <abjad.tools.notetools>`

@@ -142,6 +142,7 @@ def test_componenttools_copy_components_and_fracture_crossing_spanners_04():
     slur = spannertools.SlurSpanner(t[:])
     trill = spannertools.TrillSpanner(t.leaves)
     beam = spannertools.BeamSpanner(t[0][:] + t[1:2] + t[2][:])
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
     \new Voice {
@@ -165,6 +166,7 @@ def test_componenttools_copy_components_and_fracture_crossing_spanners_04():
 
     result = componenttools.copy_components_and_fracture_crossing_spanners(t[1:2], 3)
     new = Voice(result)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(new)
 
     r'''
     \new Voice {

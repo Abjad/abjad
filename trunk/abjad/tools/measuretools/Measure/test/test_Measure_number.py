@@ -34,6 +34,7 @@ def test_Measure_number_03():
     assert t[2].measure_number == 3
 
     new = sequencetools.rotate_sequence(t, -1)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(new)
 
     r'''
     \new Staff {

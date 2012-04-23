@@ -66,6 +66,7 @@ def test_componenttools_copy_components_and_covered_spanners_02():
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
     beam = spannertools.BeamSpanner(t.leaves[:4])
     slur = spannertools.SlurSpanner(t[-2:])
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
     \new Voice {
@@ -94,6 +95,7 @@ def test_componenttools_copy_components_and_covered_spanners_02():
 
     result = componenttools.copy_components_and_covered_spanners(t[-3:])
     new = Voice(result)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(new)
 
     r'''
     \new Voice {
@@ -121,12 +123,14 @@ def test_componenttools_copy_components_and_covered_spanners_02():
 
 
 def test_componenttools_copy_components_and_covered_spanners_03():
-    '''With optional 'n' argument for multiple copies.'''
+    '''With optional 'n' argument for multiple copies.
+    '''
 
     t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
     beam = spannertools.BeamSpanner(t.leaves[:4])
     slur = spannertools.SlurSpanner(t[-2:])
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
     \new Voice {
@@ -155,6 +159,7 @@ def test_componenttools_copy_components_and_covered_spanners_03():
 
     result = componenttools.copy_components_and_covered_spanners(t[-3:], 2)
     new = Voice(result)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(new)
 
     r'''
     \new Voice {

@@ -26,7 +26,7 @@ def test_measuretools_apply_durated_complex_beam_spanner_to_measures_01():
 
     measures = staff[:]
     measuretools.apply_durated_complex_beam_spanner_to_measures(measures)
-
+    measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''
     \new Staff {

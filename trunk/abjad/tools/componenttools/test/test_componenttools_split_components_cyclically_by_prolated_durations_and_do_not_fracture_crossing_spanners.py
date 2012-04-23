@@ -28,6 +28,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
 
     durations = [Duration(3, 64)]
     parts = componenttools.split_components_cyclically_by_prolated_durations_and_do_not_fracture_crossing_spanners(t[0][1:2], durations)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
     \new Staff {
@@ -61,6 +62,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
     spannertools.BeamSpanner(t[0])
     spannertools.BeamSpanner(t[1])
     spannertools.SlurSpanner(t.leaves)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
     \new Staff {
@@ -113,6 +115,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
     spannertools.BeamSpanner(t[0])
     spannertools.BeamSpanner(t[1])
     spannertools.SlurSpanner(t.leaves)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
     \new Staff {
@@ -131,6 +134,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
 
     durations = [Duration(3, 32)]
     parts = componenttools.split_components_cyclically_by_prolated_durations_and_do_not_fracture_crossing_spanners(t[:1], durations)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
     \new Staff {
@@ -169,6 +173,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
     spannertools.BeamSpanner(t[0])
     spannertools.BeamSpanner(t[1])
     spannertools.SlurSpanner(t.leaves)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
     \new Staff {
@@ -187,6 +192,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
 
     durations = [Duration(3, 32)]
     parts = componenttools.split_components_cyclically_by_prolated_durations_and_do_not_fracture_crossing_spanners(t[:], durations)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
     \new Staff {
@@ -277,6 +283,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
     t = Staff([])
     for part in parts:
         t.extend(part)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
     \new Staff {
@@ -326,6 +333,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
     spannertools.BeamSpanner(t[0])
     spannertools.BeamSpanner(t[1])
     spannertools.SlurSpanner(t.leaves)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
     \new Staff {
@@ -345,6 +353,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
     durations = [Duration(1, 32)]
     parts = componenttools.split_components_cyclically_by_prolated_durations_and_do_not_fracture_crossing_spanners(
         t[0][1:], durations, tie_after = True)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
     \new Staff {
@@ -380,6 +389,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
     spannertools.BeamSpanner(t[0])
     spannertools.BeamSpanner(t[1])
     spannertools.SlurSpanner(t.leaves)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
     \new Staff {
@@ -399,6 +409,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
     durations = [Duration(1, 16)]
     parts = componenttools.split_components_cyclically_by_prolated_durations_and_do_not_fracture_crossing_spanners(
         t.leaves, durations, tie_after = True)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
     \new Staff {
@@ -435,6 +446,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
     spannertools.BeamSpanner(t[0])
     spannertools.BeamSpanner(t[1])
     spannertools.SlurSpanner(t.leaves)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
     \new Staff {
@@ -454,6 +466,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
     durations = [Duration(1, 16)]
     parts = componenttools.split_components_cyclically_by_prolated_durations_and_do_not_fracture_crossing_spanners(
         t[:1], durations, tie_after = True)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
     \new Staff {
@@ -497,6 +510,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
     spannertools.BeamSpanner(t[0])
     spannertools.BeamSpanner(t[1])
     spannertools.SlurSpanner(t.leaves)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
     \new Staff {
@@ -516,6 +530,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
     durations = [Duration(3, 32)]
     parts = componenttools.split_components_cyclically_by_prolated_durations_and_do_not_fracture_crossing_spanners(
         t[:], durations, tie_after = True)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
     \new Staff {

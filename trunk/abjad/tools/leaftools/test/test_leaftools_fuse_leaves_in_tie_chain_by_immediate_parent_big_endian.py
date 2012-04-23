@@ -2,10 +2,12 @@ from abjad import *
 
 
 def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_big_endian_01():
-    '''Fuse leaves in tie chain with same immediate parent.'''
+    '''Fuse leaves in tie chain with same immediate parent.
+    '''
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
     tietools.TieSpanner(t.leaves)
+    measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''
     \new Staff {
@@ -44,7 +46,8 @@ def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_big_endian_01():
 
 
 def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_big_endian_02():
-    '''Fuse leaves in tie chain with same immediate parent.'''
+    '''Fuse leaves in tie chain with same immediate parent.
+    '''
 
     t = Staff(notetools.make_repeated_notes(4))
     tietools.TieSpanner(t.leaves)
@@ -67,7 +70,8 @@ def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_big_endian_02():
 
 
 def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_big_endian_03():
-    '''Fuse leaves in tie chain with same immediate parent.'''
+    '''Fuse leaves in tie chain with same immediate parent.
+    '''
 
     t = Note("c'4")
     result = leaftools.fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(
