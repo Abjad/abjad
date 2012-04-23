@@ -1,3 +1,6 @@
+from abjad.exceptions import ContainmentError
+
+
 def get_improper_parentage_of_component(component):
     '''.. versionadded:: 1.1
 
@@ -18,6 +21,8 @@ def get_improper_parentage_of_component(component):
     result = []
     parent = component
     while parent is not None:
+        if parent in result:
+            raise ContainmentError('Component is a member of its own proper parentage.')
         result.append(parent)
         parent = parent._parentage.parent
     result = tuple(result)
