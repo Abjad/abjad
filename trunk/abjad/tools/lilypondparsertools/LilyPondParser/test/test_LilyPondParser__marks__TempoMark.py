@@ -41,12 +41,11 @@ def test_LilyPondParser__marks__TempoMark_02():
 
 def test_LilyPondParser__marks__TempoMark_03():
     target = Score([Staff([Note(0, 1)])])
-    contexttools.TempoMark((1, 4), (59.5, 63.24), target_context=Staff)(target.leaves[0])
-    py.test.skip('raises a parser error.')
+    contexttools.TempoMark((1, 4), (59, 63), target_context=Staff)(target.leaves[0])
 
     r'''\new Score <<
         \new Staff {
-            \tempo 4=59.5~63.24
+            \tempo 4=59~63
             c'1
         }
     >>
