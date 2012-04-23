@@ -61,7 +61,8 @@ def test_contexttools_get_effective_clef_05():
 
 
 def test_contexttools_get_effective_clef_06():
-    '''Redudant clefs are allowed.'''
+    '''Redudant clefs are allowed.
+    '''
 
     t = Staff(notetools.make_repeated_notes(8))
     pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
@@ -69,7 +70,7 @@ def test_contexttools_get_effective_clef_06():
     contexttools.ClefMark('treble')(t[4])
 
     r'''
-    Staff {
+    \new Staff {
         \clef "treble"
         c'8
         cs'8
@@ -84,7 +85,8 @@ def test_contexttools_get_effective_clef_06():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == '''\\new Staff {\n\t\\clef "treble"\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\t\\clef "treble"\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}'''
+    # wtf? why is this failing?
+    assert t.format == '\\new Staff {\n\t\\clef "treble"\n\tc\'8\n\tcs\'8\n\td\'8\n\tef\'8\n\t\\clef "treble"\n\te\'8\n\tf\'8\n\tfs\'8\n\tg\'8\n}'
 
 
 def test_contexttools_get_effective_clef_07():

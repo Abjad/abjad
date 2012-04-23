@@ -29,10 +29,6 @@ def get_context_marks_attached_to_component(component, klasses=(ContextMark,)):
         (DynamicMark('p')(c'8),)
 
     Return tuple of zero or more context marks.
-
-    .. versionchanged:: 2.0
-        renamed ``contexttools.get_context_marks_attached_to_component()`` to
-        ``contexttools.get_context_marks_attached_to_component()``.
     '''
 
     result = []

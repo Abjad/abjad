@@ -31,20 +31,17 @@ def get_context_marks_attached_to_any_improper_parent_of_component(component):
         set([DynamicMark('f')(c'8), ClefMark('treble')(Staff{4})])
 
     Return unordered set of zero or more context marks.
-
-    .. versionchanged:: 2.0
-        renamed ``contexttools.get_all_context_marks_attached_to_any_improper_parent_of_component()`` to
-        ``contexttools.get_context_marks_attached_to_any_improper_parent_of_component()``.
     '''
     from abjad.tools import componenttools
 
+    # changing result from a set to a list causes intermittently failing format in a few tests; why?
     result = set([])
 
     for component in componenttools.get_improper_parentage_of_component(component):
         for mark in component.marks:
-            #if mark.target_context is not None:
             if getattr(mark, 'target_context', None) is not None:
                 if issubclass(mark.target_context, Context):
-                    result.add(mark)
+                    if mark not in result:
+                        result.add(mark)
 
     return result

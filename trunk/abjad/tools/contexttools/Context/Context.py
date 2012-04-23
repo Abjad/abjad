@@ -18,12 +18,10 @@ class Context(Container):
 
     def __init__(self, music=None, context_name='Context', name=None):
         Container.__init__(self, music)
-        #self._context_name = 'Context'
         self.context_name = context_name
         self._formatter = _ContextFormatter(self)
         self._engraver_consists = set([])
         self._engraver_removals = set([])
-        #self._name = None
         self.name = None
         self.is_nonsemantic = False
 
