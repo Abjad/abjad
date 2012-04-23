@@ -23,10 +23,6 @@ Read-only Properties
 
    .. note:: Inherited from :py:class:`leaftools.Leaf <abjad.tools.leaftools.Leaf.Leaf.Leaf>`
 
-.. autoattribute:: abjad.tools.chordtools.Chord.Chord.Chord.marks
-
-   .. note:: Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
-
 .. autoattribute:: abjad.tools.chordtools.Chord.Chord.Chord.multiplied_duration
 
    .. note:: Inherited from :py:class:`leaftools.Leaf <abjad.tools.leaftools.Leaf.Leaf.Leaf>`

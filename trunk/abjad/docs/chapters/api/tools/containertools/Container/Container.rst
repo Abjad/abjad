@@ -19,10 +19,6 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.containertools.Container.Container.Container.leaves
 
-.. autoattribute:: abjad.tools.containertools.Container.Container.Container.marks
-
-   .. note:: Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
-
 .. autoattribute:: abjad.tools.containertools.Container.Container.Container.music
 
 .. autoattribute:: abjad.tools.containertools.Container.Container.Container.override

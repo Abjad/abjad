@@ -28,7 +28,7 @@ class Component(AbjadObject):
     def __init__(self):
         self._is_forbidden_to_update = False
         self._marks_are_current = False
-        self._marks_for_which_component_functions_as_effective_context = list() # is this needed?
+        self._marks_for_which_component_functions_as_effective_context = list()
         self._marks_for_which_component_functions_as_start_component = list()
         self._navigator = _NavigationInterface(self)
         self._offset = _OffsetInterface(self)
@@ -94,15 +94,14 @@ class Component(AbjadObject):
         self._update_marks_of_entire_score_tree_if_necessary()
         return self._formatter.format
 
-    # TODO: should this be eliminated? it's not clear that it's helpful to combine these two things
-    # or should we just get rid of _marks_for_which_component_functions_as_effective_context?
-    @property
-    def marks(self):
-        '''Read-only tuple of marks attached to component.
-        '''
-        return tuple(set(
-            self._marks_for_which_component_functions_as_start_component +
-            self._marks_for_which_component_functions_as_effective_context))
+#    # TODO: should this be eliminated? it's not clear that it's helpful to combine these two things
+#    @property
+#    def marks(self):
+#        '''Read-only tuple of marks attached to component.
+#        '''
+#        return tuple(set(
+#            self._marks_for_which_component_functions_as_start_component +
+#            self._marks_for_which_component_functions_as_effective_context))
 
     @property
     def override(self):

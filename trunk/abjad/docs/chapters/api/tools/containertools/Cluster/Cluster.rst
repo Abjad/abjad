@@ -25,10 +25,6 @@ Read-only Properties
 
    .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
 
-.. autoattribute:: abjad.tools.containertools.Cluster.Cluster.Cluster.marks
-
-   .. note:: Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
-
 .. autoattribute:: abjad.tools.containertools.Cluster.Cluster.Cluster.music
 
    .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`

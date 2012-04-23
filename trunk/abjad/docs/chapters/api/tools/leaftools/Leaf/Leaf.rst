@@ -15,10 +15,6 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.leaftools.Leaf.Leaf.Leaf.leaf_index
 
-.. autoattribute:: abjad.tools.leaftools.Leaf.Leaf.Leaf.marks
-
-   .. note:: Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
-
 .. autoattribute:: abjad.tools.leaftools.Leaf.Leaf.Leaf.multiplied_duration
 
 .. autoattribute:: abjad.tools.leaftools.Leaf.Leaf.Leaf.override

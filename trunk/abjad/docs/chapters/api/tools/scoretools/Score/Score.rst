@@ -37,10 +37,6 @@ Read-only Properties
 
    .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
 
-.. autoattribute:: abjad.tools.scoretools.Score.Score.Score.marks
-
-   .. note:: Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
-
 .. autoattribute:: abjad.tools.scoretools.Score.Score.Score.music
 
    .. note:: Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
