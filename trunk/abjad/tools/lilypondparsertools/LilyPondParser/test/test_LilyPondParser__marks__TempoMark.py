@@ -1,9 +1,8 @@
-import py.test
 from abjad import *
 from abjad.tools.lilypondparsertools import LilyPondParser
+import py.test
 
 
-py.test.skip('Abjad is moving TempoMarks away from the leaf to which they attach.')
 def test_LilyPondParser__marks__TempoMark_01():
     target = Score([Staff([Note(0, 1)])])
     contexttools.TempoMark("As fast as possible", target_context=Staff)(target.leaves[0])
@@ -19,7 +18,7 @@ def test_LilyPondParser__marks__TempoMark_01():
     parser = LilyPondParser()
     result = parser(target.format)
     assert target.format == result.format and target is not result
-    assert 1 == len(contexttools.get_tempo_marks_attached_to_component(result.leaves))
+    assert 1 == len(contexttools.get_tempo_marks_attached_to_component(result.leaves[0]))
 
 
 def test_LilyPondParser__marks__TempoMark_02():
@@ -37,12 +36,13 @@ def test_LilyPondParser__marks__TempoMark_02():
     parser = LilyPondParser()
     result = parser(target.format)
     assert target.format == result.format and target is not result
-    assert 1 == len(contexttools.get_tempo_marks_attached_to_component(result.leaves))
+    assert 1 == len(contexttools.get_tempo_marks_attached_to_component(result.leaves[0]))
 
 
 def test_LilyPondParser__marks__TempoMark_03():
     target = Score([Staff([Note(0, 1)])])
     contexttools.TempoMark((1, 4), (59.5, 63.24), target_context=Staff)(target.leaves[0])
+    py.test.skip('raises a parser error.')
 
     r'''\new Score <<
         \new Staff {
@@ -55,7 +55,7 @@ def test_LilyPondParser__marks__TempoMark_03():
     parser = LilyPondParser()
     result = parser(target.format)
     assert target.format == result.format and target is not result
-    assert 1 == len(contexttools.get_tempo_marks_attached_to_component(result.leaves))
+    assert 1 == len(contexttools.get_tempo_marks_attached_to_component(result.leaves[0]))
 
 
 def test_LilyPondParser__marks__TempoMark_04():
@@ -74,7 +74,7 @@ def test_LilyPondParser__marks__TempoMark_04():
     parser = LilyPondParser()
     result = parser(target.format)
     assert target.format == result.format and target is not result
-    assert 1 == len(contexttools.get_tempo_marks_attached_to_component(result.leaves))
+    assert 1 == len(contexttools.get_tempo_marks_attached_to_component(result.leaves[0]))
 
 
 def test_LilyPondParser__marks__TempoMark_05():
@@ -93,4 +93,4 @@ def test_LilyPondParser__marks__TempoMark_05():
     parser = LilyPondParser()
     result = parser(target.format)
     assert target.format == result.format and target is not result
-    assert 1 == len(contexttools.get_tempo_marks_attached_to_component(result.leaves))
+    assert 1 == len(contexttools.get_tempo_marks_attached_to_component(result.leaves[0]))

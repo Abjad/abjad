@@ -1,4 +1,5 @@
 from abjad.tools.contexttools.Context import Context
+from abjad.tools.contexttools.ContextMark import ContextMark
 
 
 def get_context_marks_attached_to_any_improper_parent_of_component(component):
@@ -39,12 +40,9 @@ def get_context_marks_attached_to_any_improper_parent_of_component(component):
     result = set([])
 
     for component in componenttools.get_improper_parentage_of_component(component):
-        #for mark in component.marks:
         for mark in component._marks_for_which_component_functions_as_start_component:
-            # TODO: shouldn't the following 2 lines simply be isinstance(mark, ContextMark) instead?
-            if getattr(mark, 'target_context', None) is not None:
-                if issubclass(mark.target_context, Context):
-                    if mark not in result:
-                        result.add(mark)
+            if isinstance(mark, ContextMark):
+                if mark not in result:
+                    result.add(mark)
 
     return result
