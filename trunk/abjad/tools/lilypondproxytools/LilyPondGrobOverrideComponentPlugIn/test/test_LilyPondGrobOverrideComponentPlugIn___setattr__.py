@@ -410,7 +410,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___18():
     '''
 
     assert componenttools.is_well_formed_component(score)
-    assert score.format == "\\new Score \\with {\n\t\\override MetronomeMark #'color = #red\n} <<\n\t\\tempo 4=58\n\t\\new Staff {\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t}\n>>"
+    assert score.format == "\\new Score \\with {\n\t\\override MetronomeMark #'color = #red\n} <<\n\t\\new Staff {\n\t\t\\tempo 4=58\n\t\tc'8\n\t\td'8\n\t\te'8\n\t\tf'8\n\t}\n>>"
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___setattr___19():

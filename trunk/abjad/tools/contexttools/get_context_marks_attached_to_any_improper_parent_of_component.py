@@ -35,10 +35,13 @@ def get_context_marks_attached_to_any_improper_parent_of_component(component):
     from abjad.tools import componenttools
 
     # changing result from a set to a list causes intermittently failing format in a few tests; why?
+    # something to do with offset interface?
     result = set([])
 
     for component in componenttools.get_improper_parentage_of_component(component):
-        for mark in component.marks:
+        #for mark in component.marks:
+        for mark in component._marks_for_which_component_functions_as_start_component:
+            # TODO: shouldn't the following 2 lines simply be isinstance(mark, ContextMark) instead?
             if getattr(mark, 'target_context', None) is not None:
                 if issubclass(mark.target_context, Context):
                     if mark not in result:

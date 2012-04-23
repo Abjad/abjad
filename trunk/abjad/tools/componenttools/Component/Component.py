@@ -94,6 +94,7 @@ class Component(AbjadObject):
         self._update_marks_of_entire_score_tree_if_necessary()
         return self._formatter.format
 
+    # TODO: should this be eliminated? it's not clear that it's helpful to combine these two things
     @property
     def marks(self):
         '''Read-only tuple of marks attached to component.

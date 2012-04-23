@@ -30,13 +30,14 @@ def _get_context_mark_format_contributions_for_slot(component, slot):
                     if candidate.start_component is component:
                         marks.add(candidate)
                 elif candidate.start_component is component:
-                    if candidate.effective_context is None:
-                        marks.add(candidate)
-                    elif candidate.effective_context is component:
-                        marks.add(candidate)
-                    elif candidate.effective_context._offset.start < \
-                        candidate.start_component._offset.start:
-                        marks.add(candidate)
+#                    if candidate.effective_context is None:
+#                        marks.add(candidate)
+#                    elif candidate.effective_context is component:
+#                        marks.add(candidate)
+#                    elif candidate.effective_context._offset.start < \
+#                        candidate.start_component._offset.start:
+#                        marks.add(candidate)
+                    marks.add(candidate)
                 else:
                     improper_parentage = componenttools.get_improper_parentage_of_component(component)
                     if candidate.effective_context in improper_parentage:
