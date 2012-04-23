@@ -47,7 +47,7 @@ def get_effective_context_mark(component, klass):
     #print 'gathering candidate marks ...'
     candidate_marks = set([])
     for parent in componenttools.get_improper_parentage_of_component(component):
-        parent_marks = parent.marks
+        parent_marks = parent._marks_for_which_component_functions_as_effective_context
         #print 'parent marks %s ...' % str(parent_marks)
         for mark in parent_marks:
             #print 'now checking %s ...' % mark
