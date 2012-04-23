@@ -449,7 +449,7 @@ class LilyPondParser(AbjadObject):
             component = music.pop(0)
             context.append(component)
 
-        marks = music.marks
+        marks = music._marks_for_which_component_functions_as_start_component
         for mark in marks:
             mark(context)
 
