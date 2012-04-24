@@ -84,9 +84,9 @@ class Markup(_DirectedMark):
             contents_string = argument
         elif isinstance(argument, Markup):
             contents_string = argument._contents_string
-            direction = argument._direction
-            markup_name = argument._markup_name
-            style_string = argument._style_string
+            direction = direction or argument._direction
+            markup_name = markup_name or argument._markup_name
+            style_string = style_string or argument._style_string
         else:
             contents_string = str(argument)
         _DirectedMark.__init__(self, direction=direction)

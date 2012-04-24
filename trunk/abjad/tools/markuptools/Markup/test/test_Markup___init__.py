@@ -45,6 +45,23 @@ def test_Markup___init___05():
         'foo contents string', direction='up', markup_name='foo', style_string='backslash')
     markup_2 = markuptools.Markup(markup_1)
 
+    assert markup_1 is not markup_2
     assert markup_1 == markup_2
     assert repr(markup_1) == repr(markup_2)
     assert markup_1._storage_format == markup_2._storage_format
+
+
+def test_Markup___init___06():
+    '''Preserve keywords when initializing from other markup instance
+    but also overwrite keywords specified anew.
+    '''
+
+    markup_1 = markuptools.Markup(
+        'foo contents string', direction='up', markup_name='foo', style_string='backslash')
+    markup_2 = markuptools.Markup(markup_1, direction='down')
+
+    assert markup_1 is not markup_2
+    assert markup_2.contents_string == 'foo contents string'
+    assert markup_2.direction == '_'
+    assert markup_2.markup_name == 'foo'
+    assert markup_2.style_string == 'backslash'
