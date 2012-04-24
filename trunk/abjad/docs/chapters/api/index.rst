@@ -10,14 +10,14 @@ Abjad composition packages
 :py:mod:`chordtools <abjad.tools.chordtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: chordtools concrete classes
+.. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
 
    tools/chordtools/Chord/Chord
 
-.. rubric:: chordtools functions
+.. rubric:: functions
 
 .. toctree::
    :maxdepth: 1
@@ -38,14 +38,14 @@ Abjad composition packages
 :py:mod:`componenttools <abjad.tools.componenttools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: componenttools concrete classes
+.. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
 
    tools/componenttools/Component/Component
 
-.. rubric:: componenttools functions
+.. rubric:: functions
 
 .. toctree::
    :maxdepth: 1
@@ -159,7 +159,7 @@ Abjad composition packages
 :py:mod:`containertools <abjad.tools.containertools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: containertools concrete classes
+.. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
@@ -167,7 +167,7 @@ Abjad composition packages
    tools/containertools/Cluster/Cluster
    tools/containertools/Container/Container
 
-.. rubric:: containertools functions
+.. rubric:: functions
 
 .. toctree::
    :maxdepth: 1
@@ -222,7 +222,7 @@ Abjad composition packages
 :py:mod:`contexttools <abjad.tools.contexttools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: contexttools concrete classes
+.. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
@@ -239,7 +239,7 @@ Abjad composition packages
    tools/contexttools/TempoMarkInventory/TempoMarkInventory
    tools/contexttools/TimeSignatureMark/TimeSignatureMark
 
-.. rubric:: contexttools functions
+.. rubric:: functions
 
 .. toctree::
    :maxdepth: 1
@@ -293,14 +293,14 @@ Abjad composition packages
 :py:mod:`gracetools <abjad.tools.gracetools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: gracetools concrete classes
+.. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
 
    tools/gracetools/GraceContainer/GraceContainer
 
-.. rubric:: gracetools functions
+.. rubric:: functions
 
 .. toctree::
    :maxdepth: 1
@@ -314,7 +314,7 @@ Abjad composition packages
 :py:mod:`instrumenttools <abjad.tools.instrumenttools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: instrumenttools concrete classes
+.. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
@@ -368,7 +368,7 @@ Abjad composition packages
    tools/instrumenttools/Violin/Violin
    tools/instrumenttools/Xylophone/Xylophone
 
-.. rubric:: instrumenttools functions
+.. rubric:: functions
 
 .. toctree::
    :maxdepth: 1
@@ -387,14 +387,14 @@ Abjad composition packages
 :py:mod:`leaftools <abjad.tools.leaftools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: leaftools concrete classes
+.. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
 
    tools/leaftools/Leaf/Leaf
 
-.. rubric:: leaftools functions
+.. rubric:: functions
 
 .. toctree::
    :maxdepth: 1
@@ -468,7 +468,7 @@ Abjad composition packages
 :py:mod:`lilypondfiletools <abjad.tools.lilypondfiletools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: lilypondfiletools concrete classes
+.. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
@@ -487,7 +487,7 @@ Abjad composition packages
    tools/lilypondfiletools/PaperBlock/PaperBlock
    tools/lilypondfiletools/ScoreBlock/ScoreBlock
 
-.. rubric:: lilypondfiletools functions
+.. rubric:: functions
 
 .. toctree::
    :maxdepth: 1
@@ -497,7 +497,7 @@ Abjad composition packages
 :py:mod:`marktools <abjad.tools.marktools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: marktools concrete classes
+.. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
@@ -511,7 +511,7 @@ Abjad composition packages
    tools/marktools/Mark/Mark
    tools/marktools/StemTremolo/StemTremolo
 
-.. rubric:: marktools functions
+.. rubric:: functions
 
 .. toctree::
    :maxdepth: 1
@@ -556,7 +556,7 @@ Abjad composition packages
 :py:mod:`markuptools <abjad.tools.markuptools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: markuptools concrete classes
+.. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
@@ -565,7 +565,7 @@ Abjad composition packages
    tools/markuptools/MarkupCommand/MarkupCommand
    tools/markuptools/MarkupInventory/MarkupInventory
 
-.. rubric:: markuptools functions
+.. rubric:: functions
 
 .. toctree::
    :maxdepth: 1
@@ -582,7 +582,7 @@ Abjad composition packages
 :py:mod:`measuretools <abjad.tools.measuretools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: measuretools concrete classes
+.. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
@@ -591,7 +591,7 @@ Abjad composition packages
    tools/measuretools/DynamicMeasure/DynamicMeasure
    tools/measuretools/Measure/Measure
 
-.. rubric:: measuretools functions
+.. rubric:: functions
 
 .. toctree::
    :maxdepth: 1
@@ -646,7 +646,7 @@ Abjad composition packages
 :py:mod:`notetools <abjad.tools.notetools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: notetools concrete classes
+.. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
@@ -655,7 +655,7 @@ Abjad composition packages
    tools/notetools/Note/Note
    tools/notetools/NoteHead/NoteHead
 
-.. rubric:: notetools functions
+.. rubric:: functions
 
 .. toctree::
    :maxdepth: 1
@@ -680,7 +680,7 @@ Abjad composition packages
 :py:mod:`pitchtools <abjad.tools.pitchtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: pitchtools concrete classes
+.. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
@@ -741,7 +741,7 @@ Abjad composition packages
    tools/pitchtools/PitchRangeInventory/PitchRangeInventory
    tools/pitchtools/TwelveToneRow/TwelveToneRow
 
-.. rubric:: pitchtools functions
+.. rubric:: functions
 
 .. toctree::
    :maxdepth: 1
@@ -873,7 +873,7 @@ Abjad composition packages
 :py:mod:`resttools <abjad.tools.resttools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: resttools concrete classes
+.. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
@@ -881,7 +881,7 @@ Abjad composition packages
    tools/resttools/MultiMeasureRest/MultiMeasureRest
    tools/resttools/Rest/Rest
 
-.. rubric:: resttools functions
+.. rubric:: functions
 
 .. toctree::
    :maxdepth: 1
@@ -901,7 +901,7 @@ Abjad composition packages
 :py:mod:`schemetools <abjad.tools.schemetools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: schemetools concrete classes
+.. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
@@ -917,14 +917,14 @@ Abjad composition packages
 :py:mod:`scoretemplatetools <abjad.tools.scoretemplatetools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: scoretemplatetools abstract classes
+.. rubric:: abstract classes
 
 .. toctree::
    :maxdepth: 1
 
    tools/scoretemplatetools/ScoreTemplate/ScoreTemplate
 
-.. rubric:: scoretemplatetools concrete classes
+.. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
@@ -935,7 +935,7 @@ Abjad composition packages
 :py:mod:`scoretools <abjad.tools.scoretools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: scoretools concrete classes
+.. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
@@ -948,7 +948,7 @@ Abjad composition packages
    tools/scoretools/Score/Score
    tools/scoretools/StaffGroup/StaffGroup
 
-.. rubric:: scoretools functions
+.. rubric:: functions
 
 .. toctree::
    :maxdepth: 1
@@ -970,14 +970,14 @@ Abjad composition packages
 :py:mod:`skiptools <abjad.tools.skiptools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: skiptools concrete classes
+.. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
 
    tools/skiptools/Skip/Skip
 
-.. rubric:: skiptools functions
+.. rubric:: functions
 
 .. toctree::
    :maxdepth: 1
@@ -994,7 +994,7 @@ Abjad composition packages
 :py:mod:`spannertools <abjad.tools.spannertools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: spannertools concrete classes
+.. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
@@ -1023,7 +1023,7 @@ Abjad composition packages
    tools/spannertools/TextSpanner/TextSpanner
    tools/spannertools/TrillSpanner/TrillSpanner
 
-.. rubric:: spannertools functions
+.. rubric:: functions
 
 .. toctree::
    :maxdepth: 1
@@ -1068,7 +1068,7 @@ Abjad composition packages
 :py:mod:`stafftools <abjad.tools.stafftools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: stafftools concrete classes
+.. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
@@ -1076,7 +1076,7 @@ Abjad composition packages
    tools/stafftools/RhythmicStaff/RhythmicStaff
    tools/stafftools/Staff/Staff
 
-.. rubric:: stafftools functions
+.. rubric:: functions
 
 .. toctree::
    :maxdepth: 1
@@ -1091,14 +1091,14 @@ Abjad composition packages
 :py:mod:`tietools <abjad.tools.tietools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: tietools concrete classes
+.. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
 
    tools/tietools/TieSpanner/TieSpanner
 
-.. rubric:: tietools functions
+.. rubric:: functions
 
 .. toctree::
    :maxdepth: 1
@@ -1134,7 +1134,7 @@ Abjad composition packages
 :py:mod:`tuplettools <abjad.tools.tuplettools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: tuplettools concrete classes
+.. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
@@ -1142,7 +1142,7 @@ Abjad composition packages
    tools/tuplettools/FixedDurationTuplet/FixedDurationTuplet
    tools/tuplettools/Tuplet/Tuplet
 
-.. rubric:: tuplettools functions
+.. rubric:: functions
 
 .. toctree::
    :maxdepth: 1
@@ -1171,14 +1171,14 @@ Abjad composition packages
 :py:mod:`voicetools <abjad.tools.voicetools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: voicetools concrete classes
+.. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
 
    tools/voicetools/Voice/Voice
 
-.. rubric:: voicetools functions
+.. rubric:: functions
 
 .. toctree::
    :maxdepth: 1
@@ -1200,7 +1200,7 @@ Additional Abjad composition packages (load manually)
 :py:mod:`abctools <abjad.tools.abctools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: abctools abstract classes
+.. rubric:: abstract classes
 
 .. toctree::
    :maxdepth: 1
@@ -1213,7 +1213,7 @@ Additional Abjad composition packages (load manually)
 :py:mod:`configurationtools <abjad.tools.configurationtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: configurationtools functions
+.. rubric:: functions
 
 .. toctree::
    :maxdepth: 1
@@ -1230,7 +1230,7 @@ Additional Abjad composition packages (load manually)
 :py:mod:`datastructuretools <abjad.tools.datastructuretools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: datastructuretools concrete classes
+.. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
@@ -1242,7 +1242,7 @@ Additional Abjad composition packages (load manually)
 :py:mod:`decoratortools <abjad.tools.decoratortools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: decoratortools functions
+.. rubric:: functions
 
 .. toctree::
    :maxdepth: 1
@@ -1252,7 +1252,7 @@ Additional Abjad composition packages (load manually)
 :py:mod:`documentationtools <abjad.tools.documentationtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: documentationtools concrete classes
+.. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
@@ -1271,7 +1271,7 @@ Additional Abjad composition packages (load manually)
 :py:mod:`durationtools <abjad.tools.durationtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: durationtools concrete classes
+.. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
@@ -1279,7 +1279,7 @@ Additional Abjad composition packages (load manually)
    tools/durationtools/Duration/Duration
    tools/durationtools/Offset/Offset
 
-.. rubric:: durationtools functions
+.. rubric:: functions
 
 .. toctree::
    :maxdepth: 1
@@ -1331,7 +1331,7 @@ Additional Abjad composition packages (load manually)
 :py:mod:`iotools <abjad.tools.iotools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: iotools functions
+.. rubric:: functions
 
 .. toctree::
    :maxdepth: 1
@@ -1378,14 +1378,14 @@ Additional Abjad composition packages (load manually)
 :py:mod:`layouttools <abjad.tools.layouttools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: layouttools concrete classes
+.. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
 
    tools/layouttools/SpacingIndication/SpacingIndication
 
-.. rubric:: layouttools functions
+.. rubric:: functions
 
 .. toctree::
    :maxdepth: 1
@@ -1397,7 +1397,7 @@ Additional Abjad composition packages (load manually)
 :py:mod:`lilypondparsertools <abjad.tools.lilypondparsertools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: lilypondparsertools concrete classes
+.. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
@@ -1407,7 +1407,7 @@ Additional Abjad composition packages (load manually)
 :py:mod:`mathtools <abjad.tools.mathtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: mathtools functions
+.. rubric:: functions
 
 .. toctree::
    :maxdepth: 1
@@ -1465,7 +1465,7 @@ Additional Abjad composition packages (load manually)
 :py:mod:`pitcharraytools <abjad.tools.pitcharraytools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: pitcharraytools concrete classes
+.. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
@@ -1475,7 +1475,7 @@ Additional Abjad composition packages (load manually)
    tools/pitcharraytools/PitchArrayColumn/PitchArrayColumn
    tools/pitcharraytools/PitchArrayRow/PitchArrayRow
 
-.. rubric:: pitcharraytools functions
+.. rubric:: functions
 
 .. toctree::
    :maxdepth: 1
@@ -1489,7 +1489,7 @@ Additional Abjad composition packages (load manually)
 :py:mod:`rhythmtreetools <abjad.tools.rhythmtreetools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: rhythmtreetools functions
+.. rubric:: functions
 
 .. toctree::
    :maxdepth: 1
@@ -1499,7 +1499,7 @@ Additional Abjad composition packages (load manually)
 :py:mod:`sequencetools <abjad.tools.sequencetools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: sequencetools concrete classes
+.. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
@@ -1511,7 +1511,7 @@ Additional Abjad composition packages (load manually)
    tools/sequencetools/Matrix/Matrix
    tools/sequencetools/Tree/Tree
 
-.. rubric:: sequencetools functions
+.. rubric:: functions
 
 .. toctree::
    :maxdepth: 1
@@ -1639,7 +1639,7 @@ Additional Abjad composition packages (load manually)
 :py:mod:`sievetools <abjad.tools.sievetools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: sievetools concrete classes
+.. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
@@ -1647,7 +1647,7 @@ Additional Abjad composition packages (load manually)
    tools/sievetools/ResidueClass/ResidueClass
    tools/sievetools/ResidueClassExpression/ResidueClassExpression
 
-.. rubric:: sievetools functions
+.. rubric:: functions
 
 .. toctree::
    :maxdepth: 1
@@ -1658,7 +1658,7 @@ Additional Abjad composition packages (load manually)
 :py:mod:`tempotools <abjad.tools.tempotools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: tempotools functions
+.. rubric:: functions
 
 .. toctree::
    :maxdepth: 1
@@ -1669,7 +1669,7 @@ Additional Abjad composition packages (load manually)
 :py:mod:`threadtools <abjad.tools.threadtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: threadtools functions
+.. rubric:: functions
 
 .. toctree::
    :maxdepth: 1
@@ -1683,7 +1683,7 @@ Additional Abjad composition packages (load manually)
 :py:mod:`timeintervaltools <abjad.tools.timeintervaltools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: timeintervaltools abstract classes
+.. rubric:: abstract classes
 
 .. toctree::
    :maxdepth: 1
@@ -1691,7 +1691,7 @@ Additional Abjad composition packages (load manually)
    tools/timeintervaltools/TimeIntervalAggregateMixin/TimeIntervalAggregateMixin
    tools/timeintervaltools/TimeIntervalMixin/TimeIntervalMixin
 
-.. rubric:: timeintervaltools concrete classes
+.. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
@@ -1700,7 +1700,7 @@ Additional Abjad composition packages (load manually)
    tools/timeintervaltools/TimeIntervalTree/TimeIntervalTree
    tools/timeintervaltools/TimeIntervalTreeDictionary/TimeIntervalTreeDictionary
 
-.. rubric:: timeintervaltools functions
+.. rubric:: functions
 
 .. toctree::
    :maxdepth: 1
@@ -1757,7 +1757,7 @@ Additional Abjad composition packages (load manually)
 :py:mod:`timesignaturetools <abjad.tools.timesignaturetools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: timesignaturetools functions
+.. rubric:: functions
 
 .. toctree::
    :maxdepth: 1
@@ -1770,7 +1770,7 @@ Additional Abjad composition packages (load manually)
 :py:mod:`timetokentools <abjad.tools.timetokentools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: timetokentools abstract classes
+.. rubric:: abstract classes
 
 .. toctree::
    :maxdepth: 1
@@ -1781,7 +1781,7 @@ Additional Abjad composition packages (load manually)
    tools/timetokentools/TimeTokenMaker/TimeTokenMaker
    tools/timetokentools/TokenIncisedTimeTokenMaker/TokenIncisedTimeTokenMaker
 
-.. rubric:: timetokentools concrete classes
+.. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
@@ -1799,14 +1799,14 @@ Additional Abjad composition packages (load manually)
 :py:mod:`verticalitytools <abjad.tools.verticalitytools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: verticalitytools concrete classes
+.. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
 
    tools/verticalitytools/VerticalMoment/VerticalMoment
 
-.. rubric:: verticalitytools functions
+.. rubric:: functions
 
 .. toctree::
    :maxdepth: 1
@@ -1826,14 +1826,14 @@ Additional Abjad composition packages (load manually)
 :py:mod:`wellformednesstools <abjad.tools.wellformednesstools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: wellformednesstools abstract classes
+.. rubric:: abstract classes
 
 .. toctree::
    :maxdepth: 1
 
    tools/wellformednesstools/Check/Check
 
-.. rubric:: wellformednesstools concrete classes
+.. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
@@ -1854,7 +1854,7 @@ Additional Abjad composition packages (load manually)
    tools/wellformednesstools/OverlappingOctavationCheck/OverlappingOctavationCheck
    tools/wellformednesstools/ShortHairpinCheck/ShortHairpinCheck
 
-.. rubric:: wellformednesstools functions
+.. rubric:: functions
 
 .. toctree::
    :maxdepth: 1
@@ -1870,7 +1870,7 @@ Unstable Abjad composition packages (load manually)
 :py:mod:`constrainttools <abjad.tools.constrainttools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: constrainttools concrete classes
+.. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
@@ -1888,7 +1888,7 @@ Unstable Abjad composition packages (load manually)
 :py:mod:`lyricstools <abjad.tools.lyricstools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: lyricstools concrete classes
+.. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
@@ -1903,7 +1903,7 @@ Unstable Abjad composition packages (load manually)
 :py:mod:`quantizationtools <abjad.tools.quantizationtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: quantizationtools concrete classes
+.. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
@@ -1914,7 +1914,7 @@ Unstable Abjad composition packages (load manually)
    tools/quantizationtools/QGridSearchTree/QGridSearchTree
    tools/quantizationtools/QGridTempoLookup/QGridTempoLookup
 
-.. rubric:: quantizationtools functions
+.. rubric:: functions
 
 .. toctree::
    :maxdepth: 1
@@ -1929,7 +1929,7 @@ Unstable Abjad composition packages (load manually)
 :py:mod:`tonalitytools <abjad.tools.tonalitytools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. rubric:: tonalitytools concrete classes
+.. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
@@ -1947,7 +1947,7 @@ Unstable Abjad composition packages (load manually)
    tools/tonalitytools/SuspensionIndicator/SuspensionIndicator
    tools/tonalitytools/TonalFunction/TonalFunction
 
-.. rubric:: tonalitytools functions
+.. rubric:: functions
 
 .. toctree::
    :maxdepth: 1
