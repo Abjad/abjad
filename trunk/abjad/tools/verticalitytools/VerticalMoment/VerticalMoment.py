@@ -1,13 +1,13 @@
 from abjad.tools import componenttools
 from abjad.tools import durationtools
-from abjad.tools.abctools import AbjadObject
+from abjad.tools.abctools import ScoreSelection
 from abjad.tools.chordtools.Chord import Chord
 from abjad.tools.leaftools.Leaf import Leaf
 from abjad.tools.measuretools.Measure import Measure
 from abjad.tools.notetools.Note import Note
 
 
-class VerticalMoment(AbjadObject):
+class VerticalMoment(ScoreSelection):
     r'''.. versionadded: 1.1.2
 
     Everything happening at a single moment in musical time::
