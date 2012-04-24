@@ -1208,6 +1208,7 @@ Additional Abjad composition packages (load manually)
    tools/abctools/AbjadObject/AbjadObject
    tools/abctools/AttributeEqualityAbjadObject/AttributeEqualityAbjadObject
    tools/abctools/ImmutableAbjadObject/ImmutableAbjadObject
+   tools/abctools/ScoreSelection/ScoreSelection
    tools/abctools/SortableAttributeEqualityAbjadObject/SortableAttributeEqualityAbjadObject
 
 :py:mod:`configurationtools <abjad.tools.configurationtools>`
