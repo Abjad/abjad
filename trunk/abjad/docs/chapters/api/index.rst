@@ -1365,6 +1365,7 @@ Additional Abjad composition packages (load manually)
    tools/iotools/save_last_pdf_as
    tools/iotools/show
    tools/iotools/space_delimited_lowercase_to_uppercamelcase
+   tools/iotools/spawn_subprocess
    tools/iotools/string_to_strict_directory_name
    tools/iotools/strip_diacritics_from_binary_string
    tools/iotools/underscore_delimited_lowercase_to_lowercamelcase

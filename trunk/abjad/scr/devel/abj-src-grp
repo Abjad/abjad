@@ -1,11 +1,9 @@
 #! /usr/bin/env python
 
 from abjad.tools import iotools
-import os
 import sys
 
 
 iotools.clear_terminal()
-os.system(
-   'grep -Irn "%s" * | grep -v svn | grep -v documentation | grep -v test' % 
-   sys.argv[1])
+command = 'grep -Irn "{}" * | grep -v svn | grep -v documentation | grep -v test'.format(sys.argv[1])
+iotools.spawn_subprocess(command)

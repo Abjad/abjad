@@ -5,6 +5,7 @@ from abjad.tools import clear_terminal
 import os
 import pprint
 import re
+import subprocess
 
 
 def _capitalize_test_file_names():
@@ -34,19 +35,13 @@ def _rename_test_file(short_file_name, full_file_name, old, new):
       new_short_file_name = short_file_name.replace(old, new)
       new_short_file_name = new_short_file_name.replace('.py', '_tmp.py')
       new_full_file_name = full_file_name.replace(short_file_name, new_short_file_name)
-      first_command = 'svn mv %s %s' % (full_file_name, new_full_file_name)
-      #print first_command
-      os.system(first_command)
-      #revised_new_full_file_name = new_full_file_name.replace('_tmp.py', '.py')
-      #second_command = 'svn mv %s %s' % (new_full_file_name, revised_new_full_file_name)
-      #print second_comand
-      #os.system(second_command)
+      first_command = 'svn mv {} {}'.format(full_file_name, new_full_file_name)
+      iotools.spawn_subprocess(first_command)
    else:
       new_short_file_name = short_file_name.replace(old, new)
       new_full_file_name = full_file_name.replace(short_file_name, new_short_file_name)
-      command = 'svn mv %s %s' % (full_file_name, new_full_file_name)
-      #print command
-      os.system(command)
+      command = 'svn mv {} {}'.format(full_file_name, new_full_file_name)
+      iotools.spawn_subprocess(command)
    print ''
    print ''
    return old, new
