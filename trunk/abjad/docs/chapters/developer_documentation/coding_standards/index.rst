@@ -158,6 +158,11 @@ Limit lines to 110 characters and use ``\`` to break lines where necessary.
 
 Eliminate trivial slice indices. Use ``s[:4]`` instead of ``s[0:4]``.
 
+Prefer new-style string formatting to old-style string interpolation.
+Use ``'string {} content'.format(expr)`` instead of ``'string %s content' % expr``.
+
+Prefer list comprehensions to ``filter()``, ``map()`` and ``apply()``.
+
 Do not abbreviate variable names.
 
 Name variables that represent a list or other collection of objects in the plural.
