@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import os
+from abjad.tools import iotools
 from abjad.cfg.cfg import ABJADPATH
 from abjad.tools.documentationtools import AbjadAPIGenerator
 
@@ -17,4 +18,4 @@ if __name__ == '__main__':
     os.chdir(docs_directory)
 
     # make html docs
-    os.system('make html')
+    iotools.spawn_subprocess('make html')

@@ -1,10 +1,11 @@
 from abjad.cfg._get_text_editor import _get_text_editor
 from abjad.cfg._read_config_file import _read_config_file
 from abjad.tools.iotools.get_last_output_file_name import get_last_output_file_name
+from abjad.tools.iotools.spawn_subprocess import spawn_subprocess
 import os
 
 
-def ly(target = -1):
+def ly(target=-1):
     r'''Open the last LilyPond output file in text editor::
 
         abjad> iotools.ly() # doctest: +SKIP
@@ -48,10 +49,10 @@ def ly(target = -1):
     elif isinstance(target, str):
         target_ly = os.path.join(ABJADOUTPUT, target)
     else:
-        raise ValueError('can not get target LilyPond input from %s.' % target)
+        raise ValueError('can not get target LilyPond input from {}.'.format(target))
 
     if os.stat(target_ly):
-        command = '%s %s' % (text_editor, target_ly)
-        os.system(command)
+        command = '{} {}'.format(text_editor, target_ly)
+        spawn_subprocess(command)
     else:
-        print 'Target LilyPond input file %s does not exist.' % target_ly
+        print 'Target LilyPond input file {} does not exist.'.format(target_ly)

@@ -96,7 +96,7 @@ def _rename_old_api_page(old_package, old_function, new_package, new_module):
     new_rst_file = new_function + '.rst'
     new_api_path = os.path.join(api_path, new_package, new_rst_file)
     command = 'svn --force mv {} {} > /dev/null'.format(old_api_path, new_api_path)
-    os.system(command)
+    iotools.spawn_subprocess(command)
     print ''
 
 
@@ -169,7 +169,7 @@ def _rename_old_module(old_package, old_function, new_package, new_function):
     new_module = new_function + '.py'
     new_path = os.path.join(ABJADPATH, 'tools', new_package, new_module)
     command = 'svn --force mv {} {} > /dev/null'.format(old_path, new_path)
-    os.system(command)
+    iotools.spawn_subprocess(command)
     print ''
 
 def _rename_old_test_file(old_package, old_function, new_package, new_function):
@@ -181,7 +181,7 @@ def _rename_old_test_file(old_package, old_function, new_package, new_function):
     new_path = os.path.join(ABJADPATH, 'tools', new_package, 'test')
     new_path = os.path.join(new_path, new_test_file)
     command = 'svn --force mv {} {} > /dev/null'.format(old_path, new_path)
-    os.system(command)
+    iotools.spawn_subprocess(command)
     print ''
 
 
@@ -192,22 +192,22 @@ def _update_codebase(old_package, old_function, new_package, new_function):
     old_text = '{}.{}'.format(old_package, old_function)
     new_text = '{}.{}'.format(new_package, new_function)
     command = 'replace-in-files {} "{}" "{}" false'.format(directory, old_text, new_text)
-    os.system(command)
+    iotools.spawn_subprocess(command)
 
     old_text = '{}_{}'.format(old_package, old_function)
     new_text = '{}_{}'.format(new_package, new_function)
     command = 'replace-in-files {} "{}" "{}" false'.format(directory, old_text, new_text)
-    os.system(command)
+    iotools.spawn_subprocess(command)
 
     old_text = ' {}('.format(old_function)
     new_text = ' {}('.format(new_function)
     command = 'replace-in-files {} "{}" "{}" false'.format(directory, old_text, new_text)
-    os.system(command)
+    iotools.spawn_subprocess(command)
 
     old_text = 'import {}'.format(old_function)
     new_text = 'import {}'.format(new_function)
     command = 'replace-in-files {} "{}" "{}" false'.format(directory, old_text, new_text)
-    os.system(command)
+    iotools.spawn_subprocess(command)
 
     print ''
 
@@ -253,7 +253,7 @@ def _add_versionchanged(old_package, old_function, new_package, new_function):
 
 def _debug():
     file_name = os.path.join(ABJADPATH, 'tools/sequencetools/zip_nontruncating.py')
-    os.system('ls -l {}'.format(file_name))
+    iotools.spawn_subprocess('ls -l {}'.format(file_name))
     print ''
 
 

@@ -35,14 +35,12 @@ def _rename_test_file(short_file_name, full_file_name, old, new):
       new_short_file_name = new_short_file_name.replace('.py', '_tmp.py')
       new_full_file_name = full_file_name.replace(short_file_name, new_short_file_name)
       first_command = 'svn mv %s %s' % (full_file_name, new_full_file_name)
-      #print first_command
-      os.system(first_command)
+      iotools.spawn_subprocess(first_command)
    else:
       new_short_file_name = short_file_name.replace(old, new)
       new_full_file_name = full_file_name.replace(short_file_name, new_short_file_name)
       command = 'svn mv %s %s' % (full_file_name, new_full_file_name)
-      #print command
-      os.system(command)
+      iotools.spawn_subprocess(command)
    print ''
    print ''
    return old, new
