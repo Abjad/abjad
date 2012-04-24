@@ -37,40 +37,40 @@ Special Methods
 
 .. automethod:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph.__delattr__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph.__eq__
 
 .. automethod:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph.__ge__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph.__gt__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph.__hash__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph.__le__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph.__lt__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph.__ne__
 
 .. automethod:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph.__repr__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph.__setattr__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph.__str__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`

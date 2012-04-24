@@ -31,29 +31,29 @@ Special Methods
 
 .. automethod:: abjad.tools.tonalitytools.ScaleDegree.ScaleDegree.ScaleDegree.__delattr__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.tonalitytools.ScaleDegree.ScaleDegree.ScaleDegree.__eq__
 
 .. automethod:: abjad.tools.tonalitytools.ScaleDegree.ScaleDegree.ScaleDegree.__ge__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.tonalitytools.ScaleDegree.ScaleDegree.ScaleDegree.__gt__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.tonalitytools.ScaleDegree.ScaleDegree.ScaleDegree.__hash__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.tonalitytools.ScaleDegree.ScaleDegree.ScaleDegree.__le__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.tonalitytools.ScaleDegree.ScaleDegree.ScaleDegree.__lt__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.tonalitytools.ScaleDegree.ScaleDegree.ScaleDegree.__ne__
 
@@ -61,6 +61,6 @@ Special Methods
 
 .. automethod:: abjad.tools.tonalitytools.ScaleDegree.ScaleDegree.ScaleDegree.__setattr__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.tonalitytools.ScaleDegree.ScaleDegree.ScaleDegree.__str__

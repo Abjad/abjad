@@ -31,21 +31,21 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.NumberedChromaticPitch.NumberedChromaticPitch.NumberedChromaticPitch.__delattr__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.pitchtools.NumberedChromaticPitch.NumberedChromaticPitch.NumberedChromaticPitch.__eq__
 
-   .. note:: Inherited from :py:class:`abctools.AttributeEqualityAbjadObject <abjad.tools.abctools.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject>`
+    Inherited from :py:class:`abctools.AttributeEqualityAbjadObject <abjad.tools.abctools.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject>`
 
 .. automethod:: abjad.tools.pitchtools.NumberedChromaticPitch.NumberedChromaticPitch.NumberedChromaticPitch.__float__
 
 .. automethod:: abjad.tools.pitchtools.NumberedChromaticPitch.NumberedChromaticPitch.NumberedChromaticPitch.__ge__
 
-   .. note:: Inherited from :py:class:`abctools.SortableAttributeEqualityAbjadObject <abjad.tools.abctools.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject>`
+    Inherited from :py:class:`abctools.SortableAttributeEqualityAbjadObject <abjad.tools.abctools.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject>`
 
 .. automethod:: abjad.tools.pitchtools.NumberedChromaticPitch.NumberedChromaticPitch.NumberedChromaticPitch.__gt__
 
-   .. note:: Inherited from :py:class:`abctools.SortableAttributeEqualityAbjadObject <abjad.tools.abctools.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject>`
+    Inherited from :py:class:`abctools.SortableAttributeEqualityAbjadObject <abjad.tools.abctools.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject>`
 
 .. automethod:: abjad.tools.pitchtools.NumberedChromaticPitch.NumberedChromaticPitch.NumberedChromaticPitch.__hash__
 
@@ -53,15 +53,15 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.NumberedChromaticPitch.NumberedChromaticPitch.NumberedChromaticPitch.__le__
 
-   .. note:: Inherited from :py:class:`abctools.SortableAttributeEqualityAbjadObject <abjad.tools.abctools.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject>`
+    Inherited from :py:class:`abctools.SortableAttributeEqualityAbjadObject <abjad.tools.abctools.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject>`
 
 .. automethod:: abjad.tools.pitchtools.NumberedChromaticPitch.NumberedChromaticPitch.NumberedChromaticPitch.__lt__
 
-   .. note:: Inherited from :py:class:`abctools.SortableAttributeEqualityAbjadObject <abjad.tools.abctools.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject>`
+    Inherited from :py:class:`abctools.SortableAttributeEqualityAbjadObject <abjad.tools.abctools.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject>`
 
 .. automethod:: abjad.tools.pitchtools.NumberedChromaticPitch.NumberedChromaticPitch.NumberedChromaticPitch.__ne__
 
-   .. note:: Inherited from :py:class:`pitchtools._Pitch <abjad.tools.pitchtools._Pitch._Pitch._Pitch>`
+    Inherited from :py:class:`pitchtools._Pitch <abjad.tools.pitchtools._Pitch._Pitch._Pitch>`
 
 .. automethod:: abjad.tools.pitchtools.NumberedChromaticPitch.NumberedChromaticPitch.NumberedChromaticPitch.__neg__
 
@@ -69,7 +69,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.NumberedChromaticPitch.NumberedChromaticPitch.NumberedChromaticPitch.__setattr__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.pitchtools.NumberedChromaticPitch.NumberedChromaticPitch.NumberedChromaticPitch.__str__
 

@@ -50,40 +50,40 @@ Special Methods
 
 .. automethod:: abjad.tools.pitcharraytools.PitchArrayCell.PitchArrayCell.PitchArrayCell.__delattr__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.pitcharraytools.PitchArrayCell.PitchArrayCell.PitchArrayCell.__eq__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.pitcharraytools.PitchArrayCell.PitchArrayCell.PitchArrayCell.__ge__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.pitcharraytools.PitchArrayCell.PitchArrayCell.PitchArrayCell.__gt__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.pitcharraytools.PitchArrayCell.PitchArrayCell.PitchArrayCell.__hash__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.pitcharraytools.PitchArrayCell.PitchArrayCell.PitchArrayCell.__le__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.pitcharraytools.PitchArrayCell.PitchArrayCell.PitchArrayCell.__lt__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.pitcharraytools.PitchArrayCell.PitchArrayCell.PitchArrayCell.__ne__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.pitcharraytools.PitchArrayCell.PitchArrayCell.PitchArrayCell.__repr__
 
 .. automethod:: abjad.tools.pitcharraytools.PitchArrayCell.PitchArrayCell.PitchArrayCell.__setattr__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.pitcharraytools.PitchArrayCell.PitchArrayCell.PitchArrayCell.__str__

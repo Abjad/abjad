@@ -33,54 +33,54 @@ Special Methods
 
 .. automethod:: abjad.tools.sievetools.ResidueClassExpression.ResidueClassExpression.ResidueClassExpression.__and__
 
-   .. note:: Inherited from :py:class:`sievetools._BaseResidueClass <abjad.tools.sievetools._BaseResidueClass._BaseResidueClass._BaseResidueClass>`
+    Inherited from :py:class:`sievetools._BaseResidueClass <abjad.tools.sievetools._BaseResidueClass._BaseResidueClass._BaseResidueClass>`
 
 .. automethod:: abjad.tools.sievetools.ResidueClassExpression.ResidueClassExpression.ResidueClassExpression.__delattr__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.sievetools.ResidueClassExpression.ResidueClassExpression.ResidueClassExpression.__eq__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.sievetools.ResidueClassExpression.ResidueClassExpression.ResidueClassExpression.__ge__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.sievetools.ResidueClassExpression.ResidueClassExpression.ResidueClassExpression.__gt__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.sievetools.ResidueClassExpression.ResidueClassExpression.ResidueClassExpression.__hash__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.sievetools.ResidueClassExpression.ResidueClassExpression.ResidueClassExpression.__le__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.sievetools.ResidueClassExpression.ResidueClassExpression.ResidueClassExpression.__lt__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.sievetools.ResidueClassExpression.ResidueClassExpression.ResidueClassExpression.__ne__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.sievetools.ResidueClassExpression.ResidueClassExpression.ResidueClassExpression.__or__
 
-   .. note:: Inherited from :py:class:`sievetools._BaseResidueClass <abjad.tools.sievetools._BaseResidueClass._BaseResidueClass._BaseResidueClass>`
+    Inherited from :py:class:`sievetools._BaseResidueClass <abjad.tools.sievetools._BaseResidueClass._BaseResidueClass._BaseResidueClass>`
 
 .. automethod:: abjad.tools.sievetools.ResidueClassExpression.ResidueClassExpression.ResidueClassExpression.__repr__
 
 .. automethod:: abjad.tools.sievetools.ResidueClassExpression.ResidueClassExpression.ResidueClassExpression.__setattr__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.sievetools.ResidueClassExpression.ResidueClassExpression.ResidueClassExpression.__str__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.sievetools.ResidueClassExpression.ResidueClassExpression.ResidueClassExpression.__xor__
 
-   .. note:: Inherited from :py:class:`sievetools._BaseResidueClass <abjad.tools.sievetools._BaseResidueClass._BaseResidueClass._BaseResidueClass>`
+    Inherited from :py:class:`sievetools._BaseResidueClass <abjad.tools.sievetools._BaseResidueClass._BaseResidueClass._BaseResidueClass>`

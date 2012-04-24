@@ -15,7 +15,7 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.containertools.Container.Container.Container.format
 
-   .. note:: Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
 .. autoattribute:: abjad.tools.containertools.Container.Container.Container.leaves
 
@@ -23,29 +23,29 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.containertools.Container.Container.Container.override
 
-   .. note:: Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
 .. autoattribute:: abjad.tools.containertools.Container.Container.Container.parent
 
-   .. note:: Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
 .. autoattribute:: abjad.tools.containertools.Container.Container.Container.preprolated_duration
 
 .. autoattribute:: abjad.tools.containertools.Container.Container.Container.prolated_duration
 
-   .. note:: Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
 .. autoattribute:: abjad.tools.containertools.Container.Container.Container.prolation
 
-   .. note:: Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
 .. autoattribute:: abjad.tools.containertools.Container.Container.Container.set
 
-   .. note:: Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
 .. autoattribute:: abjad.tools.containertools.Container.Container.Container.spanners
 
-   .. note:: Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
 Read/write Properties
 ---------------------
@@ -76,27 +76,27 @@ Special Methods
 
 .. automethod:: abjad.tools.containertools.Container.Container.Container.__delattr__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.containertools.Container.Container.Container.__delitem__
 
 .. automethod:: abjad.tools.containertools.Container.Container.Container.__eq__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.containertools.Container.Container.Container.__ge__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.containertools.Container.Container.Container.__getitem__
 
 .. automethod:: abjad.tools.containertools.Container.Container.Container.__gt__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.containertools.Container.Container.Container.__hash__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.containertools.Container.Container.Container.__iadd__
 
@@ -104,21 +104,21 @@ Special Methods
 
 .. automethod:: abjad.tools.containertools.Container.Container.Container.__le__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.containertools.Container.Container.Container.__len__
 
 .. automethod:: abjad.tools.containertools.Container.Container.Container.__lt__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.containertools.Container.Container.Container.__mul__
 
-   .. note:: Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
 .. automethod:: abjad.tools.containertools.Container.Container.Container.__ne__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.containertools.Container.Container.Container.__radd__
 
@@ -126,14 +126,14 @@ Special Methods
 
 .. automethod:: abjad.tools.containertools.Container.Container.Container.__rmul__
 
-   .. note:: Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
 .. automethod:: abjad.tools.containertools.Container.Container.Container.__setattr__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.containertools.Container.Container.Container.__setitem__
 
 .. automethod:: abjad.tools.containertools.Container.Container.Container.__str__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`

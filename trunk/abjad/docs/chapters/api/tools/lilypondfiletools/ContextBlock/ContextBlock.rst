@@ -11,7 +11,7 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.format
 
-   .. note:: Inherited from :py:class:`lilypondfiletools._AttributedBlock <abjad.tools.lilypondfiletools._AttributedBlock._AttributedBlock._AttributedBlock>`
+    Inherited from :py:class:`lilypondfiletools._AttributedBlock <abjad.tools.lilypondfiletools._AttributedBlock._AttributedBlock._AttributedBlock>`
 
 .. autoattribute:: abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.override
 
@@ -24,27 +24,27 @@ Read/write Properties
 
 .. autoattribute:: abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.is_formatted_when_empty
 
-   .. note:: Inherited from :py:class:`lilypondfiletools._AttributedBlock <abjad.tools.lilypondfiletools._AttributedBlock._AttributedBlock._AttributedBlock>`
+    Inherited from :py:class:`lilypondfiletools._AttributedBlock <abjad.tools.lilypondfiletools._AttributedBlock._AttributedBlock._AttributedBlock>`
 
 Special Methods
 ---------------
 
 .. automethod:: abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.__delattr__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.__hash__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.__repr__
 
-   .. note:: Inherited from :py:class:`lilypondfiletools._AttributedBlock <abjad.tools.lilypondfiletools._AttributedBlock._AttributedBlock._AttributedBlock>`
+    Inherited from :py:class:`lilypondfiletools._AttributedBlock <abjad.tools.lilypondfiletools._AttributedBlock._AttributedBlock._AttributedBlock>`
 
 .. automethod:: abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.__setattr__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.__str__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`

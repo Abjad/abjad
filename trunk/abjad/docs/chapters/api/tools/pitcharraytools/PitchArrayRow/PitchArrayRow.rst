@@ -72,35 +72,35 @@ Special Methods
 
 .. automethod:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.__delattr__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.__eq__
 
 .. automethod:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.__ge__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.__getitem__
 
 .. automethod:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.__gt__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.__hash__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.__iadd__
 
 .. automethod:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.__le__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.__len__
 
 .. automethod:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.__lt__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.__ne__
 
@@ -108,6 +108,6 @@ Special Methods
 
 .. automethod:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.__setattr__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.pitcharraytools.PitchArrayRow.PitchArrayRow.PitchArrayRow.__str__

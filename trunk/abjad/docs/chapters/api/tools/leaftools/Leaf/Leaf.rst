@@ -19,29 +19,29 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.leaftools.Leaf.Leaf.Leaf.override
 
-   .. note:: Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
 .. autoattribute:: abjad.tools.leaftools.Leaf.Leaf.Leaf.parent
 
-   .. note:: Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
 .. autoattribute:: abjad.tools.leaftools.Leaf.Leaf.Leaf.preprolated_duration
 
 .. autoattribute:: abjad.tools.leaftools.Leaf.Leaf.Leaf.prolated_duration
 
-   .. note:: Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
 .. autoattribute:: abjad.tools.leaftools.Leaf.Leaf.Leaf.prolation
 
-   .. note:: Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
 .. autoattribute:: abjad.tools.leaftools.Leaf.Leaf.Leaf.set
 
-   .. note:: Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
 .. autoattribute:: abjad.tools.leaftools.Leaf.Leaf.Leaf.spanners
 
-   .. note:: Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
 Read/write Properties
 ---------------------
@@ -61,39 +61,39 @@ Special Methods
 
 .. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.__delattr__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.__eq__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.__ge__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.__gt__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.__hash__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.__le__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.__lt__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.__mul__
 
-   .. note:: Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
 .. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.__ne__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.__or__
 
@@ -101,11 +101,11 @@ Special Methods
 
 .. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.__rmul__
 
-   .. note:: Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
 .. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.__setattr__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.leaftools.Leaf.Leaf.Leaf.__str__
 

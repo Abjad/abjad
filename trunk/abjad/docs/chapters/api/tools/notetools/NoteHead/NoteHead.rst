@@ -25,40 +25,40 @@ Special Methods
 
 .. automethod:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead.__delattr__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead.__eq__
 
-   .. note:: Inherited from :py:class:`abctools.AttributeEqualityAbjadObject <abjad.tools.abctools.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject>`
+    Inherited from :py:class:`abctools.AttributeEqualityAbjadObject <abjad.tools.abctools.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject>`
 
 .. automethod:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead.__ge__
 
-   .. note:: Inherited from :py:class:`abctools.SortableAttributeEqualityAbjadObject <abjad.tools.abctools.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject>`
+    Inherited from :py:class:`abctools.SortableAttributeEqualityAbjadObject <abjad.tools.abctools.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject>`
 
 .. automethod:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead.__gt__
 
-   .. note:: Inherited from :py:class:`abctools.SortableAttributeEqualityAbjadObject <abjad.tools.abctools.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject>`
+    Inherited from :py:class:`abctools.SortableAttributeEqualityAbjadObject <abjad.tools.abctools.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject>`
 
 .. automethod:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead.__hash__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead.__le__
 
-   .. note:: Inherited from :py:class:`abctools.SortableAttributeEqualityAbjadObject <abjad.tools.abctools.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject>`
+    Inherited from :py:class:`abctools.SortableAttributeEqualityAbjadObject <abjad.tools.abctools.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject>`
 
 .. automethod:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead.__lt__
 
-   .. note:: Inherited from :py:class:`abctools.SortableAttributeEqualityAbjadObject <abjad.tools.abctools.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject>`
+    Inherited from :py:class:`abctools.SortableAttributeEqualityAbjadObject <abjad.tools.abctools.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject>`
 
 .. automethod:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead.__ne__
 
-   .. note:: Inherited from :py:class:`abctools.AttributeEqualityAbjadObject <abjad.tools.abctools.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject>`
+    Inherited from :py:class:`abctools.AttributeEqualityAbjadObject <abjad.tools.abctools.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject>`
 
 .. automethod:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead.__repr__
 
 .. automethod:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead.__setattr__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead.__str__

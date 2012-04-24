@@ -11,11 +11,11 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree.bounds
 
-   .. note:: Inherited from :py:class:`timeintervaltools.TimeIntervalMixin <abjad.tools.timeintervaltools.TimeIntervalMixin.TimeIntervalMixin.TimeIntervalMixin>`
+    Inherited from :py:class:`timeintervaltools.TimeIntervalMixin <abjad.tools.timeintervaltools.TimeIntervalMixin.TimeIntervalMixin.TimeIntervalMixin>`
 
 .. autoattribute:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree.center
 
-   .. note:: Inherited from :py:class:`timeintervaltools.TimeIntervalMixin <abjad.tools.timeintervaltools.TimeIntervalMixin.TimeIntervalMixin.TimeIntervalMixin>`
+    Inherited from :py:class:`timeintervaltools.TimeIntervalMixin <abjad.tools.timeintervaltools.TimeIntervalMixin.TimeIntervalMixin.TimeIntervalMixin>`
 
 .. autoattribute:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree.duration
 
@@ -31,15 +31,15 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree.signature
 
-   .. note:: Inherited from :py:class:`timeintervaltools.TimeIntervalMixin <abjad.tools.timeintervaltools.TimeIntervalMixin.TimeIntervalMixin.TimeIntervalMixin>`
+    Inherited from :py:class:`timeintervaltools.TimeIntervalMixin <abjad.tools.timeintervaltools.TimeIntervalMixin.TimeIntervalMixin.TimeIntervalMixin>`
 
 .. autoattribute:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree.start
 
-   .. note:: Inherited from :py:class:`timeintervaltools.TimeIntervalMixin <abjad.tools.timeintervaltools.TimeIntervalMixin.TimeIntervalMixin.TimeIntervalMixin>`
+    Inherited from :py:class:`timeintervaltools.TimeIntervalMixin <abjad.tools.timeintervaltools.TimeIntervalMixin.TimeIntervalMixin.TimeIntervalMixin>`
 
 .. autoattribute:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree.stop
 
-   .. note:: Inherited from :py:class:`timeintervaltools.TimeIntervalMixin <abjad.tools.timeintervaltools.TimeIntervalMixin.TimeIntervalMixin.TimeIntervalMixin>`
+    Inherited from :py:class:`timeintervaltools.TimeIntervalMixin <abjad.tools.timeintervaltools.TimeIntervalMixin.TimeIntervalMixin.TimeIntervalMixin>`
 
 Methods
 -------
@@ -70,23 +70,23 @@ Methods
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree.get_overlap_with_interval
 
-   .. note:: Inherited from :py:class:`timeintervaltools.TimeIntervalMixin <abjad.tools.timeintervaltools.TimeIntervalMixin.TimeIntervalMixin.TimeIntervalMixin>`
+    Inherited from :py:class:`timeintervaltools.TimeIntervalMixin <abjad.tools.timeintervaltools.TimeIntervalMixin.TimeIntervalMixin.TimeIntervalMixin>`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree.is_contained_by_interval
 
-   .. note:: Inherited from :py:class:`timeintervaltools.TimeIntervalMixin <abjad.tools.timeintervaltools.TimeIntervalMixin.TimeIntervalMixin.TimeIntervalMixin>`
+    Inherited from :py:class:`timeintervaltools.TimeIntervalMixin <abjad.tools.timeintervaltools.TimeIntervalMixin.TimeIntervalMixin.TimeIntervalMixin>`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree.is_container_of_interval
 
-   .. note:: Inherited from :py:class:`timeintervaltools.TimeIntervalMixin <abjad.tools.timeintervaltools.TimeIntervalMixin.TimeIntervalMixin.TimeIntervalMixin>`
+    Inherited from :py:class:`timeintervaltools.TimeIntervalMixin <abjad.tools.timeintervaltools.TimeIntervalMixin.TimeIntervalMixin.TimeIntervalMixin>`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree.is_overlapped_by_interval
 
-   .. note:: Inherited from :py:class:`timeintervaltools.TimeIntervalMixin <abjad.tools.timeintervaltools.TimeIntervalMixin.TimeIntervalMixin.TimeIntervalMixin>`
+    Inherited from :py:class:`timeintervaltools.TimeIntervalMixin <abjad.tools.timeintervaltools.TimeIntervalMixin.TimeIntervalMixin.TimeIntervalMixin>`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree.is_tangent_to_interval
 
-   .. note:: Inherited from :py:class:`timeintervaltools.TimeIntervalMixin <abjad.tools.timeintervaltools.TimeIntervalMixin.TimeIntervalMixin.TimeIntervalMixin>`
+    Inherited from :py:class:`timeintervaltools.TimeIntervalMixin <abjad.tools.timeintervaltools.TimeIntervalMixin.TimeIntervalMixin.TimeIntervalMixin>`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree.quantize_to_rational
 
@@ -107,13 +107,13 @@ Special Methods
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree.__delattr__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree.__eq__
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree.__ge__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree.__getitem__
 
@@ -121,23 +121,23 @@ Special Methods
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree.__gt__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree.__hash__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree.__iter__
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree.__le__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree.__len__
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree.__lt__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree.__ne__
 
@@ -147,8 +147,8 @@ Special Methods
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree.__setattr__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTree.TimeIntervalTree.TimeIntervalTree.__str__
 
-   .. note:: Inherited from :py:class:`timeintervaltools._RedBlackTree <abjad.tools.timeintervaltools._RedBlackTree._RedBlackTree._RedBlackTree>`
+    Inherited from :py:class:`timeintervaltools._RedBlackTree <abjad.tools.timeintervaltools._RedBlackTree._RedBlackTree._RedBlackTree>`

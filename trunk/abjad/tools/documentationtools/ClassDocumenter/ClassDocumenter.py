@@ -1,6 +1,6 @@
 from abc import ABCMeta
-import inspect
 from abjad.tools.documentationtools.Documenter import Documenter
+import inspect
 
 
 class ClassDocumenter(Documenter):
@@ -124,10 +124,10 @@ class ClassDocumenter(Documenter):
             defining_module = '%s.%s' % (attr.defining_class.__module__, attr.defining_class.__name__)
             if defining_module.startswith('abjad'):
                 parts = defining_module.split('.')
-                result.append('   .. note:: Inherited from :py:class:`%s.%s <%s>`' %
+                result.append('    Inherited from :py:class:`%s.%s <%s>`' %
                     (parts[2], parts[3], defining_module))
             else:
-                result.append('   .. note:: Inherited from `%s`' % defining_module)
+                result.append('    Inherited from `%s`' % defining_module)
             result.append('')
         return result
 

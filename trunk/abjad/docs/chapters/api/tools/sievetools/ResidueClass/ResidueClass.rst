@@ -25,11 +25,11 @@ Special Methods
 
 .. automethod:: abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass.__and__
 
-   .. note:: Inherited from :py:class:`sievetools._BaseResidueClass <abjad.tools.sievetools._BaseResidueClass._BaseResidueClass._BaseResidueClass>`
+    Inherited from :py:class:`sievetools._BaseResidueClass <abjad.tools.sievetools._BaseResidueClass._BaseResidueClass._BaseResidueClass>`
 
 .. automethod:: abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass.__delattr__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass.__eq__
 
@@ -39,7 +39,7 @@ Special Methods
 
 .. automethod:: abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass.__hash__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass.__le__
 
@@ -49,18 +49,18 @@ Special Methods
 
 .. automethod:: abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass.__or__
 
-   .. note:: Inherited from :py:class:`sievetools._BaseResidueClass <abjad.tools.sievetools._BaseResidueClass._BaseResidueClass._BaseResidueClass>`
+    Inherited from :py:class:`sievetools._BaseResidueClass <abjad.tools.sievetools._BaseResidueClass._BaseResidueClass._BaseResidueClass>`
 
 .. automethod:: abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass.__repr__
 
 .. automethod:: abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass.__setattr__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass.__str__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.sievetools.ResidueClass.ResidueClass.ResidueClass.__xor__
 
-   .. note:: Inherited from :py:class:`sievetools._BaseResidueClass <abjad.tools.sievetools._BaseResidueClass._BaseResidueClass._BaseResidueClass>`
+    Inherited from :py:class:`sievetools._BaseResidueClass <abjad.tools.sievetools._BaseResidueClass._BaseResidueClass._BaseResidueClass>`

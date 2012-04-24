@@ -28,29 +28,29 @@ Special Methods
 
 .. automethod:: abjad.tools.tonalitytools.SuspensionIndicator.SuspensionIndicator.SuspensionIndicator.__delattr__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.tonalitytools.SuspensionIndicator.SuspensionIndicator.SuspensionIndicator.__eq__
 
 .. automethod:: abjad.tools.tonalitytools.SuspensionIndicator.SuspensionIndicator.SuspensionIndicator.__ge__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.tonalitytools.SuspensionIndicator.SuspensionIndicator.SuspensionIndicator.__gt__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.tonalitytools.SuspensionIndicator.SuspensionIndicator.SuspensionIndicator.__hash__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.tonalitytools.SuspensionIndicator.SuspensionIndicator.SuspensionIndicator.__le__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.tonalitytools.SuspensionIndicator.SuspensionIndicator.SuspensionIndicator.__lt__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.tonalitytools.SuspensionIndicator.SuspensionIndicator.SuspensionIndicator.__ne__
 
@@ -58,6 +58,6 @@ Special Methods
 
 .. automethod:: abjad.tools.tonalitytools.SuspensionIndicator.SuspensionIndicator.SuspensionIndicator.__setattr__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.tonalitytools.SuspensionIndicator.SuspensionIndicator.SuspensionIndicator.__str__

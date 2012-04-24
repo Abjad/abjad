@@ -25,29 +25,29 @@ Special Methods
 
 .. automethod:: abjad.tools.tonalitytools.InversionIndicator.InversionIndicator.InversionIndicator.__delattr__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.tonalitytools.InversionIndicator.InversionIndicator.InversionIndicator.__eq__
 
 .. automethod:: abjad.tools.tonalitytools.InversionIndicator.InversionIndicator.InversionIndicator.__ge__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.tonalitytools.InversionIndicator.InversionIndicator.InversionIndicator.__gt__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.tonalitytools.InversionIndicator.InversionIndicator.InversionIndicator.__hash__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.tonalitytools.InversionIndicator.InversionIndicator.InversionIndicator.__le__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.tonalitytools.InversionIndicator.InversionIndicator.InversionIndicator.__lt__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.tonalitytools.InversionIndicator.InversionIndicator.InversionIndicator.__ne__
 
@@ -55,8 +55,8 @@ Special Methods
 
 .. automethod:: abjad.tools.tonalitytools.InversionIndicator.InversionIndicator.InversionIndicator.__setattr__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.tonalitytools.InversionIndicator.InversionIndicator.InversionIndicator.__str__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`

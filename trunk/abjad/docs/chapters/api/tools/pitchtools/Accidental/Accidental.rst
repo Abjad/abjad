@@ -28,7 +28,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.Accidental.Accidental.Accidental.__delattr__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.pitchtools.Accidental.Accidental.Accidental.__eq__
 
@@ -38,7 +38,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.Accidental.Accidental.Accidental.__hash__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.pitchtools.Accidental.Accidental.Accidental.__le__
 
@@ -54,7 +54,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.Accidental.Accidental.Accidental.__setattr__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.pitchtools.Accidental.Accidental.Accidental.__str__
 

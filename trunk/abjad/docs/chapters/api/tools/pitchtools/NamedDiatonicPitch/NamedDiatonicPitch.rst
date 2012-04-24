@@ -48,44 +48,44 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.NamedDiatonicPitch.NamedDiatonicPitch.NamedDiatonicPitch.__delattr__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.pitchtools.NamedDiatonicPitch.NamedDiatonicPitch.NamedDiatonicPitch.__eq__
 
-   .. note:: Inherited from :py:class:`abctools.AttributeEqualityAbjadObject <abjad.tools.abctools.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject>`
+    Inherited from :py:class:`abctools.AttributeEqualityAbjadObject <abjad.tools.abctools.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject>`
 
 .. automethod:: abjad.tools.pitchtools.NamedDiatonicPitch.NamedDiatonicPitch.NamedDiatonicPitch.__float__
 
 .. automethod:: abjad.tools.pitchtools.NamedDiatonicPitch.NamedDiatonicPitch.NamedDiatonicPitch.__ge__
 
-   .. note:: Inherited from :py:class:`abctools.SortableAttributeEqualityAbjadObject <abjad.tools.abctools.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject>`
+    Inherited from :py:class:`abctools.SortableAttributeEqualityAbjadObject <abjad.tools.abctools.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject>`
 
 .. automethod:: abjad.tools.pitchtools.NamedDiatonicPitch.NamedDiatonicPitch.NamedDiatonicPitch.__gt__
 
-   .. note:: Inherited from :py:class:`abctools.SortableAttributeEqualityAbjadObject <abjad.tools.abctools.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject>`
+    Inherited from :py:class:`abctools.SortableAttributeEqualityAbjadObject <abjad.tools.abctools.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject>`
 
 .. automethod:: abjad.tools.pitchtools.NamedDiatonicPitch.NamedDiatonicPitch.NamedDiatonicPitch.__hash__
 
-   .. note:: Inherited from :py:class:`pitchtools._Pitch <abjad.tools.pitchtools._Pitch._Pitch._Pitch>`
+    Inherited from :py:class:`pitchtools._Pitch <abjad.tools.pitchtools._Pitch._Pitch._Pitch>`
 
 .. automethod:: abjad.tools.pitchtools.NamedDiatonicPitch.NamedDiatonicPitch.NamedDiatonicPitch.__int__
 
 .. automethod:: abjad.tools.pitchtools.NamedDiatonicPitch.NamedDiatonicPitch.NamedDiatonicPitch.__le__
 
-   .. note:: Inherited from :py:class:`abctools.SortableAttributeEqualityAbjadObject <abjad.tools.abctools.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject>`
+    Inherited from :py:class:`abctools.SortableAttributeEqualityAbjadObject <abjad.tools.abctools.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject>`
 
 .. automethod:: abjad.tools.pitchtools.NamedDiatonicPitch.NamedDiatonicPitch.NamedDiatonicPitch.__lt__
 
-   .. note:: Inherited from :py:class:`abctools.SortableAttributeEqualityAbjadObject <abjad.tools.abctools.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject>`
+    Inherited from :py:class:`abctools.SortableAttributeEqualityAbjadObject <abjad.tools.abctools.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject.SortableAttributeEqualityAbjadObject>`
 
 .. automethod:: abjad.tools.pitchtools.NamedDiatonicPitch.NamedDiatonicPitch.NamedDiatonicPitch.__ne__
 
-   .. note:: Inherited from :py:class:`pitchtools._Pitch <abjad.tools.pitchtools._Pitch._Pitch._Pitch>`
+    Inherited from :py:class:`pitchtools._Pitch <abjad.tools.pitchtools._Pitch._Pitch._Pitch>`
 
 .. automethod:: abjad.tools.pitchtools.NamedDiatonicPitch.NamedDiatonicPitch.NamedDiatonicPitch.__repr__
 
 .. automethod:: abjad.tools.pitchtools.NamedDiatonicPitch.NamedDiatonicPitch.NamedDiatonicPitch.__setattr__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.pitchtools.NamedDiatonicPitch.NamedDiatonicPitch.NamedDiatonicPitch.__str__

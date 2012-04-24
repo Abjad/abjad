@@ -56,11 +56,11 @@ Methods
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSegment.NamedChromaticPitchSegment.NamedChromaticPitchSegment.count
 
-   .. note:: Inherited from `__builtin__.tuple`
+    Inherited from `__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSegment.NamedChromaticPitchSegment.NamedChromaticPitchSegment.index
 
-   .. note:: Inherited from `__builtin__.tuple`
+    Inherited from `__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSegment.NamedChromaticPitchSegment.NamedChromaticPitchSegment.transpose
 
@@ -69,74 +69,74 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSegment.NamedChromaticPitchSegment.NamedChromaticPitchSegment.__add__
 
-   .. note:: Inherited from :py:class:`pitchtools._Segment <abjad.tools.pitchtools._Segment._Segment._Segment>`
+    Inherited from :py:class:`pitchtools._Segment <abjad.tools.pitchtools._Segment._Segment._Segment>`
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSegment.NamedChromaticPitchSegment.NamedChromaticPitchSegment.__contains__
 
-   .. note:: Inherited from `__builtin__.tuple`
+    Inherited from `__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSegment.NamedChromaticPitchSegment.NamedChromaticPitchSegment.__delattr__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSegment.NamedChromaticPitchSegment.NamedChromaticPitchSegment.__eq__
 
-   .. note:: Inherited from `__builtin__.tuple`
+    Inherited from `__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSegment.NamedChromaticPitchSegment.NamedChromaticPitchSegment.__ge__
 
-   .. note:: Inherited from `__builtin__.tuple`
+    Inherited from `__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSegment.NamedChromaticPitchSegment.NamedChromaticPitchSegment.__getitem__
 
-   .. note:: Inherited from `__builtin__.tuple`
+    Inherited from `__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSegment.NamedChromaticPitchSegment.NamedChromaticPitchSegment.__getslice__
 
-   .. note:: Inherited from :py:class:`pitchtools._Segment <abjad.tools.pitchtools._Segment._Segment._Segment>`
+    Inherited from :py:class:`pitchtools._Segment <abjad.tools.pitchtools._Segment._Segment._Segment>`
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSegment.NamedChromaticPitchSegment.NamedChromaticPitchSegment.__gt__
 
-   .. note:: Inherited from `__builtin__.tuple`
+    Inherited from `__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSegment.NamedChromaticPitchSegment.NamedChromaticPitchSegment.__hash__
 
-   .. note:: Inherited from `__builtin__.tuple`
+    Inherited from `__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSegment.NamedChromaticPitchSegment.NamedChromaticPitchSegment.__iter__
 
-   .. note:: Inherited from `__builtin__.tuple`
+    Inherited from `__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSegment.NamedChromaticPitchSegment.NamedChromaticPitchSegment.__le__
 
-   .. note:: Inherited from `__builtin__.tuple`
+    Inherited from `__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSegment.NamedChromaticPitchSegment.NamedChromaticPitchSegment.__len__
 
-   .. note:: Inherited from `__builtin__.tuple`
+    Inherited from `__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSegment.NamedChromaticPitchSegment.NamedChromaticPitchSegment.__lt__
 
-   .. note:: Inherited from `__builtin__.tuple`
+    Inherited from `__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSegment.NamedChromaticPitchSegment.NamedChromaticPitchSegment.__mul__
 
-   .. note:: Inherited from :py:class:`pitchtools._Segment <abjad.tools.pitchtools._Segment._Segment._Segment>`
+    Inherited from :py:class:`pitchtools._Segment <abjad.tools.pitchtools._Segment._Segment._Segment>`
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSegment.NamedChromaticPitchSegment.NamedChromaticPitchSegment.__ne__
 
-   .. note:: Inherited from `__builtin__.tuple`
+    Inherited from `__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSegment.NamedChromaticPitchSegment.NamedChromaticPitchSegment.__repr__
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSegment.NamedChromaticPitchSegment.NamedChromaticPitchSegment.__rmul__
 
-   .. note:: Inherited from :py:class:`pitchtools._Segment <abjad.tools.pitchtools._Segment._Segment._Segment>`
+    Inherited from :py:class:`pitchtools._Segment <abjad.tools.pitchtools._Segment._Segment._Segment>`
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSegment.NamedChromaticPitchSegment.NamedChromaticPitchSegment.__setattr__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchSegment.NamedChromaticPitchSegment.NamedChromaticPitchSegment.__str__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`

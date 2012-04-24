@@ -20,29 +20,29 @@ Special Methods
 
 .. automethod:: abjad.tools.layouttools.SpacingIndication.SpacingIndication.SpacingIndication.__delattr__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.layouttools.SpacingIndication.SpacingIndication.SpacingIndication.__eq__
 
 .. automethod:: abjad.tools.layouttools.SpacingIndication.SpacingIndication.SpacingIndication.__ge__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.layouttools.SpacingIndication.SpacingIndication.SpacingIndication.__gt__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.layouttools.SpacingIndication.SpacingIndication.SpacingIndication.__hash__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.layouttools.SpacingIndication.SpacingIndication.SpacingIndication.__le__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.layouttools.SpacingIndication.SpacingIndication.SpacingIndication.__lt__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.layouttools.SpacingIndication.SpacingIndication.SpacingIndication.__ne__
 
@@ -50,8 +50,8 @@ Special Methods
 
 .. automethod:: abjad.tools.layouttools.SpacingIndication.SpacingIndication.SpacingIndication.__setattr__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.layouttools.SpacingIndication.SpacingIndication.SpacingIndication.__str__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`

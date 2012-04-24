@@ -18,31 +18,31 @@ Special Methods
 
 .. automethod:: abjad.tools.tonalitytools.Mode.Mode.Mode.__delattr__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.tonalitytools.Mode.Mode.Mode.__eq__
 
 .. automethod:: abjad.tools.tonalitytools.Mode.Mode.Mode.__ge__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.tonalitytools.Mode.Mode.Mode.__gt__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.tonalitytools.Mode.Mode.Mode.__hash__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.tonalitytools.Mode.Mode.Mode.__le__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.tonalitytools.Mode.Mode.Mode.__len__
 
 .. automethod:: abjad.tools.tonalitytools.Mode.Mode.Mode.__lt__
 
-   .. note:: Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.tonalitytools.Mode.Mode.Mode.__ne__
 
@@ -50,6 +50,6 @@ Special Methods
 
 .. automethod:: abjad.tools.tonalitytools.Mode.Mode.Mode.__setattr__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.tonalitytools.Mode.Mode.Mode.__str__

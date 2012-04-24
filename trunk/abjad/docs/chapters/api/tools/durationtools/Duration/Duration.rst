@@ -11,30 +11,30 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.durationtools.Duration.Duration.Duration.denominator
 
-   .. note:: Inherited from `fractions.Fraction`
+    Inherited from `fractions.Fraction`
 
 .. autoattribute:: abjad.tools.durationtools.Duration.Duration.Duration.imag
 
-   .. note:: Inherited from `numbers.Real`
+    Inherited from `numbers.Real`
 
 .. autoattribute:: abjad.tools.durationtools.Duration.Duration.Duration.numerator
 
-   .. note:: Inherited from `fractions.Fraction`
+    Inherited from `fractions.Fraction`
 
 .. autoattribute:: abjad.tools.durationtools.Duration.Duration.Duration.real
 
-   .. note:: Inherited from `numbers.Real`
+    Inherited from `numbers.Real`
 
 Methods
 -------
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.conjugate
 
-   .. note:: Inherited from `numbers.Real`
+    Inherited from `numbers.Real`
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.limit_denominator
 
-   .. note:: Inherited from `fractions.Fraction`
+    Inherited from `fractions.Fraction`
 
 Special Methods
 ---------------
@@ -45,11 +45,11 @@ Special Methods
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__complex__
 
-   .. note:: Inherited from `numbers.Real`
+    Inherited from `numbers.Real`
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__delattr__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__div__
 
@@ -59,11 +59,11 @@ Special Methods
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__float__
 
-   .. note:: Inherited from `numbers.Rational`
+    Inherited from `numbers.Rational`
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__floordiv__
 
-   .. note:: Inherited from `fractions.Fraction`
+    Inherited from `fractions.Fraction`
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__ge__
 
@@ -71,7 +71,7 @@ Special Methods
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__hash__
 
-   .. note:: Inherited from `fractions.Fraction`
+    Inherited from `fractions.Fraction`
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__le__
 
@@ -87,7 +87,7 @@ Special Methods
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__nonzero__
 
-   .. note:: Inherited from `fractions.Fraction`
+    Inherited from `fractions.Fraction`
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__pos__
 
@@ -103,7 +103,7 @@ Special Methods
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__rfloordiv__
 
-   .. note:: Inherited from `fractions.Fraction`
+    Inherited from `fractions.Fraction`
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__rmod__
 
@@ -117,11 +117,11 @@ Special Methods
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__setattr__
 
-   .. note:: Inherited from `__builtin__.object`
+    Inherited from `__builtin__.object`
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__str__
 
-   .. note:: Inherited from `fractions.Fraction`
+    Inherited from `fractions.Fraction`
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__sub__
 
@@ -129,4 +129,4 @@ Special Methods
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__trunc__
 
-   .. note:: Inherited from `fractions.Fraction`
+    Inherited from `fractions.Fraction`
