@@ -1,4 +1,4 @@
-from fractions import Fraction
+from abjad.tools import durationtools
 from abjad.tools.schemetools.Scheme import Scheme
 
 
@@ -13,19 +13,21 @@ class SchemeMoment(Scheme):
     Scheme moments are immutable.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
     __slots__ = ()
 
+    ### INITIALIZER ###
+
     def __init__(self, *args, **kwargs):
-        if len(args) == 1 and isinstance(args[0], (Fraction, int, long)):
-            args = Fraction(args[0])
-        elif len(args) == 1 and isinstance(args[0], tuple):
-            args = Fraction(*args[0])
+        if len(args) == 1 and durationtools.is_duration_token(args[0]):
+            args = durationtools.Duration(args[0])
         elif len(args) == 1 and isinstance(args[0], type(self)):
             args = args[0].duration
         elif len(args) == 2 and isinstance(args[0], int) and isinstance(args[1], int):
-            args = Fraction(*args)
+            args = durationtools.Duration(args)
         else:
-            raise TypeError('can not intialize scheme moment from "%s".' % str(args))
+            raise TypeError('can not intialize scheme moment from "{}".'.format(args))
         Scheme.__init__(self, args, **kwargs)
 
     ### SPECIAL METHODS ###
@@ -67,16 +69,17 @@ class SchemeMoment(Scheme):
         return not self == arg
 
     def __repr__(self):
-        return '%s(%s, %s)' % (type(self).__name__, self._value.numerator, self._value.denominator)
+        return '{}(({}, {}))'.format(
+            type(self).__name__, self._value.numerator, self._value.denominator)
 
-    ### PRIVATE PROPERTIES ###
+    ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
     def _formatted_value(self):
         numerator, denominator = self._value.numerator, self._value.denominator
         return '(ly:make-moment %s %s)' % (numerator, denominator)
 
-    ### PUBLIC PROPERTIES ###
+    ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def duration(self):
@@ -84,7 +87,7 @@ class SchemeMoment(Scheme):
 
             abjad> scheme_moment = schemetools.SchemeMoment(1, 68)
             abjad> scheme_moment.duration
-            Fraction(1, 68)
+            Duration(1, 68)
 
         Return duration.
         '''
