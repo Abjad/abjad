@@ -1109,12 +1109,8 @@ Abjad composition packages
    tools/tietools/apply_tie_spanner_to_leaf_pair
    tools/tietools/are_components_in_same_tie_spanner
    tools/tietools/get_leaves_in_tie_chain
-   tools/tietools/get_preprolated_tie_chain_duration
-   tools/tietools/get_prolated_tie_chain_duration
    tools/tietools/get_tie_chain
-   tools/tietools/get_tie_chain_duration_in_seconds
    tools/tietools/get_tie_chains_in_expr
-   tools/tietools/get_written_tie_chain_duration
    tools/tietools/group_leaves_in_tie_chain_by_immediate_parents
    tools/tietools/is_component_with_tie_spanner_attached
    tools/tietools/is_tie_chain

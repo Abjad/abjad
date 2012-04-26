@@ -22,6 +22,14 @@ class TieChain(ScoreSelection):
     ### READ-ONLY PROPERTIES ###
 
     @property
+    def duration_in_seconds(self):
+        '''Read-only duration in seconds of components in tie chain.
+
+        Return duration.
+        '''
+        return sum([x.duration_in_seconds for x in self])
+
+    @property
     def head(self):
         '''Read-only reference to element ``0`` in tie chain.
         '''
@@ -37,7 +45,19 @@ class TieChain(ScoreSelection):
         return len(self) <= 1
 
     @property
+    def preprolated_duration(self):
+        '''Sum of preprolated durations of all components in tie chain.
+        '''
+        return sum([x.preprolated_duration for x in self])
+
+    @property
     def prolated_duration(self):
         '''Sum of prolated durations of all components in tie chain.
         '''
         return sum([x.prolated_duration for x in self])
+
+    @property
+    def written_duration(self):
+        '''Sum of written duration of all components in tie chain.
+        '''
+        return sum([x.written_duration for x in self])

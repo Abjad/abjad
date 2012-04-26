@@ -9,6 +9,8 @@ tietools.TieChain
 Read-only Properties
 --------------------
 
+.. autoattribute:: abjad.tools.tietools.TieChain.TieChain.TieChain.duration_in_seconds
+
 .. autoattribute:: abjad.tools.tietools.TieChain.TieChain.TieChain.head
 
 .. autoattribute:: abjad.tools.tietools.TieChain.TieChain.TieChain.is_trivial
@@ -17,7 +19,11 @@ Read-only Properties
 
     Inherited from :py:class:`abctools.ScoreSelection <abjad.tools.abctools.ScoreSelection.ScoreSelection.ScoreSelection>`
 
+.. autoattribute:: abjad.tools.tietools.TieChain.TieChain.TieChain.preprolated_duration
+
 .. autoattribute:: abjad.tools.tietools.TieChain.TieChain.TieChain.prolated_duration
+
+.. autoattribute:: abjad.tools.tietools.TieChain.TieChain.TieChain.written_duration
 
 Special Methods
 ---------------

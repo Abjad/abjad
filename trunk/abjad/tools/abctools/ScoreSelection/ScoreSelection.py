@@ -20,7 +20,6 @@ class ScoreSelection(AbjadObject):
 
     @abstractmethod
     def __init__(self, music):
-        music = music or ()
         if music is None:
             music = ()
         elif isinstance(music, (tuple, list)):
