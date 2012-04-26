@@ -3,16 +3,33 @@ from abjad.tools.tietools.TieSpanner import TieSpanner
 
 
 def get_nontrivial_tie_chains_masked_by_components(components):
-    '''Get tie chains in expr.
+    r'''Get nontrivial tie chains masked by `components`::
 
-    This function returns all tie chains in components. 
+        abjad> staff = Staff("c'8 ~ c'4 d'8 ~ d'4 e'4.")
 
-    A tie chain may not encompass all the leaves spanned by its corresponding tie spanner,
-    but only those found in the given list.
+    ::
 
-    That is, the function returns the intersection between all the leaves spanned 
-    by all tie spanners touching the components given and the leaves 
-    found in the given components list.
+        abjad> f(staff)
+        \new Staff {
+            c'8 ~
+            c'4
+            d'8 ~
+            d'4
+            e'4.
+        }
+
+    Return only nontrivial tie chains::
+
+        abjad> tietools.get_nontrivial_tie_chains_masked_by_components(staff.leaves)
+        [TieChain((Note("c'8"), Note("c'4"))), TieChain((Note("d'8"), Note("d'4")))]
+
+    Return 'masked' tie chains when only some notes of a tie chain are passed in::
+
+        abjad> tietools.get_nontrivial_tie_chains_masked_by_components(staff.leaves[1:2])
+        [TieChain((Note("c'4"),))]
+
+
+    Return list of zero or more (possibly masked) tie chains.
 
     .. versionchanged:: 2.9
         renamed ``tietools.get_tie_chains_in_expr()`` to
