@@ -51,8 +51,8 @@ def fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(tie_chain):
     from abjad.tools.leaftools.fuse_leaves_big_endian import fuse_leaves_big_endian
 
     # check input
-    if not tietools.is_tie_chain(tie_chain):
-        raise TypeError('must be tie chain.')
+    if not isinstance(tie_chain, tietools.TieChain):
+        raise TypeError('must be tie chain: {!r}.'.format(tie_chain))
 
     # init result
     result = []

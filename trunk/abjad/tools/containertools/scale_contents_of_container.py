@@ -1,4 +1,3 @@
-from abjad.tools.leaftools.Leaf import Leaf
 from abjad.tools import tietools
 
 
@@ -98,15 +97,15 @@ def scale_contents_of_container(container, multiplier):
         renamed ``containertools.contents_scale()`` to
         ``containertools.scale_contents_of_container()``.
     '''
+    from abjad.tools import measuretools
     from abjad.tools import tuplettools
-    from abjad.tools.measuretools.Measure import Measure
 
     for expr in tietools.iterate_topmost_tie_chains_and_components_forward_in_expr(container[:]):
-        if tietools.is_tie_chain(expr):
+        if isinstance(expr, tietools.TieChain):
             tietools.add_or_remove_tie_chain_notes_to_achieve_scaled_written_duration(expr, multiplier)
         elif isinstance(expr, tuplettools.FixedDurationTuplet):
             tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(expr, multiplier)
-        elif isinstance(expr, Measure):
+        elif isinstance(expr, measuretools.Measure):
             # TODO: Move import to higher level of scope? #
             from abjad.tools import measuretools
             measuretools.scale_contents_of_measures_in_expr(expr, multiplier)

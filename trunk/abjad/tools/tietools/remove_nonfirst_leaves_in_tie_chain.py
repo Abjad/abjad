@@ -1,8 +1,8 @@
 from abjad.tools import componenttools
 from abjad.tools import spannertools
+from abjad.tools.tietools.TieChain import TieChain
 from abjad.tools.tietools.TieSpanner import TieSpanner
 from abjad.tools.tietools.get_tie_chain import get_tie_chain
-from abjad.tools.tietools.is_tie_chain import is_tie_chain
 
 
 def remove_nonfirst_leaves_in_tie_chain(tie_chain):
@@ -18,7 +18,7 @@ def remove_nonfirst_leaves_in_tie_chain(tie_chain):
         ``tietools.remove_nonfirst_leaves_in_tie_chain()``.
     '''
 
-    assert is_tie_chain(tie_chain)
+    assert isinstance(tie_chain, TieChain)
 
     for leaf in tie_chain[1:]:
         componenttools.remove_component_subtree_from_score_and_spanners([leaf])

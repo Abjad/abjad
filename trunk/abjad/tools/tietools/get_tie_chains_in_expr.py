@@ -1,5 +1,6 @@
 from abjad.tools import componenttools
 from abjad.tools import spannertools
+from abjad.tools.tietools.TieChain import TieChain
 from abjad.tools.tietools.TieSpanner import TieSpanner
 
 
@@ -22,22 +23,18 @@ def get_tie_chains_in_expr(components):
     tie_spanners = []
     for component in components:
         spanners = spannertools.get_spanners_attached_to_component(component, TieSpanner)
-        #if component.tie.spanned:
         if spanners:
-            #spanner = component.tie.spanner
             spanner = spanners.pop()
             if not spanner in tie_spanners:
-                #tie_spanners.append(component.tie.spanner)
                 tie_spanners.append(spanner)
 
-    # get leaves to fuse
+    # initialize tie chains
     result = []
-    #leaves_in_components = list(leaftools.iterate_leaves_forward_in_expr(components))
     leaves_in_components = set(leaftools.iterate_leaves_forward_in_expr(components))
     for spanner in tie_spanners:
         leaves_intersecting = []
         for leaf in spanner.leaves:
             if leaf in leaves_in_components:
                 leaves_intersecting.append(leaf)
-        result.append(tuple(leaves_intersecting))
+        result.append(TieChain(tuple(leaves_intersecting)))
     return result

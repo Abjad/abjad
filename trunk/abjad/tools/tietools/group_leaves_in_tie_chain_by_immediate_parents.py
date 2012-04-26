@@ -1,4 +1,4 @@
-from abjad.tools.tietools.is_tie_chain import is_tie_chain
+from abjad.tools.tietools.TieChain import TieChain
 import itertools
 
 
@@ -36,7 +36,7 @@ def group_leaves_in_tie_chain_by_immediate_parents(tie_chain):
     '''
 
     # check input
-    if not is_tie_chain(tie_chain):
+    if not isinstance(tie_chain, TieChain):
         raise TypeError('must be tie chain.')
 
     # create partition with itertools

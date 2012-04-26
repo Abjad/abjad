@@ -3,7 +3,7 @@ from abjad.tools.mathtools import greatest_power_of_two_less_equal
 from abjad.tools.sequencetools.truncate_runs_in_sequence import truncate_runs_in_sequence
 
 
-# TODO: Maybe move get_likely_multiplier_of_components() from durationtools to measuretools? #
+# TODO: Maybe move get_likely_multiplier_of_components() from durationtools to measuretools?
 
 def get_likely_multiplier_of_components(components):
     r'''.. versionadded:: 2.0
@@ -56,7 +56,7 @@ def get_likely_multiplier_of_components(components):
 
     chain_duration_numerators = []
     for expr in tietools.iterate_topmost_tie_chains_and_components_forward_in_expr(components):
-        if tietools.is_tie_chain(expr):
+        if isinstance(expr, tietools.TieChain):
             chain_duration = expr.preprolated_duration
             chain_duration_numerators.append(chain_duration.numerator)
 

@@ -1,5 +1,5 @@
 from abjad.tools import componenttools
-from abjad.tools.tietools.is_tie_chain import is_tie_chain
+from abjad.tools.tietools.TieChain import TieChain
 
 
 def is_tie_chain_with_all_leaves_in_same_parent(expr):
@@ -37,4 +37,4 @@ def is_tie_chain_with_all_leaves_in_same_parent(expr):
         ``tietools.is_tie_chain_with_all_leaves_in_same_parent()``.
     '''
 
-    return is_tie_chain(expr) and componenttools.all_are_components_in_same_parent(list(expr))
+    return isinstance(expr, TieChain) and componenttools.all_are_components_in_same_parent(list(expr))
