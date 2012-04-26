@@ -22,7 +22,7 @@ from abjad.tools.sequencetools import yield_outer_product_of_sequences
 from abjad.tools.spannertools import MultipartBeamSpanner
 from abjad.tools.tietools import TieSpanner
 from abjad.tools.tietools import get_tie_chain
-from abjad.tools.tietools import get_tie_chains_in_expr
+from abjad.tools.tietools import iterate_tie_chains_forward_in_expr
 from abjad.tools.tietools import remove_tie_spanners_from_components_in_expr
 
 
@@ -277,8 +277,8 @@ class QGridQuantizer(_Quantizer):
             parent[parent.index(trailing[0])] = Rest(trailing[0].written_duration)
 
         # fuse tie chains
-        for tie_chain in get_tie_chains_in_expr(container.leaves):
-            if 1 < len(tie_chain):
+        for tie_chain in tietools.iterate_tie_chains_forward_in_expr(container):
+            if not tie_chain.is_trivial:
                 fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(tie_chain)
 
         # fuse rests

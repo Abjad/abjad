@@ -7,6 +7,9 @@ def fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(
         abjad> staff = Staff(notetools.make_repeated_notes(8))
         abjad> tietools.TieSpanner(staff.leaves)
         TieSpanner(c'8, c'8, c'8, c'8, c'8, c'8, c'8, c'8)
+
+    ::
+
         abjad> f(staff)
         \new Staff {
             c'8 ~
@@ -49,8 +52,8 @@ def fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(
         components, prolated_durations)
 
     for group in groups:
-        # get tie_chains intersecting this group
+        # get tie chains intersecting this group
         tie_chains = tietools.get_tie_chains_in_expr(group)
 
-        for chain in tie_chains:
-            leaftools.fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(chain)
+        for tie_chain in tie_chains:
+            leaftools.fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(tie_chain)
