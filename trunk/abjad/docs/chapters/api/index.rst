@@ -1096,6 +1096,7 @@ Abjad composition packages
 .. toctree::
    :maxdepth: 1
 
+   tools/tietools/TieChain/TieChain
    tools/tietools/TieSpanner/TieSpanner
 
 .. rubric:: functions
