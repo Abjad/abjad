@@ -15,6 +15,8 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.tietools.TieChain.TieChain.TieChain.is_trivial
 
+.. autoattribute:: abjad.tools.tietools.TieChain.TieChain.TieChain.leaves
+
 .. autoattribute:: abjad.tools.tietools.TieChain.TieChain.TieChain.music
 
     Inherited from :py:class:`abctools.ScoreSelection <abjad.tools.abctools.ScoreSelection.ScoreSelection.ScoreSelection>`

@@ -44,9 +44,18 @@ class TieChain(ScoreSelection):
         '''
         return len(self) <= 1
 
-#    @property
-#    def leaves(self):
-#        pass
+    @property
+    def leaves(self):
+        '''Read-only tuple of leaves in tie spanner.
+        '''
+        from abjad.tools import spannertools
+        from abjad.tools import tietools
+        try:
+            tie_spanner = spannertools.get_the_only_spanner_attached_to_component(self[0], tietools.TieSpanner)
+            return tie_spanner.leaves
+        except MissingSpannerError:
+            assert self.is_trivial
+            return (self[0], )
 
     @property
     def preprolated_duration(self):
