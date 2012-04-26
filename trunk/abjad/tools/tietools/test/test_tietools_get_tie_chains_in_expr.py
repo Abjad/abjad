@@ -2,7 +2,7 @@ from abjad import *
 
 
 def test_tietools_get_tie_chains_in_expr_01():
-    '''Returns an empty list on a list of untied leaves.
+    '''Return empty list from list of untied leaves.
     '''
 
     t = notetools.make_repeated_notes(4)
@@ -12,7 +12,7 @@ def test_tietools_get_tie_chains_in_expr_01():
 
 
 def test_tietools_get_tie_chains_in_expr_02():
-    '''Returns an empty list on a list of untied containers.
+    '''Return empty list from list of untied containers.
     '''
 
     t = Voice(notetools.make_repeated_notes(4))
@@ -48,7 +48,7 @@ def test_tietools_get_tie_chains_in_expr_05():
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    tietools.TieSpanner(t[0:2])
+    tietools.TieSpanner(t[:2])
     tietools.TieSpanner(t[2:])
     chains = tietools.get_tie_chains_in_expr(t.leaves)
 

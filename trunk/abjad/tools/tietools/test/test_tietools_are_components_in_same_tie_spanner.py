@@ -2,10 +2,10 @@ from abjad import *
 
 
 def test_tietools_are_components_in_same_tie_spanner_01():
-    '''True if all components in list share same tie spanner.'''
+    '''True if all components share same tie spanner.
+    '''
 
-    t = Voice(notetools.make_repeated_notes(4))
-    tietools.TieSpanner(t[:2])
+    t = Voice("c'8 ~ c' c' c'")
 
     r'''
     \new Voice {

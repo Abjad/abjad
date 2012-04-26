@@ -1,7 +1,3 @@
-from abjad.tools import componenttools
-from abjad.tools import durationtools
-from abjad.tools import spannertools
-from abjad.tools.spannertools._withdraw_components_from_attached_spanners import _withdraw_components_from_attached_spanners
 from abjad.tools.tietools.TieChain import TieChain
 from abjad.tools.tietools.TieSpanner import TieSpanner
 from abjad.tools.tietools.get_tie_chain import get_tie_chain
@@ -10,19 +6,45 @@ from abjad.tools.tietools.remove_nonfirst_leaves_in_tie_chain import remove_nonf
 
 # TODO: Inspect tietools.add_or_remove_tie_chain_notes_to_achieve_written_duration() carefully.
 #       Determine whether behavior is correct with LilyPond multipliers.
-
 def add_or_remove_tie_chain_notes_to_achieve_written_duration(tie_chain, new_written_duration):
-    '''Change the written duration of tie chain,
-    adding and subtracting notes as necessary.
+    r'''Add or remove `tie_chain` notes to achieve `written_duration`::
 
-    Return newly modified tie chain.
+        abjad> staff = Staff("c'8 [ ]")
+
+    ::
+
+        abjad> f(staff)
+        \new Staff {
+            c'8 [ ]
+        }
+
+    ::
+
+        abjad> tie_chain = tietools.get_tie_chain(staff[0])
+        abjad> tietools.add_or_remove_tie_chain_notes_to_achieve_written_duration(tie_chain, Duration(5, 32))
+        TieChain((Note("c'8"), Note("c'32")))
+
+    ::
+
+        abjad> f(staff)
+        \new Staff {
+            c'8 [ ~
+            c'32 ]
+        }
+
+    Return `tie_chain`.
 
     .. versionchanged:: 2.0
         renamed ``tietools.duration_change()`` to
         ``tietools.add_or_remove_tie_chain_notes_to_achieve_written_duration()``.
     '''
+    from abjad.tools import componenttools
+    from abjad.tools import durationtools
     from abjad.tools import notetools
+    from abjad.tools import spannertools
     from abjad.tools import tuplettools
+    from abjad.tools.spannertools._withdraw_components_from_attached_spanners import \
+    _withdraw_components_from_attached_spanners
 
     assert isinstance(tie_chain, TieChain)
     new_written_duration = durationtools.Duration(new_written_duration)

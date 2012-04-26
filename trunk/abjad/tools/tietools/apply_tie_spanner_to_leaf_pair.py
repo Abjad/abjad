@@ -1,4 +1,4 @@
-from abjad.tools.leaftools.Leaf import Leaf
+from abjad.tools import leaftools
 from abjad.tools import spannertools
 from abjad.tools.tietools.TieSpanner import TieSpanner
 from abjad.tools.tietools.are_components_in_same_tie_spanner import are_components_in_same_tie_spanner
@@ -7,9 +7,10 @@ from abjad.tools.tietools.are_components_in_same_tie_spanner import are_componen
 def apply_tie_spanner_to_leaf_pair(left, right):
     r'''Apply tie spanner to `left` leaf and `right` leaf::
 
-        abjad> staff = Staff(notetools.make_repeated_notes(4))
-        abjad> tietools.TieSpanner(staff[:2])
-        TieSpanner(c'8, c'8)
+        abjad> staff = Staff("c'8 ~ c' c' c'")
+
+    ::
+
         abjad> f(staff)
         \new Staff {
             c'8 ~
@@ -41,26 +42,27 @@ def apply_tie_spanner_to_leaf_pair(left, right):
         ``tietools.apply_tie_spanner_to_leaf_pair()``.
     '''
 
-    assert isinstance(left, Leaf)
-    assert isinstance(right, Leaf)
+    # check input
+    assert isinstance(left, leaftools.Leaf)
+    assert isinstance(right, leaftools.Leaf)
 
+    # do nothing if leaves are already tied
     if are_components_in_same_tie_spanner([left, right]):
         return
 
+    # get any left tie spanner
     try:
-        #left_tie_spanner = left.tie.spanner
-        left_tie_spanner = spannertools.get_the_only_spanner_attached_to_component(
-            left, TieSpanner)
+        left_tie_spanner = spannertools.get_the_only_spanner_attached_to_component(left, TieSpanner)
     except MissingSpannerError:
         left_tie_spanner = None
-
+    
+    # get any right tie spanner
     try:
-        #right_tie_spanner = right.tie.spanner
-        right_tie_spanner = spannertools.get_the_only_spanner_attached_to_component(
-            right, TieSpanner)
+        right_tie_spanner = spannertools.get_the_only_spanner_attached_to_component(right, TieSpanner)
     except MissingSpannerError:
         right_tie_spanner = None
 
+    # fuse or apply tie spanner as appropriate
     if left_tie_spanner is not None and right_tie_spanner is not None:
         left_tie_spanner.fuse(right_tie_spanner)
     elif left_tie_spanner is not None and right_tie_spanner is None:
