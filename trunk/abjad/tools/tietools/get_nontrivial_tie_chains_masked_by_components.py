@@ -2,7 +2,7 @@ from abjad.tools.tietools.TieChain import TieChain
 from abjad.tools.tietools.TieSpanner import TieSpanner
 
 
-def get_tie_chains_in_expr(components):
+def get_nontrivial_tie_chains_masked_by_components(components):
     '''Get tie chains in expr.
 
     This function returns all tie chains in components. 
@@ -14,9 +14,9 @@ def get_tie_chains_in_expr(components):
     by all tie spanners touching the components given and the leaves 
     found in the given components list.
 
-    .. versionchanged:: 2.0
-        renamed ``tietools.get_tie_chains()`` to
-        ``tietools.get_tie_chains_in_expr()``.
+    .. versionchanged:: 2.9
+        renamed ``tietools.get_tie_chains_in_expr()`` to
+        ``tietools.get_nontrivial_tie_chains_masked_by_components()``.
     '''
     from abjad.tools import componenttools
     from abjad.tools import leaftools
