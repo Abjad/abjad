@@ -7,6 +7,8 @@ class ScoreSelection(AbjadObject):
     '''.. versionadded:: 2.9
 
     Abstract base class from which selection classes inherit.
+
+    Score selections are immutable and never change after instantiation.
     '''
 
     ### CLASS ATTRIBUTES ###
@@ -17,5 +19,38 @@ class ScoreSelection(AbjadObject):
     ### INITIALIZER ###
 
     @abstractmethod
-    def __init__(self):
-        pass
+    def __init__(self, music):
+        music = music or ()
+        if music is None:
+            music = ()
+        elif isinstance(music, (tuple, list)):
+            music = tuple(music)
+        else:
+            music = (music, )
+        self._music = tuple(music)
+
+    ### SPECIAL METHODS ###
+
+    def __contains__(self, expr):
+        return expr in self.music
+
+    def __eq__(self, expr):
+        if isinstance(expr, type(self)):
+            return self.music == expr.music
+
+    def __getitem__(self, expr):
+        return self.music.__getitem__(expr)
+
+    def __len__(self):
+        return len(self.music)
+
+    def __ne__(self, expr):
+        return not self == expr
+    
+    ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def music(self):
+        '''Read-only tuple of components in selection.
+        '''
+        return self._music

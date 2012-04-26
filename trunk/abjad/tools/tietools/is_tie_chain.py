@@ -1,5 +1,6 @@
 from abjad.tools.leaftools.Leaf import Leaf
 from abjad.tools import spannertools
+from abjad.tools.tietools.TieChain import TieChain
 from abjad.tools.tietools.TieSpanner import TieSpanner
 
 
@@ -7,7 +8,9 @@ def is_tie_chain(expr):
     '''True when expr is a tie chain, otherwise False.
     '''
 
-    if isinstance(expr, tuple):
+    if isinstance(expr, TieChain):
+        return True
+    elif isinstance(expr, tuple):
         length = len(expr)
         if length == 0:
             return True

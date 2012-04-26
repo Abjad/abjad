@@ -19,6 +19,10 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment.VerticalMoment.measures
 
+.. autoattribute:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment.VerticalMoment.music
+
+    Inherited from :py:class:`abctools.ScoreSelection <abjad.tools.abctools.ScoreSelection.ScoreSelection.ScoreSelection>`
+
 .. autoattribute:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment.VerticalMoment.next_vertical_moment
 
 .. autoattribute:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment.VerticalMoment.notes
@@ -44,6 +48,10 @@ Read-only Properties
 Special Methods
 ---------------
 
+.. automethod:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment.VerticalMoment.__contains__
+
+    Inherited from :py:class:`abctools.ScoreSelection <abjad.tools.abctools.ScoreSelection.ScoreSelection.ScoreSelection>`
+
 .. automethod:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment.VerticalMoment.__delattr__
 
     Inherited from `__builtin__.object`
@@ -53,6 +61,10 @@ Special Methods
 .. automethod:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment.VerticalMoment.__ge__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment.VerticalMoment.__getitem__
+
+    Inherited from :py:class:`abctools.ScoreSelection <abjad.tools.abctools.ScoreSelection.ScoreSelection.ScoreSelection>`
 
 .. automethod:: abjad.tools.verticalitytools.VerticalMoment.VerticalMoment.VerticalMoment.__gt__
 

@@ -1,4 +1,5 @@
 from abjad.tools import spannertools
+from abjad.tools.tietools.TieChain import TieChain
 from abjad.tools.tietools.TieSpanner import TieSpanner
 
 
@@ -12,8 +13,10 @@ def get_tie_chain(component):
     count = len(tie_spanners)
 
     if count == 0:
-        return (component, )
+        #return (component, )
+        return TieChain(music=component)
     elif count == 1:
-        return tuple(tie_spanners.pop().leaves)
+        #return tuple(tie_spanners.pop().leaves)
+        return TieChain(music=tie_spanners.pop().leaves)
     else:
         raise ExtraSpannerError
