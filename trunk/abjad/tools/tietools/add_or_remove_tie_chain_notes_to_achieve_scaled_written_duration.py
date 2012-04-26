@@ -1,5 +1,4 @@
 from abjad.tools.tietools.add_or_remove_tie_chain_notes_to_achieve_written_duration import add_or_remove_tie_chain_notes_to_achieve_written_duration
-from abjad.tools.tietools.is_tie_chain import is_tie_chain
 from abjad.tools import durationtools
 
 

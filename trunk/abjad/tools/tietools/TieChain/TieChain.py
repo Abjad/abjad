@@ -44,6 +44,10 @@ class TieChain(ScoreSelection):
         '''
         return len(self) <= 1
 
+#    @property
+#    def leaves(self):
+#        pass
+
     @property
     def preprolated_duration(self):
         '''Sum of preprolated durations of all components in tie chain.
