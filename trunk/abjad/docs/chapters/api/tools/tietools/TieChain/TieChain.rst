@@ -9,6 +9,8 @@ tietools.TieChain
 Read-only Properties
 --------------------
 
+.. autoattribute:: abjad.tools.tietools.TieChain.TieChain.TieChain.all_leaves_are_in_same_parent
+
 .. autoattribute:: abjad.tools.tietools.TieChain.TieChain.TieChain.duration_in_seconds
 
 .. autoattribute:: abjad.tools.tietools.TieChain.TieChain.TieChain.head
@@ -16,6 +18,8 @@ Read-only Properties
 .. autoattribute:: abjad.tools.tietools.TieChain.TieChain.TieChain.is_trivial
 
 .. autoattribute:: abjad.tools.tietools.TieChain.TieChain.TieChain.leaves
+
+.. autoattribute:: abjad.tools.tietools.TieChain.TieChain.TieChain.leaves_grouped_by_immediate_parents
 
 .. autoattribute:: abjad.tools.tietools.TieChain.TieChain.TieChain.music
 

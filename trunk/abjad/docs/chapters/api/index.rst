@@ -1110,9 +1110,7 @@ Abjad composition packages
    tools/tietools/are_components_in_same_tie_spanner
    tools/tietools/get_tie_chain
    tools/tietools/get_tie_chains_in_expr
-   tools/tietools/group_leaves_in_tie_chain_by_immediate_parents
    tools/tietools/is_component_with_tie_spanner_attached
-   tools/tietools/is_tie_chain_with_all_leaves_in_same_parent
    tools/tietools/iterate_tie_chains_backward_in_expr
    tools/tietools/iterate_tie_chains_forward_in_expr
    tools/tietools/iterate_topmost_tie_chains_and_components_forward_in_expr

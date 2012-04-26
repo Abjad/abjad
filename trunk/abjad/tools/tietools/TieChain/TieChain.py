@@ -1,4 +1,5 @@
 from abjad.tools.abctools.ScoreSelection import ScoreSelection
+import itertools
 
 
 class TieChain(ScoreSelection):
@@ -19,7 +20,16 @@ class TieChain(ScoreSelection):
     def __init__(self, music):
         ScoreSelection.__init__(self, music)
 
-    ### READ-ONLY PROPERTIES ###
+    ### PUBLIC READ-ONLY PROPERTIES ###
+
+    @property
+    def all_leaves_are_in_same_parent(self):
+        '''True when all leaves in tie chain are in same parent.
+
+        Return boolean.
+        '''
+        from abjad.tools import componenttools
+        return componenttools.all_are_components_in_same_parent(self[:])
 
     @property
     def duration_in_seconds(self):
@@ -56,6 +66,18 @@ class TieChain(ScoreSelection):
         except MissingSpannerError:
             assert self.is_trivial
             return (self[0], )
+
+    @property
+    def leaves_grouped_by_immediate_parents(self):
+        '''Read-only list of leaves in tie chain grouped by immediate parents of leaves.
+
+        Return list of lists.
+        '''
+        result = []
+        pairs_generator = itertools.groupby(self, lambda x: id(x.parent))
+        for key, values_generator in pairs_generator:
+            result.append(list(values_generator))
+        return result
 
     @property
     def preprolated_duration(self):
