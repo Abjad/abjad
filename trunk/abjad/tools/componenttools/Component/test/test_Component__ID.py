@@ -13,4 +13,4 @@ def test_Component__ID_02():
 
     t = Staff("c'8 d'8 e'8 f'8")
     t.name = 'foo'
-    assert t._ID == 'Staff-foo'
+    assert t._ID == "Staff-'foo'"

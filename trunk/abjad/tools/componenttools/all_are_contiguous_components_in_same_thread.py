@@ -1,5 +1,5 @@
 from abjad.tools.componenttools.Component import Component
-from abjad.tools import threadtools
+from abjad.tools.componenttools.component_to_containment_signature import component_to_containment_signature
 from abjad.tools.componenttools.is_orphan_component import is_orphan_component
 import types
 
@@ -45,14 +45,14 @@ def all_are_contiguous_components_in_same_thread(expr, klasses=None, allow_orpha
     same_thread = True
     strictly_contiguous = True
 
-    first_signature = threadtools.component_to_thread_signature(first)
+    first_signature = component_to_containment_signature(first)
     prev = first
     for cur in expr[1:]:
         if not isinstance(cur, klasses):
             return False
         if not is_orphan_component(cur):
             orphan_components = False
-        cur_signature = threadtools.component_to_thread_signature(cur)
+        cur_signature = component_to_containment_signature(cur)
         if not cur_signature == first_signature:
             same_thread = False
         if not prev._navigator._is_immediate_temporal_successor_of(cur):

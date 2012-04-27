@@ -1,6 +1,8 @@
-from abjad.tools.componenttools._ContainmentSignature import _ContainmentSignature
+from abjad.tools.componenttools.ContainmentSignature import ContainmentSignature
 
 
+# TODO: where is this being used? same as containment signature?
+# TODO: fix doc test
 def component_to_parentage_signature(component):
     '''.. versionadded:: 1.1
 
@@ -25,15 +27,15 @@ def component_to_parentage_signature(component):
     from abjad.tools import componenttools
     from abjad.tools.scoretools import StaffGroup
 
-    signature = _ContainmentSignature()
+    signature = ContainmentSignature()
     signature._self = component._ID
     for component in componenttools.get_improper_parentage_of_component(component):
         if isinstance(component, Voice) and not signature._voice:
             signature._voice = component._ID
         elif isinstance(component, Staff) and not signature._staff:
             signature._staff = component._ID
-        elif isinstance(component, StaffGroup) and not signature._staffgroup:
-            signature._staffgroup = component._ID
+        elif isinstance(component, StaffGroup) and not signature._staff_group:
+            signature._staff_group = component._ID
         elif isinstance(component, Score) and not signature._score:
             signature._score = component._ID
     else:

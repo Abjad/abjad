@@ -104,19 +104,19 @@ iterator on the `staff`::
 
 <abjad>
 from abjad.tools import threadtools
-vA_thread_signature = threadtools.component_to_thread_signature(vA)
+vA_thread_signature = componenttools.component_to_containment_signature(vA)
 notes = threadtools.iterate_thread_forward_in_expr(staff, Note, vA_thread_signature)
 print list(notes)
 </abjad>
 
 <abjad>
-vB_thread_signature = threadtools.component_to_thread_signature(vB)
+vB_thread_signature = componenttools.component_to_containment_signature(vB)
 notes = threadtools.iterate_thread_forward_in_expr(staff, Note, vB_thread_signature)
 print list(notes)
 </abjad>
 
 <abjad>
-vC_thread_signature = threadtools.component_to_thread_signature(vC)
+vC_thread_signature = componenttools.component_to_containment_signature(vC)
 notes = threadtools.iterate_thread_forward_in_expr(staff, Note, vC_thread_signature)
 print list(notes)
 </abjad>
@@ -129,19 +129,19 @@ We can see that the thread signature of each voice is indeed different
 by printing it:
 
 <abjad>
-vA_thread_signature = threadtools.component_to_thread_signature(vA)
+vA_thread_signature = componenttools.component_to_containment_signature(vA)
 vA_thread_signature
 print repr(vA_thread_signature) <hide
 </abjad>
 
 <abjad>
-vB_thread_signature = threadtools.component_to_thread_signature(vB)
+vB_thread_signature = componenttools.component_to_containment_signature(vB)
 vB_thread_signature
 print repr(vB_thread_signature) <hide
 </abjad>
 
 <abjad>
-vC_thread_signature = threadtools.component_to_thread_signature(vC)
+vC_thread_signature = componenttools.component_to_containment_signature(vC)
 vC_thread_signature
 print repr(vC_thread_signature) <hide
 </abjad>
@@ -176,17 +176,17 @@ print repr(vA_thread_signature == vB_thread_signature) <hide
 Note how the thread signatures have changed:
 
 <abjad>
-vA_thread_signature = threadtools.component_to_thread_signature(vA)
+vA_thread_signature = componenttools.component_to_containment_signature(vA)
 print vA_thread_signature
 </abjad>
 
 <abjad>
-vB_thread_signature = threadtools.component_to_thread_signature(vB)
+vB_thread_signature = componenttools.component_to_containment_signature(vB)
 print vB_thread_signature
 </abjad>
 
 <abjad>
-vC_thread_signature = threadtools.component_to_thread_signature(vC)
+vC_thread_signature = componenttools.component_to_containment_signature(vC)
 print vC_thread_signature
 </abjad>
 

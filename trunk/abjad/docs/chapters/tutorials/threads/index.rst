@@ -134,7 +134,7 @@ iterator on the `staff`::
 ::
 
 	abjad> from abjad.tools import threadtools
-	abjad> vA_thread_signature = threadtools.component_to_thread_signature(vA)
+	abjad> vA_thread_signature = componenttools.component_to_containment_signature(vA)
 	abjad> notes = threadtools.iterate_thread_forward_in_expr(staff, Note, vA_thread_signature)
 	abjad> print list(notes)
 	[Note("f'8"), Note("g'8"), Note("a'8"), Note("b'8")]
@@ -142,7 +142,7 @@ iterator on the `staff`::
 
 ::
 
-	abjad> vB_thread_signature = threadtools.component_to_thread_signature(vB)
+	abjad> vB_thread_signature = componenttools.component_to_containment_signature(vB)
 	abjad> notes = threadtools.iterate_thread_forward_in_expr(staff, Note, vB_thread_signature)
 	abjad> print list(notes)
 	[Note("c''8"), Note("b'8"), Note("a'4")]
@@ -150,7 +150,7 @@ iterator on the `staff`::
 
 ::
 
-	abjad> vC_thread_signature = threadtools.component_to_thread_signature(vC)
+	abjad> vC_thread_signature = componenttools.component_to_containment_signature(vC)
 	abjad> notes = threadtools.iterate_thread_forward_in_expr(staff, Note, vC_thread_signature)
 	abjad> print list(notes)
 	[Note("c''4"), Note("c''4")]
@@ -165,21 +165,21 @@ by printing it:
 
 ::
 
-	abjad> vA_thread_signature = threadtools.component_to_thread_signature(vA)
+	abjad> vA_thread_signature = componenttools.component_to_containment_signature(vA)
 	abjad> vA_thread_signature
 	<        root: Staff-8112592 (8112592) *      score:  * staffgroup:  *      staff: Staff-8112592 *      voice: Voice-8112256 *         self: Voice-8112256 >
 
 
 ::
 
-	abjad> vB_thread_signature = threadtools.component_to_thread_signature(vB)
+	abjad> vB_thread_signature = componenttools.component_to_containment_signature(vB)
 	abjad> vB_thread_signature
 	<        root: Staff-8108496 (8108496) *      score:  * staffgroup:  *      staff: Staff-8108496 *      voice: Voice-8108272 *         self: Voice-8108272 >
 
 
 ::
 
-	abjad> vC_thread_signature = threadtools.component_to_thread_signature(vC)
+	abjad> vC_thread_signature = componenttools.component_to_containment_signature(vC)
 	abjad> vC_thread_signature
 	<        root: Staff-8108496 (8108496) *      score:  * staffgroup:  *      staff: Staff-8108496 *      voice: Voice-8108384 *         self: Voice-8108384 >
 
@@ -218,7 +218,7 @@ Note how the thread signatures have changed:
 
 ::
 
-	abjad> vA_thread_signature = threadtools.component_to_thread_signature(vA)
+	abjad> vA_thread_signature = componenttools.component_to_containment_signature(vA)
 	abjad> print vA_thread_signature
 	        root: Staff-8108496 (8108496)
 	     score:
@@ -230,7 +230,7 @@ Note how the thread signatures have changed:
 
 ::
 
-	abjad> vB_thread_signature = threadtools.component_to_thread_signature(vB)
+	abjad> vB_thread_signature = componenttools.component_to_containment_signature(vB)
 	abjad> print vB_thread_signature
 	        root: Staff-8108496 (8108496)
 	     score:
@@ -242,7 +242,7 @@ Note how the thread signatures have changed:
 
 ::
 
-	abjad> vC_thread_signature = threadtools.component_to_thread_signature(vC)
+	abjad> vC_thread_signature = componenttools.component_to_containment_signature(vC)
 	abjad> print vC_thread_signature
 	        root: Staff-8108496 (8108496)
 	     score:

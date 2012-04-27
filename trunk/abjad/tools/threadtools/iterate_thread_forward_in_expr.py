@@ -1,4 +1,4 @@
-from abjad.tools.threadtools.component_to_thread_signature import component_to_thread_signature
+from abjad.tools.componenttools.component_to_containment_signature import component_to_containment_signature
 
 
 def iterate_thread_forward_in_expr(expr, klass, thread_signature):
@@ -43,7 +43,7 @@ def iterate_thread_forward_in_expr(expr, klass, thread_signature):
 
     ::
 
-        abjad> signature = threadtools.component_to_thread_signature(staff.leaves[0])
+        abjad> signature = componenttools.component_to_containment_signature(staff.leaves[0])
         abjad> for x in threadtools.iterate_thread_forward_in_expr(staff, Note, signature):
         ...     x
         ...
@@ -67,7 +67,7 @@ def iterate_thread_forward_in_expr(expr, klass, thread_signature):
         ``threadtools.iterate_thread_forward_in_expr()``.
     '''
 
-    if isinstance(expr, klass) and component_to_thread_signature(expr) == thread_signature:
+    if isinstance(expr, klass) and component_to_containment_signature(expr) == thread_signature:
         yield expr
     if isinstance(expr, (list, tuple)):
         for m in expr:

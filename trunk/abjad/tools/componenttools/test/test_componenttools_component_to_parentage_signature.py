@@ -39,7 +39,7 @@ def test_componenttools_component_to_parentage_signature_03():
 
 
 def test_componenttools_component_to_parentage_signature_04():
-    '''Return _ContainmentSignature giving the root and
+    '''Return ContainmentSignature giving the root and
         first voice, staff and score in the parentage of component.'''
 
     t = Voice(notetools.make_repeated_notes(4))

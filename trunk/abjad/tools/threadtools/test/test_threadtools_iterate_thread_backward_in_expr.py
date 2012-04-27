@@ -6,7 +6,7 @@ def test_threadtools_iterate_thread_backward_in_expr_01():
     '''Yield nothing when class not present.'''
 
     t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
-    thread_signature = threadtools.component_to_thread_signature(t[-1])
+    thread_signature = componenttools.component_to_containment_signature(t[-1])
     iter = threadtools.iterate_thread_backward_in_expr(t, Rest, thread_signature)
     assert len(list(iter)) == 0
 
@@ -15,7 +15,7 @@ def test_threadtools_iterate_thread_backward_in_expr_02():
     '''Yield internal nodes only.'''
 
     t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
-    thread_signature = threadtools.component_to_thread_signature(t[-1])
+    thread_signature = componenttools.component_to_containment_signature(t[-1])
     iter = threadtools.iterate_thread_backward_in_expr(t, Tuplet, thread_signature)
     assert len(list(iter)) == 3
 
@@ -24,7 +24,7 @@ def test_threadtools_iterate_thread_backward_in_expr_03():
     '''Yield exact leaves.'''
 
     t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
-    thread_signature = threadtools.component_to_thread_signature(t[-1])
+    thread_signature = componenttools.component_to_containment_signature(t[-1])
     iter = threadtools.iterate_thread_backward_in_expr(t, Note, thread_signature)
     assert len(list(iter)) == 9
 
@@ -34,7 +34,7 @@ def test_threadtools_iterate_thread_backward_in_expr_04():
 
     t = Staff(tuplettools.FixedDurationTuplet(Duration(2, 4), Note("c'4") * 3) * 3)
     from abjad.tools.leaftools.Leaf import Leaf
-    thread_signature = threadtools.component_to_thread_signature(t[-1][-1])
+    thread_signature = componenttools.component_to_containment_signature(t[-1][-1])
     iter = threadtools.iterate_thread_backward_in_expr(t, Leaf, thread_signature)
     assert len(list(iter)) == 9
 
@@ -46,7 +46,7 @@ def test_threadtools_iterate_thread_backward_in_expr_05():
     v2 = Voice(Note(2, (1, 4)) * 2)
     v1.name = v2.name = 'piccolo'
     t = Staff([v1, v2])
-    thread_signature = threadtools.component_to_thread_signature(t[-1])
+    thread_signature = componenttools.component_to_containment_signature(t[-1])
     iter = threadtools.iterate_thread_backward_in_expr(t, Note, thread_signature)
     iter = list(iter)
 
@@ -61,7 +61,7 @@ def test_threadtools_iterate_thread_backward_in_expr_06():
     v1 = Voice(Note("c'4") * 2)
     v2 = Voice(Note(2, (1, 4)) * 2)
     t = Staff([v1, v2])
-    thread_signature = threadtools.component_to_thread_signature(t[-1])
+    thread_signature = componenttools.component_to_containment_signature(t[-1])
     iter = threadtools.iterate_thread_backward_in_expr(t, Note, thread_signature)
     iter = list(iter)
 
@@ -79,7 +79,7 @@ def test_threadtools_iterate_thread_backward_in_expr_07():
     v1.name = 'flute'
     v2.name = 'piccolo'
     t = Staff([v1, v2])
-    thread_signature = threadtools.component_to_thread_signature(t[-1])
+    thread_signature = componenttools.component_to_containment_signature(t[-1])
     iter = threadtools.iterate_thread_backward_in_expr(t, Note, thread_signature)
     iter = list(iter)
 

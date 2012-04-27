@@ -65,12 +65,9 @@ class Component(AbjadObject):
 
     @property
     def _ID(self):
-        if getattr(self, 'name', None) is not None:
-            rhs = self.name
-        else:
-            rhs = id(self)
-        lhs = type(self).__name__
-        return '%s-%s' % (lhs, rhs)
+        lhs = self._class_name
+        rhs = getattr(self, 'name', None) or id(self)
+        return '{}-{!r}'.format(lhs, rhs)
 
     @property
     def _format_pieces(self):

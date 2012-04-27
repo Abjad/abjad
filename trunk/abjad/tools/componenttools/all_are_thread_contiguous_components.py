@@ -1,5 +1,5 @@
 from abjad.tools.componenttools.Component import Component
-from abjad.tools import threadtools
+from abjad.tools.componenttools.component_to_containment_signature import component_to_containment_signature
 from abjad.tools.componenttools.is_orphan_component import is_orphan_component
 from abjad.tools.componenttools.iterate_components_depth_first import iterate_components_depth_first
 import types
@@ -61,14 +61,14 @@ def all_are_thread_contiguous_components(expr, klasses=None, allow_orphans=True)
     same_thread = True
     thread_proper = True
 
-    first_thread = threadtools.component_to_thread_signature(first)
+    first_thread = component_to_containment_signature(first)
     prev = first
     for cur in expr[1:]:
         if not isinstance(cur, klasses):
             return False
         if not is_orphan_component(cur):
             orphan_components = False
-        if not threadtools.component_to_thread_signature(cur) == first_thread:
+        if not component_to_containment_signature(cur) == first_thread:
             same_thread = False
         if not prev._navigator._is_immediate_temporal_successor_of(cur):
             if not _are_thread_proper(prev, cur):
@@ -100,8 +100,8 @@ def _are_thread_proper(component_1, component_2, klasses=(Component)):
         return False
 
     # if component_1 and component_2 do not share a thread
-    first_thread = threadtools.component_to_thread_signature(component_1)
-    if not first_thread == threadtools.component_to_thread_signature(component_2):
+    first_thread = component_to_containment_signature(component_1)
+    if not first_thread == component_to_containment_signature(component_2):
         #print 'not same thread!'
         return False
 
@@ -119,7 +119,7 @@ def _are_thread_proper(component_1, component_2, klasses=(Component)):
     for node in dfs:
         if node is component_2:
             break
-        node_thread = threadtools.component_to_thread_signature(node)
+        node_thread = component_to_containment_signature(node)
         if node_thread == first_thread:
             node_begin = node._offset.start
             if first_end <= node_begin < second_begin:

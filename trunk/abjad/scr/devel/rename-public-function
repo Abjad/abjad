@@ -32,7 +32,7 @@ def _get_old_package_and_function():
 
 def _get_new_package_and_function():
     while True:
-        message = 'Enter new tools package-qualified function name:      '
+        message = 'Enter new tools package-qualified function name:     '
         qualified_function_name = raw_input(message)
         if '.' not in qualified_function_name:
             print ''

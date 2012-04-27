@@ -44,6 +44,7 @@ Abjad composition packages
    :maxdepth: 1
 
    tools/componenttools/Component/Component
+   tools/componenttools/ContainmentSignature/ContainmentSignature
 
 .. rubric:: functions
 
@@ -61,6 +62,7 @@ Abjad composition packages
    tools/componenttools/all_are_contiguous_components_in_same_thread
    tools/componenttools/all_are_orphan_components
    tools/componenttools/all_are_thread_contiguous_components
+   tools/componenttools/component_to_containment_signature
    tools/componenttools/component_to_parentage_signature
    tools/componenttools/component_to_pitch_and_rhythm_skeleton
    tools/componenttools/component_to_score_depth
@@ -1669,7 +1671,6 @@ Additional Abjad composition packages (load manually)
 .. toctree::
    :maxdepth: 1
 
-   tools/threadtools/component_to_thread_signature
    tools/threadtools/iterate_thread_backward_from_component
    tools/threadtools/iterate_thread_backward_in_expr
    tools/threadtools/iterate_thread_forward_from_component
