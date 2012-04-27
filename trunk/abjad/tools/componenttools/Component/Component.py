@@ -64,7 +64,7 @@ class Component(AbjadObject):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _ID(self):
+    def _id_string(self):
         lhs = self._class_name
         rhs = getattr(self, 'name', None) or id(self)
         return '{}-{!r}'.format(lhs, rhs)

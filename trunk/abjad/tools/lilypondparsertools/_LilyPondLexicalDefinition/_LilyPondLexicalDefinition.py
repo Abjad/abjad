@@ -167,37 +167,37 @@ class _LilyPondLexicalDefinition(object):
 
 #        'EMBEDDED_LILY', # "#{"
 
-#        'BOOK_IDENTIFIER',
+#        'BOOK_id_stringENTIFIER',
 #        'CHORD_MODIFIER',
         'CHORD_REPETITION',
-        'CONTEXT_DEF_IDENTIFIER',
-        'CONTEXT_MOD_IDENTIFIER',
+        'CONTEXT_DEF_id_stringENTIFIER',
+        'CONTEXT_MOD_id_stringENTIFIER',
 #        'DRUM_PITCH',
-        'PITCH_IDENTIFIER',
-        'DURATION_IDENTIFIER',
-        'EVENT_IDENTIFIER',
+        'PITCH_id_stringENTIFIER',
+        'DURATION_id_stringENTIFIER',
+        'EVENT_id_stringENTIFIER',
         'EVENT_FUNCTION',
         'FRACTION',
 #        'LYRICS_STRING',
 #        'LYRIC_ELEMENT',
-#        'LYRIC_MARKUP_IDENTIFIER',
+#        'LYRIC_MARKUP_id_stringENTIFIER',
         'MARKUP_FUNCTION',
         'MARKUP_LIST_FUNCTION',
-        'MARKUP_IDENTIFIER',
-        'MARKUPLIST_IDENTIFIER',
+        'MARKUP_id_stringENTIFIER',
+        'MARKUPLIST_id_stringENTIFIER',
         'MUSIC_FUNCTION',
-        'MUSIC_IDENTIFIER',
+        'MUSIC_id_stringENTIFIER',
         'NOTENAME_PITCH',
-        'NUMBER_IDENTIFIER',
-#        'OUTPUT_DEF_IDENTIFIER',
+        'NUMBER_id_stringENTIFIER',
+#        'OUTPUT_DEF_id_stringENTIFIER',
         'REAL',
         'RESTNAME',
         'SCM_FUNCTION',
-        'SCM_IDENTIFIER',
+        'SCM_id_stringENTIFIER',
         'SCM_TOKEN',
-        'SCORE_IDENTIFIER',
+        'SCORE_id_stringENTIFIER',
         'STRING',
-        'STRING_IDENTIFIER',
+        'STRING_id_stringENTIFIER',
         'TONICNAME_PITCH',
     ] + keywords.values( )
 
@@ -372,7 +372,7 @@ class _LilyPondLexicalDefinition(object):
 
     @TOKEN("\#'%s" % DASHED_WORD)
     def t_INITIAL_markup_notes_353_identifier(self, t):
-        t.type = 'SCM_IDENTIFIER'
+        t.type = 'SCM_id_stringENTIFIER'
         t.value = t.value[2:]
         return t
 
@@ -789,22 +789,22 @@ class _LilyPondLexicalDefinition(object):
             lookup = self.client._assignments[t.value[1:]]
 
             identifier_lookup = {
-                'book_block': 'BOOK_IDENTIFIER',
-                'bookpart_block': 'BOOK_IDENTIFIER',
-                'context_def_spec_block': 'CONTEXT_DEF_IDENTIFIER',
-                'context_modification': 'CONTEXT_MOD_IDENTIFIER',
-                'post_event_nofinger': 'EVENT_IDENTIFIER',
-                'full_markup': 'MARKUP_IDENTIFIER',
-                'full_markup_list': 'MARKUPLINES_IDENTIFIER',
-                'music': 'MUSIC_IDENTIFIER',
-                'number_expression': 'NUMBER_IDENTIFIER',
-                'output_def': 'OUTPUT_DEF_IDENTIFIER',
-                'embedded_scm': 'SCM_IDENTIFIER',
-                'score_block': 'SCORE_IDENTIFIER',
-                'string': 'STRING_IDENTIFIER',
-                # 'PITCH_IDENTIFIER' ?
-                # 'DURATION_IDENTIFIER' ?
-                # 'LYRIC_MARKUP_IDENTIFIER' ?
+                'book_block': 'BOOK_id_stringENTIFIER',
+                'bookpart_block': 'BOOK_id_stringENTIFIER',
+                'context_def_spec_block': 'CONTEXT_DEF_id_stringENTIFIER',
+                'context_modification': 'CONTEXT_MOD_id_stringENTIFIER',
+                'post_event_nofinger': 'EVENT_id_stringENTIFIER',
+                'full_markup': 'MARKUP_id_stringENTIFIER',
+                'full_markup_list': 'MARKUPLINES_id_stringENTIFIER',
+                'music': 'MUSIC_id_stringENTIFIER',
+                'number_expression': 'NUMBER_id_stringENTIFIER',
+                'output_def': 'OUTPUT_DEF_id_stringENTIFIER',
+                'embedded_scm': 'SCM_id_stringENTIFIER',
+                'score_block': 'SCORE_id_stringENTIFIER',
+                'string': 'STRING_id_stringENTIFIER',
+                # 'PITCH_id_stringENTIFIER' ?
+                # 'DURATION_id_stringENTIFIER' ?
+                # 'LYRIC_MARKUP_id_stringENTIFIER' ?
             }
 
             t.value = copy.deepcopy(lookup.value)
@@ -876,13 +876,13 @@ class _LilyPondLexicalDefinition(object):
                 return funtype
 
             elif lookup['type'] == 'ly:prob?' and 'event' in lookup['types']:
-                return 'EVENT_IDENTIFIER'
+                return 'EVENT_id_stringENTIFIER'
 
         # we also check for other types, to handle \longa, \breve etc.
         elif isinstance(lookup, _LilyPondDuration):
             t.value = copy.copy(lookup)
-            return 'DURATION_IDENTIFIER'
+            return 'DURATION_id_stringENTIFIER'
 
         # else...
         t.value = copy.copy(lookup)
-        return 'SCM_IDENTIFIER'
+        return 'SCM_id_stringENTIFIER'

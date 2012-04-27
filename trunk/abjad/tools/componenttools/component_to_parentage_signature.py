@@ -28,18 +28,18 @@ def component_to_parentage_signature(component):
     from abjad.tools.scoretools import StaffGroup
 
     signature = ContainmentSignature()
-    signature._self = component._ID
+    signature._self = component._id_string
     for component in componenttools.get_improper_parentage_of_component(component):
         if isinstance(component, Voice) and not signature._voice:
-            signature._voice = component._ID
+            signature._voice = component._id_string
         elif isinstance(component, Staff) and not signature._staff:
-            signature._staff = component._ID
+            signature._staff = component._id_string
         elif isinstance(component, StaffGroup) and not signature._staff_group:
-            signature._staff_group = component._ID
+            signature._staff_group = component._id_string
         elif isinstance(component, Score) and not signature._score:
-            signature._score = component._ID
+            signature._score = component._id_string
     else:
         '''Root components must be manifestly equal to compare True.'''
         signature._root = id(component)
-        signature._root_str = component._ID
+        signature._root_str = component._id_string
     return signature

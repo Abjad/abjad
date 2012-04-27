@@ -40,19 +40,19 @@ def component_to_containment_signature(component):
     from abjad.tools import voicetools
 
     signature = ContainmentSignature()
-    signature._self = component._ID
+    signature._self = component._id_string
     for component in componenttools.get_improper_parentage_of_component(component):
         if isinstance(component, voicetools.Voice) and signature._voice is None:
-            signature._voice = component._ID
+            signature._voice = component._id_string
         elif isinstance(component, stafftools.Staff) and signature._staff is None:
             # leaves inside different staves have different containment signatures regardless of staff name
             signature._staff = '{}-{}'.format(component._class_name, id(component))
         elif isinstance(component, scoretools.StaffGroup) and signature._staff_group is None:
-            signature._staff_group = component._ID
+            signature._staff_group = component._id_string
         elif isinstance(component, scoretools.Score) and signature._score is None:
-            signature._score = component._ID
+            signature._score = component._id_string
     else:
         # root components must be the same object for containment signatures to compare true
         signature._root = id(component)
-        signature._root_str = component._ID
+        signature._root_str = component._id_string
     return signature

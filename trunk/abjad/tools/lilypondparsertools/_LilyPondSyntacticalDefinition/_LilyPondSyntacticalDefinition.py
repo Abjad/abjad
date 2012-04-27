@@ -28,8 +28,8 @@ class _LilyPondSyntacticalDefinition(object):
 #        ('left', 'ADDLYRICS'),
         ('nonassoc', 'DEFAULT'),
         ('nonassoc', 'FUNCTION_ARGLIST'),
-        ('right', 'PITCH_IDENTIFIER', 'NOTENAME_PITCH', 'TONICNAME_PITCH', 'UNSIGNED', 'REAL', 'DURATION_IDENTIFIER', ':'),
-        ('nonassoc', 'NUMBER_IDENTIFIER', '/'),
+        ('right', 'PITCH_id_stringENTIFIER', 'NOTENAME_PITCH', 'TONICNAME_PITCH', 'UNSIGNED', 'REAL', 'DURATION_id_stringENTIFIER', ':'),
+        ('nonassoc', 'NUMBER_id_stringENTIFIER', '/'),
         ('left', '+', '-'),
 #        ('left', 'UNARY_MINUS')
     )
@@ -89,13 +89,13 @@ class _LilyPondSyntacticalDefinition(object):
     ### bare_number ###
 
 
-    def p_bare_number__REAL__NUMBER_IDENTIFIER(self, p):
-        'bare_number : REAL NUMBER_IDENTIFIER'
+    def p_bare_number__REAL__NUMBER_id_stringENTIFIER(self, p):
+        'bare_number : REAL NUMBER_id_stringENTIFIER'
         p[0] = p[1]
 
 
-    def p_bare_number__UNSIGNED__NUMBER_IDENTIFIER(self, p):
-        'bare_number : UNSIGNED NUMBER_IDENTIFIER'
+    def p_bare_number__UNSIGNED__NUMBER_id_stringENTIFIER(self, p):
+        'bare_number : UNSIGNED NUMBER_id_stringENTIFIER'
         p[0] = p[1]
 
 
@@ -107,8 +107,8 @@ class _LilyPondSyntacticalDefinition(object):
     ### bare_number_closed ###
 
 
-    def p_bare_number_closed__NUMBER_IDENTIFIER(self, p):
-        'bare_number_closed : NUMBER_IDENTIFIER'
+    def p_bare_number_closed__NUMBER_id_stringENTIFIER(self, p):
+        'bare_number_closed : NUMBER_id_stringENTIFIER'
         p[0] = p[1]
 
 
@@ -192,8 +192,8 @@ class _LilyPondSyntacticalDefinition(object):
 #        p[0] = Node('book_body', p[1:])
 
 
-#    def p_book_body__BOOK_IDENTIFIER(self, p):
-#        'book_body : BOOK_IDENTIFIER'
+#    def p_book_body__BOOK_id_stringENTIFIER(self, p):
+#        'book_body : BOOK_id_stringENTIFIER'
 #        p[0] = Node('book_body', p[1:])
 
 
@@ -258,8 +258,8 @@ class _LilyPondSyntacticalDefinition(object):
 #        p[0] = Node('bookpart_body', p[1:])
 
 
-#    def p_bookpart_body__BOOK_IDENTIFIER(self, p):
-#        'bookpart_body : BOOK_IDENTIFIER'
+#    def p_bookpart_body__BOOK_id_stringENTIFIER(self, p):
+#        'bookpart_body : BOOK_id_stringENTIFIER'
 #        p[0] = Node('bookpart_body', p[1:])
 
 
@@ -596,8 +596,8 @@ class _LilyPondSyntacticalDefinition(object):
         p[0] = Node('context_def_spec_body', p[1:])
 
 
-    def p_context_def_spec_body__CONTEXT_DEF_IDENTIFIER(self, p):
-        'context_def_spec_body : CONTEXT_DEF_IDENTIFIER'
+    def p_context_def_spec_body__CONTEXT_DEF_id_stringENTIFIER(self, p):
+        'context_def_spec_body : CONTEXT_DEF_id_stringENTIFIER'
         p[0] = Node('context_def_spec_body', p[1:])
 
 
@@ -642,8 +642,8 @@ class _LilyPondSyntacticalDefinition(object):
         p[0] = [ ]
 
 
-    def p_context_mod_list__context_mod_list__CONTEXT_MOD_IDENTIFIER(self, p):
-        'context_mod_list : context_mod_list CONTEXT_MOD_IDENTIFIER'
+    def p_context_mod_list__context_mod_list__CONTEXT_MOD_id_stringENTIFIER(self, p):
+        'context_mod_list : context_mod_list CONTEXT_MOD_id_stringENTIFIER'
         p[0] = p[1] + [p[2]]
 
 
@@ -660,13 +660,13 @@ class _LilyPondSyntacticalDefinition(object):
     ### context_modification ###
 
 
-    def p_context_modification__CONTEXT_MOD_IDENTIFIER(self, p):
-        'context_modification : CONTEXT_MOD_IDENTIFIER'
+    def p_context_modification__CONTEXT_MOD_id_stringENTIFIER(self, p):
+        'context_modification : CONTEXT_MOD_id_stringENTIFIER'
         p[0] = [p[1]]
 
 
-    def p_context_modification__WITH__CONTEXT_MOD_IDENTIFIER(self, p):
-        'context_modification : WITH CONTEXT_MOD_IDENTIFIER'
+    def p_context_modification__WITH__CONTEXT_MOD_id_stringENTIFIER(self, p):
+        'context_modification : WITH CONTEXT_MOD_id_stringENTIFIER'
         p[0] = [p[2]]
 
 
@@ -750,8 +750,8 @@ class _LilyPondSyntacticalDefinition(object):
     ### direction_less_event ###
 
 
-    def p_direction_less_event__EVENT_IDENTIFIER(self, p):
-        'direction_less_event : EVENT_IDENTIFIER'
+    def p_direction_less_event__EVENT_id_stringENTIFIER(self, p):
+        'direction_less_event : EVENT_id_stringENTIFIER'
         identifier = p[1]
         if identifier.startswith('\\'):
             identifier = identifier[1:]
@@ -887,8 +887,8 @@ class _LilyPondSyntacticalDefinition(object):
     ### embedded_scm_bare ###
 
 
-    def p_embedded_scm_bare__SCM_IDENTIFIER(self, p):
-        'embedded_scm_bare : SCM_IDENTIFIER'
+    def p_embedded_scm_bare__SCM_id_stringENTIFIER(self, p):
+        'embedded_scm_bare : SCM_id_stringENTIFIER'
         p[0] = p[1]
 
 
@@ -905,8 +905,8 @@ class _LilyPondSyntacticalDefinition(object):
         p[0] = p[1]
 
 
-    def p_embedded_scm_bare_arg__STRING_IDENTIFIER(self, p):
-        'embedded_scm_bare_arg : STRING_IDENTIFIER'
+    def p_embedded_scm_bare_arg__STRING_id_stringENTIFIER(self, p):
+        'embedded_scm_bare_arg : STRING_id_stringENTIFIER'
         p[0] = p[1]
 
 
@@ -1154,8 +1154,8 @@ class _LilyPondSyntacticalDefinition(object):
     ### full_markup ###
 
 
-    def p_full_markup__MARKUP_IDENTIFIER(self, p):
-        'full_markup : MARKUP_IDENTIFIER'
+    def p_full_markup__MARKUP_id_stringENTIFIER(self, p):
+        'full_markup : MARKUP_id_stringENTIFIER'
         p[0] = Node('full_markup', p[1:])
 
 
@@ -1167,8 +1167,8 @@ class _LilyPondSyntacticalDefinition(object):
     ### full_markup_list ###
 
 
-    def p_full_markup_list__MARKUPLIST_IDENTIFIER(self, p):
-        'full_markup_list : MARKUPLIST_IDENTIFIER'
+    def p_full_markup_list__MARKUPLIST_id_stringENTIFIER(self, p):
+        'full_markup_list : MARKUPLIST_id_stringENTIFIER'
         p[0] = Node('full_markup_list', p[1:])
 
 
@@ -1209,13 +1209,13 @@ class _LilyPondSyntacticalDefinition(object):
         self.client._backup_token(False, None)
 
 
-    def p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed_keep__Chr45__NUMBER_IDENTIFIER(self, p):
-        "function_arglist_backup : EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed_keep '-' NUMBER_IDENTIFIER"
+    def p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed_keep__Chr45__NUMBER_id_stringENTIFIER(self, p):
+        "function_arglist_backup : EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed_keep '-' NUMBER_id_stringENTIFIER"
         n = -1 * p[5]
         if self.client._test_scheme_predicate(p[2], n):
             p[0] = p[3] + [p[1]]
         else:
-            self.client._backup_token('NUMBER_IDENTIFIER', n)
+            self.client._backup_token('NUMBER_id_stringENTIFIER', n)
 
 
     def p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed_keep__Chr45__REAL(self, p):
@@ -1249,13 +1249,13 @@ class _LilyPondSyntacticalDefinition(object):
             self.client._backup_token('FRACTION', p[4])
 
 
-    def p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed_keep__NUMBER_IDENTIFIER(self, p):
-        'function_arglist_backup : EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed_keep NUMBER_IDENTIFIER'
+    def p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed_keep__NUMBER_id_stringENTIFIER(self, p):
+        'function_arglist_backup : EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed_keep NUMBER_id_stringENTIFIER'
         if self.client._test_scheme_predicate(p[2], p[4]):
             p[0] = p[3] + [p[4]]
         else:
             p[0] = p[3] + [p[1]]
-            self.client._backup_token('NUMBER_IDENTIFIER', p[4])
+            self.client._backup_token('NUMBER_id_stringENTIFIER', p[4])
 
 
     def p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed_keep__REAL(self, p):
@@ -1284,7 +1284,7 @@ class _LilyPondSyntacticalDefinition(object):
             p[0] = p[3] + [p[4]]
         else:
             p[0] = p[3] + [p[1]]
-            self.client._backup_token('EVENT_IDENTIFIER', p[4])
+            self.client._backup_token('EVENT_id_stringENTIFIER', p[4])
 
 
     def p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_keep__embedded_scm_arg_closed(self, p):
@@ -1293,7 +1293,7 @@ class _LilyPondSyntacticalDefinition(object):
             p[0] = p[3] + [p[4]]
         else:
             p[0] = p[3] + [p[1]]
-            self.client._backup_token('SCM_IDENTIFIER', p[4])
+            self.client._backup_token('SCM_id_stringENTIFIER', p[4])
 
 
 #    def p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_keep__lyric_element(self, p):
@@ -1369,8 +1369,8 @@ class _LilyPondSyntacticalDefinition(object):
     ### function_arglist_closed_common ###
 
 
-    def p_function_arglist_closed_common__EXPECT_SCM__function_arglist_closed_optional__Chr45__NUMBER_IDENTIFIER(self, p):
-        "function_arglist_closed_common : EXPECT_SCM function_arglist_closed_optional '-' NUMBER_IDENTIFIER"
+    def p_function_arglist_closed_common__EXPECT_SCM__function_arglist_closed_optional__Chr45__NUMBER_id_stringENTIFIER(self, p):
+        "function_arglist_closed_common : EXPECT_SCM function_arglist_closed_optional '-' NUMBER_id_stringENTIFIER"
         p[0] = p[2] + [-1 * p[4]]
 
 
@@ -1504,8 +1504,8 @@ class _LilyPondSyntacticalDefinition(object):
     ### function_arglist_common_minus ###
 
 
-    def p_function_arglist_common_minus__EXPECT_SCM__function_arglist_closed_optional__Chr45__NUMBER_IDENTIFIER(self, p):
-        "function_arglist_common_minus : EXPECT_SCM function_arglist_closed_optional '-' NUMBER_IDENTIFIER"
+    def p_function_arglist_common_minus__EXPECT_SCM__function_arglist_closed_optional__Chr45__NUMBER_id_stringENTIFIER(self, p):
+        "function_arglist_common_minus : EXPECT_SCM function_arglist_closed_optional '-' NUMBER_id_stringENTIFIER"
         p[0] = p[2] + [-1 * p[4]]
 
 
@@ -1555,8 +1555,8 @@ class _LilyPondSyntacticalDefinition(object):
         p[0] = p[3] + [p[4]]
 
 
-    def p_function_arglist_nonbackup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed__Chr45__NUMBER_IDENTIFIER(self, p):
-        "function_arglist_nonbackup : EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed '-' NUMBER_IDENTIFIER"
+    def p_function_arglist_nonbackup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed__Chr45__NUMBER_id_stringENTIFIER(self, p):
+        "function_arglist_nonbackup : EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed '-' NUMBER_id_stringENTIFIER"
         p[0] = p[3] + [-1 * p[4]]
 
 
@@ -1823,8 +1823,8 @@ class _LilyPondSyntacticalDefinition(object):
     ### lyric_markup ###
 
 
-#    def p_lyric_markup__LYRIC_MARKUP_IDENTIFIER(self, p):
-#        'lyric_markup : LYRIC_MARKUP_IDENTIFIER'
+#    def p_lyric_markup__LYRIC_MARKUP_id_stringENTIFIER(self, p):
+#        'lyric_markup : LYRIC_MARKUP_id_stringENTIFIER'
 #        p[0] = Node('lyric_markup', p[1:])
 
 
@@ -1943,8 +1943,8 @@ class _LilyPondSyntacticalDefinition(object):
     ### markup_list ###
 
 
-    def p_markup_list__MARKUPLIST_IDENTIFIER(self, p):
-        'markup_list : MARKUPLIST_IDENTIFIER'
+    def p_markup_list__MARKUPLIST_id_stringENTIFIER(self, p):
+        'markup_list : MARKUPLIST_id_stringENTIFIER'
         p[0] = Node('markup_list', p[1:])
 
 
@@ -1963,8 +1963,8 @@ class _LilyPondSyntacticalDefinition(object):
         p[0] = Node('markup_list', p[1:])
 
 
-    def p_markup_list__markup_scm__MARKUPLIST_IDENTIFIER(self, p):
-        'markup_list : markup_scm MARKUPLIST_IDENTIFIER'
+    def p_markup_list__markup_scm__MARKUPLIST_id_stringENTIFIER(self, p):
+        'markup_list : markup_scm MARKUPLIST_id_stringENTIFIER'
         p[0] = Node('markup_list', p[1:])
 
 
@@ -2116,8 +2116,8 @@ class _LilyPondSyntacticalDefinition(object):
     ### music_bare ###
 
 
-    def p_music_bare__MUSIC_IDENTIFIER(self, p):
-        'music_bare : MUSIC_IDENTIFIER'
+    def p_music_bare__MUSIC_id_stringENTIFIER(self, p):
+        'music_bare : MUSIC_id_stringENTIFIER'
         p[0] = p[1]
 
 
@@ -2400,8 +2400,8 @@ class _LilyPondSyntacticalDefinition(object):
 #        p[0] = Node('output_def_body', p[1:])
 
 
-#    def p_output_def_body__output_def_head_with_mode_switch__Chr123__OUTPUT_DEF_IDENTIFIER(self, p):
-#        "output_def_body : output_def_head_with_mode_switch '{' OUTPUT_DEF_IDENTIFIER"
+#    def p_output_def_body__output_def_head_with_mode_switch__Chr123__OUTPUT_DEF_id_stringENTIFIER(self, p):
+#        "output_def_body : output_def_head_with_mode_switch '{' OUTPUT_DEF_id_stringENTIFIER"
 #        p[0] = Node('output_def_body', p[1:])
 
 
@@ -2442,8 +2442,8 @@ class _LilyPondSyntacticalDefinition(object):
     ### pitch ###
 
 
-    def p_pitch__PITCH_IDENTIFIER(self, p):
-        'pitch : PITCH_IDENTIFIER'
+    def p_pitch__PITCH_id_stringENTIFIER(self, p):
+        'pitch : PITCH_id_stringENTIFIER'
         p[0] = p[1]
 
 
@@ -2702,8 +2702,8 @@ class _LilyPondSyntacticalDefinition(object):
     ### score_body ###
 
 
-    def p_score_body__SCORE_IDENTIFIER(self, p):
-        'score_body : SCORE_IDENTIFIER'
+    def p_score_body__SCORE_id_stringENTIFIER(self, p):
+        'score_body : SCORE_id_stringENTIFIER'
         p[0] = p[1]
 
 
@@ -2856,8 +2856,8 @@ class _LilyPondSyntacticalDefinition(object):
     ### simple_markup ###
 
 
-#    def p_simple_markup__LYRIC_MARKUP_IDENTIFIER(self, p):
-#        'simple_markup : LYRIC_MARKUP_IDENTIFIER'
+#    def p_simple_markup__LYRIC_MARKUP_id_stringENTIFIER(self, p):
+#        'simple_markup : LYRIC_MARKUP_id_stringENTIFIER'
 #        p[0] = Node('simple_markup', p[1:])
 
 
@@ -2866,8 +2866,8 @@ class _LilyPondSyntacticalDefinition(object):
         p[0] = Node('simple_markup', p[1:])
 
 
-    def p_simple_markup__MARKUP_IDENTIFIER(self, p):
-        'simple_markup : MARKUP_IDENTIFIER'
+    def p_simple_markup__MARKUP_id_stringENTIFIER(self, p):
+        'simple_markup : MARKUP_id_stringENTIFIER'
         p[0] = Node('simple_markup', p[1:])
 
 
@@ -2881,13 +2881,13 @@ class _LilyPondSyntacticalDefinition(object):
         p[0] = Node('simple_markup', p[1:])
 
 
-    def p_simple_markup__STRING_IDENTIFIER(self, p):
-        'simple_markup : STRING_IDENTIFIER'
+    def p_simple_markup__STRING_id_stringENTIFIER(self, p):
+        'simple_markup : STRING_id_stringENTIFIER'
         p[0] = Node('simple_markup', p[1:])
 
 
-    def p_simple_markup__markup_scm__MARKUP_IDENTIFIER(self, p):
-        'simple_markup : markup_scm MARKUP_IDENTIFIER'
+    def p_simple_markup__markup_scm__MARKUP_id_stringENTIFIER(self, p):
+        'simple_markup : markup_scm MARKUP_id_stringENTIFIER'
         p[0] = Node('simple_markup', p[1:])
 
 
@@ -2945,8 +2945,8 @@ class _LilyPondSyntacticalDefinition(object):
         p[0] = p[1]
 
 
-    def p_simple_string__STRING_IDENTIFIER(self, p):
-        'simple_string : STRING_IDENTIFIER'
+    def p_simple_string__STRING_id_stringENTIFIER(self, p):
+        'simple_string : STRING_id_stringENTIFIER'
         p[0] = p[1]
 
 
@@ -2966,8 +2966,8 @@ class _LilyPondSyntacticalDefinition(object):
     ### steno_duration ###
 
 
-    def p_steno_duration__DURATION_IDENTIFIER__dots(self, p):
-        'steno_duration : DURATION_IDENTIFIER dots'
+    def p_steno_duration__DURATION_id_stringENTIFIER__dots(self, p):
+        'steno_duration : DURATION_id_stringENTIFIER dots'
         dots = p[2].value
         duration = p[1].duration
         multiplier = p[1].multiplier
@@ -3062,8 +3062,8 @@ class _LilyPondSyntacticalDefinition(object):
         p[0] = Node('string', p[1:])
 
 
-    def p_string__STRING_IDENTIFIER(self, p):
-        'string : STRING_IDENTIFIER'
+    def p_string__STRING_id_stringENTIFIER(self, p):
+        'string : STRING_id_stringENTIFIER'
         p[0] = Node('string', p[1:])
 
 
@@ -3196,8 +3196,8 @@ class _LilyPondSyntacticalDefinition(object):
     ### unsigned_number ###
 
 
-#    def p_unsigned_number__NUMBER_IDENTIFIER(self, p):
-#        'unsigned_number : NUMBER_IDENTIFIER'
+#    def p_unsigned_number__NUMBER_id_stringENTIFIER(self, p):
+#        'unsigned_number : NUMBER_id_stringENTIFIER'
 #        p[0] = p[1]
 
 
