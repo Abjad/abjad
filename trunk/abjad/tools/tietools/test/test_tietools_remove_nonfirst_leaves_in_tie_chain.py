@@ -2,7 +2,8 @@ from abjad import *
 
 
 def test_tietools_remove_nonfirst_leaves_in_tie_chain_01():
-    '''Keep and unspan first note in tie chain only.'''
+    '''Keep and unspan first note in tie chain only.
+    '''
 
     t = Staff(notetools.make_notes(0, [(5, 16)]))
 
@@ -26,7 +27,8 @@ def test_tietools_remove_nonfirst_leaves_in_tie_chain_01():
 
 
 def test_tietools_remove_nonfirst_leaves_in_tie_chain_02():
-    '''No effect on length-1 tie chains.'''
+    '''Do not change trivial tie chains.
+    '''
 
     t = Staff(notetools.make_repeated_notes(1))
 
