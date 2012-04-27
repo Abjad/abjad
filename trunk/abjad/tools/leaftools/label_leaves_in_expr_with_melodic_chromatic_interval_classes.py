@@ -1,4 +1,3 @@
-from abjad.tools.leaftools.Leaf import Leaf
 from abjad.tools import componenttools
 
 
@@ -25,16 +24,16 @@ def label_leaves_in_expr_with_melodic_chromatic_interval_classes(expr, markup_di
 
     Return none.
     """
+    from abjad.tools import leaftools
     from abjad.tools import markuptools
-    from abjad.tools import threadtools
-    from abjad.tools.notetools.Note import Note
+    from abjad.tools import notetools
 
-    for note in componenttools.iterate_components_forward_in_expr(expr, Note):
-        thread_iterator = componenttools.iterate_thread_forward_from_component(note, Leaf)
+    for note in componenttools.iterate_components_forward_in_expr(expr, notetools.Note):
+        thread_iterator = componenttools.iterate_thread_forward_from_component(note, leaftools.Leaf)
         try:
             thread_iterator.next()
             next_leaf = thread_iterator.next()
-            if isinstance(next_leaf, Note):
+            if isinstance(next_leaf, notetools.Note):
                 mdi = note.written_pitch - next_leaf.written_pitch
                 mci = mdi.melodic_chromatic_interval
                 mcic = mci.melodic_chromatic_interval_class

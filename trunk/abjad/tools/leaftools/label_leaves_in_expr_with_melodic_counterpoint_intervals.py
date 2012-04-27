@@ -1,8 +1,7 @@
-from abjad.tools.leaftools.Leaf import Leaf
 from abjad.tools import componenttools
 
 
-def label_leaves_in_expr_with_melodic_counterpoint_intervals(expr, markup_direction = 'up'):
+def label_leaves_in_expr_with_melodic_counterpoint_intervals(expr, markup_direction='up'):
     r""".. versionadded:: 2.0
 
     Label leaves in `expr` with melodic counterpoint intervals::
@@ -25,17 +24,17 @@ def label_leaves_in_expr_with_melodic_counterpoint_intervals(expr, markup_direct
 
     Return none.
     """
+    from abjad.tools import leaftools
     from abjad.tools import markuptools
-    from abjad.tools import threadtools
-    from abjad.tools.notetools.Note import Note
+    from abjad.tools import notetools
     from abjad.tools import pitchtools
 
-    for note in componenttools.iterate_components_forward_in_expr(expr, Note):
-        thread_iterator = componenttools.iterate_thread_forward_from_component(note, Leaf)
+    for note in componenttools.iterate_components_forward_in_expr(expr, notetools.Note):
+        thread_iterator = componenttools.iterate_thread_forward_from_component(note, leaftools.Leaf)
         try:
             thread_iterator.next()
             next_leaf = thread_iterator.next()
-            if isinstance(next_leaf, Note):
+            if isinstance(next_leaf, notetools.Note):
                 cpi = \
                     pitchtools.calculate_melodic_counterpoint_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(
                     note, next_leaf)

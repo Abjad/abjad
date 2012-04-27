@@ -41,7 +41,6 @@ class AbjadAPIGenerator(abctools.AbjadObject):
         'sequencetools',
         'sievetools',
         'tempotools',
-        'threadtools',
         'timeintervaltools',
         'timesignaturetools',
         'timetokentools',
