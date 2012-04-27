@@ -104,6 +104,10 @@ Abjad composition packages
    tools/componenttools/iterate_components_forward_in_expr
    tools/componenttools/iterate_namesakes_backward_from_component
    tools/componenttools/iterate_namesakes_forward_from_component
+   tools/componenttools/iterate_thread_backward_from_component
+   tools/componenttools/iterate_thread_backward_in_expr
+   tools/componenttools/iterate_thread_forward_from_component
+   tools/componenttools/iterate_thread_forward_in_expr
    tools/componenttools/iterate_timeline_backward_from_component
    tools/componenttools/iterate_timeline_backward_in_expr
    tools/componenttools/iterate_timeline_forward_from_component
@@ -1662,19 +1666,6 @@ Additional Abjad composition packages (load manually)
 
    tools/tempotools/integer_tempo_to_multiplier_tempo_pairs
    tools/tempotools/integer_tempo_to_multiplier_tempo_pairs_report
-
-:py:mod:`threadtools <abjad.tools.threadtools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. rubric:: functions
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/threadtools/iterate_thread_backward_from_component
-   tools/threadtools/iterate_thread_backward_in_expr
-   tools/threadtools/iterate_thread_forward_from_component
-   tools/threadtools/iterate_thread_forward_in_expr
 
 :py:mod:`timeintervaltools <abjad.tools.timeintervaltools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

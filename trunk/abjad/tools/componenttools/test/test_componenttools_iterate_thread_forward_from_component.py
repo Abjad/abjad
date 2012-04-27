@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools import threadtools
 
 
-def test_threadtools_iterate_thread_forward_from_component_01():
+def test_componenttools_iterate_thread_forward_from_component_01():
 
     container = Container(Voice(notetools.make_repeated_notes(2)) * 2)
     container.is_parallel = True
@@ -36,7 +36,7 @@ def test_threadtools_iterate_thread_forward_from_component_01():
     }
     '''
 
-    notes = threadtools.iterate_thread_forward_from_component(staff.leaves[0], Note)
+    notes = componenttools.iterate_thread_forward_from_component(staff.leaves[0], Note)
     notes = list(notes)
 
     voice_1_first_half = staff[0][0]
@@ -48,7 +48,7 @@ def test_threadtools_iterate_thread_forward_from_component_01():
     assert notes[3] is voice_1_second_half[1]
 
 
-def test_threadtools_iterate_thread_forward_from_component_02():
+def test_componenttools_iterate_thread_forward_from_component_02():
 
     container = Container(Voice(notetools.make_repeated_notes(2)) * 2)
     container.is_parallel = True
@@ -82,7 +82,7 @@ def test_threadtools_iterate_thread_forward_from_component_02():
     }
     '''
 
-    components = threadtools.iterate_thread_forward_from_component(staff.leaves[0])
+    components = componenttools.iterate_thread_forward_from_component(staff.leaves[0])
     components = list(components)
 
     r'''

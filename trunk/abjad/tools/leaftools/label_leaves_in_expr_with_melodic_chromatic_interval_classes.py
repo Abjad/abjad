@@ -30,7 +30,7 @@ def label_leaves_in_expr_with_melodic_chromatic_interval_classes(expr, markup_di
     from abjad.tools.notetools.Note import Note
 
     for note in componenttools.iterate_components_forward_in_expr(expr, Note):
-        thread_iterator = threadtools.iterate_thread_forward_from_component(note, Leaf)
+        thread_iterator = componenttools.iterate_thread_forward_from_component(note, Leaf)
         try:
             thread_iterator.next()
             next_leaf = thread_iterator.next()

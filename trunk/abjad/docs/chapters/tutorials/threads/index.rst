@@ -128,14 +128,14 @@ But both raise a contiguity error.
 Abjad needs to see an explicit connection between either `vA` and `vB` or between `vA` and `vC`.
 
 Observe the behavior of the
-:func:`~abjad.tools.threadtools.iterate_thread_forward_in_expr`
+:func:`~abjad.tools.componenttools.iterate_thread_forward_in_expr`
 iterator on the `staff`::
 
 ::
 
 	abjad> from abjad.tools import threadtools
 	abjad> vA_thread_signature = componenttools.component_to_containment_signature(vA)
-	abjad> notes = threadtools.iterate_thread_forward_in_expr(staff, Note, vA_thread_signature)
+	abjad> notes = componenttools.iterate_thread_forward_in_expr(staff, Note, vA_thread_signature)
 	abjad> print list(notes)
 	[Note("f'8"), Note("g'8"), Note("a'8"), Note("b'8")]
 
@@ -143,7 +143,7 @@ iterator on the `staff`::
 ::
 
 	abjad> vB_thread_signature = componenttools.component_to_containment_signature(vB)
-	abjad> notes = threadtools.iterate_thread_forward_in_expr(staff, Note, vB_thread_signature)
+	abjad> notes = componenttools.iterate_thread_forward_in_expr(staff, Note, vB_thread_signature)
 	abjad> print list(notes)
 	[Note("c''8"), Note("b'8"), Note("a'4")]
 
@@ -151,13 +151,13 @@ iterator on the `staff`::
 ::
 
 	abjad> vC_thread_signature = componenttools.component_to_containment_signature(vC)
-	abjad> notes = threadtools.iterate_thread_forward_in_expr(staff, Note, vC_thread_signature)
+	abjad> notes = componenttools.iterate_thread_forward_in_expr(staff, Note, vC_thread_signature)
 	abjad> print list(notes)
 	[Note("c''4"), Note("c''4")]
 
 
 In each case we are passing a different **thread signature** to the
-:func:`~abjad.tools.threadtools.iterate_thread_forward_in_expr`
+:func:`~abjad.tools.componenttools.iterate_thread_forward_in_expr`
 iterator, so each case returns a different list of notes.
 
 We can see that the thread signature of each voice is indeed different
@@ -252,13 +252,13 @@ Note how the thread signatures have changed:
 	        self: Voice-8108384
 
 
-And how the ``threadtools.iterate_thread_forward_in_expr()`` function returns
+And how the ``componenttools.iterate_thread_forward_in_expr()`` function returns
 all the notes belonging to both `vA` and `vB` when passing it the full staff
 and the thread signature of `vA`:
 
 ::
 
-	abjad> notes = threadtools.iterate_thread_forward_in_expr(staff, Note, vA_thread_signature)
+	abjad> notes = componenttools.iterate_thread_forward_in_expr(staff, Note, vA_thread_signature)
 	abjad> print list(notes)
 	[Note("f'8"), Note("g'8"), Note("a'8"), Note("b'8"), Note("c''8"), Note("b'8"), Note("a'4")]
 
@@ -270,12 +270,12 @@ Now the slur spanner can be applied to voices `vA` and `vB`:
     abjad> spannertools.SlurSpanner([vA, vB])
 
 or directly to the notes returned by the
-:func:`~abjad.tools.threadtools.iterate_thread_forward_in_expr`
+:func:`~abjad.tools.componenttools.iterate_thread_forward_in_expr`
 iteration tool, which are the notes belonging to both `vA` and `vB`:
 
 ::
 
-	abjad> notes = threadtools.iterate_thread_forward_in_expr(staff, Note, vA_thread_signature)
+	abjad> notes = componenttools.iterate_thread_forward_in_expr(staff, Note, vA_thread_signature)
 	abjad> spannertools.SlurSpanner(list(notes))
 
 

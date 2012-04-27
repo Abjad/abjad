@@ -4,12 +4,7 @@ from abjad.tools.componenttools.component_to_containment_signature import compon
 def iterate_thread_forward_in_expr(expr, klass, thread_signature):
     r'''.. versionadded:: 1.1
 
-    Yield left-to-right instances of `klass` in `expr` with
-    `thread_signature`::
-
-        abjad> from abjad.tools import threadtools
-
-    ::
+    Yield left-to-right instances of `klass` in `expr` with `thread_signature`::
 
         abjad> container = Container(Voice(notetools.make_repeated_notes(2)) * 2)
         abjad> container.is_parallel = True
@@ -17,7 +12,10 @@ def iterate_thread_forward_in_expr(expr, klass, thread_signature):
         abjad> container[1].name = 'voice 2'
         abjad> staff = Staff(container * 2)
         abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
-        abjad> print staff.format
+
+    ::
+
+        abjad> f(staff)
         \new Staff {
             <<
                 \context Voice = "voice 1" {
@@ -44,7 +42,7 @@ def iterate_thread_forward_in_expr(expr, klass, thread_signature):
     ::
 
         abjad> signature = componenttools.component_to_containment_signature(staff.leaves[0])
-        abjad> for x in threadtools.iterate_thread_forward_in_expr(staff, Note, signature):
+        abjad> for x in componenttools.iterate_thread_forward_in_expr(staff, Note, signature):
         ...     x
         ...
         Note("c'8")
@@ -52,19 +50,15 @@ def iterate_thread_forward_in_expr(expr, klass, thread_signature):
         Note("g'8")
         Note("a'8")
 
-    The important thing to note is that the function yields only
-    those leaves that sit in the same thread.
-
-    Compare with :func:`componenttools.iterate_components_forward_in_expr()
-    <abjad.tools.iterate.naive_forward>`.
+    Return generator.
 
     .. versionchanged:: 2.0
         renamed ``iterate.thread_forward_in()`` to
-        ``threadtools.iterate_thread_forward_in_expr()``.
+        ``componenttools.iterate_thread_forward_in_expr()``.
 
-    .. versionchanged:: 2.0
-        renamed ``iterate.thread_forward_in_expr()`` to
-        ``threadtools.iterate_thread_forward_in_expr()``.
+    .. versionchanged:: 2.9
+        renamed ``threadtools.iterate_thread_forward_in_expr()`` to
+        ``componenttools.iterate_thread_forward_in_expr()``.
     '''
 
     if isinstance(expr, klass) and component_to_containment_signature(expr) == thread_signature:
