@@ -1,7 +1,6 @@
-from abjad.tools.lilypondproxytools import LilyPondContextSettingComponentPlugIn
-from abjad.tools.lilypondproxytools import LilyPondGrobOverrideComponentPlugIn
-from abjad.tools.abctools import AbjadObject
+from abjad.tools import lilypondproxytools
 from abjad.tools import durationtools
+from abjad.tools.abctools import AbjadObject
 from abjad.tools.spannertools.Spanner._SpannerFormatInterface import _SpannerFormatInterface
 from abjad.tools.spannertools.Spanner._SpannerOffsetInterface import _SpannerOffsetInterface
 import copy
@@ -40,14 +39,11 @@ class Spanner(AbjadObject):
         self._contiguity_constraint = 'thread'
         self._format = _SpannerFormatInterface(self)
         self._offset = _SpannerOffsetInterface(self)
-        #self._override = LilyPondGrobOverrideComponentPlugIn()
-        #self._set = LilyPondContextSettingComponentPlugIn()
         self._initialize_components(components)
 
     ### SPECIAL METHODS ###
 
     def __contains__(self, expr):
-        #return self._components.__contains__(expr)
         for x in self._components:
             if x is expr:
                 return True
@@ -75,7 +71,8 @@ class Spanner(AbjadObject):
         return self._components.__len__()
 
     def __lt__(self, other):
-        '''Trivial comparison to allow doctests to work.'''
+        '''Trivial comparison to allow doctests to work.
+        '''
         if not isinstance(other, Spanner):
             raise TypeError
         return repr(self) < repr(other)
@@ -89,7 +86,6 @@ class Spanner(AbjadObject):
     def _compact_summary(self):
         len_self = len(self)
         if not len_self:
-            #return ' '
             return ''
         elif 0 < len_self <= 8:
             return ', '.join([x._compact_representation for x in self])
@@ -110,43 +106,32 @@ class Spanner(AbjadObject):
     ### PRIVATE METHODS ###
 
     def _block_all_components(self):
+        '''Not composer-safe.
+        '''
         for component in self:
             self._block_component(component)
 
     def _block_component(self, component):
-        #component.spanners._spanners.remove(self)
+        '''Not composer-safe.
+        '''
         component._spanners.remove(self)
 
-    #def copy(self, start = None, stop = None):
-    #def copy(self, components):
     def _copy(self, components):
-        '''Return copy of spanner with `components`.
-
-        `components` must be an iterable of components already
-        contained in spanner.
+        '''Return copy of spanner with components.
+        Components must be an iterable of components already contained in spanner.
         '''
-
         my_components = self._components[:]
         self._components = []
         result = copy.deepcopy(self)
         self._components = my_components
-
-#      if stop is not None:
-#         for component in self[start:stop + 1]:
-#            result._components.append(component)
-#      else:
-#         for component in self:
-#            result._components.append(component)
-
         for component in components:
             assert component in self
         for component in components:
             result._components.append(component)
-
         result._unblock_all_components()
         return result
 
-    # TODO: Remove call to self.leaes #
+    # TODO: Remove call to self.leaves
     def _duration_offset_in_me(self, leaf):
         leaves = list(self.leaves)
         assert leaf in leaves
@@ -154,28 +139,18 @@ class Spanner(AbjadObject):
         return sum([leaf.prolated_duration for leaf in prev])
 
     def _fracture_left(self, i):
-        #left = self.copy(0, i - 1)
-        #left = self.copy(self[:i])
         left = self._copy(self[:i])
-        #right = self.copy(i, len(self))
-        #right = self.copy(self[i:])
         right = self._copy(self[i:])
         self._block_all_components()
         return self, left, right
 
     def _fracture_right(self, i):
-        #left = self.copy(0, i)
-        #left = self.copy(self[:i+1])
         left = self._copy(self[:i+1])
-        #right = self.copy(i + 1, len(self))
-        #right = self.copy(self[i+1:])
         right = self._copy(self[i+1:])
         self._block_all_components()
         return self, left, right
 
     def _fuse_by_reference(self, spanner):
-        #result = self.copy()
-        #result = self.copy(self[:])
         result = self._copy(self[:])
         result.extend(spanner.components)
         self._block_all_components()
@@ -183,15 +158,14 @@ class Spanner(AbjadObject):
         return [(self, spanner, result)]
 
     def _initialize_components(self, components):
-        from abjad.tools.componenttools.Component import Component
         from abjad.tools import componenttools
         from abjad.tools import leaftools
-        if isinstance(components, Component):
+        if isinstance(components, componenttools.Component):
             components = [components]
         elif not components:
             components = []
-        # TODO: Author staff-level contiguity check in tools/check. #
-        #         Include optional staff-level contiguity check here. #
+        # TODO: Author staff-level contiguity check in tools/check.
+        #       Include optional staff-level contiguity check here.
         if self._contiguity_constraint == 'thread':
             leaves = list(leaftools.iterate_leaves_forward_in_expr(components))
             assert componenttools.all_are_thread_contiguous_components(leaves)
@@ -204,12 +178,12 @@ class Spanner(AbjadObject):
         component._spanners.add(self)
         self._components.insert(i, component)
 
+    # TODO: make public.
+    # TODO: author tests.
     def _is_exterior_leaf(self, leaf):
         '''True if leaf is first or last in spanner.
-        True if next leaf or prev leaf is None.
+        True if next leaf or prev leaf is none.
         False otherwise.
-
-        .. todo:: Write Spanner._is_exterior_leaf() tests.
         '''
         if self._is_my_first_leaf(leaf):
             return True
@@ -220,7 +194,8 @@ class Spanner(AbjadObject):
         else:
             return False
 
-    # TODO: Remove call to self.leaves #
+    # TODO: Remove call to self.leaves
+    # TODO: make public
     def _is_my_first(self, leaf, klass):
         if isinstance(leaf, klass):
             leaves = list(self.leaves)
@@ -231,18 +206,17 @@ class Spanner(AbjadObject):
             return True
         return False
 
+    # TODO: make public
     def _is_my_first_leaf(self, leaf):
-        from abjad.tools.spannertools.get_nth_leaf_in_spanner import get_nth_leaf_in_spanner
-        # ! Full-leaf traversal extremely inefficient !
-        #leaves = self.leaves
-        #return leaves and leaf is leaves[0]
+        from abjad.tools import spannertools
         try:
-            first_leaf = get_nth_leaf_in_spanner(self, 0)
+            first_leaf = spannertools.get_nth_leaf_in_spanner(self, 0)
             return leaf is first_leaf
         except IndexError:
             return False
 
-    # TODO: Remove call to self.leaves #
+    # TODO: Remove call to self.leaves
+    # TODO: make public
     def _is_my_last(self, leaf, klass):
         if isinstance(leaf, klass):
             leaves = list(self.leaves)
@@ -253,21 +227,21 @@ class Spanner(AbjadObject):
             return True
         return False
 
+    # TODO: make public
     def _is_my_last_leaf(self, leaf):
-        from abjad.tools.spannertools.get_nth_leaf_in_spanner import get_nth_leaf_in_spanner
-        # ! Full-leaf traversal extremely inefficient !
-        #leaves = self.leaves
-        #return leaves and leaf is leaves[-1]
+        from abjad.tools import spannertools
         try:
-            last_leaf = get_nth_leaf_in_spanner(self, -1)
+            last_leaf = spannertools.get_nth_leaf_in_spanner(self, -1)
             return leaf is last_leaf
         except IndexError:
             return False
 
-    # TODO: Remove call to self.leaves #
+    # TODO: Remove call to self.leaves
+    # TODO: make public
     def _is_my_only(self, leaf, klass):
         return isinstance(leaf, klass) and len(self.leaves) == 1
 
+    # TODO: make public
     def _is_my_only_leaf(self, leaf):
         return self._is_my_first_leaf(leaf) and self._is_my_last_leaf(leaf)
 
@@ -279,29 +253,37 @@ class Spanner(AbjadObject):
         self._sever_component(component)
 
     def _remove_component(self, component):
-        #self._components.remove(component)
+        '''Not composer-safe.
+        '''
         for i, x in enumerate(self._components):
             if x is component:
                 self._components.pop(i)
                 break
         else:
-            raise ValueError('component "%s" not in spanner components list.' % component)
+            raise ValueError('component "{}" not in spanner components list.'.format(component))
 
     def _sever_all_components(self):
+        '''Not composer-safe.
+        '''
         for n in reversed(range(len(self))):
             component = self[n]
             self._sever_component(component)
 
     def _sever_component(self, component):
+        '''Not composer-safe.
+        '''
         self._block_component(component)
         self._remove_component(component)
 
     def _unblock_all_components(self):
+        '''Not composer-safe.
+        '''
         for component in self:
             self._unblock_component(component)
 
     def _unblock_component(self, component):
-        #component.spanners._add(self)
+        '''Not composer-safe.
+        '''
         component._spanners.add(self)
 
     ### PUBLIC PROPERTIES ###
@@ -345,7 +327,6 @@ class Spanner(AbjadObject):
             copy with leaves = spanner.leaves first. Or use spanner-
             specific iteration tools.
         '''
-
         from abjad.tools.leaftools.Leaf import Leaf
         from abjad.tools import componenttools
         result = []
@@ -382,7 +363,6 @@ class Spanner(AbjadObject):
 
         Return duration.
         '''
-
         return self._offset
 
     @property
@@ -390,17 +370,19 @@ class Spanner(AbjadObject):
         '''LilyPond grob override component plug-in.
         '''
         if not hasattr(self, '_override'):
-            self._override = LilyPondGrobOverrideComponentPlugIn()
+            self._override = lilypondproxytools.LilyPondGrobOverrideComponentPlugIn()
         return self._override
 
     @property
     def preprolated_duration(self):
-        '''Sum of preprolated duration of all components in spanner.'''
+        '''Sum of preprolated duration of all components in spanner.
+        '''
         return sum([component.preprolated_duration for component in self])
 
     @property
     def prolated_duration(self):
-        '''Sum of prolated duration of all components in spanner.'''
+        '''Sum of prolated duration of all components in spanner.
+        '''
         return sum([component.prolated_duration for component in self])
 
     @property
@@ -408,12 +390,13 @@ class Spanner(AbjadObject):
         '''LilyPond context setting component plug-in.
         '''
         if not hasattr(self, '_set'):
-            self._set = LilyPondContextSettingComponentPlugIn()
+            self._set = lilypondproxytools.LilyPondContextSettingComponentPlugIn()
         return self._set
 
     @property
     def written_duration(self):
-        '''Sum of written duration of all components in spanner.'''
+        '''Sum of written duration of all components in spanner.
+        '''
         return sum([component.written_duration for component in self])
 
     ### PUBLIC METHODS ###
@@ -436,12 +419,10 @@ class Spanner(AbjadObject):
 
         Return none.
         '''
-
         if self._contiguity_constraint == 'thread':
             from abjad.tools import componenttools
             components = self[-1:] + [component]
             assert componenttools.all_are_thread_contiguous_components(components)
-        #component.spanners._add(self)
         component._spanners.add(self)
         self._components.append(component)
 
@@ -463,11 +444,9 @@ class Spanner(AbjadObject):
 
         Return none.
         '''
-
         from abjad.tools import componenttools
         components = [component] + self[:1]
         assert componenttools.all_are_thread_contiguous_components(components)
-        #component.spanners._add(self)
         component._spanners.add(self)
         self._components.insert(0, component)
 
@@ -487,7 +466,6 @@ class Spanner(AbjadObject):
 
         Return none.
         '''
-
         self._sever_all_components()
 
     def extend(self, components):
@@ -506,7 +484,6 @@ class Spanner(AbjadObject):
 
         Return none.
         '''
-
         from abjad.tools import componenttools
         component_input = self[-1:]
         component_input.extend(components)
@@ -531,14 +508,14 @@ class Spanner(AbjadObject):
 
         Return none.
         '''
-
         from abjad.tools import componenttools
         component_input = components + self[:1]
         assert componenttools.all_are_thread_contiguous_components(component_input)
         for component in reversed(components):
             self.append_left(component)
 
-    def fracture(self, i, direction = 'both'):
+    # TODO: replace 'both' with none
+    def fracture(self, i, direction='both'):
         r'''Fracture spanner at `direction` of component at index `i`.
 
         Valid values for `direction` are ``'left'``, ``'right'`` and ``'both'``.
@@ -567,7 +544,6 @@ class Spanner(AbjadObject):
 
         Return tuple.
         '''
-
         if i < 0:
             i = len(self) + i
         if direction == 'left':
@@ -575,20 +551,13 @@ class Spanner(AbjadObject):
         elif direction == 'right':
             return self._fracture_right(i)
         elif direction == 'both':
-            #left = self.copy(0, i - 1)
-            #left = self.copy(self[:i])
             left = self._copy(self[:i])
-            #right = self.copy(i + 1, len(self))
-            #right = self.copy(self[i+1:])
             right = self._copy(self[i+1:])
-            #center = self.copy(i, i)
-            #center = self.copy(self[i:i+1])
             center = self._copy(self[i:i+1])
             self._block_all_components()
             return self, left, center, right
         else:
-            raise ValueError(
-                'direction %s must be left, right or both.' % direction)
+            raise ValueError('direction {!r} must be left, right or both.'.format(direction))
 
     def fuse(self, spanner):
         r'''Fuse contiguous spanners.
@@ -624,13 +593,12 @@ class Spanner(AbjadObject):
                 f'8 ]
             }
 
-        .. todo:: Return (immutable) tuple instead of (mutable) list.
+        Return list.
         '''
-
         return self._fuse_by_reference(spanner)
 
     def index(self, component):
-        '''Return nonnegative integer index of `component` in spanner. ::
+        '''Return nonnegative integer index of `component` in spanner::
 
             abjad> voice = Voice("c'8 d'8 e'8 f'8")
             abjad> spanner = spannertools.Spanner(voice[2:])
@@ -644,8 +612,6 @@ class Spanner(AbjadObject):
 
         Return nonnegative integer.
         '''
-
-        #return self._components.index(component)
         for i, x in enumerate(self._components):
             if x is component:
                 return i
@@ -653,7 +619,7 @@ class Spanner(AbjadObject):
             raise IndexError
 
     def pop(self):
-        '''Remove and return rightmost component in spanner. ::
+        '''Remove and return rightmost component in spanner::
 
             abjad> voice = Voice("c'8 d'8 e'8 f'8")
             abjad> spanner = spannertools.Spanner(voice[:])
@@ -672,13 +638,12 @@ class Spanner(AbjadObject):
 
         Return component.
         '''
-
         component = self[-1]
         self._sever_component(component)
         return component
 
     def pop_left(self):
-        '''Remove and return leftmost component in spanner. ::
+        '''Remove and return leftmost component in spanner::
 
             abjad> voice = Voice("c'8 d'8 e'8 f'8")
             abjad> spanner = spannertools.Spanner(voice[:])
@@ -697,7 +662,6 @@ class Spanner(AbjadObject):
 
         Return component.
         '''
-
         component = self[0]
         self._sever_component(component)
         return component
