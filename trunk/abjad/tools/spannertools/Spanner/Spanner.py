@@ -58,8 +58,7 @@ class Spanner(AbjadObject):
             new._set = copy.copy(self.set)
         return new
 
-    # TODO: uncomment when copy regime is finished
-    #__deepcopy__ = __copy__
+    __deepcopy__ = __copy__
 
     def __getitem__(self, expr):
         return self._components.__getitem__(expr)
