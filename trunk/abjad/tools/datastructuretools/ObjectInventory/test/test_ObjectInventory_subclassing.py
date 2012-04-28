@@ -16,7 +16,7 @@ class SpecialObjectInventory(ObjectInventory):
         result.extend(['flavor', 'color'])
         return tuple(sorted(result))
     @property
-    def _tools_package(self):
+    def _tools_package_name(self):
         return 'specialtools'
 
 

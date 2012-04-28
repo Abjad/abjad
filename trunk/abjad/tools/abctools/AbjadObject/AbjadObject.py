@@ -170,14 +170,14 @@ class AbjadObject(object):
         return self._tools_package_qualified_indented_repr
 
     @property
-    def _tools_package(self):
+    def _tools_package_name(self):
         for part in reversed(self.__module__.split('.')):
             if not part == self._class_name:
                 return part
 
     @property
     def _tools_package_qualified_class_name(self):
-        return '{}.{}'.format(self._tools_package, self._class_name)
+        return '{}.{}'.format(self._tools_package_name, self._class_name)
 
     @property
     def _tools_package_qualified_indented_repr(self):
@@ -225,9 +225,9 @@ class AbjadObject(object):
                             for piece in pieces[1:-1]:
                                 result.append('{}{}'.format(prefix, piece)) 
                             result.append('{}{}{}'.format(prefix, pieces[-1], suffix))
-                    elif hasattr(value, '_tools_package'):
+                    elif hasattr(value, '_tools_package_name'):
                         result.append('{}{}={}.{!r}{}'.format(
-                            prefix, name, value._tools_package, value, suffix))
+                            prefix, name, value._tools_package_name, value, suffix))
                     else:
                         result.append('{}{}={!r}{}'.format(prefix, name, value, suffix))
         return result
@@ -244,8 +244,8 @@ class AbjadObject(object):
                 for piece in pieces[:-1]:
                     result.append('{}{}'.format(prefix, piece))
                 result.append('{}{}{}'.format(prefix, pieces[-1], suffix))
-            elif hasattr(value, '_tools_package'):
-                result.append('{}{}.{!r}{}'.format(prefix, value._tools_package, value, suffix))
+            elif hasattr(value, '_tools_package_name'):
+                result.append('{}{}.{!r}{}'.format(prefix, value._tools_package_name, value, suffix))
             else:
                 result.append('{}{!r}{}'.format(prefix, value, suffix))
         return result
