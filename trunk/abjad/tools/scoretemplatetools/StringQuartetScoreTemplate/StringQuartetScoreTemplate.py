@@ -32,14 +32,20 @@ class StringQuartetScoreTemplate(ScoreTemplate):
                     \context Voice = "First Violin Voice" {
                     }
                 }
-                \context Staff = "Second Violin Voice" {
+                \context Staff = "Second Violin Staff" {
                     \clef "treble"
+                    \context Voice = "Second Violin Voice" {
+                    }
                 }
                 \context Staff = "Viola Staff" {
                     \clef "alto"
+                    \context Voice = "Viola Voice" {
+                    }
                 }
                 \context Staff = "Cello Staff" {
                     \clef "bass"
+                    \context Voice = "Cello Voice" {
+                    }
                 }
             >>
         >>
@@ -72,17 +78,17 @@ class StringQuartetScoreTemplate(ScoreTemplate):
 
         # make second violin voice and staff
         second_violin_voice = voicetools.Voice(name='Second Violin Voice')
-        second_violin_staff = stafftools.Staff(name='Second Violin Voice')
+        second_violin_staff = stafftools.Staff([second_violin_voice], name='Second Violin Staff')
         contexttools.ClefMark('treble')(second_violin_staff)
 
         # make viola voice and staff
         viola_voice = voicetools.Voice(name='Viola Voice')
-        viola_staff = stafftools.Staff(name='Viola Staff')
+        viola_staff = stafftools.Staff([viola_voice], name='Viola Staff')
         contexttools.ClefMark('alto')(viola_staff)
 
         # make cello voice and staff
         cello_voice = voicetools.Voice(name='Cello Voice')
-        cello_staff = stafftools.Staff(name='Cello Staff')
+        cello_staff = stafftools.Staff([cello_voice], name='Cello Staff')
         contexttools.ClefMark('bass')(cello_staff)
 
         # make string quartet staff group
