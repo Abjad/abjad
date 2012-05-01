@@ -47,6 +47,15 @@ class StringQuartetScoreTemplate(ScoreTemplate):
     Return score template.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
+    context_name_abbreviations = {
+        'vn1': 'First Violin Voice',
+        'vn2': 'Second Violin Voice',
+        'va': 'Viola Voice',
+        'vc': 'Cello Voice',
+        }
+
     ### INITIALIZER ###
 
     def __init__(self):
