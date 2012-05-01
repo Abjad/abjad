@@ -277,7 +277,7 @@ class QGridQuantizer(_Quantizer):
             parent[parent.index(trailing[0])] = Rest(trailing[0].written_duration)
 
         # fuse tie chains
-        for tie_chain in tietools.iterate_tie_chains_forward_in_expr(container):
+        for tie_chain in iterate_tie_chains_forward_in_expr(container):
             if not tie_chain.is_trivial:
                 fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(tie_chain)
 
