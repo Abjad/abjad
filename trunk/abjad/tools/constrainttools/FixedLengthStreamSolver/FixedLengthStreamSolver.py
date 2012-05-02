@@ -77,16 +77,12 @@ class FixedLengthStreamSolver(_Solver):
     ### OVERRIDES ###
 
     def __iter__(self):
-        #if self._randomized:
-        #    domain = self._domain.randomized()
-        #else:
-        #    domain = self._domain
 
         domain = self._domain
         domain_length = len(domain)
         constraints = self._constraints
 
-        def random_recurse(node, prev_solution, max_depth):
+        def random_recurse(node, prev_solution):
 	
             solution = list(prev_solution) + [node.value]
 
@@ -97,7 +93,7 @@ class FixedLengthStreamSolver(_Solver):
                     break
 
             if valid:
-                if len(solution) == max_depth:
+                if len(solution) == domain_length:
                     # we found a solution
                     return solution, node
 
@@ -110,7 +106,7 @@ class FixedLengthStreamSolver(_Solver):
                         return node
 
                     else:
-                        result = random_recurse(random.choice(node.children), solution, max_depth)
+                        result = random_recurse(random.choice(node.children), solution)
 
                         # if list, then we've found a result, propogate it up the chain
                         if isinstance(result, list):
@@ -142,7 +138,7 @@ class FixedLengthStreamSolver(_Solver):
             else:
                 return node
 
-        def ordered_recurse(node, prev_solution, max_depth):
+        def ordered_recurse(node, prev_solution):
 
             solution = list(prev_solution) + [node.value]
 
@@ -156,7 +152,7 @@ class FixedLengthStreamSolver(_Solver):
 
             if valid:
                 # else, if we find a complete solution, yield it
-                if len(solution) == max_depth:
+                if len(solution) == domain_length:
                     yield solution
 
                 # and if we find an incomplete solution,
@@ -165,14 +161,14 @@ class FixedLengthStreamSolver(_Solver):
                     for x in domain[len(solution)]:
                         child = Node(x, parent=node, children=[])
                         node.append(child)
-                        for y in ordered_recurse(child, solution, max_depth):
+                        for y in ordered_recurse(child, solution):
                             yield y
 
         # randomized traversal
         if self.randomized:
             graphs = [Node(x) for x in domain[0]]
             while graphs:
-                result = random_recurse(random.choice(graphs), [], len(domain))
+                result = random_recurse(random.choice(graphs), [])
                 if isinstance(result, list):
                     yield result
                 elif isinstance(result, tuple):
@@ -186,5 +182,5 @@ class FixedLengthStreamSolver(_Solver):
         else:
             for x in domain[0]:
                 node = Node(x, children=[])
-                for y in ordered_recurse(node, (), len(domain)):
+                for y in ordered_recurse(node, []):
                     yield y
