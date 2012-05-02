@@ -61,48 +61,92 @@ class VariableLengthStreamSolver(_Solver):
     ### OVERRIDES ###
 
     def __iter__(self):
-        if self._randomized:
-            domain = self._domain.randomized()
-        else:
-            domain = self._domain
+        domain = self._domain
         constraints = self._constraints
         terminators = self._terminators
 
-        def recurse(node, prev_solution):
-
+        def ordered_recurse(node, prev_solution):
             solution = list(prev_solution) + [node.value]
-
-            # if the node does not fulfill constraints, this is a dead end.
-            # constraints are applied in order; we bail on first false result.
             valid = True
             for constraint in constraints:
                 if not constraint(solution):  
                     valid = False
                     break
+            if valid:
+                for terminator in terminators:
+                    if not terminator(solution):
+                        valid = False
+                        break
+                if valid:                
+                    yield solution
+                for x in domain[0]:
+                    child = Node(x, parent=node, children=[])
+                    node.append(child)
+                    for y in ordered_recurse(child, solution):
+                        yield y
+
+        def random_recurse(node, prev_solution):
+            solution = list(prev_solution) + [node.value]
+            valid = True
+            for constraint in constraints:
+                if not constraint(solution):
+                    valid = False
+                    break
 
             if valid:
 
-                # then we test terminators in the same manner
                 for terminator in terminators:
                     if not terminator(solution):
                         valid = False
                         break
 
-                if valid:                
+                if valid and node.children is None:
+                    node.children = [Node(x, parent=node) for x in domain[0]]
+                    return solution
+
+                elif node.children == []:
+                    return node
+
+                else:
+                    if node.children is None:
+                        node.children = [Node(x, parent=node) for x in domain[0]]
+                    result = random_recurse(random.choice(node.children), solution)
+                    if isinstance(result, list):
+                        return result
+                    if isinstance(result, tuple):
+                        solution, child = result
+                        node.children.remove(child)
+                        if node.children == []:
+                            return solution, node
+                        return solution
+                    elif result is None:
+                        return None
+                    elif isinstance(result, type(node)):
+                        node.children.remove(result)
+                        if node.children == []:
+                            return node
+                        return None
+
+            else:
+                return node
+
+        if self.randomized:
+            graphs = [Node(x) for x in domain[0]]
+            while graphs:
+                result = random_recurse(random.choice(graphs), [])
+                if isinstance(result, list):
+                    yield result
+                elif isinstance(result, tuple):
+                    solution, node = result
+                    graphs.remove(node)
                     yield solution
-
-                # and if we find an incomplete solution,
-                # create child nodes, and recurse into them.
-                for x in domain[0]:
-                    child = Node(x, parent=node, children=[])
-                    node.append(child)
-                    for y in recurse(child, solution):
-                        yield y
-
-        for x in domain[0]:
-            node = Node(x, children=[])
-            for y in recurse(node, ()):
-                yield y
+                elif isinstance(result, Node):
+                    graphs.remove(result)
+        else:
+            for x in domain[0]:
+                node = Node(x, children=[])
+                for y in ordered_recurse(node, ()):
+                    yield y
 
     ### PUBLIC PROPERTIES ###
 
