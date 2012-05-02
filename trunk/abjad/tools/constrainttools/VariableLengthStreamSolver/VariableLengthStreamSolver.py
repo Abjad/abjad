@@ -28,21 +28,21 @@ class VariableLengthStreamSolver(_Solver):
         abjad> solver = VariableLengthStreamSolver(domain, [boundary_sum], [target_sum])
         abjad> for x in solver: x
         ...
-        (1, 1, 1, 1, 1)
-        (1, 1, 1, 2)
-        (1, 1, 2, 1)
-        (1, 1, 3)
-        (1, 2, 1, 1)
-        (1, 2, 2)
-        (1, 3, 1)
-        (1, 4)
-        (2, 1, 1, 1)
-        (2, 1, 2)
-        (2, 2, 1)
-        (2, 3)
-        (3, 1, 1)
-        (3, 2)
-        (4, 1)
+        [1, 1, 1, 1, 1]
+        [1, 1, 1, 2]
+        [1, 1, 2, 1]
+        [1, 1, 3]
+        [1, 2, 1, 1]
+        [1, 2, 2]
+        [1, 3, 1]
+        [1, 4]
+        [2, 1, 1, 1]
+        [2, 1, 2]
+        [2, 2, 1]
+        [2, 3]
+        [3, 1, 1]
+        [3, 2]
+        [4, 1]
         
     ``VariableLengthStreamSolvers`` are immutable.
 
@@ -68,8 +68,9 @@ class VariableLengthStreamSolver(_Solver):
         constraints = self._constraints
         terminators = self._terminators
 
-        def recurse(node):
-            solution = node.solution
+        def recurse(node, prev_solution):
+
+            solution = list(prev_solution) + [node.value]
 
             # if the node does not fulfill constraints, this is a dead end.
             # constraints are applied in order; we bail on first false result.
@@ -93,14 +94,14 @@ class VariableLengthStreamSolver(_Solver):
                 # and if we find an incomplete solution,
                 # create child nodes, and recurse into them.
                 for x in domain[0]:
-                    child = Node(x, node)
+                    child = Node(x, parent=node, children=[])
                     node.append(child)
-                    for y in recurse(child):
+                    for y in recurse(child, solution):
                         yield y
 
         for x in domain[0]:
-            node = Node(x)
-            for y in recurse(node):
+            node = Node(x, children=[])
+            for y in recurse(node, ()):
                 yield y
 
     ### PUBLIC PROPERTIES ###

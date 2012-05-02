@@ -31,18 +31,18 @@ class FixedLengthStreamSolver(_Solver):
 
         abjad> for solution in solver: print solution
         ... 
-        (1, 2, 3, 4)
-        (1, 2, 4, 3)
-        (1, 3, 2, 4)
-        (1, 3, 4, 2)
-        (2, 1, 3, 4)
-        (2, 4, 3, 1)
-        (3, 1, 2, 4)
-        (3, 4, 2, 1)
-        (4, 2, 1, 3)
-        (4, 2, 3, 1)
-        (4, 3, 1, 2)
-        (4, 3, 2, 1)
+        [1, 2, 3, 4]
+        [1, 2, 4, 3]
+        [1, 3, 2, 4]
+        [1, 3, 4, 2]
+        [2, 1, 3, 4]
+        [2, 4, 3, 1]
+        [3, 1, 2, 4]
+        [3, 4, 2, 1]
+        [4, 2, 1, 3]
+        [4, 2, 3, 1]
+        [4, 3, 1, 2]
+        [4, 3, 2, 1]
 
     If no solutions can be found, returns none:
 
@@ -77,42 +77,114 @@ class FixedLengthStreamSolver(_Solver):
     ### OVERRIDES ###
 
     def __iter__(self):
-        if self._randomized:
-            domain = self._domain.randomized()
-        else:
-            domain = self._domain
+        #if self._randomized:
+        #    domain = self._domain.randomized()
+        #else:
+        #    domain = self._domain
+
+        domain = self._domain
+        domain_length = len(domain)
         constraints = self._constraints
 
-        def recurse(node):
-            solution = node.solution
-            #print '\n%r\n' % [str(x) for x in solution]
+        def random_recurse(node, prev_solution, max_depth):
+	
+            solution = list(prev_solution) + [node.value]
+
+            valid = True
+            for constraint in constraints:
+                if not constraint(solution):
+                    valid = False
+                    break
+
+            if valid:
+                if len(solution) == max_depth:
+                    # we found a solution
+                    return solution, node
+
+                else:
+                    if node.children is None:
+                        depth = node.depth + 1
+                        node.children = [Node(x, parent=node) for x in domain[depth]]
+
+                    elif node.children == []:
+                        return node
+
+                    else:
+                        result = random_recurse(random.choice(node.children), solution, max_depth)
+
+                        # if list, then we've found a result, propogate it up the chain
+                        if isinstance(result, list):
+                            return result
+
+                        # if tuple, we have a pair of solution and terminal node
+                        # we need to remove the terminal node (and any subsequently terminal parent node)
+                        # so that later random descents do not repeat this same traversal
+                        if isinstance(result, tuple):
+                            solution, child = result
+                            node.children.remove(child)
+                            if node.children == []:
+                                return solution, node
+                            return solution
+
+                        # if None, we found a deadend somewhere earlier
+                        elif result is None:
+                            return None
+
+                        # if a node, it must be removed from this node's children list
+                        # then, if the children list is empty, this node is also a deadend
+                        # in which case, we return this node and repeat the process
+                        elif isinstance(result, type(node)):
+                            node.children.remove(result)
+                            if node.children == []:
+                                return node    
+                            return None
+
+            else:
+                return node
+
+        def ordered_recurse(node, prev_solution, max_depth):
+
+            solution = list(prev_solution) + [node.value]
 
             # if the node does not fulfill constraints, this is a dead end.
             # constraints are applied in order; we bail on first false result.
             valid = True
             for constraint in constraints:
-                #print '\t%r' % constraint,
                 if not constraint(solution):
                     valid = False
-                    #print '...False'
                     break
-                #print '...True'
 
             if valid:
                 # else, if we find a complete solution, yield it
-                if len(solution) == len(domain):
+                if len(solution) == max_depth:
                     yield solution
 
                 # and if we find an incomplete solution,
                 # create child nodes, and recurse into them.
                 else:
                     for x in domain[len(solution)]:
-                        child = Node(x, node)
+                        child = Node(x, parent=node, children=[])
                         node.append(child)
-                        for y in recurse(child):
+                        for y in ordered_recurse(child, solution, max_depth):
                             yield y
 
-        for x in domain[0]:
-            node = Node(x)
-            for y in recurse(node):
-                yield y
+        # randomized traversal
+        if self.randomized:
+            graphs = [Node(x) for x in domain[0]]
+            while graphs:
+                result = random_recurse(random.choice(graphs), [], len(domain))
+                if isinstance(result, list):
+                    yield result
+                elif isinstance(result, tuple):
+                    solution, node = result
+                    graphs.remove(node)
+                    yield solution
+                elif isinstance(result, Node):
+                    graphs.remove(result)
+
+        # ordered traversal
+        else:
+            for x in domain[0]:
+                node = Node(x, children=[])
+                for y in ordered_recurse(node, (), len(domain)):
+                    yield y
