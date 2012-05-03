@@ -9,6 +9,10 @@ lilypondfiletools.ContextBlock
 Read-only Properties
 --------------------
 
+.. autoattribute:: abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.engraver_consists
+
+.. autoattribute:: abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.engraver_removals
+
 .. autoattribute:: abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.format
 
     Inherited from :py:class:`lilypondfiletools._AttributedBlock <abjad.tools.lilypondfiletools._AttributedBlock._AttributedBlock._AttributedBlock>`
@@ -25,6 +29,10 @@ Read/write Properties
 .. autoattribute:: abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.is_formatted_when_empty
 
     Inherited from :py:class:`lilypondfiletools._AttributedBlock <abjad.tools.lilypondfiletools._AttributedBlock._AttributedBlock._AttributedBlock>`
+
+.. autoattribute:: abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.name
+
+.. autoattribute:: abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.type
 
 Special Methods
 ---------------

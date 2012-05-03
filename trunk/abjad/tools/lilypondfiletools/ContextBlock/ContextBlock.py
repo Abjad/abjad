@@ -37,6 +37,8 @@ class ContextBlock(_AttributedBlock):
 
     def __init__(self, context_name=None):
         _AttributedBlock.__init__(self)
+        self._engraver_consists = set([])
+        self._engraver_removals = set([])
         self._escaped_name = r'\context'
         self.context_name = context_name
         
@@ -46,8 +48,16 @@ class ContextBlock(_AttributedBlock):
     def _format_pieces(self):
         result = []
         result.append('%s {' % self._escaped_name)
+        if self.type is not None:
+            result.append('\t' + r'\type %s' % self.type)
+        for string in sorted(self.engraver_removals):
+            result.append('\t' + r'\remove %s' % string)
+        for string in sorted(self.engraver_consists):
+            result.append('\t' + r'\consists %s' % string)
         if self.context_name is not None:
             result.append('\t' + r'\%s' % self.context_name)
+        if self.name is not None:
+            result.append('\t' + r'\name %s' % self.name)
         for override in self.override._list_format_contributions('override'):
             result.append('\t' + override)
         for key, value in self.set._get_attribute_tuples():
@@ -56,17 +66,15 @@ class ContextBlock(_AttributedBlock):
         result.append('}')
         return result
 
-    ### PUBLIC PROPERTIES ###
+    ### READ-ONLY PUBLIC PROPERTIES ###
 
-    @apply
-    def context_name():
-        def fget(self):
-            r'''Read / write context name.'''
-            return self._context_name
-        def fset(self, context_name):
-            assert isinstance(context_name, (str, type(None)))
-            self._context_name = context_name
-        return property(**locals())
+    @property
+    def engraver_consists(self):
+        return self._engraver_consists
+
+    @property
+    def engraver_removals(self):
+        return self._engraver_removals
 
     @property
     def override(self):
@@ -83,3 +91,35 @@ class ContextBlock(_AttributedBlock):
         if not hasattr(self, '_set'):
             self._set = LilyPondContextSettingComponentPlugIn()
         return self._set
+
+    ### READ / WRITE PUBLIC PROPERTIES ###
+
+    @apply
+    def context_name():
+        def fget(self):
+            r'''Read / write context name.'''
+            return self._context_name
+        def fset(self, context_name):
+            assert isinstance(context_name, (str, type(None)))
+            self._context_name = context_name
+        return property(**locals())
+
+    @apply
+    def name():
+        def fget(self):
+            r'''Read / write name.'''
+            return self._name
+        def fset(self, name):
+            assert isinstance(name, (str, type(None)))
+            self._name = name
+        return property(**locals())
+
+    @apply
+    def type():
+        def fget(self):
+            r'''Read / write type.'''
+            return self._type
+        def fset(self, expr):
+            assert isinstance(expr, (str, type(None)))
+            self._type = expr
+        return property(**locals())
