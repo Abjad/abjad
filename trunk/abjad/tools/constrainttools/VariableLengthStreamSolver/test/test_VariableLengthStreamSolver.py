@@ -1,7 +1,7 @@
 from abjad.tools.constrainttools import *
 
 
-def test_FixedLengthStreamSolver_01():
+def test_VariableLengthStreamSolver_01():
     domain = Domain([1, 2, 3, 4], 1)
     boundary_sum = GlobalConstraint(lambda x: sum(x) < 6)
     target_sum = GlobalConstraint(lambda x: sum(x) == 5)
