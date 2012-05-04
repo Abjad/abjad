@@ -5,7 +5,24 @@ import copy
 
 
 class Context(Container):
-    '''Abjad model of a horizontal layer of music.
+    '''.. versionadded:: 1.0
+
+    Abjad model of a horizontal layer of music.
+
+        abjad> context = contexttools.Context(name='MeterVoice', context_name='TimeSignatureContext')
+
+    ::
+
+        abjad> context
+        TimeSignatureContext-"MeterVoice"{}
+
+    ::
+
+        abjad> f(context)
+        \context TimeSignatureContext = "MeterVoice" {
+        }
+
+    Return context object.
     '''
 
     ### CLASS ATTRIBUTES ###
@@ -22,7 +39,7 @@ class Context(Container):
         self._formatter = _ContextFormatter(self)
         self._engraver_consists = set([])
         self._engraver_removals = set([])
-        self.name = None
+        self.name = name
         self.is_nonsemantic = False
 
     ### SPECIAL METHODS ###
