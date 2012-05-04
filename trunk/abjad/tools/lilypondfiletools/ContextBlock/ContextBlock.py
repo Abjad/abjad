@@ -41,6 +41,8 @@ class ContextBlock(_AttributedBlock):
         self._engraver_removals = set([])
         self._escaped_name = r'\context'
         self.context_name = context_name
+        self.name = None
+        self.type = None
         
     ### PRIVATE PROPERTIES ###
 
