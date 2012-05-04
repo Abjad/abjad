@@ -9,9 +9,12 @@ class LilyPondLanguageToken(AbjadObject):
     LilyPond language token::
 
         abjad> lilypondfiletools.LilyPondLanguageToken()
-        LilyPondLanguageToken(\include "english.ly")
+        LilyPondLanguageToken('english')
 
     Return LilyPond language token.
+
+    .. versionchanged:: 2.9
+        format with LilyPond ``\language`` command instead of LilyPond ``\include`` command.
     '''
 
     ### INITIALIZER ###
@@ -22,7 +25,7 @@ class LilyPondLanguageToken(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        return '%s(%s)' % (type(self).__name__, self.format)
+        return '{}({!r})'.format(self._class_name, _read_config_file()['lilypond_lang'])
 
     ### PUBLIC PROPERTIES ###
 
@@ -31,9 +34,9 @@ class LilyPondLanguageToken(AbjadObject):
         r'''Format contribution of LilyPond language token::
 
             abjad> lilypondfiletools.LilyPondLanguageToken().format
-            '\\include "english.ly"'
+            '\\language "english"'
 
         Return string.
         '''
         lilypond_language = _read_config_file()['lilypond_lang']
-        return r'\include "%s.ly"' % lilypond_language.lower()
+        return r'\language "%s"' % lilypond_language.lower()

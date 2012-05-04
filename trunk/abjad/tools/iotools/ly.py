@@ -53,6 +53,8 @@ def ly(target=-1):
 
     if os.stat(target_ly):
         command = '{} {}'.format(text_editor, target_ly)
-        spawn_subprocess(command)
+        # TODO: how do we get rid of this last tricky call to os.system()?
+        #spawn_subprocess(command)
+        os.system(command)
     else:
         print 'Target LilyPond input file {} does not exist.'.format(target_ly)
