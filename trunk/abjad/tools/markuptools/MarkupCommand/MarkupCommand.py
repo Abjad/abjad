@@ -55,7 +55,7 @@ class MarkupCommand(AbjadObject):
         return False
 
     def __repr__(self):
-        result = [self.command]
+        result = [repr(self.command)]
         result.extend([repr(x) for x in self.args])
         return '%s(%s)' % (type(self).__name__, ', '.join(result))
 
