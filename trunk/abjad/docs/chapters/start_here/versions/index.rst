@@ -604,7 +604,7 @@ Implements 221 public classes and 1029 functions totalling 168,000 lines of code
   * ``iotools.is_underscore_delimited_lowercase_string``
   * ``iotools.is_underscore_delimited_lowercase_file_name_with_extension``
 
-- Extended ``lilypondfiletools._NonattributedBlock`` with ``is_formatted_when_empty`` read-write property.
+- Extended ``lilypondfiletools.NonattributedBlock`` with ``is_formatted_when_empty`` read-write property.
   ``lilypondfiletools.ScoreBlock`` no longer formats when empty, by default.
 
 - Extended ``marktools.BarLine`` with ``format_slot`` keyword.

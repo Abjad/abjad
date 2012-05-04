@@ -1,7 +1,7 @@
-from abjad.tools.lilypondfiletools._NonattributedBlock import _NonattributedBlock
+from abjad.tools.lilypondfiletools.NonattributedBlock import NonattributedBlock
 
 
-class ScoreBlock(_NonattributedBlock):
+class ScoreBlock(NonattributedBlock):
     r'''.. versionadded:: 2.0
 
     Abjad model of LilyPond input file score block::
@@ -33,6 +33,6 @@ class ScoreBlock(_NonattributedBlock):
     '''
 
     def __init__(self):
-        _NonattributedBlock.__init__(self)
+        NonattributedBlock.__init__(self)
         self._escaped_name = r'\score'
         self._is_formatted_when_empty = False

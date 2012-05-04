@@ -474,6 +474,14 @@ Abjad composition packages
 :py:mod:`lilypondfiletools <abjad.tools.lilypondfiletools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+.. rubric:: abstract classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/lilypondfiletools/AttributedBlock/AttributedBlock
+   tools/lilypondfiletools/NonattributedBlock/NonattributedBlock
+
 .. rubric:: concrete classes
 
 .. toctree::

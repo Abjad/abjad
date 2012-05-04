@@ -1,10 +1,22 @@
 from abc import ABCMeta
+from abc import abstractmethod
 
 
-class _NonattributedBlock(list):
-    r'''Abjad model of the LilyPond input file blocks with no attributes.
+class NonattributedBlock(list):
+    r'''.. versionadded:: 2.0
+
+    Abjad model of LilyPond input file block with no attributes.
     '''
+
+    ### CLASS ATTRIBUTES ###
+
     __metaclass__ = ABCMeta
+
+    ### INITIALIZER ###
+
+    @abstractmethod
+    def __init__(self):
+        pass
 
     ### SPECIAL METHODS ###
 

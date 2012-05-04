@@ -1,11 +1,20 @@
 from abc import ABCMeta
+from abc import abstractmethod
 
 
-class _AttributedBlock(object):
-    '''Model of attribute block in LilyPond input file.
+class AttributedBlock(object):
+    '''.. versionadded:: 2.0
+
+    Abjad model of LilyPond input file block with attributes.
     '''
+
+    ### CLASS ATTRIBUTES ###
+
     __metaclass__ = ABCMeta
 
+    ### INITIALIZER ###
+
+    @abstractmethod
     def __init__(self):
         self._is_formatted_when_empty = False
 

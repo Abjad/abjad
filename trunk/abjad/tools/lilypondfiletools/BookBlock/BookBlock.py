@@ -1,7 +1,7 @@
-from abjad.tools.lilypondfiletools._NonattributedBlock import _NonattributedBlock
+from abjad.tools.lilypondfiletools.NonattributedBlock import NonattributedBlock
 
 
-class BookBlock(_NonattributedBlock):
+class BookBlock(NonattributedBlock):
     r'''.. versionadded:: 2.0
 
     Abjad model of LilyPond input file book block::
@@ -22,6 +22,6 @@ class BookBlock(_NonattributedBlock):
     '''
 
     def __init__(self):
-        _NonattributedBlock.__init__(self)
+        NonattributedBlock.__init__(self)
         self._escaped_name = r'\book'
         self._is_formatted_when_empty = True

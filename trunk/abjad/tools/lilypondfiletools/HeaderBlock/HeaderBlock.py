@@ -1,7 +1,7 @@
-from abjad.tools.lilypondfiletools._AttributedBlock import _AttributedBlock
+from abjad.tools.lilypondfiletools.AttributedBlock import AttributedBlock
 
 
-class HeaderBlock(_AttributedBlock):
+class HeaderBlock(AttributedBlock):
     r'''.. versionadded:: 2.0
 
     Abjad model of LilyPond input file header block::
@@ -30,5 +30,5 @@ class HeaderBlock(_AttributedBlock):
     '''
 
     def __init__(self):
-        _AttributedBlock.__init__(self)
+        AttributedBlock.__init__(self)
         self._escaped_name = r'\header'

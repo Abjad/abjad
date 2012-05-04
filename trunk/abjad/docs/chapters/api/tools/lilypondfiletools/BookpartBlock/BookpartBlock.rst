@@ -11,14 +11,14 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.lilypondfiletools.BookpartBlock.BookpartBlock.BookpartBlock.format
 
-    Inherited from :py:class:`lilypondfiletools._NonattributedBlock <abjad.tools.lilypondfiletools._NonattributedBlock._NonattributedBlock._NonattributedBlock>`
+    Inherited from :py:class:`lilypondfiletools.NonattributedBlock <abjad.tools.lilypondfiletools.NonattributedBlock.NonattributedBlock.NonattributedBlock>`
 
 Read/write Properties
 ---------------------
 
 .. autoattribute:: abjad.tools.lilypondfiletools.BookpartBlock.BookpartBlock.BookpartBlock.is_formatted_when_empty
 
-    Inherited from :py:class:`lilypondfiletools._NonattributedBlock <abjad.tools.lilypondfiletools._NonattributedBlock._NonattributedBlock._NonattributedBlock>`
+    Inherited from :py:class:`lilypondfiletools.NonattributedBlock <abjad.tools.lilypondfiletools.NonattributedBlock.NonattributedBlock.NonattributedBlock>`
 
 Methods
 -------
@@ -136,7 +136,7 @@ Special Methods
 
 .. automethod:: abjad.tools.lilypondfiletools.BookpartBlock.BookpartBlock.BookpartBlock.__repr__
 
-    Inherited from :py:class:`lilypondfiletools._NonattributedBlock <abjad.tools.lilypondfiletools._NonattributedBlock._NonattributedBlock._NonattributedBlock>`
+    Inherited from :py:class:`lilypondfiletools.NonattributedBlock <abjad.tools.lilypondfiletools.NonattributedBlock.NonattributedBlock.NonattributedBlock>`
 
 .. automethod:: abjad.tools.lilypondfiletools.BookpartBlock.BookpartBlock.BookpartBlock.__reversed__
 

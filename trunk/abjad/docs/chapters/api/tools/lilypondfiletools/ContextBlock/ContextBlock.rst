@@ -15,7 +15,7 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.format
 
-    Inherited from :py:class:`lilypondfiletools._AttributedBlock <abjad.tools.lilypondfiletools._AttributedBlock._AttributedBlock._AttributedBlock>`
+    Inherited from :py:class:`lilypondfiletools.AttributedBlock <abjad.tools.lilypondfiletools.AttributedBlock.AttributedBlock.AttributedBlock>`
 
 .. autoattribute:: abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.override
 
@@ -28,7 +28,7 @@ Read/write Properties
 
 .. autoattribute:: abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.is_formatted_when_empty
 
-    Inherited from :py:class:`lilypondfiletools._AttributedBlock <abjad.tools.lilypondfiletools._AttributedBlock._AttributedBlock._AttributedBlock>`
+    Inherited from :py:class:`lilypondfiletools.AttributedBlock <abjad.tools.lilypondfiletools.AttributedBlock.AttributedBlock.AttributedBlock>`
 
 .. autoattribute:: abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.name
 
@@ -47,7 +47,7 @@ Special Methods
 
 .. automethod:: abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.__repr__
 
-    Inherited from :py:class:`lilypondfiletools._AttributedBlock <abjad.tools.lilypondfiletools._AttributedBlock._AttributedBlock._AttributedBlock>`
+    Inherited from :py:class:`lilypondfiletools.AttributedBlock <abjad.tools.lilypondfiletools.AttributedBlock.AttributedBlock.AttributedBlock>`
 
 .. automethod:: abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.__setattr__
 

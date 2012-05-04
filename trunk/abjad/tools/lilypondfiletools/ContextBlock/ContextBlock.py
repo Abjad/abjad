@@ -1,9 +1,9 @@
-from abjad.tools.lilypondfiletools._AttributedBlock import _AttributedBlock
+from abjad.tools.lilypondfiletools.AttributedBlock import AttributedBlock
 from abjad.tools.lilypondproxytools import LilyPondContextSettingComponentPlugIn
 from abjad.tools.lilypondproxytools import LilyPondGrobOverrideComponentPlugIn
 
 
-class ContextBlock(_AttributedBlock):
+class ContextBlock(AttributedBlock):
     r'''.. versionadded:: 2.5
 
     Abjad model of LilyPond input file context block::
@@ -36,7 +36,7 @@ class ContextBlock(_AttributedBlock):
     '''
 
     def __init__(self, context_name=None):
-        _AttributedBlock.__init__(self)
+        AttributedBlock.__init__(self)
         self._engraver_consists = set([])
         self._engraver_removals = set([])
         self._escaped_name = r'\context'
