@@ -1,6 +1,7 @@
 from collections import MutableMapping
 import copy
 from abjad import Fraction
+from abjad.tools.abctools import AbjadObject
 from abjad.tools.durationtools import Duration
 from abjad.tools.durationtools import Offset
 from abjad.tools.timeintervaltools.TimeIntervalMixin import TimeIntervalMixin
@@ -90,6 +91,40 @@ class TimeInterval(TimeIntervalMixin, MutableMapping):
     def stop(self):
         '''stop bound.'''
         return self._stop
+
+    ### PRIVATE METHODS ###
+
+    def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
+        pieces = []
+        pieces.append('{}('.format(self._tools_package_qualified_class_name))
+        pieces.append('\t{!r},'.format(self.start))
+        pieces.append('\t{!r},'.format(self.stop))
+
+        if len(self):
+            pieces.append('\t{')
+
+            for key, value in self.iteritems():
+                if isinstance(key, AbjadObject):
+                    key = key._tools_package_qualified_repr
+                else:
+                    key = repr(key)
+                if isinstance(value, AbjadObject):
+                    vpieces = value._get_tools_package_qualified_repr_pieces()
+                    if 1 < len(vpieces):
+                        pieces.append('\t\t{}: {}'.format(key, vpieces[0]))
+                        for piece in vpieces[1:-1]:
+                            pieces.append('\t\t{}'.format(piece))
+                        pieces.append('\t\t{},'.format(vpieces[-1]))
+                    else:
+                        pieces.append('\t\t{}: {},'.format(key, vpieces[0]))
+                else:
+                    pieces.append('\t\t{}: {!r},'.format(key, value))
+
+            pieces.append('\t})')
+
+        else:
+            pieces.append('\t)')
+        return pieces
 
     ### PUBLIC METHODS ###
 
