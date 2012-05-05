@@ -149,7 +149,7 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
         else:
             return ()
 
-    ### PUBLIC PROPERTIES ###
+    ### PUBLIC ATTRIBUTES ###
 
     @property
     def duration(self):
@@ -258,6 +258,22 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
             return None
 
     ### PRIVATE METHODS ###
+
+    def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
+        if not len(self):
+            return ['{}()'.format(self._tools_package_qualified_class_name)]
+        pieces = []
+        pieces.append('{}(['.format(self._tools_package_qualified_class_name))
+        for interval in self:
+            ipieces = interval._get_tools_package_qualified_repr_pieces()
+            if 1 < len(ipieces):
+                for ipiece in ipieces[:-1]:
+                    pieces.append('\t{}'.format(ipiece))
+                pieces.append('\t{},'.format(ipieces[-1]))
+            else:
+                pieces.append('\t{},'.format(ipieces[0]))
+        pieces.append('\t])')
+        return pieces
 
     def _insert(self, args):
         def recurse(x):
