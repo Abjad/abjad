@@ -1522,6 +1522,7 @@ Additional Abjad composition packages (load manually)
    tools/sequencetools/CyclicTree/CyclicTree
    tools/sequencetools/CyclicTuple/CyclicTuple
    tools/sequencetools/Matrix/Matrix
+   tools/sequencetools/Pair/Pair
    tools/sequencetools/Tree/Tree
 
 .. rubric:: functions
