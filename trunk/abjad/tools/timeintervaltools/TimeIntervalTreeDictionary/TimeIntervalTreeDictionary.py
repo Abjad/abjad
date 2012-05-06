@@ -281,7 +281,7 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
                         pieces.append('\t{}'.format(tpiece))
                     pieces.append('\t{},'.format(tpieces[-1]))
 
-        pieces.append('\t}})')
+        pieces.append('\t})')
 
         return pieces
 

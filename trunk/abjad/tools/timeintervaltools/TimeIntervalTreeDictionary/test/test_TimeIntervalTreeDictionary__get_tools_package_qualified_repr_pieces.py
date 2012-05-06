@@ -46,5 +46,5 @@ def test_TimeIntervalTreeDictionary__get_tools_package_qualified_repr_pieces_01(
         "\t\t\t\t'name': 'd',",
         '\t\t\t}),',
         '\t\t]),',
-        '\t}})'
+        '\t})'
     ]
