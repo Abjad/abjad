@@ -109,19 +109,7 @@ class AbjadObject(object):
 
     @property
     def _keyword_argument_names(self):
-        if hasattr(self.__init__, '__func__'):
-            initializer = type(self).__init__.__func__
-            if initializer.func_defaults:
-                keyword_argument_count = len(initializer.func_defaults)
-                initializer_code = initializer.func_code
-                mandatory_argument_count = (
-                    initializer_code.co_argcount - keyword_argument_count - 1)
-                start_index = 1 + mandatory_argument_count
-                stop_index = start_index + keyword_argument_count
-                return initializer_code.co_varnames[start_index:stop_index]
-            else:
-                return ()
-        return ()
+        return self._get_keyword_argument_names()
 
     @property
     def _keyword_argument_values(self):
@@ -200,6 +188,22 @@ class AbjadObject(object):
             print 'debug: {!r}'.format(value)
         else:
             print 'debug ({}): {!r}'.format(annotation, value)
+
+    @classmethod
+    def _get_keyword_argument_names(cls):
+        if hasattr(cls.__init__, '__func__'):
+            initializer = cls.__init__.__func__
+            if initializer.func_defaults:
+                keyword_argument_count = len(initializer.func_defaults)
+                initializer_code = initializer.func_code
+                mandatory_argument_count = (
+                    initializer_code.co_argcount - keyword_argument_count - 1)
+                start_index = 1 + mandatory_argument_count
+                stop_index = start_index + keyword_argument_count
+                return initializer_code.co_varnames[start_index:stop_index]
+            else:
+                return ()
+        return ()
 
     def _get_tools_package_qualified_keyword_argument_repr_pieces(self, is_indented=True):
         result = []
