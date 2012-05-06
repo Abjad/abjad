@@ -1,4 +1,5 @@
 from abjad import Duration
+from abjad.tools.abctools import AbjadObject
 from abjad.tools.datastructuretools import ImmutableDictionary
 from abjad.tools.durationtools import Offset
 from abjad.tools.sequencetools import all_are_pairs
@@ -243,6 +244,46 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
         Return `Offset` instance.
         '''
         return self.composite_tree.latest_stop
+
+    ### PRIVATE METHODS ###
+
+    def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
+        if not len(self):
+            return ['{}({{}})'.format(self._tools_package_qualified_class_name)]
+
+        pieces = []
+        pieces.append('{}({{'.format(self._tools_package_qualified_class_name))
+
+        for key, tree in self.iteritems():
+            if isinstance(key, AbjadObject):
+                kpieces = key._get_tools_package_qualified_repr_pieces()
+            else:
+                kpieces = [repr(key)]
+            tpieces = tree._get_tools_package_qualified_repr_pieces()
+
+            if 1 == len(kpieces):
+                if 1 == len(tpieces):
+                    pieces.append('\t{}: {},'.format(kpieces[0], tpieces[0]))
+                else:
+                    pieces.append('\t{}: {}'.format(kpieces[0], tpieces[0]))
+                    for tpiece in tpieces[1:-1]:
+                        pieces.append('\t{}'.format(tpiece))
+                    pieces.append('\t{},'.format(tpieces[-1]))
+
+            else:
+                for kpiece in kpieces[:-1]:
+                    pieces.append('\t{}'.format(kpiece))
+                if 1 == len(tpieces):
+                    pieces.append('\t{}: {},'.format(kpieces[-1], tpieces[0]))
+                else:
+                    pieces.append('\t{}: {}'.format(kpieces[-1], tpieces[0]))
+                    for tpiece in tpieces[1:-1]:
+                        pieces.append('\t{}'.format(tpiece))
+                    pieces.append('\t{},'.format(tpieces[-1]))
+
+        pieces.append('\t}})')
+
+        return pieces
 
     ### PUBLIC METHODS ###
 
