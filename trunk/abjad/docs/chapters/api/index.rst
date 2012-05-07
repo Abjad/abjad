@@ -1420,6 +1420,13 @@ Additional Abjad composition packages (load manually)
 :py:mod:`mathtools <abjad.tools.mathtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+.. rubric:: concrete classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/mathtools/NonreducedFraction/NonreducedFraction
+
 .. rubric:: functions
 
 .. toctree::
@@ -1522,7 +1529,6 @@ Additional Abjad composition packages (load manually)
    tools/sequencetools/CyclicTree/CyclicTree
    tools/sequencetools/CyclicTuple/CyclicTuple
    tools/sequencetools/Matrix/Matrix
-   tools/sequencetools/Pair/Pair
    tools/sequencetools/Tree/Tree
 
 .. rubric:: functions

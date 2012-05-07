@@ -1,36 +1,36 @@
-from abjad.tools import durationtools
-from abjad.tools import mathtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 import fractions
 
 
-class Pair(AbjadObject):
+# TODO: inherit from Fraction and override __add__ and __sub__
+class NonreducedFraction(AbjadObject):
     r'''.. versionadded:: 2.9
 
-    Pair of nonsimplifying integers::
+    Nonreduced fraction::
         
         abjad> from abjad.tools import sequencetools
 
     ::
 
-        abjad> sequencetools.Pair(3, 6)
-        Pair(3, 6)
+        abjad> sequencetools.NonreducedFraction(3, 6)
+        NonreducedFraction(3, 6)
 
-    Pairs implement addition and subtraction::
+    NonreducedFractions implement addition::
 
-        abjad> sequencetools.Pair(3, 6) + sequencetools.Pair(3, 6)
-        Pair(6, 6)
+        abjad> sequencetools.NonreducedFraction(3, 6) + sequencetools.NonreducedFraction(3, 6)
+        NonreducedFraction(6, 6)
 
-    Similar to built-in fraction except that numerator and denominator do not simplify.
+    Similar to built-in fraction except that numerator and denominator do not reduce.
     
     Useful when modeling certain operations on time signatures.
 
-    Pairs are immutable.
+    Nonreduced fractions are immutable.
     '''
 
     ### INITIALIZER ###
 
     def __init__(self, *args):
+        from abjad.tools import mathtools
         from abjad.tools import sequencetools
         if len(args) == 1 and hasattr(args[0], 'numerator') and hasattr(args[0], 'denominator'):
             self.numerator = args[0].numerator
@@ -51,6 +51,8 @@ class Pair(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __add__(self, expr):
+        from abjad.tools import durationtools
+        from abjad.tools import mathtools
         if isinstance(expr, type(self)):
             pass
         elif isinstance(expr, int):
@@ -73,8 +75,3 @@ class Pair(AbjadObject):
     @property
     def _mandatory_argument_values(self):
         return self.numerator, self.denominator
-
-    ### PRIVATE METHODS ###
-
-    def _coerce(self):
-        pass
