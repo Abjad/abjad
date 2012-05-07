@@ -1555,11 +1555,18 @@ Additional Abjad composition packages (load manually)
    tools/sequencetools/increase_sequence_elements_at_indices_by_addenda
    tools/sequencetools/increase_sequence_elements_cyclically_by_addenda
    tools/sequencetools/interlace_sequences
+   tools/sequencetools/is_integer_n_tuple
+   tools/sequencetools/is_integer_pair
+   tools/sequencetools/is_integer_singleton
    tools/sequencetools/is_monotonically_decreasing_sequence
    tools/sequencetools/is_monotonically_increasing_sequence
+   tools/sequencetools/is_n_tuple
+   tools/sequencetools/is_null_tuple
+   tools/sequencetools/is_pair
    tools/sequencetools/is_permutation
    tools/sequencetools/is_repetition_free_sequence
    tools/sequencetools/is_restricted_growth_function
+   tools/sequencetools/is_singleton
    tools/sequencetools/is_strictly_decreasing_sequence
    tools/sequencetools/is_strictly_increasing_sequence
    tools/sequencetools/iterate_sequence_cyclically

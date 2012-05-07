@@ -54,3 +54,5 @@ Special Methods
 .. automethod:: abjad.tools.sequencetools.Pair.Pair.Pair.__str__
 
     Inherited from `__builtin__.object`
+
+.. automethod:: abjad.tools.sequencetools.Pair.Pair.Pair.__sub__
