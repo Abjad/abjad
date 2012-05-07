@@ -1020,6 +1020,7 @@ Abjad composition packages
    tools/spannertools/BeamSpanner/BeamSpanner
    tools/spannertools/BracketSpanner/BracketSpanner
    tools/spannertools/ComplexBeamSpanner/ComplexBeamSpanner
+   tools/spannertools/ComplexGlissandoSpanner/ComplexGlissandoSpanner
    tools/spannertools/CrescendoSpanner/CrescendoSpanner
    tools/spannertools/DecrescendoSpanner/DecrescendoSpanner
    tools/spannertools/DuratedComplexBeamSpanner/DuratedComplexBeamSpanner
