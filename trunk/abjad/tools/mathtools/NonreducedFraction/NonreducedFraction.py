@@ -64,6 +64,16 @@ class NonreducedFraction(AbjadObject):
 
     ### SPECIAL METHODS ###
 
+    def __abs__(self):
+        '''Absolute value of nonreduced fraction::
+
+            abjad> abs(mathtools.NonreducedFraction(-3, 3))
+            NonreducedFraction(3, 3)
+
+        Return nonreduced fraction.
+        '''
+        return type(self)(abs(self.numerator), self.denominator)
+        
     def __add__(self, expr):
         '''Add `expr` to `self`::
 
@@ -127,6 +137,19 @@ class NonreducedFraction(AbjadObject):
         '''
         return self.reduce() < expr
 
+    def __mul__(self, expr):
+        '''Multiply reduced fraction by expr::
+
+            abjad> mathtools.NonreducedFraction(3, 3) * 3
+            NonreducedFraction(9, 3)
+
+        Return reduced fraction.
+        '''
+        if isinstance(expr, type(self)):
+            expr = expr.reduce()
+        fraction = self.reduce() * expr
+        return self._fraction_with_my_denominator(fraction)
+
     def __ne__(self):
         '''True when `expr` does not equal `self`::
             
@@ -136,6 +159,46 @@ class NonreducedFraction(AbjadObject):
         Return boolean.
         '''
         return not self == expr
+
+    def __neg__(self):
+        '''Negate nonreduced fraction::
+
+            abjad> -mathtools.NonreducedFraction(3, 3)
+            NonreducedFraction(-3, 3)
+
+        Return nonreduced fraction.
+        '''
+        return type(self)(-self.numerator, self.denominator)
+
+    def __radd__(self, expr):
+        '''Add nonreduced fraction to `expr`::
+
+            abjad> 1 + mathtools.NonreducedFraction(3, 3)
+            NonreducedFraction(6, 3)
+
+        Return nonreduced fraction.
+        '''
+        return self + expr
+
+    def __rmul__(self, expr):
+        '''Multiply expr by reduced fraction::
+
+            abjad> 3 * mathtools.NonreducedFraction(3, 3)
+            NonreducedFraction(9, 3)
+
+        Return reduced fraction.
+        '''
+        return self * expr
+
+    def __rsub__(self, expr):
+        '''Subtract nonreduced fraction from `expr`::
+
+            abjad> 1 - mathtools.NonreducedFraction(3, 3)
+            NonreducedFraction(0, 3)
+
+        Return nonreduced fraction.
+        '''
+        return -self + expr
 
     def __str__(self):
         '''String representation of nonreduced fraction::
