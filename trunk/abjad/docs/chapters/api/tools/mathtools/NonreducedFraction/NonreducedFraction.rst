@@ -13,6 +13,8 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.numerator
 
+.. autoattribute:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.pair
+
 Methods
 -------
 

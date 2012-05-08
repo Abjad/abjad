@@ -274,6 +274,21 @@ class NonreducedFraction(AbjadObject):
         '''
         return self._numerator
 
+    @property
+    def pair(self):
+        '''Read only pair of nonreduced fraction numerator and denominator::
+
+            abjad> fraction = mathtools.NonreducedFraction(-6, 3)
+
+        ::
+
+            abjad> fraction.pair
+            (-6, 3)
+
+        Return integer pair.
+        '''
+        return self.numerator, self.denominator
+
     ### PUBLIC METHODS ###
 
     def reduce(self):
