@@ -1,35 +1,51 @@
-from abjad.tools.abctools.AbjadObject import AbjadObject
+#from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.abctools.ImmutableAbjadObject import ImmutableAbjadObject
 from fractions import Fraction
 
 
-class NonreducedFraction(AbjadObject):
+#class NonreducedFraction(AbjadObject):
+class NonreducedFraction(ImmutableAbjadObject, Fraction):
     r'''.. versionadded:: 2.9
 
     Initialize with an integer numerator and integer denominator::
         
-        abjad> from abjad.tools import sequencetools
+        abjad> from abjad.tools import mathtools
 
     ::
 
-        abjad> sequencetools.NonreducedFraction(3, 6)
+        abjad> mathtools.NonreducedFraction(3, 6)
         NonreducedFraction(3, 6)
 
-    Or with only an integer denominator::
+    Initialize with only an integer denominator::
 
-        abjad> sequencetools.NonreducedFraction(3)
+        abjad> mathtools.NonreducedFraction(3)
         NonreducedFraction(3, 1)
 
-    Or with an integer pair::
+    Initialize with an integer pair::
 
-        abjad> sequencetools.NonreducedFraction((3, 6))
+        abjad> mathtools.NonreducedFraction((3, 6))
         NonreducedFraction(3, 6)
 
-    Or with an integer singleton::
+    Initialize with an integer singleton::
 
-        abjad> sequencetools.NonreducedFraction((3,))
+        abjad> mathtools.NonreducedFraction((3,))
         NonreducedFraction(3, 1)
         
     Similar to built-in fraction except that numerator and denominator do not reduce.
+
+    Nonreduced fractions inherit from built-in fraction::
+
+        abjad> isinstance(mathtools.NonreducedFraction(3, 6), Fraction)
+        True
+
+    Nonreduced fractions are numbers::
+
+        abjad> import numbers
+
+    ::
+
+        abjad> isinstance(mathtools.NonreducedFraction(3, 6), numbers.Number)
+        True
     
     Nonreduced fractions are immutable.
     '''
@@ -40,7 +56,8 @@ class NonreducedFraction(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, *args):
+    #def __init__(self, *args):
+    def __new__(klass, *args):
         from abjad.tools import mathtools
         from abjad.tools import sequencetools
         if len(args) == 1 and hasattr(args[0], 'numerator') and hasattr(args[0], 'denominator'):
@@ -59,8 +76,12 @@ class NonreducedFraction(AbjadObject):
             raise ValueError('can not initialize {} from {!r}.'.format(type(self).__class__.__name__, args))
         numerator *= mathtools.sign(denominator)
         denominator = abs(denominator)
+        #self._numerator = numerator
+        #self._denominator = denominator
+        self = Fraction.__new__(klass, numerator, denominator)
         self._numerator = numerator
         self._denominator = denominator
+        return self
 
     ### SPECIAL METHODS ###
 
