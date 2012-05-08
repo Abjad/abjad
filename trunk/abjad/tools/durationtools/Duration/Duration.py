@@ -42,27 +42,51 @@ class Duration(ImmutableAbjadObject, Fraction):
         abjad> Duration(Duration(3, 16))
         Duration(3, 16)
 
-    Initialize from LilyPond duration string::
-
-        abjad> Duration('8.')
-        Duration(3, 16)
-
     Intialize from fraction::
 
         abjad> Duration(Fraction(3, 16))
         Duration(3, 16)
-        
+
     Initialize from solidus string::
         
         abjad> Duration('3/16')
         Duration(3, 16)
 
-    Durations inherit from built-in fraction.
+    .. versionchanged:: 2.9 
+        initialize from LilyPond duration string:
 
-    Durations are immutable.
+    ::
+
+        abjad> Duration('8.')
+        Duration(3, 16)
 
     .. versionchanged:: 2.9
-        durations now initialize from LilyPond duration strings.
+        initialize from nonreduced fraction:
+
+    ::
+
+        abjad> from abjad.tools import mathtools
+
+    ::
+
+        abjad> Duration(mathtools.NonreducedFraction(3, 16))
+        Duration(3, 16)
+        
+    Durations inherit from built-in fraction::
+
+        abjad> isinstance(Duration(3, 16), Fraction)
+        True
+
+    Durations are numeric::
+
+        abjad> import numbers
+
+    ::
+
+        abjad> isinstance(Duration(3, 16), numbers.Number)
+        True
+
+    Durations are immutable.
     '''
 
     def __new__(klass, *args):
@@ -74,6 +98,8 @@ class Duration(ImmutableAbjadObject, Fraction):
             self = Fraction.__new__(klass, int(args[0][0]), int(args[0][1]))
         elif len(args) == 1 and durationtools.is_lilypond_duration_string(args[0]):
             self = Fraction.__new__(klass, durationtools.lilypond_duration_string_to_rational(args[0]))
+        elif len(args) == 1 and hasattr(args[0], 'numerator') and hasattr(args[0], 'denominator'):
+            self = Fraction.__new__(klass, args[0].numerator, args[0].denominator)
         elif sequencetools.all_are_integer_equivalent_numbers(args):
             self = Fraction.__new__(klass, *[int(x) for x in args])
         else:
@@ -160,7 +186,7 @@ class Duration(ImmutableAbjadObject, Fraction):
     def __truediv__(self, *args):
         return type(self)(Fraction.__truediv__(self, *args))
 
-    ### PRIVATE PROPERTIES ###
+    ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
     def _keyword_argument_names(self):
@@ -172,3 +198,22 @@ class Duration(ImmutableAbjadObject, Fraction):
         result.append(self.numerator)
         result.append(self.denominator)
         return tuple(result)
+
+    ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def pair(self):
+        '''.. versionadded:: 2.9
+
+        Read-only pair of duration numerator and denominator::
+
+            abjad> duration = Duration(3, 16)
+
+        ::
+
+            abjad> duration.pair
+            (3, 16)
+
+        Return integer pair.
+        '''
+        return self.numerator, self.denominator

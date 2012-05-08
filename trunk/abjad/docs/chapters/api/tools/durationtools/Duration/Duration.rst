@@ -21,6 +21,8 @@ Read-only Properties
 
     Inherited from `fractions.Fraction`
 
+.. autoattribute:: abjad.tools.durationtools.Duration.Duration.Duration.pair
+
 .. autoattribute:: abjad.tools.durationtools.Duration.Duration.Duration.real
 
     Inherited from `numbers.Real`
