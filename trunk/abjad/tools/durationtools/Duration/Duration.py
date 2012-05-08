@@ -2,39 +2,79 @@ from abjad.tools.abctools import ImmutableAbjadObject
 from fractions import Fraction
 
 
-# TODO: allow Duration('8..') initialization
 class Duration(ImmutableAbjadObject, Fraction):
     '''.. versionadded:: 2.0
 
     Abjad model of musical duration.
 
+    Initialize from integer numerator::
+
+        abjad> Duration(3)
+        Duration(3, 1)
+
     Initialize from integer numerator and denominator::
 
-        abjad> Duration(15, 16)
-        Duration(15, 16)
+        abjad> Duration(3, 16)
+        Duration(3, 16)
 
-    Initialize from integer numerator alone::
+    Initialize from integer-equivalent numeric numerator::
 
-        abjad> Duration(2)
-        Duration(2, 1)
+        abjad> Duration(3.0)
+        Duration(3, 1)
 
-    Initialize from integer-equivalent numerator and denominator::
+    Initialize from integer-equivalent numeric numerator and denominator::
 
-        abjad> Duration('15', 16.0)
-        Duration(15, 16)
+        abjad> Duration(3.0, 16)
+        Duration(3, 16)
+
+    Initialize from integer-equivalent singleton::
+
+        abjad> Duration((3,))
+        Duration(3, 1)
+
+    Initialize from integer-equivalent pair::
+
+        abjad> Duration((3, 16))
+        Duration(3, 16)
+
+    Initialize from other duration::
+
+        abjad> Duration(Duration(3, 16))
+        Duration(3, 16)
+
+    Initialize from LilyPond duration string::
+
+        abjad> Duration('8.')
+        Duration(3, 16)
+
+    Intialize from fraction::
+
+        abjad> Duration(Fraction(3, 16))
+        Duration(3, 16)
+        
+    Initialize from solidus string::
+        
+        abjad> Duration('3/16')
+        Duration(3, 16)
 
     Durations inherit from built-in fraction.
 
     Durations are immutable.
+
+    .. versionchanged:: 2.9
+        durations now initialize from LilyPond duration strings.
     '''
 
     def __new__(klass, *args):
+        from abjad.tools import durationtools
         from abjad.tools import sequencetools
         if len(args) == 1 and sequencetools.is_integer_equivalent_singleton(args[0]):
-            self = Fraction.__new__(klass, int(args[0]))
+            self = Fraction.__new__(klass, int(args[0][0]))
         elif len(args) == 1 and sequencetools.is_fraction_equivalent_pair(args[0]):
             self = Fraction.__new__(klass, int(args[0][0]), int(args[0][1]))
-        elif sequencetools.all_are_integer_equivalent_exprs(args):
+        elif len(args) == 1 and durationtools.is_lilypond_duration_string(args[0]):
+            self = Fraction.__new__(klass, durationtools.lilypond_duration_string_to_rational(args[0]))
+        elif sequencetools.all_are_integer_equivalent_numbers(args):
             self = Fraction.__new__(klass, *[int(x) for x in args])
         else:
             self = Fraction.__new__(klass, *args)
