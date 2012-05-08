@@ -6,35 +6,38 @@ from fractions import Fraction
 class Duration(ImmutableAbjadObject, Fraction):
     '''.. versionadded:: 2.0
 
-    Abjad model of musical duration::
+    Abjad model of musical duration.
+
+    Initialize from integer numerator and denominator::
 
         abjad> Duration(15, 16)
         Duration(15, 16)
 
-    Durations inherit from built-in ``Fraction``.
+    Initialize from integer numerator alone::
+
+        abjad> Duration(2)
+        Duration(2, 1)
+
+    Initialize from integer-equivalent numerator and denominator::
+
+        abjad> Duration('15', 16.0)
+        Duration(15, 16)
+
+    Durations inherit from built-in fraction.
+
+    Durations are immutable.
     '''
 
     def __new__(klass, *args):
-        from abjad.tools import mathtools
-        if isinstance(args[0], tuple):
-            n, d = args[0]
-            try:
-                self = Fraction.__new__(klass, n, d)
-            except TypeError:
-                if mathtools.is_integer_equivalent_number(n) and \
-                    mathtools.is_integer_equivalent_number(d):
-                    self = Fraction.__new__(klass, int(n), int(d))
-                else:
-                    raise TypeError
+        from abjad.tools import sequencetools
+        if len(args) == 1 and sequencetools.is_integer_equivalent_singleton(args[0]):
+            self = Fraction.__new__(klass, int(args[0]))
+        elif len(args) == 1 and sequencetools.is_fraction_equivalent_pair(args[0]):
+            self = Fraction.__new__(klass, int(args[0][0]), int(args[0][1]))
+        elif sequencetools.all_are_integer_equivalent_exprs(args):
+            self = Fraction.__new__(klass, *[int(x) for x in args])
         else:
-            try:
-                self = Fraction.__new__(klass, *args)
-            except TypeError:
-                if all([mathtools.is_integer_equivalent_number(x) for x in args]):
-                    args = [int(x) for x in args]
-                    self = Fraction.__new__(klass, *args)
-                else:
-                    raise TypeError
+            self = Fraction.__new__(klass, *args)
         return self
 
     ### SPECIAL METHODS ###

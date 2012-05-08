@@ -1539,6 +1539,7 @@ Additional Abjad composition packages (load manually)
 
    tools/sequencetools/all_are_assignable_integers
    tools/sequencetools/all_are_equal
+   tools/sequencetools/all_are_integer_equivalent_exprs
    tools/sequencetools/all_are_integer_equivalent_numbers
    tools/sequencetools/all_are_nonnegative_integer_equivalent_numbers
    tools/sequencetools/all_are_nonnegative_integer_powers_of_two
@@ -1562,6 +1563,7 @@ Additional Abjad composition packages (load manually)
    tools/sequencetools/increase_sequence_elements_at_indices_by_addenda
    tools/sequencetools/increase_sequence_elements_cyclically_by_addenda
    tools/sequencetools/interlace_sequences
+   tools/sequencetools/is_fraction_equivalent_pair
    tools/sequencetools/is_integer_equivalent_n_tuple
    tools/sequencetools/is_integer_equivalent_pair
    tools/sequencetools/is_integer_equivalent_singleton
