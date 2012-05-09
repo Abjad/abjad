@@ -53,8 +53,6 @@ Special Methods
 
 .. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.__div__
 
-    Inherited from `fractions.Fraction`
-
 .. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.__divmod__
 
     Inherited from `numbers.Real`
@@ -106,8 +104,6 @@ Special Methods
 .. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.__radd__
 
 .. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.__rdiv__
-
-    Inherited from `fractions.Fraction`
 
 .. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.__rdivmod__
 

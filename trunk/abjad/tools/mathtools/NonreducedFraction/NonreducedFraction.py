@@ -108,6 +108,21 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
         fraction = self.reduce() + expr
         return self._fraction_with_denominator(fraction, max(denominators))
 
+    def __div__(self, expr):
+        '''Divide nonreduced fraction by expr::
+
+            abjad> mathtools.NonreducedFraction(3, 3) / 1
+            NonreducedFraction(3, 3)
+
+        Return nonreduced fraction.
+        '''
+        denominators = [self.denominator]
+        if isinstance(expr, type(self)):
+            denominators.append(expr.denominator)
+            expr = expr.reduce()
+        fraction = self.reduce() / expr
+        return self._fraction_with_denominator(fraction, max(denominators))
+
     def __eq__(self, expr):
         '''True when `expr` equals `self`::
 
@@ -159,12 +174,12 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
         return self.reduce() < expr
 
     def __mul__(self, expr):
-        '''Multiply reduced fraction by expr::
+        '''Multiply nonreduced fraction by expr::
 
             abjad> mathtools.NonreducedFraction(3, 3) * 3
             NonreducedFraction(9, 3)
 
-        Return reduced fraction.
+        Return nonreduced fraction.
         '''
         denominators = [self.denominator]
         if isinstance(expr, type(self)):
@@ -203,13 +218,28 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
         '''
         return self + expr
 
+    def __rdiv__(self, expr):
+        '''Divide `expr` by nonreduced fraction::
+
+            abjad> 1 / mathtools.NonreducedFraction(3, 3)
+            NonreducedFraction(3, 3)
+
+        Return nonreduced fraction.
+        '''
+        denominators = [self.denominator]
+        if isinstance(expr, type(self)):
+            denominators.append(expr.denominator)
+            expr = expr.reduce()
+        fraction = expr / self.reduce()
+        return self._fraction_with_denominator(fraction, max(denominators))
+
     def __rmul__(self, expr):
-        '''Multiply expr by reduced fraction::
+        '''Multiply `expr` by nonreduced fraction::
 
             abjad> 3 * mathtools.NonreducedFraction(3, 3)
             NonreducedFraction(9, 3)
 
-        Return reduced fraction.
+        Return nonreduced fraction.
         '''
         return self * expr
 

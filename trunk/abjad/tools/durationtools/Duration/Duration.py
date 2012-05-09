@@ -112,10 +112,18 @@ class Duration(ImmutableAbjadObject, Fraction):
         return type(self)(Fraction.__abs__(self, *args))
 
     def __add__(self, *args):
-        return type(self)(Fraction.__add__(self, *args))
+        from abjad.tools import mathtools
+        if len(args) == 1 and isinstance(args[0], mathtools.NonreducedFraction):
+            return args[0].__radd__(self)
+        else:
+            return type(self)(Fraction.__add__(self, *args))
 
     def __div__(self, *args):
-        return type(self)(Fraction.__div__(self, *args))
+        from abjad.tools import mathtools
+        if len(args) == 1 and isinstance(args[0], mathtools.NonreducedFraction):
+            return args[0].__rdiv__(self)
+        else:
+            return type(self)(Fraction.__div__(self, *args))
 
     def __divmod__(self, *args):
         return type(self)(Fraction.__divmod__(self, *args))
@@ -139,7 +147,11 @@ class Duration(ImmutableAbjadObject, Fraction):
         return type(self)(Fraction.__mod__(self, *args))
 
     def __mul__(self, *args):
-        return type(self)(Fraction.__mul__(self, *args))
+        from abjad.tools import mathtools
+        if len(args) == 1 and isinstance(args[0], mathtools.NonreducedFraction):
+            return args[0].__rmul__(self)
+        else:
+            return type(self)(Fraction.__mul__(self, *args))
 
     def __neg__(self, *args):
         return type(self)(Fraction.__neg__(self, *args))
@@ -181,7 +193,11 @@ class Duration(ImmutableAbjadObject, Fraction):
         return type(self)(Fraction.__rtruediv__(self, *args))
 
     def __sub__(self, *args):
-        return type(self)(Fraction.__sub__(self, *args))
+        from abjad.tools import mathtools
+        if len(args) == 1 and isinstance(args[0], mathtools.NonreducedFraction):
+            return args[0].__rsub__(self)
+        else:
+            return type(self)(Fraction.__sub__(self, *args))
 
     def __truediv__(self, *args):
         return type(self)(Fraction.__truediv__(self, *args))
