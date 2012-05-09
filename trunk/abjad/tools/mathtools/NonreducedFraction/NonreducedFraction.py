@@ -1,9 +1,7 @@
-#from abjad.tools.abctools.AbjadObject import AbjadObject
 from abjad.tools.abctools.ImmutableAbjadObject import ImmutableAbjadObject
 from fractions import Fraction
 
 
-#class NonreducedFraction(AbjadObject):
 class NonreducedFraction(ImmutableAbjadObject, Fraction):
     r'''.. versionadded:: 2.9
 
@@ -103,10 +101,12 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
 
         Return nonreduced fraction.
         '''
+        denominators = [self.denominator]
         if isinstance(expr, type(self)):
+            denominators.append(expr.denominator) 
             expr = expr.reduce()
         fraction = self.reduce() + expr
-        return self._fraction_with_my_denominator(fraction)
+        return self._fraction_with_denominator(fraction, max(denominators))
 
     def __eq__(self, expr):
         '''True when `expr` equals `self`::
@@ -166,10 +166,12 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
 
         Return reduced fraction.
         '''
+        denominators = [self.denominator]
         if isinstance(expr, type(self)):
+            denominators.append(expr.denominator)
             expr = expr.reduce()
         fraction = self.reduce() * expr
-        return self._fraction_with_my_denominator(fraction)
+        return self._fraction_with_denominator(fraction, max(denominators))
 
     def __ne__(self):
         '''True when `expr` does not equal `self`::
@@ -243,10 +245,12 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
 
         Return nonreduced fraction.
         '''
+        denominators = [self.denominator]
         if isinstance(expr, type(self)):
+            denominators.append(expr.denominator) 
             expr = expr.reduce()
         fraction = self.reduce() - expr
-        return self._fraction_with_my_denominator(fraction)
+        return self._fraction_with_denominator(fraction, max(denominators))
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 
@@ -256,13 +260,14 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
 
     ### PRIVATE METHODS ###
 
-    def _fraction_with_my_denominator(self, fraction):
+    def _fraction_with_denominator(self, fraction, denominator):
         from abjad.tools import durationtools
         from abjad.tools import mathtools
-        denominator = mathtools.least_common_multiple(self.denominator, fraction.denominator)
-        pair = durationtools.rational_to_duration_pair_with_specified_integer_denominator(fraction, denominator)
+        denominator = mathtools.least_common_multiple(denominator, fraction.denominator)
+        pair = durationtools.rational_to_duration_pair_with_specified_integer_denominator(
+            fraction, denominator)
         return type(self)(*pair)
-
+        
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property

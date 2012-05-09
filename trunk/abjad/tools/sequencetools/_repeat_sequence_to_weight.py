@@ -2,7 +2,7 @@ from abjad.tools import mathtools
 from numbers import Number
 
 
-def _repeat_sequence_to_weight(sequence, weight, remainder = 'chop'):
+def _repeat_sequence_to_weight(sequence, weight, remainder='chop'):
     '''Repeat sequence to weight exactly::
 
         abjad> from abjad.tools.sequencetools._repeat_sequence_to_weight import _repeat_sequence_to_weight
@@ -12,12 +12,12 @@ def _repeat_sequence_to_weight(sequence, weight, remainder = 'chop'):
 
     Repeat sequence to weight at most::
 
-        abjad> _repeat_sequence_to_weight([5, 5, 5], 23, remainder = 'less')
+        abjad> _repeat_sequence_to_weight([5, 5, 5], 23, remainder='less')
         [5, 5, 5, 5]
 
     Repeat sequence to weight at least::
 
-        abjad> _repeat_sequence_to_weight([5, 5, 5], 23, remainder = 'more')
+        abjad> _repeat_sequence_to_weight([5, 5, 5], 23, remainder='more')
         [5, 5, 5, 5, 5]
 
     .. versionchanged:: 2.0
@@ -40,6 +40,7 @@ def _repeat_sequence_to_weight(sequence, weight, remainder = 'chop'):
         elif remainder == 'chop':
             last_sign = mathtools.sign(result[-1])
             needed_weight = weight - mathtools.weight(result[:-1])
+            print weight, mathtools.weight(result[:-1]), needed_weight
             result = result[:-1] + [last_sign * needed_weight]
         elif remainder == 'more':
             pass
