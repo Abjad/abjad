@@ -40,7 +40,6 @@ def _repeat_sequence_to_weight(sequence, weight, remainder='chop'):
         elif remainder == 'chop':
             last_sign = mathtools.sign(result[-1])
             needed_weight = weight - mathtools.weight(result[:-1])
-            print weight, mathtools.weight(result[:-1]), needed_weight
             result = result[:-1] + [last_sign * needed_weight]
         elif remainder == 'more':
             pass
