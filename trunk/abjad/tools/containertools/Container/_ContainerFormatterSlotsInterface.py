@@ -1,6 +1,8 @@
 from abjad.tools.componenttools.Component._ComponentFormatterSlotsInterface import _ComponentFormatterSlotsInterface
 
 
+# DEPRECATED: all functionality moved to _format_container()
+#             this file will be removed once _ContextFormatter and _TupletFormatter go away.
 class _ContainerFormatterSlotsInterface(_ComponentFormatterSlotsInterface):
 
     def __init__(self, client):

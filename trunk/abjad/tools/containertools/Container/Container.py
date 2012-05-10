@@ -198,6 +198,12 @@ class Container(Component):
             #return ' '
             return ''
 
+    ### PRIVATE METHODS ###
+
+    def _format_container(self):
+        from abjad.tools.containertools._format_container import _format_container
+        return _format_container(self)
+
     ### PUBLIC PROPERTIES ###
 
     @property

@@ -16,6 +16,7 @@ from abjad.tools.marktools._get_stem_tremolo_format_contributions import _get_st
 from abjad.tools import sequencetools
 
 
+# TODO: move to bound leaf method
 def _format_leaf(leaf):
     result = []
     result.extend(_get_slot_1(leaf))
@@ -28,6 +29,7 @@ def _format_leaf(leaf):
         contributions.extend(contribution)
     return '\n'.join(contributions)
 
+# TODO: move to public function
 def _report_leaf_format_contributors(leaf):
     report = ''
     report += 'slot 1:\n'
@@ -43,6 +45,7 @@ def _report_leaf_format_contributors(leaf):
     report += _process_contribution_packet(_get_slot_7(leaf))
     return report
 
+# TODO: move to bound leaf method
 def _process_contribution_packet(contribution_packet):
     result = ''
     for contributor, contributions in contribution_packet:
@@ -57,6 +60,7 @@ def _process_contribution_packet(contribution_packet):
                 result += contribution
     return result
 
+# TODO: move to bound leaf method
 def _get_agrace_body(leaf):
     result = []
     if hasattr(leaf, '_after_grace'):
@@ -65,6 +69,7 @@ def _get_agrace_body(leaf):
             result.append(after_grace.format)
     return ['agrace body', result]
 
+# TODO: move to bound leaf method
 def _get_agrace_opening(leaf):
     result = []
     if hasattr(leaf, '_after_grace'):
@@ -72,6 +77,7 @@ def _get_agrace_opening(leaf):
             result.append(r'\afterGrace')
     return ['agrace opening', result]
 
+# TODO: move to bound leaf method
 def _get_grace_body(leaf):
     result = []
     if hasattr(leaf, '_grace'):
@@ -80,6 +86,7 @@ def _get_grace_body(leaf):
             result.append(grace.format)
     return ['grace body', result]
 
+# TODO: move to bound leaf method
 def _get_leaf_body(leaf):
     result = []
     client = leaf
@@ -96,6 +103,7 @@ def _get_leaf_body(leaf):
     result = [' '.join(result)]
     return ['leaf body', result]
 
+# TODO: move to bound leaf method
 def _get_nucleus(leaf):
     from abjad.tools.chordtools.Chord import Chord
     if not isinstance(leaf, Chord):
@@ -119,6 +127,7 @@ def _get_nucleus(leaf):
     # single string, but wrapped in list bc contribution
     return ['nucleus', [result]]
 
+# TODO: move to bound leaf method
 def _get_slot_1(leaf):
     result = []
     result.append(_get_grace_body(leaf))
@@ -130,6 +139,7 @@ def _get_slot_1(leaf):
     result.append(_get_spanner_format_contributions_for_leaf_slot(leaf, 'before'))
     return result
 
+# TODO: move to bound leaf method
 def _get_slot_3(leaf):
     result = []
     result.append(_get_comment_format_contributions_for_slot(leaf, 'opening'))
@@ -138,11 +148,13 @@ def _get_slot_3(leaf):
     result.append(_get_agrace_opening(leaf))
     return result
 
+# TODO: move to bound leaf method
 def _get_slot_4(leaf):
     result = []
     result.append(_get_leaf_body(leaf))
     return result
 
+# TODO: move to bound leaf method
 def _get_slot_5(leaf):
     result = []
     result.append(_get_agrace_body(leaf))
@@ -151,6 +163,7 @@ def _get_slot_5(leaf):
     result.append(_get_comment_format_contributions_for_slot(leaf, 'closing'))
     return result
 
+# TODO: move to bound leaf method
 def _get_slot_7(leaf):
     result = []
     result.append(_get_spanner_format_contributions_for_leaf_slot(leaf, 'after'))

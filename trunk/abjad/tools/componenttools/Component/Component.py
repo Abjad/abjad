@@ -89,16 +89,12 @@ class Component(AbjadObject):
         '''Read-only LilyPond input format of component.
         '''
         self._update_marks_of_entire_score_tree_if_necessary()
+        # following two lines are temporary during migration away from formatter classes
+        # this causes just plain old Container objects to format with the new format code;
+        # container subclasses continue to format with old formatter classes.
+        if self.__class__.__name__ == 'Container':
+            return self._format_container()
         return self._formatter.format
-
-#    # TODO: should this be eliminated? it's not clear that it's helpful to combine these two things
-#    @property
-#    def marks(self):
-#        '''Read-only tuple of marks attached to component.
-#        '''
-#        return tuple(set(
-#            self._marks_for_which_component_functions_as_start_component +
-#            self._marks_for_which_component_functions_as_effective_context))
 
     @property
     def override(self):
