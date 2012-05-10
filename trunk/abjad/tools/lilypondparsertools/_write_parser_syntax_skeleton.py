@@ -34,8 +34,8 @@ def _write_parser_syntax_skeleton(skeleton_path, parser_output_path, parser_tab_
     f.write("        ('left', 'ADDLYRICS'),\n")
     f.write("        ('nonassoc', 'DEFAULT'),\n")
     f.write("        ('nonassoc', 'FUNCTION_ARGLIST'),\n")
-    f.write("        ('right', 'PITCH_id_stringENTIFIER', 'NOTENAME_PITCH', 'TONICNAME_PITCH', 'UNSIGNED', 'REAL', 'DURATION_id_stringENTIFIER', ':'),\n")
-    f.write("        ('nonassoc', 'NUMBER_id_stringENTIFIER', '/'),\n")
+    f.write("        ('right', 'PITCH_IDENTIFIER', 'NOTENAME_PITCH', 'TONICNAME_PITCH', 'UNSIGNED', 'REAL', 'DURATION_IDENTIFIER', ':'),\n")
+    f.write("        ('nonassoc', 'NUMBER_IDENTIFIER', '/'),\n")
     f.write("    )\n\n\n")
 
     f.write('    ### SYNTACTICAL RULES (ALPHABETICAL) ###\n\n\n')
