@@ -4,7 +4,7 @@ import os
 import shutil
 
 
-def write_expr_to_pdf(expr, file_name, template=None, print_status=True, tagline=False):
+def write_expr_to_pdf(expr, file_name, template=None, print_status=False, tagline=False):
     '''Write `expr` to pdf `file_name`::
 
         abjad> note = Note("c'4")

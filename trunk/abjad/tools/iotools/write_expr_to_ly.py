@@ -3,7 +3,7 @@ from abjad.tools.iotools._insert_expr_into_lilypond_file import _insert_expr_int
 import os
 
 
-def write_expr_to_ly(expr, file_name, template=None, print_status=True, tagline=False):
+def write_expr_to_ly(expr, file_name, template=None, print_status=False, tagline=False):
     '''Write `expr` to `file_name`::
 
         abjad> note = Note("c'4")

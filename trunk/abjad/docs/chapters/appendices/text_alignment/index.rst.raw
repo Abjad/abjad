@@ -13,7 +13,7 @@ notes = notetools.make_repeated_notes(1, Fraction(1, 4))
 staff = stafftools.RhythmicStaff(notes)
 leaves = staff.leaves
 markuptools.Markup('XX', 'up')(leaves[0])
-iotools.write_expr_to_ly(staff, 'default-alignment', template = 'thebes') <hide
+iotools.write_expr_to_ly(staff, 'default-alignment', template='thebes') <hide
 show(staff, 'thebes')
 </abjad>
 
