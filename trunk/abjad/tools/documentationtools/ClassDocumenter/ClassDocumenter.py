@@ -48,7 +48,7 @@ class ClassDocumenter(Documenter):
         for attr in attrs:
             if self._attribute_is_inherited(attr):
                 inherited_attributes.append(attr)
-            if attr.kind == 'method':
+            if attr.kind in ('class method', 'method'):
                 if attr.name not in self._ignored_special_methods:
                     if attr.name.startswith('__'):
                         special_methods.append(attr)
