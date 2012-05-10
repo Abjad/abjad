@@ -1,6 +1,7 @@
 %%% Template: paris.ly
 %%%
-%%% Suitable for rhythmic examples:
+%%% Proportional rhythmic examples (size 14 staff)
+%%%
 %%%   OFF: first-system indent, bar numbers, automatic beaming
 %%%   ON:  ragged-right, forget-accidentals
 %%%
@@ -10,6 +11,8 @@
 %%%   * All breakable spanners are set to True
 %%%   * Collisions are ignored
 %%%   * Paper layout is landscape
+%%%
+%%% NOTE: exactly the same as coventry.ly except with size 14 staff (instead of 12)
 
 \header {
    tagline = ""

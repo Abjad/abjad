@@ -1,6 +1,7 @@
 %%% Template: tirnaveni.ly
 %%%
-%%% Suitable for poly-metric examples such as Ligeti's piano etude 'Desordre':
+%%% Suitable for polymetric examples such as Ligeti's piano etude 'Desordre':
+%%%
 %%%   OFF: first-system indent, bar numbers, automatic beaming
 %%%   ON:  ragged-right, forget-accidentals
 %%%
@@ -14,6 +15,9 @@
 %%%   * Differently dotted note_heads are merged
 %%%   * Different note_head types are merged
 %%%   * Tagline is removed
+
+%%% TODO: maybe better to construct the contents of this layout by hand in Desordre?
+%%%       This is the approach taken in the Ferneyhough example.
 
 \header{
    tagline = ""

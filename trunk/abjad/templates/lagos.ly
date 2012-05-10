@@ -1,7 +1,6 @@
 %%% Template: lagos.ly
 %%%
-%%% Compact, non-proportional rhythmic notation.
-%%%
+%%% Compact non-proportional rhythmic notation.
 %%%
 %%%   * Tuplets extend full length of figures they govern
 %%%   * Tuplets are always written as fraction

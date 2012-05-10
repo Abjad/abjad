@@ -9,6 +9,6 @@ import sys
 start_directory = os.path.abspath('.')
 os.chdir(ABJADPATH)
 iotools.clear_terminal()
-command = 'grep -Irn "{}" * | grep -v svn | grep -v docs'.format(sys.argv[1])
+command = 'grep -Irn "{}" * | grep -v svn\/ | grep -v docs'.format(sys.argv[1])
 iotools.spawn_subprocess(command)
 os.chdir(start_directory)

@@ -1,4 +1,5 @@
 %% Template: thebes.ly
+%%
 %% Purpose: show text script and text alignment examples online.
 %%
 %%    OFF: first-system indent, bar numbers, tagline

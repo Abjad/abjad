@@ -4,7 +4,7 @@
 %%% For rhythmic sketches with no durations less than the 64th note.
 %%%
 %%% Suitable for sketches because first-sytem indent, bar numbers,
-%%% time signatures and automatica beaming are all turned off and
+%%% time signatures and automatic beaming are all turned off and
 %%% because ragged-right is turned on and forget-accidentals are
 %%% turned on.
 %%%
