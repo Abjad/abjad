@@ -71,6 +71,7 @@ Use deviation to model the fact that two pitches differ by a fraction of a semit
 ::
 
 	abjad> show(staff)
+	LilyPond file written to 'pitch-deviation-1.ly' ...
 
 .. image:: images/pitch-deviation-1.png
 
@@ -84,7 +85,7 @@ The pitch of the the first note is greater than the pitch of the second:
 ::
 
 	abjad> note_1.written_pitch > note_2.written_pitch
-	True
+	False
 
 
 Use markup to include indications of pitch deviation in your score:
@@ -92,6 +93,7 @@ Use markup to include indications of pitch deviation in your score:
 ::
 
 	abjad> markuptools.Markup(note_2.written_pitch.deviation_in_cents, 'up')(note_2)
+	LilyPond file written to 'pitch-deviation-2.ly' ...
 
 .. image:: images/pitch-deviation-2.png
 
@@ -297,8 +299,6 @@ The code to generate this table is as follows::
     score.override.rest.transparent = True
     score.override.stem.stencil = False
 
-    show(score, 'paris.ly')
-
 Diatonic pitch numbers
 ----------------------
 
@@ -342,8 +342,6 @@ The code to generate this table is as follows::
 
     score.override.rest.transparent = True
     score.override.stem.stencil = False
-
-    show(score, 'paris.ly')
 
 Octave designation
 ------------------
@@ -389,6 +387,7 @@ according to the following table:
 
 	abjad> staff = Staff([Note(n, (1, 8)) for n in range(12)])
 	abjad> show(staff)
+	LilyPond file written to 'pitch-conventions-1.ly' ...
 
 .. image:: images/pitch-conventions-1.png
 
@@ -398,6 +397,7 @@ Use pitch tools to respell with sharps:
 
 	abjad> pitchtools.respell_named_chromatic_pitches_in_expr_with_sharps(staff)
 	abjad> show(staff)
+	LilyPond file written to 'pitch-conventions-2.ly' ...
 
 .. image:: images/pitch-conventions-2.png
 
@@ -407,5 +407,6 @@ Or flats:
 
 	abjad> pitchtools.respell_named_chromatic_pitches_in_expr_with_flats(staff)
 	abjad> show(staff)
+	LilyPond file written to 'pitch-conventions-3.ly' ...
 
 .. image:: images/pitch-conventions-3.png

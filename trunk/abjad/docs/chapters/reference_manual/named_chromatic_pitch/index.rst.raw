@@ -269,8 +269,6 @@ The code to generate this table is as follows::
     score.override.rest.transparent = True
     score.override.stem.stencil = False
 
-    show(score, 'paris.ly')
-
 Diatonic pitch numbers
 ----------------------
 
@@ -314,8 +312,6 @@ The code to generate this table is as follows::
 
     score.override.rest.transparent = True
     score.override.stem.stencil = False
-
-    show(score, 'paris.ly')
 
 Octave designation
 ------------------
