@@ -228,44 +228,44 @@ class _LilyPondLexicalDefinition(object):
 
     # lexer.ll:210
     # <INITIAL,chords,figures,incl,lyrics,markup,notes>"%{"
-    def t_INITIAL_notes_210(self, t):
+    def t_INITIAL_markup_notes_210(self, t):
         r'%{'
         t.lexer.push_state('longcomment')
         pass
 
     # lexer.ll:214
     # <INITIAL,chords,figures,incl,lyrics,markup,notes>%[^{\n\r][^\n\r]*[\n\r]
-    def t_INITIAL_notes_214(self, t):
+    def t_INITIAL_markup_notes_214(self, t):
         r'%[^{\n\r][^\n\r]*[\n\r]'
         pass
 
     #lexer.ll:216
     # <INITIAL,chords,figures,incl,lyrics,markup,notes>%[^{\n\r]
-    def t_INITIAL_notes_216(self, t):
+    def t_INITIAL_markup_notes_216(self, t):
         r'%[^{\n\r]'
         pass
 
     #lexer.ll:218
     # <INITIAL,chords,figures,incl,lyrics,markup,notes>%[\n\r]
-    def t_INITIAL_notes_218(self, t):
+    def t_INITIAL_markup_notes_218(self, t):
         r'%[\n\r]'
         pass
 
     # lexer.ll:220
     # <INITIAL,chords,figures,incl,lyrics,markup,notes>%[^{\n\r][^\n\r]*
-    def t_INITIAL_notes_220(self, t):
+    def t_INITIAL_markup_notes_220(self, t):
         r'%[^{\n\r][^\n\r]*'
         pass
 
     # lexer.ll:222
     # <INITIAL,chords,figures,incl,lyrics,markup,notes>{WHITE}+
-    def t_INITIAL_notes_222(self, t):
+    def t_INITIAL_markup_notes_222(self, t):
         '[ \n\t\f\r]'
         pass
 
     # lexer.ll:227
     # <INITIAL,notes,figures,chords,markup>\"
-    def t_INITIAL_notes_227(self, t):
+    def t_INITIAL_markup_notes_227(self, t):
         r'\"'
         t.lexer.push_state('quote')
         self.string_accumulator = ''

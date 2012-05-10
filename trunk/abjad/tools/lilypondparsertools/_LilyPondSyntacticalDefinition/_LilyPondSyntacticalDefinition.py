@@ -1161,7 +1161,7 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_full_markup__MARKUP__markup_top(self, p):
         'full_markup : MARKUP markup_top'
-        p[0] = markuptools.Markup(p[2])
+        p[0] = markuptools.Markup(' '.join([schemetools.Scheme._format_value(x) for x in p[2]]))
 
 
     ### full_markup_list ###
@@ -1843,7 +1843,7 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_markup__simple_markup(self, p):
         'markup : simple_markup'
-        p[0] = Node('markup', p[1:])
+        p[0] = p[1]
 
 
     ### markup_braced_list ###
@@ -1851,7 +1851,7 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_markup_braced_list__Chr123__markup_braced_list_body__Chr125(self, p):
         "markup_braced_list : '{' markup_braced_list_body '}'"
-        p[0] = Node('markup_braced_list', p[1:])
+        p[0] = p[2]
 
 
     ### markup_braced_list_body ###
@@ -1859,17 +1859,17 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_markup_braced_list_body__Empty(self, p):
         'markup_braced_list_body : '
-        p[0] = Node('markup_braced_list_body', p[1:])
+        p[0] = []
 
 
     def p_markup_braced_list_body__markup_braced_list_body__markup(self, p):
         'markup_braced_list_body : markup_braced_list_body markup'
-        p[0] = Node('markup_braced_list_body', p[1:])
+        p[0] = p[1] + [p[2]]
 
 
     def p_markup_braced_list_body__markup_braced_list_body__markup_list(self, p):
         'markup_braced_list_body : markup_braced_list_body markup_list'
-        p[0] = Node('markup_braced_list_body', p[1:])
+        p[0] = p[1] + p[2]
 
 
     ### markup_command_basic_arguments ###
@@ -1945,12 +1945,12 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_markup_list__MARKUPLIST_IDENTIFIER(self, p):
         'markup_list : MARKUPLIST_IDENTIFIER'
-        p[0] = Node('markup_list', p[1:])
+        p[0] = p[1]
 
 
     def p_markup_list__markup_braced_list(self, p):
         'markup_list : markup_braced_list'
-        p[0] = Node('markup_list', p[1:])
+        p[0] = p[1]
 
 
     def p_markup_list__markup_command_list(self, p):
@@ -1986,7 +1986,7 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_markup_top__markup_list(self, p):
         'markup_top : markup_list'
-        p[0] = Node('markup_top', p[1:])
+        p[0] = p[1]
 
 
     def p_markup_top__simple_markup(self, p):
@@ -2878,12 +2878,12 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_simple_markup__STRING(self, p):
         'simple_markup : STRING'
-        p[0] = Node('simple_markup', p[1:])
+        p[0] = p[1]
 
 
     def p_simple_markup__STRING_IDENTIFIER(self, p):
         'simple_markup : STRING_IDENTIFIER'
-        p[0] = Node('simple_markup', p[1:])
+        p[0] = p[1]
 
 
     def p_simple_markup__markup_scm__MARKUP_IDENTIFIER(self, p):
