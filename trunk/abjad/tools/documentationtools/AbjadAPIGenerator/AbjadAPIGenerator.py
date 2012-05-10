@@ -23,6 +23,12 @@ class AbjadAPIGenerator(abctools.AbjadObject):
 
     _composition_packages_description = 'Abjad composition packages'
 
+    _internals_packages_description = 'Packages for internal use.'
+
+    _internals_packages = (
+        'formattools',
+    )
+
     _manual_packages_description = 'Additional Abjad composition packages (load manually)'
 
     _manual_packages = (
@@ -81,7 +87,7 @@ class AbjadAPIGenerator(abctools.AbjadObject):
             ignored_directories = ignored_directories)
         visited_modules = tools_crawler()
 
-        composition, manual, unstable = self._sort_modules(visited_modules)
+        composition, manual, unstable, internals = self._sort_modules(visited_modules)
 
         if verbose:
             print 'Now making API index ...'
@@ -91,19 +97,28 @@ class AbjadAPIGenerator(abctools.AbjadObject):
         result.extend(self._create_heading(self._api_title))
 
         # automatically loading composition packages
-        result.extend(self._create_section_title(self._composition_packages_description))
-        for package_name in sorted(composition):
-            result.extend(self._create_package_toc(package_name, composition[package_name]))
+        if composition:
+            result.extend(self._create_section_title(self._composition_packages_description))
+            for package_name in sorted(composition):
+                result.extend(self._create_package_toc(package_name, composition[package_name]))
 
         # manually loading composition packages
-        result.extend(self._create_section_title(self._manual_packages_description))
-        for package_name in sorted(manual):
-            result.extend(self._create_package_toc(package_name, manual[package_name]))
+        if manual:
+            result.extend(self._create_section_title(self._manual_packages_description))
+            for package_name in sorted(manual):
+                result.extend(self._create_package_toc(package_name, manual[package_name]))
 
         # unstable composition packages
-        result.extend(self._create_section_title(self._unstable_packages_description))
-        for package_name in sorted(unstable):
-            result.extend(self._create_package_toc(package_name, unstable[package_name]))
+        if unstable:
+            result.extend(self._create_section_title(self._unstable_packages_description))
+            for package_name in sorted(unstable):
+                result.extend(self._create_package_toc(package_name, unstable[package_name]))
+
+        # internals packages
+        if internals:
+            result.extend(self._create_section_title(self._internals_packages_description))
+            for package_name in sorted(internals):
+                result.extend(self._create_package_toc(package_name, internals[package_name]))
 
         f = open(self.docs_api_index_path, 'w')
         f.write('\n'.join(result))
@@ -165,6 +180,7 @@ class AbjadAPIGenerator(abctools.AbjadObject):
 
     def _sort_modules(self, objects):
         composition = {}
+        internals = {}
         manual = {}
         unstable = {}
 
@@ -175,6 +191,8 @@ class AbjadAPIGenerator(abctools.AbjadObject):
 
             if tools_package in self._undocumented_packages:
                 continue
+            elif tools_package in self._internals_packages:
+                collection = internals
             elif tools_package in self._unstable_packages:
                 collection = unstable
             elif tools_package in self._manual_packages:
@@ -197,7 +215,7 @@ class AbjadAPIGenerator(abctools.AbjadObject):
             else:
                 collection[tools_package]['functions'].append(obj)
 
-        return composition, manual, unstable
+        return composition, manual, unstable, internals
         
 
     ### PUBLIC ATTRIBUTES ###
