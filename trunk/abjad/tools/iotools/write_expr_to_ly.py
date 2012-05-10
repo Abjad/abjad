@@ -12,9 +12,9 @@ def write_expr_to_ly(expr, file_name, template=None, print_status=True, tagline=
     Write `expr` to `file_name` with `template`::
 
         abjad> note = Note("c'4")
-        abjad> iotools.write_expr_to_ly(note, '/home/user/foo.ly', 'paris') # doctest: +SKIP
+        abjad> iotools.write_expr_to_ly(note, '/home/user/foo.ly', 'tirnaveni') # doctest: +SKIP
 
-    Retur none.
+    Return none.
 
     .. versionchanged:: 2.0
         renamed ``io.write_ly()`` to

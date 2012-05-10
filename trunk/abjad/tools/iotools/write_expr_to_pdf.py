@@ -13,7 +13,7 @@ def write_expr_to_pdf(expr, file_name, template=None, print_status=True, tagline
     Write `expr` to pdf `file_name` with `template`::
 
         abjad> note = Note("c'4")
-        abjad> iotools.write_expr_to_pdf(note, 'one_note.pdf', template='paris') # doctest: +SKIP
+        abjad> iotools.write_expr_to_pdf(note, 'one_note.pdf', template='tirnaveni') # doctest: +SKIP
 
     Return none.
     '''
