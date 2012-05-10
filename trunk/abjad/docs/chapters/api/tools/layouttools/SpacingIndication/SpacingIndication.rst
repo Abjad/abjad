@@ -48,6 +48,8 @@ Special Methods
 
 .. automethod:: abjad.tools.layouttools.SpacingIndication.SpacingIndication.SpacingIndication.__repr__
 
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 .. automethod:: abjad.tools.layouttools.SpacingIndication.SpacingIndication.SpacingIndication.__setattr__
 
     Inherited from `__builtin__.object`

@@ -34,6 +34,14 @@ Methods
 
     Inherited from `numbers.Real`
 
+.. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.from_decimal
+
+    Inherited from `fractions.Fraction`
+
+.. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.from_float
+
+    Inherited from `fractions.Fraction`
+
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.limit_denominator
 
     Inherited from `fractions.Fraction`

@@ -30,6 +30,14 @@ Methods
 
     Inherited from `numbers.Real`
 
+.. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.from_decimal
+
+    Inherited from `fractions.Fraction`
+
+.. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.from_float
+
+    Inherited from `fractions.Fraction`
+
 .. automethod:: abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction.limit_denominator
 
     Inherited from `fractions.Fraction`

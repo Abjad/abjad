@@ -36,6 +36,14 @@ Methods
 
     Inherited from `numbers.Real`
 
+.. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.from_decimal
+
+    Inherited from `fractions.Fraction`
+
+.. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.from_float
+
+    Inherited from `fractions.Fraction`
+
 .. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.limit_denominator
 
     Inherited from `fractions.Fraction`
