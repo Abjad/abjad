@@ -177,7 +177,7 @@ class Container(Component):
                     spanner._insert(index, component)
                     component._spanners.add(spanner)
 
-    ### PRIVATE PROPERTIES ###
+    ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
     def _compact_representation(self):
@@ -195,7 +195,6 @@ class Container(Component):
         if 0 < len(self):
             return ', '.join([str(x) for x in self._music])
         else:
-            #return ' '
             return ''
 
     ### PRIVATE METHODS ###
@@ -203,6 +202,12 @@ class Container(Component):
     def _format_container(self):
         from abjad.tools.containertools._format_container import _format_container
         return _format_container(self)
+
+    def _format_slot_contributions_with_indent(self, slot):
+        for contributor, contributions in slot:
+            if contributions:
+                for i, contribution in enumerate(contributions):
+                    contributions[i] = '\t' + contribution
 
     ### PUBLIC PROPERTIES ###
 
