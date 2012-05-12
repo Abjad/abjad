@@ -9,18 +9,6 @@ class _TupletFormatter(_ContainerFormatter):
         self.label = None
         self._slots = _TupletFormatterSlotsInterface(self)
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _fraction(self):
-        tuplet = self._client
-        if tuplet._is_visible:
-            if tuplet.is_augmentation or \
-                tuplet.is_nonbinary or \
-                tuplet.force_fraction:
-                    return r'\fraction '
-        return ''
-
     ### PUBLIC PROPERTIES ###
 
     @property

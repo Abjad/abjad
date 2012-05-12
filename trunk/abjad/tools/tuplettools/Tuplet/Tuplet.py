@@ -60,8 +60,9 @@ class Tuplet(Container):
         else:
             return '{%s %s %s}' % (self._signifier, self.multiplier, self._signifier)
 
-    ### PRIVATE PROPERTIES ###
+    ### READ-ONLY PRIVATE PROPERTIES ###
 
+    # TODO: make public
     @property
     def _is_visible(self):
         return not self.is_invisible
@@ -82,55 +83,17 @@ class Tuplet(Container):
         if 0 < len(self):
             return ', '.join([str(x) for x in self._music])
         else:
-            #return ' '
             return ''
 
-    ### PUBLIC PROPERTIES ###
+    ### PRIVATE METHODS ###
 
-    @apply
-    def force_fraction():
-        def fget(self):
-            r'''Read / write boolean to force ``n:m`` fraction in LilyPond format::
+    def _format_lilypond_fraction_command_string(self):
+        if self._is_visible:
+            if self.is_augmentation or self.is_nonbinary or self.force_fraction:
+                return r'\fraction '
+        return ''
 
-                abjad> tuplet = Tuplet(Fraction(2, 3), "c'8 d'8 e'8")
-
-            ::
-
-                abjad> tuplet.force_fraction is None
-                True
-
-            ::
-
-                abjad> f(tuplet)
-                \times 2/3 {
-                    c'8
-                    d'8
-                    e'8
-                }
-
-
-            ::
-
-                abjad> tuplet.force_fraction = True
-
-            ::
-
-                abjad> f(tuplet)
-                \fraction \times 2/3 {
-                    c'8
-                    d'8
-                    e'8
-                }
-
-            Return boolean or none.
-            '''
-            return self._force_fraction
-        def fset(self, arg):
-            if isinstance(arg, (bool, type(None))):
-                self._force_fraction = arg
-            else:
-                raise TypeError('bad type for tuplet force fraction: "%s".' % arg)
-        return property(**locals())
+    ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def is_augmentation(self):
@@ -178,6 +141,119 @@ class Tuplet(Container):
         else:
             return False
 
+    @property
+    def is_nonbinary(self):
+        '''Read-only boolean true when multiplier numerator is not power of two. Otherwise false::
+
+            abjad> tuplet = Tuplet((3, 5), "c'8 d'8 e'8 f'8 g'8")
+            abjad> tuplet.is_nonbinary
+            True
+
+        Return boolean.
+        '''
+        return not self.is_binary
+
+    @property
+    def is_trivial(self):
+        '''True when tuplet multiplier is one. Otherwise false::
+
+            abjad> tuplet = Tuplet((1, 1), "c'8 d'8 e'8")
+            abjad> tuplet.is_trivial
+            True
+        
+        Return boolean.
+        '''
+        return self.multiplier == 1
+
+    @property
+    def multiplied_duration(self):
+        '''Read-only multiplied duration of tuplet::
+
+            abjad> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
+            abjad> tuplet.multiplied_duration
+            Duration(1, 4)
+
+        Return duration.
+        '''
+        return self.multiplier * self.contents_duration
+
+    @property
+    def preprolated_duration(self):
+        '''Duration prior to prolation:
+
+        ::
+
+            abjad> t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
+            abjad> t.preprolated_duration
+            Duration(1, 4)
+
+        Return duration.
+        '''
+        return self.multiplied_duration
+
+    @property
+    def ratio_string(self):
+        '''Read-only tuplet multiplier formatted with colon as ratio::
+
+            abjad> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
+            abjad> tuplet.ratio_string
+            '3:2'
+
+        Return string.
+        '''
+        multiplier = self.multiplier
+        if multiplier is not None:
+            return '%s:%s' % (multiplier.denominator, multiplier.numerator)
+        else:
+            return None
+
+    ### READ / WRITE PUBLIC PROPERTIES ###
+
+    @apply
+    def force_fraction():
+        def fget(self):
+            r'''Read / write boolean to force ``n:m`` fraction in LilyPond format::
+
+                abjad> tuplet = Tuplet(Fraction(2, 3), "c'8 d'8 e'8")
+
+            ::
+
+                abjad> tuplet.force_fraction is None
+                True
+
+            ::
+
+                abjad> f(tuplet)
+                \times 2/3 {
+                    c'8
+                    d'8
+                    e'8
+                }
+
+
+            ::
+
+                abjad> tuplet.force_fraction = True
+
+            ::
+
+                abjad> f(tuplet)
+                \fraction \times 2/3 {
+                    c'8
+                    d'8
+                    e'8
+                }
+
+            Return boolean or none.
+            '''
+            return self._force_fraction
+        def fset(self, arg):
+            if isinstance(arg, (bool, type(None))):
+                self._force_fraction = arg
+            else:
+                raise TypeError('bad type for tuplet force fraction: "%s".' % arg)
+        return property(**locals())
+
     @apply
     def is_invisible():
         def fget(self):
@@ -219,42 +295,6 @@ class Tuplet(Container):
             assert isinstance(arg, (bool, type(None)))
             self._is_invisible = arg
         return property(**locals())
-
-    @property
-    def is_nonbinary(self):
-        '''Read-only boolean true when multiplier numerator is not power of two. Otherwise false::
-
-            abjad> tuplet = Tuplet((3, 5), "c'8 d'8 e'8 f'8 g'8")
-            abjad> tuplet.is_nonbinary
-            True
-
-        Return boolean.
-        '''
-        return not self.is_binary
-
-    @property
-    def is_trivial(self):
-        '''True when tuplet multiplier is one. Otherwise false::
-
-            abjad> tuplet = Tuplet((1, 1), "c'8 d'8 e'8")
-            abjad> tuplet.is_trivial
-            True
-        
-        Return boolean.
-        '''
-        return self.multiplier == 1
-
-    @property
-    def multiplied_duration(self):
-        '''Read-only multiplied duration of tuplet::
-
-            abjad> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
-            abjad> tuplet.multiplied_duration
-            Duration(1, 4)
-
-        Return duration.
-        '''
-        return self.multiplier * self.contents_duration
 
     @apply
     def multiplier():
@@ -313,33 +353,3 @@ class Tuplet(Container):
                 raise TypeError('bad tuplet preferred denominator type: "%s".' % arg)
             self._preferred_denominator = arg
         return property(**locals())
-
-    @property
-    def preprolated_duration(self):
-        '''Duration prior to prolation:
-
-        ::
-
-            abjad> t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-            abjad> t.preprolated_duration
-            Duration(1, 4)
-
-        Return duration.
-        '''
-        return self.multiplied_duration
-
-    @property
-    def ratio_string(self):
-        '''Read-only tuplet multiplier formatted with colon as ratio::
-
-            abjad> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
-            abjad> tuplet.ratio_string
-            '3:2'
-
-        Return string.
-        '''
-        multiplier = self.multiplier
-        if multiplier is not None:
-            return '%s:%s' % (multiplier.denominator, multiplier.numerator)
-        else:
-            return None
