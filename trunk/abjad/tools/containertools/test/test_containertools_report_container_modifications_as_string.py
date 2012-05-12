@@ -5,6 +5,7 @@ import py.test
 def test_containertools_report_container_modifications_as_string_01():
     '''Context formatter report_container_modifications_as_string.
     '''
+    py.test.skip('port forward after formatter class is removed; or deprecate functionality.')
 
     t = Voice("c'8 d'8 e'8 f'8")
     marktools.LilyPondComment('Example voice', 'before')(t)
