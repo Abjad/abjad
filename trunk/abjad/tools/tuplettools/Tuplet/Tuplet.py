@@ -96,6 +96,11 @@ class Tuplet(Container):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
+    def format(self):
+        from abjad.tools.tuplettools.Tuplet._format_tuplet import _format_tuplet
+        return _format_tuplet(self)
+
+    @property
     def is_augmentation(self):
         '''True when multiplier is greater than 1.
         Otherwise false::
