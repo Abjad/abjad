@@ -48,6 +48,7 @@ def test_containertools_report_container_modifications_as_string_01():
 def test_containertools_report_container_modifications_as_string_02():
     '''Tuplet formatter report_container_modifications_as_string.
     '''
+    py.test.skip('port forward after tuplet formatter is removed; or deprecate functionality.')
 
     t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
     marktools.LilyPondComment('Example tuplet', 'before')(t)

@@ -1,7 +1,6 @@
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools.containertools.Container import Container
-from abjad.tools.tuplettools.Tuplet._TupletFormatter import _TupletFormatter
 import fractions
 
 
@@ -32,7 +31,6 @@ class Tuplet(Container):
         Container.__init__(self, music)
         self.multiplier = multiplier
         self._force_fraction = None
-        self._formatter = _TupletFormatter(self)
         self._is_invisible = None
         self._preferred_denominator = None
         self._signifier = '*'

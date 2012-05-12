@@ -19,8 +19,6 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.format
 
-    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
-
 .. autoattribute:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.is_augmentation
 
 .. autoattribute:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.is_binary
