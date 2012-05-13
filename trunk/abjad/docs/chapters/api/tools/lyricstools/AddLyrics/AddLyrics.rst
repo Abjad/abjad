@@ -19,7 +19,7 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.lyricstools.AddLyrics.AddLyrics.AddLyrics.format
 
-    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+    Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
 
 .. autoattribute:: abjad.tools.lyricstools.AddLyrics.AddLyrics.AddLyrics.leaves
 

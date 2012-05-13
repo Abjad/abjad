@@ -15,8 +15,6 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.containertools.Container.Container.Container.format
 
-    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
-
 .. autoattribute:: abjad.tools.containertools.Container.Container.Container.leaves
 
 .. autoattribute:: abjad.tools.containertools.Container.Container.Container.music

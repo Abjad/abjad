@@ -89,11 +89,6 @@ class Component(AbjadObject):
         '''Read-only LilyPond input format of component.
         '''
         self._update_marks_of_entire_score_tree_if_necessary()
-        # following two lines are temporary during migration away from formatter classes
-        # this causes just plain old Container objects to format with the new format code;
-        # container subclasses continue to format with old formatter classes.
-        if self.__class__.__name__ == 'Container':
-            return self._format_container()
         return self._formatter.format
 
     @property

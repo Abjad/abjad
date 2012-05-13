@@ -1,4 +1,3 @@
-from abjad.tools.containertools.Container._ContainerFormatter import _ContainerFormatter
 from abjad.tools.componenttools.Component import Component
 import copy
 
@@ -30,7 +29,6 @@ class Container(Component):
         Component.__init__(self)
         self._parallel = False
         self._initialize_music(music)
-        self._formatter = _ContainerFormatter(self)
         self._initialize_keyword_values(**kwargs)
 
     ### SPECIAL METHODS ###
@@ -239,6 +237,11 @@ class Container(Component):
             for leaf in self.leaves:
                 duration += leaf.duration_in_seconds
             return duration
+
+    @property
+    def format(self):
+        from abjad.tools.containertools._format_container import _format_container
+        return _format_container(self)
 
     @apply
     def is_parallel():
