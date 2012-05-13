@@ -1,6 +1,6 @@
 from abjad.tools.containertools.Container import Container
 from abjad.tools.leaftools.Leaf import Leaf
-from abjad.tools.gracetools.GraceContainer._GraceFormatter import _GraceFormatter
+#from abjad.tools.gracetools.GraceContainer._GraceFormatter import _GraceFormatter
 
 
 class GraceContainer(Container):
@@ -84,7 +84,7 @@ class GraceContainer(Container):
         # self._carrier is a reference to the leaf carrying grace music
         self._carrier = None
         Container.__init__(self, music)
-        self._formatter = _GraceFormatter(self)
+        #self._formatter = _GraceFormatter(self)
         self.kind = kind
         self._initialize_keyword_values(**kwargs)
 
@@ -110,7 +110,14 @@ class GraceContainer(Container):
     def __repr__(self):
         return '%s(%s)' % (type(self).__name__, self._summary)
 
-    ### PUBLIC PROPERTIES ###
+    ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def format(self):
+        from abjad.tools.gracetools._format_grace_container import _format_grace_container
+        return _format_grace_container(self)
+
+    ### READ / WRITE PUBLIC PROPERTIES ###
 
     @apply
     def kind():

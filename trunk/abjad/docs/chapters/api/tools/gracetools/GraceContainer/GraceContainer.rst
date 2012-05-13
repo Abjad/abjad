@@ -19,8 +19,6 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.format
 
-    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
-
 .. autoattribute:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.leaves
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
