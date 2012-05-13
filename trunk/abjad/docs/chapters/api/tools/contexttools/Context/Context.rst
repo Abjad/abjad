@@ -23,8 +23,6 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.contexttools.Context.Context.Context.format
 
-    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
-
 .. autoattribute:: abjad.tools.contexttools.Context.Context.Context.is_semantic
 
 .. autoattribute:: abjad.tools.contexttools.Context.Context.Context.leaves

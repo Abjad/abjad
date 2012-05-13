@@ -1,6 +1,5 @@
 from abc import ABCMeta
 from abjad.tools.containertools.Container import Container
-from abjad.tools.contexttools.Context._ContextFormatter import _ContextFormatter
 import copy
 
 
@@ -36,7 +35,6 @@ class Context(Container):
     def __init__(self, music=None, context_name='Context', name=None):
         Container.__init__(self, music)
         self.context_name = context_name
-        self._formatter = _ContextFormatter(self)
         self._engraver_consists = set([])
         self._engraver_removals = set([])
         self.name = name
@@ -72,6 +70,13 @@ class Context(Container):
             name = ''
         return '%s%s%s%s%s' % (self.context_name, name, open_bracket_string, summary, close_bracket_string)
 
+    ### READ-ONLY PRIVATE PROPERTIES ###
+
+    @property
+    def _format_pieces(self):
+        from abjad.tools.contexttools._format_context import _format_context
+        return _format_context(self, pieces=True)
+
     ### PRIVATE METHODS ###
 
     def _format_engraver_consists(self):
@@ -91,7 +96,7 @@ class Context(Container):
             return r'\context %s = "%s"' % (self.context_name, self.name)
         else:
             return r'\new %s' % self.context_name
-        
+
     def _initialize_keyword_values(self, **kwargs):
         if 'context_name' in kwargs:
             self.context_name = kwargs['context_name']
@@ -151,10 +156,10 @@ class Context(Container):
         '''
         return self._engraver_removals
 
-#    @property
-#    def format(self):
-#        from abjad.tools.contexttools._format_context import _format_context
-#        return _format_context(self)
+    @property
+    def format(self):
+        from abjad.tools.contexttools._format_context import _format_context
+        return _format_context(self)
 
     @apply
     def is_nonsemantic():

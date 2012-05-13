@@ -27,7 +27,7 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.format
 
-    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+    Inherited from :py:class:`contexttools.Context <abjad.tools.contexttools.Context.Context.Context>`
 
 .. autoattribute:: abjad.tools.scoretools.PianoStaff.PianoStaff.PianoStaff.is_semantic
 

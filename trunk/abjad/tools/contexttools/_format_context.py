@@ -20,7 +20,7 @@ from abjad.tools.containertools._format_container import _get_slot_6
 from abjad.tools.containertools._format_container import _get_slot_7
 
 
-def _format_context(context):
+def _format_context(context, pieces=False):
     result = []
     result.extend(_get_slot_1(context))
     result.extend(_get_slot_2(context))
@@ -32,7 +32,10 @@ def _format_context(context):
     contributions = []
     for contributor, contribution in result:
         contributions.extend(contribution)
-    return '\n'.join(contributions)
+    if pieces:
+        return contributions
+    else:
+        return '\n'.join(contributions)
 
 def _get_slot_2(context):
     result = []

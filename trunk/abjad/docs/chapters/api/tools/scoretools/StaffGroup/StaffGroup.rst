@@ -27,7 +27,7 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.format
 
-    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+    Inherited from :py:class:`contexttools.Context <abjad.tools.contexttools.Context.Context.Context>`
 
 .. autoattribute:: abjad.tools.scoretools.StaffGroup.StaffGroup.StaffGroup.is_semantic
 

@@ -27,7 +27,7 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.lyricstools.Lyrics.Lyrics.Lyrics.format
 
-    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+    Inherited from :py:class:`contexttools.Context <abjad.tools.contexttools.Context.Context.Context>`
 
 .. autoattribute:: abjad.tools.lyricstools.Lyrics.Lyrics.Lyrics.is_semantic
 
