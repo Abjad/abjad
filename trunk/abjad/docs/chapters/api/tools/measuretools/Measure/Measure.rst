@@ -19,8 +19,6 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.format
 
-    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
-
 .. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.is_binary
 
 .. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.is_full

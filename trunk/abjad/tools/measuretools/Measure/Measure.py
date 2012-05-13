@@ -1,7 +1,7 @@
 from abjad.tools import contexttools
 from abjad.tools import durationtools
 from abjad.tools.containertools.Container import Container
-from abjad.tools.measuretools.Measure._MeasureFormatter import _MeasureFormatter
+#from abjad.tools.measuretools.Measure._MeasureFormatter import _MeasureFormatter
 import copy
 
 
@@ -43,7 +43,7 @@ class Measure(Container):
         self._automatically_adjust_time_signature = False
         Container.__init__(self, music)
         self._always_format_time_signature = False
-        self._formatter = _MeasureFormatter(self)
+        #self._formatter = _MeasureFormatter(self)
         self._measure_number = None
         time_signature = contexttools.TimeSignatureMark(meter)
         time_signature.attach(self)
@@ -154,12 +154,34 @@ class Measure(Container):
             contexttools.detach_time_signature_marks_attached_to_component(self)
             better_meter.attach(self)
 
+    def _format_content_pieces(self):
+        result = []
+        # the class name test here functions to exclude scaleDurations from anonymous and dynamic measures
+        # TODO: subclass this prooperly on anonymous and dynamic measures
+        if self.is_nonbinary and self._class_name == 'Measure':
+            result.append("\t\\scaleDurations #'(%s . %s) {" % (
+                self.multiplier.numerator,
+                self.multiplier.denominator))
+            result.extend( ['\t' + x for x in Container._format_content_pieces(self)])
+            result.append('\t}')
+        else:
+            result.extend(Container._format_content_pieces(self))
+        return result
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
-#    @property
-#    def format(self):
-#        from abjad.tools.measuretools._format_measure import _format_measure
-#        return _format_measure(self)
+    @property
+    def format(self):
+        from abjad.tools import contexttools
+        from abjad.tools.measuretools._format_measure import _format_measure
+        effective_meter = contexttools.get_effective_time_signature(self)
+        if effective_meter.is_nonbinary and effective_meter.suppress:
+            raise NonbinaryTimeSignatureSuppressionError
+        if effective_meter.duration < self.preprolated_duration:
+            raise OverfullMeasureError
+        if self.preprolated_duration < effective_meter.duration:
+            raise UnderfullMeasureError
+        return _format_measure(self)
 
     @property
     def is_binary(self):
