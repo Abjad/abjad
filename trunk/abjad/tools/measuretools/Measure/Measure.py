@@ -1,7 +1,6 @@
 from abjad.tools import contexttools
 from abjad.tools import durationtools
 from abjad.tools.containertools.Container import Container
-#from abjad.tools.measuretools.Measure._MeasureFormatter import _MeasureFormatter
 import copy
 
 
@@ -43,7 +42,6 @@ class Measure(Container):
         self._automatically_adjust_time_signature = False
         Container.__init__(self, music)
         self._always_format_time_signature = False
-        #self._formatter = _MeasureFormatter(self)
         self._measure_number = None
         time_signature = contexttools.TimeSignatureMark(meter)
         time_signature.attach(self)
