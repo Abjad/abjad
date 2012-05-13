@@ -47,6 +47,16 @@ class TieChain(ScoreSelection):
             return self.music[0]
 
     @property
+    def is_pitched(self):
+        '''True when tie chain head is a note or chord.
+
+        Return boolean.
+        '''
+        from abjad.tools import chordtools
+        from abjad.tools import notetools
+        return isinstance(self.head, (notetools.Note, chordtools.Chord))
+
+    @property
     def is_trivial(self):
         '''True when length of tie chain is less than or equal to ``1``.
 

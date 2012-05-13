@@ -1131,6 +1131,8 @@ Abjad composition packages
    tools/tietools/get_nontrivial_tie_chains_masked_by_components
    tools/tietools/get_tie_chain
    tools/tietools/is_component_with_tie_spanner_attached
+   tools/tietools/iterate_pitched_tie_chains_backward_in_expr
+   tools/tietools/iterate_pitched_tie_chains_forward_in_expr
    tools/tietools/iterate_tie_chains_backward_in_expr
    tools/tietools/iterate_tie_chains_forward_in_expr
    tools/tietools/iterate_topmost_tie_chains_and_components_forward_in_expr

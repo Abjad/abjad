@@ -15,6 +15,8 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.tietools.TieChain.TieChain.TieChain.head
 
+.. autoattribute:: abjad.tools.tietools.TieChain.TieChain.TieChain.is_pitched
+
 .. autoattribute:: abjad.tools.tietools.TieChain.TieChain.TieChain.is_trivial
 
 .. autoattribute:: abjad.tools.tietools.TieChain.TieChain.TieChain.leaves
