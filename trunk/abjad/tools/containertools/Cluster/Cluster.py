@@ -1,5 +1,5 @@
 from abjad.tools.containertools.Container import Container
-from abjad.tools.containertools.Cluster._ClusterFormatter import _ClusterFormatter
+#from abjad.tools.containertools.Cluster._ClusterFormatter import _ClusterFormatter
 
 
 class Cluster(Container):
@@ -35,10 +35,17 @@ class Cluster(Container):
     def __init__(self, music=None, **kwargs):
         Container.__init__(self, music)
         self.is_parallel = False
-        self._formatter = _ClusterFormatter(self)
+        #self._formatter = _ClusterFormatter(self)
         self._initialize_keyword_values(**kwargs)
 
     ### SPECIAL METHODS ###
 
     def __repr__(self):
         return '%s(%s)' % (type(self).__name__, self._summary)
+
+    ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def format(self):
+        from abjad.tools.containertools._format_cluster import _format_cluster
+        return _format_cluster(self)

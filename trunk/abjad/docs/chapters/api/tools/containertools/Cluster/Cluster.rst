@@ -19,8 +19,6 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.containertools.Cluster.Cluster.Cluster.format
 
-    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
-
 .. autoattribute:: abjad.tools.containertools.Cluster.Cluster.Cluster.leaves
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
