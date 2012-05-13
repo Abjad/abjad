@@ -203,6 +203,13 @@ class Container(Component):
         from abjad.tools.containertools._format_container import _format_container
         return _format_container(self)
 
+    def _format_content_pieces(self):
+        result = []
+        for m in self._music:
+            result.extend(m.format.split('\n'))
+        result = ['\t' + x for x in result]
+        return result
+        
     def _format_slot_contributions_with_indent(self, slot):
         for contributor, contributions in slot:
             if contributions:

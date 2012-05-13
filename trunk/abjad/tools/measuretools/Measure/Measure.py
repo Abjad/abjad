@@ -156,6 +156,11 @@ class Measure(Container):
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
+#    @property
+#    def format(self):
+#        from abjad.tools.measuretools._format_measure import _format_measure
+#        return _format_measure(self)
+
     @property
     def is_binary(self):
         '''True when measure time signature denominator is an integer power of 2::

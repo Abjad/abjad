@@ -36,13 +36,6 @@ def _format_container(container):
         contributions.extend(contribution)
     return '\n'.join(contributions)
 
-def _wrap(self, contributor, attr):
-    '''Wrap format contribution with format source.'''
-    if False:
-        pass
-    else:
-        return [(contributor, attr), getattr(contributor, attr)]
-
 def _get_slot_1(container):
     result = []
     result.append(_get_comment_format_contributions_for_slot(container, 'before'))
@@ -67,19 +60,9 @@ def _get_slot_3(container):
     container._format_slot_contributions_with_indent(result)
     return tuple(result)
 
-def _get_contents(container):
-    '''Read-only list of tabbed lines of content.
-    '''
-    result = []
-    for m in container._music:
-        result.extend(m.format.split('\n'))
-    result = ['\t' + x for x in result]
-    return result
-
 def _get_slot_4(container):
     result = []
-    #result.append(self.wrap(self.formatter, '_contents'))
-    result.append([('contents', '_contents'), _get_contents(container)]) # check this line
+    result.append([('contents', '_contents'), container._format_content_pieces()])
     return tuple(result)
 
 def _get_slot_5(container):
