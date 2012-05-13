@@ -159,6 +159,7 @@ class Context(Container):
     @property
     def format(self):
         from abjad.tools.contexttools._format_context import _format_context
+        self._update_marks_of_entire_score_tree_if_necessary()
         return _format_context(self)
 
     @apply

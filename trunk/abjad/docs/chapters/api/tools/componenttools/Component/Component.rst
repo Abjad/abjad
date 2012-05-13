@@ -9,8 +9,6 @@ componenttools.Component
 Read-only Properties
 --------------------
 
-.. autoattribute:: abjad.tools.componenttools.Component.Component.Component.format
-
 .. autoattribute:: abjad.tools.componenttools.Component.Component.Component.override
 
 .. autoattribute:: abjad.tools.componenttools.Component.Component.Component.parent

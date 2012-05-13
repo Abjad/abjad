@@ -96,6 +96,7 @@ class Tuplet(Container):
     @property
     def format(self):
         from abjad.tools.tuplettools._format_tuplet import _format_tuplet
+        self._update_marks_of_entire_score_tree_if_necessary()
         return _format_tuplet(self)
 
     @property

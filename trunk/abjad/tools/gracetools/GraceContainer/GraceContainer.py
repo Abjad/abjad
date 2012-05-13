@@ -113,6 +113,7 @@ class GraceContainer(Container):
     @property
     def format(self):
         from abjad.tools.gracetools._format_grace_container import _format_grace_container
+        self._update_marks_of_entire_score_tree_if_necessary()
         return _format_grace_container(self)
 
     ### READ / WRITE PUBLIC PROPERTIES ###

@@ -136,6 +136,7 @@ class Leaf(Component):
     @property
     def format(self):
         from abjad.tools.leaftools._format_leaf import _format_leaf
+        self._update_marks_of_entire_score_tree_if_necessary()
         return _format_leaf(self)
 
     @property

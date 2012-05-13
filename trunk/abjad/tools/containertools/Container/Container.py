@@ -241,6 +241,7 @@ class Container(Component):
     @property
     def format(self):
         from abjad.tools.containertools._format_container import _format_container
+        self._update_marks_of_entire_score_tree_if_necessary()
         return _format_container(self)
 
     @apply

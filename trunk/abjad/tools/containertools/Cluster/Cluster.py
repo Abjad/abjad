@@ -46,4 +46,5 @@ class Cluster(Container):
     @property
     def format(self):
         from abjad.tools.containertools._format_cluster import _format_cluster
+        self._update_marks_of_entire_score_tree_if_necessary()
         return _format_cluster(self)
