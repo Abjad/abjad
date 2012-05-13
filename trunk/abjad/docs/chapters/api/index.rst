@@ -567,6 +567,7 @@ Abjad composition packages
    tools/marktools/is_component_with_mark_attached
    tools/marktools/is_component_with_noncontext_mark_attached
    tools/marktools/is_component_with_stem_tremolo_attached
+   tools/marktools/move_marks
 
 :py:mod:`markuptools <abjad.tools.markuptools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
