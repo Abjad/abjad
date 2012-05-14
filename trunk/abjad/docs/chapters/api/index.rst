@@ -1991,3 +1991,24 @@ Unstable Abjad composition packages (load manually)
    tools/tonalitytools/is_unlikely_melodic_diatonic_interval_in_chorale
    tools/tonalitytools/make_all_notes_in_ascending_and_descending_diatonic_scale
    tools/tonalitytools/make_first_n_notes_in_ascending_diatonic_scale
+
+Packages for internal use.
+--------------------------
+
+.. toctree::
+   :maxdepth: 1
+
+:py:mod:`formattools <abjad.tools.formattools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: functions
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/formattools/get_comment_format_contributions
+   tools/formattools/get_context_mark_format_contributions
+   tools/formattools/get_context_setting_format_contributions
+   tools/formattools/get_grob_override_format_contributions
+   tools/formattools/get_grob_revert_format_contributions
+   tools/formattools/get_lilypond_command_mark_format_contributions

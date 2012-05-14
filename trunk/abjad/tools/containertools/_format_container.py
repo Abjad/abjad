@@ -1,25 +1,4 @@
-from abjad.tools.marktools._get_comment_format_contributions_for_slot import \
-    _get_comment_format_contributions_for_slot
-from abjad.tools.marktools._get_lilypond_command_mark_format_contributions_for_slot import \
-    _get_lilypond_command_mark_format_contributions_for_slot
-from abjad.tools.marktools._get_comment_format_contributions_for_slot import \
-    _get_comment_format_contributions_for_slot
-from abjad.tools.marktools._get_lilypond_command_mark_format_contributions_for_slot import \
-    _get_lilypond_command_mark_format_contributions_for_slot
-from abjad.tools.lilypondproxytools.LilyPondGrobOverrideComponentPlugIn._get_grob_override_format_contributions import \
-    _get_grob_override_format_contributions
-from abjad.tools.contexttools._get_context_setting_format_contributions import \
-    _get_context_setting_format_contributions
-from abjad.tools.marktools._get_comment_format_contributions_for_slot import \
-    _get_comment_format_contributions_for_slot
-from abjad.tools.marktools._get_lilypond_command_mark_format_contributions_for_slot import \
-    _get_lilypond_command_mark_format_contributions_for_slot
-from abjad.tools.lilypondproxytools.LilyPondGrobOverrideComponentPlugIn._get_grob_revert_format_contributions import \
-    _get_grob_revert_format_contributions
-from abjad.tools.marktools._get_comment_format_contributions_for_slot import \
-    _get_comment_format_contributions_for_slot
-from abjad.tools.marktools._get_lilypond_command_mark_format_contributions_for_slot import \
-    _get_lilypond_command_mark_format_contributions_for_slot
+from abjad.tools import formattools
 
 
 def _format_container(container):
@@ -38,8 +17,8 @@ def _format_container(container):
 
 def _format_slot_1(container):
     result = []
-    result.append(_get_comment_format_contributions_for_slot(container, 'before'))
-    result.append(_get_lilypond_command_mark_format_contributions_for_slot(container, 'before'))
+    result.append(formattools.get_comment_format_contributions(container, 'before'))
+    result.append(formattools.get_lilypond_command_mark_format_contributions(container, 'before'))
     return tuple(result)
 
 def _format_slot_2(container):
@@ -53,10 +32,10 @@ def _format_slot_2(container):
 
 def _format_slot_3(container):
     result = []
-    result.append(_get_comment_format_contributions_for_slot(container, 'opening'))
-    result.append(_get_lilypond_command_mark_format_contributions_for_slot(container, 'opening'))
-    result.append(_get_grob_override_format_contributions(container))
-    result.append(_get_context_setting_format_contributions(container))
+    result.append(formattools.get_comment_format_contributions(container, 'opening'))
+    result.append(formattools.get_lilypond_command_mark_format_contributions(container, 'opening'))
+    result.append(formattools.get_grob_override_format_contributions(container))
+    result.append(formattools.get_context_setting_format_contributions(container))
     container._format_slot_contributions_with_indent(result)
     return tuple(result)
 
@@ -67,9 +46,9 @@ def _format_slot_4(container):
 
 def _format_slot_5(container):
     result = []
-    result.append(_get_grob_revert_format_contributions(container))
-    result.append(_get_lilypond_command_mark_format_contributions_for_slot(container, 'closing'))
-    result.append(_get_comment_format_contributions_for_slot(container, 'closing'))
+    result.append(formattools.get_grob_revert_format_contributions(container))
+    result.append(formattools.get_lilypond_command_mark_format_contributions(container, 'closing'))
+    result.append(formattools.get_comment_format_contributions(container, 'closing'))
     container._format_slot_contributions_with_indent(result)
     return tuple(result)
 
@@ -84,6 +63,6 @@ def _format_slot_6(container):
 
 def _format_slot_7(container):
     result = []
-    result.append(_get_lilypond_command_mark_format_contributions_for_slot(container, 'after'))
-    result.append(_get_comment_format_contributions_for_slot(container, 'after'))
+    result.append(formattools.get_lilypond_command_mark_format_contributions(container, 'after'))
+    result.append(formattools.get_comment_format_contributions(container, 'after'))
     return tuple(result)
