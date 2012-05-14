@@ -2006,9 +2006,12 @@ Packages for internal use.
 .. toctree::
    :maxdepth: 1
 
+   tools/formattools/get_articulation_format_contributions
    tools/formattools/get_comment_format_contributions
    tools/formattools/get_context_mark_format_contributions
    tools/formattools/get_context_setting_format_contributions
    tools/formattools/get_grob_override_format_contributions
    tools/formattools/get_grob_revert_format_contributions
    tools/formattools/get_lilypond_command_mark_format_contributions
+   tools/formattools/get_markup_format_contributions
+   tools/formattools/get_stem_tremolo_format_contributions

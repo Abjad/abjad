@@ -1,18 +1,4 @@
-from abjad.tools.marktools._get_articulation_format_contributions import _get_articulation_format_contributions
-from abjad.tools.marktools._get_comment_format_contributions_for_slot import \
-    _get_comment_format_contributions_for_slot
-from abjad.tools.contexttools._get_context_mark_format_contributions_for_slot import \
-    _get_context_mark_format_contributions_for_slot
-from abjad.tools.contexttools._get_context_setting_format_contributions import \
-    _get_context_setting_format_contributions
-from abjad.tools.lilypondproxytools.LilyPondGrobOverrideComponentPlugIn._get_grob_override_format_contributions \
-    import _get_grob_override_format_contributions
-from abjad.tools.marktools._get_lilypond_command_mark_format_contributions_for_slot import \
-    _get_lilypond_command_mark_format_contributions_for_slot
-from abjad.tools.markuptools._get_markup_format_contributions import _get_markup_format_contributions
-from abjad.tools.spannertools._get_spanner_format_contributions_for_leaf_slot import \
-    _get_spanner_format_contributions_for_leaf_slot
-from abjad.tools.marktools._get_stem_tremolo_format_contributions import _get_stem_tremolo_format_contributions
+from abjad.tools import formattools
 from abjad.tools import sequencetools
 
 
@@ -91,13 +77,13 @@ def _get_leaf_body(leaf):
     result = []
     client = leaf
     result.append(_get_nucleus(leaf))
-    result.append(_get_stem_tremolo_format_contributions(leaf))
-    result.append(_get_articulation_format_contributions(leaf))
-    result.append(_get_lilypond_command_mark_format_contributions_for_slot(leaf, 'right'))
-    result.append(_get_context_mark_format_contributions_for_slot(leaf, 'right'))
-    result.append(_get_markup_format_contributions(client))
-    result.append(_get_spanner_format_contributions_for_leaf_slot(client, 'right'))
-    result.append(_get_comment_format_contributions_for_slot(client, 'right'))
+    result.append(formattools.get_stem_tremolo_format_contributions(leaf))
+    result.append(formattools.get_articulation_format_contributions(leaf))
+    result.append(formattools.get_lilypond_command_mark_format_contributions(leaf, 'right'))
+    result.append(formattools.get_context_mark_format_contributions(leaf, 'right'))
+    result.append(formattools.get_markup_format_contributions(client))
+    result.append(formattools.get_spanner_format_contributions_for_leaf_slot(client, 'right'))
+    result.append(formattools.get_comment_format_contributions(client, 'right'))
     result = [x[1] for x in result]
     result = sequencetools.flatten_sequence(result)
     result = [' '.join(result)]
@@ -131,20 +117,20 @@ def _get_nucleus(leaf):
 def _format_slot_1(leaf):
     result = []
     result.append(_get_grace_body(leaf))
-    result.append(_get_comment_format_contributions_for_slot(leaf, 'before'))
-    result.append(_get_lilypond_command_mark_format_contributions_for_slot(leaf, 'before'))
-    result.append(_get_context_mark_format_contributions_for_slot(leaf, 'before'))
-    result.append(_get_grob_override_format_contributions(leaf))
-    result.append(_get_context_setting_format_contributions(leaf))
-    result.append(_get_spanner_format_contributions_for_leaf_slot(leaf, 'before'))
+    result.append(formattools.get_comment_format_contributions(leaf, 'before'))
+    result.append(formattools.get_lilypond_command_mark_format_contributions(leaf, 'before'))
+    result.append(formattools.get_context_mark_format_contributions(leaf, 'before'))
+    result.append(formattools.get_grob_override_format_contributions(leaf))
+    result.append(formattools.get_context_setting_format_contributions(leaf))
+    result.append(formattools.get_spanner_format_contributions_for_leaf_slot(leaf, 'before'))
     return result
 
 # TODO: move to bound leaf method
 def _format_slot_3(leaf):
     result = []
-    result.append(_get_comment_format_contributions_for_slot(leaf, 'opening'))
-    result.append(_get_lilypond_command_mark_format_contributions_for_slot(leaf, 'opening'))
-    result.append(_get_context_mark_format_contributions_for_slot(leaf, 'opening'))
+    result.append(formattools.get_comment_format_contributions(leaf, 'opening'))
+    result.append(formattools.get_lilypond_command_mark_format_contributions(leaf, 'opening'))
+    result.append(formattools.get_context_mark_format_contributions(leaf, 'opening'))
     result.append(_get_agrace_opening(leaf))
     return result
 
@@ -158,16 +144,16 @@ def _format_slot_4(leaf):
 def _format_slot_5(leaf):
     result = []
     result.append(_get_agrace_body(leaf))
-    result.append(_get_lilypond_command_mark_format_contributions_for_slot(leaf, 'closing'))
-    result.append(_get_context_mark_format_contributions_for_slot(leaf, 'closing'))
-    result.append(_get_comment_format_contributions_for_slot(leaf, 'closing'))
+    result.append(formattools.get_lilypond_command_mark_format_contributions(leaf, 'closing'))
+    result.append(formattools.get_context_mark_format_contributions(leaf, 'closing'))
+    result.append(formattools.get_comment_format_contributions(leaf, 'closing'))
     return result
 
 # TODO: move to bound leaf method
 def _format_slot_7(leaf):
     result = []
-    result.append(_get_spanner_format_contributions_for_leaf_slot(leaf, 'after'))
-    result.append(_get_context_mark_format_contributions_for_slot(leaf, 'after'))
-    result.append(_get_lilypond_command_mark_format_contributions_for_slot(leaf, 'after'))
-    result.append(_get_comment_format_contributions_for_slot(leaf, 'after'))
+    result.append(formattools.get_spanner_format_contributions_for_leaf_slot(leaf, 'after'))
+    result.append(formattools.get_context_mark_format_contributions(leaf, 'after'))
+    result.append(formattools.get_lilypond_command_mark_format_contributions(leaf, 'after'))
+    result.append(formattools.get_comment_format_contributions(leaf, 'after'))
     return result
