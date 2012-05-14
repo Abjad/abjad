@@ -1,19 +1,4 @@
-from abjad.tools.lilypondproxytools.LilyPondGrobOverrideComponentPlugIn._get_grob_override_format_contributions import \
-    _get_grob_override_format_contributions
-from abjad.tools.contexttools._get_context_setting_format_contributions import \
-    _get_context_setting_format_contributions
-from abjad.tools.marktools._get_comment_format_contributions_for_slot import \
-    _get_comment_format_contributions_for_slot
-from abjad.tools.marktools._get_lilypond_command_mark_format_contributions_for_slot import \
-    _get_lilypond_command_mark_format_contributions_for_slot
-from abjad.tools.contexttools._get_context_mark_format_contributions_for_slot import \
-    _get_context_mark_format_contributions_for_slot
-from abjad.tools.marktools._get_comment_format_contributions_for_slot import \
-    _get_comment_format_contributions_for_slot
-from abjad.tools.marktools._get_lilypond_command_mark_format_contributions_for_slot import \
-    _get_lilypond_command_mark_format_contributions_for_slot
-from abjad.tools.contexttools._get_context_mark_format_contributions_for_slot import \
-    _get_context_mark_format_contributions_for_slot
+from abjad.tools import formattools
 from abjad.tools.containertools._format_container import _format_slot_1
 from abjad.tools.containertools._format_container import _format_slot_4
 from abjad.tools.containertools._format_container import _format_slot_6
@@ -45,9 +30,9 @@ def _format_slot_2(context):
         brackets_open = ['{']
     engraver_removals = context._format_engraver_removals()
     engraver_consists = context._format_engraver_consists()
-    overrides = _get_grob_override_format_contributions(context)
+    overrides = formattools.get_grob_override_format_contributions(context)
     overrides = overrides[1]
-    settings = _get_context_setting_format_contributions(context)
+    settings = formattools.get_context_setting_format_contributions(context)
     settings = settings[1]
     if engraver_removals or engraver_consists or overrides or settings:
         contributions = [context._format_invocation() + r' \with {']
@@ -69,16 +54,16 @@ def _format_slot_2(context):
 
 def _format_slot_3(context):
     result = []
-    result.append(_get_comment_format_contributions_for_slot(context, 'opening'))
-    result.append(_get_context_mark_format_contributions_for_slot(context, 'opening'))
-    result.append(_get_lilypond_command_mark_format_contributions_for_slot(context, 'opening'))
+    result.append(formattools.get_comment_format_contributions(context, 'opening'))
+    result.append(formattools.get_context_mark_format_contributions(context, 'opening'))
+    result.append(formattools.get_lilypond_command_mark_format_contributions(context, 'opening'))
     context._format_slot_contributions_with_indent(result)
     return tuple(result)
 
 def _format_slot_5(context):
     result = []
-    result.append(_get_context_mark_format_contributions_for_slot(context, 'closing'))
-    result.append(_get_lilypond_command_mark_format_contributions_for_slot(context, 'closing'))
-    result.append(_get_comment_format_contributions_for_slot(context, 'closing'))
+    result.append(formattools.get_context_mark_format_contributions(context, 'closing'))
+    result.append(formattools.get_lilypond_command_mark_format_contributions(context, 'closing'))
+    result.append(formattools.get_comment_format_contributions(context, 'closing'))
     context._format_slot_contributions_with_indent(result)
     return tuple(result)
