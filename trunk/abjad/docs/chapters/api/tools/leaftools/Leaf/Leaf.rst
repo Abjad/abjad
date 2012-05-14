@@ -13,6 +13,8 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.leaftools.Leaf.Leaf.Leaf.format
 
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+
 .. autoattribute:: abjad.tools.leaftools.Leaf.Leaf.Leaf.leaf_index
 
 .. autoattribute:: abjad.tools.leaftools.Leaf.Leaf.Leaf.multiplied_duration

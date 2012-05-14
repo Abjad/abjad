@@ -85,6 +85,11 @@ class Component(AbjadObject):
     ### PUBLIC PROPERTIES ###
 
     @property
+    def format(self):
+        self._update_marks_of_entire_score_tree_if_necessary()
+        return self._format_component()
+
+    @property
     def override(self):
         '''Read-only reference to LilyPond grob override component plug-in.
         '''

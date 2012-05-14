@@ -15,7 +15,7 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.resttools.Rest.Rest.Rest.format
 
-    Inherited from :py:class:`leaftools.Leaf <abjad.tools.leaftools.Leaf.Leaf.Leaf>`
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
 .. autoattribute:: abjad.tools.resttools.Rest.Rest.Rest.leaf_index
 

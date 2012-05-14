@@ -273,13 +273,6 @@ class Leaf(Component):
         return property(**locals())
 
     @property
-    def format(self):
-        #from abjad.tools.leaftools._format_leaf import _format_leaf
-        self._update_marks_of_entire_score_tree_if_necessary()
-        #return _format_leaf(self)
-        return self._format_component()
-
-    @property
     def leaf_index(self):
         self._update_prolated_offset_values_of_entire_score_tree_if_necessary()
         return self._leaf_index

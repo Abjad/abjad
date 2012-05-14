@@ -287,11 +287,6 @@ class Container(Component):
                 duration += leaf.duration_in_seconds
             return duration
 
-    @property
-    def format(self):
-        self._update_marks_of_entire_score_tree_if_necessary()
-        return self._format_component()
-
     @apply
     def is_parallel():
         def fget(self):

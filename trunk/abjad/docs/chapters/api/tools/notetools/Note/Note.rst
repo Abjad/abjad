@@ -17,7 +17,7 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.notetools.Note.Note.Note.format
 
-    Inherited from :py:class:`leaftools.Leaf <abjad.tools.leaftools.Leaf.Leaf.Leaf>`
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
 .. autoattribute:: abjad.tools.notetools.Note.Note.Note.leaf_index
 

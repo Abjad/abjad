@@ -15,7 +15,7 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.lyricstools.LyricHyphen.LyricHyphen.LyricHyphen.format
 
-    Inherited from :py:class:`leaftools.Leaf <abjad.tools.leaftools.Leaf.Leaf.Leaf>`
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
 .. autoattribute:: abjad.tools.lyricstools.LyricHyphen.LyricHyphen.LyricHyphen.leaf_index
 
