@@ -69,10 +69,6 @@ class Component(AbjadObject):
         rhs = getattr(self, 'name', None) or id(self)
         return '{}-{!r}'.format(lhs, rhs)
 
-#    @property
-#    def _format_pieces(self):
-#        return self._formatter._format_pieces
-
     @property
     def _format_pieces(self):
         return self._format_component(pieces=True)
