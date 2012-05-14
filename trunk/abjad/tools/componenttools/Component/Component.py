@@ -122,6 +122,44 @@ class Component(AbjadObject):
 
     ### PRIVATE METHODS ###
 
+    def _format_component(self):
+        result = []
+        result.extend(_format_slot_1())
+        result.extend(_format_slot_2())
+        result.extend(_format_slot_3())
+        result.extend(_format_slot_4())
+        result.extend(_format_slot_5())
+        result.extend(_format_slot_6())
+        result.extend(_format_slot_7())
+        contributions = []
+        for contributor, contribution in result:
+            contributions.extend(contribution)
+        if pieces:
+            return contributions
+        else:
+            return '\n'.join(contributions)
+
+    def _format_slot_1(self):
+        pass
+
+    def _format_slot_2(self):
+        pass
+
+    def _format_slot_3(self):
+        pass
+
+    def _format_slot_4(self):
+        pass
+
+    def _format_slot_5(self):
+        pass
+
+    def _format_slot_6(self):
+        pass
+
+    def _format_slot_7(self):
+        pass
+
     def _initialize_keyword_values(self, **kwargs):
         for key, value in kwargs.iteritems():
             self._set_keyword_value(key, value)
