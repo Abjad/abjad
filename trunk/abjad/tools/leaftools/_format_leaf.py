@@ -2,7 +2,6 @@ from abjad.tools import formattools
 from abjad.tools import sequencetools
 
 
-# TODO: move to bound leaf method
 def _format_leaf(leaf):
     result = []
     result.extend(_format_slot_1(leaf))
@@ -15,7 +14,6 @@ def _format_leaf(leaf):
         contributions.extend(contribution)
     return '\n'.join(contributions)
 
-# TODO: move to bound leaf method
 def _format_agrace_body(leaf):
     result = []
     if hasattr(leaf, '_after_grace'):
@@ -24,7 +22,6 @@ def _format_agrace_body(leaf):
             result.append(after_grace.format)
     return ['agrace body', result]
 
-# TODO: move to bound leaf method
 def _format_agrace_opening(leaf):
     result = []
     if hasattr(leaf, '_after_grace'):
@@ -32,7 +29,6 @@ def _format_agrace_opening(leaf):
             result.append(r'\afterGrace')
     return ['agrace opening', result]
 
-# TODO: move to bound leaf method
 def _format_grace_body(leaf):
     result = []
     if hasattr(leaf, '_grace'):
@@ -41,7 +37,6 @@ def _format_grace_body(leaf):
             result.append(grace.format)
     return ['grace body', result]
 
-# TODO: move to bound leaf method
 def _format_leaf_body(leaf):
     result = []
     client = leaf
@@ -58,7 +53,6 @@ def _format_leaf_body(leaf):
     result = [' '.join(result)]
     return ['leaf body', result]
 
-# TODO: move to bound leaf method
 def _format_leaf_nucleus(leaf):
     from abjad.tools.chordtools.Chord import Chord
     if not isinstance(leaf, Chord):
@@ -82,7 +76,6 @@ def _format_leaf_nucleus(leaf):
     # single string, but wrapped in list bc contribution
     return ['nucleus', [result]]
 
-# TODO: move to bound leaf method
 def _format_slot_1(leaf):
     result = []
     result.append(_format_grace_body(leaf))
@@ -94,7 +87,6 @@ def _format_slot_1(leaf):
     result.append(formattools.get_spanner_format_contributions_for_leaf_slot(leaf, 'before'))
     return result
 
-# TODO: move to bound leaf method
 def _format_slot_3(leaf):
     result = []
     result.append(formattools.get_comment_format_contributions(leaf, 'opening'))
@@ -103,13 +95,11 @@ def _format_slot_3(leaf):
     result.append(_format_agrace_opening(leaf))
     return result
 
-# TODO: move to bound leaf method
 def _format_slot_4(leaf):
     result = []
     result.append(_format_leaf_body(leaf))
     return result
 
-# TODO: move to bound leaf method
 def _format_slot_5(leaf):
     result = []
     result.append(_format_agrace_body(leaf))
@@ -118,7 +108,6 @@ def _format_slot_5(leaf):
     result.append(formattools.get_comment_format_contributions(leaf, 'closing'))
     return result
 
-# TODO: move to bound leaf method
 def _format_slot_7(leaf):
     result = []
     result.append(formattools.get_spanner_format_contributions_for_leaf_slot(leaf, 'after'))

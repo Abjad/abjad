@@ -1,5 +1,7 @@
 from abc import ABCMeta
 from abjad.tools import durationtools
+from abjad.tools import formattools
+from abjad.tools import sequencetools
 from abjad.tools.componenttools.Component import Component
 import copy
 import fractions
@@ -92,9 +94,113 @@ class Leaf(Component):
         if getattr(leaf, '_set', None) is not None:
             self._set = copy.copy(leaf.set)
 
+    def _format_agrace_body(leaf):
+        result = []
+        if hasattr(leaf, '_after_grace'):
+            after_grace = leaf.after_grace
+            if len(after_grace):
+                result.append(after_grace.format)
+        return ['agrace body', result]
 
+    def _format_agrace_opening(leaf):
+        result = []
+        if hasattr(leaf, '_after_grace'):
+            if len(leaf.after_grace):
+                result.append(r'\afterGrace')
+        return ['agrace opening', result]
 
+    def _format_grace_body(leaf):
+        result = []
+        if hasattr(leaf, '_grace'):
+            grace = leaf.grace
+            if len(grace):
+                result.append(grace.format)
+        return ['grace body', result]
 
+    def _format_leaf_body(leaf):
+        result = []
+        result.append(leaf._format_leaf_nucleus())
+        result.append(formattools.get_stem_tremolo_format_contributions(leaf))
+        result.append(formattools.get_articulation_format_contributions(leaf))
+        result.append(formattools.get_lilypond_command_mark_format_contributions(leaf, 'right'))
+        result.append(formattools.get_context_mark_format_contributions(leaf, 'right'))
+        result.append(formattools.get_markup_format_contributions(leaf))
+        result.append(formattools.get_spanner_format_contributions_for_leaf_slot(leaf, 'right'))
+        result.append(formattools.get_comment_format_contributions(leaf, 'right'))
+        result = [x[1] for x in result]
+        result = sequencetools.flatten_sequence(result)
+        result = [' '.join(result)]
+        return ['leaf body', result]
+
+    # TODO: subclass this properly for chord
+    def _format_leaf_nucleus(leaf):
+        from abjad.tools.chordtools.Chord import Chord
+        if not isinstance(leaf, Chord):
+            return ['nucleus', leaf._body]
+        result =  []
+        chord = leaf
+        note_heads = chord.note_heads
+        if any(['\n' in x.format for x in note_heads]):
+            for note_head in note_heads:
+                format = note_head.format
+                format_list = format.split('\n')
+                format_list = ['\t' + x for x in format_list]
+                result.extend(format_list)
+            result.insert(0, '<')
+            result.append('>')
+            result = '\n'.join(result)
+            result += str(chord._formatted_duration)
+        else:
+            result.extend([x.format for x in note_heads])
+            result = '<%s>%s' % (' '.join(result), chord._formatted_duration)
+        # single string, but wrapped in list bc contribution
+        return ['nucleus', [result]]
+
+    def _format_slot_1(leaf):
+        result = []
+        result.append(leaf._format_grace_body())
+        result.append(formattools.get_comment_format_contributions(leaf, 'before'))
+        result.append(formattools.get_lilypond_command_mark_format_contributions(leaf, 'before'))
+        result.append(formattools.get_context_mark_format_contributions(leaf, 'before'))
+        result.append(formattools.get_grob_override_format_contributions(leaf))
+        result.append(formattools.get_context_setting_format_contributions(leaf))
+        result.append(formattools.get_spanner_format_contributions_for_leaf_slot(leaf, 'before'))
+        return result
+
+    def _format_slot_2(leaf):
+        return []
+
+    def _format_slot_3(leaf):
+        result = []
+        result.append(formattools.get_comment_format_contributions(leaf, 'opening'))
+        result.append(formattools.get_lilypond_command_mark_format_contributions(leaf, 'opening'))
+        result.append(formattools.get_context_mark_format_contributions(leaf, 'opening'))
+        result.append(leaf._format_agrace_opening())
+        return result
+
+    def _format_slot_4(leaf):
+        result = []
+        result.append(leaf._format_leaf_body())
+        return result
+
+    def _format_slot_5(leaf):
+        result = []
+        result.append(leaf._format_agrace_body())
+        result.append(formattools.get_lilypond_command_mark_format_contributions(leaf, 'closing'))
+        result.append(formattools.get_context_mark_format_contributions(leaf, 'closing'))
+        result.append(formattools.get_comment_format_contributions(leaf, 'closing'))
+        return result
+
+    def _format_slot_6(leaf):
+        return []
+
+    def _format_slot_7(leaf):
+        result = []
+        result.append(formattools.get_spanner_format_contributions_for_leaf_slot(leaf, 'after'))
+        result.append(formattools.get_context_mark_format_contributions(leaf, 'after'))
+        result.append(formattools.get_lilypond_command_mark_format_contributions(leaf, 'after'))
+        result.append(formattools.get_comment_format_contributions(leaf, 'after'))
+        return result
 
     def _operate(self, arg, operator):
         assert isinstance(arg, Leaf)
@@ -168,9 +274,10 @@ class Leaf(Component):
 
     @property
     def format(self):
-        from abjad.tools.leaftools._format_leaf import _format_leaf
+        #from abjad.tools.leaftools._format_leaf import _format_leaf
         self._update_marks_of_entire_score_tree_if_necessary()
-        return _format_leaf(self)
+        #return _format_leaf(self)
+        return self._format_component()
 
     @property
     def leaf_index(self):
