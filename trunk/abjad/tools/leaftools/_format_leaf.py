@@ -19,11 +19,11 @@ from abjad.tools import sequencetools
 # TODO: move to bound leaf method
 def _format_leaf(leaf):
     result = []
-    result.extend(_get_slot_1(leaf))
-    result.extend(_get_slot_3(leaf))
-    result.extend(_get_slot_4(leaf))
-    result.extend(_get_slot_5(leaf))
-    result.extend(_get_slot_7(leaf))
+    result.extend(_format_slot_1(leaf))
+    result.extend(_format_slot_3(leaf))
+    result.extend(_format_slot_4(leaf))
+    result.extend(_format_slot_5(leaf))
+    result.extend(_format_slot_7(leaf))
     contributions = []
     for contributor, contribution in result:
         contributions.extend(contribution)
@@ -33,16 +33,16 @@ def _format_leaf(leaf):
 def _report_leaf_format_contributors(leaf):
     report = ''
     report += 'slot 1:\n'
-    report += _process_contribution_packet(_get_slot_1(leaf))
+    report += _process_contribution_packet(_format_slot_1(leaf))
     report += 'slot 3:\n'
-    report += _process_contribution_packet(_get_slot_3(leaf))
+    report += _process_contribution_packet(_format_slot_3(leaf))
     report += 'slot 4:\n'
     report += '\tleaf body:\n'
-    report += '\t\t' + _get_slot_4(leaf)[0][1][0] + '\n'
+    report += '\t\t' + _format_slot_4(leaf)[0][1][0] + '\n'
     report += 'slot 5:\n'
-    report += _process_contribution_packet(_get_slot_5(leaf))
+    report += _process_contribution_packet(_format_slot_5(leaf))
     report += 'slot 7:\n'
-    report += _process_contribution_packet(_get_slot_7(leaf))
+    report += _process_contribution_packet(_format_slot_7(leaf))
     return report
 
 # TODO: move to bound leaf method
@@ -128,7 +128,7 @@ def _get_nucleus(leaf):
     return ['nucleus', [result]]
 
 # TODO: move to bound leaf method
-def _get_slot_1(leaf):
+def _format_slot_1(leaf):
     result = []
     result.append(_get_grace_body(leaf))
     result.append(_get_comment_format_contributions_for_slot(leaf, 'before'))
@@ -140,7 +140,7 @@ def _get_slot_1(leaf):
     return result
 
 # TODO: move to bound leaf method
-def _get_slot_3(leaf):
+def _format_slot_3(leaf):
     result = []
     result.append(_get_comment_format_contributions_for_slot(leaf, 'opening'))
     result.append(_get_lilypond_command_mark_format_contributions_for_slot(leaf, 'opening'))
@@ -149,13 +149,13 @@ def _get_slot_3(leaf):
     return result
 
 # TODO: move to bound leaf method
-def _get_slot_4(leaf):
+def _format_slot_4(leaf):
     result = []
     result.append(_get_leaf_body(leaf))
     return result
 
 # TODO: move to bound leaf method
-def _get_slot_5(leaf):
+def _format_slot_5(leaf):
     result = []
     result.append(_get_agrace_body(leaf))
     result.append(_get_lilypond_command_mark_format_contributions_for_slot(leaf, 'closing'))
@@ -164,7 +164,7 @@ def _get_slot_5(leaf):
     return result
 
 # TODO: move to bound leaf method
-def _get_slot_7(leaf):
+def _format_slot_7(leaf):
     result = []
     result.append(_get_spanner_format_contributions_for_leaf_slot(leaf, 'after'))
     result.append(_get_context_mark_format_contributions_for_slot(leaf, 'after'))

@@ -14,21 +14,21 @@ from abjad.tools.marktools._get_lilypond_command_mark_format_contributions_for_s
     _get_lilypond_command_mark_format_contributions_for_slot
 from abjad.tools.contexttools._get_context_mark_format_contributions_for_slot import \
     _get_context_mark_format_contributions_for_slot
-from abjad.tools.containertools._format_container import _get_slot_1
-from abjad.tools.containertools._format_container import _get_slot_4
-from abjad.tools.containertools._format_container import _get_slot_6
-from abjad.tools.containertools._format_container import _get_slot_7
+from abjad.tools.containertools._format_container import _format_slot_1
+from abjad.tools.containertools._format_container import _format_slot_4
+from abjad.tools.containertools._format_container import _format_slot_6
+from abjad.tools.containertools._format_container import _format_slot_7
 
 
 def _format_context(context, pieces=False):
     result = []
-    result.extend(_get_slot_1(context))
-    result.extend(_get_slot_2(context))
-    result.extend(_get_slot_3(context))
-    result.extend(_get_slot_4(context))
-    result.extend(_get_slot_5(context))
-    result.extend(_get_slot_6(context))
-    result.extend(_get_slot_7(context))
+    result.extend(_format_slot_1(context))
+    result.extend(_format_slot_2(context))
+    result.extend(_format_slot_3(context))
+    result.extend(_format_slot_4(context))
+    result.extend(_format_slot_5(context))
+    result.extend(_format_slot_6(context))
+    result.extend(_format_slot_7(context))
     contributions = []
     for contributor, contribution in result:
         contributions.extend(contribution)
@@ -37,7 +37,7 @@ def _format_context(context, pieces=False):
     else:
         return '\n'.join(contributions)
 
-def _get_slot_2(context):
+def _format_slot_2(context):
     result = []
     if context.is_parallel:
         brackets_open = ['<<']
@@ -67,7 +67,7 @@ def _get_slot_2(context):
         result.append([('context_brackets', 'open'), contributions])
     return tuple(result)
 
-def _get_slot_3(context):
+def _format_slot_3(context):
     result = []
     result.append(_get_comment_format_contributions_for_slot(context, 'opening'))
     result.append(_get_context_mark_format_contributions_for_slot(context, 'opening'))
@@ -75,7 +75,7 @@ def _get_slot_3(context):
     context._format_slot_contributions_with_indent(result)
     return tuple(result)
 
-def _get_slot_5(context):
+def _format_slot_5(context):
     result = []
     result.append(_get_context_mark_format_contributions_for_slot(context, 'closing'))
     result.append(_get_lilypond_command_mark_format_contributions_for_slot(context, 'closing'))
