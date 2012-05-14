@@ -23,7 +23,7 @@ class AbjadAPIGenerator(abctools.AbjadObject):
 
     _composition_packages_description = 'Abjad composition packages'
 
-    _internals_packages_description = 'Packages for internal use.'
+    _internals_packages_description = 'Internals packages'
 
     _internals_packages = (
         'formattools',
