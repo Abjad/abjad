@@ -1,4 +1,5 @@
 from abjad.tools import durationtools
+from abjad.tools import formattools
 from abjad.tools import mathtools
 from abjad.tools.containertools.Container import Container
 import fractions
@@ -91,13 +92,76 @@ class Tuplet(Container):
                 return r'\fraction '
         return ''
 
+    def _format_slot_1(self):
+        result = []
+        result.append(formattools.get_comment_format_contributions(self, 'before'))
+        result.append(formattools.get_lilypond_command_mark_format_contributions(self, 'before'))
+        result.append(formattools.get_grob_override_format_contributions(self))
+        return tuple(result)
+
+    def _format_slot_2(self):
+        result = []
+        if self.multiplier:
+            if self.is_invisible:
+                multiplier = self.multiplier
+                n, d = multiplier.numerator, multiplier.denominator
+                contributor = (self, 'is_invisible')
+                contributions = [r"\scaleDurations #'(%s . %s) {" % (n, d)]
+                result.append([contributor, contributions])
+            else:
+                contributor = ('self_brackets', 'open')
+                if self.multiplier != 1:
+                    contributions = [r'%s\times %s %s' % (
+                        self._format_lilypond_fraction_command_string(),
+                        self._multiplier_fraction_string,
+                        '{'
+                        )]
+                else:
+                    contributions = ['{']
+                result.append([contributor, contributions])
+        return tuple(result)
+
+    def _format_slot_3(self):
+        '''Read-only tuple of format contributions to appear immediately after self opening.
+        '''
+        result = []
+        result.append(formattools.get_comment_format_contributions(self, 'opening'))
+        result.append(formattools.get_lilypond_command_mark_format_contributions(self, 'opening'))
+        self._format_slot_contributions_with_indent(result)
+        return tuple(result)
+
+    def _format_slot_5(self):
+        '''Read-only tuple of format contributions to appear immediately before self closing.
+        '''
+        result = []
+        result.append(formattools.get_lilypond_command_mark_format_contributions(self, 'closing'))
+        result.append(formattools.get_comment_format_contributions(self, 'closing'))
+        self._format_slot_contributions_with_indent(result)
+        return tuple(result)
+
+    def _format_slot_6(self):
+        '''Read-only tuple of format contributions used to generate self closing.
+        '''
+        result = []
+        if self.multiplier:
+            result.append([('self_brackets', 'close'), '}'])
+        return tuple(result)
+
+    def _format_slot_7(self):
+        '''Read-only tuple of format contributions to appear immediately after self closing.
+        '''
+        result = []
+        result.append(formattools.get_lilypond_command_mark_format_contributions(self, 'after'))
+        result.append(formattools.get_grob_revert_format_contributions(self))
+        result.append(formattools.get_comment_format_contributions(self, 'after'))
+        return tuple(result)
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def format(self):
-        from abjad.tools.tuplettools._format_tuplet import _format_tuplet
         self._update_marks_of_entire_score_tree_if_necessary()
-        return _format_tuplet(self)
+        return self._format_component()
 
     @property
     def is_augmentation(self):

@@ -25,13 +25,13 @@ def _format_measure(measure, pieces=False):
         return '\n'.join(contributions)
     
 def _format_slot_3(measure):
-        r'''This is the slot where LilyPond grob \override commands live.
-        This is also the slot where LilyPond \time commands live.
-        '''
-        result = []
-        result.append(formattools.get_comment_format_contributions(measure, 'opening'))
-        result.append(formattools.get_grob_override_format_contributions(measure))
-        result.append(formattools.get_context_setting_format_contributions(measure))
-        result.append(formattools.get_context_mark_format_contributions(measure, 'opening'))
-        measure._format_slot_contributions_with_indent(result)
-        return tuple(result)
+    r'''This is the slot where LilyPond grob \override commands live.
+    This is also the slot where LilyPond \time commands live.
+    '''
+    result = []
+    result.append(formattools.get_comment_format_contributions(measure, 'opening'))
+    result.append(formattools.get_grob_override_format_contributions(measure))
+    result.append(formattools.get_context_setting_format_contributions(measure))
+    result.append(formattools.get_context_mark_format_contributions(measure, 'opening'))
+    measure._format_slot_contributions_with_indent(result)
+    return tuple(result)

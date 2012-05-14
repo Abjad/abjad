@@ -1,5 +1,6 @@
 from abjad.tools import contexttools
 from abjad.tools import durationtools
+from abjad.tools import formattools
 from abjad.tools.containertools.Container import Container
 import copy
 
@@ -166,12 +167,24 @@ class Measure(Container):
             result.extend(Container._format_content_pieces(self))
         return result
 
+    def _format_slot_3(self):
+        r'''This is the slot where LilyPond grob \override commands live.
+        This is also the slot where LilyPond \time commands live.
+        '''
+        result = []
+        result.append(formattools.get_comment_format_contributions(self, 'opening'))
+        result.append(formattools.get_grob_override_format_contributions(self))
+        result.append(formattools.get_context_setting_format_contributions(self))
+        result.append(formattools.get_context_mark_format_contributions(self, 'opening'))
+        self._format_slot_contributions_with_indent(result)
+        return tuple(result)
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
+    # TODO: encapsulate size checking in dedicated method
     @property
     def format(self):
         from abjad.tools import contexttools
-        from abjad.tools.measuretools._format_measure import _format_measure
         effective_meter = contexttools.get_effective_time_signature(self)
         if effective_meter.is_nonbinary and effective_meter.suppress:
             raise NonbinaryTimeSignatureSuppressionError
@@ -179,7 +192,7 @@ class Measure(Container):
             raise OverfullMeasureError
         if self.preprolated_duration < effective_meter.duration:
             raise UnderfullMeasureError
-        return _format_measure(self)
+        return self._format_component()
 
     @property
     def is_binary(self):

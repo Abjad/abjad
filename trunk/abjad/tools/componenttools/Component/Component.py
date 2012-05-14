@@ -69,9 +69,13 @@ class Component(AbjadObject):
         rhs = getattr(self, 'name', None) or id(self)
         return '{}-{!r}'.format(lhs, rhs)
 
+#    @property
+#    def _format_pieces(self):
+#        return self._formatter._format_pieces
+
     @property
     def _format_pieces(self):
-        return self._formatter._format_pieces
+        return self._format_component(pieces=True)
 
     @property
     def _prolations(self):
@@ -122,15 +126,15 @@ class Component(AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    def _format_component(self):
+    def _format_component(self, pieces=False):
         result = []
-        result.extend(_format_slot_1())
-        result.extend(_format_slot_2())
-        result.extend(_format_slot_3())
-        result.extend(_format_slot_4())
-        result.extend(_format_slot_5())
-        result.extend(_format_slot_6())
-        result.extend(_format_slot_7())
+        result.extend(self._format_slot_1())
+        result.extend(self._format_slot_2())
+        result.extend(self._format_slot_3())
+        result.extend(self._format_slot_4())
+        result.extend(self._format_slot_5())
+        result.extend(self._format_slot_6())
+        result.extend(self._format_slot_7())
         contributions = []
         for contributor, contribution in result:
             contributions.extend(contribution)

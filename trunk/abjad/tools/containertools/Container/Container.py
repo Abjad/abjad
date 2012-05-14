@@ -1,3 +1,4 @@
+from abjad.tools import formattools
 from abjad.tools.componenttools.Component import Component
 import copy
 
@@ -197,9 +198,9 @@ class Container(Component):
 
     ### PRIVATE METHODS ###
 
-    def _format_container(self):
-        from abjad.tools.containertools._format_container import _format_container
-        return _format_container(self)
+#    def _format_container(self):
+#        from abjad.tools.containertools._format_container import _format_container
+#        return _format_container(self)
 
     def _format_content_pieces(self):
         result = []
@@ -208,6 +209,58 @@ class Container(Component):
         result = ['\t' + x for x in result]
         return result
         
+    def _format_slot_1(self):
+        result = []
+        result.append(formattools.get_comment_format_contributions(self, 'before'))
+        result.append(formattools.get_lilypond_command_mark_format_contributions(self, 'before'))
+        return tuple(result)
+
+    def _format_slot_2(self):
+        result = []
+        if self.is_parallel:
+            brackets_open = ['<<']
+        else:
+            brackets_open = ['{']
+        result.append([('open brackets', ''), brackets_open])
+        return tuple(result)
+
+    def _format_slot_3(self):
+        result = []
+        result.append(formattools.get_comment_format_contributions(self, 'opening'))
+        result.append(formattools.get_lilypond_command_mark_format_contributions(self, 'opening'))
+        result.append(formattools.get_grob_override_format_contributions(self))
+        result.append(formattools.get_context_setting_format_contributions(self))
+        self._format_slot_contributions_with_indent(result)
+        return tuple(result)
+
+    def _format_slot_4(self):
+        result = []
+        result.append([('contents', '_contents'), self._format_content_pieces()])
+        return tuple(result)
+
+    def _format_slot_5(self):
+        result = []
+        result.append(formattools.get_grob_revert_format_contributions(self))
+        result.append(formattools.get_lilypond_command_mark_format_contributions(self, 'closing'))
+        result.append(formattools.get_comment_format_contributions(self, 'closing'))
+        self._format_slot_contributions_with_indent(result)
+        return tuple(result)
+
+    def _format_slot_6(self):
+        result = []
+        if self.is_parallel:
+            brackets_close = ['>>']
+        else:
+            brackets_close = ['}']
+        result.append([('close brackets', ''), brackets_close])
+        return tuple(result)
+
+    def _format_slot_7(self):
+        result = []
+        result.append(formattools.get_lilypond_command_mark_format_contributions(self, 'after'))
+        result.append(formattools.get_comment_format_contributions(self, 'after'))
+        return tuple(result)
+
     def _format_slot_contributions_with_indent(self, slot):
         for contributor, contributions in slot:
             if contributions:
@@ -240,9 +293,8 @@ class Container(Component):
 
     @property
     def format(self):
-        from abjad.tools.containertools._format_container import _format_container
         self._update_marks_of_entire_score_tree_if_necessary()
-        return _format_container(self)
+        return self._format_component()
 
     @apply
     def is_parallel():

@@ -108,13 +108,25 @@ class GraceContainer(Container):
     def __repr__(self):
         return '%s(%s)' % (type(self).__name__, self._summary)
 
+    ### PRIVATE METHODS ###
+
+    def _format_slot_2(self):
+        result = []
+        kind = self.kind
+        if kind == 'after':
+            result.append([('grace_brackets', 'open'), ['{']])
+        else:
+            contributor = ('grace_brackets', 'open')
+            contributions = [r'\%s {' % kind]
+            result.append([contributor, contributions])
+        return tuple(result)
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def format(self):
-        from abjad.tools.gracetools._format_grace_container import _format_grace_container
         self._update_marks_of_entire_score_tree_if_necessary()
-        return _format_grace_container(self)
+        return self._format_component()
 
     ### READ / WRITE PUBLIC PROPERTIES ###
 

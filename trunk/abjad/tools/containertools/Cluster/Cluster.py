@@ -41,10 +41,22 @@ class Cluster(Container):
     def __repr__(self):
         return '%s(%s)' % (type(self).__name__, self._summary)
 
+    ### PRIVATE METHODS ###
+
+    def _format_slot_2(self):
+        result = []
+        contributor = ('self_brackets', 'open')
+        if self.is_parallel:
+            brackets_open = ['<<']
+        else:
+            brackets_open = ['{']
+        contributions = [r'\makeClusters %s' % brackets_open[0]]
+        result.append([contributor, contributions])
+        return tuple(result)
+    
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def format(self):
-        from abjad.tools.containertools._format_cluster import _format_cluster
         self._update_marks_of_entire_score_tree_if_necessary()
-        return _format_cluster(self)
+        return self._format_component()
