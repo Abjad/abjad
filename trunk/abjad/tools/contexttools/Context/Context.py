@@ -75,9 +75,7 @@ class Context(Container):
 
     @property
     def _format_pieces(self):
-        from abjad.tools.contexttools._format_context import _format_context
-        #return self._format_component(self, pieces=True)
-        return _format_context(self, pieces=True)
+        return self._format_component(pieces=True)
 
     ### PRIVATE METHODS ###
 

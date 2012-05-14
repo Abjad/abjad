@@ -198,10 +198,6 @@ class Container(Component):
 
     ### PRIVATE METHODS ###
 
-#    def _format_container(self):
-#        from abjad.tools.containertools._format_container import _format_container
-#        return _format_container(self)
-
     def _format_content_pieces(self):
         result = []
         for m in self._music:
