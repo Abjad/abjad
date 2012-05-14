@@ -12,13 +12,12 @@ def _report_component_format_contributions(component, verbose=False, output='scr
     '''
     from abjad.tools.spannertools import Spanner
     from abjad.tools.leaftools.Leaf import Leaf
-    from abjad.tools.leaftools._format_leaf import _report_leaf_format_contributors
 
     if isinstance(component, Leaf):
-        return _report_leaf_format_contributors(component)
+        return component._report_format_contributors()
     if isinstance(component, Component):
-        return component._formatter.report(verbose = verbose, output = output)
+        return component._formatter.report(verbose=verbose, output=output)
     elif isinstance(component, Spanner):
-        return component._format.report(output = output)
+        return component._format.report(output=output)
     else:
         raise TypeError('neither component nor spanner: "%s".' % component)

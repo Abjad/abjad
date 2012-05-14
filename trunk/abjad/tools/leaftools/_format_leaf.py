@@ -15,39 +15,8 @@ def _format_leaf(leaf):
         contributions.extend(contribution)
     return '\n'.join(contributions)
 
-# TODO: move to public function
-def _report_leaf_format_contributors(leaf):
-    report = ''
-    report += 'slot 1:\n'
-    report += _process_contribution_packet(_format_slot_1(leaf))
-    report += 'slot 3:\n'
-    report += _process_contribution_packet(_format_slot_3(leaf))
-    report += 'slot 4:\n'
-    report += '\tleaf body:\n'
-    report += '\t\t' + _format_slot_4(leaf)[0][1][0] + '\n'
-    report += 'slot 5:\n'
-    report += _process_contribution_packet(_format_slot_5(leaf))
-    report += 'slot 7:\n'
-    report += _process_contribution_packet(_format_slot_7(leaf))
-    return report
-
 # TODO: move to bound leaf method
-def _process_contribution_packet(contribution_packet):
-    result = ''
-    for contributor, contributions in contribution_packet:
-        if contributions:
-            if isinstance(contributor, tuple):
-                contributor = '\t' + contributor[0] + ':\n'
-            else:
-                contributor = '\t' + contributor + ':\n'
-            result += contributor
-            for contribution in contributions:
-                contribution = '\t\t' + contribution + '\n'
-                result += contribution
-    return result
-
-# TODO: move to bound leaf method
-def _get_agrace_body(leaf):
+def _format_agrace_body(leaf):
     result = []
     if hasattr(leaf, '_after_grace'):
         after_grace = leaf.after_grace
@@ -56,7 +25,7 @@ def _get_agrace_body(leaf):
     return ['agrace body', result]
 
 # TODO: move to bound leaf method
-def _get_agrace_opening(leaf):
+def _format_agrace_opening(leaf):
     result = []
     if hasattr(leaf, '_after_grace'):
         if len(leaf.after_grace):
@@ -64,7 +33,7 @@ def _get_agrace_opening(leaf):
     return ['agrace opening', result]
 
 # TODO: move to bound leaf method
-def _get_grace_body(leaf):
+def _format_grace_body(leaf):
     result = []
     if hasattr(leaf, '_grace'):
         grace = leaf.grace
@@ -73,10 +42,10 @@ def _get_grace_body(leaf):
     return ['grace body', result]
 
 # TODO: move to bound leaf method
-def _get_leaf_body(leaf):
+def _format_leaf_body(leaf):
     result = []
     client = leaf
-    result.append(_get_nucleus(leaf))
+    result.append(_format_leaf_nucleus(leaf))
     result.append(formattools.get_stem_tremolo_format_contributions(leaf))
     result.append(formattools.get_articulation_format_contributions(leaf))
     result.append(formattools.get_lilypond_command_mark_format_contributions(leaf, 'right'))
@@ -90,7 +59,7 @@ def _get_leaf_body(leaf):
     return ['leaf body', result]
 
 # TODO: move to bound leaf method
-def _get_nucleus(leaf):
+def _format_leaf_nucleus(leaf):
     from abjad.tools.chordtools.Chord import Chord
     if not isinstance(leaf, Chord):
         return ['nucleus', leaf._body]
@@ -116,7 +85,7 @@ def _get_nucleus(leaf):
 # TODO: move to bound leaf method
 def _format_slot_1(leaf):
     result = []
-    result.append(_get_grace_body(leaf))
+    result.append(_format_grace_body(leaf))
     result.append(formattools.get_comment_format_contributions(leaf, 'before'))
     result.append(formattools.get_lilypond_command_mark_format_contributions(leaf, 'before'))
     result.append(formattools.get_context_mark_format_contributions(leaf, 'before'))
@@ -131,19 +100,19 @@ def _format_slot_3(leaf):
     result.append(formattools.get_comment_format_contributions(leaf, 'opening'))
     result.append(formattools.get_lilypond_command_mark_format_contributions(leaf, 'opening'))
     result.append(formattools.get_context_mark_format_contributions(leaf, 'opening'))
-    result.append(_get_agrace_opening(leaf))
+    result.append(_format_agrace_opening(leaf))
     return result
 
 # TODO: move to bound leaf method
 def _format_slot_4(leaf):
     result = []
-    result.append(_get_leaf_body(leaf))
+    result.append(_format_leaf_body(leaf))
     return result
 
 # TODO: move to bound leaf method
 def _format_slot_5(leaf):
     result = []
-    result.append(_get_agrace_body(leaf))
+    result.append(_format_agrace_body(leaf))
     result.append(formattools.get_lilypond_command_mark_format_contributions(leaf, 'closing'))
     result.append(formattools.get_context_mark_format_contributions(leaf, 'closing'))
     result.append(formattools.get_comment_format_contributions(leaf, 'closing'))

@@ -92,6 +92,10 @@ class Leaf(Component):
         if getattr(leaf, '_set', None) is not None:
             self._set = copy.copy(leaf.set)
 
+
+
+
+
     def _operate(self, arg, operator):
         assert isinstance(arg, Leaf)
         from abjad.tools import leaftools
@@ -108,6 +112,35 @@ class Leaf(Component):
         leaves = leaftools.make_leaves(pairs, self.written_duration)
         leaf = leaves[0]
         return leaf
+
+    def _process_contribution_packet(self, contribution_packet):
+        result = ''
+        for contributor, contributions in contribution_packet:
+            if contributions:
+                if isinstance(contributor, tuple):
+                    contributor = '\t' + contributor[0] + ':\n'
+                else:
+                    contributor = '\t' + contributor + ':\n'
+                result += contributor
+                for contribution in contributions:
+                    contribution = '\t\t' + contribution + '\n'
+                    result += contribution
+        return result
+
+    def _report_format_contributors(self):
+        report = ''
+        report += 'slot 1:\n'
+        report += self._process_contribution_packet(self._format_slot_1())
+        report += 'slot 3:\n'
+        report += self._process_contribution_packet(self._format_slot_3())
+        report += 'slot 4:\n'
+        report += '\tself body:\n'
+        report += '\t\t' + self._format_slot_4(self)[0][1][0] + '\n'
+        report += 'slot 5:\n'
+        report += self._process_contribution_packet(self._format_slot_5())
+        report += 'slot 7:\n'
+        report += self._process_contribution_packet(self._format_slot_7())
+        return report
 
     ### PUBLIC PROPERTIES ###
 
