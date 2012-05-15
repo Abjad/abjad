@@ -104,6 +104,33 @@ class Spanner(AbjadObject):
         else:
             return ' '
 
+    # TODO: rename these as verbs like _format_after_leaf(), _format_before_leaf(), etc.
+    ### PRIVATE FORMAT METHODS ###
+
+    def _after(self, leaf):
+        '''Spanner format contributions to output after leaf.'''
+        result = []
+        if self._is_my_last_leaf(leaf):
+            result.extend(getattr(self, '_reverts', []))
+        return result
+
+    def _before(self, leaf):
+        '''Spanner format contributions to output before leaf.'''
+        result = []
+        if self._is_my_first_leaf(leaf):
+            result.extend(getattr(self, '_overrides', []))
+        return result
+
+    def _left(self, leaf):
+        '''Spanner format contributions to output left of leaf.'''
+        result = []
+        return result
+
+    def _right(self, leaf):
+        '''Spanner format contributions to output right of leaf.'''
+        result = []
+        return result
+
     ### PRIVATE METHODS ###
 
     def _block_all_components(self):

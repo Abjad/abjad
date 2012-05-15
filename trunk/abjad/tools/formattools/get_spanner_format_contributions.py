@@ -1,4 +1,4 @@
-def get_spanner_format_contributions_for_leaf_slot(leaf, slot):
+def get_spanner_format_contributions(leaf, slot):
     '''.. versionadded:: 2.0
 
     Get spanner format contributions for `leaf` at `slot`.

@@ -25,6 +25,24 @@ class SlurSpanner(_DirectedSpanner):
     Return slur spanner.
     '''
 
+    ### INITIALIZER ###
+
     def __init__(self, components = None, direction = None):
         _DirectedSpanner.__init__(self, components, direction)
         self._format = _SlurSpannerFormatInterface(self)
+
+    ### PRIVATE METHODS ###
+
+    def _right(self, leaf):
+        '''Spanner format contribution right of leaf.'''
+        result = []
+        spanner = self.spanner
+        if spanner._is_my_first_leaf(leaf):
+            direction = spanner.direction
+            if direction is not None:
+                result.append('%s (' % direction)
+            else:
+                result.append('(')
+        if spanner._is_my_last_leaf(leaf):
+            result.append(')')
+        return result

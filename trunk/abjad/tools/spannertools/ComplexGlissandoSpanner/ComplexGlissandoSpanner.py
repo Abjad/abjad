@@ -4,9 +4,9 @@ from abjad.tools.spannertools.Spanner import Spanner
 
 
 class ComplexGlissandoSpanner(Spanner):
-    '''Abjad rest-skipping glissando spanner:
+    r'''.. versionadded:: 2.29
 
-    ::
+    Abjad rest-skipping glissando spanner::
 
         abjad> staff = Staff("c'16 r r g' r8 c'8")
 
