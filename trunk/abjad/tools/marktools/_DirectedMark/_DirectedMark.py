@@ -1,5 +1,6 @@
 from abc import ABCMeta
 from abjad.tools.marktools.Mark import Mark
+from abjad.tools.stringtools import arg_to_tridirectional_lilypond_symbol
 
 
 class _DirectedMark(Mark):
@@ -20,17 +21,6 @@ class _DirectedMark(Mark):
     def direction():
         def fget(self):
             return self._direction
-        def fset(self, direction):
-            assert isinstance(direction, (str, type(None)))
-            if direction in ('^', 'up'):
-                direction = '^'
-            elif direction in ('_', 'down'):
-                direction = '_'
-            elif direction in ('-', 'default', 'neutral'):
-                direction = '-'
-            elif direction is None:
-                direction = None
-            else:
-                raise ValueError('can not set direction for %s.' % type(self).__name__)
-            self._direction = direction
+        def fset(self, arg):
+            self._direction = arg_to_tridirectional_lilypond_symbol(arg)
         return property(**locals())
