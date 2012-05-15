@@ -1,4 +1,3 @@
-from abjad.tools.spannertools.BeamSpanner._BeamSpannerFormatInterface import _BeamSpannerFormatInterface
 from abjad.tools.spannertools._DirectedSpanner._DirectedSpanner import _DirectedSpanner
 
 
@@ -37,6 +36,20 @@ class BeamSpanner(_DirectedSpanner):
     Return beam spanner.
     '''
 
-    def __init__(self, components = None, direction = None):
+    ### INITIALIZER ###
+
+    def __init__(self, components=None, direction=None):
         _DirectedSpanner.__init__(self, components, direction)
-        self._format = _BeamSpannerFormatInterface(self)
+
+    ### PRIVATE METHODS ###
+
+    def _format_right_of_leaf(self, leaf):
+        result = []
+        if self._is_my_first_leaf(leaf):
+            if self.direction is not None:
+                result.append('%s [' % self.direction)
+            else:
+                result.append('[')
+        if self._is_my_last_leaf(leaf):
+            result.append(']')
+        return result

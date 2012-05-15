@@ -1,5 +1,4 @@
 from abjad.tools.spannertools.Spanner import Spanner
-from abjad.tools.spannertools.TextSpanner._TextSpannerFormatInterface import _TextSpannerFormatInterface
 
 
 class TextSpanner(Spanner):
@@ -39,6 +38,17 @@ class TextSpanner(Spanner):
     Return text spanner.
     '''
 
+    ### INITIALIZER ###
+
     def __init__(self, components = None):
         Spanner.__init__(self, components)
-        self._format = _TextSpannerFormatInterface(self)
+
+    ### PRIVATE METHODS ###
+
+    def _format_right_of_leaf(self, leaf):
+        result = []
+        if self._is_my_first_leaf(leaf):
+            result.append(r'\startTextSpan')
+        if self._is_my_last_leaf(leaf):
+            result.append(r'\stopTextSpan')
+        return result

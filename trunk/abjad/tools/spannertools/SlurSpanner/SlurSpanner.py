@@ -31,7 +31,7 @@ class SlurSpanner(_DirectedSpanner):
 
     ### PRIVATE METHODS ###
 
-    def _right(self, leaf):
+    def _format_right_of_leaf(self, leaf):
         result = []
         if self._is_my_first_leaf(leaf):
             direction = self.direction

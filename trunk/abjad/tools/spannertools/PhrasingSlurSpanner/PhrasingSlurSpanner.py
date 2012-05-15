@@ -1,4 +1,3 @@
-from abjad.tools.spannertools.PhrasingSlurSpanner._PhrasingSlurSpannerFormatInterface import _PhrasingSlurSpannerFormatInterface
 from abjad.tools.spannertools._DirectedSpanner._DirectedSpanner import _DirectedSpanner
 
 
@@ -25,6 +24,20 @@ class PhrasingSlurSpanner(_DirectedSpanner):
     Return phrasing slur spanner.
     '''
 
-    def __init__(self, components = None, direction = None):
+    ### INITIALIZER ###
+
+    def __init__(self, components=None, direction=None):
         _DirectedSpanner.__init__(self, components, direction)
-        self._format = _PhrasingSlurSpannerFormatInterface(self)
+
+    ### PRIVATE METHODS ###
+
+    def _format_right_of_leaf(self, leaf):
+        result = []
+        if self._is_my_first_leaf(leaf):
+            if self.direction is not None:
+                result.append(r'%s \(' % self.direction)
+            else:
+                result.append(r'\(')
+        if self._is_my_last_leaf(leaf):
+            result.append(r'\)')
+        return result

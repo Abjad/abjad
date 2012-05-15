@@ -1,5 +1,4 @@
 from abjad.tools.spannertools.ComplexBeamSpanner import ComplexBeamSpanner
-from abjad.tools.spannertools.DuratedComplexBeamSpanner._DuratedComplexBeamSpannerFormatInterface import _DuratedComplexBeamSpannerFormatInterface
 from abjad.tools import durationtools
 
 
@@ -40,14 +39,13 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
     Return durated complex beam spanner.
     '''
 
-    def __init__(self, components = None, durations = None, span = 1, lone = False, direction = None):
-        ComplexBeamSpanner.__init__(self, components = components, direction = direction)
-        self._format = _DuratedComplexBeamSpannerFormatInterface(self)
+    def __init__(self, components=None, durations=None, span=1, lone=False, direction=None):
+        ComplexBeamSpanner.__init__(self, components=components, direction=direction)
         self.durations = durations
         self.lone = lone
         self.span = span
 
-    ### PRIVATE PROPERTIES ###
+    ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
     def _span_points(self):
@@ -58,7 +56,40 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
                 result.append(result[-1] + d)
         return result
 
-    ### PUBLIC PROPERTIES ###
+    ### PRIVATE METHODS ###
+
+    def _format_before_leaf(self, leaf):
+        from abjad.tools import componenttools
+        result = []
+        #if leaf.beam.beamable:
+        if componenttools.is_beamable_component(leaf):
+            if self._is_exterior_leaf(leaf):
+                left, right = self._get_left_right_for_exterior_leaf(leaf)
+            # just right of span gap
+            elif self._duration_offset_in_me(leaf) in self._span_points and not \
+                (self._duration_offset_in_me(leaf) + leaf.prolated_duration in \
+                self._span_points):
+                assert isinstance(self.span, int)
+                left = self.span
+                #right = leaf.duration._flags
+                right = durationtools.rational_to_flag_count(leaf.written_duration)
+            # just left of span gap
+            elif self._duration_offset_in_me(leaf) + leaf.prolated_duration in \
+                self._span_points and not self._duration_offset_in_me(leaf) in \
+                self._span_points:
+                assert isinstance(self.span, int)
+                #left = leaf.duration._flags
+                left = durationtools.rational_to_flag_count(leaf.written_duration)
+                right = self.span
+            else:
+                left, right = self._get_left_right_for_interior_leaf(leaf)
+            if left is not None:
+                result.append(r'\set stemLeftBeamCount = #%s' % left)
+            if right is not None:
+                result.append(r'\set stemRightBeamCount = #%s' % right)
+        return result
+
+    ### READ / WRITE PUBLIC PROPERTIES ###
 
     @apply
     def durations():

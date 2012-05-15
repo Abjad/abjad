@@ -1,4 +1,3 @@
-from abjad.tools.spannertools.OctavationSpanner._OctavationSpannerFormatInterface import _OctavationSpannerFormatInterface
 from abjad.tools.spannertools.Spanner import Spanner
 
 
@@ -26,17 +25,35 @@ class OctavationSpanner(Spanner):
     Return octavation spanner.
     '''
 
-    # TODO: Remove start and stop from initializer and force set later. #
+    ### INITIALIZER ###
 
     # TODO: Set start to 1 (and stop to 0) by default. #
-
-    def __init__(self, components = None, start = 0, stop = 0):
+    def __init__(self, components=None, start=0, stop=0):
         Spanner.__init__(self, components)
-        self._format = _OctavationSpannerFormatInterface(self)
         self.start = start
         self.stop = stop
 
-    ### PUBLIC PROPERTIES ###
+    ### PRIVATE METHODS ###
+
+    def _format_after_leaf(self, leaf):
+        result = []
+        # TODO: 
+        #result.extend(Spanner._format_after_leaf(self, leaf))
+        result.extend(self._format._after(leaf))
+        if self._is_my_last_leaf(leaf):
+            result.append(r'\ottava #%s' % self.stop)
+        return result
+
+    def _format_before_leaf(self, leaf):
+        result = []
+        # TODO:
+        #result.extend(Spanner._format_before_leaf(self, leaf))
+        result.extend(self._format._before(leaf))
+        if self._is_my_first_leaf(leaf):
+            result.append(r'\ottava #%s' % self.start)
+        return result
+
+    ### READ / WRITE PUBLIC PROPERTIES ###
 
     @apply
     def start():

@@ -1,7 +1,7 @@
 from abjad.tools.spannertools.Spanner import Spanner
-from abjad.tools.spannertools.TextScriptSpanner._TextScriptSpannerFormatInterface import _TextScriptSpannerFormatInterface
 
 
+# TODO: remove and just use Spanner instead with overrides
 class TextScriptSpanner(Spanner):
     r'''.. versionadded:: 2.0
 
@@ -33,6 +33,7 @@ class TextScriptSpanner(Spanner):
     Return text script spanner.
     '''
 
-    def __init__(self, components = None):
+    ### INITIALIZER ###
+
+    def __init__(self, components=None):
         Spanner.__init__(self, components)
-        self._format = _TextScriptSpannerFormatInterface(self)

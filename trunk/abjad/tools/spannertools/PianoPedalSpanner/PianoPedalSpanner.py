@@ -1,4 +1,3 @@
-from abjad.tools.spannertools.PianoPedalSpanner._PianoPedalSpannerFormatInterface import _PianoPedalSpannerFormatInterface
 from abjad.tools.spannertools.Spanner import Spanner
 
 
@@ -26,21 +25,38 @@ class PianoPedalSpanner(Spanner):
     Return piano pedal spanner.
     '''
 
-    def __init__(self, components = None):
-        Spanner.__init__(self, components)
-        self._format = _PianoPedalSpannerFormatInterface(self)
-        self.kind = 'sustain'
-        self.style = 'mixed'
-
-    ### PRIVATE PROPERTIES ###
-
-    _styles = ['text', 'bracket', 'mixed']
+    ### CLASS ATTRIBUTES ###
 
     _kinds = {'sustain': (r'\sustainOn', r'\sustainOff'),
             'sostenuto':(r'\sostenutoOn', r'\sostenutoOff'),
             'corda': (r'\unaCorda', r'\treCorde')}
 
-    ### PUBLIC PROPERTIES ###
+    _styles = ['text', 'bracket', 'mixed']
+
+    ### INITIALIZER ###
+
+    def __init__(self, components=None):
+        Spanner.__init__(self, components)
+        self.kind = 'sustain'
+        self.style = 'mixed'
+
+    ### PRIVATE METHODS ###
+
+    def _format_before_leaf(self, leaf):
+        result = []
+        if self._is_my_first_leaf(leaf):
+            result.append(r"\set Staff.pedalSustainStyle = #'%s" % self.style)
+        return result
+
+    def _format_right_of_leaf(self, leaf):
+        result = []
+        if self._is_my_first_leaf(leaf):
+            result.append(self._kinds[self.kind][0])
+        if self._is_my_last_leaf(leaf):
+            result.append(self._kinds[self.kind][1])
+        return result
+
+    ### READ / WRITE PUBLIC PROPERTIES ###
 
     @apply
     def kind():

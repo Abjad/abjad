@@ -1,5 +1,4 @@
 from abjad.tools.spannertools.ComplexBeamSpanner import ComplexBeamSpanner
-from abjad.tools.spannertools.MeasuredComplexBeamSpanner._MeasuredComplexBeamSpannerFormatInterface import _MeasuredComplexBeamSpannerFormatInterface
 from abjad.tools import durationtools
 
 
@@ -46,12 +45,47 @@ class MeasuredComplexBeamSpanner(ComplexBeamSpanner):
     Return measured complex beam spanner.
     '''
 
-    def __init__(self, components = None, lone = False, span = 1, direction = None):
-        ComplexBeamSpanner.__init__(self, components = components, lone = lone, direction = direction)
-        self._format = _MeasuredComplexBeamSpannerFormatInterface(self)
+    ### INITIALIZER ###
+
+    def __init__(self, components=None, lone=False, span=1, direction=None):
+        ComplexBeamSpanner.__init__(self, components=components, lone=lone, direction=direction)
         self.span = span
 
-    ### PUBLIC PROPERTIES ###
+    ### PRIVATE METHODS ###
+
+    def _format_before_leaf(self, leaf):
+        from abjad.tools.measuretools.Measure import Measure
+        from abjad.tools import componenttools
+        result = []
+        #if leaf.beam.beamable:
+        if componenttools.is_beamable_component(leaf):
+            if self._is_exterior_leaf(leaf):
+                left, right = self._get_left_right_for_exterior_leaf(leaf)
+            elif componenttools.get_first_instance_of_klass_in_proper_parentage_of_component(
+                leaf, Measure) is not None:
+                measure = componenttools.get_first_instance_of_klass_in_proper_parentage_of_component(
+                    leaf, Measure)
+                # leaf at beginning of measure
+                if measure._is_one_of_my_first_leaves(leaf):
+                    assert isinstance(self.span, int)
+                    left = self.span
+                    #right = leaf.duration._flags
+                    right = durationtools.rational_to_flag_count(leaf.written_duration)
+                # leaf at end of measure
+                elif measure._is_one_of_my_last_leaves(leaf):
+                    assert isinstance(self.span, int)
+                    #left = leaf.duration._flags
+                    left = durationtools.rational_to_flag_count(leaf.written_duration)
+                    right = self.span
+            else:
+                left, right = self._get_left_right_for_interior_leaf(leaf)
+            if left is not None:
+                result.append(r'\set stemLeftBeamCount = #%s' % left)
+            if right is not None:
+                result.append(r'\set stemRightBeamCount = #%s' % right)
+        return result
+
+    ### READ / WRITE PUBLIC PROPERTIES ###
 
     @apply
     def span():

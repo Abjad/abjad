@@ -1,4 +1,4 @@
-from _StaffLinesSpannerFormatInterface import _StaffLinesSpannerFormatInterface
+from abjad.tools import schemetools
 from abjad.tools.spannertools.Spanner import Spanner
 
 
@@ -36,7 +36,9 @@ class StaffLinesSpanner(Spanner):
     Return staff lines spanner.
     '''
 
-    def __init__(self, components = None, arg = 5):
+    ### INITIALIZER ###
+
+    def __init__(self, components=None, arg=5):
         Spanner.__init__(self, components)
         if isinstance(arg, int) and 0 < arg:
             self._lines = arg
@@ -46,7 +48,34 @@ class StaffLinesSpanner(Spanner):
         else:
             raise ValueError('StaffLinesSpanner requires either an int, '
                 'or a list/tuple of ints and/or floats.')
-        self._format = _StaffLinesSpannerFormatInterface(self)
+
+    ### PRIVATE METHODS ###
+
+    def _format_after_leaf(self, leaf):
+        result = []
+        if self._is_my_last_leaf(leaf):
+            result.append(r'\stopStaff')
+            if isinstance(self.lines, int):
+                result.append(r"\revert Staff.StaffSymbol #'line-count")
+            else:
+                result.append(r"\revert Staff.StaffSymbol #'line-positions")
+            result.append(r'\startStaff')
+        return result
+
+    def _format_before_leaf(self, leaf):
+        result = []
+        if self._is_my_first_leaf(leaf):
+            result.append(r'\stopStaff')
+            if isinstance(self.lines, int):
+                result.append(r"\override Staff.StaffSymbol #'line-count = #%s" % \
+                    self.lines)
+            else:
+                result.append(r"\override Staff.StaffSymbol #'line-positions = %s" % \
+                    schemetools.SchemeVector(*self.lines).format)
+            result.append(r'\startStaff')
+        return result
+
+    ### READ / WRITE PUBLIC PROPERTIES ###
 
     @apply
     def lines():

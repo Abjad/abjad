@@ -1,6 +1,6 @@
+from abjad.tools import durationtools
 from abjad.tools import gracetools
 from abjad.tools import mathtools
-from abjad.tools.spannertools.MetricGridSpanner._MetricGridSpannerFormatInterface import _MetricGridSpannerFormatInterface
 from abjad.tools.spannertools.Spanner import Spanner
 
 
@@ -41,7 +41,6 @@ class MetricGridSpanner(Spanner):
 
     def __init__(self, components = None, meters = None):
         Spanner.__init__(self, components)
-        self._format = _MetricGridSpannerFormatInterface(self)
         self._meters = meters
         self.hide = False
 
@@ -107,6 +106,54 @@ class MetricGridSpanner(Spanner):
 #               #r[0].after_grace.extend(r[-1].after_grace)
 #               gracetools.GraceContainer([r[-1]], kind = 'after')(r[0])
 #            leaftools.fuse_leaves_big_endian(r)
+
+    def _format_after_leaf(self, leaf):
+        result = []
+        if hasattr(self, '_slicing_metersFound'):
+            delattr(self, '_slicing_metersFound')
+            result.append('>>')
+        return result
+
+    #FIXME: formatting is ridiculously slow.
+    #         find a way to make it faster.
+    # Tue Jan 13 12:05:43 EST 2009 [VA] using _slicing_metersFound boolean
+    # flag now to improve performance time. Better but still not perfect.
+    # Is metric grid a good candidate for the UpdateInterface?
+
+    def _format_before_leaf(self, leaf):
+        from abjad.tools.containertools.Container import Container
+        from abjad.tools.skiptools.Skip import Skip
+        from abjad.tools import contexttools
+        result = []
+        if not self.hide:
+            #meter = self._matching_meter(leaf)
+            matching_meter = self._matching_meter(leaf)
+            if matching_meter is None:
+                meter = None
+            else:
+                meter, temp_hide = matching_meter
+            #if meter and not getattr(meter, '_temp_hide', False):
+            if meter and not temp_hide:
+                result.append(meter.format)
+            #m = self._slicing_meters(leaf)
+            m = self._slicing_meters(leaf)
+            #m = [meter for meter in m if not getattr(meter, '_temp_hide', False)]
+            m = [triple for triple in m if not triple[-1]]
+            if m:
+                # set self._slicing_metersFound as temporary flag so that
+                # self._after does not have to recompute _slicing_meters()
+                self._slicing_metersFound = True
+                result.append('<<')
+                for meter, moffset, temp_hide in m:
+                    s = Skip(durationtools.Duration(1))
+                    #s.duration_multiplier = meter._offset - leaf._offset.start
+                    s.duration_multiplier = moffset - leaf._offset.start
+                    numerator, denominator = meter.numerator, meter.denominator
+                    mark = contexttools.TimeSignatureMark((numerator, denominator))(s)
+                    mark._is_cosmetic_mark = True
+                    container = Container([s])
+                    result.append(container.format)
+        return result
 
     def _matching_meter(self, leaf):
         '''Return the MetricStrip for which meter._offset == leaf._offset.

@@ -1,5 +1,4 @@
 from abjad.tools.spannertools.Spanner import Spanner
-from abjad.tools.spannertools.TrillSpanner._TrillSpannerFormatInterface import _TrillSpannerFormatInterface
 
 
 class TrillSpanner(Spanner):
@@ -27,10 +26,30 @@ class TrillSpanner(Spanner):
     Return trill spanner.
     '''
 
+    ### INITIALIZER ###
+
     def __init__(self, components = None):
         Spanner.__init__(self, components)
-        self._format = _TrillSpannerFormatInterface(self)
         self._pitch = None
+
+    ### PRIVATE METHODS ###
+
+    def _format_before_leaf(self, leaf):
+        result = []
+        if self.pitch is not None:
+            if self._is_my_first_leaf(leaf):
+                result.append(r'\pitchedTrill')
+        return result
+
+    def _format_right_of_leaf(self, leaf):
+        result = []
+        if self._is_my_first_leaf(leaf):
+            result.append(r'\startTrillSpan')
+            if self.pitch is not None:
+                result.append(str(self.pitch))
+        if self._is_my_last_leaf(leaf):
+            result.append(r'\stopTrillSpan')
+        return result
 
     ### PUBLIC PROPERTIES ###
 
