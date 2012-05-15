@@ -121,11 +121,6 @@ class Spanner(AbjadObject):
             result.extend(getattr(self, '_overrides', []))
         return result
 
-    def _left(self, leaf):
-        '''Spanner format contributions to output left of leaf.'''
-        result = []
-        return result
-
     def _right(self, leaf):
         '''Spanner format contributions to output right of leaf.'''
         result = []

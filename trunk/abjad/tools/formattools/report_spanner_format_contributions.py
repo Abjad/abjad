@@ -11,22 +11,18 @@ def report_spanner_format_contributions(spanner, screen=True):
         abjad> formattools.report_spanner_format_contributions(spanner)
         c8  before: []
              after: []
-              left: []
              right: ['[']
 
         d8  before: []
              after: []
-              left: []
              right: []
 
         e8  before: []
              after: []
-              left: []
              right: []
 
         f8  before: []
              after: []
-              left: []
              right: [']']
 
     Return none or return string.
@@ -36,7 +32,6 @@ def report_spanner_format_contributions(spanner, screen=True):
         result += str(leaf)
         result += '\tbefore: %s\n' % spanner._format._before(leaf)
         result += '\t after: %s\n' % spanner._format._after(leaf)
-        result += '\t  left: %s\n' % spanner._format._left(leaf)
         result += '\t right: %s\n' % spanner._format._right(leaf)
         result += '\n'
     if result[-1] == '\n':
