@@ -1,4 +1,3 @@
-from abjad.tools.spannertools.SlurSpanner._SlurSpannerFormatInterface import _SlurSpannerFormatInterface
 from abjad.tools.spannertools._DirectedSpanner._DirectedSpanner import _DirectedSpanner
 
 
@@ -27,22 +26,19 @@ class SlurSpanner(_DirectedSpanner):
 
     ### INITIALIZER ###
 
-    def __init__(self, components = None, direction = None):
+    def __init__(self, components=None, direction=None):
         _DirectedSpanner.__init__(self, components, direction)
-        self._format = _SlurSpannerFormatInterface(self)
 
     ### PRIVATE METHODS ###
 
     def _right(self, leaf):
-        '''Spanner format contribution right of leaf.'''
         result = []
-        spanner = self.spanner
-        if spanner._is_my_first_leaf(leaf):
-            direction = spanner.direction
+        if self._is_my_first_leaf(leaf):
+            direction = self.direction
             if direction is not None:
                 result.append('%s (' % direction)
             else:
                 result.append('(')
-        if spanner._is_my_last_leaf(leaf):
+        if self._is_my_last_leaf(leaf):
             result.append(')')
         return result

@@ -17,12 +17,18 @@ def get_spanner_format_contributions(leaf, slot):
             if spanner._is_my_first_leaf(leaf):
                 contributions = spanner.override._list_format_contributions('override', is_once = False)
                 spanner_contributions.extend(contributions)
-            spanner_contributions.extend(spanner._format._before(leaf))
+            if getattr(spanner, '_format')._class_name == '_SpannerFormatInterface':
+                spanner_contributions.extend(spanner._before(leaf))
+            else:
+                spanner_contributions.extend(spanner._format._before(leaf))
             result.extend(spanner_contributions)
     elif slot == 'after':
         for spanner in spanners:
             spanner_contributions = []
-            spanner_contributions.extend(spanner._format._after(leaf))
+            if getattr(spanner, '_format')._class_name == '_SpannerFormatInterface':
+                spanner_contributions.extend(spanner._after(leaf))
+            else:
+                spanner_contributions.extend(spanner._format._after(leaf))
             if spanner._is_my_last_leaf(leaf):
                 contributions = spanner.override._list_format_contributions('revert')
                 spanner_contributions.extend(contributions)
@@ -30,7 +36,10 @@ def get_spanner_format_contributions(leaf, slot):
     elif slot == 'right':
         stop_contributions, other_contributions = [], []
         for spanner in spanners:
-            contributions = spanner._format._right(leaf)
+            if getattr(spanner, '_format')._class_name == '_SpannerFormatInterface':
+                contributions = spanner._right(leaf)
+            else:
+                contributions = spanner._format._right(leaf)
             if contributions:
                 if spanner._is_my_last_leaf(leaf):
                     stop_contributions.extend(contributions)
