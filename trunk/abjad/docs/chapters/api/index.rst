@@ -2015,3 +2015,4 @@ Internals packages
    tools/formattools/get_lilypond_command_mark_format_contributions
    tools/formattools/get_markup_format_contributions
    tools/formattools/get_stem_tremolo_format_contributions
+   tools/formattools/report_spanner_format_contributions

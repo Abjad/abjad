@@ -7,7 +7,9 @@ import copy
 
 
 class Spanner(AbjadObject):
-    '''Any type of notation object that stretches horizontally
+    '''.. versionadded:: 1.1
+
+    Any type of notation object that stretches horizontally
     and encompasses some number of notes, rest, chords, tuplets,
     measures, voices or other Abjad components.
 
@@ -79,7 +81,7 @@ class Spanner(AbjadObject):
     def __repr__(self):
         return '%s(%s)' % (type(self).__name__, self._compact_summary)
 
-    ### PRIVATE PROPERTIES ###
+    ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
     def _compact_summary(self):

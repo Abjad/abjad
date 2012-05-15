@@ -46,25 +46,3 @@ class _SpannerFormatInterface(AbjadObject):
         '''Spanner format contributions to output right of leaf.'''
         result = []
         return result
-
-    ### PUBLIC METHODS ###
-
-    def report(self, leaves = None, output = 'screen'):
-        '''Print spanner format contributions for every leaf in leaves.'''
-        result = ''
-        leaves = leaves or self.spanner.leaves
-        for leaf in leaves:
-            result += str(leaf)
-            result += '\tbefore: %s\n' % self._before(leaf)
-            result += '\t after: %s\n' % self._after(leaf)
-            result += '\t  left: %s\n' % self._left(leaf)
-            result += '\t right: %s\n' % self._right(leaf)
-            result += '\n'
-
-        if result[-1] == '\n':
-            result = result[:-1]
-
-        if output == 'screen':
-            print result
-        else:
-            return result
