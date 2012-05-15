@@ -2,7 +2,7 @@ from abjad.tools.spannertools.Spanner import Spanner
 
 
 class ComplexGlissandoSpanner(Spanner):
-    r'''.. versionadded:: 2.29
+    r'''.. versionadded:: 2.9
 
     Abjad rest-skipping glissando spanner::
 

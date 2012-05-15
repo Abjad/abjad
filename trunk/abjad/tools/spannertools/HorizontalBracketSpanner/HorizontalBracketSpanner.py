@@ -1,5 +1,4 @@
 from abjad.tools.spannertools.Spanner import Spanner
-from abjad.tools.spannertools.HorizontalBracketSpanner._HorizontalBracketSpannerFormatInterface import _HorizontalBracketSpannerFormatInterface
 
 
 class HorizontalBracketSpanner(Spanner):
@@ -34,6 +33,17 @@ class HorizontalBracketSpanner(Spanner):
     Return horizontal bracket spanner.
     '''
 
-    def __init__(self, components = None):
+    ### INITIALIZER ###
+
+    def __init__(self, components=None):
         Spanner.__init__(self, components)
-        self._format = _HorizontalBracketSpannerFormatInterface(self)
+
+    ### PRIVATE METHODS ###
+
+    def _format_right_of_leaf(self, leaf):
+        result = []
+        if self._is_my_first_leaf(leaf):
+            result.append(r'\startGroup')
+        if self._is_my_last_leaf(leaf):
+            result.append(r'\stopGroup')
+        return result
