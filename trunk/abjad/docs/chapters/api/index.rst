@@ -1108,6 +1108,19 @@ Abjad composition packages
    tools/stafftools/iterate_staves_forward_in_expr
    tools/stafftools/make_rhythmic_sketch_staff
 
+:py:mod:`stringtools <abjad.tools.stringtools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: functions
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/stringtools/arg_to_bidirectional_direction_string
+   tools/stringtools/arg_to_bidirectional_lilypond_symbol
+   tools/stringtools/arg_to_tridirectional_direction_string
+   tools/stringtools/arg_to_tridirectional_lilypond_symbol
+
 :py:mod:`tietools <abjad.tools.tietools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
