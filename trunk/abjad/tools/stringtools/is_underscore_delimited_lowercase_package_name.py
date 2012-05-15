@@ -1,4 +1,4 @@
-from abjad.tools.iotools.is_underscore_delimited_lowercase_string import underscore_delimited_lowercase_regex_body
+from abjad.tools.stringtools.is_underscore_delimited_lowercase_string import underscore_delimited_lowercase_regex_body
 import re
 
 
@@ -15,15 +15,19 @@ def is_underscore_delimited_lowercase_package_name(expr):
 
     True when `expr` is a string and is underscore-delimited lowercase package name::
 
-        abjad> iotools.is_underscore_delimited_lowercase_package_name('foo.bar.blah_package')
+        abjad> stringtools.is_underscore_delimited_lowercase_package_name('foo.bar.blah_package')
         True
     
     False otherwise::
 
-        abjad> iotools.is_underscore_delimited_lowercase_package_name('foo.bar.BlahPackage')
+        abjad> stringtools.is_underscore_delimited_lowercase_package_name('foo.bar.BlahPackage')
         False
 
     Return boolean.
+
+    .. versionchanged:: 2.9
+        renamed ``iotools.is_underscore_delimited_lowercase_package_name()`` to
+        ``stringtools.is_underscore_delimited_lowercase_package_name()``.
     '''
 
     if not isinstance(expr, str):

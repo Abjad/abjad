@@ -8,15 +8,19 @@ def is_lowercamelcase_string(expr):
 
     True when `expr` is a string and is lowercamelcase::
 
-        abjad> iotools.is_lowercamelcase_string('fooBar')
+        abjad> stringtools.is_lowercamelcase_string('fooBar')
         True
     
     False otherwise::
 
-        abjad> iotools.is_lowercamelcase_string('FooBar')
+        abjad> stringtools.is_lowercamelcase_string('FooBar')
         False
 
     Return boolean.
+
+    .. versionchanged:: 2.9
+        renamed ``iotools.is_lowercamelcase_string()`` to
+        ``stringtools.is_lowercamelcase_string()``.
     '''
 
     if not isinstance(expr, str):

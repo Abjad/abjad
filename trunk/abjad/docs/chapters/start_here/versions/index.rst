@@ -532,9 +532,9 @@ Implements 221 public classes and 1029 functions totalling 168,000 lines of code
     abjad> all_are_pairs_of_types([('a', 1.4), ('b', 2.3), ('c', 1.5)], str, float)
     True
 
-- Added ``iotools.is_underscore_delimited_lowercase_file_name_with_extension()`` string predicate::
+- Added ``stringtools.is_underscore_delimited_lowercase_file_name_with_extension()`` string predicate::
 
-    abjad> iotools.is_underscore_delimited_lowercase_file_name_with_extension('foo_bar.blah')
+    abjad> stringtools.is_underscore_delimited_lowercase_file_name_with_extension('foo_bar.blah')
     True
 
 - Added ``iotools.is_underscore_delimited_file_name()`` string predicate.
@@ -545,10 +545,10 @@ Implements 221 public classes and 1029 functions totalling 168,000 lines of code
 
   ::
 
-    abjad> iotools.is_underscore_delimited_lowercase_file_name('foo_bar.py')
+    abjad> stringtools.is_underscore_delimited_lowercase_file_name('foo_bar.py')
     True
 
-    abjad> iotools.is_underscore_delimited_lowercase_file_name('foo_bar')
+    abjad> stringtools.is_underscore_delimited_lowercase_file_name('foo_bar')
     True
 
 
@@ -597,12 +597,12 @@ Implements 221 public classes and 1029 functions totalling 168,000 lines of code
 
   Functions changed:
 
-  * ``iotools.is_space_delimited_lowercase_string``
-  * ``iotools.is_underscore_delimited_lowercase_file_name``
-  * ``iotools.is_lowercamelcase_string``
-  * ``iotools.is_uppercamelcase_string``
-  * ``iotools.is_underscore_delimited_lowercase_string``
-  * ``iotools.is_underscore_delimited_lowercase_file_name_with_extension``
+  * ``stringtools.is_space_delimited_lowercase_string``
+  * ``stringtools.is_underscore_delimited_lowercase_file_name``
+  * ``stringtools.is_lowercamelcase_string``
+  * ``stringtools.is_uppercamelcase_string``
+  * ``stringtools.is_underscore_delimited_lowercase_string``
+  * ``stringtools.is_underscore_delimited_lowercase_file_name_with_extension``
 
 - Extended ``lilypondfiletools.NonattributedBlock`` with ``is_formatted_when_empty`` read-write property.
   ``lilypondfiletools.ScoreBlock`` no longer formats when empty, by default.
@@ -862,8 +862,8 @@ Implements 197 public classes and 941 public functions totalling 153,000 lines o
     iotools.is_space_delimited_lowercamelcase_string()
     iotools.is_underscore_delimited_lowercamelcase_package_name()
     iotools.is_underscore_delimited_lowercamelcase_string()
-    iotools.is_lowercamelcase_string()
-    iotools.is_uppercamelcase_string()
+    stringtools.is_lowercamelcase_string()
+    stringtools.is_uppercamelcase_string()
     iotools.space_delimited_lowercase_to_uppercamelcase()
     iotools.uppercamelcase_to_space_delimited_lowercase()
     iotools.uppercamelcase_to_underscore_delimited_lowercase()

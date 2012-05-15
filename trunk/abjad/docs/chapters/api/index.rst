@@ -1356,13 +1356,6 @@ Additional Abjad composition packages (load manually)
    tools/iotools/f
    tools/iotools/get_last_output_file_name
    tools/iotools/get_next_output_file_name
-   tools/iotools/is_lowercamelcase_string
-   tools/iotools/is_space_delimited_lowercase_string
-   tools/iotools/is_underscore_delimited_lowercase_file_name
-   tools/iotools/is_underscore_delimited_lowercase_file_name_with_extension
-   tools/iotools/is_underscore_delimited_lowercase_package_name
-   tools/iotools/is_underscore_delimited_lowercase_string
-   tools/iotools/is_uppercamelcase_string
    tools/iotools/log
    tools/iotools/ly
    tools/iotools/p
@@ -1693,6 +1686,13 @@ Additional Abjad composition packages (load manually)
    tools/stringtools/capitalize_string_start
    tools/stringtools/format_input_lines_as_doc_string
    tools/stringtools/format_input_lines_as_regression_test
+   tools/stringtools/is_lowercamelcase_string
+   tools/stringtools/is_space_delimited_lowercase_string
+   tools/stringtools/is_underscore_delimited_lowercase_file_name
+   tools/stringtools/is_underscore_delimited_lowercase_file_name_with_extension
+   tools/stringtools/is_underscore_delimited_lowercase_package_name
+   tools/stringtools/is_underscore_delimited_lowercase_string
+   tools/stringtools/is_uppercamelcase_string
 
 :py:mod:`tempotools <abjad.tools.tempotools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

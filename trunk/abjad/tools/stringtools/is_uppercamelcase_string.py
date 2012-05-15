@@ -8,15 +8,19 @@ def is_uppercamelcase_string(expr):
 
     True when `expr` is a string and is uppercamelcase::
 
-        abjad> iotools.is_uppercamelcase_string('FooBar')
+        abjad> stringtools.is_uppercamelcase_string('FooBar')
         True
     
     False otherwise::
 
-        abjad> iotools.is_uppercamelcase_string('fooBar')
+        abjad> stringtools.is_uppercamelcase_string('fooBar')
         False
 
     Return boolean.
+
+    .. versionchanged:: 2.9
+        renamed ``iotools.is_uppercamelcase_string()`` to
+        ``stringtools.is_uppercamelcase_string()``.
     '''
 
     if not isinstance(expr, str):

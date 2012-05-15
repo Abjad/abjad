@@ -1,4 +1,4 @@
-from abjad.tools.iotools.is_underscore_delimited_lowercase_string import underscore_delimited_lowercase_regex_body
+from abjad.tools.stringtools.is_underscore_delimited_lowercase_string import underscore_delimited_lowercase_regex_body
 import re
 
 
@@ -16,15 +16,19 @@ def is_underscore_delimited_lowercase_file_name_with_extension(expr):
 
     True when `expr` is a string and is underscore-delimited lowercase file name with extension::
 
-        abjad> iotools.is_underscore_delimited_lowercase_file_name_with_extension('foo_bar.blah')
+        abjad> stringtools.is_underscore_delimited_lowercase_file_name_with_extension('foo_bar.blah')
         True
     
     False otherwise::
 
-        abjad> iotools.is_underscore_delimited_lowercase_file_name_with_extension('foo.bar.blah')
+        abjad> stringtools.is_underscore_delimited_lowercase_file_name_with_extension('foo.bar.blah')
         False
 
     Return boolean.
+
+    .. versionchanged:: 2.9
+        renamed ``iotools.is_underscore_delimited_lowercase_file_name_with_extension()`` to
+        ``stringtools.is_underscore_delimited_lowercase_file_name_with_extension()``.
     '''
 
     if not isinstance(expr, str):
