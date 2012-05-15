@@ -1,4 +1,3 @@
-from abjad.tools.spannertools.HiddenStaffSpanner._HiddenStaffSpannerFormatInterface import _HiddenStaffSpannerFormatInterface
 from abjad.tools.spannertools.Spanner import Spanner
 
 
@@ -29,6 +28,21 @@ class HiddenStaffSpanner(Spanner):
     Return hidden staff spanner.
     '''
 
-    def __init__(self, components = None):
+    ### INITIALIZER ###
+
+    def __init__(self, components=None):
         Spanner.__init__(self, components)
-        self._format = _HiddenStaffSpannerFormatInterface(self)
+
+    ### PRIVATE METHODS ###
+
+    def _format_after_leaf(self, leaf):
+        result = []
+        if self._is_my_last_leaf(leaf):
+            result.append(r'\startStaff')
+        return result
+
+    def _format_before_leaf(self, leaf):
+        result = []
+        if self._is_my_first_leaf(leaf):
+            result.append(r'\stopStaff')
+        return result

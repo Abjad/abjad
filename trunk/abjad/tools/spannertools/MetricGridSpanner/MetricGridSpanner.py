@@ -39,7 +39,7 @@ class MetricGridSpanner(Spanner):
     Return metric grid spanner.
     '''
 
-    def __init__(self, components = None, meters = None):
+    def __init__(self, components=None, meters=None):
         Spanner.__init__(self, components)
         self._meters = meters
         self.hide = False
@@ -227,6 +227,7 @@ class MetricGridSpanner(Spanner):
 
     ### PUBLIC METHODS ###
 
+    # TODO: looks like these tests are working now?
     def split_on_bar(self):
         '''Temporarily unavailable.
         '''

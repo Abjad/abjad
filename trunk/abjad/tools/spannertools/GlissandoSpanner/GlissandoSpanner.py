@@ -1,4 +1,3 @@
-from abjad.tools.spannertools.GlissandoSpanner._GlissandoSpannerFormatInterface import _GlissandoSpannerFormatInterface
 from abjad.tools.spannertools.Spanner import Spanner
 
 
@@ -27,6 +26,17 @@ class GlissandoSpanner(Spanner):
     Return glissando spanner.
     '''
 
-    def __init__(self, components = None):
+    ### INITIALIZER ###
+
+    def __init__(self, components=None):
         Spanner.__init__(self, components)
-        self._format = _GlissandoSpannerFormatInterface(self)
+
+    ### PRIVATE METHODS ###
+    
+    def _format_right_of_leaf(self, leaf):
+        from abjad.tools.notetools.Note import Note
+        from abjad.tools.chordtools.Chord import Chord
+        result = []
+        if not self._is_my_last_leaf(leaf) and isinstance(leaf, (Chord, Note)):
+            result.append(r'\glissando')
+        return result

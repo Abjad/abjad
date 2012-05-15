@@ -1,5 +1,4 @@
 from abjad.tools.spannertools._DirectedSpanner._DirectedSpanner import _DirectedSpanner
-from abjad.tools.tietools.TieSpanner._TieSpannerFormatInterface import _TieSpannerFormatInterface
 
 
 class TieSpanner(_DirectedSpanner):
@@ -23,4 +22,14 @@ class TieSpanner(_DirectedSpanner):
 
     def __init__(self, music=None, direction=None):
         _DirectedSpanner.__init__(self, music, direction)
-        self._format = _TieSpannerFormatInterface(self)
+
+    ### PRIVATE METHODS ###
+    
+    def _format_right_of_leaf(self, leaf):
+        result = []
+        if not self._is_my_last_leaf(leaf):
+            if self.direction is not None:
+                result.append('%s ~' % self.direction)
+            else:
+                result.append('~')
+        return result

@@ -55,9 +55,7 @@ class ComplexBeamSpanner(BeamSpanner):
         '''Spanner format contribution to output before leaf.'''
         from abjad.tools import componenttools
         result = []
-        # TODO:
-        #result.extend(BeamSpanner._before(self, leaf))
-        result.extend(self._before(leaf))
+        result.extend(BeamSpanner._format_before_leaf(self, leaf))
         if componenttools.is_beamable_component(leaf):
             if self._is_my_only_leaf(leaf):
                 left, right = self._get_left_right_for_lone_leaf(leaf)

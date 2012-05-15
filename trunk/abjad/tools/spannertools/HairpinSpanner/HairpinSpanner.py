@@ -1,4 +1,3 @@
-from abjad.tools.spannertools.HairpinSpanner._HairpinSpannerFormatInterface import _HairpinSpannerFormatInterface
 from abjad.tools.spannertools._DirectedSpanner._DirectedSpanner import _DirectedSpanner
 
 
@@ -72,20 +71,54 @@ class HairpinSpanner(_DirectedSpanner):
     Return hairpin spanner.
     '''
 
-    def __init__(self, components = None, descriptor = '<', include_rests = True, direction = None):
-        _DirectedSpanner.__init__(self, components = components, direction = direction)
-        self._format = _HairpinSpannerFormatInterface(self)
+    ### CLASS ATTRIBUTES ###
+
+    _hairpin_shape_strings = ('<', '>')
+
+    ### INITIALIZER ###
+
+    def __init__(self, components=None, descriptor='<', include_rests=True, direction=None):
+        _DirectedSpanner.__init__(self, components=components, direction=direction)
         self.include_rests = include_rests
         start_dynamic_string, shape_string, stop_dynamic_string = self._parse_descriptor(descriptor)
         self.shape_string = shape_string
         self.start_dynamic_string = start_dynamic_string
         self.stop_dynamic_string = stop_dynamic_string
 
-    ### PRIVATE PROPERTIES ###
-
-    _hairpin_shape_strings = ('<', '>')
-
     ### PRIVATE METHODS ###
+
+    def _format_right_of_leaf(self, leaf):
+        from abjad.tools.chordtools.Chord import Chord
+        from abjad.tools.notetools.Note import Note
+        from abjad.tools import contexttools
+        result = []
+        effective_dynamic = contexttools.get_effective_dynamic(leaf)
+        direction_string = ''
+        if self.direction is not None:
+            direction_string = '%s ' % self.direction
+        if self.include_rests:
+            if self._is_my_first_leaf(leaf):
+                result.append('%s\\%s' % (direction_string, self.shape_string))
+                if self.start_dynamic_string:
+                    result.append('%s\\%s' % (direction_string, self.start_dynamic_string))
+            if self._is_my_last_leaf(leaf):
+                if self.stop_dynamic_string:
+                    result.append('%s\\%s' % (direction_string, self.stop_dynamic_string))
+                elif effective_dynamic is None or \
+                    effective_dynamic not in \
+                    leaf._marks_for_which_component_functions_as_start_component:
+                    result.append('\\!')
+        else:
+            if self._is_my_first(leaf, (Chord, Note)):
+                result.append('%s\\%s' % (direction_string, self.shape_string))
+                if self.start_dynamic_string:
+                    result.append('%s\\%s' % (direction_string, self.start_dynamic_string))
+            if self._is_my_last(leaf, (Chord, Note)):
+                if self.stop_dynamic_string:
+                    result.append('%s\\%s' % (direction_string, self.stop_dynamic_string))
+                elif effective_dynamic is None:
+                    result.append('\\!')
+        return result
 
     def _parse_descriptor(self, descriptor):
         '''Example descriptors:
@@ -116,7 +149,7 @@ class HairpinSpanner(_DirectedSpanner):
         assert shape in ('<', '>')
         return start, shape, stop
 
-    ### PUBLIC PROPERTIES ###
+    ### READ / WRITE PUBLIC PROPERTIES ###
 
     @apply
     def include_rests():
@@ -221,6 +254,7 @@ class HairpinSpanner(_DirectedSpanner):
 
     ### PUBLIC METHODS ###
 
+    # TODO: reimplement static method as API function
     @staticmethod
     def is_hairpin_shape_string(arg):
         '''True when `arg` is a hairpin shape string. Otherwise false::
@@ -232,6 +266,7 @@ class HairpinSpanner(_DirectedSpanner):
         '''
         return arg in HairpinSpanner._hairpin_shape_strings
 
+    # TODO: reimplement static method as API function
     @staticmethod
     def is_hairpin_token(arg):
         '''True when `arg` is a hairpin token. Otherwise false::

@@ -1,7 +1,6 @@
 from abjad.tools import lilypondproxytools
 from abjad.tools import durationtools
 from abjad.tools.abctools import AbjadObject
-from abjad.tools.spannertools.Spanner._SpannerFormatInterface import _SpannerFormatInterface
 from abjad.tools.spannertools.Spanner._SpannerOffsetInterface import _SpannerOffsetInterface
 import copy
 
@@ -39,7 +38,6 @@ class Spanner(AbjadObject):
         '''
         self._components = []
         self._contiguity_constraint = 'thread'
-        self._format = _SpannerFormatInterface(self)
         self._offset = _SpannerOffsetInterface(self)
         self._initialize_components(components)
 
@@ -104,28 +102,6 @@ class Spanner(AbjadObject):
         else:
             return ' '
 
-    # TODO: rename these as verbs like _format_after_leaf(), _format_before_leaf(), etc.
-    ### PRIVATE FORMAT METHODS ###
-
-    def _after(self, leaf):
-        '''Spanner format contributions to output after leaf.'''
-        result = []
-        if self._is_my_last_leaf(leaf):
-            result.extend(getattr(self, '_reverts', []))
-        return result
-
-    def _before(self, leaf):
-        '''Spanner format contributions to output before leaf.'''
-        result = []
-        if self._is_my_first_leaf(leaf):
-            result.extend(getattr(self, '_overrides', []))
-        return result
-
-    def _right(self, leaf):
-        '''Spanner format contributions to output right of leaf.'''
-        result = []
-        return result
-
     ### PRIVATE METHODS ###
 
     def _block_all_components(self):
@@ -160,6 +136,22 @@ class Spanner(AbjadObject):
         assert leaf in leaves
         prev = leaves[:leaves.index(leaf)]
         return sum([leaf.prolated_duration for leaf in prev])
+
+    def _format_after_leaf(self, leaf):
+        result = []
+        if self._is_my_last_leaf(leaf):
+            result.extend(getattr(self, '_reverts', []))
+        return result
+
+    def _format_before_leaf(self, leaf):
+        result = []
+        if self._is_my_first_leaf(leaf):
+            result.extend(getattr(self, '_overrides', []))
+        return result
+
+    def _format_right_of_leaf(self, leaf):
+        result = []
+        return result
 
     def _fracture_left(self, i):
         left = self._copy(self[:i])

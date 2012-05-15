@@ -37,18 +37,14 @@ class OctavationSpanner(Spanner):
 
     def _format_after_leaf(self, leaf):
         result = []
-        # TODO: 
-        #result.extend(Spanner._format_after_leaf(self, leaf))
-        result.extend(self._format._after(leaf))
+        result.extend(Spanner._format_after_leaf(self, leaf))
         if self._is_my_last_leaf(leaf):
             result.append(r'\ottava #%s' % self.stop)
         return result
 
     def _format_before_leaf(self, leaf):
         result = []
-        # TODO:
-        #result.extend(Spanner._format_before_leaf(self, leaf))
-        result.extend(self._format._before(leaf))
+        result.extend(Spanner._format_before_leaf(self, leaf))
         if self._is_my_first_leaf(leaf):
             result.append(r'\ottava #%s' % self.start)
         return result

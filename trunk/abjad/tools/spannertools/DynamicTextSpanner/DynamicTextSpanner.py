@@ -1,4 +1,3 @@
-from abjad.tools.spannertools.DynamicTextSpanner._DynamicTextSpannerFormatInterface import _DynamicTextSpannerFormatInterface
 from abjad.tools.spannertools.Spanner import Spanner
 
 
@@ -27,12 +26,21 @@ class DynamicTextSpanner(Spanner):
     Return dynamic text spanner.
     '''
 
-    def __init__(self, components = None, mark = ''):
+    ### INTIALIZER ###
+
+    def __init__(self, components=None, mark=''):
         Spanner.__init__(self, components)
-        self._format = _DynamicTextSpannerFormatInterface(self)
         self.mark = mark
 
-    ### PUBLIC PROPERTIES ###
+    ### PRIVATE METHODS ###
+
+    def _format_right_of_leaf(self, leaf):
+        result = []
+        if self._is_my_first_leaf(leaf):
+            result.append(r'\%s' % self.mark)
+        return result
+
+    ### READ / WRITE PUBLIC PROPERTIES ###
 
     @apply
     def mark():
