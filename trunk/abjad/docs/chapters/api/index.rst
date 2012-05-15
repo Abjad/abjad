@@ -1369,14 +1369,7 @@ Additional Abjad composition packages (load manually)
    tools/iotools/save_last_ly_as
    tools/iotools/save_last_pdf_as
    tools/iotools/show
-   tools/iotools/space_delimited_lowercase_to_uppercamelcase
    tools/iotools/spawn_subprocess
-   tools/iotools/string_to_strict_directory_name
-   tools/iotools/strip_diacritics_from_binary_string
-   tools/iotools/underscore_delimited_lowercase_to_lowercamelcase
-   tools/iotools/underscore_delimited_lowercase_to_uppercamelcase
-   tools/iotools/uppercamelcase_to_space_delimited_lowercase
-   tools/iotools/uppercamelcase_to_underscore_delimited_lowercase
    tools/iotools/write_expr_to_ly
    tools/iotools/write_expr_to_ly_and_to_pdf_and_show
    tools/iotools/write_expr_to_pdf
@@ -1693,6 +1686,13 @@ Additional Abjad composition packages (load manually)
    tools/stringtools/is_underscore_delimited_lowercase_package_name
    tools/stringtools/is_underscore_delimited_lowercase_string
    tools/stringtools/is_uppercamelcase_string
+   tools/stringtools/space_delimited_lowercase_to_uppercamelcase
+   tools/stringtools/string_to_strict_directory_name
+   tools/stringtools/strip_diacritics_from_binary_string
+   tools/stringtools/underscore_delimited_lowercase_to_lowercamelcase
+   tools/stringtools/underscore_delimited_lowercase_to_uppercamelcase
+   tools/stringtools/uppercamelcase_to_space_delimited_lowercase
+   tools/stringtools/uppercamelcase_to_underscore_delimited_lowercase
 
 :py:mod:`tempotools <abjad.tools.tempotools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

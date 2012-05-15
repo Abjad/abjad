@@ -4,10 +4,14 @@ def space_delimited_lowercase_to_uppercamelcase(string):
     Change space-delimited lowercase `string` to uppercamelcase::
 
         abjad> string = 'bass figure alignment positioning'
-        abjad> iotools.space_delimited_lowercase_to_uppercamelcase(string)
+        abjad> stringtools.space_delimited_lowercase_to_uppercamelcase(string)
         'BassFigureAlignmentPositioning'
 
     Return string.
+
+    .. versionchanged:: 2.9
+        renamed ``iotools.space_delimited_lowercase_to_uppercamelcase()`` to
+        ``stringtools.space_delimited_lowercase_to_uppercamelcase()``.
     '''
 
     parts = string.split(' ')

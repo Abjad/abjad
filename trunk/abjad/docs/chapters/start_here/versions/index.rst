@@ -845,15 +845,15 @@ Implements 197 public classes and 941 public functions totalling 153,000 lines o
     pitchtools.is_smbolic_accidental_string()
     pitchtools.is_pitch_class_octave_number_string()
 
-* Added ``iotools.string_to_strict_directory_name()``::
+* Added ``stringtools.string_to_strict_directory_name()``::
 
-    abjad> iotools.string_to_strict_directory_name('Déja vu')
+    abjad> stringtools.string_to_strict_directory_name('Déja vu')
     'deja_vu'
 
-* Added ``iotools.strip_diacritics_from_binary_string()``::
+* Added ``stringtools.strip_diacritics_from_binary_string()``::
 
     abjad> binary_string = 'Dvořák'
-    abjad> iotools.strip_diacritics_from_binary_string(binary_string)
+    abjad> stringtools.strip_diacritics_from_binary_string(binary_string)
     'Dvorak'
 
 * Added other new functions to ``iotools``::
@@ -864,9 +864,9 @@ Implements 197 public classes and 941 public functions totalling 153,000 lines o
     iotools.is_underscore_delimited_lowercamelcase_string()
     stringtools.is_lowercamelcase_string()
     stringtools.is_uppercamelcase_string()
-    iotools.space_delimited_lowercase_to_uppercamelcase()
-    iotools.uppercamelcase_to_space_delimited_lowercase()
-    iotools.uppercamelcase_to_underscore_delimited_lowercase()
+    stringtools.space_delimited_lowercase_to_uppercamelcase()
+    stringtools.uppercamelcase_to_space_delimited_lowercase()
+    stringtools.uppercamelcase_to_underscore_delimited_lowercase()
 
 * Added new functions to ``mathtools``::
 

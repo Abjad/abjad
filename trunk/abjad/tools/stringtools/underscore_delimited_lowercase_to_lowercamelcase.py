@@ -4,12 +4,16 @@ def underscore_delimited_lowercase_to_lowercamelcase(string):
     Change underscore-delimited lowercase `string` to lowercamelcase::
 
         abjad> string = 'bass_figure_alignment_positioning'
-        abjad> iotools.underscore_delimited_lowercase_to_lowercamelcase(string)
+        abjad> stringtools.underscore_delimited_lowercase_to_lowercamelcase(string)
         'bassFigureAlignmentPositioning'
 
     .. versionchanged:: 2.0
         renamed ``stringtools.underscore_delimited_lowercase_to_lowercamelcase()`` to
-        ``iotools.underscore_delimited_lowercase_to_lowercamelcase()``.
+        ``stringtools.underscore_delimited_lowercase_to_lowercamelcase()``.
+
+    .. versionchanged:: 2.9
+        renamed ``iotools.underscore_delimited_lowercase_to_lowercamelcase()`` to
+        ``stringtools.underscore_delimited_lowercase_to_lowercamelcase()``.
     '''
 
     parts = string.split('_')

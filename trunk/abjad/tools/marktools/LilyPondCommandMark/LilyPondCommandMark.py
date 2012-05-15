@@ -109,12 +109,12 @@ class LilyPondCommandMark(Mark):
 
         Return string.
         '''
-        from abjad.tools import iotools
+        from abjad.tools import stringtools
         command = self._command_name
         if command.startswith('#'):
             return command
         else:
-            return '\\' + iotools.underscore_delimited_lowercase_to_lowercamelcase(command)
+            return '\\' + stringtools.underscore_delimited_lowercase_to_lowercamelcase(command)
 
     @apply
     def format_slot():

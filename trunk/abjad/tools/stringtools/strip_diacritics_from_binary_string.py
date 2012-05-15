@@ -16,10 +16,14 @@ def strip_diacritics_from_binary_string(binary_string):
 
     ::
 
-        abjad> iotools.strip_diacritics_from_binary_string(binary_string)
+        abjad> stringtools.strip_diacritics_from_binary_string(binary_string)
         'Dvorak'
 
     Return ASCII string.
+
+    .. versionchanged:: 2.9
+        renamed ``iotools.strip_diacritics_from_binary_string()`` to
+        ``stringtools.strip_diacritics_from_binary_string()``.
     '''
 
     unicode_string = unicode(binary_string, 'utf-8')

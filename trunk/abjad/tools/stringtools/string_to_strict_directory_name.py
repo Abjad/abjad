@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.iotools.strip_diacritics_from_binary_string import strip_diacritics_from_binary_string
+from abjad.tools.stringtools.strip_diacritics_from_binary_string import strip_diacritics_from_binary_string
 
 
 def string_to_strict_directory_name(string):
@@ -7,7 +7,7 @@ def string_to_strict_directory_name(string):
 
     Change `string` to strict directory name::
 
-        abjad> iotools.string_to_strict_directory_name('Déja vu')
+        abjad> stringtools.string_to_strict_directory_name('Déja vu')
         'deja_vu'
 
     Strip accents from accented characters.
@@ -15,6 +15,10 @@ def string_to_strict_directory_name(string):
     Set to lowercase.
 
     Return string.
+
+    .. versionchanged:: 2.9
+        renamed ``iotools.string_to_strict_directory_name()`` to
+        ``stringtools.string_to_strict_directory_name()``.
     '''
 
     assert isinstance(string, str)

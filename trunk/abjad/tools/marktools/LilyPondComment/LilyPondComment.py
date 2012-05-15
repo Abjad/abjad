@@ -108,9 +108,8 @@ class LilyPondComment(Mark):
 
         Return string.
         '''
-        from abjad.tools import iotools
-        #command = iotools.underscore_delimited_lowercase_to_lowercamelcase(self._contents_string)
-        command = iotools.underscore_delimited_lowercase_to_lowercamelcase(self.contents_string)
+        from abjad.tools import stringtools
+        command = stringtools.underscore_delimited_lowercase_to_lowercamelcase(self.contents_string)
         return r'%% %s' % command
 
     @apply
