@@ -1,3 +1,4 @@
+import importlib
 import os
 from abjad.cfg.cfg import ABJADPATH
 from abjad.tools import abctools
@@ -25,34 +26,35 @@ class AbjadAPIGenerator(abctools.AbjadObject):
 
     _internals_packages_description = 'Internals packages'
 
-    _internals_packages = (
-        'formattools',
-    )
+#    _internals_packages = (
+#        'formattools',
+#    )
 
     _manual_packages_description = 'Additional Abjad composition packages (load manually)'
 
-    _manual_packages = (
-        'abctools',
-        'configurationtools',
-        'datastructuretools',
-        'decoratortools',
-        'documentationtools',
-        'durationtools',
-        'iotools',
-        'layouttools',
-        'lilypondparsertools',
-        'mathtools',
-        'pitcharraytools',
-        'rhythmtreetools',
-        'sequencetools',
-        'sievetools',
-        'tempotools',
-        'timeintervaltools',
-        'timesignaturetools',
-        'timetokentools',
-        'verticalitytools',
-        'wellformednesstools'
-    )
+#    _manual_packages = (
+#        'abctools',
+#        'configurationtools',
+#        'datastructuretools',
+#        'decoratortools',
+#        'documentationtools',
+#        'durationtools',
+#        'iotools',
+#        'layouttools',
+#        'lilypondparsertools',
+#        'mathtools',
+#        'pitcharraytools',
+#        'rhythmtreetools',
+#        'sequencetools',
+#        'sievetools',
+#        'stringtools',
+#        'tempotools',
+#        'timeintervaltools',
+#        'timesignaturetools',
+#        'timetokentools',
+#        'verticalitytools',
+#        'wellformednesstools'
+#    )
 
     _undocumented_packages = (
         'lilypondproxytools',
@@ -60,12 +62,12 @@ class AbjadAPIGenerator(abctools.AbjadObject):
 
     _unstable_packages_description = 'Unstable Abjad composition packages (load manually)'
 
-    _unstable_packages = (
-        'constrainttools',
-        'lyricstools',
-        'quantizationtools',
-        'tonalitytools',
-    )
+#    _unstable_packages = (
+#        'constrainttools',
+#        'lyricstools',
+#        'quantizationtools',
+#        'tonalitytools',
+#    )
     
     ### INITIALIZER ###
 
@@ -185,23 +187,33 @@ class AbjadAPIGenerator(abctools.AbjadObject):
         unstable = {}
 
         for obj in sorted(objects, key=lambda x: x.module_name):
-            tools_package = obj.module_name.split('.')[2]
 
-            collection = None
+            tools_package_name = obj.module_name.split('.')[2]
+            tools_package_path = '.'.join(obj.module_name.split('.')[:3])
+            tools_package_module = importlib.import_module(tools_package_path)
 
-            if tools_package in self._undocumented_packages:
-                continue
-            elif tools_package in self._internals_packages:
-                collection = internals
-            elif tools_package in self._unstable_packages:
-                collection = unstable
-            elif tools_package in self._manual_packages:
-                collection = manual
-            else:
-                collection = composition
+            collection = manual
+            if hasattr(tools_package_module, '_documentation_section'):
+                declared_documentation_section = getattr(tools_package_module, '_documentation_section')
+                if declared_documentation_section == 'core':
+                    collection = composition
+                elif declared_documentation_section == 'internals':
+                    collection = internals
+                elif declared_documentation_section == 'manual':
+                    collection = manual
+                elif declared_documentation_section == 'undocumented':
+                    continue
+                elif declared_documentation_section == 'unstable':
+                    collection = unstable
+                elif tools_package_name not in collection:
+                    print 'Tools package {} declares its _documentation_section improperly in its __init__.'.format(
+                        tools_package_name)
+            elif tools_package_name not in collection:
+                print 'Tools package {} does not declare a _documentation_section in its __init__.'.format(
+                    tools_package_name)
 
-            if tools_package not in collection:
-                collection[tools_package] = {
+            if tools_package_name not in collection:
+                collection[tools_package_name] = {
                     'abstract_classes': [],
                     'concrete_classes': [],
                     'functions': []
@@ -209,11 +221,11 @@ class AbjadAPIGenerator(abctools.AbjadObject):
 
             if isinstance(obj, ClassDocumenter):
                 if obj.is_abstract:
-                    collection[tools_package]['abstract_classes'].append(obj)
+                    collection[tools_package_name]['abstract_classes'].append(obj)
                 else:
-                    collection[tools_package]['concrete_classes'].append(obj)
+                    collection[tools_package_name]['concrete_classes'].append(obj)
             else:
-                collection[tools_package]['functions'].append(obj)
+                collection[tools_package_name]['functions'].append(obj)
 
         return composition, manual, unstable, internals
         
