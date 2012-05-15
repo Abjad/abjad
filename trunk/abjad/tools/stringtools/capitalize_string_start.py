@@ -7,7 +7,7 @@ def capitalize_string_start(string):
 
     ::
 
-        abjad> iotools.capitalize_string_start(string)
+        abjad> stringtools.capitalize_string_start(string)
         'Violin I'
 
     Function differs from built-in ``string.capitalize()``.
@@ -20,6 +20,10 @@ def capitalize_string_start(string):
         'Violin i'
 
     Return newly constructed string.
+
+    .. versionchanged:: 2.9
+        renamed ``iotools.capitalize_string_start()`` to
+        ``stringtools.capitalize_string_start()``.
     '''
 
     if not isinstance(string, str):

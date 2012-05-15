@@ -858,7 +858,7 @@ Implements 197 public classes and 941 public functions totalling 153,000 lines o
 
 * Added other new functions to ``iotools``::
 
-    iotools.capitalize_string_start()
+    stringtools.capitalize_string_start()
     iotools.is_space_delimited_lowercamelcase_string()
     iotools.is_underscore_delimited_lowercamelcase_package_name()
     iotools.is_underscore_delimited_lowercamelcase_string()

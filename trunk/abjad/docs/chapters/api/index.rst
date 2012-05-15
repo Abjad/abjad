@@ -1352,11 +1352,8 @@ Additional Abjad composition packages (load manually)
 .. toctree::
    :maxdepth: 1
 
-   tools/iotools/capitalize_string_start
    tools/iotools/clear_terminal
    tools/iotools/f
-   tools/iotools/format_input_lines_as_doc_string
-   tools/iotools/format_input_lines_as_regression_test
    tools/iotools/get_last_output_file_name
    tools/iotools/get_next_output_file_name
    tools/iotools/is_lowercamelcase_string
@@ -1693,6 +1690,9 @@ Additional Abjad composition packages (load manually)
    tools/stringtools/arg_to_bidirectional_lilypond_symbol
    tools/stringtools/arg_to_tridirectional_direction_string
    tools/stringtools/arg_to_tridirectional_lilypond_symbol
+   tools/stringtools/capitalize_string_start
+   tools/stringtools/format_input_lines_as_doc_string
+   tools/stringtools/format_input_lines_as_regression_test
 
 :py:mod:`tempotools <abjad.tools.tempotools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
