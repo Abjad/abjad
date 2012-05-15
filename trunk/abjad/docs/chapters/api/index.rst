@@ -1108,19 +1108,6 @@ Abjad composition packages
    tools/stafftools/iterate_staves_forward_in_expr
    tools/stafftools/make_rhythmic_sketch_staff
 
-:py:mod:`stringtools <abjad.tools.stringtools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. rubric:: functions
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/stringtools/arg_to_bidirectional_direction_string
-   tools/stringtools/arg_to_bidirectional_lilypond_symbol
-   tools/stringtools/arg_to_tridirectional_direction_string
-   tools/stringtools/arg_to_tridirectional_lilypond_symbol
-
 :py:mod:`tietools <abjad.tools.tietools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -1523,16 +1510,6 @@ Additional Abjad composition packages (load manually)
    tools/pitcharraytools/make_empty_pitch_array_from_list_of_pitch_lists
    tools/pitcharraytools/make_populated_pitch_array_from_list_of_pitch_lists
 
-:py:mod:`rhythmtreetools <abjad.tools.rhythmtreetools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. rubric:: functions
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/rhythmtreetools/parse_rtm_syntax
-
 :py:mod:`sequencetools <abjad.tools.sequencetools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -1703,6 +1680,19 @@ Additional Abjad composition packages (load manually)
 
    tools/sievetools/all_are_residue_class_expressions
    tools/sievetools/cycle_tokens_to_sieve
+
+:py:mod:`stringtools <abjad.tools.stringtools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: functions
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/stringtools/arg_to_bidirectional_direction_string
+   tools/stringtools/arg_to_bidirectional_lilypond_symbol
+   tools/stringtools/arg_to_tridirectional_direction_string
+   tools/stringtools/arg_to_tridirectional_lilypond_symbol
 
 :py:mod:`tempotools <abjad.tools.tempotools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1960,6 +1950,16 @@ Unstable Abjad composition packages (load manually)
    tools/quantizationtools/tempo_scaled_leaves_to_q_events
    tools/quantizationtools/tempo_scaled_rational_to_milliseconds
    tools/quantizationtools/tempo_scaled_rationals_to_q_events
+
+:py:mod:`rhythmtreetools <abjad.tools.rhythmtreetools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: functions
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/rhythmtreetools/parse_rtm_syntax
 
 :py:mod:`tonalitytools <abjad.tools.tonalitytools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
