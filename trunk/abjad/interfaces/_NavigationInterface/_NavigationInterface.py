@@ -4,7 +4,11 @@ import collections
 
 class _NavigationInterface(_Interface):
 
-    __slots__ = ( )
+    ### CLASS ATTRIBUTES ###
+
+    __slots__ = ()
+
+    ### INITIALIZER ###
 
     def __init__(self, client):
         self._client = client
@@ -17,7 +21,7 @@ class _NavigationInterface(_Interface):
         parentage of client starting at the same moment as client,
         including client.
         '''
-        result = [ ]
+        result = []
         result.extend(self._contemporaneous_start_contents)
         result.extend(self._contemporaneous_start_parentage)
         return list(set(result))
@@ -28,7 +32,7 @@ class _NavigationInterface(_Interface):
         starting at the same moment as client, including client.
         '''
         from abjad.tools.containertools.Container import Container
-        result = [ ]
+        result = []
         client = self._client
         result.append(client)
         if isinstance(client, Container):
@@ -62,7 +66,7 @@ class _NavigationInterface(_Interface):
         parentage of client stopping at the same moment as client,
         including client.
         '''
-        result = [ ]
+        result = []
         result.extend(self._contemporaneous_stop_contents)
         result.extend(self._contemporaneous_stop_parentage)
         return list(set(result))
@@ -73,7 +77,7 @@ class _NavigationInterface(_Interface):
         stopping at the same moment as client, including client.
         '''
         from abjad.tools.containertools.Container import Container
-        result = [ ]
+        result = []
         client = self._client
         result.append(client)
         if isinstance(client, Container):
@@ -117,14 +121,14 @@ class _NavigationInterface(_Interface):
         if isinstance(client, Leaf):
             return [client]
         elif isinstance(client, Container):
-            leaves = [ ]
+            leaves = []
             if self._client.is_parallel:
                 for e in self._client:
                     leaves.extend(e._navigator._first_leaves)
             elif len(self._client):
                 leaves.extend(self._client[0]._navigator._first_leaves)
             else:
-                return [ ]
+                return []
             return leaves
 
     @property
@@ -138,14 +142,14 @@ class _NavigationInterface(_Interface):
         if isinstance(client, Leaf):
             return [client]
         elif isinstance(client, Container):
-            leaves = [ ]
+            leaves = []
             if self._client.is_parallel:
                 for e in self._client:
                     leaves.extend(e._navigator._last_leaves)
             elif len(self._client):
                 leaves.extend(self._client[-1]._navigator._last_leaves)
             else:
-                return [ ]
+                return []
             return leaves
 
     @property
@@ -204,7 +208,7 @@ class _NavigationInterface(_Interface):
         prev = self._prev
         if prev is None:
             return None
-        dfs = componenttools.iterate_components_depth_first(prev, capped = False, direction = 'right')
+        dfs = componenttools.iterate_components_depth_first(prev, capped=False, direction='right')
         for node in dfs:
             if type(node) == type(self._client) and \
                 componenttools.component_to_parentage_signature(node) == \
@@ -213,10 +217,10 @@ class _NavigationInterface(_Interface):
 
     @property
     def _next_sibling(self):
-        '''Returns the next *sequential* element in the caller's parent;
+        '''Returns the next sequential element in the caller's parent;
         None otherwise.
         '''
-        rank = self._rank( )
+        rank = self._rank()
         if (not rank is None) and (not self._client._parentage.parent.is_parallel):
             if rank + 1 < len(self._client._parentage.parent._music):
                 return self._client._parentage.parent._music[rank + 1]
@@ -270,10 +274,10 @@ class _NavigationInterface(_Interface):
 
     @property
     def _prev_sibling(self):
-        '''Returns the previous *sequential* element in the caller's parent;
+        '''Returns the previous sequential element in the caller's parent;
         None otherwise.
         '''
-        rank = self._rank( )
+        rank = self._rank()
         if (not rank is None) and (not self._client._parentage.parent.is_parallel):
             if 0 <= rank - 1:
                 return self._client._parentage.parent._music[rank - 1]
@@ -313,13 +317,13 @@ class _NavigationInterface(_Interface):
                 cur = cur._parentage.parent
             else:
                 return next_sibling._navigator._contemporaneous_start_contents
-        return [ ]
+        return []
 
     def _is_immediate_temporal_successor_of(self, expr):
         '''True when client follows immediately after expr,
         otherwise False.
         '''
-        return expr in self._get_immediate_temporal_successors( )
+        return expr in self._get_immediate_temporal_successors()
 
     def _is_threadable(self, expr):
         '''Check if expr is threadable with respect to self.
@@ -339,26 +343,26 @@ class _NavigationInterface(_Interface):
         else:
             return None
 
-    def _traverse(self, v, depthFirst=True, leftRight=True):
+    def _traverse(self, v, depth_first=True, left_right=True):
         '''Traverse with visitor visiting each node in turn.
         '''
-        if depthFirst:
+        if depth_first:
             self._traverse_depth_first(v)
         else:
-            self._traverse_breadth_first(v, leftRight)
+            self._traverse_breadth_first(v, left_right)
 
-    def _traverse_breadth_first(self, v, leftRight = True):
+    def _traverse_breadth_first(self, v, left_right=True):
         '''Traverse breadth-first with visitor visiting each node.
         '''
         queue = collections.deque([self._client])
         while queue:
-            node = queue.popleft( )
+            node = queue.popleft()
             if hasattr(v, 'visit'):
                 v.visit(node)
             elif hasattr(v, '_visit'):
                 v._visit(node)
             if hasattr(node, '_music'):
-                if leftRight:
+                if left_right:
                     queue.extend(node._music)
                 else:
                     queue.extend(reversed(node._music))
