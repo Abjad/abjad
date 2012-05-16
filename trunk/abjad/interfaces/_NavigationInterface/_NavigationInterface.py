@@ -40,16 +40,7 @@ class _NavigationInterface(_Interface):
         starting at the same moment as client, including client.
         '''
         from abjad.tools import componenttools
-        client = self._client
-        result = [client]
-        prev = client
-        for parent in componenttools.get_proper_parentage_of_component(client):
-            if parent.is_parallel:
-                result.append(parent)
-            elif parent.index(prev) == 0:
-                result.append(parent)
-            prev = parent
-        return result
+        return componenttools.get_improper_parentage_of_component_that_start_with_component(self._client)
 
     @property
     def _contemporaneous_stop_components(self):
@@ -76,19 +67,7 @@ class _NavigationInterface(_Interface):
         stopping at the same moment as client, including client.
         '''
         from abjad.tools import componenttools
-        client = self._client
-        result = [client]
-        prev = client
-        for parent in componenttools.get_proper_parentage_of_component(client):
-            if parent.is_parallel:
-                if prev.prolated_duration == parent.prolated_duration:
-                    result.append(parent)
-                else:
-                    break
-            elif parent.index(prev) == len(parent) - 1:
-                result.append(parent)
-            prev = parent
-        return result
+        return componenttools.get_improper_parentage_of_component_that_stop_with_component(self._client)
 
     @property
     def _first_leaves(self):
