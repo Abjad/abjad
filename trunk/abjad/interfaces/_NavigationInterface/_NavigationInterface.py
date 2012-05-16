@@ -32,7 +32,7 @@ class _NavigationInterface(_Interface):
         starting at the same moment as client, including client.
         '''
         from abjad.tools import componenttools
-        return componenttools.get_improper_contents_of_component_that_start_with_component(self._client)
+        return componenttools.get_improper_descendents_of_component_that_start_with_component(self._client)
 
     @property
     def _contemporaneous_start_parentage(self):
@@ -59,7 +59,7 @@ class _NavigationInterface(_Interface):
         stopping at the same moment as client, including client.
         '''
         from abjad.tools import componenttools
-        return componenttools.get_improper_contents_of_component_that_stop_with_component(self._client)
+        return componenttools.get_improper_descendents_of_component_that_stop_with_component(self._client)
 
     @property
     def _contemporaneous_stop_parentage(self):

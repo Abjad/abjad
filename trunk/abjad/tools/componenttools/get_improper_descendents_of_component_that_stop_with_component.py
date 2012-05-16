@@ -1,7 +1,7 @@
-def get_improper_contents_of_component_that_stop_with_component(component):
+def get_improper_descendents_of_component_that_stop_with_component(component):
     r'''.. versionadded:: 2.9
 
-    Get improper contents of `component` that stop with `component`::
+    Get improper descendents of `component` that stop with `component`::
 
         abjad> staff = Staff(r"c' << \new Voice { d' } \new Voice { e' } >> f'")
 
@@ -23,12 +23,16 @@ def get_improper_contents_of_component_that_stop_with_component(component):
 
     ::
 
-        abjad> componenttools.get_improper_contents_of_component_that_stop_with_component(staff)
+        abjad> componenttools.get_improper_descendents_of_component_that_stop_with_component(staff)
         [Staff{3}, Note("f'4")]
 
     Return list of `component` together with proper contents that stop with `component`.
+
+    .. versionchanged:: 2.9
+        renamed ``componenttools.get_improper_contents_of_component_that_stop_with_component()`` to
+        ``componenttools.get_improper_descendents_of_component_that_stop_with_component()``.
     '''
-    from abjad.tools.containertools.Container import Container
+    from abjad.tools import containertools
 
     # initialize result
     result = []
@@ -37,14 +41,14 @@ def get_improper_contents_of_component_that_stop_with_component(component):
     result.append(component)
 
     # add proper contents that stop with component
-    if isinstance(component, Container):
+    if isinstance(component, containertools.Container):
         if component.is_parallel:
             duration = component.preprolated_duration
             for x in component:
                 if x.preprolated_duration == duration:
-                    result.extend(get_improper_contents_of_component_that_stop_with_component(x))
+                    result.extend(get_improper_descendents_of_component_that_stop_with_component(x))
         elif component:
-            result.extend(get_improper_contents_of_component_that_stop_with_component(component[-1]))
+            result.extend(get_improper_descendents_of_component_that_stop_with_component(component[-1]))
 
     # return result
     return result

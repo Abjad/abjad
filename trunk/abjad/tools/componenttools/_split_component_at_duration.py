@@ -36,7 +36,7 @@ def _split_component_at_duration(component, duration, spanners='unfractured', ti
     global_split_point = component._offset.start + duration
 
     # get duration crossers, if any
-    contents = componenttools.get_improper_contents_of_component_that_cross_prolated_offset(component, duration)
+    contents = componenttools.get_improper_descendents_of_component_that_cross_prolated_offset(component, duration)
 
     #print component, global_split_point, contents
 
@@ -65,7 +65,7 @@ def _split_component_at_duration(component, duration, spanners='unfractured', ti
             measuretools.scale_measure_denominator_and_adjust_measure_contents(
                 measure, nonbinary_product)
             # rederive duration crosses with possibly new measure contents
-            contents = componenttools.get_improper_contents_of_component_that_cross_prolated_offset(
+            contents = componenttools.get_improper_descendents_of_component_that_cross_prolated_offset(
                 component, duration)
     elif 1 < len(measures):
         raise ContainmentError('measures can not nest.')

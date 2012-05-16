@@ -1,4 +1,4 @@
-def get_improper_contents_of_component_that_start_with_component(component):
+def get_improper_descendents_of_component_that_start_with_component(component):
     r'''.. versionadded:: 2.9
 
     Get improper contents of `component` that start with `component`::
@@ -23,12 +23,16 @@ def get_improper_contents_of_component_that_start_with_component(component):
 
     ::
 
-        abjad> componenttools.get_improper_contents_of_component_that_start_with_component(staff[1])
+        abjad> componenttools.get_improper_descendents_of_component_that_start_with_component(staff[1])
         [<<Voice{1}, Voice{1}>>, Voice{1}, Note("d'4"), Voice{1}, Note("e'4")]
 
     Return list of `component` together with improper contents that start with component.
+
+    .. versionchanged:: 2.9
+        renamed ``componenttools.get_improper_contents_of_component_that_start_with_component()`` to
+        ``componenttools.get_improper_descendents_of_component_that_start_with_component()``.
     '''
-    from abjad.tools.containertools.Container import Container
+    from abjad.tools import containertools
 
     # initialize result
     result = []
@@ -37,12 +41,12 @@ def get_improper_contents_of_component_that_start_with_component(component):
     result.append(component)
 
     # add content components that start with component
-    if isinstance(component, Container):
+    if isinstance(component, containertools.Container):
         if component.is_parallel:
             for x in component:
-                result.extend(get_improper_contents_of_component_that_start_with_component(x))
+                result.extend(get_improper_descendents_of_component_that_start_with_component(x))
         elif component:
-            result.extend(get_improper_contents_of_component_that_start_with_component(component[0]))
+            result.extend(get_improper_descendents_of_component_that_start_with_component(component[0]))
 
     # return result
     return result

@@ -91,9 +91,10 @@ Abjad composition packages
    tools/componenttools/get_first_instance_of_klass_in_improper_parentage_of_component
    tools/componenttools/get_first_instance_of_klass_in_proper_parentage_of_component
    tools/componenttools/get_improper_contents_of_component
-   tools/componenttools/get_improper_contents_of_component_that_cross_prolated_offset
-   tools/componenttools/get_improper_contents_of_component_that_start_with_component
-   tools/componenttools/get_improper_contents_of_component_that_stop_with_component
+   tools/componenttools/get_improper_descendents_of_component
+   tools/componenttools/get_improper_descendents_of_component_that_cross_prolated_offset
+   tools/componenttools/get_improper_descendents_of_component_that_start_with_component
+   tools/componenttools/get_improper_descendents_of_component_that_stop_with_component
    tools/componenttools/get_improper_parentage_of_component
    tools/componenttools/get_improper_parentage_of_component_that_start_with_component
    tools/componenttools/get_improper_parentage_of_component_that_stop_with_component
@@ -103,6 +104,7 @@ Abjad composition packages
    tools/componenttools/get_nth_namesake_from_component
    tools/componenttools/get_parent_and_start_stop_indices_of_components
    tools/componenttools/get_proper_contents_of_component
+   tools/componenttools/get_proper_descendents_of_component
    tools/componenttools/get_proper_parentage_of_component
    tools/componenttools/is_beamable_component
    tools/componenttools/is_orphan_component
