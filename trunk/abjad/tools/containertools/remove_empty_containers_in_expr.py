@@ -63,4 +63,4 @@ def remove_empty_containers_in_expr(expr):
                 remove_component_subtree_from_score_and_spanners([node])
 
     v = Visitor()
-    expr._navigator._traverse(v, depthFirst = False)
+    expr._navigator._traverse(v, depth_first=False)

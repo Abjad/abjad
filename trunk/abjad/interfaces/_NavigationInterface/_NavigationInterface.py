@@ -31,17 +31,8 @@ class _NavigationInterface(_Interface):
         '''Return a list of all components in the contents of client
         starting at the same moment as client, including client.
         '''
-        from abjad.tools.containertools.Container import Container
-        result = []
-        client = self._client
-        result.append(client)
-        if isinstance(client, Container):
-            if client.is_parallel:
-                for x in client:
-                    result.extend(x._navigator._contemporaneous_start_contents)
-            elif len(client):
-                result.extend(client[0]._navigator._contemporaneous_start_contents)
-        return result
+        from abjad.tools import componenttools
+        return componenttools.get_improper_contents_of_component_that_start_with_component(self._client)
 
     @property
     def _contemporaneous_start_parentage(self):
