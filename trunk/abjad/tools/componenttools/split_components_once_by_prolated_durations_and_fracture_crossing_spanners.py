@@ -15,6 +15,9 @@ def split_components_once_by_prolated_durations_and_fracture_crossing_spanners(
         BeamSpanner(|2/8(2)|)
         abjad> spannertools.SlurSpanner(t.leaves)
         SlurSpanner(c'8, d'8, e'8, f'8)
+
+    ::
+
         abjad> f(t)
         \new Staff {
             {
@@ -23,7 +26,6 @@ def split_components_once_by_prolated_durations_and_fracture_crossing_spanners(
                 d'8 ]
             }
             {
-                \time 2/8
                 e'8 [
                 f'8 ] )
             }

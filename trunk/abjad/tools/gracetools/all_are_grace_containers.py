@@ -48,4 +48,4 @@ def all_are_grace_containers(expr):
     Function wraps ``componenttools.all_are_components()``.
     '''
 
-    return all_are_components(expr, klasses=(Grace,))
+    return all_are_components(expr, klasses=(GraceContainer,))

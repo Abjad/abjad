@@ -24,7 +24,7 @@ class SpacingIndication(AbjadObject):
 
     Initialize from other spacing indication::
 
-        abjad> SpacingIndication(indication)
+        abjad> layouttools.SpacingIndication(indication)
         SpacingIndication(TempoMark(Duration(1, 8), 44), Duration(1, 68))
 
     Spacing indications are immutable.
@@ -58,7 +58,13 @@ class SpacingIndication(AbjadObject):
         '''
         return not self == expr
 
-    ### PUBLIC READ-ONLY PROPERTIES ###
+    ### READ-ONLY PRIVATE PROPERTIES ###
+
+    @property
+    def _mandatory_argument_names(self):
+        return ('_tempo_indication', '_proportional_notation_duration')
+
+    ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def normalized_spacing_duration(self):

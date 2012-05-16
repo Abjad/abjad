@@ -30,7 +30,6 @@ def iterate_semantic_voices_backward_in_expr(expr):
                     s1 * 5/16
                 }
                 {
-                    \time 5/16
                     s1 * 5/16
                 }
             }

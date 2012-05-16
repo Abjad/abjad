@@ -15,6 +15,9 @@ def split_components_cyclically_by_prolated_durations_and_fracture_crossing_span
         BeamSpanner(|2/8(2)|)
         abjad> spannertools.SlurSpanner(staff.leaves)
         SlurSpanner(c'8, d'8, e'8, f'8)
+
+    ::
+
         abjad> f(staff)
         \new Staff {
             {
@@ -23,7 +26,6 @@ def split_components_cyclically_by_prolated_durations_and_fracture_crossing_span
                 d'8 ]
             }
             {
-                \time 2/8
                 e'8 [
                 f'8 ] )
             }
@@ -48,7 +50,6 @@ def split_components_cyclically_by_prolated_durations_and_fracture_crossing_span
                 d'16 ] (
             }
             {
-                \time 2/8
                 e'32 ) [
                 e'16. (
                 f'16. )

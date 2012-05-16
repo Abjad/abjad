@@ -12,7 +12,7 @@ def is_pair(expr):
 
     Otherwise false::
 
-        abjad> sequencetools.si_pair((19, 20, 21))
+        abjad> sequencetools.is_pair((19, 20, 21))
         False
 
     Return boolean.

@@ -4,7 +4,7 @@ from abjad.tools.componenttools.get_nth_component_in_expr import get_nth_compone
 
 # TODO: implement ``iterate.yield_leaves(expr, i = 0, j = None)``
 #       as a generalization of, and companion to, this function.
-def get_nth_leaf_in_expr(expr, n = 0):
+def get_nth_leaf_in_expr(expr, n=0):
     r'''.. versionadded:: 2.0
 
     Get `n` th leaf in `expr`::
@@ -19,12 +19,10 @@ def get_nth_leaf_in_expr(expr, n = 0):
                 d'8
             }
             {
-                \time 2/8
                 e'8
                 f'8
             }
             {
-                \time 2/8
                 g'8
                 a'8
             }

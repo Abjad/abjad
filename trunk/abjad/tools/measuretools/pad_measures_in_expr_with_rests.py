@@ -36,7 +36,6 @@ def pad_measures_in_expr_with_rests(expr, front, back, splice = False):
             }
             {
                 \override Staff.TimeSignature #'stencil = ##f
-                \time 19/64
                 r32
                 c'8
                 d'8
@@ -73,7 +72,6 @@ def pad_measures_in_expr_with_rests(expr, front, back, splice = False):
                 }
             >>
             <<
-                \time 19/64
                 \new Voice {
                     r32
                     g'8

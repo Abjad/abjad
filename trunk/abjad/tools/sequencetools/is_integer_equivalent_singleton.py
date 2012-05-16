@@ -5,6 +5,10 @@ def is_integer_equivalent_singleton(expr):
     r'''.. versionadded:: 2.9
 
     True when `expr` is a singleton of integer-equivalent expressions::
+        
+        abjad> from abjad.tools import sequencetools
+
+    ::
 
         abjad> sequencetools.is_integer_equivalent_singleton((2.0,))
         True

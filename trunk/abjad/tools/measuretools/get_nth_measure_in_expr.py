@@ -21,12 +21,10 @@ def get_nth_measure_in_expr(expr, n = 0):
                 d'8
             }
             {
-                \time 2/8
                 e'8
                 f'8
             }
             {
-                \time 2/8
                 g'8
                 a'8
             }

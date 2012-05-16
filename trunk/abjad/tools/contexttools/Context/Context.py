@@ -233,7 +233,6 @@ class Context(Container):
                         s1 * 5/16
                     }
                     {
-                        \time 5/16
                         s1 * 5/16
                     }
                 }

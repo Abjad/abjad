@@ -27,7 +27,6 @@ def make_measures_with_full_measure_spacer_skips(meters):
                 s1 * 5/16
             }
             {
-                \time 5/16
                 s1 * 5/16
             }
         }

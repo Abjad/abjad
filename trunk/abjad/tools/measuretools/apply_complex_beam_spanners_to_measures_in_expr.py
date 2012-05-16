@@ -21,7 +21,6 @@ def apply_complex_beam_spanners_to_measures_in_expr(expr):
                 d'8
             }
             {
-                \time 2/8
                 e'8
                 f'8
             }
@@ -46,7 +45,6 @@ def apply_complex_beam_spanners_to_measures_in_expr(expr):
                 d'8 ]
             }
             {
-                \time 2/8
                 \set stemLeftBeamCount = #0
                 \set stemRightBeamCount = #1
                 e'8 [

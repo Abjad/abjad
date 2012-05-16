@@ -12,15 +12,15 @@ def report_spanner_format_contributions(spanner, screen=True):
         c8  before: []
              after: []
              right: ['[']
-
+        <BLANKLINE>
         d8  before: []
              after: []
              right: []
-
+        <BLANKLINE>
         e8  before: []
              after: []
              right: []
-
+        <BLANKLINE>
         f8  before: []
              after: []
              right: [']']
@@ -30,9 +30,9 @@ def report_spanner_format_contributions(spanner, screen=True):
     result = ''
     for leaf in spanner.leaves:
         result += str(leaf)
-        result += '\tbefore: %s\n' % spanner._format._before(leaf)
-        result += '\t after: %s\n' % spanner._format._after(leaf)
-        result += '\t right: %s\n' % spanner._format._right(leaf)
+        result += '\tbefore: %s\n' % spanner._format_before_leaf(leaf)
+        result += '\t after: %s\n' % spanner._format_after_leaf(leaf)
+        result += '\t right: %s\n' % spanner._format_right_of_leaf(leaf)
         result += '\n'
     if result[-1] == '\n':
         result = result[:-1]

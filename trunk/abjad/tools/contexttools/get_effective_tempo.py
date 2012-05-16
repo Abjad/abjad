@@ -17,8 +17,8 @@ def get_effective_tempo(component):
 
         abjad> f(score)
         \new Score <<
-            \tempo 8=52
             \new Staff {
+                \tempo 8=52
                 c'8
                 d'8
                 e'8

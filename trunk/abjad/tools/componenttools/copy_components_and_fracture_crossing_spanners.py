@@ -28,12 +28,10 @@ def copy_components_and_fracture_crossing_spanners(components, n=1):
                 d'8
             }
             {
-                \time 2/8
                 e'8
                 f'8 ]
             }
             {
-                \time 2/8
                 g'8
                 a'8
             }

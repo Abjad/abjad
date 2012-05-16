@@ -8,7 +8,10 @@ def replace_leaves_in_expr_with_rests(expr):
 
         abjad> staff = Staff(Measure((2, 8), "c'8 d'8") * 2)
         abjad> resttools.replace_leaves_in_expr_with_rests(staff[0])
-        abjad> print staff.format
+
+    ::
+
+        abjad> f(staff)
         \new Staff {
             {
                 \time 2/8
@@ -16,7 +19,6 @@ def replace_leaves_in_expr_with_rests(expr):
                 r8
             }
             {
-                \time 2/8
                 c'8
                 d'8
             }

@@ -44,12 +44,10 @@ class OutputIncisedRestFilledTimeTokenMaker(OutputIncisedTimeTokenMaker):
                 r8
             }
             {
-                \time 5/8
                 r2
                 r8
             }
             {
-                \time 5/8
                 r4
                 c'16.
                 c'16.

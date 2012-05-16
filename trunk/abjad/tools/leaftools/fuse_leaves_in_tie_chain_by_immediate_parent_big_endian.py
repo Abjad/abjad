@@ -15,7 +15,6 @@ def fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(tie_chain):
                 c'8 ~
             }
             {
-                \time 2/8
                 c'8 ~
                 c'8
             }
@@ -36,7 +35,6 @@ def fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(tie_chain):
                 c'4 ~
             }
             {
-                \time 2/8
                 c'4
             }
         }

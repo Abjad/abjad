@@ -6,6 +6,10 @@ def is_integer_equivalent_pair(expr):
 
     True when `expr` is a pair of integer-equivalent expressions::
 
+        abjad> from abjad.tools import sequencetools
+
+    ::
+
         abjad> sequencetools.is_integer_equivalent_pair((2.0, '3'))
         True
 

@@ -38,20 +38,17 @@ class TokenIncisedNoteFilledTimeTokenMaker(TokenIncisedTimeTokenMaker):
                 r32
             }
             {
-                \time 5/8
                 r4
                 c'4
                 c'16.
                 r32
             }
             {
-                \time 5/8
                 c'2
                 c'16.
                 r32
             }
             {
-                \time 5/8
                 r4
                 c'4
                 c'16.

@@ -40,12 +40,10 @@ class OutputIncisedNoteFilledTimeTokenMaker(OutputIncisedTimeTokenMaker):
                 c'8
             }
             {
-                \time 5/8
                 c'2
                 c'8
             }
             {
-                \time 5/8
                 c'4
                 r16.
                 r16.

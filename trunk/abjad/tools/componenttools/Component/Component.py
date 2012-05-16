@@ -165,6 +165,12 @@ class Component(AbjadObject):
     def _format_slot_7(self):
         pass
 
+    def _get_format_contributions_for_slot(self, n):
+        result = []
+        for source, contributions in eval('self._format_slot_{}()'.format(n)):
+            result.extend(contributions)
+        return result
+
     def _initialize_keyword_values(self, **kwargs):
         for key, value in kwargs.iteritems():
             self._set_keyword_value(key, value)

@@ -20,7 +20,6 @@ def split_container_at_index_and_do_not_fracture_crossing_spanners(container, in
                 e'8
             }
             {
-                \time 3/8
                 f'8
                 g'8
                 a'8 ]

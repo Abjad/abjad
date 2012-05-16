@@ -17,12 +17,10 @@ def iterate_leaves_backward_in_expr(expr, start = 0, stop = None):
                 d'8
             }
             {
-                \time 2/8
                 e'8
                 f'8
             }
             {
-                \time 2/8
                 g'8
                 a'8
             }

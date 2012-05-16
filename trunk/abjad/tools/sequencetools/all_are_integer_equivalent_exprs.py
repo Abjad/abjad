@@ -10,12 +10,12 @@ def all_are_integer_equivalent_exprs(expr):
 
     ::
 
-        abjad> sequencetools.all_are_integer_equivalent_numbers([1, '2', 3.0, Fraction(4, 1)])
+        abjad> sequencetools.all_are_integer_equivalent_exprs([1, '2', 3.0, Fraction(4, 1)])
         True
 
     Otherwise false::
 
-        abjad> sequencetools.all_are_integer_equivalent_numbers([1, '2', 3.5, 4])
+        abjad> sequencetools.all_are_integer_equivalent_exprs([1, '2', 3.5, 4])
         False
 
     Return boolean.

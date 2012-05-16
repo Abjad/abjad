@@ -19,12 +19,10 @@ def get_one_indexed_measure_number_in_expr(expr, measure_number):
                 d'8
             }
             {
-                \time 2/8
                 e'8
                 f'8
             }
             {
-                \time 2/8
                 g'8
                 a'8
             }

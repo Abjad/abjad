@@ -54,7 +54,6 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
 
     ### INITIALIZER ###
 
-    #def __init__(self, *args):
     def __new__(klass, *args):
         from abjad.tools import mathtools
         from abjad.tools import sequencetools
@@ -67,15 +66,15 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
         elif len(args) == 1 and sequencetools.is_integer_singleton(args[0]):
             numerator = args[0][0]
             denominator = 1
+        elif len(args) == 1 and sequencetools.is_integer_pair(args[0]):
+            numerator, denominator = args[0]
         elif sequencetools.is_integer_pair(args):
             numerator = args[0]
             denominator = args[1]
         else:
-            raise ValueError('can not initialize {} from {!r}.'.format(type(self).__class__.__name__, args))
+            raise ValueError('can not initialize NonreducedFraction from {!r}.'.format(args))
         numerator *= mathtools.sign(denominator)
         denominator = abs(denominator)
-        #self._numerator = numerator
-        #self._denominator = denominator
         self = Fraction.__new__(klass, numerator, denominator)
         self._numerator = numerator
         self._denominator = denominator
@@ -188,7 +187,7 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
         fraction = self.reduce() * expr
         return self._fraction_with_denominator(fraction, max(denominators))
 
-    def __ne__(self):
+    def __ne__(self, expr):
         '''True when `expr` does not equal `self`::
             
             abjad> mathtools.NonreducedFraction(3, 3) != 'foo'

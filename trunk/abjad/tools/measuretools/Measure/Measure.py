@@ -270,14 +270,14 @@ class Measure(Container):
         '''True when measure time signature denominator is not an integer power of 2::
 
             abjad> measure = Measure((5, 9), "c'8 d' e' f' g'")
-            abjad> measure.is_binary
+            abjad> measure.is_nonbinary
             True
     
         Otherwise false::
 
             abjad> measure = Measure((5, 8), "c'8 d' e' f' g'")
-            abjad> measure.is_binary
-            True
+            abjad> measure.is_nonbinary
+            False
 
         Return boolean.
         '''

@@ -6,6 +6,10 @@ def is_fraction_equivalent_pair(expr):
 
     True when `expr` is an integer-equivalent pair of numbers excluding ``0`` as the second term::
 
+        abjad> from abjad.tools import sequencetools
+
+    ::
+
         abjad> sequencetools.is_fraction_equivalent_pair((2, 3))
         True
 

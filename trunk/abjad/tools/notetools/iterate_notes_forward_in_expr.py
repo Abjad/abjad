@@ -2,7 +2,7 @@ from abjad.tools.notetools.Note import Note
 from abjad.tools.componenttools.iterate_components_forward_in_expr import iterate_components_forward_in_expr
 
 
-def iterate_notes_forward_in_expr(expr, start = 0, stop = None):
+def iterate_notes_forward_in_expr(expr, start=0, stop=None):
     r'''.. versionadded:: 2.0
 
     Yield left-to-right notes in `expr`::
@@ -17,12 +17,10 @@ def iterate_notes_forward_in_expr(expr, start = 0, stop = None):
                 d'8
             }
             {
-                \time 2/8
                 e'8
                 f'8
             }
             {
-                \time 2/8
                 g'8
                 a'8
             }

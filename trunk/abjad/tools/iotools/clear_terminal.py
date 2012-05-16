@@ -9,7 +9,7 @@ def clear_terminal():
 
     Run ``cls`` if OS is not POSIX-compliant (Windows)::
 
-        abjad> iotools.clear_terminal()
+        abjad> iotools.clear_terminal() # doctest: +SKIP
 
     Return none.
     '''

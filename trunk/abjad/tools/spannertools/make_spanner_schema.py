@@ -23,17 +23,14 @@ def make_spanner_schema(components):
                 d'8
             }
             {
-                \time 2/8
                 e'8
                 f'8 ]
             }
             {
-                \time 2/8
                 g'8 (
                 a'8
             }
             {
-                \time 2/8
                 b'8
                 c''8 )
             }

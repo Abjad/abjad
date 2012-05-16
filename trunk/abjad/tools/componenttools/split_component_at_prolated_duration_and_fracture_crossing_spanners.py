@@ -2,7 +2,7 @@ from abjad.tools.componenttools._split_component_at_duration import _split_compo
 
 
 def split_component_at_prolated_duration_and_fracture_crossing_spanners(
-    component, prolated_duration, tie_after = False):
+    component, prolated_duration, tie_after=False):
     r'''.. versionadded:: 1.1
 
     Split `component` at `prolated_duration` and fracture crossing spanners.
@@ -17,6 +17,9 @@ def split_component_at_prolated_duration_and_fracture_crossing_spanners(
         BeamSpanner(|2/8(2)|)
         abjad> spannertools.SlurSpanner(t.leaves)
         SlurSpanner(c'8, d'8, e'8, f'8)
+
+    ::
+
         abjad> f(t)
         \new Staff {
             {
@@ -25,7 +28,6 @@ def split_component_at_prolated_duration_and_fracture_crossing_spanners(
                 d'8 ]
             }
             {
-                \time 2/8
                 e'8 [
                 f'8 ] )
             }
@@ -42,7 +44,6 @@ def split_component_at_prolated_duration_and_fracture_crossing_spanners(
                 d'8 ]
             }
             {
-                \time 2/8
                 e'8 [
                 f'8 ] )
             }

@@ -30,13 +30,11 @@ def report_container_modifications_as_string(container):
 
     ::
 
-        abjad> print string # doctest: +SKIP
+        abjad> print string
         {
             \override NoteHead #'color = #red
             \override NoteHead #'style = #'harmonic
-
             %%% 4 components omitted %%%
-
             \revert NoteHead #'color
             \revert NoteHead #'style
         }
@@ -44,4 +42,4 @@ def report_container_modifications_as_string(container):
     Return string.
     '''
 
-    return _report_container_modifications(container, output = 'string')
+    return _report_container_modifications(container, output='string')

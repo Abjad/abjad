@@ -23,14 +23,12 @@ def comment_measures_in_container_with_measure_numbers(container):
             % stop measure 1
             % start measure 2
             {
-                \time 2/8
                 e'8
                 f'8
             }
             % stop measure 2
             % start measure 3
             {
-                \time 2/8
                 g'8
                 a'8
             }

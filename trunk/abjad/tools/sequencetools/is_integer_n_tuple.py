@@ -1,4 +1,4 @@
-def is_integer_n_tuple(expr):
+def is_integer_n_tuple(expr, n):
     r'''.. versionadded:: 2.9
 
     True when `expr` is an integer tuple of length `n`::

@@ -2,16 +2,17 @@ from abjad.tools.spannertools.get_spanners_attached_to_any_improper_parent_of_co
 
 
 def report_as_string_format_contributions_of_spanners_attached_to_improper_parentage_of_component(
-    component, klass = None):
+    component, klass=None):
     r'''.. versionadded:: 1.1
 
     Report as string format contributions of all spanners attached to improper
     parentage of `component`::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> beam = spannertools.BeamSpanner(staff.leaves)
-        abjad> slur = spannertools.SlurSpanner(staff.leaves)
+        abjad> staff = Staff("c'8 [ ( d'8 e'8 f'8 ] )")
         abjad> trill = spannertools.TrillSpanner(staff)
+
+    ::
+
         abjad> f(staff)
         \new Staff {
             c'8 [ ( \startTrillSpan
@@ -22,8 +23,13 @@ def report_as_string_format_contributions_of_spanners_attached_to_improper_paren
 
     ::
 
-        abjad> spannertools.report_as_string_format_contributions_of_spanners_attached_to_component(staff[0])
-        'BeamSpanner\n\t_right\n\t\t[\nSlurSpanner\n\t_right\n\t\t(\n'
+        abjad> print spannertools.report_as_string_format_contributions_of_spanners_attached_to_component(staff[0])
+        BeamSpanner
+            _format_right_of_leaf
+                [
+        SlurSpanner
+            _format_right_of_leaf
+                (
 
     Return string.
 
@@ -33,11 +39,11 @@ def report_as_string_format_contributions_of_spanners_attached_to_improper_paren
     '''
 
     result = ''
-    locations = ('_before', '_left', '_right', '_after')
+    locations = ('_format_before_leaf', '_format_right_of_leaf', '_format_after_leaf')
     spanners = list(get_spanners_attached_to_any_improper_parent_of_component(component, klass))
-    spanners.sort(lambda x, y: cmp(x.__class__.__name__, y.__class__.__name__))
+    spanners.sort(lambda x, y: cmp(x._class_name, y._class_name))
     for spanner in spanners:
-        result += '%s\n' % spanner.__class__.__name__
+        result += '%s\n' % spanner._class_name
         for location in locations:
             contributions = getattr(spanner._format, location)(component)
             if contributions:

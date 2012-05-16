@@ -6,7 +6,7 @@ class SchemeMoment(Scheme):
     '''Abjad model of LilyPond moment::
 
         abjad> schemetools.SchemeMoment(1, 68)
-        SchemeMoment(1, 68)
+        SchemeMoment((1, 68))
 
     Initialize scheme moments with a single fraction, two integers or another scheme moment.
 

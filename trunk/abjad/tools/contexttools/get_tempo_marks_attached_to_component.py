@@ -20,8 +20,8 @@ def get_tempo_marks_attached_to_component(component):
 
         abjad> f(score)
         \new Score <<
-            \tempo 8=52
             \new Staff {
+                \tempo 8=52
                 c'8
                 d'8
                 e'8

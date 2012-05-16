@@ -26,7 +26,6 @@ class MeasuredComplexBeamSpanner(ComplexBeamSpanner):
                 d'16
             }
             {
-                \time 2/16
                 \set stemLeftBeamCount = #1
                 \set stemRightBeamCount = #2
                 e'16

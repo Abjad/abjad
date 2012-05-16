@@ -2,7 +2,6 @@ from abjad.tools.componenttools.ContainmentSignature import ContainmentSignature
 
 
 # TODO: where is this being used? same as containment signature?
-# TODO: fix doc test
 def component_to_parentage_signature(component):
     '''.. versionadded:: 1.1
 
@@ -12,12 +11,8 @@ def component_to_parentage_signature(component):
         abjad> staff = Staff([tuplet])
         abjad> note = staff.leaves[0]
         abjad> print componenttools.component_to_parentage_signature(note)
-                root: Staff-... (...)
-                score:
-        staffgroup:
-                staff: Staff-...
-                voice:
-                self: Note-...
+            staff: Staff-...
+            self: Note-...
 
     Return parentage signature.
     '''
