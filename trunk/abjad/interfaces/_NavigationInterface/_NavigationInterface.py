@@ -21,10 +21,8 @@ class _NavigationInterface(_Interface):
         parentage of client starting at the same moment as client,
         including client.
         '''
-        result = []
-        result.extend(self._contemporaneous_start_contents)
-        result.extend(self._contemporaneous_start_parentage)
-        return list(set(result))
+        from abjad.tools import componenttools
+        return componenttools.get_lineage_of_component_that_start_with_component(self._client)
 
     @property
     def _contemporaneous_start_contents(self):
@@ -48,10 +46,8 @@ class _NavigationInterface(_Interface):
         parentage of client stopping at the same moment as client,
         including client.
         '''
-        result = []
-        result.extend(self._contemporaneous_stop_contents)
-        result.extend(self._contemporaneous_stop_parentage)
-        return list(set(result))
+        from abjad.tools import componenttools
+        return componenttools.get_lineage_of_component_that_stop_with_component(self._client)
 
     @property
     def _contemporaneous_stop_contents(self):
