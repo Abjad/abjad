@@ -16,19 +16,19 @@ class ObjectInventory(list, AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, tokens=None, inventory_name=None):
+    def __init__(self, tokens=None, name=None):
         list.__init__(self)
         if isinstance(tokens, type(self)):
             for token in tokens:
                 self.append(self._item_callable(token))
-            self.inventory_name = tokens.inventory_name or inventory_name
+            self.name = tokens.name or name
         else:
             tokens = tokens or []
             items = []
             for token in tokens:
                 items.append(self._item_callable(token))
             self.extend(items)
-            self.inventory_name = inventory_name
+            self.name = name
 
     ### SPECIAL METHODS ###
 
@@ -52,7 +52,7 @@ class ObjectInventory(list, AbjadObject):
     def _keyword_argument_names(self):
         result = []
         result.extend([
-            'inventory_name',
+            'name',
             ])
         return result
 
@@ -70,14 +70,14 @@ class ObjectInventory(list, AbjadObject):
     ### PUBLIC READ / WRITE ATTRIBUTES ###
 
     @apply
-    def inventory_name():
+    def name():
         def fget(self):
             '''Read / write name of inventory.
             '''
-            return self._inventory_name
-        def fset(self, _inventory_name):
-            assert isinstance(_inventory_name, (str, type(None)))
-            self._inventory_name = _inventory_name
+            return self._name
+        def fset(self, _name):
+            assert isinstance(_name, (str, type(None)))
+            self._name = _name
         return property(**locals())
 
     ### PRIVATE METHODS ###

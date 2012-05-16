@@ -9,7 +9,7 @@ scoretools.PerformerInventory
 Read/write Properties
 ---------------------
 
-.. autoattribute:: abjad.tools.scoretools.PerformerInventory.PerformerInventory.PerformerInventory.inventory_name
+.. autoattribute:: abjad.tools.scoretools.PerformerInventory.PerformerInventory.PerformerInventory.name
 
     Inherited from :py:class:`datastructuretools.ObjectInventory <abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory>`
 

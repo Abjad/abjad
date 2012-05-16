@@ -25,7 +25,7 @@ def test_ObjectInventory_subclassing_01():
     '''
 
     foo = SpecialObjectInventory([])    
-    assert foo._keyword_argument_names == ('color', 'flavor', 'inventory_name')
+    assert foo._keyword_argument_names == ('color', 'flavor', 'name')
 
 
 def test_ObjectInventory_subclassing_02():
@@ -42,10 +42,10 @@ def test_ObjectInventory_subclassing_03():
     '''Empty inventory. With keywords.
     '''
 
-    foo = SpecialObjectInventory(inventory_name='foo', color='red')
+    foo = SpecialObjectInventory(name='foo', color='red')
 
-    assert repr(foo) == "SpecialObjectInventory([], color='red', inventory_name='foo')"
-    assert foo._tools_package_qualified_indented_repr == "specialtools.SpecialObjectInventory([],\n\tcolor='red',\n\tinventory_name='foo'\n\t)"
+    assert repr(foo) == "SpecialObjectInventory([], color='red', name='foo')"
+    assert foo._tools_package_qualified_indented_repr == "specialtools.SpecialObjectInventory([],\n\tcolor='red',\n\tname='foo'\n\t)"
 
 
 def test_ObjectInventory_subclassing_04():
@@ -62,7 +62,7 @@ def test_ObjectInventory_subclassing_05():
     '''Populated inventory. With keywords.
     '''
 
-    foo = SpecialObjectInventory(['foo', 99], inventory_name='foo', color='red')
+    foo = SpecialObjectInventory(['foo', 99], name='foo', color='red')
 
-    assert repr(foo) == "SpecialObjectInventory(['foo', 99], color='red', inventory_name='foo')"
-    assert foo._tools_package_qualified_indented_repr == "specialtools.SpecialObjectInventory([\n\t'foo',\n\t99\n\t],\n\tcolor='red',\n\tinventory_name='foo'\n\t)"
+    assert repr(foo) == "SpecialObjectInventory(['foo', 99], color='red', name='foo')"
+    assert foo._tools_package_qualified_indented_repr == "specialtools.SpecialObjectInventory([\n\t'foo',\n\t99\n\t],\n\tcolor='red',\n\tname='foo'\n\t)"

@@ -19,9 +19,9 @@ class OctaveTranspositionMapping(ObjectInventory):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        if self.inventory_name:
-            return '{}([{}], inventory_name={!r})'.format(
-                self._class_name, self._repr_contents_string, self.inventory_name)
+        if self.name:
+            return '{}([{}], name={!r})'.format(
+                self._class_name, self._repr_contents_string, self.name)
         else:
             return '{}([{}])'.format(self._class_name, self._repr_contents_string)
 
@@ -33,7 +33,7 @@ class OctaveTranspositionMapping(ObjectInventory):
 
     @property
     def _one_line_menuing_summary(self):
-        name = self.inventory_name or 'mapping'
+        name = self.name or 'mapping'
         contents = []
         for mapping_component in self:
             contents.append(mapping_component._one_line_menuing_summary)

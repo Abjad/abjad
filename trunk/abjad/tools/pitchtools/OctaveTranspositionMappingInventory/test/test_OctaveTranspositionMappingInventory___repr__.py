@@ -19,6 +19,6 @@ def test_OctaveTranspositionMappingInventory___repr___02():
 
     inventory = pitchtools.OctaveTranspositionMappingInventory(
         [[('[A0, C8]', -18)]], 
-        inventory_name='special inventory')
+        name='special inventory')
 
-    assert repr(inventory) == "OctaveTranspositionMappingInventory([OctaveTranspositionMapping([('[A0, C8]', -18)])], inventory_name='special inventory')"
+    assert repr(inventory) == "OctaveTranspositionMappingInventory([OctaveTranspositionMapping([('[A0, C8]', -18)])], name='special inventory')"

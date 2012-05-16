@@ -9,7 +9,7 @@ pitchtools.PitchRangeInventory
 Read/write Properties
 ---------------------
 
-.. autoattribute:: abjad.tools.pitchtools.PitchRangeInventory.PitchRangeInventory.PitchRangeInventory.inventory_name
+.. autoattribute:: abjad.tools.pitchtools.PitchRangeInventory.PitchRangeInventory.PitchRangeInventory.name
 
     Inherited from :py:class:`datastructuretools.ObjectInventory <abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory>`
 

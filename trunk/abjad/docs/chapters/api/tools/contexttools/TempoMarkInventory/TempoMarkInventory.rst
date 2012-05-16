@@ -9,7 +9,7 @@ contexttools.TempoMarkInventory
 Read/write Properties
 ---------------------
 
-.. autoattribute:: abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.inventory_name
+.. autoattribute:: abjad.tools.contexttools.TempoMarkInventory.TempoMarkInventory.TempoMarkInventory.name
 
     Inherited from :py:class:`datastructuretools.ObjectInventory <abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory>`
 

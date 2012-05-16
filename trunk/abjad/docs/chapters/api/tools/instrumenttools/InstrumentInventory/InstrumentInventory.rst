@@ -9,7 +9,7 @@ instrumenttools.InstrumentInventory
 Read/write Properties
 ---------------------
 
-.. autoattribute:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.inventory_name
+.. autoattribute:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.name
 
     Inherited from :py:class:`datastructuretools.ObjectInventory <abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory>`
 

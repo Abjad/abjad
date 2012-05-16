@@ -9,7 +9,7 @@ datastructuretools.ObjectInventory
 Read/write Properties
 ---------------------
 
-.. autoattribute:: abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.inventory_name
+.. autoattribute:: abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.name
 
 Methods
 -------

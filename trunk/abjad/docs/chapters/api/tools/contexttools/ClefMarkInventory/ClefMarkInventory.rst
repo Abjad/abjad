@@ -9,7 +9,7 @@ contexttools.ClefMarkInventory
 Read/write Properties
 ---------------------
 
-.. autoattribute:: abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.inventory_name
+.. autoattribute:: abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.name
 
     Inherited from :py:class:`datastructuretools.ObjectInventory <abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory>`
 

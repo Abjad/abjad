@@ -16,10 +16,10 @@ def test_ObjectInventory__tools_package_qualified_indented_repr_02():
     '''Empty inventory. With keywords.
     '''
 
-    inventory = datastructuretools.ObjectInventory(inventory_name='foo')
+    inventory = datastructuretools.ObjectInventory(name='foo')
 
-    assert repr(inventory) == "ObjectInventory([], inventory_name='foo')"
-    assert inventory._tools_package_qualified_indented_repr == "datastructuretools.ObjectInventory([],\n\tinventory_name='foo'\n\t)"
+    assert repr(inventory) == "ObjectInventory([], name='foo')"
+    assert inventory._tools_package_qualified_indented_repr == "datastructuretools.ObjectInventory([],\n\tname='foo'\n\t)"
 
 
 def test_ObjectInventory__tools_package_qualified_indented_repr_03():
@@ -60,7 +60,7 @@ def test_ObjectInventory__tools_package_qualified_indented_repr_04():
         'bar',
         pitchtools.PitchRange('[A0, C8]'),
         'blah'],
-        inventory_name='foo')
+        name='foo')
 
     r'''
     datastructuretools.ObjectInventory([
@@ -72,8 +72,8 @@ def test_ObjectInventory__tools_package_qualified_indented_repr_04():
             ),
         'blah'
         ],
-        inventory_name='foo'
+        name='foo'
         )
     '''
 
-    assert inventory._storage_format == "datastructuretools.ObjectInventory([\n\t'foo',\n\tinstrumenttools.Flute(),\n\t'bar',\n\tpitchtools.PitchRange(\n\t\t'[A0, C8]'\n\t\t),\n\t'blah'\n\t],\n\tinventory_name='foo'\n\t)"
+    assert inventory._storage_format == "datastructuretools.ObjectInventory([\n\t'foo',\n\tinstrumenttools.Flute(),\n\t'bar',\n\tpitchtools.PitchRange(\n\t\t'[A0, C8]'\n\t\t),\n\t'blah'\n\t],\n\tname='foo'\n\t)"

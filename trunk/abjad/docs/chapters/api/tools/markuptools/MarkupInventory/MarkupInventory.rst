@@ -9,7 +9,7 @@ markuptools.MarkupInventory
 Read/write Properties
 ---------------------
 
-.. autoattribute:: abjad.tools.markuptools.MarkupInventory.MarkupInventory.MarkupInventory.inventory_name
+.. autoattribute:: abjad.tools.markuptools.MarkupInventory.MarkupInventory.MarkupInventory.name
 
     Inherited from :py:class:`datastructuretools.ObjectInventory <abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory>`
 

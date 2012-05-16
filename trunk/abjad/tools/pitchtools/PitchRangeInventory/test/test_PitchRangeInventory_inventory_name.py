@@ -2,16 +2,16 @@ from abjad import *
 import py
 
 
-def test_PitchRangeInventory_inventory_name_01():
+def test_PitchRangeInventory_name_01():
 
     inventory = pitchtools.PitchRangeInventory(['[A0, C8]'])
-    assert inventory.inventory_name is None
+    assert inventory.name is None
 
-    inventory.inventory_name = 'blue inventory'
-    assert inventory.inventory_name == 'blue inventory'
+    inventory.name = 'blue inventory'
+    assert inventory.name == 'blue inventory'
 
 
-def test_PitchRangeInventory_inventory_name_02():
+def test_PitchRangeInventory_name_02():
 
     inventory = pitchtools.PitchRangeInventory(['[A0, C8]'])
-    assert py.test.raises(Exception, 'inventory.inventory_name = 99')
+    assert py.test.raises(Exception, 'inventory.name = 99')
