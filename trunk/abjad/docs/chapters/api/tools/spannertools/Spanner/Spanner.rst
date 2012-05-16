@@ -53,6 +53,8 @@ Methods
 Special Methods
 ---------------
 
+.. automethod:: abjad.tools.spannertools.Spanner.Spanner.Spanner.__call__
+
 .. automethod:: abjad.tools.spannertools.Spanner.Spanner.Spanner.__contains__
 
 .. automethod:: abjad.tools.spannertools.Spanner.Spanner.Spanner.__delattr__

@@ -1344,16 +1344,6 @@ Additional Abjad composition packages (load manually)
    tools/durationtools/yield_all_positive_rationals_in_cantor_diagonalized_order_uniquely
    tools/durationtools/yield_all_prolation_rewrite_pairs_of_rational_in_cantor_diagonalized_order
 
-:py:mod:`importtools <abjad.tools.importtools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. rubric:: functions
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/importtools/import_structured_package
-
 :py:mod:`iotools <abjad.tools.iotools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -2040,3 +2030,13 @@ Internals packages
    tools/formattools/get_spanner_format_contributions
    tools/formattools/get_stem_tremolo_format_contributions
    tools/formattools/report_spanner_format_contributions
+
+:py:mod:`importtools <abjad.tools.importtools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: functions
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/importtools/import_structured_package

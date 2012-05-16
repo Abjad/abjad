@@ -91,6 +91,10 @@ Methods
 Special Methods
 ---------------
 
+.. automethod:: abjad.tools.spannertools.TextSpanner.TextSpanner.TextSpanner.__call__
+
+    Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
 .. automethod:: abjad.tools.spannertools.TextSpanner.TextSpanner.TextSpanner.__contains__
 
     Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`

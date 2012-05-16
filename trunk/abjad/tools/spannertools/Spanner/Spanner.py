@@ -43,6 +43,35 @@ class Spanner(AbjadObject):
 
     ### SPECIAL METHODS ###
 
+    def __call__(self, expr):
+        r'''.. versionadded:: 2.9
+
+        Call spanner on `expr` as a shortcut to extend spanner::
+
+            abjad> staff = Staff("c'8 d'8 e'8 f'8")
+
+        ::
+
+            abjad> beam = spannertools.BeamSpanner()
+            abjad> beam(staff[:])
+            Staff{4}
+
+        ::
+
+            abjad> f(staff)
+            \new Staff {
+                c'8 [
+                d'8
+                e'8
+                f'8 ]
+            }
+
+        The method is provided as an experimental way of unifying spanner and mark attachment syntax.
+
+        Return spanner.
+        '''
+        return self.extend(expr)
+
     def __contains__(self, expr):
         for x in self._components:
             if x is expr:

@@ -16,10 +16,14 @@ class Mark(AbjadObject):
 
     Marks override ``___call__`` to attach to a note, rest or chord.
 
-    Marks implement ``__slots__``.
+    Marks are immutable.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
     __slots__ = ('_start_component', )
+
+    ### INITIALIZER ###
 
     def __init__(self, *args):
         if len(args) == 0:
@@ -27,7 +31,7 @@ class Mark(AbjadObject):
         elif len(args) == 1 and isinstance(args[0], type(self)):
             self._start_component = None
         else:
-            raise ValueError('can not initialize mark.')
+            raise ValueError('can not initialize mark from {!r}.'.format(args))
 
     ### SPECIAL METHODS ###
 
@@ -59,7 +63,7 @@ class Mark(AbjadObject):
         return '%s(%s)%s' % (type(self).__name__,
             self._contents_repr_string, self._attachment_repr_string)
 
-    ### PRIVATE PROPERTIES ###
+    ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
     def _attachment_repr_string(self):
@@ -91,7 +95,7 @@ class Mark(AbjadObject):
         start_component._marks_for_which_component_functions_as_start_component.append(self)
         self._start_component = start_component
 
-    ### PUBLIC PROPERTIES ###
+    ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def start_component(self):
