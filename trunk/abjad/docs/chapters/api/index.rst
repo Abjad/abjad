@@ -93,6 +93,7 @@ Abjad composition packages
    tools/componenttools/get_improper_contents_of_component
    tools/componenttools/get_improper_contents_of_component_that_cross_prolated_offset
    tools/componenttools/get_improper_contents_of_component_that_start_with_component
+   tools/componenttools/get_improper_contents_of_component_that_stop_with_component
    tools/componenttools/get_improper_parentage_of_component
    tools/componenttools/get_leftmost_components_with_prolated_duration_at_most
    tools/componenttools/get_likely_multiplier_of_components

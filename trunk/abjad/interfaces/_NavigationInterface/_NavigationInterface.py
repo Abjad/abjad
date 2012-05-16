@@ -67,19 +67,8 @@ class _NavigationInterface(_Interface):
         '''Return a list of all components in the contents of client
         stopping at the same moment as client, including client.
         '''
-        from abjad.tools.containertools.Container import Container
-        result = []
-        client = self._client
-        result.append(client)
-        if isinstance(client, Container):
-            if client.is_parallel:
-                client_duration = client.preprolated_duration
-                for x in client:
-                    if x.preprolated_duration == client_duration:
-                        result.extend(x._navigator._contemporaneous_stop_contents)
-            elif len(client):
-                result.extend(client[-1]._navigator._contemporaneous_stop_contents)
-        return result
+        from abjad.tools import componenttools
+        return componenttools.get_improper_contents_of_component_that_stop_with_component(self._client)
 
     @property
     def _contemporaneous_stop_parentage(self):
