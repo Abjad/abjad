@@ -154,13 +154,11 @@ class _NavigationInterface(_Interface):
         '''
         from abjad.tools import componenttools
         next = self._next_sibling
-        #if next:
         if next is not None:
             return next
         else:
             for p in componenttools.get_proper_parentage_of_component(self._client):
                 next = p._navigator._next_sibling
-                #if next:
                 if next is not None:
                     return next
 
@@ -196,9 +194,8 @@ class _NavigationInterface(_Interface):
                 componenttools.component_to_parentage_signature(self._client):
                 return node
 
-    # TODO: Write tests for _NavigationInterface._prev_namesake.                                    #
-    #         Backwards depth first search has always had a bug that needs fixing. #
-
+    # TODO: Write tests for _NavigationInterface._prev_namesake.
+    #       Backwards depth first search has always had a bug that needs fixing.
     @property
     def _prev_namesake(self):
         '''Find the prev component of same type and parentage signature.
@@ -248,13 +245,11 @@ class _NavigationInterface(_Interface):
         '''
         from abjad.tools import componenttools
         prev = self._prev_sibling
-        #if prev:
         if prev is not None:
             return prev
         else:
             for p in componenttools.get_proper_parentage_of_component(self._client):
                 prev = p._navigator._prev_sibling
-                #if prev:
                 if prev is not None:
                     return prev
 
@@ -332,8 +327,7 @@ class _NavigationInterface(_Interface):
         from abjad.tools import componenttools
         return componenttools.all_are_components_in_same_thread([self._client, expr])
 
-    # TODO: Move _NavigationInterface._rank to Parentage._rank #
-
+    # TODO: Move _NavigationInterface._rank to Parentage._rank
     def _rank(self):
         '''Returns the index of the caller (its position) in
         the parent container. If caller has no parent,

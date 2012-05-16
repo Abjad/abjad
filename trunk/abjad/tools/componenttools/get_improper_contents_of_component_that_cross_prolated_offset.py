@@ -3,7 +3,8 @@ from abjad.tools.componenttools.iterate_components_forward_in_expr import iterat
 from abjad.tools import durationtools
 
 
-def list_improper_contents_of_component_that_cross_prolated_offset(component, prolated_offset):
+# TODO: change name to get_improper_contents_of_...
+def get_improper_contents_of_component_that_cross_prolated_offset(component, prolated_offset):
     r'''.. versionadded:: 2.0
 
     List improper contents of `component` that cross `prolated_offset`::
@@ -30,30 +31,34 @@ def list_improper_contents_of_component_that_cross_prolated_offset(component, pr
 
     No components cross prolated offset ``0``::
 
-        abjad> componenttools.list_improper_contents_of_component_that_cross_prolated_offset(staff, 0)
+        abjad> componenttools.get_improper_contents_of_component_that_cross_prolated_offset(staff, 0)
         []
 
     Staff, measure and leaf cross prolated offset ``1/16``::
 
-        abjad> componenttools.list_improper_contents_of_component_that_cross_prolated_offset(staff, Duration(1, 16))
+        abjad> componenttools.get_improper_contents_of_component_that_cross_prolated_offset(staff, Duration(1, 16))
         [Staff{2}, Measure(2/8, [c'8, d'8]), Note("c'8")]
 
     Staff and measure cross prolated offset ``1/8``::
 
-        abjad> componenttools.list_improper_contents_of_component_that_cross_prolated_offset(staff, Duration(1, 8))
+        abjad> componenttools.get_improper_contents_of_component_that_cross_prolated_offset(staff, Duration(1, 8))
         [Staff{2}, Measure(2/8, [c'8, d'8])]
 
     Staff crosses prolated offset ``1/4``::
 
-        abjad> componenttools.list_improper_contents_of_component_that_cross_prolated_offset(staff, Duration(1, 4))
+        abjad> componenttools.get_improper_contents_of_component_that_cross_prolated_offset(staff, Duration(1, 4))
         [Staff{2}]
 
     No components cross prolated offset ``99``::
 
-        abjad> componenttools.list_improper_contents_of_component_that_cross_prolated_offset(staff, 99)
+        abjad> componenttools.get_improper_contents_of_component_that_cross_prolated_offset(staff, 99)
         []
 
     Return list.
+
+    .. versionchanged:: 2.9
+        renamed ``componenttools.list_improper_contents_of_component_that_cross_prolated_offset()`` to
+        ``componenttools.get_improper_contents_of_component_that_cross_prolated_offset()``.
     '''
 
     assert isinstance(component, Component)

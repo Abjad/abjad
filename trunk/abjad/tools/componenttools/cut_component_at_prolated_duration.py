@@ -1,5 +1,5 @@
 from abjad.tools.componenttools.Component import Component
-from abjad.tools.componenttools.list_leftmost_components_with_prolated_duration_at_most import list_leftmost_components_with_prolated_duration_at_most
+from abjad.tools.componenttools.get_leftmost_components_with_prolated_duration_at_most import get_leftmost_components_with_prolated_duration_at_most
 from abjad.tools import durationtools
 
 
@@ -73,7 +73,7 @@ def cut_component_at_prolated_duration(component, prolated_duration):
     else:
         container = component
         components, accumulated_duration = \
-            list_leftmost_components_with_prolated_duration_at_most(
+            get_leftmost_components_with_prolated_duration_at_most(
             container[:], prolated_duration)
         del(container[:len(components)])
         remaining_subtrahend_duration = prolated_duration - accumulated_duration

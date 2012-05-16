@@ -90,7 +90,9 @@ Abjad composition packages
    tools/componenttools/get_first_component_with_name_in_proper_parentage_of_component
    tools/componenttools/get_first_instance_of_klass_in_improper_parentage_of_component
    tools/componenttools/get_first_instance_of_klass_in_proper_parentage_of_component
+   tools/componenttools/get_improper_contents_of_component_that_cross_prolated_offset
    tools/componenttools/get_improper_parentage_of_component
+   tools/componenttools/get_leftmost_components_with_prolated_duration_at_most
    tools/componenttools/get_likely_multiplier_of_components
    tools/componenttools/get_nth_component_in_expr
    tools/componenttools/get_nth_namesake_from_component
@@ -113,8 +115,6 @@ Abjad composition packages
    tools/componenttools/iterate_timeline_forward_from_component
    tools/componenttools/iterate_timeline_forward_in_expr
    tools/componenttools/list_badly_formed_components_in_expr
-   tools/componenttools/list_improper_contents_of_component_that_cross_prolated_offset
-   tools/componenttools/list_leftmost_components_with_prolated_duration_at_most
    tools/componenttools/move_component_subtree_to_right_in_immediate_parent_of_component
    tools/componenttools/move_parentage_and_spanners_from_components_to_components
    tools/componenttools/number_is_between_prolated_start_and_stop_offsets_of_component
