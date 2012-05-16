@@ -1,11 +1,10 @@
 from abjad.tools import durationtools
 
 
-# TODO: change name to get_leftmost_components_with_...
 def get_leftmost_components_with_prolated_duration_at_most(components, prolated_duration):
     '''.. versionadded:: 2.0
 
-    List leftmost components in `component` with prolated duration at most `prolated_duration`.
+    Get leftmost components in `component` with prolated duration at most `prolated_duration`.
 
     Return tuple of ``components[:i]`` together with the prolated duration of ``components[:i]``::
 

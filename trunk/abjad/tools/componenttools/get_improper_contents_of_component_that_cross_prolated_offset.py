@@ -3,11 +3,10 @@ from abjad.tools.componenttools.iterate_components_forward_in_expr import iterat
 from abjad.tools import durationtools
 
 
-# TODO: change name to get_improper_contents_of_...
 def get_improper_contents_of_component_that_cross_prolated_offset(component, prolated_offset):
     r'''.. versionadded:: 2.0
 
-    List improper contents of `component` that cross `prolated_offset`::
+    Get improper contents of `component` that cross `prolated_offset`::
 
         abjad> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
         abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
