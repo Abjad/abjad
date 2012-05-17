@@ -56,23 +56,6 @@ class _NavigationInterface(_Interface):
                 componenttools.component_to_parentage_signature(self._client):
                 return node
 
-    # TODO: Write tests for _NavigationInterface._prev_namesake.
-    #       Backwards depth first search has always had a bug that needs fixing.
-    @property
-    def _prev_namesake(self):
-        '''Find the prev component of same type and parentage signature.
-        '''
-        from abjad.tools import componenttools
-        prev = self._prev
-        if prev is None:
-            return
-        dfs = componenttools.iterate_components_depth_first(prev, capped=False, direction='right')
-        for node in dfs:
-            if type(node) == type(self._client) and \
-                componenttools.component_to_parentage_signature(node) == \
-                componenttools.component_to_parentage_signature(self._client):
-                return node
-
     @property
     def _next_sibling(self):
         '''Returns the next sequential element in the caller's parent, otherwise none.
@@ -82,23 +65,6 @@ class _NavigationInterface(_Interface):
                 rank = self._client.parent.index(self._client)
                 if rank + 1 < len(self._client._parentage.parent._music):
                     return self._client._parentage.parent._music[rank + 1]
-
-    @property
-    def _next_thread(self):
-        '''Returns the next threadable container.
-        '''
-        from abjad.tools import componenttools
-        from abjad.tools import containertools
-        from abjad.tools import leaftools
-        if not isinstance(self._client, containertools.Container):
-            return
-        next = self._next
-        if next is None or isinstance(next, leaftools.Leaf):
-            return
-        containers = componenttools.get_component_lineage_that_start_with_component(next)
-        for container in containers:
-            if self._is_threadable(container):
-                return container
 
     @property
     def _prev(self):
@@ -126,6 +92,23 @@ class _NavigationInterface(_Interface):
         candidates = componenttools.get_improper_descendents_of_component_that_stop_with_component(prev)
         candidates = [x for x in candidates if isinstance(x, leaftools.Leaf)]
         return self._find_fellow_bead(candidates)
+
+    # TODO: Write tests for _NavigationInterface._prev_namesake.
+    #       Backwards depth first search has always had a bug that needs fixing.
+    @property
+    def _prev_namesake(self):
+        '''Find the prev component of same type and parentage signature.
+        '''
+        from abjad.tools import componenttools
+        prev = self._prev
+        if prev is None:
+            return
+        dfs = componenttools.iterate_components_depth_first(prev, capped=False, direction='right')
+        for node in dfs:
+            if type(node) == type(self._client) and \
+                componenttools.component_to_parentage_signature(node) == \
+                componenttools.component_to_parentage_signature(self._client):
+                return node
 
     @property
     def _prev_sibling(self):
