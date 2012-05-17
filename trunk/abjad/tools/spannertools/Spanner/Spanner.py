@@ -222,24 +222,24 @@ class Spanner(AbjadObject):
         component._spanners.add(self)
         self._components.insert(i, component)
 
-    # TODO: make public.
     # TODO: author tests.
     def _is_exterior_leaf(self, leaf):
         '''True if leaf is first or last in spanner.
         True if next leaf or prev leaf is none.
         False otherwise.
         '''
+        from abjad.tools import leaftools
         if self._is_my_first_leaf(leaf):
             return True
         elif self._is_my_last_leaf(leaf):
             return True
-        elif not leaf._navigator._prev_bead or not leaf._navigator._next_bead:
+        elif not leaftools.get_nth_leaf_in_thread_from_leaf(leaf, -1) and \
+            not leaftools.get_nth_leaf_in_thread_from_leaf(leaf, 1):
             return True
         else:
             return False
 
     # TODO: Remove call to self.leaves
-    # TODO: make public
     def _is_my_first(self, leaf, klass):
         if isinstance(leaf, klass):
             leaves = list(self.leaves)
@@ -250,7 +250,6 @@ class Spanner(AbjadObject):
             return True
         return False
 
-    # TODO: make public
     def _is_my_first_leaf(self, leaf):
         from abjad.tools import spannertools
         try:
@@ -260,7 +259,6 @@ class Spanner(AbjadObject):
             return False
 
     # TODO: Remove call to self.leaves
-    # TODO: make public
     def _is_my_last(self, leaf, klass):
         if isinstance(leaf, klass):
             leaves = list(self.leaves)
@@ -271,7 +269,6 @@ class Spanner(AbjadObject):
             return True
         return False
 
-    # TODO: make public
     def _is_my_last_leaf(self, leaf):
         from abjad.tools import spannertools
         try:
@@ -281,11 +278,9 @@ class Spanner(AbjadObject):
             return False
 
     # TODO: Remove call to self.leaves
-    # TODO: make public
     def _is_my_only(self, leaf, klass):
         return isinstance(leaf, klass) and len(self.leaves) == 1
 
-    # TODO: make public
     def _is_my_only_leaf(self, leaf):
         return self._is_my_first_leaf(leaf) and self._is_my_last_leaf(leaf)
 

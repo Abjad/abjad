@@ -8,20 +8,22 @@ class MispitchedTieCheck(Check):
         Do not check tied rests or skips.
         Implement chord-checking later.
         '''
-        from abjad.tools.notetools.Note import Note
         from abjad.tools import componenttools
+        from abjad.tools import leaftools
+        from abjad.tools import notetools
         from abjad.tools import spannertools
         from abjad.tools import tietools
-        violators = [ ]
+        violators = []
         total = 0
-        for leaf in componenttools.iterate_components_forward_in_expr(expr, Note):
+        for leaf in componenttools.iterate_components_forward_in_expr(expr, notetools.Note):
             total += 1
             spanners = spannertools.get_spanners_attached_to_component(
                 leaf, tietools.TieSpanner)
             if spanners:
                 spanner = spanners.pop( )
                 if not spanner._is_my_last_leaf(leaf):
-                    if leaf._navigator._next_bead:
-                        if leaf.written_pitch != leaf._navigator._next_bead.written_pitch:
+                    next_leaf = leaftools.get_nth_leaf_in_thread_from_leaf(leaf, 1)
+                    if next_leaf:
+                        if leaf.written_pitch != next_leaf.written_pitch:
                             violators.append(leaf)
         return violators, total
