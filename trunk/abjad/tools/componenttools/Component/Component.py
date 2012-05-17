@@ -3,7 +3,6 @@ from abjad.tools.lilypondproxytools import LilyPondContextSettingComponentPlugIn
 from abjad.tools.lilypondproxytools import LilyPondGrobOverrideComponentPlugIn
 from abjad.tools.abctools import AbjadObject
 from abjad.interfaces import ParentageInterface
-from abjad.interfaces import _NavigationInterface
 from abjad.interfaces import _OffsetInterface
 from abjad.tools import durationtools
 import copy
@@ -30,7 +29,6 @@ class Component(AbjadObject):
         self._marks_are_current = False
         self._marks_for_which_component_functions_as_effective_context = list()
         self._marks_for_which_component_functions_as_start_component = list()
-        self._navigator = _NavigationInterface(self)
         self._offset = _OffsetInterface(self)
         self._offset_values_in_seconds_are_current = False
         self._parentage = ParentageInterface(self)
