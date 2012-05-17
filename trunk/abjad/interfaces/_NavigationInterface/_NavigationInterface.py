@@ -20,7 +20,7 @@ class _NavigationInterface(_Interface):
         '''
         from abjad.tools import componenttools
         for component in componenttools.get_improper_parentage_of_component(self._client):
-            next_sibling = component._navigator._next_sibling
+            next_sibling = componenttools.get_nth_sibling_from_component(component, 1)
             if next_sibling is not None:
                 return next_sibling
 
@@ -57,19 +57,12 @@ class _NavigationInterface(_Interface):
                 return node
 
     @property
-    def _next_sibling(self):
-        '''Returns the next sequential element in the caller's parent, otherwise none.
-        '''
-        from abjad.tools import componenttools
-        return componenttools.get_nth_sibling_from_component(self._client, 1)
-
-    @property
     def _prev(self):
         '''Returns previous component in temporal order.
         '''
         from abjad.tools import componenttools
         for component in componenttools.get_improper_parentage_of_component(self._client):
-            prev_sibling = component._navigator._prev_sibling
+            prev_sibling = componenttools.get_nth_sibling_from_component(component, -1)
             if prev_sibling is not None:
                 return prev_sibling
 
@@ -107,13 +100,6 @@ class _NavigationInterface(_Interface):
                 componenttools.component_to_parentage_signature(self._client):
                 return node
 
-    @property
-    def _prev_sibling(self):
-        '''Returns the previous sequential element in the caller's parent, otherwise none.
-        '''
-        from abjad.tools import componenttools
-        return componenttools.get_nth_sibling_from_component(self._client, -1)
-
     ### PRIVATE METHODS ###
 
     def _find_fellow_bead(self, candidates):
@@ -131,7 +117,7 @@ class _NavigationInterface(_Interface):
         from abjad.tools import componenttools
         cur = self._client
         while cur is not None:
-            next_sibling = cur._navigator._next_sibling
+            next_sibling = componenttools.get_nth_sibling_from_component(cur, 1)
             if next_sibling is None:
                 cur = cur._parentage.parent
             else:
