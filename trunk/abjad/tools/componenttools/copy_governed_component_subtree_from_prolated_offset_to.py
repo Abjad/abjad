@@ -89,7 +89,7 @@ def copy_governed_component_subtree_from_prolated_offset_to(component, start=0, 
         abjad> new_leaf = componenttools.copy_governed_component_subtree_from_prolated_offset_to(voice[0], 0, (1, 8))
         abjad> f(new_leaf)
         c'8
-        abjad> new_leaf._parentage.parent is None
+        abjad> new_leaf._parent is None
         True
 
     Return (untrimmed_copy, first_dif, second_dif).

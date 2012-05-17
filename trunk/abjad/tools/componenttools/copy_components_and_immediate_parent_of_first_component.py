@@ -85,7 +85,7 @@ def copy_components_and_immediate_parent_of_first_component(components):
     assert componenttools.all_are_thread_contiguous_components(components)
 
     # remember parent
-    parent = components[0]._parentage.parent
+    parent = components[0]._parent
 
     # new: remember parent multiplier, if any
     #parent_multiplier = getattr(parent.duration, 'multiplier', 1)
@@ -98,7 +98,7 @@ def copy_components_and_immediate_parent_of_first_component(components):
         parent_denominator = None
 
     # remember parent's music
-    parents_music = components[0]._parentage.parent._music
+    parents_music = components[0]._parent._music
 
     # strip parent of music temporarily
     parent._music = []

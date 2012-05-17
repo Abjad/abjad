@@ -44,7 +44,7 @@ def test_Rest___init___04():
     # check that attributes have not been removed or added.
     assert dir(c) == dir(Chord([2, 3, 4], (1, 4)))
     assert dir(r) == dir(Rest((1, 4)))
-    assert r._parentage.parent is None
+    assert r._parent is None
     assert r.written_duration == duration
 
 
@@ -57,8 +57,8 @@ def test_Rest___init___05():
     rest = Rest(t[0])
     assert isinstance(rest, Rest)
     assert isinstance(t[0], Chord)
-    assert t[0]._parentage.parent is t
-    assert rest._parentage.parent is None
+    assert t[0]._parent is t
+    assert rest._parent is None
 
 
 def test_Rest___init___06():
@@ -70,8 +70,8 @@ def test_Rest___init___06():
     rest = Rest(staff[0])
     assert isinstance(rest, Rest)
     assert isinstance(staff[0], Chord)
-    assert staff[0]._parentage.parent is staff
-    assert rest._parentage.parent is None
+    assert staff[0]._parent is staff
+    assert rest._parent is None
 
 
 def test_Rest___init___07():
@@ -84,7 +84,7 @@ def test_Rest___init___07():
     assert isinstance(r, Rest)
     assert dir(s) == dir(skiptools.Skip((1, 4)))
     assert dir(r) == dir(Rest((1, 4)))
-    assert r._parentage.parent is None
+    assert r._parent is None
     assert r.written_duration == d
 
 
@@ -97,9 +97,9 @@ def test_Rest___init___08():
     rest = Rest(t[0])
     assert isinstance(t[0], skiptools.Skip)
     assert isinstance(rest, Rest)
-    assert t[0]._parentage.parent is t
+    assert t[0]._parent is t
     assert t[0].written_duration == d
-    assert rest._parentage.parent is None
+    assert rest._parent is None
 
 
 def test_Rest___init___09():
@@ -127,7 +127,7 @@ def test_Rest___init___10():
     assert dir(n) == dir(Note(0, (1, 8)))
     assert dir(r) == dir(Rest((1, 4)))
     assert r.format == 'r8'
-    assert r._parentage.parent is None
+    assert r._parent is None
     assert r.written_duration == d
 
 
@@ -140,9 +140,9 @@ def test_Rest___init___11():
     rest = Rest(t[0])
     assert isinstance(t[0], Note)
     assert isinstance(rest, Rest)
-    assert t[0]._parentage.parent is t
+    assert t[0]._parent is t
     assert t[0].written_duration == d
-    assert rest._parentage.parent is None
+    assert rest._parent is None
 
 
 def test_Rest___init___12():
@@ -154,8 +154,8 @@ def test_Rest___init___12():
     rest = Rest(t[0])
     assert isinstance(t[0], Note)
     assert isinstance(rest, Rest)
-    assert t[0]._parentage.parent is t
-    assert rest._parentage.parent is None
+    assert t[0]._parent is t
+    assert rest._parent is None
 
 
 def test_Rest___init___13():

@@ -139,7 +139,7 @@ def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_
 
     t = Note("c'4")
     new = componenttools.copy_governed_component_subtree_from_prolated_offset_to(t, 0, (1, 12))
-    parent = new._parentage.parent
+    parent = new._parent
 
     r'''
     \times 2/3 {
@@ -155,7 +155,7 @@ def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_
 
     t = Note("c'4")
     new = componenttools.copy_governed_component_subtree_from_prolated_offset_to(t, (1, 12), (2, 12))
-    parent = new._parentage.parent
+    parent = new._parent
 
     r'''
     \times 2/3 {
@@ -171,7 +171,7 @@ def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_
 
     t = Note("c'4")
     new = componenttools.copy_governed_component_subtree_from_prolated_offset_to(t, (1, 6), (1, 4))
-    parent = new._parentage.parent
+    parent = new._parent
 
     r'''
     \times 2/3 {
@@ -202,7 +202,7 @@ def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_
 
     t = Note("c'4")
     new = componenttools.copy_governed_component_subtree_from_prolated_offset_to(t, (2, 12), (1, 2))
-    parent = new._parentage.parent
+    parent = new._parent
 
     r'''
     \times 2/3 {
@@ -226,7 +226,7 @@ def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_
 
     t = Note("c'4")
     new = componenttools.copy_governed_component_subtree_from_prolated_offset_to(t, 0, (5, 24))
-    parent = new._parentage.parent
+    parent = new._parent
 
     r'''
     \times 2/3 {
@@ -243,7 +243,7 @@ def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_
 
     t = Note("c'4")
     new = componenttools.copy_governed_component_subtree_from_prolated_offset_to(t, 0, (1, 5))
-    parent = new._parentage.parent
+    parent = new._parent
 
     r'''
     \times 4/5 {

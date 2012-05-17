@@ -29,7 +29,7 @@ def test_Skip___init___03():
     # check that attributes have not been removed or added.
     assert dir(c) == dir(Chord([2, 3, 4], (1, 4)))
     assert dir(s) == dir(skiptools.Skip((1, 4)))
-    assert s._parentage.parent is None
+    assert s._parent is None
     assert s.written_duration == duration
 
 
@@ -42,9 +42,9 @@ def test_Skip___init___04():
     skip = skiptools.Skip(t[0])
     assert isinstance(t[0], Chord)
     assert isinstance(skip, skiptools.Skip)
-    assert t[0]._parentage.parent is t
+    assert t[0]._parent is t
     assert t[0].written_duration == d
-    assert skip._parentage.parent is None
+    assert skip._parent is None
 
 
 def test_Skip___init___05():
@@ -56,8 +56,8 @@ def test_Skip___init___05():
     skip = skiptools.Skip(t[0])
     assert isinstance(t[0], Chord)
     assert isinstance(skip, skiptools.Skip)
-    assert t[0]._parentage.parent is t
-    assert skip._parentage.parent is None
+    assert t[0]._parent is t
+    assert skip._parent is None
 
 
 def test_Skip___init___06():
@@ -69,7 +69,7 @@ def test_Skip___init___06():
     assert dir(n) == dir(Note("c'4"))
     assert dir(s) == dir(skiptools.Skip((1, 4)))
     assert s.format == 's8'
-    assert s._parentage.parent is None
+    assert s._parent is None
     assert s.written_duration == d
 
 
@@ -79,7 +79,7 @@ def test_Skip___init___07():
     skip = skiptools.Skip(t[0])
     assert isinstance(t[0], Note)
     assert isinstance(skip, skiptools.Skip)
-    assert t[0]._parentage.parent is t
+    assert t[0]._parent is t
     assert t[0].written_duration == d
 
 
@@ -92,7 +92,7 @@ def test_Skip___init___08():
     skip = skiptools.Skip(t[0])
     assert isinstance(t[0], Note)
     assert isinstance(skip, skiptools.Skip)
-    assert t[0]._parentage.parent is t
+    assert t[0]._parent is t
 
 
 def test_Skip___init___09():
@@ -106,7 +106,7 @@ def test_Skip___init___09():
     # check that attributes have not been removed or added.
     assert dir(r) == dir(Rest((1, 4)))
     assert dir(s) == dir(skiptools.Skip((1, 4)))
-    assert s._parentage.parent is None
+    assert s._parent is None
     assert s.written_duration == d
 
 
@@ -119,9 +119,9 @@ def test_Skip___init___10():
     skip = skiptools.Skip(t[0])
     assert isinstance(skip, skiptools.Skip)
     assert isinstance(t[0], Rest)
-    assert t[0]._parentage.parent is t
+    assert t[0]._parent is t
     assert t[0].written_duration == d
-    assert skip._parentage.parent is None
+    assert skip._parent is None
 
 
 def test_Skip___init___11():
@@ -133,5 +133,5 @@ def test_Skip___init___11():
     skip = skiptools.Skip(t[1])
     assert isinstance(skip, skiptools.Skip)
     assert isinstance(t[1], Rest)
-    assert t[1]._parentage.parent is t
-    assert skip._parentage.parent is None
+    assert t[1]._parent is t
+    assert skip._parent is None

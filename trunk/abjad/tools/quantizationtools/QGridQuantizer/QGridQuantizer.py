@@ -251,7 +251,7 @@ class QGridQuantizer(_Quantizer):
             if 1 < len(leaves) and pitch[0] is not None:
                 tie_chains.append(get_tie_chain(TieSpanner(leaves)[0]))
             for leaf in leaves:
-                parent = leaf._parentage.parent
+                parent = leaf._parent
                 idx = parent.index(leaf)
                 if len(pitch) == 1:
                     if pitch[0] is None:
@@ -270,10 +270,10 @@ class QGridQuantizer(_Quantizer):
             last_tie_chain = fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(last_tie_chain)
             last_tie.clear() # detach
             for note in flatten_sequence(last_tie_chain):
-                parent = note._parentage.parent
+                parent = note._parent
                 parent[parent.index(note)] = Rest(note.written_duration)
         elif len(trailing) == 1:
-            parent = trailing[0]._parentage.parent
+            parent = trailing[0]._parent
             parent[parent.index(trailing[0])] = Rest(trailing[0].written_duration)
 
         # fuse tie chains
@@ -284,7 +284,7 @@ class QGridQuantizer(_Quantizer):
         # fuse rests
         rest_groups = list(yield_groups_of_rests_in_sequence(container.leaves))
         for rest_group in rest_groups:
-            g = groupby(rest_group, lambda x: x._parentage.parent)
+            g = groupby(rest_group, lambda x: x._parent)
             for value, group in g:
                 fused = fuse_leaves_big_endian(list(group))
                 remove_tie_spanners_from_components_in_expr(fused[0])

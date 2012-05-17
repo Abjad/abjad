@@ -18,8 +18,8 @@ class Component(AbjadObject):
     __slots__ = ('_duration', '_is_forbidden_to_update', '_marks_are_current',
         '_marks_for_which_component_functions_as_effective_context',
         '_marks_for_which_component_functions_as_start_component', '_navigator',
-        '_offset', '_offset_values_in_seconds_are_current', '_override', '_parentage',
-        '_prolated_offset_values_are_current', '_set', '_spanners',
+        '_offset', '_offset_values_in_seconds_are_current', '_override', '_parent', 
+        '_parentage', '_prolated_offset_values_are_current', '_set', '_spanners',
         'lilypond_file', )
 
     ### INITIALIZER ###
@@ -31,6 +31,7 @@ class Component(AbjadObject):
         self._marks_for_which_component_functions_as_start_component = list()
         self._offset = _OffsetInterface(self)
         self._offset_values_in_seconds_are_current = False
+        self._parent = None
         self._parentage = ParentageInterface(self)
         self._prolated_offset_values_are_current = False
         self._spanners = set([])
@@ -74,10 +75,10 @@ class Component(AbjadObject):
     @property
     def _prolations(self):
         result = []
-        parent = self._parentage.parent
+        parent = self.parent
         while parent is not None:
             result.append(getattr(parent, 'multiplier', fractions.Fraction(1)))
-            parent = parent._parentage.parent
+            parent = parent.parent
         return result
 
     ### PUBLIC PROPERTIES ###
@@ -97,7 +98,7 @@ class Component(AbjadObject):
 
     @property
     def parent(self):
-        return self._parentage.parent
+        return self._parent
 
     @property
     def prolated_duration(self):

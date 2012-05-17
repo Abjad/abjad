@@ -59,7 +59,7 @@ def remove_leaf_and_shrink_durated_parent_containers(leaf):
     prolated_leaf_duration = leaf.prolated_duration
     prolations = leaf._prolations
     cur_prolation, i = durationtools.Duration(1), 0
-    parent = leaf._parentage.parent
+    parent = leaf._parent
 
     while parent is not None and not parent.is_parallel:
         cur_prolation *= prolations[i]
@@ -89,7 +89,7 @@ def remove_leaf_and_shrink_durated_parent_containers(leaf):
                     if adjusted_prolation != 1:
                         new_target = x.preprolated_duration * adjusted_prolation
                         FixedDurationTuplet(new_target, [x])
-        parent = parent._parentage.parent
+        parent = parent._parent
         i += 1
     parentage = get_proper_parentage_of_component(leaf)
     remove_component_subtree_from_score_and_spanners([leaf])

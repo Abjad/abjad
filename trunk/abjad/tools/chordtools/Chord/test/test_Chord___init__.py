@@ -67,7 +67,7 @@ def test_Chord___init___08():
     assert isinstance(c, Chord)
     assert dir(s) == dir(skiptools.Skip((1, 4)))
     assert dir(c) == dir(Chord([2, 3, 4], (1, 4)))
-    assert c._parentage.parent is None
+    assert c._parent is None
     assert c.written_duration == d
 
 
@@ -80,9 +80,9 @@ def test_Chord___init___09():
     chord = Chord(t[0])
     assert isinstance(t[0], skiptools.Skip)
     assert isinstance(chord, Chord)
-    assert t[0]._parentage.parent is t
+    assert t[0]._parent is t
     assert t[0].written_duration == d
-    assert chord._parentage.parent is None
+    assert chord._parent is None
 
 
 def test_Chord___init___10():
@@ -94,9 +94,9 @@ def test_Chord___init___10():
     chord = Chord(v[0])
     assert isinstance(v[0], skiptools.Skip)
     assert isinstance(chord, Chord)
-    assert v[0]._parentage.parent is v
+    assert v[0]._parent is v
     assert v[0].written_duration == d
-    assert chord._parentage.parent is None
+    assert chord._parent is None
 
 
 def test_Chord___init___11():
@@ -108,7 +108,7 @@ def test_Chord___init___11():
     chord = Chord(t[1])
     assert isinstance(t[1], skiptools.Skip)
     assert isinstance(chord, Chord)
-    assert t[1]._parentage.parent is t
+    assert t[1]._parent is t
 
 
 def test_Chord___init___12():
@@ -121,7 +121,7 @@ def test_Chord___init___12():
     assert isinstance(c, Chord)
     assert dir(r) == dir(Rest((1, 4)))
     assert dir(c) == dir(Chord([2, 3, 4], (1, 4)))
-    assert c._parentage.parent is None
+    assert c._parent is None
     assert c.written_duration == d
 
 
@@ -134,9 +134,9 @@ def test_Chord___init___13():
     chord = Chord(t[0])
     assert isinstance(t[0], Rest)
     assert isinstance(chord, Chord)
-    assert t[0]._parentage.parent is t
+    assert t[0]._parent is t
     assert t[0].written_duration == d
-    assert chord._parentage.parent is None
+    assert chord._parent is None
 
 
 def test_Chord___init___14():
@@ -148,8 +148,8 @@ def test_Chord___init___14():
     chord = Chord(t[1])
     assert isinstance(t[1], Rest)
     assert isinstance(chord, Chord)
-    assert t[1]._parentage.parent is t
-    assert chord._parentage.parent is None
+    assert t[1]._parent is t
+    assert chord._parent is None
 
 
 def test_Chord___init___15():
@@ -163,7 +163,7 @@ def test_Chord___init___15():
     assert dir(n) == dir(Note("c'4"))
     assert dir(c) == dir(Chord([2, 3, 4], (1, 4)))
     assert c.format == "<d'>8"
-    assert c._parentage.parent is None
+    assert c._parent is None
     assert c.note_heads[0] is not h
     assert c.written_pitches[0] == p
     assert c.written_duration == d
@@ -179,7 +179,7 @@ def test_Chord___init___16():
     assert isinstance(t[0], Note)
     assert isinstance(chord, Chord)
     assert chord.format == "<c'>8"
-    assert t[0]._parentage.parent is t
+    assert t[0]._parent is t
     assert chord.note_heads[0] is not h
     assert chord.written_pitches[0] == p
     assert chord.written_duration == d
@@ -194,7 +194,7 @@ def test_Chord___init___17():
     chord = Chord(t[0])
     assert isinstance(t[0], Note)
     assert isinstance(chord, Chord)
-    assert t[0]._parentage.parent is t
+    assert t[0]._parent is t
 
 
 def test_Chord___init___18():

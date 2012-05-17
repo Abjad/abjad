@@ -37,7 +37,7 @@ def all_are_contiguous_components_in_same_parent(expr, klasses=None, allow_orpha
     if not isinstance(first, klasses):
         return False
 
-    first_parent = first._parentage.parent
+    first_parent = first._parent
     if first_parent is None:
         if allow_orphans:
             orphan_components = True
@@ -53,7 +53,7 @@ def all_are_contiguous_components_in_same_parent(expr, klasses=None, allow_orpha
             return False
         if not is_orphan_component(cur):
             orphan_components = False
-        if not cur._parentage.parent is first_parent:
+        if not cur._parent is first_parent:
             same_parent = False
         if not componenttools.is_immediate_temporal_successor_of_component(prev, cur):
             strictly_contiguous = False

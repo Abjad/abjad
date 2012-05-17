@@ -24,6 +24,6 @@ def get_improper_parentage_of_component(component):
         if parent in result:
             raise ContainmentError('Component is a member of its own proper parentage.')
         result.append(parent)
-        parent = parent._parentage.parent
+        parent = parent._parent
     result = tuple(result)
     return result

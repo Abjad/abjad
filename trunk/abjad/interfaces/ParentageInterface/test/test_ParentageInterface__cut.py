@@ -21,7 +21,7 @@ def test_ParentageInterface__cut_01( ):
 
     assert componenttools.is_well_formed_component(t)
     assert componenttools.is_well_formed_component(note)
-    assert note._parentage.parent is None
+    assert note.parent is None
 
 
 def test_ParentageInterface__cut_02( ):
