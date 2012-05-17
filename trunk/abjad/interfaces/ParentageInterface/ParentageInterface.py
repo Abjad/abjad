@@ -39,62 +39,6 @@ class ParentageInterface(_Interface):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def governor(self):
-        r'''Reference to first sequential container `Q`
-        in the parentage of `component` such that
-        the parent of `Q` is either a parallel container or ``None``. ::
-
-            abjad> t = Voice([Container(Voice(notetools.make_repeated_notes(2)) * 2)])
-            abjad> t[0].is_parallel = True
-            abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-            abjad> t[0][0].name = 'voice 1'
-            abjad> t[0][1].name = 'voice 2'
-
-        ::
-
-            abjad> print t.format
-            \new Voice {
-                <<
-                    \context Voice = "voice 1" {
-                        c'8
-                        d'8
-                    }
-                    \context Voice = "voice 2" {
-                        e'8
-                        f'8
-                    }
-                >>
-            }
-
-        ::
-
-            abjad> note = t.leaves[1]
-            abjad> note._parentage.governor is t[0][0]
-            True
-
-        In the case that no such container exists
-        in the parentage of `component`, return ``None``. ::
-
-            abjad> note = Note("c'4")
-            abjad> note._parentage.governor is None
-            True
-
-        .. note:: Governor is an old and probably nonoptimal idea
-            in the codebase. The concept is used only
-            to clone components with a certain part of parentage.
-        '''
-        from abjad.tools.containertools.Container import Container
-        from abjad.tools import componenttools
-
-        for component in componenttools.get_improper_parentage_of_component(self._client):
-            if isinstance(component, Container) and not component.is_parallel:
-                parent = component._parentage.parent
-                if parent is None:
-                    return component
-                if isinstance(parent, Container) and parent.is_parallel:
-                    return component
-
-    @property
     def parent(self):
         '''Read-only reference to immediate parent of `component`.
 

@@ -58,13 +58,12 @@ def copy_governed_component_subtree_by_leaf_range(component, start=0, stop=None)
         renamed ``componenttools.clone_governed_component_subtree_by_leaf_range()`` to
         ``componenttools.copy_governed_component_subtree_by_leaf_range()``.
     '''
-    from abjad.tools.leaftools.Leaf import Leaf
+    from abjad.tools import componenttools
     from abjad.tools import leaftools
-    from abjad.tools.componenttools.copy_components_and_fracture_crossing_spanners import copy_components_and_fracture_crossing_spanners
 
     # trivial leaf lcopy
-    if isinstance(component, Leaf):
-        return copy_components_and_fracture_crossing_spanners([component])[0]
+    if isinstance(component, leaftools.Leaf):
+        return componenttools.copy_components_and_fracture_crossing_spanners([component])[0]
 
     # copy leaves from sequential containers only.
     if component.is_parallel:
@@ -82,7 +81,8 @@ def copy_governed_component_subtree_by_leaf_range(component, start=0, stop=None)
     stop_leaf_in_component = leaves[stop - 1]
 
     # find governor
-    governor = leaves[start]._parentage.governor
+    governor = componenttools.get_most_distant_sequential_container_in_improper_parentage_of_component(
+        leaves[start])
 
     # new: find start and stop leaves in governor
     governor_leaves = list(governor.leaves)
@@ -96,7 +96,7 @@ def copy_governed_component_subtree_by_leaf_range(component, start=0, stop=None)
             stop_index_in_governor = i
 
     # copy governor
-    governor_copy = copy_components_and_fracture_crossing_spanners([governor])[0]
+    governor_copy = componenttools.copy_components_and_fracture_crossing_spanners([governor])[0]
     copy_leaves = governor_copy.leaves
 
     # new: find start and stop leaves in copy of governor
