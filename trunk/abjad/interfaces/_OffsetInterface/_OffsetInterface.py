@@ -25,9 +25,11 @@ class _OffsetInterface(_Interface):
     ### PRIVATE METHODS ###
 
     def _update_offset_values_of_component_in_seconds(self):
+        from abjad.tools import componenttools
         try:
             cur_duration_in_seconds = self._client.duration_in_seconds
-            prev = self._client._navigator._prev
+            #prev = self._client._navigator._prev
+            prev = componenttools.get_nth_component_from_component_in_temporal_order(self._client, -1)
             #if prev:
             if prev is not None:
                 self._start_in_seconds = prev._offset._stop_in_seconds
@@ -42,7 +44,9 @@ class _OffsetInterface(_Interface):
             pass
 
     def _update_prolated_offset_values_of_component(self):
-        prev = self._client._navigator._prev
+        from abjad.tools import componenttools
+        #prev = self._client._navigator._prev
+        prev = componenttools.get_nth_component_from_component_in_temporal_order(self._client, -1)
         #if prev:
         if prev is not None:
             self._start = prev._offset._stop

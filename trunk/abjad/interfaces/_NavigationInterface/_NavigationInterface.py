@@ -15,16 +15,6 @@ class _NavigationInterface(_Interface):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _next(self):
-        '''Returns next component in temporal order.
-        '''
-        from abjad.tools import componenttools
-        for component in componenttools.get_improper_parentage_of_component(self._client):
-            next_sibling = componenttools.get_nth_sibling_from_component(component, 1)
-            if next_sibling is not None:
-                return next_sibling
-
-    @property
     def _next_bead(self):
         '''Returns the next bead (time-threaded leaf), if such exists.
         This method will search the whole (parentage) structure moving forward.
@@ -34,10 +24,11 @@ class _NavigationInterface(_Interface):
         from abjad.tools import leaftools
         if not isinstance(self._client, leaftools.Leaf):
             return
-        next = self._next
-        if next is None:
+        next_component = componenttools.get_nth_component_from_component_in_temporal_order(self._client, 1)
+        if next_component is None:
             return
-        candidates = componenttools.get_improper_descendents_of_component_that_start_with_component(next)
+        candidates = componenttools.get_improper_descendents_of_component_that_start_with_component(
+            next_component)
         candidates = [x for x in candidates if isinstance(x, leaftools.Leaf)]
         return self._find_fellow_bead(candidates)
 
@@ -46,25 +37,15 @@ class _NavigationInterface(_Interface):
         '''Find the next component of the same type and with the same parentage signature.
         '''
         from abjad.tools import componenttools
-        next = self._next
-        if next is None:
+        next_component = componenttools.get_nth_component_from_component_in_temporal_order(self._client, 1)
+        if next_component is None:
             return
-        dfs = componenttools.iterate_components_depth_first(next, capped=False)
+        dfs = componenttools.iterate_components_depth_first(next_component, capped=False)
         for node in dfs:
             if type(node) == type(self._client) and \
                 componenttools.component_to_parentage_signature(node) == \
                 componenttools.component_to_parentage_signature(self._client):
                 return node
-
-    @property
-    def _prev(self):
-        '''Returns previous component in temporal order.
-        '''
-        from abjad.tools import componenttools
-        for component in componenttools.get_improper_parentage_of_component(self._client):
-            prev_sibling = componenttools.get_nth_sibling_from_component(component, -1)
-            if prev_sibling is not None:
-                return prev_sibling
 
     @property
     def _prev_bead(self):
@@ -76,7 +57,7 @@ class _NavigationInterface(_Interface):
         from abjad.tools import leaftools
         if not isinstance(self._client, leaftools.Leaf):
             return
-        prev = self._prev
+        prev = componenttools.get_nth_component_from_component_in_temporal_order(self._client, -1)
         if prev is None:
             return
         candidates = componenttools.get_improper_descendents_of_component_that_stop_with_component(prev)
@@ -90,7 +71,7 @@ class _NavigationInterface(_Interface):
         '''Find the prev component of same type and parentage signature.
         '''
         from abjad.tools import componenttools
-        prev = self._prev
+        prev = componenttools.get_nth_component_from_component_in_temporal_order(self._client, -1)
         if prev is None:
             return
         dfs = componenttools.iterate_components_depth_first(prev, capped=False, direction='right')

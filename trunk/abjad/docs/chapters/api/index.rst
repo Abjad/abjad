@@ -103,6 +103,7 @@ Abjad composition packages
    tools/componenttools/get_lineage_of_component
    tools/componenttools/get_lineage_of_component_that_start_with_component
    tools/componenttools/get_lineage_of_component_that_stop_with_component
+   tools/componenttools/get_nth_component_from_component_in_temporal_order
    tools/componenttools/get_nth_component_in_expr
    tools/componenttools/get_nth_namesake_from_component
    tools/componenttools/get_nth_sibling_from_component
