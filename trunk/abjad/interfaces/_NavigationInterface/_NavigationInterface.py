@@ -20,12 +20,12 @@ class _NavigationInterface(_Interface):
         '''Returns the first (leftmost) leaf or leaves
         (in case there's a parallel structure) in a tree.
         '''
-        from abjad.tools.containertools.Container import Container
-        from abjad.tools.leaftools.Leaf import Leaf
+        from abjad.tools import containertools
+        from abjad.tools import leaftools
         client = self._client
-        if isinstance(client, Leaf):
+        if isinstance(client, leaftools.Leaf):
             return [client]
-        elif isinstance(client, Container):
+        elif isinstance(client, containertools.Container):
             leaves = []
             if self._client.is_parallel:
                 for e in self._client:
@@ -41,12 +41,12 @@ class _NavigationInterface(_Interface):
         '''Returns the last (rightmost) leaf or leaves
         (in case there's a parallel structure) in a tree.
         '''
-        from abjad.tools.containertools.Container import Container
-        from abjad.tools.leaftools.Leaf import Leaf
+        from abjad.tools import containertools
+        from abjad.tools import leaftools
         client = self._client
-        if isinstance(client, Leaf):
+        if isinstance(client, leaftools.Leaf):
             return [client]
-        elif isinstance(client, Container):
+        elif isinstance(client, containertools.Container):
             leaves = []
             if self._client.is_parallel:
                 for e in self._client:
@@ -78,8 +78,8 @@ class _NavigationInterface(_Interface):
         moving forward.
         This will only return if called on a Leaf.
         '''
-        from abjad.tools.leaftools.Leaf import Leaf
-        if not isinstance(self._client, Leaf):
+        from abjad.tools import leaftools
+        if not isinstance(self._client, leaftools.Leaf):
             return None
         next = self._next
         if next is None:
@@ -169,8 +169,8 @@ class _NavigationInterface(_Interface):
         This method will search the whole (parentage) structure moving back.
         This will only return if called on a Leaf.
         '''
-        from abjad.tools.leaftools.Leaf import Leaf
-        if not isinstance(self._client, Leaf):
+        from abjad.tools import leaftools
+        if not isinstance(self._client, leaftools.Leaf):
             return None
         prev = self._prev
         if prev is None:
