@@ -13,7 +13,7 @@ def _ignore_parentage_of_components(components):
     receipt = set([])
     for component in components:
         parent = component._parent
-        component._parentage._ignore()
+        component._ignore()
         receipt.add((component, parent))
 
     return receipt

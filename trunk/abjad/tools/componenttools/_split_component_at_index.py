@@ -85,10 +85,10 @@ def _split_component_at_index(component, i, spanners='unfractured'):
         #parent._music[start:stop+1] = nonempty_halves
         parent._music.__setitem__(slice(start, stop + 1), nonempty_halves)
         for part in nonempty_halves:
-            part._parentage._switch(parent)
+            part._switch(parent)
     else:
-        left._parentage._switch(None)
-        right._parentage._switch(None)
+        left._switch(None)
+        right._switch(None)
 
     # fracture spanners, if requested
     if spanners == 'fractured':

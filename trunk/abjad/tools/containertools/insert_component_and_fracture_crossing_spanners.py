@@ -50,7 +50,7 @@ def insert_component_and_fracture_crossing_spanners(container, i, component):
     assert isinstance(i, int)
 
     result = []
-    component._parentage._switch(container)
+    component._switch(container)
     container._music.insert(i, component)
 
     previous_leaf = leaftools.get_nth_leaf_in_thread_from_leaf(component, -1)

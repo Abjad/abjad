@@ -117,7 +117,7 @@ def copy_components_and_immediate_parent_of_first_component(components):
 #
 #   # point elements in result to result as new parent
 #   for element in result:
-#      element._parentage._switch(result)
+#      element._switch(result)
 
     new_components = copy_components_and_fracture_crossing_spanners(components)
 

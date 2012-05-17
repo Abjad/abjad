@@ -141,7 +141,7 @@ class Container(Component):
             # must withdraw from spanners before parentage!
             # otherwise begin / end assessments don't work!
             _withdraw_components_in_expr_from_crossing_spanners([expr])
-            expr._parentage._switch(self)
+            expr._switch(self)
             self._music.insert(i, expr)
             componenttools.remove_component_subtree_from_score_and_spanners([old])
             for spanner, index in spanners_receipt:
@@ -170,7 +170,7 @@ class Container(Component):
             #self._music[start:start] = expr
             self._music.__setitem__(slice(start, start), expr)
             for component in expr:
-                component._parentage._switch(self)
+                component._switch(self)
             for spanner, index in spanners_receipt:
                 for component in reversed(expr):
                     spanner._insert(index, component)
@@ -396,7 +396,7 @@ class Container(Component):
             _switch_components_to_parent(self._music, self)
             if parent is not None:
                 parent._music.insert(index, self)
-                self._parentage._switch(parent)
+                self._switch(parent)
         elif isinstance(music, str):
             parsed = self._parse_string(music)
             self._music = []

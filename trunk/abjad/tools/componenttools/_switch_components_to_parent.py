@@ -13,6 +13,6 @@ def _switch_components_to_parent(components, parent):
         raise TypeError('can not switch parent of "%s".' % str(components))
 
     for component in components:
-        component._parentage._switch(parent)
+        component._switch(parent)
 
     return components

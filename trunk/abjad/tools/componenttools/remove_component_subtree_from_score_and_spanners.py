@@ -103,6 +103,6 @@ def remove_component_subtree_from_score_and_spanners(components):
     assert componenttools.all_are_components(components)
 
     for component in components:
-        component._parentage._cut()
+        component._cut()
         _withdraw_components_in_expr_from_attached_spanners([component])
     return components

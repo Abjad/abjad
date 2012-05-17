@@ -8,4 +8,4 @@ def _restore_parentage_to_components_by_receipt(receipt):
 
     for component, parent in receipt:
         assert component._parent is None
-        component._parentage._switch(parent)
+        component._switch(parent)

@@ -2,7 +2,6 @@ from abc import ABCMeta
 from abjad.tools.lilypondproxytools import LilyPondContextSettingComponentPlugIn
 from abjad.tools.lilypondproxytools import LilyPondGrobOverrideComponentPlugIn
 from abjad.tools.abctools import AbjadObject
-from abjad.interfaces import ParentageInterface
 from abjad.interfaces import _OffsetInterface
 from abjad.tools import durationtools
 import copy
@@ -19,7 +18,7 @@ class Component(AbjadObject):
         '_marks_for_which_component_functions_as_effective_context',
         '_marks_for_which_component_functions_as_start_component', '_navigator',
         '_offset', '_offset_values_in_seconds_are_current', '_override', '_parent', 
-        '_parentage', '_prolated_offset_values_are_current', '_set', '_spanners',
+        '_prolated_offset_values_are_current', '_set', '_spanners',
         'lilypond_file', )
 
     ### INITIALIZER ###
@@ -32,7 +31,6 @@ class Component(AbjadObject):
         self._offset = _OffsetInterface(self)
         self._offset_values_in_seconds_are_current = False
         self._parent = None
-        self._parentage = ParentageInterface(self)
         self._prolated_offset_values_are_current = False
         self._spanners = set([])
 
@@ -125,6 +123,30 @@ class Component(AbjadObject):
         return set(self._spanners)
 
     ### PRIVATE METHODS ###
+
+    def _cut(self):
+        '''Component loses pointer to parent and parent loses pointer to component.
+        Not composer-safe.
+        '''
+        if self.parent is not None:
+            index = self.parent.index(self)
+            self.parent._music.pop(index)
+        self._ignore()
+
+    def _ignore(self):
+        '''Component loses pointer to parent but parent preserves pointer to component.
+        Not composer-safe.
+        '''
+        self._mark_entire_score_tree_for_later_update('prolated')
+        self._parent = None
+
+    def _switch(self, new_parent):
+        '''Component loses pointer to parent and parent loses pointer to component.
+        Then assign component to new parent.
+        '''
+        self._cut()
+        self._parent = new_parent
+        self._mark_entire_score_tree_for_later_update('prolated')
 
     def _format_component(self, pieces=False):
         result = []
