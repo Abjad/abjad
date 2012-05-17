@@ -158,7 +158,7 @@ class _NavigationInterface(_Interface):
         if not isinstance(self._client, containertools.Container):
             return None
         next = self._next
-        if next is None or isinstance(next, leaftoolsLeaf):
+        if next is None or isinstance(next, leaftools.Leaf):
             return None
         containers = componenttools.get_component_lineage_that_start_with_component(next)
         for c in containers:
