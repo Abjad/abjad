@@ -60,11 +60,8 @@ class _NavigationInterface(_Interface):
     def _next_sibling(self):
         '''Returns the next sequential element in the caller's parent, otherwise none.
         '''
-        if self._client.parent is not None:
-            if not self._client.parent.is_parallel:
-                rank = self._client.parent.index(self._client)
-                if rank + 1 < len(self._client._parentage.parent._music):
-                    return self._client._parentage.parent._music[rank + 1]
+        from abjad.tools import componenttools
+        return componenttools.get_nth_sibling_from_component(self._client, 1)
 
     @property
     def _prev(self):
@@ -114,11 +111,8 @@ class _NavigationInterface(_Interface):
     def _prev_sibling(self):
         '''Returns the previous sequential element in the caller's parent, otherwise none.
         '''
-        if self._client.parent is not None:
-            if not self._client.parent.is_parallel:
-                rank = self._client.parent.index(self._client)
-                if 0 <= rank - 1:
-                    return self._client._parentage.parent._music[rank - 1]
+        from abjad.tools import componenttools
+        return componenttools.get_nth_sibling_from_component(self._client, -1)
 
     ### PRIVATE METHODS ###
 
