@@ -24,7 +24,7 @@ class _NavigationInterface(_Interface):
         from abjad.tools import leaftools
         if not isinstance(self._client, leaftools.Leaf):
             return
-        next_component = componenttools.get_nth_component_from_component_in_temporal_order(self._client, 1)
+        next_component = componenttools.get_nth_component_in_time_order_from_component(self._client, 1)
         if next_component is None:
             return
         candidates = componenttools.get_improper_descendents_of_component_that_start_with_component(
@@ -37,7 +37,7 @@ class _NavigationInterface(_Interface):
         '''Find the next component of the same type and with the same parentage signature.
         '''
         from abjad.tools import componenttools
-        next_component = componenttools.get_nth_component_from_component_in_temporal_order(self._client, 1)
+        next_component = componenttools.get_nth_component_in_time_order_from_component(self._client, 1)
         if next_component is None:
             return
         dfs = componenttools.iterate_components_depth_first(next_component, capped=False)
@@ -57,7 +57,7 @@ class _NavigationInterface(_Interface):
         from abjad.tools import leaftools
         if not isinstance(self._client, leaftools.Leaf):
             return
-        prev = componenttools.get_nth_component_from_component_in_temporal_order(self._client, -1)
+        prev = componenttools.get_nth_component_in_time_order_from_component(self._client, -1)
         if prev is None:
             return
         candidates = componenttools.get_improper_descendents_of_component_that_stop_with_component(prev)
@@ -71,7 +71,7 @@ class _NavigationInterface(_Interface):
         '''Find the prev component of same type and parentage signature.
         '''
         from abjad.tools import componenttools
-        prev = componenttools.get_nth_component_from_component_in_temporal_order(self._client, -1)
+        prev = componenttools.get_nth_component_in_time_order_from_component(self._client, -1)
         if prev is None:
             return
         dfs = componenttools.iterate_components_depth_first(prev, capped=False, direction='right')

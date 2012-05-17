@@ -1,4 +1,4 @@
-def get_nth_component_from_component_in_temporal_order(component, n):
+def get_nth_component_in_time_order_from_component(component, n):
     r'''.. versionadded:: 2.9
 
     Get nth component from `component` in temporal order::
@@ -25,37 +25,37 @@ def get_nth_component_from_component_in_temporal_order(component, n):
 
     Return component right of `component` for positive `n`::
 
-        abjad> componenttools.get_nth_component_from_component_in_temporal_order(staff.leaves[1], 1)
+        abjad> componenttools.get_nth_component_in_time_order_from_component(staff.leaves[1], 1)
         Note("e'8")
 
     ::
 
-        abjad> componenttools.get_nth_component_from_component_in_temporal_order(staff.leaves[1], 2)
+        abjad> componenttools.get_nth_component_in_time_order_from_component(staff.leaves[1], 2)
         Note("f'8")
 
     ::
 
-        abjad> componenttools.get_nth_component_from_component_in_temporal_order(staff.leaves[1], 3)
+        abjad> componenttools.get_nth_component_in_time_order_from_component(staff.leaves[1], 3)
         Note("g'2")
 
     Return component left of `component` for negative `n`::
 
-        abjad> componenttools.get_nth_component_from_component_in_temporal_order(staff.leaves[1], -1)
+        abjad> componenttools.get_nth_component_in_time_order_from_component(staff.leaves[1], -1)
         Note("c'4")
 
     Return `component` when `n` is ``0``::
 
-        abjad> componenttools.get_nth_component_from_component_in_temporal_order(staff.leaves[1], 0)
+        abjad> componenttools.get_nth_component_in_time_order_from_component(staff.leaves[1], 0)
         Note("d'8")
 
     Return none when `n` is out of range::
 
-        abjad> componenttools.get_nth_component_from_component_in_temporal_order(staff.leaves[1], 99) is None
+        abjad> componenttools.get_nth_component_in_time_order_from_component(staff.leaves[1], 99) is None
         True
 
     Return none when `component` has no parent::
 
-        abjad> componenttools.get_nth_component_from_component_in_temporal_order(staff, 1) is None
+        abjad> componenttools.get_nth_component_in_time_order_from_component(staff, 1) is None
         True
 
     Return component or none.
