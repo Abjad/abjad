@@ -40,6 +40,7 @@ def all_are_thread_contiguous_components(expr, klasses=None, allow_orphans=True)
 
     Thread-contiguous components are, by definition, spannable.
     '''
+    from abjad.tools import componenttools
 
     if not isinstance(expr, (list, tuple, types.GeneratorType)):
         return False
@@ -70,7 +71,7 @@ def all_are_thread_contiguous_components(expr, klasses=None, allow_orphans=True)
             orphan_components = False
         if not component_to_containment_signature(cur) == first_thread:
             same_thread = False
-        if not prev._navigator._is_immediate_temporal_successor_of(cur):
+        if not componenttools.is_immediate_temporal_successor_of_component(prev, cur):
             if not _are_thread_proper(prev, cur):
                 thread_proper = False
         if (not allow_orphans or (allow_orphans and not orphan_components)) and \

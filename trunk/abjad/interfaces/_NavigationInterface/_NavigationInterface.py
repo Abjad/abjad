@@ -45,24 +45,3 @@ class _NavigationInterface(_Interface):
                 componenttools.component_to_parentage_signature(node) == \
                 componenttools.component_to_parentage_signature(self._client):
                 return node
-
-    ### PRIVATE METHODS ###
-
-    def _get_immediate_temporal_successors(self):
-        '''Return list of components immediately after client.
-        '''
-        from abjad.tools import componenttools
-        cur = self._client
-        while cur is not None:
-            next_sibling = componenttools.get_nth_sibling_from_component(cur, 1)
-            if next_sibling is None:
-                cur = cur._parentage.parent
-            else:
-                return componenttools.get_improper_descendents_of_component_that_start_with_component(
-                    next_sibling)
-        return []
-
-    def _is_immediate_temporal_successor_of(self, expr):
-        '''True when client follows immediately after expr, otherwise false.
-        '''
-        return expr in self._get_immediate_temporal_successors()

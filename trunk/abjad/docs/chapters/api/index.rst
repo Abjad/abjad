@@ -112,6 +112,7 @@ Abjad composition packages
    tools/componenttools/get_proper_descendents_of_component
    tools/componenttools/get_proper_parentage_of_component
    tools/componenttools/is_beamable_component
+   tools/componenttools/is_immediate_temporal_successor_of_component
    tools/componenttools/is_orphan_component
    tools/componenttools/is_well_formed_component
    tools/componenttools/iterate_components_backward_in_expr

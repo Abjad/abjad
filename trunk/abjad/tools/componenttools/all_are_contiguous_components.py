@@ -20,6 +20,7 @@ def all_are_contiguous_components(expr, klasses=None, allow_orphans=True):
 
     Return boolean.
     '''
+    from abjad.tools import componenttools
 
     if not isinstance(expr, (list, tuple, types.GeneratorType)):
         #raise TypeError('Must be list of Abjad components.')
@@ -47,7 +48,7 @@ def all_are_contiguous_components(expr, klasses=None, allow_orphans=True):
             return False
         if not is_orphan_component(cur):
             orphan_components = False
-        if not prev._navigator._is_immediate_temporal_successor_of(cur):
+        if not componenttools.is_immediate_temporal_successor_of_component(prev, cur):
             strictly_contiguous = False
         if (not allow_orphans or (allow_orphans and not orphan_components)) and \
             not strictly_contiguous:

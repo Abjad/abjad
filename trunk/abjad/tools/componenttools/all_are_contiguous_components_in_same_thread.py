@@ -23,9 +23,9 @@ def all_are_contiguous_components_in_same_thread(expr, klasses=None, allow_orpha
 
     Return boolean.
     '''
+    from abjad.tools import componenttools
 
     if not isinstance(expr, (list, tuple, types.GeneratorType)):
-        #raise TypeError('Must be list of Abjad components.')
         return False
 
     if klasses is None:
@@ -55,7 +55,7 @@ def all_are_contiguous_components_in_same_thread(expr, klasses=None, allow_orpha
         cur_signature = component_to_containment_signature(cur)
         if not cur_signature == first_signature:
             same_thread = False
-        if not prev._navigator._is_immediate_temporal_successor_of(cur):
+        if not componenttools.is_immediate_temporal_successor_of_component(prev, cur):
             strictly_contiguous = False
         if (not allow_orphans or (allow_orphans and not orphan_components)) and \
             (not same_thread or not strictly_contiguous):

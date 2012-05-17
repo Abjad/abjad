@@ -1,8 +1,9 @@
 from abjad import *
 import py.test
+py.test.skip('modernize and port all to componentools.is_immediate_temporal_successor_of_component().')
 
 
-def test__NavigationInterface_is_immediate_temporal_successor_of_01( ):
+def test_componenttools_is_immediate_temporal_successor_of_component_01( ):
     '''The second of two leaves in the same voice is
         the immediate temporal follower of the first.'''
 
@@ -22,7 +23,7 @@ def test__NavigationInterface_is_immediate_temporal_successor_of_01( ):
     '''
 
 
-def test__NavigationInterface_is_immediate_temporal_successor_of_02( ):
+def test_componenttools_is_immediate_temporal_successor_of_component_02( ):
     '''The second of two leaves in the same staff is
         the immediate temporal follower of the first.'''
 
@@ -42,7 +43,7 @@ def test__NavigationInterface_is_immediate_temporal_successor_of_02( ):
     '''
 
 
-def test__NavigationInterface_is_immediate_temporal_successor_of_03( ):
+def test_componenttools_is_immediate_temporal_successor_of_component_03( ):
     '''The second of two leaves in the same sequential is
         the immediate temporal follower of the first.'''
 
@@ -63,7 +64,7 @@ def test__NavigationInterface_is_immediate_temporal_successor_of_03( ):
 
 
 # NONSTRUCTURAL in new parallel --> context model.
-#def test__NavigationInterface_is_immediate_temporal_successor_of_04( ):
+#def test_componenttools_is_immediate_temporal_successor_of_component_04( ):
 #   '''None of the leaves in the same parallel follow
 #      any of the others temporally.'''
 #
@@ -82,7 +83,7 @@ def test__NavigationInterface_is_immediate_temporal_successor_of_03( ):
 #   >>'''
 
 
-def test__NavigationInterface_is_immediate_temporal_successor_of_05( ):
+def test_componenttools_is_immediate_temporal_successor_of_component_05( ):
     '''The second of two leaves in the same tuplet is
         the immediate temporal follower of the first.'''
 
@@ -100,7 +101,7 @@ def test__NavigationInterface_is_immediate_temporal_successor_of_05( ):
     '''
 
 
-def test__NavigationInterface_is_immediate_temporal_successor_of_06( ):
+def test_componenttools_is_immediate_temporal_successor_of_component_06( ):
     '''The second sequential and the first note of the second sequential
         both temporally follow the first sequential and the last
         note of the first sequential immediately.'''
@@ -132,7 +133,7 @@ def test__NavigationInterface_is_immediate_temporal_successor_of_06( ):
     '''
 
 
-def test__NavigationInterface_is_immediate_temporal_successor_of_07( ):
+def test_componenttools_is_immediate_temporal_successor_of_component_07( ):
     '''The second tuplet and the first note of the second tuplet
         both temporally follow the first tuplet and the last
         note of the first tuplet immediately.'''
@@ -162,7 +163,7 @@ def test__NavigationInterface_is_immediate_temporal_successor_of_07( ):
     '''
 
 
-def test__NavigationInterface_is_immediate_temporal_successor_of_08( ):
+def test_componenttools_is_immediate_temporal_successor_of_component_08( ):
     '''The second (anonymous) voice and the first note of the
         second (anonymous) voice both temporally follow the
         first (anonymous) voice and the last note of the
@@ -195,7 +196,7 @@ def test__NavigationInterface_is_immediate_temporal_successor_of_08( ):
     '''
 
 
-def test__NavigationInterface_is_immediate_temporal_successor_of_09( ):
+def test_componenttools_is_immediate_temporal_successor_of_component_09( ):
     '''The second (like-named) voice and the first note of the
         second (like-named) voice both temporally follow the
         first (like-named) voice and the last note of the
@@ -229,7 +230,7 @@ def test__NavigationInterface_is_immediate_temporal_successor_of_09( ):
     '''
 
 
-def test__NavigationInterface_is_immediate_temporal_successor_of_10( ):
+def test_componenttools_is_immediate_temporal_successor_of_component_10( ):
     '''The second (differently named) voice and the first note of the
         second (differently named) voice both temporally follow the
         first (differently named) voice and the last note of the
@@ -263,7 +264,7 @@ def test__NavigationInterface_is_immediate_temporal_successor_of_10( ):
     '''
 
 
-def test__NavigationInterface_is_immediate_temporal_successor_of_11( ):
+def test_componenttools_is_immediate_temporal_successor_of_component_11( ):
     '''Each of ...
         * the first (anonymous) staff
         * the first (anonymous) voice
@@ -313,7 +314,7 @@ def test__NavigationInterface_is_immediate_temporal_successor_of_11( ):
     '''
 
 
-def test__NavigationInterface_is_immediate_temporal_successor_of_12( ):
+def test_componenttools_is_immediate_temporal_successor_of_component_12( ):
     '''Everything at the beginning of the second staff temporally
         follows everything at the end of the first staff immediately.'''
 
@@ -391,7 +392,7 @@ def test__NavigationInterface_is_immediate_temporal_successor_of_12( ):
     '''
 
 
-def test__NavigationInterface_is_immediate_temporal_successor_of_13( ):
+def test_componenttools_is_immediate_temporal_successor_of_component_13( ):
     '''Everything at the beginning of the second sequential temporally
         follows everything at the end of the first sequential immediately.'''
 
