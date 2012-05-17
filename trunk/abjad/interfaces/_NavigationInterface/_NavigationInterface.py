@@ -16,46 +16,12 @@ class _NavigationInterface(_Interface):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _contemporaneous_start_components(self):
-        '''Return a list of all components in either the contents or
-        parentage of client starting at the same moment as client,
-        including client.
-        '''
-        from abjad.tools import componenttools
-        return componenttools.get_lineage_of_component_that_start_with_component(self._client)
-
-    @property
-    def _contemporaneous_start_contents(self):
-        '''Return a list of all components in the contents of client
-        starting at the same moment as client, including client.
-        '''
-        from abjad.tools import componenttools
-        return componenttools.get_improper_descendents_of_component_that_start_with_component(self._client)
-
-    @property
     def _contemporaneous_start_parentage(self):
         '''Return a list of all components in the parentage of client
         starting at the same moment as client, including client.
         '''
         from abjad.tools import componenttools
         return componenttools.get_improper_parentage_of_component_that_start_with_component(self._client)
-
-    @property
-    def _contemporaneous_stop_components(self):
-        '''Return a list of all components in either the contents or
-        parentage of client stopping at the same moment as client,
-        including client.
-        '''
-        from abjad.tools import componenttools
-        return componenttools.get_lineage_of_component_that_stop_with_component(self._client)
-
-    @property
-    def _contemporaneous_stop_contents(self):
-        '''Return a list of all components in the contents of client
-        stopping at the same moment as client, including client.
-        '''
-        from abjad.tools import componenttools
-        return componenttools.get_improper_descendents_of_component_that_stop_with_component(self._client)
 
     @property
     def _contemporaneous_stop_parentage(self):
@@ -186,14 +152,15 @@ class _NavigationInterface(_Interface):
     def _next_thread(self):
         '''Returns the next threadable Container.
         '''
-        from abjad.tools.containertools.Container import Container
-        from abjad.tools.leaftools.Leaf import Leaf
-        if not isinstance(self._client, Container):
+        from abjad.tools import componenttools
+        from abjad.tools import containertools
+        from abjad.tools import leaftools
+        if not isinstance(self._client, containertools.Container):
             return None
         next = self._next
-        if next is None or isinstance(next, Leaf):
+        if next is None or isinstance(next, leaftoolsLeaf):
             return None
-        containers = next._navigator._contemporaneous_start_components
+        containers = componenttools.get_component_lineage_that_start_with_component(next)
         for c in containers:
             if self._is_threadable(c):
                 return c
@@ -265,13 +232,15 @@ class _NavigationInterface(_Interface):
     def _get_immediate_temporal_successors(self):
         '''Return Python list of components immediately after self._client.
         '''
+        from abjad.tools import componenttools
         cur = self._client
         while cur is not None:
             next_sibling = cur._navigator._next_sibling
             if next_sibling is None:
                 cur = cur._parentage.parent
             else:
-                return next_sibling._navigator._contemporaneous_start_contents
+                return componenttools.get_improper_descendents_of_component_that_start_with_component(
+                    next_sibling)
         return []
 
     def _is_immediate_temporal_successor_of(self, expr):

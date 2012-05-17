@@ -31,10 +31,10 @@ def get_spanners_that_dominate_components(components):
 
     first, last = components[0], components[-1]
 
-    start_components = first._navigator._contemporaneous_start_contents
-    stop_components = set(last._navigator._contemporaneous_stop_contents)
+    start_components = componenttools.get_improper_descendents_of_component_that_start_with_component(first)
+    stop_components = componenttools.get_improper_descendents_of_component_that_stop_with_component(last)
+    stop_components = set(stop_components)
     for component in start_components:
-        #for spanner in component.spanners.attached:
         for spanner in get_spanners_attached_to_component(component):
             if set(spanner[:]) & stop_components != set([]):
                 index = spanner.index(component)

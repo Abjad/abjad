@@ -35,7 +35,8 @@ def _insert_measure_padding(expr, front, back, klass, splice = False):
 
     for measure in measuretools.iterate_measures_forward_in_expr(expr):
         if front is not None:
-            start_components = measure._navigator._contemporaneous_start_contents
+            start_components = componenttools.get_improper_descendents_of_component_that_start_with_component(
+                measure)
             start_leaves = [x for x in start_components if isinstance(x, Leaf)]
             for start_leaf in start_leaves:
                 if splice:
@@ -45,7 +46,8 @@ def _insert_measure_padding(expr, front, back, klass, splice = False):
                     componenttools.extend_left_in_parent_of_component_and_do_not_grow_spanners(
                         start_leaf, [klass.__class__(front)])
         if back is not None:
-            stop_components = measure._navigator._contemporaneous_stop_contents
+            stop_components = componenttools.get_improper_descendents_of_component_that_stop_with_component(
+                measure)
             stop_leaves = [x for x in stop_components if isinstance(x, Leaf)]
             for stop_leaf in stop_leaves:
                 if splice:

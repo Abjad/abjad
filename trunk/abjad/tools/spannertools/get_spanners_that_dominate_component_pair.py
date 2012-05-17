@@ -29,7 +29,7 @@ def get_spanners_that_dominate_component_pair(left, right):
     left_contained = get_spanners_attached_to_any_improper_child_of_component(left)
     right_contained = get_spanners_attached_to_any_improper_child_of_component(right)
     dominant_spanners = left_contained & right_contained
-    components_after_gap = right._navigator._contemporaneous_start_components
+    components_after_gap = componenttools.get_lineage_of_component_that_start_with_component(right)
 
     receipt = set([])
     for spanner in dominant_spanners:

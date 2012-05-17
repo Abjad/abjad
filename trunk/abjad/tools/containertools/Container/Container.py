@@ -410,10 +410,12 @@ class Container(Component):
             raise TypeError('can not initialize container from "%s".' % str(music))
 
     def _is_one_of_my_first_leaves(self, leaf):
-        return leaf in self._navigator._contemporaneous_start_contents
+        from abjad.tools import componenttools
+        return leaf in componenttools.get_improper_descendents_of_component_that_start_with_component(self)
 
     def _is_one_of_my_last_leaves(self, leaf):
-        return leaf in self._navigator._contemporaneous_stop_contents
+        from abjad.tools import componenttools
+        return leaf in componenttools.get_improper_descendents_of_component_that_stop_with_component(self)
 
     def _parse_string(self, string):
         from abjad.tools.lilypondparsertools import LilyPondParser
