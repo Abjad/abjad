@@ -5,11 +5,15 @@ class ParentageInterface(_Interface):
     '''Bundle attributes relating to the containers within which any Abjad component nests.
     '''
 
-    __slots__ = ('__parent', )
+    ### CLASS ATTRIBUTES ###
+
+    __slots__ = ('_parent', )
+
+    ### INITIALIZER ###
 
     def __init__(self, _client):
         _Interface.__init__(self, _client)
-        self.__parent = None
+        self._parent = None
 
     ### PRIVATE METHODS ###
 
@@ -18,21 +22,18 @@ class ParentageInterface(_Interface):
         client, parent = self._client, self.parent
         if parent is not None:
             index = parent.index(client)
-            #parent._music.remove(client)
             parent._music.pop(index)
-        self._ignore( )
+        self._ignore()
 
     def _ignore(self):
         '''Client forgets parent (but parent remembers client).'''
-        #self._client._update._mark_all_improper_parents_for_update( )
         self._client._mark_entire_score_tree_for_later_update('prolated')
-        self.__parent = None
+        self._parent = None
 
     def _switch(self, new_parent):
         '''Remove client from parent and give client to new_parent.'''
-        self._cut( )
-        self.__parent = new_parent
-        #self._client._update._mark_all_improper_parents_for_update( )
+        self._cut()
+        self._parent = new_parent
         self._client._mark_entire_score_tree_for_later_update('prolated')
 
     ### PUBLIC PROPERTIES ###
@@ -85,7 +86,6 @@ class ParentageInterface(_Interface):
         from abjad.tools.containertools.Container import Container
         from abjad.tools import componenttools
 
-        #for component in self.improper_parentage:
         for component in componenttools.get_improper_parentage_of_component(self._client):
             if isinstance(component, Container) and not component.is_parallel:
                 parent = component._parentage.parent
@@ -110,4 +110,4 @@ class ParentageInterface(_Interface):
         with proper parentage. Otherwise ``None``.
         '''
 
-        return self.__parent
+        return self._parent
