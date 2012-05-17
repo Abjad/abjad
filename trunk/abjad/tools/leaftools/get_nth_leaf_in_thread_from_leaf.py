@@ -1,7 +1,4 @@
-from abjad.tools.leaftools.Leaf import Leaf
-
-
-def get_nth_leaf_in_thread_from_leaf(leaf, n = 0):
+def get_nth_leaf_in_thread_from_leaf(leaf, n=0):
     r'''.. versionadded:: 2.0
 
     Get `n` th leaf in thread from `leaf`::
@@ -40,9 +37,21 @@ def get_nth_leaf_in_thread_from_leaf(leaf, n = 0):
 
     Return leaf or none.
     '''
+    from abjad.tools import componenttools
+    from abjad.tools import leaftools
 
-    if not isinstance(leaf, Leaf):
+    if not isinstance(leaf, leaftools.Leaf):
         return None
+
+#    def _helper(component, n):
+#        assert n in (-1, 1)
+#        new_component = componenttools.get_nth_component_in_time_order_from_component(component, n)
+#        if new_component is None:
+#            return
+#        candidates = componenttools.get_improper_descendents_of_component_that_start_with_component(
+#            new_component)
+#        candidates = [x for x in candidates if isinstance(x, leaftools.Leaf)]
+#        return self._find_fellow_bead(candidates)
 
     current_leaf = leaf
 

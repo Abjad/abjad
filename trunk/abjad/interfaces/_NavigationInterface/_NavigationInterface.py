@@ -88,8 +88,9 @@ class _NavigationInterface(_Interface):
         Given a list of bead candiates of self, find and return the first one
         that matches thread parentage.
         '''
+        from abjad.tools import componenttools
         for candidate in candidates:
-            if self._is_threadable(candidate):
+            if componenttools.all_are_components_in_same_thread([self._client, candidate]):
                 return candidate
 
     def _get_immediate_temporal_successors(self):
@@ -110,9 +111,3 @@ class _NavigationInterface(_Interface):
         '''True when client follows immediately after expr, otherwise false.
         '''
         return expr in self._get_immediate_temporal_successors()
-
-    def _is_threadable(self, expr):
-        '''Check if expr is threadable with respect to client.
-        '''
-        from abjad.tools import componenttools
-        return componenttools.all_are_components_in_same_thread([self._client, expr])
