@@ -20,19 +20,8 @@ class _NavigationInterface(_Interface):
         This method will search the whole (parentage) structure moving forward.
         This will only return if called on a leaf.
         '''
-        from abjad.tools import componenttools
         from abjad.tools import leaftools
-        if not isinstance(self._client, leaftools.Leaf):
-            return
-        next_component = componenttools.get_nth_component_in_time_order_from_component(self._client, 1)
-        if next_component is None:
-            return
-        candidates = componenttools.get_improper_descendents_of_component_that_start_with_component(
-            next_component)
-        candidates = [x for x in candidates if isinstance(x, leaftools.Leaf)]
-        for candidate in candidates:
-            if componenttools.all_are_components_in_same_thread([self._client, candidate]):
-                return candidate
+        return leaftools.get_nth_leaf_in_thread_from_leaf(self._client, 1)
 
     @property
     def _next_namesake(self):
@@ -55,18 +44,8 @@ class _NavigationInterface(_Interface):
         This method will search the whole (parentage) structure moving back.
         This will only return if called on a leaf.
         '''
-        from abjad.tools import componenttools
         from abjad.tools import leaftools
-        if not isinstance(self._client, leaftools.Leaf):
-            return
-        prev = componenttools.get_nth_component_in_time_order_from_component(self._client, -1)
-        if prev is None:
-            return
-        candidates = componenttools.get_improper_descendents_of_component_that_stop_with_component(prev)
-        candidates = [x for x in candidates if isinstance(x, leaftools.Leaf)]
-        for candidate in candidates:
-            if componenttools.all_are_components_in_same_thread([self._client, candidate]):
-                return candidate
+        return leaftools.get_nth_leaf_in_thread_from_leaf(self._client, -1)
 
     # TODO: Write tests for _NavigationInterface._prev_namesake.
     #       Backwards depth first search has always had a bug that needs fixing.

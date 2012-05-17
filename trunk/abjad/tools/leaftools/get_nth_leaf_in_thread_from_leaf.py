@@ -5,6 +5,9 @@ def get_nth_leaf_in_thread_from_leaf(leaf, n=0):
 
         abjad> staff = Staff(2 * Voice("c'8 d'8 e'8 f'8"))
         abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+
+    ::
+
         abjad> f(staff)
         \new Staff {
             \new Voice {
@@ -43,28 +46,40 @@ def get_nth_leaf_in_thread_from_leaf(leaf, n=0):
     if not isinstance(leaf, leaftools.Leaf):
         return None
 
-#    def _helper(component, n):
-#        assert n in (-1, 1)
-#        new_component = componenttools.get_nth_component_in_time_order_from_component(component, n)
-#        if new_component is None:
-#            return
-#        candidates = componenttools.get_improper_descendents_of_component_that_start_with_component(
-#            new_component)
-#        candidates = [x for x in candidates if isinstance(x, leaftools.Leaf)]
-#        return self._find_fellow_bead(candidates)
+    def _next(component):
+        new_component = componenttools.get_nth_component_in_time_order_from_component(component, 1)
+        if new_component is None:
+            return
+        candidates = componenttools.get_improper_descendents_of_component_that_start_with_component(
+            new_component)
+        candidates = [x for x in candidates if isinstance(x, leaftools.Leaf)]
+        for candidate in candidates:
+            if componenttools.all_are_components_in_same_thread([component, candidate]):
+                return candidate
+
+    def _prev(component):
+        new_component = componenttools.get_nth_component_in_time_order_from_component(component, -1)
+        if new_component is None:
+            return
+        candidates = componenttools.get_improper_descendents_of_component_that_stop_with_component(
+            new_component)
+        candidates = [x for x in candidates if isinstance(x, leaftools.Leaf)]
+        for candidate in candidates:
+            if componenttools.all_are_components_in_same_thread([component, candidate]):
+                return candidate
 
     current_leaf = leaf
 
     if n < 0:
         for i in range(abs(n)):
-            current_leaf = current_leaf._navigator._prev_bead
+            current_leaf = _prev(current_leaf)
             if current_leaf is None:
                 break
     elif n == 0:
         pass
     else:
         for i in range(n):
-            current_leaf = current_leaf._navigator._next_bead
+            current_leaf = _next(current_leaf)
             if current_leaf is None:
                 break
 
