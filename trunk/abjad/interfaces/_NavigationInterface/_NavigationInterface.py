@@ -1,5 +1,4 @@
 from abjad.interfaces._Interface import _Interface
-import collections
 
 
 class _NavigationInterface(_Interface):
@@ -17,24 +16,23 @@ class _NavigationInterface(_Interface):
 
     @property
     def _next(self):
-        '''Returns next Component in temporal order.
+        '''Returns next component in temporal order.
         '''
         from abjad.tools import componenttools
         next = self._next_sibling
         if next is not None:
             return next
         else:
-            for p in componenttools.get_proper_parentage_of_component(self._client):
-                next = p._navigator._next_sibling
+            for parent in componenttools.get_proper_parentage_of_component(self._client):
+                next = parent._navigator._next_sibling
                 if next is not None:
                     return next
 
     @property
     def _next_bead(self):
-        '''Returns the next Bead (time threaded Leaf), if such exists.
-        This method will search the whole (parentage) structure
-        moving forward.
-        This will only return if called on a Leaf.
+        '''Returns the next bead (time-threaded leaf), if such exists.
+        This method will search the whole (parentage) structure moving forward.
+        This will only return if called on a leaf.
         '''
         from abjad.tools import componenttools
         from abjad.tools import leaftools
@@ -49,8 +47,7 @@ class _NavigationInterface(_Interface):
 
     @property
     def _next_namesake(self):
-        '''Find the next Component of the same type and with the same
-        parentage signature.
+        '''Find the next component of the same type and with the same parentage signature.
         '''
         from abjad.tools import componenttools
         next = self._next
@@ -82,18 +79,17 @@ class _NavigationInterface(_Interface):
 
     @property
     def _next_sibling(self):
-        '''Returns the next sequential element in the caller's parent;
-        None otherwise.
+        '''Returns the next sequential element in the caller's parent, otherwise none.
         '''
-        rank = self._rank()
-        #if (not rank is None) and (not self._client._parentage.parent.is_parallel):
-        if rank is not None and not self._client.parent.is_parallel:
-            if rank + 1 < len(self._client._parentage.parent._music):
-                return self._client._parentage.parent._music[rank + 1]
+        if self._client.parent is not None:
+            if not self._client.parent.is_parallel:
+                rank = self._client.parent.index(self._client)
+                if rank + 1 < len(self._client._parentage.parent._music):
+                    return self._client._parentage.parent._music[rank + 1]
 
     @property
     def _next_thread(self):
-        '''Returns the next threadable Container.
+        '''Returns the next threadable container.
         '''
         from abjad.tools import componenttools
         from abjad.tools import containertools
@@ -110,7 +106,7 @@ class _NavigationInterface(_Interface):
 
     @property
     def _prev(self):
-        '''Returns previous Component in temporal order.
+        '''Returns previous component in temporal order.
         '''
         from abjad.tools import componenttools
         prev = self._prev_sibling
@@ -124,9 +120,9 @@ class _NavigationInterface(_Interface):
 
     @property
     def _prev_bead(self):
-        '''Returns the previous Bead (time threaded Leaf), if such exists.
+        '''Returns the previous bead (time-threaded leaf), if such exists.
         This method will search the whole (parentage) structure moving back.
-        This will only return if called on a Leaf.
+        This will only return if called on a leaf.
         '''
         from abjad.tools import componenttools
         from abjad.tools import leaftools
@@ -141,32 +137,18 @@ class _NavigationInterface(_Interface):
 
     @property
     def _prev_sibling(self):
-        '''Returns the previous sequential element in the caller's parent;
-        None otherwise.
+        '''Returns the previous sequential element in the caller's parent, otherwise none.
         '''
-        rank = self._rank()
-        if rank is not None and not self._client._parentage.parent.is_parallel:
-            if 0 <= rank - 1:
-                return self._client._parentage.parent._music[rank - 1]
-        else:
-            return
+        if self._client.parent is not None:
+            if not self._client.parent.is_parallel:
+                rank = self._client.parent.index(self._client)
+                if 0 <= rank - 1:
+                    return self._client._parentage.parent._music[rank - 1]
 
     ### PRIVATE METHODS ###
 
-    def _advance(self, rank):
-        '''Advance to self._client._music[rank], if possible,
-        otherwise ascend.
-        '''
-        if hasattr(self._client, '_music'):
-            if rank < len(self._client._music):
-                return self._client._music[rank]
-            else:
-                return self._client.parentge.parent
-        else:
-            return self._client._parentage.parent
-
     def _find_fellow_bead(self, candidates):
-        '''Helper method from prev_bead and next_bead.
+        '''Helper method for prev_bead() and next_bead().
         Given a list of bead candiates of self, find and return the first one
         that matches thread parentage.
         '''
@@ -175,7 +157,7 @@ class _NavigationInterface(_Interface):
                 return candidate
 
     def _get_immediate_temporal_successors(self):
-        '''Return Python list of components immediately after self._client.
+        '''Return list of components immediately after client.
         '''
         from abjad.tools import componenttools
         cur = self._client
@@ -189,23 +171,12 @@ class _NavigationInterface(_Interface):
         return []
 
     def _is_immediate_temporal_successor_of(self, expr):
-        '''True when client follows immediately after expr,
-        otherwise False.
+        '''True when client follows immediately after expr, otherwise false.
         '''
         return expr in self._get_immediate_temporal_successors()
 
     def _is_threadable(self, expr):
-        '''Check if expr is threadable with respect to self.
+        '''Check if expr is threadable with respect to client.
         '''
         from abjad.tools import componenttools
         return componenttools.all_are_components_in_same_thread([self._client, expr])
-
-    # TODO: Move _NavigationInterface._rank to Parentage._rank
-    def _rank(self):
-        '''Returns the index of the caller (its position) in
-        the parent container. If caller has no parent,
-        returns None.
-        '''
-        parent = self._client._parentage.parent
-        if parent is not None:
-            return parent.index(self._client)
