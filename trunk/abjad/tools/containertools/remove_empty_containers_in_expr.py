@@ -1,7 +1,5 @@
-from abjad.tools.containertools.Container import Container
-from abjad.tools.componenttools.remove_component_subtree_from_score_and_spanners import remove_component_subtree_from_score_and_spanners
-
-
+# TODO: change name to remove_leafless_containers_in_expr()
+# TODO: add remove_empty_containers_in_expr() that operates on pure emptiness rather than leaflessness
 def remove_empty_containers_in_expr(expr):
     r'''Remove empty containers in `expr`::
 
@@ -56,11 +54,9 @@ def remove_empty_containers_in_expr(expr):
         renamed ``containertools.remove_empty()`` to
         ``containertools.remove_empty_containers_in_expr()``.
     '''
+    from abjad.tools import componenttools
+    from abjad.tools import containertools
 
-    class Visitor(object):
-        def _visit(self, node):
-            if isinstance(node, Container) and len(node.leaves) == 0:
-                remove_component_subtree_from_score_and_spanners([node])
-
-    v = Visitor()
-    expr._navigator._traverse(v, depth_first=False)
+    for container in containertools.iterate_containers_forward_in_expr(expr):
+        if not container.leaves:
+            componenttools.remove_component_subtree_from_score_and_spanners([container])
