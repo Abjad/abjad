@@ -16,48 +16,6 @@ class _NavigationInterface(_Interface):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _first_leaves(self):
-        '''Returns the first (leftmost) leaf or leaves
-        (in case there's a parallel structure) in a tree.
-        '''
-        from abjad.tools import containertools
-        from abjad.tools import leaftools
-        client = self._client
-        if isinstance(client, leaftools.Leaf):
-            return [client]
-        elif isinstance(client, containertools.Container):
-            leaves = []
-            if self._client.is_parallel:
-                for e in self._client:
-                    leaves.extend(e._navigator._first_leaves)
-            elif len(self._client):
-                leaves.extend(self._client[0]._navigator._first_leaves)
-            else:
-                return []
-            return leaves
-
-    @property
-    def _last_leaves(self):
-        '''Returns the last (rightmost) leaf or leaves
-        (in case there's a parallel structure) in a tree.
-        '''
-        from abjad.tools import containertools
-        from abjad.tools import leaftools
-        client = self._client
-        if isinstance(client, leaftools.Leaf):
-            return [client]
-        elif isinstance(client, containertools.Container):
-            leaves = []
-            if self._client.is_parallel:
-                for e in self._client:
-                    leaves.extend(e._navigator._last_leaves)
-            elif len(self._client):
-                leaves.extend(self._client[-1]._navigator._last_leaves)
-            else:
-                return []
-            return leaves
-
-    @property
     def _next(self):
         '''Returns next Component in temporal order.
         '''
@@ -78,13 +36,15 @@ class _NavigationInterface(_Interface):
         moving forward.
         This will only return if called on a Leaf.
         '''
+        from abjad.tools import componenttools
         from abjad.tools import leaftools
         if not isinstance(self._client, leaftools.Leaf):
             return None
         next = self._next
         if next is None:
             return None
-        candidates = next._navigator._first_leaves
+        candidates = componenttools.get_improper_descendents_of_component_that_start_with_component(next)
+        candidates = [x for x in candidates if isinstance(x, leaftools.Leaf)]
         return self._find_fellow_bead(candidates)
 
     @property
@@ -169,13 +129,15 @@ class _NavigationInterface(_Interface):
         This method will search the whole (parentage) structure moving back.
         This will only return if called on a Leaf.
         '''
+        from abjad.tools import componenttools
         from abjad.tools import leaftools
         if not isinstance(self._client, leaftools.Leaf):
             return None
         prev = self._prev
         if prev is None:
             return None
-        candidates = prev._navigator._last_leaves
+        candidates = componenttools.get_improper_descendents_of_component_that_stop_with_component(prev)
+        candidates = [x for x in candidates if isinstance(x, leaftools.Leaf)]
         return self._find_fellow_bead(candidates)
 
     @property
