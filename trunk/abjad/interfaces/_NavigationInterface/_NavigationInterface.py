@@ -15,15 +15,6 @@ class _NavigationInterface(_Interface):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _next_bead(self):
-        '''Returns the next bead (time-threaded leaf), if such exists.
-        This method will search the whole (parentage) structure moving forward.
-        This will only return if called on a leaf.
-        '''
-        from abjad.tools import leaftools
-        return leaftools.get_nth_leaf_in_thread_from_leaf(self._client, 1)
-
-    @property
     def _next_namesake(self):
         '''Find the next component of the same type and with the same parentage signature.
         '''
@@ -37,15 +28,6 @@ class _NavigationInterface(_Interface):
                 componenttools.component_to_parentage_signature(node) == \
                 componenttools.component_to_parentage_signature(self._client):
                 return node
-
-    @property
-    def _prev_bead(self):
-        '''Returns the previous bead (time-threaded leaf), if such exists.
-        This method will search the whole (parentage) structure moving back.
-        This will only return if called on a leaf.
-        '''
-        from abjad.tools import leaftools
-        return leaftools.get_nth_leaf_in_thread_from_leaf(self._client, -1)
 
     # TODO: Write tests for _NavigationInterface._prev_namesake.
     #       Backwards depth first search has always had a bug that needs fixing.

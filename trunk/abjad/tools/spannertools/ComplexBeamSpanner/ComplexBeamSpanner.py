@@ -109,13 +109,11 @@ class ComplexBeamSpanner(BeamSpanner):
         if self._is_my_only_leaf(leaf):
             left, right = self._get_left_right_for_lone_leaf(leaf)
         # first
-        elif self._is_my_first_leaf(leaf) or not leaf._navigator._prev_bead:
-        #elif self._is_my_first_leaf(leaf) or not leaftools.get_nth_leaf_in_thread_from_leaf(leaf, -1):
+        elif self._is_my_first_leaf(leaf) or not leaftools.get_nth_leaf_in_thread_from_leaf(leaf, -1):
             left = 0
             right = durationtools.rational_to_flag_count(leaf.written_duration)
         # last
-        elif self._is_my_last_leaf(leaf) or not leaf._navigator._next_bead:
-        #elif self._is_my_first_leaf(leaf) or not leaftools.get_nth_leaf_in_thread_from_leaf(leaf, 1):
+        elif self._is_my_last_leaf(leaf) or not leaftools.get_nth_leaf_in_thread_from_leaf(leaf, 1):
             left = durationtools.rational_to_flag_count(leaf.written_duration)
             right = 0
         else:
