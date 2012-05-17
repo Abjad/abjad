@@ -39,10 +39,10 @@ class _NavigationInterface(_Interface):
         from abjad.tools import componenttools
         from abjad.tools import leaftools
         if not isinstance(self._client, leaftools.Leaf):
-            return None
+            return
         next = self._next
         if next is None:
-            return None
+            return
         candidates = componenttools.get_improper_descendents_of_component_that_start_with_component(next)
         candidates = [x for x in candidates if isinstance(x, leaftools.Leaf)]
         return self._find_fellow_bead(candidates)
@@ -55,7 +55,7 @@ class _NavigationInterface(_Interface):
         from abjad.tools import componenttools
         next = self._next
         if next is None:
-            return None
+            return
         dfs = componenttools.iterate_components_depth_first(next, capped = False)
         for node in dfs:
             if type(node) == type(self._client) and \
@@ -72,7 +72,7 @@ class _NavigationInterface(_Interface):
         from abjad.tools import componenttools
         prev = self._prev
         if prev is None:
-            return None
+            return
         dfs = componenttools.iterate_components_depth_first(prev, capped=False, direction='right')
         for node in dfs:
             if type(node) == type(self._client) and \
@@ -86,11 +86,10 @@ class _NavigationInterface(_Interface):
         None otherwise.
         '''
         rank = self._rank()
-        if (not rank is None) and (not self._client._parentage.parent.is_parallel):
+        #if (not rank is None) and (not self._client._parentage.parent.is_parallel):
+        if rank is not None and not self._client.parent.is_parallel:
             if rank + 1 < len(self._client._parentage.parent._music):
                 return self._client._parentage.parent._music[rank + 1]
-        else:
-            return None
 
     @property
     def _next_thread(self):
@@ -100,14 +99,14 @@ class _NavigationInterface(_Interface):
         from abjad.tools import containertools
         from abjad.tools import leaftools
         if not isinstance(self._client, containertools.Container):
-            return None
+            return
         next = self._next
         if next is None or isinstance(next, leaftools.Leaf):
-            return None
+            return
         containers = componenttools.get_component_lineage_that_start_with_component(next)
-        for c in containers:
-            if self._is_threadable(c):
-                return c
+        for container in containers:
+            if self._is_threadable(container):
+                return container
 
     @property
     def _prev(self):
@@ -118,8 +117,8 @@ class _NavigationInterface(_Interface):
         if prev is not None:
             return prev
         else:
-            for p in componenttools.get_proper_parentage_of_component(self._client):
-                prev = p._navigator._prev_sibling
+            for parent in componenttools.get_proper_parentage_of_component(self._client):
+                prev = parent._navigator._prev_sibling
                 if prev is not None:
                     return prev
 
@@ -132,10 +131,10 @@ class _NavigationInterface(_Interface):
         from abjad.tools import componenttools
         from abjad.tools import leaftools
         if not isinstance(self._client, leaftools.Leaf):
-            return None
+            return
         prev = self._prev
         if prev is None:
-            return None
+            return
         candidates = componenttools.get_improper_descendents_of_component_that_stop_with_component(prev)
         candidates = [x for x in candidates if isinstance(x, leaftools.Leaf)]
         return self._find_fellow_bead(candidates)
@@ -146,11 +145,11 @@ class _NavigationInterface(_Interface):
         None otherwise.
         '''
         rank = self._rank()
-        if (not rank is None) and (not self._client._parentage.parent.is_parallel):
+        if rank is not None and not self._client._parentage.parent.is_parallel:
             if 0 <= rank - 1:
                 return self._client._parentage.parent._music[rank - 1]
         else:
-            return None
+            return
 
     ### PRIVATE METHODS ###
 
@@ -210,8 +209,6 @@ class _NavigationInterface(_Interface):
         parent = self._client._parentage.parent
         if parent is not None:
             return parent.index(self._client)
-        else:
-            return None
 
     def _traverse(self, v, depth_first=True, left_right=True):
         '''Traverse with visitor visiting each node in turn.
