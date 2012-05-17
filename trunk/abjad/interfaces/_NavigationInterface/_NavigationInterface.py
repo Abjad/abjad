@@ -19,14 +19,10 @@ class _NavigationInterface(_Interface):
         '''Returns next component in temporal order.
         '''
         from abjad.tools import componenttools
-        next = self._next_sibling
-        if next is not None:
-            return next
-        else:
-            for parent in componenttools.get_proper_parentage_of_component(self._client):
-                next = parent._navigator._next_sibling
-                if next is not None:
-                    return next
+        for component in componenttools.get_improper_parentage_of_component(self._client):
+            next_sibling = component._navigator._next_sibling
+            if next_sibling is not None:
+                return next_sibling
 
     @property
     def _next_bead(self):
@@ -53,7 +49,7 @@ class _NavigationInterface(_Interface):
         next = self._next
         if next is None:
             return
-        dfs = componenttools.iterate_components_depth_first(next, capped = False)
+        dfs = componenttools.iterate_components_depth_first(next, capped=False)
         for node in dfs:
             if type(node) == type(self._client) and \
                 componenttools.component_to_parentage_signature(node) == \
@@ -109,14 +105,10 @@ class _NavigationInterface(_Interface):
         '''Returns previous component in temporal order.
         '''
         from abjad.tools import componenttools
-        prev = self._prev_sibling
-        if prev is not None:
-            return prev
-        else:
-            for parent in componenttools.get_proper_parentage_of_component(self._client):
-                prev = parent._navigator._prev_sibling
-                if prev is not None:
-                    return prev
+        for component in componenttools.get_improper_parentage_of_component(self._client):
+            prev_sibling = component._navigator._prev_sibling
+            if prev_sibling is not None:
+                return prev_sibling
 
     @property
     def _prev_bead(self):

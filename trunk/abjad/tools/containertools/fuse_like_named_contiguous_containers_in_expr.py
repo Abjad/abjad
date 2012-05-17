@@ -1,4 +1,3 @@
-from abjad.tools.containertools.Container import Container
 from abjad.tools import componenttools
 
 
@@ -49,30 +48,30 @@ def fuse_like_named_contiguous_containers_in_expr(expr):
         ``containertools.fuse_like_named_contiguous_containers_in_expr()``.
     '''
     from abjad.tools import containertools
-    from abjad.tools.tuplettools.Tuplet import Tuplet
+    from abjad.tools import tuplettools
 
     merged = False
     if not isinstance(expr, list):
         expr = [expr]
-    expr = Container(expr)
+    expr = containertools.Container(expr)
 
-    g = componenttools.iterate_components_depth_first(expr, direction = 'right')
+    g = componenttools.iterate_components_depth_first(expr, direction='right')
     for component in g:
         next_component = component._navigator._next_namesake
-        if isinstance(next_component, Container) and not next_component.is_parallel and \
-            not isinstance(next_component, Tuplet) and \
+        if isinstance(next_component, containertools.Container) and \
+            not next_component.is_parallel and \
+            not isinstance(next_component, tuplettools.Tuplet) and \
             componenttools.all_are_contiguous_components_in_same_score(
-                [component, next_component], allow_orphans = True):
+                [component, next_component], allow_orphans=True):
             component.extend(next_component)
             componenttools.remove_component_subtree_from_score_and_spanners([next_component])
             merged = True
     if merged:
-        #print expr
         containertools.remove_empty_containers_in_expr(expr)
         return expr.pop(0)
     else:
         print 'debug did not merge'
-        return None
+        return
 
 
 # TODO implement containers_by_reference as a simple, non-recursive
