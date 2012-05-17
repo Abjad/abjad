@@ -1,5 +1,4 @@
 from abjad.interfaces._Interface import _Interface
-from abjad.tools import durationtools
 
 
 class _OffsetInterface(_Interface):
@@ -24,29 +23,12 @@ class _OffsetInterface(_Interface):
     ### PRIVATE METHODS ###
 
     def _update_offset_values_of_component_in_seconds(self):
-        from abjad.tools import componenttools
-        try:
-            cur_duration_in_seconds = self._client.duration_in_seconds
-            prev = componenttools.get_nth_component_in_time_order_from_component(self._client, -1)
-            if prev is not None:
-                self._start_in_seconds = prev._offset._stop_in_seconds
-            else:
-                self._start_in_seconds = durationtools.Offset(0)
-            # this one case is possible for containers only
-            if self._start_in_seconds is None:
-                raise MissingTempoError
-            self._stop_in_seconds = self._start_in_seconds + cur_duration_in_seconds
-        except MissingTempoError:
-            pass
+        from abjad.tools import offsettools
+        offsettools.update_offset_values_of_component_in_seconds(self._client)
 
     def _update_prolated_offset_values_of_component(self):
-        from abjad.tools import componenttools
-        prev = componenttools.get_nth_component_in_time_order_from_component(self._client, -1)
-        if prev is not None:
-            self._start = prev._offset._stop
-        else:
-            self._start = durationtools.Offset(0)
-        self._stop = self._start + self._client.prolated_duration
+        from abjad.tools import offsettools
+        offsettools.update_prolated_offset_values_of_component(self._client)
 
     ### PUBLIC PROPERTIES ###
 

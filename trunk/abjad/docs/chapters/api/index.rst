@@ -2055,3 +2055,14 @@ Internals packages
    :maxdepth: 1
 
    tools/importtools/import_structured_package
+
+:py:mod:`offsettools <abjad.tools.offsettools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: functions
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/offsettools/update_offset_values_of_component_in_seconds
+   tools/offsettools/update_prolated_offset_values_of_component
