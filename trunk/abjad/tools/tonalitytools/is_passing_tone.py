@@ -26,12 +26,12 @@ def is_passing_tone(note):
     '''
 
     if not isinstance(note, Note):
-        raise TypeError('must be note: %s' % note)
+        raise TypeError('must be note: {!r}'.format(note))
 
-    try:
-        prev_note = componenttools.get_nth_namesake_from_component(note, -1)
-        next_note = componenttools.get_nth_namesake_from_component(note, 1)
-    except IndexError:
+    prev_note = componenttools.get_nth_namesake_from_component(note, -1)
+    next_note = componenttools.get_nth_namesake_from_component(note, 1)
+
+    if prev_note is None or next_note is None:
         return False
 
     return are_scalar_notes(prev_note, note, next_note)

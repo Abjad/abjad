@@ -51,6 +51,18 @@ def iterate_namesakes_forward_from_component(component, start=0, stop=None):
 
     Return generator.
     '''
+    from abjad.tools import componenttools
+
+    def _helper(component):
+        next_component = componenttools.get_nth_component_in_time_order_from_component(component, 1)
+        if next_component is None:
+            return
+        dfs = componenttools.iterate_components_depth_first(next_component, capped=False)
+        for node in dfs:
+            if type(node) == type(component) and \
+                componenttools.component_to_parentage_signature(node) == \
+                componenttools.component_to_parentage_signature(component):
+                return node
 
     cur_component = component
     total_components = 0
@@ -63,4 +75,4 @@ def iterate_namesakes_forward_from_component(component, start=0, stop=None):
             else:
                 yield cur_component
         total_components += 1
-        cur_component = cur_component._navigator._next_namesake
+        cur_component = _helper(cur_component)

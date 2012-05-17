@@ -51,6 +51,19 @@ def iterate_namesakes_backward_from_component(component, start=0, stop=None):
 
     Return generator.
     '''
+    from abjad.tools import componenttools
+
+    # TODO: Write tests because ackwards depth first search has always had a bug that needs fixing.
+    def _helper(component):
+        prev = componenttools.get_nth_component_in_time_order_from_component(component, -1)
+        if prev is None:
+            return
+        dfs = componenttools.iterate_components_depth_first(prev, capped=False, direction='right')
+        for node in dfs:
+            if type(node) == type(component) and \
+                componenttools.component_to_parentage_signature(node) == \
+                componenttools.component_to_parentage_signature(component):
+                return node
 
     cur_component = component
     total_components = 0
@@ -63,4 +76,4 @@ def iterate_namesakes_backward_from_component(component, start=0, stop=None):
             else:
                 yield cur_component
         total_components += 1
-        cur_component = cur_component._navigator._prev_namesake
+        cur_component = _helper(cur_component)

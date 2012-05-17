@@ -35,5 +35,3 @@ def get_nth_namesake_from_component(component, n):
         for i, namesake in enumerate(iterate_namesakes_backward_from_component(component)):
             if i == n:
                 return namesake
-
-    raise IndexError('only %s namesakes from %s, not %s.' % (i, component, n))
