@@ -30,7 +30,9 @@ class _NavigationInterface(_Interface):
         candidates = componenttools.get_improper_descendents_of_component_that_start_with_component(
             next_component)
         candidates = [x for x in candidates if isinstance(x, leaftools.Leaf)]
-        return self._find_fellow_bead(candidates)
+        for candidate in candidates:
+            if componenttools.all_are_components_in_same_thread([self._client, candidate]):
+                return candidate
 
     @property
     def _next_namesake(self):
@@ -62,7 +64,9 @@ class _NavigationInterface(_Interface):
             return
         candidates = componenttools.get_improper_descendents_of_component_that_stop_with_component(prev)
         candidates = [x for x in candidates if isinstance(x, leaftools.Leaf)]
-        return self._find_fellow_bead(candidates)
+        for candidate in candidates:
+            if componenttools.all_are_components_in_same_thread([self._client, candidate]):
+                return candidate
 
     # TODO: Write tests for _NavigationInterface._prev_namesake.
     #       Backwards depth first search has always had a bug that needs fixing.
@@ -82,16 +86,6 @@ class _NavigationInterface(_Interface):
                 return node
 
     ### PRIVATE METHODS ###
-
-    def _find_fellow_bead(self, candidates):
-        '''Helper method for prev_bead() and next_bead().
-        Given a list of bead candiates of self, find and return the first one
-        that matches thread parentage.
-        '''
-        from abjad.tools import componenttools
-        for candidate in candidates:
-            if componenttools.all_are_components_in_same_thread([self._client, candidate]):
-                return candidate
 
     def _get_immediate_temporal_successors(self):
         '''Return list of components immediately after client.
