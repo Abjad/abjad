@@ -16,22 +16,6 @@ class _NavigationInterface(_Interface):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _contemporaneous_start_parentage(self):
-        '''Return a list of all components in the parentage of client
-        starting at the same moment as client, including client.
-        '''
-        from abjad.tools import componenttools
-        return componenttools.get_improper_parentage_of_component_that_start_with_component(self._client)
-
-    @property
-    def _contemporaneous_stop_parentage(self):
-        '''Return a list of all components in the parentage of client
-        stopping at the same moment as client, including client.
-        '''
-        from abjad.tools import componenttools
-        return componenttools.get_improper_parentage_of_component_that_stop_with_component(self._client)
-
-    @property
     def _first_leaves(self):
         '''Returns the first (leftmost) leaf or leaves
         (in case there's a parallel structure) in a tree.
