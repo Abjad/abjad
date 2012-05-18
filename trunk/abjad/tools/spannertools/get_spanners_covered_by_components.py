@@ -25,8 +25,7 @@ def get_spanners_covered_by_components(components):
 
     result = get_spanners_contained_by_components(components)
     for spanner in list(result):
-        if spanner._offset.start < components_begin or \
-            components_end < spanner._offset.stop:
+        if spanner.start < components_begin or components_end < spanner.stop:
             result.discard(spanner)
 
     return result

@@ -15,8 +15,6 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.spannertools.Spanner.Spanner.Spanner.leaves
 
-.. autoattribute:: abjad.tools.spannertools.Spanner.Spanner.Spanner.offset
-
 .. autoattribute:: abjad.tools.spannertools.Spanner.Spanner.Spanner.override
 
 .. autoattribute:: abjad.tools.spannertools.Spanner.Spanner.Spanner.preprolated_duration
@@ -24,6 +22,10 @@ Read-only Properties
 .. autoattribute:: abjad.tools.spannertools.Spanner.Spanner.Spanner.prolated_duration
 
 .. autoattribute:: abjad.tools.spannertools.Spanner.Spanner.Spanner.set
+
+.. autoattribute:: abjad.tools.spannertools.Spanner.Spanner.Spanner.start
+
+.. autoattribute:: abjad.tools.spannertools.Spanner.Spanner.Spanner.stop
 
 .. autoattribute:: abjad.tools.spannertools.Spanner.Spanner.Spanner.written_duration
 

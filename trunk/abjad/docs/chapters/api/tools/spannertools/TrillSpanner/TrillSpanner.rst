@@ -21,10 +21,6 @@ Read-only Properties
 
     Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
 
-.. autoattribute:: abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.offset
-
-    Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
-
 .. autoattribute:: abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.override
 
     Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
@@ -38,6 +34,14 @@ Read-only Properties
     Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
 
 .. autoattribute:: abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.set
+
+    Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
+.. autoattribute:: abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.start
+
+    Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
+.. autoattribute:: abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.stop
 
     Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
 

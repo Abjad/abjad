@@ -59,7 +59,6 @@ class MetricGridSpanner(Spanner):
 #      leaf = self.leaves[0]
 #      # group leaves by measure.
 #      while leaf:
-#         #if leaf.start < meter._offset + meter.duration:
 #         if leaf.start < moffset + meter.duration:
 #            leaves_in_meter[-1].append(leaf)
 #            #leaf = leaf.next
@@ -145,7 +144,6 @@ class MetricGridSpanner(Spanner):
                 result.append('<<')
                 for meter, moffset, temp_hide in m:
                     s = Skip(durationtools.Duration(1))
-                    #s.duration_multiplier = meter._offset - leaf.start
                     s.duration_multiplier = moffset - leaf.start
                     numerator, denominator = meter.numerator, meter.denominator
                     mark = contexttools.TimeSignatureMark((numerator, denominator))(s)
@@ -155,22 +153,15 @@ class MetricGridSpanner(Spanner):
         return result
 
     def _matching_meter(self, leaf):
-        '''Return the MetricStrip for which meter._offset == leaf._offset.
-        '''
-        #for m in self.meters:
         for m, moffset, temp_hide in self.meters:
-            #if leaf.start == m._offset:
             if leaf.start == moffset:
                 return m, temp_hide
 
     def _slicing_meters(self, leaf):
         '''Return the MetricStrip(s) that slices leaf, if any.
         '''
-        #for m in self.meters:
         for m, moffset, temp_hide in self.meters:
-            #if leaf.start < m._offset:
             if leaf.start < moffset:
-                #if m._offset < leaf._offset.stop:
                 if moffset < leaf.stop:
                     yield m, moffset, temp_hide
                 else:
@@ -207,7 +198,6 @@ class MetricGridSpanner(Spanner):
                 m = self._meters[i % len(self._meters)]
                 m = contexttools.TimeSignatureMark(m)
                 # new attribute
-                #m._offset = moffset
                 if prev_meter and prev_meter == m:
                     #m.hide = True
                     #m._temp_hide = True

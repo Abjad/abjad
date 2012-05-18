@@ -21,10 +21,6 @@ Read-only Properties
 
     Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
 
-.. autoattribute:: abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner.offset
-
-    Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
-
 .. autoattribute:: abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner.override
 
     Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
@@ -38,6 +34,14 @@ Read-only Properties
     Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
 
 .. autoattribute:: abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner.set
+
+    Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
+.. autoattribute:: abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner.start
+
+    Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
+.. autoattribute:: abjad.tools.spannertools.TextScriptSpanner.TextScriptSpanner.TextScriptSpanner.stop
 
     Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
 

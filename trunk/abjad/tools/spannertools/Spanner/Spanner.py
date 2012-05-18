@@ -1,7 +1,6 @@
-from abjad.tools import lilypondproxytools
 from abjad.tools import durationtools
+from abjad.tools import lilypondproxytools
 from abjad.tools.abctools import AbjadObject
-from abjad.tools.spannertools.Spanner._SpannerOffsetInterface import _SpannerOffsetInterface
 import copy
 
 
@@ -33,12 +32,11 @@ class Spanner(AbjadObject):
     this class and receive the functionality implemented here.
     '''
 
-    def __init__(self, components = None):
-        '''Apply spanner to components. Init dedicated duration interface.
-        '''
+    ### INITIALIZER ###
+
+    def __init__(self, components=None):
         self._components = []
         self._contiguity_constraint = 'thread'
-        self._offset = _SpannerOffsetInterface(self)
         self._initialize_components(components)
 
     ### SPECIAL METHODS ###
@@ -378,33 +376,6 @@ class Spanner(AbjadObject):
         return result
 
     @property
-    def offset(self):
-        '''.. versionadded:: 1.1
-
-        Return read-only reference to spanner offset interface.
-
-        Spanner offset interface implements ``start`` and ``stop`` attributes. ::
-
-            abjad> voice = Voice("c'8 d'8 e'8 f'8")
-            abjad> spanner = spannertools.Spanner(voice[2:])
-            abjad> spanner
-            Spanner(e'8, f'8)
-
-        ::
-
-            abjad> spanner._offset.start
-            Offset(1, 4)
-
-        ::
-
-            abjad> spanner._offset.stop
-            Offset(1, 2)
-
-        Return duration.
-        '''
-        return self._offset
-
-    @property
     def override(self):
         '''LilyPond grob override component plug-in.
         '''
@@ -431,6 +402,24 @@ class Spanner(AbjadObject):
         if not hasattr(self, '_set'):
             self._set = lilypondproxytools.LilyPondContextSettingComponentPlugIn()
         return self._set
+
+    @property
+    def start(self):
+        '''Read-only start offset of spanner.
+        '''
+        if len(self):
+            return self[0].start
+        else:
+            return Duration(0)
+
+    @property
+    def stop(self):
+        '''Read-only stop offset of spanner.
+        '''
+        if len(self):
+            return self[-1].stop
+        else:
+            return Duration(0)
 
     @property
     def written_duration(self):
