@@ -59,6 +59,10 @@ Read-only Properties
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
+.. autoattribute:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.stop
+
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+
 .. autoattribute:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.stop_in_seconds
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`

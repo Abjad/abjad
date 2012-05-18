@@ -40,7 +40,7 @@ def get_composite_offset_series_from_leaves_in_expr(expr):
         start_offset = leaf._offset.start
         if start_offset not in offsets:
             offsets.append(start_offset)
-        stop_offset = leaf._offset.stop
+        stop_offset = leaf.stop
         if stop_offset not in offsets:
             offsets.append(stop_offset)
 

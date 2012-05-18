@@ -28,7 +28,7 @@ def _insert_measure_padding(expr, front, back, klass, splice = False):
     # forbid updates because
     # componenttools.extend_in_parent_of_component_and_grow_spanners() and
     # componenttools.extend_left_in_parent_of_component_and_grow_spanners()
-    # call self._offset.stop  #
+    # call self.stop
     #root._update._forbid_component_update()
     root._update_prolated_offset_values_of_entire_score_tree_if_necessary()
     root._forbid_component_update()

@@ -159,7 +159,7 @@ class VerticalMoment(ScoreSelection):
         from abjad.tools import verticalitytools
         candidate_shortest_leaf = self.leaves[0]
         for leaf in self.leaves[1:]:
-            if leaf._offset.stop < candidate_shortest_leaf._offset.stop:
+            if leaf.stop < candidate_shortest_leaf.stop:
                 candidate_shortest_leaf = leaf
         next_leaf = componenttools.get_nth_namesake_from_component(candidate_shortest_leaf, 1)
         next_vertical_moment = verticalitytools.get_vertical_moment_starting_with_component(next_leaf)
@@ -172,7 +172,7 @@ class VerticalMoment(ScoreSelection):
         from abjad.tools import verticalitytools
         candidate_shortest_leaf = self.leaves[0]
         for leaf in self.leaves[1:]:
-            if leaf._offset.stop < candidate_shortest_leaf._offset.stop:
+            if leaf.stop < candidate_shortest_leaf.stop:
                 candidate_shortest_leaf = leaf
         next_leaf = componenttools.get_nth_namesake_from_component(candidate_shortest_leaf, 1)
         next_vertical_moment = verticalitytools.get_vertical_moment_starting_with_component(

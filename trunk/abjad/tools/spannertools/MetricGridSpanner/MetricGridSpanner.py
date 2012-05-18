@@ -172,7 +172,7 @@ class MetricGridSpanner(Spanner):
             #if leaf._offset.start < m._offset:
             if leaf._offset.start < moffset:
                 #if m._offset < leaf._offset.stop:
-                if moffset < leaf._offset.stop:
+                if moffset < leaf.stop:
                     yield m, moffset, temp_hide
                 else:
                     break

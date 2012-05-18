@@ -76,7 +76,7 @@ def get_improper_descendents_of_component_that_cross_prolated_offset(component, 
 
     for x in iterate_components_forward_in_expr(component, Component):
         x_start = x._offset.start
-        x_stop = x._offset.stop
+        x_stop = x.stop
         if x_start < boundary_time < x_stop:
             result.append(x)
 

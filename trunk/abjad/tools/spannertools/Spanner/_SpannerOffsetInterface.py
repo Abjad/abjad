@@ -22,6 +22,6 @@ class _SpannerOffsetInterface(AbjadObject):
         client = self._client
         if len(client):
             last = client[-1]
-            return last._offset.stop
+            return last.stop
         else:
             return Duration(0)

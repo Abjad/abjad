@@ -21,7 +21,7 @@ def get_spanners_covered_by_components(components):
 
     first, last = components[0], components[-1]
     components_begin = first._offset.start
-    components_end = last._offset.stop
+    components_end = last.stop
 
     result = get_spanners_contained_by_components(components)
     for spanner in list(result):

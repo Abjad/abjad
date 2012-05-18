@@ -19,7 +19,7 @@ class Component(AbjadObject):
         '_marks_for_which_component_functions_as_start_component', '_navigator',
         '_offset', '_offset_values_in_seconds_are_current', '_override', '_parent', 
         '_prolated_offset_values_are_current', '_set', '_spanners', '_start_in_seconds', 
-        '_stop_in_seconds', 'lilypond_file', )
+        '_stop', '_stop_in_seconds', 'lilypond_file', )
 
     ### INITIALIZER ###
 
@@ -34,6 +34,7 @@ class Component(AbjadObject):
         self._prolated_offset_values_are_current = False
         self._spanners = set([])
         self._start_in_seconds = None
+        self._stop = None
         self._stop_in_seconds = None
 
     ### SPECIAL METHODS ###
@@ -131,6 +132,13 @@ class Component(AbjadObject):
         if self._start_in_seconds is None:
             raise MissingTempoError
         return self._start_in_seconds
+
+    @property
+    def stop(self):
+#      #return self.start + self._client.prolated_duration
+#      self._component._update_entire_score_tree_if_necessary()
+#      return self._stop
+        return self._offset.start + self.prolated_duration
 
     @property
     def stop_in_seconds(self):
