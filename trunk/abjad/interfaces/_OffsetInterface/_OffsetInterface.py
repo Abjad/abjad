@@ -5,7 +5,8 @@ class _OffsetInterface(_Interface):
 
     ### CLASS ATTRIBUTES ###
 
-    __slots__ = ('_start', '_start_in_seconds', '_stop', '_stop_in_seconds')
+    #__slots__ = ('_start', '_start_in_seconds', '_stop', '_stop_in_seconds')
+    __slots__ = ('_start', '_start_in_seconds', '_stop')
 
     ### INITIALIZER ###
 
@@ -14,7 +15,7 @@ class _OffsetInterface(_Interface):
         self._start = None
         self._start_in_seconds = None
         self._stop = None
-        self._stop_in_seconds = None
+        #self._stop_in_seconds = None
 
     ### PRIVATE PROPERTIES ###
 
@@ -43,12 +44,3 @@ class _OffsetInterface(_Interface):
         if self._start_in_seconds is None:
             raise MissingTempoError
         return self._start_in_seconds
-
-    @property
-    def stop_in_seconds(self):
-#      return self.start_in_seconds + self._client.duration_in_seconds
-#      self._component._update_entire_score_tree_if_necessary()
-#      if self._stop_in_seconds is None:
-#         raise MissingTempoError
-#      return self._stop_in_seconds
-        return self.start_in_seconds + self._client.duration_in_seconds

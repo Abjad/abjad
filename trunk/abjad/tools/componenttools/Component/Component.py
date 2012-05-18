@@ -18,7 +18,7 @@ class Component(AbjadObject):
         '_marks_for_which_component_functions_as_effective_context',
         '_marks_for_which_component_functions_as_start_component', '_navigator',
         '_offset', '_offset_values_in_seconds_are_current', '_override', '_parent', 
-        '_prolated_offset_values_are_current', '_set', '_spanners',
+        '_prolated_offset_values_are_current', '_set', '_spanners', '_stop_in_seconds',
         'lilypond_file', )
 
     ### INITIALIZER ###
@@ -33,6 +33,7 @@ class Component(AbjadObject):
         self._parent = None
         self._prolated_offset_values_are_current = False
         self._spanners = set([])
+        self._stop_in_seconds = durationtools.Duration(0)
 
     ### SPECIAL METHODS ###
 
@@ -121,6 +122,16 @@ class Component(AbjadObject):
         '''Read-only reference to unordered set of spanners attached to component.
         '''
         return set(self._spanners)
+
+    @property
+    def stop_in_seconds(self):
+#      return self.start_in_seconds + self._client.duration_in_seconds
+#      self._component._update_entire_score_tree_if_necessary()
+#      if self._stop_in_seconds is None:
+#         raise MissingTempoError
+#      return self._stop_in_seconds
+        return self._offset.start_in_seconds + self.duration_in_seconds
+
 
     ### PRIVATE METHODS ###
 
