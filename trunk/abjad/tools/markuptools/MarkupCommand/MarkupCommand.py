@@ -66,27 +66,7 @@ class MarkupCommand(AbjadObject):
 
     @property
     def _format_pieces(self):
-        def recurse(iterable):
-            result = []
-            for x in iterable:
-                if isinstance(x, (list, tuple)):
-                    result.append('{')
-                    result.extend(recurse(x))
-                    result.append('}')
-                elif isinstance(x, type(self)):
-                    result.extend(x._format_pieces)
-                elif isinstance(x, Scheme):
-                    result.append(x.format)
-                else:
-                    formatted = Scheme._format_value(x)
-                    if formatted == x and isinstance(x, str):
-                        result.append(x)
-                    else:
-                        result.append('#%s' % formatted)
-            return result
-        parts = [r'\%s' % self.command]
-        parts.extend(recurse(self.args))
-        return parts
+        return self._get_format_pieces(is_indented=False)
 
     ### PRIVATE METHODS ###
 
@@ -99,6 +79,32 @@ class MarkupCommand(AbjadObject):
             string = '"' + string[1:]
             string = string[:-1] + '"'
         return string
+
+    def _get_format_pieces(self, is_indented=True):
+        indent = ''
+        if is_indented:
+            indent = '\t'
+        def recurse(iterable):
+            result = []
+            for x in iterable:
+                if isinstance(x, (list, tuple)):
+                    result.append('{')
+                    result.extend(recurse(x))
+                    result.append('}')
+                elif isinstance(x, type(self)):
+                    result.extend(x._get_format_pieces(is_indented=is_indented))
+                elif isinstance(x, Scheme):
+                    result.append(x.format)
+                else:
+                    formatted = Scheme._format_value(x)
+                    if formatted == x and isinstance(x, str):
+                        result.append(x)
+                    else:
+                        result.append('#%s' % formatted)
+            return ['{}{}'.format(indent, x) for x in result]
+        parts = [r'\%s' % self.command]
+        parts.extend(recurse(self.args))
+        return parts
 
     ### PUBLIC PROPERTIES ###
 
