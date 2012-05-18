@@ -9,12 +9,11 @@ Default alignment
 LilyPond left-aligns markup relative to the left edge of note head by default.
 
 <abjad>
-notes = notetools.make_repeated_notes(1, Fraction(1, 4))
-staff = stafftools.RhythmicStaff(notes)
-leaves = staff.leaves
-markuptools.Markup('XX', 'up')(leaves[0])
-iotools.write_expr_to_ly(staff, 'default-alignment', template='thebes') <hide
-show(staff, 'thebes')
+staff = stafftools.RhythmicStaff('c4')
+markuptools.Markup('XX', 'up')(staff.leaves[0])
+staff.override.text_script.color = 'blue'
+iotools.write_expr_to_ly(staff, 'default-alignment') <hide
+show(staff)
 </abjad>
 
 
