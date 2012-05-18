@@ -57,6 +57,14 @@ Read-only Properties
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
+.. autoattribute:: abjad.tools.chordtools.Chord.Chord.Chord.start_in_seconds
+
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+
+.. autoattribute:: abjad.tools.chordtools.Chord.Chord.Chord.stop_in_seconds
+
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+
 Read/write Properties
 ---------------------
 

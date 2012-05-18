@@ -53,6 +53,14 @@ Read-only Properties
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
+.. autoattribute:: abjad.tools.resttools.Rest.Rest.Rest.start_in_seconds
+
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+
+.. autoattribute:: abjad.tools.resttools.Rest.Rest.Rest.stop_in_seconds
+
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+
 Read/write Properties
 ---------------------
 
