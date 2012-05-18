@@ -269,18 +269,20 @@ class Component(AbjadObject):
             component._marks_are_current = True
 
     def __update_offset_values_in_seconds_of_entire_score_tree(self):
+        from abjad.tools import offsettools
         components = self._iterate_score_components_depth_first()
         for component in components:
-            component._offset._update_offset_values_of_component_in_seconds()
+            offsettools.update_offset_values_of_component_in_seconds(component)
             component._offset_values_in_seconds_are_current = True
 
     def __update_prolated_offset_values_of_entire_score_tree(self):
         '''Updating prolated offset values does NOT update marks.
         Updating prolated offset values does NOT update offset values in seconds.
         '''
+        from abjad.tools import offsettools
         components = self._iterate_score_components_depth_first()
         for component in components:
-            component._offset._update_prolated_offset_values_of_component()
+            offsettools.update_prolated_offset_values_of_component(component)
             component._prolated_offset_values_are_current = True
 
     ### PRIVATE UPDATE METHODS ###

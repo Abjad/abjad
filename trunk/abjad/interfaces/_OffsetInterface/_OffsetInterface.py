@@ -2,10 +2,12 @@ from abjad.interfaces._Interface import _Interface
 
 
 class _OffsetInterface(_Interface):
-    '''Offset interface.
-    '''
+
+    ### CLASS ATTRIBUTES ###
 
     __slots__ = ('_start', '_start_in_seconds', '_stop', '_stop_in_seconds')
+
+    ### INITIALIZER ###
 
     def __init__(self, _client):
         _Interface.__init__(self, _client)
@@ -19,16 +21,6 @@ class _OffsetInterface(_Interface):
     @property
     def _component(self):
         return self._client
-
-    ### PRIVATE METHODS ###
-
-    def _update_offset_values_of_component_in_seconds(self):
-        from abjad.tools import offsettools
-        offsettools.update_offset_values_of_component_in_seconds(self._client)
-
-    def _update_prolated_offset_values_of_component(self):
-        from abjad.tools import offsettools
-        offsettools.update_prolated_offset_values_of_component(self._client)
 
     ### PUBLIC PROPERTIES ###
 
