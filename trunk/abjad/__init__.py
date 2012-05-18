@@ -38,7 +38,6 @@ del decoratortools
 del durationtools
 del exceptions
 del importtools
-del interfaces
 del lilypondproxytools
 del mathtools
 del timesignaturetools

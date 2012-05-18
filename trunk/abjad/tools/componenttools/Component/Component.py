@@ -2,7 +2,6 @@ from abc import ABCMeta
 from abjad.tools.lilypondproxytools import LilyPondContextSettingComponentPlugIn
 from abjad.tools.lilypondproxytools import LilyPondGrobOverrideComponentPlugIn
 from abjad.tools.abctools import AbjadObject
-from abjad.interfaces import _OffsetInterface
 from abjad.tools import durationtools
 import copy
 import fractions
@@ -16,10 +15,11 @@ class Component(AbjadObject):
 
     __slots__ = ('_duration', '_is_forbidden_to_update', '_marks_are_current',
         '_marks_for_which_component_functions_as_effective_context',
-        '_marks_for_which_component_functions_as_start_component', '_navigator',
+        '_marks_for_which_component_functions_as_start_component', 
         '_offset', '_offset_values_in_seconds_are_current', '_override', '_parent', 
-        '_prolated_offset_values_are_current', '_set', '_spanners', '_start', 
-        '_start_in_seconds', '_stop', '_stop_in_seconds', 'lilypond_file', )
+        '_prolated_offset_values_are_current', '_set', '_spanners', 
+        '_start', '_start_in_seconds', '_stop', '_stop_in_seconds', 
+        'lilypond_file', )
 
     ### INITIALIZER ###
 
@@ -28,7 +28,6 @@ class Component(AbjadObject):
         self._marks_are_current = False
         self._marks_for_which_component_functions_as_effective_context = list()
         self._marks_for_which_component_functions_as_start_component = list()
-        self._offset = _OffsetInterface(self)
         self._offset_values_in_seconds_are_current = False
         self._parent = None
         self._prolated_offset_values_are_current = False
@@ -128,12 +127,15 @@ class Component(AbjadObject):
 
     @property
     def start(self):
+        '''Read-only start offset of component.
+        '''
         self._update_prolated_offset_values_of_entire_score_tree_if_necessary()
         return self._start
 
     @property
     def start_in_seconds(self):
-#      return self._start_in_seconds
+        '''Read-only start offset of comonent in seconds.
+        '''
         self._update_marks_of_entire_score_tree_if_necessary()
         if self._start_in_seconds is None:
             raise MissingTempoError
@@ -141,20 +143,15 @@ class Component(AbjadObject):
 
     @property
     def stop(self):
-#      #return self.start + self._client.prolated_duration
-#      self._component._update_entire_score_tree_if_necessary()
-#      return self._stop
+        '''Read-only stop offset of component.
+        '''
         return self.start + self.prolated_duration
 
     @property
     def stop_in_seconds(self):
-#      return self.start_in_seconds + self._client.duration_in_seconds
-#      self._component._update_entire_score_tree_if_necessary()
-#      if self._stop_in_seconds is None:
-#         raise MissingTempoError
-#      return self._stop_in_seconds
+        '''Read-only stop offset of component in seconds.
+        '''
         return self.start_in_seconds + self.duration_in_seconds
-
 
     ### PRIVATE METHODS ###
 
