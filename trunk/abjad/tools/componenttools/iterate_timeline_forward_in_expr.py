@@ -51,8 +51,7 @@ def iterate_timeline_forward_in_expr(expr, klass=None):
     components = list(component_generator)
 
     def _sort_helper(component_1, component_2):
-        result = cmp(component_1._offset.start,
-            component_2._offset.start)
+        result = cmp(component_1.start, component_2.start)
         if result == 0:
             return cmp(
                 component_to_score_index(component_1),

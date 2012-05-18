@@ -13,7 +13,7 @@ class _SpannerOffsetInterface(AbjadObject):
     def start(self):
         client = self._client
         if len(client):
-            return client[0]._offset.start
+            return client[0].start
         else:
             return Duration(0)
 

@@ -23,6 +23,8 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.componenttools.Component.Component.Component.spanners
 
+.. autoattribute:: abjad.tools.componenttools.Component.Component.Component.start
+
 .. autoattribute:: abjad.tools.componenttools.Component.Component.Component.start_in_seconds
 
 .. autoattribute:: abjad.tools.componenttools.Component.Component.Component.stop

@@ -196,7 +196,7 @@ class VerticalMoment(ScoreSelection):
         starting before vertical moment, ordered by score index.'''
         result = []
         for component in self.components:
-            if component._offset.start < self.prolated_offset:
+            if component.start < self.prolated_offset:
                 result.append(component)
         result = tuple(result)
         return result
@@ -237,7 +237,7 @@ class VerticalMoment(ScoreSelection):
         for leaf in self.leaves:
             #print ''
             #print leaf
-            leaf_start = leaf._offset.start
+            leaf_start = leaf.start
             if leaf_start < self.prolated_offset:
                 #print 'found leaf starting before this moment ...'
                 if most_recent_start_offset <= leaf_start:
@@ -247,7 +247,7 @@ class VerticalMoment(ScoreSelection):
                 #print 'found leaf starting on this moment ...'
                 try:
                     prev_leaf = componenttools.get_nth_namesake_from_component(leaf, -1)
-                    start = prev_leaf._offset.start
+                    start = prev_leaf.start
                     #print prev_leaf, start
                     if most_recent_start_offset <= start:
                         most_recent_start_offset = start
@@ -274,7 +274,7 @@ class VerticalMoment(ScoreSelection):
         starting with at vertical moment, ordered by score index.'''
         result = []
         for component in self.components:
-            if component._offset.start == self.prolated_offset:
+            if component.start == self.prolated_offset:
                 result.append(component)
         result = tuple(result)
         return result

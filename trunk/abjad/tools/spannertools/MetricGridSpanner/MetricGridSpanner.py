@@ -59,8 +59,8 @@ class MetricGridSpanner(Spanner):
 #      leaf = self.leaves[0]
 #      # group leaves by measure.
 #      while leaf:
-#         #if leaf._offset.start < meter._offset + meter.duration:
-#         if leaf._offset.start < moffset + meter.duration:
+#         #if leaf.start < meter._offset + meter.duration:
+#         if leaf.start < moffset + meter.duration:
 #            leaves_in_meter[-1].append(leaf)
 #            #leaf = leaf.next
 #            leaf = leaftools.get_nth_leaf_in_thread_from_leaf(leaf, 1)
@@ -146,8 +146,8 @@ class MetricGridSpanner(Spanner):
                 result.append('<<')
                 for meter, moffset, temp_hide in m:
                     s = Skip(durationtools.Duration(1))
-                    #s.duration_multiplier = meter._offset - leaf._offset.start
-                    s.duration_multiplier = moffset - leaf._offset.start
+                    #s.duration_multiplier = meter._offset - leaf.start
+                    s.duration_multiplier = moffset - leaf.start
                     numerator, denominator = meter.numerator, meter.denominator
                     mark = contexttools.TimeSignatureMark((numerator, denominator))(s)
                     mark._is_cosmetic_mark = True
@@ -160,8 +160,8 @@ class MetricGridSpanner(Spanner):
         '''
         #for m in self.meters:
         for m, moffset, temp_hide in self.meters:
-            #if leaf._offset.start == m._offset:
-            if leaf._offset.start == moffset:
+            #if leaf.start == m._offset:
+            if leaf.start == moffset:
                 return m, temp_hide
 
     def _slicing_meters(self, leaf):
@@ -169,8 +169,8 @@ class MetricGridSpanner(Spanner):
         '''
         #for m in self.meters:
         for m, moffset, temp_hide in self.meters:
-            #if leaf._offset.start < m._offset:
-            if leaf._offset.start < moffset:
+            #if leaf.start < m._offset:
+            if leaf.start < moffset:
                 #if m._offset < leaf._offset.stop:
                 if moffset < leaf.stop:
                     yield m, moffset, temp_hide

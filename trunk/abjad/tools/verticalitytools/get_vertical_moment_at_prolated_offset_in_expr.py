@@ -76,7 +76,7 @@ def get_vertical_moment_at_prolated_offset_in_expr(governor, prolated_offset):
     components = []
     for governor in governors:
         for component in iterate_components_forward_in_expr(governor, Component):
-            if component._offset.start <= prolated_offset:
+            if component.start <= prolated_offset:
                 if prolated_offset < component.stop:
                     components.append(component)
     components.sort(lambda x, y: cmp(

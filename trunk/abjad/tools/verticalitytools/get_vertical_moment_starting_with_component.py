@@ -6,7 +6,7 @@ def get_vertical_moment_starting_with_component(expr, governor = None):
     r'''.. versionadded:: 2.0
 
     When `governor` is none, get vertical moment at
-    ``expr._offset.start`` in score root of `expr`::
+    ``expr.start`` in score root of `expr`::
 
         abjad> from abjad.tools import verticalitytools
 
@@ -48,7 +48,7 @@ def get_vertical_moment_starting_with_component(expr, governor = None):
         VerticalMoment(1/8, <<3>>)
 
     When `governor` is not none, get vertical moment at
-    ``expr._offset.start`` in `governor`. ::
+    ``expr.start`` in `governor`. ::
 
         abjad> verticalitytools.get_vertical_moment_starting_with_component(piano_staff[1][1], piano_staff)
         VerticalMoment(1/8, <<2>>)
@@ -64,7 +64,7 @@ def get_vertical_moment_starting_with_component(expr, governor = None):
         ``verticalitytools.get_vertical_moment_starting_with_component()``.
     '''
 
-    prolated_offset = expr._offset.start
+    prolated_offset = expr.start
 
     if governor is None:
         governor = component_to_score_root(expr)

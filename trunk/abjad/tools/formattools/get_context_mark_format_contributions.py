@@ -43,7 +43,7 @@ def get_context_mark_format_contributions(component, slot):
                     if candidate.effective_context in improper_parentage:
                         proper_parentage = componenttools.get_proper_parentage_of_component(component)
                         if candidate.effective_context not in proper_parentage:
-                            if candidate.start_component._offset.start == component._offset.start:
+                            if candidate.start_component.start == component.start:
                                 marks.add(candidate)
     #print marks
     for mark in marks:

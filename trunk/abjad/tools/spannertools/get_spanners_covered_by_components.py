@@ -20,7 +20,7 @@ def get_spanners_covered_by_components(components):
         return set([])
 
     first, last = components[0], components[-1]
-    components_begin = first._offset.start
+    components_begin = first.start
     components_end = last.stop
 
     result = get_spanners_contained_by_components(components)
