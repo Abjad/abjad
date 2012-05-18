@@ -230,7 +230,7 @@ class Component(AbjadObject):
 
     ### MANGLED METHODS ###
 
-    def __update_leaf_indices_and_measure_numbers_in_score_tree(self):
+    def _update_leaf_indices_and_measure_numbers_in_score_tree(self):
         '''Called only when updating prolated offset of score compoennts.
         No separate state flags for leaf indices or measure numbers.
         '''
@@ -256,7 +256,7 @@ class Component(AbjadObject):
                 measure_number = measure_index + 1
                 measure._measure_number = measure_number
 
-    def __update_marks_of_entire_score_tree(self):
+    def _update_marks_of_entire_score_tree(self):
         '''Updating marks does not cause prolated offset values to update.
         On the other hand, getting effective mark causes prolated offset values
         to update when at least one mark of appropriate type attaches to score.
@@ -268,14 +268,14 @@ class Component(AbjadObject):
                     mark._update_effective_context()
             component._marks_are_current = True
 
-    def __update_offset_values_in_seconds_of_entire_score_tree(self):
+    def _update_offset_values_in_seconds_of_entire_score_tree(self):
         from abjad.tools import offsettools
         components = self._iterate_score_components_depth_first()
         for component in components:
             offsettools.update_offset_values_of_component_in_seconds(component)
             component._offset_values_in_seconds_are_current = True
 
-    def __update_prolated_offset_values_of_entire_score_tree(self):
+    def _update_prolated_offset_values_of_entire_score_tree(self):
         '''Updating prolated offset values does NOT update marks.
         Updating prolated offset values does NOT update offset values in seconds.
         '''
@@ -344,8 +344,8 @@ class Component(AbjadObject):
         state_flags = self._get_score_tree_state_flags()
         marks_are_current = state_flags[1]
         if not marks_are_current:
-            self.__update_marks_of_entire_score_tree()
-            self.__update_offset_values_in_seconds_of_entire_score_tree()
+            self._update_marks_of_entire_score_tree()
+            self._update_offset_values_in_seconds_of_entire_score_tree()
 
     def _update_prolated_offset_values_of_entire_score_tree_if_necessary(self):
         if self._is_forbidden_to_update:
@@ -353,5 +353,5 @@ class Component(AbjadObject):
         state_flags = self._get_score_tree_state_flags()
         prolated_offset_values_are_current = state_flags[0]
         if not prolated_offset_values_are_current:
-            self.__update_prolated_offset_values_of_entire_score_tree()
-            self.__update_leaf_indices_and_measure_numbers_in_score_tree()
+            self._update_prolated_offset_values_of_entire_score_tree()
+            self._update_leaf_indices_and_measure_numbers_in_score_tree()
