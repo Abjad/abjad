@@ -2,8 +2,6 @@ from abjad import *
 
 
 def test_LilyPondCommandMark_format_01():
-    '''AccidentalInterface.style manages LilyPond set-accidental-style.
-    '''
 
     t = Staff("c'8 d'8 e'8 f'8")
     marktools.LilyPondCommandMark("#(set-accidental-style 'forget)")(t)
@@ -22,8 +20,6 @@ def test_LilyPondCommandMark_format_01():
 
 
 def test_LilyPondCommandMark_format_02():
-    '''AccidentalInterface.style manages LilyPond set-accidental-style.
-    '''
 
     t = Staff("c'8 d'8 e'8 f'8")
     marktools.LilyPondCommandMark("#(set-accidental-style 'forget)")(t[1])

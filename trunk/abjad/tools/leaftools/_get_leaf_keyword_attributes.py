@@ -1,12 +1,11 @@
 from abjad.tools.componenttools.Component import Component
 from abjad.exceptions import MissingSpannerError
 from abjad.exceptions import MissingTempoError
-from abjad.interfaces._Interface import _Interface
 from abjad.tools.leaftools._inspect_leaf_instance_attributes import _inspect_leaf_instance_attributes
 from abjad.tools import durationtools
 
 
-_types_forbidden_to_write_as_keyword_values = (Component, _Interface)
+_types_forbidden_to_write_as_keyword_values = (Component, )
 
 def _get_leaf_keyword_attributes(leaf):
     result = []
@@ -56,13 +55,6 @@ def _handle_read_only_property(property_host_name, property_host, property_name)
     #print 'handling read-only %s.%s ...' % (property_host_name, property_name)
     try:
         attribute = getattr(property_host, property_name)
-        if isinstance(attribute, _Interface):
-            if property_host_name is not None:
-                interface_name = property_host_name + '__' + property_name
-                interface = attribute
-            else:
-                interface_name, interface = property_name, attribute
-            result.extend(_handle_interface(interface_name, interface))
     except (MissingSpannerError, MissingTempoError):
         pass
     return result
@@ -105,9 +97,6 @@ def _handle_read_write_property(property_host_name, property_host, property_name
         pass
     elif attribute == []:
         pass
-    elif isinstance(attribute, _Interface):
-        interface_name, interface = property_name, attribute
-        result.extend(_handle_interface(interface_name, interface))
     elif not isinstance(attribute, _types_forbidden_to_write_as_keyword_values):
         if property_host_name is not None:
             lhs = property_host_name + '__' + property_name

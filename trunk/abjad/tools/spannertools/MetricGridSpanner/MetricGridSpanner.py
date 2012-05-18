@@ -118,7 +118,6 @@ class MetricGridSpanner(Spanner):
     #         find a way to make it faster.
     # Tue Jan 13 12:05:43 EST 2009 [VA] using _slicing_metersFound boolean
     # flag now to improve performance time. Better but still not perfect.
-    # Is metric grid a good candidate for the UpdateInterface?
 
     def _format_before_leaf(self, leaf):
         from abjad.tools.containertools.Container import Container
