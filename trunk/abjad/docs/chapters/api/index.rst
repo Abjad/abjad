@@ -7,6 +7,16 @@ Abjad composition packages
 .. toctree::
    :maxdepth: 1
 
+:py:mod:`beamtools <abjad.tools.beamtools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: functions
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/beamtools/is_beamable_component
+
 :py:mod:`chordtools <abjad.tools.chordtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -112,7 +122,6 @@ Abjad composition packages
    tools/componenttools/get_proper_contents_of_component
    tools/componenttools/get_proper_descendents_of_component
    tools/componenttools/get_proper_parentage_of_component
-   tools/componenttools/is_beamable_component
    tools/componenttools/is_immediate_temporal_successor_of_component
    tools/componenttools/is_orphan_component
    tools/componenttools/is_well_formed_component

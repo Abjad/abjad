@@ -53,10 +53,10 @@ class ComplexBeamSpanner(BeamSpanner):
 
     def _format_before_leaf(self, leaf):
         '''Spanner format contribution to output before leaf.'''
-        from abjad.tools import componenttools
+        from abjad.tools import beamtools
         result = []
         result.extend(BeamSpanner._format_before_leaf(self, leaf))
-        if componenttools.is_beamable_component(leaf):
+        if beamtools.is_beamable_component(leaf):
             if self._is_my_only_leaf(leaf):
                 left, right = self._get_left_right_for_lone_leaf(leaf)
             elif self._is_exterior_leaf(leaf):
@@ -71,11 +71,11 @@ class ComplexBeamSpanner(BeamSpanner):
 
     def _format_right_of_leaf(self, leaf):
         '''Spanner format contribution to output right of leaf.'''
-        from abjad.tools import componenttools
+        from abjad.tools import beamtools
         from abjad.tools import leaftools
         result = []
         #if leaf.beam.beamable:
-        if componenttools.is_beamable_component(leaf):
+        if beamtools.is_beamable_component(leaf):
             previous_leaf = leaftools.get_nth_leaf_in_thread_from_leaf(leaf, -1)
             next_leaf = leaftools.get_nth_leaf_in_thread_from_leaf(leaf, 1)
             # lone
@@ -87,7 +87,7 @@ class ComplexBeamSpanner(BeamSpanner):
                         result.append('[')
             # otherwise
             elif self._is_my_first_leaf(leaf) or not previous_leaf or \
-                not componenttools.is_beamable_component(previous_leaf):
+                not beamtools.is_beamable_component(previous_leaf):
                 if self.direction is not None:
                     result.append('%s [' % self.direction)
                 else:
@@ -98,7 +98,7 @@ class ComplexBeamSpanner(BeamSpanner):
                     result.append(']')
             # otherwise
             elif self._is_my_last_leaf(leaf) or not next_leaf or \
-                not componenttools.is_beamable_component(next_leaf):
+                not beamtools.is_beamable_component(next_leaf):
                 result.append(']')
         return result
 
@@ -125,7 +125,7 @@ class ComplexBeamSpanner(BeamSpanner):
         Interior leaves may be surrounded by beamable leaves.
         Interior leaves may be surrounded by unbeamable leaves.
         Four cases total for beamability of surrounding leaves.'''
-        from abjad.tools import componenttools
+        from abjad.tools import beamtools
         from abjad.tools import leaftools
         prev_leaf = leaftools.get_nth_leaf_in_thread_from_leaf(leaf, -1)
         prev_written = prev_leaf.written_duration
@@ -136,18 +136,18 @@ class ComplexBeamSpanner(BeamSpanner):
         cur_flag_count = durationtools.rational_to_flag_count(cur_written)
         next_flag_count = durationtools.rational_to_flag_count(next_written)
         # [unbeamable leaf beamable]
-        if not componenttools.is_beamable_component(prev_leaf) and \
-            componenttools.is_beamable_component(next_leaf):
+        if not beamtools.is_beamable_component(prev_leaf) and \
+            beamtools.is_beamable_component(next_leaf):
             left = cur_flag_count
             right = min(cur_flag_count, next_flag_count)
         # [beamable leaf unbeamable]
-        if componenttools.is_beamable_component(prev_leaf) and \
-            not componenttools.is_beamable_component(next_leaf):
+        if beamtools.is_beamable_component(prev_leaf) and \
+            not beamtools.is_beamable_component(next_leaf):
             left = min(cur_flag_count, prev_flag_count)
             right = cur_flag_count
         # [unbeamable leaf unbeamable]
-        elif not componenttools.is_beamable_component(prev_leaf) and \
-            not componenttools.is_beamable_component(next_leaf):
+        elif not beamtools.is_beamable_component(prev_leaf) and \
+            not beamtools.is_beamable_component(next_leaf):
             left = cur_flag_count
             right = cur_flag_count
         # [beamable leaf beamable]

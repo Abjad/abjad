@@ -3,10 +3,14 @@ def is_beamable_component(expr):
 
     True when `expr` is a beamable component. Otherwise false::
 
-        abjad> componenttools.is_beamable_component(Note(13, (1, 16)))
+        abjad> beamtools.is_beamable_component(Note(13, (1, 16)))
         True
 
     Return boolean.
+
+    .. versionchanged:: 2.9
+        renamed ``componenttools.is_beamable_component()`` to
+        ``beamtools.is_beamable_component()``.
     '''
     from abjad.tools.chordtools.Chord import Chord
     from abjad.tools.notetools.Note import Note
