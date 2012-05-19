@@ -12,7 +12,7 @@ def list_abjad_templates():
     ::
 
         abjad> configurationtools.list_abjad_templates()
-        ('oedo.ly', 'thebes.ly', 'tirnaveni.ly')
+        ('oedo.ly', 'tirnaveni.ly')
 
     Return tuple of zero or more strings.
 
