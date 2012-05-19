@@ -8,7 +8,7 @@ import copy
 class Measure(FixedDurationContainer):
     r'''.. versionadded:: 1.1
 
-    .. versionchanged:: measure now inherits from fixed-duration container.
+    .. versionchanged:: 2.9 measure now inherits from fixed-duration container.
 
     Abjad model of a measure::
 
