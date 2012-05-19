@@ -4,7 +4,7 @@ from abjad.tools.iotools._open_file import _open_file
 import os
 
 
-def show(expr, template=None, return_timing=False, suppress_pdf=False):
+def show(expr, template=None, return_timing=False, suppress_pdf=False, docs=False):
     '''Show `expr`::
 
         abjad> note = Note("c'4")
@@ -21,6 +21,9 @@ def show(expr, template=None, return_timing=False, suppress_pdf=False):
         abjad> show(note, return_timing = True) # doctest: +SKIP
         (0, 3)
 
+    Wrap `expr` in a LilyPond file with settings and overrides suitable
+    for the Abjad reference manual When `docs` is true. 
+
     Return none or timing tuple.
 
     Abjad writes LilyPond input files to the ``~/.abjad/output`` directory by default.
@@ -28,7 +31,8 @@ def show(expr, template=None, return_timing=False, suppress_pdf=False):
     You may change this by setting the ``abjad_output`` variable in the ``config.py`` file.
     '''
 
-    name, actual_format_time, actual_lily_time = _log_render_lilypond_input(expr, template=template)
+    name, actual_format_time, actual_lily_time = _log_render_lilypond_input(
+        expr, template=template, docs=docs)
 
     # do not open PDF if we're running py.test regression battery
     if not suppress_pdf:

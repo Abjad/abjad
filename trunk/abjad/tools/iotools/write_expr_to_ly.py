@@ -3,7 +3,7 @@ from abjad.tools.iotools._insert_expr_into_lilypond_file import _insert_expr_int
 import os
 
 
-def write_expr_to_ly(expr, file_name, template=None, print_status=False, tagline=False):
+def write_expr_to_ly(expr, file_name, template=None, print_status=False, tagline=False, docs=False):
     '''Write `expr` to `file_name`::
 
         abjad> note = Note("c'4")
@@ -20,12 +20,15 @@ def write_expr_to_ly(expr, file_name, template=None, print_status=False, tagline
         renamed ``io.write_ly()`` to
         ``io.write_expr_to_ly()``.
     '''
+    from abjad.tools import documentationtools
 
     file_name = os.path.expanduser(file_name)
     if not file_name.endswith('.ly'):
         file_name += '.ly'
     try:
         outfile = open(file_name, 'w')
+        if docs:
+            expr = documentationtools.make_reference_manual_lilypond_file(expr)
         lilypond_file = _insert_expr_into_lilypond_file(expr, template=template, tagline=tagline)
         # the following line is necessary for Windows *not* to keep outfile open after writing;
         # why this should be the case is, however, a complete mystery.

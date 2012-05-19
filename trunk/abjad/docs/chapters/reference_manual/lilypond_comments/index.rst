@@ -30,7 +30,11 @@ Attach LilyPond comments to a note, rest or chord with ``attach()``:
 ::
 
 	abjad> note = Note("cs''4")
-	abjad> show(note)
+
+
+::
+
+	abjad> show(note, docs=True)
 
 .. image:: images/lilypond-comments-1.png
 
@@ -57,7 +61,11 @@ Use ``attach()`` to attach LilyPond comments to a container:
 ::
 
 	abjad> staff = Staff("c'8 d'8 e'8 f'8")
-	abjad> show(staff)
+
+
+::
+
+	abjad> show(staff, docs=True)
 
 .. image:: images/lilypond-comments-2.png
 
@@ -193,3 +201,4 @@ Use ``contents_string`` to inspect the written contents of a LiliyPond comment:
 
 	abjad> comment_1.contents_string
 	'This is a LilyPond comment before a note.'
+
