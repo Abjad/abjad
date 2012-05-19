@@ -187,6 +187,7 @@ Abjad composition packages
 
    tools/containertools/Cluster/Cluster
    tools/containertools/Container/Container
+   tools/containertools/FixedDurationContainer/FixedDurationContainer
 
 .. rubric:: functions
 

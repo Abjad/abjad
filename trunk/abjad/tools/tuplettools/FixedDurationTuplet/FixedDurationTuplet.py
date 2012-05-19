@@ -14,13 +14,15 @@ class FixedDurationTuplet(Tuplet):
     Return fixed-duration tuplet.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
     __slots__ = ('_target_duration', )
 
+    ### INITIALIZER ###
+
     def __init__(self, duration, music=None, **kwargs):
-        # new #
         dummy_multiplier = 1
         Tuplet.__init__(self, dummy_multiplier, music)
-        # end #
         self._signifier = '@'
         self.target_duration = duration
         self._initialize_keyword_values(**kwargs)
@@ -104,18 +106,17 @@ class FixedDurationTuplet(Tuplet):
             '''
             return self._target_duration
         def fset(self, expr):
-            if isinstance(expr, (int, long)):
-                rational = durationtools.Duration(expr)
-            elif isinstance(expr, tuple):
-                rational = durationtools.Duration(*expr)
-            elif hasattr(expr, 'numerator') and hasattr(expr, 'denominator'):
-                rational = durationtools.Duration(expr)
-            else:
-                raise ValueError('Can not set tuplet rational from %s.' % str(expr))
-            if 0 < rational:
-                self._target_duration = rational
-            else:
-                raise ValueError('Tuplet rational %s must be positive.' % rational)
+#            if isinstance(expr, (int, long)):
+#                rational = durationtools.Duration(expr)
+#            elif isinstance(expr, tuple):
+#                rational = durationtools.Duration(*expr)
+#            elif hasattr(expr, 'numerator') and hasattr(expr, 'denominator'):
+#                rational = durationtools.Duration(expr)
+#            else:
+#                raise ValueError('Can not set tuplet rational from %s.' % str(expr))
+            target_duration = durationtools.Duration(expr)
+            assert 0 < target_duration
+            self._target_duration = target_duration
         return property(**locals())
 
     ### PUBLIC METHODS ###

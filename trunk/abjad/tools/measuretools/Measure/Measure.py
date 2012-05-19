@@ -5,6 +5,7 @@ from abjad.tools.containertools.Container import Container
 import copy
 
 
+# TODO: measure should inherit from fixed-duration container
 class Measure(Container):
     r'''.. versionadded:: 1.1
 
@@ -144,6 +145,16 @@ class Measure(Container):
 
     ### PRIVATE METHODS ###
 
+    def _check_duration(self):
+        from abjad.tools import contexttools
+        effective_meter = contexttools.get_effective_time_signature(self)
+        if effective_meter.is_nonbinary and effective_meter.suppress:
+            raise NonbinaryTimeSignatureSuppressionError
+        if effective_meter.duration < self.preprolated_duration:
+            raise OverfullMeasureError
+        if self.preprolated_duration < effective_meter.duration:
+            raise UnderfullMeasureError
+
     def _conditionally_adjust_time_signature(self, old_denominator):
         if self.automatically_adjust_time_signature:
             naive_meter = self.preprolated_duration
@@ -181,17 +192,9 @@ class Measure(Container):
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
-    # TODO: encapsulate size checking in dedicated method
     @property
     def format(self):
-        from abjad.tools import contexttools
-        effective_meter = contexttools.get_effective_time_signature(self)
-        if effective_meter.is_nonbinary and effective_meter.suppress:
-            raise NonbinaryTimeSignatureSuppressionError
-        if effective_meter.duration < self.preprolated_duration:
-            raise OverfullMeasureError
-        if self.preprolated_duration < effective_meter.duration:
-            raise UnderfullMeasureError
+        self._check_duration()
         return self._format_component()
 
     @property

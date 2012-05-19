@@ -1,0 +1,104 @@
+from abjad.tools import durationtools
+from abjad.tools.containertools.Container import Container
+
+
+class FixedDurationContainer(Container):
+    r'''.. versionadded:: 2.9
+
+    Fixed-duration container::
+
+        abjad> container = containertools.FixedDurationContainer((3, 8), "c'8 d'8 e'8")
+
+    ::
+
+        abjad> container
+        FixedDurationContainer(Duration(3, 8), [Note("c'8"), Note("d'8"), Note("e'8")])
+
+    ::
+
+        abjad> f(container)
+        {
+            c'8
+            d'8
+            e'8
+        }
+
+
+    Fixed-duration containers extend container behavior with format-time
+    checking against a user-specified target duration.
+
+    Return fixed-duration container.
+    '''
+
+    ### CLASS ATTRIBUTES ###
+
+    __slots__ = ('_target_duration', )
+
+    ### INITIALIZER ###
+
+    def __init__(self, target_duration, music=None, **kwargs):
+        Container.__init__(self, music=music, **kwargs)
+        self.target_duration = target_duration
+
+    ### SPECIAL METHODS ###
+
+    def __repr__(self):
+        return '{}({!r}, {})'.format(self._class_name, self.target_duration, self[:])
+
+    ### PRIVATE METHODS ###
+
+    def _check_duration(self):
+        from abjad.tools import contexttools
+        effective_meter = contexttools.get_effective_time_signature(self)
+        contents_duration = self.contents_duration
+        if contents_duration < self.target_duration:
+            raise UnderfullMeasureError
+        if self.target_duration < contents_duration:
+            raise OverfullMeasureError
+
+    ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def format(self):
+        '''Read-only LilyPond format of fixed-duration container.
+        '''
+        self._check_duration()
+        return self._format_component()
+
+    @property
+    def is_full(self):
+        '''True when contents duration equals target duration.
+        '''
+        return self.contents_duration == self.target_duration
+
+    @property
+    def is_misfilled(self):
+        '''True when contents duration does not equal target duration.
+        '''
+        return not self.is_full
+
+    @property
+    def is_overfull(self):
+        '''True when contents duration is greater than target duration.
+        '''
+        return self.target_duration < self.contents_duration
+
+    @property
+    def is_underfull(self):
+        '''True when contents duration is less than target duration.
+        '''
+        return self.contents_duration < self.target_duration
+
+    ### READ / WRITE PUBLIC PROPERTIES ###
+
+    @apply
+    def target_duration():
+        def fget(self):
+            '''Read / write target duration of fixed-duration container.
+            '''
+            return self._target_duration
+        def fset(self, target_duration):
+            target_duration = durationtools.Duration(target_duration)
+            assert 0 < target_duration
+            self._target_duration = target_duration
+        return property(**locals())
