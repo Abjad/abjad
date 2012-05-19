@@ -11,9 +11,9 @@ note = Note("c'4")
 </abjad>
 
 <abjad>
-show(note)
+show(note, docs=True)
 measure = measuretools.AnonymousMeasure([note]) <hide
-iotools.write_expr_to_ly(measure, 'notes-1', 'oedo.ly') <hide
+iotools.write_expr_to_ly(measure, 'notes-1', docs=True) <hide
 </abjad>
 
 Making notes from chromatic pitch number and duration
@@ -26,9 +26,9 @@ note = Note(0, Duration(1, 4))
 </abjad>
 
 <abjad>
-show(note)
+show(note, docs=True)
 measure = measuretools.AnonymousMeasure([note]) <hide
-iotools.write_expr_to_ly(measure, 'notes-2', 'oedo.ly') <hide
+iotools.write_expr_to_ly(measure, 'notes-2', docs=True) <hide
 </abjad>
 
 (You even use ``Note("c'4")`` to create notes with numbers alone.)
@@ -50,7 +50,7 @@ And you can change the written pitch of notes:
 
 <abjad>
 note.written_pitch = "cs'"
-iotools.write_expr_to_ly(measure, 'notes-3', 'oedo.ly') <hide
+iotools.write_expr_to_ly(measure, 'notes-3', docs=True) <hide
 </abjad>
 
 (You can use ``note.written_pitch = 1`` to change pitch with numbers, too.)
@@ -86,9 +86,9 @@ tuplet = Tuplet(Fraction(2, 3), [Note("c'4"), Note("d'4"), Note("e'4")])
 </abjad>
 
 <abjad>
-show(tuplet)
+show(tuplet, docs=True)
 measure = measuretools.AnonymousMeasure([tuplet]) <hide
-iotools.write_expr_to_ly(measure, 'notes-4', 'oedo.ly') <hide
+iotools.write_expr_to_ly(measure, 'notes-4', docs=True) <hide
 </abjad>
 
 <abjad>
@@ -129,8 +129,8 @@ spannertools.BeamSpanner(tuplet) <hide
 </abjad>
 
 <abjad>
-show(tuplet)
-iotools.write_expr_to_ly(measure, 'notes-5', 'oedo.ly') <hide
+show(tuplet, docs=True)
+iotools.write_expr_to_ly(measure, 'notes-5', docs=True) <hide
 </abjad>
 
 Other duration attributes are read-only.

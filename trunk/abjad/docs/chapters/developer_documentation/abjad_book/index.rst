@@ -28,8 +28,8 @@ Add some Abjad code to your HTML between open and close
 
    <abjad>
    v = Voice(construct.scale(8))
-   Beam(v)
-   write_ly(v, 'abjad-book-1') <hide
+   spannertools.BeamSpanner(v)
+   iotools.write_expr_to_ly(v, 'abjad-book-1') <hide
    show(v)
    </abjad>
 
@@ -82,16 +82,14 @@ any LaTeX you create. Type the sample code below into a file. ::
    format string.
 
    <abjad>
-   measure = RigidMeasure((5, 8), construct.scale(5))
-   print measure.format
+   measure = Measure((5, 8), "c'8 d'8 e'8 f'8 g'8")
+   f(measure)
    </abjad>
 
    This next bit of code knows about the measure we defined earlier.
-   This code renders the measure as a PDF using a template suitable
-   for inclusion in LaTeX documents.
 
    <abjad>
-   write_ly(measure, 'abjad-book-1', 'oedo') <hide
+   iotools.write_expr_to_ly(measure, 'abjad-book-1', docs=True) <hide
    </abjad>
 
    And this is the end of the our sample LaTeX document.
@@ -125,8 +123,8 @@ file ``abjad-book`` has created. ::
    format string.
 
    \begin{lstlisting}[basicstyle=\footnotesize, tabsize=4, showtabs=false, showspaces=false]
-      abjad> measure = RigidMeasure((5, 8), construct.scale(5))
-      abjad> print measure.format
+      abjad> measure = Measure((5, 8), "c'8 d'8 e'8 f'8 g'8")
+      abjad> f(measure)
       {
          \time 5/8
          c'8
@@ -174,6 +172,6 @@ You can add ``[hide = True]`` to any ``abjad-book`` example to show
 only music notation. ::
 
    <abjad>[hide = True]
-   staff = Staff(construct.scale(8))
-   write_ly(staff, 'staff-example', 'oedo')
+   staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b''8")
+   iotools.write_expr_to_ly(staff, 'staff-example', docs=True)
    </abjad>

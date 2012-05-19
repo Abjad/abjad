@@ -40,7 +40,11 @@ multiplied_notes = multiplied_note * 4
 top = stafftools.RhythmicStaff(notes)
 bottom = stafftools.RhythmicStaff(multiplied_notes)
 staves = scoretools.StaffGroup([top, bottom])
-iotools.write_expr_to_ly(staves, 'leaf-multipliers-1', 'oedo') <hide
+</abjad>
+
+<abjad>
+show(staves)
+iotools.write_expr_to_ly(staves, 'leaf-multipliers-1', docs=True) <hide
 </abjad>
 
 .. note::

@@ -68,7 +68,11 @@ marktools.LilyPondCommandMark('voiceTwo')(vC[0])
 p = Container([vB, vC])
 p.is_parallel = True
 staff = Staff([vA, p])
-iotools.write_expr_to_ly(staff, 'thread-resolution-1', 'oedo') <hide
+</abjad>
+
+<abjad>
+show(staff, docs=True)
+iotools.write_expr_to_ly(staff, 'thread-resolution-1', docs=True) <hide
 </abjad>
 
 There's a staff that sequentially contains a voice and a parallel container.
@@ -100,10 +104,9 @@ Abjad needs to see an explicit connection between either `vA` and `vB` or betwee
 
 Observe the behavior of the
 :func:`~abjad.tools.componenttools.iterate_thread_forward_in_expr`
-iterator on the `staff`::
+iterator on the `staff`:
 
 <abjad>
-from abjad.tools import threadtools
 vA_thread_signature = componenttools.component_to_containment_signature(vA)
 notes = componenttools.iterate_thread_forward_in_expr(staff, Note, vA_thread_signature)
 print list(notes)
@@ -215,8 +218,8 @@ spannertools.SlurSpanner(list(notes))
 </abjad>
 
 <abjad>
-show(staff)
-iotools.write_expr_to_ly(staff, 'thread-resolution-2', 'oedo') <hide
+show(staff, docs=True)
+iotools.write_expr_to_ly(staff, 'thread-resolution-2', docs=True) <hide
 </abjad>
 
 Coda
@@ -232,5 +235,9 @@ marktools.LilyPondCommandMark('voiceOne')(vX[0])
 marktools.LilyPondCommandMark('voiceTwo')(vY[0])
 staff = Staff([vX, vY])
 staff.is_parallel = True
-iotools.write_expr_to_ly(staff, 'thread-resolution-3', 'oedo') <hide
+</abjad>
+
+<abjad>
+show(staff, docs=True)
+iotools.write_expr_to_ly(staff, 'thread-resolution-3', docs=True) <hide
 </abjad>

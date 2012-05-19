@@ -13,7 +13,7 @@ You can make rests from a string:
 
 ::
 
-	abjad> show(rest)
+	abjad> show(rest, docs=True)
 
 .. image:: images/rests-1.png
 
@@ -29,7 +29,7 @@ You can also make rests from a duration:
 
 ::
 
-	abjad> show(rest)
+	abjad> show(rest, docs=True)
 
 .. image:: images/rests-2.png
 
@@ -71,7 +71,7 @@ Except for rests inside a tuplet:
 
 ::
 
-	abjad> show(tuplet)
+	abjad> show(tuplet, docs=True)
 
 .. image:: images/rests-3.png
 
@@ -118,7 +118,7 @@ You can change the written duration of notes and rests:
 
 ::
 
-	abjad> show(tuplet)
+	abjad> show(tuplet, docs=True)
 
 .. image:: images/rests-4.png
 

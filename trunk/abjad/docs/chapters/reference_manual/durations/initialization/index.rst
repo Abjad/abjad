@@ -6,52 +6,76 @@ Durated Abjad classes initialize duration from arguments in the form `(n, d)` wi
 
 ::
 
-	abjad> note = Note(0, (3, 16))
+	abjad> note = Note("c'8.")
+
+
+::
+
+	abjad> show(note, docs=True)
 
 .. image:: images/duration-initialization-1.png
 
 
 Durated classes include notes, rests, chords, skips, tuplets and measures.
 
+::
+
+	abjad> tuplet = tuplettools.Tuplet((2, 3), "c'8 c'8 c'8")
+	abjad> spannertools.BeamSpanner(tuplet)
+	abjad> staff = stafftools.RhythmicStaff([tuplet])
+
 
 ::
 
-	abjad> tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3)
-	abjad> spannertools.BeamSpanner(tuplet)
+	abjad> show(staff, docs=True)
 
 .. image:: images/duration-initialization-2.png
 
 
-Abjad restricts notes, rests, chords and skips to durations like 3/16 that can be written with dots, beams and flags without ties or brackets. Abjad allows arbitrary positive durations like 5/8 for tuplets and measures.
+Abjad restricts notes, rests, chords and skips to durations like ``3/16`` that can be written 
+with dots, beams and flags without ties or brackets. 
+Abjad allows arbitrary positive durations like ``5/8`` for tuplets and measures.
+
+::
+
+	abjad> tuplet = tuplettools.Tuplet((5, 4), "c'8 c'8 c'8 c'8")
+	abjad> spannertools.BeamSpanner(tuplet)
+	abjad> staff = stafftools.RhythmicStaff([tuplet])
 
 
 ::
 
-	abjad> tuplet = tuplettools.FixedDurationTuplet(Duration(5, 8), Note(0, (1, 8)) * 4)
-	abjad> spannertools.BeamSpanner(tuplet)
+	abjad> show(staff, docs=True)
 
 .. image:: images/duration-initialization-3.png
 
 
 Abjad supports breves.
 
-
 ::
 
 	abjad> note = Note(0, (2, 1))
+
+
+::
+
+	abjad> show(note, docs=True)
 
 .. image:: images/duration-initialization-4.png
 
 
 And longas.
 
-
 ::
 
 	abjad> note = Note(0, (4, 1))
 
-.. image:: images/duration-initialization-5.png
 
+::
+
+	abjad> show(note, docs=True)
+
+.. image:: images/duration-initialization-5.png
 
 
 .. note::
@@ -61,9 +85,12 @@ And longas.
 
 .. note::
 
-    Integer forms like `4` as a substitute for `(4, 1)` in `Note(0, (4, 1))` are undocumented but allowed.
+    Integer forms like ``4`` as a substitute for ``(4, 1)`` in ``Note(0, (4, 1))`` 
+    are undocumented but allowed.
 
 
 .. note::
 
-    Abjad allows maxima note_heads as in `Note(0, (8, 1))`. LilyPond implements a `\maxima` command but does not supply a corresponding glyph for the note_head.
+    Abjad allows maxima note heads as in ``Note(0, (8, 1))``. 
+    LilyPond implements a ``\maxima`` command but does not supply a corresponding 
+    glyph for the note head.

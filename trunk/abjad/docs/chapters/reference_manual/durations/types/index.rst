@@ -18,11 +18,20 @@ These sixteenth notes are worth a sixteenth of a whole note:
 	abjad> measure = Measure((5, 16), Note(0, (1, 16)) * 5)
 	abjad> spannertools.BeamSpanner(measure)
 	abjad> staff = stafftools.RhythmicStaff([measure])
+
+
+::
+
+	abjad> show(staff, docs=True)
+
+.. image:: images/duration-types-1.png
+
+::
+
 	abjad> note = measure[0]
 	abjad> note.written_duration
 	Duration(1, 16)
 
-.. image:: images/duration-types-1.png
 
 These sixteenth notes are worth more than a sixteenth of a whole note:
 
@@ -32,11 +41,20 @@ These sixteenth notes are worth more than a sixteenth of a whole note:
 	abjad> spannertools.BeamSpanner(tuplet)
 	abjad> measure = Measure((5, 16), [tuplet])
 	abjad> staff = stafftools.RhythmicStaff([measure])
+
+
+::
+
+	abjad> show(staff, docs=True)
+
+.. image:: images/duration-types-2.png
+
+::
+
 	abjad> note = tuplet[0]
 	abjad> note.written_duration
 	Duration(1, 16)
 
-.. image:: images/duration-types-2.png
 
 The notes in these examples are 'sixteenth notes' that carry different prolated durations.
 Abjad written duration captures the fact that the note heads and flag counts of the two
@@ -83,10 +101,19 @@ These elements carry preprolated durations equal to 1/8, 1/8 and 2/8, respective
 	abjad> spannertools.BeamSpanner(tuplet)
 	abjad> measure = Measure((4, 8), notes + [tuplet])
 	abjad> staff = stafftools.RhythmicStaff([measure])
+
+
+::
+
+	abjad> show(staff, docs=True)
+
+.. image:: images/duration-types-3.png
+
+::
+
 	abjad> measure.contents_duration
 	Duration(1, 2)
 
-.. image:: images/duration-types-3.png
 
 The contents duration of the measure here equals 1/8 + 1/8 + 2/8 = 4/8.
 
@@ -105,12 +132,21 @@ This fixed-duration tuplet carries a target duration equal to 4/8:
 	abjad> spannertools.BeamSpanner(tuplet)
 	abjad> measure = Measure((4, 8), [tuplet])
 	abjad> staff = stafftools.RhythmicStaff([measure])
+
+
+::
+
+	abjad> show(staff, docs=True)
+
+.. image:: images/duration-types-4.png
+
+::
+
 	abjad> print tuplet.contents_duration
 	5/8
 	abjad> tuplet.target_duration
 	Duration(1, 2)
 
-.. image:: images/duration-types-4.png
 
 The tuplet contents sum to 5/8. But tuplet target duration always equals 4/8.
 
@@ -131,11 +167,20 @@ The first two notes below carry leaf mulitipliers equal to 2/1:
 	abjad> measure = Measure((3, 8), notes)
 	abjad> spannertools.BeamSpanner(measure)
 	abjad> staff = stafftools.RhythmicStaff([measure])
+
+
+::
+
+	abjad> show(staff, docs=True)
+
+.. image:: images/duration-types-5.png
+
+::
+
 	abjad> note = measure[0]
 	abjad> note.written_duration
 	Duration(1, 16)
 
-.. image:: images/duration-types-5.png
 
 ::
 

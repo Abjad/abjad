@@ -11,9 +11,9 @@ chord = Chord("<c' d' bf'>4")
 </abjad>
 
 <abjad>
-show(chord)
+show(chord, docs=True)
 measure = measuretools.AnonymousMeasure([chord]) <hide
-iotools.write_expr_to_ly(measure, 'chords-1', 'oedo.ly') <hide
+iotools.write_expr_to_ly(measure, 'chords-1', docs=True) <hide
 </abjad>
 
 Making chords from chromatic pitch numbers and duration
@@ -26,9 +26,9 @@ chord = Chord([0, 2, 10], Duration(1, 4))
 </abjad>
 
 <abjad>
-show(chord)
+show(chord, docs=True)
 measure = measuretools.AnonymousMeasure([chord]) <hide
-iotools.write_expr_to_ly(measure, 'chords-2', 'oedo.ly') <hide
+iotools.write_expr_to_ly(measure, 'chords-2', docs=True) <hide
 </abjad>
 
 Getting all the written pitches of a chord at once
@@ -67,9 +67,9 @@ chord.append(9)
 </abjad>
 
 <abjad>
-show(chord)
+show(chord, docs=True)
 measure = measuretools.AnonymousMeasure([chord]) <hide
-iotools.write_expr_to_ly(measure, 'chords-3', 'oedo.ly') <hide
+iotools.write_expr_to_ly(measure, 'chords-3', docs=True) <hide
 </abjad>
 
 Or you can add a pitch to a chord with a chromatic pitch name:
@@ -79,9 +79,9 @@ chord.append("df''")
 </abjad>
 
 <abjad>
-show(chord)
+show(chord, docs=True)
 measure = measuretools.AnonymousMeasure([chord]) <hide
-iotools.write_expr_to_ly(measure, 'chords-4', 'oedo.ly') <hide
+iotools.write_expr_to_ly(measure, 'chords-4', docs=True) <hide
 </abjad>
 
 Chords sort their pitches every time you add a new one.
@@ -100,9 +100,9 @@ chord.extend([3, 4, 14])
 </abjad>
 
 <abjad>
-show(chord)
+show(chord, docs=True)
 measure = measuretools.AnonymousMeasure([chord]) <hide
-iotools.write_expr_to_ly(measure, 'chords-5', 'oedo.ly') <hide
+iotools.write_expr_to_ly(measure, 'chords-5', docs=True) <hide
 </abjad>
 
 Or you can chromatic pitch names:
@@ -112,9 +112,9 @@ chord.extend(["g''", "af''"])
 </abjad>
 
 <abjad>
-show(chord)
+show(chord, docs=True)
 measure = measuretools.AnonymousMeasure([chord]) <hide
-iotools.write_expr_to_ly(measure, 'chords-6', 'oedo.ly') <hide
+iotools.write_expr_to_ly(measure, 'chords-6', docs=True) <hide
 </abjad>
 
 Deleting pitches from a chord
@@ -127,9 +127,9 @@ del(chord[0])
 </abjad>
 
 <abjad>
-show(chord)
+show(chord, docs=True)
 measure = measuretools.AnonymousMeasure([chord]) <hide
-iotools.write_expr_to_ly(measure, 'chords-7', 'oedo.ly') <hide
+iotools.write_expr_to_ly(measure, 'chords-7', docs=True) <hide
 </abjad>
 
 <abjad>
@@ -137,9 +137,9 @@ del(chord[0])
 </abjad>
 
 <abjad>
-show(chord)
+show(chord, docs=True)
 measure = measuretools.AnonymousMeasure([chord]) <hide
-iotools.write_expr_to_ly(measure, 'chords-8', 'oedo.ly') <hide
+iotools.write_expr_to_ly(measure, 'chords-8', docs=True) <hide
 </abjad>
 
 Negative indices work too:
@@ -149,9 +149,9 @@ del(chord[-1])
 </abjad>
 
 <abjad>
-show(chord)
+show(chord, docs=True)
 measure = measuretools.AnonymousMeasure([chord]) <hide
-iotools.write_expr_to_ly(measure, 'chords-8', 'oedo.ly') <hide
+iotools.write_expr_to_ly(measure, 'chords-8', docs=True) <hide
 </abjad>
 
 Formatting chords
@@ -194,9 +194,9 @@ f(chord)
 </abjad>
 
 <abjad>
-show(chord)
+show(chord, docs=True)
 measure = measuretools.AnonymousMeasure([chord]) <hide
-iotools.write_expr_to_ly(measure, 'chords-9', 'oedo.ly') <hide
+iotools.write_expr_to_ly(measure, 'chords-9', docs=True) <hide
 </abjad>
 
 
@@ -227,7 +227,7 @@ chord.extend(["gf'", "df''", "g''"])
 </abjad>
 
 <abjad>
-show(chord)
+show(chord, docs=True)
 measure = measuretools.AnonymousMeasure([chord]) <hide
-iotools.write_expr_to_ly(measure, 'chords-10', 'oedo.ly') <hide
+iotools.write_expr_to_ly(measure, 'chords-10', docs=True) <hide
 </abjad>

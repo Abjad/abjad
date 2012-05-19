@@ -8,7 +8,11 @@ Many score objects contain other score objects.
 	abjad> tuplet = Tuplet(Fraction(2, 3), "c'4 d'4 e'4")
 	abjad> staff = Staff(2 * tuplet)
 	abjad> score = Score([staff])
-	abjad> show(score)
+
+
+::
+
+	abjad> show(score, docs=True)
 
 .. image:: images/parentage-tutorial-1.png
 
@@ -70,3 +74,4 @@ Or to find whether a component has no (proper) parentage at all:
 
 	abjad> componenttools.is_orphan_component(note)
 	False
+

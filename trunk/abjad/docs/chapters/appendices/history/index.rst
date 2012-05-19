@@ -195,7 +195,11 @@ notated durations:
 	abjad> m3 = measuretools.AnonymousMeasure([Note(0, (1, 8))] + Note(0, (1, 16)) * 2)
 	abjad> tietools.TieSpanner(m3)
 	abjad> r = stafftools.RhythmicStaff([m1, m2, m3])
-	abjad> iotools.write_expr_to_ly(r, 'MIDI-1')
+
+
+::
+
+	abjad> show(r)
 
 .. image:: images/midi-1.png
 
@@ -211,7 +215,11 @@ a C sharp or a B flat?
 	abjad> m1 = measuretools.AnonymousMeasure([Note(1, (1, 4))])
 	abjad> m2 = measuretools.AnonymousMeasure([Note(('df', 4), (1, 4))])
 	abjad> r = Staff([m1, m2])
-	abjad> iotools.write_expr_to_ly(r, 'MIDI-2')
+
+
+::
+
+	abjad> show(r)
 
 .. image:: images/midi-2.png
 
@@ -259,7 +267,11 @@ LilyPond uses a single construct to nest tuplets arbitrarily:
 	abjad> Tuplet(Fraction(7, 8), measure.music)
 	abjad> staff.override.tuplet_bracket.bracket_visibility = True
 	abjad> staff.override.tuplet_bracket.padding = 1.6
-	abjad> show(staff)
+
+
+::
+
+	abjad> show(staff, docs=True)
 
 .. image:: images/lilypond-1.png
 
@@ -288,7 +300,11 @@ LilyPond engraves tupletted notes interrupted by nontupletted notes correctly:
 	abjad> spannertools.BeamSpanner(u)
 	abjad> measure = Measure((4, 8), [t] + notes + [u])
 	abjad> staff = stafftools.RhythmicStaff([measure])
-	abjad> show(staff)
+
+
+::
+
+	abjad> show(staff, docs=True)
 
 .. image:: images/lilypond-2.png
 
@@ -314,6 +330,10 @@ The rhythm above rewrites with time signatures in place of tuplets:
 	abjad> spannertools.BeamSpanner(u)
 	abjad> spannertools.BeamSpanner(v)
 	abjad> staff = stafftools.RhythmicStaff([t, u, v])
+
+
+::
+
 	abjad> show(staff)
 
 .. image:: images/lilypond-3.png

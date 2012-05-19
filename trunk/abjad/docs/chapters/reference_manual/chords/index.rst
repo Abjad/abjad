@@ -13,7 +13,7 @@ You can make chords from a LilyPond input string:
 
 ::
 
-	abjad> show(chord)
+	abjad> show(chord, docs=True)
 
 .. image:: images/chords-1.png
 
@@ -29,7 +29,7 @@ You can also make chords from chromatic pitch numbers and duration:
 
 ::
 
-	abjad> show(chord)
+	abjad> show(chord, docs=True)
 
 .. image:: images/chords-2.png
 
@@ -73,7 +73,7 @@ You can add a pitch to a chord with a chromatic pitch number:
 
 ::
 
-	abjad> show(chord)
+	abjad> show(chord, docs=True)
 
 .. image:: images/chords-3.png
 
@@ -86,7 +86,7 @@ Or you can add a pitch to a chord with a chromatic pitch name:
 
 ::
 
-	abjad> show(chord)
+	abjad> show(chord, docs=True)
 
 .. image:: images/chords-4.png
 
@@ -108,7 +108,7 @@ You can use chromatic pitch numbers:
 
 ::
 
-	abjad> show(chord)
+	abjad> show(chord, docs=True)
 
 .. image:: images/chords-5.png
 
@@ -121,7 +121,7 @@ Or you can chromatic pitch names:
 
 ::
 
-	abjad> show(chord)
+	abjad> show(chord, docs=True)
 
 .. image:: images/chords-6.png
 
@@ -137,7 +137,7 @@ Delete pitches from a chord with ``del()``:
 
 ::
 
-	abjad> show(chord)
+	abjad> show(chord, docs=True)
 
 .. image:: images/chords-7.png
 
@@ -148,7 +148,7 @@ Delete pitches from a chord with ``del()``:
 
 ::
 
-	abjad> show(chord)
+	abjad> show(chord, docs=True)
 
 .. image:: images/chords-8.png
 
@@ -161,7 +161,7 @@ Negative indices work too:
 
 ::
 
-	abjad> show(chord)
+	abjad> show(chord, docs=True)
 
 .. image:: images/chords-8.png
 
@@ -224,7 +224,7 @@ This is useful when you want to apply LilyPond overrides to note heads in a chor
 
 ::
 
-	abjad> show(chord)
+	abjad> show(chord, docs=True)
 
 .. image:: images/chords-9.png
 
@@ -261,6 +261,6 @@ into it chord in any of the ways described above:
 
 ::
 
-	abjad> show(chord)
+	abjad> show(chord, docs=True)
 
 .. image:: images/chords-10.png

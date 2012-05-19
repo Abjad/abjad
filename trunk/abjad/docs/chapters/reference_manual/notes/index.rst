@@ -13,7 +13,7 @@ You can make notes from string:
 
 ::
 
-	abjad> show(note)
+	abjad> show(note, docs=True)
 
 .. image:: images/notes-1.png
 
@@ -29,7 +29,7 @@ You can also make notes from chromatic pitch number and duration:
 
 ::
 
-	abjad> show(note)
+	abjad> show(note, docs=True)
 
 .. image:: images/notes-2.png
 
@@ -95,7 +95,7 @@ Except for notes inside a tuplet:
 
 ::
 
-	abjad> show(tuplet)
+	abjad> show(tuplet, docs=True)
 
 .. image:: images/notes-4.png
 
@@ -142,7 +142,7 @@ You can change the written duration of notes:
 
 ::
 
-	abjad> show(tuplet)
+	abjad> show(tuplet, docs=True)
 
 .. image:: images/notes-5.png
 

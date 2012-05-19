@@ -7,8 +7,11 @@ Many score objects contain other score objects.
 tuplet = Tuplet(Fraction(2, 3), "c'4 d'4 e'4")
 staff = Staff(2 * tuplet)
 score = Score([staff])
-show(score)
-iotools.write_expr_to_ly(score, 'parentage-tutorial-1', 'oedo') <hide
+</abjad>
+
+<abjad>
+show(score, docs=True)
+iotools.write_expr_to_ly(score, 'parentage-tutorial-1', docs=True) <hide
 </abjad>
 
 Abjad uses the idea of parentage to model the way objects contain each other.

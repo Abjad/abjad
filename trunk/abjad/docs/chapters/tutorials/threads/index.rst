@@ -98,6 +98,11 @@ The musical fragment above is constructed with the following code:
 	abjad> p.is_parallel = True
 	abjad> staff = Staff([vA, p])
 
+
+::
+
+	abjad> show(staff, docs=True)
+
 .. image:: images/thread-resolution-1.png
 
 There's a staff that sequentially contains a voice and a parallel container.
@@ -129,11 +134,10 @@ Abjad needs to see an explicit connection between either `vA` and `vB` or betwee
 
 Observe the behavior of the
 :func:`~abjad.tools.componenttools.iterate_thread_forward_in_expr`
-iterator on the `staff`::
+iterator on the `staff`:
 
 ::
 
-	abjad> from abjad.tools import threadtools
 	abjad> vA_thread_signature = componenttools.component_to_containment_signature(vA)
 	abjad> notes = componenttools.iterate_thread_forward_in_expr(staff, Note, vA_thread_signature)
 	abjad> print list(notes)
@@ -167,21 +171,21 @@ by printing it:
 
 	abjad> vA_thread_signature = componenttools.component_to_containment_signature(vA)
 	abjad> vA_thread_signature
-	<        root: Staff-8112592 (8112592) *      score:  * staffgroup:  *      staff: Staff-8112592 *      voice: Voice-8112256 *         self: Voice-8112256 >
+	ContainmentSignature(Voice-4320402416, Voice-4320402416, Staff-4320403160)
 
 
 ::
 
 	abjad> vB_thread_signature = componenttools.component_to_containment_signature(vB)
 	abjad> vB_thread_signature
-	<        root: Staff-8108496 (8108496) *      score:  * staffgroup:  *      staff: Staff-8108496 *      voice: Voice-8108272 *         self: Voice-8108272 >
+	ContainmentSignature(Voice-4320402664, Voice-4320402664, Staff-4320403160)
 
 
 ::
 
 	abjad> vC_thread_signature = componenttools.component_to_containment_signature(vC)
 	abjad> vC_thread_signature
-	<        root: Staff-8108496 (8108496) *      score:  * staffgroup:  *      staff: Staff-8108496 *      voice: Voice-8108384 *         self: Voice-8108384 >
+	ContainmentSignature(Voice-4320402912, Voice-4320402912, Staff-4320403160)
 
 
 And by comparing them with the binary equality operator:
@@ -220,36 +224,27 @@ Note how the thread signatures have changed:
 
 	abjad> vA_thread_signature = componenttools.component_to_containment_signature(vA)
 	abjad> print vA_thread_signature
-	        root: Staff-8108496 (8108496)
-	     score:
-	staffgroup:
-	     staff: Staff-8108496
-	     voice: Voice-piccolo
-	        self: Voice-piccolo
+	     staff: Staff-4320407256
+	     voice: Voice-'piccolo'
+	      self: Voice-'piccolo'
 
 
 ::
 
 	abjad> vB_thread_signature = componenttools.component_to_containment_signature(vB)
 	abjad> print vB_thread_signature
-	        root: Staff-8108496 (8108496)
-	     score:
-	staffgroup:
-	     staff: Staff-8108496
-	     voice: Voice-piccolo
-	        self: Voice-piccolo
+	     staff: Staff-4320407256
+	     voice: Voice-'piccolo'
+	      self: Voice-'piccolo'
 
 
 ::
 
 	abjad> vC_thread_signature = componenttools.component_to_containment_signature(vC)
 	abjad> print vC_thread_signature
-	        root: Staff-8108496 (8108496)
-	     score:
-	staffgroup:
-	     staff: Staff-8108496
-	     voice: Voice-8108384
-	        self: Voice-8108384
+	     staff: Staff-4320407256
+	     voice: Voice-4320407008
+	      self: Voice-4320407008
 
 
 And how the ``componenttools.iterate_thread_forward_in_expr()`` function returns
@@ -281,7 +276,7 @@ iteration tool, which are the notes belonging to both `vA` and `vB`:
 
 ::
 
-	abjad> show(staff)
+	abjad> show(staff, docs=True)
 
 .. image:: images/thread-resolution-2.png
 
@@ -299,5 +294,10 @@ one of them starting with a LilyPond skip:
 	abjad> marktools.LilyPondCommandMark('voiceTwo')(vY[0])
 	abjad> staff = Staff([vX, vY])
 	abjad> staff.is_parallel = True
+
+
+::
+
+	abjad> show(staff, docs=True)
 
 .. image:: images/thread-resolution-3.png
