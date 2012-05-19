@@ -52,14 +52,14 @@ class ContextBlock(AttributedBlock):
         result.append('%s {' % self._escaped_name)
         if self.type is not None:
             result.append('\t' + r'\type %s' % self.type)
-        for string in sorted(self.engraver_removals):
-            result.append('\t' + r'\remove %s' % string)
-        for string in sorted(self.engraver_consists):
-            result.append('\t' + r'\consists %s' % string)
         if self.context_name is not None:
             result.append('\t' + r'\%s' % self.context_name)
         if self.name is not None:
             result.append('\t' + r'\name %s' % self.name)
+        for string in sorted(self.engraver_removals):
+            result.append('\t' + r'\remove %s' % string)
+        for string in sorted(self.engraver_consists):
+            result.append('\t' + r'\consists %s' % string)
         for override in self.override._list_format_contributions('override'):
             result.append('\t' + override)
         for key, value in self.set._get_attribute_tuples():

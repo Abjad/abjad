@@ -6,14 +6,27 @@ LilyPond provides many ways to position text.
 Default alignment
 -----------------
 
-LilyPond left-aligns markup relative to the left edge of note head by default.
+LilyPond left-aligns markup relative to the left edge of note heads by default.
 
 ::
 
-	abjad> staff = stafftools.RhythmicStaff('c4')
-	abjad> markuptools.Markup('XX', 'up')(staff.leaves[0])
-	abjad> staff.override.text_script.color = 'blue'
-	abjad> show(staff)
+	abjad> from abjad.tools import documentationtools
+
+
+::
+
+	abjad> staff = stafftools.RhythmicStaff('c')
+
+
+::
+
+	abjad> markuptools.Markup('XX', 'up')(staff[0])
+
+
+::
+
+	abjad> lilypond_file = documentationtools.make_text_alignment_example_lilypond_file(staff)
+	abjad> show(lilypond_file)
 
 .. image:: images/default-alignment.png
 
@@ -22,24 +35,30 @@ LilyPond left-aligns markup relative to the left edge of note head by default.
 ---------------------------------
 
 Use ``#'self-alignment-X`` to left-, center- or right-align markup
-relative to the left edge of note head.
+relative to the left edge of note heads.
 
-.. note:: changes to ``#'self-alignment-X`` do not change the fact
-    that markup positioning is by default relative to the
-    LEFT edge of note head.
+Note that changes to ``#'self-alignment-X`` do not change the fact
+that markup positioning is by default relative to the left edge of note heads.
 
 ::
 
-	abjad> notes = notetools.make_repeated_notes(3, Fraction(1, 4))
-	abjad> staff = stafftools.RhythmicStaff(notes)
-	abjad> leaves = staff.leaves
-	abjad> markuptools.Markup('XX', 'up')(leaves[0])
-	abjad> leaves[0].override.text_script.self_alignment_X = 'left'
-	abjad> markuptools.Markup('XX', 'up')(leaves[1])
-	abjad> leaves[1].override.text_script.self_alignment_X = 'center'
-	abjad> markuptools.Markup('XX', 'up')(leaves[2])
-	abjad> leaves[2].override.text_script.self_alignment_X = 'right'
-	abjad> show(staff, 'thebes')
+	abjad> staff = stafftools.RhythmicStaff('c c c')
+
+
+::
+
+	abjad> markuptools.Markup('XX', 'up')(staff[0])
+	abjad> staff[0].override.text_script.self_alignment_X = 'left'
+	abjad> markuptools.Markup('XX', 'up')(staff[1])
+	abjad> staff[1].override.text_script.self_alignment_X = 'center'
+	abjad> markuptools.Markup('XX', 'up')(staff[2])
+	abjad> staff[2].override.text_script.self_alignment_X = 'right'
+
+
+::
+
+	abjad> lilypond_file = documentationtools.make_text_alignment_example_lilypond_file(staff)
+	abjad> show(lilypond_file)
 
 .. image:: images/self-alignment-x-alone.png
 
@@ -49,27 +68,32 @@ relative to the left edge of note head.
 
 Use ``#'X-offset`` to offset markup by some number of magic units in the horizontal direction.
 
-.. note:: Specify ``#'X-offset`` arguments as numbers like ``#2.5``.
-    Do not specify ``#'X-offset`` arguments as direction contstants
-    like ``#right``.
+Specify ``#'X-offset`` arguments as numbers like ``#2.5``.
+Do not specify ``#'X-offset`` arguments as direction contstants like ``#right``.
 
-.. note:: changes to ``#'X-offset`` do not change the fact
-    that markup positioning is by default relative to the
-    LEFT edge of note head.
+Note that changes to ``#'X-offset`` do not change the fact
+that markup positioning is by default relative to the left edge of note heads.
 
 ::
 
-	abjad> notes = notetools.make_repeated_notes(4, Fraction(1, 4))
-	abjad> staff = stafftools.RhythmicStaff(notes)
-	abjad> leaves = staff.leaves
-	abjad> markuptools.Markup('XX', 'up')(leaves[0])
-	abjad> leaves[0].override.text_script.X_offset = 0
-	abjad> markuptools.Markup('XX', 'up')(leaves[1])
-	abjad> leaves[1].override.text_script.X_offset = 2
-	abjad> markuptools.Markup('XX', 'up')(leaves[2])
-	abjad> leaves[2].override.text_script.X_offset = 4
-	abjad> markuptools.Markup('XX', 'up')(leaves[3])
-	abjad> leaves[3].override.text_script.X_offset = 6
-	abjad> show(staff, 'thebes')
+	abjad> staff = stafftools.RhythmicStaff('c c c c')
+
+
+::
+
+	abjad> markuptools.Markup('XX', 'up')(staff[0])
+	abjad> staff[0].override.text_script.X_offset = 0
+	abjad> markuptools.Markup('XX', 'up')(staff[1])
+	abjad> staff[1].override.text_script.X_offset = 2
+	abjad> markuptools.Markup('XX', 'up')(staff[2])
+	abjad> staff[2].override.text_script.X_offset = 4
+	abjad> markuptools.Markup('XX', 'up')(staff[3])
+	abjad> staff[3].override.text_script.X_offset = 6
+
+
+::
+
+	abjad> lilypond_file = documentationtools.make_text_alignment_example_lilypond_file(staff)
+	abjad> show(staff)
 
 .. image:: images/x-offset-alone.png

@@ -1989,6 +1989,13 @@ Internals packages
    tools/documentationtools/ModuleCrawler/ModuleCrawler
    tools/documentationtools/Pipe/Pipe
 
+.. rubric:: functions
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/documentationtools/make_text_alignment_example_lilypond_file
+
 :py:mod:`formattools <abjad.tools.formattools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
