@@ -2,7 +2,7 @@ from abjad.tools.componenttools.Component import Component
 from abjad.tools.spannertools.Spanner import Spanner
 
 
-def iterate_components_backward_in_spanner(spanner, klass = Component):
+def iterate_components_backward_in_spanner(spanner, klass=Component):
     '''.. versionadded:: 2.0
 
     Yield components in `spanner` one at a time from left to right. ::
@@ -25,7 +25,7 @@ def iterate_components_backward_in_spanner(spanner, klass = Component):
         raise TypeError
 
     for component in reversed(spanner._components):
-        dfs = componenttools.iterate_components_depth_first(component, direction = 'right')
+        dfs = componenttools.iterate_components_depth_first(component, direction='right')
         for node in dfs:
             if isinstance(node, klass):
                 yield node

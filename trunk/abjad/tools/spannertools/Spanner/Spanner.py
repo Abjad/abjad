@@ -233,16 +233,13 @@ class Spanner(AbjadObject):
         else:
             return False
 
-    # TODO: Remove call to self.leaves
     def _is_my_first(self, leaf, klass):
-        if isinstance(leaf, klass):
-            leaves = list(self.leaves)
-            i = leaves.index(leaf)
-            for x in leaves[:i]:
-                if isinstance(x, klass):
-                    return False
-            return True
-        return False
+        from abjad.tools import spannertools
+        for component in spannertools.iterate_components_forward_in_spanner(self, klass=klass):
+            if component is leaf:
+                return True
+            else:
+                return False
 
     def _is_my_first_leaf(self, leaf):
         from abjad.tools import spannertools
@@ -252,16 +249,14 @@ class Spanner(AbjadObject):
         except IndexError:
             return False
 
-    # TODO: Remove call to self.leaves
     def _is_my_last(self, leaf, klass):
-        if isinstance(leaf, klass):
-            leaves = list(self.leaves)
-            i = leaves.index(leaf)
-            for x in leaves[i + 1:]:
-                if isinstance(x, klass):
-                    return False
-            return True
-        return False
+        from abjad.tools import spannertools
+        components = spannertools.iterate_components_backward_in_spanner(self, klass=klass)
+        for component in components:
+            if component is leaf:
+                return True
+            else:
+                return False
 
     def _is_my_last_leaf(self, leaf):
         from abjad.tools import spannertools
@@ -271,9 +266,13 @@ class Spanner(AbjadObject):
         except IndexError:
             return False
 
-    # TODO: Remove call to self.leaves
     def _is_my_only(self, leaf, klass):
-        return isinstance(leaf, klass) and len(self.leaves) == 1
+        from abjad.tools import spannertools
+        i, components = None, spannertools.iterate_components_forward_in_spanner(self, klass=klass)
+        for i, component in enumerate(components):
+            if 0 < i:
+                return False
+        return i == 0
 
     def _is_my_only_leaf(self, leaf):
         return self._is_my_first_leaf(leaf) and self._is_my_last_leaf(leaf)
