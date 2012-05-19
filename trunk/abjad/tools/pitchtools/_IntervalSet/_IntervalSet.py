@@ -1,12 +1,13 @@
 from abc import ABCMeta
-from abjad.tools.pitchtools._Set import _Set
+from abjad.tools.pitchtools.PitchObjectSet import PitchObjectSet
 
 
-class _IntervalSet(_Set):
+class _IntervalSet(PitchObjectSet):
     '''.. versionadded:: 2.0
 
     Abstract interval set.
     '''
-    __metaclass__ = ABCMeta
 
-    pass
+    ### CLASS ATTRIBUTES ###
+
+    __metaclass__ = ABCMeta

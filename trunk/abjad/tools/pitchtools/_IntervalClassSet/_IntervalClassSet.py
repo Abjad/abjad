@@ -1,8 +1,8 @@
 from abc import ABCMeta
-from abjad.tools.pitchtools._Set import _Set
+from abjad.tools.pitchtools.PitchObjectSet import PitchObjectSet
 
 
-class _IntervalClassSet(_Set):
+class _IntervalClassSet(PitchObjectSet):
     '''.. versionadded:: 2.0
 
     Interval-class set base class.

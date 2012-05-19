@@ -714,6 +714,14 @@ Abjad composition packages
 :py:mod:`pitchtools <abjad.tools.pitchtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+.. rubric:: abstract classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/pitchtools/PitchObjectSet/PitchObjectSet
+   tools/pitchtools/PitchObjectVector/PitchObjectVector
+
 .. rubric:: concrete classes
 
 .. toctree::

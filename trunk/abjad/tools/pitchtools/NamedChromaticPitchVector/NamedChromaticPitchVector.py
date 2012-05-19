@@ -1,7 +1,7 @@
-from abjad.tools.pitchtools._Vector import _Vector
+from abjad.tools.pitchtools.PitchObjectVector import PitchObjectVector
 
 
-class NamedChromaticPitchVector(_Vector):
+class NamedChromaticPitchVector(PitchObjectVector):
     '''.. versionadded:: 2.0
 
     Abjad model of named chromatic pitch vector::

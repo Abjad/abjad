@@ -1,7 +1,7 @@
-from abjad.tools.pitchtools._Vector import _Vector
+from abjad.tools.pitchtools.PitchObjectVector import PitchObjectVector
 
 
-class NumberedChromaticPitchClassVector(_Vector):
+class NumberedChromaticPitchClassVector(PitchObjectVector):
     '''.. versionadded:: 2.0
 
     Abjad model of numbered chromatic pitch-class vector::
@@ -21,6 +21,8 @@ class NumberedChromaticPitchClassVector(_Vector):
 
     Numbered chromatic pitch-class vectors are immutable.
     '''
+
+    ### INITIALIZER ###
 
     def __init__(self, pitch_class_tokens):
         from abjad.tools import pitchtools

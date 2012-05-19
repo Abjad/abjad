@@ -1,7 +1,7 @@
-from abjad.tools.pitchtools._Vector import _Vector
+from abjad.tools.pitchtools.PitchObjectVector import PitchObjectVector
 
 
-class MelodicChromaticIntervalClassVector(_Vector):
+class MelodicChromaticIntervalClassVector(PitchObjectVector):
     '''.. versionadded:: 2.0
 
     Abjad model of melodic chromatic interval-class vector::
