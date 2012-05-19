@@ -124,12 +124,16 @@ class Leaf(Component):
         result.append(formattools.get_articulation_format_contributions(leaf))
         result.append(formattools.get_lilypond_command_mark_format_contributions(leaf, 'right'))
         result.append(formattools.get_context_mark_format_contributions(leaf, 'right'))
-        result.append(formattools.get_markup_format_contributions(leaf))
         result.append(formattools.get_spanner_format_contributions(leaf, 'right'))
         result.append(formattools.get_comment_format_contributions(leaf, 'right'))
         result = [x[1] for x in result]
         result = sequencetools.flatten_sequence(result)
         result = [' '.join(result)]
+        markup = formattools.get_markup_format_contributions(leaf)[1]
+        if len(markup) == 1:
+            result[0] += ' {}'.format(markup[0])
+        else:
+            result.extend('\t{}'.format(x) for x in markup)
         return ['leaf body', result]
 
     # TODO: subclass this properly for chord

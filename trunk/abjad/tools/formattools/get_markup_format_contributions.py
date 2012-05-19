@@ -32,10 +32,14 @@ def get_markup_format_contributions(component):
             command = markuptools.MarkupCommand('column', contents)
             #column = r'%s \markup { \column { %s } }' % (direction, contents)
             markup = markuptools.Markup(command, direction=direction)
-            result.append(str(markup))
+            #result.append(str(markup))
+            result.extend(markup._get_format_pieces(is_indented=True))
         else:
             if markup_list[0].direction is None:
-                result.append('- %s' % markup_list[0].format)
+                markup = markuptools.Markup(markup_list[0])
+                markup.direction = '-'
+                #result.append('- %s' % markup_list[0].format)
+                result.extend(markup._get_format_pieces(is_indented=True))
             else:
-                result.append(markup_list[0].format)
+                result.extend(markup_list[0]._get_format_pieces(is_indented=True))
     return ['markup', result]

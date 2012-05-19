@@ -9,15 +9,31 @@ def test_leaftools_label_leaves_in_expr_with_pitch_class_numbers_01():
 
     r'''
     \new Staff {
-      c'8 _ \markup { \small 0 }
-      d'8 _ \markup { \small 2 }
-      e'8 _ \markup { \small 4 }
-      f'8 _ \markup { \small 5 }
+        c'8
+            _ \markup {
+                \small
+                    0
+                }
+        d'8
+            _ \markup {
+                \small
+                    2
+                }
+        e'8
+            _ \markup {
+                \small
+                    4
+                }
+        f'8
+            _ \markup {
+                \small
+                    5
+                }
     }
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Staff {\n\tc'8 _ \\markup { \\small 0 }\n\td'8 _ \\markup { \\small 2 }\n\te'8 _ \\markup { \\small 4 }\n\tf'8 _ \\markup { \\small 5 }\n}"
+    assert t.format == "\\new Staff {\n\tc'8\n\t\t_ \\markup {\n\t\t\t\\small\n\t\t\t\t0\n\t\t\t}\n\td'8\n\t\t_ \\markup {\n\t\t\t\\small\n\t\t\t\t2\n\t\t\t}\n\te'8\n\t\t_ \\markup {\n\t\t\t\\small\n\t\t\t\t4\n\t\t\t}\n\tf'8\n\t\t_ \\markup {\n\t\t\t\\small\n\t\t\t\t5\n\t\t\t}\n}"
 
 
 def test_leaftools_label_leaves_in_expr_with_pitch_class_numbers_02():
