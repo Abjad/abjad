@@ -1238,20 +1238,6 @@ Additional Abjad composition packages (load manually)
 .. toctree::
    :maxdepth: 1
 
-:py:mod:`abctools <abjad.tools.abctools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. rubric:: abstract classes
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/abctools/AbjadObject/AbjadObject
-   tools/abctools/AttributeEqualityAbjadObject/AttributeEqualityAbjadObject
-   tools/abctools/ImmutableAbjadObject/ImmutableAbjadObject
-   tools/abctools/ScoreSelection/ScoreSelection
-   tools/abctools/SortableAttributeEqualityAbjadObject/SortableAttributeEqualityAbjadObject
-
 :py:mod:`configurationtools <abjad.tools.configurationtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -1280,35 +1266,6 @@ Additional Abjad composition packages (load manually)
    tools/datastructuretools/Digraph/Digraph
    tools/datastructuretools/ImmutableDictionary/ImmutableDictionary
    tools/datastructuretools/ObjectInventory/ObjectInventory
-
-:py:mod:`decoratortools <abjad.tools.decoratortools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. rubric:: functions
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/decoratortools/requires
-
-:py:mod:`documentationtools <abjad.tools.documentationtools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. rubric:: concrete classes
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/documentationtools/APICrawler/APICrawler
-   tools/documentationtools/AbjadAPIGenerator/AbjadAPIGenerator
-   tools/documentationtools/ClassCrawler/ClassCrawler
-   tools/documentationtools/ClassDocumenter/ClassDocumenter
-   tools/documentationtools/Documenter/Documenter
-   tools/documentationtools/FunctionCrawler/FunctionCrawler
-   tools/documentationtools/FunctionDocumenter/FunctionDocumenter
-   tools/documentationtools/InheritanceGraph/InheritanceGraph
-   tools/documentationtools/ModuleCrawler/ModuleCrawler
-   tools/documentationtools/Pipe/Pipe
 
 :py:mod:`durationtools <abjad.tools.durationtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1419,16 +1376,6 @@ Additional Abjad composition packages (load manually)
    tools/layouttools/make_spacing_vector
    tools/layouttools/set_line_breaks_cyclically_by_line_duration_ge
    tools/layouttools/set_line_breaks_cyclically_by_line_duration_in_seconds_ge
-
-:py:mod:`lilypondparsertools <abjad.tools.lilypondparsertools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. rubric:: concrete classes
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/lilypondparsertools/LilyPondParser/LilyPondParser
 
 :py:mod:`mathtools <abjad.tools.mathtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1874,44 +1821,6 @@ Additional Abjad composition packages (load manually)
    tools/verticalitytools/label_vertical_moments_in_expr_with_numbered_chromatic_pitch_classes
    tools/verticalitytools/label_vertical_moments_in_expr_with_pitch_numbers
 
-:py:mod:`wellformednesstools <abjad.tools.wellformednesstools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. rubric:: abstract classes
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/wellformednesstools/Check/Check
-
-.. rubric:: concrete classes
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/wellformednesstools/BeamedQuarterNoteCheck/BeamedQuarterNoteCheck
-   tools/wellformednesstools/DiscontiguousSpannerCheck/DiscontiguousSpannerCheck
-   tools/wellformednesstools/DuplicateIdCheck/DuplicateIdCheck
-   tools/wellformednesstools/EmptyContainerCheck/EmptyContainerCheck
-   tools/wellformednesstools/IntermarkedHairpinCheck/IntermarkedHairpinCheck
-   tools/wellformednesstools/MisduratedMeasureCheck/MisduratedMeasureCheck
-   tools/wellformednesstools/MisfilledMeasureCheck/MisfilledMeasureCheck
-   tools/wellformednesstools/MispitchedTieCheck/MispitchedTieCheck
-   tools/wellformednesstools/MisrepresentedFlagCheck/MisrepresentedFlagCheck
-   tools/wellformednesstools/MissingParentCheck/MissingParentCheck
-   tools/wellformednesstools/NestedMeasureCheck/NestedMeasureCheck
-   tools/wellformednesstools/OverlappingBeamCheck/OverlappingBeamCheck
-   tools/wellformednesstools/OverlappingGlissandoCheck/OverlappingGlissandoCheck
-   tools/wellformednesstools/OverlappingOctavationCheck/OverlappingOctavationCheck
-   tools/wellformednesstools/ShortHairpinCheck/ShortHairpinCheck
-
-.. rubric:: functions
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/wellformednesstools/list_checks
-
 Unstable Abjad composition packages (load manually)
 ---------------------------------------------------
 
@@ -2037,6 +1946,49 @@ Internals packages
 .. toctree::
    :maxdepth: 1
 
+:py:mod:`abctools <abjad.tools.abctools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: abstract classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/abctools/AbjadObject/AbjadObject
+   tools/abctools/AttributeEqualityAbjadObject/AttributeEqualityAbjadObject
+   tools/abctools/ImmutableAbjadObject/ImmutableAbjadObject
+   tools/abctools/ScoreSelection/ScoreSelection
+   tools/abctools/SortableAttributeEqualityAbjadObject/SortableAttributeEqualityAbjadObject
+
+:py:mod:`decoratortools <abjad.tools.decoratortools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: functions
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/decoratortools/requires
+
+:py:mod:`documentationtools <abjad.tools.documentationtools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: concrete classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/documentationtools/APICrawler/APICrawler
+   tools/documentationtools/AbjadAPIGenerator/AbjadAPIGenerator
+   tools/documentationtools/ClassCrawler/ClassCrawler
+   tools/documentationtools/ClassDocumenter/ClassDocumenter
+   tools/documentationtools/Documenter/Documenter
+   tools/documentationtools/FunctionCrawler/FunctionCrawler
+   tools/documentationtools/FunctionDocumenter/FunctionDocumenter
+   tools/documentationtools/InheritanceGraph/InheritanceGraph
+   tools/documentationtools/ModuleCrawler/ModuleCrawler
+   tools/documentationtools/Pipe/Pipe
+
 :py:mod:`formattools <abjad.tools.formattools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -2067,6 +2019,16 @@ Internals packages
 
    tools/importtools/import_structured_package
 
+:py:mod:`lilypondparsertools <abjad.tools.lilypondparsertools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: concrete classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/lilypondparsertools/LilyPondParser/LilyPondParser
+
 :py:mod:`offsettools <abjad.tools.offsettools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -2077,3 +2039,41 @@ Internals packages
 
    tools/offsettools/update_offset_values_of_component_in_seconds
    tools/offsettools/update_prolated_offset_values_of_component
+
+:py:mod:`wellformednesstools <abjad.tools.wellformednesstools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: abstract classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/wellformednesstools/Check/Check
+
+.. rubric:: concrete classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/wellformednesstools/BeamedQuarterNoteCheck/BeamedQuarterNoteCheck
+   tools/wellformednesstools/DiscontiguousSpannerCheck/DiscontiguousSpannerCheck
+   tools/wellformednesstools/DuplicateIdCheck/DuplicateIdCheck
+   tools/wellformednesstools/EmptyContainerCheck/EmptyContainerCheck
+   tools/wellformednesstools/IntermarkedHairpinCheck/IntermarkedHairpinCheck
+   tools/wellformednesstools/MisduratedMeasureCheck/MisduratedMeasureCheck
+   tools/wellformednesstools/MisfilledMeasureCheck/MisfilledMeasureCheck
+   tools/wellformednesstools/MispitchedTieCheck/MispitchedTieCheck
+   tools/wellformednesstools/MisrepresentedFlagCheck/MisrepresentedFlagCheck
+   tools/wellformednesstools/MissingParentCheck/MissingParentCheck
+   tools/wellformednesstools/NestedMeasureCheck/NestedMeasureCheck
+   tools/wellformednesstools/OverlappingBeamCheck/OverlappingBeamCheck
+   tools/wellformednesstools/OverlappingGlissandoCheck/OverlappingGlissandoCheck
+   tools/wellformednesstools/OverlappingOctavationCheck/OverlappingOctavationCheck
+   tools/wellformednesstools/ShortHairpinCheck/ShortHairpinCheck
+
+.. rubric:: functions
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/wellformednesstools/list_checks

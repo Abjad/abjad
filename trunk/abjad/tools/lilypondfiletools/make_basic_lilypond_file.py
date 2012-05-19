@@ -5,7 +5,7 @@ from abjad.tools.lilypondfiletools.PaperBlock import PaperBlock
 from abjad.tools.lilypondfiletools.ScoreBlock import ScoreBlock
 
 
-def make_basic_lilypond_file(music = None):
+def make_basic_lilypond_file(music=None):
     r'''.. versionadded:: 2.0
 
     Make basic LilyPond file with `music`::
