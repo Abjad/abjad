@@ -52,9 +52,9 @@ class FixedDurationContainer(Container):
         effective_meter = contexttools.get_effective_time_signature(self)
         contents_duration = self.contents_duration
         if contents_duration < self.target_duration:
-            raise UnderfullMeasureError
+            raise UnderfullContainerError
         if self.target_duration < contents_duration:
-            raise OverfullMeasureError
+            raise OverfullContainerError
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

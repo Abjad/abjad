@@ -101,7 +101,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
     assert componenttools.is_well_formed_component(t)
     assert left.format == "{\n\t\\time 1/8\n\tf'8 ]\n}"
     assert right.format == "{\n\t\\time 2/8\n\tg'8 [\n\ta'8 ]\n}"
-    assert py.test.raises(UnderfullMeasureError, 'm.format')
+    assert py.test.raises(UnderfullContainerError, 'm.format')
     assert t.format == "\\new Voice {\n\t{\n\t\t\\time 3/8\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t}\n\t{\n\t\t\\time 1/8\n\t\tf'8 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\tg'8 [\n\t\ta'8 ]\n\t}\n}"
 
 
@@ -165,7 +165,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
     assert componenttools.is_well_formed_component(t)
     assert left.format == "{\n\t\\time 1/9\n\t\\scaleDurations #'(8 . 9) {\n\t\tf'8 ]\n\t}\n}"
     assert right.format == "{\n\t\\time 2/9\n\t\\scaleDurations #'(8 . 9) {\n\t\tg'8 [\n\t\ta'8 ]\n\t}\n}"
-    assert py.test.raises(UnderfullMeasureError, 'm.format')
+    assert py.test.raises(UnderfullContainerError, 'm.format')
     assert t.format == "\\new Voice {\n\t{\n\t\t\\time 3/9\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\tc'8 [\n\t\t\td'8\n\t\t\te'8\n\t\t}\n\t}\n\t{\n\t\t\\time 1/9\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\tf'8 ]\n\t\t}\n\t}\n\t{\n\t\t\\time 2/9\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\tg'8 [\n\t\t\ta'8 ]\n\t\t}\n\t}\n}"
 
 

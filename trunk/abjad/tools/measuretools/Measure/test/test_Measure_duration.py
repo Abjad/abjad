@@ -54,7 +54,7 @@ def test_Measure_duration_03():
 
     t = Measure((3, 8), "c'8 d'8 e'8 f'8")
 
-    assert py.test.raises(OverfullMeasureError, 't.format')
+    assert py.test.raises(OverfullContainerError, 't.format')
 
     assert t.contents_duration == Duration(4, 8)
     assert t.preprolated_duration == Duration(4, 8)
@@ -67,7 +67,7 @@ def test_Measure_duration_04():
 
     t = Measure((3, 10), "c'8 d'8 e'8 f'8")
 
-    assert py.test.raises(OverfullMeasureError, 't.format')
+    assert py.test.raises(OverfullContainerError, 't.format')
 
     assert t.contents_duration == Duration(4, 8)
     assert t.preprolated_duration == Duration(4, 10)

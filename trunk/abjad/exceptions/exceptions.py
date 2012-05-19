@@ -53,11 +53,6 @@ class MissingMeasureError(MeasureError):
     '''
     pass
 
-class ImproperlyFilledMeasureError(MeasureError):
-    '''Measure contents duration does not equal measure time signature duration.
-    '''
-    pass
-
 class AssignabilityError(DurationError):
     '''Durations. like 5/16 or 9/16 can not be assigned to a single, untied note, rest or chord.
     '''
@@ -153,8 +148,8 @@ class MissingNoteHeadError(Exception):
     '''
     pass
 
-class OverfullMeasureError(ImproperlyFilledMeasureError):
-    '''Measure contents duration is greater than measure time signature duration.
+class OverfullContainerError(Exception):
+    '''Container contents duration is greater than container target duration.
     '''
     pass
 
@@ -250,8 +245,8 @@ class MissingTempoError(TempoError):
     '''
     pass
 
-class UnderfullMeasureError(ImproperlyFilledMeasureError):
-    '''Measure contents duration is less than measure time signature duration.
+class UnderfullContainerError(Exception):
+    '''Container contents duration is less than container target duration.
     '''
     pass
 

@@ -151,9 +151,9 @@ class Measure(Container):
         if effective_meter.is_nonbinary and effective_meter.suppress:
             raise NonbinaryTimeSignatureSuppressionError
         if effective_meter.duration < self.preprolated_duration:
-            raise OverfullMeasureError
+            raise OverfullContainerError
         if self.preprolated_duration < effective_meter.duration:
-            raise UnderfullMeasureError
+            raise UnderfullContainerError
 
     def _conditionally_adjust_time_signature(self, old_denominator):
         if self.automatically_adjust_time_signature:
