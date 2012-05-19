@@ -1194,6 +1194,7 @@ Abjad composition packages
    tools/tuplettools/change_augmented_tuplets_in_expr_to_diminished
    tools/tuplettools/change_diminished_tuplets_in_expr_to_augmented
    tools/tuplettools/change_fixed_duration_tuplets_in_expr_to_tuplets
+   tools/tuplettools/change_tuplets_in_expr_to_fixed_duration_tuplets
    tools/tuplettools/fix_contents_of_tuplets_in_expr
    tools/tuplettools/fuse_tuplets
    tools/tuplettools/get_first_tuplet_in_improper_parentage_of_component

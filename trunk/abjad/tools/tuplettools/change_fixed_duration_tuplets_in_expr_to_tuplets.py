@@ -15,6 +15,11 @@ def change_fixed_duration_tuplets_in_expr_to_tuplets(expr):
         abjad> tuplettools.change_fixed_duration_tuplets_in_expr_to_tuplets(staff)
         [Tuplet(2/3, [c'8, d'8, e'8]), Tuplet(2/3, [c'8, d'8, e'8])]
 
+    ::
+
+        abjad> staff[:]
+        [Tuplet(2/3, [c'8, d'8, e'8]), Tuplet(2/3, [c'8, d'8, e'8])]
+
     Return tuplets.
     '''
     from abjad.tools import componenttools

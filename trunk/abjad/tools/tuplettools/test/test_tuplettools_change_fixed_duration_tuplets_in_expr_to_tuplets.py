@@ -7,6 +7,4 @@ def test_tuplettools_change_fixed_duration_tuplets_in_expr_to_tuplets_01():
     assert all([isinstance(x, tuplettools.FixedDurationTuplet) for x in staff])
 
     tuplettools.change_fixed_duration_tuplets_in_expr_to_tuplets(staff)
-    assert all([
-        (isinstance(x, tuplettools.Tuplet) and not isinstance(x, tuplettools.FixedDurationTuplet)) 
-        for x in staff])
+    assert all([x._class_name == 'Tuplet' for x in staff])
