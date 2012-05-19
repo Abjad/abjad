@@ -8,12 +8,12 @@ def test_MarkupInventory__tools_package_qualified_indented_repr_01():
     r'''
     markuptools.MarkupInventory([
         markuptools.Markup(
-            'foo'
+            ('foo',)
             ),
         markuptools.Markup(
-            'bar'
+            ('bar',)
             )
         ])
     '''
 
-    assert inventory._tools_package_qualified_indented_repr == "markuptools.MarkupInventory([\n\tmarkuptools.Markup(\n\t\t'foo'\n\t\t),\n\tmarkuptools.Markup(\n\t\t'bar'\n\t\t)\n\t])"
+    assert inventory._tools_package_qualified_indented_repr == "markuptools.MarkupInventory([\n\tmarkuptools.Markup(\n\t\t('foo',)\n\t\t),\n\tmarkuptools.Markup(\n\t\t('bar',)\n\t\t)\n\t])"

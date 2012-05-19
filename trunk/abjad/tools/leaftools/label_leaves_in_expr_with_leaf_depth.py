@@ -32,5 +32,6 @@ def label_leaves_in_expr_with_leaf_depth(expr, markup_direction = 'down'):
 
     for leaf in iterate_leaves_forward_in_expr(expr):
         #label = r'\small %s' % leaf._parentage.depth
-        label = r'\small %s' % componenttools.component_to_score_depth(leaf)
+        #label = r'\small %s' % componenttools.component_to_score_depth(leaf)
+        label = markuptools.MarkupCommand('small', str(componenttools.component_to_score_depth(leaf)))
         markuptools.Markup(label, markup_direction)(leaf)

@@ -1,4 +1,5 @@
 from abjad.tools import markuptools
+from abjad.tools import schemetools
 from abjad.tools.spannertools.TextSpanner import TextSpanner
 
 
@@ -16,9 +17,9 @@ class BracketSpanner(TextSpanner):
 
         abjad> f(staff)
         \new Staff {
-            \override TextSpanner #'bound-details #'left #'text = #(markup #:draw-line '(0 . -1))
+            \override TextSpanner #'bound-details #'left #'text = \markup { \draw-line #'(0 . -1) }
             \override TextSpanner #'bound-details #'left-broken #'text = ##f
-            \override TextSpanner #'bound-details #'right #'text = #(markup #:draw-line '(0 . -1))
+            \override TextSpanner #'bound-details #'right #'text = \markup { \draw-line #'(0 . -1) }
             \override TextSpanner #'bound-details #'right-broken #'text = ##f
             \override TextSpanner #'color = #red
             \override TextSpanner #'dash-fraction = #1
@@ -51,10 +52,10 @@ class BracketSpanner(TextSpanner):
 
     def __init__(self, components=None):
         TextSpanner.__init__(self, components)
-        markup =  markuptools.Markup("(markup #:draw-line '(0 . -1))", style_string = 'scheme')
+        markup = markuptools.Markup(markuptools.MarkupCommand('draw-line', schemetools.SchemePair(0, -1)))
         self.override.text_spanner.bound_details__left__text = markup
         self.override.text_spanner.bound_details__left_broken__text = False
-        markup = markuptools.Markup("(markup #:draw-line '(0 . -1))", style_string = 'scheme')
+        markup = markuptools.Markup(markuptools.MarkupCommand('draw-line', schemetools.SchemePair(0, -1)))
         self.override.text_spanner.bound_details__right__text = markup
         self.override.text_spanner.bound_details__right_broken__text = False
         self.override.text_spanner.color = 'red'

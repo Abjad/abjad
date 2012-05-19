@@ -1,4 +1,5 @@
-from abjad.tools.markuptools import Markup
+from abjad.tools.markuptools import Markup, MarkupCommand
+from abjad.tools.schemetools import SchemePair
 from abjad.tools.spannertools.TextSpanner import TextSpanner
 
 
@@ -15,7 +16,7 @@ def make_solid_text_spanner_below_with_nib_at_right(left_text, components = None
         abjad> f(t)
         \new Staff {
             \override TextSpanner #'bound-details #'left #'text = \markup { foo }
-            \override TextSpanner #'bound-details #'right #'text = #(markup #:draw-line '(0 . 1))
+            \override TextSpanner #'bound-details #'right #'text = \markup { \draw-line #'(0 . 1) }
             \override TextSpanner #'bound-details #'right-broken #'text = ##f
             \override TextSpanner #'dash-fraction = #1
             \override TextSpanner #'direction = #down
@@ -38,7 +39,7 @@ def make_solid_text_spanner_below_with_nib_at_right(left_text, components = None
     text_spanner = TextSpanner(components)
     left_text = Markup(left_text)
     text_spanner.override.text_spanner.bound_details__left__text = left_text
-    right_text = Markup("(markup #:draw-line '(0 . 1))", style_string = 'scheme')
+    right_text = Markup(MarkupCommand('draw-line', SchemePair(0, 1)))
     text_spanner.override.text_spanner.bound_details__right__text = right_text
     text_spanner.override.text_spanner.bound_details__right_broken__text = False
     text_spanner.override.text_spanner.dash_fraction = 1

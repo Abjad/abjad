@@ -1,36 +1,23 @@
 from abjad.tools.marktools._DirectedMark._DirectedMark import _DirectedMark
+from abjad.tools.markuptools.MarkupCommand import MarkupCommand
 
 
 class Markup(_DirectedMark):
-    r'''Abjad model of backslash-style LilyPond markup or Scheme-style LilyPond markup.
+    r'''Abjad model of LilyPond markup.
 
-    Initialize backslash-style markup from string::
+    Initialize from string::
 
         abjad> markup = markuptools.Markup(r'\bold { "This is markup text." }')
 
     ::
 
         abjad> markup
-        Markup('\\bold { "This is markup text." }')
+        Markup(('\\bold { "This is markup text." }',))
 
     ::
 
         abjad> f(markup)
         \markup { \bold { "This is markup text." } }
-
-    Initialize Scheme-style markup from string::
-
-        abjad> markup = markuptools.Markup("(markup #:draw-line '(0 . -1))", style_string='scheme')
-
-    ::
-
-        abjad> markup
-        Markup("(markup #:draw-line '(0 . -1))", style_string='scheme')
-
-    ::
-
-        abjad> f(markup)
-        #(markup #:draw-line '(0 . -1))
 
     Initialize any markup from existing markup::
 
@@ -58,7 +45,7 @@ class Markup(_DirectedMark):
     ::
 
         abjad> markup(note)
-        Markup('\\bold { "This is markup text." }')(c'4)
+        Markup(('\\bold { "This is markup text." }',))(c'4)
 
     ::
 
@@ -67,48 +54,44 @@ class Markup(_DirectedMark):
 
     Set `direction` to ``'up'``, ``'down'``, ``'neutral'``, ``'^'``, ``'_'``, ``'-'`` or None.
 
-    Set `style_string` to ``'backslash'``, ``'scheme'`` or none. Default to ``'backslash'``.
-
     Markup objects are immutable.
     '''
 
     ### CLASS ATTRIBUTES ###
 
-    __slots__ = ('_contents_string', '_direction', '_format_slot', '_markup_name', '_style_string')
-    _style_strings = ('backslash', 'scheme')
+    __slots__ = ('_contents', '_direction', '_format_slot', '_markup_name')
 
     ### INITIALIZER ###
 
-    def __init__(self, argument, direction=None, markup_name=None, style_string=None):
-        if isinstance(argument, str):
-            contents_string = argument
+    def __init__(self, argument, direction=None, markup_name=None):
+        if isinstance(argument, (str, MarkupCommand)):
+            contents = (argument,)
         elif isinstance(argument, Markup):
-            contents_string = argument._contents_string
+            contents = argument._contents
             direction = direction or argument._direction
             markup_name = markup_name or argument._markup_name
-            style_string = style_string or argument._style_string
+        elif isinstance(argument, (list, tuple)) and 0 < len(argument):
+            contents = []
+            for arg in argument:
+                if isinstance(arg, (str, MarkupCommand)):
+                    contents.append(arg)
+                else:
+                    contents.append(str(arg))
+            contents = tuple(contents)
         else:
-            contents_string = str(argument)
+            contents = (str(argument),)
         _DirectedMark.__init__(self, direction=direction)
-        self._contents_string = contents_string
-        self._style_string = style_string
+        self._contents = tuple(contents)
         self._format_slot = 'right'
         self._markup_name = markup_name
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _format_pieces(self):
-        return [r'\markup { %s }' % self.contents_string]
 
     ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
         return type(self)(
-            self._contents_string,
+            self._contents,
             direction=self._direction, 
             markup_name=self._markup_name,
-            style_string=self._style_string
             )
 
     __deepcopy__ = __copy__
@@ -120,7 +103,7 @@ class Markup(_DirectedMark):
         return False
 
     def __hash__(self):
-        return hash((type(self).__name__, self.format))
+        return hash((type(self).__name__, self.contents))
 
     def __ne__(self, expr):
         return not self == expr
@@ -131,26 +114,30 @@ class Markup(_DirectedMark):
     ### PRIVATE READ-ONLY PROPERTIES ###
 
     @property
+    def _format_pieces(self):
+        return self._get_format_pieces(is_indented=False)
+
+    @property
     def _mandatory_argument_values(self):
         return (
-            self.contents_string,
+            self.contents,
             )
 
     ### PUBLIC READ-ONLY PROPERTIES ###
 
     @property
-    def contents_string(self):
-        r'''Read-only contents string of markup:
+    def contents(self):
+        r'''Read-only tuple of contents of markup:
 
         ::
 
             abjad> markup = markuptools.Markup(r'\bold { "This is markup text." }')
-            abjad> markup.contents_string
-            '\\bold { "This is markup text." }'
+            abjad> markup.contents
+            ('\\bold { "This is markup text." }',)
 
         Return string
         '''
-        return self._contents_string
+        return self._contents
 
     @property
     def format(self):
@@ -162,16 +149,7 @@ class Markup(_DirectedMark):
 
         Return string.
         '''
-        result = ''
-        if self.style_string in (None, 'backslash'):
-            result = r'\markup { %s }' % self.contents_string
-            if self.direction is not None:
-                result = '%s %s' % (self.direction, result)
-        elif self.style_string == 'scheme':
-            result = '#%s' % self.contents_string
-        else:
-            raise ValueError('unknown markup style string: "%s".' % self.style_string)
-        return result
+        return ' '.join(self._get_format_pieces(is_indented=False))
 
     @property
     def markup_name(self):
@@ -188,8 +166,29 @@ class Markup(_DirectedMark):
         '''
         return self._markup_name
 
-    @property
-    def style_string(self):
-        '''Read-only style string of markup.
-        '''
-        return self._style_string
+    ### PRIVATE METHODS ###
+
+    def _get_format_pieces(self, is_indented=True):
+        indent = ''
+        if is_indented:
+            indent = '\t'
+
+        if len(self.contents) == 1 and isinstance(self.contents[0], str):
+            if self.direction is not None:
+                return [r'{} \markup {{ {} }}'.format(self.direction, self.contents[0])]
+            return [r'\markup {{ {} }}'.format(self.contents[0])]
+
+        if self.direction is not None:
+            pieces = [r'{} \markup {{'.format(self.direction)]
+        else:
+            pieces = [r'\markup {']
+        for content in self.contents:
+            if isinstance(content, str):
+                pieces.append('{}{}'.format(indent, content))
+            else:
+                pieces.extend(['{}{}'.format(indent, x) for x in
+                    content._get_format_pieces(is_indented=is_indented)])
+        pieces.append('{}}}'.format(indent))
+
+        return pieces
+

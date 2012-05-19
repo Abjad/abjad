@@ -16,20 +16,23 @@ def get_markup_format_contributions(component):
             up_markup.append(markup_object)
         elif markup_object.direction == '_':
             down_markup.append(markup_object)
-        elif markup_object.direction in ('-', 'neutral', None):
+        elif markup_object.direction in ('-', None):
             neutral_markup.append(markup_object)
 
     for markup_list in (up_markup, down_markup, neutral_markup):
         if not markup_list:
             pass
         elif 1 < len(markup_list):
-            contents = [m._contents_string for m in markup_list]
-            contents = ' '.join(contents)
+            contents = []
+            for m in markup_list:
+                contents += m.contents
             direction = markup_list[0].direction
             if direction is None:
                 direction = '-'
-            column = r'%s \markup { \column { %s } }' % (direction, contents)
-            result.append(column)
+            command = markuptools.MarkupCommand('column', contents)
+            #column = r'%s \markup { \column { %s } }' % (direction, contents)
+            markup = markuptools.Markup(command, direction=direction)
+            result.append(str(markup))
         else:
             if markup_list[0].direction is None:
                 result.append('- %s' % markup_list[0].format)

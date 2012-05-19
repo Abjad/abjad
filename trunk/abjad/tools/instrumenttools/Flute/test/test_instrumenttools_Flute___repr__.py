@@ -17,13 +17,13 @@ def test_instrumenttools_Flute___repr___02():
     assert repr(flute) == "Flute(instrument_name='foo')"
 
     flute = instrumenttools.Flute(instrument_name_markup=markuptools.Markup('foo'))
-    assert repr(flute) == "Flute(instrument_name_markup=Markup('foo'))"
+    assert repr(flute) == "Flute(instrument_name_markup=Markup(('foo',)))"
     
     flute = instrumenttools.Flute(short_instrument_name='f.')
     assert repr(flute) == "Flute(short_instrument_name='f.')"
 
     flute = instrumenttools.Flute(short_instrument_name_markup=markuptools.Markup('f.'))
-    assert repr(flute) == "Flute(short_instrument_name_markup=Markup('f.'))"
+    assert repr(flute) == "Flute(short_instrument_name_markup=Markup(('f.',)))"
 
 
 def test_instrumenttools_Flute___repr___03():
@@ -36,7 +36,7 @@ def test_instrumenttools_Flute___repr___03():
 
     flute = instrumenttools.Flute()
     flute.instrument_name_markup = markuptools.Markup('foo')
-    assert repr(flute) == "Flute(instrument_name_markup=Markup('foo'))"
+    assert repr(flute) == "Flute(instrument_name_markup=Markup(('foo',)))"
     
     flute = instrumenttools.Flute()
     flute.short_instrument_name = 'f.'
@@ -44,4 +44,4 @@ def test_instrumenttools_Flute___repr___03():
 
     flute = instrumenttools.Flute()
     flute.short_instrument_name_markup = markuptools.Markup('f.')
-    assert repr(flute) == "Flute(short_instrument_name_markup=Markup('f.'))"
+    assert repr(flute) == "Flute(short_instrument_name_markup=Markup(('f.',)))"
