@@ -180,13 +180,32 @@ The final result:
 <abjad>
 top = [[[-1, 4, 5], [-1, 4, 5, 7, 9]], [[0, 7, 9], [-1, 4, 5, 7, 9]], [[2, 4, 5, 7, 9], [0, 5, 7]], [[-3, -1, 0, 2, 4, 5, 7]], [[-3, 2, 4], [-3, 2, 4, 5, 7]], [[2, 5, 7], [-3, 9, 11, 12, 14]], [[4, 5, 7, 9, 11], [2, 4, 5]], [[-5, 4, 5, 7, 9, 11, 12]], [[2, 9, 11], [2, 9, 11, 12, 14]]]
 bottom = [[[-9, -4, -2], [-9, -4, -2, 1, 3]], [[-6, -2, 1], [-9, -4, -2, 1, 3]], [[-4, -2, 1, 3, 6], [-4, -2, 1]], [[-9, -6, -4, -2, 1, 3, 6, 1]], [[-6, -2, 1], [-6, -2, 1, 3, -2]], [[-4, 1, 3], [-6, 3, 6, -6, -4]], [[-14, -11, -9, -6, -4], [-14, -11, -9]], [[-11, -2, 1, -6, -4, -2, 1, 3]], [[-6, 1, 3], [-6, -4, -2, 1, 3]]]
-
-desordre = desordre_build([top, bottom])
-iotools.write_expr_to_ly(desordre, 'desordre-final', template = 'tirnaveni') <hide
-show(desordre)
 </abjad>
 
-Now that we have the redundant aspect of the piece compactly expressed and encapsulated, we can play around with it by changing the sequence of pitches.
+<abjad>
+desordre = desordre_build([top, bottom])
+</abjad>
 
-.. note::
-    In order for each staff to carry its own sequence of independent measure changes, LilyPond requires some special setting up prior to rendering. Specifically, one must move the *Timing_translator* from the score level to the level of staves. In this example we used the 'tirnaveni' template, which is configured to do just that. You may want to study this template (in the "templates" directory of the abjad distribution). Refer to the LilyPond documentation on `Polymetric notation <http://lilypond.org/doc/v2.12/Documentation/user/lilypond/Displaying-rhythms#Polymetric-notation>`_ to learn all about how this works.
+<abjad>
+from abjad.tools import documentationtools
+lilypond_file = documentationtools.make_ligeti_example_lilypond_file(desordre)
+</abjad>
+
+<abjad>
+show(lilypond_file)
+iotools.write_expr_to_ly(lilypond_file, 'desordre-final') <hide
+</abjad>
+
+Now that we have the redundant aspect of the piece compactly expressed and encapsulated, 
+we can play around with it by changing the sequence of pitches.
+
+In order for each staff to carry its own sequence of independent measure changes, 
+LilyPond requires some special setting up prior to rendering.
+Specifically, one must move the LilyPond ``Timing_translator`` out from the score context
+and into the staff context.
+
+(You can refer to the LilyPond documentation on 
+`Polymetric notation <http://lilypond.org/doc/v2.12/Documentation/user/lilypond/Displaying-rhythms#Polymetric-notation>`_ 
+to learn all about how this works.)
+
+In this example we a custom ``documentationtools`` function to set up our LilyPond file automatically.

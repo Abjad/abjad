@@ -10,8 +10,8 @@ def test_Voice___copy___01():
 
     voice_1 = Voice("c'8 d'8 e'8 f'8")
     voice_1.name = 'SopranoVoice'
-    voice_1.engraver_removals.add('Forbid_line_break_engraver')
-    voice_1.engraver_consists.add('Time_signature_engraver')
+    voice_1.engraver_removals.append('Forbid_line_break_engraver')
+    voice_1.engraver_consists.append('Time_signature_engraver')
     voice_1.override.note_head.color = 'red'
     voice_1.set.tuplet_full_length = True
 

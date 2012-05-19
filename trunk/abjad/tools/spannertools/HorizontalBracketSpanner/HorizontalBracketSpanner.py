@@ -7,7 +7,7 @@ class HorizontalBracketSpanner(Spanner):
     Abjad horizontal bracket spanner::
 
         abjad> voice = Voice("c'4 d'4 e'4 f'4")
-        abjad> voice.engraver_consists.add('Horizontal_bracket_engraver')
+        abjad> voice.engraver_consists.append('Horizontal_bracket_engraver')
 
     ::
 

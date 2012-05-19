@@ -36,8 +36,8 @@ class Context(Container):
     def __init__(self, music=None, context_name='Context', name=None):
         Container.__init__(self, music)
         self.context_name = context_name
-        self._engraver_consists = set([])
-        self._engraver_removals = set([])
+        self._engraver_consists = []
+        self._engraver_removals = []
         self.name = name
         self.is_nonsemantic = False
 
@@ -173,7 +173,7 @@ class Context(Container):
         Manage with add, update, other standard set commands. ::
 
             abjad> staff = Staff([])
-            abjad> staff.engraver_consists.add('Horizontal_bracket_engraver')
+            abjad> staff.engraver_consists.append('Horizontal_bracket_engraver')
             abjad> f(staff)
             \new Staff \with {
                 \consists Horizontal_bracket_engraver
@@ -192,7 +192,7 @@ class Context(Container):
         Manage with add, update, other standard set commands. ::
 
             abjad> staff = Staff([])
-            abjad> staff.engraver_removals.add('Time_signature_engraver')
+            abjad> staff.engraver_removals.append('Time_signature_engraver')
             abjad> f(staff)
             \new Staff \with {
                 \remove Time_signature_engraver

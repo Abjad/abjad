@@ -73,10 +73,6 @@ Finally we combine the two voices in a parallel Container:
 
 This results in the complete *Désordre* *cell*:
 
-::
-
-	LilyPond file written to 'desordre-cell.ly' ...
-
 .. image:: images/desordre-cell.png
 
 Because this *cell* appears over and over again, we want to reuse this code to generate any number of these *cells*. We here encapsulate it in a function that will take only a list of pitches::
@@ -133,7 +129,6 @@ To construct a Ligeti measure we would call the function like so:
 ::
 
 	abjad> measure = measure_build([[0, 4, 7], [0, 4, 7, 9], [4, 7, 9, 11]])
-	LilyPond file written to 'desordre-measure.ly' ...
 	abjad> show(Staff([measure]))
 
 .. image:: images/desordre-measure.png
@@ -158,7 +153,6 @@ As with measures, we can now create full measure sequences with this new functio
 
 	abjad> pitches = [[[-1, 4, 5], [-1, 4, 5, 7, 9]], [[0, 7, 9], [-1, 4, 5, 7, 9]]]
 	abjad> staff = staff_build(pitches)
-	LilyPond file written to 'desordre-staff.ly' ...
 	abjad> show(staff)
 
 .. image:: images/desordre-staff.png
@@ -190,14 +184,35 @@ The final result:
 
 	abjad> top = [[[-1, 4, 5], [-1, 4, 5, 7, 9]], [[0, 7, 9], [-1, 4, 5, 7, 9]], [[2, 4, 5, 7, 9], [0, 5, 7]], [[-3, -1, 0, 2, 4, 5, 7]], [[-3, 2, 4], [-3, 2, 4, 5, 7]], [[2, 5, 7], [-3, 9, 11, 12, 14]], [[4, 5, 7, 9, 11], [2, 4, 5]], [[-5, 4, 5, 7, 9, 11, 12]], [[2, 9, 11], [2, 9, 11, 12, 14]]]
 	abjad> bottom = [[[-9, -4, -2], [-9, -4, -2, 1, 3]], [[-6, -2, 1], [-9, -4, -2, 1, 3]], [[-4, -2, 1, 3, 6], [-4, -2, 1]], [[-9, -6, -4, -2, 1, 3, 6, 1]], [[-6, -2, 1], [-6, -2, 1, 3, -2]], [[-4, 1, 3], [-6, 3, 6, -6, -4]], [[-14, -11, -9, -6, -4], [-14, -11, -9]], [[-11, -2, 1, -6, -4, -2, 1, 3]], [[-6, 1, 3], [-6, -4, -2, 1, 3]]]
-	abjad> 
+
+
+::
+
 	abjad> desordre = desordre_build([top, bottom])
-	LilyPond file written to 'desordre-final.ly' ...
-	abjad> show(desordre)
+
+
+::
+
+	abjad> from abjad.tools import documentationtools
+	abjad> lilypond_file = documentationtools.make_ligeti_example_lilypond_file(desordre)
+
+
+::
+
+	abjad> show(lilypond_file)
 
 .. image:: images/desordre-final.png
 
-Now that we have the redundant aspect of the piece compactly expressed and encapsulated, we can play around with it by changing the sequence of pitches.
+Now that we have the redundant aspect of the piece compactly expressed and encapsulated, 
+we can play around with it by changing the sequence of pitches.
 
-.. note::
-    In order for each staff to carry its own sequence of independent measure changes, LilyPond requires some special setting up prior to rendering. Specifically, one must move the *Timing_translator* from the score level to the level of staves. In this example we used the 'tirnaveni' template, which is configured to do just that. You may want to study this template (in the "templates" directory of the abjad distribution). Refer to the LilyPond documentation on `Polymetric notation <http://lilypond.org/doc/v2.12/Documentation/user/lilypond/Displaying-rhythms#Polymetric-notation>`_ to learn all about how this works.
+In order for each staff to carry its own sequence of independent measure changes, 
+LilyPond requires some special setting up prior to rendering.
+Specifically, one must move the LilyPond ``Timing_translator`` out from the score context
+and into the staff context.
+
+(You can refer to the LilyPond documentation on 
+`Polymetric notation <http://lilypond.org/doc/v2.12/Documentation/user/lilypond/Displaying-rhythms#Polymetric-notation>`_ 
+to learn all about how this works.)
+
+In this example we a custom ``documentationtools`` function to set up our LilyPond file automatically.

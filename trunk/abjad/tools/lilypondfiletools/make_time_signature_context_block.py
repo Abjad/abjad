@@ -32,8 +32,8 @@ def make_time_signature_context_block(font_size=3, padding=4):
 
     context_block = ContextBlock()
     context_block.type = 'Engraver_group'
-    context_block.engraver_consists.add('Time_signature_engraver')
-    context_block.engraver_consists.add('Axis_group_engraver')
+    context_block.engraver_consists.append('Axis_group_engraver')
+    context_block.engraver_consists.append('Time_signature_engraver')
     context_block.name = 'TimeSignatureContext'
     context_block.override.time_signature.X_offset = schemetools.Scheme(
         'ly:self-alignment-interface::x-aligned-on-self')

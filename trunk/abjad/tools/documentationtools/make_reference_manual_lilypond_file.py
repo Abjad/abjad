@@ -61,7 +61,7 @@ def make_reference_manual_lilypond_file(music=None):
 
     context_block.context_name = 'Score'
 
-    context_block.engraver_removals.add('Bar_number_engraver')
+    context_block.engraver_removals.append('Bar_number_engraver')
 
     context_block.override.spacing_spanner.strict_grace_spacing = True
     context_block.override.spacing_spanner.strict_note_spacing = True

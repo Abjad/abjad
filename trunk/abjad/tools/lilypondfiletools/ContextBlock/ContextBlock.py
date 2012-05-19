@@ -37,8 +37,8 @@ class ContextBlock(AttributedBlock):
 
     def __init__(self, context_name=None):
         AttributedBlock.__init__(self)
-        self._engraver_consists = set([])
-        self._engraver_removals = set([])
+        self._engraver_consists = []
+        self._engraver_removals = []
         self._escaped_name = r'\context'
         self.context_name = context_name
         self.name = None
@@ -58,9 +58,10 @@ class ContextBlock(AttributedBlock):
             result.append('\t' + r'\%s' % self.context_name)
         if self.name is not None:
             result.append('\t' + r'\name %s' % self.name)
-        for string in sorted(self.engraver_removals):
+        for string in self.engraver_removals:
             result.append('\t' + r'\remove %s' % string)
-        for string in sorted(self.engraver_consists):
+        # CAUTION: LilyPond consist statements are order-significant!
+        for string in self.engraver_consists:
             result.append('\t' + r'\consists %s' % string)
         for override in self.override._list_format_contributions('override'):
             result.append('\t' + override)

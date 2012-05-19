@@ -4,8 +4,8 @@ from abjad import *
 def test_Staff_engraver_consists_01():
 
     t = Staff("c'8 d'8 e'8 f'8")
-    t.engraver_consists.add('Horizontal_bracket_engraver')
-    t.engraver_consists.add('Instrument_name_engraver')
+    t.engraver_consists.append('Horizontal_bracket_engraver')
+    t.engraver_consists.append('Instrument_name_engraver')
 
     r'''
     \new Staff \with {

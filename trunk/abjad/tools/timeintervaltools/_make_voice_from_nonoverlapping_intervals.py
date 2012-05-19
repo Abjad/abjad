@@ -73,6 +73,6 @@ def _make_voice_from_nonoverlapping_intervals(intervals, colorkey = None, pitch 
         else:
             raise Exception('Intervals were not non-overlapping!')
 
-    voice.engraver_removals.add('Forbid_line_break_engraver')
+    voice.engraver_removals.append('Forbid_line_break_engraver')
 
     return voice
