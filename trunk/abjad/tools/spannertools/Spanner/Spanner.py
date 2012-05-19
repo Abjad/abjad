@@ -157,12 +157,8 @@ class Spanner(AbjadObject):
         result._unblock_all_components()
         return result
 
-    # TODO: Remove call to self.leaves
     def _duration_offset_in_me(self, leaf):
-        leaves = list(self.leaves)
-        assert leaf in leaves
-        prev = leaves[:leaves.index(leaf)]
-        return sum([leaf.prolated_duration for leaf in prev])
+        return leaf.start - self.start
 
     def _format_after_leaf(self, leaf):
         result = []
@@ -356,21 +352,18 @@ class Spanner(AbjadObject):
             abjad> spanner.leaves
             (Note("c'8"), Note("d'8"))
 
-        .. versionchanged:: 1.1
-            Now returns an (immutable) tuple instead of a (mutable) list.
-
         .. note:: When dealing with large, complex scores accessing
             this attribute can take some time. Best to make a local
             copy with leaves = spanner.leaves first. Or use spanner-
             specific iteration tools.
         '''
-        from abjad.tools.leaftools.Leaf import Leaf
+        from abjad.tools import leaftools
         from abjad.tools import componenttools
         result = []
         for component in self._components:
             # EXPERIMENTAL: expand to allow staff-level spanner eventually #
             for node in componenttools.iterate_components_depth_first(component):
-                if isinstance(node, Leaf):
+                if isinstance(node, leaftools.Leaf):
                     result.append(node)
         result = tuple(result)
         return result
