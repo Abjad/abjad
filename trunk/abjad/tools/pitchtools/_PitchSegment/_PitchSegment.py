@@ -1,8 +1,8 @@
 from abc import ABCMeta
-from abjad.tools.pitchtools._Segment import _Segment
+from abjad.tools.pitchtools.PitchObjectSegment import PitchObjectSegment
 
 
-class _PitchSegment(_Segment):
+class _PitchSegment(PitchObjectSegment):
     '''.. versionadded:: 2.0
 
     Pitch segment base class.

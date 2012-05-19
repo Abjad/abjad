@@ -719,6 +719,7 @@ Abjad composition packages
 .. toctree::
    :maxdepth: 1
 
+   tools/pitchtools/PitchObjectSegment/PitchObjectSegment
    tools/pitchtools/PitchObjectSet/PitchObjectSet
    tools/pitchtools/PitchObjectVector/PitchObjectVector
 

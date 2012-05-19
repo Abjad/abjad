@@ -1,8 +1,8 @@
 from abc import ABCMeta
-from abjad.tools.pitchtools._Segment import _Segment
+from abjad.tools.pitchtools.PitchObjectSegment import PitchObjectSegment
 
 
-class _IntervalSegment(_Segment):
+class _IntervalSegment(PitchObjectSegment):
     '''.. versionadded:: 2.0
 
     Class of abstract ordered collection of interval instances

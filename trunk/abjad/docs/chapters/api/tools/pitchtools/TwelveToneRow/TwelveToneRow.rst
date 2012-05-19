@@ -57,7 +57,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.TwelveToneRow.TwelveToneRow.TwelveToneRow.__add__
 
-    Inherited from :py:class:`pitchtools._Segment <abjad.tools.pitchtools._Segment._Segment._Segment>`
+    Inherited from :py:class:`pitchtools.PitchObjectSegment <abjad.tools.pitchtools.PitchObjectSegment.PitchObjectSegment.PitchObjectSegment>`
 
 .. automethod:: abjad.tools.pitchtools.TwelveToneRow.TwelveToneRow.TwelveToneRow.__contains__
 
