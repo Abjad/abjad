@@ -1,13 +1,14 @@
 from abjad.tools import contexttools
 from abjad.tools import durationtools
 from abjad.tools import formattools
-from abjad.tools.containertools.Container import Container
+from abjad.tools.containertools.FixedDurationContainer import FixedDurationContainer
 import copy
 
 
-# TODO: measure should inherit from fixed-duration container
-class Measure(Container):
+class Measure(FixedDurationContainer):
     r'''.. versionadded:: 1.1
+
+    .. versionchanged:: measure now inherits from fixed-duration container.
 
     Abjad model of a measure::
 
@@ -42,7 +43,7 @@ class Measure(Container):
     def __init__(self, meter, music=None, **kwargs):
         # set time signature adjustment indicator before contents initialization
         self._automatically_adjust_time_signature = False
-        Container.__init__(self, music)
+        FixedDurationContainer.__init__(self, meter, music)
         self._always_format_time_signature = False
         self._measure_number = None
         time_signature = contexttools.TimeSignatureMark(meter)
@@ -60,14 +61,14 @@ class Measure(Container):
         new = measuretools.fuse_measures([self, arg])
         return new
 
-    # essentially the same as Container.__copy__.
+    # essentially the same as FixedDurationContainer.__copy__.
     # the definition given here adds one line to remove
     # time signature immediately after instantiation
     # because the mark-copying code will then provide time signature.
     def __copy__(self, *args):
         from abjad.tools import marktools
         new = type(self)(*self.__getnewargs__())
-        # only this line differs from Container.__copy__
+        # only this line differs from FixedDurationContainer.__copy__
         contexttools.detach_time_signature_marks_attached_to_component(new)
         if getattr(self, '_override', None) is not None:
             new._override = copy.copy(self.override)
@@ -84,7 +85,7 @@ class Measure(Container):
         '''
         old_time_signature = contexttools.get_effective_time_signature(self)
         old_denominator = getattr(old_time_signature, 'denominator', None)
-        Container.__delitem__(self, i)
+        FixedDurationContainer.__delitem__(self, i)
         self._conditionally_adjust_time_signature(old_denominator)
 
     def __getnewargs__(self):
@@ -116,7 +117,7 @@ class Measure(Container):
         '''
         old_time_signature = contexttools.get_effective_time_signature(self)
         old_denominator = getattr(old_time_signature, 'denominator', None)
-        Container.__setitem__(self, i, expr)
+        FixedDurationContainer.__setitem__(self, i, expr)
         self._conditionally_adjust_time_signature(old_denominator)
 
     def __str__(self):
@@ -172,10 +173,10 @@ class Measure(Container):
             result.append("\t\\scaleDurations #'(%s . %s) {" % (
                 self.multiplier.numerator,
                 self.multiplier.denominator))
-            result.extend( ['\t' + x for x in Container._format_content_pieces(self)])
+            result.extend( ['\t' + x for x in FixedDurationContainer._format_content_pieces(self)])
             result.append('\t}')
         else:
-            result.extend(Container._format_content_pieces(self))
+            result.extend(FixedDurationContainer._format_content_pieces(self))
         return result
 
     def _format_slot_3(self):
@@ -230,7 +231,7 @@ class Measure(Container):
 
         Return boolean.
         '''
-        return contexttools.get_effective_time_signature(self).duration == self.preprolated_duration
+        return FixedDurationContainer.is_full.fget(self)
 
     @property
     def is_misfilled(self):
@@ -266,7 +267,7 @@ class Measure(Container):
 
         Return boolean.
         '''
-        return self.is_underfull or self.is_overfull
+        return FixedDurationContainer.is_overfull.fget(self)
 
     @property
     def is_nonbinary(self):
@@ -303,7 +304,7 @@ class Measure(Container):
 
         Return boolean.
         '''
-        return contexttools.get_effective_time_signature(self).duration < self.prolated_duration
+        return FixedDurationContainer.is_overfull.fget(self)
 
     @property
     def is_underfull(self):
@@ -322,7 +323,7 @@ class Measure(Container):
 
         Return boolean.
         '''
-        return self.prolated_duration < contexttools.get_effective_time_signature(self).duration
+        return FixedDurationContainer.is_underfull.fget(self)
 
     @property
     def measure_number(self):
@@ -453,3 +454,11 @@ class Measure(Container):
             assert isinstance(expr, bool)
             self._automatically_adjust_time_signature = expr
         return property(**locals()) 
+
+    @property
+    def target_duration(self):
+        r'''.. versionadded:: 2.9
+
+        Read-only target duration of measure always equal to duration of effective time signature.
+        '''
+        return contexttools.get_effective_time_signature(self).duration

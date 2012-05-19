@@ -38,7 +38,9 @@ class FixedDurationContainer(Container):
 
     def __init__(self, target_duration, music=None, **kwargs):
         Container.__init__(self, music=music, **kwargs)
-        self.target_duration = target_duration
+        target_duration = durationtools.Duration(target_duration)
+        assert 0 < target_duration
+        self._target_duration = target_duration
 
     ### SPECIAL METHODS ###
 
@@ -49,11 +51,10 @@ class FixedDurationContainer(Container):
 
     def _check_duration(self):
         from abjad.tools import contexttools
-        effective_meter = contexttools.get_effective_time_signature(self)
-        contents_duration = self.contents_duration
-        if contents_duration < self.target_duration:
+        preprolatedg_duration = self.contents_duration
+        if preprolatedg_duration < self.target_duration:
             raise UnderfullContainerError
-        if self.target_duration < contents_duration:
+        if self.target_duration < preprolatedg_duration:
             raise OverfullContainerError
 
     ### READ-ONLY PUBLIC PROPERTIES ###
@@ -67,27 +68,27 @@ class FixedDurationContainer(Container):
 
     @property
     def is_full(self):
-        '''True when contents duration equals target duration.
+        '''True when preprolated duration equals target duration.
         '''
-        return self.contents_duration == self.target_duration
+        return self.preprolated_duration == self.target_duration
 
     @property
     def is_misfilled(self):
-        '''True when contents duration does not equal target duration.
+        '''True when preprolated duration does not equal target duration.
         '''
         return not self.is_full
 
     @property
     def is_overfull(self):
-        '''True when contents duration is greater than target duration.
+        '''True when preprolated duration is greater than target duration.
         '''
-        return self.target_duration < self.contents_duration
+        return self.target_duration < self.preprolated_duration
 
     @property
     def is_underfull(self):
-        '''True when contents duration is less than target duration.
+        '''True when preprolated duration is less than target duration.
         '''
-        return self.contents_duration < self.target_duration
+        return self.preprolated_duration < self.target_duration
 
     ### READ / WRITE PUBLIC PROPERTIES ###
 
