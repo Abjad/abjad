@@ -4,16 +4,11 @@ from abjad.tools.iotools._open_file import _open_file
 import os
 
 
-def show(expr, template=None, return_timing=False, suppress_pdf=False, docs=False):
+def show(expr, return_timing=False, suppress_pdf=False, docs=False):
     '''Show `expr`::
 
         abjad> note = Note("c'4")
         abjad> show(note) # doctest: +SKIP
-
-    Show `expr` with `template`::
-
-        abjad> note = Note("c'4")
-        abjad> show(note, template = 'tirnaveni') # doctest: +SKIP
 
     Show `expr` and return both Abjad and LilyPond processing time in seconds::
 
@@ -31,8 +26,7 @@ def show(expr, template=None, return_timing=False, suppress_pdf=False, docs=Fals
     You may change this by setting the ``abjad_output`` variable in the ``config.py`` file.
     '''
 
-    name, actual_format_time, actual_lily_time = _log_render_lilypond_input(
-        expr, template=template, docs=docs)
+    name, actual_format_time, actual_lily_time = _log_render_lilypond_input(expr, docs=docs)
 
     # do not open PDF if we're running py.test regression battery
     if not suppress_pdf:

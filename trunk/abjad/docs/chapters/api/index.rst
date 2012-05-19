@@ -1251,7 +1251,6 @@ Additional Abjad composition packages (load manually)
    tools/configurationtools/get_lilypond_version_string
    tools/configurationtools/get_python_version_string
    tools/configurationtools/list_abjad_environment_variables
-   tools/configurationtools/list_abjad_templates
    tools/configurationtools/list_package_dependency_versions
    tools/configurationtools/set_default_accidental_spelling
 

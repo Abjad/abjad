@@ -8,7 +8,7 @@ import os
 import time
 
 
-def _log_render_lilypond_input(expr, template=None, tagline=False, docs=False):
+def _log_render_lilypond_input(expr, tagline=False, docs=False):
     '''Write both .ly and .pdf files to the ``abjad_output`` directory.
     '''
     from abjad.tools import documentationtools
@@ -28,7 +28,7 @@ def _log_render_lilypond_input(expr, template=None, tagline=False, docs=False):
     start_format_time = time.time()
     if docs:
         expr = documentationtools.make_reference_manual_lilypond_file(expr)
-    lilypond_file = _insert_expr_into_lilypond_file(expr, template=template, tagline=tagline)
+    lilypond_file = _insert_expr_into_lilypond_file(expr, tagline=tagline)
     formatted_lilypond_file = lilypond_file.format
     stop_format_time = time.time()
     actual_format_time = int(stop_format_time - start_format_time)

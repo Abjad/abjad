@@ -99,7 +99,6 @@ Appendices
     :maxdepth: 1
 
     chapters/appendices/history/index
-    chapters/appendices/templates/index
     chapters/appendices/text_alignment/index
     chapters/appendices/bibliography/index
 

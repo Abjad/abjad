@@ -4,16 +4,11 @@ import os
 import shutil
 
 
-def write_expr_to_pdf(expr, file_name, template=None, print_status=False, tagline=False):
+def write_expr_to_pdf(expr, file_name, print_status=False, tagline=False):
     '''Write `expr` to pdf `file_name`::
 
         abjad> note = Note("c'4")
         abjad> iotools.write_expr_to_pdf(note, 'one_note.pdf') # doctest: +SKIP
-
-    Write `expr` to pdf `file_name` with `template`::
-
-        abjad> note = Note("c'4")
-        abjad> iotools.write_expr_to_pdf(note, 'one_note.pdf', template='tirnaveni') # doctest: +SKIP
 
     Return none.
     '''
@@ -23,8 +18,7 @@ def write_expr_to_pdf(expr, file_name, template=None, print_status=False, taglin
     if not file_name.endswith('.pdf'):
         file_name += '.pdf'
 
-    name, actual_format_time, actual_lilypond_file = _log_render_lilypond_input(
-        expr, template=template, tagline=tagline)
+    name, actual_format_time, actual_lilypond_file = _log_render_lilypond_input(expr, tagline=tagline)
 
     # copy PDF file to file_name
     pdf_name = name[:-3] + '.pdf'
