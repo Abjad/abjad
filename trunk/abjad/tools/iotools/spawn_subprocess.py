@@ -17,6 +17,7 @@ def spawn_subprocess(command):
     Return none.
     '''
 
-    proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-    for line in proc.stdout.read().splitlines():
-        print line
+    subprocess.call(command, shell=True)
+    #proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+    #for line in proc.stdout.read().splitlines():
+    #    print line
