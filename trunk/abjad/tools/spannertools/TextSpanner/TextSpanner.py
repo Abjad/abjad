@@ -11,9 +11,9 @@ class TextSpanner(Spanner):
 
     ::
 
-        abjad> markup = markuptools.Markup('(markup #:bold #:italic "foo")', style_string = 'scheme')
+        abjad> markup = markuptools.Markup(markuptools.MarkupCommand('bold', markuptools.MarkupCommand('italic', 'foo')))
         abjad> text_spanner.override.text_spanner.bound_details__left__text = markup
-        abjad> markup = markuptools.Markup("(markup #:draw-line '(0 . -1))", style_string = 'scheme')
+        abjad> markup = markuptools.Markup(markuptools.MarkupCommand('draw-line', schemetools.SchemePair(0, -1)))
         abjad> text_spanner.override.text_spanner.bound_details__right__text = markup
         abjad> text_spanner.override.text_spanner.dash_fraction = 1
 
@@ -21,8 +21,8 @@ class TextSpanner(Spanner):
 
         abjad> f(staff)
         \new Staff {
-            \override TextSpanner #'bound-details #'left #'text = #(markup #:bold #:italic "foo")
-            \override TextSpanner #'bound-details #'right #'text = #(markup #:draw-line '(0 . -1))
+            \override TextSpanner #'bound-details #'left #'text = \markup { \bold \italic foo }
+            \override TextSpanner #'bound-details #'right #'text = \markup { \draw-line #'(0 . -1) }
             \override TextSpanner #'dash-fraction = #1
             c'8 \startTextSpan
             d'8
