@@ -1,6 +1,4 @@
-from abjad.tools.beamtools.apply_complex_beam_spanner_to_measure import apply_complex_beam_spanner_to_measure
-from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_measures_forward_in_expr
-from abjad.tools.beamtools import DuratedComplexBeamSpanner
+from abjad.tools import measuretools
 
 
 def apply_complex_beam_spanners_to_measures_in_expr(expr):
@@ -61,13 +59,14 @@ def apply_complex_beam_spanners_to_measures_in_expr(expr):
         renamed ``measuretools.apply_complex_beam_spanners_to_measures_in_expr()`` to
         ``beamtools.apply_complex_beam_spanners_to_measures_in_expr()``.
     '''
+    from abjad.tools import beamtools
 
     # init beams created
     beams_created = []
 
     # apply complex beam spanners to measures in expr
-    for measure in iterate_measures_forward_in_expr(expr):
-        beam = apply_complex_beam_spanner_to_measure(measure)
+    for measure in measuretools.iterate_measures_forward_in_expr(expr):
+        beam = beamtools.ComplexBeamSpanner(measure)
         beams_created.append(beam)
 
     # return beams created

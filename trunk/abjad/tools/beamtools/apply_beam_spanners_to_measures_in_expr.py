@@ -1,5 +1,4 @@
 from abjad.tools import measuretools
-from abjad.tools.beamtools import BeamSpanner
 
 
 def apply_beam_spanners_to_measures_in_expr(expr):
@@ -62,7 +61,7 @@ def apply_beam_spanners_to_measures_in_expr(expr):
 
     # apply beam spanners to measures in expr
     for measure in measuretools.iterate_measures_forward_in_expr(expr):
-        beam = beamtools.apply_beam_spanner_to_measure(measure)
+        beam = beamtools.BeamSpanner(measure)
         beams_created.append(beam)
 
     # return beams created

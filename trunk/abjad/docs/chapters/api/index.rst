@@ -25,12 +25,10 @@ Abjad composition packages
 .. toctree::
    :maxdepth: 1
 
-   tools/beamtools/apply_beam_spanner_to_measure
    tools/beamtools/apply_beam_spanners_to_measures_in_expr
-   tools/beamtools/apply_complex_beam_spanner_to_measure
    tools/beamtools/apply_complex_beam_spanners_to_measures_in_expr
    tools/beamtools/apply_durated_complex_beam_spanner_to_measures
-   tools/beamtools/beam_bottommost_tuplets_in_expr
+   tools/beamtools/apply_multipart_beam_spanner_to_bottommost_tuplets_in_expr
    tools/beamtools/get_beam_spanner_attached_to_component
    tools/beamtools/is_beamable_component
    tools/beamtools/is_component_with_beam_spanner_attached
