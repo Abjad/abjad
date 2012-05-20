@@ -419,9 +419,19 @@ class Container(Component):
 
     def _parse_string(self, string):
         from abjad.tools.lilypondparsertools import LilyPondParser
-        user_input = '{ %s }' % string.strip()
-        parsed = LilyPondParser()(user_input)
-        assert isinstance(parsed, Container)
+        from abjad.tools import rhythmtreetools
+        user_input = string.strip()
+        if user_input.startswith('abj:'):
+            result = rhythmtreetools.parse_reduced_ly_syntax(user_input.partition('abj:')[-1])
+            parsed = Container()
+            for x in result:
+                parsed.append(x)
+        elif user_input.startswith('rtm:'):
+            parsed = rhythmtreetools.parse_rtm_syntax(user_input.partition('rtm:')[-1])
+        else:
+            user_input = '{ %s }' % user_input
+            parsed = LilyPondParser()(user_input)
+            assert isinstance(parsed, Container)
         return parsed
 
     ### PUBLIC METHODS ###
