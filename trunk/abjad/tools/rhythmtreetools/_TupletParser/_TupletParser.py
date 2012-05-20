@@ -52,6 +52,10 @@ class _TupletParser(_Parser):
 
     ### YACC METHODS ###
 
+    def p_component__container(self, p):
+        '''component : container'''
+        p[0] = p[1]
+
     def p_component__fixed_duration_container(self, p):
         '''component : fixed_duration_container'''
         p[0] = p[1]
