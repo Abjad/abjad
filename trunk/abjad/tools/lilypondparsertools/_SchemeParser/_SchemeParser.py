@@ -5,11 +5,13 @@ import os
 from ply import lex
 from ply import yacc
 
-from abjad.tools.abctools import AbjadObject
+from abjad.tools import schemetools
 from abjad.tools.lilypondparsertools._NullHandler._NullHandler import _NullHandler
 
 
-class _SchemeParser(AbjadObject):
+class _SchemeParser(object):
+
+    ### INITIALIZER ###
 
     def __init__(self, debug=False):
         class_path = inspect.getfile(self.__class__)
@@ -46,6 +48,8 @@ class _SchemeParser(AbjadObject):
             picklefile=self.pickle_path,
         )
 
+        self._expression_depth = 0
+
     ### SPECIAL METHODS ###
 
     def __call__(self, input_string):
@@ -53,10 +57,23 @@ class _SchemeParser(AbjadObject):
         #for token in self.lexer:
         #    print token
         self.expression_depth = 0
-        parsed = self.parser.parse(input_string, lexer=self.lexer)
+
+        #if os.path.exists(self.logger_path):
+        #    os.remove(self.logger_path)
+
+        if self.debug:
+            result = self.parser.parsedebug(
+                input_string,
+                lexer=self.lexer,
+                debug=self.logger)
+        else:
+            result = self.parser.parse(
+                input_string,
+                lexer=self.lexer)
+
         if hasattr(self, 'cleanup'):
-            parsed = self.cleanup(parsed)
-        return parsed
+            result = self.cleanup(result)
+        return result
 
     ### PUBLIC METHODS ###
 
@@ -80,8 +97,11 @@ class _SchemeParser(AbjadObject):
     tokens = (
         'BOOLEAN',
         'DECIMAL',
-        'ELLIPSIS',
+        #'ELLIPSIS',
+        'HASH',
         'INTEGER',
+        'L_PAREN',
+        'R_PAREN',
         'STRING',
     )
 
@@ -97,8 +117,10 @@ class _SchemeParser(AbjadObject):
         '(', # L_PAREN
         '-', # MINUS
         '%', # PERCENT
+        '.', # PERIOD
         '+', # PLUS
         '?', # QUESTION
+        "'", # QUOTE
         '>', # R_CARAT
         ')', # R_PAREN
         '/', # SLASH
@@ -106,15 +128,15 @@ class _SchemeParser(AbjadObject):
         '_', # UNDERSCORE
     )
 
-    t_ELLIPSIS = '\.\.\.'
+    #t_ELLIPSIS = '\.\.\.'
 
     t_ignore = ' \t\r'
 
     ### LEX METHODS ###
 
     def t_BOOLEAN(self, t):
-        r'\#(t|f)'
-        if t.value[-1] == 't':
+        r'\#(T|F|t|f)'
+        if t.value[-1].lower() == 't':
             t.value = True
         else:
             t.value = False
@@ -125,6 +147,10 @@ class _SchemeParser(AbjadObject):
         t.value = float(t.value)
         return t
 
+    def t_HASH(self, t):
+        r'\#'
+        return t
+
     @lex.TOKEN(INT)
     def t_INTEGER(self, t):
         t.value = int(t.value)
@@ -132,12 +158,12 @@ class _SchemeParser(AbjadObject):
 
     def t_L_PAREN(self, t):
         r'\('
-        self.depth += 1
+        self.expression_depth += 1
         return t
 
     def t_R_PAREN(self, t):
         r'\)'
-        self.depth -= 1
+        self.expression_depth -= 1
         return t
 
     def t_quote(self, t):
@@ -181,6 +207,11 @@ class _SchemeParser(AbjadObject):
     t_quote_ignore = t_ignore
 
     ### YACC SETUP ###
+
+    precedence = (
+        #('nonassoc', 'HASH'),
+        ('left', 'L_PAREN'),
+    )
 
     start = 'program'
 
@@ -261,25 +292,34 @@ class _SchemeParser(AbjadObject):
     |   <derived expression>
     '''
 
-    def p_expression__constant(self, p):
-        '''expression : constant'''
-        p[0] = p[1]
+    def p_expression__QUOTE__datum(self, p):
+        '''expression : "'" datum'''
+        datum = p[2]
+        if isinstance(datum, schemetools.Scheme):
+            datum._quoting = "'" + datum._quoting
+            p[0] = datum
+        else:
+            p[0] = schemetools.Scheme(datum, quoting="'")
+
+    #def p_expression__constant(self, p):
+    #    '''expression : constant'''
+    #    p[0] = p[1]
 
     ### constant ###
 
     '''<constant> : <boolean> | <number> | <character> | <string>'''
 
-    def p_constant__boolean(self, p):
-        '''constant : boolean'''
-        p[0] = p[1] 
+    #def p_constant__boolean(self, p):
+    #    '''constant : boolean'''
+    #    p[0] = p[1] 
 
-    def p_constant__number(self, p):
-        '''constant : number'''
-        p[0] = p[1] 
+    #def p_constant__number(self, p):
+    #    '''constant : number'''
+    #    p[0] = p[1] 
 
-    def p_constant__string(self, p):
-        '''constant : string'''
-        p[0] = p[1] 
+    #def p_constant__string(self, p):
+    #    '''constant : string'''
+    #    p[0] = p[1] 
 
     ### formals ###
 
@@ -325,6 +365,22 @@ class _SchemeParser(AbjadObject):
         '''datum : string'''
         p[0] = p[1]
 
+    def p_datum__list(self, p):
+        '''datum : list'''
+        p[0] = p[1]
+
+    def p_datum__vector(self, p):
+        '''datum : vector'''
+        p[0] = p[1]
+
+    def p_data__EMPTY(self, p):
+        '''data : '''
+        p[0] = []
+
+    def p_data__data__datum(self, p):
+        '''data : data datum'''
+        p[0] = p[1] + [p[2]]
+
     ### boolean ###
 
     '''<boolean> : #t | #f'''
@@ -365,17 +421,31 @@ class _SchemeParser(AbjadObject):
 
     '''<symbol> : <identifier>'''
 
+    ### vector ###
+
+    '''<vector> : #(<datum>*)'''
+
+    def p_vector__HASH__L_PAREN__data__R_PAREN(self, p):
+        '''vector : HASH L_PAREN data R_PAREN'''
+        p[0] = p[3]
+
     ### list ###
 
     '''<list> : (<datum>*) | (<datum>+ . <datum>) | <abbreviation>'''
+
+    def p_list__L_PAREN__data__R_PAREN(self, p):
+        '''list : L_PAREN data R_PAREN'''
+        p[0] = p[2]
+
+    def p_list__L_PAREN__data__PERIOD__datum(self, p):
+        '''list : L_PAREN datum data "." datum R_PAREN'''
+        p[0] = [p[2]] + p[3] + [p[5]]
 
     ### abbreviation ###
 
     '''<abbreviation> : ' <datum> | ` <datum> | , <datum> | ,@ <datum>'''
 
-    ### vector
-
-    '''<vector> : #(<datum>*)'''
+    ### error ###
 
     def p_error(self, p):
         if p:
