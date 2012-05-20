@@ -11,6 +11,7 @@ class _TupletParser(_Parser):
         'BRACE_L',
         'BRACE_R',
         'COMMA',
+        'DOT',
         'FRACTION',
         'INTEGER',
         'PAREN_L',
@@ -20,6 +21,7 @@ class _TupletParser(_Parser):
     t_BRACE_L = '{'
     t_BRACE_R = '}'
     t_COMMA = ','
+    t_DOT = '\.'
     t_PAREN_L = '\('
     t_PAREN_R = '\)'
 
@@ -82,16 +84,25 @@ class _TupletParser(_Parser):
         for component in p[2]:
             p[0].append(component)
 
+    def p_dots__dots__DOT(self, p):
+        '''dots : dots DOT'''
+        p[0] = p[1] + 1
+
+    def p_dots__EMPTY(self, p):
+        '''dots : '''
+        p[0] = 0
+
     def p_fixed_duration_container__pair(self, p):
         '''fixed_duration_container : pair'''
         p[0] = containertools.FixedDurationContainer(p[1])
 
     def p_leaf__INTEGER(self, p):
-        '''leaf : INTEGER'''
+        '''leaf : INTEGER dots'''
+        dots = '.' * p[2]
         if 0 < p[1]:
-            p[0] = Note("c'{}".format(p[1]))
+            p[0] = Note("c'{}{}".format(p[1], dots))
         else:
-            p[0] = Rest("{}".format(abs(p[1])))
+            p[0] = Rest('{}{}'.format(abs(p[1]), dots))
 
     def p_tuplet__FRACTION_container(self, p):
         '''tuplet : FRACTION container'''
