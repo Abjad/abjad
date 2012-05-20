@@ -110,15 +110,11 @@ class _SchemeParser(AbjadObject):
 
     t_ignore = ' \t\r'
 
-    ### YACC SETUP ###
-
-    start = 'start'
-
     ### LEX METHODS ###
 
     def t_BOOLEAN(self, t):
-        r'\#[tf]'
-        if t.value == '\#t':
+        r'\#(t|f)'
+        if t.value[-1] == 't':
             t.value = True
         else:
             t.value = False
@@ -184,19 +180,35 @@ class _SchemeParser(AbjadObject):
     t_quote_error = t_error
     t_quote_ignore = t_ignore
 
-    ### YACC METHODS ###
+    ### YACC SETUP ###
 
-    def p_start__ELLIPSIS(self, p):
-        'start : ELLIPSIS'
-        p[0] = 'DONE!'
+    start = 'program'
+
+    ### YACC METHODS ###
 
     ### program ###
 
     '''<program> : <form>*'''
 
+    def p_program__forms(self, p):
+        '''program : forms'''
+        p[0] = p[1]
+
+    def p_forms__EMPTY(self, p):
+        '''forms : '''
+        p[0] = []
+
+    def p_forms__forms__form(self, p):
+        '''forms : forms form'''
+        p[0] = p[1] + [p[2]]
+
     ### form ###
 
     '''<form> : <definition> | <expression>'''
+
+    def p_form__expression(self, p):
+        '''form : expression'''
+        p[0] = p[1]
 
     ### definition ###
 
@@ -249,9 +261,25 @@ class _SchemeParser(AbjadObject):
     |   <derived expression>
     '''
 
+    def p_expression__constant(self, p):
+        '''expression : constant'''
+        p[0] = p[1]
+
     ### constant ###
 
     '''<constant> : <boolean> | <number> | <character> | <string>'''
+
+    def p_constant__boolean(self, p):
+        '''constant : boolean'''
+        p[0] = p[1] 
+
+    def p_constant__number(self, p):
+        '''constant : number'''
+        p[0] = p[1] 
+
+    def p_constant__string(self, p):
+        '''constant : string'''
+        p[0] = p[1] 
 
     ### formals ###
 
@@ -285,13 +313,37 @@ class _SchemeParser(AbjadObject):
 
     '''<datum> : <boolean> | <number> | <character> | <string> | <symbol> | <list> | <vector>'''
 
+    def p_datum__boolean(self, p):
+        '''datum : boolean'''
+        p[0] = p[1]
+
+    def p_datum__number(self, p):
+        '''datum : number'''
+        p[0] = p[1]
+
+    def p_datum__string(self, p):
+        '''datum : string'''
+        p[0] = p[1]
+
     ### boolean ###
 
     '''<boolean> : #t | #f'''
 
+    def p_boolean__BOOLEAN(self, p):
+        '''boolean : BOOLEAN'''
+        p[0] = p[1]
+
     ### number ###
     
     '''<number> : <num 2> | <num 8> | <num 10> | <num 16>'''
+
+    def p_number__DECIMAL(self, p):
+        '''number : DECIMAL'''
+        p[0] = p[1]
+
+    def p_number__INTEGER(self, p):
+        '''number : INTEGER'''
+        p[0] = p[1]
 
     ### character ###
 
@@ -300,6 +352,10 @@ class _SchemeParser(AbjadObject):
     ### string ###
 
     '''<string> : " <string character>* "'''
+
+    def p_string__STRING(self, p):
+        '''string : STRING'''
+        p[0] = p[1]
 
     ### string character ###
 
