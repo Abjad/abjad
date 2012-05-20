@@ -3,10 +3,10 @@ import py.test
 py.test.skip('modernize all of these and port to leaftools.get_nth_leaf_in_thread_from_leaf().')
 
 
-# SIMPLE BEAD #
+def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_01():
+    '''Voice.
+    '''
 
-def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_01( ):
-    '''next_bead and prev_bead work on simple Voice.'''
     t = Voice([Note(i, (1,8)) for i in range(4)])
     assert t[0]._navigator._next_bead is t[1]
     assert t[1]._navigator._next_bead is t[2]
@@ -28,8 +28,10 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_01( ):
     '''
 
 
-def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_02( ):
-    '''NextBead and prev_bead work on simple Staff.'''
+def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_02():
+    '''Staff.
+    '''
+
     t = Staff([Note(i, (1,8)) for i in range(4)])
     assert t[0]._navigator._next_bead is t[1]
     assert t[1]._navigator._next_bead is t[2]
@@ -51,8 +53,10 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_02( ):
     '''
 
 
-def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_03( ):
-    '''NextBead and prev_bead work on simple Container.'''
+def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_03():
+    '''Container.
+    '''
+
     t = Container([Note(i, (1,8)) for i in range(4)])
     assert t[0]._navigator._next_bead is t[1]
     assert t[1]._navigator._next_bead is t[2]
@@ -74,33 +78,10 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_03( ):
     '''
 
 
-# NONSTRUCTURAL in new parallel --> context model.
-#def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_04( ):
-#   '''NextBead and prev_bead work on simple Parallel.'''
-#   t = Container([Note(i, (1,8)) for i in range(4)])
-#   t.is_parallel = True
-#   assert t[0]._navigator._next_bead is None
-#   assert t[1]._navigator._next_bead is None
-#   assert t[2]._navigator._next_bead is None
-#   assert t[3]._navigator._next_bead is None
-#
-#   assert t[0]._navigator._prev_bead is None
-#   assert t[1]._navigator._prev_bead is None
-#   assert t[2]._navigator._prev_bead is None
-#   assert t[3]._navigator._prev_bead is None
-#
-#   r'''
-#   <<
-#      c'8
-#      cs'8
-#      d'8
-#      ef'8
-#   >>
-#   '''
+def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_04():
+    '''Fixed-duration tuplet.
+    '''
 
-
-def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_05( ):
-    '''NextBead and prev_bead work on FixedDurationTuplet.'''
     t = tuplettools.FixedDurationTuplet(Duration(2,8), [Note(i, (1,8)) for i in range(3)])
     assert t[0]._navigator._next_bead is t[1]
     assert t[1]._navigator._next_bead is t[2]
@@ -121,8 +102,10 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_05( ):
 
 # LEVEL 1 NESTING #
 
-def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_06( ):
-    '''NextBead and prev_bead work on contiguous Containers inside a Voice.'''
+def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_05():
+    '''Contiguous containers inside a voice.
+    '''
+
     s1 = Container([Note(i, (1,8)) for i in range(4)])
     s2 = Container([Note(i, (1,8)) for i in range(4,8)])
     t = Voice([s1, s2])
@@ -154,8 +137,10 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_06( ):
     '''
 
 
-def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_07( ):
-    '''NextBead and prev_bead work on contiguous Tuplets inside a Voice.'''
+def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_06():
+    '''Tuplets inside a voice.
+    '''
+
     t1 = tuplettools.FixedDurationTuplet(Duration(2,8), [Note(i, (1,8)) for i in range(3)])
     t2 = tuplettools.FixedDurationTuplet(Duration(2,8), [Note(i, (1,8)) for i in range(3,6)])
     t = Voice([t1, t2])
@@ -183,11 +168,10 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_07( ):
     '''
 
 
-def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_08( ):
+def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_07():
+    '''Does not continue across contiguous anonymous voices inside a staff.
     '''
-    NextBead and prev_bead do not go across contiguous anonymous Voices
-    inside a Staff.
-    '''
+
     v1 = Voice([Note(i, (1,8)) for i in range(4)])
     v2 = Voice([Note(i, (1,8)) for i in range(4,8)])
     t = Staff([v1, v2])
@@ -212,9 +196,10 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_08( ):
     '''
 
 
-def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_09( ):
-    '''NextBead and prev_bead work on contiguous equally named Voices
-    inside a Staff.'''
+def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_08():
+    '''Does cross contiguous equally named voices inside a staff.
+    '''
+
     v1 = Voice([Note(i, (1,8)) for i in range(4)])
     v1.name = 'myvoice'
     v2 = Voice([Note(i, (1,8)) for i in range(4,8)])
@@ -248,9 +233,10 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_09( ):
     '''
 
 
-def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_10( ):
-    '''Beads do not connect through contiguous unequally named Voices;
-    these are, by definition, two different "threads".'''
+def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_09():
+    '''Does not connect through contiguous unequally named voices.
+    '''
+
     v1 = Voice([Note(i, (1,8)) for i in range(4)])
     v1.name = 'yourvoice'
     v2 = Voice([Note(i, (1,8)) for i in range(4,8)])
@@ -286,10 +272,9 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_10( ):
     '''
 
 
-# LEVEL 2 NESTING #
-
-def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_11( ):
-    '''Beads do NOT connect through equally named staves. '''
+def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_10():
+    '''Does not connect through unequally named staves.
+    '''
 
     v1 = Voice([Note(i, (1,8)) for i in range(4)])
     v1.name = 'low'
@@ -328,8 +313,9 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_11( ):
     '''
 
 
-def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_12( ):
-    '''Beads do NOT connect through equally named Staves.'''
+def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_11():
+    '''Does not connect through equally named staves.
+    '''
 
     vl1 = Voice([Note(i, (1,8)) for i in range(4)])
     vl1.name = 'low'
@@ -390,12 +376,10 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_12( ):
 
 
 
-# DEPTH ASYMMETRICAL STRUCTURES #
-# Parentage asymmetrical structures work IF tautological #
+def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_12():
+    '''Does connect through symmetrical nested containers in a voice.
+    '''
 
-def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_13( ):
-    '''next_bead and prev_bead work on symmetrical
-        nested Containers in a Voice.'''
     s1 = Container([Note(i, (1,8)) for i in range(4)])
     s1 = Container([s1])
     s2 = Container([Note(i, (1,8)) for i in range(4,8)])
@@ -433,9 +417,10 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_13( ):
     '''
 
 
-def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_14( ):
-    '''Tautological parentage asymmetries result in symmetric (balanced)
-        threaded parentage.  These work well.'''
+def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_13():
+    '''Tautological parentage asymmetries result in symmetric (balanced) threaded parentage.
+    '''
+
     s1 = Container([Note(i, (1,8)) for i in range(4)])
     s2 = Container([Note(i, (1,8)) for i in range(4,8)])
     s2 = Container([s2])
@@ -473,9 +458,10 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_14( ):
     '''
 
 
-def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_15( ):
-    '''Tautological parentage asymmetries result in symmetric (balanced)
-        threaded parentage.  These work well.'''
+def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_14():
+    '''Tautological parentage asymmetries result in symmetric (balanced) threaded parentage.
+    '''
+
     s1 = Container([Note(i, (1,8)) for i in range(4)])
     s1 = Container([s1])
     s1 = Container([s1])
@@ -513,9 +499,10 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_15( ):
     '''
 
 
-def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_16( ):
-    '''next_bead and prev_bead DO work in sequence of alternating
-    Containers and Note.'''
+def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_15():
+    '''Does connect in sequence of alternating containers and notes.
+    '''
+
     s1 = Container([Note(i, (1,8)) for i in range(2)])
     s2 = Container([Note(i, (1,8)) for i in range(3,5)])
     v = Voice([s1, Note(2, (1,8)), s2])
@@ -540,9 +527,10 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_16( ):
     '''
 
 
-def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_17( ):
-    '''next_bead and prev_bead DO work in sequence of alternating
-    tuplets and Notes.'''
+def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_16():
+    '''Does connect in sequence of alternating tuplets and notes.
+    '''
+
     t1 = tuplettools.FixedDurationTuplet(Duration(1,4), [Note(i, (1,8)) for i in range(3)])
     t2 = tuplettools.FixedDurationTuplet(Duration(1,4), [Note(i, (1,8)) for i in range(4,7)])
     v = Voice([t1, Note(3, (1,8)), t2])
@@ -569,14 +557,17 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_17( ):
     '''
 
 
-def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_18( ):
-    '''next_bead and prev_bead  work on asymmetrically nested tuplets.'''
+def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_17():
+    '''Does connect through asymmetrically nested tuplets.
+    '''
+
     tinner = tuplettools.FixedDurationTuplet(Duration(1, 4), Note(0, (1, 8)) * 3)
     t = tuplettools.FixedDurationTuplet(Duration(2, 4), [Note("c'4"), tinner, Note("c'4")])
     assert t[0]._navigator._next_bead is tinner[0]
     assert tinner[-1]._navigator._next_bead is t[-1]
     assert t[-1]._navigator._prev_bead is tinner[-1]
     assert tinner[0]._navigator._prev_bead is t[0]
+
     r'''
     \times 2/3 {
         c'4
@@ -590,10 +581,10 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_18( ):
     '''
 
 
-# Parentage asymmetrical structures DON'T work if NOT tautological #
+def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_18():
+    '''Return none in asymmetric thread parentage structures.
+    '''
 
-def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_19( ):
-    '''NextBead returns None in asymmetric thread parentage structures.'''
     v1 = Voice([Note(i , (1,8)) for i in range(3)])
     n = Note(3, (1,8))
     v2 = Voice([Note(i , (1,8)) for i in range(4,8)])
@@ -622,13 +613,10 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_19( ):
     '''
 
 
-# NON-CONTIGUOUS / BROKEN THREADS #
+def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_19():
+    '''Non-contiguous or broken threads do not connect.
+    '''
 
-def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_20( ):
-    '''Non-contiguous / broken threads do not connect.'''
-    #
-    # do we want them to connect? probably not...
-    #
     v1 = Voice([Note(i , (1,8)) for i in range(3)])
     v1.name = 'myvoice'
     v2 = Voice([Note(i , (1,8)) for i in range(4,8)])
@@ -669,12 +657,10 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_20( ):
     '''
 
 
-# TAUTOLOGICAL NESTING #
+def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_20():
+    '''Does not connect through nested anonymous voices.
+    '''
 
-def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_21( ):
-    '''
-    next_bead and prev_bead do not work on nested anonymous Voices.
-    '''
     vin = Voice([Note(i, (1,8)) for i in range(3)])
     vout = Voice([vin, Note(3, (1,8))])
     assert vin[0]._navigator._next_bead is vin[1]
@@ -697,8 +683,10 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_21( ):
     '''
 
 
-def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_22( ):
-    '''next_bead and prev_bead do not work on nested anonymous Voices.'''
+def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_21():
+    '''Does not connec through nested anonymous voices.
+    '''
+
     vin = Voice([Note(i, (1,8)) for i in range(1,4)])
     vout = Voice([Note(0, (1,8)), vin])
     assert vin[0]._navigator._next_bead is vin[1]
@@ -722,8 +710,10 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_22( ):
 
 
 
-def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_23( ):
-    '''next_bead and prev_bead work on nested equally named Voices.'''
+def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_22():
+    '''Does connect through nested equally named voices.
+    '''
+
     vin = Voice([Note(i, (1,8)) for i in range(3)])
     vin.name = 'myvoice'
     vout = Voice([vin, Note(3, (1,8))])
@@ -748,8 +738,10 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_23( ):
     '''
 
 
-def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_24( ):
-    '''next_bead and prev_bead work on nested equally named Voices.'''
+def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_23():
+    '''Does connect through nested equally named voices.
+    '''
+
     vin = Voice([Note(i, (1,8)) for i in range(1,4)])
     vin.name = 'myvoice'
     vout = Voice([Note(0, (1,8)), vin])
@@ -774,9 +766,10 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_24( ):
     '''
 
 
-def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_25( ):
-    '''NextBead return None on nested *differently* named Voices.
-        This is what we want because these are NOT tautologies.'''
+def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_24():
+    '''Return none on nested *differently* named voices.
+    '''
+
     vin = Voice([Note(i, (1,8)) for i in range(3)])
     vin.name = 'yourvoice'
     vout = Voice([vin, Note(3, (1,8))])
@@ -801,9 +794,10 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_25( ):
     '''
 
 
-def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_26( ):
-    '''NextBead return None on nested *differently* named Voices.
-        This is what we want because these are NOT tautologies.'''
+def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_25():
+    '''Return none on nested *differently* named Voices.
+    '''
+
     vin = Voice([Note(i, (1,8)) for i in range(1, 4)])
     vin.name = 'yourvoice'
     vout = Voice([Note(0, (1,8)), vin])
