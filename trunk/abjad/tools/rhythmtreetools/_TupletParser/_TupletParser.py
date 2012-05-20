@@ -1,5 +1,6 @@
 import copy
 from abjad import *
+from abjad.tools.mathtools import NonreducedFraction
 from abjad.tools.rhythmtreetools._Parser import _Parser
 
 
@@ -16,6 +17,7 @@ class _TupletParser(_Parser):
         'INTEGER',
         'PAREN_L',
         'PAREN_R',
+        'PIPE',
     )
 
     t_BRACE_L = '{'
@@ -24,19 +26,20 @@ class _TupletParser(_Parser):
     t_DOT = '\.'
     t_PAREN_L = '\('
     t_PAREN_R = '\)'
+    t_PIPE = '\|'
 
     t_ignore = ' \n\t\r'
 
     ### YACC SETUP ###
 
-    start = 'component_list'
+    start = 'start'
 
     ### LEX METHODS ###
 
     def t_FRACTION(self, t):
         r'(-?[1-9]\d*/[1-9]\d*)'
         parts = t.value.split('/')
-        t.value = Fraction(int(parts[0]), int(parts[1]))
+        t.value = NonreducedFraction(int(parts[0]), int(parts[1]))
         return t
 
     def t_INTEGER(self, t):
@@ -104,13 +107,31 @@ class _TupletParser(_Parser):
         else:
             p[0] = Rest('{}{}'.format(abs(p[1]), dots))
 
-    def p_tuplet__FRACTION_container(self, p):
-        '''tuplet : FRACTION container'''
-        p[0] = tuplettools.Tuplet(p[1], p[2][:])
-
     def p_pair__PAREN_L__INTEGER__COMMA__INTEGER__PAREN_R(self, p):
         '''pair : PAREN_L INTEGER COMMA INTEGER PAREN_R'''
         p[0] = Duration(p[2], p[4])
+
+    def p_measure__PIPE__FRACTION__component_list__PIPE(self, p):
+        '''measure : PIPE FRACTION component_list PIPE'''
+        p[0] = Measure(p[2].pair)
+        for x in p[3]:
+            p[0].append(x)
+
+    def p_start__EMPTY(self, p):
+        '''start : '''
+        p[0] = []
+
+    def p_start__start__component(self, p):
+        '''start : start component'''
+        p[0] = p[1] + [p[2]]
+
+    def p_start__start__measure(self, p):
+        '''start : start measure'''
+        p[0] = p[1] + [p[2]]
+
+    def p_tuplet__FRACTION__container(self, p):
+        '''tuplet : FRACTION container'''
+        p[0] = tuplettools.Tuplet(p[1], p[2][:])
 
     def p_error(self, p):
         if p:
