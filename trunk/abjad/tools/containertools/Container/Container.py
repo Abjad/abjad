@@ -422,10 +422,7 @@ class Container(Component):
         from abjad.tools import rhythmtreetools
         user_input = string.strip()
         if user_input.startswith('abj:'):
-            result = rhythmtreetools.parse_reduced_ly_syntax(user_input.partition('abj:')[-1])
-            parsed = Container()
-            for x in result:
-                parsed.append(x)
+            parsed = rhythmtreetools.parse_reduced_ly_syntax(user_input.partition('abj:')[-1])
         elif user_input.startswith('rtm:'):
             parsed = rhythmtreetools.parse_rtm_syntax(user_input.partition('rtm:')[-1])
         else:

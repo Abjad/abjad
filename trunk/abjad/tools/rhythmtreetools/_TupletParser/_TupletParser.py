@@ -2,6 +2,7 @@ import copy
 from abjad import *
 from abjad.tools.mathtools import NonreducedFraction
 from abjad.tools.rhythmtreetools._Parser import _Parser
+from abjad.tools.sequencetools import iterate_sequence_pairwise_strict
 
 
 class _TupletParser(_Parser):
@@ -18,6 +19,7 @@ class _TupletParser(_Parser):
         'PAREN_L',
         'PAREN_R',
         'PIPE',
+        'TILDE',
     )
 
     t_BRACE_L = '{'
@@ -27,8 +29,9 @@ class _TupletParser(_Parser):
     t_PAREN_L = '\('
     t_PAREN_R = '\)'
     t_PIPE = '\|'
+    t_TILDE = '~'
 
-    t_ignore = ' \n\t\r'
+    t_ignore = ' \t\r'
 
     ### YACC SETUP ###
 
@@ -49,7 +52,7 @@ class _TupletParser(_Parser):
 
     def t_newline(self, t):
         r'\n+'
-        t.lexer.lineno += t.value.count("\n")
+        t.lexer.lineno += t.value.count('\n')
 
     def t_error(self, t):
         print("Illegal character '%s'" % t.value[0])
@@ -99,13 +102,16 @@ class _TupletParser(_Parser):
         '''fixed_duration_container : pair'''
         p[0] = containertools.FixedDurationContainer(p[1])
 
-    def p_leaf__INTEGER(self, p):
-        '''leaf : INTEGER dots'''
+    def p_leaf__INTEGER__dots__post_events(self, p):
+        '''leaf : INTEGER dots post_events'''
         dots = '.' * p[2]
+        post_events = p[3]
         if 0 < p[1]:
             p[0] = Note("c'{}{}".format(p[1], dots))
         else:
             p[0] = Rest('{}{}'.format(abs(p[1]), dots))
+        if post_events:
+            marktools.Annotation('post events', post_events)(p[0])
 
     def p_pair__PAREN_L__INTEGER__COMMA__INTEGER__PAREN_R(self, p):
         '''pair : PAREN_L INTEGER COMMA INTEGER PAREN_R'''
@@ -116,6 +122,18 @@ class _TupletParser(_Parser):
         p[0] = Measure(p[2].pair)
         for x in p[3]:
             p[0].append(x)
+
+    def p_post_event__tie(self, p):
+        '''post_event : tie'''
+        p[0] = p[1]
+
+    def p_post_events__EMPTY(self, p):
+        '''post_events : '''
+        p[0] = []
+
+    def p_post_events__post_events__post_event(self, p):
+        '''post_events : post_events post_event'''
+        p[0] = p[1] + [p[2]]
 
     def p_start__EMPTY(self, p):
         '''start : '''
@@ -129,6 +147,10 @@ class _TupletParser(_Parser):
         '''start : start measure'''
         p[0] = p[1] + [p[2]]
 
+    def p_tie__TILDE(self, p):
+        '''tie : TILDE'''
+        p[0] = tietools.TieSpanner
+
     def p_tuplet__FRACTION__container(self, p):
         '''tuplet : FRACTION container'''
         p[0] = tuplettools.Tuplet(p[1], p[2][:])
@@ -138,3 +160,33 @@ class _TupletParser(_Parser):
             print("Syntax error at '%s'" % p.value)
         else:
             print("Syntax error at EOF")
+
+    ### PUBLIC METHODS ###
+
+    def cleanup(self, parsed):
+
+        container = Container()
+        for x in parsed:
+            container.append(x)
+        parsed = container
+        leaves = parsed.leaves
+
+        for first_leaf, second_leaf in iterate_sequence_pairwise_strict(leaves):
+            annotations = marktools.get_annotations_attached_to_component(first_leaf)
+            post_events = [x for x in annotations if x.name == 'post events']
+            if not post_events:
+                continue
+            
+            if tietools.TieSpanner in post_events[0].value:
+                previous_ties = [x for x in first_leaf.spanners if isinstance(x, tietools.TieSpanner)]
+                if previous_ties:
+                    previous_ties[0].append(second_leaf)
+                else:
+                    tietools.TieSpanner([first_leaf, second_leaf])
+
+        for leaf in leaves:
+            marktools.detach_annotations_attached_to_component(leaf)
+
+        return parsed
+            
+            

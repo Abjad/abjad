@@ -50,7 +50,10 @@ class _Parser(AbjadObject):
         #self.lexer.input(input_string)
         #for token in self.lexer:
         #    print token
-        return self.parser.parse(input_string, lexer=self.lexer)
+        parsed = self.parser.parse(input_string, lexer=self.lexer)
+        if hasattr(self, 'cleanup'):
+            parsed = self.cleanup(parsed)
+        return parsed
 
     ### PUBLIC METHODS ###
 
