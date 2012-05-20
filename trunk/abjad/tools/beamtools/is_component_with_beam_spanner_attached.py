@@ -8,7 +8,7 @@ def is_component_with_beam_spanner_attached(expr):
 
     ::
 
-        abjad> spannertools.is_component_with_beam_spanner_attached(staff[0])
+        abjad> beamtools.is_component_with_beam_spanner_attached(staff[0])
         True
 
     Otherwise false::
@@ -17,14 +17,18 @@ def is_component_with_beam_spanner_attached(expr):
 
     ::
 
-        abjad> spannertools.is_component_with_beam_spanner_attached(note)
+        abjad> beamtools.is_component_with_beam_spanner_attached(note)
         False
 
     Return boolean.
 
     .. versionchanged:: 2.0
         renamed ``beamtools.is_component_with_beam_spanner_attached()`` to
-        ``spannertools.is_component_with_beam_spanner_attached()``.
+        ``beamtools.is_component_with_beam_spanner_attached()``.
+
+    .. versionchanged:: 2.9
+        renamed ``spannertools.is_component_with_beam_spanner_attached()`` to
+        ``beamtools.is_component_with_beam_spanner_attached()``.
     '''
     from abjad.tools.componenttools.Component import Component
     from abjad.tools import spannertools

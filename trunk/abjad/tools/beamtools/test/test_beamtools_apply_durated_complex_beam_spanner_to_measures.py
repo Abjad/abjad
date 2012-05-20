@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_measuretools_apply_durated_complex_beam_spanner_to_measures_01():
+def test_beamtools_apply_durated_complex_beam_spanner_to_measures_01():
     '''Apply DuratedComplexBeam to all measures in measures;
     set p.durations equal to preprolated measure durations.
     '''
@@ -25,7 +25,7 @@ def test_measuretools_apply_durated_complex_beam_spanner_to_measures_01():
     '''
 
     measures = staff[:]
-    measuretools.apply_durated_complex_beam_spanner_to_measures(measures)
+    beamtools.apply_durated_complex_beam_spanner_to_measures(measures)
     measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
 
     r'''

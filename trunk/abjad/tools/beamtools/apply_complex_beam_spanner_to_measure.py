@@ -20,7 +20,7 @@ def apply_complex_beam_spanner_to_measure(measure):
 
     ::
 
-        abjad> measuretools.apply_complex_beam_spanner_to_measure(measure)
+        abjad> beamtools.apply_complex_beam_spanner_to_measure(measure)
         DuratedComplexBeamSpanner(|2/8(2)|)
 
     ::
@@ -38,6 +38,10 @@ def apply_complex_beam_spanner_to_measure(measure):
 
 
     Return complex beam spanner.
+
+    .. versionchanged:: 2.9
+        renamed ``measuretools.apply_complex_beam_spanner_to_measure()`` to
+        ``beamtools.apply_complex_beam_spanner_to_measure()``.
     '''
 
     # check measure type

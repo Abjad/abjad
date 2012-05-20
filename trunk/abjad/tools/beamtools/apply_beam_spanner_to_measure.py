@@ -20,7 +20,7 @@ def apply_beam_spanner_to_measure(measure):
 
     ::
 
-        abjad> measuretools.apply_beam_spanner_to_measure(measure)
+        abjad> beamtools.apply_beam_spanner_to_measure(measure)
         BeamSpanner(|2/8(2)|)
 
     ::
@@ -33,6 +33,10 @@ def apply_beam_spanner_to_measure(measure):
         }
 
     Return beam spanner.
+
+    .. versionchanged:: 2.9
+        renamed ``measuretools.apply_beam_spanner_to_measure()`` to
+        ``beamtools.apply_beam_spanner_to_measure()``.
     '''
 
     # check measure type

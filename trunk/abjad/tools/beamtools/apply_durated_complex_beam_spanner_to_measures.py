@@ -27,7 +27,7 @@ def apply_durated_complex_beam_spanner_to_measures(measures):
     ::
 
         abjad> measures = staff[:]
-        abjad> measuretools.apply_durated_complex_beam_spanner_to_measures(measures)
+        abjad> beamtools.apply_durated_complex_beam_spanner_to_measures(measures)
         DuratedComplexBeamSpanner(|2/8(2)|, |2/8(2)|)
 
     ::
@@ -59,6 +59,10 @@ def apply_durated_complex_beam_spanner_to_measures(measures):
 
     .. versionchanged:: 2.0
         renamed ``measuretools.beam_together()``.
+
+    .. versionchanged:: 2.9
+        renamed ``measuretools.apply_durated_complex_beam_spanner_to_measures()`` to
+        ``beamtools.apply_durated_complex_beam_spanner_to_measures()``.
     '''
     from abjad.tools import spannertools
 

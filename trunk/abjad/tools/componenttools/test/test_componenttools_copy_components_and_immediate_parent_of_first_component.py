@@ -93,7 +93,7 @@ def test_componenttools_copy_components_and_immediate_parent_of_first_component_
     spannertools.BeamSpanner(t[:4])
     u = componenttools.copy_components_and_immediate_parent_of_first_component(t[0:1])
 
-    assert spannertools.get_beam_spanner_attached_to_component(u[0])._is_my_only_leaf(u[0])
+    assert beamtools.get_beam_spanner_attached_to_component(u[0])._is_my_only_leaf(u[0])
 
 
 def test_componenttools_copy_components_and_immediate_parent_of_first_component_06():
@@ -102,8 +102,8 @@ def test_componenttools_copy_components_and_immediate_parent_of_first_component_
     spannertools.BeamSpanner(t[:4])
     u = componenttools.copy_components_and_immediate_parent_of_first_component(t[0:2])
 
-    assert spannertools.get_beam_spanner_attached_to_component(u[0])._is_my_first_leaf(u[0])
-    assert spannertools.get_beam_spanner_attached_to_component(u[1])._is_my_last_leaf(u[1])
+    assert beamtools.get_beam_spanner_attached_to_component(u[0])._is_my_first_leaf(u[0])
+    assert beamtools.get_beam_spanner_attached_to_component(u[1])._is_my_last_leaf(u[1])
 
 
 def test_componenttools_copy_components_and_immediate_parent_of_first_component_07():
@@ -112,7 +112,7 @@ def test_componenttools_copy_components_and_immediate_parent_of_first_component_
     spannertools.BeamSpanner(t[:4])
     u = componenttools.copy_components_and_immediate_parent_of_first_component(t[0:4])
 
-    assert spannertools.get_beam_spanner_attached_to_component(u[0])._is_my_first_leaf(u[0])
-    assert spannertools.is_component_with_beam_spanner_attached(u[1])
-    assert spannertools.is_component_with_beam_spanner_attached(u[2])
-    assert spannertools.get_beam_spanner_attached_to_component(u[3])._is_my_last_leaf(u[3])
+    assert beamtools.get_beam_spanner_attached_to_component(u[0])._is_my_first_leaf(u[0])
+    assert beamtools.is_component_with_beam_spanner_attached(u[1])
+    assert beamtools.is_component_with_beam_spanner_attached(u[2])
+    assert beamtools.get_beam_spanner_attached_to_component(u[3])._is_my_last_leaf(u[3])

@@ -1,5 +1,4 @@
-from abjad.tools.measuretools.apply_beam_spanner_to_measure import apply_beam_spanner_to_measure
-from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_measures_forward_in_expr
+from abjad.tools import measuretools
 from abjad.tools.spannertools import BeamSpanner
 
 
@@ -28,7 +27,7 @@ def apply_beam_spanners_to_measures_in_expr(expr):
 
     ::
 
-        abjad> measuretools.apply_beam_spanners_to_measures_in_expr(staff)
+        abjad> beamtools.apply_beam_spanners_to_measures_in_expr(staff)
         [BeamSpanner(|2/8(2)|), BeamSpanner(|2/8(2)|)]
 
     ::
@@ -50,15 +49,20 @@ def apply_beam_spanners_to_measures_in_expr(expr):
 
     .. versionchanged:: 2.0
         renamed ``measuretools.beam()`` to
-        ``measuretools.apply_beam_spanners_to_measures_in_expr()``.
+        ``beamtools.apply_beam_spanners_to_measures_in_expr()``.
+
+    .. versionchanged:: 2.9
+        renamed ``measuretools.apply_beam_spanners_to_measures_in_expr()`` to
+        ``beamtools.apply_beam_spanners_to_measures_in_expr()``.
     '''
+    from abjad.tools import beamtools
 
     # init beams created
     beams_created = []
 
     # apply beam spanners to measures in expr
-    for measure in iterate_measures_forward_in_expr(expr):
-        beam = apply_beam_spanner_to_measure(measure)
+    for measure in measuretools.iterate_measures_forward_in_expr(expr):
+        beam = beamtools.apply_beam_spanner_to_measure(measure)
         beams_created.append(beam)
 
     # return beams created

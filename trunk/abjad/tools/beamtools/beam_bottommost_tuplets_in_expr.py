@@ -32,7 +32,7 @@ def beam_bottommost_tuplets_in_expr(expr):
 
     ::
 
-        abjad> tuplettools.beam_bottommost_tuplets_in_expr(staff)
+        abjad> beamtools.beam_bottommost_tuplets_in_expr(staff)
 
     ::
 
@@ -56,6 +56,10 @@ def beam_bottommost_tuplets_in_expr(expr):
         }
 
     Return none.
+
+    .. versionchanged:: 2.9
+        renamed ``tuplettools.beam_bottommost_tuplets_in_expr()`` to
+        ``beamtools.beam_bottommost_tuplets_in_expr()``.
     '''
 
     for tuplet in componenttools.iterate_components_forward_in_expr(expr, Tuplet):

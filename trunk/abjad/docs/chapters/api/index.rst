@@ -15,7 +15,15 @@ Abjad composition packages
 .. toctree::
    :maxdepth: 1
 
+   tools/beamtools/apply_beam_spanner_to_measure
+   tools/beamtools/apply_beam_spanners_to_measures_in_expr
+   tools/beamtools/apply_complex_beam_spanner_to_measure
+   tools/beamtools/apply_complex_beam_spanners_to_measures_in_expr
+   tools/beamtools/apply_durated_complex_beam_spanner_to_measures
+   tools/beamtools/beam_bottommost_tuplets_in_expr
+   tools/beamtools/get_beam_spanner_attached_to_component
    tools/beamtools/is_beamable_component
+   tools/beamtools/is_component_with_beam_spanner_attached
 
 :py:mod:`chordtools <abjad.tools.chordtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -643,11 +651,6 @@ Abjad composition packages
    tools/measuretools/all_are_measures
    tools/measuretools/append_spacer_skip_to_underfull_measure
    tools/measuretools/append_spacer_skips_to_underfull_measures_in_expr
-   tools/measuretools/apply_beam_spanner_to_measure
-   tools/measuretools/apply_beam_spanners_to_measures_in_expr
-   tools/measuretools/apply_complex_beam_spanner_to_measure
-   tools/measuretools/apply_complex_beam_spanners_to_measures_in_expr
-   tools/measuretools/apply_durated_complex_beam_spanner_to_measures
    tools/measuretools/apply_full_measure_tuplets_to_contents_of_measures_in_expr
    tools/measuretools/color_measure
    tools/measuretools/color_nonbinary_measures_in_expr
@@ -1089,7 +1092,6 @@ Abjad composition packages
    tools/spannertools/find_spanner_component_starting_at_exactly_score_offset
    tools/spannertools/fracture_spanners_attached_to_component
    tools/spannertools/fracture_spanners_that_cross_components
-   tools/spannertools/get_beam_spanner_attached_to_component
    tools/spannertools/get_nth_leaf_in_spanner
    tools/spannertools/get_spanners_attached_to_any_improper_child_of_component
    tools/spannertools/get_spanners_attached_to_any_improper_parent_of_component
@@ -1105,7 +1107,6 @@ Abjad composition packages
    tools/spannertools/get_spanners_that_dominate_container_components_from_to
    tools/spannertools/get_the_only_spanner_attached_to_any_improper_parent_of_component
    tools/spannertools/get_the_only_spanner_attached_to_component
-   tools/spannertools/is_component_with_beam_spanner_attached
    tools/spannertools/is_component_with_spanner_attached
    tools/spannertools/iterate_components_backward_in_spanner
    tools/spannertools/iterate_components_forward_in_spanner
@@ -1199,7 +1200,6 @@ Abjad composition packages
    :maxdepth: 1
 
    tools/tuplettools/all_are_tuplets
-   tools/tuplettools/beam_bottommost_tuplets_in_expr
    tools/tuplettools/change_augmented_tuplets_in_expr_to_diminished
    tools/tuplettools/change_diminished_tuplets_in_expr_to_augmented
    tools/tuplettools/change_fixed_duration_tuplets_in_expr_to_tuplets

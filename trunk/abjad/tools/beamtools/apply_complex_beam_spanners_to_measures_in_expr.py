@@ -1,4 +1,4 @@
-from abjad.tools.measuretools.apply_complex_beam_spanner_to_measure import apply_complex_beam_spanner_to_measure
+from abjad.tools.beamtools.apply_complex_beam_spanner_to_measure import apply_complex_beam_spanner_to_measure
 from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_measures_forward_in_expr
 from abjad.tools.spannertools import DuratedComplexBeamSpanner
 
@@ -28,7 +28,7 @@ def apply_complex_beam_spanners_to_measures_in_expr(expr):
 
     ::
 
-        abjad> measuretools.apply_complex_beam_spanners_to_measures_in_expr(staff)
+        abjad> beamtools.apply_complex_beam_spanners_to_measures_in_expr(staff)
         [DuratedComplexBeamSpanner(|2/8(2)|), DuratedComplexBeamSpanner(|2/8(2)|)]
 
     ::
@@ -56,6 +56,10 @@ def apply_complex_beam_spanners_to_measures_in_expr(expr):
 
 
     Return list of beams created.
+
+    .. versionchanged:: 2.9
+        renamed ``measuretools.apply_complex_beam_spanners_to_measures_in_expr()`` to
+        ``beamtools.apply_complex_beam_spanners_to_measures_in_expr()``.
     '''
 
     # init beams created
