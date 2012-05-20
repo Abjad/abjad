@@ -5,7 +5,7 @@ def test_LilyPondComment_opening_01():
     '''Opening comments in container.'''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
     marktools.LilyPondComment('Voice opening comments here.', 'opening')(t)
     marktools.LilyPondComment('More voice opening comments.', 'opening')(t)
 

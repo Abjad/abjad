@@ -4,7 +4,7 @@ def report_spanner_format_contributions(spanner, screen=True):
     Report spanner format contributions for every leaf to which spanner attaches.
 
         abjad> staff = Staff("c8 d e f")
-        abjad> spanner = spannertools.BeamSpanner(staff[:])
+        abjad> spanner = beamtools.BeamSpanner(staff[:])
 
     ::
 

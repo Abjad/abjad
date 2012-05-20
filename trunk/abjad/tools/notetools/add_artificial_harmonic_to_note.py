@@ -7,7 +7,7 @@ def add_artificial_harmonic_to_note(note, melodic_diatonic_interval = perfect_fo
     r'''Add artifical harmonic to `note` at `melodic_diatonic_interval`::
 
         abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> spannertools.BeamSpanner(staff[:])
+        abjad> beamtools.BeamSpanner(staff[:])
         BeamSpanner(c'8, d'8, e'8, f'8)
 
     ::

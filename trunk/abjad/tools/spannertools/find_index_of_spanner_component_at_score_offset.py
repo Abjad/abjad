@@ -2,7 +2,7 @@ def find_index_of_spanner_component_at_score_offset(spanner, score_offset):
     r'''Return index of component in 'spanner' that begins at exactly 'score_offset'::
 
         abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> beam = spannertools.BeamSpanner(staff.leaves)
+        abjad> beam = beamtools.BeamSpanner(staff.leaves)
 
     ::
 

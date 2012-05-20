@@ -58,7 +58,7 @@ Read/write Properties
 
 .. autoattribute:: abjad.tools.spannertools.MeasuredComplexBeamSpanner.MeasuredComplexBeamSpanner.MeasuredComplexBeamSpanner.lone
 
-    Inherited from :py:class:`spannertools.ComplexBeamSpanner <abjad.tools.spannertools.ComplexBeamSpanner.ComplexBeamSpanner.ComplexBeamSpanner>`
+    Inherited from :py:class:`beamtools.ComplexBeamSpanner <abjad.tools.beamtools.ComplexBeamSpanner.ComplexBeamSpanner.ComplexBeamSpanner>`
 
 .. autoattribute:: abjad.tools.spannertools.MeasuredComplexBeamSpanner.MeasuredComplexBeamSpanner.MeasuredComplexBeamSpanner.span
 

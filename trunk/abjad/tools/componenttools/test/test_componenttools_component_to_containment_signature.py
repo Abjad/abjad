@@ -144,9 +144,9 @@ def test_componenttools_component_to_containment_signature_06():
     t[0][0].name = 'voicefoo'
     t[1][0].name = 'voicefoo'
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    assert py.test.raises(AssertionError, 'spannertools.BeamSpanner(t.leaves)')
-    spannertools.BeamSpanner(t.leaves[:2])
-    spannertools.BeamSpanner(t.leaves[2:])
+    assert py.test.raises(AssertionError, 'beamtools.BeamSpanner(t.leaves)')
+    beamtools.BeamSpanner(t.leaves[:2])
+    beamtools.BeamSpanner(t.leaves[2:])
 
     r'''
     {

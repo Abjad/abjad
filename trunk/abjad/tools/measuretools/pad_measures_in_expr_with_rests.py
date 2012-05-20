@@ -91,7 +91,7 @@ def pad_measures_in_expr_with_rests(expr, front, back, splice = False):
     spanners over newly inserted rests::
 
         abjad> t = measuretools.DynamicMeasure("c'8 d'8")
-        abjad> spannertools.BeamSpanner(t[:])
+        abjad> beamtools.BeamSpanner(t[:])
         BeamSpanner(c'8, d'8)
         abjad> measuretools.pad_measures_in_expr_with_rests(t, Duration(1, 32), Duration(1, 64), splice = True)
 

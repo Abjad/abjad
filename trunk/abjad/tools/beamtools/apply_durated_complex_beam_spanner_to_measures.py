@@ -1,6 +1,3 @@
-from abjad.tools.spannertools import DuratedComplexBeamSpanner
-
-
 def apply_durated_complex_beam_spanner_to_measures(measures):
     r'''.. versionadded:: 1.1
 
@@ -64,12 +61,12 @@ def apply_durated_complex_beam_spanner_to_measures(measures):
         renamed ``measuretools.apply_durated_complex_beam_spanner_to_measures()`` to
         ``beamtools.apply_durated_complex_beam_spanner_to_measures()``.
     '''
+    from abjad.tools import beamtools
     from abjad.tools import spannertools
 
     durations = []
     for measure in measures:
-        #measure.beam.unspan()
-        spannertools.destroy_spanners_attached_to_component(measure, spannertools.BeamSpanner)
+        spannertools.destroy_spanners_attached_to_component(measure, beamtools.BeamSpanner)
         durations.append(measure.preprolated_duration)
-    beam = DuratedComplexBeamSpanner(measures, durations = durations, span = 1)
+    beam = beamtools.DuratedComplexBeamSpanner(measures, durations=durations, span=1)
     return beam

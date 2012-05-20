@@ -2,7 +2,7 @@ def iterate_components_and_grace_containers_forward_in_expr(expr, klass):
     r'''Iterate components of `klass` forward in `expr`::
 
         abjad> voice = Voice("c'8 d'8 e'8 f'8")
-        abjad> spannertools.BeamSpanner(voice[:])
+        abjad> beamtools.BeamSpanner(voice[:])
         BeamSpanner(c'8, d'8, e'8, f'8)
 
     ::

@@ -12,7 +12,7 @@ def test_Spanner__remove_01():
 
     t = Voice("c'8 d'8 e'8 f'8")
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    p = spannertools.BeamSpanner(t[:])
+    p = beamtools.BeamSpanner(t[:])
 
     r'''
     \new Voice {
@@ -25,7 +25,7 @@ def test_Spanner__remove_01():
 
     p._remove(p.components[1])
 
-    "Spanner is now discontiguous: spannertools.BeamSpanner(c'8, e'8, f'8)."
+    "Spanner is now discontiguous: beamtools.BeamSpanner(c'8, e'8, f'8)."
 
     r'''
     \new Voice {
@@ -51,7 +51,7 @@ def test_Spanner__remove_02():
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    p = spannertools.BeamSpanner(t[:])
+    p = beamtools.BeamSpanner(t[:])
 
     r'''
     \new Voice {

@@ -5,7 +5,7 @@ def list_badly_formed_components_in_expr(expr):
 
         abjad> staff = Staff("c'8 d'8 e'8 f'8")
         abjad> staff[1].written_duration = Duration(1, 4)
-        abjad> spannertools.BeamSpanner(staff[:])
+        abjad> beamtools.BeamSpanner(staff[:])
         BeamSpanner(c'8, d'4, e'8, f'8)
         abjad> f(staff)
         \new Staff {

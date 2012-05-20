@@ -7,9 +7,9 @@ def move_component_subtree_to_right_in_immediate_parent_of_component(component):
     Move `component` subtree to right in immediate parent of `component`::
 
         abjad> t = Voice("c'8 d'8 e'8 f'8")
-        abjad> spannertools.BeamSpanner(t[:2])
+        abjad> beamtools.BeamSpanner(t[:2])
         BeamSpanner(c'8, d'8)
-        abjad> spannertools.BeamSpanner(t[2:])
+        abjad> beamtools.BeamSpanner(t[2:])
         BeamSpanner(e'8, f'8)
         abjad> f(t)
         \new Voice {
@@ -40,7 +40,7 @@ def move_component_subtree_to_right_in_immediate_parent_of_component(component):
     ::
 
         abjad> voice = Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
-        abjad> spannertools.BeamSpanner(voice.leaves[:4])
+        abjad> beamtools.BeamSpanner(voice.leaves[:4])
         BeamSpanner(c'8, c'8, c'8, c'8)
         abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(voice)
         abjad> componenttools.move_component_subtree_to_right_in_immediate_parent_of_component(voice[0])

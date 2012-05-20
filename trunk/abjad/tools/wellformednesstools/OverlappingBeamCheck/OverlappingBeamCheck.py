@@ -1,5 +1,5 @@
 from abjad.tools.wellformednesstools.Check import Check
-from abjad.tools.spannertools import BeamSpanner
+from abjad.tools.beamtools import BeamSpanner
 
 
 class OverlappingBeamCheck(Check):

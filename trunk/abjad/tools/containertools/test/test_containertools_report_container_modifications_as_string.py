@@ -11,7 +11,7 @@ def test_containertools_report_container_modifications_as_string_01():
     marktools.LilyPondComment('Example voice', 'before')(t)
     t.override.note_head.color = 'red'
     marktools.LilyPondCommandMark("#(set-accidental-style 'forget)")(t)
-    beam = spannertools.BeamSpanner(t[:])
+    beam = beamtools.BeamSpanner(t[:])
     beam.override.beam.thickness = 3
 
     r'''
@@ -55,7 +55,7 @@ def test_containertools_report_container_modifications_as_string_02():
     marktools.LilyPondComment('Example tuplet', 'before')(t)
     t.override.note_head.color = 'red'
     marktools.LilyPondCommandMark("#(set-accidental-style 'forget)")(t)
-    beam = spannertools.BeamSpanner(t[:])
+    beam = beamtools.BeamSpanner(t[:])
     beam.override.beam.thickness = 3
 
     r'''

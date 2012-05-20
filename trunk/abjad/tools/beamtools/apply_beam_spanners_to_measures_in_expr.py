@@ -1,5 +1,5 @@
 from abjad.tools import measuretools
-from abjad.tools.spannertools import BeamSpanner
+from abjad.tools.beamtools import BeamSpanner
 
 
 def apply_beam_spanners_to_measures_in_expr(expr):

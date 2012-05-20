@@ -11,9 +11,9 @@ def copy_and_partition_governed_component_subtree_by_leaf_counts(container, leaf
     Copy `container` and partition copy according to `leaf_counts`::
 
         abjad> voice = Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
-        abjad> spannertools.BeamSpanner(voice[0].leaves)
+        abjad> beamtools.BeamSpanner(voice[0].leaves)
         BeamSpanner(c'8, c'8, c'8)
-        abjad> spannertools.BeamSpanner(voice[1].leaves)
+        abjad> beamtools.BeamSpanner(voice[1].leaves)
         BeamSpanner(c'8, c'8, c'8)
         abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(voice)
         abjad> f(voice)

@@ -227,9 +227,9 @@ But this is not the way Bartók notated the beams.
 Let's set the beams as Bartók did with some crossing the bar lines:
 
 <abjad>
-spannertools.BeamSpanner(upper_measures[0])
-spannertools.BeamSpanner(lower_staff.leaves[1:5])
-spannertools.BeamSpanner(lower_staff.leaves[6:10])
+beamtools.BeamSpanner(upper_measures[0])
+beamtools.BeamSpanner(lower_staff.leaves[1:5])
+beamtools.BeamSpanner(lower_staff.leaves[6:10])
 </abjad>
 
 <abjad>

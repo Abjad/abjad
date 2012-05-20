@@ -11,7 +11,7 @@ def test_componenttools_copy_components_and_fracture_crossing_spanners_01():
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
     slur = spannertools.SlurSpanner(t[:])
     trill = spannertools.TrillSpanner(t.leaves)
-    beam = spannertools.BeamSpanner(t[0][:] + t[1:2] + t[2][:])
+    beam = beamtools.BeamSpanner(t[0][:] + t[1:2] + t[2][:])
 
     r'''
     \new Voice {
@@ -49,7 +49,7 @@ def test_componenttools_copy_components_and_fracture_crossing_spanners_02():
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
     slur = spannertools.SlurSpanner(t[:])
     trill = spannertools.TrillSpanner(t.leaves)
-    beam = spannertools.BeamSpanner(t[0][:] + t[1:2] + t[2][:])
+    beam = beamtools.BeamSpanner(t[0][:] + t[1:2] + t[2][:])
 
     r'''
     \new Voice {
@@ -96,7 +96,7 @@ def test_componenttools_copy_components_and_fracture_crossing_spanners_03():
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
     slur = spannertools.SlurSpanner(t[:])
     trill = spannertools.TrillSpanner(t.leaves)
-    beam = spannertools.BeamSpanner(t[0][:] + t[1:2] + t[2][:])
+    beam = beamtools.BeamSpanner(t[0][:] + t[1:2] + t[2][:])
 
     r'''
     \new Voice {
@@ -141,7 +141,7 @@ def test_componenttools_copy_components_and_fracture_crossing_spanners_04():
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
     slur = spannertools.SlurSpanner(t[:])
     trill = spannertools.TrillSpanner(t.leaves)
-    beam = spannertools.BeamSpanner(t[0][:] + t[1:2] + t[2][:])
+    beam = beamtools.BeamSpanner(t[0][:] + t[1:2] + t[2][:])
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
     r'''

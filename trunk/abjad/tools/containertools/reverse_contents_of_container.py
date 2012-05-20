@@ -7,7 +7,7 @@ def reverse_contents_of_container(container):
     Reverse contents of `container`::
 
         abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> spannertools.BeamSpanner(staff.leaves[:2])
+        abjad> beamtools.BeamSpanner(staff.leaves[:2])
         BeamSpanner(c'8, d'8)
         abjad> spannertools.SlurSpanner(staff.leaves[2:])
         SlurSpanner(e'8, f'8)

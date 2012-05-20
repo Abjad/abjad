@@ -30,7 +30,7 @@ The two "layers" of the *cell* we will model with two Voices inside a parallel C
 
 	abjad> pitches = [1,2,3]
 	abjad> notes = notetools.make_notes(pitches, [(1, 8)])
-	abjad> spannertools.BeamSpanner(notes)
+	abjad> beamtools.BeamSpanner(notes)
 	abjad> spannertools.SlurSpanner(notes)
 	abjad> contexttools.DynamicMark('f')(notes[0])
 	abjad> contexttools.DynamicMark('p')(notes[1])
@@ -82,7 +82,7 @@ Because this *cell* appears over and over again, we want to reuse this code to g
             - `pitches` is a list of numbers or, more generally, pitch tokens.
         '''
         notes = [Note(p, (1, 8)) for p in pitches]
-        spannertools.BeamSpanner(notes)
+        beamtools.BeamSpanner(notes)
         spannertools.SlurSpanner(notes)
         contexttools.DynamicMark('f')(notes[0])
         contexttools.DynamicMark('p')(notes[1])

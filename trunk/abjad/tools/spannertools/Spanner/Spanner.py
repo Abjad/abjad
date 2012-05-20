@@ -50,7 +50,7 @@ class Spanner(AbjadObject):
 
         ::
 
-            abjad> beam = spannertools.BeamSpanner()
+            abjad> beam = beamtools.BeamSpanner()
             abjad> beam(staff[:])
             Staff{4}
 
@@ -543,7 +543,7 @@ class Spanner(AbjadObject):
         Return original, left and right spanners. ::
 
             abjad> voice = Voice("c'8 d'8 e'8 f'8")
-            abjad> beam = spannertools.BeamSpanner(voice[:])
+            abjad> beam = beamtools.BeamSpanner(voice[:])
             abjad> beam
             BeamSpanner(c'8, d'8, e'8, f'8)
 
@@ -585,8 +585,8 @@ class Spanner(AbjadObject):
         Return new spanner. ::
 
             abjad> voice = Voice("c'8 d'8 e'8 f'8")
-            abjad> left_beam = spannertools.BeamSpanner(voice[:2])
-            abjad> right_beam = spannertools.BeamSpanner(voice[2:])
+            abjad> left_beam = beamtools.BeamSpanner(voice[:2])
+            abjad> right_beam = beamtools.BeamSpanner(voice[2:])
 
         ::
 

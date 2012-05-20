@@ -10,6 +10,16 @@ Abjad composition packages
 :py:mod:`beamtools <abjad.tools.beamtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+.. rubric:: concrete classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/beamtools/BeamSpanner/BeamSpanner
+   tools/beamtools/ComplexBeamSpanner/ComplexBeamSpanner
+   tools/beamtools/DuratedComplexBeamSpanner/DuratedComplexBeamSpanner
+   tools/beamtools/MultipartBeamSpanner/MultipartBeamSpanner
+
 .. rubric:: functions
 
 .. toctree::
@@ -1055,13 +1065,10 @@ Abjad composition packages
 .. toctree::
    :maxdepth: 1
 
-   tools/spannertools/BeamSpanner/BeamSpanner
    tools/spannertools/BracketSpanner/BracketSpanner
-   tools/spannertools/ComplexBeamSpanner/ComplexBeamSpanner
    tools/spannertools/ComplexGlissandoSpanner/ComplexGlissandoSpanner
    tools/spannertools/CrescendoSpanner/CrescendoSpanner
    tools/spannertools/DecrescendoSpanner/DecrescendoSpanner
-   tools/spannertools/DuratedComplexBeamSpanner/DuratedComplexBeamSpanner
    tools/spannertools/DynamicTextSpanner/DynamicTextSpanner
    tools/spannertools/GlissandoSpanner/GlissandoSpanner
    tools/spannertools/HairpinSpanner/HairpinSpanner
@@ -1069,7 +1076,6 @@ Abjad composition packages
    tools/spannertools/HorizontalBracketSpanner/HorizontalBracketSpanner
    tools/spannertools/MeasuredComplexBeamSpanner/MeasuredComplexBeamSpanner
    tools/spannertools/MetricGridSpanner/MetricGridSpanner
-   tools/spannertools/MultipartBeamSpanner/MultipartBeamSpanner
    tools/spannertools/OctavationSpanner/OctavationSpanner
    tools/spannertools/PhrasingSlurSpanner/PhrasingSlurSpanner
    tools/spannertools/PianoPedalSpanner/PianoPedalSpanner

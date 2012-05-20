@@ -7,7 +7,7 @@ def all_are_spanners(expr):
     True when `expr` is a sequence of Abjad spanners::
 
         abjad> voice = Voice("c'8 d'8 e'8 f'8")
-        abjad> spanner = spannertools.BeamSpanner(voice[:2])
+        abjad> spanner = beamtools.BeamSpanner(voice[:2])
 
     ::
 

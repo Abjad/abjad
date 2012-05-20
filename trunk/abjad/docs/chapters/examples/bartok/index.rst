@@ -252,9 +252,9 @@ Let's set the beams as Bartók did with some crossing the bar lines:
 
 ::
 
-	abjad> spannertools.BeamSpanner(upper_measures[0])
-	abjad> spannertools.BeamSpanner(lower_staff.leaves[1:5])
-	abjad> spannertools.BeamSpanner(lower_staff.leaves[6:10])
+	abjad> beamtools.BeamSpanner(upper_measures[0])
+	abjad> beamtools.BeamSpanner(lower_staff.leaves[1:5])
+	abjad> beamtools.BeamSpanner(lower_staff.leaves[6:10])
 
 
 ::

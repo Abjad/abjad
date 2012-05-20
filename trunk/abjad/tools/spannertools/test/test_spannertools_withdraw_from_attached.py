@@ -4,7 +4,7 @@ from abjad.tools.spannertools._withdraw_components_from_attached_spanners import
 
 def test_spannertools_withdraw_from_attached_01():
     t = Staff("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
     _withdraw_components_from_attached_spanners(t[:])
 
     r'''
@@ -22,7 +22,7 @@ def test_spannertools_withdraw_from_attached_01():
 
 def test_spannertools_withdraw_from_attached_02():
     t = Staff("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
     _withdraw_components_from_attached_spanners(t[0:2])
 
     r'''

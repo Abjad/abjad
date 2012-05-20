@@ -251,7 +251,7 @@ print repr(tuplet[7]) <hide
 
 <abjad>
 tuplet.pop(7)
-spannertools.BeamSpanner(tuplet[-3:]) <hide
+beamtools.BeamSpanner(tuplet[-3:]) <hide
 </abjad>
 
 <abjad>

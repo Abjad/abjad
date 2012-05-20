@@ -7,8 +7,8 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    spannertools.BeamSpanner(t[0])
-    spannertools.BeamSpanner(t[1])
+    beamtools.BeamSpanner(t[0])
+    beamtools.BeamSpanner(t[1])
     spannertools.SlurSpanner(t.leaves)
 
     r'''
@@ -59,8 +59,8 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    spannertools.BeamSpanner(t[0])
-    spannertools.BeamSpanner(t[1])
+    beamtools.BeamSpanner(t[0])
+    beamtools.BeamSpanner(t[1])
     spannertools.SlurSpanner(t.leaves)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
@@ -112,8 +112,8 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    spannertools.BeamSpanner(t[0])
-    spannertools.BeamSpanner(t[1])
+    beamtools.BeamSpanner(t[0])
+    beamtools.BeamSpanner(t[1])
     spannertools.SlurSpanner(t.leaves)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
@@ -170,8 +170,8 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    spannertools.BeamSpanner(t[0])
-    spannertools.BeamSpanner(t[1])
+    beamtools.BeamSpanner(t[0])
+    beamtools.BeamSpanner(t[1])
     spannertools.SlurSpanner(t.leaves)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
@@ -271,8 +271,8 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
     '''
 
     measures = Measure((2, 8), notetools.make_repeated_notes(2)) * 2
-    spannertools.BeamSpanner(measures[0])
-    spannertools.BeamSpanner(measures[1])
+    beamtools.BeamSpanner(measures[0])
+    beamtools.BeamSpanner(measures[1])
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(measures)
 
     durations = [Duration(3, 32)]
@@ -330,8 +330,8 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    spannertools.BeamSpanner(t[0])
-    spannertools.BeamSpanner(t[1])
+    beamtools.BeamSpanner(t[0])
+    beamtools.BeamSpanner(t[1])
     spannertools.SlurSpanner(t.leaves)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
@@ -386,8 +386,8 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    spannertools.BeamSpanner(t[0])
-    spannertools.BeamSpanner(t[1])
+    beamtools.BeamSpanner(t[0])
+    beamtools.BeamSpanner(t[1])
     spannertools.SlurSpanner(t.leaves)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
@@ -443,8 +443,8 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    spannertools.BeamSpanner(t[0])
-    spannertools.BeamSpanner(t[1])
+    beamtools.BeamSpanner(t[0])
+    beamtools.BeamSpanner(t[1])
     spannertools.SlurSpanner(t.leaves)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
@@ -507,8 +507,8 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_do
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    spannertools.BeamSpanner(t[0])
-    spannertools.BeamSpanner(t[1])
+    beamtools.BeamSpanner(t[0])
+    beamtools.BeamSpanner(t[1])
     spannertools.SlurSpanner(t.leaves)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 

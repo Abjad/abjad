@@ -8,7 +8,7 @@ def test_containertools_split_container_once_by_counts_and_fracture_crossing_spa
     Leave spanner attaching to container contents untouched.'''
 
     t = Voice([Container("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")])
-    spannertools.BeamSpanner(t[0])
+    beamtools.BeamSpanner(t[0])
     spannertools.SlurSpanner(t[0].leaves)
 
     r'''
@@ -59,7 +59,7 @@ def test_containertools_split_container_once_by_counts_and_fracture_crossing_spa
     Expression appears unaltered.'''
 
     t = Voice([Container("c'8 d'8 e'8 f'8")])
-    spannertools.BeamSpanner(t[0])
+    beamtools.BeamSpanner(t[0])
     spannertools.SlurSpanner(t[0].leaves)
     container = t[0]
 
@@ -100,7 +100,7 @@ def test_containertools_split_container_once_by_counts_and_fracture_crossing_spa
     Result contains no empty parts.'''
 
     t = Voice([Container("c'8 d'8 e'8 f'8")])
-    spannertools.BeamSpanner(t[0])
+    beamtools.BeamSpanner(t[0])
     spannertools.SlurSpanner(t[0].leaves)
 
     r'''
@@ -140,7 +140,7 @@ def test_containertools_split_container_once_by_counts_and_fracture_crossing_spa
     Input container returns within one-element result list.'''
 
     t = Voice([Container("c'8 d'8 e'8 f'8")])
-    spannertools.BeamSpanner(t[0])
+    beamtools.BeamSpanner(t[0])
     spannertools.SlurSpanner(t[0].leaves)
 
     r'''

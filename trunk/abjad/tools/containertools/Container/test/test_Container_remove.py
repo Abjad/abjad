@@ -12,7 +12,7 @@ def test_Container_remove_01():
 
     t = Voice("c'8 d'8 e'8 f'8")
     spannertools.SlurSpanner(t[:])
-    spannertools.BeamSpanner(t[1])
+    beamtools.BeamSpanner(t[1])
 
     r'''
     \new Voice {
@@ -57,7 +57,7 @@ def test_Container_remove_02():
     t = Staff(Container(notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
     sequential = t[0]
-    p = spannertools.BeamSpanner(t[:])
+    p = beamtools.BeamSpanner(t[:])
 
     r'''
     \new Staff {

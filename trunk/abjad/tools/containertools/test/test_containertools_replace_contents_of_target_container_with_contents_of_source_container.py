@@ -5,7 +5,7 @@ def test_containertools_replace_contents_of_target_container_with_contents_of_so
 
     staff = Staff(Tuplet(Fraction(2, 3), "c'8 d'8 e'8") * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
-    spannertools.BeamSpanner(staff.leaves)
+    beamtools.BeamSpanner(staff.leaves)
 
     r'''
     \new Staff {

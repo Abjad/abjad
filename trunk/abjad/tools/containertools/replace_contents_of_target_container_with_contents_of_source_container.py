@@ -5,7 +5,7 @@ def replace_contents_of_target_container_with_contents_of_source_container(targe
 
         abjad> staff = Staff(Tuplet(Fraction(2, 3), "c'8 d'8 e'8") * 3)
         abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
-        abjad> spannertools.BeamSpanner(staff.leaves)
+        abjad> beamtools.BeamSpanner(staff.leaves)
         BeamSpanner(c'8, d'8, ... [5] ..., c''8, d''8)
 
     ::

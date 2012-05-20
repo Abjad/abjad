@@ -7,7 +7,7 @@ def scale_contents_of_container(container, multiplier):
     Scale contents of `container` by dot `multiplier`::
 
         abjad> staff = Staff("c'8 d'8")
-        abjad> spannertools.BeamSpanner(staff.leaves)
+        abjad> beamtools.BeamSpanner(staff.leaves)
         BeamSpanner(c'8, d'8)
 
     ::
@@ -34,7 +34,7 @@ def scale_contents_of_container(container, multiplier):
     Scale contents of `container` by tie `multiplier`::
 
         abjad> staff = Staff("c'8 d'8")
-        abjad> spannertools.BeamSpanner(staff.leaves)
+        abjad> beamtools.BeamSpanner(staff.leaves)
         BeamSpanner(c'8, d'8)
 
     ::
@@ -63,7 +63,7 @@ def scale_contents_of_container(container, multiplier):
     Scale contents of `container` by nonbinary `multiplier`::
 
         abjad> staff = Staff("c'8 d'8")
-        abjad> spannertools.BeamSpanner(staff.leaves)
+        abjad> beamtools.BeamSpanner(staff.leaves)
         BeamSpanner(c'8, d'8)
 
     ::

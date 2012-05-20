@@ -7,8 +7,8 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    spannertools.BeamSpanner(t[0])
-    spannertools.BeamSpanner(t[1])
+    beamtools.BeamSpanner(t[0])
+    beamtools.BeamSpanner(t[1])
     spannertools.SlurSpanner(t.leaves)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
@@ -59,8 +59,8 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    spannertools.BeamSpanner(t[0])
-    spannertools.BeamSpanner(t[1])
+    beamtools.BeamSpanner(t[0])
+    beamtools.BeamSpanner(t[1])
     spannertools.SlurSpanner(t.leaves)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
@@ -114,8 +114,8 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    spannertools.BeamSpanner(t[0])
-    spannertools.BeamSpanner(t[1])
+    beamtools.BeamSpanner(t[0])
+    beamtools.BeamSpanner(t[1])
     spannertools.SlurSpanner(t.leaves)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
@@ -177,8 +177,8 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    spannertools.BeamSpanner(t[0])
-    spannertools.BeamSpanner(t[1])
+    beamtools.BeamSpanner(t[0])
+    beamtools.BeamSpanner(t[1])
     spannertools.SlurSpanner(t.leaves)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
@@ -228,8 +228,8 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    spannertools.BeamSpanner(t[0])
-    spannertools.BeamSpanner(t[1])
+    beamtools.BeamSpanner(t[0])
+    beamtools.BeamSpanner(t[1])
     spannertools.SlurSpanner(t.leaves)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
@@ -279,8 +279,8 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    spannertools.BeamSpanner(t[0])
-    spannertools.BeamSpanner(t[1])
+    beamtools.BeamSpanner(t[0])
+    beamtools.BeamSpanner(t[1])
     spannertools.SlurSpanner(t.leaves)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
@@ -333,7 +333,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
     '''
 
     t = Note(0, (1, 8))
-    spannertools.BeamSpanner(t)
+    beamtools.BeamSpanner(t)
 
     "c'8 [ ]"
 
@@ -353,8 +353,8 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    spannertools.BeamSpanner(t[0])
-    spannertools.BeamSpanner(t[1])
+    beamtools.BeamSpanner(t[0])
+    beamtools.BeamSpanner(t[1])
     spannertools.SlurSpanner(t.leaves)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
@@ -408,8 +408,8 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    spannertools.BeamSpanner(t[0])
-    spannertools.BeamSpanner(t[1])
+    beamtools.BeamSpanner(t[0])
+    beamtools.BeamSpanner(t[1])
     spannertools.SlurSpanner(t.leaves)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
@@ -465,8 +465,8 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    spannertools.BeamSpanner(t[0])
-    spannertools.BeamSpanner(t[1])
+    beamtools.BeamSpanner(t[0])
+    beamtools.BeamSpanner(t[1])
     spannertools.SlurSpanner(t.leaves)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
@@ -524,8 +524,8 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    spannertools.BeamSpanner(t[0])
-    spannertools.BeamSpanner(t[1])
+    beamtools.BeamSpanner(t[0])
+    beamtools.BeamSpanner(t[1])
     spannertools.SlurSpanner(t.leaves)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
@@ -585,8 +585,8 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
     '''
 
     t = Staff(Measure((3, 8), "c'8 d'8 e'8") * 2)
-    spannertools.BeamSpanner(t[0])
-    spannertools.BeamSpanner(t[1])
+    beamtools.BeamSpanner(t[0])
+    beamtools.BeamSpanner(t[1])
     spannertools.SlurSpanner(t.leaves)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
@@ -696,8 +696,8 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
     for leaf in t.leaves:
         leaf.duration_multiplier = Duration(1, 2)
-    spannertools.BeamSpanner(t[0])
-    spannertools.BeamSpanner(t[1])
+    beamtools.BeamSpanner(t[0])
+    beamtools.BeamSpanner(t[1])
     spannertools.SlurSpanner(t.leaves)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
@@ -753,8 +753,8 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
     for leaf in t.leaves:
         leaf.duration_multiplier = Duration(1, 2)
-    spannertools.BeamSpanner(t[0])
-    spannertools.BeamSpanner(t[1])
+    beamtools.BeamSpanner(t[0])
+    beamtools.BeamSpanner(t[1])
     spannertools.SlurSpanner(t.leaves)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
@@ -811,8 +811,8 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
     for leaf in t.leaves:
         leaf.duration_multiplier = Duration(1, 2)
-    spannertools.BeamSpanner(t[0])
-    spannertools.BeamSpanner(t[1])
+    beamtools.BeamSpanner(t[0])
+    beamtools.BeamSpanner(t[1])
     spannertools.SlurSpanner(t.leaves)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
@@ -913,7 +913,7 @@ def test_componenttools_split_component_at_prolated_duration_and_fracture_crossi
     t = Staff([Measure((15, 80), notetools.make_notes(
         0, [Duration(1, 32)] * 7 + [Duration(1, 64)]))])
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    spannertools.BeamSpanner(t[0])
+    beamtools.BeamSpanner(t[0])
     spannertools.SlurSpanner(t.leaves)
 
     r'''

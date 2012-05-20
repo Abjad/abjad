@@ -9,7 +9,7 @@ def test_componenttools_copy_components_and_remove_spanners_01():
 
     t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    beam = spannertools.BeamSpanner(t[:2] + t[2][:] + t[3][:])
+    beam = beamtools.BeamSpanner(t[:2] + t[2][:] + t[3][:])
     slur = spannertools.SlurSpanner(t[0][:] + t[1][:] + t[2:])
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
@@ -80,7 +80,7 @@ def test_componenttools_copy_components_and_remove_spanners_02():
 
     t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    beam = spannertools.BeamSpanner(t[:2] + t[2][:] + t[3][:])
+    beam = beamtools.BeamSpanner(t[:2] + t[2][:] + t[3][:])
     slur = spannertools.SlurSpanner(t[0][:] + t[1][:] + t[2:])
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
@@ -147,7 +147,7 @@ def test_componenttools_copy_components_and_remove_spanners_03():
 
     t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    beam = spannertools.BeamSpanner(t[:2] + t[2][:] + t[3][:])
+    beam = beamtools.BeamSpanner(t[:2] + t[2][:] + t[3][:])
     slur = spannertools.SlurSpanner(t[0][:] + t[1][:] + t[2:])
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
@@ -205,7 +205,7 @@ def test_componenttools_copy_components_and_remove_spanners_04():
 
     t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    beam = spannertools.BeamSpanner(t[:2] + t[2][:] + t[3][:])
+    beam = beamtools.BeamSpanner(t[:2] + t[2][:] + t[3][:])
     slur = spannertools.SlurSpanner(t[0][:] + t[1][:] + t[2:])
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
@@ -268,7 +268,7 @@ def test_componenttools_copy_components_and_remove_spanners_05():
 
     t = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    beam = spannertools.BeamSpanner(t[:2] + t[2][:] + t[3][:])
+    beam = beamtools.BeamSpanner(t[:2] + t[2][:] + t[3][:])
     slur = spannertools.SlurSpanner(t[0][:] + t[1][:] + t[2:])
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 

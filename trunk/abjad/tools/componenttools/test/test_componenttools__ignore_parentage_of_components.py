@@ -5,7 +5,7 @@ from abjad.tools.componenttools._ignore_parentage_of_components import _ignore_p
 def test_componenttools__ignore_parentage_of_components_01():
 
     t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
 
     r'''
     \new Voice {

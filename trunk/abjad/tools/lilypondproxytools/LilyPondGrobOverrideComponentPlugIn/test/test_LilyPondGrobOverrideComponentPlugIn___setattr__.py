@@ -99,7 +99,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___05():
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    p = spannertools.BeamSpanner(t[:])
+    p = beamtools.BeamSpanner(t[:])
     p.override.beam.positions = (4, 4)
 
     r'''
@@ -252,7 +252,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___12():
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
     p = spannertools.DynamicTextSpanner(t[:], 'f')
     p.override.dynamic_text.thickness = 3
 
@@ -1141,7 +1141,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___53():
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
     t.override.tuplet_bracket.direction = 'down'
 
     r'''
@@ -1164,7 +1164,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___54():
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
     t[1].override.tuplet_bracket.direction = 'down'
 
     r'''
@@ -1207,7 +1207,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___56():
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
     t.override.tuplet_number.fraction = True
 
     r'''
@@ -1230,7 +1230,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___57():
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
     t[1].override.tuplet_number.fraction = True
 
     r'''
@@ -1252,7 +1252,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___setattr___58():
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
     t.override.tuplet_number.text = markuptools.Markup('"6:4"')
 
     r'''

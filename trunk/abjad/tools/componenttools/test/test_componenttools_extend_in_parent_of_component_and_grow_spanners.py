@@ -5,7 +5,7 @@ def test_componenttools_extend_in_parent_of_component_and_grow_spanners_01():
     '''Splice leaves after leaf.'''
 
     t = Voice("c'8 d'8 e'8")
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
     result = componenttools.extend_in_parent_of_component_and_grow_spanners(
         t[-1], [Note("c'8"), Note("d'8"), Note("e'8")])
 
@@ -29,7 +29,7 @@ def test_componenttools_extend_in_parent_of_component_and_grow_spanners_02():
     '''Splice leaf after interior leaf.'''
 
     t = Voice("c'8 d'8 e'8")
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
     result = componenttools.extend_in_parent_of_component_and_grow_spanners(
         t[1], [Note(2.5, (1, 8))])
 
@@ -51,7 +51,7 @@ def test_componenttools_extend_in_parent_of_component_and_grow_spanners_03():
     '''Splice tuplet after tuplet.'''
 
     t = Voice([tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")])
-    spannertools.BeamSpanner(t[0])
+    beamtools.BeamSpanner(t[0])
     result = componenttools.extend_in_parent_of_component_and_grow_spanners(
         t[-1], [tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")])
 
@@ -79,7 +79,7 @@ def test_componenttools_extend_in_parent_of_component_and_grow_spanners_04():
     '''Splice after container with underspanners.'''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
-    spannertools.BeamSpanner(t.leaves)
+    beamtools.BeamSpanner(t.leaves)
     result = componenttools.extend_in_parent_of_component_and_grow_spanners(
         t[0], [Note(2.5, (1, 8))])
 

@@ -6,7 +6,7 @@ def insert_component_and_fracture_crossing_spanners(container, i, component):
     r'''Insert `component` into `container` at index `i` and fracture spanners::
 
         abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> spannertools.BeamSpanner(staff.leaves)
+        abjad> beamtools.BeamSpanner(staff.leaves)
         BeamSpanner(c'8, d'8, e'8, f'8)
 
     ::

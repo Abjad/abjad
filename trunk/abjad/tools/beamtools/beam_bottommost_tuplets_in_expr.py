@@ -1,7 +1,5 @@
-#from abjad.tools.spannertools import BeamSpanner
-from abjad.tools.spannertools import MultipartBeamSpanner
 from abjad.tools import componenttools
-from abjad.tools.tuplettools.Tuplet import Tuplet
+from abjad.tools import tuplettools
 
 
 def beam_bottommost_tuplets_in_expr(expr):
@@ -61,10 +59,11 @@ def beam_bottommost_tuplets_in_expr(expr):
         renamed ``tuplettools.beam_bottommost_tuplets_in_expr()`` to
         ``beamtools.beam_bottommost_tuplets_in_expr()``.
     '''
+    from abjad.tools import beamtools
 
-    for tuplet in componenttools.iterate_components_forward_in_expr(expr, Tuplet):
+    for tuplet in componenttools.iterate_components_forward_in_expr(expr, tuplettools.Tuplet):
         for component in tuplet:
-            if isinstance(component, Tuplet):
+            if isinstance(component, tuplettools.Tuplet):
                 break
         else:
-            MultipartBeamSpanner(tuplet)
+            beamtools.MultipartBeamSpanner(tuplet)

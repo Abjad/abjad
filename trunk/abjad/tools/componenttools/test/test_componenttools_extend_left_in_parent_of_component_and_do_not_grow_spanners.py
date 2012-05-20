@@ -5,7 +5,7 @@ def test_componenttools_extend_left_in_parent_of_component_and_do_not_grow_spann
     '''Extend leaves leftwards of leaf. Do not extend edge spanners.'''
 
     t = Voice("c'8 d'8 e'8")
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
     notes = [Note("c'16"), Note("d'16"), Note("e'16")]
     result = componenttools.extend_left_in_parent_of_component_and_do_not_grow_spanners(t[0], notes)
 
@@ -29,7 +29,7 @@ def test_componenttools_extend_left_in_parent_of_component_and_do_not_grow_spann
     '''Extend leaf leftwards of interior leaf. Do extend interior spanners.'''
 
     t = Voice("c'8 d'8 e'8")
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
     result = componenttools.extend_left_in_parent_of_component_and_do_not_grow_spanners(
         t[1], [Note(1.5, (1, 8))])
 

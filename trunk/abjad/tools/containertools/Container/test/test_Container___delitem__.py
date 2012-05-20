@@ -11,7 +11,7 @@ def test_Container___delitem___01():
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
     spannertools.SlurSpanner(t[0][:])
     spannertools.SlurSpanner(t[1][:])
 
@@ -63,7 +63,7 @@ def test_Container___delitem___02():
     Spanner structure is preserved.'''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
 
     del(t[1])
 
@@ -83,7 +83,7 @@ def test_Container___delitem___03():
     '''Delete slice in middle of container.'''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
 
     del(t[1:3])
 
@@ -102,7 +102,7 @@ def test_Container___delitem___04():
     '''Delete slice from beginning to middle of container.'''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
 
     del(t[:2])
 
@@ -121,7 +121,7 @@ def test_Container___delitem___05():
     '''Delete slice from middle to end of container.'''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
 
     del(t[2:])
 
@@ -140,7 +140,7 @@ def test_Container___delitem___06():
     '''Delete slice from beginning to end of container.'''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
 
     del(t[:])
 
@@ -157,7 +157,7 @@ def test_Container___delitem___07():
     '''Detach leaf from tuplet and spanner.'''
 
     t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
 
     del(t[1])
 

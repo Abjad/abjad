@@ -52,7 +52,7 @@ def test_Skip___init___05():
     '''
 
     t = Staff(Chord([2, 3, 4], (1, 4)) * 3)
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
     skip = skiptools.Skip(t[0])
     assert isinstance(t[0], Chord)
     assert isinstance(skip, skiptools.Skip)
@@ -88,7 +88,7 @@ def test_Skip___init___08():
     '''
 
     t = Staff(Note(0, (1, 8)) * 3)
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
     skip = skiptools.Skip(t[0])
     assert isinstance(t[0], Note)
     assert isinstance(skip, skiptools.Skip)
@@ -129,7 +129,7 @@ def test_Skip___init___11():
     '''
 
     t = Staff([Note(0, (1, 8)), Rest((1, 8)), Note(0, (1, 8))])
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
     skip = skiptools.Skip(t[1])
     assert isinstance(skip, skiptools.Skip)
     assert isinstance(t[1], Rest)

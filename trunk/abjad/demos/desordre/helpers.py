@@ -44,7 +44,7 @@ def desordre_cell(pitches):
     '''Returns a parallel container encapsulating a Ligeti "cell".'''
     pitchtools.NamedChromaticPitch.accidental_spelling = 'sharps'
     notes = [Note(p, (1, 8)) for p in pitches]
-    spannertools.BeamSpanner(notes)
+    beamtools.BeamSpanner(notes)
     spannertools.SlurSpanner(notes)
     contexttools.DynamicMark('f')(notes[0])
     contexttools.DynamicMark('p')(notes[1])

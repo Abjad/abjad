@@ -6,7 +6,7 @@ def test_Container___setitem___integer_01():
     '''Spanned leaves exchange correctly.'''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:2])
+    beamtools.BeamSpanner(t[:2])
     spannertools.GlissandoSpanner(t.leaves)
 
     r'''
@@ -37,7 +37,7 @@ def test_Container___setitem___integer_02():
     '''Spanned leaf hands position over to container correctly.'''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:2])
+    beamtools.BeamSpanner(t[:2])
     spannertools.GlissandoSpanner(t.leaves)
 
     r'''
@@ -74,7 +74,7 @@ def test_Container___setitem___integer_03():
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
     spannertools.GlissandoSpanner(t[:])
 
     r'''
@@ -112,7 +112,7 @@ def test_Container___setitem___integer_04():
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    spannertools.BeamSpanner(t.leaves)
+    beamtools.BeamSpanner(t.leaves)
     spannertools.GlissandoSpanner(t.leaves)
 
     r'''
@@ -149,7 +149,7 @@ def test_Container___setitem___integer_05():
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
     spannertools.GlissandoSpanner(t[:])
 
     r'''
@@ -190,7 +190,7 @@ def test_Container___setitem___integer_06():
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    spannertools.BeamSpanner(t.leaves)
+    beamtools.BeamSpanner(t.leaves)
     spannertools.GlissandoSpanner(t.leaves)
 
     r'''
@@ -228,7 +228,7 @@ def test_Container___setitem___integer_07():
 
     t = Voice(Container(notetools.make_repeated_notes(4)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    spannertools.BeamSpanner(t.leaves[0:6])
+    beamtools.BeamSpanner(t.leaves[0:6])
     r'''
     \new Voice {
         {
@@ -272,7 +272,7 @@ def test_Container___setitem___integer_08():
     notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8"), Note("g'8"), Note("a'8")]
 
     t = Voice(notes[:3])
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
 
     r'''
     \new Voice {
@@ -283,7 +283,7 @@ def test_Container___setitem___integer_08():
     '''
 
     u = Voice(notes[3:])
-    spannertools.BeamSpanner(u[:])
+    beamtools.BeamSpanner(u[:])
 
     r'''
     \new Voice {
@@ -329,7 +329,7 @@ def test_Container___setitem___integer_09():
     notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8"), Note("g'8"), Note("a'8"), Note("b'8")]
 
     t = Voice(notes[:3])
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
 
     r'''
     \new Voice {

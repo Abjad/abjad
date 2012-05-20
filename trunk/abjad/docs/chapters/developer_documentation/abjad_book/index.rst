@@ -28,7 +28,7 @@ Add some Abjad code to your HTML between open and close
 
    <abjad>
    v = Voice(construct.scale(8))
-   spannertools.BeamSpanner(v)
+   beamtools.BeamSpanner(v)
    iotools.write_expr_to_ly(v, 'abjad-book-1') <hide
    show(v)
    </abjad>

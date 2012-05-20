@@ -31,7 +31,7 @@ class ComplexGlissandoSpanner(Spanner):
             c'8
         }
 
-    Should be used with spannertools.BeamSpanner for best effect, along with
+    Should be used with beamtools.BeamSpanner for best effect, along with
     an override of Stem #'stemlet-length, in order to generate stemlets over
     each invisible rest.
 

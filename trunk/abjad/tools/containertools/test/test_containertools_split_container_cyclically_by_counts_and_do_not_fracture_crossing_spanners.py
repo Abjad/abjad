@@ -9,7 +9,7 @@ def test_containertools_split_container_cyclically_by_counts_and_do_not_fracture
     '''
 
     t = Voice([Container("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")])
-    spannertools.BeamSpanner(t[0])
+    beamtools.BeamSpanner(t[0])
     spannertools.SlurSpanner(t[0].leaves)
 
     r'''
@@ -60,7 +60,7 @@ def test_containertools_split_container_cyclically_by_counts_and_do_not_fracture
     '''Cyclic by [1] splits all elements in container.'''
 
     t = Voice([Container("c'8 d'8 e'8 f'8")])
-    spannertools.BeamSpanner(t[0])
+    beamtools.BeamSpanner(t[0])
     spannertools.SlurSpanner(t[0].leaves)
 
     r'''

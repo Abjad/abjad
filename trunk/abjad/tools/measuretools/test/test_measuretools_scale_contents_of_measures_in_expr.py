@@ -6,7 +6,7 @@ def test_measuretools_scale_contents_of_measures_in_expr_01():
     Time siganture denominator adjust appropriately.'''
 
     t = Measure((3, 32), "c'32 d'32 e'32")
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
 
     measuretools.scale_contents_of_measures_in_expr(t, Duration(4))
 
@@ -27,7 +27,7 @@ def test_measuretools_scale_contents_of_measures_in_expr_02():
     '''Triple binary meter.'''
 
     t = Measure((3, 32), "c'32 d'32 e'32")
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
 
     measuretools.scale_contents_of_measures_in_expr(t, Duration(3))
 
@@ -48,7 +48,7 @@ def test_measuretools_scale_contents_of_measures_in_expr_03():
     '''Multiply binary measure by 2/3.'''
 
     t = Measure((3, 8), "c'8 d'8 e'8")
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
 
     measuretools.scale_contents_of_measures_in_expr(t, Duration(2, 3))
 

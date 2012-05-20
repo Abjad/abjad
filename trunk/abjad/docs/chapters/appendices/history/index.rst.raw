@@ -256,9 +256,9 @@ staff = stafftools.RhythmicStaff([Measure((7, 8), [])])
 measure = staff[0]
 measure.append(Note('c8.'))
 measure.append(Tuplet(Fraction(7, 5), 5 * Note('c16')))
-spannertools.BeamSpanner(measure[-1])
+beamtools.BeamSpanner(measure[-1])
 measure.append(Tuplet(Fraction(3, 5), 5 * Note('c8')))
-spannertools.BeamSpanner(measure[-1])
+beamtools.BeamSpanner(measure[-1])
 Tuplet(Fraction(7, 8), measure.music)
 staff.override.tuplet_bracket.bracket_visibility = True
 staff.override.tuplet_bracket.padding = 1.6
@@ -288,9 +288,9 @@ LilyPond engraves tupletted notes interrupted by nontupletted notes correctly:
 t = Tuplet(Fraction(4, 7), Note(0, (1, 16)) * 4)
 notes = Note(0, (1, 8)) * 2
 u = Tuplet(Fraction(4, 7), Note(0, (1, 16)) * 3)
-spannertools.BeamSpanner(t)
-spannertools.BeamSpanner(notes)
-spannertools.BeamSpanner(u)
+beamtools.BeamSpanner(t)
+beamtools.BeamSpanner(notes)
+beamtools.BeamSpanner(u)
 measure = Measure((4, 8), [t] + notes + [u])
 staff = stafftools.RhythmicStaff([measure])
 </abjad>
@@ -317,9 +317,9 @@ The rhythm above rewrites with time signatures in place of tuplets:
 t = Measure((4, 28), Note(0, (1, 16)) * 4)
 u = Measure((2, 8), Note(0, (1, 8)) * 2)
 v = Measure((3, 28), Note(0, (1, 16)) * 3)
-spannertools.BeamSpanner(t)
-spannertools.BeamSpanner(u)
-spannertools.BeamSpanner(v)
+beamtools.BeamSpanner(t)
+beamtools.BeamSpanner(u)
+beamtools.BeamSpanner(v)
 staff = stafftools.RhythmicStaff([t, u, v])
 </abjad>
 

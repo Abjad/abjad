@@ -7,7 +7,7 @@ def test_containertools_split_container_at_index_and_do_not_fracture_crossing_sp
 
     t = Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    p = spannertools.BeamSpanner(t[:])
+    p = beamtools.BeamSpanner(t[:])
 
     r'''
     \new Voice {
@@ -52,7 +52,7 @@ def test_containertools_split_container_at_index_and_do_not_fracture_crossing_sp
 
     t = Voice(Measure((3, 8), notetools.make_repeated_notes(3)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    p = spannertools.BeamSpanner(t[:])
+    p = beamtools.BeamSpanner(t[:])
 
     r'''
     \new Voice {
@@ -103,7 +103,7 @@ def test_containertools_split_container_at_index_and_do_not_fracture_crossing_sp
 
     t = Voice(Measure((3, 9), notetools.make_repeated_notes(3)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    p = spannertools.BeamSpanner(t[:])
+    p = beamtools.BeamSpanner(t[:])
 
     r'''
     \new Voice {
@@ -190,7 +190,7 @@ def test_containertools_split_container_at_index_and_do_not_fracture_crossing_sp
 
     t = Staff([Voice("c'8 d'8 e'8 f'8")])
     v = t[0]
-    spannertools.BeamSpanner(v)
+    beamtools.BeamSpanner(v)
     left, right = containertools.split_container_at_index_and_do_not_fracture_crossing_spanners(v, 0)
 
     r'''
@@ -247,7 +247,7 @@ def test_containertools_split_container_at_index_and_do_not_fracture_crossing_sp
 
     t = Staff([Container("c'8 d'8 e'8 f'8")])
     v = t[0]
-    spannertools.BeamSpanner(v)
+    beamtools.BeamSpanner(v)
     left, right = containertools.split_container_at_index_and_do_not_fracture_crossing_spanners(v, 2)
 
     r'''
@@ -277,7 +277,7 @@ def test_containertools_split_container_at_index_and_do_not_fracture_crossing_sp
     t = Staff([Voice([Tuplet(Fraction(4, 5), notetools.make_repeated_notes(5))])])
     v = t[0]
     tuplet = v[0]
-    spannertools.BeamSpanner(tuplet)
+    beamtools.BeamSpanner(tuplet)
     left, right = containertools.split_container_at_index_and_do_not_fracture_crossing_spanners(tuplet, 2)
 
     r'''
@@ -310,8 +310,8 @@ def test_containertools_split_container_at_index_and_do_not_fracture_crossing_sp
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    spannertools.BeamSpanner(t[0])
-    spannertools.BeamSpanner(t[1])
+    beamtools.BeamSpanner(t[0])
+    beamtools.BeamSpanner(t[1])
     slur = spannertools.SlurSpanner(t.leaves)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
@@ -362,8 +362,8 @@ def test_containertools_split_container_at_index_and_do_not_fracture_crossing_sp
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    spannertools.BeamSpanner(t[0])
-    spannertools.BeamSpanner(t[1])
+    beamtools.BeamSpanner(t[0])
+    beamtools.BeamSpanner(t[1])
     slur = spannertools.SlurSpanner(t.leaves)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 

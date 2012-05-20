@@ -10,7 +10,7 @@ def divide_leaf_meiotically(leaf, n = 2):
     Divide `leaf` meiotically `n` times::
 
         abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> spannertools.BeamSpanner(staff.leaves)
+        abjad> beamtools.BeamSpanner(staff.leaves)
         BeamSpanner(c'8, d'8, e'8, f'8)
         abjad> f(staff)
         \new Staff {

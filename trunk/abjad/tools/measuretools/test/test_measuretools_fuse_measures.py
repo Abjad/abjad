@@ -6,7 +6,7 @@ def test_measuretools_fuse_measures_01():
     '''Fuse unicorporated binary measures.'''
 
     t1 = Measure((1, 8), "c'16 d'16")
-    spannertools.BeamSpanner(t1[:])
+    beamtools.BeamSpanner(t1[:])
     t2 = Measure((2, 16), "c'16 d'16")
     spannertools.SlurSpanner(t2[:])
 
@@ -53,7 +53,7 @@ def test_measuretools_fuse_measures_02():
     t = Voice(measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (2, 16)]))
     measuretools.fill_measures_in_expr_with_repeated_notes(t, Duration(1, 16))
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    spannertools.BeamSpanner(t.leaves)
+    beamtools.BeamSpanner(t.leaves)
 
     r'''
     \new Voice {
@@ -96,7 +96,7 @@ def test_measuretools_fuse_measures_03():
     t = Voice(measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (2, 16)]))
     measuretools.fill_measures_in_expr_with_repeated_notes(t, Duration(1, 16))
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    spannertools.BeamSpanner(t[0])
+    beamtools.BeamSpanner(t[0])
 
     r'''
     \new Voice {
@@ -140,7 +140,7 @@ def test_measuretools_fuse_measures_04():
     m2 = Measure((1, 12), notetools.make_repeated_notes(1))
     t = Voice([m1, m2])
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    spannertools.BeamSpanner(t.leaves)
+    beamtools.BeamSpanner(t.leaves)
 
     r'''
     \new Voice {
@@ -197,7 +197,7 @@ def test_measuretools_fuse_measures_07():
     t = Voice(measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (1, 8), (1, 8)]))
     measuretools.fill_measures_in_expr_with_repeated_notes(t, Duration(1, 16))
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    spannertools.BeamSpanner(t.leaves)
+    beamtools.BeamSpanner(t.leaves)
 
     r'''
     \new Voice {

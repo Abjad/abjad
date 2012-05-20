@@ -7,8 +7,8 @@ def test_componenttools_split_components_once_by_prolated_durations_and_fracture
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    spannertools.BeamSpanner(t[0])
-    spannertools.BeamSpanner(t[1])
+    beamtools.BeamSpanner(t[0])
+    beamtools.BeamSpanner(t[1])
     spannertools.SlurSpanner(t.leaves)
 
     r'''
@@ -63,8 +63,8 @@ def test_componenttools_split_components_once_by_prolated_durations_and_fracture
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    spannertools.BeamSpanner(t[0])
-    spannertools.BeamSpanner(t[1])
+    beamtools.BeamSpanner(t[0])
+    beamtools.BeamSpanner(t[1])
     spannertools.SlurSpanner(t.leaves)
 
     r'''
@@ -158,7 +158,7 @@ def test_componenttools_split_components_once_by_prolated_durations_and_fracture
     '''
 
     t = Staff([Note(0, (1, 8))])
-    spannertools.BeamSpanner(t[0])
+    beamtools.BeamSpanner(t[0])
 
     r'''
     \new Staff {

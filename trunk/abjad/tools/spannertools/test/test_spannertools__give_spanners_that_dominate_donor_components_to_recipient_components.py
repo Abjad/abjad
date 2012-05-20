@@ -11,7 +11,7 @@ def test_spannertools__give_spanners_that_dominate_donor_components_to_recipient
 
     t = Voice("c'8 d'8 e'8 f'8")
     spannertools.CrescendoSpanner(t[:])
-    spannertools.BeamSpanner(t[:2])
+    beamtools.BeamSpanner(t[:2])
     spannertools.SlurSpanner(t[1:3])
 
     r'''
@@ -24,7 +24,7 @@ def test_spannertools__give_spanners_that_dominate_donor_components_to_recipient
     '''
 
     recipient = Voice(notetools.make_repeated_notes(3, Duration(1, 16)))
-    spannertools.BeamSpanner(recipient)
+    beamtools.BeamSpanner(recipient)
 
     r'''
     \new Voice {
@@ -74,7 +74,7 @@ def test_spannertools__give_spanners_that_dominate_donor_components_to_recipient
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
 
     r'''
     \new Voice {

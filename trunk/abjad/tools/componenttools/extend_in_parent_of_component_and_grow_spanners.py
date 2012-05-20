@@ -6,7 +6,7 @@ def extend_in_parent_of_component_and_grow_spanners(component, new_components):
 
         abjad> notes = [Note("c'8"), Note("d'8"), Note("e'8")]
         abjad> voice = Voice(notes)
-        abjad> spannertools.BeamSpanner(voice[:])
+        abjad> beamtools.BeamSpanner(voice[:])
         BeamSpanner(c'8, d'8, e'8)
 
     ::

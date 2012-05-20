@@ -74,7 +74,7 @@ def test_Note___init___08():
     '''
 
     t = Staff(Chord([2, 3, 4], (1, 4)) * 3)
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
     note = Note(t[0])
     assert isinstance(t[0], Chord)
     assert t[0]._parent is t
@@ -116,7 +116,7 @@ def test_Note___init___11():
     '''
 
     t = Staff([Note(0, (1, 8)), Rest((1, 8)), Note(0, (1, 8))])
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
     note = Note(t[1])
     assert isinstance(t[1], Rest)
     assert isinstance(note, Note)
@@ -155,7 +155,7 @@ def test_Note___init___14():
     '''
 
     t = Staff([Note(0, (1, 8)), skiptools.Skip((1, 8)), Note(0, (1, 8))])
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
     note = Note(t[1])
     assert isinstance(t[1], skiptools.Skip)
     assert isinstance(note, Note)

@@ -7,7 +7,7 @@ def test_beamtools_get_beam_spanner_attached_to_component_01():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    beam = spannertools.BeamSpanner(staff.leaves)
+    beam = beamtools.BeamSpanner(staff.leaves)
 
     assert beamtools.get_beam_spanner_attached_to_component(staff[0]) is beam
     assert beamtools.get_beam_spanner_attached_to_component(staff[1]) is beam
@@ -27,7 +27,7 @@ def test_beamtools_get_beam_spanner_attached_to_component_03():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(staff.leaves)
-    spannertools.BeamSpanner(staff.leaves)
+    beamtools.BeamSpanner(staff.leaves)
+    beamtools.BeamSpanner(staff.leaves)
 
     assert py.test.raises(ExtraSpannerError, 'beamtools.get_beam_spanner_attached_to_component(staff[0])')

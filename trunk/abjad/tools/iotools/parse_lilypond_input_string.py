@@ -21,7 +21,7 @@ def parse_lilypond_input_string(note_entry_string):
     from abjad.tools import marktools
     from abjad.tools.lilypondfiletools._parse_chord_entry_token import _parse_chord_entry_token
     from abjad.tools.lilypondfiletools._parse_note_entry_token import _parse_note_entry_token
-    from abjad.tools.spannertools import BeamSpanner
+    from abjad.tools.beamtools import BeamSpanner
     from abjad.tools.spannertools import SlurSpanner
     from abjad.tools.tietools import TieSpanner
     from abjad.tools import componenttools

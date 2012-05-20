@@ -6,7 +6,7 @@ def test_Spanner_stop_01():
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    beam = spannertools.BeamSpanner(t[1:3])
+    beam = beamtools.BeamSpanner(t[1:3])
     glissando = spannertools.GlissandoSpanner([t])
 
     r'''

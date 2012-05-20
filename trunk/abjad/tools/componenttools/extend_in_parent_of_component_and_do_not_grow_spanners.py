@@ -9,7 +9,7 @@ def extend_in_parent_of_component_and_do_not_grow_spanners(component, components
 
         abjad> notes = [Note("c'8"), Note("d'8"), Note("e'8")]
         abjad> t = Voice("c'8 d'8 e'8")
-        abjad> spannertools.BeamSpanner(t[:])
+        abjad> beamtools.BeamSpanner(t[:])
         BeamSpanner(c'8, d'8, e'8)
         abjad> notes = [Note("c'8"), Note("d'8"), Note("e'8")]
         abjad> componenttools.extend_in_parent_of_component_and_do_not_grow_spanners(t[-1], notes)

@@ -4,7 +4,7 @@ def fracture_spanners_attached_to_component(component, direction = 'both', klass
     Fracture all spanners attached to `component` according to `direction`::
 
         abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> beam = spannertools.BeamSpanner(staff.leaves)
+        abjad> beam = beamtools.BeamSpanner(staff.leaves)
         abjad> slur = spannertools.SlurSpanner(staff.leaves)
         abjad> trill = spannertools.TrillSpanner(staff)
         abjad> f(staff)

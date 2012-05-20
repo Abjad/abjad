@@ -6,7 +6,7 @@ def test_componenttools_replace_components_with_children_of_components_01():
 
     t = Staff(Container(notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    p = spannertools.BeamSpanner(t.leaves)
+    p = beamtools.BeamSpanner(t.leaves)
 
     r'''
     \new Staff {
@@ -44,7 +44,7 @@ def test_componenttools_replace_components_with_children_of_components_02():
     '''Slip leaf from parentage and spanners.'''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
     spannertools.GlissandoSpanner(t[:])
 
     note = t[1]
@@ -66,7 +66,7 @@ def test_componenttools_replace_components_with_children_of_components_03():
     '''Slip multiple leaves.'''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
     spannertools.GlissandoSpanner(t[:])
 
     r'''
@@ -96,7 +96,7 @@ def test_componenttools_replace_components_with_children_of_components_04():
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    spannertools.BeamSpanner(t.leaves)
+    beamtools.BeamSpanner(t.leaves)
     spannertools.GlissandoSpanner(t.leaves)
 
     r'''

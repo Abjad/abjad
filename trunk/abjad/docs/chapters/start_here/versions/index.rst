@@ -613,7 +613,7 @@ Implements 221 public classes and 1029 functions totalling 168,000 lines of code
 
 - Extended ``scoretools.InstrumentationSpecifier`` with read-only ``performer_name_string`` attribute.
 
-- Extended all ``spannertools.Beam-``, ``Slur-`` and ``Hairpin-``related spanner classes, as well as
+- Extended all ``beamtools.Beam-``, ``Slur-`` and ``Hairpin-``related spanner classes, as well as
   ``tietools.TieSpanner` with an optional ``direction`` keyword::
 
     abjad> c = Container("c'4 d'4 e'4 f'4")

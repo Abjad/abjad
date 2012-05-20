@@ -7,7 +7,7 @@ def test_spannertools_get_spanners_that_dominate_component_pair_01():
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    beam = spannertools.BeamSpanner(t[:2])
+    beam = beamtools.BeamSpanner(t[:2])
     glissando = spannertools.GlissandoSpanner(t[1:])
     trill = spannertools.TrillSpanner(t.leaves)
 
@@ -41,7 +41,7 @@ def test_spannertools_get_spanners_that_dominate_component_pair_02():
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    beam = spannertools.BeamSpanner(t[:2])
+    beam = beamtools.BeamSpanner(t[:2])
     glissando = spannertools.GlissandoSpanner(t[1:])
     trill = spannertools.TrillSpanner(t.leaves)
 
@@ -57,7 +57,7 @@ def test_spannertools_get_spanners_that_dominate_component_pair_03():
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    beam = spannertools.BeamSpanner(t[:2])
+    beam = beamtools.BeamSpanner(t[:2])
     glissando = spannertools.GlissandoSpanner(t[1:])
     trill = spannertools.TrillSpanner(t.leaves)
 
@@ -73,7 +73,7 @@ def test_spannertools_get_spanners_that_dominate_component_pair_04():
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    beam = spannertools.BeamSpanner(t[:2])
+    beam = beamtools.BeamSpanner(t[:2])
     glissando = spannertools.GlissandoSpanner(t[1:])
     trill = spannertools.TrillSpanner(t.leaves)
 

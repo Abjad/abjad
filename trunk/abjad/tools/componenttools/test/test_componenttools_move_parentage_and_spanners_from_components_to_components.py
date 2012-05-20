@@ -5,8 +5,8 @@ def test_componenttools_move_parentage_and_spanners_from_components_to_component
     '''Move parentage and spanners from two old notes to five new notes.'''
 
     t = Staff("c'8 d'8 e'8 f'8")
-    b1 = spannertools.BeamSpanner(t[:2])
-    b2 = spannertools.BeamSpanner(t[2:])
+    b1 = beamtools.BeamSpanner(t[:2])
+    b2 = beamtools.BeamSpanner(t[2:])
     crescendo = spannertools.CrescendoSpanner(t[:])
 
     r'''
@@ -44,8 +44,8 @@ def test_componenttools_move_parentage_and_spanners_from_components_to_component
     '''Move parentage and spanners from one old note to five new notes.'''
 
     t = Staff("c'8 d'8 e'8 f'8")
-    b1 = spannertools.BeamSpanner(t[:2])
-    b2 = spannertools.BeamSpanner(t[2:])
+    b1 = beamtools.BeamSpanner(t[:2])
+    b2 = beamtools.BeamSpanner(t[2:])
     crescendo = spannertools.CrescendoSpanner(t[:])
 
     r'''
@@ -84,8 +84,8 @@ def test_componenttools_move_parentage_and_spanners_from_components_to_component
     '''Move parentage and spanners from two old notes to five new notes.'''
 
     t = Staff("c'8 d'8 e'8 f'8")
-    b1 = spannertools.BeamSpanner(t[:2])
-    b2 = spannertools.BeamSpanner(t[2:])
+    b1 = beamtools.BeamSpanner(t[:2])
+    b2 = beamtools.BeamSpanner(t[2:])
     crescendo = spannertools.CrescendoSpanner(t[:])
 
     r'''
@@ -123,8 +123,8 @@ def test_componenttools_move_parentage_and_spanners_from_components_to_component
     '''Move parentage and spanners from three old notes to five new notes.'''
 
     t = Staff("c'8 d'8 e'8 f'8")
-    b1 = spannertools.BeamSpanner(t[:2])
-    b2 = spannertools.BeamSpanner(t[2:])
+    b1 = beamtools.BeamSpanner(t[:2])
+    b2 = beamtools.BeamSpanner(t[2:])
     crescendo = spannertools.CrescendoSpanner(t[:])
 
     r'''
@@ -161,8 +161,8 @@ def test_componenttools_move_parentage_and_spanners_from_components_to_component
     '''Move parentage and spanners from four old notes to five new notes.'''
 
     t = Staff("c'8 d'8 e'8 f'8")
-    b1 = spannertools.BeamSpanner(t[:2])
-    b2 = spannertools.BeamSpanner(t[2:])
+    b1 = beamtools.BeamSpanner(t[:2])
+    b2 = beamtools.BeamSpanner(t[2:])
     crescendo = spannertools.CrescendoSpanner(t[:])
 
     r'''
@@ -198,7 +198,7 @@ def test_componenttools_move_parentage_and_spanners_from_components_to_component
     '''Move parentage and spanners from container to children of container.'''
 
     t = Staff([Voice("c'8 d'8 e'8 f'8")])
-    spannertools.BeamSpanner(t[0])
+    beamtools.BeamSpanner(t[0])
 
     r'''
     \new Staff {

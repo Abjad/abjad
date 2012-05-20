@@ -138,7 +138,7 @@ def test_measuretools_pad_measures_in_expr_with_rests_03():
     '''
 
     t = measuretools.DynamicMeasure("c'8 d'8")
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
     measuretools.pad_measures_in_expr_with_rests(t, Duration(1, 32), Duration(1, 64), splice=True)
 
     r'''

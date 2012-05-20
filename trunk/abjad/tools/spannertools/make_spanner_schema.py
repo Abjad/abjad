@@ -10,7 +10,7 @@ def make_spanner_schema(components):
 
         abjad> voice = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
         abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(voice)
-        abjad> beam = spannertools.BeamSpanner(voice.leaves[:4])
+        abjad> beam = beamtools.BeamSpanner(voice.leaves[:4])
         abjad> slur = spannertools.SlurSpanner(voice[-2:])
 
     ::

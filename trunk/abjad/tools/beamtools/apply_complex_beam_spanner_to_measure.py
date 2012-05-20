@@ -1,5 +1,4 @@
-from abjad.tools.measuretools.Measure import Measure
-from abjad.tools.spannertools import DuratedComplexBeamSpanner
+from abjad.tools import measuretools
 
 
 def apply_complex_beam_spanner_to_measure(measure):
@@ -36,20 +35,20 @@ def apply_complex_beam_spanner_to_measure(measure):
             d'8 ]
         }
 
-
     Return complex beam spanner.
 
     .. versionchanged:: 2.9
         renamed ``measuretools.apply_complex_beam_spanner_to_measure()`` to
         ``beamtools.apply_complex_beam_spanner_to_measure()``.
     '''
+    from abjad.tools import beamtools
 
     # check measure type
-    if not isinstance(measure, Measure):
-        raise TypeError('must be measure: %s' % measure)
+    if not isinstance(measure, measuretools.Measure):
+        raise TypeError('must be measure: {!r}'.format(measure))
 
     # apply complex beam spanner to measure
-    beam = DuratedComplexBeamSpanner(measure)
+    beam = beamtools.DuratedComplexBeamSpanner(measure)
 
     # return beam spanner
     return beam

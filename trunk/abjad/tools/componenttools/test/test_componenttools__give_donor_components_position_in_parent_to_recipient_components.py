@@ -6,7 +6,7 @@ def test_componenttools__give_donor_components_position_in_parent_to_recipient_c
     '''Not composer-safe.'''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
     notes = [Note("c'16"), Note("d'16")]
 
     _give_donor_components_position_in_parent_to_recipient_components(t[0:1], notes)

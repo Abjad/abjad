@@ -5,7 +5,7 @@ def test_leaftools_set_preprolated_leaf_duration_01():
     '''Change leaf to tied duration.'''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:2])
+    beamtools.BeamSpanner(t[:2])
 
     r'''
     \new Voice {
@@ -38,7 +38,7 @@ def test_leaftools_set_preprolated_leaf_duration_02():
 
     t = Voice(notetools.make_repeated_notes(4))
     tietools.TieSpanner(t[:2])
-    spannertools.BeamSpanner(t[:2])
+    beamtools.BeamSpanner(t[:2])
 
     r'''
     \new Voice {
@@ -70,7 +70,7 @@ def test_leaftools_set_preprolated_leaf_duration_03():
       Same as t.written_duration = Duration(3, 16).'''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:2])
+    beamtools.BeamSpanner(t[:2])
 
     r'''
     \new Voice {
@@ -101,7 +101,7 @@ def test_leaftools_set_preprolated_leaf_duration_04():
       Tuplet inserted over new tied notes.'''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:2])
+    beamtools.BeamSpanner(t[:2])
 
     r'''
     \new Voice {
@@ -135,7 +135,7 @@ def test_leaftools_set_preprolated_leaf_duration_05():
       Tuplet inserted over input leaf.'''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:2])
+    beamtools.BeamSpanner(t[:2])
 
     r'''
     \new Voice {

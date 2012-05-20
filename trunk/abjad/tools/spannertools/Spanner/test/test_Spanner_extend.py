@@ -6,7 +6,7 @@ def test_Spanner_extend_01():
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    p = spannertools.BeamSpanner(t[1])
+    p = beamtools.BeamSpanner(t[1])
 
     r'''
     \new Voice {
@@ -53,7 +53,7 @@ def test_Spanner_extend_02():
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    p = spannertools.BeamSpanner(t[1])
+    p = beamtools.BeamSpanner(t[1])
 
     r'''
     \new Voice {

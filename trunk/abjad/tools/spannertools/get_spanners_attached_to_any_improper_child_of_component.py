@@ -7,7 +7,7 @@ def get_spanners_attached_to_any_improper_child_of_component(component, klass = 
     Get all spanners attached to any improper children of `component`::
 
         abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> beam = spannertools.BeamSpanner(staff.leaves)
+        abjad> beam = beamtools.BeamSpanner(staff.leaves)
         abjad> first_slur = spannertools.SlurSpanner(staff.leaves[:2])
         abjad> second_slur = spannertools.SlurSpanner(staff.leaves[2:])
         abjad> trill = spannertools.TrillSpanner(staff)
@@ -35,7 +35,7 @@ def get_spanners_attached_to_any_improper_child_of_component(component, klass = 
 
     Get all spanners of any `klass` attached to any proper children of `component`::
 
-        abjad> spanner_klasses = (spannertools.SlurSpanner, spannertools.BeamSpanner)
+        abjad> spanner_klasses = (spannertools.SlurSpanner, beamtools.BeamSpanner)
         abjad> spannertools.get_spanners_attached_to_any_proper_child_of_component(staff, spanner_klasses) # doctest: +SKIP
         set([BeamSpanner(c'8, d'8, e'8, f'8), SlurSpanner(c'8, d'8), SlurSpanner(e'8, f'8)])
 

@@ -19,7 +19,7 @@ def copy_components_and_fracture_crossing_spanners(components, n=1):
 
         abjad> voice = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
         abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(voice)
-        abjad> beam = spannertools.BeamSpanner(voice.leaves[:4])
+        abjad> beam = beamtools.BeamSpanner(voice.leaves[:4])
         abjad> f(voice)
         \new Voice {
             {

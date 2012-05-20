@@ -19,7 +19,7 @@ from abjad.tools.quantizationtools.tempo_scaled_rational_to_milliseconds \
 from abjad.tools.sequencetools import flatten_sequence
 from abjad.tools.sequencetools import iterate_sequence_pairwise_strict
 from abjad.tools.sequencetools import yield_outer_product_of_sequences
-from abjad.tools.spannertools import MultipartBeamSpanner
+from abjad.tools.beamtools import MultipartBeamSpanner
 from abjad.tools.tietools import TieSpanner
 from abjad.tools.tietools import get_tie_chain
 from abjad.tools.tietools import iterate_tie_chains_forward_in_expr

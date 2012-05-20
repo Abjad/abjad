@@ -6,7 +6,7 @@ def test_Container_append_01():
     '''Append sequential to voice.'''
 
     t = Voice(notetools.make_repeated_notes(2))
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
     t.append(Container(notetools.make_repeated_notes(2)))
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
@@ -29,7 +29,7 @@ def test_Container_append_02():
     '''Append leaf to tuplet.'''
 
     t = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
     t.append(Note(5, (1, 16)))
 
     r'''
@@ -50,7 +50,7 @@ def test_Container_append_03():
         raises TypeError.'''
 
     t = Voice("c'8 d'8 e'8")
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
 
     assert py.test.raises(Exception, "t.append('foo')")
     assert py.test.raises(Exception, "t.append(99)")
@@ -62,7 +62,7 @@ def test_Container_append_04():
     '''Append spanned leaf from donor container to recipient container.'''
 
     t = Voice("c'8 d'8 e'8")
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
 
     r'''
     \new Voice {
@@ -73,7 +73,7 @@ def test_Container_append_04():
     '''
 
     u = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(u[:])
+    beamtools.BeamSpanner(u[:])
 
     r'''
     \new Voice {
@@ -119,7 +119,7 @@ def test_Container_append_05():
         Donor and recipient containers are the same.'''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
 
     r'''
     \new Voice {

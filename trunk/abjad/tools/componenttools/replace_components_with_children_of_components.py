@@ -7,7 +7,7 @@ def replace_components_with_children_of_components(components):
         abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
         abjad> spannertools.SlurSpanner(staff[:])
         SlurSpanner({c'8, d'8}, {e'8, f'8})
-        abjad> spannertools.BeamSpanner(staff.leaves)
+        abjad> beamtools.BeamSpanner(staff.leaves)
         BeamSpanner(c'8, d'8, e'8, f'8)
 
     ::

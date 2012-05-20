@@ -7,7 +7,7 @@ def split_container_at_index_and_do_not_fracture_crossing_spanners(container, in
 
         abjad> voice = Voice(Measure((3, 8), "c'8 c'8 c'8") * 2)
         abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(voice)
-        abjad> beam = spannertools.BeamSpanner(voice[:])
+        abjad> beam = beamtools.BeamSpanner(voice[:])
 
     ::
 

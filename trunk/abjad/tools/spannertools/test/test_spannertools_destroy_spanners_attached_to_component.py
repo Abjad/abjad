@@ -6,7 +6,7 @@ def test_spannertools_destroy_spanners_attached_to_component_01():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    beam = spannertools.BeamSpanner(staff.leaves)
+    beam = beamtools.BeamSpanner(staff.leaves)
     slur = spannertools.SlurSpanner(staff.leaves)
     trill = spannertools.TrillSpanner(staff)
 
@@ -39,7 +39,7 @@ def test_spannertools_destroy_spanners_attached_to_component_02():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    beam = spannertools.BeamSpanner(staff.leaves)
+    beam = beamtools.BeamSpanner(staff.leaves)
     slur = spannertools.SlurSpanner(staff.leaves)
     trill = spannertools.TrillSpanner(staff)
 
@@ -52,7 +52,7 @@ def test_spannertools_destroy_spanners_attached_to_component_02():
     }
     '''
 
-    spannertools.destroy_spanners_attached_to_component(staff[0], spannertools.BeamSpanner)
+    spannertools.destroy_spanners_attached_to_component(staff[0], beamtools.BeamSpanner)
 
     r'''
     \new Staff {

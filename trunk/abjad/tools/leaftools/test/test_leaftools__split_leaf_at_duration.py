@@ -6,7 +6,7 @@ def test_leaftools__split_leaf_at_duration_01():
     '''Notehead-assignable split duration produces two notes.'''
 
     t = Staff("c'8 d'8 e'8")
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
 
     r'''
     \new Staff {
@@ -35,7 +35,7 @@ def test_leaftools__split_leaf_at_duration_02():
     '''Nonbinary denominator produces two one-note tuplets.'''
 
     t = Staff("c'8 d'8 e'8")
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
 
     r'''
     \new Staff {
@@ -70,7 +70,7 @@ def test_leaftools__split_leaf_at_duration_03():
 
     t = Voice(notetools.make_repeated_notes(1) + [tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3))])
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    spannertools.BeamSpanner(t.leaves)
+    beamtools.BeamSpanner(t.leaves)
 
     r'''
     \new Voice {
@@ -213,7 +213,7 @@ def test_leaftools__split_leaf_at_duration_10():
     '''Spanners are unaffected by leaf split.'''
 
     t = Staff(notetools.make_repeated_notes(4))
-    b = spannertools.BeamSpanner(t.leaves)
+    b = beamtools.BeamSpanner(t.leaves)
     halves = _split_leaf_at_duration(t[0], Duration(1, 16))
 
     assert len(t) == 5

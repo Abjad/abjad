@@ -8,7 +8,7 @@ def repeat_contents_of_container(container, total = 2):
     Repeat contents of `container`::
 
         abjad> staff = Staff("c'8 d'8")
-        abjad> spannertools.BeamSpanner(staff.leaves)
+        abjad> beamtools.BeamSpanner(staff.leaves)
         BeamSpanner(c'8, d'8)
 
     ::

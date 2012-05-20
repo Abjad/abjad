@@ -7,7 +7,7 @@ def test_spannertools__withdraw_components_in_expr_from_attached_spanners_01():
         Navigate down into components and traverse deeply.'''
 
     t = Staff("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t)
+    beamtools.BeamSpanner(t)
     spannertools.CrescendoSpanner(t[:])
 
     _withdraw_components_in_expr_from_attached_spanners([t])
@@ -30,8 +30,8 @@ def test_spannertools__withdraw_components_in_expr_from_attached_spanners_02():
 
     t = Staff(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    spannertools.BeamSpanner(t.leaves[:3])
-    spannertools.BeamSpanner(t.leaves[3:])
+    beamtools.BeamSpanner(t.leaves[:3])
+    beamtools.BeamSpanner(t.leaves[3:])
 
     r'''
     \new Staff {

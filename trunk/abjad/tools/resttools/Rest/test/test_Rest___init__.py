@@ -66,7 +66,7 @@ def test_Rest___init___06():
     '''
 
     staff = Staff(Chord([2, 3, 4], (1, 4)) * 3)
-    spannertools.BeamSpanner(staff[:])
+    beamtools.BeamSpanner(staff[:])
     rest = Rest(staff[0])
     assert isinstance(rest, Rest)
     assert isinstance(staff[0], Chord)
@@ -107,7 +107,7 @@ def test_Rest___init___09():
     '''
 
     t = Staff([Note(0, (1, 8)), skiptools.Skip((1, 8)), Note(0, (1, 8))])
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
     rest = Rest(t[1])
     assert isinstance(t[1], skiptools.Skip)
     assert t[1] in t
@@ -150,7 +150,7 @@ def test_Rest___init___12():
     '''
 
     t = Staff(Note(0, (1, 8)) * 3)
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
     rest = Rest(t[0])
     assert isinstance(t[0], Note)
     assert isinstance(rest, Rest)
@@ -163,7 +163,7 @@ def test_Rest___init___13():
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
     rest = Rest(t[-1])
     componenttools.move_parentage_and_spanners_from_components_to_components(t[-1:], [rest])
 
@@ -184,7 +184,7 @@ def test_Rest___init___14():
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
     for note in t:
         rest = Rest(note)
         componenttools.move_parentage_and_spanners_from_components_to_components([note], [rest])

@@ -1,4 +1,4 @@
-from abjad.tools.spannertools.ComplexBeamSpanner import ComplexBeamSpanner
+from abjad.tools.beamtools.ComplexBeamSpanner import ComplexBeamSpanner
 from abjad.tools import durationtools
 
 

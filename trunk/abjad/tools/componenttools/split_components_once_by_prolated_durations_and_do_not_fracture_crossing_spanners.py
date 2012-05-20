@@ -9,9 +9,9 @@ def split_components_once_by_prolated_durations_and_do_not_fracture_crossing_spa
 
         abjad> t = Staff(Container(notetools.make_repeated_notes(2)) * 2)
         abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-        abjad> spannertools.BeamSpanner(t[0])
+        abjad> beamtools.BeamSpanner(t[0])
         BeamSpanner({c'8, d'8})
-        abjad> spannertools.BeamSpanner(t[1])
+        abjad> beamtools.BeamSpanner(t[1])
         BeamSpanner({e'8, f'8})
         abjad> spannertools.SlurSpanner(t.leaves)
         SlurSpanner(c'8, d'8, e'8, f'8)

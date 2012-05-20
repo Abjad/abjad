@@ -438,7 +438,7 @@ class Container(Component):
         r'''Append `component` to container::
 
             abjad> container = Container("c'8 d'8 e'8")
-            abjad> beam = spannertools.BeamSpanner(container.music)
+            abjad> beam = beamtools.BeamSpanner(container.music)
 
         ::
 
@@ -473,7 +473,7 @@ class Container(Component):
         '''Extend `expr` against container::
 
             abjad> container = Container("c'8 d'8 e'8")
-            abjad> beam = spannertools.BeamSpanner(container.music)
+            abjad> beam = beamtools.BeamSpanner(container.music)
 
         ::
 
@@ -538,7 +538,7 @@ class Container(Component):
         '''Insert `component` in container at index `i`::
 
             abjad> container = Container("c'8 d'8 e'8")
-            abjad> beam = spannertools.BeamSpanner(container.music)
+            abjad> beam = beamtools.BeamSpanner(container.music)
 
         ::
 
@@ -573,7 +573,7 @@ class Container(Component):
         '''Pop component at index `i` from container::
 
             abjad> container = Container("c'8 d'8 e'8")
-            abjad> beam = spannertools.BeamSpanner(container.music)
+            abjad> beam = beamtools.BeamSpanner(container.music)
 
         ::
 
@@ -607,7 +607,7 @@ class Container(Component):
         '''Remove `component` from container::
 
             abjad> container = Container("c'8 d'8 e'8")
-            abjad> beam = spannertools.BeamSpanner(container.music)
+            abjad> beam = beamtools.BeamSpanner(container.music)
 
         ::
 

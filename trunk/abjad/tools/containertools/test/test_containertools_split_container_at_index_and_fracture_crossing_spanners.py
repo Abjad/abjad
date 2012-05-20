@@ -8,7 +8,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
     t = Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
     tuplet = t[1]
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
 
     r'''
     \new Voice {
@@ -56,7 +56,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
 
     t = Voice(Measure((3, 8), notetools.make_repeated_notes(3)) * 2)
     m = t[1]
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
     r'''
@@ -110,7 +110,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
 
     t = Voice(Measure((3, 9), notetools.make_repeated_notes(3)) * 2)
     m = t[1]
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
     r'''
@@ -174,7 +174,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
         Fracture spanners.'''
 
     t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
 
     r'''
     \new Voice {
@@ -213,7 +213,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
 
     t = Staff([Voice("c'8 d'8 e'8 f'8")])
     v = t[0]
-    spannertools.BeamSpanner(v)
+    beamtools.BeamSpanner(v)
 
     r'''
     \new Staff {
@@ -253,7 +253,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
 
     t = Staff([Voice("c'8 d'8 e'8 f'8")])
     v = t[0]
-    spannertools.BeamSpanner(v)
+    beamtools.BeamSpanner(v)
 
     left, right = containertools.split_container_at_index_and_fracture_crossing_spanners(v, 10)
 
@@ -279,8 +279,8 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    spannertools.BeamSpanner(t[0])
-    spannertools.BeamSpanner(t[1])
+    beamtools.BeamSpanner(t[0])
+    beamtools.BeamSpanner(t[1])
     slur = spannertools.SlurSpanner(t.leaves)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
@@ -330,8 +330,8 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    spannertools.BeamSpanner(t[0])
-    spannertools.BeamSpanner(t[1])
+    beamtools.BeamSpanner(t[0])
+    beamtools.BeamSpanner(t[1])
     slur = spannertools.SlurSpanner(t.leaves)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
@@ -381,8 +381,8 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
 
     t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    spannertools.BeamSpanner(t[0])
-    spannertools.BeamSpanner(t[1])
+    beamtools.BeamSpanner(t[0])
+    beamtools.BeamSpanner(t[1])
     slur = spannertools.SlurSpanner(t.leaves)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
@@ -432,7 +432,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
     '''
 
     t = Staff([Measure((3, 12), "c'8. d'8.")])
-    spannertools.BeamSpanner(t[0])
+    beamtools.BeamSpanner(t[0])
     spannertools.SlurSpanner(t.leaves)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 
@@ -480,7 +480,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
     '''
 
     t = Staff([Measure((3, 8), "c'8. d'8.")])
-    spannertools.BeamSpanner(t[0])
+    beamtools.BeamSpanner(t[0])
     spannertools.SlurSpanner(t.leaves)
     measuretools.set_always_format_time_signature_of_measures_in_expr(t)
 

@@ -125,7 +125,7 @@ You can change the written duration of notes:
 tuplet[0].written_duration = Duration(1, 8)
 tuplet[1].written_duration = Duration(1, 8)
 tuplet[2].written_duration = Duration(1, 8)
-spannertools.BeamSpanner(tuplet) <hide
+beamtools.BeamSpanner(tuplet) <hide
 </abjad>
 
 <abjad>

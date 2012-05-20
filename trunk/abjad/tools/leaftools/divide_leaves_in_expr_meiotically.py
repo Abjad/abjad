@@ -9,7 +9,7 @@ def divide_leaves_in_expr_meiotically(expr, n = 2):
     Divide leaves meiotically in `expr` `n` times::
 
         abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> spannertools.BeamSpanner(staff.leaves)
+        abjad> beamtools.BeamSpanner(staff.leaves)
         BeamSpanner(c'8, d'8, e'8, f'8)
         abjad> f(staff)
         \new Staff {

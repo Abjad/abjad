@@ -6,7 +6,7 @@ py.test.skip('unskip after spanner format logic migration.')
 def test_spannertools_report_as_string_format_contributions_of_spanners_attached_to_improper_parentage_of_component_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    beam = spannertools.BeamSpanner(staff.leaves)
+    beam = beamtools.BeamSpanner(staff.leaves)
     slur = spannertools.SlurSpanner(staff.leaves)
     trill = spannertools.TrillSpanner(staff)
 

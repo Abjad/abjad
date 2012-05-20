@@ -6,7 +6,7 @@ def test_spannertools_fracture_spanners_attached_to_component_01():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    beam = spannertools.BeamSpanner(staff.leaves)
+    beam = beamtools.BeamSpanner(staff.leaves)
     slur = spannertools.SlurSpanner(staff.leaves)
     trill = spannertools.TrillSpanner(staff)
 
@@ -39,7 +39,7 @@ def test_spannertools_fracture_spanners_attached_to_component_02():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    beam = spannertools.BeamSpanner(staff.leaves)
+    beam = beamtools.BeamSpanner(staff.leaves)
     slur = spannertools.SlurSpanner(staff.leaves)
     trill = spannertools.TrillSpanner(staff)
 
@@ -52,7 +52,7 @@ def test_spannertools_fracture_spanners_attached_to_component_02():
     }
     '''
 
-    spannertools.fracture_spanners_attached_to_component(staff[1], 'right', spannertools.BeamSpanner)
+    spannertools.fracture_spanners_attached_to_component(staff[1], 'right', beamtools.BeamSpanner)
 
     r'''
     \new Staff {

@@ -7,7 +7,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    spannertools.BeamSpanner(t.leaves)
+    beamtools.BeamSpanner(t.leaves)
 
     r'''
     \new Voice {
@@ -55,7 +55,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
     t.name = 'foo'
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
     spannertools.GlissandoSpanner(t[:])
-    spannertools.BeamSpanner(t.leaves)
+    beamtools.BeamSpanner(t.leaves)
 
     r'''
     \context Voice = "foo" {
@@ -105,7 +105,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
     spannertools.GlissandoSpanner(t[:])
-    spannertools.BeamSpanner(t.leaves)
+    beamtools.BeamSpanner(t.leaves)
 
     r'''
     \new Voice {
@@ -153,7 +153,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
     '''Trying to move parentage, children and spanners to noncontainer raises type error.'''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
     assert py.test.raises(TypeError,
@@ -165,7 +165,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
     to nonempty container raises music contents error.'''
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 2)
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
     tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
@@ -179,7 +179,7 @@ def test_containertools_move_parentage_children_and_spanners_from_components_to_
 
     t = Voice(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-    spannertools.BeamSpanner(t.leaves)
+    beamtools.BeamSpanner(t.leaves)
 
     r'''
     \new Voice {

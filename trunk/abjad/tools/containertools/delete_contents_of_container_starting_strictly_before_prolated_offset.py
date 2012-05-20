@@ -7,7 +7,7 @@ def delete_contents_of_container_starting_strictly_before_prolated_offset(contai
     Delete contents of `container` contents starting strictly before `prolated_offset`::
 
         abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> spannertools.BeamSpanner(staff.leaves)
+        abjad> beamtools.BeamSpanner(staff.leaves)
         BeamSpanner(c'8, d'8, e'8, f'8)
 
     ::

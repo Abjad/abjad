@@ -4,7 +4,7 @@ from abjad import *
 def test_Spanner_prolated_duration_01():
     t = Voice([Measure((2, 12), "c'8 d'8"),
         Measure((2, 8), "c'8 d'8")])
-    beam = spannertools.BeamSpanner(t.leaves)
+    beam = beamtools.BeamSpanner(t.leaves)
     crescendo = spannertools.CrescendoSpanner(t[0][:])
     decrescendo = spannertools.DecrescendoSpanner(t[1][:])
 

@@ -6,7 +6,7 @@ class GraceContainer(Container):
     r'''Abjad model of grace music::
 
         abjad> voice = Voice("c'8 d'8 e'8 f'8")
-        abjad> spannertools.BeamSpanner(voice[:])
+        abjad> beamtools.BeamSpanner(voice[:])
         BeamSpanner(c'8, d'8, e'8, f'8)
 
     ::

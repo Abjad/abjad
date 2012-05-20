@@ -8,7 +8,7 @@ def test_spannertools_fracture_spanners_that_cross_components_01():
     '''
 
     t = Staff("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
     spannertools.fracture_spanners_that_cross_components(t[1:3])
 
     r'''
@@ -29,7 +29,7 @@ def test_spannertools_fracture_spanners_that_cross_components_02():
         fracture to the right of rightmost component.'''
 
     t = Staff("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
     spannertools.fracture_spanners_that_cross_components(t[1:2])
 
     r'''
@@ -58,7 +58,7 @@ def test_spannertools_fracture_spanners_that_cross_components_04():
     t = Staff(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
     spannertools.CrescendoSpanner(t)
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
 
     r'''
     \new Staff {
@@ -106,7 +106,7 @@ def test_spannertools_fracture_spanners_that_cross_components_05():
     t = Staff(Container(notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
     spannertools.CrescendoSpanner(t)
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
     spannertools.TrillSpanner(t.leaves)
 
     r'''

@@ -5,7 +5,7 @@ def test_Measure___add___01():
     '''Add outside-of-score rigid measures.'''
 
     t1 = Measure((1, 8), "c'16 d'16")
-    spannertools.BeamSpanner(t1[:])
+    beamtools.BeamSpanner(t1[:])
     t2 = Measure((2, 16), "c'16 d'16")
     spannertools.SlurSpanner(t2[:])
 
@@ -48,7 +48,7 @@ def test_Measure___add___02():
     '''Add rigid measures in score.'''
 
     t1 = Measure((1, 8), "c'16 d'16")
-    spannertools.BeamSpanner(t1[:])
+    beamtools.BeamSpanner(t1[:])
     t2 = Measure((2, 16), "c'16 d'16")
     spannertools.SlurSpanner(t2[:])
     t = Staff([t1, t2])

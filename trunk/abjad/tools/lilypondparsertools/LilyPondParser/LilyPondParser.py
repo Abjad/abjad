@@ -304,7 +304,7 @@ class LilyPondParser(AbjadObject):
                 starting_events = filter(lambda x: x.span_direction == 'start', events)
                 stopping_events = filter(lambda x: x.span_direction == 'stop', events)
 
-                if klass is spannertools.BeamSpanner:
+                if klass is beamtools.BeamSpanner:
                     # A beam may begin and end on the same leaf
                     # but only one beam spanner may cover any given leaf,
                     # and starting events are processed before ending ones
@@ -629,7 +629,7 @@ class LilyPondParser(AbjadObject):
 
     def _span_event_name_to_spanner_class(self, name):
         spanners = {
-            'BeamEvent': spannertools.BeamSpanner,
+            'BeamEvent': beamtools.BeamSpanner,
             'CrescendoEvent': spannertools.HairpinSpanner,
             'DecrescendoEvent': spannertools.HairpinSpanner,
             'GlissandoEvent': spannertools.GlissandoSpanner,

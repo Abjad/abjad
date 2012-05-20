@@ -104,7 +104,7 @@ def test_Chord___init___11():
     '''
 
     t = Staff([Note(0, (1, 8)), skiptools.Skip((1, 8)), Note(0, (1, 8))])
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
     chord = Chord(t[1])
     assert isinstance(t[1], skiptools.Skip)
     assert isinstance(chord, Chord)
@@ -144,7 +144,7 @@ def test_Chord___init___14():
     '''
 
     t = Staff([Note(0, (1, 8)), Rest((1, 8)), Note(0, (1, 8))])
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
     chord = Chord(t[1])
     assert isinstance(t[1], Rest)
     assert isinstance(chord, Chord)
@@ -190,7 +190,7 @@ def test_Chord___init___17():
     '''
 
     t = Staff(Note(0, (1, 8)) * 3)
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
     chord = Chord(t[0])
     assert isinstance(t[0], Note)
     assert isinstance(chord, Chord)

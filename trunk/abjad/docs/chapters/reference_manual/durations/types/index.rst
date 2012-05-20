@@ -16,7 +16,7 @@ These sixteenth notes are worth a sixteenth of a whole note:
 ::
 
 	abjad> measure = Measure((5, 16), Note(0, (1, 16)) * 5)
-	abjad> spannertools.BeamSpanner(measure)
+	abjad> beamtools.BeamSpanner(measure)
 	abjad> staff = stafftools.RhythmicStaff([measure])
 
 
@@ -38,7 +38,7 @@ These sixteenth notes are worth more than a sixteenth of a whole note:
 ::
 
 	abjad> tuplet = tuplettools.FixedDurationTuplet(Duration(5, 16), Note(0, (1, 16)) * 4)
-	abjad> spannertools.BeamSpanner(tuplet)
+	abjad> beamtools.BeamSpanner(tuplet)
 	abjad> measure = Measure((5, 16), [tuplet])
 	abjad> staff = stafftools.RhythmicStaff([measure])
 
@@ -96,9 +96,9 @@ These elements carry preprolated durations equal to 1/8, 1/8 and 2/8, respective
 ::
 
 	abjad> notes = Note(0, (1, 8)) * 2
-	abjad> spannertools.BeamSpanner(notes)
+	abjad> beamtools.BeamSpanner(notes)
 	abjad> tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3)
-	abjad> spannertools.BeamSpanner(tuplet)
+	abjad> beamtools.BeamSpanner(tuplet)
 	abjad> measure = Measure((4, 8), notes + [tuplet])
 	abjad> staff = stafftools.RhythmicStaff([measure])
 
@@ -129,7 +129,7 @@ This fixed-duration tuplet carries a target duration equal to 4/8:
 ::
 
 	abjad> tuplet = tuplettools.FixedDurationTuplet(Duration(4, 8), Note(0, (1, 8)) * 5)
-	abjad> spannertools.BeamSpanner(tuplet)
+	abjad> beamtools.BeamSpanner(tuplet)
 	abjad> measure = Measure((4, 8), [tuplet])
 	abjad> staff = stafftools.RhythmicStaff([measure])
 
@@ -165,7 +165,7 @@ The first two notes below carry leaf mulitipliers equal to 2/1:
 	abjad> notes[0].duration_multiplier = Fraction(2, 1)
 	abjad> notes[1].duration_multiplier = Fraction(2, 1)
 	abjad> measure = Measure((3, 8), notes)
-	abjad> spannertools.BeamSpanner(measure)
+	abjad> beamtools.BeamSpanner(measure)
 	abjad> staff = stafftools.RhythmicStaff([measure])
 
 

@@ -4,7 +4,7 @@ from abjad import *
 def test_DynamicTextSpanner_01():
 
     t = Voice("c'8 d'8 e'8 f'8")
-    spannertools.BeamSpanner(t[:])
+    beamtools.BeamSpanner(t[:])
     spannertools.DynamicTextSpanner(t[:2], 'f')
     spannertools.DynamicTextSpanner(t[2:], 'p')
 
