@@ -12,7 +12,7 @@ def change_tuplets_in_expr_to_fixed_duration_tuplets(expr):
 
     ::
 
-        abjad> tuplettools.change_fixed_duration_tuplets_in_expr_to_tuplets(staff)
+        abjad> tuplettools.change_tuplets_in_expr_to_fixed_duration_tuplets(staff)
         [FixedDurationTuplet(1/4, [c'8, d'8, e'8]), FixedDurationTuplet(1/4, [c'8, d'8, e'8])]
 
     ::
