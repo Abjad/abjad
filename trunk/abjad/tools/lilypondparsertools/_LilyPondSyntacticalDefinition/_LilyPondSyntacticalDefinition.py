@@ -1,5 +1,4 @@
 from abjad import *
-from abjad.exceptions import LilyPondParserError
 from abjad.tools import durationtools
 from abjad.tools.lilypondparsertools._LilyPondDuration._LilyPondDuration \
     import _LilyPondDuration

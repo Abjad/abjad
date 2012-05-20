@@ -1,7 +1,6 @@
 from abc import ABCMeta
 from abc import abstractmethod
 from abjad import Duration
-from abjad.exceptions import UnboundedTimeIntervalError
 from abjad.tools.abctools import AbjadObject
 
 

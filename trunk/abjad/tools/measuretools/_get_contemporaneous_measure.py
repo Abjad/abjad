@@ -1,6 +1,5 @@
 from abjad.tools.containertools.Container import Container
 from abjad.tools.measuretools.Measure import Measure
-from abjad.exceptions import MissingMeasureError
 
 
 def _get_contemporaneous_measure(container, direction):

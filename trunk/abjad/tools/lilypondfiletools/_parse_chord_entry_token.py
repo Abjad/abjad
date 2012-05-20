@@ -1,5 +1,4 @@
 from abjad.tools.chordtools.Chord import Chord
-from abjad.exceptions import InputSpecificationError
 from abjad.tools import durationtools
 import re
 

@@ -1,6 +1,3 @@
-from abjad.exceptions import ContainmentError
-
-
 def get_improper_parentage_of_component(component):
     '''.. versionadded:: 1.1
 

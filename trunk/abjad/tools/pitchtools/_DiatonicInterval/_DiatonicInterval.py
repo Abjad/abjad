@@ -1,6 +1,5 @@
 from abc import ABCMeta
 from abc import abstractmethod
-from abjad.exceptions import IntervalError
 from abjad.tools import mathtools
 from abjad.tools.pitchtools._Diatonic import _Diatonic
 from abjad.tools.pitchtools._Interval import _Interval

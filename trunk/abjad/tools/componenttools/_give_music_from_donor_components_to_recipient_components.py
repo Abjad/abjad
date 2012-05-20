@@ -1,4 +1,3 @@
-from abjad.exceptions import MusicContentsError
 from abjad.tools.componenttools._switch_components_to_parent import _switch_components_to_parent
 
 

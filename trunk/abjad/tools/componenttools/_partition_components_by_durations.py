@@ -1,4 +1,3 @@
-from abjad.exceptions import PartitionError
 from abjad.tools import durationtools
 
 

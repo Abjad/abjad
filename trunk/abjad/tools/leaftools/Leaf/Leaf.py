@@ -256,7 +256,6 @@ class Leaf(Component):
 
     @property
     def duration_in_seconds(self):
-        from abjad.exceptions import MissingTempoError
         from abjad.tools import contexttools
         tempo = contexttools.get_effective_tempo(self)
         if tempo is not None and not tempo.is_imprecise:

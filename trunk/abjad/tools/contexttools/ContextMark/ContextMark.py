@@ -1,4 +1,3 @@
-from abjad.exceptions import ExtraMarkError
 from abjad.tools.contexttools.Context import Context
 from abjad.tools.marktools.Mark import Mark
 

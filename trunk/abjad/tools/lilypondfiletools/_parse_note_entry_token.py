@@ -1,6 +1,5 @@
 from abjad.tools.notetools.Note import Note
 from abjad.tools.resttools.Rest import Rest
-from abjad.exceptions import InputSpecificationError
 from abjad.tools import pitchtools
 from abjad.tools.lilypondfiletools._lilypond_leaf_regex import _lilypond_leaf_regex
 from abjad.tools.lilypondfiletools._parse_chord_entry_token import _parse_chord_entry_token

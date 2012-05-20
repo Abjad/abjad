@@ -1,4 +1,3 @@
-from abjad.exceptions import ContainmentError
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 

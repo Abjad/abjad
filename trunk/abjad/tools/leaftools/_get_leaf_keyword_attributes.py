@@ -1,6 +1,4 @@
 from abjad.tools.componenttools.Component import Component
-from abjad.exceptions import MissingSpannerError
-from abjad.exceptions import MissingTempoError
 from abjad.tools.leaftools._inspect_leaf_instance_attributes import _inspect_leaf_instance_attributes
 from abjad.tools import durationtools
 

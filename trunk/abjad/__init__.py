@@ -27,7 +27,7 @@ import os
 import sys
 
 # import Abjad exceptions in Python __builtins__ namespace
-_exceptions_path = os.path.join(__path__[0], 'exceptions')
+_exceptions_path = os.path.join(__path__[0], 'tools', 'exceptiontools')
 _import_functions_in_package_to_namespace(_exceptions_path, __builtins__)
 
 del abctools
@@ -36,7 +36,6 @@ del configurationtools
 del datastructuretools
 del decoratortools
 del durationtools
-del exceptions
 del importtools
 del lilypondproxytools
 del mathtools
