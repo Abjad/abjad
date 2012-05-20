@@ -32,3 +32,51 @@ def test_Container___init___02():
 
     assert isinstance(container, Container)
     assert container.format == "{\n\tc'8\n\td'8\n\te'8\n}"
+
+
+def test_Container___init___03():
+    '''Init container with RTM-syntax string.
+    '''
+
+    container = Container('rtm: (1 (1 1 1)) (2 (2 (1 (1 1 1)) 2))')
+
+    r'''
+    {
+        \times 2/3 {
+            c'8
+            c'8
+            c'8
+        }
+        \times 4/5 {
+            c'4
+            \times 2/3 {
+                c'16
+                c'16
+                c'16
+            }
+            c'4
+        }
+    }
+    '''
+
+    assert isinstance(container, Container)
+    assert container.format == "{\n\t\\times 2/3 {\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n\t\\times 4/5 {\n\t\tc'4\n\t\t\\times 2/3 {\n\t\t\tc'16\n\t\t\tc'16\n\t\t\tc'16\n\t\t}\n\t\tc'4\n\t}\n}"
+
+def test_Container___init___04():
+    '''Init container with "reduced ly" syntax string.
+    '''
+
+    container = Container('abj: 2/3 { 8 8 8 }')
+
+    '''
+    {
+        \times 2/3 {
+            c'8
+            c'8
+            c'8
+        }
+    }
+    '''
+
+    assert isinstance(container, Container)
+    assert container.format == "{\n\t\\times 2/3 {\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n}"
