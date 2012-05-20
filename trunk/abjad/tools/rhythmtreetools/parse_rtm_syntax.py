@@ -16,7 +16,7 @@ def parse_rtm_syntax(rtm):
         abjad> result
         FixedDurationTuplet(1/4, [c'8, c'16, c'16, c'8])
 
-    Returns `FixedDurationTuplet` or `Container` instance.
+    Return `FixedDurationTuplet` or `Container` instance.
     '''
 
     result = _RTMParser()(rtm)
