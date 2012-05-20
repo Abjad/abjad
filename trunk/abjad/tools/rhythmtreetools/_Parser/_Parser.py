@@ -1,3 +1,4 @@
+import inspect
 import logging
 import os
 from ply import lex
@@ -9,7 +10,8 @@ from abjad.tools.lilypondparsertools._NullHandler._NullHandler import _NullHandl
 class _Parser(AbjadObject):
 
     def __init__(self, debug=False):
-        self.output_path = os.path.dirname(__file__)
+        class_path = inspect.getfile(self.__class__)
+        self.output_path = class_path.rpartition(os.path.sep)[0]
         self.pickle_path = os.path.join(self.output_path, '_parsetab.pkl')
         self.logger_path = os.path.join(self.output_path, 'parselog.txt')
 
