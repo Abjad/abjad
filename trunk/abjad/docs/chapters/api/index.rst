@@ -1905,6 +1905,7 @@ Unstable Abjad composition packages (load manually)
 .. toctree::
    :maxdepth: 1
 
+   tools/rhythmtreetools/parse_reduced_ly_syntax
    tools/rhythmtreetools/parse_rtm_syntax
 
 :py:mod:`tonalitytools <abjad.tools.tonalitytools>`

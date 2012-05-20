@@ -1,7 +1,7 @@
 from abjad.tools.rhythmtreetools._TupletParser import _TupletParser
 
 
-def parse_reduced_ly_syntax(input):
+def parse_reduced_ly_syntax(string):
     '''Parse the reduced LilyPond rhythmic syntax:
 
     ::
@@ -10,8 +10,8 @@ def parse_reduced_ly_syntax(input):
 
     ::
 
-        abjad> input = '4 -4 8 5/3 { 2/3 {(3, 8)} (3, 8) -8 } 4'
-        abjad> result = parse_reduced_ly_syntax(input)
+        abjad> string = '4 -4 8 5/3 { 2/3 {(3, 8)} (3, 8) -8 } 4'
+        abjad> result = parse_reduced_ly_syntax(string)
         abjad> for x in result:
         ...     x
         ...
@@ -24,6 +24,4 @@ def parse_reduced_ly_syntax(input):
     Return list.
     '''
 
-    return _TupletParser()(input)
-
-    
+    return _TupletParser()(string)
