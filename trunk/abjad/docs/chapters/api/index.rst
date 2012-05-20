@@ -2014,6 +2014,68 @@ Internals packages
    tools/documentationtools/make_reference_manual_lilypond_file
    tools/documentationtools/make_text_alignment_example_lilypond_file
 
+:py:mod:`exceptiontools <abjad.tools.exceptiontools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: concrete classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/exceptiontools/AssignabilityError
+   tools/exceptiontools/ClefError
+   tools/exceptiontools/ContainmentError
+   tools/exceptiontools/ContextContainmentError
+   tools/exceptiontools/ContiguityError
+   tools/exceptiontools/CyclicNodeError
+   tools/exceptiontools/DurationError
+   tools/exceptiontools/ExtraMarkError
+   tools/exceptiontools/ExtraNoteHeadError
+   tools/exceptiontools/ExtraPitchError
+   tools/exceptiontools/ExtraSpannerError
+   tools/exceptiontools/ImpreciseTempoError
+   tools/exceptiontools/InputSpecificationError
+   tools/exceptiontools/InstrumentError
+   tools/exceptiontools/IntervalError
+   tools/exceptiontools/LilyPondParserError
+   tools/exceptiontools/LineBreakError
+   tools/exceptiontools/MarkError
+   tools/exceptiontools/MeasureContiguityError
+   tools/exceptiontools/MeasureError
+   tools/exceptiontools/MissingComponentError
+   tools/exceptiontools/MissingInstrumentError
+   tools/exceptiontools/MissingMarkError
+   tools/exceptiontools/MissingMeasureError
+   tools/exceptiontools/MissingNoteHeadError
+   tools/exceptiontools/MissingPitchError
+   tools/exceptiontools/MissingSpannerError
+   tools/exceptiontools/MissingTempoError
+   tools/exceptiontools/MusicContentsError
+   tools/exceptiontools/NegativeDurationError
+   tools/exceptiontools/NonbinaryTimeSignatureConversionError
+   tools/exceptiontools/NonbinaryTimeSignatureSuppressionError
+   tools/exceptiontools/NoteHeadError
+   tools/exceptiontools/OverfullContainerError
+   tools/exceptiontools/ParallelError
+   tools/exceptiontools/PartitionError
+   tools/exceptiontools/PitchError
+   tools/exceptiontools/SpacingError
+   tools/exceptiontools/SpannerError
+   tools/exceptiontools/SpannerPopulationError
+   tools/exceptiontools/StaffContainmentError
+   tools/exceptiontools/TempoError
+   tools/exceptiontools/TieChainError
+   tools/exceptiontools/TimeSignatureAssignmentError
+   tools/exceptiontools/TimeSignatureError
+   tools/exceptiontools/TonalHarmonyError
+   tools/exceptiontools/TupletError
+   tools/exceptiontools/TupletFuseError
+   tools/exceptiontools/TypographicWhitespaceError
+   tools/exceptiontools/UnboundedTimeIntervalError
+   tools/exceptiontools/UndefinedSpacingError
+   tools/exceptiontools/UnderfullContainerError
+   tools/exceptiontools/VoiceContainmentError
+
 :py:mod:`formattools <abjad.tools.formattools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
