@@ -401,11 +401,11 @@ class Container(Component):
             parsed = self._parse_string(music)
             self._music = []
             self.is_parallel = parsed.is_parallel
-            if self.is_parallel:
-                for x in parsed:
-                    self.append(x)
+            if parsed.is_parallel or not componenttools.all_are_thread_contiguous_components(parsed[:]):
+                while len(parsed):
+                    self.append(parsed.pop(0))
             else:
-                self[:] = parsed.music
+                self[:] = parsed[:]
         else:
             raise TypeError('can not initialize container from "%s".' % str(music))
 
@@ -429,7 +429,8 @@ class Container(Component):
         elif user_input.startswith('rtm:'):
             parsed = rhythmtreetools.parse_rtm_syntax(user_input.partition('rtm:')[-1])
         else:
-            user_input = '{ %s }' % user_input
+            if not user_input.startswith('<<') and not user_input.endswith('>>'):
+                user_input = '{ %s }' % user_input
             parsed = LilyPondParser()(user_input)
             assert isinstance(parsed, Container)
         return parsed
