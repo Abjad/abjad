@@ -30,7 +30,7 @@ def get_most_distant_sequential_container_in_improper_parentage_of_component(com
     ::
 
         abjad> note = t.leaves[1]
-        abjad> note._parentage.governor is t[0][0]
+        abjad> componenttools.get_most_distant_sequential_container_in_improper_parentage_of_component(note) is t[0][0]
         True
 
     Return none when no such container exists in the improper parentage of `component`.

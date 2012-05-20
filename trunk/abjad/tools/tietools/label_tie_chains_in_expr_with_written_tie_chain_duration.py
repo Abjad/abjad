@@ -9,9 +9,17 @@ def label_tie_chains_in_expr_with_written_tie_chain_duration(expr, markup_direct
         abjad> f(staff)
         \new Staff {
             \times 2/3 {
-                c'8 _ \markup { \small 1/4 } ~
+                c'8 ~
+                    _ \markup {
+                        \small
+                            1/4
+                        }
                 c'8
-                c'8 _ \markup { \small 1/4 } ~
+                c'8 ~
+                    _ \markup {
+                        \small
+                            1/4
+                        }
             }
             c'8
         }

@@ -11,7 +11,7 @@ def make_blank_line_markup():
     ::
 
         abjad> markup
-        Markup('\\fill-line { " " }')
+        Markup(('\\fill-line { " " }',))
 
     ::
 

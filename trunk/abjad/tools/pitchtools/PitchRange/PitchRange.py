@@ -325,7 +325,7 @@ class PitchRange(AbjadObject):
 
             abjad> pitch_range = pitchtools.PitchRange(-12, 36, pitch_range_name_markup=Markup('four-octave range'))
             abjad> pitch_range.pitch_range_name_markup
-            Markup('four-octave range')
+            Markup(('four-octave range',))
 
         Default to `pitch_range_name` when `pitch_range_name_markup` not set explicitly.
 

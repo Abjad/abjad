@@ -12,7 +12,7 @@ class MarkupInventory(ObjectInventory):
     ::
 
         abjad> inventory
-        MarkupInventory([Markup('foo'), Markup('bar')])
+        MarkupInventory([Markup(('foo',)), Markup(('bar',))])
 
     Markup inventories implement the list interface and are mutable.
     '''

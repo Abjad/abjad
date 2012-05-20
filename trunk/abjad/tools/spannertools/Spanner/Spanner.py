@@ -52,7 +52,7 @@ class Spanner(AbjadObject):
 
             abjad> beam = beamtools.BeamSpanner()
             abjad> beam(staff[:])
-            Staff{4}
+            BeamSpanner(c'8, d'8, e'8, f'8)
 
         ::
 
@@ -68,7 +68,8 @@ class Spanner(AbjadObject):
 
         Return spanner.
         '''
-        return self.extend(expr)
+        self.extend(expr)
+        return self
 
     def __contains__(self, expr):
         for x in self._components:

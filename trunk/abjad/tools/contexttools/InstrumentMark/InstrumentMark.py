@@ -179,13 +179,13 @@ class InstrumentMark(ContextMark):
 
                 abjad> instrument = contexttools.InstrumentMark('Flute', 'Fl.')
                 abjad> instrument.instrument_name_markup
-                Markup('Flute')
+                Markup(('Flute',))
 
             Set instrument name::
 
                 abjad> instrument.instrument_name_markup = 'Alto Flute'
                 abjad> instrument.instrument_name_markup
-                Markup('Alto Flute')
+                Markup(('Alto Flute',))
 
             Return markup.
             '''
@@ -236,13 +236,13 @@ class InstrumentMark(ContextMark):
 
                 abjad> instrument = contexttools.InstrumentMark('Flute', 'Fl.')
                 abjad> instrument.short_instrument_name_markup
-                Markup('Fl.')
+                Markup(('Fl.',))
 
             Set short instrument name::
 
                 abjad> instrument.short_instrument_name_markup = 'Alto Fl.'
                 abjad> instrument.short_instrument_name_markup
-                Markup('Alto Fl.')
+                Markup(('Alto Fl.',))
 
             Return markup.
             '''

@@ -53,7 +53,7 @@ class InheritanceGraph(ImmutableDictionary):
     ::
 
         abjad> graph = InheritanceGraph(A, B, C, D, E, F, root_class=B)
-        abjad> for parent, children in sorted(graph.items()):
+        abjad> for parent, children in sorted(graph.items()): # doctest: +SKIP
         ...     parent, tuple(sorted(children))
         (<class '__main__.B'>, (<class '__main__.C'>, <class '__main__.D'>))
         (<class '__main__.C'>, (<class '__main__.E'>,))

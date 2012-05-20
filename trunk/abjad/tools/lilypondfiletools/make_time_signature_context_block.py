@@ -14,9 +14,9 @@ def make_time_signature_context_block(font_size=3, padding=4):
         abjad> f(context_block)
         \context {
             \type Engraver_group
+            \name TimeSignatureContext
             \consists Axis_group_engraver
             \consists Time_signature_engraver
-            \name TimeSignatureContext
             \override TimeSignature #'X-offset = #ly:self-alignment-interface::x-aligned-on-self
             \override TimeSignature #'Y-extent = #'(0 . 0)
             \override TimeSignature #'break-align-symbol = ##f

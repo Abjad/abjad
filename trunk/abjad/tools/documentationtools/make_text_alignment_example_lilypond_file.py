@@ -3,7 +3,7 @@ def make_text_alignment_example_lilypond_file(music=None):
 
     Make text-alignment example LilyPond file with `music`.
 
-        abjad> from abjad.tools import docuemntationtools
+        abjad> from abjad.tools import documentationtools
 
     ::
 
