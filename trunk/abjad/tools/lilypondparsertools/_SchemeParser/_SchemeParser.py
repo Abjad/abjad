@@ -209,8 +209,7 @@ class _SchemeParser(object):
     ### YACC SETUP ###
 
     precedence = (
-        #('nonassoc', 'HASH'),
-        ('left', 'L_PAREN'),
+        ('left', 'INTEGER'),
     )
 
     start = 'program'
@@ -240,6 +239,8 @@ class _SchemeParser(object):
     def p_form__expression(self, p):
         '''form : expression'''
         p[0] = p[1]
+        self.result = p[1]
+        raise Exception
 
     ### definition ###
 
@@ -296,30 +297,33 @@ class _SchemeParser(object):
         '''expression : "'" datum'''
         datum = p[2]
         if isinstance(datum, schemetools.Scheme):
-            datum._quoting = "'" + datum._quoting
+            if datum._quoting:
+                datum._quoting = "'" + datum._quoting
+            else:
+                datum._quoting = "'"
             p[0] = datum
         else:
             p[0] = schemetools.Scheme(datum, quoting="'")
 
-    #def p_expression__constant(self, p):
-    #    '''expression : constant'''
-    #    p[0] = p[1]
+    def p_expression__constant(self, p):
+        '''expression : constant'''
+        p[0] = p[1]
 
     ### constant ###
 
     '''<constant> : <boolean> | <number> | <character> | <string>'''
 
-    #def p_constant__boolean(self, p):
-    #    '''constant : boolean'''
-    #    p[0] = p[1] 
+    def p_constant__boolean(self, p):
+        '''constant : boolean'''
+        p[0] = p[1] 
 
-    #def p_constant__number(self, p):
-    #    '''constant : number'''
-    #    p[0] = p[1] 
+    def p_constant__number(self, p):
+        '''constant : number'''
+        p[0] = p[1] 
 
-    #def p_constant__string(self, p):
-    #    '''constant : string'''
-    #    p[0] = p[1] 
+    def p_constant__string(self, p):
+        '''constant : string'''
+        p[0] = p[1] 
 
     ### formals ###
 
@@ -353,17 +357,21 @@ class _SchemeParser(object):
 
     '''<datum> : <boolean> | <number> | <character> | <string> | <symbol> | <list> | <vector>'''
 
-    def p_datum__boolean(self, p):
-        '''datum : boolean'''
+    def p_datum__constant(self, p):
+        '''datum : constant'''
         p[0] = p[1]
 
-    def p_datum__number(self, p):
-        '''datum : number'''
-        p[0] = p[1]
+    #def p_datum__boolean(self, p):
+    #    '''datum : boolean'''
+    #    p[0] = p[1]
 
-    def p_datum__string(self, p):
-        '''datum : string'''
-        p[0] = p[1]
+    #def p_datum__number(self, p):
+    #    '''datum : number'''
+    #    p[0] = p[1]
+
+    #def p_datum__string(self, p):
+    #    '''datum : string'''
+    #    p[0] = p[1]
 
     def p_datum__list(self, p):
         '''datum : list'''
@@ -438,8 +446,12 @@ class _SchemeParser(object):
         p[0] = p[2]
 
     def p_list__L_PAREN__data__PERIOD__datum(self, p):
-        '''list : L_PAREN datum data "." datum R_PAREN'''
-        p[0] = [p[2]] + p[3] + [p[5]]
+        '''list : L_PAREN data datum "." datum R_PAREN'''
+        result = p[2] + [p[3]] + [p[5]]
+        if len(result) == 2:
+            p[0] = schemetools.SchemePair(*result)
+        else:
+            p[0] = schemetools.Scheme(*result)
 
     ### abbreviation ###
 
