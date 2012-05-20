@@ -1,6 +1,5 @@
 from abjad import *
-import py.test
-py.test.skip('modernize all of these and port to leaftools.get_nth_leaf_in_thread_from_leaf().')
+import py
 
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_01():
@@ -8,15 +7,16 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_01():
     '''
 
     t = Voice([Note(i, (1,8)) for i in range(4)])
-    assert t[0]._navigator._next_bead is t[1]
-    assert t[1]._navigator._next_bead is t[2]
-    assert t[2]._navigator._next_bead is t[3]
-    assert t[3]._navigator._next_bead is None
 
-    assert t[0]._navigator._prev_bead is None
-    assert t[1]._navigator._prev_bead is t[0]
-    assert t[2]._navigator._prev_bead is t[1]
-    assert t[3]._navigator._prev_bead is t[2]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[0], 1) is t[1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[1], 1) is t[2]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[2], 1) is t[3]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[3], 1) is None
+
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[0], -1) is None
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[1], -1) is t[0]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[2], -1) is t[1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[3], -1) is t[2]
 
     r'''
     \new Voice {
@@ -33,15 +33,16 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_02():
     '''
 
     t = Staff([Note(i, (1,8)) for i in range(4)])
-    assert t[0]._navigator._next_bead is t[1]
-    assert t[1]._navigator._next_bead is t[2]
-    assert t[2]._navigator._next_bead is t[3]
-    assert t[3]._navigator._next_bead is None
 
-    assert t[0]._navigator._prev_bead is None
-    assert t[1]._navigator._prev_bead is t[0]
-    assert t[2]._navigator._prev_bead is t[1]
-    assert t[3]._navigator._prev_bead is t[2]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[0], 1) is t[1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[1], 1) is t[2]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[2], 1) is t[3]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[3], 1) is None
+
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[0], -1) is None
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[1], -1) is t[0]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[2], -1) is t[1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[3], -1) is t[2]
 
     r'''
     \new Staff {
@@ -58,15 +59,6 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_03():
     '''
 
     t = Container([Note(i, (1,8)) for i in range(4)])
-    assert t[0]._navigator._next_bead is t[1]
-    assert t[1]._navigator._next_bead is t[2]
-    assert t[2]._navigator._next_bead is t[3]
-    assert t[3]._navigator._next_bead is None
-
-    assert t[0]._navigator._prev_bead is None
-    assert t[1]._navigator._prev_bead is t[0]
-    assert t[2]._navigator._prev_bead is t[1]
-    assert t[3]._navigator._prev_bead is t[2]
 
     r'''
     {
@@ -77,19 +69,22 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_03():
     }
     '''
 
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[0], 1) is t[1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[1], 1) is t[2]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[2], 1) is t[3]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[3], 1) is None
+
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[0], -1) is None
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[1], -1) is t[0]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[2], -1) is t[1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[3], -1) is t[2]
+
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_04():
     '''Fixed-duration tuplet.
     '''
 
     t = tuplettools.FixedDurationTuplet(Duration(2,8), [Note(i, (1,8)) for i in range(3)])
-    assert t[0]._navigator._next_bead is t[1]
-    assert t[1]._navigator._next_bead is t[2]
-    assert t[2]._navigator._next_bead is None
-
-    assert t[0]._navigator._prev_bead is None
-    assert t[1]._navigator._prev_bead is t[0]
-    assert t[2]._navigator._prev_bead is t[1]
 
     r'''
     \times 2/3 {
@@ -99,8 +94,14 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_04():
     }
     '''
 
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[0], 1) is t[1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[1], 1) is t[2]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[2], 1) is None
 
-# LEVEL 1 NESTING #
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[0], -1) is None
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[1], -1) is t[0]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[2], -1) is t[1]
+
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_05():
     '''Contiguous containers inside a voice.
@@ -109,15 +110,6 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_05():
     s1 = Container([Note(i, (1,8)) for i in range(4)])
     s2 = Container([Note(i, (1,8)) for i in range(4,8)])
     t = Voice([s1, s2])
-    assert s1[0]._navigator._next_bead is s1[1]
-    assert s1[1]._navigator._next_bead is s1[2]
-    assert s1[2]._navigator._next_bead is s1[3]
-    assert s1[3]._navigator._next_bead is s2[0]
-
-    assert s1[1]._navigator._prev_bead is s1[0]
-    assert s1[2]._navigator._prev_bead is s1[1]
-    assert s1[3]._navigator._prev_bead is s1[2]
-    assert s2[0]._navigator._prev_bead is s1[3]
 
     r'''
     \new Voice {
@@ -136,6 +128,16 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_05():
     }
     '''
 
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(s1[0], 1) is s1[1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(s1[1], 1) is s1[2]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(s1[2], 1) is s1[3]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(s1[3], 1) is s2[0]
+
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(s1[1], -1) is s1[0]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(s1[2], -1) is s1[1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(s1[3], -1) is s1[2]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(s2[0], -1) is s1[3]
+
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_06():
     '''Tuplets inside a voice.
@@ -144,13 +146,6 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_06():
     t1 = tuplettools.FixedDurationTuplet(Duration(2,8), [Note(i, (1,8)) for i in range(3)])
     t2 = tuplettools.FixedDurationTuplet(Duration(2,8), [Note(i, (1,8)) for i in range(3,6)])
     t = Voice([t1, t2])
-    assert t1[0]._navigator._next_bead is t1[1]
-    assert t1[1]._navigator._next_bead is t1[2]
-    assert t1[2]._navigator._next_bead is t2[0]
-
-    assert t1[1]._navigator._prev_bead is t1[0]
-    assert t1[2]._navigator._prev_bead is t1[1]
-    assert t2[0]._navigator._prev_bead is t1[2]
 
     r'''
     \new Voice {
@@ -167,6 +162,14 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_06():
     }
     '''
 
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(t1[0], 1) is t1[1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(t1[1], 1) is t1[2]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(t1[2], 1) is t2[0]
+
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(t1[1], -1) is t1[0]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(t1[2], -1) is t1[1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(t2[0], -1) is t1[2]
+
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_07():
     '''Does not continue across contiguous anonymous voices inside a staff.
@@ -175,8 +178,6 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_07():
     v1 = Voice([Note(i, (1,8)) for i in range(4)])
     v2 = Voice([Note(i, (1,8)) for i in range(4,8)])
     t = Staff([v1, v2])
-    assert v1[3]._navigator._next_bead is None
-    assert v2[0]._navigator._prev_bead is None
 
     r'''
     \new Staff {
@@ -194,6 +195,9 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_07():
         }
     }
     '''
+
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(v1[3], 1) is None
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(v2[0], -1) is None
 
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_08():
@@ -205,15 +209,6 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_08():
     v2 = Voice([Note(i, (1,8)) for i in range(4,8)])
     v2.name = 'myvoice'
     t = Staff([v1, v2])
-    assert v1[0]._navigator._next_bead is v1[1]
-    assert v1[1]._navigator._next_bead is v1[2]
-    assert v1[2]._navigator._next_bead is v1[3]
-    assert v1[3]._navigator._next_bead is v2[0]
-
-    assert v1[1]._navigator._prev_bead is v1[0]
-    assert v1[2]._navigator._prev_bead is v1[1]
-    assert v1[3]._navigator._prev_bead is v1[2]
-    assert v2[0]._navigator._prev_bead is v1[3]
 
     r'''
     \new Staff {
@@ -232,6 +227,16 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_08():
     }
     '''
 
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(v1[0], 1) is v1[1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(v1[1], 1) is v1[2]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(v1[2], 1) is v1[3]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(v1[3], 1) is v2[0]
+
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(v1[1], -1) is v1[0]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(v1[2], -1) is v1[1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(v1[3], -1) is v1[2]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(v2[0], -1) is v1[3]
+
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_09():
     '''Does not connect through contiguous unequally named voices.
@@ -242,17 +247,6 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_09():
     v2 = Voice([Note(i, (1,8)) for i in range(4,8)])
     v2.name = 'myvoice'
     t = Staff([v1, v2])
-    assert v1[0]._navigator._next_bead is v1[1]
-    assert v1[1]._navigator._next_bead is v1[2]
-    assert v1[2]._navigator._next_bead is v1[3]
-    assert v1[3]._navigator._next_bead is None
-    v2.name = None
-    assert v1[3]._navigator._next_bead is None
-
-    assert v2[1]._navigator._prev_bead is v2[0]
-    assert v2[2]._navigator._prev_bead is v2[1]
-    assert v2[3]._navigator._prev_bead is v2[2]
-    assert v2[0]._navigator._prev_bead is None
 
     r'''
     \new Staff {
@@ -271,6 +265,19 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_09():
     }
     '''
 
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(v1[0], 1) is v1[1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(v1[1], 1) is v1[2]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(v1[2], 1) is v1[3]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(v1[3], 1) is None
+
+    v2.name = None
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(v1[3], 1) is None
+
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(v2[1], -1) is v2[0]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(v2[2], -1) is v2[1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(v2[3], -1) is v2[2]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(v2[0], -1) is None
+
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_10():
     '''Does not connect through unequally named staves.
@@ -287,9 +294,6 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_10():
     s2.name = 'mystaff'
 
     seq = Container([s1, s2])
-
-    assert not v1[3]._navigator._next_bead is v2[0]
-    assert not v2[0]._navigator._prev_bead is v1[3]
 
     r'''
     {
@@ -312,7 +316,11 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_10():
     }
     '''
 
+    assert not leaftools.get_nth_leaf_in_thread_from_leaf(v1[3], 1) is v2[0]
+    assert not leaftools.get_nth_leaf_in_thread_from_leaf(v2[0], -1) is v1[3]
 
+
+py.test.skip('modernize from here to end of file.')
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_11():
     '''Does not connect through equally named staves.
     '''
@@ -334,12 +342,6 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_11():
     s2.is_parallel = True
 
     seq = Container([s1, s2])
-
-    assert not vl1[3]._navigator._next_bead is vl2[0]
-    assert not vh1[3]._navigator._next_bead is vh2[0]
-
-    assert not vl2[0]._navigator._prev_bead is vl1[3]
-    assert not vh2[0]._navigator._prev_bead is vh1[3]
 
     r'''
     {
@@ -374,6 +376,11 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_11():
     }
     '''
 
+    assert not vl1[3]._navigator._next_bead is vl2[0]
+    assert not vh1[3]._navigator._next_bead is vh2[0]
+
+    assert not vl2[0]._navigator._prev_bead is vl1[3]
+    assert not vh2[0]._navigator._prev_bead is vh1[3]
 
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_12():
@@ -385,15 +392,6 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_12():
     s2 = Container([Note(i, (1,8)) for i in range(4,8)])
     s2 = Container([s2])
     t = Voice([s1, s2])
-    assert s1[0][0]._navigator._next_bead is s1[0][1]
-    assert s1[0][1]._navigator._next_bead is s1[0][2]
-    assert s1[0][2]._navigator._next_bead is s1[0][3]
-    assert s1[0][3]._navigator._next_bead is s2[0][0]
-
-    assert s2[0][1]._navigator._prev_bead is s2[0][0]
-    assert s2[0][2]._navigator._prev_bead is s2[0][1]
-    assert s2[0][3]._navigator._prev_bead is s2[0][2]
-    assert s2[0][0]._navigator._prev_bead is s1[0][3]
 
     r'''
     \new Voice {
@@ -415,6 +413,16 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_12():
         }
     }
     '''
+
+    assert s1[0][0]._navigator._next_bead is s1[0][1]
+    assert s1[0][1]._navigator._next_bead is s1[0][2]
+    assert s1[0][2]._navigator._next_bead is s1[0][3]
+    assert s1[0][3]._navigator._next_bead is s2[0][0]
+
+    assert s2[0][1]._navigator._prev_bead is s2[0][0]
+    assert s2[0][2]._navigator._prev_bead is s2[0][1]
+    assert s2[0][3]._navigator._prev_bead is s2[0][2]
+    assert s2[0][0]._navigator._prev_bead is s1[0][3]
 
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_13():
@@ -426,15 +434,6 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_13():
     s2 = Container([s2])
     s2 = Container([s2])
     t = Voice([s1, s2])
-    assert s1[0]._navigator._next_bead is s1[1]
-    assert s1[1]._navigator._next_bead is s1[2]
-    assert s1[2]._navigator._next_bead is s1[3]
-    assert s1[3]._navigator._next_bead is s2[0][0][0]
-
-    assert s2[0][0][1]._navigator._prev_bead is s2[0][0][0]
-    assert s2[0][0][2]._navigator._prev_bead is s2[0][0][1]
-    assert s2[0][0][3]._navigator._prev_bead is s2[0][0][2]
-    assert s2[0][0][0]._navigator._prev_bead is s1[3]
 
     r'''
     \new Voice {
@@ -457,6 +456,16 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_13():
     }
     '''
 
+    assert s1[0]._navigator._next_bead is s1[1]
+    assert s1[1]._navigator._next_bead is s1[2]
+    assert s1[2]._navigator._next_bead is s1[3]
+    assert s1[3]._navigator._next_bead is s2[0][0][0]
+
+    assert s2[0][0][1]._navigator._prev_bead is s2[0][0][0]
+    assert s2[0][0][2]._navigator._prev_bead is s2[0][0][1]
+    assert s2[0][0][3]._navigator._prev_bead is s2[0][0][2]
+    assert s2[0][0][0]._navigator._prev_bead is s1[3]
+
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_14():
     '''Tautological parentage asymmetries result in symmetric (balanced) threaded parentage.
@@ -467,15 +476,6 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_14():
     s1 = Container([s1])
     s2 = Container([Note(i, (1,8)) for i in range(4,8)])
     t = Voice([s1, s2])
-    assert s1[0][0][0]._navigator._next_bead is s1[0][0][1]
-    assert s1[0][0][1]._navigator._next_bead is s1[0][0][2]
-    assert s1[0][0][2]._navigator._next_bead is s1[0][0][3]
-    assert s1[0][0][3]._navigator._next_bead is s2[0]
-
-    assert s2[0]._navigator._prev_bead is s1[0][0][3]
-    assert s2[1]._navigator._prev_bead is s2[0]
-    assert s2[2]._navigator._prev_bead is s2[1]
-    assert s2[3]._navigator._prev_bead is s2[2]
 
     r'''
     \new Voice {
@@ -498,6 +498,16 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_14():
     }
     '''
 
+    assert s1[0][0][0]._navigator._next_bead is s1[0][0][1]
+    assert s1[0][0][1]._navigator._next_bead is s1[0][0][2]
+    assert s1[0][0][2]._navigator._next_bead is s1[0][0][3]
+    assert s1[0][0][3]._navigator._next_bead is s2[0]
+
+    assert s2[0]._navigator._prev_bead is s1[0][0][3]
+    assert s2[1]._navigator._prev_bead is s2[0]
+    assert s2[2]._navigator._prev_bead is s2[1]
+    assert s2[3]._navigator._prev_bead is s2[2]
+
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_15():
     '''Does connect in sequence of alternating containers and notes.
@@ -506,11 +516,6 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_15():
     s1 = Container([Note(i, (1,8)) for i in range(2)])
     s2 = Container([Note(i, (1,8)) for i in range(3,5)])
     v = Voice([s1, Note(2, (1,8)), s2])
-    assert s1[1]._navigator._next_bead is v[1]
-    assert v[1]._navigator._next_bead is s2[0]
-
-    assert v[1]._navigator._prev_bead is s1[1]
-    assert s2[0]._navigator._prev_bead is v[1]
 
     r'''
     \new Voice {
@@ -526,6 +531,12 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_15():
     }
     '''
 
+    assert s1[1]._navigator._next_bead is v[1]
+    assert v[1]._navigator._next_bead is s2[0]
+
+    assert v[1]._navigator._prev_bead is s1[1]
+    assert s2[0]._navigator._prev_bead is v[1]
+
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_16():
     '''Does connect in sequence of alternating tuplets and notes.
@@ -534,11 +545,6 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_16():
     t1 = tuplettools.FixedDurationTuplet(Duration(1,4), [Note(i, (1,8)) for i in range(3)])
     t2 = tuplettools.FixedDurationTuplet(Duration(1,4), [Note(i, (1,8)) for i in range(4,7)])
     v = Voice([t1, Note(3, (1,8)), t2])
-    assert t1[-1]._navigator._next_bead is v[1]
-    assert v[1]._navigator._next_bead is t2[0]
-
-    assert v[1]._navigator._prev_bead is t1[-1]
-    assert t2[0]._navigator._prev_bead is v[1]
 
     r'''
     \new Voice {
@@ -556,6 +562,12 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_16():
     }
     '''
 
+    assert t1[-1]._navigator._next_bead is v[1]
+    assert v[1]._navigator._next_bead is t2[0]
+
+    assert v[1]._navigator._prev_bead is t1[-1]
+    assert t2[0]._navigator._prev_bead is v[1]
+
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_17():
     '''Does connect through asymmetrically nested tuplets.
@@ -563,10 +575,6 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_17():
 
     tinner = tuplettools.FixedDurationTuplet(Duration(1, 4), Note(0, (1, 8)) * 3)
     t = tuplettools.FixedDurationTuplet(Duration(2, 4), [Note("c'4"), tinner, Note("c'4")])
-    assert t[0]._navigator._next_bead is tinner[0]
-    assert tinner[-1]._navigator._next_bead is t[-1]
-    assert t[-1]._navigator._prev_bead is tinner[-1]
-    assert tinner[0]._navigator._prev_bead is t[0]
 
     r'''
     \times 2/3 {
@@ -580,6 +588,11 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_17():
     }
     '''
 
+    assert t[0]._navigator._next_bead is tinner[0]
+    assert tinner[-1]._navigator._next_bead is t[-1]
+    assert t[-1]._navigator._prev_bead is tinner[-1]
+    assert tinner[0]._navigator._prev_bead is t[0]
+
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_18():
     '''Return none in asymmetric thread parentage structures.
@@ -589,11 +602,6 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_18():
     n = Note(3, (1,8))
     v2 = Voice([Note(i , (1,8)) for i in range(4,8)])
     t = Staff([v1, n, v2])
-    assert v1[-1]._navigator._next_bead is None
-    assert n._navigator._next_bead is None
-
-    assert v2[0]._navigator._prev_bead is None
-    assert n._navigator._prev_bead is None
 
     r'''
     \new Staff {
@@ -611,6 +619,12 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_18():
         }
     }
     '''
+
+    assert v1[-1]._navigator._next_bead is None
+    assert n._navigator._next_bead is None
+
+    assert v2[0]._navigator._prev_bead is None
+    assert n._navigator._prev_bead is None
 
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_19():
@@ -625,15 +639,6 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_19():
     v3.name = 'myvoice'
     t = Staff([v1, v2, v3])
 
-    assert v1[-1]._navigator._next_bead is None
-    assert v2[-1]._navigator._next_bead is None
-    v2.name = None
-    assert v1[-1]._navigator._next_bead is None
-    assert v2[-1]._navigator._next_bead is None
-
-    assert v3[0]._navigator._prev_bead is None
-    assert v2[0]._navigator._prev_bead is None
-
     r'''
     \new Staff {
         \context Voice = "myvoice" {
@@ -656,6 +661,15 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_19():
     }
     '''
 
+    assert v1[-1]._navigator._next_bead is None
+    assert v2[-1]._navigator._next_bead is None
+    v2.name = None
+    assert v1[-1]._navigator._next_bead is None
+    assert v2[-1]._navigator._next_bead is None
+
+    assert v3[0]._navigator._prev_bead is None
+    assert v2[0]._navigator._prev_bead is None
+
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_20():
     '''Does not connect through nested anonymous voices.
@@ -663,13 +677,6 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_20():
 
     vin = Voice([Note(i, (1,8)) for i in range(3)])
     vout = Voice([vin, Note(3, (1,8))])
-    assert vin[0]._navigator._next_bead is vin[1]
-    assert vin[1]._navigator._next_bead is vin[2]
-    assert vin[2]._navigator._next_bead is None
-
-    assert vin[1]._navigator._prev_bead is vin[0]
-    assert vin[2]._navigator._prev_bead is vin[1]
-    assert vout[1]._navigator._prev_bead is None
 
     r'''
     \new Voice {
@@ -682,6 +689,14 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_20():
     }
     '''
 
+    assert vin[0]._navigator._next_bead is vin[1]
+    assert vin[1]._navigator._next_bead is vin[2]
+    assert vin[2]._navigator._next_bead is None
+
+    assert vin[1]._navigator._prev_bead is vin[0]
+    assert vin[2]._navigator._prev_bead is vin[1]
+    assert vout[1]._navigator._prev_bead is None
+
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_21():
     '''Does not connec through nested anonymous voices.
@@ -689,13 +704,6 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_21():
 
     vin = Voice([Note(i, (1,8)) for i in range(1,4)])
     vout = Voice([Note(0, (1,8)), vin])
-    assert vin[0]._navigator._next_bead is vin[1]
-    assert vin[1]._navigator._next_bead is vin[2]
-    assert vout[0]._navigator._next_bead is None
-
-    assert vin[1]._navigator._prev_bead is vin[0]
-    assert vin[2]._navigator._prev_bead is vin[1]
-    assert vin[0]._navigator._prev_bead is None
 
     r'''
     \new Voice {
@@ -707,6 +715,14 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_21():
         }
     }
     '''
+
+    assert vin[0]._navigator._next_bead is vin[1]
+    assert vin[1]._navigator._next_bead is vin[2]
+    assert vout[0]._navigator._next_bead is None
+
+    assert vin[1]._navigator._prev_bead is vin[0]
+    assert vin[2]._navigator._prev_bead is vin[1]
+    assert vin[0]._navigator._prev_bead is None
 
 
 
@@ -718,13 +734,6 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_22():
     vin.name = 'myvoice'
     vout = Voice([vin, Note(3, (1,8))])
     vout.name = 'myvoice'
-    assert vin[0]._navigator._next_bead is vin[1]
-    assert vin[1]._navigator._next_bead is vin[2]
-    assert vin[2]._navigator._next_bead is vout[1]
-
-    assert vin[1]._navigator._prev_bead is vin[0]
-    assert vin[2]._navigator._prev_bead is vin[1]
-    assert vout[1]._navigator._prev_bead is vin[-1]
 
     r'''
     \context Voice = "myvoice" {
@@ -736,6 +745,14 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_22():
         ef'8
     }
     '''
+
+    assert vin[0]._navigator._next_bead is vin[1]
+    assert vin[1]._navigator._next_bead is vin[2]
+    assert vin[2]._navigator._next_bead is vout[1]
+
+    assert vin[1]._navigator._prev_bead is vin[0]
+    assert vin[2]._navigator._prev_bead is vin[1]
+    assert vout[1]._navigator._prev_bead is vin[-1]
 
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_23():
@@ -746,13 +763,6 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_23():
     vin.name = 'myvoice'
     vout = Voice([Note(0, (1,8)), vin])
     vout.name = 'myvoice'
-    assert vin[0]._navigator._next_bead is vin[1]
-    assert vin[1]._navigator._next_bead is vin[2]
-    assert vout[0]._navigator._next_bead is vin[0]
-
-    assert vin[1]._navigator._prev_bead is vin[0]
-    assert vin[2]._navigator._prev_bead is vin[1]
-    assert vin[0]._navigator._prev_bead is vout[0]
 
     r'''
     \context Voice = "myvoice" {
@@ -765,6 +775,14 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_23():
     }
     '''
 
+    assert vin[0]._navigator._next_bead is vin[1]
+    assert vin[1]._navigator._next_bead is vin[2]
+    assert vout[0]._navigator._next_bead is vin[0]
+
+    assert vin[1]._navigator._prev_bead is vin[0]
+    assert vin[2]._navigator._prev_bead is vin[1]
+    assert vin[0]._navigator._prev_bead is vout[0]
+
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_24():
     '''Return none on nested *differently* named voices.
@@ -774,13 +792,6 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_24():
     vin.name = 'yourvoice'
     vout = Voice([vin, Note(3, (1,8))])
     vout.name = 'myvoice'
-    assert vin[0]._navigator._next_bead is vin[1]
-    assert vin[1]._navigator._next_bead is vin[2]
-    assert vin[2]._navigator._next_bead is None
-
-    assert vin[1]._navigator._prev_bead is vin[0]
-    assert vin[2]._navigator._prev_bead is vin[1]
-    assert vout[1]._navigator._prev_bead is None
 
     r'''
     \context Voice = "myvoice" {
@@ -793,6 +804,14 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_24():
     }
     '''
 
+    assert vin[0]._navigator._next_bead is vin[1]
+    assert vin[1]._navigator._next_bead is vin[2]
+    assert vin[2]._navigator._next_bead is None
+
+    assert vin[1]._navigator._prev_bead is vin[0]
+    assert vin[2]._navigator._prev_bead is vin[1]
+    assert vout[1]._navigator._prev_bead is None
+
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_25():
     '''Return none on nested *differently* named Voices.
@@ -802,13 +821,6 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_25():
     vin.name = 'yourvoice'
     vout = Voice([Note(0, (1,8)), vin])
     vout.name = 'myvoice'
-    assert vin[0]._navigator._next_bead is vin[1]
-    assert vin[1]._navigator._next_bead is vin[2]
-    assert vout[0]._navigator._next_bead is None
-
-    assert vin[1]._navigator._prev_bead is vin[0]
-    assert vin[2]._navigator._prev_bead is vin[1]
-    assert vout[1]._navigator._prev_bead is None
 
     r'''
     \context Voice = "myvoice" {
@@ -820,3 +832,11 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_25():
         }
     }
     '''
+
+    assert vin[0]._navigator._next_bead is vin[1]
+    assert vin[1]._navigator._next_bead is vin[2]
+    assert vout[0]._navigator._next_bead is None
+
+    assert vin[1]._navigator._prev_bead is vin[0]
+    assert vin[2]._navigator._prev_bead is vin[1]
+    assert vout[1]._navigator._prev_bead is None
