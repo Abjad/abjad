@@ -500,7 +500,10 @@ class _LilyPondLexicalDefinition(object):
         r'\"'
         t.lexer.pop_state( )
         t.type = 'STRING'
-        t.value = self.string_accumulator
+        if self.string_accumulator.find(' ') == -1:
+            t.value = self.string_accumulator
+        else:
+            t.value = '"{}"'.format(self.string_accumulator)
         return t
 
     # lexer.ll:456
