@@ -26,4 +26,4 @@ def get_component_stop_offset_in_seconds(component):
     Return positive fraction.
     '''
 
-    return component.stop_in_seconds
+    return component.stop_offset_in_seconds

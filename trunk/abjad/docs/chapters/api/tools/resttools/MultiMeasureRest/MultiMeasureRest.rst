@@ -57,7 +57,7 @@ Read-only Properties
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
-.. autoattribute:: abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.start_in_seconds
+.. autoattribute:: abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.start_offset_in_seconds
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
@@ -65,7 +65,7 @@ Read-only Properties
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
-.. autoattribute:: abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.stop_in_seconds
+.. autoattribute:: abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.stop_offset_in_seconds
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 

@@ -71,7 +71,7 @@ Read-only Properties
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
-.. autoattribute:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.start_in_seconds
+.. autoattribute:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.start_offset_in_seconds
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
@@ -79,7 +79,7 @@ Read-only Properties
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
-.. autoattribute:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.stop_in_seconds
+.. autoattribute:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.stop_offset_in_seconds
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 

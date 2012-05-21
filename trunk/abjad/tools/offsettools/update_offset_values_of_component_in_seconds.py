@@ -11,12 +11,12 @@ def update_offset_values_of_component_in_seconds(component):
         cur_duration_in_seconds = component.duration_in_seconds
         prev = componenttools.get_nth_component_in_time_order_from_component(component, -1)
         if prev is not None:
-            component._start_in_seconds = prev.stop_in_seconds
+            component._start_offset_in_seconds = prev.stop_offset_in_seconds
         else:
-            component._start_in_seconds = durationtools.Offset(0)
+            component._start_offset_in_seconds = durationtools.Offset(0)
         # this one case is possible for containers only
-        if component._start_in_seconds is None:
+        if component._start_offset_in_seconds is None:
             raise MissingTempoError
-        component._stop_in_seconds = component._start_in_seconds + cur_duration_in_seconds
+        component._stop_offset_in_seconds = component._start_offset_in_seconds + cur_duration_in_seconds
     except MissingTempoError:
         pass

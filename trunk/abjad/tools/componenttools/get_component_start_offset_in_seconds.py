@@ -26,4 +26,4 @@ def get_component_start_offset_in_seconds(component):
     Return nonnegative fraction.
     '''
 
-    return component.start_in_seconds
+    return component.start_offset_in_seconds

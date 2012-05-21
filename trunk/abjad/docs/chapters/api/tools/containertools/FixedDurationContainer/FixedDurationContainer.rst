@@ -67,7 +67,7 @@ Read-only Properties
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
-.. autoattribute:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.start_in_seconds
+.. autoattribute:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.start_offset_in_seconds
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
@@ -75,7 +75,7 @@ Read-only Properties
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
-.. autoattribute:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.stop_in_seconds
+.. autoattribute:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.stop_offset_in_seconds
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 

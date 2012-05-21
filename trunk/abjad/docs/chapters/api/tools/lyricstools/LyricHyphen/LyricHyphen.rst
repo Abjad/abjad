@@ -57,7 +57,7 @@ Read-only Properties
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
-.. autoattribute:: abjad.tools.lyricstools.LyricHyphen.LyricHyphen.LyricHyphen.start_in_seconds
+.. autoattribute:: abjad.tools.lyricstools.LyricHyphen.LyricHyphen.LyricHyphen.start_offset_in_seconds
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
@@ -65,7 +65,7 @@ Read-only Properties
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
-.. autoattribute:: abjad.tools.lyricstools.LyricHyphen.LyricHyphen.LyricHyphen.stop_in_seconds
+.. autoattribute:: abjad.tools.lyricstools.LyricHyphen.LyricHyphen.LyricHyphen.stop_offset_in_seconds
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
