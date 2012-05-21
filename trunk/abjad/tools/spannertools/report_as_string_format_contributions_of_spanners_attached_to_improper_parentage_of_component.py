@@ -45,7 +45,7 @@ def report_as_string_format_contributions_of_spanners_attached_to_improper_paren
     for spanner in spanners:
         result += '%s\n' % spanner._class_name
         for location in locations:
-            contributions = getattr(spanner._format, location)(component)
+            contributions = eval('spanner.{}(component)'.format(location))
             if contributions:
                 result += '\t%s\n' % location
                 for contribution in contributions:

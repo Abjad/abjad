@@ -1,6 +1,4 @@
 from abjad import *
-import py
-py.test.skip('unskip after spanner format logic migration.')
 
 
 def test_spannertools_report_as_string_format_contributions_of_spanners_attached_to_improper_parentage_of_component_01():
@@ -19,4 +17,16 @@ def test_spannertools_report_as_string_format_contributions_of_spanners_attached
     }
     '''
 
-    assert spannertools.report_as_string_format_contributions_of_spanners_attached_to_improper_parentage_of_component(staff[0]) == 'BeamSpanner\n\t_right\n\t\t[\nSlurSpanner\n\t_right\n\t\t(\nTrillSpanner\n\t_right\n\t\t\\startTrillSpan\n'
+    r'''
+    BeamSpanner
+        _format_right_of_leaf
+            [
+    SlurSpanner
+        _format_right_of_leaf
+            (
+    TrillSpanner
+        _format_right_of_leaf
+            \startTrillSpan
+    '''
+
+    assert spannertools.report_as_string_format_contributions_of_spanners_attached_to_improper_parentage_of_component(staff[0]) == 'BeamSpanner\n\t_format_right_of_leaf\n\t\t[\nSlurSpanner\n\t_format_right_of_leaf\n\t\t(\nTrillSpanner\n\t_format_right_of_leaf\n\t\t\\startTrillSpan\n'
