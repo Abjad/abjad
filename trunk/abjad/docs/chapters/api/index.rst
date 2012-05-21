@@ -741,6 +741,13 @@ Abjad composition packages
 .. toctree::
    :maxdepth: 1
 
+   tools/pitchtools/ChromaticIntervalClassObject/ChromaticIntervalClassObject
+   tools/pitchtools/ChromaticIntervalObject/ChromaticIntervalObject
+   tools/pitchtools/ChromaticObject/ChromaticObject
+   tools/pitchtools/ChromaticPitchObject/ChromaticPitchObject
+   tools/pitchtools/CounterpointIntervalClassObject/CounterpointIntervalClassObject
+   tools/pitchtools/CounterpointIntervalObject/CounterpointIntervalObject
+   tools/pitchtools/CounterpointObject/CounterpointObject
    tools/pitchtools/DiatonicIntervalClassObject/DiatonicIntervalClassObject
    tools/pitchtools/DiatonicIntervalObject/DiatonicIntervalObject
    tools/pitchtools/DiatonicObject/DiatonicObject

@@ -27,18 +27,18 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.pitchtools.MelodicCounterpointInterval.MelodicCounterpointInterval.MelodicCounterpointInterval.number
 
-    Inherited from :py:class:`pitchtools._CounterpointInterval <abjad.tools.pitchtools._CounterpointInterval._CounterpointInterval._CounterpointInterval>`
+    Inherited from :py:class:`pitchtools.CounterpointIntervalObject <abjad.tools.pitchtools.CounterpointIntervalObject.CounterpointIntervalObject.CounterpointIntervalObject>`
 
 .. autoattribute:: abjad.tools.pitchtools.MelodicCounterpointInterval.MelodicCounterpointInterval.MelodicCounterpointInterval.semitones
 
-    Inherited from :py:class:`pitchtools._CounterpointInterval <abjad.tools.pitchtools._CounterpointInterval._CounterpointInterval._CounterpointInterval>`
+    Inherited from :py:class:`pitchtools.CounterpointIntervalObject <abjad.tools.pitchtools.CounterpointIntervalObject.CounterpointIntervalObject.CounterpointIntervalObject>`
 
 Special Methods
 ---------------
 
 .. automethod:: abjad.tools.pitchtools.MelodicCounterpointInterval.MelodicCounterpointInterval.MelodicCounterpointInterval.__abs__
 
-    Inherited from :py:class:`pitchtools._CounterpointInterval <abjad.tools.pitchtools._CounterpointInterval._CounterpointInterval._CounterpointInterval>`
+    Inherited from :py:class:`pitchtools.CounterpointIntervalObject <abjad.tools.pitchtools.CounterpointIntervalObject.CounterpointIntervalObject.CounterpointIntervalObject>`
 
 .. automethod:: abjad.tools.pitchtools.MelodicCounterpointInterval.MelodicCounterpointInterval.MelodicCounterpointInterval.__delattr__
 
@@ -50,7 +50,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.MelodicCounterpointInterval.MelodicCounterpointInterval.MelodicCounterpointInterval.__float__
 
-    Inherited from :py:class:`pitchtools._CounterpointInterval <abjad.tools.pitchtools._CounterpointInterval._CounterpointInterval._CounterpointInterval>`
+    Inherited from :py:class:`pitchtools.CounterpointIntervalObject <abjad.tools.pitchtools.CounterpointIntervalObject.CounterpointIntervalObject.CounterpointIntervalObject>`
 
 .. automethod:: abjad.tools.pitchtools.MelodicCounterpointInterval.MelodicCounterpointInterval.MelodicCounterpointInterval.__ge__
 
@@ -66,7 +66,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.MelodicCounterpointInterval.MelodicCounterpointInterval.MelodicCounterpointInterval.__int__
 
-    Inherited from :py:class:`pitchtools._CounterpointInterval <abjad.tools.pitchtools._CounterpointInterval._CounterpointInterval._CounterpointInterval>`
+    Inherited from :py:class:`pitchtools.CounterpointIntervalObject <abjad.tools.pitchtools.CounterpointIntervalObject.CounterpointIntervalObject.CounterpointIntervalObject>`
 
 .. automethod:: abjad.tools.pitchtools.MelodicCounterpointInterval.MelodicCounterpointInterval.MelodicCounterpointInterval.__le__
 

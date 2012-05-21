@@ -31,11 +31,11 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.pitchtools.MelodicChromaticInterval.MelodicChromaticInterval.MelodicChromaticInterval.number
 
-    Inherited from :py:class:`pitchtools._ChromaticInterval <abjad.tools.pitchtools._ChromaticInterval._ChromaticInterval._ChromaticInterval>`
+    Inherited from :py:class:`pitchtools.ChromaticIntervalObject <abjad.tools.pitchtools.ChromaticIntervalObject.ChromaticIntervalObject.ChromaticIntervalObject>`
 
 .. autoattribute:: abjad.tools.pitchtools.MelodicChromaticInterval.MelodicChromaticInterval.MelodicChromaticInterval.semitones
 
-    Inherited from :py:class:`pitchtools._ChromaticInterval <abjad.tools.pitchtools._ChromaticInterval._ChromaticInterval._ChromaticInterval>`
+    Inherited from :py:class:`pitchtools.ChromaticIntervalObject <abjad.tools.pitchtools.ChromaticIntervalObject.ChromaticIntervalObject.ChromaticIntervalObject>`
 
 Special Methods
 ---------------
@@ -44,7 +44,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticInterval.MelodicChromaticInterval.MelodicChromaticInterval.__add__
 
-    Inherited from :py:class:`pitchtools._ChromaticInterval <abjad.tools.pitchtools._ChromaticInterval._ChromaticInterval._ChromaticInterval>`
+    Inherited from :py:class:`pitchtools.ChromaticIntervalObject <abjad.tools.pitchtools.ChromaticIntervalObject.ChromaticIntervalObject.ChromaticIntervalObject>`
 
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticInterval.MelodicChromaticInterval.MelodicChromaticInterval.__delattr__
 
@@ -52,11 +52,11 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticInterval.MelodicChromaticInterval.MelodicChromaticInterval.__eq__
 
-    Inherited from :py:class:`pitchtools._ChromaticInterval <abjad.tools.pitchtools._ChromaticInterval._ChromaticInterval._ChromaticInterval>`
+    Inherited from :py:class:`pitchtools.ChromaticIntervalObject <abjad.tools.pitchtools.ChromaticIntervalObject.ChromaticIntervalObject.ChromaticIntervalObject>`
 
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticInterval.MelodicChromaticInterval.MelodicChromaticInterval.__float__
 
-    Inherited from :py:class:`pitchtools._ChromaticInterval <abjad.tools.pitchtools._ChromaticInterval._ChromaticInterval._ChromaticInterval>`
+    Inherited from :py:class:`pitchtools.ChromaticIntervalObject <abjad.tools.pitchtools.ChromaticIntervalObject.ChromaticIntervalObject.ChromaticIntervalObject>`
 
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticInterval.MelodicChromaticInterval.MelodicChromaticInterval.__ge__
 
@@ -66,7 +66,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticInterval.MelodicChromaticInterval.MelodicChromaticInterval.__int__
 
-    Inherited from :py:class:`pitchtools._ChromaticInterval <abjad.tools.pitchtools._ChromaticInterval._ChromaticInterval._ChromaticInterval>`
+    Inherited from :py:class:`pitchtools.ChromaticIntervalObject <abjad.tools.pitchtools.ChromaticIntervalObject.ChromaticIntervalObject.ChromaticIntervalObject>`
 
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticInterval.MelodicChromaticInterval.MelodicChromaticInterval.__le__
 
@@ -74,7 +74,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticInterval.MelodicChromaticInterval.MelodicChromaticInterval.__ne__
 
-    Inherited from :py:class:`pitchtools._ChromaticInterval <abjad.tools.pitchtools._ChromaticInterval._ChromaticInterval._ChromaticInterval>`
+    Inherited from :py:class:`pitchtools.ChromaticIntervalObject <abjad.tools.pitchtools.ChromaticIntervalObject.ChromaticIntervalObject.ChromaticIntervalObject>`
 
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticInterval.MelodicChromaticInterval.MelodicChromaticInterval.__neg__
 
@@ -88,4 +88,4 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticInterval.MelodicChromaticInterval.MelodicChromaticInterval.__sub__
 
-    Inherited from :py:class:`pitchtools._ChromaticInterval <abjad.tools.pitchtools._ChromaticInterval._ChromaticInterval._ChromaticInterval>`
+    Inherited from :py:class:`pitchtools.ChromaticIntervalObject <abjad.tools.pitchtools.ChromaticIntervalObject.ChromaticIntervalObject.ChromaticIntervalObject>`

@@ -18,7 +18,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.HarmonicCounterpointIntervalClass.HarmonicCounterpointIntervalClass.HarmonicCounterpointIntervalClass.__abs__
 
-    Inherited from :py:class:`pitchtools._CounterpointIntervalClass <abjad.tools.pitchtools._CounterpointIntervalClass._CounterpointIntervalClass._CounterpointIntervalClass>`
+    Inherited from :py:class:`pitchtools.CounterpointIntervalClassObject <abjad.tools.pitchtools.CounterpointIntervalClassObject.CounterpointIntervalClassObject.CounterpointIntervalClassObject>`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicCounterpointIntervalClass.HarmonicCounterpointIntervalClass.HarmonicCounterpointIntervalClass.__delattr__
 
@@ -28,7 +28,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.HarmonicCounterpointIntervalClass.HarmonicCounterpointIntervalClass.HarmonicCounterpointIntervalClass.__float__
 
-    Inherited from :py:class:`pitchtools._CounterpointIntervalClass <abjad.tools.pitchtools._CounterpointIntervalClass._CounterpointIntervalClass._CounterpointIntervalClass>`
+    Inherited from :py:class:`pitchtools.CounterpointIntervalClassObject <abjad.tools.pitchtools.CounterpointIntervalClassObject.CounterpointIntervalClassObject.CounterpointIntervalClassObject>`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicCounterpointIntervalClass.HarmonicCounterpointIntervalClass.HarmonicCounterpointIntervalClass.__ge__
 
@@ -44,7 +44,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.HarmonicCounterpointIntervalClass.HarmonicCounterpointIntervalClass.HarmonicCounterpointIntervalClass.__int__
 
-    Inherited from :py:class:`pitchtools._CounterpointIntervalClass <abjad.tools.pitchtools._CounterpointIntervalClass._CounterpointIntervalClass._CounterpointIntervalClass>`
+    Inherited from :py:class:`pitchtools.CounterpointIntervalClassObject <abjad.tools.pitchtools.CounterpointIntervalClassObject.CounterpointIntervalClassObject.CounterpointIntervalClassObject>`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicCounterpointIntervalClass.HarmonicCounterpointIntervalClass.HarmonicCounterpointIntervalClass.__le__
 

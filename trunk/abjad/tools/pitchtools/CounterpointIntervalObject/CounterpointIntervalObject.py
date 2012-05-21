@@ -1,14 +1,24 @@
 from abc import ABCMeta
-from abjad.tools.pitchtools._Counterpoint import _Counterpoint
+from abc import abstractmethod
+from abjad.tools.pitchtools.CounterpointObject import CounterpointObject
 from abjad.tools.pitchtools.IntervalObject import IntervalObject
 
 
-class _CounterpointInterval(IntervalObject, _Counterpoint):
+class CounterpointIntervalObject(IntervalObject, CounterpointObject):
     '''..versionadded:: 2.0
 
     Counterpoint interval base class.
     '''
+
+    ### CLASS ATTRIBUTES ###
+
     __metaclass__ = ABCMeta
+
+    ### INITIALIZER ###
+
+    @abstractmethod
+    def __init__(self):
+        pass
 
     ### SPECIAL METHODS ###
 

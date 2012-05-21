@@ -30,7 +30,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.MelodicCounterpointIntervalClass.MelodicCounterpointIntervalClass.MelodicCounterpointIntervalClass.__abs__
 
-    Inherited from :py:class:`pitchtools._CounterpointIntervalClass <abjad.tools.pitchtools._CounterpointIntervalClass._CounterpointIntervalClass._CounterpointIntervalClass>`
+    Inherited from :py:class:`pitchtools.CounterpointIntervalClassObject <abjad.tools.pitchtools.CounterpointIntervalClassObject.CounterpointIntervalClassObject.CounterpointIntervalClassObject>`
 
 .. automethod:: abjad.tools.pitchtools.MelodicCounterpointIntervalClass.MelodicCounterpointIntervalClass.MelodicCounterpointIntervalClass.__delattr__
 
@@ -40,7 +40,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.MelodicCounterpointIntervalClass.MelodicCounterpointIntervalClass.MelodicCounterpointIntervalClass.__float__
 
-    Inherited from :py:class:`pitchtools._CounterpointIntervalClass <abjad.tools.pitchtools._CounterpointIntervalClass._CounterpointIntervalClass._CounterpointIntervalClass>`
+    Inherited from :py:class:`pitchtools.CounterpointIntervalClassObject <abjad.tools.pitchtools.CounterpointIntervalClassObject.CounterpointIntervalClassObject.CounterpointIntervalClassObject>`
 
 .. automethod:: abjad.tools.pitchtools.MelodicCounterpointIntervalClass.MelodicCounterpointIntervalClass.MelodicCounterpointIntervalClass.__ge__
 
@@ -56,7 +56,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.MelodicCounterpointIntervalClass.MelodicCounterpointIntervalClass.MelodicCounterpointIntervalClass.__int__
 
-    Inherited from :py:class:`pitchtools._CounterpointIntervalClass <abjad.tools.pitchtools._CounterpointIntervalClass._CounterpointIntervalClass._CounterpointIntervalClass>`
+    Inherited from :py:class:`pitchtools.CounterpointIntervalClassObject <abjad.tools.pitchtools.CounterpointIntervalClassObject.CounterpointIntervalClassObject.CounterpointIntervalClassObject>`
 
 .. automethod:: abjad.tools.pitchtools.MelodicCounterpointIntervalClass.MelodicCounterpointIntervalClass.MelodicCounterpointIntervalClass.__le__
 

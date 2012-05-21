@@ -1,19 +1,25 @@
 from abc import ABCMeta
 from abc import abstractmethod
 from abjad.tools import mathtools
-from abjad.tools.pitchtools._Chromatic import _Chromatic
+from abjad.tools.pitchtools.ChromaticObject import ChromaticObject
 from abjad.tools.pitchtools.IntervalObject import IntervalObject
 
 
-class _ChromaticInterval(IntervalObject, _Chromatic):
+class ChromaticIntervalObject(IntervalObject, ChromaticObject):
     '''.. versionadded:: 2.0
 
     Chromatic interval base class.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
     __metaclass__ = ABCMeta
+
     __slots__ = ('_number', )
 
+    ### INITIALIZER ###
+
+    @abstractmethod
     def __init__(self, arg):
         if isinstance(arg, (int, float, long)):
             _number = arg

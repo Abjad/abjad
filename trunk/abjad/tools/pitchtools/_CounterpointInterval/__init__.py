@@ -1,1 +1,0 @@
-from _CounterpointInterval import _CounterpointInterval

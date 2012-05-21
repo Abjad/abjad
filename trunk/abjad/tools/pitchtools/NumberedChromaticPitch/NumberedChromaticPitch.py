@@ -1,8 +1,8 @@
-from abjad.tools.pitchtools._ChromaticPitch import _ChromaticPitch
+from abjad.tools.pitchtools.ChromaticPitchObject import ChromaticPitchObject
 from abjad.tools.pitchtools.NumberedPitchObject import NumberedPitchObject
 
 
-class NumberedChromaticPitch(_ChromaticPitch, NumberedPitchObject):
+class NumberedChromaticPitch(ChromaticPitchObject, NumberedPitchObject):
     '''.. versionadded:: 2.0
 
     Abjad model of a numbered chromatic pitch::

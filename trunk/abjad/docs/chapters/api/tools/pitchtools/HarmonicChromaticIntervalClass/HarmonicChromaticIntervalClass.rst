@@ -18,7 +18,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalClass.HarmonicChromaticIntervalClass.HarmonicChromaticIntervalClass.__abs__
 
-    Inherited from :py:class:`pitchtools._ChromaticIntervalClass <abjad.tools.pitchtools._ChromaticIntervalClass._ChromaticIntervalClass._ChromaticIntervalClass>`
+    Inherited from :py:class:`pitchtools.ChromaticIntervalClassObject <abjad.tools.pitchtools.ChromaticIntervalClassObject.ChromaticIntervalClassObject.ChromaticIntervalClassObject>`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalClass.HarmonicChromaticIntervalClass.HarmonicChromaticIntervalClass.__delattr__
 
@@ -28,7 +28,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalClass.HarmonicChromaticIntervalClass.HarmonicChromaticIntervalClass.__float__
 
-    Inherited from :py:class:`pitchtools._ChromaticIntervalClass <abjad.tools.pitchtools._ChromaticIntervalClass._ChromaticIntervalClass._ChromaticIntervalClass>`
+    Inherited from :py:class:`pitchtools.ChromaticIntervalClassObject <abjad.tools.pitchtools.ChromaticIntervalClassObject.ChromaticIntervalClassObject.ChromaticIntervalClassObject>`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalClass.HarmonicChromaticIntervalClass.HarmonicChromaticIntervalClass.__ge__
 
@@ -44,7 +44,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalClass.HarmonicChromaticIntervalClass.HarmonicChromaticIntervalClass.__int__
 
-    Inherited from :py:class:`pitchtools._ChromaticIntervalClass <abjad.tools.pitchtools._ChromaticIntervalClass._ChromaticIntervalClass._ChromaticIntervalClass>`
+    Inherited from :py:class:`pitchtools.ChromaticIntervalClassObject <abjad.tools.pitchtools.ChromaticIntervalClassObject.ChromaticIntervalClassObject.ChromaticIntervalClassObject>`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalClass.HarmonicChromaticIntervalClass.HarmonicChromaticIntervalClass.__le__
 

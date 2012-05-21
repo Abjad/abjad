@@ -1,5 +1,5 @@
 from abjad.tools.pitchtools.MelodicChromaticIntervalSegment import MelodicChromaticIntervalSegment
-from abjad.tools.pitchtools._ChromaticPitch import _ChromaticPitch
+from abjad.tools.pitchtools.ChromaticPitchObject import ChromaticPitchObject
 
 
 def transpose_chromatic_pitch_by_melodic_chromatic_interval_segment(pitch, segment):
@@ -18,7 +18,7 @@ def transpose_chromatic_pitch_by_melodic_chromatic_interval_segment(pitch, segme
     Return list of numbered chromatic pitches.
     '''
 
-    if not isinstance(pitch, _ChromaticPitch):
+    if not isinstance(pitch, ChromaticPitchObject):
         raise TypeError
 
     if not isinstance(segment, MelodicChromaticIntervalSegment):
