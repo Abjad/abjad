@@ -88,11 +88,15 @@ class _SchemeParser(object):
 
     ### LEX SETUP ###
 
+    A               = r'[A-Za-z]'
     N               = r'[0-9]'
-    DIGIT           = r'%s' % N
-    UNSIGNED        = r'%s+' % N
-    INT             = r'(-?%s)' % UNSIGNED
-    REAL            = r'((%s\.%s*)|(-?\.%s+))' % (INT, N, N)
+    DIGIT           = r'{}'.format(N)
+    UNSIGNED        = r'{}+'.format(N)
+    INT             = r'(-?{})'.format(UNSIGNED)
+    REAL            = r'(({}\.{}*)|(-?\.{}+))'.format(INT, N, N)
+    INITIAL         = r'({}|!|\$|%|&|\*|/|:|<|=|>|\?|~|_|\^)'.format(A)
+    SUBSEQUENT      = r'({}|{}|\.|\+|-)'.format(A, N)
+    IDENTIFIER      = r'({}{}*|\+|-|\.\.\.)'.format(INITIAL, SUBSEQUENT)
 
     states = (
         ('quote', 'exclusive'),
@@ -109,6 +113,7 @@ class _SchemeParser(object):
         'EQUALS',
         'EXCLAMATION',
         'HASH',
+        'IDENTIFIER',
         'INTEGER',
         'L_CARAT',
         'L_PAREN',
@@ -218,6 +223,12 @@ class _SchemeParser(object):
         self.string_accumulator += t.value
         pass
 
+    @lex.TOKEN(IDENTIFIER)
+    def t_IDENTIFIER(self, t):
+        self.cursor += len(t.value)
+        t.cursor_end = self.cursor
+        return t
+
     def t_newline(self, t):
         r'\n+'
         self.cursor += len(t.value)
@@ -253,13 +264,15 @@ class _SchemeParser(object):
             t.type = types[t.value]
             return t
         else:
-            t.lexer.skip(1)
+            #t.lexer.skip(1)
             pass
 
     def t_error(self, t):
+        self.cursor += len(t.value)
+        t.cursor_end = self.cursor
         if self.debug:
             print("_SchemeParser-{}: Illegal character {!r}".format(id(self), t.value[0]))
-        t.lexer.skip(1)
+        #t.lexer.skip(1)
 
     t_quote_error = t_error
     t_quote_ignore = t_ignore
@@ -298,6 +311,8 @@ class _SchemeParser(object):
         p[0] = p[1]
         self.result = p[0]
         self.cursor_end = p.slice[0].cursor_end
+        if self.debug:
+            print 'PARSED {!r}'.format(self.lexer.lexdata[:self.cursor_end])
         raise _SchemeParserFinishedException
 
     ### definition ###
@@ -437,6 +452,11 @@ class _SchemeParser(object):
         p.slice[0].cursor_end = p.slice[-1].cursor_end
         p[0] = p[1]
 
+    def p_datum__symbol(self, p):
+        '''datum : symbol'''
+        p.slice[0].cursor_end = p.slice[-1].cursor_end
+        p[0] = p[1]
+
     #def p_datum__boolean(self, p):
     #    '''datum : boolean'''
     #    p[0] = p[1]
@@ -511,6 +531,11 @@ class _SchemeParser(object):
     ### symbol ###
 
     '''<symbol> : <identifier>'''
+
+    def p_symbol__IDENTIFIER(self, p):
+        '''symbol : IDENTIFIER'''
+        p.slice[0].cursor_end = p.slice[-1].cursor_end
+        p[0] = p[1]
 
     ### vector ###
 
