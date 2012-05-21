@@ -1,7 +1,8 @@
-from abjad.tools import durationtools
-from abjad.tools.contexttools.ContextMark import ContextMark
-from abjad.tools import durationtools
 import numbers
+
+from abjad.tools import durationtools
+from abjad.tools import schemetools
+from abjad.tools.contexttools.ContextMark import ContextMark
 
 
 class TempoMark(ContextMark):
@@ -228,7 +229,7 @@ class TempoMark(ContextMark):
         text, equation = None, None
 
         if self.textual_indication is not None:
-            text = '"%s"' % self.textual_indication
+            text = schemetools.Scheme._format_value(self.textual_indication)
 
         if self.duration is not None and self.units_per_minute is not None:
             equation = self._equation

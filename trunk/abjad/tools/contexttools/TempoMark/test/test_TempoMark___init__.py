@@ -39,7 +39,7 @@ def test_TempoMark___init___05():
     '''Init tempo mark from textual indication.'''
 
     t = contexttools.TempoMark('Langsam')
-    assert t.format == '\\tempo "Langsam"'
+    assert t.format == '\\tempo Langsam'
 
 
 def test_TempoMark___init___06():
@@ -53,7 +53,7 @@ def test_TempoMark___init___07():
     '''Init tempo mark from text, duration and range.'''
 
     t = contexttools.TempoMark('Quick', Duration(1, 4), (120, 133))
-    assert t.format == '\\tempo "Quick" 4=120~133'
+    assert t.format == '\\tempo Quick 4=120~133'
 
 
 def test_TempoMark___init___08():
@@ -67,4 +67,4 @@ def test_TempoMark___init___09():
     '''Init tempo mark from length-3 tuple.'''
 
     t = contexttools.TempoMark(('Quick', Duration(1, 4), (120, 133)))
-    assert t.format == '\\tempo "Quick" 4=120~133'
+    assert t.format == '\\tempo Quick 4=120~133'
