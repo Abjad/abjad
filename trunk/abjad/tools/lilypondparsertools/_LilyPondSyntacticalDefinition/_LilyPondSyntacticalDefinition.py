@@ -1,3 +1,5 @@
+from ply.lex import LexToken
+
 from abjad import *
 from abjad.tools import durationtools
 from abjad.tools.lilypondparsertools._LilyPondDuration._LilyPondDuration \
@@ -2005,8 +2007,19 @@ class _LilyPondSyntacticalDefinition(object):
     def p_markup_scm__embedded_scm_bare__BACKUP(self, p):
         'markup_scm : embedded_scm_bare BACKUP'
         #p[0] = Node(p.slice[0].type, p[1:]); return
-        p[0] = Node('markup_scm', p[1:])
 
+        p[0] = p[1]
+
+        token = LexToken( )
+        token.type = 'MARKUP_IDENTIFIER'
+        token.value = p[1]
+        token.lexpos = 0
+        token.lineno = 0
+
+        self.client._push_extra_token(self.client._parser.lookahead)
+        self.client._push_extra_token(p.slice[2])
+        self.client._push_extra_token(token)
+        self.client._parser.lookahead = None
 
     ### markup_top ###
 
@@ -2913,7 +2926,7 @@ class _LilyPondSyntacticalDefinition(object):
     def p_simple_markup__MARKUP_IDENTIFIER(self, p):
         'simple_markup : MARKUP_IDENTIFIER'
         #p[0] = Node(p.slice[0].type, p[1:]); return
-        p[0] = Node('simple_markup', p[1:])
+        p[0] = p[1]
 
 
     def p_simple_markup__SCORE__Chr123__score_body__Chr125(self, p):
@@ -2936,7 +2949,8 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_simple_markup__markup_scm__MARKUP_IDENTIFIER(self, p):
         'simple_markup : markup_scm MARKUP_IDENTIFIER'
-        p[0] = Node('simple_markup', p[1:])
+        if isinstance(p[2], str):
+            p[0] = schemetools.Scheme._format_value(p[2])
 
 
     ### simple_music ###
