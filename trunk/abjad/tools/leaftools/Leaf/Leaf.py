@@ -244,8 +244,8 @@ class Leaf(Component):
         report += 'slot 3:\n'
         report += self._process_contribution_packet(self._format_slot_3())
         report += 'slot 4:\n'
-        report += '\tself body:\n'
-        report += '\t\t' + self._format_slot_4(self)[0][1][0] + '\n'
+        report += '\tleaf body:\n'
+        report += '\t\t' + self._format_slot_4()[0][1][0] + '\n'
         report += 'slot 5:\n'
         report += self._process_contribution_packet(self._format_slot_5())
         report += 'slot 7:\n'
