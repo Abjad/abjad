@@ -744,6 +744,10 @@ Abjad composition packages
    tools/pitchtools/ObjectSegment/ObjectSegment
    tools/pitchtools/ObjectSet/ObjectSet
    tools/pitchtools/ObjectVector/ObjectVector
+   tools/pitchtools/PitchClassObjectSegment/PitchClassObjectSegment
+   tools/pitchtools/PitchClassObjectSet/PitchClassObjectSet
+   tools/pitchtools/PitchObjectSegment/PitchObjectSegment
+   tools/pitchtools/PitchObjectSet/PitchObjectSet
 
 .. rubric:: concrete classes
 

@@ -1,8 +1,8 @@
-from abjad.tools.pitchtools._PitchClassSegment import _PitchClassSegment
+from abjad.tools.pitchtools.PitchClassObjectSegment import PitchClassObjectSegment
 import copy
 
 
-class NumberedChromaticPitchClassSegment(_PitchClassSegment):
+class NumberedChromaticPitchClassSegment(PitchClassObjectSegment):
     '''.. versionadded:: 2.0
 
     Abjad model of a numbered chromatic pitch-class segment::

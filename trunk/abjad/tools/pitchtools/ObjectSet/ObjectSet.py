@@ -12,6 +12,7 @@ class ObjectSet(frozenset, ImmutableAbjadObject):
     ### CLASS METHODS ###
 
     __metaclass__ = ABCMeta
+
     __slots__ = ()
 
     ### INITIALIZER ###

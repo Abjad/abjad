@@ -1,137 +1,137 @@
-pitchtools.ObjectSet
+pitchtools.PitchObjectSet
 =========================
 
-.. inheritance-diagram:: abjad.tools.pitchtools.ObjectSet.ObjectSet.ObjectSet
+.. inheritance-diagram:: abjad.tools.pitchtools.PitchObjectSet.PitchObjectSet.PitchObjectSet
    :private-bases:
 
-.. autoclass:: abjad.tools.pitchtools.ObjectSet.ObjectSet.ObjectSet
+.. autoclass:: abjad.tools.pitchtools.PitchObjectSet.PitchObjectSet.PitchObjectSet
 
 Methods
 -------
 
-.. automethod:: abjad.tools.pitchtools.ObjectSet.ObjectSet.ObjectSet.copy
+.. automethod:: abjad.tools.pitchtools.PitchObjectSet.PitchObjectSet.PitchObjectSet.copy
 
     Inherited from `__builtin__.frozenset`
 
-.. automethod:: abjad.tools.pitchtools.ObjectSet.ObjectSet.ObjectSet.difference
+.. automethod:: abjad.tools.pitchtools.PitchObjectSet.PitchObjectSet.PitchObjectSet.difference
 
     Inherited from `__builtin__.frozenset`
 
-.. automethod:: abjad.tools.pitchtools.ObjectSet.ObjectSet.ObjectSet.intersection
+.. automethod:: abjad.tools.pitchtools.PitchObjectSet.PitchObjectSet.PitchObjectSet.intersection
 
     Inherited from `__builtin__.frozenset`
 
-.. automethod:: abjad.tools.pitchtools.ObjectSet.ObjectSet.ObjectSet.isdisjoint
+.. automethod:: abjad.tools.pitchtools.PitchObjectSet.PitchObjectSet.PitchObjectSet.isdisjoint
 
     Inherited from `__builtin__.frozenset`
 
-.. automethod:: abjad.tools.pitchtools.ObjectSet.ObjectSet.ObjectSet.issubset
+.. automethod:: abjad.tools.pitchtools.PitchObjectSet.PitchObjectSet.PitchObjectSet.issubset
 
     Inherited from `__builtin__.frozenset`
 
-.. automethod:: abjad.tools.pitchtools.ObjectSet.ObjectSet.ObjectSet.issuperset
+.. automethod:: abjad.tools.pitchtools.PitchObjectSet.PitchObjectSet.PitchObjectSet.issuperset
 
     Inherited from `__builtin__.frozenset`
 
-.. automethod:: abjad.tools.pitchtools.ObjectSet.ObjectSet.ObjectSet.symmetric_difference
+.. automethod:: abjad.tools.pitchtools.PitchObjectSet.PitchObjectSet.PitchObjectSet.symmetric_difference
 
     Inherited from `__builtin__.frozenset`
 
-.. automethod:: abjad.tools.pitchtools.ObjectSet.ObjectSet.ObjectSet.union
+.. automethod:: abjad.tools.pitchtools.PitchObjectSet.PitchObjectSet.PitchObjectSet.union
 
     Inherited from `__builtin__.frozenset`
 
 Special Methods
 ---------------
 
-.. automethod:: abjad.tools.pitchtools.ObjectSet.ObjectSet.ObjectSet.__and__
+.. automethod:: abjad.tools.pitchtools.PitchObjectSet.PitchObjectSet.PitchObjectSet.__and__
 
     Inherited from `__builtin__.frozenset`
 
-.. automethod:: abjad.tools.pitchtools.ObjectSet.ObjectSet.ObjectSet.__cmp__
+.. automethod:: abjad.tools.pitchtools.PitchObjectSet.PitchObjectSet.PitchObjectSet.__cmp__
 
     Inherited from `__builtin__.frozenset`
 
-.. automethod:: abjad.tools.pitchtools.ObjectSet.ObjectSet.ObjectSet.__contains__
+.. automethod:: abjad.tools.pitchtools.PitchObjectSet.PitchObjectSet.PitchObjectSet.__contains__
 
     Inherited from `__builtin__.frozenset`
 
-.. automethod:: abjad.tools.pitchtools.ObjectSet.ObjectSet.ObjectSet.__delattr__
+.. automethod:: abjad.tools.pitchtools.PitchObjectSet.PitchObjectSet.PitchObjectSet.__delattr__
 
     Inherited from `__builtin__.object`
 
-.. automethod:: abjad.tools.pitchtools.ObjectSet.ObjectSet.ObjectSet.__eq__
+.. automethod:: abjad.tools.pitchtools.PitchObjectSet.PitchObjectSet.PitchObjectSet.__eq__
 
     Inherited from `__builtin__.frozenset`
 
-.. automethod:: abjad.tools.pitchtools.ObjectSet.ObjectSet.ObjectSet.__ge__
+.. automethod:: abjad.tools.pitchtools.PitchObjectSet.PitchObjectSet.PitchObjectSet.__ge__
 
     Inherited from `__builtin__.frozenset`
 
-.. automethod:: abjad.tools.pitchtools.ObjectSet.ObjectSet.ObjectSet.__gt__
+.. automethod:: abjad.tools.pitchtools.PitchObjectSet.PitchObjectSet.PitchObjectSet.__gt__
 
     Inherited from `__builtin__.frozenset`
 
-.. automethod:: abjad.tools.pitchtools.ObjectSet.ObjectSet.ObjectSet.__hash__
+.. automethod:: abjad.tools.pitchtools.PitchObjectSet.PitchObjectSet.PitchObjectSet.__hash__
 
     Inherited from `__builtin__.frozenset`
 
-.. automethod:: abjad.tools.pitchtools.ObjectSet.ObjectSet.ObjectSet.__iter__
+.. automethod:: abjad.tools.pitchtools.PitchObjectSet.PitchObjectSet.PitchObjectSet.__iter__
 
     Inherited from `__builtin__.frozenset`
 
-.. automethod:: abjad.tools.pitchtools.ObjectSet.ObjectSet.ObjectSet.__le__
+.. automethod:: abjad.tools.pitchtools.PitchObjectSet.PitchObjectSet.PitchObjectSet.__le__
 
     Inherited from `__builtin__.frozenset`
 
-.. automethod:: abjad.tools.pitchtools.ObjectSet.ObjectSet.ObjectSet.__len__
+.. automethod:: abjad.tools.pitchtools.PitchObjectSet.PitchObjectSet.PitchObjectSet.__len__
 
     Inherited from `__builtin__.frozenset`
 
-.. automethod:: abjad.tools.pitchtools.ObjectSet.ObjectSet.ObjectSet.__lt__
+.. automethod:: abjad.tools.pitchtools.PitchObjectSet.PitchObjectSet.PitchObjectSet.__lt__
 
     Inherited from `__builtin__.frozenset`
 
-.. automethod:: abjad.tools.pitchtools.ObjectSet.ObjectSet.ObjectSet.__ne__
+.. automethod:: abjad.tools.pitchtools.PitchObjectSet.PitchObjectSet.PitchObjectSet.__ne__
 
     Inherited from `__builtin__.frozenset`
 
-.. automethod:: abjad.tools.pitchtools.ObjectSet.ObjectSet.ObjectSet.__or__
+.. automethod:: abjad.tools.pitchtools.PitchObjectSet.PitchObjectSet.PitchObjectSet.__or__
 
     Inherited from `__builtin__.frozenset`
 
-.. automethod:: abjad.tools.pitchtools.ObjectSet.ObjectSet.ObjectSet.__rand__
+.. automethod:: abjad.tools.pitchtools.PitchObjectSet.PitchObjectSet.PitchObjectSet.__rand__
 
     Inherited from `__builtin__.frozenset`
 
-.. automethod:: abjad.tools.pitchtools.ObjectSet.ObjectSet.ObjectSet.__repr__
+.. automethod:: abjad.tools.pitchtools.PitchObjectSet.PitchObjectSet.PitchObjectSet.__repr__
 
     Inherited from `__builtin__.frozenset`
 
-.. automethod:: abjad.tools.pitchtools.ObjectSet.ObjectSet.ObjectSet.__ror__
+.. automethod:: abjad.tools.pitchtools.PitchObjectSet.PitchObjectSet.PitchObjectSet.__ror__
 
     Inherited from `__builtin__.frozenset`
 
-.. automethod:: abjad.tools.pitchtools.ObjectSet.ObjectSet.ObjectSet.__rsub__
+.. automethod:: abjad.tools.pitchtools.PitchObjectSet.PitchObjectSet.PitchObjectSet.__rsub__
 
     Inherited from `__builtin__.frozenset`
 
-.. automethod:: abjad.tools.pitchtools.ObjectSet.ObjectSet.ObjectSet.__rxor__
+.. automethod:: abjad.tools.pitchtools.PitchObjectSet.PitchObjectSet.PitchObjectSet.__rxor__
 
     Inherited from `__builtin__.frozenset`
 
-.. automethod:: abjad.tools.pitchtools.ObjectSet.ObjectSet.ObjectSet.__setattr__
+.. automethod:: abjad.tools.pitchtools.PitchObjectSet.PitchObjectSet.PitchObjectSet.__setattr__
 
     Inherited from `__builtin__.object`
 
-.. automethod:: abjad.tools.pitchtools.ObjectSet.ObjectSet.ObjectSet.__str__
+.. automethod:: abjad.tools.pitchtools.PitchObjectSet.PitchObjectSet.PitchObjectSet.__str__
 
     Inherited from `__builtin__.object`
 
-.. automethod:: abjad.tools.pitchtools.ObjectSet.ObjectSet.ObjectSet.__sub__
+.. automethod:: abjad.tools.pitchtools.PitchObjectSet.PitchObjectSet.PitchObjectSet.__sub__
 
     Inherited from `__builtin__.frozenset`
 
-.. automethod:: abjad.tools.pitchtools.ObjectSet.ObjectSet.ObjectSet.__xor__
+.. automethod:: abjad.tools.pitchtools.PitchObjectSet.PitchObjectSet.PitchObjectSet.__xor__
 
     Inherited from `__builtin__.frozenset`
