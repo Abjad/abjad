@@ -69,7 +69,7 @@ Read-only Properties
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
-.. autoattribute:: abjad.tools.lyricstools.Lyrics.Lyrics.Lyrics.start
+.. autoattribute:: abjad.tools.lyricstools.Lyrics.Lyrics.Lyrics.start_offset
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
@@ -77,7 +77,7 @@ Read-only Properties
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
-.. autoattribute:: abjad.tools.lyricstools.Lyrics.Lyrics.Lyrics.stop
+.. autoattribute:: abjad.tools.lyricstools.Lyrics.Lyrics.Lyrics.stop_offset
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 

@@ -18,7 +18,7 @@ class Component(AbjadObject):
         '_marks_for_which_component_functions_as_start_component', 
         '_offset', '_offset_values_in_seconds_are_current', '_override', '_parent', 
         '_prolated_offset_values_are_current', '_set', '_spanners', 
-        '_start', '_start_offset_in_seconds', '_stop', '_stop_offset_in_seconds', 
+        '_start_offset', '_start_offset_in_seconds', '_stop_offset', '_stop_offset_in_seconds', 
         'lilypond_file', )
 
     ### INITIALIZER ###
@@ -32,9 +32,9 @@ class Component(AbjadObject):
         self._parent = None
         self._prolated_offset_values_are_current = False
         self._spanners = set([])
-        self._start = None
+        self._start_offset = None
         self._start_offset_in_seconds = None
-        self._stop = None
+        self._stop_offset = None
         self._stop_offset_in_seconds = None
 
     ### SPECIAL METHODS ###
@@ -126,11 +126,11 @@ class Component(AbjadObject):
         return set(self._spanners)
 
     @property
-    def start(self):
+    def start_offset(self):
         '''Read-only start offset of component.
         '''
         self._update_prolated_offset_values_of_entire_score_tree_if_necessary()
-        return self._start
+        return self._start_offset
 
     @property
     def start_offset_in_seconds(self):
@@ -142,10 +142,10 @@ class Component(AbjadObject):
         return self._start_offset_in_seconds
 
     @property
-    def stop(self):
+    def stop_offset(self):
         '''Read-only stop offset of component.
         '''
-        return self.start + self.prolated_duration
+        return self.start_offset + self.prolated_duration
 
     @property
     def stop_offset_in_seconds(self):

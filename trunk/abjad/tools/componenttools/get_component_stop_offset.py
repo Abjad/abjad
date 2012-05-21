@@ -20,4 +20,4 @@ def get_component_stop_offset(component):
     Return positive fraction.
     '''
 
-    return component.stop
+    return component.stop_offset

@@ -37,11 +37,11 @@ Read-only Properties
 
     Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
 
-.. autoattribute:: abjad.tools.spannertools.MetricGridSpanner.MetricGridSpanner.MetricGridSpanner.start
+.. autoattribute:: abjad.tools.spannertools.MetricGridSpanner.MetricGridSpanner.MetricGridSpanner.start_offset
 
     Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
 
-.. autoattribute:: abjad.tools.spannertools.MetricGridSpanner.MetricGridSpanner.MetricGridSpanner.stop
+.. autoattribute:: abjad.tools.spannertools.MetricGridSpanner.MetricGridSpanner.MetricGridSpanner.stop_offset
 
     Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
 

@@ -69,7 +69,7 @@ Read-only Properties
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
-.. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.start
+.. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.start_offset
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
@@ -77,7 +77,7 @@ Read-only Properties
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
-.. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.stop
+.. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.stop_offset
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 

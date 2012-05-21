@@ -9,7 +9,7 @@ def update_prolated_offset_values_of_component(component):
     from abjad.tools import componenttools
     prev = componenttools.get_nth_component_in_time_order_from_component(component, -1)
     if prev is not None:
-        component._start = prev._stop
+        component._start_offset = prev._stop_offset
     else:
-        component._start = durationtools.Offset(0)
-    component._stop = component._start + component.prolated_duration
+        component._start_offset = durationtools.Offset(0)
+    component._stop_offset = component._start_offset + component.prolated_duration

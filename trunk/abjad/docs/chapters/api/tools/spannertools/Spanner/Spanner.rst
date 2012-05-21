@@ -23,9 +23,9 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.spannertools.Spanner.Spanner.Spanner.set
 
-.. autoattribute:: abjad.tools.spannertools.Spanner.Spanner.Spanner.start
+.. autoattribute:: abjad.tools.spannertools.Spanner.Spanner.Spanner.start_offset
 
-.. autoattribute:: abjad.tools.spannertools.Spanner.Spanner.Spanner.stop
+.. autoattribute:: abjad.tools.spannertools.Spanner.Spanner.Spanner.stop_offset
 
 .. autoattribute:: abjad.tools.spannertools.Spanner.Spanner.Spanner.written_duration
 

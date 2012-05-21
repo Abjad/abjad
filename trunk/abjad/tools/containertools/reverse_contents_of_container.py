@@ -46,9 +46,9 @@ def reverse_contents_of_container(container):
     from abjad.tools import spannertools
 
     def _offset(x, y):
-        if x.start < y.start:
+        if x.start_offset < y.start_offset:
             return -1
-        elif y.start < x.start:
+        elif y.start_offset < x.start_offset:
             return 1
         else:
             return 0
@@ -57,7 +57,6 @@ def reverse_contents_of_container(container):
         container.reverse()
     elif isinstance(container, Container):
         container._music.reverse()
-        #spanners = container.spanners.contained
         spanners = spannertools.get_spanners_attached_to_any_improper_child_of_component(container)
         for s in spanners:
             s._components.sort(_offset)

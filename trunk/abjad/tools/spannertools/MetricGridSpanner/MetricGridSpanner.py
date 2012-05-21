@@ -59,7 +59,7 @@ class MetricGridSpanner(Spanner):
 #      leaf = self.leaves[0]
 #      # group leaves by measure.
 #      while leaf:
-#         if leaf.start < moffset + meter.duration:
+#         if leaf.start_offset < moffset + meter.duration:
 #            leaves_in_meter[-1].append(leaf)
 #            #leaf = leaf.next
 #            leaf = leaftools.get_nth_leaf_in_thread_from_leaf(leaf, 1)
@@ -144,7 +144,7 @@ class MetricGridSpanner(Spanner):
                 result.append('<<')
                 for meter, moffset, temp_hide in m:
                     s = Skip(durationtools.Duration(1))
-                    s.duration_multiplier = moffset - leaf.start
+                    s.duration_multiplier = moffset - leaf.start_offset
                     numerator, denominator = meter.numerator, meter.denominator
                     mark = contexttools.TimeSignatureMark((numerator, denominator))(s)
                     mark._is_cosmetic_mark = True
@@ -154,15 +154,15 @@ class MetricGridSpanner(Spanner):
 
     def _matching_meter(self, leaf):
         for m, moffset, temp_hide in self.meters:
-            if leaf.start == moffset:
+            if leaf.start_offset == moffset:
                 return m, temp_hide
 
     def _slicing_meters(self, leaf):
         '''Return the MetricStrip(s) that slices leaf, if any.
         '''
         for m, moffset, temp_hide in self.meters:
-            if leaf.start < moffset:
-                if moffset < leaf.stop:
+            if leaf.start_offset < moffset:
+                if moffset < leaf.stop_offset:
                     yield m, moffset, temp_hide
                 else:
                     break

@@ -75,7 +75,7 @@ def iterate_vertical_moments_backward_in_expr(governor):
 
     moments_in_governor = []
     for component in iterate_components_forward_in_expr(governor, Component):
-        prolated_offset = component.start
+        prolated_offset = component.start_offset
         if prolated_offset not in moments_in_governor:
             moments_in_governor.append(prolated_offset)
     moments_in_governor.sort()

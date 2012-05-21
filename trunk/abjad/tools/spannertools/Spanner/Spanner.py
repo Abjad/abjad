@@ -159,7 +159,7 @@ class Spanner(AbjadObject):
         return result
 
     def _duration_offset_in_me(self, leaf):
-        return leaf.start - self.start
+        return leaf.start_offset - self.start_offset
 
     def _format_after_leaf(self, leaf):
         result = []
@@ -397,20 +397,20 @@ class Spanner(AbjadObject):
         return self._set
 
     @property
-    def start(self):
+    def start_offset(self):
         '''Read-only start offset of spanner.
         '''
         if len(self):
-            return self[0].start
+            return self[0].start_offset
         else:
             return Duration(0)
 
     @property
-    def stop(self):
+    def stop_offset(self):
         '''Read-only stop offset of spanner.
         '''
         if len(self):
-            return self[-1].stop
+            return self[-1].stop_offset
         else:
             return Duration(0)
 

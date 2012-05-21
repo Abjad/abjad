@@ -47,11 +47,11 @@ def iterate_timeline_forward_in_expr(expr, klass=None):
     if klass is None:
         klass = Leaf
 
-    component_generator = iterate_components_forward_in_expr(expr, klass = klass)
+    component_generator = iterate_components_forward_in_expr(expr, klass=klass)
     components = list(component_generator)
 
     def _sort_helper(component_1, component_2):
-        result = cmp(component_1.start, component_2.start)
+        result = cmp(component_1.start_offset, component_2.start_offset)
         if result == 0:
             return cmp(
                 component_to_score_index(component_1),

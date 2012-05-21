@@ -1,8 +1,8 @@
 from abjad import *
 
 
-def test_Spanner_start_01():
-    '''Return start time of spanner in score.
+def test_Spanner_stop_offset_01():
+    '''Return stop time of spanner in score.
     '''
 
     t = Voice("c'8 d'8 e'8 f'8")
@@ -18,5 +18,5 @@ def test_Spanner_start_01():
     }
     '''
 
-    assert beam.start == Duration(1, 8)
-    assert glissando.start == Duration(0)
+    assert beam.stop_offset == Duration(3, 8)
+    assert glissando.stop_offset == Duration(4, 8)

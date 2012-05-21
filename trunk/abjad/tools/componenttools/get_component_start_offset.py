@@ -20,4 +20,4 @@ def get_component_start_offset(component):
     Return nonnegative fraction.
     '''
 
-    return component.start
+    return component.start_offset

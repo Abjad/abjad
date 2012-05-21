@@ -45,7 +45,7 @@ Read-only Properties
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
-.. autoattribute:: abjad.tools.leaftools.Leaf.Leaf.Leaf.start
+.. autoattribute:: abjad.tools.leaftools.Leaf.Leaf.Leaf.start_offset
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
@@ -53,7 +53,7 @@ Read-only Properties
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
-.. autoattribute:: abjad.tools.leaftools.Leaf.Leaf.Leaf.stop
+.. autoattribute:: abjad.tools.leaftools.Leaf.Leaf.Leaf.stop_offset
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 

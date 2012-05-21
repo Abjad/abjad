@@ -53,7 +53,7 @@ Read-only Properties
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
-.. autoattribute:: abjad.tools.skiptools.Skip.Skip.Skip.start
+.. autoattribute:: abjad.tools.skiptools.Skip.Skip.Skip.start_offset
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
@@ -61,7 +61,7 @@ Read-only Properties
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
-.. autoattribute:: abjad.tools.skiptools.Skip.Skip.Skip.stop
+.. autoattribute:: abjad.tools.skiptools.Skip.Skip.Skip.stop_offset
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 

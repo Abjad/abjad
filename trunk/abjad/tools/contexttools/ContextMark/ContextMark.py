@@ -151,7 +151,7 @@ class ContextMark(Mark):
         klasses = (type(self), )
         effective_context_mark = contexttools.get_effective_context_mark(start_component, klasses)
         if effective_context_mark is not None:
-            if effective_context_mark.start_component.start == start_component.start:
+            if effective_context_mark.start_component.start_offset == start_component.start_offset:
                 raise ExtraMarkError(
                     'effective context mark already attached to component starting at same time.')
         return Mark.attach(self, start_component)

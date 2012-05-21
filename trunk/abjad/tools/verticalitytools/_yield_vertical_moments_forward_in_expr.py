@@ -27,7 +27,7 @@ def _buffer_components_starting_with(component, buffer, stop_offsets):
     if not isinstance(component, Component):
         raise TypeError('must be Abjad component.')
     buffer.append(component)
-    stop_offsets.append(component.stop)
+    stop_offsets.append(component.stop_offset)
     if isinstance(component, Container):
         if component.is_parallel:
             for x in component.music:
@@ -58,7 +58,7 @@ def _update_buffer(cur_offset, buffer, stop_offsets):
     #print ''
     #print 'At %s with %s ...' % (cur_offset, buffer)
     for component in buffer[:]:
-        if component.stop <= cur_offset:
+        if component.stop_offset <= cur_offset:
             #print 'removing %s ...' % component
             buffer.remove(component)
             #print buffer
@@ -69,5 +69,5 @@ def _update_buffer(cur_offset, buffer, stop_offsets):
             except StopIteration:
                 pass
         else:
-            stop_offsets.append(component.stop)
+            stop_offsets.append(component.stop_offset)
     #print ''

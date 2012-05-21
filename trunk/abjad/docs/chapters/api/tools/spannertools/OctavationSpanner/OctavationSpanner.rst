@@ -37,6 +37,14 @@ Read-only Properties
 
     Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
 
+.. autoattribute:: abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.start_offset
+
+    Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
+.. autoattribute:: abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.stop_offset
+
+    Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
+
 .. autoattribute:: abjad.tools.spannertools.OctavationSpanner.OctavationSpanner.OctavationSpanner.written_duration
 
     Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`

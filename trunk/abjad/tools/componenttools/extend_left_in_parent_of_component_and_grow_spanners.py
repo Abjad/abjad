@@ -45,7 +45,7 @@ def extend_left_in_parent_of_component_and_grow_spanners(component, new_componen
     from abjad.tools import spannertools
 
     assert componenttools.all_are_components(new_components)
-    offset = component.start
+    offset = component.start_offset
     receipt = spannertools.get_spanners_that_dominate_components([component])
     for spanner, x in receipt:
         index = spannertools.find_index_of_spanner_component_at_score_offset(spanner, offset)

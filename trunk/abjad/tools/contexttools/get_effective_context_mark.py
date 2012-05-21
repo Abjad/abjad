@@ -60,17 +60,17 @@ def get_effective_context_mark(component, klass):
                         candidate_marks.add(mark)
     #print 'unsorted canddiate marks %s ...' % candidate_marks
     candidate_marks = sorted(candidate_marks,
-        cmp = lambda m, n: cmp(m.start_component.start, n.start_component.start))
+        cmp = lambda m, n: cmp(m.start_component.start_offset, n.start_component.start_offset))
     #print candidate_marks
     #for x in candidate_marks:
     #    print x, x.start_component.start
     first_winner = None
     for candidate_mark in reversed(candidate_marks):
-        if candidate_mark.start_component.start <= component.start:
+        if candidate_mark.start_component.start_offset <= component.start_offset:
             if first_winner is None:
                 first_winner = candidate_mark
-            elif candidate_mark.start_component.start == \
-                first_winner.start_component.start:
+            elif candidate_mark.start_component.start_offset == \
+                first_winner.start_component.start_offset:
                 raise ExtraMarkError('%s and %s start at the same time.' % (
                     first_winner, candidate_mark))
             else:

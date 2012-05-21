@@ -55,7 +55,7 @@ Read-only Properties
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
-.. autoattribute:: abjad.tools.containertools.Cluster.Cluster.Cluster.start
+.. autoattribute:: abjad.tools.containertools.Cluster.Cluster.Cluster.start_offset
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
@@ -63,7 +63,7 @@ Read-only Properties
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
-.. autoattribute:: abjad.tools.containertools.Cluster.Cluster.Cluster.stop
+.. autoattribute:: abjad.tools.containertools.Cluster.Cluster.Cluster.stop_offset
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 

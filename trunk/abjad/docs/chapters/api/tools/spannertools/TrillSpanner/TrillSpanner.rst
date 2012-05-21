@@ -37,11 +37,11 @@ Read-only Properties
 
     Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
 
-.. autoattribute:: abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.start
+.. autoattribute:: abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.start_offset
 
     Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
 
-.. autoattribute:: abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.stop
+.. autoattribute:: abjad.tools.spannertools.TrillSpanner.TrillSpanner.TrillSpanner.stop_offset
 
     Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
 

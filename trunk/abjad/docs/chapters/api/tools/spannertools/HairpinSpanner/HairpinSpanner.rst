@@ -37,11 +37,11 @@ Read-only Properties
 
     Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
 
-.. autoattribute:: abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.start
+.. autoattribute:: abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.start_offset
 
     Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
 
-.. autoattribute:: abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.stop
+.. autoattribute:: abjad.tools.spannertools.HairpinSpanner.HairpinSpanner.HairpinSpanner.stop_offset
 
     Inherited from :py:class:`spannertools.Spanner <abjad.tools.spannertools.Spanner.Spanner.Spanner>`
 

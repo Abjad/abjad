@@ -42,7 +42,7 @@ def extend_in_parent_of_component_and_grow_spanners(component, new_components):
     from abjad.tools import componenttools
     from abjad.tools import spannertools
     assert componenttools.all_are_components(new_components)
-    insert_offset = component.stop
+    insert_offset = component.stop_offset
     receipt = spannertools.get_spanners_that_dominate_components([component])
     for spanner, index in receipt:
         insert_component = spannertools.find_spanner_component_starting_at_exactly_score_offset(

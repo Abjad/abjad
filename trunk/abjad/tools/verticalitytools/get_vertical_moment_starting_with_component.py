@@ -2,7 +2,7 @@ from abjad.tools.componenttools.component_to_score_root import component_to_scor
 from abjad.tools.verticalitytools.get_vertical_moment_at_prolated_offset_in_expr import get_vertical_moment_at_prolated_offset_in_expr
 
 
-def get_vertical_moment_starting_with_component(expr, governor = None):
+def get_vertical_moment_starting_with_component(expr, governor=None):
     r'''.. versionadded:: 2.0
 
     When `governor` is none, get vertical moment at
@@ -64,7 +64,7 @@ def get_vertical_moment_starting_with_component(expr, governor = None):
         ``verticalitytools.get_vertical_moment_starting_with_component()``.
     '''
 
-    prolated_offset = expr.start
+    prolated_offset = expr.start_offset
 
     if governor is None:
         governor = component_to_score_root(expr)

@@ -20,12 +20,12 @@ def get_spanners_covered_by_components(components):
         return set([])
 
     first, last = components[0], components[-1]
-    components_begin = first.start
-    components_end = last.stop
+    components_begin = first.start_offset
+    components_end = last.stop_offset
 
     result = get_spanners_contained_by_components(components)
     for spanner in list(result):
-        if spanner.start < components_begin or components_end < spanner.stop:
+        if spanner.start_offset < components_begin or components_end < spanner.stop_offset:
             result.discard(spanner)
 
     return result
