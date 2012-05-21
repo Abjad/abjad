@@ -2057,7 +2057,7 @@ Internals packages
 .. toctree::
    :maxdepth: 1
 
-   tools/exceptiontools/AssignabilityError
+   tools/exceptiontools/AssignabilityError/AssignabilityError
    tools/exceptiontools/ClefError
    tools/exceptiontools/ContainmentError
    tools/exceptiontools/ContextContainmentError
