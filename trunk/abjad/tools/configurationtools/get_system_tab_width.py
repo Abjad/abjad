@@ -8,11 +8,11 @@ def get_system_tab_width():
     ::
 
         abjad> configurationtools.get_system_tab_width()
-        3
+        4
 
     The value is used by various functions that generate or test code in the system.
 
     Return nonnegative integer.
     '''
 
-    return 3
+    return 4
