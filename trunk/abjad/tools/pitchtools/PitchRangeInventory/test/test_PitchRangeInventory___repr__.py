@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools.pitchtools import PitchRange
 
 
-def test_PitchRangeInventory___repr___01():
+def testPitchObjectRangeInventory___repr___01():
     '''Pitch range inventory reprs evaluate.
     '''
 

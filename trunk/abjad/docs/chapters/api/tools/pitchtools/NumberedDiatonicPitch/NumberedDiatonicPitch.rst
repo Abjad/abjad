@@ -46,7 +46,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.NumberedDiatonicPitch.NumberedDiatonicPitch.NumberedDiatonicPitch.__hash__
 
-    Inherited from :py:class:`pitchtools._Pitch <abjad.tools.pitchtools._Pitch._Pitch._Pitch>`
+    Inherited from :py:class:`pitchtools.PitchObject <abjad.tools.pitchtools.PitchObject.PitchObject.PitchObject>`
 
 .. automethod:: abjad.tools.pitchtools.NumberedDiatonicPitch.NumberedDiatonicPitch.NumberedDiatonicPitch.__int__
 
@@ -62,7 +62,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.NumberedDiatonicPitch.NumberedDiatonicPitch.NumberedDiatonicPitch.__ne__
 
-    Inherited from :py:class:`pitchtools._Pitch <abjad.tools.pitchtools._Pitch._Pitch._Pitch>`
+    Inherited from :py:class:`pitchtools.PitchObject <abjad.tools.pitchtools.PitchObject.PitchObject.PitchObject>`
 
 .. automethod:: abjad.tools.pitchtools.NumberedDiatonicPitch.NumberedDiatonicPitch.NumberedDiatonicPitch.__repr__
 

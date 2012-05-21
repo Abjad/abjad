@@ -1,13 +1,13 @@
 from abjad.cfg._read_config_file import _read_config_file
 from abjad.tools.pitchtools.Accidental import Accidental
-from abjad.tools.pitchtools._Pitch import _Pitch
+from abjad.tools.pitchtools.PitchObject import PitchObject
 from abjad.tools.pitchtools.is_chromatic_pitch_name import chromatic_pitch_name_regex
 
 
 # TODO: remove #
 _accidental_spelling = _read_config_file()['accidental_spelling']
 
-class NamedChromaticPitch(_Pitch):
+class NamedChromaticPitch(PitchObject):
     '''.. versionadded:: 1.1
 
     Abjad model of named chromatic pitch::
@@ -17,6 +17,8 @@ class NamedChromaticPitch(_Pitch):
 
     Named chromatic pitches are immutable.
     '''
+
+    ### CLASS ATTRIBUTES ###
 
     # TODO: remove #
     accidental_spelling = _accidental_spelling
@@ -29,6 +31,8 @@ class NamedChromaticPitch(_Pitch):
         '_deviation_in_cents', 
         '_diatonic_pitch_number',
         )
+
+    ### INITIALIZER ###
 
     def __init__(self, *args, **kwargs):
         from abjad.tools import pitchtools

@@ -1,7 +1,7 @@
 from abjad.tools.pitchtools.MelodicChromaticInterval import MelodicChromaticInterval
 from abjad.tools.pitchtools.NamedChromaticPitch import NamedChromaticPitch
 from abjad.tools.pitchtools.NumberedChromaticPitch import NumberedChromaticPitch
-from abjad.tools.pitchtools._Pitch import _Pitch
+from abjad.tools.pitchtools.PitchObject import PitchObject
 import numbers
 
 
@@ -29,7 +29,7 @@ def _transpose_pitch_carrier_by_melodic_chromatic_interval(pitch_carrier, melodi
         raise TypeError('must be melodic chromatic interval.')
 
     # works for named & numbered pitches both chromatic & diatonic
-    if isinstance(pitch_carrier, _Pitch):
+    if isinstance(pitch_carrier, PitchObject):
         return type(pitch_carrier)(pitch_carrier.chromatic_pitch_number + mci.semitones)
     elif isinstance(pitch_carrier, numbers.Number):
         pitch_carrier = NumberedChromaticPitch(pitch_carrier)

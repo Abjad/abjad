@@ -1,6 +1,6 @@
 from abjad.tools.pitchtools.MelodicDiatonicInterval import MelodicDiatonicInterval
 from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
-from abjad.tools.pitchtools._Pitch import _Pitch
+from abjad.tools.pitchtools.PitchObject import PitchObject
 from abjad.tools.pitchtools.diatonic_pitch_class_number_to_diatonic_pitch_class_name import diatonic_pitch_class_number_to_diatonic_pitch_class_name
 
 
@@ -27,7 +27,7 @@ def _transpose_pitch_carrier_by_melodic_diatonic_interval(pitch_carrier, melodic
     except (TypeError, ValueError):
         raise TypeError('must be melodic diatonic interval.')
 
-    if isinstance(pitch_carrier, _Pitch):
+    if isinstance(pitch_carrier, PitchObject):
         return _transpose_pitch_by_melodic_diatonic_interval(pitch_carrier, mdi)
     elif isinstance(pitch_carrier, Note):
         new_note = componenttools.copy_components_and_remove_spanners([pitch_carrier])[0]

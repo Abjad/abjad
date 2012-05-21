@@ -1,8 +1,8 @@
-from abjad.tools.pitchtools._PitchClass import _PitchClass
+from abjad.tools.pitchtools.PitchClassObject import PitchClassObject
 from abjad.tools.pitchtools.get_named_chromatic_pitch_from_pitch_carrier import get_named_chromatic_pitch_from_pitch_carrier
 
 
-class NamedChromaticPitchClass(_PitchClass):
+class NamedChromaticPitchClass(PitchClassObject):
     '''.. versionadded:: 2.0
 
     Abjad model of named chromatic pitch-class::
@@ -13,8 +13,13 @@ class NamedChromaticPitchClass(_PitchClass):
     Named chromatic pitch-classes are immutable.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
     __slots__ = ('_chromatic_pitch_class_name', )
 
+    ### INITIALIZER ###
+
+    # Why is this not __new__?
     def __init__(self, arg):
         from abjad.tools import pitchtools
         if hasattr(arg, '_chromatic_pitch_class_name'):

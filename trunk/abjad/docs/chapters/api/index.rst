@@ -744,8 +744,10 @@ Abjad composition packages
    tools/pitchtools/ObjectSegment/ObjectSegment
    tools/pitchtools/ObjectSet/ObjectSet
    tools/pitchtools/ObjectVector/ObjectVector
+   tools/pitchtools/PitchClassObject/PitchClassObject
    tools/pitchtools/PitchClassObjectSegment/PitchClassObjectSegment
    tools/pitchtools/PitchClassObjectSet/PitchClassObjectSet
+   tools/pitchtools/PitchObject/PitchObject
    tools/pitchtools/PitchObjectSegment/PitchObjectSegment
    tools/pitchtools/PitchObjectSet/PitchObjectSet
 

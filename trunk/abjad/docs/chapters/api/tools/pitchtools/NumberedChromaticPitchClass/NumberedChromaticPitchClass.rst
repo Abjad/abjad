@@ -44,7 +44,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClass.NumberedChromaticPitchClass.NumberedChromaticPitchClass.__hash__
 
-    Inherited from :py:class:`pitchtools._PitchClass <abjad.tools.pitchtools._PitchClass._PitchClass._PitchClass>`
+    Inherited from :py:class:`pitchtools.PitchClassObject <abjad.tools.pitchtools.PitchClassObject.PitchClassObject.PitchClassObject>`
 
 .. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClass.NumberedChromaticPitchClass.NumberedChromaticPitchClass.__int__
 

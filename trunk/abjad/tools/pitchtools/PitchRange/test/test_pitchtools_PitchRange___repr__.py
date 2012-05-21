@@ -4,7 +4,7 @@ from abjad.tools.pitchtools import NamedChromaticPitch
 from abjad.tools.pitchtools import PitchRange
 
 
-def test_pitchtools_PitchRange___repr___01():
+def test_pitchtoolsPitchObjectRange___repr___01():
     '''Pitch range reprs are evaluable.
     '''
 
@@ -18,7 +18,7 @@ def test_pitchtools_PitchRange___repr___01():
     assert not pitch_range_1 is pitch_range_2
 
 
-def test_pitchtools_PitchRange___repr___02():
+def test_pitchtoolsPitchObjectRange___repr___02():
     
     pitch_range = pitchtools.PitchRange(-12, 36, pitch_range_name='four-octave range')
     assert repr(pitch_range) == "PitchRange('[C3, C7]', pitch_range_name='four-octave range', pitch_range_name_markup=Markup(('four-octave range',)))"
@@ -28,7 +28,7 @@ def test_pitchtools_PitchRange___repr___02():
     assert repr(pitch_range) == "PitchRange('[C3, C7]', pitch_range_name_markup=Markup(('four-octave range',)))"
 
 
-#def test_pitchtools_PitchRange___repr___03():
+#def test_pitchtoolsPitchObjectRange___repr___03():
 #    '''Repr works on empty pitch range.
 #    '''
 #
