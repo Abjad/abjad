@@ -76,9 +76,16 @@ class Mark(AbjadObject):
     def _one_line_menuing_summary(self):
         return repr(self)
 
-    ### MANGLED METHODS ###
+    ### PRIVATE METHODS ###
 
-    def __unbind_start_component(self):
+    def _bind_start_component(self, start_component):
+        #print 'binding MARK to start component ...'
+        assert isinstance(start_component, Component)
+        self._unbind_start_component()
+        start_component._marks_for_which_component_functions_as_start_component.append(self)
+        self._start_component = start_component
+
+    def _unbind_start_component(self):
         start_component = self._start_component
         if start_component is not None:
             try:
@@ -86,14 +93,6 @@ class Mark(AbjadObject):
             except ValueError:
                 pass
         self._start_component = None
-
-    # method must NOT be preceeded by __ so that child ContextMark objects can call it
-    def _bind_start_component(self, start_component):
-        #print 'binding MARK to start component ...'
-        assert isinstance(start_component, Component)
-        self.__unbind_start_component()
-        start_component._marks_for_which_component_functions_as_start_component.append(self)
-        self._start_component = start_component
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -159,5 +158,5 @@ class Mark(AbjadObject):
 
         Return mark.
         '''
-        self.__unbind_start_component()
+        self._unbind_start_component()
         return self

@@ -19,9 +19,13 @@ class ContextMark(Mark):
     Context marks implement ``__slots__``.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
     __slots__ = ('_effective_context', '_target_context', )
 
-    def __init__(self, target_context = None):
+    ### INITIALIZER ###
+
+    def __init__(self, target_context=None):
         Mark.__init__(self)
         self._effective_context = None
         if target_context is not None:
@@ -36,30 +40,6 @@ class ContextMark(Mark):
 
     __deepcopy__ = __copy__
 
-    ### MANGLED METHODS ###
-
-    def __bind_correct_effective_context(self, correct_effective_context):
-        self.__unbind_effective_context()
-        if correct_effective_context is not None:
-            correct_effective_context._marks_for_which_component_functions_as_effective_context.append(
-                self)
-        self._effective_context = correct_effective_context
-        correct_effective_context._mark_entire_score_tree_for_later_update('marks')
-
-    def __unbind_effective_context(self):
-        effective_context = self._effective_context
-        if effective_context is not None:
-            try:
-                effective_context._marks_for_which_component_functions_as_effective_context.remove(self)
-            except ValueError:
-                pass
-        self._effective_context = None
-
-    def _bind_start_component(self, start_component):
-        #print 'binding CONTEXT MARK to start component ...'
-        Mark._bind_start_component(self, start_component)
-        self._start_component._mark_entire_score_tree_for_later_update('marks')
-
     ### PRIVATE PROPERTIES ###
 
     @property
@@ -70,6 +50,19 @@ class ContextMark(Mark):
             return type(self._target_context).__name__
 
     ### PRIVATE METHODS ###
+
+    def _bind_correct_effective_context(self, correct_effective_context):
+        self._unbind_effective_context()
+        if correct_effective_context is not None:
+            correct_effective_context._marks_for_which_component_functions_as_effective_context.append(
+                self)
+        self._effective_context = correct_effective_context
+        correct_effective_context._mark_entire_score_tree_for_later_update('marks')
+
+    def _bind_start_component(self, start_component):
+        #print 'binding CONTEXT MARK to start component ...'
+        Mark._bind_start_component(self, start_component)
+        self._start_component._mark_entire_score_tree_for_later_update('marks')
 
     def _find_correct_effective_context(self):
         from abjad.tools import componenttools
@@ -90,6 +83,15 @@ class ContextMark(Mark):
             raise TypeError('target context "%s" must be context type, context name or none.' %
                 target_context)
 
+    def _unbind_effective_context(self):
+        effective_context = self._effective_context
+        if effective_context is not None:
+            try:
+                effective_context._marks_for_which_component_functions_as_effective_context.remove(self)
+            except ValueError:
+                pass
+        self._effective_context = None
+
     def _update_effective_context(self):
         '''This function is designed to be called by score components during score update.
         '''
@@ -97,7 +99,7 @@ class ContextMark(Mark):
         current_effective_context = self._effective_context
         correct_effective_context = self._find_correct_effective_context()
         if current_effective_context is not correct_effective_context:
-            self.__bind_correct_effective_context(correct_effective_context)
+            self._bind_correct_effective_context(correct_effective_context)
 
     ### PUBLIC PROPERTIES ###
 
@@ -176,5 +178,5 @@ class ContextMark(Mark):
         Return context mark.
         '''
         Mark.detach(self)
-        self.__unbind_effective_context()
+        self._unbind_effective_context()
         return self
