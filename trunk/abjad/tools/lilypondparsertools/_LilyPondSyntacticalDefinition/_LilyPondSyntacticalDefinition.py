@@ -1857,7 +1857,7 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_markup_braced_list__Chr123__markup_braced_list_body__Chr125(self, p):
         "markup_braced_list : '{' markup_braced_list_body '}'"
-        #p[0] = Node(p.slice[0].type, p[2]); return
+        #p[0] = Node(p.slice[0].type, p[1:]); return
         p[0] = p[2]
 
 
@@ -1908,11 +1908,8 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_markup_command_list__MARKUP_LIST_FUNCTION__markup_command_list_arguments(self, p):
         'markup_command_list : MARKUP_LIST_FUNCTION markup_command_list_arguments'
-        p[0] = Node(p.slice[0].type, p[1:]); return
-        if p[2]:
-            p[0] = [p[1]] + p[2]
-        else:
-            p[0] = [p[1]]
+        #p[0] = Node(p.slice[0].type, p[1:]); return
+        p[0] = markuptools.MarkupCommand(p[1][1:], *p[2])
 
 
     ### markup_command_list_arguments ###
@@ -1935,7 +1932,7 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_markup_composed_list__markup_head_1_list__markup_braced_list(self, p):
         'markup_composed_list : markup_head_1_list markup_braced_list'
-        #p[0] = Node(p.slice[0].type, p[1:])
+        #p[0] = Node(p.slice[0].type, p[1:]); return 
         markup = p[2]
         for item in reversed(p[1]):
             command = item[0][1:]
@@ -1944,12 +1941,13 @@ class _LilyPondSyntacticalDefinition(object):
             markup = markuptools.MarkupCommand(command, *args)
         p[0] = markup
 
+
     ### markup_head_1_item ###
 
 
     def p_markup_head_1_item__MARKUP_FUNCTION__EXPECT_MARKUP__markup_command_list_arguments(self, p):
         'markup_head_1_item : MARKUP_FUNCTION EXPECT_MARKUP markup_command_list_arguments'
-        #p[0] = Node(p.slice[0].type, [p[1]] + p[3]); return
+        #p[0] = Node(p.slice[0].type, p[1:]); return
         p[0] = [p[1]] + p[3]
 
 
@@ -1997,6 +1995,7 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_markup_list__markup_scm__MARKUPLIST_IDENTIFIER(self, p):
         'markup_list : markup_scm MARKUPLIST_IDENTIFIER'
+        #p[0] = Node(p.slice[0].type, p[1:]); return
         p[0] = Node('markup_list', p[1:])
 
 
@@ -2005,7 +2004,7 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_markup_scm__embedded_scm_bare__BACKUP(self, p):
         'markup_scm : embedded_scm_bare BACKUP'
-        p[0] = Node(p.slice[0].type, p[1:]); return
+        #p[0] = Node(p.slice[0].type, p[1:]); return
         p[0] = Node('markup_scm', p[1:])
 
 
@@ -2022,6 +2021,7 @@ class _LilyPondSyntacticalDefinition(object):
             args.append(markup)
             markup = markuptools.MarkupCommand(command, *args)
         p[0] = markup
+
 
     def p_markup_top__markup_list(self, p):
         'markup_top : markup_list'
@@ -2930,12 +2930,13 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_simple_markup__STRING_IDENTIFIER(self, p):
         'simple_markup : STRING_IDENTIFIER'
+        #p[0] = Node(p.slice[0].type, p[1:]); return
         p[0] = p[1]
 
 
     def p_simple_markup__markup_scm__MARKUP_IDENTIFIER(self, p):
         'simple_markup : markup_scm MARKUP_IDENTIFIER'
-        p[0] = Node('simple_markup', p[1:])
+        #p[0] = Node('simple_markup', p[1:])
 
 
     ### simple_music ###

@@ -590,13 +590,16 @@ class _LilyPondLexicalDefinition(object):
         if value in self.client._markup_functions or \
             value in self.client._markup_list_functions:
             if value in self.client._markup_functions:
-                t.type = 'MARKUP_FUNCTION'
                 signature = self.client._markup_functions[value]
+                if 'markup-list?' in signature:
+                    t.type = 'MARKUP_LIST_FUNCTION'
+                else:
+                    t.type = 'MARKUP_FUNCTION'
             else:
                 t.type = 'MARKUP_LIST_FUNCTION'
                 signature = self.client._markup_list_functions[value]
 
-            #print t.type, value, signature
+            print t.type, value, signature
 
             self.push_signature(signature, t)
 
@@ -882,6 +885,8 @@ class _LilyPondLexicalDefinition(object):
                 token.type = 'EXPECT_DURATION'
             elif predicate in ['markup?', 'cheap-markup?']:
                 token.type = 'EXPECT_MARKUP'
+            elif predicate == 'markup-list?':
+                token.type = 'EXPECT_MARKUP_LIST'
             else:
                 token.type = 'EXPECT_SCM'
 
