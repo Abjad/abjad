@@ -1,9 +1,9 @@
-from abjad.tools.pitchtools.PitchObjectVector import PitchObjectVector
+from abjad.tools.pitchtools.ObjectVector import ObjectVector
 from abjad.tools.pitchtools.inventory_inversion_equivalent_diatonic_interval_classes import inventory_inversion_equivalent_diatonic_interval_classes
 from abjad.tools.pitchtools.list_harmonic_diatonic_intervals_in_expr import list_harmonic_diatonic_intervals_in_expr
 
 
-class InversionEquivalentDiatonicIntervalClassVector(PitchObjectVector):
+class InversionEquivalentDiatonicIntervalClassVector(ObjectVector):
     '''.. versionadded:: 2.0
 
     Abjad model of inversion-equivalent diatonic interval-class vector::

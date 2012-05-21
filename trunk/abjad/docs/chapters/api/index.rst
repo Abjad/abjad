@@ -741,9 +741,9 @@ Abjad composition packages
 .. toctree::
    :maxdepth: 1
 
-   tools/pitchtools/PitchObjectSegment/PitchObjectSegment
-   tools/pitchtools/PitchObjectSet/PitchObjectSet
-   tools/pitchtools/PitchObjectVector/PitchObjectVector
+   tools/pitchtools/ObjectSegment/ObjectSegment
+   tools/pitchtools/ObjectSet/ObjectSet
+   tools/pitchtools/ObjectVector/ObjectVector
 
 .. rubric:: concrete classes
 

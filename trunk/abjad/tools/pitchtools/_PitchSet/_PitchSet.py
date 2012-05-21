@@ -1,8 +1,8 @@
 from abc import ABCMeta
-from abjad.tools.pitchtools.PitchObjectSet import PitchObjectSet
+from abjad.tools.pitchtools.ObjectSet import ObjectSet
 
 
-class _PitchSet(PitchObjectSet):
+class _PitchSet(ObjectSet):
     '''.. versionadded:: 2.0
 
     Pitch set base class.

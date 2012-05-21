@@ -39,7 +39,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.__add__
 
-    Inherited from :py:class:`pitchtools.PitchObjectSegment <abjad.tools.pitchtools.PitchObjectSegment.PitchObjectSegment.PitchObjectSegment>`
+    Inherited from :py:class:`pitchtools.ObjectSegment <abjad.tools.pitchtools.ObjectSegment.ObjectSegment.ObjectSegment>`
 
 .. automethod:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.__contains__
 
@@ -63,7 +63,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.__getslice__
 
-    Inherited from :py:class:`pitchtools.PitchObjectSegment <abjad.tools.pitchtools.PitchObjectSegment.PitchObjectSegment.PitchObjectSegment>`
+    Inherited from :py:class:`pitchtools.ObjectSegment <abjad.tools.pitchtools.ObjectSegment.ObjectSegment.ObjectSegment>`
 
 .. automethod:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.__gt__
 
@@ -91,7 +91,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.__mul__
 
-    Inherited from :py:class:`pitchtools.PitchObjectSegment <abjad.tools.pitchtools.PitchObjectSegment.PitchObjectSegment.PitchObjectSegment>`
+    Inherited from :py:class:`pitchtools.ObjectSegment <abjad.tools.pitchtools.ObjectSegment.ObjectSegment.ObjectSegment>`
 
 .. automethod:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.__ne__
 
@@ -103,7 +103,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.__rmul__
 
-    Inherited from :py:class:`pitchtools.PitchObjectSegment <abjad.tools.pitchtools.PitchObjectSegment.PitchObjectSegment.PitchObjectSegment>`
+    Inherited from :py:class:`pitchtools.ObjectSegment <abjad.tools.pitchtools.ObjectSegment.ObjectSegment.ObjectSegment>`
 
 .. automethod:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.__setattr__
 

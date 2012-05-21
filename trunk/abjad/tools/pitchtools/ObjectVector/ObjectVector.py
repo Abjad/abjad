@@ -3,7 +3,7 @@ from abc import abstractmethod
 from abjad.tools.datastructuretools import ImmutableDictionary
 
 
-class PitchObjectVector(ImmutableDictionary):
+class ObjectVector(ImmutableDictionary):
     '''.. versionadded:: 2.0
 
     Music theoretic vector base class.

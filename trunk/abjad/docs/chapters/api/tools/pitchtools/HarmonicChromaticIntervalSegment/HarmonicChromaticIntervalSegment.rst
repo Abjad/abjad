@@ -37,7 +37,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.__add__
 
-    Inherited from :py:class:`pitchtools.PitchObjectSegment <abjad.tools.pitchtools.PitchObjectSegment.PitchObjectSegment.PitchObjectSegment>`
+    Inherited from :py:class:`pitchtools.ObjectSegment <abjad.tools.pitchtools.ObjectSegment.ObjectSegment.ObjectSegment>`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.__contains__
 
@@ -61,7 +61,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.__getslice__
 
-    Inherited from :py:class:`pitchtools.PitchObjectSegment <abjad.tools.pitchtools.PitchObjectSegment.PitchObjectSegment.PitchObjectSegment>`
+    Inherited from :py:class:`pitchtools.ObjectSegment <abjad.tools.pitchtools.ObjectSegment.ObjectSegment.ObjectSegment>`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.__gt__
 
@@ -89,7 +89,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.__mul__
 
-    Inherited from :py:class:`pitchtools.PitchObjectSegment <abjad.tools.pitchtools.PitchObjectSegment.PitchObjectSegment.PitchObjectSegment>`
+    Inherited from :py:class:`pitchtools.ObjectSegment <abjad.tools.pitchtools.ObjectSegment.ObjectSegment.ObjectSegment>`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.__ne__
 
@@ -101,7 +101,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.__rmul__
 
-    Inherited from :py:class:`pitchtools.PitchObjectSegment <abjad.tools.pitchtools.PitchObjectSegment.PitchObjectSegment.PitchObjectSegment>`
+    Inherited from :py:class:`pitchtools.ObjectSegment <abjad.tools.pitchtools.ObjectSegment.ObjectSegment.ObjectSegment>`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.__setattr__
 

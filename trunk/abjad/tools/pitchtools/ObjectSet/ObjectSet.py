@@ -3,7 +3,7 @@ from abc import abstractmethod
 from abjad.tools.abctools import ImmutableAbjadObject
 
 
-class PitchObjectSet(frozenset, ImmutableAbjadObject):
+class ObjectSet(frozenset, ImmutableAbjadObject):
     '''.. versionadded:: 2.0
 
     Music-theoretic set base class.

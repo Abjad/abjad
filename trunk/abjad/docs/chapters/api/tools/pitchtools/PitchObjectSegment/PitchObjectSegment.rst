@@ -1,89 +1,89 @@
-pitchtools.PitchObjectSegment
+pitchtools.ObjectSegment
 =============================
 
-.. inheritance-diagram:: abjad.tools.pitchtools.PitchObjectSegment.PitchObjectSegment.PitchObjectSegment
+.. inheritance-diagram:: abjad.tools.pitchtools.ObjectSegment.ObjectSegment.ObjectSegment
    :private-bases:
 
-.. autoclass:: abjad.tools.pitchtools.PitchObjectSegment.PitchObjectSegment.PitchObjectSegment
+.. autoclass:: abjad.tools.pitchtools.ObjectSegment.ObjectSegment.ObjectSegment
 
 Methods
 -------
 
-.. automethod:: abjad.tools.pitchtools.PitchObjectSegment.PitchObjectSegment.PitchObjectSegment.count
+.. automethod:: abjad.tools.pitchtools.ObjectSegment.ObjectSegment.ObjectSegment.count
 
     Inherited from `__builtin__.tuple`
 
-.. automethod:: abjad.tools.pitchtools.PitchObjectSegment.PitchObjectSegment.PitchObjectSegment.index
+.. automethod:: abjad.tools.pitchtools.ObjectSegment.ObjectSegment.ObjectSegment.index
 
     Inherited from `__builtin__.tuple`
 
 Special Methods
 ---------------
 
-.. automethod:: abjad.tools.pitchtools.PitchObjectSegment.PitchObjectSegment.PitchObjectSegment.__add__
+.. automethod:: abjad.tools.pitchtools.ObjectSegment.ObjectSegment.ObjectSegment.__add__
 
-.. automethod:: abjad.tools.pitchtools.PitchObjectSegment.PitchObjectSegment.PitchObjectSegment.__contains__
+.. automethod:: abjad.tools.pitchtools.ObjectSegment.ObjectSegment.ObjectSegment.__contains__
 
     Inherited from `__builtin__.tuple`
 
-.. automethod:: abjad.tools.pitchtools.PitchObjectSegment.PitchObjectSegment.PitchObjectSegment.__delattr__
+.. automethod:: abjad.tools.pitchtools.ObjectSegment.ObjectSegment.ObjectSegment.__delattr__
 
     Inherited from `__builtin__.object`
 
-.. automethod:: abjad.tools.pitchtools.PitchObjectSegment.PitchObjectSegment.PitchObjectSegment.__eq__
+.. automethod:: abjad.tools.pitchtools.ObjectSegment.ObjectSegment.ObjectSegment.__eq__
 
     Inherited from `__builtin__.tuple`
 
-.. automethod:: abjad.tools.pitchtools.PitchObjectSegment.PitchObjectSegment.PitchObjectSegment.__ge__
+.. automethod:: abjad.tools.pitchtools.ObjectSegment.ObjectSegment.ObjectSegment.__ge__
 
     Inherited from `__builtin__.tuple`
 
-.. automethod:: abjad.tools.pitchtools.PitchObjectSegment.PitchObjectSegment.PitchObjectSegment.__getitem__
+.. automethod:: abjad.tools.pitchtools.ObjectSegment.ObjectSegment.ObjectSegment.__getitem__
 
     Inherited from `__builtin__.tuple`
 
-.. automethod:: abjad.tools.pitchtools.PitchObjectSegment.PitchObjectSegment.PitchObjectSegment.__getslice__
+.. automethod:: abjad.tools.pitchtools.ObjectSegment.ObjectSegment.ObjectSegment.__getslice__
 
-.. automethod:: abjad.tools.pitchtools.PitchObjectSegment.PitchObjectSegment.PitchObjectSegment.__gt__
-
-    Inherited from `__builtin__.tuple`
-
-.. automethod:: abjad.tools.pitchtools.PitchObjectSegment.PitchObjectSegment.PitchObjectSegment.__hash__
+.. automethod:: abjad.tools.pitchtools.ObjectSegment.ObjectSegment.ObjectSegment.__gt__
 
     Inherited from `__builtin__.tuple`
 
-.. automethod:: abjad.tools.pitchtools.PitchObjectSegment.PitchObjectSegment.PitchObjectSegment.__iter__
+.. automethod:: abjad.tools.pitchtools.ObjectSegment.ObjectSegment.ObjectSegment.__hash__
 
     Inherited from `__builtin__.tuple`
 
-.. automethod:: abjad.tools.pitchtools.PitchObjectSegment.PitchObjectSegment.PitchObjectSegment.__le__
+.. automethod:: abjad.tools.pitchtools.ObjectSegment.ObjectSegment.ObjectSegment.__iter__
 
     Inherited from `__builtin__.tuple`
 
-.. automethod:: abjad.tools.pitchtools.PitchObjectSegment.PitchObjectSegment.PitchObjectSegment.__len__
+.. automethod:: abjad.tools.pitchtools.ObjectSegment.ObjectSegment.ObjectSegment.__le__
 
     Inherited from `__builtin__.tuple`
 
-.. automethod:: abjad.tools.pitchtools.PitchObjectSegment.PitchObjectSegment.PitchObjectSegment.__lt__
+.. automethod:: abjad.tools.pitchtools.ObjectSegment.ObjectSegment.ObjectSegment.__len__
 
     Inherited from `__builtin__.tuple`
 
-.. automethod:: abjad.tools.pitchtools.PitchObjectSegment.PitchObjectSegment.PitchObjectSegment.__mul__
-
-.. automethod:: abjad.tools.pitchtools.PitchObjectSegment.PitchObjectSegment.PitchObjectSegment.__ne__
+.. automethod:: abjad.tools.pitchtools.ObjectSegment.ObjectSegment.ObjectSegment.__lt__
 
     Inherited from `__builtin__.tuple`
 
-.. automethod:: abjad.tools.pitchtools.PitchObjectSegment.PitchObjectSegment.PitchObjectSegment.__repr__
+.. automethod:: abjad.tools.pitchtools.ObjectSegment.ObjectSegment.ObjectSegment.__mul__
+
+.. automethod:: abjad.tools.pitchtools.ObjectSegment.ObjectSegment.ObjectSegment.__ne__
 
     Inherited from `__builtin__.tuple`
 
-.. automethod:: abjad.tools.pitchtools.PitchObjectSegment.PitchObjectSegment.PitchObjectSegment.__rmul__
+.. automethod:: abjad.tools.pitchtools.ObjectSegment.ObjectSegment.ObjectSegment.__repr__
 
-.. automethod:: abjad.tools.pitchtools.PitchObjectSegment.PitchObjectSegment.PitchObjectSegment.__setattr__
+    Inherited from `__builtin__.tuple`
+
+.. automethod:: abjad.tools.pitchtools.ObjectSegment.ObjectSegment.ObjectSegment.__rmul__
+
+.. automethod:: abjad.tools.pitchtools.ObjectSegment.ObjectSegment.ObjectSegment.__setattr__
 
     Inherited from `__builtin__.object`
 
-.. automethod:: abjad.tools.pitchtools.PitchObjectSegment.PitchObjectSegment.PitchObjectSegment.__str__
+.. automethod:: abjad.tools.pitchtools.ObjectSegment.ObjectSegment.ObjectSegment.__str__
 
     Inherited from `__builtin__.object`

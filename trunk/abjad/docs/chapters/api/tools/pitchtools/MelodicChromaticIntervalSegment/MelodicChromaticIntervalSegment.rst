@@ -49,7 +49,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalSegment.MelodicChromaticIntervalSegment.MelodicChromaticIntervalSegment.__add__
 
-    Inherited from :py:class:`pitchtools.PitchObjectSegment <abjad.tools.pitchtools.PitchObjectSegment.PitchObjectSegment.PitchObjectSegment>`
+    Inherited from :py:class:`pitchtools.ObjectSegment <abjad.tools.pitchtools.ObjectSegment.ObjectSegment.ObjectSegment>`
 
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalSegment.MelodicChromaticIntervalSegment.MelodicChromaticIntervalSegment.__contains__
 
@@ -73,7 +73,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalSegment.MelodicChromaticIntervalSegment.MelodicChromaticIntervalSegment.__getslice__
 
-    Inherited from :py:class:`pitchtools.PitchObjectSegment <abjad.tools.pitchtools.PitchObjectSegment.PitchObjectSegment.PitchObjectSegment>`
+    Inherited from :py:class:`pitchtools.ObjectSegment <abjad.tools.pitchtools.ObjectSegment.ObjectSegment.ObjectSegment>`
 
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalSegment.MelodicChromaticIntervalSegment.MelodicChromaticIntervalSegment.__gt__
 
@@ -101,7 +101,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalSegment.MelodicChromaticIntervalSegment.MelodicChromaticIntervalSegment.__mul__
 
-    Inherited from :py:class:`pitchtools.PitchObjectSegment <abjad.tools.pitchtools.PitchObjectSegment.PitchObjectSegment.PitchObjectSegment>`
+    Inherited from :py:class:`pitchtools.ObjectSegment <abjad.tools.pitchtools.ObjectSegment.ObjectSegment.ObjectSegment>`
 
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalSegment.MelodicChromaticIntervalSegment.MelodicChromaticIntervalSegment.__ne__
 
@@ -113,7 +113,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalSegment.MelodicChromaticIntervalSegment.MelodicChromaticIntervalSegment.__rmul__
 
-    Inherited from :py:class:`pitchtools.PitchObjectSegment <abjad.tools.pitchtools.PitchObjectSegment.PitchObjectSegment.PitchObjectSegment>`
+    Inherited from :py:class:`pitchtools.ObjectSegment <abjad.tools.pitchtools.ObjectSegment.ObjectSegment.ObjectSegment>`
 
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalSegment.MelodicChromaticIntervalSegment.MelodicChromaticIntervalSegment.__setattr__
 

@@ -3,7 +3,7 @@ from abc import abstractmethod
 from abjad.tools.abctools import ImmutableAbjadObject
 
 
-class PitchObjectSegment(tuple, ImmutableAbjadObject):
+class ObjectSegment(tuple, ImmutableAbjadObject):
     '''.. versionadded:: 2.0
 
     Mix-in base class for ordered collections of pitch objects.

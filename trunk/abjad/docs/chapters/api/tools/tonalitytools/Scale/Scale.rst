@@ -89,7 +89,7 @@ Special Methods
 
 .. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.__add__
 
-    Inherited from :py:class:`pitchtools.PitchObjectSegment <abjad.tools.pitchtools.PitchObjectSegment.PitchObjectSegment.PitchObjectSegment>`
+    Inherited from :py:class:`pitchtools.ObjectSegment <abjad.tools.pitchtools.ObjectSegment.ObjectSegment.ObjectSegment>`
 
 .. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.__contains__
 
@@ -113,7 +113,7 @@ Special Methods
 
 .. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.__getslice__
 
-    Inherited from :py:class:`pitchtools.PitchObjectSegment <abjad.tools.pitchtools.PitchObjectSegment.PitchObjectSegment.PitchObjectSegment>`
+    Inherited from :py:class:`pitchtools.ObjectSegment <abjad.tools.pitchtools.ObjectSegment.ObjectSegment.ObjectSegment>`
 
 .. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.__gt__
 
@@ -141,7 +141,7 @@ Special Methods
 
 .. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.__mul__
 
-    Inherited from :py:class:`pitchtools.PitchObjectSegment <abjad.tools.pitchtools.PitchObjectSegment.PitchObjectSegment.PitchObjectSegment>`
+    Inherited from :py:class:`pitchtools.ObjectSegment <abjad.tools.pitchtools.ObjectSegment.ObjectSegment.ObjectSegment>`
 
 .. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.__ne__
 
@@ -151,7 +151,7 @@ Special Methods
 
 .. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.__rmul__
 
-    Inherited from :py:class:`pitchtools.PitchObjectSegment <abjad.tools.pitchtools.PitchObjectSegment.PitchObjectSegment.PitchObjectSegment>`
+    Inherited from :py:class:`pitchtools.ObjectSegment <abjad.tools.pitchtools.ObjectSegment.ObjectSegment.ObjectSegment>`
 
 .. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.__setattr__
 

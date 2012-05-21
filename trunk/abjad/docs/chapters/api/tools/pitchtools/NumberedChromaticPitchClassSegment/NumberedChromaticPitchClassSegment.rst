@@ -41,7 +41,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.__add__
 
-    Inherited from :py:class:`pitchtools.PitchObjectSegment <abjad.tools.pitchtools.PitchObjectSegment.PitchObjectSegment.PitchObjectSegment>`
+    Inherited from :py:class:`pitchtools.ObjectSegment <abjad.tools.pitchtools.ObjectSegment.ObjectSegment.ObjectSegment>`
 
 .. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.__contains__
 
@@ -65,7 +65,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.__getslice__
 
-    Inherited from :py:class:`pitchtools.PitchObjectSegment <abjad.tools.pitchtools.PitchObjectSegment.PitchObjectSegment.PitchObjectSegment>`
+    Inherited from :py:class:`pitchtools.ObjectSegment <abjad.tools.pitchtools.ObjectSegment.ObjectSegment.ObjectSegment>`
 
 .. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.__gt__
 
@@ -93,7 +93,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.__mul__
 
-    Inherited from :py:class:`pitchtools.PitchObjectSegment <abjad.tools.pitchtools.PitchObjectSegment.PitchObjectSegment.PitchObjectSegment>`
+    Inherited from :py:class:`pitchtools.ObjectSegment <abjad.tools.pitchtools.ObjectSegment.ObjectSegment.ObjectSegment>`
 
 .. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.__ne__
 
@@ -103,7 +103,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.__rmul__
 
-    Inherited from :py:class:`pitchtools.PitchObjectSegment <abjad.tools.pitchtools.PitchObjectSegment.PitchObjectSegment.PitchObjectSegment>`
+    Inherited from :py:class:`pitchtools.ObjectSegment <abjad.tools.pitchtools.ObjectSegment.ObjectSegment.ObjectSegment>`
 
 .. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.__setattr__
 

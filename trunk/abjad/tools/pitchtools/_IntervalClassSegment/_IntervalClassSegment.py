@@ -1,8 +1,8 @@
 from abc import ABCMeta
-from abjad.tools.pitchtools.PitchObjectSegment import PitchObjectSegment
+from abjad.tools.pitchtools.ObjectSegment import ObjectSegment
 
 
-class _IntervalClassSegment(PitchObjectSegment):
+class _IntervalClassSegment(ObjectSegment):
     '''.. versionadded:: 2.0
 
     Interval-class segment base class.
