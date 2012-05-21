@@ -217,12 +217,18 @@ class TempoMark(ContextMark):
             abjad> tempo = contexttools.TempoMark(Duration(1, 8), 52)
             abjad> tempo.format
             '\\tempo 8=52'
+
+        ::
+
             abjad> tempo.textual_indication = 'Gingerly'
             abjad> tempo.format
-            '\\tempo "Gingerly" 8=52'
+            '\\tempo Gingerly 8=52'
+
+        ::
+
             abjad> tempo.units_per_minute = (52, 56)
             abjad> tempo.format
-            '\\tempo "Gingerly" 8=52~56'
+            '\\tempo Gingerly 8=52~56'
 
         Return string.
         '''
