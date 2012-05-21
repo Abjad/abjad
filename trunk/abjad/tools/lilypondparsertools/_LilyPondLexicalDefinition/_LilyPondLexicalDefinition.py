@@ -388,8 +388,15 @@ class _LilyPondLexicalDefinition(object):
             scheme_parser(input_string)
         except _SchemeParserFinishedException:
             result = scheme_parser.result
-            t.type = 'SCM_TOKEN'
+            cursor_end = scheme_parser.cursor_end
+            #print 'PARSED: {!r}'.format(input_string[:cursor_end])
             t.value = result
+            if isinstance(result, str):
+                t.type = 'STRING'
+                if t.value.find(' ') != -1:
+                    t.value = '"{}"'.format(t.value)
+            else:
+                t.type = 'SCM_TOKEN'
             t.lexer.skip(scheme_parser.cursor_end + 1)
         return t
 
@@ -589,7 +596,7 @@ class _LilyPondLexicalDefinition(object):
                 t.type = 'MARKUP_LIST_FUNCTION'
                 signature = self.client._markup_list_functions[value]
 
-            print t.type, value, signature
+            #print t.type, value, signature
 
             self.push_signature(signature, t)
 

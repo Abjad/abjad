@@ -1836,7 +1836,7 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_markup__markup_head_1_list__simple_markup(self, p):
         'markup : markup_head_1_list simple_markup'
-        p[0] = Node(p.slice[0].type, p[1:]); return
+        #p[0] = Node(p.slice[0].type, p[1:]); return
         command = p[1][0][1:]
         args = p[1][1:]
         args.append(p[2])
