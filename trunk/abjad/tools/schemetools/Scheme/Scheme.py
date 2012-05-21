@@ -96,6 +96,8 @@ class Scheme(AbjadObject):
         if isinstance(value, str):
             if -1 == value.find(' '):
                 return value
+            if value.startswith('"') and value.endswith('"'):
+                return value
             value = repr(value)
             if value.startswith("'") and value.endswith("'"):
                 value = value.replace('"', '\"')
