@@ -929,7 +929,6 @@ class _LilyPondSyntacticalDefinition(object):
         p[0] = p[1]
 
 
-
     def p_embedded_scm_bare_arg__embedded_scm_bare(self, p):
         'embedded_scm_bare_arg : embedded_scm_bare'
         p[0] = p[1]
@@ -1160,7 +1159,7 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_full_markup__MARKUP__markup_top(self, p):
         'full_markup : MARKUP markup_top'
-        p[0] = markuptools.Markup(' '.join([schemetools.Scheme._format_value(x) for x in p[2]]))
+        p[0] = markuptools.Markup(p[2])
 
 
     ### full_markup_list ###
@@ -1837,7 +1836,11 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_markup__markup_head_1_list__simple_markup(self, p):
         'markup : markup_head_1_list simple_markup'
-        p[0] = Node('markup', p[1:])
+        p[0] = Node(p.slice[0].type, p[1:]); return
+        command = p[1][0][1:]
+        args = p[1][1:]
+        args.append(p[2])
+        p[0] = markuptools.MarkupCommand(command, *args)
 
 
     def p_markup__simple_markup(self, p):
@@ -1868,7 +1871,7 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_markup_braced_list_body__markup_braced_list_body__markup_list(self, p):
         'markup_braced_list_body : markup_braced_list_body markup_list'
-        p[0] = p[1] + p[2]
+        p[0] = p[1] + [p[2]]
 
 
     ### markup_command_basic_arguments ###
@@ -1876,17 +1879,20 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_markup_command_basic_arguments__EXPECT_MARKUP_LIST__markup_command_list_arguments__markup_list(self, p):
         'markup_command_basic_arguments : EXPECT_MARKUP_LIST markup_command_list_arguments markup_list'
-        p[0] = Node('markup_command_basic_arguments', p[1:])
+        #p[0] = Node(p.slice[0].type, p[1:]); return
+        p[0] = p[2] + [p[3]]
 
 
     def p_markup_command_basic_arguments__EXPECT_NO_MORE_ARGS(self, p):
         'markup_command_basic_arguments : EXPECT_NO_MORE_ARGS'
-        p[0] = Node('markup_command_basic_arguments', p[1:])
+        #p[0] = Node(p.slice[0].type, p[1:]); return
+        p[0] = []
 
 
     def p_markup_command_basic_arguments__EXPECT_SCM__markup_command_list_arguments__embedded_scm_closed(self, p):
         'markup_command_basic_arguments : EXPECT_SCM markup_command_list_arguments embedded_scm_closed'
-        p[0] = Node('markup_command_basic_arguments', p[1:])
+        #p[0] = Node(p.slice[0].type, p[1:]); return
+        p[0] = p[2] + [p[3]]
 
 
     ### markup_command_list ###
@@ -1894,7 +1900,11 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_markup_command_list__MARKUP_LIST_FUNCTION__markup_command_list_arguments(self, p):
         'markup_command_list : MARKUP_LIST_FUNCTION markup_command_list_arguments'
-        p[0] = Node('markup_command_list', p[1:])
+        p[0] = Node(p.slice[0].type, p[1:]); return
+        if p[2]:
+            p[0] = [p[1]] + p[2]
+        else:
+            p[0] = [p[1]]
 
 
     ### markup_command_list_arguments ###
@@ -1902,12 +1912,14 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_markup_command_list_arguments__EXPECT_MARKUP__markup_command_list_arguments__markup(self, p):
         'markup_command_list_arguments : EXPECT_MARKUP markup_command_list_arguments markup'
-        p[0] = Node('markup_command_list_arguments', p[1:])
+        #p[0] = Node(p.slice[0].type, p[1:]); return
+        p[0] = p[2] + [p[3]]
 
 
     def p_markup_command_list_arguments__markup_command_basic_arguments(self, p):
         'markup_command_list_arguments : markup_command_basic_arguments'
-        p[0] = Node('markup_command_list_arguments', p[1:])
+        #p[0] = Node(p.slice[0].type, p[1:]); return
+        p[0] = p[1]
 
 
     ### markup_composed_list ###
@@ -1915,7 +1927,11 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_markup_composed_list__markup_head_1_list__markup_braced_list(self, p):
         'markup_composed_list : markup_head_1_list markup_braced_list'
-        p[0] = Node('markup_composed_list', p[1:])
+        #p[0] = Node(p.slice[0].type, p[1:]); return
+        command = p[1][0][1:]
+        args = p[1][1:]
+        args.append(p[2])
+        p[0] = markuptools.MarkupCommand(command, *args)
 
 
     ### markup_head_1_item ###
@@ -1923,7 +1939,8 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_markup_head_1_item__MARKUP_FUNCTION__EXPECT_MARKUP__markup_command_list_arguments(self, p):
         'markup_head_1_item : MARKUP_FUNCTION EXPECT_MARKUP markup_command_list_arguments'
-        p[0] = Node('markup_head_1_item', p[1:])
+        #p[0] = Node(p.slice[0].type, p[1:]); return
+        p[0] = [p[1]] + p[3]
 
 
     ### markup_head_1_list ###
@@ -1931,12 +1948,14 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_markup_head_1_list__markup_head_1_item(self, p):
         'markup_head_1_list : markup_head_1_item'
-        p[0] = Node('markup_head_1_list', p[1:])
+        #p[0] = Node(p.slice[0].type, p[1:]); return
+        p[0] = p[1]
 
 
     def p_markup_head_1_list__markup_head_1_list__markup_head_1_item(self, p):
         'markup_head_1_list : markup_head_1_list markup_head_1_item'
-        p[0] = Node('markup_head_1_list', p[1:])
+        p[0] = Node(p.slice[0].type, p[1:]); return
+        p[0] = p[1] + p[2]
 
 
     ### markup_list ###
@@ -1944,26 +1963,31 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_markup_list__MARKUPLIST_IDENTIFIER(self, p):
         'markup_list : MARKUPLIST_IDENTIFIER'
+        #p[0] = Node(p.slice[0].type, p[1:]); return
         p[0] = p[1]
 
 
     def p_markup_list__markup_braced_list(self, p):
         'markup_list : markup_braced_list'
+        #p[0] = Node(p.slice[0].type, p[1:]); return
         p[0] = p[1]
 
 
     def p_markup_list__markup_command_list(self, p):
         'markup_list : markup_command_list'
-        p[0] = Node('markup_list', p[1:])
+        #p[0] = Node(p.slice[0].type, p[1:]); return
+        p[0] = p[1]
 
 
     def p_markup_list__markup_composed_list(self, p):
         'markup_list : markup_composed_list'
-        p[0] = Node('markup_list', p[1:])
+        #p[0] = Node(p.slice[0].type, p[1:]); return
+        p[0] = p[1]
 
 
     def p_markup_list__markup_scm__MARKUPLIST_IDENTIFIER(self, p):
         'markup_list : markup_scm MARKUPLIST_IDENTIFIER'
+        p[0] = Node(p.slice[0].type, p[1:]); return
         p[0] = Node('markup_list', p[1:])
 
 
@@ -1972,6 +1996,7 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_markup_scm__embedded_scm_bare__BACKUP(self, p):
         'markup_scm : embedded_scm_bare BACKUP'
+        p[0] = Node(p.slice[0].type, p[1:]); return
         p[0] = Node('markup_scm', p[1:])
 
 
@@ -1980,16 +2005,22 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_markup_top__markup_head_1_list__simple_markup(self, p):
         'markup_top : markup_head_1_list simple_markup'
-        p[0] = Node('markup_top', p[1:])
+        #p[0] = Node(p.slice[0].type, p[1:]); return
+        command = p[1][0][1:]
+        args = p[1][1:]
+        args.append(p[2])
+        p[0] = markuptools.MarkupCommand(command, *args)
 
 
     def p_markup_top__markup_list(self, p):
         'markup_top : markup_list'
+        #p[0] = Node(p.slice[0].type, p[1:]); return
         p[0] = p[1]
 
 
     def p_markup_top__simple_markup(self, p):
         'markup_top : simple_markup'
+        p[0] = Node(p.slice[0].type, p[1:]); return
         p[0] = p[1]
 
 
@@ -2862,16 +2893,21 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_simple_markup__MARKUP_FUNCTION__markup_command_basic_arguments(self, p):
         'simple_markup : MARKUP_FUNCTION markup_command_basic_arguments'
-        p[0] = Node('simple_markup', p[1:])
+        #p[0] = Node(p.slice[0].type, p[1:]); return
+        command = p[1][1:]
+        args = p[2]
+        p[0] = markuptools.MarkupCommand(command, *args)
 
 
     def p_simple_markup__MARKUP_IDENTIFIER(self, p):
         'simple_markup : MARKUP_IDENTIFIER'
+        p[0] = Node(p.slice[0].type, p[1:]); return
         p[0] = Node('simple_markup', p[1:])
 
 
     def p_simple_markup__SCORE__Chr123__score_body__Chr125(self, p):
         "simple_markup : SCORE '{' score_body '}'"
+        p[0] = Node(p.slice[0].type, p[1:]); return
         p[0] = Node('simple_markup', p[1:])
 
 

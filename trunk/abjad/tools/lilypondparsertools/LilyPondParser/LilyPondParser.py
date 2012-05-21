@@ -167,8 +167,8 @@ class LilyPondParser(AbjadObject):
 
 
     def __call__(self, input_string):
-        if os.path.exists(self._logger_path):
-            os.remove(self._logger_path)
+        #if os.path.exists(self._logger_path):
+        #    os.remove(self._logger_path)
 
         self._reset_parser_variables()
 
@@ -649,7 +649,7 @@ class LilyPondParser(AbjadObject):
         predicates = {
             'boolean?':           lambda x: isinstance(x, bool),
             'cheap-list?':        lambda x: isinstance(x, (list, tuple)),
-            #'cheap-markup?':      lambda x: True,,
+            'cheap-markup?':      lambda x: isinstance(x, markuptools.MarkupCommand),
             'fraction?':          lambda x: isinstance(x, _LilyPondFraction),
             #'hash-table?':        lambda x: True,
             'integer?':           lambda x: isinstance(x, int),
@@ -664,7 +664,7 @@ class LilyPondParser(AbjadObject):
                                             all([isinstance(y, (int, float)) for y in x]),
             #'number-or-string?':  lambda x: True,
             #'number-pair?':       lambda x: True,
-            #'number?':            lambda x: True,
+            'number?':            lambda x: isinstance(x, (int, float)),
             #'optional?':          lambda x: True,
             #'pair?':              lambda x: True,
             #'procedure?':         lambda x: True,

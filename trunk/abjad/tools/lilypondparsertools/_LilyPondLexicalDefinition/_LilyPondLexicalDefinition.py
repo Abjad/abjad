@@ -3,10 +3,10 @@ import copy
 from ply.lex import TOKEN
 from ply.lex import LexToken
 
-from abjad.tools.lilypondparsertools._LilyPondDuration._LilyPondDuration \
-    import _LilyPondDuration
-from abjad.tools.lilypondparsertools._LilyPondFraction._LilyPondFraction \
-    import _LilyPondFraction
+from abjad.tools.lilypondparsertools._LilyPondDuration._LilyPondDuration import _LilyPondDuration
+from abjad.tools.lilypondparsertools._LilyPondFraction._LilyPondFraction import _LilyPondFraction
+from abjad.tools.lilypondparsertools._SchemeParser._SchemeParser import _SchemeParser
+from abjad.tools.lilypondparsertools._SchemeParserFinishedException._SchemeParserFinishedException import _SchemeParserFinishedException
 
 
 class _LilyPondLexicalDefinition(object):
@@ -378,11 +378,20 @@ class _LilyPondLexicalDefinition(object):
 
     # lexer.ll:353
     # <INITIAL,chords,figures,lyrics,markup,notes>#
-#    def t_INITIAL_markup_notes_353(self, t):
-#        '\#'
-#        t.type = 'SCHEME_START'
-#        t.lexer.push_state('INITIAL')
-#        return t
+    def t_INITIAL_markup_notes_353(self, t):
+        '\#'
+        #t.type = 'SCHEME_START'
+        #t.lexer.push_state('INITIAL')
+        scheme_parser = _SchemeParser(debug=False)
+        input_string = t.lexer.lexdata[t.lexpos+1:]
+        try:
+            scheme_parser(input_string)
+        except _SchemeParserFinishedException:
+            result = scheme_parser.result
+            t.type = 'SCM_TOKEN'
+            t.value = result
+            t.lexer.skip(scheme_parser.cursor_end + 1)
+        return t
 
     # lexer.ll:387
     # <INITIAL,notes,lyrics>\<\<
@@ -577,24 +586,9 @@ class _LilyPondLexicalDefinition(object):
                 t.type = 'MARKUP_LIST_FUNCTION'
                 signature = self.client._markup_list_functions[value]
 
-            token = LexToken( )
-            token.type = 'EXPECT_NO_MORE_ARGS'
-            token.value = None
-            self.client._push_extra_token(token)
+            print t.type, value, signature
 
-            for predicate in reversed(signature):
-                token = LexToken( )
-                token.value = None
-                token.lineno = t.lineno
-                token.lexpos = t.lexpos
-                if predicate in ['markup?', 'cheap-markup?']:
-                    token.type = 'EXPECT_MARKUP'
-                elif predicate == 'markup-list?':
-                    token.type = 'EXPECT_MARKUP_LIST'
-                else:
-                    token.type = 'EXPECT_SCM'
-                    token.value = predicate
-                self.client._push_extra_token(token)
+            self.push_signature(signature, t)
 
         else:
             t.type = self.scan_escaped_word(t)
@@ -736,7 +730,7 @@ class _LilyPondLexicalDefinition(object):
         t.lexer.lineno += t.value.count("\n")
 
     def t_error(self, t):
-        print("Illegal character '%s'" % t.value[0])
+        print("LilyPondParser: Illegal character '%s'" % t.value[0])
         t.lexer.skip(1)
 
     #    t_extratoken_error = t_error
@@ -832,46 +826,7 @@ class _LilyPondLexicalDefinition(object):
                 elif signature[0] == 'ly:event?':
                     funtype = 'EVENT_FUNCTION'
 
-                token = LexToken( )
-                token.type = 'EXPECT_NO_MORE_ARGS'
-                token.value = None
-                token.lineno = t.lineno
-                token.lexpos = t.lexpos
-                self.client._push_extra_token(token)
-
-                optional = False
-                for predicate in signature[1:]:
-
-                    if predicate == 'optional?':
-                        optional = True
-                        continue
-
-                    token = LexToken( )
-                    token.value = predicate
-                    token.lineno = t.lineno
-                    token.lexpos = t.lexpos
-
-                    if predicate == 'ly:music?':
-                        token.type = 'EXPECT_SCM' # ?!?!
-                    elif predicate == 'ly:pitch?':
-                        token.type = 'EXPECT_PITCH'
-                    elif predicate == 'ly:duration?':
-                        token.type = 'EXPECT_DURATION'
-                    elif predicate in ['markup?', 'cheap-markup?']:
-                        token.type = 'EXPECT_MARKUP'
-                    else:
-                        token.type = 'EXPECT_SCM'
-
-                    self.client._push_extra_token(token)
-
-                    if optional:
-                        optional_token = LexToken( )
-                        optional_token.value = 'optional?'
-                        optional_token.lineno = t.lineno
-                        optional_token.lexpos = t.lexpos
-                        optional_token.type = 'EXPECT_OPTIONAL'                        
-                        self.client._push_extra_token(optional_token)
-                        optional = False
+                self.push_signature(signature[1:], t)
 
                 return funtype
 
@@ -886,3 +841,47 @@ class _LilyPondLexicalDefinition(object):
         # else...
         t.value = copy.copy(lookup)
         return 'SCM_IDENTIFIER'
+
+
+    def push_signature(self, signature, t):
+
+        token = LexToken( )
+        token.type = 'EXPECT_NO_MORE_ARGS'
+        token.value = None
+        token.lineno = t.lineno
+        token.lexpos = t.lexpos
+        self.client._push_extra_token(token)
+
+        optional = False
+        for predicate in signature:
+
+            if predicate == 'optional?':
+                optional = True
+                continue
+
+            token = LexToken( )
+            token.value = predicate
+            token.lineno = t.lineno
+            token.lexpos = t.lexpos
+
+            if predicate == 'ly:music?':
+                token.type = 'EXPECT_SCM' # ?!?!
+            elif predicate == 'ly:pitch?':
+                token.type = 'EXPECT_PITCH'
+            elif predicate == 'ly:duration?':
+                token.type = 'EXPECT_DURATION'
+            elif predicate in ['markup?', 'cheap-markup?']:
+                token.type = 'EXPECT_MARKUP'
+            else:
+                token.type = 'EXPECT_SCM'
+
+            self.client._push_extra_token(token)
+
+            if optional:
+                optional_token = LexToken( )
+                optional_token.value = 'optional?'
+                optional_token.lineno = t.lineno
+                optional_token.lexpos = t.lexpos
+                optional_token.type = 'EXPECT_OPTIONAL'
+                self.client._push_extra_token(optional_token)
+                optional = False
