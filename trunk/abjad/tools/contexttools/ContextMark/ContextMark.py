@@ -144,12 +144,16 @@ class ContextMark(Mark):
     ### PUBLIC METHODS ###
 
     def attach(self, start_component):
-        '''Make sure no context mark of same type is already attached to start component.
+        '''Make sure no context mark of same type is already attached to score component
+        that starts with start component.
         '''
         from abjad.tools import contexttools
         klasses = (type(self), )
-        if contexttools.is_component_with_context_mark_attached(start_component, klasses):
-            raise ExtraMarkError('component already has context mark attached.')
+        effective_context_mark = contexttools.get_effective_context_mark(start_component, klasses)
+        if effective_context_mark is not None:
+            if effective_context_mark.start_component.start == start_component.start:
+                raise ExtraMarkError(
+                    'effective context mark already attached to component starting at same time.')
         return Mark.attach(self, start_component)
 
     def detach(self):

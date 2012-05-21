@@ -39,10 +39,14 @@ class TimeSignatureMark(ContextMark):
     Time signatures are immutable.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
     _format_slot = 'opening'
 
     #__slots__ = ('_denominator', '_duration', '_format_slot', '_multiplier',
     #    '_is_nonbinary', '_numerator', '_partial', )
+
+    ### INITIALIZER ###
 
     def __init__(self, *args, **kwargs):
         from abjad.tools.stafftools.Staff import Staff
@@ -319,3 +323,16 @@ class TimeSignatureMark(ContextMark):
             assert isinstance(partial, (numbers.Number, type(None)))
             self._partial = partial
         return property(**locals())
+
+    ### PUBLIC METHODS ###
+
+    # Time signature marks do not check for other conflicting time signature marks at attachment.
+    # The reason for this is that voodoo is being done to time signature marks elsewhere in the code.
+    # This is less than optimal and someday time signature marks should check for conflicts at attachment.
+    def attach(self, start_component):
+        from abjad.tools import contexttools
+        from abjad.tools import marktools
+        klasses = (type(self), )
+        if contexttools.is_component_with_context_mark_attached(start_component, klasses):
+            raise ExtraMarkError('component already has context mark attached.')
+        return marktools.Mark.attach(self, start_component)
