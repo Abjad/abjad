@@ -2034,6 +2034,7 @@ Internals packages
    tools/exceptiontools/ExtraNoteHeadError
    tools/exceptiontools/ExtraPitchError
    tools/exceptiontools/ExtraSpannerError
+   tools/exceptiontools/GraceContainerError
    tools/exceptiontools/ImpreciseTempoError
    tools/exceptiontools/InputSpecificationError
    tools/exceptiontools/InstrumentError

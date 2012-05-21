@@ -126,6 +126,7 @@ class Container(Component):
         This operation leaves all score trees always in tact.
         '''
         from abjad.tools import componenttools
+        from abjad.tools import gracetools
         from abjad.tools import spannertools
         from abjad.tools.spannertools._withdraw_components_in_expr_from_crossing_spanners import \
             _withdraw_components_in_expr_from_crossing_spanners
@@ -136,6 +137,8 @@ class Container(Component):
                 assert len(expr) == 1
                 expr = expr[0]
             assert componenttools.all_are_components([expr])
+            if any([isinstance(x, gracetools.GraceContainer) for x in [expr]]):
+                raise GraceContainerError('must attach grace container to note or chord.')
             old = self[i]
             spanners_receipt = spannertools.get_spanners_that_dominate_components([old])
             # must withdraw from spanners before parentage!
@@ -154,6 +157,8 @@ class Container(Component):
             elif isinstance(expr, list) and len(expr) == 1 and isinstance(expr[0], str):
                 expr = self._parse_string(expr[0])[:]
             assert componenttools.all_are_components(expr)
+            if any([isinstance(x, gracetools.GraceContainer) for x in expr]):
+                raise GraceContainerError('must attach grace container to note or chord.')
             if i.start == i.stop and i.start is not None \
                 and i.stop is not None and i.start <= -len(self):
                 start, stop = 0, 0

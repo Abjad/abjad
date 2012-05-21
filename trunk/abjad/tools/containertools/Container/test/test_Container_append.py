@@ -143,3 +143,13 @@ def test_Container_append_05():
 
     assert componenttools.is_well_formed_component(t)
     assert t.format == "\\new Voice {\n\tc'8 [\n\te'8\n\tf'8 ]\n\td'8\n}"
+
+
+def test_Container_append_06():
+    '''Can not insert grace container into container.
+    '''
+
+    staff = Staff("c' d' e'")
+    grace_container = gracetools.GraceContainer("f'16 g'")
+
+    assert py.test.raises(GraceContainerError, 'staff.append(grace_container)')
