@@ -26,7 +26,7 @@ class MelodicIntervalObject(IntervalObject):
 
     def __abs__(self):
         from abjad.tools import pitchtools
-        return pitchtools._HarmonicInterval._HarmonicInterval(self)
+        return pitchtools.HarmonicIntervalObject.HarmonicIntervalObject(self)
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):

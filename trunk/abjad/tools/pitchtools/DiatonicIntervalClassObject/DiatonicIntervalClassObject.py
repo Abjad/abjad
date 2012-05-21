@@ -1,14 +1,24 @@
 from abc import ABCMeta
-from abjad.tools.pitchtools._Diatonic import _Diatonic
+from abc import abstractmethod
+from abjad.tools.pitchtools.DiatonicObject import DiatonicObject
 from abjad.tools.pitchtools.IntervalObjectClass import IntervalObjectClass
 
 
-class _DiatonicIntervalClass(IntervalObjectClass, _Diatonic):
+class DiatonicIntervalClassObject(IntervalObjectClass, DiatonicObject):
     '''.. versionadded:: 2.0
 
     Diatonic interval-class base class.
     '''
+
+    ### CLASS ATTRIBUTES ###
+
     __metaclass__ = ABCMeta
+
+    ### INITIALIZER ###
+
+    @abstractmethod
+    def __init__(self):
+        pass
 
     ### SPECIAL METHODS ###
 

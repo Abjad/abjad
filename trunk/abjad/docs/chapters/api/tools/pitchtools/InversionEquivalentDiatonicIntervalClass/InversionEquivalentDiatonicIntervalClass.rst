@@ -15,14 +15,14 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClass.InversionEquivalentDiatonicIntervalClass.InversionEquivalentDiatonicIntervalClass.quality_string
 
-    Inherited from :py:class:`pitchtools._DiatonicIntervalClass <abjad.tools.pitchtools._DiatonicIntervalClass._DiatonicIntervalClass._DiatonicIntervalClass>`
+    Inherited from :py:class:`pitchtools.DiatonicIntervalClassObject <abjad.tools.pitchtools.DiatonicIntervalClassObject.DiatonicIntervalClassObject.DiatonicIntervalClassObject>`
 
 Special Methods
 ---------------
 
 .. automethod:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClass.InversionEquivalentDiatonicIntervalClass.InversionEquivalentDiatonicIntervalClass.__abs__
 
-    Inherited from :py:class:`pitchtools._DiatonicIntervalClass <abjad.tools.pitchtools._DiatonicIntervalClass._DiatonicIntervalClass._DiatonicIntervalClass>`
+    Inherited from :py:class:`pitchtools.DiatonicIntervalClassObject <abjad.tools.pitchtools.DiatonicIntervalClassObject.DiatonicIntervalClassObject.DiatonicIntervalClassObject>`
 
 .. automethod:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClass.InversionEquivalentDiatonicIntervalClass.InversionEquivalentDiatonicIntervalClass.__delattr__
 
@@ -32,7 +32,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClass.InversionEquivalentDiatonicIntervalClass.InversionEquivalentDiatonicIntervalClass.__float__
 
-    Inherited from :py:class:`pitchtools._DiatonicIntervalClass <abjad.tools.pitchtools._DiatonicIntervalClass._DiatonicIntervalClass._DiatonicIntervalClass>`
+    Inherited from :py:class:`pitchtools.DiatonicIntervalClassObject <abjad.tools.pitchtools.DiatonicIntervalClassObject.DiatonicIntervalClassObject.DiatonicIntervalClassObject>`
 
 .. automethod:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClass.InversionEquivalentDiatonicIntervalClass.InversionEquivalentDiatonicIntervalClass.__ge__
 
@@ -48,7 +48,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClass.InversionEquivalentDiatonicIntervalClass.InversionEquivalentDiatonicIntervalClass.__int__
 
-    Inherited from :py:class:`pitchtools._DiatonicIntervalClass <abjad.tools.pitchtools._DiatonicIntervalClass._DiatonicIntervalClass._DiatonicIntervalClass>`
+    Inherited from :py:class:`pitchtools.DiatonicIntervalClassObject <abjad.tools.pitchtools.DiatonicIntervalClassObject.DiatonicIntervalClassObject.DiatonicIntervalClassObject>`
 
 .. automethod:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClass.InversionEquivalentDiatonicIntervalClass.InversionEquivalentDiatonicIntervalClass.__le__
 
@@ -62,7 +62,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClass.InversionEquivalentDiatonicIntervalClass.InversionEquivalentDiatonicIntervalClass.__repr__
 
-    Inherited from :py:class:`pitchtools._DiatonicIntervalClass <abjad.tools.pitchtools._DiatonicIntervalClass._DiatonicIntervalClass._DiatonicIntervalClass>`
+    Inherited from :py:class:`pitchtools.DiatonicIntervalClassObject <abjad.tools.pitchtools.DiatonicIntervalClassObject.DiatonicIntervalClassObject.DiatonicIntervalClassObject>`
 
 .. automethod:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClass.InversionEquivalentDiatonicIntervalClass.InversionEquivalentDiatonicIntervalClass.__setattr__
 
@@ -70,4 +70,4 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClass.InversionEquivalentDiatonicIntervalClass.InversionEquivalentDiatonicIntervalClass.__str__
 
-    Inherited from :py:class:`pitchtools._DiatonicIntervalClass <abjad.tools.pitchtools._DiatonicIntervalClass._DiatonicIntervalClass._DiatonicIntervalClass>`
+    Inherited from :py:class:`pitchtools.DiatonicIntervalClassObject <abjad.tools.pitchtools.DiatonicIntervalClassObject.DiatonicIntervalClassObject.DiatonicIntervalClassObject>`

@@ -1,9 +1,9 @@
 from abjad.tools import mathtools
-from abjad.tools.pitchtools._DiatonicInterval import _DiatonicInterval
-from abjad.tools.pitchtools._HarmonicInterval import _HarmonicInterval
+from abjad.tools.pitchtools.DiatonicIntervalObject import DiatonicIntervalObject
+from abjad.tools.pitchtools.HarmonicIntervalObject import HarmonicIntervalObject
 
 
-class HarmonicDiatonicInterval(_DiatonicInterval, _HarmonicInterval):
+class HarmonicDiatonicInterval(DiatonicIntervalObject, HarmonicIntervalObject):
     '''.. versionadded:: 2.0
 
     Abjad model harmonic diatonic interval::
@@ -16,7 +16,7 @@ class HarmonicDiatonicInterval(_DiatonicInterval, _HarmonicInterval):
 
     def __init__(self, *args):
         from abjad.tools.pitchtools.is_harmonic_diatonic_interval_abbreviation import harmonic_diatonic_interval_abbreviation_regex
-        if len(args) == 1 and isinstance(args[0], _DiatonicInterval):
+        if len(args) == 1 and isinstance(args[0], DiatonicIntervalObject):
             _quality_string = args[0].quality_string
             _number = abs(args[0].number)
         elif len(args) == 1 and isinstance(args[0], str):
@@ -24,7 +24,7 @@ class HarmonicDiatonicInterval(_DiatonicInterval, _HarmonicInterval):
             if match is None:
                 raise ValueError('"%s" does not have the form of an hdi abbreviation.' % args[0])
             quality_abbreviation, number_string = match.groups()
-            _quality_string = _DiatonicInterval._quality_abbreviation_to_quality_string[quality_abbreviation]
+            _quality_string = DiatonicIntervalObject._quality_abbreviation_to_quality_string[quality_abbreviation]
             _number = int(number_string)
         elif len(args) == 2:
             _quality_string = args[0]
@@ -118,4 +118,4 @@ class HarmonicDiatonicInterval(_DiatonicInterval, _HarmonicInterval):
     def staff_spaces(self):
         if self.quality_string == 'perfect' and self.number == 1:
             return 0
-        return abs(_DiatonicInterval.staff_spaces.fget(self))
+        return abs(DiatonicIntervalObject.staff_spaces.fget(self))

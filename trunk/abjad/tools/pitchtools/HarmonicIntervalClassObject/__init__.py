@@ -1,0 +1,1 @@
+from HarmonicIntervalClassObject import HarmonicIntervalClassObject

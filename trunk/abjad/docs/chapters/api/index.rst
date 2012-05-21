@@ -741,6 +741,14 @@ Abjad composition packages
 .. toctree::
    :maxdepth: 1
 
+   tools/pitchtools/DiatonicIntervalClassObject/DiatonicIntervalClassObject
+   tools/pitchtools/DiatonicIntervalObject/DiatonicIntervalObject
+   tools/pitchtools/DiatonicObject/DiatonicObject
+   tools/pitchtools/DiatonicPitchClassObject/DiatonicPitchClassObject
+   tools/pitchtools/DiatonicPitchObject/DiatonicPitchObject
+   tools/pitchtools/HarmonicIntervalClassObject/HarmonicIntervalClassObject
+   tools/pitchtools/HarmonicIntervalObject/HarmonicIntervalObject
+   tools/pitchtools/HarmonicObject/HarmonicObject
    tools/pitchtools/IntervalClassObjectSegment/IntervalClassObjectSegment
    tools/pitchtools/IntervalClassObjectSet/IntervalClassObjectSet
    tools/pitchtools/IntervalObject/IntervalObject

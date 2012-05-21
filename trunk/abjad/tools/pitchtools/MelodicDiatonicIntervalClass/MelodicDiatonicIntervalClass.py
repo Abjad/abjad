@@ -1,9 +1,9 @@
 from abjad.tools import mathtools
-from abjad.tools.pitchtools._DiatonicIntervalClass import _DiatonicIntervalClass
+from abjad.tools.pitchtools.DiatonicIntervalClassObject import DiatonicIntervalClassObject
 from abjad.tools.pitchtools.MelodicIntervalClassObject import MelodicIntervalClassObject
 
 
-class MelodicDiatonicIntervalClass(_DiatonicIntervalClass, MelodicIntervalClassObject):
+class MelodicDiatonicIntervalClass(DiatonicIntervalClassObject, MelodicIntervalClassObject):
     '''.. versionadded:: 2.0
 
     Abjad model of melodic diatonic interval-class::
@@ -26,13 +26,13 @@ class MelodicDiatonicIntervalClass(_DiatonicIntervalClass, MelodicIntervalClassO
                 if match is None:
                     raise ValueError('"%s" does not have the form of an abbreviation.' % args[0])
                 direction_string, quality_abbreviation, number_string = match.groups()
-                quality_string = _DiatonicIntervalClass._quality_abbreviation_to_quality_string[quality_abbreviation]
+                quality_string = DiatonicIntervalClassObject._quality_abbreviation_to_quality_string[quality_abbreviation]
                 number = int(direction_string + number_string)
             else:
                 raise TypeError('what type of instance is this?')
         else:
             quality_string, number = args
-        if quality_string not in _DiatonicIntervalClass._acceptable_quality_strings:
+        if quality_string not in DiatonicIntervalClassObject._acceptable_quality_strings:
             raise ValueError('not acceptable quality string.')
         if not isinstance(number, int):
             raise TypeError('must be integer.')

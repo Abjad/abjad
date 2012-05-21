@@ -15,7 +15,7 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.pitchtools.MelodicDiatonicInterval.MelodicDiatonicInterval.MelodicDiatonicInterval.diatonic_interval_class
 
-    Inherited from :py:class:`pitchtools._DiatonicInterval <abjad.tools.pitchtools._DiatonicInterval._DiatonicInterval._DiatonicInterval>`
+    Inherited from :py:class:`pitchtools.DiatonicIntervalObject <abjad.tools.pitchtools.DiatonicIntervalObject.DiatonicIntervalObject.DiatonicIntervalObject>`
 
 .. autoattribute:: abjad.tools.pitchtools.MelodicDiatonicInterval.MelodicDiatonicInterval.MelodicDiatonicInterval.direction_number
 
@@ -29,11 +29,11 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.pitchtools.MelodicDiatonicInterval.MelodicDiatonicInterval.MelodicDiatonicInterval.interval_class
 
-    Inherited from :py:class:`pitchtools._DiatonicInterval <abjad.tools.pitchtools._DiatonicInterval._DiatonicInterval._DiatonicInterval>`
+    Inherited from :py:class:`pitchtools.DiatonicIntervalObject <abjad.tools.pitchtools.DiatonicIntervalObject.DiatonicIntervalObject.DiatonicIntervalObject>`
 
 .. autoattribute:: abjad.tools.pitchtools.MelodicDiatonicInterval.MelodicDiatonicInterval.MelodicDiatonicInterval.interval_string
 
-    Inherited from :py:class:`pitchtools._DiatonicInterval <abjad.tools.pitchtools._DiatonicInterval._DiatonicInterval._DiatonicInterval>`
+    Inherited from :py:class:`pitchtools.DiatonicIntervalObject <abjad.tools.pitchtools.DiatonicIntervalObject.DiatonicIntervalObject.DiatonicIntervalObject>`
 
 .. autoattribute:: abjad.tools.pitchtools.MelodicDiatonicInterval.MelodicDiatonicInterval.MelodicDiatonicInterval.inversion_equivalent_chromatic_interval_class
 
@@ -45,11 +45,11 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.pitchtools.MelodicDiatonicInterval.MelodicDiatonicInterval.MelodicDiatonicInterval.number
 
-    Inherited from :py:class:`pitchtools._DiatonicInterval <abjad.tools.pitchtools._DiatonicInterval._DiatonicInterval._DiatonicInterval>`
+    Inherited from :py:class:`pitchtools.DiatonicIntervalObject <abjad.tools.pitchtools.DiatonicIntervalObject.DiatonicIntervalObject.DiatonicIntervalObject>`
 
 .. autoattribute:: abjad.tools.pitchtools.MelodicDiatonicInterval.MelodicDiatonicInterval.MelodicDiatonicInterval.quality_string
 
-    Inherited from :py:class:`pitchtools._DiatonicInterval <abjad.tools.pitchtools._DiatonicInterval._DiatonicInterval._DiatonicInterval>`
+    Inherited from :py:class:`pitchtools.DiatonicIntervalObject <abjad.tools.pitchtools.DiatonicIntervalObject.DiatonicIntervalObject.DiatonicIntervalObject>`
 
 .. autoattribute:: abjad.tools.pitchtools.MelodicDiatonicInterval.MelodicDiatonicInterval.MelodicDiatonicInterval.semitones
 
@@ -68,11 +68,11 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.MelodicDiatonicInterval.MelodicDiatonicInterval.MelodicDiatonicInterval.__eq__
 
-    Inherited from :py:class:`pitchtools._DiatonicInterval <abjad.tools.pitchtools._DiatonicInterval._DiatonicInterval._DiatonicInterval>`
+    Inherited from :py:class:`pitchtools.DiatonicIntervalObject <abjad.tools.pitchtools.DiatonicIntervalObject.DiatonicIntervalObject.DiatonicIntervalObject>`
 
 .. automethod:: abjad.tools.pitchtools.MelodicDiatonicInterval.MelodicDiatonicInterval.MelodicDiatonicInterval.__float__
 
-    Inherited from :py:class:`pitchtools._DiatonicInterval <abjad.tools.pitchtools._DiatonicInterval._DiatonicInterval._DiatonicInterval>`
+    Inherited from :py:class:`pitchtools.DiatonicIntervalObject <abjad.tools.pitchtools.DiatonicIntervalObject.DiatonicIntervalObject.DiatonicIntervalObject>`
 
 .. automethod:: abjad.tools.pitchtools.MelodicDiatonicInterval.MelodicDiatonicInterval.MelodicDiatonicInterval.__ge__
 
@@ -88,7 +88,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.MelodicDiatonicInterval.MelodicDiatonicInterval.MelodicDiatonicInterval.__int__
 
-    Inherited from :py:class:`pitchtools._DiatonicInterval <abjad.tools.pitchtools._DiatonicInterval._DiatonicInterval._DiatonicInterval>`
+    Inherited from :py:class:`pitchtools.DiatonicIntervalObject <abjad.tools.pitchtools.DiatonicIntervalObject.DiatonicIntervalObject.DiatonicIntervalObject>`
 
 .. automethod:: abjad.tools.pitchtools.MelodicDiatonicInterval.MelodicDiatonicInterval.MelodicDiatonicInterval.__le__
 
@@ -102,7 +102,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.MelodicDiatonicInterval.MelodicDiatonicInterval.MelodicDiatonicInterval.__ne__
 
-    Inherited from :py:class:`pitchtools._DiatonicInterval <abjad.tools.pitchtools._DiatonicInterval._DiatonicInterval._DiatonicInterval>`
+    Inherited from :py:class:`pitchtools.DiatonicIntervalObject <abjad.tools.pitchtools.DiatonicIntervalObject.DiatonicIntervalObject.DiatonicIntervalObject>`
 
 .. automethod:: abjad.tools.pitchtools.MelodicDiatonicInterval.MelodicDiatonicInterval.MelodicDiatonicInterval.__neg__
 

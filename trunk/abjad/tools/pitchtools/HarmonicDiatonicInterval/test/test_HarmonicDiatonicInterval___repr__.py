@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_HarmonicDiatonicInterval___repr___01():
+def testHarmonicObjectDiatonicInterval___repr___01():
 
     interval = pitchtools.HarmonicDiatonicInterval('perfect', 1)
     repr = interval.__repr__()
@@ -24,7 +24,7 @@ def test_HarmonicDiatonicInterval___repr___01():
     assert  repr == "HarmonicDiatonicInterval('m3')"
 
 
-def test_HarmonicDiatonicInterval___repr___02():
+def testHarmonicObjectDiatonicInterval___repr___02():
 
     interval = pitchtools.HarmonicDiatonicInterval('perfect', -1)
     repr = interval.__repr__()

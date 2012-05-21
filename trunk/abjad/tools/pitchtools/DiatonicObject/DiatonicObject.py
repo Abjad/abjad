@@ -1,12 +1,22 @@
 from abc import ABCMeta
+from abc import abstractmethod
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class _Diatonic(AbjadObject):
+class DiatonicObject(AbjadObject):
     '''..versionadded:: 2.0
 
     Diatonic object base class.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
     __metaclass__ = ABCMeta
+
     __slots__ = ()
+
+    ### INITIALIZER ###
+
+    @abstractmethod
+    def __init__(self):
+        pass

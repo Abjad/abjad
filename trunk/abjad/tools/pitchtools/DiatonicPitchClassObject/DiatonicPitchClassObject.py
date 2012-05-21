@@ -1,16 +1,26 @@
 from abc import ABCMeta
-from abjad.tools.pitchtools._Diatonic import _Diatonic
+from abc import abstractmethod
+from abjad.tools.pitchtools.DiatonicObject import DiatonicObject
 from abjad.tools.pitchtools.PitchClassObject import PitchClassObject
 
 
-class _DiatonicPitchClass(PitchClassObject, _Diatonic):
+class DiatonicPitchClassObject(PitchClassObject, DiatonicObject):
     '''.. versionadded:: 2.0
 
     Diatonic pitch-class base class.
     '''
 
+    ### CLASSS ATTRIBUTES ###
+
     __metaclass__ = ABCMeta
+
     __slots__ = ()
+
+    ### INITIALIZER ###
+
+    @abstractmethod
+    def __init__(self):
+        pass
 
     ### SPECIAL METHODS ###
 
