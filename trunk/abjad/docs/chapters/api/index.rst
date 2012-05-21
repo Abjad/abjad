@@ -958,6 +958,7 @@ Abjad composition packages
    tools/pitchtools/respell_named_chromatic_pitches_in_expr_with_sharps
    tools/pitchtools/set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr
    tools/pitchtools/set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr
+   tools/pitchtools/set_default_accidental_spelling
    tools/pitchtools/set_written_pitch_of_pitched_components_in_expr
    tools/pitchtools/suggest_clef_for_named_chromatic_pitches
    tools/pitchtools/symbolic_accidental_string_to_alphabetic_accidental_abbreviation
@@ -1303,7 +1304,6 @@ Additional Abjad composition packages (load manually)
    tools/configurationtools/get_system_tab_width
    tools/configurationtools/list_abjad_environment_variables
    tools/configurationtools/list_package_dependency_versions
-   tools/configurationtools/set_default_accidental_spelling
 
 :py:mod:`datastructuretools <abjad.tools.datastructuretools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
