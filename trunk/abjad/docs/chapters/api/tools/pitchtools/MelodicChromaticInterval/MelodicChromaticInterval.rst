@@ -19,7 +19,7 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.pitchtools.MelodicChromaticInterval.MelodicChromaticInterval.MelodicChromaticInterval.direction_string
 
-    Inherited from :py:class:`pitchtools._MelodicInterval <abjad.tools.pitchtools._MelodicInterval._MelodicInterval._MelodicInterval>`
+    Inherited from :py:class:`pitchtools.MelodicIntervalObject <abjad.tools.pitchtools.MelodicIntervalObject.MelodicIntervalObject.MelodicIntervalObject>`
 
 .. autoattribute:: abjad.tools.pitchtools.MelodicChromaticInterval.MelodicChromaticInterval.MelodicChromaticInterval.harmonic_chromatic_interval
 

@@ -1,12 +1,12 @@
 from abjad import *
 
 
-def test_MelodicDiatonicInterval___str___01():
+def testMelodicObjectDiatonicInterval___str___01():
 
     assert str(pitchtools.MelodicDiatonicInterval('perfect', 1)) == 'P1'
 
 
-def test_MelodicDiatonicInterval___str___02():
+def testMelodicObjectDiatonicInterval___str___02():
 
     assert str(pitchtools.MelodicDiatonicInterval('augmented', -1)) == '-aug1'
 
@@ -21,7 +21,7 @@ def test_MelodicDiatonicInterval___str___02():
     assert str(pitchtools.MelodicDiatonicInterval('augmented', -3)) == '-aug3'
 
 
-def test_MelodicDiatonicInterval___str___03():
+def testMelodicObjectDiatonicInterval___str___03():
 
     assert str(pitchtools.MelodicDiatonicInterval('augmented', 1)) == '+aug1'
 

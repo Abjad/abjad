@@ -1,1 +1,0 @@
-from _MelodicIntervalClass import _MelodicIntervalClass

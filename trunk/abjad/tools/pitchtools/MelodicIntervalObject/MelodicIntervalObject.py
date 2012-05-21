@@ -1,18 +1,27 @@
 from abc import ABCMeta
 from abc import abstractmethod
 from abjad.tools.pitchtools._Interval import _Interval
-from abjad.tools.pitchtools._Melodic import _Melodic
+from abjad.tools.pitchtools.MelodicObject import MelodicObject
 
 
-class _MelodicInterval(_Interval):
+class MelodicIntervalObject(_Interval):
     '''.. versionadded:: 2.0
 
     Melodic interval base class.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
     __metaclass__ = ABCMeta
+
     __slots__ = ()
 
+    ## INITIALIZER ###
+
+    @abstractmethod
+    def __init__(self):
+        pass
+    
     ### SPECIAL METHODS ###
 
     def __abs__(self):

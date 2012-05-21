@@ -11,15 +11,15 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.pitchtools.MelodicCounterpointIntervalClass.MelodicCounterpointIntervalClass.MelodicCounterpointIntervalClass.direction_number
 
-    Inherited from :py:class:`pitchtools._MelodicIntervalClass <abjad.tools.pitchtools._MelodicIntervalClass._MelodicIntervalClass._MelodicIntervalClass>`
+    Inherited from :py:class:`pitchtools.MelodicIntervalClassObject <abjad.tools.pitchtools.MelodicIntervalClassObject.MelodicIntervalClassObject.MelodicIntervalClassObject>`
 
 .. autoattribute:: abjad.tools.pitchtools.MelodicCounterpointIntervalClass.MelodicCounterpointIntervalClass.MelodicCounterpointIntervalClass.direction_symbol
 
-    Inherited from :py:class:`pitchtools._MelodicIntervalClass <abjad.tools.pitchtools._MelodicIntervalClass._MelodicIntervalClass._MelodicIntervalClass>`
+    Inherited from :py:class:`pitchtools.MelodicIntervalClassObject <abjad.tools.pitchtools.MelodicIntervalClassObject.MelodicIntervalClassObject.MelodicIntervalClassObject>`
 
 .. autoattribute:: abjad.tools.pitchtools.MelodicCounterpointIntervalClass.MelodicCounterpointIntervalClass.MelodicCounterpointIntervalClass.direction_word
 
-    Inherited from :py:class:`pitchtools._MelodicIntervalClass <abjad.tools.pitchtools._MelodicIntervalClass._MelodicIntervalClass._MelodicIntervalClass>`
+    Inherited from :py:class:`pitchtools.MelodicIntervalClassObject <abjad.tools.pitchtools.MelodicIntervalClassObject.MelodicIntervalClassObject.MelodicIntervalClassObject>`
 
 .. autoattribute:: abjad.tools.pitchtools.MelodicCounterpointIntervalClass.MelodicCounterpointIntervalClass.MelodicCounterpointIntervalClass.number
 
