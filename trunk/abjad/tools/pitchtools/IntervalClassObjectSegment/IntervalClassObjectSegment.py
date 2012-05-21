@@ -1,13 +1,23 @@
 from abc import ABCMeta
+from abc import abstractmethod
 from abjad.tools.pitchtools.ObjectSegment import ObjectSegment
 
 
-class _IntervalClassSegment(ObjectSegment):
+class IntervalClassObjectSegment(ObjectSegment):
     '''.. versionadded:: 2.0
 
     Interval-class segment base class.
     '''
+
+    ### CLASS ATTRIBUTES ###
+
     __metaclass__ = ABCMeta
+
+    ### INITIALIZER ###
+
+    @abstractmethod
+    def __new__(self):
+        pass
 
     ### SPECIAL METHODS ###
 

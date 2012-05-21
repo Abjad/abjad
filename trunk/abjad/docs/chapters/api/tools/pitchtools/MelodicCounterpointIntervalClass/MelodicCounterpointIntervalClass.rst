@@ -23,7 +23,7 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.pitchtools.MelodicCounterpointIntervalClass.MelodicCounterpointIntervalClass.MelodicCounterpointIntervalClass.number
 
-    Inherited from :py:class:`pitchtools._IntervalClass <abjad.tools.pitchtools._IntervalClass._IntervalClass._IntervalClass>`
+    Inherited from :py:class:`pitchtools.IntervalObjectClass <abjad.tools.pitchtools.IntervalObjectClass.IntervalObjectClass.IntervalObjectClass>`
 
 Special Methods
 ---------------
@@ -52,7 +52,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.MelodicCounterpointIntervalClass.MelodicCounterpointIntervalClass.MelodicCounterpointIntervalClass.__hash__
 
-    Inherited from :py:class:`pitchtools._IntervalClass <abjad.tools.pitchtools._IntervalClass._IntervalClass._IntervalClass>`
+    Inherited from :py:class:`pitchtools.IntervalObjectClass <abjad.tools.pitchtools.IntervalObjectClass.IntervalObjectClass.IntervalObjectClass>`
 
 .. automethod:: abjad.tools.pitchtools.MelodicCounterpointIntervalClass.MelodicCounterpointIntervalClass.MelodicCounterpointIntervalClass.__int__
 
@@ -70,7 +70,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.MelodicCounterpointIntervalClass.MelodicCounterpointIntervalClass.MelodicCounterpointIntervalClass.__repr__
 
-    Inherited from :py:class:`pitchtools._IntervalClass <abjad.tools.pitchtools._IntervalClass._IntervalClass._IntervalClass>`
+    Inherited from :py:class:`pitchtools.IntervalObjectClass <abjad.tools.pitchtools.IntervalObjectClass.IntervalObjectClass.IntervalObjectClass>`
 
 .. automethod:: abjad.tools.pitchtools.MelodicCounterpointIntervalClass.MelodicCounterpointIntervalClass.MelodicCounterpointIntervalClass.__setattr__
 
@@ -78,4 +78,4 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.MelodicCounterpointIntervalClass.MelodicCounterpointIntervalClass.MelodicCounterpointIntervalClass.__str__
 
-    Inherited from :py:class:`pitchtools._IntervalClass <abjad.tools.pitchtools._IntervalClass._IntervalClass._IntervalClass>`
+    Inherited from :py:class:`pitchtools.IntervalObjectClass <abjad.tools.pitchtools.IntervalObjectClass.IntervalObjectClass.IntervalObjectClass>`

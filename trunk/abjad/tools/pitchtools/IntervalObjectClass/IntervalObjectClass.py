@@ -1,15 +1,25 @@
 from abc import ABCMeta
+from abc import abstractmethod
 from abjad.tools.abctools import AbjadObject
 
 
-class _IntervalClass(AbjadObject):
+class IntervalObjectClass(AbjadObject):
     '''.. versionadded:: 2.0
 
     Interval-class base class.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
     __metaclass__ = ABCMeta
+
     __slots__ = ()
+    
+    ### INITIALIZER ###
+
+    @abstractmethod
+    def __init__(self):
+        pass
 
     ### SPECIAL METHODS ###
 

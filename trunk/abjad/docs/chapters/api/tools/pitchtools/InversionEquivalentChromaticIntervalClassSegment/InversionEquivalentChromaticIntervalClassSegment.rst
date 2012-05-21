@@ -11,11 +11,11 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassSegment.InversionEquivalentChromaticIntervalClassSegment.InversionEquivalentChromaticIntervalClassSegment.interval_class_numbers
 
-    Inherited from :py:class:`pitchtools._IntervalClassSegment <abjad.tools.pitchtools._IntervalClassSegment._IntervalClassSegment._IntervalClassSegment>`
+    Inherited from :py:class:`pitchtools.IntervalClassObjectSegment <abjad.tools.pitchtools.IntervalClassObjectSegment.IntervalClassObjectSegment.IntervalClassObjectSegment>`
 
 .. autoattribute:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassSegment.InversionEquivalentChromaticIntervalClassSegment.InversionEquivalentChromaticIntervalClassSegment.interval_classes
 
-    Inherited from :py:class:`pitchtools._IntervalClassSegment <abjad.tools.pitchtools._IntervalClassSegment._IntervalClassSegment._IntervalClassSegment>`
+    Inherited from :py:class:`pitchtools.IntervalClassObjectSegment <abjad.tools.pitchtools.IntervalClassObjectSegment.IntervalClassObjectSegment.IntervalClassObjectSegment>`
 
 Methods
 -------

@@ -11,7 +11,7 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.pitchtools.MelodicCounterpointInterval.MelodicCounterpointInterval.MelodicCounterpointInterval.cents
 
-    Inherited from :py:class:`pitchtools._Interval <abjad.tools.pitchtools._Interval._Interval._Interval>`
+    Inherited from :py:class:`pitchtools.IntervalObject <abjad.tools.pitchtools.IntervalObject.IntervalObject.IntervalObject>`
 
 .. autoattribute:: abjad.tools.pitchtools.MelodicCounterpointInterval.MelodicCounterpointInterval.MelodicCounterpointInterval.direction_number
 
@@ -21,7 +21,7 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.pitchtools.MelodicCounterpointInterval.MelodicCounterpointInterval.MelodicCounterpointInterval.interval_class
 
-    Inherited from :py:class:`pitchtools._Interval <abjad.tools.pitchtools._Interval._Interval._Interval>`
+    Inherited from :py:class:`pitchtools.IntervalObject <abjad.tools.pitchtools.IntervalObject.IntervalObject.IntervalObject>`
 
 .. autoattribute:: abjad.tools.pitchtools.MelodicCounterpointInterval.MelodicCounterpointInterval.MelodicCounterpointInterval.melodic_counterpoint_interval_class
 
@@ -62,7 +62,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.MelodicCounterpointInterval.MelodicCounterpointInterval.MelodicCounterpointInterval.__hash__
 
-    Inherited from :py:class:`pitchtools._Interval <abjad.tools.pitchtools._Interval._Interval._Interval>`
+    Inherited from :py:class:`pitchtools.IntervalObject <abjad.tools.pitchtools.IntervalObject.IntervalObject.IntervalObject>`
 
 .. automethod:: abjad.tools.pitchtools.MelodicCounterpointInterval.MelodicCounterpointInterval.MelodicCounterpointInterval.__int__
 
@@ -86,7 +86,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.MelodicCounterpointInterval.MelodicCounterpointInterval.MelodicCounterpointInterval.__repr__
 
-    Inherited from :py:class:`pitchtools._Interval <abjad.tools.pitchtools._Interval._Interval._Interval>`
+    Inherited from :py:class:`pitchtools.IntervalObject <abjad.tools.pitchtools.IntervalObject.IntervalObject.IntervalObject>`
 
 .. automethod:: abjad.tools.pitchtools.MelodicCounterpointInterval.MelodicCounterpointInterval.MelodicCounterpointInterval.__setattr__
 

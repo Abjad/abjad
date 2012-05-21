@@ -11,11 +11,11 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.pitchtools.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.interval_classes
 
-    Inherited from :py:class:`pitchtools._IntervalSegment <abjad.tools.pitchtools._IntervalSegment._IntervalSegment._IntervalSegment>`
+    Inherited from :py:class:`pitchtools.IntervalObjectSegment <abjad.tools.pitchtools.IntervalObjectSegment.IntervalObjectSegment.IntervalObjectSegment>`
 
 .. autoattribute:: abjad.tools.pitchtools.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.intervals
 
-    Inherited from :py:class:`pitchtools._IntervalSegment <abjad.tools.pitchtools._IntervalSegment._IntervalSegment._IntervalSegment>`
+    Inherited from :py:class:`pitchtools.IntervalObjectSegment <abjad.tools.pitchtools.IntervalObjectSegment.IntervalObjectSegment.IntervalObjectSegment>`
 
 Methods
 -------
@@ -30,7 +30,7 @@ Methods
 
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.rotate
 
-    Inherited from :py:class:`pitchtools._IntervalSegment <abjad.tools.pitchtools._IntervalSegment._IntervalSegment._IntervalSegment>`
+    Inherited from :py:class:`pitchtools.IntervalObjectSegment <abjad.tools.pitchtools.IntervalObjectSegment.IntervalObjectSegment.IntervalObjectSegment>`
 
 Special Methods
 ---------------
@@ -97,7 +97,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.__repr__
 
-    Inherited from :py:class:`pitchtools._IntervalSegment <abjad.tools.pitchtools._IntervalSegment._IntervalSegment._IntervalSegment>`
+    Inherited from :py:class:`pitchtools.IntervalObjectSegment <abjad.tools.pitchtools.IntervalObjectSegment.IntervalObjectSegment.IntervalObjectSegment>`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.__rmul__
 
@@ -109,4 +109,4 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.__str__
 
-    Inherited from :py:class:`pitchtools._IntervalSegment <abjad.tools.pitchtools._IntervalSegment._IntervalSegment._IntervalSegment>`
+    Inherited from :py:class:`pitchtools.IntervalObjectSegment <abjad.tools.pitchtools.IntervalObjectSegment.IntervalObjectSegment.IntervalObjectSegment>`

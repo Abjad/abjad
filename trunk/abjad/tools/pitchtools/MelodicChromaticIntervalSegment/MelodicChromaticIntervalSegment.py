@@ -1,8 +1,8 @@
-from abjad.tools.pitchtools._IntervalSegment import _IntervalSegment
+from abjad.tools.pitchtools.IntervalObjectSegment import IntervalObjectSegment
 import fractions
 
 
-class MelodicChromaticIntervalSegment(_IntervalSegment):
+class MelodicChromaticIntervalSegment(IntervalObjectSegment):
     '''.. versionadded:: 2.0
 
     Abjad model of melodic chromatic interval segment::

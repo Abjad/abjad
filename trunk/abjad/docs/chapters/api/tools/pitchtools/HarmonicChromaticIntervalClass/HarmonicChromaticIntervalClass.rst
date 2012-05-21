@@ -11,7 +11,7 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.pitchtools.HarmonicChromaticIntervalClass.HarmonicChromaticIntervalClass.HarmonicChromaticIntervalClass.number
 
-    Inherited from :py:class:`pitchtools._IntervalClass <abjad.tools.pitchtools._IntervalClass._IntervalClass._IntervalClass>`
+    Inherited from :py:class:`pitchtools.IntervalObjectClass <abjad.tools.pitchtools.IntervalObjectClass.IntervalObjectClass.IntervalObjectClass>`
 
 Special Methods
 ---------------
@@ -40,7 +40,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalClass.HarmonicChromaticIntervalClass.HarmonicChromaticIntervalClass.__hash__
 
-    Inherited from :py:class:`pitchtools._IntervalClass <abjad.tools.pitchtools._IntervalClass._IntervalClass._IntervalClass>`
+    Inherited from :py:class:`pitchtools.IntervalObjectClass <abjad.tools.pitchtools.IntervalObjectClass.IntervalObjectClass.IntervalObjectClass>`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalClass.HarmonicChromaticIntervalClass.HarmonicChromaticIntervalClass.__int__
 
@@ -58,7 +58,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalClass.HarmonicChromaticIntervalClass.HarmonicChromaticIntervalClass.__repr__
 
-    Inherited from :py:class:`pitchtools._IntervalClass <abjad.tools.pitchtools._IntervalClass._IntervalClass._IntervalClass>`
+    Inherited from :py:class:`pitchtools.IntervalObjectClass <abjad.tools.pitchtools.IntervalObjectClass.IntervalObjectClass.IntervalObjectClass>`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalClass.HarmonicChromaticIntervalClass.HarmonicChromaticIntervalClass.__setattr__
 
@@ -66,4 +66,4 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalClass.HarmonicChromaticIntervalClass.HarmonicChromaticIntervalClass.__str__
 
-    Inherited from :py:class:`pitchtools._IntervalClass <abjad.tools.pitchtools._IntervalClass._IntervalClass._IntervalClass>`
+    Inherited from :py:class:`pitchtools.IntervalObjectClass <abjad.tools.pitchtools.IntervalObjectClass.IntervalObjectClass.IntervalObjectClass>`

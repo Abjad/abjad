@@ -11,7 +11,7 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.pitchtools.MelodicIntervalObject.MelodicIntervalObject.MelodicIntervalObject.cents
 
-    Inherited from :py:class:`pitchtools._Interval <abjad.tools.pitchtools._Interval._Interval._Interval>`
+    Inherited from :py:class:`pitchtools.IntervalObject <abjad.tools.pitchtools.IntervalObject.IntervalObject.IntervalObject>`
 
 .. autoattribute:: abjad.tools.pitchtools.MelodicIntervalObject.MelodicIntervalObject.MelodicIntervalObject.direction_number
 
@@ -19,15 +19,15 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.pitchtools.MelodicIntervalObject.MelodicIntervalObject.MelodicIntervalObject.interval_class
 
-    Inherited from :py:class:`pitchtools._Interval <abjad.tools.pitchtools._Interval._Interval._Interval>`
+    Inherited from :py:class:`pitchtools.IntervalObject <abjad.tools.pitchtools.IntervalObject.IntervalObject.IntervalObject>`
 
 .. autoattribute:: abjad.tools.pitchtools.MelodicIntervalObject.MelodicIntervalObject.MelodicIntervalObject.number
 
-    Inherited from :py:class:`pitchtools._Interval <abjad.tools.pitchtools._Interval._Interval._Interval>`
+    Inherited from :py:class:`pitchtools.IntervalObject <abjad.tools.pitchtools.IntervalObject.IntervalObject.IntervalObject>`
 
 .. autoattribute:: abjad.tools.pitchtools.MelodicIntervalObject.MelodicIntervalObject.MelodicIntervalObject.semitones
 
-    Inherited from :py:class:`pitchtools._Interval <abjad.tools.pitchtools._Interval._Interval._Interval>`
+    Inherited from :py:class:`pitchtools.IntervalObject <abjad.tools.pitchtools.IntervalObject.IntervalObject.IntervalObject>`
 
 Special Methods
 ---------------
@@ -42,7 +42,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.MelodicIntervalObject.MelodicIntervalObject.MelodicIntervalObject.__float__
 
-    Inherited from :py:class:`pitchtools._Interval <abjad.tools.pitchtools._Interval._Interval._Interval>`
+    Inherited from :py:class:`pitchtools.IntervalObject <abjad.tools.pitchtools.IntervalObject.IntervalObject.IntervalObject>`
 
 .. automethod:: abjad.tools.pitchtools.MelodicIntervalObject.MelodicIntervalObject.MelodicIntervalObject.__ge__
 
@@ -54,11 +54,11 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.MelodicIntervalObject.MelodicIntervalObject.MelodicIntervalObject.__hash__
 
-    Inherited from :py:class:`pitchtools._Interval <abjad.tools.pitchtools._Interval._Interval._Interval>`
+    Inherited from :py:class:`pitchtools.IntervalObject <abjad.tools.pitchtools.IntervalObject.IntervalObject.IntervalObject>`
 
 .. automethod:: abjad.tools.pitchtools.MelodicIntervalObject.MelodicIntervalObject.MelodicIntervalObject.__int__
 
-    Inherited from :py:class:`pitchtools._Interval <abjad.tools.pitchtools._Interval._Interval._Interval>`
+    Inherited from :py:class:`pitchtools.IntervalObject <abjad.tools.pitchtools.IntervalObject.IntervalObject.IntervalObject>`
 
 .. automethod:: abjad.tools.pitchtools.MelodicIntervalObject.MelodicIntervalObject.MelodicIntervalObject.__le__
 
@@ -74,7 +74,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.MelodicIntervalObject.MelodicIntervalObject.MelodicIntervalObject.__repr__
 
-    Inherited from :py:class:`pitchtools._Interval <abjad.tools.pitchtools._Interval._Interval._Interval>`
+    Inherited from :py:class:`pitchtools.IntervalObject <abjad.tools.pitchtools.IntervalObject.IntervalObject.IntervalObject>`
 
 .. automethod:: abjad.tools.pitchtools.MelodicIntervalObject.MelodicIntervalObject.MelodicIntervalObject.__setattr__
 
@@ -82,4 +82,4 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.MelodicIntervalObject.MelodicIntervalObject.MelodicIntervalObject.__str__
 
-    Inherited from :py:class:`pitchtools._Interval <abjad.tools.pitchtools._Interval._Interval._Interval>`
+    Inherited from :py:class:`pitchtools.IntervalObject <abjad.tools.pitchtools.IntervalObject.IntervalObject.IntervalObject>`

@@ -2,10 +2,10 @@ from abc import ABCMeta
 from abc import abstractmethod
 from abjad.tools import mathtools
 from abjad.tools.pitchtools._Chromatic import _Chromatic
-from abjad.tools.pitchtools._Interval import _Interval
+from abjad.tools.pitchtools.IntervalObject import IntervalObject
 
 
-class _ChromaticInterval(_Interval, _Chromatic):
+class _ChromaticInterval(IntervalObject, _Chromatic):
     '''.. versionadded:: 2.0
 
     Chromatic interval base class.
@@ -17,7 +17,7 @@ class _ChromaticInterval(_Interval, _Chromatic):
     def __init__(self, arg):
         if isinstance(arg, (int, float, long)):
             _number = arg
-        elif isinstance(arg, _Interval):
+        elif isinstance(arg, IntervalObject):
             _number = arg.semitones
         else:
             raise TypeError('%s must be number or interval.' % arg)

@@ -13,11 +13,11 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSegment.HarmonicDiatonicIntervalSegment.HarmonicDiatonicIntervalSegment.interval_classes
 
-    Inherited from :py:class:`pitchtools._IntervalSegment <abjad.tools.pitchtools._IntervalSegment._IntervalSegment._IntervalSegment>`
+    Inherited from :py:class:`pitchtools.IntervalObjectSegment <abjad.tools.pitchtools.IntervalObjectSegment.IntervalObjectSegment.IntervalObjectSegment>`
 
 .. autoattribute:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSegment.HarmonicDiatonicIntervalSegment.HarmonicDiatonicIntervalSegment.intervals
 
-    Inherited from :py:class:`pitchtools._IntervalSegment <abjad.tools.pitchtools._IntervalSegment._IntervalSegment._IntervalSegment>`
+    Inherited from :py:class:`pitchtools.IntervalObjectSegment <abjad.tools.pitchtools.IntervalObjectSegment.IntervalObjectSegment.IntervalObjectSegment>`
 
 .. autoattribute:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSegment.HarmonicDiatonicIntervalSegment.HarmonicDiatonicIntervalSegment.melodic_chromatic_interval_segment
 
@@ -36,7 +36,7 @@ Methods
 
 .. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSegment.HarmonicDiatonicIntervalSegment.HarmonicDiatonicIntervalSegment.rotate
 
-    Inherited from :py:class:`pitchtools._IntervalSegment <abjad.tools.pitchtools._IntervalSegment._IntervalSegment._IntervalSegment>`
+    Inherited from :py:class:`pitchtools.IntervalObjectSegment <abjad.tools.pitchtools.IntervalObjectSegment.IntervalObjectSegment.IntervalObjectSegment>`
 
 Special Methods
 ---------------
@@ -113,4 +113,4 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSegment.HarmonicDiatonicIntervalSegment.HarmonicDiatonicIntervalSegment.__str__
 
-    Inherited from :py:class:`pitchtools._IntervalSegment <abjad.tools.pitchtools._IntervalSegment._IntervalSegment._IntervalSegment>`
+    Inherited from :py:class:`pitchtools.IntervalObjectSegment <abjad.tools.pitchtools.IntervalObjectSegment.IntervalObjectSegment.IntervalObjectSegment>`

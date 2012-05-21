@@ -1,10 +1,10 @@
 from abc import ABCMeta
 from abc import abstractmethod
-from abjad.tools.pitchtools._IntervalClass import _IntervalClass
+from abjad.tools.pitchtools.IntervalObjectClass import IntervalObjectClass
 from abjad.tools.pitchtools.MelodicObject import MelodicObject
 
 
-class MelodicIntervalClassObject(_IntervalClass, MelodicObject):
+class MelodicIntervalClassObject(IntervalObjectClass, MelodicObject):
     '''.. versionadded:: 2.0
 
     Melodic interval-class base class.

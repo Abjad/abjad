@@ -2,10 +2,10 @@ from abc import ABCMeta
 from abc import abstractmethod
 from abjad.tools import mathtools
 from abjad.tools.pitchtools._Diatonic import _Diatonic
-from abjad.tools.pitchtools._Interval import _Interval
+from abjad.tools.pitchtools.IntervalObject import IntervalObject
 
 
-class _DiatonicInterval(_Interval, _Diatonic):
+class _DiatonicInterval(IntervalObject, _Diatonic):
     '''.. versionadded:: 2.0
 
     Diatonic interval base class.

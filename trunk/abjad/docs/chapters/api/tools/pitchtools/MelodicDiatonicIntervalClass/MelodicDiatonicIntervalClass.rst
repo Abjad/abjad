@@ -17,7 +17,7 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.pitchtools.MelodicDiatonicIntervalClass.MelodicDiatonicIntervalClass.MelodicDiatonicIntervalClass.number
 
-    Inherited from :py:class:`pitchtools._IntervalClass <abjad.tools.pitchtools._IntervalClass._IntervalClass._IntervalClass>`
+    Inherited from :py:class:`pitchtools.IntervalObjectClass <abjad.tools.pitchtools.IntervalObjectClass.IntervalObjectClass.IntervalObjectClass>`
 
 .. autoattribute:: abjad.tools.pitchtools.MelodicDiatonicIntervalClass.MelodicDiatonicIntervalClass.MelodicDiatonicIntervalClass.quality_string
 

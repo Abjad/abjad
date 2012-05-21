@@ -25,7 +25,7 @@ class MelodicChromaticIntervalClass(_ChromaticIntervalClass, MelodicIntervalClas
             else:
                 number = abs_token % 12
             number *= sign
-        elif isinstance(token, pitchtools._Interval._Interval):
+        elif isinstance(token, pitchtools.IntervalObject):
             number = token.semitones
             sign = mathtools.sign(number)
             abs_number = abs(number)
@@ -34,7 +34,7 @@ class MelodicChromaticIntervalClass(_ChromaticIntervalClass, MelodicIntervalClas
             else:
                 number = abs_number % 12
             number *= sign
-        elif isinstance(token, pitchtools._IntervalClass._IntervalClass):
+        elif isinstance(token, pitchtools.IntervalObjectClass):
             number = token.number
             sign = mathtools.sign(number)
             abs_number = abs(number)

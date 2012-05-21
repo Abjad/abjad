@@ -1,7 +1,7 @@
-from abjad.tools.pitchtools._IntervalSet import _IntervalSet
+from abjad.tools.pitchtools.IntervalObjectSet import IntervalObjectSet
 
 
-class HarmonicDiatonicIntervalSet(_IntervalSet):
+class HarmonicDiatonicIntervalSet(IntervalObjectSet):
     '''.. versionadded:: 2.0
 
     Abjad model of harmonic diatonic interval set::

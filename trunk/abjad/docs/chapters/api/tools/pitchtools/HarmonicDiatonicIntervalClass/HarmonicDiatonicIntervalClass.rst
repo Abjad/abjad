@@ -11,7 +11,7 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.pitchtools.HarmonicDiatonicIntervalClass.HarmonicDiatonicIntervalClass.HarmonicDiatonicIntervalClass.number
 
-    Inherited from :py:class:`pitchtools._IntervalClass <abjad.tools.pitchtools._IntervalClass._IntervalClass._IntervalClass>`
+    Inherited from :py:class:`pitchtools.IntervalObjectClass <abjad.tools.pitchtools.IntervalObjectClass.IntervalObjectClass.IntervalObjectClass>`
 
 .. autoattribute:: abjad.tools.pitchtools.HarmonicDiatonicIntervalClass.HarmonicDiatonicIntervalClass.HarmonicDiatonicIntervalClass.quality_string
 
@@ -49,7 +49,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalClass.HarmonicDiatonicIntervalClass.HarmonicDiatonicIntervalClass.__hash__
 
-    Inherited from :py:class:`pitchtools._IntervalClass <abjad.tools.pitchtools._IntervalClass._IntervalClass._IntervalClass>`
+    Inherited from :py:class:`pitchtools.IntervalObjectClass <abjad.tools.pitchtools.IntervalObjectClass.IntervalObjectClass.IntervalObjectClass>`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalClass.HarmonicDiatonicIntervalClass.HarmonicDiatonicIntervalClass.__int__
 

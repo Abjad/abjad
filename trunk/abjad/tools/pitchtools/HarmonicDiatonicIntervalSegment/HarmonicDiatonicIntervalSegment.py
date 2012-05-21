@@ -1,7 +1,7 @@
-from abjad.tools.pitchtools._IntervalSegment import _IntervalSegment
+from abjad.tools.pitchtools.IntervalObjectSegment import IntervalObjectSegment
 
 
-class HarmonicDiatonicIntervalSegment(_IntervalSegment):
+class HarmonicDiatonicIntervalSegment(IntervalObjectSegment):
     '''.. versionadded:: 2.0
 
     Abjad model of harmonic diatonic interval segment::

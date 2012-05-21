@@ -11,13 +11,13 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.pitchtools.HarmonicChromaticInterval.HarmonicChromaticInterval.HarmonicChromaticInterval.cents
 
-    Inherited from :py:class:`pitchtools._Interval <abjad.tools.pitchtools._Interval._Interval._Interval>`
+    Inherited from :py:class:`pitchtools.IntervalObject <abjad.tools.pitchtools.IntervalObject.IntervalObject.IntervalObject>`
 
 .. autoattribute:: abjad.tools.pitchtools.HarmonicChromaticInterval.HarmonicChromaticInterval.HarmonicChromaticInterval.harmonic_chromatic_interval_class
 
 .. autoattribute:: abjad.tools.pitchtools.HarmonicChromaticInterval.HarmonicChromaticInterval.HarmonicChromaticInterval.interval_class
 
-    Inherited from :py:class:`pitchtools._Interval <abjad.tools.pitchtools._Interval._Interval._Interval>`
+    Inherited from :py:class:`pitchtools.IntervalObject <abjad.tools.pitchtools.IntervalObject.IntervalObject.IntervalObject>`
 
 .. autoattribute:: abjad.tools.pitchtools.HarmonicChromaticInterval.HarmonicChromaticInterval.HarmonicChromaticInterval.number
 
@@ -56,7 +56,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticInterval.HarmonicChromaticInterval.HarmonicChromaticInterval.__hash__
 
-    Inherited from :py:class:`pitchtools._Interval <abjad.tools.pitchtools._Interval._Interval._Interval>`
+    Inherited from :py:class:`pitchtools.IntervalObject <abjad.tools.pitchtools.IntervalObject.IntervalObject.IntervalObject>`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticInterval.HarmonicChromaticInterval.HarmonicChromaticInterval.__int__
 

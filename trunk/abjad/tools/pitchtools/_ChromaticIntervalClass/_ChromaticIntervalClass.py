@@ -1,10 +1,10 @@
 from abc import ABCMeta
 from abc import abstractmethod
 from abjad.tools.pitchtools._Chromatic import _Chromatic
-from abjad.tools.pitchtools._IntervalClass import _IntervalClass
+from abjad.tools.pitchtools.IntervalObjectClass import IntervalObjectClass
 
 
-class _ChromaticIntervalClass(_IntervalClass, _Chromatic):
+class _ChromaticIntervalClass(IntervalObjectClass, _Chromatic):
     '''.. versionadded:: 2.0
 
     Chromatic interval-class base class.

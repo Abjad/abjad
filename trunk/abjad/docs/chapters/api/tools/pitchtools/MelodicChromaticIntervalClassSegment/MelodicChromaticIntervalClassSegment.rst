@@ -11,11 +11,11 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.pitchtools.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.interval_class_numbers
 
-    Inherited from :py:class:`pitchtools._IntervalClassSegment <abjad.tools.pitchtools._IntervalClassSegment._IntervalClassSegment._IntervalClassSegment>`
+    Inherited from :py:class:`pitchtools.IntervalClassObjectSegment <abjad.tools.pitchtools.IntervalClassObjectSegment.IntervalClassObjectSegment.IntervalClassObjectSegment>`
 
 .. autoattribute:: abjad.tools.pitchtools.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.interval_classes
 
-    Inherited from :py:class:`pitchtools._IntervalClassSegment <abjad.tools.pitchtools._IntervalClassSegment._IntervalClassSegment._IntervalClassSegment>`
+    Inherited from :py:class:`pitchtools.IntervalClassObjectSegment <abjad.tools.pitchtools.IntervalClassObjectSegment.IntervalClassObjectSegment.IntervalClassObjectSegment>`
 
 Methods
 -------
@@ -93,7 +93,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.__repr__
 
-    Inherited from :py:class:`pitchtools._IntervalClassSegment <abjad.tools.pitchtools._IntervalClassSegment._IntervalClassSegment._IntervalClassSegment>`
+    Inherited from :py:class:`pitchtools.IntervalClassObjectSegment <abjad.tools.pitchtools.IntervalClassObjectSegment.IntervalClassObjectSegment.IntervalClassObjectSegment>`
 
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.MelodicChromaticIntervalClassSegment.__rmul__
 
