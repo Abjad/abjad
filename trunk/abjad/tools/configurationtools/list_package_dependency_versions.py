@@ -1,4 +1,15 @@
 def list_package_dependency_versions():
+    r'''List package dependency versions::
+
+        abjad> from abjad.tools import configurationtools
+
+    ::
+
+        abjad> configurationtools.list_package_dependency_versions() # doctest: +SKIP
+        {'sphinx': '1.1.2', 'py.test': '2.1.2'}
+
+    Return dictionary.  
+    '''
 
     deps = {}
 
