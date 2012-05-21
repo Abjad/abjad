@@ -1,5 +1,4 @@
 from abjad import *
-import py
 
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_01():
@@ -320,7 +319,6 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_10():
     assert not leaftools.get_nth_leaf_in_thread_from_leaf(v2[0], -1) is v1[3]
 
 
-py.test.skip('modernize from here to end of file.')
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_11():
     '''Does not connect through equally named staves.
     '''
@@ -376,11 +374,11 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_11():
     }
     '''
 
-    assert not vl1[3]._navigator._next_bead is vl2[0]
-    assert not vh1[3]._navigator._next_bead is vh2[0]
+    assert not leaftools.get_nth_leaf_in_thread_from_leaf(vl1[3], 1) is vl2[0]
+    assert not leaftools.get_nth_leaf_in_thread_from_leaf(vh1[3], 1) is vh2[0]
 
-    assert not vl2[0]._navigator._prev_bead is vl1[3]
-    assert not vh2[0]._navigator._prev_bead is vh1[3]
+    assert not leaftools.get_nth_leaf_in_thread_from_leaf(vl2[0], 1) is vl1[0]
+    assert not leaftools.get_nth_leaf_in_thread_from_leaf(vh2[0], 1) is vh1[3]
 
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_12():
@@ -414,15 +412,15 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_12():
     }
     '''
 
-    assert s1[0][0]._navigator._next_bead is s1[0][1]
-    assert s1[0][1]._navigator._next_bead is s1[0][2]
-    assert s1[0][2]._navigator._next_bead is s1[0][3]
-    assert s1[0][3]._navigator._next_bead is s2[0][0]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(s1[0][0], 1) is s1[0][1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(s1[0][1], 1) is s1[0][2]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(s1[0][2], 1) is s1[0][3]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(s1[0][3], 1) is s2[0][0]
 
-    assert s2[0][1]._navigator._prev_bead is s2[0][0]
-    assert s2[0][2]._navigator._prev_bead is s2[0][1]
-    assert s2[0][3]._navigator._prev_bead is s2[0][2]
-    assert s2[0][0]._navigator._prev_bead is s1[0][3]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(s2[0][1], -1) is s2[0][0]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(s2[0][2], -1) is s2[0][1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(s2[0][3], -1) is s2[0][2]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(s2[0][0], -1) is s1[0][3]
 
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_13():
@@ -456,15 +454,15 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_13():
     }
     '''
 
-    assert s1[0]._navigator._next_bead is s1[1]
-    assert s1[1]._navigator._next_bead is s1[2]
-    assert s1[2]._navigator._next_bead is s1[3]
-    assert s1[3]._navigator._next_bead is s2[0][0][0]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(s1[0], 1) is s1[1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(s1[1], 1) is s1[2]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(s1[2], 1) is s1[3]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(s1[3], 1) is s2[0][0][0]
 
-    assert s2[0][0][1]._navigator._prev_bead is s2[0][0][0]
-    assert s2[0][0][2]._navigator._prev_bead is s2[0][0][1]
-    assert s2[0][0][3]._navigator._prev_bead is s2[0][0][2]
-    assert s2[0][0][0]._navigator._prev_bead is s1[3]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(s2[0][0][1], -1) is s2[0][0][0]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(s2[0][0][2], -1) is s2[0][0][1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(s2[0][0][3], -1) is s2[0][0][2]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(s2[0][0][0], -1) is s1[3]
 
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_14():
@@ -498,15 +496,15 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_14():
     }
     '''
 
-    assert s1[0][0][0]._navigator._next_bead is s1[0][0][1]
-    assert s1[0][0][1]._navigator._next_bead is s1[0][0][2]
-    assert s1[0][0][2]._navigator._next_bead is s1[0][0][3]
-    assert s1[0][0][3]._navigator._next_bead is s2[0]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(s1[0][0][0], 1) is s1[0][0][1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(s1[0][0][1], 1) is s1[0][0][2]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(s1[0][0][2], 1) is s1[0][0][3]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(s1[0][0][3], 1) is s2[0]
 
-    assert s2[0]._navigator._prev_bead is s1[0][0][3]
-    assert s2[1]._navigator._prev_bead is s2[0]
-    assert s2[2]._navigator._prev_bead is s2[1]
-    assert s2[3]._navigator._prev_bead is s2[2]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(s2[0], -1) is s1[0][0][3]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(s2[1], -1) is s2[0]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(s2[2], -1) is s2[1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(s2[3], -1) is s2[2]
 
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_15():
@@ -531,11 +529,11 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_15():
     }
     '''
 
-    assert s1[1]._navigator._next_bead is v[1]
-    assert v[1]._navigator._next_bead is s2[0]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(s1[1], 1) is v[1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(v[1], 1) is s2[0]
 
-    assert v[1]._navigator._prev_bead is s1[1]
-    assert s2[0]._navigator._prev_bead is v[1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(v[1], -1) is s1[1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(s2[0], -1) is v[1]
 
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_16():
@@ -562,11 +560,11 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_16():
     }
     '''
 
-    assert t1[-1]._navigator._next_bead is v[1]
-    assert v[1]._navigator._next_bead is t2[0]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(t1[-1], 1) is v[1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(v[1], 1) is t2[0]
 
-    assert v[1]._navigator._prev_bead is t1[-1]
-    assert t2[0]._navigator._prev_bead is v[1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(v[1], -1) is t1[-1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(t2[0], -1) is v[1]
 
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_17():
@@ -588,10 +586,10 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_17():
     }
     '''
 
-    assert t[0]._navigator._next_bead is tinner[0]
-    assert tinner[-1]._navigator._next_bead is t[-1]
-    assert t[-1]._navigator._prev_bead is tinner[-1]
-    assert tinner[0]._navigator._prev_bead is t[0]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[0], 1) is tinner[0]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(tinner[-1], 1) is t[-1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(t[-1], -1) is tinner[-1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(tinner[0], -1) is t[0]
 
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_18():
@@ -620,11 +618,11 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_18():
     }
     '''
 
-    assert v1[-1]._navigator._next_bead is None
-    assert n._navigator._next_bead is None
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(v1[-1], 1) is None
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(n, 1) is None
 
-    assert v2[0]._navigator._prev_bead is None
-    assert n._navigator._prev_bead is None
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(v2[0], -1) is None
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(n, -1) is None
 
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_19():
@@ -661,14 +659,16 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_19():
     }
     '''
 
-    assert v1[-1]._navigator._next_bead is None
-    assert v2[-1]._navigator._next_bead is None
-    v2.name = None
-    assert v1[-1]._navigator._next_bead is None
-    assert v2[-1]._navigator._next_bead is None
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(v1[-1], 1) is None
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(v2[-1], 1) is None
 
-    assert v3[0]._navigator._prev_bead is None
-    assert v2[0]._navigator._prev_bead is None
+    v2.name = None
+
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(v1[-1], 1) is None
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(v2[-1], 1) is None
+
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(v3[0], -1) is None
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(v2[0], -1) is None
 
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_20():
@@ -689,17 +689,17 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_20():
     }
     '''
 
-    assert vin[0]._navigator._next_bead is vin[1]
-    assert vin[1]._navigator._next_bead is vin[2]
-    assert vin[2]._navigator._next_bead is None
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(vin[0], 1) is vin[1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(vin[1], 1) is vin[2]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(vin[2], 1) is None
 
-    assert vin[1]._navigator._prev_bead is vin[0]
-    assert vin[2]._navigator._prev_bead is vin[1]
-    assert vout[1]._navigator._prev_bead is None
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(vin[1], -1) is vin[0]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(vin[2], -1) is vin[1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(vout[1], -1) is None
 
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_21():
-    '''Does not connec through nested anonymous voices.
+    '''Does not connect through nested anonymous voices.
     '''
 
     vin = Voice([Note(i, (1,8)) for i in range(1,4)])
@@ -716,13 +716,13 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_21():
     }
     '''
 
-    assert vin[0]._navigator._next_bead is vin[1]
-    assert vin[1]._navigator._next_bead is vin[2]
-    assert vout[0]._navigator._next_bead is None
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(vin[0], 1) is vin[1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(vin[1], 1) is vin[2]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(vout[0], 1) is None
 
-    assert vin[1]._navigator._prev_bead is vin[0]
-    assert vin[2]._navigator._prev_bead is vin[1]
-    assert vin[0]._navigator._prev_bead is None
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(vin[1], -1) is vin[0]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(vin[2], -1) is vin[1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(vin[0], -1) is None
 
 
 
@@ -746,13 +746,13 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_22():
     }
     '''
 
-    assert vin[0]._navigator._next_bead is vin[1]
-    assert vin[1]._navigator._next_bead is vin[2]
-    assert vin[2]._navigator._next_bead is vout[1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(vin[0], 1) is vin[1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(vin[1], 1) is vin[2]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(vin[2], 1) is vout[1]
 
-    assert vin[1]._navigator._prev_bead is vin[0]
-    assert vin[2]._navigator._prev_bead is vin[1]
-    assert vout[1]._navigator._prev_bead is vin[-1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(vin[1], -1) is vin[0]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(vin[2], -1) is vin[1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(vout[1], -1) is vin[-1]
 
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_23():
@@ -775,13 +775,13 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_23():
     }
     '''
 
-    assert vin[0]._navigator._next_bead is vin[1]
-    assert vin[1]._navigator._next_bead is vin[2]
-    assert vout[0]._navigator._next_bead is vin[0]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(vin[0], 1) is vin[1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(vin[1], 1) is vin[2]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(vout[0], 1) is vin[0]
 
-    assert vin[1]._navigator._prev_bead is vin[0]
-    assert vin[2]._navigator._prev_bead is vin[1]
-    assert vin[0]._navigator._prev_bead is vout[0]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(vin[1], -1) is vin[0]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(vin[2], -1) is vin[1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(vin[0], -1) is vout[0]
 
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_24():
@@ -804,13 +804,13 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_24():
     }
     '''
 
-    assert vin[0]._navigator._next_bead is vin[1]
-    assert vin[1]._navigator._next_bead is vin[2]
-    assert vin[2]._navigator._next_bead is None
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(vin[0], 1) is vin[1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(vin[1], 1) is vin[2]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(vin[2], 1) is None
 
-    assert vin[1]._navigator._prev_bead is vin[0]
-    assert vin[2]._navigator._prev_bead is vin[1]
-    assert vout[1]._navigator._prev_bead is None
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(vin[1], -1) is vin[0]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(vin[2], -1) is vin[1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(vout[1], -1) is None
 
 
 def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_25():
@@ -833,10 +833,10 @@ def test_leaftools_get_nth_leaf_in_thread_from_leaf_to_be_cleaned_up_25():
     }
     '''
 
-    assert vin[0]._navigator._next_bead is vin[1]
-    assert vin[1]._navigator._next_bead is vin[2]
-    assert vout[0]._navigator._next_bead is None
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(vin[0], 1) is vin[1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(vin[1], 1) is vin[2]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(vout[0], 1) is None
 
-    assert vin[1]._navigator._prev_bead is vin[0]
-    assert vin[2]._navigator._prev_bead is vin[1]
-    assert vout[1]._navigator._prev_bead is None
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(vin[1], -1) is vin[0]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(vin[2], -1) is vin[1]
+    assert leaftools.get_nth_leaf_in_thread_from_leaf(vout[1], -1) is None
