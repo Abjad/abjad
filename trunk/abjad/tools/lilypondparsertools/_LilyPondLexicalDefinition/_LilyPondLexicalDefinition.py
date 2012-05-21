@@ -301,7 +301,7 @@ class _LilyPondLexicalDefinition(object):
     # <version>{ANY_CHAR}
     @TOKEN(ANY_CHAR)
     def t_version_278(self, t):
-        print("Illegal character '%s'" % t.value[0])
+        print("LilyPondParser: Illegal character '%s'" % t.value[0])
         t.lexer.skip(1)
 
     # lexer.ll:282
@@ -391,12 +391,13 @@ class _LilyPondLexicalDefinition(object):
             cursor_end = scheme_parser.cursor_end
             #print 'PARSED: {!r}'.format(input_string[:cursor_end])
             t.value = result
-            if isinstance(result, str):
-                t.type = 'STRING'
-                if t.value.find(' ') != -1:
-                    t.value = '"{}"'.format(t.value)
-            else:
-                t.type = 'SCM_TOKEN'
+            t.type = 'SCM_TOKEN'
+            #if isinstance(result, str):
+            #    t.type = 'STRING'
+            #    if t.value.find(' ') != -1:
+            #        t.value = '"{}"'.format(t.value)
+            #else:
+            #    t.type = 'SCM_TOKEN'
             t.lexer.skip(scheme_parser.cursor_end + 1)
         return t
 
@@ -590,16 +591,13 @@ class _LilyPondLexicalDefinition(object):
         if value in self.client._markup_functions or \
             value in self.client._markup_list_functions:
             if value in self.client._markup_functions:
+                t.type = 'MARKUP_FUNCTION'
                 signature = self.client._markup_functions[value]
-                if 'markup-list?' in signature:
-                    t.type = 'MARKUP_LIST_FUNCTION'
-                else:
-                    t.type = 'MARKUP_FUNCTION'
             else:
                 t.type = 'MARKUP_LIST_FUNCTION'
                 signature = self.client._markup_list_functions[value]
 
-            print t.type, value, signature
+            #print t.type, value, signature
 
             self.push_signature(signature, t)
 

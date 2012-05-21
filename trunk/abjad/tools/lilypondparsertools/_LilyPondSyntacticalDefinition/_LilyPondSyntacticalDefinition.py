@@ -2936,7 +2936,7 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_simple_markup__markup_scm__MARKUP_IDENTIFIER(self, p):
         'simple_markup : markup_scm MARKUP_IDENTIFIER'
-        #p[0] = Node('simple_markup', p[1:])
+        p[0] = Node('simple_markup', p[1:])
 
 
     ### simple_music ###
