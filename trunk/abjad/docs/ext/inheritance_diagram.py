@@ -147,7 +147,8 @@ class InheritanceGraph(object):
         builtins = __builtins__.values()
 
         def recurse(cls):
-            if not show_builtins and cls in builtins:
+
+            if not show_builtins and cls in builtins and not cls.__module__.startswith('abjad'):
                 return
             if not private_bases and cls.__name__.startswith('_'):
                 return
