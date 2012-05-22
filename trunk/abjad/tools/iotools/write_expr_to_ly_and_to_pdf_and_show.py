@@ -1,4 +1,4 @@
-from abjad.cfg._read_config_file import _read_config_file
+from abjad.tools import configurationtools
 from abjad.tools.iotools._open_file import _open_file
 from abjad.tools.iotools.show import show
 from abjad.tools.iotools.write_expr_to_ly import write_expr_to_ly
@@ -26,7 +26,7 @@ def write_expr_to_ly_and_to_pdf_and_show(expr, name, write = True):
     if write:
         write_expr_to_ly(expr, name + '.ly')
         write_expr_to_pdf(expr, name + '.pdf')
-        pdf_viewer = _read_config_file()['pdf_viewer']
+        pdf_viewer = configurationtools.read_abjad_config_file('pdf_viewer')
         _open_file(name + '.pdf', pdf_viewer)
     else:
         show(expr)

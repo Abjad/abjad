@@ -1,4 +1,4 @@
-from abjad.cfg._read_config_file import _read_config_file
+from abjad.tools import configurationtools
 from abjad.tools.iotools._open_file import _open_file
 from abjad.tools.iotools._run_lilypond import _run_lilypond
 from abjad.tools.iotools._verify_output_directory import _verify_output_directory
@@ -24,7 +24,7 @@ def redo(target = -1, lily_time = 10):
     '''
 
     current_directory = os.path.abspath('.')
-    ABJADOUTPUT = _read_config_file()['abjad_output']
+    ABJADOUTPUT = configurationtools.read_abjad_config_file('abjad_output')
     _verify_output_directory(ABJADOUTPUT)
     os.chdir(ABJADOUTPUT)
 
@@ -49,7 +49,7 @@ def redo(target = -1, lily_time = 10):
 
     # render
     start_time = time.time()
-    _run_lilypond(target_ly, _read_config_file()['lilypond_path'])
+    _run_lilypond(target_ly, configurationtools.read_abjad_config_file('lilypond_path'))
     stop_time = time.time()
     actual_lily_time = int(stop_time - start_time)
 
@@ -60,7 +60,7 @@ def redo(target = -1, lily_time = 10):
 
     # TODO: Encapsulate as cfg._open_pdf()
     # open pdf
-    config = _read_config_file()
+    config = configurationtools.read_abjad_config_file()
     pdf_viewer = config['pdf_viewer']
     ABJADOUTPUT = config['abjad_output']
     #name = os.path.join(ABJADOUTPUT, name)

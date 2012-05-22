@@ -1,4 +1,3 @@
-from abjad.cfg._read_config_file import _read_config_file
 import os
 
 
@@ -7,8 +6,9 @@ def _get_text_editor():
 
     Get OS-appropriate text editor.
     '''
+    from abjad.tools import configuraitontools
 
-    text_editor = _read_config_file()['text_editor']
+    text_editor = configurationtools.read_abjad_config_file('text_editor')
 
     if text_editor is not None:
         return text_editor

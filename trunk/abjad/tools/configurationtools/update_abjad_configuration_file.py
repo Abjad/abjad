@@ -1,12 +1,13 @@
-from abjad.cfg._write_config_file import _write_config_file
 from abjad.cfg.cfg import ABJADCONFIG
 
 
 def _update_config_file(default_dict, user_dict):
     '''
-    default_dict is drawn from abjad.cfg._config_file_dict.
-    user_dict is drawn from abjad.cfg._read_config_file.
+    Default dict is drawn from Abjad config file dict.
+
+    User dict is drawn from reading Abjad config file.
     '''
+    from abjad.tools import configurationtools
 
     default_keyset = set(default_dict.keys( ))
     user_keyset = set(user_dict.keys( ))
@@ -23,4 +24,4 @@ def _update_config_file(default_dict, user_dict):
         else:
             pass
 
-    _write_config_file(ABJADCONFIG, default_dict)
+    configurationtools.write_abjad_config_file(ABJADCONFIG, default_dict)

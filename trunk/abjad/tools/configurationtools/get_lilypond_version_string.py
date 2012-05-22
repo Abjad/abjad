@@ -1,4 +1,3 @@
-from abjad.cfg._read_config_file import _read_config_file
 import os
 import subprocess
 
@@ -13,6 +12,7 @@ def get_lilypond_version_string():
 
     Return string.
     '''
+    from abjad.tools import configurationtools
 
     if subprocess.mswindows and not 'LilyPond' in os.environ.get('PATH'):
         command = r'dir "C:\Program Files\*.exe" /s /b | find "lilypond.exe"'
@@ -22,7 +22,7 @@ def get_lilypond_version_string():
         if lilypond == '':
             raise SystemError('LilyPond not found on your Windowz box.')
     else:
-        lilypond = _read_config_file()['lilypond_path']
+        lilypond = configurationtools.read_abjad_config_file('lilypond_path')
         if not lilypond:
             lilypond = 'lilypond'
 

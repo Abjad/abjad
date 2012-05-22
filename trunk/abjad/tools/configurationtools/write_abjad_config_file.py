@@ -5,7 +5,7 @@ import os
 import time
 
 
-def _write_config_file(path, dict):
+def write_abjad_config_file(path, dict):
 
     preamble = '# -*- coding: utf-8 -*-\n'
     preamble += '# \n'

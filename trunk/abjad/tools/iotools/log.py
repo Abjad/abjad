@@ -1,5 +1,4 @@
-from abjad.cfg._get_text_editor import _get_text_editor
-from abjad.cfg._read_config_file import _read_config_file
+from abjad.tools import configurationtools
 from abjad.tools.iotools.spawn_subprocess import spawn_subprocess
 import os
 
@@ -27,8 +26,8 @@ def log():
     Return none.
     '''
 
-    ABJADOUTPUT = _read_config_file()['abjad_output']
-    text_editor = _get_text_editor()
+    ABJADOUTPUT = configurationtools.read_abjad_config_file('abjad_output')
+    text_editor = configurationtools.get_text_editor()
     command = '{} {}'.format(text_editor, os.path.join(ABJADOUTPUT, 'lily.log'))
     # TODO: how do we get rid of this call to os.system()?
     #spawn_subprocess(command)

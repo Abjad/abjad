@@ -1,11 +1,11 @@
-from abjad.cfg._read_config_file import _read_config_file
+from abjad.tools.configurationtools.read_abjad_config_file import read_abjad_config_file
 from abjad.tools.pitchtools.Accidental import Accidental
 from abjad.tools.pitchtools.PitchObject import PitchObject
 from abjad.tools.pitchtools.is_chromatic_pitch_name import chromatic_pitch_name_regex
 
 
 # TODO: remove #
-_accidental_spelling = _read_config_file()['accidental_spelling']
+_accidental_spelling = read_abjad_config_file('accidental_spelling')
 
 class NamedChromaticPitch(PitchObject):
     '''.. versionadded:: 1.1

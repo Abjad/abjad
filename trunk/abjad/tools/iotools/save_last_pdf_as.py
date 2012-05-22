@@ -1,4 +1,4 @@
-from abjad.cfg._read_config_file import _read_config_file
+from abjad.tools import configurationtools
 from abjad.tools.iotools.get_last_output_file_name import get_last_output_file_name
 import os
 
@@ -13,7 +13,7 @@ def save_last_pdf_as(file_name):
     Return none.
     '''
 
-    ABJADOUTPUT = _read_config_file()['abjad_output']
+    ABJADOUTPUT = configurationtools.read_abjad_config_file('abjad_output')
     last_ly = get_last_output_file_name()
     last_pdf = last_ly[:-3] + '.pdf'
     last_pdf_full_name = os.path.join(ABJADOUTPUT, last_pdf)

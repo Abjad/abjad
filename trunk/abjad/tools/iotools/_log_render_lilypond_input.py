@@ -1,4 +1,4 @@
-from abjad.cfg._read_config_file import _read_config_file
+from abjad.tools import configurationtools
 from abjad.tools import lilypondfiletools
 from abjad.tools.iotools._insert_expr_into_lilypond_file import _insert_expr_into_lilypond_file
 from abjad.tools.iotools._run_lilypond import _run_lilypond
@@ -18,7 +18,7 @@ def _log_render_lilypond_input(expr, tagline=False, docs=False):
 
     # log score
     current_directory = os.path.abspath('.')
-    ABJADOUTPUT = _read_config_file()['abjad_output']
+    ABJADOUTPUT = configurationtools.read_abjad_config_file('abjad_output')
     _verify_output_directory(ABJADOUTPUT)
     os.chdir(ABJADOUTPUT)
     name = get_next_output_file_name()
@@ -48,7 +48,7 @@ def _log_render_lilypond_input(expr, tagline=False, docs=False):
 
     # render
     start_time = time.time()
-    _run_lilypond(name, _read_config_file()['lilypond_path'])
+    _run_lilypond(name, configurationtools.read_abjad_config_file('lilypond_path'))
     stop_time = time.time()
     actual_lily_time = int(stop_time - start_time)
 

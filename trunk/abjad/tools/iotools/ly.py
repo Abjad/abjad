@@ -1,5 +1,4 @@
-from abjad.cfg._get_text_editor import _get_text_editor
-from abjad.cfg._read_config_file import _read_config_file
+from abjad.tools import configurationtools
 from abjad.tools.iotools.get_last_output_file_name import get_last_output_file_name
 from abjad.tools.iotools.spawn_subprocess import spawn_subprocess
 import os
@@ -32,8 +31,8 @@ def ly(target=-1):
     Return none.
     '''
 
-    ABJADOUTPUT = _read_config_file()['abjad_output']
-    text_editor = _get_text_editor()
+    ABJADOUTPUT = configurationtools.read_abjad_config_file('abjad_output')
+    text_editor = configurationtools.get_text_editor()
     if isinstance(target, int) and target < 0:
         last_lilypond = get_last_output_file_name()
         if last_lilypond:

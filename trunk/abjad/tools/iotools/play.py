@@ -1,4 +1,4 @@
-from abjad.cfg._read_config_file import _read_config_file
+from abjad.tools import configurationtools
 from abjad.tools import lilypondfiletools
 from abjad.tools.iotools._insert_expr_into_lilypond_file import _insert_expr_into_lilypond_file
 from abjad.tools.iotools._open_file import _open_file
@@ -24,7 +24,7 @@ def play(expr):
     Abjad outputs MIDI files of the format ``filename.midi`` under other operating systems.
     '''
 
-    ABJADOUTPUT = _read_config_file()['abjad_output']
+    ABJADOUTPUT = configurationtools.read_abjad_config_file('abjad_output')
     _verify_output_directory(ABJADOUTPUT)
     os.chdir(ABJADOUTPUT)
     name = get_next_output_file_name()
@@ -33,10 +33,10 @@ def play(expr):
     lilypond_file.score_block.append(lilypondfiletools.MIDIBlock())
     outfile.write(lilypond_file.format)
     outfile.close()
-    _run_lilypond(name, _read_config_file()['lilypond_path'])
+    _run_lilypond(name, configurationtools.read_abjad_config_file('lilypond_path'))
     if os.name == 'nt':
         extension = 'mid'
     else:
         extension = 'midi'
-    midi_player = _read_config_file()['midi_player']
+    midi_player = configurationtools.read_abjad_config_file('midi_player')
     _open_file('%s.%s' % (name[:-3], extension), midi_player)
