@@ -395,6 +395,10 @@ class LilyPondParser(AbjadObject):
                 raise Exception('Unterminated %s.' % klass.__name__)
 
 
+    def _assign_variable(self, identifier, value):
+        self._scope_stack[-1][identifier] = value
+
+
     def _backup_token(self, token_type, token_value):
         if self._debug:
             self._logger.info('Extra  : Backing up')
@@ -571,6 +575,15 @@ class LilyPondParser(AbjadObject):
                 annotation.value.append(post_event)
 
 
+    def _push_variable_scope(self):
+        self._scope_stack.append({})
+
+
+    def _pop_variable_scope(self):
+        if self._scope_stack:
+            self._scope_stack.pop()
+
+
     def _push_extra_token(self, token):
         self._parser.lookaheadstack.append(token)
 
@@ -582,14 +595,14 @@ class LilyPondParser(AbjadObject):
         # push the current lookahead back onto the lookaheadstack
         self._push_extra_token(self._parser.lookahead)
 
-        token = LexToken( )
+        token = LexToken()
         token.type = token_type
         token.value = token_value
         token.lexpos = 0
         token.lineno = 0
         self._push_extra_token(token)
 
-        reparse = LexToken( )
+        reparse = LexToken()
         reparse.type = 'REPARSE'
         reparse.value = predicate
         reparse.lineno = 0
@@ -602,13 +615,20 @@ class LilyPondParser(AbjadObject):
             self._parser.restart( )
         except:
             pass
-        self._assignments = { }
-        self._chord_pitch_orders = { }
+        self._scope_stack = [{}]
+        self._chord_pitch_orders = {}
         self._lexer.push_state('notes')
         self._default_duration = _LilyPondDuration(Duration(1, 4), None)
         self._last_chord = Chord("<c g c'>4") # LilyPond's default!
         self._pitch_names = self._language_pitch_names[self.default_language]
-        self._repeated_chords = { }
+        self._repeated_chords = {}
+
+
+    def _resolve_identifier(self, identifier):
+        for scope in reversed(self._scope_stack):
+            if identifier in scope:
+                return scope[identifier]
+        return None
 
 
     def _resolve_event_identifier(self, identifier):

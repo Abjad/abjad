@@ -1742,7 +1742,7 @@ class _LilyPondSyntacticalDefinition(object):
         'lilypond : lilypond assignment'
         p[0] = p[1]
         if p[2] is not None:
-            self.client._assignments[p[2][0]] = p[2][1]
+            self.client._assign_variable(p[2][0], p[2][1])
 
 
     def p_lilypond__lilypond__error(self, p):

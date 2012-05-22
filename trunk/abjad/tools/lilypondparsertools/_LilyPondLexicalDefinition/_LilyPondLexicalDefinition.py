@@ -787,11 +787,11 @@ class _LilyPondLexicalDefinition(object):
 
             return value
 
-        # then, check for it in the assignments list 
-        # (anything assigned in the input string)
-        if t.value[1:] in self.client._assignments:
+        identifier = t.value[1:]
 
-            lookup = self.client._assignments[t.value[1:]]
+        # check for the identifier in the scope stack
+        lookup = self.client._resolve_identifier(identifier)
+        if lookup is not None:
 
             identifier_lookup = {
                 'book_block': 'BOOK_IDENTIFIER',
@@ -813,15 +813,14 @@ class _LilyPondLexicalDefinition(object):
             }
 
             t.value = copy.deepcopy(lookup.value)
-
             return identifier_lookup[lookup.type]
 
         # then, check for it in the "current_module" dictionary
         # which we've dumped out of LilyPond
-        if t.value[1:] not in self.client._current_module:
+        if identifier not in self.client._current_module:
             raise Exception('Unknown escaped word "%s".' % t.value)
 
-        lookup = self.client._current_module[t.value[1:]]
+        lookup = self.client._current_module[identifier]
 
         # if the lookup resolves to a function definition,
         # we have to push artificial tokens onto the token stack.
