@@ -238,13 +238,14 @@ Extended container input syntax.
         c'8
     }
 
-- You can instantiate score instances from strings like this one::
+- Parallel contexts, such as Score, can be instantiated from strings which parse
+  to a sequence of contexts::
 
     Score(r'''\new Staff { c' } \new Staff = { c, }''')
 
 - Added a new ``FixedDurationContainer`` class to the ``containertools`` package.
 
-  Fixed-duration containres extend container behavior with format-time
+  Fixed-duration containers extend container behavior with format-time
   checking against a user-specified target duration::
 
     >>> container = containertools.FixedDurationContainer((3, 8), "c'8 d'8 e'8")
