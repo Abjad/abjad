@@ -1307,6 +1307,7 @@ Additional Abjad composition packages (load manually)
    tools/configurationtools/list_abjad_environment_variables
    tools/configurationtools/list_package_dependency_versions
    tools/configurationtools/read_abjad_config_file
+   tools/configurationtools/verify_abjad_config_file
    tools/configurationtools/write_abjad_config_file
 
 :py:mod:`datastructuretools <abjad.tools.datastructuretools>`

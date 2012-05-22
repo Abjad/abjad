@@ -1,19 +1,23 @@
 Abjad build checklist:
 
- 1. Open docs/chapters/start_here/versions/index.rst.
+ 1. Open doc/chapters/start_here/abjad/index.rst.
+    Add a sentence giving the release date and repository revision number.
+    Example: "Released 2009-05-21. Built from r5741."
+    Run "scr/devel/count-tools" and "scr/devel/count-source-lines".
+    Add a sentence detailing the output of these scripts to this chapter.
+    Example: "Implements 405 public classes and 1066 functions totalling 182,000 lines of code."
+
+ 2. Keep docs/chapters/start_here/versions/index.rst open.
     Run "svn log --limit 30 | less" (or 40 or whatever) and read output.
-    Or run "svn log --revision 4083:4977" and read output in chronological order.
-    Edit docs/chapters/start_here/versions/index.rst as appropriate.
+    Or run "svn log --revision 4083:4977 | less" and read output in chronological order.
+    Read log and write release notes.
+    Follow the pattern already established in the document.
     List new features and functionality.
     Highlight significant new functionality with a musical example.
     Begin entries with an active verb in the simple past.
     Order entries by leading verb.
     List adds first and extensions second.
     List changes in user syntax last.
-
- 2. Open doc/chapters/start_here/abjad/index.rst.
-    Run "scr/devel/count-tools" and "scr/devel/count-source-lines".
-    Added a sentence detailing the output of these scripts to this chapter.
 
  3. Commit.
 

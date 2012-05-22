@@ -2,6 +2,881 @@ Version history
 ===============
 
 
+Abjad 2.9
+---------
+
+Released 2009-05-21. Built from r5741.
+Implements 405 public classes and 1066 functions totalling 182,000 lines of code.
+
+LilyPond parsing has been extended considerably.
+
+- LilyPondParser now supports simple ``\markup`` expressions like the following::
+
+    \new Staff { c'4 _ \markup { X Y Z "a b c" } }
+
+- LilyPondParser can now parse slightly more complex markup::
+
+    >>> input_string = r'''{ c'4 _ \markup { X Y \bold { Z \fontsize #-3 #"a b c" } } }'''
+    >>> result = p(input_string)
+    >>> f(result)
+    {
+        c'4
+            _ \markup {
+                X
+                Y
+                \bold
+                    {
+                        Z
+                        \fontsize
+                            #-3
+                            "a b c"
+                    }
+                }
+    }
+
+  Note the hash sign in front of the -3, in the \fontsize arguments.
+  LilyPondParser now utilizes _SchemeParser internally for parsing Scheme constructs.
+  Currently it can handle primitive types - strings, floats, booleans - but it will 
+  soon be able to parse pairs and lists as well.
+
+
+- LilyPondParser now properly handles chained markup commands::
+
+    >>> f(p(r'''{ c'4 _ \markup { \put-adjacent #1 #-1 \bold \fontsize #2 \upright foo bar } }'''))
+    {
+        c'4
+            _ \markup {
+                \put-adjacent
+                    #1
+                    #-1
+                    \bold
+                        \fontsize
+                            #2
+                            \upright
+                                foo
+                    bar
+                }
+    }
+
+
+Container input syntax has been improved.
+
+- You can now pass strings directly to the ``append()`` and ``extend()`` methods of all Abjad containers::
+
+    abjad> container = Container()
+    abjad> container
+    {}
+
+  ::
+
+    abjad> container.extend('a b c')
+    abjad> container
+    {a4, b4, c4}
+
+  ::
+
+    abjad> container.append('d')
+    abjad> container
+    {a4, b4, c4, d4}
+
+
+- You can set a string against a single index of any Abjad container:: 
+
+    abjad> container = Container("c' d' e'")
+    abjad> container
+    {c'4, d'4, e'4}
+
+  ::
+
+    abjad> container[1] = 'r'
+    abjad> container
+    {c'4, r4, e'4}
+
+- And you can set a string against any slice of any Abjad container::
+
+    abjad> container = Container("c' d' e'")
+    abjad> container
+    {c'4, d'4, e'4}
+
+  ::
+
+    abjad> container[:2] = 'r8 r r'
+    abjad> container
+    {r8, r8, r8, e'4}
+
+
+Changed the default behavior of Abjad ``Measure`` objects.
+
+- Added a read / write public ``automatically_update_time_signature`` property to ``Measure``.
+  The property is a boolean defaulting to false.
+  The meaning of the flag is this: if ``automatically_update_time_signatures`` is set to true,
+  then the measure in question will adjust its time signature after any contents-changing
+  operation such as append, extend, del and pop. Otherwise the measure will not
+  adjust its time signature after these same contents-changing operations.
+  (Measure behavior prior to this commit was a mixed bag. Measures would update their time
+  signature are *losing* contents through del or pop but would not update their time
+  siganture after gaining contents through append or extend.)
+  Chosing false as the default value makes the system default mean that composers should
+  maintain time signatures by hand. But where this is not desired, simply set the flag to true.
+
+- Added a read-only ``is_misfilled`` property to ``Measure`` objects.
+  True when measure is either underfull or overfull.
+
+- Extended measure item-setting logic to pay attention to the user-settable
+  ``Measure.automatically_adjust_time_signature`` property.
+
+  By default measures do not automatically adjust time signature after structure changing operations:: 
+
+    abjad> measure = Measure((3, 4), "c' d' e'")
+    abjad> measure
+    Measure(3/4, [c'4, d'4, e'4])
+
+  ::
+
+    abjad> measure.append('r')
+    abjad> measure
+    Measure(3/4, [c'4, d'4, e'4, r4])
+
+  ::
+
+    abjad> measure.is_overfull
+    True
+
+  But it is now possible to cause measures to automatically adjust time signature after
+  all structure changing operations::
+
+    abjad> measure = Measure((3, 4), "c' d' e'")
+    abjad> measure.automatically_adjust_time_signature = True
+    abjad> measure
+    Measure(3/4, [c'4, d'4, e'4])
+
+  ::
+
+    abjad> measure.append('r')
+    abjad> measure
+    Measure(4/4, [c'4, d'4, e'4, r4])
+
+  ::
+
+    abjad> measure.is_misfilled
+    False
+
+  In prior releases of Abjad, the ``append()``, ``extend()`` and item-setting methods of the
+  measure object never adjusted measure time signatures.
+
+  Now the behavior of such operations is controllable on a measure-by-measure basis by the end user.
+
+- Measures no longer format redundant time signatures.
+  This means that measures now conform to standard engraving practice::
+
+    abjad> staff = Staff(3 * Measure((2, 4), "c' d'"))
+
+  ::
+
+    abjad> f(staff)
+    \new Staff {
+        {
+            \time 2/4
+            c'4
+            d'4
+        }
+        {
+            c'4
+            d'4
+        }
+        {
+            c'4
+            d'4
+        }
+    }
+
+  The ``2/4`` time signature appears only once.
+
+  To override this behavior, set the ``Measure.always_format_time_signature`` property to true.
+  (This property can be set on a measure-by-measure basis.)
+
+- Added a new ``measuretools`` function to cause all time signatures everywhere to format::
+
+    abjad> measuretools.set_always_format_time_signature_of_measures_in_expr(staff)
+
+  ::
+
+    abjad> f(staff)
+    \new Staff {
+        {
+            \time 2/4
+            c'4
+            d'4
+        }
+        {
+            \time 2/4
+            c'4
+            d'4
+        }
+        {
+            \time 2/4
+            c'4
+            d'4
+        }
+    }
+
+
+- Added an abstract ``ScoreSelection`` class to the ``abctools`` package.
+
+  The ``ScoreSelection`` class is now the abstract base class for the new
+  ``TieChain`` class and for the ``VerticalMoment`` class.
+ 
+  In future all temporary selections of components taken from a single
+  score will subclass the new ``ScoreSelection`` class.
+
+- Added a ``TieChain`` class to the ``tietools`` package.
+  Tie chains now return as a custom ``TieChain`` object instead of tuple:: 
+
+    abjad> staff = Staff("c' d' e' ~ e'")
+
+  ::
+
+    abjad> tietools.get_tie_chain(staff[2])
+    TieChain((Note("e'4"), Note("e'4")))
+
+
+  Reimplemented tie chain duration attributes as explicit class attributes.
+  The following four functions have been removed::
+
+    tietools.get_preprolated_tie_chain_duration()
+    tietools.get_prolated_tie_chain_duration()
+    tietools.get_tie_chain_duration_in_seconds()
+    tietools.get_written_tie_chain_duration()
+
+  Use these read-only properties instead::
+
+    TieChain.preprolated_duration
+    TieChain.prolated_duration
+    TieChain.duration_in_seconds
+    TieChain.written_duration
+
+  Removed ``tietools.is_tie_chain(expr)``.  Use ``isinstance(expr, tietools.TieChain)`` instead.
+
+  Removed ``tietools.get_leaves_in_tie_chain()``. Use ``TieChain.leaves`` instead.
+
+  Removed ``tietools.group_leaves_in_tie_chain_by_immediate_parents()``.
+  Use ``TieChain.leaves_grouped_by_immediate_parents instead``.
+
+  Removed ``tietools.is_tie_chain_with_all_leaves_in_same_parent()``.
+  Use ``TieChain.all_leaves_are_in_same_parent`` instead.
+
+
+- Added a new ``stringtools`` packagefor string manipulating functions.
+
+  This version of the package includes the following functions::
+
+    stringtools.arg_to_bidirectional_direction_string
+    stringtools.arg_to_bidirectional_lilypond_symbol
+    stringtools.arg_to_tridirectional_direction_string
+    stringtools.arg_to_tridirectional_lilypond_symbol
+
+  ::
+
+    abjad> stringtools.arg_to_bidirectional_lilypond_symbol(1)
+    '^'
+    abjad> stringtools.arg_to_tridirectional_direction_string('-')
+    'neutral'
+
+  The new ``stringtools`` package now also houses the following functions::
+
+    stringtools.capitalize_string_start
+    stringtools.format_input_lines_as_doc_string
+    stringtools.format_input_lines_as_regression_test
+    stringtools.is_lowercamelcase_string
+    stringtools.is_space_delimited_lowercase_string
+    stringtools.is_underscore_delimited_lowercase_file_name
+    stringtools.is_underscore_delimited_lowercase_file_name_with_extension
+    stringtools.is_underscore_delimited_lowercase_package_name
+    stringtools.is_underscore_delimited_lowercase_string
+    stringtools.is_uppercamelcase_string
+    stringtools.space_delimited_lowercase_to_uppercamelcase
+    stringtools.string_to_strict_directory_name
+    stringtools.strip_diacritics_from_binary_string
+    stringtools.underscore_delimited_lowercase_to_lowercamelcase
+    stringtools.underscore_delimited_lowercase_to_uppercamelcase
+    stringtools.uppercamelcase_to_space_delimited_lowercase
+    stringtools.uppercamelcase_to_underscore_delimited_lowercase
+
+  Note that all of the functions listed immediately above previous resided 
+  in the ``iotools`` package.
+
+- Extended spanners with call logic::
+
+    abjad> staff = Staff("c'8 d'8 e'8 f'8")
+
+  ::
+
+    abjad> beam = spannertools.BeamSpanner()
+    abjad> beam(staff[:])
+    Staff{4}
+
+  ::
+
+    abjad> f(staff)
+    \new Staff {
+        c'8 [
+        d'8
+        e'8
+        f'8 ]
+    }
+
+  Note that this works the same way as marks::
+
+    abjad> marktools.Articulation('.')(staff[1])
+    Articulation('.')(d'8)
+
+  ::
+
+    abjad> f(staff)
+    \new Staff {
+        c'8 [
+        d'8 -\staccato
+        e'8
+        f'8 ]
+    }
+
+  Spanner call implementation is provided as an experimental way of unifying
+  the attachment syntax of spanners and marks.
+
+
+
+- Added a new ``beamtools`` package.
+
+  This release of the ``beamtools`` package contains the following classes and functions::
+
+    beamtools.BeamSpanner
+    beamtools.ComplexBeamSpanner
+    beamtools.DuratedComplexBeamSpanner
+    beamtools.MultipartBeamSpanner
+
+ ::
+
+    beamtools.is_beamable_component
+    beamtools.apply_beam_spanner_to_measure
+    beamtools.apply_beam_spanners_to_measures_in_expr
+    beamtools.apply_complex_beam_spanner_to_measure
+    beamtools.apply_complex_beam_spanners_to_measures_in_expr
+    beamtools.apply_durated_complex_beam_spanner_to_measures
+    beamtools.beam_bottommost_tuplets_in_expr
+    beamtools.get_beam_spanner_attached_to_component
+    beamtools.is_beamable_component
+    beamtools.is_component_with_beam_spanner_attached
+
+  Note that the following two functions have been removed::
+
+    beamtools.apply_beam_spanner_to_measure()
+    beamtools.apply_complex_beam_spanner_to_measure()
+
+  Use these two functions instead::
+    
+    beamtools.apply_beam_spanners_to_measures_in_expr()
+    beamtools.apply_complex_beam_spanners_to_measures_in_expr()
+
+
+- Added a new ``exceptiontools`` package. Remove the top-level ``abjad/exceptions`` directory.
+
+
+
+
+Further new functionality:
+
+
+- Added new ``gracetools`` function::
+
+    gracetools.detach_grace_containers_attached_to_leaves_in_expr()
+
+  Use the function to strip all grace containers from an arbitrary piece of score.
+
+
+- Added new ``marktools`` functions::
+
+    marktools.get_marks_attached_to_components_in_expr()
+    marktools.detach_marks_attached_to_components_in_expr()
+    marktools.move_marks(donor, recipient).
+
+- Added new ``spannertools`` function::
+
+    spannertools.destory_spanners_attached_to_components_in_expr(expr, klass=None)
+
+  The function can be useful for removing all spanners when debugging a complex expression.
+
+- Added new ``pitchtools`` function::
+
+    pitchtools.set_written_pitch_of_pitched_components_in_expr(expr, written_pitch=0)
+
+  Use the function to neutralize pitch information in an arbitrary piece of score.
+
+- Added new ``tietools`` functions:: 
+
+    tietools.iterate_pitched_tie_chains_forward_in_expr()
+    tietools.iterate_pitched_tie_chains_backward_in_expr()
+    tietools.iterate_nontrivial_tie_chains_forward_in_expr()
+    tietools.iterate_nontrivial_tie_chains_backward_in_expr()
+
+- Added new ``tuplettools`` functions::
+
+   tuplettools.change_fixed_duration_tuplets_in_expr_to_tuplets()
+   tuplettools.change_tuplets_in_expr_to_fixed_duration_tuplets()
+
+
+- Randomized ``FixedLengthStreamSolvers`` in the ``constrainttools`` package.
+
+  The class now produces truly randomly ordered solution sets.
+
+- Extended ``VariableLengthStreamSolver`` in the ``constrainttools`` package.
+
+  The class now produces more randomly
+  ordered solution sets than before, when in randomized mode.  Note that the
+  solution sets tend to increase in size.
+  Also note that there is an increased performance hit for such PMC-style
+  randomized constraint solving::
+
+    >>> from abjad.tools.constrainttools import *
+    >>> domain = Domain([1, 2, 3, 4], 1)
+    >>> boundary_sum = GlobalConstraint(lambda x: sum(x) < 6)
+    >>> target_sum = GlobalConstraint(lambda x: sum(x) == 5)
+    >>> random_solver = VariableLengthStreamSolver(domain,
+    ... [boundary_sum], [target_sum], randomized=True)
+    >>> for x in random_solver: x
+    ... 
+    [1, 3, 1]
+    [4, 1]
+    [3, 2]
+    [2, 3]
+    [1, 4]
+    [3, 1, 1]
+    [2, 1, 2]
+    [1, 2, 1, 1]
+    [2, 1, 1, 1]
+    [2, 2, 1]
+    [1, 1, 1, 2]
+    [1, 2, 2]
+    [1, 1, 1, 1, 1]
+    [1, 1, 3]
+    [1, 1, 2, 1]
+
+
+- Extended ``lilypondfiletools.ContextBlock`` with the following attributes::
+
+    ContextBlock.engraver_consists
+    ContextBlock.engraver_removals
+    ContextBlock.context_name
+    ContextBlock.name
+    ContextBlock.type
+
+  The attributes correspond to backslash-initiated LilyPond commands available in LilyPond context blocks.
+
+- Updated ``LilyPondLanguageToken`` to format LilyPond ``\language`` command 
+  instead of LilyPond ``\include`` command.
+
+- Added a new ``NonreducedFraction`` class to the ``sequencetools`` package::
+
+    abjad> sequencetools.NonreducedFraction(3, 6)
+    NonreducedFraction(3, 6)
+
+  Like built-in fraction but numerator and denominator do NOT simplify.
+
+  All six comparators are implemented on nonreduced fractions.
+
+  Addition and subtraction are implemented on nonreduced fractions::
+
+    abjad> sequencetools.NonreducedFraction(3, 6) + sequencetools.NonreducedFraction(3, 6)
+    NonreducedFraction(6, 6)
+
+  Use nonreduced fractions to model arithmetic operations on time signature-like objects.
+  (absent any of the special time signature features like partial-measure pick-ups).
+
+- Added new type- and form-checking predicates to the ``sequencetools`` package:: 
+
+    sequencetools.all_are_integer_equivalent_exprs
+    sequencetools.is_null_tuple(expr)
+    sequencetools.is_singleton(expr)
+    sequencetools.is_pair(expr)
+    sequencetools.is_n_tuple(expr, n)
+    sequencetools.is_integer_singleton(expr)
+    sequencetools.is_integer_pair(expr)
+    sequencetools.is_integer_n_tuple(expr, n)
+    sequencetools.is_integer_equivalent_n_tuple
+    sequencetools.is_integer_equivalent_pair
+    sequencetools.is_integer_equivalent_singleton
+    sequencetools.is_fraction_equivalent_pair
+ 
+  Each function implements a single line code and returns a boolean::
+
+    abjad> sequencetools.is_integer_singleton((19,))
+    True
+
+
+- Added a ``ComplexGlissandoSpanner`` to the ``spannertools`` package.
+
+  This spanner generates a glissando which skips over rests.  It can be used
+  in combination with spannertools.BeamSpanner and an override of the Stem grob
+  to generate the appearance of durated glissandi::
+
+    abjad> staff = Staff("c'16 [ d' r e' r r r g' ]")
+
+  ::
+
+    abjad> f(staff)
+    \new Staff {
+        c'16 [
+        d'16
+        r16
+        e'16
+        r16
+        r16
+        r16
+        g'16 ]
+    }
+
+    abjad> spannertools.ComplexGlissandoSpanner(staff[:])
+    ComplexGlissandoSpanner(c'16, d'16, r16, e'16, r16, r16, r16, g'16)
+
+  ::
+
+    abjad> staff.override.stem.stemlet_length = 2
+    abjad> f(staff)
+    \new Staff \with {
+        \override Stem #'stemlet-length = #2
+    } {
+        c'16 [ \glissando
+        d'16 \glissando
+        \once \override NoteColumn #'glissando-skip = ##t
+        \once \override Rest #'transparent = ##t
+        r16
+        e'16 \glissando
+        \once \override NoteColumn #'glissando-skip = ##t
+        \once \override Rest #'transparent = ##t
+        r16
+        \once \override NoteColumn #'glissando-skip = ##t
+        \once \override Rest #'transparent = ##t
+        r16
+        \once \override NoteColumn #'glissando-skip = ##t
+        \once \override Rest #'transparent = ##t
+        r16
+        g'16 ]
+    }
+
+
+
+- Extended ``Duration`` to initialize from LilyPond duration strings::
+
+    abjad> Duration('8.')
+    Duration(3, 16)
+
+  Note that this means that ``Duration('2')`` now gives ``Duration(1, 2)``.
+  Previously ``Duration('2')`` gave ``Duration(2, 1)`` just like ``Fraction('2')``.
+
+- Extended the ``componenttools`` package with many new functions::
+
+    componenttools.get_proper_contents_of_component()
+    componenttools.get_improper_contents_of_component()
+    componenttools.get_improper_contents_of_component_that_start_with_component()
+    componenttools.get_improper_contents_of_component_that_stop_with_component()
+    componenttools.get_proper_descendents_of_component()
+    componenttools.get_improper_descendents_of_component()
+    componenttools.get_improper_descendents_of_component_that_cross_prolated_offset
+    componenttools.get_improper_descendents_of_component_that_start_with_component
+    componenttools.get_improper_descendents_of_component_that_stop_with_component
+    componenttools.get_lineage_of_component()
+    componenttools.get_lineage_of_component_that_start_with_component()
+    componenttools.get_lineage_of_component_that_stop_with_component()
+    componenttools.get_nth_sibling_from_component(component, n)
+    componenttools.get_nth_component_from_component_in_time_order(component, n)
+    componenttools.get_nth_namesake_from_component
+    componenttools.get_most_distant_sequential_container_in_improper_parentage_of_component()
+    componenttools.is_immediate_temporal_successor_of_component()
+
+
+- Added ``markuptools.MarkupCommand._get_format_pieces()`` method.
+
+  This method supports indenting::
+
+    abjad> from abjad import *
+    abjad> circle = markuptools.MarkupCommand('draw-circle', 2.5, 0.1, False)
+    abjad> square = markuptools.MarkupCommand('rounded-box', 'hello?')
+    abjad> line = markuptools.MarkupCommand('line', [square, 'wow!'])
+    abjad> rotate = markuptools.MarkupCommand('rotate', 60, line)
+    abjad> combine = markuptools.MarkupCommand('combine', rotate, circle)
+    abjad> print '\n'.join(combine._get_format_pieces())
+    \combine
+        \rotate
+            #60
+            \line
+                {
+                    \rounded-box
+                        hello?
+                    wow!
+                }
+        \draw-circle
+            #2.5
+            #0.1
+            ##f
+
+
+
+
+
+
+
+  Note the difference between the 'contents' of a component and the 'descendents' of a component::
+
+    abjad> componenttools.get_proper_contents_of_component(staff)
+    [Note("c'4"), Tuplet(2/3, [d'8, e'8, f'8])]
+
+  Versus::
+
+    abjad> componenttools.get_proper_descendents_of_component(staff)
+    [Note("c'4"), Tuplet(2/3, [d'8, e'8, f'8]), Note("d'8"), Note("e'8"), Note("f'8")]
+
+
+
+
+
+Changed ``Markup.contents_string`` to ``Markup.contents``. Removed the ``Markup.style_string`` property.
+
+  The contents of ``Markup.contents`` is now always a tuple of strings or ``MarkupCommand`` instances.
+
+  Please use ``schemetools`` classes for constructing Scheme-style formatting.
+
+  Implemented the private method _get_format_pieces on markuptools.Markup.
+
+  Markup._get_format_pieces() can produce indented format pieces if the is_indented keyword is given::
+
+    abjad> from abjad import *
+    abjad> circle = markuptools.MarkupCommand('draw-circle', 2.5, 0.1, False)
+    abjad> square = markuptools.MarkupCommand('rounded-box', 'hello?')
+    abjad> line = markuptools.MarkupCommand('line', [square, 'wow!'])
+    abjad> markup = markuptools.Markup(('X', square, 'Y', line, 'Z'), direction='up')
+    abjad> print '\n'.join(markup._get_format_pieces(is_indented=True))
+    ^ \markup {
+        X
+        \rounded-box
+            hello?
+        Y
+        \line
+            {
+                \rounded-box
+                    hello?
+                wow!
+            }
+        Z
+        }
+
+  Note that nontrivial markup now format with autoindent::
+
+    abjad> from abjad import *
+    abjad> staff = Staff("c")
+    abjad> m1 = markuptools.Markup('foo')(staff[0])
+    abjad> m2 = markuptools.Markup('bar')(staff[0])
+    abjad> m3 = markuptools.Markup('baz', 'up')(staff[0])
+    abjad> m4 = markuptools.Markup('quux', 'down')(staff[0])
+    abjad> accent = marktools.Articulation('accent')(staff[0])
+    abjad> f(staff)
+    \new Staff {
+        c4 -\accent
+            ^ \markup { baz }
+            _ \markup { quux }
+            - \markup {
+                \column
+                    {
+                        foo
+                        bar
+                    }
+                }
+    }
+
+
+
+Added an entirely new tuplet microlanguage
+
+- Check ``rhythmtreetools.parse_reduced_ly_syntax()`` for an example::
+
+    abjad> from abjad.tools.rhythmtreetools import parse_reduced_ly_syntax
+    abjad> input = '4 -4 8 5/3 { 2/3 {(3, 8)} (3, 8) -8 } 4'
+    abjad> result = parse_reduced_ly_syntax(input)
+    abjad> for x in result:
+    ...     print x
+    ...
+    Note("c'4")
+    Rest('r4')
+    Note("c'8")
+    Tuplet(5/3, [{* 3:2 FixedDurationContainer(Duration(3, 8), []) *}, FixedDurationContainer(Duration(3, 8), : []), r8])
+    Note("c'4")
+
+
+Containers can now be initialized from strings using alternate parsers.
+
+With the new "reduced ly" syntax, using the "abj:" prefix:
+
+::
+
+    >>> string = 'abj: | 2/4 2/3 { 8 4 } 8 8 || 3/4 4 4 4 |'
+    >>> abj_staff = Staff(string)
+    >>> f(abj_staff)
+    \new Staff {
+        {
+            \time 2/4
+            \times 2/3 {
+                c'8
+                c'4
+            }
+            c'8
+            c'8
+        }
+        {
+            \time 3/4
+            c'4
+            c'4
+            c'4
+        }
+    }
+
+
+And with RTM-style syntax, using the "rtm:" prefix:
+
+::
+
+    >>> string = 'rtm: (1 (1 (2 (1 1 1)) 1)) (1 (1 1))'
+    >>> rtm_staff = Staff(string)
+    >>> f(rtm_staff)
+    \new Staff {
+        c'16
+        \times 2/3 {
+            c'16
+            c'16
+            c'16
+        }
+        c'16
+        c'8
+        c'8
+    }
+
+Unprefixed strings continue to use the standard LilyPond parser, so this change should be transparent.
+
+
+
+Improved Container instantiation from string.
+
+- You can now instantiate Score instances from strings like this one::
+
+    Score(r'''\new Staff { c' } \new Staff = { c, }''')
+
+
+
+Added a new ``FixedDurationContainer`` class to the ``containertools`` package.
+
+- Fixed-duration containres extend container behavior with format-time
+  checking against a user-specified target duration::
+
+    abjad> container = containertools.FixedDurationContainer((3, 8), "c'8 d'8 e'8")
+
+  ::
+
+    abjad> container
+    FixedDurationContainer(Duration(3, 8), [Note("c'8"), Note("d'8"), Note("e'8")])
+
+  ::
+
+    abjad> f(container)
+    {
+        c'8
+        d'8
+        e'8
+    }
+
+  ::
+
+    abjad> container.is_misfilled
+    False
+
+  ::
+
+    abjad> container.pop()
+    Note("e'8")
+
+  ::
+
+    abjad> container
+    FixedDurationContainer(Duration(3, 8), [Note("c'8"), Note("d'8")])
+
+  ::
+
+    abjad> container.is_misfilled
+    True
+
+  Misfilled fixed-duration containers will raise an exception at format-time.
+  Fixed-duration containers share this behavior with measures.
+
+Changes to end-user functionality:
+
+- Changed ``componenttools.list_improper_contents_of_component_that_cross_prolated_offset()``
+  to ``componenttools.list_leftmost_components_with_prolated_duration_at_most()``.
+
+- Changed ``componenttools.get_improper_contents_of_component_that_cross_prolated_offset()``
+  to ``componenttools.get_leftmost_components_with_prolated_duration_at_most()``.
+
+- Changed ``gracetools.Grace`` to ``gracetools.GraceContainer``.
+
+- Changed ``configurationtool.set_default_accidental_spelling()``
+  to ``pitchtools.set_default_accidental_spelling()``.
+
+- Changed ``spannertools.destory_all_spanners_attached_to_component()`` to
+  ``spannertools.destory_spanners_attached_to_component()``.
+
+- Changed ``spannertools.fracture_all_spanners_attached_to_component()`` to
+  ``spannertools.fracture_spanners_attached_to_component()``.
+
+- Changed ``tietools.remove_all_leaves_in_tie_chain_except_first()`` to
+  ``tietools.remove_nonfirst_leaves_in_tie_chain()``.
+
+- Changed ``componenttools.copy_components_and_remove_all_spanners()`` to
+  ``componenttools.copy_components_and_remove_spanners()``.
+
+- Changed ``spannertools.report_as_string_format_contributions_of_all_spanners_attached_to_component()`` to
+  ``spannertools.report_as_string_format_contributions_of_spanners_attached_to_component()``.
+
+- Changed ``spannertools.report_as_string_format_contributions_of_all_spanners_attached_to_improper_parentage_of_component()`` to
+  ``spannertools.report_as_string_format_contributions_of_spanners_attached_to_improper_parentage_of_component()``.
+
+- Changed ``threadtools.component_to_thread_signature()`` to
+  ``componenttools.component_to_containment_signature()``.
+
+- Changed ``tietools.get_tie_chains_in_expr()`` to 
+  ``tietools.get_nontrivial_tie_chains_masked_by_components()``.
+
+- Removed the ``threadtools`` package and moved all functions to ``componenttools``.
+
+  Instead of these::
+
+    threadtools.iterate_thread_backward_from_component()
+    threadtools.iterate_thread_backward_in_expr()
+    threadtools.iterate_thread_forward_from_component()
+    threadtools.iterate_thread_forward_in_expr()
+
+  Use these::
+
+    componenttools.iterate_thread_backward_from_component()
+    componenttools.iterate_thread_backward_in_expr()
+    componenttools.iterate_thread_forward_from_component()
+    componenttools.iterate_thread_forward_in_expr()
+
+  Please make sure to read the changes listed above carefully. If you have been working with
+  grace notes, for example, you will need to change all occurrences of ``gracetools.Grace``
+  to ``gracetools.GraceContainer``.
+
+- Removed the read-only ``Component.marks`` property entirely.
+
+- Removed the top-level ``abjad/templates`` directory.
+
+- Changed ``scr/devel/rename-public-helper`` to ``scr/devel/rename-public-function``.
+
+
 Abjad 2.8
 ---------
 
