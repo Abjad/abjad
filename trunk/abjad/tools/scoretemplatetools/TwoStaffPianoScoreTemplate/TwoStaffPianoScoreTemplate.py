@@ -28,6 +28,8 @@ class TwoStaffPianoScoreTemplate(ScoreTemplate):
         abjad> f(score)
         \context Score = "Two-Staff Piano Score" <<
             \context PianoStaff = "Piano Staff" <<
+                \set PianoStaff.instrumentName = \markup { Piano }
+                \set PianoStaff.shortInstrumentName = \markup { Pf. }
                 \context Staff = "RH Staff" {
                     \clef "treble"
                     \context Voice = "RH Voice" {
