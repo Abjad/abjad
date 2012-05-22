@@ -32,15 +32,15 @@ class InheritanceGraph(ImmutableDictionary):
 
     ::
 
-        abjad> for parent, children in sorted(graph.items()): # doctest: +SKIP
-        ...     parent, tuple(sorted(children))
-        (<type 'object'>, (<class '__main__.A'>,))
+        abjad> for parent, children in sorted(graph.items(), key=lambda x: x[0].__name__):
+        ...     parent, tuple(sorted(children, key=lambda x: x.__name__))
         (<class '__main__.A'>, (<class '__main__.B'>, <class '__main__.F'>))
         (<class '__main__.B'>, (<class '__main__.C'>, <class '__main__.D'>))
         (<class '__main__.C'>, (<class '__main__.E'>,))
         (<class '__main__.D'>, (<class '__main__.E'>,))
         (<class '__main__.E'>, ())
         (<class '__main__.F'>, ())
+        (<type 'object'>, (<class '__main__.A'>,))
 
     ``InheritanceGraph`` may be instantiated from one or more instances, classes or
     modules.  If instantiated from a module, all public classes in that module
