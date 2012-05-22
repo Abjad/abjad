@@ -90,17 +90,17 @@ class _LilyPondLexicalDefinition(object):
 #        '\\figures': 'FIGURES',
         '\\header': 'HEADER',
 #        '\\version-error': 'INVALID',
-#        '\\layout': 'LAYOUT',
+        '\\layout': 'LAYOUT',
 #        '\\lyricmode': 'LYRICMODE',
 #        '\\lyrics': 'LYRICS',
 #        '\\lyricsto': 'LYRICSTO',
         '\\markup': 'MARKUP',
         '\\markuplist': 'MARKUPLIST',
-#        '\\midi': 'MIDI',
+        '\\midi': 'MIDI',
 #        '\\name': 'NAME',
 #        '\\notemode': 'NOTEMODE',
         '\\override': 'OVERRIDE',
-#        '\\paper': 'PAPER',
+        '\\paper': 'PAPER',
 #        '\\remove': 'REMOVE',
 #        '\\repeat': 'REPEAT',
         '\\rest': 'REST',
@@ -136,9 +136,9 @@ class _LilyPondLexicalDefinition(object):
 #        'E_CHAR', # "\\C[haracter]"
         'E_CLOSE', # "\\)"
         'E_EXCLAMATION', # "\\!"
-        'E_BRACKET_OPEN', # "\\["
+#        'E_BRACKET_OPEN', # "\\["
         'E_OPEN', # "\\("
-        'E_BRACKET_CLOSE', # "\\]"
+#        'E_BRACKET_CLOSE', # "\\]"
         'E_ANGLE_OPEN', # "\\<"
 #        'E_PLUS', # "\\+"
 #        'E_TILDE', # "\\~"
@@ -189,7 +189,7 @@ class _LilyPondLexicalDefinition(object):
         'MUSIC_IDENTIFIER',
         'NOTENAME_PITCH',
         'NUMBER_IDENTIFIER',
-#        'OUTPUT_DEF_IDENTIFIER',
+        'OUTPUT_DEF_IDENTIFIER',
         'REAL',
         'RESTNAME',
         'SCM_FUNCTION',

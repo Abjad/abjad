@@ -350,6 +350,7 @@ class _LilyPondSyntacticalDefinition(object):
         'chord_body_element : pitch exclamations questions octave_check post_events'
         p[0] = Node('chord_body_element', p[1:])
 
+
     ### chord_body_elements ###
 
 
@@ -946,9 +947,9 @@ class _LilyPondSyntacticalDefinition(object):
         p[0] = p[1]
 
 
-#    def p_embedded_scm_bare_arg__output_def(self, p):
-#        'embedded_scm_bare_arg : output_def'
-#        p[0] = p[1]
+    def p_embedded_scm_bare_arg__output_def(self, p):
+        'embedded_scm_bare_arg : output_def'
+        p[0] = p[1]
 
 
     def p_embedded_scm_bare_arg__score_block(self, p):
@@ -1706,9 +1707,9 @@ class _LilyPondSyntacticalDefinition(object):
         p[0] = Node('number_expression', p[1])
 
 
-#    def p_identifier_init__output_def(self, p):
-#        'identifier_init : output_def'
-#        p[0] = Node('output_def', p[1])
+    def p_identifier_init__output_def(self, p):
+        'identifier_init : output_def'
+        p[0] = Node('output_def', p[1])
 
 
     def p_identifier_init__post_event_nofinger(self, p):
@@ -1778,7 +1779,6 @@ class _LilyPondSyntacticalDefinition(object):
         'lilypond_header_body : lilypond_header_body assignment'
         self.client._assign_variable(p[2][0], p[2][1])
         setattr(p[1], p[2][0], p[2][1].value)
-        print p[2][0], p[2][1].value
         p[0] = p[1]
         
 
@@ -2433,17 +2433,21 @@ class _LilyPondSyntacticalDefinition(object):
     ### output_def ###
 
 
-#    def p_output_def__output_def_body__Chr125(self, p):
-#        "output_def : output_def_body '}'"
-#        p[0] = Node('output_def', p[1:])
+    def p_output_def__output_def_body__Chr125(self, p):
+        "output_def : output_def_body '}'"
+        p[0] = p[1]
+        self.client._pop_variable_scope()
+        self.client._lexer.pop_state()
 
 
     ### output_def_body ###
 
 
-#    def p_output_def_body__output_def_body__assignment(self, p):
-#        'output_def_body : output_def_body assignment'
-#        p[0] = Node('output_def_body', p[1:])
+    def p_output_def_body__output_def_body__assignment(self, p):
+        'output_def_body : output_def_body assignment'
+        self.client._assign_variable(p[2][0], p[2][1])
+        setattr(p[1], p[2][0], p[2][1].value)
+        p[0] = p[1]
 
 
 #    def p_output_def_body__output_def_body__context_def_spec_block(self, p):
@@ -2456,40 +2460,44 @@ class _LilyPondSyntacticalDefinition(object):
 #        p[0] = Node('output_def_body', p[1:])
 
 
-#    def p_output_def_body__output_def_head_with_mode_switch__Chr123(self, p):
-#        "output_def_body : output_def_head_with_mode_switch '{'"
-#        p[0] = Node('output_def_body', p[1:])
+    def p_output_def_body__output_def_head_with_mode_switch__Chr123(self, p):
+        "output_def_body : output_def_head_with_mode_switch '{'"
+        p[0] = p[1]
 
 
-#    def p_output_def_body__output_def_head_with_mode_switch__Chr123__OUTPUT_DEF_IDENTIFIER(self, p):
-#        "output_def_body : output_def_head_with_mode_switch '{' OUTPUT_DEF_IDENTIFIER"
-#        p[0] = Node('output_def_body', p[1:])
+    def p_output_def_body__output_def_head_with_mode_switch__Chr123__OUTPUT_DEF_IDENTIFIER(self, p):
+        "output_def_body : output_def_head_with_mode_switch '{' OUTPUT_DEF_IDENTIFIER"
+        p[0] = p[2]
 
 
     ### output_def_head ###
 
 
-#    def p_output_def_head__LAYOUT(self, p):
-#        'output_def_head : LAYOUT'
-#        p[0] = Node('output_def_head', p[1:])
+    def p_output_def_head__LAYOUT(self, p):
+        'output_def_head : LAYOUT'
+        p[0] = lilypondfiletools.LayoutBlock()
+        self.client._push_variable_scope()
 
 
-#    def p_output_def_head__MIDI(self, p):
-#        'output_def_head : MIDI'
-#        p[0] = Node('output_def_head', p[1:])
+    def p_output_def_head__MIDI(self, p):
+        'output_def_head : MIDI'
+        p[0] = lilypondfiletools.MIDIBlock()
+        self.client._push_variable_scope()
 
 
-#    def p_output_def_head__PAPER(self, p):
-#        'output_def_head : PAPER'
-#        p[0] = Node('output_def_head', p[1:])
+    def p_output_def_head__PAPER(self, p):
+        'output_def_head : PAPER'
+        p[0] = lilypondfiletools.PaperBlock()
+        self.client._push_variable_scope()
 
 
     ### output_def_head_with_mode_switch ###
 
 
-#    def p_output_def_head_with_mode_switch__output_def_head(self, p):
-#        'output_def_head_with_mode_switch : output_def_head'
-#        p[0] = Node('output_def_head_with_mode_switch', p[1:])
+    def p_output_def_head_with_mode_switch__output_def_head(self, p):
+        'output_def_head_with_mode_switch : output_def_head'
+        p[0] = p[1]
+        self.client._lexer.push_state('INITIAL')
 
 
     ### paper_block ###
@@ -2497,7 +2505,7 @@ class _LilyPondSyntacticalDefinition(object):
 
 #    def p_paper_block__output_def(self, p):
 #        'paper_block : output_def'
-#        p[0] = Node('paper_block', p[1:])
+#        p[0] = p[1]
 
 
     ### pitch ###
@@ -2783,9 +2791,9 @@ class _LilyPondSyntacticalDefinition(object):
         p[0] = p[1] + [p[2]]
 
 
-#    def p_score_body__score_body__output_def(self, p):
-#        'score_body : score_body output_def'
-#        p[0] = Node('score_body', p[1:])
+    def p_score_body__score_body__output_def(self, p):
+        'score_body : score_body output_def'
+        p[0] = p[1] + [p[2]]
 
 
     ### script_abbreviation ###
@@ -3239,9 +3247,9 @@ class _LilyPondSyntacticalDefinition(object):
         p[0] = p[1]
 
 
-#    def p_toplevel_expression__output_def(self, p):
-#        'toplevel_expression : output_def'
-#        p[0] = p[1]
+    def p_toplevel_expression__output_def(self, p):
+        'toplevel_expression : output_def'
+        p[0] = p[1]
 
 
     def p_toplevel_expression__score_block(self, p):
