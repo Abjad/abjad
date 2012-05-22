@@ -1,4 +1,5 @@
 from abjad.tools import contexttools
+from abjad.tools import instrumenttools
 from abjad.tools import scoretools
 from abjad.tools import stafftools
 from abjad.tools import voicetools
@@ -64,6 +65,7 @@ class TwoStaffPianoScoreTemplate(ScoreTemplate):
 
         # make piano staff
         piano_staff = scoretools.PianoStaff([rh_staff, lh_staff], name='Piano Staff')
+        instrumenttools.Piano()(piano_staff)
 
         # make two-staf piano score
         two_staff_piano_score = scoretools.Score([piano_staff], name='Two-Staff Piano Score')
