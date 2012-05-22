@@ -2991,7 +2991,11 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_simple_music_property_def__OVERRIDE__context_prop_spec__property_path__Chr61__scalar(self, p):
         "simple_music_property_def : OVERRIDE context_prop_spec property_path '=' scalar"
-        p[0] = Node('simple_music_property_def', p[1:])
+        p[0] = Event('PropertyOperation',
+            keyword='override',
+            context=p[2],
+            property=p[3],
+            value=p[5])
 
 
     def p_simple_music_property_def__REVERT__context_prop_spec__embedded_scm(self, p):

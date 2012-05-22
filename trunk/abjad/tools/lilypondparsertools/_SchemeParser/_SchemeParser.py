@@ -82,6 +82,7 @@ class _SchemeParser(object):
     ### PUBLIC METHODS ###
 
     def tokenize(self, input_string):
+        self.cursor = 0
         self.lexer.input(input_string)
         for token in self.lexer:
             print token
@@ -95,7 +96,7 @@ class _SchemeParser(object):
     INT             = r'(-?{})'.format(UNSIGNED)
     REAL            = r'(({}\.{}*)|(-?\.{}+))'.format(INT, N, N)
     INITIAL         = r'({}|!|\$|%|&|\*|/|:|<|=|>|\?|~|_|\^)'.format(A)
-    SUBSEQUENT      = r'({}|{}|\.|\+|-)'.format(A, N)
+    SUBSEQUENT      = r'({}|{}|\.|\+|-)'.format(INITIAL, N)
     IDENTIFIER      = r'({}{}*|\+|-|\.\.\.)'.format(INITIAL, SUBSEQUENT)
 
     states = (
@@ -336,6 +337,11 @@ class _SchemeParser(object):
 
     '''<variable> : <identifier>'''
 
+    def p_variable__IDENTIFIER(self, p):
+        '''variable : IDENTIFIER'''
+        p.slice[0].cursor_end = p.slice[-1].cursor_end
+        p[0] = p[1]
+
     ### body ###
 
     '''<body> : <definition>* <expression>+'''
@@ -365,6 +371,11 @@ class _SchemeParser(object):
     |   (letrec-syntax (<syntax binding>*) <expression>+)
     |   <derived expression>
     '''
+
+    def p_expression__variable(self, p):
+        '''expression : variable'''
+        p.slice[0].cursor_end = p.slice[-1].cursor_end
+        p[0] = p[1]
 
     def p_expression__QUOTE__datum(self, p):
         '''expression : QUOTE datum'''
