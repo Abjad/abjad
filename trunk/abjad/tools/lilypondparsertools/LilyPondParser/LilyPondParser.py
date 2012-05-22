@@ -184,7 +184,7 @@ class LilyPondParser(AbjadObject):
 
         if isinstance(result, Container):
             self._apply_spanners(result)
-        else:
+        elif isinstance(result, lilypondfiletools.LilyPondFile):
             for x in result:
                 if isinstance(x, Container):
                     self._apply_spanners(x)

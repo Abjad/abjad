@@ -1162,6 +1162,7 @@ class _LilyPondSyntacticalDefinition(object):
     def p_full_markup__MARKUP__markup_top(self, p):
         'full_markup : MARKUP markup_top'
         p[0] = markuptools.Markup(p[2])
+        self.client._lexer.pop_state()
 
 
     ### full_markup_list ###
@@ -1730,7 +1731,7 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_lilypond__Empty(self, p):
         'lilypond : '
-        p[0] = [ ]
+        p[0] = []
 
 
 #    def p_lilypond__lilypond__INVALID(self, p):
@@ -1758,22 +1759,28 @@ class _LilyPondSyntacticalDefinition(object):
     ### lilypond_header ###
 
 
-#    def p_lilypond_header__HEADER__Chr123__lilypond_header_body__Chr125(self, p):
-#        "lilypond_header : HEADER '{' lilypond_header_body '}'"
-#        p[0] = Node('lilypond_header', p[1:])
+    def p_lilypond_header__HEADER__Chr123__lilypond_header_body__Chr125(self, p):
+        "lilypond_header : HEADER '{' lilypond_header_body '}'"
+        self.client._pop_variable_scope()
+        p[0] = p[3]
 
 
     ### lilypond_header_body ###
 
 
-#    def p_lilypond_header_body__Empty(self, p):
-#        'lilypond_header_body : '
-#        p[0] = Node('lilypond_header_body', p[1:])
+    def p_lilypond_header_body__Empty(self, p):
+        'lilypond_header_body : '
+        self.client._push_variable_scope()
+        p[0] = lilypondfiletools.HeaderBlock()
 
 
-#    def p_lilypond_header_body__lilypond_header_body__assignment(self, p):
-#        'lilypond_header_body : lilypond_header_body assignment'
-#        p[0] = Node('lilypond_header_body', p[1:])
+    def p_lilypond_header_body__lilypond_header_body__assignment(self, p):
+        'lilypond_header_body : lilypond_header_body assignment'
+        self.client._assign_variable(p[2][0], p[2][1])
+        setattr(p[1], p[2][0], p[2][1].value)
+        print p[2][0], p[2][1].value
+        p[0] = p[1]
+        
 
 
     ### lyric_element ###
@@ -2749,7 +2756,7 @@ class _LilyPondSyntacticalDefinition(object):
     def p_score_block__SCORE__Chr123__score_body__Chr125(self, p):
         "score_block : SCORE '{' score_body '}'"
         score_block = lilypondfiletools.ScoreBlock()
-        score_block.append(p[3])
+        score_block.extend(p[3])
         p[0] = score_block
 
 
@@ -2758,12 +2765,12 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_score_body__SCORE_IDENTIFIER(self, p):
         'score_body : SCORE_IDENTIFIER'
-        p[0] = p[1]
+        p[0] = [p[1]]
 
 
     def p_score_body__music(self, p):
         'score_body : music'
-        p[0] = p[1]
+        p[0] = [p[1]]
 
 
 #    def p_score_body__score_body__error(self, p):
@@ -2771,9 +2778,9 @@ class _LilyPondSyntacticalDefinition(object):
 #        p[0] = Node('score_body', p[1:])
 
 
-#    def p_score_body__score_body__lilypond_header(self, p):
-#        'score_body : score_body lilypond_header'
-#        p[0] = Node('score_body', p[1:])
+    def p_score_body__score_body__lilypond_header(self, p):
+        'score_body : score_body lilypond_header'
+        p[0] = p[1] + [p[2]]
 
 
 #    def p_score_body__score_body__output_def(self, p):
@@ -3121,17 +3128,17 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_string__STRING(self, p):
         'string : STRING'
-        p[0] = Node('string', p[1:])
+        p[0] = p[1]
 
 
     def p_string__STRING_IDENTIFIER(self, p):
         'string : STRING_IDENTIFIER'
-        p[0] = Node('string', p[1:])
+        p[0] = p[1]
 
 
     def p_string__string__Chr43__string(self, p):
         "string : string '+' string"
-        p[0] = Node('string', p[1:])
+        p[0] = p[1] + p[3]
 
 
     ### string_number_event ###
@@ -3227,9 +3234,9 @@ class _LilyPondSyntacticalDefinition(object):
         p[0] = p[1]
 
 
-#    def p_toplevel_expression__lilypond_header(self, p):
-#        'toplevel_expression : lilypond_header'
-#        p[0] = p[1]
+    def p_toplevel_expression__lilypond_header(self, p):
+        'toplevel_expression : lilypond_header'
+        p[0] = p[1]
 
 
 #    def p_toplevel_expression__output_def(self, p):

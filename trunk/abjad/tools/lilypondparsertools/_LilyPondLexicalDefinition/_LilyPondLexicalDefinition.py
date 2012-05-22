@@ -88,7 +88,7 @@ class _LilyPondLexicalDefinition(object):
 #        '\\drums': 'DRUMS',
 #        '\\figuremode': 'FIGUREMODE',
 #        '\\figures': 'FIGURES',
-#        '\\header': 'HEADER',
+        '\\header': 'HEADER',
 #        '\\version-error': 'INVALID',
 #        '\\layout': 'LAYOUT',
 #        '\\lyricmode': 'LYRICMODE',
