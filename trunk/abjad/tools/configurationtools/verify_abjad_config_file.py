@@ -16,7 +16,7 @@ def verify_abjad_config_file( ):
         #         Fix and allow user-specific config file additions?
         #         Or remove the message about old keys being maintained?
 
-        default_keyset = set(configurationtools.get_abjad_config_file_as_dict().keys( ))
+        default_keyset = set(configurationtools.get_default_abjad_config_file_as_dict().keys( ))
         user_keyset = set(user_dict.keys( ))
         if default_keyset.intersection(user_keyset) != default_keyset:
             print ''

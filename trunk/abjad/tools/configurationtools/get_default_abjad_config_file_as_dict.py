@@ -2,17 +2,12 @@ from abjad.cfg.cfg import ABJADPATH, HOME
 import os
 
 
-def get_abjad_config_file_as_dict():
+def get_default_abjad_config_file_as_dict():
     config_file_dict = {
         'abjad_output': {
             'comment': "# Set to the one directory you wish all Abjad generate files\n" + \
                 "# (such as PDFs, LilyPond, MIDI or log files) to be saved.",
             'value': os.path.join(HOME, '.abjad', 'output'),
-        },
-        'abjad_templates': {
-            'comment': "# List of directories where Abjad will look for LilyPond" + \
-                "# templates.",
-            'value': [os.path.join(ABJADPATH, 'templates')],
         },
         'accidental_spelling': {
             'comment': "# Default accidental spelling.",

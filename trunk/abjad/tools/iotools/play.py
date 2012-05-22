@@ -39,4 +39,6 @@ def play(expr):
     else:
         extension = 'midi'
     midi_player = configurationtools.read_abjad_config_file('midi_player')
+    #print midi_player
+    #print '%s.%s' % (name[:-3], extension)
     _open_file('%s.%s' % (name[:-3], extension), midi_player)

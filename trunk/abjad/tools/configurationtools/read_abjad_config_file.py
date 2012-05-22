@@ -10,7 +10,7 @@ def read_abjad_config_file(attribute_name=None):
 
     configurationtools.verify_abjad_config_file()
 
-    config_file_dict = configurationtools.get_abjad_config_file_as_dict()
+    config_file_dict = configurationtools.get_default_abjad_config_file_as_dict()
 
     if attribute_name is not None:
         return config_file_dict[attribute_name]['value']
