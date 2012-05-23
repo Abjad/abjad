@@ -2,7 +2,7 @@ from abjad.tools import configurationtools
 
 
 def _warn_almost_full(last_number):
-    ABJADOUTPUT = configurationtools.read_user_abjad_config_file('abjad_output')
+    ABJADOUTPUT = configurationtools.read_abjad_user_config_file('abjad_output')
     max_number = 10000
     lines = [
         '',

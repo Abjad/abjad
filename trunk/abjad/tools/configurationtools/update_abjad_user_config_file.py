@@ -1,7 +1,7 @@
 from abjad.cfg.cfg import ABJADCONFIG
 
 
-def _update_config_file(default_dict, user_dict):
+def update_abjad_user_config_file(default_dict, user_dict):
     '''
     Default dict is drawn from Abjad config file dict.
 
@@ -24,4 +24,4 @@ def _update_config_file(default_dict, user_dict):
         else:
             pass
 
-    configurationtools.write_abjad_config_file(ABJADCONFIG, default_dict)
+    configurationtools.write_abjad_user_config_file(ABJADCONFIG, default_dict)

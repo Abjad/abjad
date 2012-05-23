@@ -8,7 +8,7 @@ def _get_text_editor():
     '''
     from abjad.tools import configuraitontools
 
-    text_editor = configurationtools.read_user_abjad_config_file('text_editor')
+    text_editor = configurationtools.read_abjad_user_config_file('text_editor')
 
     if text_editor is not None:
         return text_editor

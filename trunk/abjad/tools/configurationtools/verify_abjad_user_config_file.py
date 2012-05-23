@@ -1,7 +1,7 @@
 from abjad.cfg.cfg import ABJADCONFIG
 
 
-def verify_abjad_config_file():
+def verify_abjad_user_config_file():
     from abjad.tools import configurationtools
 
     # TODO: remove try ... accept
@@ -22,7 +22,7 @@ def verify_abjad_config_file():
             print '   Any custom keys from your old configuration will be maintained.'
             print ''
             raw_input('   Press any key to continue: ')
-            configurationtools.update_config_file(_config_file_dict, user_dict)
+            configurationtools.update_abjad_user_config_file(_config_file_dict, user_dict)
 
     except IOError:
         print ''
@@ -31,4 +31,4 @@ def verify_abjad_config_file():
         print ''
         raw_input('   Press any key to continue: ')
         print ''
-        configurationtools.write_abjad_config_file(ABJADCONFIG, _config_file_dict)
+        configurationtools.write_abjad_user_config_file(ABJADCONFIG, _config_file_dict)
