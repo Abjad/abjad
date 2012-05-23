@@ -1,6 +1,5 @@
 from abjad import *
 import py
-py.test.skip('fix me')
 
 
 def test_LilyPondParser__lilypondfile__HeaderBlock_01():
