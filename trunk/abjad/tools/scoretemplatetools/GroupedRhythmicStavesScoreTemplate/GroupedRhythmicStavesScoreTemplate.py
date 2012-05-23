@@ -66,7 +66,7 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
             voice = voicetools.Voice(name='Voice {}'.format(number))     
             staff = stafftools.RhythmicStaff([voice], name='Staff {}'.format(number))
             staves.append(staff)
-            self.context_name_abbreviations['v{}'.format(number)] = voice
+            self.context_name_abbreviations['v{}'.format(number)] = voice.name
         
         grouped_rhythmic_staves_staff_group = scoretools.StaffGroup(
             staves, name='Grouped Rhythmic Staves Staff Group')         
