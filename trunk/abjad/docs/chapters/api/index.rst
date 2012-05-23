@@ -1290,41 +1290,6 @@ Additional Abjad composition packages (load manually)
 .. toctree::
    :maxdepth: 1
 
-:py:mod:`configurationtools <abjad.tools.configurationtools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. rubric:: functions
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/configurationtools/get_abjad_revision_string
-   tools/configurationtools/get_abjad_version_string
-   tools/configurationtools/get_lilypond_version_string
-   tools/configurationtools/get_python_version_string
-   tools/configurationtools/get_tab_width
-   tools/configurationtools/get_text_editor
-   tools/configurationtools/list_abjad_environment_variables
-   tools/configurationtools/list_package_dependency_versions
-   tools/configurationtools/make_abjad_default_config_file_into_dict
-   tools/configurationtools/make_abjad_user_config_file_into_dict
-   tools/configurationtools/read_abjad_user_config_file
-   tools/configurationtools/update_abjad_user_config_file
-   tools/configurationtools/verify_abjad_user_config_file
-   tools/configurationtools/write_abjad_user_config_file
-
-:py:mod:`datastructuretools <abjad.tools.datastructuretools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. rubric:: concrete classes
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/datastructuretools/Digraph/Digraph
-   tools/datastructuretools/ImmutableDictionary/ImmutableDictionary
-   tools/datastructuretools/ObjectInventory/ObjectInventory
-
 :py:mod:`durationtools <abjad.tools.durationtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -2018,6 +1983,41 @@ Internals packages
    tools/abctools/ImmutableAbjadObject/ImmutableAbjadObject
    tools/abctools/ScoreSelection/ScoreSelection
    tools/abctools/SortableAttributeEqualityAbjadObject/SortableAttributeEqualityAbjadObject
+
+:py:mod:`configurationtools <abjad.tools.configurationtools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: functions
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/configurationtools/get_abjad_revision_string
+   tools/configurationtools/get_abjad_version_string
+   tools/configurationtools/get_lilypond_version_string
+   tools/configurationtools/get_python_version_string
+   tools/configurationtools/get_tab_width
+   tools/configurationtools/get_text_editor
+   tools/configurationtools/list_abjad_environment_variables
+   tools/configurationtools/list_package_dependency_versions
+   tools/configurationtools/make_abjad_default_config_file_into_dict
+   tools/configurationtools/make_abjad_user_config_file_into_dict
+   tools/configurationtools/read_abjad_user_config_file
+   tools/configurationtools/update_abjad_user_config_file
+   tools/configurationtools/verify_abjad_user_config_file
+   tools/configurationtools/write_abjad_user_config_file
+
+:py:mod:`datastructuretools <abjad.tools.datastructuretools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: concrete classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/datastructuretools/Digraph/Digraph
+   tools/datastructuretools/ImmutableDictionary/ImmutableDictionary
+   tools/datastructuretools/ObjectInventory/ObjectInventory
 
 :py:mod:`decoratortools <abjad.tools.decoratortools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
