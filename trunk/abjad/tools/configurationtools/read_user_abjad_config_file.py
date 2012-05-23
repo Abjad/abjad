@@ -1,7 +1,7 @@
 from abjad.cfg.cfg import ABJADCONFIG
 
 
-def read_abjad_config_file(attribute_name=None):
+def read_user_abjad_config_file(attribute_name=None):
     '''Read the content of the config file ``$HOME/.abjad/config.py``.
 
     Returns a dictionary of var : value entries.

@@ -1297,16 +1297,16 @@ Additional Abjad composition packages (load manually)
 .. toctree::
    :maxdepth: 1
 
-   tools/configurationtools/abjad_config_file_to_dict
    tools/configurationtools/get_abjad_revision_string
    tools/configurationtools/get_abjad_version_string
    tools/configurationtools/get_default_abjad_config_file_as_dict
    tools/configurationtools/get_lilypond_version_string
    tools/configurationtools/get_python_version_string
    tools/configurationtools/get_system_tab_width
+   tools/configurationtools/get_user_abjad_config_file_as_dict
    tools/configurationtools/list_abjad_environment_variables
    tools/configurationtools/list_package_dependency_versions
-   tools/configurationtools/read_abjad_config_file
+   tools/configurationtools/read_user_abjad_config_file
    tools/configurationtools/verify_abjad_config_file
    tools/configurationtools/write_abjad_config_file
 

@@ -10,7 +10,7 @@ def verify_abjad_config_file( ):
     try:
         f = open(ABJADCONFIG, 'r')
         f.close( )
-        user_dict = configurationtools.abjad_config_file_to_dict( )
+        user_dict = configurationtools.get_user_abjad_config_file_as_dict( )
 
         # TODO: This block overwrites user-specific config file additions like 'foo = 99'
         #         Fix and allow user-specific config file additions?

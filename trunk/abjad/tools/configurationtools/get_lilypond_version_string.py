@@ -22,7 +22,7 @@ def get_lilypond_version_string():
         if lilypond == '':
             raise SystemError('LilyPond not found on your Windowz box.')
     else:
-        lilypond = configurationtools.read_abjad_config_file('lilypond_path')
+        lilypond = configurationtools.read_user_abjad_config_file('lilypond_path')
         if not lilypond:
             lilypond = 'lilypond'
 

@@ -26,7 +26,7 @@ def log():
     Return none.
     '''
 
-    ABJADOUTPUT = configurationtools.read_abjad_config_file('abjad_output')
+    ABJADOUTPUT = configurationtools.read_user_abjad_config_file('abjad_output')
     text_editor = configurationtools.get_text_editor()
     command = '{} {}'.format(text_editor, os.path.join(ABJADOUTPUT, 'lily.log'))
     # TODO: how do we get rid of this call to os.system()?

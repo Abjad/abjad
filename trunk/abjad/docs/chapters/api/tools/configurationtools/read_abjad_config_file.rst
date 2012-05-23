@@ -1,4 +1,0 @@
-configurationtools.read_abjad_config_file
-=========================================
-
-.. autofunction:: abjad.tools.configurationtools.read_abjad_config_file.read_abjad_config_file
