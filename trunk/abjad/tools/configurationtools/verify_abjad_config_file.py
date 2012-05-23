@@ -1,23 +1,20 @@
-#from abjad.cfg._config_file_dict import _config_file_dict
-#from abjad.cfg._config_file_to_dict import _config_file_to_dict
-#from abjad.cfg._update_config_file import _update_config_file
-#from abjad.cfg._write_config_file import _write_config_file
 from abjad.cfg.cfg import ABJADCONFIG
 
 
-def verify_abjad_config_file( ):
+def verify_abjad_config_file():
     from abjad.tools import configurationtools
+
+    # TODO: remove try ... accept
     try:
         f = open(ABJADCONFIG, 'r')
-        f.close( )
-        user_dict = configurationtools.get_user_abjad_config_file_as_dict( )
+        f.close()
+        user_dict = configurationtools.make_abjad_user_config_file_into_dict()
 
         # TODO: This block overwrites user-specific config file additions like 'foo = 99'
         #         Fix and allow user-specific config file additions?
         #         Or remove the message about old keys being maintained?
-
-        default_keyset = set(configurationtools.get_default_abjad_config_file_as_dict().keys( ))
-        user_keyset = set(user_dict.keys( ))
+        default_keyset = set(configurationtools.make_abjad_default_config_file_into_dict().keys())
+        user_keyset = set(user_dict.keys())
         if default_keyset.intersection(user_keyset) != default_keyset:
             print ''
             print '   The config file "%s" in your home directory is out of date.' % ABJADCONFIG

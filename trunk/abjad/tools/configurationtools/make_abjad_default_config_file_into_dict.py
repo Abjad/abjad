@@ -2,7 +2,7 @@ from abjad.cfg.cfg import ABJADPATH, HOME
 import os
 
 
-def get_default_abjad_config_file_as_dict():
+def make_abjad_default_config_file_into_dict():
     config_file_dict = {
         'abjad_output': {
             'comment': "# Set to the one directory you wish all Abjad generate files\n" + \

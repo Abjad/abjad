@@ -10,4 +10,4 @@ def read_user_abjad_config_file(attribute_name):
 
     configurationtools.verify_abjad_config_file()
 
-    return configurationtools.get_user_abjad_config_file_as_dict()[attribute_name]
+    return configurationtools.make_abjad_user_config_file_into_dict()[attribute_name]
