@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def testPitchObjectRangeInventory__tools_package_qualified_indented_repr_01():
+def test_PitchRangeInventory__tools_package_qualified_indented_repr_01():
 
     inventory = pitchtools.PitchRangeInventory(['[A0, C8]', '[C4, D5]'])
 

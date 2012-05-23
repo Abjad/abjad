@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def testMelodicObjectDiatonicIntervalClass___init___01():
+def test_MelodicDiatonicIntervalClass___init___01():
     '''Unisons and octaves are treated differently.'''
 
     mdic = pitchtools.MelodicDiatonicIntervalClass('perfect', -15)
@@ -17,7 +17,7 @@ def testMelodicObjectDiatonicIntervalClass___init___01():
     assert str(mdic) == '+P8'
 
 
-def testMelodicObjectDiatonicIntervalClass___init___02():
+def test_MelodicDiatonicIntervalClass___init___02():
     '''Unisons and octaves are treated differently.'''
 
     mdic = pitchtools.MelodicDiatonicIntervalClass('perfect', -1)

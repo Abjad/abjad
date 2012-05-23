@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def testPitchObjectRangeInventory_append_01():
+def test_PitchRangeInventory_append_01():
 
     pitch_range_inventory_1 = pitchtools.PitchRangeInventory(['[A0, C8]'])
     pitch_range_inventory_1.append('[C3, F#5]')

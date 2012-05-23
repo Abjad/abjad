@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def testNumberedObjectChromaticPitchClass___cmp___01():
+def test_NumberedChromaticPitchClass___cmp___01():
     '''Compare unequal numbered chromatic pitch-classes.
     '''
 
@@ -18,7 +18,7 @@ def testNumberedObjectChromaticPitchClass___cmp___01():
     assert py.test.raises(NotImplementedError, 'pc1 >= pc2')
 
 
-def testNumberedObjectChromaticPitchClass___cmp___02():
+def test_NumberedChromaticPitchClass___cmp___02():
     '''Compare equal numbered chromatic pitch-classes.
     '''
 

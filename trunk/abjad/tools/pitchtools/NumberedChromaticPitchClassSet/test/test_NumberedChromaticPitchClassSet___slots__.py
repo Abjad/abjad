@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def testNumberedObjectChromaticPitchClassSet___slots___01():
+def test_NumberedChromaticPitchClassSet___slots___01():
     '''Numbered chromatic pitch-class sets are immutable.
     '''
 

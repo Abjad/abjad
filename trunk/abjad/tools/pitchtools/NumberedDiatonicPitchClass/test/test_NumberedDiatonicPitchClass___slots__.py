@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def testNumberedObjectDiatonicPitchClass___slots___01():
+def test_NumberedDiatonicPitchClass___slots___01():
     '''Numbered diatonic pitch-classes are immutable.
     '''
 

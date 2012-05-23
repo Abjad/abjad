@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def testHarmonicObjectChromaticInterval_01():
+def test_HarmonicChromaticInterval_01():
 
     i = pitchtools.HarmonicChromaticInterval(3)
 

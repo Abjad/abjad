@@ -1,12 +1,12 @@
 import os
 
 
-def _get_text_editor():
+def get_text_editor():
     '''.. versionadded:: 2.2
 
     Get OS-appropriate text editor.
     '''
-    from abjad.tools import configuraitontools
+    from abjad.tools import configurationtools
 
     text_editor = configurationtools.read_abjad_user_config_file('text_editor')
 

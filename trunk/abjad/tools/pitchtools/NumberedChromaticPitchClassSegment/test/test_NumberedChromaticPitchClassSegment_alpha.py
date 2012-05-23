@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def testNumberedObjectChromaticPitchClassSegment_alpha_01():
+def test_NumberedChromaticPitchClassSegment_alpha_01():
     '''Morris alpha transform of numbered chromatic pitch-class segment.
     '''
 

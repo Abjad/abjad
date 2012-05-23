@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def testNumberedObjectChromaticPitchClassSegment_retrograde_01():
+def test_NumberedChromaticPitchClassSegment_retrograde_01():
 
     pcseg = pitchtools.NumberedChromaticPitchClassSegment([0, 6, 10, 4, 9, 2])
     PCSeg = pitchtools.NumberedChromaticPitchClassSegment

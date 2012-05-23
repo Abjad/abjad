@@ -2,7 +2,7 @@ from abjad import *
 import py.test
 
 
-def testNumberedObjectDiatonicPitch___setattr___01():
+def test_NumberedDiatonicPitch___setattr___01():
     '''Slots constrain numbere diatonic pitch attributes.
     '''
 

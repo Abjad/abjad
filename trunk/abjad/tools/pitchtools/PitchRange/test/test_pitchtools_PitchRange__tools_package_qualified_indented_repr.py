@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_pitchtoolsPitchObjectRange__tools_package_qualified_indented_repr_01():
+def test_pitchtools_PitchRange__tools_package_qualified_indented_repr_01():
 
     pitch_range = pitchtools.PitchRange('[A0, C8]')
 

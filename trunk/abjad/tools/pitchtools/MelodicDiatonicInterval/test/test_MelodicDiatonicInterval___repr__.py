@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def testMelodicObjectDiatonicInterval___repr___01():
+def test_MelodicDiatonicInterval___repr___01():
 
     interval = pitchtools.MelodicDiatonicInterval('perfect', 1)
     repr = interval.__repr__()
@@ -24,7 +24,7 @@ def testMelodicObjectDiatonicInterval___repr___01():
     assert  repr == "MelodicDiatonicInterval('+m3')"
 
 
-def testMelodicObjectDiatonicInterval___repr___02():
+def test_MelodicDiatonicInterval___repr___02():
 
     interval = pitchtools.MelodicDiatonicInterval('perfect', -1)
     repr = interval.__repr__()

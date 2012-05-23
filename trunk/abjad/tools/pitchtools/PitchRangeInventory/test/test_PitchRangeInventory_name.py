@@ -2,7 +2,7 @@ from abjad import *
 import py
 
 
-def testPitchObjectRangeInventory_name_01():
+def test_PitchRangeInventory_name_01():
 
     inventory = pitchtools.PitchRangeInventory(['[A0, C8]'])
     assert inventory.name is None
@@ -11,7 +11,7 @@ def testPitchObjectRangeInventory_name_01():
     assert inventory.name == 'blue inventory'
 
 
-def testPitchObjectRangeInventory_name_02():
+def test_PitchRangeInventory_name_02():
 
     inventory = pitchtools.PitchRangeInventory(['[A0, C8]'])
     assert py.test.raises(Exception, 'inventory.name = 99')

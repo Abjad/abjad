@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def testHarmonicObjectDiatonicIntervalSegment_rotate_01():
+def test_HarmonicDiatonicIntervalSegment_rotate_01():
     '''Rotate right.'''
 
     hdig = pitchtools.HarmonicDiatonicIntervalSegment([
@@ -21,7 +21,7 @@ def testHarmonicObjectDiatonicIntervalSegment_rotate_01():
     assert rotated == new
 
 
-def testHarmonicObjectDiatonicIntervalSegment_rotate_02():
+def test_HarmonicDiatonicIntervalSegment_rotate_02():
     '''Rotate left.'''
 
     hdig = pitchtools.HarmonicDiatonicIntervalSegment([
