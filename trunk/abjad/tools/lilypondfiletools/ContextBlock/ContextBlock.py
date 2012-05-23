@@ -37,6 +37,7 @@ class ContextBlock(AttributedBlock):
 
     def __init__(self, context_name=None):
         AttributedBlock.__init__(self)
+        self._accepts = []
         self._engraver_consists = []
         self._engraver_removals = []
         self._escaped_name = r'\context'
@@ -63,6 +64,8 @@ class ContextBlock(AttributedBlock):
         # CAUTION: LilyPond consist statements are order-significant!
         for string in self.engraver_consists:
             result.append('\t' + r'\consists %s' % string)
+        for string in self.accepts:
+            result.append('\t' + r'\accepts %s' % string)
         for override in self.override._list_format_contributions('override'):
             result.append('\t' + override)
         setting_contributions = []
@@ -75,6 +78,10 @@ class ContextBlock(AttributedBlock):
         return result
 
     ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def accepts(self):
+        return self._accepts
 
     @property
     def engraver_consists(self):
