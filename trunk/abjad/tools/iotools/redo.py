@@ -60,9 +60,8 @@ def redo(target = -1, lily_time = 10):
 
     # TODO: Encapsulate as cfg._open_pdf()
     # open pdf
-    config = configurationtools.read_abjad_user_config_file()
-    pdf_viewer = config['pdf_viewer']
+    pdf_viewer = configurationtools.read_abjad_user_config_file('pdf_viewer')
+    ABJADOUTPUT = configurationtools.read_abjad_user_config_file('abjad_output')
     ABJADOUTPUT = config['abjad_output']
-    #name = os.path.join(ABJADOUTPUT, name)
     name = target_ly
     _open_file('%s.pdf' % name[:-3], pdf_viewer)

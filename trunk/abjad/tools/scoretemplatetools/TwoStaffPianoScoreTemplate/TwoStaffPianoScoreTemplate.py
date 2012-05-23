@@ -4,6 +4,7 @@ from abjad.tools import scoretools
 from abjad.tools import stafftools
 from abjad.tools import voicetools
 from abjad.tools.scoretemplatetools.ScoreTemplate import ScoreTemplate
+import collections
 
 
 class TwoStaffPianoScoreTemplate(ScoreTemplate):
@@ -45,6 +46,13 @@ class TwoStaffPianoScoreTemplate(ScoreTemplate):
 
     Return score template.
     '''
+
+    ### CLASS ATTRIBUTES ###
+
+    context_name_abbreviations = collections.OrderedDict({
+        'rh': 'RH Voice',
+        'lh': 'LH Voice'
+        })
 
     ### INITIALIZER ###
 

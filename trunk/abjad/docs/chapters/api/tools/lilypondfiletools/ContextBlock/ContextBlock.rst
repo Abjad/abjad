@@ -9,6 +9,8 @@ lilypondfiletools.ContextBlock
 Read-only Properties
 --------------------
 
+.. autoattribute:: abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.accepts
+
 .. autoattribute:: abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.engraver_consists
 
 .. autoattribute:: abjad.tools.lilypondfiletools.ContextBlock.ContextBlock.ContextBlock.engraver_removals

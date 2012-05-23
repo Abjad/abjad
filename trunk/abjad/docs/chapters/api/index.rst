@@ -1028,6 +1028,7 @@ Abjad composition packages
 .. toctree::
    :maxdepth: 1
 
+   tools/scoretemplatetools/GroupedRhythmicStavesScoreTemplate/GroupedRhythmicStavesScoreTemplate
    tools/scoretemplatetools/StringQuartetScoreTemplate/StringQuartetScoreTemplate
    tools/scoretemplatetools/TwoStaffPianoScoreTemplate/TwoStaffPianoScoreTemplate
 

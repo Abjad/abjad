@@ -4,6 +4,7 @@ from abjad.tools import scoretools
 from abjad.tools import stafftools
 from abjad.tools import voicetools
 from abjad.tools.scoretemplatetools.ScoreTemplate import ScoreTemplate
+import collections
 
 
 class StringQuartetScoreTemplate(ScoreTemplate):
@@ -64,12 +65,12 @@ class StringQuartetScoreTemplate(ScoreTemplate):
 
     ### CLASS ATTRIBUTES ###
 
-    context_name_abbreviations = {
+    context_name_abbreviations = collections.OrderedDict({
         'vn1': 'First Violin Voice',
         'vn2': 'Second Violin Voice',
         'va': 'Viola Voice',
         'vc': 'Cello Voice',
-        }
+        })
 
     ### INITIALIZER ###
 

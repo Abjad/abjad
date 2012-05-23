@@ -3,5 +3,5 @@ import sys
 
 
 def _change_abjad_prompt():
-    if read_abjad_user_config_file().get('use_abjad_prompt'):
+    if read_abjad_user_config_file('use_abjad_prompt'):
         sys.ps1 = 'abjad> '
