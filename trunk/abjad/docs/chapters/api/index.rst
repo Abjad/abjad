@@ -2150,6 +2150,16 @@ Internals packages
 
    tools/importtools/import_structured_package
 
+:py:mod:`introspectiontools <abjad.tools.introspectiontools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: functions
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/introspectiontools/get_current_function_name
+
 :py:mod:`lilypondparsertools <abjad.tools.lilypondparsertools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
