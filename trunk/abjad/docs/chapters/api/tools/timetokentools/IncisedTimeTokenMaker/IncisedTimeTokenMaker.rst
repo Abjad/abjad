@@ -43,7 +43,7 @@ Special Methods
 
 .. automethod:: abjad.tools.timetokentools.IncisedTimeTokenMaker.IncisedTimeTokenMaker.IncisedTimeTokenMaker.__repr__
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`timetokentools.TimeTokenMaker <abjad.tools.timetokentools.TimeTokenMaker.TimeTokenMaker.TimeTokenMaker>`
 
 .. automethod:: abjad.tools.timetokentools.IncisedTimeTokenMaker.IncisedTimeTokenMaker.IncisedTimeTokenMaker.__setattr__
 

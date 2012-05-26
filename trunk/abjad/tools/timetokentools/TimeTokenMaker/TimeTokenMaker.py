@@ -29,6 +29,11 @@ class TimeTokenMaker(AbjadObject):
         seeds = self._none_to_new_list(seeds)
         return duration_pairs, seeds
 
+    def __repr__(self):
+        if self.name is not None:
+            return '{}({!r})'.format(self._class_name, self.name)
+        return AbjadObject.__repr__(self)
+
     ### PRIVATE METHODS ###
 
     def _make_secondary_duration_pairs(self, duration_pairs, secondary_divisions):
