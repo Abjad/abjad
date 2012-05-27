@@ -1572,6 +1572,7 @@ Additional Abjad composition packages (load manually)
    tools/sequencetools/negate_sequence_elements_at_indices
    tools/sequencetools/negate_sequence_elements_cyclically
    tools/sequencetools/overwrite_sequence_elements_at_indices
+   tools/sequencetools/partition_sequence_by_backgrounded_weights
    tools/sequencetools/partition_sequence_by_ratio_of_lengths
    tools/sequencetools/partition_sequence_by_ratio_of_weights
    tools/sequencetools/partition_sequence_by_restricted_growth_function
