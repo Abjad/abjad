@@ -80,13 +80,6 @@ Abjad build checklist:
 19. Change to abjad/trunk.
     Run 'python setup.py register sdist upload'
     Follow the login instructions provided by PyPI.
-    (Important. There is a bug in setup.py identified on the Internet.
-    After you first register with PyPI you must view ~/.pypirc
-    and change the line '[pypi]' to '[server-login]'. If you do
-    not do this then this step will fail.)
-    (Also important. It appears that this bug is fixed under Python 2.7.
-    If you build under Python 2.7 leave the line '[pypi]' as is.
-    Do not change this line to '[server-login]'.)
     You must have Abjad package owner credentials for this step to work.
     If you need Abjad package owner credentials, talk to Trevor, Victor or Josiah.
     PyPI will respond with "Server response (200): OK".
