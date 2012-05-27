@@ -5,7 +5,7 @@ Version history
 Abjad 2.9
 ---------
 
-Released 2012-05-22. Built from r5770.
+Released 2012-05-22. Built from r5779.
 Implements 405 public classes and 1066 functions totalling 182,000 lines of code.
 
 Extended markup handling is now available.
