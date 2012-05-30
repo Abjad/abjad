@@ -3,10 +3,10 @@ from abjad.tools.measuretools.Measure import Measure
 from abjad.tools.measuretools.fill_measures_in_expr_with_full_measure_spacer_skips import fill_measures_in_expr_with_full_measure_spacer_skips
 
 
-def make_measures_with_full_measure_spacer_skips(meters):
+def make_measures_with_full_measure_spacer_skips(time_signatures):
     r'''.. versionadded:: 1.1
 
-    Make measures with full-measure spacer skips from `meters`::
+    Make measures with full-measure spacer skips from `time_signatures`::
 
         abjad> measures = measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (5, 16), (5, 16)])
 
@@ -39,10 +39,10 @@ def make_measures_with_full_measure_spacer_skips(meters):
     '''
 
     # check input
-    meters = [contexttools.TimeSignatureMark(meter) for meter in meters]
+    time_signatures = [contexttools.TimeSignatureMark(x) for x in time_signatures]
 
     # make measures
-    measures = [Measure(meter, []) for meter in meters]
+    measures = [Measure(x, []) for x in time_signatures]
     fill_measures_in_expr_with_full_measure_spacer_skips(measures)
 
     # return measures
