@@ -90,7 +90,7 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
 
         Return nonreduced fraction.
         '''
-        return type(self)(abs(self.numerator), self.denominator)
+        return type(self)((abs(self.numerator), self.denominator))
         
     def __add__(self, expr):
         '''Add `expr` to `self`::
@@ -205,7 +205,7 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
 
         Return nonreduced fraction.
         '''
-        return type(self)(-self.numerator, self.denominator)
+        return type(self)((-self.numerator, self.denominator))
 
     def __radd__(self, expr):
         '''Add nonreduced fraction to `expr`::
@@ -295,7 +295,7 @@ class NonreducedFraction(ImmutableAbjadObject, Fraction):
         denominator = mathtools.least_common_multiple(denominator, fraction.denominator)
         pair = durationtools.rational_to_duration_pair_with_specified_integer_denominator(
             fraction, denominator)
-        return type(self)(*pair)
+        return type(self)(pair)
         
     ### READ-ONLY PUBLIC PROPERTIES ###
 
