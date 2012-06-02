@@ -35,6 +35,23 @@ class TimeIntervalAggregateMixin(TimeIntervalMixin):
     def latest_stop(self):
         raise NotImplementedError
 
+    @property
+    def offset_counts(self):
+        from collections import Counter
+        offsets = []
+        for interval in self.intervals:
+            offsets.append(interval.start)
+            offsets.append(interval.stop)
+        return dict(Counter(offsets))
+
+    @property
+    def offsets(self):
+        offsets = []
+        for interval in self.intervals:
+            offsets.append(interval.start)
+            offsets.append(interval.stop)
+        return set(offsets)
+
     ### PUBLIC METHODS ###
 
     @abstractmethod
