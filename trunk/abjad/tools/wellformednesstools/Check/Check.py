@@ -15,7 +15,7 @@ class Check(AbjadObject):
     def __init__(self):
         pass
 
-    ### READ-ONLY PRIVATE ATTRIBUTES ###
+    ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
     def _message(self):

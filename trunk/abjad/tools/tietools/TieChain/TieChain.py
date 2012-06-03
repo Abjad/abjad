@@ -20,7 +20,7 @@ class TieChain(ScoreSelection):
     def __init__(self, music):
         ScoreSelection.__init__(self, music)
 
-    ### PUBLIC READ-ONLY PROPERTIES ###
+    ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def all_leaves_are_in_same_parent(self):

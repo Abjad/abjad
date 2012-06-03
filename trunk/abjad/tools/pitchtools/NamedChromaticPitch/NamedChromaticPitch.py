@@ -195,7 +195,7 @@ class NamedChromaticPitch(PitchObject):
             interval = arg
             return pitchtools.transpose_pitch_carrier_by_melodic_interval(self, -interval)
 
-    ### PRIVATE READ-ONLY PROPERTIES ###
+    ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
     def _accidental(self):

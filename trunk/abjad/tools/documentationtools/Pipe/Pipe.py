@@ -37,7 +37,7 @@ class Pipe(abctools.AbjadObject, subprocess.Popen):
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT)
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def arguments(self):

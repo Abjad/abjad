@@ -38,7 +38,7 @@ class Documenter(abctools.AbjadObject):
                 unique.append(part)
         return '.'.join(unique)
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def module_name(self):

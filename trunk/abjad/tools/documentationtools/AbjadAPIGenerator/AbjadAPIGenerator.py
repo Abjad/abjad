@@ -230,7 +230,7 @@ class AbjadAPIGenerator(abctools.AbjadObject):
         return composition, manual, unstable, internals
         
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def code_tools_path(self):

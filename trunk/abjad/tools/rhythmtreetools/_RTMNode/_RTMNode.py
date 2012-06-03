@@ -40,7 +40,7 @@ class _RTMNode(object):
     def __repr__(self):
         return '(%d (%s))' % (self.pulses_consumed, ' '.join([repr(x) for x in self.children]))
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def children(self):

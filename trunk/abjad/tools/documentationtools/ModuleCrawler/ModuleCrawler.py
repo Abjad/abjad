@@ -62,7 +62,7 @@ class ModuleCrawler(AbjadObject):
                 module = __import__(module_name, fromlist=['*'])
                 yield module
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def code_root(self):

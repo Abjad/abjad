@@ -139,7 +139,7 @@ class ClassDocumenter(Documenter):
             '',
         ]
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def data(self):

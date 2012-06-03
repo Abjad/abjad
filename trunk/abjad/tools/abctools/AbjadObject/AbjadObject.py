@@ -79,7 +79,7 @@ class AbjadObject(object):
         '''
         return '{}({})'.format(self._class_name, self._contents_repr_string)
 
-    ### PRIVATE READ-ONLY ATTRIBUTES ###
+    ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
     def _class_name(self):

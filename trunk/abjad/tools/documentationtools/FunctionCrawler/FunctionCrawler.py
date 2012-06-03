@@ -34,7 +34,7 @@ class FunctionCrawler(abctools.AbjadObject):
                 objects.append(obj)
         return tuple(sorted(objects))
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def code_root(self):

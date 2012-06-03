@@ -42,7 +42,7 @@ class ObjectInventory(list, AbjadObject):
     def __repr__(self):
         return AbjadObject.__repr__(self)
 
-    ### PRIVATE READ-ONLY ATTRIBUTES ###
+    ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
     def _item_callable(self):
@@ -67,7 +67,7 @@ class ObjectInventory(list, AbjadObject):
     def _mandatory_argument_values(self):
         return tuple(self)
 
-    ### PUBLIC READ / WRITE ATTRIBUTES ###
+    ### READ / WRITE PUBLIC PROPERTIES ###
 
     @apply
     def name():

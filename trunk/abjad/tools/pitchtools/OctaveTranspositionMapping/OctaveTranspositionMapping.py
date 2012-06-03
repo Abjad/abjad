@@ -25,7 +25,7 @@ class OctaveTranspositionMapping(ObjectInventory):
         else:
             return '{}([{}])'.format(self._class_name, self._repr_contents_string)
 
-    ### PRIVATE READ-ONLY PROPERTIES ###
+    ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
     def _item_callable(self):

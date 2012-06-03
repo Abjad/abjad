@@ -111,7 +111,7 @@ class Markup(_DirectedMark):
     def __str__(self):
         return self.format
 
-    ### PRIVATE READ-ONLY PROPERTIES ###
+    ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
     def _format_pieces(self):
@@ -123,7 +123,7 @@ class Markup(_DirectedMark):
             self.contents,
             )
 
-    ### PUBLIC READ-ONLY PROPERTIES ###
+    ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def contents(self):

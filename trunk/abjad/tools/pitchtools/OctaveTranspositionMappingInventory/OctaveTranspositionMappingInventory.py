@@ -19,7 +19,7 @@ class OctaveTranspositionMappingInventory(ObjectInventory):
     Octave transposition mapping inventories implement list interface and are mutable.
     '''
 
-    ### PRIVATE READ-ONLY PROPERTIES ###
+    ### READ-ONLY PRIVATE PROPERTIES ###
     
     @property
     def _item_callable(self):

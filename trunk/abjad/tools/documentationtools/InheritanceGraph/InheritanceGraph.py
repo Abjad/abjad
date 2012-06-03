@@ -125,7 +125,7 @@ class InheritanceGraph(ImmutableDictionary):
 
         dict.__init__(self, graph)
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def root_class(self):

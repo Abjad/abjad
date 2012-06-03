@@ -13,7 +13,7 @@ class TempoMarkInventory(ObjectInventory):
     Tempo mark inventories implement list interface and are mutable.
     '''
 
-    ### PRIVATE READ-ONLY ATTRIBUTES ###
+    ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
     def _item_callable(self):

@@ -136,7 +136,7 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
         else:
             return '%s([])' % type(self).__name__
 
-    ### PRIVATE ATTRIBUTES ###
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _inorder(self):
@@ -149,7 +149,7 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
         else:
             return ()
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def duration(self):

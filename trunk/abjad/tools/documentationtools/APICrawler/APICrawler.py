@@ -75,7 +75,7 @@ class APICrawler(abctools.AbjadObject):
 
         return tuple(sorted(documenters, key=lambda x: x.module_name))
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def code_root(self):

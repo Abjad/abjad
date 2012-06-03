@@ -13,7 +13,7 @@ class TimeIntervalAggregateMixin(TimeIntervalMixin):
     __metaclass__ = ABCMeta
     __slots__ = ()
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @abstractproperty
     def earliest_start(self):

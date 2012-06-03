@@ -81,7 +81,7 @@ class Digraph(AbjadObject):
     def __ne__(self, other):
         return not self.__eq__(other)
 
-    ### PUBLIC ATTRIBUTES ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def child_graph(self):

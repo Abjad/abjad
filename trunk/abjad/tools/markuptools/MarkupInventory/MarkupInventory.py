@@ -17,7 +17,7 @@ class MarkupInventory(ObjectInventory):
     Markup inventories implement the list interface and are mutable.
     '''
 
-    ### PRIVATE READ-ONLY ATTRIBUTES ##
+    ### READ-ONLY PRIVATE PROPERTIES ##
 
     @property
     def _item_callable(self):
