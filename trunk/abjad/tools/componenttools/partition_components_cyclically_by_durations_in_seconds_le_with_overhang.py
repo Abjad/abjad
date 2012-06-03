@@ -9,7 +9,7 @@ def partition_components_cyclically_by_durations_in_seconds_le_with_overhang(
     or just less than `durations_in_seconds`, with overhang.
     '''
 
-    parts = _partition_components_by_durations('prolated', components, prolated_duration,
-        fill = 'less', cyclic = True, overhang = True)
+    parts = _partition_components_by_durations('seconds', components, durations_in_seconds,
+        fill='less', cyclic=True, overhang=True)
 
     return parts

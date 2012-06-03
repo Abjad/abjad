@@ -2,7 +2,7 @@ from abjad.tools import durationtools
 
 
 def _partition_components_by_durations(duration_type, components, durations,
-    fill = 'exact', cyclic = False, overhang = False):
+    fill='exact', cyclic=False, overhang=False):
     '''Partition `components` according to `durations`.
 
     Set `duration_type` to ``'prolated'`` or ``'seconds'``.
