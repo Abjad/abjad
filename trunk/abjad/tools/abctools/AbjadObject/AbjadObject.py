@@ -97,6 +97,10 @@ class AbjadObject(object):
         return ', '.join(result)
 
     @property
+    def _disk_format(self):
+        return self._tools_package_qualified_indented_repr
+
+    @property
     def _keyword_argument_name_value_strings(self):
         result = []
         for name in self._keyword_argument_names:
