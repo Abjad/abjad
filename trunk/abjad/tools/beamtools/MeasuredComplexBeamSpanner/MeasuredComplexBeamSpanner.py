@@ -9,7 +9,7 @@ class MeasuredComplexBeamSpanner(ComplexBeamSpanner):
 
     ::
 
-        abjad> spannertools.MeasuredComplexBeamSpanner(staff.leaves)
+        abjad> beamtools.MeasuredComplexBeamSpanner(staff.leaves)
         MeasuredComplexBeamSpanner(c'16, d'16, e'16, f'16)
 
     ::
@@ -93,14 +93,14 @@ class MeasuredComplexBeamSpanner(ComplexBeamSpanner):
             '''Get top-level beam count::
 
                 abjad> staff = Staff([Measure((2, 16), "c'16 d'16"), Measure((2, 16), "e'16 f'16")])
-                abjad> beam = spannertools.MeasuredComplexBeamSpanner(staff.leaves)
+                abjad> beam = beamtools.MeasuredComplexBeamSpanner(staff.leaves)
                 abjad> beam.span
                 1
 
             Set top-level beam count::
 
                 abjad> staff = Staff([Measure((2, 16), "c'16 d'16"), Measure((2, 16), "e'16 f'16")])
-                abjad> beam = spannertools.MeasuredComplexBeamSpanner(staff.leaves)
+                abjad> beam = beamtools.MeasuredComplexBeamSpanner(staff.leaves)
                 abjad> beam.span = 2
                 abjad> beam.span
                 2

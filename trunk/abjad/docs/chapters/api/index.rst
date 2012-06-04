@@ -18,6 +18,7 @@ Abjad composition packages
    tools/beamtools/BeamSpanner/BeamSpanner
    tools/beamtools/ComplexBeamSpanner/ComplexBeamSpanner
    tools/beamtools/DuratedComplexBeamSpanner/DuratedComplexBeamSpanner
+   tools/beamtools/MeasuredComplexBeamSpanner/MeasuredComplexBeamSpanner
    tools/beamtools/MultipartBeamSpanner/MultipartBeamSpanner
 
 .. rubric:: functions
@@ -1108,7 +1109,6 @@ Abjad composition packages
    tools/spannertools/HairpinSpanner/HairpinSpanner
    tools/spannertools/HiddenStaffSpanner/HiddenStaffSpanner
    tools/spannertools/HorizontalBracketSpanner/HorizontalBracketSpanner
-   tools/spannertools/MeasuredComplexBeamSpanner/MeasuredComplexBeamSpanner
    tools/spannertools/MetricGridSpanner/MetricGridSpanner
    tools/spannertools/OctavationSpanner/OctavationSpanner
    tools/spannertools/PhrasingSlurSpanner/PhrasingSlurSpanner

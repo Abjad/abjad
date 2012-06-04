@@ -5,7 +5,7 @@ def test_MeasuredComplexBeamSpanner___eq___01():
     '''Spanner is strict comparator.
     '''
 
-    spanner_1 = spannertools.MeasuredComplexBeamSpanner()
-    spanner_2 = spannertools.MeasuredComplexBeamSpanner()
+    spanner_1 = beamtools.MeasuredComplexBeamSpanner()
+    spanner_2 = beamtools.MeasuredComplexBeamSpanner()
 
     assert not spanner_1 == spanner_2

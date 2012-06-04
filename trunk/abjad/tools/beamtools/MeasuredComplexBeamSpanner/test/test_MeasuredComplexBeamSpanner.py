@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_MeasuredComplexBeamSpanner_direction_01():
+def test_MeasuredComplexBeamSpanner_01():
 
     t = Staff(Measure((2, 16), notetools.make_repeated_notes(2, Duration(1, 16))) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
@@ -27,7 +27,7 @@ def test_MeasuredComplexBeamSpanner_direction_01():
     }
     '''
 
-    beam = spannertools.MeasuredComplexBeamSpanner(t[:], direction='down')
+    beam = beamtools.MeasuredComplexBeamSpanner(t[:])
 
     r'''
     \new Staff {
@@ -35,7 +35,7 @@ def test_MeasuredComplexBeamSpanner_direction_01():
             \time 2/16
             \set stemLeftBeamCount = #0
             \set stemRightBeamCount = #2
-            c'16 _ [
+            c'16 [
             \set stemLeftBeamCount = #2
             \set stemRightBeamCount = #1
             d'16
@@ -62,4 +62,4 @@ def test_MeasuredComplexBeamSpanner_direction_01():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/16\n\t\t\\set stemLeftBeamCount = #0\n\t\t\\set stemRightBeamCount = #2\n\t\tc'16 _ [\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #1\n\t\td'16\n\t}\n\t{\n\t\t\\time 2/16\n\t\t\\set stemLeftBeamCount = #1\n\t\t\\set stemRightBeamCount = #2\n\t\te'16\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #1\n\t\tf'16\n\t}\n\t{\n\t\t\\time 2/16\n\t\t\\set stemLeftBeamCount = #1\n\t\t\\set stemRightBeamCount = #2\n\t\tg'16\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #0\n\t\ta'16 ]\n\t}\n}"
+    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/16\n\t\t\\set stemLeftBeamCount = #0\n\t\t\\set stemRightBeamCount = #2\n\t\tc'16 [\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #1\n\t\td'16\n\t}\n\t{\n\t\t\\time 2/16\n\t\t\\set stemLeftBeamCount = #1\n\t\t\\set stemRightBeamCount = #2\n\t\te'16\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #1\n\t\tf'16\n\t}\n\t{\n\t\t\\time 2/16\n\t\t\\set stemLeftBeamCount = #1\n\t\t\\set stemRightBeamCount = #2\n\t\tg'16\n\t\t\\set stemLeftBeamCount = #2\n\t\t\\set stemRightBeamCount = #0\n\t\ta'16 ]\n\t}\n}"
