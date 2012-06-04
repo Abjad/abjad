@@ -1,6 +1,6 @@
+from abjad.tools.timeintervaltools.all_are_intervals_or_trees_or_empty import all_are_intervals_or_trees_or_empty
 from abjad.tools.timeintervaltools.compute_depth_of_intervals import compute_depth_of_intervals
 from abjad.tools.timeintervaltools.TimeIntervalTree import TimeIntervalTree
-from abjad.tools.timeintervaltools.all_are_intervals_or_trees_or_empty import all_are_intervals_or_trees_or_empty
 
 
 def explode_intervals_compactly(intervals):
