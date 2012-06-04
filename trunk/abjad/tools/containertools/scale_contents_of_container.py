@@ -1,6 +1,3 @@
-from abjad.tools import tietools
-
-
 def scale_contents_of_container(container, multiplier):
     r'''.. versionadded:: 1.1
 
@@ -98,6 +95,7 @@ def scale_contents_of_container(container, multiplier):
         ``containertools.scale_contents_of_container()``.
     '''
     from abjad.tools import measuretools
+    from abjad.tools import tietools
     from abjad.tools import tuplettools
 
     for expr in tietools.iterate_topmost_tie_chains_and_components_forward_in_expr(container[:]):
@@ -106,8 +104,6 @@ def scale_contents_of_container(container, multiplier):
         elif isinstance(expr, tuplettools.FixedDurationTuplet):
             tuplettools.scale_contents_of_tuplets_in_expr_by_multiplier(expr, multiplier)
         elif isinstance(expr, measuretools.Measure):
-            # TODO: Move import to higher level of scope? #
-            from abjad.tools import measuretools
             measuretools.scale_contents_of_measures_in_expr(expr, multiplier)
         else:
             raise Exception(NotImplemented)
