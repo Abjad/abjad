@@ -67,6 +67,9 @@ Abjad packaging checklist:
     Record sanity check test results in the packaging transcript.
 
 10. Change back to the abjad root directory and run make-abjad-api.
+    You will need Graphviz installed to build the API.
+    OS X Graphviz downloads are available at http://www.graphviz.org/Download..php.
+    Ubuntu Graphic installation is available with "sudo apt-get install graphviz".
     The HTML version of the API should build with no warnings and no errors.
     If Sphinx gives any warnings or errors, fix, commit and go back to (5.)
 
