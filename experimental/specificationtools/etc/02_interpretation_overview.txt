@@ -1,0 +1,116 @@
+There are indefinitely many ways to interpret any segment.
+Note that interpretation follows specification and that the purpose
+of interpretation is to make every score segment notatable.
+
+This version of the code implements the following interpretation regime:
+
+    score:
+        1. time signatures on a segment-by-segment basis
+    voices:
+        2. divisions
+        3. rhythm
+    arbitrary contexts:
+        4. pitch-classes, pitch, marks
+        
+This means that the code currently implements a rhythm-first way of building score.
+Notes on this rhythm-first way of building score appear below.
+
+(0) Interpretation enforces hierarchy on specification. Rhythmic divisions and
+events always are set absolutely or else derived from segments' time signatures.
+But the opposite can not obtain: time signatures may not be specified in terms of
+rhythmic divisions or events. Likewise, pitch-classes, pitches and leaf attributes
+apply to rhythmic events (or the structures that create them). But rhythmic events
+may not be specified in terms of pitch-classes, pitches or leaf attributes.
+
+(1) Segments' score-order matters. Score specification comprises zero or more 
+segment specifications. Segment specifications' score-order is taken to be
+the order in which they will notate in the finished score.
+
+(2) Score interpretation proceeds as a series of one or more passes over every 
+score segment. Call these left-to-right (score) passes, for further reference.
+
+(3) Because relative references play a crucial role in score specification,
+segment interpretation proceeds only as far as is 'resolvable' for each segment.
+The first nonresolvable setting encountered during segment interpretation 
+causes interpretation to pass to the next segment in score.
+
+(4) Segment resolvability refers to which of the four broadly structured segment 
+interpretation steps is reachable during the interpretation of any segment in score.
+For example, if segment time signatures resolve then interpretation proceeds to 
+the resolution of rhythmic divisions for each segment voice. But if segment time 
+signatures do not resolve then interpretation passes to the next segment in score.
+
+(5) What causes settings to resolve? All settings are classified as either absolute
+or relative. Absolute settings comprise an absolute source. All absolute settings resolve
+directly with no need to consult other settings made anywhere else in score. Relative
+settings are made with reference to either another setting or to a statal server.
+Whether or not any given relative setting resolves can only be determined by further
+inspection of the setting's source. Examples follow.
+
+(6) Suppose interpretation has arrived at the determination of pitch-classes for 
+segment T, that only pitch-class setting N has
+been found for segment T, and that N specifies the timewise determination of pitch-classes
+for all pitch-carriers in T according to statal pitch-class server PCS. We know that the
+rhythm of all pitch-carriers in T has been determined because we have arrived at
+pitch-classes determination. And we know and are able to access the source from which
+the pitch-classes in T are to be applied. So should interpretation apply pitch-classes
+to all pitch-carriers in T or not? Put another way, should interpretation read from
+and thereby advance the state of statal server PCS or not?
+
+(7) The question asks about the assumptions we make of statal servers. We can only 
+answer the question with further reference to location of T in S. So let us suppose
+further that S comprises four segments T1, T2, T3, T4 and that our segment T equals
+T4 in S. If interpretation of T4 finds that N specifies PCS for the pitch-class
+application of all pitch-carriers in T4, should PCS be read? There are a number of
+different ways to model this, all of which will probably eventually require implementation.
+But in the current version of the system we will chose to implement a 'chronologically strict'
+interpretation of the statal servers in S. That is, we must distinguish two statal server
+accessor types and pile restrictions on one of the two.
+
+(8) We may distinguish statal server access that is 'absolute' from that that is 'cursor-relative'.
+In fact it is increasingly clear that what is really required is a model of arbitrarily many
+cursors k0, ..., kn open against statal server W. If we designate the kn by arbitrary (possibly 
+numeric) label then we need extend the implementation of W with only a dictionary of the zero or 
+more kn, each equal to a (cyclic) integer offset in W. This then percolates up to specification 
+and demands that statal server specification always be accompanied by either the designation of
+one of the kn in W or else by an indication of an 'absolute' read (from) W. Specification of
+absolute read from W comprises (cyclic) integer offset in W together with optional read direction.
+Note that the interfaces to absolute and cursor-relative requests match: optional (cyclic)
+integer offset together with optional read direction. The only difference between the two
+is whether the offset of last read is stored in the persistent namespace of the interpreted
+context(s) or not.
+
+(9) We return to the specification of PCS in T4. Whether PCS is to be read on any particular
+visit to T4 depends on the type of read specified against PCS. Absolute reads will always
+be made directly: such reads are made against the server and the data served with no
+consequences in changges to server state and no new information to persist in any namespace;
+absolute reads happen with no further impact to the state of interpretation, as though they
+never took place at all.
+
+(10) But whether or not a a cursor-relative read should proceed is trickier to determine.
+If T4 is to read from PCS then we need to know two further sets of information about PCS:
+first, whether PCS is specified to be read in any of T1, T2, T3; and second, whether
+PCS already has been read everywhere that is specified to be read. In other words, the 
+specification of cursor-relative read against statal server W demands that we first
+know whether W is in the right state to be read.
+
+(11) How do we know if PCS is in the right state for cursor-relative read in T4?
+We examine the segments T1, T2, T3 that precede T4 in score order. We inspect 
+each of T1, T2, T3 for the presence of cursor-relative read against PCS.
+If every cursor-relative read against PCS in T1, T2, T3 has been made (or, equivalently,
+if T1, T2, T3 make no cursor-relative reads against PCS) then T4 may cursor-read PCS.
+
+(12) The same holds for all statal server cursor-reads.
+
+(13) What if T4 contains a pitch-class setting made relative to a selection elsewhere in S?
+In this case we allow a single lookup. What will pitch-class setting N in T4 look like
+if N specifies pitch-class information to be taken from elsewhere in S? N will specify
+a 'start component' somewhere in S together with the combination of a list of one or
+more source context names from which to read, together with an optional read direction.
+For example, N might specify to timewise forward-read pitch-classes in the violin voice
+and cello voice of T2, starting from pitch-carrier 0 the violin voice of T2.
+Or, N might specify to backward-read pitch-classes in the horn voice of T1, starting
+from the last pitch-carrier in T1. When such a situation obtains we may say that N
+provides 'score-relative' specification of pitch-classes in T4.
+
+(14) Settings are either manifest, server-positioned, cursor-relative or score-relative.

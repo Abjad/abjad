@@ -1,0 +1,5 @@
+1. Make Setting inherit from Directive. Or vice versa. Or make both inherit from an ABC.
+
+2. Implement RetrievalRequest as base class for different retrieval requests classes.
+
+3. Refactor interpret() n * O(n) traversal to O(n) with first-pass sort.

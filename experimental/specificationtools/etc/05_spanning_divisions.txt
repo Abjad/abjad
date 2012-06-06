@@ -1,0 +1,184 @@
+(1) How are spanning divisions to be handled?
+
+(2) Maybe the first thing to notice is that spanning divisions are a type of byproduct
+arising during interpretation. Composers specify only complete divisions. But differences
+between the pattern of divisions within a segment and the durations of adjacent segments
+may give rise to spanning divisions.
+
+(3) It is the voices within any given segment that may be the bearers of spanning divisions
+because it is the voices within any given segment that bear divisions, no matter what their type.
+
+(4) Divisions may be left-spanning, or right-spanning, or both left- and right-spanning,
+or neither left- nor right-spanning.
+
+(5) We can say that one of the things that happens during interpretation is spanning duration discovery.
+
+(6) Consider division d. In the case that d is right-spanning but not left-spanning, 
+the duration of d equals the sum m + n, with m and n equal to the 'segment duration' 
+of d and the 'right overhang duration' of d, respectively.
+In the case the d is left-spanning but not right-spanning, the duration of d equals the sum l + m,
+with l and m equal to the left overhang duration of d and the segment duration of d, respectively.
+In the case that d is both left-spanning and right-spanning, the duration of d equals
+the sum l + m + n, with l + n together equalling the 'total overhang duration of d.
+And in the case that d is neither left-spanning nor right-spanning, the duration of d equals m.
+
+(7) Notice that the right overhang duration of right-spanning division d in segment Tn 
+will exactly equal the segment duration of left-spanning divions e in segment Tn+1.
+That is, the right overhang duration of d in Tn acts as a type of offset in Tn+1.
+How does the right overhang duration of d in Tn act as a type of offset in Tn+1?
+By offseting the amount of musical time before which divisions in the corresponding
+voice in Tn+1 will begin to calculate.
+
+(8) Discovery is unproblematic: calculate the divisions for whatever voice is current under iteration,
+notice whether the rightmost division is right-spanning. If so, interpretation has discovered
+a spanning division.
+
+(9) Then there's the issue of what to record once a spanning division has been discovered.
+There is also a companion question as to where such information should be recorded.
+A reasonable first guess says that the right overhang duration of the spanning duration
+needs to be recorded somewhere in the context tree. This is important because otherwise
+division calculate can not proceed correctly once interpretation advances from Tn to Tn+1.
+
+(10) Does other information need to be recorded upon spanning division discovery? Yes.
+Interpretation needs to record that d is right-spanning. Three options present themselves here.
+Either, (a) division d itself may bear some type of is-spanning indicator. Or, (b), interpretation may add
+an is-right-spanning indicator to the generative setting that specified the creation of the
+divisions in the first place. Or, (c), interpretation may maintain some type of mapping
+data structure that models just such information about spanning and nonspanning divisions.
+Option (c) seems less good. Maybe it makes sense to proceed with both options (a) and (b) 
+since the two are not mutually exclusive.
+
+(11) What is the importance of recording the is-spanning status of every duration in Tn?
+This matters for the interpretaive passes that follow division determination.
+Chief among these is rhythm creation. When notating Tn in isolation, interpretation 
+must know which divisions in Tn are spanning and which are nonspanning. Likewise, when notating
+Tn together with Tn+1, interpretation must know which divisions in both Tn and Tn+1
+are spanning and which are nonspanning.
+
+                                               * * *
+
+(0) The chain of thought above lead to the importance of considering what we might term
+the 'frame of notation'. Denote by F(Ti, ...) the frame of notation of segments Ti, ...
+all contiguous in the same score. The frame of notation is notionally a single method
+call to notate zero or more score-contiguous segments.
+frame of interpretation or 
+
+(1) Much has already been written on the different ways that 'source resolution' must
+happen during the process of interpretation. What remains to be worked out here is something 
+similar in relation to the laying out of divisions.
+
+(2) The following discussion simplifies when we return to the four-step interpretation model 
+proposed earlier.
+
+(*) That is (1.) time signatures for every segment; (2.) divisions for every voice in 
+every segment; (3.) rhythmic events for every division in every voice in every segment;
+(4.) everything else.
+
+(3) I think there's a reason that thinking about this model seems to always result in a
+two-way speficiation / interpretation split rather than in a three- or four-way split, or
+in some other type of split. Namely, it's clear that specification is work assigned to the
+composer whereas interpretation is work carried out by the interpreter.
+
+(4) The question that keeps returning is whether it's possible to split the process
+of interpretation into two or more (possibly configurable) subprocesses, or not.
+Intuition leans towards no.
+
+(5) In fact, there seem to be a pair of constraints I'm working towards here.
+We can get to the first of these constraints by asking the folowing question:
+Will any of the four successive 'waves' of interpretation be interruptible?
+
+(6) Consider the case of interpreting time signatures for every segment.
+The unmarked case starts at the first segment in the score and then makes
+as many left-to-right passes through the uninterpreted segments in the score
+as required. A marked case asks for the interpretation of an arbitrary segment
+taken in isolation. And the correct observation seems to be that there's no 
+no guarantee of interpretability of the time signature content of any segment
+taken in isolation. The reason for this limitation is clear: the composer's
+choices are free to move from segment to segment and selection to selection during
+specification. So the collection of settings that appear after directives are unpacked
+and that relate to the specification of time signatures for an arbitrary segment
+may reference any arbitrary number of other segments (or, indeed, statal sources). 
+But also important to note is that in some special cases, it may indeed be possible
+to interpret the time signature content of a segment taken in isolation. It's just
+that there can be no guarantee of the interpretability of the time signature content
+of any given segment taken in isolation.
+
+(7) On the other hand, once the time signature wave of interpretation completes,
+the time signature content of every segment in score is known. (We might also ask here
+whether it is just that the time signature content of every segment in score is known
+or, indeed, whether what holds is in fact the stronger case of the time signature objects
+of every segment having been instantiated and stored. It is not clear that there is any
+obvious reason to prefer the one case over the other. And this is probably so because
+the numeric representation of time signatures differs very little from time signatures
+stored and represented as a collection of objects. More will be at stake in this
+known-versus-instantiated question when we consider the rhythm wave of interpretation.)
+
+(8) Returning to a higher level, we find ourselves still working out the interruptibility
+of any of the four high-level waves of interpretation. And just above we considered two
+things that act as bounds of interruptibility: interpretation of any segment in isolation
+(on the one hand) and the complete interpretation of all segments (on the other).
+But what about the interruptiblity of time signature interpretation?
+
+(9) It seems clear that time signature interpretation can halt or be halted at very
+many points along the way. But it seems equally clear that in general nothing
+can be said about the results of interpretation when time signature interpretation
+halts at any arbitrary point. That is, feel free to halt time signature interpretation
+wherever you want. But when you do you're not guaranteed to know anything in particular.
+
+
+                                               * * *
+
+TODO: work out *containment* as it relates to segment voices containing divisions. Ragged right.
+Divisions owned by the segment in which they *start*. Need for a model of absence in segments.
+Places (always start at the left edge) of a segment in which the segment voice contains
+no division.
+
+(1) This notion of the possession of incomplete divisions requires elaboration. Observe first
+that it is voices that contain or have divisions. Then denote by 'segment voice' any voice V
+resident in segment T. In the unmarked case segment voice V contains only complete divisions.
+In certain cases segment voice V may contain one or two incomplete divisions. There are four
+such special cases. V may begin with an incomplete division (followed thereafter by any number of
+complete divisions); V may end with an incomplete division (preceded by any number of
+complete dvisions); V may both begin and end with incomplete divisions (with any number of
+intervening complete divisions between the two); or V may be spanned by a single division
+that is incomplete on both the left and right of T. Those are the only four configurations
+under which incomplete divisions may occur in segment voice V in segment T.
+
+(2) We can already observe something clear about the relationship between LilyPond output
+and incomplete divisions. Suppose we have segments T1, T2, T3 each with staves F1, F2, F3, F4
+each with a voice Vi. Set the time signature configuration for each of T1, T2, T3 to [(2, 4), (2, 4)].
+Then set the divisions of V1 in T1 to [(2, 4), (8, 4), (2, 4)]. The divisions of V1 over the 
+course of T1, T2, T3 will be [(2, 4), (2, 4+)], [(+4, 4+)], [(+2, 4), (2, 4)]. (We observe
+that V1 is right-incomplete in T1, fully incomplete in T2, and left-incomplete in T3.)
+Assume V2, V3, V4 in all of T1, T2, T3 equal the time signatures of T1, T2, T3.
+Then what should the LilyPond output files look like?
+
+(3) Tests show that there is a LilyPond limitation as regards a score comprised
+of successive staff group chunks taken in succession. (The first limitation is that
+the thread research from three or four years ago still holds. Notes must be housed
+in an excplicitly named voice. And all components in the parentage from the voice
+up must be named the same.) And the limitation is that for any given staff group
+chunk, all voices in the chunk must be of equal duration. That is *LilyPond allows
+no incomplete divisions across successive staff group chunks.*
+
+                                               * * *
+
+It's almost like there are two conflicting goals here. The first is the ability iteratively
+to rework a single segment in isolation. The second is the ability to have potentially many 
+spanning divisions. It's not clear to what extent these goals conflict.
+
+Maybe we should relax the goal of being able to iteratively rework a single segment in isolation.
+Why? Because test files provide an alternative to that type of work. Compare this to the goal
+of allowing for potentially many spanning divisions. There is no substitute for this beyond 
+explicit modeling.
+
+So the direction this is going is toward an interpretive process that really does build up
+a single huge score omprising voices that run the entire duration of the score.
+
+This means three things. First, sections requiring extensive rework will have to be moved
+into test files as a type of staging during the compositional process. Second, all statal
+sources everywhere in the system will have to implement an interface to allow interrogation
+of state. This is how we will know 'where statal servers are' when it comes time to excise
+a segment and stage it for iterative rework. Third, we will probably develop a secondary
+compositional technique of temporarily cauterizing spanning divisions to allow the excision
+of segments.

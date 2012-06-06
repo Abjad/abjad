@@ -1,0 +1,135 @@
+Divisions.
+
+                                    * * *
+
+Example 1. Suppose we have string quartet score S with four staves grouped together,
+with a named voice resident in each staff. Suppose S comprises segments T1, T2, T3, T4
+and suppose that time signature interpretation yields time signature lists
+[(2, 8), (2, 8)], [(3, 8), (3, 8), (3, 8)], [(4, 8), (4, 8), (4, 8)], [(4, 8)],
+giving segment durations Duration(4, 8), Duration(9, 8), Duration(12, 8), Duration(4, 8)
+for T1, T2, T3, T4, respectively.
+
+It needs to be possible to specify the divisions of S equal to the duration token list
+[(3, 8)] read cyclically over the entire duration of S. How should this be specified?
+How should the specification interpret?
+
+Such a specification sets the top-level time-divisions of S without regard for the time
+signatures of S. A first consequence of this is that the time-divisions of S cross
+over the time signature boundaries of S. A second consequence is that the time-divisions 
+of S cross over the segment boundaries of S.
+
+The time-divisions of S then equal [(3, 8), (1, 8)+], [+(2, 8), (3, 8), (3, 8), (1, 8)+],
+[+(2, 8), (3, 8), (3, 8), (3, 8), (1, 8)+] and [+(3, 8), (1, 8)], where + denotes
+the continuation of time-division across segment boundaries.
+
+The division-application algorithm we have used is implicitly left-initiated.
+Right-initiated application would produce division lists [(2, 8), (2, 8)+], [+(1, 8), 
+(3, 8), (3, 8), (2, 8)+], [+(1, 8), (3, 8), (3, 8), (3, 8), (2, 8)+] and [+(1, 8), (3, 8)] 
+instead.
+
+Both left- and right-initiated application yield divisions equal to the durations Duration(4, 8),
+Duration(9, 8), Duration(12, 8), Duration(4, 8) of the time signature lists of the segments in S.
+
+We choose to implement left-initiated application in the current version of the system 
+and to leave right-initiated application for a future version of the system.
+
+We return to the specification of these divisions of S. What form should such a specification take?
+
+Perhaps simply T1.set_divisions([(3, 8)]) with segment-level context and the persistence
+of the setting implied by the default values of the method's keyword arguments.
+
+How will the specification interpret? Perhaps exactly as shown with the 'open' and 'closed'
+divisions of each segment modeled explicitly.
+
+                                    * * *
+
+Example 2. Suppose string quartet score S is specified exactly as above. Then specify that
+the violin 1 and viola voices of only T2 override any division specification made at
+higher context levels in S and are instead set to equal the total duration of T2 taken
+as a single time-division. How should this be specified? How will it interpret?
+
+Perhaps with the addition of only T2.set_divisions([T2.vn2, T2.va], total_segment_duration).
+
+This regime requires that each of the duration specifications in S be processed sequentially,
+with the output of each operation attached to all relevant contexts in S after each step.
+This is effectively the same as reading lines of code in sequence.
+
+                                    * * *
+
+*Division specification.* Division specification admits a greater variety of configuration
+than time signature specification. Division specifications are structured the same way
+as every other type of specification: that is, as the pair of a target token
+together with a source. Further, division specification target tokens take the same form 
+as every type of target token: that is, as the triple of a segment name, a list of zero
+or more context names, and an optional (horizontal) scope that acts as type of filter
+on all contexts implicated in the selection. Two areas of this model of division specification
+require elaboration. The first of these relates to the logical limits attaching to the targets
+of division specification. The second must detail the number and type of sources that
+division specification admits.
+
+*Targets of division specification.* Suppose segment T comprises time signatures 
+[(2, 8), (2, 8), (2, 8)], with total duration Duration(6, 8). The act of specifying divisions
+for any of the contexts in T is equivalent to partitioning the (6, 8) of total time
+any of the contexts in T consumes. The simplest case obtains in any manifest list of
+durations. It is possible, for example, the specify the divisions of the violin 1 voice
+in T manifestly equal to the durations [(3, 8), (3, 8)]; such a setting applies to the
+entire duration of the violin 1 voice in T and implies a target selection equal to
+the entirety of the violin 1 voice in T. It is more likely to specify the divisions of
+the violin 1 voice in T in terms of a callable. (We define a callable equal to any function,
+method or callable class with signature that allows, at minimum, for the input of a list of 
+durations.) It is, therefore, possible to set the divisions of the violin 1
+voice in T equal to the output of callable foo(). In the case that the entirety of the
+duration of the violin 1 voice in T is set equal to the output of callable foo(), the
+time token list [(2, 8), (2, 8), (2, 8)] will be passed as input to foo(). It is also possible
+to set the divisions of only the first two measures of the violin 1 voice in T equal to
+the output of foo() while setting the divisions of the last measure of the violin 1 voice in T
+equal to the output bar(); in this case, the time token list [(2, 8), (2, 8)] will be 
+passed as input to foo() and the time token list [(2, 8)] will be passed as input to bar().
+It is also possible to specify the divisions of duration-partitioned parts of the violin 1
+voice in T without reference to the time signatures of T at all. For example, it is possible
+to set the divisions of the first [(3, 8)] of the violin 1 voice in T equal to the output of foo()
+and the divisions of the last [(3, 8)] of the of the violin 1 voice in T equal to the output of bar(),
+in which case the time token list [(3, 8)] will be passed as input to foo() and the duration
+list [(3, 8)] will be passed as input to bar(). It is further possible to set the divisions of
+the first [(3, 16), (3, 16)] of the violin 1 voice in T equal to the output of foo() and the
+divisions of the last [(1, 8), (1, 8), (1, 8)] of the violin 1 voice in T equal to the output
+of bar(), in which case the time token list [(3, 16), (3, 16)] will be passed as input to foo()
+and the time token list [(1, 8), (1, 8), (1, 8)] will be passed as input to bar().
+
+Division specifications may apply cumulatively for any given context in T. That is, there 
+must not be more than one division specification for the violin 1 voice in T. Division
+specification Tn for the violin 1 voice in T may specify as complex a partitioned target of
+the duration of the violin 1 voice in T as desired; but Tn must then specify sources
+(in the form of either manifest values or callables) for each of the parts in the target
+selection of Tn. The specification interface might look like this:
+
+selection = segment.select_measures(segment, part=[1, 1, 1])
+selection[0](foo)
+selection[1](bar)
+selection[2](foo)
+segment.set_divisions(selection)
+
+Or the specification interface might allow for simple setting cascades like this:
+
+selection = segment.select_measures(segment, part=[1, 1, 1])
+selection(foo)
+selection[1](bar)
+segment.set_divisions(selection)
+
+We have so far allowed for division specification sources set equal to manifest values or to
+callables. We have not yet discussed division specification sources set equal to requests 
+against statal servers. We will do this at some point for this round of implementation.
+
+A third case arises in the possibility of settting a division specification source
+equal to a callable specified elsewhere in the score.
+
+A fourth case arises in the possibility of setting a division specification source
+equal to a (potentially indefinitely long) series of actual divisions read (forward or
+backward) from any other division elsewhere in the score.
+
+A fifth case arises in the possibility of setting a division specification source to
+a finite series of divisions (to be read cyclically either forward or backward) from any
+other context elsewhere in the score.
+
+We leave the current implementation confined to these five different possibilities
+for the value of division specification sources.

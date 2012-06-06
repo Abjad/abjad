@@ -1,0 +1,6 @@
+(0) Differing score configurations are going to have to be figured out.
+
+(1) Suppose T1 configures staves F1, F2, F3, F4 while T2 configures staves F1, F4, F5.
+Further, suppose spanning divisions in F1, F4 over T1, T2.
+
+(2) This is precisely the sort of test to account for up front.

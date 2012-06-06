@@ -1,0 +1,53 @@
+*Score specification.* Score specification proceeds as a process of successive segment specification.
+Score specification R equals the ordered list of zero or more segment specifications.
+The time ordered of segment specifications in R is taken equal to score order.
+
+*Segment specification.* Define segment specification H equal to the 4-tuple (S, T, D, P),
+with score template S, tempo specification T, duration specification D, 
+and unordered set of zero or more population specifications P. 
+
+*Segment score template.* Define score template S equal to any prebuilt empty voiced score S.
+
+*Segment tempo.* Define tempo specification T equal to any absolute 
+or relative tempo specification. Tempo specification T is optional.
+The system currently affords relative tempo specification only with reference to another segment exactly.
+(All sorts of other relative tempo specification scenarios are possible. We leave these for later.)
+
+*Segment duration.* Define duration specification D equal to any written duration,
+any duration in seconds or any meter specification M. Tempo must be resolvable where
+D equals a duration in seconds.
+
+*Segment time signatures.* Define meter specification M equal to an ordered list of one or more meters.
+The system currently models meter specification as an (optional) segment attribute.
+Eventually, the system will also model meter specification as a staff group and staff attribute.
+This implies the following: first, segments may be unmetered.
+Second, the system models measures as 'backgrounding' notes, rests, chords, tuplets 
+rather than containing notes, rests, chords, tuplets.
+Third, the contents of metered segments is expected to match the sum of segment meters.
+Fourth, the metering of staff segments will eventually be allowed to differ.
+Fifth, metering will eventually 'cascade' down the score hierarchy similarly to typographic attributes.
+Metering may be specified absolutely, relatively or with reference to a statal server.
+All cases of relative metering specification are based on reference to the metering of another segment.
+The current implementation of the system affords relative meter specification of segment H
+as equal to meters i through j of segment K, allowing for positive, negative and empty values of i, j.
+Statal meter specification assumes a hierarchical statal server that is duration-aware.
+(Many other variations are left for later implementation.)
+
+*Settings.* Define setting t equal the 6-tuple (σ, ν, κ, n, s, p) with segment name σ,
+context name ν, scope κ, attribute name n, source s, and persistence indicator p.
+This is equivalent to context selection ξ equal to (σ, ν, κ), defined below, together
+with three further values n, s, p.
+
+*Directives.* Define directive d equal to the 4-tuple (τ, n, s, p) with target selection τ,
+attribute name n, source s, and persistence indicator p.
+
+*Selections.* Define selection λ equal to the triple (σ, N, κ) with segment name σ,
+context names N = {ν0, ..., νn}, and scope κ. Note that N is defined equal to a list
+of zero or more elements. This means that selections function as a type of bundle
+that can be unpacked. Note too that where n = 0 we say that λ is empty. Intuitively λ
+represents a filtered rectangle of a single score segment.
+
+*Context selections.* Define context selection ξ equal to the triple (σ, ν, κ) with
+segment name σ, context name ν, and scope κ. Intuitively ξ equals a filtered horizontal
+layer of music in a single segment of score. The compositing of zero or more context
+selections all in the same segment gives selection λ as defined above.
