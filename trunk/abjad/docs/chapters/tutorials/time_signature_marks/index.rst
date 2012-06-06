@@ -13,7 +13,7 @@ First we start by creating a staff full of notes:
 
 ::
 
-	abjad> staff = Staff("c'4 d'4 e'4 f'4 g'2")
+	>>> staff = Staff("c'4 d'4 e'4 f'4 g'2")
 
 
 If we ask the Abjad interpreter about our staff reference Abjad will respond
@@ -21,7 +21,7 @@ with the interpreter display of the object:
 
 ::
 
-	abjad> staff
+	>>> staff
 	Staff{5}
 
 
@@ -44,7 +44,7 @@ We can see that this is the case with tools from the API:
 
 ::
 
-	abjad> contexttools.get_effective_time_signature(staff) is None
+	>>> contexttools.get_effective_time_signature(staff) is None
 	True
 
 
@@ -52,7 +52,7 @@ And:
 
 ::
 
-    abjad> for leaf in staff:
+    >>> for leaf in staff:
     ...    contexttools.get_effective_time_signature(leaf) is None
     ...
     True
@@ -65,7 +65,7 @@ If we want, we can iterate both the staff and its leaves at one and the same tim
 
 ::
 
-    abjad> for component in componenttools.iterate_components_forward_in_expr(staff):
+    >>> for component in componenttools.iterate_components_forward_in_expr(staff):
     ...    component, contexttools.get_effective_time_signature(component)
     ...
     (Staff{5}, None)
@@ -87,7 +87,7 @@ We find out like this:
 
 ::
 
-	abjad> show(staff)
+	>>> show(staff)
 
 .. image:: images/time-signature-tutorial-1.png
 
@@ -102,7 +102,7 @@ We can further confirm that this is the case by asking Abjad for the LilyPond fo
 
 ::
 
-	abjad> f(staff)
+	>>> f(staff)
 	\new Staff {
 		c'4
 		d'4
@@ -129,7 +129,7 @@ First, we create a ``3/4`` time signature mark:
 
 ::
 
-	abjad> time_signature_mark = contexttools.TimeSignatureMark((3, 4))
+	>>> time_signature_mark = contexttools.TimeSignatureMark((3, 4))
 
 
 If we ask the Abjad interpreter for the interpreter dispaly of
@@ -137,7 +137,7 @@ our time signature mark we get the following:
 
 ::
 
-	abjad> time_signature_mark
+	>>> time_signature_mark
 	TimeSignatureMark((3, 4))
 
 
@@ -149,7 +149,7 @@ And we can see this like so:
 
 ::
 
-	abjad> time_signature_mark.start_component is None
+	>>> time_signature_mark.start_component is None
 	True
 
 
@@ -161,7 +161,7 @@ So now we attach our time signature mark to our staff:
 
 ::
 
-    abjad> time_signature_mark.attach(staff)
+    >>> time_signature_mark.attach(staff)
     TimeSignatureMark((3, 4))(Staff{5})
 
 Abjad responds immediately by returning the time signature mark we have just attached.
@@ -176,7 +176,7 @@ We can see this like so:
 
 ::
 
-	abjad> time_signature_mark.start_component
+	>>> time_signature_mark.start_component
 	Staff{5}
 
 
@@ -185,7 +185,7 @@ no effective time signature to a state of having an effective time signature:
 
 ::
 
-	abjad> contexttools.get_effective_time_signature(staff)
+	>>> contexttools.get_effective_time_signature(staff)
 	TimeSignatureMark((3, 4))(Staff{5})
 
 
@@ -196,7 +196,7 @@ Indeed they do:
 
 ::
 
-    abjad> for leaf in staff.leaves:
+    >>> for leaf in staff.leaves:
     ...      leaf, contexttools.get_effective_time_signature(leaf)
     ...
     (Note("c'4"), TimeSignatureMark((3, 4))(Staff{5}))
@@ -222,7 +222,7 @@ Before moving on let's look at the PDF corresponding to our staff:
 
 ::
 
-	abjad> show(staff)
+	>>> show(staff)
 
 .. image:: images/time-signature-tutorial-2.png
 
@@ -230,7 +230,7 @@ And let's confirm what we see in the PDF in the staff's format:
 
 ::
 
-	abjad> f(staff)
+	>>> f(staff)
 	\new Staff {
 		\time 3/4
 		c'4
@@ -250,14 +250,14 @@ Detaching a time signature mark is easy:
 
 ::
 
-    abjad> time_signature_mark.detach()
+    >>> time_signature_mark.detach()
     TimeSignatureMark((3, 4))
 
 The Abjad returns the mark we have just detached. And, observing the repr of the time signature mark, we see that the time signature mark has again changed state: the time signature mark has transitioned from attached to unattached. We confirm this like so:
 
 ::
 
-	abjad> time_signature_mark.start_component is None
+	>>> time_signature_mark.start_component is None
 	True
 
 
@@ -265,7 +265,7 @@ And also like so:
 
 ::
 
-	abjad> contexttools.get_effective_time_signature(staff) is None
+	>>> contexttools.get_effective_time_signature(staff) is None
 	True
 
 
@@ -280,13 +280,13 @@ We can simply create and attach a new time signature mark:
 
 ::
 
-    abjad> duple_time_signature_mark = contexttools.TimeSignatureMark((2, 4))
-    abjad> duple_time_signature_mark.attach(staff)
+    >>> duple_time_signature_mark = contexttools.TimeSignatureMark((2, 4))
+    >>> duple_time_signature_mark.attach(staff)
     TimeSignatureMark((2, 4))(Staff{5})
 
 ::
 
-	abjad> f(staff)
+	>>> f(staff)
 	\new Staff {
 		\time 2/4
 		c'4
@@ -299,7 +299,7 @@ We can simply create and attach a new time signature mark:
 
 ::
 
-	abjad> show(staff)
+	>>> show(staff)
 
 .. image:: images/time-signature-tutorial-3.png
 
@@ -311,25 +311,25 @@ To do this we'll first detach our ``2/4`` time signature mark ...
 
 ::
 
-	abjad> duple_time_signature_mark.detach()
+	>>> duple_time_signature_mark.detach()
 
 
 ::
 
-    abjad> duple_time_signature_mark.detach()
+    >>> duple_time_signature_mark.detach()
     TimeSignatureMark((2, 4))
 
 ... confirm that our staff is now time signatureless ...
 
 ::
 
-	abjad> contexttools.get_effective_time_signature(staff) is None
+	>>> contexttools.get_effective_time_signature(staff) is None
 	True
 
 
 ::
 
-	abjad> f(staff)
+	>>> f(staff)
 	\new Staff {
 		c'4
 		d'4
@@ -343,34 +343,34 @@ To do this we'll first detach our ``2/4`` time signature mark ...
 
 ::
 
-	abjad> time_signature_mark.attach(staff)
+	>>> time_signature_mark.attach(staff)
 
 
 ::
 
-    abjad> time_signature_mark.attach(staff)
+    >>> time_signature_mark.attach(staff)
     TimeSignatureMark((4, 4))(Staff{5})
 
 ... change the numerator of our time signature mark ...
 
 ::
 
-	abjad> time_signature_mark.numerator = 2
+	>>> time_signature_mark.numerator = 2
 
 
 ... and check to make sure that everything is as it should be:
 
 ::
 
-	abjad> contexttools.get_effective_time_signature(staff)
+	>>> contexttools.get_effective_time_signature(staff)
 	TimeSignatureMark((2, 4))(Staff{5})
-	abjad> time_signature_mark.start_component
+	>>> time_signature_mark.start_component
 	Staff{5}
 
 
 ::
 
-	abjad> f(staff)
+	>>> f(staff)
 	\new Staff {
 		\time 2/4
 		c'4
@@ -383,7 +383,7 @@ To do this we'll first detach our ``2/4`` time signature mark ...
 
 ::
 
-	abjad> show(staff)
+	>>> show(staff)
 
 .. image:: images/time-signature-tutorial-4.png
 
@@ -393,12 +393,12 @@ To change to, for example, ``4/4`` we change just change the time signature mark
 
 ::
 
-	abjad> time_signature_mark.numerator = 4
+	>>> time_signature_mark.numerator = 4
 
 
 ::
 
-	abjad> f(staff)
+	>>> f(staff)
 	\new Staff {
 		\time 4/4
 		c'4
@@ -416,12 +416,12 @@ Abjad time signature marks implement this as a read / write attribute:
 
 ::
 
-	abjad> time_signature_mark.partial = Duration(2, 4)
+	>>> time_signature_mark.partial = Duration(2, 4)
 
 
 ::
 
-	abjad> f(staff)
+	>>> f(staff)
 	\new Staff {
 		\partial 2
 		\time 4/4
@@ -435,7 +435,7 @@ Abjad time signature marks implement this as a read / write attribute:
 
 ::
 
-	abjad> show(staff)
+	>>> show(staff)
 
 .. image:: images/time-signature-tutorial-5.png
 
@@ -449,7 +449,7 @@ We've already got a ``4/4`` time signature mark attached to our staff:
 
 ::
 
-	abjad> f(staff)
+	>>> f(staff)
 	\new Staff {
 		\partial 2
 		\time 4/4
@@ -465,12 +465,12 @@ Let's get rid of the pick-up:
 
 ::
 
-	abjad> time_signature_mark.partial = None
+	>>> time_signature_mark.partial = None
 
 
 ::
 
-	abjad> f(staff)
+	>>> f(staff)
 	\new Staff {
 		\time 4/4
 		c'4
@@ -487,8 +487,8 @@ We create it in the usual way:
 
 ::
 
-	abjad> duple_time_signature_mark = contexttools.TimeSignatureMark((2, 4))
-	abjad> duple_time_signature_mark
+	>>> duple_time_signature_mark = contexttools.TimeSignatureMark((2, 4))
+	>>> duple_time_signature_mark
 	TimeSignatureMark((2, 4))
 
 
@@ -506,17 +506,17 @@ We do that like this:
 
 ::
 
-	abjad> duple_time_signature_mark.attach(staff[4])
+	>>> duple_time_signature_mark.attach(staff[4])
 
 
 ::
 
-    abjad> duple_time_signature_mark.attach(staff[4])
+    >>> duple_time_signature_mark.attach(staff[4])
     TimeSignatureMark((2, 4))(g'2)
 
 ::
 
-	abjad> f(staff)
+	>>> f(staff)
 	\new Staff {
 		\time 4/4
 		c'4
@@ -530,7 +530,7 @@ We do that like this:
 
 ::
 
-	abjad> show(staff)
+	>>> show(staff)
 
 .. image:: images/time-signature-tutorial-6.png
 
@@ -541,7 +541,7 @@ Using the interpreter we can verify that this is ``g'2``:
 
 ::
 
-	abjad> staff[4]
+	>>> staff[4]
 	Note("g'2")
 
 
@@ -563,12 +563,12 @@ We call the function a first time:
 
 ::
 
-    abjad> contexttools.detach_context_marks_attached_to_component(staff)
+    >>> contexttools.detach_context_marks_attached_to_component(staff)
     (TimeSignatureMark((4, 4)),)
 
 ::
 
-	abjad> f(staff)
+	>>> f(staff)
 	\new Staff {
 		c'4
 		d'4
@@ -583,12 +583,12 @@ And then a second time:
 
 
 ::
-    abjad> contexttools.detach_context_marks_attached_to_component(staff[4])
+    >>> contexttools.detach_context_marks_attached_to_component(staff[4])
     (TimeSignatureMark((2, 4)),)
 
 ::
 
-	abjad> f(staff)
+	>>> f(staff)
 	\new Staff {
 		c'4
 		d'4
@@ -611,7 +611,7 @@ Our staff currently has no time signature marks attached:
 
 ::
 
-	abjad> f(staff)
+	>>> f(staff)
 	\new Staff {
 		c'4
 		d'4
@@ -625,7 +625,7 @@ So to recreate our ``3/4`` time signature we can do this ...
 
 ::
 
-	abjad> time_signature_mark = contexttools.TimeSignatureMark((3, 4))
+	>>> time_signature_mark = contexttools.TimeSignatureMark((3, 4))
 
 
 ... and then use a short-cut to avoid calling ``time_signature_mark.attach()`` like this:
@@ -633,12 +633,12 @@ So to recreate our ``3/4`` time signature we can do this ...
 
 ::
 
-    abjad> time_signature_mark(staff)
+    >>> time_signature_mark(staff)
     TimeSignatureMark((3, 4))(Staff{5})
 
 ::
 
-	abjad> f(staff)
+	>>> f(staff)
 	\new Staff {
 		\time 3/4
 		c'4
@@ -665,12 +665,12 @@ for ``detach()``. Like this:
 
 ::
 
-    abjad> time_signature_mark()
+    >>> time_signature_mark()
     TimeSignatureMark((3, 4))
 
 ::
 
-	abjad> f(staff)
+	>>> f(staff)
 	\new Staff {
 		c'4
 		d'4
@@ -690,12 +690,12 @@ can be created and attached in a single line:
 
 ::
 
-    abjad> contexttools.TimeSignatureMark((2, 4))(staff)
+    >>> contexttools.TimeSignatureMark((2, 4))(staff)
     TimeSignatureMark((2, 4))(Staff{5})
 
 ::
 
-	abjad> f(staff)
+	>>> f(staff)
 	\new Staff {
 		\time 2/4
 		c'4
@@ -716,6 +716,6 @@ This last short-cut form of ...
 
 ::
 
-    abjad> contexttools.TimeSignatureMark((2, 4))(staff)
+    >>> contexttools.TimeSignatureMark((2, 4))(staff)
 
 ... is the usual way that you will see context marks of all sorts presented in the docs.

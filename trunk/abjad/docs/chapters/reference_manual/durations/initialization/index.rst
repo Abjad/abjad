@@ -6,12 +6,12 @@ Durated Abjad classes initialize duration from arguments in the form `(n, d)` wi
 
 ::
 
-	abjad> note = Note("c'8.")
+	>>> note = Note("c'8.")
 
 
 ::
 
-	abjad> show(note, docs=True)
+	>>> show(note, docs=True)
 
 .. image:: images/duration-initialization-1.png
 
@@ -20,14 +20,14 @@ Durated classes include notes, rests, chords, skips, tuplets and measures.
 
 ::
 
-	abjad> tuplet = tuplettools.Tuplet((2, 3), "c'8 c'8 c'8")
-	abjad> beamtools.BeamSpanner(tuplet)
-	abjad> staff = stafftools.RhythmicStaff([tuplet])
+	>>> tuplet = tuplettools.Tuplet((2, 3), "c'8 c'8 c'8")
+	>>> beamtools.BeamSpanner(tuplet)
+	>>> staff = stafftools.RhythmicStaff([tuplet])
 
 
 ::
 
-	abjad> show(staff, docs=True)
+	>>> show(staff, docs=True)
 
 .. image:: images/duration-initialization-2.png
 
@@ -38,14 +38,14 @@ Abjad allows arbitrary positive durations like ``5/8`` for tuplets and measures.
 
 ::
 
-	abjad> tuplet = tuplettools.Tuplet((5, 4), "c'8 c'8 c'8 c'8")
-	abjad> beamtools.BeamSpanner(tuplet)
-	abjad> staff = stafftools.RhythmicStaff([tuplet])
+	>>> tuplet = tuplettools.Tuplet((5, 4), "c'8 c'8 c'8 c'8")
+	>>> beamtools.BeamSpanner(tuplet)
+	>>> staff = stafftools.RhythmicStaff([tuplet])
 
 
 ::
 
-	abjad> show(staff, docs=True)
+	>>> show(staff, docs=True)
 
 .. image:: images/duration-initialization-3.png
 
@@ -54,12 +54,12 @@ Abjad supports breves.
 
 ::
 
-	abjad> note = Note(0, (2, 1))
+	>>> note = Note(0, (2, 1))
 
 
 ::
 
-	abjad> show(note, docs=True)
+	>>> show(note, docs=True)
 
 .. image:: images/duration-initialization-4.png
 
@@ -68,12 +68,12 @@ And longas.
 
 ::
 
-	abjad> note = Note(0, (4, 1))
+	>>> note = Note(0, (4, 1))
 
 
 ::
 
-	abjad> show(note, docs=True)
+	>>> show(note, docs=True)
 
 .. image:: images/duration-initialization-5.png
 

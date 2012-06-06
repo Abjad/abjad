@@ -41,12 +41,12 @@ and arguments, it will create as many worker-processes as you have cores.
 
 ::
 
-   abjad> make(parallel = True)
+   >>> make(parallel = True)
    [{c'8}, {c'8, c'8}, {c'8, c'8, c'8}]
 
 ::
 
-   abjad> make(parallel = False)
+   >>> make(parallel = False)
    [{c'8}, {c'8, c'8}, {c'8, c'8, c'8}]
 
 A few words of caution about the above code fragment:

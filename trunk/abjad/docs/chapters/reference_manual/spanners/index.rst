@@ -8,15 +8,15 @@ The symbols below are black with fixed thickness and predetermined spacing:
 
 ::
 
-	abjad> staff = Staff("c'4 d'4 e'4 f'4 g'4 a'4 g'2")
-	abjad> slur_1 = spannertools.SlurSpanner(staff[:2])
-	abjad> slur_2 = spannertools.SlurSpanner(staff[2:4])
-	abjad> slur_3 = spannertools.SlurSpanner(staff[4:6])
+	>>> staff = Staff("c'4 d'4 e'4 f'4 g'4 a'4 g'2")
+	>>> slur_1 = spannertools.SlurSpanner(staff[:2])
+	>>> slur_2 = spannertools.SlurSpanner(staff[2:4])
+	>>> slur_3 = spannertools.SlurSpanner(staff[4:6])
 
 
 ::
 
-	abjad> f(staff)
+	>>> f(staff)
 	\new Staff {
 		c'4 (
 		d'4 )
@@ -30,7 +30,7 @@ The symbols below are black with fixed thickness and predetermined spacing:
 
 ::
 
-	abjad> show(staff)
+	>>> show(staff)
 
 .. image:: images/spanners-1.png
 
@@ -38,13 +38,13 @@ But you can override LilyPond grobs to change the look of spanners:
 
 ::
 
-	abjad> slur_1.override.slur.color = 'red'
-	abjad> slur_3.override.slur.color = 'red'
+	>>> slur_1.override.slur.color = 'red'
+	>>> slur_3.override.slur.color = 'red'
 
 
 ::
 
-	abjad> f(staff)
+	>>> f(staff)
 	\new Staff {
 		\override Slur #'color = #red
 		c'4 (
@@ -62,7 +62,7 @@ But you can override LilyPond grobs to change the look of spanners:
 
 ::
 
-	abjad> show(staff)
+	>>> show(staff)
 
 .. image:: images/spanners-2.png
 
@@ -73,14 +73,14 @@ You can override LilyPond grobs to change spanners' contents:
 
 ::
 
-	abjad> slur_2.override.slur.color = 'blue'
-	abjad> slur_2.override.note_head.color = 'blue'
-	abjad> slur_2.override.stem.color = 'blue'
+	>>> slur_2.override.slur.color = 'blue'
+	>>> slur_2.override.note_head.color = 'blue'
+	>>> slur_2.override.stem.color = 'blue'
 
 
 ::
 
-	abjad> f(staff)
+	>>> f(staff)
 	\new Staff {
 		\override Slur #'color = #red
 		c'4 (
@@ -104,7 +104,7 @@ You can override LilyPond grobs to change spanners' contents:
 
 ::
 
-	abjad> show(staff)
+	>>> show(staff)
 
 .. image:: images/spanners-3.png
 
@@ -115,13 +115,13 @@ Delete grob overrides you no longer want:
 
 ::
 
-	abjad> del(slur_1.override.slur)
-	abjad> del(slur_3.override.slur)
+	>>> del(slur_1.override.slur)
+	>>> del(slur_3.override.slur)
 
 
 ::
 
-	abjad> f(staff)
+	>>> f(staff)
 	\new Staff {
 		c'4 (
 		d'4 )
@@ -141,6 +141,6 @@ Delete grob overrides you no longer want:
 
 ::
 
-	abjad> show(staff)
+	>>> show(staff)
 
 .. image:: images/spanners-4.png

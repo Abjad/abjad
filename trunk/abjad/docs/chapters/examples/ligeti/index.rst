@@ -28,18 +28,18 @@ The two "layers" of the *cell* we will model with two Voices inside a parallel C
 
 ::
 
-	abjad> pitches = [1,2,3]
-	abjad> notes = notetools.make_notes(pitches, [(1, 8)])
-	abjad> beamtools.BeamSpanner(notes)
-	abjad> spannertools.SlurSpanner(notes)
-	abjad> contexttools.DynamicMark('f')(notes[0])
-	abjad> contexttools.DynamicMark('p')(notes[1])
+	>>> pitches = [1,2,3]
+	>>> notes = notetools.make_notes(pitches, [(1, 8)])
+	>>> beamtools.BeamSpanner(notes)
+	>>> spannertools.SlurSpanner(notes)
+	>>> contexttools.DynamicMark('f')(notes[0])
+	>>> contexttools.DynamicMark('p')(notes[1])
 
 ::
 
-	abjad> voice_lower = Voice(notes)
-	abjad> voice_lower.name = 'rh_lower'
-	abjad> marktools.LilyPondCommandMark('voiceTwo')(voice_lower)
+	>>> voice_lower = Voice(notes)
+	>>> voice_lower.name = 'rh_lower'
+	>>> marktools.LilyPondCommandMark('voiceTwo')(voice_lower)
 
 
 The notes belonging to the eighth note run are first beamed and slurred. Then we add the dynamic marks to the first two notes, and finally we put them inside a Voice. After naming the voice we number it ``2`` so that the stems of the notes point down.
@@ -48,16 +48,16 @@ Now we construct the octave:
 
 ::
 
-	abjad> import math
-	abjad> n = int(math.ceil(len(pitches) / 2.))
-	abjad> chord = Chord([pitches[0], pitches[0] + 12], (n, 8))
-	abjad> marktools.Articulation('>')(chord)
+	>>> import math
+	>>> n = int(math.ceil(len(pitches) / 2.))
+	>>> chord = Chord([pitches[0], pitches[0] + 12], (n, 8))
+	>>> marktools.Articulation('>')(chord)
 
 ::
 
-	abjad> voice_higher = Voice([chord])
-	abjad> voice_higher.name = 'rh_higher'
-	abjad> marktools.LilyPondCommandMark('voiceOne')(voice_higher)
+	>>> voice_higher = Voice([chord])
+	>>> voice_higher.name = 'rh_higher'
+	>>> marktools.LilyPondCommandMark('voiceOne')(voice_higher)
 
 
 The duration of the chord is half the duration of the running eighth notes if the duration of the running notes is divisible by two. Otherwise the duration of the chord is the next integer greater than this half.
@@ -67,8 +67,8 @@ Finally we combine the two voices in a parallel Container:
 
 ::
 
-	abjad> p = Container([voice_lower, voice_higher])
-	abjad> p.is_parallel = True
+	>>> p = Container([voice_lower, voice_higher])
+	>>> p.is_parallel = True
 
 
 This results in the complete *Désordre* *cell*:
@@ -128,8 +128,8 @@ To construct a Ligeti measure we would call the function like so:
 
 ::
 
-	abjad> measure = measure_build([[0, 4, 7], [0, 4, 7, 9], [4, 7, 9, 11]])
-	abjad> show(Staff([measure]))
+	>>> measure = measure_build([[0, 4, 7], [0, 4, 7, 9], [4, 7, 9, 11]])
+	>>> show(Staff([measure]))
 
 .. image:: images/desordre-measure.png
 
@@ -151,9 +151,9 @@ As with measures, we can now create full measure sequences with this new functio
 
 ::
 
-	abjad> pitches = [[[-1, 4, 5], [-1, 4, 5, 7, 9]], [[0, 7, 9], [-1, 4, 5, 7, 9]]]
-	abjad> staff = staff_build(pitches)
-	abjad> show(staff)
+	>>> pitches = [[[-1, 4, 5], [-1, 4, 5, 7, 9]], [[0, 7, 9], [-1, 4, 5, 7, 9]]]
+	>>> staff = staff_build(pitches)
+	>>> show(staff)
 
 .. image:: images/desordre-staff.png
 
@@ -182,24 +182,24 @@ The final result:
 
 ::
 
-	abjad> top = [[[-1, 4, 5], [-1, 4, 5, 7, 9]], [[0, 7, 9], [-1, 4, 5, 7, 9]], [[2, 4, 5, 7, 9], [0, 5, 7]], [[-3, -1, 0, 2, 4, 5, 7]], [[-3, 2, 4], [-3, 2, 4, 5, 7]], [[2, 5, 7], [-3, 9, 11, 12, 14]], [[4, 5, 7, 9, 11], [2, 4, 5]], [[-5, 4, 5, 7, 9, 11, 12]], [[2, 9, 11], [2, 9, 11, 12, 14]]]
-	abjad> bottom = [[[-9, -4, -2], [-9, -4, -2, 1, 3]], [[-6, -2, 1], [-9, -4, -2, 1, 3]], [[-4, -2, 1, 3, 6], [-4, -2, 1]], [[-9, -6, -4, -2, 1, 3, 6, 1]], [[-6, -2, 1], [-6, -2, 1, 3, -2]], [[-4, 1, 3], [-6, 3, 6, -6, -4]], [[-14, -11, -9, -6, -4], [-14, -11, -9]], [[-11, -2, 1, -6, -4, -2, 1, 3]], [[-6, 1, 3], [-6, -4, -2, 1, 3]]]
+	>>> top = [[[-1, 4, 5], [-1, 4, 5, 7, 9]], [[0, 7, 9], [-1, 4, 5, 7, 9]], [[2, 4, 5, 7, 9], [0, 5, 7]], [[-3, -1, 0, 2, 4, 5, 7]], [[-3, 2, 4], [-3, 2, 4, 5, 7]], [[2, 5, 7], [-3, 9, 11, 12, 14]], [[4, 5, 7, 9, 11], [2, 4, 5]], [[-5, 4, 5, 7, 9, 11, 12]], [[2, 9, 11], [2, 9, 11, 12, 14]]]
+	>>> bottom = [[[-9, -4, -2], [-9, -4, -2, 1, 3]], [[-6, -2, 1], [-9, -4, -2, 1, 3]], [[-4, -2, 1, 3, 6], [-4, -2, 1]], [[-9, -6, -4, -2, 1, 3, 6, 1]], [[-6, -2, 1], [-6, -2, 1, 3, -2]], [[-4, 1, 3], [-6, 3, 6, -6, -4]], [[-14, -11, -9, -6, -4], [-14, -11, -9]], [[-11, -2, 1, -6, -4, -2, 1, 3]], [[-6, 1, 3], [-6, -4, -2, 1, 3]]]
 
 
 ::
 
-	abjad> desordre = desordre_build([top, bottom])
+	>>> desordre = desordre_build([top, bottom])
 
 
 ::
 
-	abjad> from abjad.tools import documentationtools
-	abjad> lilypond_file = documentationtools.make_ligeti_example_lilypond_file(desordre)
+	>>> from abjad.tools import documentationtools
+	>>> lilypond_file = documentationtools.make_ligeti_example_lilypond_file(desordre)
 
 
 ::
 
-	abjad> show(lilypond_file)
+	>>> show(lilypond_file)
 
 .. image:: images/desordre-final.png
 

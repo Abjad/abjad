@@ -37,18 +37,18 @@ Measures are optional in Abjad, too, and you may omit them in favor of time sign
 
 ::
 
-	abjad> staff = Staff("c'8 d'8 e'8 d'8 e'8 f'8 g'4 e'4 f'4 d'4 c'2")
+	>>> staff = Staff("c'8 d'8 e'8 d'8 e'8 f'8 g'4 e'4 f'4 d'4 c'2")
 
 
 ::
 
-	abjad> contexttools.TimeSignatureMark((3, 8))(staff)
-	abjad> contexttools.TimeSignatureMark((2, 4))(staff[6])
+	>>> contexttools.TimeSignatureMark((3, 8))(staff)
+	>>> contexttools.TimeSignatureMark((2, 4))(staff[6])
 
 
 ::
 
-	abjad> show(staff)
+	>>> show(staff)
 
 .. image:: images/measures-1.png
 
@@ -62,12 +62,12 @@ Create a measure with a meter and music:
 
 ::
 
-	abjad> measure = Measure((3, 8), "c'8 d'8 e'8")
+	>>> measure = Measure((3, 8), "c'8 d'8 e'8")
 
 
 ::
 
-	abjad> f(measure)
+	>>> f(measure)
 	{
 		\time 3/8
 		c'8
@@ -78,7 +78,7 @@ Create a measure with a meter and music:
 
 ::
 
-	abjad> show(measure)
+	>>> show(measure)
 
 .. image:: images/measures-2.png
 
@@ -92,12 +92,12 @@ Create dynamic measures without a time signature:
 
 ::
 
-	abjad> measure = measuretools.DynamicMeasure("c'8 d'8 e'8")
+	>>> measure = measuretools.DynamicMeasure("c'8 d'8 e'8")
 
 
 ::
 
-	abjad> show(measure)
+	>>> show(measure)
 
 .. image:: images/measures-3.png
 
@@ -108,12 +108,12 @@ Add music to dynamic measures the same as to all containers:
 
 ::
 
-	abjad> measure.extend([Note("fs'8"), Note("gs'8")])
+	>>> measure.extend([Note("fs'8"), Note("gs'8")])
 
 
 ::
 
-	abjad> show(measure)
+	>>> show(measure)
 
 .. image:: images/measures-4.png
 
@@ -124,12 +124,12 @@ Remove music from dynamic measures the same as with other containers:
 
 ::
 
-	abjad> del(measure[1:3])
+	>>> del(measure[1:3])
 
 
 ::
 
-	abjad> show(measure)
+	>>> show(measure)
 
 .. image:: images/measures-5.png
 
@@ -140,12 +140,12 @@ You can set the denominator of dynamic measures to any integer power of ``2``:
 
 ::
 
-	abjad> measure.denominator = 32
+	>>> measure.denominator = 32
 
 
 ::
 
-	abjad> show(measure)
+	>>> show(measure)
 
 .. image:: images/measures-6.png
 
@@ -156,12 +156,12 @@ You can temporarily suppress the meter of dynamic measures:
 
 ::
 
-	abjad> measure.suppress_meter = True
+	>>> measure.suppress_meter = True
 
 
 ::
 
-	abjad> f(measure)
+	>>> f(measure)
 	{
 		c'8
 		fs'8
@@ -180,12 +180,12 @@ Create anonymous measures without a time signature:
 
 ::
 
-	abjad> measure = measuretools.AnonymousMeasure("c'8 d'8 e'8")
+	>>> measure = measuretools.AnonymousMeasure("c'8 d'8 e'8")
 
 
 ::
 
-	abjad> show(measure)
+	>>> show(measure)
 
 .. image:: images/measures-7.png
 
@@ -196,12 +196,12 @@ Add music to anonymous measures the same as to other containers:
 
 ::
 
-	abjad> measure.extend([Note("fs'8"), Note("gs'8")])
+	>>> measure.extend([Note("fs'8"), Note("gs'8")])
 
 
 ::
 
-	abjad> show(measure)
+	>>> show(measure)
 
 .. image:: images/measures-8.png
 
@@ -212,11 +212,11 @@ Remove music from anonymous measure the same as from other containers:
 
 ::
 
-	abjad> del(measure[1:3])
+	>>> del(measure[1:3])
 
 
 ::
 
-	abjad> show(measure)
+	>>> show(measure)
 
 .. image:: images/measures-9.png

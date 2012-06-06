@@ -4,7 +4,7 @@ Profiling code
 
 Profile code with ``profile_expr()`` in the ``iotools`` package::
 
-    abjad> iotools.profile_expr('Note(0, (1, 4))')
+    >>> iotools.profile_expr('Note(0, (1, 4))')
     Sun Aug 14 16:50:36 2011    _tmp_abj_profile
 
              327 function calls (312 primitive calls) in 0.001 CPU seconds

@@ -8,18 +8,18 @@ Create a score like this:
 
 ::
 
-	abjad> treble_staff_1 = Staff("e'4 d'4 e'4 f'4 g'1")
-	abjad> treble_staff_2 = Staff("c'2. b8 a8 b1")
+	>>> treble_staff_1 = Staff("e'4 d'4 e'4 f'4 g'1")
+	>>> treble_staff_2 = Staff("c'2. b8 a8 b1")
 
 
 ::
 
-	abjad> score = Score([treble_staff_1, treble_staff_2])
+	>>> score = Score([treble_staff_1, treble_staff_2])
 
 
 ::
 
-	abjad> show(score)
+	>>> show(score)
 
 .. image:: images/scores-1.png
 
@@ -30,7 +30,7 @@ Return score components with ``music``:
 
 ::
 
-	abjad> score.music
+	>>> score.music
 	(Staff{5}, Staff{4})
 
 
@@ -41,7 +41,7 @@ Get score length with ``len()``:
 
 ::
 
-	abjad> len(score)
+	>>> len(score)
 	2
 
 
@@ -52,7 +52,7 @@ Score contents duration is equal to the duration of the longest component in sco
 
 ::
 
-	abjad> score.contents_duration
+	>>> score.contents_duration
 	Duration(2, 1)
 
 
@@ -63,18 +63,18 @@ Add one component to the bottom of a score with ``append``:
 
 ::
 
-	abjad> bass_staff = Staff("g4 f4 e4 d4 d1")
-	abjad> contexttools.ClefMark('bass')(bass_staff)
+	>>> bass_staff = Staff("g4 f4 e4 d4 d1")
+	>>> contexttools.ClefMark('bass')(bass_staff)
 
 
 ::
 
-	abjad> score.append(bass_staff)
+	>>> score.append(bass_staff)
 
 
 ::
 
-	abjad> show(score)
+	>>> show(score)
 
 .. image:: images/scores-2.png
 
@@ -85,7 +85,7 @@ Find the index of a score component with ``index``:
 
 ::
 
-	abjad> score.index(treble_staff_1)
+	>>> score.index(treble_staff_1)
 	0
 
 
@@ -96,12 +96,12 @@ Use ``pop`` to remove a score component by index:
 
 ::
 
-	abjad> score.pop(1)
+	>>> score.pop(1)
 
 
 ::
 
-	abjad> show(score)
+	>>> show(score)
 
 .. image:: images/scores-3.png
 
@@ -112,12 +112,12 @@ Remove a score component by reference with ``remove``:
 
 ::
 
-	abjad> score.remove(treble_staff_1)
+	>>> score.remove(treble_staff_1)
 
 
 ::
 
-	abjad> show(score)
+	>>> show(score)
 
 .. image:: images/scores-4.png
 
@@ -128,19 +128,19 @@ Use ``in`` to find out whether a score contains a given component:
 
 ::
 
-	abjad> treble_staff_1 in score
+	>>> treble_staff_1 in score
 	False
 
 
 ::
 
-	abjad> treble_staff_2 in score
+	>>> treble_staff_2 in score
 	False
 
 
 ::
 
-	abjad> bass_staff in score
+	>>> bass_staff in score
 	True
 
 
@@ -151,14 +151,14 @@ You can name Abjad scores:
 
 ::
 
-	abjad> score.name = 'Example Score'
+	>>> score.name = 'Example Score'
 
 
 Score names appear in LilyPond input:
 
 ::
 
-	abjad> f(score)
+	>>> f(score)
 	\context Score = "Example Score" <<
 		\new Staff {
 			\clef "bass"
@@ -175,6 +175,6 @@ But do not appear in notational output:
 
 ::
 
-	abjad> show(score)
+	>>> show(score)
 
 .. image:: images/scores-5.png

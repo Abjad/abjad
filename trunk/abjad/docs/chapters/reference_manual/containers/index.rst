@@ -8,12 +8,12 @@ Create a container with components:
 
 ::
 
-	abjad> container = Container([Note("ds'16"), Note("cs'16"), Note("e'16"), Note("c'16")])
+	>>> container = Container([Note("ds'16"), Note("cs'16"), Note("e'16"), Note("c'16")])
 
 
 ::
 
-	abjad> show(container)
+	>>> show(container)
 
 .. image:: images/containers-1.png
 
@@ -23,12 +23,12 @@ Or with a note-entry string:
 
 ::
 
-	abjad> container = Container("ds'16 cs'16 e'16 c'16 d'2 ~ d'8")
+	>>> container = Container("ds'16 cs'16 e'16 c'16 d'2 ~ d'8")
 
 
 ::
 
-	abjad> show(container)
+	>>> show(container)
 
 .. image:: images/containers-2.png
 
@@ -39,7 +39,7 @@ Return the components in a container with ``music``:
 
 ::
 
-	abjad> container.music
+	>>> container.music
 	(Note("ds'16"), Note("cs'16"), Note("e'16"), Note("c'16"), Note("d'2"), Note("d'8"))
 
 
@@ -47,7 +47,7 @@ Or with a special call to ``__getslice__``:
 
 ::
 
-	abjad> container[:]
+	>>> container[:]
 	[Note("ds'16"), Note("cs'16"), Note("e'16"), Note("c'16"), Note("d'2"), Note("d'8")]
 
 
@@ -58,7 +58,7 @@ Get the length of a container with ``len()``:
 
 ::
 
-	abjad> len(container)
+	>>> len(container)
 	6
 
 
@@ -69,7 +69,7 @@ Contents duration equals the sum of the duration of everything inside the contai
 
 ::
 
-	abjad> container.contents_duration
+	>>> container.contents_duration
 	Duration(7, 8)
 
 
@@ -80,12 +80,12 @@ Add one component to the end of a container with ``append``:
 
 ::
 
-	abjad> container.append(Note("af'32"))
+	>>> container.append(Note("af'32"))
 
 
 ::
 
-	abjad> show(container)
+	>>> show(container)
 
 .. image:: images/containers-3.png
 
@@ -96,12 +96,12 @@ Add many components to the end of a container with ``extend``:
 
 ::
 
-	abjad> container.extend([Note("c''32"), Note("a'32")])
+	>>> container.extend([Note("c''32"), Note("a'32")])
 
 
 ::
 
-	abjad> show(container)
+	>>> show(container)
 
 .. image:: images/containers-4.png
 
@@ -112,12 +112,12 @@ Find the index of a component with ``index``:
 
 ::
 
-	abjad> note = container[7]
+	>>> note = container[7]
 
 
 ::
 
-	abjad> container.index(note)
+	>>> container.index(note)
 	7
 
 
@@ -128,12 +128,12 @@ Insert a component by index with ``insert``:
 
 ::
 
-	abjad> container.insert(-3, Note("g'32"))
+	>>> container.insert(-3, Note("g'32"))
 
 
 ::
 
-	abjad> show(container)
+	>>> show(container)
 
 .. image:: images/containers-5.png
 
@@ -144,12 +144,12 @@ Remove a component by index with ``pop``:
 
 ::
 
-	abjad> container.pop(-1)
+	>>> container.pop(-1)
 
 
 ::
 
-	abjad> show(container)
+	>>> show(container)
 
 .. image:: images/containers-6.png
 
@@ -160,12 +160,12 @@ Remove a component by reference with ``remove``:
 
 ::
 
-	abjad> container.remove(container[-1])
+	>>> container.remove(container[-1])
 
 
 ::
 
-	abjad> show(container)
+	>>> show(container)
 
 .. image:: images/containers-7.png
 
@@ -180,19 +180,19 @@ You can name Abjad containers:
 
 ::
 
-	abjad> flute_staff = Staff("c'8 d'8 e'8 f'8")
-	abjad> flute_staff.name = 'Flute'
-	abjad> violin_staff = Staff("c'8 d'8 e'8 f'8")
-	abjad> violin_staff.name = 'Violin'
-	abjad> staff_group = scoretools.StaffGroup([flute_staff, violin_staff])
-	abjad> score = Score([staff_group])
+	>>> flute_staff = Staff("c'8 d'8 e'8 f'8")
+	>>> flute_staff.name = 'Flute'
+	>>> violin_staff = Staff("c'8 d'8 e'8 f'8")
+	>>> violin_staff.name = 'Violin'
+	>>> staff_group = scoretools.StaffGroup([flute_staff, violin_staff])
+	>>> score = Score([staff_group])
 
 
 Container names appear in LilyPond input:
 
 ::
 
-	abjad> f(score)
+	>>> f(score)
 	\new Score <<
 		\new StaffGroup <<
 			\context Staff = "Flute" {
@@ -215,7 +215,7 @@ And make it easy to retrieve containers later:
 
 ::
 
-	abjad> componenttools.get_first_component_in_expr_with_name(score, 'Flute')
+	>>> componenttools.get_first_component_in_expr_with_name(score, 'Flute')
 	Staff-"Flute"{4}
 
 
@@ -223,7 +223,7 @@ But container names do not appear in notational output:
 
 ::
 
-	abjad> show(score)
+	>>> show(score)
 
 .. image:: images/containers-8.png
 
@@ -311,11 +311,11 @@ Set ``is_parallel`` by hand as necessary:
 
 	voice_1 = Voice(r"e''4 f''4 g''4 g''4 f''4 e''4 d''4 d''4 ermata")
 	voice_2 = Voice(r"c''4 c''4 b'4 c''4 c''8 b'8 c''4 b'4 b'4 ermata")
-	abjad> staff = Staff([voice_1, voice_2])
-	abjad> staff.is_parallel = True
-	abjad> marktools.LilyPondCommandMark('voiceOne')(voice_1)
-	abjad> marktools.LilyPondCommandMark('voiceTwo')(voice_2)
-	abjad> show(staff)
+	>>> staff = Staff([voice_1, voice_2])
+	>>> staff.is_parallel = True
+	>>> marktools.LilyPondCommandMark('voiceOne')(voice_1)
+	>>> marktools.LilyPondCommandMark('voiceTwo')(voice_2)
+	>>> show(staff)
 
 .. image:: images/containers-11.png
 
@@ -324,7 +324,7 @@ a type of polyphonic staff:
 
 ::
 
-	abjad> f(staff)
+	>>> f(staff)
 	\new Staff <<
 		\new Voice {
 			\voiceOne
@@ -359,15 +359,15 @@ The symbols below are black with fixed thickness and predetermined spacing:
 
 ::
 
-	abjad> staff = Staff("c'4 d'4 e'4 f'4 g'4 a'4 g'2")
-	abjad> slur_1 = spannertools.SlurSpanner(staff[:2])
-	abjad> slur_2 = spannertools.SlurSpanner(staff[2:4])
-	abjad> slur_3 = spannertools.SlurSpanner(staff[4:6])
+	>>> staff = Staff("c'4 d'4 e'4 f'4 g'4 a'4 g'2")
+	>>> slur_1 = spannertools.SlurSpanner(staff[:2])
+	>>> slur_2 = spannertools.SlurSpanner(staff[2:4])
+	>>> slur_3 = spannertools.SlurSpanner(staff[4:6])
 
 
 ::
 
-	abjad> f(staff)
+	>>> f(staff)
 	\new Staff {
 		c'4 (
 		d'4 )
@@ -381,7 +381,7 @@ The symbols below are black with fixed thickness and predetermined spacing:
 
 ::
 
-	abjad> show(staff)
+	>>> show(staff)
 
 .. image:: images/containers-12.png
 
@@ -389,12 +389,12 @@ But you can override LilyPond grobs to change the look of Abjad containers:
 
 ::
 
-	abjad> staff.override.staff_symbol.color = 'blue'
+	>>> staff.override.staff_symbol.color = 'blue'
 
 
 ::
 
-	abjad> f(staff)
+	>>> f(staff)
 	\new Staff \with {
 		\override StaffSymbol #'color = #blue
 	} {
@@ -410,7 +410,7 @@ But you can override LilyPond grobs to change the look of Abjad containers:
 
 ::
 
-	abjad> show(staff)
+	>>> show(staff)
 
 .. image:: images/containers-13.png
 
@@ -421,13 +421,13 @@ You can override LilyPond grobs to change the look of containers' contents, too:
 
 ::
 
-	abjad> staff.override.note_head.color = 'red'
-	abjad> staff.override.stem.color = 'red'
+	>>> staff.override.note_head.color = 'red'
+	>>> staff.override.stem.color = 'red'
 
 
 ::
 
-	abjad> f(staff)
+	>>> f(staff)
 	\new Staff \with {
 		\override NoteHead #'color = #red
 		\override StaffSymbol #'color = #blue
@@ -445,7 +445,7 @@ You can override LilyPond grobs to change the look of containers' contents, too:
 
 ::
 
-	abjad> show(staff)
+	>>> show(staff)
 
 .. image:: images/containers-14.png
 
@@ -456,12 +456,12 @@ Delete grob overrides you no longer want:
 
 ::
 
-	abjad> del(staff.override.staff_symbol)
+	>>> del(staff.override.staff_symbol)
 
 
 ::
 
-	abjad> f(staff)
+	>>> f(staff)
 	\new Staff \with {
 		\override NoteHead #'color = #red
 		\override Stem #'color = #red
@@ -478,6 +478,6 @@ Delete grob overrides you no longer want:
 
 ::
 
-	abjad> show(staff)
+	>>> show(staff)
 
 .. image:: images/containers-15.png

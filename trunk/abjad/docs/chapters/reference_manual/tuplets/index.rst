@@ -8,12 +8,12 @@ You can make an Abjad tuplet from a multiplier and a LilyPond input string:
 
 ::
 
-	abjad> tuplet = Tuplet(Fraction(2, 3), "c'8 d'8 e'8")
+	>>> tuplet = Tuplet(Fraction(2, 3), "c'8 d'8 e'8")
 
 
 ::
 
-	abjad> show(tuplet)
+	>>> show(tuplet)
 
 .. image:: images/tuplets-1.png
 
@@ -24,17 +24,17 @@ You can also make a tuplet from a multiplier and a list of other Abjad component
 
 ::
 
-	abjad> leaves = [Note("fs'8"), Note("g'8"), Rest('r8')]
+	>>> leaves = [Note("fs'8"), Note("g'8"), Rest('r8')]
 
 
 ::
 
-	abjad> tuplet = Tuplet(Fraction(2, 3), leaves)
+	>>> tuplet = Tuplet(Fraction(2, 3), leaves)
 
 
 ::
 
-	abjad> show(tuplet)
+	>>> show(tuplet)
 
 .. image:: images/tuplets-2.png
 
@@ -45,7 +45,7 @@ The interprer display of an Abjad tuplet contains three parts:
 
 ::
 
-	abjad> tuplet
+	>>> tuplet
 	Tuplet(2/3, [fs'8, g'8, r8])
 
 
@@ -62,7 +62,7 @@ The string representation of a tuplet contains four parts:
 
 ::
 
-	abjad> print tuplet
+	>>> print tuplet
 	{* 3:2 fs'8, g'8, r8 *}
 
 
@@ -82,7 +82,7 @@ Get the LilyPond input format of any Abjad object with ``format``:
 
 ::
 
-	abjad> tuplet.format
+	>>> tuplet.format
 	"\\times 2/3 {\n\tfs'8\n\tg'8\n\tr8\n}"
 
 
@@ -90,7 +90,7 @@ Use ``f()`` as a short-cut to print the LilyPond format of any Abjad object:
 
 ::
 
-	abjad> f(tuplet)
+	>>> f(tuplet)
 	\times 2/3 {
 		fs'8
 		g'8
@@ -105,7 +105,7 @@ Get the music in any Abjad container with ``music``:
 
 ::
 
-	abjad> tuplet.music
+	>>> tuplet.music
 	(Note("fs'8"), Note("g'8"), Rest('r8'))
 
 
@@ -118,7 +118,7 @@ Get the leaves in any Abjad container with ``leaves``:
 
 ::
 
-	abjad> tuplet.leaves
+	>>> tuplet.leaves
 	(Note("fs'8"), Note("g'8"), Rest('r8'))
 
 
@@ -131,7 +131,7 @@ Get the length of any Abjad container with ``len()``:
 
 ::
 
-	abjad> len(tuplet)
+	>>> len(tuplet)
 	3
 
 
@@ -145,7 +145,7 @@ You set the multiplier of a tuplet at initialization:
 
 ::
 
-	abjad> tuplet.multiplier
+	>>> tuplet.multiplier
 	Fraction(2, 3)
 
 
@@ -153,7 +153,7 @@ The contents durations of a tuplet equals the sum of written durations of the co
 
 ::
 
-	abjad> tuplet.contents_duration
+	>>> tuplet.contents_duration
 	Duration(3, 8)
 
 
@@ -162,7 +162,7 @@ and the tuplet's contents duration:
 
 ::
 
-	abjad> tuplet.multiplied_duration
+	>>> tuplet.multiplied_duration
 	Duration(1, 4)
 
 
@@ -173,13 +173,13 @@ A tuplet with a multiplier less than ``1`` constitutes a type of rhythmic diminu
 
 ::
 
-	abjad> tuplet.multiplier
+	>>> tuplet.multiplier
 	Fraction(2, 3)
 
 
 ::
 
-	abjad> tuplet.is_diminution
+	>>> tuplet.is_diminution
 	True
 
 
@@ -187,7 +187,7 @@ A tuplet with a multiplier greater than ``1`` is a type of rhythmic augmentation
 
 ::
 
-	abjad> tuplet.is_augmentation
+	>>> tuplet.is_augmentation
 	False
 
 
@@ -198,13 +198,13 @@ A tuplet is considered binary if the numerator of the tuplet multiplier is an in
 
 ::
 
-	abjad> tuplet.multiplier
+	>>> tuplet.multiplier
 	Fraction(2, 3)
 
 
 ::
 
-	abjad> tuplet.is_binary
+	>>> tuplet.is_binary
 	True
 
 
@@ -212,7 +212,7 @@ Other tuplets are nonbinary:
 
 ::
 
-	abjad> tuplet.is_nonbinary
+	>>> tuplet.is_nonbinary
 	False
 
 
@@ -223,12 +223,12 @@ Add one component to the end of a tuplet with ``append``:
 
 ::
 
-	abjad> tuplet.append(Note("e'4."))
+	>>> tuplet.append(Note("e'4."))
 
 
 ::
 
-	abjad> show(tuplet)
+	>>> show(tuplet)
 
 .. image:: images/tuplets-3.png
 
@@ -239,13 +239,13 @@ Add many components to the end of a tuplet with ``extend``:
 
 ::
 
-	abjad> notes = [Note("fs'8"), Note("e'8"), Note("d'8"), Note("c'4.")]
-	abjad> tuplet.extend(notes)
+	>>> notes = [Note("fs'8"), Note("e'8"), Note("d'8"), Note("c'4.")]
+	>>> tuplet.extend(notes)
 
 
 ::
 
-	abjad> show(tuplet)
+	>>> show(tuplet)
 
 .. image:: images/tuplets-4.png
 
@@ -256,13 +256,13 @@ Find the index of a component in a tuplet with ``index()``:
 
 ::
 
-	abjad> notes[1]
+	>>> notes[1]
 	Note("e'8")
 
 
 ::
 
-	abjad> tuplet.index(notes[1])
+	>>> tuplet.index(notes[1])
 	5
 
 
@@ -273,18 +273,18 @@ Use ``pop()`` to remove a tuplet component by index:
 
 ::
 
-	abjad> tuplet[7]
+	>>> tuplet[7]
 	Note("c'4.")
 
 
 ::
 
-	abjad> tuplet.pop(7)
+	>>> tuplet.pop(7)
 
 
 ::
 
-	abjad> show(tuplet)
+	>>> show(tuplet)
 
 .. image:: images/tuplets-5.png
 
@@ -295,12 +295,12 @@ Remove tuplet components by reference with ``remove()``:
 
 ::
 
-	abjad> tuplet.remove(tuplet[3])
+	>>> tuplet.remove(tuplet[3])
 
 
 ::
 
-	abjad> show(tuplet)
+	>>> show(tuplet)
 
 .. image:: images/tuplets-6.png
 
@@ -311,13 +311,13 @@ Override attributes of the LilyPond tuplet number grob like this:
 
 ::
 
-	abjad> tuplet.override.tuplet_number.text = schemetools.SchemeFunction('tuplet-number::calc-fraction-text')
-	abjad> tuplet.override.tuplet_number.color = 'red'
+	>>> tuplet.override.tuplet_number.text = schemetools.SchemeFunction('tuplet-number::calc-fraction-text')
+	>>> tuplet.override.tuplet_number.color = 'red'
 
 
 ::
 
-	abjad> f(tuplet)
+	>>> f(tuplet)
 	\override TupletNumber #'color = #red
 	\override TupletNumber #'text = #tuplet-number::calc-fraction-text
 	\times 2/3 {
@@ -334,7 +334,7 @@ Override attributes of the LilyPond tuplet number grob like this:
 
 ::
 
-	abjad> show(tuplet)
+	>>> show(tuplet)
 
 .. image:: images/tuplets-7.png
 
@@ -347,12 +347,12 @@ Override attributes of the LilyPond tuplet bracket grob like this:
 
 ::
 
-	abjad> tuplet.override.tuplet_bracket.color = 'red'
+	>>> tuplet.override.tuplet_bracket.color = 'red'
 
 
 ::
 
-	abjad> f(tuplet)
+	>>> f(tuplet)
 	\override TupletBracket #'color = #red
 	\override TupletNumber #'color = #red
 	\override TupletNumber #'text = #tuplet-number::calc-fraction-text
@@ -371,7 +371,7 @@ Override attributes of the LilyPond tuplet bracket grob like this:
 
 ::
 
-	abjad> show(tuplet)
+	>>> show(tuplet)
 
 .. image:: images/tuplets-8.png
 

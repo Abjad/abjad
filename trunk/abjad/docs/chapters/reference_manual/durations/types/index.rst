@@ -15,21 +15,21 @@ These sixteenth notes are worth a sixteenth of a whole note:
 
 ::
 
-	abjad> measure = Measure((5, 16), Note(0, (1, 16)) * 5)
-	abjad> beamtools.BeamSpanner(measure)
-	abjad> staff = stafftools.RhythmicStaff([measure])
+	>>> measure = Measure((5, 16), Note(0, (1, 16)) * 5)
+	>>> beamtools.BeamSpanner(measure)
+	>>> staff = stafftools.RhythmicStaff([measure])
 
 
 ::
 
-	abjad> show(staff, docs=True)
+	>>> show(staff, docs=True)
 
 .. image:: images/duration-types-1.png
 
 ::
 
-	abjad> note = measure[0]
-	abjad> note.written_duration
+	>>> note = measure[0]
+	>>> note.written_duration
 	Duration(1, 16)
 
 
@@ -37,22 +37,22 @@ These sixteenth notes are worth more than a sixteenth of a whole note:
 
 ::
 
-	abjad> tuplet = tuplettools.FixedDurationTuplet(Duration(5, 16), Note(0, (1, 16)) * 4)
-	abjad> beamtools.BeamSpanner(tuplet)
-	abjad> measure = Measure((5, 16), [tuplet])
-	abjad> staff = stafftools.RhythmicStaff([measure])
+	>>> tuplet = tuplettools.FixedDurationTuplet(Duration(5, 16), Note(0, (1, 16)) * 4)
+	>>> beamtools.BeamSpanner(tuplet)
+	>>> measure = Measure((5, 16), [tuplet])
+	>>> staff = stafftools.RhythmicStaff([measure])
 
 
 ::
 
-	abjad> show(staff, docs=True)
+	>>> show(staff, docs=True)
 
 .. image:: images/duration-types-2.png
 
 ::
 
-	abjad> note = tuplet[0]
-	abjad> note.written_duration
+	>>> note = tuplet[0]
+	>>> note.written_duration
 	Duration(1, 16)
 
 
@@ -95,23 +95,23 @@ These elements carry preprolated durations equal to 1/8, 1/8 and 2/8, respective
 
 ::
 
-	abjad> notes = Note(0, (1, 8)) * 2
-	abjad> beamtools.BeamSpanner(notes)
-	abjad> tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3)
-	abjad> beamtools.BeamSpanner(tuplet)
-	abjad> measure = Measure((4, 8), notes + [tuplet])
-	abjad> staff = stafftools.RhythmicStaff([measure])
+	>>> notes = Note(0, (1, 8)) * 2
+	>>> beamtools.BeamSpanner(notes)
+	>>> tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3)
+	>>> beamtools.BeamSpanner(tuplet)
+	>>> measure = Measure((4, 8), notes + [tuplet])
+	>>> staff = stafftools.RhythmicStaff([measure])
 
 
 ::
 
-	abjad> show(staff, docs=True)
+	>>> show(staff, docs=True)
 
 .. image:: images/duration-types-3.png
 
 ::
 
-	abjad> measure.contents_duration
+	>>> measure.contents_duration
 	Duration(1, 2)
 
 
@@ -128,23 +128,23 @@ This fixed-duration tuplet carries a target duration equal to 4/8:
 
 ::
 
-	abjad> tuplet = tuplettools.FixedDurationTuplet(Duration(4, 8), Note(0, (1, 8)) * 5)
-	abjad> beamtools.BeamSpanner(tuplet)
-	abjad> measure = Measure((4, 8), [tuplet])
-	abjad> staff = stafftools.RhythmicStaff([measure])
+	>>> tuplet = tuplettools.FixedDurationTuplet(Duration(4, 8), Note(0, (1, 8)) * 5)
+	>>> beamtools.BeamSpanner(tuplet)
+	>>> measure = Measure((4, 8), [tuplet])
+	>>> staff = stafftools.RhythmicStaff([measure])
 
 
 ::
 
-	abjad> show(staff, docs=True)
+	>>> show(staff, docs=True)
 
 .. image:: images/duration-types-4.png
 
 ::
 
-	abjad> print tuplet.contents_duration
+	>>> print tuplet.contents_duration
 	5/8
-	abjad> tuplet.target_duration
+	>>> tuplet.target_duration
 	Duration(1, 2)
 
 
@@ -161,38 +161,38 @@ The first two notes below carry leaf mulitipliers equal to 2/1:
 
 ::
 
-	abjad> notes = Note(0, (1, 16)) * 4
-	abjad> notes[0].duration_multiplier = Fraction(2, 1)
-	abjad> notes[1].duration_multiplier = Fraction(2, 1)
-	abjad> measure = Measure((3, 8), notes)
-	abjad> beamtools.BeamSpanner(measure)
-	abjad> staff = stafftools.RhythmicStaff([measure])
+	>>> notes = Note(0, (1, 16)) * 4
+	>>> notes[0].duration_multiplier = Fraction(2, 1)
+	>>> notes[1].duration_multiplier = Fraction(2, 1)
+	>>> measure = Measure((3, 8), notes)
+	>>> beamtools.BeamSpanner(measure)
+	>>> staff = stafftools.RhythmicStaff([measure])
 
 
 ::
 
-	abjad> show(staff, docs=True)
+	>>> show(staff, docs=True)
 
 .. image:: images/duration-types-5.png
 
 ::
 
-	abjad> note = measure[0]
-	abjad> note.written_duration
+	>>> note = measure[0]
+	>>> note.written_duration
 	Duration(1, 16)
 
 
 ::
 
-	abjad> note.duration_multiplier
+	>>> note.duration_multiplier
 	Fraction(2, 1)
 
 
 ::
 
-	abjad> note.written_duration * note.duration_multiplier
+	>>> note.written_duration * note.duration_multiplier
 	Duration(1, 8)
-	abjad> note.multiplied_duration
+	>>> note.multiplied_duration
 	Duration(1, 8)
 
 

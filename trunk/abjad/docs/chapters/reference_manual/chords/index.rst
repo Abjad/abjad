@@ -8,12 +8,12 @@ You can make chords from a LilyPond input string:
 
 ::
 
-	abjad> chord = Chord("<c' d' bf'>4")
+	>>> chord = Chord("<c' d' bf'>4")
 
 
 ::
 
-	abjad> show(chord, docs=True)
+	>>> show(chord, docs=True)
 
 .. image:: images/chords-1.png
 
@@ -24,12 +24,12 @@ You can also make chords from chromatic pitch numbers and duration:
 
 ::
 
-	abjad> chord = Chord([0, 2, 10], Duration(1, 4))
+	>>> chord = Chord([0, 2, 10], Duration(1, 4))
 
 
 ::
 
-	abjad> show(chord, docs=True)
+	>>> show(chord, docs=True)
 
 .. image:: images/chords-2.png
 
@@ -40,7 +40,7 @@ You can get all the written pitches of a chord at one time:
 
 ::
 
-	abjad> chord.written_pitches
+	>>> chord.written_pitches
 	(NamedChromaticPitch("c'"), NamedChromaticPitch("d'"), NamedChromaticPitch("bf'"))
 
 
@@ -53,7 +53,7 @@ You can get the written pitches of a chord one at a time:
 
 ::
 
-	abjad> chord.written_pitches[0]
+	>>> chord.written_pitches[0]
 	NamedChromaticPitch("c'")
 
 
@@ -68,12 +68,12 @@ You can add a pitch to a chord with a chromatic pitch number:
 
 ::
 
-	abjad> chord.append(9)
+	>>> chord.append(9)
 
 
 ::
 
-	abjad> show(chord, docs=True)
+	>>> show(chord, docs=True)
 
 .. image:: images/chords-3.png
 
@@ -81,12 +81,12 @@ Or you can add a pitch to a chord with a chromatic pitch name:
 
 ::
 
-	abjad> chord.append("df''")
+	>>> chord.append("df''")
 
 
 ::
 
-	abjad> show(chord, docs=True)
+	>>> show(chord, docs=True)
 
 .. image:: images/chords-4.png
 
@@ -103,12 +103,12 @@ You can use chromatic pitch numbers:
 
 ::
 
-	abjad> chord.extend([3, 4, 14])
+	>>> chord.extend([3, 4, 14])
 
 
 ::
 
-	abjad> show(chord, docs=True)
+	>>> show(chord, docs=True)
 
 .. image:: images/chords-5.png
 
@@ -116,12 +116,12 @@ Or you can chromatic pitch names:
 
 ::
 
-	abjad> chord.extend(["g''", "af''"])
+	>>> chord.extend(["g''", "af''"])
 
 
 ::
 
-	abjad> show(chord, docs=True)
+	>>> show(chord, docs=True)
 
 .. image:: images/chords-6.png
 
@@ -132,23 +132,23 @@ Delete pitches from a chord with ``del()``:
 
 ::
 
-	abjad> del(chord[0])
+	>>> del(chord[0])
 
 
 ::
 
-	abjad> show(chord, docs=True)
+	>>> show(chord, docs=True)
 
 .. image:: images/chords-7.png
 
 ::
 
-	abjad> del(chord[0])
+	>>> del(chord[0])
 
 
 ::
 
-	abjad> show(chord, docs=True)
+	>>> show(chord, docs=True)
 
 .. image:: images/chords-8.png
 
@@ -156,12 +156,12 @@ Negative indices work too:
 
 ::
 
-	abjad> del(chord[-1])
+	>>> del(chord[-1])
 
 
 ::
 
-	abjad> show(chord, docs=True)
+	>>> show(chord, docs=True)
 
 .. image:: images/chords-8.png
 
@@ -172,7 +172,7 @@ Get the LilyPond input format of any Abjad object with ``format``:
 
 ::
 
-	abjad> chord.format
+	>>> chord.format
 	<ef' e' a' bf' df'' d'' g''>4
 
 
@@ -180,7 +180,7 @@ Use ``f()`` as a short-cut to print the LilyPond input format of any Abjad objec
 
 ::
 
-	abjad> f(chord)
+	>>> f(chord)
 	<ef' e' a' bf' df'' d'' g''>4
 
 
@@ -192,7 +192,7 @@ But you can get the note heads of a chord, too:
 
 ::
 
-	abjad> chord.note_heads
+	>>> chord.note_heads
 	(NoteHead("ef'"), NoteHead("e'"), NoteHead("a'"), NoteHead("bf'"), NoteHead("df''"), NoteHead("d''"), NoteHead("g''"))
 
 
@@ -200,14 +200,14 @@ This is useful when you want to apply LilyPond overrides to note heads in a chor
 
 ::
 
-	abjad> chord[2].tweak.color = 'red'
-	abjad> chord[3].tweak.color = 'blue'
-	abjad> chord[4].tweak.color = 'green'
+	>>> chord[2].tweak.color = 'red'
+	>>> chord[3].tweak.color = 'blue'
+	>>> chord[4].tweak.color = 'green'
 
 
 ::
 
-	abjad> f(chord)
+	>>> f(chord)
 	<
 		ef'
 		e'
@@ -224,7 +224,7 @@ This is useful when you want to apply LilyPond overrides to note heads in a chor
 
 ::
 
-	abjad> show(chord, docs=True)
+	>>> show(chord, docs=True)
 
 .. image:: images/chords-9.png
 
@@ -236,7 +236,7 @@ Abjad allows empty chords:
 
 ::
 
-	abjad> chord = Chord([], Duration(1, 4))
+	>>> chord = Chord([], Duration(1, 4))
 	Chord('<>4')
 
 
@@ -244,7 +244,7 @@ Abjad formats empty chords, too:
 
 ::
 
-	abjad> f(chord)
+	>>> f(chord)
 	<>4
 
 
@@ -256,11 +256,11 @@ into it chord in any of the ways described above:
 
 ::
 
-	abjad> chord.extend(["gf'", "df''", "g''"])
+	>>> chord.extend(["gf'", "df''", "g''"])
 
 
 ::
 
-	abjad> show(chord, docs=True)
+	>>> show(chord, docs=True)
 
 .. image:: images/chords-10.png

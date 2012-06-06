@@ -123,8 +123,8 @@ file ``abjad-book`` has created. ::
    format string.
 
    \begin{lstlisting}[basicstyle=\footnotesize, tabsize=4, showtabs=false, showspaces=false]
-      abjad> measure = Measure((5, 8), "c'8 d'8 e'8 f'8 g'8")
-      abjad> f(measure)
+      >>> measure = Measure((5, 8), "c'8 d'8 e'8 f'8 g'8")
+      >>> f(measure)
       {
          \time 5/8
          c'8

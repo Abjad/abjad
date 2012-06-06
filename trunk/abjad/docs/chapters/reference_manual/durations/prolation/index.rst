@@ -15,33 +15,33 @@ Tuplets prolate their contents:
 
 ::
 
-	abjad> tuplet = Tuplet(Fraction(5, 4), 4 * Note("c'8"))
-	abjad> staff = stafftools.RhythmicStaff([Measure((5, 8), [tuplet])])
-	abjad> beamtools.BeamSpanner(tuplet)
+	>>> tuplet = Tuplet(Fraction(5, 4), 4 * Note("c'8"))
+	>>> staff = stafftools.RhythmicStaff([Measure((5, 8), [tuplet])])
+	>>> beamtools.BeamSpanner(tuplet)
 
 
 ::
 
-	abjad> show(staff, docs=True)
+	>>> show(staff, docs=True)
 
 .. image:: images/prolation-1.png
 
 ::
 
-	abjad> note = tuplet[0]
-	abjad> note.written_duration
+	>>> note = tuplet[0]
+	>>> note.written_duration
 	Duration(1, 8)
 
 
 ::
 
-	abjad> note.prolation
+	>>> note.prolation
 	Fraction(5, 4)
 
 
 ::
 
-	abjad> note.prolated_duration
+	>>> note.prolated_duration
 	Duration(5, 32)
 
 
@@ -60,39 +60,39 @@ Such **nonbinary meters** rhythmically diminish the contents of the measures the
 
 ::
 
-	abjad> measure = Measure((4, 10), Note(0, (1, 8)) * 4)
-	abjad> beamtools.BeamSpanner(measure)
-	abjad> staff = stafftools.RhythmicStaff([measure])
+	>>> measure = Measure((4, 10), Note(0, (1, 8)) * 4)
+	>>> beamtools.BeamSpanner(measure)
+	>>> staff = stafftools.RhythmicStaff([measure])
 
 
 ::
 
-	abjad> show(staff, docs=True)
+	>>> show(staff, docs=True)
 
 .. image:: images/prolation-2.png
 
 ::
 
-	abjad> note = staff.leaves[0]
-	abjad> note.prolation
+	>>> note = staff.leaves[0]
+	>>> note.prolation
 	Fraction(4, 5)
 
 
 ::
 
-	abjad> note.prolated_duration
+	>>> note.prolated_duration
 	Duration(1, 8)
 
 
 ::
 
-	abjad> note.prolation
+	>>> note.prolation
 	Fraction(4, 5)
 
 
 ::
 
-	abjad> note.prolated_duration
+	>>> note.prolated_duration
 	Duration(1, 10)
 
 
@@ -111,34 +111,34 @@ All durated components carry a prolation chain:
 
 ::
 
-	abjad> tuplet = tuplettools.FixedDurationTuplet(Duration(4, 8), Note(0, (1, 16)) * 7)
-	abjad> beamtools.BeamSpanner(tuplet)
-	abjad> measure = Measure((4, 10), [tuplet])
-	abjad> staff = stafftools.RhythmicStaff([measure])
+	>>> tuplet = tuplettools.FixedDurationTuplet(Duration(4, 8), Note(0, (1, 16)) * 7)
+	>>> beamtools.BeamSpanner(tuplet)
+	>>> measure = Measure((4, 10), [tuplet])
+	>>> staff = stafftools.RhythmicStaff([measure])
 
 
 ::
 
-	abjad> show(staff, docs=True)
+	>>> show(staff, docs=True)
 
 .. image:: images/prolation-3.png
 
 ::
 
-	abjad> measure.multiplier
+	>>> measure.multiplier
 	Fraction(4, 5)
 
 
 ::
 
-	abjad> note = measure.leaves[0]
-	abjad> note.prolation
+	>>> note = measure.leaves[0]
+	>>> note.prolation
 	Fraction(32, 35)
 
 
 ::
 
-	abjad> note.prolated_duration
+	>>> note.prolated_duration
 	Duration(2, 35)
 
 

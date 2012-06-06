@@ -8,12 +8,12 @@ You can make an Abjad voice from a LilyPond input string:
 
 ::
 
-	abjad> voice = Voice("c'8 d'8 e'8 f'8 g'8 a'8 b'4 c''1")
+	>>> voice = Voice("c'8 d'8 e'8 f'8 g'8 a'8 b'4 c''1")
 
 
 ::
 
-	abjad> show(voice)
+	>>> show(voice)
 
 .. image:: images/voices-1.png
 
@@ -24,17 +24,17 @@ You can also make a voice from a list of other Abjad components:
 
 ::
 
-	abjad> components = [Tuplet(Fraction(2, 3), "c'4 d'4 e'4"), Note("f'2"), Note("g'1")]
+	>>> components = [Tuplet(Fraction(2, 3), "c'4 d'4 e'4"), Note("f'2"), Note("g'1")]
 
 
 ::
 
-	abjad> voice = Voice(components)
+	>>> voice = Voice(components)
 
 
 ::
 
-	abjad> show(voice)
+	>>> show(voice)
 
 .. image:: images/voices-2.png
 
@@ -45,7 +45,7 @@ The ``repr`` of an Abjad voice contains three parts:
 
 ::
 
-	abjad> voice
+	>>> voice
 	Voice{3}
 
 
@@ -64,7 +64,7 @@ Get the LilyPond input format of any Abjad object with ``format``:
 
 ::
 
-	abjad> voice.format
+	>>> voice.format
 	"\\new Voice {\n\t\\times 2/3 {\n\t\tc'4\n\t\td'4\n\t\te'4\n\t}\n\tf'2\n\tg'1\n}"
 
 
@@ -72,7 +72,7 @@ Use ``f()`` as a short-cut to print the LilyPond format of any Abjad object:
 
 ::
 
-	abjad> f(voice)
+	>>> f(voice)
 	\new Voice {
 		\times 2/3 {
 			c'4
@@ -91,7 +91,7 @@ Get voice components with ``music``:
 
 ::
 
-	abjad> voice.music
+	>>> voice.music
 	(Tuplet(2/3, [c'4, d'4, e'4]), Note("f'2"), Note("g'1"))
 
 
@@ -104,7 +104,7 @@ Get the leaves in a voice with ``leaves``:
 
 ::
 
-	abjad> voice.leaves
+	>>> voice.leaves
 	(Note("c'4"), Note("d'4"), Note("e'4"), Note("f'2"), Note("g'1"))
 
 
@@ -117,7 +117,7 @@ Get voice length with ``len()``:
 
 ::
 
-	abjad> len(voice)
+	>>> len(voice)
 	3
 
 
@@ -131,7 +131,7 @@ The contents durations of a voice equals the sum of durations of the components 
 
 ::
 
-	abjad> voice.contents_duration
+	>>> voice.contents_duration
 	Duration(2, 1)
 
 
@@ -139,7 +139,7 @@ The preprolated duration of a voice is usually equal to the voice's contents dur
 
 ::
 
-	abjad> voice.preprolated_duration
+	>>> voice.preprolated_duration
 	Duration(2, 1)
 
 
@@ -147,7 +147,7 @@ The prolated duration of a voice is usually equal to the voice's contents durati
 
 ::
 
-	abjad> voice.preprolated_duration
+	>>> voice.preprolated_duration
 	Duration(2, 1)
 
 
@@ -158,7 +158,7 @@ Voices that are not nested inside a tuplet carry a prolation of ``1``:
 
 ::
 
-	abjad> voice.prolation
+	>>> voice.prolation
 	Fraction(1, 1)
 
 
@@ -171,12 +171,12 @@ Add one component to the end of a voice with ``append``:
 
 ::
 
-	abjad> voice.append(Note("af'2"))
+	>>> voice.append(Note("af'2"))
 
 
 ::
 
-	abjad> show(voice)
+	>>> show(voice)
 
 .. image:: images/voices-3.png
 
@@ -187,13 +187,13 @@ Add many components to the end of a voice with ``extend``:
 
 ::
 
-	abjad> notes = [Note("g'4"), Note("f'4")]
-	abjad> voice.extend(notes)
+	>>> notes = [Note("g'4"), Note("f'4")]
+	>>> voice.extend(notes)
 
 
 ::
 
-	abjad> show(voice)
+	>>> show(voice)
 
 .. image:: images/voices-4.png
 
@@ -204,13 +204,13 @@ Find the index of a component in a voice with ``index()``:
 
 ::
 
-	abjad> notes[0]
+	>>> notes[0]
 	Note("g'4")
 
 
 ::
 
-	abjad> voice.index(notes[0])
+	>>> voice.index(notes[0])
 	4
 
 
@@ -221,18 +221,18 @@ Use ``pop()`` to remove a voice component by index:
 
 ::
 
-	abjad> voice[5]
+	>>> voice[5]
 	Note("f'4")
 
 
 ::
 
-	abjad> voice.pop(5)
+	>>> voice.pop(5)
 
 
 ::
 
-	abjad> show(voice)
+	>>> show(voice)
 
 .. image:: images/voices-5.png
 
@@ -243,12 +243,12 @@ Remove voice components by reference with ``remove()``:
 
 ::
 
-	abjad> voice.remove(voice[-1])
+	>>> voice.remove(voice[-1])
 
 
 ::
 
-	abjad> show(voice)
+	>>> show(voice)
 
 .. image:: images/voices-6.png
 
@@ -259,14 +259,14 @@ You can name Abjad voices:
 
 ::
 
-	abjad> voice.name = 'Upper Voice'
+	>>> voice.name = 'Upper Voice'
 
 
 Voice names appear in LilyPond input:
 
 ::
 
-	abjad> f(voice)
+	>>> f(voice)
 	\context Voice = "Upper Voice" {
 		\times 2/3 {
 			c'4
@@ -283,7 +283,7 @@ But not in notational output:
 
 ::
 
-	abjad> show(voice)
+	>>> show(voice)
 
 .. image:: images/voices-7.png
 
@@ -294,7 +294,7 @@ The context of a voice is set to ``'Voice'`` by default:
 
 ::
 
-	abjad> voice.context
+	>>> voice.context
 	'Voice'
 
 
@@ -302,18 +302,18 @@ But you can change the context of a voice if you want:
 
 ::
 
-	abjad> voice.context = 'SpeciallyDefinedVoice'
+	>>> voice.context = 'SpeciallyDefinedVoice'
 
 
 ::
 
-	abjad> voice.context
+	>>> voice.context
 	'SpeciallyDefinedVoice'
 
 
 ::
 
-	abjad> f(voice)
+	>>> f(voice)
 	\context SpeciallyDefinedVoice = "Upper Voice" {
 		\times 2/3 {
 			c'4

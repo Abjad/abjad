@@ -17,7 +17,7 @@ Use ``marktools`` to create articulations:
 
 ::
 
-	abjad> articulation
+	>>> articulation
 	Articulation('turn')
 
 
@@ -29,26 +29,26 @@ Use ``attach()`` to attach articulations to a leaf:
 
 ::
 
-	abjad> staff = Staff([])
-	abjad> key_signature = contexttools.KeySignatureMark('g', 'major')
-	abjad> key_signature.attach(staff)
+	>>> staff = Staff([])
+	>>> key_signature = contexttools.KeySignatureMark('g', 'major')
+	>>> key_signature.attach(staff)
 	time_signature = contexttools.TimeSignatureMark((2, 4), partial = Duration(1, 8))
-	abjad> time_signature.attach(staff)
+	>>> time_signature.attach(staff)
 
 
 ::
 
-	abjad> staff.extend("d'8 f'8 a'8 d''8 f''8 gs'4 r8 e'8 gs'8 b'8 e''8 gs''8 a'4")
+	>>> staff.extend("d'8 f'8 a'8 d''8 f''8 gs'4 r8 e'8 gs'8 b'8 e''8 gs''8 a'4")
 
 
 ::
 
-	abjad> articulation.attach(staff[5])
+	>>> articulation.attach(staff[5])
 
 
 ::
 
-	abjad> show(staff)
+	>>> show(staff)
 
 .. image:: images/articulations-1.png
 
@@ -62,12 +62,12 @@ Use ``marktools`` to attach articulations to many notes and chords at one time:
 
 ::
 
-	abjad> marktools.attach_articulations_to_notes_and_chords_in_expr(staff[:6], ['.'])
+	>>> marktools.attach_articulations_to_notes_and_chords_in_expr(staff[:6], ['.'])
 
 
 ::
 
-	abjad> show(staff)
+	>>> show(staff)
 
 .. image:: images/articulations-2.png
 
@@ -79,7 +79,7 @@ Use ``marktools`` to get the articulations attached to a leaf:
 
 ::
 
-	abjad> marktools.get_articulations_attached_to_component(staff[5])
+	>>> marktools.get_articulations_attached_to_component(staff[5])
 	(Articulation('turn')(gs'4), Articulation('.')(gs'4))
 
 
@@ -91,18 +91,18 @@ Detach articulations by hand with ``detach()``:
 
 ::
 
-	abjad> articulation.detach()
+	>>> articulation.detach()
 
 
 ::
 
-	abjad> articulation
+	>>> articulation
 	-\turn
 
 
 ::
 
-	abjad> show(staff)
+	>>> show(staff)
 
 .. image:: images/articulations-3.png
 
@@ -114,18 +114,18 @@ Use ``marktools`` to detach all articulations attached to a leaf at once:
 
 ::
 
-	abjad> staff[0]
+	>>> staff[0]
 	Note("d'8")
 
 
 ::
 
-	abjad> marktools.detach_articulations_attached_to_component(staff[0])
+	>>> marktools.detach_articulations_attached_to_component(staff[0])
 
 
 ::
 
-	abjad> show(staff)
+	>>> show(staff)
 
 .. image:: images/articulations-4.png
 
@@ -137,19 +137,19 @@ Use ``start_component`` to inspect the component to which an articulation is att
 
 ::
 
-	abjad> articulation = marktools.Articulation('turn')
-	abjad> articulation.attach(staff[-1])
+	>>> articulation = marktools.Articulation('turn')
+	>>> articulation.attach(staff[-1])
 
 
 ::
 
-	abjad> show(staff)
+	>>> show(staff)
 
 .. image:: images/articulations-5.png
 
 ::
 
-	abjad> articulation.start_component
+	>>> articulation.start_component
 	Note("a'4")
 
 
@@ -162,13 +162,13 @@ contains three parts:
 
 ::
 
-	abjad> articulation = marktools.Articulation('staccato')
+	>>> articulation = marktools.Articulation('staccato')
 
 
 ::
 
-	abjad> articulation
-	abjad> print repr(articulation)
+	>>> articulation
+	>>> print repr(articulation)
 	Articulation('staccato')
 
 
@@ -180,13 +180,13 @@ If you set the direction string of the articulation then that will appear, too:
 
 ::
 
-	abjad> articulation.direction_string = '^'
+	>>> articulation.direction_string = '^'
 
 
 ::
 
-	abjad> articulation
-	abjad> print repr(articulation)
+	>>> articulation
+	>>> print repr(articulation)
 	Articulation('staccato', '^')
 
 
@@ -199,19 +199,19 @@ contains four parts:
 
 ::
 
-	abjad> articulation.attach(staff[-1])
+	>>> articulation.attach(staff[-1])
 
 
 ::
 
-	abjad> articulation
-	abjad> print repr(articulation)
+	>>> articulation
+	>>> print repr(articulation)
 	Articulation('staccato', '^')(a'4)
 
 
 ::
 
-	abjad> show(staff)
+	>>> show(staff)
 
 .. image:: images/articulations-6.png
 
@@ -228,12 +228,12 @@ will no longer appear:
 
 ::
 
-	abjad> articulation.direction_string = None
+	>>> articulation.direction_string = None
 
 
 ::
 
-	abjad> articulation
+	>>> articulation
 	Articulation('staccato')(a'4)
 
 
@@ -245,7 +245,7 @@ The string representation of an articulation comprises two parts:
 
 ::
 
-	abjad> str(articulation)
+	>>> str(articulation)
 	'-\\staccato'
 
 
@@ -261,7 +261,7 @@ Get the LilyPond input format of an articulation with ``format``:
 
 ::
 
-	abjad> articulation.format
+	>>> articulation.format
 	'-\\staccato'
 
 
@@ -269,7 +269,7 @@ Use ``f()`` as a short-cut to print the LilyPond format of an articulation:
 
 ::
 
-	abjad> f(articulation)
+	>>> f(articulation)
 	-\staccato
 
 
@@ -282,12 +282,12 @@ above the staff:
 
 ::
 
-	abjad> articulation.direction_string = '^'
+	>>> articulation.direction_string = '^'
 
 
 ::
 
-	abjad> show(staff)
+	>>> show(staff)
 
 .. image:: images/articulations-7.png
 
@@ -296,12 +296,12 @@ above the staff:
 
 ::
 
-	abjad> articulation.direction_string = '_'
+	>>> articulation.direction_string = '_'
 
 
 ::
 
-	abjad> show(staff)
+	>>> show(staff)
 
 .. image:: images/articulations-8.png
 
@@ -310,12 +310,12 @@ an articulation automatically:
 
 ::
 
-	abjad> articulation.direction_string = None
+	>>> articulation.direction_string = None
 
 
 ::
 
-	abjad> show(staff)
+	>>> show(staff)
 
 .. image:: images/articulations-9.png
 
@@ -327,12 +327,12 @@ Set the ``name`` of an articulation to change the symbol an articulation prints:
 
 ::
 
-	abjad> articulation.name = 'staccatissimo'
+	>>> articulation.name = 'staccatissimo'
 
 
 ::
 
-	abjad> show(staff)
+	>>> show(staff)
 
 .. image:: images/articulations-10.png
 
@@ -344,28 +344,28 @@ Use ``copy.copy()`` to copy an articulation:
 
 ::
 
-	abjad> import copy
+	>>> import copy
 
 
 ::
 
-	abjad> articulation_copy_1 = copy.copy(articulation)
+	>>> articulation_copy_1 = copy.copy(articulation)
 
 
 ::
 
-	abjad> articulation_copy_1
+	>>> articulation_copy_1
 	Articulation('staccatissimo')
 
 
 ::
 
-	abjad> articulation_copy_1.attach(staff[1])
+	>>> articulation_copy_1.attach(staff[1])
 
 
 ::
 
-	abjad> show(staff)
+	>>> show(staff)
 
 .. image:: images/articulations-11.png
 
@@ -379,23 +379,23 @@ Articulations compare equal with equal direction names and direction strings:
 
 ::
 
-	abjad> articulation.name
+	>>> articulation.name
 	'staccatissimo'
-	abjad> articulation.direction_string
+	>>> articulation.direction_string
 	None
 
 
 ::
 
-	abjad> articulation_copy_1.name
+	>>> articulation_copy_1.name
 	'staccatissimo'
-	abjad> articulation_copy_1.direction_string
+	>>> articulation_copy_1.direction_string
 	None
 
 
 ::
 
-	abjad> articulation == articulation_copy_1
+	>>> articulation == articulation_copy_1
 	True
 
 
@@ -409,12 +409,12 @@ Override attributes of the LilyPond script grob like this:
 
 ::
 
-	abjad> staff.override.script.color = 'red'
+	>>> staff.override.script.color = 'red'
 
 
 ::
 
-	abjad> f(staff)
+	>>> f(staff)
 	\new Staff \with {
 		\override Script #'color = #red
 	} {
@@ -439,7 +439,7 @@ Override attributes of the LilyPond script grob like this:
 
 ::
 
-	abjad> show(staff)
+	>>> show(staff)
 
 .. image:: images/articulations-12.png
 

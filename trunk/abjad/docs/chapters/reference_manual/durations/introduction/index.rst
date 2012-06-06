@@ -8,20 +8,20 @@ Notes, rests, chords and skips carry some duration attributes:
 
 ::
 
-	abjad> note = Note(0, (3, 16))
-	abjad> measure = Measure((3, 16), [note])
-	abjad> staff = stafftools.RhythmicStaff([measure])
+	>>> note = Note(0, (3, 16))
+	>>> measure = Measure((3, 16), [note])
+	>>> staff = stafftools.RhythmicStaff([measure])
 
 
 ::
 
-	abjad> show(staff, docs=True)
+	>>> show(staff, docs=True)
 
 .. image:: images/duration-introduction-1.png
 
 ::
 
-	abjad> note.written_duration
+	>>> note.written_duration
 	Duration(3, 16)
 
 
@@ -29,20 +29,20 @@ Tuplets, measures, voices, staves and the other containers carry duration attrib
 
 ::
 
-	abjad> tuplet = tuplettools.FixedDurationTuplet(Duration(3, 16), Note(0, (1, 16)) * 5)
-	abjad> measure = Measure((3, 16), [tuplet])
-	abjad> staff = stafftools.RhythmicStaff([measure])
+	>>> tuplet = tuplettools.FixedDurationTuplet(Duration(3, 16), Note(0, (1, 16)) * 5)
+	>>> measure = Measure((3, 16), [tuplet])
+	>>> staff = stafftools.RhythmicStaff([measure])
 
 
 ::
 
-	abjad> show(staff, docs=True)
+	>>> show(staff, docs=True)
 
 .. image:: images/duration-introduction-2.png
 
 ::
 
-	abjad> tuplet.multiplier
+	>>> tuplet.multiplier
 	Fraction(3, 5)
 
 

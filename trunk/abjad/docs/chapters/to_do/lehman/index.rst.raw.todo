@@ -10,7 +10,7 @@ Durations
 
 Let us first define a set of durations from prime numbers:
 
-<abjad> 
+<abjad>
 durations = [5, 7, 2, 11, 13, 5, 13, 3]
 durations = zip(durations, [16] * len(durations))
 </abjad>
@@ -25,13 +25,13 @@ Notes
 
 Let us then create a list of notes from these durations:
 
-<abjad> 
+<abjad>
 notes = notetools.make_notes(0, durations)
 </abjad>
 
 And then put these notes inside a rhythmic sketch staff:
 
-<abjad> 
+<abjad>
 staff = stafftools.make_rhythmic_sketch_staff(notes)
 </abjad>
 
@@ -72,7 +72,7 @@ Because tied note may be created by the partitioning function,
 we then fuse all tied notes within each of the metric units
 to guarantee that our durations are represented in the most compact form:
 
-<abjad> 
+<abjad>
 meters = [(1, 4)] * 4 + [(2, 4)] + [(1, 4)] * 6 + [(2, 4)] + [(3, 16)]
 meters = [Fraction(*x) for x in meters]
 tmp = componenttools.split_components_once_by_prolated_durations_and_do_not_fracture_crossing_spanners

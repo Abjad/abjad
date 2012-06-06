@@ -11,14 +11,14 @@ Threads may be explicitly defined via voice instances:
 
 ::
 
-	abjad> v = Voice()
+	>>> v = Voice()
 
 
 Or they may exist implicitly in certain score constructs in the absence of voice containers:
 
 ::
 
-	abjad> staff = Staff("c'8 d'8 e'8 f'8")
+	>>> staff = Staff("c'8 d'8 e'8 f'8")
 
 
 Two contiguous voices must have the same name in order to be part of the same thread.
@@ -27,10 +27,10 @@ Here a thread does **not** exist between notes in different voices:
 
 ::
 
-	abjad> v_one = Voice("c'16 d'16 e'16 f'16")
-	abjad> v_two = Voice("c'8 d'8")
-	abjad> staff = Staff([v_one, v_two])
-	abjad> f(staff)
+	>>> v_one = Voice("c'16 d'16 e'16 f'16")
+	>>> v_two = Voice("c'8 d'8")
+	>>> staff = Staff([v_one, v_two])
+	>>> f(staff)
 	\new Staff {
 		\new Voice {
 			c'16
@@ -49,9 +49,9 @@ Here a thread does exist:
 
 ::
 
-	abjad> v_one.name = 'flute'
-	abjad> v_two.name = 'flute'
-	abjad> f(staff)
+	>>> v_one.name = 'flute'
+	>>> v_two.name = 'flute'
+	>>> f(staff)
 	\new Staff {
 		\context Voice = "flute" {
 			c'16
@@ -88,20 +88,20 @@ The musical fragment above is constructed with the following code:
 
 ::
 
-	abjad> vA = Voice(notetools.make_notes([5, 7, 9, 11], [(1, 8)] * 4))
-	abjad> vB = Voice(notetools.make_notes([12, 11, 9], [(1, 8), (1, 8), (1, 4)]))
-	abjad> vC = Voice(Note(12, (1, 4)) * 2)
-	abjad> marktools.LilyPondCommandMark('voiceOne')(vA[0])
-	abjad> marktools.LilyPondCommandMark('voiceOne')(vB[0])
-	abjad> marktools.LilyPondCommandMark('voiceTwo')(vC[0])
-	abjad> p = Container([vB, vC])
-	abjad> p.is_parallel = True
-	abjad> staff = Staff([vA, p])
+	>>> vA = Voice(notetools.make_notes([5, 7, 9, 11], [(1, 8)] * 4))
+	>>> vB = Voice(notetools.make_notes([12, 11, 9], [(1, 8), (1, 8), (1, 4)]))
+	>>> vC = Voice(Note(12, (1, 4)) * 2)
+	>>> marktools.LilyPondCommandMark('voiceOne')(vA[0])
+	>>> marktools.LilyPondCommandMark('voiceOne')(vB[0])
+	>>> marktools.LilyPondCommandMark('voiceTwo')(vC[0])
+	>>> p = Container([vB, vC])
+	>>> p.is_parallel = True
+	>>> staff = Staff([vA, p])
 
 
 ::
 
-	abjad> show(staff, docs=True)
+	>>> show(staff, docs=True)
 
 .. image:: images/thread-resolution-1.png
 
@@ -121,13 +121,13 @@ To attach the slur spanner to the voices we could try either:
 
 ::
 
-    abjad> spannertools.SlurSpanner([vA, vB])
+    >>> spannertools.SlurSpanner([vA, vB])
 
 or
 
 ::
 
-    abjad> spannertools.SlurSpanner([vA, vC])
+    >>> spannertools.SlurSpanner([vA, vC])
 
 But both raise a contiguity error.
 Abjad needs to see an explicit connection between either `vA` and `vB` or between `vA` and `vC`.
@@ -138,25 +138,25 @@ iterator on the `staff`:
 
 ::
 
-	abjad> vA_thread_signature = componenttools.component_to_containment_signature(vA)
-	abjad> notes = componenttools.iterate_thread_forward_in_expr(staff, Note, vA_thread_signature)
-	abjad> print list(notes)
+	>>> vA_thread_signature = componenttools.component_to_containment_signature(vA)
+	>>> notes = componenttools.iterate_thread_forward_in_expr(staff, Note, vA_thread_signature)
+	>>> print list(notes)
 	[Note("f'8"), Note("g'8"), Note("a'8"), Note("b'8")]
 
 
 ::
 
-	abjad> vB_thread_signature = componenttools.component_to_containment_signature(vB)
-	abjad> notes = componenttools.iterate_thread_forward_in_expr(staff, Note, vB_thread_signature)
-	abjad> print list(notes)
+	>>> vB_thread_signature = componenttools.component_to_containment_signature(vB)
+	>>> notes = componenttools.iterate_thread_forward_in_expr(staff, Note, vB_thread_signature)
+	>>> print list(notes)
 	[Note("c''8"), Note("b'8"), Note("a'4")]
 
 
 ::
 
-	abjad> vC_thread_signature = componenttools.component_to_containment_signature(vC)
-	abjad> notes = componenttools.iterate_thread_forward_in_expr(staff, Note, vC_thread_signature)
-	abjad> print list(notes)
+	>>> vC_thread_signature = componenttools.component_to_containment_signature(vC)
+	>>> notes = componenttools.iterate_thread_forward_in_expr(staff, Note, vC_thread_signature)
+	>>> print list(notes)
 	[Note("c''4"), Note("c''4")]
 
 
@@ -169,22 +169,22 @@ by printing it:
 
 ::
 
-	abjad> vA_thread_signature = componenttools.component_to_containment_signature(vA)
-	abjad> vA_thread_signature
+	>>> vA_thread_signature = componenttools.component_to_containment_signature(vA)
+	>>> vA_thread_signature
 	ContainmentSignature(Voice-4320402416, Voice-4320402416, Staff-4320403160)
 
 
 ::
 
-	abjad> vB_thread_signature = componenttools.component_to_containment_signature(vB)
-	abjad> vB_thread_signature
+	>>> vB_thread_signature = componenttools.component_to_containment_signature(vB)
+	>>> vB_thread_signature
 	ContainmentSignature(Voice-4320402664, Voice-4320402664, Staff-4320403160)
 
 
 ::
 
-	abjad> vC_thread_signature = componenttools.component_to_containment_signature(vC)
-	abjad> vC_thread_signature
+	>>> vC_thread_signature = componenttools.component_to_containment_signature(vC)
+	>>> vC_thread_signature
 	ContainmentSignature(Voice-4320402912, Voice-4320402912, Staff-4320403160)
 
 
@@ -192,11 +192,11 @@ And by comparing them with the binary equality operator:
 
 ::
 
-	abjad> vA_thread_signature == vB_thread_signature
+	>>> vA_thread_signature == vB_thread_signature
 	False
-	abjad> vA_thread_signature == vC_thread_signature
+	>>> vA_thread_signature == vC_thread_signature
 	False
-	abjad> vB_thread_signature == vC_thread_signature
+	>>> vB_thread_signature == vC_thread_signature
 	False
 
 
@@ -206,15 +206,15 @@ To do this  all we need to do is give both voices the same name:
 
 ::
 
-	abjad> vA.name = 'piccolo'
-	abjad> vB.name = 'piccolo'
+	>>> vA.name = 'piccolo'
+	>>> vB.name = 'piccolo'
 
 
 Now `vA` and `vB` and all their content belong to the same thread:
 
 ::
 
-	abjad> vA_thread_signature == vB_thread_signature
+	>>> vA_thread_signature == vB_thread_signature
 	False
 
 
@@ -222,8 +222,8 @@ Note how the thread signatures have changed:
 
 ::
 
-	abjad> vA_thread_signature = componenttools.component_to_containment_signature(vA)
-	abjad> print vA_thread_signature
+	>>> vA_thread_signature = componenttools.component_to_containment_signature(vA)
+	>>> print vA_thread_signature
 	     staff: Staff-4320407256
 	     voice: Voice-'piccolo'
 	      self: Voice-'piccolo'
@@ -231,8 +231,8 @@ Note how the thread signatures have changed:
 
 ::
 
-	abjad> vB_thread_signature = componenttools.component_to_containment_signature(vB)
-	abjad> print vB_thread_signature
+	>>> vB_thread_signature = componenttools.component_to_containment_signature(vB)
+	>>> print vB_thread_signature
 	     staff: Staff-4320407256
 	     voice: Voice-'piccolo'
 	      self: Voice-'piccolo'
@@ -240,8 +240,8 @@ Note how the thread signatures have changed:
 
 ::
 
-	abjad> vC_thread_signature = componenttools.component_to_containment_signature(vC)
-	abjad> print vC_thread_signature
+	>>> vC_thread_signature = componenttools.component_to_containment_signature(vC)
+	>>> print vC_thread_signature
 	     staff: Staff-4320407256
 	     voice: Voice-4320407008
 	      self: Voice-4320407008
@@ -253,8 +253,8 @@ and the thread signature of `vA`:
 
 ::
 
-	abjad> notes = componenttools.iterate_thread_forward_in_expr(staff, Note, vA_thread_signature)
-	abjad> print list(notes)
+	>>> notes = componenttools.iterate_thread_forward_in_expr(staff, Note, vA_thread_signature)
+	>>> print list(notes)
 	[Note("f'8"), Note("g'8"), Note("a'8"), Note("b'8"), Note("c''8"), Note("b'8"), Note("a'4")]
 
 
@@ -262,7 +262,7 @@ Now the slur spanner can be applied to voices `vA` and `vB`:
 
 ::
 
-    abjad> spannertools.SlurSpanner([vA, vB])
+    >>> spannertools.SlurSpanner([vA, vB])
 
 or directly to the notes returned by the
 :func:`~abjad.tools.componenttools.iterate_thread_forward_in_expr`
@@ -270,13 +270,13 @@ iteration tool, which are the notes belonging to both `vA` and `vB`:
 
 ::
 
-	abjad> notes = componenttools.iterate_thread_forward_in_expr(staff, Note, vA_thread_signature)
-	abjad> spannertools.SlurSpanner(list(notes))
+	>>> notes = componenttools.iterate_thread_forward_in_expr(staff, Note, vA_thread_signature)
+	>>> spannertools.SlurSpanner(list(notes))
 
 
 ::
 
-	abjad> show(staff, docs=True)
+	>>> show(staff, docs=True)
 
 .. image:: images/thread-resolution-2.png
 
@@ -288,16 +288,16 @@ one of them starting with a LilyPond skip:
 
 ::
 
-	abjad> vX = Voice(notetools.make_notes([5, 7, 9, 11, 12, 11, 9], [(1, 8)] * 6 + [(1, 4)]))
-	abjad> vY = Voice([skiptools.Skip((2, 4))] + Note(12, (1, 4)) * 2)
-	abjad> marktools.LilyPondCommandMark('voiceOne')(vX[0])
-	abjad> marktools.LilyPondCommandMark('voiceTwo')(vY[0])
-	abjad> staff = Staff([vX, vY])
-	abjad> staff.is_parallel = True
+	>>> vX = Voice(notetools.make_notes([5, 7, 9, 11, 12, 11, 9], [(1, 8)] * 6 + [(1, 4)]))
+	>>> vY = Voice([skiptools.Skip((2, 4))] + Note(12, (1, 4)) * 2)
+	>>> marktools.LilyPondCommandMark('voiceOne')(vX[0])
+	>>> marktools.LilyPondCommandMark('voiceTwo')(vY[0])
+	>>> staff = Staff([vX, vY])
+	>>> staff.is_parallel = True
 
 
 ::
 
-	abjad> show(staff, docs=True)
+	>>> show(staff, docs=True)
 
 .. image:: images/thread-resolution-3.png

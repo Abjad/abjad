@@ -13,7 +13,7 @@ lilypond_file = lilyfiletools.make_basic_lilypond_file(staff)
 
 ::
 
-    abjad> lilypond_file
+    >>> lilypond_file
     LilyPondFile(Staff{4})
 
 Inspecting file output

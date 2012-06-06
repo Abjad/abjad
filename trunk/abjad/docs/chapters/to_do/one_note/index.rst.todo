@@ -5,15 +5,15 @@ Type the following and hit return:
 
 ::
 
-	abjad> Note("cs''4")
+	>>> Note("cs''4")
 
 
 Now name the note and show:
 
 ::
 
-	abjad> note = Note("cs''4")
-	abjad> show(note)
+	>>> note = Note("cs''4")
+	>>> show(note)
 
 .. image:: images/example-1.png
 

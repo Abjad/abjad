@@ -901,21 +901,21 @@ Added the new ``constrainttools`` API.
 
 - Example::
 
-    abjad> from abjad.tools.constraintstools import *
+    >>> from abjad.tools.constraintstools import *
 
   ::
 
-    abjad> domain = Domain([1, 2, 3, 4], 4)
+    >>> domain = Domain([1, 2, 3, 4], 4)
 
   ::
 
-    abjad> all_unique = GlobalCountsConstraint(lambda x: all([y == 1 for y in x.values()]))
-    abjad> max_interval = RelativeIndexConstraint([0, 1], lambda x, y: abs(x - y) < 3)
-    abjad> solver = FiniteStreamSolver(domain, [all_unique, max_interval])
+    >>> all_unique = GlobalCountsConstraint(lambda x: all([y == 1 for y in x.values()]))
+    >>> max_interval = RelativeIndexConstraint([0, 1], lambda x, y: abs(x - y) < 3)
+    >>> solver = FiniteStreamSolver(domain, [all_unique, max_interval])
 
   ::
 
-    abjad> for solution in solver: print solution
+    >>> for solution in solver: print solution
     ... 
     (1, 2, 3, 4)
     (1, 2, 4, 3)
@@ -992,24 +992,24 @@ Add the new ``datastructuretools`` package.
 
 - Use ``datastructuretools.Digraph`` to detect cycles in any collection of hashable objects::
 
-    abjad> from abjad.tools.datastructuretools import Digraph
+    >>> from abjad.tools.datastructuretools import Digraph
 
   ::
 
-    abjad> edges = [('a', 'b'), ('a', 'c'), ('a', 'f'), ('c', 'd'), ('d', 'e'), ('e', 'c')]
-    abjad> digraph = Digraph(edges)
-    abjad> digraph
+    >>> edges = [('a', 'b'), ('a', 'c'), ('a', 'f'), ('c', 'd'), ('d', 'e'), ('e', 'c')]
+    >>> digraph = Digraph(edges)
+    >>> digraph
     Digraph(edges=[('a', 'c'), ('a', 'b'), ('a', 'f'), ('c', 'd'), ('d', 'e'), ('e', 'c')])
 
   ::
 
-    abjad> digraph.root_nodes
+    >>> digraph.root_nodes
     ('a',)
-    abjad> digraph.terminal_nodes
+    >>> digraph.terminal_nodes
     ('b', 'f')
-    abjad> digraph.cyclic_nodes
+    >>> digraph.cyclic_nodes
     ('c', 'd', 'e')
-    abjad> digraph.is_cyclic
+    >>> digraph.is_cyclic
     True
 
 - Use ``datastructuretools.ObjectInventory`` as the base class for an ordered collection
@@ -1063,21 +1063,21 @@ Added new ``scoretemplatetools`` package.
 
 - Example::
 
-    abjad> from abjad.tools import scoretemplatetools
+    >>> from abjad.tools import scoretemplatetools
 
   ::
 
-    abjad> template = scoretemplatetools.StringQuartetScoreTemplate()
-    abjad> score = template()
+    >>> template = scoretemplatetools.StringQuartetScoreTemplate()
+    >>> score = template()
 
   ::
 
-    abjad> score
+    >>> score
     Score-"String Quartet Score"<<1>>
 
   ::
 
-    abjad> f(score)
+    >>> f(score)
     \context Score = "String Quartet Score" <<
         \context StaffGroup = "String Quartet Staff Group" <<
             \context Staff = "First Violin Staff" {
@@ -1107,13 +1107,13 @@ Added new ``rhythmtreetools`` package for parsing IRCAM-like RTM syntax.
 
 - Example::
 
-    abjad> from abjad.tools.rhythmtreetools import parse_rtm_syntax
+    >>> from abjad.tools.rhythmtreetools import parse_rtm_syntax
 
   ::
 
-    abjad> rtm = '(1 (1 (1 (1 1)) 1))'
-    abjad> result = parse_rtm_syntax(rtm)
-    abjad> result
+    >>> rtm = '(1 (1 (1 (1 1)) 1))'
+    >>> result = parse_rtm_syntax(rtm)
+    >>> result
     FixedDurationTuplet(1/4, [c'8, c'16, c'16, c'8])
 
 - Use the ``rhythmtreetools`` package to turn nested lists of numbers into Abjad tuplets.
@@ -1172,16 +1172,16 @@ Further new functionality:
 
 - Added the ``marktools.BendAfter`` class to model LilyPond's ``\bendAfter command``::
 
-    abjad> n = Note(0, 1)
-    abjad> marktools.BendAfter(8)(n)
+    >>> n = Note(0, 1)
+    >>> marktools.BendAfter(8)(n)
     BendAfter(8.0)(c'1)
-    abjad> f(n)
+    >>> f(n)
     c'1 - \bendAfter #'8.0
 
 - Added public ``pair`` property to ``contexttools.TimeSignatureMark``::
 
-    abjad> time_signature = contexttools.TimeSignatureMark((3, 16))
-    abjad> time_signature.pair
+    >>> time_signature = contexttools.TimeSignatureMark((3, 16))
+    >>> time_signature.pair
     (3, 16)
 
 - Added ``is_hairpin_token()`` to ``spannertools.HairpinSpanner`` class.
@@ -1201,7 +1201,7 @@ Further new functionality:
 
 - Added ``contexttools.list_clef_names()``::
 
-    abjad> contexttools.list_clef_names()
+    >>> contexttools.list_clef_names()
     ['alto', 'baritone', 'bass', 'mezzosoprano', 'percussion', 'soprano', 'treble']
 
 - Added ``find-slots-implementation-inconsistencies`` development script.
@@ -1227,11 +1227,11 @@ Implements 221 public classes and 1029 functions totalling 168,000 lines of code
 
 - Added ``lilypondparsertools.LilyPondParser`` class, which arses a subset of LilyPond input syntax::
 
-    abjad> from abjad.tools.lilypondparsertools import LilyPondParser
-    abjad> parser = LilyPondParser( )
-    abjad> input = r"\new Staff { c'4 ( d'8 e' fs'2) \fermata }"
-    abjad> result = parser(input)
-    abjad> f(result)
+    >>> from abjad.tools.lilypondparsertools import LilyPondParser
+    >>> parser = LilyPondParser( )
+    >>> input = r"\new Staff { c'4 ( d'8 e' fs'2) \fermata }"
+    >>> result = parser(input)
+    >>> f(result)
     \new Staff {
         c'4 (
         d'8
@@ -1242,10 +1242,10 @@ Implements 221 public classes and 1029 functions totalling 168,000 lines of code
   LilyPondParser defaults to English note names, but any of the other
   languages supported by LilyPond may be used::
 
-    abjad> parser = LilyPondParser('nederlands')
-    abjad> input = '{ c des e fis }'
-    abjad> result = parser(input)
-    abjad> f(result)
+    >>> parser = LilyPondParser('nederlands')
+    >>> input = '{ c des e fis }'
+    >>> result = parser(input)
+    >>> f(result)
     {
         c4
         df4
@@ -1298,8 +1298,8 @@ Implements 221 public classes and 1029 functions totalling 168,000 lines of code
 
 - Added ``iotools.p( )``, for conveniently parsing LilyPond syntax::
 
-    abjad> result = p(r"\new Staff { c'4 d e f }")
-    abjad> f(result)
+    >>> result = p(r"\new Staff { c'4 d e f }")
+    >>> f(result)
     \new Staff {
         c'4
         d4
@@ -1311,14 +1311,14 @@ Implements 221 public classes and 1029 functions totalling 168,000 lines of code
 - Added ``schemetools.Scheme``, as a more robust replacement for nearly all other ``schemetools``
   classes::
 
-    abjad> from abjad.tools.schemetools import Scheme
-    abjad> print Scheme(True).format
+    >>> from abjad.tools.schemetools import Scheme
+    >>> print Scheme(True).format
     ##t
-    abjad> print Scheme('a', 'list', 'of', 'strings').format
+    >>> print Scheme('a', 'list', 'of', 'strings').format
     #(a list of strings)
-    abjad> print Scheme(('simulate', 'a', 'vector'), quoting="'#").format
+    >>> print Scheme(('simulate', 'a', 'vector'), quoting="'#").format
     #'#(simulate a vector)
-    abjad> print Scheme('a', ('nested', ('data', 'structure'))).format
+    >>> print Scheme('a', ('nested', ('data', 'structure'))).format
     #(a (nested (data structure))
 
 - Removed deprecated ``schemetools`` classes:
@@ -1338,18 +1338,18 @@ Implements 221 public classes and 1029 functions totalling 168,000 lines of code
   list of arguments.  Arguments which are lists or tuples will be enclosed in
   curly-braces::
 
-    abjad> from abjad.tools.markuptools import MarkupCommand
-    abjad> bold = MarkupCommand('bold', ['two', 'words'])
-    abjad> rotate = MarkupCommand('rotate', 60, bold)
-    abjad> triangle = MarkupCommand('triangle', False)
-    abjad> concat = MarkupCommand('concat', ['one word', rotate, triangle])
-    abjad> print concat.format
+    >>> from abjad.tools.markuptools import MarkupCommand
+    >>> bold = MarkupCommand('bold', ['two', 'words'])
+    >>> rotate = MarkupCommand('rotate', 60, bold)
+    >>> triangle = MarkupCommand('triangle', False)
+    >>> concat = MarkupCommand('concat', ['one word', rotate, triangle])
+    >>> print concat.format
     \concat { #"one word" \rotate #60 \bold { two words } \triangle ##f }
 
 
 - Added ``contexttools.TempoMarkInventory``, which models an ordered list of tempo marks::
 
-    abjad> contexttools.TempoMarkInventory([('Andante', Duration(1, 8), 72), ('Allegro', Duration(1, 8), 84)])
+    >>> contexttools.TempoMarkInventory([('Andante', Duration(1, 8), 72), ('Allegro', Duration(1, 8), 84)])
     TempoMarkInventory([TempoMark('Andante', Duration(1, 8), 72), TempoMark('Allegro', Duration(1, 8), 84)])
 
   Inherits from list. Allows initialization, append and extent on tempo mark tokens.
@@ -1362,26 +1362,26 @@ Implements 221 public classes and 1029 functions totalling 168,000 lines of code
   The purpose of the class is to model something like palettes of different pitches
   available in all part of a score::
 
-    abjad> pitchtools.PitchRangeInventory(['[C3, C6]', '[C4, C6]'])
+    >>> pitchtools.PitchRangeInventory(['[C3, C6]', '[C4, C6]'])
     PitchRangeInventory([PitchRange('[C3, C6]'), PitchRange('[C4, C6]')])
 
   The class inherits from list.
 
 - Added ``sequencetools.all_are_pairs()`` predicate::
 
-    abjad> from abjad.tools.sequencetools import all_are_pairs
-    abjad> all_are_pairs([(1, 2), (3, 4), (5, 6)])
+    >>> from abjad.tools.sequencetools import all_are_pairs
+    >>> all_are_pairs([(1, 2), (3, 4), (5, 6)])
     True
 
 - Added ``sequencetools.all_are_pairs_of_types()`` predicate::
 
-    abjad> from abjad.tools.sequencetools import all_are_pairs_of_types
-    abjad> all_are_pairs_of_types([('a', 1.4), ('b', 2.3), ('c', 1.5)], str, float)
+    >>> from abjad.tools.sequencetools import all_are_pairs_of_types
+    >>> all_are_pairs_of_types([('a', 1.4), ('b', 2.3), ('c', 1.5)], str, float)
     True
 
 - Added ``stringtools.is_underscore_delimited_lowercase_file_name_with_extension()`` string predicate::
 
-    abjad> stringtools.is_underscore_delimited_lowercase_file_name_with_extension('foo_bar.blah')
+    >>> stringtools.is_underscore_delimited_lowercase_file_name_with_extension('foo_bar.blah')
     True
 
 - Added ``iotools.is_underscore_delimited_file_name()`` string predicate.
@@ -1392,10 +1392,10 @@ Implements 221 public classes and 1029 functions totalling 168,000 lines of code
 
   ::
 
-    abjad> stringtools.is_underscore_delimited_lowercase_file_name('foo_bar.py')
+    >>> stringtools.is_underscore_delimited_lowercase_file_name('foo_bar.py')
     True
 
-    abjad> stringtools.is_underscore_delimited_lowercase_file_name('foo_bar')
+    >>> stringtools.is_underscore_delimited_lowercase_file_name('foo_bar')
     True
 
 
@@ -1420,10 +1420,10 @@ Implements 221 public classes and 1029 functions totalling 168,000 lines of code
 - Extended ``contexttools.TempoMark`` with textual indications and tempo ranges
   You may instantiate as normal, or in some new combinations::
 
-    abjad> from abjad.tools.contexttools import TempoMark
-    abjad> t = TempoMark('Langsam', Duration(1, 4), (52, 57))
-    abjad> t = TempoMark('Langsam')
-    abjad> t = TempoMark((1, 4), (52, 57))
+    >>> from abjad.tools.contexttools import TempoMark
+    >>> t = TempoMark('Langsam', Duration(1, 4), (52, 57))
+    >>> t = TempoMark('Langsam')
+    >>> t = TempoMark((1, 4), (52, 57))
 
   In addition to its new read/write "textual_indication" attribute, TempoMark
   now also exposes a read-only "is_imprecise" property, which returns True if
@@ -1436,8 +1436,8 @@ Implements 221 public classes and 1029 functions totalling 168,000 lines of code
 
 - Extended tempo mark with ``is_tempo_mark_token()`` method::
 
-    abjad> tempo_mark = contexttools.TempoMark(Duration(1, 4), 72)
-    abjad> tempo_mark.is_tempo_mark_token((Duration(1, 4), 84))
+    >>> tempo_mark = contexttools.TempoMark(Duration(1, 4), 72)
+    >>> tempo_mark.is_tempo_mark_token((Duration(1, 4), 84))
     True
 
 - Extended case-testing ``iotools`` string predicates to allow digits.
@@ -1463,9 +1463,9 @@ Implements 221 public classes and 1029 functions totalling 168,000 lines of code
 - Extended all ``beamtools.Beam-``, ``Slur-`` and ``Hairpin-``related spanner classes, as well as
   ``tietools.TieSpanner` with an optional ``direction`` keyword::
 
-    abjad> c = Container("c'4 d'4 e'4 f'4")
-    abjad> spanner = spannertools.SlurSpanner(c[:], 'up')
-    abjad> f(c)
+    >>> c = Container("c'4 d'4 e'4 f'4")
+    >>> spanner = spannertools.SlurSpanner(c[:], 'up')
+    >>> f(c)
     {
         c'4 ^ (
         d'4
@@ -1551,7 +1551,7 @@ Implements 197 public classes and 941 public functions totalling 153,000 lines o
 
 * Added ``scoretools.list_performer_names()``::
 
-    abjad> for name in scoretools.list_performer_names()[:10]:
+    >>> for name in scoretools.list_performer_names()[:10]:
     ...     name
     ... 
     'accordionist'
@@ -1569,16 +1569,16 @@ Implements 197 public classes and 941 public functions totalling 153,000 lines o
 
 * Added ``measuretools.measure_to_one_line_input_string()``::
 
-    abjad> measure = Measure((3, 4), "c4 d4 e4")
+    >>> measure = Measure((3, 4), "c4 d4 e4")
 
   ::
 
-    abjad> measure
+    >>> measure
     Measure(3/4, [c4, d4, e4])
 
   ::
 
-    abjad> measuretools.measure_to_one_line_input_string(measure)
+    >>> measuretools.measure_to_one_line_input_string(measure)
     "Measure((3, 4), 'c4 d4 e4')"
 
 * Added new classes to ``instrumenttools``::
@@ -1606,7 +1606,7 @@ Implements 197 public classes and 941 public functions totalling 153,000 lines o
 
 * Added known untuned percussion::
 
-    abjad> for name in instrumenttools.UntunedPercussion.known_untuned_percussion[:10]:
+    >>> for name in instrumenttools.UntunedPercussion.known_untuned_percussion[:10]:
     ...     print name
     ... 
     agogô
@@ -1622,33 +1622,33 @@ Implements 197 public classes and 941 public functions totalling 153,000 lines o
 
 * Added ``_Instrument.get_default_performer_name()``::
 
-    abjad> bassoon = instrumenttools.Bassoon()
+    >>> bassoon = instrumenttools.Bassoon()
 
   ::
 
-    abjad> bassoon.get_default_performer_name()
+    >>> bassoon.get_default_performer_name()
     'bassoonist'
 
 * Added ``_Instrument.get_performer_names()``::
 
-    abjad> bassoon.get_performer_names()
+    >>> bassoon.get_performer_names()
     ['instrumentalist', 'reed player', 'double reed player', 'bassoonist']
 
 * Added read / write ``_Instrument.pitch_range``::
 
-    abjad> marimba.pitch_range = (-24, 36)
-    abjad> marimba.pitch_range
+    >>> marimba.pitch_range = (-24, 36)
+    >>> marimba.pitch_range
     PitchRange('[C2, C7]')
 
 * Added read-only ``_Instrument.traditional_pitch_range``::
 
-    abjad> marimba = instrumenttools = instrumenttools.Marimba()
-    abjad> marimba.traditional_pitch_range
+    >>> marimba = instrumenttools = instrumenttools.Marimba()
+    >>> marimba.traditional_pitch_range
     PitchRange('[F2, C7]')
 
 * Added ``instrumenttools.list_instruments()``::
 
-    abjad> for instrument_name in instrumenttools.list_instrument_names()[:10]:
+    >>> for instrument_name in instrumenttools.list_instrument_names()[:10]:
     ...     instrument_name
     ... 
     'accordion'
@@ -1673,17 +1673,17 @@ Implements 197 public classes and 941 public functions totalling 153,000 lines o
 
 * Added ``pitchtools.is_symbolic_pitch_range_string()``::
 
-    abjad> pitchtools.is_symbolic_pitch_range_string('[A0, C8]')
+    >>> pitchtools.is_symbolic_pitch_range_string('[A0, C8]')
     True
 
 * Added ``pitchtools.pitch_class_octave_number_string_to_chromatic_pitch_name()``::
 
-    abjad> pitchtools.pitch_class_octave_number_string_to_chromatic_pitch_name('A#4')
+    >>> pitchtools.pitch_class_octave_number_string_to_chromatic_pitch_name('A#4')
     "as'"
 
 * Added ``pitchtools.symbolic_accidental_string_to_alphabetic_accidental_string_abbreviation()``::
 
-    abjad> pitchtools.alphabetic_accidental_abbreviation_to_symbolic_accidental_string('tqs')
+    >>> pitchtools.alphabetic_accidental_abbreviation_to_symbolic_accidental_string('tqs')
     '#+'
 
 * Added other new functions to ``pitchtools``::
@@ -1694,13 +1694,13 @@ Implements 197 public classes and 941 public functions totalling 153,000 lines o
 
 * Added ``stringtools.string_to_strict_directory_name()``::
 
-    abjad> stringtools.string_to_strict_directory_name('Déja vu')
+    >>> stringtools.string_to_strict_directory_name('Déja vu')
     'deja_vu'
 
 * Added ``stringtools.strip_diacritics_from_binary_string()``::
 
-    abjad> binary_string = 'Dvořák'
-    abjad> stringtools.strip_diacritics_from_binary_string(binary_string)
+    >>> binary_string = 'Dvořák'
+    >>> stringtools.strip_diacritics_from_binary_string(binary_string)
     'Dvorak'
 
 * Added other new functions to ``iotools``::
@@ -1743,17 +1743,17 @@ Implements 197 public classes and 941 public functions totalling 153,000 lines o
 
 * Extended ``NamedChromaticPitch`` to allow initialization from pitch-class / octave number strings::
 
-    abjad> pitchtools.NamedChromaticPitch('C#2')
+    >>> pitchtools.NamedChromaticPitch('C#2')
     NamedChromaticPitch('cs,')
 
 * Extended ``PitchRange`` to allow initialization from symbolic pitch range strings::
 
-    abjad> pitchtools.PitchRange('[A0, C8]')
+    >>> pitchtools.PitchRange('[A0, C8]')
     PitchRange('[A0, C8]')
 
 * Extended ``PitchRange`` to allow initialization from pitch-class / octave number strings::
 
-    abjad> pitchtools.PitchRange('A0', 'C8')
+    >>> pitchtools.PitchRange('A0', 'C8')
     PitchRange('[A0, C8]')
 
 * Extended ``leaftools.is_bar_line_crossing_leaf()`` to work when no explicit time signature mark is found.

@@ -49,7 +49,7 @@ And:
 
 ::
 
-    abjad> for leaf in staff:
+    >>> for leaf in staff:
     ...    contexttools.get_effective_time_signature(leaf) is None
     ...
     True
@@ -62,7 +62,7 @@ If we want, we can iterate both the staff and its leaves at one and the same tim
 
 ::
 
-    abjad> for component in componenttools.iterate_components_forward_in_expr(staff):
+    >>> for component in componenttools.iterate_components_forward_in_expr(staff):
     ...    component, contexttools.get_effective_time_signature(component)
     ...
     (Staff{5}, None)
@@ -149,7 +149,7 @@ time_signature_mark.attach(staff) <hide
 
 ::
 
-    abjad> time_signature_mark.attach(staff)
+    >>> time_signature_mark.attach(staff)
     TimeSignatureMark((3, 4))(Staff{5})
 
 Abjad responds immediately by returning the time signature mark we have just attached.
@@ -182,7 +182,7 @@ Indeed they do:
 
 ::
 
-    abjad> for leaf in staff.leaves:
+    >>> for leaf in staff.leaves:
     ...      leaf, contexttools.get_effective_time_signature(leaf)
     ...
     (Note("c'4"), TimeSignatureMark((3, 4))(Staff{5}))
@@ -229,7 +229,7 @@ time_signature_mark.detach() <hide
 
 ::
 
-    abjad> time_signature_mark.detach()
+    >>> time_signature_mark.detach()
     TimeSignatureMark((3, 4))
 
 The Abjad returns the mark we have just detached. And, observing the repr of the time signature mark, we see that the time signature mark has again changed state: the time signature mark has transitioned from attached to unattached. We confirm this like so:
@@ -261,8 +261,8 @@ duple_time_signature_mark.attach(staff) <hide
 
 ::
 
-    abjad> duple_time_signature_mark = contexttools.TimeSignatureMark((2, 4))
-    abjad> duple_time_signature_mark.attach(staff)
+    >>> duple_time_signature_mark = contexttools.TimeSignatureMark((2, 4))
+    >>> duple_time_signature_mark.attach(staff)
     TimeSignatureMark((2, 4))(Staff{5})
 
 <abjad>
@@ -286,7 +286,7 @@ duple_time_signature_mark.detach()
 
 ::
 
-    abjad> duple_time_signature_mark.detach()
+    >>> duple_time_signature_mark.detach()
     TimeSignatureMark((2, 4))
 
 ... confirm that our staff is now time signatureless ...
@@ -308,7 +308,7 @@ time_signature_mark.attach(staff)
 
 ::
 
-    abjad> time_signature_mark.attach(staff)
+    >>> time_signature_mark.attach(staff)
     TimeSignatureMark((4, 4))(Staff{5})
 
 ... change the numerator of our time signature mark ...
@@ -415,7 +415,7 @@ duple_time_signature_mark.attach(staff[4])
 
 ::
 
-    abjad> duple_time_signature_mark.attach(staff[4])
+    >>> duple_time_signature_mark.attach(staff[4])
     TimeSignatureMark((2, 4))(g'2)
 
 <abjad>
@@ -458,7 +458,7 @@ contexttools.detach_context_marks_attached_to_component(staff) <hide
 
 ::
 
-    abjad> contexttools.detach_context_marks_attached_to_component(staff)
+    >>> contexttools.detach_context_marks_attached_to_component(staff)
     (TimeSignatureMark((4, 4)),)
 
 <abjad>
@@ -472,7 +472,7 @@ contexttools.detach_context_marks_attached_to_component(staff[4]) <hide
 </abjad>
 
 ::
-    abjad> contexttools.detach_context_marks_attached_to_component(staff[4])
+    >>> contexttools.detach_context_marks_attached_to_component(staff[4])
     (TimeSignatureMark((2, 4)),)
 
 <abjad>
@@ -508,7 +508,7 @@ time_signature_mark(staff) <hide
 
 ::
 
-    abjad> time_signature_mark(staff)
+    >>> time_signature_mark(staff)
     TimeSignatureMark((3, 4))(Staff{5})
 
 <abjad>
@@ -534,7 +534,7 @@ time_signature_mark() <hide
 
 ::
 
-    abjad> time_signature_mark()
+    >>> time_signature_mark()
     TimeSignatureMark((3, 4))
 
 <abjad>
@@ -554,7 +554,7 @@ contexttools.TimeSignatureMark((2, 4))(staff) <hide
 
 ::
 
-    abjad> contexttools.TimeSignatureMark((2, 4))(staff)
+    >>> contexttools.TimeSignatureMark((2, 4))(staff)
     TimeSignatureMark((2, 4))(Staff{5})
 
 <abjad>
@@ -571,6 +571,6 @@ This last short-cut form of ...
 
 ::
 
-    abjad> contexttools.TimeSignatureMark((2, 4))(staff)
+    >>> contexttools.TimeSignatureMark((2, 4))(staff)
 
 ... is the usual way that you will see context marks of all sorts presented in the docs.

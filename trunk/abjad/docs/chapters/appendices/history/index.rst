@@ -189,17 +189,17 @@ notated durations:
 
 ::
 
-	abjad> m1 = measuretools.AnonymousMeasure([Note("c'4")])
-	abjad> m2 = measuretools.AnonymousMeasure(Note(0, (1, 8)) * 2)
-	abjad> tietools.TieSpanner(m2)
-	abjad> m3 = measuretools.AnonymousMeasure([Note(0, (1, 8))] + Note(0, (1, 16)) * 2)
-	abjad> tietools.TieSpanner(m3)
-	abjad> r = stafftools.RhythmicStaff([m1, m2, m3])
+	>>> m1 = measuretools.AnonymousMeasure([Note("c'4")])
+	>>> m2 = measuretools.AnonymousMeasure(Note(0, (1, 8)) * 2)
+	>>> tietools.TieSpanner(m2)
+	>>> m3 = measuretools.AnonymousMeasure([Note(0, (1, 8))] + Note(0, (1, 16)) * 2)
+	>>> tietools.TieSpanner(m3)
+	>>> r = stafftools.RhythmicStaff([m1, m2, m3])
 
 
 ::
 
-	abjad> show(r)
+	>>> show(r)
 
 .. image:: images/midi-1.png
 
@@ -212,14 +212,14 @@ a C sharp or a B flat?
 
 ::
 
-	abjad> m1 = measuretools.AnonymousMeasure([Note(1, (1, 4))])
-	abjad> m2 = measuretools.AnonymousMeasure([Note(('df', 4), (1, 4))])
-	abjad> r = Staff([m1, m2])
+	>>> m1 = measuretools.AnonymousMeasure([Note(1, (1, 4))])
+	>>> m2 = measuretools.AnonymousMeasure([Note(('df', 4), (1, 4))])
+	>>> r = Staff([m1, m2])
 
 
 ::
 
-	abjad> show(r)
+	>>> show(r)
 
 .. image:: images/midi-2.png
 
@@ -257,21 +257,21 @@ LilyPond uses a single construct to nest tuplets arbitrarily:
 
 ::
 
-	abjad> staff = stafftools.RhythmicStaff([Measure((7, 8), [])])
-	abjad> measure = staff[0]
-	abjad> measure.append(Note('c8.'))
-	abjad> measure.append(Tuplet(Fraction(7, 5), 5 * Note('c16')))
-	abjad> beamtools.BeamSpanner(measure[-1])
-	abjad> measure.append(Tuplet(Fraction(3, 5), 5 * Note('c8')))
-	abjad> beamtools.BeamSpanner(measure[-1])
-	abjad> Tuplet(Fraction(7, 8), measure.music)
-	abjad> staff.override.tuplet_bracket.bracket_visibility = True
-	abjad> staff.override.tuplet_bracket.padding = 1.6
+	>>> staff = stafftools.RhythmicStaff([Measure((7, 8), [])])
+	>>> measure = staff[0]
+	>>> measure.append(Note('c8.'))
+	>>> measure.append(Tuplet(Fraction(7, 5), 5 * Note('c16')))
+	>>> beamtools.BeamSpanner(measure[-1])
+	>>> measure.append(Tuplet(Fraction(3, 5), 5 * Note('c8')))
+	>>> beamtools.BeamSpanner(measure[-1])
+	>>> Tuplet(Fraction(7, 8), measure.music)
+	>>> staff.override.tuplet_bracket.bracket_visibility = True
+	>>> staff.override.tuplet_bracket.padding = 1.6
 
 
 ::
 
-	abjad> show(staff, docs=True)
+	>>> show(staff, docs=True)
 
 .. image:: images/lilypond-1.png
 
@@ -292,19 +292,19 @@ LilyPond engraves tupletted notes interrupted by nontupletted notes correctly:
 
 ::
 
-	abjad> t = Tuplet(Fraction(4, 7), Note(0, (1, 16)) * 4)
-	abjad> notes = Note(0, (1, 8)) * 2
-	abjad> u = Tuplet(Fraction(4, 7), Note(0, (1, 16)) * 3)
-	abjad> beamtools.BeamSpanner(t)
-	abjad> beamtools.BeamSpanner(notes)
-	abjad> beamtools.BeamSpanner(u)
-	abjad> measure = Measure((4, 8), [t] + notes + [u])
-	abjad> staff = stafftools.RhythmicStaff([measure])
+	>>> t = Tuplet(Fraction(4, 7), Note(0, (1, 16)) * 4)
+	>>> notes = Note(0, (1, 8)) * 2
+	>>> u = Tuplet(Fraction(4, 7), Note(0, (1, 16)) * 3)
+	>>> beamtools.BeamSpanner(t)
+	>>> beamtools.BeamSpanner(notes)
+	>>> beamtools.BeamSpanner(u)
+	>>> measure = Measure((4, 8), [t] + notes + [u])
+	>>> staff = stafftools.RhythmicStaff([measure])
 
 
 ::
 
-	abjad> show(staff, docs=True)
+	>>> show(staff, docs=True)
 
 .. image:: images/lilypond-2.png
 
@@ -323,18 +323,18 @@ The rhythm above rewrites with time signatures in place of tuplets:
 
 ::
 
-	abjad> t = Measure((4, 28), Note(0, (1, 16)) * 4)
-	abjad> u = Measure((2, 8), Note(0, (1, 8)) * 2)
-	abjad> v = Measure((3, 28), Note(0, (1, 16)) * 3)
-	abjad> beamtools.BeamSpanner(t)
-	abjad> beamtools.BeamSpanner(u)
-	abjad> beamtools.BeamSpanner(v)
-	abjad> staff = stafftools.RhythmicStaff([t, u, v])
+	>>> t = Measure((4, 28), Note(0, (1, 16)) * 4)
+	>>> u = Measure((2, 8), Note(0, (1, 8)) * 2)
+	>>> v = Measure((3, 28), Note(0, (1, 16)) * 3)
+	>>> beamtools.BeamSpanner(t)
+	>>> beamtools.BeamSpanner(u)
+	>>> beamtools.BeamSpanner(v)
+	>>> staff = stafftools.RhythmicStaff([t, u, v])
 
 
 ::
 
-	abjad> show(staff)
+	>>> show(staff)
 
 .. image:: images/lilypond-3.png
 

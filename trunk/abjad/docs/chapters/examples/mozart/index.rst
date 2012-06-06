@@ -37,9 +37,9 @@ chords, rests and skips, as well as beams, slurs, ties, and articulations.
 ::
 
 	lily_string = "c'4 ( d'4 <cs' e'>8 ) -. r8 <g' b' d''>4 ^\marcato ~ <g' b' d''>1"
-	abjad> parsed_result = iotools.parse_lilypond_input_string(lily_string)
+	>>> parsed_result = iotools.parse_lilypond_input_string(lily_string)
 	LilyPond file written to 'mozart-parsing-example.ly' ...
-	abjad> show(parsed_result)
+	>>> show(parsed_result)
 
 .. image:: images/mozart-parsing-example.png
 
@@ -51,7 +51,7 @@ voice will use the key 't' and the bass voice will use the key 'b'.
 
 ::
 
-	abjad> fragment = {'t': "g''8 ( e''8 c''8 )", 'b': '<c e>4 r8'}
+	>>> fragment = {'t': "g''8 ( e''8 c''8 )", 'b': '<c e>4 r8'}
 
 
 Instead of relying on measure number tables to find our fragments - as in the original implementation, we'll package our fragment dictionaries into a list of 
@@ -268,14 +268,14 @@ measure like this:
 ::
 
 	my_measure_dict = {'b': 'c4 ^\tr r8', 't': "e''8 ( c''8 g'8 )"}
-	abjad> treble, bass = build_one_mozart_measure(my_measure_dict)
-	abjad> f(treble)
+	>>> treble, bass = build_one_mozart_measure(my_measure_dict)
+	>>> f(treble)
 	{
 		e''8 (
 		c''8
 		g'8 )
 	}
-	abjad> f(bass)
+	>>> f(bass)
 	{
 		c4 ^\tr
 		r8
@@ -290,10 +290,10 @@ After storing all of the musical fragments into a corpus, concatenating those el
 
 ::
 
-	abjad> import random
-	abjad> my_list = [1, 'b', 3]
-	abjad> my_result = [random.choice(my_list) for i in range(20)]
-	abjad> print my_result
+	>>> import random
+	>>> my_list = [1, 'b', 3]
+	>>> my_result = [random.choice(my_list) for i in range(20)]
+	>>> print my_result
 	[1, 3, 3, 3, 1, 1, 1, 'b', 3, 'b', 1, 'b', 'b', 1, 3, 'b', 3, 1, 'b', 1]
 
 
@@ -324,8 +324,8 @@ The result will be a *seventeen*-item-long list of measure definitions:
 
 ::
 
-	abjad> choices = choose_mozart_measures( )
-	abjad> for i, measure in enumerate(choices): print i, measure
+	>>> choices = choose_mozart_measures( )
+	>>> for i, measure in enumerate(choices): print i, measure
 	0 {'b': '<c e>4 r8', 't': "e''16 c''16 g''16 e''16 c'''16 g''16"}
 	1 {'b': 'c8 c8 c8', 't': "<e' c''>8 <e' c''>8 <e' c''>8"}
 	2 {'b': 'g,4 r8', 't': "b'8 d''8 g''8"}
@@ -371,13 +371,13 @@ commands like "\break" relative to any score component:
 
 ::
 
-	abjad> con = Container("c'4 d'4 e'4 f'4")
-	abjad> marktools.LilyPondCommandMark('before-the-container', 'before')(con)
-	abjad> marktools.LilyPondCommandMark('after-the-container', 'after')(con)
-	abjad> marktools.LilyPondCommandMark('opening-of-the-container', 'opening')(con)
-	abjad> marktools.LilyPondCommandMark('closing-of-the-container', 'closing')(con)
-	abjad> marktools.LilyPondCommandMark('to-the-right-of-a-note', 'right')(con[2])
-	abjad> f(con)
+	>>> con = Container("c'4 d'4 e'4 f'4")
+	>>> marktools.LilyPondCommandMark('before-the-container', 'before')(con)
+	>>> marktools.LilyPondCommandMark('after-the-container', 'after')(con)
+	>>> marktools.LilyPondCommandMark('opening-of-the-container', 'opening')(con)
+	>>> marktools.LilyPondCommandMark('closing-of-the-container', 'closing')(con)
+	>>> marktools.LilyPondCommandMark('to-the-right-of-a-note', 'right')(con[2])
+	>>> f(con)
 	\before-the-container
 	{
 		\opening-of-the-container
@@ -465,9 +465,9 @@ Now let's take a look at the code that puts our score together:
 
 ::
 
-	abjad> piano_staff = build_mozart_piano_staff( )
+	>>> piano_staff = build_mozart_piano_staff( )
 	LilyPond file written to 'mozart-piano-staff.ly' ...
-	abjad> show(piano_staff)
+	>>> show(piano_staff)
 
 .. image:: images/mozart-piano-staff.png
 
@@ -507,16 +507,16 @@ change the global staff size, paper size, staff spacing and so forth.
 
 ::
 
-	abjad> lily = build_mozart_lily(piano_staff)
-	abjad> print lily
+	>>> lily = build_mozart_lily(piano_staff)
+	>>> print lily
 	LilyPondFile(PianoStaff<<2>>)
 
 
 ::
 
-	abjad> print lily.header_block
+	>>> print lily.header_block
 	HeaderBlock(2)
-	abjad> f(lily.header_block)
+	>>> f(lily.header_block)
 	\header {
 		composer = #"W. A. Mozart (maybe?)"
 		title = \markup { \bold \sans "Ein Musikalisches Wuerfelspiel" }
@@ -525,9 +525,9 @@ change the global staff size, paper size, staff spacing and so forth.
 
 ::
 
-	abjad> print lily.layout_block
+	>>> print lily.layout_block
 	LayoutBlock(1)
-	abjad> f(lily.layout_block)
+	>>> f(lily.layout_block)
 	\layout {
 		ragged-right = ##t
 	}
@@ -535,9 +535,9 @@ change the global staff size, paper size, staff spacing and so forth.
 
 ::
 
-	abjad> print lily.paper_block
+	>>> print lily.paper_block
 	PaperBlock(2)
-	abjad> f(lily.paper_block)
+	>>> f(lily.paper_block)
 	\paper {
 		markup-system-spacing #'basic-distance = #20
 		paper-width = #180
@@ -549,6 +549,6 @@ And now the final result:
 ::
 
 	LilyPond file written to 'mozart-lily.ly' ...
-	abjad> show(lily)
+	>>> show(lily)
 
 .. image:: images/mozart-lily.png
