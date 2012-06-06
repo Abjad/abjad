@@ -1,4 +1,0 @@
-#!/usr/bin/env python
-from abjad.book.abjad_book import _abjad_book
-
-_abjad_book( )
