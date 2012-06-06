@@ -2,10 +2,10 @@ r3642
 
 As of r3642 (plus current changes) the follow snippet ...
 
-   abjad> staff = Staff([ ])
-   abjad> measure = measuretools.DynamicMeasure("c'8 d'8")
-   abjad> staff.append(measure)
-   abjad> f(staff)
+   >>> staff = Staff([ ])
+   >>> measure = measuretools.DynamicMeasure("c'8 d'8")
+   >>> staff.append(measure)
+   >>> f(staff)
 
 ... engages in many wasted through-score traversals.
 

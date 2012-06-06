@@ -75,7 +75,7 @@ def _insert_abjad_prompt(output_lines, input_lines):
     for oline in output_lines:
         oline = oline.rstrip( )
         if oline in input_lines:
-            oline = 'abjad> ' + oline
+            oline = '>>> ' + oline
         result.append(oline)
     return result
 
@@ -86,7 +86,7 @@ def _get_image_name(directive):
         image_name = image_name.strip(' ').strip("'").strip('"')
         return image_name
     except IndexError:
-        print "Problem parsing 'write( )'. Did you forget to add a file name?"
+        print "Problem parsing 'write()'. Did you forget to add a file name?"
 
 
 def _remove_hidden_directives(lines):

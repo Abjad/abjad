@@ -40,10 +40,6 @@ def make_abjad_default_config_file_into_dict():
             'comment': "# When None your environment should know how to open text files (i.e. *.ly)",
             'value': None,
         },
-        'use_abjad_prompt': {
-            'comment': "# If true, change prompt to 'abjad>', otherwise keep Python's default prompt.",
-            'value': True,
-        },
     }
 
     return config_file_dict

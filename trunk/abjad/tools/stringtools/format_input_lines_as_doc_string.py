@@ -14,8 +14,9 @@ def format_input_lines_as_doc_string(input_lines):
     Example skipped because docstring goes crazy on example input.
     """
 
+    # TODO: use configurationtools to get tab width programmatically
     tab = '    '
-    start = tab + tab + 'abjad> '
+    start = tab + tab + '>>> '
     lines = input_lines.split('\n')
     last_line_index = len(lines) - 1
     most = ''
@@ -40,7 +41,7 @@ def _handle_repr_line(tab, most_lines, line):
     most_lines = header + most_lines
     exec(most_lines)
     line = line.replace('#', '')
-    print tab + tab + 'abjad> ' + line
+    print tab + tab + '>>> ' + line
     exec('__x = %s' % line)
     if __x is not None:
         print tab + tab + repr(__x)
@@ -51,7 +52,7 @@ def _replace_line_with_format(tab, most_lines, last_line):
     most_lines = header + most_lines
     exec(most_lines)
     last_variable = last_line[2:-1]
-    print tab + tab + 'abjad> ' + 'f(%s)' % last_variable
+    print tab + tab + '>>> ' + 'f(%s)' % last_variable
     exec(most_lines)
     exec('__x = %s.format' % last_variable)
     format_lines = __x.split('\n')

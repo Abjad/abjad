@@ -46,7 +46,7 @@ class Presentation(object):
         for i, statement in enumerate(self.statements):
             raw_input('\n\n%d. %s\n' % (i+1, statement.text))
             for expr in statement.code:
-                print '   abjad> ' + expr
+                print '   >>> ' + expr
                 if not live:
                     if self._is_executable(expr):
                         exec(expr)
