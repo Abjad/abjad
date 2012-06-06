@@ -6,7 +6,7 @@ def spawn_subprocess(command):
 
     Spawn subprocess, run `command`, redirect stderr to stdout and print result::
 
-        abjad> iotools.spawn_subprocess('echo "hello world"') # doctest: +SKIP
+        >>> iotools.spawn_subprocess('echo "hello world"') # doctest: +SKIP
         hello world
 
     The function is basically a reimplementation of the deprecated ``os.system()``

@@ -6,7 +6,7 @@ def get_marks_attached_to_components_in_expr(expr):
 
     Get marks attached to components in `expr`::
 
-        abjad> staff = Staff(r"c'4 \pp d' \staccato e' \ff f' \staccato")
+        >>> staff = Staff(r"c'4 \pp d' \staccato e' \ff f' \staccato")
 
     ::
 
@@ -19,7 +19,7 @@ def get_marks_attached_to_components_in_expr(expr):
 
     ::
 
-        abjad> marktools.get_marks_attached_to_components_in_expr(staff)
+        >>> marktools.get_marks_attached_to_components_in_expr(staff)
         (DynamicMark('pp')(c'4), Articulation('staccato')(d'4), DynamicMark('ff')(e'4), Articulation('staccato')(f'4))
 
     Return tuple of zero or more marks.

@@ -8,13 +8,13 @@ def multiply_contents_of_measures_in_expr(expr, n):
 
     Multiply contents ``n - 1`` times and adjust meter of every measure in `expr`::
 
-        abjad> measure = Measure((3, 8), "c'8 d'8 e'8")
-        abjad> beamtools.BeamSpanner(measure.leaves)
+        >>> measure = Measure((3, 8), "c'8 d'8 e'8")
+        >>> beamtools.BeamSpanner(measure.leaves)
         BeamSpanner(c'8, d'8, e'8)
 
     ::
 
-        abjad> f(measure)
+        >>> f(measure)
         {
             \time 3/8
             c'8 [
@@ -24,11 +24,11 @@ def multiply_contents_of_measures_in_expr(expr, n):
 
     ::
 
-        abjad> measuretools.multiply_contents_of_measures_in_expr(measure, 3)
+        >>> measuretools.multiply_contents_of_measures_in_expr(measure, 3)
 
     ::
 
-        abjad> f(measure)
+        >>> f(measure)
         {
             \time 9/8
             c'8 [

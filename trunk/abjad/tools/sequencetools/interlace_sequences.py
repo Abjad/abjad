@@ -7,15 +7,15 @@ def interlace_sequences(*sequences):
 
     Interlace `sequences`::
 
-        abjad> from abjad.tools import sequencetools
+        >>> from abjad.tools import sequencetools
 
     ::
 
-        abjad> k = range(100, 103)
-        abjad> l = range(200, 201)
-        abjad> m = range(300, 303)
-        abjad> n = range(400, 408)
-        abjad> sequencetools.interlace_sequences(k, l, m, n)
+        >>> k = range(100, 103)
+        >>> l = range(200, 201)
+        >>> m = range(300, 303)
+        >>> n = range(400, 408)
+        >>> sequencetools.interlace_sequences(k, l, m, n)
         [100, 200, 300, 400, 101, 301, 401, 102, 302, 402, 403, 404, 405, 406, 407]
 
     Return list.

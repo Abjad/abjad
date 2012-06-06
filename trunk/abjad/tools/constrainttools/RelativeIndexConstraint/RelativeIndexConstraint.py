@@ -9,7 +9,7 @@ class RelativeIndexConstraint(_RelativeConstraint):
 
     ::
 
-        abjad> from abjad.tools.constrainttools import RelativeIndexConstraint
+        >>> from abjad.tools.constrainttools import RelativeIndexConstraint
 
     Instantiated from an integer representing a contiguous index range, or a 
     sequence of indices, and a function which takes as many arguments as
@@ -17,18 +17,18 @@ class RelativeIndexConstraint(_RelativeConstraint):
 
     ::
 
-        abjad> max_interval = RelativeIndexConstraint(2, lambda x, y: abs(x - y) < 3)
+        >>> max_interval = RelativeIndexConstraint(2, lambda x, y: abs(x - y) < 3)
 
     The above constraint will only be applied against the last two items of
     any solution.
 
     ::
 
-        abjad> max_interval([0, 2])
+        >>> max_interval([0, 2])
         True
-        abjad> max_interval([1000, 0, 1])
+        >>> max_interval([1000, 0, 1])
         True
-        abjad> max_interval([0, 0, 0, 0, 4])
+        >>> max_interval([0, 0, 0, 0, 4])
         False
 
     ``RelativeIndexConstraints`` are immutable.

@@ -9,21 +9,21 @@ def all_are_chords(expr):
 
     True when `expr` is a sequence of Abjad chords::
 
-        abjad> chords = [Chord("<c' e' g'>4"), Chord("<c' f' a'>4")]
+        >>> chords = [Chord("<c' e' g'>4"), Chord("<c' f' a'>4")]
 
     ::
 
-        abjad> chordtools.all_are_chords(chords)
+        >>> chordtools.all_are_chords(chords)
         True
 
     True when `expr` is an empty sequence::
 
-        abjad> chordtools.all_are_chords([])
+        >>> chordtools.all_are_chords([])
         True
 
     Otherwise false::
 
-        abjad> chordtools.all_are_chords('foo')
+        >>> chordtools.all_are_chords('foo')
         False
 
     Return boolean.

@@ -6,29 +6,29 @@ def measure_to_one_line_input_string(measure):
 
     Change `measure` to one-line input string::
 
-        abjad> measure = Measure((4, 4), "c'4 d'4 e'4 f'4")
+        >>> measure = Measure((4, 4), "c'4 d'4 e'4 f'4")
 
     ::
 
-        abjad> input_string = measuretools.measure_to_one_line_input_string(measure)
+        >>> input_string = measuretools.measure_to_one_line_input_string(measure)
 
     ::
 
-        abjad> print input_string
+        >>> print input_string
         Measure((4, 4), "c'4 d'4 e'4 f'4")
 
     ::
 
-        abjad> new_measure = eval(input_string)
+        >>> new_measure = eval(input_string)
 
     ::
 
-        abjad> new_measure
+        >>> new_measure
         Measure(4/4, [c'4, d'4, e'4, f'4])
 
     ::
 
-        abjad> f(new_measure)
+        >>> f(new_measure)
         {
             \time 4/4
             c'4

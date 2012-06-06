@@ -6,15 +6,15 @@ def make_empty_pitch_array_from_list_of_pitch_lists(leaf_iterables):
 
     Make empty pitch array from `leaf_iterables`::
 
-        abjad> from abjad.tools import pitcharraytools
+        >>> from abjad.tools import pitcharraytools
 
     ::
 
-        abjad> score = Score([])
-        abjad> score.append(Staff("c'8 d'8 e'8 f'8"))
-        abjad> score.append(Staff("c'4 d'4"))
-        abjad> score.append(Staff(tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8") * 2))
-        abjad> f(score)
+        >>> score = Score([])
+        >>> score.append(Staff("c'8 d'8 e'8 f'8"))
+        >>> score.append(Staff("c'4 d'4"))
+        >>> score.append(Staff(tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8") * 2))
+        >>> f(score)
         \new Score <<
             \new Staff {
                 c'8
@@ -42,8 +42,8 @@ def make_empty_pitch_array_from_list_of_pitch_lists(leaf_iterables):
 
     ::
 
-        abjad> array = pitcharraytools.make_empty_pitch_array_from_list_of_pitch_lists(score)
-        abjad> print array
+        >>> array = pitcharraytools.make_empty_pitch_array_from_list_of_pitch_lists(score)
+        >>> print array
         [     ] [     ] [     ] [     ]
         [                 ] [                 ]
         [ ] [     ] [ ] [ ] [     ] [ ]

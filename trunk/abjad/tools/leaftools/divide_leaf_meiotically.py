@@ -9,10 +9,10 @@ def divide_leaf_meiotically(leaf, n = 2):
 
     Divide `leaf` meiotically `n` times::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> beamtools.BeamSpanner(staff.leaves)
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> beamtools.BeamSpanner(staff.leaves)
         BeamSpanner(c'8, d'8, e'8, f'8)
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8 [
             d'8
@@ -22,11 +22,11 @@ def divide_leaf_meiotically(leaf, n = 2):
 
     ::
 
-        abjad> leaftools.divide_leaf_meiotically(staff[0], n = 4)
+        >>> leaftools.divide_leaf_meiotically(staff[0], n = 4)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'32 [
             c'32

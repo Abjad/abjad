@@ -4,16 +4,16 @@ from abjad.tools.spannertools._DirectedSpanner._DirectedSpanner import _Directed
 class SlurSpanner(_DirectedSpanner):
     r'''Abjad slur spanner::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
 
     ::
 
-        abjad> spannertools.SlurSpanner(staff[:])
+        >>> spannertools.SlurSpanner(staff[:])
         SlurSpanner(c'8, d'8, e'8, f'8)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8 (
             d'8

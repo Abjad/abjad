@@ -6,13 +6,13 @@ def get_annotation_attached_to_component(component):
 
     Get exactly one annotation attached to `component`::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> marktools.Annotation('special information')(staff[0])
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> marktools.Annotation('special information')(staff[0])
         Annotation('special information')(c'8)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8
             d'8
@@ -22,7 +22,7 @@ def get_annotation_attached_to_component(component):
 
     ::
 
-        abjad> marktools.get_annotation_attached_to_component(staff[0])
+        >>> marktools.get_annotation_attached_to_component(staff[0])
         Annotation('special information')(c'8)
 
     Return one annotation.

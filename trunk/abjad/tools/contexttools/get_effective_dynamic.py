@@ -7,13 +7,13 @@ def get_effective_dynamic(component):
 
     Get effective dynamic of `component`::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> contexttools.DynamicMark('f')(staff[0])
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> contexttools.DynamicMark('f')(staff[0])
         DynamicMark('f')(c'8)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8 \f
             d'8
@@ -23,7 +23,7 @@ def get_effective_dynamic(component):
 
     ::
 
-        abjad> for note in staff:
+        >>> for note in staff:
         ...     print note, contexttools.get_effective_dynamic(note)
         ...
         c'8 DynamicMark('f')(c'8)

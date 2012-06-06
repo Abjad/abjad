@@ -7,34 +7,34 @@ def partition_integer_into_halves(n, bigger = 'left', even = 'allowed'):
 
     When `n` is odd the greater part of ``t`` corresponds to the value of `bigger`::
 
-        abjad> from abjad.tools import mathtools
+        >>> from abjad.tools import mathtools
 
     ::
 
-        abjad> mathtools.partition_integer_into_halves(7, bigger = 'left')
+        >>> mathtools.partition_integer_into_halves(7, bigger = 'left')
         (4, 3)
-        abjad> mathtools.partition_integer_into_halves(7, bigger = 'right')
+        >>> mathtools.partition_integer_into_halves(7, bigger = 'right')
         (3, 4)
 
     Likewise when `n` is even and ``even = 'disallowed'``::
 
-        abjad> mathtools.partition_integer_into_halves(8, bigger = 'left', even = 'disallowed')
+        >>> mathtools.partition_integer_into_halves(8, bigger = 'left', even = 'disallowed')
         (5, 3)
-        abjad> mathtools.partition_integer_into_halves(8, bigger = 'right', even = 'disallowed')
+        >>> mathtools.partition_integer_into_halves(8, bigger = 'right', even = 'disallowed')
         (3, 5)
 
     But when `n` is even and ``even = 'allowed'`` then ``left == right`` and `bigger` is ignored::
 
-        abjad> mathtools.partition_integer_into_halves(8)
+        >>> mathtools.partition_integer_into_halves(8)
         (4, 4)
-        abjad> mathtools.partition_integer_into_halves(8, bigger = 'left')
+        >>> mathtools.partition_integer_into_halves(8, bigger = 'left')
         (4, 4)
-        abjad> mathtools.partition_integer_into_halves(8, bigger = 'right')
+        >>> mathtools.partition_integer_into_halves(8, bigger = 'right')
         (4, 4)
 
     When `n` is ``0`` return ``(0, 0)``::
 
-        abjad> mathtools.partition_integer_into_halves(0)
+        >>> mathtools.partition_integer_into_halves(0)
         (0, 0)
 
     When `n` is ``0`` and ``even = 'disallowed'`` raise partition error.

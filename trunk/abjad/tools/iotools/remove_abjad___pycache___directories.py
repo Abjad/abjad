@@ -6,7 +6,7 @@ import shutil
 def remove_abjad___pycache___directories():
     '''Remove ``__pycache__`` directories from Abjad source tree::
 
-        abjad> iotools.remove_abjad___pycache___directories() # doctest: +SKIP
+        >>> iotools.remove_abjad___pycache___directories() # doctest: +SKIP
 
     Return none.
     '''

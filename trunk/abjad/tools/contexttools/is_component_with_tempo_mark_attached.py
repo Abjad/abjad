@@ -7,18 +7,18 @@ def is_component_with_tempo_mark_attached(expr):
 
     True when `expr` is a component with tempo mark attached::
 
-        abjad> score = Score([])
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> score.append(staff)
+        >>> score = Score([])
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> score.append(staff)
 
     ::
 
-        abjad> contexttools.TempoMark(Duration(1, 8), 52)(staff)
+        >>> contexttools.TempoMark(Duration(1, 8), 52)(staff)
         TempoMark(Duration(1, 8), 52)(Staff{4})
 
     ::
 
-        abjad> f(score)
+        >>> f(score)
         \new Score <<
             \new Staff {
                 \tempo 8=52
@@ -31,12 +31,12 @@ def is_component_with_tempo_mark_attached(expr):
 
     ::
 
-        abjad> contexttools.is_component_with_tempo_mark_attached(staff)
+        >>> contexttools.is_component_with_tempo_mark_attached(staff)
         True
 
     Otherwise false::
 
-        abjad> contexttools.is_component_with_tempo_mark_attached(staff[0])
+        >>> contexttools.is_component_with_tempo_mark_attached(staff[0])
         False
 
     Return boolean.

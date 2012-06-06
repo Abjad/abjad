@@ -6,22 +6,22 @@ def make_spacing_vector(basic_distance, minimum_distance, padding, stretchabilit
 
     Make spacing vector::
 
-        abjad> from abjad.tools import layouttools
+        >>> from abjad.tools import layouttools
 
     ::
 
-        abjad> layouttools.make_spacing_vector(0, 0, 12, 0)
+        >>> layouttools.make_spacing_vector(0, 0, 12, 0)
         SchemeVector((SchemePair(('basic_distance', 0)), SchemePair(('minimum_distance', 0)), SchemePair(('padding', 12)), SchemePair(('stretchability', 0))))
 
     Use to set paper block spacing attributes::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> lilypond_file = lilypondfiletools.make_basic_lilypond_file(staff)
-        abjad> lilypond_file.paper_block.system_system_spacing = layouttools.make_spacing_vector(0, 0, 12, 0)
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file(staff)
+        >>> lilypond_file.paper_block.system_system_spacing = layouttools.make_spacing_vector(0, 0, 12, 0)
 
     ::
 
-        abjad> f(lilypond_file) # doctest: +SKIP
+        >>> f(lilypond_file) # doctest: +SKIP
         % Abjad revision 4229
         % 2011-04-07 15:19
 

@@ -9,18 +9,18 @@ def analyze_chord(expr):
 
     Analyze `expr` and return chord class. ::
 
-        abjad> from abjad.tools import tonalitytools
+        >>> from abjad.tools import tonalitytools
 
     ::
 
-        abjad> chord = Chord([7, 10, 12, 16], (1, 4))
-        abjad> tonalitytools.analyze_chord(chord)
+        >>> chord = Chord([7, 10, 12, 16], (1, 4))
+        >>> tonalitytools.analyze_chord(chord)
         CDominantSeventhInSecondInversion
 
     Return none when no tonal chord is understood. ::
 
-        abjad> chord = Chord(['c', 'cs', 'd'], (1, 4))
-        abjad> tonalitytools.analyze_chord(chord) is None
+        >>> chord = Chord(['c', 'cs', 'd'], (1, 4))
+        >>> tonalitytools.analyze_chord(chord) is None
         True
 
     Raise tonal harmony error when chord can not analyze.

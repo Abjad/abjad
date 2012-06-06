@@ -7,81 +7,81 @@ class PitchArrayCell(AbjadObject):
 
     One cell in a pitch array. ::
 
-        abjad> from abjad.tools import pitcharraytools
+        >>> from abjad.tools import pitcharraytools
 
     ::
 
-        abjad> array = pitcharraytools.PitchArray([[1, 2, 1], [2, 1, 1]])
-        abjad> print array
+        >>> array = pitcharraytools.PitchArray([[1, 2, 1], [2, 1, 1]])
+        >>> print array
         [ ] [     ] [ ]
         [     ] [ ] [ ]
-        abjad> cell = array[0][1]
-        abjad> cell
+        >>> cell = array[0][1]
+        >>> cell
         PitchArrayCell(x2)
 
     ::
 
-        abjad> cell.column_indices
+        >>> cell.column_indices
         (1, 2)
 
     ::
 
-        abjad> cell.indices
+        >>> cell.indices
         (0, (1, 2))
 
     ::
 
-        abjad> cell.is_first_in_row
+        >>> cell.is_first_in_row
         False
 
     ::
 
-        abjad> cell.is_last_in_row
+        >>> cell.is_last_in_row
         False
 
     ::
 
-        abjad> cell.next
+        >>> cell.next
         PitchArrayCell(x1)
 
     ::
 
-        abjad> cell.parent_array
+        >>> cell.parent_array
         PitchArray(PitchArrayRow(x1, x2, x1), PitchArrayRow(x2, x1, x1))
 
     ::
 
-        abjad> cell.parent_column
+        >>> cell.parent_column
         PitchArrayColumn(x2, x2)
 
     ::
 
-        abjad> cell.parent_row
+        >>> cell.parent_row
         PitchArrayRow(x1, x2, x1)
 
     ::
 
-        abjad> cell.pitches
+        >>> cell.pitches
         []
 
     ::
 
-        abjad> cell.prev
+        >>> cell.prev
         PitchArrayCell(x1)
 
     ::
 
-        abjad> cell.row_index
+        >>> cell.row_index
         0
 
     ::
 
-        abjad> cell.token
+        >>> cell.token
         2
 
     ::
 
-        abjad> cell.width
+        >>> cell.width
         2
 
     Return pitch array cell.

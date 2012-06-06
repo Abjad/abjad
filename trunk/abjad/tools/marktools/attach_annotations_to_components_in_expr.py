@@ -6,13 +6,13 @@ def attach_annotations_to_components_in_expr(expr, annotations):
 
     Attach `annotations` to components in `expr`::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> annotation = marktools.Annotation('foo', 'bar')
-        abjad> marktools.attach_annotations_to_components_in_expr(staff.leaves, [annotation])
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> annotation = marktools.Annotation('foo', 'bar')
+        >>> marktools.attach_annotations_to_components_in_expr(staff.leaves, [annotation])
 
     ::
 
-        abjad> for x in staff:
+        >>> for x in staff:
         ...     print x, marktools.get_annotations_attached_to_component(x)
         ... 
         c'8 (Annotation('foo', 'bar')(c'8),)

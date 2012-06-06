@@ -12,16 +12,16 @@ def resolve_overlaps_between_nonoverlapping_trees_excluding_remainders_less_than
     overlap intervals from starter-indexed trees, and then only where their durations are equal to or greater than
     `rational` ::
 
-        abjad> from abjad.tools import timeintervaltools
-        abjad> from abjad.tools.timeintervaltools import TimeInterval
-        abjad> from abjad.tools.timeintervaltools import TimeIntervalTree
+        >>> from abjad.tools import timeintervaltools
+        >>> from abjad.tools.timeintervaltools import TimeInterval
+        >>> from abjad.tools.timeintervaltools import TimeIntervalTree
 
     ::
 
-        abjad> a = TimeIntervalTree(TimeInterval(0, 1, {'a': 1}))
-        abjad> b = TimeIntervalTree(TimeInterval(Fraction(1, 32), Fraction(33, 32), {'b': 2}))
-        abjad> c = TimeIntervalTree(TimeInterval(Fraction(1, 16), Fraction(17, 16), {'c': 3}))
-        abjad> timeintervaltools.resolve_overlaps_between_nonoverlapping_trees_excluding_remainders_less_than_rational([a, b, c], Fraction(1, 16))
+        >>> a = TimeIntervalTree(TimeInterval(0, 1, {'a': 1}))
+        >>> b = TimeIntervalTree(TimeInterval(Fraction(1, 32), Fraction(33, 32), {'b': 2}))
+        >>> c = TimeIntervalTree(TimeInterval(Fraction(1, 16), Fraction(17, 16), {'c': 3}))
+        >>> timeintervaltools.resolve_overlaps_between_nonoverlapping_trees_excluding_remainders_less_than_rational([a, b, c], Fraction(1, 16))
         TimeIntervalTree([
             TimeInterval(Offset(0, 1), Offset(1, 1), {'a': 1}),
             TimeInterval(Offset(1, 1), Offset(17, 16), {'c': 3})

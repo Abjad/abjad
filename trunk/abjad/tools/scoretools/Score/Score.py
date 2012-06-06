@@ -6,10 +6,10 @@ class Score(Context):
 
     ::
 
-        abjad> staff_1 = Staff("c'8 d'8 e'8 f'8")
-        abjad> staff_2 = Staff("c'8 d'8 e'8 f'8")
-        abjad> score = Score([staff_1, staff_2])
-        abjad> f(score)
+        >>> staff_1 = Staff("c'8 d'8 e'8 f'8")
+        >>> staff_2 = Staff("c'8 d'8 e'8 f'8")
+        >>> score = Score([staff_1, staff_2])
+        >>> f(score)
         \new Score <<
             \new Staff {
                 c'8

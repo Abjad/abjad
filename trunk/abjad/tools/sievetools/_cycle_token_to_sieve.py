@@ -9,16 +9,16 @@ def _cycle_token_to_sieve(cycle_token):
 
     When `cycle_token` has length 2, interpret `cycle_token` as ``modulo, residues`` pair. ::
 
-        abjad> from abjad.tools.sievetools._cycle_token_to_sieve import _cycle_token_to_sieve
+        >>> from abjad.tools.sievetools._cycle_token_to_sieve import _cycle_token_to_sieve
 
-        abjad> cycle_token = (6, [0, 4, 5])
-        abjad> _cycle_token_to_sieve(cycle_token)
+        >>> cycle_token = (6, [0, 4, 5])
+        >>> _cycle_token_to_sieve(cycle_token)
         {ResidueClass(6, 0) | ResidueClass(6, 4) | ResidueClass(6, 5)}
 
     When `cycle_token` has length 3, interpret `cycle_token` as ``modulo, residues, offset`` triple. ::
 
-        abjad> cycle_token = (10, [0, 1, 2], 6)
-        abjad> _cycle_token_to_sieve(cycle_token)
+        >>> cycle_token = (10, [0, 1, 2], 6)
+        >>> _cycle_token_to_sieve(cycle_token)
         {ResidueClass(10, 6) | ResidueClass(10, 7) | ResidueClass(10, 8)}
 
     Return sieve.

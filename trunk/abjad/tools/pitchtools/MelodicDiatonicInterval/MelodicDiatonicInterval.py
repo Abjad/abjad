@@ -8,7 +8,7 @@ class MelodicDiatonicInterval(DiatonicIntervalObject, MelodicIntervalObject):
 
     Abjad model of melodic diatonic interval::
 
-        abjad> pitchtools.MelodicDiatonicInterval('+M9')
+        >>> pitchtools.MelodicDiatonicInterval('+M9')
         MelodicDiatonicInterval('+M9')
 
     Melodic diatonic intervals are immutable.

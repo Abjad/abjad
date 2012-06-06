@@ -11,22 +11,22 @@ def color_chord_note_heads_by_pitch_class_color_map(chord, color_map):
 
     Color `chord` note heads by pitch-class `color_map`::
 
-        abjad> chord = Chord([12, 14, 18, 21, 23], (1, 4))
+        >>> chord = Chord([12, 14, 18, 21, 23], (1, 4))
 
     ::
 
-        abjad> pitches = [[-12, -10, 4], [-2, 8, 11, 17], [19, 27, 30, 33, 37]]   
-        abjad> colors = ['red', 'blue', 'green']   
-        abjad> color_map = pitchtools.NumberedChromaticPitchClassColorMap(pitches, colors)
+        >>> pitches = [[-12, -10, 4], [-2, 8, 11, 17], [19, 27, 30, 33, 37]]   
+        >>> colors = ['red', 'blue', 'green']   
+        >>> color_map = pitchtools.NumberedChromaticPitchClassColorMap(pitches, colors)
 
     ::
 
-        abjad> chordtools.color_chord_note_heads_by_pitch_class_color_map(chord, color_map)
+        >>> chordtools.color_chord_note_heads_by_pitch_class_color_map(chord, color_map)
         Chord("<c'' d'' fs'' a'' b''>4")
 
     ::
 
-        abjad> f(chord)
+        >>> f(chord)
         <
             \tweak #'color #red
             c''
@@ -42,26 +42,26 @@ def color_chord_note_heads_by_pitch_class_color_map(chord, color_map):
 
     Also works on notes::
 
-        abjad> note = Note("c'4")
+        >>> note = Note("c'4")
 
     ::
 
-        abjad> chordtools.color_chord_note_heads_by_pitch_class_color_map(note, color_map)
+        >>> chordtools.color_chord_note_heads_by_pitch_class_color_map(note, color_map)
         Note("c'4")
 
     ::
 
-        abjad> f(note)
+        >>> f(note)
         \once \override NoteHead #'color = #red
         c'4
 
     When `chord` is neither a chord nor note return `chord` unchanged::
 
-        abjad> staff = Staff([])
+        >>> staff = Staff([])
 
     ::
 
-        abjad> chordtools.color_chord_note_heads_by_pitch_class_color_map(staff, color_map)
+        >>> chordtools.color_chord_note_heads_by_pitch_class_color_map(staff, color_map)
         Staff{}
 
     Return `chord`.

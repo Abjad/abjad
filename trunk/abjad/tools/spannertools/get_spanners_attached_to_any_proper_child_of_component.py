@@ -6,15 +6,15 @@ def get_spanners_attached_to_any_proper_child_of_component(component, klass = No
 
     Get all spanners attached to any proper children of `component`::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> beam = beamtools.BeamSpanner(staff.leaves)
-        abjad> first_slur = spannertools.SlurSpanner(staff.leaves[:2])
-        abjad> second_slur = spannertools.SlurSpanner(staff.leaves[2:])
-        abjad> trill = spannertools.TrillSpanner(staff)
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> beam = beamtools.BeamSpanner(staff.leaves)
+        >>> first_slur = spannertools.SlurSpanner(staff.leaves[:2])
+        >>> second_slur = spannertools.SlurSpanner(staff.leaves[2:])
+        >>> trill = spannertools.TrillSpanner(staff)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8 [ ( \startTrillSpan
             d'8 )
@@ -24,19 +24,19 @@ def get_spanners_attached_to_any_proper_child_of_component(component, klass = No
 
     ::
 
-        abjad> len(spannertools.get_spanners_attached_to_any_proper_child_of_component(staff)) == 3
+        >>> len(spannertools.get_spanners_attached_to_any_proper_child_of_component(staff)) == 3
         True
 
     Get all spanners of `klass` attached to any proper children of `component`::
 
-        abjad> spanner_klass = spannertools.SlurSpanner
-        abjad> spannertools.get_spanners_attached_to_any_proper_child_of_component(staff, spanner_klass) # doctest: +SKIP
+        >>> spanner_klass = spannertools.SlurSpanner
+        >>> spannertools.get_spanners_attached_to_any_proper_child_of_component(staff, spanner_klass) # doctest: +SKIP
         set([SlurSpanner(c'8, d'8), SlurSpanner(e'8, f'8)])
 
     Get all spanners of any `klass` attached to any proper children of `component`::
 
-        abjad> spanner_klasses = (spannertools.SlurSpanner, beamtools.BeamSpanner)
-        abjad> spannertools.get_spanners_attached_to_any_proper_child_of_component(staff, spanner_klasses) # doctest: +SKIP
+        >>> spanner_klasses = (spannertools.SlurSpanner, beamtools.BeamSpanner)
+        >>> spannertools.get_spanners_attached_to_any_proper_child_of_component(staff, spanner_klasses) # doctest: +SKIP
         set([BeamSpanner(c'8, d'8, e'8, f'8), SlurSpanner(c'8, d'8), SlurSpanner(e'8, f'8)])
 
     Return unordered set of zero or more spanners.

@@ -3,21 +3,21 @@ def all_are_equal(expr):
 
     True when `expr` is a sequence and all elements in `expr` are equal::
 
-        abjad> from abjad.tools import sequencetools
+        >>> from abjad.tools import sequencetools
 
     ::
 
-        abjad> sequencetools.all_are_equal([99, 99, 99, 99, 99, 99])
+        >>> sequencetools.all_are_equal([99, 99, 99, 99, 99, 99])
         True
 
     True when `expr` is an empty sequence::
 
-        abjad> sequencetools.all_are_equal([])
+        >>> sequencetools.all_are_equal([])
         True
 
     False otherwise::
 
-        abjad> sequencetools.all_are_equal(17)
+        >>> sequencetools.all_are_equal(17)
         False
 
     Return boolean.

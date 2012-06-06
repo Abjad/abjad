@@ -9,11 +9,11 @@ def assignable_rational_to_lilypond_duration_string(rational):
 
     Change assignable `rational` to LilyPond duration string::
 
-        abjad> from abjad.tools import durationtools
+        >>> from abjad.tools import durationtools
 
     ::
 
-        abjad> durationtools.assignable_rational_to_lilypond_duration_string(Fraction(3, 16))
+        >>> durationtools.assignable_rational_to_lilypond_duration_string(Fraction(3, 16))
         '8.'
 
     Raise assignability error when `rational` not assignable.

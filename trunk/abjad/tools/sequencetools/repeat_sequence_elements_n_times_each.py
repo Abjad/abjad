@@ -8,11 +8,11 @@ def repeat_sequence_elements_n_times_each(sequence, n):
 
     Repeat `sequence` elements `n` times each::
 
-        abjad> from abjad.tools import sequencetools
+        >>> from abjad.tools import sequencetools
 
     ::
 
-        abjad> sequencetools.repeat_sequence_elements_n_times_each((1, -1, 2, -3, 5, -5, 6), 2)
+        >>> sequencetools.repeat_sequence_elements_n_times_each((1, -1, 2, -3, 5, -5, 6), 2)
         (1, 1, -1, -1, 2, 2, -3, -3, 5, 5, -5, -5, 6, 6)
 
     Return newly constructed `sequence` object with copied `sequence` elements.

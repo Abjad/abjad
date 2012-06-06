@@ -6,26 +6,26 @@ def replace_sequence_elements_cyclically_with_new_material(sequence, indices, ne
 
     Replace `sequence` elements cyclically at `indices` with `new_material`::
 
-        abjad> from abjad.tools import sequencetools
+        >>> from abjad.tools import sequencetools
 
     ::
 
-        abjad> sequencetools.replace_sequence_elements_cyclically_with_new_material(range(20), ([0], 2), (['A', 'B'], 3))
+        >>> sequencetools.replace_sequence_elements_cyclically_with_new_material(range(20), ([0], 2), (['A', 'B'], 3))
         ['A', 1, 'B', 3, 4, 5, 'A', 7, 'B', 9, 10, 11, 'A', 13, 'B', 15, 16, 17, 'A', 19]
 
     ::
 
-        abjad> sequencetools.replace_sequence_elements_cyclically_with_new_material(range(20), ([0], 2), (['*'], 1))
+        >>> sequencetools.replace_sequence_elements_cyclically_with_new_material(range(20), ([0], 2), (['*'], 1))
         ['*', 1, '*', 3, '*', 5, '*', 7, '*', 9, '*', 11, '*', 13, '*', 15, '*', 17, '*', 19]
 
     ::
 
-        abjad> sequencetools.replace_sequence_elements_cyclically_with_new_material(range(20), ([0], 2), (['A', 'B', 'C', 'D'], None))
+        >>> sequencetools.replace_sequence_elements_cyclically_with_new_material(range(20), ([0], 2), (['A', 'B', 'C', 'D'], None))
         ['A', 1, 'B', 3, 'C', 5, 'D', 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
 
     ::
 
-        abjad> sequencetools.replace_sequence_elements_cyclically_with_new_material(range(20), ([0, 1, 8, 13], None), (['A', 'B', 'C', 'D'], None))
+        >>> sequencetools.replace_sequence_elements_cyclically_with_new_material(range(20), ([0, 1, 8, 13], None), (['A', 'B', 'C', 'D'], None))
         ['A', 'B', 2, 3, 4, 5, 6, 7, 'C', 9, 10, 11, 12, 'D', 14, 15, 16, 17, 18, 19]
 
     Raise type error when `sequence` not a list.

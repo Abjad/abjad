@@ -1,25 +1,25 @@
 def iterate_components_and_grace_containers_forward_in_expr(expr, klass):
     r'''Iterate components of `klass` forward in `expr`::
 
-        abjad> voice = Voice("c'8 d'8 e'8 f'8")
-        abjad> beamtools.BeamSpanner(voice[:])
+        >>> voice = Voice("c'8 d'8 e'8 f'8")
+        >>> beamtools.BeamSpanner(voice[:])
         BeamSpanner(c'8, d'8, e'8, f'8)
 
     ::
 
-        abjad> grace_notes = [Note("c'16"), Note("d'16")]
-        abjad> gracetools.GraceContainer(grace_notes, kind='grace')(voice[1])
+        >>> grace_notes = [Note("c'16"), Note("d'16")]
+        >>> gracetools.GraceContainer(grace_notes, kind='grace')(voice[1])
         Note("d'8")
 
     ::
 
-        abjad> after_grace_notes = [Note("e'16"), Note("f'16")]
-        abjad> gracetools.GraceContainer(after_grace_notes, kind='after')(voice[1])
+        >>> after_grace_notes = [Note("e'16"), Note("f'16")]
+        >>> gracetools.GraceContainer(after_grace_notes, kind='after')(voice[1])
         Note("d'8")
 
     ::
 
-        abjad> f(voice)
+        >>> f(voice)
         \new Voice {
             c'8 [
             \grace {
@@ -38,7 +38,7 @@ def iterate_components_and_grace_containers_forward_in_expr(expr, klass):
 
     ::
 
-        abjad> for note in gracetools.iterate_components_and_grace_containers_forward_in_expr(voice, Note):
+        >>> for note in gracetools.iterate_components_and_grace_containers_forward_in_expr(voice, Note):
         ...     note
         ...
         Note("c'8")

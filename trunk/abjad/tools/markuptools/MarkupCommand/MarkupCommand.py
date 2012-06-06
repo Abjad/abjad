@@ -5,33 +5,33 @@ from abjad.tools.schemetools import Scheme
 class MarkupCommand(AbjadObject):
     r'''Abjad model of a LilyPond markup command::
 
-        abjad> circle = markuptools.MarkupCommand('draw-circle', 2.5, 0.1, False)
-        abjad> square = markuptools.MarkupCommand('rounded-box', 'hello?')
-        abjad> line = markuptools.MarkupCommand('line', [square, 'wow!'])
-        abjad> rotate = markuptools.MarkupCommand('rotate', 60, line)
-        abjad> combine = markuptools.MarkupCommand('combine', rotate, circle)
+        >>> circle = markuptools.MarkupCommand('draw-circle', 2.5, 0.1, False)
+        >>> square = markuptools.MarkupCommand('rounded-box', 'hello?')
+        >>> line = markuptools.MarkupCommand('line', [square, 'wow!'])
+        >>> rotate = markuptools.MarkupCommand('rotate', 60, line)
+        >>> combine = markuptools.MarkupCommand('combine', rotate, circle)
 
     ::
 
-        abjad> print combine
+        >>> print combine
         \combine \rotate #60 \line { \rounded-box hello? wow! } \draw-circle #2.5 #0.1 ##f
 
     Insert markup command in markup to attach to score components::
 
-        abjad> note = Note("c'4")
+        >>> note = Note("c'4")
 
     ::
 
-        abjad> markup = markuptools.Markup(combine)
+        >>> markup = markuptools.Markup(combine)
 
     ::
 
-        abjad> markup(note)
+        >>> markup(note)
         Markup((MarkupCommand('combine', MarkupCommand('rotate', 60, MarkupCommand('line', [MarkupCommand('rounded-box', 'hello?'), 'wow!'])), MarkupCommand('draw-circle', 2.5, 0.1, False)),))(c'4)
 
     ::
 
-        abjad> f(note)
+        >>> f(note)
         c'4 - \markup { \combine \rotate #60 \line { \rounded-box hello? wow! } \draw-circle #2.5 #0.1 ##f }
 
     Markup commands are immutable.
@@ -122,8 +122,8 @@ class MarkupCommand(AbjadObject):
     def format(self):
         r'''Read-only format of markup command::
 
-            abjad> markup_command = markuptools.MarkupCommand('draw-circle', 2.5, 0.1, False)
-            abjad> markup_command.format
+            >>> markup_command = markuptools.MarkupCommand('draw-circle', 2.5, 0.1, False)
+            >>> markup_command.format
             '\\draw-circle #2.5 #0.1 ##f'
 
         Returns string.

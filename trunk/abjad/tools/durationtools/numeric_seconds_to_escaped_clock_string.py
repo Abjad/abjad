@@ -6,21 +6,21 @@ def numeric_seconds_to_escaped_clock_string(seconds):
 
     Change numeric `seconds` to escaped clock string::
 
-        abjad> from abjad.tools import durationtools
+        >>> from abjad.tools import durationtools
 
     ::
 
-        abjad> note = Note("c'4")
-        abjad> clock_string = durationtools.numeric_seconds_to_escaped_clock_string(117)
+        >>> note = Note("c'4")
+        >>> clock_string = durationtools.numeric_seconds_to_escaped_clock_string(117)
 
     ::
 
-        abjad> markuptools.Markup('"%s"' % clock_string, 'up')(note)
+        >>> markuptools.Markup('"%s"' % clock_string, 'up')(note)
         Markup(('"1\'57\\""',), direction='^')(c'4)
 
     ::
 
-        abjad> f(note)
+        >>> f(note)
         c'4 ^ \markup { "1'57\"" }
 
     Escape seconds indicator for output as LilyPond markup.

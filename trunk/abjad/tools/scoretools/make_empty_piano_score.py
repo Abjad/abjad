@@ -9,11 +9,11 @@ def make_empty_piano_score():
 
     Make empty piano score::
 
-        abjad> score, treble, bass = scoretools.make_empty_piano_score()
+        >>> score, treble, bass = scoretools.make_empty_piano_score()
 
     ::
 
-        abjad> f(score)
+        >>> f(score)
         \new Score <<
             \new PianoStaff <<
                 \context Staff = "treble" {

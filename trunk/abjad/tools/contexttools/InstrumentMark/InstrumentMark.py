@@ -15,16 +15,16 @@ class InstrumentMark(ContextMark):
 
     Abjad model of an instrument change::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
 
     ::
 
-        abjad> contexttools.InstrumentMark('Flute', 'Fl.')(staff)
+        >>> contexttools.InstrumentMark('Flute', 'Fl.')(staff)
         InstrumentMark(instrument_name='Flute', short_instrument_name='Fl.')(Staff{4})
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \set Staff.instrumentName = \markup { Flute }
             \set Staff.shortInstrumentName = \markup { Fl. }
@@ -135,8 +135,8 @@ class InstrumentMark(ContextMark):
 
         ::
 
-            abjad> instrument = contexttools.InstrumentMark('Flute', 'Fl.')
-            abjad> instrument.format
+            >>> instrument = contexttools.InstrumentMark('Flute', 'Fl.')
+            >>> instrument.format
             ['\\set Staff.instrumentName = \\markup { Flute }', '\\set Staff.shortInstrumentName = \\markup { Fl. }']
 
         Return list.
@@ -151,14 +151,14 @@ class InstrumentMark(ContextMark):
         def fget(self):
             r'''Get instrument name::
 
-                abjad> instrument = contexttools.InstrumentMark('Flute', 'Fl.')
-                abjad> instrument.instrument_name
+                >>> instrument = contexttools.InstrumentMark('Flute', 'Fl.')
+                >>> instrument.instrument_name
                 'Flute'
 
             Set instrument name::
 
-                abjad> instrument.instrument_name = 'Alto Flute'
-                abjad> instrument.instrument_name
+                >>> instrument.instrument_name = 'Alto Flute'
+                >>> instrument.instrument_name
                 'Alto Flute'
 
             Return string.
@@ -177,14 +177,14 @@ class InstrumentMark(ContextMark):
         def fget(self):
             r'''Get instrument name::
 
-                abjad> instrument = contexttools.InstrumentMark('Flute', 'Fl.')
-                abjad> instrument.instrument_name_markup
+                >>> instrument = contexttools.InstrumentMark('Flute', 'Fl.')
+                >>> instrument.instrument_name_markup
                 Markup(('Flute',))
 
             Set instrument name::
 
-                abjad> instrument.instrument_name_markup = 'Alto Flute'
-                abjad> instrument.instrument_name_markup
+                >>> instrument.instrument_name_markup = 'Alto Flute'
+                >>> instrument.instrument_name_markup
                 Markup(('Alto Flute',))
 
             Return markup.
@@ -208,14 +208,14 @@ class InstrumentMark(ContextMark):
         def fget(self):
             r'''Get short instrument name::
 
-                abjad> instrument = contexttools.InstrumentMark('Flute', 'Fl.')
-                abjad> instrument.short_instrument_name
+                >>> instrument = contexttools.InstrumentMark('Flute', 'Fl.')
+                >>> instrument.short_instrument_name
                 'Fl.'
 
             Set short instrument name::
 
-                abjad> instrument.short_instrument_name = 'Alto Fl.'
-                abjad> instrument.short_instrument_name
+                >>> instrument.short_instrument_name = 'Alto Fl.'
+                >>> instrument.short_instrument_name
                 'Alto Fl.'
 
             Return string.
@@ -234,14 +234,14 @@ class InstrumentMark(ContextMark):
         def fget(self):
             r'''Get short instrument name::
 
-                abjad> instrument = contexttools.InstrumentMark('Flute', 'Fl.')
-                abjad> instrument.short_instrument_name_markup
+                >>> instrument = contexttools.InstrumentMark('Flute', 'Fl.')
+                >>> instrument.short_instrument_name_markup
                 Markup(('Fl.',))
 
             Set short instrument name::
 
-                abjad> instrument.short_instrument_name_markup = 'Alto Fl.'
-                abjad> instrument.short_instrument_name_markup
+                >>> instrument.short_instrument_name_markup = 'Alto Fl.'
+                >>> instrument.short_instrument_name_markup
                 Markup(('Alto Fl.',))
 
             Return markup.

@@ -6,21 +6,21 @@ def get_up_markup_attached_to_component(component):
 
     Get up-markup attached to component::
 
-        abjad> chord = Chord([-11, 2, 5], (1, 4))
+        >>> chord = Chord([-11, 2, 5], (1, 4))
 
     ::
 
-        abjad> markuptools.Markup('UP', 'up')(chord)
+        >>> markuptools.Markup('UP', 'up')(chord)
         Markup(('UP',), direction='^')(<cs d' f'>4)
 
     ::
 
-        abjad> markuptools.Markup('DOWN', 'down')(chord)
+        >>> markuptools.Markup('DOWN', 'down')(chord)
         Markup(('DOWN',), direction='_')(<cs d' f'>4)
 
     ::
 
-        abjad> markuptools.get_up_markup_attached_to_component(chord)
+        >>> markuptools.get_up_markup_attached_to_component(chord)
         (Markup(('UP',), direction='^')(<cs d' f'>4),)
 
     Return tuple of zero or more markup objects.

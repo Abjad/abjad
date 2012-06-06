@@ -4,7 +4,7 @@ from abjad.tools.schemetools.Scheme import Scheme
 class SchemeColor(Scheme):
     '''Abjad model of Scheme color::
 
-        abjad> schemetools.SchemeColor('ForestGreen')
+        >>> schemetools.SchemeColor('ForestGreen')
         SchemeColor('ForestGreen')
 
     Scheme colors are immutable.

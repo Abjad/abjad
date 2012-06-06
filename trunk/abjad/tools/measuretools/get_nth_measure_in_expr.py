@@ -8,12 +8,12 @@ def get_nth_measure_in_expr(expr, n = 0):
 
     Get nth measure in `expr`::
 
-        abjad> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
-        abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+        >>> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             {
                 \time 2/8
@@ -32,7 +32,7 @@ def get_nth_measure_in_expr(expr, n = 0):
 
     Read forward for positive values of `n`. ::
 
-        abjad> for n in range(3):
+        >>> for n in range(3):
         ...     measuretools.get_nth_measure_in_expr(staff, n)
         ...
         Measure(2/8, [c'8, d'8])
@@ -41,7 +41,7 @@ def get_nth_measure_in_expr(expr, n = 0):
 
     Read backward for negative values of `n`. ::
 
-        abjad> for n in range(3, -1, -1):
+        >>> for n in range(3, -1, -1):
         ...     measuretools.get_nth_measure_in_expr(staff, n)
         ...
         Measure(2/8, [g'8, a'8])

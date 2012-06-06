@@ -7,9 +7,9 @@ def label_leaves_in_expr_with_pitch_class_numbers(expr, number = True, color = F
 
     Label leaves in `expr` with pitch-class numbers::
 
-        abjad> t = Staff("c'8 d'8 e'8 f'8")
-        abjad> leaftools.label_leaves_in_expr_with_pitch_class_numbers(t)
-        abjad> print t.format
+        >>> t = Staff("c'8 d'8 e'8 f'8")
+        >>> leaftools.label_leaves_in_expr_with_pitch_class_numbers(t)
+        >>> print t.format
         \new Staff {
             c'8 _ \markup { \small 0 }
             d'8 _ \markup { \small 2 }
@@ -21,9 +21,9 @@ def label_leaves_in_expr_with_pitch_class_numbers(expr, number = True, color = F
 
     ::
 
-        abjad> t = Staff("c'8 d'8 e'8 f'8")
-        abjad> leaftools.label_leaves_in_expr_with_pitch_class_numbers(t, color = True, number = False)
-        abjad> print t.format
+        >>> t = Staff("c'8 d'8 e'8 f'8")
+        >>> leaftools.label_leaves_in_expr_with_pitch_class_numbers(t, color = True, number = False)
+        >>> print t.format
         \new Staff {
             \once \override NoteHead #'color = #(x11-color 'red)
             c'8

@@ -8,10 +8,10 @@ def is_component_with_context_mark_attached(expr, klasses = (ContextMark,)):
 
     True when `expr` is a component with context mark of `klasses` attached::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> contexttools.TimeSignatureMark((4, 8))(staff[0])
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> contexttools.TimeSignatureMark((4, 8))(staff[0])
         TimeSignatureMark((4, 8))(c'8)
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \time 4/8
             c'8
@@ -19,12 +19,12 @@ def is_component_with_context_mark_attached(expr, klasses = (ContextMark,)):
             e'8
             f'8
         }
-        abjad> contexttools.is_component_with_context_mark_attached(staff[0])
+        >>> contexttools.is_component_with_context_mark_attached(staff[0])
         True
 
     Otherwise false::
 
-        abjad> contexttools.is_component_with_context_mark_attached(staff)
+        >>> contexttools.is_component_with_context_mark_attached(staff)
         False
 
     Return boolean.

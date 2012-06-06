@@ -6,11 +6,11 @@ def yield_all_restricted_growth_functions_of_length(length):
 
     Generate all restricted growth functions of `length` in lex order::
 
-        abjad> from abjad.tools import sequencetools
+        >>> from abjad.tools import sequencetools
 
     ::
 
-        abjad> for rgf in sequencetools.yield_all_restricted_growth_functions_of_length(4):
+        >>> for rgf in sequencetools.yield_all_restricted_growth_functions_of_length(4):
         ...     rgf
         ...
         (1, 1, 1, 1)

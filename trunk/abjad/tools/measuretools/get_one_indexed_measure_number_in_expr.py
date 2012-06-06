@@ -6,12 +6,12 @@ def get_one_indexed_measure_number_in_expr(expr, measure_number):
 
     Get one-indexed `measure_number` in `expr`::
 
-        abjad> t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
-        abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+        >>> t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
 
     ::
 
-        abjad> f(t)
+        >>> f(t)
         \new Staff {
             {
                 \time 2/8
@@ -27,7 +27,7 @@ def get_one_indexed_measure_number_in_expr(expr, measure_number):
                 a'8
             }
         }
-        abjad> measuretools.get_one_indexed_measure_number_in_expr(t, 3)
+        >>> measuretools.get_one_indexed_measure_number_in_expr(t, 3)
         Measure(2/8, [g'8, a'8])
 
     Note that measures number from 1.

@@ -34,11 +34,11 @@ class LilyPondParser(AbjadObject):
 
     ::
 
-        abjad> from abjad.tools.lilypondparsertools import LilyPondParser
-        abjad> parser = LilyPondParser( )
-        abjad> input = r"\new Staff { c'4 ( d'8 e' fs'2) \fermata }"
-        abjad> result = parser(input)
-        abjad> f(result)
+        >>> from abjad.tools.lilypondparsertools import LilyPondParser
+        >>> parser = LilyPondParser( )
+        >>> input = r"\new Staff { c'4 ( d'8 e' fs'2) \fermata }"
+        >>> result = parser(input)
+        >>> f(result)
         \new Staff {
             c'4 (
             d'8
@@ -51,10 +51,10 @@ class LilyPondParser(AbjadObject):
 
     ::
 
-        abjad> parser = LilyPondParser('nederlands')
-        abjad> input = '{ c des e fis }'
-        abjad> result = parser(input)
-        abjad> f(result)
+        >>> parser = LilyPondParser('nederlands')
+        >>> input = '{ c des e fis }'
+        >>> result = parser(input)
+        >>> f(result)
         {
             c4
             df4
@@ -204,9 +204,9 @@ class LilyPondParser(AbjadObject):
 
         ::
 
-            abjad> from abjad.tools.lilypondparsertools import LilyPondParser
-            abjad> parser = LilyPondParser( )
-            abjad> parser.available_languages
+            >>> from abjad.tools.lilypondparsertools import LilyPondParser
+            >>> parser = LilyPondParser( )
+            >>> parser.available_languages
             ('catalan', 'deutsch', 'english', 'espanol', 'italiano', 'nederlands', 'norsk', 'portugues', 'suomi', 'svenska', 'vlaams')
 
         Return tuple.
@@ -221,16 +221,16 @@ class LilyPondParser(AbjadObject):
 
             ::
 
-                abjad> from abjad.tools.lilypondparsertools import LilyPondParser
-                abjad> parser = LilyPondParser( )
-                abjad> parser.default_language
+                >>> from abjad.tools.lilypondparsertools import LilyPondParser
+                >>> parser = LilyPondParser( )
+                >>> parser.default_language
                 'english'
-                abjad> parser('{ c df e fs }')
+                >>> parser('{ c df e fs }')
                 {c4, df4, e4, fs4}
-                abjad> parser.default_language = 'nederlands'
-                abjad> parser.default_language
+                >>> parser.default_language = 'nederlands'
+                >>> parser.default_language
                 'nederlands'
-                abjad> parser('{ c des e fis }')
+                >>> parser('{ c des e fis }')
                 {c4, df4, e4, fs4}
 
             '''

@@ -6,15 +6,15 @@ def get_noncontext_marks_attached_to_component(component):
 
     Get noncontext marks attached to component::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> contexttools.TimeSignatureMark((2, 4))(staff[0])
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> contexttools.TimeSignatureMark((2, 4))(staff[0])
         TimeSignatureMark((2, 4))(c'8)
-        abjad> marktools.Articulation('staccato')(staff[0])
+        >>> marktools.Articulation('staccato')(staff[0])
         Articulation('staccato')(c'8)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \time 2/4
             c'8 -\staccato
@@ -25,7 +25,7 @@ def get_noncontext_marks_attached_to_component(component):
 
     ::
 
-        abjad> marktools.get_noncontext_marks_attached_to_component(staff[0])
+        >>> marktools.get_noncontext_marks_attached_to_component(staff[0])
         (Articulation('staccato')(c'8),)
 
     Return tuple of zero or more marks.

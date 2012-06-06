@@ -7,7 +7,7 @@ class Rest(Leaf):
 
     ::
 
-        abjad> Rest((3, 16))
+        >>> Rest((3, 16))
         Rest('r8.')
 
     '''

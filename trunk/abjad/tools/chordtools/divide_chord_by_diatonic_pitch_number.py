@@ -10,16 +10,16 @@ def divide_chord_by_diatonic_pitch_number(chord, pitch=NamedChromaticPitch('b', 
 
     Divide `chord` by diatonic `pitch` number::
 
-        abjad> chord = Chord(range(12), Duration(1, 4))
+        >>> chord = Chord(range(12), Duration(1, 4))
 
     ::
 
-        abjad> chord
+        >>> chord
         Chord("<c' cs' d' ef' e' f' fs' g' af' a' bf' b'>4")
 
     ::
 
-        abjad> chordtools.divide_chord_by_diatonic_pitch_number(chord, pitchtools.NamedChromaticPitch(6))
+        >>> chordtools.divide_chord_by_diatonic_pitch_number(chord, pitchtools.NamedChromaticPitch(6))
         (Chord("<f' fs' g' af' a' bf' b'>4"), Chord("<c' cs' d' ef' e'>4"))
 
     Input `chord` may be a note, rest or chord but not a skip.

@@ -34,18 +34,18 @@ class QGrid(AbjadObject):
 
     ::
 
-        abjad> from abjad.tools.quantizationtools import QGrid
-        abjad> q = QGrid([0, 0, [0, 0]], 0)
+        >>> from abjad.tools.quantizationtools import QGrid
+        >>> q = QGrid([0, 0, [0, 0]], 0)
 
     The values in the grid can be access via subscript, as though
     the grid were a flat list.
 
     ::
 
-        abjad> q[0] = 1
-        abjad> q[2] = 3
-        abjad> q[4] = 5
-        abjad> q
+        >>> q[0] = 1
+        >>> q[2] = 3
+        >>> q[4] = 5
+        >>> q
         QGrid([1, 0, [3, 0]], 5)
 
     `QGrids` are quasi-immutable.
@@ -182,9 +182,9 @@ class QGrid(AbjadObject):
 
         ::
 
-            abjad> from abjad.tools.quantizationtools import QGrid
-            abjad> q = QGrid([0, 0, [0, 0]], 0)
-            abjad> q.definition
+            >>> from abjad.tools.quantizationtools import QGrid
+            >>> q = QGrid([0, 0, [0, 0]], 0)
+            >>> q.definition
             [0, 0, [0, 0]]
 
         Read-only.
@@ -198,12 +198,12 @@ class QGrid(AbjadObject):
 
         ::
 
-            abjad> from abjad.tools.quantizationtools import QGrid
-            abjad> q = QGrid([0, 0, [0, 0]], 0)
-            abjad> q[-1] = 9
-            abjad> q
+            >>> from abjad.tools.quantizationtools import QGrid
+            >>> q = QGrid([0, 0, [0, 0]], 0)
+            >>> q[-1] = 9
+            >>> q
             QGrid([0, 0, [0, 0]], 9)
-            abjad> q.next
+            >>> q.next
             9
 
         Read-only.
@@ -218,9 +218,9 @@ class QGrid(AbjadObject):
 
         ::
 
-            abjad> from abjad.tools.quantizationtools import QGrid
-            abjad> q = QGrid([0, [0, 0], 0], 0)
-            abjad> q.offsets
+            >>> from abjad.tools.quantizationtools import QGrid
+            >>> q = QGrid([0, [0, 0], 0], 0)
+            >>> q.offsets
             (Offset(0, 1), Offset(1, 3), Offset(1, 2), Offset(2, 3), Offset(1, 1))
 
         Read-only.
@@ -236,12 +236,12 @@ class QGrid(AbjadObject):
 
         ::
 
-            abjad> from abjad.tools.quantizationtools import QGrid
-            abjad> q = QGrid([0, [0, 0]], 0)
-            abjad> q.offsets
+            >>> from abjad.tools.quantizationtools import QGrid
+            >>> q = QGrid([0, [0, 0]], 0)
+            >>> q.offsets
             (Offset(0, 1), Offset(1, 2), Offset(3, 4), Offset(1, 1))
-            abjad> points = [0.1, 0.9]
-            abjad> q.find_divisible_indices(points)
+            >>> points = [0.1, 0.9]
+            >>> q.find_divisible_indices(points)
             [0, 2]
 
         Returns a list.
@@ -263,15 +263,15 @@ class QGrid(AbjadObject):
 
         ::
 
-            abjad> from abjad.tools.quantizationtools import QGrid
-            abjad> q = QGrid([0, [0, [0, 0], 0], 0, 0, 0], 0)
-            abjad> q.find_parentage_of_index(0)
+            >>> from abjad.tools.quantizationtools import QGrid
+            >>> q = QGrid([0, [0, [0, 0], 0], 0, 0, 0], 0)
+            >>> q.find_parentage_of_index(0)
             (5,)
-            abjad> q.find_parentage_of_index(1)
+            >>> q.find_parentage_of_index(1)
             (5, 3)
-            abjad> q.find_parentage_of_index(2)
+            >>> q.find_parentage_of_index(2)
             (5, 3, 2)
-            abjad> q.find_parentage_of_index(7)
+            >>> q.find_parentage_of_index(7)
             (5,)
 
         Returns a tuple.
@@ -308,9 +308,9 @@ class QGrid(AbjadObject):
 
         ::
 
-            abjad> from abjad.tools.quantizationtools import QGrid
-            abjad> q = QGrid([0, [0, 0], 0], 0)
-            abjad> q.format_for_beatspan()
+            >>> from abjad.tools.quantizationtools import QGrid
+            >>> q = QGrid([0, [0, 0], 0], 0)
+            >>> q.format_for_beatspan()
             Tuplet(2/3, [c'8, c'16, c'16, c'8])
 
         Returns a :py:class:`~abjad.tools.tuplettools.Tuplet` or
@@ -345,9 +345,9 @@ class QGrid(AbjadObject):
 
         ::
 
-            abjad> from abjad.tools.quantizationtools import QGrid
-            abjad> q = QGrid([0, 0], 0)
-            abjad> q.subdivide_indices([(0, 2), (1, 3)])
+            >>> from abjad.tools.quantizationtools import QGrid
+            >>> q = QGrid([0, 0], 0)
+            >>> q.subdivide_indices([(0, 2), (1, 3)])
             QGrid([[0, 0], [0, 0, 0]], 0)
 
         Returns a new `QGrid`.

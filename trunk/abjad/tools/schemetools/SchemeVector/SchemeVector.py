@@ -6,7 +6,7 @@ class SchemeVector(Scheme):
 
     Abjad model of Scheme vector::
 
-        abjad> schemetools.SchemeVector(True, True, False)
+        >>> schemetools.SchemeVector(True, True, False)
         SchemeVector((True, True, False))
 
     Scheme vectors and Scheme vector constants differ in only their LilyPond input format.

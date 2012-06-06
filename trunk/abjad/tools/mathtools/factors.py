@@ -4,16 +4,16 @@ from abjad.tools.mathtools.is_positive_integer import is_positive_integer
 def factors(n):
     '''Integer factors of positive integer `n` in increasing order::
 
-        abjad> from abjad.tools import mathtools
+        >>> from abjad.tools import mathtools
 
     ::
 
-        abjad> mathtools.factors(84)
+        >>> mathtools.factors(84)
         [1, 2, 2, 3, 7]
 
     ::
 
-        abjad> for n in range(10, 20):
+        >>> for n in range(10, 20):
         ...   print n, mathtools.factors(n)
         ...
         10 [1, 2, 5]

@@ -6,12 +6,12 @@ class InversionEquivalentChromaticIntervalClassVector(ObjectVector):
 
     Abjad model of inversion-equivalent chromatic interval-class vector::
 
-        abjad> pitchtools.InversionEquivalentChromaticIntervalClassVector([1, 1, 6, 2, 2, 2])
+        >>> pitchtools.InversionEquivalentChromaticIntervalClassVector([1, 1, 6, 2, 2, 2])
         InversionEquivalentChromaticIntervalClassVector(0 | 2 3 0 0 0 1)
 
     Initialize by inversion-equivalent chromatic interval-class counts::
 
-        abjad> pitchtools.InversionEquivalentChromaticIntervalClassVector(counts = [2, 3, 0, 0, 0, 1])
+        >>> pitchtools.InversionEquivalentChromaticIntervalClassVector(counts = [2, 3, 0, 0, 0, 1])
         InversionEquivalentChromaticIntervalClassVector(0 | 2 3 0 0 0 1)
 
     Inversion-equivalent chromatic interval-class vectors are immutable.

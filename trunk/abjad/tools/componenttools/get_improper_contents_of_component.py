@@ -3,11 +3,11 @@ def get_improper_contents_of_component(component):
 
     Get improper contents of `component`::
 
-        abjad> staff = Staff("c' d' e' f'")
+        >>> staff = Staff("c' d' e' f'")
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'4
             d'4
@@ -17,7 +17,7 @@ def get_improper_contents_of_component(component):
 
     ::
 
-        abjad> componenttools.get_improper_contents_of_component(staff)
+        >>> componenttools.get_improper_contents_of_component(staff)
         [Staff{4}, Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")]
 
     The functions works for both containers and leaves.

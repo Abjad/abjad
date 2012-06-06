@@ -18,11 +18,11 @@ def millisecond_pitch_pairs_to_q_events(pairs):
 
     ::
 
-        abjad> from abjad.tools.quantizationtools import millisecond_pitch_pairs_to_q_events
-        abjad> durations = [1001, 503, 230, 1340]
-        abjad> pitches = [None, 0, (1, 2, 3), 4.5]
-        abjad> pairs = zip(durations, pitches)
-        abjad> millisecond_pitch_pairs_to_q_events(pairs)
+        >>> from abjad.tools.quantizationtools import millisecond_pitch_pairs_to_q_events
+        >>> durations = [1001, 503, 230, 1340]
+        >>> pitches = [None, 0, (1, 2, 3), 4.5]
+        >>> pairs = zip(durations, pitches)
+        >>> millisecond_pitch_pairs_to_q_events(pairs)
         [QEvent(Offset(0, 1), None), QEvent(Offset(1001, 1), 0), QEvent(Offset(1504, 1), (1, 2, 3)), QEvent(Offset(1734, 1), 4.5), QEvent(Offset(3074, 1), None)]
 
     Return a list of :py:class:`~abjad.tools.quantizationtools.QEvent` instances.

@@ -7,28 +7,28 @@ class GlobalCountsConstraint(_GlobalConstraint):
 
     ::
 
-        abjad> from abjad.tools.constrainttools import GlobalCountsConstraint
+        >>> from abjad.tools.constrainttools import GlobalCountsConstraint
 
     Instantiated from a lambda or function which takes a dictionary as its one
     and only argument:
 
     ::
 
-        abjad> all_unique = GlobalCountsConstraint(lambda x: all([y == 1 for y in x.values()]))
-        abjad> one_climax = GlobalCountsConstraint(lambda x: x[max(x.keys())] == 1)
+        >>> all_unique = GlobalCountsConstraint(lambda x: all([y == 1 for y in x.values()]))
+        >>> one_climax = GlobalCountsConstraint(lambda x: x[max(x.keys())] == 1)
 
     ::
 
-        abjad> all_unique([1, 2, 3, 4, 0, -1])
+        >>> all_unique([1, 2, 3, 4, 0, -1])
         True
-        abjad> all_unique([1, 1, 2, 3, 4, 0, -1])
+        >>> all_unique([1, 1, 2, 3, 4, 0, -1])
         False
 
     ::
 
-        abjad> one_climax([1, 2, 3, 4, 0, -1])
+        >>> one_climax([1, 2, 3, 4, 0, -1])
         True
-        abjad> one_climax([1, 5, 5, 3])
+        >>> one_climax([1, 5, 5, 3])
         False
 
     ``GlobalCountsConstraints`` are immutble.

@@ -6,7 +6,7 @@ class GlobalReferenceConstraint(_GlobalConstraint):
 
     ::
 
-        abjad> from abjad.tools.constrainttools import GlobalReferenceConstraint
+        >>> from abjad.tools.constrainttools import GlobalReferenceConstraint
     
     Its predicate function should accept two arguments, the first being the
     current solution, and the second for the external reference provided at
@@ -14,15 +14,15 @@ class GlobalReferenceConstraint(_GlobalConstraint):
 
     ::
 
-        abjad> reference = [0, 1, 2, 3]
-        abjad> predicate = lambda solution, reference: all([item not in reference for item in solution])
-        abjad> constraint = GlobalReferenceConstraint(reference, predicate)
+        >>> reference = [0, 1, 2, 3]
+        >>> predicate = lambda solution, reference: all([item not in reference for item in solution])
+        >>> constraint = GlobalReferenceConstraint(reference, predicate)
 
     ::
 
-        abjad> constraint([-1, 10, 3.5])
+        >>> constraint([-1, 10, 3.5])
         True
-        abjad> constraint([-1, 1, 2, 3, 23])
+        >>> constraint([-1, 1, 2, 3, 23])
         False
         
     ``GlobalReferenceConstraints`` are immutable.    

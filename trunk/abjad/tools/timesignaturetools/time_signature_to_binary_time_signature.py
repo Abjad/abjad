@@ -7,16 +7,16 @@ import fractions
 def time_signature_to_binary_time_signature(nonbinary_meter, contents_multiplier = fractions.Fraction(1)):
     '''Change nonbinary `meter` to binary meter::
 
-        abjad> from abjad.tools import timesignaturetools
+        >>> from abjad.tools import timesignaturetools
 
     ::
 
-        abjad> timesignaturetools.time_signature_to_binary_time_signature(contexttools.TimeSignatureMark((3, 12)))
+        >>> timesignaturetools.time_signature_to_binary_time_signature(contexttools.TimeSignatureMark((3, 12)))
         TimeSignatureMark((2, 8))
 
     Preserve binary `meter`::
 
-        abjad> timesignaturetools.time_signature_to_binary_time_signature(contexttools.TimeSignatureMark((2, 8)))
+        >>> timesignaturetools.time_signature_to_binary_time_signature(contexttools.TimeSignatureMark((2, 8)))
         TimeSignatureMark((2, 8))
 
     Return newly constructed meter.

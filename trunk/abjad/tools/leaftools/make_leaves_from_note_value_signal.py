@@ -8,12 +8,12 @@ def make_leaves_from_note_value_signal(
 
     Make leaves from `note_value_signal` and `denominator_of_signal`::
 
-        abjad> leaves = leaftools.make_leaves_from_note_value_signal([3, -3, 5, -5], 8)
-        abjad> staff = Staff(leaves)
+        >>> leaves = leaftools.make_leaves_from_note_value_signal([3, -3, 5, -5], 8)
+        >>> staff = Staff(leaves)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'4.
             r4.

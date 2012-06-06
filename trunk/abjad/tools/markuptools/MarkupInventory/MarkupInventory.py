@@ -7,11 +7,11 @@ class MarkupInventory(ObjectInventory):
 
     Abjad model of an ordered list of markup::
 
-        abjad> inventory = markuptools.MarkupInventory(['foo', 'bar'])
+        >>> inventory = markuptools.MarkupInventory(['foo', 'bar'])
 
     ::
 
-        abjad> inventory
+        >>> inventory
         MarkupInventory([Markup(('foo',)), Markup(('bar',))])
 
     Markup inventories implement the list interface and are mutable.

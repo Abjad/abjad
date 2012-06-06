@@ -7,16 +7,16 @@ def all_are_grace_containers(expr):
 
     True when `expr` is a sequence of Abjad grace containers::
 
-        abjad> graces = [gracetools.GraceContainer("<c' e' g'>4"), gracetools.GraceContainer("<c' f' a'>4")]
-        abjad> voice = Voice("c'8 d'8 e'8 f'8")
-        abjad> grace_notes = [Note("c'16"), Note("d'16")]
-        abjad> grace_container = gracetools.GraceContainer(grace_notes, kind='grace')
-        abjad> grace_container(voice[1])
+        >>> graces = [gracetools.GraceContainer("<c' e' g'>4"), gracetools.GraceContainer("<c' f' a'>4")]
+        >>> voice = Voice("c'8 d'8 e'8 f'8")
+        >>> grace_notes = [Note("c'16"), Note("d'16")]
+        >>> grace_container = gracetools.GraceContainer(grace_notes, kind='grace')
+        >>> grace_container(voice[1])
         Note("d'8")
 
     ::
 
-        abjad> f(voice)
+        >>> f(voice)
         \new Voice {
             c'8
             \grace {
@@ -30,17 +30,17 @@ def all_are_grace_containers(expr):
 
     ::
 
-        abjad> gracetools.all_are_grace_containers([grace_container])
+        >>> gracetools.all_are_grace_containers([grace_container])
         True
 
     True when `expr` is an empty sequence::
 
-        abjad> gracetools.all_are_grace_containers([])
+        >>> gracetools.all_are_grace_containers([])
         True
 
     Otherwise false::
 
-        abjad> gracetools.all_are_grace_containers('foo')
+        >>> gracetools.all_are_grace_containers('foo')
         False
 
     Return boolean.

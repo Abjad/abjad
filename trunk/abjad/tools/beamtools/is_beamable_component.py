@@ -3,7 +3,7 @@ def is_beamable_component(expr):
 
     True when `expr` is a beamable component. Otherwise false::
 
-        abjad> beamtools.is_beamable_component(Note(13, (1, 16)))
+        >>> beamtools.is_beamable_component(Note(13, (1, 16)))
         True
 
     Return boolean.

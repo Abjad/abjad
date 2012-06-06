@@ -7,8 +7,8 @@ def get_numbered_chromatic_pitch_class_from_pitch_carrier(pitch_carrier):
 
     Get numbered chromatic pitch-class from `pitch_carrier`::
 
-        abjad> note = Note("cs'4")
-        abjad> pitchtools.get_numbered_chromatic_pitch_class_from_pitch_carrier(note)
+        >>> note = Note("cs'4")
+        >>> pitchtools.get_numbered_chromatic_pitch_class_from_pitch_carrier(note)
         NumberedChromaticPitchClass(1)
 
     Raise missing pitch error on empty chords.

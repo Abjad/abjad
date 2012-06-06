@@ -11,11 +11,11 @@ def cut_component_at_prolated_duration(component, prolated_duration):
 
     Cut `component` at dotted `prolated_duration`::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> beamtools.BeamSpanner(staff.leaves)
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> beamtools.BeamSpanner(staff.leaves)
         BeamSpanner(c'8, d'8, e'8, f'8)
-        abjad> componenttools.cut_component_at_prolated_duration(staff, Duration(1, 32))
-        abjad> f(staff)
+        >>> componenttools.cut_component_at_prolated_duration(staff, Duration(1, 32))
+        >>> f(staff)
         \new Staff {
             c'16. [
             d'8
@@ -25,11 +25,11 @@ def cut_component_at_prolated_duration(component, prolated_duration):
 
     Cut `component` at tied `prolated_duration`::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> beamtools.BeamSpanner(staff.leaves)
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> beamtools.BeamSpanner(staff.leaves)
         BeamSpanner(c'8, d'8, e'8, f'8)
-        abjad> componenttools.cut_component_at_prolated_duration(staff, Duration(3, 64))
-        abjad> f(staff)
+        >>> componenttools.cut_component_at_prolated_duration(staff, Duration(3, 64))
+        >>> f(staff)
         \new Staff {
             c'16 [ ~
             c'64
@@ -40,11 +40,11 @@ def cut_component_at_prolated_duration(component, prolated_duration):
 
     Cut `component` at nonbinary `prolated_duration`::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> beamtools.BeamSpanner(staff.leaves)
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> beamtools.BeamSpanner(staff.leaves)
         BeamSpanner(c'8, d'8, e'8, f'8)
-        abjad> componenttools.cut_component_at_prolated_duration(staff, Duration(1, 24))
-        abjad> f(staff)
+        >>> componenttools.cut_component_at_prolated_duration(staff, Duration(1, 24))
+        >>> f(staff)
         \new Staff {
             \times 2/3 {
                 c'8 [

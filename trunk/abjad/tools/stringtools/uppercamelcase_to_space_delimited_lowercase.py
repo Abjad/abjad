@@ -3,11 +3,11 @@ def uppercamelcase_to_space_delimited_lowercase(string):
 
     Change uppercamelcase `string` to space-delimited lowercase::
 
-        abjad> string = 'KeySignatureMark'
+        >>> string = 'KeySignatureMark'
 
     ::
 
-        abjad> stringtools.uppercamelcase_to_space_delimited_lowercase(string)
+        >>> stringtools.uppercamelcase_to_space_delimited_lowercase(string)
         'key signature mark'
 
     Return string.

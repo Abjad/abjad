@@ -6,11 +6,11 @@ def yield_groups_of_mixed_klasses_in_sequence(sequence, klasses):
 
     Yield groups of mixed `klasses` in `sequence`::
 
-        abjad> staff = Staff("c'8 d'8 r8 r8 <e' g'>8 <f' a'>8 g'8 a'8 r8 r8 <b' d''>8 <c'' e''>8")
+        >>> staff = Staff("c'8 d'8 r8 r8 <e' g'>8 <f' a'>8 g'8 a'8 r8 r8 <b' d''>8 <c'' e''>8")
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8
             d'8
@@ -28,7 +28,7 @@ def yield_groups_of_mixed_klasses_in_sequence(sequence, klasses):
 
     ::
 
-        abjad> for group in componenttools.yield_groups_of_mixed_klasses_in_sequence(staff, (Note, Chord)):
+        >>> for group in componenttools.yield_groups_of_mixed_klasses_in_sequence(staff, (Note, Chord)):
         ...   group
         (Note("c'8"), Note("d'8"))
         (Chord("<e' g'>8"), Chord("<f' a'>8"), Note("g'8"), Note("a'8"))

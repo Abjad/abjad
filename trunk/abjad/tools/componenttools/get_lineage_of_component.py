@@ -3,7 +3,7 @@ def get_lineage_of_component(component):
 
     Get lineage of `component`::
 
-        abjad> staff = Staff(r"c'4 \times 2/3 { d'8 e'8 f'8 }")
+        >>> staff = Staff(r"c'4 \times 2/3 { d'8 e'8 f'8 }")
 
     ::
 

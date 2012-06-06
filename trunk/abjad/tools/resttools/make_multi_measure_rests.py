@@ -7,7 +7,7 @@ def make_multi_measure_rests(duration_tokens):
 
     Make multi-measure rests from `duration_tokens`::
 
-        abjad> resttools.make_multi_measure_rests([(4, 4), (7, 4)])
+        >>> resttools.make_multi_measure_rests([(4, 4), (7, 4)])
         [MultiMeasureRest('R1'), MultiMeasureRest('R1..')]
 
     Return list.

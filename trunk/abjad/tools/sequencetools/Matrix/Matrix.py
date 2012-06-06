@@ -8,54 +8,54 @@ class Matrix(AbjadObject):
 
     Initialize from rows::
 
-        abjad> from abjad.tools import sequencetools
+        >>> from abjad.tools import sequencetools
 
     ::
 
-        abjad> matrix = sequencetools.Matrix([[0, 1, 2, 3], [10, 11, 12, 13], [20, 21, 22, 23]])
+        >>> matrix = sequencetools.Matrix([[0, 1, 2, 3], [10, 11, 12, 13], [20, 21, 22, 23]])
 
     ::
 
-        abjad> matrix
+        >>> matrix
         Matrix(3x4)
 
     ::
 
-        abjad> matrix[:]
+        >>> matrix[:]
         ((0, 1, 2, 3), (10, 11, 12, 13), (20, 21, 22, 23))
 
     ::
 
-        abjad> matrix[2]
+        >>> matrix[2]
         (20, 21, 22, 23)
 
     ::
 
-        abjad> matrix[2][0]
+        >>> matrix[2][0]
         20
 
     Initialize from columns::
 
-        abjad> matrix = sequencetools.Matrix(columns = [[0, 10, 20], [1, 11, 21], [2, 12, 22], [3, 13, 23]])
+        >>> matrix = sequencetools.Matrix(columns = [[0, 10, 20], [1, 11, 21], [2, 12, 22], [3, 13, 23]])
 
     ::
 
-        abjad> matrix
+        >>> matrix
         Matrix(3x4)
 
     ::
 
-        abjad> matrix[:]
+        >>> matrix[:]
         ((0, 1, 2, 3), (10, 11, 12, 13), (20, 21, 22, 23))
 
     ::
 
-        abjad> matrix[2]
+        >>> matrix[2]
         (20, 21, 22, 23)
 
     ::
 
-        abjad> matrix[2][0]
+        >>> matrix[2][0]
         20
 
     Matrix implements only item retrieval in this revision.
@@ -115,11 +115,11 @@ class Matrix(AbjadObject):
     def columns(self):
         '''Read-only columns::
 
-            abjad> matrix = sequencetools.Matrix([[0, 1, 2, 3], [10, 11, 12, 13], [20, 21, 22, 23]])
+            >>> matrix = sequencetools.Matrix([[0, 1, 2, 3], [10, 11, 12, 13], [20, 21, 22, 23]])
 
         ::
 
-            abjad> matrix.columns
+            >>> matrix.columns
             ((0, 10, 20), (1, 11, 21), (2, 12, 22), (3, 13, 23))
 
         Return tuple.
@@ -130,11 +130,11 @@ class Matrix(AbjadObject):
     def rows(self):
         '''Read-only rows::
 
-            abjad> matrix = sequencetools.Matrix([[0, 1, 2, 3], [10, 11, 12, 13], [20, 21, 22, 23]])
+            >>> matrix = sequencetools.Matrix([[0, 1, 2, 3], [10, 11, 12, 13], [20, 21, 22, 23]])
 
         ::
 
-            abjad> matrix.rows
+            >>> matrix.rows
             ((0, 1, 2, 3), (10, 11, 12, 13), (20, 21, 22, 23))
 
         Return tuple.

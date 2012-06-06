@@ -6,16 +6,16 @@ class ClefMark(ContextMark):
 
     Abjad model of a clef::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
 
     ::
 
-        abjad> contexttools.ClefMark('treble')(staff)
+        >>> contexttools.ClefMark('treble')(staff)
         ClefMark('treble')(Staff{4})
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \clef "treble"
             c'8
@@ -69,14 +69,14 @@ class ClefMark(ContextMark):
         def fget(self):
             r'''Get clef name::
 
-                abjad> clef = contexttools.ClefMark('treble')
-                abjad> clef.clef_name
+                >>> clef = contexttools.ClefMark('treble')
+                >>> clef.clef_name
                 'treble'
 
             Set clef name::
 
-                abjad> clef.clef_name = 'alto'
-                abjad> clef.clef_name
+                >>> clef.clef_name = 'alto'
+                >>> clef.clef_name
                 'alto'
 
             Return string.
@@ -93,8 +93,8 @@ class ClefMark(ContextMark):
 
         ::
 
-            abjad> clef = contexttools.ClefMark('treble')
-            abjad> clef.format
+            >>> clef = contexttools.ClefMark('treble')
+            >>> clef.format
             '\\clef "treble"'
 
         Return string.
@@ -107,8 +107,8 @@ class ClefMark(ContextMark):
 
         ::
 
-            abjad> clef = contexttools.ClefMark('treble')
-            abjad> clef.middle_c_position
+            >>> clef = contexttools.ClefMark('treble')
+            >>> clef.middle_c_position
             -6
 
         Return integer number of stafflines.

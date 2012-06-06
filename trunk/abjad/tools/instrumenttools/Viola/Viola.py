@@ -9,18 +9,18 @@ class Viola(_StringInstrument):
 
     Abjad model of the viola::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> contexttools.ClefMark('alto')(staff)
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> contexttools.ClefMark('alto')(staff)
         ClefMark('alto')(Staff{4})
 
     ::
 
-        abjad> instrumenttools.Viola()(staff)
+        >>> instrumenttools.Viola()(staff)
         Viola()(Staff{4})
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \clef "alto"
             \set Staff.instrumentName = \markup { Viola }

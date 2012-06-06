@@ -4,11 +4,11 @@ from abjad.tools.mathtools.is_nonnegative_integer_power_of_two import is_nonnega
 def is_positive_integer_power_of_two(expr):
     '''True when `expr` is a positive integer power of ``2``::
 
-        abjad> from abjad.tools import mathtools
+        >>> from abjad.tools import mathtools
 
     ::
 
-        abjad> for n in range(10):
+        >>> for n in range(10):
         ...     print n, mathtools.is_positive_integer_power_of_two(n)
         ...
         0 False

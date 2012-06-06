@@ -8,16 +8,16 @@ def iterate_thread_forward_from_component(component, klass=None):
 
     Itearte thread forward from `component` and yield instances of `klass`::
 
-        abjad> container = Container(Voice(notetools.make_repeated_notes(2)) * 2)
-        abjad> container.is_parallel = True
-        abjad> container[0].name = 'voice 1'
-        abjad> container[1].name = 'voice 2'
-        abjad> staff = Staff(container * 2)
-        abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+        >>> container = Container(Voice(notetools.make_repeated_notes(2)) * 2)
+        >>> container.is_parallel = True
+        >>> container[0].name = 'voice 1'
+        >>> container[1].name = 'voice 2'
+        >>> staff = Staff(container * 2)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             <<
                 \context Voice = "voice 1" {
@@ -43,7 +43,7 @@ def iterate_thread_forward_from_component(component, klass=None):
 
     Starting from the first leaf in score. ::
 
-        abjad> for x in componenttools.iterate_thread_forward_from_component(staff.leaves[0], Note):
+        >>> for x in componenttools.iterate_thread_forward_from_component(staff.leaves[0], Note):
         ...     x
         ...
         Note("c'8")
@@ -53,7 +53,7 @@ def iterate_thread_forward_from_component(component, klass=None):
 
     Starting from the second leaf in score. ::
 
-        abjad> for x in componenttools.iterate_thread_forward_from_component(staff.leaves[1], Note):
+        >>> for x in componenttools.iterate_thread_forward_from_component(staff.leaves[1], Note):
         ...     x
         ...
         Note("d'8")
@@ -62,7 +62,7 @@ def iterate_thread_forward_from_component(component, klass=None):
 
     Yield all components in thread. ::
 
-        abjad> for x in componenttools.iterate_thread_forward_from_component(staff.leaves[0]):
+        >>> for x in componenttools.iterate_thread_forward_from_component(staff.leaves[0]):
         ...     x
         ...
         Note("c'8")

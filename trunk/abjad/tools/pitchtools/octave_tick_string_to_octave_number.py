@@ -6,7 +6,7 @@ def octave_tick_string_to_octave_number(tick_string):
 
     Change `tick_string` to octave number::
 
-        abjad> pitchtools.octave_tick_string_to_octave_number("'")
+        >>> pitchtools.octave_tick_string_to_octave_number("'")
         4
 
     Raise type error on nonstring input.

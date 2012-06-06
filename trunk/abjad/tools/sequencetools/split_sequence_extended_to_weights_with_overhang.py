@@ -6,11 +6,11 @@ def split_sequence_extended_to_weights_with_overhang(sequence, weights):
 
     Split `sequence` extended to `weights` with overhang::
 
-        abjad> from abjad.tools import sequencetools
+        >>> from abjad.tools import sequencetools
 
     ::
 
-        abjad> sequencetools.split_sequence_extended_to_weights_with_overhang([1, 2, 3, 4, 5], [7, 7, 7])
+        >>> sequencetools.split_sequence_extended_to_weights_with_overhang([1, 2, 3, 4, 5], [7, 7, 7])
         [[1, 2, 3, 1], [3, 4], [1, 1, 2, 3], [4, 5]]
 
     Return new object of `sequence` type.

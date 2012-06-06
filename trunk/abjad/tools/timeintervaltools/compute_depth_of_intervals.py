@@ -9,12 +9,12 @@ def compute_depth_of_intervals(intervals):
     '''Compute a tree whose intervals represent the depth (level of overlap)
     in each boundary pair of `intervals`::
 
-        abjad> from abjad.tools.timeintervaltools import *
-        abjad> a = TimeInterval(0, 3)
-        abjad> b = TimeInterval(6, 12)
-        abjad> c = TimeInterval(9, 15)
-        abjad> tree = TimeIntervalTree([a, b, c])
-        abjad> compute_depth_of_intervals(tree)
+        >>> from abjad.tools.timeintervaltools import *
+        >>> a = TimeInterval(0, 3)
+        >>> b = TimeInterval(6, 12)
+        >>> c = TimeInterval(9, 15)
+        >>> tree = TimeIntervalTree([a, b, c])
+        >>> compute_depth_of_intervals(tree)
         TimeIntervalTree([
             TimeInterval(Offset(0, 1), Offset(3, 1), {'depth': 1}),
             TimeInterval(Offset(3, 1), Offset(6, 1), {'depth': 0}),

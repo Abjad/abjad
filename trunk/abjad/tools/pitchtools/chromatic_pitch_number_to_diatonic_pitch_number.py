@@ -6,7 +6,7 @@ def chromatic_pitch_number_to_diatonic_pitch_number(chromatic_pitch_number):
 
     Change `chromatic_pitch_number` to diatonic pitch number::
 
-        abjad> pitchtools.chromatic_pitch_number_to_diatonic_pitch_number(13)
+        >>> pitchtools.chromatic_pitch_number_to_diatonic_pitch_number(13)
         7
 
     Return integer.

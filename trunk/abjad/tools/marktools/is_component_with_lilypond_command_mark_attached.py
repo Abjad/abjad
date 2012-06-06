@@ -6,22 +6,22 @@ def is_component_with_lilypond_command_mark_attached(expr, command_name = None):
 
     True when `expr` is component with LilyPond command mark attached::
 
-        abjad> note = Note("c'4")
-        abjad> marktools.LilyPondCommandMark('stemUp')(note)
+        >>> note = Note("c'4")
+        >>> marktools.LilyPondCommandMark('stemUp')(note)
         LilyPondCommandMark('stemUp')(c'4)
 
     ::
 
-        abjad> marktools.is_component_with_lilypond_command_mark_attached(note)
+        >>> marktools.is_component_with_lilypond_command_mark_attached(note)
         True
 
     False otherwise::
 
-        abjad> note = Note("c'4")
+        >>> note = Note("c'4")
 
     ::
 
-        abjad> marktools.is_component_with_lilypond_command_mark_attached(note)
+        >>> marktools.is_component_with_lilypond_command_mark_attached(note)
         False
 
     Return boolean.

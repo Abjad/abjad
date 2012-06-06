@@ -10,7 +10,7 @@ def pitch_class_octave_number_string_to_chromatic_pitch_name(pitch_class_octave_
 
     Change `pitch_class_octave_number_string` to chromatic pitch name::
 
-        abjad> pitchtools.pitch_class_octave_number_string_to_chromatic_pitch_name('C#+2')
+        >>> pitchtools.pitch_class_octave_number_string_to_chromatic_pitch_name('C#+2')
         'ctqs,'
 
     Return string.

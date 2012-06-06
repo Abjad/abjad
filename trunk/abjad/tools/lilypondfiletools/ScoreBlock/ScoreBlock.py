@@ -6,17 +6,17 @@ class ScoreBlock(NonattributedBlock):
 
     Abjad model of LilyPond input file score block::
 
-        abjad> score_block = lilypondfiletools.ScoreBlock()
+        >>> score_block = lilypondfiletools.ScoreBlock()
 
     ::
 
-        abjad> score_block
+        >>> score_block
         ScoreBlock()
 
     ::
 
-        abjad> score_block.append(Staff([]))
-        abjad> f(score_block)
+        >>> score_block.append(Staff([]))
+        >>> f(score_block)
         \score {
             \new Staff {
             }
@@ -25,8 +25,8 @@ class ScoreBlock(NonattributedBlock):
     ScoreBlocks does not format when empty, as this generates a 
     parser error in LilyPond::
 
-        abjad> score_block = lilypondfiletools.ScoreBlock()
-        abjad> score_block.format == ''
+        >>> score_block = lilypondfiletools.ScoreBlock()
+        >>> score_block.format == ''
         True
 
     Return score block.

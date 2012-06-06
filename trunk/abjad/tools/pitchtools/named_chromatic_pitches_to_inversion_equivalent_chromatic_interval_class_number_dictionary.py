@@ -9,9 +9,9 @@ def named_chromatic_pitches_to_inversion_equivalent_chromatic_interval_class_num
     Change named chromatic `pitches` to inversion-equivalent chromatic interval-class number
     dictionary::
 
-        abjad> chord = Chord([0, 2, 11], (1, 4))
-        abjad> vector = pitchtools.named_chromatic_pitches_to_inversion_equivalent_chromatic_interval_class_number_dictionary(chord.written_pitches)
-        abjad> for i in range(7):
+        >>> chord = Chord([0, 2, 11], (1, 4))
+        >>> vector = pitchtools.named_chromatic_pitches_to_inversion_equivalent_chromatic_interval_class_number_dictionary(chord.written_pitches)
+        >>> for i in range(7):
         ...     print '\t%s\t%s' % (i, vector[i])
         ...
             0  0

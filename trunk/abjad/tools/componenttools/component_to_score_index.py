@@ -3,11 +3,11 @@ def component_to_score_index(component):
 
     Change `component` to score index::
 
-        abjad> staff_1 = Staff(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
-        abjad> staff_2 = Staff([tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3))])
-        abjad> score = Score([staff_1, staff_2])
-        abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(score)
-        abjad> f(score)
+        >>> staff_1 = Staff(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
+        >>> staff_2 = Staff([tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3))])
+        >>> score = Score([staff_1, staff_2])
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(score)
+        >>> f(score)
         \new Score <<
             \new Staff {
                 \times 2/3 {
@@ -32,7 +32,7 @@ def component_to_score_index(component):
 
     ::
 
-        abjad> for leaf in score.leaves:
+        >>> for leaf in score.leaves:
         ...     leaf, componenttools.component_to_score_index(leaf)
         ...
         (Note("c'8"), (0, 0, 0))

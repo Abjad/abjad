@@ -6,24 +6,24 @@ class GlobalConstraint(_GlobalConstraint):
 
     ::
 
-        abjad> from abjad.tools.constrainttools import GlobalConstraint
+        >>> from abjad.tools.constrainttools import GlobalConstraint
 
     Instantiated from a function which takes a single argument, representing an
     entire solution.
 
     ::
 
-        abjad> max_total_range = GlobalConstraint(lambda seq: (max(seq) - min(seq)) < 5)
+        >>> max_total_range = GlobalConstraint(lambda seq: (max(seq) - min(seq)) < 5)
 
     ::
 
-        abjad> max_total_range([0, 1, 2])
+        >>> max_total_range([0, 1, 2])
         True
-        abjad> max_total_range([0, 1, 2, 3])
+        >>> max_total_range([0, 1, 2, 3])
         True
-        abjad> max_total_range([0, 1, 2, 3, 4])
+        >>> max_total_range([0, 1, 2, 3, 4])
         True
-        abjad> max_total_range([0, 1, 2, 3, 4, 5])
+        >>> max_total_range([0, 1, 2, 3, 4, 5])
         False
 
     ``GlobalConstraints`` are immutable.

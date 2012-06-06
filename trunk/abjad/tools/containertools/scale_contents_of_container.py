@@ -3,13 +3,13 @@ def scale_contents_of_container(container, multiplier):
 
     Scale contents of `container` by dot `multiplier`::
 
-        abjad> staff = Staff("c'8 d'8")
-        abjad> beamtools.BeamSpanner(staff.leaves)
+        >>> staff = Staff("c'8 d'8")
+        >>> beamtools.BeamSpanner(staff.leaves)
         BeamSpanner(c'8, d'8)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8 [
             d'8 ]
@@ -17,12 +17,12 @@ def scale_contents_of_container(container, multiplier):
 
     ::
 
-        abjad> containertools.scale_contents_of_container(staff, Duration(3, 2))
+        >>> containertools.scale_contents_of_container(staff, Duration(3, 2))
         Staff{2}
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8. [
             d'8. ]
@@ -30,13 +30,13 @@ def scale_contents_of_container(container, multiplier):
 
     Scale contents of `container` by tie `multiplier`::
 
-        abjad> staff = Staff("c'8 d'8")
-        abjad> beamtools.BeamSpanner(staff.leaves)
+        >>> staff = Staff("c'8 d'8")
+        >>> beamtools.BeamSpanner(staff.leaves)
         BeamSpanner(c'8, d'8)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8 [
             d'8 ]
@@ -44,12 +44,12 @@ def scale_contents_of_container(container, multiplier):
 
     ::
 
-        abjad> containertools.scale_contents_of_container(staff, Duration(5, 4))
+        >>> containertools.scale_contents_of_container(staff, Duration(5, 4))
         Staff{4}
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8 [ ~
             c'32
@@ -59,13 +59,13 @@ def scale_contents_of_container(container, multiplier):
 
     Scale contents of `container` by nonbinary `multiplier`::
 
-        abjad> staff = Staff("c'8 d'8")
-        abjad> beamtools.BeamSpanner(staff.leaves)
+        >>> staff = Staff("c'8 d'8")
+        >>> beamtools.BeamSpanner(staff.leaves)
         BeamSpanner(c'8, d'8)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8 [
             d'8 ]
@@ -73,12 +73,12 @@ def scale_contents_of_container(container, multiplier):
 
     ::
 
-        abjad> containertools.scale_contents_of_container(staff, Duration(4, 3))
+        >>> containertools.scale_contents_of_container(staff, Duration(4, 3))
         Staff{2}
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \times 2/3 {
                 c'4 [

@@ -3,12 +3,12 @@ def get_components_in_expr_with_name(expr, name):
 
     Get components in `expr` with `name`::
 
-        abjad> staff = Staff(r"\new Voice { c'8 d'8 } \new Voice { e'8 f'8 } \new Voice { g'4 }")
-        abjad> staff[0].name = 'outer voice'
-        abjad> staff[1].name = 'middle voice'
-        abjad> staff[2].name = 'outer voice'
+        >>> staff = Staff(r"\new Voice { c'8 d'8 } \new Voice { e'8 f'8 } \new Voice { g'4 }")
+        >>> staff[0].name = 'outer voice'
+        >>> staff[1].name = 'middle voice'
+        >>> staff[2].name = 'outer voice'
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \context Voice = "outer voice" {
                 c'8
@@ -23,12 +23,12 @@ def get_components_in_expr_with_name(expr, name):
             }
         }
 
-        abjad> componenttools.get_components_in_expr_with_name(staff, 'outer voice')
+        >>> componenttools.get_components_in_expr_with_name(staff, 'outer voice')
         [Voice-"outer voice"{2}, Voice-"outer voice"{1}]
 
     ::
 
-        abjad> componenttools.get_components_in_expr_with_name(staff, 'middle voice')
+        >>> componenttools.get_components_in_expr_with_name(staff, 'middle voice')
         [Voice-"middle voice"{2}]
 
     Return list of zero or more components found.

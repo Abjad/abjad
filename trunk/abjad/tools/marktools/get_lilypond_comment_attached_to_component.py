@@ -6,13 +6,13 @@ def get_lilypond_comment_attached_to_component(component):
 
     Get exactly one LilyPond comment attached to `component`::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> marktools.LilyPondComment('comment')(staff[0])
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> marktools.LilyPondComment('comment')(staff[0])
         LilyPondComment('comment')(c'8)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             % comment
             c'8
@@ -23,7 +23,7 @@ def get_lilypond_comment_attached_to_component(component):
 
     ::
 
-        abjad> marktools.get_lilypond_comment_attached_to_component(staff[0])
+        >>> marktools.get_lilypond_comment_attached_to_component(staff[0])
         LilyPondComment('comment')(c'8)
 
     Return one LilyPond comment.

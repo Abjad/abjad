@@ -36,16 +36,16 @@ def is_lilypond_duration_string(expr):
 
     True when `expr` is a LilyPond duration string::
 
-        abjad> from abjad.tools import durationtools
+        >>> from abjad.tools import durationtools
 
     ::
 
-        abjad> durationtools.is_lilypond_duration_string('4.. * 1/2')
+        >>> durationtools.is_lilypond_duration_string('4.. * 1/2')
         True
 
     Otherwise false::
 
-        abjad> durationtools.is_lilypond_duration_string('foo')
+        >>> durationtools.is_lilypond_duration_string('foo')
         False
 
     The regex ``^(1|2|4|8|16|32|64|128|\\breve|\\longa|\\maxima)\s*(\.*)\s*(\*\s*(\d+(/\d+)?))?$``

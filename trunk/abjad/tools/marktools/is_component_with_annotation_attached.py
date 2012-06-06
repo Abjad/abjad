@@ -6,22 +6,22 @@ def is_component_with_annotation_attached(expr, annotation_name = None, annotati
 
     True when `expr` is component with annotation attached::
 
-        abjad> note = Note("c'4")
-        abjad> marktools.Annotation('foo', 'bar')(note)
+        >>> note = Note("c'4")
+        >>> marktools.Annotation('foo', 'bar')(note)
         Annotation('foo', 'bar')(c'4)
 
     ::
 
-        abjad> marktools.is_component_with_annotation_attached(note)
+        >>> marktools.is_component_with_annotation_attached(note)
         True
 
     False otherwise::
 
-        abjad> note = Note("c'4")
+        >>> note = Note("c'4")
 
     ::
 
-        abjad> marktools.is_component_with_annotation_attached(note)
+        >>> marktools.is_component_with_annotation_attached(note)
         False
 
     Return boolean.

@@ -6,9 +6,9 @@ class NumberedChromaticPitchClassColorMap(AbjadObject):
 
     Abjad model of a numbered chromatic pitch-class color map::
 
-        abjad> chromatic_pitch_class_numbers = [[-8, 2, 10, 21], [0, 11, 32, 41], [15, 25, 42, 43]]
-        abjad> colors = ['red', 'green', 'blue']
-        abjad> pitchtools.NumberedChromaticPitchClassColorMap(chromatic_pitch_class_numbers, colors)
+        >>> chromatic_pitch_class_numbers = [[-8, 2, 10, 21], [0, 11, 32, 41], [15, 25, 42, 43]]
+        >>> colors = ['red', 'green', 'blue']
+        >>> pitchtools.NumberedChromaticPitchClassColorMap(chromatic_pitch_class_numbers, colors)
         NumberedChromaticPitchClassColorMap([[-8, 2, 10, 21], [0, 11, 32, 41], [15, 25, 42, 43]], ['red', 'green', 'blue'])
 
     Numbered chromatic pitch-class color maps are immutable.

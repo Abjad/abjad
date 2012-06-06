@@ -14,9 +14,9 @@ def milliseconds_to_q_events(milliseconds):
 
     ::
 
-        abjad> from abjad.tools.quantizationtools import milliseconds_to_q_events
-        abjad> durations = [100, -250, 500]
-        abjad> milliseconds_to_q_events(durations)
+        >>> from abjad.tools.quantizationtools import milliseconds_to_q_events
+        >>> durations = [100, -250, 500]
+        >>> milliseconds_to_q_events(durations)
         [QEvent(Offset(0, 1), 0), QEvent(Offset(100, 1), None), QEvent(Offset(350, 1), 0), QEvent(Offset(850, 1), None)]
 
     Return a list of :py:class:`~abjad.tools.quantizationtools.QEvent` objects.

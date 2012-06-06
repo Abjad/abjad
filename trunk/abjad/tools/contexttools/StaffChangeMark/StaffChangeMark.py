@@ -6,16 +6,16 @@ class StaffChangeMark(ContextMark):
 
     Abjad model of a staff change::
 
-        abjad> piano_staff = scoretools.PianoStaff([])
-        abjad> rh_staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> rh_staff.name = 'RHStaff'
-        abjad> lh_staff = Staff("s2")
-        abjad> lh_staff.name = 'LHStaff'
-        abjad> piano_staff.extend([rh_staff, lh_staff])
+        >>> piano_staff = scoretools.PianoStaff([])
+        >>> rh_staff = Staff("c'8 d'8 e'8 f'8")
+        >>> rh_staff.name = 'RHStaff'
+        >>> lh_staff = Staff("s2")
+        >>> lh_staff.name = 'LHStaff'
+        >>> piano_staff.extend([rh_staff, lh_staff])
 
     ::
 
-        abjad> f(piano_staff)
+        >>> f(piano_staff)
         \new PianoStaff <<
             \context Staff = "RHStaff" {
                 c'8
@@ -30,12 +30,12 @@ class StaffChangeMark(ContextMark):
 
     ::
 
-        abjad> contexttools.StaffChangeMark(lh_staff)(rh_staff[2])
+        >>> contexttools.StaffChangeMark(lh_staff)(rh_staff[2])
         StaffChangeMark(Staff-"LHStaff"{1})(e'8)
 
     ::
 
-        abjad> f(piano_staff)
+        >>> f(piano_staff)
         \new PianoStaff <<
             \context Staff = "RHStaff" {
                 c'8
@@ -87,10 +87,10 @@ class StaffChangeMark(ContextMark):
 
         ::
 
-            abjad> staff = Staff("c'8 d'8 e'8 f'8")
-            abjad> staff.name = 'RHStaff'
-            abjad> staff_change = contexttools.StaffChangeMark(staff)
-            abjad> staff_change.format
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> staff.name = 'RHStaff'
+            >>> staff_change = contexttools.StaffChangeMark(staff)
+            >>> staff_change.format
             '\\change Staff = RHStaff'
 
         Return string.
@@ -102,18 +102,18 @@ class StaffChangeMark(ContextMark):
         def fget(self):
             r'''Get staff of staff change mark::
 
-                abjad> rh_staff = Staff("c'8 d'8 e'8 f'8")
-                abjad> rh_staff.name = 'RHStaff'
-                abjad> staff_change = contexttools.StaffChangeMark(rh_staff)
-                abjad> staff_change.staff
+                >>> rh_staff = Staff("c'8 d'8 e'8 f'8")
+                >>> rh_staff.name = 'RHStaff'
+                >>> staff_change = contexttools.StaffChangeMark(rh_staff)
+                >>> staff_change.staff
                 Staff-"RHStaff"{4}
 
             Set staff of staff change mark::
 
-                abjad> lh_staff = Staff("s2")
-                abjad> lh_staff.name = 'LHStaff'
-                abjad> staff_change.staff = lh_staff
-                abjad> staff_change.staff
+                >>> lh_staff = Staff("s2")
+                >>> lh_staff.name = 'LHStaff'
+                >>> staff_change.staff = lh_staff
+                >>> staff_change.staff
                 Staff-"LHStaff"{1}
 
             Return staff.

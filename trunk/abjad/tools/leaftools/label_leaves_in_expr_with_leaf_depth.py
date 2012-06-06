@@ -6,11 +6,11 @@ def label_leaves_in_expr_with_leaf_depth(expr, markup_direction = 'down'):
 
     Label leaves in `expr` with leaf depth::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8 g'8")
-        abjad> tuplettools.FixedDurationTuplet(Duration(2, 8), staff[-3:])
+        >>> staff = Staff("c'8 d'8 e'8 f'8 g'8")
+        >>> tuplettools.FixedDurationTuplet(Duration(2, 8), staff[-3:])
         FixedDurationTuplet(1/4, [e'8, f'8, g'8])
-        abjad> leaftools.label_leaves_in_expr_with_leaf_depth(staff)
-        abjad> f(staff)
+        >>> leaftools.label_leaves_in_expr_with_leaf_depth(staff)
+        >>> f(staff)
         \new Staff {
             c'8 _ \markup { \small 1 }
             d'8 _ \markup { \small 1 }

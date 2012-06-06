@@ -7,11 +7,11 @@ def is_binary_rational(rational):
 
     True when `rational` is of the form ``1/2**n``. Otherwise false::
 
-        abjad> from abjad.tools import durationtools
+        >>> from abjad.tools import durationtools
 
     ::
 
-        abjad> for n in range(1, 17): # doctest: +SKIP
+        >>> for n in range(1, 17): # doctest: +SKIP
         ...     rational = Fraction(1, n)
         ...     print '%s\\t%s' % (rational, durationtools.is_binary_rational(rational))
         ...

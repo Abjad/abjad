@@ -6,11 +6,11 @@ def eject_contents_of_container(container):
 
     Eject contents of `container`::
 
-        abjad> container = Container("c'8 d'8 e'8 f'8")
+        >>> container = Container("c'8 d'8 e'8 f'8")
 
     ::
 
-        abjad> f(container)
+        >>> f(container)
         {
             c'8
             d'8
@@ -20,17 +20,17 @@ def eject_contents_of_container(container):
 
     ::
 
-        abjad> containertools.eject_contents_of_container(container)
+        >>> containertools.eject_contents_of_container(container)
         [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
 
     ::
 
-        abjad> container
+        >>> container
         {}
 
     ::
 
-        abjad> f(container)
+        >>> f(container)
         {
         }
 

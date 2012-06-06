@@ -96,19 +96,19 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
         def fget(self):
             '''Get spanner leaf group durations::
 
-                abjad> staff = Staff("c'16 d'16 e'16 f'16")
-                abjad> durations = [Duration(1, 8), Duration(1, 8)]
-                abjad> beam = beamtools.DuratedComplexBeamSpanner(staff[:], durations)
-                abjad> beam.durations
+                >>> staff = Staff("c'16 d'16 e'16 f'16")
+                >>> durations = [Duration(1, 8), Duration(1, 8)]
+                >>> beam = beamtools.DuratedComplexBeamSpanner(staff[:], durations)
+                >>> beam.durations
                 [Duration(1, 8), Duration(1, 8)]
 
             Set spanner leaf group durations::
 
-                abjad> staff = Staff("c'16 d'16 e'16 f'16")
-                abjad> durations = [Duration(1, 8), Duration(1, 8)]
-                abjad> beam = beamtools.DuratedComplexBeamSpanner(staff[:], durations)
-                abjad> beam.durations = [Duration(1, 4)]
-                abjad> beam.durations
+                >>> staff = Staff("c'16 d'16 e'16 f'16")
+                >>> durations = [Duration(1, 8), Duration(1, 8)]
+                >>> beam = beamtools.DuratedComplexBeamSpanner(staff[:], durations)
+                >>> beam.durations = [Duration(1, 4)]
+                >>> beam.durations
                 [Duration(1, 4)]
 
             Set iterable.
@@ -133,19 +133,19 @@ class DuratedComplexBeamSpanner(ComplexBeamSpanner):
         def fget(self):
             r'''Get top-level beam count::
 
-                abjad> staff = Staff("c'16 d'16 e'16 f'16")
-                abjad> durations = [Duration(1, 8), Duration(1, 8)]
-                abjad> beam = beamtools.DuratedComplexBeamSpanner(staff[:], durations, 1)
-                abjad> beam.span
+                >>> staff = Staff("c'16 d'16 e'16 f'16")
+                >>> durations = [Duration(1, 8), Duration(1, 8)]
+                >>> beam = beamtools.DuratedComplexBeamSpanner(staff[:], durations, 1)
+                >>> beam.span
                 1
 
             Set top-level beam count::
 
-                abjad> staff = Staff("c'16 d'16 e'16 f'16")
-                abjad> durations = [Duration(1, 8), Duration(1, 8)]
-                abjad> beam = beamtools.DuratedComplexBeamSpanner(staff[:], durations, 1)
-                abjad> beam.span = 2
-                abjad> beam.span
+                >>> staff = Staff("c'16 d'16 e'16 f'16")
+                >>> durations = [Duration(1, 8), Duration(1, 8)]
+                >>> beam = beamtools.DuratedComplexBeamSpanner(staff[:], durations, 1)
+                >>> beam.span = 2
+                >>> beam.span
                 2
 
             Set nonnegative integer.

@@ -7,11 +7,11 @@ def rational_to_equal_or_greater_binary_rational(rational):
 
     Change `rational` to equal to greater binary rational::
 
-        abjad> from abjad.tools import durationtools
+        >>> from abjad.tools import durationtools
 
     ::
 
-        abjad> for n in range(1, 17): # doctest: +SKIP
+        >>> for n in range(1, 17): # doctest: +SKIP
         ...     rational = Fraction(n, 16)
         ...     written_duration = durationtools.rational_to_equal_or_greater_binary_rational(rational)
         ...     print '%s/16\\t%s' % (n, written_duration)
@@ -35,12 +35,12 @@ def rational_to_equal_or_greater_binary_rational(rational):
 
     ::
 
-        abjad> durationtools.rational_to_equal_or_greater_binary_rational(Fraction(1, 80))
+        >>> durationtools.rational_to_equal_or_greater_binary_rational(Fraction(1, 80))
         Fraction(1, 64)
 
     ::
 
-        abjad> durationtools.rational_to_equal_or_greater_binary_rational(Fraction(17, 16))
+        >>> durationtools.rational_to_equal_or_greater_binary_rational(Fraction(17, 16))
         Fraction(2, 1)
 
     Use to find written duration of tupletted leaves.

@@ -6,11 +6,11 @@ def get_composite_offset_series_from_leaves_in_expr(expr):
 
     Get composite offset series from leaves in `expr`::
 
-        abjad> staff_1 = Staff([tuplettools.FixedDurationTuplet(Duration(4, 8), notetools.make_repeated_notes(3))])
-        abjad> staff_2 = Staff(notetools.make_repeated_notes(4))
-        abjad> score = Score([staff_1, staff_2])
-        abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(score)
-        abjad> f(score)
+        >>> staff_1 = Staff([tuplettools.FixedDurationTuplet(Duration(4, 8), notetools.make_repeated_notes(3))])
+        >>> staff_2 = Staff(notetools.make_repeated_notes(4))
+        >>> score = Score([staff_1, staff_2])
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(score)
+        >>> f(score)
             \new Score <<
                 \new Staff {
                     \fraction \times 4/3 {
@@ -26,7 +26,7 @@ def get_composite_offset_series_from_leaves_in_expr(expr):
                     b'8
                 }
             >>
-        abjad> leaftools.get_composite_offset_series_from_leaves_in_expr(score)
+        >>> leaftools.get_composite_offset_series_from_leaves_in_expr(score)
         [Offset(0, 1), Offset(1, 8), Offset(1, 6), Offset(1, 4), Offset(1, 3), Offset(3, 8), Offset(1, 2)]
 
     Equal to list of unique start and stop offsets of leaves in `expr`.

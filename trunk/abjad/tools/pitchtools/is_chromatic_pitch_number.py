@@ -3,7 +3,7 @@ def is_chromatic_pitch_number(expr):
 
     True `expr` is a chromatic pitch number. Otherwise false::
 
-        abjad> pitchtools.is_chromatic_pitch_number(13)
+        >>> pitchtools.is_chromatic_pitch_number(13)
         True
 
     The chromatic pitch numbers are equal to the set of all integers in union

@@ -7,16 +7,16 @@ class NaturalHarmonic(Note, _Flageolet):
 
     Initialize natural harmonic by hand::
 
-        abjad> notetools.NaturalHarmonic("cs'8.")
+        >>> notetools.NaturalHarmonic("cs'8.")
         NaturalHarmonic(cs', 8.)
 
     Initialize natural harmonic from note::
 
-        abjad> note = Note("cs'8.")
+        >>> note = Note("cs'8.")
 
     ::
 
-        abjad> notetools.NaturalHarmonic(note)
+        >>> notetools.NaturalHarmonic(note)
         NaturalHarmonic(cs', 8.)
 
     Natural harmonics are immutable.

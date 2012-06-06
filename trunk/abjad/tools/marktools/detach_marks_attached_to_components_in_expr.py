@@ -6,11 +6,11 @@ def detach_marks_attached_to_components_in_expr(expr):
 
     Detach marks attached to components in `expr`::
 
-        abjad> staff = Staff("c'4 \staccato d' \marcato e' \staccato f' \marcato")
+        >>> staff = Staff("c'4 \staccato d' \marcato e' \staccato f' \marcato")
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'4 -\staccato
             d'4 -\marcato
@@ -20,12 +20,12 @@ def detach_marks_attached_to_components_in_expr(expr):
 
     ::
 
-        abjad> marktools.detach_marks_attached_to_components_in_expr(staff)
+        >>> marktools.detach_marks_attached_to_components_in_expr(staff)
         (Articulation('staccato'), Articulation('marcato'), Articulation('staccato'), Articulation('marcato'))
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'4
             d'4

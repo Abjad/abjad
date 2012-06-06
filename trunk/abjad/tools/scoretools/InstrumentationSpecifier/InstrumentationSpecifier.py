@@ -7,22 +7,22 @@ class InstrumentationSpecifier(AbjadObject):
 
     Abjad model of score instrumentation::
 
-        abjad> flute = scoretools.Performer('Flute')
-        abjad> flute.instruments.append(instrumenttools.Flute())
-        abjad> flute.instruments.append(instrumenttools.AltoFlute())
+        >>> flute = scoretools.Performer('Flute')
+        >>> flute.instruments.append(instrumenttools.Flute())
+        >>> flute.instruments.append(instrumenttools.AltoFlute())
 
     ::
 
-        abjad> guitar = scoretools.Performer('Guitar')
-        abjad> guitar.instruments.append(instrumenttools.Guitar())
+        >>> guitar = scoretools.Performer('Guitar')
+        >>> guitar.instruments.append(instrumenttools.Guitar())
 
     ::
 
-        abjad> instrumentation_specifier = scoretools.InstrumentationSpecifier([flute, guitar])
+        >>> instrumentation_specifier = scoretools.InstrumentationSpecifier([flute, guitar])
 
     ::
 
-        abjad> instrumentation_specifier
+        >>> instrumentation_specifier
         InstrumentationSpecifier(performers=PerformerInventory([Performer(name='Flute', instruments=InstrumentInventory([Flute(), AltoFlute()])), Performer(name='Guitar', instruments=InstrumentInventory([Guitar()]))]))
 
     Return instrumentation specifier.
@@ -51,7 +51,7 @@ class InstrumentationSpecifier(AbjadObject):
     def instrument_count(self):
         r'''Read-only number of instruments in score::
     
-            abjad> instrumentation_specifier.instrument_count
+            >>> instrumentation_specifier.instrument_count
             3
 
         Return nonnegative integer.
@@ -62,7 +62,7 @@ class InstrumentationSpecifier(AbjadObject):
     def instruments(self):
         r'''Read-only list of instruments derived from performers::
 
-            abjad> instrumentation_specifier.instruments
+            >>> instrumentation_specifier.instruments
             [Flute(), AltoFlute(), Guitar()]
 
         Return list.
@@ -76,7 +76,7 @@ class InstrumentationSpecifier(AbjadObject):
     def performer_count(self):
         r'''Read-only number of performers in score::
 
-            abjad> instrumentation_specifier.performer_count
+            >>> instrumentation_specifier.performer_count
             2
 
         Return nonnegative integer.
@@ -87,7 +87,7 @@ class InstrumentationSpecifier(AbjadObject):
     def performer_name_string(self):
         r'''Read-only string of performer names::
 
-            abjad> instrumentation_specifier.performer_name_string
+            >>> instrumentation_specifier.performer_name_string
             'Flute, Guitar'
 
         Return string.
@@ -102,7 +102,7 @@ class InstrumentationSpecifier(AbjadObject):
         def fget(self):
             r'''Read / write list of performers in score::
 
-                abjad> instrumentation_specifier.performers
+                >>> instrumentation_specifier.performers
                 PerformerInventory([Performer(name='Flute', instruments=InstrumentInventory([Flute(), AltoFlute()])), Performer(name='Guitar', instruments=InstrumentInventory([Guitar()]))])
 
             Return list.

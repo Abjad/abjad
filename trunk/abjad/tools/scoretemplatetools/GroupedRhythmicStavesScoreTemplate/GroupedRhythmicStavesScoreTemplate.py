@@ -12,21 +12,21 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
 
     Grouped rhythmic staves score template::
 
-        abjad> from abjad.tools import scoretemplatetools
+        >>> from abjad.tools import scoretemplatetools
 
     ::
 
-        abjad> template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(4)
-        abjad> score = template()
+        >>> template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(4)
+        >>> score = template()
 
     ::
 
-        abjad> score
+        >>> score
         Score-"Grouped Rhythmic Staves Score"<<1>>
 
     ::
 
-        abjad> f(score)
+        >>> f(score)
         \context Score = "Grouped Rhythmic Staves Score" <<
             \context StaffGroup = "Grouped Rhythmic Staves Staff Group" <<
                 \context RhythmicStaff = "Staff 1" {

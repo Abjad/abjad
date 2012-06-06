@@ -6,16 +6,16 @@ def is_duration_token(expr):
 
     True when `expr` has the form of an Abjad duration token::
 
-        abjad> from abjad.tools import durationtools
+        >>> from abjad.tools import durationtools
 
     ::
 
-        abjad> durationtools.is_duration_token('8.')
+        >>> durationtools.is_duration_token('8.')
         True
 
     Otherwise false::
 
-        abjad> durationtools.is_duration_token('foo')
+        >>> durationtools.is_duration_token('foo')
         False
 
     Return boolean.

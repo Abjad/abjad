@@ -7,21 +7,21 @@ def all_are_tuplets(expr):
 
     True when `expr` is a sequence of Abjad tuplets::
 
-        abjad> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
+        >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
 
     ::
 
-        abjad> tuplettools.all_are_tuplets([tuplet])
+        >>> tuplettools.all_are_tuplets([tuplet])
         True
 
     True when `expr` is an empty sequence::
 
-        abjad> tuplettools.all_are_tuplets([])
+        >>> tuplettools.all_are_tuplets([])
         True
 
     Otherwise false::
 
-        abjad> tuplettools.all_are_tuplets('foo')
+        >>> tuplettools.all_are_tuplets('foo')
         False
 
     Return boolean.

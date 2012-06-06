@@ -8,12 +8,12 @@ def report_as_string_format_contributions_of_spanners_attached_to_improper_paren
     Report as string format contributions of all spanners attached to improper
     parentage of `component`::
 
-        abjad> staff = Staff("c'8 [ ( d'8 e'8 f'8 ] )")
-        abjad> trill = spannertools.TrillSpanner(staff)
+        >>> staff = Staff("c'8 [ ( d'8 e'8 f'8 ] )")
+        >>> trill = spannertools.TrillSpanner(staff)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8 [ ( \startTrillSpan
             d'8
@@ -23,7 +23,7 @@ def report_as_string_format_contributions_of_spanners_attached_to_improper_paren
 
     ::
 
-        abjad> print spannertools.report_as_string_format_contributions_of_spanners_attached_to_component(staff[0])
+        >>> print spannertools.report_as_string_format_contributions_of_spanners_attached_to_component(staff[0])
         BeamSpanner
             _format_right_of_leaf
                 [

@@ -6,7 +6,7 @@ def is_proper_tuplet_multiplier(multiplier):
 
     ::
 
-        abjad> for n in range(17):
+        >>> for n in range(17):
         ...     rational = Fraction(n, 8)
         ...     multiplier = tuplettools.is_proper_tuplet_multiplier(rational)
         ...     print '%s   %s' % (rational, multiplier)

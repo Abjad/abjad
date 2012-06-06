@@ -3,21 +3,21 @@ def change_tuplets_in_expr_to_fixed_duration_tuplets(expr):
 
     Change tuplets in `expr` to fixed-duration tuplets::
 
-        abjad> staff = Staff(r"\times 2/3 { c'8 d'8 e'8 } \times 2/3 { c'8 d'8 e'8 }")
+        >>> staff = Staff(r"\times 2/3 { c'8 d'8 e'8 } \times 2/3 { c'8 d'8 e'8 }")
 
     ::
 
-        abjad> staff[:]
+        >>> staff[:]
         [Tuplet(2/3, [c'8, d'8, e'8]), Tuplet(2/3, [c'8, d'8, e'8])]
 
     ::
 
-        abjad> tuplettools.change_tuplets_in_expr_to_fixed_duration_tuplets(staff)
+        >>> tuplettools.change_tuplets_in_expr_to_fixed_duration_tuplets(staff)
         [FixedDurationTuplet(1/4, [c'8, d'8, e'8]), FixedDurationTuplet(1/4, [c'8, d'8, e'8])]
 
     ::
 
-        abjad> staff[:]
+        >>> staff[:]
         [FixedDurationTuplet(1/4, [c'8, d'8, e'8]), FixedDurationTuplet(1/4, [c'8, d'8, e'8])]
 
     Return tuplets.

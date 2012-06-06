@@ -3,12 +3,12 @@ def get_beam_spanner_attached_to_component(component):
 
     Get the only beam spanner attached to `component`::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> beam = beamtools.BeamSpanner(staff.leaves)
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> beam = beamtools.BeamSpanner(staff.leaves)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8 [
             d'8
@@ -18,12 +18,12 @@ def get_beam_spanner_attached_to_component(component):
 
     ::
 
-        abjad> beamtools.get_beam_spanner_attached_to_component(staff[0])
+        >>> beamtools.get_beam_spanner_attached_to_component(staff[0])
         BeamSpanner(c'8, d'8, e'8, f'8)
 
     ::
 
-        abjad> _ is beam
+        >>> _ is beam
         True
 
     Return beam spanner.

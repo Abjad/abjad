@@ -5,11 +5,11 @@ from abjad.tools.beamtools.BeamSpanner.BeamSpanner import BeamSpanner
 class ComplexBeamSpanner(BeamSpanner):
     r'''Abjad complex beam spanner::
 
-        abjad> staff = Staff("c'16 e'16 r16 f'16 g'2")
+        >>> staff = Staff("c'16 e'16 r16 f'16 g'2")
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'16
             e'16
@@ -20,12 +20,12 @@ class ComplexBeamSpanner(BeamSpanner):
 
     ::
 
-        abjad> beamtools.ComplexBeamSpanner(staff[:4])
+        >>> beamtools.ComplexBeamSpanner(staff[:4])
         ComplexBeamSpanner(c'16, e'16, r16, f'16)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \set stemLeftBeamCount = #0
             \set stemRightBeamCount = #2
@@ -185,75 +185,75 @@ class ComplexBeamSpanner(BeamSpanner):
         def fget(self):
             r'''Beam lone leaf and force beam nibs to left::
 
-                abjad> note = Note("c'16")
+                >>> note = Note("c'16")
 
             ::
 
-                abjad> beam = beamtools.ComplexBeamSpanner([note], lone = 'left')
+                >>> beam = beamtools.ComplexBeamSpanner([note], lone = 'left')
 
             ::
 
-                abjad> f(note)
+                >>> f(note)
                 \set stemLeftBeamCount = #2
                 \set stemRightBeamCount = #0
                 c'16 [ ]
 
             Beam lone leaf and force beam nibs to right::
 
-                abjad> note = Note("c'16")
+                >>> note = Note("c'16")
 
             ::
 
-                abjad> beam = beamtools.ComplexBeamSpanner([note], lone = 'right')
+                >>> beam = beamtools.ComplexBeamSpanner([note], lone = 'right')
 
             ::
 
-                abjad> f(note)
+                >>> f(note)
                 \set stemLeftBeamCount = #0
                 \set stemRightBeamCount = #2
                 c'16 [ ]
 
             Beam lone leaf and force beam nibs to both left and right::
 
-                abjad> note = Note("c'16")
+                >>> note = Note("c'16")
 
             ::
 
-                abjad> beam = beamtools.ComplexBeamSpanner([note], lone = 'both')
+                >>> beam = beamtools.ComplexBeamSpanner([note], lone = 'both')
 
             ::
 
-                abjad> f(note)
+                >>> f(note)
                 \set stemLeftBeamCount = #2
                 \set stemRightBeamCount = #2
                 c'16 [ ]
 
             Beam lone leaf and accept LilyPond default nibs at both left and right::
 
-                abjad> note = Note("c'16")
+                >>> note = Note("c'16")
 
             ::
 
-                abjad> beam = beamtools.ComplexBeamSpanner([note], lone = True)
+                >>> beam = beamtools.ComplexBeamSpanner([note], lone = True)
 
             ::
 
-                abjad> f(note)
+                >>> f(note)
                 \set stemLeftBeamCount = #2
                 \set stemRightBeamCount = #2
                 c'16 [ ]
 
             Do not beam lone leaf::
 
-                abjad> note = Note("c'16")
+                >>> note = Note("c'16")
 
             ::
 
-                abjad> beam = beamtools.ComplexBeamSpanner([note], lone = False)
+                >>> beam = beamtools.ComplexBeamSpanner([note], lone = False)
 
             ::
 
-                abjad> f(note)
+                >>> f(note)
                 c'16
 
             Set to ``'left'``, ``'right'``, ``'both'``, true or false as shown above.

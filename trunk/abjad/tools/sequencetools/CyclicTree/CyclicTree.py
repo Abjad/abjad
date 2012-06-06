@@ -16,46 +16,46 @@ class CyclicTree(Tree):
 
     ::
 
-        abjad> from abjad.tools import sequencetools
+        >>> from abjad.tools import sequencetools
 
     Here is a cyclic tree::
 
-        abjad> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-        abjad> cyclic_tree = sequencetools.CyclicTree(sequence)
+        >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
+        >>> cyclic_tree = sequencetools.CyclicTree(sequence)
 
     ::
 
-        abjad> cyclic_tree
+        >>> cyclic_tree
         CyclicTree([[0, 1], [2, 3], [4, 5], [6, 7]])
 
     Here's an internal node::
 
-        abjad> cyclic_tree[2]
+        >>> cyclic_tree[2]
         CyclicTree([4, 5])
 
     Here's the same node indexed with a different way::
 
-        abjad> cyclic_tree[2]
+        >>> cyclic_tree[2]
         CyclicTree([4, 5])
 
     With a negative index::
 
-        abjad> cyclic_tree[-2]
+        >>> cyclic_tree[-2]
         CyclicTree([4, 5])
 
     And another negative index::
 
-        abjad> cyclic_tree[-6]
+        >>> cyclic_tree[-6]
         CyclicTree([4, 5])
 
     Here's a leaf node::
 
-        abjad> cyclic_tree[2][0]
+        >>> cyclic_tree[2][0]
         CyclicTree(4)
 
     And here's the same node indexed a different way::
 
-        abjad> cyclic_tree[2][20]
+        >>> cyclic_tree[2][20]
         CyclicTree(4)
 
     All other interface attributes function as in ``Tree``.

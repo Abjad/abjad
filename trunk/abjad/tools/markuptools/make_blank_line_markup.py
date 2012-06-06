@@ -6,16 +6,16 @@ def make_blank_line_markup():
 
     Make blank line markup::
 
-        abjad> markup = markuptools.make_blank_line_markup()
+        >>> markup = markuptools.make_blank_line_markup()
 
     ::
 
-        abjad> markup
+        >>> markup
         Markup(('\\fill-line { " " }',))
 
     ::
 
-        abjad> f(markup)
+        >>> f(markup)
         \markup { \fill-line { " " } }
 
     Return markup.

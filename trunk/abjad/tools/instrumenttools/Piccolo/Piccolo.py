@@ -8,16 +8,16 @@ class Piccolo(Flute):
 
     Abjad model of the piccolo::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
 
     ::
 
-        abjad> instrumenttools.Piccolo()(staff)
+        >>> instrumenttools.Piccolo()(staff)
         Piccolo()(Staff{4})
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \set Staff.instrumentName = \markup { Piccolo }
             \set Staff.shortInstrumentName = \markup { Picc. }

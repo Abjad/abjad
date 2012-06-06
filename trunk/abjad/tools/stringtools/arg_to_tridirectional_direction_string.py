@@ -3,41 +3,41 @@ def arg_to_tridirectional_direction_string(arg):
 
     ::  
 
-        abjad> from abjad.tools import stringtools
+        >>> from abjad.tools import stringtools
 
     ::
 
-        abjad> stringtools.arg_to_tridirectional_direction_string('^')
+        >>> stringtools.arg_to_tridirectional_direction_string('^')
         'up'
 
     ::
 
-        abjad> stringtools.arg_to_tridirectional_direction_string('-')
+        >>> stringtools.arg_to_tridirectional_direction_string('-')
         'neutral'
 
     ::
 
-        abjad> stringtools.arg_to_tridirectional_direction_string('_')
+        >>> stringtools.arg_to_tridirectional_direction_string('_')
         'down'
 
     ::
 
-        abjad> stringtools.arg_to_tridirectional_direction_string(1)
+        >>> stringtools.arg_to_tridirectional_direction_string(1)
         'up'
 
     ::
 
-        abjad> stringtools.arg_to_tridirectional_direction_string(0)
+        >>> stringtools.arg_to_tridirectional_direction_string(0)
         'neutral'
 
     ::
 
-        abjad> stringtools.arg_to_tridirectional_direction_string(-1)
+        >>> stringtools.arg_to_tridirectional_direction_string(-1)
         'down'
 
     ::
 
-        abjad> stringtools.arg_to_tridirectional_direction_string('default')
+        >>> stringtools.arg_to_tridirectional_direction_string('default')
         'neutral'
 
     If `arg` is None, None will be returned.

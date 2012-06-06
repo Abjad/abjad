@@ -9,24 +9,24 @@ class Digraph(AbjadObject):
 
     ::
 
-        abjad> from abjad.tools.datastructuretools import Digraph
+        >>> from abjad.tools.datastructuretools import Digraph
 
     ::
 
-        abjad> edges = [('a', 'b'), ('a', 'c'), ('a', 'f'), ('c', 'd'), ('d', 'e'), ('e', 'c')]
-        abjad> digraph = Digraph(edges)
-        abjad> digraph
+        >>> edges = [('a', 'b'), ('a', 'c'), ('a', 'f'), ('c', 'd'), ('d', 'e'), ('e', 'c')]
+        >>> digraph = Digraph(edges)
+        >>> digraph
         Digraph(edges=[('a', 'c'), ('a', 'b'), ('a', 'f'), ('c', 'd'), ('d', 'e'), ('e', 'c')])
 
     ::
 
-        abjad> digraph.root_nodes
+        >>> digraph.root_nodes
         ('a',)
-        abjad> digraph.terminal_nodes
+        >>> digraph.terminal_nodes
         ('b', 'f')
-        abjad> digraph.cyclic_nodes
+        >>> digraph.cyclic_nodes
         ('c', 'd', 'e')
-        abjad> digraph.is_cyclic
+        >>> digraph.is_cyclic
         True
 
     Return `Digraph` instance.
@@ -180,15 +180,15 @@ class Digraph(AbjadObject):
 
         ::
 
-            abjad> from abjad.tools.datastructuretools import Digraph
+            >>> from abjad.tools.datastructuretools import Digraph
 
         ::
 
-            abjad> edges = [('a', 'b'), ('a', 'c'), ('b', 'c'), ('b', 'd'), ('d', 'e')]
-            abjad> edges.extend([('f', 'h'), ('g', 'h')])
-            abjad> edges.append(('i', 'j'))
-            abjad> digraph = Digraph(edges)
-            abjad> for graph in digraph.partition(): graph
+            >>> edges = [('a', 'b'), ('a', 'c'), ('b', 'c'), ('b', 'd'), ('d', 'e')]
+            >>> edges.extend([('f', 'h'), ('g', 'h')])
+            >>> edges.append(('i', 'j'))
+            >>> digraph = Digraph(edges)
+            >>> for graph in digraph.partition(): graph
             ... 
             Digraph(edges=[('a', 'c'), ('a', 'b'), ('b', 'c'), ('b', 'd'), ('d', 'e')])
             Digraph(edges=[('f', 'h'), ('g', 'h')])
@@ -227,18 +227,18 @@ class Digraph(AbjadObject):
 
         ::
 
-            abjad> from abjad.tools.datastructuretools import Digraph
+            >>> from abjad.tools.datastructuretools import Digraph
 
         ::
 
-            abjad> edges = [('a', 'b'), ('b', 'c'), ('b', 'd')]
-            abjad> digraph = Digraph(edges)
-            abjad> digraph
+            >>> edges = [('a', 'b'), ('b', 'c'), ('b', 'd')]
+            >>> digraph = Digraph(edges)
+            >>> digraph
             Digraph(edges=[('a', 'b'), ('b', 'c'), ('b', 'd')])
 
         ::
 
-            abjad> digraph.reverse()
+            >>> digraph.reverse()
             Digraph(edges=[('b', 'a'), ('c', 'b'), ('d', 'b')])
 
         Return `Digraph` instance.

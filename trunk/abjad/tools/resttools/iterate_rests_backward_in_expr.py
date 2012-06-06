@@ -7,11 +7,11 @@ def iterate_rests_backward_in_expr(expr, start = 0, stop = None):
 
     Iterate rests backward in `expr`::
 
-        abjad> staff = Staff("<e' g' c''>8 a'8 r8 <d' f' b'>8 r2")
+        >>> staff = Staff("<e' g' c''>8 a'8 r8 <d' f' b'>8 r2")
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             <e' g' c''>8
             a'8
@@ -22,7 +22,7 @@ def iterate_rests_backward_in_expr(expr, start = 0, stop = None):
 
     ::
 
-        abjad> for rest in resttools.iterate_rests_backward_in_expr(staff):
+        >>> for rest in resttools.iterate_rests_backward_in_expr(staff):
         ...   rest
         Rest('r2')
         Rest('r8')

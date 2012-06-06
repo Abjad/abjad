@@ -9,9 +9,9 @@ def get_nth_leaf_in_expr(expr, n=0):
 
     Get `n` th leaf in `expr`::
 
-        abjad> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
-        abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
-        abjad> f(staff)
+        >>> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+        >>> f(staff)
         \new Staff {
             {
                 \time 2/8
@@ -30,7 +30,7 @@ def get_nth_leaf_in_expr(expr, n=0):
 
     ::
 
-        abjad> for n in range(6):
+        >>> for n in range(6):
         ...     leaftools.get_nth_leaf_in_expr(staff, n)
         ...
         Note("c'8")
@@ -42,7 +42,7 @@ def get_nth_leaf_in_expr(expr, n=0):
 
     Read backwards for negative values of `n`. ::
 
-        abjad> leaftools.get_nth_leaf_in_expr(staff, -1)
+        >>> leaftools.get_nth_leaf_in_expr(staff, -1)
         Note("a'8")
 
     .. note:: Because this function returns as soon as it finds instance

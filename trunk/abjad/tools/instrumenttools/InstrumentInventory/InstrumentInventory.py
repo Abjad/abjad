@@ -6,11 +6,11 @@ class InstrumentInventory(ObjectInventory):
 
     Abjad model of an ordered list of instruments::
 
-        abjad> inventory = instrumenttools.InstrumentInventory([instrumenttools.Flute(), instrumenttools.Guitar()])
+        >>> inventory = instrumenttools.InstrumentInventory([instrumenttools.Flute(), instrumenttools.Guitar()])
 
     ::
 
-        abjad> inventory
+        >>> inventory
         InstrumentInventory([Flute(), Guitar()])
 
     Instrument inventories implement list interface and are mutable.

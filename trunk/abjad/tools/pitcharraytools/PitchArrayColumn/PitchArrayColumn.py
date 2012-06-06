@@ -8,28 +8,28 @@ class PitchArrayColumn(AbjadObject):
 
     Column in a pitch array::
 
-        abjad> from abjad.tools import pitcharraytools
+        >>> from abjad.tools import pitcharraytools
 
     ::
 
-        abjad> array = pitcharraytools.PitchArray([
+        >>> array = pitcharraytools.PitchArray([
         ...   [1, (2, 1), (-1.5, 2)],
         ...   [(7, 2), (6, 1), 1]])
 
     ::
 
-        abjad> print array
+        >>> print array
         [  ] [d'] [bqf    ]
         [g'     ] [fs'] [ ]
 
     ::
 
-        abjad> array.columns[0]
+        >>> array.columns[0]
         PitchArrayColumn(x1, g' x2)
 
     ::
 
-        abjad> print array.columns[0]
+        >>> print array.columns[0]
         [  ]
         [g'     ]
 

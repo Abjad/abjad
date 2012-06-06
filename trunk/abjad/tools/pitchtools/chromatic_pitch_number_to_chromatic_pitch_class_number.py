@@ -6,7 +6,7 @@ def chromatic_pitch_number_to_chromatic_pitch_class_number(chromatic_pitch_numbe
 
     Change `chromatic_pitch_number` to chromatic pitch-class number::
 
-        abjad> pitchtools.chromatic_pitch_number_to_chromatic_pitch_class_number(13)
+        >>> pitchtools.chromatic_pitch_number_to_chromatic_pitch_class_number(13)
         1
 
     Return integer or float.

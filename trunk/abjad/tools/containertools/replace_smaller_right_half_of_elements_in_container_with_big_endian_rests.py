@@ -6,11 +6,11 @@ def replace_smaller_right_half_of_elements_in_container_with_big_endian_rests(co
 
     Relace smaller right half of elements in `container` with big-endian rests::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8 d''8 e''8")
+        >>> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8 d''8 e''8")
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8
             d'8
@@ -26,12 +26,12 @@ def replace_smaller_right_half_of_elements_in_container_with_big_endian_rests(co
 
     ::
 
-        abjad> containertools.replace_smaller_right_half_of_elements_in_container_with_big_endian_rests(staff)
+        >>> containertools.replace_smaller_right_half_of_elements_in_container_with_big_endian_rests(staff)
         Staff{7}
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8
             d'8

@@ -7,17 +7,17 @@ def scale_interval_durations_to_rational(intervals, rational):
     '''Scale the duration of each interval in `intervals` to
     `rational`, maintaining their start offsets ::
 
-        abjad> from abjad.tools import timeintervaltools
-        abjad> from abjad.tools.timeintervaltools import TimeInterval
-        abjad> from abjad.tools.timeintervaltools import TimeIntervalTree
+        >>> from abjad.tools import timeintervaltools
+        >>> from abjad.tools.timeintervaltools import TimeInterval
+        >>> from abjad.tools.timeintervaltools import TimeIntervalTree
 
     ::
 
-        abjad> a = TimeInterval(-1, 3)
-        abjad> b = TimeInterval(6, 12)
-        abjad> c = TimeInterval(9, 16)
-        abjad> tree = TimeIntervalTree([a, b, c])
-        abjad> timeintervaltools.scale_interval_durations_to_rational(tree, Fraction(1, 7))
+        >>> a = TimeInterval(-1, 3)
+        >>> b = TimeInterval(6, 12)
+        >>> c = TimeInterval(9, 16)
+        >>> tree = TimeIntervalTree([a, b, c])
+        >>> timeintervaltools.scale_interval_durations_to_rational(tree, Fraction(1, 7))
         TimeIntervalTree([
             TimeInterval(Offset(-1, 1), Offset(-6, 7), {}),
             TimeInterval(Offset(6, 1), Offset(43, 7), {}),

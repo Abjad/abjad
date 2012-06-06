@@ -7,17 +7,17 @@ def scale_interval_offsets_by_rational(intervals, rational):
     '''Scale the offset of each interval in `intervals` by
     `rational`, maintaining the startest offset in `intervals` ::
 
-        abjad> from abjad.tools import timeintervaltools
-        abjad> from abjad.tools.timeintervaltools import TimeInterval
-        abjad> from abjad.tools.timeintervaltools import TimeIntervalTree
+        >>> from abjad.tools import timeintervaltools
+        >>> from abjad.tools.timeintervaltools import TimeInterval
+        >>> from abjad.tools.timeintervaltools import TimeIntervalTree
 
     ::
 
-        abjad> a = TimeInterval(-1, 3)
-        abjad> b = TimeInterval(6, 12)
-        abjad> c = TimeInterval(9, 16)
-        abjad> tree = TimeIntervalTree([a, b, c])
-        abjad> timeintervaltools.scale_interval_offsets_by_rational(tree, Fraction(4, 5))
+        >>> a = TimeInterval(-1, 3)
+        >>> b = TimeInterval(6, 12)
+        >>> c = TimeInterval(9, 16)
+        >>> tree = TimeIntervalTree([a, b, c])
+        >>> timeintervaltools.scale_interval_offsets_by_rational(tree, Fraction(4, 5))
         TimeIntervalTree([
             TimeInterval(Offset(-1, 1), Offset(3, 1), {}),
             TimeInterval(Offset(23, 5), Offset(53, 5), {}),

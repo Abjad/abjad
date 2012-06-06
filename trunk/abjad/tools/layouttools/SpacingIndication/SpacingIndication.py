@@ -10,21 +10,21 @@ class SpacingIndication(AbjadObject):
     will equal ``proportional_notation_duration`` when tempo
     equals ``tempo_indication``::
 
-        abjad> from abjad.tools import layouttools
+        >>> from abjad.tools import layouttools
 
     Initialize from tempo mark and proportional notation duration::
 
-        abjad> tempo = contexttools.TempoMark(Duration(1, 8), 44)
-        abjad> indication = layouttools.SpacingIndication(tempo, Duration(1, 68))
+        >>> tempo = contexttools.TempoMark(Duration(1, 8), 44)
+        >>> indication = layouttools.SpacingIndication(tempo, Duration(1, 68))
         
     ::
 
-        abjad> indication
+        >>> indication
         SpacingIndication(TempoMark(Duration(1, 8), 44), Duration(1, 68))
 
     Initialize from other spacing indication::
 
-        abjad> layouttools.SpacingIndication(indication)
+        >>> layouttools.SpacingIndication(indication)
         SpacingIndication(TempoMark(Duration(1, 8), 44), Duration(1, 68))
 
     Spacing indications are immutable.

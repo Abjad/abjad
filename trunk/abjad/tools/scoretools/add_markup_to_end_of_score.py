@@ -6,15 +6,15 @@ def add_markup_to_end_of_score(score, markup, extra_offset = None):
 
     Add `markup` to end of `score`::
 
-        abjad> staff = Staff("c'4 d'4 e'4 f'4")
-        abjad> markup = r'\italic \right-column { "Bremen - Boston - Los Angeles." "Jul 2010 - May 2011." }'
-        abjad> markup = markuptools.Markup(markup, 'down')
-        abjad> scoretools.add_markup_to_end_of_score(staff, markup, (4, -2))
+        >>> staff = Staff("c'4 d'4 e'4 f'4")
+        >>> markup = r'\italic \right-column { "Bremen - Boston - Los Angeles." "Jul 2010 - May 2011." }'
+        >>> markup = markuptools.Markup(markup, 'down')
+        >>> scoretools.add_markup_to_end_of_score(staff, markup, (4, -2))
         Markup(('\\italic \\right-column { "Bremen - Boston - Los Angeles." "Jul 2010 - May 2011." }',), direction='_')(f'4)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'4
             d'4

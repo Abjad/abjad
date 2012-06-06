@@ -6,13 +6,13 @@ def repeat_last_n_elements_of_container(container, n = 1, total = 2):
 
     Repeat last `n` elements of `container`::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> beamtools.BeamSpanner(staff.leaves)
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> beamtools.BeamSpanner(staff.leaves)
         BeamSpanner(c'8, d'8, e'8, f'8)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8 [
             d'8
@@ -22,12 +22,12 @@ def repeat_last_n_elements_of_container(container, n = 1, total = 2):
 
     ::
 
-        abjad> containertools.repeat_last_n_elements_of_container(staff, n = 2, total = 3)
+        >>> containertools.repeat_last_n_elements_of_container(staff, n = 2, total = 3)
         Staff{8}
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8 [
             d'8

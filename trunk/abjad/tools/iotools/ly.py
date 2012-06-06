@@ -7,7 +7,7 @@ import os
 def ly(target=-1):
     r'''Open the last LilyPond output file in text editor::
 
-        abjad> iotools.ly() # doctest: +SKIP
+        >>> iotools.ly() # doctest: +SKIP
 
     ::
 
@@ -24,7 +24,7 @@ def ly(target=-1):
 
     Open the next-to-last LilyPond output file in text editor::
 
-        abjad> iotools.ly(-2) # doctest: +SKIP
+        >>> iotools.ly(-2) # doctest: +SKIP
 
     Exit text editor in the usual way.
 

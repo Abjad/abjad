@@ -5,16 +5,16 @@ from abjad.tools.pitchtools.get_named_chromatic_pitch_from_pitch_carrier import 
 def color_note_head_by_numbered_chromatic_pitch_class_color_map(pitch_carrier):
     r'''Color `pitch_carrier` note head::
 
-        abjad> note = Note("c'4")
+        >>> note = Note("c'4")
 
     ::
 
-        abjad> notetools.color_note_head_by_numbered_chromatic_pitch_class_color_map(note)
+        >>> notetools.color_note_head_by_numbered_chromatic_pitch_class_color_map(note)
         Note("c'4")
 
     ::
 
-        abjad> f(note)
+        >>> f(note)
         \once \override NoteHead #'color = #(x11-color 'red)
         c'4
 

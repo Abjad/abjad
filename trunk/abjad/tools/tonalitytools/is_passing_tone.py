@@ -9,12 +9,12 @@ def is_passing_tone(note):
     True when `note` is both preceeded and followed by scalewise
     sibling notes. Otherwise false. ::
 
-        abjad> from abjad.tools import tonalitytools
+        >>> from abjad.tools import tonalitytools
 
     ::
 
-        abjad> t = Staff("c'8 d'8 e'8 f'8")
-        abjad> for note in t:
+        >>> t = Staff("c'8 d'8 e'8 f'8")
+        >>> for note in t:
         ...     print '%s\t%s' % (note, tonalitytools.is_passing_tone(note))
         ...
         c'8     False

@@ -6,8 +6,8 @@ def clef_and_staff_position_number_to_named_chromatic_pitch(clef, staff_position
 
     Change `clef` and `staff_position_number` to named chromatic pitch::
 
-        abjad> clef = contexttools.ClefMark('treble')
-        abjad> for n in range(-6, 6):
+        >>> clef = contexttools.ClefMark('treble')
+        >>> for n in range(-6, 6):
         ...   pitch = pitchtools.clef_and_staff_position_number_to_named_chromatic_pitch(clef, n)
         ...   print '%s\t%s\t%s' % (clef.clef_name, n, pitch)
         treble   -6 c'

@@ -6,11 +6,11 @@ def repeat_sequence_to_weight_exactly(sequence, weight):
 
     Repeat `sequence` to `weight` exactly::
 
-        abjad> from abjad.tools import sequencetools
+        >>> from abjad.tools import sequencetools
 
     ::
 
-        abjad> sequencetools.repeat_sequence_to_weight_exactly((5, -5, -5), 23)
+        >>> sequencetools.repeat_sequence_to_weight_exactly((5, -5, -5), 23)
         (5, -5, -5, 5, -3)
 
     Return newly constructed `sequence` object.

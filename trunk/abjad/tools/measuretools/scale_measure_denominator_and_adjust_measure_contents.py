@@ -10,13 +10,13 @@ def scale_measure_denominator_and_adjust_measure_contents(measure, new_denominat
 
     Change binary `measure` to nonbinary measure with `new_denominator_factor`::
 
-        abjad> measure = Measure((2, 8), "c'8 d'8")
-        abjad> beamtools.BeamSpanner(measure.leaves)
+        >>> measure = Measure((2, 8), "c'8 d'8")
+        >>> beamtools.BeamSpanner(measure.leaves)
         BeamSpanner(c'8, d'8)
 
     ::
 
-        abjad> f(measure)
+        >>> f(measure)
         {
             \time 2/8
             c'8 [
@@ -25,12 +25,12 @@ def scale_measure_denominator_and_adjust_measure_contents(measure, new_denominat
 
     ::
 
-        abjad> measuretools.scale_measure_denominator_and_adjust_measure_contents(measure, 3)
+        >>> measuretools.scale_measure_denominator_and_adjust_measure_contents(measure, 3)
         Measure(3/12, [c'8., d'8.])
 
     ::
 
-        abjad> f(measure)
+        >>> f(measure)
         {
             \time 3/12
             \scaleDurations #'(2 . 3) {

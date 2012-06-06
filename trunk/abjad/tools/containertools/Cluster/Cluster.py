@@ -6,16 +6,16 @@ class Cluster(Container):
 
     Abjad model of a tone cluster container::
 
-        abjad> cluster = containertools.Cluster("c'8 d'8 b'8")
+        >>> cluster = containertools.Cluster("c'8 d'8 b'8")
 
     ::
 
-        abjad> cluster
+        >>> cluster
         Cluster(c'8, d'8, b'8)
 
     ::
 
-        abjad> f(cluster)
+        >>> f(cluster)
         \makeClusters {
             c'8
             d'8

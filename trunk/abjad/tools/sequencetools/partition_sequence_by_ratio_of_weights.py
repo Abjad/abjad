@@ -10,37 +10,37 @@ def partition_sequence_by_ratio_of_weights(sequence, weights):
 
     Partition `sequence` by ratio of `weights`::
 
-        abjad> from abjad.tools import sequencetools
+        >>> from abjad.tools import sequencetools
 
     ::
 
 
-        abjad> sequencetools.partition_sequence_by_ratio_of_weights([1] * 10, [1, 1, 1])
+        >>> sequencetools.partition_sequence_by_ratio_of_weights([1] * 10, [1, 1, 1])
         [[1, 1, 1], [1, 1, 1, 1], [1, 1, 1]]
 
     ::
 
-        abjad> sequencetools.partition_sequence_by_ratio_of_weights([1] * 10, [1, 1, 1, 1])
+        >>> sequencetools.partition_sequence_by_ratio_of_weights([1] * 10, [1, 1, 1, 1])
         [[1, 1, 1], [1, 1], [1, 1, 1], [1, 1]]
 
     ::
 
-        abjad> sequencetools.partition_sequence_by_ratio_of_weights([1] * 10, [2, 2, 3])
+        >>> sequencetools.partition_sequence_by_ratio_of_weights([1] * 10, [2, 2, 3])
         [[1, 1, 1], [1, 1, 1], [1, 1, 1, 1]]
 
     ::
 
-        abjad> sequencetools.partition_sequence_by_ratio_of_weights([1] * 10, [3, 2, 2])
+        >>> sequencetools.partition_sequence_by_ratio_of_weights([1] * 10, [3, 2, 2])
         [[1, 1, 1, 1], [1, 1, 1], [1, 1, 1]]
 
     ::
 
-        abjad> sequencetools.partition_sequence_by_ratio_of_weights([1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2], [1, 1])
+        >>> sequencetools.partition_sequence_by_ratio_of_weights([1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2], [1, 1])
         [[1, 1, 1, 1, 1, 1, 2, 2], [2, 2, 2, 2]]
 
     ::
 
-        abjad> sequencetools.partition_sequence_by_ratio_of_weights([1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2], [1, 1, 1])
+        >>> sequencetools.partition_sequence_by_ratio_of_weights([1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2], [1, 1, 1])
         [[1, 1, 1, 1, 1, 1], [2, 2, 2], [2, 2, 2]]
 
 

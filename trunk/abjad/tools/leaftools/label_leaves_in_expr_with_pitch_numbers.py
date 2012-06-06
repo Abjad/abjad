@@ -7,9 +7,9 @@ def label_leaves_in_expr_with_pitch_numbers(expr, markup_direction = 'down'):
 
     Label leaves in `expr` with pitch numbers::
 
-        abjad> staff = Staff(leaftools.make_leaves([None, 12, [13, 14, 15], None], [(1, 4)]))
-        abjad> leaftools.label_leaves_in_expr_with_pitch_numbers(staff)
-        abjad> f(staff)
+        >>> staff = Staff(leaftools.make_leaves([None, 12, [13, 14, 15], None], [(1, 4)]))
+        >>> leaftools.label_leaves_in_expr_with_pitch_numbers(staff)
+        >>> f(staff)
         \new Staff {
             r4
             c''4 _ \markup { \small 12 }

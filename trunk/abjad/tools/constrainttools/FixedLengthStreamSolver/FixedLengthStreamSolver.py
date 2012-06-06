@@ -11,25 +11,25 @@ class FixedLengthStreamSolver(_Solver):
 
     ::
 
-        abjad> from abjad.tools.constrainttools import FixedLengthStreamSolver
-        abjad> from abjad.tools.constrainttools import Domain
-        abjad> from abjad.tools.constrainttools import GlobalCountsConstraint
-        abjad> from abjad.tools.constrainttools import RelativeIndexConstraint
+        >>> from abjad.tools.constrainttools import FixedLengthStreamSolver
+        >>> from abjad.tools.constrainttools import Domain
+        >>> from abjad.tools.constrainttools import GlobalCountsConstraint
+        >>> from abjad.tools.constrainttools import RelativeIndexConstraint
 
     Instantiates from a ``Domain``, and a sequence of ``Constraints``.
 
     ::
 
-        abjad> domain = Domain([1, 2, 3, 4], 4)
-        abjad> all_unique = GlobalCountsConstraint(lambda x: all([y == 1 for y in x.values()]))
-        abjad> max_interval = RelativeIndexConstraint([0, 1], lambda x, y: abs(x - y) < 3)
-        abjad> solver = FixedLengthStreamSolver(domain, [all_unique, max_interval])
+        >>> domain = Domain([1, 2, 3, 4], 4)
+        >>> all_unique = GlobalCountsConstraint(lambda x: all([y == 1 for y in x.values()]))
+        >>> max_interval = RelativeIndexConstraint([0, 1], lambda x, y: abs(x - y) < 3)
+        >>> solver = FixedLengthStreamSolver(domain, [all_unique, max_interval])
 
     Generate solutions by iterating over the ``FixedLengthStreamSolver``.
 
     ::
 
-        abjad> for solution in solver: print solution
+        >>> for solution in solver: print solution
         ... 
         [1, 2, 3, 4]
         [1, 2, 4, 3]
@@ -48,9 +48,9 @@ class FixedLengthStreamSolver(_Solver):
 
     ::
 
-        abjad> domain = Domain([1, 2, 3, 4], 100)
-        abjad> solver = FixedLengthStreamSolver(domain, [all_unique])
-        abjad> [x for x in solver]
+        >>> domain = Domain([1, 2, 3, 4], 100)
+        >>> solver = FixedLengthStreamSolver(domain, [all_unique])
+        >>> [x for x in solver]
         []
 
     Can be instantiated with boolean ``randomized`` keyword, in order to
@@ -58,7 +58,7 @@ class FixedLengthStreamSolver(_Solver):
 
     ::
 
-        abjad> random_solver = FixedLengthStreamSolver(domain, [all_unique, max_interval], randomized=True)
+        >>> random_solver = FixedLengthStreamSolver(domain, [all_unique, max_interval], randomized=True)
 
     ``FixedLengthStreamSolvers`` are immutable.
 

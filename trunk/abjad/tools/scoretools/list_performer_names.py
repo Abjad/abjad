@@ -3,7 +3,7 @@ def list_performer_names(locale='en-us'):
     
     List performer names::
 
-        abjad> for performer_name in scoretools.list_performer_names():
+        >>> for performer_name in scoretools.list_performer_names():
         ...     performer_name
         ... 
         'accordionist'

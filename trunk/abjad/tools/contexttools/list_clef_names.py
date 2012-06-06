@@ -3,7 +3,7 @@ def list_clef_names():
 
     List clef names::
 
-        abjad> contexttools.list_clef_names()
+        >>> contexttools.list_clef_names()
         ['alto', 'baritone', 'bass', 'mezzosoprano', 'percussion', 'soprano', 'treble']
 
     Return list of strings.

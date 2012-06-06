@@ -7,13 +7,13 @@ def is_component_with_dynamic_mark_attached(expr):
 
     True when `expr` is a component and has a dynamic mark attached::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> contexttools.DynamicMark('p')(staff[0])
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> contexttools.DynamicMark('p')(staff[0])
         DynamicMark('p')(c'8)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8 \p
             d'8
@@ -23,12 +23,12 @@ def is_component_with_dynamic_mark_attached(expr):
 
     ::
 
-        abjad> contexttools.is_component_with_dynamic_mark_attached(staff[0])
+        >>> contexttools.is_component_with_dynamic_mark_attached(staff[0])
         True
 
     Otherwise false::
 
-        abjad> contexttools.is_component_with_dynamic_mark_attached(staff)
+        >>> contexttools.is_component_with_dynamic_mark_attached(staff)
         False
 
     Return boolean.

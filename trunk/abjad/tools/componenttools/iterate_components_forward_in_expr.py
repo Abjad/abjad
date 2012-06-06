@@ -6,13 +6,13 @@ def iterate_components_forward_in_expr(expr, klass=Component, start=0, stop=None
 
     Iterate components forward in `expr`::
 
-        abjad> container = Container(Voice(notetools.make_repeated_notes(2)) * 2)
-        abjad> container.is_parallel = True
-        abjad> container[0].name = 'voice 1'
-        abjad> container[1].name = 'vocie 2'
-        abjad> staff = Staff(container * 2)
-        abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
-        abjad> f(staff)
+        >>> container = Container(Voice(notetools.make_repeated_notes(2)) * 2)
+        >>> container.is_parallel = True
+        >>> container[0].name = 'voice 1'
+        >>> container[1].name = 'vocie 2'
+        >>> staff = Staff(container * 2)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+        >>> f(staff)
         \new Staff {
             <<
                 \context Voice = "voice 1" {
@@ -35,7 +35,7 @@ def iterate_components_forward_in_expr(expr, klass=Component, start=0, stop=None
                 }
             >>
         }
-        abjad> for x in componenttools.iterate_components_forward_in_expr(staff, Note):
+        >>> for x in componenttools.iterate_components_forward_in_expr(staff, Note):
         ...     x
         ...
         Note("c'8")
@@ -52,7 +52,7 @@ def iterate_components_forward_in_expr(expr, klass=Component, start=0, stop=None
 
     ::
 
-        abjad> for x in componenttools.iterate_components_forward_in_expr(staff, Note, start = 0, stop = 4):
+        >>> for x in componenttools.iterate_components_forward_in_expr(staff, Note, start = 0, stop = 4):
         ...     x
         ...
         Note("c'8")
@@ -62,7 +62,7 @@ def iterate_components_forward_in_expr(expr, klass=Component, start=0, stop=None
 
     ::
 
-        abjad> for x in componenttools.iterate_components_forward_in_expr(staff, Note, start = 4):
+        >>> for x in componenttools.iterate_components_forward_in_expr(staff, Note, start = 4):
         ...     x
         ...
         Note("g'8")
@@ -72,7 +72,7 @@ def iterate_components_forward_in_expr(expr, klass=Component, start=0, stop=None
 
     ::
 
-        abjad> for x in componenttools.iterate_components_forward_in_expr(staff, Note, start = 4, stop = 6):
+        >>> for x in componenttools.iterate_components_forward_in_expr(staff, Note, start = 4, stop = 6):
         ...     x
         ...
         Note("g'8")

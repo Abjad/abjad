@@ -8,20 +8,20 @@ def iterate_vertical_moments_forward_in_expr(governor):
 
     Yield vertical moments forward in `governor`::
 
-        abjad> from abjad.tools import verticalitytools
+        >>> from abjad.tools import verticalitytools
 
     ::
 
-        abjad> score = Score([])
-        abjad> score.append(Staff([tuplettools.FixedDurationTuplet(Duration(4, 8), notetools.make_repeated_notes(3))]))
-        abjad> piano_staff = scoretools.PianoStaff([])
-        abjad> piano_staff.append(Staff(notetools.make_repeated_notes(2, Duration(1, 4))))
-        abjad> piano_staff.append(Staff(notetools.make_repeated_notes(4)))
-        abjad> contexttools.ClefMark('bass')(piano_staff[1])
+        >>> score = Score([])
+        >>> score.append(Staff([tuplettools.FixedDurationTuplet(Duration(4, 8), notetools.make_repeated_notes(3))]))
+        >>> piano_staff = scoretools.PianoStaff([])
+        >>> piano_staff.append(Staff(notetools.make_repeated_notes(2, Duration(1, 4))))
+        >>> piano_staff.append(Staff(notetools.make_repeated_notes(4)))
+        >>> contexttools.ClefMark('bass')(piano_staff[1])
         ClefMark('bass')(Staff{4})
-        abjad> score.append(piano_staff)
-        abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(list(reversed(score.leaves)))
-        abjad> f(score)
+        >>> score.append(piano_staff)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(list(reversed(score.leaves)))
+        >>> f(score)
         \new Score <<
             \new Staff {
                 \fraction \times 4/3 {
@@ -44,7 +44,7 @@ def iterate_vertical_moments_forward_in_expr(governor):
                 }
             >>
         >>
-        abjad> for vertical_moment in verticalitytools.iterate_vertical_moments_forward_in_expr(score):
+        >>> for vertical_moment in verticalitytools.iterate_vertical_moments_forward_in_expr(score):
         ...     vertical_moment.leaves
         ...
         (Note("d''8"), Note("a'4"), Note("f'8"))
@@ -53,7 +53,7 @@ def iterate_vertical_moments_forward_in_expr(governor):
         (Note("c''8"), Note("g'4"), Note("d'8"))
         (Note("b'8"), Note("g'4"), Note("d'8"))
         (Note("b'8"), Note("g'4"), Note("c'8"))
-        abjad> for vertical_moment in verticalitytools.iterate_vertical_moments_forward_in_expr(piano_staff):
+        >>> for vertical_moment in verticalitytools.iterate_vertical_moments_forward_in_expr(piano_staff):
         ...     vertical_moment.leaves
         ...
         (Note("a'4"), Note("f'8"))

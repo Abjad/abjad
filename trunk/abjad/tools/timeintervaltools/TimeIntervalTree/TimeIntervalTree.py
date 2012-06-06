@@ -24,19 +24,19 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
     ::
 
-        abjad> from abjad.tools.timeintervaltools import TimeIntervalTree
-        abjad> from abjad.tools.timeintervaltools import TimeInterval
+        >>> from abjad.tools.timeintervaltools import TimeIntervalTree
+        >>> from abjad.tools.timeintervaltools import TimeInterval
 
     ::
 
-        abjad> interval_one = TimeInterval(0, 10)
-        abjad> interval_two = TimeInterval(1, 8)
-        abjad> interval_three = TimeInterval(3, 13)
-        abjad> tree = TimeIntervalTree([interval_one, interval_two, interval_three])
+        >>> interval_one = TimeInterval(0, 10)
+        >>> interval_two = TimeInterval(1, 8)
+        >>> interval_three = TimeInterval(3, 13)
+        >>> tree = TimeIntervalTree([interval_one, interval_two, interval_three])
 
     ::
 
-        abjad> tree
+        >>> tree
         TimeIntervalTree([
             TimeInterval(Offset(0, 1), Offset(10, 1), {}),
             TimeInterval(Offset(1, 1), Offset(8, 1), {}),
@@ -114,15 +114,15 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
         ::
 
-            abjad> from abjad.tools.timeintervaltools import *
-            abjad> true_tree = TimeIntervalTree([TimeInterval(0, 1)])
-            abjad> false_tree = TimeIntervalTree([])
+            >>> from abjad.tools.timeintervaltools import *
+            >>> true_tree = TimeIntervalTree([TimeInterval(0, 1)])
+            >>> false_tree = TimeIntervalTree([])
 
         ::
 
-            abjad> bool(true_tree)
+            >>> bool(true_tree)
             True
-            abjad> bool(false_tree)
+            >>> bool(false_tree)
             False
 
         Return boolean.
@@ -157,11 +157,11 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
         ::
 
-            abjad> from abjad.tools.timeintervaltools import *
-            abjad> ti1 = TimeInterval(1, 2)
-            abjad> ti2 = TimeInterval(3, (7, 2))
-            abjad> tree = TimeIntervalTree([ti1, ti2])
-            abjad> tree.duration
+            >>> from abjad.tools.timeintervaltools import *
+            >>> ti1 = TimeInterval(1, 2)
+            >>> ti2 = TimeInterval(3, (7, 2))
+            >>> tree = TimeIntervalTree([ti1, ti2])
+            >>> tree.duration
             Duration(5, 2)
 
         Empty trees have a duration of 0.
@@ -179,11 +179,11 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
         ::
 
-            abjad> from abjad.tools.timeintervaltools import *
-            abjad> ti1 = TimeInterval(1, 2)
-            abjad> ti2 = TimeInterval(3, (7, 2))
-            abjad> tree = TimeIntervalTree([ti1, ti2])
-            abjad> tree.earliest_start
+            >>> from abjad.tools.timeintervaltools import *
+            >>> ti1 = TimeInterval(1, 2)
+            >>> ti2 = TimeInterval(3, (7, 2))
+            >>> tree = TimeIntervalTree([ti1, ti2])
+            >>> tree.earliest_start
             Offset(1, 1)
 
         Return ``Offset`` instance, or None if tree is empty.
@@ -199,11 +199,11 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
         ::
 
-            abjad> from abjad.tools.timeintervaltools import *
-            abjad> ti1 = TimeInterval(1, 2)
-            abjad> ti2 = TimeInterval(3, (7, 2))
-            abjad> tree = TimeIntervalTree([ti1, ti2])
-            abjad> tree.earliest_stop
+            >>> from abjad.tools.timeintervaltools import *
+            >>> ti1 = TimeInterval(1, 2)
+            >>> ti2 = TimeInterval(3, (7, 2))
+            >>> tree = TimeIntervalTree([ti1, ti2])
+            >>> tree.earliest_stop
             Offset(2, 1)
 
         Return ``Offset`` instance, or None if tree is empty.
@@ -223,11 +223,11 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
         ::
 
-            abjad> from abjad.tools.timeintervaltools import *
-            abjad> ti1 = TimeInterval(1, 2)
-            abjad> ti2 = TimeInterval(3, (7, 2))
-            abjad> tree = TimeIntervalTree([ti1, ti2])
-            abjad> tree.latest_start
+            >>> from abjad.tools.timeintervaltools import *
+            >>> ti1 = TimeInterval(1, 2)
+            >>> ti2 = TimeInterval(3, (7, 2))
+            >>> tree = TimeIntervalTree([ti1, ti2])
+            >>> tree.latest_start
             Offset(3, 1)
 
         Return ``Offset`` instance, or None if tree is empty.
@@ -243,11 +243,11 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
         ::
 
-            abjad> from abjad.tools.timeintervaltools import *
-            abjad> ti1 = TimeInterval(1, 2)
-            abjad> ti2 = TimeInterval(3, (7, 2))
-            abjad> tree = TimeIntervalTree([ti1, ti2])
-            abjad> tree.latest_stop
+            >>> from abjad.tools.timeintervaltools import *
+            >>> ti1 = TimeInterval(1, 2)
+            >>> ti2 = TimeInterval(3, (7, 2))
+            >>> tree = TimeIntervalTree([ti1, ti2])
+            >>> tree.latest_stop
             Offset(7, 2)
 
         Return ``Offset`` instance, or None if tree is empty.
@@ -332,24 +332,24 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
         ::
 
-            abjad> a = TimeInterval(0, 1, {'name': 'a'})
-            abjad> b = TimeInterval(1, 2, {'name': 'b'})
-            abjad> c = TimeInterval(0, 3, {'name': 'c'})
-            abjad> d = TimeInterval(2, 3, {'name': 'd'})
-            abjad> tree = TimeIntervalTree([a, b, c, d])
+            >>> a = TimeInterval(0, 1, {'name': 'a'})
+            >>> b = TimeInterval(1, 2, {'name': 'b'})
+            >>> c = TimeInterval(0, 3, {'name': 'c'})
+            >>> d = TimeInterval(2, 3, {'name': 'd'})
+            >>> tree = TimeIntervalTree([a, b, c, d])
 
         ::
 
-            abjad> interval = TimeInterval(0, 1)
-            abjad> found = tree.find_intervals_intersecting_or_tangent_to_interval(interval)
-            abjad> sorted([x['name'] for x in found])
+            >>> interval = TimeInterval(0, 1)
+            >>> found = tree.find_intervals_intersecting_or_tangent_to_interval(interval)
+            >>> sorted([x['name'] for x in found])
             ['a', 'b', 'c']
 
         ::
 
-            abjad> interval = TimeInterval(3, 4)
-            abjad> found = tree.find_intervals_intersecting_or_tangent_to_interval(interval)
-            abjad> sorted([x['name'] for x in found])
+            >>> interval = TimeInterval(3, 4)
+            >>> found = tree.find_intervals_intersecting_or_tangent_to_interval(interval)
+            >>> sorted([x['name'] for x in found])
             ['c', 'd']
 
         Return `TimeIntervalTree` instance.
@@ -390,24 +390,24 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
         ::
 
-            abjad> a = TimeInterval(0, 1, {'name': 'a'})
-            abjad> b = TimeInterval(1, 2, {'name': 'b'})
-            abjad> c = TimeInterval(0, 3, {'name': 'c'})
-            abjad> d = TimeInterval(2, 3, {'name': 'd'})
-            abjad> tree = TimeIntervalTree([a, b, c, d])
+            >>> a = TimeInterval(0, 1, {'name': 'a'})
+            >>> b = TimeInterval(1, 2, {'name': 'b'})
+            >>> c = TimeInterval(0, 3, {'name': 'c'})
+            >>> d = TimeInterval(2, 3, {'name': 'd'})
+            >>> tree = TimeIntervalTree([a, b, c, d])
 
         ::
 
-            abjad> offset = 1
-            abjad> found = tree.find_intervals_intersecting_or_tangent_to_offset(offset)
-            abjad> sorted([x['name'] for x in found])
+            >>> offset = 1
+            >>> found = tree.find_intervals_intersecting_or_tangent_to_offset(offset)
+            >>> sorted([x['name'] for x in found])
             ['a', 'b', 'c']
 
         ::
 
-            abjad> offset = 3
-            abjad> found = tree.find_intervals_intersecting_or_tangent_to_offset(offset)
-            abjad> sorted([x['name'] for x in found])
+            >>> offset = 3
+            >>> found = tree.find_intervals_intersecting_or_tangent_to_offset(offset)
+            >>> sorted([x['name'] for x in found])
             ['c', 'd']
 
         Return `TimeIntervalTree` instance.
@@ -437,24 +437,24 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
         ::
 
-            abjad> a = TimeInterval(0, 1, {'name': 'a'})
-            abjad> b = TimeInterval(1, 2, {'name': 'b'})
-            abjad> c = TimeInterval(0, 3, {'name': 'c'})
-            abjad> d = TimeInterval(2, 3, {'name': 'd'})
-            abjad> tree = TimeIntervalTree([a, b, c, d])
+            >>> a = TimeInterval(0, 1, {'name': 'a'})
+            >>> b = TimeInterval(1, 2, {'name': 'b'})
+            >>> c = TimeInterval(0, 3, {'name': 'c'})
+            >>> d = TimeInterval(2, 3, {'name': 'd'})
+            >>> tree = TimeIntervalTree([a, b, c, d])
 
         ::
 
-            abjad> offset = 0
-            abjad> found = tree.find_intervals_starting_after_offset(offset)
-            abjad> sorted([x['name'] for x in found])
+            >>> offset = 0
+            >>> found = tree.find_intervals_starting_after_offset(offset)
+            >>> sorted([x['name'] for x in found])
             ['b', 'd']
 
         ::
 
-            abjad> offset = 1
-            abjad> found = tree.find_intervals_starting_after_offset(offset)
-            abjad> sorted([x['name'] for x in found])
+            >>> offset = 1
+            >>> found = tree.find_intervals_starting_after_offset(offset)
+            >>> sorted([x['name'] for x in found])
             ['d']
 
         Return `TimeIntervalTree` instance.
@@ -481,24 +481,24 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
         ::
 
-            abjad> a = TimeInterval(0, 1, {'name': 'a'})
-            abjad> b = TimeInterval(1, 2, {'name': 'b'})
-            abjad> c = TimeInterval(0, 3, {'name': 'c'})
-            abjad> d = TimeInterval(2, 3, {'name': 'd'})
-            abjad> tree = TimeIntervalTree([a, b, c, d])
+            >>> a = TimeInterval(0, 1, {'name': 'a'})
+            >>> b = TimeInterval(1, 2, {'name': 'b'})
+            >>> c = TimeInterval(0, 3, {'name': 'c'})
+            >>> d = TimeInterval(2, 3, {'name': 'd'})
+            >>> tree = TimeIntervalTree([a, b, c, d])
 
         ::
 
-            abjad> interval = TimeInterval(1, 3)
-            abjad> found = tree.find_intervals_starting_and_stopping_within_interval(interval)
-            abjad> sorted([x['name'] for x in found])
+            >>> interval = TimeInterval(1, 3)
+            >>> found = tree.find_intervals_starting_and_stopping_within_interval(interval)
+            >>> sorted([x['name'] for x in found])
             ['b', 'd']
 
         ::
 
-            abjad> interval = TimeInterval(-1, 2)
-            abjad> found = tree.find_intervals_starting_and_stopping_within_interval(interval)
-            abjad> sorted([x['name'] for x in found])
+            >>> interval = TimeInterval(-1, 2)
+            >>> found = tree.find_intervals_starting_and_stopping_within_interval(interval)
+            >>> sorted([x['name'] for x in found])
             ['a', 'b']
 
         Return `TimeIntervalTree` instance.
@@ -539,24 +539,24 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
         ::
 
-            abjad> a = TimeInterval(0, 1, {'name': 'a'})
-            abjad> b = TimeInterval(1, 2, {'name': 'b'})
-            abjad> c = TimeInterval(0, 3, {'name': 'c'})
-            abjad> d = TimeInterval(2, 3, {'name': 'd'})
-            abjad> tree = TimeIntervalTree([a, b, c, d])
+            >>> a = TimeInterval(0, 1, {'name': 'a'})
+            >>> b = TimeInterval(1, 2, {'name': 'b'})
+            >>> c = TimeInterval(0, 3, {'name': 'c'})
+            >>> d = TimeInterval(2, 3, {'name': 'd'})
+            >>> tree = TimeIntervalTree([a, b, c, d])
 
         ::
 
-            abjad> offset = 0
-            abjad> found = tree.find_intervals_starting_at_offset(offset)
-            abjad> sorted([x['name'] for x in found])
+            >>> offset = 0
+            >>> found = tree.find_intervals_starting_at_offset(offset)
+            >>> sorted([x['name'] for x in found])
             ['a', 'c']
 
         ::
 
-            abjad> offset = 1
-            abjad> found = tree.find_intervals_starting_at_offset(offset)
-            abjad> sorted([x['name'] for x in found])
+            >>> offset = 1
+            >>> found = tree.find_intervals_starting_at_offset(offset)
+            >>> sorted([x['name'] for x in found])
             ['b']
 
         Return `TimeIntervalTree` instance.
@@ -574,24 +574,24 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
         ::
 
-            abjad> a = TimeInterval(0, 1, {'name': 'a'})
-            abjad> b = TimeInterval(1, 2, {'name': 'b'})
-            abjad> c = TimeInterval(0, 3, {'name': 'c'})
-            abjad> d = TimeInterval(2, 3, {'name': 'd'})
-            abjad> tree = TimeIntervalTree([a, b, c, d])
+            >>> a = TimeInterval(0, 1, {'name': 'a'})
+            >>> b = TimeInterval(1, 2, {'name': 'b'})
+            >>> c = TimeInterval(0, 3, {'name': 'c'})
+            >>> d = TimeInterval(2, 3, {'name': 'd'})
+            >>> tree = TimeIntervalTree([a, b, c, d])
 
         ::
 
-            abjad> offset = 1
-            abjad> found = tree.find_intervals_starting_before_offset(offset)
-            abjad> sorted([x['name'] for x in found])
+            >>> offset = 1
+            >>> found = tree.find_intervals_starting_before_offset(offset)
+            >>> sorted([x['name'] for x in found])
             ['a', 'c']
 
         ::
 
-            abjad> offset = 2
-            abjad> found = tree.find_intervals_starting_before_offset(offset)
-            abjad> sorted([x['name'] for x in found])
+            >>> offset = 2
+            >>> found = tree.find_intervals_starting_before_offset(offset)
+            >>> sorted([x['name'] for x in found])
             ['a', 'b', 'c']
 
         Return `TimeIntervalTree` instance.
@@ -617,24 +617,24 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
         ::
 
-            abjad> a = TimeInterval(0, 1, {'name': 'a'})
-            abjad> b = TimeInterval(1, 2, {'name': 'b'})
-            abjad> c = TimeInterval(0, 3, {'name': 'c'})
-            abjad> d = TimeInterval(2, 3, {'name': 'd'})
-            abjad> tree = TimeIntervalTree([a, b, c, d])
+            >>> a = TimeInterval(0, 1, {'name': 'a'})
+            >>> b = TimeInterval(1, 2, {'name': 'b'})
+            >>> c = TimeInterval(0, 3, {'name': 'c'})
+            >>> d = TimeInterval(2, 3, {'name': 'd'})
+            >>> tree = TimeIntervalTree([a, b, c, d])
 
         ::
 
-            abjad> offset = 2 
-            abjad> found = tree.find_intervals_starting_or_stopping_at_offset(offset)
-            abjad> sorted([x['name'] for x in found])
+            >>> offset = 2 
+            >>> found = tree.find_intervals_starting_or_stopping_at_offset(offset)
+            >>> sorted([x['name'] for x in found])
             ['b', 'd']
 
         ::
 
-            abjad> offset = 1
-            abjad> found = tree.find_intervals_starting_or_stopping_at_offset(offset)
-            abjad> sorted([x['name'] for x in found])
+            >>> offset = 1
+            >>> found = tree.find_intervals_starting_or_stopping_at_offset(offset)
+            >>> sorted([x['name'] for x in found])
             ['a', 'b']
 
         Return `TimeIntervalTree` instance.
@@ -664,24 +664,24 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
         ::
 
-            abjad> a = TimeInterval(0, 1, {'name': 'a'})
-            abjad> b = TimeInterval(1, 2, {'name': 'b'})
-            abjad> c = TimeInterval(0, 3, {'name': 'c'})
-            abjad> d = TimeInterval(2, 3, {'name': 'd'})
-            abjad> tree = TimeIntervalTree([a, b, c, d])
+            >>> a = TimeInterval(0, 1, {'name': 'a'})
+            >>> b = TimeInterval(1, 2, {'name': 'b'})
+            >>> c = TimeInterval(0, 3, {'name': 'c'})
+            >>> d = TimeInterval(2, 3, {'name': 'd'})
+            >>> tree = TimeIntervalTree([a, b, c, d])
 
         ::
 
-            abjad> interval = TimeInterval((-1, 2), (1, 2))
-            abjad> found = tree.find_intervals_starting_within_interval(interval)
-            abjad> sorted([x['name'] for x in found])
+            >>> interval = TimeInterval((-1, 2), (1, 2))
+            >>> found = tree.find_intervals_starting_within_interval(interval)
+            >>> sorted([x['name'] for x in found])
             ['a', 'c']
 
         ::
 
-            abjad> interval = TimeInterval((1, 2), (5, 2))
-            abjad> found = tree.find_intervals_starting_within_interval(interval)
-            abjad> sorted([x['name'] for x in found])
+            >>> interval = TimeInterval((1, 2), (5, 2))
+            >>> found = tree.find_intervals_starting_within_interval(interval)
+            >>> sorted([x['name'] for x in found])
             ['b', 'd']
 
         Return `TimeIntervalTree` instance.
@@ -720,24 +720,24 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
         ::
 
-            abjad> a = TimeInterval(0, 1, {'name': 'a'})
-            abjad> b = TimeInterval(1, 2, {'name': 'b'})
-            abjad> c = TimeInterval(0, 3, {'name': 'c'})
-            abjad> d = TimeInterval(2, 3, {'name': 'd'})
-            abjad> tree = TimeIntervalTree([a, b, c, d])
+            >>> a = TimeInterval(0, 1, {'name': 'a'})
+            >>> b = TimeInterval(1, 2, {'name': 'b'})
+            >>> c = TimeInterval(0, 3, {'name': 'c'})
+            >>> d = TimeInterval(2, 3, {'name': 'd'})
+            >>> tree = TimeIntervalTree([a, b, c, d])
 
         ::
 
-            abjad> offset = 1
-            abjad> found = tree.find_intervals_stopping_after_offset(offset)
-            abjad> sorted([x['name'] for x in found])
+            >>> offset = 1
+            >>> found = tree.find_intervals_stopping_after_offset(offset)
+            >>> sorted([x['name'] for x in found])
             ['b', 'c', 'd']
 
         ::
 
-            abjad> offset = 2
-            abjad> found = tree.find_intervals_stopping_after_offset(offset)
-            abjad> sorted([x['name'] for x in found])
+            >>> offset = 2
+            >>> found = tree.find_intervals_stopping_after_offset(offset)
+            >>> sorted([x['name'] for x in found])
             ['c', 'd']
 
         Return `TimeIntervalTree` instance.
@@ -765,24 +765,24 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
         ::
 
-            abjad> a = TimeInterval(0, 1, {'name': 'a'})
-            abjad> b = TimeInterval(1, 2, {'name': 'b'})
-            abjad> c = TimeInterval(0, 3, {'name': 'c'})
-            abjad> d = TimeInterval(2, 3, {'name': 'd'})
-            abjad> tree = TimeIntervalTree([a, b, c, d])
+            >>> a = TimeInterval(0, 1, {'name': 'a'})
+            >>> b = TimeInterval(1, 2, {'name': 'b'})
+            >>> c = TimeInterval(0, 3, {'name': 'c'})
+            >>> d = TimeInterval(2, 3, {'name': 'd'})
+            >>> tree = TimeIntervalTree([a, b, c, d])
 
         ::
 
-            abjad> offset = 3
-            abjad> found = tree.find_intervals_stopping_at_offset(offset)
-            abjad> sorted([x['name'] for x in found])
+            >>> offset = 3
+            >>> found = tree.find_intervals_stopping_at_offset(offset)
+            >>> sorted([x['name'] for x in found])
             ['c', 'd']
 
         ::
 
-            abjad> offset = 1
-            abjad> found = tree.find_intervals_stopping_at_offset(offset)
-            abjad> sorted([x['name'] for x in found])
+            >>> offset = 1
+            >>> found = tree.find_intervals_stopping_at_offset(offset)
+            >>> sorted([x['name'] for x in found])
             ['a']
 
         Return `TimeIntervalTree` instance.
@@ -810,24 +810,24 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
         ::
 
-            abjad> a = TimeInterval(0, 1, {'name': 'a'})
-            abjad> b = TimeInterval(1, 2, {'name': 'b'})
-            abjad> c = TimeInterval(0, 3, {'name': 'c'})
-            abjad> d = TimeInterval(2, 3, {'name': 'd'})
-            abjad> tree = TimeIntervalTree([a, b, c, d])
+            >>> a = TimeInterval(0, 1, {'name': 'a'})
+            >>> b = TimeInterval(1, 2, {'name': 'b'})
+            >>> c = TimeInterval(0, 3, {'name': 'c'})
+            >>> d = TimeInterval(2, 3, {'name': 'd'})
+            >>> tree = TimeIntervalTree([a, b, c, d])
 
         ::
 
-            abjad> offset = 3
-            abjad> found = tree.find_intervals_stopping_before_offset(offset)
-            abjad> sorted([x['name'] for x in found])
+            >>> offset = 3
+            >>> found = tree.find_intervals_stopping_before_offset(offset)
+            >>> sorted([x['name'] for x in found])
             ['a', 'b']
 
         ::
 
-            abjad> offset = (7, 2)
-            abjad> found = tree.find_intervals_stopping_before_offset(offset)
-            abjad> sorted([x['name'] for x in found])
+            >>> offset = (7, 2)
+            >>> found = tree.find_intervals_stopping_before_offset(offset)
+            >>> sorted([x['name'] for x in found])
             ['a', 'b', 'c', 'd']
 
         Return `TimeIntervalTree` instance.
@@ -855,24 +855,24 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
         ::
 
-            abjad> a = TimeInterval(0, 1, {'name': 'a'})
-            abjad> b = TimeInterval(1, 2, {'name': 'b'})
-            abjad> c = TimeInterval(0, 3, {'name': 'c'})
-            abjad> d = TimeInterval(2, 3, {'name': 'd'})
-            abjad> tree = TimeIntervalTree([a, b, c, d])
+            >>> a = TimeInterval(0, 1, {'name': 'a'})
+            >>> b = TimeInterval(1, 2, {'name': 'b'})
+            >>> c = TimeInterval(0, 3, {'name': 'c'})
+            >>> d = TimeInterval(2, 3, {'name': 'd'})
+            >>> tree = TimeIntervalTree([a, b, c, d])
 
         ::
 
-            abjad> interval = TimeInterval((3, 2), (5, 2))
-            abjad> found = tree.find_intervals_stopping_within_interval(interval)
-            abjad> sorted([x['name'] for x in found])
+            >>> interval = TimeInterval((3, 2), (5, 2))
+            >>> found = tree.find_intervals_stopping_within_interval(interval)
+            >>> sorted([x['name'] for x in found])
             ['b']
 
         ::
 
-            abjad> interval = TimeInterval((5, 2), (7, 2))
-            abjad> found = tree.find_intervals_stopping_within_interval(interval)
-            abjad> sorted([x['name'] for x in found])
+            >>> interval = TimeInterval((5, 2), (7, 2))
+            >>> found = tree.find_intervals_stopping_within_interval(interval)
+            >>> sorted([x['name'] for x in found])
             ['c', 'd']
 
         Return `TimeIntervalTree` instance.
@@ -913,12 +913,12 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
         ::
 
-            abjad> a = TimeInterval((1, 16), (1, 8), {'name': 'a'})
-            abjad> b = TimeInterval((2, 7), (13, 7), {'name': 'b'})
-            abjad> c = TimeInterval((3, 5), (8, 5), {'name': 'c'})
-            abjad> d = TimeInterval((2, 3), (5, 3), {'name': 'd'})
-            abjad> tree = TimeIntervalTree([a, b, c, d])
-            abjad> tree
+            >>> a = TimeInterval((1, 16), (1, 8), {'name': 'a'})
+            >>> b = TimeInterval((2, 7), (13, 7), {'name': 'b'})
+            >>> c = TimeInterval((3, 5), (8, 5), {'name': 'c'})
+            >>> d = TimeInterval((2, 3), (5, 3), {'name': 'd'})
+            >>> tree = TimeIntervalTree([a, b, c, d])
+            >>> tree
             TimeIntervalTree([
                 TimeInterval(Offset(1, 16), Offset(1, 8), {'name': 'a'}),
                 TimeInterval(Offset(2, 7), Offset(13, 7), {'name': 'b'}),
@@ -928,8 +928,8 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
         ::
 
-            abjad> rational = (1, 4)
-            abjad> tree.quantize_to_rational(rational)
+            >>> rational = (1, 4)
+            >>> tree.quantize_to_rational(rational)
             TimeIntervalTree([
                 TimeInterval(Offset(0, 1), Offset(1, 4), {'name': 'a'}),
                 TimeInterval(Offset(1, 4), Offset(7, 4), {'name': 'b'}),
@@ -939,8 +939,8 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
         ::
 
-            abjad> rational = (1, 3)
-            abjad> tree.quantize_to_rational(rational)
+            >>> rational = (1, 3)
+            >>> tree.quantize_to_rational(rational)
             TimeIntervalTree([
                 TimeInterval(Offset(0, 1), Offset(1, 3), {'name': 'a'}),
                 TimeInterval(Offset(1, 3), Offset(2, 1), {'name': 'b'}),
@@ -966,16 +966,16 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
         ::
 
-            abjad> from abjad.tools.timeintervaltools import TimeInterval
-            abjad> from abjad.tools.timeintervaltools import TimeIntervalTree
+            >>> from abjad.tools.timeintervaltools import TimeInterval
+            >>> from abjad.tools.timeintervaltools import TimeIntervalTree
 
         ::
 
-            abjad> one = TimeInterval(0, 1, {'name': 'one'})
-            abjad> two = TimeInterval((1, 2), (5, 2), {'name': 'two'})
-            abjad> three = TimeInterval(2, 4, {'name': 'three'})
-            abjad> tree = TimeIntervalTree([one, two, three])
-            abjad> tree
+            >>> one = TimeInterval(0, 1, {'name': 'one'})
+            >>> two = TimeInterval((1, 2), (5, 2), {'name': 'two'})
+            >>> three = TimeInterval(2, 4, {'name': 'three'})
+            >>> tree = TimeIntervalTree([one, two, three])
+            >>> tree
             TimeIntervalTree([
                 TimeInterval(Offset(0, 1), Offset(1, 1), {'name': 'one'}),
                 TimeInterval(Offset(1, 2), Offset(5, 2), {'name': 'two'}),
@@ -984,8 +984,8 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
         ::
 
-            abjad> result = tree.scale_by_rational((2, 3))
-            abjad> result
+            >>> result = tree.scale_by_rational((2, 3))
+            >>> result
             TimeIntervalTree([
                 TimeInterval(Offset(0, 1), Offset(2, 3), {'name': 'one'}),
                 TimeInterval(Offset(1, 3), Offset(5, 3), {'name': 'two'}),
@@ -996,9 +996,9 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
         ::
 
-            abjad> zero = TimeInterval(-4, 0, {'name': 'zero'})
-            abjad> tree = TimeIntervalTree([zero, one, two, three])
-            abjad> tree
+            >>> zero = TimeInterval(-4, 0, {'name': 'zero'})
+            >>> tree = TimeIntervalTree([zero, one, two, three])
+            >>> tree
             TimeIntervalTree([
                 TimeInterval(Offset(-4, 1), Offset(0, 1), {'name': 'zero'}),
                 TimeInterval(Offset(0, 1), Offset(1, 1), {'name': 'one'}),
@@ -1008,8 +1008,8 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
         ::
 
-            abjad> result = tree.scale_by_rational(2)
-            abjad> result
+            >>> result = tree.scale_by_rational(2)
+            >>> result
             TimeIntervalTree([
                 TimeInterval(Offset(-4, 1), Offset(4, 1), {'name': 'zero'}),
                 TimeInterval(Offset(4, 1), Offset(6, 1), {'name': 'one'}),
@@ -1019,9 +1019,9 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
         ::
 
-            abjad> result.start == tree.start
+            >>> result.start == tree.start
             True
-            abjad> result.duration == tree.duration * 2
+            >>> result.duration == tree.duration * 2
             True
 
         Return `TimeIntervalTree` instance.
@@ -1039,16 +1039,16 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
         ::
 
-            abjad> from abjad.tools.timeintervaltools import TimeInterval
-            abjad> from abjad.tools.timeintervaltools import TimeIntervalTree
+            >>> from abjad.tools.timeintervaltools import TimeInterval
+            >>> from abjad.tools.timeintervaltools import TimeIntervalTree
 
         ::
 
-            abjad> one = TimeInterval(0, 1, {'name': 'one'})
-            abjad> two = TimeInterval((1, 2), (5, 2), {'name': 'two'})
-            abjad> three = TimeInterval(2, 4, {'name': 'three'})
-            abjad> tree = TimeIntervalTree([one, two, three])
-            abjad> tree
+            >>> one = TimeInterval(0, 1, {'name': 'one'})
+            >>> two = TimeInterval((1, 2), (5, 2), {'name': 'two'})
+            >>> three = TimeInterval(2, 4, {'name': 'three'})
+            >>> tree = TimeIntervalTree([one, two, three])
+            >>> tree
             TimeIntervalTree([
                 TimeInterval(Offset(0, 1), Offset(1, 1), {'name': 'one'}),
                 TimeInterval(Offset(1, 2), Offset(5, 2), {'name': 'two'}),
@@ -1057,8 +1057,8 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
         ::
 
-            abjad> result = tree.scale_to_rational(1)
-            abjad> result
+            >>> result = tree.scale_to_rational(1)
+            >>> result
             TimeIntervalTree([
                 TimeInterval(Offset(0, 1), Offset(1, 4), {'name': 'one'}),
                 TimeInterval(Offset(1, 8), Offset(5, 8), {'name': 'two'}),
@@ -1067,7 +1067,7 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
         ::
 
-            abjad> result.scale_to_rational(10)
+            >>> result.scale_to_rational(10)
             TimeIntervalTree([
                 TimeInterval(Offset(0, 1), Offset(5, 2), {'name': 'one'}),
                 TimeInterval(Offset(5, 4), Offset(25, 4), {'name': 'two'}),
@@ -1078,9 +1078,9 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
         ::
 
-            abjad> zero = TimeInterval(-4, 0, {'name': 'zero'})
-            abjad> tree = TimeIntervalTree([zero, one, two, three])
-            abjad> tree
+            >>> zero = TimeInterval(-4, 0, {'name': 'zero'})
+            >>> tree = TimeIntervalTree([zero, one, two, three])
+            >>> tree
             TimeIntervalTree([
                 TimeInterval(Offset(-4, 1), Offset(0, 1), {'name': 'zero'}),
                 TimeInterval(Offset(0, 1), Offset(1, 1), {'name': 'one'}),
@@ -1090,7 +1090,7 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
         ::
 
-            abjad> tree.scale_to_rational(4)
+            >>> tree.scale_to_rational(4)
             TimeIntervalTree([
                 TimeInterval(Offset(-4, 1), Offset(-2, 1), {'name': 'zero'}),
                 TimeInterval(Offset(-2, 1), Offset(-3, 2), {'name': 'one'}),
@@ -1113,16 +1113,16 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
         ::
 
-            abjad> from abjad.tools.timeintervaltools import TimeInterval
-            abjad> from abjad.tools.timeintervaltools import TimeIntervalTree
+            >>> from abjad.tools.timeintervaltools import TimeInterval
+            >>> from abjad.tools.timeintervaltools import TimeIntervalTree
 
         ::
 
-            abjad> one = TimeInterval(0, 1, {'name': 'one'})
-            abjad> two = TimeInterval((1, 2), (5, 2), {'name': 'two'})
-            abjad> three = TimeInterval(2, 4, {'name': 'three'})
-            abjad> tree = TimeIntervalTree([one, two, three])
-            abjad> tree
+            >>> one = TimeInterval(0, 1, {'name': 'one'})
+            >>> two = TimeInterval((1, 2), (5, 2), {'name': 'two'})
+            >>> three = TimeInterval(2, 4, {'name': 'three'})
+            >>> tree = TimeIntervalTree([one, two, three])
+            >>> tree
             TimeIntervalTree([
                 TimeInterval(Offset(0, 1), Offset(1, 1), {'name': 'one'}),
                 TimeInterval(Offset(1, 2), Offset(5, 2), {'name': 'two'}),
@@ -1131,14 +1131,14 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
         ::
 
-            abjad> result = tree.shift_by_rational(-2.5)
-            abjad> result
+            >>> result = tree.shift_by_rational(-2.5)
+            >>> result
             TimeIntervalTree([
                 TimeInterval(Offset(-5, 2), Offset(-3, 2), {'name': 'one'}),
                 TimeInterval(Offset(-2, 1), Offset(0, 1), {'name': 'two'}),
                 TimeInterval(Offset(-1, 2), Offset(3, 2), {'name': 'three'})
             ])
-            abjad> result.shift_by_rational(6)
+            >>> result.shift_by_rational(6)
             TimeIntervalTree([
                 TimeInterval(Offset(7, 2), Offset(9, 2), {'name': 'one'}),
                 TimeInterval(Offset(4, 1), Offset(6, 1), {'name': 'two'}),
@@ -1158,16 +1158,16 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
         ::
 
-            abjad> from abjad.tools.timeintervaltools import TimeInterval
-            abjad> from abjad.tools.timeintervaltools import TimeIntervalTree
+            >>> from abjad.tools.timeintervaltools import TimeInterval
+            >>> from abjad.tools.timeintervaltools import TimeIntervalTree
 
         ::
 
-            abjad> one = TimeInterval(0, 1, {'name': 'one'})
-            abjad> two = TimeInterval((1, 2), (5, 2), {'name': 'two'})
-            abjad> three = TimeInterval(2, 4, {'name': 'three'})
-            abjad> tree = TimeIntervalTree([one, two, three])
-            abjad> tree
+            >>> one = TimeInterval(0, 1, {'name': 'one'})
+            >>> two = TimeInterval((1, 2), (5, 2), {'name': 'two'})
+            >>> three = TimeInterval(2, 4, {'name': 'three'})
+            >>> tree = TimeIntervalTree([one, two, three])
+            >>> tree
             TimeIntervalTree([
                 TimeInterval(Offset(0, 1), Offset(1, 1), {'name': 'one'}),
                 TimeInterval(Offset(1, 2), Offset(5, 2), {'name': 'two'}),
@@ -1176,8 +1176,8 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
         ::
 
-            abjad> result = tree.shift_to_rational(100)
-            abjad> result
+            >>> result = tree.shift_to_rational(100)
+            >>> result
             TimeIntervalTree([
                 TimeInterval(Offset(100, 1), Offset(101, 1), {'name': 'one'}),
                 TimeInterval(Offset(201, 2), Offset(205, 2), {'name': 'two'}),
@@ -1197,16 +1197,16 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
         ::
 
-            abjad> from abjad.tools.timeintervaltools import TimeInterval
-            abjad> from abjad.tools.timeintervaltools import TimeIntervalTree
+            >>> from abjad.tools.timeintervaltools import TimeInterval
+            >>> from abjad.tools.timeintervaltools import TimeIntervalTree
 
         ::
 
-            abjad> one = TimeInterval(0, 1, {'name': 'one'})
-            abjad> two = TimeInterval((1, 2), (5, 2), {'name': 'two'})
-            abjad> three = TimeInterval(2, 4, {'name': 'three'})
-            abjad> tree = TimeIntervalTree([one, two, three])
-            abjad> tree
+            >>> one = TimeInterval(0, 1, {'name': 'one'})
+            >>> two = TimeInterval((1, 2), (5, 2), {'name': 'two'})
+            >>> three = TimeInterval(2, 4, {'name': 'three'})
+            >>> tree = TimeIntervalTree([one, two, three])
+            >>> tree
             TimeIntervalTree([
                 TimeInterval(Offset(0, 1), Offset(1, 1), {'name': 'one'}),
                 TimeInterval(Offset(1, 2), Offset(5, 2), {'name': 'two'}),
@@ -1215,13 +1215,13 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
         ::
 
-            abjad> result = tree.split_at_rationals(1, 2, 3)
-            abjad> len(result)
+            >>> result = tree.split_at_rationals(1, 2, 3)
+            >>> len(result)
             4
 
         ::
 
-            abjad> result[0]
+            >>> result[0]
             TimeIntervalTree([
                 TimeInterval(Offset(0, 1), Offset(1, 1), {'name': 'one'}),
                 TimeInterval(Offset(1, 2), Offset(1, 1), {'name': 'two'})
@@ -1229,14 +1229,14 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
         ::
 
-            abjad> result[1]
+            >>> result[1]
             TimeIntervalTree([
                 TimeInterval(Offset(1, 1), Offset(2, 1), {'name': 'two'})
             ])
 
         ::
 
-            abjad> result[2]
+            >>> result[2]
             TimeIntervalTree([
                 TimeInterval(Offset(2, 1), Offset(5, 2), {'name': 'two'}),
                 TimeInterval(Offset(2, 1), Offset(3, 1), {'name': 'three'})
@@ -1244,7 +1244,7 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
         ::
 
-            abjad> result[3]
+            >>> result[3]
             TimeIntervalTree([
                 TimeInterval(Offset(3, 1), Offset(4, 1), {'name': 'three'})
             ])

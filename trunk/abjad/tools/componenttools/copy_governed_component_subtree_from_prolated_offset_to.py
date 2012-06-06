@@ -10,10 +10,10 @@ def copy_governed_component_subtree_from_prolated_offset_to(component, start=0, 
 
     Governed subtree refers to `component` together with the children of `component`::
 
-        abjad> voice = Voice(notetools.make_repeated_notes(2))
-        abjad> voice.append(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)))
-        abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(voice)
-        abjad> f(voice)
+        >>> voice = Voice(notetools.make_repeated_notes(2))
+        >>> voice.append(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)))
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(voice)
+        >>> f(voice)
         \new Voice {
            c'8
            d'8
@@ -26,8 +26,8 @@ def copy_governed_component_subtree_from_prolated_offset_to(component, start=0, 
 
     ::
 
-        abjad> new = componenttools.copy_governed_component_subtree_from_prolated_offset_to(voice, (0, 8), (3, 8))
-        abjad> f(new)
+        >>> new = componenttools.copy_governed_component_subtree_from_prolated_offset_to(voice, (0, 8), (3, 8))
+        >>> f(new)
         \new Voice {
            c'8
            d'8
@@ -39,9 +39,9 @@ def copy_governed_component_subtree_from_prolated_offset_to(component, start=0, 
 
     Raise contiguity error if asked to slice a parallel container. ::
 
-        abjad> staff = Staff(Voice("c'8 d'8") * 2)
-        abjad> staff.is_parallel = True
-        abjad> f(staff)
+        >>> staff = Staff(Voice("c'8 d'8") * 2)
+        >>> staff.is_parallel = True
+        >>> f(staff)
         \new Staff <<
         \new Voice {
             c'8
@@ -57,16 +57,16 @@ def copy_governed_component_subtree_from_prolated_offset_to(component, start=0, 
 
     But note that cases with ``0 = start`` work correctly::
 
-        abjad> new = componenttools.copy_governed_component_subtree_from_prolated_offset_to(voice, (0, 8), (1, 8))
-        abjad> f(new)
+        >>> new = componenttools.copy_governed_component_subtree_from_prolated_offset_to(voice, (0, 8), (1, 8))
+        >>> f(new)
         \new Voice {
             c'8
         }
 
     Cases with ``0 < start`` do not work correctly::
 
-        abjad> new = componenttools.copy_governed_component_subtree_from_prolated_offset_to(voice, (1, 8), (2, 8))
-        abjad> f(new)
+        >>> new = componenttools.copy_governed_component_subtree_from_prolated_offset_to(voice, (1, 8), (2, 8))
+        >>> f(new)
         \new Voice {
             c'8
             d'8
@@ -74,9 +74,9 @@ def copy_governed_component_subtree_from_prolated_offset_to(component, start=0, 
 
     Create ad hoc tuplets as required::
 
-        abjad> voice = Voice([Note("c'4")])
-        abjad> new = componenttools.copy_governed_component_subtree_from_prolated_offset_to(voice, 0, (1, 12))
-        abjad> f(new)
+        >>> voice = Voice([Note("c'4")])
+        >>> new = componenttools.copy_governed_component_subtree_from_prolated_offset_to(voice, 0, (1, 12))
+        >>> f(new)
         \new Voice {
             \times 2/3 {
                 c'8
@@ -85,11 +85,11 @@ def copy_governed_component_subtree_from_prolated_offset_to(component, start=0, 
 
     Function does NOT clone parentage of `component` when `component` is a leaf::
 
-        abjad> voice = Voice([Note("c'4")])
-        abjad> new_leaf = componenttools.copy_governed_component_subtree_from_prolated_offset_to(voice[0], 0, (1, 8))
-        abjad> f(new_leaf)
+        >>> voice = Voice([Note("c'4")])
+        >>> new_leaf = componenttools.copy_governed_component_subtree_from_prolated_offset_to(voice[0], 0, (1, 8))
+        >>> f(new_leaf)
         c'8
-        abjad> new_leaf._parent is None
+        >>> new_leaf._parent is None
         True
 
     Return (untrimmed_copy, first_dif, second_dif).

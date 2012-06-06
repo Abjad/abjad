@@ -6,8 +6,8 @@ import os
 def write_expr_to_ly(expr, file_name, print_status=False, tagline=False, docs=False):
     '''Write `expr` to `file_name`::
 
-        abjad> note = Note("c'4")
-        abjad> iotools.write_expr_to_ly(note, '/home/user/foo.ly') # doctest: +SKIP
+        >>> note = Note("c'4")
+        >>> iotools.write_expr_to_ly(note, '/home/user/foo.ly') # doctest: +SKIP
 
     Return none.
 

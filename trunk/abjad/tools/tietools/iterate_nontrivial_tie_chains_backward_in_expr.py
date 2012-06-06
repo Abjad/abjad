@@ -5,11 +5,11 @@ from abjad.tools.tietools.get_tie_chain import get_tie_chain
 def iterate_nontrivial_tie_chains_backward_in_expr(expr):
     r'''Iterate nontrivial tie chains backward in `expr`::
 
-        abjad> staff = Staff(r"c'4 ~ \times 2/3 { c'16 d'8 } e'8 f'4 ~ f'16")
+        >>> staff = Staff(r"c'4 ~ \times 2/3 { c'16 d'8 } e'8 f'4 ~ f'16")
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'4 ~
             \times 2/3 {
@@ -23,7 +23,7 @@ def iterate_nontrivial_tie_chains_backward_in_expr(expr):
 
     ::
 
-        abjad> for x in tietools.iterate_nontrivial_tie_chains_backward_in_expr(staff):
+        >>> for x in tietools.iterate_nontrivial_tie_chains_backward_in_expr(staff):
         ...     x
         ...
         TieChain((Note("f'4"), Note("f'16")))

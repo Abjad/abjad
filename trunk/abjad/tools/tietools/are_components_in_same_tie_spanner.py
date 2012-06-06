@@ -4,11 +4,11 @@ from abjad.tools.tietools.TieSpanner import TieSpanner
 def are_components_in_same_tie_spanner(components):
     r'''True when `components` are in same tie spanner::
 
-        abjad> voice = Voice("c'8 ~ c' d' ~ d'")
+        >>> voice = Voice("c'8 ~ c' d' ~ d'")
 
     ::
 
-        abjad> f(voice)
+        >>> f(voice)
         \new Voice {
             c'8 ~
             c'8
@@ -18,12 +18,12 @@ def are_components_in_same_tie_spanner(components):
 
     ::
 
-        abjad> tietools.are_components_in_same_tie_spanner(voice[:2])
+        >>> tietools.are_components_in_same_tie_spanner(voice[:2])
         True
 
     Otherwise false::
 
-        abjad> tietools.are_components_in_same_tie_spanner(voice[1:3])
+        >>> tietools.are_components_in_same_tie_spanner(voice[1:3])
         False
 
     Return boolean.

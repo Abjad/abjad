@@ -3,13 +3,13 @@ def get_improper_parentage_of_component(component):
 
     Get improper parentage of `component`::
 
-        abjad> tuplet = Tuplet(Fraction(2, 3), "c'8 d'8 e'8")
-        abjad> staff = Staff([tuplet])
-        abjad> note = staff.leaves[0]
+        >>> tuplet = Tuplet(Fraction(2, 3), "c'8 d'8 e'8")
+        >>> staff = Staff([tuplet])
+        >>> note = staff.leaves[0]
 
     ::
 
-        abjad> componenttools.get_improper_parentage_of_component(note)
+        >>> componenttools.get_improper_parentage_of_component(note)
         (Note("c'8"), Tuplet(2/3, [c'8, d'8, e'8]), Staff{1})
 
     Return tuple of zero or more components.

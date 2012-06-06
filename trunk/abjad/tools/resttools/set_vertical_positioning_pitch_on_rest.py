@@ -6,16 +6,16 @@ def set_vertical_positioning_pitch_on_rest(rest, pitch):
 
     Set vertical positioning `pitch` on `rest`::
 
-        abjad> rest = Rest((1, 4))
+        >>> rest = Rest((1, 4))
 
     ::
 
-        abjad> resttools.set_vertical_positioning_pitch_on_rest(rest, "d''")
+        >>> resttools.set_vertical_positioning_pitch_on_rest(rest, "d''")
         Rest('r4')
 
     ::
 
-        abjad> f(rest)
+        >>> f(rest)
         d''4 \rest
 
     Raise type error when `rest` is not a rest.

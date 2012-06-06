@@ -4,10 +4,10 @@ from abjad.tools.spannertools._DirectedSpanner._DirectedSpanner import _Directed
 class TieSpanner(_DirectedSpanner):
     r'''Abjad tie spanner::
 
-        abjad> staff = Staff(notetools.make_repeated_notes(4))
-        abjad> tietools.TieSpanner(staff[:])
+        >>> staff = Staff(notetools.make_repeated_notes(4))
+        >>> tietools.TieSpanner(staff[:])
         TieSpanner(c'8, c'8, c'8, c'8)
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8 ~
             c'8 ~

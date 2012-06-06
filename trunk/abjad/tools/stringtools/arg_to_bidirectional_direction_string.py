@@ -3,26 +3,26 @@ def arg_to_bidirectional_direction_string(arg):
 
     ::
 
-        abjad> from abjad.tools import stringtools
+        >>> from abjad.tools import stringtools
 
     ::
 
-        abjad> stringtools.arg_to_bidirectional_direction_string('^')
+        >>> stringtools.arg_to_bidirectional_direction_string('^')
         'up'
 
     ::
 
-        abjad> stringtools.arg_to_bidirectional_direction_string('_')
+        >>> stringtools.arg_to_bidirectional_direction_string('_')
         'down'
 
     ::
 
-        abjad> stringtools.arg_to_bidirectional_direction_string(1)
+        >>> stringtools.arg_to_bidirectional_direction_string(1)
         'up'
 
     ::
 
-        abjad> stringtools.arg_to_bidirectional_direction_string(-1)
+        >>> stringtools.arg_to_bidirectional_direction_string(-1)
         'down'
 
     If `arg` is 'up' or 'down', `arg` will be returned.

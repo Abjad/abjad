@@ -7,22 +7,22 @@ def change_written_leaf_duration_and_preserve_preprolated_leaf_duration(leaf, wr
 
     Change `leaf` written duration to `written_duration` and preserve preprolated `leaf` duration::
 
-        abjad> note = Note("c'4")
-        abjad> note.written_duration
+        >>> note = Note("c'4")
+        >>> note.written_duration
         Duration(1, 4)
-        abjad> note.preprolated_duration
+        >>> note.preprolated_duration
         Duration(1, 4)
 
     ::
 
-        abjad> leaftools.change_written_leaf_duration_and_preserve_preprolated_leaf_duration(note, Duration(3, 16))
+        >>> leaftools.change_written_leaf_duration_and_preserve_preprolated_leaf_duration(note, Duration(3, 16))
         Note("c'8. * 4/3")
 
     ::
 
-        abjad> note.written_duration
+        >>> note.written_duration
         Duration(3, 16)
-        abjad> note.preprolated_duration
+        >>> note.preprolated_duration
         Duration(1, 4)
 
     Add LilyPond multiplier where necessary.

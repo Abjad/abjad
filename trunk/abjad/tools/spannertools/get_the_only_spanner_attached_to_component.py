@@ -6,11 +6,11 @@ def get_the_only_spanner_attached_to_component(component, klass = None):
 
     Get the only spanner attached to `component`::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> beam = beamtools.BeamSpanner(staff.leaves)
-        abjad> slur = spannertools.SlurSpanner(staff.leaves)
-        abjad> trill = spannertools.TrillSpanner(staff)
-        abjad> f(staff)
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> beam = beamtools.BeamSpanner(staff.leaves)
+        >>> slur = spannertools.SlurSpanner(staff.leaves)
+        >>> trill = spannertools.TrillSpanner(staff)
+        >>> f(staff)
         \new Staff {
             c'8 [ ( \startTrillSpan
             d'8
@@ -20,7 +20,7 @@ def get_the_only_spanner_attached_to_component(component, klass = None):
 
     ::
 
-        abjad> print spannertools.get_the_only_spanner_attached_to_component(staff)
+        >>> print spannertools.get_the_only_spanner_attached_to_component(staff)
         TrillSpanner({c'8, d'8, e'8, f'8})
 
     Raise missing spanner error when no spanner attached to `component`.

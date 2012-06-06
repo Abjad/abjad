@@ -6,21 +6,21 @@ def arithmetic_mean(sequence):
 
     Arithmetic means of `sequence` as an exact integer::
 
-        abjad> from abjad.tools import mathtools
+        >>> from abjad.tools import mathtools
 
     ::
 
-        abjad> mathtools.arithmetic_mean([1, 2, 2, 20, 30])
+        >>> mathtools.arithmetic_mean([1, 2, 2, 20, 30])
         11
 
     As a rational::
 
-        abjad> mathtools.arithmetic_mean([1, 2, 20])
+        >>> mathtools.arithmetic_mean([1, 2, 20])
         Fraction(23, 3)
 
     As a float::
 
-        abjad> mathtools.arithmetic_mean([2, 2, 20.0])
+        >>> mathtools.arithmetic_mean([2, 2, 20.0])
         8.0
 
     Return number.

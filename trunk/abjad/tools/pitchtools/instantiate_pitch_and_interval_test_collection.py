@@ -3,7 +3,7 @@ def instantiate_pitch_and_interval_test_collection():
 
     Instantiate pitch and interval test collection::
 
-        abjad> for x in pitchtools.instantiate_pitch_and_interval_test_collection(): x
+        >>> for x in pitchtools.instantiate_pitch_and_interval_test_collection(): x
         ...
         HarmonicChromaticInterval(1)
         HarmonicChromaticIntervalClass(1)

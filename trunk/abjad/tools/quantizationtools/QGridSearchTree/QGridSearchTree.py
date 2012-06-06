@@ -19,14 +19,14 @@ class QGridSearchTree(ImmutableDictionary):
 
     ::
 
-        abjad> from abjad.tools.quantizationtools import QGridSearchTree
+        >>> from abjad.tools.quantizationtools import QGridSearchTree
 
     For example, In the following tree, the beat may be divided into 2 or into 5.
     If divided into 2, it may be divided again into 2 or into 3.
 
     ::
 
-        abjad> search_tree = QGridSearchTree({2: {2: None, 3: None}, 5: None})
+        >>> search_tree = QGridSearchTree({2: {2: None, 3: None}, 5: None})
 
     Return a new `QGridSearchTree`.
     '''
@@ -132,9 +132,9 @@ class QGridSearchTree(ImmutableDictionary):
 
         ::
 
-            abjad> from abjad.tools.quantizationtools import QGridSearchTree
-            abjad> qst = QGridSearchTree({2: {3: None}})
-            abjad> qst.offsets
+            >>> from abjad.tools.quantizationtools import QGridSearchTree
+            >>> qst = QGridSearchTree({2: {3: None}})
+            >>> qst.offsets
             (Offset(0, 1), Offset(1, 6), Offset(1, 3), Offset(1, 2), Offset(2, 3), Offset(5, 6), Offset(1, 1))
 
         Returns a tuple.
@@ -150,15 +150,15 @@ class QGridSearchTree(ImmutableDictionary):
 
         ::
 
-            abjad> from abjad.tools.quantizationtools import QGridSearchTree
-            abjad> qst = QGridSearchTree({2: {2: None, 3: {7: None, 11: None}}, 5: None})
-            abjad> qst.find_subtree_divisibility((2,))
+            >>> from abjad.tools.quantizationtools import QGridSearchTree
+            >>> qst = QGridSearchTree({2: {2: None, 3: {7: None, 11: None}}, 5: None})
+            >>> qst.find_subtree_divisibility((2,))
             (2, 3)
-            abjad> qst.find_subtree_divisibility((2, 2))
+            >>> qst.find_subtree_divisibility((2, 2))
             ()
-            abjad> qst.find_subtree_divisibility((2, 3))
+            >>> qst.find_subtree_divisibility((2, 3))
             (7, 11)
-            abjad> qst.find_subtree_divisibility((2, 3, 7))
+            >>> qst.find_subtree_divisibility((2, 3, 7))
             ()
 
         Returns a tuple.
@@ -182,15 +182,15 @@ class QGridSearchTree(ImmutableDictionary):
 
         ::
 
-            abjad> from abjad.tools.quantizationtools import QGridSearchTree
-            abjad> qst = QGridSearchTree({2: {2: {2: {2: None}}}})
-            abjad> beatspan = Fraction(1, 4)
-            abjad> tempo = contexttools.TempoMark((1, 4), 60)
-            abjad> qst.prune(beatspan, tempo, 100)
+            >>> from abjad.tools.quantizationtools import QGridSearchTree
+            >>> qst = QGridSearchTree({2: {2: {2: {2: None}}}})
+            >>> beatspan = Fraction(1, 4)
+            >>> tempo = contexttools.TempoMark((1, 4), 60)
+            >>> qst.prune(beatspan, tempo, 100)
             {2: {2: {2: None}}}
-            abjad> qst.prune(beatspan, tempo, 200)
+            >>> qst.prune(beatspan, tempo, 200)
             {2: {2: None}}
-            abjad> qst.prune(beatspan, tempo, 400)
+            >>> qst.prune(beatspan, tempo, 400)
             {2: None}
 
         Returns a new `QGridSearchTree`.

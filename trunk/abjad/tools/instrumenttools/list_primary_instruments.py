@@ -6,7 +6,7 @@ def list_primary_instruments():
 
     List primary instruments::
 
-        abjad> for primary_instrument in instrumenttools.list_primary_instruments():
+        >>> for primary_instrument in instrumenttools.list_primary_instruments():
         ...     primary_instrument
         ... 
         <class 'abjad.tools.instrumenttools.Accordion.Accordion.Accordion'>

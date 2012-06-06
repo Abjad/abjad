@@ -6,7 +6,7 @@ def diatonic_pitch_name_to_diatonic_pitch_class_name(diatonic_pitch_name):
 
     Change `diatonic_pitch_name` to diatonic pitch-class name::
 
-        abjad> pitchtools.diatonic_pitch_name_to_diatonic_pitch_class_name("c''")
+        >>> pitchtools.diatonic_pitch_name_to_diatonic_pitch_class_name("c''")
         'c'
 
     Return string.

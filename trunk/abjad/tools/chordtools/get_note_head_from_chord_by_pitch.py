@@ -11,11 +11,11 @@ def get_note_head_from_chord_by_pitch(chord, pitch):
 
     Get note head from `chord` by `pitch`::
 
-        abjad> chord = Chord("<c'' d'' b''>4")
+        >>> chord = Chord("<c'' d'' b''>4")
 
     ::
 
-        abjad> chordtools.get_note_head_from_chord_by_pitch(chord, 14)
+        >>> chordtools.get_note_head_from_chord_by_pitch(chord, 14)
         NoteHead("d''")
 
     Raise missing note head error when `chord` contains no 

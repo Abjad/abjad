@@ -3,8 +3,8 @@ def yield_components_grouped_by_prolated_duration(components):
 
     Yield `component` grouped by prolated duration::
 
-        abjad> notes = notetools.make_notes([0], [(1, 4), (1, 4), (1, 8), (1, 16), (1, 16), (1, 16)])
-        abjad> for x in componenttools.yield_components_grouped_by_prolated_duration(notes):
+        >>> notes = notetools.make_notes([0], [(1, 4), (1, 4), (1, 8), (1, 16), (1, 16), (1, 16)])
+        >>> for x in componenttools.yield_components_grouped_by_prolated_duration(notes):
         ...     x
         ...
         (Note("c'4"), Note("c'4"))

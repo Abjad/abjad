@@ -10,16 +10,16 @@ def make_basic_lilypond_file(music=None):
 
     Make basic LilyPond file with `music`::
 
-        abjad> score = Score([Staff("c'8 d'8 e'8 f'8")])
-        abjad> lilypond_file = lilypondfiletools.make_basic_lilypond_file(score)
-        abjad> lilypond_file.header_block.composer = markuptools.Markup('Josquin')
-        abjad> lilypond_file.layout_block.indent = 0
-        abjad> lilypond_file.paper_block.top_margin = 15
-        abjad> lilypond_file.paper_block.left_margin = 15
+        >>> score = Score([Staff("c'8 d'8 e'8 f'8")])
+        >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file(score)
+        >>> lilypond_file.header_block.composer = markuptools.Markup('Josquin')
+        >>> lilypond_file.layout_block.indent = 0
+        >>> lilypond_file.paper_block.top_margin = 15
+        >>> lilypond_file.paper_block.left_margin = 15
 
     ::
 
-        abjad> f(lilypond_file) # doctest: +SKIP
+        >>> f(lilypond_file) # doctest: +SKIP
         \header {
             composer = \markup { Josquin }
         }

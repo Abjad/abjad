@@ -5,13 +5,13 @@ from abjad.tools.componenttools._split_component_at_index import _split_componen
 def split_container_at_index_and_do_not_fracture_crossing_spanners(container, index):
     r'''Split `container` at `index` and do not fracture crossing spanners::
 
-        abjad> voice = Voice(Measure((3, 8), "c'8 c'8 c'8") * 2)
-        abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(voice)
-        abjad> beam = beamtools.BeamSpanner(voice[:])
+        >>> voice = Voice(Measure((3, 8), "c'8 c'8 c'8") * 2)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(voice)
+        >>> beam = beamtools.BeamSpanner(voice[:])
 
     ::
 
-        abjad> f(voice)
+        >>> f(voice)
         \new Voice {
             {
                 \time 3/8
@@ -28,12 +28,12 @@ def split_container_at_index_and_do_not_fracture_crossing_spanners(container, in
 
     ::
 
-        abjad> containertools.split_container_at_index_and_do_not_fracture_crossing_spanners(voice[1], 1)
+        >>> containertools.split_container_at_index_and_do_not_fracture_crossing_spanners(voice[1], 1)
         (Measure(1/8, [f'8]), Measure(2/8, [g'8, a'8]))
 
     ::
 
-        abjad> f(voice)
+        >>> f(voice)
         \new Voice {
             {
                 \time 3/8

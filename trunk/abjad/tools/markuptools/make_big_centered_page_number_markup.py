@@ -6,11 +6,11 @@ def make_big_centered_page_number_markup(text=None):
 
     Make big centered page number markup::
 
-        abjad> markup = markuptools.make_big_centered_page_number_markup()
+        >>> markup = markuptools.make_big_centered_page_number_markup()
 
     ::
 
-        abjad> f(markup)
+        >>> f(markup)
         \markup {
             \fill-line {
             \bold \fontsize #3 \concat {

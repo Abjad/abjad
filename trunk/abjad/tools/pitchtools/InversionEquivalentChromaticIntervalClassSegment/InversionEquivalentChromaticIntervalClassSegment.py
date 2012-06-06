@@ -6,7 +6,7 @@ class InversionEquivalentChromaticIntervalClassSegment(IntervalClassObjectSegmen
 
     Abjad model of inversion-equivalent chromatic interval-class segment::
 
-        abjad> pitchtools.InversionEquivalentChromaticIntervalClassSegment([2, 1, 0, 5.5, 6])
+        >>> pitchtools.InversionEquivalentChromaticIntervalClassSegment([2, 1, 0, 5.5, 6])
         InversionEquivalentChromaticIntervalClassSegment(2, 1, 0, 5.5, 6)
 
     Inversion-equivalent chromatic interval-class segments are immutable.

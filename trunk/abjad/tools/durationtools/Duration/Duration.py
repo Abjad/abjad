@@ -9,47 +9,47 @@ class Duration(ImmutableAbjadObject, Fraction):
 
     Initialize from integer numerator::
 
-        abjad> Duration(3)
+        >>> Duration(3)
         Duration(3, 1)
 
     Initialize from integer numerator and denominator::
 
-        abjad> Duration(3, 16)
+        >>> Duration(3, 16)
         Duration(3, 16)
 
     Initialize from integer-equivalent numeric numerator::
 
-        abjad> Duration(3.0)
+        >>> Duration(3.0)
         Duration(3, 1)
 
     Initialize from integer-equivalent numeric numerator and denominator::
 
-        abjad> Duration(3.0, 16)
+        >>> Duration(3.0, 16)
         Duration(3, 16)
 
     Initialize from integer-equivalent singleton::
 
-        abjad> Duration((3,))
+        >>> Duration((3,))
         Duration(3, 1)
 
     Initialize from integer-equivalent pair::
 
-        abjad> Duration((3, 16))
+        >>> Duration((3, 16))
         Duration(3, 16)
 
     Initialize from other duration::
 
-        abjad> Duration(Duration(3, 16))
+        >>> Duration(Duration(3, 16))
         Duration(3, 16)
 
     Intialize from fraction::
 
-        abjad> Duration(Fraction(3, 16))
+        >>> Duration(Fraction(3, 16))
         Duration(3, 16)
 
     Initialize from solidus string::
         
-        abjad> Duration('3/16')
+        >>> Duration('3/16')
         Duration(3, 16)
 
     .. versionchanged:: 2.9 
@@ -57,7 +57,7 @@ class Duration(ImmutableAbjadObject, Fraction):
 
     ::
 
-        abjad> Duration('8.')
+        >>> Duration('8.')
         Duration(3, 16)
 
     .. versionchanged:: 2.9
@@ -65,25 +65,25 @@ class Duration(ImmutableAbjadObject, Fraction):
 
     ::
 
-        abjad> from abjad.tools import mathtools
+        >>> from abjad.tools import mathtools
 
     ::
 
-        abjad> Duration(mathtools.NonreducedFraction(3, 16))
+        >>> Duration(mathtools.NonreducedFraction(3, 16))
         Duration(3, 16)
         
     Durations inherit from built-in fraction::
 
-        abjad> isinstance(Duration(3, 16), Fraction)
+        >>> isinstance(Duration(3, 16), Fraction)
         True
 
     Durations are numeric::
 
-        abjad> import numbers
+        >>> import numbers
 
     ::
 
-        abjad> isinstance(Duration(3, 16), numbers.Number)
+        >>> isinstance(Duration(3, 16), numbers.Number)
         True
 
     Durations are immutable.
@@ -223,11 +223,11 @@ class Duration(ImmutableAbjadObject, Fraction):
 
         Read-only pair of duration numerator and denominator::
 
-            abjad> duration = Duration(3, 16)
+            >>> duration = Duration(3, 16)
 
         ::
 
-            abjad> duration.pair
+            >>> duration.pair
             (3, 16)
 
         Return integer pair.

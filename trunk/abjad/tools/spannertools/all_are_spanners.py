@@ -6,22 +6,22 @@ def all_are_spanners(expr):
 
     True when `expr` is a sequence of Abjad spanners::
 
-        abjad> voice = Voice("c'8 d'8 e'8 f'8")
-        abjad> spanner = beamtools.BeamSpanner(voice[:2])
+        >>> voice = Voice("c'8 d'8 e'8 f'8")
+        >>> spanner = beamtools.BeamSpanner(voice[:2])
 
     ::
 
-        abjad> spannertools.all_are_spanners([spanner])
+        >>> spannertools.all_are_spanners([spanner])
         True
 
     True when `expr` is an empty sequence::
 
-        abjad> spannertools.all_are_spanners([])
+        >>> spannertools.all_are_spanners([])
         True
 
     Otherwise false::
 
-        abjad> spannertools.all_are_spanners('foo')
+        >>> spannertools.all_are_spanners('foo')
         False
 
     Return boolean.

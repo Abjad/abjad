@@ -12,21 +12,21 @@ class StringQuartetScoreTemplate(ScoreTemplate):
 
     String quartet score template::
 
-        abjad> from abjad.tools import scoretemplatetools
+        >>> from abjad.tools import scoretemplatetools
 
     ::
 
-        abjad> template = scoretemplatetools.StringQuartetScoreTemplate()
-        abjad> score = template()
+        >>> template = scoretemplatetools.StringQuartetScoreTemplate()
+        >>> score = template()
 
     ::
 
-        abjad> score
+        >>> score
         Score-"String Quartet Score"<<1>>
 
     ::
 
-        abjad> f(score)
+        >>> f(score)
         \context Score = "String Quartet Score" <<
             \context StaffGroup = "String Quartet Staff Group" <<
                 \context Staff = "First Violin Staff" {

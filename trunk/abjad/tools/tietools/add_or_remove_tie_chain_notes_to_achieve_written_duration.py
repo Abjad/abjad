@@ -9,24 +9,24 @@ from abjad.tools.tietools.remove_nonfirst_leaves_in_tie_chain import remove_nonf
 def add_or_remove_tie_chain_notes_to_achieve_written_duration(tie_chain, new_written_duration):
     r'''Add or remove `tie_chain` notes to achieve `written_duration`::
 
-        abjad> staff = Staff("c'8 [ ]")
+        >>> staff = Staff("c'8 [ ]")
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8 [ ]
         }
 
     ::
 
-        abjad> tie_chain = tietools.get_tie_chain(staff[0])
-        abjad> tietools.add_or_remove_tie_chain_notes_to_achieve_written_duration(tie_chain, Duration(5, 32))
+        >>> tie_chain = tietools.get_tie_chain(staff[0])
+        >>> tietools.add_or_remove_tie_chain_notes_to_achieve_written_duration(tie_chain, Duration(5, 32))
         TieChain((Note("c'8"), Note("c'32")))
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8 [ ~
             c'32 ]

@@ -8,16 +8,16 @@ class LilyPondCommandMark(Mark):
 
     LilyPond command mark::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> slur = spannertools.SlurSpanner(staff.leaves)
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> slur = spannertools.SlurSpanner(staff.leaves)
 
     ::
 
-        abjad> lilypond_command = marktools.LilyPondCommandMark('slurDotted')(staff[0])
+        >>> lilypond_command = marktools.LilyPondCommandMark('slurDotted')(staff[0])
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \slurDotted
             c'8 (
@@ -80,14 +80,14 @@ class LilyPondCommandMark(Mark):
         def fget(self):
             '''Get command name of LilyPond command mark::
 
-                abjad> lilypond_command = marktools.LilyPondCommandMark('slurDotted')
-                abjad> lilypond_command.command_name
+                >>> lilypond_command = marktools.LilyPondCommandMark('slurDotted')
+                >>> lilypond_command.command_name
                 'slurDotted'
 
             Set command name of LilyPond command mark::
 
-                abjad> lilypond_command.command_name = 'slurDashed'
-                abjad> lilypond_command.command_name
+                >>> lilypond_command.command_name = 'slurDashed'
+                >>> lilypond_command.command_name
                 'slurDashed'
 
             Set string.
@@ -102,9 +102,9 @@ class LilyPondCommandMark(Mark):
     def format(self):
         '''Read-only LilyPond input format of LilyPond command mark::
 
-            abjad> note = Note("c'4")
-            abjad> lilypond_command = marktools.LilyPondCommandMark('slurDotted')(note)
-            abjad> lilypond_command.format
+            >>> note = Note("c'4")
+            >>> lilypond_command = marktools.LilyPondCommandMark('slurDotted')(note)
+            >>> lilypond_command.format
             '\\slurDotted'
 
         Return string.
@@ -123,17 +123,17 @@ class LilyPondCommandMark(Mark):
 
             Get format slot of LilyPond command mark::
             
-                abjad> note = Note("c'4")
-                abjad> lilypond_command = marktools.LilyPondCommandMark('break', 'after')
-                abjad> lilypond_command.format_slot
+                >>> note = Note("c'4")
+                >>> lilypond_command = marktools.LilyPondCommandMark('break', 'after')
+                >>> lilypond_command.format_slot
                 'after'
 
             Set format slot of LiyPond command mark::
 
-                abjad> note = Note("c'4")
-                abjad> lilypond_command = marktools.LilyPondCommandMark('break', 'after')
-                abjad> lilypond_command.format_slot = 'before'
-                abjad> lilypond_command.format_slot
+                >>> note = Note("c'4")
+                >>> lilypond_command = marktools.LilyPondCommandMark('break', 'after')
+                >>> lilypond_command.format_slot = 'before'
+                >>> lilypond_command.format_slot
                 'before'
 
             Set to ``'before'``, ``'after'``, ``'opening'``, ``'closing'``, ``'right'`` or none.

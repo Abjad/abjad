@@ -6,15 +6,15 @@ def reverse_contents_of_container(container):
 
     Reverse contents of `container`::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> beamtools.BeamSpanner(staff.leaves[:2])
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> beamtools.BeamSpanner(staff.leaves[:2])
         BeamSpanner(c'8, d'8)
-        abjad> spannertools.SlurSpanner(staff.leaves[2:])
+        >>> spannertools.SlurSpanner(staff.leaves[2:])
         SlurSpanner(e'8, f'8)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8 [
             d'8 ]
@@ -24,12 +24,12 @@ def reverse_contents_of_container(container):
 
     ::
 
-        abjad> containertools.reverse_contents_of_container(staff)
+        >>> containertools.reverse_contents_of_container(staff)
         Staff{4}
 
     ::
 
-        abjad> f(staff) # doctest: +SKIP
+        >>> f(staff) # doctest: +SKIP
         \new Staff {
             f'8 (
             e'8 )

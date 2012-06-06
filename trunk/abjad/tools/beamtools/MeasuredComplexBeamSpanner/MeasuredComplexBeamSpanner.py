@@ -5,16 +5,16 @@ from abjad.tools import durationtools
 class MeasuredComplexBeamSpanner(ComplexBeamSpanner):
     r'''Abjad measured complex beam spanner::
 
-        abjad> staff = Staff([Measure((2, 16), "c'16 d'16"), Measure((2, 16), "e'16 f'16")])
+        >>> staff = Staff([Measure((2, 16), "c'16 d'16"), Measure((2, 16), "e'16 f'16")])
 
     ::
 
-        abjad> beamtools.MeasuredComplexBeamSpanner(staff.leaves)
+        >>> beamtools.MeasuredComplexBeamSpanner(staff.leaves)
         MeasuredComplexBeamSpanner(c'16, d'16, e'16, f'16)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             {
                 \time 2/16
@@ -92,17 +92,17 @@ class MeasuredComplexBeamSpanner(ComplexBeamSpanner):
         def fget(self):
             '''Get top-level beam count::
 
-                abjad> staff = Staff([Measure((2, 16), "c'16 d'16"), Measure((2, 16), "e'16 f'16")])
-                abjad> beam = beamtools.MeasuredComplexBeamSpanner(staff.leaves)
-                abjad> beam.span
+                >>> staff = Staff([Measure((2, 16), "c'16 d'16"), Measure((2, 16), "e'16 f'16")])
+                >>> beam = beamtools.MeasuredComplexBeamSpanner(staff.leaves)
+                >>> beam.span
                 1
 
             Set top-level beam count::
 
-                abjad> staff = Staff([Measure((2, 16), "c'16 d'16"), Measure((2, 16), "e'16 f'16")])
-                abjad> beam = beamtools.MeasuredComplexBeamSpanner(staff.leaves)
-                abjad> beam.span = 2
-                abjad> beam.span
+                >>> staff = Staff([Measure((2, 16), "c'16 d'16"), Measure((2, 16), "e'16 f'16")])
+                >>> beam = beamtools.MeasuredComplexBeamSpanner(staff.leaves)
+                >>> beam.span = 2
+                >>> beam.span
                 2
 
             Set nonnegative integer.

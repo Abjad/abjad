@@ -3,8 +3,8 @@ def get_parent_and_start_stop_indices_of_components(components):
 
     Get parent and start / stop indices of `components`::
 
-        abjad> t = Staff("c'8 d'8 e'8 f'8 g'8 a'8")
-        abjad> print t.format
+        >>> t = Staff("c'8 d'8 e'8 f'8 g'8 a'8")
+        >>> print t.format
         \new Staff {
             c'8
             d'8
@@ -16,10 +16,10 @@ def get_parent_and_start_stop_indices_of_components(components):
 
     ::
 
-        abjad> leaves = t[-2:]
-        abjad> leaves
+        >>> leaves = t[-2:]
+        >>> leaves
         [Note("g'8"), Note("a'8")]
-        abjad> componenttools.get_parent_and_start_stop_indices_of_components(leaves)
+        >>> componenttools.get_parent_and_start_stop_indices_of_components(leaves)
         (Staff{6}, 4, 5)
 
     Return parent / start index / stop index triple. Return parent as component or none.

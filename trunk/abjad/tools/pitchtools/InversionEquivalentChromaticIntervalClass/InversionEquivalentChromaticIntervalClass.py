@@ -7,7 +7,7 @@ class InversionEquivalentChromaticIntervalClass(IntervalObjectClass):
 
     Abjad model of inversion-equivalent chromatic interval-class::
 
-        abjad> pitchtools.InversionEquivalentChromaticIntervalClass(1)
+        >>> pitchtools.InversionEquivalentChromaticIntervalClass(1)
         InversionEquivalentChromaticIntervalClass(1)
 
     Inversion-equivalent chromatic interval-classes are immutable.

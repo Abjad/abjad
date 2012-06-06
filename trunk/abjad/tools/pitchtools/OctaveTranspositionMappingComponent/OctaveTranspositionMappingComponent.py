@@ -9,7 +9,7 @@ class OctaveTranspositionMappingComponent(AbjadObject):
 
     Octave transposition mapping component::
 
-        abjad> pitchtools.OctaveTranspositionMappingComponent('[A0, C8]', 15)
+        >>> pitchtools.OctaveTranspositionMappingComponent('[A0, C8]', 15)
         OctaveTranspositionMappingComponent('[A0, C8]', 15)
 
     Initialize from input parameters separately, from a pair, from a string or from another
@@ -88,8 +88,8 @@ class OctaveTranspositionMappingComponent(AbjadObject):
         def fget(self):
             '''Read / write source pitch range::
 
-                abjad> mapping_component = pitchtools.OctaveTranspositionMappingComponent('[A0, C8]', 15)
-                abjad> mapping_component.source_pitch_range
+                >>> mapping_component = pitchtools.OctaveTranspositionMappingComponent('[A0, C8]', 15)
+                >>> mapping_component.source_pitch_range
                 PitchRange('[A0, C8]')
 
             Return pitch range or none.
@@ -104,8 +104,8 @@ class OctaveTranspositionMappingComponent(AbjadObject):
         def fget(self):
             '''Read / write target octave start pitch::
 
-                abjad> mapping_component = pitchtools.OctaveTranspositionMappingComponent('[A0, C8]', 15)
-                abjad> mapping_component.target_octave_start_pitch
+                >>> mapping_component = pitchtools.OctaveTranspositionMappingComponent('[A0, C8]', 15)
+                >>> mapping_component.target_octave_start_pitch
                 NumberedChromaticPitch(15)
 
             Return numbered chromatic pitch or none.

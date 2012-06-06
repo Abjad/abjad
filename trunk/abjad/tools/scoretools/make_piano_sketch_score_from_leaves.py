@@ -10,12 +10,12 @@ def make_piano_sketch_score_from_leaves(leaves, lowest_treble_pitch = NamedChrom
 
     Make piano sketch score from `leaves`::
 
-        abjad> notes = notetools.make_notes([-12, -10, -8, -7, -5, 0, 2, 4, 5, 7], [(1, 4)])
-        abjad> score, treble_staff, bass_staff = scoretools.make_piano_sketch_score_from_leaves(notes)
+        >>> notes = notetools.make_notes([-12, -10, -8, -7, -5, 0, 2, 4, 5, 7], [(1, 4)])
+        >>> score, treble_staff, bass_staff = scoretools.make_piano_sketch_score_from_leaves(notes)
 
     ::
 
-        abjad> f(score)
+        >>> f(score)
         \new Score \with {
             \override BarLine #'stencil = ##f
             \override BarNumber #'transparent = ##t

@@ -6,8 +6,8 @@ class Voice(Context):
 
     ::
 
-        abjad> voice = Voice("c'8 d'8 e'8 f'8")
-        abjad> f(voice)
+        >>> voice = Voice("c'8 d'8 e'8 f'8")
+        >>> f(voice)
         \new Voice {
             c'8
             d'8

@@ -8,16 +8,16 @@ class DynamicMeasure(Measure):
 
     Measure sets meter dynamically to exactly equal contents duration::
 
-        abjad> measure = measuretools.DynamicMeasure("c'8 d'8 e'8")
+        >>> measure = measuretools.DynamicMeasure("c'8 d'8 e'8")
 
     ::
 
-        abjad> measure
+        >>> measure
         DynamicMeasure(3/8, [c'8, d'8, e'8])
 
     ::
 
-        abjad> f(measure)
+        >>> f(measure)
         {
             \time 3/8
             c'8
@@ -67,20 +67,20 @@ class DynamicMeasure(Measure):
         def fget(self):
             r'''Get explicit denominator of dynamic measure::
 
-                abjad> measure = measuretools.DynamicMeasure("c'8 d'8 e'8 f'8")
+                >>> measure = measuretools.DynamicMeasure("c'8 d'8 e'8 f'8")
 
             ::
 
-                abjad> measure.denominator is None
+                >>> measure.denominator is None
                 True
 
             Set explicit denominator of dynamic measure::
 
-                abjad> measure.denominator = 8
+                >>> measure.denominator = 8
 
             ::
 
-                abjad> f(measure)
+                >>> f(measure)
                 {
                     \time 4/8
                     c'8
@@ -107,11 +107,11 @@ class DynamicMeasure(Measure):
         def fget(self):
             r'''Get meter suppression indicator::
 
-            abjad> measure = measuretools.DynamicMeasure("c'8 d'8 e'8 f'8")
+            >>> measure = measuretools.DynamicMeasure("c'8 d'8 e'8 f'8")
 
         ::
 
-            abjad> f(measure)
+            >>> f(measure)
             {
                 \time 1/2
                 c'8
@@ -122,21 +122,21 @@ class DynamicMeasure(Measure):
 
         ::
 
-            abjad> measure.suppress_meter
+            >>> measure.suppress_meter
             False
 
         Set meter suppression indicator::
 
-            abjad> measure.suppress_meter = True
+            >>> measure.suppress_meter = True
 
         ::
 
-            abjad> measure.suppress_meter
+            >>> measure.suppress_meter
             True
 
         ::
 
-            abjad> f(measure)
+            >>> f(measure)
             {
                 c'8
                 d'8
@@ -158,11 +158,11 @@ class DynamicMeasure(Measure):
     def extend(self, expr):
         r'''Extend dynamic measure::
 
-            abjad> measure = measuretools.DynamicMeasure("c'8 d'8 e'8")
+            >>> measure = measuretools.DynamicMeasure("c'8 d'8 e'8")
 
         ::
 
-            abjad> f(measure)
+            >>> f(measure)
             {
                 \time 3/8
                 c'8
@@ -172,11 +172,11 @@ class DynamicMeasure(Measure):
 
         ::
 
-            abjad> measure.extend([Note("f'8"), Note("g'8")])
+            >>> measure.extend([Note("f'8"), Note("g'8")])
 
         ::
 
-            abjad> f(measure)
+            >>> f(measure)
             {
                 \time 5/8
                 c'8

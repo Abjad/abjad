@@ -3,11 +3,11 @@ def list_checks():
 
     List checks::
 
-        abjad> from abjad.tools import wellformednesstools
+        >>> from abjad.tools import wellformednesstools
 
     ::
 
-        abjad> for check in wellformednesstools.list_checks(): check
+        >>> for check in wellformednesstools.list_checks(): check
         ... 
         BeamedQuarterNoteCheck()
         DiscontiguousSpannerCheck()

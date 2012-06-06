@@ -8,12 +8,12 @@ def respell_named_chromatic_pitches_in_expr_with_sharps(expr):
 
     Respell named chromatic pitches in `expr` with sharps::
 
-        abjad> staff = Staff(notetools.make_repeated_notes(6))
-        abjad> pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(staff)
+        >>> staff = Staff(notetools.make_repeated_notes(6))
+        >>> pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(staff)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8
             cs'8
@@ -25,11 +25,11 @@ def respell_named_chromatic_pitches_in_expr_with_sharps(expr):
 
     ::
 
-        abjad> pitchtools.respell_named_chromatic_pitches_in_expr_with_sharps(staff)
+        >>> pitchtools.respell_named_chromatic_pitches_in_expr_with_sharps(staff)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8
             cs'8

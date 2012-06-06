@@ -7,7 +7,7 @@ class Skip(Leaf):
 
     ::
 
-        abjad> skiptools.Skip((3, 16))
+        >>> skiptools.Skip((3, 16))
         Skip('s8.')
 
     Return skip.

@@ -3,16 +3,16 @@ def color_contents_of_container(container, color):
 
     Color contents of `container`::
 
-        abjad> measure = Measure((2, 8), "c'8 d'8")
+        >>> measure = Measure((2, 8), "c'8 d'8")
 
     ::
 
-        abjad> containertools.color_contents_of_container(measure, 'red')
+        >>> containertools.color_contents_of_container(measure, 'red')
         Measure(2/8, [c'8, d'8])
 
     ::
 
-        abjad> f(measure)
+        >>> f(measure)
         {
             \override Accidental #'color = #red
             \override Beam #'color = #red

@@ -24,14 +24,14 @@ class TimeIntervalMixin(AbjadObject):
 
         ::
 
-            abjad> from abjad.tools.timeintervaltools import TimeInterval
-            abjad> interval = TimeInterval(2, 10)
-            abjad> bounds = interval.bounds
-            abjad> bounds
+            >>> from abjad.tools.timeintervaltools import TimeInterval
+            >>> interval = TimeInterval(2, 10)
+            >>> bounds = interval.bounds
+            >>> bounds
             TimeInterval(Offset(2, 1), Offset(10, 1), {})
-            abjad> bounds == interval
+            >>> bounds == interval
             True
-            abjad> bounds is interval
+            >>> bounds is interval
             False
 
         Returns `TimeInterval` instance.
@@ -45,9 +45,9 @@ class TimeIntervalMixin(AbjadObject):
 
         ::
 
-            abjad> from abjad.tools.timeintervaltools import TimeInterval
-            abjad> interval = TimeInterval(2, 10)
-            abjad> interval.center
+            >>> from abjad.tools.timeintervaltools import TimeInterval
+            >>> interval = TimeInterval(2, 10)
+            >>> interval.center
             Offset(6, 1)
 
         Returns `Offset` instance.
@@ -62,9 +62,9 @@ class TimeIntervalMixin(AbjadObject):
 
         ::
 
-            abjad> from abjad.tools.timeintervaltools import TimeInterval
-            abjad> interval = TimeInterval(2, 10)
-            abjad> interval.duration
+            >>> from abjad.tools.timeintervaltools import TimeInterval
+            >>> interval = TimeInterval(2, 10)
+            >>> interval.duration
             Duration(8, 1)
 
         Returns `Duration` instance.
@@ -79,9 +79,9 @@ class TimeIntervalMixin(AbjadObject):
 
         ::
 
-            abjad> from abjad.tools.timeintervaltools import TimeInterval
-            abjad> interval = TimeInterval(2, 10)
-            abjad> interval.signature
+            >>> from abjad.tools.timeintervaltools import TimeInterval
+            >>> interval = TimeInterval(2, 10)
+            >>> interval.signature
             (Offset(2, 1), Offset(10, 1))
 
         Returns 2-tuple of `Offset` instances.
@@ -96,9 +96,9 @@ class TimeIntervalMixin(AbjadObject):
 
         ::
 
-            abjad> from abjad.tools.timeintervaltools import TimeInterval
-            abjad> interval = TimeInterval(2, 10)
-            abjad> interval.start
+            >>> from abjad.tools.timeintervaltools import TimeInterval
+            >>> interval = TimeInterval(2, 10)
+            >>> interval.start
             Offset(2, 1)
 
         Returns `Offset` instance.
@@ -111,9 +111,9 @@ class TimeIntervalMixin(AbjadObject):
 
         ::
 
-            abjad> from abjad.tools.timeintervaltools import TimeInterval
-            abjad> interval = TimeInterval(2, 10)
-            abjad> interval.stop
+            >>> from abjad.tools.timeintervaltools import TimeInterval
+            >>> interval = TimeInterval(2, 10)
+            >>> interval.stop
             Offset(10, 1)
 
         Returns `Offset` instance.

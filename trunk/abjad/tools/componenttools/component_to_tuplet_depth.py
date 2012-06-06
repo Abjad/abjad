@@ -6,23 +6,23 @@ def component_to_tuplet_depth(component):
 
     Change `component` to tuplet depth::
 
-        abjad> tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-        abjad> staff = Staff([tuplet])
-        abjad> note = staff.leaves[0]
+        >>> tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
+        >>> staff = Staff([tuplet])
+        >>> note = staff.leaves[0]
 
     ::
 
-        abjad> componenttools.component_to_tuplet_depth(note)
+        >>> componenttools.component_to_tuplet_depth(note)
         1
 
     ::
 
-        abjad> componenttools.component_to_tuplet_depth(tuplet)
+        >>> componenttools.component_to_tuplet_depth(tuplet)
         0
 
     ::
 
-        abjad> componenttools.component_to_tuplet_depth(staff)
+        >>> componenttools.component_to_tuplet_depth(staff)
         0
 
     Return nonnegative integer.

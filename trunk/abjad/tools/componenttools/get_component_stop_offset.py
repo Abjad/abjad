@@ -3,8 +3,8 @@ def get_component_stop_offset(component):
 
     Get `component` stop offset::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> f(staff)
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> f(staff)
         \new Staff {
             c'8
             d'8
@@ -14,7 +14,7 @@ def get_component_stop_offset(component):
 
     ::
 
-        abjad> componenttools.get_component_stop_offset(staff[1])
+        >>> componenttools.get_component_stop_offset(staff[1])
         Offset(1, 4)
 
     Return positive fraction.

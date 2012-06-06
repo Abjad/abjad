@@ -7,18 +7,18 @@ class TextScriptSpanner(Spanner):
 
     Abjad text script spanner::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
 
     ::
 
-        abjad> spanner = spannertools.TextScriptSpanner(staff[:])
-        abjad> spanner.override.text_script.color = 'red'
-        abjad> markuptools.Markup(r'\italic { espressivo }', 'up')(staff[1])
+        >>> spanner = spannertools.TextScriptSpanner(staff[:])
+        >>> spanner.override.text_script.color = 'red'
+        >>> markuptools.Markup(r'\italic { espressivo }', 'up')(staff[1])
         Markup(('\\italic { espressivo }',), direction='^')(d'8)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \override TextScript #'color = #red
             c'8

@@ -7,21 +7,21 @@ def all_are_notes(expr):
 
     True when `expr` is a sequence of Abjad notes::
 
-        abjad> notes = [Note("c'4"), Note("d'4"), Note("e'4")]
+        >>> notes = [Note("c'4"), Note("d'4"), Note("e'4")]
 
     ::
 
-        abjad> notetools.all_are_notes(notes)
+        >>> notetools.all_are_notes(notes)
         True
 
     True when `expr` is an empty sequence::
 
-        abjad> notetools.all_are_notes([])
+        >>> notetools.all_are_notes([])
         True
 
     Otherwise false::
 
-        abjad> notetools.all_are_notes('foo')
+        >>> notetools.all_are_notes('foo')
         False
 
     Return boolean.

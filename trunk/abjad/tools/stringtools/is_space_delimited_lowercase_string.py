@@ -8,12 +8,12 @@ def is_space_delimited_lowercase_string(expr):
 
     True when `expr` is a string and is space-delimited lowercase::
 
-        abjad> stringtools.is_space_delimited_lowercase_string('foo bar')
+        >>> stringtools.is_space_delimited_lowercase_string('foo bar')
         True
     
     False otherwise::
 
-        abjad> stringtools.is_space_delimited_lowercase_string('foo_bar')
+        >>> stringtools.is_space_delimited_lowercase_string('foo_bar')
         False
 
     Return boolean.

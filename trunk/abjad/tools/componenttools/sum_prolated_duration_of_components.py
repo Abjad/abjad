@@ -3,14 +3,14 @@ def sum_prolated_duration_of_components(components):
 
     Sum prolated duration of `components`::
 
-        abjad> tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-        abjad> f(tuplet)
+        >>> tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
+        >>> f(tuplet)
         \times 2/3 {
             c'8
             d'8
             e'8
         }
-        abjad> componenttools.sum_prolated_duration_of_components(tuplet[:])
+        >>> componenttools.sum_prolated_duration_of_components(tuplet[:])
         Duration(1, 4)
 
     .. versionchanged:: 2.0

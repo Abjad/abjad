@@ -8,7 +8,7 @@ class Accidental(AbjadObject):
 
     ::
 
-        abjad> pitchtools.Accidental('s')
+        >>> pitchtools.Accidental('s')
         Accidental('s')
 
     Accidentals are immutable.
@@ -169,8 +169,8 @@ class Accidental(AbjadObject):
     def alphabetic_accidental_abbreviation(self):
         '''Read-only alphabetic string::
 
-            abjad> accidental = pitchtools.Accidental('s')
-            abjad> accidental.alphabetic_accidental_abbreviation
+            >>> accidental = pitchtools.Accidental('s')
+            >>> accidental.alphabetic_accidental_abbreviation
             's'
 
         Return string.
@@ -181,8 +181,8 @@ class Accidental(AbjadObject):
     def format(self):
         '''Read-only LilyPond input format of accidental::
 
-            abjad> accidental = pitchtools.Accidental('s')
-            abjad> accidental.format
+            >>> accidental = pitchtools.Accidental('s')
+            >>> accidental.format
             's'
 
         Return string.
@@ -193,8 +193,8 @@ class Accidental(AbjadObject):
     def is_adjusted(self):
         '''True for all accidentals equal to a nonzero number of semitones. False otherwise::
 
-            abjad> accidental = pitchtools.Accidental('s')
-            abjad> accidental.is_adjusted
+            >>> accidental = pitchtools.Accidental('s')
+            >>> accidental.is_adjusted
             True
 
         Return boolean.
@@ -205,8 +205,8 @@ class Accidental(AbjadObject):
     def name(self):
         '''Read-only name of accidental::
 
-            abjad> accidental = pitchtools.Accidental('s')
-            abjad> accidental.name
+            >>> accidental = pitchtools.Accidental('s')
+            >>> accidental.name
             'sharp'
 
         Return string.
@@ -217,8 +217,8 @@ class Accidental(AbjadObject):
     def semitones(self):
         '''Read-only semitones of accidental::
 
-            abjad> accidental = pitchtools.Accidental('s')
-            abjad> accidental.semitones
+            >>> accidental = pitchtools.Accidental('s')
+            >>> accidental.semitones
             1
 
         Return number.
@@ -229,8 +229,8 @@ class Accidental(AbjadObject):
     def symbolic_accidental_string(self):
         '''Read-only symbolic string of accidental::
 
-            abjad> accidental = pitchtools.Accidental('s')
-            abjad> accidental.symbolic_accidental_string
+            >>> accidental = pitchtools.Accidental('s')
+            >>> accidental.symbolic_accidental_string
             '#'
 
         Return string.

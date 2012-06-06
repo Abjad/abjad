@@ -8,11 +8,11 @@ def positive_integer_to_implied_prolation_multipler(n):
 
     Change positive integer `n` to implied porlation multiplier::
 
-        abjad> from abjad.tools import durationtools
+        >>> from abjad.tools import durationtools
 
     ::
 
-        abjad> for denominator in range(1, 17): # doctest: +SKIP
+        >>> for denominator in range(1, 17): # doctest: +SKIP
         ...     multiplier = durationtools.positive_integer_to_implied_prolation_multipler(denominator)
         ...     print '%s\\t%s' % (denominator, multiplier)
         ...

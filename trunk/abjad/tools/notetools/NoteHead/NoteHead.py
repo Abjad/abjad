@@ -8,7 +8,7 @@ class NoteHead(SortableAttributeEqualityAbjadObject):
 
     ::
 
-        abjad> notetools.NoteHead(13)
+        >>> notetools.NoteHead(13)
         NoteHead("cs''")
 
     Note heads are immutable.
@@ -84,8 +84,8 @@ class NoteHead(SortableAttributeEqualityAbjadObject):
     def format(self):
         '''Read-only LilyPond input format of note head::
 
-            abjad> note_head = notetools.NoteHead("cs''")
-            abjad> note_head.format
+            >>> note_head = notetools.NoteHead("cs''")
+            >>> note_head.format
             "cs''"
 
         Return string.
@@ -97,8 +97,8 @@ class NoteHead(SortableAttributeEqualityAbjadObject):
     def named_chromatic_pitch(self):
         '''Read-only named chromatic pitch equal to note head::
 
-            abjad> note_head = notetools.NoteHead("cs''")
-            abjad> note_head.named_chromatic_pitch
+            >>> note_head = notetools.NoteHead("cs''")
+            >>> note_head.named_chromatic_pitch
             NamedChromaticPitch("cs''")
 
         Return named chromatic pitch.
@@ -109,8 +109,8 @@ class NoteHead(SortableAttributeEqualityAbjadObject):
     def tweak(self):
         '''Read-only LilyPond tweak reservoir::
 
-            abjad> note_head = notetools.NoteHead("cs''")
-            abjad> note_head.tweak
+            >>> note_head = notetools.NoteHead("cs''")
+            >>> note_head.tweak
             LilyPondTweakReservoir()
 
         Return LilyPond tweak reservoir.
@@ -124,15 +124,15 @@ class NoteHead(SortableAttributeEqualityAbjadObject):
         def fget(self):
             '''Get named pitch of note head::
 
-                abjad> note_head = notetools.NoteHead("cs''")
-                abjad> note_head.written_pitch
+                >>> note_head = notetools.NoteHead("cs''")
+                >>> note_head.written_pitch
                 NamedChromaticPitch("cs''")
 
             Set named pitch of note head::
 
-                abjad> note_head = notetools.NoteHead("cs''")
-                abjad> note_head.written_pitch = "d''"
-                abjad> note_head.written_pitch
+                >>> note_head = notetools.NoteHead("cs''")
+                >>> note_head.written_pitch = "d''"
+                >>> note_head.written_pitch
                 NamedChromaticPitch("d''")
 
             Set pitch token.

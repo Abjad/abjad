@@ -8,20 +8,20 @@ def get_arithmetic_mean_of_chord(chord):
 
     Get arithmetic mean of chromatic pitch number of pitches in `chord`::
 
-        abjad> chord = Chord("<g' c'' e''>4")
+        >>> chord = Chord("<g' c'' e''>4")
 
     ::
 
-        abjad> chordtools.get_arithmetic_mean_of_chord(chord)
+        >>> chordtools.get_arithmetic_mean_of_chord(chord)
         11.666666666666666
 
     Return none when `chord` is empty::
 
-        abjad> chord = Chord("< >4")
+        >>> chord = Chord("< >4")
 
     ::
 
-        abjad> chordtools.get_arithmetic_mean_of_chord(chord) is None
+        >>> chordtools.get_arithmetic_mean_of_chord(chord) is None
         True
 
     Return number or none.

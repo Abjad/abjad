@@ -7,18 +7,18 @@ def get_staff_change_mark_attached_to_component(component):
 
     Get staff change mark attached to `component`::
 
-        abjad> piano_staff = scoretools.PianoStaff([])
-        abjad> rh_staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> rh_staff.name = 'RHStaff'
-        abjad> lh_staff = Staff("s2")
-        abjad> lh_staff.name = 'LHStaff'
-        abjad> piano_staff.extend([rh_staff, lh_staff])
-        abjad> contexttools.StaffChangeMark(lh_staff)(rh_staff[2])
+        >>> piano_staff = scoretools.PianoStaff([])
+        >>> rh_staff = Staff("c'8 d'8 e'8 f'8")
+        >>> rh_staff.name = 'RHStaff'
+        >>> lh_staff = Staff("s2")
+        >>> lh_staff.name = 'LHStaff'
+        >>> piano_staff.extend([rh_staff, lh_staff])
+        >>> contexttools.StaffChangeMark(lh_staff)(rh_staff[2])
         StaffChangeMark(Staff-"LHStaff"{1})(e'8)
 
     ::
 
-        abjad> f(piano_staff)
+        >>> f(piano_staff)
         \new PianoStaff <<
             \context Staff = "RHStaff" {
                 c'8
@@ -34,7 +34,7 @@ def get_staff_change_mark_attached_to_component(component):
 
     ::
 
-        abjad> contexttools.get_staff_change_mark_attached_to_component(rh_staff[2])
+        >>> contexttools.get_staff_change_mark_attached_to_component(rh_staff[2])
         StaffChangeMark(Staff-"LHStaff"{1})(e'8)
 
     Return staff change mark.

@@ -7,16 +7,16 @@ def strip_diacritics_from_binary_string(binary_string):
 
     Strip diacritics from `binary_string`::
 
-        abjad> binary_string = 'Dvo\xc5\x99\xc3\xa1k'
+        >>> binary_string = 'Dvo\xc5\x99\xc3\xa1k'
 
     ::
 
-        abjad> print binary_string
+        >>> print binary_string
         Dvořák
 
     ::
 
-        abjad> stringtools.strip_diacritics_from_binary_string(binary_string)
+        >>> stringtools.strip_diacritics_from_binary_string(binary_string)
         'Dvorak'
 
     Return ASCII string.

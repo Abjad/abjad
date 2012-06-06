@@ -8,11 +8,11 @@ def set_denominator_of_tuplets_in_expr_to_at_least(expr, n):
 
     Set denominator of tuplets in `expr` to at least `n`::
 
-        abjad> tuplet = Tuplet(Fraction(3, 5), "c'4 d'8 e'8 f'4 g'2")
+        >>> tuplet = Tuplet(Fraction(3, 5), "c'4 d'8 e'8 f'4 g'2")
 
     ::
 
-        abjad> f(tuplet)
+        >>> f(tuplet)
         \fraction \times 3/5 {
             c'4
             d'8
@@ -23,11 +23,11 @@ def set_denominator_of_tuplets_in_expr_to_at_least(expr, n):
 
     ::
 
-        abjad> tuplettools.set_denominator_of_tuplets_in_expr_to_at_least(tuplet, 8)
+        >>> tuplettools.set_denominator_of_tuplets_in_expr_to_at_least(tuplet, 8)
 
     ::
 
-        abjad> f(tuplet)
+        >>> f(tuplet)
         \fraction \times 6/10 {
             c'4
             d'8

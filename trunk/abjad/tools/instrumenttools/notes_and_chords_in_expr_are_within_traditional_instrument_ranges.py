@@ -8,24 +8,24 @@ def notes_and_chords_in_expr_are_within_traditional_instrument_ranges(expr):
 
     True when notes and chords in `expr` are within traditional instrument ranges::
 
-        abjad> staff = Staff("c'8 r8 <d' fs'>8 r8")
-        abjad> instrumenttools.Violin()(staff)
+        >>> staff = Staff("c'8 r8 <d' fs'>8 r8")
+        >>> instrumenttools.Violin()(staff)
         Violin()(Staff{4})
 
     ::
 
-        abjad> instrumenttools.notes_and_chords_in_expr_are_within_traditional_instrument_ranges(staff)
+        >>> instrumenttools.notes_and_chords_in_expr_are_within_traditional_instrument_ranges(staff)
         True
 
     False otherwise::
 
-        abjad> staff = Staff("c'8 r8 <d fs>8 r8")
-        abjad> instrumenttools.Violin()(staff)
+        >>> staff = Staff("c'8 r8 <d fs>8 r8")
+        >>> instrumenttools.Violin()(staff)
         Violin()(Staff{4})
 
     ::
 
-        abjad> instrumenttools.notes_and_chords_in_expr_are_within_traditional_instrument_ranges(staff)
+        >>> instrumenttools.notes_and_chords_in_expr_are_within_traditional_instrument_ranges(staff)
         False
 
     Return boolean.

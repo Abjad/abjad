@@ -6,14 +6,14 @@ def detach_grace_containers_attached_to_leaf(leaf):
 
     Detach grace containers attached to `leaf`::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> grace_container = gracetools.GraceContainer([Note("cs'16")], kind='grace')
-        abjad> grace_container(staff[1])
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> grace_container = gracetools.GraceContainer([Note("cs'16")], kind='grace')
+        >>> grace_container(staff[1])
         Note("d'8")
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8
             \grace {
@@ -26,17 +26,17 @@ def detach_grace_containers_attached_to_leaf(leaf):
 
     ::
 
-        abjad> gracetools.get_grace_containers_attached_to_leaf(staff[1])
+        >>> gracetools.get_grace_containers_attached_to_leaf(staff[1])
         (GraceContainer(cs'16),)
 
     ::
 
-        abjad> gracetools.detach_grace_containers_attached_to_leaf(staff[1])
+        >>> gracetools.detach_grace_containers_attached_to_leaf(staff[1])
         (GraceContainer(),)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8
             d'8
@@ -46,7 +46,7 @@ def detach_grace_containers_attached_to_leaf(leaf):
 
     ::
 
-        abjad> gracetools.get_grace_containers_attached_to_leaf(staff[1])
+        >>> gracetools.get_grace_containers_attached_to_leaf(staff[1])
         ()
 
     Return tuple.

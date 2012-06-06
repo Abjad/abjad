@@ -10,16 +10,16 @@ class Accordion(_KeyboardInstrument, _ReedInstrument):
 
     Abjad model of the accordion::
 
-        abjad> piano_staff = scoretools.PianoStaff([Staff("c'8 d'8 e'8 f'8"), Staff("c'4 b4")])
+        >>> piano_staff = scoretools.PianoStaff([Staff("c'8 d'8 e'8 f'8"), Staff("c'4 b4")])
 
     ::
 
-        abjad> instrumenttools.Accordion()(piano_staff)
+        >>> instrumenttools.Accordion()(piano_staff)
         Accordion()(PianoStaff<<2>>)
 
     ::
 
-        abjad> f(piano_staff)
+        >>> f(piano_staff)
         \new PianoStaff <<
             \set PianoStaff.instrumentName = \markup { Accordion }
             \set PianoStaff.shortInstrumentName = \markup { Acc. }

@@ -10,10 +10,10 @@ def make_solid_text_spanner_below_with_nib_at_right(left_text, components = None
     Position spanner below staff and configure with `left_text`,
     solid line and upward-pointing nib at right. ::
 
-        abjad> t = Staff("c'8 d'8 e'8 f'8")
-        abjad> spannertools.make_solid_text_spanner_below_with_nib_at_right('foo', t[:])
+        >>> t = Staff("c'8 d'8 e'8 f'8")
+        >>> spannertools.make_solid_text_spanner_below_with_nib_at_right('foo', t[:])
         TextSpanner(c'8, d'8, e'8, f'8)
-        abjad> f(t)
+        >>> f(t)
         \new Staff {
             \override TextSpanner #'bound-details #'left #'text = \markup { foo }
             \override TextSpanner #'bound-details #'right #'text = \markup { \draw-line #'(0 . 1) }

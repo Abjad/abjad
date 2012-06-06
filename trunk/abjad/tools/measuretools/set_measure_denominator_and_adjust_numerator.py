@@ -9,13 +9,13 @@ def set_measure_denominator_and_adjust_numerator(measure, denominator):
 
     Set `measure` meter `denominator` and multiply meter numerator accordingly::
 
-        abjad> measure = Measure((3, 8), "c'8 d'8 e'8")
-        abjad> beamtools.BeamSpanner(measure.leaves)
+        >>> measure = Measure((3, 8), "c'8 d'8 e'8")
+        >>> beamtools.BeamSpanner(measure.leaves)
         BeamSpanner(c'8, d'8, e'8)
 
     ::
 
-        abjad> f(measure)
+        >>> f(measure)
         {
             \time 3/8
             c'8 [
@@ -25,12 +25,12 @@ def set_measure_denominator_and_adjust_numerator(measure, denominator):
 
     ::
 
-        abjad> measuretools.set_measure_denominator_and_adjust_numerator(measure, 16)
+        >>> measuretools.set_measure_denominator_and_adjust_numerator(measure, 16)
         Measure(6/16, [c'8, d'8, e'8])
 
     ::
 
-        abjad> f(measure)
+        >>> f(measure)
         {
             \time 6/16
             c'8 [

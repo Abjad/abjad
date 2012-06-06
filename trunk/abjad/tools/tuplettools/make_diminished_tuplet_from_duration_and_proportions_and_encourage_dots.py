@@ -7,13 +7,13 @@ def make_diminished_tuplet_from_duration_and_proportions_and_encourage_dots(
 
     Make diminished tuplet from `duration` and `proportions` and encourage dots::
 
-        abjad> print tuplettools.make_diminished_tuplet_from_duration_and_proportions_and_encourage_dots(
+        >>> print tuplettools.make_diminished_tuplet_from_duration_and_proportions_and_encourage_dots(
         ... Fraction(3, 16), [1, 1, 1, -1, -1])
         {@ 5:4 c'32., c'32., c'32., r32., r32. @}
 
     Interpret nonassignable `proportions` according to `direction`::
 
-        abjad> print tuplettools.make_diminished_tuplet_from_duration_and_proportions_and_encourage_dots(
+        >>> print tuplettools.make_diminished_tuplet_from_duration_and_proportions_and_encourage_dots(
         ... Fraction(3, 16), [5, -1, 5], direction = 'little-endian')
         {@ 11:8 c'16..., r64., c'16... @}
 

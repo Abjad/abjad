@@ -17,7 +17,7 @@ def is_symbolic_accidental_string(expr):
 
     True when `expr` is a symbolic accidental string. Otherwise false::
 
-        abjad> pitchtools.is_symbolic_accidental_string('#+')
+        >>> pitchtools.is_symbolic_accidental_string('#+')
         True
 
     True on empty string.

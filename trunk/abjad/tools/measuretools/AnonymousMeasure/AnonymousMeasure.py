@@ -6,11 +6,11 @@ class AnonymousMeasure(DynamicMeasure):
 
     Dynamic measure with no time signature::
 
-        abjad> measure = measuretools.AnonymousMeasure("c'8 d'8 e'8 f'8")
+        >>> measure = measuretools.AnonymousMeasure("c'8 d'8 e'8 f'8")
 
     ::
 
-        abjad> f(measure)
+        >>> f(measure)
         {
             \override Staff.TimeSignature #'stencil = ##f
             \time 1/2
@@ -23,12 +23,12 @@ class AnonymousMeasure(DynamicMeasure):
 
     ::
 
-        abjad> notes = [Note("c'8"), Note("d'8")]
-        abjad> measure.extend(notes)
+        >>> notes = [Note("c'8"), Note("d'8")]
+        >>> measure.extend(notes)
 
     ::
 
-        abjad> f(measure)
+        >>> f(measure)
         {
             \override Staff.TimeSignature #'stencil = ##f
             \time 3/4

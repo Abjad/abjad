@@ -7,7 +7,7 @@ class NamedChromaticPitchClassSegment(PitchClassObjectSegment):
 
     Abjad model of named chromatic pitch-class segment::
 
-        abjad> pitchtools.NamedChromaticPitchClassSegment(['gs', 'a', 'as', 'c', 'cs'])
+        >>> pitchtools.NamedChromaticPitchClassSegment(['gs', 'a', 'as', 'c', 'cs'])
         NamedChromaticPitchClassSegment(['gs', 'a', 'as', 'c', 'cs'])
 
     Named chromatic pitch-class segments are immutable.

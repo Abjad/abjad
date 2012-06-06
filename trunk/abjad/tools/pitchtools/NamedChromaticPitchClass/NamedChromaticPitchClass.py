@@ -7,7 +7,7 @@ class NamedChromaticPitchClass(PitchClassObject):
 
     Abjad model of named chromatic pitch-class::
 
-        abjad> pitchtools.NamedChromaticPitchClass('cs')
+        >>> pitchtools.NamedChromaticPitchClass('cs')
         NamedChromaticPitchClass('cs')
 
     Named chromatic pitch-classes are immutable.
@@ -137,8 +137,8 @@ class NamedChromaticPitchClass(PitchClassObject):
     def numbered_chromatic_pitch_class(self):
         '''Read-only numbered chromatic pitch-class::
 
-            abjad> named_chromatic_pitch_class = pitchtools.NamedChromaticPitchClass('cs')
-            abjad> named_chromatic_pitch_class.numbered_chromatic_pitch_class
+            >>> named_chromatic_pitch_class = pitchtools.NamedChromaticPitchClass('cs')
+            >>> named_chromatic_pitch_class.numbered_chromatic_pitch_class
             NumberedChromaticPitchClass(1)
 
         Return numbered chromatic pitch-class.
@@ -151,8 +151,8 @@ class NamedChromaticPitchClass(PitchClassObject):
     def apply_accidental(self, accidental):
         '''Apply `accidental`::
 
-            abjad> named_chromatic_pitch_class = pitchtools.NamedChromaticPitchClass('cs')
-            abjad> named_chromatic_pitch_class.apply_accidental('qs')
+            >>> named_chromatic_pitch_class = pitchtools.NamedChromaticPitchClass('cs')
+            >>> named_chromatic_pitch_class.apply_accidental('qs')
             NamedChromaticPitchClass('ctqs')
 
         Return named chromatic pitch-class.
@@ -166,8 +166,8 @@ class NamedChromaticPitchClass(PitchClassObject):
     def transpose(self, melodic_diatonic_interval):
         '''Transpose named chromatic pitch-class by `melodic_diatonic_interval`::
 
-            abjad> named_chromatic_pitch_class = pitchtools.NamedChromaticPitchClass('cs')
-            abjad> named_chromatic_pitch_class.transpose(pitchtools.MelodicDiatonicInterval('major', 2))
+            >>> named_chromatic_pitch_class = pitchtools.NamedChromaticPitchClass('cs')
+            >>> named_chromatic_pitch_class.transpose(pitchtools.MelodicDiatonicInterval('major', 2))
             NamedChromaticPitchClass('ds')
 
         Return named chromatic pitch-class.

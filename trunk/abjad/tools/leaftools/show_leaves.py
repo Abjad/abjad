@@ -6,8 +6,8 @@ def show_leaves(leaves, suppress_pdf = False):
 
     Show `leaves` in temporary piano staff score::
 
-        abjad> leaves = leaftools.make_leaves([None, 1, (-24, -22, 7, 21), None], (1, 4))
-        abjad> score = leaftools.show_leaves(leaves) # doctest: +SKIP
+        >>> leaves = leaftools.make_leaves([None, 1, (-24, -22, 7, 21), None], (1, 4))
+        >>> score = leaftools.show_leaves(leaves) # doctest: +SKIP
         \new Score <<
             \new PianoStaff <<
                 \context Staff = "treble" {

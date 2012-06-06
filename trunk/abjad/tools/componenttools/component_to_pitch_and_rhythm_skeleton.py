@@ -6,16 +6,16 @@ def component_to_pitch_and_rhythm_skeleton(component):
 
     Change `component` to pitch and rhythm skeleton::
 
-        abjad> tuplet = Tuplet(Fraction(3, 4), "c'8 d'8 e'8 f'8")
-        abjad> measure = Measure((6, 16), [tuplet])
-        abjad> staff = Staff([measure])
-        abjad> score = Score(staff * 2)
-        abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(score)
+        >>> tuplet = Tuplet(Fraction(3, 4), "c'8 d'8 e'8 f'8")
+        >>> measure = Measure((6, 16), [tuplet])
+        >>> staff = Staff([measure])
+        >>> score = Score(staff * 2)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(score)
 
     ::
 
-        abjad> skeleton = componenttools.component_to_pitch_and_rhythm_skeleton(score)
-        abjad> print skeleton
+        >>> skeleton = componenttools.component_to_pitch_and_rhythm_skeleton(score)
+        >>> print skeleton
         Score([
             Staff([
                 Measure((6, 16), [
@@ -41,13 +41,13 @@ def component_to_pitch_and_rhythm_skeleton(component):
 
     ::
 
-        abjad> new = eval(skeleton)
-        abjad> new
+        >>> new = eval(skeleton)
+        >>> new
         Score<<2>>
 
     ::
 
-        abjad> f(new)
+        >>> f(new)
         \new Score <<
             \new Staff {
                 {

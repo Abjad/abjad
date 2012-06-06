@@ -8,7 +8,7 @@ class MelodicCounterpointIntervalClass(CounterpointIntervalClassObject, MelodicI
 
     Abjad model of melodic counterpoint interval-class::
 
-        abjad> pitchtools.MelodicCounterpointIntervalClass(-9)
+        >>> pitchtools.MelodicCounterpointIntervalClass(-9)
         MelodicCounterpointIntervalClass(-2)
 
     Melodic counterpoint interval-classes are immutable.

@@ -8,9 +8,9 @@ def tempo_scaled_rational_to_milliseconds(rational, tempo):
 
     ::
 
-        abjad> from abjad.tools.quantizationtools import tempo_scaled_rational_to_milliseconds
-        abjad> tempo = contexttools.TempoMark((1, 4), 60)
-        abjad> tempo_scaled_rational_to_milliseconds(Fraction(1, 4), tempo)
+        >>> from abjad.tools.quantizationtools import tempo_scaled_rational_to_milliseconds
+        >>> tempo = contexttools.TempoMark((1, 4), 60)
+        >>> tempo_scaled_rational_to_milliseconds(Fraction(1, 4), tempo)
         Duration(1000, 1)
 
     Return a :py:class:`~abjad.tools.durationtools.Duration`.

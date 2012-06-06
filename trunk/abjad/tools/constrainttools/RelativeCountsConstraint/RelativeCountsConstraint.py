@@ -10,7 +10,7 @@ class RelativeCountsConstraint(_RelativeConstraint):
 
     ::
 
-        abjad> from abjad.tools.constrainttools import RelativeCountsConstraint
+        >>> from abjad.tools.constrainttools import RelativeCountsConstraint
 
     Instantiated from an integer representing a contiguous index range, or a 
     sequence of indices, and a function which takes as many arguments as
@@ -18,15 +18,15 @@ class RelativeCountsConstraint(_RelativeConstraint):
 
     ::
 
-        abjad> test = lambda x: max(x.values( )) <= 2
-        abjad> two_repeats_max = RelativeCountsConstraint([0, 1, 2], test)
-        abjad> two_repeats_max([0])
+        >>> test = lambda x: max(x.values( )) <= 2
+        >>> two_repeats_max = RelativeCountsConstraint([0, 1, 2], test)
+        >>> two_repeats_max([0])
         True
-        abjad> two_repeats_max([0, 1, 2])
+        >>> two_repeats_max([0, 1, 2])
         True
-        abjad> two_repeats_max([0, 0, 1])
+        >>> two_repeats_max([0, 0, 1])
         True
-        abjad> two_repeats_max([0, 0, 0])
+        >>> two_repeats_max([0, 0, 0])
         False
     
     ``RelativeCountsConstraints`` are immutable.

@@ -7,41 +7,41 @@ def notes_and_chords_in_expr_are_on_expected_clefs(expr, percussion_clef_is_allo
 
     True when notes and chords in `expr` are on expected clefs::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> contexttools.ClefMark('treble')(staff)
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> contexttools.ClefMark('treble')(staff)
         ClefMark('treble')(Staff{4})
-        abjad> instrumenttools.Violin()(staff)
+        >>> instrumenttools.Violin()(staff)
         Violin()(Staff{4})
 
     ::
 
-        abjad> instrumenttools.notes_and_chords_in_expr_are_on_expected_clefs(staff)
+        >>> instrumenttools.notes_and_chords_in_expr_are_on_expected_clefs(staff)
         True
 
     False otherwise::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> contexttools.ClefMark('alto')(staff)
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> contexttools.ClefMark('alto')(staff)
         ClefMark('alto')(Staff{4})
-        abjad> instrumenttools.Violin()(staff)
+        >>> instrumenttools.Violin()(staff)
         Violin()(Staff{4})
 
     ::
 
-        abjad> instrumenttools.notes_and_chords_in_expr_are_on_expected_clefs(staff)
+        >>> instrumenttools.notes_and_chords_in_expr_are_on_expected_clefs(staff)
         False
 
     Allow percussion clef when `percussion_clef_is_allowed` is true::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> contexttools.ClefMark('percussion')(staff)
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> contexttools.ClefMark('percussion')(staff)
         ClefMark('percussion')(Staff{4})
-        abjad> instrumenttools.Violin()(staff)
+        >>> instrumenttools.Violin()(staff)
         Violin()(Staff{4})
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \clef "percussion"
             \set Staff.instrumentName = \markup { Violin }
@@ -54,12 +54,12 @@ def notes_and_chords_in_expr_are_on_expected_clefs(expr, percussion_clef_is_allo
 
     ::
 
-        abjad> instrumenttools.notes_and_chords_in_expr_are_on_expected_clefs(staff, percussion_clef_is_allowed = True)
+        >>> instrumenttools.notes_and_chords_in_expr_are_on_expected_clefs(staff, percussion_clef_is_allowed = True)
         True
 
     Disallow percussion clef when `percussion_clef_is_allowed` is false::
 
-        abjad> instrumenttools.notes_and_chords_in_expr_are_on_expected_clefs(staff, percussion_clef_is_allowed = False)
+        >>> instrumenttools.notes_and_chords_in_expr_are_on_expected_clefs(staff, percussion_clef_is_allowed = False)
         False
 
     Return boolean.

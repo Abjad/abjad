@@ -7,15 +7,15 @@ def label_notes_in_expr_with_note_indices(expr, markup_direction = 'down'):
 
     Label notes in `expr` with note indices::
 
-        abjad> staff = Staff("c'8 d'8 r8 r8 g'8 a'8 r8 c''8")
+        >>> staff = Staff("c'8 d'8 r8 r8 g'8 a'8 r8 c''8")
 
     ::
 
-        abjad> notetools.label_notes_in_expr_with_note_indices(staff)
+        >>> notetools.label_notes_in_expr_with_note_indices(staff)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8 _ \markup { \small 0 }
             d'8 _ \markup { \small 1 }

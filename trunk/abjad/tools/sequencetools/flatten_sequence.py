@@ -3,21 +3,21 @@ def flatten_sequence(sequence, klasses = None, depth = -1):
 
     Flatten `sequence`::
 
-        abjad> from abjad.tools import sequencetools
+        >>> from abjad.tools import sequencetools
 
     ::
 
-        abjad> sequencetools.flatten_sequence([1, [2, 3, [4]], 5, [6, 7, [8]]])
+        >>> sequencetools.flatten_sequence([1, [2, 3, [4]], 5, [6, 7, [8]]])
         [1, 2, 3, 4, 5, 6, 7, 8]
 
     Flatten `sequence` to depth ``1``::
 
-        abjad> sequencetools.flatten_sequence([1, [2, 3, [4]], 5, [6, 7, [8]]], depth = 1)
+        >>> sequencetools.flatten_sequence([1, [2, 3, [4]], 5, [6, 7, [8]]], depth = 1)
         [1, 2, 3, [4], 5, 6, 7, [8]]
 
     Flatten `sequence` to depth ``2``::
 
-        abjad> sequencetools.flatten_sequence([1, [2, 3, [4]], 5, [6, 7, [8]]], depth = 2)
+        >>> sequencetools.flatten_sequence([1, [2, 3, [4]], 5, [6, 7, [8]]], depth = 2)
         [1, 2, 3, 4, 5, 6, 7, 8]
 
     Leave `sequence` unchanged.

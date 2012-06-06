@@ -7,11 +7,11 @@ def make_vertically_adjusted_composer_markup(composer,
 
     Make vertically adjusted `composer` markup::
 
-        abjad> markup = markuptools.make_vertically_adjusted_composer_markup('Josquin Desprez')
+        >>> markup = markuptools.make_vertically_adjusted_composer_markup('Josquin Desprez')
 
     ::
 
-        abjad> f(markup)
+        >>> f(markup)
         \markup { 
                 \override #'(font-name . "Times")
                 \hspace #0 \raise #-20

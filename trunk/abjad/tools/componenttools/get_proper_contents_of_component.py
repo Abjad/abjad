@@ -3,11 +3,11 @@ def get_proper_contents_of_component(component):
 
     Get proper contents of `component`::
 
-        abjad> staff = Staff("c' d' e' f'")
+        >>> staff = Staff("c' d' e' f'")
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'4
             d'4
@@ -17,12 +17,12 @@ def get_proper_contents_of_component(component):
 
     ::
 
-        abjad> componenttools.get_proper_contents_of_component(staff)
+        >>> componenttools.get_proper_contents_of_component(staff)
         [Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")]
 
     The function works on leaves::
 
-        abjad> componenttools.get_proper_contents_of_component(staff[0])
+        >>> componenttools.get_proper_contents_of_component(staff[0])
         []
 
     Return list of the proper contents of component.

@@ -6,27 +6,27 @@ class RestFilledTimeTokenMaker(TokenIncisedRestFilledTimeTokenMaker):
 
     Rest-filled time-token maker::
 
-        abjad> from abjad.tools import sequencetools
-        abjad> from abjad.tools import timetokentools
+        >>> from abjad.tools import sequencetools
+        >>> from abjad.tools import timetokentools
 
     ::
 
-        abjad> maker = timetokentools.RestFilledTimeTokenMaker()
+        >>> maker = timetokentools.RestFilledTimeTokenMaker()
 
     ::
 
-        abjad> duration_tokens = [(5, 16), (3, 8)]
-        abjad> leaf_lists = maker(duration_tokens)
-        abjad> leaves = sequencetools.flatten_sequence(leaf_lists)
+        >>> duration_tokens = [(5, 16), (3, 8)]
+        >>> leaf_lists = maker(duration_tokens)
+        >>> leaves = sequencetools.flatten_sequence(leaf_lists)
 
     ::
 
-        abjad> staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(duration_tokens))
-        abjad> measures = measuretools.replace_contents_of_measures_in_expr(staff, leaves)
+        >>> staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(duration_tokens))
+        >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, leaves)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             {
                 \time 5/16

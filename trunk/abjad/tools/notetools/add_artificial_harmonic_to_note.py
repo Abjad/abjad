@@ -6,13 +6,13 @@ perfect_fourth = pitchtools.MelodicDiatonicInterval('perfect', 4)
 def add_artificial_harmonic_to_note(note, melodic_diatonic_interval = perfect_fourth):
     r'''Add artifical harmonic to `note` at `melodic_diatonic_interval`::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> beamtools.BeamSpanner(staff[:])
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> beamtools.BeamSpanner(staff[:])
         BeamSpanner(c'8, d'8, e'8, f'8)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8 [
             d'8
@@ -23,12 +23,12 @@ def add_artificial_harmonic_to_note(note, melodic_diatonic_interval = perfect_fo
 
     ::
 
-        abjad> notetools.add_artificial_harmonic_to_note(staff[0])
+        >>> notetools.add_artificial_harmonic_to_note(staff[0])
         Chord("<c' f'>8")
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             <
                 c'

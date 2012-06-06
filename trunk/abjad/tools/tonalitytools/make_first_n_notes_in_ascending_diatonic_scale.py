@@ -8,17 +8,17 @@ def make_first_n_notes_in_ascending_diatonic_scale(count, written_duration = dur
     r'''Construct `count` notes with `written_duration`
     according to `key_signature`::
 
-        abjad> from abjad.tools import tonalitytools
+        >>> from abjad.tools import tonalitytools
 
     ::
 
-        abjad> tonalitytools.make_first_n_notes_in_ascending_diatonic_scale(4)
+        >>> tonalitytools.make_first_n_notes_in_ascending_diatonic_scale(4)
         [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
 
     Allow nonassignable `written_duration`::
 
-        abjad> staff = Staff(tonalitytools.make_first_n_notes_in_ascending_diatonic_scale(2, (5, 16)))
-        abjad> f(staff)
+        >>> staff = Staff(tonalitytools.make_first_n_notes_in_ascending_diatonic_scale(2, (5, 16)))
+        >>> f(staff)
         \new Staff {
             c'4 ~
             c'16

@@ -8,7 +8,7 @@ class HarmonicDiatonicInterval(DiatonicIntervalObject, HarmonicIntervalObject):
 
     Abjad model harmonic diatonic interval::
 
-        abjad> pitchtools.HarmonicDiatonicInterval('M9')
+        >>> pitchtools.HarmonicDiatonicInterval('M9')
         HarmonicDiatonicInterval('M9')
 
     Harmonic diatonic intervals are immutable.

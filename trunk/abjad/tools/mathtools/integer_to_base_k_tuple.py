@@ -6,11 +6,11 @@ def integer_to_base_k_tuple(n, k):
 
     Nonnegative integer `n` to base-`k` tuple::
 
-        abjad> from abjad.tools import mathtools
+        >>> from abjad.tools import mathtools
 
     ::
 
-        abjad> mathtools.integer_to_base_k_tuple(1066, 10)
+        >>> mathtools.integer_to_base_k_tuple(1066, 10)
         (1, 0, 6, 6)
 
     Return tuple of one or more positive integers.

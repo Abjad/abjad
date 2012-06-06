@@ -7,39 +7,39 @@ def get_named_chromatic_pitch_from_pitch_carrier(pitch_carrier):
 
     Get named chromatic pitch from `pitch_carrier`::
 
-        abjad> pitch = pitchtools.NamedChromaticPitch('df', 5)
-        abjad> pitch
+        >>> pitch = pitchtools.NamedChromaticPitch('df', 5)
+        >>> pitch
         NamedChromaticPitch("df''")
-        abjad> pitchtools.get_named_chromatic_pitch_from_pitch_carrier(pitch)
+        >>> pitchtools.get_named_chromatic_pitch_from_pitch_carrier(pitch)
         NamedChromaticPitch("df''")
 
     ::
 
-        abjad> note = Note(('df', 5), (1, 4))
-        abjad> note
+        >>> note = Note(('df', 5), (1, 4))
+        >>> note
         Note("df''4")
-        abjad> pitchtools.get_named_chromatic_pitch_from_pitch_carrier(note)
+        >>> pitchtools.get_named_chromatic_pitch_from_pitch_carrier(note)
         NamedChromaticPitch("df''")
 
     ::
 
-        abjad> note = Note(('df', 5), (1, 4))
-        abjad> note.note_head
+        >>> note = Note(('df', 5), (1, 4))
+        >>> note.note_head
         NoteHead("df''")
-        abjad> pitchtools.get_named_chromatic_pitch_from_pitch_carrier(note.note_head)
+        >>> pitchtools.get_named_chromatic_pitch_from_pitch_carrier(note.note_head)
         NamedChromaticPitch("df''")
 
     ::
 
-        abjad> chord = Chord([('df', 5)], (1, 4))
-        abjad> chord
+        >>> chord = Chord([('df', 5)], (1, 4))
+        >>> chord
         Chord("<df''>4")
-        abjad> pitchtools.get_named_chromatic_pitch_from_pitch_carrier(chord)
+        >>> pitchtools.get_named_chromatic_pitch_from_pitch_carrier(chord)
         NamedChromaticPitch("df''")
 
     ::
 
-        abjad> pitchtools.get_named_chromatic_pitch_from_pitch_carrier(13)
+        >>> pitchtools.get_named_chromatic_pitch_from_pitch_carrier(13)
         NamedChromaticPitch("cs''")
 
     Raise missing pitch error when `pitch_carrier` carries no pitch.

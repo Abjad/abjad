@@ -7,30 +7,30 @@ def all_are_skips(expr):
 
     True when `expr` is a sequence of Abjad skips::
 
-        abjad> from abjad.tools import skiptools
+        >>> from abjad.tools import skiptools
     
     ::
 
-        abjad> skips = 3 * skiptools.Skip('s4')
+        >>> skips = 3 * skiptools.Skip('s4')
 
     ::
 
-        abjad> skips
+        >>> skips
         [Skip('s4'), Skip('s4'), Skip('s4')]
 
     ::
 
-        abjad> skiptools.all_are_skips(skips)
+        >>> skiptools.all_are_skips(skips)
         True
 
     True when `expr` is an empty sequence::
 
-        abjad> skiptools.all_are_skips([])
+        >>> skiptools.all_are_skips([])
         True
 
     Otherwise false::
 
-        abjad> skiptools.all_are_skips('foo')
+        >>> skiptools.all_are_skips('foo')
         False
 
     Return boolean.

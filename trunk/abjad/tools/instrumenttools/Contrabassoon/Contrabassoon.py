@@ -9,18 +9,18 @@ class Contrabassoon(Bassoon):
 
     Abjad model of the contrabassoon::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> contexttools.ClefMark('bass')(staff)
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> contexttools.ClefMark('bass')(staff)
         ClefMark('bass')(Staff{4})
 
     ::
 
-        abjad> instrumenttools.Contrabassoon()(staff)
+        >>> instrumenttools.Contrabassoon()(staff)
         Contrabassoon()(Staff{4})
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \clef "bass"
             \set Staff.instrumentName = \markup { Contrabassoon }

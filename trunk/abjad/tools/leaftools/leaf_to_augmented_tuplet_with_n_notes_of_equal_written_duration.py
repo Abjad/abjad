@@ -6,7 +6,7 @@ def leaf_to_augmented_tuplet_with_n_notes_of_equal_written_duration(leaf, n):
 
     Change `leaf` to augmented tuplet with `n` notes of equal written duration::
 
-        abjad> for n in range(1, 11):
+        >>> for n in range(1, 11):
         ...     note = Note(0, (3, 16))
         ...     tuplet = leaftools.leaf_to_augmented_tuplet_with_n_notes_of_equal_written_duration(note, n)
         ...     print tuplet

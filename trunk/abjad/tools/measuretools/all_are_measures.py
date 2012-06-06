@@ -7,26 +7,26 @@ def all_are_measures(expr):
 
     True when `expr` is a sequence of Abjad measures::
 
-        abjad> measures = 3 * Measure((3, 4), "c'4 d'4 e'4")
+        >>> measures = 3 * Measure((3, 4), "c'4 d'4 e'4")
 
     ::
 
-        abjad> measures
+        >>> measures
         [Measure(3/4, [c'4, d'4, e'4]), Measure(3/4, [c'4, d'4, e'4]), Measure(3/4, [c'4, d'4, e'4])]
 
     ::
 
-        abjad> measuretools.all_are_measures(measures)
+        >>> measuretools.all_are_measures(measures)
         True
 
     True when `expr` is an empty sequence::
 
-        abjad> measuretools.all_are_measures([])
+        >>> measuretools.all_are_measures([])
         True
 
     Otherwise false::
 
-        abjad> measuretools.all_are_measures('foo')
+        >>> measuretools.all_are_measures('foo')
         False
 
     Return boolean.

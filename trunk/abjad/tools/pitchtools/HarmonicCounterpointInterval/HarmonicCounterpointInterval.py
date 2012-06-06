@@ -7,7 +7,7 @@ class HarmonicCounterpointInterval(CounterpointIntervalObject, HarmonicIntervalO
 
     Abjad model of harmonic counterpoint interval::
 
-        abjad> pitchtools.HarmonicCounterpointInterval(-9)
+        >>> pitchtools.HarmonicCounterpointInterval(-9)
         HarmonicCounterpointInterval(9)
 
     Harmonic counterpoint intervals are immutable.

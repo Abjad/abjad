@@ -3,7 +3,7 @@ def chromatic_pitch_class_number_to_chromatic_pitch_class_name(chromatic_pitch_c
 
     Change `chromatic_pitch_class_number` to chromatic pitch-class name::
 
-        abjad> for n in range(0, 13):
+        >>> for n in range(0, 13):
         ...     pc = n / 2.0
         ...     pitch_name = pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name(pc)
         ...     print '%s   %s' % (pc, pitch_name)

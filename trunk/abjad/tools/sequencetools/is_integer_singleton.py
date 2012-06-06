@@ -3,16 +3,16 @@ def is_integer_singleton(expr):
 
     True when `expr` is an integer tuple of of length ``1``::
 
-        abjad> from abjad.tools import sequencetools
+        >>> from abjad.tools import sequencetools
 
     ::
 
-        abjad> sequencetools.is_integer_singleton((19,))
+        >>> sequencetools.is_integer_singleton((19,))
         True
 
     Otherwise false::
 
-        abjad> sequencetools.is_integer_singleton(('text',))
+        >>> sequencetools.is_integer_singleton(('text',))
         False
 
     Return boolean.

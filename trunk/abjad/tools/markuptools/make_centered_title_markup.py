@@ -6,11 +6,11 @@ def make_centered_title_markup(title, font_name='Times', font_size=18):
     
     Make centered `title` markup::
 
-        abjad> markup = markuptools.make_centered_title_markup('String Quartet')
+        >>> markup = markuptools.make_centered_title_markup('String Quartet')
 
     ::
 
-        abjad> f(markup)
+        >>> f(markup)
         \markup { \column {
                     \center-align {
                         \override #'(font-name . "Times")

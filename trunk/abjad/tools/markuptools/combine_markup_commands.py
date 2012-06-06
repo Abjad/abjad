@@ -10,16 +10,16 @@ def combine_markup_commands(*commands):
 
     ::
 
-        abjad> from abjad.tools.markuptools import combine_markup_commands
-        abjad> from abjad.tools.schemetools import SchemePair
-        abjad> from abjad.tools.markuptools import MarkupCommand
+        >>> from abjad.tools.markuptools import combine_markup_commands
+        >>> from abjad.tools.schemetools import SchemePair
+        >>> from abjad.tools.markuptools import MarkupCommand
 
     ::
 
-        abjad> markup_a = MarkupCommand('draw-circle', 4, 0.4, False)
-        abjad> markup_b = MarkupCommand('filled-box', SchemePair(-4, 4), SchemePair(-0.5, 0.5), 1)
-        abjad> markup_c = "some text"
-        abjad> print combine_markup_commands(markup_a, markup_b, markup_c).format
+        >>> markup_a = MarkupCommand('draw-circle', 4, 0.4, False)
+        >>> markup_b = MarkupCommand('filled-box', SchemePair(-4, 4), SchemePair(-0.5, 0.5), 1)
+        >>> markup_c = "some text"
+        >>> print combine_markup_commands(markup_a, markup_b, markup_c).format
         \combine \combine \draw-circle #4 #0.4 ##f \filled-box #'(-4 . 4) #'(-0.5 . 0.5) #1 #"some text"
 
     Returns a MarkupCommand instance, or a string if that was the only argument.

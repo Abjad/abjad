@@ -3,20 +3,20 @@ class CyclicList(list):
 
     Abjad model of cyclic list::
 
-        abjad> from abjad.tools import sequencetools
+        >>> from abjad.tools import sequencetools
 
     ::
 
-        abjad> cyclic_list = sequencetools.CyclicList('abcd')
+        >>> cyclic_list = sequencetools.CyclicList('abcd')
 
     ::
 
-        abjad> cyclic_list
+        >>> cyclic_list
         CyclicList([a, b, c, d])
 
     ::
 
-        abjad> for x in range(8):
+        >>> for x in range(8):
         ...     print x, cyclic_list[x]
         ...
         0 a

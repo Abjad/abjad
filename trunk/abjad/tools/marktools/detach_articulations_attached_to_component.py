@@ -6,16 +6,16 @@ def detach_articulations_attached_to_component(component):
 
     Detach articulations attached to `component`::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> slur = spannertools.SlurSpanner(staff.leaves)
-        abjad> marktools.Articulation('^')(staff[0])
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> slur = spannertools.SlurSpanner(staff.leaves)
+        >>> marktools.Articulation('^')(staff[0])
         Articulation('^')(c'8)
-        abjad> marktools.Articulation('.')(staff[0])
+        >>> marktools.Articulation('.')(staff[0])
         Articulation('.')(c'8)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8 -\marcato -\staccato (
             d'8
@@ -25,17 +25,17 @@ def detach_articulations_attached_to_component(component):
 
     ::
 
-        abjad> marktools.get_articulations_attached_to_component(staff[0])
+        >>> marktools.get_articulations_attached_to_component(staff[0])
         (Articulation('^')(c'8), Articulation('.')(c'8))
 
     ::
 
-        abjad> marktools.detach_articulations_attached_to_component(staff[0])
+        >>> marktools.detach_articulations_attached_to_component(staff[0])
         (Articulation('^'), Articulation('.'))
 
     ::
 
-        abjad> marktools.get_articulations_attached_to_component(staff[0])
+        >>> marktools.get_articulations_attached_to_component(staff[0])
         ()
 
     Return tuple or zero or more articulations detached.

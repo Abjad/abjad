@@ -10,7 +10,7 @@ def chromatic_pitch_number_diatonic_pitch_class_name_to_alphabetic_accidental_ab
     Change `chromatic_pitch_number` and `diatonic_pitch_class_name` to
     alphabetic accidental abbreviation / octave number pair::
 
-        abjad> pitchtools.chromatic_pitch_number_diatonic_pitch_class_name_to_alphabetic_accidental_abbreviation_octave_number_pair(14, 'c')
+        >>> pitchtools.chromatic_pitch_number_diatonic_pitch_class_name_to_alphabetic_accidental_abbreviation_octave_number_pair(14, 'c')
         ('ss', 5)
 
     Return pair.

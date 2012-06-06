@@ -6,7 +6,7 @@ class HarmonicDiatonicIntervalSet(IntervalObjectSet):
 
     Abjad model of harmonic diatonic interval set::
 
-        abjad> pitchtools.HarmonicDiatonicIntervalSet('m2 m2 M2 M9')
+        >>> pitchtools.HarmonicDiatonicIntervalSet('m2 m2 M2 M9')
         HarmonicDiatonicIntervalSet('m2 M2 M9')
 
     Harmonic diatonic interval sets are immutable.

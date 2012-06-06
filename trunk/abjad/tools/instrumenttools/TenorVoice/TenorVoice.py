@@ -9,16 +9,16 @@ class TenorVoice(_Voice):
 
     Abjad model of the tenor voice::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
 
     ::
 
-        abjad> instrumenttools.TenorVoice()(staff)
+        >>> instrumenttools.TenorVoice()(staff)
         TenorVoice()(Staff{4})
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \set Staff.instrumentName = \markup { Tenor voice }
             \set Staff.shortInstrumentName = \markup { Tenor }

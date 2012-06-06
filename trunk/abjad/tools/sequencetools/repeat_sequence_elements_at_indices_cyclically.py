@@ -3,21 +3,21 @@ def repeat_sequence_elements_at_indices_cyclically(sequence, cycle_token, total)
 
     Repeat `sequence` elements at indices specified by `cycle_token` to `total` length::
 
-        abjad> from abjad.tools import sequencetools
+        >>> from abjad.tools import sequencetools
 
     ::
 
-        abjad> sequencetools.repeat_sequence_elements_at_indices_cyclically(range(10), (5, [1, 2]), 3)
+        >>> sequencetools.repeat_sequence_elements_at_indices_cyclically(range(10), (5, [1, 2]), 3)
         [0, [1, 1, 1], [2, 2, 2], 3, 4, 5, [6, 6, 6], [7, 7, 7], 8, 9]
 
     The `cycle_token` may be a sieve::
 
-        abjad> from abjad.tools import sievetools
+        >>> from abjad.tools import sievetools
 
     ::
 
-        abjad> sieve = sievetools.cycle_tokens_to_sieve((5, [1, 2]))
-        abjad> sequencetools.repeat_sequence_elements_at_indices_cyclically(range(10), sieve, 3)
+        >>> sieve = sievetools.cycle_tokens_to_sieve((5, [1, 2]))
+        >>> sequencetools.repeat_sequence_elements_at_indices_cyclically(range(10), sieve, 3)
         [0, [1, 1, 1], [2, 2, 2], 3, 4, 5, [6, 6, 6], [7, 7, 7], 8, 9]
 
     Return list.

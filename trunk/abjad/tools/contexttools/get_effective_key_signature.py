@@ -7,13 +7,13 @@ def get_effective_key_signature(component):
 
     Get effective key signature of `component`::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> contexttools.KeySignatureMark('c', 'major')(staff)
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> contexttools.KeySignatureMark('c', 'major')(staff)
         KeySignatureMark(NamedChromaticPitchClass('c'), Mode('major'))(Staff{4})
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \key c \major
             c'8
@@ -24,7 +24,7 @@ def get_effective_key_signature(component):
 
     ::
 
-        abjad> for note in staff:
+        >>> for note in staff:
         ...     note, contexttools.get_effective_key_signature(note)
         ...
         (Note("c'8"), KeySignatureMark(NamedChromaticPitchClass('c'), Mode('major'))(Staff{4}))

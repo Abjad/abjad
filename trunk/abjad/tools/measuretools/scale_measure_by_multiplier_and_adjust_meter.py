@@ -9,13 +9,13 @@ def scale_measure_by_multiplier_and_adjust_meter(measure, multiplier = 1):
 
     Scale `measure` by `multiplier` and adjust meter::
 
-        abjad> t = Measure((3, 8), "c'8 d'8 e'8")
-        abjad> measuretools.scale_measure_by_multiplier_and_adjust_meter(t, Duration(2, 3))
+        >>> t = Measure((3, 8), "c'8 d'8 e'8")
+        >>> measuretools.scale_measure_by_multiplier_and_adjust_meter(t, Duration(2, 3))
         Measure(3/12, [c'8, d'8, e'8])
 
     ::
 
-        abjad> f(t)
+        >>> f(t)
         {
         \time 3/12
         \scaleDurations #'(2 . 3) {

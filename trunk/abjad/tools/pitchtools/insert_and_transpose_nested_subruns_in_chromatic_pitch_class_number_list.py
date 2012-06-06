@@ -8,18 +8,18 @@ def insert_and_transpose_nested_subruns_in_chromatic_pitch_class_number_list(not
     Insert and transpose nested subruns in `chromatic_pitch_class_number_list`
     according to `subrun_indicators`::
 
-        abjad> notes = [Note(p, (1, 4)) for p in [0, 2, 7, 9, 5, 11, 4]]
-        abjad> subrun_indicators = [(0, [2, 4]), (4, [3, 1])]
-        abjad> pitchtools.insert_and_transpose_nested_subruns_in_chromatic_pitch_class_number_list(notes, subrun_indicators)
+        >>> notes = [Note(p, (1, 4)) for p in [0, 2, 7, 9, 5, 11, 4]]
+        >>> subrun_indicators = [(0, [2, 4]), (4, [3, 1])]
+        >>> pitchtools.insert_and_transpose_nested_subruns_in_chromatic_pitch_class_number_list(notes, subrun_indicators)
 
-        abjad> t = []
-        abjad> for x in notes:
+        >>> t = []
+        >>> for x in notes:
         ...   try:
         ...        t.append(x.written_pitch.chromatic_pitch_number)
         ...   except AttributeError:
         ...        t.append([y.written_pitch.chromatic_pitch_number for y in x])
 
-        abjad> t
+        >>> t
         [0, [5, 7], 2, [4, 0, 6, 11], 7, 9, 5, [10, 6, 8], 11, [7], 4]
 
     Set `subrun_indicators` to a list of zero or more ``(index, length_list)`` pairs.
@@ -38,9 +38,9 @@ def insert_and_transpose_nested_subruns_in_chromatic_pitch_class_number_list(not
     For this reason most calls to this function will be followed
     by ``notes = sequencetools.flatten_sequence(notes)``::
 
-        abjad> from abjad.tools import sequencetools
-        abjad> notes = sequencetools.flatten_sequence(notes)
-        abjad> notes
+        >>> from abjad.tools import sequencetools
+        >>> notes = sequencetools.flatten_sequence(notes)
+        >>> notes
         [Note("c'4"), Note("f'4"), Note("g'4"), Note("d'4"), Note("e'4"), Note("c'4"), Note("fs'4"), Note("b'4"), Note("g'4"), Note("a'4"), Note("f'4"), Note("bf'4"), Note("fs'4"), Note("af'4"), Note("b'4"), Note("g'4"), Note("e'4")]
 
     This function is designed to work on a built-in Python list

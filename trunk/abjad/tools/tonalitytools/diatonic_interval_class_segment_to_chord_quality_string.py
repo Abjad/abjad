@@ -6,14 +6,14 @@ def diatonic_interval_class_segment_to_chord_quality_string(dic_seg):
 
     Change diatonic interval-class segment `dic_seg` to chord quality string::
 
-        abjad> from abjad.tools import tonalitytools
+        >>> from abjad.tools import tonalitytools
 
     ::
 
-        abjad> dic_seg = pitchtools.InversionEquivalentDiatonicIntervalClassSegment([
+        >>> dic_seg = pitchtools.InversionEquivalentDiatonicIntervalClassSegment([
         ...   pitchtools.InversionEquivalentDiatonicIntervalClass('major', 3),
         ...   pitchtools.InversionEquivalentDiatonicIntervalClass('minor', 3),])
-        abjad> tonalitytools.diatonic_interval_class_segment_to_chord_quality_string(dic_seg)
+        >>> tonalitytools.diatonic_interval_class_segment_to_chord_quality_string(dic_seg)
         'major'
 
     .. todo::

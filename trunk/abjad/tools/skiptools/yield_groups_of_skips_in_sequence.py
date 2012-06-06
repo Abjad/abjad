@@ -6,11 +6,11 @@ def yield_groups_of_skips_in_sequence(sequence):
 
     Yield groups of skips in `sequence`::
 
-        abjad> staff = Staff("c'8 d'8 s8 s8 <e' g'>8 <f' a'>8 g'8 a'8 s8 s8 <b' d''>8 <c'' e''>8")
+        >>> staff = Staff("c'8 d'8 s8 s8 <e' g'>8 <f' a'>8 g'8 a'8 s8 s8 <b' d''>8 <c'' e''>8")
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8
             d'8
@@ -28,7 +28,7 @@ def yield_groups_of_skips_in_sequence(sequence):
 
     ::
 
-        abjad> for skip in skiptools.yield_groups_of_skips_in_sequence(staff):
+        >>> for skip in skiptools.yield_groups_of_skips_in_sequence(staff):
         ...     skip
         ...
         (Skip('s8'), Skip('s8'))

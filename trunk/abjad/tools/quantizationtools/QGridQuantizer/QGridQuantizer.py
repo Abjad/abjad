@@ -39,8 +39,8 @@ class QGridQuantizer(_Quantizer):
 
     ::
 
-        abjad> from abjad.tools.quantizationtools import QGridQuantizer
-        abjad> q = QGridQuantizer()
+        >>> from abjad.tools.quantizationtools import QGridQuantizer
+        >>> q = QGridQuantizer()
 
     `QGridQuantizer` is immutable, but cheap to instantiate.  Various attributes
     can be defined on instantiation.  Please consult the documentation for each
@@ -48,49 +48,49 @@ class QGridQuantizer(_Quantizer):
 
     ::
 
-        abjad> from abjad.tools.quantizationtools import QGridSearchTree
-        abjad> target_tempo = contexttools.TempoMark((1, 8), 73)
-        abjad> beatspan = Fraction(1, 4)
-        abjad> search_tree = QGridSearchTree({2: {2: None, 3: None}, 5: None})
-        abjad> threshold = 250
-        abjad> q = QGridQuantizer(tempo = target_tempo, beatspan = beatspan, search_tree = search_tree, threshold = threshold)
+        >>> from abjad.tools.quantizationtools import QGridSearchTree
+        >>> target_tempo = contexttools.TempoMark((1, 8), 73)
+        >>> beatspan = Fraction(1, 4)
+        >>> search_tree = QGridSearchTree({2: {2: None, 3: None}, 5: None})
+        >>> threshold = 250
+        >>> q = QGridQuantizer(tempo = target_tempo, beatspan = beatspan, search_tree = search_tree, threshold = threshold)
 
     `QGridQuantizer` can quantize lists of leaves.  If the source leaves have no effective tempo,
     one must be provided with the `tempo` keyword.
 
     ::
 
-        abjad> q = QGridQuantizer()
-        abjad> source = Staff("c'4 d'4 e'4. r8 <c' e' g'>2. <d' g' b'>4")
-        abjad> source_tempo = contexttools.TempoMark((1, 4), 54)
-        abjad> result = q(source[:], tempo = source_tempo)
+        >>> q = QGridQuantizer()
+        >>> source = Staff("c'4 d'4 e'4. r8 <c' e' g'>2. <d' g' b'>4")
+        >>> source_tempo = contexttools.TempoMark((1, 4), 54)
+        >>> result = q(source[:], tempo = source_tempo)
 
     ::
 
-        abjad> q = QGridQuantizer()
-        abjad> source = Staff("c'4 d'4 e'4. r8 <c' e' g'>2. <d' g' b'>4")
-        abjad> t = contexttools.TempoMark((1, 8), 34, target_context = Staff)(source)
-        abjad> t = contexttools.TempoMark((1, 4), 135, target_context = Staff)(source[3])
-        abjad> result = q(source[:])
+        >>> q = QGridQuantizer()
+        >>> source = Staff("c'4 d'4 e'4. r8 <c' e' g'>2. <d' g' b'>4")
+        >>> t = contexttools.TempoMark((1, 8), 34, target_context = Staff)(source)
+        >>> t = contexttools.TempoMark((1, 4), 135, target_context = Staff)(source[3])
+        >>> result = q(source[:])
 
     `QGridQuantizer` can quantize lists of millisecond durations.  Negative values can be used
     to indicate silences.
 
     ::
 
-        abjad> q = QGridQuantizer()
-        abjad> milliseconds = [100, 120, -133, 500, -1003, 125]
-        abjad> result = q(milliseconds)
+        >>> q = QGridQuantizer()
+        >>> milliseconds = [100, 120, -133, 500, -1003, 125]
+        >>> result = q(milliseconds)
 
     `QGridQuantizer` can also quantize lists of rationals, if a tempo is provided.  As with
     quantizing millisecond durations, negative values can be used to indicate silences.
 
     ::
 
-        abjad> q = QGridQuantizer()
-        abjad> rationals = [1, Fraction(1, 2), Fraction(-1, 4), 3, Fraction(-1, 3), 2]
-        abjad> tempo = contexttools.TempoMark((1, 4), 45)
-        abjad> result = q(rationals, tempo = tempo)
+        >>> q = QGridQuantizer()
+        >>> rationals = [1, Fraction(1, 2), Fraction(-1, 4), 3, Fraction(-1, 3), 2]
+        >>> tempo = contexttools.TempoMark((1, 4), 45)
+        >>> result = q(rationals, tempo = tempo)
 
     Lastly, `QGridQuantizer` can quantize lists of pairs, where the first value in each pair
     is a millisecond duration, and the second value is an int or float - indicating a single pitch -,
@@ -99,9 +99,9 @@ class QGridQuantizer(_Quantizer):
 
     ::
 
-        abjad> q = QGridQuantizer()
-        abjad> pairs = [(130, 0), (250, 2), (500, None), (1303, [0, 1, 4])]
-        abjad> result = q(pairs)
+        >>> q = QGridQuantizer()
+        >>> pairs = [(130, 0), (250, 2), (500, None), (1303, [0, 1, 4])]
+        >>> result = q(pairs)
 
     .. todo :: Write a documentation chapter on quantization.
     .. todo :: Implement multiprocessing-based QGrid comparison

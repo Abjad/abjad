@@ -10,11 +10,11 @@ def yield_all_subchords_of_chord(chord):
 
     Yield all subchords of `chord` in binary string order::
 
-        abjad> chord = Chord("<c' d' af' a'>4")
+        >>> chord = Chord("<c' d' af' a'>4")
 
     ::
 
-        abjad> for subchord in chordtools.yield_all_subchords_of_chord(chord):
+        >>> for subchord in chordtools.yield_all_subchords_of_chord(chord):
         ...     subchord
         ... 
         Rest('r4')

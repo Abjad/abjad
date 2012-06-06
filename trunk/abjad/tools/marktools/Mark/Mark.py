@@ -7,11 +7,11 @@ class Mark(AbjadObject):
 
     Abstract class from which concrete marks inherit::
 
-        abjad> note = Note("c'4")
+        >>> note = Note("c'4")
 
     ::
 
-        abjad> marktools.Mark()(note)
+        >>> marktools.Mark()(note)
         Mark()(c'4)
 
     Marks override ``___call__`` to attach to a note, rest or chord.
@@ -100,12 +100,12 @@ class Mark(AbjadObject):
     def start_component(self):
         '''Read-only reference to mark start component::
 
-            abjad> note = Note("c'4")
-            abjad> mark = marktools.Mark()(note)
+            >>> note = Note("c'4")
+            >>> mark = marktools.Mark()(note)
 
         ::
 
-            abjad> mark.start_component
+            >>> mark.start_component
             Note("c'4")
 
         Return component or none.
@@ -117,17 +117,17 @@ class Mark(AbjadObject):
     def attach(self, start_component):
         '''Attach mark to `start_component`::
 
-            abjad> note = Note("c'4")
-            abjad> mark = marktools.Mark()
+            >>> note = Note("c'4")
+            >>> mark = marktools.Mark()
 
         ::
 
-            abjad> mark.attach(note)
+            >>> mark.attach(note)
             Mark()(c'4)
 
         ::
 
-            abjad> mark.start_component
+            >>> mark.start_component
             Note("c'4")
 
         Return mark.
@@ -138,22 +138,22 @@ class Mark(AbjadObject):
     def detach(self):
         '''Detach mark::
 
-            abjad> note = Note("c'4")
-            abjad> mark = marktools.Mark()(note)
+            >>> note = Note("c'4")
+            >>> mark = marktools.Mark()(note)
 
         ::
 
-            abjad> mark.start_component
+            >>> mark.start_component
             Note("c'4")
 
         ::
 
-            abjad> mark.detach()
+            >>> mark.detach()
             Mark()
 
         ::
 
-            abjad> mark.start_component is None
+            >>> mark.start_component is None
             True
 
         Return mark.

@@ -6,7 +6,7 @@ class NamedDiatonicPitchClass(DiatonicPitchClassObject):
 
     Abjad model of a named diatonic pitch-class::
 
-        abjad> pitchtools.NamedDiatonicPitchClass('c')
+        >>> pitchtools.NamedDiatonicPitchClass('c')
         NamedDiatonicPitchClass('c')
 
     Named diatonic pitch-classes are immutable.
@@ -56,8 +56,8 @@ class NamedDiatonicPitchClass(DiatonicPitchClassObject):
     def numbered_diatonic_pitch_class(self):
         '''Read-only numbered diatonic pitch-class from named diatonic pitch-class::
 
-            abjad> named_diatonic_pitch_class = pitchtools.NamedDiatonicPitchClass('c')
-            abjad> named_diatonic_pitch_class.numbered_diatonic_pitch_class
+            >>> named_diatonic_pitch_class = pitchtools.NamedDiatonicPitchClass('c')
+            >>> named_diatonic_pitch_class.numbered_diatonic_pitch_class
             NumberedDiatonicPitchClass(0)
 
         Return numbered diatonic pitch-class.

@@ -3,16 +3,16 @@ def is_integer_n_tuple(expr, n):
 
     True when `expr` is an integer tuple of length `n`::
 
-        abjad> from abjad.tools import sequencetools
+        >>> from abjad.tools import sequencetools
 
     ::
 
-        abjad> sequencetools.is_integer_n_tuple((19, 20, 21), 3)
+        >>> sequencetools.is_integer_n_tuple((19, 20, 21), 3)
         True
 
     Otherwise false::
 
-        abjad> sequencetools.is_integer_n_tuple((19, 20, 'text'), 3)
+        >>> sequencetools.is_integer_n_tuple((19, 20, 'text'), 3)
         False
 
     Return boolean.

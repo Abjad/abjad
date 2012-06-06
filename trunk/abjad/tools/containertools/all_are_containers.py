@@ -7,21 +7,21 @@ def all_are_containers(expr):
 
     True when `expr` is a sequence of Abjad containers::
 
-        abjad> containers = 3 * Container("c'8 d'8 e'8")
+        >>> containers = 3 * Container("c'8 d'8 e'8")
 
     ::
 
-        abjad> containertools.all_are_containers(containers)
+        >>> containertools.all_are_containers(containers)
         True
 
     True when `expr` is an empty sequence::
 
-        abjad> containertools.all_are_containers([])
+        >>> containertools.all_are_containers([])
         True
 
     Otherwise false::
 
-        abjad> containertools.all_are_containers('foo')
+        >>> containertools.all_are_containers('foo')
         False
 
     Return boolean.

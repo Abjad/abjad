@@ -7,14 +7,14 @@ def get_instrument_mark_attached_to_component(component):
 
     Get instrument mark attached to `component`::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> violin = contexttools.InstrumentMark('Violin ', 'Vn. ')
-        abjad> violin.attach(staff)
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> violin = contexttools.InstrumentMark('Violin ', 'Vn. ')
+        >>> violin.attach(staff)
         InstrumentMark(instrument_name='Violin ', short_instrument_name='Vn. ')(Staff{4})
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \set Staff.instrumentName = \markup { Violin  }
             \set Staff.shortInstrumentName = \markup { Vn.  }
@@ -26,7 +26,7 @@ def get_instrument_mark_attached_to_component(component):
 
     ::
 
-        abjad> contexttools.get_instrument_mark_attached_to_component(staff)
+        >>> contexttools.get_instrument_mark_attached_to_component(staff)
         InstrumentMark(instrument_name='Violin ', short_instrument_name='Vn. ')(Staff{4})
 
     Return instrument mark.

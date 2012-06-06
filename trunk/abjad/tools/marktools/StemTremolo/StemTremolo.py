@@ -8,16 +8,16 @@ class StemTremolo(Mark):
 
     Abjad model of stem tremolo::
 
-        abjad> note = Note("c'4")
+        >>> note = Note("c'4")
 
     ::
 
-        abjad> marktools.StemTremolo(16)(note)
+        >>> marktools.StemTremolo(16)(note)
         StemTremolo(16)(c'4)
 
     ::
 
-        abjad> f(note)
+        >>> f(note)
         c'4 :16
 
     Stem tremolos implement ``__slots__``.
@@ -63,8 +63,8 @@ class StemTremolo(Mark):
     def format(self):
         '''Read-only LilyPond format string::
 
-            abjad> stem_tremolo = marktools.StemTremolo(16)
-            abjad> stem_tremolo.format
+            >>> stem_tremolo = marktools.StemTremolo(16)
+            >>> stem_tremolo.format
             ':16'
 
         Return string.
@@ -76,14 +76,14 @@ class StemTremolo(Mark):
         def fget(self):
             '''Get tremolo flags::
 
-                abjad> stem_tremolo = marktools.StemTremolo(16)
-                abjad> stem_tremolo.tremolo_flags
+                >>> stem_tremolo = marktools.StemTremolo(16)
+                >>> stem_tremolo.tremolo_flags
                 16
 
             Set tremolo flags::
 
-                abjad> stem_tremolo.tremolo_flags = 32
-                abjad> stem_tremolo.tremolo_flags
+                >>> stem_tremolo.tremolo_flags = 32
+                >>> stem_tremolo.tremolo_flags
                 32
 
             Set integer.

@@ -6,7 +6,7 @@ def named_chromatic_pitch_tokens_to_named_chromatic_pitches(pitch_tokens):
 
     Change named chromatic `pitch_tokens` to named chromatic pitches::
 
-        abjad> pitchtools.named_chromatic_pitch_tokens_to_named_chromatic_pitches([0, 2, ('ef', 4)])
+        >>> pitchtools.named_chromatic_pitch_tokens_to_named_chromatic_pitches([0, 2, ('ef', 4)])
         [NamedChromaticPitch("c'"), NamedChromaticPitch("d'"), NamedChromaticPitch("ef'")]
 
     Return list of zero or more named chromatic pitches.

@@ -6,12 +6,12 @@ def increase_sequence_elements_at_indices_by_addenda(sequence, addenda, indices)
 
     Increase `sequence` by `addenda` at `indices`::
 
-        abjad> from abjad.tools import sequencetools
+        >>> from abjad.tools import sequencetools
 
     ::
 
-        abjad> sequence = [1, 1, 2, 3, 5, 5, 1, 2, 5, 5, 6]
-        abjad> sequencetools.increase_sequence_elements_at_indices_by_addenda(sequence, [0.5, 0.5], [0, 4, 8])
+        >>> sequence = [1, 1, 2, 3, 5, 5, 1, 2, 5, 5, 6]
+        >>> sequencetools.increase_sequence_elements_at_indices_by_addenda(sequence, [0.5, 0.5], [0, 4, 8])
         [1.5, 1.5, 2, 3, 5.5, 5.5, 1, 2, 5.5, 5.5, 6]
 
     Return list.

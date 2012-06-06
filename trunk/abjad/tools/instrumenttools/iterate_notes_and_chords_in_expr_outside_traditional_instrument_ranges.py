@@ -8,13 +8,13 @@ def iterate_notes_and_chords_in_expr_outside_traditional_instrument_ranges(expr)
 
     Iterate notes and chords in `expr` outside traditional instrument ranges::
 
-        abjad> staff = Staff("c'8 r8 <d fs>8 r8")
-        abjad> instrumenttools.Violin()(staff)
+        >>> staff = Staff("c'8 r8 <d fs>8 r8")
+        >>> instrumenttools.Violin()(staff)
         Violin()(Staff{4})
 
     ::
 
-        abjad> for note_or_chord in instrumenttools.iterate_notes_and_chords_in_expr_outside_traditional_instrument_ranges(staff):
+        >>> for note_or_chord in instrumenttools.iterate_notes_and_chords_in_expr_outside_traditional_instrument_ranges(staff):
         ...   note_or_chord
         Chord('<d fs>8')
 

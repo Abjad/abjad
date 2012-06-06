@@ -21,12 +21,12 @@ class VariableLengthStreamSolver(_Solver):
 
     ::
 
-        abjad> from abjad.tools.constrainttools import *
-        abjad> domain = Domain([1, 2, 3, 4], 1)
-        abjad> target_sum = GlobalConstraint(lambda x: sum(x) == 5)
-        abjad> boundary_sum = GlobalConstraint(lambda x: sum(x) < 6)
-        abjad> solver = VariableLengthStreamSolver(domain, [boundary_sum], [target_sum])
-        abjad> for x in solver: x
+        >>> from abjad.tools.constrainttools import *
+        >>> domain = Domain([1, 2, 3, 4], 1)
+        >>> target_sum = GlobalConstraint(lambda x: sum(x) == 5)
+        >>> boundary_sum = GlobalConstraint(lambda x: sum(x) < 6)
+        >>> solver = VariableLengthStreamSolver(domain, [boundary_sum], [target_sum])
+        >>> for x in solver: x
         ...
         [1, 1, 1, 1, 1]
         [1, 1, 1, 2]

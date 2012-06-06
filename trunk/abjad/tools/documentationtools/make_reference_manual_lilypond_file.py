@@ -3,16 +3,16 @@ def make_reference_manual_lilypond_file(music=None):
 
     Make reference manual LilyPond file.
 
-        abjad> from abjad.tools import documentationtools
+        >>> from abjad.tools import documentationtools
 
     ::
 
-        abjad> score = Score([Staff('c d e f')])
-        abjad> lilypond_file = documentationtools.make_reference_manual_lilypond_file(score)
+        >>> score = Score([Staff('c d e f')])
+        >>> lilypond_file = documentationtools.make_reference_manual_lilypond_file(score)
 
     ::
 
-        abjad> f(lilypond_file) # doctest: +SKIP
+        >>> f(lilypond_file) # doctest: +SKIP
         % Abjad revision 5653
         % 2012-05-19 11:21
 

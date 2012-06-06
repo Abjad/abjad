@@ -7,17 +7,17 @@ def set_line_breaks_cyclically_by_line_duration_in_seconds_ge(expr, line_duratio
     r'''Iterate `klass` instances in `expr` and accumulate duration in seconds.
     Add line break after every total less than or equal to `line_duration`::
 
-        abjad> from abjad.tools import layouttools
+        >>> from abjad.tools import layouttools
 
     ::
 
-        abjad> t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
-        abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-        abjad> tempo_mark = contexttools.TempoMark(Duration(1, 8), 44, target_context = Staff)(t)
+        >>> t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+        >>> tempo_mark = contexttools.TempoMark(Duration(1, 8), 44, target_context = Staff)(t)
 
     ::
 
-        abjad> f(t)
+        >>> f(t)
         \new Staff {
             \tempo 8=44
             {
@@ -41,8 +41,8 @@ def set_line_breaks_cyclically_by_line_duration_in_seconds_ge(expr, line_duratio
 
     ::
 
-        abjad> layouttools.set_line_breaks_cyclically_by_line_duration_in_seconds_ge(t, Duration(6))
-        abjad> f(t)
+        >>> layouttools.set_line_breaks_cyclically_by_line_duration_in_seconds_ge(t, Duration(6))
+        >>> f(t)
         \new Staff {
             \tempo 8=44
             {

@@ -3,14 +3,14 @@ def replace_contents_of_target_container_with_contents_of_source_container(targe
 
     Replace contents of `target_container` with contents of `source_container`::
 
-        abjad> staff = Staff(Tuplet(Fraction(2, 3), "c'8 d'8 e'8") * 3)
-        abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
-        abjad> beamtools.BeamSpanner(staff.leaves)
+        >>> staff = Staff(Tuplet(Fraction(2, 3), "c'8 d'8 e'8") * 3)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+        >>> beamtools.BeamSpanner(staff.leaves)
         BeamSpanner(c'8, d'8, ... [5] ..., c''8, d''8)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \times 2/3 {
                 c'8 [
@@ -31,13 +31,13 @@ def replace_contents_of_target_container_with_contents_of_source_container(targe
 
     ::
 
-        abjad> container = Container("c'8 d'8 e'8")
-        abjad> spannertools.SlurSpanner(container.leaves)
+        >>> container = Container("c'8 d'8 e'8")
+        >>> spannertools.SlurSpanner(container.leaves)
         SlurSpanner(c'8, d'8, e'8)
 
     ::
 
-        abjad> f(container)
+        >>> f(container)
         {
             c'8 (
             d'8
@@ -46,12 +46,12 @@ def replace_contents_of_target_container_with_contents_of_source_container(targe
 
     ::
 
-        abjad> containertools.replace_contents_of_target_container_with_contents_of_source_container(staff[1], container)
+        >>> containertools.replace_contents_of_target_container_with_contents_of_source_container(staff[1], container)
         Tuplet(2/3, [c'8, d'8, e'8])
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \times 2/3 {
                 c'8 [
@@ -72,7 +72,7 @@ def replace_contents_of_target_container_with_contents_of_source_container(targe
 
     Leave `source_container` empty::
 
-        abjad> container
+        >>> container
         {}
 
     Return `target_container`.

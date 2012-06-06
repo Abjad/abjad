@@ -7,12 +7,12 @@ def get_effective_staff(component):
 
     Get effective staff of `component`::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> staff.name = 'First Staff'
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> staff.name = 'First Staff'
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \context Staff = "First Staff" {
             c'8
             d'8
@@ -22,7 +22,7 @@ def get_effective_staff(component):
 
     ::
 
-        abjad> for note in staff:
+        >>> for note in staff:
         ...     print note, contexttools.get_effective_staff(note)
         ...
         c'8 Staff-"First Staff"{4}

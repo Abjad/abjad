@@ -7,13 +7,13 @@ def parse_rtm_syntax(rtm):
 
     ::
 
-        abjad> from abjad.tools.rhythmtreetools import parse_rtm_syntax
+        >>> from abjad.tools.rhythmtreetools import parse_rtm_syntax
 
     ::
 
-        abjad> rtm = '(1 (1 (1 (1 1)) 1))'
-        abjad> result = parse_rtm_syntax(rtm)
-        abjad> result
+        >>> rtm = '(1 (1 (1 (1 1)) 1))'
+        >>> result = parse_rtm_syntax(rtm)
+        >>> result
         FixedDurationTuplet(1/4, [c'8, c'16, c'16, c'8])
 
     Return `FixedDurationTuplet` or `Container` instance.

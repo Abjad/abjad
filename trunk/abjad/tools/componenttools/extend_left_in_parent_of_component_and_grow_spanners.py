@@ -3,13 +3,13 @@ def extend_left_in_parent_of_component_and_grow_spanners(component, new_componen
 
     Extend `new_components` left in parent of `component` and grow spanners::
 
-        abjad> voice = Voice("c'8 d'8 e'8")
-        abjad> beamtools.BeamSpanner(voice[:])
+        >>> voice = Voice("c'8 d'8 e'8")
+        >>> beamtools.BeamSpanner(voice[:])
         BeamSpanner(c'8, d'8, e'8)
 
     ::
 
-        abjad> f(voice)
+        >>> f(voice)
         \new Voice {
             c'8 [
             d'8
@@ -18,13 +18,13 @@ def extend_left_in_parent_of_component_and_grow_spanners(component, new_componen
 
     ::
 
-        abjad> new_components = 3 * Note(0, (1, 16))
-        abjad> componenttools.extend_left_in_parent_of_component_and_grow_spanners(voice[0], new_components)
+        >>> new_components = 3 * Note(0, (1, 16))
+        >>> componenttools.extend_left_in_parent_of_component_and_grow_spanners(voice[0], new_components)
         [Note("c'16"), Note("c'16"), Note("c'16"), Note("c'8")]
 
     ::
 
-        abjad> f(voice)
+        >>> f(voice)
         \new Voice {
             c'16 [
             c'16

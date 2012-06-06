@@ -6,7 +6,7 @@ class InversionEquivalentChromaticIntervalClassSet(IntervalClassObjectSet):
 
     Abjad model of inversion-equivalent chromatic interval-class set::
 
-        abjad> pitchtools.InversionEquivalentChromaticIntervalClassSet([1, 1, 6, 2, 2])
+        >>> pitchtools.InversionEquivalentChromaticIntervalClassSet([1, 1, 6, 2, 2])
         InversionEquivalentChromaticIntervalClassSet(1, 2, 6)
 
     Inversion-equivalent chromatic interval-class sets are immutable.

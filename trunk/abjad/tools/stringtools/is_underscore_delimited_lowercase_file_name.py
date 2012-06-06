@@ -15,12 +15,12 @@ def is_underscore_delimited_lowercase_file_name(expr):
 
     True when `expr` is a string and is underscore-delimited lowercase file name with extension::
 
-        abjad> stringtools.is_underscore_delimited_lowercase_file_name('foo_bar')
+        >>> stringtools.is_underscore_delimited_lowercase_file_name('foo_bar')
         True
     
     False otherwise::
 
-        abjad> stringtools.is_underscore_delimited_lowercase_file_name('foo.bar.blah')
+        >>> stringtools.is_underscore_delimited_lowercase_file_name('foo.bar.blah')
         False
 
     Return boolean.

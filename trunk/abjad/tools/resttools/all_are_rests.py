@@ -7,21 +7,21 @@ def all_are_rests(expr):
 
     True when `expr` is a sequence of Abjad rests::
 
-        abjad> rests = [Rest('r4'), Rest('r4'), Rest('r4')]
+        >>> rests = [Rest('r4'), Rest('r4'), Rest('r4')]
 
     ::
 
-        abjad> resttools.all_are_rests(rests)
+        >>> resttools.all_are_rests(rests)
         True
 
     True when `expr` is an empty sequence::
 
-        abjad> resttools.all_are_rests([])
+        >>> resttools.all_are_rests([])
         True
 
     Otherwise false::
 
-        abjad> resttools.all_are_rests('foo')
+        >>> resttools.all_are_rests('foo')
         False
 
     Return boolean.

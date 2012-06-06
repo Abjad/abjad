@@ -5,13 +5,13 @@ from abjad.tools.leaftools.Leaf import Leaf
 class GraceContainer(Container):
     r'''Abjad model of grace music::
 
-        abjad> voice = Voice("c'8 d'8 e'8 f'8")
-        abjad> beamtools.BeamSpanner(voice[:])
+        >>> voice = Voice("c'8 d'8 e'8 f'8")
+        >>> beamtools.BeamSpanner(voice[:])
         BeamSpanner(c'8, d'8, e'8, f'8)
 
     ::
 
-        abjad> f(voice)
+        >>> f(voice)
         \new Voice {
             c'8 [
             d'8
@@ -21,13 +21,13 @@ class GraceContainer(Container):
 
     ::
 
-        abjad> grace_notes = [Note("c'16"), Note("d'16")]
-        abjad> gracetools.GraceContainer(grace_notes, kind = 'grace')(voice[1])
+        >>> grace_notes = [Note("c'16"), Note("d'16")]
+        >>> gracetools.GraceContainer(grace_notes, kind = 'grace')(voice[1])
         Note("d'8")
 
     ::
 
-        abjad> f(voice)
+        >>> f(voice)
         \new Voice {
             c'8 [
             \grace {
@@ -42,13 +42,13 @@ class GraceContainer(Container):
 
     ::
 
-        abjad> after_grace_notes = [Note("e'16"), Note("f'16")]
-        abjad> gracetools.GraceContainer(after_grace_notes, kind = 'after')(voice[1])
+        >>> after_grace_notes = [Note("e'16"), Note("f'16")]
+        >>> gracetools.GraceContainer(after_grace_notes, kind = 'after')(voice[1])
         Note("d'8")
 
     ::
 
-        abjad> f(voice)
+        >>> f(voice)
         \new Voice {
             c'8 [
             \grace {
@@ -135,23 +135,23 @@ class GraceContainer(Container):
         def fget(self):
             r'''Get `kind` of grace container::
 
-                abjad> staff = Staff("c'8 d'8 e'8 f'8")
-                abjad> gracetools.GraceContainer([Note("cs'16")], kind = 'grace')(staff[1])
+                >>> staff = Staff("c'8 d'8 e'8 f'8")
+                >>> gracetools.GraceContainer([Note("cs'16")], kind = 'grace')(staff[1])
                 Note("d'8")
-                abjad> grace_container = staff[1].grace
-                abjad> grace_container.kind
+                >>> grace_container = staff[1].grace
+                >>> grace_container.kind
                 'grace'
 
             Return string.
 
             Set `kind` of grace container::
 
-                abjad> staff = Staff("c'8 d'8 e'8 f'8")
-                abjad> gracetools.GraceContainer([Note("cs'16")], kind = 'grace')(staff[1])
+                >>> staff = Staff("c'8 d'8 e'8 f'8")
+                >>> gracetools.GraceContainer([Note("cs'16")], kind = 'grace')(staff[1])
                 Note("d'8")
-                abjad> grace_container = staff[1].grace
-                abjad> grace_container.kind = 'acciaccatura'
-                abjad> grace_container.kind
+                >>> grace_container = staff[1].grace
+                >>> grace_container.kind = 'acciaccatura'
+                >>> grace_container.kind
                 'acciaccatura'
 
             Set string.
@@ -169,11 +169,11 @@ class GraceContainer(Container):
     def detach(self):
         r'''Detach grace container from leaf::
 
-            abjad> staff = Staff("c'8 d'8 e'8 f'8")
-            abjad> grace_container = gracetools.GraceContainer([Note("cs'16")], kind = 'grace')
-            abjad> grace_container(staff[1])
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> grace_container = gracetools.GraceContainer([Note("cs'16")], kind = 'grace')
+            >>> grace_container(staff[1])
             Note("d'8")
-            abjad> f(staff)
+            >>> f(staff)
             \new Staff {
                 c'8
                 \grace {
@@ -186,9 +186,9 @@ class GraceContainer(Container):
 
         ::
 
-            abjad> grace_container.detach()
+            >>> grace_container.detach()
             GraceContainer()
-            abjad> f(staff)
+            >>> f(staff)
             \new Staff {
                 c'8
                 d'8

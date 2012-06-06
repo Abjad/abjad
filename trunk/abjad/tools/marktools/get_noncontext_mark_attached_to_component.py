@@ -6,13 +6,13 @@ def get_noncontext_mark_attached_to_component(component):
 
     Get exactly one noncontext_mark attached to `component`::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> marktools.Articulation('staccato')(staff[0])
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> marktools.Articulation('staccato')(staff[0])
         Articulation('staccato')(c'8)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8 -\staccato
             d'8
@@ -22,7 +22,7 @@ def get_noncontext_mark_attached_to_component(component):
 
     ::
 
-        abjad> marktools.get_noncontext_mark_attached_to_component(staff[0])
+        >>> marktools.get_noncontext_mark_attached_to_component(staff[0])
         Articulation('staccato')(c'8)
 
     Return one noncontext_mark.

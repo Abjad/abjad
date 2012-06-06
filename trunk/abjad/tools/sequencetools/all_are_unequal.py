@@ -3,21 +3,21 @@ def all_are_unequal(expr):
 
     True when `expr` is a sequence all elements in `expr` are unequal::
 
-        abjad> from abjad.tools import sequencetools
+        >>> from abjad.tools import sequencetools
 
     ::
 
-        abjad> sequencetools.all_are_unequal([1, 2, 3, 4, 9])
+        >>> sequencetools.all_are_unequal([1, 2, 3, 4, 9])
         True
 
     True when `expr` is an empty sequence::
 
-        abjad> sequencetools.all_are_unequal([])
+        >>> sequencetools.all_are_unequal([])
         True
 
     False otherwise::
 
-        abjad> sequencetools.all_are_unequal(17)
+        >>> sequencetools.all_are_unequal(17)
         False
 
     Return boolean.

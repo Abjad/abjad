@@ -12,21 +12,21 @@ class TwoStaffPianoScoreTemplate(ScoreTemplate):
 
     Two-staff piano score template::
 
-        abjad> from abjad.tools import scoretemplatetools
+        >>> from abjad.tools import scoretemplatetools
 
     ::
 
-        abjad> template = scoretemplatetools.TwoStaffPianoScoreTemplate()
-        abjad> score = template()
+        >>> template = scoretemplatetools.TwoStaffPianoScoreTemplate()
+        >>> score = template()
 
     ::
 
-        abjad> score
+        >>> score
         Score-"Two-Staff Piano Score"<<1>>
 
     ::
 
-        abjad> f(score)
+        >>> f(score)
         \context Score = "Two-Staff Piano Score" <<
             \context PianoStaff = "Piano Staff" <<
                 \set PianoStaff.instrumentName = \markup { Piano }

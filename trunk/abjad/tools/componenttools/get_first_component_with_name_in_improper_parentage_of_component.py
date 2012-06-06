@@ -6,12 +6,12 @@ def get_first_component_with_name_in_improper_parentage_of_component(component, 
 
     Get first component with `name` in improper parentage of `component`::
 
-        abjad> score = Score([Staff("c'4 d'4 e'4 f'4")])
-        abjad> score.name = 'The Score'
+        >>> score = Score([Staff("c'4 d'4 e'4 f'4")])
+        >>> score.name = 'The Score'
 
     ::
 
-        abjad> f(score)
+        >>> f(score)
         \context Score = "The Score" <<
             \new Staff {
                 c'4
@@ -23,16 +23,16 @@ def get_first_component_with_name_in_improper_parentage_of_component(component, 
 
     ::
 
-        abjad> leaf = score.leaves[0]
+        >>> leaf = score.leaves[0]
 
     ::
 
-        abjad> componenttools.get_first_component_with_name_in_improper_parentage_of_component(leaf, 'The Score')
+        >>> componenttools.get_first_component_with_name_in_improper_parentage_of_component(leaf, 'The Score')
         Score-"The Score"<<1>>
 
     ::
 
-        abjad> componenttools.get_first_component_with_name_in_improper_parentage_of_component(leaf, 'foo') is None
+        >>> componenttools.get_first_component_with_name_in_improper_parentage_of_component(leaf, 'foo') is None
         True
 
     Return component or none.

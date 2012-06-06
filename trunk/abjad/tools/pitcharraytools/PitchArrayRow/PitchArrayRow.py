@@ -9,36 +9,36 @@ class PitchArrayRow(AbjadObject):
 
     One row in pitch array. ::
 
-        abjad> from abjad.tools import pitcharraytools
+        >>> from abjad.tools import pitcharraytools
 
     ::
 
-        abjad> array = pitcharraytools.PitchArray([[1, 2, 1], [2, 1, 1]])
-        abjad> array[0].cells[0].pitches.append(0)
-        abjad> array[0].cells[1].pitches.append(2)
-        abjad> array[1].cells[2].pitches.append(4)
-        abjad> print array
+        >>> array = pitcharraytools.PitchArray([[1, 2, 1], [2, 1, 1]])
+        >>> array[0].cells[0].pitches.append(0)
+        >>> array[0].cells[1].pitches.append(2)
+        >>> array[1].cells[2].pitches.append(4)
+        >>> print array
         [c'] [d'    ] [  ]
         [         ] [ ] [e']
 
     ::
 
-        abjad> array[0]
+        >>> array[0]
         PitchArrayRow(c', d' x2, x1)
 
     ::
 
-        abjad> array[0].cell_widths
+        >>> array[0].cell_widths
         (1, 2, 1)
 
     ::
 
-        abjad> array[0].dimensions
+        >>> array[0].dimensions
         (1, 4)
 
     ::
 
-        abjad> array[0].pitches
+        >>> array[0].pitches
         (NamedChromaticPitch("c'"), NamedChromaticPitch("d'"))
 
     Return pitch array row.

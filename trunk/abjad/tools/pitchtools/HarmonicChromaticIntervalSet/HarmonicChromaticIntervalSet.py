@@ -6,7 +6,7 @@ class HarmonicChromaticIntervalSet(IntervalObjectSet):
 
     Abjad model of harmonic chromatic interval set::
 
-        abjad> pitchtools.HarmonicChromaticIntervalSet([10, -12, -13, -13, -13.5])
+        >>> pitchtools.HarmonicChromaticIntervalSet([10, -12, -13, -13, -13.5])
         HarmonicChromaticIntervalSet(10, 12, 13, 13.5)
 
     Harmonic chromatic interval sets are immutable.

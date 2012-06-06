@@ -6,11 +6,11 @@ def replace_n_edge_elements_in_container_with_rests(container, n):
 
     Replace first `n` elements in `container` with big-endian rests::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8")
+        >>> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8")
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8
             d'8
@@ -20,12 +20,12 @@ def replace_n_edge_elements_in_container_with_rests(container, n):
             a'8
         }
 
-        abjad> containertools.replace_n_edge_elements_in_container_with_rests(staff, 5)
+        >>> containertools.replace_n_edge_elements_in_container_with_rests(staff, 5)
         Staff{3}
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             r2
             r8
@@ -34,11 +34,11 @@ def replace_n_edge_elements_in_container_with_rests(container, n):
 
     Replace last `n` elements in `container` with little-endian rests::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8")
+        >>> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8")
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8
             d'8
@@ -50,12 +50,12 @@ def replace_n_edge_elements_in_container_with_rests(container, n):
 
     ::
 
-        abjad> containertools.replace_n_edge_elements_in_container_with_rests(staff, -5)
+        >>> containertools.replace_n_edge_elements_in_container_with_rests(staff, -5)
         Staff{3}
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8
             r8

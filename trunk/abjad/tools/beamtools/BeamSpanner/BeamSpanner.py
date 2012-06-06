@@ -4,11 +4,11 @@ from abjad.tools.spannertools._DirectedSpanner._DirectedSpanner import _Directed
 class BeamSpanner(_DirectedSpanner):
     r'''Abjad beam spanner::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8 g'2")
+        >>> staff = Staff("c'8 d'8 e'8 f'8 g'2")
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8
             d'8
@@ -19,12 +19,12 @@ class BeamSpanner(_DirectedSpanner):
 
     ::
 
-        abjad> beamtools.BeamSpanner(staff[:4])
+        >>> beamtools.BeamSpanner(staff[:4])
         BeamSpanner(c'8, d'8, e'8, f'8)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8 [
             d'8

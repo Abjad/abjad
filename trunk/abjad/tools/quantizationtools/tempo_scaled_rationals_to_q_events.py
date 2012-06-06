@@ -19,10 +19,10 @@ def tempo_scaled_rationals_to_q_events(durations, tempo):
 
     ::
 
-        abjad> from abjad.tools.quantizationtools import tempo_scaled_rationals_to_q_events
-        abjad> durations = [Duration(-1, 2), Duration(1, 4), Duration(1, 6)]
-        abjad> tempo = contexttools.TempoMark((1, 4), 55)
-        abjad> tempo_scaled_rationals_to_q_events(durations, tempo)
+        >>> from abjad.tools.quantizationtools import tempo_scaled_rationals_to_q_events
+        >>> durations = [Duration(-1, 2), Duration(1, 4), Duration(1, 6)]
+        >>> tempo = contexttools.TempoMark((1, 4), 55)
+        >>> tempo_scaled_rationals_to_q_events(durations, tempo)
         [QEvent(Offset(0, 1), None), QEvent(Offset(24000, 11), 0), QEvent(Offset(36000, 11), 0), QEvent(Duration(4000, 1), None)]
 
     Return a list of :py:class:`~abjad.tools.quantizationtools.QEvent` objects.

@@ -3,41 +3,41 @@ def arg_to_tridirectional_lilypond_symbol(arg):
 
     ::  
 
-        abjad> from abjad.tools import stringtools
+        >>> from abjad.tools import stringtools
 
     ::
 
-        abjad> stringtools.arg_to_tridirectional_lilypond_symbol('up')
+        >>> stringtools.arg_to_tridirectional_lilypond_symbol('up')
         '^'
 
     ::
 
-        abjad> stringtools.arg_to_tridirectional_lilypond_symbol('neutral')
+        >>> stringtools.arg_to_tridirectional_lilypond_symbol('neutral')
         '-'
 
     ::
 
-        abjad> stringtools.arg_to_tridirectional_lilypond_symbol('default')
+        >>> stringtools.arg_to_tridirectional_lilypond_symbol('default')
         '-'
 
     ::
 
-        abjad> stringtools.arg_to_tridirectional_lilypond_symbol('down')
+        >>> stringtools.arg_to_tridirectional_lilypond_symbol('down')
         '_'
 
     ::
 
-        abjad> stringtools.arg_to_tridirectional_lilypond_symbol(1)
+        >>> stringtools.arg_to_tridirectional_lilypond_symbol(1)
         '^'
 
     ::
 
-        abjad> stringtools.arg_to_tridirectional_lilypond_symbol(0)
+        >>> stringtools.arg_to_tridirectional_lilypond_symbol(0)
         '-'
 
     ::
 
-        abjad> stringtools.arg_to_tridirectional_lilypond_symbol(-1)
+        >>> stringtools.arg_to_tridirectional_lilypond_symbol(-1)
         '_'
 
     If `arg` is None, None will be returned.

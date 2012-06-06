@@ -7,7 +7,7 @@ def chromatic_pitch_name_to_octave_number(chromatic_pitch_name):
 
     Change `chromatic_pitch_name` to octave number::
 
-        abjad> pitchtools.chromatic_pitch_name_to_octave_number('cs')
+        >>> pitchtools.chromatic_pitch_name_to_octave_number('cs')
         3
 
     Return integer.

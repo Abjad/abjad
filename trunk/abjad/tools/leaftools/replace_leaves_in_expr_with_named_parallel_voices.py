@@ -11,8 +11,8 @@ def replace_leaves_in_expr_with_named_parallel_voices(expr, upper_name, lower_na
 
     ::
 
-        abjad> c = p('{ c c c c }')
-        abjad> f(c)
+        >>> c = p('{ c c c c }')
+        >>> f(c)
         {
             c4
             c4
@@ -22,12 +22,12 @@ def replace_leaves_in_expr_with_named_parallel_voices(expr, upper_name, lower_na
 
     ::
 
-        abjad> leaftools.replace_leaves_in_expr_with_named_parallel_voices(c.leaves[1:3], 'upper', 'lower')
+        >>> leaftools.replace_leaves_in_expr_with_named_parallel_voices(c.leaves[1:3], 'upper', 'lower')
         ([Note('c4'), Note('c4')], [Note('c4'), Note('c4')])
 
     ::
 
-        abjad> f(c)
+        >>> f(c)
         {
             c4
             <<
@@ -48,8 +48,8 @@ def replace_leaves_in_expr_with_named_parallel_voices(expr, upper_name, lower_na
 
     ::
 
-        abjad> c = p(r'{ c8 \times 2/3 { c8 c c } \times 4/5 { c16 c c c c } c8 }')
-        abjad> f(c)
+        >>> c = p(r'{ c8 \times 2/3 { c8 c c } \times 4/5 { c16 c c c c } c8 }')
+        >>> f(c)
         {
             c8
             \times 2/3 {
@@ -69,12 +69,12 @@ def replace_leaves_in_expr_with_named_parallel_voices(expr, upper_name, lower_na
 
     ::
 
-        abjad> leaftools.replace_leaves_in_expr_with_named_parallel_voices(c.leaves[2:7], 'upper', 'lower')
+        >>> leaftools.replace_leaves_in_expr_with_named_parallel_voices(c.leaves[2:7], 'upper', 'lower')
         ([Note('c8'), Note('c8'), Note('c16'), Note('c16'), Note('c16')], [Note('c8'), Note('c8'), Note('c16'), Note('c16'), Note('c16')])
 
     ::
 
-        abjad> f(c)
+        >>> f(c)
         {
             c8
             \times 2/3 {

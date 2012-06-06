@@ -6,16 +6,16 @@ def map_sequence_elements_to_numbered_sublists(sequence):
 
     Map `sequence` elements to numbered sublists::
 
-        abjad> from abjad.tools import sequencetools
+        >>> from abjad.tools import sequencetools
 
     ::
 
-        abjad> sequencetools.map_sequence_elements_to_numbered_sublists([1, 2, -3, -4, 5])
+        >>> sequencetools.map_sequence_elements_to_numbered_sublists([1, 2, -3, -4, 5])
         [[1], [2, 3], [-4, -5, -6], [-7, -8, -9, -10], [11, 12, 13, 14, 15]]
 
     ::
 
-        abjad> sequencetools.map_sequence_elements_to_numbered_sublists([1, 0, -3, -4, 5])
+        >>> sequencetools.map_sequence_elements_to_numbered_sublists([1, 0, -3, -4, 5])
         [[1], [], [-2, -3, -4], [-5, -6, -7, -8], [9, 10, 11, 12, 13]]
 
     Note that numbering starts at ``1``.

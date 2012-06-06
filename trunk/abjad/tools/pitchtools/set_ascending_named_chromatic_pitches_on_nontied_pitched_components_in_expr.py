@@ -3,12 +3,12 @@ def set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(
 
     Set ascending named chromatic pitches on nontied pitched components in `expr`::
 
-        abjad> staff = Voice(notetools.make_notes(0, [(5, 32)] * 4))
-        abjad> pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(staff)
+        >>> staff = Voice(notetools.make_notes(0, [(5, 32)] * 4))
+        >>> pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(staff)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Voice {
             c'8 ~
             c'32

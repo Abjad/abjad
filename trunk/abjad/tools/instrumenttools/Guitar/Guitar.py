@@ -9,16 +9,16 @@ class Guitar(_StringInstrument):
 
     Abjad model of the guitar::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
 
     ::
 
-        abjad> instrumenttools.Guitar()(staff)
+        >>> instrumenttools.Guitar()(staff)
         Guitar()(Staff{4})
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \set Staff.instrumentName = \markup { Guitar }
             \set Staff.shortInstrumentName = \markup { Gt. }

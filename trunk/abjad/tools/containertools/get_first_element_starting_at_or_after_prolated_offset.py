@@ -6,11 +6,11 @@ def get_first_element_starting_at_or_after_prolated_offset(container, prolated_o
 
     Get first `container` element starting at or after `prolated_offset`::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
 
     ::
 
-        abjad> containertools.get_first_element_starting_at_or_after_prolated_offset(staff, Duration(1, 8))
+        >>> containertools.get_first_element_starting_at_or_after_prolated_offset(staff, Duration(1, 8))
         Note("d'8")
 
     Return component.

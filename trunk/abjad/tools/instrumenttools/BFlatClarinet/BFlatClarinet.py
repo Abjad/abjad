@@ -9,16 +9,16 @@ class BFlatClarinet(_Clarinet):
 
     Abjad model of the B-flat clarinet::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
 
     ::
 
-        abjad> instrumenttools.BFlatClarinet()(staff)
+        >>> instrumenttools.BFlatClarinet()(staff)
         BFlatClarinet()(Staff{4})
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \set Staff.instrumentName = \markup { Clarinet in B-flat }
             \set Staff.shortInstrumentName = \markup { Cl. in B-flat }

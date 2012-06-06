@@ -6,14 +6,14 @@ def detach_clef_marks_attached_to_component(component):
 
     Detach clef marks attached to `component`::
 
-        abjad> staff = Staff("c'4 d'4 e'4 f'4")
-        abjad> clef_mark = contexttools.ClefMark('treble')
-        abjad> clef_mark.attach(staff)
+        >>> staff = Staff("c'4 d'4 e'4 f'4")
+        >>> clef_mark = contexttools.ClefMark('treble')
+        >>> clef_mark.attach(staff)
         ClefMark('treble')(Staff{4})
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \clef "treble"
             c'4
@@ -24,12 +24,12 @@ def detach_clef_marks_attached_to_component(component):
 
     ::
 
-        abjad> contexttools.detach_clef_marks_attached_to_component(staff)
+        >>> contexttools.detach_clef_marks_attached_to_component(staff)
         (ClefMark('treble'),)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'4
             d'4

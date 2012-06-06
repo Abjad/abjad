@@ -6,13 +6,13 @@ def get_value_of_annotation_attached_to_component(component, name, default_value
 
     Get value of annotation with `name` attached to `component`::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> marktools.Annotation('special dictionary', {})(staff[0])
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> marktools.Annotation('special dictionary', {})(staff[0])
         Annotation('special dictionary', {})(c'8)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8
             d'8
@@ -22,7 +22,7 @@ def get_value_of_annotation_attached_to_component(component, name, default_value
 
     ::
 
-        abjad> marktools.get_value_of_annotation_attached_to_component(staff[0], 'special dictionary')
+        >>> marktools.get_value_of_annotation_attached_to_component(staff[0], 'special dictionary')
         {}
 
     Return arbitrary value of annotation.

@@ -3,13 +3,13 @@ def get_effective_context_mark(component, klass):
 
     Get effective context mark of `klass` from `component`::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> contexttools.TimeSignatureMark((4, 8))(staff)
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> contexttools.TimeSignatureMark((4, 8))(staff)
         TimeSignatureMark((4, 8))(Staff{4})
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \time 4/8
             c'8
@@ -20,7 +20,7 @@ def get_effective_context_mark(component, klass):
 
     ::
 
-        abjad> contexttools.get_effective_context_mark(staff[0], contexttools.TimeSignatureMark)
+        >>> contexttools.get_effective_context_mark(staff[0], contexttools.TimeSignatureMark)
         TimeSignatureMark((4, 8))(Staff{4})
 
 

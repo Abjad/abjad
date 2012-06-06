@@ -6,11 +6,11 @@ def color_measure(measure, color = 'red'):
 
     Color `measure` with `color`::
 
-        abjad> measure = Measure((2, 8), "c'8 d'8")
+        >>> measure = Measure((2, 8), "c'8 d'8")
 
     ::
 
-        abjad> f(measure)
+        >>> f(measure)
         {
             \time 2/8
             c'8
@@ -19,12 +19,12 @@ def color_measure(measure, color = 'red'):
 
     ::
 
-        abjad> measuretools.color_measure(measure, 'red')
+        >>> measuretools.color_measure(measure, 'red')
         Measure(2/8, [c'8, d'8])
 
     ::
 
-        abjad> f(measure)
+        >>> f(measure)
         {
             \override Beam #'color = #red
             \override Dots #'color = #red

@@ -6,13 +6,13 @@ def parse_reduced_ly_syntax(string):
 
     ::
 
-        abjad> from abjad.tools.rhythmtreetools import parse_reduced_ly_syntax
+        >>> from abjad.tools.rhythmtreetools import parse_reduced_ly_syntax
 
     ::
 
-        abjad> string = '4 -4. 8.. 5/3 { 2/3 {(3, 8)} (3, 8) -8 } 4'
-        abjad> result = parse_reduced_ly_syntax(string)
-        abjad> for x in result:
+        >>> string = '4 -4. 8.. 5/3 { 2/3 {(3, 8)} (3, 8) -8 } 4'
+        >>> result = parse_reduced_ly_syntax(string)
+        >>> for x in result:
         ...     x
         ...
         Note("c'4")

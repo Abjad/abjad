@@ -6,16 +6,16 @@ from abjad.tools.spannertools.TextSpanner import TextSpanner
 class BracketSpanner(TextSpanner):
     r'''Abjad bracket spanner::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
 
     ::
 
-        abjad> spannertools.BracketSpanner(staff[:])
+        >>> spannertools.BracketSpanner(staff[:])
         BracketSpanner(c'8, d'8, e'8, f'8)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \override TextSpanner #'bound-details #'left #'text = \markup { \draw-line #'(0 . -1) }
             \override TextSpanner #'bound-details #'left-broken #'text = ##f

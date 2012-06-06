@@ -6,11 +6,11 @@ def move_marks(donor, recipient):
 
     Move marks from `donor` component to `recipient` component::
 
-        abjad> staff = Staff(r'\clef "bass" c \staccato d e f')
+        >>> staff = Staff(r'\clef "bass" c \staccato d e f')
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \clef "bass"
             c4 -\staccato
@@ -21,12 +21,12 @@ def move_marks(donor, recipient):
 
     ::
 
-        abjad> marktools.move_marks(staff[0], staff[2])
+        >>> marktools.move_marks(staff[0], staff[2])
         [Articulation('staccato')(e4), ClefMark('bass')(e4)]
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c4
             d4

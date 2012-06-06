@@ -7,12 +7,12 @@ def get_first_score_in_proper_parentage_of_component(component):
 
     Get first score in proper parentage of `component`::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> score = Score([staff])
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> score = Score([staff])
 
     ::
 
-        abjad> f(score)
+        >>> f(score)
         \new Score <<
             \new Staff {
                 c'8
@@ -25,7 +25,7 @@ def get_first_score_in_proper_parentage_of_component(component):
 
     ::
 
-        abjad> scoretools.get_first_score_in_proper_parentage_of_component(score.leaves[0])
+        >>> scoretools.get_first_score_in_proper_parentage_of_component(score.leaves[0])
         Score<<1>>
 
     Return score or none.

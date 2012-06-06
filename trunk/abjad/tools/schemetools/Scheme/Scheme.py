@@ -4,30 +4,30 @@ from abjad.tools.abctools import AbjadObject
 class Scheme(AbjadObject):
     '''Abjad model of Scheme code::
 
-        abjad> from abjad.tools.schemetools import Scheme
-        abjad> s = Scheme(True)
-        abjad> s.format
+        >>> from abjad.tools.schemetools import Scheme
+        >>> s = Scheme(True)
+        >>> s.format
         '##t'
 
     schemetools.Scheme can represent nested structures ::
 
-        abjad> s = Scheme(('left', (1, 2, False)), ('right', (1, 2, 3.3)))
-        abjad> s.format
+        >>> s = Scheme(('left', (1, 2, False)), ('right', (1, 2, 3.3)))
+        >>> s.format
         '#((left (1 2 #f)) (right (1 2 3.3)))'
 
     schemetools.Scheme wraps variable-length arguments into a tuple ::
 
-        abjad> s = Scheme(1, 2, 3)
-        abjad> q = Scheme((1, 2, 3))
-        abjad> s.format == q.format
+        >>> s = Scheme(1, 2, 3)
+        >>> q = Scheme((1, 2, 3))
+        >>> s.format == q.format
         True
 
     schemetools.Scheme also takes an optional `quoting` keyword, by which Scheme's
     various quote, unquote, unquote-splicing characters can be prepended to the
     formatted result ::
 
-        abjad> s = Scheme((1, 2, 3), quoting="'#")
-        abjad> s.format
+        >>> s = Scheme((1, 2, 3), quoting="'#")
+        >>> s.format
         "#'#(1 2 3)"
 
     Scheme is immutable.
@@ -79,8 +79,8 @@ class Scheme(AbjadObject):
     def format(self):
         '''Hash-mark-prepended format of Scheme::
 
-            abjad> from abjad.tools.schemetools import Scheme
-            abjad> Scheme(True).format
+            >>> from abjad.tools.schemetools import Scheme
+            >>> Scheme(True).format
             '##t'
 
         Returns string.

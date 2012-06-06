@@ -6,12 +6,12 @@ def apply_beam_spanners_to_measures_in_expr(expr):
 
     Apply beam spanners to measures in `expr`::
 
-        abjad> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-        abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+        >>> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             {
                 \time 2/8
@@ -26,12 +26,12 @@ def apply_beam_spanners_to_measures_in_expr(expr):
 
     ::
 
-        abjad> beamtools.apply_beam_spanners_to_measures_in_expr(staff)
+        >>> beamtools.apply_beam_spanners_to_measures_in_expr(staff)
         [BeamSpanner(|2/8(2)|), BeamSpanner(|2/8(2)|)]
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             {
                 \time 2/8

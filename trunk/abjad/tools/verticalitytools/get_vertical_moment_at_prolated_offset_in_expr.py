@@ -8,20 +8,20 @@ def get_vertical_moment_at_prolated_offset_in_expr(governor, prolated_offset):
 
     Get vertical moment at `prolated_offset` in `governor`::
 
-        abjad> from abjad.tools import verticalitytools
+        >>> from abjad.tools import verticalitytools
 
     ::
 
-        abjad> score = Score([])
-        abjad> score.append(Staff([tuplettools.FixedDurationTuplet(Duration(4, 8), notetools.make_repeated_notes(3))]))
-        abjad> piano_staff = scoretools.PianoStaff([])
-        abjad> piano_staff.append(Staff(notetools.make_repeated_notes(2, Duration(1, 4))))
-        abjad> piano_staff.append(Staff(notetools.make_repeated_notes(4)))
-        abjad> contexttools.ClefMark('bass')(piano_staff[1])
+        >>> score = Score([])
+        >>> score.append(Staff([tuplettools.FixedDurationTuplet(Duration(4, 8), notetools.make_repeated_notes(3))]))
+        >>> piano_staff = scoretools.PianoStaff([])
+        >>> piano_staff.append(Staff(notetools.make_repeated_notes(2, Duration(1, 4))))
+        >>> piano_staff.append(Staff(notetools.make_repeated_notes(4)))
+        >>> contexttools.ClefMark('bass')(piano_staff[1])
         ClefMark('bass')(Staff{4})
-        abjad> score.append(piano_staff)
-        abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(list(reversed(score.leaves)))
-        abjad> f(score)
+        >>> score.append(piano_staff)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(list(reversed(score.leaves)))
+        >>> f(score)
         \new Score <<
             \new Staff {
                 \fraction \times 4/3 {
@@ -44,8 +44,8 @@ def get_vertical_moment_at_prolated_offset_in_expr(governor, prolated_offset):
                 }
             >>
         >>
-        abjad> vertical_moment = verticalitytools.get_vertical_moment_at_prolated_offset_in_expr(piano_staff, Duration(1, 8))
-        abjad> vertical_moment.leaves
+        >>> vertical_moment = verticalitytools.get_vertical_moment_at_prolated_offset_in_expr(piano_staff, Duration(1, 8))
+        >>> vertical_moment.leaves
         (Note("a'4"), Note("e'8"))
 
     .. todo:: optimize without full-component traversal.

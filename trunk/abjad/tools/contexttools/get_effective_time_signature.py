@@ -7,13 +7,13 @@ def get_effective_time_signature(component):
 
     Get effective time signature of `component`::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> contexttools.TimeSignatureMark((4, 8))(staff)
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> contexttools.TimeSignatureMark((4, 8))(staff)
         TimeSignatureMark((4, 8))(Staff{4})
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \time 4/8
             c'8
@@ -24,7 +24,7 @@ def get_effective_time_signature(component):
 
     ::
 
-        abjad> for note in staff:
+        >>> for note in staff:
         ...     note, contexttools.get_effective_time_signature(note)
         ...
         (Note("c'8"), TimeSignatureMark((4, 8))(Staff{4}))

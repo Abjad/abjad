@@ -7,28 +7,28 @@ class AbsoluteIndexConstraint(_AbsoluteConstraint):
 
     ::
 
-        abjad> from abjad.tools.constrainttools import AbsoluteIndexConstraint
+        >>> from abjad.tools.constrainttools import AbsoluteIndexConstraint
 
     Instantiated from an index, or sequence of indices, and a function which
     takes as many arguments as indices were given:
 
     ::
 
-        abjad> first_is_zero = AbsoluteIndexConstraint(0, lambda x: x == 0)
-        abjad> third_greater_than_second = AbsoluteIndexConstraint([1, 2], lambda x, y: x < y)
+        >>> first_is_zero = AbsoluteIndexConstraint(0, lambda x: x == 0)
+        >>> third_greater_than_second = AbsoluteIndexConstraint([1, 2], lambda x, y: x < y)
 
     ::
 
-        abjad> first_is_zero([0, 1, 2])
+        >>> first_is_zero([0, 1, 2])
         True
-        abjad> first_is_zero([1, 12, 3, 4, 5])
+        >>> first_is_zero([1, 12, 3, 4, 5])
         False
 
     ::
 
-        abjad> third_greater_than_second([0, 1, 2])
+        >>> third_greater_than_second([0, 1, 2])
         True
-        abjad> third_greater_than_second([1, 12, 3, 4, 5])
+        >>> third_greater_than_second([1, 12, 3, 4, 5])
         False
 
     ``AbsoluteIndexConstraints`` are immutable.

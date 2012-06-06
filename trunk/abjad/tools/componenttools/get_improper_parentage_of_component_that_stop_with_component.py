@@ -3,7 +3,7 @@ def get_improper_parentage_of_component_that_stop_with_component(component):
 
     Get improper parentage of `component` that stop with `component`::
 
-        abjad> staff = Staff(r"c' << \new Voice { d' } \new Voice { e' } >> f'")
+        >>> staff = Staff(r"c' << \new Voice { d' } \new Voice { e' } >> f'")
 
     ::
 
@@ -23,7 +23,7 @@ def get_improper_parentage_of_component_that_stop_with_component(component):
 
     ::
 
-        abjad> componenttools.get_improper_parentage_of_component_that_stop_with_component(staff.leaves[-1])
+        >>> componenttools.get_improper_parentage_of_component_that_stop_with_component(staff.leaves[-1])
         [Note("f'4"), Staff{3}]
 
     Return list of `component` with proper parentage that stop with `component`.

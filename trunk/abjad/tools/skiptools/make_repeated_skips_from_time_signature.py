@@ -7,7 +7,7 @@ def make_repeated_skips_from_time_signature(time_signature):
 
     Make repeated skips from `time_signature`::
 
-        abjad> skiptools.make_repeated_skips_from_time_signature((5, 32))
+        >>> skiptools.make_repeated_skips_from_time_signature((5, 32))
         [Skip('s32'), Skip('s32'), Skip('s32'), Skip('s32'), Skip('s32')]
 
     Return list of skips.

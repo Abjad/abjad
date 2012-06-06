@@ -10,31 +10,31 @@ class OutputBurnishedSignalFilledTimeTokenMaker(BurnishedTimeTokenMaker):
 
     Configure the time-token maker at initialization::
 
-        abjad> from abjad.tools import sequencetools
-        abjad> from abjad.tools import timetokentools
+        >>> from abjad.tools import sequencetools
+        >>> from abjad.tools import timetokentools
 
     ::
 
-        abjad> pattern, denominator, prolation_addenda = [1, 2, 3], 16, [0, 2]
-        abjad> lefts, middles, rights = [-1], [0], [-1]
-        abjad> left_lengths, right_lengths = [1], [1]
-        abjad> secondary_divisions = [9]
-        abjad> maker = timetokentools.OutputBurnishedSignalFilledTimeTokenMaker(pattern, denominator, prolation_addenda, lefts, middles, rights, left_lengths, right_lengths, secondary_divisions)
+        >>> pattern, denominator, prolation_addenda = [1, 2, 3], 16, [0, 2]
+        >>> lefts, middles, rights = [-1], [0], [-1]
+        >>> left_lengths, right_lengths = [1], [1]
+        >>> secondary_divisions = [9]
+        >>> maker = timetokentools.OutputBurnishedSignalFilledTimeTokenMaker(pattern, denominator, prolation_addenda, lefts, middles, rights, left_lengths, right_lengths, secondary_divisions)
 
     Then call the time-token maker on arbitrary duration tokens::
 
-        abjad> duration_tokens = [(3, 8), (4, 8)]
-        abjad> music = maker(duration_tokens)
+        >>> duration_tokens = [(3, 8), (4, 8)]
+        >>> music = maker(duration_tokens)
 
     The resulting Abjad objects can be included in any score::
 
-        abjad> music = sequencetools.flatten_sequence(music)
-        abjad> staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(duration_tokens))
-        abjad> measures = measuretools.replace_contents_of_measures_in_expr(staff, music)
+        >>> music = sequencetools.flatten_sequence(music)
+        >>> staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(duration_tokens))
+        >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, music)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             {
                 \time 3/8

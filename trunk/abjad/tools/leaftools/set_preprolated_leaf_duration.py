@@ -8,12 +8,12 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
 
     Set preprolated `leaf` duration::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> beamtools.BeamSpanner(staff.leaves)
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> beamtools.BeamSpanner(staff.leaves)
         BeamSpanner(c'8, d'8, e'8, f'8)
-        abjad> leaftools.set_preprolated_leaf_duration(staff[1], Duration(3, 16))
+        >>> leaftools.set_preprolated_leaf_duration(staff[1], Duration(3, 16))
         [Note("d'8.")]
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8 [
             d'8.
@@ -23,12 +23,12 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
 
     Set tied preprolated `leaf` duration::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> beamtools.BeamSpanner(staff.leaves)
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> beamtools.BeamSpanner(staff.leaves)
         BeamSpanner(c'8, d'8, e'8, f'8)
-        abjad> leaftools.set_preprolated_leaf_duration(staff[1], Duration(5, 32))
+        >>> leaftools.set_preprolated_leaf_duration(staff[1], Duration(5, 32))
         [Note("d'8"), Note("d'32")]
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8 [
             d'8 ~
@@ -39,12 +39,12 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
 
     Set nonbinary preprolated `leaf` duration::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> beamtools.BeamSpanner(staff.leaves)
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> beamtools.BeamSpanner(staff.leaves)
         BeamSpanner(c'8, d'8, e'8, f'8)
-        abjad> leaftools.set_preprolated_leaf_duration(staff[1], Duration(1, 12))
+        >>> leaftools.set_preprolated_leaf_duration(staff[1], Duration(1, 12))
         [Note("d'8")]
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8 [
             \times 2/3 {
@@ -56,12 +56,12 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
 
     Set tied nonbinary preprolated `leaf` duration::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> beamtools.BeamSpanner(staff.leaves)
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> beamtools.BeamSpanner(staff.leaves)
         BeamSpanner(c'8, d'8, e'8, f'8)
-        abjad> leaftools.set_preprolated_leaf_duration(staff[1], Duration(5, 48))
+        >>> leaftools.set_preprolated_leaf_duration(staff[1], Duration(5, 48))
         [Note("d'8"), Note("d'32")]
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8 [
             \times 2/3 {
@@ -74,11 +74,11 @@ def set_preprolated_leaf_duration(leaf, new_preprolated_duration):
 
     Set preprolated `leaf` duration with LilyPond multiplier::
 
-        abjad> note = Note(0, (1, 8))
-        abjad> note.duration_multiplier = Duration(1, 2)
-        abjad> leaftools.set_preprolated_leaf_duration(note, Duration(5, 48))
+        >>> note = Note(0, (1, 8))
+        >>> note.duration_multiplier = Duration(1, 2)
+        >>> leaftools.set_preprolated_leaf_duration(note, Duration(5, 48))
         [Note("c'8 * 5/6")]
-        abjad> f(note)
+        >>> f(note)
         c'8 * 5/6
 
     Return list of `leaf` and leaves newly tied to `leaf`.

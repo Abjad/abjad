@@ -9,16 +9,16 @@ class Violin(_StringInstrument):
 
     Abjad model of the violin::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
 
     ::
 
-        abjad> instrumenttools.Violin()(staff)
+        >>> instrumenttools.Violin()(staff)
         Violin()(Staff{4})
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \set Staff.instrumentName = \markup { Violin }
             \set Staff.shortInstrumentName = \markup { Vn. }

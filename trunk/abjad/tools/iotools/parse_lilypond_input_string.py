@@ -6,8 +6,8 @@ def parse_lilypond_input_string(note_entry_string):
 
     Parse LilyPond `note_entry_string`::
 
-        abjad> note_entry_string = "g'2 a'2 g'4. fs'8 e'4 d'4"
-        abjad> iotools.parse_lilypond_input_string(note_entry_string)
+        >>> note_entry_string = "g'2 a'2 g'4. fs'8 e'4 d'4"
+        >>> iotools.parse_lilypond_input_string(note_entry_string)
         {g'2, a'2, g'4., fs'8, e'4, d'4}
 
     Return container of note, rest and chord instances.

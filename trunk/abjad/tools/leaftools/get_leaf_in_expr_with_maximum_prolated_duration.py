@@ -6,11 +6,11 @@ def get_leaf_in_expr_with_maximum_prolated_duration(expr):
 
     Get leaf in `expr` with maximum prolated duration::
 
-        abjad> staff = Staff("c'4.. d'16 e'4.. f'16")
+        >>> staff = Staff("c'4.. d'16 e'4.. f'16")
 
     ::
 
-        abjad> leaftools.get_leaf_in_expr_with_maximum_prolated_duration(staff)
+        >>> leaftools.get_leaf_in_expr_with_maximum_prolated_duration(staff)
         Note("c'4..")
 
     When two leaves in `expr` are both of equally maximal prolated duration,
@@ -18,7 +18,7 @@ def get_leaf_in_expr_with_maximum_prolated_duration(expr):
 
     Return none when `expr` contains no leaves::
  
-        abjad> leaftools.get_leaf_in_expr_with_maximum_prolated_duration([]) is None
+        >>> leaftools.get_leaf_in_expr_with_maximum_prolated_duration([]) is None
         True
 
     Return leaf.

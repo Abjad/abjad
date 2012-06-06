@@ -5,16 +5,16 @@ from abjad.tools.spannertools.Spanner import Spanner
 class StaffLinesSpanner(Spanner):
     r'''Abjad staff lines spanner::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
 
     ::
 
-        abjad> spannertools.StaffLinesSpanner(staff[:2], 1)
+        >>> spannertools.StaffLinesSpanner(staff[:2], 1)
         StaffLinesSpanner(c'8, d'8)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \stopStaff
             \override Staff.StaffSymbol #'line-count = #1
@@ -82,17 +82,17 @@ class StaffLinesSpanner(Spanner):
         def fget(self):
             r'''Get staff lines spanner line count::
 
-                abjad> staff = Staff("c'8 d'8 e'8 f'8")
-                abjad> spanner = spannertools.StaffLinesSpanner(staff[:2], 1)
-                abjad> spanner.lines
+                >>> staff = Staff("c'8 d'8 e'8 f'8")
+                >>> spanner = spannertools.StaffLinesSpanner(staff[:2], 1)
+                >>> spanner.lines
                 1
 
             Set staff lines spanner line count::
 
-                abjad> staff = Staff("c'8 d'8 e'8 f'8")
-                abjad> spanner = spannertools.StaffLinesSpanner(staff[:2], 1)
-                abjad> spanner.lines = 2
-                abjad> spanner.lines
+                >>> staff = Staff("c'8 d'8 e'8 f'8")
+                >>> spanner = spannertools.StaffLinesSpanner(staff[:2], 1)
+                >>> spanner.lines = 2
+                >>> spanner.lines
                 2
 
             Set integer.

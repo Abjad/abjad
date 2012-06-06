@@ -7,10 +7,10 @@ def color_leaves_in_expr(expr, color):
 
     Color leaves in `expr`::
 
-        abjad> staff = Staff([Note(1, (3, 16)), Rest((3, 16)), skiptools.Skip((3, 16)), Chord([0, 1, 9], (3, 16))])
-        abjad> beamtools.BeamSpanner(staff.leaves)
+        >>> staff = Staff([Note(1, (3, 16)), Rest((3, 16)), skiptools.Skip((3, 16)), Chord([0, 1, 9], (3, 16))])
+        >>> beamtools.BeamSpanner(staff.leaves)
         BeamSpanner(cs'8., r8., s8., <c' cs' a'>8.)
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             cs'8. [
             r8.
@@ -20,11 +20,11 @@ def color_leaves_in_expr(expr, color):
 
     ::
 
-        abjad> leaftools.color_leaves_in_expr(staff, 'red')
+        >>> leaftools.color_leaves_in_expr(staff, 'red')
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \once \override Accidental #'color = #red
             \once \override Dots #'color = #red

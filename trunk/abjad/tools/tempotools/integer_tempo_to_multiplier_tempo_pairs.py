@@ -12,12 +12,12 @@ def integer_tempo_to_multiplier_tempo_pairs(integer_tempo,
     Tempi must be no less than ``integer_tempo / 2`` and not greater
     than ``2 * integer_tempo``::
 
-      abjad> from abjad.tools import tempotools
+      >>> from abjad.tools import tempotools
 
     ::
 
-      abjad> pairs = tempotools.integer_tempo_to_multiplier_tempo_pairs(58, 8, 8)
-      abjad> for pair in pairs:
+      >>> pairs = tempotools.integer_tempo_to_multiplier_tempo_pairs(58, 8, 8)
+      >>> for pair in pairs:
       ...     pair
       ...
       (Fraction(1, 2), Fraction(29, 1))

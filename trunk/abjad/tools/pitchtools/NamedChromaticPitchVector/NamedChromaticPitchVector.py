@@ -6,16 +6,16 @@ class NamedChromaticPitchVector(ObjectVector):
 
     Abjad model of named chromatic pitch vector::
 
-        abjad> named_chromatic_pitch_vector = pitchtools.NamedChromaticPitchVector(["c''", "c''", "cs''", "cs''", "cs''"])
+        >>> named_chromatic_pitch_vector = pitchtools.NamedChromaticPitchVector(["c''", "c''", "cs''", "cs''", "cs''"])
 
     ::
 
-        abjad> named_chromatic_pitch_vector
+        >>> named_chromatic_pitch_vector
         NamedChromaticPitchVector(c'': 2, cs'': 3)
 
     ::
 
-        abjad> print named_chromatic_pitch_vector
+        >>> print named_chromatic_pitch_vector
         NamedChromaticPitchVector(c'': 2, cs'': 3)
 
     Named chromatic pitch vectors are immutable.

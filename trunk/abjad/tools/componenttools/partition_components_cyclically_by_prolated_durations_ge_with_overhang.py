@@ -7,12 +7,12 @@ def partition_components_cyclically_by_prolated_durations_ge_with_overhang(compo
     Partition `components` cyclically by `prolated_durations` greater than
     or equal, with overhang::
 
-        abjad> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
-        abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+        >>> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             {
                 \time 2/8
@@ -35,11 +35,11 @@ def partition_components_cyclically_by_prolated_durations_ge_with_overhang(compo
 
     ::
 
-        abjad> groups = componenttools.partition_components_cyclically_by_prolated_durations_ge_with_overhang(staff.leaves, [Duration(3, 16), Duration(1, 16)])
+        >>> groups = componenttools.partition_components_cyclically_by_prolated_durations_ge_with_overhang(staff.leaves, [Duration(3, 16), Duration(1, 16)])
 
     ::
 
-        abjad> for group in groups:
+        >>> for group in groups:
         ...     group
         ...
         [Note("c'8"), Note("d'8")]

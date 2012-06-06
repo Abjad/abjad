@@ -6,7 +6,7 @@ class NumberedChromaticPitchClass(PitchClassObject):
 
     Abjad model of a numbered chromatic pitch-class::
 
-        abjad> pitchtools.NumberedChromaticPitchClass(13)
+        >>> pitchtools.NumberedChromaticPitchClass(13)
         NumberedChromaticPitchClass(1)
 
     Numbered chromatic pitch-classes are immutable.

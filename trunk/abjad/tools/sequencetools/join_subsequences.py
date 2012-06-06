@@ -6,11 +6,11 @@ def join_subsequences(sequence):
 
     Join subsequences in `sequence`::
 
-        abjad> from abjad.tools import sequencetools
+        >>> from abjad.tools import sequencetools
 
     ::
 
-        abjad> sequencetools.join_subsequences([(1, 2, 3), (), (4, 5), (), (6,)])
+        >>> sequencetools.join_subsequences([(1, 2, 3), (), (4, 5), (), (6,)])
         (1, 2, 3, 4, 5, 6)
 
     Return newly constructed object of subsequence type.

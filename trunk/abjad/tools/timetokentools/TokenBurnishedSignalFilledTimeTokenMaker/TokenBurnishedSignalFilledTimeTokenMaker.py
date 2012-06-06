@@ -10,32 +10,32 @@ class TokenBurnishedSignalFilledTimeTokenMaker(BurnishedTimeTokenMaker):
 
     Configure the time-token maker at instantiation::
 
-        abjad> from abjad.tools import sequencetools
-        abjad> from abjad.tools import timetokentools
+        >>> from abjad.tools import sequencetools
+        >>> from abjad.tools import timetokentools
 
     ::
 
-        abjad> pattern, denominator, prolation_addenda = [1, 1, 2, 4], 32, [0, 3]
-        abjad> lefts, middles, rights = [-1], [0], [-1]
-        abjad> left_lengths, right_lengths = [1], [1]
-        abjad> secondary_divisions = [14]
-        abjad> maker = timetokentools.TokenBurnishedSignalFilledTimeTokenMaker(pattern, denominator, prolation_addenda, lefts, middles, rights, left_lengths, right_lengths, secondary_divisions)
+        >>> pattern, denominator, prolation_addenda = [1, 1, 2, 4], 32, [0, 3]
+        >>> lefts, middles, rights = [-1], [0], [-1]
+        >>> left_lengths, right_lengths = [1], [1]
+        >>> secondary_divisions = [14]
+        >>> maker = timetokentools.TokenBurnishedSignalFilledTimeTokenMaker(pattern, denominator, prolation_addenda, lefts, middles, rights, left_lengths, right_lengths, secondary_divisions)
 
     Then call the time-token maker on any sequence of duration tokens::
 
-        abjad> duration_tokens = [(5, 16), (6, 16)]
-        abjad> music = maker(duration_tokens)
+        >>> duration_tokens = [(5, 16), (6, 16)]
+        >>> music = maker(duration_tokens)
 
     The resulting Abjad objects can then be included in any score and the time-token
     maker can be called again and again on different duration tokens::
 
-        abjad> music = sequencetools.flatten_sequence(music)
-        abjad> staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(duration_tokens))
-        abjad> measures = measuretools.replace_contents_of_measures_in_expr(staff, music)
+        >>> music = sequencetools.flatten_sequence(music)
+        >>> staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(duration_tokens))
+        >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, music)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             {
                 \time 5/16

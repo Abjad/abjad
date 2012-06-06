@@ -7,26 +7,26 @@ class ClefMarkInventory(ObjectInventory):
 
     Abjad model of an ordered list of clefs::
 
-        abjad> inventory = contexttools.ClefMarkInventory(['treble', 'bass'])
+        >>> inventory = contexttools.ClefMarkInventory(['treble', 'bass'])
 
     ::
 
-        abjad> inventory
+        >>> inventory
         ClefMarkInventory([ClefMark('treble'), ClefMark('bass')])
 
     ::
 
-        abjad> 'treble' in inventory
+        >>> 'treble' in inventory
         True
 
     ::
 
-        abjad> contexttools.ClefMark('treble') in inventory
+        >>> contexttools.ClefMark('treble') in inventory
         True
 
     ::
 
-        abjad> 'alto' in inventory
+        >>> 'alto' in inventory
         False
 
     Clef mark inventories implement list interface and are mutable.

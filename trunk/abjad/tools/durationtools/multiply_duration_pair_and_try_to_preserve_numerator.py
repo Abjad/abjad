@@ -6,11 +6,11 @@ def multiply_duration_pair_and_try_to_preserve_numerator(pair, multiplier):
 
     Multiply duration `pair` by rational `multiplier` and try to preserve numerator::
 
-        abjad> from abjad.tools import durationtools
+        >>> from abjad.tools import durationtools
 
     ::
 
-        abjad> durationtools.multiply_duration_pair_and_try_to_preserve_numerator((9, 16), Fraction(2, 3))
+        >>> durationtools.multiply_duration_pair_and_try_to_preserve_numerator((9, 16), Fraction(2, 3))
         (9, 24)
 
     Intended for certain types of meter multiplication.

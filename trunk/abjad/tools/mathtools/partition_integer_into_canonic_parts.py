@@ -7,11 +7,11 @@ def partition_integer_into_canonic_parts(n, direction = 'big-endian'):
 
     Return all parts positive on positive `n`::
 
-        abjad> from abjad.tools import mathtools
+        >>> from abjad.tools import mathtools
 
     ::
 
-        abjad> for n in range(1, 11):
+        >>> for n in range(1, 11):
         ...     print n, mathtools.partition_integer_into_canonic_parts(n)
         ...
         1 (1,)
@@ -27,7 +27,7 @@ def partition_integer_into_canonic_parts(n, direction = 'big-endian'):
 
     Return all parts negative on negative `n`::
 
-        abjad> for n in reversed(range(-20, -10)):
+        >>> for n in reversed(range(-20, -10)):
         ...     print n, mathtools.partition_integer_into_canonic_parts(n)
         ...
         -11 (-8, -3)
@@ -43,7 +43,7 @@ def partition_integer_into_canonic_parts(n, direction = 'big-endian'):
 
     Return little-endian tuple When ``direction = 'little-endian'``::
 
-        abjad> for n in range(11, 21):
+        >>> for n in range(11, 21):
         ...     print n, mathtools.partition_integer_into_canonic_parts(n, direction = 'little-endian')
         ...
         11 (3, 8)

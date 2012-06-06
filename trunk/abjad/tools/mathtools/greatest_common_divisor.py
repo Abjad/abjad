@@ -6,11 +6,11 @@ def greatest_common_divisor(*integers):
 
     Greatest common divisor of `integers`::
 
-        abjad> from abjad.tools import mathtools
+        >>> from abjad.tools import mathtools
 
     ::
 
-        abjad> mathtools.greatest_common_divisor(84, -94, -144)
+        >>> mathtools.greatest_common_divisor(84, -94, -144)
         2
 
     Allow nonpositive `integers`.

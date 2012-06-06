@@ -12,12 +12,12 @@ class VerticalMoment(ScoreSelection):
 
     Everything happening at a single moment in musical time::
 
-        abjad> from abjad.tools import verticalitytools
+        >>> from abjad.tools import verticalitytools
 
     ::
 
-        abjad> score = Score([scoretools.PianoStaff([Staff("c'4 e'4 d'4 f'4"), Staff('g2 f2')])])
-        abjad> contexttools.ClefMark('bass')(score[0][1])
+        >>> score = Score([scoretools.PianoStaff([Staff("c'4 e'4 d'4 f'4"), Staff('g2 f2')])])
+        >>> contexttools.ClefMark('bass')(score[0][1])
         ClefMark('bass')(Staff{2})
 
     ::
@@ -41,7 +41,7 @@ class VerticalMoment(ScoreSelection):
 
     ::
 
-        abjad> for vertical_moment in verticalitytools.iterate_vertical_moments_forward_in_expr(score):
+        >>> for vertical_moment in verticalitytools.iterate_vertical_moments_forward_in_expr(score):
         ...     vertical_moment
         ...
         VerticalMoment(0, <<2>>)

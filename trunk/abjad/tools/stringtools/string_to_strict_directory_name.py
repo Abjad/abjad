@@ -7,7 +7,7 @@ def string_to_strict_directory_name(string):
 
     Change `string` to strict directory name::
 
-        abjad> stringtools.string_to_strict_directory_name('Déja vu')
+        >>> stringtools.string_to_strict_directory_name('Déja vu')
         'deja_vu'
 
     Strip accents from accented characters.

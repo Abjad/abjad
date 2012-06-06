@@ -3,15 +3,15 @@ def iterate_namesakes_backward_from_component(component, start=0, stop=None):
 
     Iterate namesakes backward from `component`::
 
-        abjad> container = Container(Staff(notetools.make_repeated_notes(2)) * 2)
-        abjad> container.is_parallel = True
-        abjad> container[0].name = 'staff 1'
-        abjad> container[1].name = 'staff 2'
-        abjad> score = Score([])
-        abjad> score.is_parallel = False
-        abjad> score.extend(container * 2)
-        abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(score)
-        abjad> print score.format
+        >>> container = Container(Staff(notetools.make_repeated_notes(2)) * 2)
+        >>> container.is_parallel = True
+        >>> container[0].name = 'staff 1'
+        >>> container[1].name = 'staff 2'
+        >>> score = Score([])
+        >>> score.is_parallel = False
+        >>> score.extend(container * 2)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(score)
+        >>> print score.format
         \new Score {
             <<
                 \context Staff = "staff 1" {
@@ -37,7 +37,7 @@ def iterate_namesakes_backward_from_component(component, start=0, stop=None):
 
     ::
 
-        abjad> for staff in componenttools.iterate_namesakes_backward_from_component(score[-1][0]):
+        >>> for staff in componenttools.iterate_namesakes_backward_from_component(score[-1][0]):
         ...     print staff.format
         ...
         \context Staff = "staff 1" {

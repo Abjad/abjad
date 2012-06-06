@@ -3,16 +3,16 @@ def replace_components_with_children_of_components(components):
 
     Remove arbitrary `components` from score but retain children of `components` in score::
 
-        abjad> staff = Staff(Container(notetools.make_repeated_notes(2)) * 2)
-        abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
-        abjad> spannertools.SlurSpanner(staff[:])
+        >>> staff = Staff(Container(notetools.make_repeated_notes(2)) * 2)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+        >>> spannertools.SlurSpanner(staff[:])
         SlurSpanner({c'8, d'8}, {e'8, f'8})
-        abjad> beamtools.BeamSpanner(staff.leaves)
+        >>> beamtools.BeamSpanner(staff.leaves)
         BeamSpanner(c'8, d'8, e'8, f'8)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             {
                 c'8 [ (
@@ -26,12 +26,12 @@ def replace_components_with_children_of_components(components):
 
     ::
 
-        abjad> componenttools.replace_components_with_children_of_components(staff[0:1])
+        >>> componenttools.replace_components_with_children_of_components(staff[0:1])
         [{}]
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8 [ (
             d'8

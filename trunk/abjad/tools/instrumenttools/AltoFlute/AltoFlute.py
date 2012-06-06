@@ -8,16 +8,16 @@ class AltoFlute(Flute):
 
     Abjad model of the alto flute::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
 
     ::
 
-        abjad> instrumenttools.AltoFlute()(staff)
+        >>> instrumenttools.AltoFlute()(staff)
         AltoFlute()(Staff{4})
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \set Staff.instrumentName = \markup { Alto flute }
             \set Staff.shortInstrumentName = \markup { Alt. fl. }

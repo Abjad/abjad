@@ -5,16 +5,16 @@ import math
 def greatest_multiple_less_equal(m, n):
     '''Greatest integer multiple of `m` less than or equal to `n`::
 
-        abjad> from abjad.tools import mathtools
+        >>> from abjad.tools import mathtools
 
     ::
 
-        abjad> mathtools.greatest_multiple_less_equal(10, 47)
+        >>> mathtools.greatest_multiple_less_equal(10, 47)
         40
 
     ::
 
-        abjad> for m in range(1, 10):
+        >>> for m in range(1, 10):
         ...     print m, mathtools.greatest_multiple_less_equal(m, 47)
         ...
         1 47
@@ -29,7 +29,7 @@ def greatest_multiple_less_equal(m, n):
 
     ::
 
-        abjad> for n in range(10, 100, 10):
+        >>> for n in range(10, 100, 10):
         ...     print mathtools.greatest_multiple_less_equal(7, n), n
         ...
         7 10

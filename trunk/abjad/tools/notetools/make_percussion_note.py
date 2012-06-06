@@ -5,22 +5,22 @@ from abjad.tools import durationtools
 def make_percussion_note(pitch, total_duration, max_note_duration = (1, 8)):
     '''Make percussion note::
 
-        abjad> notetools.make_percussion_note(2, (1, 4), (1, 8))
+        >>> notetools.make_percussion_note(2, (1, 4), (1, 8))
         [Note("d'8"), Rest('r8')]
 
     ::
 
-        abjad> notetools.make_percussion_note(2, (1, 64), (1, 8))
+        >>> notetools.make_percussion_note(2, (1, 64), (1, 8))
         [Note("d'64")]
 
     ::
 
-        abjad> notetools.make_percussion_note(2, (5, 64), (1, 8))
+        >>> notetools.make_percussion_note(2, (5, 64), (1, 8))
         [Note("d'16"), Rest('r64')]
 
     ::
 
-        abjad> notetools.make_percussion_note(2, (5, 4), (1, 8))
+        >>> notetools.make_percussion_note(2, (5, 4), (1, 8))
         [Note("d'8"), Rest('r1'), Rest('r8')]
 
     Return list of newly constructed note followed by zero or more newly constructed rests.

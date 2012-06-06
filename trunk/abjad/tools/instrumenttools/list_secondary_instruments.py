@@ -6,7 +6,7 @@ def list_secondary_instruments():
 
     List secondary instruments::
 
-        abjad> for secondary_instrument in instrumenttools.list_secondary_instruments():
+        >>> for secondary_instrument in instrumenttools.list_secondary_instruments():
         ...     secondary_instrument
         ... 
         <class 'abjad.tools.instrumenttools.AltoFlute.AltoFlute.AltoFlute'>

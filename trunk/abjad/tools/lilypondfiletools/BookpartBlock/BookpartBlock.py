@@ -6,16 +6,16 @@ class BookpartBlock(NonattributedBlock):
 
     Abjad model of LilyPond input file bookpart block::
 
-        abjad> bookpart_block = lilypondfiletools.BookpartBlock()
+        >>> bookpart_block = lilypondfiletools.BookpartBlock()
 
     ::
 
-        abjad> bookpart_block
+        >>> bookpart_block
         BookpartBlock()
 
     ::
 
-        abjad> f(bookpart_block)
+        >>> f(bookpart_block)
         \bookpart {}
 
     Return bookpart block.

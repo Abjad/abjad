@@ -12,11 +12,11 @@ def tie_chain_to_augmented_tuplet_with_proportions_and_encourage_dots(tie_chain,
 
     With proportions ``[1]``::
 
-        abjad> staff = Staff("c'8 [ ~ c'16 c'16 ]")
+        >>> staff = Staff("c'8 [ ~ c'16 c'16 ]")
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8 [ ~
             c'16
@@ -25,13 +25,13 @@ def tie_chain_to_augmented_tuplet_with_proportions_and_encourage_dots(tie_chain,
 
     ::
 
-        abjad> tie_chain = tietools.get_tie_chain(staff[0])
-        abjad> tietools.tie_chain_to_augmented_tuplet_with_proportions_and_encourage_dots(tie_chain, [1])
+        >>> tie_chain = tietools.get_tie_chain(staff[0])
+        >>> tietools.tie_chain_to_augmented_tuplet_with_proportions_and_encourage_dots(tie_chain, [1])
         FixedDurationTuplet(3/16, [c'8.])
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             {
                 c'8. [
@@ -41,11 +41,11 @@ def tie_chain_to_augmented_tuplet_with_proportions_and_encourage_dots(tie_chain,
 
     With proportions ``[1, 2]``::
 
-        abjad> staff = Staff("c'8 [ ~ c'16 c'16 ]")
+        >>> staff = Staff("c'8 [ ~ c'16 c'16 ]")
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8 [ ~
             c'16
@@ -54,13 +54,13 @@ def tie_chain_to_augmented_tuplet_with_proportions_and_encourage_dots(tie_chain,
 
     ::
 
-        abjad> tie_chain = tietools.get_tie_chain(staff[0])
-        abjad> tietools.tie_chain_to_augmented_tuplet_with_proportions_and_encourage_dots(tie_chain, [1, 2])
+        >>> tie_chain = tietools.get_tie_chain(staff[0])
+        >>> tietools.tie_chain_to_augmented_tuplet_with_proportions_and_encourage_dots(tie_chain, [1, 2])
         FixedDurationTuplet(3/16, [c'16, c'8])
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             {
                 c'16 [
@@ -71,11 +71,11 @@ def tie_chain_to_augmented_tuplet_with_proportions_and_encourage_dots(tie_chain,
 
     With proportions ``[1, 2, 2]``::
 
-        abjad> staff = Staff("c'8 [ ~ c'16 c'16 ]")
+        >>> staff = Staff("c'8 [ ~ c'16 c'16 ]")
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8 [ ~
             c'16
@@ -84,13 +84,13 @@ def tie_chain_to_augmented_tuplet_with_proportions_and_encourage_dots(tie_chain,
 
     ::
 
-        abjad> tie_chain = tietools.get_tie_chain(staff[0])
-        abjad> tietools.tie_chain_to_augmented_tuplet_with_proportions_and_encourage_dots(tie_chain, [1, 2, 2])
+        >>> tie_chain = tietools.get_tie_chain(staff[0])
+        >>> tietools.tie_chain_to_augmented_tuplet_with_proportions_and_encourage_dots(tie_chain, [1, 2, 2])
         FixedDurationTuplet(3/16, [c'64., c'32., c'32.])
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \fraction \times 8/5 {
                 c'64. [

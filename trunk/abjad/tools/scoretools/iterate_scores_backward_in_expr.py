@@ -7,13 +7,13 @@ def iterate_scores_backward_in_expr(expr, start = 0, stop = None):
 
     Iterate scores backward in `expr`::
 
-        abjad> score_1 = Score([Staff("c'8 d'8 e'8 f'8")])
-        abjad> score_2 = Score([Staff("c'1"), Staff("g'1")])
-        abjad> scores = [score_1, score_2]
+        >>> score_1 = Score([Staff("c'8 d'8 e'8 f'8")])
+        >>> score_2 = Score([Staff("c'1"), Staff("g'1")])
+        >>> scores = [score_1, score_2]
 
     ::
 
-        abjad> for score in scoretools.iterate_scores_backward_in_expr(scores):
+        >>> for score in scoretools.iterate_scores_backward_in_expr(scores):
         ...   score
         Score<<2>>
         Score<<1>>

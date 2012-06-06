@@ -5,34 +5,34 @@ from abjad.tools import componenttools
 def remove_trivial_tuplets_in_expr(expr):
     r'''Remove trivial tuplets in `expr`::
 
-        abjad> t = tuplettools.FixedDurationTuplet(Duration(1, 4), "c'8 d'8 e'8")
-        abjad> u = tuplettools.FixedDurationTuplet(Duration(1, 4), "c'8 d'8")
-        abjad> s = Staff([t, u])
-        abjad> len(s)
+        >>> t = tuplettools.FixedDurationTuplet(Duration(1, 4), "c'8 d'8 e'8")
+        >>> u = tuplettools.FixedDurationTuplet(Duration(1, 4), "c'8 d'8")
+        >>> s = Staff([t, u])
+        >>> len(s)
         2
 
     ::
 
-        abjad> s[0]
+        >>> s[0]
         FixedDurationTuplet(1/4, [c'8, d'8, e'8])
-        abjad> s[1]
+        >>> s[1]
         FixedDurationTuplet(1/4, [c'8, d'8])
 
     ::
 
-        abjad> tuplettools.remove_trivial_tuplets_in_expr(s)
-        abjad> len(s)
+        >>> tuplettools.remove_trivial_tuplets_in_expr(s)
+        >>> len(s)
         3
-        abjad> s[0]
+        >>> s[0]
         FixedDurationTuplet(1/4, [c'8, d'8, e'8])
-        abjad> s[1]
+        >>> s[1]
         Note("c'8")
-        abjad> s[2]
+        >>> s[2]
         Note("d'8")
 
     ::
 
-        abjad> f(s)
+        >>> f(s)
         \new Staff {
             \times 2/3 {
                 c'8

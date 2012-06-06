@@ -5,14 +5,14 @@ from abjad.tools.componenttools._split_component_at_index import _split_componen
 def split_container_at_index_and_fracture_crossing_spanners(container, index):
     r'''Split `container` at `index` and fracture crossing spanners::
 
-        abjad> voice = Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 c'8 c'8") * 2)
-        abjad> tuplet = voice[1]
-        abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(voice)
-        abjad> beam = beamtools.BeamSpanner(voice[:])
+        >>> voice = Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 c'8 c'8") * 2)
+        >>> tuplet = voice[1]
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(voice)
+        >>> beam = beamtools.BeamSpanner(voice[:])
 
     ::
 
-        abjad> f(voice)
+        >>> f(voice)
         \new Voice {
             \times 2/3 {
                 c'8 [
@@ -28,11 +28,11 @@ def split_container_at_index_and_fracture_crossing_spanners(container, index):
 
     ::
 
-        abjad> left, right = containertools.split_container_at_index_and_fracture_crossing_spanners(tuplet, 1)
+        >>> left, right = containertools.split_container_at_index_and_fracture_crossing_spanners(tuplet, 1)
 
     ::
 
-        abjad> f(voice)
+        >>> f(voice)
         \new Voice {
             \times 2/3 {
                 c'8 [

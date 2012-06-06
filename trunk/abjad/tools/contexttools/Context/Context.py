@@ -9,16 +9,16 @@ class Context(Container):
 
     Abjad model of a horizontal layer of music.
 
-        abjad> context = contexttools.Context(name='MeterVoice', context_name='TimeSignatureContext')
+        >>> context = contexttools.Context(name='MeterVoice', context_name='TimeSignatureContext')
 
     ::
 
-        abjad> context
+        >>> context
         TimeSignatureContext-"MeterVoice"{}
 
     ::
 
-        abjad> f(context)
+        >>> f(context)
         \context TimeSignatureContext = "MeterVoice" {
         }
 
@@ -172,9 +172,9 @@ class Context(Container):
 
         Manage with add, update, other standard set commands. ::
 
-            abjad> staff = Staff([])
-            abjad> staff.engraver_consists.append('Horizontal_bracket_engraver')
-            abjad> f(staff)
+            >>> staff = Staff([])
+            >>> staff.engraver_consists.append('Horizontal_bracket_engraver')
+            >>> f(staff)
             \new Staff \with {
                 \consists Horizontal_bracket_engraver
             } {
@@ -191,9 +191,9 @@ class Context(Container):
 
         Manage with add, update, other standard set commands. ::
 
-            abjad> staff = Staff([])
-            abjad> staff.engraver_removals.append('Time_signature_engraver')
-            abjad> f(staff)
+            >>> staff = Staff([])
+            >>> staff.engraver_removals.append('Time_signature_engraver')
+            >>> f(staff)
             \new Staff \with {
                 \remove Time_signature_engraver
             } {
@@ -212,17 +212,17 @@ class Context(Container):
         def fget(self):
             r'''Set indicator of nonsemantic voice::
 
-                abjad> measures = measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (5, 16), (5, 16)])
-                abjad> voice = Voice(measures)
-                abjad> voice.name = 'HiddenTimeSignatureVoice'
+                >>> measures = measuretools.make_measures_with_full_measure_spacer_skips([(1, 8), (5, 16), (5, 16)])
+                >>> voice = Voice(measures)
+                >>> voice.name = 'HiddenTimeSignatureVoice'
 
             ::
 
-                abjad> voice.is_nonsemantic = True
+                >>> voice.is_nonsemantic = True
 
             ::
 
-                abjad> f(voice)
+                >>> f(voice)
                 \context Voice = "HiddenTimeSignatureVoice" {
                     {
                         \time 1/8
@@ -239,16 +239,16 @@ class Context(Container):
 
             ::
 
-                abjad> voice.is_nonsemantic
+                >>> voice.is_nonsemantic
                 True
 
             Get indicator of nonsemantic voice::
 
-                abjad> voice = Voice([])
+                >>> voice = Voice([])
 
             ::
 
-                abjad> voice.is_nonsemantic
+                >>> voice.is_nonsemantic
                 False
 
             Return boolean.

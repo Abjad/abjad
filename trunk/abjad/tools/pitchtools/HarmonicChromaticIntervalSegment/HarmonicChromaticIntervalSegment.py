@@ -6,7 +6,7 @@ class HarmonicChromaticIntervalSegment(IntervalObjectSegment):
 
     Abjad model of harmonic chromatic interval segment::
 
-        abjad> pitchtools.HarmonicChromaticIntervalSegment([10, -12, -13, -13.5])
+        >>> pitchtools.HarmonicChromaticIntervalSegment([10, -12, -13, -13.5])
         HarmonicChromaticIntervalSegment(10, 12, 13, 13.5)
 
     Harmonic chromatic interval segments are immutable.

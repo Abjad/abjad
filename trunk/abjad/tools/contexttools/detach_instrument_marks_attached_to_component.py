@@ -6,14 +6,14 @@ def detach_instrument_marks_attached_to_component(component):
 
     Detach instrument marks attached to `component`::
 
-        abjad> staff = Staff("c'4 d'4 e'4 f'4")
-        abjad> instrument_mark = contexttools.InstrumentMark('Violin ', 'Vn. ')
-        abjad> instrument_mark.attach(staff)
+        >>> staff = Staff("c'4 d'4 e'4 f'4")
+        >>> instrument_mark = contexttools.InstrumentMark('Violin ', 'Vn. ')
+        >>> instrument_mark.attach(staff)
         InstrumentMark(instrument_name='Violin ', short_instrument_name='Vn. ')(Staff{4})
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \set Staff.instrumentName = \markup { Violin  }
             \set Staff.shortInstrumentName = \markup { Vn.  }
@@ -25,12 +25,12 @@ def detach_instrument_marks_attached_to_component(component):
 
     ::
 
-        abjad> contexttools.detach_instrument_marks_attached_to_component(staff)
+        >>> contexttools.detach_instrument_marks_attached_to_component(staff)
         (InstrumentMark(instrument_name='Violin ', short_instrument_name='Vn. '),)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'4
             d'4

@@ -9,16 +9,16 @@ class AltoSaxophone(_Saxophone):
 
     Abjad model of the alto saxophone::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
 
     ::
 
-        abjad> instrumenttools.AltoSaxophone()(staff)
+        >>> instrumenttools.AltoSaxophone()(staff)
         AltoSaxophone()(Staff{4})
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \set Staff.instrumentName = \markup { Alto saxophone }
             \set Staff.shortInstrumentName = \markup { Alto sax. }

@@ -4,16 +4,16 @@ import math
 def divisors(n):
     '''Positive divisors of integer `n` in increasing order::
 
-        abjad> from abjad.tools import mathtools
+        >>> from abjad.tools import mathtools
 
     ::
 
-        abjad> mathtools.divisors(84)
+        >>> mathtools.divisors(84)
         [1, 2, 3, 4, 6, 7, 12, 14, 21, 28, 42, 84]
 
     ::
 
-        abjad> for x in range(10, 20):
+        >>> for x in range(10, 20):
         ...     print x, mathtools.divisors(x)
         ...
         10 [1, 2, 5, 10]
@@ -29,7 +29,7 @@ def divisors(n):
 
     Allow nonpositive `n`::
 
-        abjad> mathtools.divisors(-27)
+        >>> mathtools.divisors(-27)
         [1, 3, 9, 27]
 
     Raise type error on noninteger `n`.

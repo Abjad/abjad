@@ -9,16 +9,16 @@ class BaritoneVoice(_Voice):
 
     Abjad model of the baritone voice::
 
-        abjad> staff = Staff("c8 d8 e8 f8")
+        >>> staff = Staff("c8 d8 e8 f8")
 
     ::
 
-        abjad> instrumenttools.BaritoneVoice()(staff)
+        >>> instrumenttools.BaritoneVoice()(staff)
         BaritoneVoice()(Staff{4})
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \set Staff.instrumentName = \markup { Baritone voice }
             \set Staff.shortInstrumentName = \markup { Baritone }

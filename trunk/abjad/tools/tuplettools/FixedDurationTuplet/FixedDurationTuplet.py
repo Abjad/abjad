@@ -8,7 +8,7 @@ class FixedDurationTuplet(Tuplet):
 
     ::
 
-        abjad> tuplettools.FixedDurationTuplet(Fraction(2, 8), "c'8 d'8 e'8")
+        >>> tuplettools.FixedDurationTuplet(Fraction(2, 8), "c'8 d'8 e'8")
         FixedDurationTuplet(1/4, [c'8, d'8, e'8])
 
     Return fixed-duration tuplet.
@@ -47,8 +47,8 @@ class FixedDurationTuplet(Tuplet):
     def multiplied_duration(self):
         '''Read-only multiplied duration of tuplet::
 
-            abjad> tuplet = tuplettools.FixedDurationTuplet((1, 4), "c'8 d'8 e'8")
-            abjad> tuplet.multiplied_duration
+            >>> tuplet = tuplettools.FixedDurationTuplet((1, 4), "c'8 d'8 e'8")
+            >>> tuplet.multiplied_duration
             Duration(1, 4)
 
         Return duration.
@@ -60,8 +60,8 @@ class FixedDurationTuplet(Tuplet):
         def fget(self):
             '''Read-only multiplier of tuplet::
 
-                abjad> tuplet = tuplettools.FixedDurationTuplet((1, 4), "c'8 d'8 e'8")
-                abjad> tuplet.multiplier
+                >>> tuplet = tuplettools.FixedDurationTuplet((1, 4), "c'8 d'8 e'8")
+                >>> tuplet.multiplier
                 Fraction(2, 3)
 
             Return fraction.
@@ -79,13 +79,13 @@ class FixedDurationTuplet(Tuplet):
         def fget(self):
             r'''Read / write target duration of fixed-duration tuplet::
 
-                abjad> tuplet = tuplettools.FixedDurationTuplet((1, 4), "c'8 d'8 e'8")
-                abjad> tuplet.target_duration
+                >>> tuplet = tuplettools.FixedDurationTuplet((1, 4), "c'8 d'8 e'8")
+                >>> tuplet.target_duration
                 Duration(1, 4)
 
             ::
 
-                abjad> f(tuplet)
+                >>> f(tuplet)
                 \times 2/3 {
                     c'8
                     d'8
@@ -94,8 +94,8 @@ class FixedDurationTuplet(Tuplet):
 
             ::
 
-                abjad> tuplet.target_duration = Duration(5, 8)
-                abjad> f(tuplet)
+                >>> tuplet.target_duration = Duration(5, 8)
+                >>> f(tuplet)
                 \fraction \times 5/3 {
                     c'8
                     d'8
@@ -124,14 +124,14 @@ class FixedDurationTuplet(Tuplet):
     def trim(self, start, stop = 'unused'):
         '''Trim fixed-duration tuplet elements from `start` to `stop`::
 
-            abjad> tuplet = tuplettools.FixedDurationTuplet(Fraction(2, 8), "c'8 d'8 e'8")
-            abjad> tuplet
+            >>> tuplet = tuplettools.FixedDurationTuplet(Fraction(2, 8), "c'8 d'8 e'8")
+            >>> tuplet
             FixedDurationTuplet(1/4, [c'8, d'8, e'8])
 
         ::
 
-            abjad> tuplet.trim(2)
-            abjad> tuplet
+            >>> tuplet.trim(2)
+            >>> tuplet
             FixedDurationTuplet(1/6, [c'8, d'8])
 
         Preserve fixed-duration tuplet multiplier.

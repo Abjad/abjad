@@ -8,12 +8,12 @@ def get_improper_descendents_of_component_that_cross_prolated_offset(component, 
 
     Get improper contents of `component` that cross `prolated_offset`::
 
-        abjad> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-        abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+        >>> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             {
                 \time 2/8
@@ -30,27 +30,27 @@ def get_improper_descendents_of_component_that_cross_prolated_offset(component, 
 
     No components cross prolated offset ``0``::
 
-        abjad> componenttools.get_improper_descendents_of_component_that_cross_prolated_offset(staff, 0)
+        >>> componenttools.get_improper_descendents_of_component_that_cross_prolated_offset(staff, 0)
         []
 
     Staff, measure and leaf cross prolated offset ``1/16``::
 
-        abjad> componenttools.get_improper_descendents_of_component_that_cross_prolated_offset(staff, Duration(1, 16))
+        >>> componenttools.get_improper_descendents_of_component_that_cross_prolated_offset(staff, Duration(1, 16))
         [Staff{2}, Measure(2/8, [c'8, d'8]), Note("c'8")]
 
     Staff and measure cross prolated offset ``1/8``::
 
-        abjad> componenttools.get_improper_descendents_of_component_that_cross_prolated_offset(staff, Duration(1, 8))
+        >>> componenttools.get_improper_descendents_of_component_that_cross_prolated_offset(staff, Duration(1, 8))
         [Staff{2}, Measure(2/8, [c'8, d'8])]
 
     Staff crosses prolated offset ``1/4``::
 
-        abjad> componenttools.get_improper_descendents_of_component_that_cross_prolated_offset(staff, Duration(1, 4))
+        >>> componenttools.get_improper_descendents_of_component_that_cross_prolated_offset(staff, Duration(1, 4))
         [Staff{2}]
 
     No components cross prolated offset ``99``::
 
-        abjad> componenttools.get_improper_descendents_of_component_that_cross_prolated_offset(staff, 99)
+        >>> componenttools.get_improper_descendents_of_component_that_cross_prolated_offset(staff, 99)
         []
 
     Return list.

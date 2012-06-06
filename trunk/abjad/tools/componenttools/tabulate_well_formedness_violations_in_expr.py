@@ -3,11 +3,11 @@ def tabulate_well_formedness_violations_in_expr(expr):
 
     Tabulate well-formedness violations in `expr`::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> staff[1].written_duration = Duration(1, 4)
-        abjad> beamtools.BeamSpanner(staff[:])
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> staff[1].written_duration = Duration(1, 4)
+        >>> beamtools.BeamSpanner(staff[:])
         BeamSpanner(c'8, d'4, e'8, f'8)
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8 [
             d'4
@@ -17,7 +17,7 @@ def tabulate_well_formedness_violations_in_expr(expr):
 
     ::
 
-        abjad> componenttools.tabulate_well_formedness_violations_in_expr(staff)
+        >>> componenttools.tabulate_well_formedness_violations_in_expr(staff)
            1 /    4 beamed quarter note
            0 /    1 discontiguous spanner
            0 /    5 duplicate id

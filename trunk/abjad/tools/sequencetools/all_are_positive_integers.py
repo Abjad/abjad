@@ -6,16 +6,16 @@ def all_are_positive_integers(expr):
 
     True when `expr` is a sequence and all elements  in `expr` are positive integers::
 
-        abjad> from abjad.tools import sequencetools
+        >>> from abjad.tools import sequencetools
 
     ::
 
-        abjad> sequencetools.all_are_positive_integers([1, 2, 3, 99])
+        >>> sequencetools.all_are_positive_integers([1, 2, 3, 99])
         True
 
     Otherwise false::
 
-        abjad> sequencetools.all_are_positive_integers(17)
+        >>> sequencetools.all_are_positive_integers(17)
         False
 
     Return boolean.

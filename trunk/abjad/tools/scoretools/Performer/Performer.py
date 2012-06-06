@@ -8,7 +8,7 @@ class Performer(AbjadObject):
 
     Abjad model of performer::
 
-        abjad> scoretools.Performer(name='flutist')
+        >>> scoretools.Performer(name='flutist')
         Performer(name='flutist', instruments=InstrumentInventory([]))
 
     The purpose of the class is to model things like
@@ -59,16 +59,16 @@ class Performer(AbjadObject):
     def instrument_count(self):
         r'''Read-only number of instruments to be played by performer::
 
-            abjad> performer = scoretools.Performer('flutist')
+            >>> performer = scoretools.Performer('flutist')
 
         ::
 
-            abjad> performer.instruments.append(instrumenttools.Flute())
-            abjad> performer.instruments.append(instrumenttools.Piccolo())
+            >>> performer.instruments.append(instrumenttools.Flute())
+            >>> performer.instruments.append(instrumenttools.Piccolo())
 
         ::
 
-            abjad> performer.instrument_count
+            >>> performer.instrument_count
             2
 
         Return nonnegative integer
@@ -80,16 +80,16 @@ class Performer(AbjadObject):
         def fget(self):
             r'''List of instruments to be played by performer::
 
-                abjad> performer = scoretools.Performer('flutist')
+                >>> performer = scoretools.Performer('flutist')
 
             ::
 
-                abjad> performer.instruments.append(instrumenttools.Flute())
-                abjad> performer.instruments.append(instrumenttools.Piccolo())
+                >>> performer.instruments.append(instrumenttools.Flute())
+                >>> performer.instruments.append(instrumenttools.Piccolo())
 
             ::
 
-                abjad> performer.instruments
+                >>> performer.instruments
                 InstrumentInventory([Flute(), Piccolo()])
 
             Return list.
@@ -109,16 +109,16 @@ class Performer(AbjadObject):
     def is_doubling(self):
         r'''Is performer to play more than one instrument? ::
 
-            abjad> performer = scoretools.Performer('flutist')
+            >>> performer = scoretools.Performer('flutist')
 
         ::
 
-            abjad> performer.instruments.append(instrumenttools.Flute())
-            abjad> performer.instruments.append(instrumenttools.Piccolo())
+            >>> performer.instruments.append(instrumenttools.Flute())
+            >>> performer.instruments.append(instrumenttools.Piccolo())
 
         ::
 
-            abjad> performer.is_doubling
+            >>> performer.is_doubling
             True
 
         Return boolean.
@@ -131,8 +131,8 @@ class Performer(AbjadObject):
 
         Likely instruments based on performer name::
 
-            abjad> flutist = scoretools.Performer(name='flutist')
-            abjad> for likely_instrument in flutist.likely_instruments_based_on_performer_name:
+            >>> flutist = scoretools.Performer(name='flutist')
+            >>> for likely_instrument in flutist.likely_instruments_based_on_performer_name:
             ...     likely_instrument
             ... 
             <class 'abjad.tools.instrumenttools.AltoFlute.AltoFlute.AltoFlute'>
@@ -156,8 +156,8 @@ class Performer(AbjadObject):
 
         Most likely instrument based on performer name::
 
-            abjad> flutist = scoretools.Performer(name='flutist')    
-            abjad> flutist.most_likely_instrument_based_on_performer_name
+            >>> flutist = scoretools.Performer(name='flutist')    
+            >>> flutist.most_likely_instrument_based_on_performer_name
             <class 'abjad.tools.instrumenttools.Flute.Flute.Flute'>
 
         Return instrument class.
@@ -172,11 +172,11 @@ class Performer(AbjadObject):
         def fget(self):
             r'''Score name of performer::
 
-                abjad> performer = scoretools.Performer('flutist')
+                >>> performer = scoretools.Performer('flutist')
 
             ::
 
-                abjad> performer.name
+                >>> performer.name
                 'flutist'
 
             Return string.

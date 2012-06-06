@@ -6,22 +6,22 @@ def is_component_with_lilypond_comment_attached(expr, comment_contents_string = 
 
     True when `expr` is component with LilyPond comment mark attached::
 
-        abjad> note = Note("c'4")
-        abjad> marktools.LilyPondComment('comment here')(note)
+        >>> note = Note("c'4")
+        >>> marktools.LilyPondComment('comment here')(note)
         LilyPondComment('comment here')(c'4)
 
     ::
 
-        abjad> marktools.is_component_with_lilypond_comment_attached(note)
+        >>> marktools.is_component_with_lilypond_comment_attached(note)
         True
 
     False otherwise::
 
-        abjad> note = Note("c'4")
+        >>> note = Note("c'4")
 
     ::
 
-        abjad> marktools.is_component_with_lilypond_comment_attached(note)
+        >>> marktools.is_component_with_lilypond_comment_attached(note)
         False
 
     Return boolean.

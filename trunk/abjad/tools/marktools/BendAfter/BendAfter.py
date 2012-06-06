@@ -4,16 +4,16 @@ from abjad.tools.marktools.Mark import Mark
 class BendAfter(Mark):
     r'''Abjad model of a fall or doit::
 
-        abjad> note = Note("c'4")
+        >>> note = Note("c'4")
 
     ::
 
-        abjad> marktools.BendAfter(-4)(note)
+        >>> marktools.BendAfter(-4)(note)
         BendAfter(-4.0)(c'4)
 
     ::
 
-        abjad> f(note)
+        >>> f(note)
         c'4 - \bendAfter #'-4.0
 
     BendAfter implements ``__slots__``.
@@ -57,8 +57,8 @@ class BendAfter(Mark):
     def format(self):
         r'''Read-only LilyPond format string::
 
-            abjad> bend = marktools.BendAfter(-4)
-            abjad> bend.format
+            >>> bend = marktools.BendAfter(-4)
+            >>> bend.format
             "- \\bendAfter #'-4.0"
 
         Return string.
@@ -70,14 +70,14 @@ class BendAfter(Mark):
         def fget(self):
             '''Get bend amount::
 
-                abjad> bend = marktools.BendAfter(8)
-                abjad> bend.bend_amount
+                >>> bend = marktools.BendAfter(8)
+                >>> bend.bend_amount
                 8.0
 
             Set bend amount::
 
-                abjad> bend.bend_amount = -4
-                abjad> bend.bend_amount
+                >>> bend.bend_amount = -4
+                >>> bend.bend_amount
                 -4.0
 
             Set float.

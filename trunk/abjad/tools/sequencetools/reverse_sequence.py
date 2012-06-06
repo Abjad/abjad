@@ -3,11 +3,11 @@ def reverse_sequence(sequence):
 
     Reverse `sequence`::
 
-        abjad> from abjad.tools import sequencetools
+        >>> from abjad.tools import sequencetools
 
     ::
 
-        abjad> sequencetools.reverse_sequence((1, 2, 3, 4, 5))
+        >>> sequencetools.reverse_sequence((1, 2, 3, 4, 5))
         (5, 4, 3, 2, 1)
 
     Return new `sequence` object.

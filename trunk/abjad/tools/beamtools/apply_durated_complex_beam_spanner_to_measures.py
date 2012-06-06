@@ -3,12 +3,12 @@ def apply_durated_complex_beam_spanner_to_measures(measures):
 
     Apply durated complex beam spanner to `measures`::
 
-        abjad> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-        abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+        >>> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             {
                 \time 2/8
@@ -23,13 +23,13 @@ def apply_durated_complex_beam_spanner_to_measures(measures):
 
     ::
 
-        abjad> measures = staff[:]
-        abjad> beamtools.apply_durated_complex_beam_spanner_to_measures(measures)
+        >>> measures = staff[:]
+        >>> beamtools.apply_durated_complex_beam_spanner_to_measures(measures)
         DuratedComplexBeamSpanner(|2/8(2)|, |2/8(2)|)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             {
                 \time 2/8

@@ -7,21 +7,21 @@ def all_are_voices(expr):
 
     True when `expr` is a sequence of Abjad voices::
 
-        abjad> voice = Voice("c'4 d'4 e'4 f'4")
+        >>> voice = Voice("c'4 d'4 e'4 f'4")
 
     ::
 
-        abjad> voicetools.all_are_voices([voice])
+        >>> voicetools.all_are_voices([voice])
         True
 
     True when `expr` is an empty sequence::
 
-        abjad> voicetools.all_are_voices([])
+        >>> voicetools.all_are_voices([])
         True
 
     Otherwise false::
 
-        abjad> voicetools.all_are_voices('foo')
+        >>> voicetools.all_are_voices('foo')
         False
 
     Return boolean.

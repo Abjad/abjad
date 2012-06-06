@@ -7,16 +7,16 @@ def integer_equivalent_number_to_integer(number):
 
     Integer-equivalent `number` to integer::
 
-        abjad> from abjad.tools import mathtools
+        >>> from abjad.tools import mathtools
 
     ::
 
-        abjad> mathtools.integer_equivalent_number_to_integer(17.0)
+        >>> mathtools.integer_equivalent_number_to_integer(17.0)
         17
 
     Return noninteger-equivalent number unchanged::
 
-        abjad> mathtools.integer_equivalent_number_to_integer(17.5)
+        >>> mathtools.integer_equivalent_number_to_integer(17.5)
         17.5
 
     Raise type error on nonnumber input.

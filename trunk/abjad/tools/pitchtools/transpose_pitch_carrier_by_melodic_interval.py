@@ -9,29 +9,29 @@ def transpose_pitch_carrier_by_melodic_interval(pitch_carrier, melodic_interval)
 
     Transpose `pitch_carrier` by diatonic `melodic_interval`::
 
-        abjad> chord = Chord("<c' e' g'>4")
+        >>> chord = Chord("<c' e' g'>4")
 
     ::
 
-        abjad> pitchtools.transpose_pitch_carrier_by_melodic_interval(chord, '+m2')
+        >>> pitchtools.transpose_pitch_carrier_by_melodic_interval(chord, '+m2')
         Chord("<df' f' af'>4")
 
     Transpose `pitch_carrier` by chromatic `melodic_interval`::
 
-        abjad> chord = Chord("<c' e' g'>4")
+        >>> chord = Chord("<c' e' g'>4")
 
     ::
 
-        abjad> pitchtools.transpose_pitch_carrier_by_melodic_interval(chord, 1)
+        >>> pitchtools.transpose_pitch_carrier_by_melodic_interval(chord, 1)
         Chord("<cs' f' af'>4")
 
     Return non-pitch-carrying input unchaged::
 
-        abjad> rest = Rest('r4')
+        >>> rest = Rest('r4')
 
     ::
 
-        abjad> pitchtools.transpose_pitch_carrier_by_melodic_interval(rest, 1)
+        >>> pitchtools.transpose_pitch_carrier_by_melodic_interval(rest, 1)
         Rest('r4')
 
     Return `pitch_carrier`.

@@ -6,12 +6,12 @@ def replace_leaves_in_expr_with_skips(expr):
 
     Replace leaves in `expr` with skips::
 
-        abjad> staff = Staff(Measure((2, 8), "c'8 d'8") * 2)
-        abjad> skiptools.replace_leaves_in_expr_with_skips(staff[0])
+        >>> staff = Staff(Measure((2, 8), "c'8 d'8") * 2)
+        >>> skiptools.replace_leaves_in_expr_with_skips(staff[0])
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             {
                 \time 2/8

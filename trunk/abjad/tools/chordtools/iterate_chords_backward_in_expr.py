@@ -8,11 +8,11 @@ def iterate_chords_backward_in_expr(expr, start=0, stop=None):
 
     Iterate chords backward in `expr`::
 
-        abjad> staff = Staff("<e' g' c''>8 a'8 r8 <d' f' b'>8 r2")
+        >>> staff = Staff("<e' g' c''>8 a'8 r8 <d' f' b'>8 r2")
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             <e' g' c''>8
             a'8
@@ -23,7 +23,7 @@ def iterate_chords_backward_in_expr(expr, start=0, stop=None):
 
     ::
 
-        abjad> for chord in chordtools.iterate_chords_backward_in_expr(staff):
+        >>> for chord in chordtools.iterate_chords_backward_in_expr(staff):
         ...   chord
         Chord("<d' f' b'>8")
         Chord("<e' g' c''>8")

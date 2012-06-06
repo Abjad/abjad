@@ -6,12 +6,12 @@ def partition_sequence_cyclically_by_weights_at_most_without_overhang(sequence, 
 
     Partition `sequence` elements cyclically by `weights` at most without overhang::
 
-        abjad> from abjad.tools import sequencetools
+        >>> from abjad.tools import sequencetools
 
     ::
 
-        abjad> sequence = [3, 3, 3, 3, 4, 4, 4, 4, 5]
-        abjad> sequencetools.partition_sequence_cyclically_by_weights_at_most_without_overhang(sequence, [10, 5])
+        >>> sequence = [3, 3, 3, 3, 4, 4, 4, 4, 5]
+        >>> sequencetools.partition_sequence_cyclically_by_weights_at_most_without_overhang(sequence, [10, 5])
         [[3, 3, 3], [3], [4, 4], [4]]
 
     Return list sequence element reference lists.

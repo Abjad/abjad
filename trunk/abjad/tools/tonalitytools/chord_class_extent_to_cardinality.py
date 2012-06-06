@@ -3,11 +3,11 @@ def chord_class_extent_to_cardinality(extent):
 
     Change integer chord class `extent` to integer chord class cardinality::
 
-        abjad> from abjad.tools import tonalitytools
+        >>> from abjad.tools import tonalitytools
 
     ::
 
-        abjad> tonalitytools.chord_class_extent_to_cardinality(7)
+        >>> tonalitytools.chord_class_extent_to_cardinality(7)
         4
 
     The call above shows that a seventh chord comprises 4 unique pitch-classes.

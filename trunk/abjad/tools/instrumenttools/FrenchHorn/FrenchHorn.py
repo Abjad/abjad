@@ -10,16 +10,16 @@ class FrenchHorn(_BrassInstrument, _WindInstrument):
 
     Abjad model of the French horn::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
 
     ::
 
-        abjad> instrumenttools.FrenchHorn()(staff)
+        >>> instrumenttools.FrenchHorn()(staff)
         FrenchHorn()(Staff{4})
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \set Staff.instrumentName = \markup { Horn }
             \set Staff.shortInstrumentName = \markup { Hn. }

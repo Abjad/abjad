@@ -5,21 +5,21 @@ from abjad.tools import mathtools
 def is_time_signature_with_equivalent_binary_representation(expr):
     '''True when `expr` is a meter with binary-valued duration::
 
-        abjad> from abjad.tools import timesignaturetools
+        >>> from abjad.tools import timesignaturetools
 
     ::
 
-        abjad> timesignaturetools.is_time_signature_with_equivalent_binary_representation(contexttools.TimeSignatureMark((3, 12)))
+        >>> timesignaturetools.is_time_signature_with_equivalent_binary_representation(contexttools.TimeSignatureMark((3, 12)))
         True
 
     Otherwise false::
 
-        abjad> timesignaturetools.is_time_signature_with_equivalent_binary_representation(contexttools.TimeSignatureMark((4, 12)))
+        >>> timesignaturetools.is_time_signature_with_equivalent_binary_representation(contexttools.TimeSignatureMark((4, 12)))
         False
 
     ::
 
-        abjad> timesignaturetools.is_time_signature_with_equivalent_binary_representation('text')
+        >>> timesignaturetools.is_time_signature_with_equivalent_binary_representation('text')
         False
 
     Return boolean.

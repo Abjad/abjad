@@ -17,7 +17,7 @@ def is_diatonic_quality_abbreviation(expr):
 
     True when `expr` is a diatonic quality abbreviation. Otherwise false::
 
-        abjad> pitchtools.is_diatonic_quality_abbreviation('aug')
+        >>> pitchtools.is_diatonic_quality_abbreviation('aug')
         True
 
     The regex ``^M|m|P|aug|dim$`` underlies this predicate.

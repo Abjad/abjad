@@ -3,11 +3,11 @@ def uppercamelcase_to_underscore_delimited_lowercase(string):
 
     Change uppercamelcase `string` to underscore-delimited lowercase::
 
-        abjad> string = 'KeySignatureMark'
+        >>> string = 'KeySignatureMark'
 
     ::
 
-        abjad> stringtools.uppercamelcase_to_underscore_delimited_lowercase(string)
+        >>> stringtools.uppercamelcase_to_underscore_delimited_lowercase(string)
         'key_signature_mark'
 
     Return string.

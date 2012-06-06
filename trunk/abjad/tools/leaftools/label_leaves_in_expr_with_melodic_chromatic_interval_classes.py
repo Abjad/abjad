@@ -6,9 +6,9 @@ def label_leaves_in_expr_with_melodic_chromatic_interval_classes(expr, markup_di
 
     Label leaves in `expr` with melodic chromatic interval classes::
 
-        abjad> staff = Staff(notetools.make_notes([0, 25, 11, -4, -14, -13, 9, 10, 6, 5], [Duration(1, 8)]))
-        abjad> leaftools.label_leaves_in_expr_with_melodic_chromatic_interval_classes(staff)
-        abjad> f(staff)
+        >>> staff = Staff(notetools.make_notes([0, 25, 11, -4, -14, -13, 9, 10, 6, 5], [Duration(1, 8)]))
+        >>> leaftools.label_leaves_in_expr_with_melodic_chromatic_interval_classes(staff)
+        >>> f(staff)
         \new Staff {
             c'8 ^ \markup { +1 }
             cs'''8 ^ \markup { -2 }

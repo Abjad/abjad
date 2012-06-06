@@ -7,26 +7,26 @@ def all_are_scores(expr):
 
     True when `expr` is a sequence of Abjad scores::
 
-        abjad> score = Score([Staff([Note("c'4")])])
+        >>> score = Score([Staff([Note("c'4")])])
 
     ::
 
-        abjad> score
+        >>> score
         Score<<1>>
 
     ::
 
-        abjad> scoretools.all_are_scores([score])
+        >>> scoretools.all_are_scores([score])
         True
 
     True when `expr` is an empty sequence::
 
-        abjad> scoretools.all_are_scores([])
+        >>> scoretools.all_are_scores([])
         True
 
     Otherwise false::
 
-        abjad> scoretools.all_are_scores('foo')
+        >>> scoretools.all_are_scores('foo')
         False
 
     Return boolean.

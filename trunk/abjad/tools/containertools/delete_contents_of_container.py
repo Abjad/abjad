@@ -4,13 +4,13 @@ from abjad.tools.containertools.Container import Container
 def delete_contents_of_container(container):
     r'''Delete contents of `container`::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> beamtools.BeamSpanner(staff.leaves)
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> beamtools.BeamSpanner(staff.leaves)
         BeamSpanner(c'8, d'8, e'8, f'8)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8 [
             d'8
@@ -20,12 +20,12 @@ def delete_contents_of_container(container):
 
     ::
 
-        abjad> containertools.delete_contents_of_container(staff)
+        >>> containertools.delete_contents_of_container(staff)
         [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
         }
 

@@ -7,42 +7,42 @@ def list_nonspanning_subarrays_of_pitch_array(pitch_array):
 
     List nonspanning subarrays of `pitch_array`::
 
-        abjad> from abjad.tools import pitcharraytools
+        >>> from abjad.tools import pitcharraytools
 
     ::
 
-        abjad> array = pitcharraytools.PitchArray([
+        >>> array = pitcharraytools.PitchArray([
         ...     [2, 2, 3, 1],
         ...     [1, 2, 1, 1, 2, 1],
         ...     [1, 1, 1, 1, 1, 1, 1, 1]])
-        abjad> print array
+        >>> print array
         [     ] [     ] [           ] [ ]
         [ ] [     ] [ ] [ ] [     ] [ ]
         [ ] [ ] [ ] [ ] [ ] [ ] [ ] [ ]
 
     ::
 
-        abjad> subarrays = pitcharraytools.list_nonspanning_subarrays_of_pitch_array(array)
-        abjad> len(subarrays)
+        >>> subarrays = pitcharraytools.list_nonspanning_subarrays_of_pitch_array(array)
+        >>> len(subarrays)
         3
 
     ::
 
-        abjad> print subarrays[0]
+        >>> print subarrays[0]
         [     ] [     ]
         [ ] [     ] [ ]
         [ ] [ ] [ ] [ ]
 
     ::
 
-        abjad> print subarrays[1]
+        >>> print subarrays[1]
         [           ]
         [ ] [     ]
         [ ] [ ] [ ]
 
     ::
 
-        abjad> print subarrays[2]
+        >>> print subarrays[2]
         [ ]
         [ ]
         [ ]

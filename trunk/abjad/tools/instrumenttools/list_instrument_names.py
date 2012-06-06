@@ -6,7 +6,7 @@ def list_instrument_names():
 
     List instrument names::
 
-        abjad> for instrument_name in instrumenttools.list_instrument_names():
+        >>> for instrument_name in instrumenttools.list_instrument_names():
         ...     instrument_name
         ... 
         'accordion'

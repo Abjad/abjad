@@ -8,13 +8,13 @@ def make_accelerating_notes_with_lilypond_multipliers(pitches, total, start, sto
     written = durationtools.Duration(1, 8)):
     '''Make accelerating notes with LilyPond multipliers::
 
-        abjad> notetools.make_accelerating_notes_with_lilypond_multipliers([1,2], (1, 2), (1, 4), (1, 8))
+        >>> notetools.make_accelerating_notes_with_lilypond_multipliers([1,2], (1, 2), (1, 4), (1, 8))
         [Note("cs'8 * 113/64"), Note("d'8 * 169/128"), Note("cs'8 * 117/128")]
 
     ::
 
-        abjad> voice = Voice(_)
-        abjad> voice.prolated_duration
+        >>> voice = Voice(_)
+        >>> voice.prolated_duration
         Duration(1, 2)
 
     Set note pitches cyclically from `pitches`.

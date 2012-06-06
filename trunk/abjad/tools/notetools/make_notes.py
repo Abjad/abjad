@@ -11,27 +11,27 @@ def make_notes(pitches, durations, direction='big-endian'):
 
     Cycle through `pitches` when the length of `pitches` is less than the length of `durations`::
 
-        abjad> notetools.make_notes([0], [(1, 16), (1, 8), (1, 8)])
+        >>> notetools.make_notes([0], [(1, 16), (1, 8), (1, 8)])
         [Note("c'16"), Note("c'8"), Note("c'8")]
 
     Cycle through `durations` when the length of `durations` is less than the length of `pitches`::
 
-        abjad> notetools.make_notes([0, 2, 4, 5, 7], [(1, 16), (1, 8), (1, 8)])
+        >>> notetools.make_notes([0, 2, 4, 5, 7], [(1, 16), (1, 8), (1, 8)])
         [Note("c'16"), Note("d'8"), Note("e'8"), Note("f'16"), Note("g'8")]
 
     Create ad hoc tuplets for nonassignable durations::
 
-        abjad> notetools.make_notes([0], [(1, 16), (1, 12), (1, 8)])
+        >>> notetools.make_notes([0], [(1, 16), (1, 12), (1, 8)])
         [Note("c'16"), Tuplet(2/3, [c'8]), Note("c'8")]
 
     Set `direction` to ``'big-endian'`` to express tied values in decreasing duration::
 
-        abjad> notetools.make_notes([0], [(13, 16)], direction = 'big-endian')
+        >>> notetools.make_notes([0], [(13, 16)], direction = 'big-endian')
         [Note("c'2."), Note("c'16")]
 
     Set `direction` to ``'little-endian'`` to express tied values in increasing duration::
 
-        abjad> notetools.make_notes([0], [(13, 16)], direction = 'little-endian')
+        >>> notetools.make_notes([0], [(13, 16)], direction = 'little-endian')
         [Note("c'16"), Note("c'2.")]
 
     Set `pitches` to a single pitch or a sequence of pitches.

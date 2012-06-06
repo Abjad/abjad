@@ -7,11 +7,11 @@ def get_time_signature_mark_attached_to_component(component):
 
     Get time signature mark attached to `component`::
 
-        abjad> measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
+        >>> measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
 
     ::
 
-        abjad> f(measure)
+        >>> f(measure)
         {
             \time 4/8
             c'8
@@ -22,7 +22,7 @@ def get_time_signature_mark_attached_to_component(component):
 
     ::
 
-        abjad> contexttools.get_time_signature_mark_attached_to_component(measure)
+        >>> contexttools.get_time_signature_mark_attached_to_component(measure)
         TimeSignatureMark((4, 8))(|4/8, c'8, d'8, e'8, f'8|)
 
     Return time signature mark.

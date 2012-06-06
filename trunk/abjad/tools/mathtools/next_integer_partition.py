@@ -3,22 +3,22 @@ def next_integer_partition(integer_partition):
 
     Next integer partition following `integer_partition` in descending lex order::
 
-        abjad> from abjad.tools import mathtools
+        >>> from abjad.tools import mathtools
 
     ::
 
 
-        abjad> mathtools.next_integer_partition((8, 3))
+        >>> mathtools.next_integer_partition((8, 3))
         (8, 2, 1)
 
     ::
 
-        abjad> mathtools.next_integer_partition((8, 2, 1))
+        >>> mathtools.next_integer_partition((8, 2, 1))
         (8, 1, 1, 1)
 
     ::
 
-        abjad> mathtools.next_integer_partition((8, 1, 1, 1))
+        >>> mathtools.next_integer_partition((8, 1, 1, 1))
         (7, 4)
 
     Input `integer_partition` must be sequence of positive integers.

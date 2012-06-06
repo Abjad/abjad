@@ -10,16 +10,16 @@ class UntunedPercussion(_PercussionInstrument):
 
     Abjad model of untuned percussion::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
 
     ::
 
-        abjad> instrumenttools.UntunedPercussion()(staff)
+        >>> instrumenttools.UntunedPercussion()(staff)
         UntunedPercussion()(Staff{4})
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \set Staff.instrumentName = \markup { Untuned percussion }
             \set Staff.shortInstrumentName = \markup { Perc. }

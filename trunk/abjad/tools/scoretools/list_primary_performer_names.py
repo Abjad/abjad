@@ -3,7 +3,7 @@ def list_primary_performer_names():
     
     List performer names::
 
-        abjad> for pair in scoretools.list_primary_performer_names():
+        >>> for pair in scoretools.list_primary_performer_names():
         ...     pair
         ... 
         ('accordionist', 'acc.')

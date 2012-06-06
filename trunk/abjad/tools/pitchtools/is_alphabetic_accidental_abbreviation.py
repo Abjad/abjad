@@ -16,7 +16,7 @@ def is_alphabetic_accidental_abbreviation(expr):
 
     True when `expr` is an alphabetic accidental abbrevation. Otherwise false::
 
-        abjad> pitchtools.is_alphabetic_accidental_abbreviation('tqs')
+        >>> pitchtools.is_alphabetic_accidental_abbreviation('tqs')
         True
 
     The regex ``^([s]{1,2}|[f]{1,2}|t?q?[fs])!?$`` underlies this predicate.

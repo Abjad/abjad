@@ -3,13 +3,13 @@ def p(*args):
 
     Parse `args` as LilyPond string::
 
-        abjad> p("{c'4 d'4 e'4 f'4}")
+        >>> p("{c'4 d'4 e'4 f'4}")
         {c'4, d'4, e'4, f'4}
 
     ::
 
-        abjad> container = _
-        abjad> f(container)
+        >>> container = _
+        >>> f(container)
         {
             c'4
             d'4
@@ -21,7 +21,7 @@ def p(*args):
 
     ::
 
-        abjad> p("{c'8 des' e' fis'}", 'nederlands')
+        >>> p("{c'8 des' e' fis'}", 'nederlands')
         {c'8, df'8, e'8, fs'8}
 
     Return Abjad expression.

@@ -10,9 +10,9 @@ def get_prev_measure_from_component(component):
     and when `component` contains a measure, return last measure
     in `component`. This starts the process of backwards measure iteration. ::
 
-        abjad> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-        abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
-        abjad> measuretools.get_prev_measure_from_component(staff)
+        >>> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+        >>> measuretools.get_prev_measure_from_component(staff)
         Measure(2/8, [e'8, f'8])
 
     When `component` is voice, staff or other sequential context,
@@ -22,25 +22,25 @@ def get_prev_measure_from_component(component):
     When `component` is a measure and there is a measure immediately
     preceeding `component`, return measure immediately preceeding component. ::
 
-        abjad> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-        abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
-        abjad> measuretools.get_prev_measure_from_component(staff[-1])
+        >>> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+        >>> measuretools.get_prev_measure_from_component(staff[-1])
         Measure(2/8, [c'8, d'8])
 
     When `component` is a measure and there is no measure immediately
     preceeding `component`, return ``None``. ::
 
-        abjad> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-        abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
-        abjad> measuretools.get_prev_measure_from_component(staff[0]) is None
+        >>> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+        >>> measuretools.get_prev_measure_from_component(staff[0]) is None
         True
 
     When `component` is a leaf and there is a measure in the parentage
     of `component`, return the measure in the parentage of `component`. ::
 
-        abjad> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-        abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
-        abjad> measuretools.get_prev_measure_from_component(staff.leaves[0])
+        >>> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+        >>> measuretools.get_prev_measure_from_component(staff.leaves[0])
         Measure(2/8, [c'8, d'8])
 
     When `component` is a leaf and there is no measure in the parentage

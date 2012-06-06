@@ -8,7 +8,7 @@ class LilyPondLanguageToken(AbjadObject):
 
     LilyPond language token::
 
-        abjad> lilypondfiletools.LilyPondLanguageToken()
+        >>> lilypondfiletools.LilyPondLanguageToken()
         LilyPondLanguageToken('english')
 
     Return LilyPond language token.
@@ -34,7 +34,7 @@ class LilyPondLanguageToken(AbjadObject):
     def format(self):
         r'''Format contribution of LilyPond language token::
 
-            abjad> lilypondfiletools.LilyPondLanguageToken().format
+            >>> lilypondfiletools.LilyPondLanguageToken().format
             '\\language "english"'
 
         Return string.

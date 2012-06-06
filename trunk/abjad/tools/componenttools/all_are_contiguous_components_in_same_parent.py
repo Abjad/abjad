@@ -9,15 +9,15 @@ def all_are_contiguous_components_in_same_parent(expr, klasses=None, allow_orpha
     True when elements in `expr` are all contiguous components in same parent.
     Otherwise false::
 
-        abjad> staff = Staff("c'8 d'8 e'8")
-        abjad> componenttools.all_are_contiguous_components_in_same_parent(staff.leaves)
+        >>> staff = Staff("c'8 d'8 e'8")
+        >>> componenttools.all_are_contiguous_components_in_same_parent(staff.leaves)
         True
 
     True when elements in `expr` are all contiguous `klasses` in same parent.
     Otherwise false::
 
-        abjad> staff = Staff("c'8 d'8 e'8")
-        abjad> componenttools.all_are_contiguous_components_in_same_parent(staff.leaves, klasses = Note)
+        >>> staff = Staff("c'8 d'8 e'8")
+        >>> componenttools.all_are_contiguous_components_in_same_parent(staff.leaves, klasses = Note)
         True
 
     Return boolean.

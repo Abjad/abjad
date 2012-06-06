@@ -3,16 +3,16 @@ def make_text_alignment_example_lilypond_file(music=None):
 
     Make text-alignment example LilyPond file with `music`.
 
-        abjad> from abjad.tools import documentationtools
+        >>> from abjad.tools import documentationtools
 
     ::
 
-        abjad> score = Score([Staff('c d e f')])
-        abjad> lilypond_file = documentationtools.make_text_alignment_example_lilypond_file(score)
+        >>> score = Score([Staff('c d e f')])
+        >>> lilypond_file = documentationtools.make_text_alignment_example_lilypond_file(score)
 
     ::
 
-        abjad> f(lilypond_file) # doctest: +SKIP
+        >>> f(lilypond_file) # doctest: +SKIP
         % Abjad revision 5651
         % 2012-05-19 10:04
 

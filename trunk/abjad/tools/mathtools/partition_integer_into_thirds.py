@@ -3,29 +3,29 @@ def partition_integer_into_thirds(n, smallest = 'middle', biggest = 'middle'):
 
     When ``n % 3 == 0``, ``left == middle == right``::
 
-        abjad> from abjad.tools import mathtools
+        >>> from abjad.tools import mathtools
 
     ::
 
-        abjad> mathtools.partition_integer_into_thirds(9)
+        >>> mathtools.partition_integer_into_thirds(9)
         (3, 3, 3)
 
     When ``n % 3 == 1``, set biggest part to `biggest`::
 
-        abjad> mathtools.partition_integer_into_thirds(10, biggest = 'left')
+        >>> mathtools.partition_integer_into_thirds(10, biggest = 'left')
         (4, 3, 3)
-        abjad> mathtools.partition_integer_into_thirds(10, biggest = 'middle')
+        >>> mathtools.partition_integer_into_thirds(10, biggest = 'middle')
         (3, 4, 3)
-        abjad> mathtools.partition_integer_into_thirds(10, biggest = 'right')
+        >>> mathtools.partition_integer_into_thirds(10, biggest = 'right')
         (3, 3, 4)
 
     When ``n % 3 == 2``, set smallest part to `smallest`::
 
-        abjad> mathtools.partition_integer_into_thirds(11, smallest = 'left')
+        >>> mathtools.partition_integer_into_thirds(11, smallest = 'left')
         (3, 4, 4)
-        abjad> mathtools.partition_integer_into_thirds(11, smallest = 'middle')
+        >>> mathtools.partition_integer_into_thirds(11, smallest = 'middle')
         (4, 3, 4)
-        abjad> mathtools.partition_integer_into_thirds(11, smallest = 'right')
+        >>> mathtools.partition_integer_into_thirds(11, smallest = 'right')
         (4, 4, 3)
 
     Raise type error on noninteger `n`.

@@ -8,13 +8,13 @@ def apply_octavation_spanner_to_pitched_components(expr,
 
     Apply octavation spanner to pitched components in `expr`::
 
-        abjad> t = Measure((4, 8), notetools.make_notes([24, 26, 27, 29], [(1, 8)]))
-        abjad> pitchtools.apply_octavation_spanner_to_pitched_components(t, ottava_numbered_diatonic_pitch = 14)
+        >>> t = Measure((4, 8), notetools.make_notes([24, 26, 27, 29], [(1, 8)]))
+        >>> pitchtools.apply_octavation_spanner_to_pitched_components(t, ottava_numbered_diatonic_pitch = 14)
         OctavationSpanner(|4/8(4)|)
 
     ::
 
-        abjad> print t.format
+        >>> print t.format
             {
                 \time 4/8
                 \ottava #1

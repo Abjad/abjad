@@ -7,11 +7,11 @@ def rational_to_equal_or_lesser_binary_rational(rational):
 
     Change `rational` to equal or lesser binary rational::
 
-        abjad> from abjad.tools import durationtools
+        >>> from abjad.tools import durationtools
 
     ::
 
-        abjad> for n in range(1, 17): # doctest: +SKIP
+        >>> for n in range(1, 17): # doctest: +SKIP
         ...     rational = Fraction(n, 16)
         ...     written_duration = durationtools.rational_to_equal_or_lesser_binary_rational(rational)
         ...     print '%s/16\\t%s' % (n, written_duration)
@@ -35,7 +35,7 @@ def rational_to_equal_or_lesser_binary_rational(rational):
 
     ::
 
-        abjad> durationtools.rational_to_equal_or_lesser_binary_rational(Fraction(1, 80))
+        >>> durationtools.rational_to_equal_or_lesser_binary_rational(Fraction(1, 80))
         Fraction(1, 128)
 
     Return fraction.

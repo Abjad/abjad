@@ -7,7 +7,7 @@ class OctaveTranspositionMapping(ObjectInventory):
 
     Octave transposition mapping::
 
-        abjad> pitchtools.OctaveTranspositionMapping([('[A0, C4)', 15), ('[C4, C8)', 27)])
+        >>> pitchtools.OctaveTranspositionMapping([('[A0, C4)', 15), ('[C4, C8)', 27)])
         OctaveTranspositionMapping([('[A0, C4)', 15), ('[C4, C8)', 27)])
 
     Octave transposition mappings model 

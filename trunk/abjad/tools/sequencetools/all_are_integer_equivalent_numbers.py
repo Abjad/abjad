@@ -6,16 +6,16 @@ def all_are_integer_equivalent_numbers(expr):
 
     True when `expr` is a sequence and all elements in `expr` are integer-equivalent numbers::
 
-        abjad> from abjad.tools import sequencetools
+        >>> from abjad.tools import sequencetools
 
     ::
 
-        abjad> sequencetools.all_are_integer_equivalent_numbers([1, 2, 3.0, Fraction(4, 1)])
+        >>> sequencetools.all_are_integer_equivalent_numbers([1, 2, 3.0, Fraction(4, 1)])
         True
 
     Otherwise false::
 
-        abjad> sequencetools.all_are_integer_equivalent_numbers([1, 2, 3.5, 4])
+        >>> sequencetools.all_are_integer_equivalent_numbers([1, 2, 3.5, 4])
         False
 
     Return boolean.

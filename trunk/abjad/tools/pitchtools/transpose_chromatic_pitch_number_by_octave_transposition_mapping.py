@@ -7,7 +7,7 @@ def transpose_chromatic_pitch_number_by_octave_transposition_mapping(chromatic_p
     and ``range_spec`` is, in turn, a ``(start, stop)`` pair
     suitable to pass to the built-in Python ``range()`` function::
 
-        abjad> mapping = [((-39, -13), 0), ((-12, 23), 12), ((24, 48), 24)]
+        >>> mapping = [((-39, -13), 0), ((-12, 23), 12), ((24, 48), 24)]
 
     The mapping given here comprises three ``(range_spec, octave)`` pairs.
     The first such pair is ``((-39, -13), 0)`` and can be read as follows:
@@ -35,7 +35,7 @@ def transpose_chromatic_pitch_number_by_octave_transposition_mapping(chromatic_p
     for example, all the f-sharps within the range of the piano now
     undergo a known transposition under `mapping` as defined here::
 
-        abjad> pitchtools.transpose_chromatic_pitch_number_by_octave_transposition_mapping(-30, mapping)
+        >>> pitchtools.transpose_chromatic_pitch_number_by_octave_transposition_mapping(-30, mapping)
         6
 
     We verify that pitch ``-30`` should map to pitch ``6`` by noticing
@@ -45,7 +45,7 @@ def transpose_chromatic_pitch_number_by_octave_transposition_mapping(chromatic_p
     rooted at pitch ``0``. The octave transposition of ``-30`` that
     falls within the octave rooted at ``0`` is ``6``::
 
-        abjad> pitchtools.transpose_chromatic_pitch_number_by_octave_transposition_mapping(-18, mapping)
+        >>> pitchtools.transpose_chromatic_pitch_number_by_octave_transposition_mapping(-18, mapping)
         6
 
     Likewise, `mapping` sends pitch ``-18`` to pitch ``6`` because
@@ -56,8 +56,8 @@ def transpose_chromatic_pitch_number_by_octave_transposition_mapping(chromatic_p
     In this way we can map all f-sharps from ``-39`` to ``48`` according
     to `mapping`::
 
-        abjad> pitch_numbers = [-30, -18, -6, 6, 18, 30, 42]
-        abjad> for n in pitch_numbers:
+        >>> pitch_numbers = [-30, -18, -6, 6, 18, 30, 42]
+        >>> for n in pitch_numbers:
         ...   n, pitchtools.transpose_chromatic_pitch_number_by_octave_transposition_mapping(n, mapping)
         (-30, 6)
         (-18, 6)

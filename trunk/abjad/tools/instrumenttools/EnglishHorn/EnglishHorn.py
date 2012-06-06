@@ -9,16 +9,16 @@ class EnglishHorn(Oboe):
 
     Abjad model of the English horn::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
 
     ::
 
-        abjad> instrumenttools.EnglishHorn()(staff)
+        >>> instrumenttools.EnglishHorn()(staff)
         EnglishHorn()(Staff{4})
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \set Staff.instrumentName = \markup { English horn }
             \set Staff.shortInstrumentName = \markup { Eng. hn. }

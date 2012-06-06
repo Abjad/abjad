@@ -7,17 +7,17 @@ def fuse_overlapping_intervals(intervals):
     '''Fuse the overlapping intervals in `intervals` and return an `TimeIntervalTree`
     of the result ::
 
-        abjad> from abjad.tools import timeintervaltools
-        abjad> from abjad.tools.timeintervaltools import TimeInterval
-        abjad> from abjad.tools.timeintervaltools import TimeIntervalTree
+        >>> from abjad.tools import timeintervaltools
+        >>> from abjad.tools.timeintervaltools import TimeInterval
+        >>> from abjad.tools.timeintervaltools import TimeIntervalTree
 
     ::
 
-        abjad> a = TimeInterval(0, 10)
-        abjad> b = TimeInterval(5, 15)
-        abjad> c = TimeInterval(15, 25)
-        abjad> tree = TimeIntervalTree([a, b, c])
-        abjad> timeintervaltools.fuse_overlapping_intervals(tree)
+        >>> a = TimeInterval(0, 10)
+        >>> b = TimeInterval(5, 15)
+        >>> c = TimeInterval(15, 25)
+        >>> tree = TimeIntervalTree([a, b, c])
+        >>> timeintervaltools.fuse_overlapping_intervals(tree)
         TimeIntervalTree([
             TimeInterval(Offset(0, 1), Offset(15, 1), {}),
             TimeInterval(Offset(15, 1), Offset(25, 1), {})

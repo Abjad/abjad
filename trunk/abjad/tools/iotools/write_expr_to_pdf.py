@@ -7,8 +7,8 @@ import shutil
 def write_expr_to_pdf(expr, file_name, print_status=False, tagline=False):
     '''Write `expr` to pdf `file_name`::
 
-        abjad> note = Note("c'4")
-        abjad> iotools.write_expr_to_pdf(note, 'one_note.pdf') # doctest: +SKIP
+        >>> note = Note("c'4")
+        >>> iotools.write_expr_to_pdf(note, 'one_note.pdf') # doctest: +SKIP
 
     Return none.
     '''

@@ -4,11 +4,11 @@ from abjad.tools.mathtools.factors import factors
 def least_common_multiple(*integers):
     '''Least common multiple of positive `integers`::
 
-        abjad> from abjad.tools import mathtools
+        >>> from abjad.tools import mathtools
 
     ::
 
-        abjad> mathtools.least_common_multiple(2, 4, 5, 10, 20)
+        >>> mathtools.least_common_multiple(2, 4, 5, 10, 20)
         20
 
     Return positive integer.

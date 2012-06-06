@@ -7,7 +7,7 @@ def is_chromatic_pitch_class_name_octave_number_pair(expr):
     True when `arg` has the form of a chromatic pitch-class / octave number pair.
     Otherwise false::
 
-        abjad> pitchtools.is_chromatic_pitch_class_name_octave_number_pair(('cs', 5))
+        >>> pitchtools.is_chromatic_pitch_class_name_octave_number_pair(('cs', 5))
         True
 
     Return boolean.

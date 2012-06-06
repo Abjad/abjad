@@ -9,30 +9,30 @@ class InheritanceGraph(ImmutableDictionary):
 
     ::
 
-        abjad> from abjad.tools.documentationtools import InheritanceGraph
+        >>> from abjad.tools.documentationtools import InheritanceGraph
 
     ::
 
-        abjad> class A(object): pass
+        >>> class A(object): pass
         ...
-        abjad> class B(A): pass
+        >>> class B(A): pass
         ...
-        abjad> class C(B): pass
+        >>> class C(B): pass
         ...
-        abjad> class D(B): pass
+        >>> class D(B): pass
         ...
-        abjad> class E(C, D): pass
+        >>> class E(C, D): pass
         ...
-        abjad> class F(A): pass
+        >>> class F(A): pass
         ...
 
     ::
 
-        abjad> graph = InheritanceGraph(F, E)
+        >>> graph = InheritanceGraph(F, E)
 
     ::
 
-        abjad> for parent, children in sorted(graph.items(), key=lambda x: x[0].__name__):
+        >>> for parent, children in sorted(graph.items(), key=lambda x: x[0].__name__):
         ...     parent, tuple(sorted(children, key=lambda x: x.__name__))
         (<class '__main__.A'>, (<class '__main__.B'>, <class '__main__.F'>))
         (<class '__main__.B'>, (<class '__main__.C'>, <class '__main__.D'>))
@@ -52,8 +52,8 @@ class InheritanceGraph(ImmutableDictionary):
 
     ::
 
-        abjad> graph = InheritanceGraph(A, B, C, D, E, F, root_class=B)
-        abjad> for parent, children in sorted(graph.items()): # doctest: +SKIP
+        >>> graph = InheritanceGraph(A, B, C, D, E, F, root_class=B)
+        >>> for parent, children in sorted(graph.items()): # doctest: +SKIP
         ...     parent, tuple(sorted(children))
         (<class '__main__.B'>, (<class '__main__.C'>, <class '__main__.D'>))
         (<class '__main__.C'>, (<class '__main__.E'>,))

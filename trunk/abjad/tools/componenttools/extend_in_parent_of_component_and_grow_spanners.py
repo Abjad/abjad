@@ -4,14 +4,14 @@ def extend_in_parent_of_component_and_grow_spanners(component, new_components):
     Extend `new_components` in parent of `component` and grow spanners::
 
 
-        abjad> notes = [Note("c'8"), Note("d'8"), Note("e'8")]
-        abjad> voice = Voice(notes)
-        abjad> beamtools.BeamSpanner(voice[:])
+        >>> notes = [Note("c'8"), Note("d'8"), Note("e'8")]
+        >>> voice = Voice(notes)
+        >>> beamtools.BeamSpanner(voice[:])
         BeamSpanner(c'8, d'8, e'8)
 
     ::
 
-        abjad> f(voice)
+        >>> f(voice)
         \new Voice {
             c'8 [
             d'8
@@ -20,13 +20,13 @@ def extend_in_parent_of_component_and_grow_spanners(component, new_components):
 
     ::
 
-        abjad> new_components = [Note("c'8"), Note("d'8"), Note("e'8")]
-        abjad> componenttools.extend_in_parent_of_component_and_grow_spanners(voice.leaves[-1], new_components)
+        >>> new_components = [Note("c'8"), Note("d'8"), Note("e'8")]
+        >>> componenttools.extend_in_parent_of_component_and_grow_spanners(voice.leaves[-1], new_components)
         [Note("e'8"), Note("c'8"), Note("d'8"), Note("e'8")]
 
     ::
 
-        abjad> f(voice)
+        >>> f(voice)
         \new Voice {
             c'8 [
             d'8

@@ -7,26 +7,26 @@ def are_relatively_prime(expr):
     True when `expr` is a sequence comprising zero or more numbers,
     all of which are relatively prime::
 
-        abjad> from abjad.tools import mathtools
+        >>> from abjad.tools import mathtools
 
     ::
 
-        abjad> mathtools.are_relatively_prime([13, 14, 15])
+        >>> mathtools.are_relatively_prime([13, 14, 15])
         True
 
     Otherwise false::
 
-        abjad> mathtools.are_relatively_prime([13, 14, 15, 16])
+        >>> mathtools.are_relatively_prime([13, 14, 15, 16])
         False
 
     Note that function returns true when `expr` is an empty sequence::
 
-        abjad> mathtools.are_relatively_prime([])
+        >>> mathtools.are_relatively_prime([])
         True
 
     Function returns false when `expr` is nonsensical type::
 
-        abjad> mathtools.are_relatively_prime('foo')
+        >>> mathtools.are_relatively_prime('foo')
         False
 
     Return boolean.

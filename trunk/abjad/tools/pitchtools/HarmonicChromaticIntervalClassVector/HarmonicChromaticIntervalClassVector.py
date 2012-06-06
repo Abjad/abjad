@@ -7,16 +7,16 @@ class HarmonicChromaticIntervalClassVector(ObjectVector):
 
     Abjad model of harmonic chromatic interval-class vector::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8 g'8")
-        abjad> hcicv = pitchtools.HarmonicChromaticIntervalClassVector(staff)
-        abjad> print hcicv
+        >>> staff = Staff("c'8 d'8 e'8 f'8 g'8")
+        >>> hcicv = pitchtools.HarmonicChromaticIntervalClassVector(staff)
+        >>> print hcicv
         0 1 3 2 1 2 0 1 0 0 0 0
 
     Harmonic chromatic interval-class vector is quartertone-aware::
 
-        abjad> staff.append(Note(1.5, (1, 4)))
-        abjad> hcicv = pitchtools.HarmonicChromaticIntervalClassVector(staff)
-        abjad> print hcicv
+        >>> staff.append(Note(1.5, (1, 4)))
+        >>> hcicv = pitchtools.HarmonicChromaticIntervalClassVector(staff)
+        >>> print hcicv
         0 1 3 2 1 2 0 1 0 0 0 0
         1 1 1 1 0 1 0 0 0 0 0 0
 
@@ -78,8 +78,8 @@ class HarmonicChromaticIntervalClassVector(ObjectVector):
         '''True when harmonic chromatic interval-class vector contains none of
         `chromatic_interval_numbers`. Otherwise false::
 
-            abjad> hcicv = pitchtools.HarmonicChromaticIntervalClassVector(Staff("c'8 d'8 e'8 f'8 g'8"))
-            abjad> hcicv.has_none_of([9, 10, 11])
+            >>> hcicv = pitchtools.HarmonicChromaticIntervalClassVector(Staff("c'8 d'8 e'8 f'8 g'8"))
+            >>> hcicv.has_none_of([9, 10, 11])
             True
 
         Return boolean.

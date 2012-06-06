@@ -8,14 +8,14 @@ from abjad.tools import durationtools
 def fuse_tuplets(tuplets):
     r'''Fuse parent-contiguous `tuplets`::
 
-        abjad> t1 = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-        abjad> beamtools.BeamSpanner(t1[:])
+        >>> t1 = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
+        >>> beamtools.BeamSpanner(t1[:])
         BeamSpanner(c'8, d'8, e'8)
-        abjad> t2 = tuplettools.FixedDurationTuplet(Duration(2, 16), "c'16 d'16 e'16")
-        abjad> spannertools.SlurSpanner(t2[:])
+        >>> t2 = tuplettools.FixedDurationTuplet(Duration(2, 16), "c'16 d'16 e'16")
+        >>> spannertools.SlurSpanner(t2[:])
         SlurSpanner(c'16, d'16, e'16)
-        abjad> staff = Staff([t1, t2])
-        abjad> f(staff)
+        >>> staff = Staff([t1, t2])
+        >>> f(staff)
         \new Staff {
             \times 2/3 {
                 c'8 [
@@ -31,12 +31,12 @@ def fuse_tuplets(tuplets):
 
     ::
 
-        abjad> tuplettools.fuse_tuplets(staff[:])
+        >>> tuplettools.fuse_tuplets(staff[:])
         FixedDurationTuplet(3/8, [c'8, d'8, e'8, c'16, d'16, e'16])
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \times 2/3 {
                 c'8 [

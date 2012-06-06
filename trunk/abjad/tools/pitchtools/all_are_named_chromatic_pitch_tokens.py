@@ -6,21 +6,21 @@ def all_are_named_chromatic_pitch_tokens(expr):
 
     True when `expr` is a sequence of named chromatic pitch tokens::
 
-        abjad> named_chromatic_pitch_tokens = [('c', 4), pitchtools.NamedChromaticPitch("a'")]
+        >>> named_chromatic_pitch_tokens = [('c', 4), pitchtools.NamedChromaticPitch("a'")]
 
     ::
 
-        abjad> pitchtools.all_are_named_chromatic_pitch_tokens(named_chromatic_pitch_tokens)
+        >>> pitchtools.all_are_named_chromatic_pitch_tokens(named_chromatic_pitch_tokens)
         True
 
     True when `expr` is an empty sequence::
 
-        abjad> pitchtools.all_are_named_chromatic_pitch_tokens([])
+        >>> pitchtools.all_are_named_chromatic_pitch_tokens([])
         True
 
     Otherwise false::
 
-        abjad> pitchtools.all_are_named_chromatic_pitch_tokens('foo')
+        >>> pitchtools.all_are_named_chromatic_pitch_tokens('foo')
         False
 
     Return boolean.

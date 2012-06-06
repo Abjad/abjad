@@ -8,14 +8,14 @@ def make_covered_spanner_schema(components):
 
     Make schema of spanners covered by `components`::
 
-        abjad> voice = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
-        abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(voice)
-        abjad> beam = beamtools.BeamSpanner(voice.leaves[:4])
-        abjad> slur = spannertools.SlurSpanner(voice[-2:])
+        >>> voice = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 4)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(voice)
+        >>> beam = beamtools.BeamSpanner(voice.leaves[:4])
+        >>> slur = spannertools.SlurSpanner(voice[-2:])
 
     ::
 
-        abjad> f(voice)
+        >>> f(voice)
         \new Voice {
             {
                 \time 2/8
@@ -38,7 +38,7 @@ def make_covered_spanner_schema(components):
 
     ::
 
-        abjad> spannertools.make_covered_spanner_schema([voice]) # doctest: +SKIP
+        >>> spannertools.make_covered_spanner_schema([voice]) # doctest: +SKIP
         {BeamSpanner(c'8, d'8, e'8, f'8): [2, 3, 5, 6], SlurSpanner(|2/8(2)|, |2/8(2)|): [7, 10]}
 
     Return dictionary.

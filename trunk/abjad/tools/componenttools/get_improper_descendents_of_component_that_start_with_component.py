@@ -3,11 +3,11 @@ def get_improper_descendents_of_component_that_start_with_component(component):
 
     Get improper contents of `component` that start with `component`::
 
-        abjad> staff = Staff(r"c' << \new Voice { d' } \new Voice { e' } >> f'")
+        >>> staff = Staff(r"c' << \new Voice { d' } \new Voice { e' } >> f'")
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'4
             <<
@@ -23,7 +23,7 @@ def get_improper_descendents_of_component_that_start_with_component(component):
 
     ::
 
-        abjad> componenttools.get_improper_descendents_of_component_that_start_with_component(staff[1])
+        >>> componenttools.get_improper_descendents_of_component_that_start_with_component(staff[1])
         [<<Voice{1}, Voice{1}>>, Voice{1}, Note("d'4"), Voice{1}, Note("e'4")]
 
     Return list of `component` together with improper contents that start with component.

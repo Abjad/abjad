@@ -6,22 +6,22 @@ def sum_sequence_elements_at_indices(sequence, pairs, period = None, overhang = 
 
     Sum `sequence` elements at indices according to `pairs`::
 
-        abjad> from abjad.tools import sequencetools
+        >>> from abjad.tools import sequencetools
 
     ::
 
-        abjad> sequencetools.sum_sequence_elements_at_indices(range(10), [(0, 3)])
+        >>> sequencetools.sum_sequence_elements_at_indices(range(10), [(0, 3)])
         [3, 3, 4, 5, 6, 7, 8, 9]
 
     Sum `sequence` elements cyclically at indices according to `pairs` and `period`::
 
-        abjad> sequencetools.sum_sequence_elements_at_indices(range(10), [(0, 3)], period = 4)
+        >>> sequencetools.sum_sequence_elements_at_indices(range(10), [(0, 3)], period = 4)
         [3, 3, 15, 7, 17]
 
     Sum `sequence` elements cyclically at indices according to `pairs` and `period`
     and do not return incomplete final sum::
 
-        abjad> sequencetools.sum_sequence_elements_at_indices(range(10), [(0, 3)], period = 4, overhang = False)
+        >>> sequencetools.sum_sequence_elements_at_indices(range(10), [(0, 3)], period = 4, overhang = False)
         [3, 3, 15, 7]
 
     Replace ``sequence[i:i+count]`` with ``sum(sequence[i:i+count])``

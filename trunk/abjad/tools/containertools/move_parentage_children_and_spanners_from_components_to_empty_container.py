@@ -7,14 +7,14 @@ from abjad.tools.spannertools._give_spanners_that_dominate_donor_components_to_r
 def move_parentage_children_and_spanners_from_components_to_empty_container(donors, recipient):
     r'''Move parentage, children and spanners from `components` to empty `container`::
 
-        abjad> voice = Voice(Container("c'8 c'8") * 3)
-        abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(voice)
-        abjad> beamtools.BeamSpanner(voice.leaves)
+        >>> voice = Voice(Container("c'8 c'8") * 3)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(voice)
+        >>> beamtools.BeamSpanner(voice.leaves)
         BeamSpanner(c'8, d'8, e'8, f'8, g'8, a'8)
 
     ::
 
-        abjad> f(voice)
+        >>> f(voice)
         \new Voice {
             {
                 c'8 [
@@ -32,12 +32,12 @@ def move_parentage_children_and_spanners_from_components_to_empty_container(dono
 
     ::
 
-        abjad> tuplet = Tuplet(Fraction(3, 4), [])
-        abjad> containertools.move_parentage_children_and_spanners_from_components_to_empty_container(voice[:2], tuplet)
+        >>> tuplet = Tuplet(Fraction(3, 4), [])
+        >>> containertools.move_parentage_children_and_spanners_from_components_to_empty_container(voice[:2], tuplet)
 
     ::
 
-        abjad> f(voice)
+        >>> f(voice)
         \new Voice {
             \fraction \times 3/4 {
                 c'8 [

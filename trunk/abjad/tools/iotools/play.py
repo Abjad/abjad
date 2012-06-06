@@ -11,11 +11,11 @@ import os
 def play(expr):
     '''Play `expr`::
 
-        abjad> note = Note("c'4")
+        >>> note = Note("c'4")
 
     ::
 
-        abjad> iotools.play(note) # doctest: +SKIP
+        >>> iotools.play(note) # doctest: +SKIP
 
     This input creates and opens a one-note MIDI file.
 

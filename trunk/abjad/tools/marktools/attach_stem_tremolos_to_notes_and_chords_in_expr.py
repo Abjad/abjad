@@ -6,13 +6,13 @@ def attach_stem_tremolos_to_notes_and_chords_in_expr(expr, stem_tremolos):
 
     Attach `stem_tremolos` to notes and chords in `expr`::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> stem_tremolo = marktools.StemTremolo(16)
-        abjad> marktools.attach_stem_tremolos_to_notes_and_chords_in_expr(staff, [stem_tremolo])
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> stem_tremolo = marktools.StemTremolo(16)
+        >>> marktools.attach_stem_tremolos_to_notes_and_chords_in_expr(staff, [stem_tremolo])
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8 :16
             d'8 :16

@@ -8,11 +8,11 @@ class Annotation(Mark):
 
     User-defined annotation::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8
             d'8
@@ -22,12 +22,12 @@ class Annotation(Mark):
 
     ::
 
-        abjad> marktools.Annotation('special pitch', pitchtools.NamedChromaticPitch('ds'))(staff[0])
+        >>> marktools.Annotation('special pitch', pitchtools.NamedChromaticPitch('ds'))(staff[0])
         Annotation('special pitch', NamedChromaticPitch('ds'))(c'8)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8
             d'8
@@ -87,14 +87,14 @@ class Annotation(Mark):
         def fget(self):
             '''Get name of annotation::
 
-                abjad> annotation = marktools.Annotation('special_pitch', pitchtools.NamedChromaticPitch('ds'))
-                abjad> annotation.name
+                >>> annotation = marktools.Annotation('special_pitch', pitchtools.NamedChromaticPitch('ds'))
+                >>> annotation.name
                 'special_pitch'
 
             Set name of annotation::
 
-                abjad> annotation.name = 'revised special pitch'
-                abjad> annotation.name
+                >>> annotation.name = 'revised special pitch'
+                >>> annotation.name
                 'revised special pitch'
 
             Set string.
@@ -110,14 +110,14 @@ class Annotation(Mark):
         def fget(self):
             '''Get value of annotation::
 
-                abjad> annotation = marktools.Annotation('special_pitch', pitchtools.NamedChromaticPitch('ds'))
-                abjad> annotation.value
+                >>> annotation = marktools.Annotation('special_pitch', pitchtools.NamedChromaticPitch('ds'))
+                >>> annotation.value
                 NamedChromaticPitch('ds')
 
             Set value of annotation::
 
-                abjad> annotation.value = pitchtools.NamedChromaticPitch('e')
-                abjad> annotation.value
+                >>> annotation.value = pitchtools.NamedChromaticPitch('e')
+                >>> annotation.value
                 NamedChromaticPitch('e')
 
             Set arbitrary object.

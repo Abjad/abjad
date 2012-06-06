@@ -1,16 +1,16 @@
 def integer_to_binary_string(n):
     r'''Positive integer `n` to binary string::
 
-        abjad> from abjad.tools import mathtools
+        >>> from abjad.tools import mathtools
 
     ::
 
-        abjad> mathtools.integer_to_binary_string(5)
+        >>> mathtools.integer_to_binary_string(5)
         '101'
 
     ::
 
-        abjad> for n in range(1, 17):
+        >>> for n in range(1, 17):
         ...     print '\t%s\t%s' % (n, mathtools.integer_to_binary_string(n))
         ...
             1  1

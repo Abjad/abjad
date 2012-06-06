@@ -6,30 +6,30 @@ class ImmutableDictionary(dict, AbjadObject):
     
     Immutable dictionary::
 
-        abjad> from abjad.tools import datastructuretools
+        >>> from abjad.tools import datastructuretools
 
     ::
 
-        abjad> dictionary = datastructuretools.ImmutableDictionary({'color': 'red', 'number': 9})
+        >>> dictionary = datastructuretools.ImmutableDictionary({'color': 'red', 'number': 9})
 
     ::
 
-        abjad> dictionary
+        >>> dictionary
         {'color': 'red', 'number': 9}
 
     ::
 
-        abjad> dictionary['color']
+        >>> dictionary['color']
         'red'
 
     ::
 
-        abjad> dictionary.size = 'large' # doctest: +SKIP
+        >>> dictionary.size = 'large' # doctest: +SKIP
         AttributeError: ImmutableDictionary objects are immutable.
 
     ::
 
-        abjad> dictionary['size'] = 'large' # doctest: +SKIP
+        >>> dictionary['size'] = 'large' # doctest: +SKIP
         AttributeError: ImmutableDictionary objects are immutable.
 
     Return immutable dictionary.

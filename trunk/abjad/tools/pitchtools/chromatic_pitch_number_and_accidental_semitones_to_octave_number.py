@@ -7,7 +7,7 @@ def chromatic_pitch_number_and_accidental_semitones_to_octave_number(
 
     Change `chromatic_pitch_number` and `accidental_semitones` to octave number::
 
-        abjad> pitchtools.chromatic_pitch_number_and_accidental_semitones_to_octave_number(12, -2)
+        >>> pitchtools.chromatic_pitch_number_and_accidental_semitones_to_octave_number(12, -2)
         5
 
     Return integer.

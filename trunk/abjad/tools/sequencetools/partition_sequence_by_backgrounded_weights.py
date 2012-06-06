@@ -7,31 +7,31 @@ def partition_sequence_by_backgrounded_weights(sequence, weights):
 
     Partition `sequence` by backgrounded `weights`::
 
-        abjad> from abjad.tools import sequencetools
+        >>> from abjad.tools import sequencetools
 
     ::
 
-        abjad> sequencetools.partition_sequence_by_backgrounded_weights([-5, -15, -10], [20, 10])
+        >>> sequencetools.partition_sequence_by_backgrounded_weights([-5, -15, -10], [20, 10])
         [[-5, -15], [-10]]
 
     Further examples::
 
-        abjad> sequencetools.partition_sequence_by_backgrounded_weights([-5, -15, -10], [5, 5, 5, 5, 5, 5])
+        >>> sequencetools.partition_sequence_by_backgrounded_weights([-5, -15, -10], [5, 5, 5, 5, 5, 5])
         [[-5], [-15], [], [], [-10], []]
 
     ::
 
-        abjad> sequencetools.partition_sequence_by_backgrounded_weights([-5, -15, -10], [1, 29])
+        >>> sequencetools.partition_sequence_by_backgrounded_weights([-5, -15, -10], [1, 29])
         [[-5], [-15, -10]]
 
     ::
 
-        abjad> sequencetools.partition_sequence_by_backgrounded_weights([-5, -15, -10], [2, 28])
+        >>> sequencetools.partition_sequence_by_backgrounded_weights([-5, -15, -10], [2, 28])
         [[-5], [-15, -10]]
 
     ::
 
-        abjad> sequencetools.partition_sequence_by_backgrounded_weights([-5, -15, -10], [1, 1, 1, 1, 1, 25])
+        >>> sequencetools.partition_sequence_by_backgrounded_weights([-5, -15, -10], [1, 1, 1, 1, 1, 25])
         [[-5], [], [], [], [], [-15, -10]]
 
     The term `backgrounded` is a short-hand concocted specifically for this function;

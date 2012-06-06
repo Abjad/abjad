@@ -6,21 +6,21 @@ class HorizontalBracketSpanner(Spanner):
 
     Abjad horizontal bracket spanner::
 
-        abjad> voice = Voice("c'4 d'4 e'4 f'4")
-        abjad> voice.engraver_consists.append('Horizontal_bracket_engraver')
+        >>> voice = Voice("c'4 d'4 e'4 f'4")
+        >>> voice.engraver_consists.append('Horizontal_bracket_engraver')
 
     ::
 
-        abjad> horizontal_bracket_spanner = spannertools.HorizontalBracketSpanner(voice[:])
+        >>> horizontal_bracket_spanner = spannertools.HorizontalBracketSpanner(voice[:])
 
     ::
 
-        abjad> horizontal_bracket_spanner
+        >>> horizontal_bracket_spanner
         HorizontalBracketSpanner(c'4, d'4, e'4, f'4)
 
     ::
 
-        abjad> f(voice)
+        >>> f(voice)
         \new Voice \with {
             \consists Horizontal_bracket_engraver
         } {

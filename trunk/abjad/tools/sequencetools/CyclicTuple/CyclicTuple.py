@@ -3,20 +3,20 @@ class CyclicTuple(tuple):
 
     Abjad model of cyclic tuple::
 
-        abjad> from abjad.tools import sequencetools
+        >>> from abjad.tools import sequencetools
 
     ::
 
-        abjad> cyclic_tuple = sequencetools.CyclicTuple('abcd')
+        >>> cyclic_tuple = sequencetools.CyclicTuple('abcd')
 
     ::
 
-        abjad> cyclic_tuple
+        >>> cyclic_tuple
         CyclicTuple([a, b, c, d])
 
     ::
 
-        abjad> for x in range(8):
+        >>> for x in range(8):
         ...     print x, cyclic_tuple[x]
         ...
         0 a

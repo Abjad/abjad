@@ -4,37 +4,37 @@ def is_restricted_growth_function(expr):
     True when `expr` is a sequence and `expr` meets the criteria for a restricted
     growth function::
 
-        abjad> from abjad.tools import sequencetools
+        >>> from abjad.tools import sequencetools
 
     ::
 
-        abjad> sequencetools.is_restricted_growth_function([1, 1, 1, 1])
+        >>> sequencetools.is_restricted_growth_function([1, 1, 1, 1])
         True
 
     ::
 
 
-        abjad> sequencetools.is_restricted_growth_function([1, 1, 1, 2])
+        >>> sequencetools.is_restricted_growth_function([1, 1, 1, 2])
         True
 
     ::
 
-        abjad> sequencetools.is_restricted_growth_function([1, 1, 2, 1])
+        >>> sequencetools.is_restricted_growth_function([1, 1, 2, 1])
         True
 
     ::
 
-        abjad> sequencetools.is_restricted_growth_function([1, 1, 2, 2])
+        >>> sequencetools.is_restricted_growth_function([1, 1, 2, 2])
         True
 
     Otherwise false::
 
-        abjad> sequencetools.is_restricted_growth_function([1, 1, 1, 3])
+        >>> sequencetools.is_restricted_growth_function([1, 1, 1, 3])
         False
 
     ::
 
-        abjad> sequencetools.is_restricted_growth_function(17)
+        >>> sequencetools.is_restricted_growth_function(17)
         False
 
     A restricted growth function is a sequence ``l`` such that ``l[0] == 1``

@@ -17,10 +17,10 @@ def copy_components_and_fracture_crossing_spanners(components, n=1):
     Fracture spanners that attach to components not in `components`.
     Return Python list of copied components. ::
 
-        abjad> voice = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
-        abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(voice)
-        abjad> beam = beamtools.BeamSpanner(voice.leaves[:4])
-        abjad> f(voice)
+        >>> voice = Voice(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(voice)
+        >>> beam = beamtools.BeamSpanner(voice.leaves[:4])
+        >>> f(voice)
         \new Voice {
             {
                 \time 2/8
@@ -39,14 +39,14 @@ def copy_components_and_fracture_crossing_spanners(components, n=1):
 
     ::
 
-        abjad> result = componenttools.copy_components_and_fracture_crossing_spanners(voice.leaves[2:4])
-        abjad> result
+        >>> result = componenttools.copy_components_and_fracture_crossing_spanners(voice.leaves[2:4])
+        >>> result
         (Note("e'8"), Note("f'8"))
 
     ::
 
-        abjad> new_voice = Voice(result)
-        abjad> f(new_voice)
+        >>> new_voice = Voice(result)
+        >>> f(new_voice)
         \new Voice {
             e'8 [
             f'8 ]
@@ -54,19 +54,19 @@ def copy_components_and_fracture_crossing_spanners(components, n=1):
 
     ::
 
-        abjad> voice.leaves[2] is new_voice.leaves[0]
+        >>> voice.leaves[2] is new_voice.leaves[0]
         False
 
     Clone `components` a total of `n` times. ::
 
-        abjad> result = componenttools.copy_components_and_fracture_crossing_spanners(voice.leaves[2:4], n = 3)
-        abjad> result
+        >>> result = componenttools.copy_components_and_fracture_crossing_spanners(voice.leaves[2:4], n = 3)
+        >>> result
         (Note("e'8"), Note("f'8"), Note("e'8"), Note("f'8"), Note("e'8"), Note("f'8"))
 
     ::
 
-        abjad> new_voice = Voice(result)
-        abjad> f(new_voice)
+        >>> new_voice = Voice(result)
+        >>> f(new_voice)
         \new Voice {
             e'8 [
             f'8 ]

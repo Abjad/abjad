@@ -7,33 +7,33 @@ def concatenate_pitch_arrays(pitch_arrays):
 
     Concatenate `pitch_arrays`::
 
-        abjad> from abjad.tools import pitcharraytools
+        >>> from abjad.tools import pitcharraytools
 
     ::
 
-        abjad> array_1 = pitcharraytools.PitchArray([[1, 2, 1], [2, 1, 1]])
-        abjad> print array_1
+        >>> array_1 = pitcharraytools.PitchArray([[1, 2, 1], [2, 1, 1]])
+        >>> print array_1
         [ ] [     ] [ ]
         [     ] [ ] [ ]
 
     ::
 
-        abjad> array_2 = pitcharraytools.PitchArray([[3, 4], [4, 3]])
-        abjad> print array_2
+        >>> array_2 = pitcharraytools.PitchArray([[3, 4], [4, 3]])
+        >>> print array_2
         [     ] [           ]
         [           ] [     ]
 
     ::
 
-        abjad> array_3 = pitcharraytools.PitchArray([[1, 1], [1, 1]])
-        abjad> print array_3
+        >>> array_3 = pitcharraytools.PitchArray([[1, 1], [1, 1]])
+        >>> print array_3
         [ ] [ ]
         [ ] [ ]
 
     ::
 
-        abjad> merged_array = pitcharraytools.concatenate_pitch_arrays([array_1, array_2, array_3])
-        abjad> print merged_array
+        >>> merged_array = pitcharraytools.concatenate_pitch_arrays([array_1, array_2, array_3])
+        >>> print merged_array
         [ ] [     ] [ ] [     ] [           ] [ ] [ ]
         [     ] [ ] [ ] [           ] [     ] [ ] [ ]
 

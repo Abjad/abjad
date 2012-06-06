@@ -8,11 +8,11 @@ def arpeggiate_chord(chord):
 
     Arpeggiate `chord`::
 
-        abjad> chord = Chord("<c' d'' ef''>8")
+        >>> chord = Chord("<c' d'' ef''>8")
 
     ::
 
-        abjad> chordtools.arpeggiate_chord(chord)
+        >>> chordtools.arpeggiate_chord(chord)
         [Note("c'8"), Note("d''8"), Note("ef''8")]
 
     Arpeggiated notes inherit `chord` written duration.

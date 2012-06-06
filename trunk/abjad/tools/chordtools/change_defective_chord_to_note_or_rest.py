@@ -9,72 +9,72 @@ def change_defective_chord_to_note_or_rest(chord):
 
     Change zero-length `chord` to rest::
 
-        abjad> chord = Chord([], (3, 16))
+        >>> chord = Chord([], (3, 16))
 
     ::
 
-        abjad> chord
+        >>> chord
         Chord('<>8.')
 
     ::
 
-        abjad> chordtools.change_defective_chord_to_note_or_rest(chord)
+        >>> chordtools.change_defective_chord_to_note_or_rest(chord)
         Rest('r8.')
 
     Change length-one chord to note::
 
-        abjad> chord = Chord("<cs''>8.")
+        >>> chord = Chord("<cs''>8.")
 
     ::
 
-        abjad> chord
+        >>> chord
         Chord("<cs''>8.")
 
     ::
 
-        abjad> chordtools.change_defective_chord_to_note_or_rest(chord)
+        >>> chordtools.change_defective_chord_to_note_or_rest(chord)
         Note("cs''8.")
 
     Return chords with length greater than one unchanged::
 
-        abjad> chord = Chord("<c' c'' cs''>8.")
+        >>> chord = Chord("<c' c'' cs''>8.")
 
     ::
 
-        abjad> chord
+        >>> chord
         Chord("<c' c'' cs''>8.")
 
     ::
 
-        abjad> chordtools.change_defective_chord_to_note_or_rest(chord)
+        >>> chordtools.change_defective_chord_to_note_or_rest(chord)
         Chord("<c' c'' cs''>8.")
 
     Return notes unchanged::
 
-        abjad> note = Note("c'4")
+        >>> note = Note("c'4")
 
     ::
 
-        abjad> note
+        >>> note
         Note("c'4")
 
     ::
 
-        abjad> chordtools.change_defective_chord_to_note_or_rest(note)
+        >>> chordtools.change_defective_chord_to_note_or_rest(note)
         Note("c'4")
 
     Return rests unchanged::
 
-        abjad> rest = Rest('r4')
+        >>> rest = Rest('r4')
 
     ::
 
-        abjad> rest
+        >>> rest
         Rest('r4')
 
     ::
 
-        abjad> chordtools.change_defective_chord_to_note_or_rest(rest)
+        >>> chordtools.change_defective_chord_to_note_or_rest(rest)
         Rest('r4')
 
     Return note, rest, chord or none.

@@ -7,11 +7,11 @@ def make_time_signature_context_block(font_size=3, padding=4):
 
     Make time signature context block::
 
-        abjad> context_block = lilypondfiletools.make_time_signature_context_block()
+        >>> context_block = lilypondfiletools.make_time_signature_context_block()
 
     ::
 
-        abjad> f(context_block)
+        >>> f(context_block)
         \context {
             \type Engraver_group
             \name TimeSignatureContext

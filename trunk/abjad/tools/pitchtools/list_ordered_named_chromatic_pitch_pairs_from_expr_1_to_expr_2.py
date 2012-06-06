@@ -7,9 +7,9 @@ def list_ordered_named_chromatic_pitch_pairs_from_expr_1_to_expr_2(expr_1, expr_
 
     List ordered named chromatic pitch pairs from `expr_1` to `expr_2`::
 
-        abjad> chord_1 = Chord([0, 1, 2], (1, 4))
-        abjad> chord_2 = Chord([3, 4], (1, 4))
-        abjad> for pair in pitchtools.list_ordered_named_chromatic_pitch_pairs_from_expr_1_to_expr_2(chord_1, chord_2):
+        >>> chord_1 = Chord([0, 1, 2], (1, 4))
+        >>> chord_2 = Chord([3, 4], (1, 4))
+        >>> for pair in pitchtools.list_ordered_named_chromatic_pitch_pairs_from_expr_1_to_expr_2(chord_1, chord_2):
         ...        pair
         (NamedChromaticPitch("c'"), NamedChromaticPitch("ef'"))
         (NamedChromaticPitch("c'"), NamedChromaticPitch("e'"))

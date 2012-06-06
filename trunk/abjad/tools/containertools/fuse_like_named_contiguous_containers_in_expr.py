@@ -5,14 +5,14 @@ from abjad.tools import componenttools
 def fuse_like_named_contiguous_containers_in_expr(expr):
     r'''Fuse like-named contiguous containers in `expr`::
 
-        abjad> staff = Staff(Voice("c'8 c'8") * 2)
-        abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff.leaves)
-        abjad> staff[0].name = 'soprano'
-        abjad> staff[1].name = 'soprano'
+        >>> staff = Staff(Voice("c'8 c'8") * 2)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff.leaves)
+        >>> staff[0].name = 'soprano'
+        >>> staff[1].name = 'soprano'
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \context Voice = "soprano" {
                 c'8
@@ -26,12 +26,12 @@ def fuse_like_named_contiguous_containers_in_expr(expr):
 
     ::
 
-        abjad> containertools.fuse_like_named_contiguous_containers_in_expr(staff)
+        >>> containertools.fuse_like_named_contiguous_containers_in_expr(staff)
         Staff{1}
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \context Voice = "soprano" {
                 c'8

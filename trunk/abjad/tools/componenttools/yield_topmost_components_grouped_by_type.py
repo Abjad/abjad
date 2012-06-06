@@ -6,8 +6,8 @@ def yield_topmost_components_grouped_by_type(expr):
 
     Yield topmost components in `expr` grouped by type::
 
-        abjad> staff = Staff(leaftools.make_leaves([0, 2, 4, None, None, 5, 7], [(1, 8)]))
-        abjad> for x in componenttools.yield_topmost_components_grouped_by_type(staff):
+        >>> staff = Staff(leaftools.make_leaves([0, 2, 4, None, None, 5, 7], [(1, 8)]))
+        >>> for x in componenttools.yield_topmost_components_grouped_by_type(staff):
         ...     x
         ...
         (Note("c'8"), Note("d'8"), Note("e'8"))

@@ -6,11 +6,11 @@ def iterate_notes_and_chords_backward_in_expr(expr, start = 0, stop = None):
 
     Iterate notes and chords backward in `expr`::
 
-        abjad> staff = Staff("<e' g' c''>8 a'8 r8 <d' f' b'>8 r2")
+        >>> staff = Staff("<e' g' c''>8 a'8 r8 <d' f' b'>8 r2")
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             <e' g' c''>8
             a'8
@@ -21,7 +21,7 @@ def iterate_notes_and_chords_backward_in_expr(expr, start = 0, stop = None):
 
     ::
 
-        abjad> for leaf in leaftools.iterate_notes_and_chords_backward_in_expr(staff):
+        >>> for leaf in leaftools.iterate_notes_and_chords_backward_in_expr(staff):
         ...   leaf
         Chord("<d' f' b'>8")
         Note("a'8")

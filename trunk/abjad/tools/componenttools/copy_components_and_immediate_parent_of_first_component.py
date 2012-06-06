@@ -17,10 +17,10 @@ def copy_components_and_immediate_parent_of_first_component(components):
     equals the tuplet multiplier of the parent of the
     first element in `components`. ::
 
-        abjad> voice = Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 3)
-        abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(voice)
-        abjad> beam = beamtools.BeamSpanner(voice.leaves[:4])
-        abjad> f(voice)
+        >>> voice = Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 3)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(voice)
+        >>> beam = beamtools.BeamSpanner(voice.leaves[:4])
+        >>> f(voice)
         \new Voice {
             \times 2/3 {
                 c'8 [
@@ -38,10 +38,10 @@ def copy_components_and_immediate_parent_of_first_component(components):
                 d''8
             }
         }
-        abjad> new_tuplet = componenttools.copy_components_and_immediate_parent_of_first_component(voice.leaves[:2])
-        abjad> new_tuplet
+        >>> new_tuplet = componenttools.copy_components_and_immediate_parent_of_first_component(voice.leaves[:2])
+        >>> new_tuplet
         FixedDurationTuplet(1/6, [c'8, d'8])
-        abjad> f(new_tuplet)
+        >>> f(new_tuplet)
         \times 2/3 {
             c'8 [
             d'8 ]
@@ -50,10 +50,10 @@ def copy_components_and_immediate_parent_of_first_component(components):
     Parent-contiguity is not required.
     Thread-contiguous `components` suffice. ::
 
-        abjad> new_tuplet = componenttools.copy_components_and_immediate_parent_of_first_component(voice.leaves[:5])
-        abjad> new_tuplet
+        >>> new_tuplet = componenttools.copy_components_and_immediate_parent_of_first_component(voice.leaves[:5])
+        >>> new_tuplet
         FixedDurationTuplet(5/12, [c'8, d'8, e'8, f'8, g'8])
-        abjad> f(new_tuplet)
+        >>> f(new_tuplet)
         \times 2/3 {
             c'8 [
             d'8

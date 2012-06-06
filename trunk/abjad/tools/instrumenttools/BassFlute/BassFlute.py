@@ -8,16 +8,16 @@ class BassFlute(Flute):
 
     Abjad model of the bass flute::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
 
     ::
 
-        abjad> instrumenttools.BassFlute()(staff)
+        >>> instrumenttools.BassFlute()(staff)
         BassFlute()(Staff{4})
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \set Staff.instrumentName = \markup { Bass flute }
             \set Staff.shortInstrumentName = \markup { Bass fl. }

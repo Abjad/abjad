@@ -12,32 +12,32 @@ def make_tuplet_from_proportions_and_pair(l, (n, d)):
 
     Where no prolation is necessary, return container. ::
 
-        abjad> tuplettools.make_tuplet_from_proportions_and_pair([1], (7, 16))
+        >>> tuplettools.make_tuplet_from_proportions_and_pair([1], (7, 16))
         {c'4..}
 
     Where prolation is necessary, return fixed-duration tuplet. ::
 
-        abjad> tuplettools.make_tuplet_from_proportions_and_pair([1, 2], (7, 16))
+        >>> tuplettools.make_tuplet_from_proportions_and_pair([1, 2], (7, 16))
         FixedDurationTuplet(7/16, [c'8, c'4])
 
     ::
 
-        abjad> tuplettools.make_tuplet_from_proportions_and_pair([1, 2, 4], (7, 16))
+        >>> tuplettools.make_tuplet_from_proportions_and_pair([1, 2, 4], (7, 16))
         FixedDurationTuplet(7/16, [c'16, c'8, c'4])
 
     ::
 
-        abjad> tuplettools.make_tuplet_from_proportions_and_pair([1, 2, 4, 1], (7, 16))
+        >>> tuplettools.make_tuplet_from_proportions_and_pair([1, 2, 4, 1], (7, 16))
         FixedDurationTuplet(7/16, [c'16, c'8, c'4, c'16])
 
     ::
 
-        abjad> tuplettools.make_tuplet_from_proportions_and_pair([1, 2, 4, 1, 2], (7, 16))
+        >>> tuplettools.make_tuplet_from_proportions_and_pair([1, 2, 4, 1, 2], (7, 16))
         FixedDurationTuplet(7/16, [c'16, c'8, c'4, c'16, c'8])
 
     ::
 
-        abjad> tuplettools.make_tuplet_from_proportions_and_pair([1, 2, 4, 1, 2, 4], (7, 16))
+        >>> tuplettools.make_tuplet_from_proportions_and_pair([1, 2, 4, 1, 2, 4], (7, 16))
         FixedDurationTuplet(7/16, [c'16, c'8, c'4, c'16, c'8, c'4])
 
     .. note:: function accepts a pair rather than a rational.

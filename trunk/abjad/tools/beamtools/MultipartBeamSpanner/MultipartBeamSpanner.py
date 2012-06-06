@@ -6,16 +6,16 @@ class MultipartBeamSpanner(BeamSpanner):
 
     Abjad multipart beam spanner::
 
-        abjad> staff = Staff("c'8 d'8 e'4 f'8 g'8 r4")
+        >>> staff = Staff("c'8 d'8 e'4 f'8 g'8 r4")
 
     ::
 
-        abjad> beamtools.MultipartBeamSpanner(staff[:])
+        >>> beamtools.MultipartBeamSpanner(staff[:])
         MultipartBeamSpanner(c'8, d'8, e'4, f'8, g'8, r4)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8 [
             d'8 ]

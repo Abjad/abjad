@@ -8,9 +8,9 @@ def copy_governed_component_subtree_by_leaf_range(component, start=0, stop=None)
     Leaf range refers to the sequential parentage of `component` from `start` leaf index
     to `stop` leaf index::
 
-        abjad> t = Staff([Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)])
-        abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-        abjad> f(t)
+        >>> t = Staff([Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)])
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+        >>> f(t)
         \new Staff {
             \new Voice {
                 \times 2/3 {
@@ -28,8 +28,8 @@ def copy_governed_component_subtree_by_leaf_range(component, start=0, stop=None)
 
     ::
 
-        abjad> u = componenttools.copy_governed_component_subtree_by_leaf_range(t, 1, 5)
-        abjad> f(u)
+        >>> u = componenttools.copy_governed_component_subtree_by_leaf_range(t, 1, 5)
+        >>> f(u)
         \new Staff {
             \new Voice {
                 \times 2/3 {

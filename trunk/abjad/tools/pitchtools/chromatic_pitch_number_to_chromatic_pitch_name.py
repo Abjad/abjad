@@ -11,7 +11,7 @@ def chromatic_pitch_number_to_chromatic_pitch_name(
 
     Change `chromatic_pitch_number` to chromatic pitch name::
 
-        abjad> pitchtools.chromatic_pitch_number_to_chromatic_pitch_name(13)
+        >>> pitchtools.chromatic_pitch_number_to_chromatic_pitch_name(13)
         "cs''"
 
     Return string.

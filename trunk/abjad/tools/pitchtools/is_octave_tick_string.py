@@ -14,7 +14,7 @@ def is_octave_tick_string(expr):
 
     True when `expr` is an octave tick string. Otherwise false::
 
-        abjad> pitchtools.is_octave_tick_string(',,,')
+        >>> pitchtools.is_octave_tick_string(',,,')
         True
 
     The regex ``^,+|'+|$`` underlies this predicate.

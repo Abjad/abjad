@@ -6,13 +6,13 @@ def report_container_modifications_as_string(container):
 
     ::
 
-        abjad> container = Container("c'8 d'8 e'8 f'8")
-        abjad> container.override.note_head.color = 'red'
-        abjad> container.override.note_head.style = 'harmonic'
+        >>> container = Container("c'8 d'8 e'8 f'8")
+        >>> container.override.note_head.color = 'red'
+        >>> container.override.note_head.style = 'harmonic'
 
     ::
 
-        abjad> f(container)
+        >>> f(container)
         {
             \override NoteHead #'color = #red
             \override NoteHead #'style = #'harmonic
@@ -26,11 +26,11 @@ def report_container_modifications_as_string(container):
 
     ::
 
-        abjad> string = containertools.report_container_modifications_as_string(container)
+        >>> string = containertools.report_container_modifications_as_string(container)
 
     ::
 
-        abjad> print string
+        >>> print string
         {
             \override NoteHead #'color = #red
             \override NoteHead #'style = #'harmonic

@@ -4,16 +4,16 @@ from abjad.tools.spannertools.Spanner import Spanner
 class TrillSpanner(Spanner):
     r'''Abjad trill spanner::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
 
     ::
 
-        abjad> spannertools.TrillSpanner(staff[:])
+        >>> spannertools.TrillSpanner(staff[:])
         TrillSpanner(c'8, d'8, e'8, f'8)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8 \startTrillSpan
             d'8
@@ -60,13 +60,13 @@ class TrillSpanner(Spanner):
 
                 ::
 
-                    abjad> t = Staff("c'8 d'8 e'8 f'8")
-                    abjad> trill = spannertools.TrillSpanner(t[:2])
-                    abjad> trill.pitch = pitchtools.NamedChromaticPitch('cs', 4)
+                    >>> t = Staff("c'8 d'8 e'8 f'8")
+                    >>> trill = spannertools.TrillSpanner(t[:2])
+                    >>> trill.pitch = pitchtools.NamedChromaticPitch('cs', 4)
 
                 ::
 
-                    abjad> f(t)
+                    >>> f(t)
                     \new Staff {
                         \pitchedTrill c'8 \startTrillSpan cs'
                         d'8 \stopTrillSpan

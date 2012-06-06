@@ -8,12 +8,12 @@ def make_piano_score_from_leaves(leaves, lowest_treble_pitch = NamedChromaticPit
 
     Make piano score from `leaves`::
 
-        abjad> notes = [Note(x, (1, 4)) for x in [-12, 37, -10, 2, 4, 17]]
-        abjad> score, treble_staff, bass_staff = scoretools.make_piano_score_from_leaves(notes)
+        >>> notes = [Note(x, (1, 4)) for x in [-12, 37, -10, 2, 4, 17]]
+        >>> score, treble_staff, bass_staff = scoretools.make_piano_score_from_leaves(notes)
 
     ::
 
-        abjad> f(score)
+        >>> f(score)
         \new Score <<
             \new PianoStaff <<
                 \context Staff = "treble" {

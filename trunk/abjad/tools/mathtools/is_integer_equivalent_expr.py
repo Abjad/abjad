@@ -8,21 +8,21 @@ def is_integer_equivalent_expr(expr):
     True when `expr` is an integer-equivalent number::
 
 
-        abjad> from abjad.tools import mathtools
+        >>> from abjad.tools import mathtools
 
     ::
 
-        abjad> mathtools.is_integer_equivalent_expr(12.0)
+        >>> mathtools.is_integer_equivalent_expr(12.0)
         True
 
     True when `expr` evaluates to an integer::
 
-        abjad> mathtools.is_integer_equivalent_expr('12')
+        >>> mathtools.is_integer_equivalent_expr('12')
         True
 
     Otherwise false::
 
-        abjad> mathtools.is_integer_equivalent_expr('foo')
+        >>> mathtools.is_integer_equivalent_expr('foo')
         False
 
     Return boolean.

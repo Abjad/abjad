@@ -6,7 +6,7 @@ class MelodicChromaticIntervalClassVector(ObjectVector):
 
     Abjad model of melodic chromatic interval-class vector::
 
-        abjad> print pitchtools.MelodicChromaticIntervalClassVector([-2, -14, 3, 5.5, 6.5])
+        >>> print pitchtools.MelodicChromaticIntervalClassVector([-2, -14, 3, 5.5, 6.5])
             .   |   .   .   1   .   .   .   |   .   .   .   .   .   .
                 |   .   2   .   .   .   .   |   .   .   .   .   .   .
                 |   .   .   .   .   .   1   |   1   .   .   .   .   .

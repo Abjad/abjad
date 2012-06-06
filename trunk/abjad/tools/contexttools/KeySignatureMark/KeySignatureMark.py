@@ -6,16 +6,16 @@ class KeySignatureMark(ContextMark):
 
     Abjad model of a key signature setting or key signature change::
 
-        abjad> staff = Staff("e'8 fs'8 gs'8 a'8")
+        >>> staff = Staff("e'8 fs'8 gs'8 a'8")
 
     ::
 
-        abjad> contexttools.KeySignatureMark('e', 'major')(staff)
+        >>> contexttools.KeySignatureMark('e', 'major')(staff)
         KeySignatureMark(NamedChromaticPitchClass('e'), Mode('major'))(Staff{4})
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \key e \major
             e'8
@@ -76,8 +76,8 @@ class KeySignatureMark(ContextMark):
 
         ::
 
-            abjad> key_signature = contexttools.KeySignatureMark('e', 'major')
-            abjad> key_signature.format
+            >>> key_signature = contexttools.KeySignatureMark('e', 'major')
+            >>> key_signature.format
             '\\key e \\major'
 
         Return string.
@@ -89,14 +89,14 @@ class KeySignatureMark(ContextMark):
         def fget(self):
             r'''Get mode of key signature::
 
-                abjad> key_signature = contexttools.KeySignatureMark('e', 'major')
-                abjad> key_signature.mode
+                >>> key_signature = contexttools.KeySignatureMark('e', 'major')
+                >>> key_signature.mode
                 Mode('major')
 
             Set mode of key signature::
 
-                abjad> key_signature.mode = 'minor'
-                abjad> key_signature.mode
+                >>> key_signature.mode = 'minor'
+                >>> key_signature.mode
                 Mode('minor')
 
             Return mode.
@@ -114,8 +114,8 @@ class KeySignatureMark(ContextMark):
 
         ::
 
-            abjad> key_signature = contexttools.KeySignatureMark('e', 'major')
-            abjad> key_signature.name
+            >>> key_signature = contexttools.KeySignatureMark('e', 'major')
+            >>> key_signature.name
             'E major'
 
         Return string.
@@ -131,14 +131,14 @@ class KeySignatureMark(ContextMark):
         def fget(self):
             r'''Get tonic of key signature::
 
-                abjad> key_signature = contexttools.KeySignatureMark('e', 'major')
-                abjad> key_signature.tonic
+                >>> key_signature = contexttools.KeySignatureMark('e', 'major')
+                >>> key_signature.tonic
                 NamedChromaticPitchClass('e')
 
             Set tonic of key signature::
 
-                abjad> key_signature.tonic = 'd'
-                abjad> key_signature.tonic
+                >>> key_signature.tonic = 'd'
+                >>> key_signature.tonic
                 NamedChromaticPitchClass('d')
 
             Return named chromatic pitch.

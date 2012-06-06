@@ -19,7 +19,7 @@ def is_chromatic_pitch_name(expr):
 
     True `expr` is a chromatic pitch name. Otherwise false::
 
-        abjad> pitchtools.is_chromatic_pitch_name('c,')
+        >>> pitchtools.is_chromatic_pitch_name('c,')
         True
 
     The regex ``^([a-g,A-G])(([s]{1,2}|[f]{1,2}|t?q?[f,s]|)!?)(,+|'+|)$`` underlies this predicate.

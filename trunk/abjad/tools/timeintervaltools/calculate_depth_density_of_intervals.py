@@ -11,22 +11,22 @@ def calculate_depth_density_of_intervals(intervals):
 
     The depth density of a single interval is 1 ::
 
-        abjad> from abjad.tools import timeintervaltools
-        abjad> from abjad.tools.timeintervaltools import TimeInterval
-        abjad> from abjad.tools.timeintervaltools import TimeIntervalTree
+        >>> from abjad.tools import timeintervaltools
+        >>> from abjad.tools.timeintervaltools import TimeInterval
+        >>> from abjad.tools.timeintervaltools import TimeIntervalTree
 
     ::
 
-        abjad> a = TimeInterval(0, 1)
-        abjad> b = TimeInterval(0, 1)
-        abjad> c = TimeInterval(Fraction(1, 2), 1)
-        abjad> timeintervaltools.calculate_depth_density_of_intervals(a)
+        >>> a = TimeInterval(0, 1)
+        >>> b = TimeInterval(0, 1)
+        >>> c = TimeInterval(Fraction(1, 2), 1)
+        >>> timeintervaltools.calculate_depth_density_of_intervals(a)
         Duration(1, 1)
-        abjad> timeintervaltools.calculate_depth_density_of_intervals([a, b])
+        >>> timeintervaltools.calculate_depth_density_of_intervals([a, b])
         Duration(2, 1)
-        abjad> timeintervaltools.calculate_depth_density_of_intervals([a, c])
+        >>> timeintervaltools.calculate_depth_density_of_intervals([a, c])
         Duration(3, 2)
-        abjad> timeintervaltools.calculate_depth_density_of_intervals([a, b, c])
+        >>> timeintervaltools.calculate_depth_density_of_intervals([a, b, c])
         Duration(5, 2)
 
     Return fraction.

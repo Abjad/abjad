@@ -7,7 +7,7 @@ def list_unordered_named_chromatic_pitch_pairs_in_expr(expr):
 
     List unordered named chromatic pitch pairs in `expr`::
 
-        abjad> for pair in pitchtools.list_unordered_named_chromatic_pitch_pairs_in_expr(Chord([0, 1, 2, 3], (1, 4))):
+        >>> for pair in pitchtools.list_unordered_named_chromatic_pitch_pairs_in_expr(Chord([0, 1, 2, 3], (1, 4))):
         ...     pair
         ...
         (NamedChromaticPitch("c'"), NamedChromaticPitch("cs'"))

@@ -7,12 +7,12 @@ def set_accidental_style_on_sequential_contexts_in_expr(expr, accidental_style):
 
     Set `accidental_style` for sequential semantic contexts in `expr`::
 
-        abjad> score = Score(Staff("c'8 d'8") * 2)
-        abjad> contexttools.set_accidental_style_on_sequential_contexts_in_expr(score, 'forget')
+        >>> score = Score(Staff("c'8 d'8") * 2)
+        >>> contexttools.set_accidental_style_on_sequential_contexts_in_expr(score, 'forget')
 
     ::
 
-        abjad> f(score)
+        >>> f(score)
         \new Score <<
             \new Staff {
                 #(set-accidental-style 'forget)

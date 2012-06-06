@@ -10,13 +10,13 @@ def copy_and_partition_governed_component_subtree_by_leaf_counts(container, leaf
 
     Copy `container` and partition copy according to `leaf_counts`::
 
-        abjad> voice = Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
-        abjad> beamtools.BeamSpanner(voice[0].leaves)
+        >>> voice = Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
+        >>> beamtools.BeamSpanner(voice[0].leaves)
         BeamSpanner(c'8, c'8, c'8)
-        abjad> beamtools.BeamSpanner(voice[1].leaves)
+        >>> beamtools.BeamSpanner(voice[1].leaves)
         BeamSpanner(c'8, c'8, c'8)
-        abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(voice)
-        abjad> f(voice)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(voice)
+        >>> f(voice)
         \new Voice {
             \times 2/3 {
                 c'8 [
@@ -32,11 +32,11 @@ def copy_and_partition_governed_component_subtree_by_leaf_counts(container, leaf
 
     ::
 
-        abjad> first, second, third = componenttools.copy_and_partition_governed_component_subtree_by_leaf_counts(voice, [1, 2, 3])
+        >>> first, second, third = componenttools.copy_and_partition_governed_component_subtree_by_leaf_counts(voice, [1, 2, 3])
 
     ::
 
-        abjad> f(first)
+        >>> f(first)
         \new Voice {
             \times 2/3 {
                 c'8 [ ]
@@ -45,7 +45,7 @@ def copy_and_partition_governed_component_subtree_by_leaf_counts(container, leaf
 
     ::
 
-        abjad> f(second)
+        >>> f(second)
         \new Voice {
             \times 2/3 {
                 d'8 [
@@ -55,7 +55,7 @@ def copy_and_partition_governed_component_subtree_by_leaf_counts(container, leaf
 
     ::
 
-        abjad> f(third)
+        >>> f(third)
         \new Voice {
             \times 2/3 {
                 f'8 [

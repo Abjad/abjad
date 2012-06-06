@@ -7,7 +7,7 @@ def get_lilypond_version_string():
 
     Get LilyPond version string::
 
-        abjad> configurationtools.get_lilypond_version_string() # doctest: +SKIP
+        >>> configurationtools.get_lilypond_version_string() # doctest: +SKIP
         '2.13.61'
 
     Return string.

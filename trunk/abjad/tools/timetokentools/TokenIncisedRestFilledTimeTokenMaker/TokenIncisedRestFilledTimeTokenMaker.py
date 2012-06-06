@@ -6,30 +6,30 @@ class TokenIncisedRestFilledTimeTokenMaker(TokenIncisedTimeTokenMaker):
 
     Token-incised rest-filled time-token maker::
 
-        abjad> from abjad.tools import sequencetools
-        abjad> from abjad.tools import timetokentools
+        >>> from abjad.tools import sequencetools
+        >>> from abjad.tools import timetokentools
 
     ::
 
-        abjad> prefix_signal, prefix_lengths = [8], [1, 2, 3, 4]
-        abjad> suffix_signal, suffix_lengths = [1], [1]
-        abjad> denominator = 32
-        abjad> maker = timetokentools.TokenIncisedRestFilledTimeTokenMaker(prefix_signal, prefix_lengths, suffix_signal, suffix_lengths, denominator)
+        >>> prefix_signal, prefix_lengths = [8], [1, 2, 3, 4]
+        >>> suffix_signal, suffix_lengths = [1], [1]
+        >>> denominator = 32
+        >>> maker = timetokentools.TokenIncisedRestFilledTimeTokenMaker(prefix_signal, prefix_lengths, suffix_signal, suffix_lengths, denominator)
 
     ::
 
-        abjad> duration_tokens = [(5, 8), (5, 8), (5, 8), (5, 8)]
-        abjad> leaf_lists = maker(duration_tokens)
-        abjad> leaves = sequencetools.flatten_sequence(leaf_lists)
+        >>> duration_tokens = [(5, 8), (5, 8), (5, 8), (5, 8)]
+        >>> leaf_lists = maker(duration_tokens)
+        >>> leaves = sequencetools.flatten_sequence(leaf_lists)
 
     ::
 
-        abjad> staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(duration_tokens))
-        abjad> measures = measuretools.replace_contents_of_measures_in_expr(staff, leaves)
+        >>> staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(duration_tokens))
+        >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, leaves)
 
     ::
 
-        abjad> f(staff) 
+        >>> f(staff) 
         \new Staff {
             {
                 \time 5/8

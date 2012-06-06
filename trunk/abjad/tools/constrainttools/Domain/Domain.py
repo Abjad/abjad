@@ -7,20 +7,20 @@ class Domain(AbjadObject):
 
     ::
 
-        abjad> from abjad.tools.constrainttools import Domain
+        >>> from abjad.tools.constrainttools import Domain
     
     May be instantiated from a non-empty sequence of non-empty sequences.
 
     ::
 
-        abjad> domain = Domain([(1, 2, 3), (4, 5, 6), (7, 8, 9)])
+        >>> domain = Domain([(1, 2, 3), (4, 5, 6), (7, 8, 9)])
 
     May also be instantiated from one non-empty sequence and an integer greater
     than zero, indicating how many "columns" to create from the first sequence:
 
     ::
 
-        abjad> domain = Domain([1, 2, 3, 4], 5)
+        >>> domain = Domain([1, 2, 3, 4], 5)
     
     ``Domains`` are immutable.
 
@@ -63,9 +63,9 @@ class Domain(AbjadObject):
 
         ::
 
-            abjad> original = Domain([1, 2, 3, 4], 4)
-            abjad> randomized = original.randomized( )
-            abjad> randomized[0]  # doctest: +SKIP
+            >>> original = Domain([1, 2, 3, 4], 4)
+            >>> randomized = original.randomized( )
+            >>> randomized[0]  # doctest: +SKIP
             (4, 1, 2, 3) # doctest: +SKIP
 
         Returns Domain instance.

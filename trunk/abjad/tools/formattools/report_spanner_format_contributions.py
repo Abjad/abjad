@@ -3,12 +3,12 @@ def report_spanner_format_contributions(spanner, screen=True):
 
     Report spanner format contributions for every leaf to which spanner attaches.
 
-        abjad> staff = Staff("c8 d e f")
-        abjad> spanner = beamtools.BeamSpanner(staff[:])
+        >>> staff = Staff("c8 d e f")
+        >>> spanner = beamtools.BeamSpanner(staff[:])
 
     ::
 
-        abjad> formattools.report_spanner_format_contributions(spanner)
+        >>> formattools.report_spanner_format_contributions(spanner)
         c8  before: []
              after: []
              right: ['[']

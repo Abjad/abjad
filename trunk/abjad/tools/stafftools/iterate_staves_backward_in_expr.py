@@ -7,11 +7,11 @@ def iterate_staves_backward_in_expr(expr, start = 0, stop = None):
 
     Iterate staves backward in `expr`::
 
-        abjad> score = Score(4 * Staff([]))
+        >>> score = Score(4 * Staff([]))
 
     ::
 
-        abjad> f(score)
+        >>> f(score)
         \new Score <<
             \new Staff {
             }
@@ -25,7 +25,7 @@ def iterate_staves_backward_in_expr(expr, start = 0, stop = None):
 
     ::
 
-        abjad> for staff in stafftools.iterate_staves_backward_in_expr(score):
+        >>> for staff in stafftools.iterate_staves_backward_in_expr(score):
         ...     staff
         ...
         Staff{}

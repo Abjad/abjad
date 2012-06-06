@@ -8,12 +8,12 @@ def is_lowercamelcase_string(expr):
 
     True when `expr` is a string and is lowercamelcase::
 
-        abjad> stringtools.is_lowercamelcase_string('fooBar')
+        >>> stringtools.is_lowercamelcase_string('fooBar')
         True
     
     False otherwise::
 
-        abjad> stringtools.is_lowercamelcase_string('FooBar')
+        >>> stringtools.is_lowercamelcase_string('FooBar')
         False
 
     Return boolean.

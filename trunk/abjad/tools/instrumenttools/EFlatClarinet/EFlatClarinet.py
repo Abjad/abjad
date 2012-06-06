@@ -9,16 +9,16 @@ class EFlatClarinet(_Clarinet):
 
     Abjad model of the E-flat clarinet::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
 
     ::
 
-        abjad> instrumenttools.EFlatClarinet()(staff)
+        >>> instrumenttools.EFlatClarinet()(staff)
         EFlatClarinet()(Staff{4})
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \set Staff.instrumentName = \markup { Clarinet in E-flat }
             \set Staff.shortInstrumentName = \markup { Cl. E-flat }

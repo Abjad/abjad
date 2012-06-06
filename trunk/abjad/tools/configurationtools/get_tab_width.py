@@ -3,11 +3,11 @@ def get_tab_width():
 
     Get system tab width::
 
-        abjad> from abjad.tools import configurationtools
+        >>> from abjad.tools import configurationtools
 
     ::
 
-        abjad> configurationtools.get_tab_width()
+        >>> configurationtools.get_tab_width()
         4
 
     The value is used by various functions that generate or test code in the system.

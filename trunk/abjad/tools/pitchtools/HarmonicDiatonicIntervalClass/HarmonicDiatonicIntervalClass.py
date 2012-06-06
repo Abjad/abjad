@@ -7,7 +7,7 @@ class HarmonicDiatonicIntervalClass(DiatonicIntervalClassObject, HarmonicInterva
 
     Abjad model harmonic diatonic interval-class::
 
-        abjad> pitchtools.HarmonicDiatonicIntervalClass('-M9')
+        >>> pitchtools.HarmonicDiatonicIntervalClass('-M9')
         HarmonicDiatonicIntervalClass('M2')
 
     Harmonic diatonic interval-classes are immutable.
@@ -75,8 +75,8 @@ class HarmonicDiatonicIntervalClass(DiatonicIntervalClassObject, HarmonicInterva
     def invert(self):
         '''Read-only inversion of harmonic diatonic interval-class::
 
-            abjad> hdic = pitchtools.HarmonicDiatonicIntervalClass('major', -9)
-            abjad> hdic.invert()
+            >>> hdic = pitchtools.HarmonicDiatonicIntervalClass('major', -9)
+            >>> hdic.invert()
             HarmonicDiatonicIntervalClass('m7')
 
         Return harmonic diatonic interval-class.

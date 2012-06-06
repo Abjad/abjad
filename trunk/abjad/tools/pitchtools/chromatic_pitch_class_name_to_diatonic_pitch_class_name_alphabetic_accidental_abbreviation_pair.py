@@ -4,7 +4,7 @@ def chromatic_pitch_class_name_to_diatonic_pitch_class_name_alphabetic_accidenta
     Change `chromatic_pitch_class_name` to diatonic pitch-class name / alphabetic
     accidental abbreviation pair::
 
-        abjad> pitchtools.chromatic_pitch_class_name_to_diatonic_pitch_class_name_alphabetic_accidental_abbreviation_pair('cs')
+        >>> pitchtools.chromatic_pitch_class_name_to_diatonic_pitch_class_name_alphabetic_accidental_abbreviation_pair('cs')
         ('c', 's')
 
     Return pair of strings.

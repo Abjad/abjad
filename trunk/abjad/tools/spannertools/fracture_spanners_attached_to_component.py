@@ -3,11 +3,11 @@ def fracture_spanners_attached_to_component(component, direction = 'both', klass
 
     Fracture all spanners attached to `component` according to `direction`::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> beam = beamtools.BeamSpanner(staff.leaves)
-        abjad> slur = spannertools.SlurSpanner(staff.leaves)
-        abjad> trill = spannertools.TrillSpanner(staff)
-        abjad> f(staff)
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> beam = beamtools.BeamSpanner(staff.leaves)
+        >>> slur = spannertools.SlurSpanner(staff.leaves)
+        >>> trill = spannertools.TrillSpanner(staff)
+        >>> f(staff)
         \new Staff {
             c'8 [ ( \startTrillSpan
             d'8
@@ -17,10 +17,10 @@ def fracture_spanners_attached_to_component(component, direction = 'both', klass
 
     ::
 
-        abjad> spannertools.fracture_spanners_attached_to_component(staff[1], 'right')
+        >>> spannertools.fracture_spanners_attached_to_component(staff[1], 'right')
         [(BeamSpanner(c'8, d'8, e'8, f'8), BeamSpanner(c'8, d'8), BeamSpanner(e'8, f'8)), (SlurSpanner(c'8, d'8, e'8, f'8), SlurSpanner(c'8, d'8), SlurSpanner(e'8, f'8))]
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8 [ ( \startTrillSpan
             d'8 ] )

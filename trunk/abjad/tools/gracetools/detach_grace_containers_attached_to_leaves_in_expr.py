@@ -6,14 +6,14 @@ def detach_grace_containers_attached_to_leaves_in_expr(expr):
 
     Detach grace containers attached to leaves in `expr`::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> grace_container = gracetools.GraceContainer([Note("cs'16")], kind='grace')
-        abjad> grace_container(staff[1])
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> grace_container = gracetools.GraceContainer([Note("cs'16")], kind='grace')
+        >>> grace_container(staff[1])
         Note("d'8")
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8
             \grace {
@@ -26,12 +26,12 @@ def detach_grace_containers_attached_to_leaves_in_expr(expr):
 
     ::
 
-        abjad> gracetools.detach_grace_containers_attached_to_leaves_in_expr(staff)
+        >>> gracetools.detach_grace_containers_attached_to_leaves_in_expr(staff)
         (GraceContainer(),)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8
             d'8

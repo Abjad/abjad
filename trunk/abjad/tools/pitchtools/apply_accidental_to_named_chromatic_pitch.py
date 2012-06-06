@@ -3,8 +3,8 @@ def apply_accidental_to_named_chromatic_pitch(named_chromatic_pitch, accidental 
 
     Apply `accidental` to `named_chromatic_pitch`::
 
-        abjad> pitch = pitchtools.NamedChromaticPitch("cs''")
-        abjad> pitchtools.apply_accidental_to_named_chromatic_pitch(pitch, 'f')
+        >>> pitch = pitchtools.NamedChromaticPitch("cs''")
+        >>> pitchtools.apply_accidental_to_named_chromatic_pitch(pitch, 'f')
         NamedChromaticPitch("c''")
 
     Return new named pitch.

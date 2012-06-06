@@ -8,12 +8,12 @@ def is_uppercamelcase_string(expr):
 
     True when `expr` is a string and is uppercamelcase::
 
-        abjad> stringtools.is_uppercamelcase_string('FooBar')
+        >>> stringtools.is_uppercamelcase_string('FooBar')
         True
     
     False otherwise::
 
-        abjad> stringtools.is_uppercamelcase_string('fooBar')
+        >>> stringtools.is_uppercamelcase_string('fooBar')
         False
 
     Return boolean.

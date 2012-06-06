@@ -1,12 +1,12 @@
 def find_index_of_spanner_component_at_score_offset(spanner, score_offset):
     r'''Return index of component in 'spanner' that begins at exactly 'score_offset'::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> beam = beamtools.BeamSpanner(staff.leaves)
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> beam = beamtools.BeamSpanner(staff.leaves)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8 [
             d'8
@@ -16,7 +16,7 @@ def find_index_of_spanner_component_at_score_offset(spanner, score_offset):
 
     ::
 
-        abjad> spannertools.find_index_of_spanner_component_at_score_offset(beam, Duration(3, 8))
+        >>> spannertools.find_index_of_spanner_component_at_score_offset(beam, Duration(3, 8))
         3
 
     Raise spanner population error when no component in `spanner` begins at exactly `score_offset`.

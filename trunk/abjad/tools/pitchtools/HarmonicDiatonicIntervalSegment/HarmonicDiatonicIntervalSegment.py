@@ -6,7 +6,7 @@ class HarmonicDiatonicIntervalSegment(IntervalObjectSegment):
 
     Abjad model of harmonic diatonic interval segment::
 
-        abjad> pitchtools.HarmonicDiatonicIntervalSegment('m2 M9 m3 M3')
+        >>> pitchtools.HarmonicDiatonicIntervalSegment('m2 M9 m3 M3')
         HarmonicDiatonicIntervalSegment('m2 M9 m3 M3')
 
     Harmonic diatonic interval segments are immutable.

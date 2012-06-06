@@ -4,10 +4,10 @@ def fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(tie_chain):
 
     Fuse leaves in `tie_chain` by immediate parent::
 
-        abjad> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
-        abjad> tietools.TieSpanner(staff.leaves)
+        >>> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 2)
+        >>> tietools.TieSpanner(staff.leaves)
         TieSpanner(c'8, c'8, c'8, c'8)
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             {
                 \time 2/8
@@ -22,13 +22,13 @@ def fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(tie_chain):
 
     ::
 
-        abjad> tie_chain = tietools.get_tie_chain(staff.leaves[0])
-        abjad> leaftools.fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(tie_chain)
+        >>> tie_chain = tietools.get_tie_chain(staff.leaves[0])
+        >>> leaftools.fuse_leaves_in_tie_chain_by_immediate_parent_big_endian(tie_chain)
         [[Note("c'4")], [Note("c'4")]]
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             {
                 \time 2/8

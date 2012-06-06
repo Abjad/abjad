@@ -12,16 +12,16 @@ class Measure(FixedDurationContainer):
 
     Abjad model of a measure::
 
-        abjad> measure = Measure((4, 8), "c'8 d' e' f'")
+        >>> measure = Measure((4, 8), "c'8 d' e' f'")
 
     ::
 
-        abjad> measure
+        >>> measure
         Measure(4/8, [c'8, d'8, e'8, f'8])
 
     ::
 
-        abjad> f(measure)
+        >>> f(measure)
         {
             \time 4/8
             c'8
@@ -202,14 +202,14 @@ class Measure(FixedDurationContainer):
     def is_binary(self):
         '''True when measure time signature denominator is an integer power of 2::
 
-            abjad> measure = Measure((5, 8), "c'8 d' e' f' g'")
-            abjad> measure.is_binary
+            >>> measure = Measure((5, 8), "c'8 d' e' f' g'")
+            >>> measure.is_binary
             True
 
         Otherwise false::
 
-            abjad> measure = Measure((5, 9), "c'8 d' e' f' g'")
-            abjad> measure.is_binary
+            >>> measure = Measure((5, 9), "c'8 d' e' f' g'")
+            >>> measure.is_binary
             False
 
         Return boolean.
@@ -220,11 +220,11 @@ class Measure(FixedDurationContainer):
     def is_full(self):
         '''True when prolated duration equals time signature duration::
 
-            abjad> measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
+            >>> measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
 
         ::
 
-            abjad> measure.is_full
+            >>> measure.is_full
             True
 
         Otherwise false.
@@ -239,30 +239,30 @@ class Measure(FixedDurationContainer):
 
         True when measure is either underfull or overfull::
 
-            abjad> measure = Measure((3, 4), "c' d' e' f'")
+            >>> measure = Measure((3, 4), "c' d' e' f'")
 
         ::
 
-            abjad> measure
+            >>> measure
             Measure(3/4, [c'4, d'4, e'4, f'4])
 
         ::
 
-            abjad> measure.is_misfilled
+            >>> measure.is_misfilled
             True
 
         Otherwise false::
 
-            abjad> measure = Measure((3, 4), "c' d' e'")
+            >>> measure = Measure((3, 4), "c' d' e'")
 
         ::
 
-            abjad> measure
+            >>> measure
             Measure(3/4, [c'4, d'4, e'4])
 
         ::
 
-            abjad> measure.is_misfilled
+            >>> measure.is_misfilled
             False
 
         Return boolean.
@@ -273,14 +273,14 @@ class Measure(FixedDurationContainer):
     def is_nonbinary(self):
         '''True when measure time signature denominator is not an integer power of 2::
 
-            abjad> measure = Measure((5, 9), "c'8 d' e' f' g'")
-            abjad> measure.is_nonbinary
+            >>> measure = Measure((5, 9), "c'8 d' e' f' g'")
+            >>> measure.is_nonbinary
             True
     
         Otherwise false::
 
-            abjad> measure = Measure((5, 8), "c'8 d' e' f' g'")
-            abjad> measure.is_nonbinary
+            >>> measure = Measure((5, 8), "c'8 d' e' f' g'")
+            >>> measure.is_nonbinary
             False
 
         Return boolean.
@@ -293,11 +293,11 @@ class Measure(FixedDurationContainer):
 
         True when prolated duration is greater than time signature duration::
 
-            abjad> measure = Measure((3, 4), "c'4 d' e' f'")
+            >>> measure = Measure((3, 4), "c'4 d' e' f'")
 
         ::
 
-            abjad> measure.is_overfull
+            >>> measure.is_overfull
             True
 
         Otherwise false.
@@ -312,11 +312,11 @@ class Measure(FixedDurationContainer):
 
         True when prolated duration is less than time signature duration::
 
-            abjad> measure = Measure((3, 4), "c'4 d'")
+            >>> measure = Measure((3, 4), "c'4 d'")
 
         ::
 
-            abjad> measure.is_underfull
+            >>> measure.is_underfull
             True
 
         Otherwise false.
@@ -329,13 +329,13 @@ class Measure(FixedDurationContainer):
     def measure_number(self):
         r'''1-indexed measure number::
 
-            abjad> staff = Staff()
-            abjad> staff.append(Measure((3, 4), "c' d' e'"))
-            abjad> staff.append(Measure((2, 4), "f' g'"))
+            >>> staff = Staff()
+            >>> staff.append(Measure((3, 4), "c' d' e'"))
+            >>> staff.append(Measure((2, 4), "f' g'"))
 
         ::
 
-            abjad> f(staff)
+            >>> f(staff)
             \new Staff {
                 {
                     \time 3/4
@@ -352,12 +352,12 @@ class Measure(FixedDurationContainer):
 
         ::
 
-            abjad> staff[0].measure_number
+            >>> staff[0].measure_number
             1
 
         ::
 
-            abjad> staff[1].measure_number
+            >>> staff[1].measure_number
             2
 
         Return positive integer.
@@ -369,11 +369,11 @@ class Measure(FixedDurationContainer):
     def multiplier(self):
         '''Multiplier of measure time signature::
 
-            abjad> measure = Measure((5, 12), "c'8 d' e' f' g'")
+            >>> measure = Measure((5, 12), "c'8 d' e' f' g'")
 
         ::
 
-            abjad> measure.multiplier
+            >>> measure.multiplier
             Fraction(2, 3)
 
         Return fraction.
@@ -384,11 +384,11 @@ class Measure(FixedDurationContainer):
     def preprolated_duration(self):
         '''Preprolated duration of measure::
 
-            abjad> measure = Measure((5, 12), "c'8 d' e' f' g'")
+            >>> measure = Measure((5, 12), "c'8 d' e' f' g'")
 
         ::
 
-            abjad> measure.preprolated_duration
+            >>> measure.preprolated_duration
             Duration(5, 12)
 
         Equal measure contents duration times time signature multiplier.
@@ -428,21 +428,21 @@ class Measure(FixedDurationContainer):
             Read / write flag to indicate whether time signature
             should update automatically following contents-changing operations::
 
-                abjad> measure = Measure((3, 4), "c' d' e'")
+                >>> measure = Measure((3, 4), "c' d' e'")
 
             ::
 
-                abjad> measure
+                >>> measure
                 Measure(3/4, [c'4, d'4, e'4])
 
             ::
 
-                abjad> measure.automatically_adjust_time_signature = True
-                abjad> measure.append('r')
+                >>> measure.automatically_adjust_time_signature = True
+                >>> measure.append('r')
 
             ::
 
-                abjad> measure
+                >>> measure
                 Measure(4/4, [c'4, d'4, e'4, r4])
             
             Default to false.

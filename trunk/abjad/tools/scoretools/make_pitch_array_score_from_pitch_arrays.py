@@ -8,25 +8,25 @@ def make_pitch_array_score_from_pitch_arrays(pitch_arrays):
 
     Make pitch-array score from `pitch_arrays`::
 
-        abjad> from abjad.tools import pitcharraytools
+        >>> from abjad.tools import pitcharraytools
 
-        abjad> array_1 = pitcharraytools.PitchArray([
+        >>> array_1 = pitcharraytools.PitchArray([
         ...   [1, (2, 1), ([-2, -1.5], 2)],
         ...   [(7, 2), (6, 1), 1]])
 
     ::
 
-        abjad> array_2 = pitcharraytools.PitchArray([
+        >>> array_2 = pitcharraytools.PitchArray([
         ...   [1, 1, 1],
         ...   [1, 1, 1]])
 
     ::
 
-        abjad> score = scoretools.make_pitch_array_score_from_pitch_arrays([array_1, array_2])
+        >>> score = scoretools.make_pitch_array_score_from_pitch_arrays([array_1, array_2])
 
     ::
 
-        abjad> f(score)
+        >>> f(score)
         \new Score <<
             \new StaffGroup <<
                 \new Staff {

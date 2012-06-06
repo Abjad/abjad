@@ -6,17 +6,17 @@ from abjad import Fraction
 def shift_aggregate_offset_to_rational(intervals, rational):
     '''Shift the aggregate offset of `intervals` to `rational` ::
 
-        abjad> from abjad.tools import timeintervaltools
-        abjad> from abjad.tools.timeintervaltools import TimeInterval
-        abjad> from abjad.tools.timeintervaltools import TimeIntervalTree
+        >>> from abjad.tools import timeintervaltools
+        >>> from abjad.tools.timeintervaltools import TimeInterval
+        >>> from abjad.tools.timeintervaltools import TimeIntervalTree
 
     ::
 
-        abjad> a = TimeInterval(-1, 3)
-        abjad> b = TimeInterval(6, 12)
-        abjad> c = TimeInterval(9, 16)
-        abjad> tree = TimeIntervalTree([a, b, c])
-        abjad> timeintervaltools.shift_aggregate_offset_to_rational(tree, Fraction(10, 7))
+        >>> a = TimeInterval(-1, 3)
+        >>> b = TimeInterval(6, 12)
+        >>> c = TimeInterval(9, 16)
+        >>> tree = TimeIntervalTree([a, b, c])
+        >>> timeintervaltools.shift_aggregate_offset_to_rational(tree, Fraction(10, 7))
         TimeIntervalTree([
             TimeInterval(Offset(10, 7), Offset(38, 7), {}),
             TimeInterval(Offset(59, 7), Offset(101, 7), {}),

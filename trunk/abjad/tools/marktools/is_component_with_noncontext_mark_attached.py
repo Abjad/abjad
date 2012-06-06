@@ -6,22 +6,22 @@ def is_component_with_noncontext_mark_attached(expr):
 
     True when `expr` is component with noncontext mark attached::
 
-        abjad> note = Note("c'4")
-        abjad> marktools.Articulation('staccato')(note)
+        >>> note = Note("c'4")
+        >>> marktools.Articulation('staccato')(note)
         Articulation('staccato')(c'4)
 
     ::
 
-        abjad> marktools.is_component_with_noncontext_mark_attached(note)
+        >>> marktools.is_component_with_noncontext_mark_attached(note)
         True
 
     False otherwise::
 
-        abjad> note = Note("c'4")
+        >>> note = Note("c'4")
 
     ::
 
-        abjad> marktools.is_component_with_noncontext_mark_attached(note)
+        >>> marktools.is_component_with_noncontext_mark_attached(note)
         False
      
     Return boolean.

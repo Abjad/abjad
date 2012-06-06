@@ -9,16 +9,16 @@ class BassVoice(_Voice):
 
     Abjad model of the bass voice::
 
-        abjad> staff = Staff("c8 d8 e8 f8")
+        >>> staff = Staff("c8 d8 e8 f8")
 
     ::
 
-        abjad> instrumenttools.BassVoice()(staff)
+        >>> instrumenttools.BassVoice()(staff)
         BassVoice()(Staff{4})
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \set Staff.instrumentName = \markup { Bass voice }
             \set Staff.shortInstrumentName = \markup { Bass }

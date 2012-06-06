@@ -8,7 +8,7 @@ class HarmonicChromaticInterval(ChromaticIntervalObject, HarmonicIntervalObject)
 
     Abjad model of harmonic chromatic interval::
 
-        abjad> pitchtools.HarmonicChromaticInterval(-14)
+        >>> pitchtools.HarmonicChromaticInterval(-14)
         HarmonicChromaticInterval(14)
 
     Harmonic chromatic intervals are immutable.
@@ -46,8 +46,8 @@ class HarmonicChromaticInterval(ChromaticIntervalObject, HarmonicIntervalObject)
     def harmonic_chromatic_interval_class(self):
         '''Read-only harmonic chromatic interval-class::
 
-            abjad> harmonic_chromatic_interval = pitchtools.HarmonicChromaticInterval(14)
-            abjad> harmonic_chromatic_interval.harmonic_chromatic_interval_class
+            >>> harmonic_chromatic_interval = pitchtools.HarmonicChromaticInterval(14)
+            >>> harmonic_chromatic_interval.harmonic_chromatic_interval_class
             HarmonicChromaticIntervalClass(2)
 
         Return harmonic chromatic interval-class.

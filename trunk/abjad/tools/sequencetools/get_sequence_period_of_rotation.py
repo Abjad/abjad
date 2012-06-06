@@ -7,21 +7,21 @@ def get_sequence_period_of_rotation(sequence, n):
 
     Change `sequence` to period of rotation::
 
-        abjad> from abjad.tools import sequencetools
+        >>> from abjad.tools import sequencetools
 
     ::
 
-        abjad> sequencetools.get_sequence_period_of_rotation([1, 2, 3, 1, 2, 3], 1)
+        >>> sequencetools.get_sequence_period_of_rotation([1, 2, 3, 1, 2, 3], 1)
         3
 
     ::
 
-        abjad> sequencetools.get_sequence_period_of_rotation([1, 2, 3, 1, 2, 3], 2)
+        >>> sequencetools.get_sequence_period_of_rotation([1, 2, 3, 1, 2, 3], 2)
         3
 
     ::
 
-        abjad> sequencetools.get_sequence_period_of_rotation([1, 2, 3, 1, 2, 3], 3)
+        >>> sequencetools.get_sequence_period_of_rotation([1, 2, 3, 1, 2, 3], 3)
         1
 
     Return positive integer.

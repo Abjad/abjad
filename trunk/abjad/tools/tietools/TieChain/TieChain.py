@@ -7,11 +7,11 @@ class TieChain(ScoreSelection):
 
     All the notes in a tie chain::
 
-        abjad> staff = Staff("c' d' e' ~ e'")
+        >>> staff = Staff("c' d' e' ~ e'")
 
     ::
 
-        abjad> tietools.get_tie_chain(staff[2])
+        >>> tietools.get_tie_chain(staff[2])
         TieChain((Note("e'4"), Note("e'4")))
 
     Tie chains are immutable score selections.

@@ -3,26 +3,26 @@ def arg_to_bidirectional_lilypond_symbol(arg):
 
     ::  
 
-        abjad> from abjad.tools import stringtools
+        >>> from abjad.tools import stringtools
 
     ::
 
-        abjad> stringtools.arg_to_tridirectional_lilypond_symbol('up')
+        >>> stringtools.arg_to_tridirectional_lilypond_symbol('up')
         '^'
 
     ::
 
-        abjad> stringtools.arg_to_tridirectional_lilypond_symbol('down')
+        >>> stringtools.arg_to_tridirectional_lilypond_symbol('down')
         '_'
 
     ::
 
-        abjad> stringtools.arg_to_tridirectional_lilypond_symbol(1)
+        >>> stringtools.arg_to_tridirectional_lilypond_symbol(1)
         '^'
 
     ::
 
-        abjad> stringtools.arg_to_tridirectional_lilypond_symbol(-1)
+        >>> stringtools.arg_to_tridirectional_lilypond_symbol(-1)
         '_'
 
     If `arg` is '^' or '_', `arg` will be returned.

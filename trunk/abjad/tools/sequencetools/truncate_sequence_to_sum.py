@@ -3,11 +3,11 @@ def truncate_sequence_to_sum(sequence, target_sum):
 
     Truncate `sequence` to `target_sum`::
 
-        abjad> from abjad.tools import sequencetools
+        >>> from abjad.tools import sequencetools
 
     ::
 
-        abjad> for n in range(10):
+        >>> for n in range(10):
         ...     print n, sequencetools.truncate_sequence_to_sum([-1, 2, -3, 4, -5, 6, -7, 8, -9, 10], n)
         ...
         0 []
@@ -23,7 +23,7 @@ def truncate_sequence_to_sum(sequence, target_sum):
 
     Return empty list when `target_sum` is ``0``::
 
-        abjad> sequencetools.truncate_sequence_to_sum([1, 2, 3, 4, 5], 0)
+        >>> sequencetools.truncate_sequence_to_sum([1, 2, 3, 4, 5], 0)
         []
 
     Raise type error when `sequence` is not a list.

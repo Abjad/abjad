@@ -4,13 +4,13 @@ def fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(
 
     Fuse tied leaves in `components` once by `prolated_durations` without overhang::
 
-        abjad> staff = Staff(notetools.make_repeated_notes(8))
-        abjad> tietools.TieSpanner(staff.leaves)
+        >>> staff = Staff(notetools.make_repeated_notes(8))
+        >>> tietools.TieSpanner(staff.leaves)
         TieSpanner(c'8, c'8, c'8, c'8, c'8, c'8, c'8, c'8)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8 ~
             c'8 ~
@@ -24,11 +24,11 @@ def fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(
 
     ::
 
-        abjad> leaftools.fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(staff, [Duration(3, 8), Duration(3, 8)])
+        >>> leaftools.fuse_tied_leaves_in_components_once_by_prolated_durations_without_overhang(staff, [Duration(3, 8), Duration(3, 8)])
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'4. ~
             c'4. ~

@@ -6,11 +6,11 @@ def partition_sequence_by_value_of_elements(sequence):
 
     Group `sequence` elements by equality::
 
-        abjad> from abjad.tools import sequencetools
+        >>> from abjad.tools import sequencetools
 
     ::
 
-        abjad> sequencetools.partition_sequence_by_value_of_elements([0, 0, -1, -1, 2, 3, -5, 1, 1, 5, -5])
+        >>> sequencetools.partition_sequence_by_value_of_elements([0, 0, -1, -1, 2, 3, -5, 1, 1, 5, -5])
         [(0, 0), (-1, -1), (2,), (3,), (-5,), (1, 1), (5,), (-5,)]
 
     Return list of tuples of `sequence` element references.

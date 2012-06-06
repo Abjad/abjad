@@ -6,11 +6,11 @@ from abjad.tools import durationtools
 def make_repeated_notes_with_shorter_notes_at_end(pitch, written_duration, total_duration, prolation = durationtools.Duration(1)):
     r'''Make repeated notes with `pitch` and `written_duration` summing to `total_duration` under `prolation`::
 
-        abjad> voice = Voice(notetools.make_repeated_notes_with_shorter_notes_at_end(0, Duration(1, 16), Duration(4, 16)))
+        >>> voice = Voice(notetools.make_repeated_notes_with_shorter_notes_at_end(0, Duration(1, 16), Duration(4, 16)))
 
     ::
 
-        abjad> f(voice)
+        >>> f(voice)
         \new Voice {
             c'16
             c'16
@@ -20,11 +20,11 @@ def make_repeated_notes_with_shorter_notes_at_end(pitch, written_duration, total
 
     Fill binary remaining duration with binary notes of lesser written duration::
 
-        abjad> voice = Voice(notetools.make_repeated_notes_with_shorter_notes_at_end(0, Duration(1, 16), Duration(9, 32)))
+        >>> voice = Voice(notetools.make_repeated_notes_with_shorter_notes_at_end(0, Duration(1, 16), Duration(9, 32)))
 
     ::
 
-        abjad> f(voice)
+        >>> f(voice)
         \new Voice {
             c'16
             c'16
@@ -35,11 +35,11 @@ def make_repeated_notes_with_shorter_notes_at_end(pitch, written_duration, total
 
     Fill nonbinary remaining duration with ad hoc tuplet::
 
-        abjad> voice = Voice(notetools.make_repeated_notes_with_shorter_notes_at_end(0, Duration(1, 16), Duration(4, 10)))
+        >>> voice = Voice(notetools.make_repeated_notes_with_shorter_notes_at_end(0, Duration(1, 16), Duration(4, 10)))
 
     ::
 
-        abjad> f(voice)
+        >>> f(voice)
         \new Voice {
             c'16
             c'16

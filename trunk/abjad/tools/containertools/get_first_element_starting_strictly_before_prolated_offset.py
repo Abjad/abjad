@@ -6,11 +6,11 @@ def get_first_element_starting_strictly_before_prolated_offset(container, prolat
 
     Get first `container` element starting strictly before `prolated_offset`::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
 
     ::
 
-        abjad> containertools.get_first_element_starting_strictly_before_prolated_offset(staff, Duration(1, 8))
+        >>> containertools.get_first_element_starting_strictly_before_prolated_offset(staff, Duration(1, 8))
         Note("c'8")
 
     Return component.

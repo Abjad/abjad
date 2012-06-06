@@ -16,7 +16,7 @@ def is_pitch_class_octave_number_string(expr):
 
     True when `expr` is a pitch-class / octave number string. Otherwise false::
 
-        abjad> pitchtools.is_pitch_class_octave_number_string('C#2')
+        >>> pitchtools.is_pitch_class_octave_number_string('C#2')
         True
 
     Quartertone accidentals are supported.

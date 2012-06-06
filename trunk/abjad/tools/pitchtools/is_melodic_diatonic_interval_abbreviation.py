@@ -15,7 +15,7 @@ def is_melodic_diatonic_interval_abbreviation(expr):
 
     True when `expr` is a melodic diatonic interval abbreviation. Otherwise false::
 
-        abjad> pitchtools.is_melodic_diatonic_interval_abbreviation('+M9')
+        >>> pitchtools.is_melodic_diatonic_interval_abbreviation('+M9')
         True
 
     The regex ``^([+,-]?)(M|m|P|aug|dim)(\d+)$`` underlies this predicate.

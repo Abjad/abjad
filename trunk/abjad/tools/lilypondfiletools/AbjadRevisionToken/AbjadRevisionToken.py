@@ -7,7 +7,7 @@ class AbjadRevisionToken(AbjadObject):
 
     Abjad version token::
 
-        abjad> lilypondfiletools.AbjadRevisionToken()
+        >>> lilypondfiletools.AbjadRevisionToken()
         AbjadRevisionToken(Abjad revision ...)
 
     Return Abjad version token.
@@ -29,7 +29,7 @@ class AbjadRevisionToken(AbjadObject):
     def format(self):
         '''Format contribution of Abjad version token::
 
-            abjad> lilypondfiletools.AbjadRevisionToken().format
+            >>> lilypondfiletools.AbjadRevisionToken().format
             'Abjad revision ...'
 
         Return string.

@@ -9,12 +9,12 @@ def is_underscore_delimited_lowercase_string(expr):
 
     True when `expr` is a string and is underscore delimited lowercase::
 
-        abjad> stringtools.is_underscore_delimited_lowercase_string('foo_bar')
+        >>> stringtools.is_underscore_delimited_lowercase_string('foo_bar')
         True
     
     False otherwise::
 
-        abjad> stringtools.is_underscore_delimited_lowercase_string('foo bar')
+        >>> stringtools.is_underscore_delimited_lowercase_string('foo bar')
         False
 
     Return boolean.

@@ -6,9 +6,9 @@ def label_leaves_in_expr_with_leaf_durations(expr, markup_direction = 'down'):
 
     Label leaves in `expr` with leaf durations::
 
-        abjad> tuplet = tuplettools.FixedDurationTuplet(Duration(1, 4), "c'8 d'8 e'8")
-        abjad> leaftools.label_leaves_in_expr_with_leaf_durations(tuplet)
-        abjad> f(tuplet)
+        >>> tuplet = tuplettools.FixedDurationTuplet(Duration(1, 4), "c'8 d'8 e'8")
+        >>> leaftools.label_leaves_in_expr_with_leaf_durations(tuplet)
+        >>> f(tuplet)
         \times 2/3 {
             c'8 _ \markup { \column { \small 1/8 \small 1/12 } }
             d'8 _ \markup { \column { \small 1/8 \small 1/12 } }

@@ -3,14 +3,14 @@
 def split_container_cyclically_by_counts_and_fracture_crossing_spanners(container, counts):
     r'''Split `container` cyclically by `counts` and fracture crossing spanners::
 
-        abjad> container = Container("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-        abjad> voice = Voice([container])
-        abjad> beam = beamtools.BeamSpanner(voice)
-        abjad> slur = spannertools.SlurSpanner(container)
+        >>> container = Container("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
+        >>> voice = Voice([container])
+        >>> beam = beamtools.BeamSpanner(voice)
+        >>> slur = spannertools.SlurSpanner(container)
 
     ::
 
-        abjad> f(voice)
+        >>> f(voice)
         \new Voice {
             {
                 c'8 [ (
@@ -26,12 +26,12 @@ def split_container_cyclically_by_counts_and_fracture_crossing_spanners(containe
 
     ::
 
-        abjad> containertools.split_container_cyclically_by_counts_and_fracture_crossing_spanners(container, [1, 3])
+        >>> containertools.split_container_cyclically_by_counts_and_fracture_crossing_spanners(container, [1, 3])
         [[{c'8}], [{d'8, e'8, f'8}], [{g'8}], [{a'8, b'8, c''8}]]
 
     ::
 
-        abjad> f(voice)
+        >>> f(voice)
         \new Voice {
             {
                 c'8 ( ) [

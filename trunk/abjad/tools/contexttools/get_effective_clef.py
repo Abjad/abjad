@@ -7,13 +7,13 @@ def get_effective_clef(component):
 
     Get effective clef of `component`::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> contexttools.ClefMark('treble')(staff)
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> contexttools.ClefMark('treble')(staff)
         ClefMark('treble')(Staff{4})
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \clef "treble"
             c'8
@@ -24,7 +24,7 @@ def get_effective_clef(component):
 
     ::
 
-        abjad> for note in staff:
+        >>> for note in staff:
         ...     print note, contexttools.get_effective_clef(note)
         ...
         c'8 ClefMark('treble')(Staff{4})

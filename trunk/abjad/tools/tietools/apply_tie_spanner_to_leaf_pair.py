@@ -7,11 +7,11 @@ from abjad.tools.tietools.are_components_in_same_tie_spanner import are_componen
 def apply_tie_spanner_to_leaf_pair(left, right):
     r'''Apply tie spanner to `left` leaf and `right` leaf::
 
-        abjad> staff = Staff("c'8 ~ c' c' c'")
+        >>> staff = Staff("c'8 ~ c' c' c'")
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8 ~
             c'8
@@ -21,11 +21,11 @@ def apply_tie_spanner_to_leaf_pair(left, right):
 
     ::
 
-        abjad> tietools.apply_tie_spanner_to_leaf_pair(staff[1], staff[2])
+        >>> tietools.apply_tie_spanner_to_leaf_pair(staff[1], staff[2])
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8 ~
             c'8 ~

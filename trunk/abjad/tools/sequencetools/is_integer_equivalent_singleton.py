@@ -6,16 +6,16 @@ def is_integer_equivalent_singleton(expr):
 
     True when `expr` is a singleton of integer-equivalent expressions::
         
-        abjad> from abjad.tools import sequencetools
+        >>> from abjad.tools import sequencetools
 
     ::
 
-        abjad> sequencetools.is_integer_equivalent_singleton((2.0,))
+        >>> sequencetools.is_integer_equivalent_singleton((2.0,))
         True
 
     Otherwise false::
 
-        abjad> sequencetools.is_integer_equivalent_singleton((2.5,))
+        >>> sequencetools.is_integer_equivalent_singleton((2.5,))
         False
 
     Return boolean.

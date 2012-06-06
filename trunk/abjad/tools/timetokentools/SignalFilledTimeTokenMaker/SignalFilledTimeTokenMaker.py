@@ -8,29 +8,29 @@ class SignalFilledTimeTokenMaker(TokenBurnishedSignalFilledTimeTokenMaker):
 
     Configure the time-token maker at initialization::
 
-        abjad> from abjad.tools import sequencetools
-        abjad> from abjad.tools import timetokentools
+        >>> from abjad.tools import sequencetools
+        >>> from abjad.tools import timetokentools
 
     ::
 
-        abjad> pattern, denominator, prolation_addenda = [-1, 4, -2, 3], 16, [3, 4]
-        abjad> maker = timetokentools.SignalFilledTimeTokenMaker(pattern, denominator, prolation_addenda)
+        >>> pattern, denominator, prolation_addenda = [-1, 4, -2, 3], 16, [3, 4]
+        >>> maker = timetokentools.SignalFilledTimeTokenMaker(pattern, denominator, prolation_addenda)
 
     Then call the time-token maker on arbitrary duration tokens::
 
-        abjad> duration_tokens = [(2, 8), (5, 8)]
-        abjad> music = maker(duration_tokens)
+        >>> duration_tokens = [(2, 8), (5, 8)]
+        >>> music = maker(duration_tokens)
 
     The resulting Abjad objects can be included in any score and the time-token
     make can be called indefinitely on other arbitrary sequences of duration tokens::
 
-        abjad> music = sequencetools.flatten_sequence(music)
-        abjad> staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(duration_tokens))
-        abjad> measures = measuretools.replace_contents_of_measures_in_expr(staff, music)
+        >>> music = sequencetools.flatten_sequence(music)
+        >>> staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(duration_tokens))
+        >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, music)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             {
                 \time 2/8

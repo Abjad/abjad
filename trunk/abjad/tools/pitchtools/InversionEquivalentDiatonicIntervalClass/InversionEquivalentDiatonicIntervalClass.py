@@ -7,7 +7,7 @@ class InversionEquivalentDiatonicIntervalClass(DiatonicIntervalClassObject):
 
     Abjad model of inversion-equivalent diatonic interval-class::
 
-        abjad> pitchtools.InversionEquivalentDiatonicIntervalClass('-m14')
+        >>> pitchtools.InversionEquivalentDiatonicIntervalClass('-m14')
         InversionEquivalentDiatonicIntervalClass('M2')
 
     Inversion-equivalent diatonic interval-classes are immutable.

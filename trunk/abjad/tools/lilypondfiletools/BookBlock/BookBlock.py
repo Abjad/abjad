@@ -6,16 +6,16 @@ class BookBlock(NonattributedBlock):
 
     Abjad model of LilyPond input file book block::
 
-        abjad> book_block = lilypondfiletools.BookBlock()
+        >>> book_block = lilypondfiletools.BookBlock()
 
     ::
 
-        abjad> book_block
+        >>> book_block
         BookBlock()
 
     ::
 
-        abjad> f(book_block)
+        >>> f(book_block)
         \book {}
 
     Return book block.

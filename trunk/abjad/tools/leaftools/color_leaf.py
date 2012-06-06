@@ -3,16 +3,16 @@ def color_leaf(leaf, color):
 
     Color note::
 
-        abjad> note = Note("c'4")
+        >>> note = Note("c'4")
 
     ::
 
-        abjad> leaftools.color_leaf(note, 'red')
+        >>> leaftools.color_leaf(note, 'red')
         Note("c'4")
 
     ::
 
-        abjad> f(note)
+        >>> f(note)
         \once \override Accidental #'color = #red
         \once \override Dots #'color = #red
         \once \override NoteHead #'color = #red
@@ -20,32 +20,32 @@ def color_leaf(leaf, color):
 
     Color rest::
 
-        abjad> rest = Rest('r4')
+        >>> rest = Rest('r4')
 
     ::
 
-        abjad> leaftools.color_leaf(rest, 'red')
+        >>> leaftools.color_leaf(rest, 'red')
         Rest('r4')
 
     ::
 
-        abjad> f(rest)
+        >>> f(rest)
         \once \override Dots #'color = #red
         \once \override Rest #'color = #red
         r4
 
     Color chord::
 
-        abjad> chord = Chord("<c' e' bf'>4")
+        >>> chord = Chord("<c' e' bf'>4")
 
     ::
 
-        abjad> leaftools.color_leaf(chord, 'red')
+        >>> leaftools.color_leaf(chord, 'red')
         Chord("<c' e' bf'>4")
 
     ::
 
-        abjad> f(chord)
+        >>> f(chord)
         \once \override Accidental #'color = #red
         \once \override Dots #'color = #red
         \once \override NoteHead #'color = #red

@@ -3,8 +3,8 @@ def underscore_delimited_lowercase_to_uppercamelcase(string):
 
     Change underscore-delimited lowercase `string` to uppercamelcase::
 
-        abjad> string = 'bass_figure_alignment_positioning'
-        abjad> stringtools.underscore_delimited_lowercase_to_uppercamelcase(string)
+        >>> string = 'bass_figure_alignment_positioning'
+        >>> stringtools.underscore_delimited_lowercase_to_uppercamelcase(string)
         'BassFigureAlignmentPositioning'
 
     .. versionchanged:: 2.0

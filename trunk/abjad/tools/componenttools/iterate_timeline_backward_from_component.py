@@ -7,11 +7,11 @@ def iterate_timeline_backward_from_component(expr, klass=None):
 
     Iterate timeline backward from `component`::
 
-        abjad> score = Score([])
-        abjad> score.append(Staff(notetools.make_repeated_notes(4, Duration(1, 4))))
-        abjad> score.append(Staff(notetools.make_repeated_notes(4)))
-        abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(score)
-        abjad> f(score)
+        >>> score = Score([])
+        >>> score.append(Staff(notetools.make_repeated_notes(4, Duration(1, 4))))
+        >>> score.append(Staff(notetools.make_repeated_notes(4)))
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(score)
+        >>> f(score)
         \new Score <<
             \new Staff {
                 c'4
@@ -26,7 +26,7 @@ def iterate_timeline_backward_from_component(expr, klass=None):
                 c''8
             }
         >>
-        abjad> for leaf in componenttools.iterate_timeline_backward_from_component(score[1][2]):
+        >>> for leaf in componenttools.iterate_timeline_backward_from_component(score[1][2]):
         ...     leaf
         ...
         Note("b'8")

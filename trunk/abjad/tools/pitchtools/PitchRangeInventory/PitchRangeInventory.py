@@ -7,7 +7,7 @@ class PitchRangeInventory(ObjectInventory):
 
     Abjad model of an ordered list of pitch ranges::
 
-        abjad> pitchtools.PitchRangeInventory(['[C3, C6]', '[C4, C6]'])
+        >>> pitchtools.PitchRangeInventory(['[C3, C6]', '[C4, C6]'])
         PitchRangeInventory([PitchRange('[C3, C6]'), PitchRange('[C4, C6]')])
 
     Pitch range inventories implement list interface and are mutable.

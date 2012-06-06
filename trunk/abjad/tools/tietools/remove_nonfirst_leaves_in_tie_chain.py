@@ -6,11 +6,11 @@ from abjad.tools.tietools.get_tie_chain import get_tie_chain
 def remove_nonfirst_leaves_in_tie_chain(tie_chain):
     r'''Remove nonfirst leaves in `tie_chain`::
 
-        abjad> staff = Staff("c'4 ~ c'16")
+        >>> staff = Staff("c'4 ~ c'16")
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'4 ~
             c'16
@@ -18,12 +18,12 @@ def remove_nonfirst_leaves_in_tie_chain(tie_chain):
 
     ::
 
-        abjad> tietools.remove_nonfirst_leaves_in_tie_chain(tietools.get_tie_chain(staff[0]))
+        >>> tietools.remove_nonfirst_leaves_in_tie_chain(tietools.get_tie_chain(staff[0]))
         TieChain((Note("c'4"),))
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'4
         }

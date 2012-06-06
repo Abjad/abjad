@@ -13,16 +13,16 @@ def is_lilypond_duration_name(expr):
 
     True when `expr` is a LilyPond duartion name::
 
-        abjad> from abjad.tools import durationtools
+        >>> from abjad.tools import durationtools
 
     ::
 
-        abjad> durationtools.is_lilypond_duration_name('\\breve')
+        >>> durationtools.is_lilypond_duration_name('\\breve')
         True
 
     Otherwise false::
 
-        abjad> durationtools.is_lilypond_duration_name('foo')
+        >>> durationtools.is_lilypond_duration_name('foo')
         False
 
     The regex ``^(\\breve|\\longa|\\maxima)$`` underlies this predicate.

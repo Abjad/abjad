@@ -3,9 +3,9 @@ def is_component_with_spanner_attached(expr, klass = None):
 
     True when `expr` is a component with spanner attached::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> beam = beamtools.BeamSpanner(staff.leaves)
-        abjad> f(staff)
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> beam = beamtools.BeamSpanner(staff.leaves)
+        >>> f(staff)
         \new Staff {
             c'8 [
             d'8
@@ -15,12 +15,12 @@ def is_component_with_spanner_attached(expr, klass = None):
 
     ::
 
-        abjad> spannertools.is_component_with_spanner_attached(staff[0])
+        >>> spannertools.is_component_with_spanner_attached(staff[0])
         True
 
     Otherwise false::
 
-        abjad> spannertools.is_component_with_spanner_attached(staff)
+        >>> spannertools.is_component_with_spanner_attached(staff)
         False
 
     When `klass` is not none then true when `expr` is a component

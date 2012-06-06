@@ -7,9 +7,9 @@ def iterate_leaves_backward_in_expr(expr, start = 0, stop = None):
 
     Iterate leaves backward in `expr`::
 
-        abjad> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
-        abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
-        abjad> f(staff)
+        >>> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+        >>> f(staff)
         \new Staff {
             {
                 \time 2/8
@@ -28,7 +28,7 @@ def iterate_leaves_backward_in_expr(expr, start = 0, stop = None):
 
     ::
 
-        abjad> for leaf in leaftools.iterate_leaves_backward_in_expr(staff):
+        >>> for leaf in leaftools.iterate_leaves_backward_in_expr(staff):
         ...     leaf
         ...
         Note("a'8")
@@ -41,7 +41,7 @@ def iterate_leaves_backward_in_expr(expr, start = 0, stop = None):
     Use the optional `start` and `stop` keyword parameters to control
     the indices of iteration. ::
 
-        abjad> for leaf in leaftools.iterate_leaves_backward_in_expr(staff, start = 3):
+        >>> for leaf in leaftools.iterate_leaves_backward_in_expr(staff, start = 3):
         ...     leaf
         ...
         Note("e'8")
@@ -50,7 +50,7 @@ def iterate_leaves_backward_in_expr(expr, start = 0, stop = None):
 
     ::
 
-        abjad> for leaf in leaftools.iterate_leaves_backward_in_expr(staff, start = 0, stop = 3):
+        >>> for leaf in leaftools.iterate_leaves_backward_in_expr(staff, start = 0, stop = 3):
         ...     leaf
         ...
         Note("a'8")
@@ -59,7 +59,7 @@ def iterate_leaves_backward_in_expr(expr, start = 0, stop = None):
 
     ::
 
-        abjad> for leaf in leaftools.iterate_leaves_backward_in_expr(staff, start = 2, stop = 4):
+        >>> for leaf in leaftools.iterate_leaves_backward_in_expr(staff, start = 2, stop = 4):
         ...     leaf
         ...
         Note("f'8")

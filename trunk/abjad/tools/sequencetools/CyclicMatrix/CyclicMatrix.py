@@ -9,64 +9,64 @@ class CyclicMatrix(Matrix):
 
     Initialize from rows::
 
-        abjad> from abjad.tools import sequencetools
+        >>> from abjad.tools import sequencetools
 
     ::
 
-        abjad> cyclic_matrix = sequencetools.CyclicMatrix([[0, 1, 2, 3], [10, 11, 12, 13], [20, 21, 22, 23]])
+        >>> cyclic_matrix = sequencetools.CyclicMatrix([[0, 1, 2, 3], [10, 11, 12, 13], [20, 21, 22, 23]])
 
     ::
 
-        abjad> cyclic_matrix
+        >>> cyclic_matrix
         CyclicMatrix(3x4)
 
     ::
 
-        abjad> cyclic_matrix[2]
+        >>> cyclic_matrix[2]
         CyclicTuple([20, 21, 22, 23])
 
     ::
 
-        abjad> cyclic_matrix[2][2]
+        >>> cyclic_matrix[2][2]
         22
 
     ::
 
-        abjad> cyclic_matrix[99]
+        >>> cyclic_matrix[99]
         CyclicTuple([0, 1, 2, 3])
 
     ::
 
-        abjad> cyclic_matrix[99][99]
+        >>> cyclic_matrix[99][99]
         3
 
     Initialize from columns::
 
-        abjad> cyclic_matrix = sequencetools.CyclicMatrix(columns = [[0, 10, 20], [1, 11, 21], [2, 12, 22], [3, 13, 23]])
+        >>> cyclic_matrix = sequencetools.CyclicMatrix(columns = [[0, 10, 20], [1, 11, 21], [2, 12, 22], [3, 13, 23]])
 
     ::
 
-        abjad> cyclic_matrix
+        >>> cyclic_matrix
         CyclicMatrix(3x4)
 
     ::
 
-        abjad> cyclic_matrix[2]
+        >>> cyclic_matrix[2]
         CyclicTuple([20, 21, 22, 23])
 
     ::
 
-        abjad> cyclic_matrix[2][2]
+        >>> cyclic_matrix[2][2]
         22
 
     ::
 
-        abjad> cyclic_matrix[99]
+        >>> cyclic_matrix[99]
         CyclicTuple([0, 1, 2, 3])
 
     ::
 
-        abjad> cyclic_matrix[99][99]
+        >>> cyclic_matrix[99][99]
         3
 
     CyclicMatrix implements only item retrieval in this revision.
@@ -124,11 +124,11 @@ class CyclicMatrix(Matrix):
     def columns(self):
         '''Read-only columns::
 
-            abjad> cyclic_matrix = sequencetools.CyclicMatrix([[0, 1, 2, 3], [10, 11, 12, 13], [20, 21, 22, 23]])
+            >>> cyclic_matrix = sequencetools.CyclicMatrix([[0, 1, 2, 3], [10, 11, 12, 13], [20, 21, 22, 23]])
 
         ::
 
-            abjad> cyclic_matrix.columns
+            >>> cyclic_matrix.columns
             CyclicTuple([[0, 10, 20], [1, 11, 21], [2, 12, 22], [3, 13, 23]])
 
         Return cyclic tuple.
@@ -139,11 +139,11 @@ class CyclicMatrix(Matrix):
     def rows(self):
         '''Read-only rows::
 
-            abjad> cyclic_matrix = sequencetools.CyclicMatrix([[0, 1, 2, 3], [10, 11, 12, 13], [20, 21, 22, 23]])
+            >>> cyclic_matrix = sequencetools.CyclicMatrix([[0, 1, 2, 3], [10, 11, 12, 13], [20, 21, 22, 23]])
 
         ::
 
-            abjad> cyclic_matrix.rows
+            >>> cyclic_matrix.rows
             CyclicTuple([[0, 1, 2, 3], [10, 11, 12, 13], [20, 21, 22, 23]])
 
         Return cyclic tuple.

@@ -11,12 +11,12 @@ def is_neighbor_note(note):
     and followed by a stepwise interval in the other direction.
     Otherwise false. ::
 
-        abjad> from abjad.tools import tonalitytools
+        >>> from abjad.tools import tonalitytools
 
     ::
 
-        abjad> t = Staff("c'8 d'8 e'8 f'8")
-        abjad> for note in t:
+        >>> t = Staff("c'8 d'8 e'8 f'8")
+        >>> for note in t:
         ...     print '%s\t%s' % (note, tonalitytools.is_neighbor_note(note))
         ...
         c'8     False

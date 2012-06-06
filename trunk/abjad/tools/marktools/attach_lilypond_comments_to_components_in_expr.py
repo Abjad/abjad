@@ -6,13 +6,13 @@ def attach_lilypond_comments_to_components_in_expr(expr, lilypond_comments):
 
     Attach `lilypond_comments` to components in `expr`::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> lilypond_comment = marktools.LilyPondComment('foo', 'right')
-        abjad> marktools.attach_lilypond_comments_to_components_in_expr(staff.leaves, [lilypond_comment])
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> lilypond_comment = marktools.LilyPondComment('foo', 'right')
+        >>> marktools.attach_lilypond_comments_to_components_in_expr(staff.leaves, [lilypond_comment])
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8 % foo
             d'8 % foo

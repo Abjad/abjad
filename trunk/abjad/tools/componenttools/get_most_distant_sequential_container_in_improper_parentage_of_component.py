@@ -5,15 +5,15 @@ def get_most_distant_sequential_container_in_improper_parentage_of_component(com
     such that the parent of sequential container is either a parellel container
     or else none::
 
-        abjad> t = Voice([Container(Voice(notetools.make_repeated_notes(2)) * 2)])
-        abjad> t[0].is_parallel = True
-        abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-        abjad> t[0][0].name = 'voice 1'
-        abjad> t[0][1].name = 'voice 2'
+        >>> t = Voice([Container(Voice(notetools.make_repeated_notes(2)) * 2)])
+        >>> t[0].is_parallel = True
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+        >>> t[0][0].name = 'voice 1'
+        >>> t[0][1].name = 'voice 2'
 
     ::
 
-        abjad> f(t)
+        >>> f(t)
         \new Voice {
             <<
                 \context Voice = "voice 1" {
@@ -29,8 +29,8 @@ def get_most_distant_sequential_container_in_improper_parentage_of_component(com
 
     ::
 
-        abjad> note = t.leaves[1]
-        abjad> componenttools.get_most_distant_sequential_container_in_improper_parentage_of_component(note) is t[0][0]
+        >>> note = t.leaves[1]
+        >>> componenttools.get_most_distant_sequential_container_in_improper_parentage_of_component(note) is t[0][0]
         True
 
     Return none when no such container exists in the improper parentage of `component`.

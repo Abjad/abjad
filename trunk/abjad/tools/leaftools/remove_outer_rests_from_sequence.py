@@ -6,11 +6,11 @@ def remove_outer_rests_from_sequence(sequence):
 
     Remove outer rests from `sequence`::
 
-        abjad> staff = Staff("r8 r8 c'8 d'8 r4 r4")
+        >>> staff = Staff("r8 r8 c'8 d'8 r4 r4")
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             r8
             r8
@@ -22,12 +22,12 @@ def remove_outer_rests_from_sequence(sequence):
 
     ::
 
-        abjad> leaftools.remove_outer_rests_from_sequence(staff)
+        >>> leaftools.remove_outer_rests_from_sequence(staff)
         [Note("c'8"), Note("d'8")]
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             r8
             r8

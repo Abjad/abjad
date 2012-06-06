@@ -1,26 +1,26 @@
 def get_shared_numeric_sign(sequence):
     '''Return ``1`` when all `sequence` elements are positive::
 
-        abjad> from abjad.tools import mathtools
+        >>> from abjad.tools import mathtools
 
     ::
 
-        abjad> mathtools.get_shared_numeric_sign([1, 2, 3])
+        >>> mathtools.get_shared_numeric_sign([1, 2, 3])
         1
 
     Return ``-1`` when all `sequence` elements are negative::
 
-        abjad> mathtools.get_shared_numeric_sign([-1, -2, -3])
+        >>> mathtools.get_shared_numeric_sign([-1, -2, -3])
         -1
 
     Return ``0`` on empty `sequence`::
 
-        abjad> mathtools.get_shared_numeric_sign([])
+        >>> mathtools.get_shared_numeric_sign([])
         0
 
     Otherwise return none::
 
-        abjad> mathtools.get_shared_numeric_sign([1, 2, -3]) is None
+        >>> mathtools.get_shared_numeric_sign([1, 2, -3]) is None
         True
 
     Return ``1``, ``-1``, ``0`` or none.

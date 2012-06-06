@@ -6,14 +6,14 @@ def detach_dynamic_marks_attached_to_component(component):
 
     Detach dynamic marks attached to `component`::
 
-        abjad> staff = Staff("c'4 d'4 e'4 f'4")
-        abjad> dynamic_mark = contexttools.DynamicMark('p')
-        abjad> dynamic_mark.attach(staff[0])
+        >>> staff = Staff("c'4 d'4 e'4 f'4")
+        >>> dynamic_mark = contexttools.DynamicMark('p')
+        >>> dynamic_mark.attach(staff[0])
         DynamicMark('p')(c'4)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'4 \p
             d'4
@@ -23,12 +23,12 @@ def detach_dynamic_marks_attached_to_component(component):
 
     ::
 
-        abjad> contexttools.detach_dynamic_marks_attached_to_component(staff[0])
+        >>> contexttools.detach_dynamic_marks_attached_to_component(staff[0])
         (DynamicMark('p'),)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'4
             d'4

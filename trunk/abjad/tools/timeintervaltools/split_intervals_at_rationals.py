@@ -7,17 +7,17 @@ def split_intervals_at_rationals(intervals, rationals):
     '''Split `intervals` at each rational in
     `rationals` ::
 
-        abjad> from abjad.tools import timeintervaltools
-        abjad> from abjad.tools.timeintervaltools import TimeInterval
-        abjad> from abjad.tools.timeintervaltools import TimeIntervalTree
+        >>> from abjad.tools import timeintervaltools
+        >>> from abjad.tools.timeintervaltools import TimeInterval
+        >>> from abjad.tools.timeintervaltools import TimeIntervalTree
 
     ::
 
-        abjad> a = TimeInterval(-1, 3)
-        abjad> b = TimeInterval(6, 12)
-        abjad> c = TimeInterval(9, 16)
-        abjad> tree = TimeIntervalTree([a, b, c])
-        abjad> timeintervaltools.split_intervals_at_rationals(tree, [1, Fraction(19, 2)])
+        >>> a = TimeInterval(-1, 3)
+        >>> b = TimeInterval(6, 12)
+        >>> c = TimeInterval(9, 16)
+        >>> tree = TimeIntervalTree([a, b, c])
+        >>> timeintervaltools.split_intervals_at_rationals(tree, [1, Fraction(19, 2)])
         TimeIntervalTree([
             TimeInterval(Offset(-1, 1), Offset(1, 1), {}),
             TimeInterval(Offset(1, 1), Offset(3, 1), {}),

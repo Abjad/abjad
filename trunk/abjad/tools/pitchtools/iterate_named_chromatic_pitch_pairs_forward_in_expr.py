@@ -6,17 +6,17 @@ def iterate_named_chromatic_pitch_pairs_forward_in_expr(expr):
 
     Iterate left-to-right, top-to-bottom named chromatic pitch pairs in `expr`::
 
-        abjad> score = Score([])
-        abjad> notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8"), Note("g'4")]
-        abjad> score.append(Staff(notes))
-        abjad> notes = [Note(x, (1, 4)) for x in [-12, -15, -17]]
-        abjad> score.append(Staff(notes))
-        abjad> contexttools.ClefMark('bass')(score[1])
+        >>> score = Score([])
+        >>> notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8"), Note("g'4")]
+        >>> score.append(Staff(notes))
+        >>> notes = [Note(x, (1, 4)) for x in [-12, -15, -17]]
+        >>> score.append(Staff(notes))
+        >>> contexttools.ClefMark('bass')(score[1])
         ClefMark('bass')(Staff{3})
 
     ::
 
-        abjad> f(score)
+        >>> f(score)
         \new Score <<
             \new Staff {
                 c'8
@@ -35,7 +35,7 @@ def iterate_named_chromatic_pitch_pairs_forward_in_expr(expr):
 
     ::
 
-        abjad> for pair in pitchtools.iterate_named_chromatic_pitch_pairs_forward_in_expr(score):
+        >>> for pair in pitchtools.iterate_named_chromatic_pitch_pairs_forward_in_expr(score):
         ...     pair
         ...
         (NamedChromaticPitch("c'"), NamedChromaticPitch('c'))
@@ -56,13 +56,13 @@ def iterate_named_chromatic_pitch_pairs_forward_in_expr(expr):
 
     Chords are handled correctly. ::
 
-        abjad> chord_1 = Chord([0, 2, 4], (1, 4))
-        abjad> chord_2 = Chord([17, 19], (1, 4))
-        abjad> staff = Staff([chord_1, chord_2])
+        >>> chord_1 = Chord([0, 2, 4], (1, 4))
+        >>> chord_2 = Chord([17, 19], (1, 4))
+        >>> staff = Staff([chord_1, chord_2])
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             <c' d' e'>4
             <f'' g''>4
@@ -70,7 +70,7 @@ def iterate_named_chromatic_pitch_pairs_forward_in_expr(expr):
 
     ::
 
-        abjad> for pair in pitchtools.iterate_named_chromatic_pitch_pairs_forward_in_expr(staff):
+        >>> for pair in pitchtools.iterate_named_chromatic_pitch_pairs_forward_in_expr(staff):
         ...   print pair
         (NamedChromaticPitch("c'"), NamedChromaticPitch("d'"))
         (NamedChromaticPitch("c'"), NamedChromaticPitch("e'"))

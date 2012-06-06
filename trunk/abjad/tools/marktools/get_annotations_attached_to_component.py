@@ -6,15 +6,15 @@ def get_annotations_attached_to_component(component):
 
     Get annotations attached to `component`::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> marktools.Annotation('annotation 1')(staff[0])
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> marktools.Annotation('annotation 1')(staff[0])
         Annotation('annotation 1')(c'8)
-        abjad> marktools.Annotation('annotation 2')(staff[0])
+        >>> marktools.Annotation('annotation 2')(staff[0])
         Annotation('annotation 2')(c'8)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8
             d'8
@@ -24,7 +24,7 @@ def get_annotations_attached_to_component(component):
 
     ::
 
-        abjad> marktools.get_annotations_attached_to_component(staff[0])
+        >>> marktools.get_annotations_attached_to_component(staff[0])
         (Annotation('annotation 1')(c'8), Annotation('annotation 2')(c'8))
 
     Return tuple of zero or more annotations.

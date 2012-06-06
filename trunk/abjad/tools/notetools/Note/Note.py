@@ -10,7 +10,7 @@ class Note(Leaf):
 
     ::
 
-        abjad> Note(13, (3, 16))
+        >>> Note(13, (3, 16))
         Note("cs''8.")
 
     Notes are immutable.
@@ -83,13 +83,13 @@ class Note(Leaf):
     def fingered_pitch(self):
         r'''Read-only fingered pitch of note::
 
-            abjad> staff = Staff("d''8 e''8 f''8 g''8")
-            abjad> piccolo = instrumenttools.Piccolo()(staff)
-            abjad> instrumenttools.transpose_notes_and_chords_in_expr_from_sounding_pitch_to_fingered_pitch(staff)
+            >>> staff = Staff("d''8 e''8 f''8 g''8")
+            >>> piccolo = instrumenttools.Piccolo()(staff)
+            >>> instrumenttools.transpose_notes_and_chords_in_expr_from_sounding_pitch_to_fingered_pitch(staff)
 
         ::
 
-            abjad> f(staff)
+            >>> f(staff)
             \new Staff {
                 \set Staff.instrumentName = \markup { Piccolo }
                 \set Staff.shortInstrumentName = \markup { Picc. }
@@ -101,7 +101,7 @@ class Note(Leaf):
 
         ::
 
-            abjad> staff[0].fingered_pitch
+            >>> staff[0].fingered_pitch
             NamedChromaticPitch("d'")
 
         Return named chromatic pitch.
@@ -124,15 +124,15 @@ class Note(Leaf):
         def fget(self):
             '''Get note head of note::
 
-                abjad> note = Note(13, (3, 16))
-                abjad> note.note_head
+                >>> note = Note(13, (3, 16))
+                >>> note.note_head
                 NoteHead("cs''")
 
             Set note head of note::
 
-                abjad> note = Note(13, (3, 16))
-                abjad> note.note_head = 14
-                abjad> note
+                >>> note = Note(13, (3, 16))
+                >>> note.note_head = 14
+                >>> note
                 Note("d''8.")
 
             '''
@@ -152,16 +152,16 @@ class Note(Leaf):
     def sounding_pitch(self):
         r'''Read-only sounding pitch of note::
 
-            abjad> staff = Staff("d''8 e''8 f''8 g''8")
-            abjad> piccolo = instrumenttools.Piccolo()(staff)
+            >>> staff = Staff("d''8 e''8 f''8 g''8")
+            >>> piccolo = instrumenttools.Piccolo()(staff)
 
         ::
 
-            abjad> instrumenttools.transpose_notes_and_chords_in_expr_from_sounding_pitch_to_fingered_pitch(staff)
+            >>> instrumenttools.transpose_notes_and_chords_in_expr_from_sounding_pitch_to_fingered_pitch(staff)
 
         ::
 
-            abjad> f(staff)
+            >>> f(staff)
             \new Staff {
                 \set Staff.instrumentName = \markup { Piccolo }
                 \set Staff.shortInstrumentName = \markup { Picc. }
@@ -170,7 +170,7 @@ class Note(Leaf):
                 f'8
                 g'8
             }
-            abjad> staff[0].sounding_pitch
+            >>> staff[0].sounding_pitch
             NamedChromaticPitch("d''")
 
         Return named chromatic pitch.
@@ -192,15 +192,15 @@ class Note(Leaf):
         def fget(self):
             '''Get named pitch of note::
 
-                abjad> note = Note(13, (3, 16))
-                abjad> note.written_pitch
+                >>> note = Note(13, (3, 16))
+                >>> note.written_pitch
                 NamedChromaticPitch("cs''")
 
             Set named pitch of note::
 
-                abjad> note = Note(13, (3, 16))
-                abjad> note.written_pitch = 14
-                abjad> note
+                >>> note = Note(13, (3, 16))
+                >>> note.written_pitch = 14
+                >>> note
                 Note("d''8.")
 
             '''

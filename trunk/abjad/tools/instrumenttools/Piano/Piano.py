@@ -11,16 +11,16 @@ class Piano(_KeyboardInstrument):
 
     Abjad model of the piano::
 
-        abjad> piano_staff = scoretools.PianoStaff([Staff("c'8 d'8 e'8 f'8"), Staff("c'4 b4")])
+        >>> piano_staff = scoretools.PianoStaff([Staff("c'8 d'8 e'8 f'8"), Staff("c'4 b4")])
 
     ::
 
-        abjad> instrumenttools.Piano()(piano_staff)
+        >>> instrumenttools.Piano()(piano_staff)
         Piano()(PianoStaff<<2>>)
 
     ::
 
-        abjad> f(piano_staff)
+        >>> f(piano_staff)
         \new PianoStaff <<
             \set PianoStaff.instrumentName = \markup { Piano }
             \set PianoStaff.shortInstrumentName = \markup { Pf. }

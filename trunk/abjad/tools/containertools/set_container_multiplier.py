@@ -2,11 +2,11 @@
 def set_container_multiplier(container, multiplier):
     r'''Set `container` `multiplier`::
 
-        abjad> tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
+        >>> tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
 
     ::
 
-        abjad> f(tuplet)
+        >>> f(tuplet)
         \times 2/3 {
             c'8
             d'8
@@ -15,11 +15,11 @@ def set_container_multiplier(container, multiplier):
 
     ::
 
-        abjad> containertools.set_container_multiplier(tuplet, Duration(3, 4))
+        >>> containertools.set_container_multiplier(tuplet, Duration(3, 4))
 
     ::
 
-        abjad> f(tuplet)
+        >>> f(tuplet)
         \fraction \times 3/4 {
             c'8
             d'8

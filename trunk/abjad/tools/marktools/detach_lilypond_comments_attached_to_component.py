@@ -6,16 +6,16 @@ def detach_lilypond_comments_attached_to_component(component):
 
     Detach LilyPond comments attached to `component`::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> slur = spannertools.SlurSpanner(staff.leaves)
-        abjad> marktools.LilyPondComment('comment 1')(staff[0])
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> slur = spannertools.SlurSpanner(staff.leaves)
+        >>> marktools.LilyPondComment('comment 1')(staff[0])
         LilyPondComment('comment 1')(c'8)
-        abjad> marktools.LilyPondComment('comment 2')(staff[0])
+        >>> marktools.LilyPondComment('comment 2')(staff[0])
         LilyPondComment('comment 2')(c'8)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             % comment 1
             % comment 2
@@ -27,12 +27,12 @@ def detach_lilypond_comments_attached_to_component(component):
 
     ::
 
-        abjad> marktools.detach_lilypond_comments_attached_to_component(staff[0])
+        >>> marktools.detach_lilypond_comments_attached_to_component(staff[0])
         (LilyPondComment('comment 1'), LilyPondComment('comment 2'))
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8 (
             d'8
@@ -42,7 +42,7 @@ def detach_lilypond_comments_attached_to_component(component):
 
     ::
 
-        abjad> marktools.get_lilypond_comments_attached_to_component(staff[0])
+        >>> marktools.get_lilypond_comments_attached_to_component(staff[0])
         ()
 
     Return tuple or zero or more LilyPond comments.

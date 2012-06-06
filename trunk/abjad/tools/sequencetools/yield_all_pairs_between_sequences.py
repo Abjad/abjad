@@ -3,11 +3,11 @@ def yield_all_pairs_between_sequences(l, m):
 
     Yield all pairs between sequences `l` and `m`::
 
-        abjad> from abjad.tools import sequencetools
+        >>> from abjad.tools import sequencetools
 
     ::
 
-        abjad> for pair in sequencetools.yield_all_pairs_between_sequences([1, 2, 3], [4, 5]):
+        >>> for pair in sequencetools.yield_all_pairs_between_sequences([1, 2, 3], [4, 5]):
         ...     pair
         ...
         (1, 4)

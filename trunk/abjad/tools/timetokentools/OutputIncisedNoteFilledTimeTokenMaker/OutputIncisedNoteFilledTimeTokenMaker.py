@@ -8,30 +8,30 @@ class OutputIncisedNoteFilledTimeTokenMaker(OutputIncisedTimeTokenMaker):
 
     Configure the time-token maker on initialization::
 
-        abjad> from abjad.tools import sequencetools
-        abjad> from abjad.tools import timetokentools
+        >>> from abjad.tools import sequencetools
+        >>> from abjad.tools import timetokentools
 
     ::
 
-        abjad> prefix_signal, prefix_lengths = [-8], [2]
-        abjad> suffix_signal, suffix_lengths = [-3], [4]
-        abjad> denominator = 32
-        abjad> maker = timetokentools.OutputIncisedNoteFilledTimeTokenMaker(prefix_signal, prefix_lengths, suffix_signal, suffix_lengths, denominator)
+        >>> prefix_signal, prefix_lengths = [-8], [2]
+        >>> suffix_signal, suffix_lengths = [-3], [4]
+        >>> denominator = 32
+        >>> maker = timetokentools.OutputIncisedNoteFilledTimeTokenMaker(prefix_signal, prefix_lengths, suffix_signal, suffix_lengths, denominator)
 
     Then call the time-token maker on arbitrary duration tokens::
 
-        abjad> duration_tokens = [(5, 8), (5, 8), (5, 8)]
-        abjad> leaf_lists = maker(duration_tokens)
-        abjad> leaves = sequencetools.flatten_sequence(leaf_lists)
+        >>> duration_tokens = [(5, 8), (5, 8), (5, 8)]
+        >>> leaf_lists = maker(duration_tokens)
+        >>> leaves = sequencetools.flatten_sequence(leaf_lists)
 
     The resulting Abjad objects can be included in any score and the time-token maker can be reused::
 
-        abjad> staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(duration_tokens))
-        abjad> measures = measuretools.replace_contents_of_measures_in_expr(staff, leaves)
+        >>> staff = Staff(measuretools.make_measures_with_full_measure_spacer_skips(duration_tokens))
+        >>> measures = measuretools.replace_contents_of_measures_in_expr(staff, leaves)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             {
                 \time 5/8

@@ -11,16 +11,16 @@ class LilyPondComment(Mark):
 
     User-defined comment::
 
-        abjad> note = Note("c'4")
+        >>> note = Note("c'4")
 
     ::
 
-        abjad> marktools.LilyPondComment('this is a comment')(note)
+        >>> marktools.LilyPondComment('this is a comment')(note)
         LilyPondComment('this is a comment')(c'4)
 
     ::
 
-        abjad> f(note)
+        >>> f(note)
         % this is a comment
         c'4
 
@@ -78,14 +78,14 @@ class LilyPondComment(Mark):
         def fget(self):
             r'''Get contents string of comment::
 
-                abjad> comment = marktools.LilyPondComment('comment contents string')
-                abjad> comment.contents_string
+                >>> comment = marktools.LilyPondComment('comment contents string')
+                >>> comment.contents_string
                 'comment contents string'
 
             Set contents string of comment::
 
-                abjad> comment.contents_string = 'new comment contents string'
-                abjad> comment.contents_string
+                >>> comment.contents_string = 'new comment contents string'
+                >>> comment.contents_string
                 'new comment contents string'
 
             Set string.
@@ -102,8 +102,8 @@ class LilyPondComment(Mark):
 
         ::
 
-            abjad> comment = marktools.LilyPondComment('this is a comment.')
-            abjad> comment.format
+            >>> comment = marktools.LilyPondComment('this is a comment.')
+            >>> comment.format
             '% this is a comment.'
 
         Return string.
@@ -119,17 +119,17 @@ class LilyPondComment(Mark):
 
             Get format slot of LilyPond comment::
             
-                abjad> note = Note("c'4")
-                abjad> lilypond_comment = marktools.LilyPondComment('comment')
-                abjad> lilypond_comment.format_slot
+                >>> note = Note("c'4")
+                >>> lilypond_comment = marktools.LilyPondComment('comment')
+                >>> lilypond_comment.format_slot
                 'before'
 
             Set format slot of LiyPond comment::
 
-                abjad> note = Note("c'4")
-                abjad> lilypond_comment = marktools.LilyPondComment('comment')
-                abjad> lilypond_comment.format_slot = 'after'
-                abjad> lilypond_comment.format_slot
+                >>> note = Note("c'4")
+                >>> lilypond_comment = marktools.LilyPondComment('comment')
+                >>> lilypond_comment.format_slot = 'after'
+                >>> lilypond_comment.format_slot
                 'after'
 
             Set to ``'before'``, ``'after'``, ``'opening'``, ``'closing'``, ``'right'`` or none.

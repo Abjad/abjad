@@ -5,7 +5,7 @@ from abjad.tools import tuplettools
 def apply_multipart_beam_spanner_to_bottommost_tuplets_in_expr(expr):
     r'''Beam bottommost tuplets in `expr`::
 
-        abjad> staff = Staff(3 * Tuplet(Fraction(2, 3), "c'8 d'8 e'8"))
+        >>> staff = Staff(3 * Tuplet(Fraction(2, 3), "c'8 d'8 e'8"))
 
     ::
 
@@ -30,11 +30,11 @@ def apply_multipart_beam_spanner_to_bottommost_tuplets_in_expr(expr):
 
     ::
 
-        abjad> beamtools.apply_multipart_beam_spanner_to_bottommost_tuplets_in_expr(staff)
+        >>> beamtools.apply_multipart_beam_spanner_to_bottommost_tuplets_in_expr(staff)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \times 2/3 {
                 c'8 [

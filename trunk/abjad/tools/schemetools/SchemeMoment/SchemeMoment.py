@@ -5,7 +5,7 @@ from abjad.tools.schemetools.Scheme import Scheme
 class SchemeMoment(Scheme):
     '''Abjad model of LilyPond moment::
 
-        abjad> schemetools.SchemeMoment(1, 68)
+        >>> schemetools.SchemeMoment(1, 68)
         SchemeMoment((1, 68))
 
     Initialize scheme moments with a single fraction, two integers or another scheme moment.
@@ -85,8 +85,8 @@ class SchemeMoment(Scheme):
     def duration(self):
         '''Duration of scheme moment::
 
-            abjad> scheme_moment = schemetools.SchemeMoment(1, 68)
-            abjad> scheme_moment.duration
+            >>> scheme_moment = schemetools.SchemeMoment(1, 68)
+            >>> scheme_moment.duration
             Duration(1, 68)
 
         Return duration.

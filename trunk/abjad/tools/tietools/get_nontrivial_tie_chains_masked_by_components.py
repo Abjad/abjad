@@ -5,11 +5,11 @@ from abjad.tools.tietools.TieSpanner import TieSpanner
 def get_nontrivial_tie_chains_masked_by_components(components):
     r'''Get nontrivial tie chains masked by `components`::
 
-        abjad> staff = Staff("c'8 ~ c'4 d'8 ~ d'4 e'4.")
+        >>> staff = Staff("c'8 ~ c'4 d'8 ~ d'4 e'4.")
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8 ~
             c'4
@@ -20,12 +20,12 @@ def get_nontrivial_tie_chains_masked_by_components(components):
 
     Return only nontrivial tie chains::
 
-        abjad> tietools.get_nontrivial_tie_chains_masked_by_components(staff.leaves)
+        >>> tietools.get_nontrivial_tie_chains_masked_by_components(staff.leaves)
         [TieChain((Note("c'8"), Note("c'4"))), TieChain((Note("d'8"), Note("d'4")))]
 
     Return 'masked' tie chains when only some notes of a tie chain are passed in::
 
-        abjad> tietools.get_nontrivial_tie_chains_masked_by_components(staff.leaves[1:2])
+        >>> tietools.get_nontrivial_tie_chains_masked_by_components(staff.leaves[1:2])
         [TieChain((Note("c'4"),))]
 
 

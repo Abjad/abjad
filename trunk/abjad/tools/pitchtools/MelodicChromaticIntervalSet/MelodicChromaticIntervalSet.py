@@ -6,7 +6,7 @@ class MelodicChromaticIntervalSet(IntervalObjectSet):
 
     Abjad model of melodic chromatic interval set::
 
-        abjad> pitchtools.MelodicChromaticIntervalSet([11, 11, 13.5, 13.5])
+        >>> pitchtools.MelodicChromaticIntervalSet([11, 11, 13.5, 13.5])
         MelodicChromaticIntervalSet(+11, +13.5)
 
     Melodic chromatic interval sets are immutable.

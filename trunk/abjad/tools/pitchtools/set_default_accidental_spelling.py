@@ -6,33 +6,33 @@ def set_default_accidental_spelling(spelling='mixed'):
 
     Set default accidental spelling to sharps::
 
-        abjad> from abjad.tools import configurationtools
+        >>> from abjad.tools import configurationtools
 
     ::
 
-        abjad> pitchtools.set_default_accidental_spelling('sharps')
+        >>> pitchtools.set_default_accidental_spelling('sharps')
 
     ::
 
-        abjad> [Note(13, (1, 4)), Note(15, (1, 4))]
+        >>> [Note(13, (1, 4)), Note(15, (1, 4))]
         [Note("cs''4"), Note("ds''4")]
 
     Set default accidental spelling to flats::
 
-        abjad> pitchtools.set_default_accidental_spelling('flats')
+        >>> pitchtools.set_default_accidental_spelling('flats')
 
     ::
 
-        abjad> [Note(13, (1, 4)), Note(15, (1, 4))]
+        >>> [Note(13, (1, 4)), Note(15, (1, 4))]
         [Note("df''4"), Note("ef''4")]
 
     Set default accidental spelling to mixed::
 
-        abjad> pitchtools.set_default_accidental_spelling()
+        >>> pitchtools.set_default_accidental_spelling()
 
     ::
 
-        abjad> [Note(13, (1, 4)), Note(15, (1, 4))]
+        >>> [Note(13, (1, 4)), Note(15, (1, 4))]
         [Note("cs''4"), Note("ef''4")]
 
     Mixed is system default.

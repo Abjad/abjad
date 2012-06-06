@@ -6,11 +6,11 @@ def destroy_spanners_attached_to_components_in_expr(expr, klass=None):
 
     Destroy spanners of `klass` attached to components in `expr`::
 
-        abjad> staff = Staff("c'4 [ ( d' e' f' ) ]")
+        >>> staff = Staff("c'4 [ ( d' e' f' ) ]")
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'4 [ (
             d'4
@@ -20,11 +20,11 @@ def destroy_spanners_attached_to_components_in_expr(expr, klass=None):
 
     ::
 
-        abjad> spanners = spannertools.destroy_spanners_attached_to_components_in_expr(staff)
+        >>> spanners = spannertools.destroy_spanners_attached_to_components_in_expr(staff)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'4
             d'4

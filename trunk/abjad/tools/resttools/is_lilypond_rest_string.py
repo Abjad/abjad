@@ -19,12 +19,12 @@ def is_lilypond_rest_string(expr):
 
     True when `expr` is a LilyPond rest string::
 
-        abjad> resttools.is_lilypond_rest_string('r4.. * 1/2')
+        >>> resttools.is_lilypond_rest_string('r4.. * 1/2')
         True
 
     Otherwise false::
 
-        abjad> resttools.is_lilypond_rest_string('text')
+        >>> resttools.is_lilypond_rest_string('text')
         False
 
     The regex

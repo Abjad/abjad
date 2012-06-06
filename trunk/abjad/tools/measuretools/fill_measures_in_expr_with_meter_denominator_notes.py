@@ -7,12 +7,12 @@ def fill_measures_in_expr_with_meter_denominator_notes(expr, iterctrl = None):
 
     Fill measures in `expr` with meter denominator notes::
 
-        abjad> staff = Staff([Measure((3, 4), []), Measure((3, 16), []), Measure((3, 8), [])])
-        abjad> measuretools.fill_measures_in_expr_with_meter_denominator_notes(staff)
+        >>> staff = Staff([Measure((3, 4), []), Measure((3, 16), []), Measure((3, 8), [])])
+        >>> measuretools.fill_measures_in_expr_with_meter_denominator_notes(staff)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             {
                 \time 3/4

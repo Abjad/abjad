@@ -6,16 +6,16 @@ def map_sequence_elements_to_canonic_tuples(sequence, direction = 'big-endian'):
 
     Partition `sequence` elements into canonic big-endian parts::
 
-        abjad> from abjad.tools import sequencetools
+        >>> from abjad.tools import sequencetools
 
     ::
 
-        abjad> sequencetools.map_sequence_elements_to_canonic_tuples(range(10))
+        >>> sequencetools.map_sequence_elements_to_canonic_tuples(range(10))
         [(0,), (1,), (2,), (3,), (4,), (4, 1), (6,), (7,), (8,), (8, 1)]
 
     Partition `sequence` elements into canonic little-endian parts::
 
-        abjad> sequencetools.map_sequence_elements_to_canonic_tuples(range(10), direction = 'little-endian')
+        >>> sequencetools.map_sequence_elements_to_canonic_tuples(range(10), direction = 'little-endian')
         [(0,), (1,), (2,), (3,), (4,), (1, 4), (6,), (7,), (8,), (1, 8)]
 
     Raise type error when `sequence` is not a list.

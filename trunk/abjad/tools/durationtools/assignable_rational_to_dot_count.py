@@ -7,11 +7,11 @@ def assignable_rational_to_dot_count(rational):
 
     Change assignable `rational` to dot count::
 
-        abjad> from abjad.tools import durationtools
+        >>> from abjad.tools import durationtools
 
     ::
 
-        abjad> for n in range(1, 9):
+        >>> for n in range(1, 9):
         ...     try:
         ...                 rational = Fraction(n, 16)
         ...                 dot_count = durationtools.assignable_rational_to_dot_count(rational)

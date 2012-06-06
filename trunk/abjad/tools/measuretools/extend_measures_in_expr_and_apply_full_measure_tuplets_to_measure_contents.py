@@ -7,11 +7,11 @@ def extend_measures_in_expr_and_apply_full_measure_tuplets_to_measure_contents(e
     Extend measures in `expr` with `supplement` and apply full-measure tuplets to contents
     of measures::
 
-        abjad> staff = Staff([Measure((2, 8), "c'8 d'8"), Measure((3, 8), "e'8 f'8 g'8")])
+        >>> staff = Staff([Measure((2, 8), "c'8 d'8"), Measure((3, 8), "e'8 f'8 g'8")])
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             {
                 \time 2/8
@@ -28,12 +28,12 @@ def extend_measures_in_expr_and_apply_full_measure_tuplets_to_measure_contents(e
 
     ::
 
-        abjad> supplement = [Rest((1, 16))]
-        abjad> measuretools.extend_measures_in_expr_and_apply_full_measure_tuplets_to_measure_contents(staff, supplement)
+        >>> supplement = [Rest((1, 16))]
+        >>> measuretools.extend_measures_in_expr_and_apply_full_measure_tuplets_to_measure_contents(staff, supplement)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             {
                 \time 2/8

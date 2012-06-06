@@ -7,13 +7,13 @@ def get_time_signature_marks_attached_to_component(component):
 
     Get time signature marks attached to `component`::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> contexttools.TimeSignatureMark((2, 4))(staff)
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> contexttools.TimeSignatureMark((2, 4))(staff)
         TimeSignatureMark((2, 4))(Staff{4})
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \time 2/4
             c'8
@@ -24,7 +24,7 @@ def get_time_signature_marks_attached_to_component(component):
 
     ::
 
-        abjad> contexttools.get_time_signature_marks_attached_to_component(staff)
+        >>> contexttools.get_time_signature_marks_attached_to_component(staff)
         (TimeSignatureMark((2, 4))(Staff{4}),)
 
     Return tuple of zero or more time_signature marks.

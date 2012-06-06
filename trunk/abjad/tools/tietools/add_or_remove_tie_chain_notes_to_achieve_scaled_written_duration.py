@@ -4,24 +4,24 @@ from abjad.tools.tietools.add_or_remove_tie_chain_notes_to_achieve_written_durat
 def add_or_remove_tie_chain_notes_to_achieve_scaled_written_duration(tie_chain, multiplier):
     r'''Add or remove `tie_chain` notes to achieve scaled written duration::
 
-        abjad> staff = Staff("c'8 [ ]")
+        >>> staff = Staff("c'8 [ ]")
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8 [ ]
         }
 
     ::
     
-        abjad> tie_chain = tietools.get_tie_chain(staff[0])
-        abjad> tietools.add_or_remove_tie_chain_notes_to_achieve_scaled_written_duration(tie_chain, Fraction(5, 4))
+        >>> tie_chain = tietools.get_tie_chain(staff[0])
+        >>> tietools.add_or_remove_tie_chain_notes_to_achieve_scaled_written_duration(tie_chain, Fraction(5, 4))
         TieChain((Note("c'8"), Note("c'32")))
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8 [ ~
             c'32 ]

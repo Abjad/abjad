@@ -3,13 +3,13 @@ def insert_component_and_do_not_fracture_crossing_spanners(container, i, compone
 
     Insert `component` into `container` at index `i` and do not fracture crossing spanners::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> beamtools.BeamSpanner(staff.leaves)
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> beamtools.BeamSpanner(staff.leaves)
         BeamSpanner(c'8, d'8, e'8, f'8)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8 [
             d'8
@@ -19,12 +19,12 @@ def insert_component_and_do_not_fracture_crossing_spanners(container, i, compone
 
     ::
 
-        abjad> containertools.insert_component_and_do_not_fracture_crossing_spanners(staff, 1, Note("cs'8"))
+        >>> containertools.insert_component_and_do_not_fracture_crossing_spanners(staff, 1, Note("cs'8"))
         Staff{5}
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8 [
             cs'8

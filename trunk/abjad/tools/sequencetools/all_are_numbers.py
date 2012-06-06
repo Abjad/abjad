@@ -6,21 +6,21 @@ def all_are_numbers(expr):
 
     True when `expr` is a sequence and all elements in `expr` are numbers::
 
-        abjad> from abjad.tools import sequencetools
+        >>> from abjad.tools import sequencetools
 
     ::
 
-        abjad> sequencetools.all_are_numbers([1, 2, 3.0, Fraction(13, 8)])
+        >>> sequencetools.all_are_numbers([1, 2, 3.0, Fraction(13, 8)])
         True
 
     True when `expr` is an empty sequence::
 
-        abjad> sequencetools.all_are_numbers([])
+        >>> sequencetools.all_are_numbers([])
         True
 
     False otherwise::
 
-        abjad> sequencetools.all_are_numbers(17)
+        >>> sequencetools.all_are_numbers(17)
         False
 
     Return boolean.

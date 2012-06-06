@@ -7,7 +7,7 @@ def make_repeated_rests_from_time_signature(time_signature):
 
     Make repeated rests from `time_signature`::
 
-        abjad> resttools.make_repeated_rests_from_time_signature((5, 32))
+        >>> resttools.make_repeated_rests_from_time_signature((5, 32))
         [Rest('r32'), Rest('r32'), Rest('r32'), Rest('r32'), Rest('r32')]
 
     Return list of newly constructed rests.

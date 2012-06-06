@@ -11,17 +11,17 @@ def mask_intervals_with_intervals(masked_intervals, mask_intervals):
     '''Clip or remove all intervals in `masked_intervals` outside of the bounds
     defined in `mask_intervals`, while maintaining `masked_intervals`' payload contents ::
 
-        abjad> from abjad.tools import timeintervaltools
-        abjad> from abjad.tools.timeintervaltools import TimeInterval
-        abjad> from abjad.tools.timeintervaltools import TimeIntervalTree
+        >>> from abjad.tools import timeintervaltools
+        >>> from abjad.tools.timeintervaltools import TimeInterval
+        >>> from abjad.tools.timeintervaltools import TimeIntervalTree
 
     ::
 
-        abjad> a = TimeInterval(0, 10, {'a': 1})
-        abjad> b = TimeInterval(5, 15, {'b': 2})
-        abjad> tree = TimeIntervalTree([a, b])
-        abjad> mask = TimeInterval(4, 11)
-        abjad> timeintervaltools.mask_intervals_with_intervals(tree, mask)
+        >>> a = TimeInterval(0, 10, {'a': 1})
+        >>> b = TimeInterval(5, 15, {'b': 2})
+        >>> tree = TimeIntervalTree([a, b])
+        >>> mask = TimeInterval(4, 11)
+        >>> timeintervaltools.mask_intervals_with_intervals(tree, mask)
         TimeIntervalTree([
             TimeInterval(Offset(4, 1), Offset(10, 1), {'a': 1}),
             TimeInterval(Offset(5, 1), Offset(11, 1), {'b': 2})

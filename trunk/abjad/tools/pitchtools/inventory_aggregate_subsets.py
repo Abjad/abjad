@@ -7,10 +7,10 @@ def inventory_aggregate_subsets():
 
     Inventory aggregate subsets::
 
-        abjad> U_star = pitchtools.inventory_aggregate_subsets()
-        abjad> len(U_star)
+        >>> U_star = pitchtools.inventory_aggregate_subsets()
+        >>> len(U_star)
         4096
-        abjad> for pcset in U_star[:20]:
+        >>> for pcset in U_star[:20]:
         ...   pcset
         NumberedChromaticPitchClassSet([])
         NumberedChromaticPitchClassSet([0])

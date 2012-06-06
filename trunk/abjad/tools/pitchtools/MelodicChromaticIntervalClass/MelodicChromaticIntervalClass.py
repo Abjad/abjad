@@ -9,7 +9,7 @@ class MelodicChromaticIntervalClass(ChromaticIntervalClassObject, MelodicInterva
 
     Abjad model of melodic chromatic interval-class::
 
-        abjad> pitchtools.MelodicChromaticIntervalClass(-14)
+        >>> pitchtools.MelodicChromaticIntervalClass(-14)
         MelodicChromaticIntervalClass(-2)
 
     Melodic chromatic interval-classes are immutable.

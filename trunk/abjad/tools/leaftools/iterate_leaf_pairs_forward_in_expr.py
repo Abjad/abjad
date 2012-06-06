@@ -6,17 +6,17 @@ def iterate_leaf_pairs_forward_in_expr(expr):
 
     Iterate leaf pairs forward in `expr`::
 
-        abjad> score = Score([])
-        abjad> notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8"), Note("g'4")]
-        abjad> score.append(Staff(notes))
-        abjad> notes = [Note(x, (1, 4)) for x in [-12, -15, -17]]
-        abjad> score.append(Staff(notes))
-        abjad> contexttools.ClefMark('bass')(score[1])
+        >>> score = Score([])
+        >>> notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8"), Note("g'4")]
+        >>> score.append(Staff(notes))
+        >>> notes = [Note(x, (1, 4)) for x in [-12, -15, -17]]
+        >>> score.append(Staff(notes))
+        >>> contexttools.ClefMark('bass')(score[1])
         ClefMark('bass')(Staff{3})
 
     ::
 
-        abjad> f(score)
+        >>> f(score)
         \new Score <<
             \new Staff {
                 c'8
@@ -35,7 +35,7 @@ def iterate_leaf_pairs_forward_in_expr(expr):
 
     ::
 
-        abjad> for pair in leaftools.iterate_leaf_pairs_forward_in_expr(score):
+        >>> for pair in leaftools.iterate_leaf_pairs_forward_in_expr(score):
         ...        pair
         (Note("c'8"), Note('c4'))
         (Note("c'8"), Note("d'8"))

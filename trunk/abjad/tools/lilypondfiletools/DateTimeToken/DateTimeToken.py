@@ -7,7 +7,7 @@ class DateTimeToken(AbjadObject):
 
     Date time token::
 
-        abjad> lilypondfiletools.DateTimeToken()
+        >>> lilypondfiletools.DateTimeToken()
         DateTimeToken(...)
 
     Return date / time token.
@@ -29,7 +29,7 @@ class DateTimeToken(AbjadObject):
     def format(self):
         '''Format contribution of date time token::
 
-            abjad> lilypondfiletools.DateTimeToken().format
+            >>> lilypondfiletools.DateTimeToken().format
             '...'
 
         Return string.

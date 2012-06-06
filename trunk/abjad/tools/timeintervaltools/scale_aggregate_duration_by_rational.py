@@ -7,17 +7,17 @@ def scale_aggregate_duration_by_rational(intervals, rational):
     '''Scale the aggregate duration of all intervals in `intervals` by
     `rational`, maintaining the original start offset ::
 
-        abjad> from abjad.tools import timeintervaltools
-        abjad> from abjad.tools.timeintervaltools import TimeInterval
-        abjad> from abjad.tools.timeintervaltools import TimeIntervalTree
+        >>> from abjad.tools import timeintervaltools
+        >>> from abjad.tools.timeintervaltools import TimeInterval
+        >>> from abjad.tools.timeintervaltools import TimeIntervalTree
 
     ::
 
-        abjad> a = TimeInterval(-1, 3)
-        abjad> b = TimeInterval(6, 12)
-        abjad> c = TimeInterval(9, 16)
-        abjad> tree = TimeIntervalTree([a, b, c])
-        abjad> timeintervaltools.scale_aggregate_duration_by_rational(tree, Fraction(1, 3))
+        >>> a = TimeInterval(-1, 3)
+        >>> b = TimeInterval(6, 12)
+        >>> c = TimeInterval(9, 16)
+        >>> tree = TimeIntervalTree([a, b, c])
+        >>> timeintervaltools.scale_aggregate_duration_by_rational(tree, Fraction(1, 3))
         TimeIntervalTree([
             TimeInterval(Offset(-1, 1), Offset(1, 3), {}),
             TimeInterval(Offset(4, 3), Offset(10, 3), {}),

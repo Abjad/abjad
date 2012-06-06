@@ -17,13 +17,13 @@ def pad_measures_in_expr_with_rests(expr, front, back, splice = False):
 
     ::
 
-        abjad> t = Staff(measuretools.AnonymousMeasure("c'8 d'8") * 2)
-        abjad> front, back = Duration(1, 32), Duration(1, 64)
-        abjad> measuretools.pad_measures_in_expr_with_rests(t, front, back)
+        >>> t = Staff(measuretools.AnonymousMeasure("c'8 d'8") * 2)
+        >>> front, back = Duration(1, 32), Duration(1, 64)
+        >>> measuretools.pad_measures_in_expr_with_rests(t, front, back)
 
     ::
 
-        abjad> f(t)
+        >>> f(t)
         \new Staff {
             {
                 \override Staff.TimeSignature #'stencil = ##f
@@ -46,15 +46,15 @@ def pad_measures_in_expr_with_rests(expr, front, back, splice = False):
 
     Works when measures contain stacked voices::
 
-        abjad> measure = measuretools.DynamicMeasure(Voice(notetools.make_repeated_notes(2)) * 2)
-        abjad> measure.is_parallel = True
-        abjad> t = Staff(measure * 2)
-        abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-        abjad> measuretools.pad_measures_in_expr_with_rests(t, Duration(1, 32), Duration(1, 64))
+        >>> measure = measuretools.DynamicMeasure(Voice(notetools.make_repeated_notes(2)) * 2)
+        >>> measure.is_parallel = True
+        >>> t = Staff(measure * 2)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+        >>> measuretools.pad_measures_in_expr_with_rests(t, Duration(1, 32), Duration(1, 64))
 
     ::
 
-        abjad> f(t)
+        >>> f(t)
         \new Staff {
             <<
                 \time 19/64
@@ -90,14 +90,14 @@ def pad_measures_in_expr_with_rests(expr, front, back, splice = False):
     Set the optional `splice` keyword to ``True`` to extend edge
     spanners over newly inserted rests::
 
-        abjad> t = measuretools.DynamicMeasure("c'8 d'8")
-        abjad> beamtools.BeamSpanner(t[:])
+        >>> t = measuretools.DynamicMeasure("c'8 d'8")
+        >>> beamtools.BeamSpanner(t[:])
         BeamSpanner(c'8, d'8)
-        abjad> measuretools.pad_measures_in_expr_with_rests(t, Duration(1, 32), Duration(1, 64), splice = True)
+        >>> measuretools.pad_measures_in_expr_with_rests(t, Duration(1, 32), Duration(1, 64), splice = True)
 
     ::
 
-        abjad> f(t)
+        >>> f(t)
         {
             \time 19/64
             r32 [

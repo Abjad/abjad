@@ -6,16 +6,16 @@ class NamedDiatonicPitch(DiatonicPitchObject):
 
     Abjad model of a named diatonic pitch::
 
-        abjad> named_diatonic_pitch = pitchtools.NamedDiatonicPitch("c''")
+        >>> named_diatonic_pitch = pitchtools.NamedDiatonicPitch("c''")
 
     ::
 
-        abjad> named_diatonic_pitch
+        >>> named_diatonic_pitch
         NamedDiatonicPitch("c''")
 
     ::
 
-        abjad> print named_diatonic_pitch
+        >>> print named_diatonic_pitch
         c''
 
     Named diatonic pitches are immutable.
@@ -65,7 +65,7 @@ class NamedDiatonicPitch(DiatonicPitchObject):
     def chromatic_pitch_class_name(self):
         '''Read-only chromatic pitch-class name::
 
-            abjad> pitchtools.NamedDiatonicPitch("c''").chromatic_pitch_class_name
+            >>> pitchtools.NamedDiatonicPitch("c''").chromatic_pitch_class_name
             'c'
 
         Return string.
@@ -77,7 +77,7 @@ class NamedDiatonicPitch(DiatonicPitchObject):
     def chromatic_pitch_class_number(self):
         '''Read-only chromatic pitch-class number::
 
-            abjad> pitchtools.NamedDiatonicPitch("c''").chromatic_pitch_class_number
+            >>> pitchtools.NamedDiatonicPitch("c''").chromatic_pitch_class_number
             0
 
         Return integer.
@@ -90,7 +90,7 @@ class NamedDiatonicPitch(DiatonicPitchObject):
     def chromatic_pitch_name(self):
         '''Read-only chromatic pitch name::
 
-            abjad> pitchtools.NamedDiatonicPitch("c''").chromatic_pitch_name
+            >>> pitchtools.NamedDiatonicPitch("c''").chromatic_pitch_name
             "c''"
 
         Return string.
@@ -102,7 +102,7 @@ class NamedDiatonicPitch(DiatonicPitchObject):
     def chromatic_pitch_number(self):
         '''Read-only chromatic pitch number::
 
-            abjad> pitchtools.NamedDiatonicPitch("c''").chromatic_pitch_number
+            >>> pitchtools.NamedDiatonicPitch("c''").chromatic_pitch_number
             12
 
         Return integer.
@@ -114,7 +114,7 @@ class NamedDiatonicPitch(DiatonicPitchObject):
     def diatonic_pitch_class_name(self):
         '''Read-only diatonic pitch-class name::
 
-            abjad> pitchtools.NamedDiatonicPitch("c''").diatonic_pitch_class_name
+            >>> pitchtools.NamedDiatonicPitch("c''").diatonic_pitch_class_name
             'c'
 
         Return string.
@@ -126,7 +126,7 @@ class NamedDiatonicPitch(DiatonicPitchObject):
     def diatonic_pitch_class_number(self):
         '''Read-only diatonic pitch-class number::
 
-            abjad> pitchtools.NamedDiatonicPitch("c''").diatonic_pitch_class_number
+            >>> pitchtools.NamedDiatonicPitch("c''").diatonic_pitch_class_number
             0
 
         Return integer.
@@ -138,7 +138,7 @@ class NamedDiatonicPitch(DiatonicPitchObject):
     def diatonic_pitch_name(self):
         '''Read-only diatonic pitch name::
 
-            abjad> pitchtools.NamedDiatonicPitch("c''").diatonic_pitch_name
+            >>> pitchtools.NamedDiatonicPitch("c''").diatonic_pitch_name
             "c''"
 
         Return string.
@@ -149,7 +149,7 @@ class NamedDiatonicPitch(DiatonicPitchObject):
     def diatonic_pitch_number(self):
         '''Read-only diatonic pitch number::
 
-            abjad> pitchtools.NamedDiatonicPitch("c''").diatonic_pitch_number
+            >>> pitchtools.NamedDiatonicPitch("c''").diatonic_pitch_number
             7
 
         Return integer.
@@ -161,7 +161,7 @@ class NamedDiatonicPitch(DiatonicPitchObject):
     def format(self):
         '''Read-only LilyPond input format of named diatonic pitch::
 
-            abjad> pitchtools.NamedDiatonicPitch("c''").format
+            >>> pitchtools.NamedDiatonicPitch("c''").format
             "c''"
 
         Return string.
@@ -172,7 +172,7 @@ class NamedDiatonicPitch(DiatonicPitchObject):
     def named_chromatic_pitch(self):
         '''Read-only named chromatic pitch::
 
-            abjad> pitchtools.NamedDiatonicPitch("c''").named_chromatic_pitch
+            >>> pitchtools.NamedDiatonicPitch("c''").named_chromatic_pitch
             NamedChromaticPitch("c''")
 
         Return named chromatic pitch.
@@ -184,7 +184,7 @@ class NamedDiatonicPitch(DiatonicPitchObject):
     def named_chromatic_pitch_class(self):
         '''Read-only named chromatic pitch-class::
 
-            abjad> pitchtools.NamedDiatonicPitch("c''").named_chromatic_pitch_class
+            >>> pitchtools.NamedDiatonicPitch("c''").named_chromatic_pitch_class
             NamedChromaticPitchClass('c')
 
         Return named chromatic pitch-class.
@@ -196,7 +196,7 @@ class NamedDiatonicPitch(DiatonicPitchObject):
     def named_diatonic_pitch_class(self):
         '''Read-only named diatonic pitch-class::
 
-            abjad> pitchtools.NamedDiatonicPitch("c''").named_diatonic_pitch_class
+            >>> pitchtools.NamedDiatonicPitch("c''").named_diatonic_pitch_class
             NamedDiatonicPitchClass('c')
 
         Return named diatonic pitch-class.
@@ -209,7 +209,7 @@ class NamedDiatonicPitch(DiatonicPitchObject):
     def numbered_chromatic_pitch(self):
         '''Read-only numbered chromatic pitch::
 
-            abjad> pitchtools.NamedDiatonicPitch("c''").numbered_chromatic_pitch
+            >>> pitchtools.NamedDiatonicPitch("c''").numbered_chromatic_pitch
             NumberedChromaticPitch(12)
 
         Return numbered chromatic pitch.
@@ -221,7 +221,7 @@ class NamedDiatonicPitch(DiatonicPitchObject):
     def numbered_chromatic_pitch_class(self):
         '''Read-only numbered chromatic pitch-class::
 
-            abjad> pitchtools.NamedDiatonicPitch("c''").numbered_chromatic_pitch_class
+            >>> pitchtools.NamedDiatonicPitch("c''").numbered_chromatic_pitch_class
             NumberedChromaticPitchClass(0)
 
         Return numbered chromatic pitch-class.
@@ -233,7 +233,7 @@ class NamedDiatonicPitch(DiatonicPitchObject):
     def numbered_diatonic_pitch(self):
         '''Read-only numbered diatonic pitch::
 
-            abjad> pitchtools.NamedDiatonicPitch("c''").numbered_diatonic_pitch
+            >>> pitchtools.NamedDiatonicPitch("c''").numbered_diatonic_pitch
             NumberedDiatonicPitch(7)
 
         Return numbered diatonic pitch.
@@ -246,7 +246,7 @@ class NamedDiatonicPitch(DiatonicPitchObject):
     def numbered_diatonic_pitch_class(self):
         '''Read-only numbered diatonic pitch-class::
 
-            abjad> pitchtools.NamedDiatonicPitch("c''").numbered_diatonic_pitch_class
+            >>> pitchtools.NamedDiatonicPitch("c''").numbered_diatonic_pitch_class
             NumberedDiatonicPitchClass(0)
 
         Return numbered diatonic pitch-class.

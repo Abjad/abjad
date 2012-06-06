@@ -9,16 +9,16 @@ class Trumpet(_BrassInstrument):
 
     Abjad model of the trumpet::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
 
     ::
 
-        abjad> instrumenttools.Trumpet()(staff)
+        >>> instrumenttools.Trumpet()(staff)
         Trumpet()(Staff{4})
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \set Staff.instrumentName = \markup { Trumpet }
             \set Staff.shortInstrumentName = \markup { Tp. }

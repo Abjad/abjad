@@ -7,10 +7,10 @@ def repeat_leaf_and_extend_spanners(leaf, total = 1):
 
     Repeat `leaf` and extend spanners::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> beamtools.BeamSpanner(staff.leaves)
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> beamtools.BeamSpanner(staff.leaves)
         BeamSpanner(c'8, d'8, e'8, f'8)
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8 [
             d'8
@@ -20,11 +20,11 @@ def repeat_leaf_and_extend_spanners(leaf, total = 1):
 
     ::
 
-        abjad> leaftools.repeat_leaf_and_extend_spanners(staff[0], total = 3)
+        >>> leaftools.repeat_leaf_and_extend_spanners(staff[0], total = 3)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8 [
             c'8

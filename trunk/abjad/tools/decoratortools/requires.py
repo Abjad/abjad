@@ -9,33 +9,33 @@ def requires(*tests):
 
     Example::
 
-        abjad> from abjad.tools import mathtools
-        abjad> from abjad.tools.decoratortools import requires
+        >>> from abjad.tools import mathtools
+        >>> from abjad.tools.decoratortools import requires
 
     ::
 
-        abjad> @requires(mathtools.is_nonnegative_integer, string) # doctest: +SKIP
-        abjad> def multiply_string(n, string): return n * string
+        >>> @requires(mathtools.is_nonnegative_integer, string) # doctest: +SKIP
+        >>> def multiply_string(n, string): return n * string
 
     ::
 
-        abjad> multiply_string(2, 'bar') # doctest: +SKIP
+        >>> multiply_string(2, 'bar') # doctest: +SKIP
         'barbar'
 
     ::
 
-        abjad> multiply_string(2.5, 'bar') # doctest: +SKIP
+        >>> multiply_string(2.5, 'bar') # doctest: +SKIP
         ...
         AssertionError: is_nonnegative_integer(2.5) does not return true.
 
     Decorator target is available like this::
 
-        abjad> multiply_string.func_closure[1].cell_contents # doctest: +SKIP
+        >>> multiply_string.func_closure[1].cell_contents # doctest: +SKIP
         <function multiply_string at 0x104e512a8>
 
     Decorator tests are available like this::
 
-        abjad> multiply_string.func_closure[0].cell_contents # doctest: +SKIP
+        >>> multiply_string.func_closure[0].cell_contents # doctest: +SKIP
         (<function is_nonnegative_integer at 0x104725d70>, <type 'str'>)
     
     Return decorated function in the form of function wrapper.

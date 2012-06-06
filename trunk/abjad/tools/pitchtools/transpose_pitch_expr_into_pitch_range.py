@@ -6,7 +6,7 @@ def transpose_pitch_expr_into_pitch_range(pitch_expr, pitch_range):
 
     Transpose `pitch_expr` into `pitch_range`::
 
-        abjad> pitchtools.transpose_pitch_expr_into_pitch_range([-2, -1, 13, 14], pitchtools.PitchRange(0, 12))
+        >>> pitchtools.transpose_pitch_expr_into_pitch_range([-2, -1, 13, 14], pitchtools.PitchRange(0, 12))
         [10, 11, 1, 2]
 
     Return new `pitch_expr` object.

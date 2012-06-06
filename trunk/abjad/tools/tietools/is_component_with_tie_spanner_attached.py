@@ -6,11 +6,11 @@ def is_component_with_tie_spanner_attached(expr):
 
     True when `expr` is component with tie spanner attached::
 
-        abjad> staff = Staff("c'8 ~ c' ~ c' ~ c'")
+        >>> staff = Staff("c'8 ~ c' ~ c' ~ c'")
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8 ~
             c'8 ~
@@ -20,12 +20,12 @@ def is_component_with_tie_spanner_attached(expr):
 
     ::
 
-        abjad> tietools.is_component_with_tie_spanner_attached(staff[1])
+        >>> tietools.is_component_with_tie_spanner_attached(staff[1])
         True
 
     Otherwise false::
 
-        abjad> tietools.is_component_with_tie_spanner_attached(staff)
+        >>> tietools.is_component_with_tie_spanner_attached(staff)
         False
 
     Return boolean.

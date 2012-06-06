@@ -3,11 +3,11 @@ def get_nth_sibling_from_component(component, n):
 
     Get nth sibling from `component`::
 
-        abjad> staff = Staff("c' d' e' f'")
+        >>> staff = Staff("c' d' e' f'")
     
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'4
             d'4
@@ -17,32 +17,32 @@ def get_nth_sibling_from_component(component, n):
 
     ::
 
-        abjad> staff[1]
+        >>> staff[1]
         Note("d'4")
 
     Return sibling to the right of `component` for positive `n`::
 
-        abjad> componenttools.get_nth_sibling_from_component(staff[1], 1)
+        >>> componenttools.get_nth_sibling_from_component(staff[1], 1)
         Note("e'4")
 
     Return sibling to the left of `component` for negative `n`::
 
-        abjad> componenttools.get_nth_sibling_from_component(staff[1], -1)
+        >>> componenttools.get_nth_sibling_from_component(staff[1], -1)
         Note("c'4")
 
     Return `component` when `n` is ``0``::
 
-        abjad> componenttools.get_nth_sibling_from_component(staff[1], 0)
+        >>> componenttools.get_nth_sibling_from_component(staff[1], 0)
         Note("d'4")
 
     Return none when `n` is out of range::
 
-        abjad> componenttools.get_nth_sibling_from_component(staff[1], 99) is None
+        >>> componenttools.get_nth_sibling_from_component(staff[1], 99) is None
         True
 
     Return none when `component` has no parent::
 
-        abjad> componenttools.get_nth_sibling_from_component(staff, 1) is None
+        >>> componenttools.get_nth_sibling_from_component(staff, 1) is None
         True
 
     Return component or none.

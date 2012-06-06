@@ -8,7 +8,7 @@ class Chord(Leaf):
 
     ::
 
-        abjad> Chord([4, 13, 17], (1, 4))
+        >>> Chord([4, 13, 17], (1, 4))
         Chord("<e' cs'' f''>4")
 
     Return chord instance.
@@ -104,13 +104,13 @@ class Chord(Leaf):
     def fingered_pitches(self):
         r"""Read-only fingered pitches::
 
-            abjad> staff = Staff("<c''' e'''>4 <d''' fs'''>4")
-            abjad> glockenspiel = instrumenttools.Glockenspiel()(staff)
-            abjad> instrumenttools.transpose_notes_and_chords_in_expr_from_sounding_pitch_to_fingered_pitch(staff)
+            >>> staff = Staff("<c''' e'''>4 <d''' fs'''>4")
+            >>> glockenspiel = instrumenttools.Glockenspiel()(staff)
+            >>> instrumenttools.transpose_notes_and_chords_in_expr_from_sounding_pitch_to_fingered_pitch(staff)
 
         ::
 
-            abjad> f(staff)
+            >>> f(staff)
             \new Staff {
                 \set Staff.instrumentName = \markup { Glockenspiel }
                 \set Staff.shortInstrumentName = \markup { Gkspl. }
@@ -120,7 +120,7 @@ class Chord(Leaf):
 
         ::
 
-            abjad> staff[0].fingered_pitches
+            >>> staff[0].fingered_pitches
             (NamedChromaticPitch("c'"), NamedChromaticPitch("e'"))
 
         Return tuple of named chromatic pitches.
@@ -144,15 +144,15 @@ class Chord(Leaf):
         def fget(self):
             '''Get read-only tuple of note heads in chord::
 
-                abjad> chord = Chord([7, 12, 16], (1, 4))
-                abjad> chord.note_heads
+                >>> chord = Chord([7, 12, 16], (1, 4))
+                >>> chord.note_heads
                 (NoteHead("g'"), NoteHead("c''"), NoteHead("e''"))
 
             Set chord note heads from any iterable::
 
-                abjad> chord = Chord([7, 12, 16], (1, 4))
-                abjad> chord.note_heads = [0, 2, 6]
-                abjad> chord
+                >>> chord = Chord([7, 12, 16], (1, 4))
+                >>> chord.note_heads = [0, 2, 6]
+                >>> chord
                 Chord("<c' d' fs'>4")
 
             '''
@@ -168,13 +168,13 @@ class Chord(Leaf):
     def sounding_pitches(self):
         r"""Read-only sounding pitches::
 
-            abjad> staff = Staff("<c''' e'''>4 <d''' fs'''>4")
-            abjad> glockenspiel = instrumenttools.Glockenspiel()(staff)
-            abjad> instrumenttools.transpose_notes_and_chords_in_expr_from_sounding_pitch_to_fingered_pitch(staff)
+            >>> staff = Staff("<c''' e'''>4 <d''' fs'''>4")
+            >>> glockenspiel = instrumenttools.Glockenspiel()(staff)
+            >>> instrumenttools.transpose_notes_and_chords_in_expr_from_sounding_pitch_to_fingered_pitch(staff)
 
         ::
 
-            abjad> f(staff)
+            >>> f(staff)
             \new Staff {
                 \set Staff.instrumentName = \markup { Glockenspiel }
                 \set Staff.shortInstrumentName = \markup { Gkspl. }
@@ -184,7 +184,7 @@ class Chord(Leaf):
 
         ::
 
-            abjad> staff[0].sounding_pitches
+            >>> staff[0].sounding_pitches
             (NamedChromaticPitch("c'''"), NamedChromaticPitch("e'''"))
 
         Return tuple of named chromatic pitches.
@@ -207,15 +207,15 @@ class Chord(Leaf):
         def fget(self):
             '''Get read-only tuple of pitches in chord::
 
-                abjad> chord = Chord([7, 12, 16], (1, 4))
-                abjad> chord.written_pitches
+                >>> chord = Chord([7, 12, 16], (1, 4))
+                >>> chord.written_pitches
                 (NamedChromaticPitch("g'"), NamedChromaticPitch("c''"), NamedChromaticPitch("e''"))
 
             Set chord pitches from any iterable::
 
-                abjad> chord = Chord([7, 12, 16], (1, 4))
-                abjad> chord.written_pitches = [0, 2, 6]
-                abjad> chord
+                >>> chord = Chord([7, 12, 16], (1, 4))
+                >>> chord.written_pitches = [0, 2, 6]
+                >>> chord
                 Chord("<c' d' fs'>4")
 
             '''
@@ -229,14 +229,14 @@ class Chord(Leaf):
     def append(self, note_head_token):
         '''Append `note_head_token` to chord::
 
-            abjad> chord = Chord([4, 13, 17], (1, 4))
-            abjad> chord
+            >>> chord = Chord([4, 13, 17], (1, 4))
+            >>> chord
             Chord("<e' cs'' f''>4")
 
         ::
 
-            abjad> chord.append(19)
-            abjad> chord
+            >>> chord.append(19)
+            >>> chord
             Chord("<e' cs'' f'' g''>4")
 
         Sort chord note heads automatically after append and return none.
@@ -253,14 +253,14 @@ class Chord(Leaf):
     def clear(self):
         '''Clear chord::
 
-            abjad> chord = Chord("<e' cs'' f''>4")
-            abjad> chord
+            >>> chord = Chord("<e' cs'' f''>4")
+            >>> chord
             Chord("<e' cs'' f''>4")
 
         ::
 
-            abjad> chord.clear()
-            abjad> chord
+            >>> chord.clear()
+            >>> chord
             Chord('<>4')
 
         Return none.
@@ -274,14 +274,14 @@ class Chord(Leaf):
     def extend(self, note_head_tokens):
         '''Extend chord with `note_head_tokens`::
 
-            abjad> chord = Chord([4, 13, 17], (1, 4))
-            abjad> chord
+            >>> chord = Chord([4, 13, 17], (1, 4))
+            >>> chord
             Chord("<e' cs'' f''>4")
 
         ::
 
-            abjad> chord.extend([2, 12, 18])
-            abjad> chord
+            >>> chord.extend([2, 12, 18])
+            >>> chord
             Chord("<d' e' c'' cs'' f'' fs''>4")
 
         Sort chord note heads automatically after extend and return none.
@@ -292,18 +292,18 @@ class Chord(Leaf):
     def pop(self, i=-1):
         '''Remove note head at index `i` in chord::
 
-            abjad> chord = Chord([4, 13, 17], (1, 4))
-            abjad> chord
+            >>> chord = Chord([4, 13, 17], (1, 4))
+            >>> chord
             Chord("<e' cs'' f''>4")
 
         ::
 
-            abjad> chord.pop(1)
+            >>> chord.pop(1)
             NoteHead("cs''")
 
         ::
 
-            abjad> chord
+            >>> chord
             Chord("<e' f''>4")
 
         Return note head.
@@ -315,14 +315,14 @@ class Chord(Leaf):
     def remove(self, note_head):
         '''Remove `note_head` from chord::
 
-            abjad> chord = Chord([4, 13, 17], (1, 4))
-            abjad> chord
+            >>> chord = Chord([4, 13, 17], (1, 4))
+            >>> chord
             Chord("<e' cs'' f''>4")
 
         ::
 
-            abjad> chord.remove(chord[1])
-            abjad> chord
+            >>> chord.remove(chord[1])
+            >>> chord
             Chord("<e' f''>4")
 
         Return none.

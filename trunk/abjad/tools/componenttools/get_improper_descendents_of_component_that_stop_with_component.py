@@ -3,11 +3,11 @@ def get_improper_descendents_of_component_that_stop_with_component(component):
 
     Get improper descendents of `component` that stop with `component`::
 
-        abjad> staff = Staff(r"c' << \new Voice { d' } \new Voice { e' } >> f'")
+        >>> staff = Staff(r"c' << \new Voice { d' } \new Voice { e' } >> f'")
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'4
             <<
@@ -23,7 +23,7 @@ def get_improper_descendents_of_component_that_stop_with_component(component):
 
     ::
 
-        abjad> componenttools.get_improper_descendents_of_component_that_stop_with_component(staff)
+        >>> componenttools.get_improper_descendents_of_component_that_stop_with_component(staff)
         [Staff{3}, Note("f'4")]
 
     Return list of `component` together with proper contents that stop with `component`.

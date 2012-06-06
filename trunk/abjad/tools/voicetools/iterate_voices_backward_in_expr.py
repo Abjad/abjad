@@ -7,14 +7,14 @@ def iterate_voices_backward_in_expr(expr):
 
     Iterate voices backward in `expr`::
 
-        abjad> voice_1 = Voice("c'8 d'8 e'8 f'8")
-        abjad> voice_2 = Voice("c'4 b4")
-        abjad> staff = Staff([voice_1, voice_2])
-        abjad> staff.is_parallel = True
+        >>> voice_1 = Voice("c'8 d'8 e'8 f'8")
+        >>> voice_2 = Voice("c'4 b4")
+        >>> staff = Staff([voice_1, voice_2])
+        >>> staff.is_parallel = True
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff <<
             \new Voice {
                 c'8
@@ -30,7 +30,7 @@ def iterate_voices_backward_in_expr(expr):
 
     ::
 
-        abjad> for voice in voicetools.iterate_voices_backward_in_expr(staff):
+        >>> for voice in voicetools.iterate_voices_backward_in_expr(staff):
         ...   voice
         Voice{2}
         Voice{4}

@@ -8,23 +8,23 @@ class ContextBlock(AttributedBlock):
 
     Abjad model of LilyPond input file context block::
 
-        abjad> context_block = lilypondfiletools.ContextBlock()
+        >>> context_block = lilypondfiletools.ContextBlock()
 
     ::
 
-        abjad> context_block
+        >>> context_block
         ContextBlock()
 
     ::
 
-        abjad> context_block.context_name = 'Score'
-        abjad> context_block.override.bar_number.transparent = True
-        abjad> context_block.override.time_signature.break_visibility = schemetools.Scheme('end-of-line-invisible')
-        abjad> context_block.set.proportionalNotationDuration = schemetools.SchemeMoment((1, 45))
+        >>> context_block.context_name = 'Score'
+        >>> context_block.override.bar_number.transparent = True
+        >>> context_block.override.time_signature.break_visibility = schemetools.Scheme('end-of-line-invisible')
+        >>> context_block.set.proportionalNotationDuration = schemetools.SchemeMoment((1, 45))
 
     ::
 
-        abjad> f(context_block)
+        >>> f(context_block)
         \context {
             \Score
             \override BarNumber #'transparent = ##t

@@ -6,21 +6,21 @@ class LayoutBlock(AttributedBlock):
 
     Abjad model of LilyPond input file layout block::
 
-        abjad> layout_block = lilypondfiletools.LayoutBlock()
+        >>> layout_block = lilypondfiletools.LayoutBlock()
 
     ::
 
-        abjad> layout_block
+        >>> layout_block
         LayoutBlock()
 
     ::
 
-        abjad> layout_block.indent = 0
-        abjad> layout_block.ragged_right = True
+        >>> layout_block.indent = 0
+        >>> layout_block.ragged_right = True
 
     ::
 
-        abjad> f(layout_block)
+        >>> f(layout_block)
         \layout {
             indent = #0
             ragged-right = ##t
@@ -60,21 +60,21 @@ class LayoutBlock(AttributedBlock):
     def context_blocks(self):
         r'''Read-only list of context blocks::
 
-            abjad> layout_block = lilypondfiletools.LayoutBlock()
+            >>> layout_block = lilypondfiletools.LayoutBlock()
 
         ::
 
-            abjad> context_block = lilypondfiletools.ContextBlock('Score')
-            abjad> context_block.override.bar_number.transparent = True
+            >>> context_block = lilypondfiletools.ContextBlock('Score')
+            >>> context_block.override.bar_number.transparent = True
 
         ::
 
-            abjad> context_block.override.time_signature.break_visibility = schemetools.Scheme('end-of-line-invisible')
-            abjad> layout_block.context_blocks.append(context_block)
+            >>> context_block.override.time_signature.break_visibility = schemetools.Scheme('end-of-line-invisible')
+            >>> layout_block.context_blocks.append(context_block)
     
         ::
 
-            abjad> f(layout_block)
+            >>> f(layout_block)
             \layout {
                 \context {
                     \Score

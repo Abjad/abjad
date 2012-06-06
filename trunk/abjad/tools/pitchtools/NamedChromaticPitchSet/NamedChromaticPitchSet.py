@@ -6,7 +6,7 @@ class NamedChromaticPitchSet(PitchObjectSet):
 
     Abjad model of a named chromatic pitch set::
 
-        abjad> pitchtools.NamedChromaticPitchSet(['bf', 'bqf', "fs'", "g'", 'bqf', "g'"])
+        >>> pitchtools.NamedChromaticPitchSet(['bf', 'bqf', "fs'", "g'", 'bqf', "g'"])
         NamedChromaticPitchSet(['bf', 'bqf', "fs'", "g'"])
 
     Named chromatic pitch sets are immutable.

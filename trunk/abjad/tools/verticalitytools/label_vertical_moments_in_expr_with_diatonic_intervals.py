@@ -8,21 +8,21 @@ def label_vertical_moments_in_expr_with_diatonic_intervals(expr, markup_directio
 
     Label diatonic intervals of every vertical moment in `expr`::
 
-        abjad> from abjad.tools import verticalitytools
+        >>> from abjad.tools import verticalitytools
 
     ::
 
-        abjad> score = Score(Staff([]) * 3)
-        abjad> notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
-        abjad> score[0].extend(notes)
-        abjad> contexttools.ClefMark('alto')(score[1])
+        >>> score = Score(Staff([]) * 3)
+        >>> notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
+        >>> score[0].extend(notes)
+        >>> contexttools.ClefMark('alto')(score[1])
         ClefMark('alto')(Staff{})
-        abjad> score[1].extend([Note(-5, (1, 4)), Note(-7, (1, 4))])
-        abjad> contexttools.ClefMark('bass')(score[2])
+        >>> score[1].extend([Note(-5, (1, 4)), Note(-7, (1, 4))])
+        >>> contexttools.ClefMark('bass')(score[2])
         ClefMark('bass')(Staff{})
-        abjad> score[2].append(Note(-24, (1, 2)))
-        abjad> verticalitytools.label_vertical_moments_in_expr_with_diatonic_intervals(score)
-        abjad> f(score)
+        >>> score[2].append(Note(-24, (1, 2)))
+        >>> verticalitytools.label_vertical_moments_in_expr_with_diatonic_intervals(score)
+        >>> f(score)
         \new Score <<
             \new Staff {
                 c'8

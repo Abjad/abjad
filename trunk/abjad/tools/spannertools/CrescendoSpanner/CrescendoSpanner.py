@@ -4,11 +4,11 @@ from abjad.tools.spannertools.HairpinSpanner import HairpinSpanner
 class CrescendoSpanner(HairpinSpanner):
     r'''Abjad crescendo spanner that includes rests::
 
-        abjad> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
+        >>> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             r4
             c'8
@@ -20,12 +20,12 @@ class CrescendoSpanner(HairpinSpanner):
 
     ::
 
-        abjad> spannertools.CrescendoSpanner(staff[:], include_rests = True)
+        >>> spannertools.CrescendoSpanner(staff[:], include_rests = True)
         CrescendoSpanner(r4, c'8, d'8, e'8, f'8, r4)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             r4 \<
             c'8
@@ -37,11 +37,11 @@ class CrescendoSpanner(HairpinSpanner):
 
     Abjad crescendo spanner that does not include rests::
 
-        abjad> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
+        >>> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             r4
             c'8
@@ -53,12 +53,12 @@ class CrescendoSpanner(HairpinSpanner):
 
     ::
 
-        abjad> spannertools.CrescendoSpanner(staff[:], include_rests = False)
+        >>> spannertools.CrescendoSpanner(staff[:], include_rests = False)
         CrescendoSpanner(r4, c'8, d'8, e'8, f'8, r4)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             r4
             c'8 \<

@@ -7,7 +7,7 @@ class MultiMeasureRest(Rest):
 
     Abjad model of a multi-measure rest::
 
-        abjad> resttools.MultiMeasureRest((1, 4))
+        >>> resttools.MultiMeasureRest((1, 4))
         MultiMeasureRest('R4')
 
     Multi-measure rests are immutable.

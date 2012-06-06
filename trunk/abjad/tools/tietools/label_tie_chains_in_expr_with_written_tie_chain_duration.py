@@ -1,12 +1,12 @@
 def label_tie_chains_in_expr_with_written_tie_chain_duration(expr, markup_direction='down'):
     r'''Label tie chains in `expr` with written tie chain duration.::
 
-        abjad> staff = Staff(r"\times 2/3 { c'8 ~ c'8 c'8 ~ } c'8")
-        abjad> tietools.label_tie_chains_in_expr_with_written_tie_chain_duration(staff)
+        >>> staff = Staff(r"\times 2/3 { c'8 ~ c'8 c'8 ~ } c'8")
+        >>> tietools.label_tie_chains_in_expr_with_written_tie_chain_duration(staff)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \times 2/3 {
                 c'8 ~

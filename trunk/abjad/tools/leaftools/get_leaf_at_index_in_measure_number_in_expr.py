@@ -6,9 +6,9 @@ def get_leaf_at_index_in_measure_number_in_expr(expr, measure_number, leaf_index
 
     Get leaf at `leaf_index` in `measure_number` in `expr`::
 
-        abjad> t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
-        abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
-        abjad> f(t)
+        >>> t = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(t)
+        >>> f(t)
         \new Staff {
             {
                 \time 2/8
@@ -27,7 +27,7 @@ def get_leaf_at_index_in_measure_number_in_expr(expr, measure_number, leaf_index
 
     ::
 
-        abjad> leaftools.get_leaf_at_index_in_measure_number_in_expr(t, 2, 0)
+        >>> leaftools.get_leaf_at_index_in_measure_number_in_expr(t, 2, 0)
         Note("e'8")
 
     Return leaf or none.

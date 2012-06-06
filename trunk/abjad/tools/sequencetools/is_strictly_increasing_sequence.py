@@ -3,46 +3,46 @@ def is_strictly_increasing_sequence(expr):
 
     True when `expr` is a sequence and the elements in `expr` increase strictly::
 
-        abjad> from abjad.tools import sequencetools
+        >>> from abjad.tools import sequencetools
 
     ::
 
-        abjad> expr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-        abjad> sequencetools.is_strictly_increasing_sequence(expr)
+        >>> expr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+        >>> sequencetools.is_strictly_increasing_sequence(expr)
         True
 
     False when `expr` is a sequence and the elements in `expr` do not increase strictly::
 
-        abjad> expr = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
-        abjad> sequencetools.is_strictly_increasing_sequence(expr)
+        >>> expr = [9, 8, 7, 6, 5, 4, 3, 2, 1, 0]
+        >>> sequencetools.is_strictly_increasing_sequence(expr)
         False
 
     ::
 
-        abjad> expr = [3, 3, 3, 3, 3, 3, 3, 2, 1, 0]
-        abjad> sequencetools.is_strictly_increasing_sequence(expr)
+        >>> expr = [3, 3, 3, 3, 3, 3, 3, 2, 1, 0]
+        >>> sequencetools.is_strictly_increasing_sequence(expr)
         False
 
     ::
 
-        abjad> expr = [3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
-        abjad> sequencetools.is_strictly_increasing_sequence(expr)
+        >>> expr = [3, 3, 3, 3, 3, 3, 3, 3, 3, 3]
+        >>> sequencetools.is_strictly_increasing_sequence(expr)
         False
 
     ::
 
-        abjad> expr = [0, 1, 2, 3, 3, 3, 3, 3, 3, 3]
-        abjad> sequencetools.is_strictly_increasing_sequence(expr)
+        >>> expr = [0, 1, 2, 3, 3, 3, 3, 3, 3, 3]
+        >>> sequencetools.is_strictly_increasing_sequence(expr)
         False
 
     True when `expr` is an empty sequence::
 
-        abjad> sequencetools.is_strictly_increasing_sequence([])
+        >>> sequencetools.is_strictly_increasing_sequence([])
         True
 
     False when `expr` is not a sequence::
 
-        abjad> sequencetools.is_strictly_increasing_sequence(17)
+        >>> sequencetools.is_strictly_increasing_sequence(17)
         False
 
     Return boolean.

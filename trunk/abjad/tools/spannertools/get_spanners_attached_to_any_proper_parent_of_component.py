@@ -3,11 +3,11 @@ def get_spanners_attached_to_any_proper_parent_of_component(component, klass = N
 
     Get all spanners attached to any proper parent of `component`::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> beam = beamtools.BeamSpanner(staff.leaves)
-        abjad> slur = spannertools.SlurSpanner(staff.leaves)
-        abjad> trill = spannertools.TrillSpanner(staff)
-        abjad> f(staff)
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> beam = beamtools.BeamSpanner(staff.leaves)
+        >>> slur = spannertools.SlurSpanner(staff.leaves)
+        >>> trill = spannertools.TrillSpanner(staff)
+        >>> f(staff)
         \new Staff {
             c'8 [ ( \startTrillSpan
             d'8
@@ -17,7 +17,7 @@ def get_spanners_attached_to_any_proper_parent_of_component(component, klass = N
 
     ::
 
-        abjad> spannertools.get_spanners_attached_to_any_proper_parent_of_component(staff[0])
+        >>> spannertools.get_spanners_attached_to_any_proper_parent_of_component(staff[0])
         set([TrillSpanner({c'8, d'8, e'8, f'8})])
 
     Return unordered set of zero or more spanners.

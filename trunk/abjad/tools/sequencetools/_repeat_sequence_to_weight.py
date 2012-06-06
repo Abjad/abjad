@@ -5,19 +5,19 @@ from numbers import Number
 def _repeat_sequence_to_weight(sequence, weight, remainder='chop'):
     '''Repeat sequence to weight exactly::
 
-        abjad> from abjad.tools.sequencetools._repeat_sequence_to_weight import _repeat_sequence_to_weight
+        >>> from abjad.tools.sequencetools._repeat_sequence_to_weight import _repeat_sequence_to_weight
 
-        abjad> _repeat_sequence_to_weight([5, 5, 5], 23)
+        >>> _repeat_sequence_to_weight([5, 5, 5], 23)
         [5, 5, 5, 5, 3]
 
     Repeat sequence to weight at most::
 
-        abjad> _repeat_sequence_to_weight([5, 5, 5], 23, remainder='less')
+        >>> _repeat_sequence_to_weight([5, 5, 5], 23, remainder='less')
         [5, 5, 5, 5]
 
     Repeat sequence to weight at least::
 
-        abjad> _repeat_sequence_to_weight([5, 5, 5], 23, remainder='more')
+        >>> _repeat_sequence_to_weight([5, 5, 5], 23, remainder='more')
         [5, 5, 5, 5, 5]
 
     .. versionchanged:: 2.0

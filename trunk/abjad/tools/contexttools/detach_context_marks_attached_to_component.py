@@ -6,10 +6,10 @@ def detach_context_marks_attached_to_component(component, klasses = (ContextMark
 
     Detach context marks attached to `component`::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> clef_mark = contexttools.ClefMark('treble')(staff)
-        abjad> dynamic_mark = contexttools.DynamicMark('p')(staff[0])
-        abjad> f(staff)
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> clef_mark = contexttools.ClefMark('treble')(staff)
+        >>> dynamic_mark = contexttools.DynamicMark('p')(staff[0])
+        >>> f(staff)
         \new Staff {
             \clef "treble"
             c'8 \p
@@ -20,12 +20,12 @@ def detach_context_marks_attached_to_component(component, klasses = (ContextMark
 
     ::
 
-        abjad> contexttools.detach_context_marks_attached_to_component(staff[0])
+        >>> contexttools.detach_context_marks_attached_to_component(staff[0])
         (DynamicMark('p'),)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \clef "treble"
             c'8

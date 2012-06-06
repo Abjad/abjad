@@ -3,11 +3,11 @@ def get_component_start_offset_in_seconds(component):
 
     Get `component` start offset in seconds::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> score = Score([staff])
-        abjad> contexttools.TempoMark(Duration(1, 4), 52)(score)
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> score = Score([staff])
+        >>> contexttools.TempoMark(Duration(1, 4), 52)(score)
         TempoMark(Duration(1, 4), 52)(Score<<1>>)
-        abjad> f(score) # doctest: +SKIP
+        >>> f(score) # doctest: +SKIP
         \new Score <<
             \new Staff {
                 \tempo 4=52
@@ -20,7 +20,7 @@ def get_component_start_offset_in_seconds(component):
 
     ::
 
-        abjad> componenttools.get_component_start_offset_in_seconds(score.leaves[1])
+        >>> componenttools.get_component_start_offset_in_seconds(score.leaves[1])
         Offset(15, 26)
 
     Return nonnegative fraction.

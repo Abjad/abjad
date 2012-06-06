@@ -7,11 +7,11 @@ def iterate_pitched_tie_chains_backward_in_expr(expr):
 
     Iterate pitched tie chains backward in `expr`::
 
-        abjad> staff = Staff(r"c'4 ~ \times 2/3 { c'16 d'8 } e'8 r8 f'8 ~ f'16 r8.")
+        >>> staff = Staff(r"c'4 ~ \times 2/3 { c'16 d'8 } e'8 r8 f'8 ~ f'16 r8.")
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'4 ~
             \times 2/3 {
@@ -27,7 +27,7 @@ def iterate_pitched_tie_chains_backward_in_expr(expr):
 
     ::
 
-        abjad> for x in tietools.iterate_pitched_tie_chains_backward_in_expr(staff): x
+        >>> for x in tietools.iterate_pitched_tie_chains_backward_in_expr(staff): x
         ... 
         TieChain((Note("f'8"), Note("f'16")))
         TieChain((Note("e'8"),))

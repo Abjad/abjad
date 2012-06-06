@@ -6,7 +6,7 @@ class MelodicDiatonicIntervalSegment(IntervalObjectSegment):
 
     Abjad model of melodic diatonic interval segment::
 
-        abjad> pitchtools.MelodicDiatonicIntervalSegment('M2 M9 -m3 -P4')
+        >>> pitchtools.MelodicDiatonicIntervalSegment('M2 M9 -m3 -P4')
         MelodicDiatonicIntervalSegment('+M2 +M9 -m3 -P4')
 
     Melodic diatonic interval segments are immutable.

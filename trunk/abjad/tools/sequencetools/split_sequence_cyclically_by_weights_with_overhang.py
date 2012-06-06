@@ -6,11 +6,11 @@ def split_sequence_cyclically_by_weights_with_overhang(sequence, weights):
 
     Split `sequence` cyclically by `weights` with overhang::
 
-        abjad> from abjad.tools import sequencetools
+        >>> from abjad.tools import sequencetools
 
     ::
 
-        abjad> sequencetools.split_sequence_cyclically_by_weights_with_overhang((10, -10, 10, -10), [3, 15, 3])
+        >>> sequencetools.split_sequence_cyclically_by_weights_with_overhang((10, -10, 10, -10), [3, 15, 3])
         [(3,), (7, -8), (-2, 1), (3,), (6, -9), (-1,)]
 
     Return list of `sequence` objects.

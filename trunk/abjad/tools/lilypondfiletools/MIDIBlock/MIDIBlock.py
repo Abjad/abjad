@@ -6,23 +6,23 @@ class MIDIBlock(AttributedBlock):
 
     Abjad model of LilyPond input file MIDI block::
 
-        abjad> staff = Staff("c'4 d'4 e'4 f'4")
-        abjad> score = Score([staff])
-        abjad> lilypond_file = lilypondfiletools.make_basic_lilypond_file(score)
+        >>> staff = Staff("c'4 d'4 e'4 f'4")
+        >>> score = Score([staff])
+        >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file(score)
 
     ::
 
-        abjad> lilypond_file.score_block.append(lilypondfiletools.MIDIBlock())
+        >>> lilypond_file.score_block.append(lilypondfiletools.MIDIBlock())
 
     ::
 
-        abjad> layout_block = lilypondfiletools.LayoutBlock()
-        abjad> layout_block.is_formatted_when_empty = True
-        abjad> lilypond_file.score_block.append(layout_block)
+        >>> layout_block = lilypondfiletools.LayoutBlock()
+        >>> layout_block.is_formatted_when_empty = True
+        >>> lilypond_file.score_block.append(layout_block)
 
     ::
 
-        abjad> f(lilypond_file.score_block)
+        >>> f(lilypond_file.score_block)
         \score {
             \new Score <<
                 \new Staff {

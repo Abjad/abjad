@@ -8,7 +8,7 @@ class MelodicChromaticInterval(ChromaticIntervalObject, MelodicIntervalObject):
 
     Abjad model of melodic chromatic interval::
 
-        abjad> pitchtools.MelodicChromaticInterval(-14)
+        >>> pitchtools.MelodicChromaticInterval(-14)
         MelodicChromaticInterval(-14)
 
     Melodic chromatic intervals are immutable.
@@ -85,7 +85,7 @@ class MelodicChromaticInterval(ChromaticIntervalObject, MelodicIntervalObject):
     def chromatic_interval_number(self):
         '''Read-only chromatic interval number::
 
-            abjad> pitchtools.MelodicChromaticInterval(-14).chromatic_interval_number
+            >>> pitchtools.MelodicChromaticInterval(-14).chromatic_interval_number
             -14
 
         Return integer or float.
@@ -96,7 +96,7 @@ class MelodicChromaticInterval(ChromaticIntervalObject, MelodicIntervalObject):
     def direction_number(self):
         '''Read-only numeric sign::
 
-            abjad> pitchtools.MelodicChromaticInterval(-14).direction_number
+            >>> pitchtools.MelodicChromaticInterval(-14).direction_number
             -1
 
         Return integer.
@@ -107,7 +107,7 @@ class MelodicChromaticInterval(ChromaticIntervalObject, MelodicIntervalObject):
     def harmonic_chromatic_interval(self):
         '''Read-only harmonic chromatic interval::
 
-            abjad> pitchtools.MelodicChromaticInterval(-14).harmonic_chromatic_interval
+            >>> pitchtools.MelodicChromaticInterval(-14).harmonic_chromatic_interval
             HarmonicChromaticInterval(14)
 
         Return harmonic chromatic interval.
@@ -120,7 +120,7 @@ class MelodicChromaticInterval(ChromaticIntervalObject, MelodicIntervalObject):
     def melodic_chromatic_interval_class(self):
         '''Read-only melodic chromatic interval-class::
 
-            abjad> pitchtools.MelodicChromaticInterval(-14).melodic_chromatic_interval_class
+            >>> pitchtools.MelodicChromaticInterval(-14).melodic_chromatic_interval_class
             MelodicChromaticIntervalClass(-2)
 
         Return melodic chromatic interval-class.

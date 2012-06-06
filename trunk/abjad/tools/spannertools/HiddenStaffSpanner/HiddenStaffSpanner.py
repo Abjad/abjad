@@ -4,16 +4,16 @@ from abjad.tools.spannertools.Spanner import Spanner
 class HiddenStaffSpanner(Spanner):
     r'''Abjad hidden staff spanner::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
 
     ::
 
-        abjad> spannertools.HiddenStaffSpanner(staff[:2])
+        >>> spannertools.HiddenStaffSpanner(staff[:2])
         HiddenStaffSpanner(c'8, d'8)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \stopStaff
             c'8

@@ -3,16 +3,16 @@ def is_integer_pair(expr):
 
     True when `expr` is an integer tuple of length ``2``::
 
-        abjad> from abjad.tools import sequencetools
+        >>> from abjad.tools import sequencetools
 
     ::
 
-        abjad> sequencetools.is_integer_pair((19, 20))
+        >>> sequencetools.is_integer_pair((19, 20))
         True
 
     Otherwise false::
 
-        abjad> sequencetools.is_integer_pair(('some', 'text'))
+        >>> sequencetools.is_integer_pair(('some', 'text'))
         False
 
     Return boolean.

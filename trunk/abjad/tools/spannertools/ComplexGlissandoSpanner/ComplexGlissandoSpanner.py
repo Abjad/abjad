@@ -6,16 +6,16 @@ class ComplexGlissandoSpanner(Spanner):
 
     Abjad rest-skipping glissando spanner::
 
-        abjad> staff = Staff("c'16 r r g' r8 c'8")
+        >>> staff = Staff("c'16 r r g' r8 c'8")
 
     ::
 
-        abjad> spannertools.ComplexGlissandoSpanner(staff[:])
+        >>> spannertools.ComplexGlissandoSpanner(staff[:])
         ComplexGlissandoSpanner(c'16, r16, r16, g'16, r8, c'8)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'16 \glissando
             \once \override NoteColumn #'glissando-skip = ##t

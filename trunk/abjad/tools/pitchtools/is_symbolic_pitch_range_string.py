@@ -19,7 +19,7 @@ def is_symbolic_pitch_range_string(expr):
 
     True when `expr` is a symbolic pitch range string. Otherwise false::
 
-        abjad> pitchtools.is_symbolic_pitch_range_string('[A0, C8]')
+        >>> pitchtools.is_symbolic_pitch_range_string('[A0, C8]')
         True
 
     The regex that underlies this predicate matches against two comma-separated pitch

@@ -7,13 +7,13 @@ class FunctionDocumenter(Documenter):
 
     ::
 
-        abjad> from abjad.tools.documentationtools import *
+        >>> from abjad.tools.documentationtools import *
 
     ::
 
-        abjad> from abjad.tools.notetools import make_notes
-        abjad> documenter = FunctionDocumenter(make_notes)
-        abjad> print documenter()
+        >>> from abjad.tools.notetools import make_notes
+        >>> documenter = FunctionDocumenter(make_notes)
+        >>> print documenter()
         notetools.make_notes
         ====================
         <BLANKLINE>

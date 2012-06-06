@@ -3,15 +3,15 @@ def list_time_signatures_of_measures_in_expr(components):
 
     List time signatures of measures in `expr`::
 
-        abjad> from abjad.tools import timesignaturetools
+        >>> from abjad.tools import timesignaturetools
 
     ::
 
-        abjad> staff = Staff([Measure((2, 8), "c8 d8"), Measure((3, 8), "c8 d8 e8"), Measure((4, 8), "c8 d8 e8 f8")])
+        >>> staff = Staff([Measure((2, 8), "c8 d8"), Measure((3, 8), "c8 d8 e8"), Measure((4, 8), "c8 d8 e8 f8")])
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             {
                 \time 2/8
@@ -35,7 +35,7 @@ def list_time_signatures_of_measures_in_expr(components):
 
     ::
 
-        abjad> measuretools.list_time_signatures_of_measures_in_expr(staff)
+        >>> measuretools.list_time_signatures_of_measures_in_expr(staff)
         [TimeSignatureMark((2, 8))(|2/8, c8, d8|), TimeSignatureMark((3, 8))(|3/8, c8, d8, e8|), TimeSignatureMark((4, 8))(|4/8, c8, d8, e8, f8|)]
 
     Return list of zero or more time signatures.

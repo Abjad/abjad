@@ -7,15 +7,15 @@ def get_effective_tempo(component):
 
     Get effective tempo of `component`::
 
-        abjad> score = Score([])
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> score.append(staff)
-        abjad> contexttools.TempoMark(Duration(1, 8), 52)(staff[0])
+        >>> score = Score([])
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> score.append(staff)
+        >>> contexttools.TempoMark(Duration(1, 8), 52)(staff[0])
         TempoMark(Duration(1, 8), 52)(c'8)
 
     ::
 
-        abjad> f(score)
+        >>> f(score)
         \new Score <<
             \new Staff {
                 \tempo 8=52
@@ -28,7 +28,7 @@ def get_effective_tempo(component):
 
     ::
 
-        abjad> for note in staff:
+        >>> for note in staff:
         ...     print note, contexttools.get_effective_tempo(note)
         ...
         c'8 TempoMark(Duration(1, 8), 52)(c'8)

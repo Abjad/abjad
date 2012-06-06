@@ -5,11 +5,11 @@ import math
 def least_power_of_two_greater_equal(n, i = 0):
     r'''Return least integer power of two greater than or equal to positive `n`::
 
-        abjad> from abjad.tools import mathtools
+        >>> from abjad.tools import mathtools
 
     ::
 
-        abjad> for n in range(10, 20):
+        >>> for n in range(10, 20):
         ...     print '\t%s\t%s' % (n, mathtools.least_power_of_two_greater_equal(n))
         ...
             10 16
@@ -28,7 +28,7 @@ def least_power_of_two_greater_equal(n, i = 0):
 
     ::
 
-        abjad> for n in range(10, 20):
+        >>> for n in range(10, 20):
         ...     print '\t%s\t%s' % (n, mathtools.least_power_of_two_greater_equal(n, i = 1))
         ...
             10 32

@@ -9,16 +9,16 @@ class Glockenspiel(_PercussionInstrument):
 
     Abjad model of the glockenspiel::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
 
     ::
 
-        abjad> instrumenttools.Glockenspiel()(staff)
+        >>> instrumenttools.Glockenspiel()(staff)
         Glockenspiel()(Staff{4})
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \set Staff.instrumentName = \markup { Glockenspiel }
             \set Staff.shortInstrumentName = \markup { Gkspl. }

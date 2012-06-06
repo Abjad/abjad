@@ -6,7 +6,7 @@ def list_instruments(klasses=None):
 
     List instruments in ``instrumenttools`` module::
 
-        abjad> for instrument in instrumenttools.list_instruments():
+        >>> for instrument in instrumenttools.list_instruments():
         ...     instrument
         ... 
         <class 'abjad.tools.instrumenttools.Accordion.Accordion.Accordion'>

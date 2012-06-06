@@ -3,11 +3,11 @@ def set_written_pitch_of_pitched_components_in_expr(expr, written_pitch=0):
 
     Set written pitch of pitched components in `expr` to `written_pitch`::
 
-        abjad> staff = Staff("c' d' e' f'")
+        >>> staff = Staff("c' d' e' f'")
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'4
             d'4
@@ -17,11 +17,11 @@ def set_written_pitch_of_pitched_components_in_expr(expr, written_pitch=0):
 
     ::
 
-        abjad> pitchtools.set_written_pitch_of_pitched_components_in_expr(staff)
+        >>> pitchtools.set_written_pitch_of_pitched_components_in_expr(staff)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'4
             c'4

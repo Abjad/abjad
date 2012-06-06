@@ -7,11 +7,11 @@ def get_tie_chain(component):
 
     Get tie chain from `component`::
 
-        abjad> staff = Staff("c'8 ~ c' d'4")
+        >>> staff = Staff("c'8 ~ c' d'4")
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8 ~
             c'8
@@ -20,7 +20,7 @@ def get_tie_chain(component):
 
     ::
 
-        abjad> tietools.get_tie_chain(staff[0])
+        >>> tietools.get_tie_chain(staff[0])
         TieChain((Note("c'8"), Note("c'8")))
 
     Return tie chain.

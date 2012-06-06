@@ -5,16 +5,16 @@ from abjad.tools.marktools._DirectedMark._DirectedMark import _DirectedMark
 class Articulation(_DirectedMark):
     '''Abjad model of musical articulation::
 
-        abjad> note = Note("c'4")
+        >>> note = Note("c'4")
 
     ::
 
-        abjad> marktools.Articulation('staccato')(note)
+        >>> marktools.Articulation('staccato')(note)
         Articulation('staccato')(c'4)
 
     ::
 
-        abjad> f(note)
+        >>> f(note)
         c'4 -\staccato
 
     Articulations implement ``__slots__``.
@@ -115,8 +115,8 @@ class Articulation(_DirectedMark):
     def format(self):
         '''Read-only LilyPond format string of articulation::
 
-            abjad> articulation = marktools.Articulation('marcato', 'up')
-            abjad> articulation.format
+            >>> articulation = marktools.Articulation('marcato', 'up')
+            >>> articulation.format
             '^\\marcato'
 
         Return string.
@@ -128,14 +128,14 @@ class Articulation(_DirectedMark):
         def fget(self):
             '''Get name of articulation::
 
-                abjad> articulation = marktools.Articulation('staccato', 'up')
-                abjad> articulation.name
+                >>> articulation = marktools.Articulation('staccato', 'up')
+                >>> articulation.name
                 'staccato'
 
             Set name of articulation::
 
-                abjad> articulation.name = 'marcato'
-                abjad> articulation.name
+                >>> articulation.name = 'marcato'
+                >>> articulation.name
                 'marcato'
 
             Set string.

@@ -6,19 +6,19 @@ def detach_tempo_marks_attached_to_component(component):
 
     Detach tempo marks attached to `component`::
 
-        abjad> score = Score([])
-        abjad> staff = Staff("c'4 d'4 e'4 f'4")
-        abjad> score.append(staff)
+        >>> score = Score([])
+        >>> staff = Staff("c'4 d'4 e'4 f'4")
+        >>> score.append(staff)
 
     ::
 
-        abjad> tempo_mark = contexttools.TempoMark(Duration(1, 8), 52)
-        abjad> tempo_mark.attach(staff)
+        >>> tempo_mark = contexttools.TempoMark(Duration(1, 8), 52)
+        >>> tempo_mark.attach(staff)
         TempoMark(Duration(1, 8), 52)(Staff{4})
 
     ::
 
-        abjad> f(score)
+        >>> f(score)
         \new Score <<
             \new Staff {
                 \tempo 8=52
@@ -31,12 +31,12 @@ def detach_tempo_marks_attached_to_component(component):
 
     ::
 
-        abjad> contexttools.detach_tempo_marks_attached_to_component(staff)
+        >>> contexttools.detach_tempo_marks_attached_to_component(staff)
         (TempoMark(Duration(1, 8), 52),)
 
     ::
 
-        abjad> f(score)
+        >>> f(score)
         \new Score <<
             \new Staff {
                 c'4

@@ -8,13 +8,13 @@ class Pipe(abctools.AbjadObject, subprocess.Popen):
     
     ::
     
-        abjad> from abjad.tools.documentationtools import Pipe
+        >>> from abjad.tools.documentationtools import Pipe
     
     ::
     
-        abjad> pipe = Pipe('python', ['-i'])
-        abjad> pipe.writeline('my_list = [1, 2, 3]')
-        abjad> pipe.writeline('print my_list')
+        >>> pipe = Pipe('python', ['-i'])
+        >>> pipe.writeline('my_list = [1, 2, 3]')
+        >>> pipe.writeline('print my_list')
     
     Return `Pipe` instance.
     '''

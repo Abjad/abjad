@@ -6,13 +6,13 @@ def get_stem_tremolos_attached_to_component(component, tremolo_flags = None):
 
     Get stem tremolos attached to `component`::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> marktools.StemTremolo(16)(staff[0])
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> marktools.StemTremolo(16)(staff[0])
         StemTremolo(16)(c'8)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8 :16
             d'8
@@ -22,7 +22,7 @@ def get_stem_tremolos_attached_to_component(component, tremolo_flags = None):
 
     ::
 
-        abjad> marktools.get_stem_tremolos_attached_to_component(staff[0])
+        >>> marktools.get_stem_tremolos_attached_to_component(staff[0])
         (StemTremolo(16)(c'8),)
 
     Return tuple of zero or more stem tremolos.

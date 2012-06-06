@@ -6,12 +6,12 @@ def partition_sequence_once_by_weights_at_most_with_overhang(sequence, weights):
 
     Partition `sequence` elements once by `weights` at most with overhang::
 
-        abjad> from abjad.tools import sequencetools
+        >>> from abjad.tools import sequencetools
 
     ::
 
-        abjad> sequence = [3, 3, 3, 3, 4, 4, 4, 4, 5, 5]
-        abjad> sequencetools.partition_sequence_once_by_weights_at_most_with_overhang(sequence, [10, 4])
+        >>> sequence = [3, 3, 3, 3, 4, 4, 4, 4, 5, 5]
+        >>> sequencetools.partition_sequence_once_by_weights_at_most_with_overhang(sequence, [10, 4])
         [[3, 3, 3], [3], [4, 4, 4, 4, 5, 5]]
 
     Return list sequence element reference lists.

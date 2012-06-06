@@ -9,17 +9,17 @@ def are_scalar_notes(*expr):
 
     True when notes in `expr` are scalar. ::
 
-        abjad> from abjad.tools import tonalitytools
+        >>> from abjad.tools import tonalitytools
 
     ::
 
-        abjad> t = Staff("c'8 d'8 e'8 f'8")
-        abjad> tonalitytools.are_scalar_notes(t[:])
+        >>> t = Staff("c'8 d'8 e'8 f'8")
+        >>> tonalitytools.are_scalar_notes(t[:])
         True
 
     Otherwise false. ::
 
-        abjad> tonalitytools.are_scalar_notes(Note("c'4"), Note("c'4"))
+        >>> tonalitytools.are_scalar_notes(Note("c'4"), Note("c'4"))
         False
 
     .. versionchanged:: 2.0

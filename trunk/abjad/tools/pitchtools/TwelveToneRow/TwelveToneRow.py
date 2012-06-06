@@ -6,7 +6,7 @@ class TwelveToneRow(NumberedChromaticPitchClassSegment):
 
     Abjad model of twelve-tone row::
 
-        abjad> pitchtools.TwelveToneRow([0, 1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8])
+        >>> pitchtools.TwelveToneRow([0, 1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8])
         TwelveToneRow([0, 1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8])
 
     Twelve-tone rows validate pitch-classes at initialization.

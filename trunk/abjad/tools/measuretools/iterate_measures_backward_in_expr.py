@@ -7,12 +7,12 @@ def iterate_measures_backward_in_expr(expr, start = 0, stop = None):
 
     Iterate measures backward in `expr`::
 
-        abjad> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
-        abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+        >>> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             {
                 \time 2/8
@@ -31,7 +31,7 @@ def iterate_measures_backward_in_expr(expr, start = 0, stop = None):
 
     ::
 
-        abjad> for measure in measuretools.iterate_measures_backward_in_expr(staff):
+        >>> for measure in measuretools.iterate_measures_backward_in_expr(staff):
         ...     measure
         ...
         Measure(2/8, [g'8, a'8])
@@ -41,7 +41,7 @@ def iterate_measures_backward_in_expr(expr, start = 0, stop = None):
     Use the optional `start` and `stop` keyword parameters
     to control indices of iteration. ::
 
-        abjad> for measure in measuretools.iterate_measures_backward_in_expr(staff, start = 1):
+        >>> for measure in measuretools.iterate_measures_backward_in_expr(staff, start = 1):
         ...     measure
         ...
         Measure(2/8, [e'8, f'8])
@@ -49,7 +49,7 @@ def iterate_measures_backward_in_expr(expr, start = 0, stop = None):
 
     ::
 
-        abjad> for measure in measuretools.iterate_measures_backward_in_expr(staff, start = 0, stop = 2):
+        >>> for measure in measuretools.iterate_measures_backward_in_expr(staff, start = 0, stop = 2):
         ...     measure
         ...
         Measure(2/8, [g'8, a'8])

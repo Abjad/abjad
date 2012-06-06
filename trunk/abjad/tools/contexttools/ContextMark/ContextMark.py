@@ -7,11 +7,11 @@ class ContextMark(Mark):
 
     Abstract class from which concrete context marks inherit::
 
-        abjad> note = Note("c'4")
+        >>> note = Note("c'4")
 
     ::
 
-        abjad> contexttools.ContextMark()(note)
+        >>> contexttools.ContextMark()(note)
         ContextMark()(c'4)
 
     Context marks override ``__call__`` to attach to Abjad components.
@@ -109,12 +109,12 @@ class ContextMark(Mark):
 
         ::
 
-            abjad> note = Note("c'4")
-            abjad> context_mark = contexttools.ContextMark()(note)
+            >>> note = Note("c'4")
+            >>> context_mark = contexttools.ContextMark()(note)
 
         ::
 
-            abjad> context_mark.effective_context is None
+            >>> context_mark.effective_context is None
             True
 
         Return context mark or none.
@@ -129,12 +129,12 @@ class ContextMark(Mark):
 
         ::
 
-            abjad> note = Note("c'4")
-            abjad> context_mark = contexttools.ContextMark()(note)
+            >>> note = Note("c'4")
+            >>> context_mark = contexttools.ContextMark()(note)
 
         ::
 
-            abjad> context_mark.target_context is None
+            >>> context_mark.target_context is None
             True
 
         Return context mark or none.
@@ -161,22 +161,22 @@ class ContextMark(Mark):
 
         ::
 
-            abjad> note = Note("c'4")
-            abjad> context_mark = contexttools.ContextMark()(note)
+            >>> note = Note("c'4")
+            >>> context_mark = contexttools.ContextMark()(note)
 
         ::
 
-            abjad> context_mark.start_component
+            >>> context_mark.start_component
             Note("c'4")
 
         ::
 
-            abjad> context_mark.detach()
+            >>> context_mark.detach()
             ContextMark()
 
         ::
 
-            abjad> context_mark.start_component is None
+            >>> context_mark.start_component is None
             True
 
         Return context mark.

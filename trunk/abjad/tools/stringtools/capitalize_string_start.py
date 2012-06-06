@@ -3,11 +3,11 @@ def capitalize_string_start(string):
 
     Capitalize `string`::
 
-        abjad> string = 'violin I'
+        >>> string = 'violin I'
 
     ::
 
-        abjad> stringtools.capitalize_string_start(string)
+        >>> stringtools.capitalize_string_start(string)
         'Violin I'
 
     Function differs from built-in ``string.capitalize()``.
@@ -16,7 +16,7 @@ def capitalize_string_start(string):
 
     Built-in ``string.capitalize()`` forces noninitial characters to lowercase.
 
-        abjad> string.capitalize()
+        >>> string.capitalize()
         'Violin i'
 
     Return newly constructed string.

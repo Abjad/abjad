@@ -6,20 +6,20 @@ class BarLine(LilyPondCommandMark):
 
     Abjad model of bar line::
 
-        abjad> staff = Staff("c'4 d'4 e'4 f'4")
+        >>> staff = Staff("c'4 d'4 e'4 f'4")
 
     ::
 
-        abjad> bar_line = marktools.BarLine('|.')(staff[-1])
+        >>> bar_line = marktools.BarLine('|.')(staff[-1])
 
     ::
 
-        abjad> bar_line
+        >>> bar_line
         BarLine('|.')(f'4)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'4
             d'4
@@ -54,20 +54,20 @@ class BarLine(LilyPondCommandMark):
         def fget(self):
             r'''Get bar line string of bar line::
 
-                abjad> staff = Staff("c'4 d'4 e'4 f'4")
-                abjad> bar_line = marktools.BarLine()(staff[-1])
-                abjad> bar_line.bar_line_string
+                >>> staff = Staff("c'4 d'4 e'4 f'4")
+                >>> bar_line = marktools.BarLine()(staff[-1])
+                >>> bar_line.bar_line_string
                 '|'
 
             Set bar line string of bar line::
 
-                abjad> bar_line.bar_line_string = '|.'
-                abjad> bar_line.bar_line_string
+                >>> bar_line.bar_line_string = '|.'
+                >>> bar_line.bar_line_string
                 '|.'
 
             ::
 
-                abjad> f(staff)
+                >>> f(staff)
                 \new Staff {
                     c'4
                     d'4

@@ -7,12 +7,12 @@ def get_first_measure_in_proper_parentage_of_component(component):
 
     Get first measure in proper parentage of `component`::
 
-        abjad> measure = Measure((2, 4), "c'8 d'8 e'8 f'8")
-        abjad> staff = Staff([measure])
+        >>> measure = Measure((2, 4), "c'8 d'8 e'8 f'8")
+        >>> staff = Staff([measure])
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             {
                 \time 2/4
@@ -25,7 +25,7 @@ def get_first_measure_in_proper_parentage_of_component(component):
 
     ::
 
-        abjad> measuretools.get_first_measure_in_proper_parentage_of_component(staff.leaves[0])
+        >>> measuretools.get_first_measure_in_proper_parentage_of_component(staff.leaves[0])
         Measure(2/4, [c'8, d'8, e'8, f'8])
 
     Return measure or none.

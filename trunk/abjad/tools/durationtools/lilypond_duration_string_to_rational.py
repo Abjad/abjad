@@ -7,11 +7,11 @@ def lilypond_duration_string_to_rational(duration_string):
 
     Change LilyPond `duration_string` to rational::
 
-        abjad> from abjad.tools import durationtools
+        >>> from abjad.tools import durationtools
 
     ::
 
-        abjad> durationtools.lilypond_duration_string_to_rational('8.')
+        >>> durationtools.lilypond_duration_string_to_rational('8.')
         Fraction(3, 16)
 
     Return fraction.

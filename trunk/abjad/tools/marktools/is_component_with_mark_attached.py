@@ -6,22 +6,22 @@ def is_component_with_mark_attached(expr):
 
     True when `expr` is component with mark attached::
 
-        abjad> note = Note("c'4")
-        abjad> marktools.Mark()(note)
+        >>> note = Note("c'4")
+        >>> marktools.Mark()(note)
         Mark()(c'4)
 
     ::
 
-        abjad> marktools.is_component_with_mark_attached(note)
+        >>> marktools.is_component_with_mark_attached(note)
         True
 
     False otherwise::
 
-        abjad> note = Note("c'4")
+        >>> note = Note("c'4")
 
     ::
 
-        abjad> marktools.is_component_with_mark_attached(note)
+        >>> marktools.is_component_with_mark_attached(note)
         False
 
     Return boolean.

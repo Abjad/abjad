@@ -10,16 +10,16 @@ class Harpsichord(_KeyboardInstrument):
 
     Abjad model of the harpsichord::
 
-        abjad> piano_staff = scoretools.PianoStaff([Staff("c'8 d'8 e'8 f'8"), Staff("c'4 b4")])
+        >>> piano_staff = scoretools.PianoStaff([Staff("c'8 d'8 e'8 f'8"), Staff("c'4 b4")])
 
     ::
 
-        abjad> instrumenttools.Harpsichord()(piano_staff)
+        >>> instrumenttools.Harpsichord()(piano_staff)
         Harpsichord()(PianoStaff<<2>>)
 
     ::
 
-        abjad> f(piano_staff)
+        >>> f(piano_staff)
         \new PianoStaff <<
             \set PianoStaff.instrumentName = \markup { Harpsichord }
             \set PianoStaff.shortInstrumentName = \markup { Hpschd. }

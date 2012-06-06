@@ -6,14 +6,14 @@ def expr_has_leaf_with_dotted_written_duration(expr):
 
     True when `expr` has at least one leaf with dotted writtern duration::
 
-        abjad> notes = notetools.make_notes([0], [(1, 16), (2, 16), (3, 16)])
-        abjad> leaftools.expr_has_leaf_with_dotted_written_duration(notes)
+        >>> notes = notetools.make_notes([0], [(1, 16), (2, 16), (3, 16)])
+        >>> leaftools.expr_has_leaf_with_dotted_written_duration(notes)
         True
 
     False otherwise::
 
-        abjad> notes = notetools.make_notes([0], [(1, 16), (2, 16), (4, 16)])
-        abjad> leaftools.expr_has_leaf_with_dotted_written_duration(notes)
+        >>> notes = notetools.make_notes([0], [(1, 16), (2, 16), (4, 16)])
+        >>> leaftools.expr_has_leaf_with_dotted_written_duration(notes)
         False
 
     Return boolean.

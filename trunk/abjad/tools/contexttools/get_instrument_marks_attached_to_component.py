@@ -7,13 +7,13 @@ def get_instrument_marks_attached_to_component(component):
 
     Get instrument marks attached to `component`::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> contexttools.InstrumentMark('Flute', 'Fl.')(staff)
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> contexttools.InstrumentMark('Flute', 'Fl.')(staff)
         InstrumentMark(instrument_name='Flute', short_instrument_name='Fl.')(Staff{4})
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \set Staff.instrumentName = \markup { Flute }
             \set Staff.shortInstrumentName = \markup { Fl. }
@@ -25,7 +25,7 @@ def get_instrument_marks_attached_to_component(component):
 
     ::
 
-        abjad> contexttools.get_instrument_marks_attached_to_component(staff)
+        >>> contexttools.get_instrument_marks_attached_to_component(staff)
         (InstrumentMark(instrument_name='Flute', short_instrument_name='Fl.')(Staff{4}),)
 
     Return tuple of zero or more instrument marks.

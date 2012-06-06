@@ -10,12 +10,12 @@ def fuse_contiguous_measures_in_container_cyclically_by_counts(container, counts
 
     Fuse contiguous measures in `container` cyclically by `counts`::
 
-        abjad> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 5)
-        abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+        >>> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 5)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             {
                 \time 2/8
@@ -42,12 +42,12 @@ def fuse_contiguous_measures_in_container_cyclically_by_counts(container, counts
 
     ::
 
-        abjad> counts = (2, 1)
-        abjad> measuretools.fuse_contiguous_measures_in_container_cyclically_by_counts(staff, counts)
+        >>> counts = (2, 1)
+        >>> measuretools.fuse_contiguous_measures_in_container_cyclically_by_counts(staff, counts)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             {
                 \time 4/8

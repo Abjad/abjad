@@ -6,9 +6,9 @@ def list_named_chromatic_pitches_in_expr(expr):
 
     List named chromatic pitches in `expr`::
 
-        abjad> t = Staff("c'4 d'4 e'4 f'4")
-        abjad> beam = beamtools.BeamSpanner(t[:])
-        abjad> pitchtools.list_named_chromatic_pitches_in_expr(beam)
+        >>> t = Staff("c'4 d'4 e'4 f'4")
+        >>> beam = beamtools.BeamSpanner(t[:])
+        >>> pitchtools.list_named_chromatic_pitches_in_expr(beam)
         (NamedChromaticPitch("c'"), NamedChromaticPitch("d'"), NamedChromaticPitch("e'"), NamedChromaticPitch("f'"))
 
     Return tuple.

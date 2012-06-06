@@ -7,7 +7,7 @@ class LilyPondVersionToken(AbjadObject):
 
     LilyPond version token::
 
-        abjad> lilypondfiletools.LilyPondVersionToken()
+        >>> lilypondfiletools.LilyPondVersionToken()
         LilyPondVersionToken(\version "...")
 
     Return LilyPond version token.
@@ -29,7 +29,7 @@ class LilyPondVersionToken(AbjadObject):
     def format(self):
         r'''Format contribution of LilyPond version token::
 
-            abjad> lilypondfiletools.LilyPondVersionToken().format
+            >>> lilypondfiletools.LilyPondVersionToken().format
             '\\version "..."'
 
         Return string.

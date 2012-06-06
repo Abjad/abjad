@@ -7,18 +7,18 @@ def get_tempo_marks_attached_to_component(component):
 
     Get tempo marks attached to `component`::
 
-        abjad> score = Score([])
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> score.append(staff)
+        >>> score = Score([])
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> score.append(staff)
 
     ::
 
-        abjad> contexttools.TempoMark(Duration(1, 8), 52)(staff)
+        >>> contexttools.TempoMark(Duration(1, 8), 52)(staff)
         TempoMark(Duration(1, 8), 52)(Staff{4})
 
     ::
 
-        abjad> f(score)
+        >>> f(score)
         \new Score <<
             \new Staff {
                 \tempo 8=52
@@ -31,7 +31,7 @@ def get_tempo_marks_attached_to_component(component):
 
     ::
 
-        abjad> contexttools.get_tempo_marks_attached_to_component(staff)
+        >>> contexttools.get_tempo_marks_attached_to_component(staff)
         (TempoMark(Duration(1, 8), 52)(Staff{4}),)
 
     Return tuple of zero or more tempo marks.

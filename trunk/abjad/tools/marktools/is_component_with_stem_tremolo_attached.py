@@ -6,22 +6,22 @@ def is_component_with_stem_tremolo_attached(expr):
 
     True when `expr` is component with LilyPond command mark attached::
 
-        abjad> note = Note("c'4")
-        abjad> marktools.StemTremolo(16)(note)
+        >>> note = Note("c'4")
+        >>> marktools.StemTremolo(16)(note)
         StemTremolo(16)(c'4)
 
     ::
 
-        abjad> marktools.is_component_with_stem_tremolo_attached(note)
+        >>> marktools.is_component_with_stem_tremolo_attached(note)
         True
 
     False otherwise::
 
-        abjad> note = Note("c'4")
+        >>> note = Note("c'4")
 
     ::
 
-        abjad> marktools.is_component_with_stem_tremolo_attached(note)
+        >>> marktools.is_component_with_stem_tremolo_attached(note)
         False
 
     Return boolean.

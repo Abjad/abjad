@@ -7,10 +7,10 @@ def change_diminished_tuplets_in_expr_to_augmented(tuplet):
     Divide the written duration of the leaves in `tuplet`
     by the least power of 2 necessary to augment `tuplet`. ::
 
-        abjad> tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-        abjad> tuplet
+        >>> tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
+        >>> tuplet
         FixedDurationTuplet(1/4, [c'8, d'8, e'8])
-        abjad> tuplettools.change_diminished_tuplets_in_expr_to_augmented(tuplet)
+        >>> tuplettools.change_diminished_tuplets_in_expr_to_augmented(tuplet)
         FixedDurationTuplet(1/4, [c'16, d'16, e'16])
 
     .. todo:: make work with nested tuplets.

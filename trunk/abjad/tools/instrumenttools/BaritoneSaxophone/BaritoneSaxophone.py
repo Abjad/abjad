@@ -9,16 +9,16 @@ class BaritoneSaxophone(_Saxophone):
 
     Abjad model of the baritone saxophone::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
 
     ::
 
-        abjad> instrumenttools.BaritoneSaxophone()(staff)
+        >>> instrumenttools.BaritoneSaxophone()(staff)
         BaritoneSaxophone()(Staff{4})
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \set Staff.instrumentName = \markup { Baritone saxophone }
             \set Staff.shortInstrumentName = \markup { Bar. sax. }

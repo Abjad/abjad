@@ -8,7 +8,7 @@ class HarmonicChromaticIntervalClass(ChromaticIntervalClassObject, HarmonicInter
 
     Abjad model of harmonic chromatic interval-class::
 
-        abjad> pitchtools.HarmonicChromaticIntervalClass(-14)
+        >>> pitchtools.HarmonicChromaticIntervalClass(-14)
         HarmonicChromaticIntervalClass(2)
 
     Harmonic chromatic interval-classes are immutable.

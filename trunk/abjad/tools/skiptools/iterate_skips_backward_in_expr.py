@@ -7,11 +7,11 @@ def iterate_skips_backward_in_expr(expr, start = 0, stop = None):
 
     Iterate skips backward in `expr`::
 
-        abjad> staff = Staff("<e' g' c''>8 a'8 s8 <d' f' b'>8 s2")
+        >>> staff = Staff("<e' g' c''>8 a'8 s8 <d' f' b'>8 s2")
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             <e' g' c''>8
             a'8
@@ -22,7 +22,7 @@ def iterate_skips_backward_in_expr(expr, start = 0, stop = None):
 
     ::
 
-        abjad> for skip in skiptools.iterate_skips_backward_in_expr(staff):
+        >>> for skip in skiptools.iterate_skips_backward_in_expr(staff):
         ...   skip
         Skip('s2')
         Skip('s8')

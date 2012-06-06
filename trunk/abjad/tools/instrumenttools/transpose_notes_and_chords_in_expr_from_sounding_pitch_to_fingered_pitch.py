@@ -7,13 +7,13 @@ def transpose_notes_and_chords_in_expr_from_sounding_pitch_to_fingered_pitch(exp
 
     Transpose notes and chords in `expr` from sounding pitch to fingered pitch::
 
-        abjad> staff = Staff("<c' e' g'>4 d'4 r4 e'4")
-        abjad> instrumenttools.BFlatClarinet()(staff)
+        >>> staff = Staff("<c' e' g'>4 d'4 r4 e'4")
+        >>> instrumenttools.BFlatClarinet()(staff)
         BFlatClarinet()(Staff{4})
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \set Staff.instrumentName = \markup { Clarinet in B-flat }
             \set Staff.shortInstrumentName = \markup { Cl. in B-flat }
@@ -25,11 +25,11 @@ def transpose_notes_and_chords_in_expr_from_sounding_pitch_to_fingered_pitch(exp
 
     ::
 
-        abjad> instrumenttools.transpose_notes_and_chords_in_expr_from_sounding_pitch_to_fingered_pitch(staff)
+        >>> instrumenttools.transpose_notes_and_chords_in_expr_from_sounding_pitch_to_fingered_pitch(staff)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \set Staff.instrumentName = \markup { Clarinet in B-flat }
             \set Staff.shortInstrumentName = \markup { Cl. in B-flat }

@@ -3,7 +3,7 @@ def alphabetic_accidental_abbreviation_to_symbolic_accidental_string(alphabetic_
 
     Change `alphabetic_accidental_abbreviation` to symbolic accidental string::
 
-        abjad> pitchtools.alphabetic_accidental_abbreviation_to_symbolic_accidental_string('tqs')
+        >>> pitchtools.alphabetic_accidental_abbreviation_to_symbolic_accidental_string('tqs')
         '#+'
 
     None when `alphabetic_accidental_abbreviation` is not a valid alphabetic accidental

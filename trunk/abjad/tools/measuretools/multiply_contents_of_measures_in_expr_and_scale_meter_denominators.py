@@ -20,20 +20,20 @@ def multiply_contents_of_measures_in_expr_and_scale_meter_denominators(expr, con
 
     Return Python list of transformed measures::
 
-        abjad> t = Measure((3, 16), notetools.make_repeated_notes(3, Duration(1, 16)))
-        abjad> print(measuretools.multiply_contents_of_measures_in_expr_and_scale_meter_denominators(t, [(3, 3)])[0])
+        >>> t = Measure((3, 16), notetools.make_repeated_notes(3, Duration(1, 16)))
+        >>> print(measuretools.multiply_contents_of_measures_in_expr_and_scale_meter_denominators(t, [(3, 3)])[0])
         |9/48, c'32, c'32, c'32, c'32, c'32, c'32, c'32, c'32, c'32|
 
     ::
 
-        abjad> t = Measure((3, 16), notetools.make_repeated_notes(3, Duration(1, 16)))
-        abjad> print(measuretools.multiply_contents_of_measures_in_expr_and_scale_meter_denominators(t, [(3, 2)])[0])
+        >>> t = Measure((3, 16), notetools.make_repeated_notes(3, Duration(1, 16)))
+        >>> print(measuretools.multiply_contents_of_measures_in_expr_and_scale_meter_denominators(t, [(3, 2)])[0])
         |9/32, c'32, c'32, c'32, c'32, c'32, c'32, c'32, c'32, c'32|
 
     ::
 
-        abjad> t = Measure((3, 16), notetools.make_repeated_notes(3, Duration(1, 16)))
-        abjad> print(measuretools.multiply_contents_of_measures_in_expr_and_scale_meter_denominators(t, [(3, 1)])[0])
+        >>> t = Measure((3, 16), notetools.make_repeated_notes(3, Duration(1, 16)))
+        >>> print(measuretools.multiply_contents_of_measures_in_expr_and_scale_meter_denominators(t, [(3, 1)])[0])
         |9/16, c'16, c'16, c'16, c'16, c'16, c'16, c'16, c'16, c'16|
 
     .. versionchanged:: 2.0

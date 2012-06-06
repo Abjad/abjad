@@ -8,22 +8,22 @@ def pitch_array_to_measures(pitch_array, cell_duration_denominator = 8):
     `row.width` over `cell_duration_denominator` for each
     row in `pitch_array`::
 
-        abjad> from abjad.tools import pitcharraytools
-        abjad> array = pitcharraytools.PitchArray([
+        >>> from abjad.tools import pitcharraytools
+        >>> array = pitcharraytools.PitchArray([
         ...     [1, (2, 1), ([-2, -1.5], 2)],
         ...     [(7, 2), (6, 1), 1]])
 
     ::
 
-        abjad> print array
+        >>> print array
         [  ] [d'] [bf bqf    ]
         [g'     ] [fs'   ] [ ]
 
     ::
 
-        abjad> measuretools.pitch_array_to_measures(array)
+        >>> measuretools.pitch_array_to_measures(array)
         [Measure(4/8, [r8, d'8, <bf bqf>4]), Measure(4/8, [g'4, fs'8, r8])]
-        abjad> for measure in _:
+        >>> for measure in _:
         ...     f(measure)
         ...
         {

@@ -6,9 +6,9 @@ def iterate_components_backward_in_expr(expr, klass=Component, start=0, stop=Non
 
     Iterate components backward in `expr`::
 
-        abjad> staff = Staff(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
-        abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
-        abjad> f(staff)
+        >>> staff = Staff(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+        >>> f(staff)
         \new Staff {
             \times 2/3 {
                 c'8
@@ -21,7 +21,7 @@ def iterate_components_backward_in_expr(expr, klass=Component, start=0, stop=Non
                 a'8
             }
         }
-        abjad> for x in componenttools.iterate_components_backward_in_expr(staff, Note):
+        >>> for x in componenttools.iterate_components_backward_in_expr(staff, Note):
         ...     x
         ...
         Note("a'8")
@@ -36,7 +36,7 @@ def iterate_components_backward_in_expr(expr, klass=Component, start=0, stop=Non
 
     ::
 
-        abjad> for x in componenttools.iterate_components_backward_in_expr(staff, Note, start = 0, stop = 4):
+        >>> for x in componenttools.iterate_components_backward_in_expr(staff, Note, start = 0, stop = 4):
         ...     x
         ...
         Note("a'8")
@@ -46,7 +46,7 @@ def iterate_components_backward_in_expr(expr, klass=Component, start=0, stop=Non
 
     ::
 
-        abjad> for x in componenttools.iterate_components_backward_in_expr(staff, Note, start = 4):
+        >>> for x in componenttools.iterate_components_backward_in_expr(staff, Note, start = 4):
         ...     x
         ...
         Note("d'8")
@@ -54,7 +54,7 @@ def iterate_components_backward_in_expr(expr, klass=Component, start=0, stop=Non
 
     ::
 
-        abjad> for x in componenttools.iterate_components_backward_in_expr(staff, Note, start = 4, stop = 6):
+        >>> for x in componenttools.iterate_components_backward_in_expr(staff, Note, start = 4, stop = 6):
         ...     x
         ...
         Note("d'8")

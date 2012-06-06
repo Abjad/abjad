@@ -8,8 +8,8 @@ def list_harmonic_chromatic_intervals_in_expr(expr):
 
     List harmonic chromatic intervals in `expr`::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> for interval in sorted(pitchtools.list_harmonic_chromatic_intervals_in_expr(staff)):
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> for interval in sorted(pitchtools.list_harmonic_chromatic_intervals_in_expr(staff)):
         ...     interval
         ...
         HarmonicChromaticInterval(1)

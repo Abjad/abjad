@@ -6,15 +6,15 @@ def get_context_marks_attached_to_component(component, klasses=(ContextMark,)):
 
     Get context marks attached to `component`::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> contexttools.ClefMark('treble')(staff)
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> contexttools.ClefMark('treble')(staff)
         ClefMark('treble')(Staff{4})
-        abjad> contexttools.DynamicMark('p')(staff[0])
+        >>> contexttools.DynamicMark('p')(staff[0])
         DynamicMark('p')(c'8)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \clef "treble"
             c'8 \p
@@ -25,7 +25,7 @@ def get_context_marks_attached_to_component(component, klasses=(ContextMark,)):
 
     ::
 
-        abjad> contexttools.get_context_marks_attached_to_component(staff[0])
+        >>> contexttools.get_context_marks_attached_to_component(staff[0])
         (DynamicMark('p')(c'8),)
 
     Return tuple of zero or more context marks.

@@ -7,16 +7,16 @@ def get_first_component_in_expr_with_name(expr, name):
 
     Get first component in `expr` with `name`::
 
-        abjad> flute_staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> flute_staff.name = 'Flute'
-        abjad> violin_staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> violin_staff.name = 'Violin'
-        abjad> staff_group = scoretools.StaffGroup([flute_staff, violin_staff])
-        abjad> score = Score([staff_group])
+        >>> flute_staff = Staff("c'8 d'8 e'8 f'8")
+        >>> flute_staff.name = 'Flute'
+        >>> violin_staff = Staff("c'8 d'8 e'8 f'8")
+        >>> violin_staff.name = 'Violin'
+        >>> staff_group = scoretools.StaffGroup([flute_staff, violin_staff])
+        >>> score = Score([staff_group])
 
     ::
 
-        abjad> componenttools.get_first_component_in_expr_with_name(score, 'Violin')
+        >>> componenttools.get_first_component_in_expr_with_name(score, 'Violin')
         Staff-"Violin"{4}
 
     .. versionchanged:: 2.0

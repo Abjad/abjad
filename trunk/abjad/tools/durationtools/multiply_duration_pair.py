@@ -6,11 +6,11 @@ def multiply_duration_pair(pair, multiplier):
 
     Multiply duration `pair` by rational `multiplier`::
 
-        abjad> from abjad.tools import durationtools
+        >>> from abjad.tools import durationtools
 
     ::
 
-        abjad> durationtools.multiply_duration_pair((4, 8), Fraction(4, 5))
+        >>> durationtools.multiply_duration_pair((4, 8), Fraction(4, 5))
         (16, 40)
 
     Naive multiplication with no simplification of anything intended for certain types of meter multiplication.

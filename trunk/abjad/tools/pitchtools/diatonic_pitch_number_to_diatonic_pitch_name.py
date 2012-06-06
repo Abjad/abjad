@@ -8,7 +8,7 @@ def diatonic_pitch_number_to_diatonic_pitch_name(diatonic_pitch_number):
 
     Change `diatonic_pitch_number` to diatonic pitch name::
 
-        abjad> pitchtools.diatonic_pitch_number_to_diatonic_pitch_name(7)
+        >>> pitchtools.diatonic_pitch_number_to_diatonic_pitch_name(7)
         "c''"
 
     Return string.

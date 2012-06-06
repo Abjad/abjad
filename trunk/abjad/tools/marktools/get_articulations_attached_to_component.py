@@ -7,15 +7,15 @@ def get_articulations_attached_to_component(component):
 
     Get articulations attached to `component`::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> marktools.Articulation('staccato')(staff[0])
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> marktools.Articulation('staccato')(staff[0])
         Articulation('staccato')(c'8)
-        abjad> marktools.Articulation('marcato')(staff[0])
+        >>> marktools.Articulation('marcato')(staff[0])
         Articulation('marcato')(c'8)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8 -\marcato -\staccato
             d'8
@@ -25,7 +25,7 @@ def get_articulations_attached_to_component(component):
 
     ::
 
-        abjad> marktools.get_articulations_attached_to_component(staff[0])
+        >>> marktools.get_articulations_attached_to_component(staff[0])
         (Articulation('staccato')(c'8), Articulation('marcato')(c'8))
 
     Return tuple of zero or more articulations.

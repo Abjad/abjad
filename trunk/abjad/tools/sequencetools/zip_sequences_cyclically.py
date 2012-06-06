@@ -6,11 +6,11 @@ def zip_sequences_cyclically(*sequences):
 
     Zip `sequences` cyclically::
 
-        abjad> from abjad.tools import sequencetools
+        >>> from abjad.tools import sequencetools
 
     ::
 
-        abjad> sequencetools.zip_sequences_cyclically([1, 2, 3], ['a', 'b'])
+        >>> sequencetools.zip_sequences_cyclically([1, 2, 3], ['a', 'b'])
         [(1, 'a'), (2, 'b'), (3, 'a')]
 
     .. versionadded:: 1.1
@@ -18,7 +18,7 @@ def zip_sequences_cyclically(*sequences):
 
     ::
 
-        abjad> sequencetools.zip_sequences_cyclically([10, 11, 12], [20, 21], [30, 31, 32, 33])
+        >>> sequencetools.zip_sequences_cyclically([10, 11, 12], [20, 21], [30, 31, 32, 33])
         [(10, 20, 30), (11, 21, 31), (12, 20, 32), (10, 21, 33)]
 
     Cycle over the elements of the sequences of shorter length.

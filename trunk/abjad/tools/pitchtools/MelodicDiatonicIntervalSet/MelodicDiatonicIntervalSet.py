@@ -6,7 +6,7 @@ class MelodicDiatonicIntervalSet(IntervalObjectSet):
 
     Abjad model of melodic diatonic interval set::
 
-        abjad> pitchtools.MelodicDiatonicIntervalSet('M2 M2 -m3 -P4')
+        >>> pitchtools.MelodicDiatonicIntervalSet('M2 M2 -m3 -P4')
         MelodicDiatonicIntervalSet('-P4 -m3 +M2')
 
     Melodic diatonic interval sets are immutable.

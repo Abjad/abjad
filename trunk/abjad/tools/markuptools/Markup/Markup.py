@@ -7,49 +7,49 @@ class Markup(_DirectedMark):
 
     Initialize from string::
 
-        abjad> markup = markuptools.Markup(r'\bold { "This is markup text." }')
+        >>> markup = markuptools.Markup(r'\bold { "This is markup text." }')
 
     ::
 
-        abjad> markup
+        >>> markup
         Markup(('\\bold { "This is markup text." }',))
 
     ::
 
-        abjad> f(markup)
+        >>> f(markup)
         \markup { \bold { "This is markup text." } }
 
     Initialize any markup from existing markup::
 
-        abjad> markup_1 = markuptools.Markup('foo', direction='up')
-        abjad> markup_2 = markuptools.Markup(markup_1, direction='down')
+        >>> markup_1 = markuptools.Markup('foo', direction='up')
+        >>> markup_2 = markuptools.Markup(markup_1, direction='down')
 
     ::
 
-        abjad> f(markup_1)
+        >>> f(markup_1)
         ^ \markup { foo }
 
     ::
 
-        abjad> f(markup_2) # doctest: +SKIP
+        >>> f(markup_2) # doctest: +SKIP
         _ \markup { foo }
 
     Attach markup to score components like this::
 
-        abjad> note = Note("c'4")
+        >>> note = Note("c'4")
 
     ::
 
-        abjad> markup = markuptools.Markup(r'\bold { "This is markup text." }')
+        >>> markup = markuptools.Markup(r'\bold { "This is markup text." }')
 
     ::
 
-        abjad> markup(note)
+        >>> markup(note)
         Markup(('\\bold { "This is markup text." }',))(c'4)
 
     ::
 
-        abjad> f(note)
+        >>> f(note)
         c'4 - \markup { \bold { "This is markup text." } }
 
     Set `direction` to ``'up'``, ``'down'``, ``'neutral'``, ``'^'``, ``'_'``, ``'-'`` or None.
@@ -131,8 +131,8 @@ class Markup(_DirectedMark):
 
         ::
 
-            abjad> markup = markuptools.Markup(r'\bold { "This is markup text." }')
-            abjad> markup.contents
+            >>> markup = markuptools.Markup(r'\bold { "This is markup text." }')
+            >>> markup.contents
             ('\\bold { "This is markup text." }',)
 
         Return string
@@ -143,8 +143,8 @@ class Markup(_DirectedMark):
     def format(self):
         r'''Read-only LilyPond format of markup::
 
-            abjad> markup = markuptools.Markup(r'\bold { "This is markup text." }')
-            abjad> markup.format
+            >>> markup = markuptools.Markup(r'\bold { "This is markup text." }')
+            >>> markup.format
             '\\markup { \\bold { "This is markup text." } }'
 
         Return string.
@@ -155,11 +155,11 @@ class Markup(_DirectedMark):
     def markup_name(self):
         r'''Read-only name of markup::
 
-            abjad> markup = markuptools.Markup(r'\bold { allegro ma non troppo }', markup_name='non troppo')
+            >>> markup = markuptools.Markup(r'\bold { allegro ma non troppo }', markup_name='non troppo')
 
         ::
 
-            abjad> markup.markup_name
+            >>> markup.markup_name
             'non troppo'
 
         Return string or none.

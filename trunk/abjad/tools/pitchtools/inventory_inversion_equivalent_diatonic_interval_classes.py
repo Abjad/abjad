@@ -6,7 +6,7 @@ def inventory_inversion_equivalent_diatonic_interval_classes():
 
     Inventory inversion-equivalent diatonic interval-classes::
 
-        abjad> for dic in pitchtools.inventory_inversion_equivalent_diatonic_interval_classes():
+        >>> for dic in pitchtools.inventory_inversion_equivalent_diatonic_interval_classes():
         ...     dic
         ...
         InversionEquivalentDiatonicIntervalClass('P1')

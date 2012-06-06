@@ -7,16 +7,16 @@ class FixedDurationContainer(Container):
 
     Fixed-duration container::
 
-        abjad> container = containertools.FixedDurationContainer((3, 8), "c'8 d'8 e'8")
+        >>> container = containertools.FixedDurationContainer((3, 8), "c'8 d'8 e'8")
 
     ::
 
-        abjad> container
+        >>> container
         FixedDurationContainer(Duration(3, 8), [Note("c'8"), Note("d'8"), Note("e'8")])
 
     ::
 
-        abjad> f(container)
+        >>> f(container)
         {
             c'8
             d'8

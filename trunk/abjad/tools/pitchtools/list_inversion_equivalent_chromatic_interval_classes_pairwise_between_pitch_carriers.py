@@ -9,11 +9,11 @@ def list_inversion_equivalent_chromatic_interval_classes_pairwise_between_pitch_
 
     List inversion-equivalent chromatic interval-classes pairwise between `pitch_carriers`::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
+        >>> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8
             d'8
@@ -27,14 +27,14 @@ def list_inversion_equivalent_chromatic_interval_classes_pairwise_between_pitch_
 
     ::
 
-        abjad> pitchtools.list_inversion_equivalent_chromatic_interval_classes_pairwise_between_pitch_carriers(staff, wrap = False)
+        >>> pitchtools.list_inversion_equivalent_chromatic_interval_classes_pairwise_between_pitch_carriers(staff, wrap = False)
         [InversionEquivalentChromaticIntervalClass(2), InversionEquivalentChromaticIntervalClass(2), InversionEquivalentChromaticIntervalClass(1),
         InversionEquivalentChromaticIntervalClass(2), InversionEquivalentChromaticIntervalClass(2), InversionEquivalentChromaticIntervalClass(2),
         InversionEquivalentChromaticIntervalClass(1)]
 
     ::
 
-        abjad> pitchtools.list_inversion_equivalent_chromatic_interval_classes_pairwise_between_pitch_carriers(staff, wrap = True)
+        >>> pitchtools.list_inversion_equivalent_chromatic_interval_classes_pairwise_between_pitch_carriers(staff, wrap = True)
         [InversionEquivalentChromaticIntervalClass(2), InversionEquivalentChromaticIntervalClass(2), InversionEquivalentChromaticIntervalClass(1),
         InversionEquivalentChromaticIntervalClass(2), InversionEquivalentChromaticIntervalClass(2), InversionEquivalentChromaticIntervalClass(2),
         InversionEquivalentChromaticIntervalClass(1), InversionEquivalentChromaticIntervalClass(0)]
@@ -42,21 +42,21 @@ def list_inversion_equivalent_chromatic_interval_classes_pairwise_between_pitch_
 
     ::
 
-        abjad> notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8"), Note("g'8"), Note("a'8"), Note("b'8"), Note("c''8")]
-        abjad> notes.reverse()
-        abjad> notes
+        >>> notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8"), Note("g'8"), Note("a'8"), Note("b'8"), Note("c''8")]
+        >>> notes.reverse()
+        >>> notes
         [Note("c''8"), Note("b'8"), Note("a'8"), Note("g'8"), Note("f'8"), Note("e'8"), Note("d'8"), Note("c'8")]
 
     ::
 
-        abjad> pitchtools.list_inversion_equivalent_chromatic_interval_classes_pairwise_between_pitch_carriers(notes, wrap = False)
+        >>> pitchtools.list_inversion_equivalent_chromatic_interval_classes_pairwise_between_pitch_carriers(notes, wrap = False)
         [InversionEquivalentChromaticIntervalClass(1), InversionEquivalentChromaticIntervalClass(2), InversionEquivalentChromaticIntervalClass(2),
         InversionEquivalentChromaticIntervalClass(2), InversionEquivalentChromaticIntervalClass(1), InversionEquivalentChromaticIntervalClass(2),
         InversionEquivalentChromaticIntervalClass(2)]
 
     ::
 
-        abjad> pitchtools.list_inversion_equivalent_chromatic_interval_classes_pairwise_between_pitch_carriers(notes, wrap = True)
+        >>> pitchtools.list_inversion_equivalent_chromatic_interval_classes_pairwise_between_pitch_carriers(notes, wrap = True)
         [InversionEquivalentChromaticIntervalClass(1), InversionEquivalentChromaticIntervalClass(2), InversionEquivalentChromaticIntervalClass(2),
         InversionEquivalentChromaticIntervalClass(2), InversionEquivalentChromaticIntervalClass(1), InversionEquivalentChromaticIntervalClass(2),
         InversionEquivalentChromaticIntervalClass(2), InversionEquivalentChromaticIntervalClass(0)]

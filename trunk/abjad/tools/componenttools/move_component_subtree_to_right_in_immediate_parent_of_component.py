@@ -6,12 +6,12 @@ def move_component_subtree_to_right_in_immediate_parent_of_component(component):
 
     Move `component` subtree to right in immediate parent of `component`::
 
-        abjad> t = Voice("c'8 d'8 e'8 f'8")
-        abjad> beamtools.BeamSpanner(t[:2])
+        >>> t = Voice("c'8 d'8 e'8 f'8")
+        >>> beamtools.BeamSpanner(t[:2])
         BeamSpanner(c'8, d'8)
-        abjad> beamtools.BeamSpanner(t[2:])
+        >>> beamtools.BeamSpanner(t[2:])
         BeamSpanner(e'8, f'8)
-        abjad> f(t)
+        >>> f(t)
         \new Voice {
             c'8 [
             d'8 ]
@@ -21,8 +21,8 @@ def move_component_subtree_to_right_in_immediate_parent_of_component(component):
 
     ::
 
-        abjad> componenttools.move_component_subtree_to_right_in_immediate_parent_of_component(t[1])
-        abjad> f(t)
+        >>> componenttools.move_component_subtree_to_right_in_immediate_parent_of_component(t[1])
+        >>> f(t)
         \new Voice {
             c'8 [
             e'8 ]
@@ -39,12 +39,12 @@ def move_component_subtree_to_right_in_immediate_parent_of_component(component):
 
     ::
 
-        abjad> voice = Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
-        abjad> beamtools.BeamSpanner(voice.leaves[:4])
+        >>> voice = Voice(tuplettools.FixedDurationTuplet(Duration(2, 8), notetools.make_repeated_notes(3)) * 2)
+        >>> beamtools.BeamSpanner(voice.leaves[:4])
         BeamSpanner(c'8, c'8, c'8, c'8)
-        abjad> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(voice)
-        abjad> componenttools.move_component_subtree_to_right_in_immediate_parent_of_component(voice[0])
-        abjad> f(voice)
+        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(voice)
+        >>> componenttools.move_component_subtree_to_right_in_immediate_parent_of_component(voice[0])
+        >>> f(voice)
         \new Voice {
             \times 2/3 {
                 f'8 ]
@@ -57,7 +57,7 @@ def move_component_subtree_to_right_in_immediate_parent_of_component(component):
                 e'8
             }
         }
-        abjad> componenttools.is_well_formed_component(voice)
+        >>> componenttools.is_well_formed_component(voice)
         False
 
     Preserve spanners.

@@ -103,14 +103,14 @@ class ResidueClassExpression(_BaseResidueClass):
 
         Example::
 
-            abjad> from abjad.tools.sievetools import ResidueClass as RC
+            >>> from abjad.tools.sievetools import ResidueClass as RC
 
         ::
 
-            abjad> e = RC(3, 0) | RC(2, 0)
-            abjad> e.get_boolean_train(6)
+            >>> e = RC(3, 0) | RC(2, 0)
+            >>> e.get_boolean_train(6)
             [1, 0, 1, 1, 1, 0]
-            abjad> e.get_congruent_bases(-6, 6)
+            >>> e.get_congruent_bases(-6, 6)
             [-6, -4, -3, -2, 0, 2, 3, 4, 6]
 
         Return list.
@@ -135,14 +135,14 @@ class ResidueClassExpression(_BaseResidueClass):
 
         Example::
 
-            abjad> from abjad.tools.sievetools import ResidueClass as RC
+            >>> from abjad.tools.sievetools import ResidueClass as RC
 
         ::
 
-            abjad> e = RC(3, 0) | RC(2, 0)
-            abjad> e.get_congruent_bases(6)
+            >>> e = RC(3, 0) | RC(2, 0)
+            >>> e.get_congruent_bases(6)
             [0, 2, 3, 4, 6]
-            abjad> e.get_congruent_bases(-6, 6)
+            >>> e.get_congruent_bases(-6, 6)
             [-6, -4, -3, -2, 0, 2, 3, 4, 6]
 
         Return list.

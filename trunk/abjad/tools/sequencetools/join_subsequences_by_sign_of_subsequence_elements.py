@@ -6,18 +6,18 @@ def join_subsequences_by_sign_of_subsequence_elements(sequence):
 
     Join subsequences in `sequence` by sign::
 
-        abjad> from abjad.tools import sequencetools
+        >>> from abjad.tools import sequencetools
 
     ::
 
-        abjad> sequence = [[1, 2], [3, 4], [-5, -6, -7], [-8, -9, -10], [11, 12]]
-        abjad> sequencetools.join_subsequences_by_sign_of_subsequence_elements(sequence)
+        >>> sequence = [[1, 2], [3, 4], [-5, -6, -7], [-8, -9, -10], [11, 12]]
+        >>> sequencetools.join_subsequences_by_sign_of_subsequence_elements(sequence)
         [[1, 2, 3, 4], [-5, -6, -7, -8, -9, -10], [11, 12]]
 
     ::
 
-        abjad> sequence = [[1, 2], [], [], [3, 4, 5], [6, 7]]
-        abjad> sequencetools.join_subsequences_by_sign_of_subsequence_elements(sequence)
+        >>> sequence = [[1, 2], [], [], [3, 4, 5], [6, 7]]
+        >>> sequencetools.join_subsequences_by_sign_of_subsequence_elements(sequence)
         [[1, 2], [], [3, 4, 5, 6, 7]]
 
     Return newly constructed list.

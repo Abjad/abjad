@@ -6,7 +6,7 @@ def chromatic_pitch_name_to_chromatic_pitch_class_name(chromatic_pitch_name):
 
     Change `chromatic_pitch_name` to chromatic pitch-class name::
 
-        abjad> pitchtools.chromatic_pitch_name_to_chromatic_pitch_class_name("cs''")
+        >>> pitchtools.chromatic_pitch_name_to_chromatic_pitch_class_name("cs''")
         'cs'
 
     Return string.

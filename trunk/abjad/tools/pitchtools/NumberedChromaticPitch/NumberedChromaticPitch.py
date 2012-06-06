@@ -7,7 +7,7 @@ class NumberedChromaticPitch(ChromaticPitchObject, NumberedPitchObject):
 
     Abjad model of a numbered chromatic pitch::
 
-        abjad> pitchtools.NumberedChromaticPitch(13)
+        >>> pitchtools.NumberedChromaticPitch(13)
         NumberedChromaticPitch(13)
 
     Numbered chromatic pitches are immutable.
@@ -82,7 +82,7 @@ class NumberedChromaticPitch(ChromaticPitchObject, NumberedPitchObject):
     def chromatic_pitch_number(self):
         '''Read-only chromatic pitch-class number::
 
-            abjad> pitchtools.NumberedChromaticPitch(13).chromatic_pitch_number
+            >>> pitchtools.NumberedChromaticPitch(13).chromatic_pitch_number
             13
 
         Return integer or float.
@@ -93,7 +93,7 @@ class NumberedChromaticPitch(ChromaticPitchObject, NumberedPitchObject):
     def diatonic_pitch_class_number(self):
         '''Read-only diatonic pitch-class number::
 
-            abjad> pitchtools.NumberedChromaticPitch(13).diatonic_pitch_class_number
+            >>> pitchtools.NumberedChromaticPitch(13).diatonic_pitch_class_number
             0
 
         Return integer.
@@ -106,7 +106,7 @@ class NumberedChromaticPitch(ChromaticPitchObject, NumberedPitchObject):
     def diatonic_pitch_number(self):
         '''Read-only diatonic pitch-class number::
 
-            abjad> pitchtools.NumberedChromaticPitch(13).diatonic_pitch_number
+            >>> pitchtools.NumberedChromaticPitch(13).diatonic_pitch_number
             7
 
         Return integer.
@@ -119,7 +119,7 @@ class NumberedChromaticPitch(ChromaticPitchObject, NumberedPitchObject):
     def apply_accidental(self, accidental = None):
         '''Apply `accidental`::
 
-            abjad> pitchtools.NumberedChromaticPitch(13).apply_accidental('flat')
+            >>> pitchtools.NumberedChromaticPitch(13).apply_accidental('flat')
             NumberedChromaticPitch(12)
 
         Return numbered chromatic pitch.
@@ -132,7 +132,7 @@ class NumberedChromaticPitch(ChromaticPitchObject, NumberedPitchObject):
     def transpose(self, n = 0):
         '''Tranpose by `n` semitones::
 
-            abjad> pitchtools.NumberedChromaticPitch(13).transpose(1)
+            >>> pitchtools.NumberedChromaticPitch(13).transpose(1)
             NumberedChromaticPitch(14)
 
         Return numbered chromatic pitch.

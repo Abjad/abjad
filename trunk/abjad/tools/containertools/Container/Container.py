@@ -8,8 +8,8 @@ class Container(Component):
 
     ::
 
-        abjad> container = Container("c'8 d'8 e'8 f'8")
-        abjad> f(container)
+        >>> container = Container("c'8 d'8 e'8 f'8")
+        >>> f(container)
         {
             c'8
             d'8
@@ -297,11 +297,11 @@ class Container(Component):
         def fget(self):
             r'''Get parallel container::
 
-                abjad> container = Container([Voice("c'8 d'8 e'8"), Voice('g4.')])
+                >>> container = Container([Voice("c'8 d'8 e'8"), Voice('g4.')])
 
             ::
 
-                abjad> f(container)
+                >>> f(container)
                 {
                     \new Voice {
                         c'8
@@ -315,18 +315,18 @@ class Container(Component):
 
             ::
 
-                abjad> container.is_parallel
+                >>> container.is_parallel
                 False
 
             Return boolean.
 
             Set parallel container::
 
-                abjad> container.is_parallel = True
+                >>> container.is_parallel = True
 
             ::
 
-                abjad> f(container)
+                >>> f(container)
                 <<
                     \new Voice {
                         c'8
@@ -356,11 +356,11 @@ class Container(Component):
     def leaves(self):
         '''Read-only tuple of leaves in container::
 
-            abjad> container = Container("c'8 d'8 e'8")
+            >>> container = Container("c'8 d'8 e'8")
 
         ::
 
-            abjad> container.leaves
+            >>> container.leaves
             (Note("c'8"), Note("d'8"), Note("e'8"))
 
         Return tuple of zero or more leaves.
@@ -372,11 +372,11 @@ class Container(Component):
     def music(self):
         '''Read-only tuple of components in container::
 
-            abjad> container = Container("c'8 d'8 e'8")
+            >>> container = Container("c'8 d'8 e'8")
 
         ::
 
-            abjad> container.music
+            >>> container.music
             (Note("c'8"), Note("d'8"), Note("e'8"))
 
         Return tuple or zero or more components.
@@ -442,12 +442,12 @@ class Container(Component):
     def append(self, component):
         r'''Append `component` to container::
 
-            abjad> container = Container("c'8 d'8 e'8")
-            abjad> beam = beamtools.BeamSpanner(container.music)
+            >>> container = Container("c'8 d'8 e'8")
+            >>> beam = beamtools.BeamSpanner(container.music)
 
         ::
 
-            abjad> f(container)
+            >>> f(container)
             {
                 c'8 [
                 d'8
@@ -456,11 +456,11 @@ class Container(Component):
 
         ::
 
-            abjad> container.append(Note("f'8"))
+            >>> container.append(Note("f'8"))
 
         ::
 
-            abjad> f(container)
+            >>> f(container)
             {
                 c'8 [
                 d'8
@@ -477,12 +477,12 @@ class Container(Component):
     def extend(self, expr):
         '''Extend `expr` against container::
 
-            abjad> container = Container("c'8 d'8 e'8")
-            abjad> beam = beamtools.BeamSpanner(container.music)
+            >>> container = Container("c'8 d'8 e'8")
+            >>> beam = beamtools.BeamSpanner(container.music)
 
         ::
 
-            abjad> f(container)
+            >>> f(container)
             {
                 c'8 [
                 d'8
@@ -491,11 +491,11 @@ class Container(Component):
 
         ::
 
-            abjad> container.extend([Note("cs'8"), Note("ds'8"), Note("es'8")])
+            >>> container.extend([Note("cs'8"), Note("ds'8"), Note("es'8")])
 
         ::
 
-            abjad> f(container)
+            >>> f(container)
             {
                 c'8 [
                 d'8
@@ -518,17 +518,17 @@ class Container(Component):
     def index(self, component):
         '''Index `component` in container::
 
-            abjad> container = Container("c'8 d'8 e'8")
+            >>> container = Container("c'8 d'8 e'8")
 
         ::
 
-            abjad> note = container[-1]
-            abjad> note
+            >>> note = container[-1]
+            >>> note
             Note("e'8")
 
         ::
 
-            abjad> container.index(note)
+            >>> container.index(note)
             2
 
         Return nonnegative integer.
@@ -542,12 +542,12 @@ class Container(Component):
     def insert(self, i, component):
         '''Insert `component` in container at index `i`::
 
-            abjad> container = Container("c'8 d'8 e'8")
-            abjad> beam = beamtools.BeamSpanner(container.music)
+            >>> container = Container("c'8 d'8 e'8")
+            >>> beam = beamtools.BeamSpanner(container.music)
 
         ::
 
-            abjad> f(container)
+            >>> f(container)
             {
                 c'8 [
                 d'8
@@ -556,11 +556,11 @@ class Container(Component):
 
         ::
 
-            abjad> container.insert(1, Note("cs'8"))
+            >>> container.insert(1, Note("cs'8"))
 
         ::
 
-            abjad> f(container)
+            >>> f(container)
             {
                 c'8 [
                 cs'8
@@ -577,12 +577,12 @@ class Container(Component):
     def pop(self, i = -1):
         '''Pop component at index `i` from container::
 
-            abjad> container = Container("c'8 d'8 e'8")
-            abjad> beam = beamtools.BeamSpanner(container.music)
+            >>> container = Container("c'8 d'8 e'8")
+            >>> beam = beamtools.BeamSpanner(container.music)
 
         ::
 
-            abjad> f(container)
+            >>> f(container)
             {
                 c'8 [
                 d'8
@@ -591,12 +591,12 @@ class Container(Component):
 
         ::
 
-            abjad> container.pop(-1)
+            >>> container.pop(-1)
             Note("e'8")
 
         ::
 
-            abjad> f(container)
+            >>> f(container)
             {
                 c'8 [
                 d'8 ]
@@ -611,12 +611,12 @@ class Container(Component):
     def remove(self, component):
         '''Remove `component` from container::
 
-            abjad> container = Container("c'8 d'8 e'8")
-            abjad> beam = beamtools.BeamSpanner(container.music)
+            >>> container = Container("c'8 d'8 e'8")
+            >>> beam = beamtools.BeamSpanner(container.music)
 
         ::
 
-            abjad> f(container)
+            >>> f(container)
             {
                 c'8 [
                 d'8
@@ -625,17 +625,17 @@ class Container(Component):
 
         ::
 
-            abjad> note = container[-1]
-            abjad> note
+            >>> note = container[-1]
+            >>> note
             Note("e'8")
 
         ::
 
-            abjad> container.remove(note)
+            >>> container.remove(note)
 
         ::
 
-            abjad> f(container)
+            >>> f(container)
             {
                 c'8 [
                 d'8 ]

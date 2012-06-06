@@ -7,13 +7,13 @@ def is_component_with_clef_mark_attached(expr):
 
     True when `expr` is a component with clef mark attached::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> contexttools.ClefMark('treble')(staff)
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> contexttools.ClefMark('treble')(staff)
         ClefMark('treble')(Staff{4})
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             \clef "treble"
             c'8
@@ -24,12 +24,12 @@ def is_component_with_clef_mark_attached(expr):
 
     ::
 
-        abjad> contexttools.is_component_with_clef_mark_attached(staff)
+        >>> contexttools.is_component_with_clef_mark_attached(staff)
         True
 
     False otherwise:
 
-        abjad> contexttools.is_component_with_clef_mark_attached(staff[0])
+        >>> contexttools.is_component_with_clef_mark_attached(staff[0])
         False
 
     Return boolean.

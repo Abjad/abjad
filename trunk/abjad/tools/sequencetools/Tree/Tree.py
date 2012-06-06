@@ -14,92 +14,92 @@ class Tree(AbjadObject):
     
     ::
 
-        abjad> from abjad.tools import sequencetools
+        >>> from abjad.tools import sequencetools
 
     Here is a tree::
 
-        abjad> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-        abjad> tree = sequencetools.Tree(sequence)
+        >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
+        >>> tree = sequencetools.Tree(sequence)
 
     ::
 
-        abjad> tree
+        >>> tree
         Tree([[0, 1], [2, 3], [4, 5], [6, 7]])
 
     ::
 
-        abjad> tree.parent is None
+        >>> tree.parent is None
         True
 
     ::
 
-        abjad> tree.children
+        >>> tree.children
         (Tree([0, 1]), Tree([2, 3]), Tree([4, 5]), Tree([6, 7]))
 
     ::
 
-        abjad> tree.depth
+        >>> tree.depth
         3
 
     Here's an internal node::
 
-        abjad> tree[2]
+        >>> tree[2]
         Tree([4, 5])
 
     ::
 
-        abjad> tree[2].parent
+        >>> tree[2].parent
         Tree([[0, 1], [2, 3], [4, 5], [6, 7]])
 
     ::
 
-        abjad> tree[2].children
+        >>> tree[2].children
         (Tree(4), Tree(5))
 
     ::
 
-        abjad> tree[2].depth
+        >>> tree[2].depth
         2
 
     ::
 
-        abjad> tree[2].level
+        >>> tree[2].level
         1
 
     Here's a leaf node::
 
 
-        abjad> tree[2][0]
+        >>> tree[2][0]
         Tree(4)
 
     ::
 
-        abjad> tree[2][0].parent
+        >>> tree[2][0].parent
         Tree([4, 5])
 
     ::
 
-        abjad> tree[2][0].children
+        >>> tree[2][0].children
         ()
 
     ::
 
-        abjad> tree[2][0].depth
+        >>> tree[2][0].depth
         1
 
     ::
 
-        abjad> tree[2][0].level
+        >>> tree[2][0].level
         2
 
     ::
 
-        abjad> tree[2][0].position
+        >>> tree[2][0].position
         (2, 0)
 
     ::
 
-        abjad> tree[2][0].payload
+        >>> tree[2][0].payload
         4
 
     Only leaf nodes carry payload. Internal nodes carry no payload.
@@ -207,12 +207,12 @@ class Tree(AbjadObject):
 
         Children of node::
 
-            abjad> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            abjad> tree = sequencetools.Tree(sequence)
+            >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
+            >>> tree = sequencetools.Tree(sequence)
 
         ::
 
-            abjad> tree[1].children
+            >>> tree[1].children
             (Tree(2), Tree(3))
 
         Return tuple of zero or more nodes.
@@ -225,12 +225,12 @@ class Tree(AbjadObject):
 
         Depth of subtree::
 
-            abjad> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            abjad> tree = sequencetools.Tree(sequence)
+            >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
+            >>> tree = sequencetools.Tree(sequence)
 
         ::
 
-            abjad> tree[1].depth
+            >>> tree[1].depth
             2
 
         Return nonnegative integer.
@@ -246,12 +246,12 @@ class Tree(AbjadObject):
 
         Improper parentage of node::
 
-            abjad> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            abjad> tree = sequencetools.Tree(sequence)
+            >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
+            >>> tree = sequencetools.Tree(sequence)
 
         ::
 
-            abjad> tree[1].improper_parentage
+            >>> tree[1].improper_parentage
             (Tree([2, 3]), Tree([[0, 1], [2, 3], [4, 5], [6, 7]]))
 
         Return tuple of one or more nodes.
@@ -269,12 +269,12 @@ class Tree(AbjadObject):
 
         Index of node in parent::
 
-            abjad> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            abjad> tree = sequencetools.Tree(sequence)
+            >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
+            >>> tree = sequencetools.Tree(sequence)
 
         ::
 
-            abjad> tree[1].index_in_parent
+            >>> tree[1].index_in_parent
             1
 
         Return nonnegative integer.
@@ -290,12 +290,12 @@ class Tree(AbjadObject):
 
         Level of node::
 
-            abjad> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            abjad> tree = sequencetools.Tree(sequence)
+            >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
+            >>> tree = sequencetools.Tree(sequence)
 
         ::
 
-            abjad> tree[1].level
+            >>> tree[1].level
             1
 
         Return nonnegative integer.
@@ -308,12 +308,12 @@ class Tree(AbjadObject):
 
         Negative level of node::
 
-            abjad> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            abjad> tree = sequencetools.Tree(sequence)
+            >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
+            >>> tree = sequencetools.Tree(sequence)
 
         ::
 
-            abjad> tree[1].negative_level
+            >>> tree[1].negative_level
             -2
 
         Return negative integer.
@@ -326,12 +326,12 @@ class Tree(AbjadObject):
 
         Position of node relative to root::
 
-            abjad> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            abjad> tree = sequencetools.Tree(sequence)
+            >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
+            >>> tree = sequencetools.Tree(sequence)
 
         ::
 
-            abjad> tree[1].position
+            >>> tree[1].position
             (1,)
 
         Return tuple of zero or more nonnegative integers.
@@ -349,12 +349,12 @@ class Tree(AbjadObject):
 
         Proper parentage of node::
 
-            abjad> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            abjad> tree = sequencetools.Tree(sequence)
+            >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
+            >>> tree = sequencetools.Tree(sequence)
 
         ::
 
-            abjad> tree[1].proper_parentage
+            >>> tree[1].proper_parentage
             (Tree([[0, 1], [2, 3], [4, 5], [6, 7]]),)
 
 
@@ -368,12 +368,12 @@ class Tree(AbjadObject):
 
         Root of tree::
 
-            abjad> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            abjad> tree = sequencetools.Tree(sequence)
+            >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
+            >>> tree = sequencetools.Tree(sequence)
 
         ::
 
-            abjad> tree[1].proper_parentage
+            >>> tree[1].proper_parentage
             (Tree([[0, 1], [2, 3], [4, 5], [6, 7]]),)
 
         Return node.
@@ -386,12 +386,12 @@ class Tree(AbjadObject):
     
         Number of leaves in subtree::
 
-            abjad> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            abjad> tree = sequencetools.Tree(sequence)
+            >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
+            >>> tree = sequencetools.Tree(sequence)
 
         ::
 
-            abjad> tree[1].width
+            >>> tree[1].width
             2
 
         Return nonnegative integer.
@@ -451,31 +451,31 @@ class Tree(AbjadObject):
 
         ::
 
-            abjad> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            abjad> tree = sequencetools.Tree(sequence)
+            >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
+            >>> tree = sequencetools.Tree(sequence)
 
         With nonnegative `level`:
 
         Get next 4 nodes at level 2::
 
-            abjad> tree[0][0].get_next_n_complete_nodes_at_level(4, 2)
+            >>> tree[0][0].get_next_n_complete_nodes_at_level(4, 2)
             [Tree(1), Tree(2), Tree(3), Tree(4)]
 
         Get next 3 nodes at level 1::
 
-            abjad> tree[0][0].get_next_n_complete_nodes_at_level(3, 1)
+            >>> tree[0][0].get_next_n_complete_nodes_at_level(3, 1)
             [Tree([1]), Tree([2, 3]), Tree([4, 5]), Tree([6, 7])]
 
         With negative `level`:
         
         Get next 4 nodes at level -1::
 
-            abjad> tree[0][0].get_next_n_complete_nodes_at_level(4, -1)
+            >>> tree[0][0].get_next_n_complete_nodes_at_level(4, -1)
             [Tree(1), Tree(2), Tree(3), Tree(4)]
 
         Get next 3 nodes at level -2::
 
-            abjad> tree[0][0].get_next_n_complete_nodes_at_level(3, -2)
+            >>> tree[0][0].get_next_n_complete_nodes_at_level(3, -2)
             [Tree([1]), Tree([2, 3]), Tree([4, 5]), Tree([6, 7])]
 
         Trim first node if necessary.
@@ -491,36 +491,36 @@ class Tree(AbjadObject):
 
         ::
 
-            abjad> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            abjad> tree = sequencetools.Tree(sequence)
+            >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
+            >>> tree = sequencetools.Tree(sequence)
 
         With nonnegative `level`:
 
         Get next 4 nodes at level 2::
 
-            abjad> tree[0][0].get_next_n_nodes_at_level(4, 2)
+            >>> tree[0][0].get_next_n_nodes_at_level(4, 2)
             [Tree(1), Tree(2), Tree(3), Tree(4)]
 
         Get next 3 nodes at level 1::
 
-            abjad> tree[0][0].get_next_n_nodes_at_level(3, 1)
+            >>> tree[0][0].get_next_n_nodes_at_level(3, 1)
             [Tree([1]), Tree([2, 3]), Tree([4, 5])]
 
         Get next node at level 0::
 
-            abjad> tree[0][0].get_next_n_nodes_at_level(1, 0)
+            >>> tree[0][0].get_next_n_nodes_at_level(1, 0)
             [Tree([[1], [2, 3], [4, 5], [6, 7]])]
 
         With negative `level`:
         
         Get next 4 nodes at level -1::
 
-            abjad> tree[0][0].get_next_n_nodes_at_level(4, -1)
+            >>> tree[0][0].get_next_n_nodes_at_level(4, -1)
             [Tree(1), Tree(2), Tree(3), Tree(4)]
 
         Get next 3 nodes at level -2::
 
-            abjad> tree[0][0].get_next_n_nodes_at_level(3, -2)
+            >>> tree[0][0].get_next_n_nodes_at_level(3, -2)
             [Tree([1]), Tree([2, 3]), Tree([4, 5])]
 
         Trim first node if necessary.
@@ -534,12 +534,12 @@ class Tree(AbjadObject):
 
         Get node at `position`::
 
-            abjad> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            abjad> tree = sequencetools.Tree(sequence)
+            >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
+            >>> tree = sequencetools.Tree(sequence)
 
         ::
 
-            abjad> tree.get_node_at_position((2, 1))
+            >>> tree.get_node_at_position((2, 1))
             Tree(5)
 
         Return node.
@@ -554,12 +554,12 @@ class Tree(AbjadObject):
 
         Get position of `descendent` relative to node rather than relative to root::
 
-            abjad> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            abjad> tree = sequencetools.Tree(sequence)
+            >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
+            >>> tree = sequencetools.Tree(sequence)
 
         ::
 
-            abjad> tree[3].get_position_of_descendant(tree[3][0])
+            >>> tree[3].get_position_of_descendant(tree[3][0])
             (0,)
 
         Return tuple of zero or more nonnegative integers.
@@ -574,17 +574,17 @@ class Tree(AbjadObject):
 
         True when node is at `level` in tree::
 
-            abjad> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            abjad> tree = sequencetools.Tree(sequence)
+            >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
+            >>> tree = sequencetools.Tree(sequence)
 
         ::
 
-            abjad> tree[1][1].is_at_level(-1)
+            >>> tree[1][1].is_at_level(-1)
             True
 
         False otherwise::
 
-            abjad> tree[1][1].is_at_level(0)
+            >>> tree[1][1].is_at_level(0)
             False
 
         Return boolean.
@@ -601,18 +601,18 @@ class Tree(AbjadObject):
 
         Iterate depth at `level`::
 
-            abjad> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            abjad> tree = sequencetools.Tree(sequence)
+            >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
+            >>> tree = sequencetools.Tree(sequence)
 
         ::
 
-            abjad> for x in tree.iterate_at_level(0): x
+            >>> for x in tree.iterate_at_level(0): x
             ... 
             Tree([[0, 1], [2, 3], [4, 5], [6, 7]])
 
         ::
 
-            abjad> for x in tree.iterate_at_level(1): x
+            >>> for x in tree.iterate_at_level(1): x
             ... 
             Tree([0, 1])
             Tree([2, 3])
@@ -621,7 +621,7 @@ class Tree(AbjadObject):
 
         ::
 
-            abjad> for x in tree.iterate_at_level(2): x
+            >>> for x in tree.iterate_at_level(2): x
             ... 
             Tree(0)
             Tree(1)
@@ -634,7 +634,7 @@ class Tree(AbjadObject):
 
         ::
 
-            abjad> for x in tree.iterate_at_level(-1): x
+            >>> for x in tree.iterate_at_level(-1): x
             ... 
             Tree(0)
             Tree(1)
@@ -647,7 +647,7 @@ class Tree(AbjadObject):
 
         ::
 
-            abjad> for x in tree.iterate_at_level(-2): x
+            >>> for x in tree.iterate_at_level(-2): x
             ... 
             Tree([0, 1])
             Tree([2, 3])
@@ -656,7 +656,7 @@ class Tree(AbjadObject):
 
         ::
 
-            abjad> for x in tree.iterate_at_level(-3): x
+            >>> for x in tree.iterate_at_level(-3): x
             ... 
             Tree([[0, 1], [2, 3], [4, 5], [6, 7]])
 
@@ -675,12 +675,12 @@ class Tree(AbjadObject):
 
         Iterate tree depth-first::
 
-            abjad> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            abjad> tree = sequencetools.Tree(sequence)
+            >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
+            >>> tree = sequencetools.Tree(sequence)
 
         ::
 
-            abjad> for node in tree.iterate_depth_first(): node
+            >>> for node in tree.iterate_depth_first(): node
             ... 
             Tree([[0, 1], [2, 3], [4, 5], [6, 7]])
             Tree([0, 1])
@@ -708,12 +708,12 @@ class Tree(AbjadObject):
 
         Iterate tree payload::
 
-            abjad> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            abjad> tree = sequencetools.Tree(sequence)
+            >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
+            >>> tree = sequencetools.Tree(sequence)
 
         ::
 
-            abjad> for element in tree.iterate_payload():
+            >>> for element in tree.iterate_payload():
             ...     element
             ... 
             0
@@ -735,16 +735,16 @@ class Tree(AbjadObject):
 
         Remove `node` from tree::
 
-            abjad> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            abjad> tree = sequencetools.Tree(sequence)
+            >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
+            >>> tree = sequencetools.Tree(sequence)
 
         ::
 
-            abjad> tree.remove(tree[1])
+            >>> tree.remove(tree[1])
 
         ::
 
-            abjad> tree
+            >>> tree
             Tree([[0, 1], [4, 5], [6, 7]])
 
         Return none.
@@ -757,27 +757,27 @@ class Tree(AbjadObject):
 
         Remove node and all nodes left of node to root::
 
-            abjad> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
+            >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
 
         ::
 
-            abjad> tree = sequencetools.Tree(sequence)
-            abjad> tree[0][0].remove_to_root()
-            abjad> tree
+            >>> tree = sequencetools.Tree(sequence)
+            >>> tree[0][0].remove_to_root()
+            >>> tree
             Tree([[1], [2, 3], [4, 5], [6, 7]])
 
         ::
 
-            abjad> tree = sequencetools.Tree(sequence)
-            abjad> tree[0][1].remove_to_root()
-            abjad> tree
+            >>> tree = sequencetools.Tree(sequence)
+            >>> tree[0][1].remove_to_root()
+            >>> tree
             Tree([[2, 3], [4, 5], [6, 7]])
 
         ::
 
-            abjad> tree = sequencetools.Tree(sequence)
-            abjad> tree[1].remove_to_root()
-            abjad> tree
+            >>> tree = sequencetools.Tree(sequence)
+            >>> tree[1].remove_to_root()
+            >>> tree
             Tree([[4, 5], [6, 7]])
 
         Modify in-place to root.
@@ -808,17 +808,17 @@ class Tree(AbjadObject):
 
         Change tree to nested lists::
 
-            abjad> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
-            abjad> tree = sequencetools.Tree(sequence)
+            >>> sequence = [[0, 1], [2, 3], [4, 5], [6, 7]]
+            >>> tree = sequencetools.Tree(sequence)
 
         ::
 
-            abjad> tree
+            >>> tree
             Tree([[0, 1], [2, 3], [4, 5], [6, 7]])
 
         ::
 
-            abjad> tree.to_nested_lists()
+            >>> tree.to_nested_lists()
             [[0, 1], [2, 3], [4, 5], [6, 7]]
 
         Return list of lists.

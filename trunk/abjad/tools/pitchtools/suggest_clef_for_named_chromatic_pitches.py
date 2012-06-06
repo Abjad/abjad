@@ -8,8 +8,8 @@ def suggest_clef_for_named_chromatic_pitches(pitches):
 
     Suggest clef for named chromatic `pitches`::
 
-        abjad> staff = Staff(notetools.make_notes(range(-12, -6), [(1, 4)]))
-        abjad> pitchtools.suggest_clef_for_named_chromatic_pitches(staff)
+        >>> staff = Staff(notetools.make_notes(range(-12, -6), [(1, 4)]))
+        >>> pitchtools.suggest_clef_for_named_chromatic_pitches(staff)
         ClefMark('bass')
 
     Suggest clef based on minimal number of ledger lines.

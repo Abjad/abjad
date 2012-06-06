@@ -6,12 +6,12 @@ def replace_leaves_in_expr_with_rests(expr):
 
     Replace leaves in `expr` with rests::
 
-        abjad> staff = Staff(Measure((2, 8), "c'8 d'8") * 2)
-        abjad> resttools.replace_leaves_in_expr_with_rests(staff[0])
+        >>> staff = Staff(Measure((2, 8), "c'8 d'8") * 2)
+        >>> resttools.replace_leaves_in_expr_with_rests(staff[0])
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             {
                 \time 2/8

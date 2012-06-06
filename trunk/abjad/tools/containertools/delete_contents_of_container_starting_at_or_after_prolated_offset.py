@@ -6,13 +6,13 @@ def delete_contents_of_container_starting_at_or_after_prolated_offset(container,
 
     Delete contents of `container` starting at or after `prolated_offset`::
 
-        abjad> staff = Staff("c'8 d'8 e'8 f'8")
-        abjad> beamtools.BeamSpanner(staff.leaves)
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> beamtools.BeamSpanner(staff.leaves)
         BeamSpanner(c'8, d'8, e'8, f'8)
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8 [
             d'8
@@ -22,12 +22,12 @@ def delete_contents_of_container_starting_at_or_after_prolated_offset(container,
 
     ::
 
-        abjad> containertools.delete_contents_of_container_starting_at_or_after_prolated_offset(staff, Duration(1, 8))
+        >>> containertools.delete_contents_of_container_starting_at_or_after_prolated_offset(staff, Duration(1, 8))
         Staff{1}
 
     ::
 
-        abjad> f(staff)
+        >>> f(staff)
         \new Staff {
             c'8 [ ]
         }
