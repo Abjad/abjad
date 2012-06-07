@@ -550,6 +550,7 @@ Abjad composition packages
    :maxdepth: 1
 
    tools/lilypondfiletools/make_basic_lilypond_file
+   tools/lilypondfiletools/make_floating_time_signature_lilypond_file
    tools/lilypondfiletools/make_time_signature_context_block
 
 :py:mod:`marktools <abjad.tools.marktools>`
