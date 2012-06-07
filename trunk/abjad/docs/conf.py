@@ -25,12 +25,12 @@ import sys
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 extensions = [
-    'abjad.docs.ext.inheritance_diagram',
-    'sphinx.ext.autodoc',
     'sphinx.ext.todo',
     'sphinx.ext.coverage',
     'sphinx.ext.intersphinx',
     'sphinx.ext.viewcode',
+    'abjad.docs.ext.inheritance_diagram',
+    'abjad.docs.ext.autodoc',
 ]
 
 # For sphinx.ext.todo
