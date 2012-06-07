@@ -17,6 +17,10 @@ Methods
 
     Inherited from `__builtin__.dict`
 
+.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.fromkeys
+
+    Inherited from `__builtin__.dict`
+
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.get
 
     Inherited from `__builtin__.dict`

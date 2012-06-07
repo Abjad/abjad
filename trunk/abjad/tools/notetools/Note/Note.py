@@ -20,6 +20,10 @@ class Note(Leaf):
 
     __slots__ = ('_note_head', '_pitch', )
 
+    _default_mandatory_input_arguments = ("c'4", )
+
+    _repr_is_evaluable = True
+
     ### INITIALIZER ###
 
     def __init__(self, *args, **kwargs):
