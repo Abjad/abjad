@@ -1,5 +1,4 @@
 from abjad.tools import *
-import baca.library as library
 import os
 
 
@@ -14,7 +13,7 @@ def write_test_output(score, full_file_name, test_function_name,
     cache_ly=False, cache_pdf=False, go=False, render_pdf=False):
     if go: cache_ly = cache_pdf = render_pdf = True
     if not any([cache_ly, cache_pdf, render_pdf]): return
-    lilypond_file = library.apply_baca_letter_layout(score)
+    lilypond_file = lilypondfiletools.make_floating_time_signature_lilypond_file(score)
     parts = test_function_name.split('_')
     test_number = int(parts[-1])
     title_words = ' '.join(parts[1:-1])

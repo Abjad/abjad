@@ -1,7 +1,5 @@
 from abjad.tools import *
 from specificationtools.exceptions import *
-from baca.handlers.composites.CompositeRhythmHandler import CompositeRhythmHandler
-from baca.handlers.pitch.TimewisePitchClassHandler import TimewisePitchClassHandler
 from specificationtools.AttributeRetrievalIndicator import AttributeRetrievalIndicator
 from specificationtools.AttributeRetrievalRequest import AttributeRetrievalRequest
 from specificationtools.Callback import Callback
@@ -150,13 +148,13 @@ class SegmentSpecification(Specification):
     def get_rhythm_value(self, context_name, scope=None):
         '''Default to rest-filled tokens if explicit rhythm not found.
         '''
-        import baca.library as library
+        import specificationtools.library as library
         value, fresh = self.get_resolved_value_with_fresh('rhythm', context_name, scope=scope)
         if value is not None:
             return value, fresh
         return library.rest_filled_tokens, True
 
-    # TODO: remove this and just call sefl.settings.get_setting() directly
+    # TODO: remove this and just call self.settings.get_setting() directly
     def get_setting(self, **kwargs):
         '''Return unresolved setting.
         '''

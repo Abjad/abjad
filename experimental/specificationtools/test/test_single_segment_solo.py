@@ -1,7 +1,7 @@
 from abjad.tools import *
 from helpers import *
 from specificationtools import ScoreSpecification
-import baca.library as library
+import specificationtools.library as library
 
 
 def test_single_segment_solo_01():

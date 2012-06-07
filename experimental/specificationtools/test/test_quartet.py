@@ -2,7 +2,7 @@ from abjad.tools import *
 from helpers import read_test_output
 from helpers import write_test_output
 from specificationtools import ScoreSpecification
-import baca.library as library
+import specificationtools.library as library
 
 
 def test_quartet_01():
