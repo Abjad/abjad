@@ -1,5 +1,5 @@
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from baca.specificationtools.Callback import Callback
+from specificationtools.Callback import Callback
 
 
 class DivisionRetrievalRequest(AbjadObject):

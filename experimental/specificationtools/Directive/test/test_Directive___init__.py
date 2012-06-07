@@ -1,4 +1,4 @@
-from baca.specificationtools.Directive import Directive
+from specificationtools.Directive import Directive
 
 
 def test_Directive___init___01():

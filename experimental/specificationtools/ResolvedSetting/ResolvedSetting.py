@@ -1,4 +1,4 @@
-from baca.specificationtools.Setting import Setting
+from specificationtools.Setting import Setting
 
 
 class ResolvedSetting(Setting):

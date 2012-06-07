@@ -1,5 +1,5 @@
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from baca.specificationtools.Selection import Selection
+from specificationtools.Selection import Selection
 
 
 class MomentIndicator(AbjadObject):

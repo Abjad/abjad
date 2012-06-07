@@ -1,5 +1,5 @@
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from baca.specificationtools.AttributeRetrievalIndicator import AttributeRetrievalIndicator
+from specificationtools.AttributeRetrievalIndicator import AttributeRetrievalIndicator
 
 
 class AttributeRetrievalRequest(AbjadObject):

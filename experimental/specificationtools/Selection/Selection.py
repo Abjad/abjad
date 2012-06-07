@@ -1,5 +1,5 @@
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from baca.specificationtools.Scope import Scope
+from specificationtools.Scope import Scope
 
 
 class Selection(AbjadObject):

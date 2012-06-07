@@ -1,4 +1,4 @@
-from baca.specificationtools.exceptions import *
+from specificationtools.exceptions import *
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from collections import OrderedDict
 

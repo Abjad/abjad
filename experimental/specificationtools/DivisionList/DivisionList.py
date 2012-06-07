@@ -1,5 +1,5 @@
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from baca.specificationtools.Division import Division
+from specificationtools.Division import Division
 
 
 class DivisionList(AbjadObject):

@@ -1,16 +1,16 @@
 from abjad.tools import *
-from baca.specificationtools.AttributeRetrievalRequest import AttributeRetrievalRequest
-from baca.specificationtools.Division import Division
-from baca.specificationtools.DivisionList import DivisionList
-from baca.specificationtools.DivisionRetrievalRequest import DivisionRetrievalRequest
-from baca.specificationtools.ResolvedSetting import ResolvedSetting
-from baca.specificationtools.ScopedValue import ScopedValue
-from baca.specificationtools.SegmentInventory import SegmentInventory
-from baca.specificationtools.SegmentSpecification import SegmentSpecification
-from baca.specificationtools.Selection import Selection
-from baca.specificationtools.Specification import Specification
-from baca.specificationtools.StatalServerRequest import StatalServerRequest
-from baca.specificationtools.SettingInventory import SettingInventory
+from specificationtools.AttributeRetrievalRequest import AttributeRetrievalRequest
+from specificationtools.Division import Division
+from specificationtools.DivisionList import DivisionList
+from specificationtools.DivisionRetrievalRequest import DivisionRetrievalRequest
+from specificationtools.ResolvedSetting import ResolvedSetting
+from specificationtools.ScopedValue import ScopedValue
+from specificationtools.SegmentInventory import SegmentInventory
+from specificationtools.SegmentSpecification import SegmentSpecification
+from specificationtools.Selection import Selection
+from specificationtools.Specification import Specification
+from specificationtools.StatalServerRequest import StatalServerRequest
+from specificationtools.SettingInventory import SettingInventory
 import collections
 import copy
 

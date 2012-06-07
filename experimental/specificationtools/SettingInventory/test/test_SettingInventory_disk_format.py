@@ -1,7 +1,7 @@
 from abjad.tools import *
-from baca.specificationtools.SettingInventory import SettingInventory
-from baca.specificationtools.ScoreSpecification import ScoreSpecification
-from baca import specificationtools
+from specificationtools.SettingInventory import SettingInventory
+from specificationtools.ScoreSpecification import ScoreSpecification
+import specificationtools
 
 
 def test_SettingInventory_disk_format_01():

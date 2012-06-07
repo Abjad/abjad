@@ -1,6 +1,6 @@
 from abjad.tools import *
-from baca.specificationtools.SettingInventory import SettingInventory
-from baca.specificationtools.ScoreSpecification import ScoreSpecification
+from specificationtools.SettingInventory import SettingInventory
+from specificationtools.ScoreSpecification import ScoreSpecification
 
 
 def test_SettingInventory___init___01():

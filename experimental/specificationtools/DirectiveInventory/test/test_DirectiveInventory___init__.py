@@ -1,6 +1,6 @@
 from abjad.tools import *
-from baca.specificationtools.DirectiveInventory import DirectiveInventory
-from baca.specificationtools.ScoreSpecification import ScoreSpecification
+from specificationtools.DirectiveInventory import DirectiveInventory
+from specificationtools.ScoreSpecification import ScoreSpecification
 
 
 def test_DirectiveInventory___init___01():

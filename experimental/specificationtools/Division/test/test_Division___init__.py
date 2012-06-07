@@ -1,4 +1,4 @@
-from baca.specificationtools.Division import Division
+from specificationtools.Division import Division
 
 
 def test_Division___init___01():

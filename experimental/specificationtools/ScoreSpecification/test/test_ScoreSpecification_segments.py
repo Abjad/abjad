@@ -1,5 +1,5 @@
 from abjad.tools import *
-from baca.specificationtools.ScoreSpecification import ScoreSpecification
+from specificationtools.ScoreSpecification import ScoreSpecification
 
 
 def test_ScoreSpecification_segments_01():

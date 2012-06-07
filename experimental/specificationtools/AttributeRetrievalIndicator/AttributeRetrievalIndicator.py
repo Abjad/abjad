@@ -1,7 +1,7 @@
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from baca.specificationtools.AttributeNameEnumeration import AttributeNameEnumeration
-from baca.specificationtools.Scope import Scope
-from baca.specificationtools.Selection import Selection
+from specificationtools.AttributeNameEnumeration import AttributeNameEnumeration
+from specificationtools.Scope import Scope
+from specificationtools.Selection import Selection
 
 
 class AttributeRetrievalIndicator(AbjadObject):

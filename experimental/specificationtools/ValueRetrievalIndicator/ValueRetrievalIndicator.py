@@ -1,4 +1,4 @@
-from baca.specificationtools.AttributeRetrievalIndicator import AttributeRetrievalIndicator
+from specificationtools.AttributeRetrievalIndicator import AttributeRetrievalIndicator
 
 
 class ValueRetrievalIndicator(AttributeRetrievalIndicator):

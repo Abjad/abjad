@@ -1,5 +1,5 @@
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from baca.specificationtools.StatalServer import StatalServer
+from specificationtools.StatalServer import StatalServer
 
 
 class StatalServerRequest(AbjadObject):

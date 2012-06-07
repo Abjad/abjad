@@ -1,8 +1,8 @@
 from abjad.tools import *
-from baca.specificationtools.Directive import Directive
-from baca.specificationtools.DirectiveInventory import DirectiveInventory
-from baca.specificationtools.ScoreSpecification import ScoreSpecification
-from baca.specificationtools.Selection import Selection
+from specificationtools.Directive import Directive
+from specificationtools.DirectiveInventory import DirectiveInventory
+from specificationtools.ScoreSpecification import ScoreSpecification
+from specificationtools.Selection import Selection
 
 
 def test_DirectiveInventory___repr___01():

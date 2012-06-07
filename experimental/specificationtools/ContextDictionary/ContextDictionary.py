@@ -1,8 +1,8 @@
 from abjad.tools import contexttools
 from abjad.tools import scoretools
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from baca.specificationtools.ContextProxy import ContextProxy
-from baca.specificationtools.ResolvedSetting import ResolvedSetting
+from specificationtools.ContextProxy import ContextProxy
+from specificationtools.ResolvedSetting import ResolvedSetting
 from collections import OrderedDict
 
 

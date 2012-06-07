@@ -1,6 +1,6 @@
 from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
-from baca.specificationtools.AttributeNameEnumeration import AttributeNameEnumeration
-from baca.specificationtools.Setting import Setting
+from specificationtools.AttributeNameEnumeration import AttributeNameEnumeration
+from specificationtools.Setting import Setting
 
 
 class SettingInventory(ObjectInventory):
