@@ -17,10 +17,6 @@ Methods
 
     Inherited from `__builtin__.dict`
 
-.. automethod:: abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.fromkeys
-
-    Inherited from `__builtin__.dict`
-
 .. automethod:: abjad.tools.datastructuretools.ImmutableDictionary.ImmutableDictionary.ImmutableDictionary.get
 
     Inherited from `__builtin__.dict`

@@ -17,10 +17,6 @@ Methods
 
     Inherited from `__builtin__.dict`
 
-.. automethod:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.fromkeys
-
-    Inherited from `__builtin__.dict`
-
 .. automethod:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.get
 
     Inherited from `__builtin__.dict`
