@@ -1,10 +1,34 @@
 from abjad.tools import *
-from library import *
 from specificationtools.ScoreSpecification import ScoreSpecification
 import py
+import specificationtools.library as library
 
 
 def test_ScoreSpecification_interpret_01():
+    '''Empty score specification interprets as empty score with time signature context added.
+    '''
+
+    specification = ScoreSpecification(scoretemplatetools.GroupedRhythmicStavesScoreTemplate(n=1))
+    
+    score = specification.interpret()
+
+    r'''
+    \context Score = "Grouped Rhythmic Staves Score" <<
+        \context TimeSignatureContext = "TimeSignatureContext" {
+        }
+        \context StaffGroup = "Grouped Rhythmic Staves Staff Group" <<
+            \context RhythmicStaff = "Staff 1" {
+                \context Voice = "Voice 1" {
+                }
+            }
+        >>
+    >>
+    '''
+
+    assert score.format == '\\context Score = "Grouped Rhythmic Staves Score" <<\n\t\\context TimeSignatureContext = "TimeSignatureContext" {\n\t}\n\t\\context StaffGroup = "Grouped Rhythmic Staves Staff Group" <<\n\t\t\\context RhythmicStaff = "Staff 1" {\n\t\t\t\\context Voice = "Voice 1" {\n\t\t\t}\n\t\t}\n\t>>\n>>'
+
+
+def test_ScoreSpecification_interpret_02():
     py.test.skip('unskip after integrating pitch.')
 
     specification = ScoreSpecification(scoretemplatetools.StringQuartetScoreTemplate)

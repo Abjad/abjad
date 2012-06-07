@@ -145,6 +145,8 @@ class ScoreSpecification(Specification):
 
     def change_segment_division_tokens_to_region_division_tokens(self, segment_division_tokens):
         region_division_tokens = []
+        if not segment_division_tokens:
+            return region_division_tokens
         assert segment_division_tokens[0].fresh
         for segment_division_token in segment_division_tokens:
             if segment_division_token.fresh or segment_division_token.truncate:
