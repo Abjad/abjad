@@ -11,9 +11,9 @@
 
 5.  2336 calls    1581 calls     1122 calls    1167 calls     404 calls     517 calls      463 calls
 
-6.                                           ~92000 calls   68168 calls   58158 calls  455,118 calls*
+6.                                           ~92000 calls   68168 calls   58158 calls    45618 calls
 
-7.                                               0.12 sec      0.08 sec      0.10 sec       0.64 sec*
+7.                                               0.12 sec      0.08 sec      0.10 sec       0.05 sec
 
 Key:
     1: create 1000 notes (memory)
@@ -21,14 +21,14 @@ Key:
     3. format 1000 notes (seconds)
     4: create 1 note (number of function calls)
     5. format 1 note (number of function calls)
-    6. format staff of 1000 notes (number of function calls)
-    7. format staff of 1000 notes (seconds)
+    6. format staff of *100* notes (number of function calls)
+    7. format staff of *100* notes (seconds)
 
 Tests:
     1. import and use guppy as described in the docs
     2. iotools.profile_expr('[Note(0, (1, 4)) for x in range(1000)]')
     3. notes = [Note(0, (1, 4)) for x in range(1000);
-       iotools.profile('[note.format for note in notes]') 
+       iotools.profile_expr('[note.format for note in notes]') 
     4. iotools.profile_expr('Note(0, (1, 4))')
     5. note = Note(0, (1, 4));
        iotools.profile_expr('note.format')
@@ -40,8 +40,3 @@ Tests:
 Test platforms:
     1. tested under OS 10.6.4 on 2-core Intel iMac with 1.85 GHz / 1.5 GB, up through r4630.
     2. tested under 0S 10.7.4 on a 2-core Intel iMac with 2.5 Ghz / 8 GB, starting with 2.9.
-
-
-Notes:
-    * test results 6 & 7 for 2.9 seem like they're off by a factor of 10.
-      TODO: check out an older version of the repository (like r4630) and verify the old results.
