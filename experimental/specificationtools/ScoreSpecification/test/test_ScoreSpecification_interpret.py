@@ -5,7 +5,7 @@ import specificationtools.library as library
 
 
 def test_ScoreSpecification_interpret_01():
-    '''Empty score specification interprets as empty score with time signature context added.
+    '''Empty score specification interprets.
     '''
 
     specification = ScoreSpecification(scoretemplatetools.GroupedRhythmicStavesScoreTemplate(n=1))
@@ -29,7 +29,7 @@ def test_ScoreSpecification_interpret_01():
 
 
 def test_ScoreSpecification_interpret_02():
-    '''Empty segment specification interprets without generating output.
+    '''Empty score specification with empty segment specification interprets.
     '''
 
     specification_1 = ScoreSpecification(scoretemplatetools.GroupedRhythmicStavesScoreTemplate(n=1))
@@ -43,6 +43,46 @@ def test_ScoreSpecification_interpret_02():
 
 
 def test_ScoreSpecification_interpret_03():
+    '''Time signatures only.
+    '''
+
+    specification = ScoreSpecification(scoretemplatetools.GroupedRhythmicStavesScoreTemplate(n=1))
+    segment = specification.append_segment()
+    segment.set_time_signatures(segment, [(4, 8), (3, 8)])
+
+    score = specification.interpret()
+
+    r'''
+    \context Score = "Grouped Rhythmic Staves Score" <<
+        \context TimeSignatureContext = "TimeSignatureContext" {
+            {
+                \time 4/8
+                s1 * 1/2
+            }
+            {
+                \time 3/8
+                s1 * 3/8
+            }
+        }
+        \context StaffGroup = "Grouped Rhythmic Staves Staff Group" <<
+            \context RhythmicStaff = "Staff 1" {
+                \context Voice = "Voice 1" {
+                    {
+                        r2
+                    }
+                    {
+                        r4.
+                    }
+                }
+            }
+        >>
+    >>
+    '''
+
+    assert score.format == '\\context Score = "Grouped Rhythmic Staves Score" <<\n\t\\context TimeSignatureContext = "TimeSignatureContext" {\n\t\t{\n\t\t\t\\time 4/8\n\t\t\ts1 * 1/2\n\t\t}\n\t\t{\n\t\t\t\\time 3/8\n\t\t\ts1 * 3/8\n\t\t}\n\t}\n\t\\context StaffGroup = "Grouped Rhythmic Staves Staff Group" <<\n\t\t\\context RhythmicStaff = "Staff 1" {\n\t\t\t\\context Voice = "Voice 1" {\n\t\t\t\t{\n\t\t\t\t\tr2\n\t\t\t\t}\n\t\t\t\t{\n\t\t\t\t\tr4.\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t>>\n>>'
+
+
+def test_ScoreSpecification_interpret_04():
     py.test.skip('unskip after integrating pitch.')
 
     specification = ScoreSpecification(scoretemplatetools.StringQuartetScoreTemplate)
