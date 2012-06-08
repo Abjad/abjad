@@ -84,3 +84,8 @@ thirty_seconds = timetokentools.OutputBurnishedSignalFilledTimeTokenMaker(
 thirty_seconds.beam = True
 thirty_seconds.name = 'thirty_seconds'
 __all__.append(thirty_seconds.name)
+
+
+tuplet_monads = timetokentools.TupletMonadTimeTokenMaker()
+tuplet_monads.name = 'tuplet_monads'
+__all__.append(tuplet_monads.name)
