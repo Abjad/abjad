@@ -1,6 +1,7 @@
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
 from abjad.tools.mathtools.NonreducedFraction import NonreducedFraction
+import fractions
 
 
 class Division(NonreducedFraction):
@@ -51,6 +52,10 @@ class Division(NonreducedFraction):
         return 'D{}{}, {}{}'.format(left_symbol, self.numerator, self.denominator, right_symbol)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def duration(self):
+        return fractions.Fraction(self.numerator, self.denominator)
 
     @property
     def is_closed(self):

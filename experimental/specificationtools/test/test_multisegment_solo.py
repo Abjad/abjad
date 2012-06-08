@@ -2,7 +2,6 @@ from abjad.tools import *
 from helpers import *
 from specificationtools import ScoreSpecification
 import specificationtools.library as library
-import py
 
 
 def test_multisegment_solo_01():
@@ -140,10 +139,9 @@ def test_multisegment_solo_06():
 
 
 def test_multisegment_solo_07():
-    '''Single division greater in duration than two segments but lesser in duration than three segments.
+    '''Large division greater in duration than two segments.
     Division does not truncate at segment boundaries.
     '''
-    py.test.skip('this one fails and means that some division calculation stuff needs work.')
 
     specification = ScoreSpecification(scoretemplatetools.GroupedRhythmicStavesScoreTemplate(n=1))
     
@@ -158,6 +156,6 @@ def test_multisegment_solo_07():
     score = specification.interpret()
     
     current_function_name = introspectiontools.get_current_function_name()
-    write_test_output(score, __file__, current_function_name, go=True)
+    write_test_output(score, __file__, current_function_name)
 
     assert score.format == read_test_output(__file__, current_function_name)

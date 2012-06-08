@@ -66,7 +66,6 @@ class ScoreSpecification(Specification):
 
     def add_divisions_to_voice(self, voice):
         region_division_lists = self.make_region_division_lists_for_voice(voice)
-        self._debug(region_division_lists)
         if region_division_lists:
             self.payload_context_dictionary[voice.name]['region_division_lists'] = region_division_lists 
             voice_divisions = []
@@ -75,7 +74,6 @@ class ScoreSpecification(Specification):
             voice_division_list = VoiceDivisionList(voice_divisions)
             self.payload_context_dictionary[voice.name]['voice_division_list'] = voice_division_list
             segment_division_lists = self.make_segment_division_lists_for_voice(voice)
-            self._debug(segment_division_lists)
             self.payload_context_dictionary[voice.name]['segment_division_lists'] = segment_division_lists
             self.add_segment_division_list_to_segment_payload_context_dictionarys_for_voice(
                 voice, segment_division_lists)
@@ -121,6 +119,23 @@ class ScoreSpecification(Specification):
 
     def apply_additional_segment_parameters(self):
         pass 
+
+    def apply_boundary_indicators_to_raw_segment_division_lists(self, 
+        voice_division_list, raw_segment_division_lists):
+        voice_divisions = voice_division_list.divisions
+        voice_divisions = [mathtools.NonreducedFraction(x) for x in voice_divisions] 
+        parts = sequencetools.partition_sequence_by_backgrounded_weights(voice_divisions, self.segment_durations)
+        overage_from_previous_segment = 0
+        segment_division_lists = []
+        for part, raw_segment_division_list in zip(parts, raw_segment_division_lists):
+            segment_division_list = copy.copy(raw_segment_division_list)
+            segment_division_list[0].is_left_open = bool(overage_from_previous_segment)
+            segment_duration_plus_fringe = overage_from_previous_segment + sum(part)
+            overage_from_current_segment = segment_duration_plus_fringe - raw_segment_division_list.duration
+            segment_division_list[-1].is_right_open = bool(overage_from_current_segment)
+            overage_from_previous_segment = overage_from_current_segment
+            segment_division_lists.append(segment_division_list)
+        return segment_division_lists
 
     def apply_offset_and_count(self, request, value):
         if request.offset is not None or request.count is not None:
@@ -377,33 +392,12 @@ class ScoreSpecification(Specification):
         voice_divisions = [mathtools.NonreducedFraction(x) for x in voice_division_list.divisions]
         segment_durations = self.segment_durations
         shards = sequencetools.split_sequence_once_by_weights_with_overhang(voice_divisions, segment_durations)
-        voice_divisions = [Division(x) for x in voice_divisions]
         raw_segment_division_lists = []
         for i, shard in enumerate(shards[:]):
             raw_segment_division_list = SegmentDivisionList(shard)
             raw_segment_division_lists.append(raw_segment_division_list)
-        self._debug(raw_segment_division_lists, 'raws')
-        glue_segment_division_list = False
-        reconstructed_voice_divisions = []
-        segment_division_lists = []
-        for i, raw_segment_division_list in enumerate(raw_segment_division_lists):
-            segment_division_list = copy.copy(raw_segment_division_list)
-            self._debug(segment_division_list, 'before')
-            if glue_segment_division_list:
-                segment_division_list[0].is_left_open = True
-                reconstructed_voice_divisions[-1] = voice_divisions[len(reconstructed_voice_divisions) - 1]
-                reconstructed_voice_divisions.extend(raw_segment_division_list[1:])
-                glue_segment_division_list = False
-            else:
-                reconstructed_voice_divisions.extend(raw_segment_division_list)
-            current = len(reconstructed_voice_divisions) - 1
-            assert reconstructed_voice_divisions[:current] == voice_divisions[:current]
-            if not reconstructed_voice_divisions[current] == voice_divisions[current]:
-                segment_division_list[-1].is_right_open = True
-                glue_segment_division_list = True
-            self._debug(segment_division_list, 'after')
-            segment_division_lists.append(segment_division_list)
-        self._debug(reconstructed_voice_divisions, 'recon')
+        segment_division_lists = self.apply_boundary_indicators_to_raw_segment_division_lists(
+            voice_division_list, raw_segment_division_lists)
         return segment_division_lists
 
     def process_divisions_value(self, divisions_value):

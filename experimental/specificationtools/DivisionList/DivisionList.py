@@ -47,6 +47,10 @@ class DivisionList(AbjadObject):
         return self._divisions
 
     @property
+    def duration(self):
+        return sum([division.duration for division in self.divisions])
+
+    @property
     def is_closed(self):
         return self.is_left_closed and self.is_right_closed
 
