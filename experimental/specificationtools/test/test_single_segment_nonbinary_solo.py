@@ -18,6 +18,6 @@ def test_single_segment_nonbinary_solo_01():
     score = specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
-    write_test_output(score, __file__, current_function_name, go=True)
+    write_test_output(score, __file__, current_function_name)
 
     assert score.format == read_test_output(__file__, current_function_name)
