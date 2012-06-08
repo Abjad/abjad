@@ -7,7 +7,8 @@ def test_TupletMonadTimeTokenMaker___call___01():
     maker = timetokentools.TupletMonadTimeTokenMaker()
 
     duration_tokens = [(1, 5), (1, 4), (1, 6), (7, 9)]
-    tuplets = maker(duration_tokens)
+    tuplet_lists = maker(duration_tokens)
+    tuplets = sequencetools.flatten_sequence(tuplet_lists)
     staff = Staff(tuplets)
 
     r'''

@@ -10,6 +10,7 @@ class TupletMonadTimeTokenMaker(TimeTokenMaker):
 
     Tuplet monad time-token maker::
 
+        >>> from abjad.tools import sequencetools
         >>> from abjad.tools import timetokentools
 
     ::
@@ -19,7 +20,8 @@ class TupletMonadTimeTokenMaker(TimeTokenMaker):
     ::
 
         >>> duration_tokens = [(1, 5), (1, 4), (1, 6), (7, 9)]
-        >>> tuplets = maker(duration_tokens)
+        >>> tuplet_lists = maker(duration_tokens)
+        >>> tuplets = sequencetools.flatten_sequence(tuplet_lists)
 
     ::
 
@@ -58,7 +60,8 @@ class TupletMonadTimeTokenMaker(TimeTokenMaker):
     def __call__(self, duration_tokens, seeds=None):
         result = []
         for duration_token in duration_tokens:
-            result.append(self._make_monad(duration_token))
+            monad = self._make_monad(duration_token)
+            result.append([monad])
         return result
 
     ### PRIVATE METHODS ###
