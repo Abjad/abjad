@@ -15,6 +15,7 @@ from RegionDivisionList import RegionDivisionList
 from ResolvedSetting import ResolvedSetting
 from ScopedValue import ScopedValue
 from ScoreSpecification import ScoreSpecification
+from SegmentDivisionList import SegmentDivisionList
 from SegmentInventory import SegmentInventory
 from SegmentSpecification import SegmentSpecification
 from Selection import Selection
