@@ -63,10 +63,11 @@ class ScoreSpecification(Specification):
 
     def add_divisions_to_voice(self, voice):
         region_division_lists = self.make_region_division_lists_for_voice(voice)
-        self.payload_context_dictionary[voice.name]['region_division_lists'] = region_division_lists 
-        segment_division_lists = self.make_segment_division_lists_for_voice(voice)
-        self.add_segment_division_list_to_segment_payload_context_dictionarys_for_voice(
-            voice, segment_division_lists)
+        if region_division_lists:
+            self.payload_context_dictionary[voice.name]['region_division_lists'] = region_division_lists 
+            segment_division_lists = self.make_segment_division_lists_for_voice(voice)
+            self.add_segment_division_list_to_segment_payload_context_dictionarys_for_voice(
+                voice, segment_division_lists)
 
     def add_rhythm_to_voice_for_segment_region_divisions(self, voice, rhythm_token, region_division_list):
         maker = rhythm_token.value
@@ -132,10 +133,10 @@ class ScoreSpecification(Specification):
 
     def calculate_segment_offset_pairs(self):
         segment_durations = [segment.duration for segment in self.segments]
-        assert sequencetools.all_are_numbers(segment_durations)
-        self.segment_durations = segment_durations
-        self.score_duration = sum(self.segment_durations)
-        self.segment_offset_pairs = mathtools.cumulative_sums_zero_pairwise(self.segment_durations)
+        if sequencetools.all_are_numbers(segment_durations):
+            self.segment_durations = segment_durations
+            self.score_duration = sum(self.segment_durations)
+            self.segment_offset_pairs = mathtools.cumulative_sums_zero_pairwise(self.segment_durations)
     
     def change_attribute_retrieval_indicator_to_setting(self, indicator):
         segment = self.segments[indicator.segment_name]
@@ -146,6 +147,8 @@ class ScoreSpecification(Specification):
     def change_segment_division_tokens_to_region_division_tokens(self, segment_division_tokens):
         region_division_tokens = []
         if not segment_division_tokens:
+            return region_division_tokens
+        if any([x.value is None for x in segment_division_tokens]):
             return region_division_tokens
         assert segment_division_tokens[0].fresh
         for segment_division_token in segment_division_tokens:
@@ -315,6 +318,8 @@ class ScoreSpecification(Specification):
                 setting = settings[0]
             else:
                 settings = self.resolved_settings_context_dictionary.get_settings(attribute_name='time_signatures')
+                if not settings:
+                    return
                 assert len(settings) == 1
                 setting = settings[0]
                 setting = setting.copy_to_segment(segment.name)

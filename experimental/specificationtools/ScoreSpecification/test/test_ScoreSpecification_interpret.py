@@ -29,6 +29,20 @@ def test_ScoreSpecification_interpret_01():
 
 
 def test_ScoreSpecification_interpret_02():
+    '''Empty segment specification interprets without generating output.
+    '''
+
+    specification_1 = ScoreSpecification(scoretemplatetools.GroupedRhythmicStavesScoreTemplate(n=1))
+    score_1 = specification_1.interpret()
+
+    specification_2 = ScoreSpecification(scoretemplatetools.GroupedRhythmicStavesScoreTemplate(n=1))
+    segment = specification_2.append_segment()
+    score_2 = specification_2.interpret()
+
+    assert score_1.format == score_2.format
+
+
+def test_ScoreSpecification_interpret_03():
     py.test.skip('unskip after integrating pitch.')
 
     specification = ScoreSpecification(scoretemplatetools.StringQuartetScoreTemplate)

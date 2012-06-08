@@ -72,9 +72,10 @@ class SegmentSpecification(Specification):
 
     def add_time_signatures(self, score):
         time_signatures = self.time_signatures
-        measures = measuretools.make_measures_with_full_measure_spacer_skips(time_signatures)
-        context = componenttools.get_first_component_in_expr_with_name(score, 'TimeSignatureContext')
-        context.extend(measures)
+        if self.time_signatures is not None:
+            measures = measuretools.make_measures_with_full_measure_spacer_skips(time_signatures)
+            context = componenttools.get_first_component_in_expr_with_name(score, 'TimeSignatureContext')
+            context.extend(measures)
 
     def annotate_source(self, source, callback=None, count=None, offset=None):
         assert isinstance(callback, (Callback, type(None))), callback
