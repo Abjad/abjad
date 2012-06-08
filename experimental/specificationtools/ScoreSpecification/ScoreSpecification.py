@@ -65,12 +65,11 @@ class ScoreSpecification(Specification):
 
     def add_divisions_to_voice(self, voice):
         region_division_lists = self.make_region_division_lists_for_voice(voice)
-        self._debug(voice)
-        self._debug(region_division_lists)
+        #self._debug(region_division_lists)
         if region_division_lists:
             self.payload_context_dictionary[voice.name]['region_division_lists'] = region_division_lists 
             segment_division_lists = self.make_segment_division_lists_for_voice(voice)
-            self._debug(segment_division_lists)
+            #self._debug(segment_division_lists)
             self.payload_context_dictionary[voice.name]['segment_division_lists'] = segment_division_lists
             self.add_segment_division_list_to_segment_payload_context_dictionarys_for_voice(
                 voice, segment_division_lists)
@@ -367,6 +366,7 @@ class ScoreSpecification(Specification):
         resolved_setting.fresh = setting.fresh
         return resolved_setting
 
+    # TODO: fix this for the case of really big divisions
     def make_segment_division_lists_for_voice(self, voice):
         segment_division_lists = []
         region_division_lists = self.payload_context_dictionary[voice.name]['region_division_lists']
@@ -378,6 +378,7 @@ class ScoreSpecification(Specification):
         divisions = [Division(x) for x in divisions]
         for i, shard in enumerate(shards[:]):
             shards[i] = [Division(x) for x in shard]
+        #self._debug(shards, 'shards')
         reconstructed_divisions = []
         glue_next_division = False
         for i, shard in enumerate(shards):
