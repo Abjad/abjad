@@ -70,7 +70,7 @@ class IncisedTimeTokenMaker(TimeTokenMaker):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, duration_tokens, seeds = None):
+    def __call__(self, duration_tokens, seeds=None):
         duration_pairs, seeds = TimeTokenMaker.__call__(self, duration_tokens, seeds)
         result = self._prepare_input(seeds)
         prefix_signal, prefix_lengths, suffix_signal, suffix_lengths = result[:-2]

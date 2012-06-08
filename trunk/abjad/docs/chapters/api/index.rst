@@ -1825,6 +1825,7 @@ Additional Abjad composition packages (load manually)
    tools/timetokentools/TokenBurnishedSignalFilledTimeTokenMaker/TokenBurnishedSignalFilledTimeTokenMaker
    tools/timetokentools/TokenIncisedNoteFilledTimeTokenMaker/TokenIncisedNoteFilledTimeTokenMaker
    tools/timetokentools/TokenIncisedRestFilledTimeTokenMaker/TokenIncisedRestFilledTimeTokenMaker
+   tools/timetokentools/TupletMonadTimeTokenMaker/TupletMonadTimeTokenMaker
 
 :py:mod:`verticalitytools <abjad.tools.verticalitytools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

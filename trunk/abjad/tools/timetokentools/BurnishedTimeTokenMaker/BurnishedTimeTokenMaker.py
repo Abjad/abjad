@@ -103,13 +103,11 @@ class BurnishedTimeTokenMaker(TimeTokenMaker):
         secondary_duration_pairs = self._make_secondary_duration_pairs(
             duration_pairs, secondary_divisions)
         septuplet = (pattern, prolation_addenda) + octuplet[2:-1]
-        #numeric_map = self._make_numeric_map(duration_pairs, septuplet)
         numeric_map = self._make_numeric_map(secondary_duration_pairs, septuplet)
         leaf_lists = self._make_leaf_lists(numeric_map, lcd)
         if not prolation_addenda:
             return leaf_lists
         else:
-            #tuplets = self._make_tuplets(duration_pairs, leaf_lists)
             tuplets = self._make_tuplets(secondary_duration_pairs, leaf_lists)
             return tuplets
 

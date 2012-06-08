@@ -30,7 +30,7 @@ class TimeTokenMaker(AbjadObject):
         return duration_pairs, seeds
 
     def __repr__(self):
-        if self.name is not None:
+        if getattr(self, 'name', None) is not None:
             return '{}({!r})'.format(self._class_name, self.name)
         return AbjadObject.__repr__(self)
 
