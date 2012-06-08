@@ -69,6 +69,7 @@ class ScoreSpecification(Specification):
         if region_division_lists:
             self.payload_context_dictionary[voice.name]['region_division_lists'] = region_division_lists 
             segment_division_lists = self.make_segment_division_lists_for_voice(voice)
+            self._debug(segment_division_lists)
             self.add_segment_division_list_to_segment_payload_context_dictionarys_for_voice(
                 voice, segment_division_lists)
 
