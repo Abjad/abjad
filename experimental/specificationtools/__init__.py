@@ -11,6 +11,7 @@ from DivisionList import DivisionList
 from DivisionRetrievalRequest import DivisionRetrievalRequest
 from HandlerRequest import HandlerRequest
 from MomentIndicator import MomentIndicator
+from RegionDivisionList import RegionDivisionList
 from ResolvedSetting import ResolvedSetting
 from ScopedValue import ScopedValue
 from ScoreSpecification import ScoreSpecification

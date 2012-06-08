@@ -3,6 +3,7 @@ from specificationtools.AttributeRetrievalRequest import AttributeRetrievalReque
 from specificationtools.Division import Division
 from specificationtools.DivisionList import DivisionList
 from specificationtools.DivisionRetrievalRequest import DivisionRetrievalRequest
+from specificationtools.RegionDivisionList import RegionDivisionList
 from specificationtools.ResolvedSetting import ResolvedSetting
 from specificationtools.ScopedValue import ScopedValue
 from specificationtools.SegmentInventory import SegmentInventory
@@ -63,6 +64,8 @@ class ScoreSpecification(Specification):
 
     def add_divisions_to_voice(self, voice):
         region_division_lists = self.make_region_division_lists_for_voice(voice)
+        self._debug(voice)
+        self._debug(region_division_lists)
         if region_division_lists:
             self.payload_context_dictionary[voice.name]['region_division_lists'] = region_division_lists 
             segment_division_lists = self.make_segment_division_lists_for_voice(voice)
@@ -347,7 +350,7 @@ class ScoreSpecification(Specification):
             divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, region_division_token.duration)
             divisions = [x.pair for x in divisions]
             divisions = [Division(x) for x in divisions]
-            region_division_list = DivisionList(divisions)
+            region_division_list = RegionDivisionList(divisions)
             region_division_list.fresh = region_division_token.fresh
             region_division_list.truncate = region_division_token.truncate
             region_division_lists.append(region_division_list)
