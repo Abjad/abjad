@@ -24,10 +24,6 @@ Methods
 
     Inherited from `__builtin__.dict`
 
-.. automethod:: abjad.tools.quantizationtools.QGridTempoLookup.QGridTempoLookup.QGridTempoLookup.fromkeys
-
-    Inherited from `__builtin__.dict`
-
 .. automethod:: abjad.tools.quantizationtools.QGridTempoLookup.QGridTempoLookup.QGridTempoLookup.get
 
     Inherited from `__builtin__.dict`

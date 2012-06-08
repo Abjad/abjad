@@ -1015,6 +1015,13 @@ Abjad composition packages
    tools/schemetools/SchemeVector/SchemeVector
    tools/schemetools/SchemeVectorConstant/SchemeVectorConstant
 
+.. rubric:: functions
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/schemetools/format_scheme_value
+
 :py:mod:`scoretemplatetools <abjad.tools.scoretemplatetools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
