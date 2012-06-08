@@ -372,37 +372,35 @@ class ScoreSpecification(Specification):
         resolved_setting.fresh = setting.fresh
         return resolved_setting
 
-    # TODO: fix this for the case of really big divisions
     def make_segment_division_lists_for_voice(self, voice):
-        segment_division_lists = []
-        region_division_lists = self.payload_context_dictionary[voice.name]['region_division_lists']
-        voice_divisions = []
-        for region_division_list in region_division_lists:
-            voice_divisions.extend(region_division_list)
-        voice_divisions = [mathtools.NonreducedFraction(x) for x in voice_divisions]
-        shards = sequencetools.split_sequence_once_by_weights_with_overhang(
-            voice_divisions, self.segment_durations)
+        voice_division_list = self.payload_context_dictionary[voice.name]['voice_division_list']
+        voice_divisions = [mathtools.NonreducedFraction(x) for x in voice_division_list.divisions]
+        segment_durations = self.segment_durations
+        shards = sequencetools.split_sequence_once_by_weights_with_overhang(voice_divisions, segment_durations)
         voice_divisions = [Division(x) for x in voice_divisions]
+        raw_segment_division_lists = []
         for i, shard in enumerate(shards[:]):
-            shards[i] = [Division(x) for x in shard]
-        self._debug(shards, 'shards')
+            raw_segment_division_list = SegmentDivisionList(shard)
+            raw_segment_division_lists.append(raw_segment_division_list)
+        self._debug(raw_segment_division_lists, 'raws')
+        glue_segment_division_list = False
         reconstructed_voice_divisions = []
-        glue_next_segment_division_list = False
-        # apply open / closed indicators to segment division lists
-        for i, shard in enumerate(shards):
-            segment_division_list = SegmentDivisionList(shard)
+        segment_division_lists = []
+        for i, raw_segment_division_list in enumerate(raw_segment_division_lists):
+            segment_division_list = copy.copy(raw_segment_division_list)
             self._debug(segment_division_list, 'before')
-            if glue_next_segment_division_list:
+            if glue_segment_division_list:
                 segment_division_list[0].is_left_open = True
                 reconstructed_voice_divisions[-1] = voice_divisions[len(reconstructed_voice_divisions) - 1]
-                reconstructed_voice_divisions.extend(shard[1:])
-                glue_next_segment_division_list = False
+                reconstructed_voice_divisions.extend(raw_segment_division_list[1:])
+                glue_segment_division_list = False
             else:
-                reconstructed_voice_divisions.extend(shard)
-            assert reconstructed_voice_divisions[:-1] == voice_divisions[:len(reconstructed_voice_divisions) - 1]
-            if not reconstructed_voice_divisions[-1] == voice_divisions[len(reconstructed_voice_divisions) - 1]:
+                reconstructed_voice_divisions.extend(raw_segment_division_list)
+            current = len(reconstructed_voice_divisions) - 1
+            assert reconstructed_voice_divisions[:current] == voice_divisions[:current]
+            if not reconstructed_voice_divisions[current] == voice_divisions[current]:
                 segment_division_list[-1].is_right_open = True
-                glue_next_segment_division_list = True
+                glue_segment_division_list = True
             self._debug(segment_division_list, 'after')
             segment_division_lists.append(segment_division_list)
         self._debug(reconstructed_voice_divisions, 'recon')
