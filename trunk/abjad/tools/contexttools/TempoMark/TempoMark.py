@@ -235,7 +235,7 @@ class TempoMark(ContextMark):
         text, equation = None, None
 
         if self.textual_indication is not None:
-            text = schemetools.Scheme._format_value(self.textual_indication)
+            text = schemetools.format_scheme_value(self.textual_indication)
 
         if self.duration is not None and self.units_per_minute is not None:
             equation = self._equation

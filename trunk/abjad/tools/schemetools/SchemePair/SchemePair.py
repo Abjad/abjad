@@ -1,3 +1,4 @@
+from abjad.tools.schemetools.format_scheme_value import format_scheme_value
 from abjad.tools.schemetools.Scheme import Scheme
 
 
@@ -29,7 +30,7 @@ class SchemePair(Scheme):
 
     @property
     def _formatted_value(self):
-        return '(%s . %s)' % tuple([Scheme._format_value(x) for x in self._value])
+        return '(%s . %s)' % tuple([format_scheme_value(x) for x in self._value])
 
     ### PUBLIC PROPERTIES ###
 

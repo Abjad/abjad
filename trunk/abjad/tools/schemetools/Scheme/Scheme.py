@@ -1,4 +1,5 @@
 from abjad.tools.abctools import AbjadObject
+from abjad.tools.schemetools.format_scheme_value import format_scheme_value
 
 
 class Scheme(AbjadObject):
@@ -71,7 +72,8 @@ class Scheme(AbjadObject):
 
     @property
     def _formatted_value(self):
-        return Scheme._format_value(self._value)
+        return format_scheme_value(self._value)
+        #return Scheme._format_value(self._value)
 
     ### PUBLIC PROPERTIES ###
 
@@ -91,27 +93,27 @@ class Scheme(AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    @staticmethod
-    def _format_value(value):
-        if isinstance(value, str):
-            if -1 == value.find(' '):
-                return value
-            if value.startswith('"') and value.endswith('"'):
-                return value
-            value = repr(value)
-            if value.startswith("'") and value.endswith("'"):
-                value = value.replace('"', '\"')
-                value = '"' + value[1:]
-                value = value[:-1] + '"'
-            return value
-        elif isinstance(value, bool):
-            if value:
-                return '#t'
-            return '#f'
-        elif isinstance(value, (list, tuple)):
-            return '(%s)' % ' '.join([Scheme._format_value(x) for x in value])
-        elif isinstance(value, Scheme):
-            return str(value)
-        elif isinstance(value, type(None)):
-            return '#f'
-        return str(value)
+    #@staticmethod
+    #def _format_value(value):
+    #    if isinstance(value, str):
+    #        if -1 == value.find(' '):
+    #            return value
+    #        if value.startswith('"') and value.endswith('"'):
+    #            return value
+    #        value = repr(value)
+    #        if value.startswith("'") and value.endswith("'"):
+    #            value = value.replace('"', '\"')
+    #            value = '"' + value[1:]
+    #            value = value[:-1] + '"'
+    #        return value
+    #    elif isinstance(value, bool):
+    #        if value:
+    #            return '#t'
+    #        return '#f'
+    #    elif isinstance(value, (list, tuple)):
+    #        return '(%s)' % ' '.join([Scheme._format_value(x) for x in value])
+    #    elif isinstance(value, Scheme):
+    #        return str(value)
+    #    elif isinstance(value, type(None)):
+    #        return '#f'
+    #    return str(value)

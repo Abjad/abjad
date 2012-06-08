@@ -1,5 +1,6 @@
 from abjad.tools.abctools import AbjadObject
 from abjad.tools.schemetools import Scheme
+from abjad.tools.schemetools import format_scheme_value
 
 
 class MarkupCommand(AbjadObject):
@@ -96,7 +97,7 @@ class MarkupCommand(AbjadObject):
                 elif isinstance(x, Scheme):
                     result.append(x.format)
                 else:
-                    formatted = Scheme._format_value(x)
+                    formatted = format_scheme_value(x)
                     if formatted == x and isinstance(x, str):
                         result.append(x)
                     else:
