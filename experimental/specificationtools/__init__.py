@@ -27,3 +27,4 @@ from StatalServerRequest import StatalServerRequest
 from Scope import Scope
 from ValueRetrievalIndicator import ValueRetrievalIndicator
 from ValueRetrievalRequest import ValueRetrievalRequest
+from VoiceDivisionList import VoiceDivisionList

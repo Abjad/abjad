@@ -13,6 +13,7 @@ from specificationtools.Selection import Selection
 from specificationtools.Specification import Specification
 from specificationtools.StatalServerRequest import StatalServerRequest
 from specificationtools.SettingInventory import SettingInventory
+from specificationtools.VoiceDivisionList import VoiceDivisionList
 import collections
 import copy
 
@@ -65,11 +66,16 @@ class ScoreSpecification(Specification):
 
     def add_divisions_to_voice(self, voice):
         region_division_lists = self.make_region_division_lists_for_voice(voice)
-        #self._debug(region_division_lists)
+        self._debug(region_division_lists)
         if region_division_lists:
             self.payload_context_dictionary[voice.name]['region_division_lists'] = region_division_lists 
+            voice_divisions = []
+            for region_division_list in region_division_lists:
+                voice_divisions.extend(region_division_list.divisions)
+            voice_division_list = VoiceDivisionList(voice_divisions)
+            self.payload_context_dictionary[voice.name]['voice_division_list'] = voice_division_list
             segment_division_lists = self.make_segment_division_lists_for_voice(voice)
-            #self._debug(segment_division_lists)
+            self._debug(segment_division_lists)
             self.payload_context_dictionary[voice.name]['segment_division_lists'] = segment_division_lists
             self.add_segment_division_list_to_segment_payload_context_dictionarys_for_voice(
                 voice, segment_division_lists)
@@ -370,31 +376,36 @@ class ScoreSpecification(Specification):
     def make_segment_division_lists_for_voice(self, voice):
         segment_division_lists = []
         region_division_lists = self.payload_context_dictionary[voice.name]['region_division_lists']
-        divisions = []
+        voice_divisions = []
         for region_division_list in region_division_lists:
-            divisions.extend(region_division_list)
-        divisions = [mathtools.NonreducedFraction(x) for x in divisions]
-        shards = sequencetools.split_sequence_once_by_weights_with_overhang(divisions, self.segment_durations)
-        divisions = [Division(x) for x in divisions]
+            voice_divisions.extend(region_division_list)
+        voice_divisions = [mathtools.NonreducedFraction(x) for x in voice_divisions]
+        shards = sequencetools.split_sequence_once_by_weights_with_overhang(
+            voice_divisions, self.segment_durations)
+        voice_divisions = [Division(x) for x in voice_divisions]
         for i, shard in enumerate(shards[:]):
             shards[i] = [Division(x) for x in shard]
-        #self._debug(shards, 'shards')
-        reconstructed_divisions = []
-        glue_next_division = False
+        self._debug(shards, 'shards')
+        reconstructed_voice_divisions = []
+        glue_next_segment_division_list = False
+        # apply open / closed indicators to segment division lists
         for i, shard in enumerate(shards):
-            division_list = SegmentDivisionList(shard)
-            if glue_next_division:
-                division_list[0].is_left_open = True
-                reconstructed_divisions[-1] = divisions[len(reconstructed_divisions) - 1]
-                reconstructed_divisions.extend(shard[1:])
-                glue_next_division = False
+            segment_division_list = SegmentDivisionList(shard)
+            self._debug(segment_division_list, 'before')
+            if glue_next_segment_division_list:
+                segment_division_list[0].is_left_open = True
+                reconstructed_voice_divisions[-1] = voice_divisions[len(reconstructed_voice_divisions) - 1]
+                reconstructed_voice_divisions.extend(shard[1:])
+                glue_next_segment_division_list = False
             else:
-                reconstructed_divisions.extend(shard)
-            assert reconstructed_divisions[:-1] == divisions[:len(reconstructed_divisions) - 1]
-            if not reconstructed_divisions[-1] == divisions[len(reconstructed_divisions) - 1]:
-                division_list[-1].is_right_open = True
-                glue_next_division = True
-            segment_division_lists.append(division_list)
+                reconstructed_voice_divisions.extend(shard)
+            assert reconstructed_voice_divisions[:-1] == voice_divisions[:len(reconstructed_voice_divisions) - 1]
+            if not reconstructed_voice_divisions[-1] == voice_divisions[len(reconstructed_voice_divisions) - 1]:
+                segment_division_list[-1].is_right_open = True
+                glue_next_segment_division_list = True
+            self._debug(segment_division_list, 'after')
+            segment_division_lists.append(segment_division_list)
+        self._debug(reconstructed_voice_divisions, 'recon')
         return segment_division_lists
 
     def process_divisions_value(self, divisions_value):
