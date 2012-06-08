@@ -44,11 +44,6 @@ class RestFilledTimeTokenMaker(TokenIncisedRestFilledTimeTokenMaker):
     Return time-token maker.
     '''
 
-    ### CLASS ATTRIBUTES ###
-
-    args = ()
-    kwargs = ()
-
     ### INITIALIZER ###
 
     def __init__(self):

@@ -22,23 +22,6 @@ class IncisedTimeTokenMaker(TimeTokenMaker):
 
     __metaclass__ = ABCMeta
 
-    args = (
-        'prefix_signal',
-        'prefix_lengths',
-        'suffix_signal',
-        'suffix_lengths',
-        'denominator',
-        )
-
-    kwargs = (
-        #prefix_signal_helper,
-        #prefix_lengths_helper,
-        #suffix_signal_helper,
-        #suffix_lengths_helper,
-        #prolation_addenda_helper,
-        #secondary_divisions_helper,
-        )
-
     ### INITIALIZER ###
 
     def __init__(self, prefix_signal, prefix_lengths, suffix_signal, suffix_lengths, denominator,

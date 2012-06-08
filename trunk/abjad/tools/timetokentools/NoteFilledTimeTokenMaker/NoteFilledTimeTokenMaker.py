@@ -44,10 +44,7 @@ class NoteFilledTimeTokenMaker(TokenIncisedNoteFilledTimeTokenMaker):
     Return time-token maker.
     '''
 
-    ### CLASS ATTRIBUTES ###
-
-    args = ()
-    kwargs = ()
+    ### INITIALIZER ###
 
     def __init__(self):
         TokenIncisedNoteFilledTimeTokenMaker.__init__(self, [], [0], [], [0], 1)

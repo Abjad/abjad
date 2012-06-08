@@ -43,7 +43,7 @@ Special Methods
 
 .. automethod:: abjad.tools.timetokentools.SignalFilledTimeTokenMaker.SignalFilledTimeTokenMaker.SignalFilledTimeTokenMaker.__ne__
 
-    Inherited from :py:class:`timetokentools.BurnishedTimeTokenMaker <abjad.tools.timetokentools.BurnishedTimeTokenMaker.BurnishedTimeTokenMaker.BurnishedTimeTokenMaker>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: abjad.tools.timetokentools.SignalFilledTimeTokenMaker.SignalFilledTimeTokenMaker.SignalFilledTimeTokenMaker.__repr__
 

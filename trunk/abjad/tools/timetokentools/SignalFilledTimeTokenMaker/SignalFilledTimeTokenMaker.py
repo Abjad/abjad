@@ -58,16 +58,6 @@ class SignalFilledTimeTokenMaker(TokenBurnishedSignalFilledTimeTokenMaker):
     Return time-token maker.
     '''
 
-    ### CLASS ATTRIBUTES ###
-
-    kwargs = (
-        'prolation_addenda',
-        'secondary_divisions',
-        #'pattern_helper',
-        #'prolation_addenda_helper',
-        #'secondary_divisions_helper',
-        )
-
     ### INITIALIZER ###
 
     def __init__(self, pattern, denominator, prolation_addenda=None, secondary_divisions=None,

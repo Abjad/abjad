@@ -134,34 +134,6 @@ class BurnishedTimeTokenMaker(TimeTokenMaker):
             #self.secondary_divisons_helper == other.secondary_divisions_helper,
             ])    
 
-    def __ne__(self, other):
-        return self == other
-
-    ### CLASS ATTRIBUTES ###
-
-    args = (
-        'pattern', 
-        'denominator',
-        )
-
-    kwargs = (
-        'prolation_addenda',
-        'lefts',
-        'middles',
-        'rights',
-        'left_lengths',
-        'right_lengths',
-        'secondary_divisions',
-        #'pattern_helper',
-        #'prolation_addenda_helper',
-        #'lefts_helper',
-        #'middles_helper',
-        #'rights_helper',
-        #'left_lengths_helper',
-        #'right_lengths_helper',
-        #'secondary_divisons_helper',
-        )
-
     ### PRIVATE METHODS ###
 
     @abstractmethod
