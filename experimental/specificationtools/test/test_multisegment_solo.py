@@ -7,7 +7,6 @@ import specificationtools.library as library
 def test_multisegment_solo_01():
     '''Single division interprets cyclically over two segments.
     Division does not truncate at segment boundary.
-    Division does truncate at end of score.
     '''
 
     specification = ScoreSpecification(scoretemplatetools.GroupedRhythmicStavesScoreTemplate(n=1))
@@ -30,7 +29,7 @@ def test_multisegment_solo_01():
 def test_multisegment_solo_02():
     '''Single division interprets cyclically over two segments.
     Division truncates at segment boundary because of truncate keyword.
-    Division also truncates at end of score.
+    Division starts over at segment boundary.
     '''
 
     specification = ScoreSpecification(scoretemplatetools.GroupedRhythmicStavesScoreTemplate(n=1))
