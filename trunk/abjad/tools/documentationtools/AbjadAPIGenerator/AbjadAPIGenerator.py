@@ -177,7 +177,7 @@ class AbjadAPIGenerator(abctools.AbjadObject):
         ]
 
     def _module_name_to_toc_entry(self, module_name):
-        parts = module_name.split('.')[1:-1]
+        parts = module_name.split('.')[self.tools_package_path_index - 1:-1]
         return '   %s' % '/'.join(parts)
 
     def _sort_modules(self, objects):
