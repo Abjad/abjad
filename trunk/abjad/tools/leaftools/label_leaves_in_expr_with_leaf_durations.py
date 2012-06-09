@@ -1,7 +1,7 @@
 from abjad.tools.leaftools._label_leaves_in_expr_with_leaf_durations import _label_leaves_in_expr_with_leaf_durations
 
 
-def label_leaves_in_expr_with_leaf_durations(expr, markup_direction = 'down'):
+def label_leaves_in_expr_with_leaf_durations(expr, markup_direction='down'):
     r'''.. versionadded:: 1.1
 
     Label leaves in `expr` with leaf durations::
@@ -21,5 +21,4 @@ def label_leaves_in_expr_with_leaf_durations(expr, markup_direction = 'down'):
     '''
 
     show = ['written', 'prolated']
-    return _label_leaves_in_expr_with_leaf_durations(
-        expr, markup_direction = markup_direction, show = show)
+    return _label_leaves_in_expr_with_leaf_durations(expr, markup_direction = markup_direction, show=show)

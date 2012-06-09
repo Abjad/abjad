@@ -1,7 +1,7 @@
 from abjad.tools.leaftools.iterate_leaves_forward_in_expr import iterate_leaves_forward_in_expr
 
 
-def label_leaves_in_expr_with_tuplet_depth(expr, markup_direction = 'down'):
+def label_leaves_in_expr_with_tuplet_depth(expr, markup_direction='down'):
     r'''.. versionadded:: 1.1
 
     Label leaves in `expr` with tuplet depth::
@@ -31,6 +31,5 @@ def label_leaves_in_expr_with_tuplet_depth(expr, markup_direction = 'down'):
     from abjad.tools import markuptools
 
     for leaf in iterate_leaves_forward_in_expr(expr):
-        #label = r'\small %s' % componenttools.component_to_tuplet_depth(leaf)
         label = markuptools.MarkupCommand('small', str(componenttools.component_to_tuplet_depth(leaf)))
         markuptools.Markup(label, markup_direction)(leaf)

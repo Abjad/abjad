@@ -5,7 +5,7 @@ from abjad.tools.componenttools._split_component_at_index import _split_componen
 from abjad.tools.componenttools.all_are_components import all_are_components
 
 
-def _split_container_by_counts(components, counts, spanners = 'unfractured', cyclic = False):
+def _split_container_by_counts(components, counts, spanners='unfractured', cyclic=False):
     '''Partition Python list of zero or more Abjad components.
     Partition by zero or more positive integers in counts list.
     Fracture spanners or not according to keyword.
@@ -15,7 +15,7 @@ def _split_container_by_counts(components, counts, spanners = 'unfractured', cyc
     '''
 
     # check input
-    #assert all_are_components(components, klasses = Container)
+    #assert all_are_components(components, klasses=Container)
     assert isinstance(components, Container)
     components = [components]
 

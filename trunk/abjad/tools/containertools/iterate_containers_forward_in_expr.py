@@ -2,7 +2,7 @@ from abjad.tools.containertools.Container import Container
 from abjad.tools import componenttools
 
 
-def iterate_containers_forward_in_expr(expr, start = 0, stop = None):
+def iterate_containers_forward_in_expr(expr, start=0, stop=None):
     r'''.. versionadded:: 2.0
 
     Iterate containers forward in `expr`::
@@ -43,5 +43,4 @@ def iterate_containers_forward_in_expr(expr, start = 0, stop = None):
     Return generator.
     '''
 
-    return componenttools.iterate_components_forward_in_expr(
-        expr, Container, start = start, stop = stop)
+    return componenttools.iterate_components_forward_in_expr(expr, Container, start=start, stop=stop)

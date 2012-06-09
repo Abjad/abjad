@@ -3,7 +3,7 @@ from abjad.tools.importtools._import_contents_of_public_packages_in_path_into_na
 import os
 
 
-def _import_public_names_from_path_into_namespace(path, namespace, package_root_name = 'abjad'):
+def _import_public_names_from_path_into_namespace(path, namespace, package_root_name='abjad'):
     r'''Inspect the top level of path.
 
     Find .py modules in path and import public functions from .py modules into namespace.
@@ -37,7 +37,7 @@ def _import_public_names_from_path_into_namespace(path, namespace, package_root_
                 #exec('from %s import %s' % (module, element))
                 if os.path.exists(os.path.join(path, element, '__init__.py')):
                     submod = '.'.join([module, element])
-                    namespace[element] = __import__(submod, fromlist =['*'])
+                    namespace[element] = __import__(submod, fromlist=['*'])
         else:
             raise ImportError('Not a dir, not a file, what is %s?' % element)
 

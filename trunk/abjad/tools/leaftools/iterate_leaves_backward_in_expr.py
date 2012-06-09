@@ -2,7 +2,7 @@ from abjad.tools.leaftools.Leaf import Leaf
 from abjad.tools.componenttools.iterate_components_backward_in_expr import iterate_components_backward_in_expr
 
 
-def iterate_leaves_backward_in_expr(expr, start = 0, stop = None):
+def iterate_leaves_backward_in_expr(expr, start=0, stop=None):
     r'''.. versionadded:: 2.0
 
     Iterate leaves backward in `expr`::
@@ -41,7 +41,7 @@ def iterate_leaves_backward_in_expr(expr, start = 0, stop = None):
     Use the optional `start` and `stop` keyword parameters to control
     the indices of iteration. ::
 
-        >>> for leaf in leaftools.iterate_leaves_backward_in_expr(staff, start = 3):
+        >>> for leaf in leaftools.iterate_leaves_backward_in_expr(staff, start=3):
         ...     leaf
         ...
         Note("e'8")
@@ -50,7 +50,7 @@ def iterate_leaves_backward_in_expr(expr, start = 0, stop = None):
 
     ::
 
-        >>> for leaf in leaftools.iterate_leaves_backward_in_expr(staff, start = 0, stop = 3):
+        >>> for leaf in leaftools.iterate_leaves_backward_in_expr(staff, start=0, stop=3):
         ...     leaf
         ...
         Note("a'8")
@@ -59,7 +59,7 @@ def iterate_leaves_backward_in_expr(expr, start = 0, stop = None):
 
     ::
 
-        >>> for leaf in leaftools.iterate_leaves_backward_in_expr(staff, start = 2, stop = 4):
+        >>> for leaf in leaftools.iterate_leaves_backward_in_expr(staff, start=2, stop=4):
         ...     leaf
         ...
         Note("f'8")
@@ -70,4 +70,4 @@ def iterate_leaves_backward_in_expr(expr, start = 0, stop = None):
     Return generator.
     '''
 
-    return iterate_components_backward_in_expr(expr, Leaf, start = start, stop = stop)
+    return iterate_components_backward_in_expr(expr, Leaf, start=start, stop=stop)

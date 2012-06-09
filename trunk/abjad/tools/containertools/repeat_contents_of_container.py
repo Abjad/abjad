@@ -2,7 +2,7 @@ from abjad.tools.containertools.Container import Container
 from abjad.tools.containertools.repeat_last_n_elements_of_container import repeat_last_n_elements_of_container
 
 
-def repeat_contents_of_container(container, total = 2):
+def repeat_contents_of_container(container, total=2):
     r'''.. versionadded:: 1.1
 
     Repeat contents of `container`::
@@ -65,4 +65,4 @@ def repeat_contents_of_container(container, total = 2):
 
     # reproduce container contents when total is greater than zero
     n = len(container)
-    return repeat_last_n_elements_of_container(container, n = n, total = total)
+    return repeat_last_n_elements_of_container(container, n=n, total=total)

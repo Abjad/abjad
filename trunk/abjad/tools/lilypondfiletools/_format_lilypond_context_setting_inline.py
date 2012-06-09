@@ -1,7 +1,7 @@
 from _format_lilypond_value import _format_lilypond_value
 
 
-def _format_lilypond_context_setting_inline(name, value, context = None):
+def _format_lilypond_context_setting_inline(name, value, context=None):
     name = name.split('_')
     first = name[0:1]
     rest = name[1:]

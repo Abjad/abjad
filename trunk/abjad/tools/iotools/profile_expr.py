@@ -1,7 +1,7 @@
 import os
 
 
-def profile_expr(expr, sort_by = 'cum', num_lines = 12, strip_dirs = True):
+def profile_expr(expr, sort_by='cum', num_lines=12, strip_dirs=True):
     '''Profile `expr`::
 
         >>> iotools.profile_expr('Staff(notetools.make_repeated_notes(8))') # doctest: +SKIP

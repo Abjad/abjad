@@ -2,7 +2,7 @@ from abjad.tools import pitchtools
 from abjad.tools.leaftools.iterate_leaves_forward_in_expr import iterate_leaves_forward_in_expr
 
 
-def label_leaves_in_expr_with_pitch_numbers(expr, markup_direction = 'down'):
+def label_leaves_in_expr_with_pitch_numbers(expr, markup_direction='down'):
     r'''.. versionadded:: 1.1
 
     Label leaves in `expr` with pitch numbers::
@@ -28,6 +28,5 @@ def label_leaves_in_expr_with_pitch_numbers(expr, markup_direction = 'down'):
     for leaf in iterate_leaves_forward_in_expr(expr):
         for pitch in reversed(pitchtools.list_named_chromatic_pitches_in_expr(leaf)):
             if pitch is not None:
-                #pitch_number = r'\small %s' % pitch.chromatic_pitch_number
                 label = markuptools.MarkupCommand('small', str(pitch.chromatic_pitch_number))
                 markuptools.Markup(label, markup_direction)(leaf)

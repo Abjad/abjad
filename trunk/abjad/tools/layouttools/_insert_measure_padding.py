@@ -4,7 +4,7 @@ from abjad.tools.resttools.Rest import Rest
 from abjad.tools.skiptools.Skip import Skip
 
 
-def _insert_measure_padding(expr, front, back, klass, splice = False):
+def _insert_measure_padding(expr, front, back, klass, splice=False):
     r'''.. versionadded:: 2.0
 
     Generalizes measuretools.pad_measures_in_expr_with_rests() and

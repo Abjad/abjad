@@ -1,4 +1,4 @@
-def _fuse_leaves_in_container_once_by_counts(container, counts, target_type = None, direction = 'big-endian'):
+def _fuse_leaves_in_container_once_by_counts(container, counts, target_type=None, direction='big-endian'):
     '''Fuse leaves in `container` once by `counts` into `direction`-oriented
     instances of `target_type`.
     '''

@@ -11,7 +11,7 @@ import time
 
 # TODO: Encapsulate stuff below.
 
-def redo(target = -1, lily_time = 10):
+def redo(target=-1, lily_time=10):
     r'''Rerender the last ``.ly`` file created in Abjad and then show the resulting PDF::
 
         >>> iotools.redo() # doctest: +SKIP

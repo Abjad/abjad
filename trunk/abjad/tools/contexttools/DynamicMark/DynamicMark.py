@@ -26,9 +26,13 @@ class DynamicMark(ContextMark):
     Dynamic marks target the staff context by default.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
     _format_slot = 'right'
 
-    def __init__(self, dynamic_name, target_context = None):
+    ### INITIALIZER ###
+
+    def __init__(self, dynamic_name, target_context=None):
         from abjad.tools.stafftools.Staff import Staff
         ContextMark.__init__(self, target_context = target_context)
         if self.target_context is None:

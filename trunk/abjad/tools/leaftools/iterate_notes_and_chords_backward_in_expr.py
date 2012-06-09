@@ -1,7 +1,7 @@
 from abjad.tools import componenttools
 
 
-def iterate_notes_and_chords_backward_in_expr(expr, start = 0, stop = None):
+def iterate_notes_and_chords_backward_in_expr(expr, start=0, stop=None):
     r'''.. versionadded:: 2.0
 
     Iterate notes and chords backward in `expr`::
@@ -39,4 +39,4 @@ def iterate_notes_and_chords_backward_in_expr(expr, start = 0, stop = None):
     from abjad.tools.notetools.Note import Note
 
     return componenttools.iterate_components_backward_in_expr(
-        expr, (Note, Chord), start = start, stop = stop)
+        expr, (Note, Chord), start=start, stop=stop)

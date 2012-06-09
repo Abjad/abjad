@@ -2,7 +2,7 @@ from abjad.tools.leaftools.Leaf import Leaf
 from abjad.tools.componenttools.iterate_components_forward_in_expr import iterate_components_forward_in_expr
 
 
-def iterate_leaves_forward_in_expr(expr, start = 0, stop = None):
+def iterate_leaves_forward_in_expr(expr, start=0, stop=None):
     r'''.. versionadded:: 2.0
 
     Iterate leaves forward in `expr`::
@@ -70,4 +70,4 @@ def iterate_leaves_forward_in_expr(expr, start = 0, stop = None):
     Return generator.
     '''
 
-    return iterate_components_forward_in_expr(expr, Leaf, start = start, stop = stop)
+    return iterate_components_forward_in_expr(expr, Leaf, start=start, stop=stop)

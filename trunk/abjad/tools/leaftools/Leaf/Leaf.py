@@ -22,7 +22,7 @@ class Leaf(Component):
 
     ### INITIALIZER ###
 
-    def __init__(self, written_duration, duration_multiplier = None):
+    def __init__(self, written_duration, duration_multiplier=None):
         Component.__init__(self)
         self._duration_multiplier = duration_multiplier
         self._leaf_index = None

@@ -3,7 +3,7 @@ from abjad.tools.contexttools.ContextMark import ContextMark
 from abjad.tools.contexttools.get_context_marks_attached_to_component import get_context_marks_attached_to_component
 
 
-def is_component_with_context_mark_attached(expr, klasses = (ContextMark,)):
+def is_component_with_context_mark_attached(expr, klasses=(ContextMark,)):
     r'''.. versionadded:: 2.0
 
     True when `expr` is a component with context mark of `klasses` attached::

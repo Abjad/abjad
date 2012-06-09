@@ -3,7 +3,7 @@ from abjad.tools.tuplettools.Tuplet import Tuplet
 from abjad.tools import contexttools
 
 
-def _container_to_pitch_and_rhythm_skeleton(container, include_keyword_attributes = False):
+def _container_to_pitch_and_rhythm_skeleton(container, include_keyword_attributes=False):
     from abjad.tools import componenttools
     from abjad.tools.tuplettools.FixedDurationTuplet import FixedDurationTuplet
     from abjad.tools.leaftools._get_leaf_keyword_attributes import _get_leaf_keyword_attributes

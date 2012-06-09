@@ -53,7 +53,7 @@ class Pipe(abctools.AbjadObject, subprocess.Popen):
 
     ### PRIVATE METHODS ###
 
-    def _readbyte(self, n = 1):
+    def _readbyte(self, n=1):
         poll = select.poll()
         poll.register(self.stdout.fileno(), select.POLLIN or select.POLLPRI)
         fd = poll.poll(self.timeout)
@@ -69,7 +69,7 @@ class Pipe(abctools.AbjadObject, subprocess.Popen):
         self.terminate()
         self.wait()
 
-    def read(self, n = 1):
+    def read(self, n=1):
         '''Read from the pipe.'''
         c = self._readbyte()
         string = ""

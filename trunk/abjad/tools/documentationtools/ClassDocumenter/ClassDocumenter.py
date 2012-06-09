@@ -33,7 +33,7 @@ class ClassDocumenter(Documenter):
 
     ### INITIALIZER ###
 
-    def __init__(self, obj, prefix = 'abjad.tools.'):
+    def __init__(self, obj, prefix='abjad.tools.'):
         assert isinstance(obj, type)
         Documenter.__init__(self, obj, prefix)
 

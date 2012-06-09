@@ -3,7 +3,7 @@ from abjad.tools.leaftools.divide_leaf_meiotically import divide_leaf_meioticall
 from abjad.tools.leaftools.iterate_leaves_backward_in_expr import iterate_leaves_backward_in_expr
 
 
-def divide_leaves_in_expr_meiotically(expr, n = 2):
+def divide_leaves_in_expr_meiotically(expr, n=2):
     r'''.. versionadded:: 1.1
 
     Divide leaves meiotically in `expr` `n` times::
@@ -21,7 +21,7 @@ def divide_leaves_in_expr_meiotically(expr, n = 2):
 
     ::
 
-        >>> leaftools.divide_leaves_in_expr_meiotically(staff[2:], n = 4)
+        >>> leaftools.divide_leaves_in_expr_meiotically(staff[2:], n=4)
 
     ::
 

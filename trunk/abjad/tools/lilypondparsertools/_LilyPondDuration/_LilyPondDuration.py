@@ -1,7 +1,11 @@
 class _LilyPondDuration(object):
 
+    ### CLASS ATTRIBUTES ###
+
     __slots__ = ('duration', 'multiplier')
 
-    def __init__(self, duration, multiplier = None):
+    ### INITIALIZER ###
+
+    def __init__(self, duration, multiplier=None):
         self.duration = duration
         self.multiplier = multiplier

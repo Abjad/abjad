@@ -574,7 +574,7 @@ class Container(Component):
         #self[i:i] = [component]
         self.__setitem__(slice(i, i), [component])
         
-    def pop(self, i = -1):
+    def pop(self, i=-1):
         '''Pop component at index `i` from container::
 
             >>> container = Container("c'8 d'8 e'8")

@@ -3,7 +3,7 @@ from _format_lilypond_value import _format_lilypond_value
 from abjad.tools import stringtools
 
 
-def _make_lilypond_revert_string(grob_name, grob_attribute, context_name = None):
+def _make_lilypond_revert_string(grob_name, grob_attribute, context_name=None):
     '''.. versionadded:: 2.0
 
     Make LilyPond revert string.

@@ -27,10 +27,14 @@ class ClefMark(ContextMark):
     Clef marks target the staff context by default.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
     _format_slot = 'opening'
     #default_target_context = Staff
 
-    def __init__(self, arg, target_context = None):
+    ### INITIALIZER ###
+
+    def __init__(self, arg, target_context=None):
         from abjad.tools.stafftools.Staff import Staff
         ContextMark.__init__(self, target_context = target_context)
         if self.target_context is None:

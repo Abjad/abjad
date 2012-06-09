@@ -2,7 +2,7 @@ from abjad.tools.leaftools.Leaf import Leaf
 from abjad.tools import componenttools
 
 
-def repeat_leaf_and_extend_spanners(leaf, total = 1):
+def repeat_leaf_and_extend_spanners(leaf, total=1):
     r'''.. versionadded:: 1.1
 
     Repeat `leaf` and extend spanners::
@@ -20,7 +20,7 @@ def repeat_leaf_and_extend_spanners(leaf, total = 1):
 
     ::
 
-        >>> leaftools.repeat_leaf_and_extend_spanners(staff[0], total = 3)
+        >>> leaftools.repeat_leaf_and_extend_spanners(staff[0], total=3)
 
     ::
 

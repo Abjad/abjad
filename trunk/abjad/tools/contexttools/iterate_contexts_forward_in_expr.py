@@ -1,7 +1,7 @@
 from abjad.tools.contexttools.Context.Context import Context
 
 
-def iterate_contexts_forward_in_expr(expr, start = 0, stop = None):
+def iterate_contexts_forward_in_expr(expr, start=0, stop=None):
     r'''.. versionadded:: 2.0
 
     Iterate contexts forward in `expr`::
@@ -42,5 +42,4 @@ def iterate_contexts_forward_in_expr(expr, start = 0, stop = None):
     '''
     from abjad.tools import componenttools
 
-    return componenttools.iterate_components_forward_in_expr(
-        expr, Context, start = start, stop = stop)
+    return componenttools.iterate_components_forward_in_expr(expr, Context, start=start, stop=stop)
