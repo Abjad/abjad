@@ -30,6 +30,10 @@ if __name__ == '__main__':
         def root_package(self):
             return 'experimental'
 
+        @property
+        def tools_package_path_index(self):
+            return 1
+
     ExperimentalAPIGenerator()(verbose=True)
 
     # print greeting
