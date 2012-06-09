@@ -1,0 +1,5 @@
+from DynamicHandler import DynamicHandler
+from NoteAndChordHairpinHandler import NoteAndChordHairpinHandler
+from NoteAndChordHairpinsHandler import NoteAndChordHairpinsHandler
+from ReiteratedDynamicHandler import ReiteratedDynamicHandler
+from TerracedDynamicsHandler import TerracedDynamicsHandler
