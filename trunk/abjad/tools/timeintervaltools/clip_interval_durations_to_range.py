@@ -3,7 +3,7 @@ from abjad.tools.timeintervaltools.all_are_intervals_or_trees_or_empty import al
 from fractions import Fraction
 
 
-def clip_interval_durations_to_range(intervals, min = None, max = None):
+def clip_interval_durations_to_range(intervals, min=None, max=None):
     assert all_are_intervals_or_trees_or_empty(intervals)
     assert all([isinstance(x, (int, Fraction, type(None))) for x in [min, max]])
     if isinstance(min, (int, Fraction)):

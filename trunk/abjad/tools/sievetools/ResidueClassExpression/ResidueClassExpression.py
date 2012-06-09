@@ -7,9 +7,13 @@ import operator
 # TODO: change name to Sieve
 class ResidueClassExpression(_BaseResidueClass):
 
+    ### CLASS ATTRIBUTES ###
+
     __slots__ = ('_operator', '_rcs')
 
-    def __init__(self, rcs, operator = 'or'):
+    ### INITIALIZER ###
+
+    def __init__(self, rcs, operator='or'):
         # init from other rc expression
         if isinstance(rcs, ResidueClassExpression):
             #self.rcs = rcs.rcs[:]

@@ -11,7 +11,7 @@ from abjad.tools.timeintervaltools.compute_depth_of_intervals import compute_dep
 from abjad.tools.timeintervaltools.compute_depth_of_intervals_in_interval import compute_depth_of_intervals_in_interval
 
 
-def _make_voice_from_nonoverlapping_intervals(intervals, colorkey = None, pitch = None):
+def _make_voice_from_nonoverlapping_intervals(intervals, colorkey=None, pitch=None):
 
     assert all_are_intervals_or_trees_or_empty(intervals)
     if isinstance(intervals, TimeIntervalTree):

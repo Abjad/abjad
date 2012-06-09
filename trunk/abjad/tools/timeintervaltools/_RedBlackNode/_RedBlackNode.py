@@ -3,9 +3,13 @@ from abjad.tools.abctools import AbjadObject
 
 class _RedBlackNode(AbjadObject):
 
+    ### CLASS ATTRIBUTES ###
+
     __slots__ = ('key', 'left', 'red', 'right', 'parent', 'payload',)
 
-    def __init__(self, key = None):
+    ### INITIALIZER ###
+
+    def __init__(self, key=None):
         self.key = key
         self.left = None
         self.parent = None

@@ -3,9 +3,10 @@ from abjad.tools.timeintervaltools.shift_aggregate_offset_to_rational import shi
 from fractions import Fraction
 
 
-def concatenate_trees(trees, padding = 0):
+def concatenate_trees(trees, padding=0):
     '''Merge all trees in `trees`, offsetting each subsequent tree
-    to start after the previous.'''
+    to start after the previous.
+    '''
 
     assert all([isinstance(tree, TimeIntervalTree) for tree in trees])
     assert isinstance(padding, (int, Fraction))

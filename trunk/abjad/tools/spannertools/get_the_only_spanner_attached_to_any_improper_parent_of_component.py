@@ -1,7 +1,7 @@
 from abjad.tools.spannertools.get_spanners_attached_to_any_improper_parent_of_component import get_spanners_attached_to_any_improper_parent_of_component
 
 
-def get_the_only_spanner_attached_to_any_improper_parent_of_component(component, klass = None):
+def get_the_only_spanner_attached_to_any_improper_parent_of_component(component, klass=None):
     r'''.. versionadded:: 1.1
 
     Get the only spanner attached to any improper parent `component`::

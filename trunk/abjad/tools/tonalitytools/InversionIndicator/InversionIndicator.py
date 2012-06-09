@@ -11,9 +11,13 @@ class InversionIndicator(AbjadObject):
     Value object that can not be changed once initialized.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
     __slots__ = ('_number')
 
-    def __init__(self, arg = 0):
+    ### INITIALIZER ###
+
+    def __init__(self, arg=0):
         if isinstance(arg, (int, long)):
             number = arg
         elif isinstance(arg, str):

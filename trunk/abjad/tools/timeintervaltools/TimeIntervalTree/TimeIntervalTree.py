@@ -52,7 +52,7 @@ class TimeIntervalTree(_RedBlackTree, TimeIntervalAggregateMixin):
 
     ### INITIALIZER ###
 
-    def __init__(self, intervals = None):
+    def __init__(self, intervals=None):
         self._sentinel = _IntervalNode(0)
         self._sentinel.red = True
         self._sentinel.left = self._sentinel

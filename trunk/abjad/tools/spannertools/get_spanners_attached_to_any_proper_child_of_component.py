@@ -1,7 +1,7 @@
 from abjad.tools.spannertools.get_spanners_attached_to_component import get_spanners_attached_to_component
 
 
-def get_spanners_attached_to_any_proper_child_of_component(component, klass = None):
+def get_spanners_attached_to_any_proper_child_of_component(component, klass=None):
     r'''.. versionadded:: 2.0
 
     Get all spanners attached to any proper children of `component`::

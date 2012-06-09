@@ -28,7 +28,7 @@ class TrillSpanner(Spanner):
 
     ### INITIALIZER ###
 
-    def __init__(self, components = None):
+    def __init__(self, components=None):
         Spanner.__init__(self, components)
         self._pitch = None
 

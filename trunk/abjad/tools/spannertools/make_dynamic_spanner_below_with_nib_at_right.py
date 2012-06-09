@@ -3,7 +3,7 @@ from abjad.tools.schemetools import SchemePair
 from abjad.tools.spannertools.TextSpanner import TextSpanner
 
 
-def make_dynamic_spanner_below_with_nib_at_right(dynamic_text, components = None):
+def make_dynamic_spanner_below_with_nib_at_right(dynamic_text, components=None):
     r'''.. versionadded:: 2.0
 
     Span `components` with text spanner.

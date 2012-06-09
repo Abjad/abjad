@@ -2,7 +2,7 @@ from abjad.tools.stafftools.Staff import Staff
 from abjad.tools.componenttools.iterate_components_forward_in_expr import iterate_components_forward_in_expr
 
 
-def iterate_staves_forward_in_expr(expr, start = 0, stop = None):
+def iterate_staves_forward_in_expr(expr, start=0, stop=None):
     r'''.. versionadded:: 2.0
 
     Iterate staves forward in `expr`::
@@ -36,4 +36,4 @@ def iterate_staves_forward_in_expr(expr, start = 0, stop = None):
     Return generator.
     '''
 
-    return iterate_components_forward_in_expr(expr, Staff, start = start, stop = stop)
+    return iterate_components_forward_in_expr(expr, Staff, start=start, stop=stop)

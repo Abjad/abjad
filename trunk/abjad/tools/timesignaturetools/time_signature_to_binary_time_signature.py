@@ -4,7 +4,7 @@ from abjad.tools import mathtools
 import fractions
 
 
-def time_signature_to_binary_time_signature(nonbinary_meter, contents_multiplier = fractions.Fraction(1)):
+def time_signature_to_binary_time_signature(nonbinary_meter, contents_multiplier=fractions.Fraction(1)):
     '''Change nonbinary `meter` to binary meter::
 
         >>> from abjad.tools import timesignaturetools

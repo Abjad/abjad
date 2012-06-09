@@ -2,7 +2,7 @@ from abjad.tools import markuptools
 from abjad.tools.verticalitytools.iterate_vertical_moments_forward_in_expr import iterate_vertical_moments_forward_in_expr
 
 
-def label_vertical_moments_in_expr_with_pitch_numbers(expr, markup_direction = 'down'):
+def label_vertical_moments_in_expr_with_pitch_numbers(expr, markup_direction='down'):
     r'''.. versionadded:: 2.0
 
     Label pitch numbers of every vertical moment in `expr`::

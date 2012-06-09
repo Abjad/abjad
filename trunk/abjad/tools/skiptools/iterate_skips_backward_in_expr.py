@@ -2,7 +2,7 @@ from abjad.tools import componenttools
 from abjad.tools.skiptools.Skip import Skip
 
 
-def iterate_skips_backward_in_expr(expr, start = 0, stop = None):
+def iterate_skips_backward_in_expr(expr, start=0, stop=None):
     r'''.. versionadded:: 2.0
 
     Iterate skips backward in `expr`::
@@ -32,5 +32,4 @@ def iterate_skips_backward_in_expr(expr, start = 0, stop = None):
     Return generator.
     '''
 
-    return componenttools.iterate_components_backward_in_expr(
-        expr, Skip, start = start, stop = stop)
+    return componenttools.iterate_components_backward_in_expr(expr, Skip, start=start, stop=stop)

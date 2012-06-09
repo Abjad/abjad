@@ -40,7 +40,7 @@ class TextSpanner(Spanner):
 
     ### INITIALIZER ###
 
-    def __init__(self, components = None):
+    def __init__(self, components=None):
         Spanner.__init__(self, components)
 
     ### PRIVATE METHODS ###

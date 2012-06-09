@@ -8,10 +8,14 @@ class _IntervalNode(_RedBlackNode):
     Duplicate payloads are supported by maintaining a list of TimeIntervals
     '''
 
+    ### CLASS ATTRIBUTES ###
+
     __slots__ = ('latest_stop', 'earliest_stop', 'key',
                 'left', 'parent', 'payload', 'red', 'right', )
 
-    def __init__(self, key, intervals = None):
+    ### INITIALIZER ###
+
+    def __init__(self, key, intervals=None):
         assert isinstance(key, (int, Fraction))
         _RedBlackNode.__init__(self, key)
         self.payload = []

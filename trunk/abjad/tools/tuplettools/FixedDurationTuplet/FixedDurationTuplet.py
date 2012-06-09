@@ -121,7 +121,7 @@ class FixedDurationTuplet(Tuplet):
 
     ### PUBLIC METHODS ###
 
-    def trim(self, start, stop = 'unused'):
+    def trim(self, start, stop='unused'):
         '''Trim fixed-duration tuplet elements from `start` to `stop`::
 
             >>> tuplet = tuplettools.FixedDurationTuplet(Fraction(2, 8), "c'8 d'8 e'8")

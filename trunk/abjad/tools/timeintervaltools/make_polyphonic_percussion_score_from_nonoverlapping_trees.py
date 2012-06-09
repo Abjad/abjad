@@ -14,7 +14,7 @@ from abjad.tools.timeintervaltools._make_voice_from_nonoverlapping_intervals imp
 from collections import Iterable
 
 
-def make_polyphonic_percussion_score_from_nonoverlapping_trees(trees, colorkey = None):
+def make_polyphonic_percussion_score_from_nonoverlapping_trees(trees, colorkey=None):
     '''Make a polyphonic percussion score from a collections of non-overlapping trees.'''
 
     if isinstance(trees, TimeIntervalTreeDictionary):

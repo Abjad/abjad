@@ -1,4 +1,4 @@
-def is_component_with_spanner_attached(expr, klass = None):
+def is_component_with_spanner_attached(expr, klass=None):
     r'''.. versionadded:: 2.0
 
     True when `expr` is a component with spanner attached::

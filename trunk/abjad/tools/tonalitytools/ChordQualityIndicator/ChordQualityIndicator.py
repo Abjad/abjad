@@ -8,8 +8,7 @@ class ChordQualityIndicator(HarmonicDiatonicIntervalSegment):
     Chord quality indicator.
     '''
 
-    #def __init__(self, quality_string, extent = 'triad', inversion = 'root'):
-    def __new__(self, quality_string, extent = 'triad', inversion = 'root'):
+    def __new__(self, quality_string, extent='triad', inversion='root'):
         from abjad.tools.tonalitytools.ChordQualityIndicator._invert_quality_indicator import _invert_quality_indicator
         if extent in ('triad', 5):
             from abjad.tools.tonalitytools.ChordQualityIndicator._init_triad import _init_triad

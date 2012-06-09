@@ -6,8 +6,9 @@ from abjad.tools.schemetools import SchemePair
 from abjad.tools.timeintervaltools._make_voice_from_nonoverlapping_intervals import _make_voice_from_nonoverlapping_intervals
 
 
-def make_monophonic_percussion_score_from_nonoverlapping_intervals(intervals, colorkey = None):
-    '''Create a monophonic percussion score from nonoverlapping interval collection `intervals`.'''
+def make_monophonic_percussion_score_from_nonoverlapping_intervals(intervals, colorkey=None):
+    '''Create a monophonic percussion score from nonoverlapping interval collection `intervals`.
+    '''
 
     voice = _make_voice_from_nonoverlapping_intervals(intervals, colorkey)
 
