@@ -1,6 +1,6 @@
 from fractions import Fraction
-from abjad import Score
-from abjad import Staff
+from abjad.tools import scoretools
+from abjad.tools import stafftools
 from abjad.tools.contexttools import ClefMark
 from abjad.tools.lilypondfiletools import make_basic_lilypond_file
 from abjad.tools.pitchtools import make_n_middle_c_centered_pitches
@@ -34,12 +34,12 @@ def make_polyphonic_percussion_score_from_nonoverlapping_trees(trees, colorkey =
             colorkey = colorkey, pitch = pitch)
         voices.append(voice)
 
-    staff = Staff(voices)
+    staff = stafftools.Staff(voices)
     staff.is_parallel = True
     staff.override.staff_symbol.line_count = len(voices)
     ClefMark('percussion')(staff)
 
-    score = Score([staff])
+    score = scoretools.Score([staff])
     score.override.glissando.thickness = 5
     score.override.note_head.style = 'harmonic'
     score.override.rest.transparent = True

@@ -31,7 +31,7 @@ from abjad.tools import notetools
 from abjad.tools import offsettools
 from abjad.tools import pitcharraytools
 from abjad.tools import pitchtools
-#from abjad.tools import quantizationtools
+from abjad.tools import quantizationtools
 from abjad.tools import resttools
 from abjad.tools import rhythmtreetools
 from abjad.tools import schemetools
@@ -45,7 +45,7 @@ from abjad.tools import stafftools
 from abjad.tools import stringtools
 from abjad.tools import tempotools
 from abjad.tools import tietools
-#from abjad.tools import timeintervaltools
+from abjad.tools import timeintervaltools
 from abjad.tools import timesignaturetools
 from abjad.tools import timetokentools
 from abjad.tools import tonalitytools

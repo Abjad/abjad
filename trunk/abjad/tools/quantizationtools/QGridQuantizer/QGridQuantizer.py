@@ -1,9 +1,9 @@
 from itertools import groupby
-from abjad import Chord
-from abjad import Container
 from fractions import Fraction
-from abjad import Rest
-from abjad import Tuplet
+from abjad.tools import chordtools
+from abjad.tools import containertools
+from abjad.tools import resttools
+from abjad.tools import tuplettools
 from abjad.tools.contexttools import TempoMark
 from abjad.tools.leaftools import fuse_leaves_big_endian
 from abjad.tools.leaftools import fuse_leaves_in_tie_chain_by_immediate_parent_big_endian
@@ -232,13 +232,13 @@ class QGridQuantizer(_Quantizer):
                 beatspan_numbers.pop(-1)
 
         # make bare notation
-        container = Container()
+        container = containertools.Container()
         for beatspan_number in beatspan_numbers:
             q_grid = best_q_grids[beatspan_number]
             formatted = q_grid.format_for_beatspan(self.beatspan)
             if 1 < len(formatted):
                 MultipartBeamSpanner(formatted)
-            if isinstance(formatted, Tuplet): # non-binary
+            if isinstance(formatted, tuplettools.Tuplet): # non-binary
                 container.append(formatted)
             else: # binary
                 container.extend(formatted)
@@ -255,11 +255,11 @@ class QGridQuantizer(_Quantizer):
                 idx = parent.index(leaf)
                 if len(pitch) == 1:
                     if pitch[0] is None:
-                        parent[idx] = Rest(leaf)
+                        parent[idx] = resttools.Rest(leaf)
                     else:
                         leaf.written_pitch = pitch[0]
                 else:
-                    parent[idx] = Chord(leaf)
+                    parent[idx] = chordtools.Chord(leaf)
                     parent[idx].written_pitches = pitch
 
         # rest any trailing, untied leaves
@@ -271,10 +271,10 @@ class QGridQuantizer(_Quantizer):
             last_tie.clear() # detach
             for note in flatten_sequence(last_tie_chain):
                 parent = note._parent
-                parent[parent.index(note)] = Rest(note.written_duration)
+                parent[parent.index(note)] = resttools.Rest(note.written_duration)
         elif len(trailing) == 1:
             parent = trailing[0]._parent
-            parent[parent.index(trailing[0])] = Rest(trailing[0].written_duration)
+            parent[parent.index(trailing[0])] = resttools.Rest(trailing[0].written_duration)
 
         # fuse tie chains
         for tie_chain in iterate_tie_chains_forward_in_expr(container):

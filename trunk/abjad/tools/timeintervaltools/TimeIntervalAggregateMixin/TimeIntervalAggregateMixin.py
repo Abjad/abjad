@@ -1,7 +1,6 @@
 from abc import ABCMeta
 from abc import abstractmethod
 from abc import abstractproperty
-from abjad import Duration
 from abjad.tools.timeintervaltools.TimeInterval import TimeInterval
 from abjad.tools.timeintervaltools.TimeIntervalMixin import TimeIntervalMixin
 

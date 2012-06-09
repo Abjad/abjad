@@ -1,4 +1,4 @@
-from abjad import Duration
+from abjad.tools import durationtools
 from abjad.tools.abctools import AbjadObject
 from abjad.tools.datastructuretools import ImmutableDictionary
 from abjad.tools.durationtools import Offset
@@ -1107,7 +1107,7 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
         Return `TimeIntervalTreeDictionary` instance.
         '''
 
-        rational = Duration(rational)
+        rational = durationtools.Duration(rational)
         result = {}
         for key, tree in self.iteritems():
             result[key] = tree.quantize_to_rational(rational)
@@ -1202,7 +1202,7 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
         Return `TimeIntervalTreeDictionary` instance.
         '''
 
-        rational = Duration(rational)
+        rational = durationtools.Duration(rational)
         result = {}
         for key, tree in self.iteritems():
             offset = (tree.start - self.start) * rational
@@ -1290,7 +1290,7 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
         Return `TimeIntervalTreeDictionary` instance.
         '''
 
-        rational = Duration(rational)
+        rational = durationtools.Duration(rational)
         result = {}
         for key, tree in self.iteritems():
             offset = (((tree.start - self.start) / self.duration) * rational) + self.start

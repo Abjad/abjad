@@ -1,7 +1,7 @@
-from abjad import Container
 from fractions import Fraction
-from abjad import Note
-from abjad import Tuplet
+from abjad.tools import containertools
+from abjad.tools import notetools
+from abjad.tools import tuplettools
 from abjad.tools.abctools import AbjadObject
 from abjad.tools.durationtools import Offset
 from abjad.tools.mathtools import divisors
@@ -324,9 +324,9 @@ class QGrid(AbjadObject):
             pow = greatest_power_of_two_less_equal(len(n))
             val = Fraction(1, pow) * division
             if divisors(len(n)) in [[1], [1, 2]]:
-                c = Container([])
+                c = containertools.Container([])
             else: # we are in a non-2 prime container, hence tuplet
-                c = Tuplet(Fraction(pow, len(n)), [])
+                c = tuplettools.Tuplet(Fraction(pow, len(n)), [])
             for x in n:
                 if isinstance(x, list):
                     if len(x) in [1, 2]:
@@ -334,7 +334,7 @@ class QGrid(AbjadObject):
                     else:
                         c.append(recurse(x, val))
                 else:
-                    c.append(Note(0, val))
+                    c.append(notetools.Note(0, val))
             return c
         return recurse(self.definition, beatspan)
 

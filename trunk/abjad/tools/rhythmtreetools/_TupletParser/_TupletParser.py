@@ -1,5 +1,6 @@
 import copy
 from abjad.tools import containertools
+from abjad.tools import durationtools
 from abjad.tools import marktools
 from abjad.tools import mathtools
 from abjad.tools import notetools
@@ -119,7 +120,7 @@ class _TupletParser(_Parser):
 
     def p_pair__PAREN_L__INTEGER__COMMA__INTEGER__PAREN_R(self, p):
         '''pair : PAREN_L INTEGER COMMA INTEGER PAREN_R'''
-        p[0] = Duration(p[2], p[4])
+        p[0] = durationtools.Duration(p[2], p[4])
 
     def p_measure__PIPE__FRACTION__component_list__PIPE(self, p):
         '''measure : PIPE FRACTION component_list PIPE'''

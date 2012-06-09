@@ -1,5 +1,5 @@
-from abjad import Score
-from abjad import Staff
+from abjad.tools import scoretools
+from abjad.tools import stafftools
 from abjad.tools.contexttools import ClefMark
 from abjad.tools.schemetools import Scheme
 from abjad.tools.schemetools import SchemePair
@@ -11,11 +11,11 @@ def make_monophonic_percussion_score_from_nonoverlapping_intervals(intervals, co
 
     voice = _make_voice_from_nonoverlapping_intervals(intervals, colorkey)
 
-    staff = Staff(voice[:])
+    staff = stafftools.Staff(voice[:])
     staff.override.staff_symbol.line_count = 1
     ClefMark('percussion')(staff)
 
-    score = Score([staff])
+    score = scoretools.Score([staff])
     score.override.glissando.thickness = 5
     score.override.note_head.style = 'harmonic'
     score.override.rest.transparent = True

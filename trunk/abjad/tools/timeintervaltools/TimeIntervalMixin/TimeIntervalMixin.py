@@ -1,6 +1,6 @@
 from abc import ABCMeta
 from abc import abstractmethod
-from abjad import Duration
+from abjad.tools import durationtools
 from abjad.tools.abctools import AbjadObject
 
 
@@ -70,7 +70,7 @@ class TimeIntervalMixin(AbjadObject):
         Returns `Duration` instance.
         '''
         if self.start is not None and self.stop is not None:
-            return Duration(self.stop - self.start)
+            return durationtools.Duration(self.stop - self.start)
         raise UnboundedTimeIntervalError
 
     @property

@@ -33,22 +33,32 @@ _import_functions_in_package_to_namespace(_exceptions_path, __builtins__)
 del abctools
 del cfg
 del configurationtools
+del constrainttools
 del datastructuretools
 del decoratortools
+del documentationtools
 del durationtools
+del exceptiontools
 del importtools
+del lilypondparsertools
 del lilypondproxytools
+del lyricstools
 del mathtools
 del timesignaturetools
+del offsettools
 del os
 del pitcharraytools
 del platform
+del quantizationtools
+del rhythmtreetools
 del scoretemplatetools
 del sequencetools
 del sievetools
 del sys
+del timeintervaltools
 del timetokentools
 del tonalitytools
 del tools
+del wellformednesstools
 
 __version__ = '2.9'

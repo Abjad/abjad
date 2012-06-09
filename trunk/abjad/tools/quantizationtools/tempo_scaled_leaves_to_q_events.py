@@ -1,6 +1,6 @@
 from itertools import groupby
-from abjad import Note
-from abjad import Rest
+from abjad.tools import notetools
+from abjad.tools import resttools
 from abjad.tools.componenttools import all_are_contiguous_components_in_same_thread
 from abjad.tools.contexttools import TempoMark
 from abjad.tools.contexttools import get_effective_tempo
@@ -10,7 +10,7 @@ from abjad.tools.quantizationtools.millisecond_pitch_pairs_to_q_events \
     import millisecond_pitch_pairs_to_q_events
 from abjad.tools.quantizationtools.tempo_scaled_rational_to_milliseconds \
     import tempo_scaled_rational_to_milliseconds
-from abjad.tools.skiptools import Skip
+from abjad.tools import skiptools
 from abjad.tools.tietools import get_tie_chain
 
 
@@ -38,7 +38,7 @@ def tempo_scaled_leaves_to_q_events(leaves, tempo = None):
 
     # sort by silence and tied leaves
     groups = []
-    for rvalue, rgroup in groupby(leaves, lambda x: isinstance(x, (Rest, Skip))):
+    for rvalue, rgroup in groupby(leaves, lambda x: isinstance(x, (resttools.Rest, skiptools.Skip))):
         if rvalue:
             groups.append(list(rgroup))
         else:
@@ -60,9 +60,9 @@ def tempo_scaled_leaves_to_q_events(leaves, tempo = None):
         durations.append(duration)
 
         # get pitch of first leaf in group
-        if isinstance(group[0], (Rest, Skip)):
+        if isinstance(group[0], (resttools.Rest, skiptools.Skip)):
             pitch = None
-        elif isinstance(group[0], Note):
+        elif isinstance(group[0], notetools.Note):
             pitch = group[0].written_pitch.chromatic_pitch_number
         else: # chord
             pitch = [x.written_pitch.chromatic_pitch_number for x in group[0].note_heads]
