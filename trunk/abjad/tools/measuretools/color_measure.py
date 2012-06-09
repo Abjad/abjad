@@ -1,7 +1,7 @@
 from abjad.tools.measuretools.Measure import Measure
 
 
-def color_measure(measure, color = 'red'):
+def color_measure(measure, color='red'):
     r'''.. versionadded:: 2.0
 
     Color `measure` with `color`::

@@ -31,13 +31,14 @@ class LilyPondComment(Mark):
     LilyPond comments implement ``__slots__``.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
     __slots__ = ('_contents_string', '_format_slot', )
 
-    #def __init__(self, contents_string, format_slot = 'opening'):
+    ### INITIALIZER ###
+
     def __init__(self, *args):
         Mark.__init__(self)
-        #self._contents_string = contents_string
-        #self._format_slot = format_slot
         if len(args) == 1 and isinstance(args[0], type(self)):
             self.contents_string = copy.copy(args[0].contents_string)
             self.format_slot = copy.copy(args[0].format_slot)

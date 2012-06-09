@@ -24,7 +24,7 @@ class _Quantizer(AbjadObject):
     def __call__(self, args, **kwargs):
         # Q-events
         if all([isinstance(x, QEvent) for x in args]):
-            q_events = list(sorted(args, key = lambda x: x.offset))
+            q_events = list(sorted(args, key=lambda x: x.offset))
 
         # tempo-scaled rationals
         elif all([isinstance(x, (int, Fraction)) for x in args]) and \
@@ -56,7 +56,7 @@ class _Quantizer(AbjadObject):
             raise ValueError("Can't quantize from %r" % args)
 
         if 'verbose' in kwargs and kwargs['verbose']:
-            return self._quantize(q_events, verbose = True)
+            return self._quantize(q_events, verbose=True)
         else:
             return self._quantize(q_events)
 
@@ -71,5 +71,5 @@ class _Quantizer(AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    def _quantize(self, q_events, verbose = False):
+    def _quantize(self, q_events, verbose=False):
         return q_events, verbose

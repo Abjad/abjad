@@ -33,13 +33,14 @@ class LilyPondCommandMark(Mark):
     LilyPond command marks implement ``__slots__``.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
     __slots__ = ('_command_name', '_format_slot', )
 
-    #def __init__(self, command_name, format_slot = 'opening'):
+    ### INITIALIZER ###
+
     def __init__(self,  *args):
         Mark.__init__(self)
-        #self._command_name = command_name
-        #self._format_slot = format_slot
         if len(args) == 1 and isinstance(args[0], type(self)):
             self.command_name = copy.copy(args[0].command_name)
             self.format_slot = copy.copy(args[0].format_slot)

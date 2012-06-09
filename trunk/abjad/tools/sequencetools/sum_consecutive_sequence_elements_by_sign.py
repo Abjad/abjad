@@ -2,7 +2,7 @@ from abjad.tools import mathtools
 import itertools
 
 
-def sum_consecutive_sequence_elements_by_sign(sequence, sign = [-1, 0, 1]):
+def sum_consecutive_sequence_elements_by_sign(sequence, sign=[-1, 0, 1]):
     '''.. versionadded:: 1.1
 
     Sum consecutive `sequence` elements by `sign`::
@@ -20,37 +20,37 @@ def sum_consecutive_sequence_elements_by_sign(sequence, sign = [-1, 0, 1]):
 
     ::
 
-        >>> sequencetools.sum_consecutive_sequence_elements_by_sign(sequence, sign = [-1])
+        >>> sequencetools.sum_consecutive_sequence_elements_by_sign(sequence, sign=[-1])
         [0, 0, -2, 2, 3, -5, 1, 2, 5, -11]
 
     ::
 
-        >>> sequencetools.sum_consecutive_sequence_elements_by_sign(sequence, sign = [0])
+        >>> sequencetools.sum_consecutive_sequence_elements_by_sign(sequence, sign=[0])
         [0, -1, -1, 2, 3, -5, 1, 2, 5, -5, -6]
 
     ::
 
-        >>> sequencetools.sum_consecutive_sequence_elements_by_sign(sequence, sign = [1])
+        >>> sequencetools.sum_consecutive_sequence_elements_by_sign(sequence, sign=[1])
         [0, 0, -1, -1, 5, -5, 8, -5, -6]
 
     ::
 
-        >>> sequencetools.sum_consecutive_sequence_elements_by_sign(sequence, sign = [-1, 0])
+        >>> sequencetools.sum_consecutive_sequence_elements_by_sign(sequence, sign=[-1, 0])
         [0, -2, 2, 3, -5, 1, 2, 5, -11]
 
     ::
 
-        >>> sequencetools.sum_consecutive_sequence_elements_by_sign(sequence, sign = [-1, 1])
+        >>> sequencetools.sum_consecutive_sequence_elements_by_sign(sequence, sign=[-1, 1])
         [0, 0, -2, 5, -5, 8, -11]
 
     ::
 
-        >>> sequencetools.sum_consecutive_sequence_elements_by_sign(sequence, sign = [0, 1])
+        >>> sequencetools.sum_consecutive_sequence_elements_by_sign(sequence, sign=[0, 1])
         [0, -1, -1, 5, -5, 8, -5, -6]
 
     ::
 
-        >>> sequencetools.sum_consecutive_sequence_elements_by_sign(sequence, sign = [-1, 0, 1])
+        >>> sequencetools.sum_consecutive_sequence_elements_by_sign(sequence, sign=[-1, 0, 1])
         [0, -2, 5, -5, 8, -11]
 
     When ``-1`` in `sign`, sum consecutive negative elements.

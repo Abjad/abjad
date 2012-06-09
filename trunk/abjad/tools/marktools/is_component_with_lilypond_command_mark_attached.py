@@ -1,7 +1,7 @@
 from abjad.tools.marktools.get_lilypond_command_marks_attached_to_component import get_lilypond_command_marks_attached_to_component
 
 
-def is_component_with_lilypond_command_mark_attached(expr, command_name = None):
+def is_component_with_lilypond_command_mark_attached(expr, command_name=None):
     '''.. versionadded:: 2.0
 
     True when `expr` is component with LilyPond command mark attached::

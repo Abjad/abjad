@@ -3,7 +3,7 @@ from abjad.tools.sequencetools.repeat_sequence_n_times import repeat_sequence_n_
 import math
 
 
-def _partition_sequence_extended_to_counts(sequence, counts, overhang = True):
+def _partition_sequence_extended_to_counts(sequence, counts, overhang=True):
     '''Partition sequence extended to counts.
     '''
 
@@ -11,4 +11,4 @@ def _partition_sequence_extended_to_counts(sequence, counts, overhang = True):
 
     sequence = repeat_sequence_n_times(sequence, n)
 
-    return _partition_sequence_by_counts(sequence, counts, cyclic = False, overhang = overhang)
+    return _partition_sequence_by_counts(sequence, counts, cyclic=False, overhang=overhang)

@@ -2,7 +2,7 @@ from abjad.tools import mathtools
 from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_measures_forward_in_expr
 
 
-def fill_measures_in_expr_with_meter_denominator_notes(expr, iterctrl = None):
+def fill_measures_in_expr_with_meter_denominator_notes(expr, iterctrl=None):
     r'''.. versionadded:: 1.1
 
     Fill measures in `expr` with meter denominator notes::

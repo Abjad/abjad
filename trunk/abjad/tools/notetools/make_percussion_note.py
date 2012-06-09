@@ -2,7 +2,7 @@ from abjad.tools.notetools.Note import Note
 from abjad.tools import durationtools
 
 
-def make_percussion_note(pitch, total_duration, max_note_duration = (1, 8)):
+def make_percussion_note(pitch, total_duration, max_note_duration=(1, 8)):
     '''Make percussion note::
 
         >>> notetools.make_percussion_note(2, (1, 4), (1, 8))

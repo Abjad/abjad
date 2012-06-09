@@ -3,7 +3,7 @@ from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_me
 import itertools
 
 
-def _report_meter_distribution(expr, delivery = 'screen'):
+def _report_meter_distribution(expr, delivery='screen'):
     r'''Inventory meters in `expr` with frequency count of each.
 
     When ``delivery = 'screen'`` print results to stdout::

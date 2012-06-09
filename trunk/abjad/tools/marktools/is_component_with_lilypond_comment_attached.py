@@ -1,7 +1,7 @@
 from abjad.tools.marktools.get_lilypond_comments_attached_to_component import get_lilypond_comments_attached_to_component
 
 
-def is_component_with_lilypond_comment_attached(expr, comment_contents_string = None):
+def is_component_with_lilypond_comment_attached(expr, comment_contents_string=None):
     '''.. versionadded:: 2.3
 
     True when `expr` is component with LilyPond comment mark attached::

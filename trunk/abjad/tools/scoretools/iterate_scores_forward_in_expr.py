@@ -2,7 +2,7 @@ from abjad.tools.scoretools.Score import Score
 from abjad.tools import componenttools
 
 
-def iterate_scores_forward_in_expr(expr, start = 0, stop = None):
+def iterate_scores_forward_in_expr(expr, start=0, stop=None):
     '''.. versionadded:: 2.0
 
     Iterate scores forward in `expr`::
@@ -23,4 +23,4 @@ def iterate_scores_forward_in_expr(expr, start = 0, stop = None):
     Return generator.
     '''
 
-    return componenttools.iterate_components_forward_in_expr(expr, Score, start = start, stop = stop)
+    return componenttools.iterate_components_forward_in_expr(expr, Score, start=start, stop=stop)

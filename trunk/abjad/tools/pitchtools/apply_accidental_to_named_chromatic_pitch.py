@@ -1,4 +1,4 @@
-def apply_accidental_to_named_chromatic_pitch(named_chromatic_pitch, accidental = None):
+def apply_accidental_to_named_chromatic_pitch(named_chromatic_pitch, accidental=None):
     '''.. versionadded:: 2.0
 
     Apply `accidental` to `named_chromatic_pitch`::

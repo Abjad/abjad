@@ -1,7 +1,7 @@
 from fractions import Fraction
 
 
-def sum_sequence_elements_at_indices(sequence, pairs, period = None, overhang = True):
+def sum_sequence_elements_at_indices(sequence, pairs, period=None, overhang=True):
     '''.. versionadded:: 1.1
 
     Sum `sequence` elements at indices according to `pairs`::
@@ -15,13 +15,13 @@ def sum_sequence_elements_at_indices(sequence, pairs, period = None, overhang = 
 
     Sum `sequence` elements cyclically at indices according to `pairs` and `period`::
 
-        >>> sequencetools.sum_sequence_elements_at_indices(range(10), [(0, 3)], period = 4)
+        >>> sequencetools.sum_sequence_elements_at_indices(range(10), [(0, 3)], period=4)
         [3, 3, 15, 7, 17]
 
     Sum `sequence` elements cyclically at indices according to `pairs` and `period`
     and do not return incomplete final sum::
 
-        >>> sequencetools.sum_sequence_elements_at_indices(range(10), [(0, 3)], period = 4, overhang = False)
+        >>> sequencetools.sum_sequence_elements_at_indices(range(10), [(0, 3)], period=4, overhang=False)
         [3, 3, 15, 7]
 
     Replace ``sequence[i:i+count]`` with ``sum(sequence[i:i+count])``

@@ -1,4 +1,4 @@
-def partition_integer_into_thirds(n, smallest = 'middle', biggest = 'middle'):
+def partition_integer_into_thirds(n, smallest='middle', biggest='middle'):
     '''Partition positive integer `n` into ``left, middle, right`` parts.
 
     When ``n % 3 == 0``, ``left == middle == right``::
@@ -12,20 +12,20 @@ def partition_integer_into_thirds(n, smallest = 'middle', biggest = 'middle'):
 
     When ``n % 3 == 1``, set biggest part to `biggest`::
 
-        >>> mathtools.partition_integer_into_thirds(10, biggest = 'left')
+        >>> mathtools.partition_integer_into_thirds(10, biggest='left')
         (4, 3, 3)
-        >>> mathtools.partition_integer_into_thirds(10, biggest = 'middle')
+        >>> mathtools.partition_integer_into_thirds(10, biggest='middle')
         (3, 4, 3)
-        >>> mathtools.partition_integer_into_thirds(10, biggest = 'right')
+        >>> mathtools.partition_integer_into_thirds(10, biggest='right')
         (3, 3, 4)
 
     When ``n % 3 == 2``, set smallest part to `smallest`::
 
-        >>> mathtools.partition_integer_into_thirds(11, smallest = 'left')
+        >>> mathtools.partition_integer_into_thirds(11, smallest='left')
         (3, 4, 4)
-        >>> mathtools.partition_integer_into_thirds(11, smallest = 'middle')
+        >>> mathtools.partition_integer_into_thirds(11, smallest='middle')
         (4, 3, 4)
-        >>> mathtools.partition_integer_into_thirds(11, smallest = 'right')
+        >>> mathtools.partition_integer_into_thirds(11, smallest='right')
         (4, 4, 3)
 
     Raise type error on noninteger `n`.

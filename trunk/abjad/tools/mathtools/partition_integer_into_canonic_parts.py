@@ -2,7 +2,7 @@ from abjad.tools.mathtools.integer_to_binary_string import integer_to_binary_str
 from abjad.tools.mathtools.sign import sign
 
 
-def partition_integer_into_canonic_parts(n, direction = 'big-endian'):
+def partition_integer_into_canonic_parts(n, direction='big-endian'):
     '''Partition integer `n` into big-endian or small-endian parts.
 
     Return all parts positive on positive `n`::
@@ -44,7 +44,7 @@ def partition_integer_into_canonic_parts(n, direction = 'big-endian'):
     Return little-endian tuple When ``direction = 'little-endian'``::
 
         >>> for n in range(11, 21):
-        ...     print n, mathtools.partition_integer_into_canonic_parts(n, direction = 'little-endian')
+        ...     print n, mathtools.partition_integer_into_canonic_parts(n, direction='little-endian')
         ...
         11 (3, 8)
         12 (12,)

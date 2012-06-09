@@ -87,7 +87,9 @@ class PitchArrayCell(AbjadObject):
     Return pitch array cell.
     '''
 
-    def __init__(self, cell_token = None):
+    ### INTIALIZER ###
+
+    def __init__(self, cell_token=None):
         self._parent_row = None
         self._pitches = []
         pitches, width = self._parse_cell_token(cell_token)

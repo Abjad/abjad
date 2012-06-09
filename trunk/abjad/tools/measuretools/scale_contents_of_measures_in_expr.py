@@ -5,7 +5,7 @@ from abjad.tools import timesignaturetools
 from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_measures_forward_in_expr
 
 
-def scale_contents_of_measures_in_expr(expr, multiplier = 1):
+def scale_contents_of_measures_in_expr(expr, multiplier=1):
     '''.. versionadded:: 2.0
 
     Scale contents of measures in `expr` by `multiplier`.

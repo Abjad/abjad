@@ -53,7 +53,7 @@ class QGridQuantizer(_Quantizer):
         >>> beatspan = Fraction(1, 4)
         >>> search_tree = QGridSearchTree({2: {2: None, 3: None}, 5: None})
         >>> threshold = 250
-        >>> q = QGridQuantizer(tempo = target_tempo, beatspan = beatspan, search_tree = search_tree, threshold = threshold)
+        >>> q = QGridQuantizer(tempo=target_tempo, beatspan=beatspan, search_tree=search_tree, threshold=threshold)
 
     `QGridQuantizer` can quantize lists of leaves.  If the source leaves have no effective tempo,
     one must be provided with the `tempo` keyword.
@@ -63,14 +63,14 @@ class QGridQuantizer(_Quantizer):
         >>> q = QGridQuantizer()
         >>> source = Staff("c'4 d'4 e'4. r8 <c' e' g'>2. <d' g' b'>4")
         >>> source_tempo = contexttools.TempoMark((1, 4), 54)
-        >>> result = q(source[:], tempo = source_tempo)
+        >>> result = q(source[:], tempo=source_tempo)
 
     ::
 
         >>> q = QGridQuantizer()
         >>> source = Staff("c'4 d'4 e'4. r8 <c' e' g'>2. <d' g' b'>4")
-        >>> t = contexttools.TempoMark((1, 8), 34, target_context = Staff)(source)
-        >>> t = contexttools.TempoMark((1, 4), 135, target_context = Staff)(source[3])
+        >>> t = contexttools.TempoMark((1, 8), 34, target_context=Staff)(source)
+        >>> t = contexttools.TempoMark((1, 4), 135, target_context=Staff)(source[3])
         >>> result = q(source[:])
 
     `QGridQuantizer` can quantize lists of millisecond durations.  Negative values can be used
@@ -90,7 +90,7 @@ class QGridQuantizer(_Quantizer):
         >>> q = QGridQuantizer()
         >>> rationals = [1, Fraction(1, 2), Fraction(-1, 4), 3, Fraction(-1, 3), 2]
         >>> tempo = contexttools.TempoMark((1, 4), 45)
-        >>> result = q(rationals, tempo = tempo)
+        >>> result = q(rationals, tempo=tempo)
 
     Lastly, `QGridQuantizer` can quantize lists of pairs, where the first value in each pair
     is a millisecond duration, and the second value is an int or float - indicating a single pitch -,
@@ -107,13 +107,17 @@ class QGridQuantizer(_Quantizer):
     .. todo :: Implement multiprocessing-based QGrid comparison
     '''
 
+    ### CLASS ATTRIBUTES ###
+
     __slots__ = ('_beatspan', '_beatspan_ms', '_search_tree', '_tempo', '_tempo_lookup', '_threshold')
 
+    ### INITIALIZER ###
+
     def __init__(self,
-        search_tree = None,
-        beatspan = Fraction(1, 4),
-        tempo = TempoMark(Fraction(1, 4), 60),
-        threshold = None):
+        search_tree=None,
+        beatspan=Fraction(1, 4),
+        tempo=TempoMark(Fraction(1, 4), 60),
+        threshold=None):
 
         assert isinstance(search_tree, (type(None), QGridSearchTree))
         if search_tree is None:
@@ -134,7 +138,7 @@ class QGridQuantizer(_Quantizer):
 
     ### PRIVATE METHODS ###
 
-    def _compare_q_events_to_q_grid(self, offsets, q_events, q_grid, verbose = False):
+    def _compare_q_events_to_q_grid(self, offsets, q_events, q_grid, verbose=False):
         indices = []
         error = 0
 
@@ -143,7 +147,7 @@ class QGridQuantizer(_Quantizer):
             best_index = 0
             best_error = abs(q - offset)
 
-            for j, q in enumerate(q_grid.offsets[1:], start = 1):
+            for j, q in enumerate(q_grid.offsets[1:], start=1):
                 curr_error = abs(q - offset)
                 if curr_error < best_error:
                     best_index = j
@@ -161,7 +165,7 @@ class QGridQuantizer(_Quantizer):
 
         return error
 
-    def _divide_grid(self, grid, offsets, verbose = False):
+    def _divide_grid(self, grid, offsets, verbose=False):
         def recurse(grid, offsets):
             results = []
             indices = grid.find_divisible_indices(offsets)
@@ -180,7 +184,7 @@ class QGridQuantizer(_Quantizer):
             return results
         return recurse(grid, offsets)
 
-    def _find_best_q_grid_foreach_q_event_group(self, q_event_groups, verbose = False):
+    def _find_best_q_grid_foreach_q_event_group(self, q_event_groups, verbose=False):
         best_q_grids = {}
 
         for beatspan_number, group in q_event_groups.iteritems():
@@ -200,13 +204,13 @@ class QGridQuantizer(_Quantizer):
                 errors.append(self._compare_q_events_to_q_grid(mod_offsets, group, q_grid))
 
             pairs = zip(errors, q_grids)
-            pairs.sort(key = lambda x: (x[0], len(x[1])))
+            pairs.sort(key=lambda x: (x[0], len(x[1])))
 
             best_q_grids[beatspan_number] = pairs[0][1]
 
         return best_q_grids
 
-    def _format_all_q_grids(self, best_q_grids, verbose = False):
+    def _format_all_q_grids(self, best_q_grids, verbose=False):
         beatspan_numbers = sorted(best_q_grids.keys())
 
         # store indices of tie-chain starts
@@ -291,23 +295,23 @@ class QGridQuantizer(_Quantizer):
 
         return container
 
-    def _group_q_events_by_beatspan(self, q_events, verbose = False):
+    def _group_q_events_by_beatspan(self, q_events, verbose=False):
         g = groupby(q_events, lambda x: x.offset // self.beatspan_ms)
         grouped_q_events = {}
         for value, group in g:
             grouped_q_events[value] = list(group)
         return grouped_q_events
 
-    def _quantize(self, q_events, verbose = False):
+    def _quantize(self, q_events, verbose=False):
 
-        grouped_q_events = self._group_q_events_by_beatspan(q_events, verbose = verbose)
-        best_q_grids = self._find_best_q_grid_foreach_q_event_group(grouped_q_events, verbose = verbose)
-        best_q_grids = self._regroup_and_fill_out_best_q_grids(best_q_grids, verbose = verbose)
-        container = self._format_all_q_grids(best_q_grids, verbose = verbose)
+        grouped_q_events = self._group_q_events_by_beatspan(q_events, verbose=verbose)
+        best_q_grids = self._find_best_q_grid_foreach_q_event_group(grouped_q_events, verbose=verbose)
+        best_q_grids = self._regroup_and_fill_out_best_q_grids(best_q_grids, verbose=verbose)
+        container = self._format_all_q_grids(best_q_grids, verbose=verbose)
 
         return container
 
-    def _regroup_and_fill_out_best_q_grids(self, best_q_grids, verbose = False):
+    def _regroup_and_fill_out_best_q_grids(self, best_q_grids, verbose=False):
         '''Shift events which have been quantized to the last offset
         of one `QGrid` to the first offset of the subsequent grid.
         '''
@@ -327,7 +331,7 @@ class QGridQuantizer(_Quantizer):
                 else:
                     zero = list(q_grid[0])
                     zero.extend(carried)
-                    q_grid[0] = tuple(sorted(zero, key = lambda x: x.offset))
+                    q_grid[0] = tuple(sorted(zero, key=lambda x: x.offset))
                 carried = None
 
             # testing if events need to be carried

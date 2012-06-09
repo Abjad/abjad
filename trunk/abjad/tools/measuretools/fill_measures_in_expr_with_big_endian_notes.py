@@ -2,7 +2,7 @@ from abjad.tools import contexttools
 from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_measures_forward_in_expr
 
 
-def fill_measures_in_expr_with_big_endian_notes(expr, iterctrl = None):
+def fill_measures_in_expr_with_big_endian_notes(expr, iterctrl=None):
     '''.. versionadded:: 1.1
 
     Fill measures in `expr` with big-endian notes.

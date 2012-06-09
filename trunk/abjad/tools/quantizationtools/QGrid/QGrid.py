@@ -51,7 +51,11 @@ class QGrid(AbjadObject):
     `QGrids` are quasi-immutable.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
     __slots__ = ('_definition', '_next', '_offsets')
+
+    ### INITIALIZER ###
 
     def __init__(self, definition, next):
         assert self._is_valid_grid_definition(definition)
@@ -301,7 +305,7 @@ class QGrid(AbjadObject):
             return count, results
         return tuple(recurse(self.definition, index, 0)[1])
 
-    def format_for_beatspan(self, beatspan = Fraction(1, 4)):
+    def format_for_beatspan(self, beatspan=Fraction(1, 4)):
         '''Return an Abjad container, whose structure mirrors the
         division structure of the `QGrid`.  The values of the items in
         the `QGrid` have no effect on the output.

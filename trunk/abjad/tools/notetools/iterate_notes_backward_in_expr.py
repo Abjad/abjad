@@ -2,7 +2,7 @@ from abjad.tools.notetools.Note import Note
 from abjad.tools.componenttools.iterate_components_backward_in_expr import iterate_components_backward_in_expr
 
 
-def iterate_notes_backward_in_expr(expr, start = 0, stop = None):
+def iterate_notes_backward_in_expr(expr, start=0, stop=None):
     r'''.. versionadded:: 2.0
 
     Yield right-to-left notes in `expr`::
@@ -72,4 +72,4 @@ def iterate_notes_backward_in_expr(expr, start = 0, stop = None):
         ``notetools.iterate_notes_backward_in_expr()``.
     '''
 
-    return iterate_components_backward_in_expr(expr, Note, start = start, stop = stop)
+    return iterate_components_backward_in_expr(expr, Note, start=start, stop=stop)

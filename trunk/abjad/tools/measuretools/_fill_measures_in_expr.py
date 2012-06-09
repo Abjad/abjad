@@ -7,7 +7,7 @@ from abjad.tools import durationtools
 from numbers import Number
 
 
-def _fill_measures_in_expr(expr, mode, iterctrl = lambda measure, i: True):
+def _fill_measures_in_expr(expr, mode, iterctrl=lambda measure, i: True):
     '''Populate each measure in 'expr' according to 'mode'.
 
     With mode = 'big-endian':

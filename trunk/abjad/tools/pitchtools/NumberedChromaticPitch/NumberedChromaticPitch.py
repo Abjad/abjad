@@ -13,7 +13,11 @@ class NumberedChromaticPitch(ChromaticPitchObject, NumberedPitchObject):
     Numbered chromatic pitches are immutable.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
     __slots__ = ('_chromatic_pitch_number', )
+
+    ### INITIALIZER ###
 
     def __init__(self, arg):
         from abjad.tools import pitchtools
@@ -116,7 +120,7 @@ class NumberedChromaticPitch(ChromaticPitchObject, NumberedPitchObject):
 
     ### PUBLIC METHODS ###
 
-    def apply_accidental(self, accidental = None):
+    def apply_accidental(self, accidental=None):
         '''Apply `accidental`::
 
             >>> pitchtools.NumberedChromaticPitch(13).apply_accidental('flat')
@@ -129,7 +133,7 @@ class NumberedChromaticPitch(ChromaticPitchObject, NumberedPitchObject):
         semitones = abs(self) + accidental.semitones
         return type(self)(semitones)
 
-    def transpose(self, n = 0):
+    def transpose(self, n=0):
         '''Tranpose by `n` semitones::
 
             >>> pitchtools.NumberedChromaticPitch(13).transpose(1)

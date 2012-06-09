@@ -1,4 +1,4 @@
-def flatten_sequence(sequence, klasses = None, depth = -1):
+def flatten_sequence(sequence, klasses=None, depth=-1):
     '''.. versionadded:: 1.1
 
     Flatten `sequence`::
@@ -12,12 +12,12 @@ def flatten_sequence(sequence, klasses = None, depth = -1):
 
     Flatten `sequence` to depth ``1``::
 
-        >>> sequencetools.flatten_sequence([1, [2, 3, [4]], 5, [6, 7, [8]]], depth = 1)
+        >>> sequencetools.flatten_sequence([1, [2, 3, [4]], 5, [6, 7, [8]]], depth=1)
         [1, 2, 3, [4], 5, 6, 7, [8]]
 
     Flatten `sequence` to depth ``2``::
 
-        >>> sequencetools.flatten_sequence([1, [2, 3, [4]], 5, [6, 7, [8]]], depth = 2)
+        >>> sequencetools.flatten_sequence([1, [2, 3, [4]], 5, [6, 7, [8]]], depth=2)
         [1, 2, 3, 4, 5, 6, 7, 8]
 
     Leave `sequence` unchanged.

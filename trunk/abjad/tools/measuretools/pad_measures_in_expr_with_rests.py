@@ -1,4 +1,4 @@
-def pad_measures_in_expr_with_rests(expr, front, back, splice = False):
+def pad_measures_in_expr_with_rests(expr, front, back, splice=False):
     r'''.. versionadded:: 1.1
 
     Pad measures in `expr` with rests.
@@ -120,5 +120,5 @@ def pad_measures_in_expr_with_rests(expr, front, back, splice = False):
     from abjad.tools.resttools.Rest import Rest
 
     klass_token = Rest((1, 4))
-    result = _insert_measure_padding(expr, front, back, klass_token, splice = splice)
+    result = _insert_measure_padding(expr, front, back, klass_token, splice=splice)
     return result

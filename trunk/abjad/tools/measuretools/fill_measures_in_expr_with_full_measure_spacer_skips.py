@@ -2,7 +2,7 @@ from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_me
 from abjad.tools.spannertools._withdraw_component_from_attached_spanners import _withdraw_component_from_attached_spanners
 
 
-def fill_measures_in_expr_with_full_measure_spacer_skips(expr, iterctrl = None):
+def fill_measures_in_expr_with_full_measure_spacer_skips(expr, iterctrl=None):
     '''.. versionadded:: 1.1
 
     Fill measures in `expr` with full-measure spacer skips.

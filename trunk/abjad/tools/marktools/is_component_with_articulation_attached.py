@@ -1,7 +1,7 @@
 from abjad.tools.marktools.get_articulations_attached_to_component import get_articulations_attached_to_component
 
 
-def is_component_with_articulation_attached(expr, articulation_name = None):
+def is_component_with_articulation_attached(expr, articulation_name=None):
     '''.. versionadded:: 2.3
 
     True when `expr` is component with articulation attached::

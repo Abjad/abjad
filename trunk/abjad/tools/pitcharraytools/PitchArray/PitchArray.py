@@ -12,6 +12,8 @@ class PitchArray(AbjadObject):
     Two-dimensional array of pitches.
     '''
 
+    ### INITIALIZER ###
+
     def __init__(self, *args):
         self._rows = []
         self._columns = []
@@ -288,7 +290,7 @@ class PitchArray(AbjadObject):
             cell.withdraw()
         return column
 
-    def pop_row(self, row_index = -1):
+    def pop_row(self, row_index=-1):
         row = self._rows.pop(row_index)
         row._parent_array = None
         return row

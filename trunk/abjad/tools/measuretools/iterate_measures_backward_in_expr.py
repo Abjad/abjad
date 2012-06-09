@@ -2,7 +2,7 @@ from abjad.tools.measuretools.Measure import Measure
 from abjad.tools.componenttools.iterate_components_backward_in_expr import iterate_components_backward_in_expr
 
 
-def iterate_measures_backward_in_expr(expr, start = 0, stop = None):
+def iterate_measures_backward_in_expr(expr, start=0, stop=None):
     r'''.. versionadded:: 2.0
 
     Iterate measures backward in `expr`::
@@ -60,4 +60,4 @@ def iterate_measures_backward_in_expr(expr, start = 0, stop = None):
         ``measuretools.iterate_measures_backward_in_expr()``.
     '''
 
-    return iterate_components_backward_in_expr(expr, Measure, start = start, stop = stop)
+    return iterate_components_backward_in_expr(expr, Measure, start=start, stop=stop)

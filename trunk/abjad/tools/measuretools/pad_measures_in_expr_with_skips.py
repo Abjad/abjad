@@ -1,4 +1,4 @@
-def pad_measures_in_expr_with_skips(expr, front, back, splice = False):
+def pad_measures_in_expr_with_skips(expr, front, back, splice=False):
     r'''.. versionadded:: 2.0
 
     Pad measures in `expr` with skips.
@@ -120,5 +120,5 @@ def pad_measures_in_expr_with_skips(expr, front, back, splice = False):
     from abjad.tools.skiptools.Skip import Skip
 
     klass_token = Skip((1, 4))
-    result = _insert_measure_padding(expr, front, back, klass_token, splice = splice)
+    result = _insert_measure_padding(expr, front, back, klass_token, splice=splice)
     return result

@@ -2,24 +2,24 @@ from abjad.tools import durationtools
 from numbers import Number
 
 
-def make_rests(duration_tokens, direction = 'big-endian', tied = False):
+def make_rests(duration_tokens, direction='big-endian', tied=False):
     r'''.. versionadded:: 1.1
 
     Make rests.
 
     Make big-endian rests::
 
-        >>> resttools.make_rests([(5, 16), (9, 16)], direction = 'big-endian')
+        >>> resttools.make_rests([(5, 16), (9, 16)], direction='big-endian')
         [Rest('r4'), Rest('r16'), Rest('r2'), Rest('r16')]
 
     Make little-endian rests::
 
-        >>> resttools.make_rests([(5, 16), (9, 16)], direction = 'little-endian')
+        >>> resttools.make_rests([(5, 16), (9, 16)], direction='little-endian')
         [Rest('r16'), Rest('r4'), Rest('r16'), Rest('r2')]
 
     Make tied rests::
 
-        >>> voice = Voice(resttools.make_rests([(5, 16), (9, 16)], tied = True))
+        >>> voice = Voice(resttools.make_rests([(5, 16), (9, 16)], tied=True))
 
     ::
 

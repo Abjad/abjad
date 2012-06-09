@@ -44,6 +44,8 @@ class PitchArrayRow(AbjadObject):
     Return pitch array row.
     '''
 
+    ### INITIALIZER ###
+
     def __init__(self, cells):
         self._parent_array = None
         self._pitch_range = PitchRange(None, None)
@@ -244,7 +246,7 @@ class PitchArrayRow(AbjadObject):
         else:
             self.empty_pitches()
 
-    def copy_subrow(self, start = None, stop = None):
+    def copy_subrow(self, start=None, stop=None):
         arg = slice(start, stop)
         start, stop, step = arg.indices(self.width)
         if not step == 1:

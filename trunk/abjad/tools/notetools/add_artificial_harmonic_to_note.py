@@ -3,7 +3,7 @@ from abjad.tools import pitchtools
 
 perfect_fourth = pitchtools.MelodicDiatonicInterval('perfect', 4)
 
-def add_artificial_harmonic_to_note(note, melodic_diatonic_interval = perfect_fourth):
+def add_artificial_harmonic_to_note(note, melodic_diatonic_interval=perfect_fourth):
     r'''Add artifical harmonic to `note` at `melodic_diatonic_interval`::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")

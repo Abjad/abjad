@@ -1,7 +1,7 @@
 from abjad.tools.marktools.StemTremolo import StemTremolo
 
 
-def get_stem_tremolos_attached_to_component(component, tremolo_flags = None):
+def get_stem_tremolos_attached_to_component(component, tremolo_flags=None):
     r'''.. versionadded:: 2.3
 
     Get stem tremolos attached to `component`::

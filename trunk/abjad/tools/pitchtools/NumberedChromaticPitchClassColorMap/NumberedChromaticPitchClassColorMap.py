@@ -14,7 +14,11 @@ class NumberedChromaticPitchClassColorMap(AbjadObject):
     Numbered chromatic pitch-class color maps are immutable.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
     __slots__ = ('_color_dictionary', '_colors', '_pitch_iterables', )
+
+    ### INITIALIZER ###
 
     def __init__(self, pitch_iterables, colors):
         assert len(pitch_iterables) == len(colors)
@@ -76,7 +80,7 @@ class NumberedChromaticPitchClassColorMap(AbjadObject):
 
     ### PUBLIC METHODS ###
 
-    def get(self, key, alternative = None):
+    def get(self, key, alternative=None):
         try:
             return self[key]
         except (KeyError, TypeError, ValueError):

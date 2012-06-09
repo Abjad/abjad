@@ -1,7 +1,7 @@
 from abjad.tools.marktools.get_annotations_attached_to_component import get_annotations_attached_to_component
 
 
-def is_component_with_annotation_attached(expr, annotation_name = None, annotation_value = None):
+def is_component_with_annotation_attached(expr, annotation_name=None, annotation_value=None):
     '''.. versionadded:: 2.3
 
     True when `expr` is component with annotation attached::

@@ -2,7 +2,7 @@ from fractions import Fraction
 import math
 
 
-def least_power_of_two_greater_equal(n, i = 0):
+def least_power_of_two_greater_equal(n, i=0):
     r'''Return least integer power of two greater than or equal to positive `n`::
 
         >>> from abjad.tools import mathtools
@@ -29,7 +29,7 @@ def least_power_of_two_greater_equal(n, i = 0):
     ::
 
         >>> for n in range(10, 20):
-        ...     print '\t%s\t%s' % (n, mathtools.least_power_of_two_greater_equal(n, i = 1))
+        ...     print '\t%s\t%s' % (n, mathtools.least_power_of_two_greater_equal(n, i=1))
         ...
             10 32
             11 32

@@ -3,7 +3,7 @@ from abjad.tools import componenttools
 
 # TODO: Finish implementation #
 
-def _overdraw(expr, source_count = 1, total_reps = 2):
+def _overdraw(expr, source_count=1, total_reps=2):
     '''Input parameters:
 
     source_count gives the number of measures to copy.

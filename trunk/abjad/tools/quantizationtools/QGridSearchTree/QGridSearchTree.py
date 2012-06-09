@@ -31,9 +31,13 @@ class QGridSearchTree(ImmutableDictionary):
     Return a new `QGridSearchTree`.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
     __slots__ = ('_offsets')
 
-    def __init__(self, definition = None):
+    ### INITIALIZER ##
+
+    def __init__(self, definition=None):
         if definition is None:
             definition = self._make_standard_search_tree()
         elif not self._is_valid_search_tree_definition(definition):

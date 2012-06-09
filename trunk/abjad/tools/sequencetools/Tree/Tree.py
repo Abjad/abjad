@@ -400,7 +400,7 @@ class Tree(AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    def _get_next_n_nodes_at_level_helper(self, n, level, nodes_must_be_complete = False):
+    def _get_next_n_nodes_at_level_helper(self, n, level, nodes_must_be_complete=False):
         result = []
         self_is_found = False
         first_node_returned_is_trimmed = False

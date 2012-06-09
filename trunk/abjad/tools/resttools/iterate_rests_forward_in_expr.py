@@ -2,7 +2,7 @@ from abjad.tools.resttools.Rest import Rest
 from abjad.tools import componenttools
 
 
-def iterate_rests_forward_in_expr(expr, start = 0, stop = None):
+def iterate_rests_forward_in_expr(expr, start=0, stop=None):
     r'''.. versionadded:: 2.0
 
     Iterate rests forward in `expr`::
@@ -32,5 +32,4 @@ def iterate_rests_forward_in_expr(expr, start = 0, stop = None):
     Return generator.
     '''
 
-    return componenttools.iterate_components_forward_in_expr(
-        expr, Rest, start = start, stop = stop)
+    return componenttools.iterate_components_forward_in_expr(expr, Rest, start=start, stop=stop)

@@ -2,7 +2,7 @@ from abjad.tools.measuretools.iterate_measures_forward_in_expr import iterate_me
 from abjad.tools import durationtools
 
 
-def fill_measures_in_expr_with_repeated_notes(expr, written_duration, iterctrl = None):
+def fill_measures_in_expr_with_repeated_notes(expr, written_duration, iterctrl=None):
     '''.. versionadded:: 1.1
 
     Fill measures in `expr` with repeated notes.

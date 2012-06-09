@@ -14,10 +14,14 @@ class Accidental(AbjadObject):
     Accidentals are immutable.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
     __slots__ = ('_alphabetic_accidental_abbreviation', '_is_adjusted', '_name', 
         '_semitones', '_symbolic_accidental_string')
 
-    def __init__(self, arg = ''):
+    ### INITIALIZER ##
+
+    def __init__(self, arg=''):
         from abjad.tools import pitchtools
         # initialize symbolic string from arg
         if pitchtools.is_alphabetic_accidental_abbreviation(arg):
