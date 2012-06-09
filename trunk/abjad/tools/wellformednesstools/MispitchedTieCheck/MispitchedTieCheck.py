@@ -20,7 +20,7 @@ class MispitchedTieCheck(Check):
             spanners = spannertools.get_spanners_attached_to_component(
                 leaf, tietools.TieSpanner)
             if spanners:
-                spanner = spanners.pop( )
+                spanner = spanners.pop()
                 if not spanner._is_my_last_leaf(leaf):
                     next_leaf = leaftools.get_nth_leaf_in_thread_from_leaf(leaf, 1)
                     if next_leaf:

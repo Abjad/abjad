@@ -34,11 +34,11 @@ def _parse_debug(self, input=None, lexer=None, debug=None, tracking=0, tokenfunc
 
     # Set up the state and symbol stacks
 
-    lookaheadstack = [ ]                    # Stack of lookahead tokens
+    lookaheadstack = []                    # Stack of lookahead tokens
     self.lookaheadstack = lookaheadstack
-    statestack = [ ]                        # Stack of parsing states
+    statestack = []                        # Stack of parsing states
     self.statestack = statestack
-    symstack   = [ ]                        # Stack of grammar symbols
+    symstack   = []                        # Stack of grammar symbols
     self.symstack = symstack
 
     pslice.stack = symstack                 # Put in the production
@@ -81,7 +81,7 @@ def _parse_debug(self, input=None, lexer=None, debug=None, tracking=0, tokenfunc
 
         # This is a bad hack to deal with LilyPond's backup/reparse regime
         if t is None:
-            a = set(actions[state].values( ))
+            a = set(actions[state].values())
             if 1 == len(a):
                 t = list(a)[0]
 

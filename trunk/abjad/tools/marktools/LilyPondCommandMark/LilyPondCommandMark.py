@@ -146,4 +146,4 @@ class LilyPondCommandMark(Mark):
                 self._format_slot = 'opening'
             else:
                 self._format_slot = format_slot
-        return property(**locals( )) 
+        return property(**locals()) 

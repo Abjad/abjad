@@ -9,8 +9,8 @@ def update_abjad_user_config_file(default_dict, user_dict):
     '''
     from abjad.tools import configurationtools
 
-    default_keyset = set(default_dict.keys( ))
-    user_keyset = set(user_dict.keys( ))
+    default_keyset = set(default_dict.keys())
+    user_keyset = set(user_dict.keys())
 
     all_keys = sorted(list(default_keyset.union(user_keyset)))
 

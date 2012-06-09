@@ -42,7 +42,7 @@ def _write_parser_syntax_skeleton(skeleton_path, parser_output_path, parser_tab_
 
     current_nonterminal = 'start_symbol'
 
-    ly_keys = sorted(filter(lambda x: x.startswith('p_start_symbol'), productions.keys( )))
+    ly_keys = sorted(filter(lambda x: x.startswith('p_start_symbol'), productions.keys()))
     for key in ly_keys:
         funcname = key
         docstring = productions[key]
@@ -50,7 +50,7 @@ def _write_parser_syntax_skeleton(skeleton_path, parser_output_path, parser_tab_
         f.write("        %r\n" % docstring)
         f.write("        p[0] = Node('%s', p[1:])\n\n\n" % current_nonterminal)
 
-    for funcname, docstring in sorted(productions.iteritems( )):
+    for funcname, docstring in sorted(productions.iteritems()):
         nonterminal = funcname.split('__')[0][2:]    
         if nonterminal == 'start_symbol':
             continue
@@ -65,4 +65,4 @@ def _write_parser_syntax_skeleton(skeleton_path, parser_output_path, parser_tab_
     f.write('    def p_error(self, p):\n')
     f.write('        pass\n\n')
 
-    f.close( )
+    f.close()

@@ -199,7 +199,7 @@ class _LilyPondLexicalDefinition(object):
         'STRING',
         'STRING_IDENTIFIER',
         'TONICNAME_PITCH',
-    ] + keywords.values( )
+    ] + keywords.values()
 
     literals = (
         '!', "'", '(', ')', '*', '+', ',', '-', 
@@ -288,7 +288,7 @@ class _LilyPondLexicalDefinition(object):
     # <version>\"[^"]*\"
     def t_version_242(self, t):
         r'\"[^"]*\"'
-        t.lexer.pop_state( )
+        t.lexer.pop_state()
         pass
 
     # lexer.ll:256
@@ -314,7 +314,7 @@ class _LilyPondLexicalDefinition(object):
     # <longcomment>"%"+"}"
     def t_longcomment_296(self, t):
         r'%}'
-        t.lexer.pop_state( )
+        t.lexer.pop_state()
         pass
 
     # lexer.ll:291
@@ -506,7 +506,7 @@ class _LilyPondLexicalDefinition(object):
     # <quote,lyric_quote>\"
     def t_quote_446(self, t):
         r'\"'
-        t.lexer.pop_state( )
+        t.lexer.pop_state()
         t.type = 'STRING'
         if self.string_accumulator.find(' ') == -1:
             t.value = self.string_accumulator
@@ -762,7 +762,7 @@ class _LilyPondLexicalDefinition(object):
 
 
     def scan_bare_word(self, t):
-        if t.lexer.current_state( ) in ('notes',):
+        if t.lexer.current_state() in ('notes',):
             pitch_names = self.client._pitch_names
             if t.value in pitch_names:
                 t.type = 'NOTENAME_PITCH'
@@ -779,7 +779,7 @@ class _LilyPondLexicalDefinition(object):
 
             if value == 'MARKUP':
                 t.lexer.push_state('markup')
-                if t.lexer.current_state( ) == 'lyrics':
+                if t.lexer.current_state() == 'lyrics':
                     return 'LYRIC_MARKUP'
 
             elif value == 'WITH':
@@ -855,7 +855,7 @@ class _LilyPondLexicalDefinition(object):
 
     def push_signature(self, signature, t):
 
-        token = LexToken( )
+        token = LexToken()
         token.type = 'EXPECT_NO_MORE_ARGS'
         token.value = None
         token.lineno = t.lineno
@@ -869,7 +869,7 @@ class _LilyPondLexicalDefinition(object):
                 optional = True
                 continue
 
-            token = LexToken( )
+            token = LexToken()
             token.value = predicate
             token.lineno = t.lineno
             token.lexpos = t.lexpos
@@ -890,7 +890,7 @@ class _LilyPondLexicalDefinition(object):
             self.client._push_extra_token(token)
 
             if optional:
-                optional_token = LexToken( )
+                optional_token = LexToken()
                 optional_token.value = 'optional?'
                 optional_token.lineno = t.lineno
                 optional_token.lexpos = t.lexpos

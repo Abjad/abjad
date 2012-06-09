@@ -2,7 +2,7 @@ class _LilyPondEvent(object):
 
     def __init__(self, name, **kwargs):
         self.name = name
-        for k, v in kwargs.iteritems( ):
+        for k, v in kwargs.iteritems():
             if k != 'name':
                 setattr(self, k, v)
 

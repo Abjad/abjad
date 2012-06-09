@@ -36,7 +36,7 @@ class GlobalCountsConstraint(_GlobalConstraint):
     Returns ``GlobalCountsConstraint`` instance.
     '''
 
-    ### OVERRIDES ###
+    ### SPECIAL METHODS ###
 
     def __call__(self, solution):
         counts = { }

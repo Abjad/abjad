@@ -31,7 +31,7 @@ class GlobalConstraint(_GlobalConstraint):
     Returns ``GlobalConstraint`` instance.
     '''
 
-    ### OVERRIDES ###
+    ### SPECIAL METHODS ###
 
     def __call__(self, solution):
         return self._predicate(solution)

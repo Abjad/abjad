@@ -58,7 +58,7 @@ class _LilyPondSyntacticalDefinition(object):
     def p_start_symbol__lilypond(self, p):
         'start_symbol : lilypond'
         if 1 < len(p[1]):
-            lily = lilypondfiletools.LilyPondFile( )
+            lily = lilypondfiletools.LilyPondFile()
             lily.extend(p[1])
             p[0] = lily
         elif 1 == len(p[1]):
@@ -367,7 +367,7 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_chord_body_elements__Empty(self, p):
         'chord_body_elements : '
-        p[0] = [ ]
+        p[0] = []
 
 
     def p_chord_body_elements__chord_body_elements__chord_body_element(self, p):
@@ -652,7 +652,7 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_context_mod_list__Empty(self, p):
         'context_mod_list : '
-        p[0] = [ ]
+        p[0] = []
 
 
     def p_context_mod_list__context_mod_list__CONTEXT_MOD_IDENTIFIER(self, p):
@@ -686,7 +686,7 @@ class _LilyPondSyntacticalDefinition(object):
     def p_context_modification__WITH__Chr123__context_mod_list__Chr125(self, p):
         "context_modification : WITH '{' context_mod_list '}'"
         p[0] = p[3]
-        self.client._lexer.pop_state( )
+        self.client._lexer.pop_state()
 
 
     def p_context_modification__WITH__embedded_scm_closed(self, p):
@@ -1028,7 +1028,7 @@ class _LilyPondSyntacticalDefinition(object):
         self.client._process_post_events(chord, p[3])
         marktools.Annotation('UnrelativableMusic')(chord)
         if self.client._last_chord not in self.client._repeated_chords:
-            self.client._repeated_chords[self.client._last_chord] = [ ]
+            self.client._repeated_chords[self.client._last_chord] = []
         self.client._repeated_chords[self.client._last_chord].append(chord)
         p[0] = chord
 
@@ -1343,7 +1343,7 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_function_arglist_bare__EXPECT_NO_MORE_ARGS(self, p):
         'function_arglist_bare : EXPECT_NO_MORE_ARGS'
-        p[0] = [ ]
+        p[0] = []
 
 
     def p_function_arglist_bare__EXPECT_OPTIONAL__EXPECT_DURATION__function_arglist_skip__DEFAULT(self, p):
@@ -2028,7 +2028,7 @@ class _LilyPondSyntacticalDefinition(object):
 
         p[0] = p[1]
 
-        token = LexToken( )
+        token = LexToken()
         token.type = 'MARKUP_IDENTIFIER'
         token.value = p[1]
         token.lexpos = 0
@@ -2245,7 +2245,7 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_music_list__Empty(self, p):
         'music_list : '
-        p[0] = [ ]
+        p[0] = []
 
 
     def p_music_list__music_list__embedded_scm(self, p):
@@ -2302,8 +2302,8 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_note_chord_element__chord_body__optional_notemode_duration__post_events(self, p):
         'note_chord_element : chord_body optional_notemode_duration post_events'
-        pitches = [ ]
-        post_events = [ ]
+        pitches = []
+        post_events = []
         for node in p[1]:
             if 5 == len(node):
                 pitches.append(node[0])
@@ -2394,7 +2394,7 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_optional_context_mod__Empty(self, p):
         'optional_context_mod : '
-        p[0] = [ ]
+        p[0] = []
 
 
     def p_optional_context_mod__context_modification(self, p):
@@ -2614,7 +2614,7 @@ class _LilyPondSyntacticalDefinition(object):
 
     def p_post_events__Empty(self, p):
         'post_events : '
-        p[0] = [ ]
+        p[0] = []
 
 
     def p_post_events__post_events__post_event(self, p):

@@ -3,13 +3,17 @@ from collections import Iterable
 
 class _SyntaxNode(object):
 
+    ### CLASS ATTRIBUTES ###
+
     __slots__ = ('type', 'value')
 
-    def __init__(self, type, value = [ ]):
+    ### INTIAILIZER ###
+
+    def __init__(self, type, value=[]):
         self.type = type
         self.value = value
 
-    ### OVERRIDES ###
+    ### SPECIAL METHODS ###
 
     def __getitem__(self, item):
         if isinstance(self.value, (list, tuple)):
@@ -28,9 +32,9 @@ class _SyntaxNode(object):
         return '\n'.join(self._format(self))
 
 
-    def _format(self, obj, indent = 0):
+    def _format(self, obj, indent=0):
         space = '.  ' * indent
-        result = [ ]
+        result = []
 
         if isinstance(obj, type(self)):
             if isinstance(obj.value, (list, tuple)):

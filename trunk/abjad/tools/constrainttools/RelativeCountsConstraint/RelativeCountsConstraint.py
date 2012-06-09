@@ -18,7 +18,7 @@ class RelativeCountsConstraint(_RelativeConstraint):
 
     ::
 
-        >>> test = lambda x: max(x.values( )) <= 2
+        >>> test = lambda x: max(x.values()) <= 2
         >>> two_repeats_max = RelativeCountsConstraint([0, 1, 2], test)
         >>> two_repeats_max([0])
         True
@@ -34,7 +34,7 @@ class RelativeCountsConstraint(_RelativeConstraint):
     Returns ``RelativeCountsConstraint`` instance.
     '''
 
-    ### OVERRIDES ###
+    ### SPECIAL METHODS ###
 
     def __call__(self, solution):
         if len(solution) < self._index_span:

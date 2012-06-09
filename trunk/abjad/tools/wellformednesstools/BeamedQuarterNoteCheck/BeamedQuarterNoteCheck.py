@@ -8,7 +8,7 @@ class BeamedQuarterNoteCheck(Check):
         from abjad.tools import beamtools
         from abjad.tools import leaftools
         from abjad.tools import spannertools
-        violators = [ ]
+        violators = []
         total = 0
         for leaf in leaftools.iterate_leaves_forward_in_expr(expr):
             total += 1

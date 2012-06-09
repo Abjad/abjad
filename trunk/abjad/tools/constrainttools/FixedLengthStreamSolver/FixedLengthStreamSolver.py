@@ -74,7 +74,7 @@ class FixedLengthStreamSolver(_Solver):
         object.__setattr__(self, '_constraints', tuple(sorted(constraints, key=lambda x: x._sort_tuple)))
         object.__setattr__(self, '_randomized', bool(randomized))
 
-    ### OVERRIDES ###
+    ### SPECIAL METHODS ###
 
     def __iter__(self):
 

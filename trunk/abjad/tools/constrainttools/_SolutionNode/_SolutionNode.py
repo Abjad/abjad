@@ -11,7 +11,7 @@ class _SolutionNode(AbjadObject):
         self.children = children
         self.is_valid = True
 
-    ### OVERRIDES ###
+    ### SPECIAL METHODS ###
 
     def __iter__(self):
         for x in self.children:

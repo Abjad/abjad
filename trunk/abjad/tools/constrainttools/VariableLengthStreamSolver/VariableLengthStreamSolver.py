@@ -58,7 +58,7 @@ class VariableLengthStreamSolver(_Solver):
         object.__setattr__(self, '_terminators', tuple(sorted(terminators, key=lambda x: x._sort_tuple)))
         object.__setattr__(self, '_randomized', bool(randomized))
 
-    ### OVERRIDES ###
+    ### SPECIAL METHODS ###
 
     def __iter__(self):
         domain = self._domain

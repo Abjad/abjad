@@ -46,7 +46,7 @@ class MarkupCommand(AbjadObject):
         object.__setattr__(self, '_command', command)
         object.__setattr__(self, '_args', tuple(args))
 
-    ### OVERRIDES ###
+    ### SPECIAL METHODS ###
 
     def __eq__(self, other):
         if isinstance(other, type(self)):

@@ -98,7 +98,7 @@ class Scale(NamedChromaticPitchClassSegment):
                 float(NamedChromaticPitch(pitch_range[1])))
         low = pitch_range.start_pitch.octave_number
         high = pitch_range.stop_pitch.octave_number
-        pitches = [ ]
+        pitches = []
         octave = low
         while octave <= high:
             for x in self:

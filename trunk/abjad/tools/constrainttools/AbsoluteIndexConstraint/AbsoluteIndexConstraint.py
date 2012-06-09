@@ -36,7 +36,7 @@ class AbsoluteIndexConstraint(_AbsoluteConstraint):
     Returns ``AbsoluteIndexConstraint`` instance.
     '''
 
-    ### OVERRIDES ###
+    ### SPECIAL METHODS ###
 
     def __call__(self, solution):
         if len(solution) < self._max_index + 1:

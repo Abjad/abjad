@@ -2,7 +2,7 @@ from abjad import *
 from abjad.tools.lilypondparsertools import LilyPondParser
 
 
-def test_LilyPondParser__containers__nesting_01( ):
+def test_LilyPondParser__containers__nesting_01():
     target = Container([
         Container([]), 
         Container([

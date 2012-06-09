@@ -116,8 +116,8 @@ def replace_leaves_in_expr_with_named_parallel_voices(expr, upper_name, lower_na
 
     leaves = [leaf for leaf in iterate_leaves_forward_in_expr(expr)]
 
-    upper_leaves = [ ]
-    lower_leaves = [ ]
+    upper_leaves = []
+    lower_leaves = []
 
     for parent, group in itertools.groupby(leaves, lambda x: x._parent):
         grouped_leaves = list(group)

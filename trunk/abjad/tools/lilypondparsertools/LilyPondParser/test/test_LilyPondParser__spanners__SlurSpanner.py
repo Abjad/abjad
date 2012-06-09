@@ -36,7 +36,7 @@ def test_LilyPondParser__spanners__SlurSpanner_02():
     }
     '''
 
-    input = r"\relative c' { c ( c c ( ) c ) }"
+    input = r"\relative c' { c ( c c () c ) }"
 
     parser = LilyPondParser()
     result = parser(input)
@@ -45,7 +45,7 @@ def test_LilyPondParser__spanners__SlurSpanner_02():
 
 def test_LilyPondParser__spanners__SlurSpanner_03():
     '''Single leaf.'''
-    input = '{ c ( ) c c c }'
+    input = '{ c () c c c }'
     assert py.test.raises(Exception, 'LilyPondParser()(input)')
 
 

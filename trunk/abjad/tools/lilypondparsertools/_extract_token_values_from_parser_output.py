@@ -1,15 +1,15 @@
 def _extract_token_values_from_parser_output(filepath):
 
     f = open(filepath, 'r')
-    lines = f.read( ).split('\n')
-    f.close( )
+    lines = f.read().split('\n')
+    f.close()
 
     token_values = { }
     in_token_list = False
 
     for line in lines:
 
-        text = line.strip( )
+        text = line.strip()
 
         if in_token_list and text == 'Nonterminals, with rules where they appear':
             break;
@@ -21,9 +21,9 @@ def _extract_token_values_from_parser_output(filepath):
         elif not in_token_list:
             continue
 
-        parts = text.split( )
+        parts = text.split()
 
-        if parts[0].isdigit( ):
+        if parts[0].isdigit():
             continue
         elif parts[0].startswith('$'):
             continue

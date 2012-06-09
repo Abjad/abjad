@@ -7,7 +7,7 @@ class MisduratedMeasureCheck(Check):
     def _run(self, expr):
         from abjad.tools import contexttools
         from abjad.tools import measuretools
-        violators = [ ]
+        violators = []
         total, bad = 0, 0
         for measure in measuretools.iterate_measures_forward_in_expr(expr):
             if contexttools.get_effective_time_signature(measure) is not None:

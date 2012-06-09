@@ -211,7 +211,7 @@ class _SchemeParser(object):
         r'\"'
         self.cursor += len(t.value)
         t.cursor_end = self.cursor
-        t.lexer.pop_state( )
+        t.lexer.pop_state()
         t.type = 'STRING'
         t.value = self.string_accumulator
         self.string_accumulator = ''

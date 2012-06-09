@@ -37,7 +37,7 @@ class _Solver(AbjadObject):
         iter = self.iterator
         for _ in xrange(n):
             try:
-                solutions.append(iter.next( ))
+                solutions.append(iter.next())
             except StopIteration:
                 break
         return tuple(solutions)

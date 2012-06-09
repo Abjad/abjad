@@ -91,7 +91,7 @@ class TimeIntervalTreeDictionary(TimeIntervalAggregateMixin, ImmutableDictionary
         # unpack a regular dict as pairs, or simply accept pairs
         else:
             if isinstance(args[0], dict):
-                args = args[0].items( )
+                args = args[0].items()
 
             if args:
                 assert all_are_pairs(args)

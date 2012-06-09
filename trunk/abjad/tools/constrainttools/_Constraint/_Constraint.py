@@ -5,7 +5,7 @@ class _Constraint(AbjadObject):
 
     __slots__ = ('_kind', '_predicate')    
 
-    ### OVERRIDES ###
+    ### SPECIAL METHODS ###
 
     def __repr__(self):
         return '%s(%s)' % (type(self).__name__, self._format_string)

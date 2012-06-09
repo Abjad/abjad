@@ -174,7 +174,7 @@ class TimeInterval(TimeIntervalMixin, MutableMapping):
         assert all([isinstance(rational, (int, Fraction)) for rational in rationals])
 
         intervals = [self]
-        new_intervals = [ ]
+        new_intervals = []
         for rational in sorted(rationals):
             for interval in intervals:
                 if interval.start < rational < interval.stop:
@@ -183,6 +183,6 @@ class TimeInterval(TimeIntervalMixin, MutableMapping):
                 else:
                     new_intervals.append(type(self)(interval))
             intervals = new_intervals
-            new_intervals = [ ]
+            new_intervals = []
 
         return tuple(sorted(intervals, key=lambda x: x.signature))

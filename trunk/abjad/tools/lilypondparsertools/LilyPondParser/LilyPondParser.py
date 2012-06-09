@@ -46,7 +46,7 @@ class LilyPondParser(AbjadObject):
     ::
 
         >>> from abjad.tools.lilypondparsertools import LilyPondParser
-        >>> parser = LilyPondParser( )
+        >>> parser = LilyPondParser()
         >>> input = r"\new Staff { c'4 ( d'8 e' fs'2) \fermata }"
         >>> result = parser(input)
         >>> f(result)
@@ -174,7 +174,7 @@ class LilyPondParser(AbjadObject):
         self._reset_parser_variables()
 
 
-    ### OVERRIDES ###
+    ### SPECIAL METHODS ###
 
 
     def __call__(self, input_string):
@@ -216,13 +216,13 @@ class LilyPondParser(AbjadObject):
         ::
 
             >>> from abjad.tools.lilypondparsertools import LilyPondParser
-            >>> parser = LilyPondParser( )
+            >>> parser = LilyPondParser()
             >>> parser.available_languages
             ('catalan', 'deutsch', 'english', 'espanol', 'italiano', 'nederlands', 'norsk', 'portugues', 'suomi', 'svenska', 'vlaams')
 
         Return tuple.
         '''
-        return tuple(sorted(self._language_pitch_names.keys( )))
+        return tuple(sorted(self._language_pitch_names.keys()))
 
     
     @apply
@@ -233,7 +233,7 @@ class LilyPondParser(AbjadObject):
             ::
 
                 >>> from abjad.tools.lilypondparsertools import LilyPondParser
-                >>> parser = LilyPondParser( )
+                >>> parser = LilyPondParser()
                 >>> parser.default_language
                 'english'
                 >>> parser('{ c df e fs }')
@@ -249,7 +249,7 @@ class LilyPondParser(AbjadObject):
         def fset(self, arg):
             assert arg in self.available_languages
             self._default_language = arg
-        return property(**locals( ))
+        return property(**locals())
 
 
     ### PRIVATE METHODS ###
@@ -285,7 +285,7 @@ class LilyPondParser(AbjadObject):
                     else:
                         directed_events[klass].append(span_event)
                     if klass not in all_spanners:
-                        all_spanners[klass] = [ ]
+                        all_spanners[klass] = []
 
                 # or apply undirected event immediately (i.e. ties, glisses)
                 elif next_leaf is not first_leaf: # so long as we are not wrapping yet
@@ -307,10 +307,10 @@ class LilyPondParser(AbjadObject):
             if dynamics and spannertools.HairpinSpanner in all_spanners and \
                 all_spanners[spannertools.HairpinSpanner]:
                 all_spanners[spannertools.HairpinSpanner][0].append(leaf)
-                all_spanners[spannertools.HairpinSpanner].pop( )
+                all_spanners[spannertools.HairpinSpanner].pop()
 
             # loop through directed events, handling each as necessary
-            for klass, events in directed_events.iteritems( ):
+            for klass, events in directed_events.iteritems():
 
                 starting_events = filter(lambda x: x.span_direction == 'start', events)
                 stopping_events = filter(lambda x: x.span_direction == 'stop', events)
@@ -325,11 +325,11 @@ class LilyPondParser(AbjadObject):
                         if hasattr(event, 'direction'):
                             all_spanners[klass].append(klass(direction=event.direction))
                         else:
-                            all_spanners[klass].append(klass( ))
+                            all_spanners[klass].append(klass())
                     for _ in stopping_events:
                         if all_spanners[klass]:
                             all_spanners[klass][0].append(leaf)
-                            all_spanners[klass].pop( )
+                            all_spanners[klass].pop()
 
                 elif klass is spannertools.HairpinSpanner:
                     # Dynamic events can be ended many times,
@@ -340,11 +340,11 @@ class LilyPondParser(AbjadObject):
                     for _ in stopping_events:
                         if all_spanners[klass]:
                             all_spanners[klass][0].append(leaf)
-                            all_spanners[klass].pop( )
+                            all_spanners[klass].pop()
                     if 1 == len(starting_events):
                         if all_spanners[klass]:
                             all_spanners[klass][0].append(leaf)
-                            all_spanners[klass].pop( )
+                            all_spanners[klass].pop()
                         shape = '<'
                         event = starting_events[0]
                         if event.name == 'DecrescendoEvent':
@@ -364,7 +364,7 @@ class LilyPondParser(AbjadObject):
                     for _ in stopping_events:                    
                         if all_spanners[klass]:
                             all_spanners[klass][0].append(leaf)
-                            all_spanners[klass].pop( )
+                            all_spanners[klass].pop()
                         else:
                             raise Exception('Cannot end %s.' % klass.__name__)
                     for event in starting_events:
@@ -383,25 +383,25 @@ class LilyPondParser(AbjadObject):
                     # and therefore a bracket cannot cover a single leaf
                     has_starting_events = bool(len(starting_events))
                     for _ in starting_events:
-                        all_spanners[klass].append(klass( ))
+                        all_spanners[klass].append(klass())
                     if stopping_events:
                         if not has_starting_events:
                             for _ in stopping_events:
                                 if all_spanners[klass]:
                                     all_spanners[klass][-1].append(leaf)
-                                    all_spanners[klass].pop( )
+                                    all_spanners[klass].pop()
                                 else:
                                     raise Exception('Do not have that many brackets.')
                         else:
                             raise Exception('Conflicting note group events.')
 
             # append leaf to all tracked spanners,
-            for klass, instances in all_spanners.iteritems( ):
+            for klass, instances in all_spanners.iteritems():
                 for instance in instances:
                     instance.append(leaf)
 
         # check for unterminated spanners
-        for klass, instances in all_spanners.iteritems( ):
+        for klass, instances in all_spanners.iteritems():
             if instances:
                 raise Exception('Unterminated %s.' % klass.__name__)
 
@@ -418,7 +418,7 @@ class LilyPondParser(AbjadObject):
         self._push_extra_token(self._parser.lookahead)
 
         # create the backup token, set as new lookahead
-        backup = LexToken( )
+        backup = LexToken()
         backup.type = 'BACKUP'
         backup.value = '(backed-up?)'
         backup.lexpos = 0
@@ -426,7 +426,7 @@ class LilyPondParser(AbjadObject):
         self._parser.lookahead = backup
 
         if token_type:
-            token = LexToken( )
+            token = LexToken()
             token.type = token_type
             token.value = token_value
             token.lexpos = 0
@@ -445,7 +445,7 @@ class LilyPondParser(AbjadObject):
             'Voice': voicetools.Voice,
         }
         if context in known_contexts:
-            context = known_contexts[context]([ ])
+            context = known_contexts[context]([])
         else:
             raise Exception('Context type %s not supported.' % context)
 
@@ -478,8 +478,8 @@ class LilyPondParser(AbjadObject):
 
         container = containertools.Container()
         previous_leaf = None
-        apply_forward = [ ]
-        apply_backward = [ ]
+        apply_forward = []
+        apply_backward = []
 
         # sort events into forward or backwards attaching, and attach them to
         # the proper leaf
@@ -497,8 +497,8 @@ class LilyPondParser(AbjadObject):
                         if hasattr(mark, '__call__'):
                             mark.format_slot = 'before'
                             mark(x)
-                apply_forward = [ ]
-                apply_backward = [ ]
+                apply_forward = []
+                apply_backward = []
                 previous_leaf = x
                 container.append(x)
             else:
@@ -544,7 +544,7 @@ class LilyPondParser(AbjadObject):
         container.is_parallel = True
 
         # check for voice separators     
-        groups = [ ]
+        groups = []
         for value, group in itertools.groupby(music, is_separator):
             if not value:
                 groups.append(list(group))
@@ -569,7 +569,7 @@ class LilyPondParser(AbjadObject):
                 return spanners_annotations[0].value
             elif 1 < len(spanners_annotations):
                 raise Exception('Multiple span events lists attached to %s' % leaf)
-        return [ ]
+        return []
 
 
     def _process_post_events(self, leaf, post_events):
@@ -580,7 +580,7 @@ class LilyPondParser(AbjadObject):
                 annotation = filter(lambda x: x.name == 'spanners',
                     marktools.get_annotations_attached_to_component(leaf))
                 if not annotation:
-                    annotation = marktools.Annotation('spanners', [ ])(leaf)
+                    annotation = marktools.Annotation('spanners', [])(leaf)
                 else:
                     annotation = annotation[0]
                 annotation.value.append(post_event)
@@ -623,7 +623,7 @@ class LilyPondParser(AbjadObject):
 
     def _reset_parser_variables(self):
         try:
-            self._parser.restart( )
+            self._parser.restart()
         except:
             pass
         self._scope_stack = [{}]

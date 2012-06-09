@@ -8,7 +8,7 @@ class NestedMeasureCheck(Check):
     def _run(self, expr):
         from abjad.tools import measuretools
         from abjad.tools import componenttools
-        violators = [ ]
+        violators = []
         total = 0
         for t in measuretools.iterate_measures_forward_in_expr(expr):
             if componenttools.get_first_instance_of_klass_in_proper_parentage_of_component(t, Measure):

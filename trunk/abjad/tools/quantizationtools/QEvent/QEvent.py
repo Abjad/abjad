@@ -31,7 +31,7 @@ class QEvent(AbjadObject):
         object.__setattr__(self, '_value', value)
         object.__setattr__(self, '_offset', offset)
 
-    ### OVERRIDES ###
+    ### SPECIAL METHODS ###
 
     def __eq__(self, other):
         if type(self) == type(other):

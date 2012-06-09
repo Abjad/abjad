@@ -39,7 +39,7 @@ class GlobalReferenceConstraint(_GlobalConstraint):
         assert predicate.func_code.co_argcount == 2
         object.__setattr__(self, '_predicate', predicate)
 
-    ### OVERRIDES ###
+    ### SPECIAL METHODS ###
 
     def __call__(self, solution):
         return self._predicate(solution, self._reference)

@@ -43,7 +43,7 @@ class Domain(AbjadObject):
             raise Exception("Cannot instantiate %s from %s." % (type(self).__name__, args))
         object.__setattr__(self, '_domain', domain)
 
-    ### OVERRIDES ###
+    ### SPECIAL METHODS ###
 
     def __getitem__(self, item):
         return self._domain[item]
@@ -64,13 +64,13 @@ class Domain(AbjadObject):
         ::
 
             >>> original = Domain([1, 2, 3, 4], 4)
-            >>> randomized = original.randomized( )
+            >>> randomized = original.randomized()
             >>> randomized[0]  # doctest: +SKIP
             (4, 1, 2, 3) # doctest: +SKIP
 
         Returns Domain instance.
         '''
-        new_domain = [ ]
+        new_domain = []
         for slice in self._domain:
             new_slice = list(slice)
             random.shuffle(new_slice)

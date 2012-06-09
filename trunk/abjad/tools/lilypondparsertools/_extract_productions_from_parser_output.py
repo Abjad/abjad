@@ -1,7 +1,7 @@
 def _extract_productions_from_parser_output(filepath):
     f = open(filepath, 'r')
-    lines = f.read( ).split('\n')
-    f.close( )
+    lines = f.read().split('\n')
+    f.close()
 
     productions = { }
     nonterminal = None
@@ -9,7 +9,7 @@ def _extract_productions_from_parser_output(filepath):
 
     for line in lines:
 
-        text = line.strip( )
+        text = line.strip()
 
         # starting and stopping
         if text == 'Terminals, with rules where they appear':
@@ -24,7 +24,7 @@ def _extract_productions_from_parser_output(filepath):
         if not text:
             continue
 
-        parts = text.split( )[1:]
+        parts = text.split()[1:]
 
         if parts[0].startswith('$'):
             continue
@@ -36,11 +36,11 @@ def _extract_productions_from_parser_output(filepath):
         else:
             nonterminal = parts[0][:-1]
             if nonterminal not in productions:
-                productions[nonterminal] = [ ]
+                productions[nonterminal] = []
 
             right_hand = parts[1:]
             if right_hand[0] == '/*': # /* empty */
-                productions[nonterminal].append([ ])
+                productions[nonterminal].append([])
             else:
                 right_hand = filter(lambda x: not x.startswith('$'), right_hand)
                 productions[nonterminal].append(right_hand)

@@ -53,7 +53,7 @@ class ModuleCrawler(AbjadObject):
                 path = os.path.join(current_root, file).replace('.py', '')
                 parts = path.split(os.path.sep)
                 object_name = parts[-1]
-                module_name = [ ]
+                module_name = []
                 for part in reversed(parts):
                     module_name.append(part)
                     if part == self.root_package_name:

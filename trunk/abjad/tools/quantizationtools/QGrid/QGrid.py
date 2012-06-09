@@ -64,7 +64,7 @@ class QGrid(AbjadObject):
         object.__setattr__(self, '_next', next)
         object.__setattr__(self, '_offsets', self._expand_offsets())
 
-    ### OVERRIDES ###
+    ### SPECIAL METHODS ###
 
     def __eq__(self, other):
         if type(self) == type(other) and \

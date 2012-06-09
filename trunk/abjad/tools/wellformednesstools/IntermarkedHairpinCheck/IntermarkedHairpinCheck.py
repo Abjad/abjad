@@ -9,7 +9,7 @@ class IntermarkedHairpinCheck(Check):
     def _run(self, expr):
         from abjad.tools import contexttools
         from abjad.tools import spannertools
-        violators = [ ]
+        violators = []
         total, bad = 0, 0
         hairpins = spannertools.get_spanners_attached_to_any_improper_child_of_component(
             expr, HairpinSpanner)

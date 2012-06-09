@@ -8,7 +8,7 @@ class OverlappingOctavationCheck(Check):
     def _run(self, expr):
         from abjad.tools import leaftools
         from abjad.tools import spannertools
-        violators = [ ]
+        violators = []
         for leaf in leaftools.iterate_leaves_forward_in_expr(expr):
             #octavations = leaf.spanners.contained
             #octavations = [p for p in octavations if isinstance(p, OctavationSpanner)]

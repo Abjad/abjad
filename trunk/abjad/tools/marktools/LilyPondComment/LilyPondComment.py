@@ -142,4 +142,4 @@ class LilyPondComment(Mark):
                 self._format_slot = 'before'
             else:
                 self._format_slot = format_slot
-        return property(**locals( ))
+        return property(**locals())

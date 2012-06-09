@@ -1,13 +1,13 @@
 def _extract_token_names_from_parser_tab_hh(filepath):
 
     f = open(filepath, 'r')
-    lines = f.read( ).split('\n')
-    f.close( )
+    lines = f.read().split('\n')
+    f.close()
 
     token_names = { }
     in_enum = False
     for line in lines:
-        text = line.strip( )
+        text = line.strip()
 
         if in_enum and text == '};':
             break;

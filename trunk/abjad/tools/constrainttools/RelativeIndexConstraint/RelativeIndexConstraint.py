@@ -36,7 +36,7 @@ class RelativeIndexConstraint(_RelativeConstraint):
     Returns ``RelativeIndexConstraint`` instance.
     '''
 
-    ### OVERRIDES ###
+    ### SPECIAL METHODS ###
 
     def __call__(self, solution):
         if len(solution) < self._index_span:
