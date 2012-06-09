@@ -85,7 +85,7 @@ class AbjadAPIGenerator(abctools.AbjadObject):
 
         ignored_directories = ['.svn', 'test', '__pycache__']
         ignored_directories.extend(self._undocumented_packages)
-        tools_crawler = APICrawler(self.code_tools_path, self.docs_tools_path, 'abjad',
+        tools_crawler = APICrawler(self.code_tools_path, self.docs_tools_path, self.root_package,
             ignored_directories = ignored_directories)
         visited_modules = tools_crawler()
 
@@ -137,8 +137,8 @@ class AbjadAPIGenerator(abctools.AbjadObject):
         return [text, character * len(text), '']
 
     def _create_package_title(self, package_name):
-        result = self._create_heading(':py:mod:`%s <abjad.tools.%s>`' % 
-            (package_name, package_name), '~')
+        result = self._create_heading(':py:mod:`%s <%s%s>`' % 
+            (package_name, self.package_prefix, package_name), '~')
         return result
 
     def _create_package_toc(self, package_name, package_modules):
@@ -188,8 +188,8 @@ class AbjadAPIGenerator(abctools.AbjadObject):
 
         for obj in sorted(objects, key=lambda x: x.module_name):
 
-            tools_package_name = obj.module_name.split('.')[2]
-            tools_package_path = '.'.join(obj.module_name.split('.')[:3])
+            tools_package_name = obj.module_name.split('.')[self.tools_package_path_index]
+            tools_package_path = '.'.join(obj.module_name.split('.')[:self.tools_package_path_index + 1])
             tools_package_module = importlib.import_module(tools_package_path)
 
             collection = manual
@@ -246,3 +246,15 @@ class AbjadAPIGenerator(abctools.AbjadObject):
     def docs_tools_path(self):
         '''Path to tools directory inside docs.'''
         return os.path.join(ABJADPATH, 'docs', 'chapters', 'api', 'tools')
+
+    @property
+    def package_prefix(self):
+        return 'abjad.tools.'
+
+    @property
+    def root_package(self):
+        return 'abjad'
+
+    @property
+    def tools_package_path_index(self):
+        return 2
