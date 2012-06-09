@@ -20,9 +20,9 @@ from abjad.tools import iotools
 from abjad.tools import layouttools
 from abjad.tools import leaftools
 from abjad.tools import lilypondfiletools
-#from abjad.tools import lilypondparsertools
+from abjad.tools import lilypondparsertools
 from abjad.tools import lilypondproxytools
-#from abjad.tools import lyricstools
+from abjad.tools import lyricstools
 from abjad.tools import marktools
 from abjad.tools import markuptools
 from abjad.tools import mathtools
@@ -31,12 +31,13 @@ from abjad.tools import notetools
 from abjad.tools import offsettools
 from abjad.tools import pitcharraytools
 from abjad.tools import pitchtools
+#from abjad.tools import quantizationtools
 from abjad.tools import resttools
-#from abjad.tools import rhythmtreetools
+from abjad.tools import rhythmtreetools
 from abjad.tools import schemetools
 from abjad.tools import scoretemplatetools
 from abjad.tools import scoretools
-#from abajd.tools import sequencetools
+from abjad.tools import sequencetools
 from abjad.tools import sievetools
 from abjad.tools import skiptools
 from abjad.tools import spannertools

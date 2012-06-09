@@ -1,4 +1,4 @@
-from abjad import Duration
+from abjad.tools import durationtools
 from abjad.tools.mathtools import greatest_power_of_two_less_equal
 from abjad.tools.notetools import make_notes
 from abjad.tools.resttools import make_rests
@@ -14,7 +14,7 @@ class _RTMNode(object):
         self._pulses_consumed = int(pulses_consumed)
         self._children = tuple(children)
 
-    def __call__(self, duration=Duration(1, 4)):
+    def __call__(self, duration=durationtools.Duration(1, 4)):
 
         def recurse(node, duration):
             tuplet = FixedDurationTuplet(duration, [])
@@ -26,7 +26,7 @@ class _RTMNode(object):
                     else:
                         tuplet.extend(make_rests((abs(x), denominator)))
                 else:
-                    tuplet.append(recurse(x, Duration(x.pulses_consumed, denominator)))
+                    tuplet.append(recurse(x, durationtools.Duration(x.pulses_consumed, denominator)))
             return tuplet
 
         result = recurse(self, duration * self._pulses_consumed)

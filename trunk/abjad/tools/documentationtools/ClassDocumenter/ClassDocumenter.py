@@ -8,12 +8,12 @@ class ClassDocumenter(Documenter):
 
     ::
 
-        >>> from abjad import Note
+        >>> from abjad.tools import notetools
         >>> from abjad.tools.documentationtools import ClassDocumenter
     
     ::
 
-        >>> documenter = ClassDocumenter(Note)
+        >>> documenter = ClassDocumenter(notetools.Note)
         >>> rest = documenter()
 
     Returns ``ClassDocumenter`` instance.

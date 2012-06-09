@@ -1,4 +1,4 @@
-from abjad import Container
+from abjad.tools import containertools
 from abjad.tools.rhythmtreetools._RTMParser import _RTMParser
 
 
@@ -22,7 +22,7 @@ def parse_rtm_syntax(rtm):
     result = _RTMParser()(rtm)
 
     if 1 < len(result):
-        con = Container()
+        con = containertools.Container()
         for node in result:
             tuplet = node()
             if tuplet.is_trivial:
@@ -34,7 +34,7 @@ def parse_rtm_syntax(rtm):
     else:
         tuplet = result[0]()
         if tuplet.is_trivial:
-            con = Container()
+            con = containertools.Container()
             con.extend(tuplet[:])
             return con
         return tuplet
