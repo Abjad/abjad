@@ -1,6 +1,6 @@
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from specificationtools.Selection import Selection
-from specificationtools.Setting import Setting
+from experimental.specificationtools.Selection import Selection
+from experimental.specificationtools.Setting import Setting
 
 
 class Directive(AbjadObject):

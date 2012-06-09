@@ -1,6 +1,6 @@
 from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
-from specificationtools.AttributeNameEnumeration import AttributeNameEnumeration
-from specificationtools.Directive import Directive
+from experimental.specificationtools.AttributeNameEnumeration import AttributeNameEnumeration
+from experimental.specificationtools.Directive import Directive
 
 
 class DirectiveInventory(ObjectInventory):

@@ -1,6 +1,6 @@
 from abjad.tools import *
-from specificationtools.SettingInventory import SettingInventory
-from specificationtools.ScoreSpecification import ScoreSpecification
+from experimental.specificationtools.SettingInventory import SettingInventory
+from experimental.specificationtools.ScoreSpecification import ScoreSpecification
 import specificationtools
 
 

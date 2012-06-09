@@ -1,5 +1,5 @@
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from specificationtools.AttributeRetrievalIndicator import AttributeRetrievalIndicator
+from experimental.specificationtools.AttributeRetrievalIndicator import AttributeRetrievalIndicator
 
 
 class AttributeRetrievalRequest(AbjadObject):

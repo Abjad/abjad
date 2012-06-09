@@ -1,7 +1,7 @@
 from abjad.tools import *
 from helpers import read_test_output
 from helpers import write_test_output
-from specificationtools import ScoreSpecification
+from experimental.specificationtools import ScoreSpecification
 import specificationtools.library as library
 
 

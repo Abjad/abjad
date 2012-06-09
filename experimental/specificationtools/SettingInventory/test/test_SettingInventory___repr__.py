@@ -1,8 +1,8 @@
 from abjad.tools import *
-from specificationtools.Setting import Setting
-from specificationtools.SettingInventory import SettingInventory
-from specificationtools.ScoreSpecification import ScoreSpecification
-from specificationtools.Selection import Selection
+from experimental.specificationtools.Setting import Setting
+from experimental.specificationtools.SettingInventory import SettingInventory
+from experimental.specificationtools.ScoreSpecification import ScoreSpecification
+from experimental.specificationtools.Selection import Selection
 
 
 def test_SettingInventory___repr___01():

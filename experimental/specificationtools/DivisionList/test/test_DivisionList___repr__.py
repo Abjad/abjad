@@ -1,5 +1,5 @@
-from specificationtools.Division import Division
-from specificationtools.DivisionList import DivisionList
+from experimental.specificationtools.Division import Division
+from experimental.specificationtools.DivisionList import DivisionList
 
 
 def test_DivisionList___repr___01():

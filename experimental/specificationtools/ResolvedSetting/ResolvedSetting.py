@@ -1,4 +1,4 @@
-from specificationtools.Setting import Setting
+from experimental.specificationtools.Setting import Setting
 
 
 class ResolvedSetting(Setting):

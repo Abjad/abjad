@@ -1,4 +1,4 @@
-from specificationtools.Directive import Directive
+from experimental.specificationtools.Directive import Directive
 
 
 def test_Directive___init___01():

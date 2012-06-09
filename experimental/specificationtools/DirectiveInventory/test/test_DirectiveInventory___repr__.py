@@ -1,8 +1,8 @@
 from abjad.tools import *
-from specificationtools.Directive import Directive
-from specificationtools.DirectiveInventory import DirectiveInventory
-from specificationtools.ScoreSpecification import ScoreSpecification
-from specificationtools.Selection import Selection
+from experimental.specificationtools.Directive import Directive
+from experimental.specificationtools.DirectiveInventory import DirectiveInventory
+from experimental.specificationtools.ScoreSpecification import ScoreSpecification
+from experimental.specificationtools.Selection import Selection
 
 
 def test_DirectiveInventory___repr___01():

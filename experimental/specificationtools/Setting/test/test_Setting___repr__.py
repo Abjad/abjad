@@ -1,4 +1,4 @@
-from specificationtools.Setting import Setting
+from experimental.specificationtools.Setting import Setting
 
 
 def test_Setting___repr___01():

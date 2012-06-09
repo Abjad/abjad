@@ -1,4 +1,4 @@
-from specificationtools.DivisionList import DivisionList
+from experimental.specificationtools.DivisionList import DivisionList
 
 
 class RegionDivisionList(DivisionList):

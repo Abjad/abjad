@@ -1,5 +1,5 @@
 from abjad.tools import *
-from specificationtools.ScoreSpecification import ScoreSpecification
+from experimental.specificationtools.ScoreSpecification import ScoreSpecification
 import py
 import specificationtools.library as library
 

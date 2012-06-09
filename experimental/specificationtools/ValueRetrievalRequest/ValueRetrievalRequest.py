@@ -1,4 +1,4 @@
-from specificationtools.AttributeRetrievalRequest import AttributeRetrievalRequest
+from experimental.specificationtools.AttributeRetrievalRequest import AttributeRetrievalRequest
 
 
 class ValueRetrievalRequest(AttributeRetrievalRequest):

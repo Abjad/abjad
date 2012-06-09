@@ -1,5 +1,5 @@
 from abjad.tools import *
-from specificationtools.ScoreSpecification import ScoreSpecification
+from experimental.specificationtools.ScoreSpecification import ScoreSpecification
 
 
 def test_SegmentSpecification_time_signatures_01():

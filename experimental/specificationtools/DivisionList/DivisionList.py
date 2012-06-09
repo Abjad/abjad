@@ -1,5 +1,5 @@
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from specificationtools.Division import Division
+from experimental.specificationtools.Division import Division
 
 
 class DivisionList(AbjadObject):

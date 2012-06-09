@@ -1,10 +1,10 @@
 from abjad.tools import *
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from specificationtools.AttributeNameEnumeration import AttributeNameEnumeration
-from specificationtools.AttributeRetrievalIndicator import AttributeRetrievalIndicator
-from specificationtools.ContextDictionary import ContextDictionary
-from specificationtools.SettingInventory import SettingInventory
-from specificationtools.ValueRetrievalIndicator import ValueRetrievalIndicator
+from experimental.specificationtools.AttributeNameEnumeration import AttributeNameEnumeration
+from experimental.specificationtools.AttributeRetrievalIndicator import AttributeRetrievalIndicator
+from experimental.specificationtools.ContextDictionary import ContextDictionary
+from experimental.specificationtools.SettingInventory import SettingInventory
+from experimental.specificationtools.ValueRetrievalIndicator import ValueRetrievalIndicator
 
 
 class Specification(AbjadObject):

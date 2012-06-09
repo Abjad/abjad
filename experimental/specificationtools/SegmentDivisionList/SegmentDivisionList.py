@@ -1,4 +1,4 @@
-from specificationtools.DivisionList import DivisionList
+from experimental.specificationtools.DivisionList import DivisionList
 
 
 class SegmentDivisionList(DivisionList):
@@ -12,7 +12,7 @@ class SegmentDivisionList(DivisionList):
     Segment division lists contrast with region division lists.
     The best way to show this is with an example::
 
-        >>> from specificationtools import ScoreSpecification
+        >>> from experimental.specificationtools import ScoreSpecification
 
         >>> specification = ScoreSpecification(scoretemplatetools.GroupedRhythmicStavesScoreTemplate(n=1))
 

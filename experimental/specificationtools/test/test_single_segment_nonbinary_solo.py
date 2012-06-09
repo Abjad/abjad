@@ -1,6 +1,6 @@
 from abjad.tools import *
 from helpers import *
-from specificationtools import ScoreSpecification
+from experimental.specificationtools import ScoreSpecification
 import specificationtools.library as library
 
 

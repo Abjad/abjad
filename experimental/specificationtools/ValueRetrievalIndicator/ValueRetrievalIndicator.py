@@ -1,4 +1,4 @@
-from specificationtools.AttributeRetrievalIndicator import AttributeRetrievalIndicator
+from experimental.specificationtools.AttributeRetrievalIndicator import AttributeRetrievalIndicator
 
 
 class ValueRetrievalIndicator(AttributeRetrievalIndicator):
