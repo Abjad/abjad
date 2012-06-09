@@ -15,6 +15,12 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.documentationtools.AbjadAPIGenerator.AbjadAPIGenerator.AbjadAPIGenerator.docs_tools_path
 
+.. autoattribute:: abjad.tools.documentationtools.AbjadAPIGenerator.AbjadAPIGenerator.AbjadAPIGenerator.package_prefix
+
+.. autoattribute:: abjad.tools.documentationtools.AbjadAPIGenerator.AbjadAPIGenerator.AbjadAPIGenerator.root_package
+
+.. autoattribute:: abjad.tools.documentationtools.AbjadAPIGenerator.AbjadAPIGenerator.AbjadAPIGenerator.tools_package_path_index
+
 Special Methods
 ---------------
 

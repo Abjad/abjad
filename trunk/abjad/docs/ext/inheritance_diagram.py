@@ -148,7 +148,7 @@ class InheritanceGraph(object):
 
         def recurse(cls):
 
-            if not show_builtins and cls in builtins and not cls.__module__.startswith('abjad'):
+            if not show_builtins and cls in builtins and not cls.__module__.startswith(('abjad', 'experimental')):
                 return
             if not private_bases and cls.__name__.startswith('_'):
                 return
@@ -184,7 +184,7 @@ class InheritanceGraph(object):
         else:
             fullname = '%s.%s' % (module, cls.__name__)
 
-        if fullname.startswith('abjad'):
+        if fullname.startswith(('abjad', 'experimental')):
             pieces = fullname.split('.')
             unique_pieces = [pieces[0]]
             for piece in pieces[1:]:
