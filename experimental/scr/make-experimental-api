@@ -20,7 +20,7 @@ if __name__ == '__main__':
 
         @property
         def docs_tools_path(self):
-            return os.path.join(EXPERIMENTALPATH, 'docs', 'source', 'api')
+            return os.path.join(EXPERIMENTALPATH, 'docs', 'source', 'experimental')
 
         @property
         def package_prefix(self):

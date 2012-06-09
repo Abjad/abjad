@@ -1,0 +1,54 @@
+experimental.handlers.pitch.PitchHandler
+========================================
+
+.. inheritance-diagram:: experimental.handlers.pitch.PitchHandler.PitchHandler.PitchHandler
+   :private-bases:
+
+.. autoclass:: experimental.handlers.pitch.PitchHandler.PitchHandler.PitchHandler
+
+Special Methods
+---------------
+
+.. automethod:: experimental.handlers.pitch.PitchHandler.PitchHandler.PitchHandler.__delattr__
+
+    Inherited from `__builtin__.object`
+
+.. automethod:: experimental.handlers.pitch.PitchHandler.PitchHandler.PitchHandler.__eq__
+
+    Inherited from `experimental.handlers.Handler.Handler.Handler`
+
+.. automethod:: experimental.handlers.pitch.PitchHandler.PitchHandler.PitchHandler.__ge__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.handlers.pitch.PitchHandler.PitchHandler.PitchHandler.__gt__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.handlers.pitch.PitchHandler.PitchHandler.PitchHandler.__hash__
+
+    Inherited from `__builtin__.object`
+
+.. automethod:: experimental.handlers.pitch.PitchHandler.PitchHandler.PitchHandler.__le__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.handlers.pitch.PitchHandler.PitchHandler.PitchHandler.__lt__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.handlers.pitch.PitchHandler.PitchHandler.PitchHandler.__ne__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.handlers.pitch.PitchHandler.PitchHandler.PitchHandler.__repr__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.handlers.pitch.PitchHandler.PitchHandler.PitchHandler.__setattr__
+
+    Inherited from `__builtin__.object`
+
+.. automethod:: experimental.handlers.pitch.PitchHandler.PitchHandler.PitchHandler.__str__
+
+    Inherited from `__builtin__.object`

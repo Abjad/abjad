@@ -1,0 +1,58 @@
+experimental.specificationtools.ValueRetrievalRequest
+=====================================================
+
+.. inheritance-diagram:: experimental.specificationtools.ValueRetrievalRequest.ValueRetrievalRequest.ValueRetrievalRequest
+   :private-bases:
+
+.. autoclass:: experimental.specificationtools.ValueRetrievalRequest.ValueRetrievalRequest.ValueRetrievalRequest
+
+Special Methods
+---------------
+
+.. automethod:: experimental.specificationtools.ValueRetrievalRequest.ValueRetrievalRequest.ValueRetrievalRequest.__call__
+
+    Inherited from `experimental.specificationtools.AttributeRetrievalRequest.AttributeRetrievalRequest.AttributeRetrievalRequest`
+
+.. automethod:: experimental.specificationtools.ValueRetrievalRequest.ValueRetrievalRequest.ValueRetrievalRequest.__delattr__
+
+    Inherited from `__builtin__.object`
+
+.. automethod:: experimental.specificationtools.ValueRetrievalRequest.ValueRetrievalRequest.ValueRetrievalRequest.__eq__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.specificationtools.ValueRetrievalRequest.ValueRetrievalRequest.ValueRetrievalRequest.__ge__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.specificationtools.ValueRetrievalRequest.ValueRetrievalRequest.ValueRetrievalRequest.__gt__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.specificationtools.ValueRetrievalRequest.ValueRetrievalRequest.ValueRetrievalRequest.__hash__
+
+    Inherited from `__builtin__.object`
+
+.. automethod:: experimental.specificationtools.ValueRetrievalRequest.ValueRetrievalRequest.ValueRetrievalRequest.__le__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.specificationtools.ValueRetrievalRequest.ValueRetrievalRequest.ValueRetrievalRequest.__lt__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.specificationtools.ValueRetrievalRequest.ValueRetrievalRequest.ValueRetrievalRequest.__ne__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.specificationtools.ValueRetrievalRequest.ValueRetrievalRequest.ValueRetrievalRequest.__repr__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.specificationtools.ValueRetrievalRequest.ValueRetrievalRequest.ValueRetrievalRequest.__setattr__
+
+    Inherited from `__builtin__.object`
+
+.. automethod:: experimental.specificationtools.ValueRetrievalRequest.ValueRetrievalRequest.ValueRetrievalRequest.__str__
+
+    Inherited from `__builtin__.object`
