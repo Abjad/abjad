@@ -1,19 +1,24 @@
-from abjad import *
-from abjad.tools.contexttools.Context import Context
-from abjad.tools.leaftools.Leaf import Leaf
+from abjad.tools import chordtools
+from abjad.tools import containertools
+from abjad.tools import contexttools
+from abjad.tools import gracetools
+from abjad.tools import leaftools
+from abjad.tools import marktools
+from abjad.tools import notetools
+from abjad.tools import pitchtools
+from abjad.tools import stafftools
+from abjad.tools import tuplettools
 from abjad.tools.lilypondparsertools._lilypond_enharmonic_transpose import _lilypond_enharmonic_transpose
-from abjad.tools.pitchtools import NamedChromaticPitch
 
 
 class _GuileProxy(object):
 
+    ### INITIALIZER ###
 
     def __init__(self, client):
         self.client = client
 
-
-    ### OVERRIDES ###
-
+    ### SPECIAL METHODS ###
 
     def __call__(self, function_name, args):
         #signature = self.client._current_module[function_name[1:]]['signature'][1:]
@@ -114,12 +119,12 @@ class _GuileProxy(object):
         def recurse(component, pitch):
             if self._is_unrelativable(component):
                 return pitch
-            elif isinstance(component, (Chord, Note)):
+            elif isinstance(component, (chordtools.Chord, notetools.Note)):
                 pitch = self._make_relative_leaf(component, pitch)
                 if component in self.client._repeated_chords:
                     for repeated_chord in self.client._repeated_chords[component]:
                         repeated_chord.written_pitches = component.written_pitches
-            elif isinstance(component, Container):
+            elif isinstance(component, containertools.Container):
                 for child in component:
                     pitch = recurse(child, pitch)
             return pitch
@@ -146,12 +151,12 @@ class _GuileProxy(object):
 
     def time(self, number_list, fraction):
         n, d = fraction.numerator, fraction.denominator
-        return contexttools.TimeSignatureMark((n, d), target_context=Staff)
+        return contexttools.TimeSignatureMark((n, d), target_context=stafftools.Staff)
 
 
     def times(self, fraction, music):
         n, d  = fraction.numerator, fraction.denominator
-        if not isinstance(music, Context) and not isinstance(music, Leaf):
+        if not isinstance(music, contexttools.Context) and not isinstance(music, leaftools.Leaf):
             return tuplettools.Tuplet((n, d), music[:])
         return tuplettools.Tuplet((n, d), [music])
 
@@ -163,14 +168,14 @@ class _GuileProxy(object):
             key_signatures = contexttools.get_key_signature_marks_attached_to_component(music)
             if key_signatures:
                 for x in key_signatures:
-                    tonic = NamedChromaticPitch(x.tonic, 4)
+                    tonic = pitchtools.NamedChromaticPitch(x.tonic, 4)
                     x.tonic = transpose(from_pitch, to_pitch, tonic).named_chromatic_pitch_class
-            if isinstance(music, Note):
+            if isinstance(music, notetools.Note):
                 music.written_pitch = transpose(from_pitch, to_pitch, music.written_pitch)
-            elif isinstance(music, Chord):
+            elif isinstance(music, chordtools.Chord):
                 for note_head in music.note_heads:
                     note_head.written_pitch = transpose(from_pitch, to_pitch, note_head.written_pitch)
-            elif isinstance(music, Container):
+            elif isinstance(music, containertools.Container):
                 for x in music:
                     recurse(x)
 
@@ -214,10 +219,10 @@ class _GuileProxy(object):
     def _make_relative_leaf(self, leaf, pitch):
         if self._is_unrelativable(leaf):
             return pitch
-        elif isinstance(leaf, Note):
+        elif isinstance(leaf, notetools.Note):
             pitch = self._to_relative_octave(leaf.written_pitch, pitch)
             leaf.written_pitch = pitch
-        elif isinstance(leaf, Chord):
+        elif isinstance(leaf, chordtools.Chord):
             # TODO: This is not ideal w/r/t post events as LilyPond does not sort chord contents
             chord_pitches = self.client._chord_pitch_orders[leaf]
             for i, chord_pitch in enumerate(chord_pitches):
@@ -250,10 +255,12 @@ class _GuileProxy(object):
         if abs(float(up_pitch.named_diatonic_pitch) - float(reference.named_diatonic_pitch)) \
             < abs(float(down_pitch.named_diatonic_pitch) - float(reference.named_diatonic_pitch)):
             #pitch = up_pitch + (12 * (pitch.octave_number - 3))
-            pitch = NamedChromaticPitch(up_pitch.named_chromatic_pitch_class, up_octave + pitch.octave_number - 3)
+            pitch = pitchtools.NamedChromaticPitch(
+                up_pitch.named_chromatic_pitch_class, up_octave + pitch.octave_number - 3)
         else:
             #pitch = down_pitch + (12 * (pitch.octave_number - 3))
-            pitch = NamedChromaticPitch(down_pitch.named_chromatic_pitch_class, down_octave + pitch.octave_number - 3)
+            pitch = pitchtools.NamedChromaticPitch(
+                down_pitch.named_chromatic_pitch_class, down_octave + pitch.octave_number - 3)
 
         return pitch
 

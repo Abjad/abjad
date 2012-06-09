@@ -3,7 +3,7 @@ from abjad.tools.timeintervaltools.TimeIntervalTree import TimeIntervalTree
 from abjad.tools.timeintervaltools.all_are_intervals_or_trees_or_empty import all_are_intervals_or_trees_or_empty
 from abjad.tools.timeintervaltools.compute_depth_of_intervals_in_interval import compute_depth_of_intervals_in_interval
 from abjad.tools.timeintervaltools.split_intervals_at_rationals import split_intervals_at_rationals
-from abjad import Fraction
+from fractions import Fraction
 
 
 def calculate_depth_density_of_intervals_in_interval(intervals, interval):

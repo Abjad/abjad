@@ -1,6 +1,6 @@
 from abjad.tools.timeintervaltools.TimeInterval import TimeInterval
 from abjad.tools.timeintervaltools._RedBlackNode import _RedBlackNode
-from abjad import Fraction
+from fractions import Fraction
 
 
 class _IntervalNode(_RedBlackNode):

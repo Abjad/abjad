@@ -1,5 +1,5 @@
 from abjad.tools.timeintervaltools.TimeInterval import TimeInterval
-from abjad import Fraction
+from fractions import Fraction
 import py.test
 
 

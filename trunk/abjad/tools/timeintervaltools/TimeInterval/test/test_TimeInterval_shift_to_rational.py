@@ -1,5 +1,5 @@
 from abjad.tools.timeintervaltools.TimeInterval import TimeInterval
-from abjad import Fraction
+from fractions import Fraction
 
 
 def test_TimeInterval_shift_to_rational_01():

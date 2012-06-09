@@ -1,4 +1,4 @@
-from abjad import Fraction
+from fractions import Fraction
 from abjad import Score
 from abjad import Staff
 from abjad.tools.contexttools import ClefMark

@@ -1,6 +1,6 @@
 from collections import Iterable
 from numbers import Number
-from abjad import Fraction
+from fractions import Fraction
 from abjad.tools.abctools import AbjadObject
 from abjad.tools.containertools import Container
 from abjad.tools.contexttools import TempoMark

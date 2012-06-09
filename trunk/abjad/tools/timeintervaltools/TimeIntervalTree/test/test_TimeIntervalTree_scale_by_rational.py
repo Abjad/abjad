@@ -1,4 +1,4 @@
-from abjad import Fraction
+from fractions import Fraction
 from abjad.tools.durationtools import Offset
 from abjad.tools.timeintervaltools import TimeInterval
 from abjad.tools.timeintervaltools import TimeIntervalTree

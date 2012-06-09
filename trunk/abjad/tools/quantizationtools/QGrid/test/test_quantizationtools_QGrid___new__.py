@@ -1,5 +1,5 @@
 import py.test
-from abjad import Fraction
+from fractions import Fraction
 from abjad.tools.quantizationtools import QEvent
 from abjad.tools.quantizationtools import QGrid
 

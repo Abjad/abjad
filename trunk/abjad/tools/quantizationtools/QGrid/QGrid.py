@@ -1,5 +1,5 @@
 from abjad import Container
-from abjad import Fraction
+from fractions import Fraction
 from abjad import Note
 from abjad import Tuplet
 from abjad.tools.abctools import AbjadObject

@@ -5,23 +5,34 @@ import os
 from ply import lex, yacc
 from ply.lex import LexToken
 
-from abjad import *
+from abjad.tools import beamtools
+from abjad.tools import chordtools
+from abjad.tools import componenttools
+from abjad.tools import containertools
+from abjad.tools import contexttools
+from abjad.tools import durationtools
+from abjad.tools import gracetools
+from abjad.tools import lilypondfiletools
+from abjad.tools import marktools
+from abjad.tools import scoretools
+from abjad.tools import sequencetools
+from abjad.tools import spannertools
+from abjad.tools import stafftools
+from abjad.tools import tietools
+from abjad.tools import voicetools
 from abjad.tools.abctools import AbjadObject
-from abjad.tools.componenttools.Component import Component
-from abjad.tools.contexttools.Context import Context
-from abjad.tools.gracetools.GraceContainer import GraceContainer
-from abjad.tools.leaftools.Leaf import Leaf
 from abjad.tools.lilypondparsertools._GuileProxy._GuileProxy import _GuileProxy
 from abjad.tools.lilypondparsertools._LilyPondDuration._LilyPondDuration import _LilyPondDuration
 from abjad.tools.lilypondparsertools._LilyPondEvent._LilyPondEvent import _LilyPondEvent
 from abjad.tools.lilypondparsertools._LilyPondFraction._LilyPondFraction import _LilyPondFraction
-from abjad.tools.lilypondparsertools._LilyPondLexicalDefinition._LilyPondLexicalDefinition import _LilyPondLexicalDefinition
-from abjad.tools.lilypondparsertools._LilyPondSyntacticalDefinition._LilyPondSyntacticalDefinition import _LilyPondSyntacticalDefinition
+from abjad.tools.lilypondparsertools._LilyPondLexicalDefinition._LilyPondLexicalDefinition import \
+    _LilyPondLexicalDefinition
+from abjad.tools.lilypondparsertools._LilyPondSyntacticalDefinition._LilyPondSyntacticalDefinition import \
+    _LilyPondSyntacticalDefinition
 from abjad.tools.lilypondparsertools._NullHandler._NullHandler import _NullHandler
 from abjad.tools.lilypondparsertools._SyntaxNode._SyntaxNode import _SyntaxNode as Node
 from abjad.tools.lilypondparsertools._parse import _parse
 from abjad.tools.lilypondparsertools._parse_debug import _parse_debug
-from abjad.tools.sequencetools import iterate_sequence_pairwise_wrapped
 
 
 # apply monkey patch
@@ -182,11 +193,11 @@ class LilyPondParser(AbjadObject):
                 input_string,
                 lexer=self._lexer)
 
-        if isinstance(result, Container):
+        if isinstance(result, containertools.Container):
             self._apply_spanners(result)
         elif isinstance(result, lilypondfiletools.LilyPondFile):
             for x in result:
-                if isinstance(x, Container):
+                if isinstance(x, containertools.Container):
                     self._apply_spanners(x)
                 elif isinstance(x, lilypondfiletools.ScoreBlock):
                     for y in x:
@@ -258,7 +269,7 @@ class LilyPondParser(AbjadObject):
         first_leaf = None
         if leaves:
             first_leaf = leaves[0]
-        for leaf, next_leaf in iterate_sequence_pairwise_wrapped(leaves):
+        for leaf, next_leaf in sequencetools.iterate_sequence_pairwise_wrapped(leaves):
 
             span_events = _get_span_events(leaf)
             directed_events = { }
@@ -428,10 +439,10 @@ class LilyPondParser(AbjadObject):
             'ChoirStaff': scoretools.StaffGroup,
             'GrandStaff': scoretools.GrandStaff,
             'PianoStaff': scoretools.PianoStaff,
-            'Score': Score,
-            'Staff': Staff,
+            'Score': scoretools.Score,
+            'Staff': stafftools.Staff,
             'StaffGroup': scoretools.StaffGroup,
-            'Voice': Voice,
+            'Voice': voicetools.Voice,
         }
         if context in known_contexts:
             context = known_contexts[context]([ ])
@@ -465,7 +476,7 @@ class LilyPondParser(AbjadObject):
         # with t[0] being 'forward' or 'backward' and t[1] being the mark, as
         # this better preserves attachment order.  Not clear if we need it.
 
-        container = Container()
+        container = containertools.Container()
         previous_leaf = None
         apply_forward = [ ]
         apply_backward = [ ]
@@ -473,7 +484,7 @@ class LilyPondParser(AbjadObject):
         # sort events into forward or backwards attaching, and attach them to
         # the proper leaf
         for x in music:
-            if isinstance(x, Component) and not isinstance(x, GraceContainer):
+            if isinstance(x, componenttools.Component) and not isinstance(x, gracetools.GraceContainer):
                 for mark in apply_forward:
                     if hasattr(mark, '__call__'):
                         mark(x)
@@ -529,7 +540,7 @@ class LilyPondParser(AbjadObject):
                     return True
             return False
         
-        container = Container()
+        container = containertools.Container()
         container.is_parallel = True
 
         # check for voice separators     
@@ -540,7 +551,7 @@ class LilyPondParser(AbjadObject):
 
         # without voice separators
         if 1 == len(groups):
-            assert all([isinstance(x, Context) for x in groups[0]])
+            assert all([isinstance(x, contexttools.Context) for x in groups[0]])
             container.extend(groups[0])
         # with voice separators
         else:
@@ -618,8 +629,8 @@ class LilyPondParser(AbjadObject):
         self._scope_stack = [{}]
         self._chord_pitch_orders = {}
         self._lexer.push_state('notes')
-        self._default_duration = _LilyPondDuration(Duration(1, 4), None)
-        self._last_chord = Chord("<c g c'>4") # LilyPond's default!
+        self._default_duration = _LilyPondDuration(durationtools.Duration(1, 4), None)
+        self._last_chord = chordtools.Chord("<c g c'>4") # LilyPond's default!
         self._pitch_names = self._language_pitch_names[self.default_language]
         self._repeated_chords = {}
 
@@ -678,7 +689,7 @@ class LilyPondParser(AbjadObject):
             #'ly:dir?':            lambda x: True,
             'ly:duration?':       lambda x: isinstance(x, _LilyPondDuration),
             #'ly:moment?':         lambda x: True,
-            'ly:music?':          lambda x: isinstance(x, (Component, marktools.Mark)),
+            'ly:music?':          lambda x: isinstance(x, (componenttools.Component, marktools.Mark)),
             'ly:pitch?':          lambda x: isinstance(x, pitchtools.NamedChromaticPitch),
             'number-list?':       lambda x: isinstance(x, (list, tuple)) and \
                                             all([isinstance(y, (int, float)) for y in x]),

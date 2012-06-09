@@ -1,6 +1,6 @@
 from abjad.tools.timeintervaltools.TimeIntervalTree import TimeIntervalTree
 from abjad.tools.timeintervaltools.all_are_intervals_or_trees_or_empty import all_are_intervals_or_trees_or_empty
-from abjad import Fraction
+from fractions import Fraction
 
 
 def clip_interval_durations_to_range(intervals, min = None, max = None):

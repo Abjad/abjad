@@ -1,6 +1,6 @@
 from abjad.tools.timeintervaltools import *
 from abjad.tools.timeintervaltools._make_test_intervals import _make_test_intervals
-from abjad import Fraction
+from fractions import Fraction
 import py.test
 
 

@@ -3,7 +3,7 @@ from abjad.tools.timeintervaltools.TimeIntervalTree import TimeIntervalTree
 from abjad.tools.timeintervaltools.all_are_intervals_or_trees_or_empty import all_are_intervals_or_trees_or_empty
 from abjad.tools.timeintervaltools.calculate_depth_density_of_intervals_in_interval import calculate_depth_density_of_intervals_in_interval
 from abjad.tools.timeintervaltools.compute_logical_or_of_intervals import compute_logical_or_of_intervals
-from abjad import Fraction
+from fractions import Fraction
 
 
 def explode_intervals_into_n_trees_heuristically(intervals, n):

@@ -1,4 +1,4 @@
-from abjad import Fraction
+from fractions import Fraction
 from abjad.tools.quantizationtools import is_valid_beatspan
 
 

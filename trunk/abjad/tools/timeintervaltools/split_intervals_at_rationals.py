@@ -1,6 +1,6 @@
 from abjad.tools.timeintervaltools.TimeIntervalTree import TimeIntervalTree
 from abjad.tools.timeintervaltools.all_are_intervals_or_trees_or_empty import all_are_intervals_or_trees_or_empty
-from abjad import Fraction
+from fractions import Fraction
 
 
 def split_intervals_at_rationals(intervals, rationals):

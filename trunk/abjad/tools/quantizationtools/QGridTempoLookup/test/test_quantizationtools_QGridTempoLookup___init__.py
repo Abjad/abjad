@@ -1,5 +1,5 @@
 import py.test
-from abjad import Fraction
+from fractions import Fraction
 from abjad.tools.contexttools import TempoMark
 from abjad.tools.durationtools import Offset
 from abjad.tools.quantizationtools import QGridSearchTree

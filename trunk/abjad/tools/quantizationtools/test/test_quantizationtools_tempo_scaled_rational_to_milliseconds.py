@@ -1,4 +1,4 @@
-from abjad import Fraction
+from fractions import Fraction
 from abjad.tools.contexttools import TempoMark
 from abjad.tools.quantizationtools import tempo_scaled_rational_to_milliseconds
 

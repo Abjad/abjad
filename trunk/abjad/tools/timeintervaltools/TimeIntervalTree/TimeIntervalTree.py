@@ -1,6 +1,6 @@
 import copy
 from collections import Iterable
-from abjad import Fraction
+from fractions import Fraction
 from abjad.tools.durationtools import Duration
 from abjad.tools.durationtools import Offset
 from abjad.tools.timeintervaltools.TimeInterval import TimeInterval

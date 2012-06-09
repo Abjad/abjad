@@ -1,6 +1,6 @@
 from abjad.tools.timeintervaltools.TimeIntervalTree import TimeIntervalTree
 from abjad.tools.timeintervaltools.all_are_intervals_or_trees_or_empty import all_are_intervals_or_trees_or_empty
-from abjad import Fraction
+from fractions import Fraction
 
 
 def shift_aggregate_offset_to_rational(intervals, rational):

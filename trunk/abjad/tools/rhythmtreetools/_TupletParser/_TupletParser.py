@@ -1,8 +1,12 @@
 import copy
-from abjad import *
-from abjad.tools.mathtools import NonreducedFraction
+from abjad.tools import containertools
+from abjad.tools import marktools
+from abjad.tools import mathtools
+from abjad.tools import notetools
+from abjad.tools import resttools
+from abjad.tools import sequencetools
+from abjad.tools import tuplettools
 from abjad.tools.rhythmtreetools._Parser import _Parser
-from abjad.tools.sequencetools import iterate_sequence_pairwise_strict
 
 
 class _TupletParser(_Parser):
@@ -42,7 +46,7 @@ class _TupletParser(_Parser):
     def t_FRACTION(self, t):
         r'(-?[1-9]\d*/[1-9]\d*)'
         parts = t.value.split('/')
-        t.value = NonreducedFraction(int(parts[0]), int(parts[1]))
+        t.value = mathtools.NonreducedFraction(int(parts[0]), int(parts[1]))
         return t
 
     def t_INTEGER(self, t):
@@ -86,7 +90,7 @@ class _TupletParser(_Parser):
 
     def p_container__BRACE_L__component_list__BRACE_R(self, p):
         '''container : BRACE_L component_list BRACE_R'''
-        p[0] = Container()
+        p[0] = containertools.Container()
         for component in p[2]:
             p[0].append(component)
 
@@ -107,9 +111,9 @@ class _TupletParser(_Parser):
         dots = '.' * p[2]
         post_events = p[3]
         if 0 < p[1]:
-            p[0] = Note("c'{}{}".format(p[1], dots))
+            p[0] = notetools.Note("c'{}{}".format(p[1], dots))
         else:
-            p[0] = Rest('{}{}'.format(abs(p[1]), dots))
+            p[0] = resttools.Rest('{}{}'.format(abs(p[1]), dots))
         if post_events:
             marktools.Annotation('post events', post_events)(p[0])
 
@@ -165,13 +169,13 @@ class _TupletParser(_Parser):
 
     def cleanup(self, parsed):
 
-        container = Container()
+        container = containertools.Container()
         for x in parsed:
             container.append(x)
         parsed = container
         leaves = parsed.leaves
 
-        for first_leaf, second_leaf in iterate_sequence_pairwise_strict(leaves):
+        for first_leaf, second_leaf in sequencetools.iterate_sequence_pairwise_strict(leaves):
             annotations = marktools.get_annotations_attached_to_component(first_leaf)
             post_events = [x for x in annotations if x.name == 'post events']
             if not post_events:

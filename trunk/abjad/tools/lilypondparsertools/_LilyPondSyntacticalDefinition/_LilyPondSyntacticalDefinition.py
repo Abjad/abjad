@@ -1,7 +1,15 @@
 from ply.lex import LexToken
 
-from abjad import *
+from abjad.tools import chordtools
+from abjad.tools import contexttools
 from abjad.tools import durationtools
+from abjad.tools import lilypondfiletools
+from abjad.tools import marktools
+from abjad.tools import markuptools
+from abjad.tools import pitchtools
+from abjad.tools import notetools
+from abjad.tools import resttools
+from abjad.tools import skiptools
 from abjad.tools.lilypondparsertools._LilyPondDuration._LilyPondDuration \
     import _LilyPondDuration
 from abjad.tools.lilypondparsertools._LilyPondEvent._LilyPondEvent \
@@ -10,9 +18,12 @@ from abjad.tools.lilypondparsertools._LilyPondFraction._LilyPondFraction \
     import _LilyPondFraction
 from abjad.tools.lilypondparsertools._SyntaxNode._SyntaxNode \
     import _SyntaxNode as Node
+from fractions import Fraction
 
 
 class _LilyPondSyntacticalDefinition(object):
+
+    ### INITIALIZER ###
 
     def __init__(self, client):
         self.client = client
@@ -1010,7 +1021,7 @@ class _LilyPondSyntacticalDefinition(object):
         'event_chord : CHORD_REPETITION optional_notemode_duration post_events'
         pitches = self.client._last_chord.written_pitches
         duration = p[2].duration
-        chord = Chord(pitches, duration)
+        chord = chordtools.Chord(pitches, duration)
         self.client._chord_pitch_orders[chord] = pitches
         if p[2].multiplier is not None:
             chord.duration_multiplier = p[2].multiplier
@@ -2298,7 +2309,7 @@ class _LilyPondSyntacticalDefinition(object):
                 pitches.append(node[0])
                 post_events.extend(node[4])
         post_events.extend(p[3])
-        chord = Chord(pitches, p[2].duration)
+        chord = chordtools.Chord(pitches, p[2].duration)
         self.client._chord_pitch_orders[chord] = pitches
         if p[2].multiplier is not None:
             chord.duration_multiplier = p[2].multiplier
@@ -2901,7 +2912,7 @@ class _LilyPondSyntacticalDefinition(object):
     def p_simple_element__RESTNAME__optional_notemode_duration(self, p):
         'simple_element : RESTNAME optional_notemode_duration'
         if p[1] == 'r':
-            rest = Rest(p[2].duration)
+            rest = resttools.Rest(p[2].duration)
         else:
             rest = skiptools.Skip(p[2].duration)
         if p[2].multiplier is not None:
@@ -2912,9 +2923,9 @@ class _LilyPondSyntacticalDefinition(object):
     def p_simple_element__pitch__exclamations__questions__octave_check__optional_notemode_duration__optional_rest(self, p):
         'simple_element : pitch exclamations questions octave_check optional_notemode_duration optional_rest'
         if not p[6]:
-            leaf = Note(p[1], p[5].duration)
+            leaf = notetools.Note(p[1], p[5].duration)
         else:
-            leaf = Rest(p[5][0])
+            leaf = resttools.Rest(p[5][0])
             resttools.set_vertical_positioning_pitch_on_rest(leaf, p[1])
         if p[5].multiplier is not None:
             leaf.duration_multiplier = p[5].multiplier
@@ -3055,7 +3066,7 @@ class _LilyPondSyntacticalDefinition(object):
         if dots:
             token = durationtools.assignable_rational_to_lilypond_duration_string(duration)
             token += '.' * dots
-            duration = Duration(durationtools.duration_token_to_rational(token))
+            duration = durationtools.Duration(durationtools.duration_token_to_rational(token))
         p[0] = _LilyPondDuration(duration, multiplier)
 
 
@@ -3064,7 +3075,7 @@ class _LilyPondSyntacticalDefinition(object):
         assert durationtools.is_duration_token(p[1])
         dots = p[2].value
         token = str(p[1]) + '.' * dots
-        duration = Duration(durationtools.duration_token_to_rational(token))
+        duration = durationtools.Duration(durationtools.duration_token_to_rational(token))
         p[0] = _LilyPondDuration(duration, None)
 
 
