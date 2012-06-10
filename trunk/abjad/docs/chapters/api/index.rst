@@ -1103,6 +1103,13 @@ Abjad composition packages
 :py:mod:`spannertools <abjad.tools.spannertools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+.. rubric:: abstract classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/spannertools/Spanner/Spanner
+
 .. rubric:: concrete classes
 
 .. toctree::
@@ -1122,7 +1129,6 @@ Abjad composition packages
    tools/spannertools/PhrasingSlurSpanner/PhrasingSlurSpanner
    tools/spannertools/PianoPedalSpanner/PianoPedalSpanner
    tools/spannertools/SlurSpanner/SlurSpanner
-   tools/spannertools/Spanner/Spanner
    tools/spannertools/StaffLinesSpanner/StaffLinesSpanner
    tools/spannertools/TextScriptSpanner/TextScriptSpanner
    tools/spannertools/TextSpanner/TextSpanner

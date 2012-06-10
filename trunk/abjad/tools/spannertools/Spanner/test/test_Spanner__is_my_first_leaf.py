@@ -5,9 +5,13 @@ import py.test
 def test_Spanner__is_my_first_leaf_01():
     '''Spanner attached to flat container.'''
 
+    class MockSpanner(spannertools.Spanner):
+        def __init__(self, components=None):
+            spannertools.Spanner.__init__(self, components)
+
     t = Voice(notetools.make_repeated_notes(4))
     pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
-    p = spannertools.Spanner(t)
+    p = MockSpanner(t)
 
     r'''
     \new Voice {
@@ -31,10 +35,14 @@ def test_Spanner__is_my_first_leaf_01():
 def test_Spanner__is_my_first_leaf_02():
     '''Spanner attached to container with nested contents.'''
 
+    class MockSpanner(spannertools.Spanner):
+        def __init__(self, components=None):
+            spannertools.Spanner.__init__(self, components)
+
     t = Voice(notetools.make_repeated_notes(4))
     t.insert(2, Container(notetools.make_repeated_notes(2)))
     pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
-    p = spannertools.Spanner(t[:3])
+    p = MockSpanner(t[:3])
 
     r'''
     \new Voice {

@@ -97,7 +97,11 @@ def test_Spanner__remove_03():
     '''Remove works only on references and not on equality.
     '''
 
+    class MockSpanner(spannertools.Spanner):
+        def __init__(self, components=None):
+            spannertools.Spanner.__init__(self, components)
+
     note = Note("c'4")
-    spanner = spannertools.Spanner([Note("c'4")])
+    spanner = MockSpanner([Note("c'4")])
 
     assert py.test.raises(Exception, 'spanner._remove(note)')

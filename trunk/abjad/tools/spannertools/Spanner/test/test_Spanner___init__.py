@@ -1,4 +1,5 @@
 from abjad import *
+import py.test
 
 
 def test_Spanner___init___01():
@@ -26,3 +27,9 @@ def test_Spanner___init___02():
 
     assert len(p) == 4
     assert p[:] == t[:]
+
+
+def test_Spanner___init___03():
+    '''Spanner is abstract.'''
+
+    assert py.test.raises(TypeError, 'p = spannertools.Spanner()')

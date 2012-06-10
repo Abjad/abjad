@@ -6,8 +6,12 @@ def test_Spanner_format_01():
     However, base spanner causes no explosions at format-time, either.
     '''
 
+    class MockSpanner(spannertools.Spanner):
+        def __init__(self, components=None):
+            spannertools.Spanner.__init__(self, components)
+
     t = Staff("c'8 d'8 e'8 f'8")
-    p = spannertools.Spanner(t[:])
+    p = MockSpanner(t[:])
 
     r'''
     \new Staff {
