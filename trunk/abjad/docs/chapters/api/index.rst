@@ -1860,24 +1860,6 @@ Unstable Abjad composition packages (load manually)
 .. toctree::
    :maxdepth: 1
 
-:py:mod:`constrainttools <abjad.tools.constrainttools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. rubric:: concrete classes
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/constrainttools/AbsoluteIndexConstraint/AbsoluteIndexConstraint
-   tools/constrainttools/Domain/Domain
-   tools/constrainttools/FixedLengthStreamSolver/FixedLengthStreamSolver
-   tools/constrainttools/GlobalConstraint/GlobalConstraint
-   tools/constrainttools/GlobalCountsConstraint/GlobalCountsConstraint
-   tools/constrainttools/GlobalReferenceConstraint/GlobalReferenceConstraint
-   tools/constrainttools/RelativeCountsConstraint/RelativeCountsConstraint
-   tools/constrainttools/RelativeIndexConstraint/RelativeIndexConstraint
-   tools/constrainttools/VariableLengthStreamSolver/VariableLengthStreamSolver
-
 :py:mod:`quantizationtools <abjad.tools.quantizationtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

@@ -3,7 +3,6 @@ from abjad.tools import beamtools
 from abjad.tools import chordtools
 from abjad.tools import componenttools
 from abjad.tools import configurationtools
-from abjad.tools import constrainttools
 from abjad.tools import containertools
 from abjad.tools import contexttools
 from abjad.tools import datastructuretools

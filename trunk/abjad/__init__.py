@@ -33,7 +33,6 @@ _import_functions_in_package_to_namespace(_exceptions_path, __builtins__)
 del abctools
 del cfg
 del configurationtools
-del constrainttools
 del datastructuretools
 del decoratortools
 del documentationtools
