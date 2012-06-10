@@ -3,7 +3,7 @@ from abjad.tools import mathtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class Scope(AbjadObject):
+class HorizontalScope(AbjadObject):
 
     ### CLASS ATTRIBUTES ###
 

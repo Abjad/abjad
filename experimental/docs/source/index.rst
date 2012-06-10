@@ -116,10 +116,10 @@ Unstable Abjad composition packages (load manually)
    experimental/specificationtools/DivisionList/DivisionList
    experimental/specificationtools/DivisionRetrievalRequest/DivisionRetrievalRequest
    experimental/specificationtools/HandlerRequest/HandlerRequest
+   experimental/specificationtools/HorizontalScope/HorizontalScope
    experimental/specificationtools/MomentIndicator/MomentIndicator
    experimental/specificationtools/RegionDivisionList/RegionDivisionList
    experimental/specificationtools/ResolvedSetting/ResolvedSetting
-   experimental/specificationtools/Scope/Scope
    experimental/specificationtools/ScopedValue/ScopedValue
    experimental/specificationtools/ScoreSpecification/ScoreSpecification
    experimental/specificationtools/SegmentDivisionList/SegmentDivisionList

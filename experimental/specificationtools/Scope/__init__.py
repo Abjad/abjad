@@ -1,1 +1,0 @@
-from Scope import Scope
