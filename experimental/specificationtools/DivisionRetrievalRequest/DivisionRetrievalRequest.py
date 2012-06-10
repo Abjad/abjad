@@ -41,7 +41,7 @@ class DivisionRetrievalRequest(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, voice_name, start_segment_name, callback=None, count=None, offset=None, segment_count=1):
+    def __init__(self, start_segment_name, voice_name, callback=None, count=None, offset=None, segment_count=1):
         assert isinstance(voice_name, str), repr(voice_name)
         assert isinstance(start_segment_name, str), repr(start_segment_name)
         assert isinstance(callback, (Callback, type(None))), repr(callback)

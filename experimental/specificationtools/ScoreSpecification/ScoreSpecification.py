@@ -410,7 +410,7 @@ class ScoreSpecification(Specification):
     def request_divisions(self, start_segment_name, voice_name, segment_count=1):
         # TODO: extend to allow voice_name to work with voice object, too
         # TODO: extend to allow start_segment_name to work with segment specification object, too
-        return DivisionRetrievalRequest(voice_name, start_segment_name, segment_count=segment_count)
+        return DivisionRetrievalRequest(start_segment_name, voice_name, segment_count=segment_count)
 
     def resolve_attribute_retrieval_request(self, request):
         setting = self.change_attribute_retrieval_indicator_to_setting(request.indicator)

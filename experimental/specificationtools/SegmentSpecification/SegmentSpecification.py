@@ -319,17 +319,16 @@ class SegmentSpecification(Specification):
         return self.set_attribute(attribute_name, target_token, source, 
             count=count, persistent=persistent, offset=offset)
 
-#    def set_retrograde_divisions(self, target_token, source,
-#        count=None, offset=None, persistent=True):
-#        r'''.. versionadded:: 1.0
-#
-#        Set `target_token` divisions from `source` taken in retrograde.
-#        '''
-#        # can we get rid of the lambda and just pass the function name?
-#        string = 'lambda x: sequencetools.reverse_sequence(x)'
-#        callback = Callback(eval(string), string)
-#        return self.set_divisions(target_token, source, 
-#            callback=callback, count=count, offset=offset, persistent=persistent, truncate=truncate)
+    def set_retrograde_divisions(self, target_token, source,
+        count=None, offset=None, persistent=True, truncate=True):
+        r'''.. versionadded:: 1.0
+
+        Set `target_token` divisions from `source` taken in retrograde.
+        '''
+        string = 'sequencetools.reverse_sequence'
+        callback = Callback(eval(string), string)
+        return self.set_divisions(target_token, source, 
+            callback=callback, count=count, offset=offset, persistent=persistent, truncate=truncate)
 
     def set_rotated_divisions(self, target_token, source, n, 
         count=None, offset=None, persistent=True, truncate=True):
