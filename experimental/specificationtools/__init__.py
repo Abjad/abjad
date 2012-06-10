@@ -12,6 +12,7 @@ from DivisionRetrievalRequest import DivisionRetrievalRequest
 from HandlerRequest import HandlerRequest
 from HorizontalScope import HorizontalScope
 from MomentIndicator import MomentIndicator
+from PartIndicator import PartIndicator
 from RegionDivisionList import RegionDivisionList
 from ResolvedSetting import ResolvedSetting
 from ScopedValue import ScopedValue
