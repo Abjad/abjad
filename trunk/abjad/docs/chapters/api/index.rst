@@ -1423,6 +1423,7 @@ Additional Abjad composition packages (load manually)
    :maxdepth: 1
 
    tools/mathtools/NonreducedFraction/NonreducedFraction
+   tools/mathtools/Ratio/Ratio
 
 .. rubric:: functions
 
