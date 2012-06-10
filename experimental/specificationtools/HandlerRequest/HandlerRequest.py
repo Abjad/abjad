@@ -1,5 +1,5 @@
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from experimental.handlers.Handler import Handler
+from experimental.handlertools.Handler import Handler
 
 
 class HandlerRequest(AbjadObject):

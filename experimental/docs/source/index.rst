@@ -25,7 +25,7 @@ Unstable Abjad composition packages (load manually)
    experimental/constrainttools/RelativeIndexConstraint/RelativeIndexConstraint
    experimental/constrainttools/VariableLengthStreamSolver/VariableLengthStreamSolver
 
-:py:mod:`handlers <experimental.handlers>`
+:py:mod:`handlertools <experimental.handlertools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: abstract classes
@@ -33,27 +33,27 @@ Unstable Abjad composition packages (load manually)
 .. toctree::
    :maxdepth: 1
 
-   experimental/handlers/Handler/Handler
-   experimental/handlers/articulations/ArticulationHandler/ArticulationHandler
-   experimental/handlers/dynamics/DynamicHandler/DynamicHandler
-   experimental/handlers/pitch/PitchHandler/PitchHandler
+   experimental/handlertools/Handler/Handler
+   experimental/handlertools/articulations/ArticulationHandler/ArticulationHandler
+   experimental/handlertools/dynamics/DynamicHandler/DynamicHandler
+   experimental/handlertools/pitch/PitchHandler/PitchHandler
 
 .. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
 
-   experimental/handlers/articulations/PatternedArticulationsHandler/PatternedArticulationsHandler
-   experimental/handlers/articulations/ReiteratedArticulationHandler/ReiteratedArticulationHandler
-   experimental/handlers/articulations/RepeatedMarkupHandler/RepeatedMarkupHandler
-   experimental/handlers/articulations/StemTremoloHandler/StemTremoloHandler
-   experimental/handlers/dynamics/NoteAndChordHairpinHandler/NoteAndChordHairpinHandler
-   experimental/handlers/dynamics/NoteAndChordHairpinsHandler/NoteAndChordHairpinsHandler
-   experimental/handlers/dynamics/ReiteratedDynamicHandler/ReiteratedDynamicHandler
-   experimental/handlers/dynamics/TerracedDynamicsHandler/TerracedDynamicsHandler
-   experimental/handlers/pitch/DiatonicClusterHandler/DiatonicClusterHandler
-   experimental/handlers/pitch/OctaveTranspositionHandler/OctaveTranspositionHandler
-   experimental/handlers/pitch/TimewisePitchClassHandler/TimewisePitchClassHandler
+   experimental/handlertools/articulations/PatternedArticulationsHandler/PatternedArticulationsHandler
+   experimental/handlertools/articulations/ReiteratedArticulationHandler/ReiteratedArticulationHandler
+   experimental/handlertools/articulations/RepeatedMarkupHandler/RepeatedMarkupHandler
+   experimental/handlertools/articulations/StemTremoloHandler/StemTremoloHandler
+   experimental/handlertools/dynamics/NoteAndChordHairpinHandler/NoteAndChordHairpinHandler
+   experimental/handlertools/dynamics/NoteAndChordHairpinsHandler/NoteAndChordHairpinsHandler
+   experimental/handlertools/dynamics/ReiteratedDynamicHandler/ReiteratedDynamicHandler
+   experimental/handlertools/dynamics/TerracedDynamicsHandler/TerracedDynamicsHandler
+   experimental/handlertools/pitch/DiatonicClusterHandler/DiatonicClusterHandler
+   experimental/handlertools/pitch/OctaveTranspositionHandler/OctaveTranspositionHandler
+   experimental/handlertools/pitch/TimewisePitchClassHandler/TimewisePitchClassHandler
 
 :py:mod:`lyricstools <experimental.lyricstools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

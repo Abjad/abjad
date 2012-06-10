@@ -1,66 +1,66 @@
-experimental.handlers.dynamics.NoteAndChordHairpinHandler
+experimental.handlertools.dynamics.NoteAndChordHairpinHandler
 =========================================================
 
-.. inheritance-diagram:: experimental.handlers.dynamics.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler
+.. inheritance-diagram:: experimental.handlertools.dynamics.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler
    :private-bases:
 
-.. autoclass:: experimental.handlers.dynamics.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler
+.. autoclass:: experimental.handlertools.dynamics.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler
 
 Read/write Properties
 ---------------------
 
-.. autoattribute:: experimental.handlers.dynamics.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.hairpin_token
+.. autoattribute:: experimental.handlertools.dynamics.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.hairpin_token
 
 Methods
 -------
 
-.. automethod:: experimental.handlers.dynamics.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.apply
+.. automethod:: experimental.handlertools.dynamics.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.apply
 
 Special Methods
 ---------------
 
-.. automethod:: experimental.handlers.dynamics.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.__call__
+.. automethod:: experimental.handlertools.dynamics.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.__call__
 
-.. automethod:: experimental.handlers.dynamics.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.__delattr__
-
-    Inherited from `__builtin__.object`
-
-.. automethod:: experimental.handlers.dynamics.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.__eq__
-
-    Inherited from `experimental.handlers.Handler.Handler.Handler`
-
-.. automethod:: experimental.handlers.dynamics.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.__ge__
-
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.handlers.dynamics.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.__gt__
-
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.handlers.dynamics.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.__hash__
+.. automethod:: experimental.handlertools.dynamics.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.__delattr__
 
     Inherited from `__builtin__.object`
 
-.. automethod:: experimental.handlers.dynamics.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.__le__
+.. automethod:: experimental.handlertools.dynamics.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.__eq__
+
+    Inherited from `experimental.handlertools.Handler.Handler.Handler`
+
+.. automethod:: experimental.handlertools.dynamics.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.__ge__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.handlers.dynamics.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.__lt__
+.. automethod:: experimental.handlertools.dynamics.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.handlers.dynamics.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.__ne__
-
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.handlers.dynamics.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.__repr__
-
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. automethod:: experimental.handlers.dynamics.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.__setattr__
+.. automethod:: experimental.handlertools.dynamics.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.__hash__
 
     Inherited from `__builtin__.object`
 
-.. automethod:: experimental.handlers.dynamics.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.__str__
+.. automethod:: experimental.handlertools.dynamics.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.__le__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.handlertools.dynamics.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.__lt__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.handlertools.dynamics.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.__ne__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.handlertools.dynamics.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.__repr__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.handlertools.dynamics.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.__setattr__
+
+    Inherited from `__builtin__.object`
+
+.. automethod:: experimental.handlertools.dynamics.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.__str__
 
     Inherited from `__builtin__.object`

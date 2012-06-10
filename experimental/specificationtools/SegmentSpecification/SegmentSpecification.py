@@ -13,7 +13,7 @@ from experimental.specificationtools.Specification import Specification
 from experimental.specificationtools.Selection import Selection
 from experimental.specificationtools.StatalServer import StatalServer
 from experimental.specificationtools.StatalServerRequest import StatalServerRequest
-from experimental.handlers.Handler import Handler
+from experimental.handlertools.Handler import Handler
 import copy
 
 
