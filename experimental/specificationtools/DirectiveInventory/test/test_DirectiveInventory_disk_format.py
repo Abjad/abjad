@@ -1,4 +1,5 @@
 from abjad.tools import *
+from experimental import specificationtools
 from experimental.specificationtools import library
 from experimental.specificationtools import DirectiveInventory
 from experimental.specificationtools import ScoreSpecification
