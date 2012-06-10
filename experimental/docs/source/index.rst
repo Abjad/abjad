@@ -1,8 +1,8 @@
 Abjad API
 =========
 
-Additional Abjad composition packages (load manually)
------------------------------------------------------
+Unstable Abjad composition packages (load manually)
+---------------------------------------------------
 
 .. toctree::
    :maxdepth: 1
@@ -36,6 +36,21 @@ Additional Abjad composition packages (load manually)
    experimental/handlers/pitch/DiatonicClusterHandler/DiatonicClusterHandler
    experimental/handlers/pitch/OctaveTranspositionHandler/OctaveTranspositionHandler
    experimental/handlers/pitch/TimewisePitchClassHandler/TimewisePitchClassHandler
+
+:py:mod:`lyricstools <experimental.lyricstools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: concrete classes
+
+.. toctree::
+   :maxdepth: 1
+
+   experimental/lyricstools/AddLyrics/AddLyrics
+   experimental/lyricstools/LyricExtender/LyricExtender
+   experimental/lyricstools/LyricHyphen/LyricHyphen
+   experimental/lyricstools/LyricSpace/LyricSpace
+   experimental/lyricstools/LyricText/LyricText
+   experimental/lyricstools/Lyrics/Lyrics
 
 :py:mod:`specificationtools <experimental.specificationtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

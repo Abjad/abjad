@@ -1878,21 +1878,6 @@ Unstable Abjad composition packages (load manually)
    tools/constrainttools/RelativeIndexConstraint/RelativeIndexConstraint
    tools/constrainttools/VariableLengthStreamSolver/VariableLengthStreamSolver
 
-:py:mod:`lyricstools <abjad.tools.lyricstools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. rubric:: concrete classes
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/lyricstools/AddLyrics/AddLyrics
-   tools/lyricstools/LyricExtender/LyricExtender
-   tools/lyricstools/LyricHyphen/LyricHyphen
-   tools/lyricstools/LyricSpace/LyricSpace
-   tools/lyricstools/LyricText/LyricText
-   tools/lyricstools/Lyrics/Lyrics
-
 :py:mod:`quantizationtools <abjad.tools.quantizationtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

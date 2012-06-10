@@ -24,10 +24,6 @@ Methods
 
 .. automethod:: abjad.tools.quantizationtools.QGridSearchTree.QGridSearchTree.QGridSearchTree.find_subtree_divisibility
 
-.. automethod:: abjad.tools.quantizationtools.QGridSearchTree.QGridSearchTree.QGridSearchTree.fromkeys
-
-    Inherited from `__builtin__.dict`
-
 .. automethod:: abjad.tools.quantizationtools.QGridSearchTree.QGridSearchTree.QGridSearchTree.get
 
     Inherited from `__builtin__.dict`

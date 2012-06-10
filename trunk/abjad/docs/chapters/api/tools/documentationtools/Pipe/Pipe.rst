@@ -28,10 +28,6 @@ Methods
 
     Inherited from `subprocess.Popen`
 
-.. automethod:: abjad.tools.documentationtools.Pipe.Pipe.Pipe.pipe_cloexec
-
-    Inherited from `subprocess.Popen`
-
 .. automethod:: abjad.tools.documentationtools.Pipe.Pipe.Pipe.poll
 
     Inherited from `subprocess.Popen`

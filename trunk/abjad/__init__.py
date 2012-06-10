@@ -42,7 +42,6 @@ del exceptiontools
 del importtools
 del lilypondparsertools
 del lilypondproxytools
-del lyricstools
 del mathtools
 del timesignaturetools
 del offsettools

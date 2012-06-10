@@ -22,7 +22,6 @@ from abjad.tools import leaftools
 from abjad.tools import lilypondfiletools
 from abjad.tools import lilypondparsertools
 from abjad.tools import lilypondproxytools
-from abjad.tools import lyricstools
 from abjad.tools import marktools
 from abjad.tools import markuptools
 from abjad.tools import mathtools
