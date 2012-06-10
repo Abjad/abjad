@@ -254,7 +254,8 @@ class ScoreSpecification(Specification):
         for region_division_list in region_division_lists:
             divisions.extend(region_division_list)
         assert isinstance(divisions, list), divisions
-        start_offset, stop_offset = self.segment_name_to_offsets(request.start_segment_name, n=request.n)
+        start_offset, stop_offset = self.segment_name_to_offsets(
+            request.start_segment_name, segment_count=request.segment_count)
         total_amount = stop_offset - start_offset
         divisions = [mathtools.NonreducedFraction(x) for x in divisions]
         divisions = sequencetools.split_sequence_once_by_weights_with_overhang(divisions, [0, total_amount])
@@ -406,8 +407,10 @@ class ScoreSpecification(Specification):
         else:
             return divisions_value
         
-    def request_divisions(self, voice_name, start_segment_name, n=1):
-        return DivisionRetrievalRequest(voice_name, start_segment_name, n=n)
+    def request_divisions(self, start_segment_name, voice_name, segment_count=1):
+        # TODO: extend to allow voice_name to work with voice object, too
+        # TODO: extend to allow start_segment_name to work with segment specification object, too
+        return DivisionRetrievalRequest(voice_name, start_segment_name, segment_count=segment_count)
 
     def resolve_attribute_retrieval_request(self, request):
         setting = self.change_attribute_retrieval_indicator_to_setting(request.indicator)
@@ -430,9 +433,9 @@ class ScoreSpecification(Specification):
         segment = self.segments[segment_name]
         return self.index(segment)
 
-    def segment_name_to_offsets(self, segment_name, n=1):
+    def segment_name_to_offsets(self, segment_name, segment_count=1):
         start_segment_index = self.segment_name_to_index(segment_name)        
-        stop_segment_index = start_segment_index + n - 1
+        stop_segment_index = start_segment_index + segment_count - 1
         start_offset_pair = self.segment_offset_pairs[start_segment_index]
         stop_offset_pair = self.segment_offset_pairs[stop_segment_index]
         return start_offset_pair[0], stop_offset_pair[1]
