@@ -149,7 +149,7 @@ class SegmentSpecification(Specification):
     def get_rhythm_value(self, context_name, scope=None):
         '''Default to rest-filled tokens if explicit rhythm not found.
         '''
-        import specificationtools.library as library
+        from experimental.specificationtools import library
         value, fresh = self.get_resolved_value_with_fresh('rhythm', context_name, scope=scope)
         if value is not None:
             return value, fresh
@@ -265,7 +265,7 @@ class SegmentSpecification(Specification):
         return self.set_attribute(attribute_name, target_token, source, 
             callback=callback, count=count, offset=offset, persistent=persistent, truncate=truncate)
 
-    def set_divisions_rotated_by_count(self, target_token, source, n, 
+    def set_rotated_divisions(self, target_token, source, n, 
         count=None, offset=None, persistent=True, truncate=True):
         assert isinstance(n, int)
         string = 'lambda x: sequencetools.rotate_sequence(x, {})'.format(n)

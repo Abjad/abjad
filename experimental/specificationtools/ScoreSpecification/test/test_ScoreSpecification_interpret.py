@@ -1,7 +1,7 @@
 from abjad.tools import *
-from experimental.specificationtools.ScoreSpecification import ScoreSpecification
+from experimental.specificationtools import library
+from experimental.specificationtools import ScoreSpecification
 import py
-import specificationtools.library as library
 
 
 def test_ScoreSpecification_interpret_01():

@@ -1,8 +1,7 @@
 from abjad.tools import *
-from helpers import read_test_output
-from helpers import write_test_output
+from experimental.specificationtools import helpers
+from experimental.specificationtools import library
 from experimental.specificationtools import ScoreSpecification
-import specificationtools.library as library
 
 
 def test_quartet_01():
@@ -41,9 +40,9 @@ def test_quartet_01():
     assert specification.segments['T2'].time_signatures == [(2, 8), (2, 8)]
 
     current_function_name = introspectiontools.get_current_function_name()
-    write_test_output(score, __file__, current_function_name)
+    helpers.write_test_output(score, __file__, current_function_name)
 
-    assert score.format == read_test_output(__file__, current_function_name)
+    assert score.format == helpers.read_test_output(__file__, current_function_name)
 
 
 def test_quartet_02():
@@ -74,9 +73,9 @@ def test_quartet_02():
     assert specification.segments['T2'].time_signatures == [(2, 8), (2, 8)]
 
     current_function_name = introspectiontools.get_current_function_name()
-    write_test_output(score, __file__, current_function_name)
+    helpers.write_test_output(score, __file__, current_function_name)
 
-    assert score.format == read_test_output(__file__, current_function_name)
+    assert score.format == helpers.read_test_output(__file__, current_function_name)
 
 
 def test_quartet_03():
@@ -92,9 +91,9 @@ def test_quartet_03():
     segment.set_divisions(segment.v1, [(3, 16)])
 
     source = specification.request_divisions(segment.v1, 'T1', n=1) 
-    segment.set_divisions_rotated_by_count(segment.v2, source, -1)
-    segment.set_divisions_rotated_by_count(segment.v3, source, -2)
-    segment.set_divisions_rotated_by_count(segment.v4, source, -3)
+    segment.set_rotated_divisions(segment.v2, source, -1)
+    segment.set_rotated_divisions(segment.v3, source, -2)
+    segment.set_rotated_divisions(segment.v4, source, -3)
 
     segment.set_rhythm(segment, library.thirty_seconds)
 
@@ -112,9 +111,9 @@ def test_quartet_03():
         [(3, 16), (2, 16), (3, 16), (3, 16), (3, 16)]
 
     current_function_name = introspectiontools.get_current_function_name()
-    write_test_output(score, __file__, current_function_name)
+    helpers.write_test_output(score, __file__, current_function_name)
 
-    assert score.format == read_test_output(__file__, current_function_name)
+    assert score.format == helpers.read_test_output(__file__, current_function_name)
 
 
 def test_quartet_04():
@@ -129,9 +128,9 @@ def test_quartet_04():
     segment.set_divisions(segment.v1, [(3, 16)], truncate=True)
 
     source = specification.request_divisions(segment.v1, 'T1', n=1) 
-    segment.set_divisions_rotated_by_count(segment.v2, source, -1)
-    segment.set_divisions_rotated_by_count(segment.v3, source, -2)
-    segment.set_divisions_rotated_by_count(segment.v4, source, -3)
+    segment.set_rotated_divisions(segment.v2, source, -1)
+    segment.set_rotated_divisions(segment.v3, source, -2)
+    segment.set_rotated_divisions(segment.v4, source, -3)
 
     segment.set_rhythm(segment, library.thirty_seconds)
 
@@ -160,6 +159,6 @@ def test_quartet_04():
         specification.segments['T1']['Voice 4']['segment_pairs']
 
     current_function_name = introspectiontools.get_current_function_name()
-    write_test_output(score, __file__, current_function_name)
+    helpers.write_test_output(score, __file__, current_function_name)
 
-    assert score.format == read_test_output(__file__, current_function_name)
+    assert score.format == helpers.read_test_output(__file__, current_function_name)

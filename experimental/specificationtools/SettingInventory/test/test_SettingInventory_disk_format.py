@@ -1,7 +1,7 @@
 from abjad.tools import *
-from experimental.specificationtools.SettingInventory import SettingInventory
-from experimental.specificationtools.ScoreSpecification import ScoreSpecification
-import specificationtools
+from experimental.specificationtools import library
+from experimental.specificationtools import ScoreSpecification
+from experimental.specificationtools import SettingInventory
 
 
 def test_SettingInventory_disk_format_01():

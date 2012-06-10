@@ -1,7 +1,7 @@
 from abjad.tools import *
-from helpers import *
+from experimental.specificationtools import helpers
+from experimental.specificationtools import library
 from experimental.specificationtools import ScoreSpecification
-import specificationtools.library as library
 
 
 def test_multisegment_solo_01():
@@ -21,9 +21,9 @@ def test_multisegment_solo_01():
     score = specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
-    write_test_output(score, __file__, current_function_name)
+    helpers.write_test_output(score, __file__, current_function_name)
 
-    assert score.format == read_test_output(__file__, current_function_name)
+    assert score.format == helpers.read_test_output(__file__, current_function_name)
 
 
 def test_multisegment_solo_02():
@@ -44,9 +44,9 @@ def test_multisegment_solo_02():
     score = specification.interpret()
     
     current_function_name = introspectiontools.get_current_function_name()
-    write_test_output(score, __file__, current_function_name)
+    helpers.write_test_output(score, __file__, current_function_name)
 
-    assert score.format == read_test_output(__file__, current_function_name)
+    assert score.format == helpers.read_test_output(__file__, current_function_name)
 
 
 def test_multisegment_solo_03():
@@ -65,9 +65,9 @@ def test_multisegment_solo_03():
     score = specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
-    write_test_output(score, __file__, current_function_name)
+    helpers.write_test_output(score, __file__, current_function_name)
 
-    assert score.format == read_test_output(__file__, current_function_name)
+    assert score.format == helpers.read_test_output(__file__, current_function_name)
 
 
 def test_multisegment_solo_04():
@@ -88,9 +88,9 @@ def test_multisegment_solo_04():
     score = specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
-    write_test_output(score, __file__, current_function_name)
+    helpers.write_test_output(score, __file__, current_function_name)
 
-    assert score.format == read_test_output(__file__, current_function_name)
+    assert score.format == helpers.read_test_output(__file__, current_function_name)
 
 
 def test_multisegment_solo_05():
@@ -110,9 +110,9 @@ def test_multisegment_solo_05():
     score = specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
-    write_test_output(score, __file__, current_function_name)
+    helpers.write_test_output(score, __file__, current_function_name)
 
-    assert score.format == read_test_output(__file__, current_function_name)
+    assert score.format == helpers.read_test_output(__file__, current_function_name)
 
 
 def test_multisegment_solo_06():
@@ -133,9 +133,9 @@ def test_multisegment_solo_06():
     score = specification.interpret()
     
     current_function_name = introspectiontools.get_current_function_name()
-    write_test_output(score, __file__, current_function_name)
+    helpers.write_test_output(score, __file__, current_function_name)
 
-    assert score.format == read_test_output(__file__, current_function_name)
+    assert score.format == helpers.read_test_output(__file__, current_function_name)
 
 
 def test_multisegment_solo_07():
@@ -156,6 +156,6 @@ def test_multisegment_solo_07():
     score = specification.interpret()
     
     current_function_name = introspectiontools.get_current_function_name()
-    write_test_output(score, __file__, current_function_name)
+    helpers.write_test_output(score, __file__, current_function_name)
 
-    assert score.format == read_test_output(__file__, current_function_name)
+    assert score.format == helpers.read_test_output(__file__, current_function_name)

@@ -1,7 +1,7 @@
 from abjad.tools import *
-from experimental.specificationtools.DirectiveInventory import DirectiveInventory
-from experimental.specificationtools.ScoreSpecification import ScoreSpecification
-import specificationtools
+from experimental.specificationtools import library
+from experimental.specificationtools import DirectiveInventory
+from experimental.specificationtools import ScoreSpecification
 
 
 def test_DirectiveInventory_disk_format_01():
