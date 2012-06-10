@@ -16,4 +16,4 @@ def partition_sequence_extended_to_counts_with_overhang(sequence, counts):
     Return new object of `sequence` type.
     '''
 
-    return _partition_sequence_extended_to_counts(sequence, counts, overhang = True)
+    return _partition_sequence_extended_to_counts(sequence, counts, overhang=True)

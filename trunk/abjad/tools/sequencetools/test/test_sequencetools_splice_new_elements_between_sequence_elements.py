@@ -12,11 +12,11 @@ def test_sequencetools_splice_new_elements_between_sequence_elements_01():
     t = sequencetools.splice_new_elements_between_sequence_elements(l, s)
     assert t == [0, 'A', 'B', 1, 'A', 'B', 2, 'A', 'B', 3, 'A', 'B', 4]
 
-    t = sequencetools.splice_new_elements_between_sequence_elements(l, s, overhang = (0, 1))
+    t = sequencetools.splice_new_elements_between_sequence_elements(l, s, overhang=(0, 1))
     assert t == [0, 'A', 'B', 1, 'A', 'B', 2, 'A', 'B', 3, 'A', 'B', 4, 'A', 'B']
 
-    t = sequencetools.splice_new_elements_between_sequence_elements(l, s, overhang = (1, 0))
+    t = sequencetools.splice_new_elements_between_sequence_elements(l, s, overhang=(1, 0))
     assert t == ['A', 'B', 0, 'A', 'B', 1, 'A', 'B', 2, 'A', 'B', 3, 'A', 'B', 4]
 
-    t = sequencetools.splice_new_elements_between_sequence_elements(l, s, overhang = (1, 1))
+    t = sequencetools.splice_new_elements_between_sequence_elements(l, s, overhang=(1, 1))
     assert t == ['A', 'B', 0, 'A', 'B', 1, 'A', 'B', 2, 'A', 'B', 3, 'A', 'B', 4, 'A', 'B']

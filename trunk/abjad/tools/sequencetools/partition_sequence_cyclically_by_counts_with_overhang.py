@@ -20,4 +20,4 @@ def partition_sequence_cyclically_by_counts_with_overhang(sequence, counts):
         ``sequencetools.partition_sequence_cyclically_by_counts_with_overhang()``.
     '''
 
-    return _partition_sequence_by_counts(sequence, counts, cyclic = True, overhang = True)
+    return _partition_sequence_by_counts(sequence, counts, cyclic=True, overhang=True)

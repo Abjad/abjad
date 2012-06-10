@@ -26,6 +26,6 @@ def interlace_sequences(*sequences):
     '''
 
     zipped_sequences = zip_sequences_without_truncation(*sequences)
-    flattened_sequences = flatten_sequence(zipped_sequences, depth = 1)
+    flattened_sequences = flatten_sequence(zipped_sequences, depth=1)
 
     return flattened_sequences

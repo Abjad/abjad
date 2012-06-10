@@ -36,7 +36,7 @@ class Matrix(AbjadObject):
 
     Initialize from columns::
 
-        >>> matrix = sequencetools.Matrix(columns = [[0, 10, 20], [1, 11, 21], [2, 12, 22], [3, 13, 23]])
+        >>> matrix = sequencetools.Matrix(columns=[[0, 10, 20], [1, 11, 21], [2, 12, 22], [3, 13, 23]])
 
     ::
 

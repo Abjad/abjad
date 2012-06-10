@@ -11,7 +11,7 @@ class InversionEquivalentChromaticIntervalClassVector(ObjectVector):
 
     Initialize by inversion-equivalent chromatic interval-class counts::
 
-        >>> pitchtools.InversionEquivalentChromaticIntervalClassVector(counts = [2, 3, 0, 0, 0, 1])
+        >>> pitchtools.InversionEquivalentChromaticIntervalClassVector(counts=[2, 3, 0, 0, 0, 1])
         InversionEquivalentChromaticIntervalClassVector(0 | 2 3 0 0 0 1)
 
     Inversion-equivalent chromatic interval-class vectors are immutable.

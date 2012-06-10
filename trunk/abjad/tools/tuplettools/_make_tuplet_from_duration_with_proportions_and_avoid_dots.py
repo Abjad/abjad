@@ -11,7 +11,7 @@ from abjad.tools.tuplettools.fix_contents_of_tuplets_in_expr import fix_contents
 
 
 def _make_tuplet_from_duration_with_proportions_and_avoid_dots(
-    duration, divisions, prolation, direction = 'big-endian'):
+    duration, divisions, prolation, direction='big-endian'):
 
     # reduce divisions relative to each other
     divisions = sequencetools.divide_sequence_elements_by_greatest_common_divisor(divisions)
@@ -37,7 +37,7 @@ def _make_tuplet_from_duration_with_proportions_and_avoid_dots(
         note_durations = [durationtools.Duration(x, denominator) for x in divisions]
         pitches = [None if note_duration < 0 else 0 for note_duration in note_durations]
         leaf_durations = [abs(note_duration) for note_duration in note_durations]
-        notes = leaftools.make_leaves(pitches, leaf_durations, direction = direction)
+        notes = leaftools.make_leaves(pitches, leaf_durations, direction=direction)
 
     # make tuplet
     tuplet = FixedDurationTuplet(duration, notes)

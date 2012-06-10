@@ -51,4 +51,4 @@ def make_empty_pitch_array_from_list_of_pitch_lists(leaf_iterables):
     Return pitch array.
     '''
 
-    return _leaf_iterables_to_pitch_array(leaf_iterables, populate = False)
+    return _leaf_iterables_to_pitch_array(leaf_iterables, populate=False)

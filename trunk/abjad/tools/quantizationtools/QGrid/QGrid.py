@@ -362,7 +362,7 @@ class QGrid(AbjadObject):
             all([isinstance(x, Iterable) and len(x) == 2 for x in pairs]) and \
             all([0 <= x[0] < len(self) - 1 for x in pairs]) and \
             all([set(divisors(x[1])) == set([1, x[1]]) for x in pairs])
-        pairs = sorted(pairs, key = lambda x: x[0])
+        pairs = sorted(pairs, key=lambda x: x[0])
         def recurse(n, prev_count):
             count = prev_count
             for i, x in enumerate(n):

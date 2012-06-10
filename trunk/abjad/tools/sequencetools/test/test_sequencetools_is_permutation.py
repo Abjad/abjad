@@ -18,6 +18,6 @@ def test_sequencetools_is_permutation_02():
 
 def test_sequencetools_is_permutation_03():
 
-    assert sequencetools.is_permutation([3, 0, 1, 2], length = 4)
-    assert not sequencetools.is_permutation([3, 0, 1, 2], length = 3)
-    assert not sequencetools.is_permutation([3, 0, 1, 2], length = 5)
+    assert sequencetools.is_permutation([3, 0, 1, 2], length=4)
+    assert not sequencetools.is_permutation([3, 0, 1, 2], length=3)
+    assert not sequencetools.is_permutation([3, 0, 1, 2], length=5)

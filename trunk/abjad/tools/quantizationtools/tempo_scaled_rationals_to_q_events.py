@@ -31,7 +31,7 @@ def tempo_scaled_rationals_to_q_events(durations, tempo):
     assert all([isinstance(x, (int, Fraction)) for x in durations])
     assert isinstance(tempo, TempoMark)
 
-    durations = filter(None, sum_consecutive_sequence_elements_by_sign(durations, sign = [-1]))
+    durations = filter(None, sum_consecutive_sequence_elements_by_sign(durations, sign=[-1]))
     durations = [tempo_scaled_rational_to_milliseconds(x, tempo) for x in durations]
 
     offsets = cumulative_sums_zero([abs(x) for x in durations])

@@ -66,8 +66,8 @@ def test_quantizationtools_tempo_scaled_leaves_to_q_events_02():
     TieSpanner(staff[5:7])
     TieSpanner(staff[7:11])
 
-    TempoMark((1, 4), 58, target_context = Staff)(staff[0])
-    TempoMark((1, 4), 77, target_context = Staff)(staff[9])
+    TempoMark((1, 4), 58, target_context=Staff)(staff[0])
+    TempoMark((1, 4), 77, target_context=Staff)(staff[9])
 
     q_events = tempo_scaled_leaves_to_q_events(staff.leaves)
 

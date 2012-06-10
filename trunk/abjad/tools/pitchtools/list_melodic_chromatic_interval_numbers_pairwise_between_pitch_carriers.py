@@ -29,7 +29,7 @@ def list_melodic_chromatic_interval_numbers_pairwise_between_pitch_carriers(
 
     ::
 
-        >>> pitchtools.list_melodic_chromatic_interval_numbers_pairwise_between_pitch_carriers(staff, wrap = True)
+        >>> pitchtools.list_melodic_chromatic_interval_numbers_pairwise_between_pitch_carriers(staff, wrap=True)
         [2, 2, 1, 2, 2, 2, 1, -12]
 
     ::
@@ -46,7 +46,7 @@ def list_melodic_chromatic_interval_numbers_pairwise_between_pitch_carriers(
 
     ::
 
-        >>> pitchtools.list_melodic_chromatic_interval_numbers_pairwise_between_pitch_carriers(notes, wrap = True)
+        >>> pitchtools.list_melodic_chromatic_interval_numbers_pairwise_between_pitch_carriers(notes, wrap=True)
         [-1, -2, -2, -2, -1, -2, -2, 12]
 
     When ``wrap = False`` do not return ``pitch_carriers[-1] - pitch_carriers[0]`` as last in series.

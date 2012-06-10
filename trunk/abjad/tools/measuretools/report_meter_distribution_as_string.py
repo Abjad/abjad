@@ -14,4 +14,4 @@ def report_meter_distribution_as_string(expr):
     Return string.
     '''
 
-    return _report_meter_distribution(expr, delivery = 'string')
+    return _report_meter_distribution(expr, delivery='string')

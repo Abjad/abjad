@@ -2,7 +2,7 @@ from abjad.tools.tuplettools._make_tuplet_from_duration_with_proportions_and_enc
 
 
 def make_augmented_tuplet_from_duration_and_proportions_and_encourage_dots(
-    duration, proportions, direction = 'big-endian'):
+    duration, proportions, direction='big-endian'):
     '''.. versionadded:: 2.0
 
     Make augmented tuplet from `duration` and `proportions` and encourage dots::
@@ -14,7 +14,7 @@ def make_augmented_tuplet_from_duration_and_proportions_and_encourage_dots(
     Interpret nonassignable `proportions` according to `direction`::
 
         >>> print tuplettools.make_augmented_tuplet_from_duration_and_proportions_and_encourage_dots(
-        ... Fraction(3, 16), [5, -1, 5], direction = 'little-endian')
+        ... Fraction(3, 16), [5, -1, 5], direction='little-endian')
         {@ 11:16 c'32..., r128., c'32... @}
 
     Reduce `proportions` relative to each other.
@@ -29,4 +29,4 @@ def make_augmented_tuplet_from_duration_and_proportions_and_encourage_dots(
     '''
 
     return _make_tuplet_from_duration_with_proportions_and_encourage_dots(
-        duration, proportions, 'augmentation', direction = direction)
+        duration, proportions, 'augmentation', direction=direction)

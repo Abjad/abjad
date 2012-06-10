@@ -39,12 +39,12 @@ def test_measuretools_iterate_measures_forward_in_expr_02():
     staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
     pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
 
-    measures = list(measuretools.iterate_measures_forward_in_expr(staff, start = 1))
+    measures = list(measuretools.iterate_measures_forward_in_expr(staff, start=1))
     assert measures[0] is staff[1]
     assert measures[1] is staff[2]
     assert len(measures) == 2
 
-    measures = list(measuretools.iterate_measures_forward_in_expr(staff, stop = 2))
+    measures = list(measuretools.iterate_measures_forward_in_expr(staff, stop=2))
     assert measures[0] is staff[0]
     assert measures[1] is staff[1]
     assert len(measures) == 2

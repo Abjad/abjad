@@ -6,7 +6,7 @@ def test_HairpinSpanner_include_rests_01():
     '''
 
     t = Staff(Rest((1, 8)) * 4 + [Note(n, (1, 8)) for n in range(4, 8)])
-    spannertools.CrescendoSpanner(t[:], include_rests = False)
+    spannertools.CrescendoSpanner(t[:], include_rests=False)
 
     r'''
     \new Staff {
@@ -30,7 +30,7 @@ def test_HairpinSpanner_include_rests_02():
     '''
 
     t = Staff([Note(n, (1, 8)) for n in range(4)] + Rest((1, 8)) * 4)
-    spannertools.CrescendoSpanner(t[:], include_rests = False)
+    spannertools.CrescendoSpanner(t[:], include_rests=False)
 
 
     r'''

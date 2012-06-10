@@ -55,7 +55,7 @@ def explode_intervals_into_n_trees_heuristically(intervals, n):
         if len(empty_trees):
             i = empty_trees[0][0]
         elif len(nonoverlapping_trees):
-            nonoverlapping_trees = sorted(nonoverlapping_trees, key = lambda x: x[2])
+            nonoverlapping_trees = sorted(nonoverlapping_trees, key=lambda x: x[2])
             i = nonoverlapping_trees[0][0]
         else:
             overlapping_trees = sorted(overlapping_trees, \

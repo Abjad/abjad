@@ -5,5 +5,6 @@ import sys
 
 
 iotools.clear_terminal()
-command = 'grep -Irn "{}" * | grep -v svn-base | grep -v svn\/ | grep -v docs'.format(sys.argv[1])
+#command = 'grep -Irn "{}" * | grep -v svn-base | grep -v svn\/ | grep -v docs'.format(sys.argv[1])
+command = r'grep -Irn {!r} * | grep -v svn-base | grep -v svn\/ | grep -v docs'.format(sys.argv[1])
 iotools.spawn_subprocess(command)

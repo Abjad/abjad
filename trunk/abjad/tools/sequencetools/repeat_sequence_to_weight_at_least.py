@@ -16,4 +16,4 @@ def repeat_sequence_to_weight_at_least(sequence, weight):
     Return newly constructed `sequence` object.
     '''
 
-    return _repeat_sequence_to_weight(sequence, weight, remainder = 'more')
+    return _repeat_sequence_to_weight(sequence, weight, remainder='more')

@@ -38,4 +38,4 @@ def iterate_tuplets_forward_in_expr(expr, start=0, stop=None):
     Return generator.
     '''
 
-    return iterate_components_forward_in_expr(expr, Tuplet, start = start, stop = stop)
+    return iterate_components_forward_in_expr(expr, Tuplet, start=start, stop=stop)

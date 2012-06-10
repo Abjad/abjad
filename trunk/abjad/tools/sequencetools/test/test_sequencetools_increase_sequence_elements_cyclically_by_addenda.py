@@ -16,5 +16,5 @@ def test_sequencetools_increase_sequence_elements_cyclically_by_addenda_02():
 
 def test_sequencetools_increase_sequence_elements_cyclically_by_addenda_03():
     l = range(10)
-    t = sequencetools.increase_sequence_elements_cyclically_by_addenda(l, [10, -10], shield = False)
+    t = sequencetools.increase_sequence_elements_cyclically_by_addenda(l, [10, -10], shield=False)
     assert t == [10, -9, 12, -7, 14, -5, 16, -3, 18, -1]

@@ -112,7 +112,7 @@ class LilyPondGrobOverrideComponentPlugIn(_LilyPondComponentPlugIn):
         for grob_override_tuple in grob_override_tuples:
             most = '__'.join(grob_override_tuple[:-1])
             value = grob_override_tuple[-1]
-            skeleton_string = 'override__%s = %s' % (most, repr(value))
+            skeleton_string = 'override__%s=%s' % (most, repr(value))
             skeleton_strings.append(skeleton_string)
         return tuple(skeleton_strings)
 
@@ -136,6 +136,6 @@ class LilyPondGrobOverrideComponentPlugIn(_LilyPondComponentPlugIn):
                     attribute_value, context_name = context_name, is_once = is_once))
             else:
                 result.append(
-                    _make_lilypond_revert_string(grob_name, attribute_name, context_name = context_name))
+                    _make_lilypond_revert_string(grob_name, attribute_name, context_name=context_name))
         result.sort()
         return result

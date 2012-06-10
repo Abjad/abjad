@@ -42,7 +42,7 @@ class CyclicMatrix(Matrix):
 
     Initialize from columns::
 
-        >>> cyclic_matrix = sequencetools.CyclicMatrix(columns = [[0, 10, 20], [1, 11, 21], [2, 12, 22], [3, 13, 23]])
+        >>> cyclic_matrix = sequencetools.CyclicMatrix(columns=[[0, 10, 20], [1, 11, 21], [2, 12, 22], [3, 13, 23]])
 
     ::
 

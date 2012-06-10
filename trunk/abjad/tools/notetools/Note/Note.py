@@ -220,7 +220,7 @@ class Note(Leaf):
                     self.note_head.written_pitch = None
             else:
                 if self.note_head is None:
-                    self.note_head = NoteHead(self, written_pitch = None)
+                    self.note_head = NoteHead(self, written_pitch=None)
                 else:
                     pitch = pitchtools.NamedChromaticPitch(arg)
                     self.note_head.written_pitch = pitch

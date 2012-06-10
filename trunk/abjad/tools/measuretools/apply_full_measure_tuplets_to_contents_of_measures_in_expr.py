@@ -53,4 +53,4 @@ def apply_full_measure_tuplets_to_contents_of_measures_in_expr(expr):
     Return none.
     '''
 
-    return _apply_full_measure_tuplets_to_contents_of_measures_in_expr(expr, supplement = None)
+    return _apply_full_measure_tuplets_to_contents_of_measures_in_expr(expr, supplement=None)

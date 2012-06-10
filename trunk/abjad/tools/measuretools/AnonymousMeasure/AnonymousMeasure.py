@@ -51,5 +51,5 @@ class AnonymousMeasure(DynamicMeasure):
     ### INITIALIZER ###
 
     def __init__(self, music=None, **kwargs):
-        DynamicMeasure.__init__(self, music = music, **kwargs)
+        DynamicMeasure.__init__(self, music=music, **kwargs)
         self.override.staff.time_signature.stencil = False

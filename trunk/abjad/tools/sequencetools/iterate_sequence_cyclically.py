@@ -16,22 +16,22 @@ def iterate_sequence_cyclically(sequence, step=1, start=0, length='inf'):
 
     ::
 
-        >>> list(sequencetools.iterate_sequence_cyclically(sequence, length = 20))
+        >>> list(sequencetools.iterate_sequence_cyclically(sequence, length=20))
         [1, 2, 3, 4, 5, 6, 7, 1, 2, 3, 4, 5, 6, 7, 1, 2, 3, 4, 5, 6]
 
     ::
 
-        >>> list(sequencetools.iterate_sequence_cyclically(sequence, 2, length = 20))
+        >>> list(sequencetools.iterate_sequence_cyclically(sequence, 2, length=20))
         [1, 3, 5, 7, 2, 4, 6, 1, 3, 5, 7, 2, 4, 6, 1, 3, 5, 7, 2, 4]
 
     ::
 
-        >>> list(sequencetools.iterate_sequence_cyclically(sequence, 2, 3, length = 20))
+        >>> list(sequencetools.iterate_sequence_cyclically(sequence, 2, 3, length=20))
         [4, 6, 1, 3, 5, 7, 2, 4, 6, 1, 3, 5, 7, 2, 4, 6, 1, 3, 5, 7]
 
     ::
 
-        >>> list(sequencetools.iterate_sequence_cyclically(sequence, -2, 5, length = 20))
+        >>> list(sequencetools.iterate_sequence_cyclically(sequence, -2, 5, length=20))
         [6, 4, 2, 7, 5, 3, 1, 6, 4, 2, 7, 5, 3, 1, 6, 4, 2, 7, 5, 3]
 
     .. versionchanged:: 2.0
@@ -39,7 +39,7 @@ def iterate_sequence_cyclically(sequence, step=1, start=0, length='inf'):
 
     ::
 
-        >>> list(sequencetools.iterate_sequence_cyclically(xrange(1, 8), -2, 5, length = 20))
+        >>> list(sequencetools.iterate_sequence_cyclically(xrange(1, 8), -2, 5, length=20))
         [6, 4, 2, 7, 5, 3, 1, 6, 4, 2, 7, 5, 3, 1, 6, 4, 2, 7, 5, 3]
 
     Set `step` to jump size and direction across sequence.

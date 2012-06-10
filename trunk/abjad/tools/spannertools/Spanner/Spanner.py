@@ -550,7 +550,7 @@ class Spanner(AbjadObject):
 
         ::
 
-            >>> beam.fracture(1, direction = 'left')
+            >>> beam.fracture(1, direction='left')
             (BeamSpanner(c'8, d'8, e'8, f'8), BeamSpanner(c'8), BeamSpanner(d'8, e'8, f'8))
 
         ::

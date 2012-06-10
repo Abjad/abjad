@@ -4,7 +4,7 @@ from abjad import *
 def test_pitchtools_apply_octavation_spanner_to_pitched_components_01():
 
     t = Staff(notetools.make_notes([24, 26, 27, 29], [(1, 8)]))
-    pitchtools.apply_octavation_spanner_to_pitched_components(t, ottava_numbered_diatonic_pitch = 14)
+    pitchtools.apply_octavation_spanner_to_pitched_components(t, ottava_numbered_diatonic_pitch=14)
 
     r"""\new Staff {
         \ottava #1
@@ -24,7 +24,7 @@ def test_pitchtools_apply_octavation_spanner_to_pitched_components_02():
     t = Voice([Note(31, (1, 4))])
     assert t[0].written_pitch.numbered_diatonic_pitch == 18
     pitchtools.apply_octavation_spanner_to_pitched_components(t,
-        ottava_numbered_diatonic_pitch = 15, quindecisima_numbered_diatonic_pitch = 19)
+        ottava_numbered_diatonic_pitch = 15, quindecisima_numbered_diatonic_pitch=19)
 
     r"""
     \new Voice {

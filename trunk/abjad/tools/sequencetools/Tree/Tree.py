@@ -482,7 +482,7 @@ class Tree(AbjadObject):
 
         Return list of nodes.
         '''
-        return self._get_next_n_nodes_at_level_helper(n, level, nodes_must_be_complete = True)
+        return self._get_next_n_nodes_at_level_helper(n, level, nodes_must_be_complete=True)
         
     def get_next_n_nodes_at_level(self, n, level):
         r'''.. versionadded:: 2.4
@@ -527,7 +527,7 @@ class Tree(AbjadObject):
 
         Return list of nodes.
         '''
-        return self._get_next_n_nodes_at_level_helper(n, level, nodes_must_be_complete = False)
+        return self._get_next_n_nodes_at_level_helper(n, level, nodes_must_be_complete=False)
 
     def get_node_at_position(self, position):
         '''.. versionadded:: 2.4

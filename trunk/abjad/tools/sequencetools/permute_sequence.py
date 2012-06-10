@@ -17,7 +17,7 @@ def permute_sequence(sequence, permutation):
     Return newly constructed `sequence` object.
     '''
 
-    if not is_permutation(permutation, length = len(sequence)):
+    if not is_permutation(permutation, length=len(sequence)):
         args = (str(permutation), len(sequence))
         raise TypeError('"%s" must be permutation of length %s.' % args)
 

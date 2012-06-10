@@ -25,4 +25,4 @@ def test_LilyPondGrobOverrideComponentPlugIn___repr___02():
     note.override.note_head.color = 'red'
 
     assert repr(note.override) == \
-        "LilyPondGrobOverrideComponentPlugIn(beam__breakable = True, note_head__color = 'red')"
+        "LilyPondGrobOverrideComponentPlugIn(beam__breakable=True, note_head__color='red')"

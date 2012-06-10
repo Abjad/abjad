@@ -22,7 +22,7 @@ def milliseconds_to_q_events(milliseconds):
     Return a list of :py:class:`~abjad.tools.quantizationtools.QEvent` objects.
     '''
 
-    durations = filter(None, sum_consecutive_sequence_elements_by_sign(milliseconds, sign = [-1]))
+    durations = filter(None, sum_consecutive_sequence_elements_by_sign(milliseconds, sign=[-1]))
     offsets = cumulative_sums_zero([abs(x) for x in durations])
 
     q_events = []

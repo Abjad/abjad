@@ -55,11 +55,11 @@ class LilyPondContextSettingComponentPlugIn(_LilyPondComponentPlugIn):
         for attribute_tuple in self._get_attribute_tuples():
             if len(attribute_tuple) == 2:
                 attribute_name, attribute_value = attribute_tuple
-                result.append('%s = %s' % (attribute_name, repr(attribute_value)))
+                result.append('%s=%s' % (attribute_name, repr(attribute_value)))
             elif len(attribute_tuple) == 3:
                 context_name, attribute_name, attribute_value = attribute_tuple
                 key = '__'.join((context_name, attribute_name))
-                result.append('%s = %s' % (key, repr(attribute_value)))
+                result.append('%s=%s' % (key, repr(attribute_value)))
             else:
                 raise ValueError
         result = ['set__' + x for x in result]

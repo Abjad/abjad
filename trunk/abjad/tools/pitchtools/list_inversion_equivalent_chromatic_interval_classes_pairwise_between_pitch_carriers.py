@@ -4,7 +4,7 @@ from abjad.tools.pitchtools.is_pitch_carrier import is_pitch_carrier
 
 
 def list_inversion_equivalent_chromatic_interval_classes_pairwise_between_pitch_carriers(
-    pitch_carriers, wrap = False):
+    pitch_carriers, wrap=False):
     r'''.. versionadded:: 2.0
 
     List inversion-equivalent chromatic interval-classes pairwise between `pitch_carriers`::
@@ -27,14 +27,14 @@ def list_inversion_equivalent_chromatic_interval_classes_pairwise_between_pitch_
 
     ::
 
-        >>> pitchtools.list_inversion_equivalent_chromatic_interval_classes_pairwise_between_pitch_carriers(staff, wrap = False)
+        >>> pitchtools.list_inversion_equivalent_chromatic_interval_classes_pairwise_between_pitch_carriers(staff, wrap=False)
         [InversionEquivalentChromaticIntervalClass(2), InversionEquivalentChromaticIntervalClass(2), InversionEquivalentChromaticIntervalClass(1),
         InversionEquivalentChromaticIntervalClass(2), InversionEquivalentChromaticIntervalClass(2), InversionEquivalentChromaticIntervalClass(2),
         InversionEquivalentChromaticIntervalClass(1)]
 
     ::
 
-        >>> pitchtools.list_inversion_equivalent_chromatic_interval_classes_pairwise_between_pitch_carriers(staff, wrap = True)
+        >>> pitchtools.list_inversion_equivalent_chromatic_interval_classes_pairwise_between_pitch_carriers(staff, wrap=True)
         [InversionEquivalentChromaticIntervalClass(2), InversionEquivalentChromaticIntervalClass(2), InversionEquivalentChromaticIntervalClass(1),
         InversionEquivalentChromaticIntervalClass(2), InversionEquivalentChromaticIntervalClass(2), InversionEquivalentChromaticIntervalClass(2),
         InversionEquivalentChromaticIntervalClass(1), InversionEquivalentChromaticIntervalClass(0)]
@@ -49,21 +49,21 @@ def list_inversion_equivalent_chromatic_interval_classes_pairwise_between_pitch_
 
     ::
 
-        >>> pitchtools.list_inversion_equivalent_chromatic_interval_classes_pairwise_between_pitch_carriers(notes, wrap = False)
+        >>> pitchtools.list_inversion_equivalent_chromatic_interval_classes_pairwise_between_pitch_carriers(notes, wrap=False)
         [InversionEquivalentChromaticIntervalClass(1), InversionEquivalentChromaticIntervalClass(2), InversionEquivalentChromaticIntervalClass(2),
         InversionEquivalentChromaticIntervalClass(2), InversionEquivalentChromaticIntervalClass(1), InversionEquivalentChromaticIntervalClass(2),
         InversionEquivalentChromaticIntervalClass(2)]
 
     ::
 
-        >>> pitchtools.list_inversion_equivalent_chromatic_interval_classes_pairwise_between_pitch_carriers(notes, wrap = True)
+        >>> pitchtools.list_inversion_equivalent_chromatic_interval_classes_pairwise_between_pitch_carriers(notes, wrap=True)
         [InversionEquivalentChromaticIntervalClass(1), InversionEquivalentChromaticIntervalClass(2), InversionEquivalentChromaticIntervalClass(2),
         InversionEquivalentChromaticIntervalClass(2), InversionEquivalentChromaticIntervalClass(1), InversionEquivalentChromaticIntervalClass(2),
         InversionEquivalentChromaticIntervalClass(2), InversionEquivalentChromaticIntervalClass(0)]
 
-    When ``wrap = False`` do not return ``pitch_carriers[-1] - pitch_carriers[0]`` as last in series.
+    When ``wrap=False`` do not return ``pitch_carriers[-1] - pitch_carriers[0]`` as last in series.
 
-    When ``wrap = True`` do return ``pitch_carriers[-1] - pitch_carriers[0]`` as last in series.
+    When ``wrap=True`` do return ``pitch_carriers[-1] - pitch_carriers[0]`` as last in series.
 
     Return list.
     '''

@@ -20,7 +20,7 @@ class DecrescendoSpanner(HairpinSpanner):
 
     ::
 
-        >>> spannertools.DecrescendoSpanner(staff[:], include_rests = True)
+        >>> spannertools.DecrescendoSpanner(staff[:], include_rests=True)
         DecrescendoSpanner(r4, c'8, d'8, e'8, f'8, r4)
 
     ::
@@ -53,7 +53,7 @@ class DecrescendoSpanner(HairpinSpanner):
 
     ::
 
-        >>> spannertools.DecrescendoSpanner(staff[:], include_rests = False)
+        >>> spannertools.DecrescendoSpanner(staff[:], include_rests=False)
         DecrescendoSpanner(r4, c'8, d'8, e'8, f'8, r4)
 
     ::

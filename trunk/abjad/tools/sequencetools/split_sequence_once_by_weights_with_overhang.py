@@ -16,4 +16,4 @@ def split_sequence_once_by_weights_with_overhang(sequence, weights):
     Return list of `sequence` objects.
     '''
 
-    return _split_sequence_by_weights(sequence, weights, cyclic = False, overhang = True)
+    return _split_sequence_by_weights(sequence, weights, cyclic=False, overhang=True)

@@ -9,7 +9,7 @@ def iterate_components_forward_in_spanner(spanner, klass=Component):
 
         >>> t = Staff("c'8 d'8 e'8 f'8")
         >>> p = beamtools.BeamSpanner(t[2:])
-        >>> notes = spannertools.iterate_components_forward_in_spanner(p, klass = Note)
+        >>> notes = spannertools.iterate_components_forward_in_spanner(p, klass=Note)
         >>> for note in notes:
         ...   note
         Note("e'8")

@@ -46,5 +46,5 @@ def _cycle_token_to_sieve(cycle_token):
     residue_classes.sort(lambda x, y: cmp(x.residue, y.residue))
 
     # return sieve as residue class combination
-    sieve = ResidueClassExpression(residue_classes, operator = 'or')
+    sieve = ResidueClassExpression(residue_classes, operator='or')
     return sieve

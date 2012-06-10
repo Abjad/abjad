@@ -27,7 +27,7 @@ def test_timeintervaltools_concatenate_trees_02():
     c = TimeInterval(10, 20)
     tree_a = TimeIntervalTree([a, b, c])
     tree_b = TimeIntervalTree([a, b, c])
-    concatenated = concatenate_trees([tree_a, tree_b], padding = Fraction(1, 2))
+    concatenated = concatenate_trees([tree_a, tree_b], padding=Fraction(1, 2))
 
     target_signatures =  [(0, 10), (5, 15), (10, 20), \
                           (Fraction(41, 2), Fraction(61, 2)), (Fraction(51, 2),

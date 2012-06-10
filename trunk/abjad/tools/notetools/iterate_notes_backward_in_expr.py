@@ -41,7 +41,7 @@ def iterate_notes_backward_in_expr(expr, start=0, stop=None):
     Use optional `start` and `stop` keyword parameters to control
     indices of iteration::
 
-        >>> for leaf in notetools.iterate_notes_backward_in_expr(staff, start = 3):
+        >>> for leaf in notetools.iterate_notes_backward_in_expr(staff, start=3):
         ...     leaf
         ...
         Note("e'8")
@@ -50,7 +50,7 @@ def iterate_notes_backward_in_expr(expr, start=0, stop=None):
 
     ::
 
-        >>> for leaf in notetools.iterate_notes_backward_in_expr(staff, start = 0, stop = 3):
+        >>> for leaf in notetools.iterate_notes_backward_in_expr(staff, start=0, stop=3):
         ...     leaf
         ...
         Note("a'8")
@@ -59,7 +59,7 @@ def iterate_notes_backward_in_expr(expr, start=0, stop=None):
 
     ::
 
-        >>> for leaf in notetools.iterate_notes_backward_in_expr(staff, start = 2, stop = 4):
+        >>> for leaf in notetools.iterate_notes_backward_in_expr(staff, start=2, stop=4):
         ...     leaf
         ...
         Note("f'8")

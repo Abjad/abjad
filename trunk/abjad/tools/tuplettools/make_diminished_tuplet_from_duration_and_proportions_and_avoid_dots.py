@@ -1,7 +1,7 @@
 from abjad.tools.tuplettools._make_tuplet_from_duration_with_proportions_and_avoid_dots import _make_tuplet_from_duration_with_proportions_and_avoid_dots
 
 def make_diminished_tuplet_from_duration_and_proportions_and_avoid_dots(
-    duration, proportions, direction = 'big-endian'):
+    duration, proportions, direction='big-endian'):
     r'''.. versionadded:: 2.0
 
     Make diminished tuplet from `duration` and nonzero integer `proportions`.
@@ -21,7 +21,7 @@ def make_diminished_tuplet_from_duration_and_proportions_and_avoid_dots(
     Interpret nonassignable `proportions` according to `direction`::
 
         >>> print tuplettools.make_diminished_tuplet_from_duration_and_proportions_and_avoid_dots(
-        ... Fraction(3, 16), [5, -1, 5], direction = 'little-endian')
+        ... Fraction(3, 16), [5, -1, 5], direction='little-endian')
         {@ 11:6 c'32, c'8, r32, c'32, c'8 @}
 
     Reduce `proportions` relative to each other.
@@ -36,4 +36,4 @@ def make_diminished_tuplet_from_duration_and_proportions_and_avoid_dots(
     '''
 
     return _make_tuplet_from_duration_with_proportions_and_avoid_dots(
-        duration, proportions, 'diminution', direction = direction)
+        duration, proportions, 'diminution', direction=direction)
