@@ -47,7 +47,6 @@ del offsettools
 del os
 del pitcharraytools
 del platform
-del quantizationtools
 del rhythmtreetools
 del scoretemplatetools
 del sequencetools

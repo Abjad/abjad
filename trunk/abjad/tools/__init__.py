@@ -29,7 +29,6 @@ from abjad.tools import notetools
 from abjad.tools import offsettools
 from abjad.tools import pitcharraytools
 from abjad.tools import pitchtools
-from abjad.tools import quantizationtools
 from abjad.tools import resttools
 from abjad.tools import rhythmtreetools
 from abjad.tools import schemetools

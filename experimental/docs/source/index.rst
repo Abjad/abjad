@@ -70,6 +70,32 @@ Unstable Abjad composition packages (load manually)
    experimental/lyricstools/LyricText/LyricText
    experimental/lyricstools/Lyrics/Lyrics
 
+:py:mod:`quantizationtools <experimental.quantizationtools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: concrete classes
+
+.. toctree::
+   :maxdepth: 1
+
+   experimental/quantizationtools/QEvent/QEvent
+   experimental/quantizationtools/QGrid/QGrid
+   experimental/quantizationtools/QGridQuantizer/QGridQuantizer
+   experimental/quantizationtools/QGridSearchTree/QGridSearchTree
+   experimental/quantizationtools/QGridTempoLookup/QGridTempoLookup
+
+.. rubric:: functions
+
+.. toctree::
+   :maxdepth: 1
+
+   experimental/quantizationtools/is_valid_beatspan
+   experimental/quantizationtools/millisecond_pitch_pairs_to_q_events
+   experimental/quantizationtools/milliseconds_to_q_events
+   experimental/quantizationtools/tempo_scaled_leaves_to_q_events
+   experimental/quantizationtools/tempo_scaled_rational_to_milliseconds
+   experimental/quantizationtools/tempo_scaled_rationals_to_q_events
+
 :py:mod:`specificationtools <experimental.specificationtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
