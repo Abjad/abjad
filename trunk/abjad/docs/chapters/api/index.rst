@@ -1860,32 +1860,6 @@ Unstable Abjad composition packages (load manually)
 .. toctree::
    :maxdepth: 1
 
-:py:mod:`quantizationtools <abjad.tools.quantizationtools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. rubric:: concrete classes
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/quantizationtools/QEvent/QEvent
-   tools/quantizationtools/QGrid/QGrid
-   tools/quantizationtools/QGridQuantizer/QGridQuantizer
-   tools/quantizationtools/QGridSearchTree/QGridSearchTree
-   tools/quantizationtools/QGridTempoLookup/QGridTempoLookup
-
-.. rubric:: functions
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/quantizationtools/is_valid_beatspan
-   tools/quantizationtools/millisecond_pitch_pairs_to_q_events
-   tools/quantizationtools/milliseconds_to_q_events
-   tools/quantizationtools/tempo_scaled_leaves_to_q_events
-   tools/quantizationtools/tempo_scaled_rational_to_milliseconds
-   tools/quantizationtools/tempo_scaled_rationals_to_q_events
-
 :py:mod:`rhythmtreetools <abjad.tools.rhythmtreetools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
