@@ -1,6 +1,7 @@
 from abjad.tools import componenttools
 from abjad.tools import mathtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
+from experimental.specificationtools.PartIndicator import PartIndicator
 
 
 class HorizontalScope(AbjadObject):
@@ -39,7 +40,7 @@ class HorizontalScope(AbjadObject):
 
     def __init__(self, criterion, part=None, start=None, stop=None):
         assert self.is_valid_criterion(criterion), repr(criterion)
-        assert self.is_valid_part_token(part), repr(part)
+        assert isinstance(part, (PartIndicator, type(None))), repr(part)
         assert isinstance(start, (int, type(None))), repr(start)
         assert isinstance(stop, (int, type(None))), repr(stop)
         assert self.are_concordant_input_values(part, start, stop), repr((start, stop))
@@ -103,29 +104,3 @@ class HorizontalScope(AbjadObject):
             return True
         else:
             raise ValueError('invalid temporal scope criterion: {!r}'.format(expr))
-
-    def is_valid_part_token(self, expr):
-        r'''True when `expr` has the form of a valid part token. False otherwise.
-
-        Valid part tokens look like ``[(1, 1, 1), 0]``.
-
-        This means to divide something by the ratio ``1:1:1`` and then to take the 0th part that results.
-
-        To divide something into thirds and take the last part you would need
-        a part token that looks like ``[(1, 1, 1), 2]``.
-
-        Part tokens arise from a type of compositional thinking that partitions larger
-        stretches of time into parts according to ratios in order to pick out
-        individual parts of the resulting partition.
-    
-        Future design consideration: part tokens should probably be modeled as an explicit class.
-
-        Return boolean.
-        '''
-        if expr is None:
-            return True
-        elif isinstance(expr, (tuple, list)) and len(expr) == 2:
-            if all([mathtools.is_integer_equivalent_number(x) for x in expr[0]]):
-                if mathtools.is_integer_equivalent_number(expr[1]):
-                    return True
-        return False
