@@ -26,7 +26,7 @@ Unstable Abjad composition packages (load manually)
    experimental/constrainttools/VariableLengthStreamSolver/VariableLengthStreamSolver
 
 :py:mod:`handlertools <experimental.handlertools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: abstract classes
 
