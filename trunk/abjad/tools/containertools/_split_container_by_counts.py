@@ -57,12 +57,12 @@ def _split_container_by_counts(components, counts, spanners='unfractured', cycli
             comp_still_needed = count - cum_comp_in_this_part
             # if part is now full, fracture spanners right of leaf
             if comp_still_needed == 0:
-                _split_component_at_index(x, 100, spanners = spanners)
+                _split_component_at_index(x, 100, spanners=spanners)
         # if current component is container
         else:
             # try to grab enough container contents to fill current part
             comp_still_needed = count - cum_comp_in_this_part
-            left, right = _split_component_at_index(x, comp_still_needed, spanners = spanners)
+            left, right = _split_component_at_index(x, comp_still_needed, spanners=spanners)
             # accept whatever num of container contents came back and append
             part.append(left)
             cum_comp_in_this_part += len(left)

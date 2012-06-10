@@ -1,8 +1,8 @@
 from abjad.tools import componenttools
 
 
-def label_leaves_in_expr_with_pitch_class_numbers(expr, number = True, color = False,
-    markup_direction = 'down'):
+def label_leaves_in_expr_with_pitch_class_numbers(expr, number=True, color=False,
+    markup_direction='down'):
     r'''.. versionadded:: 1.1
 
     Label leaves in `expr` with pitch-class numbers::
@@ -17,12 +17,12 @@ def label_leaves_in_expr_with_pitch_class_numbers(expr, number = True, color = F
             f'8 _ \markup { \small 5 }
         }
 
-    When ``color = True`` call :func:`~abjad.tools.notetools.color_note_head_by_numbered_chromatic_pitch_class_color_map`.
+    When ``color=True`` call :func:`~abjad.tools.notetools.color_note_head_by_numbered_chromatic_pitch_class_color_map`.
 
     ::
 
         >>> t = Staff("c'8 d'8 e'8 f'8")
-        >>> leaftools.label_leaves_in_expr_with_pitch_class_numbers(t, color = True, number = False)
+        >>> leaftools.label_leaves_in_expr_with_pitch_class_numbers(t, color=True, number=False)
         >>> print t.format
         \new Staff {
             \once \override NoteHead #'color = #(x11-color 'red)
@@ -49,7 +49,6 @@ def label_leaves_in_expr_with_pitch_class_numbers(expr, number = True, color = F
 
     for note in componenttools.iterate_components_forward_in_expr(expr, Note):
         if number:
-            #label = r'\small %s' % abs(note.written_pitch.numbered_chromatic_pitch_class)
             label = markuptools.MarkupCommand('small', str(abs(note.written_pitch.numbered_chromatic_pitch_class)))
             markuptools.Markup(label, markup_direction)(note)
         if color:

@@ -36,7 +36,7 @@ class ContextMark(Mark):
     ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
-        return type(self)(target_context = self._target_context)
+        return type(self)(target_context=self._target_context)
 
     __deepcopy__ = __copy__
 

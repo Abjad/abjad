@@ -19,4 +19,4 @@ def label_leaves_in_expr_with_prolated_leaf_duration(expr, markup_direction='dow
     '''
 
     show = ['prolated']
-    return _label_leaves_in_expr_with_leaf_durations(expr, markup_direction = markup_direction, show=show)
+    return _label_leaves_in_expr_with_leaf_durations(expr, markup_direction=markup_direction, show=show)

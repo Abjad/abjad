@@ -66,7 +66,7 @@ def copy_components_and_covered_spanners(components, n=1):
 
     Clone `components` a total of `n` times. ::
 
-        >>> result = componenttools.copy_components_and_covered_spanners(voice.leaves[:2], n = 3)
+        >>> result = componenttools.copy_components_and_covered_spanners(voice.leaves[:2], n=3)
         >>> result
         (Note("c'8"), Note("d'8"), Note("c'8"), Note("d'8"), Note("c'8"), Note("d'8"))
 

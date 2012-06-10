@@ -27,11 +27,11 @@ def _split_component_at_index(component, i, spanners='unfractured'):
         #raise Exception # debug
         if i <= 0:
             if spanners == 'fractured':
-                spannertools.fracture_spanners_attached_to_component(component, direction = 'left')
+                spannertools.fracture_spanners_attached_to_component(component, direction='left')
             return None, component
         else:
             if spanners == 'fractured':
-                spannertools.fracture_spanners_attached_to_component(component, direction = 'right')
+                spannertools.fracture_spanners_attached_to_component(component, direction='right')
             return component, None
 
     # remember container multiplier, if any
@@ -93,8 +93,8 @@ def _split_component_at_index(component, i, spanners='unfractured'):
     # fracture spanners, if requested
     if spanners == 'fractured':
         if len(halves) == 2:
-            #left.spanners.fracture(direction = 'right')
-            spannertools.fracture_spanners_attached_to_component(left, direction = 'right')
+            #left.spanners.fracture(direction='right')
+            spannertools.fracture_spanners_attached_to_component(left, direction='right')
 
     # return new left and right halves
     return left, right

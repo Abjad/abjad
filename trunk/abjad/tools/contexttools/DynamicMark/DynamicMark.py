@@ -34,7 +34,7 @@ class DynamicMark(ContextMark):
 
     def __init__(self, dynamic_name, target_context=None):
         from abjad.tools.stafftools.Staff import Staff
-        ContextMark.__init__(self, target_context = target_context)
+        ContextMark.__init__(self, target_context=target_context)
         if self.target_context is None:
             self._target_context = Staff
         self._dynamic_name = dynamic_name
@@ -46,7 +46,7 @@ class DynamicMark(ContextMark):
         if len(args) == 1:
             dynamic_spanners = \
                 spannertools.get_spanners_attached_to_any_improper_parent_of_component(
-                args[0], klass = (spannertools.DynamicTextSpanner, spannertools.HairpinSpanner))
+                args[0], klass=(spannertools.DynamicTextSpanner, spannertools.HairpinSpanner))
             for dynamic_spanner in dynamic_spanners:
                 if not dynamic_spanner._is_exterior_leaf(args[0]):
                     raise WellFormednessError(
@@ -54,7 +54,7 @@ class DynamicMark(ContextMark):
         return ContextMark.__call__(self, *args)
 
     def __copy__(self, *args):
-        return type(self)(self._dynamic_name, target_context = self.target_context)
+        return type(self)(self._dynamic_name, target_context=self.target_context)
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):

@@ -67,4 +67,4 @@ def split_container_at_index_and_do_not_fracture_crossing_spanners(container, in
         ``containertools.split_container_at_index_and_do_not_fracture_crossing_spanners()``.
     '''
 
-    return _split_component_at_index(container, index, spanners = 'unfractured')
+    return _split_component_at_index(container, index, spanners='unfractured')

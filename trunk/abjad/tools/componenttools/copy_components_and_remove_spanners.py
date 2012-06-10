@@ -58,7 +58,7 @@ def copy_components_and_remove_spanners(components, n=1):
 
     Clone `components` a total of `n` times. ::
 
-        >>> result = componenttools.copy_components_and_remove_spanners(voice.leaves[2:4], n = 3)
+        >>> result = componenttools.copy_components_and_remove_spanners(voice.leaves[2:4], n=3)
         >>> result
         (Note("e'8"), Note("f'8"), Note("e'8"), Note("f'8"), Note("e'8"), Note("f'8"))
 

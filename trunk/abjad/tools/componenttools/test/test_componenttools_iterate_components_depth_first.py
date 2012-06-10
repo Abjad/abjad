@@ -62,7 +62,7 @@ def test_componenttools_iterate_components_depth_first_01():
 
     # RIGHT-TO-LEFT #
 
-    g = componenttools.iterate_components_depth_first(t[2], direction = 'right')
+    g = componenttools.iterate_components_depth_first(t[2], direction='right')
 
     assert g.next() is t[2]
     assert g.next() is t[2][1]
@@ -91,7 +91,7 @@ def test_componenttools_iterate_components_depth_first_02():
 
     # LEFT-TO-RIGHT #
 
-    g = componenttools.iterate_components_depth_first(t[2], capped = False)
+    g = componenttools.iterate_components_depth_first(t[2], capped=False)
 
     assert g.next() is t[2]
     assert g.next() is t[2][0]
@@ -120,7 +120,7 @@ def test_componenttools_iterate_components_depth_first_02():
 
     # RIGHT-TO-LEFT #
 
-    g = componenttools.iterate_components_depth_first(t[2], capped = False, direction = 'right')
+    g = componenttools.iterate_components_depth_first(t[2], capped=False, direction='right')
 
     assert g.next() is t[2]
     assert g.next() is t[2][1]
@@ -154,7 +154,7 @@ def test_componenttools_iterate_components_depth_first_03():
 
     # LEFT-TO-RIGHT #
 
-    g = componenttools.iterate_components_depth_first(t[2], unique = False)
+    g = componenttools.iterate_components_depth_first(t[2], unique=False)
 
     assert g.next() is t[2]
     assert g.next() is t[2][0]
@@ -189,7 +189,7 @@ def test_componenttools_iterate_components_depth_first_03():
 
     # RIGHT-TO-LEFT #
 
-    g = componenttools.iterate_components_depth_first(t[2], unique = False, direction = 'right')
+    g = componenttools.iterate_components_depth_first(t[2], unique=False, direction='right')
 
     assert g.next() is t[2]
     assert g.next() is t[2][1]
@@ -230,7 +230,7 @@ def test_componenttools_iterate_components_depth_first_04():
 
     # LEFT-TO-RIGHT #
 
-    g = componenttools.iterate_components_depth_first(t, forbid = 'parallel')
+    g = componenttools.iterate_components_depth_first(t, forbid='parallel')
 
     assert g.next() is t
     assert g.next() is t[0]
@@ -251,7 +251,7 @@ def test_componenttools_iterate_components_depth_first_04():
 
     # RIGHT-TO-LEFT #
 
-    g = componenttools.iterate_components_depth_first(t, forbid = 'parallel', direction = 'right')
+    g = componenttools.iterate_components_depth_first(t, forbid='parallel', direction='right')
 
     assert g.next() is t
     assert g.next() is t[4]
@@ -277,7 +277,7 @@ def test_componenttools_iterate_components_depth_first_05():
 
     # LEFT-TO-RIGHT #
 
-    g = componenttools.iterate_components_depth_first(t[2], capped = False, unique = False)
+    g = componenttools.iterate_components_depth_first(t[2], capped=False, unique=False)
 
     assert g.next() is t[2]
     assert g.next() is t[2][0]
@@ -323,7 +323,7 @@ def test_componenttools_iterate_components_depth_first_05():
     # RIGHT-TO-LEFT #
 
     g = componenttools.iterate_components_depth_first(
-        t[2], capped = False, unique = False, direction = 'right')
+        t[2], capped=False, unique=False, direction='right')
 
     assert g.next() is t[2]
     assert g.next() is t[2][1]
@@ -373,7 +373,7 @@ def test_componenttools_iterate_components_depth_first_06():
 
     # LEFT-TO-RIGHT #
 
-    g = componenttools.iterate_components_depth_first(t[2], capped = False, forbid = 'parallel')
+    g = componenttools.iterate_components_depth_first(t[2], capped=False, forbid='parallel')
 
     assert g.next() is t[2]
     assert g.next() is t
@@ -390,7 +390,7 @@ def test_componenttools_iterate_components_depth_first_06():
     # RIGHT-TO-LEFT #
 
     g = componenttools.iterate_components_depth_first(
-        t[2], capped = False, forbid = 'parallel', direction = 'right')
+        t[2], capped=False, forbid='parallel', direction='right')
 
     assert g.next() is t[2]
     assert g.next() is t
@@ -411,7 +411,7 @@ def test_componenttools_iterate_components_depth_first_07():
 
     # LEFT-TO-RIGHT
 
-    g = componenttools.iterate_components_depth_first(t, forbid = 'parallel', unique = False)
+    g = componenttools.iterate_components_depth_first(t, forbid='parallel', unique=False)
 
     assert g.next() is t
     assert g.next() is t[0]
@@ -443,7 +443,7 @@ def test_componenttools_iterate_components_depth_first_07():
     # RIGHT-TO-LEFT #
 
     g = componenttools.iterate_components_depth_first(
-        t, forbid = 'parallel', unique = False, direction = 'right')
+        t, forbid='parallel', unique=False, direction='right')
 
     assert g.next() is t
     assert g.next() is t[4]
@@ -480,7 +480,7 @@ def test_componenttools_iterate_components_depth_first_08():
     # LEFT-TO-RIGHT #
 
     g = componenttools.iterate_components_depth_first(
-        t[2], capped = False, forbid = 'parallel', unique = False)
+        t[2], capped=False, forbid='parallel', unique=False)
 
     assert g.next() is t[2]
     assert g.next() is t
@@ -502,7 +502,7 @@ def test_componenttools_iterate_components_depth_first_08():
     # RIGHT-TO-LEFT #
 
     g = componenttools.iterate_components_depth_first(
-        t[2], capped = False, forbid = 'parallel', unique = False, direction = 'right')
+        t[2], capped=False, forbid='parallel', unique=False, direction='right')
 
     assert g.next() is t[2]
     assert g.next() is t

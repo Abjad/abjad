@@ -36,7 +36,7 @@ class ClefMark(ContextMark):
 
     def __init__(self, arg, target_context=None):
         from abjad.tools.stafftools.Staff import Staff
-        ContextMark.__init__(self, target_context = target_context)
+        ContextMark.__init__(self, target_context=target_context)
         if self.target_context is None:
             self._target_context = Staff
         if isinstance(arg, str):
@@ -49,7 +49,7 @@ class ClefMark(ContextMark):
     ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
-        return type(self)(self._clef_name, target_context = self.target_context)
+        return type(self)(self._clef_name, target_context=self.target_context)
 
     __deepcopy__ = __copy__
 

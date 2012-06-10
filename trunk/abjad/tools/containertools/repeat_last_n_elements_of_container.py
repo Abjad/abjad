@@ -22,7 +22,7 @@ def repeat_last_n_elements_of_container(container, n=1, total=2):
 
     ::
 
-        >>> containertools.repeat_last_n_elements_of_container(staff, n = 2, total = 3)
+        >>> containertools.repeat_last_n_elements_of_container(staff, n=2, total=3)
         Staff{8}
 
     ::

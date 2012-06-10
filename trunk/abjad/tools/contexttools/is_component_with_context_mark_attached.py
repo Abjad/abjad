@@ -31,7 +31,7 @@ def is_component_with_context_mark_attached(expr, klasses=(ContextMark,)):
     '''
 
     if isinstance(expr, Component):
-        if len(get_context_marks_attached_to_component(expr, klasses = klasses)) == 1:
+        if len(get_context_marks_attached_to_component(expr, klasses=klasses)) == 1:
             return True
 
     return False

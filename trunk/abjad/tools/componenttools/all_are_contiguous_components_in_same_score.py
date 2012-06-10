@@ -18,7 +18,7 @@ def all_are_contiguous_components_in_same_score(expr, klasses=None, allow_orphan
     Otherwise false::
 
         >>> score = Score([Staff("c'8 d'8 e'8")])
-        >>> componenttools.all_are_contiguous_components_in_same_score(score.leaves, klasses = Note)
+        >>> componenttools.all_are_contiguous_components_in_same_score(score.leaves, klasses=Note)
         True
 
     Return boolean.

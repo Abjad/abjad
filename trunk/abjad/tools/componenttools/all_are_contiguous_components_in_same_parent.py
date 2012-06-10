@@ -17,7 +17,7 @@ def all_are_contiguous_components_in_same_parent(expr, klasses=None, allow_orpha
     Otherwise false::
 
         >>> staff = Staff("c'8 d'8 e'8")
-        >>> componenttools.all_are_contiguous_components_in_same_parent(staff.leaves, klasses = Note)
+        >>> componenttools.all_are_contiguous_components_in_same_parent(staff.leaves, klasses=Note)
         True
 
     Return boolean.

@@ -189,7 +189,7 @@ def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture
     '''
 
     d = Duration(1, 32)
-    halves = componenttools.split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners(t.leaves[0], d, tie_after = True)
+    halves = componenttools.split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners(t.leaves[0], d, tie_after=True)
 
     r'''
     \new Staff {
@@ -242,7 +242,7 @@ def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture
     '''
 
     d = Duration(1, 32)
-    halves = componenttools.split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners(t[0], d, tie_after = True)
+    halves = componenttools.split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners(t[0], d, tie_after=True)
 
     r'''
     \new Staff {

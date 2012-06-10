@@ -32,7 +32,7 @@ def get_context_mark_attached_to_component(component, klasses=(ContextMark,)):
     Raise missing mark error when no context mark attaches to `component`.
     '''
 
-    context_marks = get_context_marks_attached_to_component(component, klasses = klasses)
+    context_marks = get_context_marks_attached_to_component(component, klasses=klasses)
 
     if len(context_marks) == 0:
         raise MissingMarkError

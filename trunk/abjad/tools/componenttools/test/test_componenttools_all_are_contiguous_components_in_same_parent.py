@@ -64,7 +64,7 @@ def test_componenttools_all_are_contiguous_components_in_same_parent_03():
     notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
 
     assert componenttools.all_are_contiguous_components_in_same_parent(notes)
-    assert not componenttools.all_are_contiguous_components_in_same_parent(notes, allow_orphans = False)
+    assert not componenttools.all_are_contiguous_components_in_same_parent(notes, allow_orphans=False)
 
 
 def test_componenttools_all_are_contiguous_components_in_same_parent_04():

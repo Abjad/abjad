@@ -26,9 +26,9 @@ def _fuse_leaves_in_container_once_by_counts(container, counts, target_type=None
 
     # construct new notes or rests
     if target_type == Note:
-        new_material = notetools.make_notes(0, durations, direction = direction)
+        new_material = notetools.make_notes(0, durations, direction=direction)
     elif target_type == Rest:
-        new_material = resttools.make_rests(durations, direction = direction)
+        new_material = resttools.make_rests(durations, direction=direction)
     else:
         raise ValueError('unknown type of material to construct.')
 

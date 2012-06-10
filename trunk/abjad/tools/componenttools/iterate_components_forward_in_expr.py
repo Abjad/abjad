@@ -52,7 +52,7 @@ def iterate_components_forward_in_expr(expr, klass=Component, start=0, stop=None
 
     ::
 
-        >>> for x in componenttools.iterate_components_forward_in_expr(staff, Note, start = 0, stop = 4):
+        >>> for x in componenttools.iterate_components_forward_in_expr(staff, Note, start=0, stop=4):
         ...     x
         ...
         Note("c'8")
@@ -62,7 +62,7 @@ def iterate_components_forward_in_expr(expr, klass=Component, start=0, stop=None
 
     ::
 
-        >>> for x in componenttools.iterate_components_forward_in_expr(staff, Note, start = 4):
+        >>> for x in componenttools.iterate_components_forward_in_expr(staff, Note, start=4):
         ...     x
         ...
         Note("g'8")
@@ -72,7 +72,7 @@ def iterate_components_forward_in_expr(expr, klass=Component, start=0, stop=None
 
     ::
 
-        >>> for x in componenttools.iterate_components_forward_in_expr(staff, Note, start = 4, stop = 6):
+        >>> for x in componenttools.iterate_components_forward_in_expr(staff, Note, start=4, stop=6):
         ...     x
         ...
         Note("g'8")

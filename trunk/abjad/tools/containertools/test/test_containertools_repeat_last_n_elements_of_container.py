@@ -80,7 +80,7 @@ def test_containertools_repeat_last_n_elements_of_container_02():
     }
     '''
 
-    containertools.repeat_last_n_elements_of_container(t, 2, total = 2)
+    containertools.repeat_last_n_elements_of_container(t, 2, total=2)
 
     r'''
     \new Voice {

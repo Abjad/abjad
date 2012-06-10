@@ -15,7 +15,7 @@ def test_leaftools_repeat_leaf_and_extend_spanners_01():
     }
     '''
 
-    leaftools.repeat_leaf_and_extend_spanners(staff[0], total = 3)
+    leaftools.repeat_leaf_and_extend_spanners(staff[0], total=3)
 
     r'''
     \new Staff {

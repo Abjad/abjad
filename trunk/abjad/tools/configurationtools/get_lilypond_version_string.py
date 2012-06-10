@@ -16,7 +16,7 @@ def get_lilypond_version_string():
 
     if subprocess.mswindows and not 'LilyPond' in os.environ.get('PATH'):
         command = r'dir "C:\Program Files\*.exe" /s /b | find "lilypond.exe"'
-        proc = subprocess.Popen(command, shell = True, stdout = subprocess.PIPE)
+        proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
         lilypond = proc.stdout.readline()
         lilypond = lilypond.strip('\r').strip('\n').strip()
         if lilypond == '':

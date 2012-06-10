@@ -36,7 +36,7 @@ def iterate_components_backward_in_expr(expr, klass=Component, start=0, stop=Non
 
     ::
 
-        >>> for x in componenttools.iterate_components_backward_in_expr(staff, Note, start = 0, stop = 4):
+        >>> for x in componenttools.iterate_components_backward_in_expr(staff, Note, start=0, stop=4):
         ...     x
         ...
         Note("a'8")
@@ -46,7 +46,7 @@ def iterate_components_backward_in_expr(expr, klass=Component, start=0, stop=Non
 
     ::
 
-        >>> for x in componenttools.iterate_components_backward_in_expr(staff, Note, start = 4):
+        >>> for x in componenttools.iterate_components_backward_in_expr(staff, Note, start=4):
         ...     x
         ...
         Note("d'8")
@@ -54,7 +54,7 @@ def iterate_components_backward_in_expr(expr, klass=Component, start=0, stop=Non
 
     ::
 
-        >>> for x in componenttools.iterate_components_backward_in_expr(staff, Note, start = 4, stop = 6):
+        >>> for x in componenttools.iterate_components_backward_in_expr(staff, Note, start=4, stop=6):
         ...     x
         ...
         Note("d'8")

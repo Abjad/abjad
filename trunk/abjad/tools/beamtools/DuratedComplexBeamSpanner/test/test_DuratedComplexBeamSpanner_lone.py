@@ -6,7 +6,7 @@ def test_DuratedComplexBeamSpanner_lone_01():
     '''
 
     voice = Voice("c'8")
-    beamtools.DuratedComplexBeamSpanner(voice, lone = True)
+    beamtools.DuratedComplexBeamSpanner(voice, lone=True)
 
     r'''
     \new Voice {
@@ -25,7 +25,7 @@ def test_DuratedComplexBeamSpanner_lone_02():
     '''
 
     t = Voice("c'8")
-    beamtools.DuratedComplexBeamSpanner(t, lone = False)
+    beamtools.DuratedComplexBeamSpanner(t, lone=False)
 
     r'''
     \new Voice {
@@ -42,7 +42,7 @@ def test_DuratedComplexBeamSpanner_lone_03():
     '''
 
     t = Voice("c'8 d'8")
-    beamtools.DuratedComplexBeamSpanner(t, lone = False)
+    beamtools.DuratedComplexBeamSpanner(t, lone=False)
 
     r'''
     \new Voice {

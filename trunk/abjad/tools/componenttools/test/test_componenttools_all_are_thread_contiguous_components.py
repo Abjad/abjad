@@ -106,7 +106,7 @@ def test_componenttools_all_are_thread_contiguous_components_05():
 
     notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
     assert componenttools.all_are_thread_contiguous_components(notes)
-    assert not componenttools.all_are_thread_contiguous_components(notes, allow_orphans = False)
+    assert not componenttools.all_are_thread_contiguous_components(notes, allow_orphans=False)
 
 
 def test_componenttools_all_are_thread_contiguous_components_06():

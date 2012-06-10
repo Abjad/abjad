@@ -46,7 +46,7 @@ def iterate_timeline_backward_from_component(expr, klass=None):
         klass = Leaf
 
     root = component_to_score_root(expr)
-    component_generator = iterate_timeline_backward_in_expr(root, klass = klass)
+    component_generator = iterate_timeline_backward_in_expr(root, klass=klass)
 
     yielded_expr = False
     for component in component_generator:

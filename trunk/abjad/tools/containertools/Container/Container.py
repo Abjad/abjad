@@ -100,7 +100,7 @@ class Container(Component):
         Return multiplied container.
         '''
         from abjad.tools import containertools
-        return containertools.repeat_contents_of_container(self, total = total)
+        return containertools.repeat_contents_of_container(self, total=total)
 
     def __len__(self):
         '''Return nonnegative integer number of components in container.
@@ -347,7 +347,7 @@ class Container(Component):
             #assert isinstance(expr, (bool, type(None)))
             assert isinstance(expr, bool)
             if expr == True:
-                assert componenttools.all_are_components(self._music, klasses = (Context, ))
+                assert componenttools.all_are_components(self._music, klasses=(Context, ))
             self._parallel = expr
             self._mark_entire_score_tree_for_later_update('prolated')
         return property(**locals())

@@ -116,7 +116,7 @@ def _are_thread_proper(component_1, component_2, klasses=(Component)):
         return False
 
     # if there exists an intervening component of the same thread
-    dfs = iterate_components_depth_first(component_1, capped = False)
+    dfs = iterate_components_depth_first(component_1, capped=False)
     for node in dfs:
         if node is component_2:
             break

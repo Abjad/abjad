@@ -54,12 +54,12 @@ def notes_and_chords_in_expr_are_on_expected_clefs(expr, percussion_clef_is_allo
 
     ::
 
-        >>> instrumenttools.notes_and_chords_in_expr_are_on_expected_clefs(staff, percussion_clef_is_allowed = True)
+        >>> instrumenttools.notes_and_chords_in_expr_are_on_expected_clefs(staff, percussion_clef_is_allowed=True)
         True
 
     Disallow percussion clef when `percussion_clef_is_allowed` is false::
 
-        >>> instrumenttools.notes_and_chords_in_expr_are_on_expected_clefs(staff, percussion_clef_is_allowed = False)
+        >>> instrumenttools.notes_and_chords_in_expr_are_on_expected_clefs(staff, percussion_clef_is_allowed=False)
         False
 
     Return boolean.

@@ -57,4 +57,4 @@ def split_container_once_by_counts_and_do_not_fracture_crossing_spanners(contain
     '''
     from abjad.tools.containertools._split_container_by_counts import _split_container_by_counts
 
-    return _split_container_by_counts(container, counts, spanners = 'unfractured')
+    return _split_container_by_counts(container, counts, spanners='unfractured')

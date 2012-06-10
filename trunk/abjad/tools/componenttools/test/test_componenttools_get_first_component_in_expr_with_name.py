@@ -10,7 +10,7 @@ def test_componenttools_get_first_component_in_expr_with_name_01():
     v1.name = 'voiceOne'
     t = Staff([v1, v2])
 
-    assert componenttools.get_first_component_in_expr_with_name(t, name = 'voiceOne') == v1
+    assert componenttools.get_first_component_in_expr_with_name(t, name='voiceOne') == v1
 
 
 def test_componenttools_get_first_component_in_expr_with_name_02():
@@ -23,7 +23,7 @@ def test_componenttools_get_first_component_in_expr_with_name_02():
 
     assert py.test.raises(
         MissingComponentError,
-        "componenttools.get_first_component_in_expr_with_name(t, name = 'voice_200')")
+        "componenttools.get_first_component_in_expr_with_name(t, name='voice_200')")
 
 
 def test_componenttools_get_first_component_in_expr_with_name_03():

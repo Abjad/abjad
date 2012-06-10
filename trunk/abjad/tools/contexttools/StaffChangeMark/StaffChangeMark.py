@@ -60,7 +60,7 @@ class StaffChangeMark(ContextMark):
 
     def __init__(self, staff, target_context=None):
         from abjad.tools.stafftools.Staff import Staff
-        ContextMark.__init__(self, target_context = target_context)
+        ContextMark.__init__(self, target_context=target_context)
         if self.target_context is None:
             self._target_context = Staff
         if not isinstance(staff, Staff):
@@ -70,7 +70,7 @@ class StaffChangeMark(ContextMark):
     ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
-        return type(self)(self.staff, target_context = self.target_context)
+        return type(self)(self.staff, target_context=self.target_context)
 
     def __eq__(self, arg):
         if isinstance(arg, type(self)):

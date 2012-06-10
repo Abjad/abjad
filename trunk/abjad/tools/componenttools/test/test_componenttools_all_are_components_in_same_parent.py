@@ -27,7 +27,7 @@ def test_componenttools_all_are_components_in_same_parent_01():
     assert componenttools.all_are_components_in_same_parent(t.leaves[2:])
 
     assert componenttools.all_are_components_in_same_parent([t])
-    assert not componenttools.all_are_components_in_same_parent([t], allow_orphans = False)
+    assert not componenttools.all_are_components_in_same_parent([t], allow_orphans=False)
 
     assert not componenttools.all_are_components_in_same_parent(t.leaves)
     assert not componenttools.all_are_components_in_same_parent(
@@ -43,10 +43,10 @@ def test_componenttools_all_are_components_in_same_parent_02():
     assert componenttools.all_are_components_in_same_parent(t2.leaves)
 
     assert componenttools.all_are_components_in_same_parent([t1])
-    assert not componenttools.all_are_components_in_same_parent([t1], allow_orphans = False)
+    assert not componenttools.all_are_components_in_same_parent([t1], allow_orphans=False)
 
     assert componenttools.all_are_components_in_same_parent([t2])
-    assert not componenttools.all_are_components_in_same_parent([t2], allow_orphans = False)
+    assert not componenttools.all_are_components_in_same_parent([t2], allow_orphans=False)
 
     assert componenttools.all_are_components_in_same_parent([t1, t2])
     assert not componenttools.all_are_components_in_same_parent([t1, t2],

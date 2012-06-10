@@ -42,7 +42,7 @@ def test_componenttools_all_are_components_in_same_score_02():
     assert componenttools.all_are_components_in_same_score(t2.leaves)
 
     assert componenttools.all_are_components_in_same_score([t1, t2])
-    assert not componenttools.all_are_components_in_same_score([t1, t2], allow_orphans = False)
+    assert not componenttools.all_are_components_in_same_score([t1, t2], allow_orphans=False)
 
     assert not componenttools.all_are_components_in_same_score(t1.leaves + t2.leaves)
 

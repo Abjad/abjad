@@ -18,7 +18,7 @@ def get_python_version_string():
 
     # python prints to stderr on startup (instead of stdout)
     command = 'python --version'
-    proc = subprocess.Popen(command, shell = True, stderr = subprocess.PIPE)
+    proc = subprocess.Popen(command, shell=True, stderr=subprocess.PIPE)
     python_version_string = proc.stderr.readline()
 
     # massage output string

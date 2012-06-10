@@ -32,4 +32,4 @@ def get_clef_mark_attached_to_component(component):
     Raise missing mark error when no clef mark attached to `component`.
     '''
 
-    return get_context_mark_attached_to_component(component, klasses = (ClefMark,))
+    return get_context_mark_attached_to_component(component, klasses=(ClefMark,))

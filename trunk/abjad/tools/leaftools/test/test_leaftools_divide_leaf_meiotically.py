@@ -15,7 +15,7 @@ def test_leaftools_divide_leaf_meiotically_01():
     }
     '''
 
-    leaftools.divide_leaf_meiotically(staff[0], n = 4)
+    leaftools.divide_leaf_meiotically(staff[0], n=4)
 
 
     r'''

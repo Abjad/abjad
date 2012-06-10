@@ -189,7 +189,7 @@ class ComplexBeamSpanner(BeamSpanner):
 
             ::
 
-                >>> beam = beamtools.ComplexBeamSpanner([note], lone = 'left')
+                >>> beam = beamtools.ComplexBeamSpanner([note], lone='left')
 
             ::
 
@@ -204,7 +204,7 @@ class ComplexBeamSpanner(BeamSpanner):
 
             ::
 
-                >>> beam = beamtools.ComplexBeamSpanner([note], lone = 'right')
+                >>> beam = beamtools.ComplexBeamSpanner([note], lone='right')
 
             ::
 
@@ -219,7 +219,7 @@ class ComplexBeamSpanner(BeamSpanner):
 
             ::
 
-                >>> beam = beamtools.ComplexBeamSpanner([note], lone = 'both')
+                >>> beam = beamtools.ComplexBeamSpanner([note], lone='both')
 
             ::
 
@@ -234,7 +234,7 @@ class ComplexBeamSpanner(BeamSpanner):
 
             ::
 
-                >>> beam = beamtools.ComplexBeamSpanner([note], lone = True)
+                >>> beam = beamtools.ComplexBeamSpanner([note], lone=True)
 
             ::
 
@@ -249,7 +249,7 @@ class ComplexBeamSpanner(BeamSpanner):
 
             ::
 
-                >>> beam = beamtools.ComplexBeamSpanner([note], lone = False)
+                >>> beam = beamtools.ComplexBeamSpanner([note], lone=False)
 
             ::
 

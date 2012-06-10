@@ -20,7 +20,7 @@ def repeat_leaves_in_expr_and_extend_spanners(expr, total=1):
 
     ::
 
-        >>> result = leaftools.repeat_leaves_in_expr_and_extend_spanners(staff[2:], total = 3)
+        >>> result = leaftools.repeat_leaves_in_expr_and_extend_spanners(staff[2:], total=3)
 
     ::
 

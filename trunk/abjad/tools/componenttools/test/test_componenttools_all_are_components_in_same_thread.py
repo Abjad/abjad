@@ -11,7 +11,7 @@ def test_componenttools_all_are_components_in_same_thread_01():
 
     notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
     assert componenttools.all_are_components_in_same_thread(notes)
-    assert not componenttools.all_are_components_in_same_thread(notes, allow_orphans = False)
+    assert not componenttools.all_are_components_in_same_thread(notes, allow_orphans=False)
 
 
 def test_componenttools_all_are_components_in_same_thread_02():

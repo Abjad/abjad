@@ -14,7 +14,7 @@ def all_are_components_in_same_parent(expr, klasses=None, allow_orphans=True):
     True when elements in `expr` are all `klasses` in same parent. Otherwise false::
 
         >>> staff = Staff(notetools.make_notes([12, 14, 16], [(1, 8)]))
-        >>> componenttools.all_are_components_in_same_parent(staff.leaves, klasses = (Note, ))
+        >>> componenttools.all_are_components_in_same_parent(staff.leaves, klasses=(Note, ))
         True
 
     Return boolean.
