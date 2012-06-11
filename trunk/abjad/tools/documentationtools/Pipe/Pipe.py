@@ -1,6 +1,7 @@
+from abjad.tools import abctools
 import select
 import subprocess
-from abjad.tools import abctools
+import time
 
 
 class Pipe(abctools.AbjadObject, subprocess.Popen):
@@ -69,7 +70,7 @@ class Pipe(abctools.AbjadObject, subprocess.Popen):
         self.terminate()
         self.wait()
 
-    def read(self, n=1):
+    def read(self):
         '''Read from the pipe.'''
         c = self._readbyte()
         string = ""
@@ -77,6 +78,17 @@ class Pipe(abctools.AbjadObject, subprocess.Popen):
             string = string + str(c)
             c = self._readbyte()
         return string
+
+    def read_wait(self, seconds=0.01):
+        '''Try to read from the pipe.  Wait `seconds` if nothing comes out, and repeat.
+
+        Should be used with caution, as this may loop forever.
+        '''
+        while True:
+            read = self.read()
+            if read:
+                return read
+            time.sleep(seconds)
 
     def write(self, data):
         '''Write `data` into the pipe.'''
@@ -88,6 +100,6 @@ class Pipe(abctools.AbjadObject, subprocess.Popen):
             if f[1] > 0:
                 self.stdin.write(data)
 
-    def writeline(self, data):
+    def write_line(self, data):
         '''Write `data` into the pipe, terminated by a newline.'''
         self.write('%s\n' % data)
