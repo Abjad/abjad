@@ -15,8 +15,6 @@ Methods
 
 .. automethod:: experimental.specificationtools.HorizontalScope.HorizontalScope.HorizontalScope.is_valid_criterion
 
-.. automethod:: experimental.specificationtools.HorizontalScope.HorizontalScope.HorizontalScope.is_valid_part_token
-
 Special Methods
 ---------------
 

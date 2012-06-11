@@ -1,5 +1,5 @@
-Abjad API
-=========
+Abjad Experimental API
+======================
 
 Unstable Abjad composition packages (load manually)
 ---------------------------------------------------
@@ -118,6 +118,7 @@ Unstable Abjad composition packages (load manually)
    experimental/specificationtools/HandlerRequest/HandlerRequest
    experimental/specificationtools/HorizontalScope/HorizontalScope
    experimental/specificationtools/MomentIndicator/MomentIndicator
+   experimental/specificationtools/PartIndicator/PartIndicator
    experimental/specificationtools/RegionDivisionList/RegionDivisionList
    experimental/specificationtools/ResolvedSetting/ResolvedSetting
    experimental/specificationtools/ScopedValue/ScopedValue

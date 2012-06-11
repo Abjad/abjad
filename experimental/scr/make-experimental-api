@@ -10,6 +10,8 @@ if __name__ == '__main__':
 
     class ExperimentalAPIGenerator(AbjadAPIGenerator):
 
+        _api_title = 'Abjad Experimental API'
+
         @property
         def code_tools_path(self):
             return EXPERIMENTALPATH
