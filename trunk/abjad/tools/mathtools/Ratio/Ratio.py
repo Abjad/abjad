@@ -17,9 +17,9 @@ class Ratio(ImmutableAbjadObject, tuple):
 
     Or initialize from a tuple or list::
 
-        >>> ratio = mathtools.Ration((1, 2, 1))
+        >>> ratio = mathtools.Ratio((1, 2, 1))
         >>> ratio
-        Ration(1, 2, 1)
+        Ratio(1, 2, 1)
 
     Use a tuple to return ratio integers.
 

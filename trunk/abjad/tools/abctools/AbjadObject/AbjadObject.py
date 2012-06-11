@@ -106,7 +106,13 @@ class AbjadObject(object):
         for name in self._keyword_argument_names:
             value = getattr(self, name)
             if value is not None:
-                if not isinstance(value, types.MethodType):
+                # if the value is a class like Note (which is unusual)
+                if type(value) == ABCMeta:
+                    module_parts = value.__module__.split('.')
+                    tools_package_qualified_class_name = '.'.join(module_parts[-3:-1])
+                    string = '{}={}'.format(name, tools_package_qualified_class_name)
+                    result.append(string)
+                elif not isinstance(value, types.MethodType):
                     string = '{}={!r}'.format(name, value)
                     result.append(string)
         return tuple(result)
