@@ -10,11 +10,19 @@ Unstable Abjad composition packages (load manually)
 :py:mod:`abjadbooktools <experimental.abjadbooktools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+.. rubric:: concrete classes
+
+.. toctree::
+   :maxdepth: 1
+
+   experimental/abjadbooktools/CodeBlock/CodeBlock
+
 .. rubric:: functions
 
 .. toctree::
    :maxdepth: 1
 
+   experimental/abjadbooktools/extract_code_blocks
    experimental/abjadbooktools/process_code_block
 
 :py:mod:`constrainttools <experimental.constrainttools>`

@@ -1,9 +1,20 @@
 from abjad.tools import *
 from experimental import *
-import time
 
 
-def process_code_block(pipe, lines, image_count=0, hide_prompt=False):
+def process_code_block(pipe, code_block, image_count=0):
+    '''Process a single code block, `code_block` over `pipe`,
+    generating .ly files along the way with each instance of show().
+
+    The .ly files will be numbered starting at `image_count` + 1.
+
+    Return a tuple of a list, and an updated `image_count`.
+
+    The list consists of lines which have been passed over `pipe`,
+    and filenames for each .ly file generated after a call to show().
+
+    TODO: Clean up this explanation!
+    '''
 
     grouped_results = []
     result = []
