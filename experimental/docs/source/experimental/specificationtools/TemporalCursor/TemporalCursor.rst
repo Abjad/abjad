@@ -9,13 +9,15 @@ experimental.specificationtools.TemporalCursor
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.specificationtools.TemporalCursor.TemporalCursor.TemporalCursor.score_object_indicator
+.. autoattribute:: experimental.specificationtools.TemporalCursor.TemporalCursor.TemporalCursor.addendum
+
+.. autoattribute:: experimental.specificationtools.TemporalCursor.TemporalCursor.TemporalCursor.anchor
+
+.. autoattribute:: experimental.specificationtools.TemporalCursor.TemporalCursor.TemporalCursor.scalar
 
 .. autoattribute:: experimental.specificationtools.TemporalCursor.TemporalCursor.TemporalCursor.score_offset
 
-.. autoattribute:: experimental.specificationtools.TemporalCursor.TemporalCursor.TemporalCursor.start_indicator
-
-.. autoattribute:: experimental.specificationtools.TemporalCursor.TemporalCursor.TemporalCursor.start_offset
+.. autoattribute:: experimental.specificationtools.TemporalCursor.TemporalCursor.TemporalCursor.start
 
 Special Methods
 ---------------

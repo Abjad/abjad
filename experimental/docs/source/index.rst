@@ -130,6 +130,7 @@ Unstable Abjad composition packages (load manually)
    experimental/specificationtools/RegionDivisionList/RegionDivisionList
    experimental/specificationtools/ResolvedSetting/ResolvedSetting
    experimental/specificationtools/ScopedValue/ScopedValue
+   experimental/specificationtools/ScoreObjectIndicator/ScoreObjectIndicator
    experimental/specificationtools/ScoreSpecification/ScoreSpecification
    experimental/specificationtools/SegmentDivisionList/SegmentDivisionList
    experimental/specificationtools/SegmentInventory/SegmentInventory
