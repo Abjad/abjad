@@ -11,7 +11,6 @@ from DivisionList import DivisionList
 from DivisionRetrievalRequest import DivisionRetrievalRequest
 from HandlerRequest import HandlerRequest
 from HorizontalScope import HorizontalScope
-from MomentIndicator import MomentIndicator
 from PartIndicator import PartIndicator
 from RegionDivisionList import RegionDivisionList
 from ResolvedSetting import ResolvedSetting
@@ -26,6 +25,7 @@ from SettingInventory import SettingInventory
 from Specification import Specification
 from StatalServer import StatalServer
 from StatalServerRequest import StatalServerRequest
+from TemporalCursor import TemporalCursor
 from ValueRetrievalIndicator import ValueRetrievalIndicator
 from ValueRetrievalRequest import ValueRetrievalRequest
 from VoiceDivisionList import VoiceDivisionList

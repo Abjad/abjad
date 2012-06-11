@@ -1,6 +1,6 @@
-1. Revive MomentIndicator class. Use as infinitely thin cursor.
-   MomentIndicator will comprise segment, context, klass, index.
-   Alternatively, MomentIndicator will comprise segment, offset.
+1. Revive TemporalCursor class. Use as infinitely thin cursor.
+   TemporalCursor will comprise segment, context, klass, index.
+   Alternatively, TemporalCursor will comprise segment, offset.
    No need for boundary condition; other classes will model boundary conditions.
 
 2. Refactor HorizontalScope with start moment indiator and stop moment indicator.

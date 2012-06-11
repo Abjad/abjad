@@ -2,7 +2,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental.specificationtools.Selection import Selection
 
 
-class MomentIndicator(AbjadObject):
+class TemporalCursor(AbjadObject):
     '''Model of any single moment in the middle of some selection somewhere.
 
     The way this works is that first a selection is made.
@@ -16,7 +16,7 @@ class MomentIndicator(AbjadObject):
     (Default boundary condition is probably the moment exactly coincident with
     component start time.)
     
-    MomentIndicator notionally models an infinitely thing vertical cursor
+    TemporalCursor notionally models an infinitely thing vertical cursor
     placed over the graphic selection of any score segment.
     '''
 
