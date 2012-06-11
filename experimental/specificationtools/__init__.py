@@ -14,6 +14,7 @@ from PartIndicator import PartIndicator
 from RegionDivisionList import RegionDivisionList
 from ResolvedSetting import ResolvedSetting
 from ScopedValue import ScopedValue
+from ScoreObjectIndicator import ScoreObjectIndicator
 from ScoreSpecification import ScoreSpecification
 from SegmentDivisionList import SegmentDivisionList
 from SegmentInventory import SegmentInventory

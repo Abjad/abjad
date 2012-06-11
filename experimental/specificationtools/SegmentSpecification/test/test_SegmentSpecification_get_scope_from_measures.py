@@ -1,0 +1,38 @@
+from abjad.tools import *
+from experimental.specificationtools import helpers
+from experimental.specificationtools import library
+from experimental.specificationtools import ScoreSpecification
+import py
+
+
+def test_foo_01():
+    '''Measure scope and fractional segment scope.
+    '''
+    py.test.skip('working on this one now.')
+
+    specification = ScoreSpecification(scoretemplatetools.GroupedRhythmicStavesScoreTemplate(n=4))
+
+    segment = specification.append_segment()
+    segment.set_time_signatures(segment, [(4, 8), (3, 8)])
+
+    left = segment.get_scope_from_measures(0)
+    right = segment.get_scope_from_measures(-1)
+    segment.set_divisions('Voice 1', [(3, 16)], scope=left, persist=False)
+    segment.set_divisions('Voice 1', [(5, 16)], scope=right, persist=False)
+
+    segment.set_divisions('Voice 2', [(5, 16)], scope=left, persist=False)
+    segment.set_divisions('Voice 2', [(3, 16)], scope=right, persist=False)
+
+    left = segment.get_scope(stop=Fraction(1, 2))
+    right = segment.get_scope(start=Fraction(1, 2))
+    segment.set_divisions('Voice 3', [(3, 16)], scope=left, persist=False)
+    segment.set_divisions('Voice 3', [(5, 16)], scope=right, persist=False)
+
+    segment.set_divisions('Voice 4', [(5, 16)], scope=left, persist=False)
+    segment.set_divisions('Voice 4', [(3, 16)], scope=right, persist=False)
+
+    segment.set_rhythm(segment, library.thirty_seconds)
+
+    segment = specification.append_segment()
+
+    score = specification.interpret()

@@ -1,0 +1,1 @@
+from ScoreObjectIndicator import ScoreObjectIndicator

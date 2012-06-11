@@ -4,7 +4,9 @@ import fractions
 
 
 class TemporalCursor(AbjadObject):
-    '''An infinitely thin vertical line coincident with exactly one timepoint in score.
+    r'''.. versionadded:: 1.0
+
+    An infinitely thin vertical line coincident with exactly one timepoint in score.
 
     Temporal cursors are designed to model sophisticated timepoint location
     made relative to an arbitrary object.

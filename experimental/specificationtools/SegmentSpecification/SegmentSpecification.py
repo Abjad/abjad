@@ -241,11 +241,13 @@ class SegmentSpecification(Specification):
             count=count, persistent=persistent, offset=offset)
 
     def set_attribute(self, attribute_name, target_token, source, 
-        callback=None, count=None, offset=None, persistent=True, truncate=False):
-        assert attribute_name in self.attribute_names, attribute_name
-        assert isinstance(count, (int, type(None))), count
-        assert isinstance(persistent, type(True)), persistent
-        assert isinstance(truncate, type(True)), truncate
+        callback=None, count=None, offset=None, persistent=True, scope=None, truncate=False):
+        assert attribute_name in self.attribute_names, repr(attribute_name)
+        assert isinstance(count, (int, type(None))), repr(count)
+        assert isinstance(persistent, type(True)), repr(persistent)
+        assert isinstance(scope, (TemporalScope, type(None))), repr(scope)
+        assert isinstance(truncate, type(True)), repr(truncate)
+        # handle scope here and include in target selection?
         target_selection = self.parse_selection_token(target_token)
         source = self.annotate_source(source, callback=callback, count=count, offset=offset)
         directive = Directive(target_selection, attribute_name, source, 
@@ -260,10 +262,10 @@ class SegmentSpecification(Specification):
             count=count, persistent=persistent, offset=offset)
 
     def set_divisions(self, target_token, source, 
-        callback=None, count=None, offset=None, persistent=True, truncate=False):
+        callback=None, count=None, offset=None, persistent=True, scope=None, truncate=False):
         attribute_name = 'divisions'
         return self.set_attribute(attribute_name, target_token, source, 
-            callback=callback, count=count, offset=offset, persistent=persistent, truncate=truncate)
+            callback=callback, count=count, offset=offset, persistent=persistent, scope=scope, truncate=truncate)
 
     def set_duration_in_seconds(self, target_token, source, 
         count=None, persistent=True, offset=None):
