@@ -7,6 +7,16 @@ Unstable Abjad composition packages (load manually)
 .. toctree::
    :maxdepth: 1
 
+:py:mod:`abjadbooktools <experimental.abjadbooktools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: functions
+
+.. toctree::
+   :maxdepth: 1
+
+   experimental/abjadbooktools/process_code_block
+
 :py:mod:`constrainttools <experimental.constrainttools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

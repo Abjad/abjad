@@ -6,6 +6,17 @@ experimental.specificationtools.TemporalCursor
 
 .. autoclass:: experimental.specificationtools.TemporalCursor.TemporalCursor.TemporalCursor
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: experimental.specificationtools.TemporalCursor.TemporalCursor.TemporalCursor.score_object_indicator
+
+.. autoattribute:: experimental.specificationtools.TemporalCursor.TemporalCursor.TemporalCursor.score_offset
+
+.. autoattribute:: experimental.specificationtools.TemporalCursor.TemporalCursor.TemporalCursor.start_indicator
+
+.. autoattribute:: experimental.specificationtools.TemporalCursor.TemporalCursor.TemporalCursor.start_offset
+
 Special Methods
 ---------------
 
@@ -15,15 +26,9 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.TemporalCursor.TemporalCursor.TemporalCursor.__eq__
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: experimental.specificationtools.TemporalCursor.TemporalCursor.TemporalCursor.__ge__
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: experimental.specificationtools.TemporalCursor.TemporalCursor.TemporalCursor.__gt__
-
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.specificationtools.TemporalCursor.TemporalCursor.TemporalCursor.__hash__
 
@@ -31,11 +36,7 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.TemporalCursor.TemporalCursor.TemporalCursor.__le__
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: experimental.specificationtools.TemporalCursor.TemporalCursor.TemporalCursor.__lt__
-
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.specificationtools.TemporalCursor.TemporalCursor.TemporalCursor.__ne__
 
