@@ -1,5 +1,10 @@
-1. Make Setting inherit from Directive. Or vice versa. Or make both inherit from an ABC.
+1. Revive MomentIndicator class. Use as infinitely thin cursor.
+   MomentIndicator will comprise segment, context, klass, index.
+   Alternatively, MomentIndicator will comprise segment, offset.
+   No need for boundary condition; other classes will model boundary conditions.
 
-2. Implement RetrievalRequest as base class for different retrieval requests classes.
+2. Refactor HorizontalScope with start moment indiator and stop moment indicator.
 
-3. Refactor interpret() n * O(n) traversal to O(n) with first-pass sort.
+3. Make Setting inherit from Directive. Or vice versa. Or make both inherit from an ABC.
+
+4. Implement RetrievalRequest as base class for different retrieval requests classes.
