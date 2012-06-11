@@ -19,6 +19,18 @@ class CodeBlock(abctools.AbjadObject):
         self._hide = bool(hide)
         self._strip_prompt = bool(strip_prompt)
 
+    ### SPECIAL METHODS ###
+
+    def __eq__(self, other):
+        if type(self) == type(other) and \
+            self.lines == other.lines and \
+            self.starting_line_number == other.starting_line_number and \
+            self.ending_line_number == other.ending_line_number and \
+            self.hide == other.hide and \
+            self.strip_prompt == other.strip_prompt:
+            return True
+        return False
+
     ### PUBLIC READ-ONLY PROPERTIES ###
 
     @property

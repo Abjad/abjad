@@ -1,4 +1,4 @@
-from experimental import *
+from experimental.abjadbooktools.CodeBlock import CodeBlock
 
 
 def extract_code_blocks(lines):
@@ -28,7 +28,7 @@ def extract_code_blocks(lines):
                 in_block = False
                 hide = 'hide=true' in block[0]
                 strip_prompt = 'strip_prompt=true' in block[0]
-                code_block = abjadbooktools.CodeBlock(lines[1:],
+                code_block = CodeBlock(block[1:],
                     starting_line_number,
                     i,
                     hide=hide,
@@ -44,4 +44,4 @@ def extract_code_blocks(lines):
     if in_block:
         raise Exception('Unterminated tag at EOF.')
 
-    return blocks
+    return tuple(blocks)
