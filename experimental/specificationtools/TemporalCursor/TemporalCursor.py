@@ -1,31 +1,123 @@
+from abjad.tools import durationtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from experimental.specificationtools.Selection import Selection
+import fractions
 
 
 class TemporalCursor(AbjadObject):
-    '''Model of any single moment in the middle of some selection somewhere.
+    '''An infinitely thin vertical line coincident with exactly one timepoint in score.
 
-    The way this works is that first a selection is made.
-    Then the criterion specifies how to iterate or otherwise inspect the selection.
-    (Default criterion is probably something like all components.)
-    Then count specifies which component to fetch during iteration or inspection.
-    (Default count is probably 0 for the first component encountered.)
-    Then boundary condition specifies whether the moment to be retrieved should
-    be just before, exactly coincident with or just after a time point taken equal
-    to either component start time or component stop time.
-    (Default boundary condition is probably the moment exactly coincident with
-    component start time.)
-    
-    TemporalCursor notionally models an infinitely thing vertical cursor
-    placed over the graphic selection of any score segment.
+    Temporal cursors are designed to model sophisticated timepoint location
+    made relative to an arbitrary object.
+
+    Every temporal cursor resolves to a rational-valued score offset.
+
+    A temporal cursor is defined equal to a collection of the following three things::
+
+        * score object indicator
+        * boolean start indicator
+        * rational start offset
+
+    All three values are optional.
+
+    A score object indicator is defined equal to a collection of the following four things::
+
+        * score segment
+        * component class
+        * component predicate
+        * integer index
+
+    All four values are optional.
+
+    Score object indicators should be modeled by a dedicated class.
+    So that will happen next before returning to the implementation here.
     '''
 
     ### INITIALIZER ###
 
-    def __init__(self, selection, criterion=None, count=None, boundary_condition=None):
-        assert isinstance(selection, Selection)
-        assert isinsstance(count, (int, type(None)))
-        self.selection = selection
-        self.criterion = criterion
-        self.count = count
-        self.boundary_condition = boundary_condition
+    def __init__(self, score_object_indicator=None, start_indicator=None, start_offset=None): 
+        assert isinstance(score_object_indicator, (ScoreObjectIndicator, type(None))), repr(score_object_indicator)
+        assert isinstance(start_indicator, (bool, type(None))), repr(start_indicator)
+        if start_offset is not None:
+            start_offset = durationtools.Offset(start_offset)
+        self._score_object_indicator = score_object_indicator
+        self._start_indicator = start_indicator
+        self._start_offset = start_offset
+
+    ### SPECIAL METHODS ###
+
+    def __eq__(self, other):
+        '''True when `other` is a temporal cursor with score object indicator,
+        start and offset all equal to those of `self`.
+        
+        Otherwise false.
+
+        Return boolean.
+        '''
+        if not isinstance(other, type(self)):
+            return False
+        elif not self.score_object_indicator == other.score_object_indicator:
+            return False
+        elif not self.start == other.start:
+            return False
+        elif not self.offset == other.offset:
+            return False
+        else:
+            return True
+
+    def __ge__(self, other):
+        '''.. note:: not yet implemented.
+        '''
+        if isinstance(other, type(self)):
+            return self >= other
+        return False
+
+    def __gt__(self, other):
+        '''.. note:: not yet implemented.
+        '''
+        if isinstance(other, type(self)):
+            return self > other
+        return False
+
+    def __le__(self, other):
+        '''.. note:: not yet implemented.
+        '''
+        if isinstance(other, type(self)):
+            return self <= other
+        return False
+
+    def __lt__(self, other):
+        '''.. note:: not yet implemented.
+        '''
+        if isinstance(other, type(self)):
+            return self < other
+        return False
+
+    ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def score_object_indicator(self):
+        '''Score object indicator.
+        '''
+        return self._score_object_indicator
+
+    @property
+    def score_offset(self):
+        '''.. note:: not yet implemented.
+        '''
+        raise NotImplementedError
+
+    @property
+    def start_indicator(self):
+        '''Start indicator.
+        
+        Return boolean or none.
+        '''
+        return self._start_indicator
+
+    @property
+    def start_offset(self):
+        '''Score object offset.
+
+        Return offset or none.
+        '''
+        return self._start_offset
