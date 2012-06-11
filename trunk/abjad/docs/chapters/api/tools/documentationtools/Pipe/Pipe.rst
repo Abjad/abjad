@@ -38,6 +38,8 @@ Methods
 
 .. automethod:: abjad.tools.documentationtools.Pipe.Pipe.Pipe.read
 
+.. automethod:: abjad.tools.documentationtools.Pipe.Pipe.Pipe.read_wait
+
 .. automethod:: abjad.tools.documentationtools.Pipe.Pipe.Pipe.send_signal
 
     Inherited from `subprocess.Popen`
@@ -52,7 +54,7 @@ Methods
 
 .. automethod:: abjad.tools.documentationtools.Pipe.Pipe.Pipe.write
 
-.. automethod:: abjad.tools.documentationtools.Pipe.Pipe.Pipe.writeline
+.. automethod:: abjad.tools.documentationtools.Pipe.Pipe.Pipe.write_line
 
 Special Methods
 ---------------
