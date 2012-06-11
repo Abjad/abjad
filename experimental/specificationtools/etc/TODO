@@ -3,7 +3,7 @@
    Alternatively, TemporalCursor will comprise segment, offset.
    No need for boundary condition; other classes will model boundary conditions.
 
-2. Refactor HorizontalScope with start moment indiator and stop moment indicator.
+2. Refactor TemporalScope with start moment indiator and stop moment indicator.
 
 3. Make Setting inherit from Directive. Or vice versa. Or make both inherit from an ABC.
 

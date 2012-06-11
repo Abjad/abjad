@@ -8,7 +8,7 @@ from experimental.specificationtools.DirectiveInventory import DirectiveInventor
 from experimental.specificationtools.DivisionRetrievalRequest import DivisionRetrievalRequest
 from experimental.specificationtools.HandlerRequest import HandlerRequest
 from experimental.specificationtools.ResolvedSetting import ResolvedSetting
-from experimental.specificationtools.HorizontalScope import HorizontalScope
+from experimental.specificationtools.TemporalScope import TemporalScope
 from experimental.specificationtools.Specification import Specification
 from experimental.specificationtools.Selection import Selection
 from experimental.specificationtools.StatalServer import StatalServer
@@ -202,7 +202,7 @@ class SegmentSpecification(Specification):
         assert context_names is None or self.resolved_settings_context_dictionary.all_are_context_names(
             context_names)
         assert isinstance(segment_name, (str, type(None)))
-        assert isinstance(scope, (HorizontalScope, type(None)))
+        assert isinstance(scope, (TemporalScope, type(None)))
         segment_name = segment_name or self.name
         selection = Selection(segment_name, context_names=context_names, scope=scope)
         return selection
@@ -210,21 +210,21 @@ class SegmentSpecification(Specification):
     def select_divisions(self, context_token=None, part=None, segment_name=None, start=None, stop=None):
         criterion = 'divisions'
         context_names = self.parse_context_token(context_token)
-        scope = HorizontalScope(criterion=criterion, part=part, start=start, stop=stop)
+        scope = TemporalScope(criterion=criterion, part=part, start=start, stop=stop)
         selection = self.select(context_names=context_names, segment_name=segment_name, scope=scope)
         return selection
 
     def select_measures(self, context_token=None, part=None, segment_name=None, start=None, stop=None):
         criterion = 'measures'
         context_names = self.parse_context_token(context_token)
-        scope = HorizontalScope(criterion=criterion, part=part, start=start, stop=stop)
+        scope = TemporalScope(criterion=criterion, part=part, start=start, stop=stop)
         selection = self.select(context_names=context_names, segment_name=segment_name, scope=scope)
         return selection
     
     def select_notes_and_chords(self, context_token=None, part=None, segment_name=None, start=None, stop=None):
         criterion = (chordtools.Chord, notetools.Note)
         context_names = self.parse_context_token(context_token)
-        scope = HorizontalScope(criterion=criterion, part=part, start=start, stop=stop)
+        scope = TemporalScope(criterion=criterion, part=part, start=start, stop=stop)
         selection = self.select(context_names=context_names, scope=scope)
         return selection
 

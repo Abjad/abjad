@@ -4,7 +4,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental.specificationtools.PartIndicator import PartIndicator
 
 
-class HorizontalScope(AbjadObject):
+class TemporalScope(AbjadObject):
     r'''.. versionadded 1.0
 
     Horizontal scope objects share much in common with time interval objects.

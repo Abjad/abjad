@@ -116,7 +116,6 @@ Unstable Abjad composition packages (load manually)
    experimental/specificationtools/DivisionList/DivisionList
    experimental/specificationtools/DivisionRetrievalRequest/DivisionRetrievalRequest
    experimental/specificationtools/HandlerRequest/HandlerRequest
-   experimental/specificationtools/HorizontalScope/HorizontalScope
    experimental/specificationtools/PartIndicator/PartIndicator
    experimental/specificationtools/RegionDivisionList/RegionDivisionList
    experimental/specificationtools/ResolvedSetting/ResolvedSetting
@@ -132,6 +131,7 @@ Unstable Abjad composition packages (load manually)
    experimental/specificationtools/StatalServer/StatalServer
    experimental/specificationtools/StatalServerRequest/StatalServerRequest
    experimental/specificationtools/TemporalCursor/TemporalCursor
+   experimental/specificationtools/TemporalScope/TemporalScope
    experimental/specificationtools/ValueRetrievalIndicator/ValueRetrievalIndicator
    experimental/specificationtools/ValueRetrievalRequest/ValueRetrievalRequest
    experimental/specificationtools/VoiceDivisionList/VoiceDivisionList

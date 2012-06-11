@@ -1,5 +1,5 @@
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from experimental.specificationtools.HorizontalScope import HorizontalScope
+from experimental.specificationtools.TemporalScope import TemporalScope
 
 
 class Selection(AbjadObject):
@@ -9,7 +9,7 @@ class Selection(AbjadObject):
     def __init__(self, segment_name, context_names=None, scope=None):
         assert isinstance(segment_name, str)
         assert isinstance(context_names, (list, type(None)))
-        assert isinstance(scope, (HorizontalScope, type(None)))
+        assert isinstance(scope, (TemporalScope, type(None)))
         self.segment_name = segment_name
         self.context_names = context_names
         self.scope = scope

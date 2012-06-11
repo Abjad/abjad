@@ -1,5 +1,5 @@
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from experimental.specificationtools.HorizontalScope import HorizontalScope
+from experimental.specificationtools.TemporalScope import TemporalScope
 import copy
 
 
@@ -80,7 +80,7 @@ class Setting(AbjadObject):
         fresh = keyword_argument_values[0]
         assert isinstance(segment_name, str), repr(segment_name)
         assert isinstance(context_name, (str, type(None))), repr(context_name)
-        assert isinstance(scope, (HorizontalScope, type(None))), repr(scope)
+        assert isinstance(scope, (TemporalScope, type(None))), repr(scope)
         assert isinstance(attribute_name, str), repr(attribute_name)
         assert isinstance(persistent, bool), repr(persistent)
         assert isinstance(truncate, bool), repr(truncate)

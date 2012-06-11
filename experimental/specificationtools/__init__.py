@@ -10,7 +10,6 @@ from Division import Division
 from DivisionList import DivisionList
 from DivisionRetrievalRequest import DivisionRetrievalRequest
 from HandlerRequest import HandlerRequest
-from HorizontalScope import HorizontalScope
 from PartIndicator import PartIndicator
 from RegionDivisionList import RegionDivisionList
 from ResolvedSetting import ResolvedSetting
@@ -26,6 +25,7 @@ from Specification import Specification
 from StatalServer import StatalServer
 from StatalServerRequest import StatalServerRequest
 from TemporalCursor import TemporalCursor
+from TemporalScope import TemporalScope
 from ValueRetrievalIndicator import ValueRetrievalIndicator
 from ValueRetrievalRequest import ValueRetrievalRequest
 from VoiceDivisionList import VoiceDivisionList
