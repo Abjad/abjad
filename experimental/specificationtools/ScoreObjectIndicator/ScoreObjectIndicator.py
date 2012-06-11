@@ -1,6 +1,8 @@
 from abjad.tools import componenttools
 from abjad.tools import contexttools
 from abjad.tools.abctools.AbjadObject import AbjadObject
+from experimental.specificationtools.Callback import Callback
+from experimental.specificationtools.Division import Division
 from experimental.specificationtools.SegmentSpecification import SegmentSpecification
 import types
 
@@ -9,40 +11,88 @@ class ScoreObjectIndicator(AbjadObject):
     r'''.. versionadded:: 1.0
 
     Frozen request to pick out an arbitrary object in score.
+    (A type of object-oriented delayed evaluation.)
 
-    Initialize with a score segment alone::
+    Initialize with different combinations of optional `segment`, `context`, `klass`, `index` and `predicate`. 
+
+    Import ``specificationtools``::
 
         >>> from experimental import specificationtools
 
-    ::
+    Pick out the entire score::
+
+        >>> specificationtools.ScoreObjectIndicator()
+        ScoreObjectIndicator()
+
+    Pick out the segment with name ``'red'``::
 
         >>> specificationtools.ScoreObjectIndicator(segment='red')
         ScoreObjectIndicator(segment='red')
 
-    This says to pick out the segment with name ``'red'``.
 
-    Initialize with score segment and component class::
+    Pick context ``'Voice 1'`` out of the segment with name ``'red'``::
 
-        >>> specificationtools.ScoreObjectIndicator(segment='red', klass=Note)
-        ScoreObjectIndicator(segment='red', klass=notetools.Note)
+        >>> specificationtools.ScoreObjectIndicator(segment='red', context='Voice 1')
+        ScoreObjectIndicator(segment='red', context='Voice 1')
 
-    This says to pick out the first note in the segment with name ``'red'``.
+    Pick the first measure in context ``'Voice 1'`` out of the segment with name ``'red'``::
 
-    Initialize with score segment, component class and integer index::
+        >>> specificationtools.ScoreObjectIndicator(segment='red', context='Voice 1', klass=Measure)
+        ScoreObjectIndicator(segment='red', context='Voice 1', klass=measuretools.Measure)
+    
+    Pick the first division in context ``'Voice 1'`` out of the segment with name ``'red'``::
 
-        >>> specificationtools.ScoreObjectIndicator(segment='red', klass=Note, index=20)
-        ScoreObjectIndicator(segment='red', klass=notetools.Note, index=20)
+        >>> from experimental.specificationtools.Division import Division
 
-    This says to pick out note at index ``20`` in the segment with name ``'red'``.
+    ::
 
-    It is important to note that when ``klass`` is set equal to none that the object
-    picked out by the indicator will be entire score segment rather than Abjad component.
+        >>> specificationtools.ScoreObjectIndicator(segment='red', context='Voice 1', klass=Division)
+        ScoreObjectIndicator(segment='red', context='Voice 1', klass=specificationtools.Division)
 
-    Both `predicate` and `index` are ignored when `klass` is left equal to none.
+    Pick the first note in context ``'Voice 1'`` out of the segment with name ``'red'``::
+
+        >>> specificationtools.ScoreObjectIndicator(segment='red', context='Voice 1', klass=Note)
+        ScoreObjectIndicator(segment='red', context='Voice 1', klass=notetools.Note)
+
+    Pick note ``20`` in context ``'Voice 1'`` out of the segment with name ``'red'``::
+
+        >>> specificationtools.ScoreObjectIndicator(segment='red', context='Voice 1', klass=Note, index=20)
+        ScoreObjectIndicator(segment='red', context='Voice 1', klass=notetools.Note, index=20)
+
+    Pick the first chord with at least six pitches
+    in context ``'Voice 1'`` out of the segment with name ``'red'``::
+
+        >>> from experimental.specificationtools.Callback import Callback
+
+    ::
+
+        >>> command = 'lambda x: 6 <= len(x)'
+        >>> predicate = Callback(eval(command), command)
+
+    ::
+
+        >>> specificationtools.ScoreObjectIndicator(segment='red', context='Voice 1', klass=Chord, predicate=predicate)
+        ScoreObjectIndicator(segment='red', context='Voice 1', klass=chordtools.Chord, predicate=Callback('lambda x: 6 <= len(x)'))
+
+    Pick chord ``20`` with at least six pitches
+    in context ``'Voice 1'`` out of the segment with name ``'red'``::
+
+        >>> specificationtools.ScoreObjectIndicator(segment='red', context='Voice 1', klass=Chord, predicate=predicate, index=20)
+        ScoreObjectIndicator(segment='red', context='Voice 1', klass=chordtools.Chord, predicate=Callback('lambda x: 6 <= len(x)'), index=20)
+
+    Examples below reference the score object indicator defined immediately above::
+
+        >>> score_object_indicator = _
 
     Score object indicators are immutable.
 
-    .. note:: context needs to be worked into all of these examples except the first one.
+    Limiations of the design:
+
+    Score object indicators do not afford the specification of nested objects.
+    So it is not possible to pick the first leaf in the last tuplet anywhere in score.
+
+    When or if we decide we want such functionality it will be necessary to initialize score 
+    object indicators with some type of nested object.
     '''
 
     ### INITIALIZER ###
@@ -55,8 +105,8 @@ class ScoreObjectIndicator(AbjadObject):
             context = context.name
         assert isinstance(context, (str, type(None))), repr(context)
         if klass is not None:
-            assert issubclass(klass, componenttools.Component), repr(klass)
-        assert isinstance(predicate, (types.FunctionType, type(None))), repr(predicate)
+            assert issubclass(klass, (componenttools.Component, Division)), repr(klass)
+        assert isinstance(predicate, (Callback, type(None))), repr(predicate)
         assert isinstance(index, (int, type(None))), repr(index)
         self._segment = segment
         self._context = context
@@ -66,27 +116,82 @@ class ScoreObjectIndicator(AbjadObject):
     
     ### SPECIAL METHODS ###
 
-#    def __repr__(self):
-#        pass
+    def __eq__(self, other):
+        '''True when `other` is a score object indicator with `segment`,
+        `context`, `klass`, `predicate` and `index` all equal to those of `self`.
+        
+        Otherwise false.
+        
+        Return boolean.
+        '''
+        if not isinstance(other, type(self)):
+            return False
+        elif not self.segment == other.segment:
+            return False
+        elif not self.context == other.context:
+            return False
+        elif not self.klass == other.klass:
+            return False
+        elif not self.predicate == other.predicate:
+            return False
+        elif not self.index == other.index:
+            return False
+        else:
+            return True
 
     ### READ-ONLY PUBLIC PROPERTIES ###
     
     @property
     def context(self):
+        '''Name of score object indicator context specified by user::
+
+            >>> score_object_indicator.context
+            'Voice 1'
+
+        Return string or none.
+        '''
         return self._context
 
     @property
     def index(self):
+        '''Index of score object indicator specified by user::
+
+            >>> score_object_indicator.index
+            20
+
+        Return integer or none.
+        '''
         return self._index
 
     @property
     def klass(self):
+        '''Class of score object indicator specified by user::
+
+            >>> score_object_indicator.klass is Chord
+            True
+
+        Return Abjad component class, division class or none.
+        '''
         return self._klass
 
     @property
     def predicate(self):
+        '''Predicate of score object indicator specified by user::
+
+            >>> score_object_indicator.predicate
+            Callback('lambda x: 6 <= len(x)')
+
+        Return callback or none.
+        '''
         return self._predicate
 
     @property
     def segment(self):
+        '''Name of score object indicator segment specified by user::
+
+            >>> score_object_indicator.segment
+            'red'
+
+        Return string or none.
+        '''
         return self._segment
