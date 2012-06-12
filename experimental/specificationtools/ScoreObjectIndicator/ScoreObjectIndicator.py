@@ -10,8 +10,12 @@ import types
 class ScoreObjectIndicator(AbjadObject):
     r'''.. versionadded:: 1.0
 
-    Frozen request to pick out an arbitrary object in score.
-    (A type of object-oriented delayed evaluation.)
+    A frozen request to pick out an arbitrary object in score.
+
+    (Oject-oriented delayed evaluation.)
+
+    Score object indicator object afford the identification of score
+    objects that do not yet exist.
 
     Initialize with different combinations of optional `segment`, `context`, `klass`, `index` and `predicate`. 
 

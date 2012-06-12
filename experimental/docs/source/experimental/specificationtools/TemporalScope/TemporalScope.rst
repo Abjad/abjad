@@ -6,14 +6,12 @@ experimental.specificationtools.TemporalScope
 
 .. autoclass:: experimental.specificationtools.TemporalScope.TemporalScope.TemporalScope
 
-Methods
--------
+Read-only Properties
+--------------------
 
-.. automethod:: experimental.specificationtools.TemporalScope.TemporalScope.TemporalScope.all_are_component_subclasses
+.. autoattribute:: experimental.specificationtools.TemporalScope.TemporalScope.TemporalScope.start
 
-.. automethod:: experimental.specificationtools.TemporalScope.TemporalScope.TemporalScope.are_concordant_input_values
-
-.. automethod:: experimental.specificationtools.TemporalScope.TemporalScope.TemporalScope.is_valid_criterion
+.. autoattribute:: experimental.specificationtools.TemporalScope.TemporalScope.TemporalScope.stop
 
 Special Methods
 ---------------

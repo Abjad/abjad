@@ -7,15 +7,18 @@ import fractions
 class TemporalCursor(AbjadObject):
     r'''.. versionadded:: 1.0
 
-    An infinitely thin vertical line coincident with an arbitrary object-relative timepoint in score.
+    Infinitely thin vertical line coincident with an arbitrary object-relative timepoint in score.
 
-    (A type of object-oriented delayed evaluation.)
+    (Object-oriented delayed evaluation.)
 
     Temporal cursors are designed to pick out timepoints in a sophisticated way.
 
     Temporal cursors locate timepoints relative to arbitrary objects in score.
 
     Temporal cursors resolve to a rational-valued score offset.
+
+    Temporal cursors afford the location of timepoints relative to score
+    objects that do not yet exist.
 
     Initialize with different combinations of optional `anchor`, 
     `start`, `scalar` and `addendum`.

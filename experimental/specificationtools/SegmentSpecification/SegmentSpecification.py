@@ -3,14 +3,10 @@ from experimental.specificationtools.exceptions import *
 from experimental.specificationtools.AttributeRetrievalIndicator import AttributeRetrievalIndicator
 from experimental.specificationtools.AttributeRetrievalRequest import AttributeRetrievalRequest
 from experimental.specificationtools.Callback import Callback
-from experimental.specificationtools.Directive import Directive
-from experimental.specificationtools.DirectiveInventory import DirectiveInventory
 from experimental.specificationtools.DivisionRetrievalRequest import DivisionRetrievalRequest
 from experimental.specificationtools.HandlerRequest import HandlerRequest
 from experimental.specificationtools.ResolvedSetting import ResolvedSetting
-from experimental.specificationtools.TemporalScope import TemporalScope
 from experimental.specificationtools.Specification import Specification
-from experimental.specificationtools.Selection import Selection
 from experimental.specificationtools.StatalServer import StatalServer
 from experimental.specificationtools.StatalServerRequest import StatalServerRequest
 from experimental.handlertools.Handler import Handler
@@ -22,11 +18,12 @@ class SegmentSpecification(Specification):
     ### INITIALIZER ###
 
     def __init__(self, score_template, name):
+        from experimental import specificationtools
         assert isinstance(name, str), name
         Specification.__init__(self, score_template)
         self._score_model = self.score_template()
         self._name = name
-        self._directives = DirectiveInventory()
+        self._directives = specificationtools.DirectiveInventory()
 
     ### SPECIAL METHODS ###
 
@@ -179,7 +176,8 @@ class SegmentSpecification(Specification):
         return context_names
             
     def parse_selection_token(self, selection_token):
-        if isinstance(selection_token, Selection):
+        from experimental import specificationtools
+        if isinstance(selection_token, specificationtools.Selection):
             selection = selection_token
         elif isinstance(selection_token, type(self)):
             selection = self.select()
@@ -199,32 +197,36 @@ class SegmentSpecification(Specification):
         return Specification.retrieve_resolved_value(self, attribute_name, self.name, **kwargs)
 
     def select(self, context_names=None, segment_name=None, scope=None):
+        from experimental import specificationtools
         assert context_names is None or self.resolved_settings_context_dictionary.all_are_context_names(
             context_names)
         assert isinstance(segment_name, (str, type(None)))
-        assert isinstance(scope, (TemporalScope, type(None)))
+        assert isinstance(scope, (specificationtools.TemporalScope, type(None)))
         segment_name = segment_name or self.name
-        selection = Selection(segment_name, context_names=context_names, scope=scope)
+        selection = specificationtools.Selection(segment_name, context_names=context_names, scope=scope)
         return selection
 
     def select_divisions(self, context_token=None, part=None, segment_name=None, start=None, stop=None):
+        from experimental import specificationtools
         criterion = 'divisions'
         context_names = self.parse_context_token(context_token)
-        scope = TemporalScope(criterion=criterion, part=part, start=start, stop=stop)
+        scope = specificationtools.TemporalScope(criterion=criterion, part=part, start=start, stop=stop)
         selection = self.select(context_names=context_names, segment_name=segment_name, scope=scope)
         return selection
 
     def select_measures(self, context_token=None, part=None, segment_name=None, start=None, stop=None):
+        from experimental import specificationtools
         criterion = 'measures'
         context_names = self.parse_context_token(context_token)
-        scope = TemporalScope(criterion=criterion, part=part, start=start, stop=stop)
+        scope = specificationtools.TemporalScope(criterion=criterion, part=part, start=start, stop=stop)
         selection = self.select(context_names=context_names, segment_name=segment_name, scope=scope)
         return selection
     
     def select_notes_and_chords(self, context_token=None, part=None, segment_name=None, start=None, stop=None):
+        from experimental import specificationtools
         criterion = (chordtools.Chord, notetools.Note)
         context_names = self.parse_context_token(context_token)
-        scope = TemporalScope(criterion=criterion, part=part, start=start, stop=stop)
+        scope = specificationtools.TemporalScope(criterion=criterion, part=part, start=start, stop=stop)
         selection = self.select(context_names=context_names, scope=scope)
         return selection
 
@@ -242,15 +244,16 @@ class SegmentSpecification(Specification):
 
     def set_attribute(self, attribute_name, target_token, source, 
         callback=None, count=None, offset=None, persistent=True, scope=None, truncate=False):
+        from experimental import specificationtools
         assert attribute_name in self.attribute_names, repr(attribute_name)
         assert isinstance(count, (int, type(None))), repr(count)
         assert isinstance(persistent, type(True)), repr(persistent)
-        assert isinstance(scope, (TemporalScope, type(None))), repr(scope)
+        assert isinstance(scope, (specificationtools.TemporalScope, type(None))), repr(scope)
         assert isinstance(truncate, type(True)), repr(truncate)
         # handle scope here and include in target selection?
         target_selection = self.parse_selection_token(target_token)
         source = self.annotate_source(source, callback=callback, count=count, offset=offset)
-        directive = Directive(target_selection, attribute_name, source, 
+        directive = specificationtools.Directive(target_selection, attribute_name, source, 
             persistent=persistent, truncate=truncate)
         self.directives.append(directive)
         return directive
