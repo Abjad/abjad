@@ -15,6 +15,8 @@ Read-only Properties
 
 .. autoattribute:: experimental.abjadbooktools.CodeBlock.CodeBlock.CodeBlock.lines
 
+.. autoattribute:: experimental.abjadbooktools.CodeBlock.CodeBlock.CodeBlock.processed_results
+
 .. autoattribute:: experimental.abjadbooktools.CodeBlock.CodeBlock.CodeBlock.starting_line_number
 
 .. autoattribute:: experimental.abjadbooktools.CodeBlock.CodeBlock.CodeBlock.strip_prompt
@@ -22,13 +24,13 @@ Read-only Properties
 Special Methods
 ---------------
 
+.. automethod:: experimental.abjadbooktools.CodeBlock.CodeBlock.CodeBlock.__call__
+
 .. automethod:: experimental.abjadbooktools.CodeBlock.CodeBlock.CodeBlock.__delattr__
 
     Inherited from `__builtin__.object`
 
 .. automethod:: experimental.abjadbooktools.CodeBlock.CodeBlock.CodeBlock.__eq__
-
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.abjadbooktools.CodeBlock.CodeBlock.CodeBlock.__ge__
 

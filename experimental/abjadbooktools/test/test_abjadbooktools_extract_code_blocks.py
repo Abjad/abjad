@@ -1,9 +1,11 @@
+import os
 from experimental import *
 
 
 def test_abjadbooktools_extract_code_blocks_01():
 
-    f = open('text.rst.raw', 'r')
+    filepath = os.path.join(os.path.dirname(__file__), 'text.rst.raw')
+    f = open(filepath, 'r')
     lines = f.read().split('\n')
     f.close()
 
