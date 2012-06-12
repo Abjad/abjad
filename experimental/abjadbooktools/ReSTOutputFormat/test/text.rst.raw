@@ -28,7 +28,7 @@ def apply_articulations(components):
         if i % 2 == 0:
             marktools.Articulation('.')(component)
         else:
-            marktools.Articulation('legato')(component)
+            marktools.Articulation('^')(component)
 </abjad>
 
 Here is **paragraph** 4, where we use the previous function to change the Voice we previously instantiated.
