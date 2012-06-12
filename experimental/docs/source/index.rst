@@ -33,7 +33,6 @@ Unstable Abjad composition packages (load manually)
    :maxdepth: 1
 
    experimental/abjadbooktools/extract_code_blocks
-   experimental/abjadbooktools/process_code_block
 
 :py:mod:`constrainttools <experimental.constrainttools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
