@@ -15,6 +15,7 @@ Notice that in the second block of abjad code I can reference objects and variab
 
 <abjad>
 spannertools.TrillSpanner(voice[4:])
+f(voice)
 show(voice)
 </abjad>
 
@@ -35,6 +36,7 @@ Here is **paragraph** 4, where we use the previous function to change the Voice 
 
 <abjad>
 apply_articulations(voice)
+f(voice)
 show(voice)
 </abjad>
 

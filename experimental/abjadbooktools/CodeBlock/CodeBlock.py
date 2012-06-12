@@ -1,6 +1,5 @@
 from abjad.tools import abctools
 from abjad.tools import documentationtools
-from experimental.abjadbooktools.process_code_block import process_code_block
 import os
 
 
@@ -48,7 +47,7 @@ class CodeBlock(abctools.AbjadObject):
 
         for line in self.lines:
             hide = False
-            current = pipe.read_wait().split('\n')
+            current = pipe.read_wait().replace('\t', '    ').split('\n')
 
             if line.endswith('<hide'):
                 hide = True

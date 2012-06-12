@@ -36,10 +36,8 @@ class AbjadBookProcessor(abctools.AbjadObject):
         # Process code blocks, and render images inside the temporary directory
         pipe = self._setup_pipe()
         image_count = self._process_code_blocks(pipe, code_blocks, tmp_directory)
-        print 'After process code blocks.'
         ly_filenames = self._extract_ly_filenames(code_blocks)
         self._cleanup_pipe(pipe)
-        print 'After Pipe cleanup.'
         if not self.skip_rendering:
             self._render_ly_files(ly_filenames, self.output_format)
 
