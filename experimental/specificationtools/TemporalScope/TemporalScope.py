@@ -7,28 +7,24 @@ from experimental.specificationtools.TemporalCursor import TemporalCursor
 class TemporalScope(AbjadObject):
     r'''.. versionadded 1.0
 
-    Finite amount of score time bounded by start and stop temporal cursors.
+    Finite interval of score time bounded by start and stop cursors.
 
     (Object-oriented delayed evaluation.)
 
-    Temporal scope objects are essentially fancy pairs.
-
-    Temporal scope objects are designed to share much with time interval objects.
+    Temporal scope objects have much in common with time interval objects.
 
     The purpose of a temporal scope is to highlight a contiguous block of time
-    somewhere in some segment and say "everything within my bounds is selected
+    somewhere and say "everything within my bounds is selected
     for some upcoming operation."
 
-    That is, temporal scopes make up the temporal part of a selection.
-    The thing that makes up the vertical part of a selection is a list of
-    zero or more context names. 
-
-    So a temporal scope is an important part of a selection.
+    Temporal scope objects make up the temporal part of a selection.
+    (The thing that makes up the vertical part of a selection is a list of
+    zero or more context names.)
 
     Temporal scope objects afford the selection of time relative to score
     objects that do not yet exist.
 
-    Initialize with option start and stop cursors.
+    Initialize with optional start and stop cursors.
 
     Import ``specificationtools``::
 
@@ -39,13 +35,49 @@ class TemporalScope(AbjadObject):
         >>> specificationtools.TemporalScope()
         TemporalScope()
 
-    Select the first ``1/8`` of a whole note of time in the score::
+    Select the first ``1/8`` of a whole note's duration in the score::
 
         >>> cursor = specificationtools.TemporalCursor(addendum=Fraction(1, 8))
 
     ::
-        >>> specificationtools.TemporalScope(stop=cursor)
 
+        >>> specificationtools.TemporalScope(stop=cursor)
+        TemporalScope(stop=TemporalCursor(addendum=Offset(1, 8)))
+
+    Select the last ``1/8`` of a whole note's duration in the score::
+
+        >>> cursor = specificationtools.TemporalCursor(start=False, addendum=-Fraction(1, 8))
+
+    ::
+
+        >>> specificationtools.TemporalScope(start=cursor)
+        TemporalScope(start=TemporalCursor(start=False, addendum=Offset(-1, 8)))
+
+    Select the first third of the score::
+
+        >>> cursor = specificationtools.TemporalCursor(scalar=Fraction(1, 3), start=False)
+
+    ::
+
+        >>> specificationtools.TemporalScope(stop=cursor)
+        TemporalScope(stop=TemporalCursor(scalar=Fraction(1, 3), start=False))
+
+    Select the last third of the score::
+
+        >>> cursor = specificationtools.TemporalCursor(scalar=Fraction(2, 3), start=False)
+
+    ::
+
+        >>> specificationtools.TemporalScope(start=cursor)
+        TemporalScope(start=TemporalCursor(scalar=Fraction(2, 3), start=False))
+    
+    Examples below reference the temporal scope defined immediately above::
+
+        >>> temporal_scope = _
+
+    Temporal scopes are immutable.
+
+    .. note:: many more examples coming soon.
     '''
 
     ### INITIALIZER ###

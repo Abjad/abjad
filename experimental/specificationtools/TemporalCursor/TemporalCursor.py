@@ -97,7 +97,7 @@ class TemporalCursor(AbjadObject):
         >>> specificationtools.TemporalCursor(anchor=anchor, start=False)
         TemporalCursor(anchor=ScoreObjectIndicator(segment='red', context='Voice 1', klass=notetools.Note, index=10), start=False)
 
-    Examples below reference the temporal curosr defined immediately above::
+    Examples below reference the temporal cursor defined immediately above::
 
         >>> temporal_cursor = _
 
