@@ -17,7 +17,15 @@ Read-only Properties
 
     Inherited from `experimental.abjadbooktools.OutputFormat.OutputFormat.OutputFormat`
 
+.. autoattribute:: experimental.abjadbooktools.HTMLOutputFormat.HTMLOutputFormat.HTMLOutputFormat.code_indent
+
+    Inherited from `experimental.abjadbooktools.OutputFormat.OutputFormat.OutputFormat`
+
 .. autoattribute:: experimental.abjadbooktools.HTMLOutputFormat.HTMLOutputFormat.HTMLOutputFormat.image_block
+
+    Inherited from `experimental.abjadbooktools.OutputFormat.OutputFormat.OutputFormat`
+
+.. autoattribute:: experimental.abjadbooktools.HTMLOutputFormat.HTMLOutputFormat.HTMLOutputFormat.image_format
 
     Inherited from `experimental.abjadbooktools.OutputFormat.OutputFormat.OutputFormat`
 

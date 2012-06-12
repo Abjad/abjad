@@ -17,7 +17,15 @@ Read-only Properties
 
     Inherited from `experimental.abjadbooktools.OutputFormat.OutputFormat.OutputFormat`
 
+.. autoattribute:: experimental.abjadbooktools.LaTeXOutputFormat.LaTeXOutputFormat.LaTeXOutputFormat.code_indent
+
+    Inherited from `experimental.abjadbooktools.OutputFormat.OutputFormat.OutputFormat`
+
 .. autoattribute:: experimental.abjadbooktools.LaTeXOutputFormat.LaTeXOutputFormat.LaTeXOutputFormat.image_block
+
+    Inherited from `experimental.abjadbooktools.OutputFormat.OutputFormat.OutputFormat`
+
+.. autoattribute:: experimental.abjadbooktools.LaTeXOutputFormat.LaTeXOutputFormat.LaTeXOutputFormat.image_format
 
     Inherited from `experimental.abjadbooktools.OutputFormat.OutputFormat.OutputFormat`
 

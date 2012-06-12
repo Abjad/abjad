@@ -13,7 +13,11 @@ Read-only Properties
 
 .. autoattribute:: experimental.abjadbooktools.OutputFormat.OutputFormat.OutputFormat.code_block_opening
 
+.. autoattribute:: experimental.abjadbooktools.OutputFormat.OutputFormat.OutputFormat.code_indent
+
 .. autoattribute:: experimental.abjadbooktools.OutputFormat.OutputFormat.OutputFormat.image_block
+
+.. autoattribute:: experimental.abjadbooktools.OutputFormat.OutputFormat.OutputFormat.image_format
 
 Special Methods
 ---------------
