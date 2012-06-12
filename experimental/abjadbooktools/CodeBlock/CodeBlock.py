@@ -36,7 +36,7 @@ class CodeBlock(abctools.AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, pipe, image_count=0, directory=None):
+    def __call__(self, pipe, image_count=0, directory=None, image_prefix='image'):
 
         assert isinstance(pipe, documentationtools.Pipe)
 
@@ -59,7 +59,7 @@ class CodeBlock(abctools.AbjadObject):
 
             if line.startswith('show(') and line.endswith(')'):
                 image_count += 1
-                file_name = 'image-{}'.format(image_count)
+                file_name = '{}-{}'.format(image_prefix, image_count)
                 object_name = line[5:-1]
                 if directory:
                     command = "iotools.write_expr_to_ly({}, {!r})".format(object_name,

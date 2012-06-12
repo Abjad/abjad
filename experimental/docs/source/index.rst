@@ -23,6 +23,7 @@ Unstable Abjad composition packages (load manually)
    :maxdepth: 1
 
    experimental/abjadbooktools/AbjadBookProcessor/AbjadBookProcessor
+   experimental/abjadbooktools/AbjadBookScript/AbjadBookScript
    experimental/abjadbooktools/CodeBlock/CodeBlock
    experimental/abjadbooktools/HTMLOutputFormat/HTMLOutputFormat
    experimental/abjadbooktools/LaTeXOutputFormat/LaTeXOutputFormat

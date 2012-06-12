@@ -10,46 +10,56 @@ class AbjadBookProcessor(abctools.AbjadObject):
 
     ### CLASS ATTRIBUTES ###
 
-    __slots__ = ('_lines', '_output_format', '_skip_rendering')
+    __slots__ = ('_directory', '_image_prefix', '_lines', '_output_format', '_skip_rendering')
 
     ### INITIALIZER ###
 
-    def __init__(self, lines, output_format, skip_rendering=False):
+    def __init__(self, directory, lines, output_format, skip_rendering=False, image_prefix='image'):
         assert isinstance(output_format, OutputFormat)
+        self._directory = os.path.abspath(directory)
+        self._image_prefix = image_prefix
         self._lines = tuple(lines)
         self._output_format = output_format
         self._skip_rendering = bool(skip_rendering)
 
     ### SPECIAL METHOD ###
 
-    def __call__(self, directory):
-
-        directory = os.path.abspath(directory)
+    def __call__(self):
 
         # Verify input, and extract code blocks
         code_blocks = self._extract_code_blocks(self.lines)        
 
         # Create a temporary directory, and step into it.
-        tmp_directory = self._setup_tmp_directory(directory)
+        tmp_directory = self._setup_tmp_directory(self.directory)
         os.chdir(tmp_directory)
 
         # Process code blocks, and render images inside the temporary directory
         pipe = self._setup_pipe()
-        image_count = self._process_code_blocks(pipe, code_blocks, tmp_directory)
+        image_count = self._process_code_blocks(pipe, code_blocks, tmp_directory,
+            self.image_prefix)
         ly_filenames = self._extract_ly_filenames(code_blocks)
         self._cleanup_pipe(pipe)
         if not self.skip_rendering:
             self._render_ly_files(ly_filenames, self.output_format)
 
         # Step out of the tmp directory, back to the original, and cleanup.
-        os.chdir(directory)
-        self._cleanup_image_files(directory, tmp_directory, image_count)
+        os.chdir(self.directory)
+        self._cleanup_image_files(self.directory, tmp_directory, image_count, self.image_prefix,
+            self.output_format.image_format)
         self._cleanup_tmp_directory(tmp_directory)
 
         # Interleave newly reformatted code with the old, and return.
         return self._interleave_source_with_code_blocks(self.lines, code_blocks, self.output_format)
 
     ### PUBLIC READ-ONLY PROPERTIES ###
+
+    @property
+    def directory(self):
+        return self._directory
+
+    @property
+    def image_prefix(self):
+        return self._image_prefix
 
     @property
     def lines(self):
@@ -65,15 +75,16 @@ class AbjadBookProcessor(abctools.AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    def _cleanup_image_files(self, directory, tmp_directory, image_count):
+    def _cleanup_image_files(self, directory, tmp_directory,
+            image_count, image_prefix, image_format):
         image_directory = os.path.join(directory, 'images')
         if not os.path.isdir(image_directory):
             os.mkdir(image_directory)
         for x in os.listdir(image_directory):
-            if x.startswith('image-'):
-                number = int(x.partition('.')[0][6:])
+            if x.startswith('{}-'.format(image_prefix)) and x.endswith(image_format):
+                number = int(x.lstrip('-{}'.format(image_prefix)).partition('.')[0])
                 if image_count < number:
-                    os.remove(x)
+                    os.remove(os.path.join(image_directory, x))
         for x in os.listdir(tmp_directory):
             if x.endswith(('.pdf', '.png')):
                 old = os.path.join(tmp_directory, x)
@@ -138,10 +149,10 @@ class AbjadBookProcessor(abctools.AbjadObject):
         interleaved.append('\n'.join(lines[code_blocks[-1].ending_line_number + 1:]))
         return '\n'.join(interleaved)
 
-    def _process_code_blocks(self, pipe, code_blocks, directory):
+    def _process_code_blocks(self, pipe, code_blocks, directory, image_prefix):
         image_count = 0
         for code_block in code_blocks:
-            image_count = code_block(pipe, image_count, directory)
+            image_count = code_block(pipe, image_count, directory, image_prefix)
         return image_count
 
     def _setup_pipe(self):

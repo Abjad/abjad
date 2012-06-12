@@ -9,6 +9,10 @@ experimental.abjadbooktools.AbjadBookProcessor
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.abjadbooktools.AbjadBookProcessor.AbjadBookProcessor.AbjadBookProcessor.directory
+
+.. autoattribute:: experimental.abjadbooktools.AbjadBookProcessor.AbjadBookProcessor.AbjadBookProcessor.image_prefix
+
 .. autoattribute:: experimental.abjadbooktools.AbjadBookProcessor.AbjadBookProcessor.AbjadBookProcessor.lines
 
 .. autoattribute:: experimental.abjadbooktools.AbjadBookProcessor.AbjadBookProcessor.AbjadBookProcessor.output_format
