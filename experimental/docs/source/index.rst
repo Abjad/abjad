@@ -22,7 +22,7 @@ Unstable Abjad composition packages (load manually)
 .. toctree::
    :maxdepth: 1
 
-   experimental/abjadbooktools/AbjadBook/AbjadBook
+   experimental/abjadbooktools/AbjadBookProcessor/AbjadBookProcessor
    experimental/abjadbooktools/CodeBlock/CodeBlock
    experimental/abjadbooktools/HTMLOutputFormat/HTMLOutputFormat
    experimental/abjadbooktools/LaTeXOutputFormat/LaTeXOutputFormat

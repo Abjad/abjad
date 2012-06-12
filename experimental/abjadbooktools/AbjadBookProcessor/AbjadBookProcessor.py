@@ -6,7 +6,7 @@ import shutil
 import tempfile
 
 
-class AbjadBook(abctools.AbjadObject):
+class AbjadBookProcessor(abctools.AbjadObject):
 
     ### CLASS ATTRIBUTES ###
 
