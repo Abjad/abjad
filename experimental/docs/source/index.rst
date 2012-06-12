@@ -22,17 +22,11 @@ Unstable Abjad composition packages (load manually)
 .. toctree::
    :maxdepth: 1
 
+   experimental/abjadbooktools/AbjadBook/AbjadBook
    experimental/abjadbooktools/CodeBlock/CodeBlock
    experimental/abjadbooktools/HTMLOutputFormat/HTMLOutputFormat
    experimental/abjadbooktools/LaTeXOutputFormat/LaTeXOutputFormat
    experimental/abjadbooktools/ReSTOutputFormat/ReSTOutputFormat
-
-.. rubric:: functions
-
-.. toctree::
-   :maxdepth: 1
-
-   experimental/abjadbooktools/extract_code_blocks
 
 :py:mod:`constrainttools <experimental.constrainttools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
