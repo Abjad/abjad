@@ -1,6 +1,7 @@
 from abjad.tools import abctools
 from abjad.tools import documentationtools
 from experimental.abjadbooktools.process_code_block import process_code_block
+import os
 
 
 class CodeBlock(abctools.AbjadObject):
@@ -36,7 +37,7 @@ class CodeBlock(abctools.AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, pipe, image_count=0):
+    def __call__(self, pipe, image_count=0, directory=None):
 
         assert isinstance(pipe, documentationtools.Pipe)
 
@@ -45,7 +46,7 @@ class CodeBlock(abctools.AbjadObject):
 
         pipe.write('\n')
 
-        for line in lines:
+        for line in self.lines:
             hide = False
             current = pipe.read_wait().split('\n')
 
@@ -61,7 +62,11 @@ class CodeBlock(abctools.AbjadObject):
                 image_count += 1
                 file_name = 'image-{}'.format(image_count)
                 object_name = line[5:-1]
-                command = "iotools.write_expr_to_ly({}, {!r})".format(object_name, file_name)
+                if directory:
+                    command = "iotools.write_expr_to_ly({}, {!r})".format(object_name,
+                        os.path.join(directory, file_name))
+                else:
+                    command = "iotools.write_expr_to_ly({}, {!r})".format(object_name, file_name)
                 pipe.write(command)
                 grouped_results.append(result)
                 grouped_results.append(file_name)
@@ -83,12 +88,14 @@ class CodeBlock(abctools.AbjadObject):
                 for i, line in enumerate(result):
                     if line.startswith(('>>> ', '... ')):
                         result[i] = line[4:]
+                while not result[-1]:
+                    result.pop()
 
-        for i, result in grouped_results:
+        for i, result in enumerate(grouped_results):
             if isinstance(result, list):
                 grouped_results[i] = tuple(result)
 
-        self._processed_results = tuple(grouped_results)
+        self._processed_results = tuple([x for x in grouped_results if x])
 
         return image_count
 
