@@ -17,7 +17,7 @@ class Selection(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self, segment_name, contexts=None, scope=None):
-    #def __init__(self, segment_name, contexts=None, scope=None):
+    #def __init__(self, contexts=None, scope=None):
         assert isinstance(segment_name, str)
         assert isinstance(contexts, (list, type(None)))
         assert isinstance(scope, (TemporalScope, type(None)))

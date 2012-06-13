@@ -182,9 +182,9 @@ class SegmentSpecification(Specification):
         elif isinstance(selection_token, type(self)):
             selection = self.select()
         elif isinstance(selection_token, str) and selection_token in self.resolved_settings_context_dictionary:
-            selection = self.select(context_names=[selection_token])
+            selection = self.select(contexts=[selection_token])
         elif self.resolved_settings_context_dictionary.all_are_context_names(selection_token):
-            selection = self.select(context_names=selection_token)
+            selection = self.select(contexts=selection_token)
         else:
             raise ValueError('invalid selection token: {!r}.'.format(selection_token))
         return selection
@@ -196,39 +196,37 @@ class SegmentSpecification(Specification):
     def retrieve_resolved_value(self, attribute_name, **kwargs):
         return Specification.retrieve_resolved_value(self, attribute_name, self.name, **kwargs)
 
-    # TODO: change 'context_names' to 'contexts'
-    def select(self, context_names=None, segment_name=None, scope=None):
+    def select(self, contexts=None, segment_name=None, scope=None):
         from experimental import specificationtools
-        assert context_names is None or self.resolved_settings_context_dictionary.all_are_context_names(
-            context_names)
+        assert contexts is None or self.resolved_settings_context_dictionary.all_are_context_names(contexts)
         assert isinstance(segment_name, (str, type(None)))
         assert isinstance(scope, (specificationtools.TemporalScope, type(None)))
         segment_name = segment_name or self.name
-        selection = specificationtools.Selection(segment_name, contexts=context_names, scope=scope)
+        selection = specificationtools.Selection(segment_name, contexts=contexts, scope=scope)
         return selection
 
     def select_divisions(self, context_token=None, part=None, segment_name=None, start=None, stop=None):
         from experimental import specificationtools
         criterion = 'divisions'
-        context_names = self.parse_context_token(context_token)
+        contexts = self.parse_context_token(context_token)
         scope = specificationtools.TemporalScope(criterion=criterion, part=part, start=start, stop=stop)
-        selection = self.select(context_names=context_names, segment_name=segment_name, scope=scope)
+        selection = self.select(contexts=contexts, segment_name=segment_name, scope=scope)
         return selection
 
     def select_measures(self, context_token=None, part=None, segment_name=None, start=None, stop=None):
         from experimental import specificationtools
         criterion = 'measures'
-        context_names = self.parse_context_token(context_token)
+        contexts = self.parse_context_token(context_token)
         scope = specificationtools.TemporalScope(criterion=criterion, part=part, start=start, stop=stop)
-        selection = self.select(context_names=context_names, segment_name=segment_name, scope=scope)
+        selection = self.select(contexts=contexts, segment_name=segment_name, scope=scope)
         return selection
     
     def select_notes_and_chords(self, context_token=None, part=None, segment_name=None, start=None, stop=None):
         from experimental import specificationtools
         criterion = (chordtools.Chord, notetools.Note)
-        context_names = self.parse_context_token(context_token)
+        contexts = self.parse_context_token(context_token)
         scope = specificationtools.TemporalScope(criterion=criterion, part=part, start=start, stop=stop)
-        selection = self.select(context_names=context_names, scope=scope)
+        selection = self.select(contexts=contexts, scope=scope)
         return selection
 
     def set_aggregate(self, target_token, source, 
