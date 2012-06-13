@@ -1,5 +1,5 @@
-experimental.handlertools.dynamics.NoteAndChordHairpinHandler
-=============================================================
+handlertools.dynamics.NoteAndChordHairpinHandler
+================================================
 
 .. inheritance-diagram:: experimental.handlertools.dynamics.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler
    :private-bases:
@@ -23,11 +23,11 @@ Special Methods
 
 .. automethod:: experimental.handlertools.dynamics.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.handlertools.dynamics.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.__eq__
 
-    Inherited from `experimental.handlertools.Handler.Handler.Handler`
+    Inherited from :py:class:`handlertools.Handler <experimental.handlertools.Handler.Handler.Handler>`
 
 .. automethod:: experimental.handlertools.dynamics.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.__ge__
 
@@ -39,7 +39,7 @@ Special Methods
 
 .. automethod:: experimental.handlertools.dynamics.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.handlertools.dynamics.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.__le__
 
@@ -59,8 +59,8 @@ Special Methods
 
 .. automethod:: experimental.handlertools.dynamics.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.handlertools.dynamics.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.NoteAndChordHairpinHandler.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

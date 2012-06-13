@@ -1,5 +1,5 @@
-experimental.specificationtools.Directive
-=========================================
+specificationtools.Directive
+============================
 
 .. inheritance-diagram:: experimental.specificationtools.Directive.Directive.Directive
    :private-bases:
@@ -18,7 +18,7 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.Directive.Directive.Directive.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.Directive.Directive.Directive.__eq__
 
@@ -32,7 +32,7 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.Directive.Directive.Directive.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.Directive.Directive.Directive.__le__
 
@@ -52,8 +52,8 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.Directive.Directive.Directive.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.Directive.Directive.Directive.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

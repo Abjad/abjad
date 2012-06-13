@@ -1,5 +1,5 @@
-experimental.constrainttools.GlobalCountsConstraint
-===================================================
+constrainttools.GlobalCountsConstraint
+======================================
 
 .. inheritance-diagram:: experimental.constrainttools.GlobalCountsConstraint.GlobalCountsConstraint.GlobalCountsConstraint
    :private-bases:
@@ -11,11 +11,11 @@ Read-only Properties
 
 .. autoattribute:: experimental.constrainttools.GlobalCountsConstraint.GlobalCountsConstraint.GlobalCountsConstraint.kind
 
-    Inherited from `experimental.constrainttools._Constraint._Constraint._Constraint`
+    Inherited from :py:class:`constrainttools._Constraint <experimental.constrainttools._Constraint._Constraint._Constraint>`
 
 .. autoattribute:: experimental.constrainttools.GlobalCountsConstraint.GlobalCountsConstraint.GlobalCountsConstraint.predicate
 
-    Inherited from `experimental.constrainttools._Constraint._Constraint._Constraint`
+    Inherited from :py:class:`constrainttools._Constraint <experimental.constrainttools._Constraint._Constraint._Constraint>`
 
 Special Methods
 ---------------
@@ -24,7 +24,7 @@ Special Methods
 
 .. automethod:: experimental.constrainttools.GlobalCountsConstraint.GlobalCountsConstraint.GlobalCountsConstraint.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.constrainttools.GlobalCountsConstraint.GlobalCountsConstraint.GlobalCountsConstraint.__eq__
 
@@ -40,7 +40,7 @@ Special Methods
 
 .. automethod:: experimental.constrainttools.GlobalCountsConstraint.GlobalCountsConstraint.GlobalCountsConstraint.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.constrainttools.GlobalCountsConstraint.GlobalCountsConstraint.GlobalCountsConstraint.__le__
 
@@ -56,12 +56,12 @@ Special Methods
 
 .. automethod:: experimental.constrainttools.GlobalCountsConstraint.GlobalCountsConstraint.GlobalCountsConstraint.__repr__
 
-    Inherited from `experimental.constrainttools._Constraint._Constraint._Constraint`
+    Inherited from :py:class:`constrainttools._Constraint <experimental.constrainttools._Constraint._Constraint._Constraint>`
 
 .. automethod:: experimental.constrainttools.GlobalCountsConstraint.GlobalCountsConstraint.GlobalCountsConstraint.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.constrainttools.GlobalCountsConstraint.GlobalCountsConstraint.GlobalCountsConstraint.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

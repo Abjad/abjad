@@ -1,5 +1,5 @@
-experimental.quantizationtools.QGridQuantizer
-=============================================
+quantizationtools.QGridQuantizer
+================================
 
 .. inheritance-diagram:: experimental.quantizationtools.QGridQuantizer.QGridQuantizer.QGridQuantizer
    :private-bases:
@@ -26,11 +26,11 @@ Special Methods
 
 .. automethod:: experimental.quantizationtools.QGridQuantizer.QGridQuantizer.QGridQuantizer.__call__
 
-    Inherited from `experimental.quantizationtools._Quantizer._Quantizer._Quantizer`
+    Inherited from :py:class:`quantizationtools._Quantizer <experimental.quantizationtools._Quantizer._Quantizer._Quantizer>`
 
 .. automethod:: experimental.quantizationtools.QGridQuantizer.QGridQuantizer.QGridQuantizer.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.quantizationtools.QGridQuantizer.QGridQuantizer.QGridQuantizer.__eq__
 
@@ -46,7 +46,7 @@ Special Methods
 
 .. automethod:: experimental.quantizationtools.QGridQuantizer.QGridQuantizer.QGridQuantizer.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.quantizationtools.QGridQuantizer.QGridQuantizer.QGridQuantizer.__le__
 
@@ -62,12 +62,12 @@ Special Methods
 
 .. automethod:: experimental.quantizationtools.QGridQuantizer.QGridQuantizer.QGridQuantizer.__repr__
 
-    Inherited from `experimental.quantizationtools._Quantizer._Quantizer._Quantizer`
+    Inherited from :py:class:`quantizationtools._Quantizer <experimental.quantizationtools._Quantizer._Quantizer._Quantizer>`
 
 .. automethod:: experimental.quantizationtools.QGridQuantizer.QGridQuantizer.QGridQuantizer.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.quantizationtools.QGridQuantizer.QGridQuantizer.QGridQuantizer.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

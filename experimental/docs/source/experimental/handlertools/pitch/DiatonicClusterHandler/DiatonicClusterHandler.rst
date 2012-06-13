@@ -1,5 +1,5 @@
-experimental.handlertools.pitch.DiatonicClusterHandler
-======================================================
+handlertools.pitch.DiatonicClusterHandler
+=========================================
 
 .. inheritance-diagram:: experimental.handlertools.pitch.DiatonicClusterHandler.DiatonicClusterHandler.DiatonicClusterHandler
    :private-bases:
@@ -13,11 +13,11 @@ Special Methods
 
 .. automethod:: experimental.handlertools.pitch.DiatonicClusterHandler.DiatonicClusterHandler.DiatonicClusterHandler.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.handlertools.pitch.DiatonicClusterHandler.DiatonicClusterHandler.DiatonicClusterHandler.__eq__
 
-    Inherited from `experimental.handlertools.Handler.Handler.Handler`
+    Inherited from :py:class:`handlertools.Handler <experimental.handlertools.Handler.Handler.Handler>`
 
 .. automethod:: experimental.handlertools.pitch.DiatonicClusterHandler.DiatonicClusterHandler.DiatonicClusterHandler.__ge__
 
@@ -29,7 +29,7 @@ Special Methods
 
 .. automethod:: experimental.handlertools.pitch.DiatonicClusterHandler.DiatonicClusterHandler.DiatonicClusterHandler.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.handlertools.pitch.DiatonicClusterHandler.DiatonicClusterHandler.DiatonicClusterHandler.__le__
 
@@ -49,8 +49,8 @@ Special Methods
 
 .. automethod:: experimental.handlertools.pitch.DiatonicClusterHandler.DiatonicClusterHandler.DiatonicClusterHandler.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.handlertools.pitch.DiatonicClusterHandler.DiatonicClusterHandler.DiatonicClusterHandler.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

@@ -1,5 +1,5 @@
-experimental.abjadbooktools.CodeBlock
-=====================================
+abjadbooktools.CodeBlock
+========================
 
 .. inheritance-diagram:: experimental.abjadbooktools.CodeBlock.CodeBlock.CodeBlock
    :private-bases:
@@ -28,7 +28,7 @@ Special Methods
 
 .. automethod:: experimental.abjadbooktools.CodeBlock.CodeBlock.CodeBlock.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.abjadbooktools.CodeBlock.CodeBlock.CodeBlock.__eq__
 
@@ -42,7 +42,7 @@ Special Methods
 
 .. automethod:: experimental.abjadbooktools.CodeBlock.CodeBlock.CodeBlock.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.abjadbooktools.CodeBlock.CodeBlock.CodeBlock.__le__
 
@@ -62,8 +62,8 @@ Special Methods
 
 .. automethod:: experimental.abjadbooktools.CodeBlock.CodeBlock.CodeBlock.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.abjadbooktools.CodeBlock.CodeBlock.CodeBlock.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

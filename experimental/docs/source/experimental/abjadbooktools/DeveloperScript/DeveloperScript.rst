@@ -1,5 +1,5 @@
-experimental.abjadbooktools.DeveloperScript
-===========================================
+abjadbooktools.DeveloperScript
+==============================
 
 .. inheritance-diagram:: experimental.abjadbooktools.DeveloperScript.DeveloperScript.DeveloperScript
    :private-bases:
@@ -32,7 +32,7 @@ Special Methods
 
 .. automethod:: experimental.abjadbooktools.DeveloperScript.DeveloperScript.DeveloperScript.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.abjadbooktools.DeveloperScript.DeveloperScript.DeveloperScript.__eq__
 
@@ -48,7 +48,7 @@ Special Methods
 
 .. automethod:: experimental.abjadbooktools.DeveloperScript.DeveloperScript.DeveloperScript.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.abjadbooktools.DeveloperScript.DeveloperScript.DeveloperScript.__le__
 
@@ -68,8 +68,8 @@ Special Methods
 
 .. automethod:: experimental.abjadbooktools.DeveloperScript.DeveloperScript.DeveloperScript.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.abjadbooktools.DeveloperScript.DeveloperScript.DeveloperScript.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

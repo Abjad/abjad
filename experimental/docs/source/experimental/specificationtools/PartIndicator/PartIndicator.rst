@@ -1,5 +1,5 @@
-experimental.specificationtools.PartIndicator
-=============================================
+specificationtools.PartIndicator
+================================
 
 .. inheritance-diagram:: experimental.specificationtools.PartIndicator.PartIndicator.PartIndicator
    :private-bases:
@@ -18,7 +18,7 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.PartIndicator.PartIndicator.PartIndicator.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.PartIndicator.PartIndicator.PartIndicator.__eq__
 
@@ -32,7 +32,7 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.PartIndicator.PartIndicator.PartIndicator.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.PartIndicator.PartIndicator.PartIndicator.__le__
 
@@ -52,8 +52,8 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.PartIndicator.PartIndicator.PartIndicator.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.PartIndicator.PartIndicator.PartIndicator.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

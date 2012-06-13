@@ -1,5 +1,5 @@
-experimental.constrainttools.Domain
-===================================
+constrainttools.Domain
+======================
 
 .. inheritance-diagram:: experimental.constrainttools.Domain.Domain.Domain
    :private-bases:
@@ -16,7 +16,7 @@ Special Methods
 
 .. automethod:: experimental.constrainttools.Domain.Domain.Domain.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.constrainttools.Domain.Domain.Domain.__eq__
 
@@ -34,7 +34,7 @@ Special Methods
 
 .. automethod:: experimental.constrainttools.Domain.Domain.Domain.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.constrainttools.Domain.Domain.Domain.__iter__
 
@@ -58,8 +58,8 @@ Special Methods
 
 .. automethod:: experimental.constrainttools.Domain.Domain.Domain.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.constrainttools.Domain.Domain.Domain.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

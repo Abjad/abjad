@@ -1,5 +1,5 @@
-experimental.lyricstools.LyricHyphen
-====================================
+lyricstools.LyricHyphen
+=======================
 
 .. inheritance-diagram:: experimental.lyricstools.LyricHyphen.LyricHyphen.LyricHyphen
    :private-bases:
@@ -97,7 +97,7 @@ Special Methods
 
 .. automethod:: experimental.lyricstools.LyricHyphen.LyricHyphen.LyricHyphen.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.lyricstools.LyricHyphen.LyricHyphen.LyricHyphen.__eq__
 
@@ -113,7 +113,7 @@ Special Methods
 
 .. automethod:: experimental.lyricstools.LyricHyphen.LyricHyphen.LyricHyphen.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.lyricstools.LyricHyphen.LyricHyphen.LyricHyphen.__le__
 
@@ -145,7 +145,7 @@ Special Methods
 
 .. automethod:: experimental.lyricstools.LyricHyphen.LyricHyphen.LyricHyphen.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.lyricstools.LyricHyphen.LyricHyphen.LyricHyphen.__str__
 

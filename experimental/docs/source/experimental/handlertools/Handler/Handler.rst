@@ -1,5 +1,5 @@
-experimental.handlertools.Handler
-=================================
+handlertools.Handler
+====================
 
 .. inheritance-diagram:: experimental.handlertools.Handler.Handler.Handler
    :private-bases:
@@ -11,7 +11,7 @@ Special Methods
 
 .. automethod:: experimental.handlertools.Handler.Handler.Handler.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.handlertools.Handler.Handler.Handler.__eq__
 
@@ -25,7 +25,7 @@ Special Methods
 
 .. automethod:: experimental.handlertools.Handler.Handler.Handler.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.handlertools.Handler.Handler.Handler.__le__
 
@@ -45,8 +45,8 @@ Special Methods
 
 .. automethod:: experimental.handlertools.Handler.Handler.Handler.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.handlertools.Handler.Handler.Handler.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

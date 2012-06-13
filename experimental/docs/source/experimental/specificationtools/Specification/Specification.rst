@@ -1,5 +1,5 @@
-experimental.specificationtools.Specification
-=============================================
+specificationtools.Specification
+================================
 
 .. inheritance-diagram:: experimental.specificationtools.Specification.Specification.Specification
    :private-bases:
@@ -31,7 +31,7 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.Specification.Specification.Specification.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.Specification.Specification.Specification.__eq__
 
@@ -47,7 +47,7 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.Specification.Specification.Specification.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.Specification.Specification.Specification.__le__
 
@@ -67,8 +67,8 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.Specification.Specification.Specification.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.Specification.Specification.Specification.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

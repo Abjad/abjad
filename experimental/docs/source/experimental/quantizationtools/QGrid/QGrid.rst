@@ -1,5 +1,5 @@
-experimental.quantizationtools.QGrid
-====================================
+quantizationtools.QGrid
+=======================
 
 .. inheritance-diagram:: experimental.quantizationtools.QGrid.QGrid.QGrid
    :private-bases:
@@ -31,7 +31,7 @@ Special Methods
 
 .. automethod:: experimental.quantizationtools.QGrid.QGrid.QGrid.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.quantizationtools.QGrid.QGrid.QGrid.__eq__
 
@@ -47,7 +47,7 @@ Special Methods
 
 .. automethod:: experimental.quantizationtools.QGrid.QGrid.QGrid.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.quantizationtools.QGrid.QGrid.QGrid.__iter__
 
@@ -69,10 +69,10 @@ Special Methods
 
 .. automethod:: experimental.quantizationtools.QGrid.QGrid.QGrid.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.quantizationtools.QGrid.QGrid.QGrid.__setitem__
 
 .. automethod:: experimental.quantizationtools.QGrid.QGrid.QGrid.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

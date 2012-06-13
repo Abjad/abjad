@@ -1,5 +1,5 @@
-experimental.abjadbooktools.OutputFormat
-========================================
+abjadbooktools.OutputFormat
+===========================
 
 .. inheritance-diagram:: experimental.abjadbooktools.OutputFormat.OutputFormat.OutputFormat
    :private-bases:
@@ -26,7 +26,7 @@ Special Methods
 
 .. automethod:: experimental.abjadbooktools.OutputFormat.OutputFormat.OutputFormat.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.abjadbooktools.OutputFormat.OutputFormat.OutputFormat.__eq__
 
@@ -42,7 +42,7 @@ Special Methods
 
 .. automethod:: experimental.abjadbooktools.OutputFormat.OutputFormat.OutputFormat.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.abjadbooktools.OutputFormat.OutputFormat.OutputFormat.__le__
 
@@ -62,8 +62,8 @@ Special Methods
 
 .. automethod:: experimental.abjadbooktools.OutputFormat.OutputFormat.OutputFormat.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.abjadbooktools.OutputFormat.OutputFormat.OutputFormat.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

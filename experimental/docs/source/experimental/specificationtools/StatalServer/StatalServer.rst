@@ -1,5 +1,5 @@
-experimental.specificationtools.StatalServer
-============================================
+specificationtools.StatalServer
+===============================
 
 .. inheritance-diagram:: experimental.specificationtools.StatalServer.StatalServer.StatalServer
    :private-bases:
@@ -18,7 +18,7 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.StatalServer.StatalServer.StatalServer.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.StatalServer.StatalServer.StatalServer.__eq__
 
@@ -34,7 +34,7 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.StatalServer.StatalServer.StatalServer.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.StatalServer.StatalServer.StatalServer.__le__
 
@@ -54,8 +54,8 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.StatalServer.StatalServer.StatalServer.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.StatalServer.StatalServer.StatalServer.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

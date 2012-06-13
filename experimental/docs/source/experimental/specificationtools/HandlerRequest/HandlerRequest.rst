@@ -1,5 +1,5 @@
-experimental.specificationtools.HandlerRequest
-==============================================
+specificationtools.HandlerRequest
+=================================
 
 .. inheritance-diagram:: experimental.specificationtools.HandlerRequest.HandlerRequest.HandlerRequest
    :private-bases:
@@ -11,7 +11,7 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.HandlerRequest.HandlerRequest.HandlerRequest.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.HandlerRequest.HandlerRequest.HandlerRequest.__eq__
 
@@ -27,7 +27,7 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.HandlerRequest.HandlerRequest.HandlerRequest.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.HandlerRequest.HandlerRequest.HandlerRequest.__le__
 
@@ -47,8 +47,8 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.HandlerRequest.HandlerRequest.HandlerRequest.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.HandlerRequest.HandlerRequest.HandlerRequest.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

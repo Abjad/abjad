@@ -1,5 +1,5 @@
-experimental.abjadbooktools.AbjadBookProcessor
-==============================================
+abjadbooktools.AbjadBookProcessor
+=================================
 
 .. inheritance-diagram:: experimental.abjadbooktools.AbjadBookProcessor.AbjadBookProcessor.AbjadBookProcessor
    :private-bases:
@@ -26,7 +26,7 @@ Special Methods
 
 .. automethod:: experimental.abjadbooktools.AbjadBookProcessor.AbjadBookProcessor.AbjadBookProcessor.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.abjadbooktools.AbjadBookProcessor.AbjadBookProcessor.AbjadBookProcessor.__eq__
 
@@ -42,7 +42,7 @@ Special Methods
 
 .. automethod:: experimental.abjadbooktools.AbjadBookProcessor.AbjadBookProcessor.AbjadBookProcessor.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.abjadbooktools.AbjadBookProcessor.AbjadBookProcessor.AbjadBookProcessor.__le__
 
@@ -62,8 +62,8 @@ Special Methods
 
 .. automethod:: experimental.abjadbooktools.AbjadBookProcessor.AbjadBookProcessor.AbjadBookProcessor.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.abjadbooktools.AbjadBookProcessor.AbjadBookProcessor.AbjadBookProcessor.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

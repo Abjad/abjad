@@ -1,5 +1,5 @@
-experimental.handlertools.articulations.PatternedArticulationsHandler
-=====================================================================
+handlertools.articulations.PatternedArticulationsHandler
+========================================================
 
 .. inheritance-diagram:: experimental.handlertools.articulations.PatternedArticulationsHandler.PatternedArticulationsHandler.PatternedArticulationsHandler
    :private-bases:
@@ -23,11 +23,11 @@ Special Methods
 
 .. automethod:: experimental.handlertools.articulations.PatternedArticulationsHandler.PatternedArticulationsHandler.PatternedArticulationsHandler.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.handlertools.articulations.PatternedArticulationsHandler.PatternedArticulationsHandler.PatternedArticulationsHandler.__eq__
 
-    Inherited from `experimental.handlertools.Handler.Handler.Handler`
+    Inherited from :py:class:`handlertools.Handler <experimental.handlertools.Handler.Handler.Handler>`
 
 .. automethod:: experimental.handlertools.articulations.PatternedArticulationsHandler.PatternedArticulationsHandler.PatternedArticulationsHandler.__ge__
 
@@ -39,7 +39,7 @@ Special Methods
 
 .. automethod:: experimental.handlertools.articulations.PatternedArticulationsHandler.PatternedArticulationsHandler.PatternedArticulationsHandler.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.handlertools.articulations.PatternedArticulationsHandler.PatternedArticulationsHandler.PatternedArticulationsHandler.__le__
 
@@ -59,8 +59,8 @@ Special Methods
 
 .. automethod:: experimental.handlertools.articulations.PatternedArticulationsHandler.PatternedArticulationsHandler.PatternedArticulationsHandler.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.handlertools.articulations.PatternedArticulationsHandler.PatternedArticulationsHandler.PatternedArticulationsHandler.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

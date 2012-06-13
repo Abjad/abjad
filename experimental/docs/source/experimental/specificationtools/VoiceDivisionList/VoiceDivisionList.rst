@@ -1,5 +1,5 @@
-experimental.specificationtools.VoiceDivisionList
-=================================================
+specificationtools.VoiceDivisionList
+====================================
 
 .. inheritance-diagram:: experimental.specificationtools.VoiceDivisionList.VoiceDivisionList.VoiceDivisionList
    :private-bases:
@@ -11,62 +11,62 @@ Read-only Properties
 
 .. autoattribute:: experimental.specificationtools.VoiceDivisionList.VoiceDivisionList.VoiceDivisionList.divisions
 
-    Inherited from `experimental.specificationtools.DivisionList.DivisionList.DivisionList`
+    Inherited from :py:class:`specificationtools.DivisionList <experimental.specificationtools.DivisionList.DivisionList.DivisionList>`
 
 .. autoattribute:: experimental.specificationtools.VoiceDivisionList.VoiceDivisionList.VoiceDivisionList.duration
 
-    Inherited from `experimental.specificationtools.DivisionList.DivisionList.DivisionList`
+    Inherited from :py:class:`specificationtools.DivisionList <experimental.specificationtools.DivisionList.DivisionList.DivisionList>`
 
 .. autoattribute:: experimental.specificationtools.VoiceDivisionList.VoiceDivisionList.VoiceDivisionList.is_closed
 
-    Inherited from `experimental.specificationtools.DivisionList.DivisionList.DivisionList`
+    Inherited from :py:class:`specificationtools.DivisionList <experimental.specificationtools.DivisionList.DivisionList.DivisionList>`
 
 .. autoattribute:: experimental.specificationtools.VoiceDivisionList.VoiceDivisionList.VoiceDivisionList.is_half_closed
 
-    Inherited from `experimental.specificationtools.DivisionList.DivisionList.DivisionList`
+    Inherited from :py:class:`specificationtools.DivisionList <experimental.specificationtools.DivisionList.DivisionList.DivisionList>`
 
 .. autoattribute:: experimental.specificationtools.VoiceDivisionList.VoiceDivisionList.VoiceDivisionList.is_half_open
 
-    Inherited from `experimental.specificationtools.DivisionList.DivisionList.DivisionList`
+    Inherited from :py:class:`specificationtools.DivisionList <experimental.specificationtools.DivisionList.DivisionList.DivisionList>`
 
 .. autoattribute:: experimental.specificationtools.VoiceDivisionList.VoiceDivisionList.VoiceDivisionList.is_left_closed
 
-    Inherited from `experimental.specificationtools.DivisionList.DivisionList.DivisionList`
+    Inherited from :py:class:`specificationtools.DivisionList <experimental.specificationtools.DivisionList.DivisionList.DivisionList>`
 
 .. autoattribute:: experimental.specificationtools.VoiceDivisionList.VoiceDivisionList.VoiceDivisionList.is_left_open
 
-    Inherited from `experimental.specificationtools.DivisionList.DivisionList.DivisionList`
+    Inherited from :py:class:`specificationtools.DivisionList <experimental.specificationtools.DivisionList.DivisionList.DivisionList>`
 
 .. autoattribute:: experimental.specificationtools.VoiceDivisionList.VoiceDivisionList.VoiceDivisionList.is_open
 
-    Inherited from `experimental.specificationtools.DivisionList.DivisionList.DivisionList`
+    Inherited from :py:class:`specificationtools.DivisionList <experimental.specificationtools.DivisionList.DivisionList.DivisionList>`
 
 .. autoattribute:: experimental.specificationtools.VoiceDivisionList.VoiceDivisionList.VoiceDivisionList.is_right_closed
 
-    Inherited from `experimental.specificationtools.DivisionList.DivisionList.DivisionList`
+    Inherited from :py:class:`specificationtools.DivisionList <experimental.specificationtools.DivisionList.DivisionList.DivisionList>`
 
 .. autoattribute:: experimental.specificationtools.VoiceDivisionList.VoiceDivisionList.VoiceDivisionList.is_right_open
 
-    Inherited from `experimental.specificationtools.DivisionList.DivisionList.DivisionList`
+    Inherited from :py:class:`specificationtools.DivisionList <experimental.specificationtools.DivisionList.DivisionList.DivisionList>`
 
 .. autoattribute:: experimental.specificationtools.VoiceDivisionList.VoiceDivisionList.VoiceDivisionList.is_well_formed
 
-    Inherited from `experimental.specificationtools.DivisionList.DivisionList.DivisionList`
+    Inherited from :py:class:`specificationtools.DivisionList <experimental.specificationtools.DivisionList.DivisionList.DivisionList>`
 
 .. autoattribute:: experimental.specificationtools.VoiceDivisionList.VoiceDivisionList.VoiceDivisionList.pairs
 
-    Inherited from `experimental.specificationtools.DivisionList.DivisionList.DivisionList`
+    Inherited from :py:class:`specificationtools.DivisionList <experimental.specificationtools.DivisionList.DivisionList.DivisionList>`
 
 Special Methods
 ---------------
 
 .. automethod:: experimental.specificationtools.VoiceDivisionList.VoiceDivisionList.VoiceDivisionList.__add__
 
-    Inherited from `experimental.specificationtools.DivisionList.DivisionList.DivisionList`
+    Inherited from :py:class:`specificationtools.DivisionList <experimental.specificationtools.DivisionList.DivisionList.DivisionList>`
 
 .. automethod:: experimental.specificationtools.VoiceDivisionList.VoiceDivisionList.VoiceDivisionList.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.VoiceDivisionList.VoiceDivisionList.VoiceDivisionList.__eq__
 
@@ -78,7 +78,7 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.VoiceDivisionList.VoiceDivisionList.VoiceDivisionList.__getitem__
 
-    Inherited from `experimental.specificationtools.DivisionList.DivisionList.DivisionList`
+    Inherited from :py:class:`specificationtools.DivisionList <experimental.specificationtools.DivisionList.DivisionList.DivisionList>`
 
 .. automethod:: experimental.specificationtools.VoiceDivisionList.VoiceDivisionList.VoiceDivisionList.__gt__
 
@@ -86,7 +86,7 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.VoiceDivisionList.VoiceDivisionList.VoiceDivisionList.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.VoiceDivisionList.VoiceDivisionList.VoiceDivisionList.__le__
 
@@ -94,7 +94,7 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.VoiceDivisionList.VoiceDivisionList.VoiceDivisionList.__len__
 
-    Inherited from `experimental.specificationtools.DivisionList.DivisionList.DivisionList`
+    Inherited from :py:class:`specificationtools.DivisionList <experimental.specificationtools.DivisionList.DivisionList.DivisionList>`
 
 .. automethod:: experimental.specificationtools.VoiceDivisionList.VoiceDivisionList.VoiceDivisionList.__lt__
 
@@ -106,12 +106,12 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.VoiceDivisionList.VoiceDivisionList.VoiceDivisionList.__repr__
 
-    Inherited from `experimental.specificationtools.DivisionList.DivisionList.DivisionList`
+    Inherited from :py:class:`specificationtools.DivisionList <experimental.specificationtools.DivisionList.DivisionList.DivisionList>`
 
 .. automethod:: experimental.specificationtools.VoiceDivisionList.VoiceDivisionList.VoiceDivisionList.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.VoiceDivisionList.VoiceDivisionList.VoiceDivisionList.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

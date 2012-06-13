@@ -1,5 +1,5 @@
-experimental.constrainttools.AbsoluteIndexConstraint
-====================================================
+constrainttools.AbsoluteIndexConstraint
+=======================================
 
 .. inheritance-diagram:: experimental.constrainttools.AbsoluteIndexConstraint.AbsoluteIndexConstraint.AbsoluteIndexConstraint
    :private-bases:
@@ -11,19 +11,19 @@ Read-only Properties
 
 .. autoattribute:: experimental.constrainttools.AbsoluteIndexConstraint.AbsoluteIndexConstraint.AbsoluteIndexConstraint.indices
 
-    Inherited from `experimental.constrainttools._AbsoluteConstraint._AbsoluteConstraint._AbsoluteConstraint`
+    Inherited from :py:class:`constrainttools._AbsoluteConstraint <experimental.constrainttools._AbsoluteConstraint._AbsoluteConstraint._AbsoluteConstraint>`
 
 .. autoattribute:: experimental.constrainttools.AbsoluteIndexConstraint.AbsoluteIndexConstraint.AbsoluteIndexConstraint.kind
 
-    Inherited from `experimental.constrainttools._Constraint._Constraint._Constraint`
+    Inherited from :py:class:`constrainttools._Constraint <experimental.constrainttools._Constraint._Constraint._Constraint>`
 
 .. autoattribute:: experimental.constrainttools.AbsoluteIndexConstraint.AbsoluteIndexConstraint.AbsoluteIndexConstraint.max_index
 
-    Inherited from `experimental.constrainttools._AbsoluteConstraint._AbsoluteConstraint._AbsoluteConstraint`
+    Inherited from :py:class:`constrainttools._AbsoluteConstraint <experimental.constrainttools._AbsoluteConstraint._AbsoluteConstraint._AbsoluteConstraint>`
 
 .. autoattribute:: experimental.constrainttools.AbsoluteIndexConstraint.AbsoluteIndexConstraint.AbsoluteIndexConstraint.predicate
 
-    Inherited from `experimental.constrainttools._Constraint._Constraint._Constraint`
+    Inherited from :py:class:`constrainttools._Constraint <experimental.constrainttools._Constraint._Constraint._Constraint>`
 
 Special Methods
 ---------------
@@ -32,7 +32,7 @@ Special Methods
 
 .. automethod:: experimental.constrainttools.AbsoluteIndexConstraint.AbsoluteIndexConstraint.AbsoluteIndexConstraint.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.constrainttools.AbsoluteIndexConstraint.AbsoluteIndexConstraint.AbsoluteIndexConstraint.__eq__
 
@@ -48,7 +48,7 @@ Special Methods
 
 .. automethod:: experimental.constrainttools.AbsoluteIndexConstraint.AbsoluteIndexConstraint.AbsoluteIndexConstraint.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.constrainttools.AbsoluteIndexConstraint.AbsoluteIndexConstraint.AbsoluteIndexConstraint.__le__
 
@@ -64,12 +64,12 @@ Special Methods
 
 .. automethod:: experimental.constrainttools.AbsoluteIndexConstraint.AbsoluteIndexConstraint.AbsoluteIndexConstraint.__repr__
 
-    Inherited from `experimental.constrainttools._Constraint._Constraint._Constraint`
+    Inherited from :py:class:`constrainttools._Constraint <experimental.constrainttools._Constraint._Constraint._Constraint>`
 
 .. automethod:: experimental.constrainttools.AbsoluteIndexConstraint.AbsoluteIndexConstraint.AbsoluteIndexConstraint.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.constrainttools.AbsoluteIndexConstraint.AbsoluteIndexConstraint.AbsoluteIndexConstraint.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

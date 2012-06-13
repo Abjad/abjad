@@ -1,5 +1,5 @@
-experimental.specificationtools.ContextProxy
-============================================
+specificationtools.ContextProxy
+===============================
 
 .. inheritance-diagram:: experimental.specificationtools.ContextProxy.ContextProxy.ContextProxy
    :private-bases:
@@ -11,19 +11,19 @@ Methods
 
 .. automethod:: experimental.specificationtools.ContextProxy.ContextProxy.ContextProxy.clear
 
-    Inherited from `collections.OrderedDict`
+    Inherited from :py:class:`collections.OrderedDict`
 
 .. automethod:: experimental.specificationtools.ContextProxy.ContextProxy.ContextProxy.copy
 
-    Inherited from `collections.OrderedDict`
+    Inherited from :py:class:`collections.OrderedDict`
 
 .. automethod:: experimental.specificationtools.ContextProxy.ContextProxy.ContextProxy.fromkeys
 
-    Inherited from `collections.OrderedDict`
+    Inherited from :py:class:`collections.OrderedDict`
 
 .. automethod:: experimental.specificationtools.ContextProxy.ContextProxy.ContextProxy.get
 
-    Inherited from `__builtin__.dict`
+    Inherited from :py:class:`__builtin__.dict`
 
 .. automethod:: experimental.specificationtools.ContextProxy.ContextProxy.ContextProxy.get_setting
 
@@ -31,78 +31,78 @@ Methods
 
 .. automethod:: experimental.specificationtools.ContextProxy.ContextProxy.ContextProxy.has_key
 
-    Inherited from `__builtin__.dict`
+    Inherited from :py:class:`__builtin__.dict`
 
 .. automethod:: experimental.specificationtools.ContextProxy.ContextProxy.ContextProxy.items
 
-    Inherited from `collections.OrderedDict`
+    Inherited from :py:class:`collections.OrderedDict`
 
 .. automethod:: experimental.specificationtools.ContextProxy.ContextProxy.ContextProxy.iteritems
 
-    Inherited from `collections.OrderedDict`
+    Inherited from :py:class:`collections.OrderedDict`
 
 .. automethod:: experimental.specificationtools.ContextProxy.ContextProxy.ContextProxy.iterkeys
 
-    Inherited from `collections.OrderedDict`
+    Inherited from :py:class:`collections.OrderedDict`
 
 .. automethod:: experimental.specificationtools.ContextProxy.ContextProxy.ContextProxy.itervalues
 
-    Inherited from `collections.OrderedDict`
+    Inherited from :py:class:`collections.OrderedDict`
 
 .. automethod:: experimental.specificationtools.ContextProxy.ContextProxy.ContextProxy.keys
 
-    Inherited from `collections.OrderedDict`
+    Inherited from :py:class:`collections.OrderedDict`
 
 .. automethod:: experimental.specificationtools.ContextProxy.ContextProxy.ContextProxy.pop
 
-    Inherited from `collections.OrderedDict`
+    Inherited from :py:class:`collections.OrderedDict`
 
 .. automethod:: experimental.specificationtools.ContextProxy.ContextProxy.ContextProxy.popitem
 
-    Inherited from `collections.OrderedDict`
+    Inherited from :py:class:`collections.OrderedDict`
 
 .. automethod:: experimental.specificationtools.ContextProxy.ContextProxy.ContextProxy.setdefault
 
-    Inherited from `collections.OrderedDict`
+    Inherited from :py:class:`collections.OrderedDict`
 
 .. automethod:: experimental.specificationtools.ContextProxy.ContextProxy.ContextProxy.update
 
-    Inherited from `collections.OrderedDict`
+    Inherited from :py:class:`collections.OrderedDict`
 
 .. automethod:: experimental.specificationtools.ContextProxy.ContextProxy.ContextProxy.values
 
-    Inherited from `collections.OrderedDict`
+    Inherited from :py:class:`collections.OrderedDict`
 
 .. automethod:: experimental.specificationtools.ContextProxy.ContextProxy.ContextProxy.viewitems
 
-    Inherited from `collections.OrderedDict`
+    Inherited from :py:class:`collections.OrderedDict`
 
 .. automethod:: experimental.specificationtools.ContextProxy.ContextProxy.ContextProxy.viewkeys
 
-    Inherited from `collections.OrderedDict`
+    Inherited from :py:class:`collections.OrderedDict`
 
 .. automethod:: experimental.specificationtools.ContextProxy.ContextProxy.ContextProxy.viewvalues
 
-    Inherited from `collections.OrderedDict`
+    Inherited from :py:class:`collections.OrderedDict`
 
 Special Methods
 ---------------
 
 .. automethod:: experimental.specificationtools.ContextProxy.ContextProxy.ContextProxy.__cmp__
 
-    Inherited from `__builtin__.dict`
+    Inherited from :py:class:`__builtin__.dict`
 
 .. automethod:: experimental.specificationtools.ContextProxy.ContextProxy.ContextProxy.__contains__
 
-    Inherited from `__builtin__.dict`
+    Inherited from :py:class:`__builtin__.dict`
 
 .. automethod:: experimental.specificationtools.ContextProxy.ContextProxy.ContextProxy.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.ContextProxy.ContextProxy.ContextProxy.__delitem__
 
-    Inherited from `collections.OrderedDict`
+    Inherited from :py:class:`collections.OrderedDict`
 
 .. automethod:: experimental.specificationtools.ContextProxy.ContextProxy.ContextProxy.__eq__
 
@@ -114,7 +114,7 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.ContextProxy.ContextProxy.ContextProxy.__getitem__
 
-    Inherited from `__builtin__.dict`
+    Inherited from :py:class:`__builtin__.dict`
 
 .. automethod:: experimental.specificationtools.ContextProxy.ContextProxy.ContextProxy.__gt__
 
@@ -122,7 +122,7 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.ContextProxy.ContextProxy.ContextProxy.__iter__
 
-    Inherited from `collections.OrderedDict`
+    Inherited from :py:class:`collections.OrderedDict`
 
 .. automethod:: experimental.specificationtools.ContextProxy.ContextProxy.ContextProxy.__le__
 
@@ -130,7 +130,7 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.ContextProxy.ContextProxy.ContextProxy.__len__
 
-    Inherited from `__builtin__.dict`
+    Inherited from :py:class:`__builtin__.dict`
 
 .. automethod:: experimental.specificationtools.ContextProxy.ContextProxy.ContextProxy.__lt__
 
@@ -144,16 +144,16 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.ContextProxy.ContextProxy.ContextProxy.__reversed__
 
-    Inherited from `collections.OrderedDict`
+    Inherited from :py:class:`collections.OrderedDict`
 
 .. automethod:: experimental.specificationtools.ContextProxy.ContextProxy.ContextProxy.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.ContextProxy.ContextProxy.ContextProxy.__setitem__
 
-    Inherited from `collections.OrderedDict`
+    Inherited from :py:class:`collections.OrderedDict`
 
 .. automethod:: experimental.specificationtools.ContextProxy.ContextProxy.ContextProxy.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

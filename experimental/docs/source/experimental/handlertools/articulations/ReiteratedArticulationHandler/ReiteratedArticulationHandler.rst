@@ -1,5 +1,5 @@
-experimental.handlertools.articulations.ReiteratedArticulationHandler
-=====================================================================
+handlertools.articulations.ReiteratedArticulationHandler
+========================================================
 
 .. inheritance-diagram:: experimental.handlertools.articulations.ReiteratedArticulationHandler.ReiteratedArticulationHandler.ReiteratedArticulationHandler
    :private-bases:
@@ -23,11 +23,11 @@ Special Methods
 
 .. automethod:: experimental.handlertools.articulations.ReiteratedArticulationHandler.ReiteratedArticulationHandler.ReiteratedArticulationHandler.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.handlertools.articulations.ReiteratedArticulationHandler.ReiteratedArticulationHandler.ReiteratedArticulationHandler.__eq__
 
-    Inherited from `experimental.handlertools.Handler.Handler.Handler`
+    Inherited from :py:class:`handlertools.Handler <experimental.handlertools.Handler.Handler.Handler>`
 
 .. automethod:: experimental.handlertools.articulations.ReiteratedArticulationHandler.ReiteratedArticulationHandler.ReiteratedArticulationHandler.__ge__
 
@@ -39,7 +39,7 @@ Special Methods
 
 .. automethod:: experimental.handlertools.articulations.ReiteratedArticulationHandler.ReiteratedArticulationHandler.ReiteratedArticulationHandler.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.handlertools.articulations.ReiteratedArticulationHandler.ReiteratedArticulationHandler.ReiteratedArticulationHandler.__le__
 
@@ -59,8 +59,8 @@ Special Methods
 
 .. automethod:: experimental.handlertools.articulations.ReiteratedArticulationHandler.ReiteratedArticulationHandler.ReiteratedArticulationHandler.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.handlertools.articulations.ReiteratedArticulationHandler.ReiteratedArticulationHandler.ReiteratedArticulationHandler.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

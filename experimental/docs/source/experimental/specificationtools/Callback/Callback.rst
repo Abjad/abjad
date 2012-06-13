@@ -1,5 +1,5 @@
-experimental.specificationtools.Callback
-========================================
+specificationtools.Callback
+===========================
 
 .. inheritance-diagram:: experimental.specificationtools.Callback.Callback.Callback
    :private-bases:
@@ -13,7 +13,7 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.Callback.Callback.Callback.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.Callback.Callback.Callback.__eq__
 
@@ -29,7 +29,7 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.Callback.Callback.Callback.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.Callback.Callback.Callback.__le__
 
@@ -47,8 +47,8 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.Callback.Callback.Callback.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.Callback.Callback.Callback.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

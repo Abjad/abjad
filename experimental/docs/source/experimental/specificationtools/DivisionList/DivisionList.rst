@@ -1,5 +1,5 @@
-experimental.specificationtools.DivisionList
-============================================
+specificationtools.DivisionList
+===============================
 
 .. inheritance-diagram:: experimental.specificationtools.DivisionList.DivisionList.DivisionList
    :private-bases:
@@ -40,7 +40,7 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.DivisionList.DivisionList.DivisionList.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.DivisionList.DivisionList.DivisionList.__eq__
 
@@ -58,7 +58,7 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.DivisionList.DivisionList.DivisionList.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.DivisionList.DivisionList.DivisionList.__le__
 
@@ -78,8 +78,8 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.DivisionList.DivisionList.DivisionList.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.DivisionList.DivisionList.DivisionList.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

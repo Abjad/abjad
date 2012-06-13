@@ -1,5 +1,5 @@
-experimental.handlertools.dynamics.ReiteratedDynamicHandler
-===========================================================
+handlertools.dynamics.ReiteratedDynamicHandler
+==============================================
 
 .. inheritance-diagram:: experimental.handlertools.dynamics.ReiteratedDynamicHandler.ReiteratedDynamicHandler.ReiteratedDynamicHandler
    :private-bases:
@@ -23,11 +23,11 @@ Special Methods
 
 .. automethod:: experimental.handlertools.dynamics.ReiteratedDynamicHandler.ReiteratedDynamicHandler.ReiteratedDynamicHandler.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.handlertools.dynamics.ReiteratedDynamicHandler.ReiteratedDynamicHandler.ReiteratedDynamicHandler.__eq__
 
-    Inherited from `experimental.handlertools.Handler.Handler.Handler`
+    Inherited from :py:class:`handlertools.Handler <experimental.handlertools.Handler.Handler.Handler>`
 
 .. automethod:: experimental.handlertools.dynamics.ReiteratedDynamicHandler.ReiteratedDynamicHandler.ReiteratedDynamicHandler.__ge__
 
@@ -39,7 +39,7 @@ Special Methods
 
 .. automethod:: experimental.handlertools.dynamics.ReiteratedDynamicHandler.ReiteratedDynamicHandler.ReiteratedDynamicHandler.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.handlertools.dynamics.ReiteratedDynamicHandler.ReiteratedDynamicHandler.ReiteratedDynamicHandler.__le__
 
@@ -59,8 +59,8 @@ Special Methods
 
 .. automethod:: experimental.handlertools.dynamics.ReiteratedDynamicHandler.ReiteratedDynamicHandler.ReiteratedDynamicHandler.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.handlertools.dynamics.ReiteratedDynamicHandler.ReiteratedDynamicHandler.ReiteratedDynamicHandler.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

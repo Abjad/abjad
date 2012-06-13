@@ -1,5 +1,5 @@
-experimental.specificationtools.ContextDictionary
-=================================================
+specificationtools.ContextDictionary
+====================================
 
 .. inheritance-diagram:: experimental.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary
    :private-bases:
@@ -22,98 +22,98 @@ Methods
 
 .. automethod:: experimental.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.clear
 
-    Inherited from `collections.OrderedDict`
+    Inherited from :py:class:`collections.OrderedDict`
 
 .. automethod:: experimental.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.copy
 
-    Inherited from `collections.OrderedDict`
+    Inherited from :py:class:`collections.OrderedDict`
 
 .. automethod:: experimental.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.fromkeys
 
-    Inherited from `collections.OrderedDict`
+    Inherited from :py:class:`collections.OrderedDict`
 
 .. automethod:: experimental.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.get
 
-    Inherited from `__builtin__.dict`
+    Inherited from :py:class:`__builtin__.dict`
 
 .. automethod:: experimental.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.get_settings
 
 .. automethod:: experimental.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.has_key
 
-    Inherited from `__builtin__.dict`
+    Inherited from :py:class:`__builtin__.dict`
 
 .. automethod:: experimental.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.items
 
-    Inherited from `collections.OrderedDict`
+    Inherited from :py:class:`collections.OrderedDict`
 
 .. automethod:: experimental.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.iteritems
 
-    Inherited from `collections.OrderedDict`
+    Inherited from :py:class:`collections.OrderedDict`
 
 .. automethod:: experimental.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.iterkeys
 
-    Inherited from `collections.OrderedDict`
+    Inherited from :py:class:`collections.OrderedDict`
 
 .. automethod:: experimental.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.itervalues
 
-    Inherited from `collections.OrderedDict`
+    Inherited from :py:class:`collections.OrderedDict`
 
 .. automethod:: experimental.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.keys
 
-    Inherited from `collections.OrderedDict`
+    Inherited from :py:class:`collections.OrderedDict`
 
 .. automethod:: experimental.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.pop
 
-    Inherited from `collections.OrderedDict`
+    Inherited from :py:class:`collections.OrderedDict`
 
 .. automethod:: experimental.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.popitem
 
-    Inherited from `collections.OrderedDict`
+    Inherited from :py:class:`collections.OrderedDict`
 
 .. automethod:: experimental.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.setdefault
 
-    Inherited from `collections.OrderedDict`
+    Inherited from :py:class:`collections.OrderedDict`
 
 .. automethod:: experimental.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.show
 
 .. automethod:: experimental.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.update
 
-    Inherited from `collections.OrderedDict`
+    Inherited from :py:class:`collections.OrderedDict`
 
 .. automethod:: experimental.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.values
 
-    Inherited from `collections.OrderedDict`
+    Inherited from :py:class:`collections.OrderedDict`
 
 .. automethod:: experimental.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.viewitems
 
-    Inherited from `collections.OrderedDict`
+    Inherited from :py:class:`collections.OrderedDict`
 
 .. automethod:: experimental.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.viewkeys
 
-    Inherited from `collections.OrderedDict`
+    Inherited from :py:class:`collections.OrderedDict`
 
 .. automethod:: experimental.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.viewvalues
 
-    Inherited from `collections.OrderedDict`
+    Inherited from :py:class:`collections.OrderedDict`
 
 Special Methods
 ---------------
 
 .. automethod:: experimental.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.__cmp__
 
-    Inherited from `__builtin__.dict`
+    Inherited from :py:class:`__builtin__.dict`
 
 .. automethod:: experimental.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.__contains__
 
-    Inherited from `__builtin__.dict`
+    Inherited from :py:class:`__builtin__.dict`
 
 .. automethod:: experimental.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.__delitem__
 
-    Inherited from `collections.OrderedDict`
+    Inherited from :py:class:`collections.OrderedDict`
 
 .. automethod:: experimental.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.__eq__
 
@@ -131,7 +131,7 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.__iter__
 
-    Inherited from `collections.OrderedDict`
+    Inherited from :py:class:`collections.OrderedDict`
 
 .. automethod:: experimental.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.__le__
 
@@ -139,7 +139,7 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.__len__
 
-    Inherited from `__builtin__.dict`
+    Inherited from :py:class:`__builtin__.dict`
 
 .. automethod:: experimental.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.__lt__
 
@@ -153,16 +153,16 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.__reversed__
 
-    Inherited from `collections.OrderedDict`
+    Inherited from :py:class:`collections.OrderedDict`
 
 .. automethod:: experimental.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.__setitem__
 
-    Inherited from `collections.OrderedDict`
+    Inherited from :py:class:`collections.OrderedDict`
 
 .. automethod:: experimental.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

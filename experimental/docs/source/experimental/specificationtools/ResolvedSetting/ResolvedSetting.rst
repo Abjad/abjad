@@ -1,5 +1,5 @@
-experimental.specificationtools.ResolvedSetting
-===============================================
+specificationtools.ResolvedSetting
+==================================
 
 .. inheritance-diagram:: experimental.specificationtools.ResolvedSetting.ResolvedSetting.ResolvedSetting
    :private-bases:
@@ -11,18 +11,18 @@ Methods
 
 .. automethod:: experimental.specificationtools.ResolvedSetting.ResolvedSetting.ResolvedSetting.copy_to_segment
 
-    Inherited from `experimental.specificationtools.Setting.Setting.Setting`
+    Inherited from :py:class:`specificationtools.Setting <experimental.specificationtools.Setting.Setting.Setting>`
 
 Special Methods
 ---------------
 
 .. automethod:: experimental.specificationtools.ResolvedSetting.ResolvedSetting.ResolvedSetting.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.ResolvedSetting.ResolvedSetting.ResolvedSetting.__eq__
 
-    Inherited from `experimental.specificationtools.Setting.Setting.Setting`
+    Inherited from :py:class:`specificationtools.Setting <experimental.specificationtools.Setting.Setting.Setting>`
 
 .. automethod:: experimental.specificationtools.ResolvedSetting.ResolvedSetting.ResolvedSetting.__ge__
 
@@ -34,7 +34,7 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.ResolvedSetting.ResolvedSetting.ResolvedSetting.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.ResolvedSetting.ResolvedSetting.ResolvedSetting.__le__
 
@@ -54,8 +54,8 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.ResolvedSetting.ResolvedSetting.ResolvedSetting.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.ResolvedSetting.ResolvedSetting.ResolvedSetting.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

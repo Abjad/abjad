@@ -1,5 +1,5 @@
-experimental.quantizationtools.QEvent
-=====================================
+quantizationtools.QEvent
+========================
 
 .. inheritance-diagram:: experimental.quantizationtools.QEvent.QEvent.QEvent
    :private-bases:
@@ -18,7 +18,7 @@ Special Methods
 
 .. automethod:: experimental.quantizationtools.QEvent.QEvent.QEvent.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.quantizationtools.QEvent.QEvent.QEvent.__eq__
 
@@ -32,7 +32,7 @@ Special Methods
 
 .. automethod:: experimental.quantizationtools.QEvent.QEvent.QEvent.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.quantizationtools.QEvent.QEvent.QEvent.__le__
 
@@ -50,8 +50,8 @@ Special Methods
 
 .. automethod:: experimental.quantizationtools.QEvent.QEvent.QEvent.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.quantizationtools.QEvent.QEvent.QEvent.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

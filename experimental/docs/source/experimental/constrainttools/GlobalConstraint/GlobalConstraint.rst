@@ -1,5 +1,5 @@
-experimental.constrainttools.GlobalConstraint
-=============================================
+constrainttools.GlobalConstraint
+================================
 
 .. inheritance-diagram:: experimental.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint
    :private-bases:
@@ -11,11 +11,11 @@ Read-only Properties
 
 .. autoattribute:: experimental.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint.kind
 
-    Inherited from `experimental.constrainttools._Constraint._Constraint._Constraint`
+    Inherited from :py:class:`constrainttools._Constraint <experimental.constrainttools._Constraint._Constraint._Constraint>`
 
 .. autoattribute:: experimental.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint.predicate
 
-    Inherited from `experimental.constrainttools._Constraint._Constraint._Constraint`
+    Inherited from :py:class:`constrainttools._Constraint <experimental.constrainttools._Constraint._Constraint._Constraint>`
 
 Special Methods
 ---------------
@@ -24,7 +24,7 @@ Special Methods
 
 .. automethod:: experimental.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint.__eq__
 
@@ -40,7 +40,7 @@ Special Methods
 
 .. automethod:: experimental.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint.__le__
 
@@ -56,12 +56,12 @@ Special Methods
 
 .. automethod:: experimental.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint.__repr__
 
-    Inherited from `experimental.constrainttools._Constraint._Constraint._Constraint`
+    Inherited from :py:class:`constrainttools._Constraint <experimental.constrainttools._Constraint._Constraint._Constraint>`
 
 .. automethod:: experimental.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.constrainttools.GlobalConstraint.GlobalConstraint.GlobalConstraint.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

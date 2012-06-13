@@ -1,5 +1,5 @@
-experimental.constrainttools.VariableLengthStreamSolver
-=======================================================
+constrainttools.VariableLengthStreamSolver
+==========================================
 
 .. inheritance-diagram:: experimental.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver
    :private-bases:
@@ -11,23 +11,23 @@ Read-only Properties
 
 .. autoattribute:: experimental.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver.constraints
 
-    Inherited from `experimental.constrainttools._Solver._Solver._Solver`
+    Inherited from :py:class:`constrainttools._Solver <experimental.constrainttools._Solver._Solver._Solver>`
 
 .. autoattribute:: experimental.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver.domain
 
-    Inherited from `experimental.constrainttools._Solver._Solver._Solver`
+    Inherited from :py:class:`constrainttools._Solver <experimental.constrainttools._Solver._Solver._Solver>`
 
 .. autoattribute:: experimental.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver.iterator
 
-    Inherited from `experimental.constrainttools._Solver._Solver._Solver`
+    Inherited from :py:class:`constrainttools._Solver <experimental.constrainttools._Solver._Solver._Solver>`
 
 .. autoattribute:: experimental.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver.randomized
 
-    Inherited from `experimental.constrainttools._Solver._Solver._Solver`
+    Inherited from :py:class:`constrainttools._Solver <experimental.constrainttools._Solver._Solver._Solver>`
 
 .. autoattribute:: experimental.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver.solutions
 
-    Inherited from `experimental.constrainttools._Solver._Solver._Solver`
+    Inherited from :py:class:`constrainttools._Solver <experimental.constrainttools._Solver._Solver._Solver>`
 
 .. autoattribute:: experimental.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver.terminators
 
@@ -36,14 +36,14 @@ Methods
 
 .. automethod:: experimental.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver.get_le_n_solutions
 
-    Inherited from `experimental.constrainttools._Solver._Solver._Solver`
+    Inherited from :py:class:`constrainttools._Solver <experimental.constrainttools._Solver._Solver._Solver>`
 
 Special Methods
 ---------------
 
 .. automethod:: experimental.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver.__eq__
 
@@ -59,7 +59,7 @@ Special Methods
 
 .. automethod:: experimental.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver.__iter__
 
@@ -81,8 +81,8 @@ Special Methods
 
 .. automethod:: experimental.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

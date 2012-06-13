@@ -1,5 +1,5 @@
-experimental.specificationtools.ValueRetrievalRequest
-=====================================================
+specificationtools.ValueRetrievalRequest
+========================================
 
 .. inheritance-diagram:: experimental.specificationtools.ValueRetrievalRequest.ValueRetrievalRequest.ValueRetrievalRequest
    :private-bases:
@@ -11,11 +11,11 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.ValueRetrievalRequest.ValueRetrievalRequest.ValueRetrievalRequest.__call__
 
-    Inherited from `experimental.specificationtools.AttributeRetrievalRequest.AttributeRetrievalRequest.AttributeRetrievalRequest`
+    Inherited from :py:class:`specificationtools.AttributeRetrievalRequest <experimental.specificationtools.AttributeRetrievalRequest.AttributeRetrievalRequest.AttributeRetrievalRequest>`
 
 .. automethod:: experimental.specificationtools.ValueRetrievalRequest.ValueRetrievalRequest.ValueRetrievalRequest.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.ValueRetrievalRequest.ValueRetrievalRequest.ValueRetrievalRequest.__eq__
 
@@ -31,7 +31,7 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.ValueRetrievalRequest.ValueRetrievalRequest.ValueRetrievalRequest.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.ValueRetrievalRequest.ValueRetrievalRequest.ValueRetrievalRequest.__le__
 
@@ -51,8 +51,8 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.ValueRetrievalRequest.ValueRetrievalRequest.ValueRetrievalRequest.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.ValueRetrievalRequest.ValueRetrievalRequest.ValueRetrievalRequest.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

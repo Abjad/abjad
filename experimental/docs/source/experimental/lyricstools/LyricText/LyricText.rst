@@ -1,5 +1,5 @@
-experimental.lyricstools.LyricText
-==================================
+lyricstools.LyricText
+=====================
 
 .. inheritance-diagram:: experimental.lyricstools.LyricText.LyricText.LyricText
    :private-bases:
@@ -97,7 +97,7 @@ Special Methods
 
 .. automethod:: experimental.lyricstools.LyricText.LyricText.LyricText.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.lyricstools.LyricText.LyricText.LyricText.__eq__
 
@@ -113,7 +113,7 @@ Special Methods
 
 .. automethod:: experimental.lyricstools.LyricText.LyricText.LyricText.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.lyricstools.LyricText.LyricText.LyricText.__le__
 
@@ -145,7 +145,7 @@ Special Methods
 
 .. automethod:: experimental.lyricstools.LyricText.LyricText.LyricText.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.lyricstools.LyricText.LyricText.LyricText.__str__
 

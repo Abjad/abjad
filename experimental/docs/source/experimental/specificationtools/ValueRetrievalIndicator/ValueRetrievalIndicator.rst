@@ -1,5 +1,5 @@
-experimental.specificationtools.ValueRetrievalIndicator
-=======================================================
+specificationtools.ValueRetrievalIndicator
+==========================================
 
 .. inheritance-diagram:: experimental.specificationtools.ValueRetrievalIndicator.ValueRetrievalIndicator.ValueRetrievalIndicator
    :private-bases:
@@ -11,7 +11,7 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.ValueRetrievalIndicator.ValueRetrievalIndicator.ValueRetrievalIndicator.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.ValueRetrievalIndicator.ValueRetrievalIndicator.ValueRetrievalIndicator.__eq__
 
@@ -27,7 +27,7 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.ValueRetrievalIndicator.ValueRetrievalIndicator.ValueRetrievalIndicator.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.ValueRetrievalIndicator.ValueRetrievalIndicator.ValueRetrievalIndicator.__le__
 
@@ -47,8 +47,8 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.ValueRetrievalIndicator.ValueRetrievalIndicator.ValueRetrievalIndicator.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.ValueRetrievalIndicator.ValueRetrievalIndicator.ValueRetrievalIndicator.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

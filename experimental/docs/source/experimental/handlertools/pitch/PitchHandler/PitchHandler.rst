@@ -1,5 +1,5 @@
-experimental.handlertools.pitch.PitchHandler
-============================================
+handlertools.pitch.PitchHandler
+===============================
 
 .. inheritance-diagram:: experimental.handlertools.pitch.PitchHandler.PitchHandler.PitchHandler
    :private-bases:
@@ -11,11 +11,11 @@ Special Methods
 
 .. automethod:: experimental.handlertools.pitch.PitchHandler.PitchHandler.PitchHandler.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.handlertools.pitch.PitchHandler.PitchHandler.PitchHandler.__eq__
 
-    Inherited from `experimental.handlertools.Handler.Handler.Handler`
+    Inherited from :py:class:`handlertools.Handler <experimental.handlertools.Handler.Handler.Handler>`
 
 .. automethod:: experimental.handlertools.pitch.PitchHandler.PitchHandler.PitchHandler.__ge__
 
@@ -27,7 +27,7 @@ Special Methods
 
 .. automethod:: experimental.handlertools.pitch.PitchHandler.PitchHandler.PitchHandler.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.handlertools.pitch.PitchHandler.PitchHandler.PitchHandler.__le__
 
@@ -47,8 +47,8 @@ Special Methods
 
 .. automethod:: experimental.handlertools.pitch.PitchHandler.PitchHandler.PitchHandler.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.handlertools.pitch.PitchHandler.PitchHandler.PitchHandler.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

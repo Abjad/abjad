@@ -1,5 +1,5 @@
-experimental.specificationtools.RegionDivisionList
-==================================================
+specificationtools.RegionDivisionList
+=====================================
 
 .. inheritance-diagram:: experimental.specificationtools.RegionDivisionList.RegionDivisionList.RegionDivisionList
    :private-bases:
@@ -11,62 +11,62 @@ Read-only Properties
 
 .. autoattribute:: experimental.specificationtools.RegionDivisionList.RegionDivisionList.RegionDivisionList.divisions
 
-    Inherited from `experimental.specificationtools.DivisionList.DivisionList.DivisionList`
+    Inherited from :py:class:`specificationtools.DivisionList <experimental.specificationtools.DivisionList.DivisionList.DivisionList>`
 
 .. autoattribute:: experimental.specificationtools.RegionDivisionList.RegionDivisionList.RegionDivisionList.duration
 
-    Inherited from `experimental.specificationtools.DivisionList.DivisionList.DivisionList`
+    Inherited from :py:class:`specificationtools.DivisionList <experimental.specificationtools.DivisionList.DivisionList.DivisionList>`
 
 .. autoattribute:: experimental.specificationtools.RegionDivisionList.RegionDivisionList.RegionDivisionList.is_closed
 
-    Inherited from `experimental.specificationtools.DivisionList.DivisionList.DivisionList`
+    Inherited from :py:class:`specificationtools.DivisionList <experimental.specificationtools.DivisionList.DivisionList.DivisionList>`
 
 .. autoattribute:: experimental.specificationtools.RegionDivisionList.RegionDivisionList.RegionDivisionList.is_half_closed
 
-    Inherited from `experimental.specificationtools.DivisionList.DivisionList.DivisionList`
+    Inherited from :py:class:`specificationtools.DivisionList <experimental.specificationtools.DivisionList.DivisionList.DivisionList>`
 
 .. autoattribute:: experimental.specificationtools.RegionDivisionList.RegionDivisionList.RegionDivisionList.is_half_open
 
-    Inherited from `experimental.specificationtools.DivisionList.DivisionList.DivisionList`
+    Inherited from :py:class:`specificationtools.DivisionList <experimental.specificationtools.DivisionList.DivisionList.DivisionList>`
 
 .. autoattribute:: experimental.specificationtools.RegionDivisionList.RegionDivisionList.RegionDivisionList.is_left_closed
 
-    Inherited from `experimental.specificationtools.DivisionList.DivisionList.DivisionList`
+    Inherited from :py:class:`specificationtools.DivisionList <experimental.specificationtools.DivisionList.DivisionList.DivisionList>`
 
 .. autoattribute:: experimental.specificationtools.RegionDivisionList.RegionDivisionList.RegionDivisionList.is_left_open
 
-    Inherited from `experimental.specificationtools.DivisionList.DivisionList.DivisionList`
+    Inherited from :py:class:`specificationtools.DivisionList <experimental.specificationtools.DivisionList.DivisionList.DivisionList>`
 
 .. autoattribute:: experimental.specificationtools.RegionDivisionList.RegionDivisionList.RegionDivisionList.is_open
 
-    Inherited from `experimental.specificationtools.DivisionList.DivisionList.DivisionList`
+    Inherited from :py:class:`specificationtools.DivisionList <experimental.specificationtools.DivisionList.DivisionList.DivisionList>`
 
 .. autoattribute:: experimental.specificationtools.RegionDivisionList.RegionDivisionList.RegionDivisionList.is_right_closed
 
-    Inherited from `experimental.specificationtools.DivisionList.DivisionList.DivisionList`
+    Inherited from :py:class:`specificationtools.DivisionList <experimental.specificationtools.DivisionList.DivisionList.DivisionList>`
 
 .. autoattribute:: experimental.specificationtools.RegionDivisionList.RegionDivisionList.RegionDivisionList.is_right_open
 
-    Inherited from `experimental.specificationtools.DivisionList.DivisionList.DivisionList`
+    Inherited from :py:class:`specificationtools.DivisionList <experimental.specificationtools.DivisionList.DivisionList.DivisionList>`
 
 .. autoattribute:: experimental.specificationtools.RegionDivisionList.RegionDivisionList.RegionDivisionList.is_well_formed
 
-    Inherited from `experimental.specificationtools.DivisionList.DivisionList.DivisionList`
+    Inherited from :py:class:`specificationtools.DivisionList <experimental.specificationtools.DivisionList.DivisionList.DivisionList>`
 
 .. autoattribute:: experimental.specificationtools.RegionDivisionList.RegionDivisionList.RegionDivisionList.pairs
 
-    Inherited from `experimental.specificationtools.DivisionList.DivisionList.DivisionList`
+    Inherited from :py:class:`specificationtools.DivisionList <experimental.specificationtools.DivisionList.DivisionList.DivisionList>`
 
 Special Methods
 ---------------
 
 .. automethod:: experimental.specificationtools.RegionDivisionList.RegionDivisionList.RegionDivisionList.__add__
 
-    Inherited from `experimental.specificationtools.DivisionList.DivisionList.DivisionList`
+    Inherited from :py:class:`specificationtools.DivisionList <experimental.specificationtools.DivisionList.DivisionList.DivisionList>`
 
 .. automethod:: experimental.specificationtools.RegionDivisionList.RegionDivisionList.RegionDivisionList.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.RegionDivisionList.RegionDivisionList.RegionDivisionList.__eq__
 
@@ -78,7 +78,7 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.RegionDivisionList.RegionDivisionList.RegionDivisionList.__getitem__
 
-    Inherited from `experimental.specificationtools.DivisionList.DivisionList.DivisionList`
+    Inherited from :py:class:`specificationtools.DivisionList <experimental.specificationtools.DivisionList.DivisionList.DivisionList>`
 
 .. automethod:: experimental.specificationtools.RegionDivisionList.RegionDivisionList.RegionDivisionList.__gt__
 
@@ -86,7 +86,7 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.RegionDivisionList.RegionDivisionList.RegionDivisionList.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.RegionDivisionList.RegionDivisionList.RegionDivisionList.__le__
 
@@ -94,7 +94,7 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.RegionDivisionList.RegionDivisionList.RegionDivisionList.__len__
 
-    Inherited from `experimental.specificationtools.DivisionList.DivisionList.DivisionList`
+    Inherited from :py:class:`specificationtools.DivisionList <experimental.specificationtools.DivisionList.DivisionList.DivisionList>`
 
 .. automethod:: experimental.specificationtools.RegionDivisionList.RegionDivisionList.RegionDivisionList.__lt__
 
@@ -106,12 +106,12 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.RegionDivisionList.RegionDivisionList.RegionDivisionList.__repr__
 
-    Inherited from `experimental.specificationtools.DivisionList.DivisionList.DivisionList`
+    Inherited from :py:class:`specificationtools.DivisionList <experimental.specificationtools.DivisionList.DivisionList.DivisionList>`
 
 .. automethod:: experimental.specificationtools.RegionDivisionList.RegionDivisionList.RegionDivisionList.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.RegionDivisionList.RegionDivisionList.RegionDivisionList.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

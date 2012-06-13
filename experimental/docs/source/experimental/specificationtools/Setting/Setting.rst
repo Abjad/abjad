@@ -1,5 +1,5 @@
-experimental.specificationtools.Setting
-=======================================
+specificationtools.Setting
+==========================
 
 .. inheritance-diagram:: experimental.specificationtools.Setting.Setting.Setting
    :private-bases:
@@ -16,7 +16,7 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.Setting.Setting.Setting.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.Setting.Setting.Setting.__eq__
 
@@ -30,7 +30,7 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.Setting.Setting.Setting.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.Setting.Setting.Setting.__le__
 
@@ -50,8 +50,8 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.Setting.Setting.Setting.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.Setting.Setting.Setting.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

@@ -1,5 +1,5 @@
-experimental.lyricstools.LyricSpace
-===================================
+lyricstools.LyricSpace
+======================
 
 .. inheritance-diagram:: experimental.lyricstools.LyricSpace.LyricSpace.LyricSpace
    :private-bases:
@@ -97,7 +97,7 @@ Special Methods
 
 .. automethod:: experimental.lyricstools.LyricSpace.LyricSpace.LyricSpace.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.lyricstools.LyricSpace.LyricSpace.LyricSpace.__eq__
 
@@ -113,7 +113,7 @@ Special Methods
 
 .. automethod:: experimental.lyricstools.LyricSpace.LyricSpace.LyricSpace.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.lyricstools.LyricSpace.LyricSpace.LyricSpace.__le__
 
@@ -145,7 +145,7 @@ Special Methods
 
 .. automethod:: experimental.lyricstools.LyricSpace.LyricSpace.LyricSpace.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.lyricstools.LyricSpace.LyricSpace.LyricSpace.__str__
 

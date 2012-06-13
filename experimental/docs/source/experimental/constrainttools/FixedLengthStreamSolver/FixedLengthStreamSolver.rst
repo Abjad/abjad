@@ -1,5 +1,5 @@
-experimental.constrainttools.FixedLengthStreamSolver
-====================================================
+constrainttools.FixedLengthStreamSolver
+=======================================
 
 .. inheritance-diagram:: experimental.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver
    :private-bases:
@@ -11,37 +11,37 @@ Read-only Properties
 
 .. autoattribute:: experimental.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.constraints
 
-    Inherited from `experimental.constrainttools._Solver._Solver._Solver`
+    Inherited from :py:class:`constrainttools._Solver <experimental.constrainttools._Solver._Solver._Solver>`
 
 .. autoattribute:: experimental.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.domain
 
-    Inherited from `experimental.constrainttools._Solver._Solver._Solver`
+    Inherited from :py:class:`constrainttools._Solver <experimental.constrainttools._Solver._Solver._Solver>`
 
 .. autoattribute:: experimental.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.iterator
 
-    Inherited from `experimental.constrainttools._Solver._Solver._Solver`
+    Inherited from :py:class:`constrainttools._Solver <experimental.constrainttools._Solver._Solver._Solver>`
 
 .. autoattribute:: experimental.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.randomized
 
-    Inherited from `experimental.constrainttools._Solver._Solver._Solver`
+    Inherited from :py:class:`constrainttools._Solver <experimental.constrainttools._Solver._Solver._Solver>`
 
 .. autoattribute:: experimental.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.solutions
 
-    Inherited from `experimental.constrainttools._Solver._Solver._Solver`
+    Inherited from :py:class:`constrainttools._Solver <experimental.constrainttools._Solver._Solver._Solver>`
 
 Methods
 -------
 
 .. automethod:: experimental.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.get_le_n_solutions
 
-    Inherited from `experimental.constrainttools._Solver._Solver._Solver`
+    Inherited from :py:class:`constrainttools._Solver <experimental.constrainttools._Solver._Solver._Solver>`
 
 Special Methods
 ---------------
 
 .. automethod:: experimental.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.__eq__
 
@@ -57,7 +57,7 @@ Special Methods
 
 .. automethod:: experimental.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.__iter__
 
@@ -79,8 +79,8 @@ Special Methods
 
 .. automethod:: experimental.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

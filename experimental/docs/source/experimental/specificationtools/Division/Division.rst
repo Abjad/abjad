@@ -1,5 +1,5 @@
-experimental.specificationtools.Division
-========================================
+specificationtools.Division
+===========================
 
 .. inheritance-diagram:: experimental.specificationtools.Division.Division.Division
    :private-bases:
@@ -17,7 +17,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.specificationtools.Division.Division.Division.imag
 
-    Inherited from `numbers.Real`
+    Inherited from :py:class:`numbers.Real`
 
 .. autoattribute:: experimental.specificationtools.Division.Division.Division.is_closed
 
@@ -37,7 +37,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.specificationtools.Division.Division.Division.real
 
-    Inherited from `numbers.Real`
+    Inherited from :py:class:`numbers.Real`
 
 Read/write Properties
 ---------------------
@@ -55,19 +55,19 @@ Methods
 
 .. automethod:: experimental.specificationtools.Division.Division.Division.conjugate
 
-    Inherited from `numbers.Real`
+    Inherited from :py:class:`numbers.Real`
 
 .. automethod:: experimental.specificationtools.Division.Division.Division.from_decimal
 
-    Inherited from `fractions.Fraction`
+    Inherited from :py:class:`fractions.Fraction`
 
 .. automethod:: experimental.specificationtools.Division.Division.Division.from_float
 
-    Inherited from `fractions.Fraction`
+    Inherited from :py:class:`fractions.Fraction`
 
 .. automethod:: experimental.specificationtools.Division.Division.Division.limit_denominator
 
-    Inherited from `fractions.Fraction`
+    Inherited from :py:class:`fractions.Fraction`
 
 .. automethod:: experimental.specificationtools.Division.Division.Division.reduce
 
@@ -86,11 +86,11 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.Division.Division.Division.__complex__
 
-    Inherited from `numbers.Real`
+    Inherited from :py:class:`numbers.Real`
 
 .. automethod:: experimental.specificationtools.Division.Division.Division.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.Division.Division.Division.__div__
 
@@ -98,17 +98,17 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.Division.Division.Division.__divmod__
 
-    Inherited from `numbers.Real`
+    Inherited from :py:class:`numbers.Real`
 
 .. automethod:: experimental.specificationtools.Division.Division.Division.__eq__
 
 .. automethod:: experimental.specificationtools.Division.Division.Division.__float__
 
-    Inherited from `numbers.Rational`
+    Inherited from :py:class:`numbers.Rational`
 
 .. automethod:: experimental.specificationtools.Division.Division.Division.__floordiv__
 
-    Inherited from `fractions.Fraction`
+    Inherited from :py:class:`fractions.Fraction`
 
 .. automethod:: experimental.specificationtools.Division.Division.Division.__ge__
 
@@ -120,7 +120,7 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.Division.Division.Division.__hash__
 
-    Inherited from `fractions.Fraction`
+    Inherited from :py:class:`fractions.Fraction`
 
 .. automethod:: experimental.specificationtools.Division.Division.Division.__le__
 
@@ -132,7 +132,7 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.Division.Division.Division.__mod__
 
-    Inherited from `fractions.Fraction`
+    Inherited from :py:class:`fractions.Fraction`
 
 .. automethod:: experimental.specificationtools.Division.Division.Division.__mul__
 
@@ -148,15 +148,15 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.Division.Division.Division.__nonzero__
 
-    Inherited from `fractions.Fraction`
+    Inherited from :py:class:`fractions.Fraction`
 
 .. automethod:: experimental.specificationtools.Division.Division.Division.__pos__
 
-    Inherited from `fractions.Fraction`
+    Inherited from :py:class:`fractions.Fraction`
 
 .. automethod:: experimental.specificationtools.Division.Division.Division.__pow__
 
-    Inherited from `fractions.Fraction`
+    Inherited from :py:class:`fractions.Fraction`
 
 .. automethod:: experimental.specificationtools.Division.Division.Division.__radd__
 
@@ -168,17 +168,17 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.Division.Division.Division.__rdivmod__
 
-    Inherited from `numbers.Real`
+    Inherited from :py:class:`numbers.Real`
 
 .. automethod:: experimental.specificationtools.Division.Division.Division.__repr__
 
 .. automethod:: experimental.specificationtools.Division.Division.Division.__rfloordiv__
 
-    Inherited from `fractions.Fraction`
+    Inherited from :py:class:`fractions.Fraction`
 
 .. automethod:: experimental.specificationtools.Division.Division.Division.__rmod__
 
-    Inherited from `fractions.Fraction`
+    Inherited from :py:class:`fractions.Fraction`
 
 .. automethod:: experimental.specificationtools.Division.Division.Division.__rmul__
 
@@ -186,7 +186,7 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.Division.Division.Division.__rpow__
 
-    Inherited from `fractions.Fraction`
+    Inherited from :py:class:`fractions.Fraction`
 
 .. automethod:: experimental.specificationtools.Division.Division.Division.__rsub__
 
@@ -194,11 +194,11 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.Division.Division.Division.__rtruediv__
 
-    Inherited from `fractions.Fraction`
+    Inherited from :py:class:`fractions.Fraction`
 
 .. automethod:: experimental.specificationtools.Division.Division.Division.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.Division.Division.Division.__str__
 
@@ -210,8 +210,8 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.Division.Division.Division.__truediv__
 
-    Inherited from `fractions.Fraction`
+    Inherited from :py:class:`fractions.Fraction`
 
 .. automethod:: experimental.specificationtools.Division.Division.Division.__trunc__
 
-    Inherited from `fractions.Fraction`
+    Inherited from :py:class:`fractions.Fraction`

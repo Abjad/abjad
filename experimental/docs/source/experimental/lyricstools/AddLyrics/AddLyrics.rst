@@ -1,5 +1,5 @@
-experimental.lyricstools.AddLyrics
-==================================
+lyricstools.AddLyrics
+=====================
 
 .. inheritance-diagram:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics
    :private-bases:
@@ -120,7 +120,7 @@ Special Methods
 
 .. automethod:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.__delitem__
 
@@ -144,7 +144,7 @@ Special Methods
 
 .. automethod:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.__iadd__
 
@@ -188,7 +188,7 @@ Special Methods
 
 .. automethod:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.__setitem__
 
@@ -196,4 +196,4 @@ Special Methods
 
 .. automethod:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

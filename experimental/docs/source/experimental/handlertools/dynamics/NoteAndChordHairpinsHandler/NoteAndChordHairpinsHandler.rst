@@ -1,5 +1,5 @@
-experimental.handlertools.dynamics.NoteAndChordHairpinsHandler
-==============================================================
+handlertools.dynamics.NoteAndChordHairpinsHandler
+=================================================
 
 .. inheritance-diagram:: experimental.handlertools.dynamics.NoteAndChordHairpinsHandler.NoteAndChordHairpinsHandler.NoteAndChordHairpinsHandler
    :private-bases:
@@ -18,11 +18,11 @@ Special Methods
 
 .. automethod:: experimental.handlertools.dynamics.NoteAndChordHairpinsHandler.NoteAndChordHairpinsHandler.NoteAndChordHairpinsHandler.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.handlertools.dynamics.NoteAndChordHairpinsHandler.NoteAndChordHairpinsHandler.NoteAndChordHairpinsHandler.__eq__
 
-    Inherited from `experimental.handlertools.Handler.Handler.Handler`
+    Inherited from :py:class:`handlertools.Handler <experimental.handlertools.Handler.Handler.Handler>`
 
 .. automethod:: experimental.handlertools.dynamics.NoteAndChordHairpinsHandler.NoteAndChordHairpinsHandler.NoteAndChordHairpinsHandler.__ge__
 
@@ -34,7 +34,7 @@ Special Methods
 
 .. automethod:: experimental.handlertools.dynamics.NoteAndChordHairpinsHandler.NoteAndChordHairpinsHandler.NoteAndChordHairpinsHandler.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.handlertools.dynamics.NoteAndChordHairpinsHandler.NoteAndChordHairpinsHandler.NoteAndChordHairpinsHandler.__le__
 
@@ -54,8 +54,8 @@ Special Methods
 
 .. automethod:: experimental.handlertools.dynamics.NoteAndChordHairpinsHandler.NoteAndChordHairpinsHandler.NoteAndChordHairpinsHandler.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.handlertools.dynamics.NoteAndChordHairpinsHandler.NoteAndChordHairpinsHandler.NoteAndChordHairpinsHandler.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

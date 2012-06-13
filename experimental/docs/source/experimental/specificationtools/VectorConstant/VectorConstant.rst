@@ -1,5 +1,5 @@
-experimental.specificationtools.VectorConstant
-==============================================
+specificationtools.VectorConstant
+=================================
 
 .. inheritance-diagram:: experimental.specificationtools.VectorConstant.VectorConstant.VectorConstant
    :private-bases:
@@ -11,7 +11,7 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.VectorConstant.VectorConstant.VectorConstant.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.VectorConstant.VectorConstant.VectorConstant.__eq__
 
@@ -21,7 +21,7 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.VectorConstant.VectorConstant.VectorConstant.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.VectorConstant.VectorConstant.VectorConstant.__le__
 
@@ -35,8 +35,8 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.VectorConstant.VectorConstant.VectorConstant.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.VectorConstant.VectorConstant.VectorConstant.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

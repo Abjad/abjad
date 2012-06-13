@@ -1,5 +1,5 @@
-experimental.specificationtools.TemporalCursor
-==============================================
+specificationtools.TemporalCursor
+=================================
 
 .. inheritance-diagram:: experimental.specificationtools.TemporalCursor.TemporalCursor.TemporalCursor
    :private-bases:
@@ -24,7 +24,7 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.TemporalCursor.TemporalCursor.TemporalCursor.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.TemporalCursor.TemporalCursor.TemporalCursor.__eq__
 
@@ -34,7 +34,7 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.TemporalCursor.TemporalCursor.TemporalCursor.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.TemporalCursor.TemporalCursor.TemporalCursor.__le__
 
@@ -50,8 +50,8 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.TemporalCursor.TemporalCursor.TemporalCursor.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.TemporalCursor.TemporalCursor.TemporalCursor.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

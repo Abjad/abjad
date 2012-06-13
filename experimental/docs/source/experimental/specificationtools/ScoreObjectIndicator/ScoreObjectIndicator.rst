@@ -1,5 +1,5 @@
-experimental.specificationtools.ScoreObjectIndicator
-====================================================
+specificationtools.ScoreObjectIndicator
+=======================================
 
 .. inheritance-diagram:: experimental.specificationtools.ScoreObjectIndicator.ScoreObjectIndicator.ScoreObjectIndicator
    :private-bases:
@@ -24,7 +24,7 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.ScoreObjectIndicator.ScoreObjectIndicator.ScoreObjectIndicator.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.ScoreObjectIndicator.ScoreObjectIndicator.ScoreObjectIndicator.__eq__
 
@@ -38,7 +38,7 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.ScoreObjectIndicator.ScoreObjectIndicator.ScoreObjectIndicator.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.ScoreObjectIndicator.ScoreObjectIndicator.ScoreObjectIndicator.__le__
 
@@ -58,8 +58,8 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.ScoreObjectIndicator.ScoreObjectIndicator.ScoreObjectIndicator.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.ScoreObjectIndicator.ScoreObjectIndicator.ScoreObjectIndicator.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

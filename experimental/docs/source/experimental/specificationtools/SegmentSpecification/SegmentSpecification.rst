@@ -1,5 +1,5 @@
-experimental.specificationtools.SegmentSpecification
-====================================================
+specificationtools.SegmentSpecification
+=======================================
 
 .. inheritance-diagram:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification
    :private-bases:
@@ -19,11 +19,11 @@ Read-only Properties
 
 .. autoattribute:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.payload_context_dictionary
 
-    Inherited from `experimental.specificationtools.Specification.Specification.Specification`
+    Inherited from :py:class:`specificationtools.Specification <experimental.specificationtools.Specification.Specification.Specification>`
 
 .. autoattribute:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.resolved_settings_context_dictionary
 
-    Inherited from `experimental.specificationtools.Specification.Specification.Specification`
+    Inherited from :py:class:`specificationtools.Specification <experimental.specificationtools.Specification.Specification.Specification>`
 
 .. autoattribute:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.scope
 
@@ -31,15 +31,15 @@ Read-only Properties
 
 .. autoattribute:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.score_name
 
-    Inherited from `experimental.specificationtools.Specification.Specification.Specification`
+    Inherited from :py:class:`specificationtools.Specification <experimental.specificationtools.Specification.Specification.Specification>`
 
 .. autoattribute:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.score_template
 
-    Inherited from `experimental.specificationtools.Specification.Specification.Specification`
+    Inherited from :py:class:`specificationtools.Specification <experimental.specificationtools.Specification.Specification.Specification>`
 
 .. autoattribute:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.settings
 
-    Inherited from `experimental.specificationtools.Specification.Specification.Specification`
+    Inherited from :py:class:`specificationtools.Specification <experimental.specificationtools.Specification.Specification.Specification>`
 
 .. autoattribute:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.start
 
@@ -129,7 +129,7 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.__eq__
 
@@ -147,7 +147,7 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.__le__
 
@@ -165,8 +165,8 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

@@ -1,5 +1,5 @@
-experimental.abjadbooktools.HTMLOutputFormat
-============================================
+abjadbooktools.HTMLOutputFormat
+===============================
 
 .. inheritance-diagram:: experimental.abjadbooktools.HTMLOutputFormat.HTMLOutputFormat.HTMLOutputFormat
    :private-bases:
@@ -11,34 +11,34 @@ Read-only Properties
 
 .. autoattribute:: experimental.abjadbooktools.HTMLOutputFormat.HTMLOutputFormat.HTMLOutputFormat.code_block_closing
 
-    Inherited from `experimental.abjadbooktools.OutputFormat.OutputFormat.OutputFormat`
+    Inherited from :py:class:`abjadbooktools.OutputFormat <experimental.abjadbooktools.OutputFormat.OutputFormat.OutputFormat>`
 
 .. autoattribute:: experimental.abjadbooktools.HTMLOutputFormat.HTMLOutputFormat.HTMLOutputFormat.code_block_opening
 
-    Inherited from `experimental.abjadbooktools.OutputFormat.OutputFormat.OutputFormat`
+    Inherited from :py:class:`abjadbooktools.OutputFormat <experimental.abjadbooktools.OutputFormat.OutputFormat.OutputFormat>`
 
 .. autoattribute:: experimental.abjadbooktools.HTMLOutputFormat.HTMLOutputFormat.HTMLOutputFormat.code_indent
 
-    Inherited from `experimental.abjadbooktools.OutputFormat.OutputFormat.OutputFormat`
+    Inherited from :py:class:`abjadbooktools.OutputFormat <experimental.abjadbooktools.OutputFormat.OutputFormat.OutputFormat>`
 
 .. autoattribute:: experimental.abjadbooktools.HTMLOutputFormat.HTMLOutputFormat.HTMLOutputFormat.image_block
 
-    Inherited from `experimental.abjadbooktools.OutputFormat.OutputFormat.OutputFormat`
+    Inherited from :py:class:`abjadbooktools.OutputFormat <experimental.abjadbooktools.OutputFormat.OutputFormat.OutputFormat>`
 
 .. autoattribute:: experimental.abjadbooktools.HTMLOutputFormat.HTMLOutputFormat.HTMLOutputFormat.image_format
 
-    Inherited from `experimental.abjadbooktools.OutputFormat.OutputFormat.OutputFormat`
+    Inherited from :py:class:`abjadbooktools.OutputFormat <experimental.abjadbooktools.OutputFormat.OutputFormat.OutputFormat>`
 
 Special Methods
 ---------------
 
 .. automethod:: experimental.abjadbooktools.HTMLOutputFormat.HTMLOutputFormat.HTMLOutputFormat.__call__
 
-    Inherited from `experimental.abjadbooktools.OutputFormat.OutputFormat.OutputFormat`
+    Inherited from :py:class:`abjadbooktools.OutputFormat <experimental.abjadbooktools.OutputFormat.OutputFormat.OutputFormat>`
 
 .. automethod:: experimental.abjadbooktools.HTMLOutputFormat.HTMLOutputFormat.HTMLOutputFormat.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.abjadbooktools.HTMLOutputFormat.HTMLOutputFormat.HTMLOutputFormat.__eq__
 
@@ -54,7 +54,7 @@ Special Methods
 
 .. automethod:: experimental.abjadbooktools.HTMLOutputFormat.HTMLOutputFormat.HTMLOutputFormat.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.abjadbooktools.HTMLOutputFormat.HTMLOutputFormat.HTMLOutputFormat.__le__
 
@@ -74,8 +74,8 @@ Special Methods
 
 .. automethod:: experimental.abjadbooktools.HTMLOutputFormat.HTMLOutputFormat.HTMLOutputFormat.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.abjadbooktools.HTMLOutputFormat.HTMLOutputFormat.HTMLOutputFormat.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

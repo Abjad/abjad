@@ -1,5 +1,5 @@
-experimental.constrainttools.GlobalReferenceConstraint
-======================================================
+constrainttools.GlobalReferenceConstraint
+=========================================
 
 .. inheritance-diagram:: experimental.constrainttools.GlobalReferenceConstraint.GlobalReferenceConstraint.GlobalReferenceConstraint
    :private-bases:
@@ -11,11 +11,11 @@ Read-only Properties
 
 .. autoattribute:: experimental.constrainttools.GlobalReferenceConstraint.GlobalReferenceConstraint.GlobalReferenceConstraint.kind
 
-    Inherited from `experimental.constrainttools._Constraint._Constraint._Constraint`
+    Inherited from :py:class:`constrainttools._Constraint <experimental.constrainttools._Constraint._Constraint._Constraint>`
 
 .. autoattribute:: experimental.constrainttools.GlobalReferenceConstraint.GlobalReferenceConstraint.GlobalReferenceConstraint.predicate
 
-    Inherited from `experimental.constrainttools._Constraint._Constraint._Constraint`
+    Inherited from :py:class:`constrainttools._Constraint <experimental.constrainttools._Constraint._Constraint._Constraint>`
 
 .. autoattribute:: experimental.constrainttools.GlobalReferenceConstraint.GlobalReferenceConstraint.GlobalReferenceConstraint.reference
 
@@ -26,7 +26,7 @@ Special Methods
 
 .. automethod:: experimental.constrainttools.GlobalReferenceConstraint.GlobalReferenceConstraint.GlobalReferenceConstraint.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.constrainttools.GlobalReferenceConstraint.GlobalReferenceConstraint.GlobalReferenceConstraint.__eq__
 
@@ -42,7 +42,7 @@ Special Methods
 
 .. automethod:: experimental.constrainttools.GlobalReferenceConstraint.GlobalReferenceConstraint.GlobalReferenceConstraint.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.constrainttools.GlobalReferenceConstraint.GlobalReferenceConstraint.GlobalReferenceConstraint.__le__
 
@@ -58,12 +58,12 @@ Special Methods
 
 .. automethod:: experimental.constrainttools.GlobalReferenceConstraint.GlobalReferenceConstraint.GlobalReferenceConstraint.__repr__
 
-    Inherited from `experimental.constrainttools._Constraint._Constraint._Constraint`
+    Inherited from :py:class:`constrainttools._Constraint <experimental.constrainttools._Constraint._Constraint._Constraint>`
 
 .. automethod:: experimental.constrainttools.GlobalReferenceConstraint.GlobalReferenceConstraint.GlobalReferenceConstraint.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.constrainttools.GlobalReferenceConstraint.GlobalReferenceConstraint.GlobalReferenceConstraint.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

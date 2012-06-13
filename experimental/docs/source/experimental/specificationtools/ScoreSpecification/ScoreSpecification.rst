@@ -1,5 +1,5 @@
-experimental.specificationtools.ScoreSpecification
-==================================================
+specificationtools.ScoreSpecification
+=====================================
 
 .. inheritance-diagram:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification
    :private-bases:
@@ -11,19 +11,19 @@ Read-only Properties
 
 .. autoattribute:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.payload_context_dictionary
 
-    Inherited from `experimental.specificationtools.Specification.Specification.Specification`
+    Inherited from :py:class:`specificationtools.Specification <experimental.specificationtools.Specification.Specification.Specification>`
 
 .. autoattribute:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.resolved_settings_context_dictionary
 
-    Inherited from `experimental.specificationtools.Specification.Specification.Specification`
+    Inherited from :py:class:`specificationtools.Specification <experimental.specificationtools.Specification.Specification.Specification>`
 
 .. autoattribute:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.score_name
 
-    Inherited from `experimental.specificationtools.Specification.Specification.Specification`
+    Inherited from :py:class:`specificationtools.Specification <experimental.specificationtools.Specification.Specification.Specification>`
 
 .. autoattribute:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.score_template
 
-    Inherited from `experimental.specificationtools.Specification.Specification.Specification`
+    Inherited from :py:class:`specificationtools.Specification <experimental.specificationtools.Specification.Specification.Specification>`
 
 .. autoattribute:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.segment_names
 
@@ -33,7 +33,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.settings
 
-    Inherited from `experimental.specificationtools.Specification.Specification.Specification`
+    Inherited from :py:class:`specificationtools.Specification <experimental.specificationtools.Specification.Specification.Specification>`
 
 Methods
 -------
@@ -118,11 +118,11 @@ Methods
 
 .. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.retrieve
 
-    Inherited from `experimental.specificationtools.Specification.Specification.Specification`
+    Inherited from :py:class:`specificationtools.Specification <experimental.specificationtools.Specification.Specification.Specification>`
 
 .. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.retrieve_resolved_value
 
-    Inherited from `experimental.specificationtools.Specification.Specification.Specification`
+    Inherited from :py:class:`specificationtools.Specification <experimental.specificationtools.Specification.Specification.Specification>`
 
 .. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.segment_name_to_index
 
@@ -141,7 +141,7 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.__eq__
 
@@ -159,7 +159,7 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.__le__
 
@@ -177,8 +177,8 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

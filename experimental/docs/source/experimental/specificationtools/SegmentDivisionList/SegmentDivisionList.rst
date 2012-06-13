@@ -1,5 +1,5 @@
-experimental.specificationtools.SegmentDivisionList
-===================================================
+specificationtools.SegmentDivisionList
+======================================
 
 .. inheritance-diagram:: experimental.specificationtools.SegmentDivisionList.SegmentDivisionList.SegmentDivisionList
    :private-bases:
@@ -11,62 +11,62 @@ Read-only Properties
 
 .. autoattribute:: experimental.specificationtools.SegmentDivisionList.SegmentDivisionList.SegmentDivisionList.divisions
 
-    Inherited from `experimental.specificationtools.DivisionList.DivisionList.DivisionList`
+    Inherited from :py:class:`specificationtools.DivisionList <experimental.specificationtools.DivisionList.DivisionList.DivisionList>`
 
 .. autoattribute:: experimental.specificationtools.SegmentDivisionList.SegmentDivisionList.SegmentDivisionList.duration
 
-    Inherited from `experimental.specificationtools.DivisionList.DivisionList.DivisionList`
+    Inherited from :py:class:`specificationtools.DivisionList <experimental.specificationtools.DivisionList.DivisionList.DivisionList>`
 
 .. autoattribute:: experimental.specificationtools.SegmentDivisionList.SegmentDivisionList.SegmentDivisionList.is_closed
 
-    Inherited from `experimental.specificationtools.DivisionList.DivisionList.DivisionList`
+    Inherited from :py:class:`specificationtools.DivisionList <experimental.specificationtools.DivisionList.DivisionList.DivisionList>`
 
 .. autoattribute:: experimental.specificationtools.SegmentDivisionList.SegmentDivisionList.SegmentDivisionList.is_half_closed
 
-    Inherited from `experimental.specificationtools.DivisionList.DivisionList.DivisionList`
+    Inherited from :py:class:`specificationtools.DivisionList <experimental.specificationtools.DivisionList.DivisionList.DivisionList>`
 
 .. autoattribute:: experimental.specificationtools.SegmentDivisionList.SegmentDivisionList.SegmentDivisionList.is_half_open
 
-    Inherited from `experimental.specificationtools.DivisionList.DivisionList.DivisionList`
+    Inherited from :py:class:`specificationtools.DivisionList <experimental.specificationtools.DivisionList.DivisionList.DivisionList>`
 
 .. autoattribute:: experimental.specificationtools.SegmentDivisionList.SegmentDivisionList.SegmentDivisionList.is_left_closed
 
-    Inherited from `experimental.specificationtools.DivisionList.DivisionList.DivisionList`
+    Inherited from :py:class:`specificationtools.DivisionList <experimental.specificationtools.DivisionList.DivisionList.DivisionList>`
 
 .. autoattribute:: experimental.specificationtools.SegmentDivisionList.SegmentDivisionList.SegmentDivisionList.is_left_open
 
-    Inherited from `experimental.specificationtools.DivisionList.DivisionList.DivisionList`
+    Inherited from :py:class:`specificationtools.DivisionList <experimental.specificationtools.DivisionList.DivisionList.DivisionList>`
 
 .. autoattribute:: experimental.specificationtools.SegmentDivisionList.SegmentDivisionList.SegmentDivisionList.is_open
 
-    Inherited from `experimental.specificationtools.DivisionList.DivisionList.DivisionList`
+    Inherited from :py:class:`specificationtools.DivisionList <experimental.specificationtools.DivisionList.DivisionList.DivisionList>`
 
 .. autoattribute:: experimental.specificationtools.SegmentDivisionList.SegmentDivisionList.SegmentDivisionList.is_right_closed
 
-    Inherited from `experimental.specificationtools.DivisionList.DivisionList.DivisionList`
+    Inherited from :py:class:`specificationtools.DivisionList <experimental.specificationtools.DivisionList.DivisionList.DivisionList>`
 
 .. autoattribute:: experimental.specificationtools.SegmentDivisionList.SegmentDivisionList.SegmentDivisionList.is_right_open
 
-    Inherited from `experimental.specificationtools.DivisionList.DivisionList.DivisionList`
+    Inherited from :py:class:`specificationtools.DivisionList <experimental.specificationtools.DivisionList.DivisionList.DivisionList>`
 
 .. autoattribute:: experimental.specificationtools.SegmentDivisionList.SegmentDivisionList.SegmentDivisionList.is_well_formed
 
-    Inherited from `experimental.specificationtools.DivisionList.DivisionList.DivisionList`
+    Inherited from :py:class:`specificationtools.DivisionList <experimental.specificationtools.DivisionList.DivisionList.DivisionList>`
 
 .. autoattribute:: experimental.specificationtools.SegmentDivisionList.SegmentDivisionList.SegmentDivisionList.pairs
 
-    Inherited from `experimental.specificationtools.DivisionList.DivisionList.DivisionList`
+    Inherited from :py:class:`specificationtools.DivisionList <experimental.specificationtools.DivisionList.DivisionList.DivisionList>`
 
 Special Methods
 ---------------
 
 .. automethod:: experimental.specificationtools.SegmentDivisionList.SegmentDivisionList.SegmentDivisionList.__add__
 
-    Inherited from `experimental.specificationtools.DivisionList.DivisionList.DivisionList`
+    Inherited from :py:class:`specificationtools.DivisionList <experimental.specificationtools.DivisionList.DivisionList.DivisionList>`
 
 .. automethod:: experimental.specificationtools.SegmentDivisionList.SegmentDivisionList.SegmentDivisionList.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.SegmentDivisionList.SegmentDivisionList.SegmentDivisionList.__eq__
 
@@ -78,7 +78,7 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.SegmentDivisionList.SegmentDivisionList.SegmentDivisionList.__getitem__
 
-    Inherited from `experimental.specificationtools.DivisionList.DivisionList.DivisionList`
+    Inherited from :py:class:`specificationtools.DivisionList <experimental.specificationtools.DivisionList.DivisionList.DivisionList>`
 
 .. automethod:: experimental.specificationtools.SegmentDivisionList.SegmentDivisionList.SegmentDivisionList.__gt__
 
@@ -86,7 +86,7 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.SegmentDivisionList.SegmentDivisionList.SegmentDivisionList.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.SegmentDivisionList.SegmentDivisionList.SegmentDivisionList.__le__
 
@@ -94,7 +94,7 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.SegmentDivisionList.SegmentDivisionList.SegmentDivisionList.__len__
 
-    Inherited from `experimental.specificationtools.DivisionList.DivisionList.DivisionList`
+    Inherited from :py:class:`specificationtools.DivisionList <experimental.specificationtools.DivisionList.DivisionList.DivisionList>`
 
 .. automethod:: experimental.specificationtools.SegmentDivisionList.SegmentDivisionList.SegmentDivisionList.__lt__
 
@@ -106,12 +106,12 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.SegmentDivisionList.SegmentDivisionList.SegmentDivisionList.__repr__
 
-    Inherited from `experimental.specificationtools.DivisionList.DivisionList.DivisionList`
+    Inherited from :py:class:`specificationtools.DivisionList <experimental.specificationtools.DivisionList.DivisionList.DivisionList>`
 
 .. automethod:: experimental.specificationtools.SegmentDivisionList.SegmentDivisionList.SegmentDivisionList.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.SegmentDivisionList.SegmentDivisionList.SegmentDivisionList.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

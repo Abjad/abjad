@@ -1,5 +1,5 @@
-experimental.specificationtools.ScopedValue
-===========================================
+specificationtools.ScopedValue
+==============================
 
 .. inheritance-diagram:: experimental.specificationtools.ScopedValue.ScopedValue.ScopedValue
    :private-bases:
@@ -11,7 +11,7 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.ScopedValue.ScopedValue.ScopedValue.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.ScopedValue.ScopedValue.ScopedValue.__eq__
 
@@ -27,7 +27,7 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.ScopedValue.ScopedValue.ScopedValue.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.ScopedValue.ScopedValue.ScopedValue.__le__
 
@@ -47,8 +47,8 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.ScopedValue.ScopedValue.ScopedValue.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.ScopedValue.ScopedValue.ScopedValue.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

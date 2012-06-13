@@ -1,5 +1,5 @@
-experimental.handlertools.pitch.OctaveTranspositionHandler
-==========================================================
+handlertools.pitch.OctaveTranspositionHandler
+=============================================
 
 .. inheritance-diagram:: experimental.handlertools.pitch.OctaveTranspositionHandler.OctaveTranspositionHandler.OctaveTranspositionHandler
    :private-bases:
@@ -13,11 +13,11 @@ Special Methods
 
 .. automethod:: experimental.handlertools.pitch.OctaveTranspositionHandler.OctaveTranspositionHandler.OctaveTranspositionHandler.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.handlertools.pitch.OctaveTranspositionHandler.OctaveTranspositionHandler.OctaveTranspositionHandler.__eq__
 
-    Inherited from `experimental.handlertools.Handler.Handler.Handler`
+    Inherited from :py:class:`handlertools.Handler <experimental.handlertools.Handler.Handler.Handler>`
 
 .. automethod:: experimental.handlertools.pitch.OctaveTranspositionHandler.OctaveTranspositionHandler.OctaveTranspositionHandler.__ge__
 
@@ -29,7 +29,7 @@ Special Methods
 
 .. automethod:: experimental.handlertools.pitch.OctaveTranspositionHandler.OctaveTranspositionHandler.OctaveTranspositionHandler.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.handlertools.pitch.OctaveTranspositionHandler.OctaveTranspositionHandler.OctaveTranspositionHandler.__le__
 
@@ -49,8 +49,8 @@ Special Methods
 
 .. automethod:: experimental.handlertools.pitch.OctaveTranspositionHandler.OctaveTranspositionHandler.OctaveTranspositionHandler.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.handlertools.pitch.OctaveTranspositionHandler.OctaveTranspositionHandler.OctaveTranspositionHandler.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

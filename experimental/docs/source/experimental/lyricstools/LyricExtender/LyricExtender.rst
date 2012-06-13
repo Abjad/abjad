@@ -1,5 +1,5 @@
-experimental.lyricstools.LyricExtender
-======================================
+lyricstools.LyricExtender
+=========================
 
 .. inheritance-diagram:: experimental.lyricstools.LyricExtender.LyricExtender.LyricExtender
    :private-bases:
@@ -97,7 +97,7 @@ Special Methods
 
 .. automethod:: experimental.lyricstools.LyricExtender.LyricExtender.LyricExtender.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.lyricstools.LyricExtender.LyricExtender.LyricExtender.__eq__
 
@@ -113,7 +113,7 @@ Special Methods
 
 .. automethod:: experimental.lyricstools.LyricExtender.LyricExtender.LyricExtender.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.lyricstools.LyricExtender.LyricExtender.LyricExtender.__le__
 
@@ -145,7 +145,7 @@ Special Methods
 
 .. automethod:: experimental.lyricstools.LyricExtender.LyricExtender.LyricExtender.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.lyricstools.LyricExtender.LyricExtender.LyricExtender.__str__
 
