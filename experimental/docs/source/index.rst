@@ -62,7 +62,15 @@ Unstable Abjad composition packages (load manually)
 .. toctree::
    :maxdepth: 1
 
+   experimental/developerscripttools/AbjDevScript/AbjDevScript
    experimental/developerscripttools/CountDocstringLinewidthsScript/CountDocstringLinewidthsScript
+
+.. rubric:: functions
+
+.. toctree::
+   :maxdepth: 1
+
+   experimental/developerscripttools/get_developer_script_classes
 
 :py:mod:`handlertools <experimental.handlertools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
