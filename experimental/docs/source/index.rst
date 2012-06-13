@@ -25,6 +25,7 @@ Unstable Abjad composition packages (load manually)
    experimental/abjadbooktools/AbjadBookProcessor/AbjadBookProcessor
    experimental/abjadbooktools/AbjadBookScript/AbjadBookScript
    experimental/abjadbooktools/CodeBlock/CodeBlock
+   experimental/abjadbooktools/DeveloperScript/DeveloperScript
    experimental/abjadbooktools/HTMLOutputFormat/HTMLOutputFormat
    experimental/abjadbooktools/LaTeXOutputFormat/LaTeXOutputFormat
    experimental/abjadbooktools/ReSTOutputFormat/ReSTOutputFormat
