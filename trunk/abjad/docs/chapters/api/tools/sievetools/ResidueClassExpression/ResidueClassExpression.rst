@@ -37,7 +37,7 @@ Special Methods
 
 .. automethod:: abjad.tools.sievetools.ResidueClassExpression.ResidueClassExpression.ResidueClassExpression.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.sievetools.ResidueClassExpression.ResidueClassExpression.ResidueClassExpression.__eq__
 
@@ -53,7 +53,7 @@ Special Methods
 
 .. automethod:: abjad.tools.sievetools.ResidueClassExpression.ResidueClassExpression.ResidueClassExpression.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.sievetools.ResidueClassExpression.ResidueClassExpression.ResidueClassExpression.__le__
 
@@ -75,11 +75,11 @@ Special Methods
 
 .. automethod:: abjad.tools.sievetools.ResidueClassExpression.ResidueClassExpression.ResidueClassExpression.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.sievetools.ResidueClassExpression.ResidueClassExpression.ResidueClassExpression.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.sievetools.ResidueClassExpression.ResidueClassExpression.ResidueClassExpression.__xor__
 

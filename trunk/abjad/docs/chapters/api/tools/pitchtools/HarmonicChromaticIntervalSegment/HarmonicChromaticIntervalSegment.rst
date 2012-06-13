@@ -22,11 +22,11 @@ Methods
 
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.count
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.index
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.rotate
 
@@ -41,23 +41,23 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.__contains__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.__eq__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.__ge__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.__getitem__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.__getslice__
 
@@ -65,27 +65,27 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.__gt__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.__hash__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.__iter__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.__le__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.__len__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.__lt__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.__mul__
 
@@ -93,7 +93,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.__ne__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.__repr__
 
@@ -105,7 +105,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.__str__
 

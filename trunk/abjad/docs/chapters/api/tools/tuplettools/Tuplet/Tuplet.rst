@@ -136,7 +136,7 @@ Special Methods
 
 .. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.__delitem__
 
@@ -160,7 +160,7 @@ Special Methods
 
 .. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.__iadd__
 
@@ -202,7 +202,7 @@ Special Methods
 
 .. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.__setitem__
 

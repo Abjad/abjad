@@ -92,7 +92,7 @@ Special Methods
 
 .. automethod:: abjad.tools.containertools.Container.Container.Container.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.containertools.Container.Container.Container.__delitem__
 
@@ -112,7 +112,7 @@ Special Methods
 
 .. automethod:: abjad.tools.containertools.Container.Container.Container.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.containertools.Container.Container.Container.__iadd__
 
@@ -146,10 +146,10 @@ Special Methods
 
 .. automethod:: abjad.tools.containertools.Container.Container.Container.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.containertools.Container.Container.Container.__setitem__
 
 .. automethod:: abjad.tools.containertools.Container.Container.Container.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

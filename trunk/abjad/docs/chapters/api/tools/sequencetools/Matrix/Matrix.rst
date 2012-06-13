@@ -18,7 +18,7 @@ Special Methods
 
 .. automethod:: abjad.tools.sequencetools.Matrix.Matrix.Matrix.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.sequencetools.Matrix.Matrix.Matrix.__eq__
 
@@ -36,7 +36,7 @@ Special Methods
 
 .. automethod:: abjad.tools.sequencetools.Matrix.Matrix.Matrix.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.sequencetools.Matrix.Matrix.Matrix.__le__
 
@@ -54,8 +54,8 @@ Special Methods
 
 .. automethod:: abjad.tools.sequencetools.Matrix.Matrix.Matrix.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.sequencetools.Matrix.Matrix.Matrix.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

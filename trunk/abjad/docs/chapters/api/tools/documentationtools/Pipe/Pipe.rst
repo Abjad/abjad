@@ -22,19 +22,15 @@ Methods
 
 .. automethod:: abjad.tools.documentationtools.Pipe.Pipe.Pipe.communicate
 
-    Inherited from `subprocess.Popen`
+    Inherited from :py:class:`subprocess.Popen`
 
 .. automethod:: abjad.tools.documentationtools.Pipe.Pipe.Pipe.kill
 
-    Inherited from `subprocess.Popen`
-
-.. automethod:: abjad.tools.documentationtools.Pipe.Pipe.Pipe.pipe_cloexec
-
-    Inherited from `subprocess.Popen`
+    Inherited from :py:class:`subprocess.Popen`
 
 .. automethod:: abjad.tools.documentationtools.Pipe.Pipe.Pipe.poll
 
-    Inherited from `subprocess.Popen`
+    Inherited from :py:class:`subprocess.Popen`
 
 .. automethod:: abjad.tools.documentationtools.Pipe.Pipe.Pipe.read
 
@@ -42,15 +38,15 @@ Methods
 
 .. automethod:: abjad.tools.documentationtools.Pipe.Pipe.Pipe.send_signal
 
-    Inherited from `subprocess.Popen`
+    Inherited from :py:class:`subprocess.Popen`
 
 .. automethod:: abjad.tools.documentationtools.Pipe.Pipe.Pipe.terminate
 
-    Inherited from `subprocess.Popen`
+    Inherited from :py:class:`subprocess.Popen`
 
 .. automethod:: abjad.tools.documentationtools.Pipe.Pipe.Pipe.wait
 
-    Inherited from `subprocess.Popen`
+    Inherited from :py:class:`subprocess.Popen`
 
 .. automethod:: abjad.tools.documentationtools.Pipe.Pipe.Pipe.write
 
@@ -61,11 +57,11 @@ Special Methods
 
 .. automethod:: abjad.tools.documentationtools.Pipe.Pipe.Pipe.__del__
 
-    Inherited from `subprocess.Popen`
+    Inherited from :py:class:`subprocess.Popen`
 
 .. automethod:: abjad.tools.documentationtools.Pipe.Pipe.Pipe.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.documentationtools.Pipe.Pipe.Pipe.__eq__
 
@@ -81,7 +77,7 @@ Special Methods
 
 .. automethod:: abjad.tools.documentationtools.Pipe.Pipe.Pipe.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.documentationtools.Pipe.Pipe.Pipe.__le__
 
@@ -101,8 +97,8 @@ Special Methods
 
 .. automethod:: abjad.tools.documentationtools.Pipe.Pipe.Pipe.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.documentationtools.Pipe.Pipe.Pipe.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

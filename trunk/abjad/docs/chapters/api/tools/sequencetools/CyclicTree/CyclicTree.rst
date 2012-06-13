@@ -105,7 +105,7 @@ Special Methods
 
 .. automethod:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.__eq__
 
@@ -125,7 +125,7 @@ Special Methods
 
 .. automethod:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.__iter__
 
@@ -151,7 +151,7 @@ Special Methods
 
 .. automethod:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.__str__
 

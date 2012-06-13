@@ -20,121 +20,121 @@ Methods
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.copy
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.difference
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.intersection
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.isdisjoint
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.issubset
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.issuperset
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.order_by
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.symmetric_difference
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.transpose
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.union
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 Special Methods
 ---------------
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.__and__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.__cmp__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.__contains__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.__eq__
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.__ge__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.__gt__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.__hash__
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.__iter__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.__le__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.__len__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.__lt__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.__ne__
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.__or__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.__rand__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.__repr__
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.__ror__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.__rsub__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.__rxor__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.__str__
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.__sub__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.NamedChromaticPitchClassSet.__xor__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`

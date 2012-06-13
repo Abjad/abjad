@@ -11,36 +11,36 @@ Special Methods
 
 .. automethod:: abjad.tools.exceptiontools.MissingInstrumentError.MissingInstrumentError.__delattr__
 
-    Inherited from `exceptions.BaseException`
+    Inherited from :py:class:`exceptions.BaseException`
 
 .. automethod:: abjad.tools.exceptiontools.MissingInstrumentError.MissingInstrumentError.__getitem__
 
-    Inherited from `exceptions.BaseException`
+    Inherited from :py:class:`exceptions.BaseException`
 
 .. automethod:: abjad.tools.exceptiontools.MissingInstrumentError.MissingInstrumentError.__getslice__
 
-    Inherited from `exceptions.BaseException`
+    Inherited from :py:class:`exceptions.BaseException`
 
 .. automethod:: abjad.tools.exceptiontools.MissingInstrumentError.MissingInstrumentError.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.exceptiontools.MissingInstrumentError.MissingInstrumentError.__repr__
 
-    Inherited from `exceptions.BaseException`
+    Inherited from :py:class:`exceptions.BaseException`
 
 .. automethod:: abjad.tools.exceptiontools.MissingInstrumentError.MissingInstrumentError.__setattr__
 
-    Inherited from `exceptions.BaseException`
+    Inherited from :py:class:`exceptions.BaseException`
 
 .. automethod:: abjad.tools.exceptiontools.MissingInstrumentError.MissingInstrumentError.__setstate__
 
-    Inherited from `exceptions.BaseException`
+    Inherited from :py:class:`exceptions.BaseException`
 
 .. automethod:: abjad.tools.exceptiontools.MissingInstrumentError.MissingInstrumentError.__str__
 
-    Inherited from `exceptions.BaseException`
+    Inherited from :py:class:`exceptions.BaseException`
 
 .. automethod:: abjad.tools.exceptiontools.MissingInstrumentError.MissingInstrumentError.__unicode__
 
-    Inherited from `exceptions.BaseException`
+    Inherited from :py:class:`exceptions.BaseException`

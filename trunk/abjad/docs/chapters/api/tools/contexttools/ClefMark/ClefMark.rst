@@ -64,7 +64,7 @@ Special Methods
 
 .. automethod:: abjad.tools.contexttools.ClefMark.ClefMark.ClefMark.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.contexttools.ClefMark.ClefMark.ClefMark.__le__
 
@@ -84,8 +84,8 @@ Special Methods
 
 .. automethod:: abjad.tools.contexttools.ClefMark.ClefMark.ClefMark.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.contexttools.ClefMark.ClefMark.ClefMark.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

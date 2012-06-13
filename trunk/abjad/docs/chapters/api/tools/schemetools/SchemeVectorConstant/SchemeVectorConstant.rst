@@ -18,7 +18,7 @@ Special Methods
 
 .. automethod:: abjad.tools.schemetools.SchemeVectorConstant.SchemeVectorConstant.SchemeVectorConstant.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.schemetools.SchemeVectorConstant.SchemeVectorConstant.SchemeVectorConstant.__eq__
 
@@ -34,7 +34,7 @@ Special Methods
 
 .. automethod:: abjad.tools.schemetools.SchemeVectorConstant.SchemeVectorConstant.SchemeVectorConstant.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.schemetools.SchemeVectorConstant.SchemeVectorConstant.SchemeVectorConstant.__le__
 
@@ -54,7 +54,7 @@ Special Methods
 
 .. automethod:: abjad.tools.schemetools.SchemeVectorConstant.SchemeVectorConstant.SchemeVectorConstant.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.schemetools.SchemeVectorConstant.SchemeVectorConstant.SchemeVectorConstant.__str__
 

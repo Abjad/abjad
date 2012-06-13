@@ -144,7 +144,7 @@ Special Methods
 
 .. automethod:: abjad.tools.voicetools.Voice.Voice.Voice.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.voicetools.Voice.Voice.Voice.__delitem__
 
@@ -168,7 +168,7 @@ Special Methods
 
 .. automethod:: abjad.tools.voicetools.Voice.Voice.Voice.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.voicetools.Voice.Voice.Voice.__iadd__
 
@@ -212,7 +212,7 @@ Special Methods
 
 .. automethod:: abjad.tools.voicetools.Voice.Voice.Voice.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.voicetools.Voice.Voice.Voice.__setitem__
 
@@ -220,4 +220,4 @@ Special Methods
 
 .. automethod:: abjad.tools.voicetools.Voice.Voice.Voice.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

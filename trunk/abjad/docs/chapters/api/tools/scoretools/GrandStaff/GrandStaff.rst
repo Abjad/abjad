@@ -144,7 +144,7 @@ Special Methods
 
 .. automethod:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.__delitem__
 
@@ -168,7 +168,7 @@ Special Methods
 
 .. automethod:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.__iadd__
 
@@ -212,7 +212,7 @@ Special Methods
 
 .. automethod:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.__setitem__
 
@@ -220,4 +220,4 @@ Special Methods
 
 .. automethod:: abjad.tools.scoretools.GrandStaff.GrandStaff.GrandStaff.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

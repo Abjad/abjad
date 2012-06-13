@@ -24,11 +24,11 @@ Methods
 
 .. automethod:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.count
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.index
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.rotate
 
@@ -43,23 +43,23 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.__contains__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.__eq__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.__ge__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.__getitem__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.__getslice__
 
@@ -67,27 +67,27 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.__gt__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.__hash__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.__iter__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.__le__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.__len__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.__lt__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.__mul__
 
@@ -95,7 +95,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.__ne__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.__repr__
 
@@ -107,7 +107,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.__str__
 

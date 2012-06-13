@@ -20,11 +20,11 @@ Methods
 
 .. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.count
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.index
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.invert
 
@@ -45,23 +45,23 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.__contains__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.__eq__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.__ge__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.__getitem__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.__getslice__
 
@@ -69,27 +69,27 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.__gt__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.__hash__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.__iter__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.__le__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.__len__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.__lt__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.__mul__
 
@@ -97,7 +97,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.__ne__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.__repr__
 
@@ -107,6 +107,6 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.pitchtools.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.__str__

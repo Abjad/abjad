@@ -22,7 +22,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.HarmonicIntervalClassObject.HarmonicIntervalClassObject.HarmonicIntervalClassObject.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicIntervalClassObject.HarmonicIntervalClassObject.HarmonicIntervalClassObject.__eq__
 
@@ -66,7 +66,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.HarmonicIntervalClassObject.HarmonicIntervalClassObject.HarmonicIntervalClassObject.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicIntervalClassObject.HarmonicIntervalClassObject.HarmonicIntervalClassObject.__str__
 

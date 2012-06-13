@@ -11,36 +11,36 @@ Special Methods
 
 .. automethod:: abjad.tools.exceptiontools.MissingTempoError.MissingTempoError.__delattr__
 
-    Inherited from `exceptions.BaseException`
+    Inherited from :py:class:`exceptions.BaseException`
 
 .. automethod:: abjad.tools.exceptiontools.MissingTempoError.MissingTempoError.__getitem__
 
-    Inherited from `exceptions.BaseException`
+    Inherited from :py:class:`exceptions.BaseException`
 
 .. automethod:: abjad.tools.exceptiontools.MissingTempoError.MissingTempoError.__getslice__
 
-    Inherited from `exceptions.BaseException`
+    Inherited from :py:class:`exceptions.BaseException`
 
 .. automethod:: abjad.tools.exceptiontools.MissingTempoError.MissingTempoError.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.exceptiontools.MissingTempoError.MissingTempoError.__repr__
 
-    Inherited from `exceptions.BaseException`
+    Inherited from :py:class:`exceptions.BaseException`
 
 .. automethod:: abjad.tools.exceptiontools.MissingTempoError.MissingTempoError.__setattr__
 
-    Inherited from `exceptions.BaseException`
+    Inherited from :py:class:`exceptions.BaseException`
 
 .. automethod:: abjad.tools.exceptiontools.MissingTempoError.MissingTempoError.__setstate__
 
-    Inherited from `exceptions.BaseException`
+    Inherited from :py:class:`exceptions.BaseException`
 
 .. automethod:: abjad.tools.exceptiontools.MissingTempoError.MissingTempoError.__str__
 
-    Inherited from `exceptions.BaseException`
+    Inherited from :py:class:`exceptions.BaseException`
 
 .. automethod:: abjad.tools.exceptiontools.MissingTempoError.MissingTempoError.__unicode__
 
-    Inherited from `exceptions.BaseException`
+    Inherited from :py:class:`exceptions.BaseException`

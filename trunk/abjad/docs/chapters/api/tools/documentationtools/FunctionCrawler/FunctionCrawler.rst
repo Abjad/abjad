@@ -24,7 +24,7 @@ Special Methods
 
 .. automethod:: abjad.tools.documentationtools.FunctionCrawler.FunctionCrawler.FunctionCrawler.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.documentationtools.FunctionCrawler.FunctionCrawler.FunctionCrawler.__eq__
 
@@ -40,7 +40,7 @@ Special Methods
 
 .. automethod:: abjad.tools.documentationtools.FunctionCrawler.FunctionCrawler.FunctionCrawler.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.documentationtools.FunctionCrawler.FunctionCrawler.FunctionCrawler.__le__
 
@@ -60,8 +60,8 @@ Special Methods
 
 .. automethod:: abjad.tools.documentationtools.FunctionCrawler.FunctionCrawler.FunctionCrawler.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.documentationtools.FunctionCrawler.FunctionCrawler.FunctionCrawler.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

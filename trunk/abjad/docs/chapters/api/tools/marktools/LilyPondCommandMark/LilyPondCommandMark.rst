@@ -56,7 +56,7 @@ Special Methods
 
 .. automethod:: abjad.tools.marktools.LilyPondCommandMark.LilyPondCommandMark.LilyPondCommandMark.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.marktools.LilyPondCommandMark.LilyPondCommandMark.LilyPondCommandMark.__le__
 
@@ -76,8 +76,8 @@ Special Methods
 
 .. automethod:: abjad.tools.marktools.LilyPondCommandMark.LilyPondCommandMark.LilyPondCommandMark.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.marktools.LilyPondCommandMark.LilyPondCommandMark.LilyPondCommandMark.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

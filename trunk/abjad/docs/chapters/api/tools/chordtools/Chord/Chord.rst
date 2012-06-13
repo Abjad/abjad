@@ -120,7 +120,7 @@ Special Methods
 
 .. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.__delitem__
 
@@ -140,7 +140,7 @@ Special Methods
 
 .. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.__le__
 
@@ -174,7 +174,7 @@ Special Methods
 
 .. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.chordtools.Chord.Chord.Chord.__setitem__
 

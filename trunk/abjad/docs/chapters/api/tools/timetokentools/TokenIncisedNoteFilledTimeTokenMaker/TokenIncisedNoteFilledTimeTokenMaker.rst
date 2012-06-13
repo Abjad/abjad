@@ -15,7 +15,7 @@ Special Methods
 
 .. automethod:: abjad.tools.timetokentools.TokenIncisedNoteFilledTimeTokenMaker.TokenIncisedNoteFilledTimeTokenMaker.TokenIncisedNoteFilledTimeTokenMaker.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.timetokentools.TokenIncisedNoteFilledTimeTokenMaker.TokenIncisedNoteFilledTimeTokenMaker.TokenIncisedNoteFilledTimeTokenMaker.__eq__
 
@@ -31,7 +31,7 @@ Special Methods
 
 .. automethod:: abjad.tools.timetokentools.TokenIncisedNoteFilledTimeTokenMaker.TokenIncisedNoteFilledTimeTokenMaker.TokenIncisedNoteFilledTimeTokenMaker.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.timetokentools.TokenIncisedNoteFilledTimeTokenMaker.TokenIncisedNoteFilledTimeTokenMaker.TokenIncisedNoteFilledTimeTokenMaker.__le__
 
@@ -51,8 +51,8 @@ Special Methods
 
 .. automethod:: abjad.tools.timetokentools.TokenIncisedNoteFilledTimeTokenMaker.TokenIncisedNoteFilledTimeTokenMaker.TokenIncisedNoteFilledTimeTokenMaker.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.timetokentools.TokenIncisedNoteFilledTimeTokenMaker.TokenIncisedNoteFilledTimeTokenMaker.TokenIncisedNoteFilledTimeTokenMaker.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

@@ -37,7 +37,7 @@ Special Methods
 
 .. automethod:: abjad.tools.marktools.Mark.Mark.Mark.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.marktools.Mark.Mark.Mark.__le__
 
@@ -53,8 +53,8 @@ Special Methods
 
 .. automethod:: abjad.tools.marktools.Mark.Mark.Mark.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.marktools.Mark.Mark.Mark.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

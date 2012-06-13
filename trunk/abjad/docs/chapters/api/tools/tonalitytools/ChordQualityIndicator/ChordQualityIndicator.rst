@@ -48,11 +48,11 @@ Methods
 
 .. automethod:: abjad.tools.tonalitytools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.count
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.tonalitytools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.index
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.tonalitytools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.rotate
 
@@ -67,23 +67,23 @@ Special Methods
 
 .. automethod:: abjad.tools.tonalitytools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.__contains__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.tonalitytools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.tonalitytools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.__eq__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.tonalitytools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.__ge__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.tonalitytools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.__getitem__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.tonalitytools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.__getslice__
 
@@ -91,27 +91,27 @@ Special Methods
 
 .. automethod:: abjad.tools.tonalitytools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.__gt__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.tonalitytools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.__hash__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.tonalitytools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.__iter__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.tonalitytools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.__le__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.tonalitytools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.__len__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.tonalitytools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.__lt__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.tonalitytools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.__mul__
 
@@ -119,7 +119,7 @@ Special Methods
 
 .. automethod:: abjad.tools.tonalitytools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.__ne__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.tonalitytools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.__repr__
 
@@ -129,7 +129,7 @@ Special Methods
 
 .. automethod:: abjad.tools.tonalitytools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.tonalitytools.ChordQualityIndicator.ChordQualityIndicator.ChordQualityIndicator.__str__
 

@@ -28,11 +28,11 @@ Methods
 
 .. automethod:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.clear
 
-    Inherited from `_abcoll.MutableMapping`
+    Inherited from :py:class:`_abcoll.MutableMapping`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.get
 
-    Inherited from `_abcoll.Mapping`
+    Inherited from :py:class:`_abcoll.Mapping`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.get_overlap_with_interval
 
@@ -56,31 +56,31 @@ Methods
 
 .. automethod:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.items
 
-    Inherited from `_abcoll.Mapping`
+    Inherited from :py:class:`_abcoll.Mapping`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.iteritems
 
-    Inherited from `_abcoll.Mapping`
+    Inherited from :py:class:`_abcoll.Mapping`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.iterkeys
 
-    Inherited from `_abcoll.Mapping`
+    Inherited from :py:class:`_abcoll.Mapping`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.itervalues
 
-    Inherited from `_abcoll.Mapping`
+    Inherited from :py:class:`_abcoll.Mapping`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.keys
 
-    Inherited from `_abcoll.Mapping`
+    Inherited from :py:class:`_abcoll.Mapping`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.pop
 
-    Inherited from `_abcoll.MutableMapping`
+    Inherited from :py:class:`_abcoll.MutableMapping`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.popitem
 
-    Inherited from `_abcoll.MutableMapping`
+    Inherited from :py:class:`_abcoll.MutableMapping`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.quantize_to_rational
 
@@ -90,7 +90,7 @@ Methods
 
 .. automethod:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.setdefault
 
-    Inherited from `_abcoll.MutableMapping`
+    Inherited from :py:class:`_abcoll.MutableMapping`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.shift_by_rational
 
@@ -100,22 +100,22 @@ Methods
 
 .. automethod:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.update
 
-    Inherited from `_abcoll.MutableMapping`
+    Inherited from :py:class:`_abcoll.MutableMapping`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.values
 
-    Inherited from `_abcoll.Mapping`
+    Inherited from :py:class:`_abcoll.Mapping`
 
 Special Methods
 ---------------
 
 .. automethod:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.__contains__
 
-    Inherited from `_abcoll.Mapping`
+    Inherited from :py:class:`_abcoll.Mapping`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.__delitem__
 
@@ -155,10 +155,10 @@ Special Methods
 
 .. automethod:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.__setitem__
 
 .. automethod:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

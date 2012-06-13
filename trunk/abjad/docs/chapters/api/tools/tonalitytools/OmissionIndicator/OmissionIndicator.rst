@@ -11,7 +11,7 @@ Special Methods
 
 .. automethod:: abjad.tools.tonalitytools.OmissionIndicator.OmissionIndicator.OmissionIndicator.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.tonalitytools.OmissionIndicator.OmissionIndicator.OmissionIndicator.__eq__
 
@@ -27,7 +27,7 @@ Special Methods
 
 .. automethod:: abjad.tools.tonalitytools.OmissionIndicator.OmissionIndicator.OmissionIndicator.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.tonalitytools.OmissionIndicator.OmissionIndicator.OmissionIndicator.__le__
 
@@ -47,8 +47,8 @@ Special Methods
 
 .. automethod:: abjad.tools.tonalitytools.OmissionIndicator.OmissionIndicator.OmissionIndicator.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.tonalitytools.OmissionIndicator.OmissionIndicator.OmissionIndicator.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

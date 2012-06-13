@@ -152,8 +152,8 @@ Special Methods
 
 .. automethod:: abjad.tools.instrumenttools.Viola.Viola.Viola.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.instrumenttools.Viola.Viola.Viola.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

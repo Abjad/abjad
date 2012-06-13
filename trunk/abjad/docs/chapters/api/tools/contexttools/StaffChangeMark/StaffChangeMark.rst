@@ -62,7 +62,7 @@ Special Methods
 
 .. automethod:: abjad.tools.contexttools.StaffChangeMark.StaffChangeMark.StaffChangeMark.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.contexttools.StaffChangeMark.StaffChangeMark.StaffChangeMark.__le__
 
@@ -82,8 +82,8 @@ Special Methods
 
 .. automethod:: abjad.tools.contexttools.StaffChangeMark.StaffChangeMark.StaffChangeMark.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.contexttools.StaffChangeMark.StaffChangeMark.StaffChangeMark.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

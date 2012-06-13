@@ -46,27 +46,27 @@ Methods
 
 .. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.copy
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.difference
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.intersection
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.isdisjoint
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.issubset
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.issuperset
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.order_by
 
@@ -74,42 +74,42 @@ Methods
 
 .. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.symmetric_difference
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.transpose
 
 .. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.union
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 Special Methods
 ---------------
 
 .. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.__and__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.__cmp__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.__contains__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.__eq__
 
 .. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.__ge__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.__gt__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.__hash__
 
@@ -117,47 +117,47 @@ Special Methods
 
 .. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.__iter__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.__le__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.__len__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.__lt__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.__ne__
 
 .. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.__or__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.__rand__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.__repr__
 
 .. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.__ror__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.__rsub__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.__rxor__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.__str__
 
@@ -165,8 +165,8 @@ Special Methods
 
 .. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.__sub__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.__xor__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`

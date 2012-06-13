@@ -18,7 +18,7 @@ Special Methods
 
 .. automethod:: abjad.tools.schemetools.SchemeAssociativeList.SchemeAssociativeList.SchemeAssociativeList.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.schemetools.SchemeAssociativeList.SchemeAssociativeList.SchemeAssociativeList.__eq__
 
@@ -34,7 +34,7 @@ Special Methods
 
 .. automethod:: abjad.tools.schemetools.SchemeAssociativeList.SchemeAssociativeList.SchemeAssociativeList.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.schemetools.SchemeAssociativeList.SchemeAssociativeList.SchemeAssociativeList.__le__
 
@@ -54,7 +54,7 @@ Special Methods
 
 .. automethod:: abjad.tools.schemetools.SchemeAssociativeList.SchemeAssociativeList.SchemeAssociativeList.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.schemetools.SchemeAssociativeList.SchemeAssociativeList.SchemeAssociativeList.__str__
 

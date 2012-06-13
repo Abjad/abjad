@@ -56,7 +56,7 @@ Special Methods
 
 .. automethod:: abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment.__le__
 
@@ -76,8 +76,8 @@ Special Methods
 
 .. automethod:: abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.marktools.LilyPondComment.LilyPondComment.LilyPondComment.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

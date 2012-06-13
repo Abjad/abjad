@@ -25,7 +25,7 @@ Special Methods
 
 .. automethod:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead.__eq__
 
@@ -41,7 +41,7 @@ Special Methods
 
 .. automethod:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead.__le__
 
@@ -59,6 +59,6 @@ Special Methods
 
 .. automethod:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead.__str__

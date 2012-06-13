@@ -34,7 +34,7 @@ Special Methods
 
 .. automethod:: abjad.tools.scoretools.Performer.Performer.Performer.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.scoretools.Performer.Performer.Performer.__eq__
 
@@ -64,8 +64,8 @@ Special Methods
 
 .. automethod:: abjad.tools.scoretools.Performer.Performer.Performer.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.scoretools.Performer.Performer.Performer.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

@@ -105,7 +105,7 @@ Special Methods
 
 .. automethod:: abjad.tools.spannertools.TextSpanner.TextSpanner.TextSpanner.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.spannertools.TextSpanner.TextSpanner.TextSpanner.__eq__
 
@@ -125,7 +125,7 @@ Special Methods
 
 .. automethod:: abjad.tools.spannertools.TextSpanner.TextSpanner.TextSpanner.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.spannertools.TextSpanner.TextSpanner.TextSpanner.__le__
 
@@ -149,8 +149,8 @@ Special Methods
 
 .. automethod:: abjad.tools.spannertools.TextSpanner.TextSpanner.TextSpanner.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.spannertools.TextSpanner.TextSpanner.TextSpanner.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

@@ -13,7 +13,7 @@ Special Methods
 
 .. automethod:: abjad.tools.timetokentools.TupletMonadTimeTokenMaker.TupletMonadTimeTokenMaker.TupletMonadTimeTokenMaker.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.timetokentools.TupletMonadTimeTokenMaker.TupletMonadTimeTokenMaker.TupletMonadTimeTokenMaker.__eq__
 
@@ -29,7 +29,7 @@ Special Methods
 
 .. automethod:: abjad.tools.timetokentools.TupletMonadTimeTokenMaker.TupletMonadTimeTokenMaker.TupletMonadTimeTokenMaker.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.timetokentools.TupletMonadTimeTokenMaker.TupletMonadTimeTokenMaker.TupletMonadTimeTokenMaker.__le__
 
@@ -49,8 +49,8 @@ Special Methods
 
 .. automethod:: abjad.tools.timetokentools.TupletMonadTimeTokenMaker.TupletMonadTimeTokenMaker.TupletMonadTimeTokenMaker.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.timetokentools.TupletMonadTimeTokenMaker.TupletMonadTimeTokenMaker.TupletMonadTimeTokenMaker.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

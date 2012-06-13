@@ -15,7 +15,7 @@ Special Methods
 
 .. automethod:: abjad.tools.timetokentools.TokenBurnishedSignalFilledTimeTokenMaker.TokenBurnishedSignalFilledTimeTokenMaker.TokenBurnishedSignalFilledTimeTokenMaker.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.timetokentools.TokenBurnishedSignalFilledTimeTokenMaker.TokenBurnishedSignalFilledTimeTokenMaker.TokenBurnishedSignalFilledTimeTokenMaker.__eq__
 
@@ -31,7 +31,7 @@ Special Methods
 
 .. automethod:: abjad.tools.timetokentools.TokenBurnishedSignalFilledTimeTokenMaker.TokenBurnishedSignalFilledTimeTokenMaker.TokenBurnishedSignalFilledTimeTokenMaker.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.timetokentools.TokenBurnishedSignalFilledTimeTokenMaker.TokenBurnishedSignalFilledTimeTokenMaker.TokenBurnishedSignalFilledTimeTokenMaker.__le__
 
@@ -51,8 +51,8 @@ Special Methods
 
 .. automethod:: abjad.tools.timetokentools.TokenBurnishedSignalFilledTimeTokenMaker.TokenBurnishedSignalFilledTimeTokenMaker.TokenBurnishedSignalFilledTimeTokenMaker.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.timetokentools.TokenBurnishedSignalFilledTimeTokenMaker.TokenBurnishedSignalFilledTimeTokenMaker.TokenBurnishedSignalFilledTimeTokenMaker.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

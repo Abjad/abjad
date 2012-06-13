@@ -11,40 +11,40 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.durationtools.Duration.Duration.Duration.denominator
 
-    Inherited from `fractions.Fraction`
+    Inherited from :py:class:`fractions.Fraction`
 
 .. autoattribute:: abjad.tools.durationtools.Duration.Duration.Duration.imag
 
-    Inherited from `numbers.Real`
+    Inherited from :py:class:`numbers.Real`
 
 .. autoattribute:: abjad.tools.durationtools.Duration.Duration.Duration.numerator
 
-    Inherited from `fractions.Fraction`
+    Inherited from :py:class:`fractions.Fraction`
 
 .. autoattribute:: abjad.tools.durationtools.Duration.Duration.Duration.pair
 
 .. autoattribute:: abjad.tools.durationtools.Duration.Duration.Duration.real
 
-    Inherited from `numbers.Real`
+    Inherited from :py:class:`numbers.Real`
 
 Methods
 -------
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.conjugate
 
-    Inherited from `numbers.Real`
+    Inherited from :py:class:`numbers.Real`
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.from_decimal
 
-    Inherited from `fractions.Fraction`
+    Inherited from :py:class:`fractions.Fraction`
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.from_float
 
-    Inherited from `fractions.Fraction`
+    Inherited from :py:class:`fractions.Fraction`
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.limit_denominator
 
-    Inherited from `fractions.Fraction`
+    Inherited from :py:class:`fractions.Fraction`
 
 Special Methods
 ---------------
@@ -55,11 +55,11 @@ Special Methods
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__complex__
 
-    Inherited from `numbers.Real`
+    Inherited from :py:class:`numbers.Real`
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__div__
 
@@ -69,11 +69,11 @@ Special Methods
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__float__
 
-    Inherited from `numbers.Rational`
+    Inherited from :py:class:`numbers.Rational`
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__floordiv__
 
-    Inherited from `fractions.Fraction`
+    Inherited from :py:class:`fractions.Fraction`
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__ge__
 
@@ -81,7 +81,7 @@ Special Methods
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__hash__
 
-    Inherited from `fractions.Fraction`
+    Inherited from :py:class:`fractions.Fraction`
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__le__
 
@@ -97,7 +97,7 @@ Special Methods
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__nonzero__
 
-    Inherited from `fractions.Fraction`
+    Inherited from :py:class:`fractions.Fraction`
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__pos__
 
@@ -113,7 +113,7 @@ Special Methods
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__rfloordiv__
 
-    Inherited from `fractions.Fraction`
+    Inherited from :py:class:`fractions.Fraction`
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__rmod__
 
@@ -127,11 +127,11 @@ Special Methods
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__str__
 
-    Inherited from `fractions.Fraction`
+    Inherited from :py:class:`fractions.Fraction`
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__sub__
 
@@ -139,4 +139,4 @@ Special Methods
 
 .. automethod:: abjad.tools.durationtools.Duration.Duration.Duration.__trunc__
 
-    Inherited from `fractions.Fraction`
+    Inherited from :py:class:`fractions.Fraction`

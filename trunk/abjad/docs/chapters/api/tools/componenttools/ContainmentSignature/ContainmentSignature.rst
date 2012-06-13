@@ -11,7 +11,7 @@ Special Methods
 
 .. automethod:: abjad.tools.componenttools.ContainmentSignature.ContainmentSignature.ContainmentSignature.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.componenttools.ContainmentSignature.ContainmentSignature.ContainmentSignature.__eq__
 
@@ -25,7 +25,7 @@ Special Methods
 
 .. automethod:: abjad.tools.componenttools.ContainmentSignature.ContainmentSignature.ContainmentSignature.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.componenttools.ContainmentSignature.ContainmentSignature.ContainmentSignature.__le__
 
@@ -41,6 +41,6 @@ Special Methods
 
 .. automethod:: abjad.tools.componenttools.ContainmentSignature.ContainmentSignature.ContainmentSignature.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.componenttools.ContainmentSignature.ContainmentSignature.ContainmentSignature.__str__

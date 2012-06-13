@@ -20,7 +20,7 @@ Special Methods
 
 .. automethod:: abjad.tools.markuptools.MarkupCommand.MarkupCommand.MarkupCommand.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.markuptools.MarkupCommand.MarkupCommand.MarkupCommand.__eq__
 
@@ -34,7 +34,7 @@ Special Methods
 
 .. automethod:: abjad.tools.markuptools.MarkupCommand.MarkupCommand.MarkupCommand.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.markuptools.MarkupCommand.MarkupCommand.MarkupCommand.__le__
 
@@ -52,6 +52,6 @@ Special Methods
 
 .. automethod:: abjad.tools.markuptools.MarkupCommand.MarkupCommand.MarkupCommand.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.markuptools.MarkupCommand.MarkupCommand.MarkupCommand.__str__

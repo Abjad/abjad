@@ -11,36 +11,36 @@ Special Methods
 
 .. automethod:: abjad.tools.exceptiontools.TimeSignatureError.TimeSignatureError.__delattr__
 
-    Inherited from `exceptions.BaseException`
+    Inherited from :py:class:`exceptions.BaseException`
 
 .. automethod:: abjad.tools.exceptiontools.TimeSignatureError.TimeSignatureError.__getitem__
 
-    Inherited from `exceptions.BaseException`
+    Inherited from :py:class:`exceptions.BaseException`
 
 .. automethod:: abjad.tools.exceptiontools.TimeSignatureError.TimeSignatureError.__getslice__
 
-    Inherited from `exceptions.BaseException`
+    Inherited from :py:class:`exceptions.BaseException`
 
 .. automethod:: abjad.tools.exceptiontools.TimeSignatureError.TimeSignatureError.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.exceptiontools.TimeSignatureError.TimeSignatureError.__repr__
 
-    Inherited from `exceptions.BaseException`
+    Inherited from :py:class:`exceptions.BaseException`
 
 .. automethod:: abjad.tools.exceptiontools.TimeSignatureError.TimeSignatureError.__setattr__
 
-    Inherited from `exceptions.BaseException`
+    Inherited from :py:class:`exceptions.BaseException`
 
 .. automethod:: abjad.tools.exceptiontools.TimeSignatureError.TimeSignatureError.__setstate__
 
-    Inherited from `exceptions.BaseException`
+    Inherited from :py:class:`exceptions.BaseException`
 
 .. automethod:: abjad.tools.exceptiontools.TimeSignatureError.TimeSignatureError.__str__
 
-    Inherited from `exceptions.BaseException`
+    Inherited from :py:class:`exceptions.BaseException`
 
 .. automethod:: abjad.tools.exceptiontools.TimeSignatureError.TimeSignatureError.__unicode__
 
-    Inherited from `exceptions.BaseException`
+    Inherited from :py:class:`exceptions.BaseException`

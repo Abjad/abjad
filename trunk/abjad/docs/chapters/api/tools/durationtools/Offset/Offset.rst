@@ -11,15 +11,15 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.durationtools.Offset.Offset.Offset.denominator
 
-    Inherited from `fractions.Fraction`
+    Inherited from :py:class:`fractions.Fraction`
 
 .. autoattribute:: abjad.tools.durationtools.Offset.Offset.Offset.imag
 
-    Inherited from `numbers.Real`
+    Inherited from :py:class:`numbers.Real`
 
 .. autoattribute:: abjad.tools.durationtools.Offset.Offset.Offset.numerator
 
-    Inherited from `fractions.Fraction`
+    Inherited from :py:class:`fractions.Fraction`
 
 .. autoattribute:: abjad.tools.durationtools.Offset.Offset.Offset.pair
 
@@ -27,26 +27,26 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.durationtools.Offset.Offset.Offset.real
 
-    Inherited from `numbers.Real`
+    Inherited from :py:class:`numbers.Real`
 
 Methods
 -------
 
 .. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.conjugate
 
-    Inherited from `numbers.Real`
+    Inherited from :py:class:`numbers.Real`
 
 .. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.from_decimal
 
-    Inherited from `fractions.Fraction`
+    Inherited from :py:class:`fractions.Fraction`
 
 .. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.from_float
 
-    Inherited from `fractions.Fraction`
+    Inherited from :py:class:`fractions.Fraction`
 
 .. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.limit_denominator
 
-    Inherited from `fractions.Fraction`
+    Inherited from :py:class:`fractions.Fraction`
 
 Special Methods
 ---------------
@@ -61,11 +61,11 @@ Special Methods
 
 .. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.__complex__
 
-    Inherited from `numbers.Real`
+    Inherited from :py:class:`numbers.Real`
 
 .. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.__div__
 
@@ -81,11 +81,11 @@ Special Methods
 
 .. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.__float__
 
-    Inherited from `numbers.Rational`
+    Inherited from :py:class:`numbers.Rational`
 
 .. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.__floordiv__
 
-    Inherited from `fractions.Fraction`
+    Inherited from :py:class:`fractions.Fraction`
 
 .. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.__ge__
 
@@ -97,7 +97,7 @@ Special Methods
 
 .. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.__hash__
 
-    Inherited from `fractions.Fraction`
+    Inherited from :py:class:`fractions.Fraction`
 
 .. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.__le__
 
@@ -125,7 +125,7 @@ Special Methods
 
 .. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.__nonzero__
 
-    Inherited from `fractions.Fraction`
+    Inherited from :py:class:`fractions.Fraction`
 
 .. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.__pos__
 
@@ -153,7 +153,7 @@ Special Methods
 
 .. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.__rfloordiv__
 
-    Inherited from `fractions.Fraction`
+    Inherited from :py:class:`fractions.Fraction`
 
 .. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.__rmod__
 
@@ -177,11 +177,11 @@ Special Methods
 
 .. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.__str__
 
-    Inherited from `fractions.Fraction`
+    Inherited from :py:class:`fractions.Fraction`
 
 .. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.__sub__
 
@@ -193,4 +193,4 @@ Special Methods
 
 .. automethod:: abjad.tools.durationtools.Offset.Offset.Offset.__trunc__
 
-    Inherited from `fractions.Fraction`
+    Inherited from :py:class:`fractions.Fraction`

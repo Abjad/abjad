@@ -11,7 +11,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.MelodicObject.MelodicObject.MelodicObject.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.pitchtools.MelodicObject.MelodicObject.MelodicObject.__eq__
 
@@ -27,7 +27,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.MelodicObject.MelodicObject.MelodicObject.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.pitchtools.MelodicObject.MelodicObject.MelodicObject.__le__
 
@@ -47,8 +47,8 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.MelodicObject.MelodicObject.MelodicObject.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.pitchtools.MelodicObject.MelodicObject.MelodicObject.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

@@ -118,7 +118,7 @@ Special Methods
 
 .. automethod:: abjad.tools.containertools.Cluster.Cluster.Cluster.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.containertools.Cluster.Cluster.Cluster.__delitem__
 
@@ -142,7 +142,7 @@ Special Methods
 
 .. automethod:: abjad.tools.containertools.Cluster.Cluster.Cluster.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.containertools.Cluster.Cluster.Cluster.__iadd__
 
@@ -184,7 +184,7 @@ Special Methods
 
 .. automethod:: abjad.tools.containertools.Cluster.Cluster.Cluster.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.containertools.Cluster.Cluster.Cluster.__setitem__
 
@@ -192,4 +192,4 @@ Special Methods
 
 .. automethod:: abjad.tools.containertools.Cluster.Cluster.Cluster.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

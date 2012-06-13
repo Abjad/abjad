@@ -21,18 +21,18 @@ Special Methods
 
 .. automethod:: abjad.tools.lilypondfiletools.AttributedBlock.AttributedBlock.AttributedBlock.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.lilypondfiletools.AttributedBlock.AttributedBlock.AttributedBlock.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.lilypondfiletools.AttributedBlock.AttributedBlock.AttributedBlock.__repr__
 
 .. automethod:: abjad.tools.lilypondfiletools.AttributedBlock.AttributedBlock.AttributedBlock.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.lilypondfiletools.AttributedBlock.AttributedBlock.AttributedBlock.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

@@ -55,7 +55,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitcharraytools.PitchArrayColumn.PitchArrayColumn.PitchArrayColumn.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.pitcharraytools.PitchArrayColumn.PitchArrayColumn.PitchArrayColumn.__eq__
 
@@ -71,7 +71,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitcharraytools.PitchArrayColumn.PitchArrayColumn.PitchArrayColumn.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.pitcharraytools.PitchArrayColumn.PitchArrayColumn.PitchArrayColumn.__le__
 
@@ -87,6 +87,6 @@ Special Methods
 
 .. automethod:: abjad.tools.pitcharraytools.PitchArrayColumn.PitchArrayColumn.PitchArrayColumn.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.pitcharraytools.PitchArrayColumn.PitchArrayColumn.PitchArrayColumn.__str__

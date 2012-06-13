@@ -20,123 +20,123 @@ Methods
 
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.copy
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.difference
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.intersection
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.isdisjoint
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.issubset
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.issuperset
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.symmetric_difference
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.union
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 Special Methods
 ---------------
 
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.__and__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.__cmp__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.__contains__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.__eq__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.__ge__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.__gt__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.__hash__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.__iter__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.__le__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.__len__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.__lt__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.__ne__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.__or__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.__rand__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.__repr__
 
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.__ror__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.__rsub__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.__rxor__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.__str__
 
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.__sub__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.__xor__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`

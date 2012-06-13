@@ -25,11 +25,11 @@ Special Methods
 
 .. automethod:: abjad.tools.lilypondfiletools.HeaderBlock.HeaderBlock.HeaderBlock.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.lilypondfiletools.HeaderBlock.HeaderBlock.HeaderBlock.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.lilypondfiletools.HeaderBlock.HeaderBlock.HeaderBlock.__repr__
 
@@ -37,8 +37,8 @@ Special Methods
 
 .. automethod:: abjad.tools.lilypondfiletools.HeaderBlock.HeaderBlock.HeaderBlock.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.lilypondfiletools.HeaderBlock.HeaderBlock.HeaderBlock.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

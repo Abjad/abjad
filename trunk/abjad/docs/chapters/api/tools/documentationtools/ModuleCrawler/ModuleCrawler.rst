@@ -20,7 +20,7 @@ Special Methods
 
 .. automethod:: abjad.tools.documentationtools.ModuleCrawler.ModuleCrawler.ModuleCrawler.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.documentationtools.ModuleCrawler.ModuleCrawler.ModuleCrawler.__eq__
 
@@ -36,7 +36,7 @@ Special Methods
 
 .. automethod:: abjad.tools.documentationtools.ModuleCrawler.ModuleCrawler.ModuleCrawler.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.documentationtools.ModuleCrawler.ModuleCrawler.ModuleCrawler.__iter__
 
@@ -58,8 +58,8 @@ Special Methods
 
 .. automethod:: abjad.tools.documentationtools.ModuleCrawler.ModuleCrawler.ModuleCrawler.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.documentationtools.ModuleCrawler.ModuleCrawler.ModuleCrawler.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

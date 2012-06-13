@@ -18,7 +18,7 @@ Special Methods
 
 .. automethod:: abjad.tools.tonalitytools.ExtentIndicator.ExtentIndicator.ExtentIndicator.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.tonalitytools.ExtentIndicator.ExtentIndicator.ExtentIndicator.__eq__
 
@@ -32,7 +32,7 @@ Special Methods
 
 .. automethod:: abjad.tools.tonalitytools.ExtentIndicator.ExtentIndicator.ExtentIndicator.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.tonalitytools.ExtentIndicator.ExtentIndicator.ExtentIndicator.__le__
 
@@ -48,8 +48,8 @@ Special Methods
 
 .. automethod:: abjad.tools.tonalitytools.ExtentIndicator.ExtentIndicator.ExtentIndicator.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.tonalitytools.ExtentIndicator.ExtentIndicator.ExtentIndicator.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

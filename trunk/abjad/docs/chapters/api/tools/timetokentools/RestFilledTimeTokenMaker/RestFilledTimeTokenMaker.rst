@@ -15,7 +15,7 @@ Special Methods
 
 .. automethod:: abjad.tools.timetokentools.RestFilledTimeTokenMaker.RestFilledTimeTokenMaker.RestFilledTimeTokenMaker.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.timetokentools.RestFilledTimeTokenMaker.RestFilledTimeTokenMaker.RestFilledTimeTokenMaker.__eq__
 
@@ -31,7 +31,7 @@ Special Methods
 
 .. automethod:: abjad.tools.timetokentools.RestFilledTimeTokenMaker.RestFilledTimeTokenMaker.RestFilledTimeTokenMaker.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.timetokentools.RestFilledTimeTokenMaker.RestFilledTimeTokenMaker.RestFilledTimeTokenMaker.__le__
 
@@ -49,8 +49,8 @@ Special Methods
 
 .. automethod:: abjad.tools.timetokentools.RestFilledTimeTokenMaker.RestFilledTimeTokenMaker.RestFilledTimeTokenMaker.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.timetokentools.RestFilledTimeTokenMaker.RestFilledTimeTokenMaker.RestFilledTimeTokenMaker.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

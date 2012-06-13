@@ -136,7 +136,7 @@ Special Methods
 
 .. automethod:: abjad.tools.measuretools.Measure.Measure.Measure.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.measuretools.Measure.Measure.Measure.__delitem__
 
@@ -158,7 +158,7 @@ Special Methods
 
 .. automethod:: abjad.tools.measuretools.Measure.Measure.Measure.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.measuretools.Measure.Measure.Measure.__iadd__
 
@@ -200,7 +200,7 @@ Special Methods
 
 .. automethod:: abjad.tools.measuretools.Measure.Measure.Measure.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.measuretools.Measure.Measure.Measure.__setitem__
 

@@ -97,7 +97,7 @@ Special Methods
 
 .. automethod:: abjad.tools.resttools.Rest.Rest.Rest.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.resttools.Rest.Rest.Rest.__eq__
 
@@ -113,7 +113,7 @@ Special Methods
 
 .. automethod:: abjad.tools.resttools.Rest.Rest.Rest.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.resttools.Rest.Rest.Rest.__le__
 
@@ -145,7 +145,7 @@ Special Methods
 
 .. automethod:: abjad.tools.resttools.Rest.Rest.Rest.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.resttools.Rest.Rest.Rest.__str__
 

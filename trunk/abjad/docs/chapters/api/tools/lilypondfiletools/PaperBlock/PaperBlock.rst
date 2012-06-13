@@ -27,11 +27,11 @@ Special Methods
 
 .. automethod:: abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock.__repr__
 
@@ -39,8 +39,8 @@ Special Methods
 
 .. automethod:: abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

@@ -114,7 +114,7 @@ Special Methods
 
 .. automethod:: abjad.tools.spannertools.MetricGridSpanner.MetricGridSpanner.MetricGridSpanner.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.spannertools.MetricGridSpanner.MetricGridSpanner.MetricGridSpanner.__eq__
 
@@ -134,7 +134,7 @@ Special Methods
 
 .. automethod:: abjad.tools.spannertools.MetricGridSpanner.MetricGridSpanner.MetricGridSpanner.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.spannertools.MetricGridSpanner.MetricGridSpanner.MetricGridSpanner.__le__
 
@@ -158,8 +158,8 @@ Special Methods
 
 .. automethod:: abjad.tools.spannertools.MetricGridSpanner.MetricGridSpanner.MetricGridSpanner.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.spannertools.MetricGridSpanner.MetricGridSpanner.MetricGridSpanner.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

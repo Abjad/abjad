@@ -20,123 +20,123 @@ Methods
 
 .. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.copy
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.difference
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.intersection
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.isdisjoint
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.issubset
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.issuperset
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.symmetric_difference
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.union
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 Special Methods
 ---------------
 
 .. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.__and__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.__cmp__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.__contains__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.__eq__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.__ge__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.__gt__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.__hash__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.__iter__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.__le__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.__len__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.__lt__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.__ne__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.__or__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.__rand__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.__repr__
 
 .. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.__ror__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.__rsub__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.__rxor__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.__str__
 
 .. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.__sub__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`
 
 .. automethod:: abjad.tools.pitchtools.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.HarmonicDiatonicIntervalSet.__xor__
 
-    Inherited from `__builtin__.frozenset`
+    Inherited from :py:class:`__builtin__.frozenset`

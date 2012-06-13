@@ -54,7 +54,7 @@ Special Methods
 
 .. automethod:: abjad.tools.marktools.Annotation.Annotation.Annotation.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.marktools.Annotation.Annotation.Annotation.__le__
 
@@ -74,8 +74,8 @@ Special Methods
 
 .. automethod:: abjad.tools.marktools.Annotation.Annotation.Annotation.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.marktools.Annotation.Annotation.Annotation.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

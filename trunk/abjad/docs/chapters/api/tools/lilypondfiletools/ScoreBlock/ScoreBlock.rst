@@ -25,114 +25,114 @@ Methods
 
 .. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.append
 
-    Inherited from `__builtin__.list`
+    Inherited from :py:class:`__builtin__.list`
 
 .. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.count
 
-    Inherited from `__builtin__.list`
+    Inherited from :py:class:`__builtin__.list`
 
 .. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.extend
 
-    Inherited from `__builtin__.list`
+    Inherited from :py:class:`__builtin__.list`
 
 .. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.index
 
-    Inherited from `__builtin__.list`
+    Inherited from :py:class:`__builtin__.list`
 
 .. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.insert
 
-    Inherited from `__builtin__.list`
+    Inherited from :py:class:`__builtin__.list`
 
 .. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.pop
 
-    Inherited from `__builtin__.list`
+    Inherited from :py:class:`__builtin__.list`
 
 .. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.remove
 
-    Inherited from `__builtin__.list`
+    Inherited from :py:class:`__builtin__.list`
 
 .. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.reverse
 
-    Inherited from `__builtin__.list`
+    Inherited from :py:class:`__builtin__.list`
 
 .. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.sort
 
-    Inherited from `__builtin__.list`
+    Inherited from :py:class:`__builtin__.list`
 
 Special Methods
 ---------------
 
 .. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.__add__
 
-    Inherited from `__builtin__.list`
+    Inherited from :py:class:`__builtin__.list`
 
 .. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.__contains__
 
-    Inherited from `__builtin__.list`
+    Inherited from :py:class:`__builtin__.list`
 
 .. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.__delitem__
 
-    Inherited from `__builtin__.list`
+    Inherited from :py:class:`__builtin__.list`
 
 .. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.__delslice__
 
-    Inherited from `__builtin__.list`
+    Inherited from :py:class:`__builtin__.list`
 
 .. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.__eq__
 
-    Inherited from `__builtin__.list`
+    Inherited from :py:class:`__builtin__.list`
 
 .. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.__ge__
 
-    Inherited from `__builtin__.list`
+    Inherited from :py:class:`__builtin__.list`
 
 .. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.__getitem__
 
-    Inherited from `__builtin__.list`
+    Inherited from :py:class:`__builtin__.list`
 
 .. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.__getslice__
 
-    Inherited from `__builtin__.list`
+    Inherited from :py:class:`__builtin__.list`
 
 .. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.__gt__
 
-    Inherited from `__builtin__.list`
+    Inherited from :py:class:`__builtin__.list`
 
 .. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.__iadd__
 
-    Inherited from `__builtin__.list`
+    Inherited from :py:class:`__builtin__.list`
 
 .. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.__imul__
 
-    Inherited from `__builtin__.list`
+    Inherited from :py:class:`__builtin__.list`
 
 .. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.__iter__
 
-    Inherited from `__builtin__.list`
+    Inherited from :py:class:`__builtin__.list`
 
 .. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.__le__
 
-    Inherited from `__builtin__.list`
+    Inherited from :py:class:`__builtin__.list`
 
 .. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.__len__
 
-    Inherited from `__builtin__.list`
+    Inherited from :py:class:`__builtin__.list`
 
 .. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.__lt__
 
-    Inherited from `__builtin__.list`
+    Inherited from :py:class:`__builtin__.list`
 
 .. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.__mul__
 
-    Inherited from `__builtin__.list`
+    Inherited from :py:class:`__builtin__.list`
 
 .. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.__ne__
 
-    Inherited from `__builtin__.list`
+    Inherited from :py:class:`__builtin__.list`
 
 .. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.__repr__
 
@@ -140,24 +140,24 @@ Special Methods
 
 .. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.__reversed__
 
-    Inherited from `__builtin__.list`
+    Inherited from :py:class:`__builtin__.list`
 
 .. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.__rmul__
 
-    Inherited from `__builtin__.list`
+    Inherited from :py:class:`__builtin__.list`
 
 .. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.__setitem__
 
-    Inherited from `__builtin__.list`
+    Inherited from :py:class:`__builtin__.list`
 
 .. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.__setslice__
 
-    Inherited from `__builtin__.list`
+    Inherited from :py:class:`__builtin__.list`
 
 .. automethod:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

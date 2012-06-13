@@ -56,13 +56,13 @@ Methods
 
 .. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.count
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.create_named_chromatic_pitch_set_in_pitch_range
 
 .. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.index
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.is_equivalent_under_transposition
 
@@ -93,23 +93,23 @@ Special Methods
 
 .. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.__contains__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.__eq__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.__ge__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.__getitem__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.__getslice__
 
@@ -117,27 +117,27 @@ Special Methods
 
 .. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.__gt__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.__hash__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.__iter__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.__le__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.__len__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.__lt__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.__mul__
 
@@ -145,7 +145,7 @@ Special Methods
 
 .. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.__ne__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.__repr__
 
@@ -155,7 +155,7 @@ Special Methods
 
 .. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.tonalitytools.Scale.Scale.Scale.__str__
 

@@ -16,7 +16,7 @@ Special Methods
 
 .. automethod:: abjad.tools.tonalitytools.DoublingIndicator.DoublingIndicator.DoublingIndicator.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.tonalitytools.DoublingIndicator.DoublingIndicator.DoublingIndicator.__eq__
 
@@ -32,7 +32,7 @@ Special Methods
 
 .. automethod:: abjad.tools.tonalitytools.DoublingIndicator.DoublingIndicator.DoublingIndicator.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.tonalitytools.DoublingIndicator.DoublingIndicator.DoublingIndicator.__le__
 
@@ -52,8 +52,8 @@ Special Methods
 
 .. automethod:: abjad.tools.tonalitytools.DoublingIndicator.DoublingIndicator.DoublingIndicator.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.tonalitytools.DoublingIndicator.DoublingIndicator.DoublingIndicator.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

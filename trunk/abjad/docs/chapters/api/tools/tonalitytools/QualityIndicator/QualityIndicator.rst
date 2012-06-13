@@ -18,7 +18,7 @@ Special Methods
 
 .. automethod:: abjad.tools.tonalitytools.QualityIndicator.QualityIndicator.QualityIndicator.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.tonalitytools.QualityIndicator.QualityIndicator.QualityIndicator.__eq__
 
@@ -32,7 +32,7 @@ Special Methods
 
 .. automethod:: abjad.tools.tonalitytools.QualityIndicator.QualityIndicator.QualityIndicator.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.tonalitytools.QualityIndicator.QualityIndicator.QualityIndicator.__le__
 
@@ -48,8 +48,8 @@ Special Methods
 
 .. automethod:: abjad.tools.tonalitytools.QualityIndicator.QualityIndicator.QualityIndicator.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.tonalitytools.QualityIndicator.QualityIndicator.QualityIndicator.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

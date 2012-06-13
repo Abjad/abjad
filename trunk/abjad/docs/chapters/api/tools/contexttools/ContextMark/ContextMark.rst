@@ -49,7 +49,7 @@ Special Methods
 
 .. automethod:: abjad.tools.contexttools.ContextMark.ContextMark.ContextMark.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.contexttools.ContextMark.ContextMark.ContextMark.__le__
 
@@ -69,8 +69,8 @@ Special Methods
 
 .. automethod:: abjad.tools.contexttools.ContextMark.ContextMark.ContextMark.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.contexttools.ContextMark.ContextMark.ContextMark.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

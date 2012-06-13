@@ -11,7 +11,7 @@ Special Methods
 
 .. automethod:: abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject.__eq__
 
@@ -21,7 +21,7 @@ Special Methods
 
 .. automethod:: abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject.__le__
 
@@ -33,8 +33,8 @@ Special Methods
 
 .. automethod:: abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

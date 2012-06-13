@@ -24,7 +24,7 @@ Special Methods
 
 .. automethod:: abjad.tools.documentationtools.APICrawler.APICrawler.APICrawler.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.documentationtools.APICrawler.APICrawler.APICrawler.__eq__
 
@@ -40,7 +40,7 @@ Special Methods
 
 .. automethod:: abjad.tools.documentationtools.APICrawler.APICrawler.APICrawler.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.documentationtools.APICrawler.APICrawler.APICrawler.__le__
 
@@ -60,8 +60,8 @@ Special Methods
 
 .. automethod:: abjad.tools.documentationtools.APICrawler.APICrawler.APICrawler.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.documentationtools.APICrawler.APICrawler.APICrawler.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

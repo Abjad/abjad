@@ -11,7 +11,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.CounterpointObject.CounterpointObject.CounterpointObject.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.pitchtools.CounterpointObject.CounterpointObject.CounterpointObject.__eq__
 
@@ -27,7 +27,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.CounterpointObject.CounterpointObject.CounterpointObject.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.pitchtools.CounterpointObject.CounterpointObject.CounterpointObject.__le__
 
@@ -47,8 +47,8 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.CounterpointObject.CounterpointObject.CounterpointObject.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.pitchtools.CounterpointObject.CounterpointObject.CounterpointObject.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

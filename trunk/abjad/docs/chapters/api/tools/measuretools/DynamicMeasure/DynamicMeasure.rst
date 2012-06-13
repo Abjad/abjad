@@ -164,7 +164,7 @@ Special Methods
 
 .. automethod:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.__delitem__
 
@@ -188,7 +188,7 @@ Special Methods
 
 .. automethod:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.__iadd__
 
@@ -232,7 +232,7 @@ Special Methods
 
 .. automethod:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.__setitem__
 

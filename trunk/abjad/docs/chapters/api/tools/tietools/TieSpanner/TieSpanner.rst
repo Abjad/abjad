@@ -112,7 +112,7 @@ Special Methods
 
 .. automethod:: abjad.tools.tietools.TieSpanner.TieSpanner.TieSpanner.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.tietools.TieSpanner.TieSpanner.TieSpanner.__eq__
 
@@ -132,7 +132,7 @@ Special Methods
 
 .. automethod:: abjad.tools.tietools.TieSpanner.TieSpanner.TieSpanner.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.tietools.TieSpanner.TieSpanner.TieSpanner.__le__
 
@@ -156,8 +156,8 @@ Special Methods
 
 .. automethod:: abjad.tools.tietools.TieSpanner.TieSpanner.TieSpanner.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.tietools.TieSpanner.TieSpanner.TieSpanner.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

@@ -28,7 +28,7 @@ Special Methods
 
 .. automethod:: abjad.tools.documentationtools.FunctionDocumenter.FunctionDocumenter.FunctionDocumenter.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.documentationtools.FunctionDocumenter.FunctionDocumenter.FunctionDocumenter.__eq__
 
@@ -44,7 +44,7 @@ Special Methods
 
 .. automethod:: abjad.tools.documentationtools.FunctionDocumenter.FunctionDocumenter.FunctionDocumenter.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.documentationtools.FunctionDocumenter.FunctionDocumenter.FunctionDocumenter.__le__
 
@@ -64,8 +64,8 @@ Special Methods
 
 .. automethod:: abjad.tools.documentationtools.FunctionDocumenter.FunctionDocumenter.FunctionDocumenter.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.documentationtools.FunctionDocumenter.FunctionDocumenter.FunctionDocumenter.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

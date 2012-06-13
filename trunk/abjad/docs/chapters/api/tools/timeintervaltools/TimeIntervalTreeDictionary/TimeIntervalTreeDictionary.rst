@@ -58,11 +58,11 @@ Methods
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.clear
 
-    Inherited from `__builtin__.dict`
+    Inherited from :py:class:`__builtin__.dict`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.copy
 
-    Inherited from `__builtin__.dict`
+    Inherited from :py:class:`__builtin__.dict`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.find_intervals_intersecting_or_tangent_to_interval
 
@@ -88,13 +88,9 @@ Methods
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.find_intervals_stopping_within_interval
 
-.. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.fromkeys
-
-    Inherited from `__builtin__.dict`
-
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.get
 
-    Inherited from `__builtin__.dict`
+    Inherited from :py:class:`__builtin__.dict`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.get_overlap_with_interval
 
@@ -102,7 +98,7 @@ Methods
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.has_key
 
-    Inherited from `__builtin__.dict`
+    Inherited from :py:class:`__builtin__.dict`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.is_contained_by_interval
 
@@ -122,31 +118,31 @@ Methods
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.items
 
-    Inherited from `__builtin__.dict`
+    Inherited from :py:class:`__builtin__.dict`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.iteritems
 
-    Inherited from `__builtin__.dict`
+    Inherited from :py:class:`__builtin__.dict`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.iterkeys
 
-    Inherited from `__builtin__.dict`
+    Inherited from :py:class:`__builtin__.dict`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.itervalues
 
-    Inherited from `__builtin__.dict`
+    Inherited from :py:class:`__builtin__.dict`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.keys
 
-    Inherited from `__builtin__.dict`
+    Inherited from :py:class:`__builtin__.dict`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.pop
 
-    Inherited from `__builtin__.dict`
+    Inherited from :py:class:`__builtin__.dict`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.popitem
 
-    Inherited from `__builtin__.dict`
+    Inherited from :py:class:`__builtin__.dict`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.quantize_to_rational
 
@@ -156,7 +152,7 @@ Methods
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.setdefault
 
-    Inherited from `__builtin__.dict`
+    Inherited from :py:class:`__builtin__.dict`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.shift_by_rational
 
@@ -166,38 +162,38 @@ Methods
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.update
 
-    Inherited from `__builtin__.dict`
+    Inherited from :py:class:`__builtin__.dict`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.values
 
-    Inherited from `__builtin__.dict`
+    Inherited from :py:class:`__builtin__.dict`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.viewitems
 
-    Inherited from `__builtin__.dict`
+    Inherited from :py:class:`__builtin__.dict`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.viewkeys
 
-    Inherited from `__builtin__.dict`
+    Inherited from :py:class:`__builtin__.dict`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.viewvalues
 
-    Inherited from `__builtin__.dict`
+    Inherited from :py:class:`__builtin__.dict`
 
 Special Methods
 ---------------
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.__cmp__
 
-    Inherited from `__builtin__.dict`
+    Inherited from :py:class:`__builtin__.dict`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.__contains__
 
-    Inherited from `__builtin__.dict`
+    Inherited from :py:class:`__builtin__.dict`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.__delitem__
 
@@ -205,39 +201,39 @@ Special Methods
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.__eq__
 
-    Inherited from `__builtin__.dict`
+    Inherited from :py:class:`__builtin__.dict`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.__ge__
 
-    Inherited from `__builtin__.dict`
+    Inherited from :py:class:`__builtin__.dict`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.__getitem__
 
-    Inherited from `__builtin__.dict`
+    Inherited from :py:class:`__builtin__.dict`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.__gt__
 
-    Inherited from `__builtin__.dict`
+    Inherited from :py:class:`__builtin__.dict`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.__iter__
 
-    Inherited from `__builtin__.dict`
+    Inherited from :py:class:`__builtin__.dict`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.__le__
 
-    Inherited from `__builtin__.dict`
+    Inherited from :py:class:`__builtin__.dict`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.__len__
 
-    Inherited from `__builtin__.dict`
+    Inherited from :py:class:`__builtin__.dict`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.__lt__
 
-    Inherited from `__builtin__.dict`
+    Inherited from :py:class:`__builtin__.dict`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.__ne__
 
-    Inherited from `__builtin__.dict`
+    Inherited from :py:class:`__builtin__.dict`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.__nonzero__
 
@@ -247,7 +243,7 @@ Special Methods
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.__setitem__
 
@@ -255,4 +251,4 @@ Special Methods
 
 .. automethod:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.__str__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`

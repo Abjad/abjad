@@ -11,36 +11,36 @@ Special Methods
 
 .. automethod:: abjad.tools.exceptiontools.ContiguityError.ContiguityError.__delattr__
 
-    Inherited from `exceptions.BaseException`
+    Inherited from :py:class:`exceptions.BaseException`
 
 .. automethod:: abjad.tools.exceptiontools.ContiguityError.ContiguityError.__getitem__
 
-    Inherited from `exceptions.BaseException`
+    Inherited from :py:class:`exceptions.BaseException`
 
 .. automethod:: abjad.tools.exceptiontools.ContiguityError.ContiguityError.__getslice__
 
-    Inherited from `exceptions.BaseException`
+    Inherited from :py:class:`exceptions.BaseException`
 
 .. automethod:: abjad.tools.exceptiontools.ContiguityError.ContiguityError.__hash__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.exceptiontools.ContiguityError.ContiguityError.__repr__
 
-    Inherited from `exceptions.BaseException`
+    Inherited from :py:class:`exceptions.BaseException`
 
 .. automethod:: abjad.tools.exceptiontools.ContiguityError.ContiguityError.__setattr__
 
-    Inherited from `exceptions.BaseException`
+    Inherited from :py:class:`exceptions.BaseException`
 
 .. automethod:: abjad.tools.exceptiontools.ContiguityError.ContiguityError.__setstate__
 
-    Inherited from `exceptions.BaseException`
+    Inherited from :py:class:`exceptions.BaseException`
 
 .. automethod:: abjad.tools.exceptiontools.ContiguityError.ContiguityError.__str__
 
-    Inherited from `exceptions.BaseException`
+    Inherited from :py:class:`exceptions.BaseException`
 
 .. automethod:: abjad.tools.exceptiontools.ContiguityError.ContiguityError.__unicode__
 
-    Inherited from `exceptions.BaseException`
+    Inherited from :py:class:`exceptions.BaseException`

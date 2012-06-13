@@ -26,11 +26,11 @@ Methods
 
 .. automethod:: abjad.tools.pitchtools.TwelveToneRow.TwelveToneRow.TwelveToneRow.count
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.TwelveToneRow.TwelveToneRow.TwelveToneRow.index
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.TwelveToneRow.TwelveToneRow.TwelveToneRow.invert
 
@@ -61,47 +61,47 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.TwelveToneRow.TwelveToneRow.TwelveToneRow.__contains__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.TwelveToneRow.TwelveToneRow.TwelveToneRow.__delattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.pitchtools.TwelveToneRow.TwelveToneRow.TwelveToneRow.__eq__
 
 .. automethod:: abjad.tools.pitchtools.TwelveToneRow.TwelveToneRow.TwelveToneRow.__ge__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.TwelveToneRow.TwelveToneRow.TwelveToneRow.__getitem__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.TwelveToneRow.TwelveToneRow.TwelveToneRow.__getslice__
 
 .. automethod:: abjad.tools.pitchtools.TwelveToneRow.TwelveToneRow.TwelveToneRow.__gt__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.TwelveToneRow.TwelveToneRow.TwelveToneRow.__hash__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.TwelveToneRow.TwelveToneRow.TwelveToneRow.__iter__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.TwelveToneRow.TwelveToneRow.TwelveToneRow.__le__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.TwelveToneRow.TwelveToneRow.TwelveToneRow.__len__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.TwelveToneRow.TwelveToneRow.TwelveToneRow.__lt__
 
-    Inherited from `__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: abjad.tools.pitchtools.TwelveToneRow.TwelveToneRow.TwelveToneRow.__mul__
 
@@ -115,7 +115,7 @@ Special Methods
 
 .. automethod:: abjad.tools.pitchtools.TwelveToneRow.TwelveToneRow.TwelveToneRow.__setattr__
 
-    Inherited from `__builtin__.object`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: abjad.tools.pitchtools.TwelveToneRow.TwelveToneRow.TwelveToneRow.__str__
 
