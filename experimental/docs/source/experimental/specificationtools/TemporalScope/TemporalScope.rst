@@ -9,6 +9,8 @@ experimental.specificationtools.TemporalScope
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.specificationtools.TemporalScope.TemporalScope.TemporalScope.duration
+
 .. autoattribute:: experimental.specificationtools.TemporalScope.TemporalScope.TemporalScope.start
 
 .. autoattribute:: experimental.specificationtools.TemporalScope.TemporalScope.TemporalScope.stop

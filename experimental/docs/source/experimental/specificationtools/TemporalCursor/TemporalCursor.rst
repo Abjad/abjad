@@ -13,11 +13,11 @@ Read-only Properties
 
 .. autoattribute:: experimental.specificationtools.TemporalCursor.TemporalCursor.TemporalCursor.anchor
 
+.. autoattribute:: experimental.specificationtools.TemporalCursor.TemporalCursor.TemporalCursor.edge
+
 .. autoattribute:: experimental.specificationtools.TemporalCursor.TemporalCursor.TemporalCursor.scalar
 
 .. autoattribute:: experimental.specificationtools.TemporalCursor.TemporalCursor.TemporalCursor.score_offset
-
-.. autoattribute:: experimental.specificationtools.TemporalCursor.TemporalCursor.TemporalCursor.start
 
 Special Methods
 ---------------
