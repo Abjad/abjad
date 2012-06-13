@@ -46,30 +46,30 @@ class TemporalScope(AbjadObject):
 
     Select the last ``1/8`` of a whole note's duration in the score::
 
-        >>> cursor = specificationtools.TemporalCursor(start=False, addendum=-Fraction(1, 8))
+        >>> cursor = specificationtools.TemporalCursor(edge=right, addendum=-Fraction(1, 8))
 
     ::
 
         >>> specificationtools.TemporalScope(start=cursor)
-        TemporalScope(start=TemporalCursor(start=False, addendum=Offset(-1, 8)))
+        TemporalScope(start=TemporalCursor(edge=right, addendum=Offset(-1, 8)))
 
     Select the first third of the score::
 
-        >>> cursor = specificationtools.TemporalCursor(scalar=Fraction(1, 3), start=False)
+        >>> cursor = specificationtools.TemporalCursor(scalar=Fraction(1, 3), edge=right)
 
     ::
 
         >>> specificationtools.TemporalScope(stop=cursor)
-        TemporalScope(stop=TemporalCursor(scalar=Fraction(1, 3), start=False))
+        TemporalScope(stop=TemporalCursor(edge=right, scalar=Fraction(1, 3)))
 
     Select the last third of the score::
 
-        >>> cursor = specificationtools.TemporalCursor(scalar=Fraction(2, 3), start=False)
+        >>> cursor = specificationtools.TemporalCursor(edge=right, scalar=Fraction(2, 3))
 
     ::
 
         >>> specificationtools.TemporalScope(start=cursor)
-        TemporalScope(start=TemporalCursor(scalar=Fraction(2, 3), start=False))
+        TemporalScope(start=TemporalCursor(edge=right, scalar=Fraction(2, 3)))
     
     Examples below reference the temporal scope defined immediately above::
 
