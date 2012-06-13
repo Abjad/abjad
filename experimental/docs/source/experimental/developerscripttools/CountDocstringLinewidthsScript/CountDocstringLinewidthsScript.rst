@@ -35,8 +35,6 @@ Read-only Properties
 
 .. autoattribute:: experimental.developerscripttools.CountDocstringLinewidthsScript.CountDocstringLinewidthsScript.CountDocstringLinewidthsScript.version
 
-    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
-
 Special Methods
 ---------------
 

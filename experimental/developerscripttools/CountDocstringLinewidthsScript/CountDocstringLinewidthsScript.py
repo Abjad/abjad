@@ -18,6 +18,10 @@ class CountDocstringLinewidthsScript(DeveloperScript):
     def short_description(self):
         return 'Count maximum line-width of docstrings of all modules in PATH.'
 
+    @property
+    def version(self):
+        return 1.0
+
     ### PRIVATE METHODS ###
 
     def _is_valid_path(self, path):

@@ -50,13 +50,19 @@ Unstable Abjad composition packages (load manually)
 :py:mod:`developerscripttools <experimental.developerscripttools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+.. rubric:: abstract classes
+
+.. toctree::
+   :maxdepth: 1
+
+   experimental/developerscripttools/DeveloperScript/DeveloperScript
+
 .. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
 
    experimental/developerscripttools/CountDocstringLinewidthsScript/CountDocstringLinewidthsScript
-   experimental/developerscripttools/DeveloperScript/DeveloperScript
 
 :py:mod:`handlertools <experimental.handlertools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

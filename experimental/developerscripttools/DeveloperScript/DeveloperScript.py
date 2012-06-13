@@ -2,6 +2,7 @@
 
 from abjad.tools import abctools
 from abjad.tools import stringtools
+from abc import abstractmethod, abstractproperty
 import argparse
 import os
 
@@ -90,9 +91,9 @@ class DeveloperScript(abctools.AbjadObject):
     def formatted_version(self):
         return self._argument_parser.format_version()
 
-    @property
+    @abstractproperty
     def long_description(self):
-        return 'A long description.'
+        raise NotImplemented
 
     @property
     def program_name(self):
@@ -100,19 +101,21 @@ class DeveloperScript(abctools.AbjadObject):
         return stringtools.uppercamelcase_to_space_delimited_lowercase(
             name).replace(' ', '-')
 
-    @property
+    @abstractproperty
     def short_description(self):
-        return 'A short description.'
+        raise NotImplemented
 
-    @property
+    @abstractproperty
     def version(self):
-        return 1.0
+        raise NotImplemented
 
     ### PRIVATE METHODS ###
 
+    @abstractmethod
     def _process_args(self, args):
         pass
 
+    @abstractmethod
     def _setup_argument_parser(self):
         pass
 
