@@ -94,12 +94,12 @@ class CountDocstringLinewidthsScript(DeveloperScript):
         sort_group.add_argument('-a', '--ascending',
             action='store_true',
             default=True,
-            help='sort by ascending line widths',
+            help='sort results ascending',
             )
 
         sort_group.add_argument('-d', '--descending',
             action='store_true',
-            help='sort by descending line widths',
+            help='sort results descending',
             )
 
         thresh_group = parser.add_mutually_exclusive_group()
