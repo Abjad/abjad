@@ -86,7 +86,7 @@ class AbjadAPIGenerator(abctools.AbjadObject):
         ignored_directories = ['.svn', 'test', '__pycache__']
         ignored_directories.extend(self._undocumented_packages)
         tools_crawler = APICrawler(self.code_tools_path, self.docs_tools_path, self.root_package,
-            ignored_directories = ignored_directories)
+            ignored_directories = ignored_directories, prefix=self.package_prefix)
         visited_modules = tools_crawler()
 
         composition, manual, unstable, internals = self._sort_modules(visited_modules)
@@ -177,7 +177,7 @@ class AbjadAPIGenerator(abctools.AbjadObject):
         ]
 
     def _module_name_to_toc_entry(self, module_name):
-        parts = module_name.split('.')[self.tools_package_path_index - 1:-1]
+        parts = module_name.split('.')[self.tools_package_path_index-1:-1]
         return '   %s' % '/'.join(parts)
 
     def _sort_modules(self, objects):

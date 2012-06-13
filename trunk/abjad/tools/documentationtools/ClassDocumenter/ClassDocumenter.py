@@ -126,8 +126,12 @@ class ClassDocumenter(Documenter):
                 parts = defining_module.split('.')
                 result.append('    Inherited from :py:class:`%s.%s <%s>`' %
                     (parts[2], parts[3], defining_module))
+            elif defining_module.startswith('experimental'):
+                parts = defining_module.split('.')
+                result.append('    Inherited from :py:class:`%s.%s <%s>`' %
+                    (parts[1], parts[2], defining_module))
             else:
-                result.append('    Inherited from `%s`' % defining_module)
+                result.append('    Inherited from :py:class:`%s`' % defining_module)
             result.append('')
         return result
 
