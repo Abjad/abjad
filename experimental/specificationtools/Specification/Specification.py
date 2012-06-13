@@ -55,6 +55,7 @@ class Specification(AbjadObject):
 
     ### PUBLIC METHODS ###
 
+    # TODO: change name to something more explicit
     def retrieve(self, attribute_name, segment_name, context_name=None, scope=None):
         return AttributeRetrievalIndicator(attribute_name, segment_name, context_name=context_name, scope=scope)
 

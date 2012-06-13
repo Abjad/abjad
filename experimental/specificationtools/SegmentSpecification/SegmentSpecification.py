@@ -14,6 +14,31 @@ import copy
 
 
 class SegmentSpecification(Specification):
+    r'''.. versionadded:: 1.0
+
+    Segment specification.
+
+    Examples::
+
+        >>> from abjad.tools import scoretemplatetools
+        >>> from experimental import specificationtools
+
+    The examples below reference the following segment specification::
+
+        >>> template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(n=1)
+        >>> specification = specificationtools.ScoreSpecification(score_template=template)
+        
+    ::
+    
+        >>> segment = specification.append_segment()
+
+    ::
+            
+        >>> segment
+        SegmentSpecification('1')
+
+    More description goes here.
+    '''
 
     ### INITIALIZER ###
 
@@ -40,23 +65,110 @@ class SegmentSpecification(Specification):
 
     @property
     def directives(self):
+        '''Segment specification directives.
+
+            >>> segment.directives
+            DirectiveInventory([])
+
+        Return directive inventory.
+        '''
         return self._directives
 
     @property
     def duration(self):
+        '''Segment specification duration.
+
+            >>> segment.duration is None
+            True
+
+        Derived during interpretation.
+
+        Return rational or none.
+        '''
         if self.time_signatures is not None:
             return sum([durationtools.Duration(x) for x in self.time_signatures])        
 
     @property
+    def indicator(self):
+        '''Segment score object indicator.
+
+            >>> segment.indicator
+            ScoreObjectIndicator(segment='1')
+
+        Return score object indicator.
+        '''
+        from experimental import specificationtools
+        return specificationtools.ScoreObjectIndicator(segment=self)
+        
+    @property
     def name(self):
+        '''Segment name.
+
+            >>> segment.name
+            '1'
+
+        Return string.
+        '''
         return self._name
 
     @property
+    def scope(self):
+        '''Segment temporal scope.
+
+            >>> segment.scope
+            TemporalScope(start=TemporalCursor(anchor=ScoreObjectIndicator(segment='1'), edge=left), stop=TemporalCursor(anchor=ScoreObjectIndicator(segment='1'), edge=right))
+
+        Return temporal scope.
+        '''
+        from experimental import specificationtools
+        return specificationtools.TemporalScope(start=self.start, stop=self.stop)
+
+    @property
     def score_model(self):
+        '''Segment score model specified by user.
+
+            >>> segment.score_model
+            Score-"Grouped Rhythmic Staves Score"<<1>>
+
+        Return Abjad score object.
+        '''
         return self._score_model
 
     @property
+    def start(self):
+        '''Segment start cursor.
+
+            >>> segment.start
+            TemporalCursor(anchor=ScoreObjectIndicator(segment='1'), edge=left)
+
+        Return temporal cursor.
+        '''
+        from experimental import specificationtools
+        return specificationtools.TemporalCursor(anchor=self.indicator, edge=left)
+
+    @property
+    def stop(self):
+        '''Segment stop cursor.
+
+            >>> segment.stop
+            TemporalCursor(anchor=ScoreObjectIndicator(segment='1'), edge=right)
+
+        Return temporal cursor.
+        '''
+        from experimental import specificationtools
+        return specificationtools.TemporalCursor(anchor=self.indicator, edge=right)
+
+    @property
     def time_signatures(self):
+        '''Segment time signatures::
+
+            >>> segment.time_signatures is None
+            True
+
+        Derived during interpretation.
+
+        Return list or none.
+        '''
         try:
             setting = self.resolved_settings_context_dictionary.score_context_proxy.get_setting(
                 attribute_name='time_signatures')
@@ -180,11 +292,13 @@ class SegmentSpecification(Specification):
         if isinstance(selection_token, specificationtools.Selection):
             selection = selection_token
         elif isinstance(selection_token, type(self)):
-            selection = self.select()
+            # TODO: change to broader self.select() to capture all contexts automatically
+            selection = self.select_contexts()
+            #selection = self.select()
         elif isinstance(selection_token, str) and selection_token in self.resolved_settings_context_dictionary:
-            selection = self.select(contexts=[selection_token])
+            selection = self.select_contexts(contexts=[selection_token])
         elif self.resolved_settings_context_dictionary.all_are_context_names(selection_token):
-            selection = self.select(contexts=selection_token)
+            selection = self.select_contexts(contexts=selection_token)
         else:
             raise ValueError('invalid selection token: {!r}.'.format(selection_token))
         return selection
@@ -196,13 +310,18 @@ class SegmentSpecification(Specification):
     def retrieve_resolved_value(self, attribute_name, **kwargs):
         return Specification.retrieve_resolved_value(self, attribute_name, self.name, **kwargs)
 
-    def select(self, contexts=None, segment_name=None, scope=None):
+    def select(self):
+        '''Select all segment contexts over timespan of segment.
+        '''
+        from experimental import specificationtools
+        return specificationtools.Selection()
+        
+    def select_contexts(self, contexts=None, segment_name=None):
         from experimental import specificationtools
         assert contexts is None or self.resolved_settings_context_dictionary.all_are_context_names(contexts)
         assert isinstance(segment_name, (str, type(None)))
-        assert isinstance(scope, (specificationtools.TemporalScope, type(None)))
         segment_name = segment_name or self.name
-        selection = specificationtools.Selection(segment_name, contexts=contexts, scope=scope)
+        selection = specificationtools.Selection(segment_name, contexts=contexts)
         return selection
 
     def select_divisions(self, context_token=None, part=None, segment_name=None, start=None, stop=None):
