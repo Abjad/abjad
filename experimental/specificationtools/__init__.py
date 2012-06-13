@@ -2,8 +2,9 @@ from AttributeNameEnumeration import AttributeNameEnumeration
 from AttributeRetrievalIndicator import AttributeRetrievalIndicator
 from AttributeRetrievalRequest import AttributeRetrievalRequest
 from Callback import Callback
-from ContextProxy import ContextProxy
 from ContextDictionary import ContextDictionary
+from ContextProxy import ContextProxy
+from ContextSelection import ContextSelection
 from Directive import Directive
 from DirectiveInventory import DirectiveInventory
 from Division import Division
