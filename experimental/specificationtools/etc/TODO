@@ -1,10 +1,6 @@
-1. Revive TemporalCursor class. Use as infinitely thin cursor.
-   TemporalCursor will comprise segment, context, klass, index.
-   Alternatively, TemporalCursor will comprise segment, offset.
-   No need for boundary condition; other classes will model boundary conditions.
+1. Change 'from experimental.specificationtools.TemporalScope import TemporalScope'
+   to 'from experimental.specificationtools.TemporalScope.TemporalScope import TemporalScope'
 
-2. Refactor TemporalScope with start moment indiator and stop moment indicator.
+2. Make Setting inherit from Directive. Or vice versa. Or make both inherit from an ABC.
 
-3. Make Setting inherit from Directive. Or vice versa. Or make both inherit from an ABC.
-
-4. Implement RetrievalRequest as base class for different retrieval requests classes.
+3. Implement RetrievalRequest as base class for different retrieval requests classes.
