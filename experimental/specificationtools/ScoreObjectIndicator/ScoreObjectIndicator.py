@@ -14,16 +14,16 @@ class ScoreObjectIndicator(AbjadObject):
 
     (Oject-oriented delayed evaluation.)
 
-    Score object indicator object afford the identification of score
+    Score object indicator objects afford the identification of score
     objects that do not yet exist.
 
     Initialize with different combinations of optional `segment`, `context`, `klass`, `index` and `predicate`. 
 
-    Import ``specificationtools``::
+    Pick out the entire score::
 
         >>> from experimental import specificationtools
 
-    Pick out the entire score::
+    ::
 
         >>> specificationtools.ScoreObjectIndicator()
         ScoreObjectIndicator()
@@ -90,10 +90,10 @@ class ScoreObjectIndicator(AbjadObject):
 
     Score object indicators are immutable.
 
-    Limiations of the design:
+    Limitations of the design:
 
     Score object indicators do not afford the specification of nested objects.
-    So it is not possible to pick the first leaf in the last tuplet anywhere in score.
+    So it is not possible to pick the first leaf of the last tuplet anywhere in score.
 
     When or if we decide we want such functionality it will be necessary to initialize score 
     object indicators with some type of nested object.

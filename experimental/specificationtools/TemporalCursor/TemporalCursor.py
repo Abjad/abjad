@@ -14,10 +14,10 @@ class TemporalCursor(AbjadObject):
 
     Temporal cursors locate timepoints relative to arbitrary objects in score.
 
-    Temporal cursors resolve to a rational-valued score offset.
-
     Temporal cursors afford the location of timepoints relative to score
     objects that do not yet exist.
+
+    Temporal cursors resolve to a rational-valued score offset.
 
     Initialize with different combinations of optional `anchor`, 
     `edge`, `scalar` and `addendum`.
@@ -229,6 +229,8 @@ class TemporalCursor(AbjadObject):
     @property
     def score_offset(self):
         '''Rational-valued offset of temporal cursor in score.
+
+        Derived from input values.
     
         Return offset.
 
