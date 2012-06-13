@@ -120,7 +120,9 @@ html_theme = 'abjadtheme'
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
 # documentation.
-#html_theme_options = {}
+html_theme_options = {
+    'collapsiblesidebar': True
+}
 
 # Add any paths that contain custom themes here, relative to this directory.
 html_theme_path = ['_themes']
@@ -152,7 +154,7 @@ html_static_path = ['_static']
 
 # If true, SmartyPants will be used to convert quotes and dashes to
 # typographically correct entities.
-#html_use_smartypants = True
+html_use_smartypants = True
 
 # Custom sidebar templates, maps document names to template names.
 #html_sidebars = {}
@@ -194,14 +196,20 @@ htmlhelp_basename = 'AbjadExperimentalPackagesdoc'
 # -- Options for LaTeX output --------------------------------------------------
 
 latex_elements = {
-# The paper size ('letterpaper' or 'a4paper').
-#'papersize': 'letterpaper',
+    'inputenc': r'\usepackage[utf8x]{inputenc}', 
+    'utf8extra': '',
 
-# The font size ('10pt', '11pt' or '12pt').
-#'pointsize': '10pt',
+    # The paper size ('letterpaper' or 'a4paper').
+    'papersize': 'a4paper',
 
-# Additional stuff for the LaTeX preamble.
-#'preamble': '',
+    # The font size ('10pt', '11pt' or '12pt').
+    'pointsize': '10pt',
+
+    # Additional stuff for the LaTeX preamble.
+    'preamble': r'''
+\let\Verbatim=\OriginalVerbatim
+\let\endVerbatim=\endOriginalVerbatim
+    ''',
 }
 
 # Grouping the document tree into LaTeX files. List of tuples
@@ -217,7 +225,7 @@ latex_documents = [
 
 # For "manual" documents, if this is true, then toplevel headings are parts,
 # not chapters.
-#latex_use_parts = False
+latex_use_parts = True
 
 # If true, show page references after internal links.
 #latex_show_pagerefs = False

@@ -25,7 +25,6 @@ Unstable Abjad composition packages (load manually)
    experimental/abjadbooktools/AbjadBookProcessor/AbjadBookProcessor
    experimental/abjadbooktools/AbjadBookScript/AbjadBookScript
    experimental/abjadbooktools/CodeBlock/CodeBlock
-   experimental/abjadbooktools/DeveloperScript/DeveloperScript
    experimental/abjadbooktools/HTMLOutputFormat/HTMLOutputFormat
    experimental/abjadbooktools/LaTeXOutputFormat/LaTeXOutputFormat
    experimental/abjadbooktools/ReSTOutputFormat/ReSTOutputFormat
@@ -47,6 +46,17 @@ Unstable Abjad composition packages (load manually)
    experimental/constrainttools/RelativeCountsConstraint/RelativeCountsConstraint
    experimental/constrainttools/RelativeIndexConstraint/RelativeIndexConstraint
    experimental/constrainttools/VariableLengthStreamSolver/VariableLengthStreamSolver
+
+:py:mod:`developerscripttools <experimental.developerscripttools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: concrete classes
+
+.. toctree::
+   :maxdepth: 1
+
+   experimental/developerscripttools/CountDocstringLinewidthsScript/CountDocstringLinewidthsScript
+   experimental/developerscripttools/DeveloperScript/DeveloperScript
 
 :py:mod:`handlertools <experimental.handlertools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -133,6 +143,7 @@ Unstable Abjad composition packages (load manually)
    experimental/specificationtools/Callback/Callback
    experimental/specificationtools/ContextDictionary/ContextDictionary
    experimental/specificationtools/ContextProxy/ContextProxy
+   experimental/specificationtools/ContextSelection/ContextSelection
    experimental/specificationtools/Directive/Directive
    experimental/specificationtools/DirectiveInventory/DirectiveInventory
    experimental/specificationtools/Division/Division

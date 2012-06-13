@@ -11,19 +11,19 @@ Read-only Properties
 
 .. autoattribute:: experimental.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.argument_parser
 
-    Inherited from :py:class:`abjadbooktools.DeveloperScript <experimental.abjadbooktools.DeveloperScript.DeveloperScript.DeveloperScript>`
+    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 
 .. autoattribute:: experimental.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.formatted_help
 
-    Inherited from :py:class:`abjadbooktools.DeveloperScript <experimental.abjadbooktools.DeveloperScript.DeveloperScript.DeveloperScript>`
+    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 
 .. autoattribute:: experimental.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.formatted_usage
 
-    Inherited from :py:class:`abjadbooktools.DeveloperScript <experimental.abjadbooktools.DeveloperScript.DeveloperScript.DeveloperScript>`
+    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 
 .. autoattribute:: experimental.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.formatted_version
 
-    Inherited from :py:class:`abjadbooktools.DeveloperScript <experimental.abjadbooktools.DeveloperScript.DeveloperScript.DeveloperScript>`
+    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 
 .. autoattribute:: experimental.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.long_description
 
@@ -31,7 +31,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.program_name
 
-    Inherited from :py:class:`abjadbooktools.DeveloperScript <experimental.abjadbooktools.DeveloperScript.DeveloperScript.DeveloperScript>`
+    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 
 .. autoattribute:: experimental.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.short_description
 
@@ -42,7 +42,7 @@ Special Methods
 
 .. automethod:: experimental.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.__call__
 
-    Inherited from :py:class:`abjadbooktools.DeveloperScript <experimental.abjadbooktools.DeveloperScript.DeveloperScript.DeveloperScript>`
+    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 
 .. automethod:: experimental.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.__delattr__
 

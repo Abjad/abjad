@@ -1,16 +1,16 @@
 #! /usr/bin/env python
 
 from experimental.abjadbooktools.AbjadBookProcessor import AbjadBookProcessor
-from experimental.abjadbooktools.DeveloperScript import DeveloperScript
 from experimental.abjadbooktools.HTMLOutputFormat import HTMLOutputFormat
 from experimental.abjadbooktools.LaTeXOutputFormat import LaTeXOutputFormat
 from experimental.abjadbooktools.ReSTOutputFormat import ReSTOutputFormat
+from experimental import developerscripttools
 import argparse
 import os
 import sys
 
 
-class AbjadBookScript(DeveloperScript):
+class AbjadBookScript(developerscripttools.DeveloperScript):
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
