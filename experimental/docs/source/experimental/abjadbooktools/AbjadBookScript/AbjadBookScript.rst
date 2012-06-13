@@ -11,18 +11,38 @@ Read-only Properties
 
 .. autoattribute:: experimental.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.argument_parser
 
+    Inherited from `experimental.abjadbooktools.DeveloperScript.DeveloperScript.DeveloperScript`
+
+.. autoattribute:: experimental.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.formatted_help
+
+    Inherited from `experimental.abjadbooktools.DeveloperScript.DeveloperScript.DeveloperScript`
+
+.. autoattribute:: experimental.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.formatted_usage
+
+    Inherited from `experimental.abjadbooktools.DeveloperScript.DeveloperScript.DeveloperScript`
+
+.. autoattribute:: experimental.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.formatted_version
+
+    Inherited from `experimental.abjadbooktools.DeveloperScript.DeveloperScript.DeveloperScript`
+
 .. autoattribute:: experimental.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.long_description
 
 .. autoattribute:: experimental.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.output_formats
 
 .. autoattribute:: experimental.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.program_name
 
+    Inherited from `experimental.abjadbooktools.DeveloperScript.DeveloperScript.DeveloperScript`
+
 .. autoattribute:: experimental.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.short_description
+
+.. autoattribute:: experimental.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.version
 
 Special Methods
 ---------------
 
 .. automethod:: experimental.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.__call__
+
+    Inherited from `experimental.abjadbooktools.DeveloperScript.DeveloperScript.DeveloperScript`
 
 .. automethod:: experimental.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.__delattr__
 

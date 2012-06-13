@@ -1,5 +1,7 @@
-from abjad.tools import abctools
+#! /usr/bin/env python
+
 from experimental.abjadbooktools.AbjadBookProcessor import AbjadBookProcessor
+from experimental.abjadbooktools.DeveloperScript import DeveloperScript
 from experimental.abjadbooktools.HTMLOutputFormat import HTMLOutputFormat
 from experimental.abjadbooktools.LaTeXOutputFormat import LaTeXOutputFormat
 from experimental.abjadbooktools.ReSTOutputFormat import ReSTOutputFormat
@@ -8,100 +10,9 @@ import os
 import sys
 
 
-class AbjadBookScript(abctools.AbjadObject):
+class AbjadBookScript(DeveloperScript):
 
-    ### CLASS ATTRIBUTES ###
-
-    __slots__ = ('_argument_parser',)
-
-    ### INITIALIZER ###
-
-    def __init__(self):
-
-        parser = argparse.ArgumentParser(
-            description=self.short_description,
-            epilog=self.long_description,
-            formatter_class=argparse.RawDescriptionHelpFormatter,
-            prog=self.program_name,
-            )
-
-        parser.add_argument('path',
-            type=self._validate_path,
-            help='the path to process: a filename ending in ".raw" or '
-            'an arbitrarily-deep directory tree to be recursed over'
-            )
-
-        parser.add_argument('--skip-rendering',
-            action='store_true',
-            help='skip all image rendering and simply execute the code',
-            )
-
-        parser.add_argument('--verbose',
-            action='store_true',
-            dest='verbose',
-            help='run in verbose mode, printing all LilyPond output',
-            )
-
-        parser.add_argument('--version',
-            action='version',
-            version='%(prog)s 2.0',
-            )
-
-        self._argument_parser = parser
-
-    ### SPECIAL METHODS ###
-
-    def __call__(self, args=None):
-
-        if args is None:
-            args = self.argument_parser.parse_args()
-
-        else:
-            if isinstance(args, str):
-                args = args.split()
-            elif not isinstance(args, (list, tuple)):
-                raise ValueError
-            args = self.argument_parser.parse_args(args)
-
-        filenames = []
-        if os.path.isdir(args.path):
-            for root, dirs, files in os.walk(args.path):
-                for file in files:
-                    path = os.path.join(root, file)
-                    if self._is_valid_path(path):
-                        filenames.append(path)
-        else:
-            filenames.append(args.path)
-
-        for input_filename in filenames:
-            directory = os.path.dirname(input_filename)
-            output_filename = input_filename.rpartition('.raw')[0]
-            file_extension = output_filename.rpartition('.')[-1]
-            image_prefix = os.path.basename(output_filename).rpartition('.')[0]
-
-            print 'Processing {!r}...'.format(input_filename)
-
-            with open(input_filename, 'r') as f:
-                lines = f.read().split('\n')
-
-            output_format = self.output_formats[file_extension]()
-            abjad_book_processor = AbjadBookProcessor(
-                directory, lines, output_format,
-                skip_rendering=args.skip_rendering, image_prefix=image_prefix)
-            processed_lines = abjad_book_processor(verbose=args.verbose)
-
-            print '\tWriting output to {!r}...'.format(output_filename)
-
-            with open(output_filename, 'w') as f:
-                f.write(processed_lines)
-
-            print '\t...Done!'
-
-    ### PROPERTIES ###
-
-    @property
-    def argument_parser(self):
-        return self._argument_parser
+    ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def long_description(self):
@@ -171,14 +82,26 @@ EXAMPLES
         }
 
     @property
-    def program_name(self):
-        return 'abjad-book'
-
-    @property
     def short_description(self):
         return 'Preprocess HTML, LaTeX or ReST source with Abjad'
 
+    @property
+    def version(self):
+        return 2.0
+
     ### PRIVATE METHODS ###
+
+    def _collect_filenames(self, args):
+        filenames = []
+        if os.path.isdir(args.path):
+            for root, dirs, files in os.walk(args.path):
+                for file in files:
+                    path = os.path.join(root, file)
+                    if self._is_valid_path(path):
+                        filenames.append(path)
+        else:
+            filenames.append(args.path)
+        return filenames
 
     def _is_valid_path(self, path):
         if not os.path.exists(path):
@@ -191,9 +114,57 @@ EXAMPLES
             return True
         return False
 
+    def _process_args(self, args):
+        for filename in self._collect_filenames(args):
+            self._process_filename(args, filename)
+
+    def _process_filename(self, args, filename):
+        input_filename = filename
+        print 'Processing {!r}...'.format(input_filename)
+        try:
+            directory = os.path.dirname(input_filename)
+            output_filename = input_filename.rpartition('.raw')[0]
+            file_extension = output_filename.rpartition('.')[-1]
+            image_prefix = os.path.basename(output_filename).rpartition('.')[0]
+            with open(input_filename, 'r') as f:
+                lines = f.read().split('\n')
+            output_format = self.output_formats[file_extension]()
+            abjad_book_processor = AbjadBookProcessor(
+                directory, lines, output_format,
+                skip_rendering=args.skip_rendering, image_prefix=image_prefix)
+            processed_lines = abjad_book_processor(verbose=args.verbose)
+            print '\tWriting output to {!r}...'.format(output_filename)
+            with open(output_filename, 'w') as f:
+                f.write(processed_lines)
+            print '\t...Done!'
+        except:
+            print 'ERROR'
+
+    def _setup_argument_parser(self, parser):
+        parser.add_argument('path',
+            type=self._validate_path,
+            help='the path to process: a filename ending in ".raw" or '
+            'an arbitrarily-deep directory tree to be recursed over'
+            )
+        parser.add_argument('--skip-rendering',
+            action='store_true',
+            help='skip all image rendering and simply execute the code',
+            )
+        parser.add_argument('--verbose',
+            action='store_true',
+            dest='verbose',
+            help='run in verbose mode, printing all LilyPond output',
+            )
+
     def _validate_path(self, path):
         error = argparse.ArgumentTypeError('{!r} is not a valid path.'.format(path))
         path = os.path.abspath(path)
         if not self._is_valid_path(path):
             raise error
         return path
+
+
+if __name__ == '__main__':
+    script_name = os.path.basename(__file__).rstrip('.py')
+    eval(script_name)()()
+

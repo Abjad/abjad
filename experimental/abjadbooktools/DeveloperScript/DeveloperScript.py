@@ -57,7 +57,7 @@ class DeveloperScript(abctools.AbjadObject):
         parser.add_argument('--version', action='version',
             version='%(prog)s {}'.format(self.version))
         self._argument_parser = parser
-        self._setup_argument_parser()
+        self._setup_argument_parser(parser)
 
     ### SPECIAL METHODS ###
 
