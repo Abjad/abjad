@@ -111,8 +111,9 @@ class VectorConstant(ImmutableAbjadObject):
     @property
     def _mandatory_argument_values(self):
         return (
-            self._representation,
+            self._dimension,
             self._value,
+            self._representation,
             )
 
     ### PRIVATE METHODS ###
