@@ -4,7 +4,6 @@ from experimental.abjadbooktools.HTMLOutputFormat import HTMLOutputFormat
 from experimental.abjadbooktools.LaTeXOutputFormat import LaTeXOutputFormat
 from experimental.abjadbooktools.ReSTOutputFormat import ReSTOutputFormat
 import argparse
-import multiprocessing
 import os
 import sys
 
@@ -37,7 +36,13 @@ class AbjadBookScript(abctools.AbjadObject):
             help='skip all image rendering and simply execute the code',
             )
 
-        parser.add_argument('-v', '--version',
+        parser.add_argument('--verbose',
+            action='store_true',
+            dest='verbose',
+            help='run in verbose mode, printing all LilyPond output',
+            )
+
+        parser.add_argument('--version',
             action='version',
             version='%(prog)s 2.0',
             )
@@ -83,7 +88,7 @@ class AbjadBookScript(abctools.AbjadObject):
             abjad_book_processor = AbjadBookProcessor(
                 directory, lines, output_format,
                 skip_rendering=args.skip_rendering, image_prefix=image_prefix)
-            processed_lines = abjad_book_processor()
+            processed_lines = abjad_book_processor(verbose=args.verbose)
 
             print '\tWriting output to {!r}...'.format(output_filename)
 

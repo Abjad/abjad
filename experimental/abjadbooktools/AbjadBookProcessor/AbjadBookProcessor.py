@@ -3,6 +3,7 @@ from experimental.abjadbooktools.CodeBlock import CodeBlock
 from experimental.abjadbooktools.OutputFormat import OutputFormat
 import os
 import shutil
+import subprocess
 import tempfile
 
 
@@ -24,7 +25,7 @@ class AbjadBookProcessor(abctools.AbjadObject):
 
     ### SPECIAL METHOD ###
 
-    def __call__(self):
+    def __call__(self, verbose=True):
 
         # Verify input, and extract code blocks
         code_blocks = self._extract_code_blocks(self.lines)        
@@ -40,7 +41,7 @@ class AbjadBookProcessor(abctools.AbjadObject):
         ly_filenames = self._extract_ly_filenames(code_blocks)
         self._cleanup_pipe(pipe)
         if not self.skip_rendering:
-            self._render_ly_files(ly_filenames, self.output_format)
+            self._render_ly_files(ly_filenames, self.output_format, verbose)
 
         # Step out of the tmp directory, back to the original, and cleanup.
         os.chdir(self.directory)
@@ -166,19 +167,22 @@ class AbjadBookProcessor(abctools.AbjadObject):
         tmp_directory = os.path.abspath(tempfile.mkdtemp(dir=directory))
         return tmp_directory
 
-    def _render_ly_files(self, filenames, output_format):
+    def _render_ly_files(self, filenames, output_format, verbose):
         if output_format.image_format == 'png':
-            for filename in filenames:
-                self._render_png_image(filename)
+            commands = [ 
+                'lilypond {}.ly',
+                'pdfcrop {}.pdf {}.pdf'
+            ]
         elif output_format.image_format == 'pdf':
-            for filename in filenames:
-                self._render_pdf_image(filename)
-            
-    def _render_pdf_image(self, filename):
-        iotools.spawn_subprocess('lilypond {}.ly'.format(filename))
-        iotools.spawn_subprocess('pdfcrop {}.pdf {}.pdf'.format(filename, filename))
-
-    def _render_png_image(self, filename):
-        iotools.spawn_subprocess('lilypond --png -dresolution=300 {}.ly'.format(filename))
-        iotools.spawn_subprocess('convert {}.png -trim -resample 40%% {}.png'.format(filename, filename))
-
+            commands = [
+                'lilypond --png -dresolution=300 {}.ly',
+                'convert {}.png -trim -resample 40%% {}.png'
+            ]
+        for filename in filenames:
+            print '\tRendering {}.ly...'.format(filename)
+            for command in commands:
+                command = command.format(*([filename] * command.count('{}')))
+                if verbose:
+                    subprocess.call(command, shell=True)
+                else:
+                    subprocess.call(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
