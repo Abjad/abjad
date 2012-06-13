@@ -11,18 +11,19 @@ class Selection(AbjadObject):
 
     Selection objects are immutable.
     
-    .. note:: initializer signature currently migrating to ``Selection(context_names=None, scope=None)``.
+    .. note:: initializer signature currently migrating to ``Selection(contexts=None, scope=None)``.
     '''
 
     ### INITIALIZER ###
 
     def __init__(self, segment_name, contexts=None, scope=None):
+    #def __init__(self, segment_name, contexts=None, scope=None):
         assert isinstance(segment_name, str)
         assert isinstance(contexts, (list, type(None)))
         assert isinstance(scope, (TemporalScope, type(None)))
-        self.segment_name = segment_name
-        self.contexts = contexts
-        self.scope = scope
+        self._segment_name = segment_name
+        self._contexts = contexts
+        self._scope = scope
 
     ### SPECIAL METHODS ###
 
@@ -38,3 +39,31 @@ class Selection(AbjadObject):
 
     def __ne__(self, expr):
         return not self == expr
+
+    ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def contexts(self):
+        '''Selection contexts specified by user.
+
+        Value of none taken equal to all contexts in score.
+
+        Return list of strings or none.
+        '''
+        return self._contexts
+
+    @property
+    def segment_name(self):
+        '''Deprecated.
+        '''
+        return self._segment_name
+
+    @property
+    def scope(self):
+        '''Selection temporal scope specified by user.
+
+        Value of none taken equal to timespan of entire score.
+
+        Return temporal scope or none.
+        '''
+        return self._scope
