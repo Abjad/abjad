@@ -196,6 +196,7 @@ class SegmentSpecification(Specification):
     def retrieve_resolved_value(self, attribute_name, **kwargs):
         return Specification.retrieve_resolved_value(self, attribute_name, self.name, **kwargs)
 
+    # TODO: change 'context_names' to 'contexts'
     def select(self, context_names=None, segment_name=None, scope=None):
         from experimental import specificationtools
         assert context_names is None or self.resolved_settings_context_dictionary.all_are_context_names(
@@ -203,7 +204,7 @@ class SegmentSpecification(Specification):
         assert isinstance(segment_name, (str, type(None)))
         assert isinstance(scope, (specificationtools.TemporalScope, type(None)))
         segment_name = segment_name or self.name
-        selection = specificationtools.Selection(segment_name, context_names=context_names, scope=scope)
+        selection = specificationtools.Selection(segment_name, contexts=context_names, scope=scope)
         return selection
 
     def select_divisions(self, context_token=None, part=None, segment_name=None, start=None, stop=None):

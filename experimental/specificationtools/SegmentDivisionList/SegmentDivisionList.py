@@ -23,7 +23,7 @@ class SegmentDivisionList(DivisionList):
         Directive(Selection('1'), 'time_signatures', [(4, 8), (3, 8)], persistent=True, truncate=False)
 
         >>> segment.set_divisions(segment.v1, [(3, 16)])
-        Directive(Selection('1', context_names=['Voice 1']), 'divisions', [(3, 16)], persistent=True, truncate=False)
+        Directive(Selection('1', contexts=['Voice 1']), 'divisions', [(3, 16)], persistent=True, truncate=False)
 
         >>> segment.set_rhythm(segment, library.thirty_seconds)
         Directive(Selection('1'), 'rhythm', OutputBurnishedSignalFilledTimeTokenMaker('thirty_seconds'), persistent=True, truncate=False)

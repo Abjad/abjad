@@ -71,11 +71,11 @@ class Directive(AbjadObject):
         return Setting(*args)
 
     def unpack(self):
-        assert isinstance(self.target_selection.context_names, (list, type(None)))
+        assert isinstance(self.target_selection.contexts, (list, type(None)))
         settings = []
-        if self.target_selection.context_names in (None, []):
+        if self.target_selection.contexts in (None, []):
             settings.append(self.make_setting_with_context_name(None))
         else:
-            for context_name in self.target_selection.context_names:
+            for context_name in self.target_selection.contexts:
                 settings.append(self.make_setting_with_context_name(context_name))
         return settings
