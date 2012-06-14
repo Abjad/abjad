@@ -1,5 +1,3 @@
-#! /usr/bin/env python
-
 from abjad.tools import abctools
 from abjad.tools import stringtools
 from abc import abstractmethod, abstractproperty
@@ -76,7 +74,15 @@ class DeveloperScript(abctools.AbjadObject):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
+    def alias(self):
+        '''The alias to use for the script, useful only if the script defines
+        an abj-dev scripting group as well.
+        '''
+        return None
+
+    @property
     def argument_parser(self):
+        '''The script's instance of argparse.ArgumentParser.'''
         return self._argument_parser
 
     @property
@@ -93,20 +99,32 @@ class DeveloperScript(abctools.AbjadObject):
 
     @abstractproperty
     def long_description(self):
+        '''The long description, printed after arguments explanations.'''
         raise NotImplemented
 
     @property
     def program_name(self):
+        '''The name of the script, callable from the command line.'''
         name = self._class_name[:self._class_name.rfind('Script')]
         return stringtools.uppercamelcase_to_space_delimited_lowercase(
             name).replace(' ', '-')
 
+    @property
+    def abjdev_scripting_group(self):
+        '''The abj-dev scripting subcommand group.'''
+        return None
+
     @abstractproperty
     def short_description(self):
+        '''The short description of the script, printed before arguments explanations.
+
+        Also used as a summary in other contexts.
+        '''
         raise NotImplemented
 
     @abstractproperty
     def version(self):
+        '''The version number of the script.'''
         raise NotImplemented
 
     ### PRIVATE METHODS ###
@@ -119,7 +137,3 @@ class DeveloperScript(abctools.AbjadObject):
     def _setup_argument_parser(self):
         pass
 
-
-if __name__ == '__main__':
-    script_name = os.path.basename(__file__).rstrip('.py')
-    eval(script_name)()()

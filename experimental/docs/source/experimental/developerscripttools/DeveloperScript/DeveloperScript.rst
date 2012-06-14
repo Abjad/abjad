@@ -9,6 +9,10 @@ developerscripttools.DeveloperScript
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript.abjdev_scripting_group
+
+.. autoattribute:: experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript.alias
+
 .. autoattribute:: experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript.argument_parser
 
 .. autoattribute:: experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript.formatted_help

@@ -9,6 +9,14 @@ developerscripttools.AbjDevScript
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.developerscripttools.AbjDevScript.AbjDevScript.AbjDevScript.abjdev_scripting_group
+
+    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
+
+.. autoattribute:: experimental.developerscripttools.AbjDevScript.AbjDevScript.AbjDevScript.alias
+
+    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
+
 .. autoattribute:: experimental.developerscripttools.AbjDevScript.AbjDevScript.AbjDevScript.argument_parser
 
     Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`

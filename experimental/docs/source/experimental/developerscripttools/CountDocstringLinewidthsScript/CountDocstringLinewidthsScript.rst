@@ -9,6 +9,14 @@ developerscripttools.CountDocstringLinewidthsScript
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.developerscripttools.CountDocstringLinewidthsScript.CountDocstringLinewidthsScript.CountDocstringLinewidthsScript.abjdev_scripting_group
+
+    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
+
+.. autoattribute:: experimental.developerscripttools.CountDocstringLinewidthsScript.CountDocstringLinewidthsScript.CountDocstringLinewidthsScript.alias
+
+    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
+
 .. autoattribute:: experimental.developerscripttools.CountDocstringLinewidthsScript.CountDocstringLinewidthsScript.CountDocstringLinewidthsScript.argument_parser
 
     Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
