@@ -3,6 +3,7 @@ from abjad.tools import containertools
 from abjad.tools import durationtools
 from abjad.tools import marktools
 from abjad.tools import mathtools
+from abjad.tools import measuretools
 from abjad.tools import notetools
 from abjad.tools import resttools
 from abjad.tools import sequencetools
@@ -124,7 +125,7 @@ class _TupletParser(_Parser):
 
     def p_measure__PIPE__FRACTION__component_list__PIPE(self, p):
         '''measure : PIPE FRACTION component_list PIPE'''
-        p[0] = Measure(p[2].pair)
+        p[0] = measuretools.Measure(p[2].pair)
         for x in p[3]:
             p[0].append(x)
 
@@ -193,5 +194,3 @@ class _TupletParser(_Parser):
             marktools.detach_annotations_attached_to_component(leaf)
 
         return parsed
-            
-            

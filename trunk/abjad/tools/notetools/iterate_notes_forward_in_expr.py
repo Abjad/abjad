@@ -1,5 +1,4 @@
-from abjad.tools.notetools.Note import Note
-from abjad.tools.componenttools.iterate_components_forward_in_expr import iterate_components_forward_in_expr
+from abjad.tools import componenttools
 
 
 def iterate_notes_forward_in_expr(expr, start=0, stop=None):
@@ -7,8 +6,13 @@ def iterate_notes_forward_in_expr(expr, start=0, stop=None):
 
     Yield left-to-right notes in `expr`::
 
-        >>> staff = Staff(Measure((2, 8), notetools.make_repeated_notes(2)) * 3)
-        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(staff)
+        >>> staff = Staff()
+        >>> staff.append(Measure((2, 8), "c'8 d'8"))
+        >>> staff.append(Measure((2, 8), "e'8 f'8"))
+        >>> staff.append(Measure((2, 8), "g'8 a'8"))
+
+    ::
+
         >>> f(staff)
         \new Staff {
             {
@@ -28,8 +32,8 @@ def iterate_notes_forward_in_expr(expr, start=0, stop=None):
 
     ::
 
-        >>> for leaf in notetools.iterate_notes_forward_in_expr(staff):
-        ...     leaf
+        >>> for note in notetools.iterate_notes_forward_in_expr(staff):
+        ...     note
         ...
         Note("c'8")
         Note("d'8")
@@ -41,8 +45,8 @@ def iterate_notes_forward_in_expr(expr, start=0, stop=None):
     Use optional `start` and `stop` keyword parameters to control
     start and stop indices of iteration::
 
-        >>> for leaf in notetools.iterate_notes_forward_in_expr(staff, start=3):
-        ...     leaf
+        >>> for note in notetools.iterate_notes_forward_in_expr(staff, start=3):
+        ...     note
         ...
         Note("f'8")
         Note("g'8")
@@ -50,8 +54,8 @@ def iterate_notes_forward_in_expr(expr, start=0, stop=None):
 
     ::
 
-        >>> for leaf in notetools.iterate_notes_forward_in_expr(staff, start=0, stop=3):
-        ...     leaf
+        >>> for note in notetools.iterate_notes_forward_in_expr(staff, start=0, stop=3):
+        ...     note
         ...
         Note("c'8")
         Note("d'8")
@@ -59,8 +63,8 @@ def iterate_notes_forward_in_expr(expr, start=0, stop=None):
 
     ::
 
-        >>> for leaf in notetools.iterate_notes_forward_in_expr(staff, start=2, stop=4):
-        ...     leaf
+        >>> for note in notetools.iterate_notes_forward_in_expr(staff, start=2, stop=4):
+        ...     note
         ...
         Note("e'8")
         Note("f'8")
@@ -71,5 +75,6 @@ def iterate_notes_forward_in_expr(expr, start=0, stop=None):
         renamed ``iterate.notes_forward_in()`` to
         ``notetools.iterate_notes_forward_in_expr()``.
     '''
+    from abjad.tools import notetools
 
-    return iterate_components_forward_in_expr(expr, Note, start=start, stop=stop)
+    return componenttools.iterate_components_forward_in_expr(expr, notetools.Note, start=start, stop=stop)

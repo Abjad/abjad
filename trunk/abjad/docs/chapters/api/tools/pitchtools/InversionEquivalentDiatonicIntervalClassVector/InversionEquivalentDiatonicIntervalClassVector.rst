@@ -17,6 +17,10 @@ Methods
 
     Inherited from :py:class:`__builtin__.dict`
 
+.. automethod:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClassVector.InversionEquivalentDiatonicIntervalClassVector.InversionEquivalentDiatonicIntervalClassVector.fromkeys
+
+    Inherited from :py:class:`__builtin__.dict`
+
 .. automethod:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClassVector.InversionEquivalentDiatonicIntervalClassVector.InversionEquivalentDiatonicIntervalClassVector.get
 
     Inherited from :py:class:`__builtin__.dict`

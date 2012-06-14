@@ -1,20 +1,29 @@
-from abjad.tools.notetools.Note import Note
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 import fractions
 
 
-def make_accelerating_notes_with_lilypond_multipliers(pitches, total, start, stop, exp='cosine',
-    written = durationtools.Duration(1, 8)):
+def make_accelerating_notes_with_lilypond_multipliers(pitches, total, start, stop, exp='cosine', written='8'):
     '''Make accelerating notes with LilyPond multipliers::
 
-        >>> notetools.make_accelerating_notes_with_lilypond_multipliers([1,2], (1, 2), (1, 4), (1, 8))
+        >>> pitches = [1, 2]
+        >>> total = (1, 2)
+        >>> start = (1, 4)
+        >>> stop = (1, 8)
+        >>> args = [pitches, total, start, stop]
+
+    ::
+
+        >>> notes = notetools.make_accelerating_notes_with_lilypond_multipliers(*args)
+
+    ::
+
+        >>> notes
         [Note("cs'8 * 113/64"), Note("d'8 * 169/128"), Note("cs'8 * 117/128")]
 
     ::
 
-        >>> voice = Voice(_)
-        >>> voice.prolated_duration
+        >>> Voice(notes).prolated_duration
         Duration(1, 2)
 
     Set note pitches cyclically from `pitches`.
@@ -31,21 +40,30 @@ def make_accelerating_notes_with_lilypond_multipliers(pitches, total, start, sto
         renamed ``construct.notes_curve()`` to
         ``notetools.make_accelerating_notes_with_lilypond_multipliers()``.
     '''
+    from abjad.tools import notetools
 
-    total = fractions.Fraction(*durationtools.duration_token_to_duration_pair(total))
-    start = fractions.Fraction(*durationtools.duration_token_to_duration_pair(start))
-    stop = fractions.Fraction(*durationtools.duration_token_to_duration_pair(stop))
-    written = durationtools.Duration(*durationtools.duration_token_to_duration_pair(written))
+    # initialize input arguments as durations
+    total = durationtools.Duration(total)
+    start = durationtools.Duration(start)
+    stop = durationtools.Duration(stop)
+    written = durationtools.Duration(written)
 
-    dts = mathtools.interpolate_divide(total, start, stop, exp)
+    # change mathtools input arguments to vanilla rationals
+    args = [fractions.Fraction(x) for x in (total, start, stop)]
+    args.append(exp)
+
+    # calculate lilypond multipliers
+    multipliers = mathtools.interpolate_divide(*args)
 
     # change floats to rationals
-    dts = [fractions.Fraction(int(round(x * 2**10)), 2**10) for x in dts]
+    multipliers = [fractions.Fraction(int(round(x * 2**10)), 2**10) for x in multipliers]
 
     # make notes
     result = []
-    for i, dt in enumerate(dts):
-        note = Note(pitches[i % len(pitches)], written)
-        note.duration_multiplier = fractions.Fraction(dt / written)
+    for i, multiplier in enumerate(multipliers):
+        note = notetools.Note(pitches[i % len(pitches)], written)
+        note.duration_multiplier = fractions.Fraction(multiplier / written)
         result.append(note)
+
+    # return result
     return result
