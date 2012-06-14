@@ -24,8 +24,6 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.TemporalScope.TemporalScope.TemporalScope.__eq__
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: experimental.specificationtools.TemporalScope.TemporalScope.TemporalScope.__ge__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

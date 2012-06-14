@@ -19,10 +19,6 @@ Read-only Properties
 
     Inherited from :py:class:`specificationtools.Selection <experimental.specificationtools.Selection.Selection.Selection>`
 
-.. autoattribute:: experimental.specificationtools.ContextSelection.ContextSelection.ContextSelection.segment_name
-
-    Inherited from :py:class:`specificationtools.Selection <experimental.specificationtools.Selection.Selection.Selection>`
-
 Special Methods
 ---------------
 
