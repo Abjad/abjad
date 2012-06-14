@@ -13,6 +13,8 @@ Read-only Properties
 
 .. autoattribute:: experimental.specificationtools.Selection.Selection.Selection.scope
 
+.. autoattribute:: experimental.specificationtools.Selection.Selection.Selection.segment_name
+
 Special Methods
 ---------------
 

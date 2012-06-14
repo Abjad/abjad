@@ -15,7 +15,7 @@ def test_AbjadBookProcessor___call___01():
     with open(filepath, 'r') as f:
         lines = f.read().split('\n')
 
-    book = abjadbooktools.AbjadBookProcessor(lines, abjadbooktools.ReSTOutputFormat())
+    book = abjadbooktools.AbjadBookProcessor(directory, lines, abjadbooktools.ReSTOutputFormat())
 
     result = book(directory)
 
