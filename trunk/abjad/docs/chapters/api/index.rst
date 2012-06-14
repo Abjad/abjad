@@ -293,6 +293,7 @@ Abjad composition packages
 .. toctree::
    :maxdepth: 1
 
+   tools/contexttools/all_are_contexts
    tools/contexttools/detach_clef_marks_attached_to_component
    tools/contexttools/detach_context_marks_attached_to_component
    tools/contexttools/detach_dynamic_marks_attached_to_component

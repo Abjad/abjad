@@ -1,5 +1,4 @@
-from abjad.tools.componenttools.all_are_components import all_are_components
-from abjad.tools.containertools.Container import Container
+from abjad.tools import componenttools
 
 
 def all_are_containers(expr):
@@ -28,5 +27,6 @@ def all_are_containers(expr):
 
     Function wraps ``componenttools.all_are_components()``.
     '''
+    from abjad.tools import containertools
 
-    return all_are_components(expr, klasses=(Container,))
+    return componenttools.all_are_components(expr, klasses=(containertools.Container,))
