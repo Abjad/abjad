@@ -2,14 +2,14 @@ from experimental import specificationtools
 from experimental.specificationtools.OrdinalConstant import OrdinalConstant
 
 
-def test_OrdinalConstant_disk_format_01():
+def test_OrdinalConstant_storage_format_01():
     '''Disk format exists and is evaluable.
     '''
 
-    vector_constant_1 = OrdinalConstant('x', -1, 'left')
+    vector_constant_1 = OrdinalConstant('x', -1, 'Left')
     disk_format = vector_constant_1._disk_format
 
-    assert disk_format == 'left'
+    assert disk_format == 'Left'
     vector_constant_2 = eval(disk_format)
 
     assert isinstance(vector_constant_1, OrdinalConstant)

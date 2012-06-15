@@ -5,7 +5,7 @@ import copy
 
 def test_TemporalCursor___copy___01():
 
-    cursor_1 = specificationtools.TemporalCursor(edge=right, multiplier=Fraction(1, 3))
+    cursor_1 = specificationtools.TemporalCursor(edge=Right, multiplier=Fraction(1, 3))
     cursor_2 = copy.deepcopy(cursor_1)
 
     assert isinstance(cursor_1, specificationtools.TemporalCursor)

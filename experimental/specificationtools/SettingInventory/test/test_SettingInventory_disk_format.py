@@ -28,13 +28,13 @@ def test_SettingInventory_disk_format_01():
                         anchor=specificationtools.ScoreObjectIndicator(
                             segment='1'
                             ),
-                        edge=left
+                        edge=Left
                         ),
                     stop=specificationtools.TemporalCursor(
                         anchor=specificationtools.ScoreObjectIndicator(
                             segment='1'
                             ),
-                        edge=right
+                        edge=Right
                         )
                     )
                 ),
@@ -47,7 +47,7 @@ def test_SettingInventory_disk_format_01():
         ])
     '''
 
-    assert disk_format == "specificationtools.SettingInventory([\n\tspecificationtools.Setting(\n\t\tspecificationtools.ContextSelection(\n\t\t\t'Grouped Rhythmic Staves Score',\n\t\t\tscope=specificationtools.TemporalScope(\n\t\t\t\tstart=specificationtools.TemporalCursor(\n\t\t\t\t\tanchor=specificationtools.ScoreObjectIndicator(\n\t\t\t\t\t\tsegment='1'\n\t\t\t\t\t\t),\n\t\t\t\t\tedge=left\n\t\t\t\t\t),\n\t\t\t\tstop=specificationtools.TemporalCursor(\n\t\t\t\t\tanchor=specificationtools.ScoreObjectIndicator(\n\t\t\t\t\t\tsegment='1'\n\t\t\t\t\t\t),\n\t\t\t\t\tedge=right\n\t\t\t\t\t)\n\t\t\t\t)\n\t\t\t),\n\t\t'time_signatures',\n\t\t[(4, 8), (3, 8)],\n\t\tTrue,\n\t\tFalse,\n\t\tfresh=True\n\t\t)\n\t])"
+    assert disk_format == "specificationtools.SettingInventory([\n\tspecificationtools.Setting(\n\t\tspecificationtools.ContextSelection(\n\t\t\t'Grouped Rhythmic Staves Score',\n\t\t\tscope=specificationtools.TemporalScope(\n\t\t\t\tstart=specificationtools.TemporalCursor(\n\t\t\t\t\tanchor=specificationtools.ScoreObjectIndicator(\n\t\t\t\t\t\tsegment='1'\n\t\t\t\t\t\t),\n\t\t\t\t\tedge=Left\n\t\t\t\t\t),\n\t\t\t\tstop=specificationtools.TemporalCursor(\n\t\t\t\t\tanchor=specificationtools.ScoreObjectIndicator(\n\t\t\t\t\t\tsegment='1'\n\t\t\t\t\t\t),\n\t\t\t\t\tedge=Right\n\t\t\t\t\t)\n\t\t\t\t)\n\t\t\t),\n\t\t'time_signatures',\n\t\t[(4, 8), (3, 8)],\n\t\tTrue,\n\t\tFalse,\n\t\tfresh=True\n\t\t)\n\t])"
 
     setting_inventory_2 = eval(disk_format)
 

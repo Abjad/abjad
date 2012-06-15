@@ -36,7 +36,8 @@ from VoiceDivisionList import VoiceDivisionList
 
 _documentation_section = 'unstable'
 
-__builtins__['left'] = OrdinalConstant('x', -1, 'left')
-__builtins__['right'] = OrdinalConstant('x', 1, 'right')
-__builtins__['up'] = OrdinalConstant('y', 1, 'up')
-__builtins__['down'] = OrdinalConstant('y', -1, 'down')
+__builtins__['Left'] = OrdinalConstant('x', -1, 'Left')
+__builtins__['Right'] = OrdinalConstant('x', 1, 'Right')
+__builtins__['Center'] = OrdinalConstant('x', 0, 'Left')
+__builtins__['Up'] = OrdinalConstant('y', 1, 'Up')
+__builtins__['Down'] = OrdinalConstant('y', -1, 'Down')

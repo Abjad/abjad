@@ -5,8 +5,8 @@ import copy
 
 def test_TemporalScope___copy___01():
 
-    start = specificationtools.TemporalCursor(edge=right, multiplier=Fraction(1, 3))
-    stop = specificationtools.TemporalCursor(edge=right, multiplier=Fraction(2, 3))
+    start = specificationtools.TemporalCursor(edge=Right, multiplier=Fraction(1, 3))
+    stop = specificationtools.TemporalCursor(edge=Right, multiplier=Fraction(2, 3))
     scope_1 = specificationtools.TemporalScope(start=start, stop=stop)
     scope_2 = copy.deepcopy(scope_1)
 

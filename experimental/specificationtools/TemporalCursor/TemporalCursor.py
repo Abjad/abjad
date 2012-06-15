@@ -33,8 +33,8 @@ class TemporalCursor(AbjadObject):
 
     Pick out the timepoint equal to the right edge of score::
 
-        >>> specificationtools.TemporalCursor(edge=right)
-        TemporalCursor(edge=right)
+        >>> specificationtools.TemporalCursor(edge=Right)
+        TemporalCursor(edge=Right)
 
     Pick out the timepoint ``1/8`` of a whole note into score::
 
@@ -47,13 +47,13 @@ class TemporalCursor(AbjadObject):
 
     Pick out the timepoint one third of the way into score::
 
-        >>> specificationtools.TemporalCursor(edge=right, multiplier=Fraction(1, 3))
-        TemporalCursor(edge=right, multiplier=Fraction(1, 3))
+        >>> specificationtools.TemporalCursor(edge=Right, multiplier=Fraction(1, 3))
+        TemporalCursor(edge=Right, multiplier=Fraction(1, 3))
 
     Pick out the timepoint ``1/8`` of a whole note after the first third of score::
 
-        >>> specificationtools.TemporalCursor(edge=right, multiplier=Fraction(1, 3), addendum=Offset(1, 8))
-        TemporalCursor(edge=right, multiplier=Fraction(1, 3), addendum=Offset(1, 8))
+        >>> specificationtools.TemporalCursor(edge=Right, multiplier=Fraction(1, 3), addendum=Offset(1, 8))
+        TemporalCursor(edge=Right, multiplier=Fraction(1, 3), addendum=Offset(1, 8))
 
     Pick out the timepoint equal to the left edge of the segment with name ``'red'``::
 
@@ -66,8 +66,8 @@ class TemporalCursor(AbjadObject):
 
     Pick out the timepoint equal to the right edge of the segment with name ``'red'``::
 
-        >>> specificationtools.TemporalCursor(anchor=anchor, edge=right)
-        TemporalCursor(anchor=ScoreObjectIndicator(segment='red'), edge=right)
+        >>> specificationtools.TemporalCursor(anchor=anchor, edge=Right)
+        TemporalCursor(anchor=ScoreObjectIndicator(segment='red'), edge=Right)
 
     Pick out the timepoint equal to ``1/8`` of a whole note after the left edge of 
     the segment with name ``'red'``::
@@ -77,14 +77,14 @@ class TemporalCursor(AbjadObject):
 
     Pick out the timepoint equal to one third of the way into the segment with name ``'red'``::
 
-        >>> specificationtools.TemporalCursor(anchor=anchor, edge=right, multiplier=Fraction(1, 3))
-        TemporalCursor(anchor=ScoreObjectIndicator(segment='red'), edge=right, multiplier=Fraction(1, 3))
+        >>> specificationtools.TemporalCursor(anchor=anchor, edge=Right, multiplier=Fraction(1, 3))
+        TemporalCursor(anchor=ScoreObjectIndicator(segment='red'), edge=Right, multiplier=Fraction(1, 3))
 
     Pick out the timepoint equal to ``1/8`` of a whole note after the right edge of the first third of
     the segment with name ``'red'``::
     
-        >>> specificationtools.TemporalCursor(anchor=anchor, edge=right, multiplier=Fraction(1, 3), addendum=Offset(1, 8))
-        TemporalCursor(anchor=ScoreObjectIndicator(segment='red'), edge=right, multiplier=Fraction(1, 3), addendum=Offset(1, 8))
+        >>> specificationtools.TemporalCursor(anchor=anchor, edge=Right, multiplier=Fraction(1, 3), addendum=Offset(1, 8))
+        TemporalCursor(anchor=ScoreObjectIndicator(segment='red'), edge=Right, multiplier=Fraction(1, 3), addendum=Offset(1, 8))
 
     Pick out the timepoint equal to the left edge of note ``10`` in context ``'Voice 1'`` of
     the segment with name ``'red'``::
@@ -99,8 +99,8 @@ class TemporalCursor(AbjadObject):
     Pick out the timepoint equal to the right edgright edge of note ``10`` in context ``'Voice 1'`` of
     the segment with name ``'red'``::
 
-        >>> specificationtools.TemporalCursor(anchor=anchor, edge=right)
-        TemporalCursor(anchor=ScoreObjectIndicator(segment='red', context='Voice 1', klass=notetools.Note, index=10), edge=right)
+        >>> specificationtools.TemporalCursor(anchor=anchor, edge=Right)
+        TemporalCursor(anchor=ScoreObjectIndicator(segment='red', context='Voice 1', klass=notetools.Note, index=10), edge=Right)
 
     Examples below reference the temporal cursor defined immediately above::
 
@@ -207,7 +207,7 @@ class TemporalCursor(AbjadObject):
         '''Temporal cursor edge indicator specified by user.
         
             >>> temporal_cursor.edge
-            right
+            Right
 
         Value of none is taken equal to ``left``.
 

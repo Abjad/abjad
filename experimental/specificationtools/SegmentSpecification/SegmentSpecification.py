@@ -116,7 +116,7 @@ class SegmentSpecification(Specification):
         '''Segment temporal scope.
 
             >>> segment.scope
-            TemporalScope(start=TemporalCursor(anchor=ScoreObjectIndicator(segment='1'), edge=left), stop=TemporalCursor(anchor=ScoreObjectIndicator(segment='1'), edge=right))
+            TemporalScope(start=TemporalCursor(anchor=ScoreObjectIndicator(segment='1'), edge=Left), stop=TemporalCursor(anchor=ScoreObjectIndicator(segment='1'), edge=Right))
 
         Return temporal scope.
         '''
@@ -139,24 +139,24 @@ class SegmentSpecification(Specification):
         '''Segment start cursor.
 
             >>> segment.start
-            TemporalCursor(anchor=ScoreObjectIndicator(segment='1'), edge=left)
+            TemporalCursor(anchor=ScoreObjectIndicator(segment='1'), edge=Left)
 
         Return temporal cursor.
         '''
         from experimental import specificationtools
-        return specificationtools.TemporalCursor(anchor=self.indicator, edge=left)
+        return specificationtools.TemporalCursor(anchor=self.indicator, edge=Left)
 
     @property
     def stop(self):
         '''Segment stop cursor.
 
             >>> segment.stop
-            TemporalCursor(anchor=ScoreObjectIndicator(segment='1'), edge=right)
+            TemporalCursor(anchor=ScoreObjectIndicator(segment='1'), edge=Right)
 
         Return temporal cursor.
         '''
         from experimental import specificationtools
-        return specificationtools.TemporalCursor(anchor=self.indicator, edge=right)
+        return specificationtools.TemporalCursor(anchor=self.indicator, edge=Right)
 
     @property
     def time_signatures(self):

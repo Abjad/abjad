@@ -11,7 +11,7 @@ def test_Setting___repr___01():
 
     anchor = ScoreObjectIndicator(segment='1')
     start = TemporalCursor(anchor=anchor)
-    stop = TemporalCursor(anchor=anchor, edge=right)
+    stop = TemporalCursor(anchor=anchor, edge=Right)
     scope = TemporalScope(start=start, stop=stop)
     target = ContextSelection('Voice 1', scope=scope)
     setting_1 = Setting(target, 'time_signatures', [(4, 8), (3, 8)], True, True, fresh=False)
