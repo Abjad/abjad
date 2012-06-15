@@ -1,5 +1,4 @@
 from abjad.tools import markuptools
-from abjad.tools.verticalitytools.iterate_vertical_moments_forward_in_expr import iterate_vertical_moments_forward_in_expr
 
 
 def label_vertical_moments_in_expr_with_interval_class_vectors(expr, markup_direction='down'):
@@ -11,16 +10,20 @@ def label_vertical_moments_in_expr_with_interval_class_vectors(expr, markup_dire
 
     ::
 
-        >>> score = Score(Staff([]) * 3)
-        >>> notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
-        >>> score[0].extend(notes)
-        >>> contexttools.ClefMark('alto')(score[1])
-        ClefMark('alto')(Staff{})
-        >>> score[1].extend([Note(-5, (1, 4)), Note(-7, (1, 4))])
-        >>> contexttools.ClefMark('bass')(score[2])
-        ClefMark('bass')(Staff{})
-        >>> score[2].append(Note(-24, (1, 2)))
+        >>> score = Score([])
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> score.append(staff)
+        >>> staff = Staff(r"""\clef "alto" g4 f4""")
+        >>> score.append(staff)
+        >>> staff = Staff(r"""\clef "bass" c,2""")
+        >>> score.append(staff)
+
+    ::
+
         >>> verticalitytools.label_vertical_moments_in_expr_with_interval_class_vectors(score)
+
+    ::
+
         >>> f(score)
         \new Score <<
             \new Staff {
@@ -40,13 +43,12 @@ def label_vertical_moments_in_expr_with_interval_class_vectors(expr, markup_dire
             }
         >>
 
-    .. versionchanged:: 2.0
-        renamed ``label.vertical_moment_interval_class_vectors()`` to
-        ``verticalitytools.label_vertical_moments_in_expr_with_interval_class_vectors()``.
+    Return none.
     '''
     from abjad.tools import pitchtools
+    from abjad.tools import verticalitytools
 
-    for vertical_moment in iterate_vertical_moments_forward_in_expr(expr):
+    for vertical_moment in verticalitytools.iterate_vertical_moments_forward_in_expr(expr):
         leaves = vertical_moment.leaves
         pitches = pitchtools.list_named_chromatic_pitches_in_expr(leaves)
         if not pitches:

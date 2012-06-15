@@ -1,26 +1,29 @@
-from abjad.tools.componenttools.Component import Component
 from abjad.tools import componenttools
-from abjad.tools.componenttools.iterate_components_forward_in_expr import iterate_components_forward_in_expr
 
 
-def get_vertical_moment_at_prolated_offset_in_expr(governor, prolated_offset):
+# TODO: optimize without full-component traversal.
+def get_vertical_moment_at_prolated_offset_in_expr(expr, prolated_offset):
     r'''.. versionadded:: 2.0
 
-    Get vertical moment at `prolated_offset` in `governor`::
+    Get vertical moment at `prolated_offset` in `expr`::
 
         >>> from abjad.tools import verticalitytools
 
     ::
 
         >>> score = Score([])
-        >>> score.append(Staff([tuplettools.FixedDurationTuplet(Duration(4, 8), notetools.make_repeated_notes(3))]))
+        >>> staff = Staff(r"\times 4/3 { d''8 c''8 b'8 }")
+        >>> score.append(staff)
+
+    ::
+
         >>> piano_staff = scoretools.PianoStaff([])
-        >>> piano_staff.append(Staff(notetools.make_repeated_notes(2, Duration(1, 4))))
-        >>> piano_staff.append(Staff(notetools.make_repeated_notes(4)))
-        >>> contexttools.ClefMark('bass')(piano_staff[1])
-        ClefMark('bass')(Staff{4})
+        >>> piano_staff.append(Staff("a'4 g'4"))
+        >>> piano_staff.append(Staff(r"""\clef "bass" f'8 e'8 d'8 c'8"""))
         >>> score.append(piano_staff)
-        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(list(reversed(score.leaves)))
+
+    ::
+
         >>> f(score)
         \new Score <<
             \new Staff {
@@ -44,25 +47,33 @@ def get_vertical_moment_at_prolated_offset_in_expr(governor, prolated_offset):
                 }
             >>
         >>
-        >>> vertical_moment = verticalitytools.get_vertical_moment_at_prolated_offset_in_expr(piano_staff, Duration(1, 8))
+
+    ::
+
+        >>> args = (piano_staff, durationtools.Offset(1, 8))
+
+    ::
+
+        >>> verticalitytools.get_vertical_moment_at_prolated_offset_in_expr(*args)
+        VerticalMoment(1/8, <<2>>)
+
+    ::
+
+        >>> vertical_moment = _
         >>> vertical_moment.leaves
         (Note("a'4"), Note("e'8"))
-
-    .. todo:: optimize without full-component traversal.
-
-    .. versionchanged:: 2.0
-        renamed ``iterate.get_vertical_moment_at_prolated_offset_in()`` to
-        ``verticalitytools.get_vertical_moment_at_prolated_offset_in_expr()``.
+    
+    Return vertical moment.
     '''
     from abjad.tools.verticalitytools.VerticalMoment import VerticalMoment
 
     governors = []
     message = 'must be Abjad component or list or tuple of Abjad components.'
-    if isinstance(governor, Component):
-        governors.append(governor)
-    elif isinstance(governor, (list, tuple)):
-        for x in governor:
-            if isinstance(x, Component):
+    if isinstance(expr, componenttools.Component):
+        governors.append(expr)
+    elif isinstance(expr, (list, tuple)):
+        for x in expr:
+            if isinstance(x, componenttools.Component):
                 governors.append(x)
             else:
                 raise TypeError(message)
@@ -75,7 +86,7 @@ def get_vertical_moment_at_prolated_offset_in_expr(governor, prolated_offset):
 
     components = []
     for governor in governors:
-        for component in iterate_components_forward_in_expr(governor, Component):
+        for component in componenttools.iterate_components_forward_in_expr(governor):
             if component.start_offset <= prolated_offset:
                 if prolated_offset < component.stop_offset:
                     components.append(component)

@@ -1,26 +1,29 @@
-from abjad.tools.componenttools.component_to_score_root import component_to_score_root
-from abjad.tools.verticalitytools.get_vertical_moment_at_prolated_offset_in_expr import get_vertical_moment_at_prolated_offset_in_expr
+from abjad.tools import componenttools
 
 
-def get_vertical_moment_starting_with_component(expr, governor=None):
+# TODO: optimize without full-component traversal.
+def get_vertical_moment_starting_with_component(component, governor=None):
     r'''.. versionadded:: 2.0
 
-    When `governor` is none, get vertical moment at
-    ``expr.start`` in score root of `expr`::
+    Get vertical moment starting with `component`::
 
         >>> from abjad.tools import verticalitytools
 
     ::
 
         >>> score = Score([])
-        >>> score.append(Staff([tuplettools.FixedDurationTuplet(Duration(4, 8), notetools.make_repeated_notes(3))]))
+        >>> staff = Staff(r"\times 4/3 { d''8 c''8 b'8 }")
+        >>> score.append(staff)
+
+    ::
+
         >>> piano_staff = scoretools.PianoStaff([])
-        >>> piano_staff.append(Staff(notetools.make_repeated_notes(2, Duration(1, 4))))
-        >>> piano_staff.append(Staff(notetools.make_repeated_notes(4)))
-        >>> contexttools.ClefMark('bass')(piano_staff[1])
-        ClefMark('bass')(Staff{4})
+        >>> piano_staff.append(Staff("a'4 g'4"))
+        >>> piano_staff.append(Staff(r"""\clef "bass" f'8 e'8 d'8 c'8"""))
         >>> score.append(piano_staff)
-        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(list(reversed(score.leaves)))
+
+    ::
+
         >>> f(score)
         \new Score <<
             \new Staff {
@@ -44,29 +47,30 @@ def get_vertical_moment_starting_with_component(expr, governor=None):
                 }
             >>
         >>
-        >>> verticalitytools.get_vertical_moment_starting_with_component(piano_staff[1][1])
+
+    ::
+
+        >>> leaf = piano_staff[1][1]
+
+    ::
+
+        >>> verticalitytools.get_vertical_moment_starting_with_component(leaf)
         VerticalMoment(1/8, <<3>>)
 
-    When `governor` is not none, get vertical moment at
-    ``expr.start`` in `governor`. ::
+    Get vertical moment starting with `component` in `governor` when
+    `governor` is not none::
 
-        >>> verticalitytools.get_vertical_moment_starting_with_component(piano_staff[1][1], piano_staff)
+        >>> verticalitytools.get_vertical_moment_starting_with_component(leaf, 
+        ... governor=piano_staff)
         VerticalMoment(1/8, <<2>>)
 
-    .. todo:: optimize without full-component traversal.
-
-    .. versionchanged:: 2.0
-        renamed ``iterate.get_vertical_moment_starting_with()`` to
-        ``verticalitytools.get_vertical_moment_starting_with_component()``.
-
-    .. versionchanged:: 2.0
-        renamed ``iterate.get_vertical_moment_starting_with_component()`` to
-        ``verticalitytools.get_vertical_moment_starting_with_component()``.
+    Return vertical moment.
     '''
+    from abjad.tools import verticalitytools
 
-    prolated_offset = expr.start_offset
+    prolated_offset = component.start_offset
 
     if governor is None:
-        governor = component_to_score_root(expr)
+        governor = componenttools.component_to_score_root(component)
 
-    return get_vertical_moment_at_prolated_offset_in_expr(governor, prolated_offset)
+    return verticalitytools.get_vertical_moment_at_prolated_offset_in_expr(governor, prolated_offset)

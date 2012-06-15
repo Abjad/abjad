@@ -36,7 +36,6 @@ del configurationtools
 del datastructuretools
 del decoratortools
 del documentationtools
-del durationtools
 del exceptiontools
 del importtools
 del lilypondparsertools

@@ -1,28 +1,31 @@
-from abjad.tools.notetools.Note import Note
 from abjad.tools import markuptools
-from abjad.tools.verticalitytools.iterate_vertical_moments_forward_in_expr import iterate_vertical_moments_forward_in_expr
+from abjad.tools import notetools
 
 
 def label_vertical_moments_in_expr_with_chromatic_intervals(expr, markup_direction='down'):
     r'''.. versionadded:: 2.0
 
-    Label harmonic chromatic intervals
-    of every vertical moment in `expr`::
+    Label harmonic chromatic intervals of every vertical moment in `expr`::
 
         >>> from abjad.tools import verticalitytools
 
     ::
 
-        >>> score = Score(Staff([]) * 3)
-        >>> notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8")]
-        >>> score[0].extend(notes)
-        >>> contexttools.ClefMark('alto')(score[1])
-        ClefMark('alto')(Staff{})
-        >>> score[1].extend([Note(-5, (1, 4)), Note(-7, (1, 4))])
-        >>> contexttools.ClefMark('bass')(score[2])
-        ClefMark('bass')(Staff{})
-        >>> score[2].append(Note(-24, (1, 2)))
-        >>> verticalitytools.label_vertical_moments_in_expr_with_chromatic_intervals(score)
+        >>> score = Score([])
+        >>> staff = Staff("c'8 d'8 e'8 f'8")
+        >>> score.append(staff)
+        >>> staff = Staff(r"""\clef "alto" g4 f4""")
+        >>> score.append(staff)
+        >>> staff = Staff(r"""\clef "bass" c,2""")
+        >>> score.append(staff)
+
+    ::
+
+        >>> verticalitytools.label_vertical_moments_in_expr_with_chromatic_intervals(
+        ...     score)
+
+    ::
+
         >>> f(score)
         \new Score <<
             \new Staff {
@@ -42,15 +45,14 @@ def label_vertical_moments_in_expr_with_chromatic_intervals(expr, markup_directi
             }
         >>
 
-    .. versionchanged:: 2.0
-        renamed ``label.vertical_moment_chromatic_intervals()`` to
-        ``verticalitytools.label_vertical_moments_in_expr_with_chromatic_intervals()``.
+    Return none.
     '''
     from abjad.tools import pitchtools
+    from abjad.tools import verticalitytools
 
-    for vertical_moment in iterate_vertical_moments_forward_in_expr(expr):
+    for vertical_moment in verticalitytools.iterate_vertical_moments_forward_in_expr(expr):
         leaves = vertical_moment.leaves
-        notes = [leaf for leaf in leaves if isinstance(leaf, Note)]
+        notes = [leaf for leaf in leaves if isinstance(leaf, notetools.Note)]
         if not notes:
             continue
         notes.sort(lambda x, y: cmp(x.written_pitch.numbered_chromatic_pitch,

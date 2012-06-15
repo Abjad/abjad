@@ -1,10 +1,10 @@
 from abjad.tools import componenttools
+from abjad.tools import chordtools
 from abjad.tools import durationtools
+from abjad.tools import leaftools
+from abjad.tools import measuretools
+from abjad.tools import notetools
 from abjad.tools.abctools import ScoreSelection
-from abjad.tools.chordtools.Chord import Chord
-from abjad.tools.leaftools.Leaf import Leaf
-from abjad.tools.measuretools.Measure import Measure
-from abjad.tools.notetools.Note import Note
 
 
 class VerticalMoment(ScoreSelection):
@@ -16,9 +16,11 @@ class VerticalMoment(ScoreSelection):
 
     ::
 
-        >>> score = Score([scoretools.PianoStaff([Staff("c'4 e'4 d'4 f'4"), Staff('g2 f2')])])
-        >>> contexttools.ClefMark('bass')(score[0][1])
-        ClefMark('bass')(Staff{2})
+        >>> score = Score([])
+        >>> piano_staff = scoretools.PianoStaff([])
+        >>> piano_staff.append(Staff("c'4 e'4 d'4 f'4"))
+        >>> piano_staff.append(Staff(r"""\clef "bass" g2 f2"""))
+        >>> score.append(piano_staff)
 
     ::
 
@@ -41,20 +43,25 @@ class VerticalMoment(ScoreSelection):
 
     ::
 
-        >>> for vertical_moment in verticalitytools.iterate_vertical_moments_forward_in_expr(score):
-        ...     vertical_moment
+        >>> for x in verticalitytools.iterate_vertical_moments_forward_in_expr(score):
+        ...     x
         ...
         VerticalMoment(0, <<2>>)
         VerticalMoment(1/4, <<2>>)
         VerticalMoment(1/2, <<2>>)
         VerticalMoment(3/4, <<2>>)
 
-    Create vertical moments with the getters and iterators implemented in the verticalitytools module.
+    Create vertical moments with the getters and iterators implemented in 
+    the ``verticalitytools`` module.
 
     Vertical moments are immutable.
     '''
+
+    ### CLASS ATTRIBUTES ###
     
     __slots__ = ('_components', '_governors', '_prolated_offset')
+
+    ### INITIALIZER ###
 
     def __init__(self, prolated_offset, governors, components):
         prolated_offset = durationtools.Offset(prolated_offset)
@@ -111,7 +118,7 @@ class VerticalMoment(ScoreSelection):
         starting at vertical moment.'''
         attack_carriers = []
         for leaf in self.start_leaves:
-            if isinstance(leaf, (Note, Chord)):
+            if isinstance(leaf, (notetools.Note, chordtools.Chord)):
                 attack_carriers.append(leaf)
         return len(attack_carriers)
 
@@ -136,7 +143,7 @@ class VerticalMoment(ScoreSelection):
         at vertical moment.'''
         result = []
         for component in self.components:
-            if isinstance(component, Leaf):
+            if isinstance(component, leaftools.Leaf):
                 result.append(component)
         result = tuple(result)
         return result
@@ -147,7 +154,7 @@ class VerticalMoment(ScoreSelection):
         at vertical moment.'''
         result = []
         for component in self.components:
-            if isinstance(component, Measure):
+            if isinstance(component, measuretools.Measure):
                 result.append(component)
         result = tuple(result)
         return result
@@ -185,7 +192,7 @@ class VerticalMoment(ScoreSelection):
         at vertical moment.'''
         result = []
         for component in self.components:
-            if isinstance(component, Note):
+            if isinstance(component, notetools.Note):
                 result.append(component)
         result = tuple(result)
         return result
@@ -205,7 +212,7 @@ class VerticalMoment(ScoreSelection):
     def overlap_leaves(self):
         '''Read-only tuple of leaves in vertical moment
         starting before vertical moment, ordered by score index.'''
-        result = [x for x in self.overlap_components if isinstance(x, Leaf)]
+        result = [x for x in self.overlap_components if isinstance(x, leaftools.Leaf)]
         result = tuple(result)
         return result
 
@@ -213,7 +220,7 @@ class VerticalMoment(ScoreSelection):
     def overlap_measures(self):
         '''Read-only tuple of measures in vertical moment
         starting before vertical moment, ordered by score index.'''
-        result = [x for x in self.overlap_components if isinstance(x, Measure)]
+        result = [x for x in self.overlap_components if isinstance(x, measuretools.Measure)]
         result = tuple(result)
         return result
 
@@ -221,7 +228,7 @@ class VerticalMoment(ScoreSelection):
     def overlap_notes(self):
         '''Read-only tuple of notes in vertical moment
         starting before vertical moment, ordered by score index.'''
-        result = [x for x in self.overlap_components if isinstance(x, Note)]
+        result = [x for x in self.overlap_components if isinstance(x, notetools.Note)]
         result = tuple(result)
         return result
 
@@ -283,7 +290,7 @@ class VerticalMoment(ScoreSelection):
     def start_leaves(self):
         '''Read-only tuple of leaves in vertical moment
         starting with vertical moment, ordered by score index.'''
-        result = [x for x in self.start_components if isinstance(x, Leaf)]
+        result = [x for x in self.start_components if isinstance(x, leaftools.Leaf)]
         result = tuple(result)
         return result
 
@@ -291,6 +298,6 @@ class VerticalMoment(ScoreSelection):
     def start_notes(self):
         '''Read-only tuple of notes in vertical moment
         starting with vertical moment, ordered by score index.'''
-        result = [x for x in self.start_components if isinstance(x, Note)]
+        result = [x for x in self.start_components if isinstance(x, notetools.Note)]
         result = tuple(result)
         return result

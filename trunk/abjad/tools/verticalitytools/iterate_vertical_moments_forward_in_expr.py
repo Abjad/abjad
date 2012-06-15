@@ -1,26 +1,26 @@
-from abjad.tools.componenttools.Component import Component
-from abjad.tools.verticalitytools._yield_vertical_moments_forward_in_expr import _yield_vertical_moments_forward_in_expr
-from abjad.tools import durationtools
-
-
-def iterate_vertical_moments_forward_in_expr(governor):
+# TODO: optimize without multiple full-component traversal.
+def iterate_vertical_moments_forward_in_expr(expr):
     r'''.. versionadded:: 2.0
 
-    Yield vertical moments forward in `governor`::
+    Iterate vertical moments forward in `expr`::
 
         >>> from abjad.tools import verticalitytools
 
     ::
 
         >>> score = Score([])
-        >>> score.append(Staff([tuplettools.FixedDurationTuplet(Duration(4, 8), notetools.make_repeated_notes(3))]))
+        >>> staff = Staff(r"\times 4/3 { d''8 c''8 b'8 }")
+        >>> score.append(staff)
+
+    ::
+
         >>> piano_staff = scoretools.PianoStaff([])
-        >>> piano_staff.append(Staff(notetools.make_repeated_notes(2, Duration(1, 4))))
-        >>> piano_staff.append(Staff(notetools.make_repeated_notes(4)))
-        >>> contexttools.ClefMark('bass')(piano_staff[1])
-        ClefMark('bass')(Staff{4})
+        >>> piano_staff.append(Staff("a'4 g'4"))
+        >>> piano_staff.append(Staff(r"""\clef "bass" f'8 e'8 d'8 c'8"""))
         >>> score.append(piano_staff)
-        >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(list(reversed(score.leaves)))
+
+    ::
+
         >>> f(score)
         \new Score <<
             \new Staff {
@@ -44,8 +44,11 @@ def iterate_vertical_moments_forward_in_expr(governor):
                 }
             >>
         >>
-        >>> for vertical_moment in verticalitytools.iterate_vertical_moments_forward_in_expr(score):
-        ...     vertical_moment.leaves
+
+    ::
+
+        >>> for x in verticalitytools.iterate_vertical_moments_forward_in_expr(score):
+        ...     x.leaves
         ...
         (Note("d''8"), Note("a'4"), Note("f'8"))
         (Note("d''8"), Note("a'4"), Note("e'8"))
@@ -53,25 +56,22 @@ def iterate_vertical_moments_forward_in_expr(governor):
         (Note("c''8"), Note("g'4"), Note("d'8"))
         (Note("b'8"), Note("g'4"), Note("d'8"))
         (Note("b'8"), Note("g'4"), Note("c'8"))
-        >>> for vertical_moment in verticalitytools.iterate_vertical_moments_forward_in_expr(piano_staff):
-        ...     vertical_moment.leaves
+
+    ::
+
+        >>> for x in verticalitytools.iterate_vertical_moments_forward_in_expr(piano_staff):
+        ...     x.leaves
         ...
         (Note("a'4"), Note("f'8"))
         (Note("a'4"), Note("e'8"))
         (Note("g'4"), Note("d'8"))
         (Note("g'4"), Note("c'8"))
 
-    .. todo:: optimize without multiple full-component traversal.
-
-    .. versionchanged:: 2.0
-        renamed ``iterate.vertical_moments_forward_in()`` to
-        ``verticalitytools.iterate_vertical_moments_forward_in_expr()``.
-
-    .. versionchanged:: 2.0
-        renamed ``iterate.vertical_moments_forward_in_expr()`` to
-        ``verticalitytools.iterate_vertical_moments_forward_in_expr()``.
+    Return generator.
     '''
+    from abjad.tools.verticalitytools._yield_vertical_moments_forward_in_expr import \
+        _yield_vertical_moments_forward_in_expr
 
-    # OPTIMIZED DROP-IN REPLACEMENT #
-    for x in _yield_vertical_moments_forward_in_expr(governor):
+    # OPTIMIZED DROP-IN REPLACEMENT
+    for x in _yield_vertical_moments_forward_in_expr(expr):
         yield x
