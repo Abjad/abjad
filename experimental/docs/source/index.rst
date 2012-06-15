@@ -55,6 +55,7 @@ Unstable Abjad composition packages (load manually)
 .. toctree::
    :maxdepth: 1
 
+   experimental/developerscripttools/CountLinesScript/CountLinesScript
    experimental/developerscripttools/DeveloperScript/DeveloperScript
 
 .. rubric:: concrete classes
@@ -63,7 +64,8 @@ Unstable Abjad composition packages (load manually)
    :maxdepth: 1
 
    experimental/developerscripttools/AbjDevScript/AbjDevScript
-   experimental/developerscripttools/CountDocstringLinewidthsScript/CountDocstringLinewidthsScript
+   experimental/developerscripttools/CountLinewidthsScript/CountLinewidthsScript
+   experimental/developerscripttools/CountToolsScript/CountToolsScript
 
 .. rubric:: functions
 

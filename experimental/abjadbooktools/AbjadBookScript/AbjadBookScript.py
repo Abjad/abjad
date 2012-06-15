@@ -15,6 +15,10 @@ class AbjadBookScript(developerscripttools.DeveloperScript):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
+    def alias(self):
+        return 'book'
+
+    @property
     def long_description(self):
         return '''DESCRIPTION
 

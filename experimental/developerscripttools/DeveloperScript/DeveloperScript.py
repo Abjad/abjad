@@ -110,8 +110,8 @@ class DeveloperScript(abctools.AbjadObject):
             name).replace(' ', '-')
 
     @property
-    def abjdev_scripting_group(self):
-        '''The abj-dev scripting subcommand group.'''
+    def scripting_group(self):
+        '''The script's scripting subcommand group.'''
         return None
 
     @abstractproperty

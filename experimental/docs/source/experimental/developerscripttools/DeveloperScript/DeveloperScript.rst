@@ -9,8 +9,6 @@ developerscripttools.DeveloperScript
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript.abjdev_scripting_group
-
 .. autoattribute:: experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript.alias
 
 .. autoattribute:: experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript.argument_parser
@@ -24,6 +22,8 @@ Read-only Properties
 .. autoattribute:: experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript.long_description
 
 .. autoattribute:: experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript.program_name
+
+.. autoattribute:: experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript.scripting_group
 
 .. autoattribute:: experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript.short_description
 

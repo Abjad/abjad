@@ -9,10 +9,6 @@ developerscripttools.AbjDevScript
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.developerscripttools.AbjDevScript.AbjDevScript.AbjDevScript.abjdev_scripting_group
-
-    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
-
 .. autoattribute:: experimental.developerscripttools.AbjDevScript.AbjDevScript.AbjDevScript.alias
 
     Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
@@ -24,6 +20,8 @@ Read-only Properties
 .. autoattribute:: experimental.developerscripttools.AbjDevScript.AbjDevScript.AbjDevScript.developer_script_aliases
 
 .. autoattribute:: experimental.developerscripttools.AbjDevScript.AbjDevScript.AbjDevScript.developer_script_classes
+
+.. autoattribute:: experimental.developerscripttools.AbjDevScript.AbjDevScript.AbjDevScript.developer_script_program_names
 
 .. autoattribute:: experimental.developerscripttools.AbjDevScript.AbjDevScript.AbjDevScript.formatted_help
 
@@ -40,6 +38,10 @@ Read-only Properties
 .. autoattribute:: experimental.developerscripttools.AbjDevScript.AbjDevScript.AbjDevScript.long_description
 
 .. autoattribute:: experimental.developerscripttools.AbjDevScript.AbjDevScript.AbjDevScript.program_name
+
+    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
+
+.. autoattribute:: experimental.developerscripttools.AbjDevScript.AbjDevScript.AbjDevScript.scripting_group
 
     Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 

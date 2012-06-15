@@ -9,13 +9,7 @@ abjadbooktools.AbjadBookScript
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.abjdev_scripting_group
-
-    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
-
 .. autoattribute:: experimental.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.alias
-
-    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 
 .. autoattribute:: experimental.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.argument_parser
 
@@ -38,6 +32,10 @@ Read-only Properties
 .. autoattribute:: experimental.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.output_formats
 
 .. autoattribute:: experimental.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.program_name
+
+    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
+
+.. autoattribute:: experimental.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.scripting_group
 
     Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 
