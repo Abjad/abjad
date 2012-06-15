@@ -3,16 +3,13 @@ import copy
 
 
 # TODO: make immutable
-# TODO: make persistent, truncate keyword arguments to facilitate debugging with repr
 class Setting(AbjadObject):
     r'''.. versionadded:: 1.0
 
     Frozen request to set one attribute against one context-specified selection.
 
-    Initialize with mandatory `target`, `attribute_name`, `source`, `persistent`, `truncate`
-    and optional `fresh`.
-
-    (Note that that soon `persistent`, `truncate`, `fresh` will all be optional.)
+    Initialize with mandatory `target`, `attribute_name`, `source`
+    and optional `persistent`, `truncate`, `fresh`.
 
     Initialize from other setting.
     '''
@@ -33,8 +30,8 @@ class Setting(AbjadObject):
     def __init__(self, *args, **kwargs):
         mandatory_argument_values, keyword_argument_values = self._get_input_argument_values(*args, **kwargs)
         self._check_input_arguments(mandatory_argument_values, keyword_argument_values)
-        target, attribute_name, source, persistent, truncate = mandatory_argument_values
-        fresh = keyword_argument_values[0]
+        target, attribute_name, source = mandatory_argument_values
+        persistent, truncate, fresh = keyword_argument_values
         self._target = target
         self._attribute_name = attribute_name
         self._source = source
@@ -56,6 +53,8 @@ class Setting(AbjadObject):
     @property
     def _keyword_argument_names(self):
         return (
+            'persistent',
+            'truncate',
             'fresh',
             )
 
@@ -65,8 +64,6 @@ class Setting(AbjadObject):
             self.target,
             self.attribute_name,
             self.source,
-            self.persistent,
-            self.truncate,
             )
 
     @property
@@ -80,6 +77,7 @@ class Setting(AbjadObject):
         body = ', '.join([str(x) for x in body])
         return '{}: {}'.format(self.attribute_name, body)
 
+    # TODO: redo me to accommodate target selection
     @property
     def _one_line_target_format(self):
         body = []
@@ -94,8 +92,8 @@ class Setting(AbjadObject):
 
     def _check_input_arguments(self, mandatory_argument_values, keyword_argument_values):
         from experimental import specificationtools
-        target, attribute_name, source, persistent, truncate = mandatory_argument_values
-        fresh = keyword_argument_values[0]
+        target, attribute_name, source, = mandatory_argument_values
+        persistent, truncate, fresh = keyword_argument_values
         assert isinstance(target, specificationtools.ContextSelection), repr(target)
         assert isinstance(attribute_name, str), repr(attribute_name)
         assert isinstance(persistent, bool), repr(persistent)
@@ -107,12 +105,18 @@ class Setting(AbjadObject):
             assert isinstance(args[0], type(self)), repr(args[0])
             mandatory_argument_values = args[0]._mandatory_argument_values
             keyword_argument_values = args[0]._keyword_argument_values
+            if kwargs.get('persistent') is not None:
+                keyword_argment_values[0] = kwargs.get('persistent')
+            if kwargs.get('truncate') is not None:
+                keyword_argment_values[0] = kwargs.get('truncate')
             if kwargs.get('fresh') is not None:
                 keyword_argment_values[0] = kwargs.get('fresh')
         else:
-            assert len(args) == 5, repr(args)
+            assert len(args) == 3, repr(args)
             mandatory_argument_values = args
             keyword_argument_values = []
+            keyword_argument_values.append(kwargs.get('persistent', True))
+            keyword_argument_values.append(kwargs.get('truncate', False)) # <== i think that's right
             keyword_argument_values.append(kwargs.get('fresh', True))
         return mandatory_argument_values, keyword_argument_values
 

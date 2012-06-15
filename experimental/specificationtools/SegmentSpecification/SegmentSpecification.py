@@ -331,8 +331,6 @@ class SegmentSpecification(Specification):
         assert isinstance(persistent, type(True)), repr(persistent)
         assert isinstance(scope, (specificationtools.TemporalScope, type(None))), repr(scope)
         assert isinstance(truncate, type(True)), repr(truncate)
-        # handle scope here and include in target selection?
-        #target = self.parse_selection_token(contexts)
         target = self.select_contexts(contexts=contexts)
         source = self.annotate_source(source, callback=callback, count=count, offset=offset)
         directive = specificationtools.Directive(target, attribute_name, source, 

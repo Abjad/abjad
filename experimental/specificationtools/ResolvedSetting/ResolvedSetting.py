@@ -5,8 +5,8 @@ class ResolvedSetting(Setting):
     
     ### INITIALIZER ###
 
-    def __init__(self, target, attribute_name, source, persistent, truncate, value, fresh=True):
-        Setting.__init__(self, target, attribute_name, source, persistent, truncate)
+    def __init__(self, target, attribute_name, source, value, persistent=True, truncate=False, fresh=True):
+        Setting.__init__(self, target, attribute_name, source, persistent=persistent, truncate=truncate)
         assert value is not None, repr(value)
         assert isinstance(fresh, bool), repr(fresh)
         self._value = value

@@ -382,7 +382,8 @@ class ScoreSpecification(Specification):
             return setting
         value = self.resolve_setting_source(setting)
         arguments = setting._mandatory_argument_values + (value, )
-        resolved_setting = ResolvedSetting(*arguments, fresh=setting.fresh)
+        resolved_setting = ResolvedSetting(*arguments, 
+            persistent=setting.persistent, truncate=setting.truncate, fresh=setting.fresh)
         return resolved_setting
 
     def make_segment_division_lists_for_voice(self, voice):
