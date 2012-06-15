@@ -64,15 +64,34 @@ class MakeExperimentalApiScript(DeveloperScript):
         ExperimentalAPIGenerator()(verbose=True)
 
         # print greeting
-        print 'Now building the Experimental HTML docs ...'
+        print 'Now building the Experimental {} docs ...'.format(args.format.upper())
         print ''
 
         # change to docs directory because makefile lives there
         docs_directory = os.path.join(EXPERIMENTALPATH, 'docs')
         os.chdir(docs_directory)
 
+        # optionally, make clean before building
+        if args.clean:
+            print 'Cleaning build directory ...'
+            iotools.spawn_subprocess('make clean')
+
         # make html docs
-        iotools.spawn_subprocess('make html')
+        iotools.spawn_subprocess('make {}'.format(args.format))
 
     def setup_argument_parser(self, parser):
-        pass
+
+        parser.add_argument('--clean',
+            action='store_true',
+            dest='clean',
+            help='run "make clean" before building the api',
+            )
+
+        parser.add_argument('--format',
+            choices=('html', 'latex', 'latexpdf'),
+            dest='format',
+            help='Sphinx builder to use',
+            metavar='X',
+            )
+
+        parser.set_defaults(format='html')
