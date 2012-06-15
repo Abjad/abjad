@@ -22,10 +22,6 @@ Methods
 
     Inherited from :py:class:`__builtin__.dict`
 
-.. automethod:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.fromkeys
-
-    Inherited from :py:class:`__builtin__.dict`
-
 .. automethod:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.get
 
     Inherited from :py:class:`__builtin__.dict`

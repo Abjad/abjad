@@ -33,7 +33,7 @@ _import_functions_in_package_to_namespace(_exceptions_path, __builtins__)
 # load constants into __builtins__ namespace
 __builtins__['Left'] = datastructuretools.OrdinalConstant('x', -1, 'Left')
 __builtins__['Right'] = datastructuretools.OrdinalConstant('x', 1, 'Right')
-__builtins__['Center'] = datastructuretools.OrdinalConstant('x', 0, 'Left')
+__builtins__['Center'] = datastructuretools.OrdinalConstant('y', 0, 'Center')
 __builtins__['Up'] = datastructuretools.OrdinalConstant('y', 1, 'Up')
 __builtins__['Down'] = datastructuretools.OrdinalConstant('y', -1, 'Down')
 
