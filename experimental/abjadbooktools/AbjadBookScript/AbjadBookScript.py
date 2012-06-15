@@ -87,7 +87,7 @@ EXAMPLES
 
     @property
     def short_description(self):
-        return 'Preprocess HTML, LaTeX or ReST source with Abjad'
+        return 'Preprocess HTML, LaTeX or ReST source with Abjad.'
 
     @property
     def version(self):
@@ -118,10 +118,6 @@ EXAMPLES
             return True
         return False
 
-    def _process_args(self, args):
-        for filename in self._collect_filenames(args):
-            self._process_filename(args, filename)
-
     def _process_filename(self, args, filename):
         input_filename = filename
         print 'Processing {!r}...'.format(input_filename)
@@ -144,22 +140,6 @@ EXAMPLES
         except:
             print 'ERROR'
 
-    def _setup_argument_parser(self, parser):
-        parser.add_argument('path',
-            type=self._validate_path,
-            help='the path to process: a filename ending in ".raw" or '
-            'an arbitrarily-deep directory tree to be recursed over'
-            )
-        parser.add_argument('--skip-rendering',
-            action='store_true',
-            help='skip all image rendering and simply execute the code',
-            )
-        parser.add_argument('--verbose',
-            action='store_true',
-            dest='verbose',
-            help='run in verbose mode, printing all LilyPond output',
-            )
-
     def _validate_path(self, path):
         error = argparse.ArgumentTypeError('{!r} is not a valid path.'.format(path))
         path = os.path.abspath(path)
@@ -167,8 +147,27 @@ EXAMPLES
             raise error
         return path
 
+    ### PUBLIC METHODS ###
 
-if __name__ == '__main__':
-    script_name = os.path.basename(__file__).rstrip('.py')
-    eval(script_name)()()
+    def process_args(self, args):
+        for filename in self._collect_filenames(args):
+            self._process_filename(args, filename)
 
+    def setup_argument_parser(self, parser):
+
+        parser.add_argument('path',
+            type=self._validate_path,
+            help='the path to process: a filename ending in ".raw" or '
+            'an arbitrarily-deep directory tree to be recursed over'
+            )
+
+        parser.add_argument('--skip-rendering',
+            action='store_true',
+            help='skip all image rendering and simply execute the code',
+            )
+
+        parser.add_argument('--verbose',
+            action='store_true',
+            dest='verbose',
+            help='run in verbose mode, printing all LilyPond output',
+            )

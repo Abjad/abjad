@@ -39,6 +39,13 @@ Read-only Properties
 
 .. autoattribute:: experimental.developerscripttools.CountToolsScript.CountToolsScript.CountToolsScript.version
 
+Methods
+-------
+
+.. automethod:: experimental.developerscripttools.CountToolsScript.CountToolsScript.CountToolsScript.process_args
+
+.. automethod:: experimental.developerscripttools.CountToolsScript.CountToolsScript.CountToolsScript.setup_argument_parser
+
 Special Methods
 ---------------
 

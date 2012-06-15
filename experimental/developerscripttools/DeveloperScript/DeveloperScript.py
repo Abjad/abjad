@@ -56,7 +56,7 @@ class DeveloperScript(abctools.AbjadObject):
         parser.add_argument('--version', action='version',
             version='%(prog)s {}'.format(self.version))
         self._argument_parser = parser
-        self._setup_argument_parser(parser)
+        self.setup_argument_parser(parser)
 
     ### SPECIAL METHODS ###
 
@@ -69,7 +69,7 @@ class DeveloperScript(abctools.AbjadObject):
             elif not isinstance(args, (list, tuple)):
                 raise ValueError
             args = self.argument_parser.parse_args(args)
-        self._process_args(args)
+        self.process_args(args)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -127,13 +127,13 @@ class DeveloperScript(abctools.AbjadObject):
         '''The version number of the script.'''
         raise NotImplemented
 
-    ### PRIVATE METHODS ###
+    ### PUBLIC METHODS ###
 
     @abstractmethod
-    def _process_args(self, args):
+    def process_args(self, args):
         pass
 
     @abstractmethod
-    def _setup_argument_parser(self):
+    def setup_argument_parser(self):
         pass
 

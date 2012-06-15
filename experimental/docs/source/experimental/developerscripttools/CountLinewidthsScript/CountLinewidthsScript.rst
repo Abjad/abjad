@@ -39,6 +39,13 @@ Read-only Properties
 
 .. autoattribute:: experimental.developerscripttools.CountLinewidthsScript.CountLinewidthsScript.CountLinewidthsScript.version
 
+Methods
+-------
+
+.. automethod:: experimental.developerscripttools.CountLinewidthsScript.CountLinewidthsScript.CountLinewidthsScript.process_args
+
+.. automethod:: experimental.developerscripttools.CountLinewidthsScript.CountLinewidthsScript.CountLinewidthsScript.setup_argument_parser
+
 Special Methods
 ---------------
 

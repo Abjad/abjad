@@ -29,9 +29,9 @@ class MakeExperimentalApiScript(DeveloperScript):
     def version(self):
         return 1.0
 
-    ### PRIVATE METHODS ###
+    ### PUBLIC METHODS ###
 
-    def _process_args(self, args):
+    def process_args(self, args):
 
         class ExperimentalAPIGenerator(AbjadAPIGenerator):
 
@@ -74,5 +74,5 @@ class MakeExperimentalApiScript(DeveloperScript):
         # make html docs
         iotools.spawn_subprocess('make html')
 
-    def _setup_argument_parser(self, parser):
+    def setup_argument_parser(self, parser):
         pass

@@ -37,7 +37,16 @@ class CountToolsScript(DeveloperScript):
                 return True
         return False
 
-    def _process_args(self, args):
+    def _validate_path(self, path):
+        error = argparse.ArgumentTypeError('{!r} is not a valid directory.'.format(path))
+        path = os.path.abspath(path)
+        if not self._is_valid_path(path):
+            raise error
+        return path
+
+    ### PUBLIC METHODS ###
+
+    def process_args(self, args):
         print args
 
         private_classes = []
@@ -70,15 +79,9 @@ class CountToolsScript(DeveloperScript):
         print 'PRIVATE FUNCTIONS: {}'.format(len(private_functions))
         print 'PRIVATE CLASSES:   {}'.format(len(private_classes))
 
-    def _setup_argument_parser(self, parser):
+    def setup_argument_parser(self, parser):
         parser.add_argument('path',
             type=self._validate_path,
             help='directory tree to be recursed over'
             )
 
-    def _validate_path(self, path):
-        error = argparse.ArgumentTypeError('{!r} is not a valid directory.'.format(path))
-        path = os.path.abspath(path)
-        if not self._is_valid_path(path):
-            raise error
-        return path

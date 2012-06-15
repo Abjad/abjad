@@ -29,6 +29,13 @@ Read-only Properties
 
 .. autoattribute:: experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript.version
 
+Methods
+-------
+
+.. automethod:: experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript.process_args
+
+.. automethod:: experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript.setup_argument_parser
+
 Special Methods
 ---------------
 

@@ -18,7 +18,7 @@ class AbjDevScript(DeveloperScript):
             elif not isinstance(args, (list, tuple)):
                 raise ValueError
             args = self.argument_parser.parse_known_args(args)
-        self._process_args(args)
+        self.process_args(args)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -96,9 +96,9 @@ class AbjDevScript(DeveloperScript):
     def version(self):
         return 1.0
 
-    ### PRIVATE METHODS ###
+    ### PUBLIC METHODS ###
 
-    def _process_args(self, args):
+    def process_args(self, args):
         args, unknown_args = args
 
         if args.subparser_name == 'help':
@@ -146,10 +146,10 @@ class AbjDevScript(DeveloperScript):
             instance = klass()
             instance(unknown_args)
 
-    def _setup_argument_parser(self, parser):
+    def setup_argument_parser(self, parser):
+
         subparsers = parser.add_subparsers(
             dest='subparser_name',
-            help='subcommand help',
             title='subcommands',
             )
         
@@ -164,7 +164,7 @@ class AbjDevScript(DeveloperScript):
             )
 
         aliasdict = self.developer_script_aliases
-        for key in aliasdict:
+        for key in sorted(aliasdict):
             if not isinstance(aliasdict[key], dict):
                 klass = aliasdict[key]
                 instance = klass()
@@ -180,19 +180,10 @@ class AbjDevScript(DeveloperScript):
                     dest='subsubparser_name'.format(key),
                     title='{} subcommands'.format(key),
                     )
-                for subkey in aliasdict[key]:
+                for subkey in sorted(aliasdict[key]):
                     klass = aliasdict[key][subkey]
                     instance = klass()
                     group_subparsers.add_parser(subkey,
                         add_help=False,
                         help=instance.short_description
                         )
-
-
-        #klasses = get_developer_script_classes()
-        #klasses.remove(self.__class__)
-        #for klass in klasses:
-        #    instance = klass()
-        #    klass_subparser = subparsers.add_parser(instance.program_name,
-        #        help=instance.short_description
-        #        )

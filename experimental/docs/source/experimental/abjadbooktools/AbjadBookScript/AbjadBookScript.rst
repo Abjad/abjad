@@ -43,6 +43,13 @@ Read-only Properties
 
 .. autoattribute:: experimental.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.version
 
+Methods
+-------
+
+.. automethod:: experimental.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.process_args
+
+.. automethod:: experimental.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.setup_argument_parser
+
 Special Methods
 ---------------
 

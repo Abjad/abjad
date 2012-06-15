@@ -49,6 +49,13 @@ Read-only Properties
 
 .. autoattribute:: experimental.developerscripttools.AbjDevScript.AbjDevScript.AbjDevScript.version
 
+Methods
+-------
+
+.. automethod:: experimental.developerscripttools.AbjDevScript.AbjDevScript.AbjDevScript.process_args
+
+.. automethod:: experimental.developerscripttools.AbjDevScript.AbjDevScript.AbjDevScript.setup_argument_parser
+
 Special Methods
 ---------------
 

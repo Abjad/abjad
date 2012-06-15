@@ -39,6 +39,13 @@ Read-only Properties
 
 .. autoattribute:: experimental.developerscripttools.MakeExperimentalApiScript.MakeExperimentalApiScript.MakeExperimentalApiScript.version
 
+Methods
+-------
+
+.. automethod:: experimental.developerscripttools.MakeExperimentalApiScript.MakeExperimentalApiScript.MakeExperimentalApiScript.process_args
+
+.. automethod:: experimental.developerscripttools.MakeExperimentalApiScript.MakeExperimentalApiScript.MakeExperimentalApiScript.setup_argument_parser
+
 Special Methods
 ---------------
 

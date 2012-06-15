@@ -39,6 +39,17 @@ Read-only Properties
 
 .. autoattribute:: experimental.developerscripttools.CountLinesScript.CountLinesScript.CountLinesScript.version
 
+Methods
+-------
+
+.. automethod:: experimental.developerscripttools.CountLinesScript.CountLinesScript.CountLinesScript.process_args
+
+    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
+
+.. automethod:: experimental.developerscripttools.CountLinesScript.CountLinesScript.CountLinesScript.setup_argument_parser
+
+    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
+
 Special Methods
 ---------------
 

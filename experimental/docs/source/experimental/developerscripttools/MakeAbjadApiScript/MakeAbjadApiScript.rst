@@ -39,6 +39,13 @@ Read-only Properties
 
 .. autoattribute:: experimental.developerscripttools.MakeAbjadApiScript.MakeAbjadApiScript.MakeAbjadApiScript.version
 
+Methods
+-------
+
+.. automethod:: experimental.developerscripttools.MakeAbjadApiScript.MakeAbjadApiScript.MakeAbjadApiScript.process_args
+
+.. automethod:: experimental.developerscripttools.MakeAbjadApiScript.MakeAbjadApiScript.MakeAbjadApiScript.setup_argument_parser
+
 Special Methods
 ---------------
 

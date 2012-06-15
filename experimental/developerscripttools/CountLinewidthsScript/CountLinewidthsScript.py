@@ -37,7 +37,16 @@ class CountLinewidthsScript(DeveloperScript):
                 return True
         return False
 
-    def _process_args(self, args):
+    def _validate_path(self, path):
+        error = argparse.ArgumentTypeError('{!r} is not a valid directory.'.format(path))
+        path = os.path.abspath(path)
+        if not self._is_valid_path(path):
+            raise error
+        return path
+
+    ### PUBLIC METHODS ###
+
+    def process_args(self, args):
 
         print args
 
@@ -112,7 +121,7 @@ class CountLinewidthsScript(DeveloperScript):
         for pair in modules:
             print '{}\t{}'.format(pair[1], pair[0])
 
-    def _setup_argument_parser(self, parser):
+    def setup_argument_parser(self, parser):
 
         parser.add_argument('path',
             type=self._validate_path,
@@ -185,10 +194,3 @@ class CountLinewidthsScript(DeveloperScript):
             )
 
         parser.set_defaults(mode='docstrings', order_by='w', sort='ascending')
-
-    def _validate_path(self, path):
-        error = argparse.ArgumentTypeError('{!r} is not a valid directory.'.format(path))
-        path = os.path.abspath(path)
-        if not self._is_valid_path(path):
-            raise error
-        return path
