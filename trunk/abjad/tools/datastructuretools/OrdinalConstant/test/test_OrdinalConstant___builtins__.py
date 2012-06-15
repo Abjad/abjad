@@ -1,10 +1,11 @@
+from abjad import *
 import py
 
 
 def test_OrdinalConstant___builtins___01():
 
-    assert Left < Center < Right
-    assert Down < Up
+    assert Left < Right
+    assert Down < Center < Up
 
 
 def test_OrdinalConstant___builtins___02():
