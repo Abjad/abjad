@@ -4,44 +4,44 @@ from abjad.tools.abctools.ImmutableAbjadObject import ImmutableAbjadObject
 class OrdinalConstant(ImmutableAbjadObject):
     r'''.. versionadded:: 1.0
 
-    Ordinal constant with user-specifiable repr.
+    Ordinal constant.
 
     Initialize with `dimension`, `value` and `representation`::
 
-        >>> from experimental import specificationtools
+        >>> from abjad.tools import datastructuretools
 
     ::
 
-        >>> left = specificationtools.OrdinalConstant('x', -1, 'left')
-        >>> left
-        left
+        >>> Left = datastructuretools.OrdinalConstant('x', -1, 'Left')
+        >>> Left
+        Left
 
     ::
 
-        >>> right = specificationtools.OrdinalConstant('x', 1, 'right')
-        >>> right
-        right
+        >>> Right = datastructuretools.OrdinalConstant('x', 1, 'Right')
+        >>> Right
+        Right
 
     ::
 
-        >>> left < right
+        >>> Left < Right
         True
 
     Comparing like-dimensioned ordinal constants is allowed::
 
-        >>> up = specificationtools.OrdinalConstant('y', 1, 'up')
-        >>> up
-        up
+        >>> Up = datastructuretools.OrdinalConstant('y', 1, 'Up')
+        >>> Up
+        Up
 
     ::
 
-        >>> down = specificationtools.OrdinalConstant('y', -1, 'down')
-        >>> down
-        down
+        >>> Down = datastructuretools.OrdinalConstant('y', -1, 'Down')
+        >>> Down
+        Down
 
     ::
 
-        >>> down < up
+        >>> Down < Up
         True
 
     Comparing differently dimensioned ordinal constants raises an exception::
@@ -50,14 +50,15 @@ class OrdinalConstant(ImmutableAbjadObject):
     
     ::
 
-        >>> bool(py.test.raises(Exception, 'left < up'))
+        >>> bool(py.test.raises(Exception, 'Left < Up'))
         True
 
-    The ``left``, ``right``, ``up`` and ``down`` constants shown here load into Python's built-in namespace
-    on ``specificationtools`` import.
+    The ``Left``, ``Right``, ``Center``, ``Up`` and ``Down`` constants shown here 
+    load into Python's built-in namespace on Abjad import.
 
-    These four objects can be used as constant values supplied to ``specificationtools`` keyword arguments,
-    similarly to true, false and none.
+    These four objects can be used as constant values supplied to keywords.
+
+    This behavior is similar to True, False and None.
     
     Ordinal constants are immutable.
     '''
