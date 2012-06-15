@@ -1978,6 +1978,7 @@ Internals packages
    tools/datastructuretools/Digraph/Digraph
    tools/datastructuretools/ImmutableDictionary/ImmutableDictionary
    tools/datastructuretools/ObjectInventory/ObjectInventory
+   tools/datastructuretools/OrdinalConstant/OrdinalConstant
 
 :py:mod:`decoratortools <abjad.tools.decoratortools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

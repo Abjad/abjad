@@ -194,5 +194,4 @@ Unstable Abjad composition packages (load manually)
    experimental/specificationtools/TemporalScope/TemporalScope
    experimental/specificationtools/ValueRetrievalIndicator/ValueRetrievalIndicator
    experimental/specificationtools/ValueRetrievalRequest/ValueRetrievalRequest
-   experimental/specificationtools/VectorConstant/VectorConstant
    experimental/specificationtools/VoiceDivisionList/VoiceDivisionList

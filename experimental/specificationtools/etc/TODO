@@ -20,6 +20,4 @@
 10. Implement timespan-creation courtesy methods.
     First one: self.segment_name_to_timespan(segment_name).
 
-11. Merge OrdinalConstant to main line.
-
-12. Change 'disk_format' globally to 'storage_format'.
+11. Change 'disk_format' globally to 'storage_format'.

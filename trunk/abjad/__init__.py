@@ -26,9 +26,16 @@ from fractions import Fraction
 import os
 import sys
 
-# import Abjad exceptions in Python __builtins__ namespace
+# import Abjad exceptions in __builtins__ namespace
 _exceptions_path = os.path.join(__path__[0], 'tools', 'exceptiontools')
 _import_functions_in_package_to_namespace(_exceptions_path, __builtins__)
+
+# load constants into __builtins__ namespace
+__builtins__['Left'] = datastructuretools.OrdinalConstant('x', -1, 'Left')
+__builtins__['Right'] = datastructuretools.OrdinalConstant('x', 1, 'Right')
+__builtins__['Center'] = datastructuretools.OrdinalConstant('x', 0, 'Left')
+__builtins__['Up'] = datastructuretools.OrdinalConstant('y', 1, 'Up')
+__builtins__['Down'] = datastructuretools.OrdinalConstant('y', -1, 'Down')
 
 del abctools
 del cfg

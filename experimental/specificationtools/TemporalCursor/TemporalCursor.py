@@ -1,7 +1,6 @@
 from abjad.tools import durationtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental.specificationtools.ScoreObjectIndicator import ScoreObjectIndicator
-from experimental.specificationtools.OrdinalConstant import OrdinalConstant
 import fractions
 
 
@@ -113,7 +112,7 @@ class TemporalCursor(AbjadObject):
 
     def __init__(self, anchor=None, edge=None, multiplier=None, addendum=None): 
         assert isinstance(anchor, (ScoreObjectIndicator, type(None))), repr(anchor)
-        assert isinstance(edge, (OrdinalConstant, type(None))), repr(edge)
+        assert edge in (Left, Right, None), repr(edge)
         assert isinstance(multiplier, (fractions.Fraction, type(None))), repr(multiplier)
         if addendum is not None:
             addendum = durationtools.Offset(addendum)
