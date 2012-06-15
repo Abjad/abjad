@@ -52,11 +52,11 @@ class APICrawler(abctools.AbjadObject):
             code_directory = os.path.dirname(module.__file__)
             docs_directory = code_directory.replace(self.code_root, self.docs_root)
             if not os.path.exists(docs_directory):
-                print 'CREATING DIRECTORY: %s' % docs_directory
+                print 'CREATING DIRECTORY: {}'.format(docs_directory)
                 os.makedirs(docs_directory)
 
             # create ReST, if changed
-            docs_file = '%s.rst' % module.__file__.rpartition('.py')[0].replace(self.code_root, self.docs_root)
+            docs_file = '{}.rst'.format(module.__file__.rpartition('.py')[0].replace(self.code_root, self.docs_root))
             new_docs = documenter()
             if os.path.exists(docs_file):
                 file_handler = open(docs_file, 'r')
@@ -67,6 +67,7 @@ class APICrawler(abctools.AbjadObject):
 
             # only overwrite if changed
             if new_docs != old_docs:
+                print 'UPDATING {}'.format(docs_file)
                 file_handler = open(docs_file, 'w')
                 file_handler.write(new_docs)
                 file_handler.close()

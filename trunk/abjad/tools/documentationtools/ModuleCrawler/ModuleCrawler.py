@@ -15,12 +15,22 @@ class ModuleCrawler(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, code_root,
+    def __init__(self, code_root='.',
         ignored_directories=['test', '.svn', '__pycache__'],
-        root_package_name='abjad'):
+        root_package_name=None):
+
         assert os.path.exists(code_root)
-        assert root_package_name in code_root.split(os.path.sep)
-        self._code_root = os.path.abspath(code_root)
+        if not os.path.exists(os.path.join(code_root, '__init__.py')):
+            raise ValueError('{} is not a Python package directory.'.format(code_root))
+        code_root = os.path.abspath(code_root)
+        
+        if root_package_name is None:
+            parts = code_root.split(os.path.sep)
+            root_package_name = parts[-1]
+            while os.path.exists(os.path.join(os.path.sep.join(parts), '__init__.py')):
+                root_package_name = parts.pop()
+
+        self._code_root = code_root
         self._ignored_directories = ignored_directories
         self._root_package_name = root_package_name
 
@@ -28,6 +38,10 @@ class ModuleCrawler(AbjadObject):
 
     def __iter__(self):
         assert os.path.exists(self.code_root)
+
+        if not os.path.exists(os.path.join(self.code_root, '__init__.py')):
+            return
+
         for current_root, directories, files in os.walk(self.code_root):
 
             # filter directories
