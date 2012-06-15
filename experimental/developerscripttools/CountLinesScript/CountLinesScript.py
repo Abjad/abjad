@@ -29,10 +29,3 @@ class CountLinesScript(DeveloperScript):
     def version(self):
         return 1.0 
 
-    ### PRIVATE METHODS ###
-
-    def _parse_args(self, args):
-        print args
-
-    def _setup_argument_parser(self, parser):
-        pass

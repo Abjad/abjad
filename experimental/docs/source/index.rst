@@ -66,6 +66,8 @@ Unstable Abjad composition packages (load manually)
    experimental/developerscripttools/AbjDevScript/AbjDevScript
    experimental/developerscripttools/CountLinewidthsScript/CountLinewidthsScript
    experimental/developerscripttools/CountToolsScript/CountToolsScript
+   experimental/developerscripttools/MakeAbjadApiScript/MakeAbjadApiScript
+   experimental/developerscripttools/MakeExperimentalApiScript/MakeExperimentalApiScript
 
 .. rubric:: functions
 
