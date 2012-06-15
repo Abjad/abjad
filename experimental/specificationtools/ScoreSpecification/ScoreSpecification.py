@@ -80,7 +80,7 @@ class ScoreSpecification(Specification):
 
     def add_rhythm_to_voice_for_segment_region_divisions(self, voice, rhythm_token, region_division_list):
         maker = rhythm_token.value
-        assert isinstance(maker, timetokentools.TimeTokenMaker)
+        assert isinstance(maker, timetokentools.TimeTokenMaker), repr(maker)
         leaf_lists = maker(region_division_list.pairs)
         containers = [containertools.Container(x) for x in leaf_lists]
         voice.extend(containers)
@@ -176,7 +176,7 @@ class ScoreSpecification(Specification):
             return region_division_tokens
         if any([x.value is None for x in segment_division_tokens]):
             return region_division_tokens
-        assert segment_division_tokens[0].fresh
+        assert segment_division_tokens[0].fresh, repr(segment_division_tokens[0])
         for segment_division_token in segment_division_tokens:
             if segment_division_token.fresh or segment_division_token.truncate:
                 region_division_token = RegionDivisionToken(*segment_division_token)
@@ -297,15 +297,14 @@ class ScoreSpecification(Specification):
 
     def interpret_segment_divisions(self):
         for segment in self.segments:
-            settings = segment.get_settings(attribute_name='divisions')
+            settings = segment.settings.get_settings(attribute_name='divisions')
             if not settings:
                 settings = []
                 existing_settings = self.resolved_settings_context_dictionary.get_settings(
                     attribute_name='divisions')
                 for existing_setting in existing_settings:
-                    setting = copy.deepcopy(existing_setting)
-                    setting.segment_name = segment.name
-                    setting.fresh = False
+                    assert existing_setting.target.scope.encompasses_one_segment_exactly, repr(existing_setting)
+                    setting = existing_setting.copy_to_segment(segment)
                     settings.append(setting)
             self.store_settings(settings)
 
@@ -319,39 +318,37 @@ class ScoreSpecification(Specification):
 
     def interpret_segment_rhythms(self):
         for segment in self.segments:
-            settings = segment.get_settings(attribute_name='rhythm')
+            settings = segment.settings.get_settings(attribute_name='rhythm')
             if not settings:
                 settings = []
                 existing_settings = self.resolved_settings_context_dictionary.get_settings(
                     attribute_name='rhythm')
                 for existing_setting in existing_settings:
-                    setting = copy.deepcopy(existing_setting)
-                    setting.segment_name = segment.name
-                    setting.fresh = False
+                    setting = existing_setting.copy_to_segment(segment)
                     settings.append(setting)
             self.store_settings(settings)
 
     def interpret_segment_time_signatures(self):
         '''For each segment:
-        Check segment for an explicit time signature setting.
+        Check segment for a very explicit time signature setting.
         If none, check SCORE resolved settings context dictionary for current time signature setting.
         Halt interpretation if no time signature setting is found.
         Otherwise store time signature setting.
         '''
         for segment in self.segments:
-            settings = segment.get_settings(attribute_name='time_signatures')
+            settings = segment.settings.get_settings(attribute_name='time_signatures')
             if settings:
-                assert len(settings) == 1
+                assert len(settings) == 1, repr(settings)
                 setting = settings[0]
             else:
                 settings = self.resolved_settings_context_dictionary.get_settings(attribute_name='time_signatures')
                 if not settings:
                     return
-                assert len(settings) == 1
+                assert len(settings) == 1, repr(settings)
                 setting = settings[0]
                 setting = setting.copy_to_segment(segment.name)
-            assert setting.context_name is None
-            assert setting.scope is None
+            assert setting.target.context == segment.score_name, repr(setting)
+            assert setting.target.scope == segment.scope, [repr(setting), '\n', repr(segment.scope)]
             self.store_setting(setting)
 
     def make_region_division_lists_for_voice(self, voice):
@@ -381,11 +378,11 @@ class ScoreSpecification(Specification):
         return region_division_lists
 
     def make_resolved_setting(self, setting):
-        if isinstance(setting, ResolvedSetting): return setting
+        if isinstance(setting, ResolvedSetting):
+            return setting
         value = self.resolve_setting_source(setting)
         arguments = setting._mandatory_argument_values + (value, )
-        resolved_setting = ResolvedSetting(*arguments)
-        resolved_setting.fresh = setting.fresh
+        resolved_setting = ResolvedSetting(*arguments, fresh=setting.fresh)
         return resolved_setting
 
     def make_segment_division_lists_for_voice(self, voice):
@@ -448,18 +445,17 @@ class ScoreSpecification(Specification):
         Store setting in SEGMENT context tree and, if persistent, in SCORE context tree, too.
         '''
         resolved_setting = self.make_resolved_setting(setting)
-        assert isinstance(resolved_setting, ResolvedSetting), resolved_setting
-        segment = self.segments[resolved_setting.segment_name]
-        context_name = resolved_setting.context_name or segment.resolved_settings_context_dictionary.score_name
+        assert resolved_setting.target.scope.encompasses_one_segment_exactly, repr(resolved_setting)
+        segment = self.segments[resolved_setting.target.scope.start.anchor.segment]
+        context_name = resolved_setting.target.context or segment.resolved_settings_context_dictionary.score_name
         attribute_name = resolved_setting.attribute_name
-        if resolved_setting.attribute_name in segment.resolved_settings_context_dictionary[context_name]:
+        if attribute_name in segment.resolved_settings_context_dictionary[context_name]:
             message = '{!r} {!r} already contains {!r} setting.'
-            message = message.format(resolved_setting.segment_name, context_name, resolved_setting.attribute_name)
+            message = message.format(segment.name, context_name, attribute_name)
             raise Exception(message)
-        segment.resolved_settings_context_dictionary[context_name][resolved_setting.attribute_name] = \
-            resolved_setting
+        segment.resolved_settings_context_dictionary[context_name][attribute_name] = resolved_setting
         if resolved_setting.persistent:
-            self.resolved_settings_context_dictionary[context_name][setting.attribute_name] = resolved_setting
+            self.resolved_settings_context_dictionary[context_name][attribute_name] = resolved_setting
 
     def store_settings(self, settings):
         for setting in settings:

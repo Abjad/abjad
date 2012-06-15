@@ -9,8 +9,6 @@ specificationtools.Directive
 Methods
 -------
 
-.. automethod:: experimental.specificationtools.Directive.Directive.Directive.make_setting_with_context_name
-
 .. automethod:: experimental.specificationtools.Directive.Directive.Directive.unpack
 
 Special Methods

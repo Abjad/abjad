@@ -6,10 +6,45 @@ specificationtools.ResolvedSetting
 
 .. autoclass:: experimental.specificationtools.ResolvedSetting.ResolvedSetting.ResolvedSetting
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: experimental.specificationtools.ResolvedSetting.ResolvedSetting.ResolvedSetting.attribute_name
+
+    Inherited from :py:class:`specificationtools.Setting <experimental.specificationtools.Setting.Setting.Setting>`
+
+.. autoattribute:: experimental.specificationtools.ResolvedSetting.ResolvedSetting.ResolvedSetting.fresh
+
+.. autoattribute:: experimental.specificationtools.ResolvedSetting.ResolvedSetting.ResolvedSetting.persistent
+
+    Inherited from :py:class:`specificationtools.Setting <experimental.specificationtools.Setting.Setting.Setting>`
+
+.. autoattribute:: experimental.specificationtools.ResolvedSetting.ResolvedSetting.ResolvedSetting.source
+
+    Inherited from :py:class:`specificationtools.Setting <experimental.specificationtools.Setting.Setting.Setting>`
+
+.. autoattribute:: experimental.specificationtools.ResolvedSetting.ResolvedSetting.ResolvedSetting.target
+
+    Inherited from :py:class:`specificationtools.Setting <experimental.specificationtools.Setting.Setting.Setting>`
+
+.. autoattribute:: experimental.specificationtools.ResolvedSetting.ResolvedSetting.ResolvedSetting.truncate
+
+    Inherited from :py:class:`specificationtools.Setting <experimental.specificationtools.Setting.Setting.Setting>`
+
+.. autoattribute:: experimental.specificationtools.ResolvedSetting.ResolvedSetting.ResolvedSetting.value
+
 Methods
 -------
 
 .. automethod:: experimental.specificationtools.ResolvedSetting.ResolvedSetting.ResolvedSetting.copy_to_segment
+
+    Inherited from :py:class:`specificationtools.Setting <experimental.specificationtools.Setting.Setting.Setting>`
+
+.. automethod:: experimental.specificationtools.ResolvedSetting.ResolvedSetting.ResolvedSetting.set_to_segment
+
+    Inherited from :py:class:`specificationtools.Setting <experimental.specificationtools.Setting.Setting.Setting>`
+
+.. automethod:: experimental.specificationtools.ResolvedSetting.ResolvedSetting.ResolvedSetting.to_segment_name
 
     Inherited from :py:class:`specificationtools.Setting <experimental.specificationtools.Setting.Setting.Setting>`
 

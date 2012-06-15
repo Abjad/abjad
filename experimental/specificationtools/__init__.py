@@ -1,6 +1,7 @@
 from AttributeNameEnumeration import AttributeNameEnumeration
 from AttributeRetrievalIndicator import AttributeRetrievalIndicator
 from AttributeRetrievalRequest import AttributeRetrievalRequest
+from BaseSetting import BaseSetting
 from Callback import Callback
 from ContextDictionary import ContextDictionary
 from ContextProxy import ContextProxy

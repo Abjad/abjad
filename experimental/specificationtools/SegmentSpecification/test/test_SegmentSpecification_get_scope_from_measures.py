@@ -5,7 +5,7 @@ from experimental.specificationtools import ScoreSpecification
 import py
 
 
-def test_foo_01():
+def test_SegmentSpecification_get_scope_from_measures_01():
     '''Measure scope and fractional segment scope.
     '''
     py.test.skip('working on this one now.')

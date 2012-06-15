@@ -6,10 +6,29 @@ specificationtools.Setting
 
 .. autoclass:: experimental.specificationtools.Setting.Setting.Setting
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: experimental.specificationtools.Setting.Setting.Setting.attribute_name
+
+.. autoattribute:: experimental.specificationtools.Setting.Setting.Setting.fresh
+
+.. autoattribute:: experimental.specificationtools.Setting.Setting.Setting.persistent
+
+.. autoattribute:: experimental.specificationtools.Setting.Setting.Setting.source
+
+.. autoattribute:: experimental.specificationtools.Setting.Setting.Setting.target
+
+.. autoattribute:: experimental.specificationtools.Setting.Setting.Setting.truncate
+
 Methods
 -------
 
 .. automethod:: experimental.specificationtools.Setting.Setting.Setting.copy_to_segment
+
+.. automethod:: experimental.specificationtools.Setting.Setting.Setting.set_to_segment
+
+.. automethod:: experimental.specificationtools.Setting.Setting.Setting.to_segment_name
 
 Special Methods
 ---------------

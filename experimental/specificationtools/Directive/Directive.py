@@ -1,6 +1,8 @@
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from experimental.specificationtools.Selection import Selection
-from experimental.specificationtools.Setting import Setting
+from experimental.specificationtools.ContextSelection.ContextSelection import ContextSelection
+from experimental.specificationtools.Selection.Selection import Selection
+from experimental.specificationtools.Setting.Setting import Setting
+import copy
 
 
 class Directive(AbjadObject):
@@ -9,9 +11,9 @@ class Directive(AbjadObject):
 
     def __init__(self, *args, **kwargs):
         mandatory_argument_values, keyword_argument_values = self._get_input_argument_values(*args, **kwargs)
-        target_selection, attribute_name, source = mandatory_argument_values
+        target, attribute_name, source = mandatory_argument_values
         persistent, truncate = keyword_argument_values
-        self.target_selection = target_selection
+        self.target = target
         self.attribute_name = attribute_name
         self.source = source
         self.persistent = persistent
@@ -38,7 +40,7 @@ class Directive(AbjadObject):
     @property
     def _mandatory_argument_values(self):
         return (
-            self.target_selection,
+            self.target,
             self.attribute_name,
             self.source,
             )
@@ -64,18 +66,15 @@ class Directive(AbjadObject):
     
     ### PUBLIC METHODS ###
 
-    def make_setting_with_context_name(self, context_name):
-        args = []
-        args.extend([self.target_selection.segment_name, context_name, self.target_selection.scope])
-        args.extend([self.attribute_name, self.source, self.persistent, self.truncate])
-        return Setting(*args)
-
     def unpack(self):
-        assert isinstance(self.target_selection.contexts, (list, type(None)))
+        '''Unpacking a directive means exploding a directive into a list of settings.
+
+        Return list of settings.
+        '''
         settings = []
-        if self.target_selection.contexts in (None, []):
-            settings.append(self.make_setting_with_context_name(None))
-        else:
-            for context_name in self.target_selection.contexts:
-                settings.append(self.make_setting_with_context_name(context_name))
+        assert self.target.contexts, repr(self.target.contexts)
+        for context in self.target.contexts:
+            target = ContextSelection(context, scope=copy.deepcopy(self.target.scope))
+            setting = Setting(target, self.attribute_name, self.source, self.persistent, self.truncate)
+            settings.append(setting)
         return settings

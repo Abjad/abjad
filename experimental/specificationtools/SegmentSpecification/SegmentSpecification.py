@@ -210,10 +210,10 @@ class SegmentSpecification(Specification):
             raise ValueError("'callback', 'count' or 'offset' set on nonstatal source: {!r}.".format(source))
         return source
 
-    def get_directives(self, target_selection=None, attribute_name=None):
+    def get_directives(self, target=None, attribute_name=None):
         result = []
         for directive in self.directives:
-            if target_selection is None or directive.target_selection == target_selection:
+            if target is None or directive.target == target:
                 if attribute_name is None or directive.attribute_name == attribute_name:
                     result.append(directive)
         return result
@@ -264,45 +264,6 @@ class SegmentSpecification(Specification):
             return value, fresh
         return library.rest_filled_tokens, True
 
-    # TODO: remove this and just call self.settings.get_setting() directly
-    def get_setting(self, **kwargs):
-        '''Return unresolved setting.
-        '''
-        return self.settings.get_setting(segment_name=self.name, **kwargs)
-
-    # TODO: remove this and just call self.settings.get_settings() directly
-    def get_settings(self, **kwargs):
-        '''Return unresolved setting.
-        '''
-        return self.settings.get_settings(segment_name=self.name, **kwargs)
-
-    def parse_context_token(self, context_token):
-        if context_token in self.context_names:
-            context_names = [context_token]
-        elif self.resolved_settings_context_dictionary.all_are_context_names(context_token):
-            context_names = context_token
-        elif isinstance(context_token, type(self)):
-            context_names = None
-        else:
-            raise ValueError('invalid context token: {!r}'.format(context_token))
-        return context_names
-            
-    def parse_selection_token(self, selection_token):
-        from experimental import specificationtools
-        if isinstance(selection_token, specificationtools.Selection):
-            selection = selection_token
-        elif isinstance(selection_token, type(self)):
-            # TODO: change to broader self.select() to capture all contexts automatically
-            selection = self.select_contexts()
-            #selection = self.select()
-        elif isinstance(selection_token, str) and selection_token in self.resolved_settings_context_dictionary:
-            selection = self.select_contexts(contexts=[selection_token])
-        elif self.resolved_settings_context_dictionary.all_are_context_names(selection_token):
-            selection = self.select_contexts(contexts=selection_token)
-        else:
-            raise ValueError('invalid selection token: {!r}.'.format(selection_token))
-        return selection
-
     # TODO: rename to something more explicit
     def retrieve(self, attribute_name, **kwargs):
         return Specification.retrieve(self, attribute_name, self.name, **kwargs)
@@ -316,18 +277,20 @@ class SegmentSpecification(Specification):
         from experimental import specificationtools
         return specificationtools.Selection()
         
-    def select_contexts(self, contexts=None, segment_name=None):
+    #def select_contexts(self, contexts=None, segment_name=None):
+    def select_contexts(self, contexts=None):
         from experimental import specificationtools
-        assert contexts is None or self.resolved_settings_context_dictionary.all_are_context_names(contexts)
-        assert isinstance(segment_name, (str, type(None)))
-        segment_name = segment_name or self.name
-        selection = specificationtools.Selection(segment_name, contexts=contexts)
-        return selection
+        #assert contexts is None or self.resolved_settings_context_dictionary.all_are_context_names(contexts)
+        #assert isinstance(segment_name, (str, type(None)))
+        #segment_name = segment_name or self.name
+        #selection = specificationtools.Selection(segment_name, contexts=contexts)
+        contexts = self.context_token_to_context_names(contexts)
+        return specificationtools.Selection(contexts=contexts, scope=self.scope)
 
     def select_divisions(self, context_token=None, part=None, segment_name=None, start=None, stop=None):
         from experimental import specificationtools
         criterion = 'divisions'
-        contexts = self.parse_context_token(context_token)
+        contexts = self.context_token_to_context_names(context_token)
         scope = specificationtools.TemporalScope(criterion=criterion, part=part, start=start, stop=stop)
         selection = self.select(contexts=contexts, segment_name=segment_name, scope=scope)
         return selection
@@ -335,7 +298,7 @@ class SegmentSpecification(Specification):
     def select_measures(self, context_token=None, part=None, segment_name=None, start=None, stop=None):
         from experimental import specificationtools
         criterion = 'measures'
-        contexts = self.parse_context_token(context_token)
+        contexts = self.context_token_to_context_names(context_token)
         scope = specificationtools.TemporalScope(criterion=criterion, part=part, start=start, stop=stop)
         selection = self.select(contexts=contexts, segment_name=segment_name, scope=scope)
         return selection
@@ -343,24 +306,24 @@ class SegmentSpecification(Specification):
     def select_notes_and_chords(self, context_token=None, part=None, segment_name=None, start=None, stop=None):
         from experimental import specificationtools
         criterion = (chordtools.Chord, notetools.Note)
-        contexts = self.parse_context_token(context_token)
+        contexts = self.context_token_to_context_names(context_token)
         scope = specificationtools.TemporalScope(criterion=criterion, part=part, start=start, stop=stop)
         selection = self.select(contexts=contexts, scope=scope)
         return selection
 
-    def set_aggregate(self, target_token, source, 
+    def set_aggregate(self, contexts, source, 
         count=None, persistent=True, offset=None):
         attribute_name = 'aggregate'
-        return self.set_attribute(attribute_name, target_token, source, 
-            count=count, persistent=persistent, offset=offset)
+        return self.set_attribute(attribute_name, contexts, source, 
+            count=count, offset=offset, persistent=persistent)
 
-    def set_articulations(self, target_token, source, 
+    def set_articulations(self, contexts, source, 
         count=None, persistent=True, offset=None):
         attribute_name = 'articulations'
-        return self.set_attribute(attribute_name, target_token, source, 
-            count=count, persistent=persistent, offset=offset)
+        return self.set_attribute(attribute_name, contexts, source, 
+            count=count, offset=offset, persistent=persistent)
 
-    def set_attribute(self, attribute_name, target_token, source, 
+    def set_attribute(self, attribute_name, contexts, source, 
         callback=None, count=None, offset=None, persistent=True, scope=None, truncate=False):
         from experimental import specificationtools
         assert attribute_name in self.attribute_names, repr(attribute_name)
@@ -369,119 +332,120 @@ class SegmentSpecification(Specification):
         assert isinstance(scope, (specificationtools.TemporalScope, type(None))), repr(scope)
         assert isinstance(truncate, type(True)), repr(truncate)
         # handle scope here and include in target selection?
-        target_selection = self.parse_selection_token(target_token)
+        #target = self.parse_selection_token(contexts)
+        target = self.select_contexts(contexts=contexts)
         source = self.annotate_source(source, callback=callback, count=count, offset=offset)
-        directive = specificationtools.Directive(target_selection, attribute_name, source, 
+        directive = specificationtools.Directive(target, attribute_name, source, 
             persistent=persistent, truncate=truncate)
         self.directives.append(directive)
         return directive
 
-    def set_chord_treatment(self, target_token, source, 
+    def set_chord_treatment(self, contexts, source, 
         count=None, persistent=True, offset=None):
         attribute_name = 'chord_treatment'
-        return self.set_attribute(attribute_name, target_token, source, 
-            count=count, persistent=persistent, offset=offset)
+        return self.set_attribute(attribute_name, contexts, source, 
+            count=count, offset=offset, persistent=persistent)
 
-    def set_divisions(self, target_token, source, 
+    def set_divisions(self, contexts, source, 
         callback=None, count=None, offset=None, persistent=True, scope=None, truncate=False):
         attribute_name = 'divisions'
-        return self.set_attribute(attribute_name, target_token, source, 
+        return self.set_attribute(attribute_name, contexts, source, 
             callback=callback, count=count, offset=offset, persistent=persistent, scope=scope, truncate=truncate)
 
-    def set_duration_in_seconds(self, target_token, source, 
+    def set_duration_in_seconds(self, contexts, source, 
         count=None, persistent=True, offset=None):
         attribute_name = 'duration_in_seconds'
-        return self.set_attribute(attribute_name, target_token, source, 
-            count=count, persistent=persistent, offset=offset)
+        return self.set_attribute(attribute_name, contexts, source, 
+            count=count, offset=offset, persistent=persistent)
 
-    def set_dynamics(self, target_token, source, 
+    def set_dynamics(self, contexts, source, 
         count=None, persistent=True, offset=None):
         attribute_name = 'dynamics'
-        return self.set_attribute(attribute_name, target_token, source, 
-            count=count, persistent=persistent, offset=offset)
+        return self.set_attribute(attribute_name, contexts, source, 
+            count=count, offset=offset, persistent=persistent)
 
-    def set_marks(self, target_token, source, 
+    def set_marks(self, contexts, source, 
         count=None, persistent=True, offset=None):
         attribute_name = 'marks'
-        return self.set_attribute(attribute_name, target_token, source, 
-            count=count, persistent=persistent, offset=offset)
+        return self.set_attribute(attribute_name, contexts, source, 
+            count=count, offset=offset, persistent=persistent)
 
-    def set_markup(self, target_token, source, 
+    def set_markup(self, contexts, source, 
         count=None, persistent=True, offset=None):
         attribute_name = 'markup'
-        return self.set_attribute(attribute_name, target_token, source, 
-            count=count, persistent=persistent, offset=offset)
+        return self.set_attribute(attribute_name, contexts, source, 
+            count=count, offset=offset, persistent=persistent)
 
-    def set_pitch_classes(self, target_token, source, 
+    def set_pitch_classes(self, contexts, source, 
         count=None, persistent=True, offset=None):
         attribute_name = 'pitch_classes'
-        return self.set_attribute(attribute_name, target_token, source, 
-            count=count, persistent=persistent, offset=offset)
+        return self.set_attribute(attribute_name, contexts, source, 
+            count=count, offset=offset, persistent=persistent)
 
-    def set_pitch_class_application(self, target_token, source, 
+    def set_pitch_class_application(self, contexts, source, 
         count=None, persistent=True, offset=None):
         attribute_name = 'pitch_class_application'
-        return self.set_attribute(attribute_name, target_token, source, 
-            count=count, persistent=persistent, offset=offset)
+        return self.set_attribute(attribute_name, contexts, source, 
+            count=count, offset=offset, persistent=persistent)
 
-    def set_pitch_class_transform(self, target_token, source, 
+    def set_pitch_class_transform(self, contexts, source, 
         count=None, persistent=True, offset=None):
         attribute_name = 'pitch_class_transform'
-        return self.set_attribute(attribute_name, target_token, source, 
-            count=count, persistent=persistent, offset=offset)
+        return self.set_attribute(attribute_name, contexts, source, 
+            count=count, offset=offset, persistent=persistent)
 
-    def set_register(self, target_token, source, 
+    def set_register(self, contexts, source, 
         count=None, persistent=True, offset=None):
         attribute_name = 'register'
-        return self.set_attribute(attribute_name, target_token, source, 
-            count=count, persistent=persistent, offset=offset)
+        return self.set_attribute(attribute_name, contexts, source, 
+            count=count, offset=offset, persistent=persistent)
 
-    def set_rhythm(self, target_token, source, 
+    def set_rhythm(self, contexts, source, 
         count=None, persistent=True, offset=None):
         attribute_name = 'rhythm'
-        return self.set_attribute(attribute_name, target_token, source, 
-            count=count, persistent=persistent, offset=offset)
+        return self.set_attribute(attribute_name, contexts, source, 
+            count=count, offset=offset, persistent=persistent)
 
-    def set_retrograde_divisions(self, target_token, source,
+    def set_retrograde_divisions(self, contexts, source,
         count=None, offset=None, persistent=True, truncate=True):
         r'''.. versionadded:: 1.0
 
-        Set `target_token` divisions from `source` taken in retrograde.
+        Set `contexts` divisions from `source` taken in retrograde.
         '''
         string = 'sequencetools.reverse_sequence'
         callback = Callback(eval(string), string)
-        return self.set_divisions(target_token, source, 
+        return self.set_divisions(contexts, source, 
             callback=callback, count=count, offset=offset, persistent=persistent, truncate=truncate)
 
-    def set_rotated_divisions(self, target_token, source, n, 
+    def set_rotated_divisions(self, contexts, source, n, 
         count=None, offset=None, persistent=True, truncate=True):
         r'''.. versionadded:: 1.0
 
-        Set `target_token` divisions from `source` rotated by integer `n`.
+        Set `contexts` divisions from `source` rotated by integer `n`.
         '''
         assert isinstance(n, int), repr(n)
         string = 'lambda x: sequencetools.rotate_sequence(x, {})'.format(n)
         callback = Callback(eval(string), string)
-        return self.set_divisions(target_token, source, 
+        return self.set_divisions(contexts, source, 
             callback=callback, count=count, offset=offset, persistent=persistent, truncate=truncate)
 
-    def set_tempo(self, target_token, source, 
+    def set_tempo(self, contexts, source, 
         count=None, persistent=True, offset=None):
         attribute_name = 'tempo'
-        return self.set_attribute(attribute_name, target_token, source, 
-            count=count, persistent=persistent, offset=offset)
+        return self.set_attribute(attribute_name, contexts, source, 
+            count=count, offset=offset, persistent=persistent)
 
-    def set_time_signatures(self, target_token, source, 
+    def set_time_signatures(self, contexts, source, 
         count=None, persistent=True, offset=None):
         attribute_name = 'time_signatures'
-        return self.set_attribute(attribute_name, target_token, source, 
-            count=count, persistent=persistent, offset=offset)
+        return self.set_attribute(attribute_name, contexts, source, 
+            count=count, offset=offset, persistent=persistent)
 
-    def set_written_duration(self, target_token, source, 
+    def set_written_duration(self, contexts, source, 
         count=None, persistent=True, offset=None):
         attribute_name = 'written_duration'
-        return self.set_attribute(attribute_name, target_token, source, 
-            count=count, persistent=persistent, offset=offset)
+        return self.set_attribute(attribute_name, contexts, source, 
+            count=count, offset=offset, persistent=persistent)
 
     def unpack_directives(self):
         for directive in self.directives:

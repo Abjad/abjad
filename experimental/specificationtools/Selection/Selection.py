@@ -1,3 +1,4 @@
+from abjad.tools import contexttools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental.specificationtools.TemporalScope import TemporalScope
 
@@ -16,12 +17,12 @@ class Selection(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, segment_name, contexts=None, scope=None):
-    #def __init__(self, contexts=None, scope=None):
-        assert isinstance(segment_name, str)
-        assert isinstance(contexts, (list, type(None)))
-        assert isinstance(scope, (TemporalScope, type(None)))
-        self._segment_name = segment_name
+    #def __init__(self, segment_name, contexts=None, scope=None):
+    def __init__(self, contexts=None, scope=None):
+        #assert isinstance(segment_name, str), repr(segment_name)
+        assert isinstance(contexts, (list, type(None))), repr(contexts)
+        assert isinstance(scope, (TemporalScope, type(None))), repr(scope)
+        #self._segment_name = segment_name
         self._contexts = contexts
         self._scope = scope
 
@@ -52,11 +53,11 @@ class Selection(AbjadObject):
         '''
         return self._contexts
 
-    @property
-    def segment_name(self):
-        '''Deprecated.
-        '''
-        return self._segment_name
+#    @property
+#    def segment_name(self):
+#        '''Deprecated.
+#        '''
+#        return self._segment_name
 
     @property
     def scope(self):

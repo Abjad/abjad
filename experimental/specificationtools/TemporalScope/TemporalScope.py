@@ -38,31 +38,31 @@ class TemporalScope(AbjadObject):
 
     Select the timespan of the first third of the score::
 
-        >>> stop = specificationtools.TemporalCursor(scalar=Fraction(1, 3), edge=right)
+        >>> stop = specificationtools.TemporalCursor(multiplier=Fraction(1, 3), edge=right)
 
     ::
 
         >>> specificationtools.TemporalScope(stop=stop)
-        TemporalScope(stop=TemporalCursor(edge=right, scalar=Fraction(1, 3)))
+        TemporalScope(stop=TemporalCursor(edge=right, multiplier=Fraction(1, 3)))
 
     Select the timespan of the last third of the score::
 
-        >>> start = specificationtools.TemporalCursor(edge=right, scalar=Fraction(2, 3))
+        >>> start = specificationtools.TemporalCursor(edge=right, multiplier=Fraction(2, 3))
 
     ::
 
         >>> specificationtools.TemporalScope(start=start)
-        TemporalScope(start=TemporalCursor(edge=right, scalar=Fraction(2, 3)))
+        TemporalScope(start=TemporalCursor(edge=right, multiplier=Fraction(2, 3)))
 
     Select the timespan of the middle third of the score::
 
-        >>> start = specificationtools.TemporalCursor(edge=right, scalar=Fraction(1, 3))
-        >>> stop = specificationtools.TemporalCursor(edge=right, scalar=Fraction(2, 3))
+        >>> start = specificationtools.TemporalCursor(edge=right, multiplier=Fraction(1, 3))
+        >>> stop = specificationtools.TemporalCursor(edge=right, multiplier=Fraction(2, 3))
 
     ::
 
         >>> specificationtools.TemporalScope(start=start, stop=stop)
-        TemporalScope(start=TemporalCursor(edge=right, scalar=Fraction(1, 3)), stop=TemporalCursor(edge=right, scalar=Fraction(2, 3)))
+        TemporalScope(start=TemporalCursor(edge=right, multiplier=Fraction(1, 3)), stop=TemporalCursor(edge=right, multiplier=Fraction(2, 3)))
 
     Select the timespan of the first ``1/8`` of a whole note in score::
 
@@ -181,6 +181,15 @@ class TemporalScope(AbjadObject):
         self._start = start
         self._stop = stop
 
+    ### SPECIAL METHODS ###
+
+    def __eq__(self, expr):
+        if isinstance(expr, type(self)):
+            if self.start == expr.start:
+                if self.stop == expr.stop:
+                    return True
+        return False
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
@@ -194,6 +203,58 @@ class TemporalScope(AbjadObject):
         .. note:: not yet implemented.
         '''
         raise NotImplementedError
+
+    @property
+    def exact_segment(self):
+        '''Return segment name when scope equals exactly one segment.
+
+        Otherwise return none.
+        '''
+        pass
+
+    @property
+    def is_anchored_to_one_object(self):
+        '''True when start anchor equals stop anchor. Otherwise false.
+
+        Return boolean.
+        '''
+        return self.start.anchor == self.stop.anchor
+
+    @property
+    def encompasses_one_object_exactly(self):
+        '''True when the following five conditions hold:
+
+        1. start anchor equals stop anchor.
+
+        2. start edge is left.
+
+        3. stop edge is right.
+
+        4. start and stop multipliers are both none.
+    
+        5. start and stop addenda are both none.
+
+        Return boolean.
+        '''
+        if self.start.anchor == self.stop.anchor:
+            if self.start.edge in (None, left):
+                if self.stop.edge == right:
+                    if self.start.multiplier is self.stop.multiplier is None:
+                        if self.start.addendum is self.stop.addendum is None:
+                            return True
+        return False
+
+    @property
+    def encompasses_one_segment_exactly(self):
+        '''True when scope encompasses one object exactly and when that
+        object is a segment. Otherwise false.
+
+        Return boolean.
+        '''
+        if self.encompasses_one_object_exactly:
+            if self.start.anchor.is_segment:
+                return True
+        return False
 
     @property
     def start(self):

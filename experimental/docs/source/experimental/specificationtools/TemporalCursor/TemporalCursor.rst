@@ -15,7 +15,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.specificationtools.TemporalCursor.TemporalCursor.TemporalCursor.edge
 
-.. autoattribute:: experimental.specificationtools.TemporalCursor.TemporalCursor.TemporalCursor.scalar
+.. autoattribute:: experimental.specificationtools.TemporalCursor.TemporalCursor.TemporalCursor.multiplier
 
 .. autoattribute:: experimental.specificationtools.TemporalCursor.TemporalCursor.TemporalCursor.score_offset
 

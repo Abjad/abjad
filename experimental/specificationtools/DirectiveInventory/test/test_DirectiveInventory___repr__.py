@@ -1,8 +1,11 @@
 from abjad.tools import *
 from experimental.specificationtools.Directive import Directive
 from experimental.specificationtools.DirectiveInventory import DirectiveInventory
+from experimental.specificationtools.ScoreObjectIndicator import ScoreObjectIndicator
 from experimental.specificationtools.ScoreSpecification import ScoreSpecification
 from experimental.specificationtools.Selection import Selection
+from experimental.specificationtools.TemporalCursor import TemporalCursor
+from experimental.specificationtools.TemporalScope import TemporalScope
 
 
 def test_DirectiveInventory___repr___01():

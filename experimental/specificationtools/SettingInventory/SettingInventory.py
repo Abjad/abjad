@@ -30,16 +30,16 @@ class SettingInventory(ObjectInventory):
         assert len(settings) == 1
         return settings[0]
 
-    def get_settings(self, 
-        attribute_name=None, context_name=None, persistent=None, scope=None, segment_name=None):
+    def get_settings(self, attribute_name=None, context_name=None, persistent=None, scope=None, target=None):
         assert attribute_name in self.attribute_names, repr(attribute_name)
         settings = []
         for setting in self:
             if (
                 (attribute_name is None or setting.attribute_name == attribute_name) and
-                (context_name is None or setting.context_name == context_name) and
-                (persistent is None or setting.persistent == persistent) and
-                (scope is None or setting.scope == scope) and
-                (segment_name is None or setting.segment_name == segment_name)):
+                (target is None or setting.target == target) and
+                (context_name is None or setting.target.context_name == context_name) and
+                (scope is None or setting.target.scope == scope) and
+                (persistent is None or setting.persistent == persistent)
+                ):
                 settings.append(setting)
         return settings

@@ -1,32 +1,46 @@
 from abjad.tools.abctools.AbjadObject import AbjadObject
-#from experimental.specificationtools.TemporalScope import TemporalScope
 import copy
 
 
+# TODO: make immutable
+# TODO: make persistent, truncate keyword arguments to facilitate debugging with repr
 class Setting(AbjadObject):
     r'''.. versionadded:: 1.0
 
-    Setting of a single attribute against a single selection.
+    Frozen request to set one attribute against one context-specified selection.
 
-    .. note:: refactor class to center on Selection objects.
+    Initialize with mandatory `target`, `attribute_name`, `source`, `persistent`, `truncate`
+    and optional `fresh`.
+
+    (Note that that soon `persistent`, `truncate`, `fresh` will all be optional.)
+
+    Initialize from other setting.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
+#    __slots__ = (
+#        '_attribute_name',
+#        '_fresh',
+#        '_persistent',
+#        '_source',
+#        '_target', 
+#        '_truncate',
+#        )
+    
     ### INITIALIZER ###
 
     def __init__(self, *args, **kwargs):
         mandatory_argument_values, keyword_argument_values = self._get_input_argument_values(*args, **kwargs)
         self._check_input_arguments(mandatory_argument_values, keyword_argument_values)
-        segment_name, context_name, scope, attribute_name, source, persistent, truncate = \
-            mandatory_argument_values
+        target, attribute_name, source, persistent, truncate = mandatory_argument_values
         fresh = keyword_argument_values[0]
-        self.segment_name = segment_name
-        self.context_name = context_name
-        self.scope = scope
-        self.attribute_name = attribute_name
-        self.source = source
-        self.persistent = persistent
-        self.truncate = truncate
-        self.fresh = fresh
+        self._target = target
+        self._attribute_name = attribute_name
+        self._source = source
+        self._persistent = persistent
+        self._truncate = truncate
+        self._fresh = fresh
 
     ### SPECIAL METHODS ###
 
@@ -48,9 +62,7 @@ class Setting(AbjadObject):
     @property
     def _mandatory_argument_values(self):
         return (
-            self.segment_name,
-            self.context_name,
-            self.scope,
+            self.target,
             self.attribute_name,
             self.source,
             self.persistent,
@@ -81,12 +93,10 @@ class Setting(AbjadObject):
     ### PRIVATE METHODS ###
 
     def _check_input_arguments(self, mandatory_argument_values, keyword_argument_values):
-        segment_name, context_name, scope, attribute_name, source, persistent, truncate = \
-            mandatory_argument_values
+        from experimental import specificationtools
+        target, attribute_name, source, persistent, truncate = mandatory_argument_values
         fresh = keyword_argument_values[0]
-        assert isinstance(segment_name, str), repr(segment_name)
-        assert isinstance(context_name, (str, type(None))), repr(context_name)
-        #assert isinstance(scope, (TemporalScope, type(None))), repr(scope)
+        assert isinstance(target, specificationtools.ContextSelection), repr(target)
         assert isinstance(attribute_name, str), repr(attribute_name)
         assert isinstance(persistent, bool), repr(persistent)
         assert isinstance(truncate, bool), repr(truncate)
@@ -100,7 +110,7 @@ class Setting(AbjadObject):
             if kwargs.get('fresh') is not None:
                 keyword_argment_values[0] = kwargs.get('fresh')
         else:
-            assert len(args) == 7, repr(args)
+            assert len(args) == 5, repr(args)
             mandatory_argument_values = args
             keyword_argument_values = []
             keyword_argument_values.append(kwargs.get('fresh', True))
@@ -113,11 +123,67 @@ class Setting(AbjadObject):
             return source.name
         else:
             return str(source)
+    
+    ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def attribute_name(self):
+        return self._attribute_name
+
+    @property
+    def fresh(self):
+        return self._fresh
+
+    @property
+    def persistent(self):
+        return self._persistent
+    
+    @property
+    def source(self):
+        return self._source
+
+    @property
+    def target(self):
+        return self._target
+
+    @property
+    def truncate(self):
+        return self._truncate
 
     ### PUBLIC METHODS ###
 
-    def copy_to_segment(self, segment_name):
-        assert isinstance(segment_name, str), repr(segment_name)
+    def copy_to_segment(self, segment):
+        '''Only works when target scope encompasses one segment exactly.
+
+        Create new setting. Set new setting `fresh` to false.
+
+        Return new setting.
+        '''
+        assert self.target.scope.encompasses_one_segment_exactly, repr(self)
         new = copy.deepcopy(self)
-        new.segment_name = segment_name
+        new.set_to_segment(segment)
+        new._fresh = False
         return new
+
+    def set_to_segment(self, segment):
+        '''Only works when target scope encompasses one segment exactly.
+
+        Return none.
+        '''
+        assert self.target.scope.encompasses_one_segment_exactly, repr(self)
+        segment = self.to_segment_name(segment)
+        self.target.scope.start.anchor._segment = segment
+        self.target.scope.stop.anchor._segment = segment
+
+    def to_segment_name(self, segment):
+        '''Change `segment` to segment name. Return string unchanged.
+
+        Return string.
+        '''
+        from experimental import specificationtools
+        if isinstance(segment, specificationtools.SegmentSpecification):
+            return segment.name
+        elif isinstance(segment, str):
+            return segment
+        else:
+            raise Exception('{!r} is neither segment nor string.'.format(segment))

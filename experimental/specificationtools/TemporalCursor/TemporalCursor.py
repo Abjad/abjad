@@ -20,7 +20,7 @@ class TemporalCursor(AbjadObject):
     Temporal cursors resolve to a rational-valued score offset.
 
     Initialize with different combinations of optional `anchor`, 
-    `edge`, `scalar` and `addendum`.
+    `edge`, `multiplier` and `addendum`.
 
     Pick out the timepoint equal to the left edge of score::
 
@@ -47,13 +47,13 @@ class TemporalCursor(AbjadObject):
 
     Pick out the timepoint one third of the way into score::
 
-        >>> specificationtools.TemporalCursor(edge=right, scalar=Fraction(1, 3))
-        TemporalCursor(edge=right, scalar=Fraction(1, 3))
+        >>> specificationtools.TemporalCursor(edge=right, multiplier=Fraction(1, 3))
+        TemporalCursor(edge=right, multiplier=Fraction(1, 3))
 
     Pick out the timepoint ``1/8`` of a whole note after the first third of score::
 
-        >>> specificationtools.TemporalCursor(edge=right, scalar=Fraction(1, 3), addendum=Offset(1, 8))
-        TemporalCursor(edge=right, scalar=Fraction(1, 3), addendum=Offset(1, 8))
+        >>> specificationtools.TemporalCursor(edge=right, multiplier=Fraction(1, 3), addendum=Offset(1, 8))
+        TemporalCursor(edge=right, multiplier=Fraction(1, 3), addendum=Offset(1, 8))
 
     Pick out the timepoint equal to the left edge of the segment with name ``'red'``::
 
@@ -77,14 +77,14 @@ class TemporalCursor(AbjadObject):
 
     Pick out the timepoint equal to one third of the way into the segment with name ``'red'``::
 
-        >>> specificationtools.TemporalCursor(anchor=anchor, edge=right, scalar=Fraction(1, 3))
-        TemporalCursor(anchor=ScoreObjectIndicator(segment='red'), edge=right, scalar=Fraction(1, 3))
+        >>> specificationtools.TemporalCursor(anchor=anchor, edge=right, multiplier=Fraction(1, 3))
+        TemporalCursor(anchor=ScoreObjectIndicator(segment='red'), edge=right, multiplier=Fraction(1, 3))
 
     Pick out the timepoint equal to ``1/8`` of a whole note after the right edge of the first third of
     the segment with name ``'red'``::
     
-        >>> specificationtools.TemporalCursor(anchor=anchor, edge=right, scalar=Fraction(1, 3), addendum=Offset(1, 8))
-        TemporalCursor(anchor=ScoreObjectIndicator(segment='red'), edge=right, scalar=Fraction(1, 3), addendum=Offset(1, 8))
+        >>> specificationtools.TemporalCursor(anchor=anchor, edge=right, multiplier=Fraction(1, 3), addendum=Offset(1, 8))
+        TemporalCursor(anchor=ScoreObjectIndicator(segment='red'), edge=right, multiplier=Fraction(1, 3), addendum=Offset(1, 8))
 
     Pick out the timepoint equal to the left edge of note ``10`` in context ``'Voice 1'`` of
     the segment with name ``'red'``::
@@ -111,15 +111,15 @@ class TemporalCursor(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, anchor=None, edge=None, scalar=None, addendum=None): 
+    def __init__(self, anchor=None, edge=None, multiplier=None, addendum=None): 
         assert isinstance(anchor, (ScoreObjectIndicator, type(None))), repr(anchor)
         assert isinstance(edge, (VectorConstant, type(None))), repr(edge)
-        assert isinstance(scalar, (fractions.Fraction, type(None))), repr(scalar)
+        assert isinstance(multiplier, (fractions.Fraction, type(None))), repr(multiplier)
         if addendum is not None:
             addendum = durationtools.Offset(addendum)
         assert isinstance(addendum, (durationtools.Offset, type(None))), repr(addendum)
         self._anchor = anchor
-        self._scalar = scalar
+        self._multiplier = multiplier
         self._edge = edge
         self._addendum = addendum
 
@@ -139,7 +139,9 @@ class TemporalCursor(AbjadObject):
             return False
         elif not self.edge == other.edge:
             return False
-        elif not self.offset == other.offset:
+        elif not self.multiplier == other.multiplier:
+            return False
+        elif not self.addendum == other.addendum:
             return False
         else:
             return True
@@ -214,17 +216,17 @@ class TemporalCursor(AbjadObject):
         return self._edge
 
     @property
-    def scalar(self):
-        '''Temporal cursor scalar specified by user.
+    def multiplier(self):
+        '''Temporal cursor multiplier specified by user.
 
-            >>> temporal_cursor.scalar is None
+            >>> temporal_cursor.multiplier is None
             True
 
         Value of none is taken equal to ``Fraction(1)``.
 
         Return fraction or none.
         '''
-        return self._scalar
+        return self._multiplier
 
     @property
     def score_offset(self):

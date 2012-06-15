@@ -13,6 +13,14 @@ Read-only Properties
 
 .. autoattribute:: experimental.specificationtools.ScoreObjectIndicator.ScoreObjectIndicator.ScoreObjectIndicator.index
 
+.. autoattribute:: experimental.specificationtools.ScoreObjectIndicator.ScoreObjectIndicator.ScoreObjectIndicator.is_context
+
+.. autoattribute:: experimental.specificationtools.ScoreObjectIndicator.ScoreObjectIndicator.ScoreObjectIndicator.is_klass
+
+.. autoattribute:: experimental.specificationtools.ScoreObjectIndicator.ScoreObjectIndicator.ScoreObjectIndicator.is_score
+
+.. autoattribute:: experimental.specificationtools.ScoreObjectIndicator.ScoreObjectIndicator.ScoreObjectIndicator.is_segment
+
 .. autoattribute:: experimental.specificationtools.ScoreObjectIndicator.ScoreObjectIndicator.ScoreObjectIndicator.klass
 
 .. autoattribute:: experimental.specificationtools.ScoreObjectIndicator.ScoreObjectIndicator.ScoreObjectIndicator.predicate

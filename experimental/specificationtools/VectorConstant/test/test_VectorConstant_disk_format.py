@@ -9,14 +9,7 @@ def test_VectorConstant_disk_format_01():
     vector_constant_1 = VectorConstant('x', -1, 'left')
     disk_format = vector_constant_1._disk_format
 
-    r'''
-    specificationtools.VectorConstant(
-        'x',
-        -1,
-        'left'
-        )
-    '''
-    
+    assert disk_format == 'left'
     vector_constant_2 = eval(disk_format)
 
     assert isinstance(vector_constant_1, VectorConstant)

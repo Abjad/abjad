@@ -91,6 +91,9 @@ class VectorConstant(ImmutableAbjadObject):
         self._check_comparator(expr)
         return self._value >= expr._value
 
+    def __getnewargs__(self):
+        return self._mandatory_argument_values
+
     def __gt__(self, expr):
         self._check_comparator(expr)
         return self._value > expr._value
@@ -122,3 +125,6 @@ class VectorConstant(ImmutableAbjadObject):
         if not isinstance(expr, type(self)) or \
             not self._dimension == expr._dimension:
             raise Exception('can only compare like-dimensioned vector constants.')
+
+    def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
+        return [repr(self)]

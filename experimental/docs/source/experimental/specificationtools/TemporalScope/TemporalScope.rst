@@ -11,6 +11,14 @@ Read-only Properties
 
 .. autoattribute:: experimental.specificationtools.TemporalScope.TemporalScope.TemporalScope.duration
 
+.. autoattribute:: experimental.specificationtools.TemporalScope.TemporalScope.TemporalScope.encompasses_one_object_exactly
+
+.. autoattribute:: experimental.specificationtools.TemporalScope.TemporalScope.TemporalScope.encompasses_one_segment_exactly
+
+.. autoattribute:: experimental.specificationtools.TemporalScope.TemporalScope.TemporalScope.exact_segment
+
+.. autoattribute:: experimental.specificationtools.TemporalScope.TemporalScope.TemporalScope.is_anchored_to_one_object
+
 .. autoattribute:: experimental.specificationtools.TemporalScope.TemporalScope.TemporalScope.start
 
 .. autoattribute:: experimental.specificationtools.TemporalScope.TemporalScope.TemporalScope.stop
@@ -23,8 +31,6 @@ Special Methods
     Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.TemporalScope.TemporalScope.TemporalScope.__eq__
-
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.specificationtools.TemporalScope.TemporalScope.TemporalScope.__ge__
 

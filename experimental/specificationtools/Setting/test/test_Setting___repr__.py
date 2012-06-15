@@ -1,11 +1,21 @@
+from experimental.specificationtools.ContextSelection import ContextSelection
+from experimental.specificationtools.ScoreObjectIndicator import ScoreObjectIndicator
 from experimental.specificationtools.Setting import Setting
+from experimental.specificationtools.TemporalCursor import TemporalCursor
+from experimental.specificationtools.TemporalScope import TemporalScope
 
 
 def test_Setting___repr___01():
     '''Repr is evaluable.
     '''
 
-    setting_1 = Setting('1', 'Voice 1', None, 'time_signatures', [(4, 8), (3, 8)], True, True)
+    anchor = ScoreObjectIndicator(segment='1')
+    start = TemporalCursor(anchor=anchor)
+    stop = TemporalCursor(anchor=anchor, edge=right)
+    scope = TemporalScope(start=start, stop=stop)
+    target = ContextSelection('Voice 1', scope=scope)
+    setting_1 = Setting(target, 'time_signatures', [(4, 8), (3, 8)], True, True, fresh=False)
+
     setting_2 = eval(repr(setting_1))
 
     assert isinstance(setting_1, Setting)

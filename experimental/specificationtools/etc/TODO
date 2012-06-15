@@ -1,6 +1,25 @@
-1. Change 'from experimental.specificationtools.TemporalScope import TemporalScope'
-   to 'from experimental.specificationtools.TemporalScope.TemporalScope import TemporalScope'
+1. Setting.persistent and Setting.truncate from mandatory arguments to keyword arguments
+   for reasons of setting repr readability during debugging. Save with ResolvedSetting.
 
-2. Make Setting inherit from Directive. Or vice versa. Or make both inherit from an ABC.
+2. Rename TemporalScope to Timespan. This gives setting.target.timespan for access.
 
-3. Implement RetrievalRequest as base class for different retrieval requests classes.
+3. Possibly rename TemporalCursor to ObjectRelativeTimepoint?
+
+4. Change 'attribute_name' to 'attribute' everywhere because there is not Attribute object.
+
+5. Write by-hand Selection initialization tests.
+
+6. Make Setting inherit from Directive. Or vice versa. Or make both inherit from an ABC.
+
+7. Rename Directive to something like BundledSetting.
+
+8. Implement RetrievalRequest as base class for different retrieval requests classes.
+
+9. Implement selection-creation courtesy methods.
+
+10. Implement timespan-creation courtesy methods.
+    First one: self.segment_name_to_timespan(segment_name).
+
+11. Rename VectorConstant to OrdinalConstant. Merge to main line.
+
+12. Change OrdinalConstant storage format to simply repr.
