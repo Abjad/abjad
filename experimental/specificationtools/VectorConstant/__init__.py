@@ -1,1 +1,0 @@
-from VectorConstant import VectorConstant

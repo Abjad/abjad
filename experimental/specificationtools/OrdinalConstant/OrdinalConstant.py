@@ -1,22 +1,24 @@
 from abjad.tools.abctools.ImmutableAbjadObject import ImmutableAbjadObject
 
 
-class VectorConstant(ImmutableAbjadObject):
+class OrdinalConstant(ImmutableAbjadObject):
     r'''.. versionadded:: 1.0
 
-    Dimensioned constant with user-specifiable repr::
+    Ordinal constant with user-specifiable repr.
+
+    Initialize with `dimension`, `value` and `representation`::
 
         >>> from experimental import specificationtools
 
     ::
 
-        >>> left = specificationtools.VectorConstant('x', -1, 'left')
+        >>> left = specificationtools.OrdinalConstant('x', -1, 'left')
         >>> left
         left
 
     ::
 
-        >>> right = specificationtools.VectorConstant('x', 1, 'right')
+        >>> right = specificationtools.OrdinalConstant('x', 1, 'right')
         >>> right
         right
 
@@ -25,15 +27,15 @@ class VectorConstant(ImmutableAbjadObject):
         >>> left < right
         True
 
-    Comparing like-dimensioned vector constants is allowed::
+    Comparing like-dimensioned ordinal constants is allowed::
 
-        >>> up = specificationtools.VectorConstant('y', 1, 'up')
+        >>> up = specificationtools.OrdinalConstant('y', 1, 'up')
         >>> up
         up
 
     ::
 
-        >>> down = specificationtools.VectorConstant('y', -1, 'down')
+        >>> down = specificationtools.OrdinalConstant('y', -1, 'down')
         >>> down
         down
 
@@ -42,7 +44,7 @@ class VectorConstant(ImmutableAbjadObject):
         >>> down < up
         True
 
-    Comparing differently dimensioned vector constants raises an exception::
+    Comparing differently dimensioned ordinal constants raises an exception::
 
         >>> import py.test
     
@@ -57,7 +59,7 @@ class VectorConstant(ImmutableAbjadObject):
     These four objects can be used as constant values supplied to ``specificationtools`` keyword arguments,
     similarly to true, false and none.
     
-    Vector constants are immutable.
+    Ordinal constants are immutable.
     '''
 
     ### CLASS ATTRIBUTES ###
@@ -121,10 +123,12 @@ class VectorConstant(ImmutableAbjadObject):
 
     ### PRIVATE METHODS ###
 
+    # can only compare like-dimensioned ordinal constants
     def _check_comparator(self, expr):
         if not isinstance(expr, type(self)) or \
             not self._dimension == expr._dimension:
-            raise Exception('can only compare like-dimensioned vector constants.')
+            raise Exception('can only compare like-dimensioned ordinal constants.')
 
+    # ordinal constants appear as constants in storage format
     def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
         return [repr(self)]

@@ -20,6 +20,6 @@
 10. Implement timespan-creation courtesy methods.
     First one: self.segment_name_to_timespan(segment_name).
 
-11. Rename VectorConstant to OrdinalConstant. Merge to main line.
+11. Rename OrdinalConstant to OrdinalConstant. Merge to main line.
 
-12. Change OrdinalConstant storage format to simply repr.
+12. Change 'disk_format' globally to 'storage_format'.
