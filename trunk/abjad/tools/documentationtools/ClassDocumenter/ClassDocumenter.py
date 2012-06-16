@@ -24,7 +24,7 @@ class ClassDocumenter(Documenter):
     _ignored_special_methods = (
         '__copy__', '__deepcopy__', '__format__', '__getattribute__',
         '__getnewargs__', '__init__', '__reduce__', '__reduce_ex__', 
-        '__sizeof__', '__subclasshook__', 'from_keys',
+        '__sizeof__', '__subclasshook__', 'fromkeys',
     )
 
     __slots__ = ('_data', '_inherited_attributes', 
