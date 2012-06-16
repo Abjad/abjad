@@ -9,7 +9,7 @@ specificationtools.Setting
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.specificationtools.Setting.Setting.Setting.attribute_name
+.. autoattribute:: experimental.specificationtools.Setting.Setting.Setting.attribute
 
 .. autoattribute:: experimental.specificationtools.Setting.Setting.Setting.fresh
 

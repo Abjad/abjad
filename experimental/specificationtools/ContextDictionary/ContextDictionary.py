@@ -63,14 +63,14 @@ class ContextDictionary(AbjadObject, OrderedDict):
         except:
             return False
 
-    def get_settings(self, attribute_name=None, context_name=None, timespan=None):
+    def get_settings(self, attribute=None, context_name=None, timespan=None):
         if context_name is None:
             context_proxies = list(self.itervalues())
         else:
             context_proxies = [self[context_name]]
         settings = []
         for context_proxy in context_proxies:
-            settings.extend(context_proxy.get_settings(attribute_name=attribute_name, timespan=timespan))
+            settings.extend(context_proxy.get_settings(attribute=attribute, timespan=timespan))
         return settings 
 
     def show(self):

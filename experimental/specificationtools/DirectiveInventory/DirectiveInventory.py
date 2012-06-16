@@ -7,7 +7,7 @@ class DirectiveInventory(ObjectInventory):
 
     ### CLASS ATTRIBUTES ###
 
-    attribute_names = AttributeNameEnumeration()
+    attributes = AttributeNameEnumeration()
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 

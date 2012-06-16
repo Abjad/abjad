@@ -11,7 +11,7 @@ class Specification(AbjadObject):
 
     ### CLASS ATTRIBUTES ###
 
-    attribute_names = AttributeNameEnumeration()
+    attributes = AttributeNameEnumeration()
 
     ### INITIALIZER ###
 
@@ -77,8 +77,8 @@ class Specification(AbjadObject):
         return context_names
 
     # TODO: change name to something more explicit
-    def retrieve(self, attribute_name, segment_name, context_name=None, timespan=None):
-        return AttributeRetrievalIndicator(attribute_name, segment_name, context_name=context_name, timespan=timespan)
+    def retrieve(self, attribute, segment_name, context_name=None, timespan=None):
+        return AttributeRetrievalIndicator(attribute, segment_name, context_name=context_name, timespan=timespan)
 
-    def retrieve_resolved_value(self, attribute_name, segment_name, context_name=None, timespan=None):
-        return ValueRetrievalIndicator(attribute_name, segment_name, context_name=context_name, timespan=timespan)
+    def retrieve_resolved_value(self, attribute, segment_name, context_name=None, timespan=None):
+        return ValueRetrievalIndicator(attribute, segment_name, context_name=context_name, timespan=timespan)

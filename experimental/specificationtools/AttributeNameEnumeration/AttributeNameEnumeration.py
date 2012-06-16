@@ -10,11 +10,11 @@ class AttributeNameEnumeration(OrderedDict):
 
     ::
 
-        >>> attribute_names = specificationtools.AttributeNameEnumeration()
+        >>> attributes = specificationtools.AttributeNameEnumeration()
 
     ::
 
-        >>> for key, value in attribute_names.iteritems(): key, value
+        >>> for key, value in attributes.iteritems(): key, value
         ... 
         ('articulations', 0)
         ('divisions', 1)
@@ -31,7 +31,7 @@ class AttributeNameEnumeration(OrderedDict):
 
     ### CLASS ATTIRBUTES ###
 
-    attribute_names = (
+    attributes = (
         'articulations',
         'divisions', 
         'pitch_classes',
@@ -43,5 +43,5 @@ class AttributeNameEnumeration(OrderedDict):
 
     def __init__(self):
         OrderedDict.__init__(self)
-        for i, attribute_name in enumerate(sorted(self.attribute_names)):
-            self[attribute_name] = i
+        for i, attribute in enumerate(sorted(self.attributes)):
+            self[attribute] = i

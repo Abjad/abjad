@@ -1,16 +1,12 @@
-1. Possibly rename Timepoint to ObjectRelativeTimepoint?
+1. Write by-hand Selection initialization tests.
 
-2. Change 'attribute_name' to 'attribute' everywhere because there is not Attribute object.
+2. Make Setting inherit from Directive. Or vice versa. Or make both inherit from an ABC.
 
-3. Write by-hand Selection initialization tests.
+3. Rename Directive to something like BundledSetting.
 
-4. Make Setting inherit from Directive. Or vice versa. Or make both inherit from an ABC.
+4. Implement RetrievalRequest as base class for different retrieval requests classes.
 
-5. Rename Directive to something like BundledSetting.
+5. Implement selection-creation courtesy methods.
 
-6. Implement RetrievalRequest as base class for different retrieval requests classes.
-
-7. Implement selection-creation courtesy methods.
-
-8. Implement timespan-creation courtesy methods.
+6. Implement timespan-creation courtesy methods.
     First one: self.segment_name_to_timespan(segment_name).

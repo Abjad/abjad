@@ -11,10 +11,10 @@ class Directive(AbjadObject):
 
     def __init__(self, *args, **kwargs):
         mandatory_argument_values, keyword_argument_values = self._get_input_argument_values(*args, **kwargs)
-        target, attribute_name, source = mandatory_argument_values
+        target, attribute, source = mandatory_argument_values
         persistent, truncate = keyword_argument_values
         self.target = target
-        self.attribute_name = attribute_name
+        self.attribute = attribute
         self.source = source
         self.persistent = persistent
         self.truncate = truncate
@@ -41,7 +41,7 @@ class Directive(AbjadObject):
     def _mandatory_argument_values(self):
         return (
             self.target,
-            self.attribute_name,
+            self.attribute,
             self.source,
             )
 
@@ -75,7 +75,7 @@ class Directive(AbjadObject):
         assert self.target.contexts, repr(self.target.contexts)
         for context in self.target.contexts:
             target = ContextSelection(context, timespan=copy.deepcopy(self.target.timespan))
-            setting = Setting(target, self.attribute_name, self.source, 
+            setting = Setting(target, self.attribute, self.source, 
                 persistent=self.persistent, truncate=self.truncate)
             settings.append(setting)
         return settings

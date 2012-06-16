@@ -15,16 +15,16 @@ class AttributeRetrievalIndicator(AbjadObject):
 
     ### CLASS ATTRIBUTES ###
 
-    attribute_names = AttributeNameEnumeration()
+    attributes = AttributeNameEnumeration()
 
     ### INITIALIZER ###
 
-    def __init__(self, attribute_name, segment_name, context_name=None, timespan=None):
+    def __init__(self, attribute, segment_name, context_name=None, timespan=None):
         assert isinstance(segment_name, str), repr(segment_name)
-        assert attribute_name in self.attribute_names, repr(attribute_name)
+        assert attribute in self.attributes, repr(attribute)
         assert isinstance(context_name, (str, type(None))), repr(context_name)
         #assert isinstance(timespan, (Timespan, type(None))), repr(timespan)
-        self.attribute_name = attribute_name
+        self.attribute = attribute
         self.segment_name = segment_name
         self.context_name = context_name
         self.timespan = timespan

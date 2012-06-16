@@ -8,7 +8,7 @@ class Setting(AbjadObject):
 
     Frozen request to set one attribute against one context-specified selection.
 
-    Initialize with mandatory `target`, `attribute_name`, `source`
+    Initialize with mandatory `target`, `attribute`, `source`
     and optional `persistent`, `truncate`, `fresh`.
 
     Initialize from other setting.
@@ -17,7 +17,7 @@ class Setting(AbjadObject):
     ### CLASS ATTRIBUTES ###
 
 #    __slots__ = (
-#        '_attribute_name',
+#        '_attribute',
 #        '_fresh',
 #        '_persistent',
 #        '_source',
@@ -30,10 +30,10 @@ class Setting(AbjadObject):
     def __init__(self, *args, **kwargs):
         mandatory_argument_values, keyword_argument_values = self._get_input_argument_values(*args, **kwargs)
         self._check_input_arguments(mandatory_argument_values, keyword_argument_values)
-        target, attribute_name, source = mandatory_argument_values
+        target, attribute, source = mandatory_argument_values
         persistent, truncate, fresh = keyword_argument_values
         self._target = target
-        self._attribute_name = attribute_name
+        self._attribute = attribute
         self._source = source
         self._persistent = persistent
         self._truncate = truncate
@@ -62,7 +62,7 @@ class Setting(AbjadObject):
     def _mandatory_argument_values(self):
         return (
             self.target,
-            self.attribute_name,
+            self.attribute,
             self.source,
             )
 
@@ -75,14 +75,14 @@ class Setting(AbjadObject):
         if not self.persistent:
             body.append(self.persistent)
         body = ', '.join([str(x) for x in body])
-        return '{}: {}'.format(self.attribute_name, body)
+        return '{}: {}'.format(self.attribute, body)
 
     # TODO: redo me to accommodate target selection
     @property
     def _one_line_target_format(self):
         body = []
-        for attribute_name in ('segment_name', 'context_name', 'timespan'):
-            attribute_value = getattr(self, attribute_name, None)
+        for attribute in ('segment_name', 'context_name', 'timespan'):
+            attribute_value = getattr(self, attribute, None)
             if attribute_value is not None:
                 body.append(attribute_value)
         body = ', '.join(body)
@@ -92,10 +92,10 @@ class Setting(AbjadObject):
 
     def _check_input_arguments(self, mandatory_argument_values, keyword_argument_values):
         from experimental import specificationtools
-        target, attribute_name, source, = mandatory_argument_values
+        target, attribute, source, = mandatory_argument_values
         persistent, truncate, fresh = keyword_argument_values
         assert isinstance(target, specificationtools.ContextSelection), repr(target)
-        assert isinstance(attribute_name, str), repr(attribute_name)
+        assert isinstance(attribute, str), repr(attribute)
         assert isinstance(persistent, bool), repr(persistent)
         assert isinstance(truncate, bool), repr(truncate)
         assert isinstance(fresh, type(True)), repr(fresh)
@@ -131,8 +131,8 @@ class Setting(AbjadObject):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def attribute_name(self):
-        return self._attribute_name
+    def attribute(self):
+        return self._attribute
 
     @property
     def fresh(self):

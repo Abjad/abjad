@@ -9,7 +9,7 @@ specificationtools.ResolvedSetting
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.specificationtools.ResolvedSetting.ResolvedSetting.ResolvedSetting.attribute_name
+.. autoattribute:: experimental.specificationtools.ResolvedSetting.ResolvedSetting.ResolvedSetting.attribute
 
     Inherited from :py:class:`specificationtools.Setting <experimental.specificationtools.Setting.Setting.Setting>`
 

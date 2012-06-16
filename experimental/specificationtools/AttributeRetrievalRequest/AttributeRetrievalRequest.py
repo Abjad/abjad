@@ -23,10 +23,10 @@ class AttributeRetrievalRequest(AbjadObject):
     @property
     def _one_line_format(self):
         body = []
-        for attribute_name in ('segment_name', 'context_name', 'timespan'):
-            attribute_value = getattr(self.indicator.selection, attribute_name, None)
+        for attribute in ('segment_name', 'context_name', 'timespan'):
+            attribute_value = getattr(self.indicator.selection, attribute, None)
             if attribute_value is not None:
                 body.append(attribute_value)
-        body.append(self.indicator.attribute_name)
+        body.append(self.indicator.attribute)
         body = ', '.join(body)
         return '({}, count={}, offset={})'.format(body, self.count, self.offset)
