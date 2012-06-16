@@ -17,4 +17,4 @@
 9. Implement timespan-creation courtesy methods.
     First one: self.segment_name_to_timespan(segment_name).
 
-10. Change 'disk_format' globally to 'storage_format'.
+10. Change Duration storage format manually to something atomic.

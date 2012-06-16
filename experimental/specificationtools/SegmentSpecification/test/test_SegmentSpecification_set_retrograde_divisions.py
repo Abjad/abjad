@@ -40,4 +40,4 @@ def test_SegmentSpecification_set_retrograde_divisions_01():
     current_function_name = introspectiontools.get_current_function_name()
     helpers.write_test_output(score, __file__, current_function_name)
 
-    assert score.format == helpers.read_test_output(__file__, current_function_name)
+    assert score.lilypond_format == helpers.read_test_output(__file__, current_function_name)

@@ -22,7 +22,7 @@ def test_single_segment_solo_01():
     current_function_name = introspectiontools.get_current_function_name()
     helpers.write_test_output(score, __file__, current_function_name)
 
-    assert score.format == helpers.read_test_output(__file__, current_function_name)
+    assert score.lilypond_format == helpers.read_test_output(__file__, current_function_name)
 
 
 def test_single_segment_solo_02():
@@ -41,7 +41,7 @@ def test_single_segment_solo_02():
     current_function_name = introspectiontools.get_current_function_name()
     helpers.write_test_output(score, __file__, current_function_name)
 
-    assert score.format == helpers.read_test_output(__file__, current_function_name)
+    assert score.lilypond_format == helpers.read_test_output(__file__, current_function_name)
 
 
 def test_single_segment_solo_03():
@@ -61,4 +61,4 @@ def test_single_segment_solo_03():
     current_function_name = introspectiontools.get_current_function_name()
     helpers.write_test_output(score, __file__, current_function_name)
 
-    assert score.format == helpers.read_test_output(__file__, current_function_name)
+    assert score.lilypond_format == helpers.read_test_output(__file__, current_function_name)

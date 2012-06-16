@@ -5,7 +5,7 @@ from experimental.specificationtools import ScoreSpecification
 from experimental.specificationtools import SettingInventory
 
 
-def test_SettingInventory_disk_format_01():
+def test_SettingInventory_storage_format_01():
     '''Disk format exists and is evaluable.
     '''
 
@@ -16,7 +16,7 @@ def test_SettingInventory_disk_format_01():
 
     setting_inventory_1 = segment.settings
 
-    disk_format = setting_inventory_1._disk_format
+    storage_format = setting_inventory_1.storage_format
 
     r'''
     specificationtools.SettingInventory([
@@ -47,9 +47,9 @@ def test_SettingInventory_disk_format_01():
         ])
     '''
 
-    assert disk_format == "specificationtools.SettingInventory([\n\tspecificationtools.Setting(\n\t\tspecificationtools.ContextSelection(\n\t\t\t'Grouped Rhythmic Staves Score',\n\t\t\tscope=specificationtools.TemporalScope(\n\t\t\t\tstart=specificationtools.TemporalCursor(\n\t\t\t\t\tanchor=specificationtools.ScoreObjectIndicator(\n\t\t\t\t\t\tsegment='1'\n\t\t\t\t\t\t),\n\t\t\t\t\tedge=Left\n\t\t\t\t\t),\n\t\t\t\tstop=specificationtools.TemporalCursor(\n\t\t\t\t\tanchor=specificationtools.ScoreObjectIndicator(\n\t\t\t\t\t\tsegment='1'\n\t\t\t\t\t\t),\n\t\t\t\t\tedge=Right\n\t\t\t\t\t)\n\t\t\t\t)\n\t\t\t),\n\t\t'time_signatures',\n\t\t[(4, 8), (3, 8)],\n\t\tpersistent=True,\n\t\ttruncate=False,\n\t\tfresh=True\n\t\t)\n\t])"
+    assert storage_format == "specificationtools.SettingInventory([\n\tspecificationtools.Setting(\n\t\tspecificationtools.ContextSelection(\n\t\t\t'Grouped Rhythmic Staves Score',\n\t\t\tscope=specificationtools.TemporalScope(\n\t\t\t\tstart=specificationtools.TemporalCursor(\n\t\t\t\t\tanchor=specificationtools.ScoreObjectIndicator(\n\t\t\t\t\t\tsegment='1'\n\t\t\t\t\t\t),\n\t\t\t\t\tedge=Left\n\t\t\t\t\t),\n\t\t\t\tstop=specificationtools.TemporalCursor(\n\t\t\t\t\tanchor=specificationtools.ScoreObjectIndicator(\n\t\t\t\t\t\tsegment='1'\n\t\t\t\t\t\t),\n\t\t\t\t\tedge=Right\n\t\t\t\t\t)\n\t\t\t\t)\n\t\t\t),\n\t\t'time_signatures',\n\t\t[(4, 8), (3, 8)],\n\t\tpersistent=True,\n\t\ttruncate=False,\n\t\tfresh=True\n\t\t)\n\t])"
 
-    setting_inventory_2 = eval(disk_format)
+    setting_inventory_2 = eval(storage_format)
 
     assert isinstance(setting_inventory_1, SettingInventory)
     assert isinstance(setting_inventory_2, SettingInventory)

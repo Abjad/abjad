@@ -10,8 +10,8 @@ from experimental.specificationtools.TemporalCursor import TemporalCursor
 from experimental.specificationtools.TemporalScope import TemporalScope
 
 
-def test_DirectiveInventory_disk_format_01():
-    '''Disk format exists and is evaluable.
+def test_DirectiveInventory_storage_format_01():
+    '''Storage format exists and is evaluable.
     '''
 
     score_specification = ScoreSpecification(scoretemplatetools.GroupedRhythmicStavesScoreTemplate(n=1))
@@ -20,7 +20,7 @@ def test_DirectiveInventory_disk_format_01():
 
     directive_inventory_1 = segment.directives
 
-    disk_format = directive_inventory_1._disk_format
+    storage_format = directive_inventory_1.storage_format
 
     r'''
     specificationtools.DirectiveInventory([
@@ -50,9 +50,9 @@ def test_DirectiveInventory_disk_format_01():
         ])
     '''
 
-    assert disk_format == "specificationtools.DirectiveInventory([\n\tspecificationtools.Directive(\n\t\tspecificationtools.Selection(\n\t\t\tcontexts=['Grouped Rhythmic Staves Score'],\n\t\t\tscope=specificationtools.TemporalScope(\n\t\t\t\tstart=specificationtools.TemporalCursor(\n\t\t\t\t\tanchor=specificationtools.ScoreObjectIndicator(\n\t\t\t\t\t\tsegment='1'\n\t\t\t\t\t\t),\n\t\t\t\t\tedge=Left\n\t\t\t\t\t),\n\t\t\t\tstop=specificationtools.TemporalCursor(\n\t\t\t\t\tanchor=specificationtools.ScoreObjectIndicator(\n\t\t\t\t\t\tsegment='1'\n\t\t\t\t\t\t),\n\t\t\t\t\tedge=Right\n\t\t\t\t\t)\n\t\t\t\t)\n\t\t\t),\n\t\t'time_signatures',\n\t\t[(4, 8), (3, 8)],\n\t\tpersistent=True,\n\t\ttruncate=False\n\t\t)\n\t])"
+    assert storage_format == "specificationtools.DirectiveInventory([\n\tspecificationtools.Directive(\n\t\tspecificationtools.Selection(\n\t\t\tcontexts=['Grouped Rhythmic Staves Score'],\n\t\t\tscope=specificationtools.TemporalScope(\n\t\t\t\tstart=specificationtools.TemporalCursor(\n\t\t\t\t\tanchor=specificationtools.ScoreObjectIndicator(\n\t\t\t\t\t\tsegment='1'\n\t\t\t\t\t\t),\n\t\t\t\t\tedge=Left\n\t\t\t\t\t),\n\t\t\t\tstop=specificationtools.TemporalCursor(\n\t\t\t\t\tanchor=specificationtools.ScoreObjectIndicator(\n\t\t\t\t\t\tsegment='1'\n\t\t\t\t\t\t),\n\t\t\t\t\tedge=Right\n\t\t\t\t\t)\n\t\t\t\t)\n\t\t\t),\n\t\t'time_signatures',\n\t\t[(4, 8), (3, 8)],\n\t\tpersistent=True,\n\t\ttruncate=False\n\t\t)\n\t])"
 
-    directive_inventory_2 = eval(disk_format)
+    directive_inventory_2 = eval(storage_format)
 
     assert isinstance(directive_inventory_1, DirectiveInventory)
     assert isinstance(directive_inventory_2, DirectiveInventory)
