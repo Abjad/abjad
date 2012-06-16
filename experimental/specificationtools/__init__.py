@@ -34,3 +34,5 @@ from ValueRetrievalRequest import ValueRetrievalRequest
 from VoiceDivisionList import VoiceDivisionList
 
 _documentation_section = 'unstable'
+
+from segment_to_timespan import segment_to_timespan

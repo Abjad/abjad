@@ -10,19 +10,54 @@ class Selection(AbjadObject):
 
     (Object-oriented delayed evaluation.)
 
+    Initialize with optional `contexts` and `timespan`.
+
+    Select the entire score::
+
+        >>> from experimental import specificationtools
+
+    ::
+
+        >>> specificationtools.Selection()
+        Selection()
+
+    Select all of ``'Voice 1'``::
+
+        >>> specificationtools.Selection(contexts=['Voice 1'])
+        Selection(contexts=['Voice 1'])
+
+    Select all of ``'Voice 1'`` and ``'Voice 3'``::
+
+        >>> specificationtools.Selection(contexts=['Voice 1', 'Voice 3'])
+        Selection(contexts=['Voice 1', 'Voice 3'])
+
+    Select the timespan of segment ``'red'``::
+
+        >>> timespan = specificationtools.segment_to_timespan('red')
+
+    ::
+
+        >>> specificationtools.Selection(timespan=timespan)
+        Selection(timespan=Timespan(start=Timepoint(anchor=ScoreObjectIndicator(segment='red')), stop=Timepoint(anchor=ScoreObjectIndicator(segment='red'), edge=Right)))
+
+    Select ``'Voice 1'`` taken over the timepsan of segment ``'red'``::
+
+        >>> specificationtools.Selection(contexts=['Voice 1'], timespan=timespan)
+        Selection(contexts=['Voice 1'], timespan=Timespan(start=Timepoint(anchor=ScoreObjectIndicator(segment='red')), stop=Timepoint(anchor=ScoreObjectIndicator(segment='red'), edge=Right)))
+
+    Select ``'Voice 1'`` and ``'Voice 3'`` over the timespan of segment ``'red'``::
+
+        >>> specificationtools.Selection(contexts=['Voice 1', 'Voice 3'], timespan=timespan)
+        Selection(contexts=['Voice 1', 'Voice 3'], timespan=Timespan(start=Timepoint(anchor=ScoreObjectIndicator(segment='red')), stop=Timepoint(anchor=ScoreObjectIndicator(segment='red'), edge=Right)))
+
     Selection objects are immutable.
-    
-    .. note:: initializer signature currently migrating to ``Selection(contexts=None, timespan=None)``.
     '''
 
     ### INITIALIZER ###
 
-    #def __init__(self, segment_name, contexts=None, timespan=None):
     def __init__(self, contexts=None, timespan=None):
-        #assert isinstance(segment_name, str), repr(segment_name)
         assert isinstance(contexts, (list, type(None))), repr(contexts)
         assert isinstance(timespan, (Timespan, type(None))), repr(timespan)
-        #self._segment_name = segment_name
         self._contexts = contexts
         self._timespan = timespan
 

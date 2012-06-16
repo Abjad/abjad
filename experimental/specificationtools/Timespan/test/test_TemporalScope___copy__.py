@@ -3,7 +3,7 @@ from fractions import Fraction
 import copy
 
 
-def test_Timespan___copy___01():
+def test_TemporalScope___copy___01():
 
     start = specificationtools.Timepoint(edge=Right, multiplier=Fraction(1, 3))
     stop = specificationtools.Timepoint(edge=Right, multiplier=Fraction(2, 3))

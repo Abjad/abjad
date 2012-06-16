@@ -5,7 +5,7 @@ from experimental.specificationtools import ScoreSpecification
 import py
 
 
-def test_SegmentSpecification_get_timespan_from_measures_01():
+def test_SegmentSpecification_get_scope_from_measures_01():
     '''Measure timespan and fractional segment timespan.
     '''
     py.test.skip('working on this one now.')

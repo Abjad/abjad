@@ -112,18 +112,6 @@ class SegmentSpecification(Specification):
         return self._name
 
     @property
-    def timespan(self):
-        '''Segment timespan.
-
-            >>> segment.timespan
-            Timespan(start=Timepoint(anchor=ScoreObjectIndicator(segment='1'), edge=Left), stop=Timepoint(anchor=ScoreObjectIndicator(segment='1'), edge=Right))
-
-        Return timespan.
-        '''
-        from experimental import specificationtools
-        return specificationtools.Timespan(start=self.start, stop=self.stop)
-
-    @property
     def score_model(self):
         '''Segment score model specified by user.
 
@@ -176,6 +164,18 @@ class SegmentSpecification(Specification):
             return None
         assert isinstance(setting.value, list), setting.value
         return setting.value
+
+    @property
+    def timespan(self):
+        '''Segment timespan.
+
+            >>> segment.timespan
+            Timespan(start=Timepoint(anchor=ScoreObjectIndicator(segment='1'), edge=Left), stop=Timepoint(anchor=ScoreObjectIndicator(segment='1'), edge=Right))
+
+        Return timespan.
+        '''
+        from experimental import specificationtools
+        return specificationtools.Timespan(start=self.start, stop=self.stop)
 
     ### PUBLIC METHODS ###
 

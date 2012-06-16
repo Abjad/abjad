@@ -8,5 +8,4 @@
 
 5. Implement selection-creation courtesy methods.
 
-6. Implement timespan-creation courtesy methods.
-    First one: self.segment_name_to_timespan(segment_name).
+6. Use autoimport initializers.
