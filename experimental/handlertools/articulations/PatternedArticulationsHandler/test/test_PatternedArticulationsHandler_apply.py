@@ -21,4 +21,4 @@ def test_PatternedArticulationsHandler_apply_01():
     }
     '''
 
-    assert staff.format == "\\new Staff {\n\tc'8 -\\accent -\\tenuto\n\td'8 -\\staccato\n\tr8\n\te'8 -\\accent -\\tenuto\n\tf'8 -\\staccato\n\tr8\n\tg'8 -\\accent -\\tenuto\n\tr8\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\tc'8 -\\accent -\\tenuto\n\td'8 -\\staccato\n\tr8\n\te'8 -\\accent -\\tenuto\n\tf'8 -\\staccato\n\tr8\n\tg'8 -\\accent -\\tenuto\n\tr8\n}"

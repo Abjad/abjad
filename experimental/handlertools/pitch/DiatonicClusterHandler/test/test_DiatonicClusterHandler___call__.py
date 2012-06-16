@@ -18,4 +18,4 @@ def test_DiatonicClusterHandler___call___01():
     }
     '''
 
-    assert staff.format == "\\new Staff {\n\t<c' d' e' f'>4\n\t<d' e' f' g' a' b'>4\n\t<e' f' g' a'>4\n\t<f' g' a' b' c'' d''>4\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\t<c' d' e' f'>4\n\t<d' e' f' g' a' b'>4\n\t<e' f' g' a'>4\n\t<f' g' a' b' c'' d''>4\n}"

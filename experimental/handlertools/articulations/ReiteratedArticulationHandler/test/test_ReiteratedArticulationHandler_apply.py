@@ -21,7 +21,7 @@ def test_ReiteratedArticulationHandler_apply_01():
     }
     '''
 
-    assert staff.format == "\\new Staff {\n\tc'8 -\\marcato -\\staccato\n\td'8 -\\marcato -\\staccato\n\tr8\n\te'8 -\\marcato -\\staccato\n\tf'8 -\\marcato -\\staccato\n\tr8\n\tg'8 -\\marcato -\\staccato\n\tr8\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\tc'8 -\\marcato -\\staccato\n\td'8 -\\marcato -\\staccato\n\tr8\n\te'8 -\\marcato -\\staccato\n\tf'8 -\\marcato -\\staccato\n\tr8\n\tg'8 -\\marcato -\\staccato\n\tr8\n}"
 
 
 def test_ReiteratedArticulationHandler_apply_02():
@@ -43,4 +43,4 @@ def test_ReiteratedArticulationHandler_apply_02():
     }
     '''
 
-    assert staff.format == "\\new Staff {\n\tc'8 -\\staccato\n\td'8 -\\staccato\n\tr8\n\te'8 -\\staccato\n\tf'8 -\\staccato\n\tr8\n\tg'8 -\\staccato\n\tr8\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\tc'8 -\\staccato\n\td'8 -\\staccato\n\tr8\n\te'8 -\\staccato\n\tf'8 -\\staccato\n\tr8\n\tg'8 -\\staccato\n\tr8\n}"

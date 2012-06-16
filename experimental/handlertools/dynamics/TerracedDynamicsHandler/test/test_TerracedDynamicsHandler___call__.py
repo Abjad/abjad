@@ -26,4 +26,4 @@ def test_TerracedDynamicsHandler___call___01():
     }
     '''
 
-    assert staff.format == "\\new Staff {\n\tc'8 \\p\n\td'8 \\f\n\tr8\n\te'8 \\p\n\tf'8 \\f\n\tr8\n\tg'8 \\p\n\tr8\n\ta'32 \\f\n\tb'32 \\p\n\tr8.\n\tc''8 \\f\n\td''8 \\p\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\tc'8 \\p\n\td'8 \\f\n\tr8\n\te'8 \\p\n\tf'8 \\f\n\tr8\n\tg'8 \\p\n\tr8\n\ta'32 \\f\n\tb'32 \\p\n\tr8.\n\tc''8 \\f\n\td''8 \\p\n}"

@@ -19,4 +19,4 @@ def test_NoteAndChordHairpinHandler_apply_01():
     }
     '''
 
-    assert staff.format == "\\new Staff {\n\tr4\n\tc'8 \\< \\p\n\td'8\n\tr4\n\te'8 \\f\n\tr8\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\tr4\n\tc'8 \\< \\p\n\td'8\n\tr4\n\te'8 \\f\n\tr8\n}"
