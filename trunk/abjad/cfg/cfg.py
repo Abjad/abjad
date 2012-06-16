@@ -15,3 +15,4 @@ HOME = os.environ.get('HOME') or os.environ.get('HOMEPATH') or os.environ.get('A
 ABJADCONFIG = os.path.join(HOME, '.abjad', 'config.py')
 ABJADPATH = os.path.abspath(os.path.dirname(__file__).rstrip('cfg'))
 EXPERIMENTALPATH = os.path.abspath(os.path.join(ABJADPATH, '..', '..', 'experimental'))
+ROOTPATH=os.path.abspath(os.path.join(ABJADPATH, '..', '..'))
