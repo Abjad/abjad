@@ -13,6 +13,13 @@ class SvnMessageScript(DeveloperScript):
         return 'msg'
 
     @property
+    def commit_message_path(self):
+        HOME = dict(configurationtools.list_abjad_environment_variables())['HOME']
+        commit_file = 'abjad_commit.txt'
+        commit_path = os.path.join(HOME, '.abjad', commit_file)
+        return commit_path
+
+    @property
     def long_description(self):
         return None
 
@@ -31,14 +38,11 @@ class SvnMessageScript(DeveloperScript):
     ### PUBLIC METHODS ###
 
     def process_args(self, args):
-        HOME = dict(configurationtools.list_abjad_environment_variables())['HOME']
-        commit_file = 'abjad_commit.txt'
-        commit_path = os.path.join(HOME, '.abjad', commit_file)
         text_editor = configurationtools.get_text_editor()
         if args.clean:
-            if os.path.exists(commit_path):
-                os.remove(commit_path)
-        command = '{} {}'.format(text_editor, commit_path)
+            if os.path.exists(self.commit_message_path):
+                os.remove(self.commit_message_path)
+        command = '{} {}'.format(text_editor, self.commit_message_path)
         iotools.spawn_subprocess(command)
 
     def setup_argument_parser(self, parser):

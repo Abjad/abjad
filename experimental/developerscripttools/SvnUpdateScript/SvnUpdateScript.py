@@ -16,7 +16,7 @@ class SvnUpdateScript(DirectoryScript):
 
     @property
     def long_description(self):
-        return None
+        return 'If no path flag is specified, the current directory will be updated.'
 
     @property
     def scripting_group(self):
