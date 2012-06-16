@@ -6,6 +6,13 @@ pitchtools.DiatonicPitchObject
 
 .. autoclass:: abjad.tools.pitchtools.DiatonicPitchObject.DiatonicPitchObject.DiatonicPitchObject
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: abjad.tools.pitchtools.DiatonicPitchObject.DiatonicPitchObject.DiatonicPitchObject.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Special Methods
 ---------------
 

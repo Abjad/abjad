@@ -27,6 +27,10 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.spannertools.Spanner.Spanner.Spanner.stop_offset
 
+.. autoattribute:: abjad.tools.spannertools.Spanner.Spanner.Spanner.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 .. autoattribute:: abjad.tools.spannertools.Spanner.Spanner.Spanner.written_duration
 
 Methods

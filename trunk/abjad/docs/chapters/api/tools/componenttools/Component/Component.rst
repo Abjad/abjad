@@ -31,6 +31,10 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.componenttools.Component.Component.Component.stop_offset_in_seconds
 
+.. autoattribute:: abjad.tools.componenttools.Component.Component.Component.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Special Methods
 ---------------
 

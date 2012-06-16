@@ -13,6 +13,10 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassSet.InversionEquivalentChromaticIntervalClassSet.InversionEquivalentChromaticIntervalClassSet.inversion_equivalent_chromatic_interval_classes
 
+.. autoattribute:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassSet.InversionEquivalentChromaticIntervalClassSet.InversionEquivalentChromaticIntervalClassSet.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Methods
 -------
 

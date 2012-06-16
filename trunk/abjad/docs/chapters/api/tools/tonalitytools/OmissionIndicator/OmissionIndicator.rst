@@ -6,6 +6,13 @@ tonalitytools.OmissionIndicator
 
 .. autoclass:: abjad.tools.tonalitytools.OmissionIndicator.OmissionIndicator.OmissionIndicator
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: abjad.tools.tonalitytools.OmissionIndicator.OmissionIndicator.OmissionIndicator.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Special Methods
 ---------------
 

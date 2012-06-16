@@ -6,6 +6,13 @@ scoretemplatetools.TwoStaffPianoScoreTemplate
 
 .. autoclass:: abjad.tools.scoretemplatetools.TwoStaffPianoScoreTemplate.TwoStaffPianoScoreTemplate.TwoStaffPianoScoreTemplate
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: abjad.tools.scoretemplatetools.TwoStaffPianoScoreTemplate.TwoStaffPianoScoreTemplate.TwoStaffPianoScoreTemplate.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Special Methods
 ---------------
 

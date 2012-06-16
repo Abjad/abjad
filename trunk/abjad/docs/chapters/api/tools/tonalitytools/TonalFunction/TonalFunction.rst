@@ -25,6 +25,10 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.tonalitytools.TonalFunction.TonalFunction.TonalFunction.scale_degree
 
+.. autoattribute:: abjad.tools.tonalitytools.TonalFunction.TonalFunction.TonalFunction.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 .. autoattribute:: abjad.tools.tonalitytools.TonalFunction.TonalFunction.TonalFunction.suspension
 
 .. autoattribute:: abjad.tools.tonalitytools.TonalFunction.TonalFunction.TonalFunction.symbolic_string

@@ -6,6 +6,13 @@ scoretemplatetools.StringQuartetScoreTemplate
 
 .. autoclass:: abjad.tools.scoretemplatetools.StringQuartetScoreTemplate.StringQuartetScoreTemplate.StringQuartetScoreTemplate
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: abjad.tools.scoretemplatetools.StringQuartetScoreTemplate.StringQuartetScoreTemplate.StringQuartetScoreTemplate.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Special Methods
 ---------------
 

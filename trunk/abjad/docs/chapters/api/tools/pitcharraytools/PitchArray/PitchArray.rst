@@ -33,6 +33,10 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.size
 
+.. autoattribute:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 .. autoattribute:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.voice_crossing_count
 
 .. autoattribute:: abjad.tools.pitcharraytools.PitchArray.PitchArray.PitchArray.weight

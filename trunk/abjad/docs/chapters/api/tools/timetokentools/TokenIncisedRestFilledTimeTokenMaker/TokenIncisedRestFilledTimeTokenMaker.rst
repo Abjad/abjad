@@ -6,6 +6,13 @@ timetokentools.TokenIncisedRestFilledTimeTokenMaker
 
 .. autoclass:: abjad.tools.timetokentools.TokenIncisedRestFilledTimeTokenMaker.TokenIncisedRestFilledTimeTokenMaker.TokenIncisedRestFilledTimeTokenMaker
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: abjad.tools.timetokentools.TokenIncisedRestFilledTimeTokenMaker.TokenIncisedRestFilledTimeTokenMaker.TokenIncisedRestFilledTimeTokenMaker.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Special Methods
 ---------------
 

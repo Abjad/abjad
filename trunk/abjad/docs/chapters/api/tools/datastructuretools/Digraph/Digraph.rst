@@ -23,6 +23,10 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph.root_nodes
 
+.. autoattribute:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 .. autoattribute:: abjad.tools.datastructuretools.Digraph.Digraph.Digraph.terminal_nodes
 
 Methods

@@ -19,6 +19,10 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.pitchtools.MelodicDiatonicIntervalSet.MelodicDiatonicIntervalSet.MelodicDiatonicIntervalSet.melodic_diatonic_intervals
 
+.. autoattribute:: abjad.tools.pitchtools.MelodicDiatonicIntervalSet.MelodicDiatonicIntervalSet.MelodicDiatonicIntervalSet.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Methods
 -------
 

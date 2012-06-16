@@ -6,6 +6,13 @@ pitchtools.HarmonicChromaticIntervalClassVector
 
 .. autoclass:: abjad.tools.pitchtools.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: abjad.tools.pitchtools.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Methods
 -------
 

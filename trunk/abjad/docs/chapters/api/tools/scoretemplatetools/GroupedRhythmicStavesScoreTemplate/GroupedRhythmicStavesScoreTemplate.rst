@@ -6,6 +6,13 @@ scoretemplatetools.GroupedRhythmicStavesScoreTemplate
 
 .. autoclass:: abjad.tools.scoretemplatetools.GroupedRhythmicStavesScoreTemplate.GroupedRhythmicStavesScoreTemplate.GroupedRhythmicStavesScoreTemplate
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: abjad.tools.scoretemplatetools.GroupedRhythmicStavesScoreTemplate.GroupedRhythmicStavesScoreTemplate.GroupedRhythmicStavesScoreTemplate.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Special Methods
 ---------------
 

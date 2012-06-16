@@ -21,6 +21,10 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.tonalitytools.SuspensionIndicator.SuspensionIndicator.SuspensionIndicator.stop
 
+.. autoattribute:: abjad.tools.tonalitytools.SuspensionIndicator.SuspensionIndicator.SuspensionIndicator.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 .. autoattribute:: abjad.tools.tonalitytools.SuspensionIndicator.SuspensionIndicator.SuspensionIndicator.title_string
 
 Special Methods

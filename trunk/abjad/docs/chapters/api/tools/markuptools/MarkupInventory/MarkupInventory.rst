@@ -6,6 +6,13 @@ markuptools.MarkupInventory
 
 .. autoclass:: abjad.tools.markuptools.MarkupInventory.MarkupInventory.MarkupInventory
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: abjad.tools.markuptools.MarkupInventory.MarkupInventory.MarkupInventory.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Read/write Properties
 ---------------------
 

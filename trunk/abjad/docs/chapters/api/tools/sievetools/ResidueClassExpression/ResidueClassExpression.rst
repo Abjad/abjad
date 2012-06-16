@@ -19,6 +19,10 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.sievetools.ResidueClassExpression.ResidueClassExpression.ResidueClassExpression.representative_congruent_bases
 
+.. autoattribute:: abjad.tools.sievetools.ResidueClassExpression.ResidueClassExpression.ResidueClassExpression.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Methods
 -------
 

@@ -17,6 +17,10 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.documentationtools.APICrawler.APICrawler.APICrawler.prefix
 
+.. autoattribute:: abjad.tools.documentationtools.APICrawler.APICrawler.APICrawler.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Special Methods
 ---------------
 

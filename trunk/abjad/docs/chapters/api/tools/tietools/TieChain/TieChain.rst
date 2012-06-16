@@ -31,6 +31,10 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.tietools.TieChain.TieChain.TieChain.prolated_duration
 
+.. autoattribute:: abjad.tools.tietools.TieChain.TieChain.TieChain.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 .. autoattribute:: abjad.tools.tietools.TieChain.TieChain.TieChain.written_duration
 
 Special Methods

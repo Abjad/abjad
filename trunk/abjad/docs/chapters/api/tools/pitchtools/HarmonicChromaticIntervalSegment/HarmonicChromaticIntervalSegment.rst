@@ -17,6 +17,10 @@ Read-only Properties
 
     Inherited from :py:class:`pitchtools.IntervalObjectSegment <abjad.tools.pitchtools.IntervalObjectSegment.IntervalObjectSegment.IntervalObjectSegment>`
 
+.. autoattribute:: abjad.tools.pitchtools.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.HarmonicChromaticIntervalSegment.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Methods
 -------
 

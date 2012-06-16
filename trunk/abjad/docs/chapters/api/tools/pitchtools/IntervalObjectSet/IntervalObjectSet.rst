@@ -6,6 +6,13 @@ pitchtools.IntervalObjectSet
 
 .. autoclass:: abjad.tools.pitchtools.IntervalObjectSet.IntervalObjectSet.IntervalObjectSet
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: abjad.tools.pitchtools.IntervalObjectSet.IntervalObjectSet.IntervalObjectSet.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Methods
 -------
 

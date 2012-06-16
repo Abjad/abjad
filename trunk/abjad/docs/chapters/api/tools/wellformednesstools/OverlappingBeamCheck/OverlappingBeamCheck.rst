@@ -6,6 +6,13 @@ wellformednesstools.OverlappingBeamCheck
 
 .. autoclass:: abjad.tools.wellformednesstools.OverlappingBeamCheck.OverlappingBeamCheck.OverlappingBeamCheck
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: abjad.tools.wellformednesstools.OverlappingBeamCheck.OverlappingBeamCheck.OverlappingBeamCheck.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Methods
 -------
 

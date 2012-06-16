@@ -11,6 +11,10 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.marktools.Mark.Mark.Mark.start_component
 
+.. autoattribute:: abjad.tools.marktools.Mark.Mark.Mark.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Methods
 -------
 

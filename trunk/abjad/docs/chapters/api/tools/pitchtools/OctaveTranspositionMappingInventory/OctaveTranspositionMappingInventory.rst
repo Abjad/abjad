@@ -6,6 +6,13 @@ pitchtools.OctaveTranspositionMappingInventory
 
 .. autoclass:: abjad.tools.pitchtools.OctaveTranspositionMappingInventory.OctaveTranspositionMappingInventory.OctaveTranspositionMappingInventory
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: abjad.tools.pitchtools.OctaveTranspositionMappingInventory.OctaveTranspositionMappingInventory.OctaveTranspositionMappingInventory.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Read/write Properties
 ---------------------
 

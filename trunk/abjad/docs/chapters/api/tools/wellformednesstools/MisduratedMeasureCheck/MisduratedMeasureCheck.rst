@@ -6,6 +6,13 @@ wellformednesstools.MisduratedMeasureCheck
 
 .. autoclass:: abjad.tools.wellformednesstools.MisduratedMeasureCheck.MisduratedMeasureCheck.MisduratedMeasureCheck
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: abjad.tools.wellformednesstools.MisduratedMeasureCheck.MisduratedMeasureCheck.MisduratedMeasureCheck.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Methods
 -------
 

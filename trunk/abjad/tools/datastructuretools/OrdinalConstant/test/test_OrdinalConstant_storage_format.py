@@ -2,14 +2,14 @@ from abjad.tools import *
 
 
 def test_OrdinalConstant_storage_format_01():
-    '''Disk format exists and is evaluable.
+    '''Storage format exists and is evaluable.
     '''
 
     vector_constant_1 = datastructuretools.OrdinalConstant('x', -1, 'Left')
-    disk_format = vector_constant_1._disk_format
+    storage_format = vector_constant_1.storage_format
 
-    assert disk_format == 'Left'
-    vector_constant_2 = eval(disk_format)
+    assert storage_format == 'Left'
+    vector_constant_2 = eval(storage_format)
 
     assert isinstance(vector_constant_1, datastructuretools.OrdinalConstant)
     assert isinstance(vector_constant_2, datastructuretools.OrdinalConstant)

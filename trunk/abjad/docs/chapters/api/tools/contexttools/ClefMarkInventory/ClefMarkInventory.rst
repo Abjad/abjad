@@ -6,6 +6,13 @@ contexttools.ClefMarkInventory
 
 .. autoclass:: abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: abjad.tools.contexttools.ClefMarkInventory.ClefMarkInventory.ClefMarkInventory.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Read/write Properties
 ---------------------
 

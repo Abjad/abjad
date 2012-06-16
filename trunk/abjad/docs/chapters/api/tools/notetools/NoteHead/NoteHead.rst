@@ -13,6 +13,10 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead.named_chromatic_pitch
 
+.. autoattribute:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 .. autoattribute:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead.tweak
 
 Read/write Properties

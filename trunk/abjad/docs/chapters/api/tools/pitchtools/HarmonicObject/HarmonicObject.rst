@@ -6,6 +6,13 @@ pitchtools.HarmonicObject
 
 .. autoclass:: abjad.tools.pitchtools.HarmonicObject.HarmonicObject.HarmonicObject
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: abjad.tools.pitchtools.HarmonicObject.HarmonicObject.HarmonicObject.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Special Methods
 ---------------
 

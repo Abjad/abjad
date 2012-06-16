@@ -23,6 +23,10 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.stop
 
+.. autoattribute:: abjad.tools.timeintervaltools.TimeInterval.TimeInterval.TimeInterval.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Methods
 -------
 

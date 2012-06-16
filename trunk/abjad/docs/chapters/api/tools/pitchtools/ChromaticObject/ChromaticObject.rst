@@ -6,6 +6,13 @@ pitchtools.ChromaticObject
 
 .. autoclass:: abjad.tools.pitchtools.ChromaticObject.ChromaticObject.ChromaticObject
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: abjad.tools.pitchtools.ChromaticObject.ChromaticObject.ChromaticObject.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Special Methods
 ---------------
 

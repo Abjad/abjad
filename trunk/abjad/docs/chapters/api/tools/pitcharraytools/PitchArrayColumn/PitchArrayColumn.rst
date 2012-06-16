@@ -37,6 +37,10 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.pitcharraytools.PitchArrayColumn.PitchArrayColumn.PitchArrayColumn.stop_pitches
 
+.. autoattribute:: abjad.tools.pitcharraytools.PitchArrayColumn.PitchArrayColumn.PitchArrayColumn.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 .. autoattribute:: abjad.tools.pitcharraytools.PitchArrayColumn.PitchArrayColumn.PitchArrayColumn.weight
 
 .. autoattribute:: abjad.tools.pitcharraytools.PitchArrayColumn.PitchArrayColumn.PitchArrayColumn.width

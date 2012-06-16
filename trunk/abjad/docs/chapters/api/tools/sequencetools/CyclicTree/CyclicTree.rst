@@ -45,6 +45,10 @@ Read-only Properties
 
     Inherited from :py:class:`sequencetools.Tree <abjad.tools.sequencetools.Tree.Tree.Tree>`
 
+.. autoattribute:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 .. autoattribute:: abjad.tools.sequencetools.CyclicTree.CyclicTree.CyclicTree.width
 
     Inherited from :py:class:`sequencetools.Tree <abjad.tools.sequencetools.Tree.Tree.Tree>`

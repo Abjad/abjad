@@ -6,6 +6,13 @@ timetokentools.SignalFilledTimeTokenMaker
 
 .. autoclass:: abjad.tools.timetokentools.SignalFilledTimeTokenMaker.SignalFilledTimeTokenMaker.SignalFilledTimeTokenMaker
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: abjad.tools.timetokentools.SignalFilledTimeTokenMaker.SignalFilledTimeTokenMaker.SignalFilledTimeTokenMaker.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Special Methods
 ---------------
 

@@ -85,6 +85,10 @@ Read-only Properties
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
+.. autoattribute:: abjad.tools.stafftools.RhythmicStaff.RhythmicStaff.RhythmicStaff.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Read/write Properties
 ---------------------
 

@@ -6,6 +6,13 @@ pitchtools.InversionEquivalentChromaticIntervalClassVector
 
 .. autoclass:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: abjad.tools.pitchtools.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.InversionEquivalentChromaticIntervalClassVector.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Methods
 -------
 

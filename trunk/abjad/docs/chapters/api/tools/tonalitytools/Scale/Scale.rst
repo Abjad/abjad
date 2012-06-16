@@ -43,6 +43,10 @@ Read-only Properties
 
     Inherited from :py:class:`pitchtools.NamedChromaticPitchClassSegment <abjad.tools.pitchtools.NamedChromaticPitchClassSegment.NamedChromaticPitchClassSegment.NamedChromaticPitchClassSegment>`
 
+.. autoattribute:: abjad.tools.tonalitytools.Scale.Scale.Scale.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 .. autoattribute:: abjad.tools.tonalitytools.Scale.Scale.Scale.subdominant
 
 .. autoattribute:: abjad.tools.tonalitytools.Scale.Scale.Scale.submediant

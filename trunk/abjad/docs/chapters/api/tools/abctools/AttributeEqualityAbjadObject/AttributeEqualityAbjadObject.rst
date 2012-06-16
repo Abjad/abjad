@@ -6,6 +6,13 @@ abctools.AttributeEqualityAbjadObject
 
 .. autoclass:: abjad.tools.abctools.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: abjad.tools.abctools.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject.AttributeEqualityAbjadObject.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Special Methods
 ---------------
 

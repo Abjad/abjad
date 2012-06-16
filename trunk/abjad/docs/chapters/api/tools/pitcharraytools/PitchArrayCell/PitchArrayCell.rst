@@ -29,6 +29,10 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.pitcharraytools.PitchArrayCell.PitchArrayCell.PitchArrayCell.row_index
 
+.. autoattribute:: abjad.tools.pitcharraytools.PitchArrayCell.PitchArrayCell.PitchArrayCell.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 .. autoattribute:: abjad.tools.pitcharraytools.PitchArrayCell.PitchArrayCell.PitchArrayCell.token
 
 .. autoattribute:: abjad.tools.pitcharraytools.PitchArrayCell.PitchArrayCell.PitchArrayCell.weight

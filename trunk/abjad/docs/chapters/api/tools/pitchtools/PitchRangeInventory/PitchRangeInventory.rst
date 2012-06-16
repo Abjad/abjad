@@ -6,6 +6,13 @@ pitchtools.PitchRangeInventory
 
 .. autoclass:: abjad.tools.pitchtools.PitchRangeInventory.PitchRangeInventory.PitchRangeInventory
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: abjad.tools.pitchtools.PitchRangeInventory.PitchRangeInventory.PitchRangeInventory.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Read/write Properties
 ---------------------
 

@@ -6,6 +6,13 @@ wellformednesstools.MispitchedTieCheck
 
 .. autoclass:: abjad.tools.wellformednesstools.MispitchedTieCheck.MispitchedTieCheck.MispitchedTieCheck
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: abjad.tools.wellformednesstools.MispitchedTieCheck.MispitchedTieCheck.MispitchedTieCheck.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Methods
 -------
 

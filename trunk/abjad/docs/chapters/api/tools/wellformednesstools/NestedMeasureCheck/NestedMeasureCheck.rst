@@ -6,6 +6,13 @@ wellformednesstools.NestedMeasureCheck
 
 .. autoclass:: abjad.tools.wellformednesstools.NestedMeasureCheck.NestedMeasureCheck.NestedMeasureCheck
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: abjad.tools.wellformednesstools.NestedMeasureCheck.NestedMeasureCheck.NestedMeasureCheck.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Methods
 -------
 

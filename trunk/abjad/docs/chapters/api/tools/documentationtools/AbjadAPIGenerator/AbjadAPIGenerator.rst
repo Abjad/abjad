@@ -19,6 +19,10 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.documentationtools.AbjadAPIGenerator.AbjadAPIGenerator.AbjadAPIGenerator.root_package
 
+.. autoattribute:: abjad.tools.documentationtools.AbjadAPIGenerator.AbjadAPIGenerator.AbjadAPIGenerator.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 .. autoattribute:: abjad.tools.documentationtools.AbjadAPIGenerator.AbjadAPIGenerator.AbjadAPIGenerator.tools_package_path_index
 
 Special Methods

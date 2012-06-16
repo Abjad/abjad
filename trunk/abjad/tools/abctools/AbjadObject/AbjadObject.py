@@ -97,10 +97,6 @@ class AbjadObject(object):
         return ', '.join(result)
 
     @property
-    def _disk_format(self):
-        return self._tools_package_qualified_indented_repr
-
-    @property
     def _keyword_argument_name_value_strings(self):
         result = []
         for name in self._keyword_argument_names:
@@ -284,3 +280,13 @@ class AbjadObject(object):
             else:
                 result.append(')')
         return result
+
+    ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def storage_format(self):
+        '''Storage format of Abjad object.
+
+        Return string.
+        '''
+        return self._tools_package_qualified_indented_repr

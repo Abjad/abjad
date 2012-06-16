@@ -21,6 +21,10 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.pitchtools.ChromaticIntervalObject.ChromaticIntervalObject.ChromaticIntervalObject.semitones
 
+.. autoattribute:: abjad.tools.pitchtools.ChromaticIntervalObject.ChromaticIntervalObject.ChromaticIntervalObject.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Special Methods
 ---------------
 

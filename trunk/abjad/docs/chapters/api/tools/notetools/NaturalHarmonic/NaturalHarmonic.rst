@@ -77,6 +77,10 @@ Read-only Properties
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
+.. autoattribute:: abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 .. autoattribute:: abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.suono_reale
 
     Inherited from :py:class:`notetools._Flageolet <abjad.tools.notetools._Flageolet._Flageolet._Flageolet>`

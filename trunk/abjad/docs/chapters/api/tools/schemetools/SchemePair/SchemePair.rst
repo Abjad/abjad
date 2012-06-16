@@ -11,6 +11,10 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.schemetools.SchemePair.SchemePair.SchemePair.format
 
+.. autoattribute:: abjad.tools.schemetools.SchemePair.SchemePair.SchemePair.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Special Methods
 ---------------
 

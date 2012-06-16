@@ -17,6 +17,10 @@ Read-only Properties
 
     Inherited from :py:class:`pitchtools.NumberedChromaticPitchClassSegment <abjad.tools.pitchtools.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment.NumberedChromaticPitchClassSegment>`
 
+.. autoattribute:: abjad.tools.pitchtools.TwelveToneRow.TwelveToneRow.TwelveToneRow.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Methods
 -------
 

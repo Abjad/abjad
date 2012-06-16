@@ -15,6 +15,10 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.pitchtools.NumberedChromaticPitchClassColorMap.NumberedChromaticPitchClassColorMap.NumberedChromaticPitchClassColorMap.pitch_iterables
 
+.. autoattribute:: abjad.tools.pitchtools.NumberedChromaticPitchClassColorMap.NumberedChromaticPitchClassColorMap.NumberedChromaticPitchClassColorMap.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 .. autoattribute:: abjad.tools.pitchtools.NumberedChromaticPitchClassColorMap.NumberedChromaticPitchClassColorMap.NumberedChromaticPitchClassColorMap.twelve_tone_complete
 
 .. autoattribute:: abjad.tools.pitchtools.NumberedChromaticPitchClassColorMap.NumberedChromaticPitchClassColorMap.NumberedChromaticPitchClassColorMap.twenty_four_tone_complete

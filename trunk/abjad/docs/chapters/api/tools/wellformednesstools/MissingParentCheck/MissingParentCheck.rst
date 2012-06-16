@@ -6,6 +6,13 @@ wellformednesstools.MissingParentCheck
 
 .. autoclass:: abjad.tools.wellformednesstools.MissingParentCheck.MissingParentCheck.MissingParentCheck
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: abjad.tools.wellformednesstools.MissingParentCheck.MissingParentCheck.MissingParentCheck.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Methods
 -------
 

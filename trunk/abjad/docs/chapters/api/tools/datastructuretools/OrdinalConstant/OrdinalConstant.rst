@@ -6,6 +6,13 @@ datastructuretools.OrdinalConstant
 
 .. autoclass:: abjad.tools.datastructuretools.OrdinalConstant.OrdinalConstant.OrdinalConstant
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: abjad.tools.datastructuretools.OrdinalConstant.OrdinalConstant.OrdinalConstant.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Special Methods
 ---------------
 

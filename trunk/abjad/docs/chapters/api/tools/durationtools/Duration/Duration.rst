@@ -27,6 +27,10 @@ Read-only Properties
 
     Inherited from :py:class:`numbers.Real`
 
+.. autoattribute:: abjad.tools.durationtools.Duration.Duration.Duration.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Methods
 -------
 

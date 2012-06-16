@@ -6,6 +6,13 @@ pitchtools.MelodicChromaticIntervalClassVector
 
 .. autoclass:: abjad.tools.pitchtools.MelodicChromaticIntervalClassVector.MelodicChromaticIntervalClassVector.MelodicChromaticIntervalClassVector
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: abjad.tools.pitchtools.MelodicChromaticIntervalClassVector.MelodicChromaticIntervalClassVector.MelodicChromaticIntervalClassVector.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Methods
 -------
 

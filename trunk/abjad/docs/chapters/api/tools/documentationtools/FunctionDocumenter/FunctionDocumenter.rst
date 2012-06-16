@@ -21,6 +21,10 @@ Read-only Properties
 
     Inherited from :py:class:`documentationtools.Documenter <abjad.tools.documentationtools.Documenter.Documenter.Documenter>`
 
+.. autoattribute:: abjad.tools.documentationtools.FunctionDocumenter.FunctionDocumenter.FunctionDocumenter.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Special Methods
 ---------------
 

@@ -6,6 +6,13 @@ pitchtools.PitchClassObject
 
 .. autoclass:: abjad.tools.pitchtools.PitchClassObject.PitchClassObject.PitchClassObject
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: abjad.tools.pitchtools.PitchClassObject.PitchClassObject.PitchClassObject.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Special Methods
 ---------------
 

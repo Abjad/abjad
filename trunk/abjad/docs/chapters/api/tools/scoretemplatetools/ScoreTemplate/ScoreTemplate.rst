@@ -6,6 +6,13 @@ scoretemplatetools.ScoreTemplate
 
 .. autoclass:: abjad.tools.scoretemplatetools.ScoreTemplate.ScoreTemplate.ScoreTemplate
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: abjad.tools.scoretemplatetools.ScoreTemplate.ScoreTemplate.ScoreTemplate.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Special Methods
 ---------------
 

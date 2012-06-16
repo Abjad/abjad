@@ -35,6 +35,10 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.special_methods
 
+.. autoattribute:: abjad.tools.documentationtools.ClassDocumenter.ClassDocumenter.ClassDocumenter.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Special Methods
 ---------------
 

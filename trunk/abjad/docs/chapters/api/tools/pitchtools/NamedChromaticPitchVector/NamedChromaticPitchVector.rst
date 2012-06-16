@@ -13,6 +13,10 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.pitchtools.NamedChromaticPitchVector.NamedChromaticPitchVector.NamedChromaticPitchVector.named_chromatic_pitches
 
+.. autoattribute:: abjad.tools.pitchtools.NamedChromaticPitchVector.NamedChromaticPitchVector.NamedChromaticPitchVector.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Methods
 -------
 

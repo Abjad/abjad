@@ -15,6 +15,10 @@ Read-only Properties
 
     Inherited from :py:class:`marktools.Mark <abjad.tools.marktools.Mark.Mark.Mark>`
 
+.. autoattribute:: abjad.tools.contexttools.ContextMark.ContextMark.ContextMark.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 .. autoattribute:: abjad.tools.contexttools.ContextMark.ContextMark.ContextMark.target_context
 
 Methods

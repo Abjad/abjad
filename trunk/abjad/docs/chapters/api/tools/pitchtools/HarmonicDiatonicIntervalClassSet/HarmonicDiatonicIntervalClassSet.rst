@@ -11,6 +11,10 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.pitchtools.HarmonicDiatonicIntervalClassSet.HarmonicDiatonicIntervalClassSet.HarmonicDiatonicIntervalClassSet.harmonic_diatonic_interval_classes
 
+.. autoattribute:: abjad.tools.pitchtools.HarmonicDiatonicIntervalClassSet.HarmonicDiatonicIntervalClassSet.HarmonicDiatonicIntervalClassSet.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Methods
 -------
 

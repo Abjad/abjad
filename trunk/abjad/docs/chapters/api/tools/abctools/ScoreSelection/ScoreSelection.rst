@@ -11,6 +11,10 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.abctools.ScoreSelection.ScoreSelection.ScoreSelection.music
 
+.. autoattribute:: abjad.tools.abctools.ScoreSelection.ScoreSelection.ScoreSelection.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Special Methods
 ---------------
 

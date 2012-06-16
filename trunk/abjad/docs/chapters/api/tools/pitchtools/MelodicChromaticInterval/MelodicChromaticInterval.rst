@@ -37,6 +37,10 @@ Read-only Properties
 
     Inherited from :py:class:`pitchtools.ChromaticIntervalObject <abjad.tools.pitchtools.ChromaticIntervalObject.ChromaticIntervalObject.ChromaticIntervalObject>`
 
+.. autoattribute:: abjad.tools.pitchtools.MelodicChromaticInterval.MelodicChromaticInterval.MelodicChromaticInterval.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Special Methods
 ---------------
 

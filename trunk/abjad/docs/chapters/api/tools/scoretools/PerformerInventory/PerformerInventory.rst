@@ -6,6 +6,13 @@ scoretools.PerformerInventory
 
 .. autoclass:: abjad.tools.scoretools.PerformerInventory.PerformerInventory.PerformerInventory
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: abjad.tools.scoretools.PerformerInventory.PerformerInventory.PerformerInventory.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Read/write Properties
 ---------------------
 

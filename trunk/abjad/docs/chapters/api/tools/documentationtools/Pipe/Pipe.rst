@@ -13,6 +13,10 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.documentationtools.Pipe.Pipe.Pipe.executable
 
+.. autoattribute:: abjad.tools.documentationtools.Pipe.Pipe.Pipe.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 .. autoattribute:: abjad.tools.documentationtools.Pipe.Pipe.Pipe.timeout
 
 Methods

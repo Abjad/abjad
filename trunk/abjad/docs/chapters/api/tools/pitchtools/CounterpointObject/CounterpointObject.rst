@@ -6,6 +6,13 @@ pitchtools.CounterpointObject
 
 .. autoclass:: abjad.tools.pitchtools.CounterpointObject.CounterpointObject.CounterpointObject
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: abjad.tools.pitchtools.CounterpointObject.CounterpointObject.CounterpointObject.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Special Methods
 ---------------
 

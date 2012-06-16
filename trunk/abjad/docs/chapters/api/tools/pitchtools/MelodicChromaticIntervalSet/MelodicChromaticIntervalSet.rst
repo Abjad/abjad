@@ -15,6 +15,10 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.pitchtools.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.melodic_chromatic_intervals
 
+.. autoattribute:: abjad.tools.pitchtools.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.MelodicChromaticIntervalSet.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Methods
 -------
 

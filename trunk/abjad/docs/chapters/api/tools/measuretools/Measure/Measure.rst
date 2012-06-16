@@ -85,6 +85,10 @@ Read-only Properties
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
+.. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 .. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.target_duration
 
 Read/write Properties

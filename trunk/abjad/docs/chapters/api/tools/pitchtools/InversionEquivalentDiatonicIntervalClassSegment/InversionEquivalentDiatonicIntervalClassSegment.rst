@@ -19,6 +19,10 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.is_tertian
 
+.. autoattribute:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.InversionEquivalentDiatonicIntervalClassSegment.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Methods
 -------
 

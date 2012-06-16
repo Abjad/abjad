@@ -53,6 +53,10 @@ Read-only Properties
 
     Inherited from :py:class:`timeintervaltools.TimeIntervalMixin <abjad.tools.timeintervaltools.TimeIntervalMixin.TimeIntervalMixin.TimeIntervalMixin>`
 
+.. autoattribute:: abjad.tools.timeintervaltools.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.TimeIntervalTreeDictionary.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Methods
 -------
 

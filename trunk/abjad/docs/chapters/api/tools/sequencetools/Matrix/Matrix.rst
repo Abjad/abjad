@@ -13,6 +13,10 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.sequencetools.Matrix.Matrix.Matrix.rows
 
+.. autoattribute:: abjad.tools.sequencetools.Matrix.Matrix.Matrix.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Special Methods
 ---------------
 

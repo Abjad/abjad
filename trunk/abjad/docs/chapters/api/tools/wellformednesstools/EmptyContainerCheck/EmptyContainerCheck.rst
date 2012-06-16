@@ -6,6 +6,13 @@ wellformednesstools.EmptyContainerCheck
 
 .. autoclass:: abjad.tools.wellformednesstools.EmptyContainerCheck.EmptyContainerCheck.EmptyContainerCheck
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: abjad.tools.wellformednesstools.EmptyContainerCheck.EmptyContainerCheck.EmptyContainerCheck.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Methods
 -------
 

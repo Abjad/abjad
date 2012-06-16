@@ -15,6 +15,10 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.pitchtools.NumberedChromaticPitch.NumberedChromaticPitch.NumberedChromaticPitch.diatonic_pitch_number
 
+.. autoattribute:: abjad.tools.pitchtools.NumberedChromaticPitch.NumberedChromaticPitch.NumberedChromaticPitch.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Methods
 -------
 

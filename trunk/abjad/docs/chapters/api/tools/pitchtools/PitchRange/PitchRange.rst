@@ -25,6 +25,10 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.pitchtools.PitchRange.PitchRange.PitchRange.stop_pitch_is_included_in_range
 
+.. autoattribute:: abjad.tools.pitchtools.PitchRange.PitchRange.PitchRange.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Special Methods
 ---------------
 

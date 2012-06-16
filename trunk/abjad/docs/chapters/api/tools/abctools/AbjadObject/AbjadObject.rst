@@ -6,6 +6,11 @@ abctools.AbjadObject
 
 .. autoclass:: abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject.storage_format
+
 Special Methods
 ---------------
 

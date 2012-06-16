@@ -6,6 +6,13 @@ wellformednesstools.Check
 
 .. autoclass:: abjad.tools.wellformednesstools.Check.Check.Check
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: abjad.tools.wellformednesstools.Check.Check.Check.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Methods
 -------
 

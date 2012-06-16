@@ -6,6 +6,13 @@ wellformednesstools.IntermarkedHairpinCheck
 
 .. autoclass:: abjad.tools.wellformednesstools.IntermarkedHairpinCheck.IntermarkedHairpinCheck.IntermarkedHairpinCheck
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: abjad.tools.wellformednesstools.IntermarkedHairpinCheck.IntermarkedHairpinCheck.IntermarkedHairpinCheck.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Methods
 -------
 

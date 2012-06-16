@@ -11,6 +11,10 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.root_class
 
+.. autoattribute:: abjad.tools.documentationtools.InheritanceGraph.InheritanceGraph.InheritanceGraph.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Methods
 -------
 

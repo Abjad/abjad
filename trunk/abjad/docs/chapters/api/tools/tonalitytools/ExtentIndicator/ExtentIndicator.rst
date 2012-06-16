@@ -13,6 +13,10 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.tonalitytools.ExtentIndicator.ExtentIndicator.ExtentIndicator.number
 
+.. autoattribute:: abjad.tools.tonalitytools.ExtentIndicator.ExtentIndicator.ExtentIndicator.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Special Methods
 ---------------
 

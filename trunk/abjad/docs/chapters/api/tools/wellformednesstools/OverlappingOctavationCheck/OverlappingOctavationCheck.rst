@@ -6,6 +6,13 @@ wellformednesstools.OverlappingOctavationCheck
 
 .. autoclass:: abjad.tools.wellformednesstools.OverlappingOctavationCheck.OverlappingOctavationCheck.OverlappingOctavationCheck
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: abjad.tools.wellformednesstools.OverlappingOctavationCheck.OverlappingOctavationCheck.OverlappingOctavationCheck.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Methods
 -------
 

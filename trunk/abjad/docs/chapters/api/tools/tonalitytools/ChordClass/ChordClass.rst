@@ -41,6 +41,10 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.root_string
 
+.. autoattribute:: abjad.tools.tonalitytools.ChordClass.ChordClass.ChordClass.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Methods
 -------
 

@@ -6,6 +6,13 @@ instrumenttools.InstrumentInventory
 
 .. autoclass:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: abjad.tools.instrumenttools.InstrumentInventory.InstrumentInventory.InstrumentInventory.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Read/write Properties
 ---------------------
 

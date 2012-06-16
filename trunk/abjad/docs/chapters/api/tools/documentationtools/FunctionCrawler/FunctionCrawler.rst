@@ -17,6 +17,10 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.documentationtools.FunctionCrawler.FunctionCrawler.FunctionCrawler.root_package_name
 
+.. autoattribute:: abjad.tools.documentationtools.FunctionCrawler.FunctionCrawler.FunctionCrawler.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Special Methods
 ---------------
 

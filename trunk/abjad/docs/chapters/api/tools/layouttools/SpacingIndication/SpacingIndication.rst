@@ -13,6 +13,10 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.layouttools.SpacingIndication.SpacingIndication.SpacingIndication.proportional_notation_duration
 
+.. autoattribute:: abjad.tools.layouttools.SpacingIndication.SpacingIndication.SpacingIndication.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 .. autoattribute:: abjad.tools.layouttools.SpacingIndication.SpacingIndication.SpacingIndication.tempo_indication
 
 Special Methods

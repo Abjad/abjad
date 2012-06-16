@@ -13,6 +13,10 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.pitchtools.HarmonicChromaticIntervalSet.HarmonicChromaticIntervalSet.HarmonicChromaticIntervalSet.harmonic_chromatic_intervals
 
+.. autoattribute:: abjad.tools.pitchtools.HarmonicChromaticIntervalSet.HarmonicChromaticIntervalSet.HarmonicChromaticIntervalSet.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Methods
 -------
 

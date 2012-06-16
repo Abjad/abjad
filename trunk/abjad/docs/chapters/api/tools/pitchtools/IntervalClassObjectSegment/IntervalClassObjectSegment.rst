@@ -13,6 +13,10 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.pitchtools.IntervalClassObjectSegment.IntervalClassObjectSegment.IntervalClassObjectSegment.interval_classes
 
+.. autoattribute:: abjad.tools.pitchtools.IntervalClassObjectSegment.IntervalClassObjectSegment.IntervalClassObjectSegment.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Methods
 -------
 

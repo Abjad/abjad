@@ -6,6 +6,13 @@ datastructuretools.ObjectInventory
 
 .. autoclass:: abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: abjad.tools.datastructuretools.ObjectInventory.ObjectInventory.ObjectInventory.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Read/write Properties
 ---------------------
 

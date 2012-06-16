@@ -29,6 +29,10 @@ Read-only Properties
 
     Inherited from :py:class:`pitchtools.IntervalObject <abjad.tools.pitchtools.IntervalObject.IntervalObject.IntervalObject>`
 
+.. autoattribute:: abjad.tools.pitchtools.MelodicIntervalObject.MelodicIntervalObject.MelodicIntervalObject.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Special Methods
 ---------------
 

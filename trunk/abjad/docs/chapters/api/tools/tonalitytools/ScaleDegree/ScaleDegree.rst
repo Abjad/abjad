@@ -17,6 +17,10 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.tonalitytools.ScaleDegree.ScaleDegree.ScaleDegree.roman_numeral_string
 
+.. autoattribute:: abjad.tools.tonalitytools.ScaleDegree.ScaleDegree.ScaleDegree.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 .. autoattribute:: abjad.tools.tonalitytools.ScaleDegree.ScaleDegree.ScaleDegree.symbolic_string
 
 .. autoattribute:: abjad.tools.tonalitytools.ScaleDegree.ScaleDegree.ScaleDegree.title_string

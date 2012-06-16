@@ -17,6 +17,10 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.documentationtools.ClassCrawler.ClassCrawler.ClassCrawler.root_package_name
 
+.. autoattribute:: abjad.tools.documentationtools.ClassCrawler.ClassCrawler.ClassCrawler.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Special Methods
 ---------------
 

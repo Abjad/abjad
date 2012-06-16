@@ -27,6 +27,10 @@ Read-only Properties
 
     Inherited from :py:class:`pitchtools.CounterpointIntervalObject <abjad.tools.pitchtools.CounterpointIntervalObject.CounterpointIntervalObject.CounterpointIntervalObject>`
 
+.. autoattribute:: abjad.tools.pitchtools.HarmonicCounterpointInterval.HarmonicCounterpointInterval.HarmonicCounterpointInterval.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Special Methods
 ---------------
 

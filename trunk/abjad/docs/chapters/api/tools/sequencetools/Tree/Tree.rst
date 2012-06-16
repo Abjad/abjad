@@ -27,6 +27,10 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.sequencetools.Tree.Tree.Tree.root
 
+.. autoattribute:: abjad.tools.sequencetools.Tree.Tree.Tree.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 .. autoattribute:: abjad.tools.sequencetools.Tree.Tree.Tree.width
 
 Methods

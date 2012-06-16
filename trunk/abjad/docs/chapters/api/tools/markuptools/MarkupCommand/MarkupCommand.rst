@@ -15,6 +15,10 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.markuptools.MarkupCommand.MarkupCommand.MarkupCommand.format
 
+.. autoattribute:: abjad.tools.markuptools.MarkupCommand.MarkupCommand.MarkupCommand.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Special Methods
 ---------------
 

@@ -6,6 +6,13 @@ pitchtools.InversionEquivalentDiatonicIntervalClassVector
 
 .. autoclass:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClassVector.InversionEquivalentDiatonicIntervalClassVector.InversionEquivalentDiatonicIntervalClassVector
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: abjad.tools.pitchtools.InversionEquivalentDiatonicIntervalClassVector.InversionEquivalentDiatonicIntervalClassVector.InversionEquivalentDiatonicIntervalClassVector.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Methods
 -------
 

@@ -6,6 +6,13 @@ timetokentools.TupletMonadTimeTokenMaker
 
 .. autoclass:: abjad.tools.timetokentools.TupletMonadTimeTokenMaker.TupletMonadTimeTokenMaker.TupletMonadTimeTokenMaker
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: abjad.tools.timetokentools.TupletMonadTimeTokenMaker.TupletMonadTimeTokenMaker.TupletMonadTimeTokenMaker.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Special Methods
 ---------------
 

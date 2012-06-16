@@ -6,6 +6,13 @@ wellformednesstools.DiscontiguousSpannerCheck
 
 .. autoclass:: abjad.tools.wellformednesstools.DiscontiguousSpannerCheck.DiscontiguousSpannerCheck.DiscontiguousSpannerCheck
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: abjad.tools.wellformednesstools.DiscontiguousSpannerCheck.DiscontiguousSpannerCheck.DiscontiguousSpannerCheck.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Methods
 -------
 

@@ -17,6 +17,10 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.scoretools.InstrumentationSpecifier.InstrumentationSpecifier.InstrumentationSpecifier.performer_name_string
 
+.. autoattribute:: abjad.tools.scoretools.InstrumentationSpecifier.InstrumentationSpecifier.InstrumentationSpecifier.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Read/write Properties
 ---------------------
 

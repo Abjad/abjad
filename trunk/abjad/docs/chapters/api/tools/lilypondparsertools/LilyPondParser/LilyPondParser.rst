@@ -11,6 +11,10 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser.available_languages
 
+.. autoattribute:: abjad.tools.lilypondparsertools.LilyPondParser.LilyPondParser.LilyPondParser.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Read/write Properties
 ---------------------
 

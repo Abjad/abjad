@@ -11,6 +11,10 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.lilypondfiletools.LilyPondLanguageToken.LilyPondLanguageToken.LilyPondLanguageToken.format
 
+.. autoattribute:: abjad.tools.lilypondfiletools.LilyPondLanguageToken.LilyPondLanguageToken.LilyPondLanguageToken.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Special Methods
 ---------------
 
