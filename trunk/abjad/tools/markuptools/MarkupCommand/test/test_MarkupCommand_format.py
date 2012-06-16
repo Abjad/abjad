@@ -11,4 +11,4 @@ def test_MarkupCommand_format_01():
     f = markuptools.MarkupCommand('triangle', False)
     g = markuptools.MarkupCommand('concat', [e, f])
 
-    assert g.format == '\\concat { \\rotate #45 \\combine \\draw-circle #1 #0.1 ##f \\rounded-box \\line { one two three } \\triangle ##f }'
+    assert g.lilypond_format == '\\concat { \\rotate #45 \\combine \\draw-circle #1 #0.1 ##f \\rounded-box \\line { one two three } \\triangle ##f }'

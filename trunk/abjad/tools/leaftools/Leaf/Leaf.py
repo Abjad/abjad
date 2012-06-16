@@ -13,6 +13,7 @@ class Leaf(Component):
     ### CLASS ATTRIBUTES ##
 
     __metaclass__ = ABCMeta
+
     # TODO: see if _grace and _after_grace can be removed #
     __slots__ = ('_after_grace', '_grace', '_leaf_index',
         '_duration_multiplier', '_written_duration',
@@ -76,7 +77,7 @@ class Leaf(Component):
 
     @property
     def _format_pieces(self):
-        return self.format.split('\n')
+        return self.lilypond_format.split('\n')
 
     @property
     def _formatted_duration(self):
@@ -99,7 +100,7 @@ class Leaf(Component):
         if hasattr(leaf, '_after_grace'):
             after_grace = leaf.after_grace
             if len(after_grace):
-                result.append(after_grace.format)
+                result.append(after_grace.lilypond_format)
         return ['agrace body', result]
 
     def _format_agrace_opening(leaf):
@@ -114,7 +115,7 @@ class Leaf(Component):
         if hasattr(leaf, '_grace'):
             grace = leaf.grace
             if len(grace):
-                result.append(grace.format)
+                result.append(grace.lilypond_format)
         return ['grace body', result]
 
     def _format_leaf_body(leaf):
@@ -144,9 +145,9 @@ class Leaf(Component):
         result =  []
         chord = leaf
         note_heads = chord.note_heads
-        if any(['\n' in x.format for x in note_heads]):
+        if any(['\n' in x.lilypond_format for x in note_heads]):
             for note_head in note_heads:
-                format = note_head.format
+                format = note_head.lilypond_format
                 format_list = format.split('\n')
                 format_list = ['\t' + x for x in format_list]
                 result.extend(format_list)
@@ -155,7 +156,7 @@ class Leaf(Component):
             result = '\n'.join(result)
             result += str(chord._formatted_duration)
         else:
-            result.extend([x.format for x in note_heads])
+            result.extend([x.lilypond_format for x in note_heads])
             result = '<%s>%s' % (' '.join(result), chord._formatted_duration)
         # single string, but wrapped in list bc contribution
         return ['nucleus', [result]]

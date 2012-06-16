@@ -29,4 +29,4 @@ def test_Measure_meter_update_01():
     }
     '''
 
-    assert t.format == "{\n\t\\time 3/8\n\tc'8\n\td'8\n\te'8\n}"
+    assert t.lilypond_format == "{\n\t\\time 3/8\n\tc'8\n\td'8\n\te'8\n}"

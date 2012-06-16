@@ -19,4 +19,4 @@ def test_contexttools_detach_instrument_marks_attached_to_component_01():
     '''
 
     assert detached_instrument_marks[0] is instrument_mark
-    assert staff.format == "\\new Staff {\n\tc'4\n\td'4\n\te'4\n\tf'4\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\tc'4\n\td'4\n\te'4\n\tf'4\n}"

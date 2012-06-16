@@ -23,7 +23,7 @@ def test_NamedChromaticPitch_accidental_spelling_01():
     }
     '''
 
-    assert t.format == "\\new Staff {\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n\taf'8\n\ta'8\n\tbf'8\n\tb'8\n}"
+    assert t.lilypond_format == "\\new Staff {\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n\taf'8\n\ta'8\n\tbf'8\n\tb'8\n}"
 
 
 def test_NamedChromaticPitch_accidental_spelling_02():
@@ -52,7 +52,7 @@ def test_NamedChromaticPitch_accidental_spelling_02():
     }
     '''
 
-    assert t.format == "\\new Staff {\n\tc'8\n\tcs'8\n\td'8\n\tds'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n\tgs'8\n\ta'8\n\tas'8\n\tb'8\n}"
+    assert t.lilypond_format == "\\new Staff {\n\tc'8\n\tcs'8\n\td'8\n\tds'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n\tgs'8\n\ta'8\n\tas'8\n\tb'8\n}"
 
     pitchtools.NamedChromaticPitch.accidental_spelling = 'mixed'
 
@@ -83,7 +83,7 @@ def test_NamedChromaticPitch_accidental_spelling_03():
     }
     '''
 
-    assert t.format == "\\new Staff {\n\tc'8\n\tdf'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tgf'8\n\tg'8\n\taf'8\n\ta'8\n\tbf'8\n\tb'8\n}"
+    assert t.lilypond_format == "\\new Staff {\n\tc'8\n\tdf'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tgf'8\n\tg'8\n\taf'8\n\ta'8\n\tbf'8\n\tb'8\n}"
 
     pitchtools.NamedChromaticPitch.accidental_spelling = 'mixed'
 
@@ -119,6 +119,6 @@ def test_NamedChromaticPitch_accidental_spelling_04():
     }
     '''
 
-    assert t.format == "\\new Staff {\n\tc'8\n\tcs'8\n\td'8\n\tds'8\n\te'8\n\tf'8\n\tc'8\n\tdf'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n}"
+    assert t.lilypond_format == "\\new Staff {\n\tc'8\n\tcs'8\n\td'8\n\tds'8\n\te'8\n\tf'8\n\tc'8\n\tdf'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n}"
 
     pitchtools.NamedChromaticPitch.accidental_spelling = 'mixed'

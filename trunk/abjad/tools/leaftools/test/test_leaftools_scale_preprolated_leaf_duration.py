@@ -5,14 +5,14 @@ def test_leaftools_scale_preprolated_leaf_duration_01():
 
     t = Note("c'4")
     leaftools.scale_preprolated_leaf_duration(t, Duration(1, 2))
-    assert t.format == "c'8"
+    assert t.lilypond_format == "c'8"
 
 
 def test_leaftools_scale_preprolated_leaf_duration_02():
 
     t = Note("c'4")
     leaftools.scale_preprolated_leaf_duration(t, Duration(2))
-    assert t.format == "c'2"
+    assert t.lilypond_format == "c'2"
 
 
 def test_leaftools_scale_preprolated_leaf_duration_03():
@@ -31,7 +31,7 @@ def test_leaftools_scale_preprolated_leaf_duration_03():
     }
     '''
 
-    assert staff.format == "\\new Staff {\n\tc'8 [\n\td'8 ~\n\td'32\n\te'8\n\tf'8 ]\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\tc'8 [\n\td'8 ~\n\td'32\n\te'8\n\tf'8 ]\n}"
 
 
 def test_leaftools_scale_preprolated_leaf_duration_04():
@@ -51,4 +51,4 @@ def test_leaftools_scale_preprolated_leaf_duration_04():
     }
     '''
 
-    assert staff.format == "\\new Staff {\n\tc'8 [\n\t\\times 2/3 {\n\t\td'8\n\t}\n\te'8\n\tf'8 ]\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\tc'8 [\n\t\\times 2/3 {\n\t\td'8\n\t}\n\te'8\n\tf'8 ]\n}"

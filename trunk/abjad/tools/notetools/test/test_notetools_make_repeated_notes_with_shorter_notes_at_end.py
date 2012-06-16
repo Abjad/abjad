@@ -17,7 +17,7 @@ def test_notetools_make_repeated_notes_with_shorter_notes_at_end_01():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Voice {\n\tc'16\n\tc'16\n\tc'16\n\tc'16\n}"
+    assert t.lilypond_format == "\\new Voice {\n\tc'16\n\tc'16\n\tc'16\n\tc'16\n}"
 
 
 def test_notetools_make_repeated_notes_with_shorter_notes_at_end_02():
@@ -36,7 +36,7 @@ def test_notetools_make_repeated_notes_with_shorter_notes_at_end_02():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Voice {\n\tc'16\n\tc'16\n\tc'16\n\tc'16\n\tc'32\n}"
+    assert t.lilypond_format == "\\new Voice {\n\tc'16\n\tc'16\n\tc'16\n\tc'16\n\tc'32\n}"
 
 
 def test_notetools_make_repeated_notes_with_shorter_notes_at_end_03():
@@ -51,7 +51,7 @@ def test_notetools_make_repeated_notes_with_shorter_notes_at_end_03():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Voice {\n\tc'128\n}"
+    assert t.lilypond_format == "\\new Voice {\n\tc'128\n}"
 
 
 def test_notetools_make_repeated_notes_with_shorter_notes_at_end_04():
@@ -74,7 +74,7 @@ def test_notetools_make_repeated_notes_with_shorter_notes_at_end_04():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Voice {\n\tc'16\n\tc'16\n\tc'16\n\tc'16\n\tc'16\n\tc'16\n\t\\times 4/5 {\n\t\tc'32\n\t}\n}"
+    assert t.lilypond_format == "\\new Voice {\n\tc'16\n\tc'16\n\tc'16\n\tc'16\n\tc'16\n\tc'16\n\t\\times 4/5 {\n\t\tc'32\n\t}\n}"
 
 
 def test_notetools_make_repeated_notes_with_shorter_notes_at_end_05():
@@ -97,4 +97,4 @@ def test_notetools_make_repeated_notes_with_shorter_notes_at_end_05():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "{\n\t\\time 5/18\n\t\\scaleDurations #'(8 . 9) {\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t}\n}"
+    assert t.lilypond_format == "{\n\t\\time 5/18\n\t\\scaleDurations #'(8 . 9) {\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t\tc'16\n\t}\n}"

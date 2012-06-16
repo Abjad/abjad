@@ -9,7 +9,7 @@ marktools.BendAfter
 Read-only Properties
 --------------------
 
-.. autoattribute:: abjad.tools.marktools.BendAfter.BendAfter.BendAfter.format
+.. autoattribute:: abjad.tools.marktools.BendAfter.BendAfter.BendAfter.lilypond_format
 
 .. autoattribute:: abjad.tools.marktools.BendAfter.BendAfter.BendAfter.start_component
 

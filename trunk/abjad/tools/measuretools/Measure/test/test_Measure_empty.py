@@ -10,7 +10,7 @@ def test_Measure_empty_02():
     t = Measure((4, 4), [])
     assert repr(t) == 'Measure(4/4)'
     assert str(t) == '|4/4|'
-    assert py.test.raises(UnderfullContainerError, 't.format')
+    assert py.test.raises(UnderfullContainerError, 't.lilypond_format')
     assert len(t) == 0
     assert t.preprolated_duration == 0
     assert t.prolated_duration == 0
@@ -21,7 +21,7 @@ def test_Measure_empty_03():
     t = Measure((4, 5), [])
     assert repr(t) == 'Measure(4/5)'
     assert str(t) == '|4/5|'
-    assert py.test.raises(UnderfullContainerError, 't.format')
+    assert py.test.raises(UnderfullContainerError, 't.lilypond_format')
     assert len(t) == 0
     assert t.preprolated_duration == 0
     assert t.prolated_duration == 0

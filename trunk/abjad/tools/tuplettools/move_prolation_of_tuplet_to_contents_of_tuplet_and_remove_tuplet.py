@@ -11,7 +11,10 @@ def move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_tuplet(tuplet):
         >>> t = Staff(tuplettools.FixedDurationTuplet(Duration(3, 8), "c'8 d'8") * 2)
         >>> beamtools.BeamSpanner(t.leaves)
         BeamSpanner(c'8, d'8, c'8, d'8)
-        >>> print t.format
+
+    ::
+
+        >>> f(t)
         \new Staff {
             \fraction \times 3/2 {
                 c'8 [
@@ -27,7 +30,10 @@ def move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_tuplet(tuplet):
 
         >>> tuplettools.move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_tuplet(t[0])
         FixedDurationTuplet(3/8, [])
-        >>> print t.format
+
+    ::
+
+        >>> f(t)
         \new Staff {
             c'8. [
             d'8.

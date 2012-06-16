@@ -31,4 +31,4 @@ def test_gracetools_detach_grace_containers_attached_to_leaves_in_expr_01():
     }
     '''
 
-    assert staff.format == "\\new Staff {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"

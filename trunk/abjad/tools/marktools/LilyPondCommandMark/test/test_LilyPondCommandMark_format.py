@@ -16,7 +16,7 @@ def test_LilyPondCommandMark_format_01():
     }
     '''
 
-    assert t.format == "\\new Staff {\n\t#(set-accidental-style 'forget)\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+    assert t.lilypond_format == "\\new Staff {\n\t#(set-accidental-style 'forget)\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
 def test_LilyPondCommandMark_format_02():
@@ -34,7 +34,7 @@ def test_LilyPondCommandMark_format_02():
     }
     '''
 
-    assert t.format == "\\new Staff {\n\tc'8\n\t#(set-accidental-style 'forget)\n\td'8\n\te'8\n\tf'8\n}"
+    assert t.lilypond_format == "\\new Staff {\n\tc'8\n\t#(set-accidental-style 'forget)\n\td'8\n\te'8\n\tf'8\n}"
 
 
 def test_LilyPondCommandMark_format_03():
@@ -48,7 +48,7 @@ def test_LilyPondCommandMark_format_03():
     \break
     '''
 
-    assert t.format == 'c\'4\n\\break'
+    assert t.lilypond_format == 'c\'4\n\\break'
 
 
 def test_LilyPondCommandMark_format_04():
@@ -63,7 +63,7 @@ def test_LilyPondCommandMark_format_04():
     }
     '''
 
-    assert t.format == '\\new Staff {\n\t\\break\n}'
+    assert t.lilypond_format == '\\new Staff {\n\t\\break\n}'
 
 
 def test_LilyPondCommandMark_format_05():
@@ -71,7 +71,7 @@ def test_LilyPondCommandMark_format_05():
 
     t = Note("c'4")
     marktools.LilyPondCommandMark('flageolet', 'right')(t)
-    assert t.format == "c'4 \\flageolet"
+    assert t.lilypond_format == "c'4 \\flageolet"
 
 
 def test_LilyPondCommandMark_format_06():
@@ -80,7 +80,7 @@ def test_LilyPondCommandMark_format_06():
     t = Note("c'4")
     marktools.LilyPondCommandMark('flageolet', 'right')(t)
     marktools.detach_lilypond_command_marks_attached_to_component(t, 'flageolet')
-    assert t.format == "c'4"
+    assert t.lilypond_format == "c'4"
 
 
 def test_LilyPondCommandMark_format_07():
@@ -95,7 +95,7 @@ def test_LilyPondCommandMark_format_07():
     }
     '''
 
-    assert staff.format == "\\new Staff {\n\t\\compressFullBarRests\n\tc'4\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\t\\compressFullBarRests\n\tc'4\n}"
 
 
 def test_LilyPondCommandMark_format_08():
@@ -110,7 +110,7 @@ def test_LilyPondCommandMark_format_08():
     }
     '''
 
-    assert staff.format == "\\new Staff {\n\t\\expandFullBarRests\n\tc'4\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\t\\expandFullBarRests\n\tc'4\n}"
 
 
 def test_LilyPondCommandMark_format_09():
@@ -119,7 +119,7 @@ def test_LilyPondCommandMark_format_09():
     t = Voice(notetools.make_repeated_notes(4))
     marktools.LilyPondCommandMark('voiceOne')(t[0])
 
-    assert t.format == "\\new Voice {\n\t\\voiceOne\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n}"
+    assert t.lilypond_format == "\\new Voice {\n\t\\voiceOne\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n}"
 
 
 def test_LilyPondCommandMark_format_10():
@@ -129,22 +129,22 @@ def test_LilyPondCommandMark_format_10():
 
     t = Voice(notetools.make_repeated_notes(4))
     marktools.LilyPondCommandMark('voiceOne')(t[0])
-    assert t.format == "\\new Voice {\n\t\\voiceOne\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n}"
+    assert t.lilypond_format == "\\new Voice {\n\t\\voiceOne\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n}"
 
     marktools.detach_lilypond_command_marks_attached_to_component(t[0], 'voiceOne')
     marktools.LilyPondCommandMark('voiceTwo')(t[0])
-    assert t.format == "\\new Voice {\n\t\\voiceTwo\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n}"
+    assert t.lilypond_format == "\\new Voice {\n\t\\voiceTwo\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n}"
 
     marktools.detach_lilypond_command_marks_attached_to_component(t[0], 'voiceTwo')
     marktools.LilyPondCommandMark('voiceThree')(t[0])
-    assert t.format == "\\new Voice {\n\t\\voiceThree\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n}"
+    assert t.lilypond_format == "\\new Voice {\n\t\\voiceThree\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n}"
 
     marktools.detach_lilypond_command_marks_attached_to_component(t[0], 'voiceThree')
     marktools.LilyPondCommandMark('voiceFour')(t[0])
-    assert t.format == "\\new Voice {\n\t\\voiceFour\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n}"
+    assert t.lilypond_format == "\\new Voice {\n\t\\voiceFour\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n}"
 
     marktools.detach_lilypond_command_marks_attached_to_component(t[0], 'voiceFour')
-    assert t.format == "\\new Voice {\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n}"
+    assert t.lilypond_format == "\\new Voice {\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n}"
 
 
 def test_LilyPondCommandMark_format_11():
@@ -154,4 +154,4 @@ def test_LilyPondCommandMark_format_11():
     t = Voice(notetools.make_repeated_notes(4))
     marktools.LilyPondCommandMark('voiceOne')(t)
     marktools.LilyPondCommandMark('voiceTwo')(t[1])
-    assert t.format == "\\new Voice {\n\t\\voiceOne\n\tc'8\n\t\\voiceTwo\n\tc'8\n\tc'8\n\tc'8\n}"
+    assert t.lilypond_format == "\\new Voice {\n\t\\voiceOne\n\tc'8\n\t\\voiceTwo\n\tc'8\n\tc'8\n\tc'8\n}"

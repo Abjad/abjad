@@ -43,4 +43,4 @@ def test_lilypondfiletools_make_basic_lily_file_01():
     assert score.lilypond_file is lilypond_file
     assert lilypond_file.score_block[0] is score
 
-    assert lilypond_file.format == "\\header {\n\tcomposer = \\markup { Josquin }\n}\n\n\\layout {\n\tindent = #0\n}\n\n\\paper {\n\tleft-margin = #15\n\ttop-margin = #15\n}\n\n\\score {\n\t\\new Score <<\n\t\t\\new Staff {\n\t\t\tc'8\n\t\t\td'8\n\t\t\te'8\n\t\t\tf'8\n\t\t}\n\t>>\n}"
+    assert lilypond_file.lilypond_format == "\\header {\n\tcomposer = \\markup { Josquin }\n}\n\n\\layout {\n\tindent = #0\n}\n\n\\paper {\n\tleft-margin = #15\n\ttop-margin = #15\n}\n\n\\score {\n\t\\new Score <<\n\t\t\\new Staff {\n\t\t\tc'8\n\t\t\td'8\n\t\t\te'8\n\t\t\tf'8\n\t\t}\n\t>>\n}"

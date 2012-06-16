@@ -25,7 +25,7 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.pitchtools.NamedDiatonicPitch.NamedDiatonicPitch.NamedDiatonicPitch.diatonic_pitch_number
 
-.. autoattribute:: abjad.tools.pitchtools.NamedDiatonicPitch.NamedDiatonicPitch.NamedDiatonicPitch.format
+.. autoattribute:: abjad.tools.pitchtools.NamedDiatonicPitch.NamedDiatonicPitch.NamedDiatonicPitch.lilypond_format
 
 .. autoattribute:: abjad.tools.pitchtools.NamedDiatonicPitch.NamedDiatonicPitch.NamedDiatonicPitch.named_chromatic_pitch
 

@@ -19,4 +19,4 @@ def test_LayoutBlock_context_blocks_01():
     }
     '''
 
-    assert layout_block.format == "\\layout {\n\t\\context {\n\t\t\\Score\n\t\t\\override BarNumber #'transparent = ##t\n\t\t\\override TimeSignature #'break-visibility = #end-of-line-invisible\n\t}\n}"
+    assert layout_block.lilypond_format == "\\layout {\n\t\\context {\n\t\t\\Score\n\t\t\\override BarNumber #'transparent = ##t\n\t\t\\override TimeSignature #'break-visibility = #end-of-line-invisible\n\t}\n}"

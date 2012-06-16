@@ -19,7 +19,7 @@ def test_Container___setitem___slice_01():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Staff {\n\tc'8\n\td'8\n\tg'8\n\te'8\n\tf'8\n}"
+    assert t.lilypond_format == "\\new Staff {\n\tc'8\n\td'8\n\tg'8\n\te'8\n\tf'8\n}"
 
 
 def test_Container___setitem___slice_02():
@@ -41,7 +41,7 @@ def test_Container___setitem___slice_02():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Staff {\n\tc'8 [\n\td'8\n\tg'8\n\te'8\n\tf'8 ]\n}"
+    assert t.lilypond_format == "\\new Staff {\n\tc'8 [\n\td'8\n\tg'8\n\te'8\n\tf'8 ]\n}"
 
 
 def test_Container___setitem___slice_03():
@@ -80,7 +80,7 @@ def test_Container___setitem___slice_03():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Staff {\n\tc'8 [\n\td'8\n\te'8\n\tf'8\n\tg'8\n\ta'8 ]\n}"
+    assert t.lilypond_format == "\\new Staff {\n\tc'8 [\n\td'8\n\te'8\n\tf'8\n\tg'8\n\ta'8 ]\n}"
 
 
 def test_Container___setitem___slice_04():
@@ -100,7 +100,7 @@ def test_Container___setitem___slice_04():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Staff {\n\tc'8 [\n\tc''8\n\tf'8 ]\n}"
+    assert t.lilypond_format == "\\new Staff {\n\tc'8 [\n\tc''8\n\tf'8 ]\n}"
 
 
 def test_Container___setitem___slice_05():
@@ -123,7 +123,7 @@ def test_Container___setitem___slice_05():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Staff {\n\tc'8 [\n\tb'8\n\ta'8\n\tg'8\n\tf'8 ]\n}"
+    assert t.lilypond_format == "\\new Staff {\n\tc'8 [\n\tb'8\n\ta'8\n\tg'8\n\tf'8 ]\n}"
 
 
 def test_Container___setitem___slice_06():
@@ -162,7 +162,7 @@ def test_Container___setitem___slice_06():
 
     assert componenttools.is_well_formed_component(t)
     assert len(sequential) == 0
-    assert t.format == "\\new Staff {\n\tc'8 [\n\td'8\n\t{\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
+    assert t.lilypond_format == "\\new Staff {\n\tc'8 [\n\td'8\n\t{\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
 
 
 def test_Container___setitem___slice_07():
@@ -202,7 +202,7 @@ def test_Container___setitem___slice_07():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Staff {\n\tc'8\n\t{\n\t\td'8 [\n\t}\n\t{\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
+    assert t.lilypond_format == "\\new Staff {\n\tc'8\n\t{\n\t\td'8 [\n\t}\n\t{\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
 
 
 def test_Container___setitem___slice_08():
@@ -240,7 +240,7 @@ def test_Container___setitem___slice_08():
     }
     '''
 
-    assert t.format == "\\new Staff {\n\tc'8\n\td'8\n\t{\n\t}\n\t{\n\t\te'8 [\n\t\tf'8 ]\n\t}\n}"
+    assert t.lilypond_format == "\\new Staff {\n\tc'8\n\td'8\n\t{\n\t}\n\t{\n\t\te'8 [\n\t\tf'8 ]\n\t}\n}"
 
 
 def test_Container___setitem___slice_09():
@@ -281,7 +281,7 @@ def test_Container___setitem___slice_09():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Staff {\n\tc'8\n\td'8\n\t{\n\t\te'8\n\t}\n\t{\n\t\tf'8 [ ]\n\t}\n}"
+    assert t.lilypond_format == "\\new Staff {\n\tc'8\n\td'8\n\t{\n\t\te'8\n\t}\n\t{\n\t\tf'8 [ ]\n\t}\n}"
 
 
 def test_Container___setitem___slice_10():
@@ -321,7 +321,7 @@ def test_Container___setitem___slice_10():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Staff {\n\tc'8\n\t{\n\t\td'8 [\n\t}\n\t{\n\t\te'8 ]\n\t}\n\tf'8\n}"
+    assert t.lilypond_format == "\\new Staff {\n\tc'8\n\t{\n\t\td'8 [\n\t}\n\t{\n\t\te'8 ]\n\t}\n\tf'8\n}"
 
 
 def test_Container___setitem___slice_11():
@@ -342,7 +342,7 @@ def test_Container___setitem___slice_11():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Voice {\n\tr8\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
+    assert t.lilypond_format == "\\new Voice {\n\tr8\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
 
 
 def test_Container___setitem___slice_12():
@@ -363,7 +363,7 @@ def test_Container___setitem___slice_12():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n\tr8\n}"
+    assert t.lilypond_format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n\tr8\n}"
 
 
 def test_Container___setitem___slice_13():
@@ -405,7 +405,7 @@ def test_Container___setitem___slice_13():
     }
     '''
 
-    assert t.format == "\\new Staff {\n\tc'8\n\t{\n\t}\n\tf'8\n}"
+    assert t.lilypond_format == "\\new Staff {\n\tc'8\n\t{\n\t}\n\tf'8\n}"
 
     r'''
     {
@@ -415,7 +415,7 @@ def test_Container___setitem___slice_13():
     '''
 
     # inner container leaves DO withdraw from all spanners
-    assert inner.format == "{\n\td'8\n\te'8\n}"
+    assert inner.lilypond_format == "{\n\td'8\n\te'8\n}"
 
     # ALTERNATIVE: use containertools.delete_contents_of_container()
 
@@ -443,4 +443,4 @@ def test_Container___setitem___slice_13():
     '''
 
     # inner container leaves DO NOT withdraw from spanners
-    assert inner.format == "{\n\td'8 [\n\te'8 ]\n}"
+    assert inner.lilypond_format == "{\n\td'8 [\n\te'8 ]\n}"

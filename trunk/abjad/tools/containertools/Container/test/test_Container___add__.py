@@ -24,7 +24,7 @@ def test_Container___add___03():
     t2 = Container(Note("c'4")*2)
     tadd = t1 + t2
     assert len(tadd) == len(t1) + len(t2)
-    assert tadd.format == "{\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n}"
+    assert tadd.lilypond_format == "{\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n}"
     assert componenttools.is_well_formed_component(tadd)
 
 
@@ -37,7 +37,7 @@ def test_Container___add___04():
     tadd = t1 + t2
     assert len(tadd) == len(t1) + len(t2)
     assert tadd.name == '1'
-    assert tadd.format == "\\context Voice = \"1\" {\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n}"
+    assert tadd.lilypond_format == "\\context Voice = \"1\" {\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n}"
 
 
 def test_Container___add___05():
@@ -62,7 +62,7 @@ def test_Container___add___06():
     assert len(tadd) == 1
     assert isinstance(tadd[0], Voice)
     assert len(tadd[0]) == 4
-    assert tadd.format == '\\context Staff = "staffOne" {\n\t\\context Voice = "voiceOne" {\n\t\tc\'4\n\t\tc\'4\n\t\tc\'4\n\t\tc\'4\n\t}\n}'
+    assert tadd.lilypond_format == '\\context Staff = "staffOne" {\n\t\\context Voice = "voiceOne" {\n\t\tc\'4\n\t\tc\'4\n\t\tc\'4\n\t\tc\'4\n\t}\n}'
 
     r'''
     \context Staff = "staffOne" {

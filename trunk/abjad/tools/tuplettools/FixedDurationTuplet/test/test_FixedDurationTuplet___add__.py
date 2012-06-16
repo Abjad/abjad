@@ -44,7 +44,7 @@ def test_FixedDurationTuplet___add___01():
     }
     '''
 
-    assert new.format == "\\times 2/3 {\n\tc'8 [\n\td'8\n\te'8 ]\n\tc'16 (\n\td'16\n\te'16 )\n}"
+    assert new.lilypond_format == "\\times 2/3 {\n\tc'8 [\n\td'8\n\te'8 ]\n\tc'16 (\n\td'16\n\te'16 )\n}"
 
 
 def test_FixedDurationTuplet___add___02():
@@ -87,7 +87,7 @@ def test_FixedDurationTuplet___add___02():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8 [\n\t\td'8\n\t\te'8 ]\n\t\tc'16 (\n\t\td'16\n\t\te'16 )\n\t}\n}"
+    assert t.lilypond_format == "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8 [\n\t\td'8\n\t\te'8 ]\n\t\tc'16 (\n\t\td'16\n\t\te'16 )\n\t}\n}"
 
 
 def test_FixedDurationTuplet___add___03():

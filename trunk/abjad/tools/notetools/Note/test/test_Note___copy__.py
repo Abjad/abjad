@@ -11,7 +11,7 @@ def test_Note___copy___01():
 
     assert isinstance(note_1, Note)
     assert isinstance(note_2, Note)
-    assert note_1.format == note_2.format
+    assert note_1.lilypond_format == note_2.lilypond_format
     assert note_1 is not note_2
 
 
@@ -24,7 +24,7 @@ def test_Note___copy___02():
 
     assert isinstance(note_1, Note)
     assert isinstance(note_2, Note)
-    assert note_1.format == note_2.format
+    assert note_1.lilypond_format == note_2.lilypond_format
     assert note_1 is not note_2
 
 
@@ -40,7 +40,7 @@ def test_Note___copy___03():
 
     assert isinstance(note_1, Note)
     assert isinstance(note_2, Note)
-    assert note_1.format == note_2.format
+    assert note_1.lilypond_format == note_2.lilypond_format
     assert note_1 is not note_2
 
 
@@ -74,4 +74,4 @@ def test_Note___copy___04():
     assert note_1 is not note_2
     assert grace_container_1 is not grace_container_2
     assert grace_container_1.kind == grace_container_2.kind == 'after'
-    assert note_2.format == "\\afterGrace\nc'4\n{\n\td'32\n}"
+    assert note_2.lilypond_format == "\\afterGrace\nc'4\n{\n\td'32\n}"

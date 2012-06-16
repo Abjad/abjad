@@ -28,7 +28,7 @@ def test_containertools_replace_n_edge_elements_in_container_with_rests_01():
     '''
 
     assert componenttools.is_well_formed_component(staff)
-    assert staff.format == "\\new Staff {\n\tr2\n\tr8\n\ta'8\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\tr2\n\tr8\n\ta'8\n}"
 
 
 def test_containertools_replace_n_edge_elements_in_container_with_rests_02():
@@ -58,4 +58,4 @@ def test_containertools_replace_n_edge_elements_in_container_with_rests_02():
     '''
 
     assert componenttools.is_well_formed_component(staff)
-    assert staff.format == "\\new Staff {\n\tc'8\n\tr8\n\tr2\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\tc'8\n\tr8\n\tr2\n}"

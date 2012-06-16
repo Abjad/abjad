@@ -17,8 +17,6 @@ Read-only Properties
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
 
-.. autoattribute:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.format
-
 .. autoattribute:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.is_full
 
 .. autoattribute:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.is_misfilled
@@ -30,6 +28,8 @@ Read-only Properties
 .. autoattribute:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.leaves
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
+
+.. autoattribute:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.lilypond_format
 
 .. autoattribute:: abjad.tools.containertools.FixedDurationContainer.FixedDurationContainer.FixedDurationContainer.music
 

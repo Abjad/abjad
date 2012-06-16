@@ -20,7 +20,7 @@ def test_componenttools_cut_component_at_prolated_duration_01():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Voice {\n\t\\times 4/5 {\n\t\td'16. [\n\t}\n\te'8\n\tf'8 ]\n}"
+    assert t.lilypond_format == "\\new Voice {\n\t\\times 4/5 {\n\t\td'16. [\n\t}\n\te'8\n\tf'8 ]\n}"
 
 
 def test_componenttools_cut_component_at_prolated_duration_02():
@@ -39,4 +39,4 @@ def test_componenttools_cut_component_at_prolated_duration_02():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Voice {\n\td'16 [\n\te'8\n\tf'8 ]\n}"
+    assert t.lilypond_format == "\\new Voice {\n\td'16 [\n\te'8\n\tf'8 ]\n}"

@@ -28,4 +28,4 @@ def test_RestFilleTimeTokenMaker___call___01():
     }
     '''
 
-    assert staff.format == '\\new Staff {\n\t{\n\t\t\\time 5/16\n\t\tr4\n\t\tr16\n\t}\n\t{\n\t\t\\time 3/8\n\t\tr4.\n\t}\n}'
+    assert staff.lilypond_format == '\\new Staff {\n\t{\n\t\t\\time 5/16\n\t\tr4\n\t\tr16\n\t}\n\t{\n\t\t\\time 3/8\n\t\tr4.\n\t}\n}'

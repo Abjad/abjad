@@ -20,7 +20,7 @@ def test_leaftools_repeat_leaves_in_expr_and_extend_spanners_01():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Voice {\n\tc'8 [\n\tc'8\n\td'8\n\td'8\n\te'8\n\te'8 ]\n}"
+    assert t.lilypond_format == "\\new Voice {\n\tc'8 [\n\tc'8\n\td'8\n\td'8\n\te'8\n\te'8 ]\n}"
 
 
 def test_leaftools_repeat_leaves_in_expr_and_extend_spanners_02():
@@ -45,4 +45,4 @@ def test_leaftools_repeat_leaves_in_expr_and_extend_spanners_02():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Voice {\n\tc'8 [\n\tc'8\n\tc'8\n\td'8\n\td'8\n\td'8\n\te'8\n\te'8\n\te'8 ]\n}"
+    assert t.lilypond_format == "\\new Voice {\n\tc'8 [\n\tc'8\n\tc'8\n\td'8\n\td'8\n\td'8\n\te'8\n\te'8\n\te'8 ]\n}"

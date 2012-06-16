@@ -9,4 +9,4 @@ def test_BookBlock_01():
     \book {}
     '''
 
-    assert book_block.format == '\\book {}'
+    assert book_block.lilypond_format == '\\book {}'

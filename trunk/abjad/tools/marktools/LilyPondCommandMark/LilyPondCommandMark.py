@@ -100,12 +100,12 @@ class LilyPondCommandMark(Mark):
         return property(**locals())
 
     @property
-    def format(self):
+    def lilypond_format(self):
         '''Read-only LilyPond input format of LilyPond command mark::
 
             >>> note = Note("c'4")
             >>> lilypond_command = marktools.LilyPondCommandMark('slurDotted')(note)
-            >>> lilypond_command.format
+            >>> lilypond_command.lilypond_format
             '\\slurDotted'
 
         Return string.

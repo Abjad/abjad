@@ -9,7 +9,7 @@ marktools.Articulation
 Read-only Properties
 --------------------
 
-.. autoattribute:: abjad.tools.marktools.Articulation.Articulation.Articulation.format
+.. autoattribute:: abjad.tools.marktools.Articulation.Articulation.Articulation.lilypond_format
 
 .. autoattribute:: abjad.tools.marktools.Articulation.Articulation.Articulation.start_component
 

@@ -16,7 +16,7 @@ def test_FixedDurationTuplet_fraction_01():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\fraction \\times 3/4 {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+    assert t.lilypond_format == "\\fraction \\times 3/4 {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
 def test_FixedDurationTuplet_fraction_02():
@@ -34,7 +34,7 @@ def test_FixedDurationTuplet_fraction_02():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\fraction \\times 4/3 {\n\tc'8\n\td'8\n\te'8\n}"
+    assert t.lilypond_format == "\\fraction \\times 4/3 {\n\tc'8\n\td'8\n\te'8\n}"
 
 
 def test_FixedDurationTuplet_fraction_03():
@@ -51,5 +51,4 @@ def test_FixedDurationTuplet_fraction_03():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    print t.format
-    assert t.format == "{\n\tc'8\n\td'8\n\te'8\n}"
+    assert t.lilypond_format == "{\n\tc'8\n\td'8\n\te'8\n}"

@@ -194,7 +194,7 @@ class Measure(FixedDurationContainer):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def format(self):
+    def lilypond_format(self):
         self._check_duration()
         return self._format_component()
 

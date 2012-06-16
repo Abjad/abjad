@@ -21,13 +21,13 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.contexttools.Context.Context.Context.engraver_removals
 
-.. autoattribute:: abjad.tools.contexttools.Context.Context.Context.format
-
 .. autoattribute:: abjad.tools.contexttools.Context.Context.Context.is_semantic
 
 .. autoattribute:: abjad.tools.contexttools.Context.Context.Context.leaves
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
+
+.. autoattribute:: abjad.tools.contexttools.Context.Context.Context.lilypond_format
 
 .. autoattribute:: abjad.tools.contexttools.Context.Context.Context.music
 

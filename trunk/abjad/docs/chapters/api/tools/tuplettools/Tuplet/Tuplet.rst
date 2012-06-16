@@ -17,8 +17,6 @@ Read-only Properties
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
 
-.. autoattribute:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.format
-
 .. autoattribute:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.is_augmentation
 
 .. autoattribute:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.is_binary
@@ -32,6 +30,8 @@ Read-only Properties
 .. autoattribute:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.leaves
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
+
+.. autoattribute:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.lilypond_format
 
 .. autoattribute:: abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet.multiplied_duration
 

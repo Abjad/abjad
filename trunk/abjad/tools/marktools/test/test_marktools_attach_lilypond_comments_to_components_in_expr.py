@@ -16,4 +16,4 @@ def test_marktools_attach_lilypond_comments_to_components_in_expr_01():
     }
     '''
 
-    assert staff.format == "\\new Staff {\n\tc'8 % foo\n\td'8 % foo\n\te'8 % foo\n\tf'8 % foo\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\tc'8 % foo\n\td'8 % foo\n\te'8 % foo\n\tf'8 % foo\n}"

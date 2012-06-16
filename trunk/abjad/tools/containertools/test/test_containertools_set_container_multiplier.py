@@ -23,4 +23,4 @@ def test_containertools_set_container_multiplier_02():
 
     containertools.set_container_multiplier(t, Duration(2, 3))
     assert contexttools.get_effective_time_signature(t).duration == Duration(2, 8)
-    assert py.test.raises(OverfullContainerError, 't.format')
+    assert py.test.raises(OverfullContainerError, 't.lilypond_format')

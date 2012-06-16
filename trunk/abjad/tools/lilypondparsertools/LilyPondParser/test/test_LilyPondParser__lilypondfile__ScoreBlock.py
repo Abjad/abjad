@@ -7,5 +7,5 @@ def test_LilyPondParser__lilypondfile__ScoreBlock_01():
     target = lilypondfiletools.ScoreBlock()
     target.append(Score())
     parser = LilyPondParser()
-    result = parser(target.format)
-    assert target.format == result.format and target is not result
+    result = parser(target.lilypond_format)
+    assert target.lilypond_format == result.lilypond_format and target is not result

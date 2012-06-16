@@ -9,7 +9,7 @@ def test_skiptools_make_repeated_skips_from_time_signature_01():
     staff = Staff(skips)
 
     assert componenttools.is_well_formed_component(staff)
-    assert staff.format == '\\new Staff {\n\ts32\n\ts32\n\ts32\n\ts32\n\ts32\n}'
+    assert staff.lilypond_format == '\\new Staff {\n\ts32\n\ts32\n\ts32\n\ts32\n\ts32\n}'
 
 
 def test_skiptools_make_repeated_skips_from_time_signature_02():
@@ -21,4 +21,4 @@ def test_skiptools_make_repeated_skips_from_time_signature_02():
     staff = Staff(skips)
 
     assert componenttools.is_well_formed_component(staff)
-    assert staff.format == '\\new Staff {\n\ts32\n\ts32\n\ts32\n\ts32\n\ts32\n}'
+    assert staff.lilypond_format == '\\new Staff {\n\ts32\n\ts32\n\ts32\n\ts32\n\ts32\n}'

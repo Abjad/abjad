@@ -31,10 +31,10 @@ class LilyPondLanguageToken(AbjadObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def format(self):
+    def lilypond_format(self):
         r'''Format contribution of LilyPond language token::
 
-            >>> lilypondfiletools.LilyPondLanguageToken().format
+            >>> lilypondfiletools.LilyPondLanguageToken().lilypond_format
             '\\language "english"'
 
         Return string.

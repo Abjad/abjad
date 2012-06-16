@@ -26,4 +26,4 @@ def test_markuptools_remove_markup_from_leaves_in_expr_01():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\times 2/3 {\n\tc'8\n\td'8\n\te'8\n}"
+    assert t.lilypond_format == "\\times 2/3 {\n\tc'8\n\td'8\n\te'8\n}"

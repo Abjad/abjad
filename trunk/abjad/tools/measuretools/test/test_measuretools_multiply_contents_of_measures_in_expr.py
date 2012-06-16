@@ -24,7 +24,7 @@ def test_measuretools_multiply_contents_of_measures_in_expr_01():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "{\n\t\\time 9/8\n\tc'8\n\td'8\n\te'8\n\tc'8\n\td'8\n\te'8\n\tc'8\n\td'8\n\te'8\n}"
+    assert t.lilypond_format == "{\n\t\\time 9/8\n\tc'8\n\td'8\n\te'8\n\tc'8\n\td'8\n\te'8\n\tc'8\n\td'8\n\te'8\n}"
 
 
 def test_measuretools_multiply_contents_of_measures_in_expr_02():
@@ -84,4 +84,4 @@ def test_measuretools_multiply_contents_of_measures_in_expr_02():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 4/8\n\t\tc'8\n\t\td'8\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\t\\time 4/8\n\t\te'8\n\t\tf'8\n\t\te'8\n\t\tf'8\n\t}\n\t{\n\t\t\\time 4/8\n\t\tg'8\n\t\ta'8\n\t\tg'8\n\t\ta'8\n\t}\n}"
+    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 4/8\n\t\tc'8\n\t\td'8\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\t\\time 4/8\n\t\te'8\n\t\tf'8\n\t\te'8\n\t\tf'8\n\t}\n\t{\n\t\t\\time 4/8\n\t\tg'8\n\t\ta'8\n\t\tg'8\n\t\ta'8\n\t}\n}"

@@ -49,7 +49,7 @@ def test_FixedDurationTuplet_03():
     t = tuplettools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 2)
     assert repr(t) == "FixedDurationTuplet(1/4, [c'8, c'8])"
     assert str(t) == "{@ 1:1 c'8, c'8 @}"
-    assert t.format == "{\n\tc'8\n\tc'8\n}"
+    assert t.lilypond_format == "{\n\tc'8\n\tc'8\n}"
 
 
 def test_FixedDurationTuplet_04():
@@ -59,7 +59,7 @@ def test_FixedDurationTuplet_04():
     t.pop()
     assert repr(t) == "FixedDurationTuplet(1/4, [c'8, c'8])"
     assert str(t) == "{@ 1:1 c'8, c'8 @}"
-    assert t.format == "{\n\tc'8\n\tc'8\n}"
+    assert t.lilypond_format == "{\n\tc'8\n\tc'8\n}"
 
 
 def test_FixedDurationTuplet_05():
@@ -68,7 +68,7 @@ def test_FixedDurationTuplet_05():
     t = tuplettools.FixedDurationTuplet(Duration(1, 4), Note(0, (1, 8)) * 3)
     assert t.is_invisible is None
     t.is_invisible = True
-    assert t.format == "\\scaleDurations #'(2 . 3) {\n\tc'8\n\tc'8\n\tc'8\n}"
+    assert t.lilypond_format == "\\scaleDurations #'(2 . 3) {\n\tc'8\n\tc'8\n\tc'8\n}"
 
     r'''
     \scaleDurations #'(2 . 3) {
@@ -79,4 +79,4 @@ def test_FixedDurationTuplet_05():
     '''
 
     t.is_invisible = False
-    assert t.format == "\\times 2/3 {\n\tc'8\n\tc'8\n\tc'8\n}"
+    assert t.lilypond_format == "\\times 2/3 {\n\tc'8\n\tc'8\n\tc'8\n}"

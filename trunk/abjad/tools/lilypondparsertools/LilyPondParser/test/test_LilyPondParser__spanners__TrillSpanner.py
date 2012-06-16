@@ -18,8 +18,8 @@ def test_LilyPondParser__spanners__TrillSpanner_01():
     '''
 
     parser = LilyPondParser()
-    result = parser(target.format)
-    assert target.format == result.format and target is not result
+    result = parser(target.lilypond_format)
+    assert target.lilypond_format == result.lilypond_format and target is not result
 
 
 def test_LilyPondParser__spanners__TrillSpanner_02():
@@ -40,7 +40,7 @@ def test_LilyPondParser__spanners__TrillSpanner_02():
 
     parser = LilyPondParser()
     result = parser(input)
-    assert target.format == result.format and target is not result
+    assert target.lilypond_format == result.lilypond_format and target is not result
 
 
 def test_LilyPondParser__spanners__TrillSpanner_03():

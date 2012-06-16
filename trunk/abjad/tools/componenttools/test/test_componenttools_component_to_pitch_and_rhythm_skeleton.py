@@ -11,7 +11,7 @@ def test_componenttools_component_to_pitch_and_rhythm_skeleton_01():
     skeleton = componenttools.component_to_pitch_and_rhythm_skeleton(note)
     assert skeleton == "Note(('c', 4), Duration(1, 4), Fraction(1, 2))"
     new_note = eval(skeleton)
-    assert new_note.format == note.format
+    assert new_note.lilypond_format == note.lilypond_format
 
     rest = Rest((1, 4))
     skeleton = componenttools.component_to_pitch_and_rhythm_skeleton(rest)
@@ -45,7 +45,7 @@ def test_componenttools_component_to_pitch_and_rhythm_skeleton_02():
     new = eval(skeleton)
 
     assert componenttools.is_well_formed_component(new)
-    assert new.format == "\\new Staff {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+    assert new.lilypond_format == "\\new Staff {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
 def test_componenttools_component_to_pitch_and_rhythm_skeleton_03():
@@ -116,4 +116,4 @@ def test_componenttools_component_to_pitch_and_rhythm_skeleton_03():
     new = eval(skeleton)
 
     assert componenttools.is_well_formed_component(new)
-    assert new.format == "\\new Score <<\n\t\\new Staff {\n\t\t{\n\t\t\t\\time 6/16\n\t\t\t\\fraction \\times 3/4 {\n\t\t\t\tc'8\n\t\t\t\td'8\n\t\t\t\te'8\n\t\t\t\tf'8\n\t\t\t}\n\t\t}\n\t}\n\t\\new Staff {\n\t\t{\n\t\t\t\\time 6/16\n\t\t\t\\fraction \\times 3/4 {\n\t\t\t\tg'8\n\t\t\t\ta'8\n\t\t\t\tb'8\n\t\t\t\tc''8\n\t\t\t}\n\t\t}\n\t}\n>>"
+    assert new.lilypond_format == "\\new Score <<\n\t\\new Staff {\n\t\t{\n\t\t\t\\time 6/16\n\t\t\t\\fraction \\times 3/4 {\n\t\t\t\tc'8\n\t\t\t\td'8\n\t\t\t\te'8\n\t\t\t\tf'8\n\t\t\t}\n\t\t}\n\t}\n\t\\new Staff {\n\t\t{\n\t\t\t\\time 6/16\n\t\t\t\\fraction \\times 3/4 {\n\t\t\t\tg'8\n\t\t\t\ta'8\n\t\t\t\tb'8\n\t\t\t\tc''8\n\t\t\t}\n\t\t}\n\t}\n>>"

@@ -26,7 +26,7 @@ def test_Measure_in_place_apply_01():
     }
     '''
 
-    assert t.format == "\\new Voice {\n\t{\n\t\t\\time 4/8\n\t\tc'8\n\t\tcs'8\n\t\td'8\n\t\tef'8\n\t}\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
+    assert t.lilypond_format == "\\new Voice {\n\t{\n\t\t\\time 4/8\n\t\tc'8\n\t\tcs'8\n\t\td'8\n\t\tef'8\n\t}\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
 
 
 def test_Measure_in_place_apply_02():
@@ -52,7 +52,7 @@ def test_Measure_in_place_apply_02():
     }
     '''
 
-    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 4/8\n\t\tc'8\n\t\tcs'8\n\t\td'8\n\t\tef'8\n\t}\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
+    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 4/8\n\t\tc'8\n\t\tcs'8\n\t\td'8\n\t\tef'8\n\t}\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
 
 
 def test_Measure_in_place_apply_03():
@@ -74,7 +74,7 @@ def test_Measure_in_place_apply_03():
     }
     '''
 
-    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 1/1\n\t\tc'1\n\t}\n\tcs'1\n\td'1\n\tef'1\n}"
+    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 1/1\n\t\tc'1\n\t}\n\tcs'1\n\td'1\n\tef'1\n}"
 
 
 def test_Measure_in_place_apply_04():
@@ -108,4 +108,4 @@ def test_Measure_in_place_apply_04():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 1/1\n\t\tc'1\n\t}\n\t{\n\t\t\\time 1/1\n\t\tcs'1\n\t}\n\t{\n\t\t\\time 1/1\n\t\td'1\n\t}\n\t{\n\t\t\\time 1/1\n\t\tef'1\n\t}\n}"
+    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 1/1\n\t\tc'1\n\t}\n\t{\n\t\t\\time 1/1\n\t\tcs'1\n\t}\n\t{\n\t\t\\time 1/1\n\t\td'1\n\t}\n\t{\n\t\t\\time 1/1\n\t\tef'1\n\t}\n}"

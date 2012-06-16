@@ -36,14 +36,14 @@ def test_Container_remove_01():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Voice {\n\tc'8 (\n\te'8\n\tf'8 )\n}"
+    assert t.lilypond_format == "\\new Voice {\n\tc'8 (\n\te'8\n\tf'8 )\n}"
 
     "Note is now d'8 [ ]"
 
     #assert componenttools.is_well_formed_component(result)
     assert componenttools.is_well_formed_component(note)
-    #assert result.format == "d'8 [ ]"
-    assert note.format == "d'8 [ ]"
+    #assert result.lilypond_format == "d'8 [ ]"
+    assert note.lilypond_format == "d'8 [ ]"
 
 
 def test_Container_remove_02():
@@ -84,7 +84,7 @@ def test_Container_remove_02():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Staff {\n\t{\n\t\te'8 [\n\t\tf'8 ]\n\t}\n}"
+    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\te'8 [\n\t\tf'8 ]\n\t}\n}"
 
     r'''
     {
@@ -94,7 +94,7 @@ def test_Container_remove_02():
     '''
 
     assert componenttools.is_well_formed_component(sequential)
-    assert sequential.format == "{\n\tc'8\n\td'8\n}"
+    assert sequential.lilypond_format == "{\n\tc'8\n\td'8\n}"
 
 
 def test_Container_remove_03():

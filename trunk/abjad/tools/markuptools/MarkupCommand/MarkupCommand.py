@@ -61,7 +61,7 @@ class MarkupCommand(AbjadObject):
         return '%s(%s)' % (type(self).__name__, ', '.join(result))
 
     def __str__(self):
-        return self.format
+        return self.lilypond_format
 
     ### PRIVATE PROPERTIES ###
 
@@ -95,7 +95,7 @@ class MarkupCommand(AbjadObject):
                 elif isinstance(x, type(self)):
                     result.extend(x._get_format_pieces(is_indented=is_indented))
                 elif isinstance(x, Scheme):
-                    result.append(x.format)
+                    result.append(x.lilypond_format)
                 else:
                     formatted = format_scheme_value(x)
                     if formatted == x and isinstance(x, str):
@@ -120,11 +120,11 @@ class MarkupCommand(AbjadObject):
         return self._command
 
     @property
-    def format(self):
+    def lilypond_format(self):
         r'''Read-only format of markup command::
 
             >>> markup_command = markuptools.MarkupCommand('draw-circle', 2.5, 0.1, False)
-            >>> markup_command.format
+            >>> markup_command.lilypond_format
             '\\draw-circle #2.5 #0.1 ##f'
 
         Returns string.

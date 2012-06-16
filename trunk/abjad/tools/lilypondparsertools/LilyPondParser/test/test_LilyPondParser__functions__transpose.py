@@ -19,7 +19,7 @@ def test_LilyPondParser__functions__transpose_01():
     input = r"\transpose d e \relative c' \new Staff { \key d \major d4 fs a d }"
     parser = LilyPondParser()
     result = parser(input)
-    assert target.format == result.format and target is not result
+    assert target.lilypond_format == result.lilypond_format and target is not result
 
 
 def test_LilyPondParser__functions__transpose_02():
@@ -39,7 +39,7 @@ def test_LilyPondParser__functions__transpose_02():
     input = r"\transpose a c' \relative c' \new Staff { \key c \major c4 d e g }"
     parser = LilyPondParser()
     result = parser(input)
-    assert target.format == result.format and target is not result
+    assert target.lilypond_format == result.lilypond_format and target is not result
 
 
 def test_LilyPondParser__functions__transpose_03():
@@ -73,4 +73,4 @@ def test_LilyPondParser__functions__transpose_03():
 
     parser = LilyPondParser()
     result = parser(input)
-    assert target.format == result.format and target is not result
+    assert target.lilypond_format == result.lilypond_format and target is not result

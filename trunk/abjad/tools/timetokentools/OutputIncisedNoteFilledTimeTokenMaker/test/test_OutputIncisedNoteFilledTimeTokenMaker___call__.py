@@ -43,7 +43,7 @@ def test_OutputIncisedNoteFilledTimeTokenMaker___call___01():
     }
     '''
 
-    assert staff.format == "\\new Staff {\n\t{\n\t\t\\time 5/8\n\t\tr4\n\t\tr4\n\t\tc'8\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'2\n\t\tc'8\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'4\n\t\tr16.\n\t\tr16.\n\t\tr16.\n\t\tr16.\n\t}\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 5/8\n\t\tr4\n\t\tr4\n\t\tc'8\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'2\n\t\tc'8\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'4\n\t\tr16.\n\t\tr16.\n\t\tr16.\n\t\tr16.\n\t}\n}"
 
 
 def test_OutputIncisedNoteFilledTimeTokenMaker___call___02():
@@ -84,7 +84,7 @@ def test_OutputIncisedNoteFilledTimeTokenMaker___call___02():
     }
     '''
 
-    assert staff.format == "\\new Staff {\n\t{\n\t\t\\time 5/8\n\t\tr4\n\t\tr4\n\t\tr8\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'2\n\t\tc'8\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'8\n\t\tr4\n\t\tr4\n\t}\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 5/8\n\t\tr4\n\t\tr4\n\t\tr8\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'2\n\t\tc'8\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'8\n\t\tr4\n\t\tr4\n\t}\n}"
 
 
 def test_OutputIncisedNoteFilledTimeTokenMaker___call___03():
@@ -123,7 +123,7 @@ def test_OutputIncisedNoteFilledTimeTokenMaker___call___03():
     }
     '''
 
-    assert staff.format == "\\new Staff {\n\t{\n\t\t\\time 5/8\n\t\tc'2\n\t\tc'8\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'2\n\t\tc'8\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'2\n\t\tc'8\n\t}\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 5/8\n\t\tc'2\n\t\tc'8\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'2\n\t\tc'8\n\t}\n\t{\n\t\t\\time 5/8\n\t\tc'2\n\t\tc'8\n\t}\n}"
 
 
 def test_OutputIncisedNoteFilledTimeTokenMaker___call___04():
@@ -169,7 +169,7 @@ def test_OutputIncisedNoteFilledTimeTokenMaker___call___04():
     }
     '''
 
-    assert staff.format == "\\new Staff {\n\t{\n\t\t\\time 4/8\n\t\t\\times 4/5 {\n\t\t\tr8\n\t\t\tc'2\n\t\t}\n\t}\n\t{\n\t\t\\time 4/8\n\t\t{\n\t\t\tc'2\n\t\t}\n\t}\n\t{\n\t\t\\time 4/8\n\t\t\\times 4/7 {\n\t\t\tc'2.\n\t\t\tr8\n\t\t}\n\t}\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 4/8\n\t\t\\times 4/5 {\n\t\t\tr8\n\t\t\tc'2\n\t\t}\n\t}\n\t{\n\t\t\\time 4/8\n\t\t{\n\t\t\tc'2\n\t\t}\n\t}\n\t{\n\t\t\\time 4/8\n\t\t\\times 4/7 {\n\t\t\tc'2.\n\t\t\tr8\n\t\t}\n\t}\n}"
 
 
 def test_OutputIncisedNoteFilledTimeTokenMaker___call___05():
@@ -222,4 +222,4 @@ def test_OutputIncisedNoteFilledTimeTokenMaker___call___05():
     }
     '''
 
-    assert staff.format == "\\new Staff {\n\t{\n\t\t\\time 4/8\n\t\t\\fraction \\times 3/4 {\n\t\t\tr8\n\t\t\tc'4.\n\t\t}\n\t\t{\n\t\t\tc'8\n\t\t}\n\t}\n\t{\n\t\t\\time 4/8\n\t\t{\n\t\t\tc'2\n\t\t}\n\t}\n\t{\n\t\t\\time 4/8\n\t\t{\n\t\t\tc'8\n\t\t}\n\t\t\\fraction \\times 3/5 {\n\t\t\tc'2\n\t\t\tr8\n\t\t}\n\t}\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 4/8\n\t\t\\fraction \\times 3/4 {\n\t\t\tr8\n\t\t\tc'4.\n\t\t}\n\t\t{\n\t\t\tc'8\n\t\t}\n\t}\n\t{\n\t\t\\time 4/8\n\t\t{\n\t\t\tc'2\n\t\t}\n\t}\n\t{\n\t\t\\time 4/8\n\t\t{\n\t\t\tc'8\n\t\t}\n\t\t\\fraction \\times 3/5 {\n\t\t\tc'2\n\t\t\tr8\n\t\t}\n\t}\n}"

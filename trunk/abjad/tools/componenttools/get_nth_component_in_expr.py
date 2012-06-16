@@ -17,7 +17,7 @@ def get_nth_component_in_expr(expr, klasses, n=0):
 
     ::
 
-        >>> print staff.format
+        >>> f(staff)
         \new Staff {
             c'16
             r16

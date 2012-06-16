@@ -16,7 +16,7 @@ def test_TextSpanner_position_01():
     }
     '''
 
-    assert t.format == "\\new Staff {\n\tc'8 \\startTextSpan\n\tc'8\n\tc'8\n\tc'8 \\stopTextSpan\n}"
+    assert t.lilypond_format == "\\new Staff {\n\tc'8 \\startTextSpan\n\tc'8\n\tc'8\n\tc'8 \\stopTextSpan\n}"
 
 
 def test_TextSpanner_position_02():
@@ -35,7 +35,7 @@ def test_TextSpanner_position_02():
     }
     '''
 
-    assert t.format == "\\new Staff {\n\t\\textSpannerNeutral\n\tc'8 \\startTextSpan\n\tc'8\n\tc'8\n\tc'8 \\stopTextSpan\n}"
+    assert t.lilypond_format == "\\new Staff {\n\t\\textSpannerNeutral\n\tc'8 \\startTextSpan\n\tc'8\n\tc'8\n\tc'8 \\stopTextSpan\n}"
 
 
 def test_TextSpanner_position_03():
@@ -54,7 +54,7 @@ def test_TextSpanner_position_03():
     }
     '''
 
-    assert t.format == "\\new Staff {\n\t\\textSpannerUp\n\tc'8 \\startTextSpan\n\tc'8\n\tc'8\n\tc'8 \\stopTextSpan\n}"
+    assert t.lilypond_format == "\\new Staff {\n\t\\textSpannerUp\n\tc'8 \\startTextSpan\n\tc'8\n\tc'8\n\tc'8 \\stopTextSpan\n}"
 
 
 def test_TextSpanner_position_04():
@@ -73,7 +73,7 @@ def test_TextSpanner_position_04():
     }
     '''
 
-    assert t.format == "\\new Staff {\n\t\\textSpannerDown\n\tc'8 \\startTextSpan\n\tc'8\n\tc'8\n\tc'8 \\stopTextSpan\n}"
+    assert t.lilypond_format == "\\new Staff {\n\t\\textSpannerDown\n\tc'8 \\startTextSpan\n\tc'8\n\tc'8\n\tc'8 \\stopTextSpan\n}"
 
 
 def test_TextSpanner_position_05():
@@ -91,4 +91,4 @@ def test_TextSpanner_position_05():
     }
     '''
 
-    assert t.format == "\\new Staff {\n\tc'8 \\startTextSpan\n\tc'8\n\tc'8\n\tc'8 \\stopTextSpan\n}"
+    assert t.lilypond_format == "\\new Staff {\n\tc'8 \\startTextSpan\n\tc'8\n\tc'8\n\tc'8 \\stopTextSpan\n}"

@@ -37,7 +37,7 @@ def test_componenttools_move_parentage_and_spanners_from_components_to_component
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Staff {\n\tc'8 [ ] \\<\n\tc''16\n\tc''16\n\tc''16\n\tc''16\n\tc''16\n\tf'8 [ ] \\!\n}"
+    assert t.lilypond_format == "\\new Staff {\n\tc'8 [ ] \\<\n\tc''16\n\tc''16\n\tc''16\n\tc''16\n\tc''16\n\tf'8 [ ] \\!\n}"
 
 
 def test_componenttools_move_parentage_and_spanners_from_components_to_components_02():
@@ -77,7 +77,7 @@ def test_componenttools_move_parentage_and_spanners_from_components_to_component
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Staff {\n\tc''16 [ \\<\n\tc''16\n\tc''16\n\tc''16\n\tc''16\n\td'8 ]\n\te'8 [\n\tf'8 ] \\!\n}"
+    assert t.lilypond_format == "\\new Staff {\n\tc''16 [ \\<\n\tc''16\n\tc''16\n\tc''16\n\tc''16\n\td'8 ]\n\te'8 [\n\tf'8 ] \\!\n}"
 
 
 def test_componenttools_move_parentage_and_spanners_from_components_to_components_03():
@@ -116,7 +116,7 @@ def test_componenttools_move_parentage_and_spanners_from_components_to_component
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Staff {\n\tc''16 [ \\<\n\tc''16\n\tc''16\n\tc''16\n\tc''16 ]\n\te'8 [\n\tf'8 ] \\!\n}"
+    assert t.lilypond_format == "\\new Staff {\n\tc''16 [ \\<\n\tc''16\n\tc''16\n\tc''16\n\tc''16 ]\n\te'8 [\n\tf'8 ] \\!\n}"
 
 
 def test_componenttools_move_parentage_and_spanners_from_components_to_components_04():
@@ -154,7 +154,7 @@ def test_componenttools_move_parentage_and_spanners_from_components_to_component
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Staff {\n\tc''16 \\<\n\tc''16\n\tc''16\n\tc''16\n\tc''16\n\tf'8 [ ] \\!\n}"
+    assert t.lilypond_format == "\\new Staff {\n\tc''16 \\<\n\tc''16\n\tc''16\n\tc''16\n\tc''16\n\tf'8 [ ] \\!\n}"
 
 
 def test_componenttools_move_parentage_and_spanners_from_components_to_components_05():
@@ -191,7 +191,7 @@ def test_componenttools_move_parentage_and_spanners_from_components_to_component
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Staff {\n\tc''16 \\<\n\tc''16\n\tc''16\n\tc''16\n\tc''16 \\!\n}"
+    assert t.lilypond_format == "\\new Staff {\n\tc''16 \\<\n\tc''16\n\tc''16\n\tc''16\n\tc''16 \\!\n}"
 
 
 def test_componenttools_move_parentage_and_spanners_from_components_to_components_06():
@@ -229,5 +229,5 @@ def test_componenttools_move_parentage_and_spanners_from_components_to_component
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Staff {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
+    assert t.lilypond_format == "\\new Staff {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
     assert len(voice) == 0

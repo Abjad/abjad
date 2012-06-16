@@ -8,5 +8,5 @@ def test_LilyPondParser__misc__version_string_01():
     input = r'''\version "2.14.2" \new Staff { }'''
     parser = LilyPondParser()
     result = parser(input)
-    assert target.format == result.format and target is not result
+    assert target.lilypond_format == result.lilypond_format and target is not result
 

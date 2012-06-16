@@ -557,7 +557,7 @@ class Spanner(AbjadObject):
 
         ::
 
-            >>> print voice.format
+            >>> print voice.lilypond_format
             \new Voice {
                 c'8 [ ]
                 d'8 [
@@ -593,7 +593,7 @@ class Spanner(AbjadObject):
 
         ::
 
-            >>> print voice.format
+            >>> print voice.lilypond_format
             \new Voice {
                 c'8 [
                 d'8 ]
@@ -608,7 +608,7 @@ class Spanner(AbjadObject):
 
         ::
 
-            >>> print voice.format
+            >>> print voice.lilypond_format
             \new Voice {
                 c'8 [
                 d'8

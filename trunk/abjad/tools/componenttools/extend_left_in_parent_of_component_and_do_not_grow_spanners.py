@@ -17,7 +17,7 @@ def extend_left_in_parent_of_component_and_do_not_grow_spanners(component, compo
 
     ::
 
-        >>> print t.format
+        >>> f(t)
         \new Voice {
             c'8
             d'8

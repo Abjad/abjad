@@ -13,7 +13,7 @@ Read-only Properties
 
     Inherited from :py:class:`contexttools.ContextMark <abjad.tools.contexttools.ContextMark.ContextMark.ContextMark>`
 
-.. autoattribute:: abjad.tools.contexttools.DynamicMark.DynamicMark.DynamicMark.format
+.. autoattribute:: abjad.tools.contexttools.DynamicMark.DynamicMark.DynamicMark.lilypond_format
 
 .. autoattribute:: abjad.tools.contexttools.DynamicMark.DynamicMark.DynamicMark.start_component
 

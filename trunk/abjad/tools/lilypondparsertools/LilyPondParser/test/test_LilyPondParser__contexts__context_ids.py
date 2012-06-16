@@ -16,5 +16,5 @@ def test_LilyPondParser__contexts__context_ids_01():
     '''
 
     parser = LilyPondParser()
-    result = parser(target.format)
-    assert target.format == result.format and target is not result
+    result = parser(target.lilypond_format)
+    assert target.lilypond_format == result.lilypond_format and target is not result

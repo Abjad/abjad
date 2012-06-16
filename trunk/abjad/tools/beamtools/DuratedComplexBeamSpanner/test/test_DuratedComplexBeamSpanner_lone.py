@@ -17,7 +17,7 @@ def test_DuratedComplexBeamSpanner_lone_01():
     '''
 
     assert componenttools.is_well_formed_component(voice)
-    assert voice.format == "\\new Voice {\n\t\\set stemLeftBeamCount = #1\n\t\\set stemRightBeamCount = #1\n\tc'8 [ ]\n}"
+    assert voice.lilypond_format == "\\new Voice {\n\t\\set stemLeftBeamCount = #1\n\t\\set stemRightBeamCount = #1\n\tc'8 [ ]\n}"
 
 
 def test_DuratedComplexBeamSpanner_lone_02():
@@ -34,7 +34,7 @@ def test_DuratedComplexBeamSpanner_lone_02():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Voice {\n\tc'8\n}"
+    assert t.lilypond_format == "\\new Voice {\n\tc'8\n}"
 
 
 def test_DuratedComplexBeamSpanner_lone_03():
@@ -56,4 +56,4 @@ def test_DuratedComplexBeamSpanner_lone_03():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Voice {\n\t\\set stemLeftBeamCount = #0\n\t\\set stemRightBeamCount = #1\n\tc'8 [\n\t\\set stemLeftBeamCount = #1\n\t\\set stemRightBeamCount = #0\n\td'8 ]\n}"
+    assert t.lilypond_format == "\\new Voice {\n\t\\set stemLeftBeamCount = #0\n\t\\set stemRightBeamCount = #1\n\tc'8 [\n\t\\set stemLeftBeamCount = #1\n\t\\set stemRightBeamCount = #0\n\td'8 ]\n}"

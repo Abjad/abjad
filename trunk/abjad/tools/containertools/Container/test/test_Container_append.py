@@ -22,7 +22,7 @@ def test_Container_append_01():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n\t{\n\t\te'8\n\t\tf'8\n\t}\n}"
+    assert t.lilypond_format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n\t{\n\t\te'8\n\t\tf'8\n\t}\n}"
 
 
 def test_Container_append_02():
@@ -42,7 +42,7 @@ def test_Container_append_02():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\times 4/7 {\n\tc'8 [\n\td'8\n\te'8 ]\n\tf'16\n}"
+    assert t.lilypond_format == "\\times 4/7 {\n\tc'8 [\n\td'8\n\te'8 ]\n\tf'16\n}"
 
 
 def test_Container_append_03():
@@ -98,7 +98,7 @@ def test_Container_append_04():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8 ]\n\tf'8\n}"
+    assert t.lilypond_format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8 ]\n\tf'8\n}"
 
     "Container u is now ..."
 
@@ -111,7 +111,7 @@ def test_Container_append_04():
     '''
 
     assert componenttools.is_well_formed_component(u)
-    assert u.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8 ]\n}"
+    assert u.lilypond_format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8 ]\n}"
 
 
 def test_Container_append_05():
@@ -142,7 +142,7 @@ def test_Container_append_05():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Voice {\n\tc'8 [\n\te'8\n\tf'8 ]\n\td'8\n}"
+    assert t.lilypond_format == "\\new Voice {\n\tc'8 [\n\te'8\n\tf'8 ]\n\td'8\n}"
 
 
 def test_Container_append_06():

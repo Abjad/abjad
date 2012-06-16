@@ -22,7 +22,7 @@ def test_LilyPondParser__functions__relative_01():
     input = r"\relative c' { d f a g c b f d }"
     parser = LilyPondParser()
     result = parser(input)
-    assert target.format == result.format and target is not result
+    assert target.lilypond_format == result.lilypond_format and target is not result
 
 
 def test_LilyPondParser__functions__relative_02():
@@ -48,7 +48,7 @@ def test_LilyPondParser__functions__relative_02():
     input = r"\relative c'' { b c b d b e b a b g b f }"
     parser = LilyPondParser()
     result = parser(input)
-    assert target.format == result.format and target is not result
+    assert target.lilypond_format == result.lilypond_format and target is not result
 
 
 def test_LilyPondParser__functions__relative_03():
@@ -70,7 +70,7 @@ def test_LilyPondParser__functions__relative_03():
     input = r"\relative c'' { a a, c' f, g g'' a,, f' }"
     parser = LilyPondParser()
     result = parser(input)
-    assert target.format == result.format and target is not result
+    assert target.lilypond_format == result.lilypond_format and target is not result
 
 
 def test_LilyPondParser__functions__relative_04():
@@ -89,7 +89,7 @@ def test_LilyPondParser__functions__relative_04():
     input = r'''\relative c'' { <a c e>1 <f a c> <a c e> <f' a c> <b, e b,> }'''
     parser = LilyPondParser()
     result = parser(input)
-    assert target.format == result.format and target is not result
+    assert target.lilypond_format == result.lilypond_format and target is not result
 
 
 def test_LilyPondParser__functions__relative_05():
@@ -111,7 +111,7 @@ def test_LilyPondParser__functions__relative_05():
     input = r'''\relative c { c f b e a d g c }'''
     parser = LilyPondParser()
     result = parser(input)
-    assert target.format == result.format and target is not result
+    assert target.lilypond_format == result.lilypond_format and target is not result
 
 
 def test_LilyPondParser__functions__relative_06():
@@ -138,7 +138,7 @@ def test_LilyPondParser__functions__relative_06():
     input = r'''\relative c' { c d e f \relative c'' { c d e f } }'''
     parser = LilyPondParser()
     result = parser(input)
-    assert target.format == result.format and target is not result
+    assert target.lilypond_format == result.lilypond_format and target is not result
 
 
 def test_LilyPondParser__functions__relative_07():
@@ -167,7 +167,7 @@ def test_LilyPondParser__functions__relative_07():
     input = r'''\relative c' { d e \transpose f g { d e \relative c' { d e } } }'''
     parser = LilyPondParser()
     result = parser(input)
-    assert target.format == result.format and target is not result
+    assert target.lilypond_format == result.lilypond_format and target is not result
 
 
 def test_LilyPondParser__functions__relative_08():
@@ -189,7 +189,7 @@ def test_LilyPondParser__functions__relative_08():
     input = r'''\relative c' { c <c e g> <c' e g'> <c, e, g''> }'''
     parser = LilyPondParser()
     result = parser(input)
-    assert target.format == result.format and target is not result
+    assert target.lilypond_format == result.lilypond_format and target is not result
 
 
 def test_LilyPondParser__functions__relative_09():
@@ -213,4 +213,4 @@ def test_LilyPondParser__functions__relative_09():
     input = r'''\relative c'' { c2 fs c2 gf b2 ess b2 fff }'''
     parser = LilyPondParser()
     result = parser(input)
-    assert target.format == result.format and target is not result
+    assert target.lilypond_format == result.lilypond_format and target is not result

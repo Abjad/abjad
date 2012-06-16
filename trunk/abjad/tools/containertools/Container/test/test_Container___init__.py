@@ -13,7 +13,7 @@ def test_Container___init___01():
     '''
 
     assert isinstance(container, Container)
-    assert container.format == '{\n}'
+    assert container.lilypond_format == '{\n}'
 
 
 def test_Container___init___02():
@@ -31,7 +31,7 @@ def test_Container___init___02():
     '''
 
     assert isinstance(container, Container)
-    assert container.format == "{\n\tc'8\n\td'8\n\te'8\n}"
+    assert container.lilypond_format == "{\n\tc'8\n\td'8\n\te'8\n}"
 
 
 def test_Container___init___03():
@@ -60,7 +60,7 @@ def test_Container___init___03():
     '''
 
     assert isinstance(container, Container)
-    assert container.format == "{\n\t\\times 2/3 {\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n\t\\times 4/5 {\n\t\tc'4\n\t\t\\times 2/3 {\n\t\t\tc'16\n\t\t\tc'16\n\t\t\tc'16\n\t\t}\n\t\tc'4\n\t}\n}"
+    assert container.lilypond_format == "{\n\t\\times 2/3 {\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n\t\\times 4/5 {\n\t\tc'4\n\t\t\\times 2/3 {\n\t\t\tc'16\n\t\t\tc'16\n\t\t\tc'16\n\t\t}\n\t\tc'4\n\t}\n}"
 
 def test_Container___init___04():
     '''Init container with "reduced ly" syntax string.
@@ -79,4 +79,4 @@ def test_Container___init___04():
     '''
 
     assert isinstance(container, Container)
-    assert container.format == "{\n\t\\times 2/3 {\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n}"
+    assert container.lilypond_format == "{\n\t\\times 2/3 {\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n}"

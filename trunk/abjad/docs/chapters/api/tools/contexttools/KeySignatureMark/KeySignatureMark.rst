@@ -13,7 +13,7 @@ Read-only Properties
 
     Inherited from :py:class:`contexttools.ContextMark <abjad.tools.contexttools.ContextMark.ContextMark.ContextMark>`
 
-.. autoattribute:: abjad.tools.contexttools.KeySignatureMark.KeySignatureMark.KeySignatureMark.format
+.. autoattribute:: abjad.tools.contexttools.KeySignatureMark.KeySignatureMark.KeySignatureMark.lilypond_format
 
 .. autoattribute:: abjad.tools.contexttools.KeySignatureMark.KeySignatureMark.KeySignatureMark.name
 

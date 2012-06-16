@@ -14,4 +14,4 @@ def test_resttools_make_multi_measure_rests_01():
     }
     '''
 
-    staff.format == '\\new Staff {\n\tR2\n\tR2.\n\tR2..\n}'
+    staff.lilypond_format == '\\new Staff {\n\tR2\n\tR2.\n\tR2..\n}'

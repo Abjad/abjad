@@ -71,7 +71,7 @@ class StaffLinesSpanner(Spanner):
                     self.lines)
             else:
                 result.append(r"\override Staff.StaffSymbol #'line-positions = %s" % \
-                    schemetools.SchemeVector(*self.lines).format)
+                    schemetools.SchemeVector(*self.lines).lilypond_format)
             result.append(r'\startStaff')
         return result
 

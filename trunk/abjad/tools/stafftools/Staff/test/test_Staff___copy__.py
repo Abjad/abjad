@@ -33,4 +33,4 @@ def test_Staff___copy___01():
     }
     '''
 
-    assert staff_2.format == "\\new Staff \\with {\n\t\\override NoteHead #'color = #red\n\ttupletFullLength = ##t\n} {\n}"
+    assert staff_2.lilypond_format == "\\new Staff \\with {\n\t\\override NoteHead #'color = #red\n\ttupletFullLength = ##t\n} {\n}"

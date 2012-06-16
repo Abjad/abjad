@@ -11,6 +11,6 @@ def get_stem_tremolo_format_contributions(component):
 
     if marktools.is_component_with_stem_tremolo_attached(component):
         stem_tremolo = marktools.get_stem_tremolo_attached_to_component(component)
-        result.append(stem_tremolo.format)
+        result.append(stem_tremolo.lilypond_format)
 
     return ['stem tremolo', result]

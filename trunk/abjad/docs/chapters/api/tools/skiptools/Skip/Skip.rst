@@ -13,13 +13,13 @@ Read-only Properties
 
     Inherited from :py:class:`leaftools.Leaf <abjad.tools.leaftools.Leaf.Leaf.Leaf>`
 
-.. autoattribute:: abjad.tools.skiptools.Skip.Skip.Skip.format
-
-    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
-
 .. autoattribute:: abjad.tools.skiptools.Skip.Skip.Skip.leaf_index
 
     Inherited from :py:class:`leaftools.Leaf <abjad.tools.leaftools.Leaf.Leaf.Leaf>`
+
+.. autoattribute:: abjad.tools.skiptools.Skip.Skip.Skip.lilypond_format
+
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
 .. autoattribute:: abjad.tools.skiptools.Skip.Skip.Skip.multiplied_duration
 

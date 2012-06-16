@@ -17,4 +17,4 @@ def test_leaftools_make_leaves_from_note_value_signal_01():
     }
     '''
 
-    assert staff.format == "\\new Staff {\n\tc'4.\n\tr4.\n\tc'2 ~\n\tc'8\n\tr2\n\tr8\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\tc'4.\n\tr4.\n\tc'2 ~\n\tc'8\n\tr2\n\tr8\n}"

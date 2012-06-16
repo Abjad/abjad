@@ -11,7 +11,7 @@ def test_Chord___copy___01():
 
     assert isinstance(chord_1, Chord)
     assert isinstance(chord_2, Chord)
-    assert chord_1.format == chord_2.format
+    assert chord_1.lilypond_format == chord_2.lilypond_format
     assert chord_1 is not chord_2
 
 
@@ -24,7 +24,7 @@ def test_Chord___copy___02():
 
     assert isinstance(chord_1, Chord)
     assert isinstance(chord_2, Chord)
-    assert chord_1.format == chord_2.format
+    assert chord_1.lilypond_format == chord_2.lilypond_format
     assert chord_1 is not chord_2
 
 
@@ -40,7 +40,7 @@ def test_Chord___copy___03():
 
     assert isinstance(chord_1, Chord)
     assert isinstance(chord_2, Chord)
-    assert chord_1.format == chord_2.format
+    assert chord_1.lilypond_format == chord_2.lilypond_format
     assert chord_1 is not chord_2
 
 
@@ -56,7 +56,7 @@ def test_Chord___copy___04():
     assert chord_2[1]._client is chord_2
     assert chord_2[2]._client is chord_2
 
-    assert chord_1.format == chord_2.format
+    assert chord_1.lilypond_format == chord_2.lilypond_format
     assert chord_1 is not chord_2
 
     assert chord_1[0] == chord_2[0]
@@ -67,8 +67,8 @@ def test_Chord___copy___04():
     assert chord_1[1] is not chord_2[1]
     assert chord_1[2] is not chord_2[2]
 
-    assert chord_1.format == "<\n\t\\tweak #'color #red\n\tc'\n\te'\n\tg'\n>4"
-    assert chord_2.format == "<\n\t\\tweak #'color #red\n\tc'\n\te'\n\tg'\n>4"
+    assert chord_1.lilypond_format == "<\n\t\\tweak #'color #red\n\tc'\n\te'\n\tg'\n>4"
+    assert chord_2.lilypond_format == "<\n\t\\tweak #'color #red\n\tc'\n\te'\n\tg'\n>4"
 
 
 def test_Chord___copy___05():
@@ -81,7 +81,7 @@ def test_Chord___copy___05():
 
     chord_2 = copy.copy(chord_1)
 
-    assert chord_1.format == chord_2.format
+    assert chord_1.lilypond_format == chord_2.lilypond_format
     assert chord_1 is not chord_2
 
     articulation_2 = marktools.get_articulations_attached_to_component(chord_2)[0]

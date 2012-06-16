@@ -9,7 +9,7 @@ lilypondfiletools.AbjadRevisionToken
 Read-only Properties
 --------------------
 
-.. autoattribute:: abjad.tools.lilypondfiletools.AbjadRevisionToken.AbjadRevisionToken.AbjadRevisionToken.format
+.. autoattribute:: abjad.tools.lilypondfiletools.AbjadRevisionToken.AbjadRevisionToken.AbjadRevisionToken.lilypond_format
 
 .. autoattribute:: abjad.tools.lilypondfiletools.AbjadRevisionToken.AbjadRevisionToken.AbjadRevisionToken.storage_format
 

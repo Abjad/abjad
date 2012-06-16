@@ -45,10 +45,10 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert left.format == "\\times 2/3 {\n\tf'8 ]\n}"
-    assert right.format == "\\times 2/3 {\n\tg'8 [\n\ta'8 ]\n}"
-    assert tuplet.format == ''
-    assert t.format == "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t}\n\t\\times 2/3 {\n\t\tf'8 ]\n\t}\n\t\\times 2/3 {\n\t\tg'8 [\n\t\ta'8 ]\n\t}\n}"
+    assert left.lilypond_format == "\\times 2/3 {\n\tf'8 ]\n}"
+    assert right.lilypond_format == "\\times 2/3 {\n\tg'8 [\n\ta'8 ]\n}"
+    assert tuplet.lilypond_format == ''
+    assert t.lilypond_format == "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t}\n\t\\times 2/3 {\n\t\tf'8 ]\n\t}\n\t\\times 2/3 {\n\t\tg'8 [\n\t\ta'8 ]\n\t}\n}"
 
 
 def test_containertools_split_container_at_index_and_fracture_crossing_spanners_02():
@@ -99,10 +99,10 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert left.format == "{\n\t\\time 1/8\n\tf'8 ]\n}"
-    assert right.format == "{\n\t\\time 2/8\n\tg'8 [\n\ta'8 ]\n}"
-    assert py.test.raises(UnderfullContainerError, 'm.format')
-    assert t.format == "\\new Voice {\n\t{\n\t\t\\time 3/8\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t}\n\t{\n\t\t\\time 1/8\n\t\tf'8 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\tg'8 [\n\t\ta'8 ]\n\t}\n}"
+    assert left.lilypond_format == "{\n\t\\time 1/8\n\tf'8 ]\n}"
+    assert right.lilypond_format == "{\n\t\\time 2/8\n\tg'8 [\n\ta'8 ]\n}"
+    assert py.test.raises(UnderfullContainerError, 'm.lilypond_format')
+    assert t.lilypond_format == "\\new Voice {\n\t{\n\t\t\\time 3/8\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t}\n\t{\n\t\t\\time 1/8\n\t\tf'8 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\tg'8 [\n\t\ta'8 ]\n\t}\n}"
 
 
 def test_containertools_split_container_at_index_and_fracture_crossing_spanners_03():
@@ -163,10 +163,10 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert left.format == "{\n\t\\time 1/9\n\t\\scaleDurations #'(8 . 9) {\n\t\tf'8 ]\n\t}\n}"
-    assert right.format == "{\n\t\\time 2/9\n\t\\scaleDurations #'(8 . 9) {\n\t\tg'8 [\n\t\ta'8 ]\n\t}\n}"
-    assert py.test.raises(UnderfullContainerError, 'm.format')
-    assert t.format == "\\new Voice {\n\t{\n\t\t\\time 3/9\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\tc'8 [\n\t\t\td'8\n\t\t\te'8\n\t\t}\n\t}\n\t{\n\t\t\\time 1/9\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\tf'8 ]\n\t\t}\n\t}\n\t{\n\t\t\\time 2/9\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\tg'8 [\n\t\t\ta'8 ]\n\t\t}\n\t}\n}"
+    assert left.lilypond_format == "{\n\t\\time 1/9\n\t\\scaleDurations #'(8 . 9) {\n\t\tf'8 ]\n\t}\n}"
+    assert right.lilypond_format == "{\n\t\\time 2/9\n\t\\scaleDurations #'(8 . 9) {\n\t\tg'8 [\n\t\ta'8 ]\n\t}\n}"
+    assert py.test.raises(UnderfullContainerError, 'm.lilypond_format')
+    assert t.lilypond_format == "\\new Voice {\n\t{\n\t\t\\time 3/9\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\tc'8 [\n\t\t\td'8\n\t\t\te'8\n\t\t}\n\t}\n\t{\n\t\t\\time 1/9\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\tf'8 ]\n\t\t}\n\t}\n\t{\n\t\t\\time 2/9\n\t\t\\scaleDurations #'(8 . 9) {\n\t\t\tg'8 [\n\t\t\ta'8 ]\n\t\t}\n\t}\n}"
 
 
 def test_containertools_split_container_at_index_and_fracture_crossing_spanners_04():
@@ -201,9 +201,9 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
     }
     '''
 
-    assert left.format == "\\new Voice {\n\tc'8 [\n\td'8\n}"
-    assert right.format == "\\new Voice {\n\te'8\n\tf'8 ]\n}"
-    assert t.format == '\\new Voice {\n}'
+    assert left.lilypond_format == "\\new Voice {\n\tc'8 [\n\td'8\n}"
+    assert right.lilypond_format == "\\new Voice {\n\te'8\n\tf'8 ]\n}"
+    assert t.lilypond_format == '\\new Voice {\n}'
 
 
 def test_containertools_split_container_at_index_and_fracture_crossing_spanners_05():
@@ -239,10 +239,10 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
     }
     '''
 
-    assert left.format == '\\new Voice {\n}'
-    assert right.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
-    assert v.format == '\\new Voice {\n}'
-    assert t.format == "\\new Staff {\n\t\\new Voice {\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
+    assert left.lilypond_format == '\\new Voice {\n}'
+    assert right.lilypond_format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
+    assert v.lilypond_format == '\\new Voice {\n}'
+    assert t.lilypond_format == "\\new Staff {\n\t\\new Voice {\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
 
 
 def test_containertools_split_container_at_index_and_fracture_crossing_spanners_06():
@@ -268,10 +268,10 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
     }
     '''
 
-    assert left.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
-    assert right.format == '\\new Voice {\n}'
-    assert v.format == '\\new Voice {\n}'
-    assert t.format == "\\new Staff {\n\t\\new Voice {\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
+    assert left.lilypond_format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
+    assert right.lilypond_format == '\\new Voice {\n}'
+    assert v.lilypond_format == '\\new Voice {\n}'
+    assert t.lilypond_format == "\\new Staff {\n\t\\new Voice {\n\t\tc'8 [\n\t\td'8\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
 
 
 def test_containertools_split_container_at_index_and_fracture_crossing_spanners_07():
@@ -321,7 +321,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 1/8\n\t\tc'8 [ ] (\n\t}\n\t{\n\t\t\\time 1/8\n\t\td'8 [ ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
+    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 1/8\n\t\tc'8 [ ] (\n\t}\n\t{\n\t\t\\time 1/8\n\t\td'8 [ ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
 def test_containertools_split_container_at_index_and_fracture_crossing_spanners_08():
@@ -372,7 +372,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
     assert componenttools.is_well_formed_component(t)
     assert left is None
     assert right is leaf
-    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 ( ) [\n\t\td'8 ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
+    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 ( ) [\n\t\td'8 ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
 def test_containertools_split_container_at_index_and_fracture_crossing_spanners_09():
@@ -422,7 +422,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
     assert componenttools.is_well_formed_component(t)
     assert left is leaf
     assert right is None
-    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'8 ] )\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [ (\n\t\tf'8 ] )\n\t}\n}"
+    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'8 ] )\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [ (\n\t\tf'8 ] )\n\t}\n}"
 
 
 def test_containertools_split_container_at_index_and_fracture_crossing_spanners_10():
@@ -470,7 +470,7 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
 
     assert componenttools.is_well_formed_component(t)
     assert len(halves) == 2
-    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 3/24\n\t\t\\scaleDurations #'(2 . 3) {\n\t\t\tc'8. [ ] (\n\t\t}\n\t}\n\t{\n\t\t\\time 3/24\n\t\t\\scaleDurations #'(2 . 3) {\n\t\t\td'8. [ ] )\n\t\t}\n\t}\n}"
+    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 3/24\n\t\t\\scaleDurations #'(2 . 3) {\n\t\t\tc'8. [ ] (\n\t\t}\n\t}\n\t{\n\t\t\\time 3/24\n\t\t\\scaleDurations #'(2 . 3) {\n\t\t\td'8. [ ] )\n\t\t}\n\t}\n}"
 
 
 def test_containertools_split_container_at_index_and_fracture_crossing_spanners_11():
@@ -512,4 +512,4 @@ def test_containertools_split_container_at_index_and_fracture_crossing_spanners_
 
     assert componenttools.is_well_formed_component(t)
     assert len(halves) == 2
-    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 3/16\n\t\tc'8. [ ] (\n\t}\n\t{\n\t\t\\time 3/16\n\t\td'8. [ ] )\n\t}\n}"
+    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 3/16\n\t\tc'8. [ ] (\n\t}\n\t{\n\t\t\\time 3/16\n\t\td'8. [ ] )\n\t}\n}"

@@ -22,7 +22,7 @@ def test_componenttools_extend_in_parent_of_component_and_do_not_grow_spanners_0
 
     assert componenttools.is_well_formed_component(t)
     assert result == t[-4:]
-    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8 ]\n\tc'8\n\td'8\n\te'8\n}"
+    assert t.lilypond_format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8 ]\n\tc'8\n\td'8\n\te'8\n}"
 
 
 def test_componenttools_extend_in_parent_of_component_and_do_not_grow_spanners_02():
@@ -43,5 +43,5 @@ def test_componenttools_extend_in_parent_of_component_and_do_not_grow_spanners_0
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8\n\tdqs'8\n\te'8 ]\n}"
+    assert t.lilypond_format == "\\new Voice {\n\tc'8 [\n\td'8\n\tdqs'8\n\te'8 ]\n}"
     assert result == t[1:3]

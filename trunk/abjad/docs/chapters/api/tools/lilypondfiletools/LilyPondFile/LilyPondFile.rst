@@ -9,7 +9,7 @@ lilypondfiletools.LilyPondFile
 Read-only Properties
 --------------------
 
-.. autoattribute:: abjad.tools.lilypondfiletools.LilyPondFile.LilyPondFile.LilyPondFile.format
+.. autoattribute:: abjad.tools.lilypondfiletools.LilyPondFile.LilyPondFile.LilyPondFile.lilypond_format
 
 Read/write Properties
 ---------------------

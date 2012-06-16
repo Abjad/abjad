@@ -26,4 +26,4 @@ def test_Container___copy___01():
     '''
 
     assert container_1 is not container_2
-    assert container_2.format == '<<\n>>'
+    assert container_2.lilypond_format == '<<\n>>'

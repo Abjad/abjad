@@ -68,7 +68,7 @@ def test_Skip___init___06():
     # check that attributes have not been removed or added.
     assert dir(n) == dir(Note("c'4"))
     assert dir(s) == dir(skiptools.Skip((1, 4)))
-    assert s.format == 's8'
+    assert s.lilypond_format == 's8'
     assert s._parent is None
     assert s.written_duration == d
 

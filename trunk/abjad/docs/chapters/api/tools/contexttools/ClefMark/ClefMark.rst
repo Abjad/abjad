@@ -13,7 +13,7 @@ Read-only Properties
 
     Inherited from :py:class:`contexttools.ContextMark <abjad.tools.contexttools.ContextMark.ContextMark.ContextMark>`
 
-.. autoattribute:: abjad.tools.contexttools.ClefMark.ClefMark.ClefMark.format
+.. autoattribute:: abjad.tools.contexttools.ClefMark.ClefMark.ClefMark.lilypond_format
 
 .. autoattribute:: abjad.tools.contexttools.ClefMark.ClefMark.ClefMark.middle_c_position
 

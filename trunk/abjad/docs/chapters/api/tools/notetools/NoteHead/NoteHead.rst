@@ -9,7 +9,7 @@ notetools.NoteHead
 Read-only Properties
 --------------------
 
-.. autoattribute:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead.format
+.. autoattribute:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead.lilypond_format
 
 .. autoattribute:: abjad.tools.notetools.NoteHead.NoteHead.NoteHead.named_chromatic_pitch
 

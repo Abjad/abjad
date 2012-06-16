@@ -14,7 +14,7 @@ def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_
     }
     '''
 
-    assert new.format == "{\n\tc'8\n\td'16\n}"
+    assert new.lilypond_format == "{\n\tc'8\n\td'16\n}"
 
 
 def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to002():
@@ -32,7 +32,7 @@ def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to0
     }
     '''
 
-    assert new.format == "{\n\tc'8\n\tr16\n}"
+    assert new.lilypond_format == "{\n\tc'8\n\tr16\n}"
 
 
 def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_03():
@@ -50,7 +50,7 @@ def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_
     }
     '''
 
-    assert new.format == "{\n\t\\time 3/16\n\tc'8\n\td'16\n}"
+    assert new.lilypond_format == "{\n\t\\time 3/16\n\tc'8\n\td'16\n}"
 
 
 def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_04():
@@ -66,7 +66,7 @@ def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_
     }
     '''
 
-    assert new.format == "\\times 2/3 {\n\tc'8\n\td'16\n}"
+    assert new.lilypond_format == "\\times 2/3 {\n\tc'8\n\td'16\n}"
 
 
 def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_05():
@@ -82,7 +82,7 @@ def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_
     }
     '''
 
-    assert new.format == "\\times 2/3 {\n\tc'8\n\td'16\n}"
+    assert new.lilypond_format == "\\times 2/3 {\n\tc'8\n\td'16\n}"
 
 
 def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_06():
@@ -98,7 +98,7 @@ def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_
     }
     '''
 
-    assert new.format == "\\new Voice {\n\tc'8\n\td'16\n}"
+    assert new.lilypond_format == "\\new Voice {\n\tc'8\n\td'16\n}"
 
 
 def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_07():
@@ -114,7 +114,7 @@ def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_
     }
     '''
 
-    assert new.format == "\\new Staff {\n\tc'8\n\td'16\n}"
+    assert new.lilypond_format == "\\new Staff {\n\tc'8\n\td'16\n}"
 
 
 # Anatomy of the tests:
@@ -131,7 +131,7 @@ def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_
 
     t = Note("c'4")
     new = componenttools.copy_governed_component_subtree_from_prolated_offset_to(t, 0, (1, 8))
-    assert new.format == "c'8"
+    assert new.lilypond_format == "c'8"
 
 
 def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_09():
@@ -147,7 +147,7 @@ def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_
     }
     '''
 
-    assert parent.format == "\\times 2/3 {\n\tc'8\n}"
+    assert parent.lilypond_format == "\\times 2/3 {\n\tc'8\n}"
 
 
 def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_10():
@@ -163,7 +163,7 @@ def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_
     }
     '''
 
-    assert parent.format == "\\times 2/3 {\n\tc'8\n}"
+    assert parent.lilypond_format == "\\times 2/3 {\n\tc'8\n}"
 
 
 def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_11():
@@ -179,14 +179,14 @@ def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_
     }
     '''
 
-    assert parent.format == "\\times 2/3 {\n\tc'8\n}"
+    assert parent.lilypond_format == "\\times 2/3 {\n\tc'8\n}"
 
 
 def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_12():
     '''Start-to-after clean cut.'''
     t = Note("c'4")
     new = componenttools.copy_governed_component_subtree_from_prolated_offset_to(t, 0, (1, 2))
-    assert new.format == "c'4"
+    assert new.lilypond_format == "c'4"
 
 
 def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_13():
@@ -194,7 +194,7 @@ def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_
 
     t = Note("c'4")
     new = componenttools.copy_governed_component_subtree_from_prolated_offset_to(t, (1, 8), (1, 2))
-    assert new.format == "c'8"
+    assert new.lilypond_format == "c'8"
 
 
 def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_14():
@@ -210,7 +210,7 @@ def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_
     }
     '''
 
-    assert parent.format == "\\times 2/3 {\n\tc'8\n}"
+    assert parent.lilypond_format == "\\times 2/3 {\n\tc'8\n}"
 
 
 def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_15():
@@ -218,7 +218,7 @@ def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_
 
     t = Note("c'4")
     new = componenttools.copy_governed_component_subtree_from_prolated_offset_to(t, (-1, 4), (1, 2))
-    assert new.format == "c'4"
+    assert new.lilypond_format == "c'4"
 
 
 def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_16():
@@ -235,7 +235,7 @@ def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_
     }
     '''
 
-    assert parent.format == "\\times 2/3 {\n\tc'4 ~\n\tc'16\n}"
+    assert parent.lilypond_format == "\\times 2/3 {\n\tc'4 ~\n\tc'16\n}"
 
 
 def test_componenttools_copy_governed_component_subtree_from_prolated_offset_to_17():

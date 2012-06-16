@@ -9,4 +9,4 @@ def test_MIDIBlock_01():
     \midi {}
     '''
 
-    assert MIDI_block.format == '\\midi {}'
+    assert MIDI_block.lilypond_format == '\\midi {}'

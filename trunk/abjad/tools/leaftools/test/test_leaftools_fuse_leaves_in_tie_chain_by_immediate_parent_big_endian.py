@@ -42,7 +42,7 @@ def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_big_endian_01():
 
     assert componenttools.is_well_formed_component(t)
     assert len(result) == 2
-    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'4 ~\n\t}\n\t{\n\t\t\\time 2/8\n\t\tc'4\n\t}\n}"
+    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'4 ~\n\t}\n\t{\n\t\t\\time 2/8\n\t\tc'4\n\t}\n}"
 
 
 def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_big_endian_02():
@@ -66,7 +66,7 @@ def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_big_endian_02():
 
     assert componenttools.is_well_formed_component(t)
     assert len(result) == 1
-    assert t.format == "\\new Staff {\n\tc'2\n}"
+    assert t.lilypond_format == "\\new Staff {\n\tc'2\n}"
 
 
 def test_leaftools_fuse_leaves_in_tie_chain_by_immediate_parent_big_endian_03():

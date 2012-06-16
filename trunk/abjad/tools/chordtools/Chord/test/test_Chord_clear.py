@@ -7,4 +7,4 @@ def test_Chord_clear_01():
     chord.clear()
 
     assert len(chord) == 0
-    assert chord.format == '<>4'
+    assert chord.lilypond_format == '<>4'

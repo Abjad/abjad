@@ -28,7 +28,7 @@ def test_tietools_apply_tie_spanner_to_leaf_pair_01():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Voice {\n\tc'8 ~\n\tc'8 ~\n\tc'8\n\tc'8\n}"
+    assert t.lilypond_format == "\\new Voice {\n\tc'8 ~\n\tc'8 ~\n\tc'8\n\tc'8\n}"
 
 
 def test_tietools_apply_tie_spanner_to_leaf_pair_02():
@@ -59,7 +59,7 @@ def test_tietools_apply_tie_spanner_to_leaf_pair_02():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Voice {\n\tc'8 ~\n\tc'8 ~\n\tc'8 ~\n\tc'8\n}"
+    assert t.lilypond_format == "\\new Voice {\n\tc'8 ~\n\tc'8 ~\n\tc'8 ~\n\tc'8\n}"
 
 
 def test_tietools_apply_tie_spanner_to_leaf_pair_03():
@@ -88,4 +88,4 @@ def test_tietools_apply_tie_spanner_to_leaf_pair_03():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Voice {\n\tc'8\n\tc'8 ~\n\tc'8\n\tc'8\n}"
+    assert t.lilypond_format == "\\new Voice {\n\tc'8\n\tc'8 ~\n\tc'8\n\tc'8\n}"

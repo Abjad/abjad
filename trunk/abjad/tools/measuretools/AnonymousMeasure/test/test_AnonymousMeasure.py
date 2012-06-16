@@ -22,7 +22,7 @@ def test_AnonymousMeasure_01():
 
     assert contexttools.get_effective_time_signature(t) == contexttools.TimeSignatureMark((1, 2))
 
-    assert t.format == "{\n\t\\override Staff.TimeSignature #'stencil = ##f\n\t\\time 1/2\n\tc'8\n\td'8\n\te'8\n\tf'8\n\t\\revert Staff.TimeSignature #'stencil\n}"
+    assert t.lilypond_format == "{\n\t\\override Staff.TimeSignature #'stencil = ##f\n\t\\time 1/2\n\tc'8\n\td'8\n\te'8\n\tf'8\n\t\\revert Staff.TimeSignature #'stencil\n}"
 
 
 def test_AnonymousMeasure_02():
@@ -43,6 +43,6 @@ def test_AnonymousMeasure_02():
     }
     '''
 
-    assert t.format == "{\n\t\\override Staff.TimeSignature #'stencil = ##f\n\t\\time 3/8\n\tc'8\n\td'8\n\te'8\n\t\\revert Staff.TimeSignature #'stencil\n}"
+    assert t.lilypond_format == "{\n\t\\override Staff.TimeSignature #'stencil = ##f\n\t\\time 3/8\n\tc'8\n\td'8\n\te'8\n\t\\revert Staff.TimeSignature #'stencil\n}"
 
     assert contexttools.get_effective_time_signature(t) == contexttools.TimeSignatureMark((3, 8))

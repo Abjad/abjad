@@ -112,11 +112,11 @@ class Articulation(_DirectedMark):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def format(self):
+    def lilypond_format(self):
         '''Read-only LilyPond format string of articulation::
 
             >>> articulation = marktools.Articulation('marcato', 'up')
-            >>> articulation.format
+            >>> articulation.lilypond_format
             '^\\marcato'
 
         Return string.

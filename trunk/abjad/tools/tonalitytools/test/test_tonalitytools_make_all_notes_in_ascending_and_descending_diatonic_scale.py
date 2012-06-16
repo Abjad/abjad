@@ -32,4 +32,4 @@ def test_tonalitytools_make_all_notes_in_ascending_and_descending_diatonic_scale
     >>
     '''
 
-    assert score.format == "\\new Score \\with {\n\ttempoWholesPerMinute = #(ly:make-moment 30 1)\n} <<\n\t\\new Staff {\n\t\t\\key e \\major\n\t\te'8\n\t\tfs'8\n\t\tgs'8\n\t\ta'8\n\t\tb'8\n\t\tcs''8\n\t\tds''8\n\t\te''8\n\t\tds''8\n\t\tcs''8\n\t\tb'8\n\t\ta'8\n\t\tgs'8\n\t\tfs'8\n\t\te'4\n\t}\n>>"
+    assert score.lilypond_format == "\\new Score \\with {\n\ttempoWholesPerMinute = #(ly:make-moment 30 1)\n} <<\n\t\\new Staff {\n\t\t\\key e \\major\n\t\te'8\n\t\tfs'8\n\t\tgs'8\n\t\ta'8\n\t\tb'8\n\t\tcs''8\n\t\tds''8\n\t\te''8\n\t\tds''8\n\t\tcs''8\n\t\tb'8\n\t\ta'8\n\t\tgs'8\n\t\tfs'8\n\t\te'4\n\t}\n>>"

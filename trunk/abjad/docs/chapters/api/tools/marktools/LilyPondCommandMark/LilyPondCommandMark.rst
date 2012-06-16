@@ -9,7 +9,7 @@ marktools.LilyPondCommandMark
 Read-only Properties
 --------------------
 
-.. autoattribute:: abjad.tools.marktools.LilyPondCommandMark.LilyPondCommandMark.LilyPondCommandMark.format
+.. autoattribute:: abjad.tools.marktools.LilyPondCommandMark.LilyPondCommandMark.LilyPondCommandMark.lilypond_format
 
 .. autoattribute:: abjad.tools.marktools.LilyPondCommandMark.LilyPondCommandMark.LilyPondCommandMark.start_component
 

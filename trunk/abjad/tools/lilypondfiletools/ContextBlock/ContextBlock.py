@@ -35,6 +35,8 @@ class ContextBlock(AttributedBlock):
     Return context block.
     '''
 
+    ### INITIALIZER ###
+
     def __init__(self, context_name=None):
         AttributedBlock.__init__(self)
         self._accepts = []

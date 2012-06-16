@@ -11,5 +11,5 @@ def get_lilypond_command_mark_format_contributions(component, slot):
     comment_marks = marktools.get_lilypond_command_marks_attached_to_component(component)
     for comment_mark in comment_marks:
         if comment_mark._format_slot == slot:
-            result.append(comment_mark.format)
+            result.append(comment_mark.lilypond_format)
     return ['lilypond command marks', result]

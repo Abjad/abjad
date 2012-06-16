@@ -18,4 +18,4 @@ def test_Measure___setitem___02():
     measure[:2] = 'r8'
 
     assert not measure.is_underfull
-    assert measure.format == "{\n\t\\time 3/8\n\tr8\n\te'4\n}"
+    assert measure.lilypond_format == "{\n\t\\time 3/8\n\tr8\n\te'4\n}"

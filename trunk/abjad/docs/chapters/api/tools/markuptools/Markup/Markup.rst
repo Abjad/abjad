@@ -11,7 +11,7 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.markuptools.Markup.Markup.Markup.contents
 
-.. autoattribute:: abjad.tools.markuptools.Markup.Markup.Markup.format
+.. autoattribute:: abjad.tools.markuptools.Markup.Markup.Markup.lilypond_format
 
 .. autoattribute:: abjad.tools.markuptools.Markup.Markup.Markup.markup_name
 

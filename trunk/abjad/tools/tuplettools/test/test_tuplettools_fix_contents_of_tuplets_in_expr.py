@@ -27,7 +27,7 @@ def test_tuplettools_fix_contents_of_tuplets_in_expr_01():
 
     assert componenttools.is_well_formed_component(t)
     assert tuplettools.is_proper_tuplet_multiplier(t.multiplier)
-    assert t.format == "\\times 2/3 {\n\tc'8\n\td'8\n\te'8\n}"
+    assert t.lilypond_format == "\\times 2/3 {\n\tc'8\n\td'8\n\te'8\n}"
 
 
 def test_tuplettools_fix_contents_of_tuplets_in_expr_02():
@@ -56,7 +56,7 @@ def test_tuplettools_fix_contents_of_tuplets_in_expr_02():
 
     assert componenttools.is_well_formed_component(t)
     assert tuplettools.is_proper_tuplet_multiplier(t.multiplier)
-    assert t.format == "\\fraction \\times 4/3 {\n\tc'16\n\td'16\n\te'16\n}"
+    assert t.lilypond_format == "\\fraction \\times 4/3 {\n\tc'16\n\td'16\n\te'16\n}"
 
 
 def test_tuplettools_fix_contents_of_tuplets_in_expr_03():
@@ -85,4 +85,4 @@ def test_tuplettools_fix_contents_of_tuplets_in_expr_03():
 
     assert componenttools.is_well_formed_component(t)
     assert tuplettools.is_proper_tuplet_multiplier(t.multiplier)
-    assert t.format == "\\fraction \\times 5/6 {\n\tc'8\n\td'8\n\te'8\n}"
+    assert t.lilypond_format == "\\fraction \\times 5/6 {\n\tc'8\n\td'8\n\te'8\n}"

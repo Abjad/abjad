@@ -9,4 +9,4 @@ def test_BookpartBlock_01():
     \bookpart {}
     '''
 
-    assert bookpart_block.format == '\\bookpart {}'
+    assert bookpart_block.lilypond_format == '\\bookpart {}'

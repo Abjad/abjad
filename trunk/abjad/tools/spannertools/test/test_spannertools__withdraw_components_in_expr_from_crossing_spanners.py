@@ -84,7 +84,7 @@ def test_spannertools__withdraw_components_in_expr_from_crossing_spanners_02():
     assert len(spanners) == 1
     assert beam in spanners
 
-    assert t.format == "\\new Voice {\n\t{\n\t\tc'8 [\n\t\td'8 ]\n\t}\n\t{\n\t\te'8 ( \\startTrillSpan\n\t\tf'8 ) \\stopTrillSpan\n\t}\n}"
+    assert t.lilypond_format == "\\new Voice {\n\t{\n\t\tc'8 [\n\t\td'8 ]\n\t}\n\t{\n\t\te'8 ( \\startTrillSpan\n\t\tf'8 ) \\stopTrillSpan\n\t}\n}"
 
 
 def test_spannertools__withdraw_components_in_expr_from_crossing_spanners_03():

@@ -16,7 +16,7 @@ def _format_note_head(note_head):
                     _format_lilypond_value(value)))
 
     # format note head pitch
-    result.append(note_head.written_pitch.format)
+    result.append(note_head.written_pitch.lilypond_format)
     result = '\n'.join(result)
 
     # return formatted note head

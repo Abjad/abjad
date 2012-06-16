@@ -33,4 +33,4 @@ def test_containertools_replace_larger_right_half_of_elements_in_container_with_
     '''
 
     assert componenttools.is_well_formed_component(staff)
-    assert staff.format == "\\new Staff {\n\tc'8\n\td'8\n\te'8\n\tf'8\n\tr8\n\tr2\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\tc'8\n\td'8\n\te'8\n\tf'8\n\tr8\n\tr2\n}"

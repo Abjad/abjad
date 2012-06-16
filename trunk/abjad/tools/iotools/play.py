@@ -31,7 +31,7 @@ def play(expr):
     outfile = open(name, 'w')
     lilypond_file = _insert_expr_into_lilypond_file(expr)
     lilypond_file.score_block.append(lilypondfiletools.MIDIBlock())
-    outfile.write(lilypond_file.format)
+    outfile.write(lilypond_file.lilypond_format)
     outfile.close()
     _run_lilypond(name, configurationtools.read_abjad_user_config_file('lilypond_path'))
     if os.name == 'nt':

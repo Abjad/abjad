@@ -17,8 +17,6 @@ Read-only Properties
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
 
-.. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.format
-
 .. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.is_binary
 
 .. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.is_full
@@ -34,6 +32,8 @@ Read-only Properties
 .. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.leaves
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
+
+.. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.lilypond_format
 
 .. autoattribute:: abjad.tools.measuretools.Measure.Measure.Measure.measure_number
 

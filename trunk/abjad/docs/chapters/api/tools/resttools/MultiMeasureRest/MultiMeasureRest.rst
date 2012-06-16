@@ -13,13 +13,13 @@ Read-only Properties
 
     Inherited from :py:class:`leaftools.Leaf <abjad.tools.leaftools.Leaf.Leaf.Leaf>`
 
-.. autoattribute:: abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.format
-
-    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
-
 .. autoattribute:: abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.leaf_index
 
     Inherited from :py:class:`leaftools.Leaf <abjad.tools.leaftools.Leaf.Leaf.Leaf>`
+
+.. autoattribute:: abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.lilypond_format
+
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
 .. autoattribute:: abjad.tools.resttools.MultiMeasureRest.MultiMeasureRest.MultiMeasureRest.multiplied_duration
 

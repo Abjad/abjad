@@ -28,8 +28,8 @@ def test_Tuplet___cmp___02():
     tuplet_1 = Tuplet(Fraction(2, 3), "c'8 d'8 e'8")
     tuplet_2 = Tuplet(Fraction(2, 3), "c'8 d'8 e'8")
 
-    assert      tuplet_1.format == tuplet_2.format
-    assert not tuplet_1.format != tuplet_2.format
+    assert      tuplet_1.lilypond_format == tuplet_2.lilypond_format
+    assert not tuplet_1.lilypond_format != tuplet_2.lilypond_format
 
     comparison_string = 'tuplet_1 <  tuplet_2'
     assert py.test.raises(NotImplementedError, comparison_string)

@@ -17,7 +17,7 @@ def test_leaftools_fuse_leaves_in_container_once_by_counts_into_big_endian_notes
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Voice {\n\tc'16 (\n\tc'8\n\tc'8 )\n}"
+    assert t.lilypond_format == "\\new Voice {\n\tc'16 (\n\tc'8\n\tc'8 )\n}"
 
 
 def test_leaftools_fuse_leaves_in_container_once_by_counts_into_big_endian_notes_02():
@@ -35,4 +35,4 @@ def test_leaftools_fuse_leaves_in_container_once_by_counts_into_big_endian_notes
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Voice {\n\tc'2 ( ~\n\tc'8 )\n}"
+    assert t.lilypond_format == "\\new Voice {\n\tc'2 ( ~\n\tc'8 )\n}"

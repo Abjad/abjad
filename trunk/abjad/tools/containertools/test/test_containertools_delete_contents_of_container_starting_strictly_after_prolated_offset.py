@@ -15,7 +15,7 @@ def test_containertools_delete_contents_of_container_starting_strictly_after_pro
     '''
 
     assert componenttools.is_well_formed_component(staff)
-    assert staff.format == "\\new Staff {\n\tc'8 [\n\td'8 ]\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\tc'8 [\n\td'8 ]\n}"
 
 
 def test_containertools_delete_contents_of_container_starting_strictly_after_prolated_offset_02():
@@ -32,7 +32,7 @@ def test_containertools_delete_contents_of_container_starting_strictly_after_pro
     '''
 
     assert componenttools.is_well_formed_component(staff)
-    assert staff.format == "\\new Staff {\n\tc'8 [\n\td'8 ]\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\tc'8 [\n\td'8 ]\n}"
 
 
 def test_containertools_delete_contents_of_container_starting_strictly_after_prolated_offset_03():
@@ -52,7 +52,7 @@ def test_containertools_delete_contents_of_container_starting_strictly_after_pro
     '''
 
     assert componenttools.is_well_formed_component(staff)
-    assert staff.format == "\\new Staff {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\tc'8 [\n\td'8\n\te'8\n\tf'8 ]\n}"
 
 
 def test_containertools_delete_contents_of_container_starting_strictly_after_prolated_offset_04():
@@ -68,4 +68,4 @@ def test_containertools_delete_contents_of_container_starting_strictly_after_pro
     '''
 
     assert componenttools.is_well_formed_component(staff)
-    assert staff.format == '\\new Staff {\n}'
+    assert staff.lilypond_format == '\\new Staff {\n}'

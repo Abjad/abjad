@@ -26,7 +26,7 @@ class ScoreBlock(NonattributedBlock):
     parser error in LilyPond::
 
         >>> score_block = lilypondfiletools.ScoreBlock()
-        >>> score_block.format == ''
+        >>> score_block.lilypond_format == ''
         True
 
     Return score block.

@@ -30,4 +30,4 @@ def test_ComplexBeamSpanner___init___02():
     }
     '''
 
-    assert staff.format == "\\new Staff {\n\t\\set stemLeftBeamCount = #0\n\t\\set stemRightBeamCount = #2\n\tc'16 [\n\t\\set stemLeftBeamCount = #2\n\t\\set stemRightBeamCount = #2\n\te'16 ]\n\tr16\n\t\\set stemLeftBeamCount = #2\n\t\\set stemRightBeamCount = #0\n\tf'16 [ ]\n\tg'2\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\t\\set stemLeftBeamCount = #0\n\t\\set stemRightBeamCount = #2\n\tc'16 [\n\t\\set stemLeftBeamCount = #2\n\t\\set stemRightBeamCount = #2\n\te'16 ]\n\tr16\n\t\\set stemLeftBeamCount = #2\n\t\\set stemRightBeamCount = #0\n\tf'16 [ ]\n\tg'2\n}"

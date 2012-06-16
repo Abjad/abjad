@@ -25,4 +25,4 @@ def test_Chord_extend_01():
     >4
     '''
 
-    chord.format == "<\n\tef'\n\t\\tweak #'color #blue\n\tcs''\n\t\\tweak #'color #green\n\tf''\n>4"
+    chord.lilypond_format == "<\n\tef'\n\t\\tweak #'color #blue\n\tcs''\n\t\\tweak #'color #green\n\tf''\n>4"

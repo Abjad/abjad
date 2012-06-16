@@ -9,7 +9,7 @@ schemetools.SchemeVector
 Read-only Properties
 --------------------
 
-.. autoattribute:: abjad.tools.schemetools.SchemeVector.SchemeVector.SchemeVector.format
+.. autoattribute:: abjad.tools.schemetools.SchemeVector.SchemeVector.SchemeVector.lilypond_format
 
     Inherited from :py:class:`schemetools.Scheme <abjad.tools.schemetools.Scheme.Scheme.Scheme>`
 

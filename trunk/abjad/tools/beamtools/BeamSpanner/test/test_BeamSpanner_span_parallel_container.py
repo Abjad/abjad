@@ -12,7 +12,7 @@ def test_BeamSpanner_span_parallel_container_01():
     assert len(p.components) == 1
     assert p.components[0] is t
     assert len(p.leaves) == 0
-    assert t.format == '<<\n>>'
+    assert t.lilypond_format == '<<\n>>'
 
 
 def test_BeamSpanner_span_parallel_container_02():
@@ -27,7 +27,7 @@ def test_BeamSpanner_span_parallel_container_02():
 #   assert len(p.components) == 1
 #   assert p.components[0] is t
 #   assert len(p.leaves) == 0
-#   assert t.format == "<<\n\t{\n\t\tc'8\n\t\tcs'8\n\t\td'8\n\t\tef'8\n\t}\n\t{\n\t\te'8\n\t\tf'8\n\t\tfs'8\n\t\tg'8\n\t}\n>>"
+#   assert t.lilypond_format == "<<\n\t{\n\t\tc'8\n\t\tcs'8\n\t\td'8\n\t\tef'8\n\t}\n\t{\n\t\te'8\n\t\tf'8\n\t\tfs'8\n\t\tg'8\n\t}\n>>"
 #
 #   r'''<<
 #      {
@@ -56,7 +56,7 @@ def test_BeamSpanner_span_parallel_container_03():
 
     assert len(p.components) == 1
     assert isinstance(p.components[0], Container)
-    assert t.format == "<<\n\t\\new Voice {\n\t\tc'8 [\n\t\tcs'8\n\t\td'8\n\t\tef'8 ]\n\t}\n\t\\new Voice {\n\t\te'8\n\t\tf'8\n\t\tfs'8\n\t\tg'8\n\t}\n>>"
+    assert t.lilypond_format == "<<\n\t\\new Voice {\n\t\tc'8 [\n\t\tcs'8\n\t\td'8\n\t\tef'8 ]\n\t}\n\t\\new Voice {\n\t\te'8\n\t\tf'8\n\t\tfs'8\n\t\tg'8\n\t}\n>>"
 
     r'''
     <<
@@ -100,7 +100,7 @@ def test_BeamSpanner_span_parallel_container_05():
 
     assert len(p.components) == 1
     assert len(p.leaves) == 4
-    assert t.format == "\\new Staff {\n\tc'8 [\n\tcs'8\n\t<<\n\t>>\n\td'8\n\tef'8 ]\n}"
+    assert t.lilypond_format == "\\new Staff {\n\tc'8 [\n\tcs'8\n\t<<\n\t>>\n\td'8\n\tef'8 ]\n}"
 
     r'''
     \new Staff {
@@ -133,7 +133,7 @@ def test_BeamSpanner_span_parallel_container_06():
     assert p.components[1] is t[1][0]
     assert p.components[2] is t[2]
     assert len(p.leaves) == 12
-    assert t.format == '\\new Staff {\n\t\\context Voice = "foo" {\n\t\tc\'8 [\n\t\tcs\'8\n\t\td\'8\n\t\tef\'8\n\t}\n\t<<\n\t\t\\context Voice = "foo" {\n\t\t\te\'8\n\t\t\tf\'8\n\t\t\tfs\'8\n\t\t\tg\'8\n\t\t}\n\t\t\\context Voice = "bar" {\n\t\t\taf\'8\n\t\t\ta\'8\n\t\t\tbf\'8\n\t\t\tb\'8\n\t\t}\n\t>>\n\t\\context Voice = "foo" {\n\t\tc\'\'8\n\t\tcs\'\'8\n\t\td\'\'8\n\t\tef\'\'8 ]\n\t}\n}'
+    assert t.lilypond_format == '\\new Staff {\n\t\\context Voice = "foo" {\n\t\tc\'8 [\n\t\tcs\'8\n\t\td\'8\n\t\tef\'8\n\t}\n\t<<\n\t\t\\context Voice = "foo" {\n\t\t\te\'8\n\t\t\tf\'8\n\t\t\tfs\'8\n\t\t\tg\'8\n\t\t}\n\t\t\\context Voice = "bar" {\n\t\t\taf\'8\n\t\t\ta\'8\n\t\t\tbf\'8\n\t\t\tb\'8\n\t\t}\n\t>>\n\t\\context Voice = "foo" {\n\t\tc\'\'8\n\t\tcs\'\'8\n\t\td\'\'8\n\t\tef\'\'8 ]\n\t}\n}'
 
     r'''
     \new Staff {

@@ -17,13 +17,13 @@ Read-only Properties
 
     Inherited from :py:class:`notetools.Note <abjad.tools.notetools.Note.Note.Note>`
 
-.. autoattribute:: abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.format
-
-    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
-
 .. autoattribute:: abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.leaf_index
 
     Inherited from :py:class:`leaftools.Leaf <abjad.tools.leaftools.Leaf.Leaf.Leaf>`
+
+.. autoattribute:: abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.lilypond_format
+
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
 .. autoattribute:: abjad.tools.notetools.NaturalHarmonic.NaturalHarmonic.NaturalHarmonic.multiplied_duration
 

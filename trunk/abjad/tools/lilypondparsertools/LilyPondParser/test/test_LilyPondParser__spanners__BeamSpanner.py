@@ -17,8 +17,8 @@ def test_LilyPondParser__spanners__BeamSpanner_01():
     '''
 
     parser = LilyPondParser()
-    result = parser(target.format)
-    assert target.format == result.format and target is not result
+    result = parser(target.lilypond_format)
+    assert target.lilypond_format == result.lilypond_format and target is not result
 
 
 def test_LilyPondParser__spanners__BeamSpanner_02():
@@ -38,7 +38,7 @@ def test_LilyPondParser__spanners__BeamSpanner_02():
     input = r'''\relative c' { c [ c c ] c ] [ }'''
     parser = LilyPondParser()
     result = parser(input)
-    assert target.format == result.format and target is not result
+    assert target.lilypond_format == result.lilypond_format and target is not result
 
 
 def test_LilyPondParser__spanners__BeamSpanner_03():
@@ -54,7 +54,7 @@ def test_LilyPondParser__spanners__BeamSpanner_03():
     }
     '''
 
-    assert py.test.raises(Exception, "LilyPondParser()(target.format)")
+    assert py.test.raises(Exception, "LilyPondParser()(target.lilypond_format)")
 
 
 def test_LilyPondParser__spanners__BeamSpanner_04():
@@ -70,7 +70,7 @@ def test_LilyPondParser__spanners__BeamSpanner_04():
     }
     '''
 
-    assert py.test.raises(Exception, "LilyPondParser()(target.format)")
+    assert py.test.raises(Exception, "LilyPondParser()(target.lilypond_format)")
 
 
 def test_LilyPondParser__spanners__BeamSpanner_05():
@@ -99,5 +99,5 @@ def test_LilyPondParser__spanners__BeamSpanner_07():
     '''
 
     parser = LilyPondParser()
-    result = parser(target.format)
-    assert target.format == result.format and target is not result
+    result = parser(target.lilypond_format)
+    assert target.lilypond_format == result.lilypond_format and target is not result

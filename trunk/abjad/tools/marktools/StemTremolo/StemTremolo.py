@@ -60,11 +60,11 @@ class StemTremolo(Mark):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def format(self):
+    def lilypond_format(self):
         '''Read-only LilyPond format string::
 
             >>> stem_tremolo = marktools.StemTremolo(16)
-            >>> stem_tremolo.format
+            >>> stem_tremolo.lilypond_format
             ':16'
 
         Return string.

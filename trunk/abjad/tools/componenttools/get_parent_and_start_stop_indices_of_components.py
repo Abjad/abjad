@@ -4,7 +4,10 @@ def get_parent_and_start_stop_indices_of_components(components):
     Get parent and start / stop indices of `components`::
 
         >>> t = Staff("c'8 d'8 e'8 f'8 g'8 a'8")
-        >>> print t.format
+
+    ::
+
+        >>> f(t)
         \new Staff {
             c'8
             d'8

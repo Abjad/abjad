@@ -41,7 +41,7 @@ def test_ClefMark___copy___01():
     assert contexttools.get_effective_clef(t[8]) == contexttools.ClefMark('treble')
     assert contexttools.get_effective_clef(t[9]) == contexttools.ClefMark('treble')
 
-    assert t.format == '''\\new Staff {\n\t\\clef "treble"\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\t\\clef "bass"\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n\t\\clef "treble"\n\tc'8\n\tcs'8\n}'''
+    assert t.lilypond_format == '''\\new Staff {\n\t\\clef "treble"\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\t\\clef "bass"\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n\t\\clef "treble"\n\tc'8\n\tcs'8\n}'''
 
 
 def test_ClefMark___copy___02():
@@ -66,4 +66,4 @@ def test_ClefMark___copy___02():
     assert contexttools.get_effective_clef(t[8]) == contexttools.ClefMark('bass')
     assert contexttools.get_effective_clef(t[9]) == contexttools.ClefMark('bass')
 
-    assert t.format == '''\\new Staff {\n\t\\clef "treble"\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\t\\clef "bass"\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n\td'8\n\tef'8\n}'''
+    assert t.lilypond_format == '''\\new Staff {\n\t\\clef "treble"\n\tc'8\n\tcs'8\n\td'8\n\tef'8\n\t\\clef "bass"\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n\td'8\n\tef'8\n}'''

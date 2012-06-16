@@ -25,10 +25,6 @@ Read-only Properties
 
     Inherited from :py:class:`contexttools.Context <abjad.tools.contexttools.Context.Context.Context>`
 
-.. autoattribute:: abjad.tools.stafftools.Staff.Staff.Staff.format
-
-    Inherited from :py:class:`contexttools.Context <abjad.tools.contexttools.Context.Context.Context>`
-
 .. autoattribute:: abjad.tools.stafftools.Staff.Staff.Staff.is_semantic
 
     Inherited from :py:class:`contexttools.Context <abjad.tools.contexttools.Context.Context.Context>`
@@ -36,6 +32,10 @@ Read-only Properties
 .. autoattribute:: abjad.tools.stafftools.Staff.Staff.Staff.leaves
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
+
+.. autoattribute:: abjad.tools.stafftools.Staff.Staff.Staff.lilypond_format
+
+    Inherited from :py:class:`contexttools.Context <abjad.tools.contexttools.Context.Context.Context>`
 
 .. autoattribute:: abjad.tools.stafftools.Staff.Staff.Staff.music
 

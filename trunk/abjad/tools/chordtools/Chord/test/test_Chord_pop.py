@@ -7,4 +7,4 @@ def test_Chord_pop_01():
     note_head = chord.pop(1)
 
     assert note_head._client is None
-    assert chord.format == "<ef' f''>4"
+    assert chord.lilypond_format == "<ef' f''>4"

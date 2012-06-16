@@ -14,4 +14,4 @@ def test_FixedDurationTuplet_force_fraction_01():
     }
     '''
 
-    assert t.format == "\\fraction \\times 2/3 {\n\tc'8\n\td'8\n\te'8\n}"
+    assert t.lilypond_format == "\\fraction \\times 2/3 {\n\tc'8\n\td'8\n\te'8\n}"

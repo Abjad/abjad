@@ -5,7 +5,7 @@ from py.test import raises
 def test_Chord_01():
     t = Chord([2, 3, 4], (1, 4))
     assert str(t) == "<d' ef' e'>4"
-    assert t.format == "<d' ef' e'>4"
+    assert t.lilypond_format == "<d' ef' e'>4"
     assert len(t) == 3
     assert len(t.note_heads) == 3
     assert len(t.written_pitches) == 3
@@ -18,12 +18,12 @@ def test_Chord_02():
 
     t = Chord([2, 3, 4], (1, 4))
     t[0].tweak.style = 'harmonic'
-    assert t.format == "<\n\t\\tweak #'style #'harmonic\n\td'\n\tef'\n\te'\n>4"
+    assert t.lilypond_format == "<\n\t\\tweak #'style #'harmonic\n\td'\n\tef'\n\te'\n>4"
 
 def test_Chord_03():
     t = Chord([2, 3, 4], (1, 4))
     t[0].tweak.transparent = True
-    assert t.format == "<\n\t\\tweak #'transparent ##t\n\td'\n\tef'\n\te'\n>4"
+    assert t.lilypond_format == "<\n\t\\tweak #'transparent ##t\n\td'\n\tef'\n\te'\n>4"
 
 
 def test_Chord_04():
@@ -32,7 +32,7 @@ def test_Chord_04():
 
     t = Chord([0.5], (1, 4))
     assert str(t) == "<cqs'>4"
-    assert t.format == "<cqs'>4"
+    assert t.lilypond_format == "<cqs'>4"
     assert len(t) == 1
     assert len(t.note_heads) == 1
     assert len(t.written_pitches) == 1
@@ -49,7 +49,7 @@ def test_Chord_05():
     <d' ef' e'>4 \glissando
     '''
 
-    assert chord.format == "<d' ef' e'>4 \\glissando"
+    assert chord.lilypond_format == "<d' ef' e'>4 \\glissando"
 
 
 def test_Chord_06():
@@ -69,7 +69,7 @@ def test_Chord_06():
     >4 \glissando
     '''
 
-    assert chord.format == "<\n\t\\tweak #'color #red\n\td'\n\tef'\n\te'\n>4 \\glissando"
+    assert chord.lilypond_format == "<\n\t\\tweak #'color #red\n\td'\n\tef'\n\te'\n>4 \\glissando"
 
 
 def test_Chord_07():
@@ -79,11 +79,11 @@ def test_Chord_07():
     t = Chord([], (1,4))
     t.written_pitches = [4, 3, 2]
 
-    assert t.format == "<d' ef' e'>4"
+    assert t.lilypond_format == "<d' ef' e'>4"
 
     t.written_pitches = (4, 3, 2)
 
-    assert t.format == "<d' ef' e'>4"
+    assert t.lilypond_format == "<d' ef' e'>4"
 
 
 def test_Chord_08():
@@ -94,7 +94,7 @@ def test_Chord_08():
     t.written_pitches = [pitchtools.NamedChromaticPitch(4), pitchtools.NamedChromaticPitch(3), 
         pitchtools.NamedChromaticPitch(2)]
 
-    assert t.format == "<d' ef' e'>4"
+    assert t.lilypond_format == "<d' ef' e'>4"
 
 
 def test_Chord_09():
@@ -104,7 +104,7 @@ def test_Chord_09():
     t = Chord([], (1,4))
     t.written_pitches = [4, pitchtools.NamedChromaticPitch(3), pitchtools.NamedChromaticPitch(2)]
 
-    assert t.format == "<d' ef' e'>4"
+    assert t.lilypond_format == "<d' ef' e'>4"
 
 
 def test_Chord_10():
@@ -114,7 +114,7 @@ def test_Chord_10():
     t = Chord([], (1,4))
     t.note_heads = [4, 3, 2]
 
-    assert t.format == "<d' ef' e'>4"
+    assert t.lilypond_format == "<d' ef' e'>4"
 
 
 def test_Chord_11():
@@ -124,7 +124,7 @@ def test_Chord_11():
     t = Chord([], (1,4))
     t.note_heads = [pitchtools.NamedChromaticPitch(4), pitchtools.NamedChromaticPitch(3), pitchtools.NamedChromaticPitch(2)]
 
-    assert t.format == "<d' ef' e'>4"
+    assert t.lilypond_format == "<d' ef' e'>4"
 
 
 def test_Chord_12():
@@ -134,7 +134,7 @@ def test_Chord_12():
     t = Chord([], (1,4))
     t.note_heads = [pitchtools.NamedChromaticPitch(4), 3, pitchtools.NamedChromaticPitch(2)]
 
-    assert t.format == "<d' ef' e'>4"
+    assert t.lilypond_format == "<d' ef' e'>4"
 
 
 def test_Chord_13():
@@ -143,7 +143,7 @@ def test_Chord_13():
 
     t = Chord([2, 4], (1,4))
     t[0] = pitchtools.NamedChromaticPitch(5)
-    assert t.format == "<e' f'>4"
+    assert t.lilypond_format == "<e' f'>4"
 
     t[0] = 7
-    assert t.format == "<f' g'>4"
+    assert t.lilypond_format == "<f' g'>4"

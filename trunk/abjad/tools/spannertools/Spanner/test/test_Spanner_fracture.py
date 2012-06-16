@@ -24,7 +24,7 @@ def test_Spanner_fracture_01():
     assert right.components[0] is t[2]
     assert len(right.leaves) == 4
 
-    assert t.format == "\\new Staff {\n\t{\n\t\tc'8 [\n\t\tcs'8\n\t\td'8\n\t\tef'8\n\t}\n\t{\n\t\te'8\n\t\tf'8\n\t\tfs'8\n\t\tg'8 ]\n\t}\n\t{\n\t\taf'8 [\n\t\ta'8\n\t\tbf'8\n\t\tb'8 ]\n\t}\n}"
+    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\tc'8 [\n\t\tcs'8\n\t\td'8\n\t\tef'8\n\t}\n\t{\n\t\te'8\n\t\tf'8\n\t\tfs'8\n\t\tg'8 ]\n\t}\n\t{\n\t\taf'8 [\n\t\ta'8\n\t\tbf'8\n\t\tb'8 ]\n\t}\n}"
 
     r'''
     \new Staff {

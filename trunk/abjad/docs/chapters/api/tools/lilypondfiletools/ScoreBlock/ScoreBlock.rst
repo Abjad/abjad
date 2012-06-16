@@ -9,7 +9,7 @@ lilypondfiletools.ScoreBlock
 Read-only Properties
 --------------------
 
-.. autoattribute:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.format
+.. autoattribute:: abjad.tools.lilypondfiletools.ScoreBlock.ScoreBlock.ScoreBlock.lilypond_format
 
     Inherited from :py:class:`lilypondfiletools.NonattributedBlock <abjad.tools.lilypondfiletools.NonattributedBlock.NonattributedBlock.NonattributedBlock>`
 

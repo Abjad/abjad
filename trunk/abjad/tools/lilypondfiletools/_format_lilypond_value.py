@@ -1,8 +1,8 @@
 def _format_lilypond_value(value):
     '''Format LilyPond value.
     '''
-    if 'format' in dir(value) and not isinstance(value, str):
-        return value.format
+    if 'lilypond_format' in dir(value) and not isinstance(value, str):
+        return value.lilypond_format
     elif value is True:
         return '##t'
     elif value is False:

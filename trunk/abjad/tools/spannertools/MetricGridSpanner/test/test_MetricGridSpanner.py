@@ -6,7 +6,7 @@ def test_MetricGridSpanner_01():
     t = Staff(Note(0, (1, 8)) * 8)
     m = spannertools.MetricGridSpanner(t.leaves, [(2, 8)])
 
-    assert t.format == "\\new Staff {\n\t\\time 2/8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n}"
+    assert t.lilypond_format == "\\new Staff {\n\t\\time 2/8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n}"
 
     r'''
     \new Staff {
@@ -27,7 +27,7 @@ def test_MetricGridSpanner_02():
     t = Staff(Note(0, (1,8)) * 8)
     m = spannertools.MetricGridSpanner(t.leaves, [(3, 16)])
 
-    assert t.format == "\\new Staff {\n\t\\time 3/16\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n}"
+    assert t.lilypond_format == "\\new Staff {\n\t\\time 3/16\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n}"
 
     r'''
     \new Staff {
@@ -50,7 +50,7 @@ def test_MetricGridSpanner_03():
     t = Staff(Note(0, (1,8)) * 8)
     m = spannertools.MetricGridSpanner(t.leaves, [(1, 8), (1, 4)])
 
-    assert t.format == "\\new Staff {\n\t\\time 1/8\n\tc'8\n\t\\time 1/4\n\tc'8\n\tc'8\n\t\\time 1/8\n\tc'8\n\t\\time 1/4\n\tc'8\n\tc'8\n\t\\time 1/8\n\tc'8\n\t\\time 1/4\n\tc'8\n}"
+    assert t.lilypond_format == "\\new Staff {\n\t\\time 1/8\n\tc'8\n\t\\time 1/4\n\tc'8\n\tc'8\n\t\\time 1/8\n\tc'8\n\t\\time 1/4\n\tc'8\n\tc'8\n\t\\time 1/8\n\tc'8\n\t\\time 1/4\n\tc'8\n}"
 
     r'''
     \new Staff {
@@ -106,7 +106,7 @@ def test_MetricGridSpanner_04():
     }
     '''
 
-    assert t.format == "\\new Staff {\n\t\\time 3/16\n\tc'8\n\t<<\n\t{\n\t\t\\time 2/8\n\t\ts1 * 1/16\n\t}\n\tc'8\n\t>>\n\tc'8\n\t<<\n\t{\n\t\t\\time 3/16\n\t\ts1 * 1/16\n\t}\n\tc'8\n\t>>\n\tc'8\n\t\\time 2/8\n\tc'8\n\tc'8\n\t\\time 3/16\n\tc'8\n}"
+    assert t.lilypond_format == "\\new Staff {\n\t\\time 3/16\n\tc'8\n\t<<\n\t{\n\t\t\\time 2/8\n\t\ts1 * 1/16\n\t}\n\tc'8\n\t>>\n\tc'8\n\t<<\n\t{\n\t\t\\time 3/16\n\t\ts1 * 1/16\n\t}\n\tc'8\n\t>>\n\tc'8\n\t\\time 2/8\n\tc'8\n\tc'8\n\t\\time 3/16\n\tc'8\n}"
 
 
 def test_MetricGridSpanner_05():
@@ -145,4 +145,4 @@ def test_MetricGridSpanner_05():
     '''
 
 
-    assert t.format == "\\new Staff {\n\t\\time 1/8\n\t<<\n\t{\n\t\t\\time 1/4\n\t\ts1 * 1/8\n\t}\n\t{\n\t\t\\time 1/8\n\t\ts1 * 3/8\n\t}\n\tc'2\n\t>>\n\t\\time 1/4\n\t<<\n\t{\n\t\t\\time 1/8\n\t\ts1 * 1/4\n\t}\n\t{\n\t\t\\time 1/4\n\t\ts1 * 3/8\n\t}\n\tc'2\n\t>>\n}"
+    assert t.lilypond_format == "\\new Staff {\n\t\\time 1/8\n\t<<\n\t{\n\t\t\\time 1/4\n\t\ts1 * 1/8\n\t}\n\t{\n\t\t\\time 1/8\n\t\ts1 * 3/8\n\t}\n\tc'2\n\t>>\n\t\\time 1/4\n\t<<\n\t{\n\t\t\\time 1/8\n\t\ts1 * 1/4\n\t}\n\t{\n\t\t\\time 1/4\n\t\ts1 * 3/8\n\t}\n\tc'2\n\t>>\n}"

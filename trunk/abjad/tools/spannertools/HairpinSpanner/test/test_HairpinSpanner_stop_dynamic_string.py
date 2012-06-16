@@ -16,7 +16,7 @@ def test_HairpinSpanner_stop_dynamic_string_01():
     '''
 
     assert hairpin.stop_dynamic_string == 'f'
-    assert staff.format == "\\new Staff {\n\tc'8 \\< \\p\n\td'8\n\te'8\n\tf'8 \\f\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\tc'8 \\< \\p\n\td'8\n\te'8\n\tf'8 \\f\n}"
 
     hairpin.stop_dynamic_string = 'mf'
 
@@ -30,4 +30,4 @@ def test_HairpinSpanner_stop_dynamic_string_01():
     '''
 
     assert hairpin.stop_dynamic_string == 'mf'
-    assert staff.format == "\\new Staff {\n\tc'8 \\< \\p\n\td'8\n\te'8\n\tf'8 \\mf\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\tc'8 \\< \\p\n\td'8\n\te'8\n\tf'8 \\mf\n}"

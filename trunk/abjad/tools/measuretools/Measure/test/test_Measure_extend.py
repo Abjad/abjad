@@ -22,4 +22,4 @@ def test_Measure_extend_02():
     measure.extend("f' g'")
 
     assert not measure.is_misfilled
-    assert measure.format == "{\n\t\\time 5/4\n\tc'4\n\td'4\n\te'4\n\tf'4\n\tg'4\n}"
+    assert measure.lilypond_format == "{\n\t\\time 5/4\n\tc'4\n\td'4\n\te'4\n\tf'4\n\tg'4\n}"

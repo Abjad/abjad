@@ -17,7 +17,7 @@ def test_BeamSpanner_span_anonymous_01():
     assert len(p.components) == 1
     assert isinstance(p.components[0], Container)
     assert len(p.leaves) == 0
-    assert t.format == '{\n}'
+    assert t.lilypond_format == '{\n}'
 
 
 def test_BeamSpanner_span_anonymous_02():
@@ -43,7 +43,7 @@ def test_BeamSpanner_span_anonymous_02():
     assert len(p.components) == 1
     assert isinstance(p.components[0], Container)
     assert len(p.leaves) == 8
-    assert t.format == "{\n\tc'8 [\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8 ]\n}"
+    assert t.lilypond_format == "{\n\tc'8 [\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8\n\tc'8 ]\n}"
 
 
 def test_BeamSpanner_span_anonymous_03():
@@ -103,7 +103,7 @@ def test_BeamSpanner_span_anonymous_04():
     assert len(p.components) == 1
     assert isinstance(p.components[0], Staff)
     assert len(p.leaves) == 6
-    assert t.format == "\\new Staff {\n\t{\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n\tc'8\n\tc'8 ]\n}"
+    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n\tc'8\n\tc'8 ]\n}"
 
 
 def test_BeamSpanner_span_anonymous_05():
@@ -132,7 +132,7 @@ def test_BeamSpanner_span_anonymous_05():
     assert isinstance(p.components[1], Note)
     assert isinstance(t[2], Note)
     assert len(p.leaves) == 6
-    assert t.format == "\\new Staff {\n\t{\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n\tc'8\n\tc'8 ]\n}"
+    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n\tc'8\n\tc'8 ]\n}"
 
 
 def test_BeamSpanner_span_anonymous_06():
@@ -160,7 +160,7 @@ def test_BeamSpanner_span_anonymous_06():
     for x in p.components:
         assert isinstance(x, Note)
     assert len(p.leaves) == 6
-    assert t.format == "\\new Staff {\n\t{\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n\tc'8\n\tc'8 ]\n}"
+    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n\tc'8\n\tc'8 ]\n}"
 
 
 def test_BeamSpanner_span_anonymous_07():
@@ -198,7 +198,7 @@ def test_BeamSpanner_span_anonymous_08():
     for x in p.components:
         assert isinstance(x, Container)
     assert len(p.leaves) == 8
-    assert t.format == "\\new Staff {\n\t{\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n\t{\n\t}\n\t{\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8 ]\n\t}\n}"
+    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t}\n\t{\n\t}\n\t{\n\t\tc'8\n\t\tc'8\n\t\tc'8\n\t\tc'8 ]\n\t}\n}"
 
     r'''
     \new Staff {
@@ -231,7 +231,7 @@ def test_BeamSpanner_span_anonymous_09():
     for x in p.components:
         assert isinstance(x, Container)
     assert len(p.leaves) == 4
-    assert t.format == "\\new Staff {\n\t{\n\t}\n\t{\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8 ]\n\t}\n\t{\n\t}\n}"
+    assert t.lilypond_format == "\\new Staff {\n\t{\n\t}\n\t{\n\t\tc'8 [\n\t\tc'8\n\t\tc'8\n\t\tc'8 ]\n\t}\n\t{\n\t}\n}"
 
     r'''
     \new Staff {

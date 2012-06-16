@@ -17,4 +17,4 @@ def test_MultipartBeamSpanner_format_01():
     }
     '''
 
-    assert staff.format == "\\new Staff {\n\tc'8 [\n\td'8 ]\n\tr8\n\te'8 [\n\tf'8 ]\n\tg'4\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\tc'8 [\n\td'8 ]\n\tr8\n\te'8 [\n\tf'8 ]\n\tg'4\n}"

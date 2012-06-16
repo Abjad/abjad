@@ -16,4 +16,4 @@ def f(expr):
     Return none.
     '''
 
-    print expr.format
+    print expr.lilypond_format

@@ -16,7 +16,7 @@ def test_pitchtools_apply_octavation_spanner_to_pitched_components_01():
     }"""
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Staff {\n\t\\ottava #1\n\tc'''8\n\td'''8\n\tef'''8\n\tf'''8\n\t\\ottava #0\n}"
+    assert t.lilypond_format == "\\new Staff {\n\t\\ottava #1\n\tc'''8\n\td'''8\n\tef'''8\n\tf'''8\n\t\\ottava #0\n}"
 
 
 def test_pitchtools_apply_octavation_spanner_to_pitched_components_02():
@@ -34,4 +34,4 @@ def test_pitchtools_apply_octavation_spanner_to_pitched_components_02():
     }
     """
 
-    assert t.format == "\\new Voice {\n\t\\ottava #1\n\tg'''4\n\t\\ottava #0\n}"
+    assert t.lilypond_format == "\\new Voice {\n\t\\ottava #1\n\tg'''4\n\t\\ottava #0\n}"

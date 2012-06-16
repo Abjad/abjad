@@ -9,9 +9,9 @@ def test_chordtools_divide_chord_by_chromatic_pitch_number_01():
     pitch = pitchtools.NamedChromaticPitch('d', 4)
     treble, bass = chordtools.divide_chord_by_chromatic_pitch_number(chord, pitch)
     assert isinstance(treble, Chord)
-    assert treble.format == "<d' ef' e'>4"
+    assert treble.lilypond_format == "<d' ef' e'>4"
     assert isinstance(bass, Rest)
-    assert bass.format == 'r4'
+    assert bass.lilypond_format == 'r4'
     assert chord is not treble
     assert chord is not bass
     assert treble is not bass
@@ -25,9 +25,9 @@ def test_chordtools_divide_chord_by_chromatic_pitch_number_02():
     pitch = pitchtools.NamedChromaticPitch('ef', 4)
     treble, bass = chordtools.divide_chord_by_chromatic_pitch_number(t, pitch)
     assert isinstance(treble, Chord)
-    assert treble.format == Chord([3, 4], (1, 4)).format
+    assert treble.lilypond_format == Chord([3, 4], (1, 4)).lilypond_format
     assert isinstance(bass, Note)
-    assert bass.format == Note(2, (1, 4)).format
+    assert bass.lilypond_format == Note(2, (1, 4)).lilypond_format
     assert t is not treble
     assert t is not bass
     assert treble is not bass
@@ -41,9 +41,9 @@ def test_chordtools_divide_chord_by_chromatic_pitch_number_03():
     pitch = pitchtools.NamedChromaticPitch('e', 4)
     treble, bass = chordtools.divide_chord_by_chromatic_pitch_number(t, pitch)
     assert isinstance(treble, Note)
-    assert treble.format == Note(4, (1, 4)).format
+    assert treble.lilypond_format == Note(4, (1, 4)).lilypond_format
     assert isinstance(bass, Chord)
-    assert bass.format == Chord([2, 3], (1, 4)).format
+    assert bass.lilypond_format == Chord([2, 3], (1, 4)).lilypond_format
     assert t is not treble
     assert t is not bass
     assert treble is not bass
@@ -57,9 +57,9 @@ def test_chordtools_divide_chord_by_chromatic_pitch_number_04():
     pitch = pitchtools.NamedChromaticPitch('f', 4)
     treble, bass = chordtools.divide_chord_by_chromatic_pitch_number(t, pitch)
     assert isinstance(treble, Rest)
-    assert treble.format == Rest((1, 4)).format
+    assert treble.lilypond_format == Rest((1, 4)).lilypond_format
     assert isinstance(bass, Chord)
-    assert bass.format == Chord([2, 3, 4], (1, 4)).format
+    assert bass.lilypond_format == Chord([2, 3, 4], (1, 4)).lilypond_format
     assert t is not treble
     assert t is not bass
     assert treble is not bass
@@ -73,10 +73,10 @@ def test_chordtools_divide_chord_by_chromatic_pitch_number_05():
     pitch = pitchtools.NamedChromaticPitch('f', 4)
     treble, bass = chordtools.divide_chord_by_chromatic_pitch_number(t, pitch)
     assert isinstance(treble, Chord)
-    assert treble.format == Chord([('es', 4), 7], (1, 4)).format
-    assert treble.format == Chord([('es', 4), ('g', 4)], (1, 4)).format
+    assert treble.lilypond_format == Chord([('es', 4), 7], (1, 4)).lilypond_format
+    assert treble.lilypond_format == Chord([('es', 4), ('g', 4)], (1, 4)).lilypond_format
     assert isinstance(bass, Chord)
-    assert bass.format == Chord([('d', 4), ('ff', 4)], (1, 4)).format
+    assert bass.lilypond_format == Chord([('d', 4), ('ff', 4)], (1, 4)).lilypond_format
     assert t is not treble
     assert t is not bass
     assert treble is not bass
@@ -90,9 +90,9 @@ def test_chordtools_divide_chord_by_chromatic_pitch_number_06():
     pitch = pitchtools.NamedChromaticPitch('f', 4)
     treble, bass = chordtools.divide_chord_by_chromatic_pitch_number(note, pitch)
     assert isinstance(treble, Rest)
-    assert treble.format == Rest((1, 4)).format
+    assert treble.lilypond_format == Rest((1, 4)).lilypond_format
     assert isinstance(bass, Note)
-    assert bass.format == Note("c'4").format
+    assert bass.lilypond_format == Note("c'4").lilypond_format
     assert note is not treble
     assert note is not bass
     assert treble is not bass
@@ -106,9 +106,9 @@ def test_chordtools_divide_chord_by_chromatic_pitch_number_07():
     pitch = pitchtools.NamedChromaticPitch('c', 4)
     treble, bass = chordtools.divide_chord_by_chromatic_pitch_number(note, pitch)
     assert isinstance(treble, Note)
-    assert treble.format == Note("c'4").format
+    assert treble.lilypond_format == Note("c'4").lilypond_format
     assert isinstance(bass, Rest)
-    assert bass.format == Rest((1, 4)).format
+    assert bass.lilypond_format == Rest((1, 4)).lilypond_format
     assert note is not treble
     assert note is not bass
     assert treble is not bass
@@ -122,9 +122,9 @@ def test_chordtools_divide_chord_by_chromatic_pitch_number_08():
     pitch = pitchtools.NamedChromaticPitch('f', 3)
     treble, bass = chordtools.divide_chord_by_chromatic_pitch_number(note, pitch)
     assert isinstance(treble, Note)
-    assert treble.format == Note("c'4").format
+    assert treble.lilypond_format == Note("c'4").lilypond_format
     assert isinstance(bass, Rest)
-    assert bass.format == Rest((1, 4)).format
+    assert bass.lilypond_format == Rest((1, 4)).lilypond_format
     assert note is not treble
     assert note is not bass
     assert treble is not bass
@@ -138,9 +138,9 @@ def test_chordtools_divide_chord_by_chromatic_pitch_number_09():
     pitch = pitchtools.NamedChromaticPitch(('b', 3))
     treble, bass = chordtools.divide_chord_by_chromatic_pitch_number(t, pitch)
     assert isinstance(treble, Rest)
-    assert treble.format == Rest((1, 4)).format
+    assert treble.lilypond_format == Rest((1, 4)).lilypond_format
     assert isinstance(bass, Rest)
-    assert bass.format == Rest((1, 4)).format
+    assert bass.lilypond_format == Rest((1, 4)).lilypond_format
     assert t is not treble
     assert t is not bass
     assert treble is not bass
@@ -181,7 +181,7 @@ def test_chordtools_divide_chord_by_chromatic_pitch_number_10():
     '''
 
     assert componenttools.is_well_formed_component(treble)
-    assert treble.format == "<\n\t\\tweak #'color #blue\n\td'\n\t\\tweak #'color #blue\n\tef'\n>4"
+    assert treble.lilypond_format == "<\n\t\\tweak #'color #blue\n\td'\n\t\\tweak #'color #blue\n\tef'\n>4"
 
     r'''
     <
@@ -193,7 +193,7 @@ def test_chordtools_divide_chord_by_chromatic_pitch_number_10():
     '''
 
     assert componenttools.is_well_formed_component(bass)
-    assert bass.format == "<\n\t\\tweak #'color #red\n\tc'\n\t\\tweak #'color #red\n\tcs'\n>4"
+    assert bass.lilypond_format == "<\n\t\\tweak #'color #red\n\tc'\n\t\\tweak #'color #red\n\tcs'\n>4"
 
 
 def test_chordtools_divide_chord_by_chromatic_pitch_number_11():
@@ -211,9 +211,9 @@ def test_chordtools_divide_chord_by_chromatic_pitch_number_11():
     "<d' f'>4 ^ \markup { UP }"
 
     assert componenttools.is_well_formed_component(treble)
-    assert treble.format == "<d' f'>4 ^ \\markup { UP }"
+    assert treble.lilypond_format == "<d' f'>4 ^ \\markup { UP }"
 
     "cs4 _ \markup { DOWN }"
 
     assert componenttools.is_well_formed_component(bass)
-    assert bass.format == 'cs4 _ \\markup { DOWN }'
+    assert bass.lilypond_format == 'cs4 _ \\markup { DOWN }'

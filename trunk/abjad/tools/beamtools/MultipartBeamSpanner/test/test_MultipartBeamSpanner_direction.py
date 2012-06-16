@@ -17,8 +17,8 @@ def test_MultipartBeamSpanner_direction_01():
     }
     '''
 
-    assert staff.format == "\\new Staff {\n\tc'8 ^ [\n\td'8 ]\n\tr8\n\te'8 ^ [\n\tf'8 ]\n\tg'4\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\tc'8 ^ [\n\td'8 ]\n\tr8\n\te'8 ^ [\n\tf'8 ]\n\tg'4\n}"
 
     spanner.direction = 'down'
 
-    assert staff.format == "\\new Staff {\n\tc'8 _ [\n\td'8 ]\n\tr8\n\te'8 _ [\n\tf'8 ]\n\tg'4\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\tc'8 _ [\n\td'8 ]\n\tr8\n\te'8 _ [\n\tf'8 ]\n\tg'4\n}"

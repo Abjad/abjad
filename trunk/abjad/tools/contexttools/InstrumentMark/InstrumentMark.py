@@ -130,13 +130,13 @@ class InstrumentMark(ContextMark):
         return self._default_short_instrument_name
 
     @property
-    def format(self):
+    def lilypond_format(self):
         '''Read-only LilyPond input format of instrument mark:
 
         ::
 
             >>> instrument = contexttools.InstrumentMark('Flute', 'Fl.')
-            >>> instrument.format
+            >>> instrument.lilypond_format
             ['\\set Staff.instrumentName = \\markup { Flute }', '\\set Staff.shortInstrumentName = \\markup { Fl. }']
 
         Return list.

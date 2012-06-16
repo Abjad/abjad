@@ -23,7 +23,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___delattr___01():
     c'4
     '''
 
-    assert note.format == "\\once \\override Dots #'thicknes = #2\nc'4"
+    assert note.lilypond_format == "\\once \\override Dots #'thicknes = #2\nc'4"
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___delattr___02():
@@ -43,7 +43,7 @@ def test_LilyPondGrobOverrideComponentPlugIn___delattr___02():
     }
     '''
 
-    assert t.format == "\\new Staff {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+    assert t.lilypond_format == "\\new Staff {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
 def test_LilyPondGrobOverrideComponentPlugIn___delattr___03():
@@ -55,4 +55,4 @@ def test_LilyPondGrobOverrideComponentPlugIn___delattr___03():
     t.override.time_signature.transparent = True
     del(t.override.time_signature)
 
-    assert t.format == "c'4"
+    assert t.lilypond_format == "c'4"

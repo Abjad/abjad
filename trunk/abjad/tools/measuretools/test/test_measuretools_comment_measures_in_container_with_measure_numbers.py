@@ -37,7 +37,7 @@ def test_measuretools_comment_measures_in_container_with_measure_numbers_01():
     '''
 
     assert componenttools.is_well_formed_component(staff)
-    assert staff.format == "\\new Staff {\n\t% start measure 1\n\t{\n\t\t\\time 2/8\n\t\tc'8\n\t\td'8\n\t}\n\t% stop measure 1\n\t% start measure 2\n\t{\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t}\n\t% stop measure 2\n\t% start measure 3\n\t{\n\t\t\\time 2/8\n\t\tg'8\n\t\ta'8\n\t}\n\t% stop measure 3\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\t% start measure 1\n\t{\n\t\t\\time 2/8\n\t\tc'8\n\t\td'8\n\t}\n\t% stop measure 1\n\t% start measure 2\n\t{\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t}\n\t% stop measure 2\n\t% start measure 3\n\t{\n\t\t\\time 2/8\n\t\tg'8\n\t\ta'8\n\t}\n\t% stop measure 3\n}"
 
 
 def test_measuretools_comment_measures_in_container_with_measure_numbers_02():
@@ -72,4 +72,4 @@ def test_measuretools_comment_measures_in_container_with_measure_numbers_02():
     '''
 
     assert componenttools.is_well_formed_component(staff)
-    assert staff.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8\n\t\td'8\n\t}\n\t% start measure 2\n\t{\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t}\n\t% stop measure 2\n\t{\n\t\t\\time 2/8\n\t\tg'8\n\t\ta'8\n\t}\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8\n\t\td'8\n\t}\n\t% start measure 2\n\t{\n\t\t\\time 2/8\n\t\te'8\n\t\tf'8\n\t}\n\t% stop measure 2\n\t{\n\t\t\\time 2/8\n\t\tg'8\n\t\ta'8\n\t}\n}"

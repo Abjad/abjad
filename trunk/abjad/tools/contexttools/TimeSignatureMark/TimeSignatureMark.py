@@ -219,11 +219,11 @@ class TimeSignatureMark(ContextMark):
         return durationtools.Duration(self.numerator, self.denominator)
 
     @property
-    def format(self):
+    def lilypond_format(self):
         r'''Read-only LilyPond format of time signature mark::
 
             >>> time_signature = contexttools.TimeSignatureMark((3, 8))
-            >>> time_signature.format
+            >>> time_signature.lilypond_format
             '\\time 3/8'
 
         Return string.

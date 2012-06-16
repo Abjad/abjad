@@ -31,12 +31,12 @@ def test_Container_pop_01():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Voice {\n\tc'8 (\n\te'8\n\tf'8 )\n}"
+    assert t.lilypond_format == "\\new Voice {\n\tc'8 (\n\te'8\n\tf'8 )\n}"
 
     "Result is now d'8 [ ]"
 
     assert componenttools.is_well_formed_component(result)
-    assert result.format == "d'8 [ ]"
+    assert result.lilypond_format == "d'8 [ ]"
 
 
 def test_Container_pop_02():
@@ -71,7 +71,7 @@ def test_Container_pop_02():
     }
     '''
 
-    assert t.format == "\\new Staff {\n\t{\n\t\tc'8 [\n\t\td'8 ]\n\t}\n}"
+    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\tc'8 [\n\t\td'8 ]\n\t}\n}"
     assert componenttools.is_well_formed_component(t)
 
     r'''
@@ -81,5 +81,5 @@ def test_Container_pop_02():
     }
     '''
 
-    assert sequential.format == "{\n\te'8\n\tf'8\n}"
+    assert sequential.lilypond_format == "{\n\te'8\n\tf'8\n}"
     assert componenttools.is_well_formed_component(sequential)

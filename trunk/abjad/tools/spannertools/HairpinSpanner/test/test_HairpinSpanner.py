@@ -24,7 +24,7 @@ def test_HairpinSpanner_01():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Staff {\n\tc'8 \\<\n\tcs'8\n\td'8\n\tef'8 \\!\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
+    assert t.lilypond_format == "\\new Staff {\n\tc'8 \\<\n\tcs'8\n\td'8\n\tef'8 \\!\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
 
 
 def test_HairpinSpanner_02():
@@ -48,7 +48,7 @@ def test_HairpinSpanner_02():
     '''
 
     assert not checker.check(t)
-    assert t.format == "\\new Staff {\n\tc'8 \\< \\!\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
+    assert t.lilypond_format == "\\new Staff {\n\tc'8 \\< \\!\n\tcs'8\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
 
 
 def test_HairpinSpanner_03():
@@ -73,7 +73,7 @@ def test_HairpinSpanner_03():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Staff {\n\tc'8 \\p \\<\n\tcs'8\n\td'8\n\tef'8 \\f\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
+    assert t.lilypond_format == "\\new Staff {\n\tc'8 \\p \\<\n\tcs'8\n\td'8\n\tef'8 \\f\n\te'8\n\tf'8\n\tfs'8\n\tg'8\n}"
 
 
 def test_HairpinSpanner_04():
@@ -109,7 +109,7 @@ def test_HairpinSpanner_05():
     }
     '''
 
-    assert t.format == "\\new Staff {\n\tc'8 \\p \\<\n\tcs'8\n\td'8 \\f \\>\n\tef'8\n\te'8 \\p \\<\n\tf'8\n\tfs'8 \\f\n\tg'8\n}"
+    assert t.lilypond_format == "\\new Staff {\n\tc'8 \\p \\<\n\tcs'8\n\td'8 \\f \\>\n\tef'8\n\te'8 \\p \\<\n\tf'8\n\tfs'8 \\f\n\tg'8\n}"
     assert componenttools.is_well_formed_component(t)
 
 
@@ -133,7 +133,7 @@ def test_HairpinSpanner_06():
     }
     '''
 
-    assert t.format == "\\new Staff {\n\tr8 \\<\n\tr8\n\tr8\n\tr8\n\te'8\n\tf'8\n\tfs'8\n\tg'8 \\!\n}"
+    assert t.lilypond_format == "\\new Staff {\n\tr8 \\<\n\tr8\n\tr8\n\tr8\n\te'8\n\tf'8\n\tfs'8\n\tg'8 \\!\n}"
     assert componenttools.is_well_formed_component(t)
 
 
@@ -150,7 +150,7 @@ def test_HairpinSpanner_07():
     spanner = spannertools.get_the_only_spanner_attached_to_component(
         t[0], spannertools.HairpinSpanner)
     assert len(spanner.components) == len(t)
-    assert t.format == "\\new Staff {\n\tr8\n\tcs'8 \\< \\p\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8 \\f\n\tr8\n}"
+    assert t.lilypond_format == "\\new Staff {\n\tr8\n\tcs'8 \\< \\p\n\td'8\n\tef'8\n\te'8\n\tf'8\n\tfs'8 \\f\n\tr8\n}"
     checker = IntermarkedHairpinCheck()
     assert checker.check(t)
 

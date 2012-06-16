@@ -182,11 +182,11 @@ class Accidental(AbjadObject):
         return self._alphabetic_accidental_abbreviation
 
     @property
-    def format(self):
+    def lilypond_format(self):
         '''Read-only LilyPond input format of accidental::
 
             >>> accidental = pitchtools.Accidental('s')
-            >>> accidental.format
+            >>> accidental.lilypond_format
             's'
 
         Return string.

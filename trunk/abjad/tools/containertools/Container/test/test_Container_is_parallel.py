@@ -44,7 +44,7 @@ def test_Container_is_parallel_04():
     t = Container(Voice(notetools.make_repeated_notes(2)) * 2)
     pitchtools.set_ascending_named_chromatic_pitches_on_nontied_pitched_components_in_expr(t)
     t.is_parallel = True
-    assert t.format == "<<\n\t\\new Voice {\n\t\tc'8\n\t\tcs'8\n\t}\n\t\\new Voice {\n\t\td'8\n\t\tef'8\n\t}\n>>"
+    assert t.lilypond_format == "<<\n\t\\new Voice {\n\t\tc'8\n\t\tcs'8\n\t}\n\t\\new Voice {\n\t\td'8\n\t\tef'8\n\t}\n>>"
 
     r'''
     <<

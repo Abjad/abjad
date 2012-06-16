@@ -17,10 +17,6 @@ Read-only Properties
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
 
-.. autoattribute:: abjad.tools.tuplettools.FixedDurationTuplet.FixedDurationTuplet.FixedDurationTuplet.format
-
-    Inherited from :py:class:`tuplettools.Tuplet <abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet>`
-
 .. autoattribute:: abjad.tools.tuplettools.FixedDurationTuplet.FixedDurationTuplet.FixedDurationTuplet.is_augmentation
 
     Inherited from :py:class:`tuplettools.Tuplet <abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet>`
@@ -44,6 +40,10 @@ Read-only Properties
 .. autoattribute:: abjad.tools.tuplettools.FixedDurationTuplet.FixedDurationTuplet.FixedDurationTuplet.leaves
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
+
+.. autoattribute:: abjad.tools.tuplettools.FixedDurationTuplet.FixedDurationTuplet.FixedDurationTuplet.lilypond_format
+
+    Inherited from :py:class:`tuplettools.Tuplet <abjad.tools.tuplettools.Tuplet.Tuplet.Tuplet>`
 
 .. autoattribute:: abjad.tools.tuplettools.FixedDurationTuplet.FixedDurationTuplet.FixedDurationTuplet.multiplied_duration
 

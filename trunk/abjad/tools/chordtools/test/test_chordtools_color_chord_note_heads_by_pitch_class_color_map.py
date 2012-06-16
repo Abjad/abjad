@@ -30,4 +30,4 @@ def test_chordtools_color_chord_note_heads_by_pitch_class_color_map_01():
     '''
 
     assert componenttools.is_well_formed_component(chord)
-    assert chord.format == "<\n\t\\tweak #'color #red\n\tc''\n\t\\tweak #'color #red\n\td''\n\t\\tweak #'color #green\n\tfs''\n\t\\tweak #'color #green\n\ta''\n\t\\tweak #'color #blue\n\tb''\n>4"
+    assert chord.lilypond_format == "<\n\t\\tweak #'color #red\n\tc''\n\t\\tweak #'color #red\n\td''\n\t\\tweak #'color #green\n\tfs''\n\t\\tweak #'color #green\n\ta''\n\t\\tweak #'color #blue\n\tb''\n>4"

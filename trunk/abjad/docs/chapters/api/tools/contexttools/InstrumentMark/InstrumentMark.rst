@@ -17,7 +17,7 @@ Read-only Properties
 
     Inherited from :py:class:`contexttools.ContextMark <abjad.tools.contexttools.ContextMark.ContextMark.ContextMark>`
 
-.. autoattribute:: abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark.format
+.. autoattribute:: abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark.lilypond_format
 
 .. autoattribute:: abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark.start_component
 

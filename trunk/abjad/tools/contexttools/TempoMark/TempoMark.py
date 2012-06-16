@@ -166,7 +166,7 @@ class TempoMark(ContextMark):
 
     @property
     def _one_line_menuing_summary(self):
-        return self.format.lstrip(r'\tempo ')
+        return self.lilypond_format.lstrip(r'\tempo ')
 
     @property
     def _mandatory_argument_values(self):
@@ -209,25 +209,25 @@ class TempoMark(ContextMark):
         return property(**locals())
 
     @property
-    def format(self):
+    def lilypond_format(self):
         r'''Read-only LilyPond format of tempo mark:
 
         ::
 
             >>> tempo = contexttools.TempoMark(Duration(1, 8), 52)
-            >>> tempo.format
+            >>> tempo.lilypond_format
             '\\tempo 8=52'
 
         ::
 
             >>> tempo.textual_indication = 'Gingerly'
-            >>> tempo.format
+            >>> tempo.lilypond_format
             '\\tempo Gingerly 8=52'
 
         ::
 
             >>> tempo.units_per_minute = (52, 56)
-            >>> tempo.format
+            >>> tempo.lilypond_format
             '\\tempo Gingerly 8=52~56'
 
         Return string.

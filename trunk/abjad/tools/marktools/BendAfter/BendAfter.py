@@ -54,11 +54,11 @@ class BendAfter(Mark):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def format(self):
+    def lilypond_format(self):
         r'''Read-only LilyPond format string::
 
             >>> bend = marktools.BendAfter(-4)
-            >>> bend.format
+            >>> bend.lilypond_format
             "- \\bendAfter #'-4.0"
 
         Return string.

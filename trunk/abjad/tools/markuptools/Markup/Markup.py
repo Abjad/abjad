@@ -98,7 +98,7 @@ class Markup(_DirectedMark):
 
     def __eq__(self, expr):
         if isinstance(expr, type(self)):
-            if self.format == expr.format:
+            if self.lilypond_format == expr.lilypond_format:
                 return True
         return False
 
@@ -109,7 +109,7 @@ class Markup(_DirectedMark):
         return not self == expr
 
     def __str__(self):
-        return self.format
+        return self.lilypond_format
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 
@@ -140,11 +140,11 @@ class Markup(_DirectedMark):
         return self._contents
 
     @property
-    def format(self):
+    def lilypond_format(self):
         r'''Read-only LilyPond format of markup::
 
             >>> markup = markuptools.Markup(r'\bold { "This is markup text." }')
-            >>> markup.format
+            >>> markup.lilypond_format
             '\\markup { \\bold { "This is markup text." } }'
 
         Return string.

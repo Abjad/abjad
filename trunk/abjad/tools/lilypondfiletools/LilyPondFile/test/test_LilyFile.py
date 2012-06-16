@@ -27,4 +27,4 @@ def test_LilyFile_01():
     >>
     '''
 
-    assert lilypond_file.format == '#(set-default-paper-size "11x17" \'landscape)\n#(set-global-staff-size 14)\n\n\\new Score <<\n\t\\new Staff {\n\t\tc\'8\n\t\td\'8\n\t\te\'8\n\t\tf\'8\n\t}\n>>'
+    assert lilypond_file.lilypond_format == '#(set-default-paper-size "11x17" \'landscape)\n#(set-global-staff-size 14)\n\n\\new Score <<\n\t\\new Staff {\n\t\tc\'8\n\t\td\'8\n\t\te\'8\n\t\tf\'8\n\t}\n>>'

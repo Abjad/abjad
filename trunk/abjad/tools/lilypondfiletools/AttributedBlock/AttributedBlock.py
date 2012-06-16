@@ -67,11 +67,11 @@ class AttributedBlock(object):
                 formatted_key = ' '.join(formatted_key)
                 # format value
                 if isinstance(value, markuptools.Markup):
-                    formatted_value = value.format
+                    formatted_value = value.lilypond_format
                 elif isinstance(value, schemetools.Scheme):
-                    formatted_value = value.format
+                    formatted_value = value.lilypond_format
                 else:
-                    formatted_value = schemetools.Scheme(value).format
+                    formatted_value = schemetools.Scheme(value).lilypond_format
                 setting = '%s = %s' % (formatted_key, formatted_value)
                 result.append(setting)
         return result
@@ -86,7 +86,7 @@ class AttributedBlock(object):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def format(self):
+    def lilypond_format(self):
         return '\n'.join(self._format_pieces)
 
     @apply

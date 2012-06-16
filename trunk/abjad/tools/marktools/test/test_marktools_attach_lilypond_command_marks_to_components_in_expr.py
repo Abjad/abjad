@@ -27,4 +27,4 @@ def test_marktools_attach_lilypond_command_marks_to_components_in_expr_01():
         assert new_lilypond_command_mark == lilypond_command_mark
         assert new_lilypond_command_mark is not lilypond_command_mark
 
-    assert staff.format == "\\new Staff {\n\t\\stemUp\n\tc'8\n\t\\stemUp\n\td'8\n\t\\stemUp\n\te'8\n\t\\stemUp\n\tf'8\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\t\\stemUp\n\tc'8\n\t\\stemUp\n\td'8\n\t\\stemUp\n\te'8\n\t\\stemUp\n\tf'8\n}"

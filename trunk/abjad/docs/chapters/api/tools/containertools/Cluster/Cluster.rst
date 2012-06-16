@@ -17,11 +17,11 @@ Read-only Properties
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
 
-.. autoattribute:: abjad.tools.containertools.Cluster.Cluster.Cluster.format
-
 .. autoattribute:: abjad.tools.containertools.Cluster.Cluster.Cluster.leaves
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
+
+.. autoattribute:: abjad.tools.containertools.Cluster.Cluster.Cluster.lilypond_format
 
 .. autoattribute:: abjad.tools.containertools.Cluster.Cluster.Cluster.music
 

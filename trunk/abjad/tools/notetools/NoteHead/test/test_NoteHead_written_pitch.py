@@ -11,7 +11,7 @@ def test_NoteHead_written_pitch_01():
 
     "NoteHead(d'')"
 
-    assert t.note_head.format == "d''"
+    assert t.note_head.lilypond_format == "d''"
     assert t.note_head.written_pitch.numbered_chromatic_pitch._chromatic_pitch_number == 14
 
 
@@ -24,7 +24,7 @@ def test_NoteHead_written_pitch_02():
 
     "NoteHead(d'')"
 
-    assert t.note_head.format == "d''"
+    assert t.note_head.lilypond_format == "d''"
     assert t.note_head.written_pitch.numbered_chromatic_pitch._chromatic_pitch_number == 14
 
 

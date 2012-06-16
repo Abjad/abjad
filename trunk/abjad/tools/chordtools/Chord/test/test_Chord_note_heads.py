@@ -32,7 +32,7 @@ def test_Chord_note_heads_03():
     t = Chord([0], (1, 4))
     t.note_heads = "c' d' e'"
 
-    assert t.format == "<c' d' e'>4"
+    assert t.lilypond_format == "<c' d' e'>4"
 
 
 def test_Chord_note_heads_04():
@@ -63,4 +63,4 @@ def test_Chord_note_heads_04():
     >4
     '''
 
-    assert chord.format == "<\n\t\\tweak #'color #red\n\tef'\n\t\\tweak #'color #green\n\tcs''\n\t\\tweak #'color #blue\n\tf''\n>4"
+    assert chord.lilypond_format == "<\n\t\\tweak #'color #red\n\tef'\n\t\\tweak #'color #green\n\tcs''\n\t\\tweak #'color #blue\n\tf''\n>4"

@@ -22,7 +22,7 @@ def test_contexttools_set_accidental_style_on_sequential_contexts_in_expr_01():
     '''
 
     assert componenttools.is_well_formed_component(score)
-    assert score.format == "\\new Score <<\n\t\\new Staff {\n\t\t#(set-accidental-style 'forget)\n\t\tc'8\n\t\td'8\n\t}\n\t\\new Staff {\n\t\t#(set-accidental-style 'forget)\n\t\tc'8\n\t\td'8\n\t}\n>>"
+    assert score.lilypond_format == "\\new Score <<\n\t\\new Staff {\n\t\t#(set-accidental-style 'forget)\n\t\tc'8\n\t\td'8\n\t}\n\t\\new Staff {\n\t\t#(set-accidental-style 'forget)\n\t\tc'8\n\t\td'8\n\t}\n>>"
 
 
 def test_contexttools_set_accidental_style_on_sequential_contexts_in_expr_02():
@@ -47,4 +47,4 @@ def test_contexttools_set_accidental_style_on_sequential_contexts_in_expr_02():
     >>
     '''
 
-    assert score.format == "\\new Score <<\n\t\\new Staff {\n\t\tc'8\n\t\td'8\n\t}\n\t\\new Staff {\n\t\t#(set-accidental-style 'forget)\n\t\tc'8\n\t\td'8\n\t}\n>>"
+    assert score.lilypond_format == "\\new Score <<\n\t\\new Staff {\n\t\tc'8\n\t\td'8\n\t}\n\t\\new Staff {\n\t\t#(set-accidental-style 'forget)\n\t\tc'8\n\t\td'8\n\t}\n>>"

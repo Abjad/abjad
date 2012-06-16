@@ -9,7 +9,7 @@ def test_GraceContainer_01():
 
     assert isinstance(t, Container)
     assert len(t) == 3
-    assert t.format == "\\grace {\n\tc'16\n\td'16\n\te'16\n}"
+    assert t.lilypond_format == "\\grace {\n\tc'16\n\td'16\n\te'16\n}"
 
     r'''
     \grace {
@@ -42,7 +42,7 @@ def test_GraceContainer_03():
 
     t = gracetools.GraceContainer(notetools.make_repeated_notes(3))
     t.kind = 'grace'
-    assert t.format == "\\grace {\n\tc'8\n\tc'8\n\tc'8\n}"
+    assert t.lilypond_format == "\\grace {\n\tc'8\n\tc'8\n\tc'8\n}"
 
     r'''
     \grace {
@@ -58,7 +58,7 @@ def test_GraceContainer_04():
 
     t = gracetools.GraceContainer(notetools.make_repeated_notes(3))
     t.kind = 'acciaccatura'
-    assert t.format == "\\acciaccatura {\n\tc'8\n\tc'8\n\tc'8\n}"
+    assert t.lilypond_format == "\\acciaccatura {\n\tc'8\n\tc'8\n\tc'8\n}"
 
     r'''
     \acciaccatura {
@@ -74,7 +74,7 @@ def test_GraceContainer_05():
 
     t = gracetools.GraceContainer(notetools.make_repeated_notes(3))
     t.kind = 'appoggiatura'
-    assert t.format == "\\appoggiatura {\n\tc'8\n\tc'8\n\tc'8\n}"
+    assert t.lilypond_format == "\\appoggiatura {\n\tc'8\n\tc'8\n\tc'8\n}"
 
     r'''
     \appoggiatura {
@@ -90,7 +90,7 @@ def test_GraceContainer_06():
 
     t = gracetools.GraceContainer(notetools.make_repeated_notes(3))
     t.kind = 'after'
-    assert t.format == "{\n\tc'8\n\tc'8\n\tc'8\n}"
+    assert t.lilypond_format == "{\n\tc'8\n\tc'8\n\tc'8\n}"
 
     r'''
     {

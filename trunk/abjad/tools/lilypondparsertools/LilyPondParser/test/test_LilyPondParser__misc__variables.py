@@ -50,4 +50,4 @@ def test_LilyPondParser__misc__variables_01():
 
     parser = LilyPondParser()
     result = parser(input)
-    assert target.format == result.format and target is not result
+    assert target.lilypond_format == result.lilypond_format and target is not result

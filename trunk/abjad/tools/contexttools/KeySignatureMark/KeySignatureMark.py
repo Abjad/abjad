@@ -71,13 +71,13 @@ class KeySignatureMark(ContextMark):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def format(self):
+    def lilypond_format(self):
         r'''Read-only LilyPond format of key signature mark:
 
         ::
 
             >>> key_signature = contexttools.KeySignatureMark('e', 'major')
-            >>> key_signature.format
+            >>> key_signature.lilypond_format
             '\\key e \\major'
 
         Return string.

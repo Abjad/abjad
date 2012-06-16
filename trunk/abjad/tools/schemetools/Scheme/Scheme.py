@@ -7,20 +7,20 @@ class Scheme(AbjadObject):
 
         >>> from abjad.tools.schemetools import Scheme
         >>> s = Scheme(True)
-        >>> s.format
+        >>> s.lilypond_format
         '##t'
 
     schemetools.Scheme can represent nested structures ::
 
         >>> s = Scheme(('left', (1, 2, False)), ('right', (1, 2, 3.3)))
-        >>> s.format
+        >>> s.lilypond_format
         '#((left (1 2 #f)) (right (1 2 3.3)))'
 
     schemetools.Scheme wraps variable-length arguments into a tuple ::
 
         >>> s = Scheme(1, 2, 3)
         >>> q = Scheme((1, 2, 3))
-        >>> s.format == q.format
+        >>> s.lilypond_format == q.lilypond_format
         True
 
     schemetools.Scheme also takes an optional `quoting` keyword, by which Scheme's
@@ -28,13 +28,17 @@ class Scheme(AbjadObject):
     formatted result ::
 
         >>> s = Scheme((1, 2, 3), quoting="'#")
-        >>> s.format
+        >>> s.lilypond_format
         "#'#(1 2 3)"
 
     Scheme is immutable.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
     __slots__ = ('_quoting', '_value',)
+
+    ### INITIALIZER ###
 
     def __init__(self, *args, **kwargs):
         if 1 == len(args):
@@ -78,11 +82,11 @@ class Scheme(AbjadObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def format(self):
+    def lilypond_format(self):
         '''Hash-mark-prepended format of Scheme::
 
             >>> from abjad.tools.schemetools import Scheme
-            >>> Scheme(True).format
+            >>> Scheme(True).lilypond_format
             '##t'
 
         Returns string.

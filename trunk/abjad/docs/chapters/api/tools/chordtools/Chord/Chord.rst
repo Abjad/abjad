@@ -15,13 +15,13 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.chordtools.Chord.Chord.Chord.fingered_pitches
 
-.. autoattribute:: abjad.tools.chordtools.Chord.Chord.Chord.format
-
-    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
-
 .. autoattribute:: abjad.tools.chordtools.Chord.Chord.Chord.leaf_index
 
     Inherited from :py:class:`leaftools.Leaf <abjad.tools.leaftools.Leaf.Leaf.Leaf>`
+
+.. autoattribute:: abjad.tools.chordtools.Chord.Chord.Chord.lilypond_format
+
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
 .. autoattribute:: abjad.tools.chordtools.Chord.Chord.Chord.multiplied_duration
 

@@ -36,7 +36,7 @@ def test_scoretools_make_piano_score_from_leaves_01():
     """
 
     assert componenttools.is_well_formed_component(score)
-    assert score.format == '\\new Score <<\n\t\\new PianoStaff <<\n\t\t\\context Staff = "treble" {\n\t\t\t\\clef "treble"\n\t\t\tr4\n\t\t\tcs\'\'\'\'4\n\t\t\tr4\n\t\t\tef\'\'\'4\n\t\t\te\'4\n\t\t\tf\'\'4\n\t\t}\n\t\t\\context Staff = "bass" {\n\t\t\t\\clef "bass"\n\t\t\tc4\n\t\t\tr4\n\t\t\td4\n\t\t\tr4\n\t\t\tr4\n\t\t\tr4\n\t\t}\n\t>>\n>>'
+    assert score.lilypond_format == '\\new Score <<\n\t\\new PianoStaff <<\n\t\t\\context Staff = "treble" {\n\t\t\t\\clef "treble"\n\t\t\tr4\n\t\t\tcs\'\'\'\'4\n\t\t\tr4\n\t\t\tef\'\'\'4\n\t\t\te\'4\n\t\t\tf\'\'4\n\t\t}\n\t\t\\context Staff = "bass" {\n\t\t\t\\clef "bass"\n\t\t\tc4\n\t\t\tr4\n\t\t\td4\n\t\t\tr4\n\t\t\tr4\n\t\t\tr4\n\t\t}\n\t>>\n>>'
 
 
 def test_scoretools_make_piano_score_from_leaves_02():
@@ -78,4 +78,4 @@ def test_scoretools_make_piano_score_from_leaves_02():
     >>
     '''
 
-    assert score.format == '\\new Score <<\n\t\\new PianoStaff <<\n\t\t\\context Staff = "treble" {\n\t\t\t\\clef "treble"\n\t\t\tr4\n\t\t\ta4\n\t\t\tb4\n\t\t\tc\'4\n\t\t\td\'4\n\t\t\tr4\n\t\t\ta4\n\t\t\tr4\n\t\t}\n\t\t\\context Staff = "bass" {\n\t\t\t\\clef "bass"\n\t\t\tg4\n\t\t\tr4\n\t\t\tr4\n\t\t\tr4\n\t\t\tr4\n\t\t\tr4\n\t\t\tr4\n\t\t\tg4\n\t\t}\n\t>>\n>>'
+    assert score.lilypond_format == '\\new Score <<\n\t\\new PianoStaff <<\n\t\t\\context Staff = "treble" {\n\t\t\t\\clef "treble"\n\t\t\tr4\n\t\t\ta4\n\t\t\tb4\n\t\t\tc\'4\n\t\t\td\'4\n\t\t\tr4\n\t\t\ta4\n\t\t\tr4\n\t\t}\n\t\t\\context Staff = "bass" {\n\t\t\t\\clef "bass"\n\t\t\tg4\n\t\t\tr4\n\t\t\tr4\n\t\t\tr4\n\t\t\tr4\n\t\t\tr4\n\t\t\tr4\n\t\t\tg4\n\t\t}\n\t>>\n>>'

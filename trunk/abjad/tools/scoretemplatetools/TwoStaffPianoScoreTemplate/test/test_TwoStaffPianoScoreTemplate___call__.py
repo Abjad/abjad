@@ -25,4 +25,4 @@ def test_TwoStaffPianoScoreTemplate___call___01():
     >>
     '''
 
-    assert score.format == '\\context Score = "Two-Staff Piano Score" <<\n\t\\context PianoStaff = "Piano Staff" <<\n\t\t\\set PianoStaff.instrumentName = \\markup { Piano }\n\t\t\\set PianoStaff.shortInstrumentName = \\markup { Pf. }\n\t\t\\context Staff = "RH Staff" {\n\t\t\t\\clef "treble"\n\t\t\t\\context Voice = "RH Voice" {\n\t\t\t}\n\t\t}\n\t\t\\context Staff = "LH Staff" {\n\t\t\t\\clef "bass"\n\t\t\t\\context Voice = "LH Voice" {\n\t\t\t}\n\t\t}\n\t>>\n>>'
+    assert score.lilypond_format == '\\context Score = "Two-Staff Piano Score" <<\n\t\\context PianoStaff = "Piano Staff" <<\n\t\t\\set PianoStaff.instrumentName = \\markup { Piano }\n\t\t\\set PianoStaff.shortInstrumentName = \\markup { Pf. }\n\t\t\\context Staff = "RH Staff" {\n\t\t\t\\clef "treble"\n\t\t\t\\context Voice = "RH Voice" {\n\t\t\t}\n\t\t}\n\t\t\\context Staff = "LH Staff" {\n\t\t\t\\clef "bass"\n\t\t\t\\context Voice = "LH Voice" {\n\t\t\t}\n\t\t}\n\t>>\n>>'

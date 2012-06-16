@@ -3,14 +3,16 @@ from abjad.tools.pitchtools.get_named_chromatic_pitch_from_pitch_carrier import 
 from abjad.tools.pitchtools.is_pitch_carrier import is_pitch_carrier
 
 
-def list_melodic_chromatic_interval_numbers_pairwise_between_pitch_carriers(
-    pitch_carriers, wrap = False):
+def list_melodic_chromatic_interval_numbers_pairwise_between_pitch_carriers(pitch_carriers, wrap=False):
     r'''.. versionadded:: 1.1
 
     List melodic chromatic interval numbers pairwise between `pitch_carriers`::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-        >>> print staff.format
+
+    ::
+
+        >>> f(staff)
         \new Staff {
             c'8
             d'8

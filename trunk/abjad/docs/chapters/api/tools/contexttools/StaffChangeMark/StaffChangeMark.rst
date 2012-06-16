@@ -13,7 +13,7 @@ Read-only Properties
 
     Inherited from :py:class:`contexttools.ContextMark <abjad.tools.contexttools.ContextMark.ContextMark.ContextMark>`
 
-.. autoattribute:: abjad.tools.contexttools.StaffChangeMark.StaffChangeMark.StaffChangeMark.format
+.. autoattribute:: abjad.tools.contexttools.StaffChangeMark.StaffChangeMark.StaffChangeMark.lilypond_format
 
 .. autoattribute:: abjad.tools.contexttools.StaffChangeMark.StaffChangeMark.StaffChangeMark.start_component
 

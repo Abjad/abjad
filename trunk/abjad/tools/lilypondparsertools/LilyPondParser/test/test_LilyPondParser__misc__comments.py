@@ -8,4 +8,4 @@ def test_LilyPondParser__misc__comments_01():
     input = r'''\new Staff { %{ HOO HAH %} }'''
     parser = LilyPondParser()
     result = parser(input)
-    assert target.format == result.format and target is not result
+    assert target.lilypond_format == result.lilypond_format and target is not result

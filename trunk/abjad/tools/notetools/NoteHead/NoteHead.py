@@ -81,11 +81,11 @@ class NoteHead(SortableAttributeEqualityAbjadObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def format(self):
+    def lilypond_format(self):
         '''Read-only LilyPond input format of note head::
 
             >>> note_head = notetools.NoteHead("cs''")
-            >>> note_head.format
+            >>> note_head.lilypond_format
             "cs''"
 
         Return string.

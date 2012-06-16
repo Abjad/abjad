@@ -402,11 +402,11 @@ class NamedChromaticPitch(PitchObject):
         return self.numbered_diatonic_pitch._diatonic_pitch_number
 
     @property
-    def format(self):
+    def lilypond_format(self):
         '''Read-only LilyPond input format of named chromatic pitch::
 
             >>> named_chromatic_pitch = pitchtools.NamedChromaticPitch("cs''")
-            >>> named_chromatic_pitch.format
+            >>> named_chromatic_pitch.lilypond_format
             "cs''"
 
         Return string.

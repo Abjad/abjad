@@ -21,15 +21,15 @@ class AbjadRevisionToken(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        return '%s(%s)' % (type(self).__name__, self.format)
+        return '%s(%s)' % (type(self).__name__, self.lilypond_format)
 
     ### PUBLIC PROPERTIES ###
 
     @property
-    def format(self):
+    def lilypond_format(self):
         '''Format contribution of Abjad version token::
 
-            >>> lilypondfiletools.AbjadRevisionToken().format
+            >>> lilypondfiletools.AbjadRevisionToken().lilypond_format
             'Abjad revision ...'
 
         Return string.

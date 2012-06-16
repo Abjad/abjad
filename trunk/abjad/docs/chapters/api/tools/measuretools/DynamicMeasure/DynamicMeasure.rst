@@ -17,10 +17,6 @@ Read-only Properties
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
 
-.. autoattribute:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.format
-
-    Inherited from :py:class:`measuretools.Measure <abjad.tools.measuretools.Measure.Measure.Measure>`
-
 .. autoattribute:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.is_binary
 
     Inherited from :py:class:`measuretools.Measure <abjad.tools.measuretools.Measure.Measure.Measure>`
@@ -48,6 +44,10 @@ Read-only Properties
 .. autoattribute:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.leaves
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
+
+.. autoattribute:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.lilypond_format
+
+    Inherited from :py:class:`measuretools.Measure <abjad.tools.measuretools.Measure.Measure.Measure>`
 
 .. autoattribute:: abjad.tools.measuretools.DynamicMeasure.DynamicMeasure.DynamicMeasure.measure_number
 

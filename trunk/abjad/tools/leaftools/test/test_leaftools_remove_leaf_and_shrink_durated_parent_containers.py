@@ -43,7 +43,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_01():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "{\n\t\\time 5/6\n\t\\scaleDurations #'(2 . 3) {\n\t\t{\n\t\t\td'4\n\t\t\te'4\n\t\t}\n\t\t{\n\t\t\tf'4\n\t\t\tg'4\n\t\t\ta'4\n\t\t}\n\t}\n}"
+    assert t.lilypond_format == "{\n\t\\time 5/6\n\t\\scaleDurations #'(2 . 3) {\n\t\t{\n\t\t\td'4\n\t\t\te'4\n\t\t}\n\t\t{\n\t\t\tf'4\n\t\t\tg'4\n\t\t\ta'4\n\t\t}\n\t}\n}"
 
 
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_02():
@@ -96,7 +96,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_02():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "{\n\t\\time 9/10\n\t\\scaleDurations #'(4 . 5) {\n\t\t{\n\t\t\td'8\n\t\t\te'8\n\t\t\tf'8\n\t\t\tg'8\n\t\t}\n\t\t{\n\t\t\ta'8\n\t\t\tb'8\n\t\t\tc''8\n\t\t\td''8\n\t\t\te''8\n\t\t}\n\t}\n}"
+    assert t.lilypond_format == "{\n\t\\time 9/10\n\t\\scaleDurations #'(4 . 5) {\n\t\t{\n\t\t\td'8\n\t\t\te'8\n\t\t\tf'8\n\t\t\tg'8\n\t\t}\n\t\t{\n\t\t\ta'8\n\t\t\tb'8\n\t\t\tc''8\n\t\t\td''8\n\t\t\te''8\n\t\t}\n\t}\n}"
 
 
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_03():
@@ -159,7 +159,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_03():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "{\n\t\\time 11/15\n\t\\scaleDurations #'(8 . 15) {\n\t\t\\fraction \\times 3/4 {\n\t\t\td'4\n\t\t\te'4\n\t\t\tf'4\n\t\t\tg'4\n\t\t}\n\t\t\\fraction \\times 5/7 {\n\t\t\ta'8\n\t\t\tb'8\n\t\t\tc''8\n\t\t\td''8\n\t\t\te''8\n\t\t\tf''8\n\t\t\tg''8\n\t\t}\n\t}\n}"
+    assert t.lilypond_format == "{\n\t\\time 11/15\n\t\\scaleDurations #'(8 . 15) {\n\t\t\\fraction \\times 3/4 {\n\t\t\td'4\n\t\t\te'4\n\t\t\tf'4\n\t\t\tg'4\n\t\t}\n\t\t\\fraction \\times 5/7 {\n\t\t\ta'8\n\t\t\tb'8\n\t\t\tc''8\n\t\t\td''8\n\t\t\te''8\n\t\t\tf''8\n\t\t\tg''8\n\t\t}\n\t}\n}"
 
 
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_04():
@@ -691,7 +691,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_21():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\times 2/3 {\n\tc'4\n\td'4\n}"
+    assert t.lilypond_format == "\\times 2/3 {\n\tc'4\n\td'4\n}"
 
 
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_22():
@@ -733,7 +733,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_22():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\times 2/3 {\n\tc'4\n\td'4\n\t{\n\t\t{\n\t\t\te'8\n\t\t}\n\t}\n}"
+    assert t.lilypond_format == "\\times 2/3 {\n\tc'4\n\td'4\n\t{\n\t\t{\n\t\t\te'8\n\t\t}\n\t}\n}"
 
 
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_23():
@@ -763,7 +763,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_23():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\times 4/5 {\n\td'8\n\te'8\n\tf'8\n\tg'8\n}"
+    assert t.lilypond_format == "\\times 4/5 {\n\td'8\n\te'8\n\tf'8\n\tg'8\n}"
 
 
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_24():
@@ -794,7 +794,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_24():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\times 4/5 {\n\td'8\n\te'8\n\tf'8\n\tg'8\n}"
+    assert t.lilypond_format == "\\times 4/5 {\n\td'8\n\te'8\n\tf'8\n\tg'8\n}"
 
 
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_25():
@@ -829,7 +829,7 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_25():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\times 2/3 {\n\tc'2\n\tcs'2\n\t\\times 2/3 {\n\t\td'4\n\t\tef'4\n\t}\n}"
+    assert t.lilypond_format == "\\times 2/3 {\n\tc'2\n\tcs'2\n\t\\times 2/3 {\n\t\td'4\n\t\tef'4\n\t}\n}"
 
 
 def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_26():
@@ -866,4 +866,4 @@ def test_leaftools_remove_leaf_and_shrink_durated_parent_containers_26():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\times 2/3 {\n\tc'2\n\tcs'2\n\t\\times 2/3 {\n\t\td'4\n\t\tef'4\n\t}\n}"
+    assert t.lilypond_format == "\\times 2/3 {\n\tc'2\n\tcs'2\n\t\\times 2/3 {\n\t\td'4\n\t\tef'4\n\t}\n}"

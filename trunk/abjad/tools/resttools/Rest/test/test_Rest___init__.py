@@ -16,7 +16,7 @@ def test_Rest___init___02():
 
     rest = Rest(Duration(1, 4), Duration(1, 2))
 
-    assert rest.format == 'r4 * 1/2'
+    assert rest.lilypond_format == 'r4 * 1/2'
 
 
 def test_Rest___init___03():
@@ -29,7 +29,7 @@ def test_Rest___init___03():
 
     assert isinstance(rest_1, Rest)
     assert isinstance(rest_2, Rest)
-    assert rest_1.format == rest_2.format
+    assert rest_1.lilypond_format == rest_2.lilypond_format
     assert rest_1 is not rest_2
 
 
@@ -126,7 +126,7 @@ def test_Rest___init___10():
     # check that attributes have not been removed or added.
     assert dir(n) == dir(Note(0, (1, 8)))
     assert dir(r) == dir(Rest((1, 4)))
-    assert r.format == 'r8'
+    assert r.lilypond_format == 'r8'
     assert r._parent is None
     assert r.written_duration == d
 
@@ -176,7 +176,7 @@ def test_Rest___init___13():
     }
     '''
 
-    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tr8 ]\n}"
+    assert t.lilypond_format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tr8 ]\n}"
 
 
 def test_Rest___init___14():
@@ -198,4 +198,4 @@ def test_Rest___init___14():
     }
     '''
 
-    assert t.format == '\\new Voice {\n\tr8 [\n\tr8\n\tr8\n\tr8 ]\n}'
+    assert t.lilypond_format == '\\new Voice {\n\tr8 [\n\tr8\n\tr8\n\tr8 ]\n}'

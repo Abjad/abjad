@@ -9,7 +9,7 @@ marktools.StemTremolo
 Read-only Properties
 --------------------
 
-.. autoattribute:: abjad.tools.marktools.StemTremolo.StemTremolo.StemTremolo.format
+.. autoattribute:: abjad.tools.marktools.StemTremolo.StemTremolo.StemTremolo.lilypond_format
 
 .. autoattribute:: abjad.tools.marktools.StemTremolo.StemTremolo.StemTremolo.start_component
 

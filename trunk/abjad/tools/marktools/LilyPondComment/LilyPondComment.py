@@ -98,13 +98,13 @@ class LilyPondComment(Mark):
         return property(**locals())
 
     @property
-    def format(self):
+    def lilypond_format(self):
         '''Read-only LilyPond input format of comment:
 
         ::
 
             >>> comment = marktools.LilyPondComment('this is a comment.')
-            >>> comment.format
+            >>> comment.lilypond_format
             '% this is a comment.'
 
         Return string.

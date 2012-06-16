@@ -21,15 +21,15 @@ class LilyPondVersionToken(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        return '%s(%s)' % (type(self).__name__, self.format)
+        return '%s(%s)' % (type(self).__name__, self.lilypond_format)
 
     ### PUBLIC PROPERTIES ###
 
     @property
-    def format(self):
+    def lilypond_format(self):
         r'''Format contribution of LilyPond version token::
 
-            >>> lilypondfiletools.LilyPondVersionToken().format
+            >>> lilypondfiletools.LilyPondVersionToken().lilypond_format
             '\\version "..."'
 
         Return string.

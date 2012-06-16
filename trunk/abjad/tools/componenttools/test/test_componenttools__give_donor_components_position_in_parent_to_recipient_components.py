@@ -23,7 +23,7 @@ def test_componenttools__give_donor_components_position_in_parent_to_recipient_c
     }
     '''
 
-    assert t.format == "\\new Voice {\n\tc'16\n\td'16\n\td'8\n\te'8\n\tf'8 ]\n}"
+    assert t.lilypond_format == "\\new Voice {\n\tc'16\n\td'16\n\td'8\n\te'8\n\tf'8 ]\n}"
 
     "Container t now carries a discontiguous spanner."
 

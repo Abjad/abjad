@@ -42,4 +42,4 @@ def test_containertools_remove_empty_containers_in_expr_01():
     '''
 
     assert componenttools.is_well_formed_component(staff)
-    assert staff.format == "\\new Staff {\n\t{\n\t\tc'8 [\n\t\td'8\n\t}\n\t{\n\t\tg'8\n\t\ta'8 ]\n\t}\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\tc'8 [\n\t\td'8\n\t}\n\t{\n\t\tg'8\n\t\ta'8 ]\n\t}\n}"

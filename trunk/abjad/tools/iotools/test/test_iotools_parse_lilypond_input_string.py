@@ -23,7 +23,7 @@ def test_iotools_parse_lilypond_input_string_01():
     '''
 
     assert componenttools.is_well_formed_component(staff)
-    assert staff.format == '\\new Staff {\n\tg\'4\n\ta\'4 ~\n\ta\'2\n\t\\bar "||"\n\tg\'4.\n\tfs\'8\n\te\'4\n\td\'4 -\\fermata\n}'
+    assert staff.lilypond_format == '\\new Staff {\n\tg\'4\n\ta\'4 ~\n\ta\'2\n\t\\bar "||"\n\tg\'4.\n\tfs\'8\n\te\'4\n\td\'4 -\\fermata\n}'
 
 
 def test_iotools_parse_lilypond_input_string_02():
@@ -48,7 +48,7 @@ def test_iotools_parse_lilypond_input_string_02():
     '''
 
     assert componenttools.is_well_formed_component(staff)
-    assert staff.format == "\\new Staff {\n\tc'4\n\tg'4\n\tb8\n\tc'8\n\td'8 -\\staccato (\n\tef'8 ^\\marcato\n\t<bf cs' f'>4\n\tc'4 )\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\tc'4\n\tg'4\n\tb8\n\tc'8\n\td'8 -\\staccato (\n\tef'8 ^\\marcato\n\t<bf cs' f'>4\n\tc'4 )\n}"
 
 
 def test_iotools_parse_lilypond_input_string_03():
@@ -76,4 +76,4 @@ def test_iotools_parse_lilypond_input_string_03():
     '''
 
     assert componenttools.is_well_formed_component(staff)
-    assert staff.format == "\\new Staff {\n\tc'4 (\n\td'4\n\te'8\n\tfs'8 [\n\ta'16.\n\td'32 ] )\n\tg'2\n\tb16 [ ] (\n\tc'16\n\tb16\n\tc'16 )\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\tc'4 (\n\td'4\n\te'8\n\tfs'8 [\n\ta'16.\n\td'32 ] )\n\tg'2\n\tb16 [ ] (\n\tc'16\n\tb16\n\tc'16 )\n}"

@@ -159,7 +159,7 @@ class Tuplet(Container):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def format(self):
+    def lilypond_format(self):
         self._update_marks_of_entire_score_tree_if_necessary()
         return self._format_component()
 

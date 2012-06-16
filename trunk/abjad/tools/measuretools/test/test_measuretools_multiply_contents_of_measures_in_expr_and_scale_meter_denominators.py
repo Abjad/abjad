@@ -28,7 +28,7 @@ def test_measuretools_multiply_contents_of_measures_in_expr_and_scale_meter_deno
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "{\n\t\\time 9/24\n\t\\scaleDurations #'(2 . 3) {\n\t\tc'16 [\n\t\td'16\n\t\te'16 ]\n\t\tc'16 [\n\t\td'16\n\t\te'16 ]\n\t\tc'16 [\n\t\td'16\n\t\te'16 ]\n\t}\n}"
+    assert t.lilypond_format == "{\n\t\\time 9/24\n\t\\scaleDurations #'(2 . 3) {\n\t\tc'16 [\n\t\td'16\n\t\te'16 ]\n\t\tc'16 [\n\t\td'16\n\t\te'16 ]\n\t\tc'16 [\n\t\td'16\n\t\te'16 ]\n\t}\n}"
 
 
 def test_measuretools_multiply_contents_of_measures_in_expr_and_scale_meter_denominators_02():
@@ -62,7 +62,7 @@ def test_measuretools_multiply_contents_of_measures_in_expr_and_scale_meter_deno
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "{\n\t\\time 12/80\n\t\\scaleDurations #'(4 . 5) {\n\t\tc'64 [\n\t\td'64\n\t\te'64 ]\n\t\tc'64 [\n\t\td'64\n\t\te'64 ]\n\t\tc'64 [\n\t\td'64\n\t\te'64 ]\n\t\tc'64 [\n\t\td'64\n\t\te'64 ]\n\t}\n}"
+    assert t.lilypond_format == "{\n\t\\time 12/80\n\t\\scaleDurations #'(4 . 5) {\n\t\tc'64 [\n\t\td'64\n\t\te'64 ]\n\t\tc'64 [\n\t\td'64\n\t\te'64 ]\n\t\tc'64 [\n\t\td'64\n\t\te'64 ]\n\t\tc'64 [\n\t\td'64\n\t\te'64 ]\n\t}\n}"
 
 
 def test_measuretools_multiply_contents_of_measures_in_expr_and_scale_meter_denominators_03():
@@ -93,7 +93,7 @@ def test_measuretools_multiply_contents_of_measures_in_expr_and_scale_meter_deno
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "{\n\t\\time 12/64\n\tc'64 [\n\td'64\n\te'64 ]\n\tc'64 [\n\td'64\n\te'64 ]\n\tc'64 [\n\td'64\n\te'64 ]\n\tc'64 [\n\td'64\n\te'64 ]\n}"
+    assert t.lilypond_format == "{\n\t\\time 12/64\n\tc'64 [\n\td'64\n\te'64 ]\n\tc'64 [\n\td'64\n\te'64 ]\n\tc'64 [\n\td'64\n\te'64 ]\n\tc'64 [\n\td'64\n\te'64 ]\n}"
 
 
 def test_measuretools_multiply_contents_of_measures_in_expr_and_scale_meter_denominators_04():
@@ -118,4 +118,4 @@ def test_measuretools_multiply_contents_of_measures_in_expr_and_scale_meter_deno
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "{\n\t\\time 6/64\n\tc'64 [\n\td'64\n\te'64 ]\n\tc'64 [\n\td'64\n\te'64 ]\n}"
+    assert t.lilypond_format == "{\n\t\\time 6/64\n\tc'64 [\n\td'64\n\te'64 ]\n\tc'64 [\n\td'64\n\te'64 ]\n}"

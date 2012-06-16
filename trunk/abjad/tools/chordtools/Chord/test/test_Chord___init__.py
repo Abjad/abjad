@@ -6,7 +6,7 @@ def test_Chord___init___01():
     '''
 
     t = Chord([], (1, 4))
-    assert t.format == "<>4"
+    assert t.lilypond_format == "<>4"
 
 
 def test_Chord___init___02():
@@ -14,7 +14,7 @@ def test_Chord___init___02():
     '''
 
     t = Chord([2, 4, 5], (1, 4))
-    assert t.format == "<d' e' f'>4"
+    assert t.lilypond_format == "<d' e' f'>4"
 
 
 def test_Chord___init___03():
@@ -22,7 +22,7 @@ def test_Chord___init___03():
     '''
 
     t = Chord([('ds', 4), ('ef', 4)], (1, 4))
-    assert t.format == "<ds' ef'>4"
+    assert t.lilypond_format == "<ds' ef'>4"
 
 
 def test_Chord___init___04():
@@ -30,7 +30,7 @@ def test_Chord___init___04():
     '''
 
     t = Chord([pitchtools.NamedChromaticPitch('ds', 4), pitchtools.NamedChromaticPitch('ef', 4)], (1, 4))
-    assert t.format == "<ds' ef'>4"
+    assert t.lilypond_format == "<ds' ef'>4"
 
 
 def test_Chord___init___05():
@@ -38,7 +38,7 @@ def test_Chord___init___05():
     '''
 
     t = Chord([2, ('ef', 4), pitchtools.NamedChromaticPitch(4)], (1, 4))
-    assert t.format == "<d' ef' e'>4"
+    assert t.lilypond_format == "<d' ef' e'>4"
 
 
 def test_Chord___init___06():
@@ -46,7 +46,7 @@ def test_Chord___init___06():
     '''
 
     t = Chord(["d'", "ef'", "e'"], (1, 4))
-    assert t.format == "<d' ef' e'>4"
+    assert t.lilypond_format == "<d' ef' e'>4"
 
 
 def test_Chord___init___07():
@@ -54,7 +54,7 @@ def test_Chord___init___07():
     '''
 
     t = Chord("<d' ef' e'>4")
-    assert t.format == "<d' ef' e'>4"
+    assert t.lilypond_format == "<d' ef' e'>4"
 
 
 def test_Chord___init___08():
@@ -162,7 +162,7 @@ def test_Chord___init___15():
     assert isinstance(c, Chord)
     assert dir(n) == dir(Note("c'4"))
     assert dir(c) == dir(Chord([2, 3, 4], (1, 4)))
-    assert c.format == "<d'>8"
+    assert c.lilypond_format == "<d'>8"
     assert c._parent is None
     assert c.note_heads[0] is not h
     assert c.written_pitches[0] == p
@@ -178,7 +178,7 @@ def test_Chord___init___16():
     chord = Chord(t[0])
     assert isinstance(t[0], Note)
     assert isinstance(chord, Chord)
-    assert chord.format == "<c'>8"
+    assert chord.lilypond_format == "<c'>8"
     assert t[0]._parent is t
     assert chord.note_heads[0] is not h
     assert chord.written_pitches[0] == p

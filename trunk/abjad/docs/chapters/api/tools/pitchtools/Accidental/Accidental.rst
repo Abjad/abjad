@@ -11,9 +11,9 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.pitchtools.Accidental.Accidental.Accidental.alphabetic_accidental_abbreviation
 
-.. autoattribute:: abjad.tools.pitchtools.Accidental.Accidental.Accidental.format
-
 .. autoattribute:: abjad.tools.pitchtools.Accidental.Accidental.Accidental.is_adjusted
+
+.. autoattribute:: abjad.tools.pitchtools.Accidental.Accidental.Accidental.lilypond_format
 
 .. autoattribute:: abjad.tools.pitchtools.Accidental.Accidental.Accidental.name
 

@@ -8,7 +8,7 @@ def test_FixedDurationTuplet___init___01():
 
     assert repr(t) == "FixedDurationTuplet(1/4, [c'8, c'8, c'8])"
     assert str(t) == "{@ 3:2 c'8, c'8, c'8 @}"
-    assert t.format == "\\times 2/3 {\n\tc'8\n\tc'8\n\tc'8\n}"
+    assert t.lilypond_format == "\\times 2/3 {\n\tc'8\n\tc'8\n\tc'8\n}"
     assert len(t) == 3
     assert t.target_duration == Fraction(1, 4)
     assert t.multiplier == Fraction(2, 3)

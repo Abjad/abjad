@@ -7,7 +7,7 @@ def test_Staff_meter_01():
 
     t = Staff(Note("c'4") * 8)
     contexttools.TimeSignatureMark((2, 4))(t)
-    assert t.format == "\\new Staff {\n\t\\time 2/4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n}"
+    assert t.lilypond_format == "\\new Staff {\n\t\\time 2/4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n\tc'4\n}"
     r'''
     \new Staff {
         \time 2/4
@@ -35,7 +35,7 @@ def test_Staff_meter_02():
     }
     '''
 
-    assert t.format == '\\new Staff {\n\t\\time 2/4\n}'
+    assert t.lilypond_format == '\\new Staff {\n\t\\time 2/4\n}'
 
 
 def test_Staff_meter_03():

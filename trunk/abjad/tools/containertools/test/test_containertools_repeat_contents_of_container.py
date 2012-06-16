@@ -20,7 +20,7 @@ def test_containertools_repeat_contents_of_container_01():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n\tc'8 [\n\td'8 ]\n\tc'8 [\n\td'8 ]\n}"
+    assert t.lilypond_format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n\tc'8 [\n\td'8 ]\n\tc'8 [\n\td'8 ]\n}"
 
 
 def test_containertools_repeat_contents_of_container_02():
@@ -38,7 +38,7 @@ def test_containertools_repeat_contents_of_container_02():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n}"
+    assert t.lilypond_format == "\\new Voice {\n\tc'8 [\n\td'8 ]\n}"
 
 
 def test_containertools_repeat_contents_of_container_03():
@@ -54,4 +54,4 @@ def test_containertools_repeat_contents_of_container_03():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == '\\new Voice {\n}'
+    assert t.lilypond_format == '\\new Voice {\n}'

@@ -206,7 +206,7 @@ class Container(Component):
     def _format_content_pieces(self):
         result = []
         for m in self._music:
-            result.extend(m.format.split('\n'))
+            result.extend(m.lilypond_format.split('\n'))
         result = ['\t' + x for x in result]
         return result
         

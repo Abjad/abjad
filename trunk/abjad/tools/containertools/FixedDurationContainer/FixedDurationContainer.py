@@ -60,7 +60,7 @@ class FixedDurationContainer(Container):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def format(self):
+    def lilypond_format(self):
         '''Read-only LilyPond format of fixed-duration container.
         '''
         self._check_duration()

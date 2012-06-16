@@ -14,7 +14,7 @@ def apply_octavation_spanner_to_pitched_components(expr,
 
     ::
 
-        >>> print t.format
+        >>> f(t)
             {
                 \time 4/8
                 \ottava #1

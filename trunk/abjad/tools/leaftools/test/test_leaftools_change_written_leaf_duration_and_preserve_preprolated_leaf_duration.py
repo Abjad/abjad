@@ -6,7 +6,7 @@ def test_leaftools_change_written_leaf_duration_and_preserve_preprolated_leaf_du
     n = Note("c'4")
     leaftools.change_written_leaf_duration_and_preserve_preprolated_leaf_duration(
       n, Duration(3, 16))
-    assert n.format == "c'8. * 4/3"
+    assert n.lilypond_format == "c'8. * 4/3"
 
 
 def test_leaftools_change_written_leaf_duration_and_preserve_preprolated_leaf_duration_02():
@@ -14,7 +14,7 @@ def test_leaftools_change_written_leaf_duration_and_preserve_preprolated_leaf_du
     n = Note("c'4")
     leaftools.change_written_leaf_duration_and_preserve_preprolated_leaf_duration(
       n, Duration(7, 8))
-    assert n.format == "c'2.. * 2/7"
+    assert n.lilypond_format == "c'2.. * 2/7"
 
 
 def test_leaftools_change_written_leaf_duration_and_preserve_preprolated_leaf_duration_03():
@@ -22,4 +22,4 @@ def test_leaftools_change_written_leaf_duration_and_preserve_preprolated_leaf_du
     n = Note("c'4")
     leaftools.change_written_leaf_duration_and_preserve_preprolated_leaf_duration(
       n, Duration(15, 16))
-    assert n.format == "c'2... * 4/15"
+    assert n.lilypond_format == "c'2... * 4/15"

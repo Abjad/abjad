@@ -63,7 +63,7 @@ def test_Leaf_number_05():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Staff {\n\te'8\n\tf'8\n\tc'8\n\td'8\n}"
+    assert t.lilypond_format == "\\new Staff {\n\te'8\n\tf'8\n\tc'8\n\td'8\n}"
 
     assert t[0].leaf_index == 0
     assert t[1].leaf_index == 1

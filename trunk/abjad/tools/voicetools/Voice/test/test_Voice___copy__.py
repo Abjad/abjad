@@ -41,7 +41,7 @@ def test_Voice___copy___01():
     }
     '''
 
-    assert voice_2.format == '\\context Voice = "SopranoVoice" \\with {\n\t\\remove Forbid_line_break_engraver\n\t\\consists Time_signature_engraver\n\t\\override NoteHead #\'color = #red\n\ttupletFullLength = ##t\n} {\n}'
+    assert voice_2.lilypond_format == '\\context Voice = "SopranoVoice" \\with {\n\t\\remove Forbid_line_break_engraver\n\t\\consists Time_signature_engraver\n\t\\override NoteHead #\'color = #red\n\ttupletFullLength = ##t\n} {\n}'
 
 
 def test_Voice___copy___02():
@@ -69,4 +69,4 @@ def test_Voice___copy___02():
     '''
 
     assert voice_2.is_nonsemantic
-    assert voice_2.format == '\\context Voice = "SkipVoice" {\n}'
+    assert voice_2.lilypond_format == '\\context Voice = "SkipVoice" {\n}'

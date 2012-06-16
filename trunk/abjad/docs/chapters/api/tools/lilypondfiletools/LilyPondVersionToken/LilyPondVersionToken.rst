@@ -9,7 +9,7 @@ lilypondfiletools.LilyPondVersionToken
 Read-only Properties
 --------------------
 
-.. autoattribute:: abjad.tools.lilypondfiletools.LilyPondVersionToken.LilyPondVersionToken.LilyPondVersionToken.format
+.. autoattribute:: abjad.tools.lilypondfiletools.LilyPondVersionToken.LilyPondVersionToken.LilyPondVersionToken.lilypond_format
 
 .. autoattribute:: abjad.tools.lilypondfiletools.LilyPondVersionToken.LilyPondVersionToken.LilyPondVersionToken.storage_format
 

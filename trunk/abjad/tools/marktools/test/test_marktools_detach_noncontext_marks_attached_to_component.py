@@ -29,4 +29,4 @@ def test_marktools_detach_noncontext_marks_attached_to_component_01():
     }
     '''
 
-    assert staff.format == "\\new Staff {\n\t\\time 2/4\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\t\\time 2/4\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"

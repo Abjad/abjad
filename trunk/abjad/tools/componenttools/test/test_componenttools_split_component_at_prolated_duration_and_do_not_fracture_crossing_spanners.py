@@ -47,7 +47,7 @@ def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture
     assert isinstance(halves, tuple)
     assert isinstance(halves[0], list)
     assert isinstance(halves[1], list)
-    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'32 [ (\n\t\tc'16.\n\t\td'8 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
+    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'32 [ (\n\t\tc'16.\n\t\td'8 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
 def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners_02():
@@ -99,7 +99,7 @@ def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture
     assert isinstance(halves, tuple)
     assert isinstance(halves[0], list)
     assert isinstance(halves[1], list)
-    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 1/32\n\t\tc'32 [ (\n\t}\n\t{\n\t\t\\time 7/32\n\t\tc'16.\n\t\td'8 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
+    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 1/32\n\t\tc'32 [ (\n\t}\n\t{\n\t\t\\time 7/32\n\t\tc'16.\n\t\td'8 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
 def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners_03():
@@ -139,7 +139,7 @@ def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture
     }
     '''
 
-    assert halves[0][0].format == "\\new Staff {\n\t{\n\t\t\\time 1/32\n\t\tc'32 [ (\n\t}\n}"
+    assert halves[0][0].lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 1/32\n\t\tc'32 [ (\n\t}\n}"
 
     "halves[1][0]"
 
@@ -158,7 +158,7 @@ def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture
     }
     '''
 
-    assert halves[1][0].format == "\\new Staff {\n\t{\n\t\t\\time 7/32\n\t\tc'16.\n\t\td'8 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
+    assert halves[1][0].lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 7/32\n\t\tc'16.\n\t\td'8 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
 def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners_04():
@@ -211,7 +211,7 @@ def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture
     assert isinstance(halves, tuple)
     assert isinstance(halves[0], list)
     assert isinstance(halves[1], list)
-    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'32 [ ( ~\n\t\tc'16.\n\t\td'8 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
+    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'32 [ ( ~\n\t\tc'16.\n\t\td'8 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
 def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners_05():
@@ -267,7 +267,7 @@ def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture
     assert isinstance(halves, tuple)
     assert isinstance(halves[0], list)
     assert isinstance(halves[1], list)
-    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 1/32\n\t\tc'32 [ ( ~\n\t}\n\t{\n\t\t\\time 7/32\n\t\tc'16.\n\t\td'8 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
+    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 1/32\n\t\tc'32 [ ( ~\n\t}\n\t{\n\t\t\\time 7/32\n\t\tc'16.\n\t\td'8 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
 def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners_06():
@@ -387,4 +387,4 @@ def test_componenttools_split_component_at_prolated_duration_and_do_not_fracture
 
     assert componenttools.is_well_formed_component(t)
     assert len(halves) == 2
-    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 4/20\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\tc'8 [ ( ~\n\t\t\tc'32\n\t\t\td'16. ~\n\t\t}\n\t}\n\t{\n\t\t\\time 1/20\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\td'16 ]\n\t\t}\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
+    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 4/20\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\tc'8 [ ( ~\n\t\t\tc'32\n\t\t\td'16. ~\n\t\t}\n\t}\n\t{\n\t\t\\time 1/20\n\t\t\\scaleDurations #'(4 . 5) {\n\t\t\td'16 ]\n\t\t}\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"

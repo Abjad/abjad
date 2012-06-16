@@ -47,7 +47,7 @@ class NonattributedBlock(list):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def format(self):
+    def lilypond_format(self):
         return '\n'.join(self._format_pieces)
 
     @apply

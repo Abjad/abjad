@@ -132,7 +132,7 @@ class MetricGridSpanner(Spanner):
                 meter, temp_hide = matching_meter
             #if meter and not getattr(meter, '_temp_hide', False):
             if meter and not temp_hide:
-                result.append(meter.format)
+                result.append(meter.lilypond_format)
             #m = self._slicing_meters(leaf)
             m = self._slicing_meters(leaf)
             #m = [meter for meter in m if not getattr(meter, '_temp_hide', False)]
@@ -149,7 +149,7 @@ class MetricGridSpanner(Spanner):
                     mark = contexttools.TimeSignatureMark((numerator, denominator))(s)
                     mark._is_cosmetic_mark = True
                     container = Container([s])
-                    result.append(container.format)
+                    result.append(container.lilypond_format)
         return result
 
     def _matching_meter(self, leaf):

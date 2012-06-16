@@ -17,10 +17,6 @@ Read-only Properties
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
 
-.. autoattribute:: abjad.tools.measuretools.AnonymousMeasure.AnonymousMeasure.AnonymousMeasure.format
-
-    Inherited from :py:class:`measuretools.Measure <abjad.tools.measuretools.Measure.Measure.Measure>`
-
 .. autoattribute:: abjad.tools.measuretools.AnonymousMeasure.AnonymousMeasure.AnonymousMeasure.is_binary
 
     Inherited from :py:class:`measuretools.Measure <abjad.tools.measuretools.Measure.Measure.Measure>`
@@ -48,6 +44,10 @@ Read-only Properties
 .. autoattribute:: abjad.tools.measuretools.AnonymousMeasure.AnonymousMeasure.AnonymousMeasure.leaves
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
+
+.. autoattribute:: abjad.tools.measuretools.AnonymousMeasure.AnonymousMeasure.AnonymousMeasure.lilypond_format
+
+    Inherited from :py:class:`measuretools.Measure <abjad.tools.measuretools.Measure.Measure.Measure>`
 
 .. autoattribute:: abjad.tools.measuretools.AnonymousMeasure.AnonymousMeasure.AnonymousMeasure.measure_number
 

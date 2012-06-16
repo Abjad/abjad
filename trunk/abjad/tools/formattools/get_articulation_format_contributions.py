@@ -10,6 +10,6 @@ def get_articulation_format_contributions(component):
     result = []
     articulations = marktools.get_articulations_attached_to_component(component)
     for articulation in articulations:
-        result.append(articulation.format)
+        result.append(articulation.lilypond_format)
     result.sort()
     return ['articulations', result]

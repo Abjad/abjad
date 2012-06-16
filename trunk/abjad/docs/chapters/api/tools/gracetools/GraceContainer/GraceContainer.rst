@@ -17,11 +17,11 @@ Read-only Properties
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
 
-.. autoattribute:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.format
-
 .. autoattribute:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.leaves
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
+
+.. autoattribute:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.lilypond_format
 
 .. autoattribute:: abjad.tools.gracetools.GraceContainer.GraceContainer.GraceContainer.music
 

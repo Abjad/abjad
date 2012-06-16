@@ -9,7 +9,7 @@ marktools.BarLine
 Read-only Properties
 --------------------
 
-.. autoattribute:: abjad.tools.marktools.BarLine.BarLine.BarLine.format
+.. autoattribute:: abjad.tools.marktools.BarLine.BarLine.BarLine.lilypond_format
 
     Inherited from :py:class:`marktools.LilyPondCommandMark <abjad.tools.marktools.LilyPondCommandMark.LilyPondCommandMark.LilyPondCommandMark>`
 

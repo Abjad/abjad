@@ -21,10 +21,6 @@ Read-only Properties
 
     Inherited from :py:class:`contexttools.ContextMark <abjad.tools.contexttools.ContextMark.ContextMark.ContextMark>`
 
-.. autoattribute:: abjad.tools.instrumenttools.BaritoneSaxophone.BaritoneSaxophone.BaritoneSaxophone.format
-
-    Inherited from :py:class:`contexttools.InstrumentMark <abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark>`
-
 .. autoattribute:: abjad.tools.instrumenttools.BaritoneSaxophone.BaritoneSaxophone.BaritoneSaxophone.interval_of_transposition
 
     Inherited from :py:class:`instrumenttools._Instrument <abjad.tools.instrumenttools._Instrument._Instrument._Instrument>`
@@ -40,6 +36,10 @@ Read-only Properties
 .. autoattribute:: abjad.tools.instrumenttools.BaritoneSaxophone.BaritoneSaxophone.BaritoneSaxophone.is_transposing
 
     Inherited from :py:class:`instrumenttools._Instrument <abjad.tools.instrumenttools._Instrument._Instrument._Instrument>`
+
+.. autoattribute:: abjad.tools.instrumenttools.BaritoneSaxophone.BaritoneSaxophone.BaritoneSaxophone.lilypond_format
+
+    Inherited from :py:class:`contexttools.InstrumentMark <abjad.tools.contexttools.InstrumentMark.InstrumentMark.InstrumentMark>`
 
 .. autoattribute:: abjad.tools.instrumenttools.BaritoneSaxophone.BaritoneSaxophone.BaritoneSaxophone.start_component
 

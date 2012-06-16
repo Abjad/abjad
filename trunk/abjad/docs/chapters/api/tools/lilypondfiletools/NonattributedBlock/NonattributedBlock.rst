@@ -9,7 +9,7 @@ lilypondfiletools.NonattributedBlock
 Read-only Properties
 --------------------
 
-.. autoattribute:: abjad.tools.lilypondfiletools.NonattributedBlock.NonattributedBlock.NonattributedBlock.format
+.. autoattribute:: abjad.tools.lilypondfiletools.NonattributedBlock.NonattributedBlock.NonattributedBlock.lilypond_format
 
 Read/write Properties
 ---------------------

@@ -8,4 +8,4 @@ def test_Chord_remove_01():
     chord.remove(note_head)
 
     assert note_head._client is None
-    assert chord.format == "<ef' f''>4"
+    assert chord.lilypond_format == "<ef' f''>4"

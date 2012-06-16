@@ -26,7 +26,7 @@ def test_contexttools_get_effective_tempo_01():
     assert contexttools.get_effective_tempo(t[1]) == contexttools.TempoMark(Duration(1, 8), 38)
     assert contexttools.get_effective_tempo(t[2]) == contexttools.TempoMark(Duration(1, 8), 42)
     assert contexttools.get_effective_tempo(t[3]) == contexttools.TempoMark(Duration(1, 8), 42)
-    assert t.format == "\\new Staff {\n\t\\tempo 8=38\n\tc'8\n\td'8\n\t\\tempo 8=42\n\te'8\n\tf'8\n}"
+    assert t.lilypond_format == "\\new Staff {\n\t\\tempo 8=38\n\tc'8\n\td'8\n\t\\tempo 8=42\n\te'8\n\tf'8\n}"
 
 
 
@@ -44,7 +44,7 @@ def test_contexttools_get_effective_tempo_02():
     }
     '''
 
-    assert t.format == "\\new Staff {\n\t\\tempo 8=38\n\t<d' ef' e'>4\n}"
+    assert t.lilypond_format == "\\new Staff {\n\t\\tempo 8=38\n\t<d' ef' e'>4\n}"
 
 
 def test_contexttools_get_effective_tempo_03():
@@ -60,7 +60,7 @@ def test_contexttools_get_effective_tempo_03():
     }
     '''
 
-    assert staff.format == "\\new Staff {\n\t\\tempo 8=38\n\tc'4\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\t\\tempo 8=38\n\tc'4\n}"
 
 
 def test_contexttools_get_effective_tempo_04():
@@ -78,4 +78,4 @@ def test_contexttools_get_effective_tempo_04():
     }
     '''
 
-    assert staff.format == "\\new Staff {\n\tc'4\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\tc'4\n}"

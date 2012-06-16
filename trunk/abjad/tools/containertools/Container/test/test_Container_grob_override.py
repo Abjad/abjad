@@ -18,4 +18,4 @@ def test_Container_grob_override_01():
     }
     '''
 
-    assert t.format == "{\n\t\\override Glissando #'thickness = #3\n\tc'8\n\td'8\n\te'8\n\tf'8\n\t\\revert Glissando #'thickness\n}"
+    assert t.lilypond_format == "{\n\t\\override Glissando #'thickness = #3\n\tc'8\n\td'8\n\te'8\n\tf'8\n\t\\revert Glissando #'thickness\n}"

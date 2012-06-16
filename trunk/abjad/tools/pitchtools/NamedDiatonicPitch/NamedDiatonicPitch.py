@@ -158,10 +158,10 @@ class NamedDiatonicPitch(DiatonicPitchObject):
         return pitchtools.diatonic_pitch_name_to_diatonic_pitch_number(self.diatonic_pitch_name)
 
     @property
-    def format(self):
+    def lilypond_format(self):
         '''Read-only LilyPond input format of named diatonic pitch::
 
-            >>> pitchtools.NamedDiatonicPitch("c''").format
+            >>> pitchtools.NamedDiatonicPitch("c''").lilypond_format
             "c''"
 
         Return string.

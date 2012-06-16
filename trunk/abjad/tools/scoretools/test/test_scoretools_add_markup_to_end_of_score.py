@@ -18,4 +18,4 @@ def test_scoretools_add_markup_to_end_of_score_01():
     }
     '''
 
-    assert staff.format == '\\new Staff {\n\tc\'4\n\td\'4\n\te\'4\n\t\\once \\override TextScript #\'extra-offset = #\'(4 . -2)\n\tf\'4 _ \\markup { \\italic \\right-column { "Bremen - Boston - Los Angeles." "Jul 2010 - May 2011." } }\n}'
+    assert staff.lilypond_format == '\\new Staff {\n\tc\'4\n\td\'4\n\te\'4\n\t\\once \\override TextScript #\'extra-offset = #\'(4 . -2)\n\tf\'4 _ \\markup { \\italic \\right-column { "Bremen - Boston - Los Angeles." "Jul 2010 - May 2011." } }\n}'

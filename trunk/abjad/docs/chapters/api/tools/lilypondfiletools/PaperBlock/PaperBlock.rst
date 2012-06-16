@@ -9,7 +9,7 @@ lilypondfiletools.PaperBlock
 Read-only Properties
 --------------------
 
-.. autoattribute:: abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock.format
+.. autoattribute:: abjad.tools.lilypondfiletools.PaperBlock.PaperBlock.PaperBlock.lilypond_format
 
     Inherited from :py:class:`lilypondfiletools.AttributedBlock <abjad.tools.lilypondfiletools.AttributedBlock.AttributedBlock.AttributedBlock>`
 

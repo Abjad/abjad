@@ -19,5 +19,5 @@ def test_LilyPondParser__functions__language_01():
     input = r"\language nederlands { cis'8 dis'8 fes'8 }"
     parser = LilyPondParser()
     result = parser(input)
-    assert target.format == result.format and target is not result
+    assert target.lilypond_format == result.lilypond_format and target is not result
 

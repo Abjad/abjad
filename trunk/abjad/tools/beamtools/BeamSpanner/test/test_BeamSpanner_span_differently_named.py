@@ -51,7 +51,7 @@ def test_BeamSpanner_span_differently_named_01():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == '\\new Staff {\n\t\\context Voice = "foo" {\n\t\tc\'8 [\n\t\tcs\'8\n\t\td\'8\n\t\tef\'8 ]\n\t}\n\t\\context Voice = "bar" {\n\t\te\'8\n\t\tf\'8\n\t\tfs\'8\n\t\tg\'8\n\t}\n}'
+    assert t.lilypond_format == '\\new Staff {\n\t\\context Voice = "foo" {\n\t\tc\'8 [\n\t\tcs\'8\n\t\td\'8\n\t\tef\'8 ]\n\t}\n\t\\context Voice = "bar" {\n\t\te\'8\n\t\tf\'8\n\t\tfs\'8\n\t\tg\'8\n\t}\n}'
 
 
 def test_BeamSpanner_span_differently_named_02():

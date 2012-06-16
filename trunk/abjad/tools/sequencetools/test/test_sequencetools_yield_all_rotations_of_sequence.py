@@ -48,4 +48,4 @@ def test_sequencetools_yield_all_rotations_of_sequence_03():
     '''
 
     assert componenttools.is_well_formed_component(staff)
-    assert staff.format == "\\new Staff {\n\t{\n\t\tc'8\n\t\td'8\n\t\te'8\n\t}\n\t{\n\t\td'8\n\t\te'8\n\t\tc'8\n\t}\n\t{\n\t\te'8\n\t\tc'8\n\t\td'8\n\t}\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\t{\n\t\tc'8\n\t\td'8\n\t\te'8\n\t}\n\t{\n\t\td'8\n\t\te'8\n\t\tc'8\n\t}\n\t{\n\t\te'8\n\t\tc'8\n\t\td'8\n\t}\n}"

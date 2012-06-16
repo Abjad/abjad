@@ -9,7 +9,7 @@ schemetools.SchemePair
 Read-only Properties
 --------------------
 
-.. autoattribute:: abjad.tools.schemetools.SchemePair.SchemePair.SchemePair.format
+.. autoattribute:: abjad.tools.schemetools.SchemePair.SchemePair.SchemePair.lilypond_format
 
 .. autoattribute:: abjad.tools.schemetools.SchemePair.SchemePair.SchemePair.storage_format
 

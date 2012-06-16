@@ -51,7 +51,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_fr
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'32. )\n\t\td'32. ( )\n\t\td'64 ( ~\n\t\td'64 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
+    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'32. )\n\t\td'32. ( )\n\t\td'64 ( ~\n\t\td'64 ]\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
 def test_componenttools_split_components_cyclically_by_prolated_durations_and_fracture_crossing_spanners_02():
@@ -106,7 +106,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_fr
 
     assert componenttools.is_well_formed_component(t)
     assert len(parts) == 6
-    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'16. ( ) [\n\t\tc'32 (\n\t\td'16 )\n\t\td'16 ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'32 ) [\n\t\te'16. (\n\t\tf'16. )\n\t\tf'32 ] ( )\n\t}\n}"
+    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'16. ( ) [\n\t\tc'32 (\n\t\td'16 )\n\t\td'16 ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'32 ) [\n\t\te'16. (\n\t\tf'16. )\n\t\tf'32 ] ( )\n\t}\n}"
 
 
 def test_componenttools_split_components_cyclically_by_prolated_durations_and_fracture_crossing_spanners_03():
@@ -165,7 +165,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_fr
 
     assert componenttools.is_well_formed_component(t)
     assert len(parts) == 3
-    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ] ( )\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'32 [ (\n\t\td'16 ] )\n\t}\n\t{\n\t\t\\time 2/32\n\t\td'16 [ ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
+    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ] ( )\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'32 [ (\n\t\td'16 ] )\n\t}\n\t{\n\t\t\\time 2/32\n\t\td'16 [ ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
 def test_componenttools_split_components_cyclically_by_prolated_durations_and_fracture_crossing_spanners_04():
@@ -235,7 +235,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_fr
 
     assert componenttools.is_well_formed_component(t)
     assert len(parts) == 6
-    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ] ( )\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'32 [ (\n\t\td'16 ] )\n\t}\n\t{\n\t\t\\time 2/32\n\t\td'16 [ ] (\n\t}\n\t{\n\t\t\\time 1/32\n\t\te'32 [ ] )\n\t}\n\t{\n\t\t\\time 3/32\n\t\te'16. [ ] ( )\n\t}\n\t{\n\t\t\\time 3/32\n\t\tf'16. [ ] ( )\n\t}\n\t{\n\t\t\\time 1/32\n\t\tf'32 [ ] ( )\n\t}\n}"
+    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ] ( )\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'32 [ (\n\t\td'16 ] )\n\t}\n\t{\n\t\t\\time 2/32\n\t\td'16 [ ] (\n\t}\n\t{\n\t\t\\time 1/32\n\t\te'32 [ ] )\n\t}\n\t{\n\t\t\\time 3/32\n\t\te'16. [ ] ( )\n\t}\n\t{\n\t\t\\time 3/32\n\t\tf'16. [ ] ( )\n\t}\n\t{\n\t\t\\time 1/32\n\t\tf'32 [ ] ( )\n\t}\n}"
 
 
 def test_componenttools_split_components_cyclically_by_prolated_durations_and_fracture_crossing_spanners_05():
@@ -267,7 +267,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_fr
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Staff {\n\tc'16.\n\tc'32\n\td'16\n\td'16\n\te'32\n\te'16.\n\tf'16.\n\tf'32\n}"
+    assert t.lilypond_format == "\\new Staff {\n\tc'16.\n\tc'32\n\td'16\n\td'16\n\te'32\n\te'16.\n\tf'16.\n\tf'32\n}"
 
 
 def test_componenttools_split_components_cyclically_by_prolated_durations_and_fracture_crossing_spanners_06():
@@ -325,7 +325,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_fr
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ]\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'32 [\n\t\td'16 ]\n\t}\n\t{\n\t\t\\time 2/32\n\t\td'16 [ ]\n\t}\n\t{\n\t\t\\time 1/32\n\t\te'32 [ ]\n\t}\n\t{\n\t\t\\time 3/32\n\t\te'16. [ ]\n\t}\n\t{\n\t\t\\time 3/32\n\t\tf'16. [ ]\n\t}\n\t{\n\t\t\\time 1/32\n\t\tf'32 [ ]\n\t}\n}"
+    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ]\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'32 [\n\t\td'16 ]\n\t}\n\t{\n\t\t\\time 2/32\n\t\td'16 [ ]\n\t}\n\t{\n\t\t\\time 1/32\n\t\te'32 [ ]\n\t}\n\t{\n\t\t\\time 3/32\n\t\te'16. [ ]\n\t}\n\t{\n\t\t\\time 3/32\n\t\tf'16. [ ]\n\t}\n\t{\n\t\t\\time 1/32\n\t\tf'32 [ ]\n\t}\n}"
 
 
 def test_componenttools_split_components_cyclically_by_prolated_durations_and_fracture_crossing_spanners_07():
@@ -381,7 +381,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_fr
 
     assert componenttools.is_well_formed_component(t)
     assert len(parts) == 4
-    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'32 ) ~\n\t\td'32 ( ) ~\n\t\td'32 ( ) ~\n\t\td'32 ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
+    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'8 [ (\n\t\td'32 ) ~\n\t\td'32 ( ) ~\n\t\td'32 ( ) ~\n\t\td'32 ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
 def test_componenttools_split_components_cyclically_by_prolated_durations_and_fracture_crossing_spanners_08():
@@ -438,7 +438,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_fr
 
     assert componenttools.is_well_formed_component(t)
     assert len(parts) == 8
-    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'16 ( ) [ ~\n\t\tc'16 (\n\t\td'16 ) ~\n\t\td'16 ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'16 ) [ ~\n\t\te'16 (\n\t\tf'16 ) ~\n\t\tf'16 ] ( )\n\t}\n}"
+    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 2/8\n\t\tc'16 ( ) [ ~\n\t\tc'16 (\n\t\td'16 ) ~\n\t\td'16 ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'16 ) [ ~\n\t\te'16 (\n\t\tf'16 ) ~\n\t\tf'16 ] ( )\n\t}\n}"
 
 
 def test_componenttools_split_components_cyclically_by_prolated_durations_and_fracture_crossing_spanners_09():
@@ -502,7 +502,7 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_fr
 
     assert componenttools.is_well_formed_component(t)
     assert len(parts) == 4
-    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 1/16\n\t\tc'16 [ ] ( ) ~\n\t}\n\t{\n\t\t\\time 1/16\n\t\tc'16 [ ] ( )\n\t}\n\t{\n\t\t\\time 1/16\n\t\td'16 [ ] ( ) ~\n\t}\n\t{\n\t\t\\time 1/16\n\t\td'16 [ ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
+    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 1/16\n\t\tc'16 [ ] ( ) ~\n\t}\n\t{\n\t\t\\time 1/16\n\t\tc'16 [ ] ( )\n\t}\n\t{\n\t\t\\time 1/16\n\t\td'16 [ ] ( ) ~\n\t}\n\t{\n\t\t\\time 1/16\n\t\td'16 [ ] (\n\t}\n\t{\n\t\t\\time 2/8\n\t\te'8 [\n\t\tf'8 ] )\n\t}\n}"
 
 
 
@@ -575,4 +575,4 @@ def test_componenttools_split_components_cyclically_by_prolated_durations_and_fr
 
     assert componenttools.is_well_formed_component(t)
     assert len(parts) == 6
-    assert t.format == "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ] ( ) ~\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'32 [ (\n\t\td'16 ] ) ~\n\t}\n\t{\n\t\t\\time 2/32\n\t\td'16 [ ] (\n\t}\n\t{\n\t\t\\time 1/32\n\t\te'32 [ ] ) ~\n\t}\n\t{\n\t\t\\time 3/32\n\t\te'16. [ ] ( )\n\t}\n\t{\n\t\t\\time 3/32\n\t\tf'16. [ ] ( ) ~\n\t}\n\t{\n\t\t\\time 1/32\n\t\tf'32 [ ] ( )\n\t}\n}"
+    assert t.lilypond_format == "\\new Staff {\n\t{\n\t\t\\time 3/32\n\t\tc'16. [ ] ( ) ~\n\t}\n\t{\n\t\t\\time 3/32\n\t\tc'32 [ (\n\t\td'16 ] ) ~\n\t}\n\t{\n\t\t\\time 2/32\n\t\td'16 [ ] (\n\t}\n\t{\n\t\t\\time 1/32\n\t\te'32 [ ] ) ~\n\t}\n\t{\n\t\t\\time 3/32\n\t\te'16. [ ] ( )\n\t}\n\t{\n\t\t\\time 3/32\n\t\tf'16. [ ] ( ) ~\n\t}\n\t{\n\t\t\\time 1/32\n\t\tf'32 [ ] ( )\n\t}\n}"

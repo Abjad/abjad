@@ -22,4 +22,4 @@ def test_Measure_append_02():
     measure.append('r')
 
     assert not measure.is_misfilled
-    assert measure.format == "{\n\t\\time 4/4\n\tc'4\n\td'4\n\te'4\n\tr4\n}"
+    assert measure.lilypond_format == "{\n\t\\time 4/4\n\tc'4\n\td'4\n\te'4\n\tr4\n}"

@@ -86,7 +86,7 @@ class StaffChangeMark(ContextMark):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def format(self):
+    def lilypond_format(self):
         r'''Read-only LilyPond format of staff change mark:
 
         ::
@@ -94,7 +94,7 @@ class StaffChangeMark(ContextMark):
             >>> staff = Staff("c'8 d'8 e'8 f'8")
             >>> staff.name = 'RHStaff'
             >>> staff_change = contexttools.StaffChangeMark(staff)
-            >>> staff_change.format
+            >>> staff_change.lilypond_format
             '\\change Staff = RHStaff'
 
         Return string.

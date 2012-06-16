@@ -12,7 +12,7 @@ def test_Measure___delitem___01():
     del(measure[:1])
 
     assert componenttools.is_well_formed_component(measure)
-    assert measure.format == "{\n\t\\time 3/8\n\tc'8\n\tc'8\n\tc'8\n}"
+    assert measure.lilypond_format == "{\n\t\\time 3/8\n\tc'8\n\tc'8\n\tc'8\n}"
 
 
 def test_Measure___delitem___02():
@@ -26,7 +26,7 @@ def test_Measure___delitem___02():
     del(measure[-1:])
 
     assert componenttools.is_well_formed_component(measure)
-    assert measure.format == "{\n\t\\time 3/8\n\tc'8\n\tc'8\n\tc'8\n}"
+    assert measure.lilypond_format == "{\n\t\\time 3/8\n\tc'8\n\tc'8\n\tc'8\n}"
 
 
 def test_Measure___delitem___03():
@@ -40,7 +40,7 @@ def test_Measure___delitem___03():
     del(measure[:2])
 
     assert componenttools.is_well_formed_component(measure)
-    assert measure.format == "{\n\t\\time 2/8\n\tc'8\n\tc'8\n}"
+    assert measure.lilypond_format == "{\n\t\\time 2/8\n\tc'8\n\tc'8\n}"
 
 
 def test_Measure___delitem___04():
@@ -54,7 +54,7 @@ def test_Measure___delitem___04():
     del(measure[:1])
 
     assert componenttools.is_well_formed_component(measure)
-    assert measure.format == "{\n\t\\time 7/16\n\tc'16\n\tc'8\n\tc'8\n\tc'8\n}"
+    assert measure.lilypond_format == "{\n\t\\time 7/16\n\tc'16\n\tc'8\n\tc'8\n\tc'8\n}"
 
 
 def test_Measure___delitem___05():
@@ -79,7 +79,7 @@ def test_Measure___delitem___05():
     '''
 
     assert componenttools.is_well_formed_component(measure)
-    assert measure.format == "{\n\t\\time 3/9\n\t\\scaleDurations #'(8 . 9) {\n\t\td'8\n\t\te'8\n\t\tf'8\n\t}\n}"
+    assert measure.lilypond_format == "{\n\t\\time 3/9\n\t\\scaleDurations #'(8 . 9) {\n\t\td'8\n\t\te'8\n\t\tf'8\n\t}\n}"
 
 
 def test_Measure___delitem___06():
@@ -117,7 +117,7 @@ def test_Measure___delitem___06():
     '''
 
     assert componenttools.is_well_formed_component(measure)
-    assert measure.format == "{\n\t\\time 5/18\n\t\\scaleDurations #'(8 . 9) {\n\t\td'16\n\t\te'8\n\t\tf'8\n\t}\n}"
+    assert measure.lilypond_format == "{\n\t\\time 5/18\n\t\\scaleDurations #'(8 . 9) {\n\t\td'16\n\t\te'8\n\t\tf'8\n\t}\n}"
 
 
 def test_Measure___delitem___07():

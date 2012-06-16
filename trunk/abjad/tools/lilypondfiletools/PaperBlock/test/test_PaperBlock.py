@@ -16,7 +16,7 @@ def test_PaperBlock_01():
     }
     '''
 
-    assert paper_block.format == "\\paper {\n\tleft-margin = #15\n\tmarkup-system-spacing #'basic-distance = #8\n\ttop-margin = #15\n}"
+    assert paper_block.lilypond_format == "\\paper {\n\tleft-margin = #15\n\tmarkup-system-spacing #'basic-distance = #8\n\ttop-margin = #15\n}"
 
 
 def test_PaperBlock_02():
@@ -32,4 +32,4 @@ def test_PaperBlock_02():
     }
     '''
 
-    assert paper_block.format == "\\paper {\n\tsystem-system-spacing = #'((basic_distance . 0) (minimum_distance . 0) (padding . 12) (stretchability . 0))\n}"
+    assert paper_block.lilypond_format == "\\paper {\n\tsystem-system-spacing = #'((basic_distance . 0) (minimum_distance . 0) (padding . 12) (stretchability . 0))\n}"

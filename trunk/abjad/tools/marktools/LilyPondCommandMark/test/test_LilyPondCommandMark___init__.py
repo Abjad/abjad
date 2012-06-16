@@ -22,7 +22,7 @@ def test_LilyPondCommandMark___init___01():
     '''
 
     assert componenttools.is_well_formed_component(staff)
-    assert staff.format == "\\new Staff {\n\t\\slurDotted\n\tc'8 (\n\td'8\n\te'8\n\tf'8 )\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\t\\slurDotted\n\tc'8 (\n\td'8\n\te'8\n\tf'8 )\n}"
 
 
 def test_LilyPondCommandMark___init___02():
@@ -45,7 +45,7 @@ def test_LilyPondCommandMark___init___02():
     '''
 
     assert componenttools.is_well_formed_component(staff)
-    assert staff.format == "\\new Staff {\n\t\\slurUp\n\tc'8 (\n\td'8\n\te'8\n\tf'8 )\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\t\\slurUp\n\tc'8 (\n\td'8\n\te'8\n\tf'8 )\n}"
 
 
 def test_LilyPondCommandMark___init___03():

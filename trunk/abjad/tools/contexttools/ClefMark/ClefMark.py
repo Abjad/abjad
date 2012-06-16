@@ -92,13 +92,13 @@ class ClefMark(ContextMark):
         return property(**locals())
 
     @property
-    def format(self):
+    def lilypond_format(self):
         r'''Read-only LilyPond format of clef:
 
         ::
 
             >>> clef = contexttools.ClefMark('treble')
-            >>> clef.format
+            >>> clef.lilypond_format
             '\\clef "treble"'
 
         Return string.

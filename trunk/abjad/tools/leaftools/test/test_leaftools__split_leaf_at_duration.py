@@ -28,7 +28,7 @@ def test_leaftools__split_leaf_at_duration_01():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Staff {\n\tc'8 [\n\td'32\n\td'16.\n\te'8 ]\n}"
+    assert t.lilypond_format == "\\new Staff {\n\tc'8 [\n\td'32\n\td'16.\n\te'8 ]\n}"
 
 
 def test_leaftools__split_leaf_at_duration_02():
@@ -61,7 +61,7 @@ def test_leaftools__split_leaf_at_duration_02():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Staff {\n\tc'8 [\n\t\\times 2/3 {\n\t\td'16\n\t}\n\t\\times 2/3 {\n\t\td'8\n\t}\n\te'8 ]\n}"
+    assert t.lilypond_format == "\\new Staff {\n\tc'8 [\n\t\\times 2/3 {\n\t\td'16\n\t}\n\t\\times 2/3 {\n\t\td'8\n\t}\n\te'8 ]\n}"
 
 
 def test_leaftools__split_leaf_at_duration_03():
@@ -98,7 +98,7 @@ def test_leaftools__split_leaf_at_duration_03():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Voice {\n\tc'8 [\n\t\\times 2/3 {\n\t\td'16\n\t\td'16\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
+    assert t.lilypond_format == "\\new Voice {\n\tc'8 [\n\t\\times 2/3 {\n\t\td'16\n\t\td'16\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
 
 
 def test_leaftools__split_leaf_at_duration_04():

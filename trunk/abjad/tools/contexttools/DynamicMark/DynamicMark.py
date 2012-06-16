@@ -121,13 +121,13 @@ class DynamicMark(ContextMark):
         return property(**locals())
 
     @property
-    def format(self):
+    def lilypond_format(self):
         '''Read-only LilyPond input format of dynamic mark:
 
         ::
 
             >>> dynamic_mark = contexttools.DynamicMark('f')
-            >>> dynamic_mark.format
+            >>> dynamic_mark.lilypond_format
             '\\f'
 
         Return string.

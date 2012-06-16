@@ -16,7 +16,7 @@ def test_LilyPondParser__marks__BarLine_01():
     '''
 
     parser = LilyPondParser()
-    result = parser(target.format)
-    assert target.format == result.format and target is not result
+    result = parser(target.lilypond_format)
+    assert target.lilypond_format == result.lilypond_format and target is not result
     marks = marktools.get_marks_attached_to_component(result[2])
     assert 1 == len(marks) and isinstance(marks[0], marktools.BarLine)

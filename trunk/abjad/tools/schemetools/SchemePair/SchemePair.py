@@ -35,5 +35,5 @@ class SchemePair(Scheme):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def format(self):
+    def lilypond_format(self):
         return "#'%s" % self._formatted_value 

@@ -50,7 +50,7 @@ def test_spannertools__give_spanners_that_dominate_donor_components_to_recipient
     "Both crescendo and beam are now discontiguous."
 
     assert not componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Voice {\n\tc'8 [ \\<\n\td'8 ]\n\te'8\n\tf'8 \\!\n}"
+    assert t.lilypond_format == "\\new Voice {\n\tc'8 [ \\<\n\td'8 ]\n\te'8\n\tf'8 \\!\n}"
 
     "Recipient is now ..."
 
@@ -65,7 +65,7 @@ def test_spannertools__give_spanners_that_dominate_donor_components_to_recipient
     "Slur is contiguous but recipient participates in discont. cresc."
 
     assert not componenttools.is_well_formed_component(recipient)
-    assert recipient.format == "\\new Voice {\n\tc'16 [ (\n\tc'16\n\tc'16 ] )\n}"
+    assert recipient.lilypond_format == "\\new Voice {\n\tc'16 [ (\n\tc'16\n\tc'16 ] )\n}"
 
 
 def test_spannertools__give_spanners_that_dominate_donor_components_to_recipient_components_02():
@@ -108,7 +108,7 @@ def test_spannertools__give_spanners_that_dominate_donor_components_to_recipient
     }
     '''
 
-    assert t.format == "\\new Voice {\n\t{\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
+    assert t.lilypond_format == "\\new Voice {\n\t{\n\t\tc'8\n\t\td'8\n\t}\n\t{\n\t\te'8\n\t\tf'8 ]\n\t}\n}"
 
     "Recipient container is now ..."
 
@@ -121,7 +121,7 @@ def test_spannertools__give_spanners_that_dominate_donor_components_to_recipient
     }
     '''
 
-    assert recipient.format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tf'8\n}"
+    assert recipient.lilypond_format == "\\new Voice {\n\tc'8 [\n\td'8\n\te'8\n\tf'8\n}"
 
     "Both container t and recipient container carry discontiguous spanners."
 

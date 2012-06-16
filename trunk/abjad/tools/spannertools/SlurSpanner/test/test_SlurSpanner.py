@@ -18,7 +18,7 @@ def test_SlurSpanner_01():
     '''
 
     assert t.spanners == set([s])
-    assert t.format == "\\new Voice {\n\tc'8 (\n\td'8\n\te'8\n\tf'8 )\n}"
+    assert t.lilypond_format == "\\new Voice {\n\tc'8 (\n\td'8\n\te'8\n\tf'8 )\n}"
 
 
 def test_SlurSpanner_02():
@@ -31,4 +31,4 @@ def test_SlurSpanner_02():
     assert len(t.spanners) == 0
     for leaf in t.leaves:
         assert leaf.spanners == set([s])
-    assert t.format == "\\new Voice {\n\tc'8 (\n\td'8\n\te'8\n\tf'8 )\n}"
+    assert t.lilypond_format == "\\new Voice {\n\tc'8 (\n\td'8\n\te'8\n\tf'8 )\n}"

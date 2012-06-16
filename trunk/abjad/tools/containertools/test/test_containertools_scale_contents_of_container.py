@@ -17,7 +17,7 @@ def test_containertools_scale_contents_of_container_01():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Voice {\n\tc'8.\n\td'8.\n\te'8.\n\tf'8.\n}"
+    assert t.lilypond_format == "\\new Voice {\n\tc'8.\n\td'8.\n\te'8.\n\tf'8.\n}"
 
 
 def test_containertools_scale_contents_of_container_02():
@@ -40,7 +40,7 @@ def test_containertools_scale_contents_of_container_02():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Voice {\n\tc'8 ~\n\tc'32\n\td'8 ~\n\td'32\n\te'8 ~\n\te'32\n\tf'8 ~\n\tf'32\n}"
+    assert t.lilypond_format == "\\new Voice {\n\tc'8 ~\n\tc'32\n\td'8 ~\n\td'32\n\te'8 ~\n\te'32\n\tf'8 ~\n\tf'32\n}"
 
 
 def test_containertools_scale_contents_of_container_03():
@@ -68,7 +68,7 @@ def test_containertools_scale_contents_of_container_03():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Voice {\n\t\\times 2/3 {\n\t\tc'4\n\t}\n\t\\times 2/3 {\n\t\td'4\n\t}\n\t\\times 2/3 {\n\t\te'4\n\t}\n\t\\times 2/3 {\n\t\tf'4\n\t}\n}"
+    assert t.lilypond_format == "\\new Voice {\n\t\\times 2/3 {\n\t\tc'4\n\t}\n\t\\times 2/3 {\n\t\td'4\n\t}\n\t\\times 2/3 {\n\t\te'4\n\t}\n\t\\times 2/3 {\n\t\tf'4\n\t}\n}"
 
 
 def test_containertools_scale_contents_of_container_04():
@@ -100,7 +100,7 @@ def test_containertools_scale_contents_of_container_04():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8 ~\n\t\tc'32\n\t}\n\t\\times 2/3 {\n\t\td'8 ~\n\t\td'32\n\t}\n\t\\times 2/3 {\n\t\te'8 ~\n\t\te'32\n\t}\n\t\\times 2/3 {\n\t\tf'8 ~\n\t\tf'32\n\t}\n}"
+    assert t.lilypond_format == "\\new Voice {\n\t\\times 2/3 {\n\t\tc'8 ~\n\t\tc'32\n\t}\n\t\\times 2/3 {\n\t\td'8 ~\n\t\td'32\n\t}\n\t\\times 2/3 {\n\t\te'8 ~\n\t\te'32\n\t}\n\t\\times 2/3 {\n\t\tf'8 ~\n\t\tf'32\n\t}\n}"
 
 
 def test_containertools_scale_contents_of_container_05():
@@ -137,7 +137,7 @@ def test_containertools_scale_contents_of_container_05():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Voice {\n\tc'8\n\t{\n\t\td'16\n\t\te'16\n\t\tf'16\n\t\tg'16\n\t}\n}"
+    assert t.lilypond_format == "\\new Voice {\n\tc'8\n\t{\n\t\td'16\n\t\te'16\n\t\tf'16\n\t\tg'16\n\t}\n}"
 
 
 def test_containertools_scale_contents_of_container_06():
@@ -159,7 +159,7 @@ def test_containertools_scale_contents_of_container_06():
     }
     '''
 
-    assert t.format == "\\new Voice {\n\tc'8 ~\n\tc'32\n\td'8 ~\n\td'32\n\te'8 ~\n\te'32\n\tf'8 ~\n\tf'32\n}"
+    assert t.lilypond_format == "\\new Voice {\n\tc'8 ~\n\tc'32\n\td'8 ~\n\td'32\n\te'8 ~\n\te'32\n\tf'8 ~\n\tf'32\n}"
 
     containertools.scale_contents_of_container(t, Duration(4, 5))
 
@@ -173,7 +173,7 @@ def test_containertools_scale_contents_of_container_06():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Voice {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+    assert t.lilypond_format == "\\new Voice {\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
 def test_containertools_scale_contents_of_container_07():
@@ -216,7 +216,7 @@ def test_containertools_scale_contents_of_container_07():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Voice {\n\t{\n\t\t\\time 2/4\n\t\tc'4\n\t\td'4\n\t}\n\t{\n\t\t\\time 2/4\n\t\te'4\n\t\tf'4\n\t}\n}"
+    assert t.lilypond_format == "\\new Voice {\n\t{\n\t\t\\time 2/4\n\t\tc'4\n\t\td'4\n\t}\n\t{\n\t\t\\time 2/4\n\t\te'4\n\t\tf'4\n\t}\n}"
 
 
 def test_containertools_scale_contents_of_container_08():
@@ -264,4 +264,4 @@ def test_containertools_scale_contents_of_container_08():
     '''
 
     assert componenttools.is_well_formed_component(t)
-    assert t.format == "\\new Voice {\n\t{\n\t\t\\time 20/64\n\t\tc'8 ~\n\t\tc'32\n\t\td'8 ~\n\t\td'32\n\t}\n\t{\n\t\t\\time 20/64\n\t\te'8 ~\n\t\te'32\n\t\tf'8 ~\n\t\tf'32\n\t}\n}"
+    assert t.lilypond_format == "\\new Voice {\n\t{\n\t\t\\time 20/64\n\t\tc'8 ~\n\t\tc'32\n\t\td'8 ~\n\t\td'32\n\t}\n\t{\n\t\t\\time 20/64\n\t\te'8 ~\n\t\te'32\n\t\tf'8 ~\n\t\tf'32\n\t}\n}"

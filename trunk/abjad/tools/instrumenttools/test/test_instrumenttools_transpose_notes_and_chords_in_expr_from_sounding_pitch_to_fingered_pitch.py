@@ -29,4 +29,4 @@ def test_instrumenttools_transpose_notes_and_chords_in_expr_from_sounding_pitch_
         if isinstance(leaf, (Note, Chord)):
             assert not leaf.written_pitch_indication_is_at_sounding_pitch
 
-    assert staff.format == "\\new Staff {\n\t\\set Staff.instrumentName = \\markup { Clarinet in B-flat }\n\t\\set Staff.shortInstrumentName = \\markup { Cl. B-flat }\n\t<d' fs' a'>4\n\te'4\n\tr4\n\tfs'4\n}"
+    assert staff.lilypond_format == "\\new Staff {\n\t\\set Staff.instrumentName = \\markup { Clarinet in B-flat }\n\t\\set Staff.shortInstrumentName = \\markup { Cl. B-flat }\n\t<d' fs' a'>4\n\te'4\n\tr4\n\tfs'4\n}"

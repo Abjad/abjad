@@ -20,7 +20,7 @@ def test_DynamicMeasure_denominator_01():
     }
     '''
 
-    assert t.format == "{\n\t\\time 16/32\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+    assert t.lilypond_format == "{\n\t\\time 16/32\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
 
 
 def test_DynamicMeasure_denominator_02():
@@ -40,4 +40,4 @@ def test_DynamicMeasure_denominator_02():
     }
     '''
 
-    assert t.format == "{\n\t\\time 1/2\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"
+    assert t.lilypond_format == "{\n\t\\time 1/2\n\tc'8\n\td'8\n\te'8\n\tf'8\n}"

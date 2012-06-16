@@ -9,7 +9,7 @@ lilypondfiletools.BookBlock
 Read-only Properties
 --------------------
 
-.. autoattribute:: abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.format
+.. autoattribute:: abjad.tools.lilypondfiletools.BookBlock.BookBlock.BookBlock.lilypond_format
 
     Inherited from :py:class:`lilypondfiletools.NonattributedBlock <abjad.tools.lilypondfiletools.NonattributedBlock.NonattributedBlock.NonattributedBlock>`
 

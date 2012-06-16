@@ -13,7 +13,7 @@ Read-only Properties
 
 .. autoattribute:: abjad.tools.markuptools.MarkupCommand.MarkupCommand.MarkupCommand.command
 
-.. autoattribute:: abjad.tools.markuptools.MarkupCommand.MarkupCommand.MarkupCommand.format
+.. autoattribute:: abjad.tools.markuptools.MarkupCommand.MarkupCommand.MarkupCommand.lilypond_format
 
 .. autoattribute:: abjad.tools.markuptools.MarkupCommand.MarkupCommand.MarkupCommand.storage_format
 

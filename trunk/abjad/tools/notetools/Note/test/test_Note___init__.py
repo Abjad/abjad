@@ -7,7 +7,7 @@ def test_Note___init___01():
     '''
 
     t = Note(-37, (1, 4))
-    assert t.format == 'b,,,4'
+    assert t.lilypond_format == 'b,,,4'
 
 
 def test_Note___init___02():
@@ -22,7 +22,7 @@ def test_Note___init___03():
     '''
 
     t = Note('c,,', (1, 4))
-    assert t.format == 'c,,4'
+    assert t.lilypond_format == 'c,,4'
 
 
 def test_Note___init___04():
@@ -30,7 +30,7 @@ def test_Note___init___04():
     '''
 
     t = Note('cs8.')
-    assert t.format == 'cs8.'
+    assert t.lilypond_format == 'cs8.'
 
 
 def test_Note___init___05():

@@ -14,7 +14,7 @@ def test_BeamSpanner_span_like_named_01():
     assert len(p.components) == 1
     assert isinstance(p.components[0], Staff)
     assert len(p.leaves) == 8
-    assert t.format == '\\new Staff {\n\t\\context Voice = "foo" {\n\t\tc\'8 [\n\t\tcs\'8\n\t\td\'8\n\t\tef\'8\n\t}\n\t\\context Voice = "foo" {\n\t\te\'8\n\t\tf\'8\n\t\tfs\'8\n\t\tg\'8 ]\n\t}\n}'
+    assert t.lilypond_format == '\\new Staff {\n\t\\context Voice = "foo" {\n\t\tc\'8 [\n\t\tcs\'8\n\t\td\'8\n\t\tef\'8\n\t}\n\t\\context Voice = "foo" {\n\t\te\'8\n\t\tf\'8\n\t\tfs\'8\n\t\tg\'8 ]\n\t}\n}'
     p.clear()
 
     p = beamtools.BeamSpanner(t[:])
@@ -22,7 +22,7 @@ def test_BeamSpanner_span_like_named_01():
     for x in p.components:
         assert isinstance(x, Voice)
     assert len(p.leaves) == 8
-    assert t.format == '\\new Staff {\n\t\\context Voice = "foo" {\n\t\tc\'8 [\n\t\tcs\'8\n\t\td\'8\n\t\tef\'8\n\t}\n\t\\context Voice = "foo" {\n\t\te\'8\n\t\tf\'8\n\t\tfs\'8\n\t\tg\'8 ]\n\t}\n}'
+    assert t.lilypond_format == '\\new Staff {\n\t\\context Voice = "foo" {\n\t\tc\'8 [\n\t\tcs\'8\n\t\td\'8\n\t\tef\'8\n\t}\n\t\\context Voice = "foo" {\n\t\te\'8\n\t\tf\'8\n\t\tfs\'8\n\t\tg\'8 ]\n\t}\n}'
 
     r'''
     \new Staff {
@@ -129,7 +129,7 @@ def test_BeamSpanner_span_like_named_04():
     assert len(p.components) == 2
     assert len(p.leaves) == 8
 
-    assert t.format == '{\n\t<<\n\t\t\\context Voice = "first" {\n\t\t\tc\'8 [\n\t\t\tcs\'8\n\t\t\td\'8\n\t\t\tef\'8\n\t\t}\n\t\t\\context Voice = "second" {\n\t\t\te\'8\n\t\t\tf\'8\n\t\t\tfs\'8\n\t\t\tg\'8\n\t\t}\n\t>>\n\t<<\n\t\t\\context Voice = "first" {\n\t\t\taf\'8\n\t\t\ta\'8\n\t\t\tbf\'8\n\t\t\tb\'8 ]\n\t\t}\n\t>>\n}'
+    assert t.lilypond_format == '{\n\t<<\n\t\t\\context Voice = "first" {\n\t\t\tc\'8 [\n\t\t\tcs\'8\n\t\t\td\'8\n\t\t\tef\'8\n\t\t}\n\t\t\\context Voice = "second" {\n\t\t\te\'8\n\t\t\tf\'8\n\t\t\tfs\'8\n\t\t\tg\'8\n\t\t}\n\t>>\n\t<<\n\t\t\\context Voice = "first" {\n\t\t\taf\'8\n\t\t\ta\'8\n\t\t\tbf\'8\n\t\t\tb\'8 ]\n\t\t}\n\t>>\n}'
 
     r'''
     {

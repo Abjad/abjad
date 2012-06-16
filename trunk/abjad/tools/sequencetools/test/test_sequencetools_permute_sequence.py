@@ -21,7 +21,8 @@ def test_sequencetools_permute_sequence_03():
     '''
 
     container = Container("c'8 d'8 e'8")
-    assert sequencetools.permute_sequence(container, [2, 0, 1]).format == Container("e'8 c'8 d'8").format
+    assert sequencetools.permute_sequence(container, [2, 0, 1]).lilypond_format == \
+        Container("e'8 c'8 d'8").lilypond_format
 
 
 def test_sequencetools_permute_sequence_04():

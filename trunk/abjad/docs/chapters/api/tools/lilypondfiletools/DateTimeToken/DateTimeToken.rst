@@ -9,7 +9,7 @@ lilypondfiletools.DateTimeToken
 Read-only Properties
 --------------------
 
-.. autoattribute:: abjad.tools.lilypondfiletools.DateTimeToken.DateTimeToken.DateTimeToken.format
+.. autoattribute:: abjad.tools.lilypondfiletools.DateTimeToken.DateTimeToken.DateTimeToken.lilypond_format
 
 .. autoattribute:: abjad.tools.lilypondfiletools.DateTimeToken.DateTimeToken.DateTimeToken.storage_format
 

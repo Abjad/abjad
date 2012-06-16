@@ -27,7 +27,7 @@ def test_chordtools_color_chord_note_heads_by_numeric_pitch_class_01():
     '''
 
     assert componenttools.is_well_formed_component(chord)
-    assert chord.format == "<\n\t\\tweak #'color #red\n\tc''\n\t\\tweak #'color #red\n\td''\n\t\\tweak #'color #green\n\tfs''\n\t\\tweak #'color #green\n\ta''\n\t\\tweak #'color #blue\n\tb''\n>4"
+    assert chord.lilypond_format == "<\n\t\\tweak #'color #red\n\tc''\n\t\\tweak #'color #red\n\td''\n\t\\tweak #'color #green\n\tfs''\n\t\\tweak #'color #green\n\ta''\n\t\\tweak #'color #blue\n\tb''\n>4"
 
 
 def test_chordtools_color_chord_note_heads_by_numeric_pitch_class_02():
@@ -46,4 +46,4 @@ def test_chordtools_color_chord_note_heads_by_numeric_pitch_class_02():
     '''
 
     assert componenttools.is_well_formed_component(note)
-    assert note.format == "\\once \\override NoteHead #'color = #red\nc'4"
+    assert note.lilypond_format == "\\once \\override NoteHead #'color = #red\nc'4"

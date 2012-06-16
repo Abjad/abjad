@@ -14,4 +14,4 @@ def test_LayoutBlock_01():
     }
     '''
 
-    assert lb.format == '\\layout {\n\tindent = #0\n\tragged-right = ##t\n}'
+    assert lb.lilypond_format == '\\layout {\n\tindent = #0\n\tragged-right = ##t\n}'

@@ -12,7 +12,7 @@ def test_containertools_delete_contents_of_container_01():
 
     assert len(t) == 0
     assert len(contents) == 4
-    assert t.format == '\\new Staff {\n}'
+    assert t.lilypond_format == '\\new Staff {\n}'
 
 
 def test_containertools_delete_contents_of_container_02():

@@ -11,7 +11,10 @@ def iterate_namesakes_forward_from_component(component, start=0, stop=None):
         >>> score.is_parallel = False
         >>> score.extend(container * 2)
         >>> pitchtools.set_ascending_named_diatonic_pitches_on_nontied_pitched_components_in_expr(score)
-        >>> print score.format
+
+    ::
+
+        >>> f(score)
         \new Score {
             <<
                 \context Staff = "staff 1" {
@@ -38,7 +41,7 @@ def iterate_namesakes_forward_from_component(component, start=0, stop=None):
     ::
 
         >>> for staff in componenttools.iterate_namesakes_forward_from_component(score[0][0]):
-        ...     print staff.format
+        ...     print staff.lilypond_format
         ...
         \context Staff = "staff 1" {
             c'8

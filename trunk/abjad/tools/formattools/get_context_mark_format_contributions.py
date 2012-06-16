@@ -47,9 +47,9 @@ def get_context_mark_format_contributions(component, slot):
                                 marks.add(candidate)
     #print marks
     for mark in marks:
-        #print mark, mark.format
+        #print mark, mark.lilypond_format
         addenda = []
-        mark_format = mark.format
+        mark_format = mark.lilypond_format
         if isinstance(mark_format, (tuple, list)):
             addenda.extend(mark_format)
         else:

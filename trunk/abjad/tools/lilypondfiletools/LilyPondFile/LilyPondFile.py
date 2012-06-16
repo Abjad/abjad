@@ -107,10 +107,10 @@ class LilyPondFile(list):
     def _formatted_blocks(self):
         result = []
         for x in self:
-            if 'format' in dir(x) and not isinstance(x, str):
-                format = x.format
-                if format:
-                    result.append(x.format)
+            if 'lilypond_format' in dir(x) and not isinstance(x, str):
+                lilypond_format = x.lilypond_format
+                if lilypond_format:
+                    result.append(x.lilypond_format)
             else:
                 result.append(str(x))
         return result
@@ -133,10 +133,10 @@ class LilyPondFile(list):
     def _formatted_file_initial_system_comments(self):
         result = []
         for x in self.file_initial_system_comments:
-            if 'format' in dir(x) and not isinstance(x, str):
-                format = x.format
-                if format:
-                    result.append('%% %s' % x.format)
+            if 'lilypond_format' in dir(x) and not isinstance(x, str):
+                lilypond_format = x.lilypond_format
+                if lilypond_format:
+                    result.append('%% %s' % x.lilypond_format)
             else:
                 result.append('%% %s' % str(x))
         if result:
@@ -150,7 +150,7 @@ class LilyPondFile(list):
             if isinstance(file_initial_include, str):
                 result.append(r'\include "%s"' % file_initial_include)
             else:
-                result.append(file_initial_include.format)
+                result.append(file_initial_include.lilypond_format)
         if result:
             result = ['\n'.join(result)]
         return result
@@ -159,10 +159,10 @@ class LilyPondFile(list):
     def _formatted_file_initial_user_comments(self):
         result = []
         for x in self.file_initial_user_comments:
-            if 'format' in dir(x) and not isinstance(x, str):
-                format = x.format
-                if format:
-                    result.append('%% %s' % x.format)
+            if 'lilypond_format' in dir(x) and not isinstance(x, str):
+                lilypond_format = x.lilypond_format
+                if lilypond_format:
+                    result.append('%% %s' % x.lilypond_format)
             else:
                 result.append('%% %s' % str(x))
         if result:
@@ -176,7 +176,7 @@ class LilyPondFile(list):
             if isinstance(file_initial_include, str):
                 result.append(r'\include "%s"' % file_initial_include)
             else:
-                result.append(file_initial_include.format)
+                result.append(file_initial_include.lilypond_format)
         if result:
             result = ['\n'.join(result)]
         return result
@@ -247,7 +247,7 @@ class LilyPondFile(list):
         return property(**locals())
 
     @property
-    def format(self):
+    def lilypond_format(self):
         '''Format-time contribution of LilyPond file.
         '''
         return '\n\n'.join(self._format_pieces)
