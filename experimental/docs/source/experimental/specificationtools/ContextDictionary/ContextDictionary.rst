@@ -32,10 +32,6 @@ Methods
 
     Inherited from :py:class:`collections.OrderedDict`
 
-.. automethod:: experimental.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.fromkeys
-
-    Inherited from :py:class:`collections.OrderedDict`
-
 .. automethod:: experimental.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.get
 
     Inherited from :py:class:`__builtin__.dict`

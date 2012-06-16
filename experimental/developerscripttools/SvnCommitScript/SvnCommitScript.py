@@ -22,7 +22,7 @@ class SvnCommitScript(DirectoryScript):
 
     @property
     def short_description(self):
-        return 'svn commit, using previously written commit message.'
+        return '"svn commit", using previously written commit message.'
 
     @property
     def version(self):
