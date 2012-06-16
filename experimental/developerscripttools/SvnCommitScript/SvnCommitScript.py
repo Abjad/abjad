@@ -44,7 +44,7 @@ class SvnCommitScript(DirectoryScript):
             print '\nSTORED COMMIT MESSAGE:\n'
             with open(commit_path, 'r') as f:
                 print f.read()
-            result = raw_input('Accept [Y], Reject [n], Abort [a]: ').lower()
+            result = raw_input('Accept [Y], Reject [n], Abort [a]: ').strip().lower()
             if result in ('', 'y', 'yes'):
                 iotools.spawn_subprocess(commit_command)
                 return
@@ -52,6 +52,9 @@ class SvnCommitScript(DirectoryScript):
                 SvnMessageScript()()
             elif result in ('a', 'abort'):
                 return
+            else:
+                print 'Invalid response {!r}, repeating...'.format(result)
+            
 
     def setup_argument_parser(self, parser):
         parser.add_argument('path',
