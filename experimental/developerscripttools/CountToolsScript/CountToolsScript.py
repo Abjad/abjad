@@ -1,11 +1,11 @@
 from abjad.tools import documentationtools
-from experimental.developerscripttools.DeveloperScript import DeveloperScript
+from experimental.developerscripttools.DirectoryScript import DirectoryScript
 import argparse
 import importlib
 import os
 
 
-class CountToolsScript(DeveloperScript):
+class CountToolsScript(DirectoryScript):
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -29,25 +29,9 @@ class CountToolsScript(DeveloperScript):
     def version(self):
         return 1.0
 
-    ### PRIVATE METHODS ###
-
-    def _is_valid_path(self, path):
-        if os.path.exists(path):
-            if os.path.isdir(path):
-                return True
-        return False
-
-    def _validate_path(self, path):
-        error = argparse.ArgumentTypeError('{!r} is not a valid directory.'.format(path))
-        path = os.path.abspath(path)
-        if not self._is_valid_path(path):
-            raise error
-        return path
-
     ### PUBLIC METHODS ###
 
     def process_args(self, args):
-        print args
 
         private_classes = []
         private_functions = []

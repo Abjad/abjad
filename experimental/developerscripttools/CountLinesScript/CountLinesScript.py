@@ -1,11 +1,11 @@
 from abjad.tools import documentationtools
-from experimental.developerscripttools.DeveloperScript import DeveloperScript
+from experimental.developerscripttools.DirectoryScript import DirectoryScript
 import argparse
 import importlib
 import os
 
 
-class CountLinesScript(DeveloperScript):
+class CountLinesScript(DirectoryScript):
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

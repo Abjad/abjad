@@ -5,7 +5,7 @@ from experimental.developerscripttools.DeveloperScript import DeveloperScript
 import os
 
 
-class MakeExperimentalApiScript(DeveloperScript):
+class BuildExperimentalApiScript(DeveloperScript):
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -19,11 +19,11 @@ class MakeExperimentalApiScript(DeveloperScript):
 
     @property
     def scripting_group(self):
-        return 'make-api'
+        return 'build-api'
 
     @property
     def short_description(self):
-        return 'Make the Experimental API.'
+        return 'Build the Experimental API.'
 
     @property
     def version(self):

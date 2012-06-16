@@ -5,7 +5,7 @@ from experimental.developerscripttools.DeveloperScript import DeveloperScript
 import os
 
 
-class MakeAbjadApiScript(DeveloperScript):
+class BuildAbjadApiScript(DeveloperScript):
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -19,11 +19,11 @@ class MakeAbjadApiScript(DeveloperScript):
 
     @property
     def scripting_group(self):
-        return 'make-api'
+        return 'build-api'
 
     @property
     def short_description(self):
-        return 'Make the Abjad API.'
+        return 'Build the Abjad API.'
 
     @property
     def version(self):
