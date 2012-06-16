@@ -1,4 +1,4 @@
-1. Possibly rename TemporalCursor to ObjectRelativeTimepoint?
+1. Possibly rename Timepoint to ObjectRelativeTimepoint?
 
 2. Change 'attribute_name' to 'attribute' everywhere because there is not Attribute object.
 

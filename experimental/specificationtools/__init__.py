@@ -27,7 +27,7 @@ from SettingInventory import SettingInventory
 from Specification import Specification
 from StatalServer import StatalServer
 from StatalServerRequest import StatalServerRequest
-from TemporalCursor import TemporalCursor
+from Timepoint import Timepoint
 from Timespan import Timespan
 from ValueRetrievalIndicator import ValueRetrievalIndicator
 from ValueRetrievalRequest import ValueRetrievalRequest

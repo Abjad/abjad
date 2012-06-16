@@ -6,7 +6,7 @@ from experimental.specificationtools.DirectiveInventory import DirectiveInventor
 from experimental.specificationtools.ScoreObjectIndicator import ScoreObjectIndicator
 from experimental.specificationtools.ScoreSpecification import ScoreSpecification
 from experimental.specificationtools.Selection import Selection
-from experimental.specificationtools.TemporalCursor import TemporalCursor
+from experimental.specificationtools.Timepoint import Timepoint
 from experimental.specificationtools.Timespan import Timespan
 
 
@@ -28,13 +28,13 @@ def test_DirectiveInventory_storage_format_01():
             specificationtools.Selection(
                 contexts=['Grouped Rhythmic Staves Score'],
                 timespan=specificationtools.Timespan(
-                    start=specificationtools.TemporalCursor(
+                    start=specificationtools.Timepoint(
                         anchor=specificationtools.ScoreObjectIndicator(
                             segment='1'
                             ),
                         edge=Left
                         ),
-                    stop=specificationtools.TemporalCursor(
+                    stop=specificationtools.Timepoint(
                         anchor=specificationtools.ScoreObjectIndicator(
                             segment='1'
                             ),
@@ -50,7 +50,7 @@ def test_DirectiveInventory_storage_format_01():
         ])
     '''
 
-    assert storage_format == "specificationtools.DirectiveInventory([\n\tspecificationtools.Directive(\n\t\tspecificationtools.Selection(\n\t\t\tcontexts=['Grouped Rhythmic Staves Score'],\n\t\t\ttimespan=specificationtools.Timespan(\n\t\t\t\tstart=specificationtools.TemporalCursor(\n\t\t\t\t\tanchor=specificationtools.ScoreObjectIndicator(\n\t\t\t\t\t\tsegment='1'\n\t\t\t\t\t\t),\n\t\t\t\t\tedge=Left\n\t\t\t\t\t),\n\t\t\t\tstop=specificationtools.TemporalCursor(\n\t\t\t\t\tanchor=specificationtools.ScoreObjectIndicator(\n\t\t\t\t\t\tsegment='1'\n\t\t\t\t\t\t),\n\t\t\t\t\tedge=Right\n\t\t\t\t\t)\n\t\t\t\t)\n\t\t\t),\n\t\t'time_signatures',\n\t\t[(4, 8), (3, 8)],\n\t\tpersistent=True,\n\t\ttruncate=False\n\t\t)\n\t])"
+    assert storage_format == "specificationtools.DirectiveInventory([\n\tspecificationtools.Directive(\n\t\tspecificationtools.Selection(\n\t\t\tcontexts=['Grouped Rhythmic Staves Score'],\n\t\t\ttimespan=specificationtools.Timespan(\n\t\t\t\tstart=specificationtools.Timepoint(\n\t\t\t\t\tanchor=specificationtools.ScoreObjectIndicator(\n\t\t\t\t\t\tsegment='1'\n\t\t\t\t\t\t),\n\t\t\t\t\tedge=Left\n\t\t\t\t\t),\n\t\t\t\tstop=specificationtools.Timepoint(\n\t\t\t\t\tanchor=specificationtools.ScoreObjectIndicator(\n\t\t\t\t\t\tsegment='1'\n\t\t\t\t\t\t),\n\t\t\t\t\tedge=Right\n\t\t\t\t\t)\n\t\t\t\t)\n\t\t\t),\n\t\t'time_signatures',\n\t\t[(4, 8), (3, 8)],\n\t\tpersistent=True,\n\t\ttruncate=False\n\t\t)\n\t])"
 
     directive_inventory_2 = eval(storage_format)
 

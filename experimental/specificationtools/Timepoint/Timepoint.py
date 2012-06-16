@@ -4,19 +4,18 @@ from experimental.specificationtools.ScoreObjectIndicator import ScoreObjectIndi
 import fractions
 
 
-class TemporalCursor(AbjadObject):
+class Timepoint(AbjadObject):
     r'''.. versionadded:: 1.0
 
     Infinitely thin vertical line coincident with an arbitrary object-relative timepoint in score.
 
     (Object-oriented delayed evaluation.)
 
-    Temporal cursors locate timepoints relative to arbitrary objects in score.
+    Timepoints locate relative to arbitrary objects in score.
 
-    Temporal cursors afford the location of timepoints relative to score
-    objects that do not yet exist.
+    Timepoints afford location relative to score objects that do not yet exist.
 
-    Temporal cursors resolve to a rational-valued score offset.
+    Timepoints resolve to a rational-valued score offset.
 
     Initialize with different combinations of optional `anchor`, 
     `edge`, `multiplier` and `addendum`.
@@ -27,13 +26,13 @@ class TemporalCursor(AbjadObject):
 
     ::
 
-        >>> specificationtools.TemporalCursor()
-        TemporalCursor()
+        >>> specificationtools.Timepoint()
+        Timepoint()
 
     Pick out the timepoint equal to the right edge of score::
 
-        >>> specificationtools.TemporalCursor(edge=Right)
-        TemporalCursor(edge=Right)
+        >>> specificationtools.Timepoint(edge=Right)
+        Timepoint(edge=Right)
 
     Pick out the timepoint ``1/8`` of a whole note into score::
 
@@ -41,18 +40,18 @@ class TemporalCursor(AbjadObject):
 
     ::
 
-        >>> specificationtools.TemporalCursor(addendum=Offset(1, 8))
-        TemporalCursor(addendum=Offset(1, 8))
+        >>> specificationtools.Timepoint(addendum=Offset(1, 8))
+        Timepoint(addendum=Offset(1, 8))
 
     Pick out the timepoint one third of the way into score::
 
-        >>> specificationtools.TemporalCursor(edge=Right, multiplier=Fraction(1, 3))
-        TemporalCursor(edge=Right, multiplier=Fraction(1, 3))
+        >>> specificationtools.Timepoint(edge=Right, multiplier=Fraction(1, 3))
+        Timepoint(edge=Right, multiplier=Fraction(1, 3))
 
     Pick out the timepoint ``1/8`` of a whole note after the first third of score::
 
-        >>> specificationtools.TemporalCursor(edge=Right, multiplier=Fraction(1, 3), addendum=Offset(1, 8))
-        TemporalCursor(edge=Right, multiplier=Fraction(1, 3), addendum=Offset(1, 8))
+        >>> specificationtools.Timepoint(edge=Right, multiplier=Fraction(1, 3), addendum=Offset(1, 8))
+        Timepoint(edge=Right, multiplier=Fraction(1, 3), addendum=Offset(1, 8))
 
     Pick out the timepoint equal to the left edge of the segment with name ``'red'``::
 
@@ -60,30 +59,30 @@ class TemporalCursor(AbjadObject):
 
     ::
 
-        >>> specificationtools.TemporalCursor(anchor=anchor)
-        TemporalCursor(anchor=ScoreObjectIndicator(segment='red'))
+        >>> specificationtools.Timepoint(anchor=anchor)
+        Timepoint(anchor=ScoreObjectIndicator(segment='red'))
 
     Pick out the timepoint equal to the right edge of the segment with name ``'red'``::
 
-        >>> specificationtools.TemporalCursor(anchor=anchor, edge=Right)
-        TemporalCursor(anchor=ScoreObjectIndicator(segment='red'), edge=Right)
+        >>> specificationtools.Timepoint(anchor=anchor, edge=Right)
+        Timepoint(anchor=ScoreObjectIndicator(segment='red'), edge=Right)
 
     Pick out the timepoint equal to ``1/8`` of a whole note after the left edge of 
     the segment with name ``'red'``::
 
-        >>> specificationtools.TemporalCursor(anchor=anchor, addendum=Offset(1, 8))
-        TemporalCursor(anchor=ScoreObjectIndicator(segment='red'), addendum=Offset(1, 8))
+        >>> specificationtools.Timepoint(anchor=anchor, addendum=Offset(1, 8))
+        Timepoint(anchor=ScoreObjectIndicator(segment='red'), addendum=Offset(1, 8))
 
     Pick out the timepoint equal to one third of the way into the segment with name ``'red'``::
 
-        >>> specificationtools.TemporalCursor(anchor=anchor, edge=Right, multiplier=Fraction(1, 3))
-        TemporalCursor(anchor=ScoreObjectIndicator(segment='red'), edge=Right, multiplier=Fraction(1, 3))
+        >>> specificationtools.Timepoint(anchor=anchor, edge=Right, multiplier=Fraction(1, 3))
+        Timepoint(anchor=ScoreObjectIndicator(segment='red'), edge=Right, multiplier=Fraction(1, 3))
 
     Pick out the timepoint equal to ``1/8`` of a whole note after the right edge of the first third of
     the segment with name ``'red'``::
     
-        >>> specificationtools.TemporalCursor(anchor=anchor, edge=Right, multiplier=Fraction(1, 3), addendum=Offset(1, 8))
-        TemporalCursor(anchor=ScoreObjectIndicator(segment='red'), edge=Right, multiplier=Fraction(1, 3), addendum=Offset(1, 8))
+        >>> specificationtools.Timepoint(anchor=anchor, edge=Right, multiplier=Fraction(1, 3), addendum=Offset(1, 8))
+        Timepoint(anchor=ScoreObjectIndicator(segment='red'), edge=Right, multiplier=Fraction(1, 3), addendum=Offset(1, 8))
 
     Pick out the timepoint equal to the left edge of note ``10`` in context ``'Voice 1'`` of
     the segment with name ``'red'``::
@@ -92,20 +91,20 @@ class TemporalCursor(AbjadObject):
 
     ::
 
-        >>> specificationtools.TemporalCursor(anchor=anchor)
-        TemporalCursor(anchor=ScoreObjectIndicator(segment='red', context='Voice 1', klass=notetools.Note, index=10))
+        >>> specificationtools.Timepoint(anchor=anchor)
+        Timepoint(anchor=ScoreObjectIndicator(segment='red', context='Voice 1', klass=notetools.Note, index=10))
 
     Pick out the timepoint equal to the right edgright edge of note ``10`` in context ``'Voice 1'`` of
     the segment with name ``'red'``::
 
-        >>> specificationtools.TemporalCursor(anchor=anchor, edge=Right)
-        TemporalCursor(anchor=ScoreObjectIndicator(segment='red', context='Voice 1', klass=notetools.Note, index=10), edge=Right)
+        >>> specificationtools.Timepoint(anchor=anchor, edge=Right)
+        Timepoint(anchor=ScoreObjectIndicator(segment='red', context='Voice 1', klass=notetools.Note, index=10), edge=Right)
 
-    Examples below reference the temporal cursor defined immediately above::
+    Examples below reference the timepoint defined immediately above::
 
-        >>> temporal_cursor = _
+        >>> timepoint = _
 
-    Temporal cursors are immutable.
+    Timepoints are immutable.
     '''
 
     ### INITIALIZER ###
@@ -125,7 +124,7 @@ class TemporalCursor(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, other):
-        '''True when `other` is a temporal cursor with score object indicator,
+        '''True when `other` is a timepoint with score object indicator,
         edge and offset all equal to those of `self`.
         
         Otherwise false.
@@ -177,9 +176,9 @@ class TemporalCursor(AbjadObject):
 
     @property
     def addendum(self):
-        '''Temporal cursor addendum specified by user.
+        '''Timepoint addendum specified by user.
 
-            >>> temporal_cursor.addendum is None
+            >>> timepoint.addendum is None
             True
 
         Value of none is taken equal to ``Offset(0)``.
@@ -190,9 +189,9 @@ class TemporalCursor(AbjadObject):
 
     @property
     def anchor(self):
-        '''Temporal cursor anchor specified by user.
+        '''Timepoint anchor specified by user.
         
-            >>> temporal_cursor.anchor
+            >>> timepoint.anchor
             ScoreObjectIndicator(segment='red', context='Voice 1', klass=notetools.Note, index=10)
 
         Value of none is taken equal the entire score.
@@ -203,9 +202,9 @@ class TemporalCursor(AbjadObject):
 
     @property
     def edge(self):
-        '''Temporal cursor edge indicator specified by user.
+        '''Timepoint edge indicator specified by user.
         
-            >>> temporal_cursor.edge
+            >>> timepoint.edge
             Right
 
         Value of none is taken equal to ``left``.
@@ -216,9 +215,9 @@ class TemporalCursor(AbjadObject):
 
     @property
     def multiplier(self):
-        '''Temporal cursor multiplier specified by user.
+        '''Timepoint multiplier specified by user.
 
-            >>> temporal_cursor.multiplier is None
+            >>> timepoint.multiplier is None
             True
 
         Value of none is taken equal to ``Fraction(1)``.
@@ -229,7 +228,7 @@ class TemporalCursor(AbjadObject):
 
     @property
     def score_offset(self):
-        '''Rational-valued offset of temporal cursor in score.
+        '''Rational-valued offset of timepoint in score.
 
         Derived from input values.
     

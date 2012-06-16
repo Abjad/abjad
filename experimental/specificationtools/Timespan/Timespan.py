@@ -1,13 +1,13 @@
 from abjad.tools import componenttools
 from abjad.tools import mathtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from experimental.specificationtools.TemporalCursor import TemporalCursor
+from experimental.specificationtools.Timepoint import Timepoint
 
 
 class Timespan(AbjadObject):
     r'''.. versionadded 1.0
 
-    Finite span of score time bounded by start and stop cursors.
+    Finite span of score time bounded by start and stop timepoints.
 
     (Object-oriented delayed evaluation.)
 
@@ -25,7 +25,7 @@ class Timespan(AbjadObject):
 
     Timespan objects resolve to a rational-valued duration.
 
-    Initialize with optional `start` and `stop` cursors.
+    Initialize with optional `start` and `stop` timepoints.
 
     Select the timespan of the entire score::
 
@@ -38,49 +38,49 @@ class Timespan(AbjadObject):
 
     Select the timespan of the first third of the score::
 
-        >>> stop = specificationtools.TemporalCursor(multiplier=Fraction(1, 3), edge=Right)
+        >>> stop = specificationtools.Timepoint(multiplier=Fraction(1, 3), edge=Right)
 
     ::
 
         >>> specificationtools.Timespan(stop=stop)
-        Timespan(stop=TemporalCursor(edge=Right, multiplier=Fraction(1, 3)))
+        Timespan(stop=Timepoint(edge=Right, multiplier=Fraction(1, 3)))
 
     Select the timespan of the last third of the score::
 
-        >>> start = specificationtools.TemporalCursor(edge=Right, multiplier=Fraction(2, 3))
+        >>> start = specificationtools.Timepoint(edge=Right, multiplier=Fraction(2, 3))
 
     ::
 
         >>> specificationtools.Timespan(start=start)
-        Timespan(start=TemporalCursor(edge=Right, multiplier=Fraction(2, 3)))
+        Timespan(start=Timepoint(edge=Right, multiplier=Fraction(2, 3)))
 
     Select the timespan of the middle third of the score::
 
-        >>> start = specificationtools.TemporalCursor(edge=Right, multiplier=Fraction(1, 3))
-        >>> stop = specificationtools.TemporalCursor(edge=Right, multiplier=Fraction(2, 3))
+        >>> start = specificationtools.Timepoint(edge=Right, multiplier=Fraction(1, 3))
+        >>> stop = specificationtools.Timepoint(edge=Right, multiplier=Fraction(2, 3))
 
     ::
 
         >>> specificationtools.Timespan(start=start, stop=stop)
-        Timespan(start=TemporalCursor(edge=Right, multiplier=Fraction(1, 3)), stop=TemporalCursor(edge=Right, multiplier=Fraction(2, 3)))
+        Timespan(start=Timepoint(edge=Right, multiplier=Fraction(1, 3)), stop=Timepoint(edge=Right, multiplier=Fraction(2, 3)))
 
     Select the timespan of the first ``1/8`` of a whole note in score::
 
-        >>> stop = specificationtools.TemporalCursor(addendum=Fraction(1, 8))
+        >>> stop = specificationtools.Timepoint(addendum=Fraction(1, 8))
 
     ::
 
         >>> specificationtools.Timespan(stop=stop)
-        Timespan(stop=TemporalCursor(addendum=Offset(1, 8)))
+        Timespan(stop=Timepoint(addendum=Offset(1, 8)))
 
     Select the timespan of the last ``1/8`` of a whole note in score::
 
-        >>> start = specificationtools.TemporalCursor(edge=Right, addendum=-Fraction(1, 8))
+        >>> start = specificationtools.Timepoint(edge=Right, addendum=-Fraction(1, 8))
 
     ::
 
         >>> specificationtools.Timespan(start=start)
-        Timespan(start=TemporalCursor(edge=Right, addendum=Offset(-1, 8)))
+        Timespan(start=Timepoint(edge=Right, addendum=Offset(-1, 8)))
 
     Select the timespan of the segment with name ``'red'``::
 
@@ -88,13 +88,13 @@ class Timespan(AbjadObject):
 
     ::
 
-        >>> start = specificationtools.TemporalCursor(anchor=anchor)
-        >>> stop = specificationtools.TemporalCursor(anchor=anchor, edge=Right)
+        >>> start = specificationtools.Timepoint(anchor=anchor)
+        >>> stop = specificationtools.Timepoint(anchor=anchor, edge=Right)
 
     ::
 
         >>> specificationtools.Timespan(start=start, stop=stop)
-        Timespan(start=TemporalCursor(anchor=ScoreObjectIndicator(segment='red')), stop=TemporalCursor(anchor=ScoreObjectIndicator(segment='red'), edge=Right))
+        Timespan(start=Timepoint(anchor=ScoreObjectIndicator(segment='red')), stop=Timepoint(anchor=ScoreObjectIndicator(segment='red'), edge=Right))
 
     Select the timespan of the first measure in the segment with name ``'red'``::
 
@@ -102,13 +102,13 @@ class Timespan(AbjadObject):
 
     ::
 
-        >>> start = specificationtools.TemporalCursor(anchor=anchor)
-        >>> stop = specificationtools.TemporalCursor(anchor=anchor, edge=Right)
+        >>> start = specificationtools.Timepoint(anchor=anchor)
+        >>> stop = specificationtools.Timepoint(anchor=anchor, edge=Right)
 
     ::
 
         >>> specificationtools.Timespan(start=start, stop=stop)
-        Timespan(start=TemporalCursor(anchor=ScoreObjectIndicator(segment='red', klass=measuretools.Measure)), stop=TemporalCursor(anchor=ScoreObjectIndicator(segment='red', klass=measuretools.Measure), edge=Right))
+        Timespan(start=Timepoint(anchor=ScoreObjectIndicator(segment='red', klass=measuretools.Measure)), stop=Timepoint(anchor=ScoreObjectIndicator(segment='red', klass=measuretools.Measure), edge=Right))
 
     Select the timespan of the first division in the segment with name ``'red'``::
 
@@ -116,45 +116,45 @@ class Timespan(AbjadObject):
 
     ::
 
-        >>> start = specificationtools.TemporalCursor(anchor=anchor)
-        >>> stop = specificationtools.TemporalCursor(anchor=anchor, edge=Right)
+        >>> start = specificationtools.Timepoint(anchor=anchor)
+        >>> stop = specificationtools.Timepoint(anchor=anchor, edge=Right)
 
     ::
 
         >>> specificationtools.Timespan(start=start, stop=stop)
-        Timespan(start=TemporalCursor(anchor=ScoreObjectIndicator(segment='red', klass=specificationtools.Division)), stop=TemporalCursor(anchor=ScoreObjectIndicator(segment='red', klass=specificationtools.Division), edge=Right))
+        Timespan(start=Timepoint(anchor=ScoreObjectIndicator(segment='red', klass=specificationtools.Division)), stop=Timepoint(anchor=ScoreObjectIndicator(segment='red', klass=specificationtools.Division), edge=Right))
 
     Select the timespan starting at the left edge of the segment with the name ``'red'``
     and stopping at the right edge of the segment with the name ``'blue'``::
 
         >>> anchor = specificationtools.ScoreObjectIndicator(segment='red')
-        >>> start = specificationtools.TemporalCursor(anchor=anchor)
+        >>> start = specificationtools.Timepoint(anchor=anchor)
 
     ::
 
         >>> anchor = specificationtools.ScoreObjectIndicator(segment='blue')
-        >>> stop = specificationtools.TemporalCursor(anchor=anchor, edge=Right)
+        >>> stop = specificationtools.Timepoint(anchor=anchor, edge=Right)
 
     ::
 
         >>> specificationtools.Timespan(start=start, stop=stop)
-        Timespan(start=TemporalCursor(anchor=ScoreObjectIndicator(segment='red')), stop=TemporalCursor(anchor=ScoreObjectIndicator(segment='blue'), edge=Right))
+        Timespan(start=Timepoint(anchor=ScoreObjectIndicator(segment='red')), stop=Timepoint(anchor=ScoreObjectIndicator(segment='blue'), edge=Right))
 
     Select the timespan starting at the left edge of the last measure in the segment with name ``'red'``
     and stopping at the right edge of the first measure in the segment with name ``'blue'``::
 
         >>> anchor = specificationtools.ScoreObjectIndicator(segment='red', klass=Measure, index=-1)
-        >>> start = specificationtools.TemporalCursor(anchor=anchor)
+        >>> start = specificationtools.Timepoint(anchor=anchor)
 
     ::
 
         >>> anchor = specificationtools.ScoreObjectIndicator(segment='blue', klass=Measure)
-        >>> stop = specificationtools.TemporalCursor(anchor=anchor, edge=Right)
+        >>> stop = specificationtools.Timepoint(anchor=anchor, edge=Right)
 
     ::
 
         >>> specificationtools.Timespan(start=start, stop=stop)
-        Timespan(start=TemporalCursor(anchor=ScoreObjectIndicator(segment='red', klass=measuretools.Measure, index=-1)), stop=TemporalCursor(anchor=ScoreObjectIndicator(segment='blue', klass=measuretools.Measure), edge=Right))
+        Timespan(start=Timepoint(anchor=ScoreObjectIndicator(segment='red', klass=measuretools.Measure, index=-1)), stop=Timepoint(anchor=ScoreObjectIndicator(segment='blue', klass=measuretools.Measure), edge=Right))
 
     Examples below reference the timespan defined immediately above::
 
@@ -170,14 +170,14 @@ class Timespan(AbjadObject):
     first measure in the segment with name ``'blue'``.
 
     When or if we decide we want such functionality we can extend the grammar to allow timespan
-    objects to anchor temporal cursor objects.
+    objects to anchor timepoint objects.
     '''
 
     ### INITIALIZER ###
 
     def __init__(self, start=None, stop=None):
-        assert isinstance(start, (TemporalCursor, type(None))), repr(start)
-        assert isinstance(stop, (TemporalCursor, type(None))), repr(stop)
+        assert isinstance(start, (Timepoint, type(None))), repr(start)
+        assert isinstance(stop, (Timepoint, type(None))), repr(stop)
         self._start = start
         self._stop = stop
 
@@ -258,26 +258,26 @@ class Timespan(AbjadObject):
 
     @property
     def start(self):
-        '''Timespan start cursor specified by user.
+        '''Timespan start specified by user.
 
             >>> timespan.start
-            TemporalCursor(anchor=ScoreObjectIndicator(segment='red', klass=measuretools.Measure, index=-1))
+            Timepoint(anchor=ScoreObjectIndicator(segment='red', klass=measuretools.Measure, index=-1))
 
         Value of none is taken equal to the left edge of score.
 
-        Return temporal cursor or none.
+        Return timepoint or none.
         '''
         return self._start
 
     @property
     def stop(self):
-        '''Timespan stop cursor specified by user.
+        '''Timespan stop specified by user.
 
             >>> timespan.stop
-            TemporalCursor(anchor=ScoreObjectIndicator(segment='blue', klass=measuretools.Measure), edge=Right)
+            Timepoint(anchor=ScoreObjectIndicator(segment='blue', klass=measuretools.Measure), edge=Right)
 
         Value of none is taken equal to the right edge of score.  
 
-        Return temporal cursor or none.
+        Return timepoint or none.
         '''
         return self._stop

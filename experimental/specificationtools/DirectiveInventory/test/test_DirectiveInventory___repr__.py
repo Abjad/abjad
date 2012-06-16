@@ -4,7 +4,7 @@ from experimental.specificationtools.DirectiveInventory import DirectiveInventor
 from experimental.specificationtools.ScoreObjectIndicator import ScoreObjectIndicator
 from experimental.specificationtools.ScoreSpecification import ScoreSpecification
 from experimental.specificationtools.Selection import Selection
-from experimental.specificationtools.TemporalCursor import TemporalCursor
+from experimental.specificationtools.Timepoint import Timepoint
 from experimental.specificationtools.Timespan import Timespan
 
 
