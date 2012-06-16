@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_OctaveTranspositionMappingInventory__tools_package_qualified_indented_repr_01():
+def test_OctaveTranspositionMappingInventory_storage_format_01():
 
     mapping_1 = pitchtools.OctaveTranspositionMapping([('[A0, C4)', 15), ('[C4, C8)', 27)])
     mapping_2 = pitchtools.OctaveTranspositionMapping([('[A0, C8]', -18)])
@@ -40,4 +40,4 @@ def test_OctaveTranspositionMappingInventory__tools_package_qualified_indented_r
         ])
     '''
 
-    assert inventory._tools_package_qualified_indented_repr == "pitchtools.OctaveTranspositionMappingInventory([\n\tpitchtools.OctaveTranspositionMapping([\n\t\tpitchtools.OctaveTranspositionMappingComponent(\n\t\t\tpitchtools.PitchRange(\n\t\t\t\t'[A0, C4)'\n\t\t\t\t),\n\t\t\tpitchtools.NumberedChromaticPitch(\n\t\t\t\t15\n\t\t\t\t)\n\t\t\t),\n\t\tpitchtools.OctaveTranspositionMappingComponent(\n\t\t\tpitchtools.PitchRange(\n\t\t\t\t'[C4, C8)'\n\t\t\t\t),\n\t\t\tpitchtools.NumberedChromaticPitch(\n\t\t\t\t27\n\t\t\t\t)\n\t\t\t)\n\t\t]),\n\tpitchtools.OctaveTranspositionMapping([\n\t\tpitchtools.OctaveTranspositionMappingComponent(\n\t\t\tpitchtools.PitchRange(\n\t\t\t\t'[A0, C8]'\n\t\t\t\t),\n\t\t\tpitchtools.NumberedChromaticPitch(\n\t\t\t\t-18\n\t\t\t\t)\n\t\t\t)\n\t\t])\n\t])"
+    assert inventory.storage_format == "pitchtools.OctaveTranspositionMappingInventory([\n\tpitchtools.OctaveTranspositionMapping([\n\t\tpitchtools.OctaveTranspositionMappingComponent(\n\t\t\tpitchtools.PitchRange(\n\t\t\t\t'[A0, C4)'\n\t\t\t\t),\n\t\t\tpitchtools.NumberedChromaticPitch(\n\t\t\t\t15\n\t\t\t\t)\n\t\t\t),\n\t\tpitchtools.OctaveTranspositionMappingComponent(\n\t\t\tpitchtools.PitchRange(\n\t\t\t\t'[C4, C8)'\n\t\t\t\t),\n\t\t\tpitchtools.NumberedChromaticPitch(\n\t\t\t\t27\n\t\t\t\t)\n\t\t\t)\n\t\t]),\n\tpitchtools.OctaveTranspositionMapping([\n\t\tpitchtools.OctaveTranspositionMappingComponent(\n\t\t\tpitchtools.PitchRange(\n\t\t\t\t'[A0, C8]'\n\t\t\t\t),\n\t\t\tpitchtools.NumberedChromaticPitch(\n\t\t\t\t-18\n\t\t\t\t)\n\t\t\t)\n\t\t])\n\t])"

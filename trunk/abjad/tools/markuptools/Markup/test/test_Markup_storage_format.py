@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_Markup__tools_package_qualified_indented_repr_01():
+def test_Markup_storage_format_01():
 
     markup = markuptools.Markup(r'\bold { foo }')
 
@@ -13,10 +13,10 @@ def test_Markup__tools_package_qualified_indented_repr_01():
         )
     '''
 
-    assert markup._tools_package_qualified_indented_repr == "markuptools.Markup(\n\t('\\\\bold { foo }',)\n\t)"
+    assert markup.storage_format == "markuptools.Markup(\n\t('\\\\bold { foo }',)\n\t)"
 
 
-def test_Markup__tools_package_qualified_indented_repr_02():
+def test_Markup_storage_format_02():
 
     markup = markuptools.Markup(r'\bold { allegro ma non troppo }', markup_name='non troppo')
 
@@ -27,4 +27,4 @@ def test_Markup__tools_package_qualified_indented_repr_02():
         )
     '''
 
-    assert markup._tools_package_qualified_indented_repr == "markuptools.Markup(\n\t('\\\\bold { allegro ma non troppo }',),\n\tmarkup_name='non troppo'\n\t)"
+    assert markup.storage_format == "markuptools.Markup(\n\t('\\\\bold { allegro ma non troppo }',),\n\tmarkup_name='non troppo'\n\t)"

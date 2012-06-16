@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_InstrumentationSpecifier__tools_package_qualified_indented_repr_01():
+def test_InstrumentationSpecifier_storage_format_01():
 
     flute = scoretools.Performer('Flute')
     flute.instruments.append(instrumenttools.Flute())
@@ -30,4 +30,4 @@ def test_InstrumentationSpecifier__tools_package_qualified_indented_repr_01():
         )
     '''
 
-    assert specifier._storage_format == "scoretools.InstrumentationSpecifier(\n\tperformers=scoretools.PerformerInventory([\n\t\tscoretools.Performer(\n\t\t\tname='Flute',\n\t\t\tinstruments=instrumenttools.InstrumentInventory([\n\t\t\t\tinstrumenttools.Flute(),\n\t\t\t\tinstrumenttools.AltoFlute()\n\t\t\t\t])\n\t\t\t),\n\t\tscoretools.Performer(\n\t\t\tname='Guitar',\n\t\t\tinstruments=instrumenttools.InstrumentInventory([\n\t\t\t\tinstrumenttools.Guitar()\n\t\t\t\t])\n\t\t\t)\n\t\t])\n\t)"
+    assert specifier.storage_format == "scoretools.InstrumentationSpecifier(\n\tperformers=scoretools.PerformerInventory([\n\t\tscoretools.Performer(\n\t\t\tname='Flute',\n\t\t\tinstruments=instrumenttools.InstrumentInventory([\n\t\t\t\tinstrumenttools.Flute(),\n\t\t\t\tinstrumenttools.AltoFlute()\n\t\t\t\t])\n\t\t\t),\n\t\tscoretools.Performer(\n\t\t\tname='Guitar',\n\t\t\tinstruments=instrumenttools.InstrumentInventory([\n\t\t\t\tinstrumenttools.Guitar()\n\t\t\t\t])\n\t\t\t)\n\t\t])\n\t)"

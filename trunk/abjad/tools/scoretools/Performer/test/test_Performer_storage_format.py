@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_Performer__tools_package_qualified_indented_repr_01():
+def test_Performer_storage_format_01():
 
     performer = scoretools.Performer('Flute')
     performer.instruments.append(instrumenttools.Flute())
@@ -17,4 +17,4 @@ def test_Performer__tools_package_qualified_indented_repr_01():
         )
     '''
 
-    assert performer._storage_format == "scoretools.Performer(\n\tname='Flute',\n\tinstruments=instrumenttools.InstrumentInventory([\n\t\tinstrumenttools.Flute(),\n\t\tinstrumenttools.AltoFlute()\n\t\t])\n\t)"
+    assert performer.storage_format == "scoretools.Performer(\n\tname='Flute',\n\tinstruments=instrumenttools.InstrumentInventory([\n\t\tinstrumenttools.Flute(),\n\t\tinstrumenttools.AltoFlute()\n\t\t])\n\t)"

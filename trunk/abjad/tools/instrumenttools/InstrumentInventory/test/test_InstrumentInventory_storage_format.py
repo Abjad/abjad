@@ -1,7 +1,7 @@
 from abjad import *
 
 
-def test_InstrumentInventory__tools_package_qualified_indented_repr_01():
+def test_InstrumentInventory_storage_format_01():
 
     inventory = instrumenttools.InstrumentInventory([
         instrumenttools.Flute(),
@@ -14,4 +14,4 @@ def test_InstrumentInventory__tools_package_qualified_indented_repr_01():
         ])
     '''
 
-    assert inventory._tools_package_qualified_indented_repr == 'instrumenttools.InstrumentInventory([\n\tinstrumenttools.Flute(),\n\tinstrumenttools.Violin()\n\t])'
+    assert inventory.storage_format == 'instrumenttools.InstrumentInventory([\n\tinstrumenttools.Flute(),\n\tinstrumenttools.Violin()\n\t])'
