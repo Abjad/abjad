@@ -215,6 +215,13 @@ class Duration(ImmutableAbjadObject, Fraction):
         result.append(self.denominator)
         return tuple(result)
 
+    ### PRIVATE METHODS ###
+
+    # do not indent duration objects in storage
+    def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
+        return [''.join(
+            ImmutableAbjadObject._get_tools_package_qualified_repr_pieces(self, is_indented=False))]
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property

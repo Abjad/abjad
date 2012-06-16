@@ -8,12 +8,9 @@ def test_TempoMark_storage_format_01():
     r'''
     contexttools.TempoMark(
         'Allegro',
-        durationtools.Duration(
-            1,
-            4
-            ),
+        durationtools.Duration(1, 4),
         84
-    )
+        )
     '''
 
-    assert tempo_mark.storage_format == "contexttools.TempoMark(\n\t'Allegro',\n\tdurationtools.Duration(\n\t\t1,\n\t\t4\n\t\t),\n\t84\n\t)"
+    assert tempo_mark.storage_format == "contexttools.TempoMark(\n\t'Allegro',\n\tdurationtools.Duration(1, 4),\n\t84\n\t)"

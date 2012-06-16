@@ -9,13 +9,10 @@ def test_TempoMarkInventory_storage_format_01():
     contexttools.TempoMarkInventory([
         contexttools.TempoMark(
             'Allegro',
-            durationtools.Duration(
-                1,
-                4
-                ),
+            durationtools.Duration(1, 4),
             84
             )
         ])
     '''
 
-    assert tempo_mark_inventory.storage_format == "contexttools.TempoMarkInventory([\n\tcontexttools.TempoMark(\n\t\t'Allegro',\n\t\tdurationtools.Duration(\n\t\t\t1,\n\t\t\t4\n\t\t\t),\n\t\t84\n\t\t)\n\t])"
+    assert tempo_mark_inventory.storage_format == "contexttools.TempoMarkInventory([\n\tcontexttools.TempoMark(\n\t\t'Allegro',\n\t\tdurationtools.Duration(1, 4),\n\t\t84\n\t\t)\n\t])"
