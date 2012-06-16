@@ -11,11 +11,11 @@ Read-only Properties
 
 .. autoattribute:: experimental.specificationtools.Selection.Selection.Selection.contexts
 
-.. autoattribute:: experimental.specificationtools.Selection.Selection.Selection.scope
-
 .. autoattribute:: experimental.specificationtools.Selection.Selection.Selection.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. autoattribute:: experimental.specificationtools.Selection.Selection.Selection.timespan
 
 Special Methods
 ---------------

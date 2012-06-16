@@ -167,7 +167,7 @@ class ScoreSpecification(Specification):
     def change_attribute_retrieval_indicator_to_setting(self, indicator):
         segment = self.segments[indicator.segment_name]
         context_proxy = segment.resolved_settings_context_dictionary[indicator.context_name]
-        setting = context_proxy.get_setting(attribute_name=indicator.attribute_name, scope=indicator.scope)
+        setting = context_proxy.get_setting(attribute_name=indicator.attribute_name, timespan=indicator.timespan)
         return setting
 
     def change_segment_division_tokens_to_region_division_tokens(self, segment_division_tokens):
@@ -303,7 +303,7 @@ class ScoreSpecification(Specification):
                 existing_settings = self.resolved_settings_context_dictionary.get_settings(
                     attribute_name='divisions')
                 for existing_setting in existing_settings:
-                    assert existing_setting.target.scope.encompasses_one_segment_exactly, repr(existing_setting)
+                    assert existing_setting.target.timespan.encompasses_one_segment_exactly, repr(existing_setting)
                     setting = existing_setting.copy_to_segment(segment)
                     settings.append(setting)
             self.store_settings(settings)
@@ -348,7 +348,7 @@ class ScoreSpecification(Specification):
                 setting = settings[0]
                 setting = setting.copy_to_segment(segment.name)
             assert setting.target.context == segment.score_name, repr(setting)
-            assert setting.target.scope == segment.scope, [repr(setting), '\n', repr(segment.scope)]
+            assert setting.target.timespan == segment.timespan, [repr(setting), '\n', repr(segment.timespan)]
             self.store_setting(setting)
 
     def make_region_division_lists_for_voice(self, voice):
@@ -438,16 +438,16 @@ class ScoreSpecification(Specification):
         stop_offset_pair = self.segment_offset_pairs[stop_segment_index]
         return start_offset_pair[0], stop_offset_pair[1]
 
-    def select(self, segment_name, context_names=None, scope=None):
-        return Selection(segment_name, context_names=context_names, scope=scope)
+    def select(self, segment_name, context_names=None, timespan=None):
+        return Selection(segment_name, context_names=context_names, timespan=timespan)
 
     def store_setting(self, setting):
         '''Resolve setting and find segment specified by setting.
         Store setting in SEGMENT context tree and, if persistent, in SCORE context tree, too.
         '''
         resolved_setting = self.make_resolved_setting(setting)
-        assert resolved_setting.target.scope.encompasses_one_segment_exactly, repr(resolved_setting)
-        segment = self.segments[resolved_setting.target.scope.start.anchor.segment]
+        assert resolved_setting.target.timespan.encompasses_one_segment_exactly, repr(resolved_setting)
+        segment = self.segments[resolved_setting.target.timespan.start.anchor.segment]
         context_name = resolved_setting.target.context or segment.resolved_settings_context_dictionary.score_name
         attribute_name = resolved_setting.attribute_name
         if attribute_name in segment.resolved_settings_context_dictionary[context_name]:

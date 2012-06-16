@@ -23,7 +23,7 @@ class AttributeRetrievalRequest(AbjadObject):
     @property
     def _one_line_format(self):
         body = []
-        for attribute_name in ('segment_name', 'context_name', 'scope'):
+        for attribute_name in ('segment_name', 'context_name', 'timespan'):
             attribute_value = getattr(self.indicator.selection, attribute_name, None)
             if attribute_value is not None:
                 body.append(attribute_value)

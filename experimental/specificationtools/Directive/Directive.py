@@ -74,7 +74,7 @@ class Directive(AbjadObject):
         settings = []
         assert self.target.contexts, repr(self.target.contexts)
         for context in self.target.contexts:
-            target = ContextSelection(context, scope=copy.deepcopy(self.target.scope))
+            target = ContextSelection(context, timespan=copy.deepcopy(self.target.timespan))
             setting = Setting(target, self.attribute_name, self.source, 
                 persistent=self.persistent, truncate=self.truncate)
             settings.append(setting)

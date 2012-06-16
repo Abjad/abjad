@@ -23,8 +23,8 @@ class ContextProxy(AbjadObject, OrderedDict):
 
     ### PUBLIC METHODS ###
 
-    def get_setting(self, attribute_name=None, scope=None):
-        settings = self.get_settings(attribute_name=attribute_name, scope=scope)
+    def get_setting(self, attribute_name=None, timespan=None):
+        settings = self.get_settings(attribute_name=attribute_name, timespan=timespan)
         if not settings:
             raise MissingSettingError('no settings for {!r} found.'.format(attribute_name))
         elif 1 < len(settings):
@@ -32,11 +32,11 @@ class ContextProxy(AbjadObject, OrderedDict):
         assert len(settings) == 1
         return settings[0]
 
-    def get_settings(self, attribute_name=None, scope=None):
+    def get_settings(self, attribute_name=None, timespan=None):
         settings = []
         for key, setting in self.iteritems():
             if ((attribute_name is None or key == attribute_name) and
-                (scope is None or setting.scope == scope)
+                (timespan is None or setting.timespan == timespan)
                 ):
                 settings.append(setting)
         return settings

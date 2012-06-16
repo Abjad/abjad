@@ -24,6 +24,10 @@ Methods
 
     Inherited from :py:class:`collections.OrderedDict`
 
+.. automethod:: experimental.specificationtools.ContextProxy.ContextProxy.ContextProxy.fromkeys
+
+    Inherited from :py:class:`collections.OrderedDict`
+
 .. automethod:: experimental.specificationtools.ContextProxy.ContextProxy.ContextProxy.get
 
     Inherited from :py:class:`__builtin__.dict`

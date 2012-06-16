@@ -61,7 +61,7 @@ than time signature specification. Division specifications are structured the sa
 as every other type of specification: that is, as the pair of a target token
 together with a source. Further, division specification target tokens take the same form 
 as every type of target token: that is, as the triple of a segment name, a list of zero
-or more context names, and an optional (horizontal) scope that acts as type of filter
+or more context names, and an optional (horizontal) timespan that acts as type of filter
 on all contexts implicated in the selection. Two areas of this model of division specification
 require elaboration. The first of these relates to the logical limits attaching to the targets
 of division specification. The second must detail the number and type of sources that

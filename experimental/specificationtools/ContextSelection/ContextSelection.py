@@ -10,9 +10,9 @@ class ContextSelection(Selection):
 
     ### INITIALIZER ###
 
-    def __init__(self, context, scope=None):
+    def __init__(self, context, timespan=None):
         assert isinstance(context, (str, contexttools.Context)), repr(context)
-        Selection.__init__(self, [context], scope=scope)
+        Selection.__init__(self, [context], timespan=timespan)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

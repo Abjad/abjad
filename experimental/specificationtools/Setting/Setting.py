@@ -81,7 +81,7 @@ class Setting(AbjadObject):
     @property
     def _one_line_target_format(self):
         body = []
-        for attribute_name in ('segment_name', 'context_name', 'scope'):
+        for attribute_name in ('segment_name', 'context_name', 'timespan'):
             attribute_value = getattr(self, attribute_name, None)
             if attribute_value is not None:
                 body.append(attribute_value)
@@ -157,27 +157,27 @@ class Setting(AbjadObject):
     ### PUBLIC METHODS ###
 
     def copy_to_segment(self, segment):
-        '''Only works when target scope encompasses one segment exactly.
+        '''Only works when target timespan encompasses one segment exactly.
 
         Create new setting. Set new setting `fresh` to false.
 
         Return new setting.
         '''
-        assert self.target.scope.encompasses_one_segment_exactly, repr(self)
+        assert self.target.timespan.encompasses_one_segment_exactly, repr(self)
         new = copy.deepcopy(self)
         new.set_to_segment(segment)
         new._fresh = False
         return new
 
     def set_to_segment(self, segment):
-        '''Only works when target scope encompasses one segment exactly.
+        '''Only works when target timespan encompasses one segment exactly.
 
         Return none.
         '''
-        assert self.target.scope.encompasses_one_segment_exactly, repr(self)
+        assert self.target.timespan.encompasses_one_segment_exactly, repr(self)
         segment = self.to_segment_name(segment)
-        self.target.scope.start.anchor._segment = segment
-        self.target.scope.stop.anchor._segment = segment
+        self.target.timespan.start.anchor._segment = segment
+        self.target.timespan.stop.anchor._segment = segment
 
     def to_segment_name(self, segment):
         '''Change `segment` to segment name. Return string unchanged.

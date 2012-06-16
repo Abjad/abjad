@@ -34,7 +34,7 @@ Statal meter specification assumes a hierarchical statal server that is duration
 (Many other variations are left for later implementation.)
 
 *Settings.* Define setting t equal the 6-tuple (σ, ν, κ, n, s, p) with segment name σ,
-context name ν, scope κ, attribute name n, source s, and persistence indicator p.
+context name ν, timespan κ, attribute name n, source s, and persistence indicator p.
 This is equivalent to context selection ξ equal to (σ, ν, κ), defined below, together
 with three further values n, s, p.
 
@@ -42,12 +42,12 @@ with three further values n, s, p.
 attribute name n, source s, and persistence indicator p.
 
 *Selections.* Define selection λ equal to the triple (σ, N, κ) with segment name σ,
-context names N = {ν0, ..., νn}, and scope κ. Note that N is defined equal to a list
+context names N = {ν0, ..., νn}, and timespan κ. Note that N is defined equal to a list
 of zero or more elements. This means that selections function as a type of bundle
 that can be unpacked. Note too that where n = 0 we say that λ is empty. Intuitively λ
 represents a filtered rectangle of a single score segment.
 
 *Context selections.* Define context selection ξ equal to the triple (σ, ν, κ) with
-segment name σ, context name ν, and scope κ. Intuitively ξ equals a filtered horizontal
+segment name σ, context name ν, and timespan κ. Intuitively ξ equals a filtered horizontal
 layer of music in a single segment of score. The compositing of zero or more context
 selections all in the same segment gives selection λ as defined above.

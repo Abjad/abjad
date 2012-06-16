@@ -112,10 +112,10 @@ class SegmentSpecification(Specification):
         return self._name
 
     @property
-    def scope(self):
+    def timespan(self):
         '''Segment timespan.
 
-            >>> segment.scope
+            >>> segment.timespan
             Timespan(start=TemporalCursor(anchor=ScoreObjectIndicator(segment='1'), edge=Left), stop=TemporalCursor(anchor=ScoreObjectIndicator(segment='1'), edge=Right))
 
         Return timespan.
@@ -218,18 +218,18 @@ class SegmentSpecification(Specification):
                     result.append(directive)
         return result
 
-    def get_divisions_value_with_fresh_and_truncate(self, context_name, scope=None):
+    def get_divisions_value_with_fresh_and_truncate(self, context_name, timespan=None):
         '''Return value found in context tree or else default to segment time signatures.
         '''
         value, fresh, truncate = self.get_resolved_value_with_fresh('divisions', context_name, 
-            include_truncate=True, scope=scope)
+            include_truncate=True, timespan=timespan)
         if value is None:
             value, fresh = self.get_resolved_value_with_fresh('time_signatures', context_name, 
-            scope=scope)
+            timespan=timespan)
             truncate = False
         return value, fresh, truncate
 
-    def get_resolved_value_with_fresh(self, attribute_name, context_name, include_truncate=False, scope=None):
+    def get_resolved_value_with_fresh(self, attribute_name, context_name, include_truncate=False, timespan=None):
         '''Return value from resolved setting because context proxy stores resolved settings.
         '''
         #self._debug((attribute_name, context_name))
@@ -237,7 +237,7 @@ class SegmentSpecification(Specification):
         for component in componenttools.get_improper_parentage_of_component(context):
             #self._debug(component)
             context_proxy = self.resolved_settings_context_dictionary[component.name]
-            settings = context_proxy.get_settings(attribute_name=attribute_name, scope=scope)
+            settings = context_proxy.get_settings(attribute_name=attribute_name, timespan=timespan)
             #self._debug(settings, 'settings')
             if not settings:
                 continue
@@ -255,11 +255,11 @@ class SegmentSpecification(Specification):
         else:
             return None, None
     
-    def get_rhythm_value(self, context_name, scope=None):
+    def get_rhythm_value(self, context_name, timespan=None):
         '''Default to rest-filled tokens if explicit rhythm not found.
         '''
         from experimental.specificationtools import library
-        value, fresh = self.get_resolved_value_with_fresh('rhythm', context_name, scope=scope)
+        value, fresh = self.get_resolved_value_with_fresh('rhythm', context_name, timespan=timespan)
         if value is not None:
             return value, fresh
         return library.rest_filled_tokens, True
@@ -285,30 +285,30 @@ class SegmentSpecification(Specification):
         #segment_name = segment_name or self.name
         #selection = specificationtools.Selection(segment_name, contexts=contexts)
         contexts = self.context_token_to_context_names(contexts)
-        return specificationtools.Selection(contexts=contexts, scope=self.scope)
+        return specificationtools.Selection(contexts=contexts, timespan=self.timespan)
 
     def select_divisions(self, context_token=None, part=None, segment_name=None, start=None, stop=None):
         from experimental import specificationtools
         criterion = 'divisions'
         contexts = self.context_token_to_context_names(context_token)
-        scope = specificationtools.Timespan(criterion=criterion, part=part, start=start, stop=stop)
-        selection = self.select(contexts=contexts, segment_name=segment_name, scope=scope)
+        timespan = specificationtools.Timespan(criterion=criterion, part=part, start=start, stop=stop)
+        selection = self.select(contexts=contexts, segment_name=segment_name, timespan=timespan)
         return selection
 
     def select_measures(self, context_token=None, part=None, segment_name=None, start=None, stop=None):
         from experimental import specificationtools
         criterion = 'measures'
         contexts = self.context_token_to_context_names(context_token)
-        scope = specificationtools.Timespan(criterion=criterion, part=part, start=start, stop=stop)
-        selection = self.select(contexts=contexts, segment_name=segment_name, scope=scope)
+        timespan = specificationtools.Timespan(criterion=criterion, part=part, start=start, stop=stop)
+        selection = self.select(contexts=contexts, segment_name=segment_name, timespan=timespan)
         return selection
     
     def select_notes_and_chords(self, context_token=None, part=None, segment_name=None, start=None, stop=None):
         from experimental import specificationtools
         criterion = (chordtools.Chord, notetools.Note)
         contexts = self.context_token_to_context_names(context_token)
-        scope = specificationtools.Timespan(criterion=criterion, part=part, start=start, stop=stop)
-        selection = self.select(contexts=contexts, scope=scope)
+        timespan = specificationtools.Timespan(criterion=criterion, part=part, start=start, stop=stop)
+        selection = self.select(contexts=contexts, timespan=timespan)
         return selection
 
     def set_aggregate(self, contexts, source, 
@@ -324,12 +324,12 @@ class SegmentSpecification(Specification):
             count=count, offset=offset, persistent=persistent)
 
     def set_attribute(self, attribute_name, contexts, source, 
-        callback=None, count=None, offset=None, persistent=True, scope=None, truncate=False):
+        callback=None, count=None, offset=None, persistent=True, timespan=None, truncate=False):
         from experimental import specificationtools
         assert attribute_name in self.attribute_names, repr(attribute_name)
         assert isinstance(count, (int, type(None))), repr(count)
         assert isinstance(persistent, type(True)), repr(persistent)
-        assert isinstance(scope, (specificationtools.Timespan, type(None))), repr(scope)
+        assert isinstance(timespan, (specificationtools.Timespan, type(None))), repr(timespan)
         assert isinstance(truncate, type(True)), repr(truncate)
         target = self.select_contexts(contexts=contexts)
         source = self.annotate_source(source, callback=callback, count=count, offset=offset)
@@ -345,10 +345,10 @@ class SegmentSpecification(Specification):
             count=count, offset=offset, persistent=persistent)
 
     def set_divisions(self, contexts, source, 
-        callback=None, count=None, offset=None, persistent=True, scope=None, truncate=False):
+        callback=None, count=None, offset=None, persistent=True, timespan=None, truncate=False):
         attribute_name = 'divisions'
         return self.set_attribute(attribute_name, contexts, source, 
-            callback=callback, count=count, offset=offset, persistent=persistent, scope=scope, truncate=truncate)
+            callback=callback, count=count, offset=offset, persistent=persistent, timespan=timespan, truncate=truncate)
 
     def set_duration_in_seconds(self, contexts, source, 
         count=None, persistent=True, offset=None):

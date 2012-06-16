@@ -15,13 +15,13 @@ Read-only Properties
 
     Inherited from :py:class:`specificationtools.Selection <experimental.specificationtools.Selection.Selection.Selection>`
 
-.. autoattribute:: experimental.specificationtools.ContextSelection.ContextSelection.ContextSelection.scope
-
-    Inherited from :py:class:`specificationtools.Selection <experimental.specificationtools.Selection.Selection.Selection>`
-
 .. autoattribute:: experimental.specificationtools.ContextSelection.ContextSelection.ContextSelection.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. autoattribute:: experimental.specificationtools.ContextSelection.ContextSelection.ContextSelection.timespan
+
+    Inherited from :py:class:`specificationtools.Selection <experimental.specificationtools.Selection.Selection.Selection>`
 
 Special Methods
 ---------------

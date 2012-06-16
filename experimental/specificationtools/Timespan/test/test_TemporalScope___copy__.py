@@ -7,10 +7,10 @@ def test_Timespan___copy___01():
 
     start = specificationtools.TemporalCursor(edge=Right, multiplier=Fraction(1, 3))
     stop = specificationtools.TemporalCursor(edge=Right, multiplier=Fraction(2, 3))
-    scope_1 = specificationtools.Timespan(start=start, stop=stop)
-    scope_2 = copy.deepcopy(scope_1)
+    timespan_1 = specificationtools.Timespan(start=start, stop=stop)
+    timespan_2 = copy.deepcopy(timespan_1)
 
-    assert isinstance(scope_1, specificationtools.Timespan)
-    assert isinstance(scope_2, specificationtools.Timespan)
-    assert not scope_1 is scope_2
-    assert scope_1 == scope_2
+    assert isinstance(timespan_1, specificationtools.Timespan)
+    assert isinstance(timespan_2, specificationtools.Timespan)
+    assert not timespan_1 is timespan_2
+    assert timespan_1 == timespan_2

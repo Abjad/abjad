@@ -8,8 +8,8 @@ def test_Setting___init___01():
     anchor = specificationtools.ScoreObjectIndicator(segment='1')
     start = specificationtools.TemporalCursor(anchor=anchor)
     stop = specificationtools.TemporalCursor(anchor=anchor, edge=Right)
-    scope = specificationtools.Timespan(start=start, stop=stop)
-    target = specificationtools.ContextSelection('Voice 1', scope=scope)
+    timespan = specificationtools.Timespan(start=start, stop=stop)
+    target = specificationtools.ContextSelection('Voice 1', timespan=timespan)
     setting = specificationtools.Setting(target, 'time_signatures', [(4, 8), (3, 8)])
     assert isinstance(setting, specificationtools.Setting)
 
@@ -21,8 +21,8 @@ def test_Setting___init___02():
     anchor = specificationtools.ScoreObjectIndicator(segment='1')
     start = specificationtools.TemporalCursor(anchor=anchor)
     stop = specificationtools.TemporalCursor(anchor=anchor, edge=Right)
-    scope = specificationtools.Timespan(start=start, stop=stop)
-    target = specificationtools.ContextSelection('Voice 1', scope=scope)
+    timespan = specificationtools.Timespan(start=start, stop=stop)
+    target = specificationtools.ContextSelection('Voice 1', timespan=timespan)
     setting_1 = specificationtools.Setting(target, 'time_signatures', [(4, 8), (3, 8)], fresh=False)
 
     setting_2 = specificationtools.Setting(setting_1)

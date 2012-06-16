@@ -12,8 +12,8 @@ def test_Setting___repr___01():
     anchor = ScoreObjectIndicator(segment='1')
     start = TemporalCursor(anchor=anchor)
     stop = TemporalCursor(anchor=anchor, edge=Right)
-    scope = Timespan(start=start, stop=stop)
-    target = ContextSelection('Voice 1', scope=scope)
+    timespan = Timespan(start=start, stop=stop)
+    target = ContextSelection('Voice 1', timespan=timespan)
     setting_1 = Setting(target, 'time_signatures', [(4, 8), (3, 8)], fresh=False)
 
     setting_2 = eval(repr(setting_1))

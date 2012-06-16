@@ -19,12 +19,12 @@ class AttributeRetrievalIndicator(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, attribute_name, segment_name, context_name=None, scope=None):
+    def __init__(self, attribute_name, segment_name, context_name=None, timespan=None):
         assert isinstance(segment_name, str), repr(segment_name)
         assert attribute_name in self.attribute_names, repr(attribute_name)
         assert isinstance(context_name, (str, type(None))), repr(context_name)
-        #assert isinstance(scope, (Timespan, type(None))), repr(scope)
+        #assert isinstance(timespan, (Timespan, type(None))), repr(timespan)
         self.attribute_name = attribute_name
         self.segment_name = segment_name
         self.context_name = context_name
-        self.scope = scope
+        self.timespan = timespan

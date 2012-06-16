@@ -28,6 +28,10 @@ Methods
 
 .. automethod:: experimental.quantizationtools.QGridSearchTree.QGridSearchTree.QGridSearchTree.find_subtree_divisibility
 
+.. automethod:: experimental.quantizationtools.QGridSearchTree.QGridSearchTree.QGridSearchTree.fromkeys
+
+    Inherited from :py:class:`__builtin__.dict`
+
 .. automethod:: experimental.quantizationtools.QGridSearchTree.QGridSearchTree.QGridSearchTree.get
 
     Inherited from :py:class:`__builtin__.dict`

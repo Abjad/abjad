@@ -17,6 +17,10 @@ Methods
 
     Inherited from :py:class:`collections.OrderedDict`
 
+.. automethod:: experimental.specificationtools.AttributeNameEnumeration.AttributeNameEnumeration.AttributeNameEnumeration.fromkeys
+
+    Inherited from :py:class:`collections.OrderedDict`
+
 .. automethod:: experimental.specificationtools.AttributeNameEnumeration.AttributeNameEnumeration.AttributeNameEnumeration.get
 
     Inherited from :py:class:`__builtin__.dict`

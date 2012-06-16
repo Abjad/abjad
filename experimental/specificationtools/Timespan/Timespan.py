@@ -158,7 +158,7 @@ class Timespan(AbjadObject):
 
     Examples below reference the timespan defined immediately above::
 
-        >>> temporal_scope = _
+        >>> timespan = _
 
     Timespans are immutable.
 
@@ -169,8 +169,8 @@ class Timespan(AbjadObject):
     of the last measure in the segment with name ``'red'`` and stopping at the right edge of the
     first measure in the segment with name ``'blue'``.
 
-    When or if we decide we want such functionality we can extend the grammar to allow temporal
-    scope objects to anchor temporal cursor objects.
+    When or if we decide we want such functionality we can extend the grammar to allow timespan
+    objects to anchor temporal cursor objects.
     '''
 
     ### INITIALIZER ###
@@ -206,7 +206,7 @@ class Timespan(AbjadObject):
 
     @property
     def exact_segment(self):
-        '''Return segment name when scope equals exactly one segment.
+        '''Return segment name when timespan equals exactly one segment.
 
         Otherwise return none.
         '''
@@ -246,7 +246,7 @@ class Timespan(AbjadObject):
 
     @property
     def encompasses_one_segment_exactly(self):
-        '''True when scope encompasses one object exactly and when that
+        '''True when timespan encompasses one object exactly and when that
         object is a segment. Otherwise false.
 
         Return boolean.
@@ -260,7 +260,7 @@ class Timespan(AbjadObject):
     def start(self):
         '''Timespan start cursor specified by user.
 
-            >>> temporal_scope.start
+            >>> timespan.start
             TemporalCursor(anchor=ScoreObjectIndicator(segment='red', klass=measuretools.Measure, index=-1))
 
         Value of none is taken equal to the left edge of score.
@@ -273,7 +273,7 @@ class Timespan(AbjadObject):
     def stop(self):
         '''Timespan stop cursor specified by user.
 
-            >>> temporal_scope.stop
+            >>> timespan.stop
             TemporalCursor(anchor=ScoreObjectIndicator(segment='blue', klass=measuretools.Measure), edge=Right)
 
         Value of none is taken equal to the right edge of score.  

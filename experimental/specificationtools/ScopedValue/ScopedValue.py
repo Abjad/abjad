@@ -6,7 +6,7 @@ class ScopedValue(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, value, scope=None):
-        assert isinstance(scope, (Timespan, type(None)))
+    def __init__(self, value, timespan=None):
+        assert isinstance(timespan, (Timespan, type(None)))
         self.value = value
-        self.scope = scope 
+        self.timespan = timespan 
