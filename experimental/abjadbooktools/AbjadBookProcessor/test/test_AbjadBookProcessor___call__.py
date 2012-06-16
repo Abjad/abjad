@@ -5,7 +5,6 @@ import py
 
 
 def test_AbjadBookProcessor___call___01():
-    py.test.skip('FIXME: currently failing.')
 
     if __name__ == '__main__':
         directory = os.path.curdir
