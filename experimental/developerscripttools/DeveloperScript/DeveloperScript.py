@@ -6,17 +6,7 @@ import os
 
 
 class DeveloperScript(abctools.AbjadObject):
-    '''Abjad object-oriented model of a developer script:
-
-    ::
-
-        >>> from experimental.abjadbooktools import DeveloperScript
-
-    ::
-
-        >>> script = DeveloperScript()
-        >>> script.program_name
-        'developer'
+    '''Abjad object-oriented model of a developer script.
 
     It can be used from the command line:
 
