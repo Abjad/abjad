@@ -40,25 +40,22 @@ class SvnCommitScript(DirectoryScript):
 
         commit_command = 'svn commit {} -F {}'.format(args.path, commit_path)
 
-        if args.verbose:
-            while True:
-                print '\nSTORED COMMIT MESSAGE:\n'
-                with open(commit_path, 'r') as f:
-                    print f.read()
-                result = raw_input('Accept? [Y/n]: ').lower()
-                if result in ('', 'y', 'yes'):
-                    iotools.spawn_subprocess(commit_command)
-                elif result in ('n', 'no'):
-                    SvnMessageScript()()
-        else:
-            iotools.spawn_subprocess(commit_command)
+        while True:
+            print '\nSTORED COMMIT MESSAGE:\n'
+            with open(commit_path, 'r') as f:
+                print f.read()
+            result = raw_input('Accept [Y], Reject [n], Abort [a]: ').lower()
+            if result in ('', 'y', 'yes'):
+                iotools.spawn_subprocess(commit_command)
+                return
+            elif result in ('n', 'no'):
+                SvnMessageScript()()
+            elif result in ('a', 'abort'):
+                return
 
     def setup_argument_parser(self, parser):
         parser.add_argument('path',
             help='commit the path PATH',
             type=self._validate_path,
             )
-        parser.add_argument('-V', '--verbose',
-            action='store_true',
-            help='prompt with commit message'
-            )
+
