@@ -6,6 +6,13 @@ specificationtools.AttributeRetrievalIndicator
 
 .. autoclass:: experimental.specificationtools.AttributeRetrievalIndicator.AttributeRetrievalIndicator.AttributeRetrievalIndicator
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: experimental.specificationtools.AttributeRetrievalIndicator.AttributeRetrievalIndicator.AttributeRetrievalIndicator.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Special Methods
 ---------------
 

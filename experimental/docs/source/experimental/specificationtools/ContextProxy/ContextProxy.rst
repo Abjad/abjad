@@ -6,6 +6,13 @@ specificationtools.ContextProxy
 
 .. autoclass:: experimental.specificationtools.ContextProxy.ContextProxy.ContextProxy
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: experimental.specificationtools.ContextProxy.ContextProxy.ContextProxy.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Methods
 -------
 

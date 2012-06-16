@@ -6,6 +6,13 @@ specificationtools.SegmentInventory
 
 .. autoclass:: experimental.specificationtools.SegmentInventory.SegmentInventory.SegmentInventory
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: experimental.specificationtools.SegmentInventory.SegmentInventory.SegmentInventory.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Methods
 -------
 

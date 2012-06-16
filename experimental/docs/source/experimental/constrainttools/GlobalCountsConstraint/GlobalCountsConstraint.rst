@@ -17,6 +17,10 @@ Read-only Properties
 
     Inherited from :py:class:`constrainttools._Constraint <experimental.constrainttools._Constraint._Constraint._Constraint>`
 
+.. autoattribute:: experimental.constrainttools.GlobalCountsConstraint.GlobalCountsConstraint.GlobalCountsConstraint.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Special Methods
 ---------------
 

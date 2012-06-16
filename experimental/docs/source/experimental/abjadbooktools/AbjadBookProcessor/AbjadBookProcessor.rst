@@ -19,6 +19,10 @@ Read-only Properties
 
 .. autoattribute:: experimental.abjadbooktools.AbjadBookProcessor.AbjadBookProcessor.AbjadBookProcessor.skip_rendering
 
+.. autoattribute:: experimental.abjadbooktools.AbjadBookProcessor.AbjadBookProcessor.AbjadBookProcessor.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Special Methods
 ---------------
 

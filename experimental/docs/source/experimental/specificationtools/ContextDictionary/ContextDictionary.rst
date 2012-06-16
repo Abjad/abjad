@@ -15,6 +15,10 @@ Read-only Properties
 
 .. autoattribute:: experimental.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.score_name
 
+.. autoattribute:: experimental.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Methods
 -------
 

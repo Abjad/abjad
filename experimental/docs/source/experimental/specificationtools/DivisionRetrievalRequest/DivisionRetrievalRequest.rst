@@ -6,6 +6,13 @@ specificationtools.DivisionRetrievalRequest
 
 .. autoclass:: experimental.specificationtools.DivisionRetrievalRequest.DivisionRetrievalRequest.DivisionRetrievalRequest
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: experimental.specificationtools.DivisionRetrievalRequest.DivisionRetrievalRequest.DivisionRetrievalRequest.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Special Methods
 ---------------
 

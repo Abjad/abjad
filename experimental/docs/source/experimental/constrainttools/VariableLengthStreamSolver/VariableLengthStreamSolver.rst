@@ -29,6 +29,10 @@ Read-only Properties
 
     Inherited from :py:class:`constrainttools._Solver <experimental.constrainttools._Solver._Solver._Solver>`
 
+.. autoattribute:: experimental.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 .. autoattribute:: experimental.constrainttools.VariableLengthStreamSolver.VariableLengthStreamSolver.VariableLengthStreamSolver.terminators
 
 Methods

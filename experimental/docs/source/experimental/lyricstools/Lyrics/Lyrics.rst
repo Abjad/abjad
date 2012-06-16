@@ -25,10 +25,6 @@ Read-only Properties
 
     Inherited from :py:class:`contexttools.Context <abjad.tools.contexttools.Context.Context.Context>`
 
-.. autoattribute:: experimental.lyricstools.Lyrics.Lyrics.Lyrics.format
-
-    Inherited from :py:class:`contexttools.Context <abjad.tools.contexttools.Context.Context.Context>`
-
 .. autoattribute:: experimental.lyricstools.Lyrics.Lyrics.Lyrics.is_semantic
 
     Inherited from :py:class:`contexttools.Context <abjad.tools.contexttools.Context.Context.Context>`
@@ -36,6 +32,10 @@ Read-only Properties
 .. autoattribute:: experimental.lyricstools.Lyrics.Lyrics.Lyrics.leaves
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
+
+.. autoattribute:: experimental.lyricstools.Lyrics.Lyrics.Lyrics.lilypond_format
+
+    Inherited from :py:class:`contexttools.Context <abjad.tools.contexttools.Context.Context.Context>`
 
 .. autoattribute:: experimental.lyricstools.Lyrics.Lyrics.Lyrics.music
 
@@ -84,6 +84,10 @@ Read-only Properties
 .. autoattribute:: experimental.lyricstools.Lyrics.Lyrics.Lyrics.stop_offset_in_seconds
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+
+.. autoattribute:: experimental.lyricstools.Lyrics.Lyrics.Lyrics.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 Read/write Properties
 ---------------------

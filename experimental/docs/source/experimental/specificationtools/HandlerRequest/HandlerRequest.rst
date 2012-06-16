@@ -6,6 +6,13 @@ specificationtools.HandlerRequest
 
 .. autoclass:: experimental.specificationtools.HandlerRequest.HandlerRequest.HandlerRequest
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: experimental.specificationtools.HandlerRequest.HandlerRequest.HandlerRequest.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Special Methods
 ---------------
 

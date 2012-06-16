@@ -6,6 +6,13 @@ specificationtools.ScopedValue
 
 .. autoclass:: experimental.specificationtools.ScopedValue.ScopedValue.ScopedValue
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: experimental.specificationtools.ScopedValue.ScopedValue.ScopedValue.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Special Methods
 ---------------
 

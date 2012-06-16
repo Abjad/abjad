@@ -6,6 +6,13 @@ handlertools.pitch.DiatonicClusterHandler
 
 .. autoclass:: experimental.handlertools.pitch.DiatonicClusterHandler.DiatonicClusterHandler.DiatonicClusterHandler
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: experimental.handlertools.pitch.DiatonicClusterHandler.DiatonicClusterHandler.DiatonicClusterHandler.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Special Methods
 ---------------
 

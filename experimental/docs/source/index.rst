@@ -57,6 +57,9 @@ Unstable Abjad composition packages (load manually)
 
    experimental/developerscripttools/CountLinesScript/CountLinesScript
    experimental/developerscripttools/DeveloperScript/DeveloperScript
+   experimental/developerscripttools/DirectoryScript/DirectoryScript
+   experimental/developerscripttools/ReplaceInFilesScript/ReplaceInFilesScript
+   experimental/developerscripttools/ReplacePromptsScript/ReplacePromptsScript
 
 .. rubric:: concrete classes
 
@@ -64,10 +67,15 @@ Unstable Abjad composition packages (load manually)
    :maxdepth: 1
 
    experimental/developerscripttools/AbjDevScript/AbjDevScript
+   experimental/developerscripttools/BuildAbjadApiScript/BuildAbjadApiScript
+   experimental/developerscripttools/BuildExperimentalApiScript/BuildExperimentalApiScript
+   experimental/developerscripttools/CleanScript/CleanScript
    experimental/developerscripttools/CountLinewidthsScript/CountLinewidthsScript
    experimental/developerscripttools/CountToolsScript/CountToolsScript
-   experimental/developerscripttools/MakeAbjadApiScript/MakeAbjadApiScript
-   experimental/developerscripttools/MakeExperimentalApiScript/MakeExperimentalApiScript
+   experimental/developerscripttools/SvnAddAllScript/SvnAddAllScript
+   experimental/developerscripttools/SvnCommitScript/SvnCommitScript
+   experimental/developerscripttools/SvnMessageScript/SvnMessageScript
+   experimental/developerscripttools/SvnUpdateScript/SvnUpdateScript
 
 .. rubric:: functions
 

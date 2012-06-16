@@ -15,6 +15,10 @@ Read-only Properties
 
 .. autoattribute:: experimental.quantizationtools.QGridQuantizer.QGridQuantizer.QGridQuantizer.search_tree
 
+.. autoattribute:: experimental.quantizationtools.QGridQuantizer.QGridQuantizer.QGridQuantizer.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 .. autoattribute:: experimental.quantizationtools.QGridQuantizer.QGridQuantizer.QGridQuantizer.tempo
 
 .. autoattribute:: experimental.quantizationtools.QGridQuantizer.QGridQuantizer.QGridQuantizer.tempo_lookup

@@ -25,6 +25,10 @@ Read-only Properties
 
     Inherited from :py:class:`constrainttools._RelativeConstraint <experimental.constrainttools._RelativeConstraint._RelativeConstraint._RelativeConstraint>`
 
+.. autoattribute:: experimental.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Special Methods
 ---------------
 

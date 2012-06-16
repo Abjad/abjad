@@ -37,6 +37,10 @@ Read-only Properties
 
 .. autoattribute:: experimental.developerscripttools.CountToolsScript.CountToolsScript.CountToolsScript.short_description
 
+.. autoattribute:: experimental.developerscripttools.CountToolsScript.CountToolsScript.CountToolsScript.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 .. autoattribute:: experimental.developerscripttools.CountToolsScript.CountToolsScript.CountToolsScript.version
 
 Methods

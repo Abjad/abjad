@@ -13,6 +13,10 @@ Read-only Properties
 
 .. autoattribute:: experimental.specificationtools.PartIndicator.PartIndicator.PartIndicator.ratio
 
+.. autoattribute:: experimental.specificationtools.PartIndicator.PartIndicator.PartIndicator.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Special Methods
 ---------------
 

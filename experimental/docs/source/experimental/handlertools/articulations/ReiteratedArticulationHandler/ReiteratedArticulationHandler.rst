@@ -6,6 +6,13 @@ handlertools.articulations.ReiteratedArticulationHandler
 
 .. autoclass:: experimental.handlertools.articulations.ReiteratedArticulationHandler.ReiteratedArticulationHandler.ReiteratedArticulationHandler
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: experimental.handlertools.articulations.ReiteratedArticulationHandler.ReiteratedArticulationHandler.ReiteratedArticulationHandler.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Read/write Properties
 ---------------------
 

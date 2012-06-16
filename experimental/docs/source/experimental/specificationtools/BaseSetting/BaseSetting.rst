@@ -6,6 +6,13 @@ specificationtools.BaseSetting
 
 .. autoclass:: experimental.specificationtools.BaseSetting.BaseSetting.BaseSetting
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: experimental.specificationtools.BaseSetting.BaseSetting.BaseSetting.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Special Methods
 ---------------
 

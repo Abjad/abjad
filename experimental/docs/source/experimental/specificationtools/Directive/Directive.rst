@@ -6,6 +6,13 @@ specificationtools.Directive
 
 .. autoclass:: experimental.specificationtools.Directive.Directive.Directive
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: experimental.specificationtools.Directive.Directive.Directive.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Methods
 -------
 

@@ -37,6 +37,10 @@ Read-only Properties
 
 .. autoattribute:: experimental.developerscripttools.CountLinesScript.CountLinesScript.CountLinesScript.short_description
 
+.. autoattribute:: experimental.developerscripttools.CountLinesScript.CountLinesScript.CountLinesScript.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 .. autoattribute:: experimental.developerscripttools.CountLinesScript.CountLinesScript.CountLinesScript.version
 
 Methods

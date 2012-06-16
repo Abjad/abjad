@@ -19,6 +19,10 @@ Read-only Properties
 
 .. autoattribute:: experimental.abjadbooktools.OutputFormat.OutputFormat.OutputFormat.image_format
 
+.. autoattribute:: experimental.abjadbooktools.OutputFormat.OutputFormat.OutputFormat.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Special Methods
 ---------------
 

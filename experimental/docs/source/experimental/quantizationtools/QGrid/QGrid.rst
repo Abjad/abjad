@@ -15,6 +15,10 @@ Read-only Properties
 
 .. autoattribute:: experimental.quantizationtools.QGrid.QGrid.QGrid.offsets
 
+.. autoattribute:: experimental.quantizationtools.QGrid.QGrid.QGrid.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Methods
 -------
 

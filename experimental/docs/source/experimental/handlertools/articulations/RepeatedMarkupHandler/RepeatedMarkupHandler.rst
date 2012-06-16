@@ -6,6 +6,13 @@ handlertools.articulations.RepeatedMarkupHandler
 
 .. autoclass:: experimental.handlertools.articulations.RepeatedMarkupHandler.RepeatedMarkupHandler.RepeatedMarkupHandler
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: experimental.handlertools.articulations.RepeatedMarkupHandler.RepeatedMarkupHandler.RepeatedMarkupHandler.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Special Methods
 ---------------
 

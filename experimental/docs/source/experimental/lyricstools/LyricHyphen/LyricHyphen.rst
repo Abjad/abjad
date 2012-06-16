@@ -13,13 +13,13 @@ Read-only Properties
 
     Inherited from :py:class:`leaftools.Leaf <abjad.tools.leaftools.Leaf.Leaf.Leaf>`
 
-.. autoattribute:: experimental.lyricstools.LyricHyphen.LyricHyphen.LyricHyphen.format
-
-    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
-
 .. autoattribute:: experimental.lyricstools.LyricHyphen.LyricHyphen.LyricHyphen.leaf_index
 
     Inherited from :py:class:`leaftools.Leaf <abjad.tools.leaftools.Leaf.Leaf.Leaf>`
+
+.. autoattribute:: experimental.lyricstools.LyricHyphen.LyricHyphen.LyricHyphen.lilypond_format
+
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
 .. autoattribute:: experimental.lyricstools.LyricHyphen.LyricHyphen.LyricHyphen.multiplied_duration
 
@@ -68,6 +68,10 @@ Read-only Properties
 .. autoattribute:: experimental.lyricstools.LyricHyphen.LyricHyphen.LyricHyphen.stop_offset_in_seconds
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+
+.. autoattribute:: experimental.lyricstools.LyricHyphen.LyricHyphen.LyricHyphen.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 Read/write Properties
 ---------------------

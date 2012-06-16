@@ -17,13 +17,13 @@ Read-only Properties
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
 
-.. autoattribute:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.format
-
-    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
-
 .. autoattribute:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.leaves
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
+
+.. autoattribute:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.lilypond_format
+
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
 .. autoattribute:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.music
 
@@ -72,6 +72,10 @@ Read-only Properties
 .. autoattribute:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.stop_offset_in_seconds
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+
+.. autoattribute:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 Read/write Properties
 ---------------------

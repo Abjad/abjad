@@ -39,6 +39,10 @@ Read-only Properties
 
     Inherited from :py:class:`numbers.Real`
 
+.. autoattribute:: experimental.specificationtools.Division.Division.Division.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Read/write Properties
 ---------------------
 

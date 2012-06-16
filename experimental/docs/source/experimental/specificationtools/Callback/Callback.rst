@@ -6,6 +6,13 @@ specificationtools.Callback
 
 .. autoclass:: experimental.specificationtools.Callback.Callback.Callback
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: experimental.specificationtools.Callback.Callback.Callback.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Special Methods
 ---------------
 

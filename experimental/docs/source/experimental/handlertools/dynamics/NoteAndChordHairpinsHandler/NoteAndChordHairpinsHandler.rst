@@ -6,6 +6,13 @@ handlertools.dynamics.NoteAndChordHairpinsHandler
 
 .. autoclass:: experimental.handlertools.dynamics.NoteAndChordHairpinsHandler.NoteAndChordHairpinsHandler.NoteAndChordHairpinsHandler
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: experimental.handlertools.dynamics.NoteAndChordHairpinsHandler.NoteAndChordHairpinsHandler.NoteAndChordHairpinsHandler.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Methods
 -------
 

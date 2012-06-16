@@ -11,6 +11,10 @@ Read-only Properties
 
 .. autoattribute:: experimental.quantizationtools.QGridTempoLookup.QGridTempoLookup.QGridTempoLookup.beatspan
 
+.. autoattribute:: experimental.quantizationtools.QGridTempoLookup.QGridTempoLookup.QGridTempoLookup.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 .. autoattribute:: experimental.quantizationtools.QGridTempoLookup.QGridTempoLookup.QGridTempoLookup.tempo
 
 Methods

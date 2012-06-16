@@ -23,6 +23,10 @@ Read-only Properties
 
 .. autoattribute:: experimental.specificationtools.TemporalScope.TemporalScope.TemporalScope.stop
 
+.. autoattribute:: experimental.specificationtools.TemporalScope.TemporalScope.TemporalScope.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Special Methods
 ---------------
 

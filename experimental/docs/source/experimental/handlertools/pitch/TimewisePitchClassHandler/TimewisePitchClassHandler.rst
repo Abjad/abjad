@@ -6,6 +6,13 @@ handlertools.pitch.TimewisePitchClassHandler
 
 .. autoclass:: experimental.handlertools.pitch.TimewisePitchClassHandler.TimewisePitchClassHandler.TimewisePitchClassHandler
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: experimental.handlertools.pitch.TimewisePitchClassHandler.TimewisePitchClassHandler.TimewisePitchClassHandler.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Special Methods
 ---------------
 

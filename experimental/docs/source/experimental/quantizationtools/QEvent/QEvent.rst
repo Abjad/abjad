@@ -11,6 +11,10 @@ Read-only Properties
 
 .. autoattribute:: experimental.quantizationtools.QEvent.QEvent.QEvent.offset
 
+.. autoattribute:: experimental.quantizationtools.QEvent.QEvent.QEvent.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 .. autoattribute:: experimental.quantizationtools.QEvent.QEvent.QEvent.value
 
 Special Methods

@@ -6,6 +6,13 @@ handlertools.Handler
 
 .. autoclass:: experimental.handlertools.Handler.Handler.Handler
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: experimental.handlertools.Handler.Handler.Handler.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Special Methods
 ---------------
 

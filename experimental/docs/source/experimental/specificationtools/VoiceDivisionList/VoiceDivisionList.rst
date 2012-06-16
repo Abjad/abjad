@@ -57,6 +57,10 @@ Read-only Properties
 
     Inherited from :py:class:`specificationtools.DivisionList <experimental.specificationtools.DivisionList.DivisionList.DivisionList>`
 
+.. autoattribute:: experimental.specificationtools.VoiceDivisionList.VoiceDivisionList.VoiceDivisionList.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Special Methods
 ---------------
 

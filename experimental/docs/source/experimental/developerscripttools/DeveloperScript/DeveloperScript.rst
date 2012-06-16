@@ -27,6 +27,10 @@ Read-only Properties
 
 .. autoattribute:: experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript.short_description
 
+.. autoattribute:: experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 .. autoattribute:: experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript.version
 
 Methods

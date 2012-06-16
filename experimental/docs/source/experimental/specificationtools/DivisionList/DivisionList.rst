@@ -33,6 +33,10 @@ Read-only Properties
 
 .. autoattribute:: experimental.specificationtools.DivisionList.DivisionList.DivisionList.pairs
 
+.. autoattribute:: experimental.specificationtools.DivisionList.DivisionList.DivisionList.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Special Methods
 ---------------
 

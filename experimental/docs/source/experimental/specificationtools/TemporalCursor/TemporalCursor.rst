@@ -19,6 +19,10 @@ Read-only Properties
 
 .. autoattribute:: experimental.specificationtools.TemporalCursor.TemporalCursor.TemporalCursor.score_offset
 
+.. autoattribute:: experimental.specificationtools.TemporalCursor.TemporalCursor.TemporalCursor.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Special Methods
 ---------------
 

@@ -6,6 +6,13 @@ constrainttools.Domain
 
 .. autoclass:: experimental.constrainttools.Domain.Domain.Domain
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: experimental.constrainttools.Domain.Domain.Domain.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Methods
 -------
 

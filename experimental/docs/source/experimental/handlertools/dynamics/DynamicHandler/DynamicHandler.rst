@@ -6,6 +6,13 @@ handlertools.dynamics.DynamicHandler
 
 .. autoclass:: experimental.handlertools.dynamics.DynamicHandler.DynamicHandler.DynamicHandler
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: experimental.handlertools.dynamics.DynamicHandler.DynamicHandler.DynamicHandler.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Special Methods
 ---------------
 

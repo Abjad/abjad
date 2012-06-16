@@ -6,6 +6,13 @@ handlertools.dynamics.TerracedDynamicsHandler
 
 .. autoclass:: experimental.handlertools.dynamics.TerracedDynamicsHandler.TerracedDynamicsHandler.TerracedDynamicsHandler
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: experimental.handlertools.dynamics.TerracedDynamicsHandler.TerracedDynamicsHandler.TerracedDynamicsHandler.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Read/write Properties
 ---------------------
 

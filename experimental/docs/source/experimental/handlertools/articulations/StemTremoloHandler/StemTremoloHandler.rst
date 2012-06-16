@@ -6,6 +6,13 @@ handlertools.articulations.StemTremoloHandler
 
 .. autoclass:: experimental.handlertools.articulations.StemTremoloHandler.StemTremoloHandler.StemTremoloHandler
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: experimental.handlertools.articulations.StemTremoloHandler.StemTremoloHandler.StemTremoloHandler.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Special Methods
 ---------------
 

@@ -21,6 +21,10 @@ Read-only Properties
 
 .. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.settings
 
+.. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Methods
 -------
 

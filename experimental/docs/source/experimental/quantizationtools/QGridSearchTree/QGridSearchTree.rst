@@ -11,6 +11,10 @@ Read-only Properties
 
 .. autoattribute:: experimental.quantizationtools.QGridSearchTree.QGridSearchTree.QGridSearchTree.offsets
 
+.. autoattribute:: experimental.quantizationtools.QGridSearchTree.QGridSearchTree.QGridSearchTree.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Methods
 -------
 

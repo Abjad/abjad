@@ -6,6 +6,13 @@ handlertools.pitch.OctaveTranspositionHandler
 
 .. autoclass:: experimental.handlertools.pitch.OctaveTranspositionHandler.OctaveTranspositionHandler.OctaveTranspositionHandler
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: experimental.handlertools.pitch.OctaveTranspositionHandler.OctaveTranspositionHandler.OctaveTranspositionHandler.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Special Methods
 ---------------
 

@@ -19,6 +19,10 @@ Read-only Properties
 
 .. autoattribute:: experimental.abjadbooktools.CodeBlock.CodeBlock.CodeBlock.starting_line_number
 
+.. autoattribute:: experimental.abjadbooktools.CodeBlock.CodeBlock.CodeBlock.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 .. autoattribute:: experimental.abjadbooktools.CodeBlock.CodeBlock.CodeBlock.strip_prompt
 
 Special Methods

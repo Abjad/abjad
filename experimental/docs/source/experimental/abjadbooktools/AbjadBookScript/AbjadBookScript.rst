@@ -41,6 +41,10 @@ Read-only Properties
 
 .. autoattribute:: experimental.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.short_description
 
+.. autoattribute:: experimental.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 .. autoattribute:: experimental.abjadbooktools.AbjadBookScript.AbjadBookScript.AbjadBookScript.version
 
 Methods

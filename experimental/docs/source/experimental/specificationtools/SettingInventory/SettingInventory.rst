@@ -6,6 +6,13 @@ specificationtools.SettingInventory
 
 .. autoclass:: experimental.specificationtools.SettingInventory.SettingInventory.SettingInventory
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: experimental.specificationtools.SettingInventory.SettingInventory.SettingInventory.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Read/write Properties
 ---------------------
 

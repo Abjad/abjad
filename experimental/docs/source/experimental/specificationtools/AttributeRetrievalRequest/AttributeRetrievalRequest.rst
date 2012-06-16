@@ -6,6 +6,13 @@ specificationtools.AttributeRetrievalRequest
 
 .. autoclass:: experimental.specificationtools.AttributeRetrievalRequest.AttributeRetrievalRequest.AttributeRetrievalRequest
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: experimental.specificationtools.AttributeRetrievalRequest.AttributeRetrievalRequest.AttributeRetrievalRequest.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Special Methods
 ---------------
 

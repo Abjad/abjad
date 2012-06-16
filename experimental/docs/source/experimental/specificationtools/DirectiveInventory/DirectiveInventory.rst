@@ -6,6 +6,13 @@ specificationtools.DirectiveInventory
 
 .. autoclass:: experimental.specificationtools.DirectiveInventory.DirectiveInventory.DirectiveInventory
 
+Read-only Properties
+--------------------
+
+.. autoattribute:: experimental.specificationtools.DirectiveInventory.DirectiveInventory.DirectiveInventory.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 Read/write Properties
 ---------------------
 
