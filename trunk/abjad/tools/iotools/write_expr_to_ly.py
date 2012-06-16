@@ -27,7 +27,7 @@ def write_expr_to_ly(expr, file_name, print_status=False, tagline=False, docs=Fa
         lilypond_file = _insert_expr_into_lilypond_file(expr, tagline=tagline)
         # the following line is necessary for Windows *not* to keep outfile open after writing;
         # why this should be the case is, however, a complete mystery.
-        output = lilypond_file.format
+        output = lilypond_file.lilypond_format
         outfile.write(output)
         outfile.close()
     except IOError:
