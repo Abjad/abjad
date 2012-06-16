@@ -33,10 +33,12 @@ class SvnUpdateScript(DirectoryScript):
     ### PUBLIC METHODS ###
 
     def process_args(self, args):
+
         if args.clean:
             clean_args = ['--pyc', '--pycache', '--tmp', args.path]
             clean_script = CleanScript()
             clean_script(clean_args)
+
         iotools.spawn_subprocess('svn update {}'.format(args.path))
 
     def setup_argument_parser(self, parser):
