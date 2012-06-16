@@ -20,13 +20,13 @@ class SegmentDivisionList(DivisionList):
         >>> segment = specification.append_segment()
 
         >>> segment.set_time_signatures(segment, [(4, 8), (3, 8)])
-        Directive(Selection(contexts=['Grouped Rhythmic Staves Score'], scope=TemporalScope(start=TemporalCursor(anchor=ScoreObjectIndicator(segment='1'), edge=Left), stop=TemporalCursor(anchor=ScoreObjectIndicator(segment='1'), edge=Right))), 'time_signatures', [(4, 8), (3, 8)], persistent=True, truncate=False)
+        Directive(Selection(contexts=['Grouped Rhythmic Staves Score'], scope=Timespan(start=TemporalCursor(anchor=ScoreObjectIndicator(segment='1'), edge=Left), stop=TemporalCursor(anchor=ScoreObjectIndicator(segment='1'), edge=Right))), 'time_signatures', [(4, 8), (3, 8)], persistent=True, truncate=False)
 
         >>> segment.set_divisions(segment.v1, [(3, 16)])
-        Directive(Selection(contexts=['Voice 1'], scope=TemporalScope(start=TemporalCursor(anchor=ScoreObjectIndicator(segment='1'), edge=Left), stop=TemporalCursor(anchor=ScoreObjectIndicator(segment='1'), edge=Right))), 'divisions', [(3, 16)], persistent=True, truncate=False)
+        Directive(Selection(contexts=['Voice 1'], scope=Timespan(start=TemporalCursor(anchor=ScoreObjectIndicator(segment='1'), edge=Left), stop=TemporalCursor(anchor=ScoreObjectIndicator(segment='1'), edge=Right))), 'divisions', [(3, 16)], persistent=True, truncate=False)
 
         >>> segment.set_rhythm(segment, library.thirty_seconds)
-        Directive(Selection(contexts=['Grouped Rhythmic Staves Score'], scope=TemporalScope(start=TemporalCursor(anchor=ScoreObjectIndicator(segment='1'), edge=Left), stop=TemporalCursor(anchor=ScoreObjectIndicator(segment='1'), edge=Right))), 'rhythm', OutputBurnishedSignalFilledTimeTokenMaker('thirty_seconds'), persistent=True, truncate=False)
+        Directive(Selection(contexts=['Grouped Rhythmic Staves Score'], scope=Timespan(start=TemporalCursor(anchor=ScoreObjectIndicator(segment='1'), edge=Left), stop=TemporalCursor(anchor=ScoreObjectIndicator(segment='1'), edge=Right))), 'rhythm', OutputBurnishedSignalFilledTimeTokenMaker('thirty_seconds'), persistent=True, truncate=False)
 
         >>> segment = specification.append_segment()
         >>> segment = specification.append_segment()

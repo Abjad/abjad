@@ -28,7 +28,7 @@ from Specification import Specification
 from StatalServer import StatalServer
 from StatalServerRequest import StatalServerRequest
 from TemporalCursor import TemporalCursor
-from TemporalScope import TemporalScope
+from Timespan import Timespan
 from ValueRetrievalIndicator import ValueRetrievalIndicator
 from ValueRetrievalRequest import ValueRetrievalRequest
 from VoiceDivisionList import VoiceDivisionList

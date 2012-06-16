@@ -1,12 +1,12 @@
 from abjad.tools import contexttools
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from experimental.specificationtools.TemporalScope import TemporalScope
+from experimental.specificationtools.Timespan import Timespan
 
 
 class Selection(AbjadObject):
     r'''.. versionadded:: 1.0
 
-    Arbitrary contexts taken over arbitrary temporal scope.
+    Arbitrarily many contexts taken over arbitrary timespan.
 
     (Object-oriented delayed evaluation.)
 
@@ -21,7 +21,7 @@ class Selection(AbjadObject):
     def __init__(self, contexts=None, scope=None):
         #assert isinstance(segment_name, str), repr(segment_name)
         assert isinstance(contexts, (list, type(None))), repr(contexts)
-        assert isinstance(scope, (TemporalScope, type(None))), repr(scope)
+        assert isinstance(scope, (Timespan, type(None))), repr(scope)
         #self._segment_name = segment_name
         self._contexts = contexts
         self._scope = scope
@@ -53,18 +53,12 @@ class Selection(AbjadObject):
         '''
         return self._contexts
 
-#    @property
-#    def segment_name(self):
-#        '''Deprecated.
-#        '''
-#        return self._segment_name
-
     @property
     def scope(self):
-        '''Selection temporal scope specified by user.
+        '''Selection timespan specified by user.
 
         Value of none taken equal to timespan of entire score.
 
-        Return temporal scope or none.
+        Return timespan or none.
         '''
         return self._scope

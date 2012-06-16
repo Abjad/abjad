@@ -5,7 +5,7 @@ from experimental.specificationtools.ScoreObjectIndicator import ScoreObjectIndi
 from experimental.specificationtools.ScoreSpecification import ScoreSpecification
 from experimental.specificationtools.Selection import Selection
 from experimental.specificationtools.TemporalCursor import TemporalCursor
-from experimental.specificationtools.TemporalScope import TemporalScope
+from experimental.specificationtools.Timespan import Timespan
 
 
 def test_DirectiveInventory___repr___01():

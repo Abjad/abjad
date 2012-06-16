@@ -5,7 +5,7 @@ from experimental.specificationtools.Selection.Selection import Selection
 class ContextSelection(Selection):
     r'''.. versionadded:: 1.0
 
-    Exactly one context taken over arbitrary temporal scope.
+    Exactly one context taken over arbitrary timespan.
     '''
 
     ### INITIALIZER ###

@@ -113,15 +113,15 @@ class SegmentSpecification(Specification):
 
     @property
     def scope(self):
-        '''Segment temporal scope.
+        '''Segment timespan.
 
             >>> segment.scope
-            TemporalScope(start=TemporalCursor(anchor=ScoreObjectIndicator(segment='1'), edge=Left), stop=TemporalCursor(anchor=ScoreObjectIndicator(segment='1'), edge=Right))
+            Timespan(start=TemporalCursor(anchor=ScoreObjectIndicator(segment='1'), edge=Left), stop=TemporalCursor(anchor=ScoreObjectIndicator(segment='1'), edge=Right))
 
-        Return temporal scope.
+        Return timespan.
         '''
         from experimental import specificationtools
-        return specificationtools.TemporalScope(start=self.start, stop=self.stop)
+        return specificationtools.Timespan(start=self.start, stop=self.stop)
 
     @property
     def score_model(self):
@@ -291,7 +291,7 @@ class SegmentSpecification(Specification):
         from experimental import specificationtools
         criterion = 'divisions'
         contexts = self.context_token_to_context_names(context_token)
-        scope = specificationtools.TemporalScope(criterion=criterion, part=part, start=start, stop=stop)
+        scope = specificationtools.Timespan(criterion=criterion, part=part, start=start, stop=stop)
         selection = self.select(contexts=contexts, segment_name=segment_name, scope=scope)
         return selection
 
@@ -299,7 +299,7 @@ class SegmentSpecification(Specification):
         from experimental import specificationtools
         criterion = 'measures'
         contexts = self.context_token_to_context_names(context_token)
-        scope = specificationtools.TemporalScope(criterion=criterion, part=part, start=start, stop=stop)
+        scope = specificationtools.Timespan(criterion=criterion, part=part, start=start, stop=stop)
         selection = self.select(contexts=contexts, segment_name=segment_name, scope=scope)
         return selection
     
@@ -307,7 +307,7 @@ class SegmentSpecification(Specification):
         from experimental import specificationtools
         criterion = (chordtools.Chord, notetools.Note)
         contexts = self.context_token_to_context_names(context_token)
-        scope = specificationtools.TemporalScope(criterion=criterion, part=part, start=start, stop=stop)
+        scope = specificationtools.Timespan(criterion=criterion, part=part, start=start, stop=stop)
         selection = self.select(contexts=contexts, scope=scope)
         return selection
 
@@ -329,7 +329,7 @@ class SegmentSpecification(Specification):
         assert attribute_name in self.attribute_names, repr(attribute_name)
         assert isinstance(count, (int, type(None))), repr(count)
         assert isinstance(persistent, type(True)), repr(persistent)
-        assert isinstance(scope, (specificationtools.TemporalScope, type(None))), repr(scope)
+        assert isinstance(scope, (specificationtools.Timespan, type(None))), repr(scope)
         assert isinstance(truncate, type(True)), repr(truncate)
         target = self.select_contexts(contexts=contexts)
         source = self.annotate_source(source, callback=callback, count=count, offset=offset)

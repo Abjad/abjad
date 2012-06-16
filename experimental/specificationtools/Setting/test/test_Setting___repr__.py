@@ -2,7 +2,7 @@ from experimental.specificationtools.ContextSelection import ContextSelection
 from experimental.specificationtools.ScoreObjectIndicator import ScoreObjectIndicator
 from experimental.specificationtools.Setting import Setting
 from experimental.specificationtools.TemporalCursor import TemporalCursor
-from experimental.specificationtools.TemporalScope import TemporalScope
+from experimental.specificationtools.Timespan import Timespan
 
 
 def test_Setting___repr___01():
@@ -12,7 +12,7 @@ def test_Setting___repr___01():
     anchor = ScoreObjectIndicator(segment='1')
     start = TemporalCursor(anchor=anchor)
     stop = TemporalCursor(anchor=anchor, edge=Right)
-    scope = TemporalScope(start=start, stop=stop)
+    scope = Timespan(start=start, stop=stop)
     target = ContextSelection('Voice 1', scope=scope)
     setting_1 = Setting(target, 'time_signatures', [(4, 8), (3, 8)], fresh=False)
 

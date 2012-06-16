@@ -4,26 +4,26 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental.specificationtools.TemporalCursor import TemporalCursor
 
 
-class TemporalScope(AbjadObject):
+class Timespan(AbjadObject):
     r'''.. versionadded 1.0
 
     Finite span of score time bounded by start and stop cursors.
 
     (Object-oriented delayed evaluation.)
 
-    Temporal scope objects have much in common with time interval objects.
+    Timespan objects have much in common with time interval objects.
 
-    Temporal scope objects highlight a contiguous blocks of time
+    Timespan objects highlight a contiguous blocks of time
     somewhere and say "everything within my bounds is selected
     for some upcoming operation."
 
-    Temporal scope objects make up the temporal part of a selection.
+    Timespan objects make up the temporal part of a selection.
     (Context name lists make up the vertical part of a selection.)
 
-    Temporal scope objects afford the selection of time relative to score
+    Timespan objects afford the selection of time relative to score
     objects that do not yet exist.
 
-    Temporal scope objects resolve to a rational-valued duration.
+    Timespan objects resolve to a rational-valued duration.
 
     Initialize with optional `start` and `stop` cursors.
 
@@ -33,8 +33,8 @@ class TemporalScope(AbjadObject):
 
     ::
 
-        >>> specificationtools.TemporalScope()
-        TemporalScope()
+        >>> specificationtools.Timespan()
+        Timespan()
 
     Select the timespan of the first third of the score::
 
@@ -42,8 +42,8 @@ class TemporalScope(AbjadObject):
 
     ::
 
-        >>> specificationtools.TemporalScope(stop=stop)
-        TemporalScope(stop=TemporalCursor(edge=Right, multiplier=Fraction(1, 3)))
+        >>> specificationtools.Timespan(stop=stop)
+        Timespan(stop=TemporalCursor(edge=Right, multiplier=Fraction(1, 3)))
 
     Select the timespan of the last third of the score::
 
@@ -51,8 +51,8 @@ class TemporalScope(AbjadObject):
 
     ::
 
-        >>> specificationtools.TemporalScope(start=start)
-        TemporalScope(start=TemporalCursor(edge=Right, multiplier=Fraction(2, 3)))
+        >>> specificationtools.Timespan(start=start)
+        Timespan(start=TemporalCursor(edge=Right, multiplier=Fraction(2, 3)))
 
     Select the timespan of the middle third of the score::
 
@@ -61,8 +61,8 @@ class TemporalScope(AbjadObject):
 
     ::
 
-        >>> specificationtools.TemporalScope(start=start, stop=stop)
-        TemporalScope(start=TemporalCursor(edge=Right, multiplier=Fraction(1, 3)), stop=TemporalCursor(edge=Right, multiplier=Fraction(2, 3)))
+        >>> specificationtools.Timespan(start=start, stop=stop)
+        Timespan(start=TemporalCursor(edge=Right, multiplier=Fraction(1, 3)), stop=TemporalCursor(edge=Right, multiplier=Fraction(2, 3)))
 
     Select the timespan of the first ``1/8`` of a whole note in score::
 
@@ -70,8 +70,8 @@ class TemporalScope(AbjadObject):
 
     ::
 
-        >>> specificationtools.TemporalScope(stop=stop)
-        TemporalScope(stop=TemporalCursor(addendum=Offset(1, 8)))
+        >>> specificationtools.Timespan(stop=stop)
+        Timespan(stop=TemporalCursor(addendum=Offset(1, 8)))
 
     Select the timespan of the last ``1/8`` of a whole note in score::
 
@@ -79,8 +79,8 @@ class TemporalScope(AbjadObject):
 
     ::
 
-        >>> specificationtools.TemporalScope(start=start)
-        TemporalScope(start=TemporalCursor(edge=Right, addendum=Offset(-1, 8)))
+        >>> specificationtools.Timespan(start=start)
+        Timespan(start=TemporalCursor(edge=Right, addendum=Offset(-1, 8)))
 
     Select the timespan of the segment with name ``'red'``::
 
@@ -93,8 +93,8 @@ class TemporalScope(AbjadObject):
 
     ::
 
-        >>> specificationtools.TemporalScope(start=start, stop=stop)
-        TemporalScope(start=TemporalCursor(anchor=ScoreObjectIndicator(segment='red')), stop=TemporalCursor(anchor=ScoreObjectIndicator(segment='red'), edge=Right))
+        >>> specificationtools.Timespan(start=start, stop=stop)
+        Timespan(start=TemporalCursor(anchor=ScoreObjectIndicator(segment='red')), stop=TemporalCursor(anchor=ScoreObjectIndicator(segment='red'), edge=Right))
 
     Select the timespan of the first measure in the segment with name ``'red'``::
 
@@ -107,8 +107,8 @@ class TemporalScope(AbjadObject):
 
     ::
 
-        >>> specificationtools.TemporalScope(start=start, stop=stop)
-        TemporalScope(start=TemporalCursor(anchor=ScoreObjectIndicator(segment='red', klass=measuretools.Measure)), stop=TemporalCursor(anchor=ScoreObjectIndicator(segment='red', klass=measuretools.Measure), edge=Right))
+        >>> specificationtools.Timespan(start=start, stop=stop)
+        Timespan(start=TemporalCursor(anchor=ScoreObjectIndicator(segment='red', klass=measuretools.Measure)), stop=TemporalCursor(anchor=ScoreObjectIndicator(segment='red', klass=measuretools.Measure), edge=Right))
 
     Select the timespan of the first division in the segment with name ``'red'``::
 
@@ -121,8 +121,8 @@ class TemporalScope(AbjadObject):
 
     ::
 
-        >>> specificationtools.TemporalScope(start=start, stop=stop)
-        TemporalScope(start=TemporalCursor(anchor=ScoreObjectIndicator(segment='red', klass=specificationtools.Division)), stop=TemporalCursor(anchor=ScoreObjectIndicator(segment='red', klass=specificationtools.Division), edge=Right))
+        >>> specificationtools.Timespan(start=start, stop=stop)
+        Timespan(start=TemporalCursor(anchor=ScoreObjectIndicator(segment='red', klass=specificationtools.Division)), stop=TemporalCursor(anchor=ScoreObjectIndicator(segment='red', klass=specificationtools.Division), edge=Right))
 
     Select the timespan starting at the left edge of the segment with the name ``'red'``
     and stopping at the right edge of the segment with the name ``'blue'``::
@@ -137,8 +137,8 @@ class TemporalScope(AbjadObject):
 
     ::
 
-        >>> specificationtools.TemporalScope(start=start, stop=stop)
-        TemporalScope(start=TemporalCursor(anchor=ScoreObjectIndicator(segment='red')), stop=TemporalCursor(anchor=ScoreObjectIndicator(segment='blue'), edge=Right))
+        >>> specificationtools.Timespan(start=start, stop=stop)
+        Timespan(start=TemporalCursor(anchor=ScoreObjectIndicator(segment='red')), stop=TemporalCursor(anchor=ScoreObjectIndicator(segment='blue'), edge=Right))
 
     Select the timespan starting at the left edge of the last measure in the segment with name ``'red'``
     and stopping at the right edge of the first measure in the segment with name ``'blue'``::
@@ -153,18 +153,18 @@ class TemporalScope(AbjadObject):
 
     ::
 
-        >>> specificationtools.TemporalScope(start=start, stop=stop)
-        TemporalScope(start=TemporalCursor(anchor=ScoreObjectIndicator(segment='red', klass=measuretools.Measure, index=-1)), stop=TemporalCursor(anchor=ScoreObjectIndicator(segment='blue', klass=measuretools.Measure), edge=Right))
+        >>> specificationtools.Timespan(start=start, stop=stop)
+        Timespan(start=TemporalCursor(anchor=ScoreObjectIndicator(segment='red', klass=measuretools.Measure, index=-1)), stop=TemporalCursor(anchor=ScoreObjectIndicator(segment='blue', klass=measuretools.Measure), edge=Right))
 
-    Examples below reference the temporal scope defined immediately above::
+    Examples below reference the timespan defined immediately above::
 
         >>> temporal_scope = _
 
-    Temporal scopes are immutable.
+    Timespans are immutable.
 
     Limitations of the design:
 
-    Temporal scope objects do not afford the specification of timespans relative to each other.
+    Timespan objects do not afford the specification of timespans relative to each other.
     So it is not possible to pick out the first third of the timespan starting at the left edge 
     of the last measure in the segment with name ``'red'`` and stopping at the right edge of the
     first measure in the segment with name ``'blue'``.
@@ -194,7 +194,7 @@ class TemporalScope(AbjadObject):
 
     @property
     def duration(self):
-        '''Rational-valued duration of temporal scope.
+        '''Rational-valued duration of timespan.
         
         Derived from input values.
 
@@ -258,7 +258,7 @@ class TemporalScope(AbjadObject):
 
     @property
     def start(self):
-        '''Temporal scope start cursor specified by user.
+        '''Timespan start cursor specified by user.
 
             >>> temporal_scope.start
             TemporalCursor(anchor=ScoreObjectIndicator(segment='red', klass=measuretools.Measure, index=-1))
@@ -271,7 +271,7 @@ class TemporalScope(AbjadObject):
 
     @property
     def stop(self):
-        '''Temporal scope stop cursor specified by user.
+        '''Timespan stop cursor specified by user.
 
             >>> temporal_scope.stop
             TemporalCursor(anchor=ScoreObjectIndicator(segment='blue', klass=measuretools.Measure), edge=Right)

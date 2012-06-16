@@ -199,7 +199,7 @@ Unstable Abjad composition packages (load manually)
    experimental/specificationtools/StatalServer/StatalServer
    experimental/specificationtools/StatalServerRequest/StatalServerRequest
    experimental/specificationtools/TemporalCursor/TemporalCursor
-   experimental/specificationtools/TemporalScope/TemporalScope
+   experimental/specificationtools/Timespan/Timespan
    experimental/specificationtools/ValueRetrievalIndicator/ValueRetrievalIndicator
    experimental/specificationtools/ValueRetrievalRequest/ValueRetrievalRequest
    experimental/specificationtools/VoiceDivisionList/VoiceDivisionList
