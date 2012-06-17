@@ -194,7 +194,6 @@ Unstable Abjad composition packages (load manually)
    experimental/specificationtools/Timepoint/Timepoint
    experimental/specificationtools/Timespan/Timespan
    experimental/specificationtools/ValueRetrievalIndicator/ValueRetrievalIndicator
-   experimental/specificationtools/ValueRetrievalRequest/ValueRetrievalRequest
    experimental/specificationtools/VoiceDivisionList/VoiceDivisionList
 
 .. rubric:: functions
