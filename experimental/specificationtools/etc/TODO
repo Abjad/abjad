@@ -1,7 +1,5 @@
-1. Make ContextSetting inherit from Setting. Or vice versa. Or make both inherit from an ABC.
+1. Implement RetrievalRequest as base class for different retrieval requests classes.
 
-2. Implement RetrievalRequest as base class for different retrieval requests classes.
+2. Implement timespan-creation courtesy methods.
 
-3. Implement timespan-creation courtesy methods.
-
-4. Implement selection-creation courtesy methods.
+3. Implement selection-creation courtesy methods.

@@ -1,9 +1,8 @@
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from experimental.specificationtools.Setting import Setting
 import copy
 
 
-# TODO: make immutable
-class ContextSetting(AbjadObject):
+class ContextSetting(Setting):
     r'''.. versionadded:: 1.0
 
     Frozen request to set one attribute against one context-specified selection.
@@ -14,17 +13,6 @@ class ContextSetting(AbjadObject):
     Initialize from other setting.
     '''
 
-    ### CLASS ATTRIBUTES ###
-
-#    __slots__ = (
-#        '_attribute',
-#        '_fresh',
-#        '_persistent',
-#        '_source',
-#        '_target', 
-#        '_truncate',
-#        )
-    
     ### INITIALIZER ###
 
     def __init__(self, *args, **kwargs):

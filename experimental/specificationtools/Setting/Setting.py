@@ -1,7 +1,4 @@
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from experimental.specificationtools.ContextSelection.ContextSelection import ContextSelection
-from experimental.specificationtools.Selection.Selection import Selection
-from experimental.specificationtools.ContextSetting.ContextSetting import ContextSetting
 import copy
 
 
@@ -71,11 +68,12 @@ class Setting(AbjadObject):
 
         Return list of settings.
         '''
+        from experimental import specificationtools
         settings = []
         assert self.target.contexts, repr(self.target.contexts)
         for context in self.target.contexts:
-            target = ContextSelection(context, timespan=copy.deepcopy(self.target.timespan))
-            setting = ContextSetting(target, self.attribute, self.source, 
+            target = specificationtools.ContextSelection(context, timespan=copy.deepcopy(self.target.timespan))
+            setting = specificationtools.ContextSetting(target, self.attribute, self.source, 
                 persistent=self.persistent, truncate=self.truncate)
             settings.append(setting)
         return settings
