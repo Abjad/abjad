@@ -1,0 +1,16 @@
+def request_divisions(start_segment, voice, segment_count=1):
+    r'''.. versionadded:: 1.0
+
+    Return division retrieval request.
+    '''
+    from experimental import specificationtools
+    
+    # process input
+    start_segment = specificationtools.segment_to_segment_name(start_segment)
+    voice = specificationtools.component_to_component_name(voice)
+
+    # populate request
+    request = specificationtools.DivisionRetrievalRequest(start_segment, voice, segment_count=segment_count)
+
+    # return request
+    return request
