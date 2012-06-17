@@ -128,7 +128,7 @@ wherever you want. But when you do you're not guaranteed to know anything in par
 
                                                * * *
 
-TODO: work out *containment* as it relates to segment voices containing divisions. Ragged right.
+(0) work out *containment* as it relates to segment voices containing divisions. Ragged right.
 Divisions owned by the segment in which they *start*. Need for a model of absence in segments.
 Places (always start at the left edge) of a segment in which the segment voice contains
 no division.

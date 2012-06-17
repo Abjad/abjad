@@ -44,24 +44,13 @@ class Setting(AbjadObject):
     @property
     def _one_line_format(self):
         body = [
-            self._one_line_target_format,
+            self.target._one_line_format,
             self._get_one_line_source_format(self.source),
             ]
         if not self.persistent:
             body.append(self.persistent)
         body = ', '.join([str(x) for x in body])
         return '{}: {}'.format(self.attribute, body)
-
-    # TODO: redo me to accommodate target selection
-    @property
-    def _one_line_target_format(self):
-        body = []
-        for attribute in ('segment_name', 'context_name', 'timespan'):
-            attribute_value = getattr(self, attribute, None)
-            if attribute_value is not None:
-                body.append(attribute_value)
-        body = ', '.join(body)
-        return '({})'.format(body)
 
     ### PRIVATE METHODS ###
 

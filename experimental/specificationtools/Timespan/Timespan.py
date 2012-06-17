@@ -190,6 +190,12 @@ class Timespan(AbjadObject):
                     return True
         return False
 
+    ### READ-ONLY PRIVATE PROPERTIES ###
+
+    @property
+    def _one_line_format(self):
+        return '[{} {}]'.format(self.start._one_line_format, self.stop._one_line_format)
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property

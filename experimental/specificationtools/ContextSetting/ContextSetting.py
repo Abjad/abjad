@@ -51,14 +51,6 @@ class ContextSetting(Setting):
             keyword_argument_values.append(kwargs.get('fresh', True))
         return mandatory_argument_values, keyword_argument_values
 
-#    def _get_one_line_source_format(self, source):
-#        if hasattr(source, '_one_line_format'):
-#            return source._one_line_format
-#        elif hasattr(source, 'name'):
-#            return source.name
-#        else:
-#            return str(source)
-    
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
@@ -85,21 +77,8 @@ class ContextSetting(Setting):
 
         Return none.
         '''
+        from experimental import specificationtools
         assert self.target.timespan.encompasses_one_segment_exactly, repr(self)
-        segment = self.to_segment_name(segment)
+        segment = specificationtools.segment_to_segment_name(segment)
         self.target.timespan.start.anchor._segment = segment
         self.target.timespan.stop.anchor._segment = segment
-
-    # TODO: migrate to public API function (because self is not needed)
-    def to_segment_name(self, segment):
-        '''Change `segment` to segment name. Return string unchanged.
-
-        Return string.
-        '''
-        from experimental import specificationtools
-        if isinstance(segment, specificationtools.SegmentSpecification):
-            return segment.name
-        elif isinstance(segment, str):
-            return segment
-        else:
-            raise Exception('{!r} is neither segment nor string.'.format(segment))

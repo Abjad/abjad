@@ -50,10 +50,6 @@ Methods
 
     Inherited from :py:class:`specificationtools.ContextSetting <experimental.specificationtools.ContextSetting.ContextSetting.ContextSetting>`
 
-.. automethod:: experimental.specificationtools.ResolvedContextSetting.ResolvedContextSetting.ResolvedContextSetting.to_segment_name
-
-    Inherited from :py:class:`specificationtools.ContextSetting <experimental.specificationtools.ContextSetting.ContextSetting.ContextSetting>`
-
 .. automethod:: experimental.specificationtools.ResolvedContextSetting.ResolvedContextSetting.ResolvedContextSetting.unpack
 
     Inherited from :py:class:`specificationtools.Setting <experimental.specificationtools.Setting.Setting.Setting>`

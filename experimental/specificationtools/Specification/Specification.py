@@ -76,8 +76,7 @@ class Specification(AbjadObject):
             raise ValueError('invalid context token: {!r}'.format(context_token))
         return context_names
 
-    # TODO: change name to something more explicit
-    def retrieve(self, attribute, segment_name, context_name=None, timespan=None):
+    def retrieve_attribute(self, attribute, segment_name, context_name=None, timespan=None):
         return AttributeRetrievalIndicator(attribute, segment_name, context_name=context_name, timespan=timespan)
 
     def retrieve_resolved_value(self, attribute, segment_name, context_name=None, timespan=None):

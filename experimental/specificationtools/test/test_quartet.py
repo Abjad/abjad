@@ -32,7 +32,7 @@ def test_quartet_01():
     segment.set_rhythm(lower, library.note_filled_tokens)
 
     segment = specification.append_segment(name='T2')
-    segment.set_time_signatures(segment, specification.retrieve('time_signatures', 'T1'), offset=-2, count=2)
+    segment.set_time_signatures(segment, specification.retrieve_attribute('time_signatures', 'T1'), offset=-2, count=2)
 
     score = specification.interpret()
 
@@ -65,7 +65,7 @@ def test_quartet_02():
     segment.set_rhythm(lower, library.note_filled_tokens)
 
     segment = specification.append_segment(name='T2')
-    segment.set_time_signatures(segment, specification.retrieve('time_signatures', 'T1'), offset=-2, count=2)
+    segment.set_time_signatures(segment, specification.retrieve_attribute('time_signatures', 'T1'), offset=-2, count=2)
 
     score = specification.interpret()
 

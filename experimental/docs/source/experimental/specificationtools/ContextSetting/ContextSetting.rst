@@ -42,8 +42,6 @@ Methods
 
 .. automethod:: experimental.specificationtools.ContextSetting.ContextSetting.ContextSetting.set_to_segment
 
-.. automethod:: experimental.specificationtools.ContextSetting.ContextSetting.ContextSetting.to_segment_name
-
 .. automethod:: experimental.specificationtools.ContextSetting.ContextSetting.ContextSetting.unpack
 
     Inherited from :py:class:`specificationtools.Setting <experimental.specificationtools.Setting.Setting.Setting>`

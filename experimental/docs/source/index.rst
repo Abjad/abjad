@@ -208,5 +208,6 @@ Unstable Abjad composition packages (load manually)
 .. toctree::
    :maxdepth: 1
 
+   experimental/specificationtools/segment_to_segment_name
    experimental/specificationtools/segment_to_timespan
    experimental/specificationtools/select_score

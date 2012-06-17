@@ -76,6 +76,18 @@ class Selection(AbjadObject):
     def __ne__(self, expr):
         return not self == expr
 
+    ### READ-ONLY PRIVATE PROPERTIES ###
+
+    @property
+    def _one_line_format(self):
+        contexts = self.contexts or []
+        contexts = ', '.join(contexts)
+        if contexts:
+            contexts = contexts + ': '
+        timespan = self.timespan._one_line_format
+        result = '{}{}'.format(contexts, timespan)
+        return result
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property

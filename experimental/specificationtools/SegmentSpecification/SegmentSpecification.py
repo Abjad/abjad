@@ -264,9 +264,8 @@ class SegmentSpecification(Specification):
             return value, fresh
         return library.rest_filled_tokens, True
 
-    # TODO: rename to something more explicit
-    def retrieve(self, attribute, **kwargs):
-        return Specification.retrieve(self, attribute, self.name, **kwargs)
+    def retrieve_attribute(self, attribute, **kwargs):
+        return Specification.retrieve_attribute(self, attribute, self.name, **kwargs)
 
     def retrieve_resolved_value(self, attribute, **kwargs):
         return Specification.retrieve_resolved_value(self, attribute, self.name, **kwargs)
