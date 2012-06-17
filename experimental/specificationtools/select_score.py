@@ -5,8 +5,6 @@ def select_score():
 
         >>> from experimental import specificationtools
 
-    ::
-
     Return selection.
     '''
 
