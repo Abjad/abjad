@@ -24,10 +24,6 @@ Methods
 
     Inherited from :py:class:`__builtin__.dict`
 
-.. automethod:: abjad.tools.pitchtools.ObjectVector.ObjectVector.ObjectVector.fromkeys
-
-    Inherited from :py:class:`__builtin__.dict`
-
 .. automethod:: abjad.tools.pitchtools.ObjectVector.ObjectVector.ObjectVector.get
 
     Inherited from :py:class:`__builtin__.dict`

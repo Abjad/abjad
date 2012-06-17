@@ -28,10 +28,6 @@ Methods
 
     Inherited from :py:class:`__builtin__.dict`
 
-.. automethod:: abjad.tools.pitchtools.NamedChromaticPitchVector.NamedChromaticPitchVector.NamedChromaticPitchVector.fromkeys
-
-    Inherited from :py:class:`__builtin__.dict`
-
 .. automethod:: abjad.tools.pitchtools.NamedChromaticPitchVector.NamedChromaticPitchVector.NamedChromaticPitchVector.get
 
     Inherited from :py:class:`__builtin__.dict`

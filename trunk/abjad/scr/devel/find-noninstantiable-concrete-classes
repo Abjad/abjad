@@ -1,0 +1,17 @@
+#! /usr/bin/env python
+
+from abjad.tools import documentationtools
+import inspect
+import os
+
+
+total = 0
+root = os.path.join(os.environ.get('ABJAD'), 'tools')
+crawler = documentationtools.ClassCrawler(root)
+for klass in crawler():
+    if not inspect.isabstract(klass):
+        if not hasattr(klass, '_default_mandatory_input_arguments'):
+            total += 1
+            print klass
+
+print '{} noninstantiable classes.'.format(total)

@@ -24,10 +24,6 @@ Methods
 
     Inherited from :py:class:`__builtin__.dict`
 
-.. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.fromkeys
-
-    Inherited from :py:class:`__builtin__.dict`
-
 .. automethod:: abjad.tools.pitchtools.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.HarmonicChromaticIntervalClassVector.get
 
     Inherited from :py:class:`__builtin__.dict`
