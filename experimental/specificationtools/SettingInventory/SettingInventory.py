@@ -1,9 +1,9 @@
 from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
 from experimental.specificationtools.AttributeNameEnumeration import AttributeNameEnumeration
-from experimental.specificationtools.Directive import Directive
+from experimental.specificationtools.Setting import Setting
 
 
-class DirectiveInventory(ObjectInventory):
+class SettingInventory(ObjectInventory):
 
     ### CLASS ATTRIBUTES ###
 
@@ -13,4 +13,4 @@ class DirectiveInventory(ObjectInventory):
 
     @property
     def _item_callable(self):
-        return Directive
+        return Setting

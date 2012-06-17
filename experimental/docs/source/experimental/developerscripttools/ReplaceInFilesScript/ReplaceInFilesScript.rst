@@ -37,6 +37,10 @@ Read-only Properties
 
 .. autoattribute:: experimental.developerscripttools.ReplaceInFilesScript.ReplaceInFilesScript.ReplaceInFilesScript.short_description
 
+.. autoattribute:: experimental.developerscripttools.ReplaceInFilesScript.ReplaceInFilesScript.ReplaceInFilesScript.skipped_directories
+
+.. autoattribute:: experimental.developerscripttools.ReplaceInFilesScript.ReplaceInFilesScript.ReplaceInFilesScript.skipped_files
+
 .. autoattribute:: experimental.developerscripttools.ReplaceInFilesScript.ReplaceInFilesScript.ReplaceInFilesScript.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -47,8 +51,6 @@ Methods
 -------
 
 .. automethod:: experimental.developerscripttools.ReplaceInFilesScript.ReplaceInFilesScript.ReplaceInFilesScript.process_args
-
-    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 
 .. automethod:: experimental.developerscripttools.ReplaceInFilesScript.ReplaceInFilesScript.ReplaceInFilesScript.setup_argument_parser
 

@@ -48,7 +48,7 @@ class SegmentSpecification(Specification):
         Specification.__init__(self, score_template)
         self._score_model = self.score_template()
         self._name = name
-        self._directives = specificationtools.DirectiveInventory()
+        self._directives = specificationtools.SettingInventory()
 
     ### SPECIAL METHODS ###
 
@@ -68,7 +68,7 @@ class SegmentSpecification(Specification):
         '''Segment specification directives.
 
             >>> segment.directives
-            DirectiveInventory([])
+            SettingInventory([])
 
         Return directive inventory.
         '''
@@ -333,7 +333,7 @@ class SegmentSpecification(Specification):
         assert isinstance(truncate, type(True)), repr(truncate)
         target = self.select_contexts(contexts=contexts)
         source = self.annotate_source(source, callback=callback, count=count, offset=offset)
-        directive = specificationtools.Directive(target, attribute, source, 
+        directive = specificationtools.Setting(target, attribute, source, 
             persistent=persistent, truncate=truncate)
         self.directives.append(directive)
         return directive

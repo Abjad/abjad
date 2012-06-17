@@ -5,7 +5,7 @@ from experimental.specificationtools.ContextSetting.ContextSetting import Contex
 import copy
 
 
-class Directive(AbjadObject):
+class Setting(AbjadObject):
 
     ### INITIALIZER ###
 

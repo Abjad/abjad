@@ -58,7 +58,6 @@ Unstable Abjad composition packages (load manually)
    experimental/developerscripttools/CountLinesScript/CountLinesScript
    experimental/developerscripttools/DeveloperScript/DeveloperScript
    experimental/developerscripttools/DirectoryScript/DirectoryScript
-   experimental/developerscripttools/ReplaceInFilesScript/ReplaceInFilesScript
    experimental/developerscripttools/ReplacePromptsScript/ReplacePromptsScript
 
 .. rubric:: concrete classes
@@ -72,6 +71,7 @@ Unstable Abjad composition packages (load manually)
    experimental/developerscripttools/CleanScript/CleanScript
    experimental/developerscripttools/CountLinewidthsScript/CountLinewidthsScript
    experimental/developerscripttools/CountToolsScript/CountToolsScript
+   experimental/developerscripttools/ReplaceInFilesScript/ReplaceInFilesScript
    experimental/developerscripttools/SvnAddAllScript/SvnAddAllScript
    experimental/developerscripttools/SvnCommitScript/SvnCommitScript
    experimental/developerscripttools/SvnMessageScript/SvnMessageScript
@@ -179,8 +179,6 @@ Unstable Abjad composition packages (load manually)
    experimental/specificationtools/ContextSelection/ContextSelection
    experimental/specificationtools/ContextSetting/ContextSetting
    experimental/specificationtools/ContextSettingInventory/ContextSettingInventory
-   experimental/specificationtools/Directive/Directive
-   experimental/specificationtools/DirectiveInventory/DirectiveInventory
    experimental/specificationtools/Division/Division
    experimental/specificationtools/DivisionList/DivisionList
    experimental/specificationtools/DivisionRetrievalRequest/DivisionRetrievalRequest
@@ -195,6 +193,8 @@ Unstable Abjad composition packages (load manually)
    experimental/specificationtools/SegmentInventory/SegmentInventory
    experimental/specificationtools/SegmentSpecification/SegmentSpecification
    experimental/specificationtools/Selection/Selection
+   experimental/specificationtools/Setting/Setting
+   experimental/specificationtools/SettingInventory/SettingInventory
    experimental/specificationtools/Specification/Specification
    experimental/specificationtools/StatalServer/StatalServer
    experimental/specificationtools/StatalServerRequest/StatalServerRequest
