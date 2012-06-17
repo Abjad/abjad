@@ -15,6 +15,8 @@ Read-only Properties
 
 .. autoattribute:: experimental.specificationtools.ResolvedContextSetting.ResolvedContextSetting.ResolvedContextSetting.fresh
 
+    Inherited from :py:class:`specificationtools.ContextSetting <experimental.specificationtools.ContextSetting.ContextSetting.ContextSetting>`
+
 .. autoattribute:: experimental.specificationtools.ResolvedContextSetting.ResolvedContextSetting.ResolvedContextSetting.persistent
 
     Inherited from :py:class:`specificationtools.Setting <experimental.specificationtools.Setting.Setting.Setting>`
