@@ -1,8 +1,8 @@
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from experimental.specificationtools.RetrievalRequest import RetrievalRequest
 from experimental.specificationtools.AttributeRetrievalIndicator import AttributeRetrievalIndicator
 
 
-class AttributeRetrievalRequest(AbjadObject):
+class AttributeRetrievalRequest(RetrievalRequest):
 
     ### INITIALIZER ###
 

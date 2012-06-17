@@ -158,6 +158,13 @@ Unstable Abjad composition packages (load manually)
 :py:mod:`specificationtools <experimental.specificationtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+.. rubric:: abstract classes
+
+.. toctree::
+   :maxdepth: 1
+
+   experimental/specificationtools/RetrievalRequest/RetrievalRequest
+
 .. rubric:: concrete classes
 
 .. toctree::

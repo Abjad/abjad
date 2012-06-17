@@ -1,8 +1,8 @@
-from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental.specificationtools.Callback import Callback
+from experimental.specificationtools.RetrievalRequest import RetrievalRequest
 
 
-class DivisionRetrievalRequest(AbjadObject):
+class DivisionRetrievalRequest(RetrievalRequest):
     r'''.. versionadded:: 1.0
 
     "Preserved" request for the system to go fetch divisions from somewhere during interpretation.
