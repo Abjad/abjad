@@ -405,10 +405,6 @@ class ScoreSpecification(Specification):
         else:
             return divisions_value
         
-    def request_divisions(self, start_segment, voice, segment_count=1):
-        from experimental import specificationtools
-        return specificationtools.request_divisions(start_segment, voice, segment_count=segment_count)
-
     def resolve_attribute_retrieval_request(self, request):
         setting = self.change_attribute_retrieval_indicator_to_setting(request.indicator)
         value = setting.value

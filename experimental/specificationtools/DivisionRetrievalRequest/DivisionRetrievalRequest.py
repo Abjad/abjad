@@ -7,7 +7,7 @@ class DivisionRetrievalRequest(RetrievalRequest):
 
     "Preserved" request for the system to go fetch divisions from somewhere during interpretation.
 
-    Usually created when ScoreSpecification.request_divisions() is called.
+    Usually created when API function is called.
     
     The `voice_name` parameter specifies the voice whose divisions are to be copied.
 

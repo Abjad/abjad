@@ -1,4 +1,5 @@
 from abjad.tools import *
+from experimental import specificationtools
 from experimental.specificationtools import helpers
 from experimental.specificationtools import library
 from experimental.specificationtools import ScoreSpecification
@@ -16,7 +17,7 @@ def test_SegmentSpecification_set_rotated_divisions_01():
 
     segment.set_divisions(segment.v1, [(3, 16)])
 
-    source = specification.request_divisions('T1', 'Voice 1', segment_count=1)
+    source = specificationtools.request_divisions('T1', 'Voice 1', segment_count=1)
     segment.set_rotated_divisions(segment.v2, source, -1)
     segment.set_rotated_divisions(segment.v3, source, -2)
     segment.set_rotated_divisions(segment.v4, source, -3)
@@ -55,7 +56,7 @@ def test_SegmentSpecification_set_rotated_divisions_02():
     
     segment.set_divisions(segment.v1, [(3, 16)], truncate=True)
     
-    source = specification.request_divisions('T1', 'Voice 1', segment_count=1)
+    source = specificationtools.request_divisions('T1', 'Voice 1', segment_count=1)
     segment.set_rotated_divisions(segment.v2, source, -1)
     segment.set_rotated_divisions(segment.v3, source, -2)
     segment.set_rotated_divisions(segment.v4, source, -3)
