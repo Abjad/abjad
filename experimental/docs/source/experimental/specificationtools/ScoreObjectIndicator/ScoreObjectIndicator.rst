@@ -27,9 +27,17 @@ Read-only Properties
 
 .. autoattribute:: experimental.specificationtools.ScoreObjectIndicator.ScoreObjectIndicator.ScoreObjectIndicator.segment
 
+.. autoattribute:: experimental.specificationtools.ScoreObjectIndicator.ScoreObjectIndicator.ScoreObjectIndicator.start
+
+.. autoattribute:: experimental.specificationtools.ScoreObjectIndicator.ScoreObjectIndicator.ScoreObjectIndicator.stop
+
 .. autoattribute:: experimental.specificationtools.ScoreObjectIndicator.ScoreObjectIndicator.ScoreObjectIndicator.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. autoattribute:: experimental.specificationtools.ScoreObjectIndicator.ScoreObjectIndicator.ScoreObjectIndicator.timepoints
+
+.. autoattribute:: experimental.specificationtools.ScoreObjectIndicator.ScoreObjectIndicator.ScoreObjectIndicator.timespan
 
 Special Methods
 ---------------

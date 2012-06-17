@@ -6,7 +6,7 @@ def request_divisions(start_segment, voice, segment_count=1):
     from experimental import specificationtools
     
     # process input
-    start_segment = specificationtools.segment_to_segment_name(start_segment)
+    start_segment = specificationtools.expr_to_segment_name(start_segment)
     voice = specificationtools.component_to_component_name(voice)
 
     # populate request

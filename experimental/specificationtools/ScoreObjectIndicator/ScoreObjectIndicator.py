@@ -263,3 +263,54 @@ class ScoreObjectIndicator(AbjadObject):
         Return string or none.
         '''
         return self._segment
+
+    @property
+    def start(self):
+        '''Timepoint anchored to left edge of score object::
+
+            >>> score_object_indicator.start
+            Timepoint(anchor=ScoreObjectIndicator(segment='red', context='Voice 1', klass=chordtools.Chord, predicate=Callback('lambda x: 6 <= len(x)'), index=20), edge=Left)
+
+        Return timepoint.
+        '''
+        from experimental import specificationtools
+        return specificationtools.Timepoint(anchor=self, edge=Left)
+
+    @property
+    def stop(self):
+        '''Timepoint anchored to right edge of score object::
+
+            >>> score_object_indicator.start
+            Timepoint(anchor=ScoreObjectIndicator(segment='red', context='Voice 1', klass=chordtools.Chord, predicate=Callback('lambda x: 6 <= len(x)'), index=20), edge=Left)
+
+        Return timepoint.
+        '''
+        from experimental import specificationtools
+        return specificationtools.Timepoint(anchor=self, edge=Right)
+
+    @property
+    def timepoints(self):
+        '''Start and stop timepoints of score object::
+
+            >>> for x in score_object_indicator.timepoints: x
+            ... 
+            Timepoint(anchor=ScoreObjectIndicator(segment='red', context='Voice 1', klass=chordtools.Chord, predicate=Callback('lambda x: 6 <= len(x)'), index=20), edge=Left)
+            Timepoint(anchor=ScoreObjectIndicator(segment='red', context='Voice 1', klass=chordtools.Chord, predicate=Callback('lambda x: 6 <= len(x)'), index=20), edge=Right)
+
+        Return pair.
+        '''
+        return self.start, self.stop
+
+    @property
+    def timespan(self):
+        '''Timespan of score object::
+
+            >>> score_object_indicator.timespan
+            Timespan(ScoreObjectIndicator(segment='red', context='Voice 1', klass=chordtools.Chord, predicate=Callback('lambda x: 6 <= len(x)'), index=20))
+
+        Return timespan.
+        '''
+        from experimental import specificationtools
+
+        start, stop = self.timepoints
+        return specificationtools.Timespan(start=start, stop=stop)

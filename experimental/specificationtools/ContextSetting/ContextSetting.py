@@ -79,6 +79,6 @@ class ContextSetting(Setting):
         '''
         from experimental import specificationtools
         assert self.target.timespan.encompasses_one_segment_exactly, repr(self)
-        segment = specificationtools.segment_to_segment_name(segment)
+        segment = specificationtools.expr_to_segment_name(segment)
         self.target.timespan.start.anchor._segment = segment
         self.target.timespan.stop.anchor._segment = segment

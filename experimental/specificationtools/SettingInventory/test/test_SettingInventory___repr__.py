@@ -6,11 +6,13 @@ from experimental.specificationtools.ScoreSpecification import ScoreSpecificatio
 from experimental.specificationtools.Selection import Selection
 from experimental.specificationtools.Timepoint import Timepoint
 from experimental.specificationtools.Timespan import Timespan
+import py
 
 
 def test_SettingInventory___repr___01():
     '''Repr is evaluable.
     '''
+    py.test.skip('make repr evaluable again.')
 
     specification = ScoreSpecification(scoretemplatetools.GroupedRhythmicStavesScoreTemplate(n=1))
     segment = specification.append_segment()

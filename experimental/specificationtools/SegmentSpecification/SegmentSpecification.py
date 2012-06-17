@@ -170,7 +170,7 @@ class SegmentSpecification(Specification):
         '''Segment timespan.
 
             >>> segment.timespan
-            Timespan(start=Timepoint(anchor=ScoreObjectIndicator(segment='1'), edge=Left), stop=Timepoint(anchor=ScoreObjectIndicator(segment='1'), edge=Right))
+            Timespan(ScoreObjectIndicator(segment='1'))
 
         Return timespan.
         '''

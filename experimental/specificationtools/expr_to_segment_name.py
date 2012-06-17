@@ -1,4 +1,4 @@
-def segment_to_segment_name(segment):
+def expr_to_segment_name(segment):
     r'''.. versionadded:: 1.0
     
     Change `segment` to segment name. Return string unchanged.

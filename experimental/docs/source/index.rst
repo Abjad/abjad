@@ -209,7 +209,8 @@ Unstable Abjad composition packages (load manually)
    :maxdepth: 1
 
    experimental/specificationtools/component_to_component_name
+   experimental/specificationtools/expr_to_segment_name
    experimental/specificationtools/request_divisions
-   experimental/specificationtools/segment_to_segment_name
+   experimental/specificationtools/score_to_timespan
    experimental/specificationtools/segment_to_timespan
    experimental/specificationtools/select_score

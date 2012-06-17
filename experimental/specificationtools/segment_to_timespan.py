@@ -1,14 +1,14 @@
 def segment_to_timespan(segment):
     r'''.. versionadded:: 1.0
 
-    Change `segment` or `segment` name to timespan::
+    Change `segment` to timespan::
 
         >>> from experimental import specificationtools
 
     ::
 
         >>> specificationtools.segment_to_timespan('red')
-        Timespan(start=Timepoint(anchor=ScoreObjectIndicator(segment='red')), stop=Timepoint(anchor=ScoreObjectIndicator(segment='red'), edge=Right))
+        Timespan(ScoreObjectIndicator(segment='red'))
 
     Return timespan.
     '''

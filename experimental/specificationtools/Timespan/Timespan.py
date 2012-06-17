@@ -94,7 +94,7 @@ class Timespan(AbjadObject):
     ::
 
         >>> specificationtools.Timespan(start=start, stop=stop)
-        Timespan(start=Timepoint(anchor=ScoreObjectIndicator(segment='red')), stop=Timepoint(anchor=ScoreObjectIndicator(segment='red'), edge=Right))
+        Timespan(ScoreObjectIndicator(segment='red'))
 
     Select the timespan of the first measure in the segment with name ``'red'``::
 
@@ -108,7 +108,7 @@ class Timespan(AbjadObject):
     ::
 
         >>> specificationtools.Timespan(start=start, stop=stop)
-        Timespan(start=Timepoint(anchor=ScoreObjectIndicator(segment='red', klass=measuretools.Measure)), stop=Timepoint(anchor=ScoreObjectIndicator(segment='red', klass=measuretools.Measure), edge=Right))
+        Timespan(ScoreObjectIndicator(segment='red', klass=measuretools.Measure))
 
     Select the timespan of the first division in the segment with name ``'red'``::
 
@@ -122,7 +122,7 @@ class Timespan(AbjadObject):
     ::
 
         >>> specificationtools.Timespan(start=start, stop=stop)
-        Timespan(start=Timepoint(anchor=ScoreObjectIndicator(segment='red', klass=specificationtools.Division)), stop=Timepoint(anchor=ScoreObjectIndicator(segment='red', klass=specificationtools.Division), edge=Right))
+        Timespan(ScoreObjectIndicator(segment='red', klass=specificationtools.Division))
 
     Select the timespan starting at the left edge of the segment with the name ``'red'``
     and stopping at the right edge of the segment with the name ``'blue'``::
@@ -189,6 +189,14 @@ class Timespan(AbjadObject):
                 if self.stop == expr.stop:
                     return True
         return False
+
+    def __repr__(self):
+        if self.start is not None and self.stop is not None:
+            if self.start.anchor == self.stop.anchor:
+                if self.start.edge in (Left, None):
+                    if self.stop.edge == Right:
+                        return '{}({!r})'.format(self._class_name, self.start.anchor)
+        return AbjadObject.__repr__(self)
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 
