@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 
-from abjad.tools import documentationtools
+from abjad.tools import *
 import inspect
 import os
 
@@ -10,8 +10,21 @@ root = os.path.join(os.environ.get('ABJAD'), 'tools')
 crawler = documentationtools.ClassCrawler(root)
 for klass in crawler():
     if not inspect.isabstract(klass):
-        if not hasattr(klass, '_default_mandatory_input_arguments'):
-            total += 1
-            print klass
+        if 'exception' in klass.__module__:
+            qualified_class_name = '.'.join(klass.__module__.split('.')[-2:])
+        else:
+            qualified_class_name = '.'.join(klass.__module__.split('.')[-3:-1])
+        args = getattr(klass, '_default_mandatory_input_arguments', [])
+        args = [str(arg) for arg in args]
+        if args:
+            args = ', '.join(args)
+        else:
+            args = ''
+        command = '{}({})'.format(qualified_class_name, args)
+        try:
+            eval(command)
+        except:
+            total += 1 
+            print qualified_class_name
 
 print '{} noninstantiable classes.'.format(total)
