@@ -12,7 +12,13 @@ class Mode(AbjadObject):
     Modes with different ascending and descending forms not yet implemented.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
     __slots__ = ('_melodic_diatonic_interval_segment', '_mode_name')
+
+    _default_mandatory_input_arguments = (repr('dorian'), )
+
+    ### INITIALIZER ###
 
     def __init__(self, arg):
         if isinstance(arg, str):

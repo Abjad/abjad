@@ -31,7 +31,14 @@ class KeySignatureMark(ContextMark):
 
     #__slots__ = ('_tonic', '_mode')
 
+    _default_mandatory_input_arguments = (
+        repr('c'),
+        repr('major'),
+        )
+
     _format_slot = 'opening'
+
+    ### INITIALIZER ###
 
     def __init__(self, tonic, mode, target_context=None):
         from abjad.tools.stafftools.Staff import Staff

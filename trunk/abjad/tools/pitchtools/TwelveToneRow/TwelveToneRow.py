@@ -18,6 +18,12 @@ class TwelveToneRow(NumberedChromaticPitchClassSegment):
     Twelve-tone rows are immutable.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
+    _default_mandatory_input_arguments = ([0, 1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8], ) 
+
+    ### INITALIZER ###
+
     def __new__(klass, pitch_classes):
         from abjad.tools import pitchtools
         from abjad.tools.pitchtools.TwelveToneRow._validate_pitch_classes import _validate_pitch_classes

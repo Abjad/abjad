@@ -10,7 +10,13 @@ class ScaleDegree(AbjadObject):
     also chromatic alterations including flat-2, flat-3, flat-6, etc.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
     __slots__ = ('_accidental', '_number')
+
+    _default_mandatory_input_arguments = (3, )
+
+    ### INITIALIZER ###
 
     def __init__(self, *args):
         if len(args) == 1 and isinstance(args[0], type(self)):

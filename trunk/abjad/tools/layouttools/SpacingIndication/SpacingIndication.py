@@ -22,6 +22,11 @@ class SpacingIndication(AbjadObject):
         >>> indication
         SpacingIndication(TempoMark(Duration(1, 8), 44), Duration(1, 68))
 
+    Initialize from constants::
+
+        >>> layouttools.SpacingIndication(((1, 8), 44), (1, 68))
+        SpacingIndication(TempoMark(Duration(1, 8), 44), Duration(1, 68))
+
     Initialize from other spacing indication::
 
         >>> layouttools.SpacingIndication(indication)
@@ -30,16 +35,28 @@ class SpacingIndication(AbjadObject):
     Spacing indications are immutable.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
+    _default_mandatory_input_arguments = (
+        ((1, 8), 44), 
+        (1, 68),
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, *args):
+        from abjad.tools import contexttools
         if len(args) == 1 and isinstance(args[0], type(self)):
             object.__setattr__(self, '_tempo_indication', args[0].tempo_indication)
             object.__setattr__(
                 self, '_proportional_notation_duration', args[0].proportional_notation_duration)
         elif len(args) == 2:
-            object.__setattr__(self, '_tempo_indication', args[0])
-            object.__setattr__(self, '_proportional_notation_duration', args[1])
+            tempo_indication = contexttools.TempoMark(args[0])
+            proportional_notation_duration = durationtools.Duration(args[1])
+            #object.__setattr__(self, '_tempo_indication', args[0])
+            #object.__setattr__(self, '_proportional_notation_duration', args[1])
+            object.__setattr__(self, '_tempo_indication', tempo_indication)
+            object.__setattr__(self, '_proportional_notation_duration', proportional_notation_duration)
         else:
             raise ValueError('can not initialize spacing indication from {!r}'.format(args))
 

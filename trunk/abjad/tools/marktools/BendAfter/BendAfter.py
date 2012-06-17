@@ -19,6 +19,12 @@ class BendAfter(Mark):
     BendAfter implements ``__slots__``.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
+    _default_mandatory_input_arguments = (-4, )
+
+    ### INITIALIZER ###
+
     def __init__(self, *args):
         Mark.__init__(self)
         self._format_slot = 'right'

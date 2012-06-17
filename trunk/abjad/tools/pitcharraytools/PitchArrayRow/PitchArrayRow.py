@@ -44,6 +44,10 @@ class PitchArrayRow(AbjadObject):
     Return pitch array row.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
+    _default_mandatory_input_arguments = ([], )
+
     ### INITIALIZER ###
 
     def __init__(self, cells):

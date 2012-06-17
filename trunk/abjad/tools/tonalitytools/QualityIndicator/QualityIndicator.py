@@ -10,7 +10,13 @@ class QualityIndicator(AbjadObject):
     Value object that can not be changed after instantiation.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
     __slots__ = ('_quality_string')
+
+    _default_mandatory_input_arguments = (repr('dominant'), )
+
+    ### INITIALIZER ###
 
     def __init__(self, quality_string):
         if quality_string not in self._acceptable_quality_strings:

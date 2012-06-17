@@ -15,6 +15,12 @@ class Scale(NamedChromaticPitchClassSegment):
     Abjad model of diatonic scale.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
+    _default_mandatory_input_arguments = (repr('c'), repr('major'))
+
+    ### INITIALIZER ###
+
     def __new__(klass, *args):
         if len(args) == 1 and isinstance(args[0], KeySignatureMark):
             key_signature = args[0]

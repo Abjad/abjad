@@ -8,8 +8,15 @@ class ChordQualityIndicator(HarmonicDiatonicIntervalSegment):
     Chord quality indicator.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
+    _default_mandatory_input_arguments = (repr('major'), )
+
+    ### INITIALIZER ###
+
     def __new__(self, quality_string, extent='triad', inversion='root'):
-        from abjad.tools.tonalitytools.ChordQualityIndicator._invert_quality_indicator import _invert_quality_indicator
+        from abjad.tools.tonalitytools.ChordQualityIndicator._invert_quality_indicator import \
+            _invert_quality_indicator
         if extent in ('triad', 5):
             from abjad.tools.tonalitytools.ChordQualityIndicator._init_triad import _init_triad
             intervals = _init_triad(quality_string)
@@ -21,7 +28,6 @@ class ChordQualityIndicator(HarmonicDiatonicIntervalSegment):
             intervals = _init_ninth(quality_string)
         else:
             raise ValueError('unknown chord quality indicator arguments.')
-        #self._invert_quality_indicator(inversion)
         intervals, rotation = _invert_quality_indicator(intervals, inversion)
         new = tuple.__new__(self, intervals)
         tuple.__setattr__(new, '_rotation', rotation)
@@ -151,12 +157,14 @@ class ChordQualityIndicator(HarmonicDiatonicIntervalSegment):
 
     @property
     def extent(self):
-        from abjad.tools.tonalitytools.chord_class_cardinality_to_extent import chord_class_cardinality_to_extent
+        from abjad.tools.tonalitytools.chord_class_cardinality_to_extent import \
+            chord_class_cardinality_to_extent
         return chord_class_cardinality_to_extent(self.cardinality)
 
     @property
     def extent_name(self):
-        from abjad.tools.tonalitytools.chord_class_extent_to_extent_name import chord_class_extent_to_extent_name
+        from abjad.tools.tonalitytools.chord_class_extent_to_extent_name import \
+            chord_class_extent_to_extent_name
         return chord_class_extent_to_extent_name(self.extent)
 
     @property

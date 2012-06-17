@@ -10,7 +10,13 @@ class ExtentIndicator(AbjadObject):
     Value object that can not be changed after instantiation.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
     __slots__ = ('_number', )
+
+    _default_mandatory_input_arguments = (7, )
+
+    ### INITIALIZER ###
 
     def __init__(self, arg):
         if isinstance(arg, (int, long)):

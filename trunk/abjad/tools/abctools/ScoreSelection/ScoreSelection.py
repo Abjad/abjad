@@ -14,7 +14,10 @@ class ScoreSelection(AbjadObject):
     ### CLASS ATTRIBUTES ###
 
     __metclass__ = ABCMeta
+
     __slots__ = ()
+
+    _default_mandatory_input_arguments = ([], )
 
     ### INITIALIZER ###
 

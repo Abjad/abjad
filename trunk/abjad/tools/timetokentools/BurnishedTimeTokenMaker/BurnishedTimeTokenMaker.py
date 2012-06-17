@@ -26,6 +26,8 @@ class BurnishedTimeTokenMaker(TimeTokenMaker):
 
     __metaclass__ = ABCMeta
 
+    _default_mandatory_input_arguments = ([-1, 4, -2, 3], 16, )
+
     ### INITIALIZER ###
 
     def __init__(self, pattern, denominator, prolation_addenda=None,

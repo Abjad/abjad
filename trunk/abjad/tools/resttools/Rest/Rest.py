@@ -12,8 +12,14 @@ class Rest(Leaf):
 
     '''
 
+    ### CLASS ATTRIBUTES ###
+
     # TODO: add vertical positioning pitch only as needed #
     __slots__ = ('_vertical_positioning_pitch', )
+
+    _default_mandatory_input_arguments = (repr('r4'), )
+
+    ### INITIALIZER ###
 
     def __init__(self, *args, **kwargs):
         if len(args) == 1 and isinstance(args[0], Leaf):

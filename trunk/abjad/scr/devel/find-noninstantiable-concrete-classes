@@ -26,5 +26,6 @@ for klass in crawler():
         except:
             total += 1 
             print qualified_class_name
+            print command
 
 print '{} noninstantiable classes.'.format(total)

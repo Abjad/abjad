@@ -41,10 +41,12 @@ class TimeSignatureMark(ContextMark):
 
     ### CLASS ATTRIBUTES ###
 
-    _format_slot = 'opening'
-
     #__slots__ = ('_denominator', '_duration', '_format_slot', '_multiplier',
     #    '_is_nonbinary', '_numerator', '_partial', )
+
+    _default_mandatory_input_arguments = ((4, 8), )
+
+    _format_slot = 'opening'
 
     ### INITIALIZER ###
 

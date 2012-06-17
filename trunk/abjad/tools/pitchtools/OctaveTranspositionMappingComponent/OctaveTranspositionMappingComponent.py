@@ -21,6 +21,15 @@ class OctaveTranspositionMappingComponent(AbjadObject):
     Octave transposition mapping components are mutable.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
+    _default_mandatory_input_arguments = (
+        repr('[A0, C8]'),
+        15,
+        )
+
+    ### INITIALIZER ###
+
     def __init__(self, *args):
         if len(args) == 1 and isinstance(args[0], tuple):
             source_pitch_range, target_octave_start_pitch = args[0]

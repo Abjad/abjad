@@ -21,6 +21,12 @@ class NamedChromaticPitchVector(ObjectVector):
     Named chromatic pitch vectors are immutable.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
+    _default_mandatory_input_arguments = (["c''", "c''", "cs''", "cs''", "cs''"], )
+
+    ### INITIALIZER ###
+
     def __init__(self, pitch_tokens):
         from abjad.tools import pitchtools
         for token in pitch_tokens:

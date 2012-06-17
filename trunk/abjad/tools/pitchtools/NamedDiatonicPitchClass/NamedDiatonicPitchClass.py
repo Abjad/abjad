@@ -12,7 +12,13 @@ class NamedDiatonicPitchClass(DiatonicPitchClassObject):
     Named diatonic pitch-classes are immutable.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
     __slots__ = ('_diatonic_pitch_class_name', )
+
+    _default_mandatory_input_arguments = (repr('c'), )
+
+    ### INITIALIZER ###
 
     def __init__(self, arg):
         from abjad.tools import pitchtools

@@ -35,6 +35,12 @@ class PitchArrayColumn(AbjadObject):
 
     Return pitch array column.
     '''
+    
+    ### CLASS ATTRIBUTES ###
+
+    _default_mandatory_input_arguments = ([], )
+
+    ### INITIALIZER ###
 
     def __init__(self, cells):
         self._cells = []

@@ -61,6 +61,8 @@ class Markup(_DirectedMark):
 
     __slots__ = ('_contents', '_direction', '_format_slot', '_markup_name')
 
+    _default_mandatory_input_arguments = (repr(r'\bold { "This is markup text." }'), )
+
     ### INITIALIZER ###
 
     def __init__(self, argument, direction=None, markup_name=None):

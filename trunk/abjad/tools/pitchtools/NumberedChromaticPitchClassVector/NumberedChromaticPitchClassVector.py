@@ -22,6 +22,10 @@ class NumberedChromaticPitchClassVector(ObjectVector):
     Numbered chromatic pitch-class vectors are immutable.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
+    _default_mandatory_input_arguments = ([13, 13, 14.5, 14.5, 14.5, 6, 6, 6], )
+
     ### INITIALIZER ###
 
     def __init__(self, pitch_class_tokens):

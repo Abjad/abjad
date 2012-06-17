@@ -24,6 +24,8 @@ class Container(Component):
 
     __slots__ = ('_formatter', '_music', '_parallel', )
 
+    _default_mandatory_input_arguments = ([], )
+
     ### INITIALIZER ###
 
     def __init__(self, music=None, **kwargs):

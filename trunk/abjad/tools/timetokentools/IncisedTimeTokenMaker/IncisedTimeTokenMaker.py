@@ -22,6 +22,14 @@ class IncisedTimeTokenMaker(TimeTokenMaker):
 
     __metaclass__ = ABCMeta
 
+    _default_mandatory_input_arguments = (
+        [8],
+        [1, 2, 3, 4],
+        [1],
+        [1],
+        32,
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, prefix_signal, prefix_lengths, suffix_signal, suffix_lengths, denominator,

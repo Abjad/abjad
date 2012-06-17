@@ -40,6 +40,7 @@ class InstrumentMark(ContextMark):
     ### CLASS ATTRIBUTES ###
 
     _format_slot = 'opening'
+
     _has_default_attribute_values = True
 
     ### INITIALIZER ###

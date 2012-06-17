@@ -1,8 +1,7 @@
-import numbers
-
 from abjad.tools import durationtools
 from abjad.tools import schemetools
 from abjad.tools.contexttools.ContextMark import ContextMark
+import numbers
 
 
 class TempoMark(ContextMark):
@@ -37,7 +36,16 @@ class TempoMark(ContextMark):
     Initialization allows many different types of input argument structure.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
     _format_slot = 'opening'
+
+    _default_mandatory_input_arguments = (
+        (1, 8),
+        68,
+        )
+
+    ### INITIALIZER ###
 
     def __init__(self, *args, **kwargs):
         from abjad.tools.scoretools.Score import Score

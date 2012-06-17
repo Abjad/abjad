@@ -13,7 +13,13 @@ class Skip(Leaf):
     Return skip.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
     __slots__ = ()
+
+    _default_mandatory_input_arguments = (repr('s4'), )
+
+    ### INITIALIZER ###
 
     def __init__(self, *args, **kwargs):
         if len(args) == 1 and isinstance(args[0], Leaf):
