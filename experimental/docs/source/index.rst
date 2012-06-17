@@ -177,6 +177,8 @@ Unstable Abjad composition packages (load manually)
    experimental/specificationtools/ContextDictionary/ContextDictionary
    experimental/specificationtools/ContextProxy/ContextProxy
    experimental/specificationtools/ContextSelection/ContextSelection
+   experimental/specificationtools/ContextSetting/ContextSetting
+   experimental/specificationtools/ContextSettingInventory/ContextSettingInventory
    experimental/specificationtools/Directive/Directive
    experimental/specificationtools/DirectiveInventory/DirectiveInventory
    experimental/specificationtools/Division/Division
@@ -185,7 +187,7 @@ Unstable Abjad composition packages (load manually)
    experimental/specificationtools/HandlerRequest/HandlerRequest
    experimental/specificationtools/PartIndicator/PartIndicator
    experimental/specificationtools/RegionDivisionList/RegionDivisionList
-   experimental/specificationtools/ResolvedSetting/ResolvedSetting
+   experimental/specificationtools/ResolvedContextSetting/ResolvedContextSetting
    experimental/specificationtools/ScopedValue/ScopedValue
    experimental/specificationtools/ScoreObjectIndicator/ScoreObjectIndicator
    experimental/specificationtools/ScoreSpecification/ScoreSpecification
@@ -193,8 +195,6 @@ Unstable Abjad composition packages (load manually)
    experimental/specificationtools/SegmentInventory/SegmentInventory
    experimental/specificationtools/SegmentSpecification/SegmentSpecification
    experimental/specificationtools/Selection/Selection
-   experimental/specificationtools/Setting/Setting
-   experimental/specificationtools/SettingInventory/SettingInventory
    experimental/specificationtools/Specification/Specification
    experimental/specificationtools/StatalServer/StatalServer
    experimental/specificationtools/StatalServerRequest/StatalServerRequest
@@ -203,3 +203,11 @@ Unstable Abjad composition packages (load manually)
    experimental/specificationtools/ValueRetrievalIndicator/ValueRetrievalIndicator
    experimental/specificationtools/ValueRetrievalRequest/ValueRetrievalRequest
    experimental/specificationtools/VoiceDivisionList/VoiceDivisionList
+
+.. rubric:: functions
+
+.. toctree::
+   :maxdepth: 1
+
+   experimental/specificationtools/segment_to_timespan
+   experimental/specificationtools/select_score

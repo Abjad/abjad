@@ -1,11 +1,7 @@
-1. Write by-hand Selection initialization tests.
+1. Make ContextSetting inherit from Directive. Or vice versa. Or make both inherit from an ABC.
 
-2. Make Setting inherit from Directive. Or vice versa. Or make both inherit from an ABC.
+2. Rename Directive to something like BundledContextSetting.
 
-3. Rename Directive to something like BundledSetting.
+3. Implement RetrievalRequest as base class for different retrieval requests classes.
 
-4. Implement RetrievalRequest as base class for different retrieval requests classes.
-
-5. Implement selection-creation courtesy methods.
-
-6. Use autoimport initializers.
+4. Implement selection-creation courtesy methods.

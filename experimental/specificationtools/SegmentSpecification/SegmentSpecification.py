@@ -5,7 +5,7 @@ from experimental.specificationtools.AttributeRetrievalRequest import AttributeR
 from experimental.specificationtools.Callback import Callback
 from experimental.specificationtools.DivisionRetrievalRequest import DivisionRetrievalRequest
 from experimental.specificationtools.HandlerRequest import HandlerRequest
-from experimental.specificationtools.ResolvedSetting import ResolvedSetting
+from experimental.specificationtools.ResolvedContextSetting import ResolvedContextSetting
 from experimental.specificationtools.Specification import Specification
 from experimental.specificationtools.StatalServer import StatalServer
 from experimental.specificationtools.StatalServerRequest import StatalServerRequest
@@ -160,7 +160,7 @@ class SegmentSpecification(Specification):
         try:
             setting = self.resolved_settings_context_dictionary.score_context_proxy.get_setting(
                 attribute='time_signatures')
-        except MissingSettingError:
+        except MissingContextSettingError:
             return None
         assert isinstance(setting.value, list), setting.value
         return setting.value
@@ -243,7 +243,7 @@ class SegmentSpecification(Specification):
                 continue
             elif len(settings) == 1:
                 setting = settings[0]
-                assert isinstance(setting, ResolvedSetting)
+                assert isinstance(setting, ResolvedContextSetting)
                 if include_truncate:
                     return setting.value, setting.fresh, setting.truncate
                 else:

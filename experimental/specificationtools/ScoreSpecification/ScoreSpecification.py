@@ -4,7 +4,7 @@ from experimental.specificationtools.Division import Division
 from experimental.specificationtools.DivisionList import DivisionList
 from experimental.specificationtools.DivisionRetrievalRequest import DivisionRetrievalRequest
 from experimental.specificationtools.RegionDivisionList import RegionDivisionList
-from experimental.specificationtools.ResolvedSetting import ResolvedSetting
+from experimental.specificationtools.ResolvedContextSetting import ResolvedContextSetting
 from experimental.specificationtools.ScopedValue import ScopedValue
 from experimental.specificationtools.SegmentDivisionList import SegmentDivisionList
 from experimental.specificationtools.SegmentInventory import SegmentInventory
@@ -12,7 +12,7 @@ from experimental.specificationtools.SegmentSpecification import SegmentSpecific
 from experimental.specificationtools.Selection import Selection
 from experimental.specificationtools.Specification import Specification
 from experimental.specificationtools.StatalServerRequest import StatalServerRequest
-from experimental.specificationtools.SettingInventory import SettingInventory
+from experimental.specificationtools.ContextSettingInventory import ContextSettingInventory
 from experimental.specificationtools.VoiceDivisionList import VoiceDivisionList
 import collections
 import copy
@@ -378,11 +378,11 @@ class ScoreSpecification(Specification):
         return region_division_lists
 
     def make_resolved_setting(self, setting):
-        if isinstance(setting, ResolvedSetting):
+        if isinstance(setting, ResolvedContextSetting):
             return setting
         value = self.resolve_setting_source(setting)
         arguments = setting._mandatory_argument_values + (value, )
-        resolved_setting = ResolvedSetting(*arguments, 
+        resolved_setting = ResolvedContextSetting(*arguments, 
             persistent=setting.persistent, truncate=setting.truncate, fresh=setting.fresh)
         return resolved_setting
 

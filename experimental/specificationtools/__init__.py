@@ -1,38 +1,5 @@
-from AttributeNameEnumeration import AttributeNameEnumeration
-from AttributeRetrievalIndicator import AttributeRetrievalIndicator
-from AttributeRetrievalRequest import AttributeRetrievalRequest
-from BaseSetting import BaseSetting
-from Callback import Callback
-from ContextDictionary import ContextDictionary
-from ContextProxy import ContextProxy
-from ContextSelection import ContextSelection
-from Directive import Directive
-from DirectiveInventory import DirectiveInventory
-from Division import Division
-from DivisionList import DivisionList
-from DivisionRetrievalRequest import DivisionRetrievalRequest
-from HandlerRequest import HandlerRequest
-from PartIndicator import PartIndicator
-from RegionDivisionList import RegionDivisionList
-from ResolvedSetting import ResolvedSetting
-from ScopedValue import ScopedValue
-from ScoreObjectIndicator import ScoreObjectIndicator
-from ScoreSpecification import ScoreSpecification
-from SegmentDivisionList import SegmentDivisionList
-from SegmentInventory import SegmentInventory
-from SegmentSpecification import SegmentSpecification
-from Selection import Selection
-from Setting import Setting
-from SettingInventory import SettingInventory
-from Specification import Specification
-from StatalServer import StatalServer
-from StatalServerRequest import StatalServerRequest
-from Timepoint import Timepoint
-from Timespan import Timespan
-from ValueRetrievalIndicator import ValueRetrievalIndicator
-from ValueRetrievalRequest import ValueRetrievalRequest
-from VoiceDivisionList import VoiceDivisionList
+from abjad.tools import importtools
+
+importtools.import_structured_package(__path__[0], globals(), 'experimental')
 
 _documentation_section = 'unstable'
-
-from segment_to_timespan import segment_to_timespan

@@ -3,7 +3,7 @@ import copy
 
 
 # TODO: make immutable
-class Setting(AbjadObject):
+class ContextSetting(AbjadObject):
     r'''.. versionadded:: 1.0
 
     Frozen request to set one attribute against one context-specified selection.

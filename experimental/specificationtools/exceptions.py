@@ -1,10 +1,10 @@
-class ExtraSettingError(Exception):
+class ExtraContextSettingError(Exception):
     '''More than one setting found.
     '''
     pass
 
 
-class MissingSettingError(Exception):
+class MissingContextSettingError(Exception):
     '''No setting found.
     '''
     pass

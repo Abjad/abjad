@@ -25,7 +25,7 @@ class DivisionRetrievalRequest(AbjadObject):
     The `offset` parameter is currently only a stub. Parameter will be implemented 
     to trim a nonnegative integer number of divisions from the start of the return list.
     For example, consider a division retrieval request that would result in 10 divisions.
-    Setting `offset=2` would cause only the final 8 divisions to return instead.
+    ContextSetting `offset=2` would cause only the final 8 divisions to return instead.
     
     The `count` parameter is currently only a stub. Parameter will be implemented
     to limit the total number of divisions returned. At that time we will have to

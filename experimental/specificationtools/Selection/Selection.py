@@ -6,7 +6,7 @@ from experimental.specificationtools.Timespan import Timespan
 class Selection(AbjadObject):
     r'''.. versionadded:: 1.0
 
-    Arbitrarily many contexts taken over arbitrary timespan.
+    Arbitrarily many contexts taken over a shared timespan.
 
     (Object-oriented delayed evaluation.)
 

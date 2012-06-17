@@ -26,9 +26,9 @@ class ContextProxy(AbjadObject, OrderedDict):
     def get_setting(self, attribute=None, timespan=None):
         settings = self.get_settings(attribute=attribute, timespan=timespan)
         if not settings:
-            raise MissingSettingError('no settings for {!r} found.'.format(attribute))
+            raise MissingContextSettingError('no settings for {!r} found.'.format(attribute))
         elif 1 < len(settings):
-            raise ExtraSettingError('multiple settings for {!r} found.'.format(attribute))
+            raise ExtraContextSettingError('multiple settings for {!r} found.'.format(attribute))
         assert len(settings) == 1
         return settings[0]
 

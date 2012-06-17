@@ -2,7 +2,7 @@ from abjad.tools import contexttools
 from abjad.tools import scoretools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental.specificationtools.ContextProxy import ContextProxy
-from experimental.specificationtools.ResolvedSetting import ResolvedSetting
+from experimental.specificationtools.ResolvedContextSetting import ResolvedContextSetting
 from collections import OrderedDict
 
 
@@ -78,7 +78,7 @@ class ContextDictionary(AbjadObject, OrderedDict):
             print context_name
             for setting_name in self[context_name]:
                 item = self[context_name][setting_name]
-                if isinstance(item, ResolvedSetting):
+                if isinstance(item, ResolvedContextSetting):
                     print '\t{}'.format(self[context_name][setting_name])
                 else:
                     print '\t{}: {}'.format(setting_name, self[context_name][setting_name])
