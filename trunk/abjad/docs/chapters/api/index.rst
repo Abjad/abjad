@@ -1889,7 +1889,6 @@ Unstable Abjad composition packages (load manually)
 
    tools/tonalitytools/ChordClass/ChordClass
    tools/tonalitytools/ChordQualityIndicator/ChordQualityIndicator
-   tools/tonalitytools/DoublingIndicator/DoublingIndicator
    tools/tonalitytools/ExtentIndicator/ExtentIndicator
    tools/tonalitytools/InversionIndicator/InversionIndicator
    tools/tonalitytools/Mode/Mode
