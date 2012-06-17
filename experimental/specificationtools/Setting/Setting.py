@@ -9,12 +9,11 @@ class Setting(AbjadObject):
     def __init__(self, *args, **kwargs):
         mandatory_argument_values, keyword_argument_values = self._get_input_argument_values(*args, **kwargs)
         target, attribute, source = mandatory_argument_values
-        persistent, truncate = keyword_argument_values
-        self.target = target
-        self.attribute = attribute
-        self.source = source
-        self.persistent = persistent
-        self.truncate = truncate
+        self._target = target
+        self._attribute = attribute
+        self._source = source
+        for name, value in zip(self._keyword_argument_names, keyword_argument_values):
+            setattr(self, '_' + name, value)
 
     ### SPECIAL METHODS ###
 
@@ -42,6 +41,28 @@ class Setting(AbjadObject):
             self.source,
             )
 
+    @property
+    def _one_line_format(self):
+        body = [
+            self._one_line_target_format,
+            self._get_one_line_source_format(self.source),
+            ]
+        if not self.persistent:
+            body.append(self.persistent)
+        body = ', '.join([str(x) for x in body])
+        return '{}: {}'.format(self.attribute, body)
+
+    # TODO: redo me to accommodate target selection
+    @property
+    def _one_line_target_format(self):
+        body = []
+        for attribute in ('segment_name', 'context_name', 'timespan'):
+            attribute_value = getattr(self, attribute, None)
+            if attribute_value is not None:
+                body.append(attribute_value)
+        body = ', '.join(body)
+        return '({})'.format(body)
+
     ### PRIVATE METHODS ###
 
     def _get_input_argument_values(self, *args, **kwargs):
@@ -60,7 +81,37 @@ class Setting(AbjadObject):
             keyword_argument_values.append(kwargs.get('persistent', True))
             keyword_argument_values.append(kwargs.get('truncate', False))
         return mandatory_argument_values, keyword_argument_values
+
+    def _get_one_line_source_format(self, source):
+        if hasattr(source, '_one_line_format'):
+            return source._one_line_format
+        elif hasattr(source, 'name'):
+            return source.name
+        else:
+            return str(source)
     
+    ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def attribute(self):
+        return self._attribute
+
+    @property
+    def persistent(self):
+        return self._persistent
+
+    @property
+    def source(self):
+        return self._source
+
+    @property
+    def target(self):
+        return self._target
+
+    @property
+    def truncate(self):
+        return self._truncate
+
     ### PUBLIC METHODS ###
 
     def unpack(self):

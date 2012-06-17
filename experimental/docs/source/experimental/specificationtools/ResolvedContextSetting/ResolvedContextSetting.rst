@@ -11,17 +11,17 @@ Read-only Properties
 
 .. autoattribute:: experimental.specificationtools.ResolvedContextSetting.ResolvedContextSetting.ResolvedContextSetting.attribute
 
-    Inherited from :py:class:`specificationtools.ContextSetting <experimental.specificationtools.ContextSetting.ContextSetting.ContextSetting>`
+    Inherited from :py:class:`specificationtools.Setting <experimental.specificationtools.Setting.Setting.Setting>`
 
 .. autoattribute:: experimental.specificationtools.ResolvedContextSetting.ResolvedContextSetting.ResolvedContextSetting.fresh
 
 .. autoattribute:: experimental.specificationtools.ResolvedContextSetting.ResolvedContextSetting.ResolvedContextSetting.persistent
 
-    Inherited from :py:class:`specificationtools.ContextSetting <experimental.specificationtools.ContextSetting.ContextSetting.ContextSetting>`
+    Inherited from :py:class:`specificationtools.Setting <experimental.specificationtools.Setting.Setting.Setting>`
 
 .. autoattribute:: experimental.specificationtools.ResolvedContextSetting.ResolvedContextSetting.ResolvedContextSetting.source
 
-    Inherited from :py:class:`specificationtools.ContextSetting <experimental.specificationtools.ContextSetting.ContextSetting.ContextSetting>`
+    Inherited from :py:class:`specificationtools.Setting <experimental.specificationtools.Setting.Setting.Setting>`
 
 .. autoattribute:: experimental.specificationtools.ResolvedContextSetting.ResolvedContextSetting.ResolvedContextSetting.storage_format
 
@@ -29,11 +29,11 @@ Read-only Properties
 
 .. autoattribute:: experimental.specificationtools.ResolvedContextSetting.ResolvedContextSetting.ResolvedContextSetting.target
 
-    Inherited from :py:class:`specificationtools.ContextSetting <experimental.specificationtools.ContextSetting.ContextSetting.ContextSetting>`
+    Inherited from :py:class:`specificationtools.Setting <experimental.specificationtools.Setting.Setting.Setting>`
 
 .. autoattribute:: experimental.specificationtools.ResolvedContextSetting.ResolvedContextSetting.ResolvedContextSetting.truncate
 
-    Inherited from :py:class:`specificationtools.ContextSetting <experimental.specificationtools.ContextSetting.ContextSetting.ContextSetting>`
+    Inherited from :py:class:`specificationtools.Setting <experimental.specificationtools.Setting.Setting.Setting>`
 
 .. autoattribute:: experimental.specificationtools.ResolvedContextSetting.ResolvedContextSetting.ResolvedContextSetting.value
 
@@ -65,7 +65,7 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.ResolvedContextSetting.ResolvedContextSetting.ResolvedContextSetting.__eq__
 
-    Inherited from :py:class:`specificationtools.ContextSetting <experimental.specificationtools.ContextSetting.ContextSetting.ContextSetting>`
+    Inherited from :py:class:`specificationtools.Setting <experimental.specificationtools.Setting.Setting.Setting>`
 
 .. automethod:: experimental.specificationtools.ResolvedContextSetting.ResolvedContextSetting.ResolvedContextSetting.__ge__
 

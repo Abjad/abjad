@@ -15,9 +15,5 @@ class ResolvedContextSetting(ContextSetting):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def fresh(self):
-        return self._fresh
-
-    @property
     def value(self):
         return self._value

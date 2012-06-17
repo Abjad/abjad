@@ -11,11 +11,17 @@ Read-only Properties
 
 .. autoattribute:: experimental.specificationtools.ContextSetting.ContextSetting.ContextSetting.attribute
 
+    Inherited from :py:class:`specificationtools.Setting <experimental.specificationtools.Setting.Setting.Setting>`
+
 .. autoattribute:: experimental.specificationtools.ContextSetting.ContextSetting.ContextSetting.fresh
 
 .. autoattribute:: experimental.specificationtools.ContextSetting.ContextSetting.ContextSetting.persistent
 
+    Inherited from :py:class:`specificationtools.Setting <experimental.specificationtools.Setting.Setting.Setting>`
+
 .. autoattribute:: experimental.specificationtools.ContextSetting.ContextSetting.ContextSetting.source
+
+    Inherited from :py:class:`specificationtools.Setting <experimental.specificationtools.Setting.Setting.Setting>`
 
 .. autoattribute:: experimental.specificationtools.ContextSetting.ContextSetting.ContextSetting.storage_format
 
@@ -23,7 +29,11 @@ Read-only Properties
 
 .. autoattribute:: experimental.specificationtools.ContextSetting.ContextSetting.ContextSetting.target
 
+    Inherited from :py:class:`specificationtools.Setting <experimental.specificationtools.Setting.Setting.Setting>`
+
 .. autoattribute:: experimental.specificationtools.ContextSetting.ContextSetting.ContextSetting.truncate
+
+    Inherited from :py:class:`specificationtools.Setting <experimental.specificationtools.Setting.Setting.Setting>`
 
 Methods
 -------
@@ -46,6 +56,8 @@ Special Methods
     Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.specificationtools.ContextSetting.ContextSetting.ContextSetting.__eq__
+
+    Inherited from :py:class:`specificationtools.Setting <experimental.specificationtools.Setting.Setting.Setting>`
 
 .. automethod:: experimental.specificationtools.ContextSetting.ContextSetting.ContextSetting.__ge__
 
