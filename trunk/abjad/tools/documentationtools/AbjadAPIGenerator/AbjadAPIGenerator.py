@@ -22,15 +22,15 @@ class AbjadAPIGenerator(abctools.AbjadObject):
 
     _api_title = 'Abjad API'
 
-    _composition_packages_description = 'Abjad composition packages'
+    _composition_packages_description = 'Composition packages'
 
-    _internals_packages_description = 'Internals packages'
+    _internals_packages_description = 'Internal packages'
 
 #    _internals_packages = (
 #        'formattools',
 #    )
 
-    _manual_packages_description = 'Additional Abjad composition packages (load manually)'
+    _manual_packages_description = 'Additional packages (load manually)'
 
 #    _manual_packages = (
 #        'abctools',
@@ -60,7 +60,7 @@ class AbjadAPIGenerator(abctools.AbjadObject):
         'lilypondproxytools',
     )
 
-    _unstable_packages_description = 'Unstable Abjad composition packages (load manually)'
+    _unstable_packages_description = 'Unstable packages (load manually)'
 
 #    _unstable_packages = (
 #        'constrainttools',

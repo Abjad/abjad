@@ -1,8 +1,8 @@
 Abjad API
 =========
 
-Abjad composition packages
---------------------------
+Composition packages
+--------------------
 
 .. toctree::
    :maxdepth: 1
@@ -1910,8 +1910,8 @@ Abjad composition packages
    tools/voicetools/iterate_voices_backward_in_expr
    tools/voicetools/iterate_voices_forward_in_expr
 
-Internals packages
-------------------
+Internal packages
+-----------------
 
 .. toctree::
    :maxdepth: 1
