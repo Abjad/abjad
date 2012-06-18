@@ -1,8 +1,8 @@
 Abjad Experimental API
 ======================
 
-Unstable Abjad composition packages (load manually)
----------------------------------------------------
+Unstable packages (load manually)
+---------------------------------
 
 .. toctree::
    :maxdepth: 1

@@ -21,11 +21,19 @@ Read-only Properties
 
 .. autoattribute:: experimental.specificationtools.Division.Division.Division.is_closed
 
+    Inherited from :py:class:`mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
+
 .. autoattribute:: experimental.specificationtools.Division.Division.Division.is_half_closed
+
+    Inherited from :py:class:`mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
 
 .. autoattribute:: experimental.specificationtools.Division.Division.Division.is_half_open
 
+    Inherited from :py:class:`mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
+
 .. autoattribute:: experimental.specificationtools.Division.Division.Division.is_open
+
+    Inherited from :py:class:`mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
 
 .. autoattribute:: experimental.specificationtools.Division.Division.Division.numerator
 
@@ -48,11 +56,19 @@ Read/write Properties
 
 .. autoattribute:: experimental.specificationtools.Division.Division.Division.is_left_closed
 
+    Inherited from :py:class:`mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
+
 .. autoattribute:: experimental.specificationtools.Division.Division.Division.is_left_open
+
+    Inherited from :py:class:`mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
 
 .. autoattribute:: experimental.specificationtools.Division.Division.Division.is_right_closed
 
+    Inherited from :py:class:`mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
+
 .. autoattribute:: experimental.specificationtools.Division.Division.Division.is_right_open
+
+    Inherited from :py:class:`mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
 
 Methods
 -------
