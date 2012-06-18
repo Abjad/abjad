@@ -41,9 +41,8 @@ class Division(NonreducedFraction, BoundedObject):
     ### INITIALIZER ###
 
     def __new__(klass, arg, is_left_open=None, is_right_open=None):
-        from experimental import specificationtools
         if isinstance(arg, str):
-            triple = specificationtools.interval_string_to_pair_and_indicators(arg)
+            triple = mathtools.interval_string_to_pair_and_indicators(arg)
             pair, is_left_open, is_right_open = triple
         else:
             pair = arg

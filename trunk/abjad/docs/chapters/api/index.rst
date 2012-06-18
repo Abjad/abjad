@@ -800,6 +800,7 @@ Composition packages
    tools/mathtools/interpolate_divide_multiple
    tools/mathtools/interpolate_exponential
    tools/mathtools/interpolate_linear
+   tools/mathtools/interval_string_to_pair_and_indicators
    tools/mathtools/is_assignable_integer
    tools/mathtools/is_dotted_integer
    tools/mathtools/is_integer_equivalent_expr

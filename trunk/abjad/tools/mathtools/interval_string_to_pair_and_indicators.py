@@ -5,11 +5,7 @@ def interval_string_to_pair_and_indicators(interval_string):
     Change `interval_string` to pair, boolean start indicator and
     boolean stop indicator::
 
-        >>> from experimental import specificationtools
-
-    ::
-
-        >>> specificationtools.interval_string_to_pair_and_indicators('[5, 8)')
+        >>> mathtools.interval_string_to_pair_and_indicators('[5, 8)')
         ((5, 8), False, True)
 
     Parse square brackets as closed interval bounds.
