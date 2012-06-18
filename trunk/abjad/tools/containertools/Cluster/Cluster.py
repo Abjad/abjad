@@ -43,7 +43,7 @@ class Cluster(Container):
 
     ### PRIVATE METHODS ###
 
-    def _format_slot_2(self):
+    def _format_open_brackets_slot(self):
         result = []
         contributor = ('self_brackets', 'open')
         if self.is_parallel:

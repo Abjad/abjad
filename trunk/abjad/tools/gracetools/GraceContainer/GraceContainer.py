@@ -110,7 +110,7 @@ class GraceContainer(Container):
 
     ### PRIVATE METHODS ###
 
-    def _format_slot_2(self):
+    def _format_open_brackets_slot(self):
         result = []
         kind = self.kind
         if kind == 'after':

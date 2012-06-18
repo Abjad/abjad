@@ -161,7 +161,7 @@ class Leaf(Component):
         # single string, but wrapped in list bc contribution
         return ['nucleus', [result]]
 
-    def _format_slot_1(leaf):
+    def _format_before_slot(leaf):
         result = []
         result.append(leaf._format_grace_body())
         result.append(formattools.get_comment_format_contributions(leaf, 'before'))
@@ -172,10 +172,10 @@ class Leaf(Component):
         result.append(formattools.get_spanner_format_contributions(leaf, 'before'))
         return result
 
-    def _format_slot_2(leaf):
+    def _format_open_brackets_slot(leaf):
         return []
 
-    def _format_slot_3(leaf):
+    def _format_opening_slot(leaf):
         result = []
         result.append(formattools.get_comment_format_contributions(leaf, 'opening'))
         result.append(formattools.get_lilypond_command_mark_format_contributions(leaf, 'opening'))
@@ -183,12 +183,12 @@ class Leaf(Component):
         result.append(leaf._format_agrace_opening())
         return result
 
-    def _format_slot_4(leaf):
+    def _format_contents_slot(leaf):
         result = []
         result.append(leaf._format_leaf_body())
         return result
 
-    def _format_slot_5(leaf):
+    def _format_closing_slot(leaf):
         result = []
         result.append(leaf._format_agrace_body())
         result.append(formattools.get_lilypond_command_mark_format_contributions(leaf, 'closing'))
@@ -196,10 +196,10 @@ class Leaf(Component):
         result.append(formattools.get_comment_format_contributions(leaf, 'closing'))
         return result
 
-    def _format_slot_6(leaf):
+    def _format_close_brackets_slot(leaf):
         return []
 
-    def _format_slot_7(leaf):
+    def _format_after_slot(leaf):
         result = []
         result.append(formattools.get_spanner_format_contributions(leaf, 'after'))
         result.append(formattools.get_context_mark_format_contributions(leaf, 'after'))
@@ -241,16 +241,16 @@ class Leaf(Component):
     def _report_format_contributors(self):
         report = ''
         report += 'slot 1:\n'
-        report += self._process_contribution_packet(self._format_slot_1())
+        report += self._process_contribution_packet(self._format_before_slot())
         report += 'slot 3:\n'
-        report += self._process_contribution_packet(self._format_slot_3())
+        report += self._process_contribution_packet(self._format_opening_slot())
         report += 'slot 4:\n'
         report += '\tleaf body:\n'
-        report += '\t\t' + self._format_slot_4()[0][1][0] + '\n'
+        report += '\t\t' + self._format_contents_slot()[0][1][0] + '\n'
         report += 'slot 5:\n'
-        report += self._process_contribution_packet(self._format_slot_5())
+        report += self._process_contribution_packet(self._format_closing_slot())
         report += 'slot 7:\n'
-        report += self._process_contribution_packet(self._format_slot_7())
+        report += self._process_contribution_packet(self._format_after_slot())
         return report
 
     ### PUBLIC PROPERTIES ###

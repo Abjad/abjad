@@ -9,14 +9,14 @@ def _report_container_modifications(container, output='string'):
     assert output in ('screen', 'string')
 
     result = []
-    result.extend(container._get_format_contributions_for_slot(1))
-    result.extend(container._get_format_contributions_for_slot(2))
-    result.extend(container._get_format_contributions_for_slot(3))
+    result.extend(container._get_format_contributions_for_slot('before'))
+    result.extend(container._get_format_contributions_for_slot('open_brackets'))
+    result.extend(container._get_format_contributions_for_slot('opening'))
     heart = '\t%%%%%% %s components omitted %%%%%%' % len(container)
     result.extend([heart])
-    result.extend(container._get_format_contributions_for_slot(5))
-    result.extend(container._get_format_contributions_for_slot(6))
-    result.extend(container._get_format_contributions_for_slot(7))
+    result.extend(container._get_format_contributions_for_slot('closing'))
+    result.extend(container._get_format_contributions_for_slot('close_brackets'))
+    result.extend(container._get_format_contributions_for_slot('after'))
     result = '\n'.join(result)
 
     if output == 'screen':

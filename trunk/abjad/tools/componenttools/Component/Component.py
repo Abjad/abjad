@@ -181,13 +181,13 @@ class Component(AbjadObject):
 
     def _format_component(self, pieces=False):
         result = []
-        result.extend(self._format_slot_1())
-        result.extend(self._format_slot_2())
-        result.extend(self._format_slot_3())
-        result.extend(self._format_slot_4())
-        result.extend(self._format_slot_5())
-        result.extend(self._format_slot_6())
-        result.extend(self._format_slot_7())
+        result.extend(self._format_before_slot())
+        result.extend(self._format_open_brackets_slot())
+        result.extend(self._format_opening_slot())
+        result.extend(self._format_contents_slot())
+        result.extend(self._format_closing_slot())
+        result.extend(self._format_close_brackets_slot())
+        result.extend(self._format_after_slot())
         contributions = []
         for contributor, contribution in result:
             contributions.extend(contribution)
@@ -196,30 +196,36 @@ class Component(AbjadObject):
         else:
             return '\n'.join(contributions)
 
-    def _format_slot_1(self):
+    def _format_before_slot(self):
         pass
 
-    def _format_slot_2(self):
+    def _format_open_brackets_slot(self):
         pass
 
-    def _format_slot_3(self):
+    def _format_opening_slot(self):
         pass
 
-    def _format_slot_4(self):
+    def _format_contents_slot(self):
         pass
 
-    def _format_slot_5(self):
+    def _format_closing_slot(self):
         pass
 
-    def _format_slot_6(self):
+    def _format_close_brackets_slot(self):
         pass
 
-    def _format_slot_7(self):
+    def _format_after_slot(self):
         pass
 
     def _get_format_contributions_for_slot(self, n):
         result = []
-        for source, contributions in eval('self._format_slot_{}()'.format(n)):
+        slots = ('before', 'open_brackets', 'opening',
+            'contents', 'closing', 'close_brackets', 'after')
+        if isinstance(n, str):
+            n = n.replace(' ', '_')
+        elif isinstance(n, int):
+            n = slots[n-1]
+        for source, contributions in eval('self._format_{}_slot()'.format(n)):
             result.extend(contributions)
         return result
 
