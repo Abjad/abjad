@@ -1,7 +1,7 @@
 def expr_to_segment_name(expr):
     r'''.. versionadded:: 1.0
     
-    Change segment to segment name::
+    Change segment specification to segment specification name::
 
         >>> from abjad.tools import scoretemplatetools
         >>> from experimental import specificationtools
@@ -21,12 +21,12 @@ def expr_to_segment_name(expr):
         >>> specificationtools.expr_to_segment_name(segment)
         'red'
 
-    Leave segment name unchanged::
+    Leave string unchanged::
 
         >>> specificationtools.expr_to_segment_name('red')
         'red'
 
-    Raise exception when `expr` is neither segment nor string.
+    Raise exception on nonsegment, nonstring input.
 
     Return string.
     '''

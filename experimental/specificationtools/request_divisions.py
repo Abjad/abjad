@@ -7,7 +7,7 @@ def request_divisions(start_segment, voice, segment_count=1):
     
     # process input
     start_segment = specificationtools.expr_to_segment_name(start_segment)
-    voice = specificationtools.component_to_component_name(voice)
+    voice = specificationtools.expr_to_component_name(voice)
 
     # populate request
     request = specificationtools.DivisionRetrievalRequest(start_segment, voice, segment_count=segment_count)

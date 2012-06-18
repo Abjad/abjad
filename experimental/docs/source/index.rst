@@ -208,7 +208,7 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
-   experimental/specificationtools/component_to_component_name
+   experimental/specificationtools/expr_to_component_name
    experimental/specificationtools/expr_to_segment_name
    experimental/specificationtools/interval_string_to_pair_and_indicators
    experimental/specificationtools/request_divisions
