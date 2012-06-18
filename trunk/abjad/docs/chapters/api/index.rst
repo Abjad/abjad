@@ -756,6 +756,13 @@ Composition packages
 :py:mod:`mathtools <abjad.tools.mathtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+.. rubric:: abstract classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/mathtools/BoundedObject/BoundedObject
+
 .. rubric:: concrete classes
 
 .. toctree::
