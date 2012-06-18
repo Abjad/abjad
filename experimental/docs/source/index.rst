@@ -187,7 +187,7 @@ Unstable packages (load manually)
    experimental/specificationtools/RegionDivisionList/RegionDivisionList
    experimental/specificationtools/ResolvedContextSetting/ResolvedContextSetting
    experimental/specificationtools/ScopedValue/ScopedValue
-   experimental/specificationtools/ScoreObjectIndicator/ScoreObjectIndicator
+   experimental/specificationtools/ScoreSliceIndicator/ScoreSliceIndicator
    experimental/specificationtools/ScoreSpecification/ScoreSpecification
    experimental/specificationtools/SegmentDivisionList/SegmentDivisionList
    experimental/specificationtools/SegmentInventory/SegmentInventory

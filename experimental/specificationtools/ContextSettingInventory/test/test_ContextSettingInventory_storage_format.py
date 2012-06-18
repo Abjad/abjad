@@ -25,13 +25,13 @@ def test_ContextSettingInventory_storage_format_01():
                 'Grouped Rhythmic Staves Score',
                 timespan=specificationtools.Timespan(
                     start=specificationtools.Timepoint(
-                        anchor=specificationtools.ScoreObjectIndicator(
+                        anchor=specificationtools.ScoreSliceIndicator(
                             segment='1'
                             ),
                         edge=Left
                         ),
                     stop=specificationtools.Timepoint(
-                        anchor=specificationtools.ScoreObjectIndicator(
+                        anchor=specificationtools.ScoreSliceIndicator(
                             segment='1'
                             ),
                         edge=Right
@@ -47,7 +47,7 @@ def test_ContextSettingInventory_storage_format_01():
         ])
     '''
 
-    assert storage_format == "specificationtools.ContextSettingInventory([\n\tspecificationtools.ContextSetting(\n\t\tspecificationtools.ContextSelection(\n\t\t\t'Grouped Rhythmic Staves Score',\n\t\t\ttimespan=specificationtools.Timespan(\n\t\t\t\tstart=specificationtools.Timepoint(\n\t\t\t\t\tanchor=specificationtools.ScoreObjectIndicator(\n\t\t\t\t\t\tsegment='1'\n\t\t\t\t\t\t),\n\t\t\t\t\tedge=Left\n\t\t\t\t\t),\n\t\t\t\tstop=specificationtools.Timepoint(\n\t\t\t\t\tanchor=specificationtools.ScoreObjectIndicator(\n\t\t\t\t\t\tsegment='1'\n\t\t\t\t\t\t),\n\t\t\t\t\tedge=Right\n\t\t\t\t\t)\n\t\t\t\t)\n\t\t\t),\n\t\t'time_signatures',\n\t\t[(4, 8), (3, 8)],\n\t\tpersistent=True,\n\t\ttruncate=False,\n\t\tfresh=True\n\t\t)\n\t])"
+    assert storage_format == "specificationtools.ContextSettingInventory([\n\tspecificationtools.ContextSetting(\n\t\tspecificationtools.ContextSelection(\n\t\t\t'Grouped Rhythmic Staves Score',\n\t\t\ttimespan=specificationtools.Timespan(\n\t\t\t\tstart=specificationtools.Timepoint(\n\t\t\t\t\tanchor=specificationtools.ScoreSliceIndicator(\n\t\t\t\t\t\tsegment='1'\n\t\t\t\t\t\t),\n\t\t\t\t\tedge=Left\n\t\t\t\t\t),\n\t\t\t\tstop=specificationtools.Timepoint(\n\t\t\t\t\tanchor=specificationtools.ScoreSliceIndicator(\n\t\t\t\t\t\tsegment='1'\n\t\t\t\t\t\t),\n\t\t\t\t\tedge=Right\n\t\t\t\t\t)\n\t\t\t\t)\n\t\t\t),\n\t\t'time_signatures',\n\t\t[(4, 8), (3, 8)],\n\t\tpersistent=True,\n\t\ttruncate=False,\n\t\tfresh=True\n\t\t)\n\t])"
 
     setting_inventory_2 = eval(storage_format)
 

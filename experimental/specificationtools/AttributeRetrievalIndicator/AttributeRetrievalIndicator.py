@@ -10,7 +10,7 @@ class AttributeRetrievalIndicator(AbjadObject):
 
     (Object-oriented delayed evaluation.)
 
-    .. note:: class needs to be reworked to center around ScoreObjectIndicator objects.
+    .. note:: class needs to be reworked to center around ScoreSliceIndicator objects.
     '''
 
     ### CLASS ATTRIBUTES ###

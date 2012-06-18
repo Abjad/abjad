@@ -1,5 +1,6 @@
 from abjad.tools import componenttools
 from abjad.tools import contexttools
+from abjad.tools import mathtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental.specificationtools.Callback import Callback
 from experimental.specificationtools.Division import Division
@@ -7,12 +8,12 @@ from experimental.specificationtools.SegmentSpecification import SegmentSpecific
 import types
 
 
-class ScoreObjectIndicator(AbjadObject):
+class ScoreSliceIndicator(AbjadObject):
     r'''.. versionadded:: 1.0
 
     A frozen request to pick out an arbitrary object in score.
 
-    (Oject-oriented delayed evaluation.)
+    (Object-oriented delayed evaluation.)
 
     Score object indicator objects afford the identification of score
     objects that do not yet exist.
@@ -25,24 +26,24 @@ class ScoreObjectIndicator(AbjadObject):
 
     ::
 
-        >>> specificationtools.ScoreObjectIndicator()
-        ScoreObjectIndicator()
+        >>> specificationtools.ScoreSliceIndicator()
+        ScoreSliceIndicator()
 
     Pick out the segment with name ``'red'``::
 
-        >>> specificationtools.ScoreObjectIndicator(segment='red')
-        ScoreObjectIndicator(segment='red')
+        >>> specificationtools.ScoreSliceIndicator(segment='red')
+        ScoreSliceIndicator(segment='red')
 
 
     Pick context ``'Voice 1'`` out of the segment with name ``'red'``::
 
-        >>> specificationtools.ScoreObjectIndicator(segment='red', context='Voice 1')
-        ScoreObjectIndicator(segment='red', context='Voice 1')
+        >>> specificationtools.ScoreSliceIndicator(segment='red', context='Voice 1')
+        ScoreSliceIndicator(segment='red', context='Voice 1')
 
     Pick the first measure in context ``'Voice 1'`` out of the segment with name ``'red'``::
 
-        >>> specificationtools.ScoreObjectIndicator(segment='red', context='Voice 1', klass=Measure)
-        ScoreObjectIndicator(segment='red', context='Voice 1', klass=measuretools.Measure)
+        >>> specificationtools.ScoreSliceIndicator(segment='red', context='Voice 1', klass=Measure)
+        ScoreSliceIndicator(segment='red', context='Voice 1', klass=measuretools.Measure)
     
     Pick the first division in context ``'Voice 1'`` out of the segment with name ``'red'``::
 
@@ -50,18 +51,18 @@ class ScoreObjectIndicator(AbjadObject):
 
     ::
 
-        >>> specificationtools.ScoreObjectIndicator(segment='red', context='Voice 1', klass=Division)
-        ScoreObjectIndicator(segment='red', context='Voice 1', klass=specificationtools.Division)
+        >>> specificationtools.ScoreSliceIndicator(segment='red', context='Voice 1', klass=Division)
+        ScoreSliceIndicator(segment='red', context='Voice 1', klass=specificationtools.Division)
 
     Pick the first note in context ``'Voice 1'`` out of the segment with name ``'red'``::
 
-        >>> specificationtools.ScoreObjectIndicator(segment='red', context='Voice 1', klass=Note)
-        ScoreObjectIndicator(segment='red', context='Voice 1', klass=notetools.Note)
+        >>> specificationtools.ScoreSliceIndicator(segment='red', context='Voice 1', klass=Note)
+        ScoreSliceIndicator(segment='red', context='Voice 1', klass=notetools.Note)
 
     Pick note ``20`` in context ``'Voice 1'`` out of the segment with name ``'red'``::
 
-        >>> specificationtools.ScoreObjectIndicator(segment='red', context='Voice 1', klass=Note, index=20)
-        ScoreObjectIndicator(segment='red', context='Voice 1', klass=notetools.Note, index=20)
+        >>> specificationtools.ScoreSliceIndicator(segment='red', context='Voice 1', klass=Note, index=20)
+        ScoreSliceIndicator(segment='red', context='Voice 1', klass=notetools.Note, index=20)
 
     Pick the first chord with at least six pitches
     in context ``'Voice 1'`` out of the segment with name ``'red'``::
@@ -75,14 +76,14 @@ class ScoreObjectIndicator(AbjadObject):
 
     ::
 
-        >>> specificationtools.ScoreObjectIndicator(segment='red', context='Voice 1', klass=Chord, predicate=predicate)
-        ScoreObjectIndicator(segment='red', context='Voice 1', klass=chordtools.Chord, predicate=Callback('lambda x: 6 <= len(x)'))
+        >>> specificationtools.ScoreSliceIndicator(segment='red', context='Voice 1', klass=Chord, predicate=predicate)
+        ScoreSliceIndicator(segment='red', context='Voice 1', klass=chordtools.Chord, predicate=Callback('lambda x: 6 <= len(x)'))
 
     Pick chord ``20`` with at least six pitches
     in context ``'Voice 1'`` out of the segment with name ``'red'``::
 
-        >>> specificationtools.ScoreObjectIndicator(segment='red', context='Voice 1', klass=Chord, predicate=predicate, index=20)
-        ScoreObjectIndicator(segment='red', context='Voice 1', klass=chordtools.Chord, predicate=Callback('lambda x: 6 <= len(x)'), index=20)
+        >>> specificationtools.ScoreSliceIndicator(segment='red', context='Voice 1', klass=Chord, predicate=predicate, index=20)
+        ScoreSliceIndicator(segment='red', context='Voice 1', klass=chordtools.Chord, predicate=Callback('lambda x: 6 <= len(x)'), index=20)
 
     Examples below reference the score object indicator defined immediately above::
 
@@ -101,7 +102,7 @@ class ScoreObjectIndicator(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, segment=None, context=None, klass=None, predicate=None, index=None):
+    def __init__(self, segment=None, context=None, klass=None, predicate=None, index=None, count=None):
         if isinstance(segment, SegmentSpecification):
             segment = segment.name
         assert isinstance(segment, (str, int, type(None))), repr(segment)
@@ -112,11 +113,13 @@ class ScoreObjectIndicator(AbjadObject):
             assert issubclass(klass, (componenttools.Component, Division)), repr(klass)
         assert isinstance(predicate, (Callback, type(None))), repr(predicate)
         assert isinstance(index, (int, type(None))), repr(index)
+        assert count is None or mathtools.is_nonnegative_integer(count), repr(count)
         self._segment = segment
         self._context = context
         self._klass = klass
         self._predicate = predicate
         self._index = index
+        self._count = count
     
     ### SPECIAL METHODS ###
 
@@ -164,6 +167,16 @@ class ScoreObjectIndicator(AbjadObject):
         Return string or none.
         '''
         return self._context
+
+    @property
+    def count(self):
+        '''Number of contiguous score objects indicated.
+
+        Value of none is taken equal to ``1``.
+
+        Return nonnegative integer.
+        '''
+        return self._count
 
     @property
     def index(self):
@@ -269,7 +282,7 @@ class ScoreObjectIndicator(AbjadObject):
         '''Timepoint anchored to left edge of score object::
 
             >>> score_object_indicator.start
-            Timepoint(anchor=ScoreObjectIndicator(segment='red', context='Voice 1', klass=chordtools.Chord, predicate=Callback('lambda x: 6 <= len(x)'), index=20), edge=Left)
+            Timepoint(anchor=ScoreSliceIndicator(segment='red', context='Voice 1', klass=chordtools.Chord, predicate=Callback('lambda x: 6 <= len(x)'), index=20), edge=Left)
 
         Return timepoint.
         '''
@@ -281,7 +294,7 @@ class ScoreObjectIndicator(AbjadObject):
         '''Timepoint anchored to right edge of score object::
 
             >>> score_object_indicator.start
-            Timepoint(anchor=ScoreObjectIndicator(segment='red', context='Voice 1', klass=chordtools.Chord, predicate=Callback('lambda x: 6 <= len(x)'), index=20), edge=Left)
+            Timepoint(anchor=ScoreSliceIndicator(segment='red', context='Voice 1', klass=chordtools.Chord, predicate=Callback('lambda x: 6 <= len(x)'), index=20), edge=Left)
 
         Return timepoint.
         '''
@@ -294,8 +307,8 @@ class ScoreObjectIndicator(AbjadObject):
 
             >>> for x in score_object_indicator.timepoints: x
             ... 
-            Timepoint(anchor=ScoreObjectIndicator(segment='red', context='Voice 1', klass=chordtools.Chord, predicate=Callback('lambda x: 6 <= len(x)'), index=20), edge=Left)
-            Timepoint(anchor=ScoreObjectIndicator(segment='red', context='Voice 1', klass=chordtools.Chord, predicate=Callback('lambda x: 6 <= len(x)'), index=20), edge=Right)
+            Timepoint(anchor=ScoreSliceIndicator(segment='red', context='Voice 1', klass=chordtools.Chord, predicate=Callback('lambda x: 6 <= len(x)'), index=20), edge=Left)
+            Timepoint(anchor=ScoreSliceIndicator(segment='red', context='Voice 1', klass=chordtools.Chord, predicate=Callback('lambda x: 6 <= len(x)'), index=20), edge=Right)
 
         Return pair.
         '''
@@ -306,7 +319,7 @@ class ScoreObjectIndicator(AbjadObject):
         '''Timespan of score object::
 
             >>> score_object_indicator.timespan
-            Timespan(ScoreObjectIndicator(segment='red', context='Voice 1', klass=chordtools.Chord, predicate=Callback('lambda x: 6 <= len(x)'), index=20))
+            Timespan(ScoreSliceIndicator(segment='red', context='Voice 1', klass=chordtools.Chord, predicate=Callback('lambda x: 6 <= len(x)'), index=20))
 
         Return timespan.
         '''
