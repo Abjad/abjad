@@ -53,4 +53,4 @@ del sys
 del tools
 del wellformednesstools
 
-__version__ = '2.9'
+__version__ = '2.10'
