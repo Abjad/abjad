@@ -83,6 +83,12 @@ class Division(NonreducedFraction, BoundedObject):
             right_symbol = ']'
         return '{}{}, {}{}'.format(left_symbol, self.numerator, self.denominator, right_symbol)
 
+    ### PRIVATE METHODS ###
+
+    def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
+        string = '{}({!r})'.format(self._tools_package_qualified_class_name, str(self))
+        return [string]
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
