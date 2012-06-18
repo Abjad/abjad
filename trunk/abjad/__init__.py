@@ -50,7 +50,6 @@ del lilypondproxytools
 del os
 del platform
 del sys
-del tonalitytools
 del tools
 del wellformednesstools
 

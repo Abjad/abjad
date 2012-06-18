@@ -1779,6 +1779,49 @@ Abjad composition packages
    tools/timetokentools/TokenIncisedRestFilledTimeTokenMaker/TokenIncisedRestFilledTimeTokenMaker
    tools/timetokentools/TupletMonadTimeTokenMaker/TupletMonadTimeTokenMaker
 
+:py:mod:`tonalitytools <abjad.tools.tonalitytools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: concrete classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/tonalitytools/ChordClass/ChordClass
+   tools/tonalitytools/ChordQualityIndicator/ChordQualityIndicator
+   tools/tonalitytools/ExtentIndicator/ExtentIndicator
+   tools/tonalitytools/InversionIndicator/InversionIndicator
+   tools/tonalitytools/Mode/Mode
+   tools/tonalitytools/OmissionIndicator/OmissionIndicator
+   tools/tonalitytools/QualityIndicator/QualityIndicator
+   tools/tonalitytools/Scale/Scale
+   tools/tonalitytools/ScaleDegree/ScaleDegree
+   tools/tonalitytools/SuspensionIndicator/SuspensionIndicator
+   tools/tonalitytools/TonalFunction/TonalFunction
+
+.. rubric:: functions
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/tonalitytools/analyze_chord
+   tools/tonalitytools/analyze_incomplete_chord
+   tools/tonalitytools/analyze_incomplete_tonal_function
+   tools/tonalitytools/analyze_tonal_function
+   tools/tonalitytools/are_scalar_notes
+   tools/tonalitytools/are_stepwise_ascending_notes
+   tools/tonalitytools/are_stepwise_descending_notes
+   tools/tonalitytools/are_stepwise_notes
+   tools/tonalitytools/chord_class_cardinality_to_extent
+   tools/tonalitytools/chord_class_extent_to_cardinality
+   tools/tonalitytools/chord_class_extent_to_extent_name
+   tools/tonalitytools/diatonic_interval_class_segment_to_chord_quality_string
+   tools/tonalitytools/is_neighbor_note
+   tools/tonalitytools/is_passing_tone
+   tools/tonalitytools/is_unlikely_melodic_diatonic_interval_in_chorale
+   tools/tonalitytools/make_all_notes_in_ascending_and_descending_diatonic_scale
+   tools/tonalitytools/make_first_n_notes_in_ascending_diatonic_scale
+
 :py:mod:`tuplettools <abjad.tools.tuplettools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -1866,55 +1909,6 @@ Abjad composition packages
    tools/voicetools/iterate_semantic_voices_forward_in_expr
    tools/voicetools/iterate_voices_backward_in_expr
    tools/voicetools/iterate_voices_forward_in_expr
-
-Unstable Abjad composition packages (load manually)
----------------------------------------------------
-
-.. toctree::
-   :maxdepth: 1
-
-:py:mod:`tonalitytools <abjad.tools.tonalitytools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. rubric:: concrete classes
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/tonalitytools/ChordClass/ChordClass
-   tools/tonalitytools/ChordQualityIndicator/ChordQualityIndicator
-   tools/tonalitytools/ExtentIndicator/ExtentIndicator
-   tools/tonalitytools/InversionIndicator/InversionIndicator
-   tools/tonalitytools/Mode/Mode
-   tools/tonalitytools/OmissionIndicator/OmissionIndicator
-   tools/tonalitytools/QualityIndicator/QualityIndicator
-   tools/tonalitytools/Scale/Scale
-   tools/tonalitytools/ScaleDegree/ScaleDegree
-   tools/tonalitytools/SuspensionIndicator/SuspensionIndicator
-   tools/tonalitytools/TonalFunction/TonalFunction
-
-.. rubric:: functions
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/tonalitytools/analyze_chord
-   tools/tonalitytools/analyze_incomplete_chord
-   tools/tonalitytools/analyze_incomplete_tonal_function
-   tools/tonalitytools/analyze_tonal_function
-   tools/tonalitytools/are_scalar_notes
-   tools/tonalitytools/are_stepwise_ascending_notes
-   tools/tonalitytools/are_stepwise_descending_notes
-   tools/tonalitytools/are_stepwise_notes
-   tools/tonalitytools/chord_class_cardinality_to_extent
-   tools/tonalitytools/chord_class_extent_to_cardinality
-   tools/tonalitytools/chord_class_extent_to_extent_name
-   tools/tonalitytools/diatonic_interval_class_segment_to_chord_quality_string
-   tools/tonalitytools/is_neighbor_note
-   tools/tonalitytools/is_passing_tone
-   tools/tonalitytools/is_unlikely_melodic_diatonic_interval_in_chorale
-   tools/tonalitytools/make_all_notes_in_ascending_and_descending_diatonic_scale
-   tools/tonalitytools/make_first_n_notes_in_ascending_diatonic_scale
 
 Internals packages
 ------------------
