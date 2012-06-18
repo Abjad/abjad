@@ -32,10 +32,6 @@ Methods
 
     Inherited from :py:class:`subprocess.Popen`
 
-.. automethod:: abjad.tools.documentationtools.Pipe.Pipe.Pipe.pipe_cloexec
-
-    Inherited from :py:class:`subprocess.Popen`
-
 .. automethod:: abjad.tools.documentationtools.Pipe.Pipe.Pipe.poll
 
     Inherited from :py:class:`subprocess.Popen`

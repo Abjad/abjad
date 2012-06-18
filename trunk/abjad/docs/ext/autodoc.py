@@ -29,13 +29,23 @@ from sphinx.pycode import ModuleAnalyzer, PycodeError
 from sphinx.application import ExtensionError
 from sphinx.util.nodes import nested_parse_with_titles
 from sphinx.util.compat import Directive
-from sphinx.util.inspect import getargspec, isdescriptor, safe_getmembers, \
+#from sphinx.util.inspect import getargspec, isdescriptor, safe_getmembers, \
+#     safe_getattr, safe_repr
+from sphinx.util.inspect import isdescriptor, safe_getmembers, \
      safe_getattr, safe_repr
 from sphinx.util.pycompat import base_exception, class_types
 from sphinx.util.docstrings import prepare_docstring
 
 from sphinx.ext.autodoc import Documenter
 
+
+def getargspec(proc):
+    from sphinx.util.inspect import getargspec as sphinx_getargspec
+    if proc.__name__ == 'wrapper':
+        if proc.__closure__:
+            return sphinx_getargspec(proc.__closure__[1].cell_contents)
+    return sphinx_getargspec(proc)
+    
 
 #: extended signature RE: with explicit module name separated by ::
 py_ext_sig_re = re.compile(
