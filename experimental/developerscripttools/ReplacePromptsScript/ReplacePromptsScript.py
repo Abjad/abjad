@@ -1,4 +1,5 @@
 from experimental.developerscripttools.DirectoryScript import DirectoryScript
+from experimental.developerscripttools.ReplaceInFilesScript import ReplaceInFilesScript
 import os
 
 
@@ -12,7 +13,17 @@ class ReplacePromptsScript(DirectoryScript):
 
     @property
     def long_description(self):
-        return None
+        return '''\
+examples:
+
+  Replace Python prompts with Abjad prompts in the current directory:
+
+  $ abj-dev replace prompts --python-to-abjad .
+
+  Replace Abjad prompts with Python prompts in the grandparent directory:
+
+  $ abj-dev replace prompts --abjad-to-python ../..
+    '''
 
     @property
     def scripting_group(self):
@@ -28,6 +39,14 @@ class ReplacePromptsScript(DirectoryScript):
 
     ### PUBLIC METHODS ###
 
+    def process_args(self, args):
+        if args.mode is None:
+            print 'No replacement pattern specified, exiting.'
+
+        script = ReplaceInFilesScript()
+        arguments = [args.path] + args.mode + ['--force']
+        script(arguments)
+
     def setup_argument_parser(self, parser):
 
         parser.add_argument('path',
@@ -39,15 +58,16 @@ class ReplacePromptsScript(DirectoryScript):
 
         group.add_argument('-PA', '--python-to-abjad',
             action='store_const',
-            const='python_to_abjad',
+            const=['>>> ', 'abjad> '],
             dest='mode',
             help='replace Python (">>>") prompts with Abjad ("abjad>") prompts'
             )
 
         group.add_argument('-AP', '--abjad-to-python',
             action='store_const',
-            const='abjad_to_python',
+            const=['abjad> ', '>>> '],
             dest='mode',
             help='replace Abjad ("abjad>") prompts with Python (">>>") prompts'
             )
 
+        parser.set_defaults(mode=None)

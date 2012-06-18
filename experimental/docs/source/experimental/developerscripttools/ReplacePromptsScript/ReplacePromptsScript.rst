@@ -48,8 +48,6 @@ Methods
 
 .. automethod:: experimental.developerscripttools.ReplacePromptsScript.ReplacePromptsScript.ReplacePromptsScript.process_args
 
-    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
-
 .. automethod:: experimental.developerscripttools.ReplacePromptsScript.ReplacePromptsScript.ReplacePromptsScript.setup_argument_parser
 
 Special Methods

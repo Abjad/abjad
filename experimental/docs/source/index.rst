@@ -58,7 +58,6 @@ Unstable packages (load manually)
    experimental/developerscripttools/CountLinesScript/CountLinesScript
    experimental/developerscripttools/DeveloperScript/DeveloperScript
    experimental/developerscripttools/DirectoryScript/DirectoryScript
-   experimental/developerscripttools/ReplacePromptsScript/ReplacePromptsScript
 
 .. rubric:: concrete classes
 
@@ -72,6 +71,7 @@ Unstable packages (load manually)
    experimental/developerscripttools/CountLinewidthsScript/CountLinewidthsScript
    experimental/developerscripttools/CountToolsScript/CountToolsScript
    experimental/developerscripttools/ReplaceInFilesScript/ReplaceInFilesScript
+   experimental/developerscripttools/ReplacePromptsScript/ReplacePromptsScript
    experimental/developerscripttools/SvnAddAllScript/SvnAddAllScript
    experimental/developerscripttools/SvnCommitScript/SvnCommitScript
    experimental/developerscripttools/SvnMessageScript/SvnMessageScript
