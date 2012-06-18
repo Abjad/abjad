@@ -30,15 +30,9 @@ class DivisionList(AbjadObject):
         return len(self.divisions)
 
     def __repr__(self):
-        fake_keywords = []
-        if self.is_left_open:
-            fake_keywords.append('is_left_open=True')
-        if self.is_right_open:
-            fake_keywords.append('is_right_open=True')
-        fake_keywords = ', '.join(fake_keywords)
-        if fake_keywords:
-            return '{}({!r}, {})'.format(self._class_name, self.divisions, fake_keywords)
-        return AbjadObject.__repr__(self)
+        contents_string = [str(x) for x in self.divisions]
+        contents_string = ', '.join(contents_string)
+        return '{}({!r})'.format(self._class_name, contents_string)
 
     ### READ-ONLY PROPERTIES ###
 
