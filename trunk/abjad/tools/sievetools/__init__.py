@@ -2,4 +2,4 @@ from abjad.tools.importtools._import_functions_in_package_to_namespace import _i
 
 _import_functions_in_package_to_namespace(__path__[0], globals())
 
-_documentation_section = 'manual'
+_documentation_section = 'core'

@@ -340,6 +340,66 @@ Abjad composition packages
    tools/contexttools/list_clef_names
    tools/contexttools/set_accidental_style_on_sequential_contexts_in_expr
 
+:py:mod:`durationtools <abjad.tools.durationtools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: concrete classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/durationtools/Duration/Duration
+   tools/durationtools/Offset/Offset
+
+.. rubric:: functions
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/durationtools/all_are_duration_tokens
+   tools/durationtools/all_are_durations
+   tools/durationtools/assignable_rational_to_dot_count
+   tools/durationtools/assignable_rational_to_lilypond_duration_string
+   tools/durationtools/duration_pair_to_prolation_string
+   tools/durationtools/duration_token_to_big_endian_list_of_assignable_duration_pairs
+   tools/durationtools/duration_token_to_duration_pair
+   tools/durationtools/duration_token_to_rational
+   tools/durationtools/duration_tokens_to_duration_pairs
+   tools/durationtools/duration_tokens_to_duration_pairs_with_least_common_denominator
+   tools/durationtools/duration_tokens_to_least_common_denominator
+   tools/durationtools/duration_tokens_to_rationals
+   tools/durationtools/group_duration_tokens_by_implied_prolation
+   tools/durationtools/is_assignable_rational
+   tools/durationtools/is_binary_rational
+   tools/durationtools/is_duration_pair
+   tools/durationtools/is_duration_token
+   tools/durationtools/is_lilypond_duration_name
+   tools/durationtools/is_lilypond_duration_string
+   tools/durationtools/lilypond_duration_string_to_rational
+   tools/durationtools/lilypond_duration_string_to_rational_list
+   tools/durationtools/multiply_duration_pair
+   tools/durationtools/multiply_duration_pair_and_reduce_factors
+   tools/durationtools/multiply_duration_pair_and_try_to_preserve_numerator
+   tools/durationtools/numeric_seconds_to_clock_string
+   tools/durationtools/numeric_seconds_to_escaped_clock_string
+   tools/durationtools/positive_integer_to_implied_prolation_multipler
+   tools/durationtools/rational_to_duration_pair_with_multiple_of_specified_integer_denominator
+   tools/durationtools/rational_to_duration_pair_with_specified_integer_denominator
+   tools/durationtools/rational_to_equal_or_greater_assignable_rational
+   tools/durationtools/rational_to_equal_or_greater_binary_rational
+   tools/durationtools/rational_to_equal_or_lesser_assignable_rational
+   tools/durationtools/rational_to_equal_or_lesser_binary_rational
+   tools/durationtools/rational_to_flag_count
+   tools/durationtools/rational_to_fraction_string
+   tools/durationtools/rational_to_prolation_string
+   tools/durationtools/rational_to_proper_fraction
+   tools/durationtools/rewrite_rational_under_new_tempo
+   tools/durationtools/yield_all_assignable_rationals_in_cantor_diagonalized_order
+   tools/durationtools/yield_all_positive_integer_pairs_in_cantor_diagonalized_order
+   tools/durationtools/yield_all_positive_rationals_in_cantor_diagonalized_order
+   tools/durationtools/yield_all_positive_rationals_in_cantor_diagonalized_order_uniquely
+   tools/durationtools/yield_all_prolation_rewrite_pairs_of_rational_in_cantor_diagonalized_order
+
 :py:mod:`gracetools <abjad.tools.gracetools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -433,6 +493,56 @@ Abjad composition packages
    tools/instrumenttools/notes_and_chords_in_expr_are_within_traditional_instrument_ranges
    tools/instrumenttools/transpose_notes_and_chords_in_expr_from_fingered_pitch_to_sounding_pitch
    tools/instrumenttools/transpose_notes_and_chords_in_expr_from_sounding_pitch_to_fingered_pitch
+
+:py:mod:`iotools <abjad.tools.iotools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: functions
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/iotools/clear_terminal
+   tools/iotools/f
+   tools/iotools/get_last_output_file_name
+   tools/iotools/get_next_output_file_name
+   tools/iotools/log
+   tools/iotools/ly
+   tools/iotools/p
+   tools/iotools/parse_lilypond_input_string
+   tools/iotools/pdf
+   tools/iotools/play
+   tools/iotools/profile_expr
+   tools/iotools/redo
+   tools/iotools/remove_abjad___pycache___directories
+   tools/iotools/remove_abjad_pyc_files
+   tools/iotools/save_last_ly_as
+   tools/iotools/save_last_pdf_as
+   tools/iotools/show
+   tools/iotools/spawn_subprocess
+   tools/iotools/write_expr_to_ly
+   tools/iotools/write_expr_to_ly_and_to_pdf_and_show
+   tools/iotools/write_expr_to_pdf
+   tools/iotools/z
+
+:py:mod:`layouttools <abjad.tools.layouttools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: concrete classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/layouttools/SpacingIndication/SpacingIndication
+
+.. rubric:: functions
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/layouttools/make_spacing_vector
+   tools/layouttools/set_line_breaks_cyclically_by_line_duration_ge
+   tools/layouttools/set_line_breaks_cyclically_by_line_duration_in_seconds_ge
 
 :py:mod:`leaftools <abjad.tools.leaftools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -643,6 +753,72 @@ Abjad composition packages
    tools/markuptools/remove_markup_attached_to_component
    tools/markuptools/remove_markup_from_leaves_in_expr
 
+:py:mod:`mathtools <abjad.tools.mathtools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: concrete classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/mathtools/NonreducedFraction/NonreducedFraction
+   tools/mathtools/Ratio/Ratio
+
+.. rubric:: functions
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/mathtools/are_relatively_prime
+   tools/mathtools/arithmetic_mean
+   tools/mathtools/binomial_coefficient
+   tools/mathtools/cumulative_products
+   tools/mathtools/cumulative_signed_weights
+   tools/mathtools/cumulative_sums
+   tools/mathtools/cumulative_sums_zero
+   tools/mathtools/cumulative_sums_zero_pairwise
+   tools/mathtools/difference_series
+   tools/mathtools/divide_number_by_ratio
+   tools/mathtools/divisors
+   tools/mathtools/factors
+   tools/mathtools/get_shared_numeric_sign
+   tools/mathtools/greatest_common_divisor
+   tools/mathtools/greatest_multiple_less_equal
+   tools/mathtools/greatest_power_of_two_less_equal
+   tools/mathtools/integer_equivalent_number_to_integer
+   tools/mathtools/integer_to_base_k_tuple
+   tools/mathtools/integer_to_binary_string
+   tools/mathtools/interpolate_cosine
+   tools/mathtools/interpolate_divide
+   tools/mathtools/interpolate_divide_multiple
+   tools/mathtools/interpolate_exponential
+   tools/mathtools/interpolate_linear
+   tools/mathtools/is_assignable_integer
+   tools/mathtools/is_dotted_integer
+   tools/mathtools/is_integer_equivalent_expr
+   tools/mathtools/is_integer_equivalent_number
+   tools/mathtools/is_negative_integer
+   tools/mathtools/is_nonnegative_integer
+   tools/mathtools/is_nonnegative_integer_equivalent_number
+   tools/mathtools/is_nonnegative_integer_power_of_two
+   tools/mathtools/is_positive_integer
+   tools/mathtools/is_positive_integer_equivalent_number
+   tools/mathtools/is_positive_integer_power_of_two
+   tools/mathtools/least_common_multiple
+   tools/mathtools/least_multiple_greater_equal
+   tools/mathtools/least_power_of_two_greater_equal
+   tools/mathtools/next_integer_partition
+   tools/mathtools/partition_integer_by_ratio
+   tools/mathtools/partition_integer_into_canonic_parts
+   tools/mathtools/partition_integer_into_halves
+   tools/mathtools/partition_integer_into_thirds
+   tools/mathtools/partition_integer_into_units
+   tools/mathtools/remove_powers_of_two
+   tools/mathtools/sign
+   tools/mathtools/weight
+   tools/mathtools/yield_all_compositions_of_integer
+   tools/mathtools/yield_all_partitions_of_integer
+
 :py:mod:`measuretools <abjad.tools.measuretools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -735,6 +911,30 @@ Abjad composition packages
    tools/notetools/make_repeated_notes_from_time_signatures
    tools/notetools/make_repeated_notes_with_shorter_notes_at_end
    tools/notetools/yield_groups_of_notes_in_sequence
+
+:py:mod:`pitcharraytools <abjad.tools.pitcharraytools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: concrete classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/pitcharraytools/PitchArray/PitchArray
+   tools/pitcharraytools/PitchArrayCell/PitchArrayCell
+   tools/pitcharraytools/PitchArrayColumn/PitchArrayColumn
+   tools/pitcharraytools/PitchArrayRow/PitchArrayRow
+
+.. rubric:: functions
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/pitcharraytools/all_are_pitch_arrays
+   tools/pitcharraytools/concatenate_pitch_arrays
+   tools/pitcharraytools/list_nonspanning_subarrays_of_pitch_array
+   tools/pitcharraytools/make_empty_pitch_array_from_list_of_pitch_lists
+   tools/pitcharraytools/make_populated_pitch_array_from_list_of_pitch_lists
 
 :py:mod:`pitchtools <abjad.tools.pitchtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1000,6 +1200,17 @@ Abjad composition packages
    tools/resttools/set_vertical_positioning_pitch_on_rest
    tools/resttools/yield_groups_of_rests_in_sequence
 
+:py:mod:`rhythmtreetools <abjad.tools.rhythmtreetools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: functions
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/rhythmtreetools/parse_reduced_ly_syntax
+   tools/rhythmtreetools/parse_rtm_syntax
+
 :py:mod:`schemetools <abjad.tools.schemetools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -1076,434 +1287,6 @@ Abjad composition packages
    tools/scoretools/make_piano_score_from_leaves
    tools/scoretools/make_piano_sketch_score_from_leaves
    tools/scoretools/make_pitch_array_score_from_pitch_arrays
-
-:py:mod:`skiptools <abjad.tools.skiptools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. rubric:: concrete classes
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/skiptools/Skip/Skip
-
-.. rubric:: functions
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/skiptools/all_are_skips
-   tools/skiptools/iterate_skips_backward_in_expr
-   tools/skiptools/iterate_skips_forward_in_expr
-   tools/skiptools/make_repeated_skips_from_time_signature
-   tools/skiptools/make_repeated_skips_from_time_signatures
-   tools/skiptools/make_skips_with_multiplied_durations
-   tools/skiptools/replace_leaves_in_expr_with_skips
-   tools/skiptools/yield_groups_of_skips_in_sequence
-
-:py:mod:`spannertools <abjad.tools.spannertools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. rubric:: abstract classes
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/spannertools/Spanner/Spanner
-
-.. rubric:: concrete classes
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/spannertools/BracketSpanner/BracketSpanner
-   tools/spannertools/ComplexGlissandoSpanner/ComplexGlissandoSpanner
-   tools/spannertools/CrescendoSpanner/CrescendoSpanner
-   tools/spannertools/DecrescendoSpanner/DecrescendoSpanner
-   tools/spannertools/DynamicTextSpanner/DynamicTextSpanner
-   tools/spannertools/GlissandoSpanner/GlissandoSpanner
-   tools/spannertools/HairpinSpanner/HairpinSpanner
-   tools/spannertools/HiddenStaffSpanner/HiddenStaffSpanner
-   tools/spannertools/HorizontalBracketSpanner/HorizontalBracketSpanner
-   tools/spannertools/MetricGridSpanner/MetricGridSpanner
-   tools/spannertools/OctavationSpanner/OctavationSpanner
-   tools/spannertools/PhrasingSlurSpanner/PhrasingSlurSpanner
-   tools/spannertools/PianoPedalSpanner/PianoPedalSpanner
-   tools/spannertools/SlurSpanner/SlurSpanner
-   tools/spannertools/StaffLinesSpanner/StaffLinesSpanner
-   tools/spannertools/TextScriptSpanner/TextScriptSpanner
-   tools/spannertools/TextSpanner/TextSpanner
-   tools/spannertools/TrillSpanner/TrillSpanner
-
-.. rubric:: functions
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/spannertools/all_are_spanners
-   tools/spannertools/destroy_spanners_attached_to_component
-   tools/spannertools/destroy_spanners_attached_to_components_in_expr
-   tools/spannertools/find_index_of_spanner_component_at_score_offset
-   tools/spannertools/find_spanner_component_starting_at_exactly_score_offset
-   tools/spannertools/fracture_spanners_attached_to_component
-   tools/spannertools/fracture_spanners_that_cross_components
-   tools/spannertools/get_nth_leaf_in_spanner
-   tools/spannertools/get_spanners_attached_to_any_improper_child_of_component
-   tools/spannertools/get_spanners_attached_to_any_improper_parent_of_component
-   tools/spannertools/get_spanners_attached_to_any_proper_child_of_component
-   tools/spannertools/get_spanners_attached_to_any_proper_parent_of_component
-   tools/spannertools/get_spanners_attached_to_component
-   tools/spannertools/get_spanners_contained_by_components
-   tools/spannertools/get_spanners_covered_by_components
-   tools/spannertools/get_spanners_on_components_or_component_children
-   tools/spannertools/get_spanners_that_cross_components
-   tools/spannertools/get_spanners_that_dominate_component_pair
-   tools/spannertools/get_spanners_that_dominate_components
-   tools/spannertools/get_spanners_that_dominate_container_components_from_to
-   tools/spannertools/get_the_only_spanner_attached_to_any_improper_parent_of_component
-   tools/spannertools/get_the_only_spanner_attached_to_component
-   tools/spannertools/is_component_with_spanner_attached
-   tools/spannertools/iterate_components_backward_in_spanner
-   tools/spannertools/iterate_components_forward_in_spanner
-   tools/spannertools/make_covered_spanner_schema
-   tools/spannertools/make_dynamic_spanner_below_with_nib_at_right
-   tools/spannertools/make_solid_text_spanner_above_with_nib_at_right
-   tools/spannertools/make_solid_text_spanner_below_with_nib_at_right
-   tools/spannertools/make_spanner_schema
-   tools/spannertools/move_spanners_from_component_to_children_of_component
-   tools/spannertools/report_as_string_format_contributions_of_spanners_attached_to_component
-   tools/spannertools/report_as_string_format_contributions_of_spanners_attached_to_improper_parentage_of_component
-   tools/spannertools/withdraw_components_from_spanners_covered_by_components
-
-:py:mod:`stafftools <abjad.tools.stafftools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. rubric:: concrete classes
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/stafftools/RhythmicStaff/RhythmicStaff
-   tools/stafftools/Staff/Staff
-
-.. rubric:: functions
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/stafftools/all_are_staves
-   tools/stafftools/get_first_staff_in_improper_parentage_of_component
-   tools/stafftools/get_first_staff_in_proper_parentage_of_component
-   tools/stafftools/iterate_staves_backward_in_expr
-   tools/stafftools/iterate_staves_forward_in_expr
-   tools/stafftools/make_rhythmic_sketch_staff
-
-:py:mod:`tietools <abjad.tools.tietools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. rubric:: concrete classes
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/tietools/TieChain/TieChain
-   tools/tietools/TieSpanner/TieSpanner
-
-.. rubric:: functions
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/tietools/add_or_remove_tie_chain_notes_to_achieve_scaled_written_duration
-   tools/tietools/add_or_remove_tie_chain_notes_to_achieve_written_duration
-   tools/tietools/apply_tie_spanner_to_leaf_pair
-   tools/tietools/are_components_in_same_tie_spanner
-   tools/tietools/get_nontrivial_tie_chains_masked_by_components
-   tools/tietools/get_tie_chain
-   tools/tietools/is_component_with_tie_spanner_attached
-   tools/tietools/iterate_nontrivial_tie_chains_backward_in_expr
-   tools/tietools/iterate_nontrivial_tie_chains_forward_in_expr
-   tools/tietools/iterate_pitched_tie_chains_backward_in_expr
-   tools/tietools/iterate_pitched_tie_chains_forward_in_expr
-   tools/tietools/iterate_tie_chains_backward_in_expr
-   tools/tietools/iterate_tie_chains_forward_in_expr
-   tools/tietools/iterate_topmost_tie_chains_and_components_forward_in_expr
-   tools/tietools/label_tie_chains_in_expr_with_prolated_tie_chain_duration
-   tools/tietools/label_tie_chains_in_expr_with_tie_chain_durations
-   tools/tietools/label_tie_chains_in_expr_with_written_tie_chain_duration
-   tools/tietools/remove_nonfirst_leaves_in_tie_chain
-   tools/tietools/remove_tie_spanners_from_components_in_expr
-   tools/tietools/tie_chain_to_augmented_tuplet_with_proportions_and_avoid_dots
-   tools/tietools/tie_chain_to_augmented_tuplet_with_proportions_and_encourage_dots
-   tools/tietools/tie_chain_to_diminished_tuplet_with_proportions_and_avoid_dots
-   tools/tietools/tie_chain_to_diminished_tuplet_with_proportions_and_encourage_dots
-
-:py:mod:`tuplettools <abjad.tools.tuplettools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. rubric:: concrete classes
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/tuplettools/FixedDurationTuplet/FixedDurationTuplet
-   tools/tuplettools/Tuplet/Tuplet
-
-.. rubric:: functions
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/tuplettools/all_are_tuplets
-   tools/tuplettools/change_augmented_tuplets_in_expr_to_diminished
-   tools/tuplettools/change_diminished_tuplets_in_expr_to_augmented
-   tools/tuplettools/change_fixed_duration_tuplets_in_expr_to_tuplets
-   tools/tuplettools/change_tuplets_in_expr_to_fixed_duration_tuplets
-   tools/tuplettools/fix_contents_of_tuplets_in_expr
-   tools/tuplettools/fuse_tuplets
-   tools/tuplettools/get_first_tuplet_in_improper_parentage_of_component
-   tools/tuplettools/get_first_tuplet_in_proper_parentage_of_component
-   tools/tuplettools/is_proper_tuplet_multiplier
-   tools/tuplettools/iterate_tuplets_backward_in_expr
-   tools/tuplettools/iterate_tuplets_forward_in_expr
-   tools/tuplettools/make_augmented_tuplet_from_duration_and_proportions_and_avoid_dots
-   tools/tuplettools/make_augmented_tuplet_from_duration_and_proportions_and_encourage_dots
-   tools/tuplettools/make_diminished_tuplet_from_duration_and_proportions_and_avoid_dots
-   tools/tuplettools/make_diminished_tuplet_from_duration_and_proportions_and_encourage_dots
-   tools/tuplettools/make_tuplet_from_proportions_and_pair
-   tools/tuplettools/move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_tuplet
-   tools/tuplettools/remove_trivial_tuplets_in_expr
-   tools/tuplettools/scale_contents_of_tuplets_in_expr_by_multiplier
-   tools/tuplettools/set_denominator_of_tuplets_in_expr_to_at_least
-
-:py:mod:`voicetools <abjad.tools.voicetools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. rubric:: concrete classes
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/voicetools/Voice/Voice
-
-.. rubric:: functions
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/voicetools/all_are_voices
-   tools/voicetools/get_first_voice_in_improper_parentage_of_component
-   tools/voicetools/get_first_voice_in_proper_parentage_of_component
-   tools/voicetools/iterate_semantic_voices_backward_in_expr
-   tools/voicetools/iterate_semantic_voices_forward_in_expr
-   tools/voicetools/iterate_voices_backward_in_expr
-   tools/voicetools/iterate_voices_forward_in_expr
-
-Additional Abjad composition packages (load manually)
------------------------------------------------------
-
-.. toctree::
-   :maxdepth: 1
-
-:py:mod:`durationtools <abjad.tools.durationtools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. rubric:: concrete classes
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/durationtools/Duration/Duration
-   tools/durationtools/Offset/Offset
-
-.. rubric:: functions
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/durationtools/all_are_duration_tokens
-   tools/durationtools/all_are_durations
-   tools/durationtools/assignable_rational_to_dot_count
-   tools/durationtools/assignable_rational_to_lilypond_duration_string
-   tools/durationtools/duration_pair_to_prolation_string
-   tools/durationtools/duration_token_to_big_endian_list_of_assignable_duration_pairs
-   tools/durationtools/duration_token_to_duration_pair
-   tools/durationtools/duration_token_to_rational
-   tools/durationtools/duration_tokens_to_duration_pairs
-   tools/durationtools/duration_tokens_to_duration_pairs_with_least_common_denominator
-   tools/durationtools/duration_tokens_to_least_common_denominator
-   tools/durationtools/duration_tokens_to_rationals
-   tools/durationtools/group_duration_tokens_by_implied_prolation
-   tools/durationtools/is_assignable_rational
-   tools/durationtools/is_binary_rational
-   tools/durationtools/is_duration_pair
-   tools/durationtools/is_duration_token
-   tools/durationtools/is_lilypond_duration_name
-   tools/durationtools/is_lilypond_duration_string
-   tools/durationtools/lilypond_duration_string_to_rational
-   tools/durationtools/lilypond_duration_string_to_rational_list
-   tools/durationtools/multiply_duration_pair
-   tools/durationtools/multiply_duration_pair_and_reduce_factors
-   tools/durationtools/multiply_duration_pair_and_try_to_preserve_numerator
-   tools/durationtools/numeric_seconds_to_clock_string
-   tools/durationtools/numeric_seconds_to_escaped_clock_string
-   tools/durationtools/positive_integer_to_implied_prolation_multipler
-   tools/durationtools/rational_to_duration_pair_with_multiple_of_specified_integer_denominator
-   tools/durationtools/rational_to_duration_pair_with_specified_integer_denominator
-   tools/durationtools/rational_to_equal_or_greater_assignable_rational
-   tools/durationtools/rational_to_equal_or_greater_binary_rational
-   tools/durationtools/rational_to_equal_or_lesser_assignable_rational
-   tools/durationtools/rational_to_equal_or_lesser_binary_rational
-   tools/durationtools/rational_to_flag_count
-   tools/durationtools/rational_to_fraction_string
-   tools/durationtools/rational_to_prolation_string
-   tools/durationtools/rational_to_proper_fraction
-   tools/durationtools/rewrite_rational_under_new_tempo
-   tools/durationtools/yield_all_assignable_rationals_in_cantor_diagonalized_order
-   tools/durationtools/yield_all_positive_integer_pairs_in_cantor_diagonalized_order
-   tools/durationtools/yield_all_positive_rationals_in_cantor_diagonalized_order
-   tools/durationtools/yield_all_positive_rationals_in_cantor_diagonalized_order_uniquely
-   tools/durationtools/yield_all_prolation_rewrite_pairs_of_rational_in_cantor_diagonalized_order
-
-:py:mod:`iotools <abjad.tools.iotools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. rubric:: functions
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/iotools/clear_terminal
-   tools/iotools/f
-   tools/iotools/get_last_output_file_name
-   tools/iotools/get_next_output_file_name
-   tools/iotools/log
-   tools/iotools/ly
-   tools/iotools/p
-   tools/iotools/parse_lilypond_input_string
-   tools/iotools/pdf
-   tools/iotools/play
-   tools/iotools/profile_expr
-   tools/iotools/redo
-   tools/iotools/remove_abjad___pycache___directories
-   tools/iotools/remove_abjad_pyc_files
-   tools/iotools/save_last_ly_as
-   tools/iotools/save_last_pdf_as
-   tools/iotools/show
-   tools/iotools/spawn_subprocess
-   tools/iotools/write_expr_to_ly
-   tools/iotools/write_expr_to_ly_and_to_pdf_and_show
-   tools/iotools/write_expr_to_pdf
-   tools/iotools/z
-
-:py:mod:`layouttools <abjad.tools.layouttools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. rubric:: concrete classes
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/layouttools/SpacingIndication/SpacingIndication
-
-.. rubric:: functions
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/layouttools/make_spacing_vector
-   tools/layouttools/set_line_breaks_cyclically_by_line_duration_ge
-   tools/layouttools/set_line_breaks_cyclically_by_line_duration_in_seconds_ge
-
-:py:mod:`mathtools <abjad.tools.mathtools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. rubric:: concrete classes
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/mathtools/NonreducedFraction/NonreducedFraction
-   tools/mathtools/Ratio/Ratio
-
-.. rubric:: functions
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/mathtools/are_relatively_prime
-   tools/mathtools/arithmetic_mean
-   tools/mathtools/binomial_coefficient
-   tools/mathtools/cumulative_products
-   tools/mathtools/cumulative_signed_weights
-   tools/mathtools/cumulative_sums
-   tools/mathtools/cumulative_sums_zero
-   tools/mathtools/cumulative_sums_zero_pairwise
-   tools/mathtools/difference_series
-   tools/mathtools/divide_number_by_ratio
-   tools/mathtools/divisors
-   tools/mathtools/factors
-   tools/mathtools/get_shared_numeric_sign
-   tools/mathtools/greatest_common_divisor
-   tools/mathtools/greatest_multiple_less_equal
-   tools/mathtools/greatest_power_of_two_less_equal
-   tools/mathtools/integer_equivalent_number_to_integer
-   tools/mathtools/integer_to_base_k_tuple
-   tools/mathtools/integer_to_binary_string
-   tools/mathtools/interpolate_cosine
-   tools/mathtools/interpolate_divide
-   tools/mathtools/interpolate_divide_multiple
-   tools/mathtools/interpolate_exponential
-   tools/mathtools/interpolate_linear
-   tools/mathtools/is_assignable_integer
-   tools/mathtools/is_dotted_integer
-   tools/mathtools/is_integer_equivalent_expr
-   tools/mathtools/is_integer_equivalent_number
-   tools/mathtools/is_negative_integer
-   tools/mathtools/is_nonnegative_integer
-   tools/mathtools/is_nonnegative_integer_equivalent_number
-   tools/mathtools/is_nonnegative_integer_power_of_two
-   tools/mathtools/is_positive_integer
-   tools/mathtools/is_positive_integer_equivalent_number
-   tools/mathtools/is_positive_integer_power_of_two
-   tools/mathtools/least_common_multiple
-   tools/mathtools/least_multiple_greater_equal
-   tools/mathtools/least_power_of_two_greater_equal
-   tools/mathtools/next_integer_partition
-   tools/mathtools/partition_integer_by_ratio
-   tools/mathtools/partition_integer_into_canonic_parts
-   tools/mathtools/partition_integer_into_halves
-   tools/mathtools/partition_integer_into_thirds
-   tools/mathtools/partition_integer_into_units
-   tools/mathtools/remove_powers_of_two
-   tools/mathtools/sign
-   tools/mathtools/weight
-   tools/mathtools/yield_all_compositions_of_integer
-   tools/mathtools/yield_all_partitions_of_integer
-
-:py:mod:`pitcharraytools <abjad.tools.pitcharraytools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. rubric:: concrete classes
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/pitcharraytools/PitchArray/PitchArray
-   tools/pitcharraytools/PitchArrayCell/PitchArrayCell
-   tools/pitcharraytools/PitchArrayColumn/PitchArrayColumn
-   tools/pitcharraytools/PitchArrayRow/PitchArrayRow
-
-.. rubric:: functions
-
-.. toctree::
-   :maxdepth: 1
-
-   tools/pitcharraytools/all_are_pitch_arrays
-   tools/pitcharraytools/concatenate_pitch_arrays
-   tools/pitcharraytools/list_nonspanning_subarrays_of_pitch_array
-   tools/pitcharraytools/make_empty_pitch_array_from_list_of_pitch_lists
-   tools/pitcharraytools/make_populated_pitch_array_from_list_of_pitch_lists
 
 :py:mod:`sequencetools <abjad.tools.sequencetools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1677,6 +1460,127 @@ Additional Abjad composition packages (load manually)
    tools/sievetools/all_are_residue_class_expressions
    tools/sievetools/cycle_tokens_to_sieve
 
+:py:mod:`skiptools <abjad.tools.skiptools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: concrete classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/skiptools/Skip/Skip
+
+.. rubric:: functions
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/skiptools/all_are_skips
+   tools/skiptools/iterate_skips_backward_in_expr
+   tools/skiptools/iterate_skips_forward_in_expr
+   tools/skiptools/make_repeated_skips_from_time_signature
+   tools/skiptools/make_repeated_skips_from_time_signatures
+   tools/skiptools/make_skips_with_multiplied_durations
+   tools/skiptools/replace_leaves_in_expr_with_skips
+   tools/skiptools/yield_groups_of_skips_in_sequence
+
+:py:mod:`spannertools <abjad.tools.spannertools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: abstract classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/spannertools/Spanner/Spanner
+
+.. rubric:: concrete classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/spannertools/BracketSpanner/BracketSpanner
+   tools/spannertools/ComplexGlissandoSpanner/ComplexGlissandoSpanner
+   tools/spannertools/CrescendoSpanner/CrescendoSpanner
+   tools/spannertools/DecrescendoSpanner/DecrescendoSpanner
+   tools/spannertools/DynamicTextSpanner/DynamicTextSpanner
+   tools/spannertools/GlissandoSpanner/GlissandoSpanner
+   tools/spannertools/HairpinSpanner/HairpinSpanner
+   tools/spannertools/HiddenStaffSpanner/HiddenStaffSpanner
+   tools/spannertools/HorizontalBracketSpanner/HorizontalBracketSpanner
+   tools/spannertools/MetricGridSpanner/MetricGridSpanner
+   tools/spannertools/OctavationSpanner/OctavationSpanner
+   tools/spannertools/PhrasingSlurSpanner/PhrasingSlurSpanner
+   tools/spannertools/PianoPedalSpanner/PianoPedalSpanner
+   tools/spannertools/SlurSpanner/SlurSpanner
+   tools/spannertools/StaffLinesSpanner/StaffLinesSpanner
+   tools/spannertools/TextScriptSpanner/TextScriptSpanner
+   tools/spannertools/TextSpanner/TextSpanner
+   tools/spannertools/TrillSpanner/TrillSpanner
+
+.. rubric:: functions
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/spannertools/all_are_spanners
+   tools/spannertools/destroy_spanners_attached_to_component
+   tools/spannertools/destroy_spanners_attached_to_components_in_expr
+   tools/spannertools/find_index_of_spanner_component_at_score_offset
+   tools/spannertools/find_spanner_component_starting_at_exactly_score_offset
+   tools/spannertools/fracture_spanners_attached_to_component
+   tools/spannertools/fracture_spanners_that_cross_components
+   tools/spannertools/get_nth_leaf_in_spanner
+   tools/spannertools/get_spanners_attached_to_any_improper_child_of_component
+   tools/spannertools/get_spanners_attached_to_any_improper_parent_of_component
+   tools/spannertools/get_spanners_attached_to_any_proper_child_of_component
+   tools/spannertools/get_spanners_attached_to_any_proper_parent_of_component
+   tools/spannertools/get_spanners_attached_to_component
+   tools/spannertools/get_spanners_contained_by_components
+   tools/spannertools/get_spanners_covered_by_components
+   tools/spannertools/get_spanners_on_components_or_component_children
+   tools/spannertools/get_spanners_that_cross_components
+   tools/spannertools/get_spanners_that_dominate_component_pair
+   tools/spannertools/get_spanners_that_dominate_components
+   tools/spannertools/get_spanners_that_dominate_container_components_from_to
+   tools/spannertools/get_the_only_spanner_attached_to_any_improper_parent_of_component
+   tools/spannertools/get_the_only_spanner_attached_to_component
+   tools/spannertools/is_component_with_spanner_attached
+   tools/spannertools/iterate_components_backward_in_spanner
+   tools/spannertools/iterate_components_forward_in_spanner
+   tools/spannertools/make_covered_spanner_schema
+   tools/spannertools/make_dynamic_spanner_below_with_nib_at_right
+   tools/spannertools/make_solid_text_spanner_above_with_nib_at_right
+   tools/spannertools/make_solid_text_spanner_below_with_nib_at_right
+   tools/spannertools/make_spanner_schema
+   tools/spannertools/move_spanners_from_component_to_children_of_component
+   tools/spannertools/report_as_string_format_contributions_of_spanners_attached_to_component
+   tools/spannertools/report_as_string_format_contributions_of_spanners_attached_to_improper_parentage_of_component
+   tools/spannertools/withdraw_components_from_spanners_covered_by_components
+
+:py:mod:`stafftools <abjad.tools.stafftools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: concrete classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/stafftools/RhythmicStaff/RhythmicStaff
+   tools/stafftools/Staff/Staff
+
+.. rubric:: functions
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/stafftools/all_are_staves
+   tools/stafftools/get_first_staff_in_improper_parentage_of_component
+   tools/stafftools/get_first_staff_in_proper_parentage_of_component
+   tools/stafftools/iterate_staves_backward_in_expr
+   tools/stafftools/iterate_staves_forward_in_expr
+   tools/stafftools/make_rhythmic_sketch_staff
+
 :py:mod:`stringtools <abjad.tools.stringtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -1717,6 +1621,46 @@ Additional Abjad composition packages (load manually)
 
    tools/tempotools/integer_tempo_to_multiplier_tempo_pairs
    tools/tempotools/integer_tempo_to_multiplier_tempo_pairs_report
+
+:py:mod:`tietools <abjad.tools.tietools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: concrete classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/tietools/TieChain/TieChain
+   tools/tietools/TieSpanner/TieSpanner
+
+.. rubric:: functions
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/tietools/add_or_remove_tie_chain_notes_to_achieve_scaled_written_duration
+   tools/tietools/add_or_remove_tie_chain_notes_to_achieve_written_duration
+   tools/tietools/apply_tie_spanner_to_leaf_pair
+   tools/tietools/are_components_in_same_tie_spanner
+   tools/tietools/get_nontrivial_tie_chains_masked_by_components
+   tools/tietools/get_tie_chain
+   tools/tietools/is_component_with_tie_spanner_attached
+   tools/tietools/iterate_nontrivial_tie_chains_backward_in_expr
+   tools/tietools/iterate_nontrivial_tie_chains_forward_in_expr
+   tools/tietools/iterate_pitched_tie_chains_backward_in_expr
+   tools/tietools/iterate_pitched_tie_chains_forward_in_expr
+   tools/tietools/iterate_tie_chains_backward_in_expr
+   tools/tietools/iterate_tie_chains_forward_in_expr
+   tools/tietools/iterate_topmost_tie_chains_and_components_forward_in_expr
+   tools/tietools/label_tie_chains_in_expr_with_prolated_tie_chain_duration
+   tools/tietools/label_tie_chains_in_expr_with_tie_chain_durations
+   tools/tietools/label_tie_chains_in_expr_with_written_tie_chain_duration
+   tools/tietools/remove_nonfirst_leaves_in_tie_chain
+   tools/tietools/remove_tie_spanners_from_components_in_expr
+   tools/tietools/tie_chain_to_augmented_tuplet_with_proportions_and_avoid_dots
+   tools/tietools/tie_chain_to_augmented_tuplet_with_proportions_and_encourage_dots
+   tools/tietools/tie_chain_to_diminished_tuplet_with_proportions_and_avoid_dots
+   tools/tietools/tie_chain_to_diminished_tuplet_with_proportions_and_encourage_dots
 
 :py:mod:`timeintervaltools <abjad.tools.timeintervaltools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1835,6 +1779,44 @@ Additional Abjad composition packages (load manually)
    tools/timetokentools/TokenIncisedRestFilledTimeTokenMaker/TokenIncisedRestFilledTimeTokenMaker
    tools/timetokentools/TupletMonadTimeTokenMaker/TupletMonadTimeTokenMaker
 
+:py:mod:`tuplettools <abjad.tools.tuplettools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: concrete classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/tuplettools/FixedDurationTuplet/FixedDurationTuplet
+   tools/tuplettools/Tuplet/Tuplet
+
+.. rubric:: functions
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/tuplettools/all_are_tuplets
+   tools/tuplettools/change_augmented_tuplets_in_expr_to_diminished
+   tools/tuplettools/change_diminished_tuplets_in_expr_to_augmented
+   tools/tuplettools/change_fixed_duration_tuplets_in_expr_to_tuplets
+   tools/tuplettools/change_tuplets_in_expr_to_fixed_duration_tuplets
+   tools/tuplettools/fix_contents_of_tuplets_in_expr
+   tools/tuplettools/fuse_tuplets
+   tools/tuplettools/get_first_tuplet_in_improper_parentage_of_component
+   tools/tuplettools/get_first_tuplet_in_proper_parentage_of_component
+   tools/tuplettools/is_proper_tuplet_multiplier
+   tools/tuplettools/iterate_tuplets_backward_in_expr
+   tools/tuplettools/iterate_tuplets_forward_in_expr
+   tools/tuplettools/make_augmented_tuplet_from_duration_and_proportions_and_avoid_dots
+   tools/tuplettools/make_augmented_tuplet_from_duration_and_proportions_and_encourage_dots
+   tools/tuplettools/make_diminished_tuplet_from_duration_and_proportions_and_avoid_dots
+   tools/tuplettools/make_diminished_tuplet_from_duration_and_proportions_and_encourage_dots
+   tools/tuplettools/make_tuplet_from_proportions_and_pair
+   tools/tuplettools/move_prolation_of_tuplet_to_contents_of_tuplet_and_remove_tuplet
+   tools/tuplettools/remove_trivial_tuplets_in_expr
+   tools/tuplettools/scale_contents_of_tuplets_in_expr_by_multiplier
+   tools/tuplettools/set_denominator_of_tuplets_in_expr_to_at_least
+
 :py:mod:`verticalitytools <abjad.tools.verticalitytools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -1862,22 +1844,34 @@ Additional Abjad composition packages (load manually)
    tools/verticalitytools/label_vertical_moments_in_expr_with_numbered_chromatic_pitch_classes
    tools/verticalitytools/label_vertical_moments_in_expr_with_pitch_numbers
 
-Unstable Abjad composition packages (load manually)
----------------------------------------------------
+:py:mod:`voicetools <abjad.tools.voicetools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
 
-:py:mod:`rhythmtreetools <abjad.tools.rhythmtreetools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   tools/voicetools/Voice/Voice
 
 .. rubric:: functions
 
 .. toctree::
    :maxdepth: 1
 
-   tools/rhythmtreetools/parse_reduced_ly_syntax
-   tools/rhythmtreetools/parse_rtm_syntax
+   tools/voicetools/all_are_voices
+   tools/voicetools/get_first_voice_in_improper_parentage_of_component
+   tools/voicetools/get_first_voice_in_proper_parentage_of_component
+   tools/voicetools/iterate_semantic_voices_backward_in_expr
+   tools/voicetools/iterate_semantic_voices_forward_in_expr
+   tools/voicetools/iterate_voices_backward_in_expr
+   tools/voicetools/iterate_voices_forward_in_expr
+
+Unstable Abjad composition packages (load manually)
+---------------------------------------------------
+
+.. toctree::
+   :maxdepth: 1
 
 :py:mod:`tonalitytools <abjad.tools.tonalitytools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
