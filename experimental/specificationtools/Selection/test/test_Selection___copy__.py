@@ -4,7 +4,7 @@ import copy
 
 def test_Selection___copy___01():
 
-    timespan = specificationtools.segment_to_timespan('red')
+    timespan = specificationtools.segments_to_timespan('red')
 
     selection_1 = specificationtools.Selection(contexts=['Voice 1', 'Voice 3'], timespan=timespan)
     selection_2 = copy.deepcopy(selection_1)

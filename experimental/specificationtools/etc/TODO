@@ -2,4 +2,7 @@
 
 2. Implement selection-creation courtesy methods.
 
-3. Extend DivisionList repr and initializer with string handling.
+3. Extend DivisionList initializer with string handling.
+
+4. Extend ScoreObjectIndicator to make it possible to indicate object-relative counts.
+   For example, the segment that is 3 segments to the right of segment 'red'.

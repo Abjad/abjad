@@ -33,7 +33,7 @@ class Selection(AbjadObject):
 
     Select the timespan of segment ``'red'``::
 
-        >>> timespan = specificationtools.segment_to_timespan('red')
+        >>> timespan = specificationtools.segments_to_timespan('red')
 
     ::
 

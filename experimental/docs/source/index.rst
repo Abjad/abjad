@@ -213,5 +213,4 @@ Unstable packages (load manually)
    experimental/specificationtools/expr_to_segment_name
    experimental/specificationtools/request_divisions
    experimental/specificationtools/score_to_timespan
-   experimental/specificationtools/segment_to_timespan
-   experimental/specificationtools/select_score
+   experimental/specificationtools/segments_to_timespan

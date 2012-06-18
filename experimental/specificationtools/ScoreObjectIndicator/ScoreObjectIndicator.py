@@ -104,7 +104,7 @@ class ScoreObjectIndicator(AbjadObject):
     def __init__(self, segment=None, context=None, klass=None, predicate=None, index=None):
         if isinstance(segment, SegmentSpecification):
             segment = segment.name
-        assert isinstance(segment, (str, type(None))), repr(segment)
+        assert isinstance(segment, (str, int, type(None))), repr(segment)
         if isinstance(context, contexttools.Context):
             context = context.name
         assert isinstance(context, (str, type(None))), repr(context)

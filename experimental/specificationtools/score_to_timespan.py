@@ -1,7 +1,7 @@
 def score_to_timespan(score=None):
     r'''.. versionadded:: 1.0
 
-    Change optional `score` to timespan of entire score::
+    Change optional `score` to timespan::
 
         >>> from experimental import specificationtools
 
