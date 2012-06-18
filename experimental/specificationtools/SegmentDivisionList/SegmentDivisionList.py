@@ -37,15 +37,15 @@ class SegmentDivisionList(DivisionList):
 
         >>> for x in specification.payload_context_dictionary['Voice 1']['region_division_lists']: x
         ... 
-        RegionDivisionList([D(3, 16), D(3, 16), D(3, 16), D(3, 16), D(3, 16), D(3, 16), D(3, 16), D(3, 16), D(3, 16), D(3, 16), D(3, 16), D(3, 16), D(3, 16), D(3, 16)])
+        RegionDivisionList([Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]')])
 
     But voice 1 has three segment division lists::
 
         >>> for x in specification.payload_context_dictionary['Voice 1']['segment_division_lists']: x
         ... 
-        SegmentDivisionList([D(3, 16), D(3, 16), D(3, 16), D(3, 16), D(2, 16))], is_right_open=True)
-        SegmentDivisionList([D((1, 16), D(3, 16), D(3, 16), D(3, 16), D(3, 16), D(1, 16))], is_left_open=True, is_right_open=True)
-        SegmentDivisionList([D((2, 16), D(3, 16), D(3, 16), D(3, 16), D(3, 16)], is_left_open=True)
+        SegmentDivisionList([Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[2, 16)')], is_right_open=True)
+        SegmentDivisionList([Division('(1, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[1, 16)')], is_left_open=True, is_right_open=True)
+        SegmentDivisionList([Division('(2, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]'), Division('[3, 16]')], is_left_open=True)
 
     After interpretation each voice carries exactly one segment division list per segment.
     

@@ -4,14 +4,43 @@ from abjad.tools.mathtools.NonreducedFraction import NonreducedFraction
 import fractions
 
 
+# TODO: refactor to inherit from mathtools.BoundedObject, too
 class Division(NonreducedFraction):
-    '''Nonreduced fraction extended with boundary predicates.
+    r'''.. versionadded:: 1.0
+
+    Bounded nonreduced fraction.
+
+    Initialize from string::
+
+        >>> from experimental import specificationtools
+
+    ::
+
+        >>> specificationtools.Division('[5, 8)')
+        Division('[5, 8)')
+
+    Initialize from pair and optional open / closed keywords::
+
+        >>> specificationtools.Division((5, 8), is_right_open=True)
+        Division('[5, 8)')
+
+    Initialize from other division:
+
+    .. todo:: initialize divisions from other divisions.
+
+    Divisions are immutable.
     '''
 
     ### INITIALIZER ###
 
-    def __new__(self, pair, is_left_open=None, is_right_open=None):
-        self = NonreducedFraction.__new__(self, pair)
+    def __new__(klass, arg, is_left_open=None, is_right_open=None):
+        from experimental import specificationtools
+        if isinstance(arg, str):
+            triple = specificationtools.interval_string_to_pair_and_indicators(arg)
+            pair, is_left_open, is_right_open = triple
+        else:
+            pair = arg
+        self = NonreducedFraction.__new__(klass, pair)
         if is_left_open is None:
             is_left_open = getattr(pair, 'is_left_open', False)
         if is_right_open is None:
@@ -34,22 +63,18 @@ class Division(NonreducedFraction):
         return True
 
     def __repr__(self):
-#        contents = [repr(self.pair)]
-#        if self.is_left_open:
-#            contents.append('is_left_open=True')
-#        if self.is_right_open:
-#            contents.append('is_right_open=True')
-#        contents = ', '.join(contents)
-#        return '{}({})'.format(self._class_name, contents)
+        return '{}({!r})'.format(self._class_name, str(self))
+
+    def __str__(self):
         if self.is_left_open:
-            left_symbol = '(('
-        else:
             left_symbol = '('
-        if self.is_right_open:
-            right_symbol = '))'
         else:
+            left_symbol = '['
+        if self.is_right_open:
             right_symbol = ')'
-        return 'D{}{}, {}{}'.format(left_symbol, self.numerator, self.denominator, right_symbol)
+        else:
+            right_symbol = ']'
+        return '{}{}, {}{}'.format(left_symbol, self.numerator, self.denominator, right_symbol)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

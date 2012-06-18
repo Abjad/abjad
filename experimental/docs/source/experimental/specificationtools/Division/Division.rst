@@ -206,8 +206,6 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.Division.Division.Division.__str__
 
-    Inherited from :py:class:`mathtools.NonreducedFraction <abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction>`
-
 .. automethod:: experimental.specificationtools.Division.Division.Division.__sub__
 
     Inherited from :py:class:`mathtools.NonreducedFraction <abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction>`

@@ -1,3 +1,5 @@
 1. Implement timespan-creation courtesy methods.
 
 2. Implement selection-creation courtesy methods.
+
+3. Extend DivisionList repr and initializer with string handling.

@@ -10,5 +10,4 @@ def test_DivisionList___repr___01():
     divisions.append(Division((1, 8), is_right_open=True))
     division_list = DivisionList(divisions) 
     
-    assert repr(division_list) == \
-        'DivisionList([D((2, 8), D(5, 8), D(1, 8))], is_left_open=True, is_right_open=True)'
+    assert repr(division_list) == "DivisionList([Division('(2, 8]'), Division('[5, 8]'), Division('[1, 8)')], is_left_open=True, is_right_open=True)"
