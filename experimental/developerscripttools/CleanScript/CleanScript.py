@@ -31,6 +31,7 @@ class CleanScript(DirectoryScript):
     ### PUBLIC METHODS ###
 
     def process_args(self, args):
+        print 'Cleaning...'
         for root, dirs, files in os.walk(args.path):
 
             if '.svn' in dirs:

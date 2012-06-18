@@ -54,13 +54,63 @@ class ReplaceInFilesScript(DirectoryScript):
 
     ### PRIVATE METHODS ###
 
-    def _process_file(self, path):
-        print path
-        return 0
+    def _process_file(self, args, path):
+
+        old, new = args.old, args.new
+        length = len(args.old)
+        difference = len(args.old) - len(args.new)
+        changed_lines = 0
+
+        with open(path, 'r') as f:
+            lines = f.read().split('\n')
+
+        results = []
+        for i, line in enumerate(lines):
+
+
+            changed = False
+            index = line.find(old)
+            while 0 <= index:
+
+                if args.force:
+                    line = line[:index] + new + line[index+length:]
+                    index += length - difference
+                    changed = True
+
+                else:
+                    carats = (' ' * index) + ('^' * length)
+                    print ''
+                    print '{}: {}'.format(path, i)
+                    print '{}'.format(line)
+            	    print '{}'.format(carats)
+                    print ''
+                    result = raw_input('Replace? [Y/n] > ').lower()
+                    while result not in ('', 'y', 'yes', 'n', 'no'):
+                        result = raw_input('Replace? [Y/n] > ').lower()
+                    if result in ('', 'y', 'yes'):
+                        line = line[:index] + new + line[index+length:]
+                        index += length - difference
+                        changed = True
+                    else:
+                        index += length
+
+                index = line.find(old, index)
+
+            results.append(line)
+            if changed:
+                changed_lines += 1
+
+            if results != lines:
+                with open(path, 'w') as f:
+                    f.write('\n'.join(results))
+
+        return changed_lines
 
     ### PUBLIC METHODS ###
 
     def process_args(self, args):
+
+        print 'Replacing {!r} with {!r}...'.format(args.old, args.new)
 
         skipped_dirs_patterns = self.skipped_directories + args.without_dirs
         skipped_files_patterns = self.skipped_files + args.without_files
@@ -79,7 +129,7 @@ class ReplaceInFilesScript(DirectoryScript):
             for dir in dirs_to_remove:
                 dirs.remove(dir)
 
-            for file in files:
+            for file in sorted(files):
                 valid = True
                 for pattern in skipped_files_patterns:
                     if fnmatch.fnmatch(file, pattern):
@@ -88,12 +138,13 @@ class ReplaceInFilesScript(DirectoryScript):
                 if not valid:
                     continue
 
-                changed_lines = self._process_file(os.path.join(root, file))
+                changed_lines = self._process_file(args, os.path.join(root, file))
                 if changed_lines:
                     changed_file_count += 1
                     changed_line_count += changed_lines
 
-        print 'CHANGED {} LINES IN {} FILES.'.format(changed_line_count, changed_file_count)
+        print ''
+        print 'Changed {} lines in {} files.'.format(changed_line_count, changed_file_count)
 
     def setup_argument_parser(self, parser):
 
