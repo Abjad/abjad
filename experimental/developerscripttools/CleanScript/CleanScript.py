@@ -31,7 +31,17 @@ class CleanScript(DirectoryScript):
     ### PUBLIC METHODS ###
 
     def process_args(self, args):
+        if not args.pyc and not args.pycache and not args.tmp:
+            args.pyc, args.pycache, args.tmp = True, True, True
+
         print 'Cleaning...'
+        if args.pyc:
+            print '\t*.pyc files'
+        if args.pycache:
+            print '\t__pycache__ directories'
+        if args.tmp:
+            print '\ttmp* directories'
+
         for root, dirs, files in os.walk(args.path):
 
             if '.svn' in dirs:

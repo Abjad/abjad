@@ -33,8 +33,6 @@ class BuildAbjadApiScript(DeveloperScript):
 
     def process_args(self, args):
 
-        print args
-
         AbjadAPIGenerator()(verbose=True)
 
         # print greeting

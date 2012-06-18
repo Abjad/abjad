@@ -116,7 +116,7 @@ class ReplaceInFilesScript(DirectoryScript):
             def __init__(self, pattern):
                 self.pattern = pattern
             def __call__(self, line, pos):
-                index = line.find(self.pattern)
+                index = line.find(self.pattern, pos)
                 if 0 <= index:
                     return index, len(self.pattern)
                 return -1, 0

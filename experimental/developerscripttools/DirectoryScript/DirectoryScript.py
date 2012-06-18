@@ -18,4 +18,4 @@ class DirectoryScript(DeveloperScript):
         path = os.path.abspath(path)
         if not self._is_valid_path(path):
             raise error
-        return path
+        return os.path.relpath(path)
