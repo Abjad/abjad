@@ -211,6 +211,7 @@ Unstable packages (load manually)
    experimental/specificationtools/expr_to_component_name
    experimental/specificationtools/expr_to_score_name
    experimental/specificationtools/expr_to_segment_name
+   experimental/specificationtools/make_score_measure_indicator
    experimental/specificationtools/measures_to_timespan
    experimental/specificationtools/request_divisions
    experimental/specificationtools/score_to_timespan

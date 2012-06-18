@@ -18,6 +18,9 @@ def measures_to_timespan(start_measure, stop_measure=None):
     Measures are ``1``-indexed by convention.
 
     Return timespan.
+
+    .. note:: this function can probably eliminated in favor of a ``select_measures()`` function.
+        Such a function would return a ScoreSliceIndicator with a public 'timespan' property.
     '''
     from abjad.tools import measuretools
     from experimental import specificationtools
