@@ -687,6 +687,7 @@ class _LilyPondSyntacticalDefinition(object):
         "context_modification : WITH '{' context_mod_list '}'"
         p[0] = p[3]
         self.client._lexer.pop_state()
+        self.client._relex_lookahead()
 
 
     def p_context_modification__WITH__embedded_scm_closed(self, p):
@@ -1175,6 +1176,7 @@ class _LilyPondSyntacticalDefinition(object):
         'full_markup : MARKUP markup_top'
         p[0] = markuptools.Markup(p[2])
         self.client._lexer.pop_state()
+        self.client._relex_lookahead()
 
 
     ### full_markup_list ###
@@ -2449,6 +2451,7 @@ class _LilyPondSyntacticalDefinition(object):
         p[0] = p[1]
         self.client._pop_variable_scope()
         self.client._lexer.pop_state()
+        self.client._relex_lookahead()
 
 
     ### output_def_body ###

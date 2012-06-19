@@ -41,3 +41,26 @@ def test_LilyPondParser__marks__Markup_02():
     result = parser(input)
     assert target.lilypond_format == result.lilypond_format and target is not result
     assert 1 == len(markuptools.get_markup_attached_to_component(result[0]))
+
+
+def test_LilyPondParser__marks__Markup_03():
+    '''Articulations following markup block are (re)lexed correctly after
+    returning to the "notes" lexical state after popping the "markup lexical state.
+    '''
+
+    target = Staff([Note(0, (1, 4)), Note(2, (1, 4))])
+    markuptools.Markup('hello', 'up')(target[0])
+    marktools.Articulation('.')(target[0])
+
+    r'''\new Staff {
+        c'4 -\staccato ^ \markup { hello }
+        d'4
+    }
+    '''
+
+    input = r'''\new Staff { c' ^ \markup { hello } -. d' }'''
+
+    parser = LilyPondParser()
+    result = parser(input)
+    assert target.lilypond_format == result.lilypond_format and target is not result
+    assert 1 == len(markuptools.get_markup_attached_to_component(result[0]))

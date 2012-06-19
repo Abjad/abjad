@@ -599,6 +599,12 @@ class LilyPondParser(AbjadObject):
         self._parser.lookaheadstack.append(token)
 
 
+    def _relex_lookahead(self):
+        difference = self._parser.lookahead.lexpos - self._lexer.lexpos
+        self._lexer.skip(difference)
+        self._parser.lookahead = None
+
+
     def _reparse_token(self, predicate, token_type, token_value):
         if self._debug:
             self._logger.info('Extra  : Reparsing')
