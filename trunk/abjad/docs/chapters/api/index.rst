@@ -2084,6 +2084,7 @@ Internal packages
 .. toctree::
    :maxdepth: 1
 
+   tools/formattools/get_all_mark_format_contributions
    tools/formattools/get_articulation_format_contributions
    tools/formattools/get_comment_format_contributions_for_slot
    tools/formattools/get_context_mark_format_contributions_for_slot
