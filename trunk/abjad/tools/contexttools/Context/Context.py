@@ -105,10 +105,12 @@ class Context(Container):
             brackets_open = ['{']
         engraver_removals = context._format_engraver_removals()
         engraver_consists = context._format_engraver_consists()
-        overrides = formattools.get_grob_override_format_contributions(context)
-        overrides = overrides[1]
-        settings = formattools.get_context_setting_format_contributions(context)
-        settings = settings[1]
+        overrides = format_contributions.get('grob overrides', [])
+        #overrides = formattools.get_grob_override_format_contributions(context)
+        #overrides = overrides[1]
+        settings = format_contributions.get('context settings', [])
+        #settings = formattools.get_context_setting_format_contributions(context)
+        #settings = settings[1]
         if engraver_removals or engraver_consists or overrides or settings:
             contributions = [context._format_invocation() + r' \with {']
             result.append([('context_brackets', 'open'), contributions])
@@ -129,17 +131,23 @@ class Context(Container):
 
     def _format_opening_slot(context, format_contributions):
         result = []
-        result.append(formattools.get_comment_format_contributions_for_slot(context, 'opening'))
-        result.append(formattools.get_context_mark_format_contributions_for_slot(context, 'opening'))
-        result.append(formattools.get_lilypond_command_mark_format_contributions_for_slot(context, 'opening'))
+        result.append(['comments', format_contributions.get('opening', {}).get('comments', [])])
+        result.append(['context marks', format_contributions.get('opening', {}).get('context marks', [])])
+        result.append(['lilypond command marks', format_contributions.get('opening', {}).get('lilypond command marks', [])])
+        #result.append(formattools.get_comment_format_contributions_for_slot(context, 'opening'))
+        #result.append(formattools.get_context_mark_format_contributions_for_slot(context, 'opening'))
+        #result.append(formattools.get_lilypond_command_mark_format_contributions_for_slot(context, 'opening'))
         context._format_slot_contributions_with_indent(result)
         return tuple(result)
 
     def _format_closing_slot(context, format_contributions):
         result = []
-        result.append(formattools.get_context_mark_format_contributions_for_slot(context, 'closing'))
-        result.append(formattools.get_lilypond_command_mark_format_contributions_for_slot(context, 'closing'))
-        result.append(formattools.get_comment_format_contributions_for_slot(context, 'closing'))
+        result.append(['context marks', format_contributions.get('closing', {}).get('context marks', [])])
+        result.append(['lilypond command marks', format_contributions.get('closing', {}).get('lilypond command marks', [])])
+        result.append(['comments', format_contributions.get('closing', {}).get('comments', [])])
+        #result.append(formattools.get_context_mark_format_contributions_for_slot(context, 'closing'))
+        #result.append(formattools.get_lilypond_command_mark_format_contributions_for_slot(context, 'closing'))
+        #result.append(formattools.get_comment_format_contributions_for_slot(context, 'closing'))
         context._format_slot_contributions_with_indent(result)
         return tuple(result)
 

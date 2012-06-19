@@ -236,10 +236,10 @@ class TimeSignatureMark(ContextMark):
             return r'\time %s/%s' % (self.numerator, self.denominator)
         else:
             result = []
-            result.append(r'\time %s/%s' % (self.numerator, self.denominator))
             duration_string = durationtools.assignable_rational_to_lilypond_duration_string(self.partial)
             partial_directive = r'\partial %s' % duration_string
             result.append(partial_directive)
+            result.append(r'\time %s/%s' % (self.numerator, self.denominator))
             return result
 
     @property

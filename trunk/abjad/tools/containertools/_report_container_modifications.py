@@ -4,19 +4,23 @@ def _report_container_modifications(container, output='string'):
     Return string.
     '''
 
+    from abjad.tools import formattools
     from abjad.tools import containertools
     assert isinstance(container, containertools.Container)
     assert output in ('screen', 'string')
 
+    fc = formattools.get_all_format_contributions(container)
+
     result = []
-    result.extend(container._get_format_contributions_for_slot('before'))
-    result.extend(container._get_format_contributions_for_slot('open_brackets'))
-    result.extend(container._get_format_contributions_for_slot('opening'))
-    heart = '\t%%%%%% %s components omitted %%%%%%' % len(container)
-    result.extend([heart])
-    result.extend(container._get_format_contributions_for_slot('closing'))
-    result.extend(container._get_format_contributions_for_slot('close_brackets'))
-    result.extend(container._get_format_contributions_for_slot('after'))
+
+    result.extend(container._get_format_contributions_for_slot('before', fc))
+    result.extend(container._get_format_contributions_for_slot('open brackets', fc))
+    result.extend(container._get_format_contributions_for_slot('opening', fc))
+    result.append('\t%%%%%% %s components omitted %%%%%%' % len(container))
+    result.extend(container._get_format_contributions_for_slot('closing', fc))
+    result.extend(container._get_format_contributions_for_slot('close brackets', fc))
+    result.extend(container._get_format_contributions_for_slot('after', fc))
+
     result = '\n'.join(result)
 
     if output == 'screen':

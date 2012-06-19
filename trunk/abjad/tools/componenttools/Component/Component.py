@@ -219,8 +219,9 @@ class Component(AbjadObject):
     def _format_opening_slot(self, format_contributions):
         pass
 
-    def _get_format_contributions_for_slot(self, n):
-        format_contributions = formattools.get_all_format_contributions(self)
+    def _get_format_contributions_for_slot(self, n, format_contributions=None):
+        if format_contributions is None:
+            format_contributions = formattools.get_all_format_contributions(self)
         result = []
         slots = ('before', 'open_brackets', 'opening',
             'contents', 'closing', 'close_brackets', 'after')
