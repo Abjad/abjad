@@ -179,7 +179,7 @@ class Measure(FixedDurationContainer):
             result.extend(FixedDurationContainer._format_content_pieces(self))
         return result
 
-    def _format_opening_slot(self):
+    def _format_opening_slot(self, format_contributions):
         r'''This is the slot where LilyPond grob \override commands live.
         This is also the slot where LilyPond \time commands live.
         '''

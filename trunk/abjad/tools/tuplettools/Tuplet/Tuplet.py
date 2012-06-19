@@ -92,14 +92,14 @@ class Tuplet(Container):
                 return r'\fraction '
         return ''
 
-    def _format_before_slot(self):
+    def _format_before_slot(self, format_contributions):
         result = []
         result.append(formattools.get_comment_format_contributions_for_slot(self, 'before'))
         result.append(formattools.get_lilypond_command_mark_format_contributions_for_slot(self, 'before'))
         result.append(formattools.get_grob_override_format_contributions(self))
         return tuple(result)
 
-    def _format_open_brackets_slot(self):
+    def _format_open_brackets_slot(self, format_contributions):
         result = []
         if self.multiplier:
             if self.is_invisible:
@@ -121,7 +121,7 @@ class Tuplet(Container):
                 result.append([contributor, contributions])
         return tuple(result)
 
-    def _format_opening_slot(self):
+    def _format_opening_slot(self, format_contributions):
         '''Read-only tuple of format contributions to appear immediately after self opening.
         '''
         result = []
@@ -130,7 +130,7 @@ class Tuplet(Container):
         self._format_slot_contributions_with_indent(result)
         return tuple(result)
 
-    def _format_closing_slot(self):
+    def _format_closing_slot(self, format_contributions):
         '''Read-only tuple of format contributions to appear immediately before self closing.
         '''
         result = []
@@ -139,7 +139,7 @@ class Tuplet(Container):
         self._format_slot_contributions_with_indent(result)
         return tuple(result)
 
-    def _format_close_brackets_slot(self):
+    def _format_close_brackets_slot(self, format_contributions):
         '''Read-only tuple of format contributions used to generate self closing.
         '''
         result = []
@@ -147,7 +147,7 @@ class Tuplet(Container):
             result.append([('self_brackets', 'close'), '}'])
         return tuple(result)
 
-    def _format_after_slot(self):
+    def _format_after_slot(self, format_contributions):
         '''Read-only tuple of format contributions to appear immediately after self closing.
         '''
         result = []

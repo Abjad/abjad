@@ -3,6 +3,7 @@ from abjad.tools.lilypondproxytools import LilyPondContextSettingComponentPlugIn
 from abjad.tools.lilypondproxytools import LilyPondGrobOverrideComponentPlugIn
 from abjad.tools.abctools import AbjadObject
 from abjad.tools import durationtools
+from abjad.tools import formattools
 import copy
 import fractions
 
@@ -181,13 +182,14 @@ class Component(AbjadObject):
 
     def _format_component(self, pieces=False):
         result = []
-        result.extend(self._format_before_slot())
-        result.extend(self._format_open_brackets_slot())
-        result.extend(self._format_opening_slot())
-        result.extend(self._format_contents_slot())
-        result.extend(self._format_closing_slot())
-        result.extend(self._format_close_brackets_slot())
-        result.extend(self._format_after_slot())
+        format_contributions = formattools.get_all_format_contributions(self)
+        result.extend(self._format_before_slot(format_contributions))
+        result.extend(self._format_open_brackets_slot(format_contributions))
+        result.extend(self._format_opening_slot(format_contributions))
+        result.extend(self._format_contents_slot(format_contributions))
+        result.extend(self._format_closing_slot(format_contributions))
+        result.extend(self._format_close_brackets_slot(format_contributions))
+        result.extend(self._format_after_slot(format_contributions))
         contributions = []
         for contributor, contribution in result:
             contributions.extend(contribution)
@@ -196,28 +198,29 @@ class Component(AbjadObject):
         else:
             return '\n'.join(contributions)
 
-    def _format_before_slot(self):
+    def _format_after_slot(self, format_contributions):
         pass
 
-    def _format_open_brackets_slot(self):
+    def _format_before_slot(self, format_contributions):
         pass
 
-    def _format_opening_slot(self):
+    def _format_close_brackets_slot(self, format_contributions):
         pass
 
-    def _format_contents_slot(self):
+    def _format_closing_slot(self, format_contributions):
         pass
 
-    def _format_closing_slot(self):
+    def _format_contents_slot(self, format_contributions):
         pass
 
-    def _format_close_brackets_slot(self):
+    def _format_open_brackets_slot(self, format_contributions):
         pass
 
-    def _format_after_slot(self):
+    def _format_opening_slot(self, format_contributions):
         pass
 
     def _get_format_contributions_for_slot(self, n):
+        format_contributions = formattools.get_all_format_contributions(self)
         result = []
         slots = ('before', 'open_brackets', 'opening',
             'contents', 'closing', 'close_brackets', 'after')
@@ -225,7 +228,8 @@ class Component(AbjadObject):
             n = n.replace(' ', '_')
         elif isinstance(n, int):
             n = slots[n-1]
-        for source, contributions in eval('self._format_{}_slot()'.format(n)):
+        attr = getattr(self, '_format_{}_slot'.format(n))
+        for source, contributions in attr(format_contributions):
             result.extend(contributions)
         return result
 

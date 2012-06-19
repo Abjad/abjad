@@ -23,7 +23,7 @@ def get_all_mark_format_contributions(component):
         marktools.BendAfter:           ('articulations', False),
         marktools.LilyPondCommandMark: ('lilypond command marks', False),
         marktools.LilyPondComment:     ('comments', False),
-        marktools.StemTremolo:         ('stem tremolo', True),
+        marktools.StemTremolo:         ('stem tremolos', True),
     }
 
     contributions = {}

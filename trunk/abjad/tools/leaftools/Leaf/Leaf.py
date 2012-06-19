@@ -118,23 +118,33 @@ class Leaf(Component):
                 result.append(grace.lilypond_format)
         return ['grace body', result]
 
-    def _format_leaf_body(leaf):
-        result = []
-        result.append(leaf._format_leaf_nucleus())
-        result.append(formattools.get_stem_tremolo_format_contributions(leaf))
-        result.append(formattools.get_articulation_format_contributions(leaf))
-        result.append(formattools.get_lilypond_command_mark_format_contributions_for_slot(leaf, 'right'))
-        result.append(formattools.get_context_mark_format_contributions_for_slot(leaf, 'right'))
-        result.append(formattools.get_spanner_format_contributions_for_slot(leaf, 'right'))
-        result.append(formattools.get_comment_format_contributions_for_slot(leaf, 'right'))
-        result = [x[1] for x in result]
-        result = sequencetools.flatten_sequence(result)
+    def _format_leaf_body(leaf, contributions=None):
+        if contributions is None:
+            contributions = formattools.get_all_format_contributions(leaf)
+        result = leaf._format_leaf_nucleus()[1]
+        right = contributions.get('right', {})
+        if right:
+            result.extend(right.get('stem tremolos', []))
+            result.extend(right.get('articulations', []))
+            result.extend(right.get('lilypond command marks', []))
+            result.extend(right.get('context marks', []))
+            result.extend(right.get('spanners', []))
+            result.extend(right.get('comments', []))
+        #result.append(formattools.get_stem_tremolo_format_contributions(leaf))
+        #result.append(formattools.get_articulation_format_contributions(leaf))
+        #result.append(formattools.get_lilypond_command_mark_format_contributions_for_slot(leaf, 'right'))
+        #result.append(formattools.get_context_mark_format_contributions_for_slot(leaf, 'right'))
+        #result.append(formattools.get_spanner_format_contributions_for_slot(leaf, 'right'))
+        #result.append(formattools.get_comment_format_contributions_for_slot(leaf, 'right'))
+        #result = [x[1] for x in result]
+        #result = sequencetools.flatten_sequence(result)
         result = [' '.join(result)]
-        markup = formattools.get_markup_format_contributions(leaf)[1]
-        if len(markup) == 1:
-            result[0] += ' {}'.format(markup[0])
-        else:
-            result.extend('\t{}'.format(x) for x in markup)
+        markup = right.get('markup')
+        if markup:
+            if len(markup) == 1:
+                result[0] += ' {}'.format(markup[0])
+            else:
+                result.extend('\t{}'.format(x) for x in markup)
         return ['leaf body', result]
 
     # TODO: subclass this properly for chord
@@ -161,7 +171,15 @@ class Leaf(Component):
         # single string, but wrapped in list bc contribution
         return ['nucleus', [result]]
 
-    def _format_before_slot(leaf):
+    def _format_after_slot(leaf, format_contributions):
+        result = []
+        result.append(formattools.get_spanner_format_contributions_for_slot(leaf, 'after'))
+        result.append(formattools.get_context_mark_format_contributions_for_slot(leaf, 'after'))
+        result.append(formattools.get_lilypond_command_mark_format_contributions_for_slot(leaf, 'after'))
+        result.append(formattools.get_comment_format_contributions_for_slot(leaf, 'after'))
+        return result
+
+    def _format_before_slot(leaf, format_contributions):
         result = []
         result.append(leaf._format_grace_body())
         result.append(formattools.get_comment_format_contributions_for_slot(leaf, 'before'))
@@ -172,23 +190,10 @@ class Leaf(Component):
         result.append(formattools.get_spanner_format_contributions_for_slot(leaf, 'before'))
         return result
 
-    def _format_open_brackets_slot(leaf):
+    def _format_close_brackets_slot(leaf, format_contributions):
         return []
 
-    def _format_opening_slot(leaf):
-        result = []
-        result.append(formattools.get_comment_format_contributions_for_slot(leaf, 'opening'))
-        result.append(formattools.get_lilypond_command_mark_format_contributions_for_slot(leaf, 'opening'))
-        result.append(formattools.get_context_mark_format_contributions_for_slot(leaf, 'opening'))
-        result.append(leaf._format_agrace_opening())
-        return result
-
-    def _format_contents_slot(leaf):
-        result = []
-        result.append(leaf._format_leaf_body())
-        return result
-
-    def _format_closing_slot(leaf):
+    def _format_closing_slot(leaf, format_contributions):
         result = []
         result.append(leaf._format_agrace_body())
         result.append(formattools.get_lilypond_command_mark_format_contributions_for_slot(leaf, 'closing'))
@@ -196,15 +201,20 @@ class Leaf(Component):
         result.append(formattools.get_comment_format_contributions_for_slot(leaf, 'closing'))
         return result
 
-    def _format_close_brackets_slot(leaf):
+    def _format_contents_slot(leaf, format_contributions):
+        result = []
+        result.append(leaf._format_leaf_body(format_contributions))
+        return result
+
+    def _format_open_brackets_slot(leaf, format_contributions):
         return []
 
-    def _format_after_slot(leaf):
+    def _format_opening_slot(leaf, format_contributions):
         result = []
-        result.append(formattools.get_spanner_format_contributions_for_slot(leaf, 'after'))
-        result.append(formattools.get_context_mark_format_contributions_for_slot(leaf, 'after'))
-        result.append(formattools.get_lilypond_command_mark_format_contributions_for_slot(leaf, 'after'))
-        result.append(formattools.get_comment_format_contributions_for_slot(leaf, 'after'))
+        result.append(formattools.get_comment_format_contributions_for_slot(leaf, 'opening'))
+        result.append(formattools.get_lilypond_command_mark_format_contributions_for_slot(leaf, 'opening'))
+        result.append(formattools.get_context_mark_format_contributions_for_slot(leaf, 'opening'))
+        result.append(leaf._format_agrace_opening())
         return result
 
     def _operate(self, arg, operator):
@@ -239,18 +249,19 @@ class Leaf(Component):
         return result
 
     def _report_format_contributors(self):
+        format_contributions = formattools.get_all_format_contributions(self)
         report = ''
         report += 'slot 1:\n'
-        report += self._process_contribution_packet(self._format_before_slot())
+        report += self._process_contribution_packet(self._format_before_slot(format_contributions))
         report += 'slot 3:\n'
-        report += self._process_contribution_packet(self._format_opening_slot())
+        report += self._process_contribution_packet(self._format_opening_slot(format_contributions))
         report += 'slot 4:\n'
         report += '\tleaf body:\n'
-        report += '\t\t' + self._format_contents_slot()[0][1][0] + '\n'
+        report += '\t\t' + self._format_contents_slot(format_contributions)[0][1][0] + '\n'
         report += 'slot 5:\n'
-        report += self._process_contribution_packet(self._format_closing_slot())
+        report += self._process_contribution_packet(self._format_closing_slot(format_contributions))
         report += 'slot 7:\n'
-        report += self._process_contribution_packet(self._format_after_slot())
+        report += self._process_contribution_packet(self._format_after_slot(format_contributions))
         return report
 
     ### PUBLIC PROPERTIES ###
