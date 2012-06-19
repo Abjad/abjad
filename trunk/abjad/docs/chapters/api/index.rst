@@ -2087,6 +2087,7 @@ Internal packages
    tools/formattools/get_articulation_format_contributions
    tools/formattools/get_comment_format_contributions_for_slot
    tools/formattools/get_context_mark_format_contributions_for_slot
+   tools/formattools/get_context_mark_format_pieces
    tools/formattools/get_context_setting_format_contributions
    tools/formattools/get_grob_override_format_contributions
    tools/formattools/get_grob_revert_format_contributions
