@@ -1,4 +1,4 @@
-def get_lilypond_command_mark_format_contributions(component, slot):
+def get_lilypond_command_mark_format_contributions_for_slot(component, slot):
     '''.. versionadded:: 2.0
 
     Get LilyPond command mark format contributions for `component` at `slot`.

@@ -94,8 +94,8 @@ class Tuplet(Container):
 
     def _format_before_slot(self):
         result = []
-        result.append(formattools.get_comment_format_contributions(self, 'before'))
-        result.append(formattools.get_lilypond_command_mark_format_contributions(self, 'before'))
+        result.append(formattools.get_comment_format_contributions_for_slot(self, 'before'))
+        result.append(formattools.get_lilypond_command_mark_format_contributions_for_slot(self, 'before'))
         result.append(formattools.get_grob_override_format_contributions(self))
         return tuple(result)
 
@@ -125,8 +125,8 @@ class Tuplet(Container):
         '''Read-only tuple of format contributions to appear immediately after self opening.
         '''
         result = []
-        result.append(formattools.get_comment_format_contributions(self, 'opening'))
-        result.append(formattools.get_lilypond_command_mark_format_contributions(self, 'opening'))
+        result.append(formattools.get_comment_format_contributions_for_slot(self, 'opening'))
+        result.append(formattools.get_lilypond_command_mark_format_contributions_for_slot(self, 'opening'))
         self._format_slot_contributions_with_indent(result)
         return tuple(result)
 
@@ -134,8 +134,8 @@ class Tuplet(Container):
         '''Read-only tuple of format contributions to appear immediately before self closing.
         '''
         result = []
-        result.append(formattools.get_lilypond_command_mark_format_contributions(self, 'closing'))
-        result.append(formattools.get_comment_format_contributions(self, 'closing'))
+        result.append(formattools.get_lilypond_command_mark_format_contributions_for_slot(self, 'closing'))
+        result.append(formattools.get_comment_format_contributions_for_slot(self, 'closing'))
         self._format_slot_contributions_with_indent(result)
         return tuple(result)
 
@@ -151,9 +151,9 @@ class Tuplet(Container):
         '''Read-only tuple of format contributions to appear immediately after self closing.
         '''
         result = []
-        result.append(formattools.get_lilypond_command_mark_format_contributions(self, 'after'))
+        result.append(formattools.get_lilypond_command_mark_format_contributions_for_slot(self, 'after'))
         result.append(formattools.get_grob_revert_format_contributions(self))
-        result.append(formattools.get_comment_format_contributions(self, 'after'))
+        result.append(formattools.get_comment_format_contributions_for_slot(self, 'after'))
         return tuple(result)
 
     ### READ-ONLY PUBLIC PROPERTIES ###

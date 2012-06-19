@@ -129,17 +129,17 @@ class Context(Container):
 
     def _format_opening_slot(context):
         result = []
-        result.append(formattools.get_comment_format_contributions(context, 'opening'))
-        result.append(formattools.get_context_mark_format_contributions(context, 'opening'))
-        result.append(formattools.get_lilypond_command_mark_format_contributions(context, 'opening'))
+        result.append(formattools.get_comment_format_contributions_for_slot(context, 'opening'))
+        result.append(formattools.get_context_mark_format_contributions_for_slot(context, 'opening'))
+        result.append(formattools.get_lilypond_command_mark_format_contributions_for_slot(context, 'opening'))
         context._format_slot_contributions_with_indent(result)
         return tuple(result)
 
     def _format_closing_slot(context):
         result = []
-        result.append(formattools.get_context_mark_format_contributions(context, 'closing'))
-        result.append(formattools.get_lilypond_command_mark_format_contributions(context, 'closing'))
-        result.append(formattools.get_comment_format_contributions(context, 'closing'))
+        result.append(formattools.get_context_mark_format_contributions_for_slot(context, 'closing'))
+        result.append(formattools.get_lilypond_command_mark_format_contributions_for_slot(context, 'closing'))
+        result.append(formattools.get_comment_format_contributions_for_slot(context, 'closing'))
         context._format_slot_contributions_with_indent(result)
         return tuple(result)
 

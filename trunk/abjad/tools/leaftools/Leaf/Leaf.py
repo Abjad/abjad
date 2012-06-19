@@ -123,10 +123,10 @@ class Leaf(Component):
         result.append(leaf._format_leaf_nucleus())
         result.append(formattools.get_stem_tremolo_format_contributions(leaf))
         result.append(formattools.get_articulation_format_contributions(leaf))
-        result.append(formattools.get_lilypond_command_mark_format_contributions(leaf, 'right'))
-        result.append(formattools.get_context_mark_format_contributions(leaf, 'right'))
-        result.append(formattools.get_spanner_format_contributions(leaf, 'right'))
-        result.append(formattools.get_comment_format_contributions(leaf, 'right'))
+        result.append(formattools.get_lilypond_command_mark_format_contributions_for_slot(leaf, 'right'))
+        result.append(formattools.get_context_mark_format_contributions_for_slot(leaf, 'right'))
+        result.append(formattools.get_spanner_format_contributions_for_slot(leaf, 'right'))
+        result.append(formattools.get_comment_format_contributions_for_slot(leaf, 'right'))
         result = [x[1] for x in result]
         result = sequencetools.flatten_sequence(result)
         result = [' '.join(result)]
@@ -164,12 +164,12 @@ class Leaf(Component):
     def _format_before_slot(leaf):
         result = []
         result.append(leaf._format_grace_body())
-        result.append(formattools.get_comment_format_contributions(leaf, 'before'))
-        result.append(formattools.get_lilypond_command_mark_format_contributions(leaf, 'before'))
-        result.append(formattools.get_context_mark_format_contributions(leaf, 'before'))
+        result.append(formattools.get_comment_format_contributions_for_slot(leaf, 'before'))
+        result.append(formattools.get_lilypond_command_mark_format_contributions_for_slot(leaf, 'before'))
+        result.append(formattools.get_context_mark_format_contributions_for_slot(leaf, 'before'))
         result.append(formattools.get_grob_override_format_contributions(leaf))
         result.append(formattools.get_context_setting_format_contributions(leaf))
-        result.append(formattools.get_spanner_format_contributions(leaf, 'before'))
+        result.append(formattools.get_spanner_format_contributions_for_slot(leaf, 'before'))
         return result
 
     def _format_open_brackets_slot(leaf):
@@ -177,9 +177,9 @@ class Leaf(Component):
 
     def _format_opening_slot(leaf):
         result = []
-        result.append(formattools.get_comment_format_contributions(leaf, 'opening'))
-        result.append(formattools.get_lilypond_command_mark_format_contributions(leaf, 'opening'))
-        result.append(formattools.get_context_mark_format_contributions(leaf, 'opening'))
+        result.append(formattools.get_comment_format_contributions_for_slot(leaf, 'opening'))
+        result.append(formattools.get_lilypond_command_mark_format_contributions_for_slot(leaf, 'opening'))
+        result.append(formattools.get_context_mark_format_contributions_for_slot(leaf, 'opening'))
         result.append(leaf._format_agrace_opening())
         return result
 
@@ -191,9 +191,9 @@ class Leaf(Component):
     def _format_closing_slot(leaf):
         result = []
         result.append(leaf._format_agrace_body())
-        result.append(formattools.get_lilypond_command_mark_format_contributions(leaf, 'closing'))
-        result.append(formattools.get_context_mark_format_contributions(leaf, 'closing'))
-        result.append(formattools.get_comment_format_contributions(leaf, 'closing'))
+        result.append(formattools.get_lilypond_command_mark_format_contributions_for_slot(leaf, 'closing'))
+        result.append(formattools.get_context_mark_format_contributions_for_slot(leaf, 'closing'))
+        result.append(formattools.get_comment_format_contributions_for_slot(leaf, 'closing'))
         return result
 
     def _format_close_brackets_slot(leaf):
@@ -201,10 +201,10 @@ class Leaf(Component):
 
     def _format_after_slot(leaf):
         result = []
-        result.append(formattools.get_spanner_format_contributions(leaf, 'after'))
-        result.append(formattools.get_context_mark_format_contributions(leaf, 'after'))
-        result.append(formattools.get_lilypond_command_mark_format_contributions(leaf, 'after'))
-        result.append(formattools.get_comment_format_contributions(leaf, 'after'))
+        result.append(formattools.get_spanner_format_contributions_for_slot(leaf, 'after'))
+        result.append(formattools.get_context_mark_format_contributions_for_slot(leaf, 'after'))
+        result.append(formattools.get_lilypond_command_mark_format_contributions_for_slot(leaf, 'after'))
+        result.append(formattools.get_comment_format_contributions_for_slot(leaf, 'after'))
         return result
 
     def _operate(self, arg, operator):

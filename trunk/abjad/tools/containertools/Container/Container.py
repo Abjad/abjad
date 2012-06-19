@@ -214,8 +214,8 @@ class Container(Component):
         
     def _format_before_slot(self):
         result = []
-        result.append(formattools.get_comment_format_contributions(self, 'before'))
-        result.append(formattools.get_lilypond_command_mark_format_contributions(self, 'before'))
+        result.append(formattools.get_comment_format_contributions_for_slot(self, 'before'))
+        result.append(formattools.get_lilypond_command_mark_format_contributions_for_slot(self, 'before'))
         return tuple(result)
 
     def _format_open_brackets_slot(self):
@@ -229,8 +229,8 @@ class Container(Component):
 
     def _format_opening_slot(self):
         result = []
-        result.append(formattools.get_comment_format_contributions(self, 'opening'))
-        result.append(formattools.get_lilypond_command_mark_format_contributions(self, 'opening'))
+        result.append(formattools.get_comment_format_contributions_for_slot(self, 'opening'))
+        result.append(formattools.get_lilypond_command_mark_format_contributions_for_slot(self, 'opening'))
         result.append(formattools.get_grob_override_format_contributions(self))
         result.append(formattools.get_context_setting_format_contributions(self))
         self._format_slot_contributions_with_indent(result)
@@ -244,8 +244,8 @@ class Container(Component):
     def _format_closing_slot(self):
         result = []
         result.append(formattools.get_grob_revert_format_contributions(self))
-        result.append(formattools.get_lilypond_command_mark_format_contributions(self, 'closing'))
-        result.append(formattools.get_comment_format_contributions(self, 'closing'))
+        result.append(formattools.get_lilypond_command_mark_format_contributions_for_slot(self, 'closing'))
+        result.append(formattools.get_comment_format_contributions_for_slot(self, 'closing'))
         self._format_slot_contributions_with_indent(result)
         return tuple(result)
 
@@ -260,8 +260,8 @@ class Container(Component):
 
     def _format_after_slot(self):
         result = []
-        result.append(formattools.get_lilypond_command_mark_format_contributions(self, 'after'))
-        result.append(formattools.get_comment_format_contributions(self, 'after'))
+        result.append(formattools.get_lilypond_command_mark_format_contributions_for_slot(self, 'after'))
+        result.append(formattools.get_comment_format_contributions_for_slot(self, 'after'))
         return tuple(result)
 
     def _format_slot_contributions_with_indent(self, slot):

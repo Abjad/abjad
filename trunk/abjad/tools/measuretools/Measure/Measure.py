@@ -184,10 +184,10 @@ class Measure(FixedDurationContainer):
         This is also the slot where LilyPond \time commands live.
         '''
         result = []
-        result.append(formattools.get_comment_format_contributions(self, 'opening'))
+        result.append(formattools.get_comment_format_contributions_for_slot(self, 'opening'))
         result.append(formattools.get_grob_override_format_contributions(self))
         result.append(formattools.get_context_setting_format_contributions(self))
-        result.append(formattools.get_context_mark_format_contributions(self, 'opening'))
+        result.append(formattools.get_context_mark_format_contributions_for_slot(self, 'opening'))
         self._format_slot_contributions_with_indent(result)
         return tuple(result)
 
