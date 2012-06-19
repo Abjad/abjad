@@ -102,12 +102,11 @@ def get_all_mark_format_contributions(component):
     for parent in componenttools.get_proper_parentage_of_component(component):
         for mark in parent._marks_for_which_component_functions_as_start_component:
             if isinstance(mark, contexttools.ContextMark):
-                if is_formattable_context_mark_for_component(mark, parent):
+                if is_formattable_context_mark_for_component(mark, component):
                     context_marks.add(mark)
 
     section = 'context marks'
     for mark in context_marks:
-        print mark
         format_slot = mark._format_slot
         result = get_context_mark_format_pieces(mark)
         if format_slot not in contributions:
