@@ -20,14 +20,14 @@ def get_all_format_contributions(component):
 
     settings = get_context_setting_format_contributions(component)[1]
     if settings:
-        result['settings'] = settings
+        result['context settings'] = settings
 
     overrides = get_grob_override_format_contributions(component)[1]
     if overrides:
-        result['overrides'] = overrides
+        result['grob overrides'] = overrides
     
     reverts = get_grob_revert_format_contributions(component)[1]
     if reverts:
-        result['reverts'] = reverts
+        result['grob reverts'] = reverts
 
     return result
