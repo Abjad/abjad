@@ -42,4 +42,5 @@ def get_markup_format_contributions(component):
                 result.extend(markup._get_format_pieces(is_indented=True))
             else:
                 result.extend(markup_list[0]._get_format_pieces(is_indented=True))
+
     return ['markup', result]
