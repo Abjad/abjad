@@ -40,7 +40,7 @@ class BuildAbjadApiScript(DeveloperScript):
         print ''
 
         # change to docs directory because makefile lives there
-        docs_directory = os.path.join(ABJADPATH, 'docs')
+        docs_directory = os.path.relpath(os.path.join(ABJADPATH, 'docs'))
         os.chdir(docs_directory)
 
         # optionally, make clean before building
@@ -60,7 +60,7 @@ class BuildAbjadApiScript(DeveloperScript):
             )
 
         parser.add_argument('--format',
-            choices=('html', 'latex', 'latexpdf'),
+            choices=['html', 'latex', 'latexpdf'],
             dest='format',
             help='Sphinx builder to use',
             metavar='X',

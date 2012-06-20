@@ -4,7 +4,6 @@ from experimental.specificationtools import library
 from experimental.specificationtools import ScoreSpecification
 
 
-# FIXME: fails in r6032
 def test_quartet_01():
     '''Create 4-staff score S with sections T1, T2.
     Set T1 time signatures equal to [(3, 8), (3, 8), (2, 8), (2, 8)].
@@ -46,7 +45,6 @@ def test_quartet_01():
     assert score.lilypond_format == helpers.read_test_output(__file__, current_function_name)
 
 
-# FIXME: fails in r6032
 def test_quartet_02():
     '''As above with different divisions.
     

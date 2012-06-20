@@ -33,7 +33,7 @@ class SvnAddAllScript(DirectoryScript):
 
     def process_args(self, args):
 
-        command = ['svn', 'st', '{!r}'.format(args.path)]
+        command = 'svn st {}'.format(args.path)
 
         process = subprocess.Popen(command,
             shell=True,
@@ -45,7 +45,8 @@ class SvnAddAllScript(DirectoryScript):
 
         for line in lines:
             if line.startswith('?'):
-                iotools.spawn_subprocess('svn add {}'.format(line.split()[-1]))
+                command = 'svn add {}'.format(line.split()[-1])
+                iotools.spawn_subprocess(command)
 
     def setup_argument_parser(self, parser):
         parser.add_argument('path',
