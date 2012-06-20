@@ -1,0 +1,52 @@
+TIMERELATIONS (cont).
+
+
+(4) BETWEEN TWO TIMESPANS. There appear to be 13 ways to pick out
+sets of positively durated score objects with respect to an arbitrary
+positively durated reference timespan. These are:
+
+    1   "measures that stop before segment starts"
+        (all m such that m.start < m.stop < s.start < s.stop)
+
+    2   "measures that stop when segment starts"
+        (all m such that m.start < m.stop == s.start < s.stop)
+
+    3   "measures that overlap the start of segment but stop before segment stops"
+        (all m such that m.start < s.start < m.stop < s.stop)
+
+    4   "measures that stop with segment but overlap the start of segment"
+        (all m such that m.start < s.start < m.stop == s.stop)
+    
+    5   "measures that overlap both the start and stop of segment"
+        (all m such that m.start < s.start < s.stop < m.stop)
+
+    6   "measures that start with segment but stop before segment"
+        (all m such that s.start == m.start < m.stop < s.stop)
+
+    7   "measures that start and stop with segment"
+        (all m such that s.start == m.start < m.stop == s.stop)
+
+    8   "measures that start with segment but overlap the stop of segment"
+        (all m such that s.start == m.start < s.stop < m.stop)
+
+    9   "measures that start after segment starts and stop before segment stops"
+        (all m such that s.start < m.start < m.stop < s.stop)
+
+   10   "measures that start after segment starts but stop when segment stops"
+        (all m such that s.start < m.start < m.stop == s.stop)
+
+   11   "measures that start after segment starts and overlap segment stop"
+        (all m such that s.start < m.start < s.stop < m.stop)
+
+   12   "measures that start when segment stops"
+        (all m such that s.start < s.stop == m.start < m.stop)
+
+   13   "measures that start after segment stops"
+        (all m such that s.start < s.stop < m.start < m.stop) 
+
+
+Extensions. Set-theoretic operations are possible on all of the criteria identified.
+It looks like logical OR will be enough. For example, the set of all measures
+that share no timepoints with the reference segment may be had in the union of the sets
+picked out in cases #1 and #13. This is equal to the set of all measures m such that
+m.start < m.stop < s.start < s.stop OR s.start < s.stop < m.start < m.stop. 
