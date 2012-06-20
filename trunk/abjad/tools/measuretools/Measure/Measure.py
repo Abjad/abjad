@@ -187,7 +187,7 @@ class Measure(FixedDurationContainer):
         result.append(('comments', format_contributions.get('opening', {}).get('comments', [])))
         result.append(('grob overrides', format_contributions.get('grob overrides', [])))
         result.append(('context settings', format_contributions.get('context settings', [])))
-        result.append(('context marks', format_contributions.get('opening', {}).get('context marks')))
+        result.append(('context marks', format_contributions.get('opening', {}).get('context marks', [])))
         #result.append(formattools.get_comment_format_contributions_for_slot(self, 'opening'))
         #result.append(formattools.get_grob_override_format_contributions(self))
         #result.append(formattools.get_context_setting_format_contributions(self))
