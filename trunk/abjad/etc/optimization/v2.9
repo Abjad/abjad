@@ -2,18 +2,24 @@
     ==========    ==========      =========       ========     ========       =======        =======
 
 1.      84.9 M        12.2 M         6.26 M        1.18 M        1.08 M          586k           479k
-
 2.    5.44 sec      0.73 sec       0.45 sec      0.23 sec      0.23 sec      0.23 sec       0.16 sec 
-
 3.    1.99 sec      1.19 sec       0.98 sec      1.27 sec      0.75 sec      0.96 sec       0.47 sec
 
 4.  2998 calls     347 calls      239 calls     131 calls     121 calls     154 calls      176 calls
-
 5.  2336 calls    1581 calls     1122 calls    1167 calls     404 calls     517 calls      463 calls
 
 6.                                           ~92000 calls   68168 calls   58158 calls    45618 calls
-
 7.                                               0.12 sec      0.08 sec      0.10 sec       0.05 sec
+
+8.                                                                                       55618 calls
+9.                                                                                          0.06 sec 
+
+10.                                                                                      64118 calls
+11.                                                                                         0.07 sec
+
+12.                                                                                      75687 calls
+13.                                                                                         0.08 sec
+
 
 Key:
     1: create 1000 notes (memory)
@@ -23,18 +29,34 @@ Key:
     5. format 1 note (number of function calls)
     6. format staff of *100* notes (number of function calls)
     7. format staff of *100* notes (seconds)
+    8. format staff of *100* notes with staccati (number of function calls)
+    9. format staff of *100* notes with staccati (seconds)
+   10. format staff of *100* notes with staccati and comments (number of function calls)
+   11. format staff of *100* notes with staccati and comments (seconds)
 
 Tests:
     1. import and use guppy as described in the docs
     2. iotools.profile_expr('[Note(0, (1, 4)) for x in range(1000)]')
     3. notes = [Note(0, (1, 4)) for x in range(1000);
-       iotools.profile_expr('[note.format for note in notes]') 
+       iotools.profile_expr('[note.lilypond_format for note in notes]') 
     4. iotools.profile_expr('Note(0, (1, 4))')
     5. note = Note(0, (1, 4));
        iotools.profile_expr('note.format')
     6. staff = Staff([Note(0, (1, 4)) for x in range(100)]);
        iotools.profile_expr('staff.format')
     7. ibid.
+    8. staff = Staff([Note(0, (1, 4)) for x in range(100)]);
+       for note in staff: marktools.Articulation('staccato')(note)
+    9. ibid
+   10. staff = Staff([Note(0, (1, 4)) for x in range(100)]);
+       for note in staff: marktools.Articulation('staccato')(note)
+       for note in staff: marktools.Comment('comment')(note)
+   11. ibid
+   12. staff = Staff([Note(0, (1, 4)) for x in range(100)]);
+       for note in staff: marktools.Articulation('staccato')(note)
+       for note in staff: marktools.Comment('comment')(note)
+       beamtools.BeamSpanner(staff[:])
+   13. ibid
 
 
 Test platforms:
