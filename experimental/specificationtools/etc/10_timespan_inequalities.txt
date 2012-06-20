@@ -1,0 +1,48 @@
+TIMESPAN INEQUALITIES.
+
+
+Timespans s, t define timepoints s.start, s.stop, t.start and s.stop.
+
+Timerelations between s.start and t.start:
+    s.start < t.start       "s starts before t starts"
+    s.start == t.start      "s starts when t starts"
+    t.start < s.start       "s starts after t starts"
+
+Timerelations between s.start and t.stop:
+    s.start < t.stop        "s starts before t stops"
+    s.start == t.stop       "starts when t stops"
+    t.stop < s.start        "s starts after t stops"
+
+Timerelations between s.stop and t.start:
+    s.stop < t.start        "s stops before t starts"
+    s.stop == t.start       "s stops when t starts"
+    t.start < s.stop        "s stops after t starts"
+
+Timerelations between s.stop and t.stop:
+    s.stop < t.stop         "s stops before t stops"
+    s.stop == t.stop        "s stops when t stops"
+    t.stop < s.stop         "s stops after t stops"
+
+Which combinations of inequality make sense?
+
+All 12 simple inequalities make sense.
+
+From A we choose "s.start < t.start".
+From B no others are possible.
+From C the first two are impossible and the third is redundant.
+From D all three are possible:
+    s.start < t.start AND s.stop < t.stop
+    s.start < t.start AND s.stop == t.stop
+    s.start < t.start AND t.stop < s.stop
+
+From A we choose "s.start == t.start".
+From B two are impossible and one is redundant.
+From C one is impossible and two are redundant.
+From D all three are possible:
+    s.start == t.start AND s.stop < t.stop
+    s.start == t.start AND s.stop == t.stop
+    s.start == t.start AND t.stop < s.stop 
+
+Many others ...
+
+There must be a better way to do this ...
