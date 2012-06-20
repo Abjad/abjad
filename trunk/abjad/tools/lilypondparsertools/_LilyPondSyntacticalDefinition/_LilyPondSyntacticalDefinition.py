@@ -2928,7 +2928,7 @@ class _LilyPondSyntacticalDefinition(object):
         if not p[6]:
             leaf = notetools.Note(p[1], p[5].duration)
         else:
-            leaf = resttools.Rest(p[5][0])
+            leaf = resttools.Rest(p[5].duration)
             resttools.set_vertical_positioning_pitch_on_rest(leaf, p[1])
         if p[5].multiplier is not None:
             leaf.duration_multiplier = p[5].multiplier
