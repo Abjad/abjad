@@ -1,0 +1,41 @@
+TIMERELATIONS (initial).
+
+
+(1) BETWEEN TWO TIMEPOINTS. Between arbitrary timepoints u and v exactly three 
+timerelations obtain:
+
+    1   u < v       "u precedes v"
+    2   u == v      "u and v happen at the same time"
+    3   v < u       "v precedes u"
+
+(Where we write "u < v" Xenakis writes "u T v" with infix-T.)
+
+
+(2) BETWEEN A TIMEPOINT AND A TIMESPAN OF ZERO DURATION. Consider
+timespan s with s.start == s.stop. We say that s has zero duration.
+Because no timepoint may intervene between the start and
+and stop of s the same timerelations that obtain between 
+timepoints u and v (above) obtain between u and s.
+
+
+(3) BETWEEN A TIMEPOINT AND A TIMESPAN OF POSITIVE DURATION. Consider 
+timespan s with s.start < s.stop. We say that s has positive duration.
+Between timepoint u and positive-duration s exactly five timerelations obtain:
+
+    1   u < s                   "u precedes (the start of) s"
+    2   u == s.start            "u equals the start of s"
+    3   s.start < u < s.stop    "u happens between the start and stop of s"
+    4   u == s.stop             "u equals the stop of s"
+    5   s < u                   "(the stop of) s precedes u"
+
+Entailment. Certain timerelations imply others. For example, where u precedes s 
+it is also the case the u precedes both the start and stop of s.
+
+Ambiguity. Other timerelations are specific with regards to the start or 
+stop of s but not with regards to both the start and stop of s. For example, 
+where we state only that u precedes the stop of s the relation between u 
+and the start of s can not be determined.
+
+Intermediacy. The preposition "during" is problematic. Where s.start < u < s.stop
+it is clear that u happens during s. But where u == s.start or where u == s.stop 
+it is not clear whether u happens during s or not.
