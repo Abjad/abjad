@@ -1,7 +1,6 @@
 from abjad.tools import scoretemplatetools
 
 
-# FIXME: test fails in r6032
 def test_StringQuartetScoreTemplate___call___01():
 
     template = scoretemplatetools.StringQuartetScoreTemplate()

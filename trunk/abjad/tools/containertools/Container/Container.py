@@ -239,8 +239,7 @@ class Container(Component):
         #result.append(formattools.get_lilypond_command_mark_format_contributions_for_slot(self, 'opening'))
         #result.append(formattools.get_grob_override_format_contributions(self))
         #result.append(formattools.get_context_setting_format_contributions(self))
-        self._format_slot_contributions_with_indent(result)
-        return tuple(result)
+        return self._format_slot_contributions_with_indent(result)
 
     def _format_contents_slot(self, format_contributions):
         result = []
@@ -255,8 +254,7 @@ class Container(Component):
         #result.append(formattools.get_grob_revert_format_contributions(self))
         #result.append(formattools.get_lilypond_command_mark_format_contributions_for_slot(self, 'closing'))
         #result.append(formattools.get_comment_format_contributions_for_slot(self, 'closing'))
-        self._format_slot_contributions_with_indent(result)
-        return tuple(result)
+        return self._format_slot_contributions_with_indent(result)
 
     def _format_close_brackets_slot(self, format_contributions):
         result = []
@@ -276,10 +274,10 @@ class Container(Component):
         return tuple(result)
 
     def _format_slot_contributions_with_indent(self, slot):
+        result = []
         for contributor, contributions in slot:
-            if contributions:
-                for i, contribution in enumerate(contributions):
-                    contributions[i] = '\t' + contribution
+            result.append((contributor, tuple(['\t' + x for x in contributions])))
+        return tuple(result)
 
     ### PUBLIC PROPERTIES ###
 

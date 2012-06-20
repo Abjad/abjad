@@ -132,8 +132,7 @@ class Tuplet(Container):
         result.append(('lilypond command marks', format_contributions.get('opening', {}).get('lilypond command marks', [])))
         #result.append(formattools.get_comment_format_contributions_for_slot(self, 'opening'))
         #result.append(formattools.get_lilypond_command_mark_format_contributions_for_slot(self, 'opening'))
-        self._format_slot_contributions_with_indent(result)
-        return tuple(result)
+        return self._format_slot_contributions_with_indent(result)
 
     def _format_closing_slot(self, format_contributions):
         '''Read-only tuple of format contributions to appear immediately before self closing.
@@ -143,8 +142,7 @@ class Tuplet(Container):
         result.append(('comments', format_contributions.get('closing', {}).get('comments', [])))
         #result.append(formattools.get_lilypond_command_mark_format_contributions_for_slot(self, 'closing'))
         #result.append(formattools.get_comment_format_contributions_for_slot(self, 'closing'))
-        self._format_slot_contributions_with_indent(result)
-        return tuple(result)
+        return self._format_slot_contributions_with_indent(result)
 
     def _format_close_brackets_slot(self, format_contributions):
         '''Read-only tuple of format contributions used to generate self closing.

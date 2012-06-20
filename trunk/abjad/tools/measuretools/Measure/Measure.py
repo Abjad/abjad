@@ -192,8 +192,7 @@ class Measure(FixedDurationContainer):
         #result.append(formattools.get_grob_override_format_contributions(self))
         #result.append(formattools.get_context_setting_format_contributions(self))
         #result.append(formattools.get_context_mark_format_contributions_for_slot(self, 'opening'))
-        self._format_slot_contributions_with_indent(result)
-        return tuple(result)
+        return self._format_slot_contributions_with_indent(result)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

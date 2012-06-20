@@ -32,7 +32,7 @@ def get_all_mark_format_contributions(component):
 
     up_markup, down_markup, neutral_markup = [], [], []
 
-    context_marks = set([])
+    context_marks = []
 
     ### organize marks attached directly to component ###
 
@@ -53,8 +53,8 @@ def get_all_mark_format_contributions(component):
 
         elif isinstance(mark, contexttools.ContextMark):
             if is_formattable_context_mark_for_component(mark, component):
-                context_marks.add(mark)
-            continue
+                context_marks.append(mark)
+                continue
 
         ### markup to be dealt with later ###
 
@@ -102,8 +102,13 @@ def get_all_mark_format_contributions(component):
     for parent in componenttools.get_proper_parentage_of_component(component):
         for mark in parent._marks_for_which_component_functions_as_start_component:
             if isinstance(mark, contexttools.ContextMark):
-                if is_formattable_context_mark_for_component(mark, component):
-                    context_marks.add(mark)
+                if mark not in context_marks:
+                    if is_formattable_context_mark_for_component(mark, component):
+                        context_marks.append(mark)
+
+    #for candidate in context_mark_candidates:
+    #    if candidate not in context_marks:
+    #            context_marks.append(candidate)
 
     section = 'context marks'
     for mark in context_marks:
@@ -143,5 +148,9 @@ def get_all_mark_format_contributions(component):
         if 'right' not in contributions:
             contributions['right'] = {}
         contributions['right']['markup'] = result
+
+    for slot in contributions:
+        for kind, value in contributions[slot].iteritems():
+            contributions[slot][kind] = tuple(value)
 
     return contributions
