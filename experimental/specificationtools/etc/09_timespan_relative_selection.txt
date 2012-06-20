@@ -1,0 +1,99 @@
+TIMESPAN-RELATIVE SELECTION.
+
+
+One way to select score objects is to index and slice containers.
+This has been the case since the beginning of Abjad.
+Another way to select score objects is with reference to the
+start and stop of objects that may or may not contain each other.
+The examples here enumerate selections that follow the new pattern.
+
+We use measure selection with respect to segments as one case of 
+object selection with reference an arbitrary timespan.
+
+[Should durated score objects be thought of as intervals or pairs?
+Intervals are a powerful generalization of pairs. But we can choose
+to think of durated score objects as pairs because all durated score 
+objects are understood to be a special type of interval. That is,
+all durated score objects and understood to be half-open intervals 
+closed on the left.]
+
+
+### SELECTING MEASURES WITH RESPECT TO SEGMENTS ###
+
+  1 "all measures in 'red'"
+    (all m such that red.start <= m.start < m.stop <= red.stop)
+
+  2 "all measures intersecting 'red'"
+    (all m such that "red.start <= m.start OR m.stop <= red.stop)
+
+  3 "all measures that start with 'red'"
+    (all m such that m.start == red.start)
+
+  4 "all measures that stop with 'red'"
+    (all m such that m.stop == red.stop)
+ 
+  5 "all measures in 'red' that start with 'red'"
+    (all m such that m.start == red.start AND m.stop <= red.stop)
+
+  6 "all measures in 'red' that stop with 'red'"
+    (all m such that red.start <= m.start AND m.stop == red.stop)
+
+  7 "all measures in 'red' that start and stop with red
+    (all m such that m.start == red.start AND m.stop == red.stop)
+
+  8 "all measures that overlap the start of 'red'"
+    (all m such that m.start < red.start < m.stop)
+
+  9 "all measures that overlap the stop of 'red'"
+    (all m such that red.stop < m.stop)
+
+ 10 "all measures that overlap both the start and stop of 'red'"
+    (all m such that m.start < red.start < red.stop < m.stop)
+
+ 11 "all measures that overlap the start of 'red' but not the stop of 'red'"
+    (all m such that m.start < red.start < m.stop <= red.stop)
+
+ 12 "all measures that both overlap the start of 'red' and stop with 'red'"
+    (all m such that m.start < red.start < m.stop == red.stop)
+
+ 13 "all measures that overlap the start of 'red' but that stop before 'red'"
+    (all m such that m.start < red.start < m.stop < red.stop)
+
+ 14 "all measures that overlap the stop of 'red' but not the start of 'red'"
+    (all m such that red.start <= m.start < red.stop < m.start)
+
+ 15 "all measures that start with 'red' and overlap the stop of 'red'"
+    (all m such that red.start == m.start < red.stop < m.start)
+
+[The cases so far all deal with overlap or containment.
+The following cases introduce the situations where one timespan abuts another.
+There are only two of these.]
+
+  16 "all measures that stop when 'red' starts"
+    (all m such that m.stop == red.start)
+
+  17 "all measures that start when 'red' stops"
+    (all m such that red.stop == m.start)
+
+[The final cases are those in which the timespans are disjunct.
+There are only two of these.]
+
+  18 "measures that stop before red starts
+    (all m such that m.stop < red.start)
+
+  19 "measures that start and red starts
+    (all m such that red.stop < m.start)
+
+[The cases group into related families according to number of timepoints shared:
+    Cases of disjunct timespans (that share no timepoints).
+    Cases of timespans that share exactly one timepoint.
+    Cases of timespans that share more than one timepoint.]
+
+[Reference. It looks like what's going on in these examples is that one timespan
+is being used as a type of "fixed reference" to help pick out sets of other timespans.
+In this case one segment is being used to pick out sets of zero or more measures.
+This means that there's an implicit idea of something like a "reference timespan".]
+
+STRATEGY: there's some sort of selection process going on here. It looks possible
+to model all the cases this process picks out with set-theoretic operations on
+on timespan endpoint inequalities.
