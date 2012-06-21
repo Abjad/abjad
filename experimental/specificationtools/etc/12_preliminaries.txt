@@ -1,0 +1,50 @@
+TIMESPAN ENUMERATION PRELIMINARIES.
+
+Four things taken two at a time gives six pairs. Timepoints A, B, X, Y taken two at a time
+give six 2-element sets. We assign each of these 2-element sets a roman numeral identifier:
+    
+    I   (A, B)
+    II  {A, X}
+    III {A, Y}
+    IV  {B, X}
+    V   {B, Y}
+    VI  (X, Y)
+
+Two timepoints enter into exactly one of three reltions with each other. Either
+A < B, A == B, or B < A. Each such timerelation excludes the other two absolutely.
+
+The enumerative work that we're doing asks us to build up a catalog of inequalities.
+We set A < B in all cases because we insist that A and B together define a 
+timespan with positive duration. (This constraint reduces the number of timerelations 
+obtaining between A and B to exactly 1.) We likewise set X < Y in all cases because
+we insist that X and Y define a timespan XY with positive duration. (This constraint
+reduces the number of timerelations obtaining between X and Y to exactly 1.)
+Finally, we insist that every inequality we construct relate AB to XY. This means
+that at least one of the 12 timerelations available in classes {A, X}, {A, Y},
+{B, X}, {B, Y} must appear in every inequality we construct.
+
+Altogether our constraints tell us that we are building up a library of compound
+inequalities all of the following form.
+
+    A < B && X < Y && ...
+
+Every such inequality will comprise at least three and at most six parts.
+We omit "A < B && X < Y" and leave it understood as part of every inequality we write.
+
+The work of our enumeration then involves a consideration of the logical
+well-formedness of each such composite inequality in turn.
+
+The unpruned combinatorial space comprises 255 inequalities. How do we know this?
+We know this because each inequality we build must comprise the following:
+
+    from category I: the restriction A < B
+    from category II: any of three restrictions, or no restriction
+    from category III: any of three restrictions, or no restriction
+    from category IV: any of three restrictions, or no restriction
+    from category V: any of three restrictions, or no restriction
+    from category VI: the restriction X < Y 
+
+This gives 4 ** 4 == 256 combinations. But the combiantion that selects
+nothing from categories II, III, IV & V is eliminated by our requirement
+that we relate AB to XY in at least one way. This gives 256 - 1 == 255 
+combinations.
