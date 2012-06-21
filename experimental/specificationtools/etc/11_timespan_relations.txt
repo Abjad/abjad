@@ -63,12 +63,10 @@ Then: with A < X fixed we should consider B (ie, s.stop). If A is fixed prior to
 does it make sense to consider the time-relative positioning of B at all? Indeed it does.
 This gives the first of the inequalities we will record:
 
-  [1] A < X             "measures that begin before segment blah"
+  [1] A < X             "measures that start before segment blah starts"
 
-It is completely unnecessary to consider the relationship between A and B because our
-insistence on positively durated timespans guarantees that A < B. What about considering
-the relationships that may obtain between B and X? Three timerelations obtain
-between any two timepoints. Between B and X these are B < X, B == X, and X < B.
+What about considering the relationships that may obtain between B and X? 
+These are B < X, B == X and X < B. We consider each in turn. "A < X && B < X"
 We find that it is of no use at all to consider the cases where B < X when we have 
 already decided that A < X. Why?
 Because we insist that A < B (ie, that our movable measure have a positive duration).
@@ -313,29 +311,43 @@ the three variable categories {A, X}, {A, Y}, {B, X} that precede {B, Y}.
 
 The complete enumeration follows.
 
-  [1] A < X                     "measures that begin before segment blah"
-  [2] A < X && X < B            "measures that overlap the start of segment blah"
-  [3] A < X && B < Y            "measures that start before blah starts and end before blah ends"
-  [4] A < X && B == Y           "measures that start before blah starts and end when blah ends"
-  [5] A < X && Y < B            "measures that start before blah starts and end after blah ends"
-  [6] A == X                    "measures that start when blah starts"
-  [7] A == X && B < Y           "measures that start with segment blah but end before segment blah"
-  [8] A == X && B == Y          "measures that start and stop with segment blah"
-  [9] A == X && Y < B           "measures that start with segment blah and overlap the end of blah"
- [10] X < A                     "measures that start after blah starts"
- [11] X < A && A < Y            "measures that start after segment blah starts but before segment blah stops"
- [12] X < A && B < Y            "measures that start after blah starts and stop before blah stops"
- [13] X < A && B == Y           "measures that start after blah starts and stop when blah stops"
- [14] X < A && Y < B            "measures that start after blah starts and stop and after blah stops"
- [15] X < A && A < Y && Y < B   "measures that start after blah starts and overlap the stop of blah"
- [16] A < Y                     "measures that start before blah stops"
- [17] A == Y                    "measures that start when blah stops"
- [18] Y < A                     "measures that start after blah stops"
- [19] A < Y && Y < B            "measures that overlap the stop of blah"
- [20] B < X                     "measures that stop before blah starts"
- [21] B == X                    "measures that stop when blah starts"
- [22] X < B                     "measures that stop after blah starts"
- [23] X < B && B < Y            "measures that stop after blah starts but before blah stops"
- [24] B < Y                     "measures that stop before blah stops"
- [25] B == Y                    "measures that stop when blah stops"
- [26] Y < B                     "measures that stop after blah stops"
+  [1] A <  X                        "measures that start before blah starts"
+  [6] A == X                        "measures that start when blah starts"
+ [10] X <  A                        "measures that start after blah starts"
+
+ [16] A <  Y                        "measures that start before blah stops"
+ [17] A == Y                        "measures that start when blah stops"
+ [18] Y <  A                        "measures that start after blah stops"
+
+ [20] B <  X                        "measures that stop before blah starts"
+ [21] B == X                        "measures that stop when blah starts"
+ [22] X <  B                        "measures that stop after blah starts"
+
+ [24] B <  Y                        "measures that stop before blah stops"
+ [25] B == Y                        "measures that stop when blah stops"
+ [26] Y <  B                        "measures that stop after blah stops"
+
+  [3] A <  X && B <  Y              "measures that start before blah starts and stop before blah stops"
+  [4] A <  X && B == Y              "measures that start before blah starts and stop when blah stops"
+  [5] A <  X && Y <  B              "measures that start before blah starts and stop after blah stops"
+
+  [2] A <  X && X <  B              "measures that start before blah starts and stop after blah starts"
+
+  [7] A == X && B <  Y              "measures that start when blah starts   and stop before blah stops"
+  [8] A == X && B == Y              "measures that start when blah starts   and stop when blah stops"
+  [9] A == X && Y <  B              "measures that start when blah starts   and stop after blah stops"
+
+
+ [12] X <  A && B <  Y              "measures that start after blah starts  and stop before blah stops"
+ [13] X <  A && B == Y              "measures that start after blah starts  and stop when blah stops"
+ [14] X <  A && Y <  B              "measures that start after blah starts  and stop and after blah stops"
+
+ [11] X <  A && A <  Y              "measures that start after blah starts  and start before blah stops"
+
+ [19] A <  Y && Y <  B              "measures that start before blah stops  and stop after blah stops"
+ [23] X <  B && B <  Y              "measures that stop after blah starts   and stop before blah stops"
+
+ [15] X <  A && A <  Y && Y <  B    "measures that start after blah starts  and start before blah stops
+                                                                            and stop after blah stop"
+ [27] A <  X && X <  B && B <  Y    "measures that start before blah start  and stop after blah starts
+                                                                            and stop before blah stops"
