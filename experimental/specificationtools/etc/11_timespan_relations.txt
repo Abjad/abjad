@@ -1,0 +1,110 @@
+TIMESPAN RELATIONS.
+
+This document revises #10 before it.
+
+A reference timespan t and and a "movable" timespan s together define four timepoints.
+There are t.start, t.stop, s.start and s.stop. And we may choose to abbreviate these X, Y
+(for reference timespan t) and A, B (for movable timespan s). Regardless of labeling,
+two timespans define four timepoints.
+
+Perhaps the ultimate question to is ask is what set of natural language API
+functions best capture the various relationships that obtain between s and t?
+Linguistic notions like "all the timespans s that start before t starts" and
+"all the timespans s that share exactly one timepoint with t" are the goal.
+But there's no hope of getting there if there formalization isn't clear.
+
+So what's the formalization?
+
+We must first make decisions about zero-length timespans. Do we allow them or not?
+On the one hand, the most intuitive cases all make reference to timespans with positive
+duration. On the other hand, hard-won experience suggests that zero-duration whatevers
+will eventually make themselves useful. Additionally, prelimiary sketches from the last
+couple of days' work suggest that the cases of positively durated timespans are actually
+trickier to work out that the case that allows for zero-duration timespans.
+
+At any rate, we make the decision here to enumerate cases for positively durated timespans only.
+
+And with that we are now in a position to procede.
+
+* * *
+
+We recall that two timespans define four timepoints, which we label X, Y (reference) 
+and A, B (movable). In the most basic case this means that we've got four objects. And
+it also means that we can be certain we can characterize all possible relationships obtaining
+between s and t if we can exhaustively characterize the relationships obtaining between
+these four objects.
+
+So our insistence on positively durated timespans s, t then provides us with something
+very useful. By definition, s.start < s.stop and t.start < t.stop or, equivalently,
+A < B and X < Y.
+
+Why does this matter? It matters because in the exhaustive enumeration that we're about
+to undertake, we will repeatedly inquire as to the relationship(s) obtaining between
+two or more timepoints. And our upfront restrictions that A < B and X < Y means that
+everytime we ask about the relationship between A and B or between X and Y we will
+have a context-free answer ready-made.
+
+So:
+
+We begin by observing that all of the cases that we are interested in relate A, B
+to X, Y  in some way. Why? Because we are free to make observations about A, B in 
+isolation all day. But unless or until we observe something about A, B *in relation to*
+X, Y we are not yet answering the question of how two different timespans relate.
+
+So we start at the beginning and proceded, perhaps bizarrely, by dialetic questioning:
+
+Does it make sense to let A < X. Yes, it absolutely does. That criterion (or inequality)
+taken all by itself picks out an enormously important set of timespans. If we think
+of reference timespan t as a (probably large) segment and think of movable timespan
+timespan s as a (probably smaller) measure, then the restriction that A < X picks out
+the set of all measures that start before segment t starts.
+
+Then: with A < X fixed we should consider B (ie, s.stop). If A is fixed prior to X,
+does it make sense to consider the time-relative positioning of B at all? Indeed it does.
+It is completely unnecessary to consider the relationship between A and B because our
+insistence on positively durated timespans guarantees that A < B. What about considering
+the relationships that may obtain between B and X? We find that it is of no use at all
+to consider the cases where B < X when we have already decided that A < X. Why?
+Because we insist that A < B (ie, that our movable measure have a positive duration).
+And so it is absolutely redudant to declare that A < X if we then go on to declare
+that B < X. Looked at another way, it is a very significant thing indeed to declare
+that B < X because this one criterion alone picks out the set of, for example, all
+measures that stop before a certain segment begins. So if we declare that we're
+interested in the set of measures that obtain when both A < X and B < X we are
+then being redundant. It is clearly enough to declare only that B < X and to move on.
+
+So we return to the basic proposition that A < X. To write "A < X && B < X" is redudant,
+as shown above. So we do not do this. We move B somewhat to the right and consider the
+cases where B == X. Does is make sense to write "A < X && B == X"? No. Because A < B
+the statement that B == X entails A < X. So the compound assertion "A < X && B == X"
+is redundant. So we avoid writing this. Then we move B somewhat further to the right
+and consider the cases where X < B. Does it make sense to write "A < X < B"? Definitely.
+This expression denotes an enormously important set of cases of, for examples, measures
+that overlap the start of some segment. Let us move B even further to the right and
+consider the cases in which B == Y. Does it make sense to write "A < X and B == Y".
+Absolutely. This expression captures, for example, those measures that start before
+a certain segment but share an endpoint with it. We move B one position even further
+to the right and inquire as to the cases in which Y < B. Does it make sense to write
+"A < X and Y < B". Absolutely. The notion captures the set of (perhaps very large) measures
+that cover our reference segment completely.
+
+Our investigation yields.
+
+So far we have unearthed the following inequalities and tested each for both
+relevance and redundancy:
+
+    A < X               "the set of measures that begin before segment blah"
+    A < X < B           "the set of measures that overlap the start of segment blah"
+    A < X && B == Y     "the set of measures that overlap the start of segment blah but end with it"
+    A < X && Y < B      "the set of measures that overlap both the start and stop of segment blah"
+
+We can definitely procede this way.
+
+* * *
+
+The next set of cases will depend on moving A to the right such that A == X. This inequality
+itself picks out an enormously important set of cases of, for example, all measures that
+start at the same time as an arbitrary reference segment.
+
+What remains to be done now is to move B through the various positions it can take
+with respect to A, X, Y and evaluate the relevance and redundancy B provides in those positions.
