@@ -4,4 +4,4 @@
 
 3. Extend DivisionList initializer with string handling.
 
-4. Replace DivisionRetrievalRequest with ScoreSliceIndicator.
+4. Replace DivisionRetrievalRequest with ScoreObjectIndicator.

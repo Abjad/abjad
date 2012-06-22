@@ -84,7 +84,7 @@ class Timespan(AbjadObject):
 
     Select the timespan of the segment with name ``'red'``::
 
-        >>> anchor = specificationtools.ScoreSliceIndicator(segment='red')
+        >>> anchor = specificationtools.ScoreObjectIndicator(segment='red')
 
     ::
 
@@ -94,11 +94,11 @@ class Timespan(AbjadObject):
     ::
 
         >>> specificationtools.Timespan(start=start, stop=stop)
-        Timespan(ScoreSliceIndicator(segment='red'))
+        Timespan(ScoreObjectIndicator(segment='red'))
 
     Select the timespan of the first measure in the segment with name ``'red'``::
 
-        >>> anchor = specificationtools.ScoreSliceIndicator(segment='red', klass=Measure)
+        >>> anchor = specificationtools.ScoreObjectIndicator(segment='red', klass=Measure)
 
     ::
 
@@ -108,11 +108,11 @@ class Timespan(AbjadObject):
     ::
 
         >>> specificationtools.Timespan(start=start, stop=stop)
-        Timespan(ScoreSliceIndicator(segment='red', klass=measuretools.Measure))
+        Timespan(ScoreObjectIndicator(segment='red', klass=measuretools.Measure))
 
     Select the timespan of the first division in the segment with name ``'red'``::
 
-        >>> anchor = specificationtools.ScoreSliceIndicator(segment='red', klass=specificationtools.Division)
+        >>> anchor = specificationtools.ScoreObjectIndicator(segment='red', klass=specificationtools.Division)
 
     ::
 
@@ -122,39 +122,39 @@ class Timespan(AbjadObject):
     ::
 
         >>> specificationtools.Timespan(start=start, stop=stop)
-        Timespan(ScoreSliceIndicator(segment='red', klass=specificationtools.Division))
+        Timespan(ScoreObjectIndicator(segment='red', klass=specificationtools.Division))
 
     Select the timespan starting at the left edge of the segment with the name ``'red'``
     and stopping at the right edge of the segment with the name ``'blue'``::
 
-        >>> anchor = specificationtools.ScoreSliceIndicator(segment='red')
+        >>> anchor = specificationtools.ScoreObjectIndicator(segment='red')
         >>> start = specificationtools.Timepoint(anchor=anchor)
 
     ::
 
-        >>> anchor = specificationtools.ScoreSliceIndicator(segment='blue')
+        >>> anchor = specificationtools.ScoreObjectIndicator(segment='blue')
         >>> stop = specificationtools.Timepoint(anchor=anchor, edge=Right)
 
     ::
 
         >>> specificationtools.Timespan(start=start, stop=stop)
-        Timespan(start=Timepoint(anchor=ScoreSliceIndicator(segment='red')), stop=Timepoint(anchor=ScoreSliceIndicator(segment='blue'), edge=Right))
+        Timespan(start=Timepoint(anchor=ScoreObjectIndicator(segment='red')), stop=Timepoint(anchor=ScoreObjectIndicator(segment='blue'), edge=Right))
 
     Select the timespan starting at the left edge of the last measure in the segment with name ``'red'``
     and stopping at the right edge of the first measure in the segment with name ``'blue'``::
 
-        >>> anchor = specificationtools.ScoreSliceIndicator(segment='red', klass=Measure, index=-1)
+        >>> anchor = specificationtools.ScoreObjectIndicator(segment='red', klass=Measure, index=-1)
         >>> start = specificationtools.Timepoint(anchor=anchor)
 
     ::
 
-        >>> anchor = specificationtools.ScoreSliceIndicator(segment='blue', klass=Measure)
+        >>> anchor = specificationtools.ScoreObjectIndicator(segment='blue', klass=Measure)
         >>> stop = specificationtools.Timepoint(anchor=anchor, edge=Right)
 
     ::
 
         >>> specificationtools.Timespan(start=start, stop=stop)
-        Timespan(start=Timepoint(anchor=ScoreSliceIndicator(segment='red', klass=measuretools.Measure, index=-1)), stop=Timepoint(anchor=ScoreSliceIndicator(segment='blue', klass=measuretools.Measure), edge=Right))
+        Timespan(start=Timepoint(anchor=ScoreObjectIndicator(segment='red', klass=measuretools.Measure, index=-1)), stop=Timepoint(anchor=ScoreObjectIndicator(segment='blue', klass=measuretools.Measure), edge=Right))
 
     Examples below reference the timespan defined immediately above::
 
@@ -275,7 +275,7 @@ class Timespan(AbjadObject):
         '''Timespan start specified by user.
 
             >>> timespan.start
-            Timepoint(anchor=ScoreSliceIndicator(segment='red', klass=measuretools.Measure, index=-1))
+            Timepoint(anchor=ScoreObjectIndicator(segment='red', klass=measuretools.Measure, index=-1))
 
         Value of none is taken equal to the left edge of score.
 
@@ -288,7 +288,7 @@ class Timespan(AbjadObject):
         '''Timespan stop specified by user.
 
             >>> timespan.stop
-            Timepoint(anchor=ScoreSliceIndicator(segment='blue', klass=measuretools.Measure), edge=Right)
+            Timepoint(anchor=ScoreObjectIndicator(segment='blue', klass=measuretools.Measure), edge=Right)
 
         Value of none is taken equal to the right edge of score.  
 
