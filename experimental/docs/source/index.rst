@@ -200,6 +200,7 @@ Unstable packages (load manually)
    experimental/specificationtools/StatalServerRequest/StatalServerRequest
    experimental/specificationtools/Timepoint/Timepoint
    experimental/specificationtools/Timespan/Timespan
+   experimental/specificationtools/TimespanInequality/TimespanInequality
    experimental/specificationtools/ValueRetrievalIndicator/ValueRetrievalIndicator
    experimental/specificationtools/VoiceDivisionList/VoiceDivisionList
 
