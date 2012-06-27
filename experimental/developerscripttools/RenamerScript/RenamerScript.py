@@ -181,14 +181,9 @@ class RenamerScript(DeveloperScript):
         command = [directory, old_text, new_text, '--force']
         ReplaceInFilesScript()(command)
 
-        old_text = ' {}('.format(old_object_name)
-        new_text = ' {}('.format(new_object_name)
-        command = [directory, old_text, new_text, '--force']
-        ReplaceInFilesScript()(command)
-
-        old_text = 'import {}'.format(old_object_name)
-        new_text = 'import {}'.format(new_object_name)
-        command = [directory, old_text, new_text, '--force']
+        old_text = old_object_name
+        new_text = new_object_name
+        command = [directory, old_text, new_text, '--force', '--whole-words-only']
         ReplaceInFilesScript()(command)
 
         print ''
