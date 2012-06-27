@@ -7,13 +7,13 @@ from experimental.developerscripttools.ReplaceInFilesScript import ReplaceInFile
 import os
 
 
-class RenamerScript(DeveloperScript):
+class RenameModulesScript(DeveloperScript):
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def alias(self):
-        return 'modules'
+        return 'rename'
 
     @property
     def long_description(self):
@@ -21,7 +21,7 @@ class RenamerScript(DeveloperScript):
 
     @property
     def scripting_group(self):
-        return 'rename'
+        return None
 
     @property
     def short_description(self):
@@ -209,7 +209,7 @@ class RenamerScript(DeveloperScript):
 
     def _update_codebase(self, kind, old_package_name, old_object_name, new_package_name, new_object_name):
         print 'Updating codebase ...'
-        directory = ABJADROOTPATH
+        directory = ROOTPATH
 
         old_text = '{}.{}'.format(old_package_name, old_object_name)
         new_text = '{}.{}'.format(new_package_name, new_object_name)
@@ -267,4 +267,4 @@ class RenamerScript(DeveloperScript):
             help='rename functions',
             )
 
-        parser.set_defaults(kind='functions')
+        parser.set_defaults(kind='function')
