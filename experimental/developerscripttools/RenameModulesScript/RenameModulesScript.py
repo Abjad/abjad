@@ -190,31 +190,29 @@ class RenameModulesScript(DeveloperScript):
 
         elif kind == 'class':
             test_path = os.path.join(ABJADPATH, 'tools', new_package_name, new_object_name, 'test')
-            print test_path
             for x in os.listdir(test_path):
                 if x.startswith('test_') and x.endswith('.py'):
                     old_path = os.path.join(test_path, x)
-
                     new_path = os.path.join(test_path,
                         x.replace('test_{}'.format(old_object_name), 'test_{}'.format(new_object_name)))
 
                     command = 'svn --force mv {} {} > /dev/null'.format(old_path, new_path)
-
-                    print '\t{}'.format(old_path)
-                    print '\t{}'.format(new_path)
-
                     iotools.spawn_subprocess(command)
 
         print ''
 
     def _update_codebase(self, kind, old_package_name, old_object_name, new_package_name, new_object_name):
-        print 'Updating codebase ...'
         directory = ROOTPATH
+
+        print 'Updating codebase ...'
+        print ''
 
         old_text = '{}.{}'.format(old_package_name, old_object_name)
         new_text = '{}.{}'.format(new_package_name, new_object_name)
         command = [directory, old_text, new_text, '--force', '--whole-words-only']
         ReplaceInFilesScript()(command)
+
+        print ''
 
         if kind == 'function':
             old_text = 'test_{}_{}_'.format(old_package_name, old_object_name)
@@ -224,6 +222,8 @@ class RenameModulesScript(DeveloperScript):
             new_text = 'test_{}_'.format(new_object_name)
         command = [directory, old_text, new_text, '--force']
         ReplaceInFilesScript()(command)
+
+        print ''
 
         old_text = old_object_name
         new_text = new_object_name
@@ -236,6 +236,10 @@ class RenameModulesScript(DeveloperScript):
 
     def process_args(self, args):
         iotools.clear_terminal()
+
+        if not args.kind:
+            print 'Please select a module-type (--classes|--functions)'
+            return
 
         kind = args.kind
         old_package_name, old_object_name = self._prompt_for_old_name(kind)
@@ -267,4 +271,4 @@ class RenameModulesScript(DeveloperScript):
             help='rename functions',
             )
 
-        parser.set_defaults(kind='function')
+        parser.set_defaults(kind=False)

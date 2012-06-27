@@ -191,7 +191,7 @@ class ReplaceInFilesScript(DirectoryScript):
                     changed_item_count += changed_items
 
         print ''
-        print 'Replaces {} instances over {} lines in {} files.'.format(
+        print 'Replaced {} instances over {} lines in {} files.'.format(
             changed_item_count, changed_line_count, changed_file_count)
 
     def setup_argument_parser(self, parser):
