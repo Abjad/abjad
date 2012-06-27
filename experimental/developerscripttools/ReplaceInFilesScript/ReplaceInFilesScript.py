@@ -114,7 +114,7 @@ class ReplaceInFilesScript(DirectoryScript):
 
         return line, changes
 
-    def _get_naive_search_callable(self, old):
+    def _get_naive_search_callable(self, args):
         class NaiveSearch(object):
             def __init__(self, pattern):
                 self.pattern = pattern
@@ -123,12 +123,16 @@ class ReplaceInFilesScript(DirectoryScript):
                 if 0 <= index:
                     return index, len(self.pattern)
                 return -1, 0
-        return NaiveSearch(old)
+        return NaiveSearch(args.old)
 
-    def _get_regex_search_callable(self, old):
+    def _get_regex_search_callable(self, args):
         class RegexSearch(object):
-            def __init__(self, pattern):
+            def __init__(self, pattern, escaped=False, whole_words_only=False):
                 try:
+                    if escaped:
+                        pattern = re.escape(pattern)
+                    if whole_words_only:
+                        pattern += r'\b'
                     self.pattern = re.compile(pattern)
                 except:
                     raise ValueError("Can't compile {!r} as a regex pattern.".format(pattern))
@@ -137,7 +141,7 @@ class ReplaceInFilesScript(DirectoryScript):
                 if match is None:
                     return -1, 0
                 return match.start(), match.end() - match.start()
-        return RegexSearch(old)
+        return RegexSearch(args.old, escaped=not args.regex, whole_words_only=args.whole_words_only)
 
     ### PUBLIC METHODS ###
 
@@ -148,13 +152,13 @@ class ReplaceInFilesScript(DirectoryScript):
         skipped_dirs_patterns = self.skipped_directories + args.without_dirs
         skipped_files_patterns = self.skipped_files + args.without_files
 
-        if args.regex:
-            args.old = self._get_regex_search_callable(args.old)
+        if args.regex or (not args.regex and args.whole_words_only):
+            args.old = self._get_regex_search_callable(args)
             index, length = args.old('', 0)
             if 0 <= index:
                 raise ValueError('Regex pattern {!r} matches the empty string.'.format(args.old.pattern.pattern))
         else:
-            args.old = self._get_naive_search_callable(args.old)
+            args.old = self._get_naive_search_callable(args)
 
         changed_file_count = 0
         changed_line_count = 0
@@ -205,24 +209,29 @@ class ReplaceInFilesScript(DirectoryScript):
             help='new text',
             )
 
-        parser.add_argument('--force',
+        parser.add_argument('-Y', '--force',
             action='store_true',
             help='force "yes" to every replacement'
             )
 
-        parser.add_argument('--regex',
+        parser.add_argument('-R', '--regex',
             action='store_true',
             help='treat "old" as a regular expression',
             )
 
-        parser.add_argument('-WF', '--without-files',
+        parser.add_argument('-W', '--whole-words-only',
+            action='store_true',
+            help='''match only whole words, similar to grep's "-w" flag''',
+            )
+
+        parser.add_argument('-F', '--without-files',
             action='append',
             default=[],
             help='Exclude files matching pattern(s)',
             metavar='PATTERN',
             )
 
-        parser.add_argument('-WD', '--without-dirs',
+        parser.add_argument('-D', '--without-dirs',
             action='append',
             default=[],
             help='Exclude folders matching pattern(s)',
