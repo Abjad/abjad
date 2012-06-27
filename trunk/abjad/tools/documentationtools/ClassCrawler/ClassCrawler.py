@@ -13,11 +13,14 @@ class ClassCrawler(abctools.AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, code_root, include_private_objects=False, root_package_name='abjad'):
+    def __init__(self, code_root, include_private_objects=False, root_package_name=None):
         self._module_crawler = ModuleCrawler(code_root, root_package_name=root_package_name)
         self._code_root = code_root
         self._include_private_objects = include_private_objects
-        self._root_package_name = root_package_name
+        if root_package_name is None:
+            self._root_package_name = self._module_crawler.root_package_name
+        else:
+            self._root_package_name = root_package_name
 
     ### SPECIAL METHODS ###
 
