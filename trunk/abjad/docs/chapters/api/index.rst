@@ -1500,6 +1500,7 @@ Composition packages
 .. toctree::
    :maxdepth: 1
 
+   tools/spannertools/DirectedSpanner/DirectedSpanner
    tools/spannertools/Spanner/Spanner
 
 .. rubric:: concrete classes

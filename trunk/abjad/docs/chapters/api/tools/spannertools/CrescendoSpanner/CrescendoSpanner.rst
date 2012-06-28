@@ -58,7 +58,7 @@ Read/write Properties
 
 .. autoattribute:: abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.direction
 
-    Inherited from :py:class:`spannertools._DirectedSpanner <abjad.tools.spannertools._DirectedSpanner._DirectedSpanner._DirectedSpanner>`
+    Inherited from :py:class:`spannertools.DirectedSpanner <abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner>`
 
 .. autoattribute:: abjad.tools.spannertools.CrescendoSpanner.CrescendoSpanner.CrescendoSpanner.include_rests
 

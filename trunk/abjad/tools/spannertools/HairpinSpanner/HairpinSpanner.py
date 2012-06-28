@@ -1,7 +1,7 @@
-from abjad.tools.spannertools._DirectedSpanner._DirectedSpanner import _DirectedSpanner
+from abjad.tools.spannertools.DirectedSpanner.DirectedSpanner import DirectedSpanner
 
 
-class HairpinSpanner(_DirectedSpanner):
+class HairpinSpanner(DirectedSpanner):
     r'''Abjad hairpin spanner that includes rests::
 
         >>> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
@@ -78,7 +78,7 @@ class HairpinSpanner(_DirectedSpanner):
     ### INITIALIZER ###
 
     def __init__(self, components=None, descriptor='<', include_rests=True, direction=None):
-        _DirectedSpanner.__init__(self, components=components, direction=direction)
+        DirectedSpanner.__init__(self, components=components, direction=direction)
         self.include_rests = include_rests
         start_dynamic_string, shape_string, stop_dynamic_string = self._parse_descriptor(descriptor)
         self.shape_string = shape_string

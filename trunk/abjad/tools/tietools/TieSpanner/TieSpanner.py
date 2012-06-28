@@ -1,7 +1,7 @@
-from abjad.tools.spannertools._DirectedSpanner._DirectedSpanner import _DirectedSpanner
+from abjad.tools.spannertools.DirectedSpanner.DirectedSpanner import DirectedSpanner
 
 
-class TieSpanner(_DirectedSpanner):
+class TieSpanner(DirectedSpanner):
     r'''Abjad tie spanner::
 
         >>> staff = Staff(notetools.make_repeated_notes(4))
@@ -21,7 +21,7 @@ class TieSpanner(_DirectedSpanner):
     ### INITIALIZER ###
 
     def __init__(self, music=None, direction=None):
-        _DirectedSpanner.__init__(self, music, direction)
+        DirectedSpanner.__init__(self, music, direction)
 
     ### PRIVATE METHODS ###
     

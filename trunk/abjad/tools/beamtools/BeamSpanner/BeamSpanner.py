@@ -1,7 +1,7 @@
-from abjad.tools.spannertools._DirectedSpanner._DirectedSpanner import _DirectedSpanner
+from abjad.tools.spannertools.DirectedSpanner.DirectedSpanner import DirectedSpanner
 
 
-class BeamSpanner(_DirectedSpanner):
+class BeamSpanner(DirectedSpanner):
     r'''Abjad beam spanner::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8 g'2")
@@ -39,7 +39,7 @@ class BeamSpanner(_DirectedSpanner):
     ### INITIALIZER ###
 
     def __init__(self, components=None, direction=None):
-        _DirectedSpanner.__init__(self, components, direction)
+        DirectedSpanner.__init__(self, components, direction)
 
     ### PRIVATE METHODS ###
 

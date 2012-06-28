@@ -40,14 +40,7 @@ class StaffLinesSpanner(Spanner):
 
     def __init__(self, components=None, arg=5):
         Spanner.__init__(self, components)
-        if isinstance(arg, int) and 0 < arg:
-            self._lines = arg
-        elif isinstance(arg, (tuple, list)) \
-            and all([isinstance(x, (int, float)) for x in arg]):
-            self._lines = arg
-        else:
-            raise ValueError('StaffLinesSpanner requires either an int, '
-                'or a list/tuple of ints and/or floats.')
+        self.lines = arg
 
     ### PRIVATE METHODS ###
 

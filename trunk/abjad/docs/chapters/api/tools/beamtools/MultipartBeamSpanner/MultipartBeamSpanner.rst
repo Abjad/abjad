@@ -58,7 +58,7 @@ Read/write Properties
 
 .. autoattribute:: abjad.tools.beamtools.MultipartBeamSpanner.MultipartBeamSpanner.MultipartBeamSpanner.direction
 
-    Inherited from :py:class:`spannertools._DirectedSpanner <abjad.tools.spannertools._DirectedSpanner._DirectedSpanner._DirectedSpanner>`
+    Inherited from :py:class:`spannertools.DirectedSpanner <abjad.tools.spannertools.DirectedSpanner.DirectedSpanner.DirectedSpanner>`
 
 Methods
 -------
