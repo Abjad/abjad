@@ -65,11 +65,15 @@ Unstable packages (load manually)
    :maxdepth: 1
 
    experimental/developerscripttools/AbjDevScript/AbjDevScript
+   experimental/developerscripttools/AbjGrepScript/AbjGrepScript
    experimental/developerscripttools/BuildAbjadApiScript/BuildAbjadApiScript
    experimental/developerscripttools/BuildExperimentalApiScript/BuildExperimentalApiScript
    experimental/developerscripttools/CleanScript/CleanScript
    experimental/developerscripttools/CountLinewidthsScript/CountLinewidthsScript
    experimental/developerscripttools/CountToolsScript/CountToolsScript
+   experimental/developerscripttools/MakeNewClassTemplateScript/MakeNewClassTemplateScript
+   experimental/developerscripttools/MakeNewFunctionTemplateScript/MakeNewFunctionTemplateScript
+   experimental/developerscripttools/RenameModulesScript/RenameModulesScript
    experimental/developerscripttools/ReplaceInFilesScript/ReplaceInFilesScript
    experimental/developerscripttools/ReplacePromptsScript/ReplacePromptsScript
    experimental/developerscripttools/SvnAddAllScript/SvnAddAllScript
@@ -187,7 +191,7 @@ Unstable packages (load manually)
    experimental/specificationtools/RegionDivisionList/RegionDivisionList
    experimental/specificationtools/ResolvedContextSetting/ResolvedContextSetting
    experimental/specificationtools/ScopedValue/ScopedValue
-   experimental/specificationtools/ScoreObjectIndicator/ScoreObjectIndicator
+   experimental/specificationtools/ScoreObjectSelector/ScoreObjectSelector
    experimental/specificationtools/ScoreSpecification/ScoreSpecification
    experimental/specificationtools/SegmentDivisionList/SegmentDivisionList
    experimental/specificationtools/SegmentInventory/SegmentInventory

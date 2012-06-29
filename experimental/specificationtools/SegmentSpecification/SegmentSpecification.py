@@ -93,12 +93,12 @@ class SegmentSpecification(Specification):
         '''Segment score object indicator.
 
             >>> segment.indicator
-            ScoreObjectIndicator(segment='1')
+            ScoreObjectSelector(segment='1')
 
         Return score object indicator.
         '''
         from experimental import specificationtools
-        return specificationtools.ScoreObjectIndicator(segment=self)
+        return specificationtools.ScoreObjectSelector(segment=self)
         
     @property
     def name(self):
@@ -127,7 +127,7 @@ class SegmentSpecification(Specification):
         '''Segment start.
 
             >>> segment.start
-            Timepoint(anchor=ScoreObjectIndicator(segment='1'), edge=Left)
+            Timepoint(anchor=ScoreObjectSelector(segment='1'), edge=Left)
 
         Return timepoint.
         '''
@@ -139,7 +139,7 @@ class SegmentSpecification(Specification):
         '''Segment stop.
 
             >>> segment.stop
-            Timepoint(anchor=ScoreObjectIndicator(segment='1'), edge=Right)
+            Timepoint(anchor=ScoreObjectSelector(segment='1'), edge=Right)
 
         Return timepoint.
         '''
@@ -170,7 +170,7 @@ class SegmentSpecification(Specification):
         '''Segment timespan.
 
             >>> segment.timespan
-            Timespan(ScoreObjectIndicator(segment='1'))
+            Timespan(ScoreObjectSelector(segment='1'))
 
         Return timespan.
         '''

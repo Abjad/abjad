@@ -1,6 +1,6 @@
 from abjad.tools import durationtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from experimental.specificationtools.ScoreObjectIndicator import ScoreObjectIndicator
+from experimental.specificationtools.ScoreObjectSelector import ScoreObjectSelector
 import fractions
 
 
@@ -55,50 +55,50 @@ class Timepoint(AbjadObject):
 
     Pick out the timepoint equal to the left edge of the segment with name ``'red'``::
 
-        >>> anchor = specificationtools.ScoreObjectIndicator(segment='red')
+        >>> anchor = specificationtools.ScoreObjectSelector(segment='red')
 
     ::
 
         >>> specificationtools.Timepoint(anchor=anchor)
-        Timepoint(anchor=ScoreObjectIndicator(segment='red'))
+        Timepoint(anchor=ScoreObjectSelector(segment='red'))
 
     Pick out the timepoint equal to the right edge of the segment with name ``'red'``::
 
         >>> specificationtools.Timepoint(anchor=anchor, edge=Right)
-        Timepoint(anchor=ScoreObjectIndicator(segment='red'), edge=Right)
+        Timepoint(anchor=ScoreObjectSelector(segment='red'), edge=Right)
 
     Pick out the timepoint equal to ``1/8`` of a whole note after the left edge of 
     the segment with name ``'red'``::
 
         >>> specificationtools.Timepoint(anchor=anchor, addendum=Offset(1, 8))
-        Timepoint(anchor=ScoreObjectIndicator(segment='red'), addendum=Offset(1, 8))
+        Timepoint(anchor=ScoreObjectSelector(segment='red'), addendum=Offset(1, 8))
 
     Pick out the timepoint equal to one third of the way into the segment with name ``'red'``::
 
         >>> specificationtools.Timepoint(anchor=anchor, edge=Right, multiplier=Fraction(1, 3))
-        Timepoint(anchor=ScoreObjectIndicator(segment='red'), edge=Right, multiplier=Fraction(1, 3))
+        Timepoint(anchor=ScoreObjectSelector(segment='red'), edge=Right, multiplier=Fraction(1, 3))
 
     Pick out the timepoint equal to ``1/8`` of a whole note after the right edge of the first third of
     the segment with name ``'red'``::
     
         >>> specificationtools.Timepoint(anchor=anchor, edge=Right, multiplier=Fraction(1, 3), addendum=Offset(1, 8))
-        Timepoint(anchor=ScoreObjectIndicator(segment='red'), edge=Right, multiplier=Fraction(1, 3), addendum=Offset(1, 8))
+        Timepoint(anchor=ScoreObjectSelector(segment='red'), edge=Right, multiplier=Fraction(1, 3), addendum=Offset(1, 8))
 
     Pick out the timepoint equal to the left edge of note ``10`` in context ``'Voice 1'`` of
     the segment with name ``'red'``::
 
-        >>> anchor = specificationtools.ScoreObjectIndicator(segment='red', context='Voice 1', klass=Note, index=10)
+        >>> anchor = specificationtools.ScoreObjectSelector(segment='red', context='Voice 1', klass=Note, index=10)
 
     ::
 
         >>> specificationtools.Timepoint(anchor=anchor)
-        Timepoint(anchor=ScoreObjectIndicator(segment='red', context='Voice 1', klass=notetools.Note, index=10))
+        Timepoint(anchor=ScoreObjectSelector(segment='red', context='Voice 1', klass=notetools.Note, index=10))
 
     Pick out the timepoint equal to the right edgright edge of note ``10`` in context ``'Voice 1'`` of
     the segment with name ``'red'``::
 
         >>> specificationtools.Timepoint(anchor=anchor, edge=Right)
-        Timepoint(anchor=ScoreObjectIndicator(segment='red', context='Voice 1', klass=notetools.Note, index=10), edge=Right)
+        Timepoint(anchor=ScoreObjectSelector(segment='red', context='Voice 1', klass=notetools.Note, index=10), edge=Right)
 
     Examples below reference the timepoint defined immediately above::
 
@@ -110,7 +110,7 @@ class Timepoint(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self, anchor=None, edge=None, multiplier=None, addendum=None): 
-        assert isinstance(anchor, (ScoreObjectIndicator, type(None))), repr(anchor)
+        assert isinstance(anchor, (ScoreObjectSelector, type(None))), repr(anchor)
         assert edge in (Left, Right, None), repr(edge)
         assert isinstance(multiplier, (fractions.Fraction, type(None))), repr(multiplier)
         if addendum is not None:
@@ -211,7 +211,7 @@ class Timepoint(AbjadObject):
         '''Timepoint anchor specified by user.
         
             >>> timepoint.anchor
-            ScoreObjectIndicator(segment='red', context='Voice 1', klass=notetools.Note, index=10)
+            ScoreObjectSelector(segment='red', context='Voice 1', klass=notetools.Note, index=10)
 
         Value of none is taken equal the entire score.
 

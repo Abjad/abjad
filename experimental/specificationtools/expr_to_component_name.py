@@ -14,8 +14,6 @@ def expr_to_component_name(expr):
         >>> specificationtools.expr_to_component_name(voice)
         'Voice 1'
 
-    ::
-
     Leave string unchanged::
 
         >>> specificationtools.expr_to_component_name('Voice 1')
