@@ -203,7 +203,6 @@ Unstable packages (load manually)
    experimental/specificationtools/StatalServer/StatalServer
    experimental/specificationtools/StatalServerRequest/StatalServerRequest
    experimental/specificationtools/Timepoint/Timepoint
-   experimental/specificationtools/TimespanInequality/TimespanInequality
    experimental/specificationtools/ValueRetrievalIndicator/ValueRetrievalIndicator
    experimental/specificationtools/VoiceDivisionList/VoiceDivisionList
 
@@ -230,3 +229,4 @@ Unstable packages (load manually)
    :maxdepth: 1
 
    experimental/timespantools/Timespan/Timespan
+   experimental/timespantools/TimespanInequality/TimespanInequality
