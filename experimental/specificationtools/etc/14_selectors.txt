@@ -1,0 +1,89 @@
+SELECTORS.
+
+
+The purpose of this document is to list some of the different types of symbolic selection.
+What is a symbolic selection? An indication to pick out a score object at some point
+during interpretation. Or an indication to pick out a collection of related score objects.
+
+
+*ScoreObjectSelector.* Select a single score object. What input parameters are available?
+First, an optional timepsan defaulting to that of the entire score. Second, an optional
+timespan inequality defaulting to the first object that starts during timespan. Then an
+arbitrarily long list of ContainerIndicator objects which might eventually be implemented
+as a ContainerIndicatorList.
+
+Select the first depth-0 tuplet in the last measure starting during segment 'red':
+
+    selector = ScoreObjectSelector(
+        timespan=Timespan(klass=Division, name='red'),
+        comparator=specificationtools.starts_during_timespan(),
+        containment=[
+            ContainmentIndicator(klass=Measure, index=-1),
+            ContainmentIndicator(klass=Tuplet, index=0, depth=0)]
+
+(Possibly better named ScoreTreeObjectSelector to contrast with BackgroundObjectSelector.)
+
+
+*SliceSelector.* Select zero or more container elements in sequence. Input parameters?
+First, an optional ContainerIndicator defaulting to the entire score. Then, optional
+start and stop indices defaulting to 0 and -1, respectively.
+
+Select the last three elements of the tuplet picked out above:
+
+    SliceSelector(container=selector, start=-3)
+
+
+*BackgroundObjectSelector.* Use to select exactly one overlay object. Underlay objects
+do not participate in containment relations of the score tree. Input parameters?
+First, an optional timepsan defaulting to that of the entire score. Second, an optional
+timespan inequality defaulting to the first object starting during timespan. Then a class.
+together with a value set to either an interger index or name.
+
+Segment 'red':
+
+    BackgroundObjectSelector(klass=SegmentSpecification, value='red')
+
+First, last segment starting during score:
+
+    BackgroundObjectSelector(klass=SegmentSpecification, value=0)
+    BackgroundObjectSelector(klass=SegmentSpecification, value=-1)
+
+First, last measure starting during score:
+
+    BackgroundObjectSelector(klass=Measure, value=0)
+    BackgroundObjectSelector(klass=Measure, value=-1)
+
+First, last measure starting during segment 'red':
+
+    red = BackgroundObjectSelector(klass=SegmentSpecification, value='red')
+    BackgroundObjectSelector(klass=Measure, timespan=red.timespan, value=0)
+    BackgroundObjectSelector(klass=Measure, timespan=red.timespan, value=-1)
+
+First, last measure ending during segment 'red':
+
+    inequality = timespantools.expr_stops_during_timespan()
+    BackgroundObjectSelector(klass=Measure, timespan=red.timespan, inequality=inequality, value=0)
+    BackgroundObjectSelector(klass=Measure, timespan=red.timespan, inequality=inequality, value=-1)
+
+First measure overlapping the start but not the stop of segment 'red':
+
+    inequality = timespantools.expr_overlaps_start_of_timespan_only()
+    BackgroundObjectSelector(klass=Measure, timespan=red.timespan, inequality=inequality, value=0)
+
+First measure overlapping the stop but not the start of segment 'red':
+    
+    inequality = timespantools.expr_overlaps_stop_of_timespan_only()
+    BackgroundObjectSelector(klass=Measure, timespan=red.timespan, inequality=inequality, value=0) 
+
+#*IterationFromIndicator.* Select zero or more score objects iterated from a reference object.
+#Input parameters? First, an optional reference object indicator defaulting to the entire score.
+#Then an optional integer number of consecutive score objects to select, defaulting to 1.
+#
+#Select the three segments starting with 'red':
+#
+#    selector = ScoreObjectSelector(
+#        timespan=Timespan(klass=Division, name='red'),
+#        comparator=specificationtools.starts_during_timespan(),
+#        containment=[
+#            ContainmentIndicator(klass=Measure, index=-1),
+#            ContainmentIndicator(klass=Tuplet, index=0, depth=0)]
