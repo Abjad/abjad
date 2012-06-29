@@ -230,3 +230,31 @@ Unstable packages (load manually)
 
    experimental/timespantools/Timespan/Timespan
    experimental/timespantools/TimespanInequality/TimespanInequality
+
+.. rubric:: functions
+
+.. toctree::
+   :maxdepth: 1
+
+   experimental/timespantools/expr_happens_during_timespan
+   experimental/timespantools/expr_intersects_timespan
+   experimental/timespantools/expr_is_congruent_to_timespan
+   experimental/timespantools/expr_overlaps_all_of_timespan
+   experimental/timespantools/expr_overlaps_start_of_timespan
+   experimental/timespantools/expr_overlaps_start_of_timespan_only
+   experimental/timespantools/expr_overlaps_stop_of_timespan
+   experimental/timespantools/expr_overlaps_stop_of_timespan_only
+   experimental/timespantools/expr_starts_after_timespan_starts
+   experimental/timespantools/expr_starts_after_timespan_stops
+   experimental/timespantools/expr_starts_before_timespan_starts
+   experimental/timespantools/expr_starts_before_timespan_stops
+   experimental/timespantools/expr_starts_during_timespan
+   experimental/timespantools/expr_starts_when_timespan_starts
+   experimental/timespantools/expr_starts_when_timespan_stops
+   experimental/timespantools/expr_stops_after_timespan_starts
+   experimental/timespantools/expr_stops_after_timespan_stops
+   experimental/timespantools/expr_stops_before_timespan_starts
+   experimental/timespantools/expr_stops_before_timespan_stops
+   experimental/timespantools/expr_stops_during_timespan
+   experimental/timespantools/expr_stops_when_timespan_starts
+   experimental/timespantools/expr_stops_when_timespan_stops

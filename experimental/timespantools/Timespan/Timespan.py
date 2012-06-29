@@ -7,9 +7,7 @@ from experimental.specificationtools.Timepoint import Timepoint
 class Timespan(AbjadObject):
     r'''.. versionadded 1.0
 
-    Finite span of score time bounded by start and stop timepoints.
-
-    (Object-oriented delayed evaluation.)
+    Finite timespan bounded by start and stop timepoints.
 
     Timespan objects have much in common with time interval objects.
 
@@ -30,6 +28,7 @@ class Timespan(AbjadObject):
     Select the timespan of the entire score::
 
         >>> from experimental import specificationtools
+        >>> from experimental import timespantools
 
     ::
 
