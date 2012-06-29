@@ -174,8 +174,8 @@ class SegmentSpecification(Specification):
 
         Return timespan.
         '''
-        from experimental import specificationtools
-        return specificationtools.Timespan(start=self.start, stop=self.stop)
+        from experimental import timespantools
+        return timespantools.Timespan(start=self.start, stop=self.stop)
 
     ### PUBLIC METHODS ###
 
@@ -290,7 +290,7 @@ class SegmentSpecification(Specification):
         from experimental import specificationtools
         criterion = 'divisions'
         contexts = self.context_token_to_context_names(context_token)
-        timespan = specificationtools.Timespan(criterion=criterion, part=part, start=start, stop=stop)
+        timespan = timespantools.Timespan(criterion=criterion, part=part, start=start, stop=stop)
         selection = self.select(contexts=contexts, segment_name=segment_name, timespan=timespan)
         return selection
 
@@ -298,7 +298,7 @@ class SegmentSpecification(Specification):
         from experimental import specificationtools
         criterion = 'measures'
         contexts = self.context_token_to_context_names(context_token)
-        timespan = specificationtools.Timespan(criterion=criterion, part=part, start=start, stop=stop)
+        timespan = timespantools.Timespan(criterion=criterion, part=part, start=start, stop=stop)
         selection = self.select(contexts=contexts, segment_name=segment_name, timespan=timespan)
         return selection
     
@@ -306,7 +306,7 @@ class SegmentSpecification(Specification):
         from experimental import specificationtools
         criterion = (chordtools.Chord, notetools.Note)
         contexts = self.context_token_to_context_names(context_token)
-        timespan = specificationtools.Timespan(criterion=criterion, part=part, start=start, stop=stop)
+        timespan = timespantools.Timespan(criterion=criterion, part=part, start=start, stop=stop)
         selection = self.select(contexts=contexts, timespan=timespan)
         return selection
 
@@ -325,10 +325,11 @@ class SegmentSpecification(Specification):
     def set_attribute(self, attribute, contexts, source, 
         callback=None, count=None, offset=None, persistent=True, timespan=None, truncate=False):
         from experimental import specificationtools
+        from experimental import timespantools
         assert attribute in self.attributes, repr(attribute)
         assert isinstance(count, (int, type(None))), repr(count)
         assert isinstance(persistent, type(True)), repr(persistent)
-        assert isinstance(timespan, (specificationtools.Timespan, type(None))), repr(timespan)
+        assert isinstance(timespan, (timespantools.Timespan, type(None))), repr(timespan)
         assert isinstance(truncate, type(True)), repr(truncate)
         target = self.select_contexts(contexts=contexts)
         source = self.annotate_source(source, callback=callback, count=count, offset=offset)

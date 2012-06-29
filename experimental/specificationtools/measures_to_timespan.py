@@ -37,4 +37,4 @@ def measures_to_timespan(start_measure, stop_measure=None):
         stop_anchor = specificationtools.ScoreObjectSelector(klass=measuretools.Measure, index=stop_measure)
         stop_timepoint = specificationtools.Timepoint(anchor=stop_anchor, edge=Right)
 
-    return specificationtools.Timespan(start=start_timepoint, stop=stop_timepoint)
+    return timespantools.Timespan(start=start_timepoint, stop=stop_timepoint)

@@ -2,7 +2,7 @@ from experimental.specificationtools.ContextSelection import ContextSelection
 from experimental.specificationtools.ScoreObjectSelector import ScoreObjectSelector
 from experimental.specificationtools.ContextSetting import ContextSetting
 from experimental.specificationtools.Timepoint import Timepoint
-from experimental.specificationtools.Timespan import Timespan
+from experimental.timespantools.Timespan import Timespan
 import py
 
 

@@ -1,6 +1,6 @@
 from abjad.tools import contexttools
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from experimental.specificationtools.Timespan import Timespan
+from experimental.timespantools.Timespan import Timespan
 
 
 class Selection(AbjadObject):

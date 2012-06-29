@@ -33,7 +33,7 @@ class Timespan(AbjadObject):
 
     ::
 
-        >>> specificationtools.Timespan()
+        >>> timespantools.Timespan()
         Timespan()
 
     Select the timespan of the first third of the score::
@@ -42,7 +42,7 @@ class Timespan(AbjadObject):
 
     ::
 
-        >>> specificationtools.Timespan(stop=stop)
+        >>> timespantools.Timespan(stop=stop)
         Timespan(stop=Timepoint(edge=Right, multiplier=Fraction(1, 3)))
 
     Select the timespan of the last third of the score::
@@ -51,7 +51,7 @@ class Timespan(AbjadObject):
 
     ::
 
-        >>> specificationtools.Timespan(start=start)
+        >>> timespantools.Timespan(start=start)
         Timespan(start=Timepoint(edge=Right, multiplier=Fraction(2, 3)))
 
     Select the timespan of the middle third of the score::
@@ -61,7 +61,7 @@ class Timespan(AbjadObject):
 
     ::
 
-        >>> specificationtools.Timespan(start=start, stop=stop)
+        >>> timespantools.Timespan(start=start, stop=stop)
         Timespan(start=Timepoint(edge=Right, multiplier=Fraction(1, 3)), stop=Timepoint(edge=Right, multiplier=Fraction(2, 3)))
 
     Select the timespan of the first ``1/8`` of a whole note in score::
@@ -70,7 +70,7 @@ class Timespan(AbjadObject):
 
     ::
 
-        >>> specificationtools.Timespan(stop=stop)
+        >>> timespantools.Timespan(stop=stop)
         Timespan(stop=Timepoint(addendum=Offset(1, 8)))
 
     Select the timespan of the last ``1/8`` of a whole note in score::
@@ -79,7 +79,7 @@ class Timespan(AbjadObject):
 
     ::
 
-        >>> specificationtools.Timespan(start=start)
+        >>> timespantools.Timespan(start=start)
         Timespan(start=Timepoint(edge=Right, addendum=Offset(-1, 8)))
 
     Select the timespan of the segment with name ``'red'``::
@@ -93,7 +93,7 @@ class Timespan(AbjadObject):
 
     ::
 
-        >>> specificationtools.Timespan(start=start, stop=stop)
+        >>> timespantools.Timespan(start=start, stop=stop)
         Timespan(ScoreObjectSelector(segment='red'))
 
     Select the timespan of the first measure in the segment with name ``'red'``::
@@ -107,7 +107,7 @@ class Timespan(AbjadObject):
 
     ::
 
-        >>> specificationtools.Timespan(start=start, stop=stop)
+        >>> timespantools.Timespan(start=start, stop=stop)
         Timespan(ScoreObjectSelector(segment='red', klass=measuretools.Measure))
 
     Select the timespan of the first division in the segment with name ``'red'``::
@@ -121,7 +121,7 @@ class Timespan(AbjadObject):
 
     ::
 
-        >>> specificationtools.Timespan(start=start, stop=stop)
+        >>> timespantools.Timespan(start=start, stop=stop)
         Timespan(ScoreObjectSelector(segment='red', klass=specificationtools.Division))
 
     Select the timespan starting at the left edge of the segment with the name ``'red'``
@@ -137,7 +137,7 @@ class Timespan(AbjadObject):
 
     ::
 
-        >>> specificationtools.Timespan(start=start, stop=stop)
+        >>> timespantools.Timespan(start=start, stop=stop)
         Timespan(start=Timepoint(anchor=ScoreObjectSelector(segment='red')), stop=Timepoint(anchor=ScoreObjectSelector(segment='blue'), edge=Right))
 
     Select the timespan starting at the left edge of the last measure in the segment with name ``'red'``
@@ -153,7 +153,7 @@ class Timespan(AbjadObject):
 
     ::
 
-        >>> specificationtools.Timespan(start=start, stop=stop)
+        >>> timespantools.Timespan(start=start, stop=stop)
         Timespan(start=Timepoint(anchor=ScoreObjectSelector(segment='red', klass=measuretools.Measure, index=-1)), stop=Timepoint(anchor=ScoreObjectSelector(segment='blue', klass=measuretools.Measure), edge=Right))
 
     Examples below reference the timespan defined immediately above::

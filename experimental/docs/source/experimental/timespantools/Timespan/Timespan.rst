@@ -1,5 +1,5 @@
 timespantools.Timespan
-===========================
+======================
 
 .. inheritance-diagram:: experimental.timespantools.Timespan.Timespan.Timespan
    :private-bases:

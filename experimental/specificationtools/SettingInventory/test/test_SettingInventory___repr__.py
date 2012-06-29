@@ -5,7 +5,7 @@ from experimental.specificationtools.ScoreObjectSelector import ScoreObjectSelec
 from experimental.specificationtools.ScoreSpecification import ScoreSpecification
 from experimental.specificationtools.Selection import Selection
 from experimental.specificationtools.Timepoint import Timepoint
-from experimental.specificationtools.Timespan import Timespan
+from experimental.timespantools.Timespan import Timespan
 import py
 
 

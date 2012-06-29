@@ -1,6 +1,6 @@
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental.specificationtools.AttributeNameEnumeration import AttributeNameEnumeration
-#from experimental.specificationtools.Timespan import Timespan
+#from experimental.timespantools.Timespan import Timespan
 
 
 class AttributeRetrievalIndicator(AbjadObject):

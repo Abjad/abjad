@@ -31,6 +31,7 @@ def segments_to_timespan(start_segment, stop_segment=None):
         a count of ``3`` segments total.
     '''
     from experimental import specificationtools
+    from experimental import timespantools
 
     if isinstance(start_segment, int):
         pass
@@ -50,4 +51,4 @@ def segments_to_timespan(start_segment, stop_segment=None):
         stop_anchor = specificationtools.ScoreObjectSelector(segment=stop_segment)
         stop_timepoint = specificationtools.Timepoint(anchor=stop_anchor, edge=Right)
 
-    return specificationtools.Timespan(start=start_timepoint, stop=stop_timepoint)
+    return timespantools.Timespan(start=start_timepoint, stop=stop_timepoint)

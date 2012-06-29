@@ -203,7 +203,6 @@ Unstable packages (load manually)
    experimental/specificationtools/StatalServer/StatalServer
    experimental/specificationtools/StatalServerRequest/StatalServerRequest
    experimental/specificationtools/Timepoint/Timepoint
-   experimental/specificationtools/Timespan/Timespan
    experimental/specificationtools/TimespanInequality/TimespanInequality
    experimental/specificationtools/ValueRetrievalIndicator/ValueRetrievalIndicator
    experimental/specificationtools/VoiceDivisionList/VoiceDivisionList
@@ -221,3 +220,13 @@ Unstable packages (load manually)
    experimental/specificationtools/request_divisions
    experimental/specificationtools/score_to_timespan
    experimental/specificationtools/segments_to_timespan
+
+:py:mod:`timespantools <experimental.timespantools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: concrete classes
+
+.. toctree::
+   :maxdepth: 1
+
+   experimental/timespantools/Timespan/Timespan

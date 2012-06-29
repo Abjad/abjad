@@ -13,17 +13,17 @@ class TimespanInequality(AbjadObject):
 
     ::
 
-        >>> specificationtools.TimespanInequality('t.start <= x.start < t.stop')
+        >>> timespantools.TimespanInequality('t.start <= x.start < t.stop')
         TimespanInequality('t.start <= x.start < t.stop')
 
     Score object stops during timespan::
 
-        >>> specificationtools.TimespanInequality('t.start < x.stop <= t.stop')
+        >>> timespantools.TimespanInequality('t.start < x.stop <= t.stop')
         TimespanInequality('t.start < x.stop <= t.stop')
 
     Score object both starts and stops during timespan::
 
-        >>> specificationtools.TimespanInequality('t.start <= x.start < x.stop <= t.stop')
+        >>> timespantools.TimespanInequality('t.start <= x.start < x.stop <= t.stop')
         TimespanInequality('t.start <= x.start < x.stop <= t.stop')
         
     Timepsan objects perform no input checking.
