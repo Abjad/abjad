@@ -8,7 +8,7 @@ def score_to_timespan(score=None):
     ::
 
         >>> specificationtools.score_to_timespan()
-        Timespan(ScoreObjectSelector())
+        Timespan(ScoreElementSelector())
 
     Return timespan.
     '''
@@ -21,7 +21,7 @@ def score_to_timespan(score=None):
         score_name = specificationtools.expr_to_score_name(score)
 
     # make score indicator
-    score_indicator = specificationtools.ScoreObjectSelector()
+    score_indicator = specificationtools.ScoreElementSelector()
 
     # return timespan
     return score_indicator.timespan

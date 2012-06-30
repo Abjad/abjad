@@ -6,7 +6,7 @@ def test_ContextSetting___init___01():
     '''Initialize by hand.
     '''
 
-    anchor = specificationtools.ScoreObjectSelector(segment='1')
+    anchor = specificationtools.ScoreElementSelector(segment='1')
     start = specificationtools.Timepoint(anchor=anchor)
     stop = specificationtools.Timepoint(anchor=anchor, edge=Right)
     timespan = timespantools.Timespan(start=start, stop=stop)
@@ -19,7 +19,7 @@ def test_ContextSetting___init___02():
     '''Initialize from other setting.
     '''
 
-    anchor = specificationtools.ScoreObjectSelector(segment='1')
+    anchor = specificationtools.ScoreElementSelector(segment='1')
     start = specificationtools.Timepoint(anchor=anchor)
     stop = specificationtools.Timepoint(anchor=anchor, edge=Right)
     timespan = timespantools.Timespan(start=start, stop=stop)

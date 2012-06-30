@@ -1,5 +1,5 @@
 from experimental.specificationtools.ContextSelection import ContextSelection
-from experimental.specificationtools.ScoreObjectSelector import ScoreObjectSelector
+from experimental.specificationtools.ScoreElementSelector import ScoreElementSelector
 from experimental.specificationtools.ContextSetting import ContextSetting
 from experimental.specificationtools.Timepoint import Timepoint
 from experimental.timespantools.Timespan import Timespan
@@ -11,7 +11,7 @@ def test_ContextSetting___repr___01():
     '''
     py.test.skip('make repr evaluable again.')
 
-    anchor = ScoreObjectSelector(segment='1')
+    anchor = ScoreElementSelector(segment='1')
     start = Timepoint(anchor=anchor)
     stop = Timepoint(anchor=anchor, edge=Right)
     timespan = Timespan(start=start, stop=stop)
