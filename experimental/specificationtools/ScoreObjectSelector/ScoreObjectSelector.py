@@ -323,7 +323,7 @@ class ScoreObjectSelector(AbjadObject):
 
         Return timespan.
         '''
-        from experimental import specificationtools
+        from experimental import timespantools
 
         start, stop = self.timepoints
         return timespantools.Timespan(start=start, stop=stop)

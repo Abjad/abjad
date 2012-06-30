@@ -2,6 +2,10 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class Callback(AbjadObject):
+    r'''.. versionadded:: 1.0
+
+    Callback with string representation.
+    '''
 
     ### INITIALIZER ###
 

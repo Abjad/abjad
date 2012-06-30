@@ -24,6 +24,7 @@ def measures_to_timespan(start_measure, stop_measure=None):
     '''
     from abjad.tools import measuretools
     from experimental import specificationtools
+    from experimental import timespantools
 
     assert isinstance(start_measure, int), repr(start_measure)
     assert isinstance(stop_measure, (int, type(None))), repr(stop_measure)

@@ -26,7 +26,9 @@ Select the first depth-0 tuplet in the last measure starting during segment 'red
 
 *SliceSelector.* Select zero or more container elements in sequence. Input parameters?
 First, an optional ContainerIndicator defaulting to the entire score. Then, optional
-start and stop indices defaulting to 0 and -1, respectively.
+start and stop indices each defaulting to none. The design goal is to mimic the Python
+slice interface as closely as possible. So only integer values and none are allowed.
+Sequences of named objects like segments will have to be selected some other way.
 
 Select the last three elements of the tuplet picked out above:
 
