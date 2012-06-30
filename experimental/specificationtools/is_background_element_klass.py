@@ -4,13 +4,22 @@ from abjad.tools import measuretools
 def is_background_element_klass(expr):
     r'''.. versionadded:: 1.0
 
-    True when `expr` is segment, measure or division class.
+    True when `expr` is any of ``Segment``, ``Measure`` or ``Division``::
 
-    False otherwise.
+        >>> from experimental import specificationtools
+
+    ::
+
+        >>> specificationtools.is_background_element_klass(specificationtools.Segment)
+        True
+
+    Otherwise false::
+
+        >>> specificationtools.is_background_element_klass(Container)
+        False
 
     Return boolean.
     '''
     from experimental import specificationtools
 
-    return expr in (specificationtools.SegmentSpecification, 
-        specificationtools.Division, measuretools.Measure)
+    return expr in (specificationtools.Segment, measuretools.Measure, specificationtools.Division)

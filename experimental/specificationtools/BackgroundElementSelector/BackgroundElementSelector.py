@@ -12,10 +12,25 @@ class BackgroundElementSelector(AbjadObject):
 
     ::
 
-        >>> specificationtools.BackgroundElementSelector(specificationtools.SegmentSpecification, 'red')
-        BackgroundElementSelector(<class 'experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification'>, 'red')
+        >>> specificationtools.BackgroundElementSelector(specificationtools.Segment, 'red')
+        BackgroundElementSelector(specificationtools.Segment, 'red')
 
-    .. note:: something will have to be done about repr class display.
+    Select segment ``0``::
+
+        >>> specificationtools.BackgroundElementSelector(specificationtools.Segment, 0)
+        BackgroundElementSelector(specificationtools.Segment, 0)
+
+    Select measure ``0``::
+
+        >>> specificationtools.BackgroundElementSelector(measuretools.Measure, 0)
+        BackgroundElementSelector(measuretools.Measure, 0)
+
+    Select division ``0``::
+
+        >>> specificationtools.BackgroundElementSelector(specificationtools.Division, 0)
+        BackgroundElementSelector(specificationtools.Division, 0)
+
+    More examples to follow.
     '''
 
     ### INITIALIZER ###
@@ -26,6 +41,13 @@ class BackgroundElementSelector(AbjadObject):
         assert isinstance(value, (int, str)), repr(value)
         self._klass = klass
         self._value = value
+
+    ### SPECIAL METHODS ###
+
+    def __repr__(self):
+        module_parts = self.klass.__module__.split('.')
+        qualified_class_name = '.'.join(module_parts[-3:-1])
+        return '{}({}, {!r})'.format(self._class_name, qualified_class_name, self.value)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

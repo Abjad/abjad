@@ -54,8 +54,6 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.BackgroundElementSelector.BackgroundElementSelector.BackgroundElementSelector.__repr__
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: experimental.specificationtools.BackgroundElementSelector.BackgroundElementSelector.BackgroundElementSelector.__setattr__
 
     Inherited from :py:class:`__builtin__.object`
