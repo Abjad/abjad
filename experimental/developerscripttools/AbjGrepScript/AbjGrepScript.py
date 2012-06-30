@@ -64,7 +64,7 @@ If no PATH flag is specified, the current directory will be searched.
             type=self._validate_path,
             )
 
-        group.add_argument('-E', '--experimental',
+        group.add_argument('-X', '--experimental',
             action='store_const',
             const=EXPERIMENTALPATH,
             dest='path',

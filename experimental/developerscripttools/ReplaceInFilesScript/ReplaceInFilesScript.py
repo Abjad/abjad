@@ -68,7 +68,7 @@ class ReplaceInFilesScript(DirectoryScript):
 
         results = []
         for i, line in enumerate(lines):
-            line, changes = self._process_line(line, i, path, args.old, args.new, args.force)
+            line, changes = self._process_line(line, i, path, args.old, args.new, args.force, args.verbose)
             results.append(line)
             if changes:
                 changed_items += changes
@@ -80,17 +80,28 @@ class ReplaceInFilesScript(DirectoryScript):
 
         return changed_lines, changed_items
 
-    def _process_line(self, line, line_number, filename, search, replacement, force):
+    def _process_line(self, line, line_number, filename, search, replacement, force, verbose):
         index, changes = 0, 0
         index, length = search(line, index)
 
         while 0 <= index:
 
             should_replace = False
+
+            replaced_line = line[:index] + replacement + line[index+length:]
+            carats = (' ' * index) + ('^' * length)
+
             if force:
                 should_replace = True
+                if verbose:
+                    print ''
+                    print '{}: {}'.format(filename, line_number)
+                    print ''
+                    print '-{}'.format(line)
+                    print ' {}'.format(carats)
+                    print '+{}'.format(replaced_line)
+
             else:
-                carats = (' ' * index) + ('^' * length)
                 print ''
                 print '{}: {}'.format(filename, line_number)
                 print ''
@@ -104,8 +115,8 @@ class ReplaceInFilesScript(DirectoryScript):
                     should_replace = True
 
             if should_replace:
-                line = line[:index] + replacement + line[index+length:]
                 index += length - (length - len(replacement))
+                line = replaced_line
                 changes += 1
             else:
                 index += length
@@ -191,7 +202,7 @@ class ReplaceInFilesScript(DirectoryScript):
                     changed_item_count += changed_items
 
         print ''
-        print 'Replaced {} instances over {} lines in {} files.'.format(
+        print '\tReplaced {} instances over {} lines in {} files.'.format(
             changed_item_count, changed_line_count, changed_file_count)
 
     def setup_argument_parser(self, parser):
@@ -207,6 +218,11 @@ class ReplaceInFilesScript(DirectoryScript):
 
         parser.add_argument('new',
             help='new text',
+            )
+
+        parser.add_argument('--verbose',
+            action='store_true',
+            help='print replacement info even when --force flag is set.',
             )
 
         parser.add_argument('-Y', '--force',
