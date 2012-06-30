@@ -98,15 +98,15 @@ class AbjadObject(object):
 
     @property
     def _keyword_argument_name_value_strings(self):
+        from abjad.tools import introspectiontools
         result = []
         for name in self._keyword_argument_names:
             value = getattr(self, name)
             if value is not None:
                 # if the value is a class like Note (which is unusual)
                 if type(value) == ABCMeta:
-                    module_parts = value.__module__.split('.')
-                    tools_package_qualified_class_name = '.'.join(module_parts[-3:-1])
-                    string = '{}={}'.format(name, tools_package_qualified_class_name)
+                    value = introspectiontools.klass_to_tools_package_qualified_klass_name(value)
+                    string = '{}={}'.format(name, value)
                     result.append(string)
                 elif not isinstance(value, types.MethodType):
                     string = '{}={!r}'.format(name, value)

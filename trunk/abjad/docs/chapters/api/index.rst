@@ -2121,6 +2121,7 @@ Internal packages
    :maxdepth: 1
 
    tools/introspectiontools/get_current_function_name
+   tools/introspectiontools/klass_to_tools_package_qualified_klass_name
 
 :py:mod:`lilypondparsertools <abjad.tools.lilypondparsertools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

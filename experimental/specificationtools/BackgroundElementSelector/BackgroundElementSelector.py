@@ -1,3 +1,4 @@
+from abjad.tools import introspectiontools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
@@ -45,9 +46,8 @@ class BackgroundElementSelector(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __repr__(self):
-        module_parts = self.klass.__module__.split('.')
-        qualified_class_name = '.'.join(module_parts[-3:-1])
-        return '{}({}, {!r})'.format(self._class_name, qualified_class_name, self.value)
+        klass = introspectiontools.klass_to_tools_package_qualified_klass_name(self.klass)
+        return '{}({}, {!r})'.format(self._class_name, klass, self.value)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
