@@ -177,6 +177,7 @@ Unstable packages (load manually)
    experimental/specificationtools/AttributeNameEnumeration/AttributeNameEnumeration
    experimental/specificationtools/AttributeRetrievalIndicator/AttributeRetrievalIndicator
    experimental/specificationtools/AttributeRetrievalRequest/AttributeRetrievalRequest
+   experimental/specificationtools/BackgroundElementSelector/BackgroundElementSelector
    experimental/specificationtools/Callback/Callback
    experimental/specificationtools/ContextDictionary/ContextDictionary
    experimental/specificationtools/ContextProxy/ContextProxy
@@ -215,6 +216,7 @@ Unstable packages (load manually)
    experimental/specificationtools/expr_to_component_name
    experimental/specificationtools/expr_to_score_name
    experimental/specificationtools/expr_to_segment_name
+   experimental/specificationtools/is_background_element_klass
    experimental/specificationtools/make_score_measure_indicator
    experimental/specificationtools/measures_to_timespan
    experimental/specificationtools/request_divisions
