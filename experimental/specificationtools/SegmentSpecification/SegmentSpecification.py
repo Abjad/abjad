@@ -3,7 +3,7 @@ from experimental.specificationtools.exceptions import *
 from experimental.specificationtools.AttributeRetrievalIndicator import AttributeRetrievalIndicator
 from experimental.specificationtools.AttributeRetrievalRequest import AttributeRetrievalRequest
 from experimental.specificationtools.Callback import Callback
-from experimental.specificationtools.DivisionRetrievalRequest import DivisionRetrievalRequest
+from experimental.specificationtools.DivisionSelector import DivisionSelector
 from experimental.specificationtools.HandlerRequest import HandlerRequest
 from experimental.specificationtools.ResolvedContextSetting import ResolvedContextSetting
 from experimental.specificationtools.Specification import Specification
@@ -200,7 +200,7 @@ class SegmentSpecification(Specification):
         elif isinstance(source, AttributeRetrievalIndicator):
             if any([x is not None for x in (callback, count, offset)]):
                 source = AttributeRetrievalRequest(source, callback=callback, count=count, offset=offset)
-        elif isinstance(source, DivisionRetrievalRequest):
+        elif isinstance(source, DivisionSelector):
             if any([x is not None for x in (callback, count, offset)]):
                 source = copy.copy(source)
                 source.callback = callback

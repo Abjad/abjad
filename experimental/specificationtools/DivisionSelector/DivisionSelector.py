@@ -4,7 +4,7 @@ from experimental.specificationtools.RetrievalRequest import RetrievalRequest
 
 # TODO: replace all object RetrievalRequest classes with ScoreObjectSelector
 #       or with something like ScoreObjectSliceIndicator
-class DivisionRetrievalRequest(RetrievalRequest):
+class DivisionSelector(RetrievalRequest):
     r'''.. versionadded:: 1.0
 
     "Preserved" request for the system to go fetch divisions from somewhere during interpretation.

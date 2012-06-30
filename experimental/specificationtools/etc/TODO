@@ -4,4 +4,6 @@
 
 3. Extend DivisionList initializer with string handling.
 
-4. Replace DivisionRetrievalRequest with ScoreObjectSelector.
+4. Replace DivisionSelector with ScoreObjectSelector.
+
+5. Make Specification into an ABC.

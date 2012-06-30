@@ -3,7 +3,7 @@ from experimental import specificationtools
 import copy
 
 
-def test_ScoreObjectSelector___copy___01():
+def test_ScoreObjectIndicator___copy___01():
 
     indicator_1 = specificationtools.ScoreObjectSelector(
         segment='red', context='Voice 1', klass=measuretools.Measure)
