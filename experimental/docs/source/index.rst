@@ -194,6 +194,7 @@ Unstable packages (load manually)
    experimental/specificationtools/ScopedValue/ScopedValue
    experimental/specificationtools/ScoreElementSelector/ScoreElementSelector
    experimental/specificationtools/ScoreSpecification/ScoreSpecification
+   experimental/specificationtools/Segment/Segment
    experimental/specificationtools/SegmentDivisionList/SegmentDivisionList
    experimental/specificationtools/SegmentInventory/SegmentInventory
    experimental/specificationtools/SegmentSpecification/SegmentSpecification
