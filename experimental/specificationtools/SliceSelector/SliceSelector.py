@@ -1,7 +1,7 @@
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from experimental.specificationtools.Selector import Selector
 
 
-class SliceSelector(AbjadObject):
+class SliceSelector(Selector):
     r'''.. versionadded:: 1.0
 
     Select `container` elements from `start` to `stop`.
@@ -50,6 +50,7 @@ class SliceSelector(AbjadObject):
         assert isinstance(container, specificationtools.ScoreElementSelector), repr(container)
         assert isinstance(start, (int, type(None))), repr(start)
         assert isinstance(stop, (int, type(None))), repr(stop)
+        Selector.__init__(self)
         self._container = container
         self._start = start
         self._stop = stop

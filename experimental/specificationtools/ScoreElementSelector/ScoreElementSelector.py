@@ -1,14 +1,14 @@
 from abjad.tools import componenttools
 from abjad.tools import contexttools
 from abjad.tools import mathtools
-from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental.specificationtools.Callback import Callback
 from experimental.specificationtools.Division import Division
 from experimental.specificationtools.SegmentSpecification import SegmentSpecification
+from experimental.specificationtools.Selector import Selector
 import types
 
 
-class ScoreElementSelector(AbjadObject):
+class ScoreElementSelector(Selector):
     r'''.. versionadded:: 1.0
 
     A frozen request to pick out an arbitrary object in score.
@@ -114,6 +114,7 @@ class ScoreElementSelector(AbjadObject):
         assert isinstance(predicate, (Callback, type(None))), repr(predicate)
         assert isinstance(index, (int, type(None))), repr(index)
         assert count is None or mathtools.is_nonnegative_integer(count), repr(count)
+        Selector.__init__(self)
         self._segment = segment
         self._context = context
         self._klass = klass

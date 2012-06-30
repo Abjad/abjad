@@ -168,6 +168,7 @@ Unstable packages (load manually)
    :maxdepth: 1
 
    experimental/specificationtools/RetrievalRequest/RetrievalRequest
+   experimental/specificationtools/Selector/Selector
 
 .. rubric:: concrete classes
 
@@ -178,6 +179,7 @@ Unstable packages (load manually)
    experimental/specificationtools/AttributeRetrievalIndicator/AttributeRetrievalIndicator
    experimental/specificationtools/AttributeRetrievalRequest/AttributeRetrievalRequest
    experimental/specificationtools/BackgroundElementSelector/BackgroundElementSelector
+   experimental/specificationtools/BackgroundSliceSelector/BackgroundSliceSelector
    experimental/specificationtools/Callback/Callback
    experimental/specificationtools/ContextDictionary/ContextDictionary
    experimental/specificationtools/ContextProxy/ContextProxy

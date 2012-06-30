@@ -31,12 +31,12 @@ together with a value set to either an integer index or name.
 
 Segment 'red':
 
-    BackgroundElementSelector(SegmentSpecification, 'red')
+    BackgroundElementSelector(Segment, 'red')
 
 First, last segment starting during score:
 
-    BackgroundElementSelector(SegmentSpecification, 0)
-    BackgroundElementSelector(SegmentSpecification, -1)
+    BackgroundElementSelector(Segment, 0)
+    BackgroundElementSelector(Segment, -1)
 
 First, last measure starting during score:
 
@@ -45,7 +45,7 @@ First, last measure starting during score:
 
 First, last measure starting during segment 'red':
 
-    red = BackgroundElementSelector(SegmentSpecification, 'red')
+    red = BackgroundElementSelector(Segment, 'red')
     BackgroundElementSelector(Measure, timespan=red.timespan, 0)
     BackgroundElementSelector(Measure, timespan=red.timespan, -1)
 

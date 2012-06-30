@@ -1,8 +1,8 @@
 from abjad.tools import introspectiontools
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from experimental.specificationtools.Selector import Selector
 
 
-class BackgroundElementSelector(AbjadObject):
+class BackgroundElementSelector(Selector):
     r'''.. versionadded:: 1.0
 
     Select one background object with mandatory `klass` and `value`.
@@ -40,6 +40,7 @@ class BackgroundElementSelector(AbjadObject):
         from experimental import specificationtools
         assert specificationtools.is_background_element_klass(klass), repr(klass)
         assert isinstance(value, (int, str)), repr(value)
+        Selector.__init__(self)
         self._klass = klass
         self._value = value
 
