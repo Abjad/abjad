@@ -6,16 +6,16 @@ class SegmentSelector(BackgroundElementSelector):
 
     Select segment ``3``::
 
-        >>> from experimental import specificationtools
+        >>> from experimental import selectortools
 
     ::
 
-        >>> specificationtools.SegmentSelector(3)
+        >>> selectortools.SegmentSelector(3)
         SegmentSelector(3)
 
     Select segment ``'red'``::
 
-        >>> specificationtools.SegmentSelector('red')
+        >>> selectortools.SegmentSelector('red')
         SegmentSelector('red')
 
     Segment selectors are immutable.
