@@ -275,8 +275,8 @@ class ComponentSelector(Selector):
 
         Return timepoint.
         '''
-        from experimental import specificationtools
-        return specificationtools.Timepoint(anchor=self, edge=Left)
+        from experimental import timespantools
+        return timespantools.Timepoint(anchor=self, edge=Left)
 
     @property
     def stop(self):
@@ -287,8 +287,8 @@ class ComponentSelector(Selector):
 
         Return timepoint.
         '''
-        from experimental import specificationtools
-        return specificationtools.Timepoint(anchor=self, edge=Right)
+        from experimental import timespantools
+        return timespantools.Timepoint(anchor=self, edge=Right)
 
     @property
     def timepoints(self):

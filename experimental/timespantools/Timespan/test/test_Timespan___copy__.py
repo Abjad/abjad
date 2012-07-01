@@ -6,8 +6,8 @@ import copy
 
 def test_Timespan___copy___01():
 
-    start = specificationtools.Timepoint(edge=Right, multiplier=Fraction(1, 3))
-    stop = specificationtools.Timepoint(edge=Right, multiplier=Fraction(2, 3))
+    start = timespantools.Timepoint(edge=Right, multiplier=Fraction(1, 3))
+    stop = timespantools.Timepoint(edge=Right, multiplier=Fraction(2, 3))
     timespan_1 = timespantools.Timespan(start=start, stop=stop)
     timespan_2 = copy.deepcopy(timespan_1)
 

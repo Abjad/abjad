@@ -30,12 +30,12 @@ def measures_to_timespan(start_measure, stop_measure=None):
     assert isinstance(stop_measure, (int, type(None))), repr(stop_measure)
 
     start_anchor = specificationtools.ComponentSelector(klass=measuretools.Measure, index=start_measure)
-    start_timepoint = specificationtools.Timepoint(anchor=start_anchor, edge=Left)
+    start_timepoint = timespantools.Timepoint(anchor=start_anchor, edge=Left)
 
     if stop_measure is None:
-        stop_timepoint = specificationtools.Timepoint(anchor=start_anchor, edge=Right)
+        stop_timepoint = timespantools.Timepoint(anchor=start_anchor, edge=Right)
     else:
         stop_anchor = specificationtools.ComponentSelector(klass=measuretools.Measure, index=stop_measure)
-        stop_timepoint = specificationtools.Timepoint(anchor=stop_anchor, edge=Right)
+        stop_timepoint = timespantools.Timepoint(anchor=stop_anchor, edge=Right)
 
     return timespantools.Timespan(start=start_timepoint, stop=stop_timepoint)

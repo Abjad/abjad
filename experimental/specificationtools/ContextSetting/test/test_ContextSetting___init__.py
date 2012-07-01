@@ -7,8 +7,8 @@ def test_ContextSetting___init___01():
     '''
 
     anchor = specificationtools.ComponentSelector(segment='1')
-    start = specificationtools.Timepoint(anchor=anchor)
-    stop = specificationtools.Timepoint(anchor=anchor, edge=Right)
+    start = timespantools.Timepoint(anchor=anchor)
+    stop = timespantools.Timepoint(anchor=anchor, edge=Right)
     timespan = timespantools.Timespan(start=start, stop=stop)
     target = specificationtools.ContextSelection('Voice 1', timespan=timespan)
     setting = specificationtools.ContextSetting(target, 'time_signatures', [(4, 8), (3, 8)])
@@ -20,8 +20,8 @@ def test_ContextSetting___init___02():
     '''
 
     anchor = specificationtools.ComponentSelector(segment='1')
-    start = specificationtools.Timepoint(anchor=anchor)
-    stop = specificationtools.Timepoint(anchor=anchor, edge=Right)
+    start = timespantools.Timepoint(anchor=anchor)
+    stop = timespantools.Timepoint(anchor=anchor, edge=Right)
     timespan = timespantools.Timespan(start=start, stop=stop)
     target = specificationtools.ContextSelection('Voice 1', timespan=timespan)
     setting_1 = specificationtools.ContextSetting(target, 'time_signatures', [(4, 8), (3, 8)], fresh=False)

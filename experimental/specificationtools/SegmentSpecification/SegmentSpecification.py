@@ -131,8 +131,8 @@ class SegmentSpecification(Specification):
 
         Return timepoint.
         '''
-        from experimental import specificationtools
-        return specificationtools.Timepoint(anchor=self.indicator, edge=Left)
+        from experimental import timespantools
+        return timespantools.Timepoint(anchor=self.indicator, edge=Left)
 
     @property
     def stop(self):
@@ -143,8 +143,8 @@ class SegmentSpecification(Specification):
 
         Return timepoint.
         '''
-        from experimental import specificationtools
-        return specificationtools.Timepoint(anchor=self.indicator, edge=Right)
+        from experimental import timespantools
+        return timespantools.Timepoint(anchor=self.indicator, edge=Right)
 
     @property
     def time_signatures(self):

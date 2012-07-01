@@ -68,6 +68,10 @@ class SegmentSliceSelector(BackgroundElementSliceSelector):
         >>> specificationtools.SegmentSliceSelector(start='red', stop=specificationtools.Hold("'red' + 3"))
         SegmentSliceSelector(start='red', stop=Hold("'red' + 3"))
 
+    Select all segments starting during the first third of the score:
+
+        >>> 
+
     Segment slice selectors are immutable.
     '''
 

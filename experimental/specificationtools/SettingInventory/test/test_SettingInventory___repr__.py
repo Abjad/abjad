@@ -4,7 +4,7 @@ from experimental.specificationtools.SettingInventory import SettingInventory
 from experimental.specificationtools.ComponentSelector import ComponentSelector
 from experimental.specificationtools.ScoreSpecification import ScoreSpecification
 from experimental.specificationtools.Selection import Selection
-from experimental.specificationtools.Timepoint import Timepoint
+from experimental.timespantools.Timepoint import Timepoint
 from experimental.timespantools.Timespan import Timespan
 import py
 

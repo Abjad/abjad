@@ -2,7 +2,7 @@ from abjad.tools import componenttools
 from abjad.tools import mathtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental.specificationtools.Selector import Selector
-from experimental.specificationtools.Timepoint import Timepoint
+from experimental.timespantools.Timepoint import Timepoint
 
 
 class Timespan(AbjadObject):
@@ -38,7 +38,7 @@ class Timespan(AbjadObject):
 
     Select the timespan of the first third of the score::
 
-        >>> stop = specificationtools.Timepoint(multiplier=Fraction(1, 3), edge=Right)
+        >>> stop = timespantools.Timepoint(multiplier=Fraction(1, 3), edge=Right)
 
     ::
 
@@ -47,7 +47,7 @@ class Timespan(AbjadObject):
 
     Select the timespan of the last third of the score::
 
-        >>> start = specificationtools.Timepoint(edge=Right, multiplier=Fraction(2, 3))
+        >>> start = timespantools.Timepoint(edge=Right, multiplier=Fraction(2, 3))
 
     ::
 
@@ -56,8 +56,8 @@ class Timespan(AbjadObject):
 
     Select the timespan of the middle third of the score::
 
-        >>> start = specificationtools.Timepoint(edge=Right, multiplier=Fraction(1, 3))
-        >>> stop = specificationtools.Timepoint(edge=Right, multiplier=Fraction(2, 3))
+        >>> start = timespantools.Timepoint(edge=Right, multiplier=Fraction(1, 3))
+        >>> stop = timespantools.Timepoint(edge=Right, multiplier=Fraction(2, 3))
 
     ::
 
@@ -66,7 +66,7 @@ class Timespan(AbjadObject):
 
     Select the timespan of the first ``1/8`` of a whole note in score::
 
-        >>> stop = specificationtools.Timepoint(addendum=Fraction(1, 8))
+        >>> stop = timespantools.Timepoint(addendum=Fraction(1, 8))
 
     ::
 
@@ -75,7 +75,7 @@ class Timespan(AbjadObject):
 
     Select the timespan of the last ``1/8`` of a whole note in score::
 
-        >>> start = specificationtools.Timepoint(edge=Right, addendum=-Fraction(1, 8))
+        >>> start = timespantools.Timepoint(edge=Right, addendum=-Fraction(1, 8))
 
     ::
 
@@ -88,8 +88,8 @@ class Timespan(AbjadObject):
 
     ::
 
-        >>> start = specificationtools.Timepoint(anchor=anchor)
-        >>> stop = specificationtools.Timepoint(anchor=anchor, edge=Right)
+        >>> start = timespantools.Timepoint(anchor=anchor)
+        >>> stop = timespantools.Timepoint(anchor=anchor, edge=Right)
 
     ::
 
@@ -102,8 +102,8 @@ class Timespan(AbjadObject):
 
     ::
 
-        >>> start = specificationtools.Timepoint(anchor=anchor)
-        >>> stop = specificationtools.Timepoint(anchor=anchor, edge=Right)
+        >>> start = timespantools.Timepoint(anchor=anchor)
+        >>> stop = timespantools.Timepoint(anchor=anchor, edge=Right)
 
     ::
 
@@ -116,8 +116,8 @@ class Timespan(AbjadObject):
 
     ::
 
-        >>> start = specificationtools.Timepoint(anchor=anchor)
-        >>> stop = specificationtools.Timepoint(anchor=anchor, edge=Right)
+        >>> start = timespantools.Timepoint(anchor=anchor)
+        >>> stop = timespantools.Timepoint(anchor=anchor, edge=Right)
 
     ::
 
@@ -128,12 +128,12 @@ class Timespan(AbjadObject):
     and stopping at the right edge of the segment with the name ``'blue'``::
 
         >>> anchor = specificationtools.ComponentSelector(segment='red')
-        >>> start = specificationtools.Timepoint(anchor=anchor)
+        >>> start = timespantools.Timepoint(anchor=anchor)
 
     ::
 
         >>> anchor = specificationtools.ComponentSelector(segment='blue')
-        >>> stop = specificationtools.Timepoint(anchor=anchor, edge=Right)
+        >>> stop = timespantools.Timepoint(anchor=anchor, edge=Right)
 
     ::
 
@@ -144,12 +144,12 @@ class Timespan(AbjadObject):
     and stopping at the right edge of the first measure in the segment with name ``'blue'``::
 
         >>> anchor = specificationtools.ComponentSelector(segment='red', klass=Measure, index=-1)
-        >>> start = specificationtools.Timepoint(anchor=anchor)
+        >>> start = timespantools.Timepoint(anchor=anchor)
 
     ::
 
         >>> anchor = specificationtools.ComponentSelector(segment='blue', klass=Measure)
-        >>> stop = specificationtools.Timepoint(anchor=anchor, edge=Right)
+        >>> stop = timespantools.Timepoint(anchor=anchor, edge=Right)
 
     ::
 

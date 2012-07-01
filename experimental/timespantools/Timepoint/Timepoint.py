@@ -23,15 +23,16 @@ class Timepoint(AbjadObject):
     Pick out the timepoint equal to the left edge of score::
 
         >>> from experimental import specificationtools
+        >>> from experimental import timespantools
 
     ::
 
-        >>> specificationtools.Timepoint()
+        >>> timespantools.Timepoint()
         Timepoint()
 
     Pick out the timepoint equal to the right edge of score::
 
-        >>> specificationtools.Timepoint(edge=Right)
+        >>> timespantools.Timepoint(edge=Right)
         Timepoint(edge=Right)
 
     Pick out the timepoint ``1/8`` of a whole note into score::
@@ -40,17 +41,17 @@ class Timepoint(AbjadObject):
 
     ::
 
-        >>> specificationtools.Timepoint(addendum=Offset(1, 8))
+        >>> timespantools.Timepoint(addendum=Offset(1, 8))
         Timepoint(addendum=Offset(1, 8))
 
     Pick out the timepoint one third of the way into score::
 
-        >>> specificationtools.Timepoint(edge=Right, multiplier=Fraction(1, 3))
+        >>> timespantools.Timepoint(edge=Right, multiplier=Fraction(1, 3))
         Timepoint(edge=Right, multiplier=Fraction(1, 3))
 
     Pick out the timepoint ``1/8`` of a whole note after the first third of score::
 
-        >>> specificationtools.Timepoint(edge=Right, multiplier=Fraction(1, 3), addendum=Offset(1, 8))
+        >>> timespantools.Timepoint(edge=Right, multiplier=Fraction(1, 3), addendum=Offset(1, 8))
         Timepoint(edge=Right, multiplier=Fraction(1, 3), addendum=Offset(1, 8))
 
     Pick out the timepoint equal to the left edge of the segment with name ``'red'``::
@@ -59,29 +60,29 @@ class Timepoint(AbjadObject):
 
     ::
 
-        >>> specificationtools.Timepoint(anchor=anchor)
+        >>> timespantools.Timepoint(anchor=anchor)
         Timepoint(anchor=ComponentSelector(segment='red'))
 
     Pick out the timepoint equal to the right edge of the segment with name ``'red'``::
 
-        >>> specificationtools.Timepoint(anchor=anchor, edge=Right)
+        >>> timespantools.Timepoint(anchor=anchor, edge=Right)
         Timepoint(anchor=ComponentSelector(segment='red'), edge=Right)
 
     Pick out the timepoint equal to ``1/8`` of a whole note after the left edge of 
     the segment with name ``'red'``::
 
-        >>> specificationtools.Timepoint(anchor=anchor, addendum=Offset(1, 8))
+        >>> timespantools.Timepoint(anchor=anchor, addendum=Offset(1, 8))
         Timepoint(anchor=ComponentSelector(segment='red'), addendum=Offset(1, 8))
 
     Pick out the timepoint equal to one third of the way into the segment with name ``'red'``::
 
-        >>> specificationtools.Timepoint(anchor=anchor, edge=Right, multiplier=Fraction(1, 3))
+        >>> timespantools.Timepoint(anchor=anchor, edge=Right, multiplier=Fraction(1, 3))
         Timepoint(anchor=ComponentSelector(segment='red'), edge=Right, multiplier=Fraction(1, 3))
 
     Pick out the timepoint equal to ``1/8`` of a whole note after the right edge of the first third of
     the segment with name ``'red'``::
     
-        >>> specificationtools.Timepoint(anchor=anchor, edge=Right, multiplier=Fraction(1, 3), addendum=Offset(1, 8))
+        >>> timespantools.Timepoint(anchor=anchor, edge=Right, multiplier=Fraction(1, 3), addendum=Offset(1, 8))
         Timepoint(anchor=ComponentSelector(segment='red'), edge=Right, multiplier=Fraction(1, 3), addendum=Offset(1, 8))
 
     Pick out the timepoint equal to the left edge of note ``10`` in context ``'Voice 1'`` of
@@ -91,13 +92,13 @@ class Timepoint(AbjadObject):
 
     ::
 
-        >>> specificationtools.Timepoint(anchor=anchor)
+        >>> timespantools.Timepoint(anchor=anchor)
         Timepoint(anchor=ComponentSelector(segment='red', context='Voice 1', klass=notetools.Note, index=10))
 
     Pick out the timepoint equal to the right edgright edge of note ``10`` in context ``'Voice 1'`` of
     the segment with name ``'red'``::
 
-        >>> specificationtools.Timepoint(anchor=anchor, edge=Right)
+        >>> timespantools.Timepoint(anchor=anchor, edge=Right)
         Timepoint(anchor=ComponentSelector(segment='red', context='Voice 1', klass=notetools.Note, index=10), edge=Right)
 
     Examples below reference the timepoint defined immediately above::

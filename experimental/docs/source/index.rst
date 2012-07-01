@@ -210,7 +210,6 @@ Unstable packages (load manually)
    experimental/specificationtools/Specification/Specification
    experimental/specificationtools/StatalServer/StatalServer
    experimental/specificationtools/StatalServerRequest/StatalServerRequest
-   experimental/specificationtools/Timepoint/Timepoint
    experimental/specificationtools/ValueRetrievalIndicator/ValueRetrievalIndicator
    experimental/specificationtools/VoiceDivisionList/VoiceDivisionList
 
@@ -237,6 +236,7 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
+   experimental/timespantools/Timepoint/Timepoint
    experimental/timespantools/Timespan/Timespan
    experimental/timespantools/TimespanInequality/TimespanInequality
    experimental/timespantools/TimespanInequalityTaxon/TimespanInequalityTaxon
