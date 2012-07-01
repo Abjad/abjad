@@ -70,7 +70,57 @@ class SegmentSliceSelector(BackgroundElementSliceSelector):
 
     Select all segments starting during the first third of the score:
 
-        >>> 
+        >>> from experimental import timespantools
+
+    ::
+
+        >>> timepoint = timespantools.Timepoint(multiplier=Fraction(1, 3), edge=Right)
+        >>> timespan = timespantools.Timespan(stop=timepoint)
+        >>> taxon = timespantools.expr_starts_during_timespan()
+        >>> inequality = timespantools.TimespanInequality(timespan, taxon)
+
+    ::
+
+        >>> selector = specificationtools.SegmentSliceSelector(inequality=inequality)
+
+    ::
+
+        >>> z(selector)
+        specificationtools.SegmentSliceSelector(
+            inequality=timespantools.TimespanInequality(
+                timespantools.Timespan(
+                    stop=timespantools.Timepoint(
+                        edge=Right,
+                        multiplier=Fraction(1, 3)
+                        )
+                    ),
+                timespantools.TimespanInequalityTaxon(
+                    't.start <= expr.start < t.stop'
+                    )
+                )
+            )
+
+    Select the last two segments starting during the first third of the score::
+
+        >>> selector = specificationtools.SegmentSliceSelector(inequality=inequality, start=-2)
+
+    ::
+
+        >>> z(selector)
+        specificationtools.SegmentSliceSelector(
+            inequality=timespantools.TimespanInequality(
+                timespantools.Timespan(
+                    stop=timespantools.Timepoint(
+                        edge=Right,
+                        multiplier=Fraction(1, 3)
+                        )
+                    ),
+                timespantools.TimespanInequalityTaxon(
+                    't.start <= expr.start < t.stop'
+                    )
+                ),
+            start=-2
+            )
 
     Segment slice selectors are immutable.
     '''
