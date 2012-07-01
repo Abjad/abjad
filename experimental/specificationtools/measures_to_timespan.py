@@ -23,19 +23,20 @@ def measures_to_timespan(start_measure, stop_measure=None):
         Such a function would return a ComponentSelector with a public 'timespan' property.
     '''
     from abjad.tools import measuretools
+    from experimental import selectortools
     from experimental import specificationtools
     from experimental import timespantools
 
     assert isinstance(start_measure, int), repr(start_measure)
     assert isinstance(stop_measure, (int, type(None))), repr(stop_measure)
 
-    start_anchor = specificationtools.ComponentSelector(klass=measuretools.Measure, index=start_measure)
+    start_anchor = selectortools.ComponentSelector(klass=measuretools.Measure, index=start_measure)
     start_timepoint = timespantools.Timepoint(anchor=start_anchor, edge=Left)
 
     if stop_measure is None:
         stop_timepoint = timespantools.Timepoint(anchor=start_anchor, edge=Right)
     else:
-        stop_anchor = specificationtools.ComponentSelector(klass=measuretools.Measure, index=stop_measure)
+        stop_anchor = selectortools.ComponentSelector(klass=measuretools.Measure, index=stop_measure)
         stop_timepoint = timespantools.Timepoint(anchor=stop_anchor, edge=Right)
 
     return timespantools.Timespan(start=start_timepoint, stop=stop_timepoint)

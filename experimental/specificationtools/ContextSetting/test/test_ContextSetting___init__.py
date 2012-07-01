@@ -1,12 +1,13 @@
-from experimental import timespantools
+from experimental import selectortools
 from experimental import specificationtools
+from experimental import timespantools
 
 
 def test_ContextSetting___init___01():
     '''Initialize by hand.
     '''
 
-    anchor = specificationtools.ComponentSelector(segment='1')
+    anchor = selectortools.ComponentSelector(segment='1')
     start = timespantools.Timepoint(anchor=anchor)
     stop = timespantools.Timepoint(anchor=anchor, edge=Right)
     timespan = timespantools.Timespan(start=start, stop=stop)
@@ -19,7 +20,7 @@ def test_ContextSetting___init___02():
     '''Initialize from other setting.
     '''
 
-    anchor = specificationtools.ComponentSelector(segment='1')
+    anchor = selectortools.ComponentSelector(segment='1')
     start = timespantools.Timepoint(anchor=anchor)
     stop = timespantools.Timepoint(anchor=anchor, edge=Right)
     timespan = timespantools.Timespan(start=start, stop=stop)

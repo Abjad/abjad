@@ -1,6 +1,6 @@
 from abjad.tools import durationtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from experimental.specificationtools.ComponentSelector import ComponentSelector
+from experimental.selectortools.ComponentSelector import ComponentSelector
 import fractions
 
 
@@ -22,6 +22,7 @@ class Timepoint(AbjadObject):
 
     Pick out the timepoint equal to the left edge of score::
 
+        >>> from experimental import selectortools
         >>> from experimental import specificationtools
         >>> from experimental import timespantools
 
@@ -56,7 +57,7 @@ class Timepoint(AbjadObject):
 
     Pick out the timepoint equal to the left edge of the segment with name ``'red'``::
 
-        >>> anchor = specificationtools.ComponentSelector(segment='red')
+        >>> anchor = selectortools.ComponentSelector(segment='red')
 
     ::
 
@@ -88,7 +89,7 @@ class Timepoint(AbjadObject):
     Pick out the timepoint equal to the left edge of note ``10`` in context ``'Voice 1'`` of
     the segment with name ``'red'``::
 
-        >>> anchor = specificationtools.ComponentSelector(segment='red', context='Voice 1', klass=Note, index=10)
+        >>> anchor = selectortools.ComponentSelector(segment='red', context='Voice 1', klass=Note, index=10)
 
     ::
 

@@ -97,8 +97,8 @@ class SegmentSpecification(Specification):
 
         Return score object indicator.
         '''
-        from experimental import specificationtools
-        return specificationtools.ComponentSelector(segment=self)
+        from experimental import selectortools
+        return selectortools.ComponentSelector(segment=self)
         
     @property
     def name(self):

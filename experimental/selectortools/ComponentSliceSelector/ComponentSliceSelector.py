@@ -13,7 +13,7 @@ class ComponentSliceSelector(Selector):
 
     ::
 
-        >>> voice = specificationtools.ComponentSelector(context='Voice 1')
+        >>> voice = selectortools.ComponentSelector(context='Voice 1')
 
     ::
 
@@ -47,8 +47,8 @@ class ComponentSliceSelector(Selector):
     ### INITIALIZER ###
 
     def __init__(self, container, start=None, stop=None):
-        from experimental import specificationtools
-        assert isinstance(container, specificationtools.ComponentSelector), repr(container)
+        from experimental import selectortools
+        assert isinstance(container, selectortools.ComponentSelector), repr(container)
         assert isinstance(start, (int, type(None))), repr(start)
         assert isinstance(stop, (int, type(None))), repr(stop)
         Selector.__init__(self)

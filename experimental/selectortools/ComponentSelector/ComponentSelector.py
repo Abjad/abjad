@@ -22,27 +22,28 @@ class ComponentSelector(Selector):
 
     Pick out the entire score::
 
+        >>> from experimental import selectortools
         >>> from experimental import specificationtools
 
     ::
 
-        >>> specificationtools.ComponentSelector()
+        >>> selectortools.ComponentSelector()
         ComponentSelector()
 
     Pick out the segment with name ``'red'``::
 
-        >>> specificationtools.ComponentSelector(segment='red')
+        >>> selectortools.ComponentSelector(segment='red')
         ComponentSelector(segment='red')
 
 
     Pick context ``'Voice 1'`` out of the segment with name ``'red'``::
 
-        >>> specificationtools.ComponentSelector(segment='red', context='Voice 1')
+        >>> selectortools.ComponentSelector(segment='red', context='Voice 1')
         ComponentSelector(segment='red', context='Voice 1')
 
     Pick the first measure in context ``'Voice 1'`` out of the segment with name ``'red'``::
 
-        >>> specificationtools.ComponentSelector(segment='red', context='Voice 1', klass=Measure)
+        >>> selectortools.ComponentSelector(segment='red', context='Voice 1', klass=Measure)
         ComponentSelector(segment='red', context='Voice 1', klass=measuretools.Measure)
     
     Pick the first division in context ``'Voice 1'`` out of the segment with name ``'red'``::
@@ -51,17 +52,17 @@ class ComponentSelector(Selector):
 
     ::
 
-        >>> specificationtools.ComponentSelector(segment='red', context='Voice 1', klass=Division)
+        >>> selectortools.ComponentSelector(segment='red', context='Voice 1', klass=Division)
         ComponentSelector(segment='red', context='Voice 1', klass=specificationtools.Division)
 
     Pick the first note in context ``'Voice 1'`` out of the segment with name ``'red'``::
 
-        >>> specificationtools.ComponentSelector(segment='red', context='Voice 1', klass=Note)
+        >>> selectortools.ComponentSelector(segment='red', context='Voice 1', klass=Note)
         ComponentSelector(segment='red', context='Voice 1', klass=notetools.Note)
 
     Pick note ``20`` in context ``'Voice 1'`` out of the segment with name ``'red'``::
 
-        >>> specificationtools.ComponentSelector(segment='red', context='Voice 1', klass=Note, index=20)
+        >>> selectortools.ComponentSelector(segment='red', context='Voice 1', klass=Note, index=20)
         ComponentSelector(segment='red', context='Voice 1', klass=notetools.Note, index=20)
 
     Pick the first chord with at least six pitches
@@ -76,13 +77,13 @@ class ComponentSelector(Selector):
 
     ::
 
-        >>> specificationtools.ComponentSelector(segment='red', context='Voice 1', klass=Chord, predicate=predicate)
+        >>> selectortools.ComponentSelector(segment='red', context='Voice 1', klass=Chord, predicate=predicate)
         ComponentSelector(segment='red', context='Voice 1', klass=chordtools.Chord, predicate=Callback('lambda x: 6 <= len(x)'))
 
     Pick chord ``20`` with at least six pitches
     in context ``'Voice 1'`` out of the segment with name ``'red'``::
 
-        >>> specificationtools.ComponentSelector(segment='red', context='Voice 1', klass=Chord, predicate=predicate, index=20)
+        >>> selectortools.ComponentSelector(segment='red', context='Voice 1', klass=Chord, predicate=predicate, index=20)
         ComponentSelector(segment='red', context='Voice 1', klass=chordtools.Chord, predicate=Callback('lambda x: 6 <= len(x)'), index=20)
 
     Examples below reference the score object indicator defined immediately above::

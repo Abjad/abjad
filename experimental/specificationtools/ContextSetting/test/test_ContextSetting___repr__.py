@@ -1,5 +1,5 @@
 from experimental.specificationtools.ContextSelection import ContextSelection
-from experimental.specificationtools.ComponentSelector import ComponentSelector
+from experimental.selectortools.ComponentSelector import ComponentSelector
 from experimental.specificationtools.ContextSetting import ContextSetting
 from experimental.timespantools.Timepoint import Timepoint
 from experimental.timespantools.Timespan import Timespan

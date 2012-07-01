@@ -12,6 +12,7 @@ def score_to_timespan(score=None):
 
     Return timespan.
     '''
+    from experimental import selectortools
     from experimental import specificationtools
     
     # check input
@@ -21,7 +22,7 @@ def score_to_timespan(score=None):
         score_name = specificationtools.expr_to_score_name(score)
 
     # make score indicator
-    score_indicator = specificationtools.ComponentSelector()
+    score_indicator = selectortools.ComponentSelector()
 
     # return timespan
     return score_indicator.timespan

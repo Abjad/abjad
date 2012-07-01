@@ -28,6 +28,7 @@ class Timespan(AbjadObject):
 
     Select the timespan of the entire score::
 
+        >>> from experimental import selectortools
         >>> from experimental import specificationtools
         >>> from experimental import timespantools
 
@@ -84,7 +85,7 @@ class Timespan(AbjadObject):
 
     Select the timespan of the segment with name ``'red'``::
 
-        >>> anchor = specificationtools.ComponentSelector(segment='red')
+        >>> anchor = selectortools.ComponentSelector(segment='red')
 
     ::
 
@@ -98,7 +99,7 @@ class Timespan(AbjadObject):
 
     Select the timespan of the first measure in the segment with name ``'red'``::
 
-        >>> anchor = specificationtools.ComponentSelector(segment='red', klass=Measure)
+        >>> anchor = selectortools.ComponentSelector(segment='red', klass=Measure)
 
     ::
 
@@ -112,7 +113,7 @@ class Timespan(AbjadObject):
 
     Select the timespan of the first division in the segment with name ``'red'``::
 
-        >>> anchor = specificationtools.ComponentSelector(segment='red', klass=specificationtools.Division)
+        >>> anchor = selectortools.ComponentSelector(segment='red', klass=specificationtools.Division)
 
     ::
 
@@ -127,12 +128,12 @@ class Timespan(AbjadObject):
     Select the timespan starting at the left edge of the segment with the name ``'red'``
     and stopping at the right edge of the segment with the name ``'blue'``::
 
-        >>> anchor = specificationtools.ComponentSelector(segment='red')
+        >>> anchor = selectortools.ComponentSelector(segment='red')
         >>> start = timespantools.Timepoint(anchor=anchor)
 
     ::
 
-        >>> anchor = specificationtools.ComponentSelector(segment='blue')
+        >>> anchor = selectortools.ComponentSelector(segment='blue')
         >>> stop = timespantools.Timepoint(anchor=anchor, edge=Right)
 
     ::
@@ -143,12 +144,12 @@ class Timespan(AbjadObject):
     Select the timespan starting at the left edge of the last measure in the segment with name ``'red'``
     and stopping at the right edge of the first measure in the segment with name ``'blue'``::
 
-        >>> anchor = specificationtools.ComponentSelector(segment='red', klass=Measure, index=-1)
+        >>> anchor = selectortools.ComponentSelector(segment='red', klass=Measure, index=-1)
         >>> start = timespantools.Timepoint(anchor=anchor)
 
     ::
 
-        >>> anchor = specificationtools.ComponentSelector(segment='blue', klass=Measure)
+        >>> anchor = selectortools.ComponentSelector(segment='blue', klass=Measure)
         >>> stop = timespantools.Timepoint(anchor=anchor, edge=Right)
 
     ::

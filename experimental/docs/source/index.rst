@@ -169,6 +169,8 @@ Unstable packages (load manually)
 
    experimental/selectortools/BackgroundElementSelector/BackgroundElementSelector
    experimental/selectortools/BackgroundElementSliceSelector/BackgroundElementSliceSelector
+   experimental/selectortools/ComponentSelector/ComponentSelector
+   experimental/selectortools/ComponentSliceSelector/ComponentSliceSelector
    experimental/selectortools/SegmentSelector/SegmentSelector
    experimental/selectortools/SegmentSliceSelector/SegmentSliceSelector
 
@@ -192,8 +194,6 @@ Unstable packages (load manually)
    experimental/specificationtools/AttributeRetrievalIndicator/AttributeRetrievalIndicator
    experimental/specificationtools/AttributeRetrievalRequest/AttributeRetrievalRequest
    experimental/specificationtools/Callback/Callback
-   experimental/specificationtools/ComponentSelector/ComponentSelector
-   experimental/specificationtools/ComponentSliceSelector/ComponentSliceSelector
    experimental/specificationtools/ContextDictionary/ContextDictionary
    experimental/specificationtools/ContextProxy/ContextProxy
    experimental/specificationtools/ContextSelection/ContextSelection
