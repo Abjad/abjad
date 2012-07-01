@@ -8,10 +8,10 @@ def expr_overlaps_stop_of_timespan():
     ::
 
         >>> timespantools.expr_overlaps_stop_of_timespan()
-        TimespanInequality('expr.start < t.stop < expr.stop')
+        TimespanInequalityClass('expr.start < t.stop < expr.stop')
 
     Return timespan inequality.
     '''
     from experimental import timespantools
 
-    return timespantools.TimespanInequality('expr.start < t.stop < expr.stop')
+    return timespantools.TimespanInequalityClass('expr.start < t.stop < expr.stop')
