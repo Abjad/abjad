@@ -1,5 +1,5 @@
 selectortools.SegmentSliceSelector
-=======================================
+==================================
 
 .. inheritance-diagram:: experimental.selectortools.SegmentSliceSelector.SegmentSliceSelector.SegmentSliceSelector
    :private-bases:

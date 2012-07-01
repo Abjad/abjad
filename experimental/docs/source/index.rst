@@ -159,6 +159,16 @@ Unstable packages (load manually)
    experimental/quantizationtools/tempo_scaled_rational_to_milliseconds
    experimental/quantizationtools/tempo_scaled_rationals_to_q_events
 
+:py:mod:`selectortools <experimental.selectortools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: concrete classes
+
+.. toctree::
+   :maxdepth: 1
+
+   experimental/selectortools/SegmentSliceSelector/SegmentSliceSelector
+
 :py:mod:`specificationtools <experimental.specificationtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -202,7 +212,6 @@ Unstable packages (load manually)
    experimental/specificationtools/SegmentDivisionList/SegmentDivisionList
    experimental/specificationtools/SegmentInventory/SegmentInventory
    experimental/specificationtools/SegmentSelector/SegmentSelector
-   experimental/specificationtools/SegmentSliceSelector/SegmentSliceSelector
    experimental/specificationtools/SegmentSpecification/SegmentSpecification
    experimental/specificationtools/Selection/Selection
    experimental/specificationtools/Setting/Setting
