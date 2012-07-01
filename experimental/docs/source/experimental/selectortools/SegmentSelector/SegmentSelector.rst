@@ -11,11 +11,11 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.index
 
-    Inherited from :py:class:`specificationtools.BackgroundElementSelector <experimental.specificationtools.BackgroundElementSelector.BackgroundElementSelector.BackgroundElementSelector>`
+    Inherited from :py:class:`selectortools.BackgroundElementSelector <experimental.selectortools.BackgroundElementSelector.BackgroundElementSelector.BackgroundElementSelector>`
 
 .. autoattribute:: experimental.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.klass
 
-    Inherited from :py:class:`specificationtools.BackgroundElementSelector <experimental.specificationtools.BackgroundElementSelector.BackgroundElementSelector.BackgroundElementSelector>`
+    Inherited from :py:class:`selectortools.BackgroundElementSelector <experimental.selectortools.BackgroundElementSelector.BackgroundElementSelector.BackgroundElementSelector>`
 
 .. autoattribute:: experimental.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.storage_format
 
@@ -34,7 +34,7 @@ Special Methods
 
 .. automethod:: experimental.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.__eq__
 
-    Inherited from :py:class:`specificationtools.BackgroundElementSelector <experimental.specificationtools.BackgroundElementSelector.BackgroundElementSelector.BackgroundElementSelector>`
+    Inherited from :py:class:`selectortools.BackgroundElementSelector <experimental.selectortools.BackgroundElementSelector.BackgroundElementSelector.BackgroundElementSelector>`
 
 .. automethod:: experimental.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.__ge__
 

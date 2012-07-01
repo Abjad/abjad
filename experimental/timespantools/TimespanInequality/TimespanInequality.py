@@ -8,12 +8,13 @@ class TimespanInequality(AbjadObject):
 
     Test for all objects that start during segment ``'red'``::
 
+        >>> from experimental import selectortools
         >>> from experimental import specificationtools
         >>> from experimental import timespantools
 
     ::
 
-        >>> reference = specificationtools.BackgroundElementSelector(specificationtools.Segment, 'red')
+        >>> reference = selectortools.BackgroundElementSelector(specificationtools.Segment, 'red')
         >>> inequality = timespantools.expr_starts_during_timespan()
 
     ::
@@ -25,7 +26,7 @@ class TimespanInequality(AbjadObject):
         >>> z(timespan_inequality)
         timespantools.TimespanInequality(
             timespantools.Timespan(
-                selector=specificationtools.BackgroundElementSelector(
+                selector=selectortools.BackgroundElementSelector(
                     specificationtools.Segment,
                     'red'
                     )

@@ -1,5 +1,5 @@
 selectortools.BackgroundElementSliceSelector
-=================================================
+============================================
 
 .. inheritance-diagram:: experimental.selectortools.BackgroundElementSliceSelector.BackgroundElementSliceSelector.BackgroundElementSliceSelector
    :private-bases:

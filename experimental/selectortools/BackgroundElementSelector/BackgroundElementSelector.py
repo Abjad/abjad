@@ -9,26 +9,27 @@ class BackgroundElementSelector(Selector):
 
     Select segment ``'red'``::
 
+        >>> from experimental import selectortools
         >>> from experimental import specificationtools
 
     ::
 
-        >>> specificationtools.BackgroundElementSelector(specificationtools.Segment, 'red')
+        >>> selectortools.BackgroundElementSelector(specificationtools.Segment, 'red')
         BackgroundElementSelector(specificationtools.Segment, 'red')
 
     Select segment ``0``::
 
-        >>> specificationtools.BackgroundElementSelector(specificationtools.Segment, 0)
+        >>> selectortools.BackgroundElementSelector(specificationtools.Segment, 0)
         BackgroundElementSelector(specificationtools.Segment, 0)
 
     Select measure ``0``::
 
-        >>> specificationtools.BackgroundElementSelector(measuretools.Measure, 0)
+        >>> selectortools.BackgroundElementSelector(measuretools.Measure, 0)
         BackgroundElementSelector(measuretools.Measure, 0)
 
     Select division ``0``::
 
-        >>> specificationtools.BackgroundElementSelector(specificationtools.Division, 0)
+        >>> selectortools.BackgroundElementSelector(specificationtools.Division, 0)
         BackgroundElementSelector(specificationtools.Division, 0)
 
     More examples to follow.
