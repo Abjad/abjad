@@ -11,8 +11,6 @@ Read-only Properties
 
 .. autoattribute:: experimental.specificationtools.ScoreElementSelector.ScoreElementSelector.ScoreElementSelector.context
 
-.. autoattribute:: experimental.specificationtools.ScoreElementSelector.ScoreElementSelector.ScoreElementSelector.count
-
 .. autoattribute:: experimental.specificationtools.ScoreElementSelector.ScoreElementSelector.ScoreElementSelector.index
 
 .. autoattribute:: experimental.specificationtools.ScoreElementSelector.ScoreElementSelector.ScoreElementSelector.is_context

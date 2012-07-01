@@ -102,7 +102,7 @@ class ScoreElementSelector(Selector):
 
     ### INITIALIZER ###
 
-    def __init__(self, segment=None, context=None, klass=None, predicate=None, index=None, count=None):
+    def __init__(self, segment=None, context=None, klass=None, predicate=None, index=None):
         if isinstance(segment, SegmentSpecification):
             segment = segment.name
         assert isinstance(segment, (str, int, type(None))), repr(segment)
@@ -113,14 +113,12 @@ class ScoreElementSelector(Selector):
             assert issubclass(klass, (componenttools.Component, Division)), repr(klass)
         assert isinstance(predicate, (Callback, type(None))), repr(predicate)
         assert isinstance(index, (int, type(None))), repr(index)
-        assert count is None or mathtools.is_nonnegative_integer(count), repr(count)
         Selector.__init__(self)
         self._segment = segment
         self._context = context
         self._klass = klass
         self._predicate = predicate
         self._index = index
-        self._count = count
     
     ### SPECIAL METHODS ###
 
@@ -168,16 +166,6 @@ class ScoreElementSelector(Selector):
         Return string or none.
         '''
         return self._context
-
-    @property
-    def count(self):
-        '''Number of contiguous score objects indicated.
-
-        Value of none is taken equal to ``1``.
-
-        Return nonnegative integer.
-        '''
-        return self._count
 
     @property
     def index(self):
