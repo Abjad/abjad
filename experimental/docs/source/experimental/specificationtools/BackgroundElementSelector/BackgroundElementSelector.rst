@@ -9,6 +9,8 @@ specificationtools.BackgroundElementSelector
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.specificationtools.BackgroundElementSelector.BackgroundElementSelector.BackgroundElementSelector.index
+
 .. autoattribute:: experimental.specificationtools.BackgroundElementSelector.BackgroundElementSelector.BackgroundElementSelector.klass
 
 .. autoattribute:: experimental.specificationtools.BackgroundElementSelector.BackgroundElementSelector.BackgroundElementSelector.storage_format
@@ -18,8 +20,6 @@ Read-only Properties
 .. autoattribute:: experimental.specificationtools.BackgroundElementSelector.BackgroundElementSelector.BackgroundElementSelector.timespan
 
     Inherited from :py:class:`specificationtools.Selector <experimental.specificationtools.Selector.Selector.Selector>`
-
-.. autoattribute:: experimental.specificationtools.BackgroundElementSelector.BackgroundElementSelector.BackgroundElementSelector.value
 
 Special Methods
 ---------------

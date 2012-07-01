@@ -5,7 +5,7 @@ from experimental.specificationtools.Selector import Selector
 class BackgroundElementSelector(Selector):
     r'''.. versionadded:: 1.0
 
-    Select one background object with mandatory `klass` and `value`.
+    Select one background object with mandatory `klass` and `index`.
 
     Select segment ``'red'``::
 
@@ -36,28 +36,36 @@ class BackgroundElementSelector(Selector):
 
     ### INITIALIZER ###
     
-    def __init__(self, klass, value):
+    def __init__(self, klass, index):
         from experimental import specificationtools
         assert specificationtools.is_background_element_klass(klass), repr(klass)
-        assert isinstance(value, (int, str)), repr(value)
+        assert isinstance(index, (int, str)), repr(index)
         Selector.__init__(self)
         self._klass = klass
-        self._value = value
+        self._index = index
 
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
         if isinstance(expr, type(self)):
             if self.klass == expr.klass:
-                if self.value == expr.value:
+                if self.index == expr.index:
                     return True
         return False
 
     def __repr__(self):
         klass = introspectiontools.klass_to_tools_package_qualified_klass_name(self.klass)
-        return '{}({}, {!r})'.format(self._class_name, klass, self.value)
+        return '{}({}, {!r})'.format(self._class_name, klass, self.index)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def index(self):
+        '''Background element selector index initialized by user.
+
+        Return integer or string.
+        '''
+        return self._index
 
     @property
     def klass(self):
@@ -66,11 +74,3 @@ class BackgroundElementSelector(Selector):
         Return segment, measure or division class.
         '''
         return self._klass
-
-    @property
-    def value(self):
-        '''Background element selector value initialized by user.
-
-        Return integer or string.
-        '''
-        return self._value

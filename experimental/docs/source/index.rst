@@ -201,6 +201,7 @@ Unstable packages (load manually)
    experimental/specificationtools/Segment/Segment
    experimental/specificationtools/SegmentDivisionList/SegmentDivisionList
    experimental/specificationtools/SegmentInventory/SegmentInventory
+   experimental/specificationtools/SegmentSelector/SegmentSelector
    experimental/specificationtools/SegmentSliceSelector/SegmentSliceSelector
    experimental/specificationtools/SegmentSpecification/SegmentSpecification
    experimental/specificationtools/Selection/Selection
