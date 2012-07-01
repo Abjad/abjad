@@ -9,5 +9,5 @@ class BackgroundSliceSelector(Selector):
 
     ### INITIALIZER ###
 
-    def __init__(self, klass, comparator=None, start=None, stop=None):
+    def __init__(self, klass, inequality=None, start=None, stop=None):
         pass

@@ -181,6 +181,7 @@ Unstable packages (load manually)
    experimental/specificationtools/BackgroundElementSelector/BackgroundElementSelector
    experimental/specificationtools/BackgroundSliceSelector/BackgroundSliceSelector
    experimental/specificationtools/Callback/Callback
+   experimental/specificationtools/ComponentSelector/ComponentSelector
    experimental/specificationtools/ContextDictionary/ContextDictionary
    experimental/specificationtools/ContextProxy/ContextProxy
    experimental/specificationtools/ContextSelection/ContextSelection
@@ -194,7 +195,6 @@ Unstable packages (load manually)
    experimental/specificationtools/RegionDivisionList/RegionDivisionList
    experimental/specificationtools/ResolvedContextSetting/ResolvedContextSetting
    experimental/specificationtools/ScopedValue/ScopedValue
-   experimental/specificationtools/ScoreElementSelector/ScoreElementSelector
    experimental/specificationtools/ScoreSpecification/ScoreSpecification
    experimental/specificationtools/Segment/Segment
    experimental/specificationtools/SegmentDivisionList/SegmentDivisionList

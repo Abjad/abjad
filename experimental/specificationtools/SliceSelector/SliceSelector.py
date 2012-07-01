@@ -12,27 +12,27 @@ class SliceSelector(Selector):
 
     ::
 
-        >>> voice = specificationtools.ScoreElementSelector(context='Voice 1')
+        >>> voice = specificationtools.ComponentSelector(context='Voice 1')
 
     ::
 
         >>> specificationtools.SliceSelector(voice, stop=5)
-        SliceSelector(ScoreElementSelector(context='Voice 1'), stop=5)
+        SliceSelector(ComponentSelector(context='Voice 1'), stop=5)
 
     Select the last five elements of ``'Voice 1'``::
 
         >>> specificationtools.SliceSelector(voice, start=-5)
-        SliceSelector(ScoreElementSelector(context='Voice 1'), start=-5)
+        SliceSelector(ComponentSelector(context='Voice 1'), start=-5)
 
     Select all elements of  ``'Voice 1'`` between ``5`` and ``-5``::
 
         >>> specificationtools.SliceSelector(voice, start=5, stop=-5)
-        SliceSelector(ScoreElementSelector(context='Voice 1'), start=5, stop=-5)
+        SliceSelector(ComponentSelector(context='Voice 1'), start=5, stop=-5)
 
     Select all elements of of ``'Voice 1'``::
 
         >>> specificationtools.SliceSelector(voice)
-        SliceSelector(ScoreElementSelector(context='Voice 1'))
+        SliceSelector(ComponentSelector(context='Voice 1'))
 
     Slice selector interface mirrors Python slice syntax as closely as possible.
 
@@ -47,7 +47,7 @@ class SliceSelector(Selector):
 
     def __init__(self, container, start=None, stop=None):
         from experimental import specificationtools
-        assert isinstance(container, specificationtools.ScoreElementSelector), repr(container)
+        assert isinstance(container, specificationtools.ComponentSelector), repr(container)
         assert isinstance(start, (int, type(None))), repr(start)
         assert isinstance(stop, (int, type(None))), repr(stop)
         Selector.__init__(self)

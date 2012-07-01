@@ -22,8 +22,6 @@ class Selector(AbjadObject):
         '''Timespan of selector.
 
         Return timespan object.
-
-        .. note:: not yet implemented. Currently returns stub timespan.
         '''
         from experimental import timespantools
         return timespantools.Timespan(self)

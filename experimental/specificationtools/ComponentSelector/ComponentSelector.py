@@ -8,7 +8,7 @@ from experimental.specificationtools.Selector import Selector
 import types
 
 
-class ScoreElementSelector(Selector):
+class ComponentSelector(Selector):
     r'''.. versionadded:: 1.0
 
     A frozen request to pick out an arbitrary object in score.
@@ -26,24 +26,24 @@ class ScoreElementSelector(Selector):
 
     ::
 
-        >>> specificationtools.ScoreElementSelector()
-        ScoreElementSelector()
+        >>> specificationtools.ComponentSelector()
+        ComponentSelector()
 
     Pick out the segment with name ``'red'``::
 
-        >>> specificationtools.ScoreElementSelector(segment='red')
-        ScoreElementSelector(segment='red')
+        >>> specificationtools.ComponentSelector(segment='red')
+        ComponentSelector(segment='red')
 
 
     Pick context ``'Voice 1'`` out of the segment with name ``'red'``::
 
-        >>> specificationtools.ScoreElementSelector(segment='red', context='Voice 1')
-        ScoreElementSelector(segment='red', context='Voice 1')
+        >>> specificationtools.ComponentSelector(segment='red', context='Voice 1')
+        ComponentSelector(segment='red', context='Voice 1')
 
     Pick the first measure in context ``'Voice 1'`` out of the segment with name ``'red'``::
 
-        >>> specificationtools.ScoreElementSelector(segment='red', context='Voice 1', klass=Measure)
-        ScoreElementSelector(segment='red', context='Voice 1', klass=measuretools.Measure)
+        >>> specificationtools.ComponentSelector(segment='red', context='Voice 1', klass=Measure)
+        ComponentSelector(segment='red', context='Voice 1', klass=measuretools.Measure)
     
     Pick the first division in context ``'Voice 1'`` out of the segment with name ``'red'``::
 
@@ -51,18 +51,18 @@ class ScoreElementSelector(Selector):
 
     ::
 
-        >>> specificationtools.ScoreElementSelector(segment='red', context='Voice 1', klass=Division)
-        ScoreElementSelector(segment='red', context='Voice 1', klass=specificationtools.Division)
+        >>> specificationtools.ComponentSelector(segment='red', context='Voice 1', klass=Division)
+        ComponentSelector(segment='red', context='Voice 1', klass=specificationtools.Division)
 
     Pick the first note in context ``'Voice 1'`` out of the segment with name ``'red'``::
 
-        >>> specificationtools.ScoreElementSelector(segment='red', context='Voice 1', klass=Note)
-        ScoreElementSelector(segment='red', context='Voice 1', klass=notetools.Note)
+        >>> specificationtools.ComponentSelector(segment='red', context='Voice 1', klass=Note)
+        ComponentSelector(segment='red', context='Voice 1', klass=notetools.Note)
 
     Pick note ``20`` in context ``'Voice 1'`` out of the segment with name ``'red'``::
 
-        >>> specificationtools.ScoreElementSelector(segment='red', context='Voice 1', klass=Note, index=20)
-        ScoreElementSelector(segment='red', context='Voice 1', klass=notetools.Note, index=20)
+        >>> specificationtools.ComponentSelector(segment='red', context='Voice 1', klass=Note, index=20)
+        ComponentSelector(segment='red', context='Voice 1', klass=notetools.Note, index=20)
 
     Pick the first chord with at least six pitches
     in context ``'Voice 1'`` out of the segment with name ``'red'``::
@@ -76,14 +76,14 @@ class ScoreElementSelector(Selector):
 
     ::
 
-        >>> specificationtools.ScoreElementSelector(segment='red', context='Voice 1', klass=Chord, predicate=predicate)
-        ScoreElementSelector(segment='red', context='Voice 1', klass=chordtools.Chord, predicate=Callback('lambda x: 6 <= len(x)'))
+        >>> specificationtools.ComponentSelector(segment='red', context='Voice 1', klass=Chord, predicate=predicate)
+        ComponentSelector(segment='red', context='Voice 1', klass=chordtools.Chord, predicate=Callback('lambda x: 6 <= len(x)'))
 
     Pick chord ``20`` with at least six pitches
     in context ``'Voice 1'`` out of the segment with name ``'red'``::
 
-        >>> specificationtools.ScoreElementSelector(segment='red', context='Voice 1', klass=Chord, predicate=predicate, index=20)
-        ScoreElementSelector(segment='red', context='Voice 1', klass=chordtools.Chord, predicate=Callback('lambda x: 6 <= len(x)'), index=20)
+        >>> specificationtools.ComponentSelector(segment='red', context='Voice 1', klass=Chord, predicate=predicate, index=20)
+        ComponentSelector(segment='red', context='Voice 1', klass=chordtools.Chord, predicate=Callback('lambda x: 6 <= len(x)'), index=20)
 
     Examples below reference the score object indicator defined immediately above::
 
@@ -271,7 +271,7 @@ class ScoreElementSelector(Selector):
         '''Timepoint anchored to left edge of score object::
 
             >>> score_object_indicator.start
-            Timepoint(anchor=ScoreElementSelector(segment='red', context='Voice 1', klass=chordtools.Chord, predicate=Callback('lambda x: 6 <= len(x)'), index=20), edge=Left)
+            Timepoint(anchor=ComponentSelector(segment='red', context='Voice 1', klass=chordtools.Chord, predicate=Callback('lambda x: 6 <= len(x)'), index=20), edge=Left)
 
         Return timepoint.
         '''
@@ -283,7 +283,7 @@ class ScoreElementSelector(Selector):
         '''Timepoint anchored to right edge of score object::
 
             >>> score_object_indicator.start
-            Timepoint(anchor=ScoreElementSelector(segment='red', context='Voice 1', klass=chordtools.Chord, predicate=Callback('lambda x: 6 <= len(x)'), index=20), edge=Left)
+            Timepoint(anchor=ComponentSelector(segment='red', context='Voice 1', klass=chordtools.Chord, predicate=Callback('lambda x: 6 <= len(x)'), index=20), edge=Left)
 
         Return timepoint.
         '''
@@ -296,8 +296,8 @@ class ScoreElementSelector(Selector):
 
             >>> for x in score_object_indicator.timepoints: x
             ... 
-            Timepoint(anchor=ScoreElementSelector(segment='red', context='Voice 1', klass=chordtools.Chord, predicate=Callback('lambda x: 6 <= len(x)'), index=20), edge=Left)
-            Timepoint(anchor=ScoreElementSelector(segment='red', context='Voice 1', klass=chordtools.Chord, predicate=Callback('lambda x: 6 <= len(x)'), index=20), edge=Right)
+            Timepoint(anchor=ComponentSelector(segment='red', context='Voice 1', klass=chordtools.Chord, predicate=Callback('lambda x: 6 <= len(x)'), index=20), edge=Left)
+            Timepoint(anchor=ComponentSelector(segment='red', context='Voice 1', klass=chordtools.Chord, predicate=Callback('lambda x: 6 <= len(x)'), index=20), edge=Right)
 
         Return pair.
         '''
@@ -308,7 +308,7 @@ class ScoreElementSelector(Selector):
         '''Timespan of score object::
 
             >>> score_object_indicator.timespan
-            Timespan(ScoreElementSelector(segment='red', context='Voice 1', klass=chordtools.Chord, predicate=Callback('lambda x: 6 <= len(x)'), index=20))
+            Timespan(ComponentSelector(segment='red', context='Voice 1', klass=chordtools.Chord, predicate=Callback('lambda x: 6 <= len(x)'), index=20))
 
         Return timespan.
         '''

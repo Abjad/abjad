@@ -2,7 +2,7 @@ from experimental.specificationtools.Callback import Callback
 from experimental.specificationtools.RetrievalRequest import RetrievalRequest
 
 
-# TODO: replace all object RetrievalRequest classes with ScoreElementSelector
+# TODO: replace all object RetrievalRequest classes with ComponentSelector
 #       or with something like ScoreObjectSliceIndicator
 class DivisionSelector(RetrievalRequest):
     r'''.. versionadded:: 1.0

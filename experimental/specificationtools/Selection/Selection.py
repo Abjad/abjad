@@ -38,17 +38,17 @@ class Selection(AbjadObject):
     ::
 
         >>> specificationtools.Selection(timespan=timespan)
-        Selection(timespan=Timespan(ScoreElementSelector(segment='red')))
+        Selection(timespan=Timespan(ComponentSelector(segment='red')))
 
     Select ``'Voice 1'`` taken over the timepsan of segment ``'red'``::
 
         >>> specificationtools.Selection(contexts=['Voice 1'], timespan=timespan)
-        Selection(contexts=['Voice 1'], timespan=Timespan(ScoreElementSelector(segment='red')))
+        Selection(contexts=['Voice 1'], timespan=Timespan(ComponentSelector(segment='red')))
 
     Select ``'Voice 1'`` and ``'Voice 3'`` over the timespan of segment ``'red'``::
 
         >>> specificationtools.Selection(contexts=['Voice 1', 'Voice 3'], timespan=timespan)
-        Selection(contexts=['Voice 1', 'Voice 3'], timespan=Timespan(ScoreElementSelector(segment='red')))
+        Selection(contexts=['Voice 1', 'Voice 3'], timespan=Timespan(ComponentSelector(segment='red')))
 
     Selection objects are immutable.
     '''
