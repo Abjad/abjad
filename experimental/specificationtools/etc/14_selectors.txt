@@ -85,6 +85,7 @@ Select all measures: BackgroundElementSliceSelector(measuretools.Measure)
 Select measures 10-15: BackgroundElementSliceSelector(measuretools.Measure, start=10, stop=15+1)
 
 Select all measures starting during segment 'red':
-    segment = BackgroundElementSelector(specificationtools.Segment, 'red')
-    inequality = timespantools.TimespanInequality(segment.timespan, timespantools.expr_starts_during_timespan())
+    segment = SegmentSelector('red')
+    inequality = timespantools.expr_starts_during_timespan()
+    inequality = timespantools.TimespanInequality(segment.timespan, inequality)
     BackgroundElementSliceSelector(specificationtools.Measure, inequality=inequality)

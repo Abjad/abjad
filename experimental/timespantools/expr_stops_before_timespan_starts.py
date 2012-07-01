@@ -8,10 +8,10 @@ def expr_stops_before_timespan_starts():
     ::
 
         >>> timespantools.expr_stops_before_timespan_starts()
-        TimespanInequalityClass('expr.stop <= t.start')
+        TimespanInequalityTaxon('expr.stop <= t.start')
 
     Return timespan inequality.
     '''
     from experimental import timespantools
 
-    return timespantools.TimespanInequalityClass('expr.stop <= t.start')
+    return timespantools.TimespanInequalityTaxon('expr.stop <= t.start')

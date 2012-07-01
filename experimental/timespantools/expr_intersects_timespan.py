@@ -8,13 +8,13 @@ def expr_intersects_timespan():
     ::
 
         >>> timespantools.expr_intersects_timespan()
-        TimespanInequalityClass('t.start <= expr.start < expr.stop or t.start < expr.stop <= expr.stop or t.start < expr.start < t.stop < expr.stop')
+        TimespanInequalityTaxon('t.start <= expr.start < expr.stop or t.start < expr.stop <= expr.stop or t.start < expr.start < t.stop < expr.stop')
 
     Return timespan inequality.
     '''
     from experimental import timespantools
 
-    return timespantools.TimespanInequalityClass(
+    return timespantools.TimespanInequalityTaxon(
         't.start <= expr.start < expr.stop or '
         't.start < expr.stop <= expr.stop or '
         't.start < expr.start < t.stop < expr.stop')

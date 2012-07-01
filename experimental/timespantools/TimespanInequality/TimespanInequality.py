@@ -30,7 +30,7 @@ class TimespanInequality(AbjadObject):
                     'red'
                     )
                 ),
-            timespantools.TimespanInequalityClass(
+            timespantools.TimespanInequalityTaxon(
                 't.start <= expr.start < t.stop'
                 )
             )
@@ -43,7 +43,7 @@ class TimespanInequality(AbjadObject):
     def __init__(self, timespan, timespan_inequality_class):
         from experimental import timespantools
         assert isinstance(timespan, timespantools.Timespan), repr(timespan)
-        assert isinstance(timespan_inequality_class, timespantools.TimespanInequalityClass), repr(
+        assert isinstance(timespan_inequality_class, timespantools.TimespanInequalityTaxon), repr(
             timespan_inequality_class)
         self._timespan = timespan
         self._timespan_inequality_class = timespan_inequality_class

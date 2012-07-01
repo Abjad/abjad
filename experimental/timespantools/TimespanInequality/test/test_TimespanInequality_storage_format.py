@@ -10,10 +10,10 @@ def test_TimespanInequality_storage_format_01():
     r'''
     timespantools.TimespanInequality(
         timespantools.Timespan(),
-        timespantools.TimespanInequalityClass(
+        timespantools.TimespanInequalityTaxon(
             't.start <= expr.start < t.stop'
             )
         )
     '''
 
-    assert timespan_inequality.storage_format == "timespantools.TimespanInequality(\n\ttimespantools.Timespan(),\n\ttimespantools.TimespanInequalityClass(\n\t\t't.start <= expr.start < t.stop'\n\t\t)\n\t)"
+    assert timespan_inequality.storage_format == "timespantools.TimespanInequality(\n\ttimespantools.Timespan(),\n\ttimespantools.TimespanInequalityTaxon(\n\t\t't.start <= expr.start < t.stop'\n\t\t)\n\t)"
