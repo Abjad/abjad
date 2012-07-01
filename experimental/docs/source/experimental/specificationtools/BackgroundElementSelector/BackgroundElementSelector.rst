@@ -15,6 +15,10 @@ Read-only Properties
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
+.. autoattribute:: experimental.specificationtools.BackgroundElementSelector.BackgroundElementSelector.BackgroundElementSelector.timespan
+
+    Inherited from :py:class:`specificationtools.Selector <experimental.specificationtools.Selector.Selector.Selector>`
+
 .. autoattribute:: experimental.specificationtools.BackgroundElementSelector.BackgroundElementSelector.BackgroundElementSelector.value
 
 Special Methods

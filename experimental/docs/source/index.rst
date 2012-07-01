@@ -235,6 +235,7 @@ Unstable packages (load manually)
    :maxdepth: 1
 
    experimental/timespantools/Timespan/Timespan
+   experimental/timespantools/TimespanInequality/TimespanInequality
    experimental/timespantools/TimespanInequalityClass/TimespanInequalityClass
 
 .. rubric:: functions

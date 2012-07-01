@@ -14,3 +14,16 @@ class Selector(AbjadObject):
     @abstractmethod
     def __init__(self):
         pass
+
+    ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def timespan(self):
+        '''Timespan of selector.
+
+        Return timespan object.
+
+        .. note:: not yet implemented. Currently returns stub timespan.
+        '''
+        from experimental import timespantools
+        return timespantools.Timespan()

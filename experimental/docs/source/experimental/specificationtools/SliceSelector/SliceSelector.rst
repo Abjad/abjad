@@ -19,6 +19,10 @@ Read-only Properties
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
+.. autoattribute:: experimental.specificationtools.SliceSelector.SliceSelector.SliceSelector.timespan
+
+    Inherited from :py:class:`specificationtools.Selector <experimental.specificationtools.Selector.Selector.Selector>`
+
 Special Methods
 ---------------
 

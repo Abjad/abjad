@@ -13,6 +13,8 @@ Read-only Properties
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
+.. autoattribute:: experimental.specificationtools.Selector.Selector.Selector.timespan
+
 Special Methods
 ---------------
 
