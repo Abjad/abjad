@@ -77,18 +77,14 @@ Select the last three elements of the tuplet picked out above:
     SliceSelector(selector, start=-3)
 
 
-*BackgroundSliceSelector.* 
+*BackgroundElementSliceSelector.* 
 
-Select all segments: BackgroundSliceSelector(specificationtools.Segment)
-Select all divisions: BackgroundSliceSelector(specificationtools.Division)
-Select all measures: BackgroundSliceSelector(measuretools.Measure) 
-Select measures 10-15: BackgroundSliceSelector(measuretools.Measure, start=10, stop=15+1)
+Select all segments: BackgroundElementSliceSelector(specificationtools.Segment)
+Select all divisions: BackgroundElementSliceSelector(specificationtools.Division)
+Select all measures: BackgroundElementSliceSelector(measuretools.Measure) 
+Select measures 10-15: BackgroundElementSliceSelector(measuretools.Measure, start=10, stop=15+1)
 
 Select all measures starting during segment 'red':
     segment = BackgroundElementSelector(specificationtools.Segment, 'red')
     inequality = timespantools.TimespanInequality(segment.timespan, timespantools.expr_starts_during_timespan())
-    BackgroundSliceSelector(specificationtools.Measure, inequality=inequality)
-
-
-Select segments 'red' through just before 'blue':
-    BackgroundSliceSelector(specificationtools.Segment, start='red', stop='blue')
+    BackgroundElementSliceSelector(specificationtools.Measure, inequality=inequality)

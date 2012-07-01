@@ -9,6 +9,14 @@ specificationtools.BackgroundElementSliceSelector
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.specificationtools.BackgroundElementSliceSelector.BackgroundElementSliceSelector.BackgroundElementSliceSelector.inequality
+
+.. autoattribute:: experimental.specificationtools.BackgroundElementSliceSelector.BackgroundElementSliceSelector.BackgroundElementSliceSelector.klass
+
+.. autoattribute:: experimental.specificationtools.BackgroundElementSliceSelector.BackgroundElementSliceSelector.BackgroundElementSliceSelector.start
+
+.. autoattribute:: experimental.specificationtools.BackgroundElementSliceSelector.BackgroundElementSliceSelector.BackgroundElementSliceSelector.stop
+
 .. autoattribute:: experimental.specificationtools.BackgroundElementSliceSelector.BackgroundElementSliceSelector.BackgroundElementSliceSelector.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
