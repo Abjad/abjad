@@ -1,7 +1,7 @@
 from experimental.specificationtools.Selector import Selector
 
 
-class SliceSelector(Selector):
+class ComponentSliceSelector(Selector):
     r'''.. versionadded:: 1.0
 
     Select `container` elements from `start` to `stop`.
@@ -16,23 +16,23 @@ class SliceSelector(Selector):
 
     ::
 
-        >>> specificationtools.SliceSelector(voice, stop=5)
-        SliceSelector(ComponentSelector(context='Voice 1'), stop=5)
+        >>> specificationtools.ComponentComponentSliceSelector(voice, stop=5)
+        ComponentSliceSelector(ComponentSelector(context='Voice 1'), stop=5)
 
     Select the last five elements of ``'Voice 1'``::
 
-        >>> specificationtools.SliceSelector(voice, start=-5)
-        SliceSelector(ComponentSelector(context='Voice 1'), start=-5)
+        >>> specificationtools.ComponentComponentSliceSelector(voice, start=-5)
+        ComponentSliceSelector(ComponentSelector(context='Voice 1'), start=-5)
 
     Select all elements of  ``'Voice 1'`` between ``5`` and ``-5``::
 
-        >>> specificationtools.SliceSelector(voice, start=5, stop=-5)
-        SliceSelector(ComponentSelector(context='Voice 1'), start=5, stop=-5)
+        >>> specificationtools.ComponentComponentSliceSelector(voice, start=5, stop=-5)
+        ComponentSliceSelector(ComponentSelector(context='Voice 1'), start=5, stop=-5)
 
     Select all elements of of ``'Voice 1'``::
 
-        >>> specificationtools.SliceSelector(voice)
-        SliceSelector(ComponentSelector(context='Voice 1'))
+        >>> specificationtools.ComponentComponentSliceSelector(voice)
+        ComponentSliceSelector(ComponentSelector(context='Voice 1'))
 
     Slice selector interface mirrors Python slice syntax as closely as possible.
 
