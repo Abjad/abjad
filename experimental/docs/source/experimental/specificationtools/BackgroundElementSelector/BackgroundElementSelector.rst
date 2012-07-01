@@ -30,8 +30,6 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.BackgroundElementSelector.BackgroundElementSelector.BackgroundElementSelector.__eq__
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: experimental.specificationtools.BackgroundElementSelector.BackgroundElementSelector.BackgroundElementSelector.__ge__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

@@ -18,10 +18,22 @@ class TimespanInequality(AbjadObject):
 
     ::
 
-        >>> timespantools.TimespanInequality(reference.timespan, inequality)
-        TimespanInequality(Timespan(), TimespanInequalityClass('t.start <= expr.start < t.stop'))
+        >>> timespan_inequality = timespantools.TimespanInequality(reference.timespan, inequality)
 
-    .. note:: the default emtpy timespan shown here will be replaced with something better.
+    ::
+
+        >>> z(timespan_inequality)
+        timespantools.TimespanInequality(
+            timespantools.Timespan(
+                selector=specificationtools.BackgroundElementSelector(
+                    specificationtools.Segment,
+                    'red'
+                    )
+                ),
+            timespantools.TimespanInequalityClass(
+                't.start <= expr.start < t.stop'
+                )
+            )
 
     Timespan inequalities are immutable.
     '''

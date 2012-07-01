@@ -46,6 +46,13 @@ class BackgroundElementSelector(Selector):
 
     ### SPECIAL METHODS ###
 
+    def __eq__(self, expr):
+        if isinstance(expr, type(self)):
+            if self.klass == expr.klass:
+                if self.value == expr.value:
+                    return True
+        return False
+
     def __repr__(self):
         klass = introspectiontools.klass_to_tools_package_qualified_klass_name(self.klass)
         return '{}({}, {!r})'.format(self._class_name, klass, self.value)

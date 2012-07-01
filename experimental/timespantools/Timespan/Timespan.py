@@ -1,6 +1,7 @@
 from abjad.tools import componenttools
 from abjad.tools import mathtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
+from experimental.specificationtools.Selector import Selector
 from experimental.specificationtools.Timepoint import Timepoint
 
 
@@ -174,9 +175,12 @@ class Timespan(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, start=None, stop=None):
+    def __init__(self, selector=None, start=None, stop=None):
+        assert isinstance(selector, (Selector, type(None))), repr(selector)
         assert isinstance(start, (Timepoint, type(None))), repr(start)
         assert isinstance(stop, (Timepoint, type(None))), repr(stop)
+        if selector is not None: assert start is None and stop is None
+        self._selector = selector
         self._start = start
         self._stop = stop
 
@@ -184,9 +188,10 @@ class Timespan(AbjadObject):
 
     def __eq__(self, expr):
         if isinstance(expr, type(self)):
-            if self.start == expr.start:
-                if self.stop == expr.stop:
-                    return True
+            if self.selector == expr.selector:
+                if self.start == expr.start:
+                    if self.stop == expr.stop:
+                        return True
         return False
 
     def __repr__(self):
@@ -201,7 +206,11 @@ class Timespan(AbjadObject):
 
     @property
     def _one_line_format(self):
-        return '[{} {}]'.format(self.start._one_line_format, self.stop._one_line_format)
+        if self.selector is None:
+            return '[{} {}]'.format(self.start._one_line_format, self.stop._one_line_format)
+        else:
+            # note that this is not yet implemented
+            return '[{}]'.format(self.selector._one_line_format)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -268,6 +277,16 @@ class Timespan(AbjadObject):
             if self.start.anchor.is_segment:
                 return True
         return False
+
+    @property
+    def selector(self):
+        '''Timespan selector specified by user.
+
+        .. note:: add example.
+
+        Return selector or none.
+        '''
+        return self._selector
 
     @property
     def start(self):

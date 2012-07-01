@@ -19,6 +19,8 @@ Read-only Properties
 
 .. autoattribute:: experimental.timespantools.Timespan.Timespan.Timespan.is_anchored_to_one_object
 
+.. autoattribute:: experimental.timespantools.Timespan.Timespan.Timespan.selector
+
 .. autoattribute:: experimental.timespantools.Timespan.Timespan.Timespan.start
 
 .. autoattribute:: experimental.timespantools.Timespan.Timespan.Timespan.stop
