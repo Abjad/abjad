@@ -243,13 +243,18 @@ class AbjadObject(object):
         return result
 
     def _get_tools_package_qualified_mandatory_argument_repr_pieces(self, is_indented=True):
+        from abjad.tools import introspectiontools
         result = []
         if is_indented:
             prefix, suffix = '\t', ','
         else:
             prefix, suffix = '', ', '
         for value in self._mandatory_argument_values:
-            if hasattr(value, '_get_tools_package_qualified_repr_pieces'):
+            # if value is a (noninstantiated) class
+            if type(value) == ABCMeta:
+                value = introspectiontools.klass_to_tools_package_qualified_klass_name(value)
+                result.append('{}{}{}'.format(prefix, value, suffix))
+            elif hasattr(value, '_get_tools_package_qualified_repr_pieces'):
                 pieces = value._get_tools_package_qualified_repr_pieces(is_indented=is_indented)
                 for piece in pieces[:-1]:
                     result.append('{}{}'.format(prefix, piece))
