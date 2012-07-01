@@ -11,19 +11,19 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.SegmentSliceSelector.SegmentSliceSelector.SegmentSliceSelector.inequality
 
-    Inherited from :py:class:`specificationtools.BackgroundElementSliceSelector <experimental.specificationtools.BackgroundElementSliceSelector.BackgroundElementSliceSelector.BackgroundElementSliceSelector>`
+    Inherited from :py:class:`selectortools.BackgroundElementSliceSelector <experimental.selectortools.BackgroundElementSliceSelector.BackgroundElementSliceSelector.BackgroundElementSliceSelector>`
 
 .. autoattribute:: experimental.selectortools.SegmentSliceSelector.SegmentSliceSelector.SegmentSliceSelector.klass
 
-    Inherited from :py:class:`specificationtools.BackgroundElementSliceSelector <experimental.specificationtools.BackgroundElementSliceSelector.BackgroundElementSliceSelector.BackgroundElementSliceSelector>`
+    Inherited from :py:class:`selectortools.BackgroundElementSliceSelector <experimental.selectortools.BackgroundElementSliceSelector.BackgroundElementSliceSelector.BackgroundElementSliceSelector>`
 
 .. autoattribute:: experimental.selectortools.SegmentSliceSelector.SegmentSliceSelector.SegmentSliceSelector.start
 
-    Inherited from :py:class:`specificationtools.BackgroundElementSliceSelector <experimental.specificationtools.BackgroundElementSliceSelector.BackgroundElementSliceSelector.BackgroundElementSliceSelector>`
+    Inherited from :py:class:`selectortools.BackgroundElementSliceSelector <experimental.selectortools.BackgroundElementSliceSelector.BackgroundElementSliceSelector.BackgroundElementSliceSelector>`
 
 .. autoattribute:: experimental.selectortools.SegmentSliceSelector.SegmentSliceSelector.SegmentSliceSelector.stop
 
-    Inherited from :py:class:`specificationtools.BackgroundElementSliceSelector <experimental.specificationtools.BackgroundElementSliceSelector.BackgroundElementSliceSelector.BackgroundElementSliceSelector>`
+    Inherited from :py:class:`selectortools.BackgroundElementSliceSelector <experimental.selectortools.BackgroundElementSliceSelector.BackgroundElementSliceSelector.BackgroundElementSliceSelector>`
 
 .. autoattribute:: experimental.selectortools.SegmentSliceSelector.SegmentSliceSelector.SegmentSliceSelector.storage_format
 

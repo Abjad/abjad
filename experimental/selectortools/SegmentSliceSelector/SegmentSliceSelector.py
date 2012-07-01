@@ -1,4 +1,4 @@
-from experimental.specificationtools.BackgroundElementSliceSelector import BackgroundElementSliceSelector
+from experimental.selectortools.BackgroundElementSliceSelector import BackgroundElementSliceSelector
 
 
 class SegmentSliceSelector(BackgroundElementSliceSelector):

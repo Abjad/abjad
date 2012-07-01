@@ -167,6 +167,7 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
+   experimental/selectortools/SegmentSelector/SegmentSelector
    experimental/selectortools/SegmentSliceSelector/SegmentSliceSelector
 
 :py:mod:`specificationtools <experimental.specificationtools>`
@@ -211,7 +212,6 @@ Unstable packages (load manually)
    experimental/specificationtools/Segment/Segment
    experimental/specificationtools/SegmentDivisionList/SegmentDivisionList
    experimental/specificationtools/SegmentInventory/SegmentInventory
-   experimental/specificationtools/SegmentSelector/SegmentSelector
    experimental/specificationtools/SegmentSpecification/SegmentSpecification
    experimental/specificationtools/Selection/Selection
    experimental/specificationtools/Setting/Setting

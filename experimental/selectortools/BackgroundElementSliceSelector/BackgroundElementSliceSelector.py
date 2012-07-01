@@ -4,9 +4,7 @@ from experimental.specificationtools.Selector import Selector
 class BackgroundElementSliceSelector(Selector):
     r'''.. versionadded:: 1.0
 
-    Select zero or more contiguous background elements::
-
-        >>> from experimental import specificationtools
+    Select zero or more contiguous background elements.
 
     Background element slice selectors are immutable.
     '''
