@@ -179,7 +179,7 @@ Unstable packages (load manually)
    experimental/specificationtools/AttributeRetrievalIndicator/AttributeRetrievalIndicator
    experimental/specificationtools/AttributeRetrievalRequest/AttributeRetrievalRequest
    experimental/specificationtools/BackgroundElementSelector/BackgroundElementSelector
-   experimental/specificationtools/BackgroundSliceSelector/BackgroundSliceSelector
+   experimental/specificationtools/BackgroundElementSliceSelector/BackgroundElementSliceSelector
    experimental/specificationtools/Callback/Callback
    experimental/specificationtools/ComponentSelector/ComponentSelector
    experimental/specificationtools/ContextDictionary/ContextDictionary

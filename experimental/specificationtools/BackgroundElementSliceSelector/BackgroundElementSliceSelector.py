@@ -1,7 +1,7 @@
 from experimental.specificationtools.Selector import Selector
 
 
-class BackgroundSliceSelector(Selector):
+class BackgroundElementSliceSelector(Selector):
     r'''.. versionadded:: 1.0
 
     Select zero or more contiguous background elements.
