@@ -1,5 +1,5 @@
 selectortools.BackgroundElementSelector
-============================================
+=======================================
 
 .. inheritance-diagram:: experimental.selectortools.BackgroundElementSelector.BackgroundElementSelector.BackgroundElementSelector
    :private-bases:

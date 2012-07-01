@@ -8,6 +8,7 @@ class ComponentSliceSelector(Selector):
 
     Select the first five elements of ``'Voice 1'``::
 
+        >>> from experimental import selectortools
         >>> from experimental import specificationtools
 
     ::
@@ -16,22 +17,22 @@ class ComponentSliceSelector(Selector):
 
     ::
 
-        >>> specificationtools.ComponentSliceSelector(voice, stop=5)
+        >>> selectortools.ComponentSliceSelector(voice, stop=5)
         ComponentSliceSelector(ComponentSelector(context='Voice 1'), stop=5)
 
     Select the last five elements of ``'Voice 1'``::
 
-        >>> specificationtools.ComponentSliceSelector(voice, start=-5)
+        >>> selectortools.ComponentSliceSelector(voice, start=-5)
         ComponentSliceSelector(ComponentSelector(context='Voice 1'), start=-5)
 
     Select all elements of  ``'Voice 1'`` between ``5`` and ``-5``::
 
-        >>> specificationtools.ComponentSliceSelector(voice, start=5, stop=-5)
+        >>> selectortools.ComponentSliceSelector(voice, start=5, stop=-5)
         ComponentSliceSelector(ComponentSelector(context='Voice 1'), start=5, stop=-5)
 
     Select all elements of of ``'Voice 1'``::
 
-        >>> specificationtools.ComponentSliceSelector(voice)
+        >>> selectortools.ComponentSliceSelector(voice)
         ComponentSliceSelector(ComponentSelector(context='Voice 1'))
 
     Slice selector interface mirrors Python slice syntax as closely as possible.

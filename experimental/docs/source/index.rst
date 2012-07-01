@@ -167,6 +167,7 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
+   experimental/selectortools/BackgroundElementSelector/BackgroundElementSelector
    experimental/selectortools/BackgroundElementSliceSelector/BackgroundElementSliceSelector
    experimental/selectortools/SegmentSelector/SegmentSelector
    experimental/selectortools/SegmentSliceSelector/SegmentSliceSelector
@@ -190,7 +191,6 @@ Unstable packages (load manually)
    experimental/specificationtools/AttributeNameEnumeration/AttributeNameEnumeration
    experimental/specificationtools/AttributeRetrievalIndicator/AttributeRetrievalIndicator
    experimental/specificationtools/AttributeRetrievalRequest/AttributeRetrievalRequest
-   experimental/specificationtools/BackgroundElementSelector/BackgroundElementSelector
    experimental/specificationtools/Callback/Callback
    experimental/specificationtools/ComponentSelector/ComponentSelector
    experimental/specificationtools/ComponentSliceSelector/ComponentSliceSelector
