@@ -1,5 +1,5 @@
 quantizationtools.QSchemaEntry
-=============================
+==============================
 
 .. inheritance-diagram:: experimental.quantizationtools.QSchemaEntry.QSchemaEntry.QSchemaEntry
    :private-bases:

@@ -2,7 +2,7 @@ from abjad.tools import abctools
 from abjad.tools import datastructuretools
 from abjad.tools import sequencetools
 from experimental.quantizationtools.QSchemaEntry import QSchemaEntry
-from experimental.quantizationtools.QSchemaTarget import QSchemaTarget
+from experimental.quantizationtools.QTarget import QTarget
 import copy
 
 
@@ -42,7 +42,7 @@ class QSchema(abctools.AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self):
-        return QSchemaTarget(self)
+        return QTarget(self)
 
     def __repr__(self):
         return '\n'.join(self._get_tools_package_qualified_repr_pieces())

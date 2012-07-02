@@ -1,5 +1,5 @@
 from abjad.tools import abctools
 
 
-class QSchemaTarget(abctools.AbjadObject):
+class QTargetItem(abctools.AbjadObject):
     pass
