@@ -23,7 +23,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.timespan
 
-    Inherited from :py:class:`specificationtools.Selector <experimental.specificationtools.Selector.Selector.Selector>`
+    Inherited from :py:class:`selectortools.Selector <experimental.selectortools.Selector.Selector.Selector>`
 
 Special Methods
 ---------------

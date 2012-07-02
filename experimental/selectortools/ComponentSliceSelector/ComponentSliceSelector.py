@@ -1,4 +1,4 @@
-from experimental.specificationtools.Selector import Selector
+from experimental.selectortools.Selector import Selector
 
 
 class ComponentSliceSelector(Selector):

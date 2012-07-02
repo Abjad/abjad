@@ -4,7 +4,7 @@ from abjad.tools import mathtools
 from experimental.specificationtools.Callback import Callback
 from experimental.specificationtools.Division import Division
 from experimental.specificationtools.SegmentSpecification import SegmentSpecification
-from experimental.specificationtools.Selector import Selector
+from experimental.selectortools.Selector import Selector
 import types
 
 

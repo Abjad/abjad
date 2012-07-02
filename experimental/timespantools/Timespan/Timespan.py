@@ -1,7 +1,7 @@
 from abjad.tools import componenttools
 from abjad.tools import mathtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from experimental.specificationtools.Selector import Selector
+from experimental.selectortools.Selector import Selector
 from experimental.timespantools.Timepoint import Timepoint
 
 

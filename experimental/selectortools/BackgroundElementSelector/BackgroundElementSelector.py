@@ -1,5 +1,5 @@
 from abjad.tools import introspectiontools
-from experimental.specificationtools.Selector import Selector
+from experimental.selectortools.Selector import Selector
 
 
 class BackgroundElementSelector(Selector):
