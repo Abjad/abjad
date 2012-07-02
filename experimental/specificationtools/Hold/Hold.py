@@ -26,6 +26,12 @@ class Hold(AbjadObject):
         assert isinstance(string, str), repr(string)
         self._string = string
 
+    ### PRIVATE METHODS ###
+
+    # do not indent storage format
+    def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
+        return [''.join(AbjadObject._get_tools_package_qualified_repr_pieces(self, is_indented=False))]
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
