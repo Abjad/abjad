@@ -1,5 +1,5 @@
 selectortools.Selector
-===========================
+======================
 
 .. inheritance-diagram:: experimental.selectortools.Selector.Selector.Selector
    :private-bases:

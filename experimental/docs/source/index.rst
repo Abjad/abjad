@@ -162,6 +162,13 @@ Unstable packages (load manually)
 :py:mod:`selectortools <experimental.selectortools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+.. rubric:: abstract classes
+
+.. toctree::
+   :maxdepth: 1
+
+   experimental/selectortools/Selector/Selector
+
 .. rubric:: concrete classes
 
 .. toctree::
@@ -183,7 +190,6 @@ Unstable packages (load manually)
    :maxdepth: 1
 
    experimental/specificationtools/RetrievalRequest/RetrievalRequest
-   experimental/specificationtools/Selector/Selector
 
 .. rubric:: concrete classes
 
