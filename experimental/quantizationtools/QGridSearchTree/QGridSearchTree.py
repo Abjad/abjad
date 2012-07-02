@@ -1,15 +1,14 @@
 from copy import deepcopy
 from fractions import Fraction
-from abjad.tools.datastructuretools import ImmutableDictionary
-from abjad.tools.contexttools import TempoMark
-from abjad.tools.durationtools import Offset
-from abjad.tools.mathtools import divisors
+from abjad.tools import contexttools
+from abjad.tools import datastructuretools
+from abjad.tools import durationtools
+from abjad.tools import mathtools
 from experimental.quantizationtools.is_valid_beatspan import is_valid_beatspan
-from experimental.quantizationtools.tempo_scaled_rational_to_milliseconds \
-    import tempo_scaled_rational_to_milliseconds
+from experimental.quantizationtools.tempo_scaled_rational_to_milliseconds import tempo_scaled_rational_to_milliseconds
 
 
-class QGridSearchTree(ImmutableDictionary):
+class QGridSearchTree(datastructuretools.ImmutableDictionary):
     '''A utility class for defining the permissible divisions of a collection
     of :py:class:`~abjad.tools.quantizationtools.QGrid` objects.
 
@@ -58,7 +57,7 @@ class QGridSearchTree(ImmutableDictionary):
                 if v is None:
                     dict.__setitem__(i_node, k, v)
                 else:
-                    dict.__setitem__(i_node, k, ImmutableDictionary())
+                    dict.__setitem__(i_node, k, datastructuretools.ImmutableDictionary())
                     recurse(node[k], i_node[k])
         recurse(definition, self)
 
@@ -68,12 +67,12 @@ class QGridSearchTree(ImmutableDictionary):
             for k in n:
                 div = Fraction(1, k) * prev_div
                 for i in range(k):
-                    results.append(Offset(prev_offset + (i * div)))
+                    results.append(durationtools.Offset(prev_offset + (i * div)))
                     if n[k] is not None:
                         results.extend(recurse(n[k], div, prev_offset + (i * div)))
             return results
         offsets = list(sorted(set(recurse(definition, 1, 0))))
-        offsets.append(Offset(1))
+        offsets.append(durationtools.Offset(1))
         object.__setattr__(self, '_offsets', tuple(offsets))
 
     def _is_valid_search_tree_definition(self, definition):
@@ -84,7 +83,7 @@ class QGridSearchTree(ImmutableDictionary):
             for key in n:
                 if not isinstance(key, int) or \
                     not 0 < key or \
-                    not divisors(key) == [1, key]:
+                    not mathtools.divisors(key) == [1, key]:
                     results.append(False)
                 elif not isinstance(n[key], (dict, type(None))):
                     results.append(False)
@@ -201,7 +200,7 @@ class QGridSearchTree(ImmutableDictionary):
         '''
 
         assert is_valid_beatspan(beatspan)
-        assert isinstance(tempo, TempoMark)
+        assert isinstance(tempo, contexttools.TempoMark)
         assert 0 < threshold
 
         def recurse(old_node, prev_div):

@@ -136,6 +136,13 @@ Unstable packages (load manually)
 :py:mod:`quantizationtools <experimental.quantizationtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+.. rubric:: abstract classes
+
+.. toctree::
+   :maxdepth: 1
+
+   experimental/quantizationtools/QSchemaTarget/QSchemaTarget
+
 .. rubric:: concrete classes
 
 .. toctree::
@@ -146,6 +153,8 @@ Unstable packages (load manually)
    experimental/quantizationtools/QGridQuantizer/QGridQuantizer
    experimental/quantizationtools/QGridSearchTree/QGridSearchTree
    experimental/quantizationtools/QGridTempoLookup/QGridTempoLookup
+   experimental/quantizationtools/QSchema/QSchema
+   experimental/quantizationtools/QSchemaItem/QSchemaItem
 
 .. rubric:: functions
 
