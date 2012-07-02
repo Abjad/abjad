@@ -1,9 +1,7 @@
-1. Implement timespan-creation courtesy methods.
+1. Make Specification into an ABC.
 
 2. Implement selection-creation courtesy methods.
 
-3. Extend DivisionList initializer with string handling.
+3. Replace specificationtools.DivisionSelector in selectortools.DivisionSelector.
 
-4. Replace DivisionSelector with ComponentSelector.
-
-5. Make Specification into an ABC.
+4. Extend DivisionList initializer with string handling.
