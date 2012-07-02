@@ -1,7 +1,5 @@
-1. Make Specification into an ABC.
+1. Implement selection-creation courtesy methods.
 
-2. Implement selection-creation courtesy methods.
+2. Replace specificationtools.DivisionSelector in selectortools.DivisionSelector.
 
-3. Replace specificationtools.DivisionSelector in selectortools.DivisionSelector.
-
-4. Extend DivisionList initializer with string handling.
+3. Extend DivisionList initializer with string handling.

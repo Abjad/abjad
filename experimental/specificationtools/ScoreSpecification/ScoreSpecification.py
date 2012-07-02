@@ -25,6 +25,10 @@ RegionDivisionToken = collections.namedtuple(
 RhythmToken = collections.namedtuple('RhythmToken', ['value', 'fresh'])
 
 class ScoreSpecification(Specification):
+    r'''.. versionadded:: 1.0
+
+    Score specification.
+    '''
 
     ### INITIALIZER ###
 

@@ -194,6 +194,7 @@ Unstable packages (load manually)
    :maxdepth: 1
 
    experimental/specificationtools/RetrievalRequest/RetrievalRequest
+   experimental/specificationtools/Specification/Specification
 
 .. rubric:: concrete classes
 
@@ -226,7 +227,6 @@ Unstable packages (load manually)
    experimental/specificationtools/Selection/Selection
    experimental/specificationtools/Setting/Setting
    experimental/specificationtools/SettingInventory/SettingInventory
-   experimental/specificationtools/Specification/Specification
    experimental/specificationtools/StatalServer/StatalServer
    experimental/specificationtools/StatalServerRequest/StatalServerRequest
    experimental/specificationtools/ValueRetrievalIndicator/ValueRetrievalIndicator
