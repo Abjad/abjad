@@ -37,7 +37,7 @@ class BackgroundElementSelector(Selector):
 
     ### INITIALIZER ###
     
-    def __init__(self, klass=None, inequality=None, index=None):
+    def __init__(self, klass=None, inequality=None, index=0):
         from experimental import specificationtools
         from experimental import timespantools
         assert specificationtools.is_background_element_klass(klass), repr(klass)

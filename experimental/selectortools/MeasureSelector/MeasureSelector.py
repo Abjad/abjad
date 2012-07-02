@@ -4,7 +4,7 @@ from experimental.selectortools.BackgroundElementSelector import BackgroundEleme
 class MeasureSelector(BackgroundElementSelector):
     r'''.. versionadded:: 1.0
 
-    Select measure ``3``::
+    Select measure ``3`` in score::
 
         >>> from experimental import selectortools
 
@@ -74,4 +74,5 @@ class MeasureSelector(BackgroundElementSelector):
 
     def __init__(self, inequality=None, index=0):
         from abjad.tools import measuretools
-        BackgroundElementSelector.__init__(self, klass=measuretools.Measure, index=index, inequality=inequality)
+        BackgroundElementSelector.__init__(
+            self, klass=measuretools.Measure, index=index, inequality=inequality)
