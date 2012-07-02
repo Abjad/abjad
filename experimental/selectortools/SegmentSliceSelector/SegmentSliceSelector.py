@@ -95,9 +95,7 @@ class SegmentSliceSelector(BackgroundElementSliceSelector):
                         multiplier=Fraction(1, 3)
                         )
                     ),
-                timespantools.TimespanInequalityTemplate(
-                    't.start <= expr.start < t.stop'
-                    )
+                timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop')
                 )
             )
 
@@ -116,9 +114,7 @@ class SegmentSliceSelector(BackgroundElementSliceSelector):
                         multiplier=Fraction(1, 3)
                         )
                     ),
-                timespantools.TimespanInequalityTemplate(
-                    't.start <= expr.start < t.stop'
-                    )
+                timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop')
                 ),
             start=-2
             )

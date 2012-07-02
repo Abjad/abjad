@@ -1,13 +1,11 @@
-1. Change TimespanInequalityTemplate storage format to a single line.
+1. Extend timespan-creation methods to accept timespan and return actual inequality.
 
-2. Extend timespan-creation methods to accept timespan and return actual inequality.
+2. Implement timespan-creation courtesy methods.
 
-3. Implement timespan-creation courtesy methods.
+3. Implement selection-creation courtesy methods.
 
-4. Implement selection-creation courtesy methods.
+4. Extend DivisionList initializer with string handling.
 
-5. Extend DivisionList initializer with string handling.
+5. Replace DivisionSelector with ComponentSelector.
 
-6. Replace DivisionSelector with ComponentSelector.
-
-7. Make Specification into an ABC.
+6. Make Specification into an ABC.

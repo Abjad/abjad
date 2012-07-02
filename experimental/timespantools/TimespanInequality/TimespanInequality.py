@@ -31,9 +31,7 @@ class TimespanInequality(AbjadObject):
                     'red'
                     )
                 ),
-            timespantools.TimespanInequalityTemplate(
-                't.start <= expr.start < t.stop'
-                )
+            timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop')
             )
 
     Timespan inequalities are immutable.
