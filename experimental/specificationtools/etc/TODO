@@ -1,9 +1,15 @@
-1. Implement timespan-creation courtesy methods.
+0. Rename TimespanInequalityTaxon to TimespanInequalityTemplate.
 
-2. Implement selection-creation courtesy methods.
+1. Change TimespanInequalityTemplate storage format to a single line.
 
-3. Extend DivisionList initializer with string handling.
+2. Extend timespan-creation methods to accept timespan and return actual inequality.
 
-4. Replace DivisionSelector with ComponentSelector.
+3. Implement timespan-creation courtesy methods.
 
-5. Make Specification into an ABC.
+4. Implement selection-creation courtesy methods.
+
+5. Extend DivisionList initializer with string handling.
+
+6. Replace DivisionSelector with ComponentSelector.
+
+7. Make Specification into an ABC.

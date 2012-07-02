@@ -11,6 +11,8 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.BackgroundElementSelector.BackgroundElementSelector.BackgroundElementSelector.index
 
+.. autoattribute:: experimental.selectortools.BackgroundElementSelector.BackgroundElementSelector.BackgroundElementSelector.inequality
+
 .. autoattribute:: experimental.selectortools.BackgroundElementSelector.BackgroundElementSelector.BackgroundElementSelector.klass
 
 .. autoattribute:: experimental.selectortools.BackgroundElementSelector.BackgroundElementSelector.BackgroundElementSelector.storage_format

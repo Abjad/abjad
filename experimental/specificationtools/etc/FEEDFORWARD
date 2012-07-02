@@ -1,0 +1,7 @@
+1.  There can be a mathematics of timespans just like there can be a mathematics of intervals.
+    What does 1/3 * timespan mean? Does start hold constant? Does stop hold constant?
+    What does timespan1 + timespan2 produce?
+    At any rate it seems like a couple of timespan operations seem fundamental:
+    TRANSLATION (in either positive or negative direction) and SCALING (of either endpoint).
+    Maybe those are it for a single timespan. Then set-theoretic operations arise for
+    timespans taken together.

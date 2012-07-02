@@ -23,9 +23,9 @@ class SegmentSelector(BackgroundElementSelector):
 
     ### INITIALIZER ###
 
-    def __init__(self, index):
+    def __init__(self, index, inequality=None):
         from experimental import specificationtools
-        BackgroundElementSelector.__init__(self, specificationtools.Segment, index)
+        BackgroundElementSelector.__init__(self, specificationtools.Segment, index, inequality=inequality)
 
     ### SPECIAL METHODS ###
 

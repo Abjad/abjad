@@ -37,13 +37,16 @@ class BackgroundElementSelector(Selector):
 
     ### INITIALIZER ###
     
-    def __init__(self, klass, index):
+    def __init__(self, klass, index, inequality=None):
         from experimental import specificationtools
+        from experimental import timespantools
         assert specificationtools.is_background_element_klass(klass), repr(klass)
         assert isinstance(index, (int, str)), repr(index)
+        assert isinstance(inequality, (timespantools.TimespanInequality, type(None))), repr(inequality)
         Selector.__init__(self)
         self._klass = klass
         self._index = index
+        self._inequality = inequality
 
     ### SPECIAL METHODS ###
 
@@ -67,6 +70,16 @@ class BackgroundElementSelector(Selector):
         Return integer or string.
         '''
         return self._index
+
+    @property
+    def inequality(self):
+        '''Background element selector inequality initialized by user.
+
+        Value of none is taken equal to the timespan of the entire score.
+
+        Return timespan inequality or none.
+        '''
+        return self._inequality
 
     @property
     def klass(self):
