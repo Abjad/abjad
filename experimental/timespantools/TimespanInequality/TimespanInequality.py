@@ -14,11 +14,8 @@ class TimespanInequality(AbjadObject):
 
     ::
 
-        >>> reference = selectortools.BackgroundElementSelector(specificationtools.Segment, 'red')
+        >>> reference = selectortools.BackgroundElementSelector(klass=specificationtools.Segment, index='red')
         >>> template = timespantools.expr_starts_during_timespan()
-
-    ::
-
         >>> timespan_inequality = timespantools.TimespanInequality(template, reference.timespan)
 
     ::
@@ -28,8 +25,8 @@ class TimespanInequality(AbjadObject):
             timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
             timespantools.Timespan(
                 selector=selectortools.BackgroundElementSelector(
-                    specificationtools.Segment,
-                    'red'
+                    klass=specificationtools.Segment,
+                    index='red'
                     )
                 )
             )

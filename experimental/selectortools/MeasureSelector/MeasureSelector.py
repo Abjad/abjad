@@ -10,8 +10,8 @@ class MeasureSelector(BackgroundElementSelector):
 
     ::
 
-        >>> selectortools.MeasureSelector(3)
-        MeasureSelector(3)
+        >>> selectortools.MeasureSelector(index=3)
+        MeasureSelector(index=3)
 
     Select the last measure to start in the first third of the score::
 
@@ -21,18 +21,17 @@ class MeasureSelector(BackgroundElementSelector):
 
         >>> timepoint = timespantools.Timepoint(multiplier=Fraction(1, 3), edge=Right)
         >>> timespan = timespantools.Timespan(stop=timepoint)
-        >>> taxon = timespantools.expr_starts_during_timespan()
-        >>> inequality = timespantools.TimespanInequality(taxon, timespan)
+        >>> template = timespantools.expr_starts_during_timespan()
+        >>> inequality = timespantools.TimespanInequality(template, timespan)
 
     ::
 
-        >>> selector = selectortools.MeasureSelector(-1, inequality=inequality)
+        >>> selector = selectortools.MeasureSelector(inequality=inequality, index=-1)
 
     ::
     
         >>> z(selector)
         selectortools.MeasureSelector(
-            -1,
             inequality=timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                 timespantools.Timespan(
@@ -41,32 +40,33 @@ class MeasureSelector(BackgroundElementSelector):
                         multiplier=Fraction(1, 3)
                         )
                     )
-                )
+                ),
+            index=-1
             )
 
     Select the first measure starting during segment ``'red'``::
 
-        >>> segment = selectortools.SegmentSelector('red')
-        >>> taxon = timespantools.expr_starts_during_timespan()
-        >>> inequality = timespantools.TimespanInequality(taxon, segment.timespan)
+        >>> timespan = selectortools.SegmentSelector(index='red').timespan
+        >>> template = timespantools.expr_starts_during_timespan()
+        >>> inequality = timespantools.TimespanInequality(template, timespan)
 
     ::
 
-        >>> selector = selectortools.MeasureSelector(0, inequality=inequality)
+        >>> selector = selectortools.MeasureSelector(inequality=inequality)
 
     ::
 
         >>> z(selector)
         selectortools.MeasureSelector(
-            0,
             inequality=timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                 timespantools.Timespan(
                     selector=selectortools.SegmentSelector(
-                        'red'
+                        index='red'
                         )
                     )
-                )
+                ),
+            index=0
             )
 
     Measure selectors are immutable.
@@ -74,14 +74,6 @@ class MeasureSelector(BackgroundElementSelector):
 
     ### INITIALIZER ###
 
-    def __init__(self, index, inequality=None):
+    def __init__(self, inequality=None, index=0):
         from abjad.tools import measuretools
-        BackgroundElementSelector.__init__(self, measuretools.Measure, index, inequality=inequality)
-
-    ### SPECIAL METHODS ###
-
-    def __repr__(self):
-        if self.inequality is not None:
-            return '{}({!r}, inequality={!r})'.format(self._class_name, self.index, self.inequality)
-        else:
-            return '{}({!r})'.format(self._class_name, self.index)
+        BackgroundElementSelector.__init__(self, klass=measuretools.Measure, index=index, inequality=inequality)

@@ -66,6 +66,8 @@ Special Methods
 
 .. automethod:: experimental.selectortools.MeasureSelector.MeasureSelector.MeasureSelector.__repr__
 
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
 .. automethod:: experimental.selectortools.MeasureSelector.MeasureSelector.MeasureSelector.__setattr__
 
     Inherited from :py:class:`__builtin__.object`

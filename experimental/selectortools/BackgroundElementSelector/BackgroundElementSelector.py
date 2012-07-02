@@ -14,30 +14,30 @@ class BackgroundElementSelector(Selector):
 
     ::
 
-        >>> selectortools.BackgroundElementSelector(specificationtools.Segment, 'red')
-        BackgroundElementSelector(specificationtools.Segment, 'red')
+        >>> selectortools.BackgroundElementSelector(klass=specificationtools.Segment, index='red')
+        BackgroundElementSelector(klass=specificationtools.Segment, index='red')
 
     Select segment ``0``::
 
-        >>> selectortools.BackgroundElementSelector(specificationtools.Segment, 0)
-        BackgroundElementSelector(specificationtools.Segment, 0)
+        >>> selectortools.BackgroundElementSelector(klass=specificationtools.Segment, index=0)
+        BackgroundElementSelector(klass=specificationtools.Segment, index=0)
 
     Select measure ``0``::
 
-        >>> selectortools.BackgroundElementSelector(measuretools.Measure, 0)
-        BackgroundElementSelector(measuretools.Measure, 0)
+        >>> selectortools.BackgroundElementSelector(klass=measuretools.Measure, index=0)
+        BackgroundElementSelector(klass=measuretools.Measure, index=0)
 
     Select division ``0``::
 
-        >>> selectortools.BackgroundElementSelector(specificationtools.Division, 0)
-        BackgroundElementSelector(specificationtools.Division, 0)
+        >>> selectortools.BackgroundElementSelector(klass=specificationtools.Division, index=0)
+        BackgroundElementSelector(klass=specificationtools.Division, index=0)
 
     More examples to follow.
     '''
 
     ### INITIALIZER ###
     
-    def __init__(self, klass, index, inequality=None):
+    def __init__(self, klass=None, inequality=None, index=None):
         from experimental import specificationtools
         from experimental import timespantools
         assert specificationtools.is_background_element_klass(klass), repr(klass)
@@ -56,10 +56,6 @@ class BackgroundElementSelector(Selector):
                 if self.index == expr.index:
                     return True
         return False
-
-    def __repr__(self):
-        klass = introspectiontools.klass_to_tools_package_qualified_klass_name(self.klass)
-        return '{}({}, {!r})'.format(self._class_name, klass, self.index)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

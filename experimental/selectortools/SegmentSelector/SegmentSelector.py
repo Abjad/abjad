@@ -10,24 +10,20 @@ class SegmentSelector(BackgroundElementSelector):
 
     ::
 
-        >>> selectortools.SegmentSelector(3)
-        SegmentSelector(3)
+        >>> selectortools.SegmentSelector(index=3)
+        SegmentSelector(index=3)
 
     Select segment ``'red'``::
 
-        >>> selectortools.SegmentSelector('red')
-        SegmentSelector('red')
+        >>> selectortools.SegmentSelector(index='red')
+        SegmentSelector(index='red')
 
     Segment selectors are immutable.
     '''
 
     ### INITIALIZER ###
 
-    def __init__(self, index, inequality=None):
+    def __init__(self, inequality=None, index=0):
         from experimental import specificationtools
-        BackgroundElementSelector.__init__(self, specificationtools.Segment, index, inequality=inequality)
-
-    ### SPECIAL METHODS ###
-
-    def __repr__(self):
-        return '{}({!r})'.format(self._class_name, self.index)
+        BackgroundElementSelector.__init__(self, 
+            klass=specificationtools.Segment, inequality=inequality, index=index)
