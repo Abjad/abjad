@@ -141,9 +141,12 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
+   experimental/quantizationtools/PitchedQEvent/PitchedQEvent
    experimental/quantizationtools/QTarget/QTarget
    experimental/quantizationtools/QTargetGrouping/QTargetGrouping
    experimental/quantizationtools/QTargetItem/QTargetItem
+   experimental/quantizationtools/TerminalQEvent/TerminalQEvent
+   experimental/quantizationtools/UnpitchedQEvent/UnpitchedQEvent
 
 .. rubric:: concrete classes
 

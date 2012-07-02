@@ -41,8 +41,8 @@ class QSchema(abctools.AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self):
-        return QTarget(self)
+    def __call__(self, duration):
+        return QTarget(self, duration)
 
     def __repr__(self):
         return '\n'.join(self._get_tools_package_qualified_repr_pieces())
