@@ -15,23 +15,23 @@ class TimespanInequality(AbjadObject):
     ::
 
         >>> reference = selectortools.BackgroundElementSelector(specificationtools.Segment, 'red')
-        >>> inequality = timespantools.expr_starts_during_timespan()
+        >>> template = timespantools.expr_starts_during_timespan()
 
     ::
 
-        >>> timespan_inequality = timespantools.TimespanInequality(reference.timespan, inequality)
+        >>> timespan_inequality = timespantools.TimespanInequality(template, reference.timespan)
 
     ::
 
         >>> z(timespan_inequality)
         timespantools.TimespanInequality(
+            timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
             timespantools.Timespan(
                 selector=selectortools.BackgroundElementSelector(
                     specificationtools.Segment,
                     'red'
                     )
-                ),
-            timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop')
+                )
             )
 
     Timespan inequalities are immutable.
@@ -39,13 +39,13 @@ class TimespanInequality(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, timespan, timespan_inequality_class):
+    def __init__(self, timespan_inequality_template, timespan):
         from experimental import timespantools
         assert isinstance(timespan, timespantools.Timespan), repr(timespan)
-        assert isinstance(timespan_inequality_class, timespantools.TimespanInequalityTemplate), repr(
-            timespan_inequality_class)
+        assert isinstance(timespan_inequality_template, timespantools.TimespanInequalityTemplate), repr(
+            timespan_inequality_template)
         self._timespan = timespan
-        self._timespan_inequality_class = timespan_inequality_class
+        self._timespan_inequality_template = timespan_inequality_template
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -58,9 +58,9 @@ class TimespanInequality(AbjadObject):
         return self._timespan
 
     @property
-    def timespan_inequality_class(self):
+    def timespan_inequality_template(self):
         '''Class of inequality.
 
         Return timespan inequality object.
         '''
-        return self._timespan_inequality_class
+        return self._timespan_inequality_template

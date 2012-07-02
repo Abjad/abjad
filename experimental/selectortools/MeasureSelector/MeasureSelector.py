@@ -22,7 +22,7 @@ class MeasureSelector(BackgroundElementSelector):
         >>> timepoint = timespantools.Timepoint(multiplier=Fraction(1, 3), edge=Right)
         >>> timespan = timespantools.Timespan(stop=timepoint)
         >>> taxon = timespantools.expr_starts_during_timespan()
-        >>> inequality = timespantools.TimespanInequality(timespan, taxon)
+        >>> inequality = timespantools.TimespanInequality(taxon, timespan)
 
     ::
 
@@ -34,13 +34,13 @@ class MeasureSelector(BackgroundElementSelector):
         selectortools.MeasureSelector(
             -1,
             inequality=timespantools.TimespanInequality(
+                timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                 timespantools.Timespan(
                     stop=timespantools.Timepoint(
                         edge=Right,
                         multiplier=Fraction(1, 3)
                         )
-                    ),
-                timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop')
+                    )
                 )
             )
 
@@ -48,7 +48,7 @@ class MeasureSelector(BackgroundElementSelector):
 
         >>> segment = selectortools.SegmentSelector('red')
         >>> taxon = timespantools.expr_starts_during_timespan()
-        >>> inequality = timespantools.TimespanInequality(segment.timespan, taxon)
+        >>> inequality = timespantools.TimespanInequality(taxon, segment.timespan)
 
     ::
 
@@ -60,12 +60,12 @@ class MeasureSelector(BackgroundElementSelector):
         selectortools.MeasureSelector(
             0,
             inequality=timespantools.TimespanInequality(
+                timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                 timespantools.Timespan(
                     selector=selectortools.SegmentSelector(
                         'red'
                         )
-                    ),
-                timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop')
+                    )
                 )
             )
 
