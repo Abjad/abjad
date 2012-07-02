@@ -154,7 +154,7 @@ Unstable packages (load manually)
    experimental/quantizationtools/QGridSearchTree/QGridSearchTree
    experimental/quantizationtools/QGridTempoLookup/QGridTempoLookup
    experimental/quantizationtools/QSchema/QSchema
-   experimental/quantizationtools/QSchemaItem/QSchemaItem
+   experimental/quantizationtools/QSchemaEntry/QSchemaEntry
 
 .. rubric:: functions
 

@@ -6,7 +6,7 @@ from experimental.quantizationtools.QGridSearchTree import QGridSearchTree
 from experimental.quantizationtools.is_valid_beatspan import is_valid_beatspan
 
 
-class QSchemaItem(tuple, abctools.ImmutableAbjadObject):
+class QSchemaEntry(tuple, abctools.ImmutableAbjadObject):
     '''Represents one "point" in some quantization process where the rules for 
     quantization change.
     '''
@@ -59,21 +59,21 @@ class QSchemaItem(tuple, abctools.ImmutableAbjadObject):
 
     @property
     def beatspan(self):
-        '''The beatspan value optionally associated with this QSchemaItem.'''
+        '''The beatspan value optionally associated with this QSchemaEntry.'''
         return self[0]
 
     @property
     def search_tree(self):
-        '''The QGridSearchTree optionally associated with this QSchemaItem.'''
+        '''The QGridSearchTree optionally associated with this QSchemaEntry.'''
         return self[1]
 
     @property
     def tempo(self):
-        '''The TempoMark optionally associated with this QSchemaItem.'''
+        '''The TempoMark optionally associated with this QSchemaEntry.'''
         return self[2]
 
     @property
     def time_signature(self):
-        '''The TimeSignatureMark optionally associated with this QSchemaItem.'''
+        '''The TimeSignatureMark optionally associated with this QSchemaEntry.'''
         return self[3]
 

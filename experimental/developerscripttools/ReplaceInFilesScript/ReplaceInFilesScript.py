@@ -96,9 +96,7 @@ class ReplaceInFilesScript(DirectoryScript):
                 if verbose:
                     print ''
                     print '{}: {}'.format(filename, line_number)
-                    print ''
                     print '-{}'.format(line)
-                    print ' {}'.format(carats)
                     print '+{}'.format(replaced_line)
 
             else:

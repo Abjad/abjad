@@ -275,7 +275,8 @@ class RenameModulesScript(DeveloperScript):
 
         old_text = '{}.{}'.format(old_package_name, old_object_name)
         new_text = '{}.{}'.format(new_package_name, new_object_name)
-        command = [directory, old_text, new_text, '--force', '--whole-words-only', '--verbose']
+        command = [directory, old_text, new_text,
+            '--force', '--whole-words-only', '--verbose', '--without-dirs', 'build']
         ReplaceInFilesScript()(command)
 
         print ''
@@ -286,14 +287,16 @@ class RenameModulesScript(DeveloperScript):
         elif kind == 'class':
             old_text = 'test_{}_'.format(old_object_name)
             new_text = 'test_{}_'.format(new_object_name)
-        command = [directory, old_text, new_text, '--force', '--verbose']
+        command = [directory, old_text, new_text,
+            '--force', '--verbose', '--without-dirs', 'build']
         ReplaceInFilesScript()(command)
 
         print ''
 
         old_text = old_object_name
         new_text = new_object_name
-        command = [directory, old_text, new_text, '--force', '--whole-words-only', '--verbose']
+        command = [directory, old_text, new_text,
+            '--force', '--whole-words-only', '--verbose', '--without-dirs', 'build']
         ReplaceInFilesScript()(command)
 
         print ''
