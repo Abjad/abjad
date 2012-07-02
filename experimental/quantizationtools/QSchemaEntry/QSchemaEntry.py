@@ -49,7 +49,7 @@ class QSchemaEntry(tuple, abctools.ImmutableAbjadObject):
     def __repr__(self):
         return '\n'.join(self._get_tools_package_qualified_repr_pieces())
 
-    ### SPECIAL METHODS ###
+    ### SPECIAL PROPERTIES ###
 
     @property
     def __dict__(self):

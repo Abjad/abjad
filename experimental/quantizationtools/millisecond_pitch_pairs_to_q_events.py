@@ -1,9 +1,11 @@
 from collections import Iterable
 from itertools import groupby
 from numbers import Number
-from abjad.tools.durationtools import Offset
-from abjad.tools.mathtools import cumulative_sums_zero
-from experimental.quantizationtools.QEvent import QEvent
+from abjad.tools import durationtools
+from abjad.tools import mathtools
+from experimental.quantizationtools.PitchedQEvent import PitchedQEvent
+from experimental.quantizationtools.TerminalQEvent import TerminalQEvent
+from experimental.quantizationtools.UnpitchedQEvent import UnpitchedQEvent
 
 
 def millisecond_pitch_pairs_to_q_events(pairs):
@@ -50,21 +52,23 @@ def millisecond_pitch_pairs_to_q_events(pairs):
             groups.append((duration, None))
 
     # find offsets
-    offsets = cumulative_sums_zero([abs(x[0]) for x in groups])
+    offsets = mathtools.cumulative_sums_zero([abs(x[0]) for x in groups])
 
     # build Q-events
     q_events = []
     for pair in zip(offsets, groups):
-        offset = Offset(pair[0])
-        # duration = abs(pair[1][0])
+
+        offset = durationtools.Offset(pair[0])
         pitches = pair[1][1]
+
         if isinstance(pitches, Iterable):
             assert all([isinstance(x, Number) for x in pitches])
-        else:
-            assert isinstance(pitches, (Number, type(None)))
-        q_events.append(QEvent(offset, pitches))
+            q_events.append(PitchedQEvent(offset, pitches))
+        elif isinstance(pitches, type(None)):
+            q_events.append(UnpitchedQEvent(offset))
+        elif isinstance(pitches, Number):
+            q_events.append(PitchedQEvent(offset, [pitches]))
 
-    # add terminating silence
-    q_events.append(QEvent(Offset(offsets[-1]), None))
+    q_events.append(TerminalQEvent(durationtools.Offset(offsets[-1])))
 
     return q_events

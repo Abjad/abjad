@@ -1,9 +1,8 @@
-from collections import Iterable
-from numbers import Number
-from abjad.tools.abctools import AbjadObject
+from abc import ABCMeta, abstractmethod
+from abjad.tools import abctools
 
 
-class QEvent(AbjadObject):
+class QEvent(tuple, abctools.ImmutableAbjadObject):
     '''A utility class for quantization comprising an offset time in milliseconds,
     and some pitch information: a Number representing a single pitch, None representing silence,
     or an Iterable comprised of Numbers representing a chord.
@@ -11,56 +10,42 @@ class QEvent(AbjadObject):
     `QEvents` are immutable.
     '''
 
-    __slots__ = ('_offset', '_value')
+    ### CLASS ATTRIBUTES ###
 
-    def __init__(self, *args):
+    __metaclass__ = ABCMeta
+    __slots__ = ()
 
-        if len(args) == 2:
-            offset = args[0]
-            value = args[1]
-            assert isinstance(offset, Number)
-            assert isinstance(value, (Number, Iterable, type(None)))
-            if isinstance(value, Iterable):
-                assert all([isinstance(x, Number) for x in value])
-                value = tuple(sorted(set(value)))
+    ### INITIALIZER ###
 
-        elif len(args) == 1 and isinstance(args[0], type(self)):
-            offset = args[0].offset
-            value = args[0].value
-
-        object.__setattr__(self, '_value', value)
-        object.__setattr__(self, '_offset', offset)
+    @abstractmethod
+    def __new__(cls, *args, **kwargs):
+        raise Exception("Not implemented.")
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, other):
-        if type(self) == type(other):
-            if self.offset == other.offset:
-                if self.value == other.value:
-                    return True
-        return False
-
     def __getnewargs__(self):
-        return self.offset, self.value
+        'Return self as a plain tuple.  Used by copy and pickle.'
+        return tuple(self)
 
     def __repr__(self):
-        return '%s(%s)' % (type(self).__name__, self._format_string)
+        return '\n'.join(self._get_tools_package_qualified_repr_pieces())
+
+    def __lt__(self, other):
+        if type(self) == type(self):
+            if self.offset < other.offset:
+                return True
+        return False
+
+    ### SPECIAL PROPERTIES ###
+
+    @property
+    def __dict__(self):
+        return OrderedDict(zip(self._fields, self))
 
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _format_string(self):
-        return ', '.join([repr(x) for x in
-            [self.offset, self.value]])
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
     def offset(self):
         '''The offset in milliseconds of the event.'''
-        return self._offset
+        return self[0]
 
-    @property
-    def value(self):
-        '''The pitch information of the event.'''
-        return self._value

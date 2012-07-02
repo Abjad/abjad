@@ -1,5 +1,4 @@
-from experimental.quantizationtools import QEvent
-from experimental.quantizationtools import QGrid
+from experimental import quantizationtools
 
 
 def test_quantizationtools_QGrid___setitem___01():
@@ -7,7 +6,7 @@ def test_quantizationtools_QGrid___setitem___01():
     and the "next" value is included.
     '''
 
-    q = QGrid([0, [0, 0], 0], 0)
+    q = quantizationtools.QGrid([0, [0, 0], 0], 0)
 
     q[0] = 1
     q[1] = 2
@@ -15,7 +14,7 @@ def test_quantizationtools_QGrid___setitem___01():
     q[3] = 4
     q[4] = 5
 
-    assert q == QGrid([1, [2, 3], 4], 5)
+    assert q == quantizationtools.QGrid([1, [2, 3], 4], 5)
 
 
 def test_quantizationtools_QGrid___setitem___02():
@@ -23,13 +22,18 @@ def test_quantizationtools_QGrid___setitem___02():
     an empty tuple, a tuple of Numbers or a tuple of QEvents.
     '''
 
-    q = QGrid([0, [0, [0, 0]], 0], 0)
+    q = quantizationtools.QGrid([0, [0, [0, 0]], 0], 0)
 
     q[0] = 0.5
     q[1] = None
-    q[2] = QEvent(0, 0)
+    q[2] = quantizationtools.PitchedQEvent(0, [0])
     q[3] = tuple([])
     q[4] = (0.5, 1, 3)
-    q[5] = (QEvent(0, 0), QEvent(1, 1))
+    q[5] = (quantizationtools.PitchedQEvent(0, [0]), quantizationtools.PitchedQEvent(1, [1]))
 
-    assert q == QGrid([0.5, [None, [QEvent(0, 0), tuple([])]], (0.5, 1, 3)], (QEvent(0, 0), QEvent(1, 1)))
+    assert q == quantizationtools.QGrid(
+        [
+            0.5, [None, [quantizationtools.PitchedQEvent(0, [0]), tuple([])]], (0.5, 1, 3)
+        ],
+        (quantizationtools.PitchedQEvent(0, [0]), quantizationtools.PitchedQEvent(1, [1]))
+        )

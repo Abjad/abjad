@@ -1,7 +1,9 @@
-from abjad.tools.durationtools import Offset
-from abjad.tools.mathtools import cumulative_sums_zero
-from experimental.quantizationtools.QEvent import QEvent
-from abjad.tools.sequencetools import sum_consecutive_sequence_elements_by_sign
+from abjad.tools import durationtools
+from abjad.tools import mathtools
+from abjad.tools import sequencetools
+from experimental.quantizationtools.PitchedQEvent import PitchedQEvent
+from experimental.quantizationtools.TerminalQEvent import TerminalQEvent
+from experimental.quantizationtools.UnpitchedQEvent import UnpitchedQEvent
 
 
 def milliseconds_to_q_events(milliseconds):
@@ -22,20 +24,19 @@ def milliseconds_to_q_events(milliseconds):
     Return a list of :py:class:`~abjad.tools.quantizationtools.QEvent` objects.
     '''
 
-    durations = filter(None, sum_consecutive_sequence_elements_by_sign(milliseconds, sign=[-1]))
-    offsets = cumulative_sums_zero([abs(x) for x in durations])
+    durations = [x for x in sequencetools.sum_consecutive_sequence_elements_by_sign(milliseconds, sign=[-1]) if x]
+    offsets = mathtools.cumulative_sums_zero([abs(x) for x in durations])
 
     q_events = []
     for pair in zip(offsets, durations):
-        offset = Offset(pair[0])
+        offset = durationtools.Offset(pair[0])
         duration = pair[1]
         if duration < 0: # negative duration indicates silence
-            q_event = QEvent(offset, None)
+            q_event = UnpitchedQEvent(offset)
         else:
-            q_event = QEvent(offset, 0)
+            q_event = PitchedQEvent(offset, [0])
         q_events.append(q_event)
 
-    # insert terminating silence
-    q_events.append(QEvent(Offset(offsets[-1]), None))
+    q_events.append(TerminalQEvent(durationtools.Offset(offsets[-1])))
 
     return q_events

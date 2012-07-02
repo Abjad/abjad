@@ -141,25 +141,25 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
-   experimental/quantizationtools/PitchedQEvent/PitchedQEvent
+   experimental/quantizationtools/QEvent/QEvent
    experimental/quantizationtools/QTarget/QTarget
    experimental/quantizationtools/QTargetGrouping/QTargetGrouping
    experimental/quantizationtools/QTargetItem/QTargetItem
-   experimental/quantizationtools/TerminalQEvent/TerminalQEvent
-   experimental/quantizationtools/UnpitchedQEvent/UnpitchedQEvent
 
 .. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
 
-   experimental/quantizationtools/QEvent/QEvent
+   experimental/quantizationtools/PitchedQEvent/PitchedQEvent
    experimental/quantizationtools/QGrid/QGrid
    experimental/quantizationtools/QGridQuantizer/QGridQuantizer
    experimental/quantizationtools/QGridSearchTree/QGridSearchTree
    experimental/quantizationtools/QGridTempoLookup/QGridTempoLookup
    experimental/quantizationtools/QSchema/QSchema
    experimental/quantizationtools/QSchemaEntry/QSchemaEntry
+   experimental/quantizationtools/TerminalQEvent/TerminalQEvent
+   experimental/quantizationtools/UnpitchedQEvent/UnpitchedQEvent
 
 .. rubric:: functions
 

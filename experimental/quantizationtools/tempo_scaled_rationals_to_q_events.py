@@ -1,12 +1,14 @@
 from fractions import Fraction
-from abjad.tools.contexttools import TempoMark
-from abjad.tools.durationtools import Duration
-from abjad.tools.durationtools import Offset
-from abjad.tools.mathtools import cumulative_sums_zero
-from experimental.quantizationtools.QEvent import QEvent
+from abjad.tools import contexttools
+from abjad.tools import durationtools
+from abjad.tools import durationtools
+from abjad.tools import mathtools
+from abjad.tools import sequencetools
+from experimental.quantizationtools.PitchedQEvent import PitchedQEvent
+from experimental.quantizationtools.UnpitchedQEvent import UnpitchedQEvent
+from experimental.quantizationtools.TerminalQEvent import TerminalQEvent
 from experimental.quantizationtools.tempo_scaled_rational_to_milliseconds \
     import tempo_scaled_rational_to_milliseconds
-from abjad.tools.sequencetools import sum_consecutive_sequence_elements_by_sign
 
 
 def tempo_scaled_rationals_to_q_events(durations, tempo):
@@ -29,24 +31,24 @@ def tempo_scaled_rationals_to_q_events(durations, tempo):
     '''
 
     assert all([isinstance(x, (int, Fraction)) for x in durations])
-    assert isinstance(tempo, TempoMark)
+    assert isinstance(tempo, contexttools.TempoMark)
 
-    durations = filter(None, sum_consecutive_sequence_elements_by_sign(durations, sign=[-1]))
+    durations = [x for x in sequencetools.sum_consecutive_sequence_elements_by_sign(durations, sign=[-1]) if x]
     durations = [tempo_scaled_rational_to_milliseconds(x, tempo) for x in durations]
 
-    offsets = cumulative_sums_zero([abs(x) for x in durations])
+    offsets = mathtools.cumulative_sums_zero([abs(x) for x in durations])
 
     q_events = []
     for pair in zip(offsets, durations):
-        offset = Offset(pair[0])
+        offset = durationtools.Offset(pair[0])
         duration = pair[1]
         if duration < 0: # negative duration indicates silence
-            q_event = QEvent(offset, None)
+            q_event = UnpitchedQEvent(offset)
         else: # otherwise, use middle-C
-            q_event = QEvent(offset, 0)
+            q_event = PitchedQEvent(offset, [0])
         q_events.append(q_event)
 
     # insert terminating silence QEvent
-    q_events.append(QEvent(offsets[-1], None))
+    q_events.append(TerminalQEvent(offsets[-1]))
 
     return q_events
