@@ -1,7 +1,7 @@
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class TimespanInequalityTaxon(AbjadObject):
+class TimespanInequalityTemplate(AbjadObject):
     r'''.. versionadded:: 1.0
 
     Relate expression ``expr`` to timespan ``t``.
@@ -12,18 +12,18 @@ class TimespanInequalityTaxon(AbjadObject):
 
     ::
 
-        >>> timespantools.TimespanInequalityTaxon('t.start <= expr.start < t.stop')
-        TimespanInequalityTaxon('t.start <= expr.start < t.stop')
+        >>> timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop')
+        TimespanInequalityTemplate('t.start <= expr.start < t.stop')
 
     Expression stops during timespan::
 
-        >>> timespantools.TimespanInequalityTaxon('t.start < expr.stop <= t.stop')
-        TimespanInequalityTaxon('t.start < expr.stop <= t.stop')
+        >>> timespantools.TimespanInequalityTemplate('t.start < expr.stop <= t.stop')
+        TimespanInequalityTemplate('t.start < expr.stop <= t.stop')
 
     Expression both starts and stops during timespan::
 
-        >>> timespantools.TimespanInequalityTaxon('t.start <= expr.start < expr.stop <= t.stop')
-        TimespanInequalityTaxon('t.start <= expr.start < expr.stop <= t.stop')
+        >>> timespantools.TimespanInequalityTemplate('t.start <= expr.start < expr.stop <= t.stop')
+        TimespanInequalityTemplate('t.start <= expr.start < expr.stop <= t.stop')
         
     Timepsan objects perform no input checking.
 

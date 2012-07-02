@@ -8,10 +8,10 @@ def expr_is_congruent_to_timespan():
     ::
 
         >>> timespantools.expr_is_congruent_to_timespan()
-        TimespanInequalityTaxon('t.start == expr.start and t.stop == expr.stop')
+        TimespanInequalityTemplate('t.start == expr.start and t.stop == expr.stop')
 
     Return timespan inequality.
     '''
     from experimental import timespantools
 
-    return timespantools.TimespanInequalityTaxon('t.start == expr.start and t.stop == expr.stop')
+    return timespantools.TimespanInequalityTemplate('t.start == expr.start and t.stop == expr.stop')

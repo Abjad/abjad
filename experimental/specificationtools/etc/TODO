@@ -1,4 +1,4 @@
-0. Rename TimespanInequalityTaxon to TimespanInequalityTemplate.
+0. Rename TimespanInequalityTemplate to TimespanInequalityTemplate.
 
 1. Change TimespanInequalityTemplate storage format to a single line.
 

@@ -40,7 +40,7 @@ class MeasureSelector(BackgroundElementSelector):
                         multiplier=Fraction(1, 3)
                         )
                     ),
-                timespantools.TimespanInequalityTaxon(
+                timespantools.TimespanInequalityTemplate(
                     't.start <= expr.start < t.stop'
                     )
                 )
@@ -67,7 +67,7 @@ class MeasureSelector(BackgroundElementSelector):
                         'red'
                         )
                     ),
-                timespantools.TimespanInequalityTaxon(
+                timespantools.TimespanInequalityTemplate(
                     't.start <= expr.start < t.stop'
                     )
                 )

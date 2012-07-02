@@ -255,7 +255,7 @@ Unstable packages (load manually)
    experimental/timespantools/Timepoint/Timepoint
    experimental/timespantools/Timespan/Timespan
    experimental/timespantools/TimespanInequality/TimespanInequality
-   experimental/timespantools/TimespanInequalityTaxon/TimespanInequalityTaxon
+   experimental/timespantools/TimespanInequalityTemplate/TimespanInequalityTemplate
 
 .. rubric:: functions
 

@@ -8,11 +8,11 @@ def expr_starts_after_timespan_starts():
     ::
 
         >>> timespantools.expr_starts_after_timespan_starts()
-        TimespanInequalityTaxon('t.start < expr.start')
+        TimespanInequalityTemplate('t.start < expr.start')
 
     Return timespan inequality.
     '''
     from experimental import timespantools
 
-    return timespantools.TimespanInequalityTaxon('t.start < expr.start')
+    return timespantools.TimespanInequalityTemplate('t.start < expr.start')
 
