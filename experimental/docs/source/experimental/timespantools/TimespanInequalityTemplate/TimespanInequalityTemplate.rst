@@ -1,5 +1,5 @@
 timespantools.TimespanInequalityTemplate
-=====================================
+========================================
 
 .. inheritance-diagram:: experimental.timespantools.TimespanInequalityTemplate.TimespanInequalityTemplate.TimespanInequalityTemplate
    :private-bases:
