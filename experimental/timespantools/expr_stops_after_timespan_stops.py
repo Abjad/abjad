@@ -1,7 +1,7 @@
-def expr_stops_after_timespan_stops():
+def expr_stops_after_timespan_stops(timespan=None):
     r'''.. versionadded:: 1.0
 
-    Make timespan inequality indicating that expression stops after timespan stops::
+    Make timespan inequality template indicating that expression stops after timespan stops::
 
         >>> from experimental import timespantools
 
@@ -10,8 +10,13 @@ def expr_stops_after_timespan_stops():
         >>> timespantools.expr_stops_after_timespan_stops()
         TimespanInequalityTemplate('t.stop < expr.stop')
 
-    Return timespan inequality.
+    Return timespan inequality or timespan inequality template.
     '''
     from experimental import timespantools
 
-    return timespantools.TimespanInequalityTemplate('t.stop < expr.stop')
+    template = timespantools.TimespanInequalityTemplate('t.stop < expr.stop')
+
+    if timespan is None:
+        return template
+    else:
+        return timespantools.TimespanInequality(template, timespan)

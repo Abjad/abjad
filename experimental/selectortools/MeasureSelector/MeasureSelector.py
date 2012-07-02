@@ -21,8 +21,7 @@ class MeasureSelector(BackgroundElementSelector):
 
         >>> timepoint = timespantools.Timepoint(multiplier=Fraction(1, 3), edge=Right)
         >>> timespan = timespantools.Timespan(stop=timepoint)
-        >>> template = timespantools.expr_starts_during_timespan()
-        >>> inequality = timespantools.TimespanInequality(template, timespan)
+        >>> inequality = timespantools.expr_starts_during_timespan(timespan=timespan)
 
     ::
 
@@ -47,8 +46,7 @@ class MeasureSelector(BackgroundElementSelector):
     Select the first measure starting during segment ``'red'``::
 
         >>> timespan = selectortools.SegmentSelector(index='red').timespan
-        >>> template = timespantools.expr_starts_during_timespan()
-        >>> inequality = timespantools.TimespanInequality(template, timespan)
+        >>> inequality = timespantools.expr_starts_during_timespan(timespan=timespan)
 
     ::
 

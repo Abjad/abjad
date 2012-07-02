@@ -1,11 +1,9 @@
-1. Extend timespan-creation methods to accept timespan and return actual inequality.
+1. Implement timespan-creation courtesy methods.
 
-2. Implement timespan-creation courtesy methods.
+2. Implement selection-creation courtesy methods.
 
-3. Implement selection-creation courtesy methods.
+3. Extend DivisionList initializer with string handling.
 
-4. Extend DivisionList initializer with string handling.
+4. Replace DivisionSelector with ComponentSelector.
 
-5. Replace DivisionSelector with ComponentSelector.
-
-6. Make Specification into an ABC.
+5. Make Specification into an ABC.

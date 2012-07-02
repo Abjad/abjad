@@ -1,7 +1,7 @@
-def expr_starts_before_timespan_stops():
+def expr_starts_before_timespan_stops(timespan=None):
     r'''.. versionadded:: 1.0
 
-    Make timespan inequality indicating that expression starts before timespan stops::
+    Make timespan inequality template indicating that expression starts before timespan stops::
 
         >>> from experimental import timespantools
 
@@ -10,8 +10,13 @@ def expr_starts_before_timespan_stops():
         >>> timespantools.expr_starts_before_timespan_stops()
         TimespanInequalityTemplate('expr.start < t.stop')
 
-    Return timespan inequality.
+    Return timespan inequality or timespan inequality template.
     '''
     from experimental import timespantools
 
-    return timespantools.TimespanInequalityTemplate('expr.start < t.stop')
+    template = timespantools.TimespanInequalityTemplate('expr.start < t.stop')
+
+    if timespan is None:
+        return template
+    else:
+        return timespantools.TimespanInequality(template, timespan)

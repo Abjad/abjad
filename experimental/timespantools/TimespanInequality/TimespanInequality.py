@@ -15,8 +15,7 @@ class TimespanInequality(AbjadObject):
     ::
 
         >>> reference = selectortools.BackgroundElementSelector(klass=specificationtools.Segment, index='red')
-        >>> template = timespantools.expr_starts_during_timespan()
-        >>> timespan_inequality = timespantools.TimespanInequality(template, reference.timespan)
+        >>> timespan_inequality = timespantools.expr_starts_during_timespan(timespan=reference.timespan)
 
     ::
 
@@ -58,6 +57,6 @@ class TimespanInequality(AbjadObject):
     def timespan_inequality_template(self):
         '''Class of inequality.
 
-        Return timespan inequality object.
+        Return timespan inequality or timespan inequality template object.
         '''
         return self._timespan_inequality_template

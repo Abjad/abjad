@@ -1,7 +1,7 @@
-def expr_overlaps_all_of_timespan():
+def expr_overlaps_all_of_timespan(timespan=None):
     r'''.. versionadded:: 1.0
 
-    Make timespan inequality indicating that expression overlaps all of timespan::
+    Make timespan inequality template indicating that expression overlaps all of timespan::
 
         >>> from experimental import timespantools
 
@@ -10,8 +10,13 @@ def expr_overlaps_all_of_timespan():
         >>> timespantools.expr_overlaps_all_of_timespan()
         TimespanInequalityTemplate('expr.start < t.start < t.stop < expr.stop')
 
-    Return timespan inequality.
+    Return timespan inequality or timespan inequality template.
     '''
     from experimental import timespantools
 
-    return timespantools.TimespanInequalityTemplate('expr.start < t.start < t.stop < expr.stop')
+    template = timespantools.TimespanInequalityTemplate('expr.start < t.start < t.stop < expr.stop')
+
+    if timespan is None:
+        return template
+    else:
+        return timespantools.TimespanInequality(template, timespan)
