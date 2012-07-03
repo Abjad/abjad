@@ -12,15 +12,15 @@ def repeat_runs_in_sequence_to_count(sequence, indicators):
     ``count`` new copies of ``sequence[start:start+length]`` immediately
     after ``sequence[start:start+length]`` in `sequence`.
 
-    .. note:: The function reads the value of ``count`` in every
-        ``(start, length, count)`` triple not as the total number
-        of occurrences of ``sequence[start:start+length]`` to appear in `sequence`
-        after execution, but rather as the number of new occurrences
-        of ``sequence[start:start+length]`` to appear in `sequence` after execution.
+    The function reads the value of ``count`` in every
+    ``(start, length, count)`` triple not as the total number
+    of occurrences of ``sequence[start:start+length]`` to appear in `sequence`
+    after execution, but rather as the number of new occurrences
+    of ``sequence[start:start+length]`` to appear in `sequence` after execution.
 
-    .. note:: The function wraps newly created subruns in tuples.
-        That is, this function returns output with one more level of
-        nesting than given in input.
+    The function wraps newly created subruns in tuples.
+    That is, this function returns output with one more level of
+    nesting than given in input.
 
     To insert ``10`` count of ``sequence[:2]`` at ``sequence[2:2]``::
 
@@ -40,23 +40,26 @@ def repeat_runs_in_sequence_to_count(sequence, indicators):
     ::
 
         >>> sequencetools.repeat_runs_in_sequence_to_count(sequence, [(0, 2, 5), (10, 2, 5)])
-        [0, 1, (0, 1, 0, 1, 0, 1, 0, 1, 0, 1), 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, (10, 11, 10, 11, 10, 11, 10, 11, 10, 11), 12, 13, 14, 15, 16, 17, 18, 19]
+        [0, 1, (0, 1, 0, 1, 0, 1, 0, 1, 0, 1), 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 
+        (10, 11, 10, 11, 10, 11, 10, 11, 10, 11), 12, 13, 14, 15, 16, 17, 18, 19]
 
-    .. note:: This function wraps around the end of `sequence` whenever \
+    .. note:: This function wraps around the end of `sequence` whenever
         ``len(sequence) < start + length``.
 
     To insert ``2`` count of ``[18, 19, 0, 1]`` at ``sequence[2:2]``::
 
         >>> sequencetools.repeat_runs_in_sequence_to_count(sequence, [(18, 4, 2)])
-        [0, 1, (18, 19, 0, 1, 18, 19, 0, 1), 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+        [0, 1, (18, 19, 0, 1, 18, 19, 0, 1), 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 
+        14, 15, 16, 17, 18, 19]
 
     To insert ``2`` count of ``[18, 19, 0, 1, 2, 3, 4]`` at ``sequence[4:4]``::
 
         >>> sequencetools.repeat_runs_in_sequence_to_count(sequence, [(18, 8, 2)])
-        [0, 1, 2, 3, 4, 5, (18, 19, 0, 1, 2, 3, 4, 5, 18, 19, 0, 1, 2, 3, 4, 5), 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
+        [0, 1, 2, 3, 4, 5, (18, 19, 0, 1, 2, 3, 4, 5, 18, 19, 0, 1, 2, 3, 4, 5), 6, 7, 8, 9, 
+        10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
 
-    .. todo:: Implement an optional `wrap` keyword to specify whether \
-        this function should wrap around the ened of `sequence` whenever \
+    .. todo:: Implement an optional `wrap` keyword to specify whether
+        this function should wrap around the ened of `sequence` whenever
         ``len(sequence) < start + length`` or not.
 
     .. todo:: Reimplement this function to return a generator.

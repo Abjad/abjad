@@ -92,10 +92,10 @@ def get_all_mark_format_contributions(component):
         if len(contribution_list) and singleton:
             raise ExtraMarkError
         result = mark.lilypond_format
-        if isinstance(result, (list, tuple)):
-            contribution_list.extend(result)
-        else:
-            contribution_list.append(result)
+        assert isinstance(result, str)
+        contribution_list.append(result)
+        if section == 'articulations':
+            contribution_list.sort()
 
     ### handle context marks ###
 

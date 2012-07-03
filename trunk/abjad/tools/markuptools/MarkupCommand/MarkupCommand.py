@@ -27,13 +27,28 @@ class MarkupCommand(AbjadObject):
 
     ::
 
-        >>> markup(note)
-        Markup((MarkupCommand('combine', MarkupCommand('rotate', 60, MarkupCommand('line', [MarkupCommand('rounded-box', 'hello?'), 'wow!'])), MarkupCommand('draw-circle', 2.5, 0.1, False)),))(c'4)
+        >>> markup = markup(note)
 
     ::
 
         >>> f(note)
-        c'4 - \markup { \combine \rotate #60 \line { \rounded-box hello? wow! } \draw-circle #2.5 #0.1 ##f }
+        c'4
+            - \markup {
+                \combine
+                    \rotate
+                        #60
+                        \line
+                            {
+                                \rounded-box
+                                    hello?
+                                wow!
+                            }
+                    \draw-circle
+                        #2.5
+                        #0.1
+                        ##f
+                }
+
 
     Markup commands are immutable.
     '''

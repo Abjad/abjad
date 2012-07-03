@@ -176,6 +176,7 @@ class MetricGridSpanner(Spanner):
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c'8")
                 >>> metric_grid_spanner = spannertools.MetricGridSpanner(staff.leaves, meters=[(1, 8), (1, 4)])
+
             Set metric grid meters::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c'8")

@@ -1,5 +1,6 @@
 from abjad.tools import sequencetools
-from abjad.tools.pitchtools.get_named_chromatic_pitch_from_pitch_carrier import get_named_chromatic_pitch_from_pitch_carrier
+from abjad.tools.pitchtools.get_named_chromatic_pitch_from_pitch_carrier import \
+    get_named_chromatic_pitch_from_pitch_carrier
 
 
 def insert_and_transpose_nested_subruns_in_chromatic_pitch_class_number_list(notes, subrun_indicators):
@@ -38,10 +39,19 @@ def insert_and_transpose_nested_subruns_in_chromatic_pitch_class_number_list(not
     For this reason most calls to this function will be followed
     by ``notes = sequencetools.flatten_sequence(notes)``::
 
-        >>> from abjad.tools import sequencetools
-        >>> notes = sequencetools.flatten_sequence(notes)
-        >>> notes
-        [Note("c'4"), Note("f'4"), Note("g'4"), Note("d'4"), Note("e'4"), Note("c'4"), Note("fs'4"), Note("b'4"), Note("g'4"), Note("a'4"), Note("f'4"), Note("bf'4"), Note("fs'4"), Note("af'4"), Note("b'4"), Note("g'4"), Note("e'4")]
+        >>> for note in notes: note
+        ... 
+        Note("c'4")
+        [Note("f'4"), Note("g'4")]
+        Note("d'4")
+        [Note("e'4"), Note("c'4"), Note("fs'4"), Note("b'4")]
+        Note("g'4")
+        Note("a'4")
+        Note("f'4")
+        [Note("bf'4"), Note("fs'4"), Note("af'4")]
+        Note("b'4")
+        [Note("g'4")]
+        Note("e'4")
 
     This function is designed to work on a built-in Python list
     of notes. This function is **not** designed to work on Abjad

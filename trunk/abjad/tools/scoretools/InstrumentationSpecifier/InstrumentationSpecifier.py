@@ -22,8 +22,24 @@ class InstrumentationSpecifier(AbjadObject):
 
     ::
 
-        >>> instrumentation_specifier
-        InstrumentationSpecifier(performers=PerformerInventory([Performer(name='Flute', instruments=InstrumentInventory([Flute(), AltoFlute()])), Performer(name='Guitar', instruments=InstrumentInventory([Guitar()]))]))
+        >>> z(instrumentation_specifier)
+        scoretools.InstrumentationSpecifier(
+            performers=scoretools.PerformerInventory([
+                scoretools.Performer(
+                    name='Flute',
+                    instruments=instrumenttools.InstrumentInventory([
+                        instrumenttools.Flute(),
+                        instrumenttools.AltoFlute()
+                        ])
+                    ),
+                scoretools.Performer(
+                    name='Guitar',
+                    instruments=instrumenttools.InstrumentInventory([
+                        instrumenttools.Guitar()
+                        ])
+                    )
+                ])
+            )
 
     Return instrumentation specifier.
     '''
