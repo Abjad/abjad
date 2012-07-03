@@ -152,6 +152,10 @@ EXAMPLES
     def process_args(self, args):
         for filename in self._collect_filenames(args):
             self._process_filename(args, filename)
+        if args.mainline:
+            developerscripttools.BuildAbjadApiScript()([])
+        if args.experimental:
+            developerscripttools.BuildExperimentalApiScript()([])
 
     def setup_argument_parser(self, parser):
 
@@ -170,4 +174,14 @@ EXAMPLES
             action='store_true',
             dest='verbose',
             help='run in verbose mode, printing all LilyPond output',
+            ) 
+
+        parser.add_argument('-X', '--experimental',
+            action='store_true',
+            help='rebuild experimental docs after processing',
+            )
+
+        parser.add_argument('-M', '--mainline',
+            action='store_true',
+            help='rebuild mainline docs after processing',
             )

@@ -3,10 +3,11 @@ Duration types
 
 Abjad publishes duration information about all score components.
 
+
 Written duration
 ----------------
 
-Abjad uses **written duration** to refer to the face value of
+Abjad uses written duration to refer to the face value of
 notes, rests and chords prior to prolation.
 Abjad written duration corresponds to the informal names most frequently used
 when talking about note duration.
@@ -15,45 +16,47 @@ These sixteenth notes are worth a sixteenth of a whole note:
 
 ::
 
-	>>> measure = Measure((5, 16), Note(0, (1, 16)) * 5)
-	>>> beamtools.BeamSpanner(measure)
-	>>> staff = stafftools.RhythmicStaff([measure])
+   >>> measure = Measure((5, 16), "c16 c c c c")
+   >>> beam = beamtools.BeamSpanner(measure)
+   >>> staff = stafftools.RhythmicStaff([measure])
 
 
 ::
 
-	>>> show(staff, docs=True)
+   >>> show(staff, docs=True)
 
-.. image:: images/duration-types-1.png
+.. image:: images/index-1.png
+
 
 ::
 
-	>>> note = measure[0]
-	>>> note.written_duration
-	Duration(1, 16)
+   >>> note = measure[0]
+   >>> note.written_duration
+   Duration(1, 16)
 
 
 These sixteenth notes are worth more than a sixteenth of a whole note:
 
 ::
 
-	>>> tuplet = tuplettools.FixedDurationTuplet(Duration(5, 16), Note(0, (1, 16)) * 4)
-	>>> beamtools.BeamSpanner(tuplet)
-	>>> measure = Measure((5, 16), [tuplet])
-	>>> staff = stafftools.RhythmicStaff([measure])
+   >>> tuplet = tuplettools.FixedDurationTuplet(Duration(5, 16), "c8 c c c c")
+   >>> beam = beamtools.BeamSpanner(tuplet)
+   >>> measure = Measure((5, 16), [tuplet])
+   >>> staff = stafftools.RhythmicStaff([measure])
 
 
 ::
 
-	>>> show(staff, docs=True)
+   >>> show(staff, docs=True)
 
-.. image:: images/duration-types-2.png
+.. image:: images/index-2.png
+
 
 ::
 
-	>>> note = tuplet[0]
-	>>> note.written_duration
-	Duration(1, 16)
+   >>> note = tuplet[0]
+   >>> note.written_duration
+   Duration(1, 8)
 
 
 The notes in these examples are 'sixteenth notes' that carry different prolated durations.
@@ -86,36 +89,37 @@ the container's duration interface multiplied by the container's prolation.
 Contents duration
 -----------------
 
-Abjad defines the **contents duration** of tuplets, measures, voices, staves
-and other containers equal to the sum of the **preprolated duration** of each
+Abjad defines the contents duration of tuplets, measures, voices, staves
+and other containers equal to the sum of the preprolated duration of each
 of the elements in the container.
 
 The measure here contains two eighth notes and tuplet.
-These elements carry preprolated durations equal to 1/8, 1/8 and 2/8, respectively:
+These elements carry preprolated durations equal to ``1/8``, ``1/8`` and ``2/8``, respectively:
 
 ::
 
-	>>> notes = Note(0, (1, 8)) * 2
-	>>> beamtools.BeamSpanner(notes)
-	>>> tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), Note(0, (1, 8)) * 3)
-	>>> beamtools.BeamSpanner(tuplet)
-	>>> measure = Measure((4, 8), notes + [tuplet])
-	>>> staff = stafftools.RhythmicStaff([measure])
+   >>> notes = 2 * Note("c'8")
+   >>> beam = beamtools.BeamSpanner(notes)
+   >>> tuplet = tuplettools.FixedDurationTuplet(Duration(2, 8), "c'8 c c") 
+   >>> beam = beamtools.BeamSpanner(tuplet)
+   >>> measure = Measure((4, 8), notes + [tuplet])
+   >>> staff = stafftools.RhythmicStaff([measure])
 
 
 ::
 
-	>>> show(staff, docs=True)
+   >>> show(staff, docs=True)
 
-.. image:: images/duration-types-3.png
+.. image:: images/index-3.png
+
 
 ::
 
-	>>> measure.contents_duration
-	Duration(1, 2)
+   >>> measure.contents_duration
+   Duration(1, 2)
 
 
-The contents duration of the measure here equals 1/8 + 1/8 + 2/8 = 4/8.
+The contents duration of the measure here equals ``1/8 + 1/8 + 2/8 = 4/8``.
 
 
 Target duration
@@ -124,31 +128,30 @@ Target duration
 Abjad defines the target duration of fixed-duration tuplets equal to
 composer-settable duration to which the tuplet prolates its contents.
 
-This fixed-duration tuplet carries a target duration equal to 4/8:
+This fixed-duration tuplet carries a target duration equal to ``4/8``:
 
 ::
 
-	>>> tuplet = tuplettools.FixedDurationTuplet(Duration(4, 8), Note(0, (1, 8)) * 5)
-	>>> beamtools.BeamSpanner(tuplet)
-	>>> measure = Measure((4, 8), [tuplet])
-	>>> staff = stafftools.RhythmicStaff([measure])
+   >>> tuplet = tuplettools.FixedDurationTuplet(Duration(4, 8), "c'8 c c c c") 
+   >>> beam = beamtools.BeamSpanner(tuplet)
+   >>> measure = Measure((4, 8), [tuplet])
+   >>> staff = stafftools.RhythmicStaff([measure])
 
 
 ::
 
-	>>> show(staff, docs=True)
+   >>> show(staff, docs=True)
 
-.. image:: images/duration-types-4.png
+.. image:: images/index-4.png
+
 
 ::
 
-	>>> print tuplet.contents_duration
-	5/8
-	>>> tuplet.target_duration
-	Duration(1, 2)
+   >>> tuplet.target_duration
+   Duration(1, 2)
 
 
-The tuplet contents sum to 5/8. But tuplet target duration always equals 4/8.
+The tuplet contents sum to ``5/8``. But tuplet target duration always equals ``4/8``.
 
 
 Multiplied duration
@@ -157,44 +160,45 @@ Multiplied duration
 Abjad defines the multiplied duration of notes, rests and chords equal to
 the product of written duration and leaf multiplier.
 
-The first two notes below carry leaf mulitipliers equal to 2/1:
+The first two notes below carry leaf mulitipliers equal to ``2/1``:
 
 ::
 
-	>>> notes = Note(0, (1, 16)) * 4
-	>>> notes[0].duration_multiplier = Fraction(2, 1)
-	>>> notes[1].duration_multiplier = Fraction(2, 1)
-	>>> measure = Measure((3, 8), notes)
-	>>> beamtools.BeamSpanner(measure)
-	>>> staff = stafftools.RhythmicStaff([measure])
-
-
-::
-
-	>>> show(staff, docs=True)
-
-.. image:: images/duration-types-5.png
-
-::
-
-	>>> note = measure[0]
-	>>> note.written_duration
-	Duration(1, 16)
+   >>> notes = 4 * Note("c'16")
+   >>> notes[0].duration_multiplier = Fraction(2, 1)
+   >>> notes[1].duration_multiplier = Fraction(2, 1)
+   >>> measure = Measure((3, 8), notes)
+   >>> beam = beamtools.BeamSpanner(measure)
+   >>> staff = stafftools.RhythmicStaff([measure])
 
 
 ::
 
-	>>> note.duration_multiplier
-	Fraction(2, 1)
+   >>> show(staff, docs=True)
+
+.. image:: images/index-5.png
 
 
 ::
 
-	>>> note.written_duration * note.duration_multiplier
-	Duration(1, 8)
-	>>> note.multiplied_duration
-	Duration(1, 8)
+   >>> note = measure[0]
+   >>> note.written_duration
+   Duration(1, 16)
 
 
-The written duration of these first two notes equals 1/16 and so
-the multiplied duration of these first two notes equals 1/16 * 2/1 = 1/8.
+::
+
+   >>> note.duration_multiplier
+   Fraction(2, 1)
+
+
+::
+
+   >>> note.written_duration * note.duration_multiplier
+   Duration(1, 8)
+   >>> note.multiplied_duration
+   Duration(1, 8)
+
+
+The written duration of these first two notes equals ``1/16`` and so
+the multiplied duration of these first two notes equals ``1/16 * 2/1 = 1/8``.
