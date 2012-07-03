@@ -168,12 +168,12 @@ class AbjadBookProcessor(abctools.AbjadObject):
         return tmp_directory
 
     def _render_ly_files(self, filenames, output_format, verbose):
-        if output_format.image_format == 'png':
+        if output_format.image_format == 'pdf':
             commands = [ 
                 'lilypond {}.ly',
                 'pdfcrop {}.pdf {}.pdf'
             ]
-        elif output_format.image_format == 'pdf':
+        elif output_format.image_format == 'png':
             commands = [
                 'lilypond --png -dresolution=300 {}.ly',
                 'convert {}.png -trim -resample 40%% {}.png'

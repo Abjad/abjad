@@ -60,12 +60,19 @@ class CodeBlock(abctools.AbjadObject):
             if line.startswith('show(') and line.endswith(')'):
                 image_count += 1
                 file_name = '{}-{}'.format(image_prefix, image_count)
-                object_name = line[5:-1]
-                if directory:
-                    command = "iotools.write_expr_to_ly({}, {!r})".format(object_name,
-                        os.path.join(directory, file_name))
+                docs = False
+                if ',' in line:
+                    object_name = line.split(',')[0][5:].strip()
+                    if 'docs=True' in line:
+                        docs = True
                 else:
-                    command = "iotools.write_expr_to_ly({}, {!r})".format(object_name, file_name)
+                    object_name = line[5:-1]
+                if directory:
+                    command = "iotools.write_expr_to_ly({}, {!r}, docs={})".format(
+                        object_name, os.path.join(directory, file_name), docs)
+                else:
+                    command = "iotools.write_expr_to_ly({}, {!r}, docs={})".format(
+                        object_name, file_name, docs)
                 pipe.write(command)
                 grouped_results.append(result)
                 grouped_results.append(file_name)

@@ -14,30 +14,26 @@ staff = stafftools.RhythmicStaff([measure])
 
 <abjad>
 show(staff, docs=True)
-iotools.write_expr_to_ly(staff, 'duration-introduction-1', docs=True) <hide
 </abjad>
 
 <abjad>
 note.written_duration
-print repr(note.written_duration) <hide
 </abjad>
 
 Tuplets, measures, voices, staves and the other containers carry duration attributes, too:
 
 <abjad>
-tuplet = tuplettools.FixedDurationTuplet(Duration(3, 16), Note(0, (1, 16)) * 5)
+tuplet = tuplettools.FixedDurationTuplet(Duration(3, 16), "c'16 c' c' c' c'")
 measure = Measure((3, 16), [tuplet])
 staff = stafftools.RhythmicStaff([measure])
 </abjad>
 
 <abjad>
 show(staff, docs=True)
-iotools.write_expr_to_ly(staff, 'duration-introduction-2', docs=True) <hide
 </abjad>
 
 <abjad>
 tuplet.multiplier
-print repr(tuplet.multiplier) <hide
 </abjad>
 
 The next chapters document core duration concepts in Abjad.
