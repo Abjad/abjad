@@ -142,6 +142,9 @@ Unstable packages (load manually)
    :maxdepth: 1
 
    experimental/quantizationtools/QEvent/QEvent
+   experimental/quantizationtools/QGridDivisionNode/QGridDivisionNode
+   experimental/quantizationtools/QGridLeafNode/QGridLeafNode
+   experimental/quantizationtools/QGridTree/QGridTree
    experimental/quantizationtools/QTarget/QTarget
    experimental/quantizationtools/QTargetGrouping/QTargetGrouping
    experimental/quantizationtools/QTargetItem/QTargetItem
