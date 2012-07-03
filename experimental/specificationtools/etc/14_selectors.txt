@@ -21,50 +21,6 @@ Select the first depth-0 tuplet in the last measure starting during segment 'red
             ContainmentIndicator(klass=Measure, index=-1),
             ContainmentIndicator(klass=Tuplet, index=0, depth=0)]
 
-(Possibly better named ComponentSelector to contrast with BackgroundElementSelector.)
-
-
-*BackgroundElementSelector.* Use to select exactly one background object. Input parameters?
-First, an optional timepsan defaulting to that of the entire score. Second, an optional
-timespan inequality defaulting to the first object starting during timespan. Then a class.
-together with a value set to either an integer index or name.
-
-Segment 'red':
-
-    BackgroundElementSelector(Segment, 'red')
-
-First, last segment starting during score:
-
-    BackgroundElementSelector(Segment, 0)
-    BackgroundElementSelector(Segment, -1)
-
-First, last measure starting during score:
-
-    BackgroundElementSelector(Measure, 0)
-    BackgroundElementSelector(Measure, -1)
-
-First, last measure starting during segment 'red':
-
-    red = BackgroundElementSelector(Segment, 'red')
-    BackgroundElementSelector(Measure, timespan=red.timespan, 0)
-    BackgroundElementSelector(Measure, timespan=red.timespan, -1)
-
-First, last measure ending during segment 'red':
-
-    inequality = timespantools.expr_stops_during_timespan()
-    BackgroundElementSelector(Measure, timespan=red.timespan, inequality=inequality, 0)
-    BackgroundElementSelector(Measure, timespan=red.timespan, inequality=inequality, -1)
-
-First measure overlapping the start but not the stop of segment 'red':
-
-    inequality = timespantools.expr_overlaps_start_of_timespan_only()
-    BackgroundElementSelector(Measure, timespan=red.timespan, inequality=inequality, 0)
-
-First measure overlapping the stop but not the start of segment 'red':
-    
-    inequality = timespantools.expr_overlaps_stop_of_timespan_only()
-    BackgroundElementSelector(Measure, timespan=red.timespan, inequality=inequality, 0) 
-
 
 *SliceSelector.* Select zero or more container elements in sequence. Input parameters?
 First, an optional ContainerIndicator defaulting to the entire score. Then, optional
@@ -77,17 +33,144 @@ Select the last three elements of the tuplet picked out above:
     SliceSelector(selector, start=-3)
 
 
-*BackgroundElementSliceSelector.* 
+### KINDS ###
 
-Select all segments: BackgroundElementSliceSelector(specificationtools.Segment)
-Select all divisions: BackgroundElementSliceSelector(specificationtools.Division)
-Select all measures: BackgroundElementSliceSelector(measuretools.Measure) 
-Select measures 10-15: BackgroundElementSliceSelector(measuretools.Measure, start=10, stop=15+1)
+It's not clear that the object designs indicated above are correct yet.
+Better to start again with more examples.
 
-Select measures starting during segment 'red':
-    segment, taxon = SegmentSelector('red'), timespantools.expr_starts_during_timespan()
-    inequality = timespantools.TimespanInequality(segment.timespan, taxon)
-    BackgroundElementSliceSelector(specificationtools.Measure, inequality=inequality)
+* Select voice 1 (top-level) components.
+* Select voice 1 (top-level) components 10-15.
+* Select voice 1 (top-level) components begin-15.
+* Select voice 1 (top-level) components 10-end.
+[ Select voice 1 (top-level) components m-n.]
 
-Select divisions starting during segment 'red':
-    BackgroundElementSliceSelector(specificationtools.Division, inequality=inequality)
+* Select voice 1 (top-level) components that start during timespan.
+* Select voice 1 (top-level) components that stop during timespan.
+* Select voice 1 (top-level) components that happen during timespan.
+[ Select voice 1 (top-level) components that satisfy arbitrary timespan inequality t.]
+
+* Select components m-n of arbitrary container c.
+
+* Select the component at index (x, y, z) in voice 1.
+
+* Select voice 1 notes m-n.
+* Select voice 1 rests m-n.
+* Select voice 1 notes or chords m-n.
+[ Select voice 1 klasses m-n.]
+
+* Select voice 1 notes that start during during timespan.
+* Select voice 1 notes that stop during during timespan.
+* Select voice 1 notes that happen during during timespan.
+[ Select voice 1 klasses that satisfy arbitrary timespan inequality t.]
+
+
+J
+* Select voice 1 notes m-n; then filter by those that start during timespan.
+* Select voice 1 notes m-n; then filter by those that stop during timespan.
+* Select voice 1 notes m-n; then filter by those that happen during timespan.
+[ Select voice 1 klasses m-n; then filter by arbitrary timespan inequality t.]
+
+
+K
+* Select voice 1 notes that start during timespan; then select m-n of that.
+* Select voice 1 notes that stop during timespan; then select m-n of that.
+* Select voice 1 notes that happen during timespan; then select m-n of that.
+[ Select voice 1 klasses that satisfy arbitrary timespan t; then slice the result.]
+
+
+L
+* Select voice 1 (top-level) components m-n; then select components of the result satisfying arbitrary timespan t.
+[slice-restriction followed by timespan-restriction]
+
+
+M
+* Select voice 1 (top-level) satisfying arbitrary timespan t; then select m-n of the result.
+[timespan-restriction followed by slice-restriction]
+
+
+N
+* Select voice 1 (top-level) components m-n;
+  then select the notes of that.
+* Select voice 1 (top-level) components m-n;
+  then select the rests of that.
+* Select voice 1 (top-level) component m-n;
+  then select notes and chords of that.
+[slice-restriction followed by class-restriction]
+
+
+O
+* Select voice 1 (level-n) notes; then take slice m-n of that.
+* Select voice 1 (level-n) rests; then take slice m-n of that.
+* Select voice 1 (level-n) notes and chords; then take slice m-n of that.
+[class-restriction followed by slice-restriction]
+
+
+
+
+
+
+
+
+### NOTES ###
+
+* J and K demonstrate that class-restriction and timespan-restriction do not commute.
+* L and M demonstrate that slice-restriction and timespan-restriction do not commute.
+* N and O demonstrate that slice-restriction and class-restriction do not commute.
+
+We seem to be working with three basic types of restriction:
+
+    1. timespan-restriction (t)
+    2. class-restriction (c)
+    3. slice-restriction (l)
+
+Note that c() produces a detemporized result.
+
+So, actually, this should mean that application of t() after c() is impossible.
+Ie, that c(t()) is allowed but that t(c()) isn't.
+
+This points to a potentially useful limitation on the chaining-together of restrictions.
+Timespan-restriction t() operates on temporized input only. This explains why t()
+refuses input from c(). Does t() also refuse input from l()? We can't answer the question.
+Why? Because we can't make any assumptions about the temporality of the output of l():
+it's possible that the output of l() is temporized but it's also possible that the 
+output of l() is detemporized. (The output of l(c()) is detemporized whenever the output
+of c() is detemporized, for example.) So maybe the useful limitation here is that t()
+should apply before everything else. Note too that t() is optional and that t() need
+never apply more than one time. So it looks like we have a relatively strong limitation
+of the system that says that if t() is going to apply in any chaning-together of restrictions
+then t() will apply a single time at the very beginning of the chain.
+
+So maybe what this means is that all component selections are timespan-restricted. In fact,
+all component selections always have been timespan-restricted. We just didn't notice the fact
+until we got around to modeling timespans explicitly. There is an identity (or null) timespan-
+restriction. The identity timespan-restriction simply returns true no matter what the start
+and stop points of the objects to which the restriction applies; the identity timespan-
+restriction need not even make reference to the timespan of the score. And what this means
+is that all selections made in the years of use of the system up until now have been made
+with this identity timespan-restriction active by implication.
+
+But also note that timespans are awesome because you can turn any selection into a timespan.
+We now observe two things. First that the starting point of every selection is a timespan.
+And second that every selection may be changed into a timespan (which may, in turn,
+be used as the starting point for yet another selection made in succession).
+
+    * voice 1 top-level components satisfying timespan
+    * voice 1 klasses satisfying timespan
+
+I think this also points to a useful limitation on the selection of the component at (x, y, z)
+in voice 1. I think if you want to pick out component at (x, y, z) then you have to do that
+before any timespan-restriction. Why? Because (x, y, z) is a special thing. The tuple (x, y, z)
+is basically something like a "score-tree position" or "score-tree index" or something like that.
+Such a score-tree position necessitates the score-tree be in tact. But note that the output of t()
+is a list of components. The list of components output by t() is essentially ripped from the 
+score tree ("deracinated" or "allolocated", perhaps). So we need a name for the operation
+that picks out the component at (x, y, z). We also need to generalize the picking out of the
+component at (x, y, z). What does the generalization look like? The generalization picks out
+a time-contiguous sequence of components from a voice. The components need not all be top-level.
+Call this operation contiguity-restriction and denote it by g().
+
+Is the allowable chaining-together of restrictions then l(c(t(g())))?
+
+Perhaps class-restriction c() generalizes to predicate-restriction p().
+
+Is it then that the allowable chaining together of restrictions is l(p(t(g())))?
