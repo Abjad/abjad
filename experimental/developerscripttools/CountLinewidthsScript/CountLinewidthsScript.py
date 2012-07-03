@@ -33,7 +33,7 @@ class CountLinewidthsScript(DirectoryScript):
 
     def process_args(self, args):
 
-        print args
+        #print args
 
         modules = {}
 

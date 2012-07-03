@@ -176,16 +176,11 @@ class MetricGridSpanner(Spanner):
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c'8")
                 >>> metric_grid_spanner = spannertools.MetricGridSpanner(staff.leaves, meters=[(1, 8), (1, 4)])
-                >>> list(metric_grid_spanner.meters)
-                [(TimeSignatureMark((1, 8)), 0, False), (TimeSignatureMark((1, 4)), Duration(1, 8), False), (TimeSignatureMark((1, 8)), Duration(3, 8), False), (TimeSignatureMark((1, 4)), Duration(1, 2), False), (TimeSignatureMark((1, 8)), Duration(3, 4), False), (TimeSignatureMark((1, 4)), Duration(7, 8), False)]
-
             Set metric grid meters::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c'8")
                 >>> metric_grid_spanner = spannertools.MetricGridSpanner(staff.leaves, meters=[(1, 8), (1, 4)])
                 >>> metric_grid_spanner.meters = [Duration(1, 4)]
-                >>> list(metric_grid_spanner.meters)
-                [(TimeSignatureMark((1, 4)), 0, False), (TimeSignatureMark((1, 4)), Duration(1, 4), True), (TimeSignatureMark((1, 4)), Duration(1, 2), True), (TimeSignatureMark((1, 4)), Duration(3, 4), True)]
 
             Set iterable.
             '''
