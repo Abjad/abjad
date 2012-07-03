@@ -13,8 +13,37 @@ class OctaveTranspositionMappingInventory(ObjectInventory):
 
     ::
 
-        >>> inventory
-        OctaveTranspositionMappingInventory([OctaveTranspositionMapping([('[A0, C4)', 15), ('[C4, C8)', 27)]), OctaveTranspositionMapping([('[A0, C8]', -18)])])
+        >>> z(inventory)
+        pitchtools.OctaveTranspositionMappingInventory([
+            pitchtools.OctaveTranspositionMapping([
+                pitchtools.OctaveTranspositionMappingComponent(
+                    pitchtools.PitchRange(
+                        '[A0, C4)'
+                        ),
+                    pitchtools.NumberedChromaticPitch(
+                        15
+                        )
+                    ),
+                pitchtools.OctaveTranspositionMappingComponent(
+                    pitchtools.PitchRange(
+                        '[C4, C8)'
+                        ),
+                    pitchtools.NumberedChromaticPitch(
+                        27
+                        )
+                    )
+                ]),
+            pitchtools.OctaveTranspositionMapping([
+                pitchtools.OctaveTranspositionMappingComponent(
+                    pitchtools.PitchRange(
+                        '[A0, C8]'
+                        ),
+                    pitchtools.NumberedChromaticPitch(
+                        -18
+                        )
+                    )
+                ])
+            ])
 
     Octave transposition mapping inventories implement list interface and are mutable.
     '''

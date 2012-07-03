@@ -10,8 +10,7 @@ def make_spacing_vector(basic_distance, minimum_distance, padding, stretchabilit
 
     ::
 
-        >>> layouttools.make_spacing_vector(0, 0, 12, 0)
-        SchemeVector((SchemePair(('basic_distance', 0)), SchemePair(('minimum_distance', 0)), SchemePair(('padding', 12)), SchemePair(('stretchability', 0))))
+        >>> vector = layouttools.make_spacing_vector(0, 0, 12, 0)
 
     Use to set paper block spacing attributes::
 

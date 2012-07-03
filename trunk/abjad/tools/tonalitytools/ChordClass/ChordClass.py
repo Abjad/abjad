@@ -103,7 +103,8 @@ class ChordClass(NamedChromaticPitchClassSet):
 
     @property
     def extent(self):
-        from abjad.tools.tonalitytools.chord_class_cardinality_to_extent import chord_class_cardinality_to_extent
+        from abjad.tools.tonalitytools.chord_class_cardinality_to_extent import \
+            chord_class_cardinality_to_extent
         extent = chord_class_cardinality_to_extent(self.cardinality)
         return ExtentIndicator(extent)
 

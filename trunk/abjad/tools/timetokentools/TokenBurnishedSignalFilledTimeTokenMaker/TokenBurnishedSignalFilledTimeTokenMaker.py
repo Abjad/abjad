@@ -19,7 +19,9 @@ class TokenBurnishedSignalFilledTimeTokenMaker(BurnishedTimeTokenMaker):
         >>> lefts, middles, rights = [-1], [0], [-1]
         >>> left_lengths, right_lengths = [1], [1]
         >>> secondary_divisions = [14]
-        >>> maker = timetokentools.TokenBurnishedSignalFilledTimeTokenMaker(pattern, denominator, prolation_addenda, lefts, middles, rights, left_lengths, right_lengths, secondary_divisions)
+        >>> maker = timetokentools.TokenBurnishedSignalFilledTimeTokenMaker(
+        ... pattern, denominator, prolation_addenda, lefts, middles, rights, 
+        ... left_lengths, right_lengths, secondary_divisions)
 
     Then call the time-token maker on any sequence of duration tokens::
 

@@ -8,7 +8,8 @@ def calculate_harmonic_counterpoint_interval_from_named_chromatic_pitch_to_named
     Calculate harmonic counterpoint interval `pitch_carrier_1` to
     `pitch_carrier_2`::
 
-        >>> pitchtools.calculate_harmonic_counterpoint_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(pitchtools.NamedChromaticPitch(-2), pitchtools.NamedChromaticPitch(12))
+        >>> pitchtools.calculate_harmonic_counterpoint_interval_from_named_chromatic_pitch_to_named_chromatic_pitch(
+        ... pitchtools.NamedChromaticPitch(-2), pitchtools.NamedChromaticPitch(12))
         HarmonicCounterpointInterval(9)
 
     Return harmonic counterpoint interval-class.

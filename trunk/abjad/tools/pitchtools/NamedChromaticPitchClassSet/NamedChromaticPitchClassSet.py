@@ -103,8 +103,13 @@ class NamedChromaticPitchClassSet(PitchClassObjectSet):
         '''Read-only named chromatic pitch-classes::
 
             >>> named_chromatic_pitch_class_set = pitchtools.NamedChromaticPitchClassSet(['gs', 'g', 'as', 'c', 'cs'])
-            >>> named_chromatic_pitch_class_set.named_chromatic_pitch_classes # doctest: +SKIP
-            (NamedChromaticPitchClass('c'), NamedChromaticPitchClass('cs'), NamedChromaticPitchClass('g'), NamedChromaticPitchClass('gs'), NamedChromaticPitchClass('as'))
+            >>> for x in named_chromatic_pitch_class_set.named_chromatic_pitch_classes: x # doctest: +SKIP
+            ...
+            NamedChromaticPitchClass('as')
+            NamedChromaticPitchClass('c')
+            NamedChromaticPitchClass('cs')
+            NamedChromaticPitchClass('g')
+            NamedChromaticPitchClass('gs')
 
         Return tuple.
         '''

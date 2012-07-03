@@ -118,10 +118,24 @@ class InstrumentationSpecifier(AbjadObject):
         def fget(self):
             r'''Read / write list of performers in score::
 
-                >>> instrumentation_specifier.performers
-                PerformerInventory([Performer(name='Flute', instruments=InstrumentInventory([Flute(), AltoFlute()])), Performer(name='Guitar', instruments=InstrumentInventory([Guitar()]))])
+                >>> z(instrumentation_specifier.performers)
+                scoretools.PerformerInventory([
+                    scoretools.Performer(
+                        name='Flute',
+                        instruments=instrumenttools.InstrumentInventory([
+                            instrumenttools.Flute(),
+                            instrumenttools.AltoFlute()
+                            ])
+                        ),
+                    scoretools.Performer(
+                        name='Guitar',
+                        instruments=instrumenttools.InstrumentInventory([
+                            instrumenttools.Guitar()
+                            ])
+                        )
+                    ])
 
-            Return list.
+            Return performer inventory.
             '''
             return self._performers
         def fset(self, performers):
