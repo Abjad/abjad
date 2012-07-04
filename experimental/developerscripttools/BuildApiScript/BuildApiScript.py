@@ -1,5 +1,5 @@
 from abjad.tools import iotools
-from abjad.cfg.cfg import EXPERIMENTALPATH
+from abjad.cfg.cfg import ABJADPATH, EXPERIMENTALPATH
 from abjad.tools.documentationtools import AbjadAPIGenerator
 from experimental.developerscripttools.DeveloperScript import DeveloperScript
 import os
