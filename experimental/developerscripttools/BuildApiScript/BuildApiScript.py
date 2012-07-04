@@ -5,13 +5,13 @@ from experimental.developerscripttools.DeveloperScript import DeveloperScript
 import os
 
 
-class BuildExperimentalApiScript(DeveloperScript):
+class BuildApiScript(DeveloperScript):
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def alias(self):
-        return 'experimental'
+        return 'api'
 
     @property
     def long_description(self):
@@ -19,19 +19,19 @@ class BuildExperimentalApiScript(DeveloperScript):
 
     @property
     def scripting_group(self):
-        return 'build-api'
+        return None
 
     @property
     def short_description(self):
-        return 'Build the Experimental API.'
+        return 'Build the Abjad APIs.'
 
     @property
     def version(self):
         return 1.0
 
-    ### PUBLIC METHODS ###
+    ### PRIVATE METHODS ###
 
-    def process_args(self, args):
+    def _build_experimental_api(self, format='html', clean=False):
 
         class ExperimentalAPIGenerator(AbjadAPIGenerator):
 
@@ -64,7 +64,7 @@ class BuildExperimentalApiScript(DeveloperScript):
         ExperimentalAPIGenerator()(verbose=True)
 
         # print greeting
-        print 'Now building the Experimental {} docs ...'.format(args.format.upper())
+        print 'Now building the Experimental {} docs ...'.format(format.upper())
         print ''
 
         # change to docs directory because makefile lives there
@@ -72,16 +72,56 @@ class BuildExperimentalApiScript(DeveloperScript):
         os.chdir(docs_directory)
 
         # optionally, make clean before building
-        if args.clean:
+        if clean:
             print 'Cleaning build directory ...'
             iotools.spawn_subprocess('make clean')
 
         # make html docs
-        iotools.spawn_subprocess('make {}'.format(args.format))
+        iotools.spawn_subprocess('make {}'.format(format))
+
+    def _build_mainline_api(self, format='html', clean=False):
+
+        AbjadAPIGenerator()(verbose=True)
+
+        # print greeting
+        print 'Now building the {} docs ...'.format(format.upper())
+        print ''
+
+        # change to docs directory because makefile lives there
+        docs_directory = os.path.relpath(os.path.join(ABJADPATH, 'docs'))
+        os.chdir(docs_directory)
+
+        # optionally, make clean before building
+        if clean:
+            print 'Cleaning build directory ...'
+            iotools.spawn_subprocess('make clean')
+
+        # make html docs
+        iotools.spawn_subprocess('make {}'.format(format))
+
+    ### PUBLIC METHODS ###
+
+    def process_args(self, args):
+        format = args.format
+        clean = args.clean
+        if args.mainline:
+            self._build_mainline_api(format=format, clean=clean)
+        if args.experimental:
+            self._build_experimental_api(format=format, clean=clean)
 
     def setup_argument_parser(self, parser):
 
-        parser.add_argument('--clean',
+        parser.add_argument('-M', '--mainline',
+            action='store_true',
+            help='build the mainline API'
+            )
+
+        parser.add_argument('-X', '--experimental',
+            action='store_true',
+            help='build the experimental API'
+            )
+
+        parser.add_argument('-C', '--clean',
             action='store_true',
             dest='clean',
             help='run "make clean" before building the api',
@@ -91,7 +131,7 @@ class BuildExperimentalApiScript(DeveloperScript):
             choices=('html', 'latex', 'latexpdf'),
             dest='format',
             help='Sphinx builder to use',
-            metavar='X',
+            metavar='FORMAT',
             )
 
         parser.set_defaults(format='html')
