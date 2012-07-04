@@ -4,20 +4,20 @@ from abjad.tools.pitchtools.diatonic_pitch_class_name_to_chromatic_pitch_class_n
 from abjad.tools.pitchtools.transpose_chromatic_pitch_class_number_by_octaves_to_nearest_neighbor_of_chromatic_pitch_number import transpose_chromatic_pitch_class_number_by_octaves_to_nearest_neighbor_of_chromatic_pitch_number
 
 
-def chromatic_pitch_number_diatonic_pitch_class_name_to_alphabetic_accidental_abbreviation_octave_number_pair(chromatic_pitch_number, diatonic_pitch_class_name):
+def chromatic_pitch_number_diatonic_pitch_class_name_to_accidental_octave_number_pair(chromatic_pitch_number, diatonic_pitch_class_name):
     '''.. versionadded:: 1.1
 
     Change `chromatic_pitch_number` and `diatonic_pitch_class_name` to
     alphabetic accidental abbreviation / octave number pair::
 
-        >>> pitchtools.chromatic_pitch_number_diatonic_pitch_class_name_to_alphabetic_accidental_abbreviation_octave_number_pair(14, 'c')
+        >>> pitchtools.chromatic_pitch_number_diatonic_pitch_class_name_to_accidental_octave_number_pair(14, 'c')
         (Accidental('ss'), 5)
 
     Return pair.
 
     .. versionchanged:: 2.0
         renamed ``pitchtools.number_letter_to_accidental_octave()`` to
-        ``pitchtools.chromatic_pitch_number_diatonic_pitch_class_name_to_alphabetic_accidental_abbreviation_octave_number_pair()``.
+        ``pitchtools.chromatic_pitch_number_diatonic_pitch_class_name_to_accidental_octave_number_pair()``.
     '''
 
     # check input
