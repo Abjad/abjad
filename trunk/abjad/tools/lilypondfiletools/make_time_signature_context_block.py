@@ -11,7 +11,7 @@ def make_time_signature_context_block(font_size=3, padding=4):
 
     ::
 
-        >>> f(context_block)
+        >>> f(context_block) # doctest: +SKIP
         \context {
             \type Engraver_group
             \name TimeSignatureContext
@@ -24,7 +24,8 @@ def make_time_signature_context_block(font_size=3, padding=4):
             \override TimeSignature #'break-visibility = #end-of-line-invisible
             \override TimeSignature #'font-size = #3
             \override TimeSignature #'self-alignment-X = #center
-            \override VerticalAxisGroup #'default-staff-staff-spacing = #'((basic_distance . 0) (minimum_distance . 0) (padding . 4) (stretchability . 0))
+            \override VerticalAxisGroup #'default-staff-staff-spacing = #'(
+                (basic_distance . 0) (minimum_distance . 0) (padding . 4) (stretchability . 0))
         }
 
     Return context block.

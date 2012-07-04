@@ -33,10 +33,6 @@ def report_format_contributions_of_improper_spanners(
                 (
 
     Return string.
-
-    .. versionchanged:: 2.9
-        renamed ``spannertools.report_as_string_format_contributions_of_all_spanners_attached_to_improper_parentage_of_component()`` to
-        ``spannertools.report_format_contributions_of_improper_spanners()``.
     '''
 
     result = ''

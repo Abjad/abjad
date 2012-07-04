@@ -81,7 +81,8 @@ class LilyPondParser(AbjadObject):
     - Simple markup (i.e. ``c'4 ^ "hello!"``)
     - Most articulations
     - Most spanners, including beams, slurs, phrasing slurs, ties, and glissandi
-    - Most context types via ``\new`` and ``\context``, as well as context ids (i.e. ``\new Staff = "foo" { }``)
+    - Most context types via ``\new`` and ``\context``, 
+      as well as context ids (i.e. ``\new Staff = "foo" { }``)
     - Variable assignment (i.e. ``global = { \time 3/4 } \new Staff { \global }``)
     - Many music functions:
         - ``\acciaccatura``
@@ -111,7 +112,8 @@ class LilyPondParser(AbjadObject):
     - ``\repeat`` and ``\alternative``
     - Lyrics
     - ``\chordmode``, ``\drummode`` or ``\figuremode``
-    - Property operations, such as ``\override``, ``\revert``, ``\set``, ``\unset``, and ``\once``
+    - Property operations, such as ``\override``, 
+      ``\revert``, ``\set``, ``\unset``, and ``\once``
     - Music functions which generate or extensively mutate musical structures
     - Embedded Scheme statements (anything beginning with ``#``)
 
@@ -218,7 +220,8 @@ class LilyPondParser(AbjadObject):
             >>> from abjad.tools.lilypondparsertools import LilyPondParser
             >>> parser = LilyPondParser()
             >>> parser.available_languages
-            ('catalan', 'deutsch', 'english', 'espanol', 'italiano', 'nederlands', 'norsk', 'portugues', 'suomi', 'svenska', 'vlaams')
+            ('catalan', 'deutsch', 'english', 'espanol', 'italiano', 'nederlands', 
+            'norsk', 'portugues', 'suomi', 'svenska', 'vlaams')
 
         Return tuple.
         '''
