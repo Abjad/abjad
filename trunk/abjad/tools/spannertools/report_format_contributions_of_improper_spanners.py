@@ -2,7 +2,7 @@ from abjad.tools.spannertools.get_spanners_attached_to_any_improper_parent_of_co
     get_spanners_attached_to_any_improper_parent_of_component
 
 
-def report_format_contributions_of_simproper_spanners(
+def report_format_contributions_of_improper_spanners(
     component, klass=None):
     r'''.. versionadded:: 1.1
 
@@ -36,7 +36,7 @@ def report_format_contributions_of_simproper_spanners(
 
     .. versionchanged:: 2.9
         renamed ``spannertools.report_as_string_format_contributions_of_all_spanners_attached_to_improper_parentage_of_component()`` to
-        ``spannertools.report_format_contributions_of_simproper_spanners()``.
+        ``spannertools.report_format_contributions_of_improper_spanners()``.
     '''
 
     result = ''

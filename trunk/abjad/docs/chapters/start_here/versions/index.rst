@@ -790,7 +790,7 @@ Changes to end-user functionality:
 
   ::
 
-    spannertools.report_format_contributions_of_simproper_spanners()
+    spannertools.report_format_contributions_of_improper_spanners()
 
 - Changed::
 
