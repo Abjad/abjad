@@ -34,7 +34,8 @@ def split_components_cyclically_by_prolated_durations_and_do_not_fracture_crossi
     ::
 
         >>> durations = [Duration(3, 32)]
-        >>> componenttools.split_components_cyclically_by_prolated_durations_and_do_not_fracture_crossing_spanners(staff.leaves, durations)
+        >>> componenttools.split_components_cyclically_by_prolated_durations_and_do_not_fracture_crossing_spanners(
+        ... staff.leaves, durations)
         [[Note("c'16.")], [Note("c'32"), Note("d'16")],
         [Note("d'16"), Note("e'32")], [Note("e'16.")], [Note("f'16.")], [Note("f'32")]]
 
@@ -58,10 +59,6 @@ def split_components_cyclically_by_prolated_durations_and_do_not_fracture_crossi
         }
 
     Return list of partitioned components.
-
-    .. versionchanged:: 2.0
-        renamed ``partition.cyclic_unfractured_by_durations()`` to
-        ``componenttools.split_components_cyclically_by_prolated_durations_and_do_not_fracture_crossing_spanners()``.
     '''
 
     return _split_components_by_prolated_durations(components, durations,

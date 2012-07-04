@@ -7,7 +7,8 @@ class  NumberedChromaticPitchClassSet(PitchClassObjectSet):
 
     Abjad model of a numbered chromatic pitch-class set::
 
-        >>> numbered_chromatic_pitch_class_set = pitchtools.NumberedChromaticPitchClassSet([-2, -1.5, 6, 7, -1.5, 7])
+        >>> numbered_chromatic_pitch_class_set = pitchtools.NumberedChromaticPitchClassSet(
+        ... [-2, -1.5, 6, 7, -1.5, 7])
 
     ::
 
@@ -22,7 +23,11 @@ class  NumberedChromaticPitchClassSet(PitchClassObjectSet):
     Numbered chromatic pitch-class sets are immutable.
     '''
 
+    ### CLASS ATTRIBUTES ###
+
     __slots__ = ()
+
+    ### INITIALIZER ###
 
     def __new__(klass, expr):
         from abjad.tools import pitchtools
@@ -69,7 +74,7 @@ class  NumberedChromaticPitchClassSet(PitchClassObjectSet):
     def __str__(self):
         return '{%s}' % self._format_string
 
-    ### PRIVATE PROPERTIES ###
+    ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
     def _format_string(self):
@@ -77,13 +82,14 @@ class  NumberedChromaticPitchClassSet(PitchClassObjectSet):
         result.sort(lambda x, y: cmp(abs(x), abs(y)))
         return ', '.join([str(x) for x in result])
 
-    ### PUBLIC PROPERTIES ###
+    ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def inversion_equivalent_chromatic_interval_class_set(self):
         '''Read-only inversion-equivalent chromatic interval-class set::
 
-            >>> numbered_chromatic_pitch_class_set = pitchtools.NumberedChromaticPitchClassSet([-2, -1.5, 6, 7, -1.5, 7])
+            >>> numbered_chromatic_pitch_class_set = pitchtools.NumberedChromaticPitchClassSet(
+            ... [-2, -1.5, 6, 7, -1.5, 7])
             >>> numbered_chromatic_pitch_class_set.inversion_equivalent_chromatic_interval_class_set
             InversionEquivalentChromaticIntervalClassSet(0.5, 1, 3, 3.5, 4, 4.5)
 
@@ -102,7 +108,8 @@ class  NumberedChromaticPitchClassSet(PitchClassObjectSet):
     def inversion_equivalent_chromatic_interval_class_vector(self):
         '''Read-only inversion-equivalent chromatic interval-class vector::
 
-            >>> numbered_chromatic_pitch_class_set = pitchtools.NumberedChromaticPitchClassSet([-2, -1.5, 6, 7, -1.5, 7])
+            >>> numbered_chromatic_pitch_class_set = pitchtools.NumberedChromaticPitchClassSet(
+            ... [-2, -1.5, 6, 7, -1.5, 7])
             >>> numbered_chromatic_pitch_class_set.inversion_equivalent_chromatic_interval_class_vector
             InversionEquivalentChromaticIntervalClassVector(0 | 1 0 1 1 0 0 1 0 0 1 1 0)
 
@@ -119,9 +126,15 @@ class  NumberedChromaticPitchClassSet(PitchClassObjectSet):
     def numbered_chromatic_pitch_classes(self):
         '''Read-only numbered chromatic pitch-classes::
 
-            >>> numbered_chromatic_pitch_class_set = pitchtools.NumberedChromaticPitchClassSet([-2, -1.5, 6, 7, -1.5, 7])
-            >>> numbered_chromatic_pitch_class_set.numbered_chromatic_pitch_classes
-            (NumberedChromaticPitchClass(6), NumberedChromaticPitchClass(7), NumberedChromaticPitchClass(10), NumberedChromaticPitchClass(10.5))
+            >>> numbered_chromatic_pitch_class_set = pitchtools.NumberedChromaticPitchClassSet(
+            ... [-2, -1.5, 6, 7, -1.5, 7])
+            >>> result = numbered_chromatic_pitch_class_set.numbered_chromatic_pitch_classes
+            >>> for x in result: x
+            ...
+            NumberedChromaticPitchClass(6)
+            NumberedChromaticPitchClass(7)
+            NumberedChromaticPitchClass(10)
+            NumberedChromaticPitchClass(10.5)
 
         Return tuple.
         '''
@@ -139,7 +152,8 @@ class  NumberedChromaticPitchClassSet(PitchClassObjectSet):
     def invert(self):
         '''Invert numbered chromatic pitch-class set::
 
-            >>> numbered_chromatic_pitch_class_set = pitchtools.NumberedChromaticPitchClassSet([-2, -1.5, 6, 7, -1.5, 7])
+            >>> numbered_chromatic_pitch_class_set = pitchtools.NumberedChromaticPitchClassSet(
+            ... [-2, -1.5, 6, 7, -1.5, 7])
             >>> numbered_chromatic_pitch_class_set.invert()
             NumberedChromaticPitchClassSet([1.5, 2, 5, 6])
 
@@ -151,8 +165,10 @@ class  NumberedChromaticPitchClassSet(PitchClassObjectSet):
         '''True when self is transposed subset of `pcset`.
         False otherwise::
 
-            >>> pcset_1 = pitchtools.NumberedChromaticPitchClassSet([-2, -1.5, 6, 7, -1.5, 7])
-            >>> pcset_2 = pitchtools.NumberedChromaticPitchClassSet([-2, -1.5, 6, 7, -1.5, 7, 7.5, 8])
+            >>> pcset_1 = pitchtools.NumberedChromaticPitchClassSet(
+            ... [-2, -1.5, 6, 7, -1.5, 7])
+            >>> pcset_2 = pitchtools.NumberedChromaticPitchClassSet(
+            ... [-2, -1.5, 6, 7, -1.5, 7, 7.5, 8])
 
         ::
 
@@ -170,8 +186,10 @@ class  NumberedChromaticPitchClassSet(PitchClassObjectSet):
         '''True when self is transposed superset of `pcset`.
         False otherwise::
 
-            >>> pcset_1 = pitchtools.NumberedChromaticPitchClassSet([-2, -1.5, 6, 7, -1.5, 7])
-            >>> pcset_2 = pitchtools.NumberedChromaticPitchClassSet([-2, -1.5, 6, 7, -1.5, 7, 7.5, 8])
+            >>> pcset_1 = pitchtools.NumberedChromaticPitchClassSet(
+            ... [-2, -1.5, 6, 7, -1.5, 7])
+            >>> pcset_2 = pitchtools.NumberedChromaticPitchClassSet(
+            ... [-2, -1.5, 6, 7, -1.5, 7, 7.5, 8])
 
         ::
 
@@ -188,7 +206,8 @@ class  NumberedChromaticPitchClassSet(PitchClassObjectSet):
     def multiply(self, n):
         '''Multiply numbered chromatic pitch-class set by `n`::
 
-            >>> numbered_chromatic_pitch_class_set = pitchtools.NumberedChromaticPitchClassSet([-2, -1.5, 6, 7, -1.5, 7])
+            >>> numbered_chromatic_pitch_class_set = pitchtools.NumberedChromaticPitchClassSet(
+            ... [-2, -1.5, 6, 7, -1.5, 7])
             >>> numbered_chromatic_pitch_class_set.multiply(5)
             NumberedChromaticPitchClassSet([2, 4.5, 6, 11])
 
@@ -199,7 +218,8 @@ class  NumberedChromaticPitchClassSet(PitchClassObjectSet):
     def transpose(self, n):
         '''Transpose numbered chromatic pitch-class set by `n`::
 
-            >>> numbered_chromatic_pitch_class_set = pitchtools.NumberedChromaticPitchClassSet([-2, -1.5, 6, 7, -1.5, 7])
+            >>> numbered_chromatic_pitch_class_set = pitchtools.NumberedChromaticPitchClassSet(
+            ... [-2, -1.5, 6, 7, -1.5, 7])
             >>> numbered_chromatic_pitch_class_set.multiply(5)
             NumberedChromaticPitchClassSet([2, 4.5, 6, 11])
 

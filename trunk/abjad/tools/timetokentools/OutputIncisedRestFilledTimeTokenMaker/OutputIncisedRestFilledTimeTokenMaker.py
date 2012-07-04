@@ -20,7 +20,8 @@ class OutputIncisedRestFilledTimeTokenMaker(OutputIncisedTimeTokenMaker):
         >>> prefix_signal, prefix_lengths = [8], [2]
         >>> suffix_signal, suffix_lengths = [3], [4]
         >>> denominator = 32
-        >>> maker = timetokentools.OutputIncisedRestFilledTimeTokenMaker(prefix_signal, prefix_lengths, suffix_signal, suffix_lengths, denominator)
+        >>> maker = timetokentools.OutputIncisedRestFilledTimeTokenMaker(
+        ... prefix_signal, prefix_lengths, suffix_signal, suffix_lengths, denominator)
 
     Then call the time-token maker on arbitrary duration tokens::
 

@@ -37,7 +37,8 @@ def split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners(
 
     ::
 
-        >>> halves = componenttools.split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners(t.leaves[0], Duration(1, 32))
+        >>> halves = componenttools.split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners(
+        ... t.leaves[0], Duration(1, 32))
         >>> f(t)
         \new Staff {
             {
@@ -60,4 +61,4 @@ def split_component_at_prolated_duration_and_do_not_fracture_crossing_spanners(
     '''
 
     return _split_component_at_duration(component, prolated_duration,
-        spanners = 'unfractured', tie_after = tie_after)
+        spanners='unfractured', tie_after=tie_after)

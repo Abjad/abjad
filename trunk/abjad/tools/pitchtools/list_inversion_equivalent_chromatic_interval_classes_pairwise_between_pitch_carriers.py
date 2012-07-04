@@ -27,39 +27,77 @@ def list_inversion_equivalent_chromatic_interval_classes_pairwise_between_pitch_
 
     ::
 
-        >>> pitchtools.list_inversion_equivalent_chromatic_interval_classes_pairwise_between_pitch_carriers(staff, wrap=False)
-        [InversionEquivalentChromaticIntervalClass(2), InversionEquivalentChromaticIntervalClass(2), InversionEquivalentChromaticIntervalClass(1),
-        InversionEquivalentChromaticIntervalClass(2), InversionEquivalentChromaticIntervalClass(2), InversionEquivalentChromaticIntervalClass(2),
-        InversionEquivalentChromaticIntervalClass(1)]
+        >>> result = pitchtools.list_inversion_equivalent_chromatic_interval_classes_pairwise_between_pitch_carriers(
+        ... staff, wrap=False)
+        
+    ::
+
+        >>> for x in result: x
+        ...
+        InversionEquivalentChromaticIntervalClass(2)
+        InversionEquivalentChromaticIntervalClass(2)
+        InversionEquivalentChromaticIntervalClass(1)
+        InversionEquivalentChromaticIntervalClass(2)
+        InversionEquivalentChromaticIntervalClass(2)
+        InversionEquivalentChromaticIntervalClass(2)
+        InversionEquivalentChromaticIntervalClass(1)
 
     ::
 
-        >>> pitchtools.list_inversion_equivalent_chromatic_interval_classes_pairwise_between_pitch_carriers(staff, wrap=True)
-        [InversionEquivalentChromaticIntervalClass(2), InversionEquivalentChromaticIntervalClass(2), InversionEquivalentChromaticIntervalClass(1),
-        InversionEquivalentChromaticIntervalClass(2), InversionEquivalentChromaticIntervalClass(2), InversionEquivalentChromaticIntervalClass(2),
-        InversionEquivalentChromaticIntervalClass(1), InversionEquivalentChromaticIntervalClass(0)]
-
+        >>> result = pitchtools.list_inversion_equivalent_chromatic_interval_classes_pairwise_between_pitch_carriers(
+        ... staff, wrap=True)
 
     ::
 
-        >>> notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8"), Note("g'8"), Note("a'8"), Note("b'8"), Note("c''8")]
-        >>> notes.reverse()
-        >>> notes
-        [Note("c''8"), Note("b'8"), Note("a'8"), Note("g'8"), Note("f'8"), Note("e'8"), Note("d'8"), Note("c'8")]
+        >>> for x in result: x
+        InversionEquivalentChromaticIntervalClass(2)
+        InversionEquivalentChromaticIntervalClass(2)
+        InversionEquivalentChromaticIntervalClass(1)
+        InversionEquivalentChromaticIntervalClass(2)
+        InversionEquivalentChromaticIntervalClass(2)
+        InversionEquivalentChromaticIntervalClass(2)
+        InversionEquivalentChromaticIntervalClass(1)
+        InversionEquivalentChromaticIntervalClass(0)
 
     ::
 
-        >>> pitchtools.list_inversion_equivalent_chromatic_interval_classes_pairwise_between_pitch_carriers(notes, wrap=False)
-        [InversionEquivalentChromaticIntervalClass(1), InversionEquivalentChromaticIntervalClass(2), InversionEquivalentChromaticIntervalClass(2),
-        InversionEquivalentChromaticIntervalClass(2), InversionEquivalentChromaticIntervalClass(1), InversionEquivalentChromaticIntervalClass(2),
-        InversionEquivalentChromaticIntervalClass(2)]
+        >>> notes = staff.leaves
+        >>> notes = list(reversed(notes))
 
     ::
 
-        >>> pitchtools.list_inversion_equivalent_chromatic_interval_classes_pairwise_between_pitch_carriers(notes, wrap=True)
-        [InversionEquivalentChromaticIntervalClass(1), InversionEquivalentChromaticIntervalClass(2), InversionEquivalentChromaticIntervalClass(2),
-        InversionEquivalentChromaticIntervalClass(2), InversionEquivalentChromaticIntervalClass(1), InversionEquivalentChromaticIntervalClass(2),
-        InversionEquivalentChromaticIntervalClass(2), InversionEquivalentChromaticIntervalClass(0)]
+        >>> result = pitchtools.list_inversion_equivalent_chromatic_interval_classes_pairwise_between_pitch_carriers(
+        ... notes, wrap=False)
+
+    ::
+
+        >>> for x in result: x
+        ...
+        InversionEquivalentChromaticIntervalClass(1)
+        InversionEquivalentChromaticIntervalClass(2)
+        InversionEquivalentChromaticIntervalClass(2)
+        InversionEquivalentChromaticIntervalClass(2)
+        InversionEquivalentChromaticIntervalClass(1)
+        InversionEquivalentChromaticIntervalClass(2)
+        InversionEquivalentChromaticIntervalClass(2)
+
+    ::
+
+        >>> result = pitchtools.list_inversion_equivalent_chromatic_interval_classes_pairwise_between_pitch_carriers(
+        ... notes, wrap=True)
+
+    ::
+
+        >>> for x in result: x
+        ...
+        InversionEquivalentChromaticIntervalClass(1)
+        InversionEquivalentChromaticIntervalClass(2)
+        InversionEquivalentChromaticIntervalClass(2)
+        InversionEquivalentChromaticIntervalClass(2)
+        InversionEquivalentChromaticIntervalClass(1)
+        InversionEquivalentChromaticIntervalClass(2)
+        InversionEquivalentChromaticIntervalClass(2)
+        InversionEquivalentChromaticIntervalClass(0)
 
     When ``wrap=False`` do not return ``pitch_carriers[-1] - pitch_carriers[0]`` as last in series.
 
@@ -76,7 +114,7 @@ def list_inversion_equivalent_chromatic_interval_classes_pairwise_between_pitch_
         if is_pitch_carrier(pitch_carriers[0]):
             return result
         else:
-            raise TypeError('must be Abjad Pitch, Note, NoteHead or Chord.')
+            raise TypeError('must be Abjad pitch, note, note head or chord.')
 
     if wrap:
         pairs = sequencetools.iterate_sequence_pairwise_wrapped(pitch_carriers)
@@ -86,9 +124,6 @@ def list_inversion_equivalent_chromatic_interval_classes_pairwise_between_pitch_
     for first_carrier, second_carrier in pairs:
         first_pitch = get_named_chromatic_pitch_from_pitch_carrier(first_carrier)
         second_pitch = get_named_chromatic_pitch_from_pitch_carrier(second_carrier)
-        #signed_interval = abs(second_pitch.numbered_chromatic_pitch) - \
-        #   abs(first_pitch.numbered_chromatic_pitch)
-        #result.append(signed_interval)
         mdi = second_pitch - first_pitch
         iecic = mdi.inversion_equivalent_chromatic_interval_class
         result.append(iecic)

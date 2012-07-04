@@ -67,8 +67,7 @@ def replace_leaves_in_expr_with_parallel_voices(expr):
 
     ::
 
-        >>> leaftools.replace_leaves_in_expr_with_parallel_voices(c.leaves[2:7])
-        ([Note('c8'), Note('c8'), Note('c16'), Note('c16'), Note('c16')], [Note('c8'), Note('c8'), Note('c16'), Note('c16'), Note('c16')])
+        >>> leaves = leaftools.replace_leaves_in_expr_with_parallel_voices(c.leaves[2:7])
 
     ::
 

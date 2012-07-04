@@ -1,6 +1,8 @@
 from abjad.tools.pitchtools.ObjectVector import ObjectVector
-from abjad.tools.pitchtools.inventory_inversion_equivalent_diatonic_interval_classes import inventory_inversion_equivalent_diatonic_interval_classes
-from abjad.tools.pitchtools.list_harmonic_diatonic_intervals_in_expr import list_harmonic_diatonic_intervals_in_expr
+from abjad.tools.pitchtools.inventory_inversion_equivalent_diatonic_interval_classes import \
+    inventory_inversion_equivalent_diatonic_interval_classes
+from abjad.tools.pitchtools.list_harmonic_diatonic_intervals_in_expr import \
+    list_harmonic_diatonic_intervals_in_expr
 
 
 class InversionEquivalentDiatonicIntervalClassVector(ObjectVector):
@@ -9,8 +11,12 @@ class InversionEquivalentDiatonicIntervalClassVector(ObjectVector):
     Abjad model of inversion-equivalent diatonic interval-class vector::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8 g'8")
-        >>> pitchtools.InversionEquivalentDiatonicIntervalClassVector(staff)
-        InversionEquivalentDiatonicIntervalClassVector(P1: 0, aug1: 0, m2: 1, M2: 3, aug2: 0, dim3: 0, m3: 2, M3: 1, dim4: 0, P4: 3, aug4: 0)
+        >>> vector = pitchtools.InversionEquivalentDiatonicIntervalClassVector(staff)
+
+    ::
+
+        >>> print vector
+        {P1: 0, aug1: 0, m2: 1, M2: 3, aug2: 0, dim3: 0, m3: 2, M3: 1, dim4: 0, P4: 3, aug4: 0}
 
     Inversion-equivalent diatonic interval-class vector are not quatertone-aware.
 

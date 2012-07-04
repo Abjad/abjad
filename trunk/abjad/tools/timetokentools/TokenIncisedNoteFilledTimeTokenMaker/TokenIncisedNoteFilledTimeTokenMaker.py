@@ -14,7 +14,8 @@ class TokenIncisedNoteFilledTimeTokenMaker(TokenIncisedTimeTokenMaker):
         >>> prefix_signal, prefix_lengths = [-8], [0, 1]
         >>> suffix_signal, suffix_lengths = [-1], [1]
         >>> denominator = 32
-        >>> maker = timetokentools.TokenIncisedNoteFilledTimeTokenMaker(prefix_signal, prefix_lengths, suffix_signal, suffix_lengths, denominator)
+        >>> maker = timetokentools.TokenIncisedNoteFilledTimeTokenMaker(
+        ... prefix_signal, prefix_lengths, suffix_signal, suffix_lengths, denominator)
 
     ::
 

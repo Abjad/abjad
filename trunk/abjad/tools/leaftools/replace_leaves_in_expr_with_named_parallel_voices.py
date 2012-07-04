@@ -22,8 +22,8 @@ def replace_leaves_in_expr_with_named_parallel_voices(expr, upper_name, lower_na
 
     ::
 
-        >>> leaftools.replace_leaves_in_expr_with_named_parallel_voices(c.leaves[1:3], 'upper', 'lower')
-        ([Note('c4'), Note('c4')], [Note('c4'), Note('c4')])
+        >>> leaves = leaftools.replace_leaves_in_expr_with_named_parallel_voices(
+        ... c.leaves[1:3], 'upper', 'lower')
 
     ::
 
@@ -69,8 +69,8 @@ def replace_leaves_in_expr_with_named_parallel_voices(expr, upper_name, lower_na
 
     ::
 
-        >>> leaftools.replace_leaves_in_expr_with_named_parallel_voices(c.leaves[2:7], 'upper', 'lower')
-        ([Note('c8'), Note('c8'), Note('c16'), Note('c16'), Note('c16')], [Note('c8'), Note('c8'), Note('c16'), Note('c16'), Note('c16')])
+        >>> leaves = leaftools.replace_leaves_in_expr_with_named_parallel_voices(
+        ... c.leaves[2:7], 'upper', 'lower')
 
     ::
 
