@@ -1563,8 +1563,8 @@ Composition packages
    tools/spannertools/make_solid_text_spanner_below_with_nib_at_right
    tools/spannertools/make_spanner_schema
    tools/spannertools/move_spanners_from_component_to_children_of_component
-   tools/spannertools/report_as_string_format_contributions_of_spanners_attached_to_component
-   tools/spannertools/report_as_string_format_contributions_of_spanners_attached_to_improper_parentage_of_component
+   tools/spannertools/report_spanner_format_contributions
+   tools/spannertools/report_format_contributions_of_simproper_spanners
    tools/spannertools/withdraw_components_from_spanners_covered_by_components
 
 :py:mod:`stafftools <abjad.tools.stafftools>`

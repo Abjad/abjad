@@ -2,7 +2,7 @@ from abjad.tools.spannertools.get_spanners_attached_to_any_improper_parent_of_co
     get_spanners_attached_to_any_improper_parent_of_component
 
 
-def report_as_string_format_contributions_of_spanners_attached_to_improper_parentage_of_component(
+def report_format_contributions_of_simproper_spanners(
     component, klass=None):
     r'''.. versionadded:: 1.1
 
@@ -24,7 +24,7 @@ def report_as_string_format_contributions_of_spanners_attached_to_improper_paren
 
     ::
 
-        >>> print spannertools.report_as_string_format_contributions_of_spanners_attached_to_component(staff[0])
+        >>> print spannertools.report_spanner_format_contributions(staff[0])
         BeamSpanner
             _format_right_of_leaf
                 [
@@ -36,7 +36,7 @@ def report_as_string_format_contributions_of_spanners_attached_to_improper_paren
 
     .. versionchanged:: 2.9
         renamed ``spannertools.report_as_string_format_contributions_of_all_spanners_attached_to_improper_parentage_of_component()`` to
-        ``spannertools.report_as_string_format_contributions_of_spanners_attached_to_improper_parentage_of_component()``.
+        ``spannertools.report_format_contributions_of_simproper_spanners()``.
     '''
 
     result = ''

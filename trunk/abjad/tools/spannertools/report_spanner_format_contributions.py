@@ -1,7 +1,7 @@
 from abjad.tools.spannertools.get_spanners_attached_to_component import get_spanners_attached_to_component
 
 
-def report_as_string_format_contributions_of_spanners_attached_to_component(component, klass=None):
+def report_spanner_format_contributions(component, klass=None):
     r'''.. versionadded:: 1.1
 
     Report as string format contributions of all spanners attached to `component`::
@@ -21,7 +21,7 @@ def report_as_string_format_contributions_of_spanners_attached_to_component(comp
 
     ::
 
-        >>> print spannertools.report_as_string_format_contributions_of_spanners_attached_to_component(staff[0])
+        >>> print spannertools.report_spanner_format_contributions(staff[0])
         BeamSpanner
             _format_right_of_leaf
                 [
@@ -33,7 +33,7 @@ def report_as_string_format_contributions_of_spanners_attached_to_component(comp
 
     .. versionchanged:: 2.9
         renamed ``spannertools.report_as_string_format_contributions_of_all_spanners_attached_to_component()`` to
-        ``spannertools.report_as_string_format_contributions_of_spanners_attached_to_component()``.
+        ``spannertools.report_spanner_format_contributions()``.
     '''
 
     result = ''

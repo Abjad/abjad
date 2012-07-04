@@ -782,7 +782,7 @@ Changes to end-user functionality:
 
   ::
 
-    spannertools.report_as_string_format_contributions_of_spanners_attached_to_component()
+    spannertools.report_spanner_format_contributions()
 
 - Changed::
 
@@ -790,7 +790,7 @@ Changes to end-user functionality:
 
   ::
 
-    spannertools.report_as_string_format_contributions_of_spanners_attached_to_improper_parentage_of_component()
+    spannertools.report_format_contributions_of_simproper_spanners()
 
 - Changed::
 
