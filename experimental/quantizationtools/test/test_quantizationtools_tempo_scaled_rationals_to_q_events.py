@@ -52,7 +52,7 @@ def test_quantizationtools_tempo_scaled_rationals_to_q_events_02():
             durationtools.Offset(0, 1),
             (pitchtools.NamedChromaticPitch("c'"),)
             ),
-        quantizationtools.UnpitchedQEvent(
+        quantizationtools.SilentQEvent(
             durationtools.Offset(60000, 77)
             ),
         quantizationtools.PitchedQEvent(
@@ -63,7 +63,7 @@ def test_quantizationtools_tempo_scaled_rationals_to_q_events_02():
             durationtools.Offset(180000, 77),
             (pitchtools.NamedChromaticPitch("c'"),)
             ),
-        quantizationtools.UnpitchedQEvent(
+        quantizationtools.SilentQEvent(
             durationtools.Offset(240000, 77)
             ),
         quantizationtools.PitchedQEvent(

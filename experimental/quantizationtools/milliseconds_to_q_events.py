@@ -3,7 +3,7 @@ from abjad.tools import mathtools
 from abjad.tools import sequencetools
 from experimental.quantizationtools.PitchedQEvent import PitchedQEvent
 from experimental.quantizationtools.TerminalQEvent import TerminalQEvent
-from experimental.quantizationtools.UnpitchedQEvent import UnpitchedQEvent
+from experimental.quantizationtools.SilentQEvent import SilentQEvent
 
 
 def milliseconds_to_q_events(milliseconds):
@@ -32,7 +32,7 @@ def milliseconds_to_q_events(milliseconds):
         offset = durationtools.Offset(pair[0])
         duration = pair[1]
         if duration < 0: # negative duration indicates silence
-            q_event = UnpitchedQEvent(offset)
+            q_event = SilentQEvent(offset)
         else:
             q_event = PitchedQEvent(offset, [0])
         q_events.append(q_event)

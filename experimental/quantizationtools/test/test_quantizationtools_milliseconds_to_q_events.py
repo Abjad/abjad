@@ -208,14 +208,14 @@ def test_quantizationtools_milliseconds_to_q_events_02():
             durationtools.Offset(0),
             (pitchtools.NamedChromaticPitch("c'"),)
             ),
-        quantizationtools.UnpitchedQEvent(
+        quantizationtools.SilentQEvent(
             durationtools.Offset(100)
             ),
         quantizationtools.PitchedQEvent(
             durationtools.Offset(200),
             (pitchtools.NamedChromaticPitch("c'"),)
             ),
-        quantizationtools.UnpitchedQEvent(
+        quantizationtools.SilentQEvent(
             durationtools.Offset(300)
             ),
         quantizationtools.PitchedQEvent(

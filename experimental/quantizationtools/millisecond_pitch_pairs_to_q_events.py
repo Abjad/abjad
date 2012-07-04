@@ -5,7 +5,7 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 from experimental.quantizationtools.PitchedQEvent import PitchedQEvent
 from experimental.quantizationtools.TerminalQEvent import TerminalQEvent
-from experimental.quantizationtools.UnpitchedQEvent import UnpitchedQEvent
+from experimental.quantizationtools.SilentQEvent import SilentQEvent
 
 
 def millisecond_pitch_pairs_to_q_events(pairs):
@@ -65,7 +65,7 @@ def millisecond_pitch_pairs_to_q_events(pairs):
             assert all([isinstance(x, Number) for x in pitches])
             q_events.append(PitchedQEvent(offset, pitches))
         elif isinstance(pitches, type(None)):
-            q_events.append(UnpitchedQEvent(offset))
+            q_events.append(SilentQEvent(offset))
         elif isinstance(pitches, Number):
             q_events.append(PitchedQEvent(offset, [pitches]))
 

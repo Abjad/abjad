@@ -161,7 +161,7 @@ Unstable packages (load manually)
    experimental/quantizationtools/QSchema/QSchema
    experimental/quantizationtools/QSchemaEntry/QSchemaEntry
    experimental/quantizationtools/TerminalQEvent/TerminalQEvent
-   experimental/quantizationtools/UnpitchedQEvent/UnpitchedQEvent
+   experimental/quantizationtools/SilentQEvent/SilentQEvent
 
 .. rubric:: functions
 

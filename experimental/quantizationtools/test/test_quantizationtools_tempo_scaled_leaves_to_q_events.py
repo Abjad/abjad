@@ -32,7 +32,7 @@ def test_quantizationtools_tempo_scaled_leaves_to_q_events_01():
             durationtools.Offset(0, 1),
             (pitchtools.NamedChromaticPitch("c'"),)
             ),
-        quantizationtools.UnpitchedQEvent(
+        quantizationtools.SilentQEvent(
             durationtools.Offset(12000, 11)
             ),
         quantizationtools.PitchedQEvent(
@@ -47,7 +47,7 @@ def test_quantizationtools_tempo_scaled_leaves_to_q_events_01():
             durationtools.Offset(54000, 11),
             (pitchtools.NamedChromaticPitch("ef'"),)
             ),
-        quantizationtools.UnpitchedQEvent(
+        quantizationtools.SilentQEvent(
             durationtools.Offset(60000, 11)
             ),
         quantizationtools.PitchedQEvent(
@@ -99,7 +99,7 @@ def test_quantizationtools_tempo_scaled_leaves_to_q_events_02():
             durationtools.Offset(0, 1),
             (pitchtools.NamedChromaticPitch("c'"),)
             ),
-        quantizationtools.UnpitchedQEvent(
+        quantizationtools.SilentQEvent(
             durationtools.Offset(30000, 29)
             ),
         quantizationtools.PitchedQEvent(
@@ -114,7 +114,7 @@ def test_quantizationtools_tempo_scaled_leaves_to_q_events_02():
             durationtools.Offset(135000, 29),
             (pitchtools.NamedChromaticPitch("ef'"),)
             ),
-        quantizationtools.UnpitchedQEvent(
+        quantizationtools.SilentQEvent(
             durationtools.Offset(150000, 29)
             ),
         quantizationtools.PitchedQEvent(

@@ -5,7 +5,7 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
 from experimental.quantizationtools.PitchedQEvent import PitchedQEvent
-from experimental.quantizationtools.UnpitchedQEvent import UnpitchedQEvent
+from experimental.quantizationtools.SilentQEvent import SilentQEvent
 from experimental.quantizationtools.TerminalQEvent import TerminalQEvent
 from experimental.quantizationtools.tempo_scaled_rational_to_milliseconds \
     import tempo_scaled_rational_to_milliseconds
@@ -43,7 +43,7 @@ def tempo_scaled_rationals_to_q_events(durations, tempo):
         offset = durationtools.Offset(pair[0])
         duration = pair[1]
         if duration < 0: # negative duration indicates silence
-            q_event = UnpitchedQEvent(offset)
+            q_event = SilentQEvent(offset)
         else: # otherwise, use middle-C
             q_event = PitchedQEvent(offset, [0])
         q_events.append(q_event)

@@ -2,7 +2,7 @@ from abjad.tools import durationtools
 from experimental.quantizationtools.QEvent import QEvent
 
 
-class UnpitchedQEvent(QEvent):
+class SilentQEvent(QEvent):
 
     ### CLASS ATTRIBUTES ###
 

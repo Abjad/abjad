@@ -16,7 +16,7 @@ def test_quantizationtools_millisecond_pitch_pairs_to_q_events_01():
             durationtools.Offset(0),
             (pitchtools.NamedChromaticPitch("c'"),)
             ),
-        quantizationtools.UnpitchedQEvent(
+        quantizationtools.SilentQEvent(
             durationtools.Offset(100, 1)
             ),
         quantizationtools.PitchedQEvent(
@@ -26,7 +26,7 @@ def test_quantizationtools_millisecond_pitch_pairs_to_q_events_01():
                 pitchtools.NamedChromaticPitch("e'")
             )
             ),
-        quantizationtools.UnpitchedQEvent(
+        quantizationtools.SilentQEvent(
             durationtools.Offset(700, 1)
             ),
         quantizationtools.PitchedQEvent(
