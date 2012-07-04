@@ -6,7 +6,8 @@ class NumberedChromaticPitchClassVector(ObjectVector):
 
     Abjad model of numbered chromatic pitch-class vector::
 
-        >>> numbered_chromatic_pitch_class_vector = pitchtools.NumberedChromaticPitchClassVector([13, 13, 14.5, 14.5, 14.5, 6, 6, 6])
+        >>> numbered_chromatic_pitch_class_vector = pitchtools.NumberedChromaticPitchClassVector(
+        ... [13, 13, 14.5, 14.5, 14.5, 6, 6, 6])
 
     ::
 
@@ -127,7 +128,8 @@ class NumberedChromaticPitchClassVector(ObjectVector):
     def chromatic_pitch_class_numbers(self):
         '''Read-only chromatic pitch-class numbers from numbered chromatic pitch-class vector::
 
-            >>> numbered_chromatic_pitch_class_vector = pitchtools.NumberedChromaticPitchClassVector([13, 13, 14.5, 14.5, 14.5, 6, 6, 6])
+            >>> numbered_chromatic_pitch_class_vector = pitchtools.NumberedChromaticPitchClassVector(
+            ... [13, 13, 14.5, 14.5, 14.5, 6, 6, 6])
             >>> numbered_chromatic_pitch_class_vector.chromatic_pitch_class_numbers
             [1, 2.5, 6]
 
@@ -141,9 +143,14 @@ class NumberedChromaticPitchClassVector(ObjectVector):
     def numbered_chromatic_pitch_classes(self):
         '''Read-only numbered chromatic pitch-classes from numbered chromatic pitch-class vector::
 
-            >>> numbered_chromatic_pitch_class_vector = pitchtools.NumberedChromaticPitchClassVector([13, 13, 14.5, 14.5, 14.5, 6, 6, 6])
-            >>> numbered_chromatic_pitch_class_vector.numbered_chromatic_pitch_classes
-            [NumberedChromaticPitchClass(2.5), NumberedChromaticPitchClass(1), NumberedChromaticPitchClass(6)]
+            >>> numbered_chromatic_pitch_class_vector = pitchtools.NumberedChromaticPitchClassVector(
+            ... [13, 13, 14.5, 14.5, 14.5, 6, 6, 6])
+            >>> result = numbered_chromatic_pitch_class_vector.numbered_chromatic_pitch_classes
+            >>> for x in result: x
+            ...
+            NumberedChromaticPitchClass(2.5) 
+            NumberedChromaticPitchClass(1) 
+            NumberedChromaticPitchClass(6)
 
         Return list.
         '''
