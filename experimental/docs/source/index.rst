@@ -66,8 +66,7 @@ Unstable packages (load manually)
 
    experimental/developerscripttools/AbjDevScript/AbjDevScript
    experimental/developerscripttools/AbjGrepScript/AbjGrepScript
-   experimental/developerscripttools/BuildAbjadApiScript/BuildAbjadApiScript
-   experimental/developerscripttools/BuildExperimentalApiScript/BuildExperimentalApiScript
+   experimental/developerscripttools/BuildApiScript/BuildApiScript
    experimental/developerscripttools/CleanScript/CleanScript
    experimental/developerscripttools/CountLinewidthsScript/CountLinewidthsScript
    experimental/developerscripttools/CountToolsScript/CountToolsScript
