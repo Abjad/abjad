@@ -205,7 +205,7 @@ class RenameModulesScript(DeveloperScript):
         print ''
 
     def _rename_old_module(self, kind, old_codebase, old_package_name, old_object_name,
-        new_codebase, new_package, new_object_name):
+        new_codebase, new_package_name, new_object_name):
 
         print 'Renaming old module ...'
 
@@ -216,14 +216,14 @@ class RenameModulesScript(DeveloperScript):
             old_module = old_object_name + '.py'
             old_path = os.path.join(old_tools_path, old_package_name, old_module)
             new_module = new_object_name + '.py'
-            new_path = os.path.join(new_tools_path, new_package, new_module)
+            new_path = os.path.join(new_tools_path, new_package_name, new_module)
             command = 'svn --force mv {} {} > /dev/null'.format(old_path, new_path)
             iotools.spawn_subprocess(command)
 
         elif kind == 'class':
             # move the folder...
             old_class_package = os.path.join(old_tools_path, old_package_name, old_object_name)
-            new_class_package = os.path.join(new_tools_path, new_package, new_object_name)
+            new_class_package = os.path.join(new_tools_path, new_package_name, new_object_name)
             command = 'svn --force mv {} {} > /dev/null'.format(old_class_package, new_class_package)
             iotools.spawn_subprocess(command)
 
@@ -247,8 +247,8 @@ class RenameModulesScript(DeveloperScript):
             old_test_file = 'test_{}_{}.py'.format(old_package_name, old_object_name)
             old_path = os.path.join(old_tools_path, old_package_name, 'test')
             old_path = os.path.join(old_path, old_test_file)
-            new_test_file = 'test_{}_{}.py'.format(new_package, new_object_name)
-            new_path = os.path.join(new_tools_path, new_package, 'test')
+            new_test_file = 'test_{}_{}.py'.format(new_package_name, new_object_name)
+            new_path = os.path.join(new_tools_path, new_package_name, 'test')
             new_path = os.path.join(new_path, new_test_file)
             command = 'svn --force mv {} {} > /dev/null'.format(old_path, new_path)
             iotools.spawn_subprocess(command)
