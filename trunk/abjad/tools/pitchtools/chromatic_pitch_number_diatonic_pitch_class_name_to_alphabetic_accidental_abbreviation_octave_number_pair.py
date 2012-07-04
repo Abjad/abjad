@@ -11,7 +11,7 @@ def chromatic_pitch_number_diatonic_pitch_class_name_to_alphabetic_accidental_ab
     alphabetic accidental abbreviation / octave number pair::
 
         >>> pitchtools.chromatic_pitch_number_diatonic_pitch_class_name_to_alphabetic_accidental_abbreviation_octave_number_pair(14, 'c')
-        ('ss', 5)
+        (Accidental('ss'), 5)
 
     Return pair.
 
@@ -36,11 +36,14 @@ def chromatic_pitch_number_diatonic_pitch_class_name_to_alphabetic_accidental_ab
     semitones = chromatic_pitch_number - nearest_neighbor
 
     # find accidental alphabetic string
-    alphabetic_accidental_abbreviation = Accidental._semitones_to_alphabetic_accidental_abbreviation[semitones]
+    alphabetic_accidental_abbreviation = \
+        Accidental._semitones_to_alphabetic_accidental_abbreviation[semitones]
+    accidental = Accidental(alphabetic_accidental_abbreviation)
 
     # find octave
     octave = chromatic_pitch_number_and_accidental_semitones_to_octave_number(
         chromatic_pitch_number, semitones)
 
     # return unique pair of accidental string and octave
-    return alphabetic_accidental_abbreviation, octave
+    #return alphabetic_accidental_abbreviation, octave
+    return accidental, octave
