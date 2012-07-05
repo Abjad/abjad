@@ -1,7 +1,7 @@
 from abjad.tools import abctools
 from abjad.tools import datastructuretools
 from abjad.tools import sequencetools
-from experimental.quantizationtools.QSchemaEntry import QSchemaEntry
+from experimental.quantizationtools.QSchemaItem import QSchemaItem
 from experimental.quantizationtools.QTarget import QTarget
 import copy
 
@@ -26,14 +26,14 @@ class QSchema(abctools.AbjadObject):
                 items = [(key - minimum, value) for key, value in items.iteritems()]
             items = datastructuretools.ImmutableDictionary(items)
 
-        elif sequencetools.all_are_pairs_of_types(args, int, QSchemaEntry):
+        elif sequencetools.all_are_pairs_of_types(args, int, QSchemaItem):
             items = dict(args)
             minimum = min(items)
             if minimum != 0:
                 items = [(key - minimum, value) for key, value in items.iteritems()]
             items = datastructuretools.ImmutableDictionary(items)
             
-        elif all([isinstance(x, QSchemaEntry) for x in args]):
+        elif all([isinstance(x, QSchemaItem) for x in args]):
             args = [(i, x) for i, x in enumerate(args)]
             items = datastructuretools.ImmutableDictionary(args)
 

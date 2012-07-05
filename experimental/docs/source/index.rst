@@ -159,7 +159,7 @@ Unstable packages (load manually)
    experimental/quantizationtools/QGridSearchTree/QGridSearchTree
    experimental/quantizationtools/QGridTempoLookup/QGridTempoLookup
    experimental/quantizationtools/QSchema/QSchema
-   experimental/quantizationtools/QSchemaEntry/QSchemaEntry
+   experimental/quantizationtools/QSchemaItem/QSchemaItem
    experimental/quantizationtools/TerminalQEvent/TerminalQEvent
    experimental/quantizationtools/SilentQEvent/SilentQEvent
 
