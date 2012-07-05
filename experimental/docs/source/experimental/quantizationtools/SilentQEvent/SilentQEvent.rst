@@ -1,5 +1,5 @@
 quantizationtools.SilentQEvent
-=================================
+==============================
 
 .. inheritance-diagram:: experimental.quantizationtools.SilentQEvent.SilentQEvent.SilentQEvent
    :private-bases:
