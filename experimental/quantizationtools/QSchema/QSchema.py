@@ -1,3 +1,4 @@
+from abc import abstractmethod
 from abjad.tools import abctools
 from abjad.tools import datastructuretools
 from abjad.tools import sequencetools
@@ -15,6 +16,7 @@ class QSchema(abctools.AbjadObject):
 
     ### INITIALIZER ###
 
+    @abstractmethod
     def __init__(self, *args):
         if 1 == len(args) and isinstance(args[0], type(self)):
             items = copy.copy(args[0].items)

@@ -9,12 +9,20 @@ quantizationtools.UnmeteredQSchema
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.quantizationtools.UnmeteredQSchema.UnmeteredQSchema.UnmeteredQSchema.items
+
+    Inherited from :py:class:`quantizationtools.QSchema <experimental.quantizationtools.QSchema.QSchema.QSchema>`
+
 .. autoattribute:: experimental.quantizationtools.UnmeteredQSchema.UnmeteredQSchema.UnmeteredQSchema.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 Special Methods
 ---------------
+
+.. automethod:: experimental.quantizationtools.UnmeteredQSchema.UnmeteredQSchema.UnmeteredQSchema.__call__
+
+    Inherited from :py:class:`quantizationtools.QSchema <experimental.quantizationtools.QSchema.QSchema.QSchema>`
 
 .. automethod:: experimental.quantizationtools.UnmeteredQSchema.UnmeteredQSchema.UnmeteredQSchema.__delattr__
 
@@ -50,7 +58,7 @@ Special Methods
 
 .. automethod:: experimental.quantizationtools.UnmeteredQSchema.UnmeteredQSchema.UnmeteredQSchema.__repr__
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`quantizationtools.QSchema <experimental.quantizationtools.QSchema.QSchema.QSchema>`
 
 .. automethod:: experimental.quantizationtools.UnmeteredQSchema.UnmeteredQSchema.UnmeteredQSchema.__setattr__
 

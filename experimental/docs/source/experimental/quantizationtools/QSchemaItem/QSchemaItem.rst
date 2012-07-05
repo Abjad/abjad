@@ -19,8 +19,6 @@ Read-only Properties
 
 .. autoattribute:: experimental.quantizationtools.QSchemaItem.QSchemaItem.QSchemaItem.tempo
 
-.. autoattribute:: experimental.quantizationtools.QSchemaItem.QSchemaItem.QSchemaItem.time_signature
-
 Methods
 -------
 

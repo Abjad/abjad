@@ -1,5 +1,5 @@
-from abjad.tools import abctools
+from experimental.quantizationtools.QSchema import QSchema
 
 
-class MeteredQSchema(abctools.AbjadObject):
+class MeteredQSchema(QSchema):
     pass

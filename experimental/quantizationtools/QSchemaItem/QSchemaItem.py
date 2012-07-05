@@ -1,3 +1,4 @@
+from abc import abstractmethod
 from abjad.tools import abctools
 from abjad.tools import contexttools
 from abjad.tools import durationtools
@@ -14,10 +15,11 @@ class QSchemaItem(tuple, abctools.ImmutableAbjadObject):
     ### CLASS ATTRIBUTES ###
 
     __slots__ = ()
-    _fields = ('beatspan', 'search_tree', 'tempo', 'time_signature')
+    _fields = ('beatspan', 'search_tree', 'tempo')
 
     ### INITIALIZER ###
 
+    @abstractmethod
     def __new__(cls, beatspan=None, search_tree=None, tempo=None, time_signature=None):
 
         if search_tree is not None:
@@ -59,7 +61,6 @@ class QSchemaItem(tuple, abctools.ImmutableAbjadObject):
 
     @property
     def beatspan(self):
-        '''The beatspan value optionally associated with this QSchemaItem.'''
         return self[0]
 
     @property
@@ -71,9 +72,3 @@ class QSchemaItem(tuple, abctools.ImmutableAbjadObject):
     def tempo(self):
         '''The TempoMark optionally associated with this QSchemaItem.'''
         return self[2]
-
-    @property
-    def time_signature(self):
-        '''The TimeSignatureMark optionally associated with this QSchemaItem.'''
-        return self[3]
-

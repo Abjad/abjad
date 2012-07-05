@@ -1,5 +1,5 @@
-from abjad.tools import abctools
+from experimental.quantizationtools.QSchemaItem import QSchemaItem
 
 
-class UnmeteredQSchemaItem(abctools.AbjadObject):
+class UnmeteredQSchemaItem(QSchemaItem):
     pass

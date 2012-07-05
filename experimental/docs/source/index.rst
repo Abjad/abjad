@@ -146,6 +146,8 @@ Unstable packages (load manually)
    experimental/quantizationtools/QGridDivisionNode/QGridDivisionNode
    experimental/quantizationtools/QGridLeafNode/QGridLeafNode
    experimental/quantizationtools/QGridTree/QGridTree
+   experimental/quantizationtools/QSchema/QSchema
+   experimental/quantizationtools/QSchemaItem/QSchemaItem
    experimental/quantizationtools/QTarget/QTarget
    experimental/quantizationtools/QTargetGrouping/QTargetGrouping
    experimental/quantizationtools/QTargetItem/QTargetItem
@@ -162,8 +164,6 @@ Unstable packages (load manually)
    experimental/quantizationtools/QGridQuantizer/QGridQuantizer
    experimental/quantizationtools/QGridSearchTree/QGridSearchTree
    experimental/quantizationtools/QGridTempoLookup/QGridTempoLookup
-   experimental/quantizationtools/QSchema/QSchema
-   experimental/quantizationtools/QSchemaItem/QSchemaItem
    experimental/quantizationtools/SilentQEvent/SilentQEvent
    experimental/quantizationtools/TerminalQEvent/TerminalQEvent
 
