@@ -11,16 +11,8 @@ import types
 class ComponentSelector(Selector):
     r'''.. versionadded:: 1.0
 
-    A frozen request to pick out an arbitrary object in score.
 
-    (Object-oriented delayed evaluation.)
-
-    Score object indicator objects afford the identification of score
-    objects that do not yet exist.
-
-    Initialize with different combinations of optional `segment`, `context`, `klass`, `index` and `predicate`. 
-
-    Pick out the entire score::
+    Select the entire score::
 
         >>> from experimental import selectortools
         >>> from experimental import specificationtools
@@ -29,12 +21,6 @@ class ComponentSelector(Selector):
 
         >>> selectortools.ComponentSelector()
         ComponentSelector()
-
-    Pick out the segment with name ``'red'``::
-
-        >>> selectortools.ComponentSelector(segment='red')
-        ComponentSelector(segment='red')
-
 
     Pick context ``'Voice 1'`` out of the segment with name ``'red'``::
 

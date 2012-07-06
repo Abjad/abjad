@@ -13,7 +13,7 @@ class DivisionSelector(BackgroundElementSelector):
         >>> selectortools.DivisionSelector('Voice 1', index=3)
         DivisionSelector('Voice 1', index=3)
 
-    Select the last division to start during segment ``'red'`` in ``'Voice 1'``::
+    Select the last ``'Voice 1'`` division to start during segment ``'red'``::
 
         >>> from experimental import timespantools
 
@@ -42,8 +42,8 @@ class DivisionSelector(BackgroundElementSelector):
             index=-1
             )
 
-    Select the last division to start during the last measure to start during 
-    segment ``'red'`` in ``'Voice 1'``::
+    Select the last ``'Voice 1'`` division to start during the last measure to start during 
+    segment ``'red'``::
 
         >>> timespan = selectortools.SegmentSelector(index='red').timespan
         >>> inequality = timespantools.expr_starts_during_timespan(timespan=timespan)
