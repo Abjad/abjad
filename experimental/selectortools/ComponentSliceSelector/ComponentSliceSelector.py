@@ -13,27 +13,27 @@ class ComponentSliceSelector(Selector):
 
     ::
 
-        >>> voice = selectortools.ComponentSelector(context='Voice 1')
+        >>> voice = selectortools.CounttimeCounttimeComponentSelector(context='Voice 1')
 
     ::
 
         >>> selectortools.ComponentSliceSelector(voice, stop=5)
-        ComponentSliceSelector(ComponentSelector(context='Voice 1'), stop=5)
+        ComponentSliceSelector(CounttimeComponentSelector(context='Voice 1'), stop=5)
 
     Select the last five elements of ``'Voice 1'``::
 
         >>> selectortools.ComponentSliceSelector(voice, start=-5)
-        ComponentSliceSelector(ComponentSelector(context='Voice 1'), start=-5)
+        ComponentSliceSelector(CounttimeComponentSelector(context='Voice 1'), start=-5)
 
     Select all elements of  ``'Voice 1'`` between ``5`` and ``-5``::
 
         >>> selectortools.ComponentSliceSelector(voice, start=5, stop=-5)
-        ComponentSliceSelector(ComponentSelector(context='Voice 1'), start=5, stop=-5)
+        ComponentSliceSelector(CounttimeComponentSelector(context='Voice 1'), start=5, stop=-5)
 
     Select all elements of of ``'Voice 1'``::
 
         >>> selectortools.ComponentSliceSelector(voice)
-        ComponentSliceSelector(ComponentSelector(context='Voice 1'))
+        ComponentSliceSelector(CounttimeComponentSelector(context='Voice 1'))
 
     Slice selector interface mirrors Python slice syntax as closely as possible.
 
@@ -48,7 +48,7 @@ class ComponentSliceSelector(Selector):
 
     def __init__(self, container, start=None, stop=None):
         from experimental import selectortools
-        assert isinstance(container, selectortools.ComponentSelector), repr(container)
+        assert isinstance(container, selectortools.CounttimeCounttimeComponentSelector), repr(container)
         assert isinstance(start, (int, type(None))), repr(start)
         assert isinstance(stop, (int, type(None))), repr(stop)
         Selector.__init__(self)

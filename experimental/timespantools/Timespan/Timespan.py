@@ -85,7 +85,7 @@ class Timespan(AbjadObject):
 
     Select the timespan of the segment with name ``'red'``::
 
-        >>> anchor = selectortools.ComponentSelector(segment='red')
+        >>> anchor = selectortools.CounttimeCounttimeComponentSelector(segment='red')
 
     ::
 
@@ -95,11 +95,11 @@ class Timespan(AbjadObject):
     ::
 
         >>> timespantools.Timespan(start=start, stop=stop)
-        Timespan(ComponentSelector(segment='red'))
+        Timespan(CounttimeComponentSelector(segment='red'))
 
     Select the timespan of the first measure in the segment with name ``'red'``::
 
-        >>> anchor = selectortools.ComponentSelector(segment='red', klass=Measure)
+        >>> anchor = selectortools.CounttimeCounttimeComponentSelector(segment='red', klass=Measure)
 
     ::
 
@@ -109,11 +109,11 @@ class Timespan(AbjadObject):
     ::
 
         >>> timespantools.Timespan(start=start, stop=stop)
-        Timespan(ComponentSelector(segment='red', klass=measuretools.Measure))
+        Timespan(CounttimeComponentSelector(segment='red', klass=measuretools.Measure))
 
     Select the timespan of the first division in the segment with name ``'red'``::
 
-        >>> anchor = selectortools.ComponentSelector(segment='red', klass=specificationtools.Division)
+        >>> anchor = selectortools.CounttimeCounttimeComponentSelector(segment='red', klass=specificationtools.Division)
 
     ::
 
@@ -123,39 +123,39 @@ class Timespan(AbjadObject):
     ::
 
         >>> timespantools.Timespan(start=start, stop=stop)
-        Timespan(ComponentSelector(segment='red', klass=specificationtools.Division))
+        Timespan(CounttimeComponentSelector(segment='red', klass=specificationtools.Division))
 
     Select the timespan starting at the left edge of the segment with the name ``'red'``
     and stopping at the right edge of the segment with the name ``'blue'``::
 
-        >>> anchor = selectortools.ComponentSelector(segment='red')
+        >>> anchor = selectortools.CounttimeCounttimeComponentSelector(segment='red')
         >>> start = timespantools.Timepoint(anchor=anchor)
 
     ::
 
-        >>> anchor = selectortools.ComponentSelector(segment='blue')
+        >>> anchor = selectortools.CounttimeCounttimeComponentSelector(segment='blue')
         >>> stop = timespantools.Timepoint(anchor=anchor, edge=Right)
 
     ::
 
         >>> timespantools.Timespan(start=start, stop=stop)
-        Timespan(start=Timepoint(anchor=ComponentSelector(segment='red')), stop=Timepoint(anchor=ComponentSelector(segment='blue'), edge=Right))
+        Timespan(start=Timepoint(anchor=CounttimeComponentSelector(segment='red')), stop=Timepoint(anchor=CounttimeComponentSelector(segment='blue'), edge=Right))
 
     Select the timespan starting at the left edge of the last measure in the segment with name ``'red'``
     and stopping at the right edge of the first measure in the segment with name ``'blue'``::
 
-        >>> anchor = selectortools.ComponentSelector(segment='red', klass=Measure, index=-1)
+        >>> anchor = selectortools.CounttimeCounttimeComponentSelector(segment='red', klass=Measure, index=-1)
         >>> start = timespantools.Timepoint(anchor=anchor)
 
     ::
 
-        >>> anchor = selectortools.ComponentSelector(segment='blue', klass=Measure)
+        >>> anchor = selectortools.CounttimeCounttimeComponentSelector(segment='blue', klass=Measure)
         >>> stop = timespantools.Timepoint(anchor=anchor, edge=Right)
 
     ::
 
         >>> timespantools.Timespan(start=start, stop=stop)
-        Timespan(start=Timepoint(anchor=ComponentSelector(segment='red', klass=measuretools.Measure, index=-1)), stop=Timepoint(anchor=ComponentSelector(segment='blue', klass=measuretools.Measure), edge=Right))
+        Timespan(start=Timepoint(anchor=CounttimeComponentSelector(segment='red', klass=measuretools.Measure, index=-1)), stop=Timepoint(anchor=CounttimeComponentSelector(segment='blue', klass=measuretools.Measure), edge=Right))
 
     Examples below reference the timespan defined immediately above::
 
@@ -294,7 +294,7 @@ class Timespan(AbjadObject):
         '''Timespan start specified by user.
 
             >>> timespan.start
-            Timepoint(anchor=ComponentSelector(segment='red', klass=measuretools.Measure, index=-1))
+            Timepoint(anchor=CounttimeComponentSelector(segment='red', klass=measuretools.Measure, index=-1))
 
         Value of none is taken equal to the left edge of score.
 
@@ -307,7 +307,7 @@ class Timespan(AbjadObject):
         '''Timespan stop specified by user.
 
             >>> timespan.stop
-            Timepoint(anchor=ComponentSelector(segment='blue', klass=measuretools.Measure), edge=Right)
+            Timepoint(anchor=CounttimeComponentSelector(segment='blue', klass=measuretools.Measure), edge=Right)
 
         Value of none is taken equal to the right edge of score.  
 

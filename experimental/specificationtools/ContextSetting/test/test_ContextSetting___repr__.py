@@ -1,5 +1,5 @@
 from experimental.specificationtools.ContextSelection import ContextSelection
-from experimental.selectortools.ComponentSelector import ComponentSelector
+from experimental.selectortools.CounttimeCounttimeComponentSelector import CounttimeComponentSelector
 from experimental.specificationtools.ContextSetting import ContextSetting
 from experimental.timespantools.Timepoint import Timepoint
 from experimental.timespantools.Timespan import Timespan
@@ -11,7 +11,7 @@ def test_ContextSetting___repr___01():
     '''
     py.test.skip('make repr evaluable again.')
 
-    anchor = ComponentSelector(segment='1')
+    anchor = CounttimeComponentSelector(segment='1')
     start = Timepoint(anchor=anchor)
     stop = Timepoint(anchor=anchor, edge=Right)
     timespan = Timespan(start=start, stop=stop)

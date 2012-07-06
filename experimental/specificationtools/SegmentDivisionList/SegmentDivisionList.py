@@ -20,13 +20,13 @@ class SegmentDivisionList(DivisionList):
         >>> segment = specification.append_segment()
 
         >>> segment.set_time_signatures(segment, [(4, 8), (3, 8)])
-        Setting(Selection(contexts=['Grouped Rhythmic Staves Score'], timespan=Timespan(ComponentSelector(segment='1'))), 'time_signatures', [(4, 8), (3, 8)], persistent=True, truncate=False)
+        Setting(Selection(contexts=['Grouped Rhythmic Staves Score'], timespan=Timespan(CounttimeComponentSelector(segment='1'))), 'time_signatures', [(4, 8), (3, 8)], persistent=True, truncate=False)
 
         >>> segment.set_divisions(segment.v1, [(3, 16)])
-        Setting(Selection(contexts=['Voice 1'], timespan=Timespan(ComponentSelector(segment='1'))), 'divisions', [(3, 16)], persistent=True, truncate=False)
+        Setting(Selection(contexts=['Voice 1'], timespan=Timespan(CounttimeComponentSelector(segment='1'))), 'divisions', [(3, 16)], persistent=True, truncate=False)
 
         >>> segment.set_rhythm(segment, library.thirty_seconds)
-        Setting(Selection(contexts=['Grouped Rhythmic Staves Score'], timespan=Timespan(ComponentSelector(segment='1'))), 'rhythm', OutputBurnishedSignalFilledTimeTokenMaker('thirty_seconds'), persistent=True, truncate=False)
+        Setting(Selection(contexts=['Grouped Rhythmic Staves Score'], timespan=Timespan(CounttimeComponentSelector(segment='1'))), 'rhythm', OutputBurnishedSignalFilledTimeTokenMaker('thirty_seconds'), persistent=True, truncate=False)
 
         >>> segment = specification.append_segment()
         >>> segment = specification.append_segment()

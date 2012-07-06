@@ -93,12 +93,12 @@ class SegmentSpecification(Specification):
         '''Segment score object indicator.
 
             >>> segment.indicator
-            ComponentSelector(segment='1')
+            CounttimeComponentSelector(segment='1')
 
         Return score object indicator.
         '''
         from experimental import selectortools
-        return selectortools.ComponentSelector(segment=self)
+        return selectortools.CounttimeCounttimeComponentSelector(segment=self)
         
     @property
     def name(self):
@@ -127,7 +127,7 @@ class SegmentSpecification(Specification):
         '''Segment start.
 
             >>> segment.start
-            Timepoint(anchor=ComponentSelector(segment='1'), edge=Left)
+            Timepoint(anchor=CounttimeComponentSelector(segment='1'), edge=Left)
 
         Return timepoint.
         '''
@@ -139,7 +139,7 @@ class SegmentSpecification(Specification):
         '''Segment stop.
 
             >>> segment.stop
-            Timepoint(anchor=ComponentSelector(segment='1'), edge=Right)
+            Timepoint(anchor=CounttimeComponentSelector(segment='1'), edge=Right)
 
         Return timepoint.
         '''
@@ -170,7 +170,7 @@ class SegmentSpecification(Specification):
         '''Segment timespan.
 
             >>> segment.timespan
-            Timespan(ComponentSelector(segment='1'))
+            Timespan(CounttimeComponentSelector(segment='1'))
 
         Return timespan.
         '''

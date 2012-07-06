@@ -8,22 +8,22 @@ def segments_to_timespan(start_segment, stop_segment=None):
     ::
 
         >>> specificationtools.segments_to_timespan('red')
-        Timespan(ComponentSelector(segment='red'))
+        Timespan(CounttimeComponentSelector(segment='red'))
 
     Change `start_segment` index to timespan::
 
         >>> specificationtools.segments_to_timespan(0)
-        Timespan(ComponentSelector(segment=0))
+        Timespan(CounttimeComponentSelector(segment=0))
 
     Change segments from `start_segment` name to `stop_segment` name to timespan::
 
         >>> specificationtools.segments_to_timespan('red', stop_segment='blue')
-        Timespan(start=Timepoint(anchor=ComponentSelector(segment='red'), edge=Left), stop=Timepoint(anchor=ComponentSelector(segment='blue'), edge=Right))
+        Timespan(start=Timepoint(anchor=CounttimeComponentSelector(segment='red'), edge=Left), stop=Timepoint(anchor=CounttimeComponentSelector(segment='blue'), edge=Right))
 
     Change segments from `start_segment` index to `stop_segment` index to timespan::
 
         >>> specificationtools.segments_to_timespan(0, stop_segment=3)
-        Timespan(start=Timepoint(anchor=ComponentSelector(segment=0), edge=Left), stop=Timepoint(anchor=ComponentSelector(segment=3), edge=Right))
+        Timespan(start=Timepoint(anchor=CounttimeComponentSelector(segment=0), edge=Left), stop=Timepoint(anchor=CounttimeComponentSelector(segment=3), edge=Right))
 
     Return timespan.
 
@@ -39,7 +39,7 @@ def segments_to_timespan(start_segment, stop_segment=None):
     else:
         start_segment = specificationtools.expr_to_segment_name(start_segment)
 
-    start_anchor = selectortools.ComponentSelector(segment=start_segment)
+    start_anchor = selectortools.CounttimeCounttimeComponentSelector(segment=start_segment)
     start_timepoint = timespantools.Timepoint(anchor=start_anchor, edge=Left)
 
     if stop_segment is None:
@@ -49,7 +49,7 @@ def segments_to_timespan(start_segment, stop_segment=None):
             pass
         else:
             stop_segment = specificationtools.expr_to_segment_name(stop_segment)
-        stop_anchor = selectortools.ComponentSelector(segment=stop_segment)
+        stop_anchor = selectortools.CounttimeCounttimeComponentSelector(segment=stop_segment)
         stop_timepoint = timespantools.Timepoint(anchor=stop_anchor, edge=Right)
 
     return timespantools.Timespan(start=start_timepoint, stop=stop_timepoint)
