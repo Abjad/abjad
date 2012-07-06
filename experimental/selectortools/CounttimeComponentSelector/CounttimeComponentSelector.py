@@ -1,6 +1,7 @@
 from abjad.tools import componenttools
 from abjad.tools import contexttools
 from abjad.tools import mathtools
+from abjad.tools import voicetools
 from experimental.specificationtools.Callback import Callback
 from experimental.specificationtools.Division import Division
 from experimental.specificationtools.SegmentSpecification import SegmentSpecification
@@ -12,47 +13,63 @@ class CounttimeComponentSelector(Selector):
     r'''.. versionadded:: 1.0
 
 
-    Select the entire score::
+    Select ``'Voice 1'`` (score-tree) measure ``3`` to start during segment ``'red'``::
 
         >>> from experimental import selectortools
         >>> from experimental import specificationtools
+        >>> from experimental import timespantools
 
     ::
 
-        >>> selectortools.CounttimeComponentSelector()
-        CounttimeComponentSelector()
+        >>> timespan = selectortools.SegmentSelector(index='red').timespan
+        >>> inequality = timespantools.expr_starts_during_timespan(timespan=timespan)
 
-    Pick context ``'Voice 1'`` out of the segment with name ``'red'``::
+    ::
 
-        >>> selectortools.CounttimeComponentSelector(segment='red', context='Voice 1')
-        CounttimeComponentSelector(segment='red', context='Voice 1')
+        >>> selector = selectortools.CounttimeComponentSelector(
+        ... 'Voice 1', inequality=inequality, klass=Measure, index=3)
 
-    Pick the first measure in context ``'Voice 1'`` out of the segment with name ``'red'``::
+    ::
 
-        >>> selectortools.CounttimeComponentSelector(segment='red', context='Voice 1', klass=Measure)
-        CounttimeComponentSelector(segment='red', context='Voice 1', klass=measuretools.Measure)
+        >>> z(selector)
+        selectortools.CounttimeComponentSelector(
+            'Voice 1',
+            inequality=timespantools.TimespanInequality(
+                timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
+                timespantools.Timespan(
+                    selector=selectortools.SegmentSelector(
+                        index='red'
+                        )
+                    )
+                ),
+            klass=measuretools.Measure,
+            index=3
+            )
     
-    Pick the first division in context ``'Voice 1'`` out of the segment with name ``'red'``::
+    Select ``'Voice 1'`` note ``3`` to start during segment ``'red'``::
 
-        >>> from experimental.specificationtools.Division import Division
+        >>> selector = selectortools.CounttimeComponentSelector(
+        ... 'Voice 1', inequality=inequality, klass=Note, index=3)
 
     ::
 
-        >>> selectortools.CounttimeComponentSelector(segment='red', context='Voice 1', klass=Division)
-        CounttimeComponentSelector(segment='red', context='Voice 1', klass=specificationtools.Division)
+        >>> z(selector)
+        selectortools.CounttimeComponentSelector(
+            'Voice 1',
+            inequality=timespantools.TimespanInequality(
+                timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
+                timespantools.Timespan(
+                    selector=selectortools.SegmentSelector(
+                        index='red'
+                        )
+                    )
+                ),
+            klass=notetools.Note,
+            index=3
+            )
 
-    Pick the first note in context ``'Voice 1'`` out of the segment with name ``'red'``::
-
-        >>> selectortools.CounttimeComponentSelector(segment='red', context='Voice 1', klass=Note)
-        CounttimeComponentSelector(segment='red', context='Voice 1', klass=notetools.Note)
-
-    Pick note ``20`` in context ``'Voice 1'`` out of the segment with name ``'red'``::
-
-        >>> selectortools.CounttimeComponentSelector(segment='red', context='Voice 1', klass=Note, index=20)
-        CounttimeComponentSelector(segment='red', context='Voice 1', klass=notetools.Note, index=20)
-
-    Pick the first chord with at least six pitches
-    in context ``'Voice 1'`` out of the segment with name ``'red'``::
+    Select ``'Voice 1'`` chord ``20`` with at least six pitches
+    to start during segment ``'red'``::
 
         >>> from experimental.specificationtools.Callback import Callback
 
@@ -63,46 +80,47 @@ class CounttimeComponentSelector(Selector):
 
     ::
 
-        >>> selectortools.CounttimeComponentSelector(segment='red', context='Voice 1', klass=Chord, predicate=predicate)
-        CounttimeComponentSelector(segment='red', context='Voice 1', klass=chordtools.Chord, predicate=Callback('lambda x: 6 <= len(x)'))
+        >>> selector = selectortools.CounttimeComponentSelector(
+        ... 'Voice 1', inequality=inequality, klass=Chord, predicate=predicate, index=20)
 
-    Pick chord ``20`` with at least six pitches
-    in context ``'Voice 1'`` out of the segment with name ``'red'``::
+    ::
 
-        >>> selectortools.CounttimeComponentSelector(segment='red', context='Voice 1', klass=Chord, predicate=predicate, index=20)
-        CounttimeComponentSelector(segment='red', context='Voice 1', klass=chordtools.Chord, predicate=Callback('lambda x: 6 <= len(x)'), index=20)
+        >>> z(selector)
+        selectortools.CounttimeComponentSelector(
+            'Voice 1',
+            inequality=timespantools.TimespanInequality(
+                timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
+                timespantools.Timespan(
+                    selector=selectortools.SegmentSelector(
+                        index='red'
+                        )
+                    )
+                ),
+            klass=chordtools.Chord,
+            predicate=specificationtools.Callback('lambda x: 6 <= len(x)'),
+            index=20
+            )
 
-    Examples below reference the score object indicator defined immediately above::
+    Examples below reference the counttime component selector defined immediately above::
 
-        >>> score_object_indicator = _
+        >>> selector = _
 
-    Score object indicators are immutable.
-
-    Limitations of the design:
-
-    Score object indicators do not afford the specification of nested objects.
-    So it is not possible to pick the first leaf of the last tuplet anywhere in score.
-
-    When or if we decide we want such functionality it will be necessary to initialize score 
-    object indicators with some type of nested object.
+    Counttime component selectors are immutable.
     '''
 
     ### INITIALIZER ###
 
-    def __init__(self, segment=None, context=None, klass=None, predicate=None, index=None):
-        if isinstance(segment, SegmentSpecification):
-            segment = segment.name
-        assert isinstance(segment, (str, int, type(None))), repr(segment)
-        if isinstance(context, contexttools.Context):
-            context = context.name
-        assert isinstance(context, (str, type(None))), repr(context)
-        if klass is not None:
-            assert issubclass(klass, (componenttools.Component, Division)), repr(klass)
+    def __init__(self, voice, inequality=None, klass=None, predicate=None, index=None):
+        from experimental import specificationtools
+        from experimental import timespantools
+        assert isinstance(voice, (voicetools.Voice, str)), repr(voice)
+        assert isinstance(inequality, (timespantools.TimespanInequality, type(None))), repr(inequality)
+        assert klass is None or specificationtools.is_counttime_component_klass(klass), repr(klass)
         assert isinstance(predicate, (Callback, type(None))), repr(predicate)
         assert isinstance(index, (int, type(None))), repr(index)
         Selector.__init__(self)
-        self._segment = segment
-        self._context = context
+        self._voice = specificationtools.expr_to_component_name(voice)
+        self._inequality = inequality
         self._klass = klass
         self._predicate = predicate
         self._index = index
@@ -110,8 +128,8 @@ class CounttimeComponentSelector(Selector):
     ### SPECIAL METHODS ###
 
     def __eq__(self, other):
-        '''True when `other` is a score object indicator with `segment`,
-        `context`, `klass`, `predicate` and `index` all equal to those of `self`.
+        '''True when `other` is a counttime component selector with
+        public properties equal to those of `self`.
         
         Otherwise false.
         
@@ -119,9 +137,9 @@ class CounttimeComponentSelector(Selector):
         '''
         if not isinstance(other, type(self)):
             return False
-        elif not self.segment == other.segment:
+        elif not self.voice == other.voice:
             return False
-        elif not self.context == other.context:
+        elif not self.inequality == other.inequality:
             return False
         elif not self.klass == other.klass:
             return False
@@ -144,21 +162,10 @@ class CounttimeComponentSelector(Selector):
     ### READ-ONLY PUBLIC PROPERTIES ###
     
     @property
-    def context(self):
-        '''Name of score object indicator context specified by user::
-
-            >>> score_object_indicator.context
-            'Voice 1'
-
-        Return string or none.
-        '''
-        return self._context
-
-    @property
     def index(self):
-        '''Index of score object indicator specified by user::
+        '''Index of counttime component selector specified by user::
 
-            >>> score_object_indicator.index
+            >>> selector.index
             20
 
         Return integer or none.
@@ -166,98 +173,106 @@ class CounttimeComponentSelector(Selector):
         return self._index
 
     @property
-    def is_context(self):
-        '''True when `context` is not none but all other attributes are none.
+    def inequality(self):
+        '''Timespan inequality of counttime component select specified by user.
 
-        Otherwise false.
-    
-        Return boolean.
+        Return timespan inequality or none.
         '''
-        if self.context is not None:
-            other_attributes = (self.index, self.klass, self.predicate, self.segment)
-            if all([x is None for x in other_attributes]):
-                return True
-        return False
+        return self._inequality
 
-    @property
-    def is_klass(self):
-        '''True when `klass` is not none but all other attributes are none.
+#    @property
+#    def is_context(self):
+#        '''True when `context` is not none but all other attributes are none.
+#
+#        Otherwise false.
+#    
+#        Return boolean.
+#        '''
+#        if self.context is not None:
+#            other_attributes = (self.index, self.klass, self.predicate, self.segment)
+#            if all([x is None for x in other_attributes]):
+#                return True
+#        return False
 
-        Otherwise false.
-    
-        Return boolean.
-        '''
-        if self.klass is not None:
-            other_attributes = (self.context, self.index, self.predicate, self.segment)
-            if all([x is None for x in other_attributes]):
-                return True
-        return False
+#    @property
+#    def is_klass(self):
+#        '''True when `klass` is not none but all other attributes are none.
+#
+#        Otherwise false.
+#    
+#        Return boolean.
+#        '''
+#        if self.klass is not None:
+#            other_attributes = (self.context, self.index, self.predicate, self.segment)
+#            if all([x is None for x in other_attributes]):
+#                return True
+#        return False
 
-    @property
-    def is_score(self):
-        '''True all attributes are none.
+#    @property
+#    def is_score(self):
+#        '''True all attributes are none.
+#
+#        Otherwise false.
+#
+#        Return boolean.
+#        '''
+#        other_attributes = (self.context, self.index, self.klass, self.predicate, self.segment)
+#        if all([x is None for x in other_attributes]):
+#            return True
+#        return False
 
-        Otherwise false.
-
-        Return boolean.
-        '''
-        other_attributes = (self.context, self.index, self.klass, self.predicate, self.segment)
-        if all([x is None for x in other_attributes]):
-            return True
-        return False
-
-    @property
-    def is_segment(self):
-        '''True when `segment` is not none but all other attributes are none.
-
-        Otherwise false.
-
-        Return boolean.
-        '''
-        if self.segment is not None:
-            other_attributes = (self.context, self.index, self.klass, self.predicate)
-            if all([x is None for x in other_attributes]):
-                return True
-        return False
+#    @property
+#    def is_segment(self):
+#        '''True when `segment` is not none but all other attributes are none.
+#
+#        Otherwise false.
+#
+#        Return boolean.
+#        '''
+#        if self.segment is not None:
+#            other_attributes = (self.context, self.index, self.klass, self.predicate)
+#            if all([x is None for x in other_attributes]):
+#                return True
+#        return False
 
     @property
     def klass(self):
-        '''Class of score object indicator specified by user::
+        '''Class of counttime component selector specified by user::
 
-            >>> score_object_indicator.klass is Chord
+            >>> selector.klass is Chord
             True
 
-        Return Abjad component class, division class or none.
+        Return counttime component class or none.
         '''
         return self._klass
 
     @property
     def predicate(self):
-        '''Predicate of score object indicator specified by user::
+        '''Predicate of counttime component selector specified by user::
 
-            >>> score_object_indicator.predicate
+            >>> selector.predicate
             Callback('lambda x: 6 <= len(x)')
 
         Return callback or none.
         '''
         return self._predicate
 
-    @property
-    def segment(self):
-        '''Name of score object indicator segment specified by user::
-
-            >>> score_object_indicator.segment
-            'red'
-
-        Return string or none.
-        '''
-        return self._segment
+#    @property
+#    def segment(self):
+#        '''Name of counttime component selector segment specified by user::
+#
+#            >>> selector.segment
+#            'red'
+#
+#        Return string or none.
+#        '''
+#        return self._segment
 
     @property
     def start(self):
-        '''Timepoint anchored to left edge of score object::
+        '''Leftmost timepoint of counttime component::
 
-            >>> score_object_indicator.start
+            >>> selector.start
             Timepoint(anchor=CounttimeComponentSelector(segment='red', context='Voice 1', klass=chordtools.Chord, predicate=Callback('lambda x: 6 <= len(x)'), index=20), edge=Left)
 
         Return timepoint.
@@ -267,9 +282,9 @@ class CounttimeComponentSelector(Selector):
 
     @property
     def stop(self):
-        '''Timepoint anchored to right edge of score object::
+        '''Rightmost timepoint of counttime component::
 
-            >>> score_object_indicator.start
+            >>> selector.start
             Timepoint(anchor=CounttimeComponentSelector(segment='red', context='Voice 1', klass=chordtools.Chord, predicate=Callback('lambda x: 6 <= len(x)'), index=20), edge=Left)
 
         Return timepoint.
@@ -281,7 +296,7 @@ class CounttimeComponentSelector(Selector):
     def timepoints(self):
         '''Start and stop timepoints of score object::
 
-            >>> for x in score_object_indicator.timepoints: x
+            >>> for x in selector.timepoints: x
             ... 
             Timepoint(anchor=CounttimeComponentSelector(segment='red', context='Voice 1', klass=chordtools.Chord, predicate=Callback('lambda x: 6 <= len(x)'), index=20), edge=Left)
             Timepoint(anchor=CounttimeComponentSelector(segment='red', context='Voice 1', klass=chordtools.Chord, predicate=Callback('lambda x: 6 <= len(x)'), index=20), edge=Right)
@@ -292,9 +307,9 @@ class CounttimeComponentSelector(Selector):
 
     @property
     def timespan(self):
-        '''Timespan of score object::
+        '''Timespan of counttime component::
 
-            >>> score_object_indicator.timespan
+            >>> selector.timespan
             Timespan(CounttimeComponentSelector(segment='red', context='Voice 1', klass=chordtools.Chord, predicate=Callback('lambda x: 6 <= len(x)'), index=20))
 
         Return timespan.
@@ -303,3 +318,14 @@ class CounttimeComponentSelector(Selector):
 
         start, stop = self.timepoints
         return timespantools.Timespan(start=start, stop=stop)
+
+    @property
+    def voice(self):
+        '''Voice of counttime component selector specified by user::
+
+            >>> selector.voice
+            'Voice 1'
+
+        Return string or none.
+        '''
+        return self._voice

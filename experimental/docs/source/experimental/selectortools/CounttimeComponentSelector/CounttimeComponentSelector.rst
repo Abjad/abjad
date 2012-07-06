@@ -9,23 +9,13 @@ selectortools.CounttimeComponentSelector
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.context
-
 .. autoattribute:: experimental.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.index
 
-.. autoattribute:: experimental.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.is_context
-
-.. autoattribute:: experimental.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.is_klass
-
-.. autoattribute:: experimental.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.is_score
-
-.. autoattribute:: experimental.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.is_segment
+.. autoattribute:: experimental.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.inequality
 
 .. autoattribute:: experimental.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.klass
 
 .. autoattribute:: experimental.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.predicate
-
-.. autoattribute:: experimental.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.segment
 
 .. autoattribute:: experimental.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.start
 
@@ -38,6 +28,8 @@ Read-only Properties
 .. autoattribute:: experimental.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.timepoints
 
 .. autoattribute:: experimental.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.timespan
+
+.. autoattribute:: experimental.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.voice
 
 Special Methods
 ---------------
