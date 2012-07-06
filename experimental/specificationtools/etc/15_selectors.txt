@@ -1,0 +1,32 @@
+SELECTORS.
+
+
+The thinking in the previous doc (14_selectors.txt) goes off course where it tries
+to accommodate (x, y, z)-style score-index component selection. Why is this?
+I think the reason is because (x, y, z)-style score-index component selection
+isn't really composerly. The logic in componenttools.component_to_score_index()
+has been in place (and stable) in the system for several years. And in that
+time I've never once used the function compositionally. (The function gets
+used as a part of other more complicated routines in the system.) So I think
+this means that trying to accommodate (x, y, z)-style score-index component
+selection up front in the process of generalized component selection is misguided.
+
+What should be fronted in the process of genealized component selection is the
+ability to identify any visible component on a page of score with any of the
+other items on the page around it. Examples of this are the following:
+
+    * "the last note in measure 46"
+    * "the last three notes in measure 46"
+    * "everything except the last three notes in measures 45 - 48"
+    * "all the toplevel tuplets in measures 45 - 48"
+    * "all the notes starting / beginning / ending in timespan t"
+
+There's also a need for a thought-out process of selector reference nesting, too.
+In order to say things like "the last rest of the last tuplet starting in segment 'red'".
+How much nesting? We can safely leave contexts (like voices, staves, staff groups and scores)
+out of the selector reference regime because contexts will always be referred to explicitly
+in some other way when making a selection (usually by just listing the contexts to which
+a selection should be applied). Of the remaning components it is tuplets, leaves,
+measures and naked containers that can make up the 'shapestream' of any given voice.
+So our selector reference regime will need to be able to accommodate the nesting
+possible between leaves, tuplets, measures and naked containers present in any voice.
