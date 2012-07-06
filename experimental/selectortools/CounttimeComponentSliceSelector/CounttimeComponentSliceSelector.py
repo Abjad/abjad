@@ -1,7 +1,7 @@
 from experimental.selectortools.Selector import Selector
 
 
-class ComponentSliceSelector(Selector):
+class CounttimeComponentSliceSelector(Selector):
     r'''.. versionadded:: 1.0
 
     Select `container` elements from `start` to `stop`.
@@ -17,23 +17,23 @@ class ComponentSliceSelector(Selector):
 
     ::
 
-        >>> selectortools.ComponentSliceSelector(voice, stop=5)
-        ComponentSliceSelector(CounttimeComponentSelector(context='Voice 1'), stop=5)
+        >>> selectortools.CounttimeComponentSliceSelector(voice, stop=5)
+        CounttimeComponentSliceSelector(CounttimeComponentSelector(context='Voice 1'), stop=5)
 
     Select the last five elements of ``'Voice 1'``::
 
-        >>> selectortools.ComponentSliceSelector(voice, start=-5)
-        ComponentSliceSelector(CounttimeComponentSelector(context='Voice 1'), start=-5)
+        >>> selectortools.CounttimeComponentSliceSelector(voice, start=-5)
+        CounttimeComponentSliceSelector(CounttimeComponentSelector(context='Voice 1'), start=-5)
 
     Select all elements of  ``'Voice 1'`` between ``5`` and ``-5``::
 
-        >>> selectortools.ComponentSliceSelector(voice, start=5, stop=-5)
-        ComponentSliceSelector(CounttimeComponentSelector(context='Voice 1'), start=5, stop=-5)
+        >>> selectortools.CounttimeComponentSliceSelector(voice, start=5, stop=-5)
+        CounttimeComponentSliceSelector(CounttimeComponentSelector(context='Voice 1'), start=5, stop=-5)
 
     Select all elements of of ``'Voice 1'``::
 
-        >>> selectortools.ComponentSliceSelector(voice)
-        ComponentSliceSelector(CounttimeComponentSelector(context='Voice 1'))
+        >>> selectortools.CounttimeComponentSliceSelector(voice)
+        CounttimeComponentSliceSelector(CounttimeComponentSelector(context='Voice 1'))
 
     Slice selector interface mirrors Python slice syntax as closely as possible.
 
