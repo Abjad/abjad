@@ -1,6 +1,6 @@
 from abjad.tools import durationtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from experimental.selectortools.CounttimeCounttimeComponentSelector import CounttimeComponentSelector
+from experimental.selectortools.CounttimeComponentSelector import CounttimeComponentSelector
 import fractions
 
 
@@ -57,7 +57,7 @@ class Timepoint(AbjadObject):
 
     Pick out the timepoint equal to the left edge of the segment with name ``'red'``::
 
-        >>> anchor = selectortools.CounttimeCounttimeComponentSelector(segment='red')
+        >>> anchor = selectortools.CounttimeComponentSelector(segment='red')
 
     ::
 
@@ -89,7 +89,7 @@ class Timepoint(AbjadObject):
     Pick out the timepoint equal to the left edge of note ``10`` in context ``'Voice 1'`` of
     the segment with name ``'red'``::
 
-        >>> anchor = selectortools.CounttimeCounttimeComponentSelector(segment='red', context='Voice 1', klass=Note, index=10)
+        >>> anchor = selectortools.CounttimeComponentSelector(segment='red', context='Voice 1', klass=Note, index=10)
 
     ::
 

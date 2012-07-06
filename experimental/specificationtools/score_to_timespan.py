@@ -22,7 +22,7 @@ def score_to_timespan(score=None):
         score_name = specificationtools.expr_to_score_name(score)
 
     # make score indicator
-    score_indicator = selectortools.CounttimeCounttimeComponentSelector()
+    score_indicator = selectortools.CounttimeComponentSelector()
 
     # return timespan
     return score_indicator.timespan

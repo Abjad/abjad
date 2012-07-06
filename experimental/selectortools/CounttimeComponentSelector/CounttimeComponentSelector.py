@@ -19,17 +19,17 @@ class CounttimeComponentSelector(Selector):
 
     ::
 
-        >>> selectortools.CounttimeCounttimeComponentSelector()
+        >>> selectortools.CounttimeComponentSelector()
         CounttimeComponentSelector()
 
     Pick context ``'Voice 1'`` out of the segment with name ``'red'``::
 
-        >>> selectortools.CounttimeCounttimeComponentSelector(segment='red', context='Voice 1')
+        >>> selectortools.CounttimeComponentSelector(segment='red', context='Voice 1')
         CounttimeComponentSelector(segment='red', context='Voice 1')
 
     Pick the first measure in context ``'Voice 1'`` out of the segment with name ``'red'``::
 
-        >>> selectortools.CounttimeCounttimeComponentSelector(segment='red', context='Voice 1', klass=Measure)
+        >>> selectortools.CounttimeComponentSelector(segment='red', context='Voice 1', klass=Measure)
         CounttimeComponentSelector(segment='red', context='Voice 1', klass=measuretools.Measure)
     
     Pick the first division in context ``'Voice 1'`` out of the segment with name ``'red'``::
@@ -38,17 +38,17 @@ class CounttimeComponentSelector(Selector):
 
     ::
 
-        >>> selectortools.CounttimeCounttimeComponentSelector(segment='red', context='Voice 1', klass=Division)
+        >>> selectortools.CounttimeComponentSelector(segment='red', context='Voice 1', klass=Division)
         CounttimeComponentSelector(segment='red', context='Voice 1', klass=specificationtools.Division)
 
     Pick the first note in context ``'Voice 1'`` out of the segment with name ``'red'``::
 
-        >>> selectortools.CounttimeCounttimeComponentSelector(segment='red', context='Voice 1', klass=Note)
+        >>> selectortools.CounttimeComponentSelector(segment='red', context='Voice 1', klass=Note)
         CounttimeComponentSelector(segment='red', context='Voice 1', klass=notetools.Note)
 
     Pick note ``20`` in context ``'Voice 1'`` out of the segment with name ``'red'``::
 
-        >>> selectortools.CounttimeCounttimeComponentSelector(segment='red', context='Voice 1', klass=Note, index=20)
+        >>> selectortools.CounttimeComponentSelector(segment='red', context='Voice 1', klass=Note, index=20)
         CounttimeComponentSelector(segment='red', context='Voice 1', klass=notetools.Note, index=20)
 
     Pick the first chord with at least six pitches
@@ -63,13 +63,13 @@ class CounttimeComponentSelector(Selector):
 
     ::
 
-        >>> selectortools.CounttimeCounttimeComponentSelector(segment='red', context='Voice 1', klass=Chord, predicate=predicate)
+        >>> selectortools.CounttimeComponentSelector(segment='red', context='Voice 1', klass=Chord, predicate=predicate)
         CounttimeComponentSelector(segment='red', context='Voice 1', klass=chordtools.Chord, predicate=Callback('lambda x: 6 <= len(x)'))
 
     Pick chord ``20`` with at least six pitches
     in context ``'Voice 1'`` out of the segment with name ``'red'``::
 
-        >>> selectortools.CounttimeCounttimeComponentSelector(segment='red', context='Voice 1', klass=Chord, predicate=predicate, index=20)
+        >>> selectortools.CounttimeComponentSelector(segment='red', context='Voice 1', klass=Chord, predicate=predicate, index=20)
         CounttimeComponentSelector(segment='red', context='Voice 1', klass=chordtools.Chord, predicate=Callback('lambda x: 6 <= len(x)'), index=20)
 
     Examples below reference the score object indicator defined immediately above::

@@ -39,7 +39,7 @@ def segments_to_timespan(start_segment, stop_segment=None):
     else:
         start_segment = specificationtools.expr_to_segment_name(start_segment)
 
-    start_anchor = selectortools.CounttimeCounttimeComponentSelector(segment=start_segment)
+    start_anchor = selectortools.CounttimeComponentSelector(segment=start_segment)
     start_timepoint = timespantools.Timepoint(anchor=start_anchor, edge=Left)
 
     if stop_segment is None:
@@ -49,7 +49,7 @@ def segments_to_timespan(start_segment, stop_segment=None):
             pass
         else:
             stop_segment = specificationtools.expr_to_segment_name(stop_segment)
-        stop_anchor = selectortools.CounttimeCounttimeComponentSelector(segment=stop_segment)
+        stop_anchor = selectortools.CounttimeComponentSelector(segment=stop_segment)
         stop_timepoint = timespantools.Timepoint(anchor=stop_anchor, edge=Right)
 
     return timespantools.Timespan(start=start_timepoint, stop=stop_timepoint)

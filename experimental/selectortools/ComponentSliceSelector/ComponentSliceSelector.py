@@ -13,7 +13,7 @@ class ComponentSliceSelector(Selector):
 
     ::
 
-        >>> voice = selectortools.CounttimeCounttimeComponentSelector(context='Voice 1')
+        >>> voice = selectortools.CounttimeComponentSelector(context='Voice 1')
 
     ::
 
@@ -48,7 +48,7 @@ class ComponentSliceSelector(Selector):
 
     def __init__(self, container, start=None, stop=None):
         from experimental import selectortools
-        assert isinstance(container, selectortools.CounttimeCounttimeComponentSelector), repr(container)
+        assert isinstance(container, selectortools.CounttimeComponentSelector), repr(container)
         assert isinstance(start, (int, type(None))), repr(start)
         assert isinstance(stop, (int, type(None))), repr(stop)
         Selector.__init__(self)
