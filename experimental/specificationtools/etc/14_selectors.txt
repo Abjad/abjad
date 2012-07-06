@@ -174,3 +174,73 @@ Is the allowable chaining-together of restrictions then l(c(t(g())))?
 Perhaps class-restriction c() generalizes to predicate-restriction p().
 
 Is it then that the allowable chaining together of restrictions is l(p(t(g())))?
+
+### GENERALIZED COMPONENT SELECTION ###
+
+It might suffice to identify g() with thread contiguity. We'll run with that idea.
+So then we've got a four-step process to generalize the selection of any component
+(or any slice of components) whatever.
+
+(Below we introduce the idea of a noncontext component. What is a noncontext
+component? Noncontext components are leaves, tuplets, containers and measures. Noncontext
+components make up all the scoretree content that lives a level lower than the voice.)
+
+(Sidenote that this exposes an important principle to be backported to the main codebase.
+Thread contiguity should be defined on noncontext components only. No attempt should be
+made to evaluate staves nor even voices for thread contiguity. Also it still makes very
+good sense to replace 'thread' with 'implicit voice'.)
+
+First g() select thread-contiguous components. Then t() filter by timespan.
+Then p() filter by predicate. Then l() index or slice as many times as necessary.
+
+These functions are thread-selection, timespan-restriction, attribute-restriction
+and output-slicing, respectively. Perhaps these are not the best names for g(),
+t(), p(), l() but they will do for now. Interestingly, these are all basically
+different types of restriction that can be placed on the a list of thread-contiguous
+components.
+
+
+### MODELING EVENTLIST RESTRICTION ###
+
+First note that there should be a nonoppositional substitute for "noncontext". We propose
+"eventlist component" as a nonoppositional substitute for "noncontext component".
+
+We can then speak of "event-contiguity" in contrast to "time-contiguity". We refer to a 
+sequence of components as event-contiguous when all are time-successive components in the same 
+implicit voice.
+
+(There's a distinction here to be worked out between event-contiguity, -succession
+and -ordering. Which can be done later.)
+
+(This introduces a distinction between time-contiguity and time-succession.
+Components c1, ..., cn are time-successive whenever ci.start < cj.start for any i < j.
+Components c1, ...., cn are time-contiguous whenever ci.stop == cj.start for any i = j - 1.)
+
+What we're therefore basically looking to do is to say "here's how you select a subsequence of
+event-contiguous components."
+
+Denote by e, f two eventstream components in the same stream S with e.start < f.start.
+Note that there always exists at least one event-contiguous subsequence of S beginning with e
+and ending with f. (Depending on the appearance of nested components there may be more than one 
+event-contiguous subsequence of S that begins with e and ends with f. But there will always be at 
+least one such subsequence.) Refer to this as the "maximal" subsequence of S beginning with e
+and ending with f. Our generalized l(p(t(g()))) component selection procedes from just such a
+subsequence of S.
+
+Actually this all becomes massively easier when we notice that for every (implicit) voice v
+there exists an eventlist E(v) of all event components in v, given in order of occurrence
+during depth-first score traversal.
+
+E(v) is a flat list of components c1, ..., cn such that ci.start <= cj.start for i < j.
+(This means that components in the eventlist of v aren't necessarily time-conitugous
+or -successive but are always time-ordered by <=.) It is therefore trivial to take any
+subsequence of E(v) whatever.
+
+So the act of taking a subsequence of E(v) would be called something like "eventlist
+subsequence selection". And it is perhaps just this eventlist subsequence selection
+with which our generalized component selection begins.
+
+So then g(), t(), p(), l() are eventlist-restriction, timespan-restriction,
+predicate-restriction and output-restriction, respectively.
+
+ALMOST! Not all components in the eventlist are equal for this type of work.
