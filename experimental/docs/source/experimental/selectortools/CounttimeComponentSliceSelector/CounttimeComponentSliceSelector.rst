@@ -1,5 +1,5 @@
 selectortools.CounttimeComponentSliceSelector
-====================================
+=============================================
 
 .. inheritance-diagram:: experimental.selectortools.CounttimeComponentSliceSelector.CounttimeComponentSliceSelector.CounttimeComponentSliceSelector
    :private-bases:
