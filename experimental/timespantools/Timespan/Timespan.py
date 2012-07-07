@@ -10,23 +10,11 @@ class Timespan(AbjadObject):
 
     Finite timespan bounded by start and stop timepoints.
 
-    Timespan objects have much in common with time interval objects.
-
     Timespan objects highlight a contiguous blocks of time
     somewhere and say "everything within my bounds is selected
     for some upcoming operation."
 
-    Timespan objects make up the temporal part of a selection.
-    (Context name lists make up the vertical part of a selection.)
-
-    Timespan objects afford the selection of time relative to score
-    objects that do not yet exist.
-
-    Timespan objects resolve to a rational-valued duration.
-
-    Initialize with optional `start` and `stop` timepoints.
-
-    Select the timespan of the entire score::
+    Timespan of the entire score::
 
         >>> from experimental import selectortools
         >>> from experimental import specificationtools
@@ -37,7 +25,7 @@ class Timespan(AbjadObject):
         >>> timespantools.Timespan()
         Timespan()
 
-    Select the timespan of the first third of the score::
+    Timespan of the first third of the score::
 
         >>> stop = timespantools.Timepoint(multiplier=Fraction(1, 3), edge=Right)
 
@@ -46,7 +34,7 @@ class Timespan(AbjadObject):
         >>> timespantools.Timespan(stop=stop)
         Timespan(stop=Timepoint(edge=Right, multiplier=Fraction(1, 3)))
 
-    Select the timespan of the last third of the score::
+    Timespan of the last third of the score::
 
         >>> start = timespantools.Timepoint(edge=Right, multiplier=Fraction(2, 3))
 
@@ -55,7 +43,7 @@ class Timespan(AbjadObject):
         >>> timespantools.Timespan(start=start)
         Timespan(start=Timepoint(edge=Right, multiplier=Fraction(2, 3)))
 
-    Select the timespan of the middle third of the score::
+    Timespan of the middle third of the score::
 
         >>> start = timespantools.Timepoint(edge=Right, multiplier=Fraction(1, 3))
         >>> stop = timespantools.Timepoint(edge=Right, multiplier=Fraction(2, 3))
@@ -65,7 +53,7 @@ class Timespan(AbjadObject):
         >>> timespantools.Timespan(start=start, stop=stop)
         Timespan(start=Timepoint(edge=Right, multiplier=Fraction(1, 3)), stop=Timepoint(edge=Right, multiplier=Fraction(2, 3)))
 
-    Select the timespan of the first ``1/8`` of a whole note in score::
+    Timespan of the first ``1/8`` of a whole note in score::
 
         >>> stop = timespantools.Timepoint(addendum=Fraction(1, 8))
 
@@ -74,7 +62,7 @@ class Timespan(AbjadObject):
         >>> timespantools.Timespan(stop=stop)
         Timespan(stop=Timepoint(addendum=Offset(1, 8)))
 
-    Select the timespan of the last ``1/8`` of a whole note in score::
+    Timespan of the last ``1/8`` of a whole note in score::
 
         >>> start = timespantools.Timepoint(edge=Right, addendum=-Fraction(1, 8))
 
@@ -83,95 +71,140 @@ class Timespan(AbjadObject):
         >>> timespantools.Timespan(start=start)
         Timespan(start=Timepoint(edge=Right, addendum=Offset(-1, 8)))
 
-    Select the timespan of the segment with name ``'red'``::
+    Timespan of the segment with name ``'red'``::
 
-        >>> anchor = selectortools.CounttimeComponentSelector(segment='red')
-
-    ::
-
-        >>> start = timespantools.Timepoint(anchor=anchor)
-        >>> stop = timespantools.Timepoint(anchor=anchor, edge=Right)
+        >>> segment_selector = selectortools.SegmentSelector(index='red')
 
     ::
 
-        >>> timespantools.Timespan(start=start, stop=stop)
-        Timespan(CounttimeComponentSelector(segment='red'))
+        >>> timespantools.Timespan(selector=segment_selector)
+        Timespan(selector=SegmentSelector(index='red'))
 
-    Select the timespan of the first measure in the segment with name ``'red'``::
+    Timespan of the first measure that starts during segment ``'red'``::
 
-        >>> anchor = selectortools.CounttimeComponentSelector(segment='red', klass=Measure)
-
-    ::
-
-        >>> start = timespantools.Timepoint(anchor=anchor)
-        >>> stop = timespantools.Timepoint(anchor=anchor, edge=Right)
+        >>> inequality = timespantools.expr_starts_during_timespan(timespan=segment_selector.timespan)
+        >>> measure_selector = selectortools.MeasureSelector(inequality=inequality)
 
     ::
 
-        >>> timespantools.Timespan(start=start, stop=stop)
-        Timespan(CounttimeComponentSelector(segment='red', klass=measuretools.Measure))
-
-    Select the timespan of the first division in the segment with name ``'red'``::
-
-        >>> anchor = selectortools.CounttimeComponentSelector(segment='red', klass=specificationtools.Division)
+        >>> timespan = timespantools.Timespan(selector=measure_selector)
 
     ::
 
-        >>> start = timespantools.Timepoint(anchor=anchor)
-        >>> stop = timespantools.Timepoint(anchor=anchor, edge=Right)
+        >>> z(timespan)
+        timespantools.Timespan(
+            selector=selectortools.MeasureSelector(
+                inequality=timespantools.TimespanInequality(
+                    timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
+                    timespantools.Timespan(
+                        selector=selectortools.SegmentSelector(
+                            index='red'
+                            )
+                        )
+                    ),
+                index=0
+                )
+            )
+
+    Timespan of ``'Voice 1'`` division ``0`` starting during segment ``'red'``::
+
+        >>> division_selector = selectortools.DivisionSelector('Voice 1', inequality=inequality)
 
     ::
 
-        >>> timespantools.Timespan(start=start, stop=stop)
-        Timespan(CounttimeComponentSelector(segment='red', klass=specificationtools.Division))
+        >>> timespan = timespantools.Timespan(selector=division_selector)
 
-    Select the timespan starting at the left edge of the segment with the name ``'red'``
+    ::
+
+       >>> z(timespan)
+        timespantools.Timespan(
+            selector=selectortools.DivisionSelector(
+                'Voice 1',
+                inequality=timespantools.TimespanInequality(
+                    timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
+                    timespantools.Timespan(
+                        selector=selectortools.SegmentSelector(
+                            index='red'
+                            )
+                        )
+                    ),
+                index=0
+                )
+            )
+
+    Timespan starting at the left edge of the segment with the name ``'red'``
     and stopping at the right edge of the segment with the name ``'blue'``::
 
-        >>> anchor = selectortools.CounttimeComponentSelector(segment='red')
-        >>> start = timespantools.Timepoint(anchor=anchor)
+        >>> stop = specificationtools.Hold("'blue' + 1")
+        >>> segment_slice_selector = selectortools.SegmentSliceSelector(start='red', stop=stop)
 
     ::
 
-        >>> anchor = selectortools.CounttimeComponentSelector(segment='blue')
-        >>> stop = timespantools.Timepoint(anchor=anchor, edge=Right)
+        >>> timespantools.Timespan(selector=segment_slice_selector)
+        Timespan(selector=SegmentSliceSelector(start='red', stop=Hold("'blue' + 1")))
 
-    ::
-
-        >>> timespantools.Timespan(start=start, stop=stop)
-        Timespan(start=Timepoint(anchor=CounttimeComponentSelector(segment='red')), stop=Timepoint(anchor=CounttimeComponentSelector(segment='blue'), edge=Right))
-
-    Select the timespan starting at the left edge of the last measure in the segment with name ``'red'``
+    Timespan starting at the left edge of the last measure in the segment with name ``'red'``
     and stopping at the right edge of the first measure in the segment with name ``'blue'``::
 
-        >>> anchor = selectortools.CounttimeComponentSelector(segment='red', klass=Measure, index=-1)
-        >>> start = timespantools.Timepoint(anchor=anchor)
+        >>> segment_selector = selectortools.SegmentSelector(index='red')
+        >>> inequality = timespantools.expr_starts_during_timespan(timespan=segment_selector.timespan)
+        >>> measure_selector = selectortools.MeasureSelector(inequality=inequality, index=-1)
+        >>> start = timespantools.Timepoint(anchor=measure_selector)
 
     ::
 
-        >>> anchor = selectortools.CounttimeComponentSelector(segment='blue', klass=Measure)
-        >>> stop = timespantools.Timepoint(anchor=anchor, edge=Right)
+        >>> segment_selector = selectortools.SegmentSelector(index='blue')
+        >>> inequality = timespantools.expr_starts_during_timespan(timespan=segment_selector.timespan)
+        >>> measure_selector = selectortools.MeasureSelector(inequality=inequality)
+        >>> stop = timespantools.Timepoint(anchor=measure_selector, edge=Right)
+        
+    ::
+
+        >>> timespan = timespantools.Timespan(start=start, stop=stop)
 
     ::
 
-        >>> timespantools.Timespan(start=start, stop=stop)
-        Timespan(start=Timepoint(anchor=CounttimeComponentSelector(segment='red', klass=measuretools.Measure, index=-1)), stop=Timepoint(anchor=CounttimeComponentSelector(segment='blue', klass=measuretools.Measure), edge=Right))
-
-    Examples below reference the timespan defined immediately above::
-
-        >>> timespan = _
+        >>> z(timespan)
+        timespantools.Timespan(
+            start=timespantools.Timepoint(
+                anchor=selectortools.MeasureSelector(
+                    inequality=timespantools.TimespanInequality(
+                        timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
+                        timespantools.Timespan(
+                            selector=selectortools.SegmentSelector(
+                                index='red'
+                                )
+                            )
+                        ),
+                    index=-1
+                    )
+                ),
+            stop=timespantools.Timepoint(
+                anchor=selectortools.MeasureSelector(
+                    inequality=timespantools.TimespanInequality(
+                        timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
+                        timespantools.Timespan(
+                            selector=selectortools.SegmentSelector(
+                                index='blue'
+                                )
+                            )
+                        ),
+                    index=0
+                    ),
+                edge=Right
+                )
+            )
 
     Timespans are immutable.
 
-    Limitations of the design:
+    .. note:: timespan objects DO now afford the specification of timespans relative to each other.
+        So it should be possible to pick out the first third of the timespan starting at the left edge 
+        of the last measure in the segment with name ``'red'`` and stopping at the right edge of the
+        first measure in the segment with name ``'blue'``.
 
-    Timespan objects do not afford the specification of timespans relative to each other.
-    So it is not possible to pick out the first third of the timespan starting at the left edge 
-    of the last measure in the segment with name ``'red'`` and stopping at the right edge of the
-    first measure in the segment with name ``'blue'``.
+    .. note:: add example for this.
 
-    When or if we decide we want such functionality we can extend the grammar to allow timespan
-    objects to anchor timepoint objects.
+    .. note:: what this involves doing is allowing ``Timepoint`` objects to anchor to ``Timespan`` objects.
     '''
 
     ### INITIALIZER ###
@@ -298,10 +331,22 @@ class Timespan(AbjadObject):
     def start(self):
         '''Timespan start specified by user.
 
-            >>> timespan.start
-            Timepoint(anchor=CounttimeComponentSelector(segment='red', klass=measuretools.Measure, index=-1))
+            >>> z(timespan.start)
+            timespantools.Timepoint(
+                anchor=selectortools.MeasureSelector(
+                    inequality=timespantools.TimespanInequality(
+                        timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
+                        timespantools.Timespan(
+                            selector=selectortools.SegmentSelector(
+                                index='red'
+                                )
+                            )
+                        ),
+                    index=-1
+                    )
+                )
 
-        Value of none is taken equal to the left edge of score.
+        Value of none is interpreted as the left edge of score.
 
         Return timepoint or none.
         '''
@@ -311,10 +356,23 @@ class Timespan(AbjadObject):
     def stop(self):
         '''Timespan stop specified by user.
 
-            >>> timespan.stop
-            Timepoint(anchor=CounttimeComponentSelector(segment='blue', klass=measuretools.Measure), edge=Right)
+            >>> z(timespan.stop)
+            timespantools.Timepoint(
+                anchor=selectortools.MeasureSelector(
+                    inequality=timespantools.TimespanInequality(
+                        timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
+                        timespantools.Timespan(
+                            selector=selectortools.SegmentSelector(
+                                index='blue'
+                                )
+                            )
+                        ),
+                    index=0
+                    ),
+                edge=Right
+                )
 
-        Value of none is taken equal to the right edge of score.  
+        Value of none is interpreted as the right edge of score.  
 
         Return timepoint or none.
         '''
