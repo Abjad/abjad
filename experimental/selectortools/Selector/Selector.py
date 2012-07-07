@@ -24,4 +24,4 @@ class Selector(AbjadObject):
         Return timespan object.
         '''
         from experimental import timespantools
-        return timespantools.Timespan(self)
+        return timespantools.Timespan(selector=self)

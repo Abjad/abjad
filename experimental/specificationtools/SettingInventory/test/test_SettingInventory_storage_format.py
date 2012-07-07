@@ -30,17 +30,8 @@ def test_SettingInventory_storage_format_01():
             specificationtools.Selection(
                 contexts=['Grouped Rhythmic Staves Score'],
                 timespan=timespantools.Timespan(
-                    start=timespantools.Timepoint(
-                        anchor=selectortools.CounttimeComponentSelector(
-                            segment='1'
-                            ),
-                        edge=Left
-                        ),
-                    stop=timespantools.Timepoint(
-                        anchor=selectortools.CounttimeComponentSelector(
-                            segment='1'
-                            ),
-                        edge=Right
+                    selector=selectortools.SegmentSelector(
+                        index='1'
                         )
                     )
                 ),
@@ -52,7 +43,7 @@ def test_SettingInventory_storage_format_01():
         ])
     '''
 
-    assert storage_format == "specificationtools.SettingInventory([\n\tspecificationtools.Setting(\n\t\tspecificationtools.Selection(\n\t\t\tcontexts=['Grouped Rhythmic Staves Score'],\n\t\t\ttimespan=timespantools.Timespan(\n\t\t\t\tstart=timespantools.Timepoint(\n\t\t\t\t\tanchor=selectortools.CounttimeComponentSelector(\n\t\t\t\t\t\tsegment='1'\n\t\t\t\t\t\t),\n\t\t\t\t\tedge=Left\n\t\t\t\t\t),\n\t\t\t\tstop=timespantools.Timepoint(\n\t\t\t\t\tanchor=selectortools.CounttimeComponentSelector(\n\t\t\t\t\t\tsegment='1'\n\t\t\t\t\t\t),\n\t\t\t\t\tedge=Right\n\t\t\t\t\t)\n\t\t\t\t)\n\t\t\t),\n\t\t'time_signatures',\n\t\t[(4, 8), (3, 8)],\n\t\tpersistent=True,\n\t\ttruncate=False\n\t\t)\n\t])"
+    assert storage_format == "specificationtools.SettingInventory([\n\tspecificationtools.Setting(\n\t\tspecificationtools.Selection(\n\t\t\tcontexts=['Grouped Rhythmic Staves Score'],\n\t\t\ttimespan=timespantools.Timespan(\n\t\t\t\tselector=selectortools.SegmentSelector(\n\t\t\t\t\tindex='1'\n\t\t\t\t\t)\n\t\t\t\t)\n\t\t\t),\n\t\t'time_signatures',\n\t\t[(4, 8), (3, 8)],\n\t\tpersistent=True,\n\t\ttruncate=False\n\t\t)\n\t])"
 
     directive_inventory_2 = eval(storage_format)
 

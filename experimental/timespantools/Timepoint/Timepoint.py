@@ -9,18 +9,7 @@ class Timepoint(AbjadObject):
 
     Infinitely thin vertical line coincident with an arbitrary object-relative timepoint in score.
 
-    (Object-oriented delayed evaluation.)
-
-    Timepoints locate relative to arbitrary objects in score.
-
-    Timepoints afford location relative to score objects that do not yet exist.
-
-    Timepoints resolve to a rational-valued score offset.
-
-    Initialize with different combinations of optional `anchor`, 
-    `edge`, `multiplier` and `addendum`.
-
-    Pick out the timepoint equal to the left edge of score::
+    Timepoint equal to the left edge of score::
 
         >>> from experimental import selectortools
         >>> from experimental import specificationtools
@@ -31,80 +20,113 @@ class Timepoint(AbjadObject):
         >>> timespantools.Timepoint()
         Timepoint()
 
-    Pick out the timepoint equal to the right edge of score::
+    Timepoint equal to the right edge of score::
 
         >>> timespantools.Timepoint(edge=Right)
         Timepoint(edge=Right)
 
-    Pick out the timepoint ``1/8`` of a whole note into score::
+    Timepoint ``1/8`` of a whole note into score::
 
-        >>> from abjad.tools.durationtools.Offset import Offset
-
-    ::
-
-        >>> timespantools.Timepoint(addendum=Offset(1, 8))
+        >>> timespantools.Timepoint(addendum=durationtools.Offset(1, 8))
         Timepoint(addendum=Offset(1, 8))
 
-    Pick out the timepoint one third of the way into score::
+    Timepoint one third of the way into score::
 
         >>> timespantools.Timepoint(edge=Right, multiplier=Fraction(1, 3))
         Timepoint(edge=Right, multiplier=Fraction(1, 3))
 
-    Pick out the timepoint ``1/8`` of a whole note after the first third of score::
+    Timepoint ``1/8`` of a whole note after the first third of score::
 
-        >>> timespantools.Timepoint(edge=Right, multiplier=Fraction(1, 3), addendum=Offset(1, 8))
+        >>> timespantools.Timepoint(edge=Right, multiplier=Fraction(1, 3), addendum=durationtools.Offset(1, 8))
         Timepoint(edge=Right, multiplier=Fraction(1, 3), addendum=Offset(1, 8))
 
-    Pick out the timepoint equal to the left edge of the segment with name ``'red'``::
+    Timepoint equal to the left edge of segment ``'red'``::
 
-        >>> anchor = selectortools.CounttimeComponentSelector(segment='red')
+        >>> segment_selector = selectortools.SegmentSelector(index='red')
 
     ::
 
-        >>> timespantools.Timepoint(anchor=anchor)
-        Timepoint(anchor=CounttimeComponentSelector(segment='red'))
+        >>> timespantools.Timepoint(anchor=segment_selector)
+        Timepoint(anchor=SegmentSelector(index='red'))
 
-    Pick out the timepoint equal to the right edge of the segment with name ``'red'``::
+    Timepoint equal to the right edge of segment ``'red'``::
 
-        >>> timespantools.Timepoint(anchor=anchor, edge=Right)
-        Timepoint(anchor=CounttimeComponentSelector(segment='red'), edge=Right)
+        >>> timespantools.Timepoint(anchor=segment_selector, edge=Right)
+        Timepoint(anchor=SegmentSelector(index='red'), edge=Right)
 
-    Pick out the timepoint equal to ``1/8`` of a whole note after the left edge of 
-    the segment with name ``'red'``::
+    Timepoint equal to ``1/8`` of a whole note after the left edge of
+    segment ``'red'``::
 
-        >>> timespantools.Timepoint(anchor=anchor, addendum=Offset(1, 8))
-        Timepoint(anchor=CounttimeComponentSelector(segment='red'), addendum=Offset(1, 8))
+        >>> timespantools.Timepoint(anchor=segment_selector, addendum=durationtools.Offset(1, 8))
+        Timepoint(anchor=SegmentSelector(index='red'), addendum=Offset(1, 8))
 
-    Pick out the timepoint equal to one third of the way into the segment with name ``'red'``::
+    Timepoint equal to one third of the way into segment ``'red'``::
 
-        >>> timespantools.Timepoint(anchor=anchor, edge=Right, multiplier=Fraction(1, 3))
-        Timepoint(anchor=CounttimeComponentSelector(segment='red'), edge=Right, multiplier=Fraction(1, 3))
+        >>> timespantools.Timepoint(anchor=segment_selector, edge=Right, multiplier=Fraction(1, 3))
+        Timepoint(anchor=SegmentSelector(index='red'), edge=Right, multiplier=Fraction(1, 3))
 
-    Pick out the timepoint equal to ``1/8`` of a whole note after the right edge of the first third of
-    the segment with name ``'red'``::
+    Timepoint equal to ``1/8`` of a whole note after the right edge of the 
+    first third of segment ``'red'``::
     
-        >>> timespantools.Timepoint(anchor=anchor, edge=Right, multiplier=Fraction(1, 3), addendum=Offset(1, 8))
-        Timepoint(anchor=CounttimeComponentSelector(segment='red'), edge=Right, multiplier=Fraction(1, 3), addendum=Offset(1, 8))
+        >>> timespantools.Timepoint(anchor=segment_selector, edge=Right, 
+        ... multiplier=Fraction(1, 3), addendum=durationtools.Offset(1, 8))
+        Timepoint(anchor=SegmentSelector(index='red'), edge=Right, multiplier=Fraction(1, 3), addendum=Offset(1, 8))
 
-    Pick out the timepoint equal to the left edge of note ``10`` in context ``'Voice 1'`` of
-    the segment with name ``'red'``::
+    Timepoint equal to the left edge of ``'Voice 1'`` note ``10`` that starts
+    during segment ``'red'``::
 
-        >>> anchor = selectortools.CounttimeComponentSelector(segment='red', context='Voice 1', klass=Note, index=10)
+        >>> segment_selector = selectortools.SegmentSelector(index='red')
+        >>> inequality = timespantools.expr_starts_during_timespan(timespan=segment_selector.timespan)
+        >>> counttime_component_selector = selectortools.CounttimeComponentSelector(
+        ... 'Voice 1', inequality=inequality, klass=Note, index=10)
 
     ::
 
-        >>> timespantools.Timepoint(anchor=anchor)
-        Timepoint(anchor=CounttimeComponentSelector(segment='red', context='Voice 1', klass=notetools.Note, index=10))
+        >>> timepoint = timespantools.Timepoint(anchor=counttime_component_selector)
 
-    Pick out the timepoint equal to the right edgright edge of note ``10`` in context ``'Voice 1'`` of
-    the segment with name ``'red'``::
+    ::
 
-        >>> timespantools.Timepoint(anchor=anchor, edge=Right)
-        Timepoint(anchor=CounttimeComponentSelector(segment='red', context='Voice 1', klass=notetools.Note, index=10), edge=Right)
+        >>> z(timepoint)
+        timespantools.Timepoint(
+            anchor=selectortools.CounttimeComponentSelector(
+                'Voice 1',
+                inequality=timespantools.TimespanInequality(
+                    timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
+                    timespantools.Timespan(
+                        selector=selectortools.SegmentSelector(
+                            index='red'
+                            )
+                        )
+                    ),
+                klass=notetools.Note,
+                index=10
+                )
+            )
 
-    Examples below reference the timepoint defined immediately above::
+    Timepoint equal to the right edge of ``'Voice 1'`` note ``10`` that starts
+    during segment ``'red'``::
 
-        >>> timepoint = _
+        >>> timepoint = timespantools.Timepoint(anchor=counttime_component_selector, edge=Right)
+
+    ::
+
+        >>> z(timepoint)
+        timespantools.Timepoint(
+            anchor=selectortools.CounttimeComponentSelector(
+                'Voice 1',
+                inequality=timespantools.TimespanInequality(
+                    timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
+                    timespantools.Timespan(
+                        selector=selectortools.SegmentSelector(
+                            index='red'
+                            )
+                        )
+                    ),
+                klass=notetools.Note,
+                index=10
+                ),
+            edge=Right
+            )
 
     Timepoints are immutable.
     '''
@@ -203,7 +225,7 @@ class Timepoint(AbjadObject):
             >>> timepoint.addendum is None
             True
 
-        Value of none is taken equal to ``Offset(0)``.
+        Value of none is interpreted as ``Offset(0)``.
             
         Return offset or none.
         '''
@@ -213,12 +235,24 @@ class Timepoint(AbjadObject):
     def anchor(self):
         '''Timepoint anchor specified by user.
         
-            >>> timepoint.anchor
-            CounttimeComponentSelector(segment='red', context='Voice 1', klass=notetools.Note, index=10)
+            >>> z(timepoint.anchor)
+            selectortools.CounttimeComponentSelector(
+                'Voice 1',
+                inequality=timespantools.TimespanInequality(
+                    timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
+                    timespantools.Timespan(
+                        selector=selectortools.SegmentSelector(
+                            index='red'
+                            )
+                        )
+                    ),
+                klass=notetools.Note,
+                index=10
+                )
 
         Value of none is taken equal the entire score.
 
-        Return score object indicator or none.
+        Return selector or none.
         '''
         return self._anchor
 
@@ -229,7 +263,7 @@ class Timepoint(AbjadObject):
             >>> timepoint.edge
             Right
 
-        Value of none is taken equal to ``left``.
+        Value of none is interpreted as ``Left``.
 
         Return boolean or none.
         '''
@@ -242,7 +276,7 @@ class Timepoint(AbjadObject):
             >>> timepoint.multiplier is None
             True
 
-        Value of none is taken equal to ``Fraction(1)``.
+        Value of none is interpreted as ``Fraction(1)``.
 
         Return fraction or none.
         '''

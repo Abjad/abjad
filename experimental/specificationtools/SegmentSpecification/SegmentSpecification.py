@@ -124,6 +124,16 @@ class SegmentSpecification(Specification):
         return self._score_model
 
     @property
+    def selector(self):
+        '''Segment specification selector.
+
+        Return segment selector.
+
+        .. note:: this should replace the ``indicator`` property.
+        '''
+        return self.indicator
+
+    @property
     def start(self):
         '''Segment start.
 
@@ -171,12 +181,12 @@ class SegmentSpecification(Specification):
         '''Segment timespan.
 
             >>> segment.timespan
-            Timespan(CounttimeComponentSelector(segment='1'))
+            Timespan(SegmentSelector(index='1'))
 
         Return timespan.
         '''
         from experimental import timespantools
-        return timespantools.Timespan(start=self.start, stop=self.stop)
+        return timespantools.Timespan(selector=self.selector)
 
     ### PUBLIC METHODS ###
 

@@ -259,7 +259,9 @@ class Timespan(AbjadObject):
 
         Return boolean.
         '''
-        if self.start.anchor == self.stop.anchor:
+        if self.selector is not None:
+            return True
+        elif self.start.anchor == self.stop.anchor:
             if self.start.edge in (None, Left):
                 if self.stop.edge == Right:
                     if self.start.multiplier is self.stop.multiplier is None:
@@ -276,7 +278,9 @@ class Timespan(AbjadObject):
         '''
         from experimental import selectortools
         if self.encompasses_one_object_exactly:
-            if isinstance(self.start.anchor, selectortools.SegmentSelector):
+            if isinstance(self.selector, selectortools.SegmentSelector):
+                return True
+            elif isinstance(self.start.anchor, selectortools.SegmentSelector):
                 return True
         return False
 

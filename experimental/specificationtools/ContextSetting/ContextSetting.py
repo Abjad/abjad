@@ -114,8 +114,13 @@ class ContextSetting(Setting):
 
         Return none.
         '''
+        from experimental import selectortools
         from experimental import specificationtools
         assert self.target.timespan.encompasses_one_segment_exactly, repr(self)
-        segment = specificationtools.expr_to_segment_name(segment)
-        self.target.timespan.start.anchor._segment = segment
-        self.target.timespan.stop.anchor._segment = segment
+        segment_name = specificationtools.expr_to_segment_name(segment)
+        segment_selector = selectortools.SegmentSelector(index=segment_name)
+        #self._debug(segment)
+        #self._debug(segment_selector)
+        #self.target.timespan.start.anchor._segment = segment
+        #self.target.timespan.stop.anchor._segment = segment
+        self.target._timespan = segment_selector.timespan

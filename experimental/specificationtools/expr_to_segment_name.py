@@ -1,7 +1,7 @@
 def expr_to_segment_name(expr):
     r'''.. versionadded:: 1.0
     
-    Change segment specification to segment specification name::
+    Change segment specification to segment name::
 
         >>> from abjad.tools import scoretemplatetools
         >>> from experimental import specificationtools

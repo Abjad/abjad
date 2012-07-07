@@ -342,15 +342,19 @@ class ScoreSpecification(Specification):
         for segment in self.segments:
             settings = segment.settings.get_settings(attribute='time_signatures')
             if settings:
+                self._debug('foo')
                 assert len(settings) == 1, repr(settings)
                 setting = settings[0]
             else:
+                self._debug('bar')
                 settings = self.resolved_settings_context_dictionary.get_settings(attribute='time_signatures')
                 if not settings:
                     return
                 assert len(settings) == 1, repr(settings)
                 setting = settings[0]
                 setting = setting.copy_to_segment(segment.name)
+            self._debug(segment.timespan)
+            self._debug(setting.target.timespan)
             assert setting.target.context == segment.score_name, repr(setting)
             assert setting.target.timespan == segment.timespan, [repr(setting), '\n', repr(segment.timespan)]
             self.store_setting(setting)
@@ -447,7 +451,8 @@ class ScoreSpecification(Specification):
         resolved_setting = self.make_resolved_setting(setting)
         assert resolved_setting.target.timespan.encompasses_one_segment_exactly, repr(resolved_setting)
         #segment = self.segments[resolved_setting.target.timespan.start.anchor.segment]
-        segment = self.segments[resolved_setting.target.timespan.start.anchor.index]
+        #segment = self.segments[resolved_setting.target.timespan.start.anchor.index]
+        segment = self.segments[resolved_setting.target.timespan.selector.index]
         context_name = resolved_setting.target.context or segment.resolved_settings_context_dictionary.score_name
         attribute = resolved_setting.attribute
         if attribute in segment.resolved_settings_context_dictionary[context_name]:
