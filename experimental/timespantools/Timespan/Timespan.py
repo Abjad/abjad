@@ -196,15 +196,6 @@ class Timespan(AbjadObject):
             )
 
     Timespans are immutable.
-
-    .. note:: timespan objects DO now afford the specification of timespans relative to each other.
-        So it should be possible to pick out the first third of the timespan starting at the left edge 
-        of the last measure in the segment with name ``'red'`` and stopping at the right edge of the
-        first measure in the segment with name ``'blue'``.
-
-    .. note:: add example for this.
-
-    .. note:: what this involves doing is allowing ``Timepoint`` objects to anchor to ``Timespan`` objects.
     '''
 
     ### INITIALIZER ###

@@ -103,6 +103,32 @@ class Timepoint(AbjadObject):
                 )
             )
 
+    Timepoints can anchor to arbitrary timespans. This allows recursion into the model.
+
+    Timepoint one third of the way into the timespan of segments ``'red'`` through ``'blue'``::
+
+        >>> stop = specificationtools.Hold("'blue' + 1")
+        >>> segment_slice_selector = selectortools.SegmentSliceSelector(start='red', stop=stop)
+        >>> timespan = timespantools.Timespan(selector=segment_slice_selector)
+
+    ::
+    
+        >>> timepoint = timespantools.Timepoint(anchor=timespan, edge=Right, multiplier=Fraction(1, 3))
+
+    ::
+    
+        >>> z(timepoint)
+        timespantools.Timepoint(
+            anchor=timespantools.Timespan(
+                selector=selectortools.SegmentSliceSelector(
+                    start='red',
+                    stop=specificationtools.Hold("'blue' + 1")
+                    )
+                ),
+            edge=Right,
+            multiplier=Fraction(1, 3)
+            )
+
     Timepoint equal to the right edge of ``'Voice 1'`` note ``10`` that starts
     during segment ``'red'``::
 
@@ -135,7 +161,8 @@ class Timepoint(AbjadObject):
 
     def __init__(self, anchor=None, edge=None, multiplier=None, addendum=None): 
         from experimental import selectortools 
-        assert isinstance(anchor, (selectortools.Selector, type(None))), repr(anchor)
+        from experimental import timespantools 
+        assert isinstance(anchor, (selectortools.Selector, timespantools.Timespan, type(None))), repr(anchor)
         assert edge in (Left, Right, None), repr(edge)
         assert isinstance(multiplier, (fractions.Fraction, type(None))), repr(multiplier)
         if addendum is not None:
