@@ -15,12 +15,12 @@ def is_counttime_component_klass(expr):
 
     ::
 
-        >>> specificationtools.is_counttime_component_class(tuplettools.Tuplet)
+        >>> specificationtools.is_counttime_component_klass(tuplettools.Tuplet)
         True
 
     Otherwise false::
 
-        >>> specificationtools.is_counttime_component_class(voicetools.Voice)
+        >>> specificationtools.is_counttime_component_klass(voicetools.Voice)
         False
 
     Return boolean.

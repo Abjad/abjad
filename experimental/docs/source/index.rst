@@ -263,7 +263,6 @@ Unstable packages (load manually)
    experimental/specificationtools/is_background_element_klass
    experimental/specificationtools/is_counttime_component_klass
    experimental/specificationtools/make_score_measure_indicator
-   experimental/specificationtools/measures_to_timespan
    experimental/specificationtools/request_divisions
    experimental/specificationtools/score_to_timespan
    experimental/specificationtools/segments_to_timespan
