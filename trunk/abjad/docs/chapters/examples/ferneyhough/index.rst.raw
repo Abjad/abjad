@@ -24,7 +24,6 @@ proportions = [(1, n) for n in range(1, 11 + 1)]
 
 <abjad>
 proportions
-print repr(proportions) <hide
 </abjad>
 
 The transforms
@@ -39,21 +38,12 @@ tie_chain_to_tuplet = tietools.tie_chain_to_diminished_tuplet_with_proportions_a
 
 And then define a helper function:
 
-<abjad>
-def divide_tuplet(tuplet, n): <hide
-    last_tie_chain = tietools.get_tie_chain(tuplet[-1]) <hide
-    proportions = n * [1] <hide
-    new = tie_chain_to_tuplet(last_tie_chain, proportions) <hide
-    return new <hide
+<abjad>[strip_prompt=true]
+def divide_tuplet(tuplet, n):
+    last_tie_chain = tietools.get_tie_chain(tuplet[-1])
+    proportions = n * [1]
+    tie_chain_to_tuplet(last_tie_chain, proportions)
 </abjad>
-
-::
-
-    def divide_tuplet(tuplet, n):
-        last_tie_chain = tietools.get_tie_chain(tuplet[-1])
-        proportions = n * [1]
-        new = tie_chain_to_tuplet(last_tie_chain, proportions)
-        return new
 
 The rhythms
 -----------
@@ -67,26 +57,15 @@ duration = Fraction(1, 4)
 And then we make the rhythms:
 
 <abjad>
-music = [] <hide
-for proportion in proportions: <hide
-    tuplets = [] <hide
-    for n in range(1, 6 + 1): <hide
-        tuplet = make_tuplet(duration, proportion) <hide
-        divide_tuplet(tuplet, n) <hide
-        tuplets.append(tuplet) <hide
-    music.extend(tuplets) <hide
+music = []
+for proportion in proportions:
+    tuplets = []
+    for n in range(1, 6 + 1):
+        tuplet = make_tuplet(duration, proportion)
+        divide_tuplet(tuplet, n)
+        tuplets.append(tuplet)
+    music.extend(tuplets)
 </abjad>
-
-::
-
-    music = []
-    for proportion in proportions:
-        tuplets = []
-        for n in range(1, 6 + 1):
-            tuplet = make_tuplet(duration, proportion)
-            divide_tuplet(tuplet, n)
-            tuplets.append(tuplet)
-        music.extend(tuplets)
 
 The score
 ---------
@@ -136,5 +115,4 @@ And show the result:
 
 <abjad>
 show(lilypond_file)
-iotools.write_expr_to_ly(lilypond_file, 'ferneyhough-1', print_status=False) <hide
 </abjad>
