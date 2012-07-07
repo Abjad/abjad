@@ -101,10 +101,6 @@ class CounttimeComponentSelector(Selector):
             index=20
             )
 
-    Examples below reference the counttime component selector defined immediately above::
-
-        >>> selector = _
-
     Counttime component selectors are immutable.
     '''
 
@@ -174,7 +170,17 @@ class CounttimeComponentSelector(Selector):
 
     @property
     def inequality(self):
-        '''Timespan inequality of counttime component select specified by user.
+        '''Timespan inequality of counttime component selector specified by user::
+
+            >>> z(selector.inequality)
+            timespantools.TimespanInequality(
+                timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
+                timespantools.Timespan(
+                    selector=selectortools.SegmentSelector(
+                        index='red'
+                        )
+                    )
+                )
 
         Return timespan inequality or none.
         '''
@@ -272,8 +278,24 @@ class CounttimeComponentSelector(Selector):
     def start(self):
         '''Leftmost timepoint of counttime component::
 
-            >>> selector.start
-            Timepoint(anchor=CounttimeComponentSelector(segment='red', context='Voice 1', klass=chordtools.Chord, predicate=Callback('lambda x: 6 <= len(x)'), index=20), edge=Left)
+            >>> z(selector.start)
+            timespantools.Timepoint(
+                anchor=selectortools.CounttimeComponentSelector(
+                    'Voice 1',
+                    inequality=timespantools.TimespanInequality(
+                        timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
+                        timespantools.Timespan(
+                            selector=selectortools.SegmentSelector(
+                                index='red'
+                                )
+                            )
+                        ),
+                    klass=chordtools.Chord,
+                    predicate=specificationtools.Callback('lambda x: 6 <= len(x)'),
+                    index=20
+                    ),
+                edge=Left
+                )
 
         Return timepoint.
         '''
@@ -284,8 +306,24 @@ class CounttimeComponentSelector(Selector):
     def stop(self):
         '''Rightmost timepoint of counttime component::
 
-            >>> selector.start
-            Timepoint(anchor=CounttimeComponentSelector(segment='red', context='Voice 1', klass=chordtools.Chord, predicate=Callback('lambda x: 6 <= len(x)'), index=20), edge=Left)
+            >>> z(selector.stop)
+            timespantools.Timepoint(
+                anchor=selectortools.CounttimeComponentSelector(
+                    'Voice 1',
+                    inequality=timespantools.TimespanInequality(
+                        timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
+                        timespantools.Timespan(
+                            selector=selectortools.SegmentSelector(
+                                index='red'
+                                )
+                            )
+                        ),
+                    klass=chordtools.Chord,
+                    predicate=specificationtools.Callback('lambda x: 6 <= len(x)'),
+                    index=20
+                    ),
+                edge=Right
+                )
 
         Return timepoint.
         '''
@@ -294,12 +332,7 @@ class CounttimeComponentSelector(Selector):
 
     @property
     def timepoints(self):
-        '''Start and stop timepoints of score object::
-
-            >>> for x in selector.timepoints: x
-            ... 
-            Timepoint(anchor=CounttimeComponentSelector(segment='red', context='Voice 1', klass=chordtools.Chord, predicate=Callback('lambda x: 6 <= len(x)'), index=20), edge=Left)
-            Timepoint(anchor=CounttimeComponentSelector(segment='red', context='Voice 1', klass=chordtools.Chord, predicate=Callback('lambda x: 6 <= len(x)'), index=20), edge=Right)
+        '''Start and stop timepoints of score object.
 
         Return pair.
         '''
@@ -309,8 +342,43 @@ class CounttimeComponentSelector(Selector):
     def timespan(self):
         '''Timespan of counttime component::
 
-            >>> selector.timespan
-            Timespan(CounttimeComponentSelector(segment='red', context='Voice 1', klass=chordtools.Chord, predicate=Callback('lambda x: 6 <= len(x)'), index=20))
+            >>> z(selector.timespan)
+            timespantools.Timespan(
+                start=timespantools.Timepoint(
+                    anchor=selectortools.CounttimeComponentSelector(
+                        'Voice 1',
+                        inequality=timespantools.TimespanInequality(
+                            timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
+                            timespantools.Timespan(
+                                selector=selectortools.SegmentSelector(
+                                    index='red'
+                                    )
+                                )
+                            ),
+                        klass=chordtools.Chord,
+                        predicate=specificationtools.Callback('lambda x: 6 <= len(x)'),
+                        index=20
+                        ),
+                    edge=Left
+                    ),
+                stop=timespantools.Timepoint(
+                    anchor=selectortools.CounttimeComponentSelector(
+                        'Voice 1',
+                        inequality=timespantools.TimespanInequality(
+                            timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
+                            timespantools.Timespan(
+                                selector=selectortools.SegmentSelector(
+                                    index='red'
+                                    )
+                                )
+                            ),
+                        klass=chordtools.Chord,
+                        predicate=specificationtools.Callback('lambda x: 6 <= len(x)'),
+                        index=20
+                        ),
+                    edge=Right
+                    )
+                )
 
         Return timespan.
         '''
@@ -326,6 +394,6 @@ class CounttimeComponentSelector(Selector):
             >>> selector.voice
             'Voice 1'
 
-        Return string or none.
+        Return string.
         '''
         return self._voice

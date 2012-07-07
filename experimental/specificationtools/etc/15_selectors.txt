@@ -24,9 +24,7 @@ other items on the page around it. Examples of this are the following:
 There's also a need for a thought-out process of selector reference nesting, too.
 In order to say things like "the last rest of the last tuplet starting in segment 'red'".
 How much nesting? We can safely leave contexts (like voices, staves, staff groups and scores)
-out of the selector reference regime because contexts will always be referred to explicitly
-in some other way when making a selection (usually by just listing the contexts to which
-a selection should be applied). Of the remaning components it is tuplets, leaves,
-measures and naked containers that can make up the 'shapestream' of any given voice.
-So our selector reference regime will need to be able to accommodate the nesting
-possible between leaves, tuplets, measures and naked containers present in any voice.
+out of the selector reference regime. Why? Because composers reference context components 
+by name. Also because context components do not interact with timespan inequalities interestingly.
+So our selector reference regime will need to be able to accommodate counttime component
+nesting.
