@@ -3,10 +3,9 @@ from experimental import selectortools
 import copy
 
 
-def test_ScoreObjectIndicator___copy___01():
+def test_CounttimeComopnentSelector___copy___01():
 
-    indicator_1 = selectortools.CounttimeComponentSelector(
-        segment='red', context='Voice 1', klass=measuretools.Measure)
+    indicator_1 = selectortools.CounttimeComponentSelector('Voice 1', klass=measuretools.Measure)
     indicator_2 = copy.deepcopy(indicator_1)
 
     assert isinstance(indicator_1, selectortools.CounttimeComponentSelector)

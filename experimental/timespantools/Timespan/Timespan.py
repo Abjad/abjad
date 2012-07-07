@@ -274,8 +274,9 @@ class Timespan(AbjadObject):
 
         Return boolean.
         '''
+        from experimental import selectortools
         if self.encompasses_one_object_exactly:
-            if self.start.anchor.is_segment:
+            if isinstance(self.start.anchor, selectortools.SegmentSelector):
                 return True
         return False
 

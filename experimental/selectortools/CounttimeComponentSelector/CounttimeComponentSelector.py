@@ -186,61 +186,6 @@ class CounttimeComponentSelector(Selector):
         '''
         return self._inequality
 
-#    @property
-#    def is_context(self):
-#        '''True when `context` is not none but all other attributes are none.
-#
-#        Otherwise false.
-#    
-#        Return boolean.
-#        '''
-#        if self.context is not None:
-#            other_attributes = (self.index, self.klass, self.predicate, self.segment)
-#            if all([x is None for x in other_attributes]):
-#                return True
-#        return False
-
-#    @property
-#    def is_klass(self):
-#        '''True when `klass` is not none but all other attributes are none.
-#
-#        Otherwise false.
-#    
-#        Return boolean.
-#        '''
-#        if self.klass is not None:
-#            other_attributes = (self.context, self.index, self.predicate, self.segment)
-#            if all([x is None for x in other_attributes]):
-#                return True
-#        return False
-
-#    @property
-#    def is_score(self):
-#        '''True all attributes are none.
-#
-#        Otherwise false.
-#
-#        Return boolean.
-#        '''
-#        other_attributes = (self.context, self.index, self.klass, self.predicate, self.segment)
-#        if all([x is None for x in other_attributes]):
-#            return True
-#        return False
-
-#    @property
-#    def is_segment(self):
-#        '''True when `segment` is not none but all other attributes are none.
-#
-#        Otherwise false.
-#
-#        Return boolean.
-#        '''
-#        if self.segment is not None:
-#            other_attributes = (self.context, self.index, self.klass, self.predicate)
-#            if all([x is None for x in other_attributes]):
-#                return True
-#        return False
-
     @property
     def klass(self):
         '''Class of counttime component selector specified by user::

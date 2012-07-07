@@ -8,7 +8,44 @@ class ContextSetting(Setting):
     Frozen request to set one attribute against one context-specified selection.
 
     Initialize with mandatory `target`, `attribute`, `source`
-    and optional `persistent`, `truncate`, `fresh`.
+    and optional `persistent`, `truncate`, `fresh`::
+
+        >>> anchor = selectortools.SegmentSelector(index='red')
+        >>> start = timespantools.Timepoint(anchor=anchor)
+        >>> stop = timespantools.Timepoint(anchor=anchor, edge=Right)
+        >>> timespan = timespantools.Timespan(start=start, stop=stop)
+        >>> target = specificationtools.ContextSelection('Voice 1', timespan=timespan)
+
+    ::
+
+        >>> setting = specificationtools.ContextSetting(target, 'time_signatures', [(4, 8), (3, 8)], fresh=False)
+
+    ::
+
+        >>> z(setting)
+        specificationtools.ContextSetting(
+            specificationtools.ContextSelection(
+                'Voice 1',
+                timespan=timespantools.Timespan(
+                    start=timespantools.Timepoint(
+                        anchor=selectortools.SegmentSelector(
+                            index='red'
+                            )
+                        ),
+                    stop=timespantools.Timepoint(
+                        anchor=selectortools.SegmentSelector(
+                            index='red'
+                            ),
+                        edge=Right
+                        )
+                    )
+                ),
+            'time_signatures',
+            [(4, 8), (3, 8)],
+            persistent=True,
+            truncate=False,
+            fresh=False
+            )
 
     Initialize from other context setting.
     '''

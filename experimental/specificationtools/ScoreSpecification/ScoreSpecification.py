@@ -446,7 +446,8 @@ class ScoreSpecification(Specification):
         '''
         resolved_setting = self.make_resolved_setting(setting)
         assert resolved_setting.target.timespan.encompasses_one_segment_exactly, repr(resolved_setting)
-        segment = self.segments[resolved_setting.target.timespan.start.anchor.segment]
+        #segment = self.segments[resolved_setting.target.timespan.start.anchor.segment]
+        segment = self.segments[resolved_setting.target.timespan.start.anchor.index]
         context_name = resolved_setting.target.context or segment.resolved_settings_context_dictionary.score_name
         attribute = resolved_setting.attribute
         if attribute in segment.resolved_settings_context_dictionary[context_name]:

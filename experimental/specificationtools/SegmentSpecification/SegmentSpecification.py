@@ -88,17 +88,18 @@ class SegmentSpecification(Specification):
         if self.time_signatures is not None:
             return sum([durationtools.Duration(x) for x in self.time_signatures])        
 
+    # TODO: change name to 'selector'
     @property
     def indicator(self):
-        '''Segment score object indicator.
+        '''Segment specification indicator::
 
             >>> segment.indicator
-            CounttimeComponentSelector(segment='1')
+            SegmentSelector(index='1')
 
-        Return score object indicator.
+        Return segment selector.
         '''
         from experimental import selectortools
-        return selectortools.CounttimeComponentSelector(segment=self)
+        return selectortools.SegmentSelector(index=self.name)
         
     @property
     def name(self):
