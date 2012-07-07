@@ -10,6 +10,12 @@ class ContextSetting(Setting):
     Initialize with mandatory `target`, `attribute`, `source`
     and optional `persistent`, `truncate`, `fresh`::
 
+        >>> from experimental import selectortools
+        >>> from experimental import specificationtools
+        >>> from experimental import timespantools
+
+    ::
+
         >>> anchor = selectortools.SegmentSelector(index='red')
         >>> start = timespantools.Timepoint(anchor=anchor)
         >>> stop = timespantools.Timepoint(anchor=anchor, edge=Right)

@@ -16,20 +16,84 @@ class SegmentDivisionList(DivisionList):
         >>> from experimental.specificationtools import library
         >>> from experimental.specificationtools import ScoreSpecification
 
+    ::
+
         >>> specification = ScoreSpecification(scoretemplatetools.GroupedRhythmicStavesScoreTemplate(n=1))
         >>> segment = specification.append_segment()
 
-        >>> segment.set_time_signatures(segment, [(4, 8), (3, 8)])
-        Setting(Selection(contexts=['Grouped Rhythmic Staves Score'], timespan=Timespan(CounttimeComponentSelector(segment='1'))), 'time_signatures', [(4, 8), (3, 8)], persistent=True, truncate=False)
+    ::
 
-        >>> segment.set_divisions(segment.v1, [(3, 16)])
-        Setting(Selection(contexts=['Voice 1'], timespan=Timespan(CounttimeComponentSelector(segment='1'))), 'divisions', [(3, 16)], persistent=True, truncate=False)
+        >>> setting = segment.set_time_signatures(segment, [(4, 8), (3, 8)])
+        >>> z(setting)
+        specificationtools.Setting(
+            specificationtools.Selection(
+                contexts=['Grouped Rhythmic Staves Score'],
+                timespan=timespantools.Timespan(
+                    selector=selectortools.SegmentSelector(
+                        index='1'
+                        )
+                    )
+                ),
+            'time_signatures',
+            [(4, 8), (3, 8)],
+            persistent=True,
+            truncate=False
+            )
 
-        >>> segment.set_rhythm(segment, library.thirty_seconds)
-        Setting(Selection(contexts=['Grouped Rhythmic Staves Score'], timespan=Timespan(CounttimeComponentSelector(segment='1'))), 'rhythm', OutputBurnishedSignalFilledTimeTokenMaker('thirty_seconds'), persistent=True, truncate=False)
+    ::
+
+        >>> setting = segment.set_divisions(segment.v1, [(3, 16)])
+        >>> z(setting)
+        specificationtools.Setting(
+            specificationtools.Selection(
+                contexts=['Voice 1'],
+                timespan=timespantools.Timespan(
+                    selector=selectortools.SegmentSelector(
+                        index='1'
+                        )
+                    )
+                ),
+            'divisions',
+            [(3, 16)],
+            persistent=True,
+            truncate=False
+            )
+
+    ::
+
+        >>> setting = segment.set_rhythm(segment, library.thirty_seconds)
+        >>> z(setting)
+        specificationtools.Setting(
+            specificationtools.Selection(
+                contexts=['Grouped Rhythmic Staves Score'],
+                timespan=timespantools.Timespan(
+                    selector=selectortools.SegmentSelector(
+                        index='1'
+                        )
+                    )
+                ),
+            'rhythm',
+            timetokentools.OutputBurnishedSignalFilledTimeTokenMaker(
+                [1],
+                32,
+                prolation_addenda=[],
+                lefts=[0],
+                middles=[0],
+                rights=[0],
+                left_lengths=[0],
+                right_lengths=[0],
+                secondary_divisions=[]
+                ),
+            persistent=True,
+            truncate=False
+            )
+
+    ::
 
         >>> segment = specification.append_segment()
         >>> segment = specification.append_segment()
+
+    ::
 
         >>> score = specification.interpret()
 

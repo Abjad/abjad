@@ -9,6 +9,12 @@ class ContextSelection(Selection):
 
     Select ``'Voice 1'`` over segment ``'red'``::
 
+        >>> from experimental import selectortools
+        >>> from experimental import specificationtools
+        >>> from experimental import timespantools
+
+    ::
+
         >>> anchor = selectortools.SegmentSelector(index='red')
         >>> start = timespantools.Timepoint(anchor=anchor)
         >>> stop = timespantools.Timepoint(anchor=anchor, edge=Right)

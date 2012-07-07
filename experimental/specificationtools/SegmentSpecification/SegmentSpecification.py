@@ -138,7 +138,7 @@ class SegmentSpecification(Specification):
         '''Segment start.
 
             >>> segment.start
-            Timepoint(anchor=CounttimeComponentSelector(segment='1'), edge=Left)
+            Timepoint(anchor=SegmentSelector(index='1'), edge=Left)
 
         Return timepoint.
         '''
@@ -150,7 +150,7 @@ class SegmentSpecification(Specification):
         '''Segment stop.
 
             >>> segment.stop
-            Timepoint(anchor=CounttimeComponentSelector(segment='1'), edge=Right)
+            Timepoint(anchor=SegmentSelector(index='1'), edge=Right)
 
         Return timepoint.
         '''
@@ -181,7 +181,7 @@ class SegmentSpecification(Specification):
         '''Segment timespan.
 
             >>> segment.timespan
-            Timespan(SegmentSelector(index='1'))
+            Timespan(selector=SegmentSelector(index='1'))
 
         Return timespan.
         '''
