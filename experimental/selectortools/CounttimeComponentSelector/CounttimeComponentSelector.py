@@ -5,11 +5,11 @@ from abjad.tools import voicetools
 from experimental.specificationtools.Callback import Callback
 from experimental.specificationtools.Division import Division
 from experimental.specificationtools.SegmentSpecification import SegmentSpecification
-from experimental.selectortools.Selector import Selector
+from experimental.selectortools.ItemSelector import ItemSelector
 import types
 
 
-class CounttimeComponentSelector(Selector):
+class CounttimeComponentSelector(ItemSelector):
     r'''.. versionadded:: 1.0
 
         >>> from experimental import selectortools
@@ -196,13 +196,11 @@ class CounttimeComponentSelector(Selector):
         assert isinstance(inequality, (timespantools.TimespanInequality, type(None))), repr(inequality)
         assert klass is None or specificationtools.is_counttime_component_klass(klass), repr(klass)
         assert isinstance(predicate, (Callback, type(None))), repr(predicate)
-        assert isinstance(index, (int, type(None))), repr(index)
-        Selector.__init__(self)
+        ItemSelector.__init__(self, index=index)
         self._reference = self._reference_to_storable_form(reference)
         self._inequality = inequality
         self._klass = klass
         self._predicate = predicate
-        self._index = index
     
     ### SPECIAL METHODS ###
 

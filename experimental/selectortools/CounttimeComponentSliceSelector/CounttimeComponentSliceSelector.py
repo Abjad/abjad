@@ -1,9 +1,9 @@
 from abjad.tools import voicetools
 from experimental.specificationtools.Callback import Callback
-from experimental.selectortools.Selector import Selector
+from experimental.selectortools.SliceSelector import SliceSelector
 
 
-class CounttimeComponentSliceSelector(Selector):
+class CounttimeComponentSliceSelector(SliceSelector):
     r'''.. versionadded:: 1.0
 
     Select zero or more counttime components in `reference` container
@@ -91,15 +91,11 @@ class CounttimeComponentSliceSelector(Selector):
         assert isinstance(inequality, (timespantools.TimespanInequality, type(None))), repr(inequality)
         assert klass is None or specificationtools.is_counttime_component_klass(klass), repr(klass)
         assert isinstance(predicate, (Callback, type(None))), repr(predicate)
-        assert isinstance(start, (int, type(None))), repr(start)
-        assert isinstance(stop, (int, type(None))), repr(stop)
-        Selector.__init__(self)
+        SliceSelector.__init__(self, start=start, stop=stop)
         self._reference = self._reference_to_storable_form(reference)
         self._inequality = inequality
         self._klass = klass
         self._predicate = predicate
-        self._start = start
-        self._stop = stop
 
     ### READ-ONLY PUBLIC ATTRIBUTES ###
 
