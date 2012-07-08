@@ -1,3 +1,5 @@
+from abc import ABCMeta
+from abc import abstractmethod
 from experimental.selectortools.Selector import Selector
 
 
@@ -5,12 +7,11 @@ class BackgroundElementSliceSelector(Selector):
     r'''.. versionadded:: 1.0
 
     Select zero or more contiguous background elements.
-
-    Background element slice selectors are immutable.
     '''
 
     ### INITIALIZER ###
 
+    @abstractmethod
     def __init__(self, klass, inequality=None, start=None, stop=None):
         from experimental import specificationtools
         from experimental import timespantools

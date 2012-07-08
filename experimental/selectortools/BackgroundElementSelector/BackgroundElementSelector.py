@@ -1,3 +1,5 @@
+from abc import ABCMeta
+from abc import abstractmethod
 from abjad.tools import introspectiontools
 from experimental.selectortools.Selector import Selector
 
@@ -5,38 +7,16 @@ from experimental.selectortools.Selector import Selector
 class BackgroundElementSelector(Selector):
     r'''.. versionadded:: 1.0
 
-    Select one background object with mandatory `klass` and `index`.
-
-    Select segment ``'red'``::
-
-        >>> from experimental import selectortools
-        >>> from experimental import specificationtools
-
-    ::
-
-        >>> selectortools.BackgroundElementSelector(klass=specificationtools.Segment, index='red')
-        BackgroundElementSelector(klass=specificationtools.Segment, index='red')
-
-    Select segment ``0``::
-
-        >>> selectortools.BackgroundElementSelector(klass=specificationtools.Segment, index=0)
-        BackgroundElementSelector(klass=specificationtools.Segment, index=0)
-
-    Select measure ``0``::
-
-        >>> selectortools.BackgroundElementSelector(klass=measuretools.Measure, index=0)
-        BackgroundElementSelector(klass=measuretools.Measure, index=0)
-
-    Select division ``0``::
-
-        >>> selectortools.BackgroundElementSelector(klass=specificationtools.Division, index=0)
-        BackgroundElementSelector(klass=specificationtools.Division, index=0)
-
-    More examples to follow.
+    Select exactly one background element.
     '''
+
+    ### CLASS ATTRIBUTES ###
+
+    __metaclass__ = ABCMeta
 
     ### INITIALIZER ###
     
+    @abstractmethod
     def __init__(self, klass=None, inequality=None, index=0):
         from experimental import specificationtools
         from experimental import timespantools

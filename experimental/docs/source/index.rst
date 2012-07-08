@@ -187,6 +187,8 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
+   experimental/selectortools/BackgroundElementSelector/BackgroundElementSelector
+   experimental/selectortools/BackgroundElementSliceSelector/BackgroundElementSliceSelector
    experimental/selectortools/Selector/Selector
 
 .. rubric:: concrete classes
@@ -194,8 +196,6 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
-   experimental/selectortools/BackgroundElementSelector/BackgroundElementSelector
-   experimental/selectortools/BackgroundElementSliceSelector/BackgroundElementSliceSelector
    experimental/selectortools/CounttimeComponentSelector/CounttimeComponentSelector
    experimental/selectortools/CounttimeComponentSliceSelector/CounttimeComponentSliceSelector
    experimental/selectortools/DivisionSelector/DivisionSelector
