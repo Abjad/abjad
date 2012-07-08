@@ -20,9 +20,9 @@ def profile_expr(expr, sort_by='cum', num_lines=12, strip_dirs=True):
                 1    0.000    0.000    0.003    0.003 Context.py:11(__init__)
                 1    0.000    0.000    0.003    0.003 Container.py:23(__init__)
                 1    0.000    0.000    0.003    0.003 Container.py:271(_initialize_music)
-                2    0.000    0.000    0.002    0.001 all_are_thread_contiguous_components.py:9(all_are_thread_contiguous_components)
-               52    0.001    0.000    0.002    0.000 component_to_thread_signature.py:5(component_to_thread_signature)
-                1    0.000    0.000    0.002    0.002 _construct_unprolated_notes.py:4(_construct_unprolated_notes)
+                2    0.000    0.000    0.002    0.001 all_are_thread_contiguous_components.py:9(all_
+               52    0.001    0.000    0.002    0.000 component_to_thread_signature.py:5(component_t
+                1    0.000    0.000    0.002    0.002 _construct_unprolated_notes.py:4(_construct_unp
                 8    0.000    0.000    0.002    0.000 _construct_tied_note.py:5(_construct_tied_note)
                 8    0.000    0.000    0.002    0.000 _construct_tied_leaf.py:5(_construct_tied_leaf)
 
