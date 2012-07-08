@@ -204,8 +204,6 @@ Unstable packages (load manually)
    experimental/selectortools/CounttimeContainerSliceSelector/CounttimeContainerSliceSelector
    experimental/selectortools/DivisionSelector/DivisionSelector
    experimental/selectortools/DivisionSliceSelector/DivisionSliceSelector
-   experimental/selectortools/LeafSelector/LeafSelector
-   experimental/selectortools/LeafSliceSelector/LeafSliceSelector
    experimental/selectortools/SegmentSelector/SegmentSelector
    experimental/selectortools/SegmentSliceSelector/SegmentSliceSelector
 
