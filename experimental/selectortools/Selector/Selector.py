@@ -1,5 +1,6 @@
 from abc import ABCMeta
 from abc import abstractmethod
+from abjad.tools import containertools
 from abjad.tools import voicetools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
@@ -22,7 +23,14 @@ class Selector(AbjadObject):
         '''True if `expr` can serve as reference container for self.
         '''
         from experimental import selectortools
-        return isinstance(expr, (voicetools.Voice, selectortools.CounttimeContainerSelector, str))
+        if isinstance(expr, (voicetools.Voice, str)):
+            return True
+        elif isinstance(expr, selectortools.CounttimeContainerSelector):
+            return True
+        elif isinstance(expr, selectortools.CounttimeComponentSelector):
+            if issubclass(expr.klass, containertools.Container):
+                return True
+        return False
 
     def _reference_to_storable_form(self, reference):
         if isinstance(reference, voicetools.Voice):

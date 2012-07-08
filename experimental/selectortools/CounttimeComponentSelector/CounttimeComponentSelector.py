@@ -12,26 +12,37 @@ import types
 class CounttimeComponentSelector(Selector):
     r'''.. versionadded:: 1.0
 
-
-    Select ``'Voice 1'`` measure ``3`` to start during segment ``'red'``::
-
         >>> from experimental import selectortools
         >>> from experimental import specificationtools
         >>> from experimental import timespantools
 
+    Select ``'Voice 1'`` counttime measure ``3``::
+
+        >>> measure_selector = selectortools.CounttimeComponentSelector(
+        ... 'Voice 1', klass=Measure, index=3)
+
     ::
 
-        >>> timespan = selectortools.SegmentSelector(index='red').timespan
-        >>> inequality = timespantools.expr_starts_during_timespan(timespan=timespan)
+        >>> z(measure_selector)
+        selectortools.CounttimeComponentSelector(
+            'Voice 1',
+            klass=measuretools.Measure,
+            index=3
+            )
+
+    Select ``'Voice 1'`` counttime measure ``3`` starting during segment ``'red'``::
+
+        >>> segment_selector = selectortools.SegmentSelector(index='red')
+        >>> inequality = timespantools.expr_starts_during_timespan(timespan=segment_selector.timespan)
 
     ::
 
-        >>> selector = selectortools.CounttimeComponentSelector(
+        >>> measure_selector = selectortools.CounttimeComponentSelector(
         ... 'Voice 1', inequality=inequality, klass=Measure, index=3)
 
     ::
 
-        >>> z(selector)
+        >>> z(measure_selector)
         selectortools.CounttimeComponentSelector(
             'Voice 1',
             inequality=timespantools.TimespanInequality(
@@ -45,7 +56,79 @@ class CounttimeComponentSelector(Selector):
             klass=measuretools.Measure,
             index=3
             )
-    
+
+    Select ``'Voice 1'`` counttime measure ``3`` to start during segment ``'red'``.
+    Then select tuplet ``-1`` in this measure::
+
+        >>> tuplet_selector = selectortools.CounttimeComponentSelector(
+        ... measure_selector, klass=Tuplet, index=-1)
+
+    ::
+
+        >>> z(tuplet_selector)
+        selectortools.CounttimeComponentSelector(
+            selectortools.CounttimeComponentSelector(
+                'Voice 1',
+                inequality=timespantools.TimespanInequality(
+                    timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
+                    timespantools.Timespan(
+                        selector=selectortools.SegmentSelector(
+                            index='red'
+                            )
+                        )
+                    ),
+                klass=measuretools.Measure,
+                index=3
+                ),
+            klass=tuplettools.Tuplet,
+            index=-1
+            )
+
+    Select ``'Voice 1'`` counttime measure ``3`` to start during segment ``'red'``.
+    Then select note ``0`` in tuplet ``-1`` in this measure::
+
+        >>> note_selector = selectortools.CounttimeComponentSelector(
+        ... tuplet_selector, klass=Note, index=0) 
+
+    ::
+
+        >>> z(note_selector)
+        selectortools.CounttimeComponentSelector(
+            selectortools.CounttimeComponentSelector(
+                selectortools.CounttimeComponentSelector(
+                    'Voice 1',
+                    inequality=timespantools.TimespanInequality(
+                        timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
+                        timespantools.Timespan(
+                            selector=selectortools.SegmentSelector(
+                                index='red'
+                                )
+                            )
+                        ),
+                    klass=measuretools.Measure,
+                    index=3
+                    ),
+                klass=tuplettools.Tuplet,
+                index=-1
+                ),
+            klass=notetools.Note,
+            index=0
+            )
+
+    Select ``'Voice 1'`` note ``3``::
+
+        >>> note_selector = selectortools.CounttimeComponentSelector(
+        ... 'Voice 1', klass=Note, index=3)
+
+    ::
+
+        >>> z(note_selector)
+        selectortools.CounttimeComponentSelector(
+            'Voice 1',
+            klass=notetools.Note,
+            index=3
+            )
+
     Select ``'Voice 1'`` note ``3`` to start during segment ``'red'``::
 
         >>> selector = selectortools.CounttimeComponentSelector(
