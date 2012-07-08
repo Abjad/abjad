@@ -32,6 +32,52 @@ class CounttimeComponentSliceSelector(Selector):
         >>> selectortools.CounttimeComponentSliceSelector('Voice 1')
         CounttimeComponentSliceSelector('Voice 1')
 
+    Select counttime measure ``3`` to starting during segment ``'red'`` in  ``'Voice 1'``.
+    Then select the last three leaves in tuplet ``-1`` in this measure::
+
+        >>> segment_selector = selectortools.SegmentSelector(index='red')
+        >>> inequality = timespantools.expr_starts_during_timespan(timespan=segment_selector.timespan)
+
+    ::
+
+        >>> measure_selector = selectortools.CounttimeComponentSelector(
+        ... 'Voice 1', inequality=inequality, klass=Measure, index=3)
+
+    ::
+
+        >>> tuplet_selector = selectortools.CounttimeComponentSelector(
+        ... measure_selector, klass=Tuplet, index=-1)
+
+    ::
+
+        >>> leaf_slice_selector = selectortools.CounttimeComponentSliceSelector(
+        ... tuplet_selector, klass=leaftools.Leaf, start=-3)
+
+    ::
+
+        >>> z(leaf_slice_selector)
+        selectortools.CounttimeComponentSliceSelector(
+            selectortools.CounttimeComponentSelector(
+                selectortools.CounttimeComponentSelector(
+                    'Voice 1',
+                    inequality=timespantools.TimespanInequality(
+                        timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
+                        timespantools.Timespan(
+                            selector=selectortools.SegmentSelector(
+                                index='red'
+                                )
+                            )
+                        ),
+                    klass=measuretools.Measure,
+                    index=3
+                    ),
+                klass=tuplettools.Tuplet,
+                index=-1
+                ),
+            klass=leaftools.Leaf,
+            start=-3
+            )
+
     Counttime component slice selectors are immutable.
     '''
 
