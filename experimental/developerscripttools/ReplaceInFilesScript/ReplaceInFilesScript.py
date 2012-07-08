@@ -143,13 +143,23 @@ class ReplaceInFilesScript(DirectoryScript):
                     if whole_words_only:
                         pattern += r'\b'
                     self.pattern = re.compile(pattern)
+                    self.whole_words_only = whole_words_only
                 except:
                     raise ValueError("Can't compile {!r} as a regex pattern.".format(pattern))
+
             def __call__(self, line, pos):
+                start, length = self._search(line, pos)
+                if self.whole_words_only and 0 < start:
+                    while start != -1 and (line[start-1].isalnum() or line[start-1] == '_'):
+                        start, length = self._search(line, start + length)
+                return start, length
+
+            def _search(self, line, pos):
                 match = self.pattern.search(line, pos)
                 if match is None:
                     return -1, 0
                 return match.start(), match.end() - match.start()
+
         return RegexSearch(args.old, escaped=not args.regex, whole_words_only=args.whole_words_only)
 
     ### PUBLIC METHODS ###
