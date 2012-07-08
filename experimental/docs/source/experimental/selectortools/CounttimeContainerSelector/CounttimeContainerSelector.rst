@@ -9,10 +9,6 @@ selectortools.CounttimeContainerSelector
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.selectortools.CounttimeContainerSelector.CounttimeContainerSelector.CounttimeContainerSelector.container
-
-    Inherited from :py:class:`selectortools.CounttimeComponentSelector <experimental.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector>`
-
 .. autoattribute:: experimental.selectortools.CounttimeContainerSelector.CounttimeContainerSelector.CounttimeContainerSelector.index
 
     Inherited from :py:class:`selectortools.CounttimeComponentSelector <experimental.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector>`
@@ -26,6 +22,10 @@ Read-only Properties
     Inherited from :py:class:`selectortools.CounttimeComponentSelector <experimental.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector>`
 
 .. autoattribute:: experimental.selectortools.CounttimeContainerSelector.CounttimeContainerSelector.CounttimeContainerSelector.predicate
+
+    Inherited from :py:class:`selectortools.CounttimeComponentSelector <experimental.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector>`
+
+.. autoattribute:: experimental.selectortools.CounttimeContainerSelector.CounttimeContainerSelector.CounttimeContainerSelector.reference
 
     Inherited from :py:class:`selectortools.CounttimeComponentSelector <experimental.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector>`
 

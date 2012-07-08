@@ -106,16 +106,16 @@ class CounttimeComponentSelector(Selector):
 
     ### INITIALIZER ###
 
-    def __init__(self, container, inequality=None, klass=None, predicate=None, index=None):
+    def __init__(self, reference, inequality=None, klass=None, predicate=None, index=None):
         from experimental import specificationtools
         from experimental import timespantools
-        assert self._is_counttime_component_selector_reference(container), repr(container)
+        assert self._is_counttime_selector_reference(reference), repr(reference)
         assert isinstance(inequality, (timespantools.TimespanInequality, type(None))), repr(inequality)
         assert klass is None or specificationtools.is_counttime_component_klass(klass), repr(klass)
         assert isinstance(predicate, (Callback, type(None))), repr(predicate)
         assert isinstance(index, (int, type(None))), repr(index)
         Selector.__init__(self)
-        self._container = specificationtools.expr_to_component_name(container)
+        self._reference = self._reference_to_storable_form(reference)
         self._inequality = inequality
         self._klass = klass
         self._predicate = predicate
@@ -133,7 +133,7 @@ class CounttimeComponentSelector(Selector):
         '''
         if not isinstance(other, type(self)):
             return False
-        elif not self.container == other.container:
+        elif not self.reference == other.reference:
             return False
         elif not self.inequality == other.inequality:
             return False
@@ -155,27 +155,8 @@ class CounttimeComponentSelector(Selector):
         values = '[{}]'.format(values)
         return values
 
-    ### PRIVATE METHODS ###
-
-    def _is_counttime_component_selector_reference(self, expr):
-        '''True if `expr` can serve as reference for self.
-        '''
-        from experimental import selectortools
-        return isinstance(expr, (voicetools.Voice, selectortools.CounttimeComponentSelector, str))
-
     ### READ-ONLY PUBLIC PROPERTIES ###
     
-    @property
-    def container(self):
-        '''Container of counttime component selector specified by user::
-
-            >>> selector.container
-            'Voice 1'
-
-        Return string or other counttime component selector.
-        '''
-        return self._container
-
     @property
     def index(self):
         '''Index of counttime component selector specified by user::
@@ -227,16 +208,16 @@ class CounttimeComponentSelector(Selector):
         '''
         return self._predicate
 
-#    @property
-#    def segment(self):
-#        '''Name of counttime component selector segment specified by user::
-#
-#            >>> selector.segment
-#            'red'
-#
-#        Return string or none.
-#        '''
-#        return self._segment
+    @property
+    def reference(self):
+        '''Reference container of counttime component selector specified by user::
+
+            >>> selector.reference
+            'Voice 1'
+
+        Return voice name or counttime container selector.
+        '''
+        return self._reference
 
     @property
     def start(self):

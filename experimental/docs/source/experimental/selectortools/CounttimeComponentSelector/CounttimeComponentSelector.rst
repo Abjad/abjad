@@ -9,8 +9,6 @@ selectortools.CounttimeComponentSelector
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.container
-
 .. autoattribute:: experimental.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.index
 
 .. autoattribute:: experimental.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.inequality
@@ -18,6 +16,8 @@ Read-only Properties
 .. autoattribute:: experimental.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.klass
 
 .. autoattribute:: experimental.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.predicate
+
+.. autoattribute:: experimental.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.reference
 
 .. autoattribute:: experimental.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector.start
 

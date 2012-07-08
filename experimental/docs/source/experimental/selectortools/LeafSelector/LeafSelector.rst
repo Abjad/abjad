@@ -9,10 +9,6 @@ selectortools.LeafSelector
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.selectortools.LeafSelector.LeafSelector.LeafSelector.container
-
-    Inherited from :py:class:`selectortools.CounttimeComponentSelector <experimental.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector>`
-
 .. autoattribute:: experimental.selectortools.LeafSelector.LeafSelector.LeafSelector.index
 
     Inherited from :py:class:`selectortools.CounttimeComponentSelector <experimental.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector>`
@@ -26,6 +22,10 @@ Read-only Properties
     Inherited from :py:class:`selectortools.CounttimeComponentSelector <experimental.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector>`
 
 .. autoattribute:: experimental.selectortools.LeafSelector.LeafSelector.LeafSelector.predicate
+
+    Inherited from :py:class:`selectortools.CounttimeComponentSelector <experimental.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector>`
+
+.. autoattribute:: experimental.selectortools.LeafSelector.LeafSelector.LeafSelector.reference
 
     Inherited from :py:class:`selectortools.CounttimeComponentSelector <experimental.selectortools.CounttimeComponentSelector.CounttimeComponentSelector.CounttimeComponentSelector>`
 

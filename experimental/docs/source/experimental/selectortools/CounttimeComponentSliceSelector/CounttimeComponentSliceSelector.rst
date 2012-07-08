@@ -9,13 +9,13 @@ selectortools.CounttimeComponentSliceSelector
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.selectortools.CounttimeComponentSliceSelector.CounttimeComponentSliceSelector.CounttimeComponentSliceSelector.container
-
 .. autoattribute:: experimental.selectortools.CounttimeComponentSliceSelector.CounttimeComponentSliceSelector.CounttimeComponentSliceSelector.inequality
 
 .. autoattribute:: experimental.selectortools.CounttimeComponentSliceSelector.CounttimeComponentSliceSelector.CounttimeComponentSliceSelector.klass
 
 .. autoattribute:: experimental.selectortools.CounttimeComponentSliceSelector.CounttimeComponentSliceSelector.CounttimeComponentSliceSelector.predicate
+
+.. autoattribute:: experimental.selectortools.CounttimeComponentSliceSelector.CounttimeComponentSliceSelector.CounttimeComponentSliceSelector.reference
 
 .. autoattribute:: experimental.selectortools.CounttimeComponentSliceSelector.CounttimeComponentSliceSelector.CounttimeComponentSliceSelector.start
 

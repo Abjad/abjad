@@ -37,17 +37,17 @@ class CounttimeComponentSliceSelector(Selector):
 
     ### INITIALIZER ###
 
-    def __init__(self, container, inequality=None, klass=None, predicate=None, start=None, stop=None):
+    def __init__(self, reference, inequality=None, klass=None, predicate=None, start=None, stop=None):
         from experimental import specificationtools
         from experimental import timespantools
-        assert isinstance(container, (voicetools.Voice, str)), repr(container)
+        assert self._is_counttime_selector_reference(reference), repr(reference)
         assert isinstance(inequality, (timespantools.TimespanInequality, type(None))), repr(inequality)
         assert klass is None or specificationtools.is_counttime_component_klass(klass), repr(klass)
         assert isinstance(predicate, (Callback, type(None))), repr(predicate)
         assert isinstance(start, (int, type(None))), repr(start)
         assert isinstance(stop, (int, type(None))), repr(stop)
         Selector.__init__(self)
-        self._container = specificationtools.expr_to_component_name(container)
+        self._reference = self._reference_to_storable_form(reference)
         self._inequality = inequality
         self._klass = klass
         self._predicate = predicate
@@ -55,14 +55,6 @@ class CounttimeComponentSliceSelector(Selector):
         self._stop = stop
 
     ### READ-ONLY PUBLIC ATTRIBUTES ###
-
-    @property
-    def container(self):
-        '''Container of counttime component selector specified by user.
-
-        Return string or other counttime component selector.
-        '''
-        return self._container
 
     @property
     def inequality(self):
@@ -87,6 +79,14 @@ class CounttimeComponentSliceSelector(Selector):
         Return callback or none.
         '''
         return self._predicate
+
+    @property
+    def reference(self):
+        '''Reference container of counttime component slice selector specified by user.
+
+        Return voice name or counttime component selector.
+        '''
+        return self._reference
 
     @property
     def start(self):
