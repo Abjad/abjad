@@ -13,7 +13,7 @@ class CounttimeComponentSelector(Selector):
     r'''.. versionadded:: 1.0
 
 
-    Select ``'Voice 1'`` (score-tree) measure ``3`` to start during segment ``'red'``::
+    Select ``'Voice 1'`` measure ``3`` to start during segment ``'red'``::
 
         >>> from experimental import selectortools
         >>> from experimental import specificationtools
@@ -106,16 +106,16 @@ class CounttimeComponentSelector(Selector):
 
     ### INITIALIZER ###
 
-    def __init__(self, voice, inequality=None, klass=None, predicate=None, index=None):
+    def __init__(self, container, inequality=None, klass=None, predicate=None, index=None):
         from experimental import specificationtools
         from experimental import timespantools
-        assert isinstance(voice, (voicetools.Voice, str)), repr(voice)
+        assert self._is_counttime_component_selector_reference(container), repr(container)
         assert isinstance(inequality, (timespantools.TimespanInequality, type(None))), repr(inequality)
         assert klass is None or specificationtools.is_counttime_component_klass(klass), repr(klass)
         assert isinstance(predicate, (Callback, type(None))), repr(predicate)
         assert isinstance(index, (int, type(None))), repr(index)
         Selector.__init__(self)
-        self._voice = specificationtools.expr_to_component_name(voice)
+        self._container = specificationtools.expr_to_component_name(container)
         self._inequality = inequality
         self._klass = klass
         self._predicate = predicate
@@ -133,7 +133,7 @@ class CounttimeComponentSelector(Selector):
         '''
         if not isinstance(other, type(self)):
             return False
-        elif not self.voice == other.voice:
+        elif not self.container == other.container:
             return False
         elif not self.inequality == other.inequality:
             return False
@@ -155,8 +155,27 @@ class CounttimeComponentSelector(Selector):
         values = '[{}]'.format(values)
         return values
 
+    ### PRIVATE METHODS ###
+
+    def _is_counttime_component_selector_reference(self, expr):
+        '''True if `expr` can serve as reference for self.
+        '''
+        from experimental import selectortools
+        return isinstance(expr, (voicetools.Voice, selectortools.CounttimeComponentSelector, str))
+
     ### READ-ONLY PUBLIC PROPERTIES ###
     
+    @property
+    def container(self):
+        '''Container of counttime component selector specified by user::
+
+            >>> selector.container
+            'Voice 1'
+
+        Return string or other counttime component selector.
+        '''
+        return self._container
+
     @property
     def index(self):
         '''Index of counttime component selector specified by user::
@@ -331,14 +350,3 @@ class CounttimeComponentSelector(Selector):
 
         start, stop = self.timepoints
         return timespantools.Timespan(start=start, stop=stop)
-
-    @property
-    def voice(self):
-        '''Voice of counttime component selector specified by user::
-
-            >>> selector.voice
-            'Voice 1'
-
-        Return string.
-        '''
-        return self._voice

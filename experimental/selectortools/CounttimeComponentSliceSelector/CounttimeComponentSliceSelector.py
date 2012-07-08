@@ -37,17 +37,17 @@ class CounttimeComponentSliceSelector(Selector):
 
     ### INITIALIZER ###
 
-    def __init__(self, voice, inequality=None, klass=None, predicate=None, start=None, stop=None):
+    def __init__(self, container, inequality=None, klass=None, predicate=None, start=None, stop=None):
         from experimental import specificationtools
         from experimental import timespantools
-        assert isinstance(voice, (voicetools.Voice, str)), repr(voice)
+        assert isinstance(container, (voicetools.Voice, str)), repr(container)
         assert isinstance(inequality, (timespantools.TimespanInequality, type(None))), repr(inequality)
         assert klass is None or specificationtools.is_counttime_component_klass(klass), repr(klass)
         assert isinstance(predicate, (Callback, type(None))), repr(predicate)
         assert isinstance(start, (int, type(None))), repr(start)
         assert isinstance(stop, (int, type(None))), repr(stop)
         Selector.__init__(self)
-        self._voice = specificationtools.expr_to_component_name(voice)
+        self._container = specificationtools.expr_to_component_name(container)
         self._inequality = inequality
         self._klass = klass
         self._predicate = predicate
@@ -55,6 +55,14 @@ class CounttimeComponentSliceSelector(Selector):
         self._stop = stop
 
     ### READ-ONLY PUBLIC ATTRIBUTES ###
+
+    @property
+    def container(self):
+        '''Container of counttime component selector specified by user.
+
+        Return string or other counttime component selector.
+        '''
+        return self._container
 
     @property
     def inequality(self):
@@ -95,11 +103,3 @@ class CounttimeComponentSliceSelector(Selector):
         Return integer or none.
         '''
         return self._stop
-
-    @property
-    def voice(self):
-        '''Voice of counttime component selector specified by user.
-
-        Return string.
-        '''
-        return self._voice
