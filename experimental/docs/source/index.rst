@@ -200,8 +200,6 @@ Unstable packages (load manually)
    experimental/selectortools/BackgroundMeasureSliceSelector/BackgroundMeasureSliceSelector
    experimental/selectortools/CounttimeComponentSelector/CounttimeComponentSelector
    experimental/selectortools/CounttimeComponentSliceSelector/CounttimeComponentSliceSelector
-   experimental/selectortools/CounttimeContainerSelector/CounttimeContainerSelector
-   experimental/selectortools/CounttimeContainerSliceSelector/CounttimeContainerSliceSelector
    experimental/selectortools/DivisionSelector/DivisionSelector
    experimental/selectortools/DivisionSliceSelector/DivisionSliceSelector
    experimental/selectortools/SegmentSelector/SegmentSelector

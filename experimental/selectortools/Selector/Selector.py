@@ -25,8 +25,6 @@ class Selector(AbjadObject):
         from experimental import selectortools
         if isinstance(expr, (voicetools.Voice, str)):
             return True
-        elif isinstance(expr, selectortools.CounttimeContainerSelector):
-            return True
         elif isinstance(expr, selectortools.CounttimeComponentSelector):
             if issubclass(expr.klass, containertools.Container):
                 return True
