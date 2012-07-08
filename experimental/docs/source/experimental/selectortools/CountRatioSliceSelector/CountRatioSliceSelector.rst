@@ -11,15 +11,15 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.CountRatioSliceSelector.CountRatioSliceSelector.CountRatioSliceSelector.index
 
-    Inherited from :py:class:`selectortools.CountRatioSelector <experimental.selectortools.CountRatioSelector.CountRatioSelector.CountRatioSelector>`
+    Inherited from :py:class:`selectortools.CountRatioItemSelector <experimental.selectortools.CountRatioItemSelector.CountRatioItemSelector.CountRatioItemSelector>`
 
 .. autoattribute:: experimental.selectortools.CountRatioSliceSelector.CountRatioSliceSelector.CountRatioSliceSelector.ratio
 
-    Inherited from :py:class:`selectortools.CountRatioSelector <experimental.selectortools.CountRatioSelector.CountRatioSelector.CountRatioSelector>`
+    Inherited from :py:class:`selectortools.CountRatioItemSelector <experimental.selectortools.CountRatioItemSelector.CountRatioItemSelector.CountRatioItemSelector>`
 
 .. autoattribute:: experimental.selectortools.CountRatioSliceSelector.CountRatioSliceSelector.CountRatioSliceSelector.reference
 
-    Inherited from :py:class:`selectortools.CountRatioSelector <experimental.selectortools.CountRatioSelector.CountRatioSelector.CountRatioSelector>`
+    Inherited from :py:class:`selectortools.CountRatioItemSelector <experimental.selectortools.CountRatioItemSelector.CountRatioItemSelector.CountRatioItemSelector>`
 
 .. autoattribute:: experimental.selectortools.CountRatioSliceSelector.CountRatioSliceSelector.CountRatioSliceSelector.storage_format
 

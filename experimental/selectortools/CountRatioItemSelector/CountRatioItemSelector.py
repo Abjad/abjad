@@ -2,7 +2,7 @@ from abjad.tools import mathtools
 from experimental.selectortools.Selector import Selector
 
 
-class CountRatioSelector(Selector):
+class CountRatioItemSelector(Selector):
     r'''.. versionadded:: 1.0
     
     Partition `reference` by `ratio`. Then select exactly one part.

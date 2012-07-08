@@ -1,7 +1,7 @@
-from experimental.selectortools.CountRatioSelector import CountRatioSelector
+from experimental.selectortools.CountRatioItemSelector import CountRatioItemSelector
 
 
-class CountRatioSliceSelector(CountRatioSelector):
+class CountRatioSliceSelector(CountRatioItemSelector):
     r'''.. versionadded:: 1.0
 
     Partition `reference` by `ratio` of counts. Then select zero or more contiguous parts.
