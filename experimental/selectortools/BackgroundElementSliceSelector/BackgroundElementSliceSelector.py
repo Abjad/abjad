@@ -43,7 +43,7 @@ class BackgroundElementSliceSelector(SliceSelector):
     def start(self):
         '''Background element slice selector start.
 
-        Return integer, string, none or hold.
+        Return integer, string, held expression or none.
         '''
         return self._start
 
@@ -51,6 +51,6 @@ class BackgroundElementSliceSelector(SliceSelector):
     def stop(self):
         '''Background element slice selector stop.
 
-        Return integer, string, none or hold.
+        Return integer, string, held expression or none.
         '''
         return self._stop

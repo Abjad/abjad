@@ -107,7 +107,7 @@ class Timepoint(AbjadObject):
 
     Timepoint one third of the way into the timespan of segments ``'red'`` through ``'blue'``::
 
-        >>> stop = selectortools.Hold("'blue' + 1")
+        >>> stop = selectortools.HeldExpression("'blue' + 1")
         >>> segment_slice_selector = selectortools.SegmentSliceSelector(start='red', stop=stop)
         >>> timespan = timespantools.Timespan(selector=segment_slice_selector)
 
@@ -122,7 +122,7 @@ class Timepoint(AbjadObject):
             anchor=timespantools.Timespan(
                 selector=selectortools.SegmentSliceSelector(
                     start='red',
-                    stop=selectortools.Hold("'blue' + 1")
+                    stop=selectortools.HeldExpression("'blue' + 1")
                     )
                 ),
             edge=Right,

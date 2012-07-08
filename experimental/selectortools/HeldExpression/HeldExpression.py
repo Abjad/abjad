@@ -1,23 +1,23 @@
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class Hold(AbjadObject):
+class HeldExpression(AbjadObject):
     r'''.. versionadded:: 1.0
 
-    Delayed evaluation wrapper similar to Mathematica ``Hold[]``::
+    Delayed evaluation wrapper similar to Mathematica ``HeldExpression[]``::
 
         >>> from experimental import selectortools
 
     ::
 
-        >>> selectortools.Hold("'red' + 3")
-        Hold("'red' + 3")
+        >>> selectortools.HeldExpression("'red' + 3")
+        HeldExpression("'red' + 3")
 
     Delays evaluation of string argument until later in interpretation.
 
     Used primarily as arguments to slice selector start and stop keywords.
 
-    Hold objects are immutable.
+    All held expression properties are read-only.
     '''
 
     ### INITIALIZER ###
