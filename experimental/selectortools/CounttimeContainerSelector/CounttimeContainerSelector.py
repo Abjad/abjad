@@ -24,11 +24,12 @@ class CounttimeContainerSelector(CounttimeComponentSelector):
 
     ::
 
-        >>> selector = selectortools.CounttimeContainerSelector('Voice 1', inequality=inequality, klass=Measure, index=3)
+        >>> measure_selector = selectortools.CounttimeContainerSelector(
+        ... 'Voice 1', inequality=inequality, klass=Measure, index=3)
 
     ::
 
-        >>> z(selector)
+        >>> z(measure_selector)
         selectortools.CounttimeContainerSelector(
             'Voice 1',
             inequality=timespantools.TimespanInequality(
@@ -41,6 +42,32 @@ class CounttimeContainerSelector(CounttimeComponentSelector):
                 ),
             klass=measuretools.Measure,
             index=3
+            )
+
+    Select the last tuplet in ``'Voice 1'`` measure ``3`` starting in segment ``'red'``::
+
+        >>> tuplet_selector = selectortools.CounttimeContainerSelector(
+        ... measure_selector, klass=Tuplet, index=-1)
+
+    ::
+
+        >>> z(tuplet_selector)
+        selectortools.CounttimeContainerSelector(
+            selectortools.CounttimeContainerSelector(
+                'Voice 1',
+                inequality=timespantools.TimespanInequality(
+                    timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
+                    timespantools.Timespan(
+                        selector=selectortools.SegmentSelector(
+                            index='red'
+                            )
+                        )
+                    ),
+                klass=measuretools.Measure,
+                index=3
+                ),
+            klass=tuplettools.Tuplet,
+            index=-1
             )
 
     Counttime container selectors are immutable.
