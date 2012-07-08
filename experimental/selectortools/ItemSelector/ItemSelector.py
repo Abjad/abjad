@@ -12,8 +12,9 @@ class ItemSelector(Selector):
     ### INITIALIZER ##
 
     @abstractmethod
-    def __init__(self):
-        pass
+    def __init__(self, index=None):
+        assert isinstance(index, (int, str)), repr(index)
+        self._index = index
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

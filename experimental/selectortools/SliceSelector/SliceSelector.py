@@ -12,8 +12,9 @@ class SliceSelector(Selector):
     ### INITIALIZER ###
 
     @abstractmethod
-    def __init__(self):
-        pass
+    def __init__(self, start=None, stop=None):
+        self._start = start
+        self._stop = stop
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

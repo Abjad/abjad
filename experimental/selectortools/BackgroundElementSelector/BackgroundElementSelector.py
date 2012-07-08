@@ -1,10 +1,10 @@
 from abc import ABCMeta
 from abc import abstractmethod
 from abjad.tools import introspectiontools
-from experimental.selectortools.Selector import Selector
+from experimental.selectortools.ItemSelector import ItemSelector
 
 
-class BackgroundElementSelector(Selector):
+class BackgroundElementSelector(ItemSelector):
     r'''.. versionadded:: 1.0
 
     Select exactly one background element.
@@ -21,11 +21,9 @@ class BackgroundElementSelector(Selector):
         from experimental import specificationtools
         from experimental import timespantools
         assert specificationtools.is_background_element_klass(klass), repr(klass)
-        assert isinstance(index, (int, str)), repr(index)
         assert isinstance(inequality, (timespantools.TimespanInequality, type(None))), repr(inequality)
-        Selector.__init__(self)
+        ItemSelector.__init__(self, index=index)
         self._klass = klass
-        self._index = index
         self._inequality = inequality
 
     ### SPECIAL METHODS ###
