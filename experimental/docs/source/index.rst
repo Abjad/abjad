@@ -198,8 +198,12 @@ Unstable packages (load manually)
 
    experimental/selectortools/CounttimeComponentSelector/CounttimeComponentSelector
    experimental/selectortools/CounttimeComponentSliceSelector/CounttimeComponentSliceSelector
+   experimental/selectortools/CounttimeContainerSelector/CounttimeContainerSelector
+   experimental/selectortools/CounttimeContainerSliceSelector/CounttimeContainerSliceSelector
    experimental/selectortools/DivisionSelector/DivisionSelector
    experimental/selectortools/DivisionSliceSelector/DivisionSliceSelector
+   experimental/selectortools/LeafSelector/LeafSelector
+   experimental/selectortools/LeafSliceSelector/LeafSliceSelector
    experimental/selectortools/MeasureSelector/MeasureSelector
    experimental/selectortools/MeasureSliceSelector/MeasureSliceSelector
    experimental/selectortools/SegmentSelector/SegmentSelector
