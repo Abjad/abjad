@@ -1,10 +1,6 @@
 from abc import abstractmethod
 from abjad.tools import abctools
-from abjad.tools import contexttools
-from abjad.tools import durationtools
 from collections import OrderedDict
-from experimental.quantizationtools.QGridSearchTree import QGridSearchTree
-from experimental.quantizationtools.is_valid_beatspan import is_valid_beatspan
 
 
 class QSchemaItem(tuple, abctools.ImmutableAbjadObject):
@@ -43,3 +39,4 @@ class QSchemaItem(tuple, abctools.ImmutableAbjadObject):
     @property
     def __dict__(self):
         return OrderedDict(zip(self._fields, self))
+

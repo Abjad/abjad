@@ -9,13 +9,29 @@ quantizationtools.MeteredQSchema
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.quantizationtools.MeteredQSchema.MeteredQSchema.MeteredQSchema.cyclic
+
+    Inherited from :py:class:`quantizationtools.QSchema <experimental.quantizationtools.QSchema.QSchema.QSchema>`
+
+.. autoattribute:: experimental.quantizationtools.MeteredQSchema.MeteredQSchema.MeteredQSchema.item_klass
+
 .. autoattribute:: experimental.quantizationtools.MeteredQSchema.MeteredQSchema.MeteredQSchema.items
+
+    Inherited from :py:class:`quantizationtools.QSchema <experimental.quantizationtools.QSchema.QSchema.QSchema>`
+
+.. autoattribute:: experimental.quantizationtools.MeteredQSchema.MeteredQSchema.MeteredQSchema.search_tree
 
     Inherited from :py:class:`quantizationtools.QSchema <experimental.quantizationtools.QSchema.QSchema.QSchema>`
 
 .. autoattribute:: experimental.quantizationtools.MeteredQSchema.MeteredQSchema.MeteredQSchema.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. autoattribute:: experimental.quantizationtools.MeteredQSchema.MeteredQSchema.MeteredQSchema.tempo
+
+    Inherited from :py:class:`quantizationtools.QSchema <experimental.quantizationtools.QSchema.QSchema.QSchema>`
+
+.. autoattribute:: experimental.quantizationtools.MeteredQSchema.MeteredQSchema.MeteredQSchema.time_signature
 
 Special Methods
 ---------------

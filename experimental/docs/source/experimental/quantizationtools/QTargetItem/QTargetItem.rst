@@ -9,12 +9,47 @@ quantizationtools.QTargetItem
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.quantizationtools.QTargetItem.QTargetItem.QTargetItem.beatspan
+
+.. autoattribute:: experimental.quantizationtools.QTargetItem.QTargetItem.QTargetItem.duration_in_ms
+
+.. autoattribute:: experimental.quantizationtools.QTargetItem.QTargetItem.QTargetItem.grouping
+
+.. autoattribute:: experimental.quantizationtools.QTargetItem.QTargetItem.QTargetItem.offset_in_ms
+
+.. autoattribute:: experimental.quantizationtools.QTargetItem.QTargetItem.QTargetItem.q_events
+
+.. autoattribute:: experimental.quantizationtools.QTargetItem.QTargetItem.QTargetItem.q_grids
+
+.. autoattribute:: experimental.quantizationtools.QTargetItem.QTargetItem.QTargetItem.search_tree
+
 .. autoattribute:: experimental.quantizationtools.QTargetItem.QTargetItem.QTargetItem.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
+.. autoattribute:: experimental.quantizationtools.QTargetItem.QTargetItem.QTargetItem.tempo
+
+Methods
+-------
+
+.. automethod:: experimental.quantizationtools.QTargetItem.QTargetItem.QTargetItem.count
+
+    Inherited from :py:class:`__builtin__.tuple`
+
+.. automethod:: experimental.quantizationtools.QTargetItem.QTargetItem.QTargetItem.index
+
+    Inherited from :py:class:`__builtin__.tuple`
+
 Special Methods
 ---------------
+
+.. automethod:: experimental.quantizationtools.QTargetItem.QTargetItem.QTargetItem.__add__
+
+    Inherited from :py:class:`__builtin__.tuple`
+
+.. automethod:: experimental.quantizationtools.QTargetItem.QTargetItem.QTargetItem.__contains__
+
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: experimental.quantizationtools.QTargetItem.QTargetItem.QTargetItem.__delattr__
 
@@ -22,35 +57,59 @@ Special Methods
 
 .. automethod:: experimental.quantizationtools.QTargetItem.QTargetItem.QTargetItem.__eq__
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: experimental.quantizationtools.QTargetItem.QTargetItem.QTargetItem.__ge__
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`__builtin__.tuple`
+
+.. automethod:: experimental.quantizationtools.QTargetItem.QTargetItem.QTargetItem.__getitem__
+
+    Inherited from :py:class:`__builtin__.tuple`
+
+.. automethod:: experimental.quantizationtools.QTargetItem.QTargetItem.QTargetItem.__getslice__
+
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: experimental.quantizationtools.QTargetItem.QTargetItem.QTargetItem.__gt__
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: experimental.quantizationtools.QTargetItem.QTargetItem.QTargetItem.__hash__
 
-    Inherited from :py:class:`__builtin__.object`
+    Inherited from :py:class:`__builtin__.tuple`
+
+.. automethod:: experimental.quantizationtools.QTargetItem.QTargetItem.QTargetItem.__iter__
+
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: experimental.quantizationtools.QTargetItem.QTargetItem.QTargetItem.__le__
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`__builtin__.tuple`
+
+.. automethod:: experimental.quantizationtools.QTargetItem.QTargetItem.QTargetItem.__len__
+
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: experimental.quantizationtools.QTargetItem.QTargetItem.QTargetItem.__lt__
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`__builtin__.tuple`
+
+.. automethod:: experimental.quantizationtools.QTargetItem.QTargetItem.QTargetItem.__mul__
+
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: experimental.quantizationtools.QTargetItem.QTargetItem.QTargetItem.__ne__
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: experimental.quantizationtools.QTargetItem.QTargetItem.QTargetItem.__repr__
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`__builtin__.tuple`
+
+.. automethod:: experimental.quantizationtools.QTargetItem.QTargetItem.QTargetItem.__rmul__
+
+    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: experimental.quantizationtools.QTargetItem.QTargetItem.QTargetItem.__setattr__
 

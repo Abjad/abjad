@@ -9,11 +9,19 @@ quantizationtools.QSchema
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.quantizationtools.QSchema.QSchema.QSchema.cyclic
+
+.. autoattribute:: experimental.quantizationtools.QSchema.QSchema.QSchema.item_klass
+
 .. autoattribute:: experimental.quantizationtools.QSchema.QSchema.QSchema.items
+
+.. autoattribute:: experimental.quantizationtools.QSchema.QSchema.QSchema.search_tree
 
 .. autoattribute:: experimental.quantizationtools.QSchema.QSchema.QSchema.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. autoattribute:: experimental.quantizationtools.QSchema.QSchema.QSchema.tempo
 
 Special Methods
 ---------------

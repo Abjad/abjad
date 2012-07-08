@@ -9,13 +9,29 @@ quantizationtools.UnmeteredQSchema
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.quantizationtools.UnmeteredQSchema.UnmeteredQSchema.UnmeteredQSchema.beatspan
+
+.. autoattribute:: experimental.quantizationtools.UnmeteredQSchema.UnmeteredQSchema.UnmeteredQSchema.cyclic
+
+    Inherited from :py:class:`quantizationtools.QSchema <experimental.quantizationtools.QSchema.QSchema.QSchema>`
+
+.. autoattribute:: experimental.quantizationtools.UnmeteredQSchema.UnmeteredQSchema.UnmeteredQSchema.item_klass
+
 .. autoattribute:: experimental.quantizationtools.UnmeteredQSchema.UnmeteredQSchema.UnmeteredQSchema.items
+
+    Inherited from :py:class:`quantizationtools.QSchema <experimental.quantizationtools.QSchema.QSchema.QSchema>`
+
+.. autoattribute:: experimental.quantizationtools.UnmeteredQSchema.UnmeteredQSchema.UnmeteredQSchema.search_tree
 
     Inherited from :py:class:`quantizationtools.QSchema <experimental.quantizationtools.QSchema.QSchema.QSchema>`
 
 .. autoattribute:: experimental.quantizationtools.UnmeteredQSchema.UnmeteredQSchema.UnmeteredQSchema.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. autoattribute:: experimental.quantizationtools.UnmeteredQSchema.UnmeteredQSchema.UnmeteredQSchema.tempo
+
+    Inherited from :py:class:`quantizationtools.QSchema <experimental.quantizationtools.QSchema.QSchema.QSchema>`
 
 Special Methods
 ---------------

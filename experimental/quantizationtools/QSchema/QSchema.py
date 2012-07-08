@@ -1,23 +1,24 @@
-from abc import abstractmethod
+from abc import abstractmethod, abstractproperty
 from abjad.tools import abctools
 from abjad.tools import datastructuretools
 from abjad.tools import sequencetools
-from experimental.quantizationtools.QSchemaItem import QSchemaItem
-from experimental.quantizationtools.QTarget import QTarget
 import copy
 
 
 class QSchema(abctools.AbjadObject):
-    '''The schema for a quantization run.'''
+    '''The schema for a quantization run.
+
+    `QSchema` is abstract.
+    '''
 
     ### CLASS ATTRIBUTES ###
 
-    __slots__ = ('_items',)
+    __slots__ = ('_cyclic', '_items',)
 
     ### INITIALIZER ###
 
     @abstractmethod
-    def __init__(self, *args):
+    def __init__(self, *args, **kwargs):
         if 1 == len(args) and isinstance(args[0], type(self)):
             items = copy.copy(args[0].items)
 
@@ -26,25 +27,29 @@ class QSchema(abctools.AbjadObject):
             minimum = min(items)
             if minimum != 0:
                 items = [(key - minimum, value) for key, value in items.iteritems()]
-            items = datastructuretools.ImmutableDictionary(items)
+            assert sequencetools.all_are_pairs_of_types(items, int, self.item_klass)
 
-        elif sequencetools.all_are_pairs_of_types(args, int, QSchemaItem):
+        elif sequencetools.all_are_pairs_of_types(args, int, self.item_klass):
             items = dict(args)
             minimum = min(items)
             if minimum != 0:
                 items = [(key - minimum, value) for key, value in items.iteritems()]
-            items = datastructuretools.ImmutableDictionary(items)
             
-        elif all([isinstance(x, QSchemaItem) for x in args]):
-            args = [(i, x) for i, x in enumerate(args)]
-            items = datastructuretools.ImmutableDictionary(args)
+        elif all([isinstance(x, self.item_klass) for x in args]):
+            items = [(i, x) for i, x in enumerate(args)]
 
-        self._items = items
+        else:
+            raise ValueError
+
+        self._cyclic = bool(kwargs.get('cyclic'))
+
+        self._items = datastructuretools.ImmutableDictionary(items)
 
     ### SPECIAL METHODS ###
 
+    @abstractmethod
     def __call__(self, duration):
-        return QTarget(self, duration)
+        raise NotImplemented
 
     def __repr__(self):
         return '\n'.join(self._get_tools_package_qualified_repr_pieces())
@@ -52,15 +57,35 @@ class QSchema(abctools.AbjadObject):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
+    def cyclic(self):
+        '''True if the schema should generate its QTarget cyclically.'''
+        return self._cyclic
+
+    @abstractproperty
+    def item_klass(self):
+        '''The schema's item class.'''
+        raise NotImplemented
+
+    @property
     def items(self):
+        '''The item dictionary.'''
         return self._items
+
+    @property
+    def search_tree(self):
+        '''The default search tree.'''
+        return self._search_tree
+
+    @property
+    def tempo(self):
+        '''The default tempo.'''
+        return self._tempo
 
     ### PRIVATE METHODS ###
 
     def _get_tools_package_qualified_repr_pieces(self):
         if not len(self.items):
             return ['{}()'.format(self._tools_package_qualified_class_name)]
-
         result = ['{}({{'.format(self._tools_package_qualified_class_name)]
         for key, value in sorted(self.items.items()):
             value_repr = value._get_tools_package_qualified_repr_pieces()
@@ -69,5 +94,3 @@ class QSchema(abctools.AbjadObject):
             result.append('\t{},'.format(value_repr[-1]))
         result.append('\t})')
         return result
-
-

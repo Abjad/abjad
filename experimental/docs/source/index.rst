@@ -149,7 +149,6 @@ Unstable packages (load manually)
    experimental/quantizationtools/QSchemaItem/QSchemaItem
    experimental/quantizationtools/QTarget/QTarget
    experimental/quantizationtools/QTargetGrouping/QTargetGrouping
-   experimental/quantizationtools/QTargetItem/QTargetItem
    experimental/quantizationtools/UnmeteredQSchema/UnmeteredQSchema
 
 .. rubric:: concrete classes
@@ -163,6 +162,7 @@ Unstable packages (load manually)
    experimental/quantizationtools/QGridQuantizer/QGridQuantizer
    experimental/quantizationtools/QGridSearchTree/QGridSearchTree
    experimental/quantizationtools/QGridTempoLookup/QGridTempoLookup
+   experimental/quantizationtools/QTargetItem/QTargetItem
    experimental/quantizationtools/SilentQEvent/SilentQEvent
    experimental/quantizationtools/TerminalQEvent/TerminalQEvent
    experimental/quantizationtools/UnmeteredQSchemaItem/UnmeteredQSchemaItem
