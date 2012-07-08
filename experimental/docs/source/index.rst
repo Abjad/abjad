@@ -189,7 +189,9 @@ Unstable packages (load manually)
 
    experimental/selectortools/BackgroundElementSelector/BackgroundElementSelector
    experimental/selectortools/BackgroundElementSliceSelector/BackgroundElementSliceSelector
+   experimental/selectortools/ItemSelector/ItemSelector
    experimental/selectortools/Selector/Selector
+   experimental/selectortools/SliceSelector/SliceSelector
 
 .. rubric:: concrete classes
 
@@ -198,10 +200,14 @@ Unstable packages (load manually)
 
    experimental/selectortools/BackgroundMeasureSelector/BackgroundMeasureSelector
    experimental/selectortools/BackgroundMeasureSliceSelector/BackgroundMeasureSliceSelector
+   experimental/selectortools/CountRatioSelector/CountRatioSelector
+   experimental/selectortools/CountRatioSliceSelector/CountRatioSliceSelector
    experimental/selectortools/CounttimeComponentSelector/CounttimeComponentSelector
    experimental/selectortools/CounttimeComponentSliceSelector/CounttimeComponentSliceSelector
    experimental/selectortools/DivisionSelector/DivisionSelector
    experimental/selectortools/DivisionSliceSelector/DivisionSliceSelector
+   experimental/selectortools/DurationRatioSelector/DurationRatioSelector
+   experimental/selectortools/DurationRatioSliceSelector/DurationRatioSliceSelector
    experimental/selectortools/SegmentSelector/SegmentSelector
    experimental/selectortools/SegmentSliceSelector/SegmentSliceSelector
 

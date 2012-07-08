@@ -1,5 +1,5 @@
 quantizationtools.QGridContainerNode
-===================================
+====================================
 
 .. inheritance-diagram:: experimental.quantizationtools.QGridContainerNode.QGridContainerNode.QGridContainerNode
    :private-bases:
