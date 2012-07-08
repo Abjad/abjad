@@ -6,11 +6,11 @@ class Hold(AbjadObject):
 
     Delayed evaluation wrapper similar to Mathematica ``Hold[]``::
 
-        >>> from experimental import specificationtools
+        >>> from experimental import selectortools
 
     ::
 
-        >>> specificationtools.Hold("'red' + 3")
+        >>> selectortools.Hold("'red' + 3")
         Hold("'red' + 3")
 
     Delays evaluation of string argument until later in interpretation.

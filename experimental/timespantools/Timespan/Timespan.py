@@ -135,7 +135,7 @@ class Timespan(AbjadObject):
     Timespan starting at the left edge of the segment with the name ``'red'``
     and stopping at the right edge of the segment with the name ``'blue'``::
 
-        >>> stop = specificationtools.Hold("'blue' + 1")
+        >>> stop = selectortools.Hold("'blue' + 1")
         >>> segment_slice_selector = selectortools.SegmentSliceSelector(start='red', stop=stop)
 
     ::

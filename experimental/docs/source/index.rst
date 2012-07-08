@@ -209,6 +209,7 @@ Unstable packages (load manually)
    experimental/selectortools/DivisionSliceSelector/DivisionSliceSelector
    experimental/selectortools/DurationRatioItemSelector/DurationRatioItemSelector
    experimental/selectortools/DurationRatioSliceSelector/DurationRatioSliceSelector
+   experimental/selectortools/Hold/Hold
    experimental/selectortools/SegmentSelector/SegmentSelector
    experimental/selectortools/SegmentSliceSelector/SegmentSliceSelector
 
@@ -241,7 +242,6 @@ Unstable packages (load manually)
    experimental/specificationtools/DivisionList/DivisionList
    experimental/specificationtools/DivisionSelector/DivisionSelector
    experimental/specificationtools/HandlerRequest/HandlerRequest
-   experimental/specificationtools/Hold/Hold
    experimental/specificationtools/RegionDivisionList/RegionDivisionList
    experimental/specificationtools/ResolvedContextSetting/ResolvedContextSetting
    experimental/specificationtools/ScopedValue/ScopedValue
