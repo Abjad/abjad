@@ -17,7 +17,7 @@ def chromatic_pitch_number_to_diatonic_pitch_class_name_accidental_octave_number
 
         >>> pitchtools.chromatic_pitch_number_to_diatonic_pitch_class_name_accidental_octave_number_triple(
         ... 13, accidental_spelling='sharps')
-        ('c', 's', 5)
+        ('c', Accidental('s'), 5)
 
     Return tuple.
 
