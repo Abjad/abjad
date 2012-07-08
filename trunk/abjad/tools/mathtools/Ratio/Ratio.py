@@ -50,3 +50,10 @@ class Ratio(ImmutableAbjadObject, tuple):
     @property
     def _mandatory_argument_values(self):
         return tuple(self)
+
+    ### PRIVATE METHODS ###
+
+    # do not indent in storage
+    def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
+        return [''.join(
+            ImmutableAbjadObject._get_tools_package_qualified_repr_pieces(self, is_indented=False))]

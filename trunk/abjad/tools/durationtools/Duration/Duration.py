@@ -217,7 +217,7 @@ class Duration(ImmutableAbjadObject, Fraction):
 
     ### PRIVATE METHODS ###
 
-    # do not indent duration objects in storage
+    # do not indent in storage
     def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
         return [''.join(
             ImmutableAbjadObject._get_tools_package_qualified_repr_pieces(self, is_indented=False))]
