@@ -13,7 +13,7 @@ class CountRatioSelector(Selector):
     ### INITIALIZER ###
 
     def __init__(self, reference, ratio, index):
-        assert self._is_counttime_selector_reference(reference), repr(reference)
+        assert self._interprets_as_sliceable_selector(reference), repr(reference)
         ratio = mathtools.Ratio(ratio)
         assert isinstance(index, int), repr(index)
         self._reference = reference

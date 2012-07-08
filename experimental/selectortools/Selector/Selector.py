@@ -20,21 +20,18 @@ class Selector(AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    # TODO: rename to _interpets_as_sliceable_selector
-    def _is_counttime_selector_reference(self, expr):
-        '''True if `expr` can serve as reference container for counttime selector.
-        '''
+    def _interprets_as_sliceable_selector(self, expr):
         from experimental import selectortools
         # voices are sliceable
         if isinstance(expr, (voicetools.Voice, str)):
             return True
-        # selectors are sliceable if they a container
+        # slice selectors are sliceable
+        elif isinstance(expr, selectortools.SliceSelector):
+            return True
+        # counttime container item selectors are sliceable
         elif isinstance(expr, Selector) and issubclass(expr.klass, containertools.Container):
             return True
-        # selectors are also sliceable if they pick out a slice
-        # TODO: need an explicit SliceSelector abstract base class; can inherit from Selector
-        elif isinstance(expr, selectortools.Selector) and 'Slice' in expr._class_name:
-            return True
+        # nothing else is sliceable
         else:
             return False
 
