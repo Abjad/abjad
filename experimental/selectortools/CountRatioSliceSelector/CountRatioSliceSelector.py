@@ -1,8 +1,8 @@
-from experimental.selectortools.CountRatioSelector import CountRatioSelector
+from experimental.selectortools.RatioSelector import RatioSelector
 from experimental.selectortools.SliceSelector import SliceSelector
 
 
-class CountRatioSliceSelector(CountRatioSelector, SliceSelector):
+class CountRatioSliceSelector(RatioSelector, SliceSelector):
     r'''.. versionadded:: 1.0
 
     Partition `reference` by `ratio` of counts. Then select zero or more contiguous parts.
@@ -47,5 +47,5 @@ class CountRatioSliceSelector(CountRatioSelector, SliceSelector):
     ### INITIALIZER ###
 
     def __init__(self, reference, ratio, start=None, stop=None):
-        CountRatioSelector.__init__(self, reference, ratio)
+        RatioSelector.__init__(self, reference, ratio)
         SliceSelector.__init__(self, start=start, stop=stop)

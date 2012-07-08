@@ -4,7 +4,7 @@ from abjad.tools import mathtools
 from experimental.selectortools.Selector import Selector
 
 
-class CountRatioSelector(Selector):
+class RatioSelector(Selector):
     r'''.. versionadded:: 1.0
     
     Abstract count-ratio selector class from which concrete count-ratio selectors inherit.

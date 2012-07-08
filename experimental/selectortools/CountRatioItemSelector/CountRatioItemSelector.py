@@ -1,8 +1,8 @@
-from experimental.selectortools.CountRatioSelector import CountRatioSelector
+from experimental.selectortools.RatioSelector import RatioSelector
 from experimental.selectortools.ItemSelector import ItemSelector
 
 
-class CountRatioItemSelector(CountRatioSelector, ItemSelector):
+class CountRatioItemSelector(RatioSelector, ItemSelector):
     r'''.. versionadded:: 1.0
     
     Partition `reference` by `ratio`. Then select exactly one part.
@@ -47,5 +47,5 @@ class CountRatioItemSelector(CountRatioSelector, ItemSelector):
     ### INITIALIZER ###
 
     def __init__(self, reference, ratio, index=None):
-        CountRatioSelector.__init__(self, reference, ratio)
+        RatioSelector.__init__(self, reference, ratio)
         ItemSelector.__init__(self, index=index)
