@@ -25,6 +25,7 @@ def chromatic_pitch_number_to_diatonic_pitch_class_name_accidental_octave_number
         renamed ``pitchtools.number_to_letter_accidental_octave()`` to
         ``pitchtools.chromatic_pitch_number_to_diatonic_pitch_class_name_accidental_octave_number_triple()``.
     '''
+    from abjad.tools import pitchtools
 
     # check input
     if not isinstance(chromatic_pitch_number, (int, long, float)):
@@ -52,7 +53,7 @@ def chromatic_pitch_number_to_diatonic_pitch_class_name_accidental_octave_number
     # disassemble pitch name into letter and accidental
     letter = pitch_name[0]
     alphabetic_accidental_abbreviation = pitch_name[1:]
-    accidental = Accidental(alphabetic_accidental_abbreviation)
+    accidental = pitchtools.Accidental(alphabetic_accidental_abbreviation)
 
     # find octave
     octave = int(math.floor(chromatic_pitch_number / 12)) + 4
