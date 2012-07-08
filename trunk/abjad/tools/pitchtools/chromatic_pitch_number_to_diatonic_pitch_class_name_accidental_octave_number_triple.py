@@ -2,7 +2,7 @@ from abjad.tools.pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_clas
     chromatic_pitch_class_number_to_chromatic_pitch_class_name
 from abjad.tools.pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats import \
     chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_flats
-from abjad.tools.pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_sharps import 
+from abjad.tools.pitchtools.chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_sharps import \
     chromatic_pitch_class_number_to_chromatic_pitch_class_name_with_sharps
 import math
 
