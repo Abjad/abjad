@@ -5,7 +5,7 @@ from experimental.selectortools.ItemSelector import ItemSelector
 class CountRatioItemSelector(RatioSelector, ItemSelector):
     r'''.. versionadded:: 1.0
     
-    Partition `reference` by `ratio`. Then select exactly one part.
+    Partition `reference` by `ratio` of counts. Then select exactly one part.
 
         >>> from experimental import selectortools
         >>> from experimental import timespantools
@@ -41,7 +41,7 @@ class CountRatioItemSelector(RatioSelector, ItemSelector):
             index=0
             )
 
-    Count ratio selectors are immutable.
+    All count ratio item selector properties are read-only.
     '''
 
     ### INITIALIZER ###

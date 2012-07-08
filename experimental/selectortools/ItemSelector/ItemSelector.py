@@ -13,7 +13,7 @@ class ItemSelector(Selector):
 
     @abstractmethod
     def __init__(self, index=None):
-        assert isinstance(index, (int, str)), repr(index)
+        assert isinstance(index, (int, str, type(None))), repr(index)
         self._index = index
 
     ### READ-ONLY PUBLIC PROPERTIES ###

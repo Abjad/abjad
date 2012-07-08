@@ -41,7 +41,7 @@ class CountRatioSliceSelector(RatioSelector, SliceSelector):
             start=-2
             )
 
-    Count ratio slice selectors are immutable.
+    All count-ratio slice selector properties are read-only.
     '''
 
     ### INITIALIZER ###
