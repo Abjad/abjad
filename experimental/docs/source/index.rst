@@ -196,6 +196,8 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
+   experimental/selectortools/BackgroundMeasureSelector/BackgroundMeasureSelector
+   experimental/selectortools/BackgroundMeasureSliceSelector/BackgroundMeasureSliceSelector
    experimental/selectortools/CounttimeComponentSelector/CounttimeComponentSelector
    experimental/selectortools/CounttimeComponentSliceSelector/CounttimeComponentSliceSelector
    experimental/selectortools/CounttimeContainerSelector/CounttimeContainerSelector
@@ -204,8 +206,6 @@ Unstable packages (load manually)
    experimental/selectortools/DivisionSliceSelector/DivisionSliceSelector
    experimental/selectortools/LeafSelector/LeafSelector
    experimental/selectortools/LeafSliceSelector/LeafSliceSelector
-   experimental/selectortools/BackgroundMeasureSelector/BackgroundMeasureSelector
-   experimental/selectortools/BackgroundMeasureSliceSelector/BackgroundMeasureSliceSelector
    experimental/selectortools/SegmentSelector/SegmentSelector
    experimental/selectortools/SegmentSliceSelector/SegmentSliceSelector
 

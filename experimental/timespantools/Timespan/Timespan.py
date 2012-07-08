@@ -83,7 +83,7 @@ class Timespan(AbjadObject):
     Timespan of the first measure that starts during segment ``'red'``::
 
         >>> inequality = timespantools.expr_starts_during_timespan(timespan=segment_selector.timespan)
-        >>> measure_selector = selectortools.BackgroundBackgroundMeasureSelector(inequality=inequality)
+        >>> measure_selector = selectortools.BackgroundMeasureSelector(inequality=inequality)
 
     ::
 
@@ -93,7 +93,7 @@ class Timespan(AbjadObject):
 
         >>> z(timespan)
         timespantools.Timespan(
-            selector=selectortools.BackgroundBackgroundMeasureSelector(
+            selector=selectortools.BackgroundMeasureSelector(
                 inequality=timespantools.TimespanInequality(
                     timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                     timespantools.Timespan(
@@ -148,14 +148,14 @@ class Timespan(AbjadObject):
 
         >>> segment_selector = selectortools.SegmentSelector(index='red')
         >>> inequality = timespantools.expr_starts_during_timespan(timespan=segment_selector.timespan)
-        >>> measure_selector = selectortools.BackgroundBackgroundMeasureSelector(inequality=inequality, index=-1)
+        >>> measure_selector = selectortools.BackgroundMeasureSelector(inequality=inequality, index=-1)
         >>> start = timespantools.Timepoint(anchor=measure_selector)
 
     ::
 
         >>> segment_selector = selectortools.SegmentSelector(index='blue')
         >>> inequality = timespantools.expr_starts_during_timespan(timespan=segment_selector.timespan)
-        >>> measure_selector = selectortools.BackgroundBackgroundMeasureSelector(inequality=inequality)
+        >>> measure_selector = selectortools.BackgroundMeasureSelector(inequality=inequality)
         >>> stop = timespantools.Timepoint(anchor=measure_selector, edge=Right)
         
     ::
@@ -167,7 +167,7 @@ class Timespan(AbjadObject):
         >>> z(timespan)
         timespantools.Timespan(
             start=timespantools.Timepoint(
-                anchor=selectortools.BackgroundBackgroundMeasureSelector(
+                anchor=selectortools.BackgroundMeasureSelector(
                     inequality=timespantools.TimespanInequality(
                         timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                         timespantools.Timespan(
@@ -180,7 +180,7 @@ class Timespan(AbjadObject):
                     )
                 ),
             stop=timespantools.Timepoint(
-                anchor=selectortools.BackgroundBackgroundMeasureSelector(
+                anchor=selectortools.BackgroundMeasureSelector(
                     inequality=timespantools.TimespanInequality(
                         timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                         timespantools.Timespan(
@@ -324,7 +324,7 @@ class Timespan(AbjadObject):
 
             >>> z(timespan.start)
             timespantools.Timepoint(
-                anchor=selectortools.BackgroundBackgroundMeasureSelector(
+                anchor=selectortools.BackgroundMeasureSelector(
                     inequality=timespantools.TimespanInequality(
                         timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                         timespantools.Timespan(
@@ -349,7 +349,7 @@ class Timespan(AbjadObject):
 
             >>> z(timespan.stop)
             timespantools.Timepoint(
-                anchor=selectortools.BackgroundBackgroundMeasureSelector(
+                anchor=selectortools.BackgroundMeasureSelector(
                     inequality=timespantools.TimespanInequality(
                         timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                         timespantools.Timespan(

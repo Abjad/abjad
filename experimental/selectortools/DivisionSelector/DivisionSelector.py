@@ -47,7 +47,7 @@ class DivisionSelector(BackgroundElementSelector):
 
         >>> timespan = selectortools.SegmentSelector(index='red').timespan
         >>> inequality = timespantools.expr_starts_during_timespan(timespan=timespan)
-        >>> measure = selectortools.BackgroundBackgroundMeasureSelector(inequality=inequality, index=-1)
+        >>> measure = selectortools.BackgroundMeasureSelector(inequality=inequality, index=-1)
 
     ::
         
@@ -63,7 +63,7 @@ class DivisionSelector(BackgroundElementSelector):
             inequality=timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                 timespantools.Timespan(
-                    selector=selectortools.BackgroundBackgroundMeasureSelector(
+                    selector=selectortools.BackgroundMeasureSelector(
                         inequality=timespantools.TimespanInequality(
                             timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                             timespantools.Timespan(

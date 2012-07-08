@@ -11,22 +11,22 @@ class BackgroundMeasureSliceSelector(BackgroundElementSliceSelector):
 
     ::
 
-        >>> selectortools.BackgroundBackgroundMeasureSliceSelector()
+        >>> selectortools.BackgroundMeasureSliceSelector()
         BackgroundMeasureSliceSelector()
 
     Select measures from ``3`` forward::
 
-        >>> selectortools.BackgroundBackgroundMeasureSliceSelector(start=3)
+        >>> selectortools.BackgroundMeasureSliceSelector(start=3)
         BackgroundMeasureSliceSelector(start=3)
 
     Select measures up to but not including ``6``::
 
-        >>> selectortools.BackgroundBackgroundMeasureSliceSelector(stop=6)
+        >>> selectortools.BackgroundMeasureSliceSelector(stop=6)
         BackgroundMeasureSliceSelector(stop=6)
 
     Select measures from ``3`` up to but not including ``6``::
 
-        >>> selectortools.BackgroundBackgroundMeasureSliceSelector(start=3, stop=6)
+        >>> selectortools.BackgroundMeasureSliceSelector(start=3, stop=6)
         BackgroundMeasureSliceSelector(start=3, stop=6)
 
     Select all measures starting during segment ``'red'``::
@@ -40,12 +40,12 @@ class BackgroundMeasureSliceSelector(BackgroundElementSliceSelector):
 
     ::
 
-        >>> selector = selectortools.BackgroundBackgroundMeasureSliceSelector(inequality=inequality)
+        >>> selector = selectortools.BackgroundMeasureSliceSelector(inequality=inequality)
 
     ::
 
         >>> z(selector)
-        selectortools.BackgroundBackgroundMeasureSliceSelector(
+        selectortools.BackgroundMeasureSliceSelector(
             inequality=timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                 timespantools.Timespan(
@@ -58,12 +58,12 @@ class BackgroundMeasureSliceSelector(BackgroundElementSliceSelector):
 
     Select the last two measures during segment ``'red'``::
 
-        >>> selector = selectortools.BackgroundBackgroundMeasureSliceSelector(inequality=inequality, start=-2)
+        >>> selector = selectortools.BackgroundMeasureSliceSelector(inequality=inequality, start=-2)
 
     ::
     
         >>> z(selector)
-        selectortools.BackgroundBackgroundMeasureSliceSelector(
+        selectortools.BackgroundMeasureSliceSelector(
             inequality=timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                 timespantools.Timespan(
@@ -83,12 +83,12 @@ class BackgroundMeasureSliceSelector(BackgroundElementSliceSelector):
 
     ::
     
-        >>> selector = selectortools.BackgroundBackgroundMeasureSliceSelector(inequality=inequality)
+        >>> selector = selectortools.BackgroundMeasureSliceSelector(inequality=inequality)
 
     ::
 
         >>> z(selector)
-        selectortools.BackgroundBackgroundMeasureSliceSelector(
+        selectortools.BackgroundMeasureSliceSelector(
             inequality=timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                 timespantools.Timespan(
@@ -102,12 +102,12 @@ class BackgroundMeasureSliceSelector(BackgroundElementSliceSelector):
 
     Select the last two measures that start during the three contiguous segments starting with ``'red'``::
 
-        >>> selector = selectortools.BackgroundBackgroundMeasureSliceSelector(inequality=inequality, start=-2)
+        >>> selector = selectortools.BackgroundMeasureSliceSelector(inequality=inequality, start=-2)
 
     ::
 
         >>> z(selector)
-        selectortools.BackgroundBackgroundMeasureSliceSelector(
+        selectortools.BackgroundMeasureSliceSelector(
             inequality=timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                 timespantools.Timespan(

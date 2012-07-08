@@ -10,7 +10,7 @@ class BackgroundMeasureSelector(BackgroundElementSelector):
 
     ::
 
-        >>> selectortools.BackgroundBackgroundMeasureSelector(index=3)
+        >>> selectortools.BackgroundMeasureSelector(index=3)
         BackgroundMeasureSelector(index=3)
 
     Select the last measure to start in the first third of the score::
@@ -25,12 +25,12 @@ class BackgroundMeasureSelector(BackgroundElementSelector):
 
     ::
 
-        >>> selector = selectortools.BackgroundBackgroundMeasureSelector(inequality=inequality, index=-1)
+        >>> selector = selectortools.BackgroundMeasureSelector(inequality=inequality, index=-1)
 
     ::
     
         >>> z(selector)
-        selectortools.BackgroundBackgroundMeasureSelector(
+        selectortools.BackgroundMeasureSelector(
             inequality=timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                 timespantools.Timespan(
@@ -50,12 +50,12 @@ class BackgroundMeasureSelector(BackgroundElementSelector):
 
     ::
 
-        >>> selector = selectortools.BackgroundBackgroundMeasureSelector(inequality=inequality)
+        >>> selector = selectortools.BackgroundMeasureSelector(inequality=inequality)
 
     ::
 
         >>> z(selector)
-        selectortools.BackgroundBackgroundMeasureSelector(
+        selectortools.BackgroundMeasureSelector(
             inequality=timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                 timespantools.Timespan(
