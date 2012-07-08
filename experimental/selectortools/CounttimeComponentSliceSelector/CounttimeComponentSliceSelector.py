@@ -6,28 +6,29 @@ from experimental.selectortools.Selector import Selector
 class CounttimeComponentSliceSelector(Selector):
     r'''.. versionadded:: 1.0
 
-    Select the first five ``'Voice 1'`` counttime components::
+    Select zero or more counttime components in `reference` container
+    restricted according to keywords.
 
         >>> from experimental import selectortools
         >>> from experimental import specificationtools
         >>> from experimental import timespantools
 
-    ::
+    Select the first five counttime components in ``'Voice 1'``::
 
         >>> selectortools.CounttimeComponentSliceSelector('Voice 1', stop=5)
         CounttimeComponentSliceSelector('Voice 1', stop=5)
 
-    Select the last five ``'Voice 1'`` counttime components::
+    Select the last five counttime components in ``'Voice 1'``::
 
         >>> selectortools.CounttimeComponentSliceSelector('Voice 1', start=-5)
         CounttimeComponentSliceSelector('Voice 1', start=-5)
 
-    Select ``'Voice 1'`` counttime components between ``5`` and ``-5``::
+    Select counttime components from ``5`` up to but not including ``-5`` in ``'Voice 1'``::
 
         >>> selectortools.CounttimeComponentSliceSelector('Voice 1', start=5, stop=-5)
         CounttimeComponentSliceSelector('Voice 1', start=5, stop=-5)
 
-    Select all ``'Voice 1'`` counttime components::
+    Select all counttime components in ``'Voice 1'``::
 
         >>> selectortools.CounttimeComponentSliceSelector('Voice 1')
         CounttimeComponentSliceSelector('Voice 1')
