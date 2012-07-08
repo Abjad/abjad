@@ -242,7 +242,6 @@ Unstable packages (load manually)
    experimental/specificationtools/DivisionSelector/DivisionSelector
    experimental/specificationtools/HandlerRequest/HandlerRequest
    experimental/specificationtools/Hold/Hold
-   experimental/specificationtools/PartIndicator/PartIndicator
    experimental/specificationtools/RegionDivisionList/RegionDivisionList
    experimental/specificationtools/ResolvedContextSetting/ResolvedContextSetting
    experimental/specificationtools/ScopedValue/ScopedValue
