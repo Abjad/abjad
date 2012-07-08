@@ -9,9 +9,29 @@ selectortools.DurationRatioSliceSelector
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.selectortools.DurationRatioSliceSelector.DurationRatioSliceSelector.DurationRatioSliceSelector.ratio
+
+    Inherited from :py:class:`selectortools.CountRatioSelector <experimental.selectortools.CountRatioSelector.CountRatioSelector.CountRatioSelector>`
+
+.. autoattribute:: experimental.selectortools.DurationRatioSliceSelector.DurationRatioSliceSelector.DurationRatioSliceSelector.reference
+
+    Inherited from :py:class:`selectortools.CountRatioSelector <experimental.selectortools.CountRatioSelector.CountRatioSelector.CountRatioSelector>`
+
+.. autoattribute:: experimental.selectortools.DurationRatioSliceSelector.DurationRatioSliceSelector.DurationRatioSliceSelector.start
+
+    Inherited from :py:class:`selectortools.SliceSelector <experimental.selectortools.SliceSelector.SliceSelector.SliceSelector>`
+
+.. autoattribute:: experimental.selectortools.DurationRatioSliceSelector.DurationRatioSliceSelector.DurationRatioSliceSelector.stop
+
+    Inherited from :py:class:`selectortools.SliceSelector <experimental.selectortools.SliceSelector.SliceSelector.SliceSelector>`
+
 .. autoattribute:: experimental.selectortools.DurationRatioSliceSelector.DurationRatioSliceSelector.DurationRatioSliceSelector.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. autoattribute:: experimental.selectortools.DurationRatioSliceSelector.DurationRatioSliceSelector.DurationRatioSliceSelector.timespan
+
+    Inherited from :py:class:`selectortools.Selector <experimental.selectortools.Selector.Selector.Selector>`
 
 Special Methods
 ---------------

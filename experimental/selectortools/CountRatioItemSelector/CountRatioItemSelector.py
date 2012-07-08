@@ -1,4 +1,3 @@
-from abjad.tools import mathtools
 from experimental.selectortools.CountRatioSelector import CountRatioSelector
 from experimental.selectortools.ItemSelector import ItemSelector
 

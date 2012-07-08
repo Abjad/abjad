@@ -9,9 +9,25 @@ selectortools.DurationRatioItemSelector
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.selectortools.DurationRatioItemSelector.DurationRatioItemSelector.DurationRatioItemSelector.index
+
+    Inherited from :py:class:`selectortools.ItemSelector <experimental.selectortools.ItemSelector.ItemSelector.ItemSelector>`
+
+.. autoattribute:: experimental.selectortools.DurationRatioItemSelector.DurationRatioItemSelector.DurationRatioItemSelector.ratio
+
+    Inherited from :py:class:`selectortools.CountRatioSelector <experimental.selectortools.CountRatioSelector.CountRatioSelector.CountRatioSelector>`
+
+.. autoattribute:: experimental.selectortools.DurationRatioItemSelector.DurationRatioItemSelector.DurationRatioItemSelector.reference
+
+    Inherited from :py:class:`selectortools.CountRatioSelector <experimental.selectortools.CountRatioSelector.CountRatioSelector.CountRatioSelector>`
+
 .. autoattribute:: experimental.selectortools.DurationRatioItemSelector.DurationRatioItemSelector.DurationRatioItemSelector.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. autoattribute:: experimental.selectortools.DurationRatioItemSelector.DurationRatioItemSelector.DurationRatioItemSelector.timespan
+
+    Inherited from :py:class:`selectortools.Selector <experimental.selectortools.Selector.Selector.Selector>`
 
 Special Methods
 ---------------

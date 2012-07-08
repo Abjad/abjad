@@ -1,13 +1,15 @@
-from abjad.tools import abctools
+from experimental.selectortools.CountRatioSelector import CountRatioSelector
+from experimental.selectortools.ItemSelector import ItemSelector
 
 
-class DurationRatioItemSelector(abctools.AbjadObject):
+class DurationRatioItemSelector(CountRatioSelector, ItemSelector):
     r'''.. versionadded:: 1.0
 
     Partition `reference` by ratio of durations. Then select exactly one part.
     '''
 
-    ### INITIALIZER ##
+    ### INITIALIZER ###
 
-    def __init__(self):
-        pass
+    def __init__(self, reference, ratio, index=None):
+        CountRatioSelector.__init__(self, reference, ratio)
+        ItemSelector.__init__(self, index=index)
