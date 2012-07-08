@@ -11,19 +11,13 @@ Read-only Properties
 
 .. autoattribute:: experimental.quantizationtools.UnmeteredQSchemaItem.UnmeteredQSchemaItem.UnmeteredQSchemaItem.beatspan
 
-    Inherited from :py:class:`quantizationtools.QSchemaItem <experimental.quantizationtools.QSchemaItem.QSchemaItem.QSchemaItem>`
-
 .. autoattribute:: experimental.quantizationtools.UnmeteredQSchemaItem.UnmeteredQSchemaItem.UnmeteredQSchemaItem.search_tree
-
-    Inherited from :py:class:`quantizationtools.QSchemaItem <experimental.quantizationtools.QSchemaItem.QSchemaItem.QSchemaItem>`
 
 .. autoattribute:: experimental.quantizationtools.UnmeteredQSchemaItem.UnmeteredQSchemaItem.UnmeteredQSchemaItem.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. autoattribute:: experimental.quantizationtools.UnmeteredQSchemaItem.UnmeteredQSchemaItem.UnmeteredQSchemaItem.tempo
-
-    Inherited from :py:class:`quantizationtools.QSchemaItem <experimental.quantizationtools.QSchemaItem.QSchemaItem.QSchemaItem>`
 
 Methods
 -------

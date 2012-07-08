@@ -1,5 +1,107 @@
+from abjad.tools import contexttools
+from abjad.tools import durationtools
 from experimental.quantizationtools.QSchemaItem import QSchemaItem
+from experimental.quantizationtools.QGridSearchTree import QGridSearchTree
 
 
 class MeteredQSchemaItem(QSchemaItem):
-    pass
+    '''`MeteredQSchemaItem` represents a change of state in the timeline of a metered
+    quantization process.
+
+    ::
+
+        >>> from experimental import quantizationtools
+        >>> quantizationtools.MeteredQSchemaItem()
+        MeteredQSchemaItem()
+
+    Define a change in tempo:
+
+    ::
+
+        >>> quantizationtools.MeteredQSchemaItem(tempo=((1, 4), 60))
+        MeteredQSchemaItem(
+            tempo=contexttools.TempoMark(
+                durationtools.Duration(1, 4),
+                60
+                ),
+            )
+
+    Define a change in time signature:
+
+    ::
+
+        >>> quantizationtools.MeteredQSchemaItem(tempo=((6, 8))
+        MeteredQSchemaItem(
+            time_signature=contexttools.TimeSignatureMark(
+                (6, 8)
+                ),
+            )
+
+    Test for beatspan, given a defined time signature:
+
+    ::
+
+        >>> _.beatspan
+        Duration(1, 8)
+
+    `MeteredQSchemaItem` is immutable.
+
+    Return `MeteredQSchemaItem` instance.
+    '''
+
+    ### CLASS ATTRIBUTES ###
+
+    __slots__ = ()
+    _fields = ('search_tree', 'tempo', 'time_signature')
+
+    ### INITIALIZER ###
+
+    def __new__(klass, search_tree=None, tempo=None, time_signature=None):
+        
+        if search_tree is not None:
+            search_tree = QGridSearchTree(search_tree)
+
+        if tempo is not None:
+            tempo = contexttools.TempoMark(tempo)
+            assert not tempo.is_imprecise
+
+        if time_signature is not None:
+            time_signature = contexttools.TimeSignatureMark(time_signature)
+
+        return tuple.__new__(klass, (search_tree, tempo, time_signature))
+
+    ### PUBLIC READ-ONLY ATTRIBUTES ###
+
+    @property
+    def beatspan(self):
+        '''The beatspan duration, if a time signature was defined.
+
+        Return `Duration` or `None`.
+        '''
+        if self.time_signature is not None:
+            return durationtools.Duration(1, self.time_signature.denominator)
+        return None
+
+    @property
+    def search_tree(self):
+        '''The optionally defined search tree.
+
+        Return `QGridSearchTree` or `None`.
+        '''
+        return self[0]
+
+    @property
+    def tempo(self):
+        '''The optionally defined `TempoMark`.
+
+        Return `TempoMark` or `None`.
+        '''
+        return self[1]
+
+    @property
+    def time_signature(self):
+        '''The optionally defined TimeSignatureMark.
+
+        Return `TimeSignatureMark` or None.
+        '''
+        return self[2]

@@ -9,15 +9,9 @@ quantizationtools.QSchemaItem
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.quantizationtools.QSchemaItem.QSchemaItem.QSchemaItem.beatspan
-
-.. autoattribute:: experimental.quantizationtools.QSchemaItem.QSchemaItem.QSchemaItem.search_tree
-
 .. autoattribute:: experimental.quantizationtools.QSchemaItem.QSchemaItem.QSchemaItem.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
-.. autoattribute:: experimental.quantizationtools.QSchemaItem.QSchemaItem.QSchemaItem.tempo
 
 Methods
 -------

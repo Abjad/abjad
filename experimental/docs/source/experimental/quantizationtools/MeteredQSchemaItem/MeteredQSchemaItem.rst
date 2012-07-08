@@ -11,11 +11,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.quantizationtools.MeteredQSchemaItem.MeteredQSchemaItem.MeteredQSchemaItem.beatspan
 
-    Inherited from :py:class:`quantizationtools.QSchemaItem <experimental.quantizationtools.QSchemaItem.QSchemaItem.QSchemaItem>`
-
 .. autoattribute:: experimental.quantizationtools.MeteredQSchemaItem.MeteredQSchemaItem.MeteredQSchemaItem.search_tree
-
-    Inherited from :py:class:`quantizationtools.QSchemaItem <experimental.quantizationtools.QSchemaItem.QSchemaItem.QSchemaItem>`
 
 .. autoattribute:: experimental.quantizationtools.MeteredQSchemaItem.MeteredQSchemaItem.MeteredQSchemaItem.storage_format
 
@@ -23,7 +19,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.quantizationtools.MeteredQSchemaItem.MeteredQSchemaItem.MeteredQSchemaItem.tempo
 
-    Inherited from :py:class:`quantizationtools.QSchemaItem <experimental.quantizationtools.QSchemaItem.QSchemaItem.QSchemaItem>`
+.. autoattribute:: experimental.quantizationtools.MeteredQSchemaItem.MeteredQSchemaItem.MeteredQSchemaItem.time_signature
 
 Methods
 -------
