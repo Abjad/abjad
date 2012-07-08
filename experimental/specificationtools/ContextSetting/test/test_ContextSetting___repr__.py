@@ -1,21 +1,16 @@
 from experimental.specificationtools.ContextSelection import ContextSelection
-from experimental.selectortools.CounttimeComponentSelector import CounttimeComponentSelector
+from experimental.selectortools.SegmentSelector import SegmentSelector
 from experimental.specificationtools.ContextSetting import ContextSetting
 from experimental.timespantools.Timepoint import Timepoint
 from experimental.timespantools.Timespan import Timespan
-import py
 
 
 def test_ContextSetting___repr___01():
     '''Repr is evaluable.
     '''
-    py.test.skip('make repr evaluable again.')
 
-    anchor = CounttimeComponentSelector(segment='1')
-    start = Timepoint(anchor=anchor)
-    stop = Timepoint(anchor=anchor, edge=Right)
-    timespan = Timespan(start=start, stop=stop)
-    target = ContextSelection('Voice 1', timespan=timespan)
+    segment_selector = SegmentSelector(index='1')
+    target = ContextSelection('Voice 1', timespan=segment_selector.timespan)
     setting_1 = ContextSetting(target, 'time_signatures', [(4, 8), (3, 8)], fresh=False)
 
     setting_2 = eval(repr(setting_1))

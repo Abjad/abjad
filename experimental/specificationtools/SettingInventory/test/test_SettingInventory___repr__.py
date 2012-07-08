@@ -1,18 +1,16 @@
 from abjad.tools import *
+from experimental.selectortools.SegmentSelector import SegmentSelector
 from experimental.specificationtools.Setting import Setting
 from experimental.specificationtools.SettingInventory import SettingInventory
-from experimental.selectortools.CounttimeComponentSelector import CounttimeComponentSelector
 from experimental.specificationtools.ScoreSpecification import ScoreSpecification
 from experimental.specificationtools.Selection import Selection
 from experimental.timespantools.Timepoint import Timepoint
 from experimental.timespantools.Timespan import Timespan
-import py
 
 
 def test_SettingInventory___repr___01():
     '''Repr is evaluable.
     '''
-    py.test.skip('make repr evaluable again.')
 
     specification = ScoreSpecification(scoretemplatetools.GroupedRhythmicStavesScoreTemplate(n=1))
     segment = specification.append_segment()

@@ -16,11 +16,8 @@ class ContextSetting(Setting):
 
     ::
 
-        >>> anchor = selectortools.SegmentSelector(index='red')
-        >>> start = timespantools.Timepoint(anchor=anchor)
-        >>> stop = timespantools.Timepoint(anchor=anchor, edge=Right)
-        >>> timespan = timespantools.Timespan(start=start, stop=stop)
-        >>> target = specificationtools.ContextSelection('Voice 1', timespan=timespan)
+        >>> segment_selector = selectortools.SegmentSelector(index='red')
+        >>> target = specificationtools.ContextSelection('Voice 1', timespan=segment_selector.timespan)
 
     ::
 
@@ -33,16 +30,8 @@ class ContextSetting(Setting):
             specificationtools.ContextSelection(
                 'Voice 1',
                 timespan=timespantools.Timespan(
-                    start=timespantools.Timepoint(
-                        anchor=selectortools.SegmentSelector(
-                            index='red'
-                            )
-                        ),
-                    stop=timespantools.Timepoint(
-                        anchor=selectortools.SegmentSelector(
-                            index='red'
-                            ),
-                        edge=Right
+                    selector=selectortools.SegmentSelector(
+                        index='red'
                         )
                     )
                 ),
