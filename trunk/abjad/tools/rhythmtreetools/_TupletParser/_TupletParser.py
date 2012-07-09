@@ -213,6 +213,16 @@ class _TupletParser(_Parser):
         else:
             print("Syntax error at EOF")
 
+    ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def lexer_rules_object(self):
+        return self
+
+    @property
+    def parser_rules_object(self):
+        return self
+
     ### PUBLIC METHODS ###
 
     def cleanup(self, parsed):

@@ -74,3 +74,13 @@ class _RTMParser(_Parser):
             print("Syntax error at '%s'" % p.value)
         else:
             print("Syntax error at EOF")
+
+    ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def lexer_rules_object(self):
+        return self
+
+    @property
+    def parser_rules_object(self):
+        return self
