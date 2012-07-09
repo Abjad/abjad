@@ -2,7 +2,7 @@ from abjad.tools import *
 from experimental.specificationtools.ContextSetting import ContextSetting
 from experimental.specificationtools.ContextSettingInventory import ContextSettingInventory
 from experimental.specificationtools.ScoreSpecification import ScoreSpecification
-from experimental.selectortools.MulticontextSelection import MulticontextSelection
+from experimental.selectortools.MultipleContextSelection import MultipleContextSelection
 
 
 def test_ContextSettingInventory___repr___01():

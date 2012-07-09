@@ -285,12 +285,12 @@ class SegmentSpecification(Specification):
         '''Select all segment contexts over timespan of segment.
         '''
         from experimental import specificationtools
-        return selectortools.MulticontextSelection()
+        return selectortools.MultipleContextSelection()
         
     def select_contexts(self, contexts=None):
         from experimental import selectortools
         contexts = self.context_token_to_context_names(contexts)
-        return selectortools.MulticontextSelection(contexts=contexts, timespan=self.timespan)
+        return selectortools.MultipleContextSelection(contexts=contexts, timespan=self.timespan)
 
     # NEXT: implement selectortools.MulticontextSelector to complement this
     # NEXT: reimplement the next three methods to return multicontext selectors

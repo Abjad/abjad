@@ -13,7 +13,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.SingleContextSelection.SingleContextSelection.SingleContextSelection.contexts
 
-    Inherited from :py:class:`selectortools.MulticontextSelection <experimental.selectortools.MulticontextSelection.MulticontextSelection.MulticontextSelection>`
+    Inherited from :py:class:`selectortools.MultipleContextSelection <experimental.selectortools.MultipleContextSelection.MultipleContextSelection.MultipleContextSelection>`
 
 .. autoattribute:: experimental.selectortools.SingleContextSelection.SingleContextSelection.SingleContextSelection.storage_format
 
@@ -21,7 +21,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.SingleContextSelection.SingleContextSelection.SingleContextSelection.timespan
 
-    Inherited from :py:class:`selectortools.MulticontextSelection <experimental.selectortools.MulticontextSelection.MulticontextSelection.MulticontextSelection>`
+    Inherited from :py:class:`selectortools.MultipleContextSelection <experimental.selectortools.MultipleContextSelection.MultipleContextSelection.MultipleContextSelection>`
 
 Special Methods
 ---------------
@@ -32,7 +32,7 @@ Special Methods
 
 .. automethod:: experimental.selectortools.SingleContextSelection.SingleContextSelection.SingleContextSelection.__eq__
 
-    Inherited from :py:class:`selectortools.MulticontextSelection <experimental.selectortools.MulticontextSelection.MulticontextSelection.MulticontextSelection>`
+    Inherited from :py:class:`selectortools.MultipleContextSelection <experimental.selectortools.MultipleContextSelection.MultipleContextSelection.MultipleContextSelection>`
 
 .. automethod:: experimental.selectortools.SingleContextSelection.SingleContextSelection.SingleContextSelection.__ge__
 
@@ -56,7 +56,7 @@ Special Methods
 
 .. automethod:: experimental.selectortools.SingleContextSelection.SingleContextSelection.SingleContextSelection.__ne__
 
-    Inherited from :py:class:`selectortools.MulticontextSelection <experimental.selectortools.MulticontextSelection.MulticontextSelection.MulticontextSelection>`
+    Inherited from :py:class:`selectortools.MultipleContextSelection <experimental.selectortools.MultipleContextSelection.MultipleContextSelection.MultipleContextSelection>`
 
 .. automethod:: experimental.selectortools.SingleContextSelection.SingleContextSelection.SingleContextSelection.__repr__
 

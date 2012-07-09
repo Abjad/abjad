@@ -1,8 +1,8 @@
 from abjad.tools import contexttools
-from experimental.selectortools.MulticontextSelection.MulticontextSelection import MulticontextSelection
+from experimental.selectortools.MultipleContextSelection.MultipleContextSelection import MultipleContextSelection
 
 
-class SingleContextSelection(MulticontextSelection):
+class SingleContextSelection(MultipleContextSelection):
     r'''.. versionadded:: 1.0
 
     Select exactly one context over arbitrary timespan.
@@ -40,7 +40,7 @@ class SingleContextSelection(MulticontextSelection):
 
     def __init__(self, context, timespan=None):
         assert isinstance(context, (str, contexttools.Context)), repr(context)
-        MulticontextSelection.__init__(self, [context], timespan=timespan)
+        MultipleContextSelection.__init__(self, [context], timespan=timespan)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
