@@ -47,7 +47,7 @@ class MultipleContextSelection(AbjadObject):
         >>> selectortools.MultipleContextSelection(contexts=['Voice 1', 'Voice 3'], timespan=timespan)
         MultipleContextSelection(contexts=['Voice 1', 'Voice 3'], timespan=Timespan(selector=SegmentSelector(index='red')))
 
-    MultipleContextSelection objects are immutable.
+    All ``MultipleContextSelection`` properties are read-only.
     '''
 
     ### INITIALIZER ###
