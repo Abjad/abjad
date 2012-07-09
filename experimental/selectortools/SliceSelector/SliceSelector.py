@@ -16,6 +16,18 @@ class SliceSelector(Selector):
         self._start = start
         self._stop = stop
 
+    ### PRIVATE METHODS ###
+
+    def _process_contexts(self, contexts):
+        from experimental import specificationtools
+        if contexts is None:
+            return contexts
+        result = []
+        for context in contexts:
+            component_name = specificationtools.expr_to_component_name(context)
+            result.append(component_name)
+        return result
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
