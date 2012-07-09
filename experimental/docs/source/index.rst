@@ -241,7 +241,7 @@ Unstable packages (load manually)
    experimental/specificationtools/ContextSettingInventory/ContextSettingInventory
    experimental/specificationtools/Division/Division
    experimental/specificationtools/DivisionList/DivisionList
-   experimental/specificationtools/DivisionSelector/DivisionSelector
+   experimental/specificationtools/DivisionOldSelector/DivisionOldSelector
    experimental/specificationtools/HandlerRequest/HandlerRequest
    experimental/specificationtools/RegionDivisionList/RegionDivisionList
    experimental/specificationtools/ResolvedContextSetting/ResolvedContextSetting
