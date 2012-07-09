@@ -1,8 +1,58 @@
 from abjad.tools import abctools
-from abjad.tools.rhythmtreetools._RTMNode import _RTMNode as Node
+from abjad.tools.rhythmtreetools.RhythmTreeContainer import RhythmTreeContainer
+from abjad.tools.rhythmtreetools.RhythmTreeLeaf import RhythmTreeLeaf
 
 
 class RhythmTreeParser(abctools.Parser):
+    '''Parses RTM-style rhythm syntax:
+
+    ::
+
+        >>> parser = rhythmtreetools.RhythmTreeParser()
+
+    ::
+
+        >>> rtm = '(1 (1 (2 (1 -1 1)) -2))'
+        >>> result = parser(rtm)[0]
+        >>> result
+        RhythmTreeContainer(
+            children=(
+                RhythmTreeLeaf(
+                    duration=1,
+                    pitched=True,
+                    ),
+                RhythmTreeContainer(
+                    children=(
+                        RhythmTreeLeaf(
+                            duration=1,
+                            pitched=True,
+                            ),
+                        RhythmTreeLeaf(
+                            duration=1,
+                            pitched=False,
+                            ),
+                        RhythmTreeLeaf(
+                            duration=1,
+                            pitched=True,
+                            ),
+                    ),
+                    duration=2
+                    ),
+                RhythmTreeLeaf(
+                    duration=2,
+                    pitched=False,
+                    ),
+            ),
+            duration=1
+            )
+
+    ::
+
+        >>> result.rtm_format
+        '(1 (1 (2 (1 -1 1)) -2))'
+
+    Returns `RhythmTreeParser` instance.
+    '''
 
     ### LEX SETUP ###
 
@@ -18,7 +68,7 @@ class RhythmTreeParser(abctools.Parser):
 
     ### YACC SETUP ###
 
-    start = 'nodes'
+    start = 'toplevel'
 
     ### LEX METHODS ###
 
@@ -37,17 +87,21 @@ class RhythmTreeParser(abctools.Parser):
 
     ### YACC METHODS ###
 
-    def p_nodes__EMPTY(self, p):
-        '''nodes : '''
-        p[0] = []
+    def p_container__LPAREN__INTEGER__node_list_closed__RPAREN(self, p):
+        '''container : LPAREN INTEGER node_list_closed RPAREN'''
+        p[0] = RhythmTreeContainer(p[2], p[3])
 
-    def p_nodes__nodes__node(self, p):
-        '''nodes : nodes node'''
-        p[0] = p[1] + [p[2]]
+    def p_leaf__INTEGER(self, p):
+        '''leaf : INTEGER'''
+        p[0] = RhythmTreeLeaf(abs(p[1]), 0 < p[1])
 
-    def p_node__LPAREN__INTEGER__node_list_closed__RPAREN(self, p):
-        '''node : LPAREN INTEGER node_list_closed RPAREN'''
-        p[0] = Node(p[2], p[3])
+    def p_node__container(self, p):
+        '''node : container'''
+        p[0] = p[1]
+
+    def p_node__leaf(self, p):
+        '''node : leaf'''
+        p[0] = p[1]
 
     def p_node_list_closed__LPAREN__node_list__RPAREN(self, p):
         '''node_list_closed : LPAREN node_list RPAREN'''
@@ -61,13 +115,17 @@ class RhythmTreeParser(abctools.Parser):
         '''node_list : node_list node_list_item'''
         p[0] = p[1] + [p[2]]
 
-    def p_node_list_item__INTEGER(self, p):
-        '''node_list_item : INTEGER'''
-        p[0] = p[1]
-
     def p_node_list_item__node(self, p):
         '''node_list_item : node'''
         p[0] = p[1]
+
+    def p_toplevel__EMPTY(self, p):
+        '''toplevel : '''
+        p[0] = []
+
+    def p_toplevel__toplevel__container(self, p):
+        '''toplevel : toplevel container'''
+        p[0] = p[1] + [p[2]]
 
     def p_error(self, p):
         if p:

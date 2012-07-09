@@ -792,9 +792,9 @@ p6
 I1
 S'p_apostrophes__APOSTROPHE'
 p7
-S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/rhythmtreetools/_TupletParser/_TupletParser.py'
+S'/home/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
 p8
-I70
+I69
 tp9
 a(S'apostrophes -> apostrophes APOSTROPHE'
 p10
@@ -803,9 +803,9 @@ p11
 I2
 S'p_apostrophes__apostrophes__APOSTROPHE'
 p12
-S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/rhythmtreetools/_TupletParser/_TupletParser.py'
+S'/home/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
 p13
-I74
+I73
 tp14
 a(S'commas -> COMMA'
 p15
@@ -814,9 +814,9 @@ p16
 I1
 S'p_commas__COMMA'
 p17
-S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/rhythmtreetools/_TupletParser/_TupletParser.py'
+S'/home/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
 p18
-I78
+I77
 tp19
 a(S'commas -> commas COMMA'
 p20
@@ -825,9 +825,9 @@ p21
 I2
 S'p_commas__commas__commas'
 p22
-S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/rhythmtreetools/_TupletParser/_TupletParser.py'
+S'/home/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
 p23
-I82
+I81
 tp24
 a(S'component -> container'
 p25
@@ -836,9 +836,9 @@ p26
 I1
 S'p_component__container'
 p27
-S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/rhythmtreetools/_TupletParser/_TupletParser.py'
+S'/home/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
 p28
-I86
+I85
 tp29
 a(S'component -> fixed_duration_container'
 p30
@@ -847,9 +847,9 @@ p31
 I1
 S'p_component__fixed_duration_container'
 p32
-S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/rhythmtreetools/_TupletParser/_TupletParser.py'
+S'/home/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
 p33
-I90
+I89
 tp34
 a(S'component -> leaf'
 p35
@@ -858,9 +858,9 @@ p36
 I1
 S'p_component__leaf'
 p37
-S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/rhythmtreetools/_TupletParser/_TupletParser.py'
+S'/home/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
 p38
-I94
+I93
 tp39
 a(S'component -> tuplet'
 p40
@@ -869,9 +869,9 @@ p41
 I1
 S'p_component__tuplet'
 p42
-S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/rhythmtreetools/_TupletParser/_TupletParser.py'
+S'/home/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
 p43
-I98
+I97
 tp44
 a(S'component_list -> <empty>'
 p45
@@ -880,9 +880,9 @@ p46
 I0
 S'p_component_list__EMPTY'
 p47
-S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/rhythmtreetools/_TupletParser/_TupletParser.py'
+S'/home/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
 p48
-I102
+I101
 tp49
 a(S'component_list -> component_list component'
 p50
@@ -891,9 +891,9 @@ p51
 I2
 S'p_component_list__component_list__component'
 p52
-S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/rhythmtreetools/_TupletParser/_TupletParser.py'
+S'/home/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
 p53
-I106
+I105
 tp54
 a(S'container -> BRACE_L component_list BRACE_R'
 p55
@@ -902,9 +902,9 @@ p56
 I3
 S'p_container__BRACE_L__component_list__BRACE_R'
 p57
-S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/rhythmtreetools/_TupletParser/_TupletParser.py'
+S'/home/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
 p58
-I110
+I109
 tp59
 a(S'dots -> dots DOT'
 p60
@@ -913,9 +913,9 @@ p61
 I2
 S'p_dots__dots__DOT'
 p62
-S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/rhythmtreetools/_TupletParser/_TupletParser.py'
+S'/home/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
 p63
-I116
+I115
 tp64
 a(S'dots -> <empty>'
 p65
@@ -924,9 +924,9 @@ p66
 I0
 S'p_dots__EMPTY'
 p67
-S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/rhythmtreetools/_TupletParser/_TupletParser.py'
+S'/home/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
 p68
-I120
+I119
 tp69
 a(S'fixed_duration_container -> pair'
 p70
@@ -935,9 +935,9 @@ p71
 I1
 S'p_fixed_duration_container__pair'
 p72
-S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/rhythmtreetools/_TupletParser/_TupletParser.py'
+S'/home/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
 p73
-I124
+I123
 tp74
 a(S'leaf -> leaf_duration post_events'
 p75
@@ -946,9 +946,9 @@ p76
 I2
 S'p_leaf__leaf_duration__post_events'
 p77
-S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/rhythmtreetools/_TupletParser/_TupletParser.py'
+S'/home/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
 p78
-I128
+I127
 tp79
 a(S'leaf -> pitch leaf_duration post_events'
 p80
@@ -957,20 +957,20 @@ p81
 I3
 S'p_leaf__pitch__leaf_duration__post_events'
 p82
-S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/rhythmtreetools/_TupletParser/_TupletParser.py'
+S'/home/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
 p83
-I139
+I138
 tp84
 a(S'leaf_duration -> INTEGER dots'
 p85
 S'leaf_duration'
 p86
 I2
-S'p_leaf_duration__INTEGER__dots__post_events'
+S'p_leaf_duration__INTEGER__dots'
 p87
-S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/rhythmtreetools/_TupletParser/_TupletParser.py'
+S'/home/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
 p88
-I148
+I147
 tp89
 a(S'measure -> PIPE FRACTION component_list PIPE'
 p90
@@ -979,9 +979,9 @@ p91
 I4
 S'p_measure__PIPE__FRACTION__component_list__PIPE'
 p92
-S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/rhythmtreetools/_TupletParser/_TupletParser.py'
+S'/home/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
 p93
-I157
+I156
 tp94
 a(S'pair -> PAREN_L INTEGER INTEGER PAREN_R'
 p95
@@ -990,9 +990,9 @@ p96
 I4
 S'p_pair__PAREN_L__INTEGER__INTEGER__PAREN_R'
 p97
-S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/rhythmtreetools/_TupletParser/_TupletParser.py'
+S'/home/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
 p98
-I163
+I162
 tp99
 a(S'pitch -> PITCHNAME'
 p100
@@ -1001,9 +1001,9 @@ p101
 I1
 S'p_pitch__PITCHNAME'
 p102
-S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/rhythmtreetools/_TupletParser/_TupletParser.py'
+S'/home/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
 p103
-I167
+I166
 tp104
 a(S'pitch -> PITCHNAME apostrophes'
 p105
@@ -1012,9 +1012,9 @@ p106
 I2
 S'p_pitch__PITCHNAME__apostrophes'
 p107
-S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/rhythmtreetools/_TupletParser/_TupletParser.py'
+S'/home/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
 p108
-I171
+I170
 tp109
 a(S'pitch -> PITCHNAME commas'
 p110
@@ -1023,9 +1023,9 @@ p111
 I2
 S'p_pitch__PITCHNAME__commas'
 p112
-S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/rhythmtreetools/_TupletParser/_TupletParser.py'
+S'/home/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
 p113
-I175
+I174
 tp114
 a(S'post_event -> tie'
 p115
@@ -1034,9 +1034,9 @@ p116
 I1
 S'p_post_event__tie'
 p117
-S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/rhythmtreetools/_TupletParser/_TupletParser.py'
+S'/home/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
 p118
-I179
+I178
 tp119
 a(S'post_events -> <empty>'
 p120
@@ -1045,9 +1045,9 @@ p121
 I0
 S'p_post_events__EMPTY'
 p122
-S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/rhythmtreetools/_TupletParser/_TupletParser.py'
+S'/home/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
 p123
-I183
+I182
 tp124
 a(S'post_events -> post_events post_event'
 p125
@@ -1056,9 +1056,9 @@ p126
 I2
 S'p_post_events__post_events__post_event'
 p127
-S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/rhythmtreetools/_TupletParser/_TupletParser.py'
+S'/home/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
 p128
-I187
+I186
 tp129
 a(S'start -> <empty>'
 p130
@@ -1067,9 +1067,9 @@ p131
 I0
 S'p_start__EMPTY'
 p132
-S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/rhythmtreetools/_TupletParser/_TupletParser.py'
+S'/home/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
 p133
-I191
+I190
 tp134
 a(S'start -> start component'
 p135
@@ -1078,9 +1078,9 @@ p136
 I2
 S'p_start__start__component'
 p137
-S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/rhythmtreetools/_TupletParser/_TupletParser.py'
+S'/home/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
 p138
-I195
+I194
 tp139
 a(S'start -> start measure'
 p140
@@ -1089,9 +1089,9 @@ p141
 I2
 S'p_start__start__measure'
 p142
-S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/rhythmtreetools/_TupletParser/_TupletParser.py'
+S'/home/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
 p143
-I199
+I198
 tp144
 a(S'tie -> TILDE'
 p145
@@ -1100,9 +1100,9 @@ p146
 I1
 S'p_tie__TILDE'
 p147
-S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/rhythmtreetools/_TupletParser/_TupletParser.py'
+S'/home/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
 p148
-I203
+I202
 tp149
 a(S'tuplet -> FRACTION container'
 p150
@@ -1111,8 +1111,8 @@ p151
 I2
 S'p_tuplet__FRACTION__container'
 p152
-S'/Users/trevorbaca/Documents/abjad/trunk/abjad/tools/rhythmtreetools/_TupletParser/_TupletParser.py'
+S'/home/josiah/Documents/Projects/abjad/trunk/abjad/tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser.py'
 p153
-I207
+I206
 tp154
 a.

@@ -21,20 +21,15 @@ def parse_rtm_syntax(rtm):
 
     result = RhythmTreeParser()(rtm)
 
-    if 1 < len(result):
-        con = containertools.Container()
-        for node in result:
-            tuplet = node()
-            if tuplet.is_trivial:
-                con.extend(tuplet[:])
-            else:
-                con.append(tuplet)
-        return con
+    con = containertools.Container()
 
-    else:
-        tuplet = result[0]()
+    for node in result:
+        tuplet = node((1, 4))
         if tuplet.is_trivial:
-            con = containertools.Container()
             con.extend(tuplet[:])
-            return con
-        return tuplet
+        else:
+            con.append(tuplet)
+
+    if len(con) == 1:
+        return con[0]
+    return con
