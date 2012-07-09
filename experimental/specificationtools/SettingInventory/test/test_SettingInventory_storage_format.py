@@ -5,7 +5,7 @@ from experimental import timespantools
 from experimental.specificationtools import library
 from experimental.specificationtools.Setting import Setting
 from experimental.specificationtools.SettingInventory import SettingInventory
-from experimental.selectortools.CounttimeComponentSelector import CounttimeComponentSelector
+from experimental.selectortools.SingleContextCounttimeComponentSelector import SingleContextCounttimeComponentSelector
 from experimental.specificationtools.ScoreSpecification import ScoreSpecification
 from experimental.selectortools.MultipleContextSelection import MultipleContextSelection
 from experimental.timespantools.Timepoint import Timepoint
