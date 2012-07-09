@@ -1,8 +1,8 @@
-from abjad.tools.rhythmtreetools._Parser import _Parser
+from abjad.tools import abctools
 from abjad.tools.rhythmtreetools._RTMNode import _RTMNode as Node
 
 
-class _RTMParser(_Parser):
+class _RTMParser(abctools.Parser):
 
     ### LEX SETUP ###
 

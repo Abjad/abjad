@@ -1936,6 +1936,7 @@ Internal packages
    tools/abctools/AbjadObject/AbjadObject
    tools/abctools/AttributeEqualityAbjadObject/AttributeEqualityAbjadObject
    tools/abctools/ImmutableAbjadObject/ImmutableAbjadObject
+   tools/abctools/Parser/Parser
    tools/abctools/ScoreSelection/ScoreSelection
    tools/abctools/SortableAttributeEqualityAbjadObject/SortableAttributeEqualityAbjadObject
 

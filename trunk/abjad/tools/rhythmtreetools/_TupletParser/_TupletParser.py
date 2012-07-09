@@ -1,9 +1,8 @@
 import copy
 from abjad.tools import *
-from abjad.tools.rhythmtreetools._Parser import _Parser
 
 
-class _TupletParser(_Parser):
+class _TupletParser(abctools.Parser):
 
     ### LEX SETUP ###
 

@@ -1,5 +1,5 @@
 from abc import abstractproperty
-from abjad.tools.abctools import AbjadObject
+from abjad.tools.abctools.AbjadObject import AbjadObject
 from ply import lex
 from ply import yacc
 import inspect
@@ -7,7 +7,7 @@ import logging
 import os
 
 
-class _Parser(AbjadObject):
+class Parser(AbjadObject):
     '''Abstract base class for Abjad parsers.
 
     Rules objects for lexing and parsing must be defined by overriding the
