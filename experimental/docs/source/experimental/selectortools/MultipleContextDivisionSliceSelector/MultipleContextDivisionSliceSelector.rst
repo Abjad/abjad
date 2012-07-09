@@ -44,8 +44,6 @@ Special Methods
 
 .. automethod:: experimental.selectortools.MultipleContextDivisionSliceSelector.MultipleContextDivisionSliceSelector.MultipleContextDivisionSliceSelector.__eq__
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: experimental.selectortools.MultipleContextDivisionSliceSelector.MultipleContextDivisionSliceSelector.MultipleContextDivisionSliceSelector.__ge__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

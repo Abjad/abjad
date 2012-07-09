@@ -42,6 +42,15 @@ class TimespanInequality(AbjadObject):
         self._timespan = timespan
         self._timespan_inequality_template = timespan_inequality_template
 
+    ### SPECIAL METHODS ###
+
+    def __eq__(self, expr):
+        if isinstance(expr, type(self)):
+            if self.timespan_inequality_template == expr.timespan_inequality_template:
+                if self.timespan == expr.timespan:
+                    return True
+        return False
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property

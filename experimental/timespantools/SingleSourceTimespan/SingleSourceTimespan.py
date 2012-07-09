@@ -114,17 +114,11 @@ class SingleSourceTimespan(Timespan):
 
     ### INITIALIZER ###
 
-    #def __init__(self, selector=None, start=None, stop=None):
     def __init__(self, selector=None, multiplier=None, left_addendum=None, right_addendum=None):
         from experimental import selectortools
         assert isinstance(selector, (selectortools.Selector, type(None))), repr(selector)
-        #assert isinstance(start, (Timepoint, type(None))), repr(start)
-        #assert isinstance(stop, (Timepoint, type(None))), repr(stop)
-        #if selector is not None: assert start is None and stop is None
         Timespan.__init__(self)
         self._selector = selector
-        #self._start = start
-        #self._stop = stop
         self._multiplier = multiplier
         self._left_addendum = left_addendum
         self._right_addendum = right_addendum
@@ -132,12 +126,6 @@ class SingleSourceTimespan(Timespan):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
-#        if isinstance(expr, type(self)):
-#            if self.selector == expr.selector:
-#                if self.start == expr.start:
-#                    if self.stop == expr.stop:
-#                        return True
-#        return False
         if isinstance(expr, type(self)):
             if self.selector == expr.selector:
                 if self.multiplier == expr.multiplier:

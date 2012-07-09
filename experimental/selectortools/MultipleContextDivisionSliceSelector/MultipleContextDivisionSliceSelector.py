@@ -46,6 +46,17 @@ class MultipleContextDivisionSliceSelector(BackgroundElementSliceSelector):
         contexts = self._process_contexts(contexts)
         self._contexts = contexts
 
+    ### SPECIAL METHODS ###
+
+    def __eq__(self, expr):
+        if isinstance(expr, type(self)):
+            if self.contexts == expr.contexts:
+                if self.inequality == expr.inequality:
+                    if self.start == expr.start:
+                        if self.stop == expr.stop:
+                            return True
+        return False
+
     ### PRIVATE METHODS ###
 
     def _process_contexts(self, contexts):

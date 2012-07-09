@@ -24,8 +24,6 @@ Special Methods
 
 .. automethod:: experimental.timespantools.TimespanInequalityTemplate.TimespanInequalityTemplate.TimespanInequalityTemplate.__eq__
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: experimental.timespantools.TimespanInequalityTemplate.TimespanInequalityTemplate.TimespanInequalityTemplate.__ge__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

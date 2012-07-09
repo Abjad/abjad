@@ -16,12 +16,11 @@ import copy
 class SegmentSpecification(Specification):
     r'''.. versionadded:: 1.0
 
-    Segment specification.
-
-    Examples::
+    ::
 
         >>> from abjad.tools import scoretemplatetools
         >>> from experimental import specificationtools
+        >>> from experimental.specificationtools import ScoreSpecification
 
     The examples below reference the following segment specification::
 
@@ -30,14 +29,14 @@ class SegmentSpecification(Specification):
         
     ::
     
-        >>> segment = specification.append_segment()
+        >>> segment = specification.append_segment('red')
 
     ::
             
         >>> segment
-        SegmentSpecification('1')
+        SegmentSpecification('red')
 
-    More description goes here.
+    ``SegmentSpecification`` properties are read-only.
     '''
 
     ### INITIALIZER ###
@@ -94,7 +93,7 @@ class SegmentSpecification(Specification):
         '''Segment specification indicator::
 
             >>> segment.indicator
-            SegmentSelector(index='1')
+            SegmentSelector(index='red')
 
         Return segment selector.
         '''
@@ -106,7 +105,7 @@ class SegmentSpecification(Specification):
         '''Segment name.
 
             >>> segment.name
-            '1'
+            'red'
 
         Return string.
         '''
@@ -138,7 +137,7 @@ class SegmentSpecification(Specification):
         '''Segment start.
 
             >>> segment.start
-            Timepoint(anchor=SegmentSelector(index='1'), edge=Left)
+            Timepoint(anchor=SegmentSelector(index='red'), edge=Left)
 
         Return timepoint.
         '''
@@ -150,7 +149,7 @@ class SegmentSpecification(Specification):
         '''Segment stop.
 
             >>> segment.stop
-            Timepoint(anchor=SegmentSelector(index='1'), edge=Right)
+            Timepoint(anchor=SegmentSelector(index='red'), edge=Right)
 
         Return timepoint.
         '''
@@ -181,7 +180,7 @@ class SegmentSpecification(Specification):
         '''Segment timespan.
 
             >>> segment.timespan
-            SingleSourceTimespan(selector=SegmentSelector(index='1'))
+            SingleSourceTimespan(selector=SegmentSelector(index='red'))
 
         Return timespan.
         '''
@@ -288,19 +287,66 @@ class SegmentSpecification(Specification):
         return selectortools.MultipleContextSelection()
         
     def select_contexts(self, contexts=None):
+        '''Select contexts::
+
+            >>> selection = segment.select_contexts()
+
+        ::
+
+            >>> z(selection)
+            selectortools.MultipleContextSelection(
+                contexts=['Grouped Rhythmic Staves Score'],
+                timespan=timespantools.SingleSourceTimespan(
+                    selector=selectortools.SegmentSelector(
+                        index='red'
+                        )
+                    )
+                )
+
+        .. note:: replace selection classes with selector classes.
+
+        Return selection.
+        '''
         from experimental import selectortools
         contexts = self.context_token_to_context_names(contexts)
         return selectortools.MultipleContextSelection(contexts=contexts, timespan=self.timespan)
 
-    # NEXT: implement and return MultipleContextDivisionSliceSelector
-    def select_divisions(self, context_token=None, part=None, segment_name=None, start=None, stop=None):
-        from experimental import specificationtools
+    def select_divisions_that_start_during_segment(self, contexts=None, start=None, stop=None):
+        '''Select the first five divisions that start during segment::
+
+            >>> specification = ScoreSpecification(scoretemplatetools.GroupedRhythmicStavesScoreTemplate(n=4))
+            >>> segment = specification.append_segment('red')
+            >>> setting = segment.set_time_signatures(segment, [(4, 8), (3, 8)])
+
+        ::
+
+            >>> contexts = ['Voice 1', 'Voice 3']
+            >>> selector = segment.select_divisions_that_start_during_segment(contexts=contexts, stop=5)
+
+        ::
+            
+            >>> z(selector)
+            selectortools.MultipleContextDivisionSliceSelector(
+                contexts=['Voice 1', 'Voice 3'],
+                inequality=timespantools.TimespanInequality(
+                    timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
+                    timespantools.SingleSourceTimespan(
+                        selector=selectortools.SegmentSelector(
+                            index='red'
+                            )
+                        )
+                    ),
+                stop=5
+                )
+
+        Return selector.
+        '''
+        from experimental import selectortools
         from experimental import timespantools
-        criterion = 'divisions'
-        contexts = self.context_token_to_context_names(context_token)
-        timespan = timespantools.SingleSourceTimespan(criterion=criterion, part=part, start=start, stop=stop)
-        selection = self.select(contexts=contexts, segment_name=segment_name, timespan=timespan)
-        return selection
+        inequality = timespantools.expr_starts_during_timespan(self.timespan)
+        selector = selectortools.MultipleContextDivisionSliceSelector(
+            contexts=contexts, inequality=inequality, start=start, stop=stop)
+        return selector
 
     # NEXT: implement and return MultipleContextBackgroundMeasureSliceSelector
     def select_background_measures(self, context_token=None, part=None, segment_name=None, start=None, stop=None):

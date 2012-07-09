@@ -39,8 +39,6 @@ Special Methods
 
 .. automethod:: experimental.timespantools.MixedSourceTimespan.MixedSourceTimespan.MixedSourceTimespan.__eq__
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: experimental.timespantools.MixedSourceTimespan.MixedSourceTimespan.MixedSourceTimespan.__ge__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

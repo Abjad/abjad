@@ -1,6 +1,5 @@
 from abjad.tools import abctools
 from experimental.timespantools.Timepoint import Timepoint
-#from experimental.timespantools.SingleSourceTimespan import SingleSourceTimespan
 from experimental.timespantools.Timespan import Timespan
 
 
@@ -76,6 +75,15 @@ class MixedSourceTimespan(Timespan):
         Timespan.__init__(self)
         self._start = start
         self._stop = stop
+
+    ### SPECIAL METHODS ###
+
+    def __eq__(self, expr):
+        if isintance(expr, type(self)):
+            if self.start == expr.start:
+                if self.stop == expr.stop:
+                    return True
+        return False
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

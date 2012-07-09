@@ -36,6 +36,14 @@ class TimespanInequalityTemplate(AbjadObject):
         assert isinstance(string, str), repr(string)
         self._string = string
 
+    ### SPECIAL METHODS ###
+
+    def __eq__(self, expr):
+        if isinstance(expr, type(self)):
+            if self.string == expr.string:
+                return True
+        return False
+
     ### PRIVATE METHODS ###
 
     # do not indent storage format
