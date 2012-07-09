@@ -274,7 +274,35 @@ class SegmentSpecification(Specification):
         '''
         from experimental import specificationtools
         return selectortools.MultipleContextSelection()
-        
+
+    def select_background_measures_that_start_during_segment(self, start=None, stop=None):
+        '''Select the first five background measures that start during segment::
+
+            >>> selector = segment.select_background_measures_that_start_during_segment(stop=5)
+
+        ::
+
+            >>> z(selector)
+            selectortools.BackgroundMeasureSliceSelector(
+                inequality=timespantools.TimespanInequality(
+                    timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
+                    timespantools.SingleSourceTimespan(
+                        selector=selectortools.SegmentSelector(
+                            index='red'
+                            )
+                        )
+                    ),
+                stop=5
+                )
+
+        Return selector.
+        '''
+        from experimental import selectortools
+        from experimental import timespantools
+        inequality = timespantools.expr_starts_during_timespan(self.timespan)
+        selector = selectortools.BackgroundMeasureSliceSelector(inequality=inequality, start=start, stop=stop)
+        return selector
+    
     def select_contexts(self, contexts=None):
         '''Select contexts::
 
@@ -337,15 +365,6 @@ class SegmentSpecification(Specification):
             contexts=contexts, inequality=inequality, start=start, stop=stop)
         return selector
 
-    # NEXT: implement and return MultipleContextBackgroundMeasureSliceSelector
-    def select_background_measures(self, context_token=None, part=None, segment_name=None, start=None, stop=None):
-        from experimental import specificationtools
-        criterion = 'measures'
-        contexts = self.context_token_to_context_names(context_token)
-        timespan = timespantools.SingleSourceTimespan(criterion=criterion, part=part, start=start, stop=stop)
-        selection = self.select(contexts=contexts, segment_name=segment_name, timespan=timespan)
-        return selection
-    
     # NEXT: implement and return MultipleContextCounttimeComponentSliceSelector
     def select_notes_and_chords(self, context_token=None, part=None, segment_name=None, start=None, stop=None):
         from experimental import specificationtools
