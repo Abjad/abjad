@@ -365,14 +365,38 @@ class SegmentSpecification(Specification):
             contexts=contexts, inequality=inequality, start=start, stop=stop)
         return selector
 
-    # NEXT: implement and return MultipleContextCounttimeComponentSliceSelector
-    def select_notes_and_chords(self, context_token=None, part=None, segment_name=None, start=None, stop=None):
-        from experimental import specificationtools
-        criterion = (chordtools.Chord, notetools.Note)
-        contexts = self.context_token_to_context_names(context_token)
-        timespan = timespantools.SingleSourceTimespan(criterion=criterion, part=part, start=start, stop=stop)
-        selection = self.select(contexts=contexts, timespan=timespan)
-        return selection
+    def select_leaves_that_start_during_segment(self, contexts=None, start=None, stop=None):
+        '''Select the first ``40`` leaves that start during segment::
+
+            >>> context = ['Voice 1', 'Voice 2']
+            >>> selector = segment.select_leaves_that_start_during_segment(contexts=contexts, stop=40)
+
+        ::
+
+            >>> z(selector)
+            selectortools.MultipleContextCounttimeComponentSliceSelector(
+                contexts=['Voice 1', 'Voice 3'],
+                inequality=timespantools.TimespanInequality(
+                    timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
+                    timespantools.SingleSourceTimespan(
+                        selector=selectortools.SegmentSelector(
+                            index='red'
+                            )
+                        )
+                    ),
+                klass=leaftools.Leaf,
+                stop=40
+                )
+
+        Return selector.
+        '''
+        from experimental import selectortools
+        from experimental import timespantools
+        inequality = timespantools.expr_starts_during_timespan(self.timespan)
+        selector = selectortools.MultipleContextCounttimeComponentSliceSelector(
+            contexts=contexts, inequality=inequality, klass=leaftools.Leaf, 
+            start=start, stop=stop)
+        return selector
 
     def set_aggregate(self, contexts, source, 
         count=None, persistent=True, offset=None):
