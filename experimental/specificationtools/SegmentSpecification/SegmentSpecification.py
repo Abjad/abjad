@@ -292,8 +292,7 @@ class SegmentSpecification(Specification):
         contexts = self.context_token_to_context_names(contexts)
         return selectortools.MultipleContextSelection(contexts=contexts, timespan=self.timespan)
 
-    # NEXT: implement selectortools.MulticontextSelector to complement this
-    # NEXT: reimplement the next three methods to return multicontext selectors
+    # NEXT: implement and return MultipleContextDivisionSliceSelector
     def select_divisions(self, context_token=None, part=None, segment_name=None, start=None, stop=None):
         from experimental import specificationtools
         from experimental import timespantools
@@ -303,21 +302,23 @@ class SegmentSpecification(Specification):
         selection = self.select(contexts=contexts, segment_name=segment_name, timespan=timespan)
         return selection
 
-#    def select_measures(self, context_token=None, part=None, segment_name=None, start=None, stop=None):
-#        from experimental import specificationtools
-#        criterion = 'measures'
-#        contexts = self.context_token_to_context_names(context_token)
-#        timespan = timespantools.SingleSourceTimespan(criterion=criterion, part=part, start=start, stop=stop)
-#        selection = self.select(contexts=contexts, segment_name=segment_name, timespan=timespan)
-#        return selection
-#    
-#    def select_notes_and_chords(self, context_token=None, part=None, segment_name=None, start=None, stop=None):
-#        from experimental import specificationtools
-#        criterion = (chordtools.Chord, notetools.Note)
-#        contexts = self.context_token_to_context_names(context_token)
-#        timespan = timespantools.SingleSourceTimespan(criterion=criterion, part=part, start=start, stop=stop)
-#        selection = self.select(contexts=contexts, timespan=timespan)
-#        return selection
+    # NEXT: implement and return MultipleContextBackgroundMeasureSliceSelector
+    def select_background_measures(self, context_token=None, part=None, segment_name=None, start=None, stop=None):
+        from experimental import specificationtools
+        criterion = 'measures'
+        contexts = self.context_token_to_context_names(context_token)
+        timespan = timespantools.SingleSourceTimespan(criterion=criterion, part=part, start=start, stop=stop)
+        selection = self.select(contexts=contexts, segment_name=segment_name, timespan=timespan)
+        return selection
+    
+    # NEXT: implement and return MultipleContextCounttimeComponentSliceSelector
+    def select_notes_and_chords(self, context_token=None, part=None, segment_name=None, start=None, stop=None):
+        from experimental import specificationtools
+        criterion = (chordtools.Chord, notetools.Note)
+        contexts = self.context_token_to_context_names(context_token)
+        timespan = timespantools.SingleSourceTimespan(criterion=criterion, part=part, start=start, stop=stop)
+        selection = self.select(contexts=contexts, timespan=timespan)
+        return selection
 
     def set_aggregate(self, contexts, source, 
         count=None, persistent=True, offset=None):
