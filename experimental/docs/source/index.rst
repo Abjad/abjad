@@ -203,7 +203,6 @@ Unstable packages (load manually)
    experimental/selectortools/BackgroundMeasureSliceSelector/BackgroundMeasureSliceSelector
    experimental/selectortools/CountRatioItemSelector/CountRatioItemSelector
    experimental/selectortools/CountRatioSliceSelector/CountRatioSliceSelector
-   experimental/selectortools/CounttimeComponentSliceSelector/CounttimeComponentSliceSelector
    experimental/selectortools/DurationRatioItemSelector/DurationRatioItemSelector
    experimental/selectortools/DurationRatioSliceSelector/DurationRatioSliceSelector
    experimental/selectortools/HeldExpression/HeldExpression
@@ -212,6 +211,7 @@ Unstable packages (load manually)
    experimental/selectortools/SegmentSelector/SegmentSelector
    experimental/selectortools/SegmentSliceSelector/SegmentSliceSelector
    experimental/selectortools/SingleContextCounttimeComponentSelector/SingleContextCounttimeComponentSelector
+   experimental/selectortools/SingleContextCounttimeComponentSliceSelector/SingleContextCounttimeComponentSliceSelector
    experimental/selectortools/SingleContextDivisionSelector/SingleContextDivisionSelector
    experimental/selectortools/SingleContextDivisionSliceSelector/SingleContextDivisionSliceSelector
    experimental/selectortools/SingleContextSelection/SingleContextSelection

@@ -3,7 +3,7 @@ from experimental.specificationtools.Callback import Callback
 from experimental.selectortools.SliceSelector import SliceSelector
 
 
-class CounttimeComponentSliceSelector(SliceSelector):
+class SingleContextCounttimeComponentSliceSelector(SliceSelector):
     r'''.. versionadded:: 1.0
 
     Select zero or more counttime components in `reference` container
@@ -15,23 +15,23 @@ class CounttimeComponentSliceSelector(SliceSelector):
 
     Select the first five counttime components in ``'Voice 1'``::
 
-        >>> selectortools.CounttimeComponentSliceSelector('Voice 1', stop=5)
-        CounttimeComponentSliceSelector('Voice 1', stop=5)
+        >>> selectortools.SingleContextCounttimeComponentSliceSelector('Voice 1', stop=5)
+        SingleContextCounttimeComponentSliceSelector('Voice 1', stop=5)
 
     Select the last five counttime components in ``'Voice 1'``::
 
-        >>> selectortools.CounttimeComponentSliceSelector('Voice 1', start=-5)
-        CounttimeComponentSliceSelector('Voice 1', start=-5)
+        >>> selectortools.SingleContextCounttimeComponentSliceSelector('Voice 1', start=-5)
+        SingleContextCounttimeComponentSliceSelector('Voice 1', start=-5)
 
     Select counttime components from ``5`` up to but not including ``-5`` in ``'Voice 1'``::
 
-        >>> selectortools.CounttimeComponentSliceSelector('Voice 1', start=5, stop=-5)
-        CounttimeComponentSliceSelector('Voice 1', start=5, stop=-5)
+        >>> selectortools.SingleContextCounttimeComponentSliceSelector('Voice 1', start=5, stop=-5)
+        SingleContextCounttimeComponentSliceSelector('Voice 1', start=5, stop=-5)
 
     Select all counttime components in ``'Voice 1'``::
 
-        >>> selectortools.CounttimeComponentSliceSelector('Voice 1')
-        CounttimeComponentSliceSelector('Voice 1')
+        >>> selectortools.SingleContextCounttimeComponentSliceSelector('Voice 1')
+        SingleContextCounttimeComponentSliceSelector('Voice 1')
 
     Select counttime measure ``3`` to starting during segment ``'red'`` in  ``'Voice 1'``.
     Then select the last three leaves in tuplet ``-1`` in this measure::
@@ -51,13 +51,13 @@ class CounttimeComponentSliceSelector(SliceSelector):
 
     ::
 
-        >>> leaf_slice_selector = selectortools.CounttimeComponentSliceSelector(
+        >>> leaf_slice_selector = selectortools.SingleContextCounttimeComponentSliceSelector(
         ... tuplet_selector, klass=leaftools.Leaf, start=-3)
 
     ::
 
         >>> z(leaf_slice_selector)
-        selectortools.CounttimeComponentSliceSelector(
+        selectortools.SingleContextCounttimeComponentSliceSelector(
             selectortools.SingleContextCounttimeComponentSelector(
                 selectortools.SingleContextCounttimeComponentSelector(
                     'Voice 1',
