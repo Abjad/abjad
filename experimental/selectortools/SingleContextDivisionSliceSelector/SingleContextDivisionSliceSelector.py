@@ -1,7 +1,7 @@
 from experimental.selectortools.BackgroundElementSliceSelector import BackgroundElementSliceSelector
 
 
-class DivisionSliceSelector(BackgroundElementSliceSelector):
+class SingleContextDivisionSliceSelector(BackgroundElementSliceSelector):
     r'''.. versionadded:: 1.0
 
     Select all ``'Voice 1'`` divisions in score::
@@ -10,8 +10,8 @@ class DivisionSliceSelector(BackgroundElementSliceSelector):
 
     ::
 
-        >>> selectortools.DivisionSliceSelector('Voice 1')
-        DivisionSliceSelector('Voice 1')
+        >>> selectortools.SingleContextDivisionSliceSelector('Voice 1')
+        SingleContextDivisionSliceSelector('Voice 1')
 
     Select all ``'Voice 1'`` divisions starting during segment ``'red'``::
 
@@ -25,12 +25,12 @@ class DivisionSliceSelector(BackgroundElementSliceSelector):
 
     ::
 
-        >>> divisions = selectortools.DivisionSliceSelector('Voice 1', inequality=inequality)
+        >>> divisions = selectortools.SingleContextDivisionSliceSelector('Voice 1', inequality=inequality)
 
     ::
 
         >>> z(divisions)
-        selectortools.DivisionSliceSelector(
+        selectortools.SingleContextDivisionSliceSelector(
             'Voice 1',
             inequality=timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
@@ -44,12 +44,12 @@ class DivisionSliceSelector(BackgroundElementSliceSelector):
 
     Select the last two ``'Voice 1'`` divisions starting during segment ``'red'``::
 
-        >>> divisions = selectortools.DivisionSliceSelector('Voice 1', inequality=inequality, start=-2)
+        >>> divisions = selectortools.SingleContextDivisionSliceSelector('Voice 1', inequality=inequality, start=-2)
 
     ::
 
         >>> z(divisions)
-        selectortools.DivisionSliceSelector(
+        selectortools.SingleContextDivisionSliceSelector(
             'Voice 1',
             inequality=timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),

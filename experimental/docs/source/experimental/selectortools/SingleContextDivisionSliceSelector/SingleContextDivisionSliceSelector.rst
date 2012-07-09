@@ -1,0 +1,83 @@
+selectortools.SingleContextDivisionSliceSelector
+================================================
+
+.. inheritance-diagram:: experimental.selectortools.SingleContextDivisionSliceSelector.SingleContextDivisionSliceSelector.SingleContextDivisionSliceSelector
+   :private-bases:
+
+.. autoclass:: experimental.selectortools.SingleContextDivisionSliceSelector.SingleContextDivisionSliceSelector.SingleContextDivisionSliceSelector
+
+Read-only Properties
+--------------------
+
+.. autoattribute:: experimental.selectortools.SingleContextDivisionSliceSelector.SingleContextDivisionSliceSelector.SingleContextDivisionSliceSelector.inequality
+
+    Inherited from :py:class:`selectortools.BackgroundElementSliceSelector <experimental.selectortools.BackgroundElementSliceSelector.BackgroundElementSliceSelector.BackgroundElementSliceSelector>`
+
+.. autoattribute:: experimental.selectortools.SingleContextDivisionSliceSelector.SingleContextDivisionSliceSelector.SingleContextDivisionSliceSelector.klass
+
+    Inherited from :py:class:`selectortools.BackgroundElementSliceSelector <experimental.selectortools.BackgroundElementSliceSelector.BackgroundElementSliceSelector.BackgroundElementSliceSelector>`
+
+.. autoattribute:: experimental.selectortools.SingleContextDivisionSliceSelector.SingleContextDivisionSliceSelector.SingleContextDivisionSliceSelector.start
+
+    Inherited from :py:class:`selectortools.BackgroundElementSliceSelector <experimental.selectortools.BackgroundElementSliceSelector.BackgroundElementSliceSelector.BackgroundElementSliceSelector>`
+
+.. autoattribute:: experimental.selectortools.SingleContextDivisionSliceSelector.SingleContextDivisionSliceSelector.SingleContextDivisionSliceSelector.stop
+
+    Inherited from :py:class:`selectortools.BackgroundElementSliceSelector <experimental.selectortools.BackgroundElementSliceSelector.BackgroundElementSliceSelector.BackgroundElementSliceSelector>`
+
+.. autoattribute:: experimental.selectortools.SingleContextDivisionSliceSelector.SingleContextDivisionSliceSelector.SingleContextDivisionSliceSelector.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. autoattribute:: experimental.selectortools.SingleContextDivisionSliceSelector.SingleContextDivisionSliceSelector.SingleContextDivisionSliceSelector.timespan
+
+    Inherited from :py:class:`selectortools.Selector <experimental.selectortools.Selector.Selector.Selector>`
+
+.. autoattribute:: experimental.selectortools.SingleContextDivisionSliceSelector.SingleContextDivisionSliceSelector.SingleContextDivisionSliceSelector.voice
+
+Special Methods
+---------------
+
+.. automethod:: experimental.selectortools.SingleContextDivisionSliceSelector.SingleContextDivisionSliceSelector.SingleContextDivisionSliceSelector.__delattr__
+
+    Inherited from :py:class:`__builtin__.object`
+
+.. automethod:: experimental.selectortools.SingleContextDivisionSliceSelector.SingleContextDivisionSliceSelector.SingleContextDivisionSliceSelector.__eq__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.selectortools.SingleContextDivisionSliceSelector.SingleContextDivisionSliceSelector.SingleContextDivisionSliceSelector.__ge__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.selectortools.SingleContextDivisionSliceSelector.SingleContextDivisionSliceSelector.SingleContextDivisionSliceSelector.__gt__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.selectortools.SingleContextDivisionSliceSelector.SingleContextDivisionSliceSelector.SingleContextDivisionSliceSelector.__hash__
+
+    Inherited from :py:class:`__builtin__.object`
+
+.. automethod:: experimental.selectortools.SingleContextDivisionSliceSelector.SingleContextDivisionSliceSelector.SingleContextDivisionSliceSelector.__le__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.selectortools.SingleContextDivisionSliceSelector.SingleContextDivisionSliceSelector.SingleContextDivisionSliceSelector.__lt__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.selectortools.SingleContextDivisionSliceSelector.SingleContextDivisionSliceSelector.SingleContextDivisionSliceSelector.__ne__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.selectortools.SingleContextDivisionSliceSelector.SingleContextDivisionSliceSelector.SingleContextDivisionSliceSelector.__repr__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.selectortools.SingleContextDivisionSliceSelector.SingleContextDivisionSliceSelector.SingleContextDivisionSliceSelector.__setattr__
+
+    Inherited from :py:class:`__builtin__.object`
+
+.. automethod:: experimental.selectortools.SingleContextDivisionSliceSelector.SingleContextDivisionSliceSelector.SingleContextDivisionSliceSelector.__str__
+
+    Inherited from :py:class:`__builtin__.object`
