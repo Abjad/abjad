@@ -74,7 +74,7 @@ class SingleSourceTimespan(Timespan):
 
     Timespan of division ``0`` starting during segment ``'red'`` in ``'Voice 1'``::
 
-        >>> division_selector = selectortools.DivisionSelector('Voice 1', inequality=inequality)
+        >>> division_selector = selectortools.SingleContextDivisionSelector('Voice 1', inequality=inequality)
 
     ::
 
@@ -84,7 +84,7 @@ class SingleSourceTimespan(Timespan):
 
        >>> z(timespan)
         timespantools.SingleSourceTimespan(
-            selector=selectortools.DivisionSelector(
+            selector=selectortools.SingleContextDivisionSelector(
                 'Voice 1',
                 inequality=timespantools.TimespanInequality(
                     timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),

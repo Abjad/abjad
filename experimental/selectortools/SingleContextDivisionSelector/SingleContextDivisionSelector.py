@@ -1,7 +1,7 @@
 from experimental.selectortools.BackgroundElementSelector import BackgroundElementSelector
 
 
-class DivisionSelector(BackgroundElementSelector):
+class SingleContextDivisionSelector(BackgroundElementSelector):
     r'''.. versionadded:: 1.0
 
     Select division ``3`` in ``'Voice 1'``::
@@ -10,8 +10,8 @@ class DivisionSelector(BackgroundElementSelector):
 
     ::
 
-        >>> selectortools.DivisionSelector('Voice 1', index=3)
-        DivisionSelector('Voice 1', index=3)
+        >>> selectortools.SingleContextDivisionSelector('Voice 1', index=3)
+        SingleContextDivisionSelector('Voice 1', index=3)
 
     Select the last ``'Voice 1'`` division to start during segment ``'red'``::
 
@@ -24,12 +24,12 @@ class DivisionSelector(BackgroundElementSelector):
 
     ::
 
-        >>> selector = selectortools.DivisionSelector('Voice 1', inequality=inequality, index=-1)
+        >>> selector = selectortools.SingleContextDivisionSelector('Voice 1', inequality=inequality, index=-1)
 
     ::
 
         >>> z(selector)
-        selectortools.DivisionSelector(
+        selectortools.SingleContextDivisionSelector(
             'Voice 1',
             inequality=timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
@@ -53,12 +53,12 @@ class DivisionSelector(BackgroundElementSelector):
         
         >>> timespan = measure.timespan
         >>> inequality = timespantools.expr_starts_during_timespan(timespan=timespan)
-        >>> division = selectortools.DivisionSelector('Voice 1', inequality=inequality, index=-1)
+        >>> division = selectortools.SingleContextDivisionSelector('Voice 1', inequality=inequality, index=-1)
 
     ::
 
         >>> z(division)
-        selectortools.DivisionSelector(
+        selectortools.SingleContextDivisionSelector(
             'Voice 1',
             inequality=timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),

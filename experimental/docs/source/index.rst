@@ -205,7 +205,6 @@ Unstable packages (load manually)
    experimental/selectortools/CountRatioSliceSelector/CountRatioSliceSelector
    experimental/selectortools/CounttimeComponentSelector/CounttimeComponentSelector
    experimental/selectortools/CounttimeComponentSliceSelector/CounttimeComponentSliceSelector
-   experimental/selectortools/DivisionSelector/DivisionSelector
    experimental/selectortools/DivisionSliceSelector/DivisionSliceSelector
    experimental/selectortools/DurationRatioItemSelector/DurationRatioItemSelector
    experimental/selectortools/DurationRatioSliceSelector/DurationRatioSliceSelector
@@ -213,6 +212,7 @@ Unstable packages (load manually)
    experimental/selectortools/MultipleContextSelection/MultipleContextSelection
    experimental/selectortools/SegmentSelector/SegmentSelector
    experimental/selectortools/SegmentSliceSelector/SegmentSliceSelector
+   experimental/selectortools/SingleContextDivisionSelector/SingleContextDivisionSelector
    experimental/selectortools/SingleContextSelection/SingleContextSelection
 
 :py:mod:`specificationtools <experimental.specificationtools>`

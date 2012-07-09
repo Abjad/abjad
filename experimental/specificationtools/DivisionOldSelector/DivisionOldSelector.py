@@ -2,7 +2,7 @@ from experimental.specificationtools.Callback import Callback
 from experimental.specificationtools.RetrievalRequest import RetrievalRequest
 
 
-# TODO: replace DivisionOldSelector with DivisionSelector
+# TODO: replace DivisionOldSelector with SingleContextDivisionSelector
 class DivisionOldSelector(RetrievalRequest):
     r'''.. versionadded:: 1.0
 
