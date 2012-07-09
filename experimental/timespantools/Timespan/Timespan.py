@@ -219,14 +219,6 @@ class Timespan(AbjadObject):
                         return True
         return False
 
-    def __repr__(self):
-        if self.start is not None and self.stop is not None:
-            if self.start.anchor == self.stop.anchor:
-                if self.start.edge in (Left, None):
-                    if self.stop.edge == Right:
-                        return '{}({!r})'.format(self._class_name, self.start.anchor)
-        return AbjadObject.__repr__(self)
-
     ### READ-ONLY PRIVATE PROPERTIES ###
 
     @property
