@@ -67,7 +67,7 @@ class APICrawler(abctools.AbjadObject):
 
             # only overwrite if changed
             if new_docs != old_docs:
-                if old_docs is None:
+                if old_docs is not None:
                     print 'UPDATING {}'.format(os.path.relpath(docs_file))
                 else:
                     print 'CREATING {}'.format(os.path.relpath(docs_file))
