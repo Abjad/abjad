@@ -87,19 +87,6 @@ class SegmentSpecification(Specification):
         if self.time_signatures is not None:
             return sum([durationtools.Duration(x) for x in self.time_signatures])        
 
-    # TODO: change name to 'selector'
-    @property
-    def indicator(self):
-        '''Segment specification indicator::
-
-            >>> segment.indicator
-            SegmentSelector(index='red')
-
-        Return segment selector.
-        '''
-        from experimental import selectortools
-        return selectortools.SegmentSelector(index=self.name)
-        
     @property
     def name(self):
         '''Segment name.
@@ -124,14 +111,16 @@ class SegmentSpecification(Specification):
 
     @property
     def selector(self):
-        '''Segment specification selector.
+        '''Segment selector::
+
+            >>> segment.selector
+            SegmentSelector(index='red')
 
         Return segment selector.
-
-        .. note:: this should replace the ``indicator`` property.
         '''
-        return self.indicator
-
+        from experimental import selectortools
+        return selectortools.SegmentSelector(index=self.name)
+        
     @property
     def start(self):
         '''Segment start.
@@ -142,7 +131,7 @@ class SegmentSpecification(Specification):
         Return timepoint.
         '''
         from experimental import timespantools
-        return timespantools.Timepoint(anchor=self.indicator, edge=Left)
+        return timespantools.Timepoint(anchor=self.selector, edge=Left)
 
     @property
     def stop(self):
@@ -154,7 +143,7 @@ class SegmentSpecification(Specification):
         Return timepoint.
         '''
         from experimental import timespantools
-        return timespantools.Timepoint(anchor=self.indicator, edge=Right)
+        return timespantools.Timepoint(anchor=self.selector, edge=Right)
 
     @property
     def time_signatures(self):
