@@ -82,7 +82,7 @@ Methods
 
 .. automethod:: abjad.tools.rhythmtreetools.ReducedAbjParser.ReducedAbjParser.ReducedAbjParser.p_leaf__pitch__leaf_duration__post_events
 
-.. automethod:: abjad.tools.rhythmtreetools.ReducedAbjParser.ReducedAbjParser.ReducedAbjParser.p_leaf_duration__INTEGER__dots__post_events
+.. automethod:: abjad.tools.rhythmtreetools.ReducedAbjParser.ReducedAbjParser.ReducedAbjParser.p_leaf_duration__INTEGER__dots
 
 .. automethod:: abjad.tools.rhythmtreetools.ReducedAbjParser.ReducedAbjParser.ReducedAbjParser.p_measure__PIPE__FRACTION__component_list__PIPE
 

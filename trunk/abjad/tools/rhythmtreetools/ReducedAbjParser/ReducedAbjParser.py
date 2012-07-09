@@ -143,7 +143,7 @@ class ReducedAbjParser(abctools.Parser):
         if post_events:
             marktools.Annotation('post events', post_events)(p[0])
 
-    def p_leaf_duration__INTEGER__dots__post_events(self, p):
+    def p_leaf_duration__INTEGER__dots(self, p):
         '''leaf_duration : INTEGER dots'''
         duration_log = p[1]
         dots = '.' * p[2]
