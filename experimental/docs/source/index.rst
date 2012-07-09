@@ -213,6 +213,7 @@ Unstable packages (load manually)
    experimental/selectortools/MulticontextSelection/MulticontextSelection
    experimental/selectortools/SegmentSelector/SegmentSelector
    experimental/selectortools/SegmentSliceSelector/SegmentSliceSelector
+   experimental/selectortools/SingleContextSelection/SingleContextSelection
 
 :py:mod:`specificationtools <experimental.specificationtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -236,7 +237,6 @@ Unstable packages (load manually)
    experimental/specificationtools/Callback/Callback
    experimental/specificationtools/ContextDictionary/ContextDictionary
    experimental/specificationtools/ContextProxy/ContextProxy
-   experimental/specificationtools/ContextSelection/ContextSelection
    experimental/specificationtools/ContextSetting/ContextSetting
    experimental/specificationtools/ContextSettingInventory/ContextSettingInventory
    experimental/specificationtools/Division/Division

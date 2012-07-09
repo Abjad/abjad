@@ -2,7 +2,7 @@ from abjad.tools import contexttools
 from experimental.selectortools.MulticontextSelection.MulticontextSelection import MulticontextSelection
 
 
-class ContextSelection(MulticontextSelection):
+class SingleContextSelection(MulticontextSelection):
     r'''.. versionadded:: 1.0
 
     Select exactly one context over arbitrary timespan.
@@ -18,13 +18,13 @@ class ContextSelection(MulticontextSelection):
 
     ::
 
-        >>> context_selection = selectortools.ContextSelection(
+        >>> context_selection = selectortools.SingleContextSelection(
         ... 'Voice 1', timespan=segment_selector.timespan)
 
     ::
 
         >>> z(context_selection)
-        selectortools.ContextSelection(
+        selectortools.SingleContextSelection(
             'Voice 1',
             timespan=timespantools.Timespan(
                 selector=selectortools.SegmentSelector(

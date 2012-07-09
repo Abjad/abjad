@@ -1,4 +1,4 @@
-from experimental.selectortools.ContextSelection import ContextSelection
+from experimental.selectortools.SingleContextSelection import SingleContextSelection
 from experimental.selectortools.SegmentSelector import SegmentSelector
 from experimental.specificationtools.ContextSetting import ContextSetting
 from experimental.timespantools.Timepoint import Timepoint
@@ -10,7 +10,7 @@ def test_ContextSetting___repr___01():
     '''
 
     segment_selector = SegmentSelector(index='1')
-    target = ContextSelection('Voice 1', timespan=segment_selector.timespan)
+    target = SingleContextSelection('Voice 1', timespan=segment_selector.timespan)
     setting_1 = ContextSetting(target, 'time_signatures', [(4, 8), (3, 8)], fresh=False)
 
     setting_2 = eval(repr(setting_1))
