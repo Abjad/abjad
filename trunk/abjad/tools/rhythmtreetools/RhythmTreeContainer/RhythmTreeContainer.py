@@ -98,7 +98,7 @@ class RhythmTreeContainer(RhythmTreeNode):
         self._children = []
         if isinstance(children, type(None)):
             pass
-        elif isinstance(children, (list, tuple)):
+        elif isinstance(children, (list, str, tuple)):
             self.extend(children)
         else:
             raise ValueError('Cannot instantiate {} with {!r}.'.format(type(self), children))
