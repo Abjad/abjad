@@ -48,9 +48,15 @@ Read-only Properties
 Methods
 -------
 
+.. automethod:: abjad.tools.rhythmtreetools.RhythmTreeParser.RhythmTreeParser.RhythmTreeParser.p_container__LPAREN__INTEGER__node_list_closed__RPAREN
+
 .. automethod:: abjad.tools.rhythmtreetools.RhythmTreeParser.RhythmTreeParser.RhythmTreeParser.p_error
 
-.. automethod:: abjad.tools.rhythmtreetools.RhythmTreeParser.RhythmTreeParser.RhythmTreeParser.p_node__LPAREN__INTEGER__node_list_closed__RPAREN
+.. automethod:: abjad.tools.rhythmtreetools.RhythmTreeParser.RhythmTreeParser.RhythmTreeParser.p_leaf__INTEGER
+
+.. automethod:: abjad.tools.rhythmtreetools.RhythmTreeParser.RhythmTreeParser.RhythmTreeParser.p_node__container
+
+.. automethod:: abjad.tools.rhythmtreetools.RhythmTreeParser.RhythmTreeParser.RhythmTreeParser.p_node__leaf
 
 .. automethod:: abjad.tools.rhythmtreetools.RhythmTreeParser.RhythmTreeParser.RhythmTreeParser.p_node_list__node_list__node_list_item
 
@@ -58,13 +64,11 @@ Methods
 
 .. automethod:: abjad.tools.rhythmtreetools.RhythmTreeParser.RhythmTreeParser.RhythmTreeParser.p_node_list_closed__LPAREN__node_list__RPAREN
 
-.. automethod:: abjad.tools.rhythmtreetools.RhythmTreeParser.RhythmTreeParser.RhythmTreeParser.p_node_list_item__INTEGER
-
 .. automethod:: abjad.tools.rhythmtreetools.RhythmTreeParser.RhythmTreeParser.RhythmTreeParser.p_node_list_item__node
 
-.. automethod:: abjad.tools.rhythmtreetools.RhythmTreeParser.RhythmTreeParser.RhythmTreeParser.p_nodes__EMPTY
+.. automethod:: abjad.tools.rhythmtreetools.RhythmTreeParser.RhythmTreeParser.RhythmTreeParser.p_toplevel__EMPTY
 
-.. automethod:: abjad.tools.rhythmtreetools.RhythmTreeParser.RhythmTreeParser.RhythmTreeParser.p_nodes__nodes__node
+.. automethod:: abjad.tools.rhythmtreetools.RhythmTreeParser.RhythmTreeParser.RhythmTreeParser.p_toplevel__toplevel__container
 
 .. automethod:: abjad.tools.rhythmtreetools.RhythmTreeParser.RhythmTreeParser.RhythmTreeParser.t_INTEGER
 
