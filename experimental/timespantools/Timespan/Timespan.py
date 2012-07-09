@@ -1,7 +1,6 @@
 from abjad.tools import componenttools
 from abjad.tools import mathtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from experimental.selectortools.Selector import Selector
 from experimental.timespantools.Timepoint import Timepoint
 
 
@@ -201,7 +200,8 @@ class Timespan(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self, selector=None, start=None, stop=None):
-        assert isinstance(selector, (Selector, type(None))), repr(selector)
+        from experimental import selectortools
+        assert isinstance(selector, (selectortools.Selector, type(None))), repr(selector)
         assert isinstance(start, (Timepoint, type(None))), repr(start)
         assert isinstance(stop, (Timepoint, type(None))), repr(stop)
         if selector is not None: assert start is None and stop is None

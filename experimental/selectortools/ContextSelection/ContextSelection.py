@@ -18,13 +18,13 @@ class ContextSelection(MulticontextSelection):
 
     ::
 
-        >>> context_selection = specificationtools.ContextSelection(
+        >>> context_selection = selectortools.ContextSelection(
         ... 'Voice 1', timespan=segment_selector.timespan)
 
     ::
 
         >>> z(context_selection)
-        specificationtools.ContextSelection(
+        selectortools.ContextSelection(
             'Voice 1',
             timespan=timespantools.Timespan(
                 selector=selectortools.SegmentSelector(

@@ -11,7 +11,7 @@ def test_ContextSetting___init___01():
     start = timespantools.Timepoint(anchor=anchor)
     stop = timespantools.Timepoint(anchor=anchor, edge=Right)
     timespan = timespantools.Timespan(start=start, stop=stop)
-    target = specificationtools.ContextSelection('Voice 1', timespan=timespan)
+    target = selectortools.ContextSelection('Voice 1', timespan=timespan)
     setting = specificationtools.ContextSetting(target, 'time_signatures', [(4, 8), (3, 8)])
     assert isinstance(setting, specificationtools.ContextSetting)
 
@@ -24,7 +24,7 @@ def test_ContextSetting___init___02():
     start = timespantools.Timepoint(anchor=anchor)
     stop = timespantools.Timepoint(anchor=anchor, edge=Right)
     timespan = timespantools.Timespan(start=start, stop=stop)
-    target = specificationtools.ContextSelection('Voice 1', timespan=timespan)
+    target = selectortools.ContextSelection('Voice 1', timespan=timespan)
     setting_1 = specificationtools.ContextSetting(target, 'time_signatures', [(4, 8), (3, 8)], fresh=False)
 
     setting_2 = specificationtools.ContextSetting(setting_1)

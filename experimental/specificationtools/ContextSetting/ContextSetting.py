@@ -17,7 +17,7 @@ class ContextSetting(Setting):
     ::
 
         >>> segment_selector = selectortools.SegmentSelector(index='red')
-        >>> target = specificationtools.ContextSelection('Voice 1', timespan=segment_selector.timespan)
+        >>> target = selectortools.ContextSelection('Voice 1', timespan=segment_selector.timespan)
 
     ::
 
@@ -27,7 +27,7 @@ class ContextSetting(Setting):
 
         >>> z(setting)
         specificationtools.ContextSetting(
-            specificationtools.ContextSelection(
+            selectortools.ContextSelection(
                 'Voice 1',
                 timespan=timespantools.Timespan(
                     selector=selectortools.SegmentSelector(
@@ -57,7 +57,7 @@ class ContextSetting(Setting):
         from experimental import specificationtools
         target, attribute, source, = mandatory_argument_values
         persistent, truncate, fresh = keyword_argument_values
-        assert isinstance(target, specificationtools.ContextSelection), repr(target)
+        assert isinstance(target, selectortools.ContextSelection), repr(target)
         assert isinstance(attribute, str), repr(attribute)
         assert isinstance(persistent, bool), repr(persistent)
         assert isinstance(truncate, bool), repr(truncate)

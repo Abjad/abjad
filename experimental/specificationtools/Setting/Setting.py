@@ -108,11 +108,12 @@ class Setting(AbjadObject):
 
         Return list of settings.
         '''
+        from experimental import selectortools
         from experimental import specificationtools
         settings = []
         assert self.target.contexts, repr(self.target.contexts)
         for context in self.target.contexts:
-            target = specificationtools.ContextSelection(context, timespan=copy.deepcopy(self.target.timespan))
+            target = selectortools.ContextSelection(context, timespan=copy.deepcopy(self.target.timespan))
             setting = specificationtools.ContextSetting(target, self.attribute, self.source, 
                 persistent=self.persistent, truncate=self.truncate)
             settings.append(setting)

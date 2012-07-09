@@ -3,3 +3,5 @@
 2. Replace specificationtools.DivisionSelector in selectortools.DivisionSelector.
 
 3. Extend DivisionList initializer with string handling.
+
+4. Make a settingtools package.
