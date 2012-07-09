@@ -208,6 +208,7 @@ Unstable packages (load manually)
    experimental/selectortools/DurationRatioItemSelector/DurationRatioItemSelector
    experimental/selectortools/DurationRatioSliceSelector/DurationRatioSliceSelector
    experimental/selectortools/HeldExpression/HeldExpression
+   experimental/selectortools/MultipleContextDivisionSliceSelector/MultipleContextDivisionSliceSelector
    experimental/selectortools/MultipleContextSelection/MultipleContextSelection
    experimental/selectortools/SegmentSelector/SegmentSelector
    experimental/selectortools/SegmentSliceSelector/SegmentSliceSelector

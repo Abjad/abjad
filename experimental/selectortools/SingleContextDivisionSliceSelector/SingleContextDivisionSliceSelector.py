@@ -4,20 +4,17 @@ from experimental.selectortools.BackgroundElementSliceSelector import Background
 class SingleContextDivisionSliceSelector(BackgroundElementSliceSelector):
     r'''.. versionadded:: 1.0
 
-    Select all ``'Voice 1'`` divisions in score::
+    ::
 
         >>> from experimental import selectortools
+        >>> from experimental import timespantools
 
-    ::
+    Select all ``'Voice 1'`` divisions in score::
 
         >>> selectortools.SingleContextDivisionSliceSelector('Voice 1')
         SingleContextDivisionSliceSelector('Voice 1')
 
     Select all ``'Voice 1'`` divisions starting during segment ``'red'``::
-
-        >>> from experimental import timespantools
-
-    ::
 
         >>> segment = selectortools.SegmentSelector(index='red')
         >>> timespan = segment.timespan
