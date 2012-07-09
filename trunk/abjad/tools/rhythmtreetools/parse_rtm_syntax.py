@@ -1,5 +1,5 @@
 from abjad.tools import containertools
-from abjad.tools.rhythmtreetools._RTMParser import _RTMParser
+from abjad.tools.rhythmtreetools.RhythmTreeParser import RhythmTreeParser
 
 
 def parse_rtm_syntax(rtm):
@@ -19,7 +19,7 @@ def parse_rtm_syntax(rtm):
     Return `FixedDurationTuplet` or `Container` instance.
     '''
 
-    result = _RTMParser()(rtm)
+    result = RhythmTreeParser()(rtm)
 
     if 1 < len(result):
         con = containertools.Container()

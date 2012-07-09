@@ -1217,6 +1217,7 @@ Composition packages
    :maxdepth: 1
 
    tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser
+   tools/rhythmtreetools/RhythmTreeParser/RhythmTreeParser
 
 .. rubric:: functions
 
