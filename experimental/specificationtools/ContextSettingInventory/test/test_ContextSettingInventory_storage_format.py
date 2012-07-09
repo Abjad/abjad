@@ -25,7 +25,7 @@ def test_ContextSettingInventory_storage_format_01():
         specificationtools.ContextSetting(
             selectortools.SingleContextSelection(
                 'Grouped Rhythmic Staves Score',
-                timespan=timespantools.Timespan(
+                timespan=timespantools.SingleSourceTimespan(
                     selector=selectortools.SegmentSelector(
                         index='1'
                         )
@@ -40,7 +40,7 @@ def test_ContextSettingInventory_storage_format_01():
         ])
     '''
 
-    assert storage_format == "specificationtools.ContextSettingInventory([\n\tspecificationtools.ContextSetting(\n\t\tselectortools.SingleContextSelection(\n\t\t\t'Grouped Rhythmic Staves Score',\n\t\t\ttimespan=timespantools.Timespan(\n\t\t\t\tselector=selectortools.SegmentSelector(\n\t\t\t\t\tindex='1'\n\t\t\t\t\t)\n\t\t\t\t)\n\t\t\t),\n\t\t'time_signatures',\n\t\t[(4, 8), (3, 8)],\n\t\tpersistent=True,\n\t\ttruncate=False,\n\t\tfresh=True\n\t\t)\n\t])"
+    assert storage_format == "specificationtools.ContextSettingInventory([\n\tspecificationtools.ContextSetting(\n\t\tselectortools.SingleContextSelection(\n\t\t\t'Grouped Rhythmic Staves Score',\n\t\t\ttimespan=timespantools.SingleSourceTimespan(\n\t\t\t\tselector=selectortools.SegmentSelector(\n\t\t\t\t\tindex='1'\n\t\t\t\t\t)\n\t\t\t\t)\n\t\t\t),\n\t\t'time_signatures',\n\t\t[(4, 8), (3, 8)],\n\t\tpersistent=True,\n\t\ttruncate=False,\n\t\tfresh=True\n\t\t)\n\t])"
 
     setting_inventory_2 = eval(storage_format)
 

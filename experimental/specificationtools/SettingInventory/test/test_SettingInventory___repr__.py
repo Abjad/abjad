@@ -5,7 +5,7 @@ from experimental.specificationtools.SettingInventory import SettingInventory
 from experimental.specificationtools.ScoreSpecification import ScoreSpecification
 from experimental.selectortools.MultipleContextSelection import MultipleContextSelection
 from experimental.timespantools.Timepoint import Timepoint
-from experimental.timespantools.Timespan import Timespan
+from experimental.timespantools.SingleSourceTimespan import SingleSourceTimespan
 
 
 def test_SettingInventory___repr___01():

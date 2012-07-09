@@ -30,7 +30,7 @@ class CountRatioSliceSelector(RatioSelector, SliceSelector):
             selectortools.BackgroundMeasureSliceSelector(
                 inequality=timespantools.TimespanInequality(
                     timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
-                    timespantools.Timespan(
+                    timespantools.SingleSourceTimespan(
                         selector=selectortools.SegmentSelector(
                             index='red'
                             )

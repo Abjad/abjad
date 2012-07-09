@@ -282,8 +282,8 @@ Unstable packages (load manually)
    :maxdepth: 1
 
    experimental/timespantools/MixedSourceTimespan/MixedSourceTimespan
+   experimental/timespantools/SingleSourceTimespan/SingleSourceTimespan
    experimental/timespantools/Timepoint/Timepoint
-   experimental/timespantools/Timespan/Timespan
    experimental/timespantools/TimespanInequality/TimespanInequality
    experimental/timespantools/TimespanInequalityTemplate/TimespanInequalityTemplate
 

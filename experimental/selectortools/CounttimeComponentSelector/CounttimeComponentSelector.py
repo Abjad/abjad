@@ -47,7 +47,7 @@ class CounttimeComponentSelector(ItemSelector):
             'Voice 1',
             inequality=timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
-                timespantools.Timespan(
+                timespantools.SingleSourceTimespan(
                     selector=selectortools.SegmentSelector(
                         index='red'
                         )
@@ -71,7 +71,7 @@ class CounttimeComponentSelector(ItemSelector):
                 'Voice 1',
                 inequality=timespantools.TimespanInequality(
                     timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
-                    timespantools.Timespan(
+                    timespantools.SingleSourceTimespan(
                         selector=selectortools.SegmentSelector(
                             index='red'
                             )
@@ -99,7 +99,7 @@ class CounttimeComponentSelector(ItemSelector):
                     'Voice 1',
                     inequality=timespantools.TimespanInequality(
                         timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
-                        timespantools.Timespan(
+                        timespantools.SingleSourceTimespan(
                             selector=selectortools.SegmentSelector(
                                 index='red'
                                 )
@@ -141,7 +141,7 @@ class CounttimeComponentSelector(ItemSelector):
             'Voice 1',
             inequality=timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
-                timespantools.Timespan(
+                timespantools.SingleSourceTimespan(
                     selector=selectortools.SegmentSelector(
                         index='red'
                         )
@@ -173,7 +173,7 @@ class CounttimeComponentSelector(ItemSelector):
             'Voice 1',
             inequality=timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
-                timespantools.Timespan(
+                timespantools.SingleSourceTimespan(
                     selector=selectortools.SegmentSelector(
                         index='red'
                         )
@@ -251,12 +251,12 @@ class CounttimeComponentSelector(ItemSelector):
 
     @property
     def inequality(self):
-        '''Timespan inequality of counttime component selector specified by user::
+        '''SingleSourceTimespan inequality of counttime component selector specified by user::
 
             >>> z(selector.inequality)
             timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
-                timespantools.Timespan(
+                timespantools.SingleSourceTimespan(
                     selector=selectortools.SegmentSelector(
                         index='red'
                         )
@@ -310,7 +310,7 @@ class CounttimeComponentSelector(ItemSelector):
                     'Voice 1',
                     inequality=timespantools.TimespanInequality(
                         timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
-                        timespantools.Timespan(
+                        timespantools.SingleSourceTimespan(
                             selector=selectortools.SegmentSelector(
                                 index='red'
                                 )
@@ -338,7 +338,7 @@ class CounttimeComponentSelector(ItemSelector):
                     'Voice 1',
                     inequality=timespantools.TimespanInequality(
                         timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
-                        timespantools.Timespan(
+                        timespantools.SingleSourceTimespan(
                             selector=selectortools.SegmentSelector(
                                 index='red'
                                 )
@@ -366,16 +366,16 @@ class CounttimeComponentSelector(ItemSelector):
 
     @property
     def timespan(self):
-        '''Timespan of counttime component::
+        '''SingleSourceTimespan of counttime component::
 
             >>> z(selector.timespan)
-            timespantools.Timespan(
+            timespantools.SingleSourceTimespan(
                 start=timespantools.Timepoint(
                     anchor=selectortools.CounttimeComponentSelector(
                         'Voice 1',
                         inequality=timespantools.TimespanInequality(
                             timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
-                            timespantools.Timespan(
+                            timespantools.SingleSourceTimespan(
                                 selector=selectortools.SegmentSelector(
                                     index='red'
                                     )
@@ -392,7 +392,7 @@ class CounttimeComponentSelector(ItemSelector):
                         'Voice 1',
                         inequality=timespantools.TimespanInequality(
                             timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
-                            timespantools.Timespan(
+                            timespantools.SingleSourceTimespan(
                                 selector=selectortools.SegmentSelector(
                                     index='red'
                                     )
@@ -411,4 +411,4 @@ class CounttimeComponentSelector(ItemSelector):
         from experimental import timespantools
 
         start, stop = self.timepoints
-        return timespantools.Timespan(start=start, stop=stop)
+        return timespantools.SingleSourceTimespan(start=start, stop=stop)

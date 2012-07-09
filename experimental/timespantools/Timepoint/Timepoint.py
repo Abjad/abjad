@@ -91,7 +91,7 @@ class Timepoint(AbjadObject):
                 'Voice 1',
                 inequality=timespantools.TimespanInequality(
                     timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
-                    timespantools.Timespan(
+                    timespantools.SingleSourceTimespan(
                         selector=selectortools.SegmentSelector(
                             index='red'
                             )
@@ -108,7 +108,7 @@ class Timepoint(AbjadObject):
 
         >>> stop = selectortools.HeldExpression("'blue' + 1")
         >>> segment_slice_selector = selectortools.SegmentSliceSelector(start='red', stop=stop)
-        >>> timespan = timespantools.Timespan(selector=segment_slice_selector)
+        >>> timespan = timespantools.SingleSourceTimespan(selector=segment_slice_selector)
 
     ::
     
@@ -118,7 +118,7 @@ class Timepoint(AbjadObject):
     
         >>> z(timepoint)
         timespantools.Timepoint(
-            anchor=timespantools.Timespan(
+            anchor=timespantools.SingleSourceTimespan(
                 selector=selectortools.SegmentSliceSelector(
                     start='red',
                     stop=selectortools.HeldExpression("'blue' + 1")
@@ -141,7 +141,7 @@ class Timepoint(AbjadObject):
                 'Voice 1',
                 inequality=timespantools.TimespanInequality(
                     timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
-                    timespantools.Timespan(
+                    timespantools.SingleSourceTimespan(
                         selector=selectortools.SegmentSelector(
                             index='red'
                             )
@@ -161,7 +161,7 @@ class Timepoint(AbjadObject):
     def __init__(self, anchor=None, edge=None, multiplier=None, addendum=None): 
         from experimental import selectortools 
         from experimental import timespantools 
-        assert isinstance(anchor, (selectortools.Selector, timespantools.Timespan, type(None))), repr(anchor)
+        assert isinstance(anchor, (selectortools.Selector, timespantools.SingleSourceTimespan, type(None))), repr(anchor)
         assert edge in (Left, Right, None), repr(edge)
         assert isinstance(multiplier, (fractions.Fraction, type(None))), repr(multiplier)
         if addendum is not None:
@@ -266,7 +266,7 @@ class Timepoint(AbjadObject):
                 'Voice 1',
                 inequality=timespantools.TimespanInequality(
                     timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
-                    timespantools.Timespan(
+                    timespantools.SingleSourceTimespan(
                         selector=selectortools.SegmentSelector(
                             index='red'
                             )

@@ -29,7 +29,7 @@ class ContextSetting(Setting):
         specificationtools.ContextSetting(
             selectortools.SingleContextSelection(
                 'Voice 1',
-                timespan=timespantools.Timespan(
+                timespan=timespantools.SingleSourceTimespan(
                     selector=selectortools.SegmentSelector(
                         index='red'
                         )

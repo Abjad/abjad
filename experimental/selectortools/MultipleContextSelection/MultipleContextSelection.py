@@ -1,6 +1,6 @@
 from abjad.tools import contexttools
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from experimental.timespantools.Timespan import Timespan
+from experimental.timespantools.SingleSourceTimespan import SingleSourceTimespan
 
 
 class MultipleContextSelection(AbjadObject):
@@ -35,17 +35,17 @@ class MultipleContextSelection(AbjadObject):
     ::
 
         >>> selectortools.MultipleContextSelection(timespan=timespan)
-        MultipleContextSelection(timespan=Timespan(selector=SegmentSelector(index='red')))
+        MultipleContextSelection(timespan=SingleSourceTimespan(selector=SegmentSelector(index='red')))
 
     Select ``'Voice 1'`` taken over the timepsan of segment ``'red'``::
 
         >>> selectortools.MultipleContextSelection(contexts=['Voice 1'], timespan=timespan)
-        MultipleContextSelection(contexts=['Voice 1'], timespan=Timespan(selector=SegmentSelector(index='red')))
+        MultipleContextSelection(contexts=['Voice 1'], timespan=SingleSourceTimespan(selector=SegmentSelector(index='red')))
 
     Select ``'Voice 1'`` and ``'Voice 3'`` over the timespan of segment ``'red'``::
 
         >>> selectortools.MultipleContextSelection(contexts=['Voice 1', 'Voice 3'], timespan=timespan)
-        MultipleContextSelection(contexts=['Voice 1', 'Voice 3'], timespan=Timespan(selector=SegmentSelector(index='red')))
+        MultipleContextSelection(contexts=['Voice 1', 'Voice 3'], timespan=SingleSourceTimespan(selector=SegmentSelector(index='red')))
 
     All ``MultipleContextSelection`` properties are read-only.
     '''
@@ -54,7 +54,7 @@ class MultipleContextSelection(AbjadObject):
 
     def __init__(self, contexts=None, timespan=None):
         assert isinstance(contexts, (list, type(None))), repr(contexts)
-        assert isinstance(timespan, (Timespan, type(None))), repr(timespan)
+        assert isinstance(timespan, (SingleSourceTimespan, type(None))), repr(timespan)
         self._contexts = contexts
         self._timespan = timespan
 

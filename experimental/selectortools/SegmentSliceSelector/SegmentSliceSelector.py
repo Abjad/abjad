@@ -76,7 +76,7 @@ class SegmentSliceSelector(BackgroundElementSliceSelector):
     ::
 
         >>> timepoint = timespantools.Timepoint(multiplier=Fraction(1, 3), edge=Right)
-        >>> timespan = timespantools.Timespan(stop=timepoint)
+        >>> timespan = timespantools.SingleSourceTimespan(stop=timepoint)
         >>> inequality = timespantools.expr_starts_during_timespan(timespan=timespan)
 
     ::
@@ -89,7 +89,7 @@ class SegmentSliceSelector(BackgroundElementSliceSelector):
         selectortools.SegmentSliceSelector(
             inequality=timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
-                timespantools.Timespan(
+                timespantools.SingleSourceTimespan(
                     stop=timespantools.Timepoint(
                         edge=Right,
                         multiplier=Fraction(1, 3)
@@ -108,7 +108,7 @@ class SegmentSliceSelector(BackgroundElementSliceSelector):
         selectortools.SegmentSliceSelector(
             inequality=timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
-                timespantools.Timespan(
+                timespantools.SingleSourceTimespan(
                     stop=timespantools.Timepoint(
                         edge=Right,
                         multiplier=Fraction(1, 3)

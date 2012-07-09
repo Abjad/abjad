@@ -181,12 +181,12 @@ class SegmentSpecification(Specification):
         '''Segment timespan.
 
             >>> segment.timespan
-            Timespan(selector=SegmentSelector(index='1'))
+            SingleSourceTimespan(selector=SegmentSelector(index='1'))
 
         Return timespan.
         '''
         from experimental import timespantools
-        return timespantools.Timespan(selector=self.selector)
+        return timespantools.SingleSourceTimespan(selector=self.selector)
 
     ### PUBLIC METHODS ###
 
@@ -299,7 +299,7 @@ class SegmentSpecification(Specification):
         from experimental import timespantools
         criterion = 'divisions'
         contexts = self.context_token_to_context_names(context_token)
-        timespan = timespantools.Timespan(criterion=criterion, part=part, start=start, stop=stop)
+        timespan = timespantools.SingleSourceTimespan(criterion=criterion, part=part, start=start, stop=stop)
         selection = self.select(contexts=contexts, segment_name=segment_name, timespan=timespan)
         return selection
 
@@ -307,7 +307,7 @@ class SegmentSpecification(Specification):
 #        from experimental import specificationtools
 #        criterion = 'measures'
 #        contexts = self.context_token_to_context_names(context_token)
-#        timespan = timespantools.Timespan(criterion=criterion, part=part, start=start, stop=stop)
+#        timespan = timespantools.SingleSourceTimespan(criterion=criterion, part=part, start=start, stop=stop)
 #        selection = self.select(contexts=contexts, segment_name=segment_name, timespan=timespan)
 #        return selection
 #    
@@ -315,7 +315,7 @@ class SegmentSpecification(Specification):
 #        from experimental import specificationtools
 #        criterion = (chordtools.Chord, notetools.Note)
 #        contexts = self.context_token_to_context_names(context_token)
-#        timespan = timespantools.Timespan(criterion=criterion, part=part, start=start, stop=stop)
+#        timespan = timespantools.SingleSourceTimespan(criterion=criterion, part=part, start=start, stop=stop)
 #        selection = self.select(contexts=contexts, timespan=timespan)
 #        return selection
 
@@ -338,7 +338,7 @@ class SegmentSpecification(Specification):
         assert attribute in self.attributes, repr(attribute)
         assert isinstance(count, (int, type(None))), repr(count)
         assert isinstance(persistent, type(True)), repr(persistent)
-        assert isinstance(timespan, (timespantools.Timespan, type(None))), repr(timespan)
+        assert isinstance(timespan, (timespantools.SingleSourceTimespan, type(None))), repr(timespan)
         assert isinstance(truncate, type(True)), repr(truncate)
         target = self.select_contexts(contexts=contexts)
         source = self.annotate_source(source, callback=callback, count=count, offset=offset)

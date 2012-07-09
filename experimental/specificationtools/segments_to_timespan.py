@@ -8,22 +8,22 @@ def segments_to_timespan(start_segment, stop_segment=None):
     ::
 
         >>> specificationtools.segments_to_timespan('red')
-        Timespan(selector=SegmentSelector(index='red'))
+        SingleSourceTimespan(selector=SegmentSelector(index='red'))
 
     Select the timespan of segment ``0``::
 
         >>> specificationtools.segments_to_timespan(0)
-        Timespan(selector=SegmentSelector(index=0))
+        SingleSourceTimespan(selector=SegmentSelector(index=0))
 
     Select the timespan of segments ``'red'`` to ``'blue'``::
 
         >>> specificationtools.segments_to_timespan('red', stop_segment='blue')
-        Timespan(selector=SegmentSliceSelector(start='red', stop='blue'))
+        SingleSourceTimespan(selector=SegmentSliceSelector(start='red', stop='blue'))
 
     Select the timespan of segments ``0`` to ``3``::
 
         >>> specificationtools.segments_to_timespan(0, stop_segment=3)
-        Timespan(selector=SegmentSliceSelector(start=0, stop=3))
+        SingleSourceTimespan(selector=SegmentSliceSelector(start=0, stop=3))
 
     Return timespan.
 

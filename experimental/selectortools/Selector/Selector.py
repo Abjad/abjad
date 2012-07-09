@@ -45,9 +45,9 @@ class Selector(AbjadObject):
 
     @property
     def timespan(self):
-        '''Timespan of selector.
+        '''SingleSourceTimespan of selector.
 
         Return timespan object.
         '''
         from experimental import timespantools
-        return timespantools.Timespan(selector=self)
+        return timespantools.SingleSourceTimespan(selector=self)

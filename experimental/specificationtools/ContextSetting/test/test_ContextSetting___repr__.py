@@ -2,7 +2,7 @@ from experimental.selectortools.SingleContextSelection import SingleContextSelec
 from experimental.selectortools.SegmentSelector import SegmentSelector
 from experimental.specificationtools.ContextSetting import ContextSetting
 from experimental.timespantools.Timepoint import Timepoint
-from experimental.timespantools.Timespan import Timespan
+from experimental.timespantools.SingleSourceTimespan import SingleSourceTimespan
 
 
 def test_ContextSetting___repr___01():

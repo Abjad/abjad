@@ -48,7 +48,7 @@ class BackgroundMeasureSliceSelector(BackgroundElementSliceSelector):
         selectortools.BackgroundMeasureSliceSelector(
             inequality=timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
-                timespantools.Timespan(
+                timespantools.SingleSourceTimespan(
                     selector=selectortools.SegmentSelector(
                         index='red'
                         )
@@ -66,7 +66,7 @@ class BackgroundMeasureSliceSelector(BackgroundElementSliceSelector):
         selectortools.BackgroundMeasureSliceSelector(
             inequality=timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
-                timespantools.Timespan(
+                timespantools.SingleSourceTimespan(
                     selector=selectortools.SegmentSelector(
                         index='red'
                         )
@@ -91,7 +91,7 @@ class BackgroundMeasureSliceSelector(BackgroundElementSliceSelector):
         selectortools.BackgroundMeasureSliceSelector(
             inequality=timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
-                timespantools.Timespan(
+                timespantools.SingleSourceTimespan(
                     selector=selectortools.SegmentSliceSelector(
                         start='red',
                         stop=selectortools.HeldExpression("'red' + 3")
@@ -110,7 +110,7 @@ class BackgroundMeasureSliceSelector(BackgroundElementSliceSelector):
         selectortools.BackgroundMeasureSliceSelector(
             inequality=timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
-                timespantools.Timespan(
+                timespantools.SingleSourceTimespan(
                     selector=selectortools.SegmentSliceSelector(
                         start='red',
                         stop=selectortools.HeldExpression("'red' + 3")

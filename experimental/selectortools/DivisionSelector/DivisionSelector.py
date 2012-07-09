@@ -33,7 +33,7 @@ class DivisionSelector(BackgroundElementSelector):
             'Voice 1',
             inequality=timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
-                timespantools.Timespan(
+                timespantools.SingleSourceTimespan(
                     selector=selectortools.SegmentSelector(
                         index='red'
                         )
@@ -62,11 +62,11 @@ class DivisionSelector(BackgroundElementSelector):
             'Voice 1',
             inequality=timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
-                timespantools.Timespan(
+                timespantools.SingleSourceTimespan(
                     selector=selectortools.BackgroundMeasureSelector(
                         inequality=timespantools.TimespanInequality(
                             timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
-                            timespantools.Timespan(
+                            timespantools.SingleSourceTimespan(
                                 selector=selectortools.SegmentSelector(
                                     index='red'
                                     )

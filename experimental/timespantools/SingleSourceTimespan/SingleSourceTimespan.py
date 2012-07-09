@@ -4,12 +4,12 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental.timespantools.Timepoint import Timepoint
 
 
-class Timespan(AbjadObject):
+class SingleSourceTimespan(AbjadObject):
     r'''.. versionadded 1.0
 
     Finite timespan bounded by start and stop timepoints.
 
-    Timespan objects highlight a contiguous blocks of time
+    SingleSourceTimespan objects highlight a contiguous blocks of time
     somewhere and say "everything within my bounds is selected
     for some upcoming operation." ::
 
@@ -17,83 +17,83 @@ class Timespan(AbjadObject):
         >>> from experimental import specificationtools
         >>> from experimental import timespantools
 
-    Timespan of the entire score::
+    SingleSourceTimespan of the entire score::
 
-        >>> timespantools.Timespan()
-        Timespan()
+        >>> timespantools.SingleSourceTimespan()
+        SingleSourceTimespan()
 
-    Timespan of the first third of the score::
+    SingleSourceTimespan of the first third of the score::
 
         >>> stop = timespantools.Timepoint(multiplier=Fraction(1, 3), edge=Right)
 
     ::
 
-        >>> timespantools.Timespan(stop=stop)
-        Timespan(stop=Timepoint(edge=Right, multiplier=Fraction(1, 3)))
+        >>> timespantools.SingleSourceTimespan(stop=stop)
+        SingleSourceTimespan(stop=Timepoint(edge=Right, multiplier=Fraction(1, 3)))
 
-    Timespan of the last third of the score::
+    SingleSourceTimespan of the last third of the score::
 
         >>> start = timespantools.Timepoint(edge=Right, multiplier=Fraction(2, 3))
 
     ::
 
-        >>> timespantools.Timespan(start=start)
-        Timespan(start=Timepoint(edge=Right, multiplier=Fraction(2, 3)))
+        >>> timespantools.SingleSourceTimespan(start=start)
+        SingleSourceTimespan(start=Timepoint(edge=Right, multiplier=Fraction(2, 3)))
 
-    Timespan of the middle third of the score::
+    SingleSourceTimespan of the middle third of the score::
 
         >>> start = timespantools.Timepoint(edge=Right, multiplier=Fraction(1, 3))
         >>> stop = timespantools.Timepoint(edge=Right, multiplier=Fraction(2, 3))
 
     ::
 
-        >>> timespantools.Timespan(start=start, stop=stop)
-        Timespan(start=Timepoint(edge=Right, multiplier=Fraction(1, 3)), stop=Timepoint(edge=Right, multiplier=Fraction(2, 3)))
+        >>> timespantools.SingleSourceTimespan(start=start, stop=stop)
+        SingleSourceTimespan(start=Timepoint(edge=Right, multiplier=Fraction(1, 3)), stop=Timepoint(edge=Right, multiplier=Fraction(2, 3)))
 
-    Timespan of the first ``1/8`` of a whole note in score::
+    SingleSourceTimespan of the first ``1/8`` of a whole note in score::
 
         >>> stop = timespantools.Timepoint(addendum=Fraction(1, 8))
 
     ::
 
-        >>> timespantools.Timespan(stop=stop)
-        Timespan(stop=Timepoint(addendum=Offset(1, 8)))
+        >>> timespantools.SingleSourceTimespan(stop=stop)
+        SingleSourceTimespan(stop=Timepoint(addendum=Offset(1, 8)))
 
-    Timespan of the last ``1/8`` of a whole note in score::
+    SingleSourceTimespan of the last ``1/8`` of a whole note in score::
 
         >>> start = timespantools.Timepoint(edge=Right, addendum=-Fraction(1, 8))
 
     ::
 
-        >>> timespantools.Timespan(start=start)
-        Timespan(start=Timepoint(edge=Right, addendum=Offset(-1, 8)))
+        >>> timespantools.SingleSourceTimespan(start=start)
+        SingleSourceTimespan(start=Timepoint(edge=Right, addendum=Offset(-1, 8)))
 
-    Timespan of the segment with name ``'red'``::
+    SingleSourceTimespan of the segment with name ``'red'``::
 
         >>> segment_selector = selectortools.SegmentSelector(index='red')
 
     ::
 
-        >>> timespantools.Timespan(selector=segment_selector)
-        Timespan(selector=SegmentSelector(index='red'))
+        >>> timespantools.SingleSourceTimespan(selector=segment_selector)
+        SingleSourceTimespan(selector=SegmentSelector(index='red'))
 
-    Timespan of the first measure that starts during segment ``'red'``::
+    SingleSourceTimespan of the first measure that starts during segment ``'red'``::
 
         >>> inequality = timespantools.expr_starts_during_timespan(timespan=segment_selector.timespan)
         >>> measure_selector = selectortools.BackgroundMeasureSelector(inequality=inequality)
 
     ::
 
-        >>> timespan = timespantools.Timespan(selector=measure_selector)
+        >>> timespan = timespantools.SingleSourceTimespan(selector=measure_selector)
 
     ::
 
         >>> z(timespan)
-        timespantools.Timespan(
+        timespantools.SingleSourceTimespan(
             selector=selectortools.BackgroundMeasureSelector(
                 inequality=timespantools.TimespanInequality(
                     timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
-                    timespantools.Timespan(
+                    timespantools.SingleSourceTimespan(
                         selector=selectortools.SegmentSelector(
                             index='red'
                             )
@@ -103,23 +103,23 @@ class Timespan(AbjadObject):
                 )
             )
 
-    Timespan of ``'Voice 1'`` division ``0`` starting during segment ``'red'``::
+    SingleSourceTimespan of ``'Voice 1'`` division ``0`` starting during segment ``'red'``::
 
         >>> division_selector = selectortools.DivisionSelector('Voice 1', inequality=inequality)
 
     ::
 
-        >>> timespan = timespantools.Timespan(selector=division_selector)
+        >>> timespan = timespantools.SingleSourceTimespan(selector=division_selector)
 
     ::
 
        >>> z(timespan)
-        timespantools.Timespan(
+        timespantools.SingleSourceTimespan(
             selector=selectortools.DivisionSelector(
                 'Voice 1',
                 inequality=timespantools.TimespanInequality(
                     timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
-                    timespantools.Timespan(
+                    timespantools.SingleSourceTimespan(
                         selector=selectortools.SegmentSelector(
                             index='red'
                             )
@@ -129,7 +129,7 @@ class Timespan(AbjadObject):
                 )
             )
 
-    Timespan starting at the left edge of the segment with the name ``'red'``
+    SingleSourceTimespan starting at the left edge of the segment with the name ``'red'``
     and stopping at the right edge of the segment with the name ``'blue'``::
 
         >>> stop = selectortools.HeldExpression("'blue' + 1")
@@ -137,10 +137,10 @@ class Timespan(AbjadObject):
 
     ::
 
-        >>> timespantools.Timespan(selector=segment_slice_selector)
-        Timespan(selector=SegmentSliceSelector(start='red', stop=HeldExpression("'blue' + 1")))
+        >>> timespantools.SingleSourceTimespan(selector=segment_slice_selector)
+        SingleSourceTimespan(selector=SegmentSliceSelector(start='red', stop=HeldExpression("'blue' + 1")))
 
-    Timespan starting at the left edge of the last measure in the segment with name ``'red'``
+    SingleSourceTimespan starting at the left edge of the last measure in the segment with name ``'red'``
     and stopping at the right edge of the first measure in the segment with name ``'blue'``::
 
         >>> segment_selector = selectortools.SegmentSelector(index='red')
@@ -157,17 +157,17 @@ class Timespan(AbjadObject):
         
     ::
 
-        >>> timespan = timespantools.Timespan(start=start, stop=stop)
+        >>> timespan = timespantools.SingleSourceTimespan(start=start, stop=stop)
 
     ::
 
         >>> z(timespan)
-        timespantools.Timespan(
+        timespantools.SingleSourceTimespan(
             start=timespantools.Timepoint(
                 anchor=selectortools.BackgroundMeasureSelector(
                     inequality=timespantools.TimespanInequality(
                         timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
-                        timespantools.Timespan(
+                        timespantools.SingleSourceTimespan(
                             selector=selectortools.SegmentSelector(
                                 index='red'
                                 )
@@ -180,7 +180,7 @@ class Timespan(AbjadObject):
                 anchor=selectortools.BackgroundMeasureSelector(
                     inequality=timespantools.TimespanInequality(
                         timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
-                        timespantools.Timespan(
+                        timespantools.SingleSourceTimespan(
                             selector=selectortools.SegmentSelector(
                                 index='blue'
                                 )
@@ -300,7 +300,7 @@ class Timespan(AbjadObject):
 
     @property
     def selector(self):
-        '''Timespan selector specified by user.
+        '''SingleSourceTimespan selector specified by user.
 
         .. note:: add example.
 
@@ -310,14 +310,14 @@ class Timespan(AbjadObject):
 
     @property
     def start(self):
-        '''Timespan start specified by user.
+        '''SingleSourceTimespan start specified by user.
 
             >>> z(timespan.start)
             timespantools.Timepoint(
                 anchor=selectortools.BackgroundMeasureSelector(
                     inequality=timespantools.TimespanInequality(
                         timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
-                        timespantools.Timespan(
+                        timespantools.SingleSourceTimespan(
                             selector=selectortools.SegmentSelector(
                                 index='red'
                                 )
@@ -335,14 +335,14 @@ class Timespan(AbjadObject):
 
     @property
     def stop(self):
-        '''Timespan stop specified by user.
+        '''SingleSourceTimespan stop specified by user.
 
             >>> z(timespan.stop)
             timespantools.Timepoint(
                 anchor=selectortools.BackgroundMeasureSelector(
                     inequality=timespantools.TimespanInequality(
                         timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
-                        timespantools.Timespan(
+                        timespantools.SingleSourceTimespan(
                             selector=selectortools.SegmentSelector(
                                 index='blue'
                                 )

@@ -28,7 +28,7 @@ class SegmentDivisionList(DivisionList):
         specificationtools.Setting(
             selectortools.MultipleContextSelection(
                 contexts=['Grouped Rhythmic Staves Score'],
-                timespan=timespantools.Timespan(
+                timespan=timespantools.SingleSourceTimespan(
                     selector=selectortools.SegmentSelector(
                         index='1'
                         )
@@ -47,7 +47,7 @@ class SegmentDivisionList(DivisionList):
         specificationtools.Setting(
             selectortools.MultipleContextSelection(
                 contexts=['Voice 1'],
-                timespan=timespantools.Timespan(
+                timespan=timespantools.SingleSourceTimespan(
                     selector=selectortools.SegmentSelector(
                         index='1'
                         )
@@ -66,7 +66,7 @@ class SegmentDivisionList(DivisionList):
         specificationtools.Setting(
             selectortools.MultipleContextSelection(
                 contexts=['Grouped Rhythmic Staves Score'],
-                timespan=timespantools.Timespan(
+                timespan=timespantools.SingleSourceTimespan(
                     selector=selectortools.SegmentSelector(
                         index='1'
                         )

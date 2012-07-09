@@ -1,9 +1,9 @@
 from abjad.tools import abctools
 from experimental.timespantools.Timepoint import Timepoint
-from experimental.timespantools.Timespan import Timespan
+from experimental.timespantools.SingleSourceTimespan import SingleSourceTimespan
 
 
-class MixedSourceTimespan(Timespan):
+class MixedSourceTimespan(SingleSourceTimespan):
     r'''.. versionadded:: 1.0
 
     Mixed-source timespan.
@@ -12,7 +12,7 @@ class MixedSourceTimespan(Timespan):
         >>> from experimental import specificationtools
         >>> from experimental import timespantools
 
-    Timespan starting at the left edge of the last measure in the segment with name ``'red'``
+    SingleSourceTimespan starting at the left edge of the last measure in the segment with name ``'red'``
     and stopping at the right edge of the first measure in the segment with name ``'blue'``::
 
         >>> segment_selector = selectortools.SegmentSelector(index='red')
@@ -39,7 +39,7 @@ class MixedSourceTimespan(Timespan):
                 anchor=selectortools.BackgroundMeasureSelector(
                     inequality=timespantools.TimespanInequality(
                         timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
-                        timespantools.Timespan(
+                        timespantools.SingleSourceTimespan(
                             selector=selectortools.SegmentSelector(
                                 index='red'
                                 )
@@ -52,7 +52,7 @@ class MixedSourceTimespan(Timespan):
                 anchor=selectortools.BackgroundMeasureSelector(
                     inequality=timespantools.TimespanInequality(
                         timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
-                        timespantools.Timespan(
+                        timespantools.SingleSourceTimespan(
                             selector=selectortools.SegmentSelector(
                                 index='blue'
                                 )
@@ -79,7 +79,7 @@ class MixedSourceTimespan(Timespan):
 
     @property
     def start(self):
-        '''Timespan start specified by user.
+        '''SingleSourceTimespan start specified by user.
 
         Return timepoint or none.
         '''
@@ -87,7 +87,7 @@ class MixedSourceTimespan(Timespan):
 
     @property
     def stop(self):
-        '''Timespan stop specified by user.
+        '''SingleSourceTimespan stop specified by user.
 
         Return timepoint or none.
         '''

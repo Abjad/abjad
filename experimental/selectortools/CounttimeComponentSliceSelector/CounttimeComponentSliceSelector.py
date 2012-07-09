@@ -63,7 +63,7 @@ class CounttimeComponentSliceSelector(SliceSelector):
                     'Voice 1',
                     inequality=timespantools.TimespanInequality(
                         timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
-                        timespantools.Timespan(
+                        timespantools.SingleSourceTimespan(
                             selector=selectortools.SegmentSelector(
                                 index='red'
                                 )
@@ -101,7 +101,7 @@ class CounttimeComponentSliceSelector(SliceSelector):
 
     @property
     def inequality(self):
-        '''Timespan inequality of counttime component selector specified by user.
+        '''SingleSourceTimespan inequality of counttime component selector specified by user.
 
         Return timespan inequality or none.
         '''

@@ -4,7 +4,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 class TimespanInequality(AbjadObject):
     r'''.. versionadded:: 1.0
 
-    Timespan inequality.
+    SingleSourceTimespan inequality.
 
     Test for all objects that start during segment ``'red'``::
 
@@ -22,21 +22,21 @@ class TimespanInequality(AbjadObject):
         >>> z(timespan_inequality)
         timespantools.TimespanInequality(
             timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
-            timespantools.Timespan(
+            timespantools.SingleSourceTimespan(
                 selector=selectortools.SegmentSelector(
                     index='red'
                     )
                 )
             )
 
-    Timespan inequalities are immutable.
+    SingleSourceTimespan inequalities are immutable.
     '''
 
     ### INITIALIZER ###
 
     def __init__(self, timespan_inequality_template, timespan):
         from experimental import timespantools
-        assert isinstance(timespan, timespantools.Timespan), repr(timespan)
+        assert isinstance(timespan, timespantools.SingleSourceTimespan), repr(timespan)
         assert isinstance(timespan_inequality_template, timespantools.TimespanInequalityTemplate), repr(
             timespan_inequality_template)
         self._timespan = timespan
@@ -46,7 +46,7 @@ class TimespanInequality(AbjadObject):
 
     @property
     def timespan(self):
-        '''Timespan of inequality.
+        '''SingleSourceTimespan of inequality.
 
         Return timespan object.
         '''

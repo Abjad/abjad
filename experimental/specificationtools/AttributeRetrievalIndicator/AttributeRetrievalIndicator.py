@@ -1,6 +1,6 @@
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental.specificationtools.AttributeNameEnumeration import AttributeNameEnumeration
-#from experimental.timespantools.Timespan import Timespan
+#from experimental.timespantools.SingleSourceTimespan import SingleSourceTimespan
 
 
 class AttributeRetrievalIndicator(AbjadObject):
@@ -23,7 +23,7 @@ class AttributeRetrievalIndicator(AbjadObject):
         assert isinstance(segment_name, str), repr(segment_name)
         assert attribute in self.attributes, repr(attribute)
         assert isinstance(context_name, (str, type(None))), repr(context_name)
-        #assert isinstance(timespan, (Timespan, type(None))), repr(timespan)
+        #assert isinstance(timespan, (SingleSourceTimespan, type(None))), repr(timespan)
         self.attribute = attribute
         self.segment_name = segment_name
         self.context_name = context_name

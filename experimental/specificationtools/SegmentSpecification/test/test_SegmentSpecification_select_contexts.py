@@ -14,6 +14,6 @@ def test_SegmentSpecification_select_contexts_01():
     selection_1 = segment.select_contexts()
     selection_2 = selectortools.MultipleContextSelection(
         contexts=['Grouped Rhythmic Staves Score'],
-        timespan=timespantools.Timespan(selector=selectortools.SegmentSelector(index='red')))
+        timespan=timespantools.SingleSourceTimespan(selector=selectortools.SegmentSelector(index='red')))
 
     assert selection_1 == selection_2

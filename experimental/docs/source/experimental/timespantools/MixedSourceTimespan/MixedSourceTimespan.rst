@@ -11,27 +11,27 @@ Read-only Properties
 
 .. autoattribute:: experimental.timespantools.MixedSourceTimespan.MixedSourceTimespan.MixedSourceTimespan.duration
 
-    Inherited from :py:class:`timespantools.Timespan <experimental.timespantools.Timespan.Timespan.Timespan>`
+    Inherited from :py:class:`timespantools.SingleSourceTimespan <experimental.timespantools.SingleSourceTimespan.SingleSourceTimespan.SingleSourceTimespan>`
 
 .. autoattribute:: experimental.timespantools.MixedSourceTimespan.MixedSourceTimespan.MixedSourceTimespan.encompasses_one_object_exactly
 
-    Inherited from :py:class:`timespantools.Timespan <experimental.timespantools.Timespan.Timespan.Timespan>`
+    Inherited from :py:class:`timespantools.SingleSourceTimespan <experimental.timespantools.SingleSourceTimespan.SingleSourceTimespan.SingleSourceTimespan>`
 
 .. autoattribute:: experimental.timespantools.MixedSourceTimespan.MixedSourceTimespan.MixedSourceTimespan.encompasses_one_segment_exactly
 
-    Inherited from :py:class:`timespantools.Timespan <experimental.timespantools.Timespan.Timespan.Timespan>`
+    Inherited from :py:class:`timespantools.SingleSourceTimespan <experimental.timespantools.SingleSourceTimespan.SingleSourceTimespan.SingleSourceTimespan>`
 
 .. autoattribute:: experimental.timespantools.MixedSourceTimespan.MixedSourceTimespan.MixedSourceTimespan.exact_segment
 
-    Inherited from :py:class:`timespantools.Timespan <experimental.timespantools.Timespan.Timespan.Timespan>`
+    Inherited from :py:class:`timespantools.SingleSourceTimespan <experimental.timespantools.SingleSourceTimespan.SingleSourceTimespan.SingleSourceTimespan>`
 
 .. autoattribute:: experimental.timespantools.MixedSourceTimespan.MixedSourceTimespan.MixedSourceTimespan.is_anchored_to_one_object
 
-    Inherited from :py:class:`timespantools.Timespan <experimental.timespantools.Timespan.Timespan.Timespan>`
+    Inherited from :py:class:`timespantools.SingleSourceTimespan <experimental.timespantools.SingleSourceTimespan.SingleSourceTimespan.SingleSourceTimespan>`
 
 .. autoattribute:: experimental.timespantools.MixedSourceTimespan.MixedSourceTimespan.MixedSourceTimespan.selector
 
-    Inherited from :py:class:`timespantools.Timespan <experimental.timespantools.Timespan.Timespan.Timespan>`
+    Inherited from :py:class:`timespantools.SingleSourceTimespan <experimental.timespantools.SingleSourceTimespan.SingleSourceTimespan.SingleSourceTimespan>`
 
 .. autoattribute:: experimental.timespantools.MixedSourceTimespan.MixedSourceTimespan.MixedSourceTimespan.start
 
@@ -50,7 +50,7 @@ Special Methods
 
 .. automethod:: experimental.timespantools.MixedSourceTimespan.MixedSourceTimespan.MixedSourceTimespan.__eq__
 
-    Inherited from :py:class:`timespantools.Timespan <experimental.timespantools.Timespan.Timespan.Timespan>`
+    Inherited from :py:class:`timespantools.SingleSourceTimespan <experimental.timespantools.SingleSourceTimespan.SingleSourceTimespan.SingleSourceTimespan>`
 
 .. automethod:: experimental.timespantools.MixedSourceTimespan.MixedSourceTimespan.MixedSourceTimespan.__ge__
 

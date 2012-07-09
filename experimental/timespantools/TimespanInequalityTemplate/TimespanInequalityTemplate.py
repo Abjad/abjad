@@ -27,7 +27,7 @@ class TimespanInequalityTemplate(AbjadObject):
         
     Timepsan objects perform no input checking.
 
-    Timespan objects share qualities with lamba expressions.
+    SingleSourceTimespan objects share qualities with lamba expressions.
     '''
 
     ### INITIALIZER ###
