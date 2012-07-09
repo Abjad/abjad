@@ -210,9 +210,9 @@ Unstable packages (load manually)
    experimental/selectortools/DurationRatioItemSelector/DurationRatioItemSelector
    experimental/selectortools/DurationRatioSliceSelector/DurationRatioSliceSelector
    experimental/selectortools/HeldExpression/HeldExpression
+   experimental/selectortools/MulticontextSelection/MulticontextSelection
    experimental/selectortools/SegmentSelector/SegmentSelector
    experimental/selectortools/SegmentSliceSelector/SegmentSliceSelector
-   experimental/selectortools/Selection/Selection
 
 :py:mod:`specificationtools <experimental.specificationtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

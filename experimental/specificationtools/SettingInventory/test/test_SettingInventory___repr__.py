@@ -3,7 +3,7 @@ from experimental.selectortools.SegmentSelector import SegmentSelector
 from experimental.specificationtools.Setting import Setting
 from experimental.specificationtools.SettingInventory import SettingInventory
 from experimental.specificationtools.ScoreSpecification import ScoreSpecification
-from experimental.selectortools.Selection import Selection
+from experimental.selectortools.MulticontextSelection import MulticontextSelection
 from experimental.timespantools.Timepoint import Timepoint
 from experimental.timespantools.Timespan import Timespan
 

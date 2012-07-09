@@ -3,7 +3,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental.timespantools.Timespan import Timespan
 
 
-class Selection(AbjadObject):
+class MulticontextSelection(AbjadObject):
     r'''.. versionadded:: 1.0
 
     ::
@@ -13,26 +13,20 @@ class Selection(AbjadObject):
 
     Arbitrarily many contexts taken over a shared timespan.
 
-    .. note:: can this be generalized to arbitrarily many contexts
-        over a shared **selector**?
-
-    .. note:: or should the specialization of this class be kept?
-        And then renamed to ``MulticontextSelection``?
-
     Select the entire score::
 
-        >>> selectortools.Selection()
-        Selection()
+        >>> selectortools.MulticontextSelection()
+        MulticontextSelection()
 
     Select all of ``'Voice 1'``::
 
-        >>> selectortools.Selection(contexts=['Voice 1'])
-        Selection(contexts=['Voice 1'])
+        >>> selectortools.MulticontextSelection(contexts=['Voice 1'])
+        MulticontextSelection(contexts=['Voice 1'])
 
     Select all of ``'Voice 1'`` and ``'Voice 3'``::
 
-        >>> selectortools.Selection(contexts=['Voice 1', 'Voice 3'])
-        Selection(contexts=['Voice 1', 'Voice 3'])
+        >>> selectortools.MulticontextSelection(contexts=['Voice 1', 'Voice 3'])
+        MulticontextSelection(contexts=['Voice 1', 'Voice 3'])
 
     Select the timespan of segment ``'red'``::
 
@@ -40,20 +34,20 @@ class Selection(AbjadObject):
 
     ::
 
-        >>> selectortools.Selection(timespan=timespan)
-        Selection(timespan=Timespan(selector=SegmentSelector(index='red')))
+        >>> selectortools.MulticontextSelection(timespan=timespan)
+        MulticontextSelection(timespan=Timespan(selector=SegmentSelector(index='red')))
 
     Select ``'Voice 1'`` taken over the timepsan of segment ``'red'``::
 
-        >>> selectortools.Selection(contexts=['Voice 1'], timespan=timespan)
-        Selection(contexts=['Voice 1'], timespan=Timespan(selector=SegmentSelector(index='red')))
+        >>> selectortools.MulticontextSelection(contexts=['Voice 1'], timespan=timespan)
+        MulticontextSelection(contexts=['Voice 1'], timespan=Timespan(selector=SegmentSelector(index='red')))
 
     Select ``'Voice 1'`` and ``'Voice 3'`` over the timespan of segment ``'red'``::
 
-        >>> selectortools.Selection(contexts=['Voice 1', 'Voice 3'], timespan=timespan)
-        Selection(contexts=['Voice 1', 'Voice 3'], timespan=Timespan(selector=SegmentSelector(index='red')))
+        >>> selectortools.MulticontextSelection(contexts=['Voice 1', 'Voice 3'], timespan=timespan)
+        MulticontextSelection(contexts=['Voice 1', 'Voice 3'], timespan=Timespan(selector=SegmentSelector(index='red')))
 
-    Selection objects are immutable.
+    MulticontextSelection objects are immutable.
     '''
 
     ### INITIALIZER ###
@@ -95,7 +89,7 @@ class Selection(AbjadObject):
 
     @property
     def contexts(self):
-        '''Selection contexts specified by user.
+        '''MulticontextSelection contexts specified by user.
 
         Value of none taken equal to all contexts in score.
 
@@ -105,7 +99,7 @@ class Selection(AbjadObject):
 
     @property
     def timespan(self):
-        '''Selection timespan specified by user.
+        '''MulticontextSelection timespan specified by user.
 
         Value of none taken equal to timespan of entire score.
 

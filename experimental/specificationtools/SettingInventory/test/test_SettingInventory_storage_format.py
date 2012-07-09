@@ -7,7 +7,7 @@ from experimental.specificationtools.Setting import Setting
 from experimental.specificationtools.SettingInventory import SettingInventory
 from experimental.selectortools.CounttimeComponentSelector import CounttimeComponentSelector
 from experimental.specificationtools.ScoreSpecification import ScoreSpecification
-from experimental.selectortools.Selection import Selection
+from experimental.selectortools.MulticontextSelection import MulticontextSelection
 from experimental.timespantools.Timepoint import Timepoint
 from experimental.timespantools.Timespan import Timespan
 
@@ -27,7 +27,7 @@ def test_SettingInventory_storage_format_01():
     r'''
     specificationtools.SettingInventory([
         specificationtools.Setting(
-            selectortools.Selection(
+            selectortools.MulticontextSelection(
                 contexts=['Grouped Rhythmic Staves Score'],
                 timespan=timespantools.Timespan(
                     selector=selectortools.SegmentSelector(
@@ -43,7 +43,7 @@ def test_SettingInventory_storage_format_01():
         ])
     '''
 
-    assert storage_format == "specificationtools.SettingInventory([\n\tspecificationtools.Setting(\n\t\tselectortools.Selection(\n\t\t\tcontexts=['Grouped Rhythmic Staves Score'],\n\t\t\ttimespan=timespantools.Timespan(\n\t\t\t\tselector=selectortools.SegmentSelector(\n\t\t\t\t\tindex='1'\n\t\t\t\t\t)\n\t\t\t\t)\n\t\t\t),\n\t\t'time_signatures',\n\t\t[(4, 8), (3, 8)],\n\t\tpersistent=True,\n\t\ttruncate=False\n\t\t)\n\t])"
+    assert storage_format == "specificationtools.SettingInventory([\n\tspecificationtools.Setting(\n\t\tselectortools.MulticontextSelection(\n\t\t\tcontexts=['Grouped Rhythmic Staves Score'],\n\t\t\ttimespan=timespantools.Timespan(\n\t\t\t\tselector=selectortools.SegmentSelector(\n\t\t\t\t\tindex='1'\n\t\t\t\t\t)\n\t\t\t\t)\n\t\t\t),\n\t\t'time_signatures',\n\t\t[(4, 8), (3, 8)],\n\t\tpersistent=True,\n\t\ttruncate=False\n\t\t)\n\t])"
 
     directive_inventory_2 = eval(storage_format)
 

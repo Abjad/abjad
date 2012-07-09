@@ -13,7 +13,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.specificationtools.ContextSelection.ContextSelection.ContextSelection.contexts
 
-    Inherited from :py:class:`selectortools.Selection <experimental.selectortools.Selection.Selection.Selection>`
+    Inherited from :py:class:`selectortools.MulticontextSelection <experimental.selectortools.MulticontextSelection.MulticontextSelection.MulticontextSelection>`
 
 .. autoattribute:: experimental.specificationtools.ContextSelection.ContextSelection.ContextSelection.storage_format
 
@@ -21,7 +21,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.specificationtools.ContextSelection.ContextSelection.ContextSelection.timespan
 
-    Inherited from :py:class:`selectortools.Selection <experimental.selectortools.Selection.Selection.Selection>`
+    Inherited from :py:class:`selectortools.MulticontextSelection <experimental.selectortools.MulticontextSelection.MulticontextSelection.MulticontextSelection>`
 
 Special Methods
 ---------------
@@ -32,7 +32,7 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.ContextSelection.ContextSelection.ContextSelection.__eq__
 
-    Inherited from :py:class:`selectortools.Selection <experimental.selectortools.Selection.Selection.Selection>`
+    Inherited from :py:class:`selectortools.MulticontextSelection <experimental.selectortools.MulticontextSelection.MulticontextSelection.MulticontextSelection>`
 
 .. automethod:: experimental.specificationtools.ContextSelection.ContextSelection.ContextSelection.__ge__
 
@@ -56,7 +56,7 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.ContextSelection.ContextSelection.ContextSelection.__ne__
 
-    Inherited from :py:class:`selectortools.Selection <experimental.selectortools.Selection.Selection.Selection>`
+    Inherited from :py:class:`selectortools.MulticontextSelection <experimental.selectortools.MulticontextSelection.MulticontextSelection.MulticontextSelection>`
 
 .. automethod:: experimental.specificationtools.ContextSelection.ContextSelection.ContextSelection.__repr__
 

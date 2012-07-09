@@ -9,7 +9,7 @@ from experimental.specificationtools.ScopedValue import ScopedValue
 from experimental.specificationtools.SegmentDivisionList import SegmentDivisionList
 from experimental.specificationtools.SegmentInventory import SegmentInventory
 from experimental.specificationtools.SegmentSpecification import SegmentSpecification
-from experimental.selectortools.Selection import Selection
+from experimental.selectortools.MulticontextSelection import MulticontextSelection
 from experimental.specificationtools.Specification import Specification
 from experimental.specificationtools.StatalServerRequest import StatalServerRequest
 from experimental.specificationtools.ContextSettingInventory import ContextSettingInventory
@@ -438,7 +438,7 @@ class ScoreSpecification(Specification):
         return start_offset_pair[0], stop_offset_pair[1]
 
     def select(self, segment_name, context_names=None, timespan=None):
-        return Selection(segment_name, context_names=context_names, timespan=timespan)
+        return MulticontextSelection(segment_name, context_names=context_names, timespan=timespan)
 
     def store_setting(self, setting):
         '''Resolve setting and find segment specified by setting.
