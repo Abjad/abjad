@@ -1211,6 +1211,13 @@ Composition packages
 :py:mod:`rhythmtreetools <abjad.tools.rhythmtreetools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+.. rubric:: concrete classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/rhythmtreetools/ReducedAbjParser/ReducedAbjParser
+
 .. rubric:: functions
 
 .. toctree::

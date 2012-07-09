@@ -1,4 +1,4 @@
-from abjad.tools.rhythmtreetools._TupletParser import _TupletParser
+from abjad.tools.rhythmtreetools.ReducedAbjParser import ReducedAbjParser
 
 
 def parse_reduced_ly_syntax(string):
@@ -24,4 +24,4 @@ def parse_reduced_ly_syntax(string):
     Return list.
     '''
 
-    return _TupletParser()(string)
+    return ReducedAbjParser()(string)

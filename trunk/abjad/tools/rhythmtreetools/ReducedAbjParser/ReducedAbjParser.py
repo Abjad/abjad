@@ -2,7 +2,7 @@ import copy
 from abjad.tools import *
 
 
-class _TupletParser(abctools.Parser):
+class ReducedAbjParser(abctools.Parser):
 
     ### LEX SETUP ###
 
@@ -222,9 +222,17 @@ class _TupletParser(abctools.Parser):
     def parser_rules_object(self):
         return self
 
-    ### PUBLIC METHODS ###
+    ### PRIVATE METHODS ###
 
-    def cleanup(self, parsed):
+    def _cleanup(self, parsed):
+        '''Post-parsing cleanup.
+
+        Apply TieSpanners where necessary.
+
+        Detach all Annotations.
+
+        Return parsed expression.
+        '''
 
         container = containertools.Container()
         for x in parsed:
