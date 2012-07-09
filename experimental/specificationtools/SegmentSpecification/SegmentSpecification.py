@@ -287,13 +287,8 @@ class SegmentSpecification(Specification):
         from experimental import specificationtools
         return specificationtools.Selection()
         
-    #def select_contexts(self, contexts=None, segment_name=None):
     def select_contexts(self, contexts=None):
         from experimental import specificationtools
-        #assert contexts is None or self.resolved_settings_context_dictionary.all_are_context_names(contexts)
-        #assert isinstance(segment_name, (str, type(None)))
-        #segment_name = segment_name or self.name
-        #selection = specificationtools.Selection(segment_name, contexts=contexts)
         contexts = self.context_token_to_context_names(contexts)
         return specificationtools.Selection(contexts=contexts, timespan=self.timespan)
 

@@ -71,7 +71,9 @@ class Specification(AbjadObject):
     ### PUBLIC METHODS ###
 
     def context_token_to_context_names(self, context_token):
-        if isinstance(context_token, type(self)):
+        if context_token is None:
+            context_names = [self.score_name] 
+        elif isinstance(context_token, type(self)):
             context_names = [context_token.score_name]
         elif context_token in self.context_names:
             context_names = [context_token]
