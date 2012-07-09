@@ -11,15 +11,13 @@ class Timespan(AbjadObject):
 
     Timespan objects highlight a contiguous blocks of time
     somewhere and say "everything within my bounds is selected
-    for some upcoming operation."
-
-    Timespan of the entire score::
+    for some upcoming operation." ::
 
         >>> from experimental import selectortools
         >>> from experimental import specificationtools
         >>> from experimental import timespantools
 
-    ::
+    Timespan of the entire score::
 
         >>> timespantools.Timespan()
         Timespan()

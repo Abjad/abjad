@@ -281,6 +281,7 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
+   experimental/timespantools/MixedSourceTimespan/MixedSourceTimespan
    experimental/timespantools/Timepoint/Timepoint
    experimental/timespantools/Timespan/Timespan
    experimental/timespantools/TimespanInequality/TimespanInequality
