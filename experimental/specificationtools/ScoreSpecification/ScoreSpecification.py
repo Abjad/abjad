@@ -2,7 +2,7 @@ from abjad.tools import *
 from experimental.specificationtools.AttributeRetrievalRequest import AttributeRetrievalRequest
 from experimental.specificationtools.Division import Division
 from experimental.specificationtools.DivisionList import DivisionList
-from experimental.specificationtools.DivisionSelector import DivisionSelector
+from experimental.specificationtools.DivisionOldSelector import DivisionOldSelector
 from experimental.specificationtools.RegionDivisionList import RegionDivisionList
 from experimental.specificationtools.ResolvedContextSetting import ResolvedContextSetting
 from experimental.specificationtools.ScopedValue import ScopedValue
@@ -404,7 +404,7 @@ class ScoreSpecification(Specification):
         return segment_division_lists
 
     def process_divisions_value(self, divisions_value):
-        if isinstance(divisions_value, DivisionSelector):
+        if isinstance(divisions_value, DivisionOldSelector):
             return self.handle_divisions_retrieval_request(divisions_value)
         else:
             return divisions_value

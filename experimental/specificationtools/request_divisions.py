@@ -10,7 +10,7 @@ def request_divisions(start_segment, voice, segment_count=1):
     voice = specificationtools.expr_to_component_name(voice)
 
     # populate request
-    request = specificationtools.DivisionSelector(start_segment, voice, segment_count=segment_count)
+    request = specificationtools.DivisionOldSelector(start_segment, voice, segment_count=segment_count)
 
     # return request
     return request

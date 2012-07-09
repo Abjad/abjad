@@ -2,9 +2,8 @@ from experimental.specificationtools.Callback import Callback
 from experimental.specificationtools.RetrievalRequest import RetrievalRequest
 
 
-# TODO: replace all object RetrievalRequest classes with CounttimeComponentSelector
-#       or with something like ScoreObjectSliceIndicator
-class DivisionSelector(RetrievalRequest):
+# TODO: replace DivisionOldSelector with DivisionSelector
+class DivisionOldSelector(RetrievalRequest):
     r'''.. versionadded:: 1.0
 
     "Preserved" request for the system to go fetch divisions from somewhere during interpretation.
