@@ -1,5 +1,5 @@
 from abjad.tools import contexttools
-from experimental.specificationtools.Selection.Selection import Selection
+from experimental.selectortools.Selection.Selection import Selection
 
 
 class ContextSelection(Selection):

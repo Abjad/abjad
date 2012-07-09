@@ -212,6 +212,7 @@ Unstable packages (load manually)
    experimental/selectortools/HeldExpression/HeldExpression
    experimental/selectortools/SegmentSelector/SegmentSelector
    experimental/selectortools/SegmentSliceSelector/SegmentSliceSelector
+   experimental/selectortools/Selection/Selection
 
 :py:mod:`specificationtools <experimental.specificationtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -250,7 +251,6 @@ Unstable packages (load manually)
    experimental/specificationtools/SegmentDivisionList/SegmentDivisionList
    experimental/specificationtools/SegmentInventory/SegmentInventory
    experimental/specificationtools/SegmentSpecification/SegmentSpecification
-   experimental/specificationtools/Selection/Selection
    experimental/specificationtools/Setting/Setting
    experimental/specificationtools/SettingInventory/SettingInventory
    experimental/specificationtools/StatalServer/StatalServer

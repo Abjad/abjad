@@ -8,6 +8,7 @@ class Selection(AbjadObject):
 
     ::
 
+        >>> from experimental import selectortools
         >>> from experimental import specificationtools
 
     Arbitrarily many contexts taken over a shared timespan.
@@ -20,17 +21,17 @@ class Selection(AbjadObject):
 
     Select the entire score::
 
-        >>> specificationtools.Selection()
+        >>> selectortools.Selection()
         Selection()
 
     Select all of ``'Voice 1'``::
 
-        >>> specificationtools.Selection(contexts=['Voice 1'])
+        >>> selectortools.Selection(contexts=['Voice 1'])
         Selection(contexts=['Voice 1'])
 
     Select all of ``'Voice 1'`` and ``'Voice 3'``::
 
-        >>> specificationtools.Selection(contexts=['Voice 1', 'Voice 3'])
+        >>> selectortools.Selection(contexts=['Voice 1', 'Voice 3'])
         Selection(contexts=['Voice 1', 'Voice 3'])
 
     Select the timespan of segment ``'red'``::
@@ -39,17 +40,17 @@ class Selection(AbjadObject):
 
     ::
 
-        >>> specificationtools.Selection(timespan=timespan)
+        >>> selectortools.Selection(timespan=timespan)
         Selection(timespan=Timespan(selector=SegmentSelector(index='red')))
 
     Select ``'Voice 1'`` taken over the timepsan of segment ``'red'``::
 
-        >>> specificationtools.Selection(contexts=['Voice 1'], timespan=timespan)
+        >>> selectortools.Selection(contexts=['Voice 1'], timespan=timespan)
         Selection(contexts=['Voice 1'], timespan=Timespan(selector=SegmentSelector(index='red')))
 
     Select ``'Voice 1'`` and ``'Voice 3'`` over the timespan of segment ``'red'``::
 
-        >>> specificationtools.Selection(contexts=['Voice 1', 'Voice 3'], timespan=timespan)
+        >>> selectortools.Selection(contexts=['Voice 1', 'Voice 3'], timespan=timespan)
         Selection(contexts=['Voice 1', 'Voice 3'], timespan=Timespan(selector=SegmentSelector(index='red')))
 
     Selection objects are immutable.

@@ -12,7 +12,7 @@ def test_SegmentSpecification_select_contexts_01():
     segment.set_time_signatures(segment, [(4, 8), (3, 8)])
 
     selection_1 = segment.select_contexts()
-    selection_2 = specificationtools.Selection(
+    selection_2 = selectortools.Selection(
         contexts=['Grouped Rhythmic Staves Score'],
         timespan=timespantools.Timespan(selector=selectortools.SegmentSelector(index='red')))
 
