@@ -292,29 +292,34 @@ class SegmentSpecification(Specification):
         contexts = self.context_token_to_context_names(contexts)
         return specificationtools.Selection(contexts=contexts, timespan=self.timespan)
 
+    # NEXT: rename specificationtools.Selection to specificationtools.MulticontextSelection
+    # NEXT: move specificationtools.MulticontextSelection to selectortools
+    # NEXT: implement selectortools.MulticontextSelector to complement this
+    # NEXT: reimplement the next three methods to return multicontext selectors
     def select_divisions(self, context_token=None, part=None, segment_name=None, start=None, stop=None):
         from experimental import specificationtools
+        from experimental import timespantools
         criterion = 'divisions'
         contexts = self.context_token_to_context_names(context_token)
         timespan = timespantools.Timespan(criterion=criterion, part=part, start=start, stop=stop)
         selection = self.select(contexts=contexts, segment_name=segment_name, timespan=timespan)
         return selection
 
-    def select_measures(self, context_token=None, part=None, segment_name=None, start=None, stop=None):
-        from experimental import specificationtools
-        criterion = 'measures'
-        contexts = self.context_token_to_context_names(context_token)
-        timespan = timespantools.Timespan(criterion=criterion, part=part, start=start, stop=stop)
-        selection = self.select(contexts=contexts, segment_name=segment_name, timespan=timespan)
-        return selection
-    
-    def select_notes_and_chords(self, context_token=None, part=None, segment_name=None, start=None, stop=None):
-        from experimental import specificationtools
-        criterion = (chordtools.Chord, notetools.Note)
-        contexts = self.context_token_to_context_names(context_token)
-        timespan = timespantools.Timespan(criterion=criterion, part=part, start=start, stop=stop)
-        selection = self.select(contexts=contexts, timespan=timespan)
-        return selection
+#    def select_measures(self, context_token=None, part=None, segment_name=None, start=None, stop=None):
+#        from experimental import specificationtools
+#        criterion = 'measures'
+#        contexts = self.context_token_to_context_names(context_token)
+#        timespan = timespantools.Timespan(criterion=criterion, part=part, start=start, stop=stop)
+#        selection = self.select(contexts=contexts, segment_name=segment_name, timespan=timespan)
+#        return selection
+#    
+#    def select_notes_and_chords(self, context_token=None, part=None, segment_name=None, start=None, stop=None):
+#        from experimental import specificationtools
+#        criterion = (chordtools.Chord, notetools.Note)
+#        contexts = self.context_token_to_context_names(context_token)
+#        timespan = timespantools.Timespan(criterion=criterion, part=part, start=start, stop=stop)
+#        selection = self.select(contexts=contexts, timespan=timespan)
+#        return selection
 
     def set_aggregate(self, contexts, source, 
         count=None, persistent=True, offset=None):

@@ -11,18 +11,15 @@ class ContextSelection(Selection):
 
         >>> from experimental import selectortools
         >>> from experimental import specificationtools
-        >>> from experimental import timespantools
 
     ::
 
-        >>> anchor = selectortools.SegmentSelector(index='red')
-        >>> start = timespantools.Timepoint(anchor=anchor)
-        >>> stop = timespantools.Timepoint(anchor=anchor, edge=Right)
-        >>> timespan = timespantools.Timespan(start=start, stop=stop)
+        >>> segment_selector = selectortools.SegmentSelector(index='red')
 
     ::
 
-        >>> context_selection = specificationtools.ContextSelection('Voice 1', timespan=timespan)
+        >>> context_selection = specificationtools.ContextSelection(
+        ... 'Voice 1', timespan=segment_selector.timespan)
 
     ::
 
@@ -30,21 +27,13 @@ class ContextSelection(Selection):
         specificationtools.ContextSelection(
             'Voice 1',
             timespan=timespantools.Timespan(
-                start=timespantools.Timepoint(
-                    anchor=selectortools.SegmentSelector(
-                        index='red'
-                        )
-                    ),
-                stop=timespantools.Timepoint(
-                    anchor=selectortools.SegmentSelector(
-                        index='red'
-                        ),
-                    edge=Right
+                selector=selectortools.SegmentSelector(
+                    index='red'
                     )
                 )
             )
 
-    Context selections are immutable.
+    All context selection properties are read-only.
     '''
 
     ### INITIALIZER ###

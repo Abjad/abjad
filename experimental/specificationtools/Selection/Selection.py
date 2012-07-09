@@ -6,17 +6,19 @@ from experimental.timespantools.Timespan import Timespan
 class Selection(AbjadObject):
     r'''.. versionadded:: 1.0
 
-    Arbitrarily many contexts taken over a shared timespan.
-
-    (Object-oriented delayed evaluation.)
-
-    Initialize with optional `contexts` and `timespan`.
-
-    Select the entire score::
+    ::
 
         >>> from experimental import specificationtools
 
-    ::
+    Arbitrarily many contexts taken over a shared timespan.
+
+    .. note:: can this be generalized to arbitrarily many contexts
+        over a shared **selector**?
+
+    .. note:: or should the specialization of this class be kept?
+        And then renamed to ``MulticontextSelection``?
+
+    Select the entire score::
 
         >>> specificationtools.Selection()
         Selection()
