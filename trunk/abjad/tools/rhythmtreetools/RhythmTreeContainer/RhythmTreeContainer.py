@@ -159,14 +159,26 @@ class RhythmTreeContainer(RhythmTreeNode):
         return '\n'.join(result)
 
     def __setitem__(self, i, expr):
+        from abjad.tools.rhythmtreetools.RhythmTreeParser import RhythmTreeParser
+
         if isinstance(i, int):        
-            assert isinstance(expr, self.node_klass)
+            if isinstance(expr, str):
+                expr = RhythmTreeParser()(expr)[0]
+                assert len(expr) == 1
+                expr = expr[0]
+            else:
+                assert isinstance(expr, self.node_klass)
             old = self[i]
             old._switch_parent(None)
             expr._switch_parent(self)
             self._children.insert(i, expr)
         else:
-            assert all([isinstance(x, self.node_klass) for x in expr])
+            if isinstance(expr, str):
+                expr = RhythmTreeParser()(expr)
+            elif isinstance(expr, list) and len(expr) == 1 and isinstance(expr[0], str):
+                expr = RhythmTreeParser()(expr[0])
+            else:
+                assert all([isinstance(x, self.node_klass) for x in expr])
             if i.start == i.stop and i.start is not None \
                 and i.stop is not None and i.start <= -len(self):
                 start, stop = 0, 0
