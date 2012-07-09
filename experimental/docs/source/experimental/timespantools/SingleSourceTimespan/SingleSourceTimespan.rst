@@ -11,19 +11,19 @@ Read-only Properties
 
 .. autoattribute:: experimental.timespantools.SingleSourceTimespan.SingleSourceTimespan.SingleSourceTimespan.duration
 
+    Inherited from :py:class:`timespantools.Timespan <experimental.timespantools.Timespan.Timespan.Timespan>`
+
 .. autoattribute:: experimental.timespantools.SingleSourceTimespan.SingleSourceTimespan.SingleSourceTimespan.encompasses_one_object_exactly
 
 .. autoattribute:: experimental.timespantools.SingleSourceTimespan.SingleSourceTimespan.SingleSourceTimespan.encompasses_one_segment_exactly
 
-.. autoattribute:: experimental.timespantools.SingleSourceTimespan.SingleSourceTimespan.SingleSourceTimespan.exact_segment
+.. autoattribute:: experimental.timespantools.SingleSourceTimespan.SingleSourceTimespan.SingleSourceTimespan.left_addendum
 
-.. autoattribute:: experimental.timespantools.SingleSourceTimespan.SingleSourceTimespan.SingleSourceTimespan.is_anchored_to_one_object
+.. autoattribute:: experimental.timespantools.SingleSourceTimespan.SingleSourceTimespan.SingleSourceTimespan.multiplier
+
+.. autoattribute:: experimental.timespantools.SingleSourceTimespan.SingleSourceTimespan.SingleSourceTimespan.right_addendum
 
 .. autoattribute:: experimental.timespantools.SingleSourceTimespan.SingleSourceTimespan.SingleSourceTimespan.selector
-
-.. autoattribute:: experimental.timespantools.SingleSourceTimespan.SingleSourceTimespan.SingleSourceTimespan.start
-
-.. autoattribute:: experimental.timespantools.SingleSourceTimespan.SingleSourceTimespan.SingleSourceTimespan.stop
 
 .. autoattribute:: experimental.timespantools.SingleSourceTimespan.SingleSourceTimespan.SingleSourceTimespan.storage_format
 

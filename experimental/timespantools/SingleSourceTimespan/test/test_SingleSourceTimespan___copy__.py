@@ -6,9 +6,7 @@ import copy
 
 def test_SingleSourceTimespan___copy___01():
 
-    start = timespantools.Timepoint(edge=Right, multiplier=Fraction(1, 3))
-    stop = timespantools.Timepoint(edge=Right, multiplier=Fraction(2, 3))
-    timespan_1 = timespantools.SingleSourceTimespan(start=start, stop=stop)
+    timespan_1 = timespantools.SingleSourceTimespan(multiplier=Fraction(1, 3))
     timespan_2 = copy.deepcopy(timespan_1)
 
     assert isinstance(timespan_1, timespantools.SingleSourceTimespan)

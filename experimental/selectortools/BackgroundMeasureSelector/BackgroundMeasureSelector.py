@@ -4,23 +4,21 @@ from experimental.selectortools.BackgroundElementSelector import BackgroundEleme
 class BackgroundMeasureSelector(BackgroundElementSelector):
     r'''.. versionadded:: 1.0
 
-    Select measure ``3`` in score::
-
-        >>> from experimental import selectortools
 
     ::
+
+        >>> from experimental import selectortools
+        >>> from experimental import timespantools
+
+    Select measure ``3`` in score::
 
         >>> selectortools.BackgroundMeasureSelector(index=3)
         BackgroundMeasureSelector(index=3)
 
     Select the last measure to start in the first third of the score::
 
-        >>> from experimental import timespantools
 
-    ::
-
-        >>> timepoint = timespantools.Timepoint(multiplier=Fraction(1, 3), edge=Right)
-        >>> timespan = timespantools.SingleSourceTimespan(stop=timepoint)
+        >>> timespan = timespantools.SingleSourceTimespan(multiplier=Fraction(1, 3))
         >>> inequality = timespantools.expr_starts_during_timespan(timespan=timespan)
 
     ::
@@ -34,10 +32,7 @@ class BackgroundMeasureSelector(BackgroundElementSelector):
             inequality=timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                 timespantools.SingleSourceTimespan(
-                    stop=timespantools.Timepoint(
-                        edge=Right,
-                        multiplier=Fraction(1, 3)
-                        )
+                    multiplier=Fraction(1, 3)
                     )
                 ),
             index=-1
@@ -45,8 +40,8 @@ class BackgroundMeasureSelector(BackgroundElementSelector):
 
     Select the first measure starting during segment ``'red'``::
 
-        >>> timespan = selectortools.SegmentSelector(index='red').timespan
-        >>> inequality = timespantools.expr_starts_during_timespan(timespan=timespan)
+        >>> segment_selector = selectortools.SegmentSelector(index='red')
+        >>> inequality = timespantools.expr_starts_during_timespan(timespan=segment_selector.timespan)
 
     ::
 
@@ -67,7 +62,7 @@ class BackgroundMeasureSelector(BackgroundElementSelector):
             index=0
             )
 
-    Measure selectors are immutable.
+    Measure selector properties are read-only.
     '''
 
     ### INITIALIZER ###

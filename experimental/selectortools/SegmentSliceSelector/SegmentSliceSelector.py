@@ -4,12 +4,13 @@ from experimental.selectortools.BackgroundElementSliceSelector import Background
 class SegmentSliceSelector(BackgroundElementSliceSelector):
     r'''.. versionadded:: 1.0
 
-    Select all segments::
+    ::
 
         >>> from experimental import selectortools
         >>> from experimental import specificationtools
+        >>> from experimental import timespantools
 
-    ::
+    Select all segments in score::
 
         >>> selectortools.SegmentSliceSelector()
         SegmentSliceSelector()
@@ -71,12 +72,7 @@ class SegmentSliceSelector(BackgroundElementSliceSelector):
 
     Select all segments starting during the first third of the score:
 
-        >>> from experimental import timespantools
-
-    ::
-
-        >>> timepoint = timespantools.Timepoint(multiplier=Fraction(1, 3), edge=Right)
-        >>> timespan = timespantools.SingleSourceTimespan(stop=timepoint)
+        >>> timespan = timespantools.SingleSourceTimespan(multiplier=Fraction(1, 3))
         >>> inequality = timespantools.expr_starts_during_timespan(timespan=timespan)
 
     ::
@@ -90,10 +86,7 @@ class SegmentSliceSelector(BackgroundElementSliceSelector):
             inequality=timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                 timespantools.SingleSourceTimespan(
-                    stop=timespantools.Timepoint(
-                        edge=Right,
-                        multiplier=Fraction(1, 3)
-                        )
+                    multiplier=Fraction(1, 3)
                     )
                 )
             )
@@ -109,16 +102,13 @@ class SegmentSliceSelector(BackgroundElementSliceSelector):
             inequality=timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                 timespantools.SingleSourceTimespan(
-                    stop=timespantools.Timepoint(
-                        edge=Right,
-                        multiplier=Fraction(1, 3)
-                        )
+                    multiplier=Fraction(1, 3)
                     )
                 ),
             start=-2
             )
 
-    Segment slice selectors are immutable.
+    All segment slice selector properties are read-only.
     '''
 
     ### INITIALIZER ###

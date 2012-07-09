@@ -370,39 +370,19 @@ class CounttimeComponentSelector(ItemSelector):
 
             >>> z(selector.timespan)
             timespantools.SingleSourceTimespan(
-                start=timespantools.Timepoint(
-                    anchor=selectortools.CounttimeComponentSelector(
-                        'Voice 1',
-                        inequality=timespantools.TimespanInequality(
-                            timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
-                            timespantools.SingleSourceTimespan(
-                                selector=selectortools.SegmentSelector(
-                                    index='red'
-                                    )
+                selector=selectortools.CounttimeComponentSelector(
+                    'Voice 1',
+                    inequality=timespantools.TimespanInequality(
+                        timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
+                        timespantools.SingleSourceTimespan(
+                            selector=selectortools.SegmentSelector(
+                                index='red'
                                 )
-                            ),
-                        klass=chordtools.Chord,
-                        predicate=specificationtools.Callback('lambda x: 6 <= len(x)'),
-                        index=20
+                            )
                         ),
-                    edge=Left
-                    ),
-                stop=timespantools.Timepoint(
-                    anchor=selectortools.CounttimeComponentSelector(
-                        'Voice 1',
-                        inequality=timespantools.TimespanInequality(
-                            timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
-                            timespantools.SingleSourceTimespan(
-                                selector=selectortools.SegmentSelector(
-                                    index='red'
-                                    )
-                                )
-                            ),
-                        klass=chordtools.Chord,
-                        predicate=specificationtools.Callback('lambda x: 6 <= len(x)'),
-                        index=20
-                        ),
-                    edge=Right
+                    klass=chordtools.Chord,
+                    predicate=specificationtools.Callback('lambda x: 6 <= len(x)'),
+                    index=20
                     )
                 )
 
@@ -411,4 +391,5 @@ class CounttimeComponentSelector(ItemSelector):
         from experimental import timespantools
 
         start, stop = self.timepoints
-        return timespantools.SingleSourceTimespan(start=start, stop=stop)
+        #return timespantools.SingleSourceTimespan(start=start, stop=stop)
+        return timespantools.SingleSourceTimespan(selector=self)

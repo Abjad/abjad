@@ -1,9 +1,10 @@
 from abjad.tools import abctools
 from experimental.timespantools.Timepoint import Timepoint
-from experimental.timespantools.SingleSourceTimespan import SingleSourceTimespan
+#from experimental.timespantools.SingleSourceTimespan import SingleSourceTimespan
+from experimental.timespantools.Timespan import Timespan
 
 
-class MixedSourceTimespan(SingleSourceTimespan):
+class MixedSourceTimespan(Timespan):
     r'''.. versionadded:: 1.0
 
     Mixed-source timespan.
@@ -72,10 +73,50 @@ class MixedSourceTimespan(SingleSourceTimespan):
     def __init__(self, start=None, stop=None):
         assert isinstance(start, (Timepoint, type(None))), repr(start)
         assert isinstance(stop, (Timepoint, type(None))), repr(stop)
+        Timespan.__init__(self)
         self._start = start
         self._stop = stop
 
     ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def is_anchored_to_one_object(self):
+        '''True when start anchor equals stop anchor. Otherwise false.
+
+        Return boolean.
+        '''
+        return self.start.anchor == self.stop.anchor
+
+
+    def encompasses_one_object_exactly(self):
+        '''True when the following five conditions hold:
+
+        1. start anchor equals stop anchor.
+
+        2. start edge is left.
+
+        3. stop edge is right.
+
+        4. start and stop multipliers are both none.
+    
+        5. start and stop addenda are both none.
+
+        Return boolean.
+        '''
+        if self.start.anchor == self.stop.anchor:
+            if self.start.edge in (None, Left):
+                if self.stop.edge == Right:
+                    if self.start.multiplier is self.stop.multiplier is None:
+                        if self.start.addendum is self.stop.addendum is None:
+                            return True
+        return False
+
+    @property
+    def encompasses_one_segment_exactly(self):
+        '''False.
+        '''
+        return False
+
 
     @property
     def start(self):

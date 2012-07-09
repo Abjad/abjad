@@ -276,6 +276,13 @@ Unstable packages (load manually)
 :py:mod:`timespantools <experimental.timespantools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+.. rubric:: abstract classes
+
+.. toctree::
+   :maxdepth: 1
+
+   experimental/timespantools/Timespan/Timespan
+
 .. rubric:: concrete classes
 
 .. toctree::
