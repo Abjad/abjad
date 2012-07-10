@@ -75,7 +75,7 @@ def load_desordre_pitches(file):
     for line in lines:
         if len(line) == 0:
             pass
-        elif line.startswith('###'):
+        elif line.startswith('#'):
             hand = [ ]
             result.append(hand)
         else:
