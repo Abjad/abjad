@@ -1974,7 +1974,7 @@ Internal packages
    tools/configurationtools/make_abjad_default_config_file_into_dict
    tools/configurationtools/make_abjad_user_config_file_into_dict
    tools/configurationtools/read_abjad_user_config_file
-   tools/configurationtools/setup_abjad_directory
+   tools/configurationtools/setup_abjad_directory_silently
    tools/configurationtools/update_abjad_user_config_file
    tools/configurationtools/verify_abjad_user_config_file
    tools/configurationtools/write_abjad_user_config_file

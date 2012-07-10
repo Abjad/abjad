@@ -2,7 +2,7 @@ from abjad.cfg.cfg import ABJADCONFIG, HOME
 import os
 
 
-def setup_abjad_directory():
+def setup_abjad_directory_silently():
     '''Silently setup .abjad/, .abjad/output/ and .abjad/config.py.
 
     Create directories if they do not already exist.
