@@ -20,7 +20,7 @@ def get_lilypond_version_string():
         lilypond = proc.stdout.readline()
         lilypond = lilypond.strip('\r').strip('\n').strip()
         if lilypond == '':
-            raise SystemError('LilyPond not found on your Windowz box.')
+            raise SystemError('Cannot find LilyPond under Windows.')
     else:
         lilypond = configurationtools.read_abjad_user_config_file('lilypond_path')
         if not lilypond:

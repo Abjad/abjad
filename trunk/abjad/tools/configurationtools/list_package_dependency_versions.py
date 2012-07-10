@@ -29,4 +29,11 @@ def list_package_dependency_versions():
     except ImportError:
         pass
 
+    deps['ply'] = None
+    try:
+        import ply
+        deps['ply'] = ply.lex.__version__
+    except ImportError:
+        pass
+
     return deps
