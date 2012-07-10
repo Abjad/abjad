@@ -3,4 +3,5 @@ import constrainttools
 import handlertools
 import lyricstools
 import quantizationtools
+import settingtools
 import specificationtools
