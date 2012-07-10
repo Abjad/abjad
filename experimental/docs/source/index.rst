@@ -275,7 +275,6 @@ Unstable packages (load manually)
    experimental/specificationtools/is_counttime_component_klass_expr
    experimental/specificationtools/make_score_measure_indicator
    experimental/specificationtools/request_divisions
-   experimental/specificationtools/segments_to_timespan
 
 :py:mod:`timespantools <experimental.timespantools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

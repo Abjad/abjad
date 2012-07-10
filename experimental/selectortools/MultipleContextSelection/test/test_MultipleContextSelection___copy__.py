@@ -5,9 +5,10 @@ import copy
 
 def test_MultipleContextSelection___copy___01():
 
-    timespan = specificationtools.segments_to_timespan('red')
+    segment_selector = selectortools.SegmentSelector(index='red')
 
-    selection_1 = selectortools.MultipleContextSelection(contexts=['Voice 1', 'Voice 3'], timespan=timespan)
+    contexts = ['Voice 1', 'Voice 3']
+    selection_1 = selectortools.MultipleContextSelection(contexts=contexts, timespan=segment_selector.timespan)
     selection_2 = copy.deepcopy(selection_1)
 
     assert isinstance(selection_1, selectortools.MultipleContextSelection)

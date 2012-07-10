@@ -25,26 +25,25 @@ class MultipleContextSelection(AbjadObject):
 
     Select all of ``'Voice 1'`` and ``'Voice 3'``::
 
-        >>> selectortools.MultipleContextSelection(contexts=['Voice 1', 'Voice 3'])
-        MultipleContextSelection(contexts=['Voice 1', 'Voice 3'])
-
-    Select the timespan of segment ``'red'``::
-
-        >>> timespan = specificationtools.segments_to_timespan('red')
+        >>> contexts = ['Voice 1', 'Voice 3']
 
     ::
 
-        >>> selectortools.MultipleContextSelection(timespan=timespan)
-        MultipleContextSelection(timespan=SingleSourceTimespan(selector=SegmentSelector(index='red')))
+        >>> selectortools.MultipleContextSelection(contexts=contexts)
+        MultipleContextSelection(contexts=['Voice 1', 'Voice 3'])
 
     Select ``'Voice 1'`` taken over the timepsan of segment ``'red'``::
 
-        >>> selectortools.MultipleContextSelection(contexts=['Voice 1'], timespan=timespan)
+        >>> segment_selector = selectortools.SegmentSelector(index='red')
+
+    ::
+
+        >>> selectortools.MultipleContextSelection(contexts=['Voice 1'], timespan=segment_selector.timespan)
         MultipleContextSelection(contexts=['Voice 1'], timespan=SingleSourceTimespan(selector=SegmentSelector(index='red')))
 
     Select ``'Voice 1'`` and ``'Voice 3'`` over the timespan of segment ``'red'``::
 
-        >>> selectortools.MultipleContextSelection(contexts=['Voice 1', 'Voice 3'], timespan=timespan)
+        >>> selectortools.MultipleContextSelection(contexts=contexts, timespan=segment_selector.timespan)
         MultipleContextSelection(contexts=['Voice 1', 'Voice 3'], timespan=SingleSourceTimespan(selector=SegmentSelector(index='red')))
 
     All ``MultipleContextSelection`` properties are read-only.
