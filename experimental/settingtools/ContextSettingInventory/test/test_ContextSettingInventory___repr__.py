@@ -1,6 +1,6 @@
 from abjad.tools import *
 from experimental.specificationtools.ContextSetting import ContextSetting
-from experimental.specificationtools.ContextSettingInventory import ContextSettingInventory
+from experimental.settingtools.ContextSettingInventory import ContextSettingInventory
 from experimental.specificationtools.ScoreSpecification import ScoreSpecification
 from experimental.selectortools.MultipleContextSelection import MultipleContextSelection
 

@@ -1,5 +1,5 @@
 settingtools.ContextSettingInventory
-==========================================
+====================================
 
 .. inheritance-diagram:: experimental.settingtools.ContextSettingInventory.ContextSettingInventory.ContextSettingInventory
    :private-bases:

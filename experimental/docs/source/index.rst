@@ -233,6 +233,16 @@ Unstable packages (load manually)
    experimental/selectortools/is_counttime_component_klass_expr
    experimental/selectortools/request_divisions
 
+:py:mod:`settingtools <experimental.settingtools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: concrete classes
+
+.. toctree::
+   :maxdepth: 1
+
+   experimental/settingtools/ContextSettingInventory/ContextSettingInventory
+
 :py:mod:`specificationtools <experimental.specificationtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -256,7 +266,6 @@ Unstable packages (load manually)
    experimental/specificationtools/ContextDictionary/ContextDictionary
    experimental/specificationtools/ContextProxy/ContextProxy
    experimental/specificationtools/ContextSetting/ContextSetting
-   experimental/specificationtools/ContextSettingInventory/ContextSettingInventory
    experimental/specificationtools/Division/Division
    experimental/specificationtools/DivisionList/DivisionList
    experimental/specificationtools/HandlerRequest/HandlerRequest

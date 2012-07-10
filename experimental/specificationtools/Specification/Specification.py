@@ -5,7 +5,6 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental.specificationtools.AttributeNameEnumeration import AttributeNameEnumeration
 from experimental.specificationtools.AttributeRetrievalIndicator import AttributeRetrievalIndicator
 from experimental.specificationtools.ContextDictionary import ContextDictionary
-from experimental.specificationtools.ContextSettingInventory import ContextSettingInventory
 from experimental.specificationtools.ValueRetrievalIndicator import ValueRetrievalIndicator
 
 
@@ -25,12 +24,13 @@ class Specification(AbjadObject):
 
     @abstractmethod
     def __init__(self, score_template):
+        from experimental import settingtools
         self._score_template = score_template
         self._context_names = []
         self._resolved_settings_context_dictionary = ContextDictionary(self.score_template())
         self._initialize_context_name_abbreviations()
         self._payload_context_dictionary = ContextDictionary(self.score_template())
-        self._settings = ContextSettingInventory()
+        self._settings = settingtools.ContextSettingInventory()
 
     ### PRIVATE METHODS ###
 

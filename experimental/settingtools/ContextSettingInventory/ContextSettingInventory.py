@@ -4,6 +4,10 @@ from experimental.specificationtools.ContextSetting import ContextSetting
 
 
 class ContextSettingInventory(ObjectInventory):
+    r'''.. versionadded:: 1.0
+
+    Context setting inventory.
+    '''
 
     ### CLASS ATTRIBUTES ###
 

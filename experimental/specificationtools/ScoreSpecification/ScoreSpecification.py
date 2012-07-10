@@ -12,7 +12,6 @@ from experimental.specificationtools.SegmentSpecification import SegmentSpecific
 from experimental.selectortools.MultipleContextSelection import MultipleContextSelection
 from experimental.specificationtools.Specification import Specification
 from experimental.specificationtools.StatalServerRequest import StatalServerRequest
-from experimental.specificationtools.ContextSettingInventory import ContextSettingInventory
 from experimental.specificationtools.VoiceDivisionList import VoiceDivisionList
 import collections
 import copy
