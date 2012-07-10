@@ -43,7 +43,7 @@ class RhythmTreeLeaf(RhythmTreeNode):
 
     def __init__(self, duration=1, pitched=True):
         RhythmTreeNode.__init__(self, duration)
-        self._pitched = bool(pitched)
+        self.pitched = pitched
 
     ### SPECIAL METHODS ###
 
@@ -60,14 +60,22 @@ class RhythmTreeLeaf(RhythmTreeNode):
         result.append('\t)')
         return '\n'.join(result)
 
-    ### READ-ONLY PUBLIC PROPERTY
-
-    @property
-    def pitched(self):
-        return self._pitched
+    ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def rtm_format(self):
         if self.pitched:
             return '{}'.format(self.duration)
         return '-{}'.format(self.duration)
+
+    ### READ/WRITE PUBLIC PROPERTIES ###
+
+    @apply
+    def pitched():
+        def fget(self):
+            '''True if leaf is pitched.'''
+            return self._pitched
+        def fset(self, arg):
+            self._pitched = bool(arg)
+        return property(**locals())
+

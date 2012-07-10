@@ -14,9 +14,8 @@ class RhythmTreeNode(abctools.AbjadObject):
 
     @abstractmethod
     def __init__(self, duration):
-        assert 0 < duration
-        self._duration = int(duration)
         self._parent = None
+        self.duration = duration
 
     ### SPECIAL METHODS ###
 
@@ -40,11 +39,6 @@ class RhythmTreeNode(abctools.AbjadObject):
         return self._parent
 
     @property
-    def duration(self):
-        '''The node's duration in pulses.'''
-        return self._duration
-
-    @property
     def prolation(self):
         '''The prolation of the node.'''
         prolation = Fraction(1)
@@ -61,3 +55,17 @@ class RhythmTreeNode(abctools.AbjadObject):
     def rtm_format(self):
         '''The node's RTM format.'''
         raise NotImplemented
+
+    ### READ/WRITE PUBLIC PROPERTIES ###
+
+    @apply
+    def duration():
+        def fget(self):
+            '''The node's duration in pulses.'''
+            return self._duration
+        def fset(self, arg):
+            assert isinstance(arg, int)
+            assert 0 < arg
+            self._duration = arg
+        return property(**locals())
+
