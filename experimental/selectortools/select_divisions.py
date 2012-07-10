@@ -23,3 +23,6 @@ def select_divisions(voice, start_segment, segment_count=1):
 
     # return request
     return request
+
+    # return selector
+    #return selector

@@ -17,6 +17,10 @@ Read-only Properties
 
 .. autoattribute:: experimental.timespantools.MixedSourceTimespan.MixedSourceTimespan.MixedSourceTimespan.is_anchored_to_one_object
 
+.. autoattribute:: experimental.timespantools.MixedSourceTimespan.MixedSourceTimespan.MixedSourceTimespan.is_segment_slice
+
+    Inherited from :py:class:`timespantools.Timespan <experimental.timespantools.Timespan.Timespan.Timespan>`
+
 .. autoattribute:: experimental.timespantools.MixedSourceTimespan.MixedSourceTimespan.MixedSourceTimespan.start
 
 .. autoattribute:: experimental.timespantools.MixedSourceTimespan.MixedSourceTimespan.MixedSourceTimespan.stop

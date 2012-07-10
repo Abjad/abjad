@@ -45,3 +45,10 @@ class Timespan(AbjadObject):
         .. note:: not yet implemented.
         '''
         raise NotImplementedError
+
+    @property
+    def is_segment_slice(self):
+        if hasattr(self, 'selector'):
+            if isinstance(self.selector, selectortools.SegmentSliceSelector):
+                return True
+        return False

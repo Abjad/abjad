@@ -11,6 +11,8 @@ Read-only Properties
 
 .. autoattribute:: experimental.timespantools.Timespan.Timespan.Timespan.duration
 
+.. autoattribute:: experimental.timespantools.Timespan.Timespan.Timespan.is_segment_slice
+
 .. autoattribute:: experimental.timespantools.Timespan.Timespan.Timespan.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

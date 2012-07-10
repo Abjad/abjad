@@ -185,6 +185,7 @@ class SegmentSpecification(Specification):
             context.extend(measures)
 
     def annotate_source(self, source, callback=None, count=None, offset=None):
+        from experimental import selectortools
         assert isinstance(callback, (Callback, type(None))), callback
         assert isinstance(count, (int, type(None))), count
         assert isinstance(offset, (int, type(None))), offset
@@ -199,6 +200,7 @@ class SegmentSpecification(Specification):
             if any([x is not None for x in (callback, count, offset)]):
                 source = AttributeRetrievalRequest(source, callback=callback, count=count, offset=offset)
         elif isinstance(source, DivisionOldSelector):
+        #elif isinstance(source, selectortools.SingleContextDivisionSliceSelector):
             if any([x is not None for x in (callback, count, offset)]):
                 source = copy.copy(source)
                 source.callback = callback
