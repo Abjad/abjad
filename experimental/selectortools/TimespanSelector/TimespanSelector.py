@@ -16,9 +16,9 @@ class TimespanSelector(Selector):
     ### INTIALIZER ###
 
     @abstractmethod
-    def __init__(self, timespan=None):
+    def __init__(self, timespan):
         from experimental import timespantools
-        assert isinstance(timespan, (timespantools.Timespan, type(None))), repr(timespan)
+        assert isinstance(timespan, timespantools.Timespan), repr(timespan)
         Selector.__init__(self)
         self._timespan = timespan
 

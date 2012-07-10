@@ -30,7 +30,7 @@ class ContextSetting(Setting):
         settingtools.ContextSetting(
             selectortools.SingleContextTimespanSelector(
                 'Voice 1',
-                timespan=timespantools.SingleSourceTimespan(
+                timespantools.SingleSourceTimespan(
                     selector=selectortools.SegmentSelector(
                         index='red'
                         )

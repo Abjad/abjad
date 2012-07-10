@@ -16,14 +16,14 @@ class SingleContextTimespanSelector(TimespanSelector):
 
     ::
 
-        >>> selector = selectortools.SingleContextTimespanSelector('Voice 1', timespan=segment_selector.timespan)
+        >>> selector = selectortools.SingleContextTimespanSelector('Voice 1', segment_selector.timespan)
 
     ::
 
         >>> z(selector)
         selectortools.SingleContextTimespanSelector(
             'Voice 1',
-            timespan=timespantools.SingleSourceTimespan(
+            timespantools.SingleSourceTimespan(
                 selector=selectortools.SegmentSelector(
                     index='red'
                     )
@@ -35,8 +35,7 @@ class SingleContextTimespanSelector(TimespanSelector):
 
     ### INITIALIZER ###
 
-    # TODO: make 'timespan' argument mandatory
-    def __init__(self, context, timespan=None):
+    def __init__(self, context, timespan):
         assert isinstance(context, (str, contexttools.Context)), repr(context)
         TimespanSelector.__init__(self, timespan=timespan)
         self._context = context
