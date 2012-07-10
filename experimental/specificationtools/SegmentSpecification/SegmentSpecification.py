@@ -3,7 +3,7 @@ from experimental.specificationtools.exceptions import *
 from experimental.specificationtools.AttributeRetrievalIndicator import AttributeRetrievalIndicator
 from experimental.specificationtools.AttributeRetrievalRequest import AttributeRetrievalRequest
 from experimental.specificationtools.Callback import Callback
-from experimental.specificationtools.DivisionOldSelector import DivisionOldSelector
+from experimental.selectortools.DivisionOldSelector import DivisionOldSelector
 from experimental.specificationtools.HandlerRequest import HandlerRequest
 from experimental.specificationtools.ResolvedContextSetting import ResolvedContextSetting
 from experimental.specificationtools.Specification import Specification

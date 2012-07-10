@@ -205,6 +205,7 @@ Unstable packages (load manually)
    experimental/selectortools/BackgroundMeasureSliceSelector/BackgroundMeasureSliceSelector
    experimental/selectortools/CountRatioItemSelector/CountRatioItemSelector
    experimental/selectortools/CountRatioSliceSelector/CountRatioSliceSelector
+   experimental/selectortools/DivisionOldSelector/DivisionOldSelector
    experimental/selectortools/DurationRatioItemSelector/DurationRatioItemSelector
    experimental/selectortools/DurationRatioSliceSelector/DurationRatioSliceSelector
    experimental/selectortools/HeldExpression/HeldExpression
@@ -258,7 +259,6 @@ Unstable packages (load manually)
    experimental/specificationtools/ContextSettingInventory/ContextSettingInventory
    experimental/specificationtools/Division/Division
    experimental/specificationtools/DivisionList/DivisionList
-   experimental/specificationtools/DivisionOldSelector/DivisionOldSelector
    experimental/specificationtools/HandlerRequest/HandlerRequest
    experimental/specificationtools/RegionDivisionList/RegionDivisionList
    experimental/specificationtools/ResolvedContextSetting/ResolvedContextSetting
