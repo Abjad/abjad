@@ -194,7 +194,7 @@ class SingleContextCounttimeComponentSelector(ItemSelector):
         from experimental import timespantools
         assert self._interprets_as_sliceable_selector(reference), repr(reference)
         assert isinstance(inequality, (timespantools.TimespanInequality, type(None))), repr(inequality)
-        assert klass is None or specificationtools.is_counttime_component_klass(klass), repr(klass)
+        assert klass is None or specificationtools.is_counttime_component_klass_expr(klass), repr(klass)
         assert isinstance(predicate, (Callback, type(None))), repr(predicate)
         ItemSelector.__init__(self, index=index)
         self._reference = self._reference_to_storable_form(reference)

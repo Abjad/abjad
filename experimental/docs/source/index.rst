@@ -270,7 +270,7 @@ Unstable packages (load manually)
    experimental/specificationtools/expr_to_score_name
    experimental/specificationtools/expr_to_segment_name
    experimental/specificationtools/is_background_element_klass
-   experimental/specificationtools/is_counttime_component_klass
+   experimental/specificationtools/is_counttime_component_klass_expr
    experimental/specificationtools/make_score_measure_indicator
    experimental/specificationtools/request_divisions
    experimental/specificationtools/segments_to_timespan

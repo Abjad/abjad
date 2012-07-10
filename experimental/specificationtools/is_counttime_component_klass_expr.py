@@ -4,29 +4,33 @@ from abjad.tools import measuretools
 from abjad.tools import tuplettools
 
 
-def is_counttime_component_klass(expr):
+def is_counttime_component_klass_expr(expr):
     r'''.. versionadded:: 1.0
 
     True when `expr` is a subclass of ``Measure``, ``Tuplet`` or ``Leaf``.
 
-    Also true when `expr` is ``Container``::
+    True when `expr` is ``Container``.
+
+    True when `expr` is a tuple of one or more of these.
 
         >>> from experimental import specificationtools
 
     ::
 
-        >>> specificationtools.is_counttime_component_klass(tuplettools.Tuplet)
+        >>> specificationtools.is_counttime_component_klass_expr(tuplettools.Tuplet)
         True
 
     Otherwise false::
 
-        >>> specificationtools.is_counttime_component_klass(voicetools.Voice)
+        >>> specificationtools.is_counttime_component_klass_expr(voicetools.Voice)
         False
 
     Return boolean.
     '''
 
-    if issubclass(expr, (measuretools.Measure, tuplettools.Tuplet, leaftools.Leaf)):
+    if isinstance(expr, tuple) and all([is_counttime_component_klass_expr(x) for x in expr]):
+        return True
+    elif issubclass(expr, (measuretools.Measure, tuplettools.Tuplet, leaftools.Leaf)):
         return True
     elif expr == containertools.Container:
         return True

@@ -386,6 +386,19 @@ class SegmentSpecification(Specification):
             start=start, stop=stop)
         return selector
 
+    def select_notes_and_chords_that_start_during_segment(self, contexts=None, start=None, stop=None):
+        '''Select the first ``40`` notes and chords that start during segment.
+
+        Return selector.
+        '''
+        from experimental import selectortools
+        from experimental import timespantools
+        inequality = timespantools.expr_starts_during_timespan(self.timespan)
+        selector = selectortools.MultipleContextCounttimeComponentSliceSelector(
+            contexts=contexts, inequality=inequality, klass=(notetools.Note, chordtools.Chord),
+            start=start, stop=stop)
+        return selector
+
     def set_aggregate(self, contexts, source, 
         count=None, persistent=True, offset=None):
         attribute = 'aggregate'
