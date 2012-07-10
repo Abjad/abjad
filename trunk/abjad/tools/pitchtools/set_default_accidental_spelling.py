@@ -53,4 +53,4 @@ def set_default_accidental_spelling(spelling='mixed'):
     if spelling not in ('mixed', 'sharps', 'flats'):
         raise ValueError
 
-    NamedChromaticPitch.accidental_spelling = spelling
+    NamedChromaticPitch._accidental_spelling = spelling

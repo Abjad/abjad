@@ -21,14 +21,17 @@ def setup_abjad_directory_silently():
 
     # create $HOME/.abjad/config.py
     default_dict = configurationtools.make_abjad_default_config_file_into_dict()
-    try:
-        user_dict = configurationtools.make_abjad_user_config_file_into_dict()
-        default_keyset = set(default_dict.keys())
-        user_keyset = set(user_dict.keys())
-        if default_keyset.intersection(user_keyset) != default_keyset:
-            configurationtools.update_abjad_user_config_file(default_dict, user_dict)    
-    except IOError:
+    if not os.path.exists(ABJADCONFIG):
         configurationtools.write_abjad_user_config_file(ABJADCONFIG, default_dict)
+    else:
+        try:
+            user_dict = configurationtools.make_abjad_user_config_file_into_dict()
+            default_keyset = set(default_dict.keys())
+            user_keyset = set(user_dict.keys())
+            if default_keyset.intersection(user_keyset) != default_keyset:
+                configurationtools.update_abjad_user_config_file(default_dict, user_dict)    
+        except IOError:
+            configurationtools.write_abjad_user_config_file(ABJADCONFIG, default_dict)
 
     # create output path (user defined in config.py, and $HOME/.abjad/output by default)
     ABJADOUTPUT = configurationtools.read_abjad_user_config_file('abjad_output')

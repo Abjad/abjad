@@ -24,7 +24,6 @@ from abjad.tools.tuplettools import Tuplet
 from abjad.tools.voicetools import Voice
 from fractions import Fraction
 import os
-import sys
 
 # import Abjad exceptions in __builtins__ namespace
 _exceptions_path = os.path.join(__path__[0], 'tools', 'exceptiontools')
@@ -36,6 +35,9 @@ __builtins__['Right'] = datastructuretools.OrdinalConstant('x', 1, 'Right')
 __builtins__['Center'] = datastructuretools.OrdinalConstant('y', 0, 'Center')
 __builtins__['Up'] = datastructuretools.OrdinalConstant('y', 1, 'Up')
 __builtins__['Down'] = datastructuretools.OrdinalConstant('y', -1, 'Down')
+
+# setup .abjad directory and friends (if not already handled elsewhere)
+configurationtools.setup_abjad_directory_silently()
 
 del abctools
 del cfg
@@ -49,7 +51,6 @@ del lilypondparsertools
 del lilypondproxytools
 del os
 del platform
-del sys
 del tools
 del wellformednesstools
 

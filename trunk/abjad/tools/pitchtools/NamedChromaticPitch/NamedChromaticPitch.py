@@ -1,11 +1,8 @@
-from abjad.tools.configurationtools.read_abjad_user_config_file import read_abjad_user_config_file
+from abjad.tools.configurationtools import read_abjad_user_config_file
 from abjad.tools.pitchtools.Accidental import Accidental
 from abjad.tools.pitchtools.PitchObject import PitchObject
 from abjad.tools.pitchtools.is_chromatic_pitch_name import chromatic_pitch_name_regex
 
-
-# TODO: remove #
-_accidental_spelling = read_abjad_user_config_file('accidental_spelling')
 
 class NamedChromaticPitch(PitchObject):
     '''.. versionadded:: 1.1
@@ -21,7 +18,7 @@ class NamedChromaticPitch(PitchObject):
     ### CLASS ATTRIBUTES ###
 
     # TODO: remove #
-    accidental_spelling = _accidental_spelling
+    _accidental_spelling = None
 
     # calculate accidental_semitones, diatonic_pitch_number at init
     # so notehead sorting doesn't take forever later on
@@ -291,7 +288,22 @@ class NamedChromaticPitch(PitchObject):
             pitch_class_octave_number_string)
         object.__setattr__(self, '_chromatic_pitch_name', chromatic_pitch_name)
 
-    ### PUBLIC PROPERTIES ###
+    ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def accidental_spelling(self):
+        '''Read-only accidental spelling:
+
+        ::
+
+            >>> NamedChromaticPitch("c").accidental_spelling
+            'mixed'
+
+        Return string.
+        '''
+        if self.__class__._accidental_spelling is None:
+            self.__class__._accidental_spelling = read_abjad_user_config_file('accidental_spelling')
+        return self.__class__._accidental_spelling
 
     @property
     def chromatic_pitch_class_name(self):
@@ -538,3 +550,4 @@ class NamedChromaticPitch(PitchObject):
         result.append(str(self.octave_number))
         result = ''.join(result)
         return result
+

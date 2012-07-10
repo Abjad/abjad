@@ -12,6 +12,6 @@ def read_abjad_user_config_file(attribute_name):
     '''
     from abjad.tools import configurationtools
 
-    configurationtools.verify_abjad_user_config_file()
+    #configurationtools.setup_abjad_directory_silently()
 
     return configurationtools.make_abjad_user_config_file_into_dict()[attribute_name]
