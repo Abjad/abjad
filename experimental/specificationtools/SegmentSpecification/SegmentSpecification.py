@@ -388,6 +388,30 @@ class SegmentSpecification(Specification):
 
     def select_notes_and_chords_that_start_during_segment(self, contexts=None, start=None, stop=None):
         '''Select the first ``40`` notes and chords that start during segment.
+        Do this for ``'Voice 1'`` and ``'Voice 3'``::
+
+            >>> contexts = ['Voice 1', 'Voice 3']
+            >>> selector = segment.select_notes_and_chords_that_start_during_segment(contexts=contexts, stop=40)
+
+        ::
+
+            >>> z(selector)
+            selectortools.MultipleContextCounttimeComponentSliceSelector(
+                contexts=['Voice 1', 'Voice 3'],
+                inequality=timespantools.TimespanInequality(
+                    timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
+                    timespantools.SingleSourceTimespan(
+                        selector=selectortools.SegmentSelector(
+                            index='red'
+                            )
+                        )
+                    ),
+                klass=selectortools.KlassInventory([
+                    notetools.Note,
+                    chordtools.Chord
+                    ]),
+                stop=40
+                )
 
         Return selector.
         '''

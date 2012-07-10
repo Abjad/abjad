@@ -18,6 +18,8 @@ class BackgroundElementSliceSelector(SliceSelector, InequalitySelector):
         assert selectortools.is_background_element_klass(klass), repr(klass)
         SliceSelector.__init__(self, start=start, stop=stop)
         InequalitySelector.__init__(self, inequality=inequality)
+        if isinstance(klass, tuple):
+            klass = selectortools.KlassInventory(klass)
         self._klass = klass
 
     ### READ-ONLY PUBLIC PROPERTIES ###

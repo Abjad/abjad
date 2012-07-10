@@ -23,6 +23,8 @@ class BackgroundElementSelector(ItemSelector, InequalitySelector):
         assert selectortools.is_background_element_klass(klass), repr(klass)
         ItemSelector.__init__(self, index=index)
         InequalitySelector.__init__(self, inequality=inequality)
+        if isinstance(klass, tuple):
+            klass = selectortools.KlassInventory(klass)
         self._klass = klass
 
     ### SPECIAL METHODS ###

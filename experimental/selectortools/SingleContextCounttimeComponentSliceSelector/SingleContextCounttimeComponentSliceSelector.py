@@ -94,6 +94,8 @@ class SingleContextCounttimeComponentSliceSelector(SliceSelector, InequalitySele
         InequalitySelector.__init__(self, inequality=inequality)
         self._reference = self._reference_to_storable_form(reference)
         self._inequality = inequality
+        if isinstance(klass, tuple):
+            klass = selectortools.KlassInventory(klass)
         self._klass = klass
         self._predicate = predicate
 
