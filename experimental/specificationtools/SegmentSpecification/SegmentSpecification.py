@@ -305,7 +305,7 @@ class SegmentSpecification(Specification):
         ::
 
             >>> z(selection)
-            selectortools.MultipleContextSelection(
+            selectortools.MultipleContextTimespanSelector(
                 contexts=['Grouped Rhythmic Staves Score'],
                 timespan=timespantools.SingleSourceTimespan(
                     selector=selectortools.SegmentSelector(
@@ -320,7 +320,7 @@ class SegmentSpecification(Specification):
         '''
         from experimental import selectortools
         contexts = self.context_token_to_context_names(contexts)
-        return selectortools.MultipleContextSelection(contexts=contexts, timespan=self.timespan)
+        return selectortools.MultipleContextTimespanSelector(contexts=contexts, timespan=self.timespan)
 
     def select_divisions_that_start_during_segment(self, contexts=None, start=None, stop=None):
         '''Select the first five divisions that start during segment::

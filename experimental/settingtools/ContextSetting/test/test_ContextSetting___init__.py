@@ -10,7 +10,7 @@ def test_ContextSetting___init___01():
 
     segment_selector = selectortools.SegmentSelector(index='red')
     timespan = timespantools.SingleSourceTimespan(selector=segment_selector)
-    target = selectortools.SingleContextSelection('Voice 1', timespan=timespan)
+    target = selectortools.SingleContextTimespanSelector('Voice 1', timespan=timespan)
     setting = settingtools.ContextSetting(target, 'time_signatures', [(4, 8), (3, 8)])
     assert isinstance(setting, settingtools.ContextSetting)
 
@@ -21,7 +21,7 @@ def test_ContextSetting___init___02():
 
     segment_selector = selectortools.SegmentSelector(index='red')
     timespan = timespantools.SingleSourceTimespan(selector=segment_selector)
-    target = selectortools.SingleContextSelection('Voice 1', timespan=timespan)
+    target = selectortools.SingleContextTimespanSelector('Voice 1', timespan=timespan)
     setting_1 = settingtools.ContextSetting(target, 'time_signatures', [(4, 8), (3, 8)], fresh=False)
 
     setting_2 = settingtools.ContextSetting(setting_1)

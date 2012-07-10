@@ -212,14 +212,14 @@ Unstable packages (load manually)
    experimental/selectortools/KlassInventory/KlassInventory
    experimental/selectortools/MultipleContextCounttimeComponentSliceSelector/MultipleContextCounttimeComponentSliceSelector
    experimental/selectortools/MultipleContextDivisionSliceSelector/MultipleContextDivisionSliceSelector
-   experimental/selectortools/MultipleContextSelection/MultipleContextSelection
+   experimental/selectortools/MultipleContextTimespanSelector/MultipleContextTimespanSelector
    experimental/selectortools/SegmentSelector/SegmentSelector
    experimental/selectortools/SegmentSliceSelector/SegmentSliceSelector
    experimental/selectortools/SingleContextCounttimeComponentSelector/SingleContextCounttimeComponentSelector
    experimental/selectortools/SingleContextCounttimeComponentSliceSelector/SingleContextCounttimeComponentSliceSelector
    experimental/selectortools/SingleContextDivisionSelector/SingleContextDivisionSelector
    experimental/selectortools/SingleContextDivisionSliceSelector/SingleContextDivisionSliceSelector
-   experimental/selectortools/SingleContextSelection/SingleContextSelection
+   experimental/selectortools/SingleContextTimespanSelector/SingleContextTimespanSelector
 
 .. rubric:: functions
 
