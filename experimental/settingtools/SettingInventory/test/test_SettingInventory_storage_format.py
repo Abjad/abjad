@@ -1,10 +1,11 @@
 from abjad.tools import *
 from experimental import selectortools
+from experimental import settingtools
 from experimental import specificationtools
 from experimental import timespantools
 from experimental.specificationtools import library
-from experimental.specificationtools.Setting import Setting
-from experimental.specificationtools.SettingInventory import SettingInventory
+from experimental.settingtools.Setting import Setting
+from experimental.settingtools.SettingInventory import SettingInventory
 from experimental.selectortools.SingleContextCounttimeComponentSelector import SingleContextCounttimeComponentSelector
 from experimental.specificationtools.ScoreSpecification import ScoreSpecification
 from experimental.selectortools.MultipleContextSelection import MultipleContextSelection
@@ -25,8 +26,8 @@ def test_SettingInventory_storage_format_01():
     storage_format = directive_inventory_1.storage_format
 
     r'''
-    specificationtools.SettingInventory([
-        specificationtools.Setting(
+    settingtools.SettingInventory([
+        settingtools.Setting(
             selectortools.MultipleContextSelection(
                 contexts=['Grouped Rhythmic Staves Score'],
                 timespan=timespantools.SingleSourceTimespan(
@@ -43,7 +44,7 @@ def test_SettingInventory_storage_format_01():
         ])
     '''
 
-    assert storage_format == "specificationtools.SettingInventory([\n\tspecificationtools.Setting(\n\t\tselectortools.MultipleContextSelection(\n\t\t\tcontexts=['Grouped Rhythmic Staves Score'],\n\t\t\ttimespan=timespantools.SingleSourceTimespan(\n\t\t\t\tselector=selectortools.SegmentSelector(\n\t\t\t\t\tindex='1'\n\t\t\t\t\t)\n\t\t\t\t)\n\t\t\t),\n\t\t'time_signatures',\n\t\t[(4, 8), (3, 8)],\n\t\tpersistent=True,\n\t\ttruncate=False\n\t\t)\n\t])"
+    assert storage_format == "settingtools.SettingInventory([\n\tsettingtools.Setting(\n\t\tselectortools.MultipleContextSelection(\n\t\t\tcontexts=['Grouped Rhythmic Staves Score'],\n\t\t\ttimespan=timespantools.SingleSourceTimespan(\n\t\t\t\tselector=selectortools.SegmentSelector(\n\t\t\t\t\tindex='1'\n\t\t\t\t\t)\n\t\t\t\t)\n\t\t\t),\n\t\t'time_signatures',\n\t\t[(4, 8), (3, 8)],\n\t\tpersistent=True,\n\t\ttruncate=False\n\t\t)\n\t])"
 
     directive_inventory_2 = eval(storage_format)
 

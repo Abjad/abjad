@@ -25,7 +25,7 @@ class SegmentDivisionList(DivisionList):
 
         >>> setting = segment.set_time_signatures(segment, [(4, 8), (3, 8)])
         >>> z(setting)
-        specificationtools.Setting(
+        settingtools.Setting(
             selectortools.MultipleContextSelection(
                 contexts=['Grouped Rhythmic Staves Score'],
                 timespan=timespantools.SingleSourceTimespan(
@@ -44,7 +44,7 @@ class SegmentDivisionList(DivisionList):
 
         >>> setting = segment.set_divisions(segment.v1, [(3, 16)])
         >>> z(setting)
-        specificationtools.Setting(
+        settingtools.Setting(
             selectortools.MultipleContextSelection(
                 contexts=['Voice 1'],
                 timespan=timespantools.SingleSourceTimespan(
@@ -63,7 +63,7 @@ class SegmentDivisionList(DivisionList):
 
         >>> setting = segment.set_rhythm(segment, library.thirty_seconds)
         >>> z(setting)
-        specificationtools.Setting(
+        settingtools.Setting(
             selectortools.MultipleContextSelection(
                 contexts=['Grouped Rhythmic Staves Score'],
                 timespan=timespantools.SingleSourceTimespan(

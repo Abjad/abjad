@@ -244,6 +244,8 @@ Unstable packages (load manually)
    experimental/settingtools/ContextSetting/ContextSetting
    experimental/settingtools/ContextSettingInventory/ContextSettingInventory
    experimental/settingtools/ResolvedContextSetting/ResolvedContextSetting
+   experimental/settingtools/Setting/Setting
+   experimental/settingtools/SettingInventory/SettingInventory
 
 :py:mod:`specificationtools <experimental.specificationtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -277,8 +279,6 @@ Unstable packages (load manually)
    experimental/specificationtools/SegmentDivisionList/SegmentDivisionList
    experimental/specificationtools/SegmentInventory/SegmentInventory
    experimental/specificationtools/SegmentSpecification/SegmentSpecification
-   experimental/specificationtools/Setting/Setting
-   experimental/specificationtools/SettingInventory/SettingInventory
    experimental/specificationtools/StatalServer/StatalServer
    experimental/specificationtools/StatalServerRequest/StatalServerRequest
    experimental/specificationtools/ValueRetrievalIndicator/ValueRetrievalIndicator

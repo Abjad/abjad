@@ -1,6 +1,6 @@
 from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
 from experimental.specificationtools.AttributeNameEnumeration import AttributeNameEnumeration
-from experimental.specificationtools.Setting import Setting
+from experimental.settingtools.Setting import Setting
 
 
 class SettingInventory(ObjectInventory):

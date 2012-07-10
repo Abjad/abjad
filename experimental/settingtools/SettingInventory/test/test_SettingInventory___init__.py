@@ -1,5 +1,5 @@
 from abjad.tools import *
-from experimental.specificationtools.SettingInventory import SettingInventory
+from experimental.settingtools.SettingInventory import SettingInventory
 from experimental.specificationtools.ScoreSpecification import ScoreSpecification
 
 

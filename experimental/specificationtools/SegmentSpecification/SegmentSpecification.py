@@ -41,12 +41,12 @@ class SegmentSpecification(Specification):
     ### INITIALIZER ###
 
     def __init__(self, score_template, name):
-        from experimental import specificationtools
+        from experimental import settingtools
         assert isinstance(name, str), name
         Specification.__init__(self, score_template)
         self._score_model = self.score_template()
         self._name = name
-        self._directives = specificationtools.SettingInventory()
+        self._directives = settingtools.SettingInventory()
 
     ### SPECIAL METHODS ###
 
@@ -413,7 +413,7 @@ class SegmentSpecification(Specification):
 
     def set_attribute(self, attribute, contexts, source, 
         callback=None, count=None, offset=None, persistent=True, timespan=None, truncate=False):
-        from experimental import specificationtools
+        from experimental import settingtools
         from experimental import timespantools
         assert attribute in self.attributes, repr(attribute)
         assert isinstance(count, (int, type(None))), repr(count)
@@ -422,7 +422,7 @@ class SegmentSpecification(Specification):
         assert isinstance(truncate, type(True)), repr(truncate)
         target = self.select_contexts(contexts=contexts)
         source = self.annotate_source(source, callback=callback, count=count, offset=offset)
-        directive = specificationtools.Setting(target, attribute, source, 
+        directive = settingtools.Setting(target, attribute, source, 
             persistent=persistent, truncate=truncate)
         self.directives.append(directive)
         return directive

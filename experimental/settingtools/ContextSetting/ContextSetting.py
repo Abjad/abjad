@@ -1,4 +1,4 @@
-from experimental.specificationtools.Setting import Setting
+from experimental.settingtools.Setting import Setting
 import copy
 
 
