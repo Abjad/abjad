@@ -54,6 +54,16 @@ class RhythmTreeParser(abctools.Parser):
     Returns `RhythmTreeParser` instance.
     '''
 
+    ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def lexer_rules_object(self):
+        return self
+
+    @property
+    def parser_rules_object(self):
+        return self
+
     ### LEX SETUP ###
 
     tokens = (
@@ -132,13 +142,3 @@ class RhythmTreeParser(abctools.Parser):
             print("Syntax error at '%s'" % p.value)
         else:
             print("Syntax error at EOF")
-
-    ### READ-ONLY PUBLIC PROPERTIES ###
-
-    @property
-    def lexer_rules_object(self):
-        return self
-
-    @property
-    def parser_rules_object(self):
-        return self

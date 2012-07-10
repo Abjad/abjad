@@ -1,12 +1,10 @@
-import copy
-
-from ply.lex import TOKEN
-from ply.lex import LexToken
-
+from abjad.tools.lilypondparsertools.SchemeParser import SchemeParser
 from abjad.tools.lilypondparsertools._LilyPondDuration._LilyPondDuration import _LilyPondDuration
 from abjad.tools.lilypondparsertools._LilyPondFraction._LilyPondFraction import _LilyPondFraction
-from abjad.tools.lilypondparsertools._SchemeParser._SchemeParser import _SchemeParser
-from abjad.tools.lilypondparsertools._SchemeParserFinishedException._SchemeParserFinishedException import _SchemeParserFinishedException
+from abjad.tools.lilypondparsertools.SchemeParserFinishedException import SchemeParserFinishedException
+from ply.lex import TOKEN
+from ply.lex import LexToken
+import copy
 
 
 class _LilyPondLexicalDefinition(object):
@@ -382,11 +380,11 @@ class _LilyPondLexicalDefinition(object):
         '\#'
         #t.type = 'SCHEME_START'
         #t.lexer.push_state('INITIAL')
-        scheme_parser = _SchemeParser(debug=False)
+        scheme_parser = SchemeParser(debug=False)
         input_string = t.lexer.lexdata[t.lexpos+1:]
         try:
             scheme_parser(input_string)
-        except _SchemeParserFinishedException:
+        except SchemeParserFinishedException:
             result = scheme_parser.result
             cursor_end = scheme_parser.cursor_end
             #print 'PARSED: {!r}'.format(input_string[:cursor_end])

@@ -1,0 +1,2 @@
+class SchemeParserFinishedException(Exception):
+    pass

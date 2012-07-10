@@ -2150,6 +2150,8 @@ Internal packages
    :maxdepth: 1
 
    tools/lilypondparsertools/LilyPondParser/LilyPondParser
+   tools/lilypondparsertools/SchemeParser/SchemeParser
+   tools/lilypondparsertools/SchemeParserFinishedException/SchemeParserFinishedException
 
 :py:mod:`offsettools <abjad.tools.offsettools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

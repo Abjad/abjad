@@ -1,91 +1,36 @@
-import inspect
-import logging
-import os
-
-from ply import lex
-from ply import yacc
-
+from abjad.tools import abctools
 from abjad.tools import schemetools
-from abjad.tools.lilypondparsertools._NullHandler._NullHandler import _NullHandler
-from abjad.tools.lilypondparsertools._SchemeParserFinishedException import _SchemeParserFinishedException
+from abjad.tools.lilypondparsertools.SchemeParserFinishedException import SchemeParserFinishedException
+from ply import lex
 
 
-class _SchemeParser(object):
+class SchemeParser(abctools.Parser):
+    '''`SchemeParser` mimics how LilyPond's embedded Scheme parser behaves.
 
-    ### INITIALIZER ###
+    It parses a single Scheme expression and then stops, by raising a `SchemeParserFinishedException`.
 
-    def __init__(self, debug=False):
-        class_path = inspect.getfile(self.__class__)
-        self.output_path = class_path.rpartition(os.path.sep)[0]
-        self.pickle_path = os.path.join(self.output_path, '_parsetab.pkl')
-        self.logger_path = os.path.join(self.output_path, 'parselog.txt')
+    The parsed expression and its exact length in characters are cached on the `SchemeParser` instance.
 
-        self.debug = bool(debug)
+    It is intended to be used only in conjunction with `LilyPondParser`.
 
-        # setup a logging
-        if self.debug:
-            logging.basicConfig(
-                level = logging.DEBUG,
-                filename = self.logger_path,
-                filemode = 'w',
-                format = '%(filename)10s:%(lineno)8d:%(message)s'
-            )
-            self.logger = logging.getLogger()
-        else:
-            self.logger = logging.getLogger()
-            self.logger.addHandler(_NullHandler()) # use custom NullHandler for 2.6 compatibility
+    Returns `SchemeParser` instance.
+    '''
 
-        # setup PLY objects
-        self.lexer = lex.lex(
-            debug=True,
-            debuglog=self.logger,
-            object=self,
-        )
-        self.parser = yacc.yacc(
-            debug=True,
-            debuglog=self.logger,
-            module=self,
-            outputdir=self.output_path,
-            picklefile=self.pickle_path,
-        )
+    ### READ-ONLY PUBLIC PROPERTIES ###
 
-    ### SPECIAL METHODS ###
+    @property
+    def lexer_rules_object(self):
+        return self
 
-    def __call__(self, input_string):
-        #self.lexer.input(input_string)
-        #for token in self.lexer:
-        #    print token
+    @property
+    def parser_rules_object(self):
+        return self
+
+    ### PRIVATE METHODS ###
+
+    def _setup(self):
         self.expression_depth = 0
         self.cursor = 0
-
-        #if os.path.exists(self.logger_path):
-        #    os.remove(self.logger_path)
-
-        if self.debug:
-            result = self.parser.parsedebug(
-                input_string,
-                lexer=self.lexer,
-                debug=self.logger,
-                tracking=True,
-                )
-        else:
-            result = self.parser.parse(
-                input_string,
-                lexer=self.lexer,
-                tracking=True,
-                )
-
-        if hasattr(self, 'cleanup'):
-            result = self.cleanup(result)
-        return result
-
-    ### PUBLIC METHODS ###
-
-    def tokenize(self, input_string):
-        self.cursor = 0
-        self.lexer.input(input_string)
-        for token in self.lexer:
-            print token
 
     ### LEX SETUP ###
 
@@ -95,9 +40,12 @@ class _SchemeParser(object):
     UNSIGNED        = r'{}+'.format(N)
     INT             = r'(-?{})'.format(UNSIGNED)
     REAL            = r'(({}\.{}*)|(-?\.{}+))'.format(INT, N, N)
-    INITIAL         = r'({}|!|\$|%|&|\*|/|:|<|=|>|\?|~|_|\^)'.format(A)
+    INITIAL         = r'({}|!|\$|%|&|\*|/|<|>|\?|~|_|\^|:|=)'.format(A)
     SUBSEQUENT      = r'({}|{}|\.|\+|-)'.format(INITIAL, N)
-    IDENTIFIER      = r'({}{}*|\+|-|\.\.\.)'.format(INITIAL, SUBSEQUENT)
+    #IDENTIFIER      = r'({}{}*|\+|-|\.\.\.)'.format(INITIAL, SUBSEQUENT)
+
+    # this has been rewritten to prevent Sphinx from complaining that it looks like bad ReST
+    IDENTIFIER      = r'([A-Za-z!\$%&\*/<>\?~_\^:=][A-Za-z0-9!\$%&\*/<>\?~_\^:=]*|[\+-]|\.\.\.)'
 
     states = (
         ('quote', 'exclusive'),
@@ -272,7 +220,7 @@ class _SchemeParser(object):
         self.cursor += len(t.value)
         t.cursor_end = self.cursor
         if self.debug:
-            print("_SchemeParser-{}: Illegal character {!r}".format(id(self), t.value[0]))
+            print("SchemeParser-{}: Illegal character {!r}".format(id(self), t.value[0]))
         #t.lexer.skip(1)
 
     t_quote_error = t_error
@@ -314,7 +262,7 @@ class _SchemeParser(object):
         self.cursor_end = p.slice[0].cursor_end
         if self.debug:
             print 'PARSED {!r}'.format(self.lexer.lexdata[:self.cursor_end])
-        raise _SchemeParserFinishedException
+        raise SchemeParserFinishedException
 
     ### definition ###
 
@@ -406,7 +354,7 @@ class _SchemeParser(object):
         if self.expression_depth < 1:
             self.result = p[0]
             self.cursor_end = p.slice[0].cursor_end
-            raise _SchemeParserFinishedException
+            raise SchemeParserFinishedException
 
     def p_constant__number(self, p):
         '''constant : number'''
@@ -415,7 +363,7 @@ class _SchemeParser(object):
         if self.expression_depth < 1:
             self.result = p[0]
             self.cursor_end = p.slice[0].cursor_end
-            raise _SchemeParserFinishedException
+            raise SchemeParserFinishedException
 
     def p_constant__string(self, p):
         '''constant : string'''
@@ -424,7 +372,7 @@ class _SchemeParser(object):
         if self.expression_depth < 1:
             self.result = p[0]
             self.cursor_end = p.slice[0].cursor_end
-            raise _SchemeParserFinishedException
+            raise SchemeParserFinishedException
 
     ### formals ###
 
@@ -587,8 +535,8 @@ class _SchemeParser(object):
     def p_error(self, p):
         if p:
             if self.debug:
-                print("_SchemeParser-{}: Syntax error at {!r}".format(id(self), p.value))
+                print("SchemeParser-{}: Syntax error at {!r}".format(id(self), p.value))
             yacc.errok()
         else:
             if self.debug:
-                print("_SchemeParser-{}: Syntax error at EOF".format(id(self)))
+                print("SchemeParser-{}: Syntax error at EOF".format(id(self)))
