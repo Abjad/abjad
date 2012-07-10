@@ -5,6 +5,7 @@ import os
 from ply import lex, yacc
 from ply.lex import LexToken
 
+from abjad.tools import abctools
 from abjad.tools import beamtools
 from abjad.tools import chordtools
 from abjad.tools import componenttools
@@ -20,7 +21,6 @@ from abjad.tools import spannertools
 from abjad.tools import stafftools
 from abjad.tools import tietools
 from abjad.tools import voicetools
-from abjad.tools.abctools import AbjadObject
 from abjad.tools.lilypondparsertools._GuileProxy._GuileProxy import _GuileProxy
 from abjad.tools.lilypondparsertools._LilyPondDuration._LilyPondDuration import _LilyPondDuration
 from abjad.tools.lilypondparsertools._LilyPondEvent._LilyPondEvent import _LilyPondEvent
@@ -40,7 +40,7 @@ yacc.LRParser._monkey_patch_parse = _parse
 yacc.LRParser._monkey_patch_parse_debug = _parse_debug
 
 
-class LilyPondParser(AbjadObject):
+class LilyPondParser(abctools.Parser):
     r'''Parses a subset of LilyPond input syntax:
 
     ::
@@ -133,55 +133,20 @@ class LilyPondParser(AbjadObject):
         self._language_pitch_names = language_pitch_names
         self._markup_functions = markup_functions
         self._markup_list_functions = markup_list_functions
-
         self.default_language = default_language
-        self._debug = bool(debug)
 
-        # parser and lexer rules
+        # attach parser and lexer rules
         self._lexdef = _LilyPondLexicalDefinition(self)
         self._syndef = _LilyPondSyntacticalDefinition(self)
 
-        # output paths
-        self._output_path = os.path.dirname(__file__)
-        self._pickle_path = os.path.join(self._output_path, '_parsetab.pkl')
-        self._logger_path = os.path.join(self._output_path, 'parselog.txt')
-
-        # setup a logging
-        if self._debug:
-            logging.basicConfig(
-                level = logging.DEBUG,
-                filename = self._logger_path,
-                filemode = 'w',
-                format = '%(filename)10s:%(lineno)8d:%(message)s'
-            )
-            self._logger = logging.getLogger()
-        else:
-            self._logger = logging.getLogger()
-            self._logger.addHandler(_NullHandler()) # use custom NullHandler for 2.6 compatibility
-
-        # setup PLY objects
-        self._lexer = lex.lex(
-            debug=True,
-            debuglog=self._logger,
-            object=self._lexdef,
-        )
-        self._parser = yacc.yacc(
-            debug=True,
-            debuglog=self._logger,
-            module=self._syndef,
-            outputdir=self._output_path,
-            picklefile=self._pickle_path,
-        )
+        # build PLY parser and lexer
+        abctools.Parser.__init__(self, debug=debug)
 
         self._reset_parser_variables()
 
-
     ### SPECIAL METHODS ###
 
-
     def __call__(self, input_string):
-        #if os.path.exists(self._logger_path):
-        #    os.remove(self._logger_path)
 
         self._reset_parser_variables()
 
@@ -207,9 +172,7 @@ class LilyPondParser(AbjadObject):
 
         return result
 
-
-    ### PUBLIC PROPERTIES ###
-
+    ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def available_languages(self):
@@ -227,7 +190,16 @@ class LilyPondParser(AbjadObject):
         '''
         return tuple(sorted(self._language_pitch_names.keys()))
 
-    
+    @property
+    def lexer_rules_object(self):
+        return self._lexdef
+
+    @property
+    def parser_rules_object(self):
+        return self._syndef
+
+    ### READ/WRITE PUBLIC PROPERTIES ###
+
     @apply
     def default_language():
         def fget(self):
@@ -254,9 +226,7 @@ class LilyPondParser(AbjadObject):
             self._default_language = arg
         return property(**locals())
 
-
     ### PRIVATE METHODS ###
-
 
     def _apply_spanners(self, music):
 
@@ -408,10 +378,8 @@ class LilyPondParser(AbjadObject):
             if instances:
                 raise Exception('Unterminated %s.' % klass.__name__)
 
-
     def _assign_variable(self, identifier, value):
         self._scope_stack[-1][identifier] = value
-
 
     def _backup_token(self, token_type, token_value):
         if self._debug:
@@ -435,7 +403,6 @@ class LilyPondParser(AbjadObject):
             token.lexpos = 0
             token.lineno = 0
             self._push_extra_token(token)
-
 
     def _construct_context_specced_music(self, context, optional_id, optional_context_mod, music):
         known_contexts = {
@@ -472,7 +439,6 @@ class LilyPondParser(AbjadObject):
             mark(context)
 
         return context
-
 
     def _construct_sequential_music(self, music):
         # mark sorting could be rewritten into a single list, using tuplets,
@@ -535,7 +501,6 @@ class LilyPondParser(AbjadObject):
 
         return container
 
-
     def _construct_simultaneous_music(self, music):
         def is_separator(x):
             if isinstance(x, _LilyPondEvent):
@@ -563,7 +528,6 @@ class LilyPondParser(AbjadObject):
 
         return container
 
-
     def _get_span_events(self, leaf):
         annotations = marktools.get_annotations_attached_to_component(leaf)
         if annotations:
@@ -573,7 +537,6 @@ class LilyPondParser(AbjadObject):
             elif 1 < len(spanners_annotations):
                 raise Exception('Multiple span events lists attached to %s' % leaf)
         return []
-
 
     def _process_post_events(self, leaf, post_events):
         for post_event in post_events:
@@ -588,25 +551,20 @@ class LilyPondParser(AbjadObject):
                     annotation = annotation[0]
                 annotation.value.append(post_event)
 
-
     def _push_variable_scope(self):
         self._scope_stack.append({})
-
 
     def _pop_variable_scope(self):
         if self._scope_stack:
             self._scope_stack.pop()
 
-
     def _push_extra_token(self, token):
         self._parser.lookaheadstack.append(token)
-
 
     def _relex_lookahead(self):
         difference = self._parser.lookahead.lexpos - self._lexer.lexpos
         self._lexer.skip(difference)
         self._parser.lookahead = None
-
 
     def _reparse_token(self, predicate, token_type, token_value):
         if self._debug:
@@ -629,7 +587,6 @@ class LilyPondParser(AbjadObject):
         reparse.lexpos = 0
         self._parser.lookahead = reparse
 
-
     def _reset_parser_variables(self):
         try:
             self._parser.restart()
@@ -643,13 +600,11 @@ class LilyPondParser(AbjadObject):
         self._pitch_names = self._language_pitch_names[self.default_language]
         self._repeated_chords = {}
 
-
     def _resolve_identifier(self, identifier):
         for scope in reversed(self._scope_stack):
             if identifier in scope:
                 return scope[identifier]
         return None
-
 
     def _resolve_event_identifier(self, identifier):
         lookup = self._current_module[identifier] # without any leading slash
@@ -665,7 +620,6 @@ class LilyPondParser(AbjadObject):
             else:
                 event.span_direction = 'stop'
         return event
-
 
     def _span_event_name_to_spanner_class(self, name):
         spanners = {
@@ -683,7 +637,6 @@ class LilyPondParser(AbjadObject):
         if name in spanners:
             return spanners[name]
         raise Exception('Abjad cannot associate a spanner class with %s' % name)
-
 
     def _test_scheme_predicate(self, predicate, value):
         predicates = {
