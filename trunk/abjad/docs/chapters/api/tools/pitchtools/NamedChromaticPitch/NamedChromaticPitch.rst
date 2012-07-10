@@ -9,6 +9,8 @@ pitchtools.NamedChromaticPitch
 Read-only Properties
 --------------------
 
+.. autoattribute:: abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch.NamedChromaticPitch.accidental_spelling
+
 .. autoattribute:: abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch.NamedChromaticPitch.chromatic_pitch_class_name
 
 .. autoattribute:: abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch.NamedChromaticPitch.chromatic_pitch_class_number
