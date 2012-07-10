@@ -1,7 +1,6 @@
 from abjad.tools.lilypondparsertools.SchemeParser import SchemeParser
 from abjad.tools.lilypondparsertools._LilyPondDuration._LilyPondDuration import _LilyPondDuration
 from abjad.tools.lilypondparsertools._LilyPondFraction._LilyPondFraction import _LilyPondFraction
-from abjad.tools.lilypondparsertools.SchemeParserFinishedException import SchemeParserFinishedException
 from ply.lex import TOKEN
 from ply.lex import LexToken
 import copy

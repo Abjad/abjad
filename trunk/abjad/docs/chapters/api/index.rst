@@ -2078,6 +2078,7 @@ Internal packages
    tools/exceptiontools/ParallelError
    tools/exceptiontools/PartitionError
    tools/exceptiontools/PitchError
+   tools/exceptiontools/SchemeParserFinishedException
    tools/exceptiontools/SpacingError
    tools/exceptiontools/SpannerError
    tools/exceptiontools/SpannerPopulationError
@@ -2151,7 +2152,6 @@ Internal packages
 
    tools/lilypondparsertools/LilyPondParser/LilyPondParser
    tools/lilypondparsertools/SchemeParser/SchemeParser
-   tools/lilypondparsertools/SchemeParserFinishedException/SchemeParserFinishedException
 
 :py:mod:`offsettools <abjad.tools.offsettools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
