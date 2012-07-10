@@ -58,10 +58,18 @@ class Parser(AbjadObject):
 
     def __call__(self, input_string):
         '''Parse `input_string` and return result.'''
-        parsed = self.parser.parse(input_string, lexer=self.lexer)
+        if self.debug:
+            result = self.parser.parse_debug(
+                input_string,
+                lexer=self.lexer,
+                debug=self.logger)
+        else:
+            result = self.parser.parse(
+                input_string,
+                lexer=self.lexer)
         if hasattr(self, '_cleanup'):
-            parsed = self._cleanup(parsed)
-        return parsed
+            result = self._cleanup(result)
+        return result
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
