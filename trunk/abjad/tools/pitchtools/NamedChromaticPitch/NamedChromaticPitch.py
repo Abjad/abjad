@@ -292,11 +292,9 @@ class NamedChromaticPitch(PitchObject):
 
     @property
     def accidental_spelling(self):
-        '''Read-only accidental spelling:
+        '''Read-only accidental spelling::
 
-        ::
-
-            >>> NamedChromaticPitch("c").accidental_spelling
+            >>> pitchtools.NamedChromaticPitch("c").accidental_spelling
             'mixed'
 
         Return string.
