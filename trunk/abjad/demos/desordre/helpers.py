@@ -42,7 +42,9 @@ def measure_build(pitches):
 
 def desordre_cell(pitches):
     '''Returns a parallel container encapsulating a Ligeti "cell".'''
+
     pitchtools.NamedChromaticPitch.accidental_spelling = 'sharps'
+
     notes = [Note(p, (1, 8)) for p in pitches]
     beamtools.BeamSpanner(notes)
     spannertools.SlurSpanner(notes)
@@ -63,6 +65,9 @@ def desordre_cell(pitches):
     # make all 1/8 beats breakable
     for n in v_lower.leaves[:-1]:
         marktools.BarLine('')(n)
+
+    pitchtools.NamedChromaticPitch.accidental_spelling = 'mixed'
+
     return p
 
 
