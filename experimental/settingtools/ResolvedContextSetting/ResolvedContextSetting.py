@@ -1,4 +1,4 @@
-from experimental.specificationtools.ContextSetting import ContextSetting
+from experimental.settingtools.ContextSetting import ContextSetting
 
 
 class ResolvedContextSetting(ContextSetting):

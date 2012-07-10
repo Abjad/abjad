@@ -4,7 +4,6 @@ from experimental.specificationtools.Division import Division
 from experimental.specificationtools.DivisionList import DivisionList
 from experimental.selectortools.DivisionOldSelector import DivisionOldSelector
 from experimental.specificationtools.RegionDivisionList import RegionDivisionList
-from experimental.specificationtools.ResolvedContextSetting import ResolvedContextSetting
 from experimental.specificationtools.ScopedValue import ScopedValue
 from experimental.specificationtools.SegmentDivisionList import SegmentDivisionList
 from experimental.specificationtools.SegmentInventory import SegmentInventory
@@ -381,11 +380,12 @@ class ScoreSpecification(Specification):
         return region_division_lists
 
     def make_resolved_setting(self, setting):
-        if isinstance(setting, ResolvedContextSetting):
+        from experimental import settingtools
+        if isinstance(setting, settingtools.ResolvedContextSetting):
             return setting
         value = self.resolve_setting_source(setting)
         arguments = setting._mandatory_argument_values + (value, )
-        resolved_setting = ResolvedContextSetting(*arguments, 
+        resolved_setting = settingtools.ResolvedContextSetting(*arguments, 
             persistent=setting.persistent, truncate=setting.truncate, fresh=setting.fresh)
         return resolved_setting
 

@@ -5,7 +5,6 @@ from experimental.specificationtools.AttributeRetrievalRequest import AttributeR
 from experimental.specificationtools.Callback import Callback
 from experimental.selectortools.DivisionOldSelector import DivisionOldSelector
 from experimental.specificationtools.HandlerRequest import HandlerRequest
-from experimental.specificationtools.ResolvedContextSetting import ResolvedContextSetting
 from experimental.specificationtools.Specification import Specification
 from experimental.specificationtools.StatalServer import StatalServer
 from experimental.specificationtools.StatalServerRequest import StatalServerRequest
@@ -231,6 +230,7 @@ class SegmentSpecification(Specification):
     def get_resolved_value_with_fresh(self, attribute, context_name, include_truncate=False, timespan=None):
         '''Return value from resolved setting because context proxy stores resolved settings.
         '''
+        from experimental import settingtools
         #self._debug((attribute, context_name))
         context = componenttools.get_first_component_in_expr_with_name(self.score_model, context_name)
         for component in componenttools.get_improper_parentage_of_component(context):
@@ -242,7 +242,7 @@ class SegmentSpecification(Specification):
                 continue
             elif len(settings) == 1:
                 setting = settings[0]
-                assert isinstance(setting, ResolvedContextSetting)
+                assert isinstance(setting, settingtools.ResolvedContextSetting)
                 if include_truncate:
                     return setting.value, setting.fresh, setting.truncate
                 else:

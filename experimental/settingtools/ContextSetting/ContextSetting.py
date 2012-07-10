@@ -11,6 +11,7 @@ class ContextSetting(Setting):
     and optional `persistent`, `truncate`, `fresh`::
 
         >>> from experimental import selectortools
+        >>> from experimental import settingtools
         >>> from experimental import specificationtools
         >>> from experimental import timespantools
 
@@ -21,12 +22,12 @@ class ContextSetting(Setting):
 
     ::
 
-        >>> setting = specificationtools.ContextSetting(target, 'time_signatures', [(4, 8), (3, 8)], fresh=False)
+        >>> setting = settingtools.ContextSetting(target, 'time_signatures', [(4, 8), (3, 8)], fresh=False)
 
     ::
 
         >>> z(setting)
-        specificationtools.ContextSetting(
+        settingtools.ContextSetting(
             selectortools.SingleContextSelection(
                 'Voice 1',
                 timespan=timespantools.SingleSourceTimespan(
