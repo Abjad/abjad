@@ -190,6 +190,7 @@ Unstable packages (load manually)
 
    experimental/selectortools/BackgroundElementSelector/BackgroundElementSelector
    experimental/selectortools/BackgroundElementSliceSelector/BackgroundElementSliceSelector
+   experimental/selectortools/InequalitySelector/InequalitySelector
    experimental/selectortools/ItemSelector/ItemSelector
    experimental/selectortools/RatioSelector/RatioSelector
    experimental/selectortools/Selector/Selector

@@ -1,7 +1,8 @@
+from experimental.selectortools.InequalitySelector import InequalitySelector
 from experimental.selectortools.SliceSelector import SliceSelector
 
 
-class MultipleContextCounttimeComponentSliceSelector(SliceSelector):
+class MultipleContextCounttimeComponentSliceSelector(SliceSelector, InequalitySelector):
     r'''.. versionadded:: 1.0
 
     ::
@@ -41,13 +42,11 @@ class MultipleContextCounttimeComponentSliceSelector(SliceSelector):
 
     def __init__(self, contexts=None, inequality=None, klass=None, predicate=None, start=None, stop=None):
         from experimental import specificationtools
-        from experimental import timespantools
-        assert isinstance(inequality, (timespantools.TimespanInequality, type(None))), repr(inequality)
         assert klass is None or specificationtools.is_counttime_component_klass_expr(klass), repr(klass)
         assert isinstance(predicate, (specificationtools.Callback, type(None))), repr(predicate)
         SliceSelector.__init__(self, start=start, stop=stop)
+        InequalitySelector.__init__(self, inequality=inequality)
         self._contexts = contexts
-        self._inequality = inequality
         self._klass = klass
         self._predicate = predicate
 
@@ -56,10 +55,6 @@ class MultipleContextCounttimeComponentSliceSelector(SliceSelector):
     @property
     def contexts(self):
         return self._contexts
-
-    @property
-    def inequality(self):
-        return self._inequality
 
     @property
     def klass(self):

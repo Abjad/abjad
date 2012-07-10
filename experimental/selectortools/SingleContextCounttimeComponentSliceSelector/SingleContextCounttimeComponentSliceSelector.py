@@ -1,9 +1,10 @@
 from abjad.tools import voicetools
 from experimental.specificationtools.Callback import Callback
+from experimental.selectortools.InequalitySelector import InequalitySelector
 from experimental.selectortools.SliceSelector import SliceSelector
 
 
-class SingleContextCounttimeComponentSliceSelector(SliceSelector):
+class SingleContextCounttimeComponentSliceSelector(SliceSelector, InequalitySelector):
     r'''.. versionadded:: 1.0
 
     Select zero or more counttime components in `reference` container
@@ -86,26 +87,17 @@ class SingleContextCounttimeComponentSliceSelector(SliceSelector):
 
     def __init__(self, reference, inequality=None, klass=None, predicate=None, start=None, stop=None):
         from experimental import specificationtools
-        from experimental import timespantools
         assert self._interprets_as_sliceable_selector(reference), repr(reference)
-        assert isinstance(inequality, (timespantools.TimespanInequality, type(None))), repr(inequality)
         assert klass is None or specificationtools.is_counttime_component_klass_expr(klass), repr(klass)
         assert isinstance(predicate, (Callback, type(None))), repr(predicate)
         SliceSelector.__init__(self, start=start, stop=stop)
+        InequalitySelector.__init__(self, inequality=inequality)
         self._reference = self._reference_to_storable_form(reference)
         self._inequality = inequality
         self._klass = klass
         self._predicate = predicate
 
     ### READ-ONLY PUBLIC ATTRIBUTES ###
-
-    @property
-    def inequality(self):
-        '''SingleSourceTimespan inequality of counttime component selector specified by user.
-
-        Return timespan inequality or none.
-        '''
-        return self._inequality
 
     @property
     def klass(self):

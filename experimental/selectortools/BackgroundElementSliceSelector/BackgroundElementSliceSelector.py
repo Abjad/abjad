@@ -1,9 +1,10 @@
 from abc import ABCMeta
 from abc import abstractmethod
+from experimental.selectortools.InequalitySelector import InequalitySelector
 from experimental.selectortools.SliceSelector import SliceSelector
 
 
-class BackgroundElementSliceSelector(SliceSelector):
+class BackgroundElementSliceSelector(SliceSelector, InequalitySelector):
     r'''.. versionadded:: 1.0
 
     Select zero or more contiguous background elements.
@@ -14,22 +15,12 @@ class BackgroundElementSliceSelector(SliceSelector):
     @abstractmethod
     def __init__(self, klass, inequality=None, start=None, stop=None):
         from experimental import specificationtools
-        from experimental import timespantools
         assert specificationtools.is_background_element_klass(klass), repr(klass)
-        assert isinstance(inequality, (timespantools.TimespanInequality, type(None))), repr(inequality)
         SliceSelector.__init__(self, start=start, stop=stop)
+        InequalitySelector.__init__(self, inequality=inequality)
         self._klass = klass
-        self._inequality = inequality
 
     ### READ-ONLY PUBLIC PROPERTIES ###
-
-    @property
-    def inequality(self):
-        '''Background element slice selector timespan inequality.
-
-        Return timespan inequality or none.
-        '''
-        return self._inequality
 
     @property
     def klass(self):

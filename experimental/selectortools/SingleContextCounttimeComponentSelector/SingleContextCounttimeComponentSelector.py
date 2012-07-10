@@ -5,11 +5,12 @@ from abjad.tools import voicetools
 from experimental.specificationtools.Callback import Callback
 from experimental.specificationtools.Division import Division
 from experimental.specificationtools.SegmentSpecification import SegmentSpecification
+from experimental.selectortools.InequalitySelector import InequalitySelector
 from experimental.selectortools.ItemSelector import ItemSelector
 import types
 
 
-class SingleContextCounttimeComponentSelector(ItemSelector):
+class SingleContextCounttimeComponentSelector(ItemSelector, InequalitySelector):
     r'''.. versionadded:: 1.0
 
         >>> from experimental import selectortools
@@ -191,14 +192,12 @@ class SingleContextCounttimeComponentSelector(ItemSelector):
 
     def __init__(self, reference, inequality=None, klass=None, predicate=None, index=None):
         from experimental import specificationtools
-        from experimental import timespantools
         assert self._interprets_as_sliceable_selector(reference), repr(reference)
-        assert isinstance(inequality, (timespantools.TimespanInequality, type(None))), repr(inequality)
         assert klass is None or specificationtools.is_counttime_component_klass_expr(klass), repr(klass)
         assert isinstance(predicate, (Callback, type(None))), repr(predicate)
         ItemSelector.__init__(self, index=index)
+        InequalitySelector.__init__(self, inequality=inequality)
         self._reference = self._reference_to_storable_form(reference)
-        self._inequality = inequality
         self._klass = klass
         self._predicate = predicate
     
@@ -248,24 +247,6 @@ class SingleContextCounttimeComponentSelector(ItemSelector):
         Return integer or none.
         '''
         return self._index
-
-    @property
-    def inequality(self):
-        '''SingleSourceTimespan inequality of counttime component selector specified by user::
-
-            >>> z(selector.inequality)
-            timespantools.TimespanInequality(
-                timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
-                timespantools.SingleSourceTimespan(
-                    selector=selectortools.SegmentSelector(
-                        index='red'
-                        )
-                    )
-                )
-
-        Return timespan inequality or none.
-        '''
-        return self._inequality
 
     @property
     def klass(self):

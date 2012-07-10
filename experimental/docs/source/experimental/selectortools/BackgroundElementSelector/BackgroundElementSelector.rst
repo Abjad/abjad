@@ -13,6 +13,8 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.BackgroundElementSelector.BackgroundElementSelector.BackgroundElementSelector.inequality
 
+    Inherited from :py:class:`selectortools.InequalitySelector <experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector>`
+
 .. autoattribute:: experimental.selectortools.BackgroundElementSelector.BackgroundElementSelector.BackgroundElementSelector.klass
 
 .. autoattribute:: experimental.selectortools.BackgroundElementSelector.BackgroundElementSelector.BackgroundElementSelector.storage_format

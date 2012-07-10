@@ -15,7 +15,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.SingleContextDivisionSelector.SingleContextDivisionSelector.SingleContextDivisionSelector.inequality
 
-    Inherited from :py:class:`selectortools.BackgroundElementSelector <experimental.selectortools.BackgroundElementSelector.BackgroundElementSelector.BackgroundElementSelector>`
+    Inherited from :py:class:`selectortools.InequalitySelector <experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector>`
 
 .. autoattribute:: experimental.selectortools.SingleContextDivisionSelector.SingleContextDivisionSelector.SingleContextDivisionSelector.klass
 

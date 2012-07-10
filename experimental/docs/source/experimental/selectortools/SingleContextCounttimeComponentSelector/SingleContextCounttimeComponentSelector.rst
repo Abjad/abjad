@@ -13,6 +13,8 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.SingleContextCounttimeComponentSelector.SingleContextCounttimeComponentSelector.SingleContextCounttimeComponentSelector.inequality
 
+    Inherited from :py:class:`selectortools.InequalitySelector <experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector>`
+
 .. autoattribute:: experimental.selectortools.SingleContextCounttimeComponentSelector.SingleContextCounttimeComponentSelector.SingleContextCounttimeComponentSelector.klass
 
 .. autoattribute:: experimental.selectortools.SingleContextCounttimeComponentSelector.SingleContextCounttimeComponentSelector.SingleContextCounttimeComponentSelector.predicate

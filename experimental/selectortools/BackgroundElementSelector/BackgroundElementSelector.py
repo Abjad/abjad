@@ -1,10 +1,11 @@
 from abc import ABCMeta
 from abc import abstractmethod
 from abjad.tools import introspectiontools
+from experimental.selectortools.InequalitySelector import InequalitySelector
 from experimental.selectortools.ItemSelector import ItemSelector
 
 
-class BackgroundElementSelector(ItemSelector):
+class BackgroundElementSelector(ItemSelector, InequalitySelector):
     r'''.. versionadded:: 1.0
 
     Select exactly one background element.
@@ -19,12 +20,13 @@ class BackgroundElementSelector(ItemSelector):
     @abstractmethod
     def __init__(self, klass=None, inequality=None, index=0):
         from experimental import specificationtools
-        from experimental import timespantools
+        #from experimental import timespantools
         assert specificationtools.is_background_element_klass(klass), repr(klass)
-        assert isinstance(inequality, (timespantools.TimespanInequality, type(None))), repr(inequality)
+        #assert isinstance(inequality, (timespantools.TimespanInequality, type(None))), repr(inequality)
         ItemSelector.__init__(self, index=index)
+        InequalitySelector.__init__(self, inequality=inequality)
         self._klass = klass
-        self._inequality = inequality
+        #self._inequality = inequality
 
     ### SPECIAL METHODS ###
 
@@ -44,16 +46,6 @@ class BackgroundElementSelector(ItemSelector):
         Return integer or string.
         '''
         return self._index
-
-    @property
-    def inequality(self):
-        '''Background element selector inequality initialized by user.
-
-        Value of none is taken equal to the timespan of the entire score.
-
-        Return timespan inequality or none.
-        '''
-        return self._inequality
 
     @property
     def klass(self):
