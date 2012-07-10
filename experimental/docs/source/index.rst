@@ -75,6 +75,7 @@ Unstable packages (load manually)
    experimental/developerscripttools/RenameModulesScript/RenameModulesScript
    experimental/developerscripttools/ReplaceInFilesScript/ReplaceInFilesScript
    experimental/developerscripttools/ReplacePromptsScript/ReplacePromptsScript
+   experimental/developerscripttools/RunDoctestsScript/RunDoctestsScript
    experimental/developerscripttools/SvnAddAllScript/SvnAddAllScript
    experimental/developerscripttools/SvnCommitScript/SvnCommitScript
    experimental/developerscripttools/SvnMessageScript/SvnMessageScript
