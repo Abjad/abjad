@@ -11,17 +11,13 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.SingleContextTimespanSelector.SingleContextTimespanSelector.SingleContextTimespanSelector.context
 
-.. autoattribute:: experimental.selectortools.SingleContextTimespanSelector.SingleContextTimespanSelector.SingleContextTimespanSelector.contexts
-
-    Inherited from :py:class:`selectortools.MultipleContextTimespanSelector <experimental.selectortools.MultipleContextTimespanSelector.MultipleContextTimespanSelector.MultipleContextTimespanSelector>`
-
 .. autoattribute:: experimental.selectortools.SingleContextTimespanSelector.SingleContextTimespanSelector.SingleContextTimespanSelector.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. autoattribute:: experimental.selectortools.SingleContextTimespanSelector.SingleContextTimespanSelector.SingleContextTimespanSelector.timespan
 
-    Inherited from :py:class:`selectortools.MultipleContextTimespanSelector <experimental.selectortools.MultipleContextTimespanSelector.MultipleContextTimespanSelector.MultipleContextTimespanSelector>`
+    Inherited from :py:class:`selectortools.TimespanSelector <experimental.selectortools.TimespanSelector.TimespanSelector.TimespanSelector>`
 
 Special Methods
 ---------------
@@ -31,8 +27,6 @@ Special Methods
     Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.selectortools.SingleContextTimespanSelector.SingleContextTimespanSelector.SingleContextTimespanSelector.__eq__
-
-    Inherited from :py:class:`selectortools.MultipleContextTimespanSelector <experimental.selectortools.MultipleContextTimespanSelector.MultipleContextTimespanSelector.MultipleContextTimespanSelector>`
 
 .. automethod:: experimental.selectortools.SingleContextTimespanSelector.SingleContextTimespanSelector.SingleContextTimespanSelector.__ge__
 
@@ -56,7 +50,7 @@ Special Methods
 
 .. automethod:: experimental.selectortools.SingleContextTimespanSelector.SingleContextTimespanSelector.SingleContextTimespanSelector.__ne__
 
-    Inherited from :py:class:`selectortools.MultipleContextTimespanSelector <experimental.selectortools.MultipleContextTimespanSelector.MultipleContextTimespanSelector.MultipleContextTimespanSelector>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.selectortools.SingleContextTimespanSelector.SingleContextTimespanSelector.SingleContextTimespanSelector.__repr__
 
