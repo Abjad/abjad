@@ -195,6 +195,7 @@ Unstable packages (load manually)
    experimental/selectortools/RatioSelector/RatioSelector
    experimental/selectortools/Selector/Selector
    experimental/selectortools/SliceSelector/SliceSelector
+   experimental/selectortools/TimespanSelector/TimespanSelector
 
 .. rubric:: concrete classes
 

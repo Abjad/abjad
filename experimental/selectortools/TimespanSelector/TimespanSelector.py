@@ -3,12 +3,12 @@ from abc import abstractmethod
 from experimental.selectortools.Selector import Selector
 
 
-class InequalitySelector(Selector):
+class TimespanSelector(Selector):
     r'''.. versionadded:: 1.0
 
-    Inequality selector.
+    Timespan selector.
     '''
-
+    
     ### CLASS ATTRIBUTES ###
 
     __metaclass__ = ABCMeta
@@ -16,18 +16,18 @@ class InequalitySelector(Selector):
     ### INTIALIZER ###
 
     @abstractmethod
-    def __init__(self, inequality=None):
+    def __init__(self, timespan=None):
         from experimental import timespantools
-        assert isinstance(inequality, (timespantools.TimespanInequality, type(None))), repr(inequality)
+        assert isinstance(timespan, (timespantools.Timespan, type(None))), repr(timespan)
         Selector.__init__(self)
-        self._inequality = inequality
+        self._timespan = timespan
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
-    def inequality(self):
-        '''Inequality of selector.
-        
-        Return timespan inequality or none.
+    def timespan(self):
+        '''Timespan of inequality.
+    
+        Return timespan or none.
         '''
-        return self._inequality
+        return self._timespan
