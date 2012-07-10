@@ -42,12 +42,10 @@ class MultipleContextCounttimeComponentSliceSelector(SliceSelector):
     def __init__(self, contexts=None, inequality=None, klass=None, predicate=None, start=None, stop=None):
         from experimental import specificationtools
         from experimental import timespantools
-        #assert self._interprets_as_sliceable_selector(reference), repr(reference)
         assert isinstance(inequality, (timespantools.TimespanInequality, type(None))), repr(inequality)
         assert klass is None or specificationtools.is_counttime_component_klass_expr(klass), repr(klass)
         assert isinstance(predicate, (specificationtools.Callback, type(None))), repr(predicate)
         SliceSelector.__init__(self, start=start, stop=stop)
-        #self._contexts = self._reference_to_storable_form(reference)
         self._contexts = contexts
         self._inequality = inequality
         self._klass = klass

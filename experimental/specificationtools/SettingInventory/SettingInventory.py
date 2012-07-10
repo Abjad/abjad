@@ -4,6 +4,10 @@ from experimental.specificationtools.Setting import Setting
 
 
 class SettingInventory(ObjectInventory):
+    r'''.. versionadded:: 1.0
+
+    Setting inventory.
+    '''
 
     ### CLASS ATTRIBUTES ###
 
