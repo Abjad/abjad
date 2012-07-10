@@ -1,10 +1,3 @@
-import itertools
-import logging
-import os
-
-from ply import lex, yacc
-from ply.lex import LexToken
-
 from abjad.tools import abctools
 from abjad.tools import beamtools
 from abjad.tools import chordtools
@@ -29,10 +22,12 @@ from abjad.tools.lilypondparsertools._LilyPondLexicalDefinition._LilyPondLexical
     _LilyPondLexicalDefinition
 from abjad.tools.lilypondparsertools._LilyPondSyntacticalDefinition._LilyPondSyntacticalDefinition import \
     _LilyPondSyntacticalDefinition
-from abjad.tools.lilypondparsertools._NullHandler._NullHandler import _NullHandler
 from abjad.tools.lilypondparsertools._SyntaxNode._SyntaxNode import _SyntaxNode as Node
 from abjad.tools.lilypondparsertools._parse import _parse
 from abjad.tools.lilypondparsertools._parse_debug import _parse_debug
+from ply import lex, yacc
+from ply.lex import LexToken
+import itertools
 
 
 # apply monkey patch
