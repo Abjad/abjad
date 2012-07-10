@@ -220,6 +220,18 @@ Unstable packages (load manually)
    experimental/selectortools/SingleContextDivisionSliceSelector/SingleContextDivisionSliceSelector
    experimental/selectortools/SingleContextSelection/SingleContextSelection
 
+.. rubric:: functions
+
+.. toctree::
+   :maxdepth: 1
+
+   experimental/selectortools/expr_to_component_name
+   experimental/selectortools/expr_to_score_name
+   experimental/selectortools/expr_to_segment_name
+   experimental/selectortools/is_background_element_klass
+   experimental/selectortools/is_counttime_component_klass_expr
+   experimental/selectortools/request_divisions
+
 :py:mod:`specificationtools <experimental.specificationtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -262,18 +274,6 @@ Unstable packages (load manually)
    experimental/specificationtools/StatalServerRequest/StatalServerRequest
    experimental/specificationtools/ValueRetrievalIndicator/ValueRetrievalIndicator
    experimental/specificationtools/VoiceDivisionList/VoiceDivisionList
-
-.. rubric:: functions
-
-.. toctree::
-   :maxdepth: 1
-
-   experimental/specificationtools/expr_to_component_name
-   experimental/specificationtools/expr_to_score_name
-   experimental/specificationtools/expr_to_segment_name
-   experimental/specificationtools/is_background_element_klass
-   experimental/specificationtools/is_counttime_component_klass_expr
-   experimental/specificationtools/request_divisions
 
 :py:mod:`timespantools <experimental.timespantools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

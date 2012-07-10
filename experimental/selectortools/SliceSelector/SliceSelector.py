@@ -19,12 +19,12 @@ class SliceSelector(Selector):
     ### PRIVATE METHODS ###
 
     def _process_contexts(self, contexts):
-        from experimental import specificationtools
+        from experimental import selectortools
         if contexts is None:
             return contexts
         result = []
         for context in contexts:
-            component_name = specificationtools.expr_to_component_name(context)
+            component_name = selectortools.expr_to_component_name(context)
             result.append(component_name)
         return result
 

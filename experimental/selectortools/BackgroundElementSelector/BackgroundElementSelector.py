@@ -19,14 +19,11 @@ class BackgroundElementSelector(ItemSelector, InequalitySelector):
     
     @abstractmethod
     def __init__(self, klass=None, inequality=None, index=0):
-        from experimental import specificationtools
-        #from experimental import timespantools
-        assert specificationtools.is_background_element_klass(klass), repr(klass)
-        #assert isinstance(inequality, (timespantools.TimespanInequality, type(None))), repr(inequality)
+        from experimental import selectortools
+        assert selectortools.is_background_element_klass(klass), repr(klass)
         ItemSelector.__init__(self, index=index)
         InequalitySelector.__init__(self, inequality=inequality)
         self._klass = klass
-        #self._inequality = inequality
 
     ### SPECIAL METHODS ###
 

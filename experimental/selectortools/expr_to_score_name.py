@@ -3,6 +3,7 @@ def expr_to_score_name(expr):
     
     Change score specification to score specification name::
 
+        >>> from experimental import selectortools
         >>> from experimental import specificationtools
 
     ::
@@ -12,7 +13,7 @@ def expr_to_score_name(expr):
 
     ::
 
-        >>> specificationtools.expr_to_score_name(score_specification)
+        >>> selectortools.expr_to_score_name(score_specification)
         'Grouped Rhythmic Staves Score'
 
     Change score to score name::
@@ -21,12 +22,12 @@ def expr_to_score_name(expr):
 
     ::
 
-        >>> specificationtools.expr_to_score_name(score)
+        >>> selectortools.expr_to_score_name(score)
         'Colored Score'
 
     Leave string unchanged::
 
-        >>> specificationtools.expr_to_score_name('Colored Score')
+        >>> selectortools.expr_to_score_name('Colored Score')
         'Colored Score'
 
     Raise exception on nonscore specification, nonscore, nonstring input.
@@ -37,7 +38,7 @@ def expr_to_score_name(expr):
     from experimental import specificationtools
 
     if isinstance(expr, specificationtools.ScoreSpecification):
-        return expr.name
+        return expr.score_name
     if isinstance(expr, scoretools.Score):
         return expr.name
     elif isinstance(expr, str):

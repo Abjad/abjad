@@ -4,6 +4,7 @@ def expr_to_segment_name(expr):
     Change segment specification to segment name::
 
         >>> from abjad.tools import scoretemplatetools
+        >>> from experimental import selectortools
         >>> from experimental import specificationtools
 
     ::
@@ -18,12 +19,12 @@ def expr_to_segment_name(expr):
 
     ::
 
-        >>> specificationtools.expr_to_segment_name(segment)
+        >>> selectortools.expr_to_segment_name(segment)
         'red'
 
     Leave string unchanged::
 
-        >>> specificationtools.expr_to_segment_name('red')
+        >>> selectortools.expr_to_segment_name('red')
         'red'
 
     Raise exception on nonsegment, nonstring input.

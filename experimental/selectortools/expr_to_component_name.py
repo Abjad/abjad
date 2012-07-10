@@ -3,6 +3,7 @@ def expr_to_component_name(expr):
     
     Change component to component name::
 
+        >>> from experimental import selectortools
         >>> from experimental import specificationtools
 
     ::
@@ -11,12 +12,12 @@ def expr_to_component_name(expr):
 
     ::
 
-        >>> specificationtools.expr_to_component_name(voice)
+        >>> selectortools.expr_to_component_name(voice)
         'Voice 1'
 
     Leave string unchanged::
 
-        >>> specificationtools.expr_to_component_name('Voice 1')
+        >>> selectortools.expr_to_component_name('Voice 1')
         'Voice 1'
 
     Raise exception on noncomponent, nonstring input.

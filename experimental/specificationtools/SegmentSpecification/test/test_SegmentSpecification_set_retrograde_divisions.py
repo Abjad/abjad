@@ -1,5 +1,5 @@
 from abjad.tools import *
-from experimental import specificationtools
+from experimental import selectortools
 from experimental.specificationtools import helpers
 from experimental.specificationtools import library
 from experimental.specificationtools import ScoreSpecification
@@ -17,8 +17,8 @@ def test_SegmentSpecification_set_retrograde_divisions_01():
     segment.set_divisions('Voice 1', [(3, 16)], truncate=True)
     segment.set_divisions('Voice 2', [(4, 16)], truncate=True)
 
-    source_1 = specificationtools.request_divisions('1', 'Voice 1', segment_count=1)
-    source_2 = specificationtools.request_divisions('1', 'Voice 2', segment_count=1)
+    source_1 = selectortools.request_divisions('1', 'Voice 1', segment_count=1)
+    source_2 = selectortools.request_divisions('1', 'Voice 2', segment_count=1)
 
     segment.set_retrograde_divisions(segment.v3, source_1)
     segment.set_retrograde_divisions(segment.v4, source_2)

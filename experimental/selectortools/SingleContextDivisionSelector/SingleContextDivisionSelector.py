@@ -85,11 +85,11 @@ class SingleContextDivisionSelector(BackgroundElementSelector):
     ### INITIALIZER ###
 
     def __init__(self, voice, inequality=None, index=0):
-        from abjad.tools import voicetools
+        from experimental import selectortools
         from experimental import specificationtools
         BackgroundElementSelector.__init__(
             self, klass=specificationtools.Division, index=index, inequality=inequality)
-        voice = specificationtools.expr_to_component_name(voice)
+        voice = selectortools.expr_to_component_name(voice)
         self._voice = voice
 
     ### READ-ONLY PUBLIC PROPERTIES ###

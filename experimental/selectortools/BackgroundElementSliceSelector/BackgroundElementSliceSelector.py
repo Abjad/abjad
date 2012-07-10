@@ -14,8 +14,8 @@ class BackgroundElementSliceSelector(SliceSelector, InequalitySelector):
 
     @abstractmethod
     def __init__(self, klass, inequality=None, start=None, stop=None):
-        from experimental import specificationtools
-        assert specificationtools.is_background_element_klass(klass), repr(klass)
+        from experimental import selectortools
+        assert selectortools.is_background_element_klass(klass), repr(klass)
         SliceSelector.__init__(self, start=start, stop=stop)
         InequalitySelector.__init__(self, inequality=inequality)
         self._klass = klass
