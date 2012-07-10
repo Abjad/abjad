@@ -4,10 +4,10 @@ from abjad.demos.bach.chorale import es_ist_genug
 
 def build_chorale():
 
-    soprano = Voice(iotools.parse_lilypond_input_string(es_ist_genug['soprano'])[:])
-    alto = Voice(iotools.parse_lilypond_input_string(es_ist_genug['alto'])[:])
-    tenor = Voice(iotools.parse_lilypond_input_string(es_ist_genug['tenor'])[:])
-    bass = Voice(iotools.parse_lilypond_input_string(es_ist_genug['bass'])[:])
+    soprano = p(r'\new Voice = "soprano" {{ {} }}'.format(es_ist_genug['soprano']))
+    alto =    p(r'\new Voice = "alto" {{ {} }}'.format(es_ist_genug['alto']))
+    tenor =   p(r'\new Voice = "tenor" {{ {} }}'.format(es_ist_genug['tenor']))
+    bass =    p(r'\new Voice = "bass" {{ {} }}'.format(es_ist_genug['bass']))
 
     treble_staff = Staff([soprano, alto])
     bass_staff = Staff([tenor, bass])
@@ -19,9 +19,9 @@ def build_chorale():
     contexttools.KeySignatureMark(*es_ist_genug['key'])(bass_staff)
     contexttools.ClefMark('bass')(bass_staff)
 
-    marktools.Barline('|.')(treble_staff)
-    marktools.Barline('|.')(bass_staff)
+    marktools.BarLine('|.')(treble_staff)
+    marktools.BarLine('|.')(bass_staff)
 
     piano_staff = scoretools.PianoStaff([treble_staff, bass_staff])
 
-    return paino_staff
+    return piano_staff
