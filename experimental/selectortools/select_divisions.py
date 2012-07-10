@@ -4,16 +4,22 @@ def select_divisions(voice, start_segment, segment_count=1):
     Return division retrieval request.
     '''
     from experimental import selectortools
-    from experimental import specificationtools
+    from experimental import timespantools
     
     # process input
-    start_segment = selectortools.expr_to_segment_name(start_segment)
-    voice = selectortools.expr_to_component_name(voice)
+    start_segment_name = selectortools.expr_to_segment_name(start_segment)
+    voice_name = selectortools.expr_to_component_name(voice)
 
     # populate request
-    request = selectortools.DivisionOldSelector(voice, start_segment, segment_count=segment_count)
+    request = selectortools.DivisionOldSelector(voice_name, start_segment_name, segment_count=segment_count)
 
-    # make stuff ... then populate request
+    # make selector
+    expression = '{!r} + {}'.format(start_segment_name, segment_count - 1)
+    held_expression = selectortools.HeldExpression(expression)
+    start, stop = start_segment_name, held_expression
+    selector = selectortools.SegmentSliceSelector(start=start, stop=stop)
+    inequality = timespantools.expr_starts_during_timespan(selector.timespan)
+    selector = selectortools.SingleContextDivisionSliceSelector(voice_name, inequality=inequality)
 
     # return request
     return request
