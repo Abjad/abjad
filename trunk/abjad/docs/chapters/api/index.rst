@@ -509,13 +509,10 @@ Composition packages
    tools/iotools/log
    tools/iotools/ly
    tools/iotools/p
-   tools/iotools/parse_lilypond_input_string
    tools/iotools/pdf
    tools/iotools/play
    tools/iotools/profile_expr
    tools/iotools/redo
-   tools/iotools/remove_abjad___pycache___directories
-   tools/iotools/remove_abjad_pyc_files
    tools/iotools/save_last_ly_as
    tools/iotools/save_last_pdf_as
    tools/iotools/show
@@ -1977,6 +1974,7 @@ Internal packages
    tools/configurationtools/make_abjad_default_config_file_into_dict
    tools/configurationtools/make_abjad_user_config_file_into_dict
    tools/configurationtools/read_abjad_user_config_file
+   tools/configurationtools/setup_abjad_directory
    tools/configurationtools/update_abjad_user_config_file
    tools/configurationtools/verify_abjad_user_config_file
    tools/configurationtools/write_abjad_user_config_file
