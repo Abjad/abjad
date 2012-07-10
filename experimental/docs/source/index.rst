@@ -232,7 +232,7 @@ Unstable packages (load manually)
    experimental/selectortools/expr_to_segment_name
    experimental/selectortools/is_background_element_klass
    experimental/selectortools/is_counttime_component_klass_expr
-   experimental/selectortools/request_divisions
+   experimental/selectortools/select_divisions
 
 :py:mod:`settingtools <experimental.settingtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

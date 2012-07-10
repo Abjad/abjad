@@ -17,7 +17,7 @@ def test_SegmentSpecification_set_rotated_divisions_01():
 
     segment.set_divisions(segment.v1, [(3, 16)])
 
-    source = selectortools.request_divisions('Voice 1', 'T1', segment_count=1)
+    source = selectortools.select_divisions('Voice 1', 'T1', segment_count=1)
     segment.set_rotated_divisions(segment.v2, source, -1)
     segment.set_rotated_divisions(segment.v3, source, -2)
     segment.set_rotated_divisions(segment.v4, source, -3)
@@ -56,7 +56,7 @@ def test_SegmentSpecification_set_rotated_divisions_02():
     
     segment.set_divisions(segment.v1, [(3, 16)], truncate=True)
     
-    source = selectortools.request_divisions('Voice 1', 'T1', segment_count=1)
+    source = selectortools.select_divisions('Voice 1', 'T1', segment_count=1)
     segment.set_rotated_divisions(segment.v2, source, -1)
     segment.set_rotated_divisions(segment.v3, source, -2)
     segment.set_rotated_divisions(segment.v4, source, -3)

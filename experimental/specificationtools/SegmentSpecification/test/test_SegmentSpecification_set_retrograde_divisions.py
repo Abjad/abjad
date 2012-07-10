@@ -17,8 +17,8 @@ def test_SegmentSpecification_set_retrograde_divisions_01():
     segment.set_divisions('Voice 1', [(3, 16)], truncate=True)
     segment.set_divisions('Voice 2', [(4, 16)], truncate=True)
 
-    source_1 = selectortools.request_divisions('Voice 1', '1', segment_count=1)
-    source_2 = selectortools.request_divisions('Voice 2', '1', segment_count=1)
+    source_1 = selectortools.select_divisions('Voice 1', '1', segment_count=1)
+    source_2 = selectortools.select_divisions('Voice 2', '1', segment_count=1)
 
     segment.set_retrograde_divisions(segment.v3, source_1)
     segment.set_retrograde_divisions(segment.v4, source_2)

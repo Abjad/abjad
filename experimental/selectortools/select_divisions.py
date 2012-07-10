@@ -1,4 +1,4 @@
-def request_divisions(voice, start_segment, segment_count=1):
+def select_divisions(voice, start_segment, segment_count=1):
     r'''.. versionadded:: 1.0
 
     Return division retrieval request.
