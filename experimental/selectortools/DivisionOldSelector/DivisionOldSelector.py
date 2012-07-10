@@ -1,11 +1,11 @@
 from experimental.specificationtools.RetrievalRequest import RetrievalRequest
 
 
-# TODO: replace DivisionOldSelector with SingleContextDivisionSelector
+# TODO: replace DivisionOldSelector with SingleContextDivisionSliceSelector
 class DivisionOldSelector(RetrievalRequest):
     r'''.. versionadded:: 1.0
 
-    .. note:: deprecated. Use SingleContextDivisionSelector instead.
+    .. note:: deprecated. Use SingleContextDivisionSliceSelector instead.
 
     The `voice` parameter specifies the voice whose divisions are to be copied.
 

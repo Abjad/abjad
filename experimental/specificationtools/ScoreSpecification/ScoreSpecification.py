@@ -264,7 +264,7 @@ class ScoreSpecification(Specification):
         divisions = divisions[1]
         if request.callback is not None:
             divisions = request.callback(divisions)
-        divisions = self.apply_offset_and_count(request, divisions)
+        #divisions = self.apply_offset_and_count(request, divisions)
         return divisions
 
     def index(self, segment):

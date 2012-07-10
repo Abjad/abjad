@@ -1,5 +1,5 @@
 1. Implement selection-creation courtesy methods.
 
-2. Replace DivisionOldSelector in SingleContextDivisionSelector.
+2. Replace DivisionOldSelector in SingleContextDivisionSliceSelector.
 
 3. Extend DivisionList initializer with string handling.

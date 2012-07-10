@@ -13,5 +13,7 @@ def request_divisions(voice, start_segment, segment_count=1):
     # populate request
     request = selectortools.DivisionOldSelector(voice, start_segment, segment_count=segment_count)
 
+    # make stuff ... then populate request
+
     # return request
     return request
