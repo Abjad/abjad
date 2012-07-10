@@ -269,12 +269,6 @@ class SegmentSpecification(Specification):
     def retrieve_resolved_value(self, attribute, **kwargs):
         return Specification.retrieve_resolved_value(self, attribute, self.name, **kwargs)
 
-    def select(self):
-        '''Select all segment contexts over timespan of segment.
-        '''
-        from experimental import specificationtools
-        return selectortools.MultipleContextSelection()
-
     def select_background_measures_that_start_during_segment(self, start=None, stop=None):
         '''Select the first five background measures that start during segment::
 
@@ -331,12 +325,6 @@ class SegmentSpecification(Specification):
     def select_divisions_that_start_during_segment(self, contexts=None, start=None, stop=None):
         '''Select the first five divisions that start during segment::
 
-            >>> specification = ScoreSpecification(scoretemplatetools.GroupedRhythmicStavesScoreTemplate(n=4))
-            >>> segment = specification.append_segment('red')
-            >>> setting = segment.set_time_signatures(segment, [(4, 8), (3, 8)])
-
-        ::
-
             >>> contexts = ['Voice 1', 'Voice 3']
             >>> selector = segment.select_divisions_that_start_during_segment(contexts=contexts, stop=5)
 
@@ -368,7 +356,7 @@ class SegmentSpecification(Specification):
     def select_leaves_that_start_during_segment(self, contexts=None, start=None, stop=None):
         '''Select the first ``40`` leaves that start during segment::
 
-            >>> context = ['Voice 1', 'Voice 2']
+            >>> contexts = ['Voice 1', 'Voice 3']
             >>> selector = segment.select_leaves_that_start_during_segment(contexts=contexts, stop=40)
 
         ::
