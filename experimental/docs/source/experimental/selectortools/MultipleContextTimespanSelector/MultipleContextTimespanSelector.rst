@@ -17,6 +17,8 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.MultipleContextTimespanSelector.MultipleContextTimespanSelector.MultipleContextTimespanSelector.timespan
 
+    Inherited from :py:class:`selectortools.TimespanSelector <experimental.selectortools.TimespanSelector.TimespanSelector.TimespanSelector>`
+
 Special Methods
 ---------------
 
@@ -47,6 +49,8 @@ Special Methods
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.selectortools.MultipleContextTimespanSelector.MultipleContextTimespanSelector.MultipleContextTimespanSelector.__ne__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.selectortools.MultipleContextTimespanSelector.MultipleContextTimespanSelector.MultipleContextTimespanSelector.__repr__
 

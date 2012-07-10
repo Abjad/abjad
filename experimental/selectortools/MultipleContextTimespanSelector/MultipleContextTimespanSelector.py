@@ -1,9 +1,9 @@
 from abjad.tools import contexttools
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from experimental.selectortools.TimespanSelector import TimespanSelector
 from experimental.timespantools.SingleSourceTimespan import SingleSourceTimespan
 
 
-class MultipleContextTimespanSelector(AbjadObject):
+class MultipleContextTimespanSelector(TimespanSelector):
     r'''.. versionadded:: 1.0
 
     ::
@@ -11,66 +11,47 @@ class MultipleContextTimespanSelector(AbjadObject):
         >>> from experimental import selectortools
         >>> from experimental import specificationtools
 
-    Arbitrarily many contexts taken over a shared timespan.
-
-    Select the entire score::
-
-        >>> selectortools.MultipleContextTimespanSelector()
-        MultipleContextTimespanSelector()
-
-    Select all of ``'Voice 1'``::
-
-        >>> selectortools.MultipleContextTimespanSelector(contexts=['Voice 1'])
-        MultipleContextTimespanSelector(contexts=['Voice 1'])
-
-    Select all of ``'Voice 1'`` and ``'Voice 3'``::
-
-        >>> contexts = ['Voice 1', 'Voice 3']
-
-    ::
-
-        >>> selectortools.MultipleContextTimespanSelector(contexts=contexts)
-        MultipleContextTimespanSelector(contexts=['Voice 1', 'Voice 3'])
-
-    Select ``'Voice 1'`` taken over the timepsan of segment ``'red'``::
-
+    Select the timespan of segment ``'red'``. Do this for both ``'Voice 1'`` and ``'Voice 3'``.
+        
         >>> segment_selector = selectortools.SegmentSelector(index='red')
 
     ::
 
-        >>> selectortools.MultipleContextTimespanSelector(contexts=['Voice 1'], timespan=segment_selector.timespan)
-        MultipleContextTimespanSelector(contexts=['Voice 1'], timespan=SingleSourceTimespan(selector=SegmentSelector(index='red')))
+        >>> contexts = ['Voice 1', 'Voice 3']
+        >>> selector = selectortools.MultipleContextTimespanSelector(contexts, segment_selector.timespan)
 
-    Select ``'Voice 1'`` and ``'Voice 3'`` over the timespan of segment ``'red'``::
+    ::
 
-        >>> selectortools.MultipleContextTimespanSelector(contexts=contexts, timespan=segment_selector.timespan)
-        MultipleContextTimespanSelector(contexts=['Voice 1', 'Voice 3'], timespan=SingleSourceTimespan(selector=SegmentSelector(index='red')))
+        >>> z(selector)
+        selectortools.MultipleContextTimespanSelector(
+            contexts=['Voice 1', 'Voice 3'],
+            timespan=timespantools.SingleSourceTimespan(
+                selector=selectortools.SegmentSelector(
+                    index='red'
+                    )
+                )
+            )
 
-    All ``MultipleContextTimespanSelector`` properties are read-only.
+    All mutliple-context timespan selector properties are read-only.
     '''
 
     ### INITIALIZER ###
 
     def __init__(self, contexts=None, timespan=None):
         assert isinstance(contexts, (list, type(None))), repr(contexts)
+        # TODO: can we allow both single- and multiple-source timespans?
         assert isinstance(timespan, (SingleSourceTimespan, type(None))), repr(timespan)
+        TimespanSelector.__init__(self, timespan=timespan)
         self._contexts = contexts
-        self._timespan = timespan
 
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
-        if not isinstance(expr, type(self)):
-            return False
-        if not self._mandatory_argument_values == expr._mandatory_argument_values:
-            return False
-        for keyword_argument_name in self._keyword_argument_names:
-            if not getattr(self, keyword_argument_name) == getattr(expr, keyword_argument_name):
-                return False
-        return True
-
-    def __ne__(self, expr):
-        return not self == expr
+        if isinstance(expr, type(self)):
+            if self.contexts == expr.contexts:
+                if self.timespan == expr.timespan:
+                    return True
+        return False
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 
@@ -88,20 +69,10 @@ class MultipleContextTimespanSelector(AbjadObject):
 
     @property
     def contexts(self):
-        '''MultipleContextTimespanSelector contexts specified by user.
+        '''Contexts specified by user.
 
         Value of none taken equal to all contexts in score.
 
         Return list of strings or none.
         '''
         return self._contexts
-
-    @property
-    def timespan(self):
-        '''MultipleContextTimespanSelector timespan specified by user.
-
-        Value of none taken equal to timespan of entire score.
-
-        Return timespan or none.
-        '''
-        return self._timespan
