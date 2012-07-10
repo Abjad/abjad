@@ -7,7 +7,7 @@ class DivisionOldSelector(RetrievalRequest):
 
     .. note:: deprecated. Use SingleContextDivisionSelector instead.
 
-    The `voice_name` parameter specifies the voice whose divisions are to be copied.
+    The `voice` parameter specifies the voice whose divisions are to be copied.
 
     The `start_segment_name` parameter specifies which segment is to constitute the start 
     of the selection.
@@ -20,10 +20,10 @@ class DivisionOldSelector(RetrievalRequest):
 
     ### INITIALIZER ###
 
-    def __init__(self, start_segment_name, voice_name, segment_count=1):
-        assert isinstance(voice_name, str), repr(voice_name)
+    def __init__(self, voice, start_segment_name, segment_count=1):
+        assert isinstance(voice, str), repr(voice)
         assert isinstance(start_segment_name, str), repr(start_segment_name)
         assert isinstance(segment_count, int), repr(segment_count)
-        self.voice_name = voice_name
+        self.voice = voice
         self.start_segment_name = start_segment_name
         self.segment_count = segment_count

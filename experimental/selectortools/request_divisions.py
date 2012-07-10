@@ -1,4 +1,4 @@
-def request_divisions(start_segment, voice, segment_count=1):
+def request_divisions(voice, start_segment, segment_count=1):
     r'''.. versionadded:: 1.0
 
     Return division retrieval request.
@@ -11,7 +11,7 @@ def request_divisions(start_segment, voice, segment_count=1):
     voice = selectortools.expr_to_component_name(voice)
 
     # populate request
-    request = selectortools.DivisionOldSelector(start_segment, voice, segment_count=segment_count)
+    request = selectortools.DivisionOldSelector(voice, start_segment, segment_count=segment_count)
 
     # return request
     return request

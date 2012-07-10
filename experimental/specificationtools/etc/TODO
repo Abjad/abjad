@@ -3,5 +3,3 @@
 2. Replace DivisionOldSelector in SingleContextDivisionSelector.
 
 3. Extend DivisionList initializer with string handling.
-
-4. Make a settingtools package.

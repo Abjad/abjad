@@ -249,7 +249,7 @@ class ScoreSpecification(Specification):
         return glued_rhythm_tokens, new_parts
 
     def handle_divisions_retrieval_request(self, request):
-        voice = componenttools.get_first_component_in_expr_with_name(self.score, request.voice_name)
+        voice = componenttools.get_first_component_in_expr_with_name(self.score, request.voice)
         assert isinstance(voice, voicetools.Voice), voice
         region_division_lists = self.payload_context_dictionary[voice.name]['region_division_lists']
         divisions = []
