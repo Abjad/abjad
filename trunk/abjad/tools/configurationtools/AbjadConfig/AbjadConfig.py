@@ -1,9 +1,7 @@
 from abjad.tools import abctools
 import collections
-import configobj
 import os
 import time
-import validate
 
 
 class AbjadConfig(collections.MutableMapping, abctools.AbjadObject):
@@ -43,6 +41,9 @@ class AbjadConfig(collections.MutableMapping, abctools.AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self):
+
+        import configobj
+        import validate
 
         # verify configuration directory
         if not os.path.exists(self.ABJAD_CONFIG_DIRECTORY_PATH):
