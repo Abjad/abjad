@@ -198,6 +198,10 @@ class ScoreSpecification(Specification):
                     region_division_tokens[-1] = region_division_token
         return region_division_tokens
 
+    # extract string literals from expression, index and substitute as integer indices
+    def evaluate_segment_index_expression(self, expression):
+        string = expression.string
+        
     def find_first_unused_segment_number(self):
         candidate_segment_number = 1
         while True:
