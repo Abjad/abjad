@@ -1,6 +1,5 @@
 import importlib
 import os
-from abjad.cfg.cfg import ABJADPATH
 from abjad.tools import abctools
 from abjad.tools.documentationtools.APICrawler import APICrawler
 from abjad.tools.documentationtools.ClassDocumenter import ClassDocumenter
@@ -235,17 +234,20 @@ class AbjadAPIGenerator(abctools.AbjadObject):
     @property
     def code_tools_path(self):
         '''Path to Abjad tools package.'''
-        return os.path.join(ABJADPATH, 'tools')
+        from abjad import ABJCFG
+        return os.path.join(ABJCFG.ABJAD_PATH, 'tools')
 
     @property
     def docs_api_index_path(self):
         '''Path to index.rst for Abjad API.'''
-        return os.path.join(ABJADPATH, 'docs', 'chapters', 'api', 'index.rst')
+        from abjad import ABJCFG
+        return os.path.join(ABJCFG.ABJAD_PATH, 'docs', 'chapters', 'api', 'index.rst')
 
     @property
     def docs_tools_path(self):
         '''Path to tools directory inside docs.'''
-        return os.path.join(ABJADPATH, 'docs', 'chapters', 'api', 'tools')
+        from abjad import ABJCFG
+        return os.path.join(ABJCFG.ABJAD_PATH, 'docs', 'chapters', 'api', 'tools')
 
     @property
     def package_prefix(self):

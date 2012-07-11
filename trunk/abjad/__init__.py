@@ -43,7 +43,6 @@ __builtins__['Up'] = datastructuretools.OrdinalConstant('y', 1, 'Up')
 __builtins__['Down'] = datastructuretools.OrdinalConstant('y', -1, 'Down')
 
 del abctools
-del cfg
 del configurationtools
 del datastructuretools
 del decoratortools

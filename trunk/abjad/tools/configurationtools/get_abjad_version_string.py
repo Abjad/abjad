@@ -1,6 +1,3 @@
-from abjad.cfg import cfg
-
-
 def get_abjad_version_string():
     '''.. versionadded:: 2.0
 

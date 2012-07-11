@@ -1,11 +1,11 @@
-from abjad.cfg.cfg import ABJADPATH
+from abjad import ABJCFG
 from abjad.demos.desordre import helpers
 import os
 
 
 def test_demos_desordre_01():
 
-    pitches_filepath = os.path.join(ABJADPATH, 'demos', 'desordre', 'desordre_pitches.txt')
+    pitches_filepath = os.path.join(ABJCFG.ABJAD_PATH, 'demos', 'desordre', 'desordre_pitches.txt')
 
     pitches = helpers.load_desordre_pitches(pitches_filepath)
 

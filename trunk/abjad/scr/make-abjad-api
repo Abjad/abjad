@@ -2,11 +2,12 @@
 
 import os
 from abjad.tools import iotools
-from abjad.cfg.cfg import ABJADPATH
 from abjad.tools.documentationtools import AbjadAPIGenerator
 
 
 if __name__ == '__main__':
+    from abjad import ABJCFG
+
     AbjadAPIGenerator()(verbose=True)
 
     # print greeting
@@ -14,7 +15,7 @@ if __name__ == '__main__':
     print ''
 
     # change to docs directory because makefile lives there
-    docs_directory = os.path.join(ABJADPATH, 'docs')
+    docs_directory = os.path.join(ABJCFG.ABJAD_PATH, 'docs')
     os.chdir(docs_directory)
 
     # make html docs

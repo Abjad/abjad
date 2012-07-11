@@ -1,4 +1,3 @@
-from abjad.cfg.cfg import ABJADPATH
 from abjad.tools.iotools._insert_expr_into_lilypond_file import _insert_expr_into_lilypond_file
 import os
 

@@ -123,13 +123,12 @@ statements.append(s)
 # presentation
 p = Presentation(title, abstract, statements)
 p.setup.append('from abjad import *')
-p.setup.append('from abjad.cfg.cfg import ABJADPATH')
 p.setup.append('from abjad.cfg._open_file import _open_file as open_file')
 p.setup.append('from abjad.demos.desordre.helpers import *')
 p.setup.append('import os')
-p.setup.append("desordre = ABJADPATH + \
+p.setup.append("desordre = ABJCFG.ABJAD_PATH + \
 os.path.join('demos', 'desordre', 'desordre.pdf')")
-p.setup.append("pitches_file = ABJADPATH +  \
+p.setup.append("pitches_file = ABJCFG.ABJAD_PATH +  \
 os.path.join('demos', 'desordre', 'desordre_pitches.txt')")
 
 
