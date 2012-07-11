@@ -1957,6 +1957,13 @@ Internal packages
 :py:mod:`configurationtools <abjad.tools.configurationtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+.. rubric:: concrete classes
+
+.. toctree::
+   :maxdepth: 1
+
+   tools/configurationtools/AbjadConfig/AbjadConfig
+
 .. rubric:: functions
 
 .. toctree::
