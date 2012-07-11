@@ -5,6 +5,12 @@ if not _python_version.startswith('2.7'):
     print 'WARNING: Abjad no longer supports versions of Python less than 2.7!'
     print 'WARNING: Please upgrade your version of Python to 2.7!'
 
+# setup .abjad directory and friends (if not already handled elsewhere)
+# configurationtools.setup_abjad_directory_silently()
+from abjad.tools.configurationtools import AbjadConfig
+ABJCFG = AbjadConfig()
+del AbjadConfig
+
 from abjad.tools.importtools._import_functions_in_package_to_namespace import _import_functions_in_package_to_namespace
 from abjad.tools import *
 from abjad.tools.chordtools import Chord
@@ -35,9 +41,6 @@ __builtins__['Right'] = datastructuretools.OrdinalConstant('x', 1, 'Right')
 __builtins__['Center'] = datastructuretools.OrdinalConstant('y', 0, 'Center')
 __builtins__['Up'] = datastructuretools.OrdinalConstant('y', 1, 'Up')
 __builtins__['Down'] = datastructuretools.OrdinalConstant('y', -1, 'Down')
-
-# setup .abjad directory and friends (if not already handled elsewhere)
-configurationtools.setup_abjad_directory_silently()
 
 del abctools
 del cfg

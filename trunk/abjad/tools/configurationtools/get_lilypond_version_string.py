@@ -12,6 +12,7 @@ def get_lilypond_version_string():
 
     Return string.
     '''
+    from abjad import ABJCFG
     from abjad.tools import configurationtools
 
     if subprocess.mswindows and not 'LilyPond' in os.environ.get('PATH'):
@@ -22,7 +23,7 @@ def get_lilypond_version_string():
         if lilypond == '':
             raise SystemError('Cannot find LilyPond under Windows.')
     else:
-        lilypond = configurationtools.read_abjad_user_config_file('lilypond_path')
+        lilypond = ABJCFG['lilypond_path']
         if not lilypond:
             lilypond = 'lilypond'
 

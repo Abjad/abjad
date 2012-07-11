@@ -1,6 +1,3 @@
-from abjad.tools.pitchtools.NamedChromaticPitch.NamedChromaticPitch import NamedChromaticPitch
-
-
 def set_default_accidental_spelling(spelling='mixed'):
     '''.. versionadded:: 1.1
 
@@ -50,7 +47,9 @@ def set_default_accidental_spelling(spelling='mixed'):
         ``pitchtools.set_default_accidental_spelling()``.
     '''
 
+    from abjad import ABJCFG
+
     if spelling not in ('mixed', 'sharps', 'flats'):
         raise ValueError
 
-    NamedChromaticPitch._accidental_spelling = spelling
+    ABJCFG['accidental_spelling'] = spelling

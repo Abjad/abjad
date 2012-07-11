@@ -13,7 +13,9 @@ def save_last_ly_as(file_name):
     Return none.
     '''
 
-    ABJADOUTPUT = configurationtools.read_abjad_user_config_file('abjad_output')
+    from abjad import ABJCFG
+
+    ABJADOUTPUT = ABJCFG['abjad_output']
     last_ly = get_last_output_file_name()
     last_ly_full_name = os.path.join(ABJADOUTPUT, last_ly)
     old = open(last_ly_full_name, 'r')

@@ -1,6 +1,3 @@
-from abjad.cfg.cfg import ABJADCONFIG
-
-
 def read_abjad_user_config_file(attribute_name):
     '''Read the content of the config file ``$HOME/.abjad/config.py``.
 
@@ -8,10 +5,8 @@ def read_abjad_user_config_file(attribute_name):
 
     .. versionchanged:: 2.10
         renamed ``configurationtools.read_user_abjad_config_file()`` to
-        ``configurationtools.read_abjad_user_config_file()``.
+        ``ABJCFG()``.
     '''
-    from abjad.tools import configurationtools
+    from abjad import ABJCFG
 
-    #configurationtools.setup_abjad_directory_silently()
-
-    return configurationtools.make_abjad_user_config_file_into_dict()[attribute_name]
+    return ABJCFG[attribute_name]

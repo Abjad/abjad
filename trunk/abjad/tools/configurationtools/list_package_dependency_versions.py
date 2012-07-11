@@ -13,11 +13,17 @@ def list_package_dependency_versions():
 
     deps = {}
 
-    # sphinx
-    deps['sphinx'] = None
+    deps['configobj'] = None
     try:
-        import sphinx
-        deps['sphinx'] = sphinx.__version__
+        import configobj
+        deps['configobj'] = configobj.__version__
+    except ImportError:
+        pass
+
+    deps['ply'] = None
+    try:
+        import ply
+        deps['ply'] = ply.lex.__version__
     except ImportError:
         pass
 
@@ -29,10 +35,11 @@ def list_package_dependency_versions():
     except ImportError:
         pass
 
-    deps['ply'] = None
+    # sphinx
+    deps['sphinx'] = None
     try:
-        import ply
-        deps['ply'] = ply.lex.__version__
+        import sphinx
+        deps['sphinx'] = sphinx.__version__
     except ImportError:
         pass
 

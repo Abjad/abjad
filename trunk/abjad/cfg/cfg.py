@@ -1,3 +1,4 @@
+#import configurationtools
 import os
 
 
@@ -11,6 +12,13 @@ import os
 # Windows appears to set HOMEPATH similarly to the way OS X sets HOME.
 # As a final fallback, accept the setting of APPDATA under Windows.
 #HOME = os.environ.get('HOME') or os.environ.get('APPDATA') or os.environ.get('HOMEPATH')
+
+#HOME = CFG.HOME_PAT
+#ABJADCONFIG = os.path.join(HOME, '.abjad', 'config.py')
+#ABJADPATH = CFG.ABJAD_PATH
+#EXPERIMENTAL_PATH = CFG.ABJAD_EXPERIMENTAL_PATH
+#ROOTPATH = CFG.ABJAD_ROOT_PATH
+
 HOME = os.environ.get('HOME') or os.environ.get('HOMEPATH') or os.environ.get('APPDATA')
 ABJADCONFIG = os.path.join(HOME, '.abjad', 'config.py')
 ABJADPATH = os.path.abspath(os.path.dirname(__file__).rstrip('cfg'))

@@ -9,8 +9,10 @@ def get_last_output_file_name():
     Return string.
     '''
 
+    from abjad import ABJCFG
+
     pattern = re.compile('\d{4,4}.ly')
-    all_file_names = os.listdir(configurationtools.read_abjad_user_config_file('abjad_output'))
+    all_file_names = os.listdir(ABJCFG['abjad_output'])
     all_output = [fn for fn in all_file_names if pattern.match(fn)]
     if all_output == []:
         last_output_file_name = None

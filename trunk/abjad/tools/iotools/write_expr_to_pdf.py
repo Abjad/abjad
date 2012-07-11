@@ -13,6 +13,8 @@ def write_expr_to_pdf(expr, file_name, print_status=False, tagline=False):
     Return none.
     '''
 
+    from abjad import ABJCFG
+
     # massage file_name
     file_name = os.path.expanduser(file_name)
     if not file_name.endswith('.pdf'):
@@ -22,7 +24,7 @@ def write_expr_to_pdf(expr, file_name, print_status=False, tagline=False):
 
     # copy PDF file to file_name
     pdf_name = name[:-3] + '.pdf'
-    ABJADOUTPUT = configurationtools.read_abjad_user_config_file('abjad_output')
+    ABJADOUTPUT = ABJCFG['abjad_output']
     full_path_pdf_name = os.path.join(ABJADOUTPUT, pdf_name)
     shutil.move(full_path_pdf_name, file_name)
 

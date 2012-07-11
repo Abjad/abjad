@@ -1,4 +1,3 @@
-from abjad.tools.configurationtools import read_abjad_user_config_file
 from abjad.tools.pitchtools.Accidental import Accidental
 from abjad.tools.pitchtools.PitchObject import PitchObject
 from abjad.tools.pitchtools.is_chromatic_pitch_name import chromatic_pitch_name_regex
@@ -17,8 +16,6 @@ class NamedChromaticPitch(PitchObject):
 
     ### CLASS ATTRIBUTES ###
 
-    # TODO: remove #
-    _accidental_spelling = None
 
     # calculate accidental_semitones, diatonic_pitch_number at init
     # so notehead sorting doesn't take forever later on
@@ -299,9 +296,8 @@ class NamedChromaticPitch(PitchObject):
 
         Return string.
         '''
-        if self.__class__._accidental_spelling is None:
-            self.__class__._accidental_spelling = read_abjad_user_config_file('accidental_spelling')
-        return self.__class__._accidental_spelling
+        from abjad import ABJCFG
+        return ABJCFG['accidental_spelling']
 
     @property
     def chromatic_pitch_class_name(self):

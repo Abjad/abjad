@@ -31,7 +31,9 @@ def ly(target=-1):
     Return none.
     '''
 
-    ABJADOUTPUT = configurationtools.read_abjad_user_config_file('abjad_output')
+    from abjad import ABJCFG
+
+    ABJADOUTPUT = ABJCFG['abjad_output']
     text_editor = configurationtools.get_text_editor()
     if isinstance(target, int) and target < 0:
         last_lilypond = get_last_output_file_name()
