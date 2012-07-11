@@ -1,5 +1,4 @@
 from abc import abstractmethod
-from abjad.cfg.cfg import ABJADPATH, EXPERIMENTALPATH, ROOTPATH
 from abjad.tools import documentationtools
 from abjad.tools import iotools
 from experimental.developerscripttools.DeveloperScript import DeveloperScript
@@ -34,17 +33,19 @@ class RenameModulesScript(DeveloperScript):
     ### PRIVATE METHODS ###
 
     def _codebase_name_to_codebase_docs_path(self, codebase):
+        from abjad import ABJCFG
         if codebase == 'mainline':
-            return os.path.join(ABJADPATH, 'docs', 'chapters', 'api', 'tools')
+            return os.path.join(ABJCFG.ABJAD_PATH, 'docs', 'chapters', 'api', 'tools')
         elif codebase == 'experimental':
-            return os.path.join(EXPERIMENTALPATH, 'docs', 'source', 'experimental')
+            return os.path.join(ABJCFG.ABJAD_EXPERIMENTAL_PATH, 'docs', 'source', 'experimental')
         raise Exception('Bad codebase name {!r}.'.format(codebase))
 
     def _codebase_name_to_codebase_tools_path(self, codebase):
+        from abjad import ABJCFG
         if codebase == 'mainline':
-            return os.path.join(ABJADPATH, 'tools')
+            return os.path.join(ABJCFG.ABJAD_PATH, 'tools')
         elif codebase == 'experimental':
-            return EXPERIMENTALPATH
+            return ABJCFG.ABJAD_EXPERIMENTAL_PATH
         raise Exception('Bad codebase name {!r}.'.format(codebase))
 
     def _confirm_name_changes(self, kind, old_codebase, old_package_name, old_object_name,
@@ -135,14 +136,14 @@ class RenameModulesScript(DeveloperScript):
         assert kind in ('class', 'function')
 
         while True:
-            message = 'Select codebase ([m]ainline, [e]xperimental):     '
+            message = 'Select codebase ([m]ainline, e[x]perimental):     '
             codebase = raw_input(message).lower()
             if codebase in ('mainline', 'experimental'):
                 break
             elif codebase == 'm':
                 codebase = 'mainline'
                 break
-            elif codebase == 'e':
+            elif codebase == 'x':
                 codebase = 'experimental'
                 break
             print ''
@@ -268,7 +269,9 @@ class RenameModulesScript(DeveloperScript):
     def _update_codebase(self, kind, old_codebase, old_package_name, old_object_name,
         new_codebase, new_package_name, new_object_name):
 
-        directory = ROOTPATH
+        from abjad import ABJCFG
+
+        directory = ABJCFG.ABJAD_ROOT_PATH
 
         print 'Updating codebase ...'
         print ''

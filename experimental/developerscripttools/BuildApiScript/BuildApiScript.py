@@ -1,5 +1,4 @@
 from abjad.tools import iotools
-from abjad.cfg.cfg import ABJADPATH, EXPERIMENTALPATH
 from abjad.tools.documentationtools import AbjadAPIGenerator
 from experimental.developerscripttools.DeveloperScript import DeveloperScript
 import os
@@ -33,21 +32,23 @@ class BuildApiScript(DeveloperScript):
 
     def _build_experimental_api(self, format='html', clean=False):
 
+        from abjad import ABJCFG
+
         class ExperimentalAPIGenerator(AbjadAPIGenerator):
 
             _api_title = 'Abjad Experimental API'
 
             @property
             def code_tools_path(self):
-                return EXPERIMENTALPATH
+                return ABJCFG.EXPERIMENTAL_PATH
 
             @property
             def docs_api_index_path(self):
-                return os.path.join(EXPERIMENTALPATH, 'docs', 'source', 'index.rst')
+                return os.path.join(ABJCFG.EXPERIMENTAL_PATH, 'docs', 'source', 'index.rst')
 
             @property
             def docs_tools_path(self):
-                return os.path.join(EXPERIMENTALPATH, 'docs', 'source', 'experimental')
+                return os.path.join(ABJCFG.EXPERIMENTAL_PATH, 'docs', 'source', 'experimental')
 
             @property
             def package_prefix(self):
@@ -68,7 +69,7 @@ class BuildApiScript(DeveloperScript):
         print ''
 
         # change to docs directory because makefile lives there
-        docs_directory = os.path.join(EXPERIMENTALPATH, 'docs')
+        docs_directory = os.path.join(ABJCFG.EXPERIMENTAL_PATH, 'docs')
         os.chdir(docs_directory)
 
         # optionally, make clean before building
@@ -81,6 +82,8 @@ class BuildApiScript(DeveloperScript):
 
     def _build_mainline_api(self, format='html', clean=False):
 
+        from abjad import ABJCFG
+
         AbjadAPIGenerator()(verbose=True)
 
         # print greeting
@@ -88,7 +91,7 @@ class BuildApiScript(DeveloperScript):
         print ''
 
         # change to docs directory because makefile lives there
-        docs_directory = os.path.relpath(os.path.join(ABJADPATH, 'docs'))
+        docs_directory = os.path.relpath(os.path.join(ABJCFG.ABJAD_PATH, 'docs'))
         os.chdir(docs_directory)
 
         # optionally, make clean before building

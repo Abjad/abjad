@@ -1,4 +1,3 @@
-from abjad.cfg.cfg import ABJADPATH, EXPERIMENTALPATH
 from abjad.tools import documentationtools
 from experimental.developerscripttools.DeveloperScript import DeveloperScript
 import os
@@ -103,6 +102,8 @@ class MakeNewClassTemplateScript(DeveloperScript):
 
     def setup_argument_parser(self, parser):
 
+        from abjad import ABJCFG
+
         parser.add_argument('name',
             help='tools package qualified class name'
             )
@@ -111,14 +112,14 @@ class MakeNewClassTemplateScript(DeveloperScript):
 
         path_group.add_argument('-X', '--experimental',
             action='store_const',
-            const=EXPERIMENTALPATH,
+            const=ABJCFG.ABJAD_EXPERIMENTAL_PATH,
             dest='path',
             help='use the Abjad experimental path',
             )
 
         path_group.add_argument('-M', '--mainline',
             action='store_const',
-            const=os.path.join(ABJADPATH, 'tools'),
+            const=os.path.join(ABJCFG.ABJAD_PATH, 'tools'),
             dest='path',
             help='use the Abjad mainline tools path',
             )

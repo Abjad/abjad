@@ -1,4 +1,3 @@
-from abjad.cfg.cfg import ABJADPATH, EXPERIMENTALPATH, ROOTPATH
 from abjad.tools import iotools
 from experimental.developerscripttools.DirectoryScript import DirectoryScript
 from experimental.developerscripttools.CleanScript import CleanScript
@@ -47,6 +46,8 @@ If no PATH flag is specified, the current directory will be searched.
 
     def setup_argument_parser(self, parser):
 
+        from abjad import ABJCFG
+
         parser.add_argument('pattern',
             help='pattern to search for'
             )
@@ -66,28 +67,28 @@ If no PATH flag is specified, the current directory will be searched.
 
         group.add_argument('-X', '--experimental',
             action='store_const',
-            const=EXPERIMENTALPATH,
+            const=ABJCFG.ABJAD_EXPERIMENTAL_PATH,
             dest='path',
             help='grep Abjad experimental directory',
             )
 
         group.add_argument('-M', '--mainline',
             action='store_const',
-            const=ABJADPATH,
+            const=ABJCFG.ABJAD_PATH,
             dest='path',
             help='grep Abjad mainline directory',
             )
 
         group.add_argument('-T', '--tools',
             action='store_const',
-            const=os.path.join(ABJADPATH, 'tools'),
+            const=os.path.join(ABJCFG.ABJAD_PATH, 'tools'),
             dest='path',
             help='grep Abjad mainline tools directory',
             )
 
         group.add_argument('-R', '--root',
             action='store_const',
-            const=ROOTPATH,
+            const=ABJCFG.ABJAD_ROOT_PATH,
             dest='path',
             help='grep Abjad root directory',
             )

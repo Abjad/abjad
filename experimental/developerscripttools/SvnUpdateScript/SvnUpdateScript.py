@@ -1,4 +1,3 @@
-from abjad.cfg.cfg import ABJADPATH, EXPERIMENTALPATH, ROOTPATH
 from abjad.tools import iotools
 from experimental.developerscripttools.DirectoryScript import DirectoryScript
 from experimental.developerscripttools.CleanScript import CleanScript
@@ -44,6 +43,8 @@ class SvnUpdateScript(DirectoryScript):
 
     def setup_argument_parser(self, parser):
 
+        from abjad import ABJCFG
+
         parser.add_argument('-C', '--clean',
             action='store_true',
             help='remove .pyc files and __pycache__ directories before updating'
@@ -60,21 +61,21 @@ class SvnUpdateScript(DirectoryScript):
 
         group.add_argument('-E', '--experimental',
             action='store_const',
-            const=EXPERIMENTALPATH,
+            const=ABJCFG.ABJAD_EXPERIMENTAL_PATH,
             dest='path',
             help='update Abjad experimental directory',
             )
 
         group.add_argument('-M', '--mainline',
             action='store_const',
-            const=ABJADPATH,
+            const=ABJCFG.ABJAD_PATH,
             dest='path',
             help='update Abjad mainline directory',
             )
 
         group.add_argument('-R', '--root',
             action='store_const',
-            const=ROOTPATH,
+            const=ABJCFG.ABJAD_ROOT_PATH,
             dest='path',
             help='update Abjad root directory',
             )
