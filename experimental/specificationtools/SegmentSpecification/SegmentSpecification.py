@@ -3,7 +3,6 @@ from experimental.specificationtools.exceptions import *
 from experimental.specificationtools.AttributeRetrievalIndicator import AttributeRetrievalIndicator
 from experimental.specificationtools.AttributeRetrievalRequest import AttributeRetrievalRequest
 from experimental.specificationtools.Callback import Callback
-from experimental.selectortools.DivisionOldSelector import DivisionOldSelector
 from experimental.specificationtools.HandlerRequest import HandlerRequest
 from experimental.specificationtools.Specification import Specification
 from experimental.specificationtools.StatalServer import StatalServer
@@ -199,7 +198,6 @@ class SegmentSpecification(Specification):
         elif isinstance(source, AttributeRetrievalIndicator):
             if any([x is not None for x in (callback, count, offset)]):
                 source = AttributeRetrievalRequest(source, callback=callback, count=count, offset=offset)
-        #elif isinstance(source, DivisionOldSelector):
         elif isinstance(source, selectortools.SingleContextDivisionSliceSelector):
             if any([x is not None for x in (callback, count, offset)]):
                 source = copy.copy(source)

@@ -1,7 +1,7 @@
 def select_divisions(voice, start_segment, segment_count=1):
     r'''.. versionadded:: 1.0
 
-    Return division retrieval request.
+    Return single-context division slice selector.
     '''
     from experimental import selectortools
     from experimental import timespantools
@@ -10,9 +10,6 @@ def select_divisions(voice, start_segment, segment_count=1):
     start_segment_name = selectortools.expr_to_segment_name(start_segment)
     voice_name = selectortools.expr_to_component_name(voice)
 
-    # populate request
-    request = selectortools.DivisionOldSelector(voice_name, start_segment_name, segment_count=segment_count)
-
     # make selector
     expression = '{!r} + {}'.format(start_segment_name, segment_count)
     held_expression = selectortools.SegmentIndexExpression(expression)
@@ -20,9 +17,6 @@ def select_divisions(voice, start_segment, segment_count=1):
     selector = selectortools.SegmentSliceSelector(start=start, stop=stop)
     inequality = timespantools.expr_starts_during_timespan(selector.timespan)
     selector = selectortools.SingleContextDivisionSliceSelector(voice_name, inequality=inequality)
-
-    # return request
-    #return request
 
     # return selector
     return selector

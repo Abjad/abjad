@@ -1,7 +1,5 @@
 1. Implement selection-creation courtesy methods.
 
-2. Replace DivisionOldSelector in SingleContextDivisionSliceSelector.
+2. Extend DivisionList initializer with string handling.
 
-3. Extend DivisionList initializer with string handling.
-
-4. Replace all named tuples with proper classes.
+3. Replace all named tuples with proper classes.

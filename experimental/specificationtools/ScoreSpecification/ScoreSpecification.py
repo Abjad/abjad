@@ -2,7 +2,6 @@ from abjad.tools import *
 from experimental.specificationtools.AttributeRetrievalRequest import AttributeRetrievalRequest
 from experimental.specificationtools.Division import Division
 from experimental.specificationtools.DivisionList import DivisionList
-from experimental.selectortools.DivisionOldSelector import DivisionOldSelector
 from experimental.specificationtools.RegionDivisionList import RegionDivisionList
 from experimental.specificationtools.ScopedValue import ScopedValue
 from experimental.specificationtools.SegmentDivisionList import SegmentDivisionList
@@ -326,25 +325,6 @@ class ScoreSpecification(Specification):
         for region_division_list in region_division_lists:
             divisions.extend(region_division_list)
         assert isinstance(divisions, list), divisions
-        start_offset, stop_offset = self.segment_name_to_offsets(
-            request.start_segment_name, segment_count=request.segment_count)
-        total_amount = stop_offset - start_offset
-        divisions = [mathtools.NonreducedFraction(x) for x in divisions]
-        divisions = sequencetools.split_sequence_once_by_weights_with_overhang(divisions, [0, total_amount])
-        divisions = divisions[1]
-        if request.callback is not None:
-            divisions = request.callback(divisions)
-        #divisions = self.apply_offset_and_count(request, divisions)
-        return divisions
-
-    def handle_divisions_retrieval_request_new(self, request):
-        voice = componenttools.get_first_component_in_expr_with_name(self.score, request.voice)
-        assert isinstance(voice, voicetools.Voice), voice
-        region_division_lists = self.payload_context_dictionary[voice.name]['region_division_lists']
-        divisions = []
-        for region_division_list in region_division_lists:
-            divisions.extend(region_division_list)
-        assert isinstance(divisions, list), divisions
         start_segment_expr = request.inequality.timespan.selector.start
         stop_segment_expr = request.inequality.timespan.selector.stop
         start_segment_index = self.evaluate_segment_index_expression(start_segment_expr)
@@ -496,10 +476,8 @@ class ScoreSpecification(Specification):
 
     def process_divisions_value(self, divisions_value):
         from experimental import selectortools
-        if isinstance(divisions_value, DivisionOldSelector):
+        if isinstance(divisions_value, selectortools.SingleContextDivisionSliceSelector):
             return self.handle_divisions_retrieval_request(divisions_value)
-        elif isinstance(divisions_value, selectortools.SingleContextDivisionSliceSelector):
-            return self.handle_divisions_retrieval_request_new(divisions_value)
         else:
             return divisions_value
         
