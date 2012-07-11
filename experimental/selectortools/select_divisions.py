@@ -14,7 +14,7 @@ def select_divisions(voice, start_segment, segment_count=1):
     request = selectortools.DivisionOldSelector(voice_name, start_segment_name, segment_count=segment_count)
 
     # make selector
-    expression = '{!r} + {}'.format(start_segment_name, segment_count - 1)
+    expression = '{!r} + {}'.format(start_segment_name, segment_count)
     held_expression = selectortools.SegmentIndexExpression(expression)
     start, stop = start_segment_name, held_expression
     selector = selectortools.SegmentSliceSelector(start=start, stop=stop)
@@ -22,7 +22,7 @@ def select_divisions(voice, start_segment, segment_count=1):
     selector = selectortools.SingleContextDivisionSliceSelector(voice_name, inequality=inequality)
 
     # return request
-    return request
+    #return request
 
     # return selector
-    #return selector
+    return selector

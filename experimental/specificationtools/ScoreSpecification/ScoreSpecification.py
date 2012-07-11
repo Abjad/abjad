@@ -34,14 +34,14 @@ class ScoreSpecification(Specification):
 
     Score specification::
 
-            >>> template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(n=4)
-            >>> specification = specificationtools.ScoreSpecification(template)
+        >>> template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(n=4)
+        >>> specification = specificationtools.ScoreSpecification(template)
 
     With three named segments::
 
-            >>> segment = specification.append_segment('red')
-            >>> segment = specification.append_segment('orange')
-            >>> segment = specification.append_segment('yellow')
+        >>> segment = specification.append_segment('red')
+        >>> segment = specification.append_segment('orange')
+        >>> segment = specification.append_segment('yellow')
 
     All score specification properties are read-only.
     '''
@@ -241,9 +241,24 @@ class ScoreSpecification(Specification):
             >>> specification.evaluate_segment_index_expression(expression)
             3
 
+        Evaluate strings directlly::
+
+            >>> specification.evaluate_segment_index_expression('yellow')
+            2
+
+        Return integers unchanged::
+
+            >>> specification.evaluate_segment_index_expression(0)
+            0
+
         Return integer.
         '''
-        quoted_string_pattern = re.compile(r"""(['"]{1}[a-z]+['"]{1})""")
+        from experimental import selectortools
+        if isinstance(expression, int):
+            return expression
+        if isinstance(expression, str):
+            return self.segment_name_to_index(expression)
+        quoted_string_pattern = re.compile(r"""(['"]{1}[a-zA-Z1-9 _]+['"]{1})""")
         quoted_segment_names = quoted_string_pattern.findall(expression.string)
         modified_string = str(expression.string)
         for quoted_segment_name in quoted_segment_names:
@@ -330,8 +345,12 @@ class ScoreSpecification(Specification):
         for region_division_list in region_division_lists:
             divisions.extend(region_division_list)
         assert isinstance(divisions, list), divisions
-        start_offset, stop_offset = self.segment_name_to_offsets(
-            request.start_segment_name, segment_count=request.segment_count)
+        start_segment_expr = request.inequality.timespan.selector.start
+        stop_segment_expr = request.inequality.timespan.selector.stop
+        start_segment_index = self.evaluate_segment_index_expression(start_segment_expr)
+        stop_segment_index = self.evaluate_segment_index_expression(stop_segment_expr)
+        segment_count =  stop_segment_index - start_segment_index
+        start_offset, stop_offset = self.segment_name_to_offsets(start_segment_index, segment_count)
         total_amount = stop_offset - start_offset
         divisions = [mathtools.NonreducedFraction(x) for x in divisions]
         divisions = sequencetools.split_sequence_once_by_weights_with_overhang(divisions, [0, total_amount])
@@ -524,7 +543,8 @@ class ScoreSpecification(Specification):
         #segment = self.segments[resolved_setting.target.timespan.start.anchor.segment]
         #segment = self.segments[resolved_setting.target.timespan.start.anchor.index]
         segment = self.segments[resolved_setting.target.timespan.selector.index]
-        context_name = resolved_setting.target.context or segment.resolved_settings_context_dictionary.score_name
+        context_name = resolved_setting.target.context or \
+            segment.resolved_settings_context_dictionary.score_name
         attribute = resolved_setting.attribute
         if attribute in segment.resolved_settings_context_dictionary[context_name]:
             message = '{!r} {!r} already contains {!r} setting.'
