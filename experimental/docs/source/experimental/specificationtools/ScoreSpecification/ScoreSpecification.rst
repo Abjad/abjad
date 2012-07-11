@@ -82,6 +82,8 @@ Methods
 
     Inherited from :py:class:`specificationtools.Specification <experimental.specificationtools.Specification.Specification.Specification>`
 
+.. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.evaluate_segment_index_expression
+
 .. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.find_first_unused_segment_number
 
 .. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.get_rhythm_tokens_for_all_segments_in_voice

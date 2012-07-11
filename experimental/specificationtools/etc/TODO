@@ -3,3 +3,5 @@
 2. Replace DivisionOldSelector in SingleContextDivisionSliceSelector.
 
 3. Extend DivisionList initializer with string handling.
+
+4. Replace all named tuples with proper classes.

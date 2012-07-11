@@ -14,6 +14,7 @@ from experimental.specificationtools.StatalServerRequest import StatalServerRequ
 from experimental.specificationtools.VoiceDivisionList import VoiceDivisionList
 import collections
 import copy
+import re
 
 
 SegmentDivisionToken = collections.namedtuple(
@@ -25,7 +26,24 @@ RhythmToken = collections.namedtuple('RhythmToken', ['value', 'fresh'])
 class ScoreSpecification(Specification):
     r'''.. versionadded:: 1.0
 
-    Score specification.
+    ::
+
+        >>> from experimental import selectortools
+        >>> from experimental import specificationtools
+        >>> from experimental import timespantools
+
+    Score specification::
+
+            >>> template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(n=4)
+            >>> specification = specificationtools.ScoreSpecification(template)
+
+    With three named segments::
+
+            >>> segment = specification.append_segment('red')
+            >>> segment = specification.append_segment('orange')
+            >>> segment = specification.append_segment('yellow')
+
+    All score specification properties are read-only.
     '''
 
     ### INITIALIZER ###
@@ -198,9 +216,42 @@ class ScoreSpecification(Specification):
                     region_division_tokens[-1] = region_division_token
         return region_division_tokens
 
-    # extract string literals from expression, index and substitute as integer indices
     def evaluate_segment_index_expression(self, expression):
-        string = expression.string
+        r'''Evaluate segment index expression::
+
+            >>> expression = selectortools.SegmentIndexExpression("'red'")
+            >>> specification.evaluate_segment_index_expression(expression)
+            0
+
+        ::
+
+            >>> expression = selectortools.SegmentIndexExpression("'orange'")
+            >>> specification.evaluate_segment_index_expression(expression)
+            1
+
+        ::
+
+            >>> expression = selectortools.SegmentIndexExpression("'yellow'")
+            >>> specification.evaluate_segment_index_expression(expression)
+            2
+
+        ::
+
+            >>> expression = selectortools.SegmentIndexExpression("'red' + 'orange' + 'yellow'")
+            >>> specification.evaluate_segment_index_expression(expression)
+            3
+
+        Return integer.
+        '''
+        quoted_string_pattern = re.compile(r"""(['"]{1}[a-z]+['"]{1})""")
+        quoted_segment_names = quoted_string_pattern.findall(expression.string)
+        modified_string = str(expression.string)
+        for quoted_segment_name in quoted_segment_names:
+            segment_name = quoted_segment_name[1:-1]
+            segment_index = self.segment_name_to_index(segment_name)
+            modified_string = modified_string.replace(quoted_segment_name, str(segment_index))
+        result = eval(modified_string)
+        return result
         
     def find_first_unused_segment_number(self):
         candidate_segment_number = 1
