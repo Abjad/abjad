@@ -1,13 +1,13 @@
 #! /usr/bin/env python
 
-from abjad.cfg.cfg import ABJADPATH
+from abjad import ABJCFG
 from abjad.tools import iotools
 import os
 
 
 def _main():
    total_nonalphabetized_module_headers = 0
-   for path, subdirectories, files in os.walk(ABJADPATH):
+   for path, subdirectories, files in os.walk(ABJCFG.ABJAD_PATH):
       for f in files:
          if f.endswith('.py'):
             full_file_name = os.path.join(path, f)

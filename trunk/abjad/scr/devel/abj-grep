@@ -1,13 +1,13 @@
 #! /usr/bin/env python
 
-from abjad.cfg.cfg import ABJADPATH
+from abjad import ABJCFG
 from abjad.tools import iotools
 import os
 import sys
 
 
 start_directory = os.path.abspath('.')
-os.chdir(ABJADPATH)
+os.chdir(ABJCFG.ABJAD_PATH)
 iotools.clear_terminal()
 command = 'grep -Irn "{}" * | grep -v svn\/ | grep -v docs'.format(sys.argv[1])
 iotools.spawn_subprocess(command)

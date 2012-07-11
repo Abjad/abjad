@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 
-from abjad.cfg.cfg import ABJADPATH
+from abjad import ABJCFG
 from abjad.tools import iotools
 import os
 import pprint
@@ -11,7 +11,7 @@ def _capitalize_test_file_names():
    uncapitalized_pattern = re.compile(r'test_[a-z]+.+py$')
    total_test_files = 0
    old, new = 'zzz', 'zzz'
-   for path, subdirectories, files in os.walk(ABJADPATH):
+   for path, subdirectories, files in os.walk(ABJCFG.ABJAD_PATH):
       for f in files:
          if uncapitalized_pattern.match(f) or f.endswith('_tmp.py'):
             if not 'tools' in f and not 'debug' in f and not 'lily_voice' in f and not 'iterate' in f:
@@ -68,7 +68,7 @@ if __name__ == '__main__':
    assert source_file_name.startswith('test_')
    source_class_name = source_file_name.split('_')
    source_class_name = source_class_name[1]
-   start_directory = os.path.join(ABJADPATH, start_directory)
+   start_directory = os.path.join(ABJCFG.ABJAD_PATH, start_directory)
    class_subdirectories =  [x for x in os.listdir(start_directory) if x[0].isupper()]
    try:
       class_subdirectories.remove(source_class_name)

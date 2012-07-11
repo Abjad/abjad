@@ -1,13 +1,13 @@
 #! /usr/bin/env python
 
-from abjad.cfg.cfg import ABJADPATH
+from abjad import ABJCFG
 from abjad.tools import iotools
 import os
 import pprint
 
 
 def _count_public_tools_functions():
-    tools_path = os.path.join(ABJADPATH, 'tools')
+    tools_path = os.path.join(ABJCFG.ABJAD_PATH, 'tools')
     public_function_definition_lines = []
     private_function_definition_lines = []
     public_class_definition_lines = []

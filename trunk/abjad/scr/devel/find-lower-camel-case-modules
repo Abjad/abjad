@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 
-from abjad.cfg.cfg import ABJADPATH
+from abjad import ABJCFG
 from abjad.tools import iotools
 import os
 import pprint
@@ -10,7 +10,7 @@ import re
 def _find_lower_camel_case_modules():
    lower_camel_case_modules = [ ]
    lower_camel_case_pattern = re.compile(r'[a-z]+[A-Z]+.*')
-   for path, subdirectories, files in os.walk(ABJADPATH):
+   for path, subdirectories, files in os.walk(ABJCFG.ABJAD_PATH):
       for f in files:
          found_import_as_statement = False
          if f.endswith('.py'):

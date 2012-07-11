@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 
-from abjad.cfg.cfg import ABJADPATH
+from abjad import ABJCFG
 from abjad.tools import configurationtools
 from abjad.tools import iotools
 import os
@@ -51,7 +51,7 @@ def _get_new_package_and_function():
 
 
 def _get_packages():
-    tool_path = os.path.join(ABJADPATH, 'tools')
+    tool_path = os.path.join(ABJCFG.ABJAD_PATH, 'tools')
     names = [ ]
     for x in os.listdir(tool_path):
         if not x.startswith('_'):
@@ -61,7 +61,7 @@ def _get_packages():
 
 
 def _get_functions():
-    tool_path = os.path.join(ABJADPATH, 'tools')
+    tool_path = os.path.join(ABJCFG.ABJAD_PATH, 'tools')
     module_names = [ ]
     for path, subdirectories, files in os.walk(tool_path):
         for f in files:
@@ -89,7 +89,7 @@ def _confirm_name_changes(old_package, old_function, new_package, new_module):
 
 def _rename_old_api_page(old_package, old_function, new_package, new_module):
     print 'Renaming old API page ...'
-    api_path = os.path.join(ABJADPATH, 'docs', 'chapters', 'api')
+    api_path = os.path.join(ABJCFG.ABJAD_PATH, 'docs', 'chapters', 'api')
     api_path = os.path.join(api_path, 'tools')
     old_rst_file = old_function + '.rst'
     old_api_path = os.path.join(api_path, old_package, old_rst_file)
@@ -103,7 +103,7 @@ def _rename_old_api_page(old_package, old_function, new_package, new_module):
 def _make_new_api_page(new_package, new_function):
     print 'Making new API page ...'
     content_lines = [ ]
-    api_path = os.path.join(ABJADPATH, 'docs', 'chapters', 'api')
+    api_path = os.path.join(ABJCFG.ABJAD_PATH, 'docs', 'chapters', 'api')
     api_path = os.path.join(api_path, 'tools')
     new_qualified_function_name = '{}.{}'.format(new_package, new_function)
     content_lines.append(new_qualified_function_name)
@@ -124,7 +124,7 @@ def _make_new_api_page(new_package, new_function):
 
 def _update_api_toc(old_package, old_function, new_package, new_function):
     print 'Updating API TOC ...'
-    api_path = os.path.join(ABJADPATH, 'docs', 'chapters', 'api')
+    api_path = os.path.join(ABJCFG.ABJAD_PATH, 'docs', 'chapters', 'api')
     api_toc_file_name = os.path.join(api_path, 'index.rst')
     api_toc_file = file(api_toc_file_name, 'r')
     new_lines = [ ]
@@ -165,9 +165,9 @@ def _update_api_toc(old_package, old_function, new_package, new_function):
 def _rename_old_module(old_package, old_function, new_package, new_function):
     print 'Renaming old module ...'
     old_module = old_function + '.py'
-    old_path = os.path.join(ABJADPATH, 'tools', old_package, old_module)
+    old_path = os.path.join(ABJCFG.ABJAD_PATH, 'tools', old_package, old_module)
     new_module = new_function + '.py'
-    new_path = os.path.join(ABJADPATH, 'tools', new_package, new_module)
+    new_path = os.path.join(ABJCFG.ABJAD_PATH, 'tools', new_package, new_module)
     command = 'svn --force mv {} {} > /dev/null'.format(old_path, new_path)
     iotools.spawn_subprocess(command)
     print ''
@@ -175,10 +175,10 @@ def _rename_old_module(old_package, old_function, new_package, new_function):
 def _rename_old_test_file(old_package, old_function, new_package, new_function):
     print 'Renaming old test file ...'
     old_test_file = 'test_{}_{}.py'.format(old_package, old_function)
-    old_path = os.path.join(ABJADPATH, 'tools', old_package, 'test')
+    old_path = os.path.join(ABJCFG.ABJAD_PATH, 'tools', old_package, 'test')
     old_path = os.path.join(old_path, old_test_file)
     new_test_file = 'test_{}_{}.py'.format(new_package, new_function)
-    new_path = os.path.join(ABJADPATH, 'tools', new_package, 'test')
+    new_path = os.path.join(ABJCFG.ABJAD_PATH, 'tools', new_package, 'test')
     new_path = os.path.join(new_path, new_test_file)
     command = 'svn --force mv {} {} > /dev/null'.format(old_path, new_path)
     iotools.spawn_subprocess(command)
@@ -187,7 +187,7 @@ def _rename_old_test_file(old_package, old_function, new_package, new_function):
 
 def _update_codebase(old_package, old_function, new_package, new_function):
     print 'Updating codebase ...'
-    directory = ABJADPATH
+    directory = ABJCFG.ABJAD_PATH
 
     old_text = '{}.{}'.format(old_package, old_function)
     new_text = '{}.{}'.format(new_package, new_function)
@@ -215,7 +215,7 @@ def _update_codebase(old_package, old_function, new_package, new_function):
 def _add_versionchanged(old_package, old_function, new_package, new_function):
     print 'Adding Sphinx versionchanged tag ...'
     new_module = new_function + '.py'
-    new_path = os.path.join(ABJADPATH, 'tools', new_package, new_module)
+    new_path = os.path.join(ABJCFG.ABJAD_PATH, 'tools', new_package, new_module)
     new_module_pointer = file(new_path, 'r')
     new_module_lines = new_module_pointer.readlines()
     new_module_pointer.close()
@@ -252,7 +252,7 @@ def _add_versionchanged(old_package, old_function, new_package, new_function):
 
 
 def _debug():
-    file_name = os.path.join(ABJADPATH, 'tools/sequencetools/zip_nontruncating.py')
+    file_name = os.path.join(ABJCFG.ABJAD_PATH, 'tools/sequencetools/zip_nontruncating.py')
     iotools.spawn_subprocess('ls -l {}'.format(file_name))
     print ''
 

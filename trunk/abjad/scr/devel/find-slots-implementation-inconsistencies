@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 
-from abjad.cfg.cfg import ABJADPATH
+from abjad import ABJCFG
 from abjad.tools.abctools import AbjadObject
 from abjad.tools.documentationtools import ClassCrawler
 from abjad.tools.documentationtools import InheritanceGraph
@@ -14,7 +14,7 @@ def _shorten_class_name(klass):
     return '%s.%s' % (parts[0], parts[1])
 
 def _find_inconsistencies():
-    tools_path = os.path.join(ABJADPATH, 'tools')
+    tools_path = os.path.join(ABJCFG.ABJAD_PATH, 'tools')
     classes = ClassCrawler(tools_path)()
     graph = InheritanceGraph(*classes, root_class=AbjadObject)
 

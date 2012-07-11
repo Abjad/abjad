@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 
-from abjad.cfg.cfg import ABJADPATH
+from abjad import ABJCFG
 from abjad.tools import iotools
 import os
 import pprint
@@ -11,7 +11,7 @@ function_definition_pattern = re.compile(r'\s*def\s+(\w+)')
 
 def _find_undocumented_tools():
    undocumented_tools = [ ]
-   tools_directory = os.path.join(ABJADPATH, 'tools')
+   tools_directory = os.path.join(ABJCFG.ABJAD_PATH, 'tools')
    for path, subdirectories, files in os.walk(tools_directory):
       for f in files:
          if f.endswith('.py'):

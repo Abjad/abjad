@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 
-from abjad.cfg.cfg import ABJADPATH
+from abjad import ABJCFG
 from abjad.tools import iotools
 from abjad.tools.iotools._update_docs_release_string import _update_docs_release_string
 import os
@@ -8,7 +8,7 @@ import os
 
 # find start directory and project root
 start_directory = os.path.abspath('.')
-project_root = ABJADPATH.rstrip('abjad')
+project_root = ABJCFG.ABJAD_PATH.rstrip('abjad')
 
 # svn update
 os.chdir(project_root)

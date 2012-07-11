@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 
-from abjad.cfg.cfg import ABJADPATH
+from abjad import ABJCFG
 from abjad.tools import iotools
 import os
 import pprint
@@ -8,7 +8,7 @@ import pprint
 
 def _find_multiline_import_statements():
    total_multiline_import_statements = 0
-   for path, subdirectories, files in os.walk(ABJADPATH):
+   for path, subdirectories, files in os.walk(ABJCFG.ABJAD_PATH):
       for f in files:
          found_import_statement_in_file = False
          if f.endswith('.py'):
