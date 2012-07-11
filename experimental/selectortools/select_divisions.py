@@ -15,7 +15,7 @@ def select_divisions(voice, start_segment, segment_count=1):
 
     # make selector
     expression = '{!r} + {}'.format(start_segment_name, segment_count - 1)
-    held_expression = selectortools.HeldExpression(expression)
+    held_expression = selectortools.SegmentIndexExpression(expression)
     start, stop = start_segment_name, held_expression
     selector = selectortools.SegmentSliceSelector(start=start, stop=stop)
     inequality = timespantools.expr_starts_during_timespan(selector.timespan)

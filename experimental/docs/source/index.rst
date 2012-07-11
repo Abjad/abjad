@@ -209,11 +209,11 @@ Unstable packages (load manually)
    experimental/selectortools/DivisionOldSelector/DivisionOldSelector
    experimental/selectortools/DurationRatioItemSelector/DurationRatioItemSelector
    experimental/selectortools/DurationRatioSliceSelector/DurationRatioSliceSelector
-   experimental/selectortools/HeldExpression/HeldExpression
    experimental/selectortools/KlassInventory/KlassInventory
    experimental/selectortools/MultipleContextCounttimeComponentSliceSelector/MultipleContextCounttimeComponentSliceSelector
    experimental/selectortools/MultipleContextDivisionSliceSelector/MultipleContextDivisionSliceSelector
    experimental/selectortools/MultipleContextTimespanSelector/MultipleContextTimespanSelector
+   experimental/selectortools/SegmentIndexExpression/SegmentIndexExpression
    experimental/selectortools/SegmentSelector/SegmentSelector
    experimental/selectortools/SegmentSliceSelector/SegmentSliceSelector
    experimental/selectortools/SingleContextCounttimeComponentSelector/SingleContextCounttimeComponentSelector
