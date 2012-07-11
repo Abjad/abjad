@@ -122,7 +122,7 @@ class ClassDocumenter(Documenter):
         result.append('')
         if attr in self.inherited_attributes:
             defining_module = '%s.%s' % (attr.defining_class.__module__, attr.defining_class.__name__)
-            if defining_module.startswith('abjad'):
+            if defining_module.startswith(('abjad', 'experimental')):
                 parts = defining_module.split('.')
                 result.append('    Inherited from :py:class:`%s.%s <%s>`' %
                     (parts[2], parts[3], defining_module))
