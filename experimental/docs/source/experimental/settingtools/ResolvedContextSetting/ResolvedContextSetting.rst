@@ -15,7 +15,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.settingtools.ResolvedContextSetting.ResolvedContextSetting.ResolvedContextSetting.fresh
 
-    Inherited from :py:class:`ContextSetting.ContextSetting <experimental.settingtools.ContextSetting.ContextSetting.ContextSetting>`
+    Inherited from :py:class:`SingleContextSetting.SingleContextSetting <experimental.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting>`
 
 .. autoattribute:: experimental.settingtools.ResolvedContextSetting.ResolvedContextSetting.ResolvedContextSetting.persistent
 
@@ -44,11 +44,11 @@ Methods
 
 .. automethod:: experimental.settingtools.ResolvedContextSetting.ResolvedContextSetting.ResolvedContextSetting.copy_to_segment
 
-    Inherited from :py:class:`ContextSetting.ContextSetting <experimental.settingtools.ContextSetting.ContextSetting.ContextSetting>`
+    Inherited from :py:class:`SingleContextSetting.SingleContextSetting <experimental.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting>`
 
 .. automethod:: experimental.settingtools.ResolvedContextSetting.ResolvedContextSetting.ResolvedContextSetting.set_to_segment
 
-    Inherited from :py:class:`ContextSetting.ContextSetting <experimental.settingtools.ContextSetting.ContextSetting.ContextSetting>`
+    Inherited from :py:class:`SingleContextSetting.SingleContextSetting <experimental.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting>`
 
 .. automethod:: experimental.settingtools.ResolvedContextSetting.ResolvedContextSetting.ResolvedContextSetting.unpack
 

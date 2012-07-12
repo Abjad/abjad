@@ -241,11 +241,11 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
-   experimental/settingtools/ContextSetting/ContextSetting
    experimental/settingtools/ContextSettingInventory/ContextSettingInventory
    experimental/settingtools/ResolvedContextSetting/ResolvedContextSetting
    experimental/settingtools/Setting/Setting
    experimental/settingtools/SettingInventory/SettingInventory
+   experimental/settingtools/SingleContextSetting/SingleContextSetting
 
 :py:mod:`specificationtools <experimental.specificationtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

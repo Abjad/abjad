@@ -1,6 +1,6 @@
 from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
 from experimental.specificationtools.AttributeNameEnumeration import AttributeNameEnumeration
-from experimental.settingtools.ContextSetting import ContextSetting
+from experimental.settingtools.SingleContextSetting import SingleContextSetting
 
 
 class ContextSettingInventory(ObjectInventory):
@@ -17,7 +17,7 @@ class ContextSettingInventory(ObjectInventory):
 
     @property
     def _item_callable(self):
-        return ContextSetting
+        return SingleContextSetting
 
     ### PUBLIC METHODS ###
 

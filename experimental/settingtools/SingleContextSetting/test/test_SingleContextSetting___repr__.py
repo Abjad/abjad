@@ -1,21 +1,21 @@
 from experimental.selectortools.SingleContextTimespanSelector import SingleContextTimespanSelector
 from experimental.selectortools.SegmentSelector import SegmentSelector
-from experimental.settingtools.ContextSetting import ContextSetting
+from experimental.settingtools.SingleContextSetting import SingleContextSetting
 from experimental.timespantools.Timepoint import Timepoint
 from experimental.timespantools.SingleSourceTimespan import SingleSourceTimespan
 
 
-def test_ContextSetting___repr___01():
+def test_SingleContextSetting___repr___01():
     '''Repr is evaluable.
     '''
 
     segment_selector = SegmentSelector(index='1')
     target = SingleContextTimespanSelector('Voice 1', timespan=segment_selector.timespan)
-    setting_1 = ContextSetting(target, 'time_signatures', [(4, 8), (3, 8)], fresh=False)
+    setting_1 = SingleContextSetting(target, 'time_signatures', [(4, 8), (3, 8)], fresh=False)
 
     setting_2 = eval(repr(setting_1))
 
-    assert isinstance(setting_1, ContextSetting)
-    assert isinstance(setting_2, ContextSetting)
+    assert isinstance(setting_1, SingleContextSetting)
+    assert isinstance(setting_2, SingleContextSetting)
     assert not setting_1 is setting_2
     assert setting_1 == setting_2

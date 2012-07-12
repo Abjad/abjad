@@ -1,5 +1,5 @@
 from abjad.tools import *
-from experimental.settingtools.ContextSetting import ContextSetting
+from experimental.settingtools.SingleContextSetting import SingleContextSetting
 from experimental.settingtools.ContextSettingInventory import ContextSettingInventory
 from experimental.specificationtools.ScoreSpecification import ScoreSpecification
 from experimental.selectortools.MultipleContextTimespanSelector import MultipleContextTimespanSelector

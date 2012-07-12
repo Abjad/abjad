@@ -1,12 +1,12 @@
-from experimental.settingtools.ContextSetting import ContextSetting
+from experimental.settingtools.SingleContextSetting import SingleContextSetting
 
 
-class ResolvedContextSetting(ContextSetting):
+class ResolvedContextSetting(SingleContextSetting):
     
     ### INITIALIZER ###
 
     def __init__(self, target, attribute, source, value, persistent=True, truncate=False, fresh=True):
-        ContextSetting.__init__(self, target, attribute, source, persistent=persistent, truncate=truncate)
+        SingleContextSetting.__init__(self, target, attribute, source, persistent=persistent, truncate=truncate)
         assert value is not None, repr(value)
         assert isinstance(fresh, bool), repr(fresh)
         self._value = value

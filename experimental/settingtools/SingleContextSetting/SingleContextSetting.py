@@ -2,7 +2,7 @@ from experimental.settingtools.Setting import Setting
 import copy
 
 
-class ContextSetting(Setting):
+class SingleContextSetting(Setting):
     r'''.. versionadded:: 1.0
 
     Frozen request to set one attribute against one context-specified selection.
@@ -22,12 +22,12 @@ class ContextSetting(Setting):
 
     ::
 
-        >>> setting = settingtools.ContextSetting(target, 'time_signatures', [(4, 8), (3, 8)], fresh=False)
+        >>> setting = settingtools.SingleContextSetting(target, 'time_signatures', [(4, 8), (3, 8)], fresh=False)
 
     ::
 
         >>> z(setting)
-        settingtools.ContextSetting(
+        settingtools.SingleContextSetting(
             selectortools.SingleContextTimespanSelector(
                 'Voice 1',
                 timespantools.SingleSourceTimespan(
