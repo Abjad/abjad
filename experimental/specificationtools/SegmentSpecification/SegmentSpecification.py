@@ -263,6 +263,11 @@ class SegmentSpecification(Specification):
             return value, fresh
         return library.rest_filled_tokens, True
 
+    def preprocess_setting_target(self, target):
+        if isinstance(target, (str, list, type(self))):
+            target = self.select_timespan(contexts=target)
+        return target
+
     def retrieve_attribute(self, attribute, **kwargs):
         return Specification.retrieve_attribute(self, attribute, self.name, **kwargs)
 
@@ -601,17 +606,14 @@ class SegmentSpecification(Specification):
         return self.set_attribute(attribute, contexts, source, 
             count=count, offset=offset, persistent=persistent)
 
-    # TODO: generalize 'contexts' to (selector-based) 'target'
-    def set_attribute(self, attribute, contexts, source, 
-        callback=None, count=None, offset=None, persistent=True, timespan=None, truncate=False):
+    def set_attribute(self, attribute, target, source, 
+        callback=None, count=None, offset=None, persistent=True, truncate=False):
         from experimental import settingtools
-        from experimental import timespantools
         assert attribute in self.attributes, repr(attribute)
         assert isinstance(count, (int, type(None))), repr(count)
         assert isinstance(persistent, type(True)), repr(persistent)
-        assert isinstance(timespan, (timespantools.SingleSourceTimespan, type(None))), repr(timespan)
         assert isinstance(truncate, type(True)), repr(truncate)
-        target = self.select_timespan(contexts=contexts)
+        target = self.preprocess_setting_target(target)
         source = self.annotate_source(source, callback=callback, count=count, offset=offset)
         directive = settingtools.Setting(target, attribute, source, 
             persistent=persistent, truncate=truncate)

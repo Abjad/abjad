@@ -114,7 +114,8 @@ class Setting(AbjadObject):
         settings = []
         assert self.target.contexts, repr(self.target.contexts)
         for context in self.target.contexts:
-            target = selectortools.SingleContextTimespanSelector(context, timespan=copy.deepcopy(self.target.timespan))
+            target = selectortools.SingleContextTimespanSelector(context, 
+                timespan=copy.deepcopy(self.target.timespan))
             setting = settingtools.ContextSetting(target, self.attribute, self.source, 
                 persistent=self.persistent, truncate=self.truncate)
             settings.append(setting)
