@@ -297,31 +297,6 @@ class SegmentSpecification(Specification):
         selector = selectortools.BackgroundMeasureSliceSelector(inequality=inequality, start=start, stop=stop)
         return selector
     
-    def select_contexts(self, contexts=None):
-        '''Select contexts::
-
-            >>> selection = segment.select_contexts()
-
-        ::
-
-            >>> z(selection)
-            selectortools.MultipleContextTimespanSelector(
-                contexts=['Grouped Rhythmic Staves Score'],
-                timespan=timespantools.SingleSourceTimespan(
-                    selector=selectortools.SegmentSelector(
-                        index='red'
-                        )
-                    )
-                )
-
-        .. note:: replace selection classes with selector classes.
-
-        Return selection.
-        '''
-        from experimental import selectortools
-        contexts = self.context_token_to_context_names(contexts)
-        return selectortools.MultipleContextTimespanSelector(contexts=contexts, timespan=self.timespan)
-
     def select_divisions_that_start_during_segment(self, contexts=None, start=None, stop=None):
         '''Select the first five divisions that start during segment::
 
@@ -423,6 +398,29 @@ class SegmentSpecification(Specification):
             start=start, stop=stop)
         return selector
 
+    def select_timespan(self, contexts=None):
+        '''Select contexts::
+
+            >>> selector = segment.select_timespan()
+
+        ::
+
+            >>> z(selector)
+            selectortools.MultipleContextTimespanSelector(
+                contexts=['Grouped Rhythmic Staves Score'],
+                timespan=timespantools.SingleSourceTimespan(
+                    selector=selectortools.SegmentSelector(
+                        index='red'
+                        )
+                    )
+                )
+
+        Return selector.
+        '''
+        from experimental import selectortools
+        contexts = self.context_token_to_context_names(contexts)
+        return selectortools.MultipleContextTimespanSelector(contexts=contexts, timespan=self.timespan)
+
     def set_aggregate(self, contexts, source, 
         count=None, persistent=True, offset=None):
         attribute = 'aggregate'
@@ -444,7 +442,7 @@ class SegmentSpecification(Specification):
         assert isinstance(persistent, type(True)), repr(persistent)
         assert isinstance(timespan, (timespantools.SingleSourceTimespan, type(None))), repr(timespan)
         assert isinstance(truncate, type(True)), repr(truncate)
-        target = self.select_contexts(contexts=contexts)
+        target = self.select_timespan(contexts=contexts)
         source = self.annotate_source(source, callback=callback, count=count, offset=offset)
         directive = settingtools.Setting(target, attribute, source, 
             persistent=persistent, truncate=truncate)
