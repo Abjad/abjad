@@ -36,7 +36,7 @@ class AbjadConfig(collections.MutableMapping, abctools.AbjadObject):
 
     ### CLASS ATTRIBUTES ###
 
-    __slots__ = ('_settings',)
+    __slots__ = ('_settings')
 
     ### INITIALIZER ###
 
@@ -53,13 +53,10 @@ class AbjadConfig(collections.MutableMapping, abctools.AbjadObject):
         # a config object will be created if none is found on disk
         spec = self.get_config_spec()
         config = configobj.ConfigObj(self.ABJAD_CONFIG_FILE_PATH, configspec=spec)
+
+        # validate
         validator = validate.Validator()
         validation = config.validate(validator, copy=True)
-
-        # setup output formatting
-        config.write_empty_values = True
-        config.comments.update(self.get_option_comments())
-        config.initial_comment = self.get_initial_comment()
 
         # replace failing key:value pairs with default values
         if validation is not True:
@@ -70,6 +67,11 @@ class AbjadConfig(collections.MutableMapping, abctools.AbjadObject):
                         'setting to default: {!r}.'.format(key, default)
                     config[key] = default
 
+        # setup output formatting
+        config.write_empty_values = True
+        config.comments.update(self.get_option_comments())
+        config.initial_comment = self.get_initial_comment()
+
         # write back to disk
         with open(self.ABJAD_CONFIG_FILE_PATH, 'w') as f:
             config.write(f)
@@ -79,7 +81,7 @@ class AbjadConfig(collections.MutableMapping, abctools.AbjadObject):
         # caching the result on this AbjadConfig instance.
         self._settings = dict(config)
         for key, value in self._settings.iteritems():
-            if value == '':
+            if value == '' or value == 'None':
                 self._settings[key] = None
 
         # finally, verify the PDF output directory
@@ -193,7 +195,7 @@ class AbjadConfig(collections.MutableMapping, abctools.AbjadObject):
                     'MIDI player to play MIDI files with, via play().',
                     'When unset, your environment should know how to open MIDIs.',
                 ],
-                'spec': 'string(default=None)'
+                'spec': "string(default='')"
             },
             'pdf_viewer': {
                 'comment': [
@@ -201,7 +203,7 @@ class AbjadConfig(collections.MutableMapping, abctools.AbjadObject):
                     'PDF viewer to view generated PDF files.',
                     'When unset, your environment should know how to open PDFs.',
                 ],
-                'spec': 'string(default=None)'
+                'spec': "string(default='')"
             },
             'text_editor': {
                 'comment': [
@@ -209,7 +211,7 @@ class AbjadConfig(collections.MutableMapping, abctools.AbjadObject):
                     'Text editor for viewing text files with (i.e. *.ly).',
                     'When unset, your environment should know how to open text files.'
                 ],
-                'spec': 'string(default=None)'
+                'spec': "string(default='')"
             },
 
         }
