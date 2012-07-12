@@ -624,10 +624,10 @@ class SegmentSpecification(Specification):
             count=count, offset=offset, persistent=persistent)
 
     def set_divisions(self, contexts, source, 
-        callback=None, count=None, offset=None, persistent=True, timespan=None, truncate=False):
+        callback=None, count=None, offset=None, persistent=True, truncate=False):
         attribute = 'divisions'
         return self.set_attribute(attribute, contexts, source, 
-            callback=callback, count=count, offset=offset, persistent=persistent, timespan=timespan, truncate=truncate)
+            callback=callback, count=count, offset=offset, persistent=persistent, truncate=truncate)
 
     def set_duration_in_seconds(self, contexts, source, 
         count=None, persistent=True, offset=None):
