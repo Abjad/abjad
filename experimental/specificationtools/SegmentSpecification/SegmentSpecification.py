@@ -269,10 +269,10 @@ class SegmentSpecification(Specification):
     def retrieve_resolved_value(self, attribute, **kwargs):
         return Specification.retrieve_resolved_value(self, attribute, self.name, **kwargs)
 
-    def select_background_measures_that_start_during_segment(self, start=None, stop=None):
+    def select_background_measures(self, start=None, stop=None):
         '''Select the first five background measures that start during segment::
 
-            >>> selector = segment.select_background_measures_that_start_during_segment(stop=5)
+            >>> selector = segment.select_background_measures(stop=5)
 
         ::
 
@@ -297,11 +297,11 @@ class SegmentSpecification(Specification):
         selector = selectortools.BackgroundMeasureSliceSelector(inequality=inequality, start=start, stop=stop)
         return selector
     
-    def select_divisions_that_start_during_segment(self, contexts=None, start=None, stop=None):
+    def select_divisions(self, contexts=None, start=None, stop=None):
         '''Select the first five divisions that start during segment::
 
             >>> contexts = ['Voice 1', 'Voice 3']
-            >>> selector = segment.select_divisions_that_start_during_segment(contexts=contexts, stop=5)
+            >>> selector = segment.select_divisions(contexts=contexts, stop=5)
 
         ::
             
@@ -328,11 +328,11 @@ class SegmentSpecification(Specification):
             contexts=contexts, inequality=inequality, start=start, stop=stop)
         return selector
 
-    def select_leaves_that_start_during_segment(self, contexts=None, start=None, stop=None):
+    def select_leaves(self, contexts=None, start=None, stop=None):
         '''Select the first ``40`` leaves that start during segment::
 
             >>> contexts = ['Voice 1', 'Voice 3']
-            >>> selector = segment.select_leaves_that_start_during_segment(contexts=contexts, stop=40)
+            >>> selector = segment.select_leaves(contexts=contexts, stop=40)
 
         ::
 
@@ -361,12 +361,12 @@ class SegmentSpecification(Specification):
             start=start, stop=stop)
         return selector
 
-    def select_notes_and_chords_that_start_during_segment(self, contexts=None, start=None, stop=None):
+    def select_notes_and_chords(self, contexts=None, start=None, stop=None):
         '''Select the first ``40`` notes and chords that start during segment.
         Do this for ``'Voice 1'`` and ``'Voice 3'``::
 
             >>> contexts = ['Voice 1', 'Voice 3']
-            >>> selector = segment.select_notes_and_chords_that_start_during_segment(contexts=contexts, stop=40)
+            >>> selector = segment.select_notes_and_chords(contexts=contexts, stop=40)
 
         ::
 
