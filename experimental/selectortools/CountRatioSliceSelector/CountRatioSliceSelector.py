@@ -47,5 +47,6 @@ class CountRatioSliceSelector(RatioSelector, SliceSelector):
     ### INITIALIZER ###
 
     def __init__(self, reference, ratio, start=None, stop=None):
+        assert self._interprets_as_sliceable_selector(reference), repr(reference)
         RatioSelector.__init__(self, reference, ratio)
         SliceSelector.__init__(self, start=start, stop=stop)

@@ -47,5 +47,6 @@ class CountRatioItemSelector(RatioSelector, ItemSelector):
     ### INITIALIZER ###
 
     def __init__(self, reference, ratio, index=None):
+        assert self._interprets_as_sliceable_selector(reference), repr(reference)
         RatioSelector.__init__(self, reference, ratio)
         ItemSelector.__init__(self, index=index)

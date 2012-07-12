@@ -328,6 +328,34 @@ class SegmentSpecification(Specification):
             contexts=contexts, inequality=inequality, start=start, stop=stop)
         return selector
 
+    def select_duration_ratio(self, ratio, index, contexts=None):
+        '''Select the last third of the timespan of segment::
+
+            >>> selector = segment.select_duration_ratio((1, 1, 1), -1, contexts=['Voice 1', 'Voice 3'])
+
+        ::
+
+            >>> z(selector)
+            selectortools.DurationRatioItemSelector(
+                selectortools.MultipleContextTimespanSelector(
+                    contexts=['Voice 1', 'Voice 3'],
+                    timespan=timespantools.SingleSourceTimespan(
+                        selector=selectortools.SegmentSelector(
+                            index='red'
+                            )
+                        )
+                    ),
+                mathtools.Ratio(1, 1, 1),
+                index=-1
+                )
+
+        Return selector.
+        '''
+        from experimental import selectortools
+        selector = selectortools.MultipleContextTimespanSelector(contexts=contexts, timespan=self.timespan)
+        selector = selectortools.DurationRatioItemSelector(selector, ratio, index)
+        return selector
+
     def select_leaves(self, contexts=None, start=None, stop=None):
         '''Select the first ``40`` leaves that start during segment::
 

@@ -18,7 +18,6 @@ class RatioSelector(Selector):
 
     @abstractmethod
     def __init__(self, reference, ratio):
-        assert self._interprets_as_sliceable_selector(reference), repr(reference)
         ratio = mathtools.Ratio(ratio)
         self._reference = reference
         self._ratio = ratio
