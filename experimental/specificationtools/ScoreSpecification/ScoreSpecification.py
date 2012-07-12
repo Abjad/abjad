@@ -83,6 +83,8 @@ class ScoreSpecification(Specification):
         for voice in voicetools.iterate_voices_forward_in_expr(self.score):
             self.add_divisions_to_voice(voice)
 
+    # NEXT: extend this method to handle ratio selector settings.
+    #       These settings address themselves to the timespans of *incomplete* segments
     def add_divisions_to_voice(self, voice):
         region_division_lists = self.make_region_division_lists_for_voice(voice)
         if region_division_lists:
@@ -529,10 +531,10 @@ class ScoreSpecification(Specification):
         context_name = resolved_setting.target.context or \
             segment.resolved_settings_context_dictionary.score_name
         attribute = resolved_setting.attribute
-        if attribute in segment.resolved_settings_context_dictionary[context_name]:
-            message = '{!r} {!r} already contains {!r} setting.'
-            message = message.format(segment.name, context_name, attribute)
-            raise Exception(message)
+#        if attribute in segment.resolved_settings_context_dictionary[context_name]:
+#            message = 'segment {!r} context {!r} already contains a {!r} setting.'
+#            message = message.format(segment.name, context_name, attribute)
+#            raise Exception(message)
         segment.resolved_settings_context_dictionary[context_name][attribute] = resolved_setting
         if resolved_setting.persistent:
             self.resolved_settings_context_dictionary[context_name][attribute] = resolved_setting
