@@ -32,11 +32,7 @@ def show(expr, return_timing=False, suppress_pdf=False, docs=False):
 
     # do not open PDF if we're running py.test regression battery
     if not suppress_pdf:
-        # FIXME: the value returned should never be the string 'None'
         pdf_viewer = ABJCFG['pdf_viewer']
-        # FIXME: these two lines are a temporary hack that can be removed later
-        if pdf_viewer == 'None':
-            pdf_viewer = None
         ABJADOUTPUT = ABJCFG['abjad_output']
         name = os.path.join(ABJADOUTPUT, name)
         _open_file('%s.pdf' % name[:-3], pdf_viewer)
