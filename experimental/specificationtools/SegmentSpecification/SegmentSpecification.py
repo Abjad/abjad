@@ -431,16 +431,17 @@ class SegmentSpecification(Specification):
             selector = selectortools.DurationRatioItemSelector(selector, ratio, index=index)
         return selector
 
-    def select_ratio_of_divisions(self, ratio, index=0, count=True):
+    def select_ratio_of_divisions(self, ratio, index, contexts=None, count=True):
         r'''Select the first third of divisions starting during segment::
 
-            >>> selector = segment.select_ratio_of_divisions((1, 1, 1), 0)
+            >>> selector = segment.select_ratio_of_divisions((1, 1, 1), 0, contexts=['Voice 1', 'Voice 3'])
 
         ::
 
             >>> z(selector)
             selectortools.CountRatioItemSelector(
                 selectortools.MultipleContextDivisionSliceSelector(
+                    contexts=['Voice 1', 'Voice 3'],
                     inequality=timespantools.TimespanInequality(
                         timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                         timespantools.SingleSourceTimespan(
@@ -457,23 +458,24 @@ class SegmentSpecification(Specification):
         Return selector.
         '''
         from experimental import selectortools
-        selector = self.select_divisions()
+        selector = self.select_divisions(contexts=contexts)
         if count:
             selector = selectortools.CountRatioItemSelector(selector, ratio, index=index)
         else:
             selector = selectortools.DurationRatioItemSelector(selector, ratio, index=index)
         return selector
 
-    def select_ratio_of_leaves(self, ratio, index=0, count=True):
+    def select_ratio_of_leaves(self, ratio, index, contexts=None, count=True):
         r'''Select the first third of leaves starting during segment::
 
-            >>> selector = segment.select_ratio_of_leaves((1, 1, 1), 0)
+            >>> selector = segment.select_ratio_of_leaves((1, 1, 1), 0, contexts=['Voice 1', 'Voice 3'])
 
         ::
 
             >>> z(selector)
             selectortools.CountRatioItemSelector(
                 selectortools.MultipleContextCounttimeComponentSliceSelector(
+                    contexts=['Voice 1', 'Voice 3'],
                     inequality=timespantools.TimespanInequality(
                         timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                         timespantools.SingleSourceTimespan(
@@ -491,23 +493,24 @@ class SegmentSpecification(Specification):
         Return selector.
         '''
         from experimental import selectortools
-        selector = self.select_leaves()
+        selector = self.select_leaves(contexts=contexts)
         if count:
             selector = selectortools.CountRatioItemSelector(selector, ratio, index=index)
         else:
             selector = selectortools.DurationRatioItemSelector(selector, ratio, index=index)
         return selector
 
-    def select_ratio_of_notes_and_chords(self, ratio, index=0, count=True):
+    def select_ratio_of_notes_and_chords(self, ratio, index, contexts=None, count=True):
         r'''Select the first third of notes and chords starting during segment::
 
-            >>> selector = segment.select_ratio_of_notes_and_chords((1, 1, 1), 0)
+            >>> selector = segment.select_ratio_of_notes_and_chords((1, 1, 1), 0, contexts=['Voice 1', 'Voice 3'])
 
         ::
 
             >>> z(selector)
             selectortools.CountRatioItemSelector(
                 selectortools.MultipleContextCounttimeComponentSliceSelector(
+                    contexts=['Voice 1', 'Voice 3'],
                     inequality=timespantools.TimespanInequality(
                         timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                         timespantools.SingleSourceTimespan(
@@ -528,7 +531,7 @@ class SegmentSpecification(Specification):
         Return selector.
         '''
         from experimental import selectortools
-        selector = self.select_notes_and_chords()
+        selector = self.select_notes_and_chords(contexts=contexts)
         if count:
             selector = selectortools.CountRatioItemSelector(selector, ratio, index=index)
         else:
