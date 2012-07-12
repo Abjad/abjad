@@ -601,6 +601,7 @@ class SegmentSpecification(Specification):
         return self.set_attribute(attribute, contexts, source, 
             count=count, offset=offset, persistent=persistent)
 
+    # TODO: generalize 'contexts' to (selector-based) 'target'
     def set_attribute(self, attribute, contexts, source, 
         callback=None, count=None, offset=None, persistent=True, timespan=None, truncate=False):
         from experimental import settingtools
