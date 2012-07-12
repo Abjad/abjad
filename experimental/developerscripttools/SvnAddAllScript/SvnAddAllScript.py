@@ -11,7 +11,7 @@ class SvnAddAllScript(DirectoryScript):
 
     @property
     def alias(self):
-        return 'add-all'
+        return 'add'
 
     @property
     def long_description(self):
