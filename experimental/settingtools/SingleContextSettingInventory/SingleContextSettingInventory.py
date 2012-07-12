@@ -3,7 +3,7 @@ from experimental.specificationtools.AttributeNameEnumeration import AttributeNa
 from experimental.settingtools.SingleContextSetting import SingleContextSetting
 
 
-class ContextSettingInventory(ObjectInventory):
+class SingleContextSettingInventory(ObjectInventory):
     r'''.. versionadded:: 1.0
 
     Context setting inventory.

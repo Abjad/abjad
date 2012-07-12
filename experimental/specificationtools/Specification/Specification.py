@@ -30,7 +30,7 @@ class Specification(AbjadObject):
         self._resolved_settings_context_dictionary = ContextDictionary(self.score_template())
         self._initialize_context_name_abbreviations()
         self._payload_context_dictionary = ContextDictionary(self.score_template())
-        self._settings = settingtools.ContextSettingInventory()
+        self._settings = settingtools.SingleContextSettingInventory()
 
     ### PRIVATE METHODS ###
 
