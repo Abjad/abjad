@@ -11,19 +11,19 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.BackgroundMeasureSliceSelector.BackgroundMeasureSliceSelector.BackgroundMeasureSliceSelector.inequality
 
-    Inherited from :py:class:`selectortools.InequalitySelector <experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector>`
+    Inherited from :py:class:`InequalitySelector.InequalitySelector <experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector>`
 
 .. autoattribute:: experimental.selectortools.BackgroundMeasureSliceSelector.BackgroundMeasureSliceSelector.BackgroundMeasureSliceSelector.klass
 
-    Inherited from :py:class:`selectortools.BackgroundElementSliceSelector <experimental.selectortools.BackgroundElementSliceSelector.BackgroundElementSliceSelector.BackgroundElementSliceSelector>`
+    Inherited from :py:class:`BackgroundElementSliceSelector.BackgroundElementSliceSelector <experimental.selectortools.BackgroundElementSliceSelector.BackgroundElementSliceSelector.BackgroundElementSliceSelector>`
 
 .. autoattribute:: experimental.selectortools.BackgroundMeasureSliceSelector.BackgroundMeasureSliceSelector.BackgroundMeasureSliceSelector.start
 
-    Inherited from :py:class:`selectortools.BackgroundElementSliceSelector <experimental.selectortools.BackgroundElementSliceSelector.BackgroundElementSliceSelector.BackgroundElementSliceSelector>`
+    Inherited from :py:class:`BackgroundElementSliceSelector.BackgroundElementSliceSelector <experimental.selectortools.BackgroundElementSliceSelector.BackgroundElementSliceSelector.BackgroundElementSliceSelector>`
 
 .. autoattribute:: experimental.selectortools.BackgroundMeasureSliceSelector.BackgroundMeasureSliceSelector.BackgroundMeasureSliceSelector.stop
 
-    Inherited from :py:class:`selectortools.BackgroundElementSliceSelector <experimental.selectortools.BackgroundElementSliceSelector.BackgroundElementSliceSelector.BackgroundElementSliceSelector>`
+    Inherited from :py:class:`BackgroundElementSliceSelector.BackgroundElementSliceSelector <experimental.selectortools.BackgroundElementSliceSelector.BackgroundElementSliceSelector.BackgroundElementSliceSelector>`
 
 .. autoattribute:: experimental.selectortools.BackgroundMeasureSliceSelector.BackgroundMeasureSliceSelector.BackgroundMeasureSliceSelector.storage_format
 
@@ -31,7 +31,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.BackgroundMeasureSliceSelector.BackgroundMeasureSliceSelector.BackgroundMeasureSliceSelector.timespan
 
-    Inherited from :py:class:`selectortools.Selector <experimental.selectortools.Selector.Selector.Selector>`
+    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
 
 Special Methods
 ---------------

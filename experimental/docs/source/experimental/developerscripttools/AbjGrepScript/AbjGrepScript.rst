@@ -13,25 +13,25 @@ Read-only Properties
 
 .. autoattribute:: experimental.developerscripttools.AbjGrepScript.AbjGrepScript.AbjGrepScript.argument_parser
 
-    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
+    Inherited from :py:class:`DeveloperScript.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 
 .. autoattribute:: experimental.developerscripttools.AbjGrepScript.AbjGrepScript.AbjGrepScript.formatted_help
 
-    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
+    Inherited from :py:class:`DeveloperScript.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 
 .. autoattribute:: experimental.developerscripttools.AbjGrepScript.AbjGrepScript.AbjGrepScript.formatted_usage
 
-    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
+    Inherited from :py:class:`DeveloperScript.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 
 .. autoattribute:: experimental.developerscripttools.AbjGrepScript.AbjGrepScript.AbjGrepScript.formatted_version
 
-    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
+    Inherited from :py:class:`DeveloperScript.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 
 .. autoattribute:: experimental.developerscripttools.AbjGrepScript.AbjGrepScript.AbjGrepScript.long_description
 
 .. autoattribute:: experimental.developerscripttools.AbjGrepScript.AbjGrepScript.AbjGrepScript.program_name
 
-    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
+    Inherited from :py:class:`DeveloperScript.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 
 .. autoattribute:: experimental.developerscripttools.AbjGrepScript.AbjGrepScript.AbjGrepScript.scripting_group
 
@@ -55,7 +55,7 @@ Special Methods
 
 .. automethod:: experimental.developerscripttools.AbjGrepScript.AbjGrepScript.AbjGrepScript.__call__
 
-    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
+    Inherited from :py:class:`DeveloperScript.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 
 .. automethod:: experimental.developerscripttools.AbjGrepScript.AbjGrepScript.AbjGrepScript.__delattr__
 

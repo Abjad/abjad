@@ -11,19 +11,19 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.CountRatioSliceSelector.CountRatioSliceSelector.CountRatioSliceSelector.ratio
 
-    Inherited from :py:class:`selectortools.RatioSelector <experimental.selectortools.RatioSelector.RatioSelector.RatioSelector>`
+    Inherited from :py:class:`RatioSelector.RatioSelector <experimental.selectortools.RatioSelector.RatioSelector.RatioSelector>`
 
 .. autoattribute:: experimental.selectortools.CountRatioSliceSelector.CountRatioSliceSelector.CountRatioSliceSelector.reference
 
-    Inherited from :py:class:`selectortools.RatioSelector <experimental.selectortools.RatioSelector.RatioSelector.RatioSelector>`
+    Inherited from :py:class:`RatioSelector.RatioSelector <experimental.selectortools.RatioSelector.RatioSelector.RatioSelector>`
 
 .. autoattribute:: experimental.selectortools.CountRatioSliceSelector.CountRatioSliceSelector.CountRatioSliceSelector.start
 
-    Inherited from :py:class:`selectortools.SliceSelector <experimental.selectortools.SliceSelector.SliceSelector.SliceSelector>`
+    Inherited from :py:class:`SliceSelector.SliceSelector <experimental.selectortools.SliceSelector.SliceSelector.SliceSelector>`
 
 .. autoattribute:: experimental.selectortools.CountRatioSliceSelector.CountRatioSliceSelector.CountRatioSliceSelector.stop
 
-    Inherited from :py:class:`selectortools.SliceSelector <experimental.selectortools.SliceSelector.SliceSelector.SliceSelector>`
+    Inherited from :py:class:`SliceSelector.SliceSelector <experimental.selectortools.SliceSelector.SliceSelector.SliceSelector>`
 
 .. autoattribute:: experimental.selectortools.CountRatioSliceSelector.CountRatioSliceSelector.CountRatioSliceSelector.storage_format
 
@@ -31,7 +31,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.CountRatioSliceSelector.CountRatioSliceSelector.CountRatioSliceSelector.timespan
 
-    Inherited from :py:class:`selectortools.Selector <experimental.selectortools.Selector.Selector.Selector>`
+    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
 
 Special Methods
 ---------------

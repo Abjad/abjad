@@ -11,19 +11,19 @@ Read-only Properties
 
 .. autoattribute:: experimental.constrainttools.AbsoluteIndexConstraint.AbsoluteIndexConstraint.AbsoluteIndexConstraint.indices
 
-    Inherited from :py:class:`constrainttools._AbsoluteConstraint <experimental.constrainttools._AbsoluteConstraint._AbsoluteConstraint._AbsoluteConstraint>`
+    Inherited from :py:class:`_AbsoluteConstraint._AbsoluteConstraint <experimental.constrainttools._AbsoluteConstraint._AbsoluteConstraint._AbsoluteConstraint>`
 
 .. autoattribute:: experimental.constrainttools.AbsoluteIndexConstraint.AbsoluteIndexConstraint.AbsoluteIndexConstraint.kind
 
-    Inherited from :py:class:`constrainttools._Constraint <experimental.constrainttools._Constraint._Constraint._Constraint>`
+    Inherited from :py:class:`_Constraint._Constraint <experimental.constrainttools._Constraint._Constraint._Constraint>`
 
 .. autoattribute:: experimental.constrainttools.AbsoluteIndexConstraint.AbsoluteIndexConstraint.AbsoluteIndexConstraint.max_index
 
-    Inherited from :py:class:`constrainttools._AbsoluteConstraint <experimental.constrainttools._AbsoluteConstraint._AbsoluteConstraint._AbsoluteConstraint>`
+    Inherited from :py:class:`_AbsoluteConstraint._AbsoluteConstraint <experimental.constrainttools._AbsoluteConstraint._AbsoluteConstraint._AbsoluteConstraint>`
 
 .. autoattribute:: experimental.constrainttools.AbsoluteIndexConstraint.AbsoluteIndexConstraint.AbsoluteIndexConstraint.predicate
 
-    Inherited from :py:class:`constrainttools._Constraint <experimental.constrainttools._Constraint._Constraint._Constraint>`
+    Inherited from :py:class:`_Constraint._Constraint <experimental.constrainttools._Constraint._Constraint._Constraint>`
 
 .. autoattribute:: experimental.constrainttools.AbsoluteIndexConstraint.AbsoluteIndexConstraint.AbsoluteIndexConstraint.storage_format
 
@@ -68,7 +68,7 @@ Special Methods
 
 .. automethod:: experimental.constrainttools.AbsoluteIndexConstraint.AbsoluteIndexConstraint.AbsoluteIndexConstraint.__repr__
 
-    Inherited from :py:class:`constrainttools._Constraint <experimental.constrainttools._Constraint._Constraint._Constraint>`
+    Inherited from :py:class:`_Constraint._Constraint <experimental.constrainttools._Constraint._Constraint._Constraint>`
 
 .. automethod:: experimental.constrainttools.AbsoluteIndexConstraint.AbsoluteIndexConstraint.AbsoluteIndexConstraint.__setattr__
 

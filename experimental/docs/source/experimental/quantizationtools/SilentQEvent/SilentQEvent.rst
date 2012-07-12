@@ -13,7 +13,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.quantizationtools.SilentQEvent.SilentQEvent.SilentQEvent.offset
 
-    Inherited from :py:class:`quantizationtools.QEvent <experimental.quantizationtools.QEvent.QEvent.QEvent>`
+    Inherited from :py:class:`QEvent.QEvent <experimental.quantizationtools.QEvent.QEvent.QEvent>`
 
 .. autoattribute:: experimental.quantizationtools.SilentQEvent.SilentQEvent.SilentQEvent.storage_format
 
@@ -83,7 +83,7 @@ Special Methods
 
 .. automethod:: experimental.quantizationtools.SilentQEvent.SilentQEvent.SilentQEvent.__lt__
 
-    Inherited from :py:class:`quantizationtools.QEvent <experimental.quantizationtools.QEvent.QEvent.QEvent>`
+    Inherited from :py:class:`QEvent.QEvent <experimental.quantizationtools.QEvent.QEvent.QEvent>`
 
 .. automethod:: experimental.quantizationtools.SilentQEvent.SilentQEvent.SilentQEvent.__mul__
 
@@ -95,7 +95,7 @@ Special Methods
 
 .. automethod:: experimental.quantizationtools.SilentQEvent.SilentQEvent.SilentQEvent.__repr__
 
-    Inherited from :py:class:`quantizationtools.QEvent <experimental.quantizationtools.QEvent.QEvent.QEvent>`
+    Inherited from :py:class:`QEvent.QEvent <experimental.quantizationtools.QEvent.QEvent.QEvent>`
 
 .. automethod:: experimental.quantizationtools.SilentQEvent.SilentQEvent.SilentQEvent.__rmul__
 

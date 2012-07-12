@@ -11,17 +11,17 @@ Read-only Properties
 
 .. autoattribute:: experimental.settingtools.ContextSetting.ContextSetting.ContextSetting.attribute
 
-    Inherited from :py:class:`settingtools.Setting <experimental.settingtools.Setting.Setting.Setting>`
+    Inherited from :py:class:`Setting.Setting <experimental.settingtools.Setting.Setting.Setting>`
 
 .. autoattribute:: experimental.settingtools.ContextSetting.ContextSetting.ContextSetting.fresh
 
 .. autoattribute:: experimental.settingtools.ContextSetting.ContextSetting.ContextSetting.persistent
 
-    Inherited from :py:class:`settingtools.Setting <experimental.settingtools.Setting.Setting.Setting>`
+    Inherited from :py:class:`Setting.Setting <experimental.settingtools.Setting.Setting.Setting>`
 
 .. autoattribute:: experimental.settingtools.ContextSetting.ContextSetting.ContextSetting.source
 
-    Inherited from :py:class:`settingtools.Setting <experimental.settingtools.Setting.Setting.Setting>`
+    Inherited from :py:class:`Setting.Setting <experimental.settingtools.Setting.Setting.Setting>`
 
 .. autoattribute:: experimental.settingtools.ContextSetting.ContextSetting.ContextSetting.storage_format
 
@@ -29,11 +29,11 @@ Read-only Properties
 
 .. autoattribute:: experimental.settingtools.ContextSetting.ContextSetting.ContextSetting.target
 
-    Inherited from :py:class:`settingtools.Setting <experimental.settingtools.Setting.Setting.Setting>`
+    Inherited from :py:class:`Setting.Setting <experimental.settingtools.Setting.Setting.Setting>`
 
 .. autoattribute:: experimental.settingtools.ContextSetting.ContextSetting.ContextSetting.truncate
 
-    Inherited from :py:class:`settingtools.Setting <experimental.settingtools.Setting.Setting.Setting>`
+    Inherited from :py:class:`Setting.Setting <experimental.settingtools.Setting.Setting.Setting>`
 
 Methods
 -------
@@ -44,7 +44,7 @@ Methods
 
 .. automethod:: experimental.settingtools.ContextSetting.ContextSetting.ContextSetting.unpack
 
-    Inherited from :py:class:`settingtools.Setting <experimental.settingtools.Setting.Setting.Setting>`
+    Inherited from :py:class:`Setting.Setting <experimental.settingtools.Setting.Setting.Setting>`
 
 Special Methods
 ---------------
@@ -55,7 +55,7 @@ Special Methods
 
 .. automethod:: experimental.settingtools.ContextSetting.ContextSetting.ContextSetting.__eq__
 
-    Inherited from :py:class:`settingtools.Setting <experimental.settingtools.Setting.Setting.Setting>`
+    Inherited from :py:class:`Setting.Setting <experimental.settingtools.Setting.Setting.Setting>`
 
 .. automethod:: experimental.settingtools.ContextSetting.ContextSetting.ContextSetting.__ge__
 

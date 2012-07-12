@@ -11,7 +11,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.offset
 
-    Inherited from :py:class:`quantizationtools.QEvent <experimental.quantizationtools.QEvent.QEvent.QEvent>`
+    Inherited from :py:class:`QEvent.QEvent <experimental.quantizationtools.QEvent.QEvent.QEvent>`
 
 .. autoattribute:: experimental.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.storage_format
 
@@ -81,7 +81,7 @@ Special Methods
 
 .. automethod:: experimental.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.__lt__
 
-    Inherited from :py:class:`quantizationtools.QEvent <experimental.quantizationtools.QEvent.QEvent.QEvent>`
+    Inherited from :py:class:`QEvent.QEvent <experimental.quantizationtools.QEvent.QEvent.QEvent>`
 
 .. automethod:: experimental.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.__mul__
 
@@ -93,7 +93,7 @@ Special Methods
 
 .. automethod:: experimental.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.__repr__
 
-    Inherited from :py:class:`quantizationtools.QEvent <experimental.quantizationtools.QEvent.QEvent.QEvent>`
+    Inherited from :py:class:`QEvent.QEvent <experimental.quantizationtools.QEvent.QEvent.QEvent>`
 
 .. automethod:: experimental.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.__rmul__
 

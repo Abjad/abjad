@@ -13,25 +13,25 @@ Read-only Properties
 
 .. autoattribute:: experimental.developerscripttools.ReplacePromptsScript.ReplacePromptsScript.ReplacePromptsScript.argument_parser
 
-    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
+    Inherited from :py:class:`DeveloperScript.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 
 .. autoattribute:: experimental.developerscripttools.ReplacePromptsScript.ReplacePromptsScript.ReplacePromptsScript.formatted_help
 
-    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
+    Inherited from :py:class:`DeveloperScript.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 
 .. autoattribute:: experimental.developerscripttools.ReplacePromptsScript.ReplacePromptsScript.ReplacePromptsScript.formatted_usage
 
-    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
+    Inherited from :py:class:`DeveloperScript.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 
 .. autoattribute:: experimental.developerscripttools.ReplacePromptsScript.ReplacePromptsScript.ReplacePromptsScript.formatted_version
 
-    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
+    Inherited from :py:class:`DeveloperScript.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 
 .. autoattribute:: experimental.developerscripttools.ReplacePromptsScript.ReplacePromptsScript.ReplacePromptsScript.long_description
 
 .. autoattribute:: experimental.developerscripttools.ReplacePromptsScript.ReplacePromptsScript.ReplacePromptsScript.program_name
 
-    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
+    Inherited from :py:class:`DeveloperScript.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 
 .. autoattribute:: experimental.developerscripttools.ReplacePromptsScript.ReplacePromptsScript.ReplacePromptsScript.scripting_group
 
@@ -55,7 +55,7 @@ Special Methods
 
 .. automethod:: experimental.developerscripttools.ReplacePromptsScript.ReplacePromptsScript.ReplacePromptsScript.__call__
 
-    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
+    Inherited from :py:class:`DeveloperScript.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 
 .. automethod:: experimental.developerscripttools.ReplacePromptsScript.ReplacePromptsScript.ReplacePromptsScript.__delattr__
 

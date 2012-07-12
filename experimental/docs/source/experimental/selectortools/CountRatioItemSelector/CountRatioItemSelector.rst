@@ -11,15 +11,15 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.CountRatioItemSelector.CountRatioItemSelector.CountRatioItemSelector.index
 
-    Inherited from :py:class:`selectortools.ItemSelector <experimental.selectortools.ItemSelector.ItemSelector.ItemSelector>`
+    Inherited from :py:class:`ItemSelector.ItemSelector <experimental.selectortools.ItemSelector.ItemSelector.ItemSelector>`
 
 .. autoattribute:: experimental.selectortools.CountRatioItemSelector.CountRatioItemSelector.CountRatioItemSelector.ratio
 
-    Inherited from :py:class:`selectortools.RatioSelector <experimental.selectortools.RatioSelector.RatioSelector.RatioSelector>`
+    Inherited from :py:class:`RatioSelector.RatioSelector <experimental.selectortools.RatioSelector.RatioSelector.RatioSelector>`
 
 .. autoattribute:: experimental.selectortools.CountRatioItemSelector.CountRatioItemSelector.CountRatioItemSelector.reference
 
-    Inherited from :py:class:`selectortools.RatioSelector <experimental.selectortools.RatioSelector.RatioSelector.RatioSelector>`
+    Inherited from :py:class:`RatioSelector.RatioSelector <experimental.selectortools.RatioSelector.RatioSelector.RatioSelector>`
 
 .. autoattribute:: experimental.selectortools.CountRatioItemSelector.CountRatioItemSelector.CountRatioItemSelector.storage_format
 
@@ -27,7 +27,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.CountRatioItemSelector.CountRatioItemSelector.CountRatioItemSelector.timespan
 
-    Inherited from :py:class:`selectortools.Selector <experimental.selectortools.Selector.Selector.Selector>`
+    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
 
 Special Methods
 ---------------

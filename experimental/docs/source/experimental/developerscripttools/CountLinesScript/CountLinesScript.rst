@@ -13,25 +13,25 @@ Read-only Properties
 
 .. autoattribute:: experimental.developerscripttools.CountLinesScript.CountLinesScript.CountLinesScript.argument_parser
 
-    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
+    Inherited from :py:class:`DeveloperScript.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 
 .. autoattribute:: experimental.developerscripttools.CountLinesScript.CountLinesScript.CountLinesScript.formatted_help
 
-    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
+    Inherited from :py:class:`DeveloperScript.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 
 .. autoattribute:: experimental.developerscripttools.CountLinesScript.CountLinesScript.CountLinesScript.formatted_usage
 
-    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
+    Inherited from :py:class:`DeveloperScript.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 
 .. autoattribute:: experimental.developerscripttools.CountLinesScript.CountLinesScript.CountLinesScript.formatted_version
 
-    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
+    Inherited from :py:class:`DeveloperScript.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 
 .. autoattribute:: experimental.developerscripttools.CountLinesScript.CountLinesScript.CountLinesScript.long_description
 
 .. autoattribute:: experimental.developerscripttools.CountLinesScript.CountLinesScript.CountLinesScript.program_name
 
-    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
+    Inherited from :py:class:`DeveloperScript.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 
 .. autoattribute:: experimental.developerscripttools.CountLinesScript.CountLinesScript.CountLinesScript.scripting_group
 
@@ -48,18 +48,18 @@ Methods
 
 .. automethod:: experimental.developerscripttools.CountLinesScript.CountLinesScript.CountLinesScript.process_args
 
-    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
+    Inherited from :py:class:`DeveloperScript.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 
 .. automethod:: experimental.developerscripttools.CountLinesScript.CountLinesScript.CountLinesScript.setup_argument_parser
 
-    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
+    Inherited from :py:class:`DeveloperScript.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 
 Special Methods
 ---------------
 
 .. automethod:: experimental.developerscripttools.CountLinesScript.CountLinesScript.CountLinesScript.__call__
 
-    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
+    Inherited from :py:class:`DeveloperScript.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 
 .. automethod:: experimental.developerscripttools.CountLinesScript.CountLinesScript.CountLinesScript.__delattr__
 

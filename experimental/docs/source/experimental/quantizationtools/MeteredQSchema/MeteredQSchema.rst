@@ -11,17 +11,17 @@ Read-only Properties
 
 .. autoattribute:: experimental.quantizationtools.MeteredQSchema.MeteredQSchema.MeteredQSchema.cyclic
 
-    Inherited from :py:class:`quantizationtools.QSchema <experimental.quantizationtools.QSchema.QSchema.QSchema>`
+    Inherited from :py:class:`QSchema.QSchema <experimental.quantizationtools.QSchema.QSchema.QSchema>`
 
 .. autoattribute:: experimental.quantizationtools.MeteredQSchema.MeteredQSchema.MeteredQSchema.item_klass
 
 .. autoattribute:: experimental.quantizationtools.MeteredQSchema.MeteredQSchema.MeteredQSchema.items
 
-    Inherited from :py:class:`quantizationtools.QSchema <experimental.quantizationtools.QSchema.QSchema.QSchema>`
+    Inherited from :py:class:`QSchema.QSchema <experimental.quantizationtools.QSchema.QSchema.QSchema>`
 
 .. autoattribute:: experimental.quantizationtools.MeteredQSchema.MeteredQSchema.MeteredQSchema.search_tree
 
-    Inherited from :py:class:`quantizationtools.QSchema <experimental.quantizationtools.QSchema.QSchema.QSchema>`
+    Inherited from :py:class:`QSchema.QSchema <experimental.quantizationtools.QSchema.QSchema.QSchema>`
 
 .. autoattribute:: experimental.quantizationtools.MeteredQSchema.MeteredQSchema.MeteredQSchema.storage_format
 
@@ -29,7 +29,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.quantizationtools.MeteredQSchema.MeteredQSchema.MeteredQSchema.tempo
 
-    Inherited from :py:class:`quantizationtools.QSchema <experimental.quantizationtools.QSchema.QSchema.QSchema>`
+    Inherited from :py:class:`QSchema.QSchema <experimental.quantizationtools.QSchema.QSchema.QSchema>`
 
 .. autoattribute:: experimental.quantizationtools.MeteredQSchema.MeteredQSchema.MeteredQSchema.time_signature
 
@@ -38,7 +38,7 @@ Special Methods
 
 .. automethod:: experimental.quantizationtools.MeteredQSchema.MeteredQSchema.MeteredQSchema.__call__
 
-    Inherited from :py:class:`quantizationtools.QSchema <experimental.quantizationtools.QSchema.QSchema.QSchema>`
+    Inherited from :py:class:`QSchema.QSchema <experimental.quantizationtools.QSchema.QSchema.QSchema>`
 
 .. automethod:: experimental.quantizationtools.MeteredQSchema.MeteredQSchema.MeteredQSchema.__delattr__
 
@@ -74,7 +74,7 @@ Special Methods
 
 .. automethod:: experimental.quantizationtools.MeteredQSchema.MeteredQSchema.MeteredQSchema.__repr__
 
-    Inherited from :py:class:`quantizationtools.QSchema <experimental.quantizationtools.QSchema.QSchema.QSchema>`
+    Inherited from :py:class:`QSchema.QSchema <experimental.quantizationtools.QSchema.QSchema.QSchema>`
 
 .. automethod:: experimental.quantizationtools.MeteredQSchema.MeteredQSchema.MeteredQSchema.__setattr__
 

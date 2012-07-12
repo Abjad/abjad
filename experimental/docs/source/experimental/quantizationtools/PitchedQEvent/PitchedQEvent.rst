@@ -13,7 +13,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.quantizationtools.PitchedQEvent.PitchedQEvent.PitchedQEvent.offset
 
-    Inherited from :py:class:`quantizationtools.QEvent <experimental.quantizationtools.QEvent.QEvent.QEvent>`
+    Inherited from :py:class:`QEvent.QEvent <experimental.quantizationtools.QEvent.QEvent.QEvent>`
 
 .. autoattribute:: experimental.quantizationtools.PitchedQEvent.PitchedQEvent.PitchedQEvent.pitches
 
@@ -85,7 +85,7 @@ Special Methods
 
 .. automethod:: experimental.quantizationtools.PitchedQEvent.PitchedQEvent.PitchedQEvent.__lt__
 
-    Inherited from :py:class:`quantizationtools.QEvent <experimental.quantizationtools.QEvent.QEvent.QEvent>`
+    Inherited from :py:class:`QEvent.QEvent <experimental.quantizationtools.QEvent.QEvent.QEvent>`
 
 .. automethod:: experimental.quantizationtools.PitchedQEvent.PitchedQEvent.PitchedQEvent.__mul__
 
@@ -97,7 +97,7 @@ Special Methods
 
 .. automethod:: experimental.quantizationtools.PitchedQEvent.PitchedQEvent.PitchedQEvent.__repr__
 
-    Inherited from :py:class:`quantizationtools.QEvent <experimental.quantizationtools.QEvent.QEvent.QEvent>`
+    Inherited from :py:class:`QEvent.QEvent <experimental.quantizationtools.QEvent.QEvent.QEvent>`
 
 .. automethod:: experimental.quantizationtools.PitchedQEvent.PitchedQEvent.PitchedQEvent.__rmul__
 

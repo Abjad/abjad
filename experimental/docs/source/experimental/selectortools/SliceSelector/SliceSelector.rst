@@ -19,7 +19,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.SliceSelector.SliceSelector.SliceSelector.timespan
 
-    Inherited from :py:class:`selectortools.Selector <experimental.selectortools.Selector.Selector.Selector>`
+    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
 
 Special Methods
 ---------------

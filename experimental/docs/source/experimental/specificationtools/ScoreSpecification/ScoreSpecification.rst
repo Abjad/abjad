@@ -11,23 +11,23 @@ Read-only Properties
 
 .. autoattribute:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.context_names
 
-    Inherited from :py:class:`specificationtools.Specification <experimental.specificationtools.Specification.Specification.Specification>`
+    Inherited from :py:class:`Specification.Specification <experimental.specificationtools.Specification.Specification.Specification>`
 
 .. autoattribute:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.payload_context_dictionary
 
-    Inherited from :py:class:`specificationtools.Specification <experimental.specificationtools.Specification.Specification.Specification>`
+    Inherited from :py:class:`Specification.Specification <experimental.specificationtools.Specification.Specification.Specification>`
 
 .. autoattribute:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.resolved_settings_context_dictionary
 
-    Inherited from :py:class:`specificationtools.Specification <experimental.specificationtools.Specification.Specification.Specification>`
+    Inherited from :py:class:`Specification.Specification <experimental.specificationtools.Specification.Specification.Specification>`
 
 .. autoattribute:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.score_name
 
-    Inherited from :py:class:`specificationtools.Specification <experimental.specificationtools.Specification.Specification.Specification>`
+    Inherited from :py:class:`Specification.Specification <experimental.specificationtools.Specification.Specification.Specification>`
 
 .. autoattribute:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.score_template
 
-    Inherited from :py:class:`specificationtools.Specification <experimental.specificationtools.Specification.Specification.Specification>`
+    Inherited from :py:class:`Specification.Specification <experimental.specificationtools.Specification.Specification.Specification>`
 
 .. autoattribute:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.segment_names
 
@@ -37,7 +37,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.settings
 
-    Inherited from :py:class:`specificationtools.Specification <experimental.specificationtools.Specification.Specification.Specification>`
+    Inherited from :py:class:`Specification.Specification <experimental.specificationtools.Specification.Specification.Specification>`
 
 .. autoattribute:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.storage_format
 
@@ -80,7 +80,7 @@ Methods
 
 .. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.context_token_to_context_names
 
-    Inherited from :py:class:`specificationtools.Specification <experimental.specificationtools.Specification.Specification.Specification>`
+    Inherited from :py:class:`Specification.Specification <experimental.specificationtools.Specification.Specification.Specification>`
 
 .. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.evaluate_segment_index_expression
 
@@ -130,11 +130,11 @@ Methods
 
 .. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.retrieve_attribute
 
-    Inherited from :py:class:`specificationtools.Specification <experimental.specificationtools.Specification.Specification.Specification>`
+    Inherited from :py:class:`Specification.Specification <experimental.specificationtools.Specification.Specification.Specification>`
 
 .. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.retrieve_resolved_value
 
-    Inherited from :py:class:`specificationtools.Specification <experimental.specificationtools.Specification.Specification.Specification>`
+    Inherited from :py:class:`Specification.Specification <experimental.specificationtools.Specification.Specification.Specification>`
 
 .. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.segment_name_to_index
 

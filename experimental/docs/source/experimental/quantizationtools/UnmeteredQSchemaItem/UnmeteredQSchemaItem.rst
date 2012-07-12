@@ -95,7 +95,7 @@ Special Methods
 
 .. automethod:: experimental.quantizationtools.UnmeteredQSchemaItem.UnmeteredQSchemaItem.UnmeteredQSchemaItem.__repr__
 
-    Inherited from :py:class:`quantizationtools.QSchemaItem <experimental.quantizationtools.QSchemaItem.QSchemaItem.QSchemaItem>`
+    Inherited from :py:class:`QSchemaItem.QSchemaItem <experimental.quantizationtools.QSchemaItem.QSchemaItem.QSchemaItem>`
 
 .. automethod:: experimental.quantizationtools.UnmeteredQSchemaItem.UnmeteredQSchemaItem.UnmeteredQSchemaItem.__rmul__
 

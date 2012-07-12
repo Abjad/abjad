@@ -17,7 +17,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.SingleContextTimespanSelector.SingleContextTimespanSelector.SingleContextTimespanSelector.timespan
 
-    Inherited from :py:class:`selectortools.TimespanSelector <experimental.selectortools.TimespanSelector.TimespanSelector.TimespanSelector>`
+    Inherited from :py:class:`TimespanSelector.TimespanSelector <experimental.selectortools.TimespanSelector.TimespanSelector.TimespanSelector>`
 
 Special Methods
 ---------------

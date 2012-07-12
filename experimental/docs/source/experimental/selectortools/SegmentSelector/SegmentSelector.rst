@@ -11,15 +11,15 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.index
 
-    Inherited from :py:class:`selectortools.BackgroundElementSelector <experimental.selectortools.BackgroundElementSelector.BackgroundElementSelector.BackgroundElementSelector>`
+    Inherited from :py:class:`BackgroundElementSelector.BackgroundElementSelector <experimental.selectortools.BackgroundElementSelector.BackgroundElementSelector.BackgroundElementSelector>`
 
 .. autoattribute:: experimental.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.inequality
 
-    Inherited from :py:class:`selectortools.InequalitySelector <experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector>`
+    Inherited from :py:class:`InequalitySelector.InequalitySelector <experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector>`
 
 .. autoattribute:: experimental.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.klass
 
-    Inherited from :py:class:`selectortools.BackgroundElementSelector <experimental.selectortools.BackgroundElementSelector.BackgroundElementSelector.BackgroundElementSelector>`
+    Inherited from :py:class:`BackgroundElementSelector.BackgroundElementSelector <experimental.selectortools.BackgroundElementSelector.BackgroundElementSelector.BackgroundElementSelector>`
 
 .. autoattribute:: experimental.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.storage_format
 
@@ -27,7 +27,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.timespan
 
-    Inherited from :py:class:`selectortools.Selector <experimental.selectortools.Selector.Selector.Selector>`
+    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
 
 Special Methods
 ---------------
@@ -38,7 +38,7 @@ Special Methods
 
 .. automethod:: experimental.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.__eq__
 
-    Inherited from :py:class:`selectortools.BackgroundElementSelector <experimental.selectortools.BackgroundElementSelector.BackgroundElementSelector.BackgroundElementSelector>`
+    Inherited from :py:class:`BackgroundElementSelector.BackgroundElementSelector <experimental.selectortools.BackgroundElementSelector.BackgroundElementSelector.BackgroundElementSelector>`
 
 .. automethod:: experimental.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.__ge__
 

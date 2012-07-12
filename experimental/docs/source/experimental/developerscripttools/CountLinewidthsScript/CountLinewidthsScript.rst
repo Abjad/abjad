@@ -13,25 +13,25 @@ Read-only Properties
 
 .. autoattribute:: experimental.developerscripttools.CountLinewidthsScript.CountLinewidthsScript.CountLinewidthsScript.argument_parser
 
-    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
+    Inherited from :py:class:`DeveloperScript.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 
 .. autoattribute:: experimental.developerscripttools.CountLinewidthsScript.CountLinewidthsScript.CountLinewidthsScript.formatted_help
 
-    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
+    Inherited from :py:class:`DeveloperScript.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 
 .. autoattribute:: experimental.developerscripttools.CountLinewidthsScript.CountLinewidthsScript.CountLinewidthsScript.formatted_usage
 
-    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
+    Inherited from :py:class:`DeveloperScript.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 
 .. autoattribute:: experimental.developerscripttools.CountLinewidthsScript.CountLinewidthsScript.CountLinewidthsScript.formatted_version
 
-    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
+    Inherited from :py:class:`DeveloperScript.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 
 .. autoattribute:: experimental.developerscripttools.CountLinewidthsScript.CountLinewidthsScript.CountLinewidthsScript.long_description
 
 .. autoattribute:: experimental.developerscripttools.CountLinewidthsScript.CountLinewidthsScript.CountLinewidthsScript.program_name
 
-    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
+    Inherited from :py:class:`DeveloperScript.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 
 .. autoattribute:: experimental.developerscripttools.CountLinewidthsScript.CountLinewidthsScript.CountLinewidthsScript.scripting_group
 
@@ -55,7 +55,7 @@ Special Methods
 
 .. automethod:: experimental.developerscripttools.CountLinewidthsScript.CountLinewidthsScript.CountLinewidthsScript.__call__
 
-    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
+    Inherited from :py:class:`DeveloperScript.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 
 .. automethod:: experimental.developerscripttools.CountLinewidthsScript.CountLinewidthsScript.CountLinewidthsScript.__delattr__
 

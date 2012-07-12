@@ -11,7 +11,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.context_names
 
-    Inherited from :py:class:`specificationtools.Specification <experimental.specificationtools.Specification.Specification.Specification>`
+    Inherited from :py:class:`Specification.Specification <experimental.specificationtools.Specification.Specification.Specification>`
 
 .. autoattribute:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.directives
 
@@ -21,27 +21,27 @@ Read-only Properties
 
 .. autoattribute:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.payload_context_dictionary
 
-    Inherited from :py:class:`specificationtools.Specification <experimental.specificationtools.Specification.Specification.Specification>`
+    Inherited from :py:class:`Specification.Specification <experimental.specificationtools.Specification.Specification.Specification>`
 
 .. autoattribute:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.resolved_settings_context_dictionary
 
-    Inherited from :py:class:`specificationtools.Specification <experimental.specificationtools.Specification.Specification.Specification>`
+    Inherited from :py:class:`Specification.Specification <experimental.specificationtools.Specification.Specification.Specification>`
 
 .. autoattribute:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.score_model
 
 .. autoattribute:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.score_name
 
-    Inherited from :py:class:`specificationtools.Specification <experimental.specificationtools.Specification.Specification.Specification>`
+    Inherited from :py:class:`Specification.Specification <experimental.specificationtools.Specification.Specification.Specification>`
 
 .. autoattribute:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.score_template
 
-    Inherited from :py:class:`specificationtools.Specification <experimental.specificationtools.Specification.Specification.Specification>`
+    Inherited from :py:class:`Specification.Specification <experimental.specificationtools.Specification.Specification.Specification>`
 
 .. autoattribute:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.selector
 
 .. autoattribute:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.settings
 
-    Inherited from :py:class:`specificationtools.Specification <experimental.specificationtools.Specification.Specification.Specification>`
+    Inherited from :py:class:`Specification.Specification <experimental.specificationtools.Specification.Specification.Specification>`
 
 .. autoattribute:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.start
 
@@ -64,7 +64,7 @@ Methods
 
 .. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.context_token_to_context_names
 
-    Inherited from :py:class:`specificationtools.Specification <experimental.specificationtools.Specification.Specification.Specification>`
+    Inherited from :py:class:`Specification.Specification <experimental.specificationtools.Specification.Specification.Specification>`
 
 .. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.get_directives
 

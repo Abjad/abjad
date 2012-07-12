@@ -34,7 +34,7 @@ Special Methods
 
 .. automethod:: experimental.handlertools.dynamics.ReiteratedDynamicHandler.ReiteratedDynamicHandler.ReiteratedDynamicHandler.__eq__
 
-    Inherited from :py:class:`handlertools.Handler <experimental.handlertools.Handler.Handler.Handler>`
+    Inherited from :py:class:`Handler.Handler <experimental.handlertools.Handler.Handler.Handler>`
 
 .. automethod:: experimental.handlertools.dynamics.ReiteratedDynamicHandler.ReiteratedDynamicHandler.ReiteratedDynamicHandler.__ge__
 

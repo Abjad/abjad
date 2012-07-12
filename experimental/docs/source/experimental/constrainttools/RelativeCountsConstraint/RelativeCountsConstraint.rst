@@ -11,19 +11,19 @@ Read-only Properties
 
 .. autoattribute:: experimental.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint.index_span
 
-    Inherited from :py:class:`constrainttools._RelativeConstraint <experimental.constrainttools._RelativeConstraint._RelativeConstraint._RelativeConstraint>`
+    Inherited from :py:class:`_RelativeConstraint._RelativeConstraint <experimental.constrainttools._RelativeConstraint._RelativeConstraint._RelativeConstraint>`
 
 .. autoattribute:: experimental.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint.indices
 
-    Inherited from :py:class:`constrainttools._RelativeConstraint <experimental.constrainttools._RelativeConstraint._RelativeConstraint._RelativeConstraint>`
+    Inherited from :py:class:`_RelativeConstraint._RelativeConstraint <experimental.constrainttools._RelativeConstraint._RelativeConstraint._RelativeConstraint>`
 
 .. autoattribute:: experimental.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint.kind
 
-    Inherited from :py:class:`constrainttools._Constraint <experimental.constrainttools._Constraint._Constraint._Constraint>`
+    Inherited from :py:class:`_Constraint._Constraint <experimental.constrainttools._Constraint._Constraint._Constraint>`
 
 .. autoattribute:: experimental.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint.predicate
 
-    Inherited from :py:class:`constrainttools._RelativeConstraint <experimental.constrainttools._RelativeConstraint._RelativeConstraint._RelativeConstraint>`
+    Inherited from :py:class:`_RelativeConstraint._RelativeConstraint <experimental.constrainttools._RelativeConstraint._RelativeConstraint._RelativeConstraint>`
 
 .. autoattribute:: experimental.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint.storage_format
 
@@ -68,7 +68,7 @@ Special Methods
 
 .. automethod:: experimental.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint.__repr__
 
-    Inherited from :py:class:`constrainttools._Constraint <experimental.constrainttools._Constraint._Constraint._Constraint>`
+    Inherited from :py:class:`_Constraint._Constraint <experimental.constrainttools._Constraint._Constraint._Constraint>`
 
 .. automethod:: experimental.constrainttools.RelativeCountsConstraint.RelativeCountsConstraint.RelativeCountsConstraint.__setattr__
 

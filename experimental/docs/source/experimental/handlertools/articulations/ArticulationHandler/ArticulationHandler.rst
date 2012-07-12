@@ -22,7 +22,7 @@ Special Methods
 
 .. automethod:: experimental.handlertools.articulations.ArticulationHandler.ArticulationHandler.ArticulationHandler.__eq__
 
-    Inherited from :py:class:`handlertools.Handler <experimental.handlertools.Handler.Handler.Handler>`
+    Inherited from :py:class:`Handler.Handler <experimental.handlertools.Handler.Handler.Handler>`
 
 .. automethod:: experimental.handlertools.articulations.ArticulationHandler.ArticulationHandler.ArticulationHandler.__ge__
 

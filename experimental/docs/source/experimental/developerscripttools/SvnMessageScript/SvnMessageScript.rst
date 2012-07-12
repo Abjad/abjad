@@ -13,27 +13,27 @@ Read-only Properties
 
 .. autoattribute:: experimental.developerscripttools.SvnMessageScript.SvnMessageScript.SvnMessageScript.argument_parser
 
-    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
+    Inherited from :py:class:`DeveloperScript.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 
 .. autoattribute:: experimental.developerscripttools.SvnMessageScript.SvnMessageScript.SvnMessageScript.commit_message_path
 
 .. autoattribute:: experimental.developerscripttools.SvnMessageScript.SvnMessageScript.SvnMessageScript.formatted_help
 
-    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
+    Inherited from :py:class:`DeveloperScript.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 
 .. autoattribute:: experimental.developerscripttools.SvnMessageScript.SvnMessageScript.SvnMessageScript.formatted_usage
 
-    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
+    Inherited from :py:class:`DeveloperScript.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 
 .. autoattribute:: experimental.developerscripttools.SvnMessageScript.SvnMessageScript.SvnMessageScript.formatted_version
 
-    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
+    Inherited from :py:class:`DeveloperScript.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 
 .. autoattribute:: experimental.developerscripttools.SvnMessageScript.SvnMessageScript.SvnMessageScript.long_description
 
 .. autoattribute:: experimental.developerscripttools.SvnMessageScript.SvnMessageScript.SvnMessageScript.program_name
 
-    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
+    Inherited from :py:class:`DeveloperScript.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 
 .. autoattribute:: experimental.developerscripttools.SvnMessageScript.SvnMessageScript.SvnMessageScript.scripting_group
 
@@ -57,7 +57,7 @@ Special Methods
 
 .. automethod:: experimental.developerscripttools.SvnMessageScript.SvnMessageScript.SvnMessageScript.__call__
 
-    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
+    Inherited from :py:class:`DeveloperScript.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 
 .. automethod:: experimental.developerscripttools.SvnMessageScript.SvnMessageScript.SvnMessageScript.__delattr__
 

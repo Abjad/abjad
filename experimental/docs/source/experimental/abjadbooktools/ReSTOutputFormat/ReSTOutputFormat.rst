@@ -11,23 +11,23 @@ Read-only Properties
 
 .. autoattribute:: experimental.abjadbooktools.ReSTOutputFormat.ReSTOutputFormat.ReSTOutputFormat.code_block_closing
 
-    Inherited from :py:class:`abjadbooktools.OutputFormat <experimental.abjadbooktools.OutputFormat.OutputFormat.OutputFormat>`
+    Inherited from :py:class:`OutputFormat.OutputFormat <experimental.abjadbooktools.OutputFormat.OutputFormat.OutputFormat>`
 
 .. autoattribute:: experimental.abjadbooktools.ReSTOutputFormat.ReSTOutputFormat.ReSTOutputFormat.code_block_opening
 
-    Inherited from :py:class:`abjadbooktools.OutputFormat <experimental.abjadbooktools.OutputFormat.OutputFormat.OutputFormat>`
+    Inherited from :py:class:`OutputFormat.OutputFormat <experimental.abjadbooktools.OutputFormat.OutputFormat.OutputFormat>`
 
 .. autoattribute:: experimental.abjadbooktools.ReSTOutputFormat.ReSTOutputFormat.ReSTOutputFormat.code_indent
 
-    Inherited from :py:class:`abjadbooktools.OutputFormat <experimental.abjadbooktools.OutputFormat.OutputFormat.OutputFormat>`
+    Inherited from :py:class:`OutputFormat.OutputFormat <experimental.abjadbooktools.OutputFormat.OutputFormat.OutputFormat>`
 
 .. autoattribute:: experimental.abjadbooktools.ReSTOutputFormat.ReSTOutputFormat.ReSTOutputFormat.image_block
 
-    Inherited from :py:class:`abjadbooktools.OutputFormat <experimental.abjadbooktools.OutputFormat.OutputFormat.OutputFormat>`
+    Inherited from :py:class:`OutputFormat.OutputFormat <experimental.abjadbooktools.OutputFormat.OutputFormat.OutputFormat>`
 
 .. autoattribute:: experimental.abjadbooktools.ReSTOutputFormat.ReSTOutputFormat.ReSTOutputFormat.image_format
 
-    Inherited from :py:class:`abjadbooktools.OutputFormat <experimental.abjadbooktools.OutputFormat.OutputFormat.OutputFormat>`
+    Inherited from :py:class:`OutputFormat.OutputFormat <experimental.abjadbooktools.OutputFormat.OutputFormat.OutputFormat>`
 
 .. autoattribute:: experimental.abjadbooktools.ReSTOutputFormat.ReSTOutputFormat.ReSTOutputFormat.storage_format
 
@@ -38,7 +38,7 @@ Special Methods
 
 .. automethod:: experimental.abjadbooktools.ReSTOutputFormat.ReSTOutputFormat.ReSTOutputFormat.__call__
 
-    Inherited from :py:class:`abjadbooktools.OutputFormat <experimental.abjadbooktools.OutputFormat.OutputFormat.OutputFormat>`
+    Inherited from :py:class:`OutputFormat.OutputFormat <experimental.abjadbooktools.OutputFormat.OutputFormat.OutputFormat>`
 
 .. automethod:: experimental.abjadbooktools.ReSTOutputFormat.ReSTOutputFormat.ReSTOutputFormat.__delattr__
 

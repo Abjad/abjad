@@ -11,11 +11,11 @@ Read-only Properties
 
 .. autoattribute:: experimental.constrainttools.GlobalCountsConstraint.GlobalCountsConstraint.GlobalCountsConstraint.kind
 
-    Inherited from :py:class:`constrainttools._Constraint <experimental.constrainttools._Constraint._Constraint._Constraint>`
+    Inherited from :py:class:`_Constraint._Constraint <experimental.constrainttools._Constraint._Constraint._Constraint>`
 
 .. autoattribute:: experimental.constrainttools.GlobalCountsConstraint.GlobalCountsConstraint.GlobalCountsConstraint.predicate
 
-    Inherited from :py:class:`constrainttools._Constraint <experimental.constrainttools._Constraint._Constraint._Constraint>`
+    Inherited from :py:class:`_Constraint._Constraint <experimental.constrainttools._Constraint._Constraint._Constraint>`
 
 .. autoattribute:: experimental.constrainttools.GlobalCountsConstraint.GlobalCountsConstraint.GlobalCountsConstraint.storage_format
 
@@ -60,7 +60,7 @@ Special Methods
 
 .. automethod:: experimental.constrainttools.GlobalCountsConstraint.GlobalCountsConstraint.GlobalCountsConstraint.__repr__
 
-    Inherited from :py:class:`constrainttools._Constraint <experimental.constrainttools._Constraint._Constraint._Constraint>`
+    Inherited from :py:class:`_Constraint._Constraint <experimental.constrainttools._Constraint._Constraint._Constraint>`
 
 .. automethod:: experimental.constrainttools.GlobalCountsConstraint.GlobalCountsConstraint.GlobalCountsConstraint.__setattr__
 

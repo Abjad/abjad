@@ -24,7 +24,7 @@ Special Methods
 
 .. automethod:: experimental.handlertools.pitch.OctaveTranspositionHandler.OctaveTranspositionHandler.OctaveTranspositionHandler.__eq__
 
-    Inherited from :py:class:`handlertools.Handler <experimental.handlertools.Handler.Handler.Handler>`
+    Inherited from :py:class:`Handler.Handler <experimental.handlertools.Handler.Handler.Handler>`
 
 .. automethod:: experimental.handlertools.pitch.OctaveTranspositionHandler.OctaveTranspositionHandler.OctaveTranspositionHandler.__ge__
 

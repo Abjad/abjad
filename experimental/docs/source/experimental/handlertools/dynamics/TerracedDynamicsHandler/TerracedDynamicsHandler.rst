@@ -34,7 +34,7 @@ Special Methods
 
 .. automethod:: experimental.handlertools.dynamics.TerracedDynamicsHandler.TerracedDynamicsHandler.TerracedDynamicsHandler.__eq__
 
-    Inherited from :py:class:`handlertools.Handler <experimental.handlertools.Handler.Handler.Handler>`
+    Inherited from :py:class:`Handler.Handler <experimental.handlertools.Handler.Handler.Handler>`
 
 .. automethod:: experimental.handlertools.dynamics.TerracedDynamicsHandler.TerracedDynamicsHandler.TerracedDynamicsHandler.__ge__
 

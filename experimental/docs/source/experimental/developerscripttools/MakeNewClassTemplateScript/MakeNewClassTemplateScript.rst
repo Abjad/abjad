@@ -13,25 +13,25 @@ Read-only Properties
 
 .. autoattribute:: experimental.developerscripttools.MakeNewClassTemplateScript.MakeNewClassTemplateScript.MakeNewClassTemplateScript.argument_parser
 
-    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
+    Inherited from :py:class:`DeveloperScript.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 
 .. autoattribute:: experimental.developerscripttools.MakeNewClassTemplateScript.MakeNewClassTemplateScript.MakeNewClassTemplateScript.formatted_help
 
-    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
+    Inherited from :py:class:`DeveloperScript.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 
 .. autoattribute:: experimental.developerscripttools.MakeNewClassTemplateScript.MakeNewClassTemplateScript.MakeNewClassTemplateScript.formatted_usage
 
-    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
+    Inherited from :py:class:`DeveloperScript.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 
 .. autoattribute:: experimental.developerscripttools.MakeNewClassTemplateScript.MakeNewClassTemplateScript.MakeNewClassTemplateScript.formatted_version
 
-    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
+    Inherited from :py:class:`DeveloperScript.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 
 .. autoattribute:: experimental.developerscripttools.MakeNewClassTemplateScript.MakeNewClassTemplateScript.MakeNewClassTemplateScript.long_description
 
 .. autoattribute:: experimental.developerscripttools.MakeNewClassTemplateScript.MakeNewClassTemplateScript.MakeNewClassTemplateScript.program_name
 
-    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
+    Inherited from :py:class:`DeveloperScript.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 
 .. autoattribute:: experimental.developerscripttools.MakeNewClassTemplateScript.MakeNewClassTemplateScript.MakeNewClassTemplateScript.scripting_group
 
@@ -55,7 +55,7 @@ Special Methods
 
 .. automethod:: experimental.developerscripttools.MakeNewClassTemplateScript.MakeNewClassTemplateScript.MakeNewClassTemplateScript.__call__
 
-    Inherited from :py:class:`developerscripttools.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
+    Inherited from :py:class:`DeveloperScript.DeveloperScript <experimental.developerscripttools.DeveloperScript.DeveloperScript.DeveloperScript>`
 
 .. automethod:: experimental.developerscripttools.MakeNewClassTemplateScript.MakeNewClassTemplateScript.MakeNewClassTemplateScript.__delattr__
 

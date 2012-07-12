@@ -17,7 +17,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector.timespan
 
-    Inherited from :py:class:`selectortools.Selector <experimental.selectortools.Selector.Selector.Selector>`
+    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
 
 Special Methods
 ---------------

@@ -30,7 +30,7 @@ Special Methods
 
 .. automethod:: experimental.quantizationtools.QGridQuantizer.QGridQuantizer.QGridQuantizer.__call__
 
-    Inherited from :py:class:`quantizationtools._Quantizer <experimental.quantizationtools._Quantizer._Quantizer._Quantizer>`
+    Inherited from :py:class:`_Quantizer._Quantizer <experimental.quantizationtools._Quantizer._Quantizer._Quantizer>`
 
 .. automethod:: experimental.quantizationtools.QGridQuantizer.QGridQuantizer.QGridQuantizer.__delattr__
 
@@ -66,7 +66,7 @@ Special Methods
 
 .. automethod:: experimental.quantizationtools.QGridQuantizer.QGridQuantizer.QGridQuantizer.__repr__
 
-    Inherited from :py:class:`quantizationtools._Quantizer <experimental.quantizationtools._Quantizer._Quantizer._Quantizer>`
+    Inherited from :py:class:`_Quantizer._Quantizer <experimental.quantizationtools._Quantizer._Quantizer._Quantizer>`
 
 .. automethod:: experimental.quantizationtools.QGridQuantizer.QGridQuantizer.QGridQuantizer.__setattr__
 

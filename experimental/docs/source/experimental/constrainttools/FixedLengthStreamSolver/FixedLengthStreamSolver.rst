@@ -11,23 +11,23 @@ Read-only Properties
 
 .. autoattribute:: experimental.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.constraints
 
-    Inherited from :py:class:`constrainttools._Solver <experimental.constrainttools._Solver._Solver._Solver>`
+    Inherited from :py:class:`_Solver._Solver <experimental.constrainttools._Solver._Solver._Solver>`
 
 .. autoattribute:: experimental.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.domain
 
-    Inherited from :py:class:`constrainttools._Solver <experimental.constrainttools._Solver._Solver._Solver>`
+    Inherited from :py:class:`_Solver._Solver <experimental.constrainttools._Solver._Solver._Solver>`
 
 .. autoattribute:: experimental.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.iterator
 
-    Inherited from :py:class:`constrainttools._Solver <experimental.constrainttools._Solver._Solver._Solver>`
+    Inherited from :py:class:`_Solver._Solver <experimental.constrainttools._Solver._Solver._Solver>`
 
 .. autoattribute:: experimental.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.randomized
 
-    Inherited from :py:class:`constrainttools._Solver <experimental.constrainttools._Solver._Solver._Solver>`
+    Inherited from :py:class:`_Solver._Solver <experimental.constrainttools._Solver._Solver._Solver>`
 
 .. autoattribute:: experimental.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.solutions
 
-    Inherited from :py:class:`constrainttools._Solver <experimental.constrainttools._Solver._Solver._Solver>`
+    Inherited from :py:class:`_Solver._Solver <experimental.constrainttools._Solver._Solver._Solver>`
 
 .. autoattribute:: experimental.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.storage_format
 
@@ -38,7 +38,7 @@ Methods
 
 .. automethod:: experimental.constrainttools.FixedLengthStreamSolver.FixedLengthStreamSolver.FixedLengthStreamSolver.get_le_n_solutions
 
-    Inherited from :py:class:`constrainttools._Solver <experimental.constrainttools._Solver._Solver._Solver>`
+    Inherited from :py:class:`_Solver._Solver <experimental.constrainttools._Solver._Solver._Solver>`
 
 Special Methods
 ---------------

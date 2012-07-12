@@ -13,7 +13,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.BackgroundElementSelector.BackgroundElementSelector.BackgroundElementSelector.inequality
 
-    Inherited from :py:class:`selectortools.InequalitySelector <experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector>`
+    Inherited from :py:class:`InequalitySelector.InequalitySelector <experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector>`
 
 .. autoattribute:: experimental.selectortools.BackgroundElementSelector.BackgroundElementSelector.BackgroundElementSelector.klass
 
@@ -23,7 +23,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.BackgroundElementSelector.BackgroundElementSelector.BackgroundElementSelector.timespan
 
-    Inherited from :py:class:`selectortools.Selector <experimental.selectortools.Selector.Selector.Selector>`
+    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
 
 Special Methods
 ---------------

@@ -40,15 +40,15 @@ class BuildApiScript(DeveloperScript):
 
             @property
             def code_tools_path(self):
-                return ABJCFG.EXPERIMENTAL_PATH
+                return ABJCFG.ABJAD_EXPERIMENTAL_PATH
 
             @property
             def docs_api_index_path(self):
-                return os.path.join(ABJCFG.EXPERIMENTAL_PATH, 'docs', 'source', 'index.rst')
+                return os.path.join(ABJCFG.ABJAD_EXPERIMENTAL_PATH, 'docs', 'source', 'index.rst')
 
             @property
             def docs_tools_path(self):
-                return os.path.join(ABJCFG.EXPERIMENTAL_PATH, 'docs', 'source', 'experimental')
+                return os.path.join(ABJCFG.ABJAD_EXPERIMENTAL_PATH, 'docs', 'source', 'experimental')
 
             @property
             def package_prefix(self):
@@ -69,7 +69,7 @@ class BuildApiScript(DeveloperScript):
         print ''
 
         # change to docs directory because makefile lives there
-        docs_directory = os.path.join(ABJCFG.EXPERIMENTAL_PATH, 'docs')
+        docs_directory = os.path.join(ABJCFG.ABJAD_EXPERIMENTAL_PATH, 'docs')
         os.chdir(docs_directory)
 
         # optionally, make clean before building

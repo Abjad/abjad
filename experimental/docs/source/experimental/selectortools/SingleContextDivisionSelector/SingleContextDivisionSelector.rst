@@ -11,15 +11,15 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.SingleContextDivisionSelector.SingleContextDivisionSelector.SingleContextDivisionSelector.index
 
-    Inherited from :py:class:`selectortools.BackgroundElementSelector <experimental.selectortools.BackgroundElementSelector.BackgroundElementSelector.BackgroundElementSelector>`
+    Inherited from :py:class:`BackgroundElementSelector.BackgroundElementSelector <experimental.selectortools.BackgroundElementSelector.BackgroundElementSelector.BackgroundElementSelector>`
 
 .. autoattribute:: experimental.selectortools.SingleContextDivisionSelector.SingleContextDivisionSelector.SingleContextDivisionSelector.inequality
 
-    Inherited from :py:class:`selectortools.InequalitySelector <experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector>`
+    Inherited from :py:class:`InequalitySelector.InequalitySelector <experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector>`
 
 .. autoattribute:: experimental.selectortools.SingleContextDivisionSelector.SingleContextDivisionSelector.SingleContextDivisionSelector.klass
 
-    Inherited from :py:class:`selectortools.BackgroundElementSelector <experimental.selectortools.BackgroundElementSelector.BackgroundElementSelector.BackgroundElementSelector>`
+    Inherited from :py:class:`BackgroundElementSelector.BackgroundElementSelector <experimental.selectortools.BackgroundElementSelector.BackgroundElementSelector.BackgroundElementSelector>`
 
 .. autoattribute:: experimental.selectortools.SingleContextDivisionSelector.SingleContextDivisionSelector.SingleContextDivisionSelector.storage_format
 
@@ -27,7 +27,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.SingleContextDivisionSelector.SingleContextDivisionSelector.SingleContextDivisionSelector.timespan
 
-    Inherited from :py:class:`selectortools.Selector <experimental.selectortools.Selector.Selector.Selector>`
+    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
 
 .. autoattribute:: experimental.selectortools.SingleContextDivisionSelector.SingleContextDivisionSelector.SingleContextDivisionSelector.voice
 
@@ -40,7 +40,7 @@ Special Methods
 
 .. automethod:: experimental.selectortools.SingleContextDivisionSelector.SingleContextDivisionSelector.SingleContextDivisionSelector.__eq__
 
-    Inherited from :py:class:`selectortools.BackgroundElementSelector <experimental.selectortools.BackgroundElementSelector.BackgroundElementSelector.BackgroundElementSelector>`
+    Inherited from :py:class:`BackgroundElementSelector.BackgroundElementSelector <experimental.selectortools.BackgroundElementSelector.BackgroundElementSelector.BackgroundElementSelector>`
 
 .. automethod:: experimental.selectortools.SingleContextDivisionSelector.SingleContextDivisionSelector.SingleContextDivisionSelector.__ge__
 

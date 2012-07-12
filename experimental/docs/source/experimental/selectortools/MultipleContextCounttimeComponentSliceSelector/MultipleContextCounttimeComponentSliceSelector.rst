@@ -13,7 +13,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.MultipleContextCounttimeComponentSliceSelector.MultipleContextCounttimeComponentSliceSelector.MultipleContextCounttimeComponentSliceSelector.inequality
 
-    Inherited from :py:class:`selectortools.InequalitySelector <experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector>`
+    Inherited from :py:class:`InequalitySelector.InequalitySelector <experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector>`
 
 .. autoattribute:: experimental.selectortools.MultipleContextCounttimeComponentSliceSelector.MultipleContextCounttimeComponentSliceSelector.MultipleContextCounttimeComponentSliceSelector.klass
 
@@ -21,11 +21,11 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.MultipleContextCounttimeComponentSliceSelector.MultipleContextCounttimeComponentSliceSelector.MultipleContextCounttimeComponentSliceSelector.start
 
-    Inherited from :py:class:`selectortools.SliceSelector <experimental.selectortools.SliceSelector.SliceSelector.SliceSelector>`
+    Inherited from :py:class:`SliceSelector.SliceSelector <experimental.selectortools.SliceSelector.SliceSelector.SliceSelector>`
 
 .. autoattribute:: experimental.selectortools.MultipleContextCounttimeComponentSliceSelector.MultipleContextCounttimeComponentSliceSelector.MultipleContextCounttimeComponentSliceSelector.stop
 
-    Inherited from :py:class:`selectortools.SliceSelector <experimental.selectortools.SliceSelector.SliceSelector.SliceSelector>`
+    Inherited from :py:class:`SliceSelector.SliceSelector <experimental.selectortools.SliceSelector.SliceSelector.SliceSelector>`
 
 .. autoattribute:: experimental.selectortools.MultipleContextCounttimeComponentSliceSelector.MultipleContextCounttimeComponentSliceSelector.MultipleContextCounttimeComponentSliceSelector.storage_format
 
@@ -33,7 +33,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.MultipleContextCounttimeComponentSliceSelector.MultipleContextCounttimeComponentSliceSelector.MultipleContextCounttimeComponentSliceSelector.timespan
 
-    Inherited from :py:class:`selectortools.Selector <experimental.selectortools.Selector.Selector.Selector>`
+    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
 
 Special Methods
 ---------------

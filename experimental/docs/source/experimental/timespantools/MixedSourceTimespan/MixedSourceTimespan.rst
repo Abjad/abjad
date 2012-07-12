@@ -11,7 +11,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.timespantools.MixedSourceTimespan.MixedSourceTimespan.MixedSourceTimespan.duration
 
-    Inherited from :py:class:`timespantools.Timespan <experimental.timespantools.Timespan.Timespan.Timespan>`
+    Inherited from :py:class:`Timespan.Timespan <experimental.timespantools.Timespan.Timespan.Timespan>`
 
 .. autoattribute:: experimental.timespantools.MixedSourceTimespan.MixedSourceTimespan.MixedSourceTimespan.encompasses_one_segment_exactly
 
@@ -19,7 +19,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.timespantools.MixedSourceTimespan.MixedSourceTimespan.MixedSourceTimespan.is_segment_slice
 
-    Inherited from :py:class:`timespantools.Timespan <experimental.timespantools.Timespan.Timespan.Timespan>`
+    Inherited from :py:class:`Timespan.Timespan <experimental.timespantools.Timespan.Timespan.Timespan>`
 
 .. autoattribute:: experimental.timespantools.MixedSourceTimespan.MixedSourceTimespan.MixedSourceTimespan.start
 
