@@ -9,6 +9,14 @@ selectortools.DurationRatioItemSelector
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.selectortools.DurationRatioItemSelector.DurationRatioItemSelector.DurationRatioItemSelector.context
+
+    Inherited from :py:class:`RatioSelector.RatioSelector <experimental.selectortools.RatioSelector.RatioSelector.RatioSelector>`
+
+.. autoattribute:: experimental.selectortools.DurationRatioItemSelector.DurationRatioItemSelector.DurationRatioItemSelector.contexts
+
+    Inherited from :py:class:`RatioSelector.RatioSelector <experimental.selectortools.RatioSelector.RatioSelector.RatioSelector>`
+
 .. autoattribute:: experimental.selectortools.DurationRatioItemSelector.DurationRatioItemSelector.DurationRatioItemSelector.index
 
     Inherited from :py:class:`ItemSelector.ItemSelector <experimental.selectortools.ItemSelector.ItemSelector.ItemSelector>`

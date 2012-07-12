@@ -512,15 +512,20 @@ class ScoreSpecification(Specification):
     def select(self, segment_name, context_names=None, timespan=None):
         return MultipleContextTimespanSelector(segment_name, context_names=context_names, timespan=timespan)
 
+    # TODO: the really long dot-chaning here has got to go ...
+    #       The way to fix this is to make all selectors be able to recursively check for segment index.
     def store_setting(self, setting):
         '''Resolve setting and find segment specified by setting.
         Store setting in SEGMENT context tree and, if persistent, in SCORE context tree, too.
         '''
+        from experimental import selectortools
         resolved_setting = self.make_resolved_setting(setting)
-        assert resolved_setting.target.timespan.encompasses_one_segment_exactly, repr(resolved_setting)
-        #segment = self.segments[resolved_setting.target.timespan.start.anchor.segment]
-        #segment = self.segments[resolved_setting.target.timespan.start.anchor.index]
-        segment = self.segments[resolved_setting.target.timespan.selector.index]
+        #assert resolved_setting.target.timespan.encompasses_one_segment_exactly, repr(resolved_setting)
+        if isinstance(resolved_setting.target, selectortools.RatioSelector):
+            segment_index = resolved_setting.target.reference.timespan.selector.inequality.timespan.selector.index
+        else:
+            segment_index = resolved_setting.target.timespan.selector.index
+        segment = self.segments[segment_index]
         context_name = resolved_setting.target.context or \
             segment.resolved_settings_context_dictionary.score_name
         attribute = resolved_setting.attribute

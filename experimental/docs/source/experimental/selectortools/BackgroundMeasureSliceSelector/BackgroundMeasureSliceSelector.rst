@@ -9,6 +9,10 @@ selectortools.BackgroundMeasureSliceSelector
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.selectortools.BackgroundMeasureSliceSelector.BackgroundMeasureSliceSelector.BackgroundMeasureSliceSelector.context
+
+.. autoattribute:: experimental.selectortools.BackgroundMeasureSliceSelector.BackgroundMeasureSliceSelector.BackgroundMeasureSliceSelector.contexts
+
 .. autoattribute:: experimental.selectortools.BackgroundMeasureSliceSelector.BackgroundMeasureSliceSelector.BackgroundMeasureSliceSelector.inequality
 
     Inherited from :py:class:`InequalitySelector.InequalitySelector <experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector>`

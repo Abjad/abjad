@@ -9,6 +9,10 @@ selectortools.RatioSelector
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.selectortools.RatioSelector.RatioSelector.RatioSelector.context
+
+.. autoattribute:: experimental.selectortools.RatioSelector.RatioSelector.RatioSelector.contexts
+
 .. autoattribute:: experimental.selectortools.RatioSelector.RatioSelector.RatioSelector.ratio
 
 .. autoattribute:: experimental.selectortools.RatioSelector.RatioSelector.RatioSelector.reference

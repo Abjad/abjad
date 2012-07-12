@@ -9,6 +9,14 @@ selectortools.CountRatioSliceSelector
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.selectortools.CountRatioSliceSelector.CountRatioSliceSelector.CountRatioSliceSelector.context
+
+    Inherited from :py:class:`RatioSelector.RatioSelector <experimental.selectortools.RatioSelector.RatioSelector.RatioSelector>`
+
+.. autoattribute:: experimental.selectortools.CountRatioSliceSelector.CountRatioSliceSelector.CountRatioSliceSelector.contexts
+
+    Inherited from :py:class:`RatioSelector.RatioSelector <experimental.selectortools.RatioSelector.RatioSelector.RatioSelector>`
+
 .. autoattribute:: experimental.selectortools.CountRatioSliceSelector.CountRatioSliceSelector.CountRatioSliceSelector.ratio
 
     Inherited from :py:class:`RatioSelector.RatioSelector <experimental.selectortools.RatioSelector.RatioSelector.RatioSelector>`

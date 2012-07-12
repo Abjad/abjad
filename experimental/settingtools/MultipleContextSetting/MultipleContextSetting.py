@@ -118,8 +118,12 @@ class MultipleContextSetting(AbjadObject):
         contexts = self.target.contexts or [self.target.contexts]
         assert contexts, repr(contexts)
         for context in contexts:
-            target = selectortools.SingleContextTimespanSelector(context, 
-                timespan=copy.deepcopy(self.target.timespan))
+            if isinstance(self.target, selectortools.RatioSelector):
+                target = copy.deepcopy(self.target)
+                target.reference._context = context
+            else:
+                target = selectortools.SingleContextTimespanSelector(context, 
+                    timespan=copy.deepcopy(self.target.timespan))
             setting = settingtools.SingleContextSetting(target, self.attribute, self.source, 
                 persistent=self.persistent, truncate=self.truncate)
             settings.append(setting)

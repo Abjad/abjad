@@ -25,6 +25,10 @@ class RatioSelector(Selector):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
+    def context(self):
+        return self.reference.context        
+
+    @property
     def contexts(self):
         return self.reference.contexts
 
