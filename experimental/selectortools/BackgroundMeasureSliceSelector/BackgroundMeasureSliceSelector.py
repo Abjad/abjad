@@ -129,3 +129,17 @@ class BackgroundMeasureSliceSelector(BackgroundElementSliceSelector):
         from abjad.tools import measuretools
         BackgroundElementSliceSelector.__init__(self, measuretools.Measure,
             inequality=inequality, start=start, stop=stop)
+
+    ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def contexts(self):
+        '''Read-only attribute set always to none.
+
+        Helps fulfill the selector interface.
+
+        (All selectors should have a 'contexts' attribute.)
+        
+        Return none.
+        '''
+        return None

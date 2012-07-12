@@ -25,6 +25,10 @@ class RatioSelector(Selector):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
+    def contexts(self):
+        return self.reference.contexts
+
+    @property
     def ratio(self):
         '''Ratio of count-ratio selector.
 

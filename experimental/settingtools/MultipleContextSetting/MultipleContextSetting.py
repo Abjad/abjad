@@ -103,17 +103,21 @@ class MultipleContextSetting(AbjadObject):
 
     ### PUBLIC METHODS ###
 
+    # TODO: implement Selector.unpack() to complement this method;
+    #       multiple-context selectors should know how to unpack themselves into single-context selectors;
     def unpack(self):
-        '''Unpacking a directive means exploding a directive into a list of settings.
+        '''Unpacking a multiple-context setting means exploding the multiple-context
+        setting into a list of single-context settings.
 
-        Return list of settings.
+        Return list of single-context settings.
         '''
         from experimental import selectortools
         from experimental import settingtools
         from experimental import specificationtools
         settings = []
-        assert self.target.contexts, repr(self.target.contexts)
-        for context in self.target.contexts:
+        contexts = self.target.contexts or [self.target.contexts]
+        assert contexts, repr(contexts)
+        for context in contexts:
             target = selectortools.SingleContextTimespanSelector(context, 
                 timespan=copy.deepcopy(self.target.timespan))
             setting = settingtools.SingleContextSetting(target, self.attribute, self.source, 
