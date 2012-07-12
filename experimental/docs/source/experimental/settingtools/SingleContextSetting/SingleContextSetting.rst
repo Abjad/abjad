@@ -11,17 +11,17 @@ Read-only Properties
 
 .. autoattribute:: experimental.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting.attribute
 
-    Inherited from :py:class:`Setting.Setting <experimental.settingtools.Setting.Setting.Setting>`
+    Inherited from :py:class:`MultipleContextSetting.MultipleContextSetting <experimental.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting>`
 
 .. autoattribute:: experimental.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting.fresh
 
 .. autoattribute:: experimental.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting.persistent
 
-    Inherited from :py:class:`Setting.Setting <experimental.settingtools.Setting.Setting.Setting>`
+    Inherited from :py:class:`MultipleContextSetting.MultipleContextSetting <experimental.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting>`
 
 .. autoattribute:: experimental.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting.source
 
-    Inherited from :py:class:`Setting.Setting <experimental.settingtools.Setting.Setting.Setting>`
+    Inherited from :py:class:`MultipleContextSetting.MultipleContextSetting <experimental.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting>`
 
 .. autoattribute:: experimental.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting.storage_format
 
@@ -29,11 +29,11 @@ Read-only Properties
 
 .. autoattribute:: experimental.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting.target
 
-    Inherited from :py:class:`Setting.Setting <experimental.settingtools.Setting.Setting.Setting>`
+    Inherited from :py:class:`MultipleContextSetting.MultipleContextSetting <experimental.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting>`
 
 .. autoattribute:: experimental.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting.truncate
 
-    Inherited from :py:class:`Setting.Setting <experimental.settingtools.Setting.Setting.Setting>`
+    Inherited from :py:class:`MultipleContextSetting.MultipleContextSetting <experimental.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting>`
 
 Methods
 -------
@@ -44,7 +44,7 @@ Methods
 
 .. automethod:: experimental.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting.unpack
 
-    Inherited from :py:class:`Setting.Setting <experimental.settingtools.Setting.Setting.Setting>`
+    Inherited from :py:class:`MultipleContextSetting.MultipleContextSetting <experimental.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting>`
 
 Special Methods
 ---------------
@@ -55,7 +55,7 @@ Special Methods
 
 .. automethod:: experimental.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting.__eq__
 
-    Inherited from :py:class:`Setting.Setting <experimental.settingtools.Setting.Setting.Setting>`
+    Inherited from :py:class:`MultipleContextSetting.MultipleContextSetting <experimental.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting>`
 
 .. automethod:: experimental.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting.__ge__
 

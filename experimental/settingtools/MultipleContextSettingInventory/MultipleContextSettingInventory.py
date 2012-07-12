@@ -1,12 +1,12 @@
 from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
 from experimental.specificationtools.AttributeNameEnumeration import AttributeNameEnumeration
-from experimental.settingtools.Setting import Setting
+from experimental.settingtools.MultipleContextSetting import MultipleContextSetting
 
 
-class SettingInventory(ObjectInventory):
+class MultipleContextSettingInventory(ObjectInventory):
     r'''.. versionadded:: 1.0
 
-    Setting inventory.
+    MultipleContextSetting inventory.
     '''
 
     ### CLASS ATTRIBUTES ###
@@ -17,4 +17,4 @@ class SettingInventory(ObjectInventory):
 
     @property
     def _item_callable(self):
-        return Setting
+        return MultipleContextSetting

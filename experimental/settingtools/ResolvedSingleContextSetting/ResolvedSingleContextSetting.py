@@ -1,7 +1,7 @@
 from experimental.settingtools.SingleContextSetting import SingleContextSetting
 
 
-class ResolvedContextSetting(SingleContextSetting):
+class ResolvedSingleContextSetting(SingleContextSetting):
     
     ### INITIALIZER ###
 

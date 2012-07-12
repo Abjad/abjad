@@ -2,7 +2,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 import copy
 
 
-class Setting(AbjadObject):
+class MultipleContextSetting(AbjadObject):
 
     ### INITIALIZER ###
 

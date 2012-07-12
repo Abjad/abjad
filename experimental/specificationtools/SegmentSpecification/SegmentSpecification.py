@@ -45,7 +45,7 @@ class SegmentSpecification(Specification):
         Specification.__init__(self, score_template)
         self._score_model = self.score_template()
         self._name = name
-        self._directives = settingtools.SettingInventory()
+        self._directives = settingtools.MultipleContextSettingInventory()
 
     ### SPECIAL METHODS ###
 
@@ -65,7 +65,7 @@ class SegmentSpecification(Specification):
         '''Segment specification directives.
 
             >>> segment.directives
-            SettingInventory([])
+            MultipleContextSettingInventory([])
 
         Return directive inventory.
         '''
@@ -242,7 +242,7 @@ class SegmentSpecification(Specification):
                 continue
             elif len(settings) == 1:
                 setting = settings[0]
-                assert isinstance(setting, settingtools.ResolvedContextSetting)
+                assert isinstance(setting, settingtools.ResolvedSingleContextSetting)
                 if include_truncate:
                     return setting.value, setting.fresh, setting.truncate
                 else:
@@ -615,7 +615,7 @@ class SegmentSpecification(Specification):
         assert isinstance(truncate, type(True)), repr(truncate)
         target = self.preprocess_setting_target(target)
         source = self.annotate_source(source, callback=callback, count=count, offset=offset)
-        directive = settingtools.Setting(target, attribute, source, 
+        directive = settingtools.MultipleContextSetting(target, attribute, source, 
             persistent=persistent, truncate=truncate)
         self.directives.append(directive)
         return directive

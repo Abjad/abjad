@@ -453,11 +453,11 @@ class ScoreSpecification(Specification):
 
     def make_resolved_setting(self, setting):
         from experimental import settingtools
-        if isinstance(setting, settingtools.ResolvedContextSetting):
+        if isinstance(setting, settingtools.ResolvedSingleContextSetting):
             return setting
         value = self.resolve_setting_source(setting)
         arguments = setting._mandatory_argument_values + (value, )
-        resolved_setting = settingtools.ResolvedContextSetting(*arguments, 
+        resolved_setting = settingtools.ResolvedSingleContextSetting(*arguments, 
             persistent=setting.persistent, truncate=setting.truncate, fresh=setting.fresh)
         return resolved_setting
 

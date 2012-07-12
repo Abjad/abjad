@@ -241,9 +241,9 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
-   experimental/settingtools/ResolvedContextSetting/ResolvedContextSetting
-   experimental/settingtools/Setting/Setting
-   experimental/settingtools/SettingInventory/SettingInventory
+   experimental/settingtools/MultipleContextSetting/MultipleContextSetting
+   experimental/settingtools/MultipleContextSettingInventory/MultipleContextSettingInventory
+   experimental/settingtools/ResolvedSingleContextSetting/ResolvedSingleContextSetting
    experimental/settingtools/SingleContextSetting/SingleContextSetting
    experimental/settingtools/SingleContextSettingInventory/SingleContextSettingInventory
 

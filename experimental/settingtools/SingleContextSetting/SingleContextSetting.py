@@ -1,8 +1,8 @@
-from experimental.settingtools.Setting import Setting
+from experimental.settingtools.MultipleContextSetting import MultipleContextSetting
 import copy
 
 
-class SingleContextSetting(Setting):
+class SingleContextSetting(MultipleContextSetting):
     r'''.. versionadded:: 1.0
 
     Frozen request to set one attribute against one context-specified selection.
@@ -50,7 +50,7 @@ class SingleContextSetting(Setting):
 
     @property
     def _keyword_argument_names(self):
-        return Setting._keyword_argument_names.fget(self) + ('fresh', )
+        return MultipleContextSetting._keyword_argument_names.fget(self) + ('fresh', )
 
     ### PRIVATE METHODS ###
 
