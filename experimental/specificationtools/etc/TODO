@@ -3,3 +3,6 @@
 2. Extend DivisionList initializer with string handling.
 
 3. Replace all named tuples with proper classes.
+
+4. Make it so that SegmentSpecification can say "import selectortools" globally.
+   So specificationtools will depend on selectortools. And not the other way around.
