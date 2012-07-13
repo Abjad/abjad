@@ -152,10 +152,13 @@ EXAMPLES
     def process_args(self, args):
         for filename in self._collect_filenames(args):
             self._process_filename(args, filename)
+        flags = []
         if args.mainline:
-            developerscripttools.BuildAbjadApiScript()([])
+            flags.append('-M')
         if args.experimental:
-            developerscripttools.BuildExperimentalApiScript()([])
+            flags.append('-X')
+        if flags:
+            developerscripttools.BuildApiScript()(flags)
 
     def setup_argument_parser(self, parser):
 
