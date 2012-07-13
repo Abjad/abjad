@@ -129,6 +129,7 @@ Unstable packages (load manually)
    experimental/interpretertools/RegionDivisionToken/RegionDivisionToken
    experimental/interpretertools/RhythmToken/RhythmToken
    experimental/interpretertools/SegmentDivisionToken/SegmentDivisionToken
+   experimental/interpretertools/Token/Token
 
 :py:mod:`lyricstools <experimental.lyricstools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
