@@ -47,11 +47,12 @@ class CodeBlock(abctools.AbjadObject):
 
         for line in self.lines:
             hide = False
-            current = pipe.read_wait().replace('\t', '    ').split('\n')
+
+            current = self.read(pipe)
 
             if line.endswith('<hide'):
                 hide = True
-                line = line.partition('<hide')[0]
+                line = line.rpartition('<hide')[0]
 
             if not hide:
                 current[-1] += line
@@ -82,7 +83,7 @@ class CodeBlock(abctools.AbjadObject):
 
             pipe.write('\n')
 
-        result.extend(pipe.read_wait().split('\n'))
+        result.extend(self.read(pipe))
 
         if result[-1] == '>>> ':
             result.pop()
@@ -131,3 +132,12 @@ class CodeBlock(abctools.AbjadObject):
     def strip_prompt(self):
         return self._strip_prompt
         
+    ### PUBLIC METHODS ###
+
+    def read(self, pipe):
+        # Guarantee we make it to the next prompt.
+        # Exceptions sometimes take longer than expected.
+        current = pipe.read_wait().replace('\t', '    ').split('\n')
+        while current[-1] not in ('>>> ', '... '):
+            current.extend(pipe.read().replace('\t', '    ').split('\n'))
+        return current
