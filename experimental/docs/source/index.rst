@@ -118,6 +118,18 @@ Unstable packages (load manually)
    experimental/handlertools/pitch/OctaveTranspositionHandler/OctaveTranspositionHandler
    experimental/handlertools/pitch/TimewisePitchClassHandler/TimewisePitchClassHandler
 
+:py:mod:`interpretertools <experimental.interpretertools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: abstract classes
+
+.. toctree::
+   :maxdepth: 1
+
+   experimental/interpretertools/RegionDivisionToken/RegionDivisionToken
+   experimental/interpretertools/RhythmToken/RhythmToken
+   experimental/interpretertools/SegmentDivisionToken/SegmentDivisionToken
+
 :py:mod:`lyricstools <experimental.lyricstools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
