@@ -25,6 +25,11 @@ Read-only Properties
 
 .. autoattribute:: experimental.abjadbooktools.CodeBlock.CodeBlock.CodeBlock.strip_prompt
 
+Methods
+-------
+
+.. automethod:: experimental.abjadbooktools.CodeBlock.CodeBlock.CodeBlock.read
+
 Special Methods
 ---------------
 
