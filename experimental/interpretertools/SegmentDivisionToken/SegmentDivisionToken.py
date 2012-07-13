@@ -1,5 +1,10 @@
-from abjad.tools import abctools
+from experimental.interpretertools.DivisionToken import DivisionToken
 
 
-class SegmentDivisionToken(abctools.AbjadObject):
+class SegmentDivisionToken(DivisionToken):
+    r'''.. versionadded:: 1.0
+
+    Segment division token created during interpretation.
+    '''
+
     pass

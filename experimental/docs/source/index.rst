@@ -127,9 +127,16 @@ Unstable packages (load manually)
    :maxdepth: 1
 
    experimental/interpretertools/RegionDivisionToken/RegionDivisionToken
+   experimental/interpretertools/Token/Token
+
+.. rubric:: concrete classes
+
+.. toctree::
+   :maxdepth: 1
+
+   experimental/interpretertools/DivisionToken/DivisionToken
    experimental/interpretertools/RhythmToken/RhythmToken
    experimental/interpretertools/SegmentDivisionToken/SegmentDivisionToken
-   experimental/interpretertools/Token/Token
 
 :py:mod:`lyricstools <experimental.lyricstools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

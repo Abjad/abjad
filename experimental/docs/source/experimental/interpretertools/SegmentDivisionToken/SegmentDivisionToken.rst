@@ -9,9 +9,25 @@ interpretertools.SegmentDivisionToken
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.interpretertools.SegmentDivisionToken.SegmentDivisionToken.SegmentDivisionToken.duration
+
+    Inherited from :py:class:`DivisionToken.DivisionToken <experimental.interpretertools.DivisionToken.DivisionToken.DivisionToken>`
+
+.. autoattribute:: experimental.interpretertools.SegmentDivisionToken.SegmentDivisionToken.SegmentDivisionToken.fresh
+
+    Inherited from :py:class:`DivisionToken.DivisionToken <experimental.interpretertools.DivisionToken.DivisionToken.DivisionToken>`
+
 .. autoattribute:: experimental.interpretertools.SegmentDivisionToken.SegmentDivisionToken.SegmentDivisionToken.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. autoattribute:: experimental.interpretertools.SegmentDivisionToken.SegmentDivisionToken.SegmentDivisionToken.truncate
+
+    Inherited from :py:class:`DivisionToken.DivisionToken <experimental.interpretertools.DivisionToken.DivisionToken.DivisionToken>`
+
+.. autoattribute:: experimental.interpretertools.SegmentDivisionToken.SegmentDivisionToken.SegmentDivisionToken.value
+
+    Inherited from :py:class:`DivisionToken.DivisionToken <experimental.interpretertools.DivisionToken.DivisionToken.DivisionToken>`
 
 Special Methods
 ---------------
