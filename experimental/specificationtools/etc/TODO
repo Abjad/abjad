@@ -5,3 +5,7 @@
 3. Make it so that SegmentSpecification can say "import selectortools" globally.
    So specificationtools will depend on selectortools. And not the other way around.
    Same with settingtools and timespantools.
+
+4. Make an interpretertools package.
+   Migrate ScoreSpecification and SegmentSpecification interpreter code to new
+   interpretertools.ScoreInterpreter class.

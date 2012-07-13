@@ -9,25 +9,13 @@ interpretertools.RhythmToken
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.interpretertools.RhythmToken.RhythmToken.RhythmToken.duration
-
-    Inherited from :py:class:`DivisionToken.DivisionToken <experimental.interpretertools.DivisionToken.DivisionToken.DivisionToken>`
-
 .. autoattribute:: experimental.interpretertools.RhythmToken.RhythmToken.RhythmToken.fresh
-
-    Inherited from :py:class:`DivisionToken.DivisionToken <experimental.interpretertools.DivisionToken.DivisionToken.DivisionToken>`
 
 .. autoattribute:: experimental.interpretertools.RhythmToken.RhythmToken.RhythmToken.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. autoattribute:: experimental.interpretertools.RhythmToken.RhythmToken.RhythmToken.truncate
-
-    Inherited from :py:class:`DivisionToken.DivisionToken <experimental.interpretertools.DivisionToken.DivisionToken.DivisionToken>`
-
 .. autoattribute:: experimental.interpretertools.RhythmToken.RhythmToken.RhythmToken.value
-
-    Inherited from :py:class:`DivisionToken.DivisionToken <experimental.interpretertools.DivisionToken.DivisionToken.DivisionToken>`
 
 Special Methods
 ---------------

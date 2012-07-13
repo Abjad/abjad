@@ -126,7 +126,6 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
-   experimental/interpretertools/RegionDivisionToken/RegionDivisionToken
    experimental/interpretertools/Token/Token
 
 .. rubric:: concrete classes
@@ -135,6 +134,7 @@ Unstable packages (load manually)
    :maxdepth: 1
 
    experimental/interpretertools/DivisionToken/DivisionToken
+   experimental/interpretertools/RegionDivisionToken/RegionDivisionToken
    experimental/interpretertools/RhythmToken/RhythmToken
    experimental/interpretertools/SegmentDivisionToken/SegmentDivisionToken
 

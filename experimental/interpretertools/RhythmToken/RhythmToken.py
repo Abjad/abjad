@@ -1,10 +1,24 @@
-from experimental.interpretertools.DivisionToken import DivisionToken
+from experimental.interpretertools.Token import Token
 
 
-class RhythmToken(DivisionToken):
+class RhythmToken(Token):
     r'''.. versionadded:: 1.0
 
     Rhythm token created during interpretation.
     '''
     
-    pass
+    ### INITIALIZER ###
+
+    def __init__(self, value, fresh):
+        self._value = value
+        self._fresh = fresh
+
+    ### READ-ONLY PUBLIC PROPERTIES ###
+    
+    @property
+    def fresh(self):
+        return self._fresh
+
+    @property
+    def value(self):
+        return self._value

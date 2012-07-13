@@ -20,7 +20,6 @@ SegmentDivisionToken = collections.namedtuple(
     'SegmentDivisionToken', ['value', 'fresh', 'truncate', 'duration'])
 RegionDivisionToken = collections.namedtuple(
     'RegionDivisionToken', ['value', 'fresh', 'truncate', 'duration'])
-RhythmToken = collections.namedtuple('RhythmToken', ['value', 'fresh'])
 
 class ScoreSpecification(Specification):
     r'''.. versionadded:: 1.0
@@ -280,10 +279,11 @@ class ScoreSpecification(Specification):
                 return candidate_segment_number
 
     def get_rhythm_tokens_for_all_segments_in_voice(self, voice):
+        from experimental import interpretertools
         rhythm_tokens = []
         for segment in self.segments:
             value, fresh = segment.get_rhythm_value(voice.name)
-            rhythm_tokens.append(RhythmToken(value, fresh))
+            rhythm_tokens.append(interpretertools.RhythmToken(value, fresh))
         return rhythm_tokens
 
     def get_segment_division_tokens_for_voice(self, voice):

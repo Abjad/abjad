@@ -9,9 +9,25 @@ interpretertools.RegionDivisionToken
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.interpretertools.RegionDivisionToken.RegionDivisionToken.RegionDivisionToken.duration
+
+    Inherited from :py:class:`DivisionToken.DivisionToken <experimental.interpretertools.DivisionToken.DivisionToken.DivisionToken>`
+
+.. autoattribute:: experimental.interpretertools.RegionDivisionToken.RegionDivisionToken.RegionDivisionToken.fresh
+
+    Inherited from :py:class:`DivisionToken.DivisionToken <experimental.interpretertools.DivisionToken.DivisionToken.DivisionToken>`
+
 .. autoattribute:: experimental.interpretertools.RegionDivisionToken.RegionDivisionToken.RegionDivisionToken.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. autoattribute:: experimental.interpretertools.RegionDivisionToken.RegionDivisionToken.RegionDivisionToken.truncate
+
+    Inherited from :py:class:`DivisionToken.DivisionToken <experimental.interpretertools.DivisionToken.DivisionToken.DivisionToken>`
+
+.. autoattribute:: experimental.interpretertools.RegionDivisionToken.RegionDivisionToken.RegionDivisionToken.value
+
+    Inherited from :py:class:`DivisionToken.DivisionToken <experimental.interpretertools.DivisionToken.DivisionToken.DivisionToken>`
 
 Special Methods
 ---------------
