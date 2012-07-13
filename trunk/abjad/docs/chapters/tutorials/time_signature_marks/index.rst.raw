@@ -20,7 +20,6 @@ with the interpreter display of the object:
 
 <abjad>
 staff
-print repr(staff) <hide
 </abjad>
 
 The ``5`` in ``Staff{5}`` shows that the staff contains 5 top-level components.
@@ -42,35 +41,23 @@ We can see that this is the case with tools from the API:
 
 <abjad>
 contexttools.get_effective_time_signature(staff) is None
-print repr(contexttools.get_effective_time_signature(staff) is None) <hide
 </abjad>
 
 And:
 
-::
+<abjad>
+for leaf in staff:
+    contexttools.get_effective_time_signature(leaf) is None
 
-    >>> for leaf in staff:
-    ...    contexttools.get_effective_time_signature(leaf) is None
-    ...
-    True
-    True
-    True
-    True
-    True
+</abjad>
 
 If we want, we can iterate both the staff and its leaves at one and the same time like this:
 
-::
+<abjad>
+for component in componenttools.iterate_components_forward_in_expr(staff):
+    component, contexttools.get_effective_time_signature(component)
 
-    >>> for component in componenttools.iterate_components_forward_in_expr(staff):
-    ...    component, contexttools.get_effective_time_signature(component)
-    ...
-    (Staff{5}, None)
-    (Note("c'4"), None)
-    (Note("d'4"), None)
-    (Note("e'4"), None)
-    (Note("f'4"), None)
-    (Note("g'2"), None)
+</abjad>
 
 This confirms the answer to our questions that there is not yet any time signature
 in effect for any component in our staff because we have not yet attached
@@ -84,7 +71,6 @@ We find out like this:
 
 <abjad>
 show(staff)
-iotools.write_expr_to_ly(staff, 'time-signature-tutorial-1') <hide
 </abjad>
 
 It turns out LilyPond defaults to a time signature of ``4/4``.
@@ -124,7 +110,6 @@ our time signature mark we get the following:
 
 <abjad>
 time_signature_mark
-print repr(time_signature_mark) <hide
 </abjad>
 
 All this tells us is that we have in fact created a ``3/4`` time signature mark.
@@ -135,7 +120,6 @@ And we can see this like so:
 
 <abjad>
 time_signature_mark.start_component is None
-print repr(time_signature_mark.start_component is None) <hide
 </abjad>
 
 What does it mean for a time signature mark to have ``'start_component'`` equal to none?
@@ -144,13 +128,8 @@ It means that the time signature isn't yet attached to any score component anywh
 So now we attach our time signature mark to our staff:
 
 <abjad>
-time_signature_mark.attach(staff) <hide
+time_signature_mark.attach(staff)
 </abjad>
-
-::
-
-    >>> time_signature_mark.attach(staff)
-    TimeSignatureMark((3, 4))(Staff{5})
 
 Abjad responds immediately by returning the time signature mark we have just attached.
 
@@ -164,7 +143,6 @@ We can see this like so:
 
 <abjad>
 time_signature_mark.start_component
-print repr(time_signature_mark.start_component) <hide
 </abjad>
 
 And our staff has likewise transitioned from a state of having
@@ -172,7 +150,6 @@ no effective time signature to a state of having an effective time signature:
 
 <abjad>
 contexttools.get_effective_time_signature(staff)
-print repr(contexttools.get_effective_time_signature(staff)) <hide
 </abjad>
 
 And what about the leaves inside our staff?
@@ -180,16 +157,11 @@ Do the leaves now "know" that they are governed by a ``3/4`` time signature?
 
 Indeed they do:
 
-::
+<abjad>
+for leaf in staff.leaves:
+    leaf, contexttools.get_effective_time_signature(leaf)
 
-    >>> for leaf in staff.leaves:
-    ...      leaf, contexttools.get_effective_time_signature(leaf)
-    ...
-    (Note("c'4"), TimeSignatureMark((3, 4))(Staff{5}))
-    (Note("d'4"), TimeSignatureMark((3, 4))(Staff{5}))
-    (Note("e'4"), TimeSignatureMark((3, 4))(Staff{5}))
-    (Note("f'4"), TimeSignatureMark((3, 4))(Staff{5}))
-    (Note("g'2"), TimeSignatureMark((3, 4))(Staff{5}))
+</abjad>
 
 So to briefly resume:
 
@@ -208,7 +180,6 @@ Before moving on let's look at the PDF corresponding to our staff:
 
 <abjad>
 show(staff)
-iotools.write_expr_to_ly(staff, 'time-signature-tutorial-2') <hide
 </abjad>
 
 And let's confirm what we see in the PDF in the staff's format:
@@ -224,26 +195,19 @@ What we've just been through above will cover over 80% of what you'll ever wind 
 Detaching a time signature mark is easy:
 
 <abjad>
-time_signature_mark.detach() <hide
+time_signature_mark.detach()
 </abjad>
-
-::
-
-    >>> time_signature_mark.detach()
-    TimeSignatureMark((3, 4))
 
 The Abjad returns the mark we have just detached. And, observing the repr of the time signature mark, we see that the time signature mark has again changed state: the time signature mark has transitioned from attached to unattached. We confirm this like so:
 
 <abjad>
 time_signature_mark.start_component is None
-print repr(time_signature_mark.start_component is None) <hide
 </abjad>
 
 And also like so:
 
 <abjad>
 contexttools.get_effective_time_signature(staff) is None
-print repr(contexttools.get_effective_time_signature(staff) is None) <hide
 </abjad>
 
 Yup: our time signature mark knows nothing about our staff. And vice versa. This is good.
@@ -255,15 +219,9 @@ We have a couple of options.
 We can simply create and attach a new time signature mark:
 
 <abjad>
-duple_time_signature_mark = contexttools.TimeSignatureMark((2, 4)) <hide
-duple_time_signature_mark.attach(staff) <hide
+duple_time_signature_mark = contexttools.TimeSignatureMark((2, 4))
+duple_time_signature_mark.attach(staff)
 </abjad>
-
-::
-
-    >>> duple_time_signature_mark = contexttools.TimeSignatureMark((2, 4))
-    >>> duple_time_signature_mark.attach(staff)
-    TimeSignatureMark((2, 4))(Staff{5})
 
 <abjad>
 f(staff)
@@ -271,7 +229,6 @@ f(staff)
 
 <abjad>
 show(staff)
-iotools.write_expr_to_ly(staff, 'time-signature-tutorial-3') <hide
 </abjad>
 
 Yup. That works.
@@ -284,16 +241,10 @@ To do this we'll first detach our ``2/4`` time signature mark ...
 duple_time_signature_mark.detach()
 </abjad>
 
-::
-
-    >>> duple_time_signature_mark.detach()
-    TimeSignatureMark((2, 4))
-
 ... confirm that our staff is now time signatureless ...
 
 <abjad>
 contexttools.get_effective_time_signature(staff) is None
-print repr(contexttools.get_effective_time_signature(staff) is None) <hide
 </abjad>
 
 <abjad>
@@ -306,11 +257,6 @@ f(staff)
 time_signature_mark.attach(staff)
 </abjad>
 
-::
-
-    >>> time_signature_mark.attach(staff)
-    TimeSignatureMark((4, 4))(Staff{5})
-
 ... change the numerator of our time signature mark ...
 
 <abjad>
@@ -321,9 +267,7 @@ time_signature_mark.numerator = 2
 
 <abjad>
 contexttools.get_effective_time_signature(staff)
-print repr(contexttools.get_effective_time_signature(staff)) <hide
 time_signature_mark.start_component
-print repr(time_signature_mark.start_component) <hide
 </abjad>
 
 <abjad>
@@ -332,7 +276,6 @@ f(staff)
 
 <abjad>
 show(staff)
-iotools.write_expr_to_ly(staff, 'time-signature-tutorial-4') <hide
 </abjad>
 
 And everything works as it should.
@@ -362,7 +305,6 @@ f(staff)
 
 <abjad>
 show(staff)
-iotools.write_expr_to_ly(staff, 'time-signature-tutorial-5') <hide
 </abjad>
 
 And what if time signature changes all over the place?
@@ -394,7 +336,6 @@ We create it in the usual way:
 <abjad>
 duple_time_signature_mark = contexttools.TimeSignatureMark((2, 4))
 duple_time_signature_mark
-print repr(duple_time_signature_mark) <hide
 </abjad>
 
 But should we attach it?
@@ -413,18 +354,12 @@ We do that like this:
 duple_time_signature_mark.attach(staff[4])
 </abjad>
 
-::
-
-    >>> duple_time_signature_mark.attach(staff[4])
-    TimeSignatureMark((2, 4))(g'2)
-
 <abjad>
 f(staff)
 </abjad>
 
 <abjad>
 show(staff)
-iotools.write_expr_to_ly(staff, 'time-signature-tutorial-6') <hide
 </abjad>
 
 And everything works as we would like.
@@ -434,7 +369,6 @@ Using the interpreter we can verify that this is ``g'2``:
 
 <abjad>
 staff[4]
-print repr(staff[4]) <hide
 </abjad>
 
 Depending on how we had chosen to build our staff we would have had
@@ -453,13 +387,8 @@ First an API function to detach ALL context marks attaching to a component:
 We call the function a first time:
 
 <abjad>
-contexttools.detach_context_marks_attached_to_component(staff) <hide
+contexttools.detach_context_marks_attached_to_component(staff)
 </abjad>
-
-::
-
-    >>> contexttools.detach_context_marks_attached_to_component(staff)
-    (TimeSignatureMark((4, 4)),)
 
 <abjad>
 f(staff)
@@ -468,12 +397,8 @@ f(staff)
 And then a second time:
 
 <abjad>
-contexttools.detach_context_marks_attached_to_component(staff[4]) <hide
+contexttools.detach_context_marks_attached_to_component(staff[4])
 </abjad>
-
-::
-    >>> contexttools.detach_context_marks_attached_to_component(staff[4])
-    (TimeSignatureMark((2, 4)),)
 
 <abjad>
 f(staff)
@@ -503,13 +428,8 @@ time_signature_mark = contexttools.TimeSignatureMark((3, 4))
 ... and then use a short-cut to avoid calling ``time_signature_mark.attach()`` like this:
 
 <abjad>
-time_signature_mark(staff) <hide
+time_signature_mark(staff)
 </abjad>
-
-::
-
-    >>> time_signature_mark(staff)
-    TimeSignatureMark((3, 4))(Staff{5})
 
 <abjad>
 f(staff)
@@ -529,13 +449,8 @@ Note too that all context marks understand an *empty call* as a short-cut
 for ``detach()``. Like this:
 
 <abjad>
-time_signature_mark() <hide
+time_signature_mark()
 </abjad>
-
-::
-
-    >>> time_signature_mark()
-    TimeSignatureMark((3, 4))
 
 <abjad>
 f(staff)
@@ -549,13 +464,8 @@ as a short-cut for attach() means that context marks
 can be created and attached in a single line:
 
 <abjad>
-contexttools.TimeSignatureMark((2, 4))(staff) <hide
+contexttools.TimeSignatureMark((2, 4))(staff)
 </abjad>
-
-::
-
-    >>> contexttools.TimeSignatureMark((2, 4))(staff)
-    TimeSignatureMark((2, 4))(Staff{5})
 
 <abjad>
 f(staff)

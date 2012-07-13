@@ -16,7 +16,6 @@ staff.override.staff_symbol.color = 'blue'
 
 <abjad>
 staff.override
-print staff.override <hide
 </abjad>
 
 All Abjad leaves have a grob-override plug-in, too:
@@ -32,7 +31,6 @@ leaf.override.stem.color = 'red'
 
 <abjad>
 leaf.override
-print leaf.override <hide
 </abjad>
 
 And so do Abjad spanners:
@@ -47,7 +45,6 @@ slur.override.slur.color = 'red'
 
 <abjad>
 slur.override
-print slur.override <hide
 </abjad>
 
 Grob proxies
@@ -57,12 +54,10 @@ Grob-override plug-ins contain grob proxies:
 
 <abjad>
 leaf.override.note_head
-print leaf.override.note_head <hide
 </abjad>
 
 <abjad>
 leaf.override.stem
-print leaf.override.stem <hide
 </abjad>
 
 Dot-chained override syntax

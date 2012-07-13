@@ -1,25 +1,38 @@
 Understanding LilyPond grobs
 ============================
 
-LilyPond models music notation as a collection of graphic objects or grobs.
+LilyPond models music notation as a collection of *gr*aphic *ob*jects or grobs.
 
 Grobs control typography
 ------------------------
 
-LilyPond grobs control the typographic details of the score::
+LilyPond grobs control the typographic details of the score:
 
-    \new Staff {
-        c'4 (
-        d'4 )
-        e'4 (
-        f'4 )
-        g'4 (
-        a'4 )
-        g'2
-    }
+::
+
+   >>> staff = Staff("c'4 ( d'4 ) e'4 ( f'4 ) g'4 ( a'4 ) g'2")
 
 
-.. image:: images/grob-tutorial-1.png
+::
+
+   >>> f(staff)
+   \new Staff {
+   	c'4 (
+   	d'4 )
+   	e'4 (
+   	f'4 )
+   	g'4 (
+   	a'4 )
+   	g'2
+   }
+
+
+::
+
+   >>> show(staff)
+
+.. image:: images/index-1.png
+
 
 In the example above LilyPond creates a grob for every printed glyph.
 This includes the clef and time signature as well as the note heads, stems and
@@ -29,23 +42,68 @@ then LilyPond would create grobs for those as well.
 Grobs can be overridden
 -----------------------
 
-You can change the appearance of LilyPond grobs with grob overrides::
+You can change the appearance of LilyPond grobs with grob overrides:
 
-    \new Staff \with {
-        \override NoteHead #'color = #red
-        \override StaffSymbol #'color = #blue
-        \override Stem #'color = #red
-    } {
-        c'4 (
-        d'4 )
-        e'4 (
-        f'4 )
-        g'4 (
-        a'4 )
-        g'2
-    }
+::
 
-.. image:: images/grob-tutorial-2.png
+   >>> staff.override.staff_symbol.color = 'blue'
+   >>> staff.override.note_head.color = 'red'
+   >>> staff.override.stem.color = 'red'
+
+
+::
+
+   >>> f(staff)
+   \new Staff \with {
+   	\override NoteHead #'color = #red
+   	\override StaffSymbol #'color = #blue
+   	\override Stem #'color = #red
+   } {
+   	c'4 (
+   	d'4 )
+   	e'4 (
+   	f'4 )
+   	g'4 (
+   	a'4 )
+   	g'2
+   }
+
+
+::
+
+   >>> show(staff, docs=True)
+
+.. image:: images/index-2.png
+
+
+Nested Grob properties can be overriden
+---------------------------------------
+
+In the above example, `staff_symbol`, `note_head` and `stem` correspond to the LilyPond
+grobs `StaffSymbol`, `NoteHead` and `Stem`, while `color` in each case is the color
+properties of that graphic object.
+
+It is not uncommon in LilyPond scores to see more complex overrides, consisting of a
+grob name and a list of two or more property names:
+
+::
+
+    \override StaffGrouper #'staff-staff-spacing #'basic-distance = #7
+
+To achieve the Abjad equivalent, simply concatenate the property names with double-underscores:
+
+::
+
+   >>> staff = Staff()
+   >>> staff.override.staff_grouper.staff_staff_spacing__basic_distance = 7
+   >>> f(staff)
+   \new Staff \with {
+   	\override StaffGrouper #'staff-staff-spacing #'basic-distance = #7
+   } {
+   }
+
+
+Abjad will explode the double-underscore delimited Python property into a LilyPond property list.
 
 Check the LilyPond docs
 -----------------------

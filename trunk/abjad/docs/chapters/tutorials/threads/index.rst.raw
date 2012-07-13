@@ -62,17 +62,20 @@ The musical fragment above is constructed with the following code:
 vA = Voice(notetools.make_notes([5, 7, 9, 11], [(1, 8)] * 4))
 vB = Voice(notetools.make_notes([12, 11, 9], [(1, 8), (1, 8), (1, 4)]))
 vC = Voice(Note(12, (1, 4)) * 2)
-marktools.LilyPondCommandMark('voiceOne')(vA[0])
-marktools.LilyPondCommandMark('voiceOne')(vB[0])
-marktools.LilyPondCommandMark('voiceTwo')(vC[0])
+mark = marktools.LilyPondCommandMark('voiceOne')(vA[0])
+mark = marktools.LilyPondCommandMark('voiceOne')(vB[0])
+mark = marktools.LilyPondCommandMark('voiceTwo')(vC[0])
 p = Container([vB, vC])
 p.is_parallel = True
 staff = Staff([vA, p])
 </abjad>
 
 <abjad>
+f(staff)
+</abjad>
+
+<abjad>
 show(staff, docs=True)
-iotools.write_expr_to_ly(staff, 'thread-resolution-1', docs=True) <hide
 </abjad>
 
 There's a staff that sequentially contains a voice and a parallel container.
@@ -89,15 +92,15 @@ To see this more clearly, suppose we want to add a slur spanner starting on the
 first note and ending on one of the last simultaneous notes.
 To attach the slur spanner to the voices we could try either:
 
-::
+<abjad>
+spannertools.SlurSpanner([vA, vB])
+</abjad>
 
-    >>> spannertools.SlurSpanner([vA, vB])
+... or ...
 
-or
-
-::
-
-    >>> spannertools.SlurSpanner([vA, vC])
+<abjad>
+spannertools.SlurSpanner([vA, vC])
+</abjad>
 
 But both raise a contiguity error.
 Abjad needs to see an explicit connection between either `vA` and `vB` or between `vA` and `vC`.
@@ -134,30 +137,24 @@ by printing it:
 <abjad>
 vA_thread_signature = componenttools.component_to_containment_signature(vA)
 vA_thread_signature
-print repr(vA_thread_signature) <hide
 </abjad>
 
 <abjad>
 vB_thread_signature = componenttools.component_to_containment_signature(vB)
 vB_thread_signature
-print repr(vB_thread_signature) <hide
 </abjad>
 
 <abjad>
 vC_thread_signature = componenttools.component_to_containment_signature(vC)
 vC_thread_signature
-print repr(vC_thread_signature) <hide
 </abjad>
 
 And by comparing them with the binary equality operator:
 
 <abjad>
 vA_thread_signature == vB_thread_signature
-print repr(vA_thread_signature == vB_thread_signature) <hide
 vA_thread_signature == vC_thread_signature
-print repr(vA_thread_signature == vC_thread_signature) <hide
 vB_thread_signature == vC_thread_signature
-print repr(vB_thread_signature == vC_thread_signature) <hide
 </abjad>
 
 To allow Abjad to treat the content of, say, voices `vA` and `vB` as belonging together,
@@ -173,7 +170,6 @@ Now `vA` and `vB` and all their content belong to the same thread:
 
 <abjad>
 vA_thread_signature == vB_thread_signature
-print repr(vA_thread_signature == vB_thread_signature) <hide
 </abjad>
 
 Note how the thread signatures have changed:
@@ -204,9 +200,9 @@ print list(notes)
 
 Now the slur spanner can be applied to voices `vA` and `vB`:
 
-::
-
-    >>> spannertools.SlurSpanner([vA, vB])
+<abjad>
+spannertools.SlurSpanner([vA, vB])
+</abjad>
 
 or directly to the notes returned by the
 :func:`~abjad.tools.componenttools.iterate_thread_forward_in_expr`
@@ -219,7 +215,6 @@ spannertools.SlurSpanner(list(notes))
 
 <abjad>
 show(staff, docs=True)
-iotools.write_expr_to_ly(staff, 'thread-resolution-2', docs=True) <hide
 </abjad>
 
 Coda
@@ -231,13 +226,16 @@ one of them starting with a LilyPond skip:
 <abjad>
 vX = Voice(notetools.make_notes([5, 7, 9, 11, 12, 11, 9], [(1, 8)] * 6 + [(1, 4)]))
 vY = Voice([skiptools.Skip((2, 4))] + Note(12, (1, 4)) * 2)
-marktools.LilyPondCommandMark('voiceOne')(vX[0])
-marktools.LilyPondCommandMark('voiceTwo')(vY[0])
+mark = marktools.LilyPondCommandMark('voiceOne')(vX[0])
+mark = marktools.LilyPondCommandMark('voiceTwo')(vY[0])
 staff = Staff([vX, vY])
 staff.is_parallel = True
 </abjad>
 
 <abjad>
+f(staff)
+</abjad>
+
+<abjad>
 show(staff, docs=True)
-iotools.write_expr_to_ly(staff, 'thread-resolution-3', docs=True) <hide
 </abjad>

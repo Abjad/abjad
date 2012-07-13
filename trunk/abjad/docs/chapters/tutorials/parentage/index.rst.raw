@@ -11,7 +11,6 @@ score = Score([staff])
 
 <abjad>
 show(score, docs=True)
-iotools.write_expr_to_ly(score, 'parentage-tutorial-1', docs=True) <hide
 </abjad>
 
 Abjad uses the idea of parentage to model the way objects contain each other.
@@ -23,12 +22,10 @@ The improper parentage of the first note in score begins with the note itself:
 
 <abjad>
 note = score.leaves[0]
-print repr(note) <hide
 </abjad>
 
 <abjad>
 componenttools.get_improper_parentage_of_component(note)
-print repr(componenttools.get_improper_parentage_of_component(note)) <hide
 </abjad>
 
 Proper parentage
@@ -38,7 +35,6 @@ The proper parentage of the note begins with only the immediate parent of the no
 
 <abjad>
 componenttools.get_proper_parentage_of_component(note)
-print repr(componenttools.get_proper_parentage_of_component(note)) <hide
 </abjad>
 
 .. note:: the length of the improper parentage of any component equals
@@ -51,19 +47,16 @@ Use component tools to find score depth:
 
 <abjad>
 componenttools.component_to_score_depth(note)
-print repr(componenttools.component_to_score_depth(note)) <hide>
 </abjad>
 
 Or score root:
 
 <abjad>
 componenttools.component_to_score_root(note)
-print repr(componenttools.component_to_score_root(note)) <hide>
 </abjad>
 
 Or to find whether a component has no (proper) parentage at all:
 
 <abjad>
 componenttools.is_orphan_component(note)
-print repr(componenttools.is_orphan_component(note)) <hide>
 </abjad>
