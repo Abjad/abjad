@@ -290,6 +290,7 @@ class ScoreSpecification(Specification):
         segment_division_tokens = []
         for segment in self.segments:
             value, fresh, truncate = segment.get_divisions_value_with_fresh_and_truncate(voice.name)
+            #self._debug((value, fresh, truncate))
             value = self.process_divisions_value(value)
             segment_division_tokens.append(SegmentDivisionToken(value, fresh, truncate, segment.duration))
         return segment_division_tokens
@@ -432,10 +433,13 @@ class ScoreSpecification(Specification):
         Make one division list for each region in voice.
         '''
         segment_division_tokens = self.get_segment_division_tokens_for_voice(voice)
+        #self._debug(segment_division_tokens)
         region_division_tokens = self.change_segment_division_tokens_to_region_division_tokens(
             segment_division_tokens)
         region_division_lists = self.make_region_division_lists_from_region_division_tokens(region_division_tokens)
         self.payload_context_dictionary[voice.name]['region_division_lists'] = region_division_lists[:]
+        self.payload_context_dictionary[voice.name]['region_division_lists'] = region_division_lists[:]
+        #self._debug(region_division_lists)
         return region_division_lists
 
     def make_region_division_lists_from_region_division_tokens(self, region_division_tokens):
