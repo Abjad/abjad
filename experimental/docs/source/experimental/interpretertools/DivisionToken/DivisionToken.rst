@@ -21,6 +21,8 @@ Read-only Properties
 
 .. autoattribute:: experimental.interpretertools.DivisionToken.DivisionToken.DivisionToken.value
 
+.. autoattribute:: experimental.interpretertools.DivisionToken.DivisionToken.DivisionToken.vector
+
 Special Methods
 ---------------
 

@@ -135,6 +135,7 @@ Unstable packages (load manually)
 
    experimental/interpretertools/DivisionToken/DivisionToken
    experimental/interpretertools/RegionDivisionToken/RegionDivisionToken
+   experimental/interpretertools/ResolvedValue/ResolvedValue
    experimental/interpretertools/RhythmToken/RhythmToken
    experimental/interpretertools/SegmentDivisionToken/SegmentDivisionToken
 

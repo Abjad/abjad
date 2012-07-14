@@ -29,6 +29,10 @@ Read-only Properties
 
     Inherited from :py:class:`DivisionToken.DivisionToken <experimental.interpretertools.DivisionToken.DivisionToken.DivisionToken>`
 
+.. autoattribute:: experimental.interpretertools.RegionDivisionToken.RegionDivisionToken.RegionDivisionToken.vector
+
+    Inherited from :py:class:`DivisionToken.DivisionToken <experimental.interpretertools.DivisionToken.DivisionToken.DivisionToken>`
+
 Special Methods
 ---------------
 

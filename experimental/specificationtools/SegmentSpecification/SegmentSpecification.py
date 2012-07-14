@@ -1,4 +1,5 @@
 from abjad.tools import *
+from experimental import interpretertools
 from experimental.specificationtools.exceptions import *
 from experimental.specificationtools.AttributeRetrievalIndicator import AttributeRetrievalIndicator
 from experimental.specificationtools.AttributeRetrievalRequest import AttributeRetrievalRequest
@@ -60,6 +61,7 @@ class SegmentSpecification(Specification):
 
     ### READ-ONLY PUBLIC ATTRIBUTES ###
 
+    # TODO: rename to multiple_context_settings
     @property
     def directives(self):
         '''Segment specification directives.
@@ -216,52 +218,81 @@ class SegmentSpecification(Specification):
                     result.append(directive)
         return result
 
-    def get_divisions_value_with_fresh_and_truncate(self, context_name, timespan=None):
-        '''Return value found in context tree or else default to segment time signatures.
+    # method does not handle timespans equal to fractions of a segment
+    def get_division_resolved_value(self, context_name):
+        '''Return resolved setting found in context tree or else default to segment time signatures.
         '''
-        value, fresh, truncate = self.get_resolved_value_with_fresh('divisions', context_name, 
-            include_truncate=True, timespan=timespan)
-        if value is None:
-            value, fresh = self.get_resolved_value_with_fresh('time_signatures', context_name, 
-            timespan=timespan)
-            truncate = False
-        return value, fresh, truncate
+        setting = self.get_resolved_single_context_setting('divisions', context_name)
+        if setting is not None:
+            return interpretertools.ResolvedValue(setting.value, setting.fresh, setting.truncate)
+        setting = self.get_resolved_single_context_setting('time_signatures', context_name)
+        if setting is not None:
+            return interpretertools.ResolvedValue(setting.value, setting.fresh, False)
+        else:
+            return interpretertools.ResolvedValue(None, False, False)
 
-    def get_resolved_value_with_fresh(self, attribute, context_name, include_truncate=False, timespan=None):
-        '''Return value from resolved setting because context proxy stores resolved settings.
-        '''
+    def get_improved_segment_division_tokens_for_voice(self, context_name):
+        from experimental import selectortools
+        resolved_settings = self.get_resolved_single_context_settings('divisions', context_name)
+        segment_division_tokens = []
+        for resolved_setting in resolved_settings:
+            print resolved_setting.storage_format
+            if isinstance(resolved_setting.target, selectortools.CountRatioItemSelector):
+                token = self.count_ratio_item_selector_to_segment_division_token(resolved_setting)
+            else:
+                raise Exception('implement me for normal case resolved setting')
+            segment_division_tokens.append(token)
+        return segment_division_tokens
+
+    def count_ratio_item_selector_to_segment_division_token(self, resolved_setting):
+        from experimental import selectortools
+        assert isinstance(resolved_setting.target, selectortools.CountRatioItemSelector)
+        assert isinstance(resolved_setting.target.reference, selectortools.BackgroundMeasureSliceSelector)
+        assert resolved_setting.target.reference.inequality.timespan.selector.index == self.name
+        ratio = resolved_setting.target.ratio
+        index = resolved_setting.target.index
+        time_signatures = self.time_signatures[:]
+        parts = sequencetools.partition_sequence_by_ratio_of_lengths(time_signatures, ratio)
+        part = parts[index]
+        durations = [durationtools.Duration(x) for x in part]
+        duration = sum(durations)
+        #value = self.process_divisions_value(resolved_value) # probably todo this
+        args = (resolved_setting.value, resolved_setting.fresh, resolved_setting.truncate, duration)
+        token = interpretertools.SegmentDivisionToken(*args)
+        return token
+
+    def get_resolved_single_context_setting(self, attribute, context_name):
         from experimental import settingtools
-        #self._debug((attribute, context_name))
         context = componenttools.get_first_component_in_expr_with_name(self.score_model, context_name)
         for component in componenttools.get_improper_parentage_of_component(context):
-            #self._debug(component)
             context_proxy = self.resolved_settings_context_dictionary[component.name]
-            settings = context_proxy.get_settings(attribute=attribute, timespan=timespan)
-            #self._debug(settings, 'settings')
-            if not settings:
-                continue
-            elif len(settings) == 1:
+            settings = context_proxy.get_settings(attribute=attribute)
+            if len(settings) == 1:
                 setting = settings[0]
                 assert isinstance(setting, settingtools.ResolvedSingleContextSetting)
-                if include_truncate:
-                    return setting.value, setting.fresh, setting.truncate
-                else:
-                    return setting.value, setting.fresh
-            else:
+                return setting
+            elif 1 < len(settings):
                 raise Exception('multiple {!r} settings found.'.format(attribute))
-        if include_truncate:
-            return None, None, False
-        else:
-            return None, None
     
-    def get_rhythm_value(self, context_name, timespan=None):
+    def get_resolved_single_context_settings(self, attribute, context_name):
+        from experimental import settingtools
+        context = componenttools.get_first_component_in_expr_with_name(self.score_model, context_name)
+        for component in componenttools.get_improper_parentage_of_component(context):
+            context_proxy = self.resolved_settings_context_dictionary[component.name]
+            settings = context_proxy.get_settings(attribute=attribute)
+            if settings:
+                return settings
+
+    def get_rhythm_token(self, context_name):
         '''Default to rest-filled tokens if explicit rhythm not found.
         '''
         from experimental.specificationtools import library
-        value, fresh = self.get_resolved_value_with_fresh('rhythm', context_name, timespan=timespan)
-        if value is not None:
-            return value, fresh
-        return library.rest_filled_tokens, True
+        setting = self.get_resolved_single_context_setting('rhythm', context_name)
+        if setting is not None:
+            rhythm_token = interpretertools.RhythmToken(setting.value, setting.fresh)
+        else:
+            rhythm_token = interpretertools.RhythmToken(library.rest_filled_tokens, True)
+        return rhythm_token
 
     def preprocess_setting_target(self, target):
         if isinstance(target, (str, list, type(self))):

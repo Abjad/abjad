@@ -23,8 +23,8 @@ class ContextProxy(AbjadObject, OrderedDict):
 
     ### PUBLIC METHODS ###
 
-    def get_setting(self, attribute=None, timespan=None):
-        settings = self.get_settings(attribute=attribute, timespan=timespan)
+    def get_setting(self, attribute=None):
+        settings = self.get_settings(attribute=attribute)
         if not settings:
             raise MissingContextSettingError('no settings for {!r} found.'.format(attribute))
         elif 1 < len(settings):
@@ -32,11 +32,13 @@ class ContextProxy(AbjadObject, OrderedDict):
         assert len(settings) == 1
         return settings[0]
 
-    def get_settings(self, attribute=None, timespan=None):
-        settings = []
-        for key, setting in self.iteritems():
-            if ((attribute is None or key == attribute) and
-                (timespan is None or setting.timespan == timespan)
-                ):
-                settings.append(setting)
-        return settings
+    def get_settings(self, attribute=None):
+        result = []
+        for key, value in self.iteritems():
+            if attribute is None or key == attribute:
+                # CURRENT: toggle between these two values while implementing count ratio selectors
+                #          First line is for last known good behavior.
+                #          Second line is for newly improved behavior.
+                result.append(value)
+                #result.extend(value)
+        return result

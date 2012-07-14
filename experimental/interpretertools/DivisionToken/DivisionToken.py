@@ -30,5 +30,9 @@ class DivisionToken(Token):
         return self._truncate
 
     @property
+    def vector(self):
+        return (self.value, self.fresh, self.truncate, self.duration)
+
+    @property
     def value(self):
         return self._value

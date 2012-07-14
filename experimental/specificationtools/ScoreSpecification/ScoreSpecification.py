@@ -1,4 +1,5 @@
 from abjad.tools import *
+from experimental import interpretertools
 from experimental.specificationtools.AttributeRetrievalRequest import AttributeRetrievalRequest
 from experimental.specificationtools.Division import Division
 from experimental.specificationtools.DivisionList import DivisionList
@@ -15,11 +16,6 @@ import collections
 import copy
 import re
 
-
-SegmentDivisionToken = collections.namedtuple(
-    'SegmentDivisionToken', ['value', 'fresh', 'truncate', 'duration'])
-RegionDivisionToken = collections.namedtuple(
-    'RegionDivisionToken', ['value', 'fresh', 'truncate', 'duration'])
 
 class ScoreSpecification(Specification):
     r'''.. versionadded:: 1.0
@@ -86,14 +82,17 @@ class ScoreSpecification(Specification):
     #       These settings address themselves to the timespans of *incomplete* segments
     def add_divisions_to_voice(self, voice):
         region_division_lists = self.make_region_division_lists_for_voice(voice)
+        #self._debug(region_division_lists)
         if region_division_lists:
             self.payload_context_dictionary[voice.name]['region_division_lists'] = region_division_lists 
             voice_divisions = []
             for region_division_list in region_division_lists:
                 voice_divisions.extend(region_division_list.divisions)
+            #self._debug(voice_divisions)
             voice_division_list = VoiceDivisionList(voice_divisions)
             self.payload_context_dictionary[voice.name]['voice_division_list'] = voice_division_list
             segment_division_lists = self.make_segment_division_lists_for_voice(voice)
+            #self._debug(segment_division_lists, 'CORRECT!')
             self.payload_context_dictionary[voice.name]['segment_division_lists'] = segment_division_lists
             self.add_segment_division_list_to_segment_payload_context_dictionarys_for_voice(
                 voice, segment_division_lists)
@@ -117,6 +116,15 @@ class ScoreSpecification(Specification):
         region_division_lists = self.payload_context_dictionary[voice.name]['region_division_lists']
         for rhythm_token, region_division_list in zip(rhythm_tokens, region_division_lists):
             self.add_rhythm_to_voice_for_segment_region_divisions(voice, rhythm_token, region_division_list)
+
+    # TODO: Using segment_division_lists here is a hack.
+    #       Implement self.get_rhythm_tokens_for_all_regions_in_voice()
+    #       Then reimplement this method using *region* division lists.
+    def add_rhythms_to_voice_new(self, voice):
+        rhythm_tokens = self.get_rhythm_tokens_for_all_segments_in_voice(voice)
+        segment_division_lists = self.payload_context_dictionary[voice.name]['segment_division_lists']
+        for rhythm_token, segment_division_list in zip(rhythm_tokens, segment_division_lists):
+            self.add_rhythm_to_voice_for_segment_region_divisions(voice, rhythm_token, segment_division_list)
 
     def add_segment_division_list_to_segment_payload_context_dictionarys_for_voice(
         self, voice, segment_division_lists):
@@ -187,7 +195,7 @@ class ScoreSpecification(Specification):
     def change_attribute_retrieval_indicator_to_setting(self, indicator):
         segment = self.segments[indicator.segment_name]
         context_proxy = segment.resolved_settings_context_dictionary[indicator.context_name]
-        setting = context_proxy.get_setting(attribute=indicator.attribute, timespan=indicator.timespan)
+        setting = context_proxy.get_setting(attribute=indicator.attribute)
         return setting
 
     def change_segment_division_tokens_to_region_division_tokens(self, segment_division_tokens):
@@ -199,20 +207,20 @@ class ScoreSpecification(Specification):
         assert segment_division_tokens[0].fresh, repr(segment_division_tokens[0])
         for segment_division_token in segment_division_tokens:
             if segment_division_token.fresh or segment_division_token.truncate:
-                region_division_token = RegionDivisionToken(*segment_division_token)
+                region_division_token = interpretertools.RegionDivisionToken(*segment_division_token.vector)
                 region_division_tokens.append(region_division_token)
             else:
                 last_region_division_token = region_division_tokens[-1]
                 assert last_region_division_token.value == segment_division_token.value
                 if last_region_division_token.truncate:
-                    region_division_token = RegionDivisionToken(*segment_division_token)
+                    region_division_token = interpretertools.RegionDivisionToken(*segment_division_token.vector)
                     region_division_tokens.append(region_division_token)
                 else:
                     value = last_region_division_token.value
                     duration = last_region_division_token.duration + segment_division_token.duration
                     fresh = last_region_division_token.fresh
                     truncate = segment_division_token.truncate
-                    region_division_token = RegionDivisionToken(value, fresh, truncate, duration)
+                    region_division_token = interpretertools.RegionDivisionToken(value, fresh, truncate, duration)
                     region_division_tokens[-1] = region_division_token
         return region_division_tokens
 
@@ -279,20 +287,28 @@ class ScoreSpecification(Specification):
                 return candidate_segment_number
 
     def get_rhythm_tokens_for_all_segments_in_voice(self, voice):
-        from experimental import interpretertools
         rhythm_tokens = []
         for segment in self.segments:
-            value, fresh = segment.get_rhythm_value(voice.name)
-            rhythm_tokens.append(interpretertools.RhythmToken(value, fresh))
+            rhythm_token = segment.get_rhythm_token(voice.name)
+            rhythm_tokens.append(rhythm_token)
         return rhythm_tokens
+
+    # alphabetize later
+    def get_improved_segment_division_tokens_for_voice(self, voice):
+        improved_segment_division_tokens = []
+        for segment in self.segments:
+            tokens = segment.get_improved_segment_division_tokens_for_voice(voice.name)
+            improved_segment_division_tokens.extend(tokens)
+        return improved_segment_division_tokens
 
     def get_segment_division_tokens_for_voice(self, voice):
         segment_division_tokens = []
         for segment in self.segments:
-            value, fresh, truncate = segment.get_divisions_value_with_fresh_and_truncate(voice.name)
-            #self._debug((value, fresh, truncate))
-            value = self.process_divisions_value(value)
-            segment_division_tokens.append(SegmentDivisionToken(value, fresh, truncate, segment.duration))
+            resolved_value = segment.get_division_resolved_value(voice.name)
+            value = self.process_divisions_value(resolved_value.value)
+            args = (value, resolved_value.fresh, resolved_value.truncate, segment.duration)
+            token = interpretertools.SegmentDivisionToken(*args)
+            segment_division_tokens.append(token)
         return segment_division_tokens
 
     def get_start_division_lists_for_voice(self, voice):
@@ -431,11 +447,17 @@ class ScoreSpecification(Specification):
     def make_region_division_lists_for_voice(self, voice):
         '''Called only once for each voice in score.
         Make one division list for each region in voice.
+        Model of region is currently in flux during count ratio selector integration.
         '''
+        # CURRENT: toggle between these two values while implementing count ratio selectors
+        #          First line is for last known good behavior.
+        #          Second line is for newly improved behavior.
         segment_division_tokens = self.get_segment_division_tokens_for_voice(voice)
+        #segment_division_tokens = self.get_improved_segment_division_tokens_for_voice(voice)
         #self._debug(segment_division_tokens)
         region_division_tokens = self.change_segment_division_tokens_to_region_division_tokens(
             segment_division_tokens)
+        #self._debug(region_division_tokens)
         region_division_lists = self.make_region_division_lists_from_region_division_tokens(region_division_tokens)
         self.payload_context_dictionary[voice.name]['region_division_lists'] = region_division_lists[:]
         self.payload_context_dictionary[voice.name]['region_division_lists'] = region_division_lists[:]
@@ -518,7 +540,7 @@ class ScoreSpecification(Specification):
     def select(self, segment_name, context_names=None, timespan=None):
         return MultipleContextTimespanSelector(segment_name, context_names=context_names, timespan=timespan)
 
-    # TODO: the really long dot-chaning here has got to go ...
+    # TODO: the really long dot-chaning here has got to go.
     #       The way to fix this is to make all selectors be able to recursively check for segment index.
     def store_setting(self, setting):
         '''Resolve setting and find segment specified by setting.
@@ -526,7 +548,6 @@ class ScoreSpecification(Specification):
         '''
         from experimental import selectortools
         resolved_setting = self.make_resolved_setting(setting)
-        #assert resolved_setting.target.timespan.encompasses_one_segment_exactly, repr(resolved_setting)
         if isinstance(resolved_setting.target, selectortools.RatioSelector):
             segment_index = resolved_setting.target.reference.timespan.selector.inequality.timespan.selector.index
         else:
@@ -535,13 +556,27 @@ class ScoreSpecification(Specification):
         context_name = resolved_setting.target.context or \
             segment.resolved_settings_context_dictionary.score_name
         attribute = resolved_setting.attribute
-#        if attribute in segment.resolved_settings_context_dictionary[context_name]:
-#            message = 'segment {!r} context {!r} already contains a {!r} setting.'
-#            message = message.format(segment.name, context_name, attribute)
-#            raise Exception(message)
+        # CURRENT: toggle between these two values while implementing count ratio selectors
+        #          First line is for last known good behavior.
+        #          Second line is for newly improved behavior.
+        self.store_only_one_setting(segment, context_name, attribute, resolved_setting)
+        #self.store_multiple_settings(segment, context_name, attribute, resolved_setting)
+
+    def store_only_one_setting(self, segment, context_name, attribute, resolved_setting):
         segment.resolved_settings_context_dictionary[context_name][attribute] = resolved_setting
         if resolved_setting.persistent:
             self.resolved_settings_context_dictionary[context_name][attribute] = resolved_setting
+
+    def store_multiple_settings(self, segment, context_name, attribute, resolved_setting):
+        if attribute in segment.resolved_settings_context_dictionary[context_name]:
+            segment.resolved_settings_context_dictionary[context_name][attribute].append(resolved_setting)
+        else:
+            segment.resolved_settings_context_dictionary[context_name][attribute] = [resolved_setting]
+        if resolved_setting.persistent:
+            if attribute in self.resolved_settings_context_dictionary[context_name]:
+                self.resolved_settings_context_dictionary[context_name][attribute].append(resolved_setting)
+            else:
+                self.resolved_settings_context_dictionary[context_name] = [resolved_setting]
 
     def store_settings(self, settings):
         for setting in settings:
