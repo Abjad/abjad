@@ -16,7 +16,7 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
 
     ::
 
-        >>> template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(4)
+        >>> template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
         >>> score = template()
 
     ::
@@ -53,15 +53,15 @@ class GroupedRhythmicStavesScoreTemplate(ScoreTemplate):
 
     ### INITIALIZER ###
 
-    def __init__(self, n=2):
+    def __init__(self, staff_count=2):
         self.context_name_abbreviations = collections.OrderedDict()
-        self.n = n
+        self.staff_count = staff_count
 
     ### SPECIAL METHODS ###
 
     def __call__(self):
         staves = []
-        for index in range(self.n):
+        for index in range(self.staff_count):
             number = index + 1
             voice = voicetools.Voice(name='Voice {}'.format(number))     
             staff = stafftools.RhythmicStaff([voice], name='Staff {}'.format(number))
