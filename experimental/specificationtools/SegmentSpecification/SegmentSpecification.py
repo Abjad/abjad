@@ -232,21 +232,21 @@ class SegmentSpecification(Specification):
             return interpretertools.ResolvedValue(None, False, False)
 
     # new behavior
-    def get_division_tokens_that_start_during_segment(self, context_name):
+    def get_division_commands_that_start_during_segment(self, context_name):
         from experimental import selectortools
         resolved_settings = self.get_resolved_single_context_settings('divisions', context_name)
-        segment_division_tokens = []
+        segment_division_commands = []
         for resolved_setting in resolved_settings:
             print resolved_setting.storage_format
             if isinstance(resolved_setting.target, selectortools.CountRatioItemSelector):
-                token = self.count_ratio_item_selector_to_segment_division_token(resolved_setting)
+                token = self.count_ratio_item_selector_to_segment_division_command(resolved_setting)
             else:
                 raise Exception('implement me for normal case resolved setting')
-            segment_division_tokens.append(token)
-        self._debug(segment_division_tokens, 'foo')
-        return segment_division_tokens
+            segment_division_commands.append(token)
+        self._debug(segment_division_commands, 'foo')
+        return segment_division_commands
 
-    def count_ratio_item_selector_to_segment_division_token(self, resolved_setting):
+    def count_ratio_item_selector_to_segment_division_command(self, resolved_setting):
         from experimental import selectortools
         assert isinstance(resolved_setting.target, selectortools.CountRatioItemSelector)
         assert isinstance(resolved_setting.target.reference, selectortools.BackgroundMeasureSliceSelector)

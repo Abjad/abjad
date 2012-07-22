@@ -198,33 +198,33 @@ class ScoreSpecification(Specification):
         setting = context_proxy.get_setting(attribute=indicator.attribute)
         return setting
 
-    def change_segment_division_tokens_to_region_division_tokens(self, segment_division_tokens):
-        region_division_tokens = []
-        if not segment_division_tokens:
-            return region_division_tokens
-        if any([x.value is None for x in segment_division_tokens]):
-            return region_division_tokens
-        assert segment_division_tokens[0].fresh, repr(segment_division_tokens[0])
-        for segment_division_token in segment_division_tokens:
-            if segment_division_token.fresh or segment_division_token.truncate:
-                region_division_token = interpretertools.RegionDivisionCommand(*segment_division_token.vector)
-                region_division_tokens.append(region_division_token)
+    def change_segment_division_commands_to_region_division_commands(self, segment_division_commands):
+        region_division_commands = []
+        if not segment_division_commands:
+            return region_division_commands
+        if any([x.value is None for x in segment_division_commands]):
+            return region_division_commands
+        assert segment_division_commands[0].fresh, repr(segment_division_commands[0])
+        for segment_division_command in segment_division_commands:
+            if segment_division_command.fresh or segment_division_command.truncate:
+                region_division_command = interpretertools.RegionDivisionCommand(*segment_division_command.vector)
+                region_division_commands.append(region_division_command)
             else:
-                last_region_division_token = region_division_tokens[-1]
-                assert last_region_division_token.value == segment_division_token.value
-                if last_region_division_token.truncate:
-                    region_division_token = interpretertools.RegionDivisionCommand(*segment_division_token.vector)
-                    region_division_tokens.append(region_division_token)
+                last_region_division_command = region_division_commands[-1]
+                assert last_region_division_command.value == segment_division_command.value
+                if last_region_division_command.truncate:
+                    region_division_command = interpretertools.RegionDivisionCommand(*segment_division_command.vector)
+                    region_division_commands.append(region_division_command)
                 else:
-                    value = last_region_division_token.value
-                    duration = last_region_division_token.duration + segment_division_token.duration
+                    value = last_region_division_command.value
+                    duration = last_region_division_command.duration + segment_division_command.duration
                     #fresh = 'FOO'
-                    fresh = last_region_division_token.fresh
-                    truncate = segment_division_token.truncate
+                    fresh = last_region_division_command.fresh
+                    truncate = segment_division_command.truncate
                     args = (value, duration, fresh, truncate)
-                    region_division_token = interpretertools.RegionDivisionCommand(*args)
-                    region_division_tokens[-1] = region_division_token
-        return region_division_tokens
+                    region_division_command = interpretertools.RegionDivisionCommand(*args)
+                    region_division_commands[-1] = region_division_command
+        return region_division_commands
 
     def evaluate_segment_index_expression(self, expression):
         r'''Evaluate segment index expression::
@@ -289,13 +289,13 @@ class ScoreSpecification(Specification):
                 return candidate_segment_number
 
     # new behavior
-    def get_improved_segment_division_tokens_for_voice(self, voice):
-        improved_segment_division_tokens = []
+    def get_improved_segment_division_commands_for_voice(self, voice):
+        improved_segment_division_commands = []
         for segment in self.segments:
-            #tokens = segment.get_improved_segment_division_tokens_for_voice(voice.name)
-            tokens = segment.get_division_tokens_that_start_during_segment(voice.name)
-            improved_segment_division_tokens.extend(tokens)
-        return improved_segment_division_tokens
+            #tokens = segment.get_improved_segment_division_commands_for_voice(voice.name)
+            tokens = segment.get_division_commands_that_start_during_segment(voice.name)
+            improved_segment_division_commands.extend(tokens)
+        return improved_segment_division_commands
 
     def get_rhythm_commands_for_all_segments_in_voice(self, voice):
         rhythm_commands = []
@@ -305,15 +305,15 @@ class ScoreSpecification(Specification):
         return rhythm_commands
 
     # deprecated behavior
-    def get_segment_division_tokens_for_voice(self, voice):
-        segment_division_tokens = []
+    def get_segment_division_commands_for_voice(self, voice):
+        segment_division_commands = []
         for segment in self.segments:
             resolved_value = segment.get_division_resolved_value(voice.name)
             value = self.process_divisions_value(resolved_value.value)
             args = (value, segment.duration, resolved_value.fresh, resolved_value.truncate)
             token = interpretertools.SegmentDivisionCommand(*args)
-            segment_division_tokens.append(token)
-        return segment_division_tokens
+            segment_division_commands.append(token)
+        return segment_division_commands
 
     def get_start_division_lists_for_voice(self, voice):
         region_division_lists = self.payload_context_dictionary[voice.name]['region_division_lists']
@@ -467,31 +467,31 @@ class ScoreSpecification(Specification):
         #          Second line is for newly improved behavior.
         #          Corresponding change must also be made in self.store_setting() for this to work.
         #          And also one change in ContextProxy.
-        segment_division_tokens = self.get_segment_division_tokens_for_voice(voice)
-        #segment_division_tokens = self.get_improved_segment_division_tokens_for_voice(voice)
-        #self._debug(segment_division_tokens)
-        region_division_tokens = self.change_segment_division_tokens_to_region_division_tokens(
-            segment_division_tokens)
-        #self._debug(region_division_tokens)
-        region_division_lists = self.make_region_division_lists_from_region_division_tokens(region_division_tokens)
+        segment_division_commands = self.get_segment_division_commands_for_voice(voice)
+        #segment_division_commands = self.get_improved_segment_division_commands_for_voice(voice)
+        #self._debug(segment_division_commands)
+        region_division_commands = self.change_segment_division_commands_to_region_division_commands(
+            segment_division_commands)
+        #self._debug(region_division_commands)
+        region_division_lists = self.make_region_division_lists_from_region_division_commands(region_division_commands)
         self.payload_context_dictionary[voice.name]['region_division_lists'] = region_division_lists[:]
         self.payload_context_dictionary[voice.name]['region_division_lists'] = region_division_lists[:]
         #self._debug(region_division_lists)
         return region_division_lists
 
-    def make_region_division_lists_from_region_division_tokens(self, region_division_tokens):
+    def make_region_division_lists_from_region_division_commands(self, region_division_commands):
         '''Return list of division lists.
         '''
         region_division_lists = []
-        for region_division_token in region_division_tokens:
-            divisions = [mathtools.NonreducedFraction(x) for x in region_division_token.value]
-            divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, region_division_token.duration)
+        for region_division_command in region_division_commands:
+            divisions = [mathtools.NonreducedFraction(x) for x in region_division_command.value]
+            divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, region_division_command.duration)
             divisions = [x.pair for x in divisions]
             divisions = [Division(x) for x in divisions]
             region_division_list = RegionDivisionList(divisions)
             #region_division_list.fresh = 'FOO'
-            region_division_list.fresh = region_division_token.fresh
-            region_division_list.truncate = region_division_token.truncate
+            region_division_list.fresh = region_division_command.fresh
+            region_division_list.truncate = region_division_command.truncate
             region_division_lists.append(region_division_list)
         return region_division_lists
 

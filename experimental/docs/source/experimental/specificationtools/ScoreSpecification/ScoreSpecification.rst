@@ -78,7 +78,7 @@ Methods
 
 .. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.change_attribute_retrieval_indicator_to_setting
 
-.. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.change_segment_division_tokens_to_region_division_tokens
+.. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.change_segment_division_commands_to_region_division_commands
 
 .. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.context_token_to_context_names
 
@@ -88,11 +88,11 @@ Methods
 
 .. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.find_first_unused_segment_number
 
-.. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.get_improved_segment_division_tokens_for_voice
+.. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.get_improved_segment_division_commands_for_voice
 
 .. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.get_rhythm_commands_for_all_segments_in_voice
 
-.. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.get_segment_division_tokens_for_voice
+.. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.get_segment_division_commands_for_voice
 
 .. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.get_start_division_lists_for_voice
 
@@ -120,7 +120,7 @@ Methods
 
 .. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.make_region_division_lists_for_voice
 
-.. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.make_region_division_lists_from_region_division_tokens
+.. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.make_region_division_lists_from_region_division_commands
 
 .. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.make_resolved_setting
 
