@@ -232,7 +232,7 @@ class SegmentSpecification(Specification):
             return interpretertools.ResolvedValue(None, False, False)
 
     # new behavior
-    def get_division_commands_that_start_during_segment(self, context_name):
+    def get_uninterpreted_division_commands_that_start_during_segment(self, context_name):
         from experimental import selectortools
         resolved_settings = self.get_resolved_single_context_settings('divisions', context_name)
         segment_division_commands = []
@@ -259,8 +259,8 @@ class SegmentSpecification(Specification):
         durations = [durationtools.Duration(x) for x in part]
         duration = sum(durations)
         #value = self.process_divisions_value(resolved_value) # probably todo this
-        args = (resolved_setting.value, resolved_setting.fresh, resolved_setting.truncate, duration)
-        command = interpretertools.SegmentDivisionCommand(*args)
+        args = (resolved_setting.value, duration, resolved_setting.fresh, resolved_setting.truncate)
+        command = interpretertools.UninterpretedDivisionCommand(*args)
         return command
 
     def get_resolved_single_context_setting(self, attribute, context_name):

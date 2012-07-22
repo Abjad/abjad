@@ -291,10 +291,10 @@ class ScoreSpecification(Specification):
                 return candidate_segment_number
 
     # new behavior
-    def get_improved_division_commands_for_voice(self, voice):
+    def get_improved_uninterpreted_division_commands_for_voice(self, voice):
         improved_segment_division_commands = []
         for segment in self.segments:
-            commands = segment.get_division_commands_that_start_during_segment(voice.name)
+            commands = segment.get_uninterpreted_division_commands_that_start_during_segment(voice.name)
             improved_segment_division_commands.extend(commands)
         return improved_segment_division_commands
 
@@ -306,13 +306,13 @@ class ScoreSpecification(Specification):
         return rhythm_commands
 
     # deprecated behavior
-    def get_division_commands_for_voice(self, voice):
+    def get_uninterpreted_division_commands_for_voice(self, voice):
         segment_division_commands = []
         for segment in self.segments:
             resolved_value = segment.get_division_resolved_value(voice.name)
             value = self.process_divisions_value(resolved_value.value)
             args = (value, segment.duration, resolved_value.fresh, resolved_value.truncate)
-            command = interpretertools.SegmentDivisionCommand(*args)
+            command = interpretertools.UninterpretedDivisionCommand(*args)
             segment_division_commands.append(command)
         return segment_division_commands
 
@@ -468,8 +468,8 @@ class ScoreSpecification(Specification):
         #          Second line is for newly improved behavior.
         #          Corresponding change must also be made in self.store_setting() for this to work.
         #          And also one change in ContextProxy.
-        uninterpreted_division_commands = self.get_division_commands_for_voice(voice)
-        #uninterpreted_division_commands = self.get_improved_division_commands_for_voice(voice)
+        uninterpreted_division_commands = self.get_uninterpreted_division_commands_for_voice(voice)
+        #uninterpreted_division_commands = self.get_improved_uninterpreted_division_commands_for_voice(voice)
         #self._debug(uninterpreted_division_commands)
         region_division_commands = self.change_uninterpreted_division_commands_to_region_division_commands(
             uninterpreted_division_commands)
