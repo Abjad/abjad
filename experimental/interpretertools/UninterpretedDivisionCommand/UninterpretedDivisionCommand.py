@@ -1,8 +1,8 @@
-from experimental.interpretertools.DivisionToken import DivisionToken
+from experimental.interpretertools.DivisionCommand import DivisionCommand
 import fractions
 
 
-class UninterpretedDivisionToken(DivisionToken):
+class UninterpretedDivisionCommand(DivisionCommand):
     r'''.. versionadded:: 1.0
 
     Division token ``fresh`` and ``truncate`` parameters not yet interpreted.
@@ -15,7 +15,7 @@ class UninterpretedDivisionToken(DivisionToken):
     def __init__(self, value, duration, fresh, truncate):
         assert isinstance(fresh, bool), repr(fresh)
         assert isinstance(truncate, bool), repr(truncate)
-        DivisionToken.__init__(self, value, duration)
+        DivisionCommand.__init__(self, value, duration)
         self._fresh = fresh
         self._truncate = truncate
 

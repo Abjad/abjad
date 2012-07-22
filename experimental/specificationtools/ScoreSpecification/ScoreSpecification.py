@@ -207,13 +207,13 @@ class ScoreSpecification(Specification):
         assert segment_division_tokens[0].fresh, repr(segment_division_tokens[0])
         for segment_division_token in segment_division_tokens:
             if segment_division_token.fresh or segment_division_token.truncate:
-                region_division_token = interpretertools.RegionDivisionToken(*segment_division_token.vector)
+                region_division_token = interpretertools.RegionDivisionCommand(*segment_division_token.vector)
                 region_division_tokens.append(region_division_token)
             else:
                 last_region_division_token = region_division_tokens[-1]
                 assert last_region_division_token.value == segment_division_token.value
                 if last_region_division_token.truncate:
-                    region_division_token = interpretertools.RegionDivisionToken(*segment_division_token.vector)
+                    region_division_token = interpretertools.RegionDivisionCommand(*segment_division_token.vector)
                     region_division_tokens.append(region_division_token)
                 else:
                     value = last_region_division_token.value
@@ -222,7 +222,7 @@ class ScoreSpecification(Specification):
                     fresh = last_region_division_token.fresh
                     truncate = segment_division_token.truncate
                     args = (value, duration, fresh, truncate)
-                    region_division_token = interpretertools.RegionDivisionToken(*args)
+                    region_division_token = interpretertools.RegionDivisionCommand(*args)
                     region_division_tokens[-1] = region_division_token
         return region_division_tokens
 
@@ -311,7 +311,7 @@ class ScoreSpecification(Specification):
             resolved_value = segment.get_division_resolved_value(voice.name)
             value = self.process_divisions_value(resolved_value.value)
             args = (value, segment.duration, resolved_value.fresh, resolved_value.truncate)
-            token = interpretertools.SegmentDivisionToken(*args)
+            token = interpretertools.SegmentDivisionCommand(*args)
             segment_division_tokens.append(token)
         return segment_division_tokens
 

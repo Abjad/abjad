@@ -1,0 +1,67 @@
+interpretertools.DivisionCommand
+================================
+
+.. inheritance-diagram:: experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand
+   :private-bases:
+
+.. autoclass:: experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand
+
+Read-only Properties
+--------------------
+
+.. autoattribute:: experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand.duration
+
+.. autoattribute:: experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. autoattribute:: experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand.value
+
+.. autoattribute:: experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand.vector
+
+Special Methods
+---------------
+
+.. automethod:: experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand.__delattr__
+
+    Inherited from :py:class:`__builtin__.object`
+
+.. automethod:: experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand.__eq__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand.__ge__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand.__gt__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand.__hash__
+
+    Inherited from :py:class:`__builtin__.object`
+
+.. automethod:: experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand.__le__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand.__lt__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand.__ne__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand.__repr__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand.__setattr__
+
+    Inherited from :py:class:`__builtin__.object`
+
+.. automethod:: experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand.__str__
+
+    Inherited from :py:class:`__builtin__.object`

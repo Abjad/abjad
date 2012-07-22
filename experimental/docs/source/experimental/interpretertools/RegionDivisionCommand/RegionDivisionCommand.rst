@@ -1,0 +1,81 @@
+interpretertools.RegionDivisionCommand
+======================================
+
+.. inheritance-diagram:: experimental.interpretertools.RegionDivisionCommand.RegionDivisionCommand.RegionDivisionCommand
+   :private-bases:
+
+.. autoclass:: experimental.interpretertools.RegionDivisionCommand.RegionDivisionCommand.RegionDivisionCommand
+
+Read-only Properties
+--------------------
+
+.. autoattribute:: experimental.interpretertools.RegionDivisionCommand.RegionDivisionCommand.RegionDivisionCommand.duration
+
+    Inherited from :py:class:`DivisionCommand.DivisionCommand <experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand>`
+
+.. autoattribute:: experimental.interpretertools.RegionDivisionCommand.RegionDivisionCommand.RegionDivisionCommand.fresh
+
+    Inherited from :py:class:`UninterpretedDivisionCommand.UninterpretedDivisionCommand <experimental.interpretertools.UninterpretedDivisionCommand.UninterpretedDivisionCommand.UninterpretedDivisionCommand>`
+
+.. autoattribute:: experimental.interpretertools.RegionDivisionCommand.RegionDivisionCommand.RegionDivisionCommand.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. autoattribute:: experimental.interpretertools.RegionDivisionCommand.RegionDivisionCommand.RegionDivisionCommand.truncate
+
+    Inherited from :py:class:`UninterpretedDivisionCommand.UninterpretedDivisionCommand <experimental.interpretertools.UninterpretedDivisionCommand.UninterpretedDivisionCommand.UninterpretedDivisionCommand>`
+
+.. autoattribute:: experimental.interpretertools.RegionDivisionCommand.RegionDivisionCommand.RegionDivisionCommand.value
+
+    Inherited from :py:class:`DivisionCommand.DivisionCommand <experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand>`
+
+.. autoattribute:: experimental.interpretertools.RegionDivisionCommand.RegionDivisionCommand.RegionDivisionCommand.vector
+
+    Inherited from :py:class:`DivisionCommand.DivisionCommand <experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand>`
+
+Special Methods
+---------------
+
+.. automethod:: experimental.interpretertools.RegionDivisionCommand.RegionDivisionCommand.RegionDivisionCommand.__delattr__
+
+    Inherited from :py:class:`__builtin__.object`
+
+.. automethod:: experimental.interpretertools.RegionDivisionCommand.RegionDivisionCommand.RegionDivisionCommand.__eq__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.interpretertools.RegionDivisionCommand.RegionDivisionCommand.RegionDivisionCommand.__ge__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.interpretertools.RegionDivisionCommand.RegionDivisionCommand.RegionDivisionCommand.__gt__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.interpretertools.RegionDivisionCommand.RegionDivisionCommand.RegionDivisionCommand.__hash__
+
+    Inherited from :py:class:`__builtin__.object`
+
+.. automethod:: experimental.interpretertools.RegionDivisionCommand.RegionDivisionCommand.RegionDivisionCommand.__le__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.interpretertools.RegionDivisionCommand.RegionDivisionCommand.RegionDivisionCommand.__lt__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.interpretertools.RegionDivisionCommand.RegionDivisionCommand.RegionDivisionCommand.__ne__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.interpretertools.RegionDivisionCommand.RegionDivisionCommand.RegionDivisionCommand.__repr__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.interpretertools.RegionDivisionCommand.RegionDivisionCommand.RegionDivisionCommand.__setattr__
+
+    Inherited from :py:class:`__builtin__.object`
+
+.. automethod:: experimental.interpretertools.RegionDivisionCommand.RegionDivisionCommand.RegionDivisionCommand.__str__
+
+    Inherited from :py:class:`__builtin__.object`

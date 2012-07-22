@@ -260,7 +260,7 @@ class SegmentSpecification(Specification):
         duration = sum(durations)
         #value = self.process_divisions_value(resolved_value) # probably todo this
         args = (resolved_setting.value, resolved_setting.fresh, resolved_setting.truncate, duration)
-        token = interpretertools.SegmentDivisionToken(*args)
+        token = interpretertools.SegmentDivisionCommand(*args)
         return token
 
     def get_resolved_single_context_setting(self, attribute, context_name):
@@ -291,9 +291,9 @@ class SegmentSpecification(Specification):
         from experimental.specificationtools import library
         setting = self.get_resolved_single_context_setting('rhythm', context_name)
         if setting is not None:
-            rhythm_token = interpretertools.RhythmToken(setting.value, setting.fresh)
+            rhythm_token = interpretertools.RhythmCommand(setting.value, setting.fresh)
         else:
-            rhythm_token = interpretertools.RhythmToken(library.rest_filled_tokens, True)
+            rhythm_token = interpretertools.RhythmCommand(library.rest_filled_tokens, True)
         return rhythm_token
 
     def preprocess_setting_target(self, target):

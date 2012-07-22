@@ -127,18 +127,18 @@ Unstable packages (load manually)
    :maxdepth: 1
 
    experimental/interpretertools/Command/Command
-   experimental/interpretertools/DivisionToken/DivisionToken
+   experimental/interpretertools/DivisionCommand/DivisionCommand
 
 .. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
 
-   experimental/interpretertools/RegionDivisionToken/RegionDivisionToken
+   experimental/interpretertools/RegionDivisionCommand/RegionDivisionCommand
    experimental/interpretertools/ResolvedValue/ResolvedValue
-   experimental/interpretertools/RhythmToken/RhythmToken
-   experimental/interpretertools/SegmentDivisionToken/SegmentDivisionToken
-   experimental/interpretertools/UninterpretedDivisionToken/UninterpretedDivisionToken
+   experimental/interpretertools/RhythmCommand/RhythmCommand
+   experimental/interpretertools/SegmentDivisionCommand/SegmentDivisionCommand
+   experimental/interpretertools/UninterpretedDivisionCommand/UninterpretedDivisionCommand
 
 :py:mod:`lyricstools <experimental.lyricstools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

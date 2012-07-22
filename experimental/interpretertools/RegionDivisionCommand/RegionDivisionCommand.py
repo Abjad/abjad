@@ -1,7 +1,7 @@
-from experimental.interpretertools.UninterpretedDivisionToken import UninterpretedDivisionToken
+from experimental.interpretertools.UninterpretedDivisionCommand import UninterpretedDivisionCommand
 
 
-class RegionDivisionToken(UninterpretedDivisionToken):
+class RegionDivisionCommand(UninterpretedDivisionCommand):
     r'''.. versionadded:: 1.0
 
     Durated period of time over which a division-maker will apply.

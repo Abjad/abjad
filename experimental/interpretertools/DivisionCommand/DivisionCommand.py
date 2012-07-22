@@ -3,7 +3,7 @@ from abc import abstractmethod
 from experimental.interpretertools.Command import Command
 
 
-class DivisionToken(Command):
+class DivisionCommand(Command):
     r'''.. versionadded:: 1.0
 
     Command indicating durated period of time over which a division-maker will apply.
