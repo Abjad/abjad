@@ -1,6 +1,7 @@
 from abjad.tools import configurationtools
 from abjad.tools import iotools
 from experimental.developerscripttools.DirectoryScript import DirectoryScript
+from experimental.developerscripttools.SvnMessageScript import SvnMessageScript
 import os
 
 
@@ -31,9 +32,9 @@ class SvnCommitScript(DirectoryScript):
     ### PUBLIC METHODS ###
 
     def process_args(self, args):
-        HOME = dict(configurationtools.list_abjad_environment_variables())['HOME']
+        from abjad import ABJCFG
         commit_file = 'abjad_commit.txt'
-        commit_path = os.path.join(HOME, '.abjad', commit_file)
+        commit_path = os.path.join(ABJCFG.ABJAD_CONFIG_DIRECTORY_PATH, commit_file)
 
         while not os.path.exists(commit_path):
             SvnMessageScript()()

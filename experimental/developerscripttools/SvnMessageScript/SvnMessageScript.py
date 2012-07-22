@@ -14,9 +14,9 @@ class SvnMessageScript(DeveloperScript):
 
     @property
     def commit_message_path(self):
-        HOME = dict(configurationtools.list_abjad_environment_variables())['HOME']
+        from abjad import ABJCFG
         commit_file = 'abjad_commit.txt'
-        commit_path = os.path.join(HOME, '.abjad', commit_file)
+        commit_path = os.path.join(ABJCFG.ABJAD_CONFIG_DIRECTORY_PATH, commit_file)
         return commit_path
 
     @property
