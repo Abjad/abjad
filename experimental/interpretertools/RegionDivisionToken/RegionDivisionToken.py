@@ -15,10 +15,6 @@ class RegionDivisionToken(UninterpretedDivisionToken):
     Region division tokens never glue together.
 
     Region division tokens represent an absolute command to create divisions over a given duration.
-
-    .. note:: can the ``fresh`` parameter be removed?
     '''
 
-    #@property
-    #def fresh(self):
-    #    raise Exception('REMOVE ME')
+    pass
