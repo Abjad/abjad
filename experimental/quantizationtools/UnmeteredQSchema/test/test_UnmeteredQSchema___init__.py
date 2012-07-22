@@ -20,3 +20,14 @@ def test_UnmeteredQSchema___init___01():
     assert schema.beatspan == durationtools.Duration(1, 32)
     assert schema.search_tree == quantizationtools.QGridSearchTree({3: None})
     assert schema.tempo == contexttools.TempoMark((1, 16), 32)
+
+
+def test_UnmeteredQSchema___init___02():
+
+    schema = quantizationtools.UnmeteredQSchema()
+
+    assert len(schema.items) == 0
+    assert schema.beatspan == durationtools.Duration(1, 4)
+    assert schema.search_tree == quantizationtools.QGridSearchTree()
+    assert schema.tempo == contexttools.TempoMark((1, 4), 60)
+

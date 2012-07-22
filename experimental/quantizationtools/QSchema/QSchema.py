@@ -25,12 +25,14 @@ class QSchema(abctools.AbjadObject):
 
         elif 1 == len(args) and isinstance(args[0], dict):
             items = args[0].items()
-            assert 0 <= min(items)
+            if items:
+                assert 0 <= min(items)
             assert sequencetools.all_are_pairs_of_types(items, int, self.item_klass)
 
         elif sequencetools.all_are_pairs_of_types(args, int, self.item_klass):
             items = dict(args)
-            assert 0 <= min(items)
+            if items:
+                assert 0 <= min(items)
             
         elif all([isinstance(x, self.item_klass) for x in args]):
             items = [(i, x) for i, x in enumerate(args)]

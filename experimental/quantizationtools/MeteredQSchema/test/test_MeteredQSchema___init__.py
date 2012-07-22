@@ -22,3 +22,14 @@ def test_MeteredQSchema___init___01():
     assert schema.tempo == contexttools.TempoMark((1, 8), 58)
     assert schema.time_signature == contexttools.TimeSignatureMark((5, 8))
     assert schema.use_full_measure == False
+
+
+def test_MeteredQSchema___init___02():
+
+    schema = quantizationtools.MeteredQSchema()
+
+    assert len(schema.items) == 0
+    assert schema.search_tree == quantizationtools.QGridSearchTree()
+    assert schema.tempo == contexttools.TempoMark((1, 4), 60)
+    assert schema.time_signature == contexttools.TimeSignatureMark((4, 4))
+    assert schema.use_full_measure == False
