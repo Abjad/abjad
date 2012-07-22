@@ -129,10 +129,7 @@ class ScoreSpecification(Specification):
 
     # deprecated behavior
     def add_rhythms_to_voice(self, voice):
-        rhythm_commands = self.get_rhythm_commands_for_all_segments_in_voice(voice)
-        new_rhythm_commands = self.get_rhythm_commands_for_voice(voice)
-        assert len(rhythm_commands) == len(new_rhythm_commands)
-        assert rhythm_commands == new_rhythm_commands
+        rhythm_commands = self.get_rhythm_commands_for_voice(voice)
         region_division_lists = self.payload_context_dictionary[voice.name]['region_division_lists']
         for rhythm_command, region_division_list in zip(rhythm_commands, region_division_lists):
             self.add_rhythm_to_voice(voice, rhythm_command, region_division_list)
@@ -325,14 +322,6 @@ class ScoreSpecification(Specification):
             divisions, self.segment_durations)
         start_division_lists = [DivisionList(x) for x in start_division_lists]
         return start_division_lists
-
-    # deprecated behavior
-    def get_rhythm_commands_for_all_segments_in_voice(self, voice):
-        rhythm_commands = []
-        for segment in self.segments:
-            rhythm_command = segment.get_rhythm_command(voice.name)
-            rhythm_commands.append(rhythm_command)
-        return rhythm_commands
 
     # new behavior
     def get_rhythm_commands_for_voice(self, voice):
