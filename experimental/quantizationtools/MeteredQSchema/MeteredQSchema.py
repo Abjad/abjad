@@ -39,6 +39,10 @@ class MeteredQSchema(QSchema):
         return MeteredQSchemaItem
 
     @property
+    def target_klass(self):
+        return QTargetGrouping
+
+    @property
     def time_signature(self):
         '''The default time signature.'''
         return self._time_signature

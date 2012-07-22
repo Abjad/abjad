@@ -40,3 +40,7 @@ class UnmeteredQSchema(QSchema):
     def item_klass(self):
         '''The schema's item class.'''
         return UnmeteredQSchemaItem
+
+    @property
+    def target_klass(self):
+        return QTargetItem

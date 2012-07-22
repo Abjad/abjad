@@ -2,6 +2,7 @@ from abc import abstractmethod, abstractproperty
 from abjad.tools import abctools
 from abjad.tools import datastructuretools
 from abjad.tools import sequencetools
+import bisect
 import copy
 
 
@@ -23,17 +24,13 @@ class QSchema(abctools.AbjadObject):
             items = copy.copy(args[0].items)
 
         elif 1 == len(args) and isinstance(args[0], dict):
-            items = args[0]
-            minimum = min(items)
-            if minimum != 0:
-                items = [(key - minimum, value) for key, value in items.iteritems()]
+            items = args[0].items()
+            assert 0 <= min(items)
             assert sequencetools.all_are_pairs_of_types(items, int, self.item_klass)
 
         elif sequencetools.all_are_pairs_of_types(args, int, self.item_klass):
             items = dict(args)
-            minimum = min(items)
-            if minimum != 0:
-                items = [(key - minimum, value) for key, value in items.iteritems()]
+            assert 0 <= min(items)
             
         elif all([isinstance(x, self.item_klass) for x in args]):
             items = [(i, x) for i, x in enumerate(args)]
@@ -46,6 +43,20 @@ class QSchema(abctools.AbjadObject):
         self._lookups = self._create_lookups()
 
     ### SPECIAL METHODS ###
+
+    def __getitem__(self, i):
+        assert isinstance(i, int) and 0 <= i
+        result = {}
+        for field in self._lookups:
+            lookup = self._lookups[field].get(i)
+            if lookup is not None:
+                result[field] = lookup
+            else:
+                keys = self._lookups[field].keys()
+                idx = bisect.bisect(keys, i)
+                key = keys[idx - 1]
+                result[field] = self._lookups[field][key]
+        return result
 
     def __repr__(self):
         return '\n'.join(self._get_tools_package_qualified_repr_pieces())
@@ -71,6 +82,11 @@ class QSchema(abctools.AbjadObject):
     def search_tree(self):
         '''The default search tree.'''
         return self._search_tree
+
+    @abstractproperty
+    def target_klass(self):
+        '''The schema's target class.'''
+        raise NotImplemented
 
     @property
     def tempo(self):

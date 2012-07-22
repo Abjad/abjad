@@ -1,23 +1,21 @@
 from abjad.tools import abctools
 from abjad.tools import contexttools
 from abjad.tools import durationtools
-from collections import OrderedDict
 from experimental.quantizationtools.QGridSearchTree import QGridSearchTree
 from experimental.quantizationtools.QTargetGrouping import QTargetGrouping
 from experimental.quantizationtools.tempo_scaled_rational_to_milliseconds import tempo_scaled_rational_to_milliseconds
 
 
-class QTargetItem(tuple, abctools.ImmutableAbjadObject):
+class QTargetItem(abctools.AbjadObject):
 
     ### CLASS ATTRIBUTES ###
 
-    __slots__ = ()
-    _fields = ('beatspan', 'duration_in_ms', 'grouping', 'offset_in_ms',
-        'q_events', 'q_grids', 'search_tree', 'tempo')
+    __slots__ = ('_beatspan', '_grouping', '_offset_in_ms',
+        '_q_events', '_q_grids', '_search_tree', '_tempo')
 
     ### INITIALIZER ###
 
-    def __new__(klass, beatspan, grouping, offset_in_ms, search_tree, tempo):
+    def __init__(self, beatspan=None, grouping=None, offset_in_ms=None, search_tree=None, tempo=None):
 
         assert isinstance(offset_in_ms, durationtools.Offset)
         assert isinstance(beatspan, durationtools.Duration)
@@ -25,56 +23,48 @@ class QTargetItem(tuple, abctools.ImmutableAbjadObject):
         assert isinstance(search_tree, QGridSearchTree)
         assert isinstance(tempo, contexttools.TempoMark) and not tempo.is_imprecise
 
-        duration_in_ms = tempo_scaled_rational_to_milliseconds(beatspan, tempo)
         q_events = []
         q_grids = []
         
-        return tuple.__new__(klass, (beatspan, duration_in_ms, grouping, offset_in_ms,
-            q_events, q_grids, search_tree, tempo))
-
-    ### SPECIAL METHODS ###
-
-    def __getnewargs__(self):
-        'Return self as a plain tuple.  Used by copy and pickle.'
-        return tuple(self)
-
-    ### SPECIAL PROPERTIES ###
-
-    @property
-    def __dict__(self):
-        return OrderedDict(zip(self._fields, self))
+        self._beatspan = beatspan
+        self._grouping = grouping
+        self._offset_in_ms = offset_in_ms
+        self._q_events = q_events
+        self._q_grids = q_grids
+        self._search_tree = search_tree
+        self._tempo = tempo
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def beatspan(self):
-        return self[0]
+        return self._beatspan
 
     @property
     def duration_in_ms(self):
-        return self[1]
+        return tempo_scaled_rational_to_milliseconds(self.beatspan, self.tempo)
 
     @property
     def grouping(self):
-        return self[2]
+        return self._grouping
 
     @property
     def offset_in_ms(self):
-        return self[3]
+        return self._offset_in_ms
 
     @property
     def q_events(self):
-        return self[4]
+        return self._q_events
 
     @property
     def q_grids(self):
-        return self[5]
+        return self._q_grids
 
     @property
     def search_tree(self):
-        return self[6]
+        return self._search_tree
 
     @property
     def tempo(self):
-        return self[7]
+        return self._tempo
 
