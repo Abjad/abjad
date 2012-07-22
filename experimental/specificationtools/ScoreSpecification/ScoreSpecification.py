@@ -115,9 +115,9 @@ class ScoreSpecification(Specification):
 
     # deprecated behavior
     def add_rhythm_to_voice(self, voice, rhythm_command, region_division_list):
-        #self._debug(rhythm_command)
-        #self._debug(region_division_list)
-        #print ''
+#        self._debug(rhythm_command)
+#        self._debug(region_division_list)
+#        print ''
         maker = rhythm_command.value
         assert isinstance(maker, timetokentools.TimeTokenMaker), repr(maker)
         leaf_lists = maker(region_division_list.pairs)
@@ -150,6 +150,7 @@ class ScoreSpecification(Specification):
 #        voice_divisions = voice_division_list.divisions
 #        voice_division_durations = [durationtools.Duration(x) for x in voice_divisions]
 #        rhythm_commands = self.get_rhythm_commands_for_voice(voice)
+#        rhythm_commands = self.fuse_like_rhythm_commands(rhythm_commands)
 #        rhythm_command_durations = [x.duration for x in rhythm_commands]
 #        #self._debug(voice_division_durations)
 #        #self._debug(rhythm_commands)
@@ -327,6 +328,18 @@ class ScoreSpecification(Specification):
                     break
             else:
                 return candidate_segment_number
+
+    def fuse_like_rhythm_commands(self, rhythm_commands):
+        from experimental import interpretertools
+        if not rhythm_commands:
+            return []
+        result = [copy.deepcopy(rhythm_commands[0])]
+        for rhythm_command in rhythm_commands[1:]:
+            if rhythm_command.value == result[-1].value and not rhythm_command.fresh:
+                result[-1]._duration += rhythm_command.duration
+            else:
+                result.append(copy.deepcopy(rhythm_command))
+        return result
 
     # new behavior
     def get_improved_uninterpreted_division_commands_for_voice(self, voice):
