@@ -49,6 +49,9 @@ class QGridSearchTree(datastructuretools.ImmutableDictionary):
     def __getnewargs__(self):
         return self.definition
 
+    def __repr__(self):
+        return '{}({})'.format(self._class_name, dict.__repr__(self))
+
     ### PRIVATE METHODS ###
 
     def _init_immutable_dictionary_recursively(self, definition):
