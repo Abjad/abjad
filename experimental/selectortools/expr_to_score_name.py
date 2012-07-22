@@ -8,7 +8,7 @@ def expr_to_score_name(expr):
 
     ::
 
-        >>> template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(n=1)
+        >>> template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
         >>> score_specification = specificationtools.ScoreSpecification(template)
 
     ::

@@ -4,7 +4,8 @@ from experimental.specificationtools.ScoreSpecification import ScoreSpecificatio
 
 def test_SegmentSpecification_time_signatures_01():
 
-    specification = ScoreSpecification(scoretemplatetools.GroupedRhythmicStavesScoreTemplate(n=1))
+    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    specification = ScoreSpecification(score_template)
 
     segment = specification.append_segment()
     assert segment.time_signatures is None

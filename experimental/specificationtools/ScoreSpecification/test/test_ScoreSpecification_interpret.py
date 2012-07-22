@@ -7,7 +7,8 @@ def test_ScoreSpecification_interpret_01():
     '''Empty score specification interprets.
     '''
 
-    specification = ScoreSpecification(scoretemplatetools.GroupedRhythmicStavesScoreTemplate(n=1))
+    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    specification = ScoreSpecification(score_template)
     
     score = specification.interpret()
 
@@ -31,10 +32,12 @@ def test_ScoreSpecification_interpret_02():
     '''Empty score specification with empty segment specification interprets.
     '''
 
-    specification_1 = ScoreSpecification(scoretemplatetools.GroupedRhythmicStavesScoreTemplate(n=1))
+    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    specification_1 = ScoreSpecification(score_template)
+
     score_1 = specification_1.interpret()
 
-    specification_2 = ScoreSpecification(scoretemplatetools.GroupedRhythmicStavesScoreTemplate(n=1))
+    specification_2 = ScoreSpecification(score_template)
     segment = specification_2.append_segment()
     score_2 = specification_2.interpret()
 
@@ -45,7 +48,9 @@ def test_ScoreSpecification_interpret_03():
     '''Time signatures only.
     '''
 
-    specification = ScoreSpecification(scoretemplatetools.GroupedRhythmicStavesScoreTemplate(n=1))
+    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    specification = ScoreSpecification(score_template)
+
     segment = specification.append_segment()
     segment.set_time_signatures(segment, [(4, 8), (3, 8)])
 

@@ -23,7 +23,7 @@ class SegmentSpecification(Specification):
 
     The examples below reference the following segment specification::
 
-        >>> template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(n=1)
+        >>> template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
         >>> specification = specificationtools.ScoreSpecification(score_template=template)
         
     ::

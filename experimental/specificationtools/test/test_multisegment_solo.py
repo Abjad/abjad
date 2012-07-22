@@ -9,7 +9,8 @@ def test_multisegment_solo_01():
     Division does not truncate at segment boundary.
     '''
 
-    specification = ScoreSpecification(scoretemplatetools.GroupedRhythmicStavesScoreTemplate(n=1))
+    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    specification = ScoreSpecification(score_template)
 
     segment = specification.append_segment()
     segment.set_time_signatures(segment, [(4, 8), (3, 8)])
@@ -32,7 +33,8 @@ def test_multisegment_solo_02():
     Division starts over at beginning of second segment.
     '''
 
-    specification = ScoreSpecification(scoretemplatetools.GroupedRhythmicStavesScoreTemplate(n=1))
+    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    specification = ScoreSpecification(score_template)
     
     segment = specification.append_segment()
     segment.set_time_signatures(segment, [(4, 8), (3, 8)])
@@ -53,7 +55,8 @@ def test_multisegment_solo_03():
     '''Single division exactly equal to duration of single segment.
     '''
 
-    specification = ScoreSpecification(scoretemplatetools.GroupedRhythmicStavesScoreTemplate(n=1))
+    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    specification = ScoreSpecification(score_template)
 
     segment = specification.append_segment()
     segment.set_time_signatures(segment, [(4, 8), (3, 8)])
@@ -76,7 +79,8 @@ def test_multisegment_solo_04():
     Division starts over at beginning of second segment.
     '''
 
-    specification = ScoreSpecification(scoretemplatetools.GroupedRhythmicStavesScoreTemplate(n=1))
+    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    specification = ScoreSpecification(score_template)
 
     segment = specification.append_segment()
     segment.set_time_signatures(segment, [(4, 8), (3, 8)])
@@ -98,7 +102,8 @@ def test_multisegment_solo_05():
     Division does not truncate at segment boundary.
     '''
 
-    specification = ScoreSpecification(scoretemplatetools.GroupedRhythmicStavesScoreTemplate(n=1))
+    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    specification = ScoreSpecification(score_template)
 
     segment = specification.append_segment()
     segment.set_time_signatures(segment, [(4, 8), (3, 8)])
@@ -121,7 +126,8 @@ def test_multisegment_solo_06():
     Division starts over from beginning of second segment.
     '''
 
-    specification = ScoreSpecification(scoretemplatetools.GroupedRhythmicStavesScoreTemplate(n=1))
+    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    specification = ScoreSpecification(score_template)
     
     segment = specification.append_segment()
     segment.set_time_signatures(segment, [(4, 8), (3, 8)])
@@ -143,7 +149,8 @@ def test_multisegment_solo_07():
     Division does not truncate at segment boundaries.
     '''
 
-    specification = ScoreSpecification(scoretemplatetools.GroupedRhythmicStavesScoreTemplate(n=1))
+    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    specification = ScoreSpecification(score_template)
     
     segment = specification.append_segment()
     segment.set_time_signatures(segment, [(4, 8), (3, 8)])

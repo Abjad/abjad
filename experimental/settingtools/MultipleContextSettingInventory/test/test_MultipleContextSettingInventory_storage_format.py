@@ -17,7 +17,9 @@ def test_MultipleContextSettingInventory_storage_format_01():
     '''Storage format exists and is evaluable.
     '''
 
-    score_specification = ScoreSpecification(scoretemplatetools.GroupedRhythmicStavesScoreTemplate(n=1))
+    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_specification = ScoreSpecification(score_template)
+
     segment = score_specification.append_segment()
     segment.set_time_signatures(segment, [(4, 8), (3, 8)])
 

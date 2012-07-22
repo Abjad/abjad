@@ -9,7 +9,7 @@ def expr_to_segment_name(expr):
 
     ::
 
-        >>> template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(n=1)
+        >>> template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
         >>> segment = specificationtools.SegmentSpecification(template, 'red')
 
     ::

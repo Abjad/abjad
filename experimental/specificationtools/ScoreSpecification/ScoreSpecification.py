@@ -28,7 +28,7 @@ class ScoreSpecification(Specification):
 
     Score specification::
 
-        >>> template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(n=4)
+        >>> template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
         >>> specification = specificationtools.ScoreSpecification(template)
 
     With three named segments::

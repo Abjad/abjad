@@ -7,7 +7,9 @@ from experimental.specificationtools import ScoreSpecification
 
 def test_SegmentSpecification_select_timespan_01():
 
-    score_specification = ScoreSpecification(scoretemplatetools.GroupedRhythmicStavesScoreTemplate(n=4))
+    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
+    score_specification = ScoreSpecification(score_template)
+
     segment = score_specification.append_segment('red')
     segment.set_time_signatures(segment, [(4, 8), (3, 8)])
 

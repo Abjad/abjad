@@ -9,7 +9,8 @@ def test_SegmentSpecification_set_retrograde_divisions_01():
     '''Four staves with V3, V4 divisions equal to V1, V2 divisions in retrograde.
     '''
 
-    specification = ScoreSpecification(scoretemplatetools.GroupedRhythmicStavesScoreTemplate(n=4))
+    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
+    specification = ScoreSpecification(score_template)
 
     segment = specification.append_segment()
     segment.set_time_signatures(segment, [(4, 8), (3, 8)])

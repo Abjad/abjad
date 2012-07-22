@@ -7,7 +7,9 @@ from experimental.specificationtools import ScoreSpecification
 
 def test_SegmentSpecification_select_divisions_that_start_during_segment_01():
 
-    specification = ScoreSpecification(scoretemplatetools.GroupedRhythmicStavesScoreTemplate(n=4))
+    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
+    specification = ScoreSpecification(score_template)
+
     segment = specification.append_segment('red')
     segment.set_time_signatures(segment, [(4, 8), (3, 8)])
     contexts = ['Voice 1', 'Voice 3']

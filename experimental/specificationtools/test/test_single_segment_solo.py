@@ -10,7 +10,8 @@ def test_single_segment_solo_01():
     Division truncates at end of score.
     '''
 
-    specification = ScoreSpecification(scoretemplatetools.GroupedRhythmicStavesScoreTemplate(n=1))
+    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    specification = ScoreSpecification(score_template)
 
     segment = specification.append_segment()
     segment.set_time_signatures(segment, [(4, 8), (3, 8)])
@@ -29,7 +30,8 @@ def test_single_segment_solo_02():
     '''Single division with duration equal to segment.
     '''
 
-    specification = ScoreSpecification(scoretemplatetools.GroupedRhythmicStavesScoreTemplate(n=1))
+    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    specification = ScoreSpecification(score_template)
     
     segment = specification.append_segment()
     segment.set_time_signatures(segment, [(4, 8), (3, 8)])
@@ -49,7 +51,8 @@ def test_single_segment_solo_03():
     Division truncates at end of score.
     '''
 
-    specification = ScoreSpecification(scoretemplatetools.GroupedRhythmicStavesScoreTemplate(n=1))
+    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    specification = ScoreSpecification(score_template)
     
     segment = specification.append_segment()
     segment.set_time_signatures(segment, [(4, 8), (3, 8)])

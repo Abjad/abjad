@@ -19,7 +19,8 @@ def test_quartet_01():
     Tests for truncated divisions in 1 & 2 at the end of T2.
     '''
     
-    specification = ScoreSpecification(scoretemplatetools.GroupedRhythmicStavesScoreTemplate(n=4))
+    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
+    specification = ScoreSpecification(score_template)
 
     segment = specification.append_segment(name='T1')
     segment.set_time_signatures(segment, [(3, 8), (3, 8), (2, 8), (2, 8)])
@@ -51,7 +52,8 @@ def test_quartet_02():
     Tests for spanning divisions in 1 & 2 and also in 3 & 4.
     '''
     
-    specification = ScoreSpecification(scoretemplatetools.GroupedRhythmicStavesScoreTemplate(n=4))
+    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
+    specification = ScoreSpecification(score_template)
 
     segment = specification.append_segment(name='T1')
     segment.set_time_signatures(segment, [(3, 8), (3, 8), (2, 8), (2, 8)])
