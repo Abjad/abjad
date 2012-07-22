@@ -379,19 +379,6 @@ class ScoreSpecification(Specification):
             voice_division_list = specificationtools.VoiceDivisionList(time_signatures)
         return voice_division_list
 
-    def glue_rhythm_commands_and_start_division_lists(self, rhythm_commands, start_division_lists):
-        assert len(rhythm_commands) == len(start_division_lists)
-        assert rhythm_commands[0].fresh
-        glued_rhythm_commands, new_parts = [rhythm_commands[0]], [start_division_lists[0][:]]
-        for rhythm_command, start_division_list in zip(rhythm_commands[1:], start_division_lists[1:]):
-            if rhythm_command.value == glued_rhythm_commands[-1].value and \
-                not rhythm_command.fresh:
-                new_parts[-1].extend(start_division_list)
-            else:
-                glued_rhythm_commands.append(rhythm_command)
-                new_parts.append(start_division_list[:])
-        return glued_rhythm_commands, new_parts
-
     def handle_divisions_retrieval_request(self, request):
         voice = componenttools.get_first_component_in_expr_with_name(self.score, request.voice)
         assert isinstance(voice, voicetools.Voice), voice
