@@ -220,7 +220,8 @@ class ScoreSpecification(Specification):
                     duration = last_region_division_token.duration + segment_division_token.duration
                     fresh = last_region_division_token.fresh
                     truncate = segment_division_token.truncate
-                    region_division_token = interpretertools.RegionDivisionToken(value, fresh, truncate, duration)
+                    args = (value, duration, fresh, truncate)
+                    region_division_token = interpretertools.RegionDivisionToken(*args)
                     region_division_tokens[-1] = region_division_token
         return region_division_tokens
 
@@ -308,7 +309,7 @@ class ScoreSpecification(Specification):
         for segment in self.segments:
             resolved_value = segment.get_division_resolved_value(voice.name)
             value = self.process_divisions_value(resolved_value.value)
-            args = (value, resolved_value.fresh, resolved_value.truncate, segment.duration)
+            args = (value, segment.duration, resolved_value.fresh, resolved_value.truncate)
             token = interpretertools.SegmentDivisionToken(*args)
             segment_division_tokens.append(token)
         return segment_division_tokens

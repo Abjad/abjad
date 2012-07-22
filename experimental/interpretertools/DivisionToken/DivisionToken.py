@@ -1,17 +1,18 @@
 from experimental.interpretertools.Token import Token
+import fractions
 
 
 class DivisionToken(Token):
     r'''.. versionadded:: 1.0
 
     Durated period of time over which a division-maker will apply.
-
-    .. note:: reorder input parameters to ``value``, ``duration``, ``fresh``, ``truncate``.
     '''
 
     ### INITIALIZER ###
 
-    def __init__(self, value, fresh, truncate, duration):
+    def __init__(self, value, duration, fresh, truncate):
+        assert isinstance(fresh, bool), repr(fresh)
+        assert isinstance(truncate, bool), repr(truncate)
         self._value = value
         self._fresh = fresh
         self._truncate = truncate
@@ -33,7 +34,7 @@ class DivisionToken(Token):
 
     @property
     def vector(self):
-        return (self.value, self.fresh, self.truncate, self.duration)
+        return (self.value, self.duration, self.fresh, self.truncate)
 
     @property
     def value(self):
