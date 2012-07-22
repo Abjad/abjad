@@ -292,9 +292,8 @@ class ScoreSpecification(Specification):
     def get_improved_segment_division_commands_for_voice(self, voice):
         improved_segment_division_commands = []
         for segment in self.segments:
-            #tokens = segment.get_improved_segment_division_commands_for_voice(voice.name)
-            tokens = segment.get_division_commands_that_start_during_segment(voice.name)
-            improved_segment_division_commands.extend(tokens)
+            commands = segment.get_division_commands_that_start_during_segment(voice.name)
+            improved_segment_division_commands.extend(commands)
         return improved_segment_division_commands
 
     def get_rhythm_commands_for_all_segments_in_voice(self, voice):
@@ -311,8 +310,8 @@ class ScoreSpecification(Specification):
             resolved_value = segment.get_division_resolved_value(voice.name)
             value = self.process_divisions_value(resolved_value.value)
             args = (value, segment.duration, resolved_value.fresh, resolved_value.truncate)
-            token = interpretertools.SegmentDivisionCommand(*args)
-            segment_division_commands.append(token)
+            command = interpretertools.SegmentDivisionCommand(*args)
+            segment_division_commands.append(command)
         return segment_division_commands
 
     def get_start_division_lists_for_voice(self, voice):
