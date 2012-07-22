@@ -16,5 +16,5 @@ iotools.clear_terminal()
 iotools.spawn_subprocess('svn update')
 os.chdir(start_directory)
 
-# remove Abjad *.pyc files
-iotools.remove_abjad_pyc_files()
+# remove Abjad *.pyc files, __pycache__ directories and tmp* files
+ajv clean project_root
