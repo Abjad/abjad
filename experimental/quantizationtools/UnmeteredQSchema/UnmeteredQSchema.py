@@ -2,18 +2,18 @@ from abjad.tools import contexttools
 from abjad.tools import durationtools
 from experimental.quantizationtools.QGridSearchTree import QGridSearchTree
 from experimental.quantizationtools.QSchema import QSchema
+from experimental.quantizationtools.UnmeteredQSchemaItem import UnmeteredQSchemaItem
 
 
 class UnmeteredQSchema(QSchema):
 
     ### CLASS ATTRIBUTES ###
 
-    __slots__ = ('_beatspan', '_cyclic', '_items', '_search_tree', '_tempo',)
+    __slots__ = ('_beatspan', '_items', '_lookups', '_search_tree', '_tempo',)
 
     ### INITIALIZER ###
 
     def __init__(self, *args, **kwargs):
-        QSchema.__init__(self, *args, **kwargs)
 
         self._beatspan = durationtools.Duration(
             kwargs.get('beatspan',
@@ -27,6 +27,8 @@ class UnmeteredQSchema(QSchema):
             kwargs.get('tempo',
                 ((1, 4), 60)))
 
+        QSchema.__init__(self, *args, **kwargs)
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
@@ -37,4 +39,4 @@ class UnmeteredQSchema(QSchema):
     @property
     def item_klass(self):
         '''The schema's item class.'''
-        raise UnmeteredQSchemaItem
+        return UnmeteredQSchemaItem

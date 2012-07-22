@@ -52,11 +52,11 @@ class MeteredQSchemaItem(QSchemaItem):
     ### CLASS ATTRIBUTES ###
 
     __slots__ = ()
-    _fields = ('search_tree', 'tempo', 'time_signature')
+    _fields = ('search_tree', 'tempo', 'time_signature', 'use_full_measure')
 
     ### INITIALIZER ###
 
-    def __new__(klass, search_tree=None, tempo=None, time_signature=None):
+    def __new__(klass, search_tree=None, tempo=None, time_signature=None, use_full_measure=None):
         
         if search_tree is not None:
             search_tree = QGridSearchTree(search_tree)
@@ -68,7 +68,10 @@ class MeteredQSchemaItem(QSchemaItem):
         if time_signature is not None:
             time_signature = contexttools.TimeSignatureMark(time_signature)
 
-        return tuple.__new__(klass, (search_tree, tempo, time_signature))
+        if use_full_measure is not None:
+            use_full_measure = bool(use_full_measure)
+
+        return tuple.__new__(klass, (search_tree, tempo, time_signature, use_full_measure))
 
     ### PUBLIC READ-ONLY ATTRIBUTES ###
 
@@ -79,7 +82,10 @@ class MeteredQSchemaItem(QSchemaItem):
         Return `Duration` or `None`.
         '''
         if self.time_signature is not None:
-            return durationtools.Duration(1, self.time_signature.denominator)
+            if self.use_full_measure:
+                return self.time_signature.duration
+            else:
+                return durationtools.Duration(1, self.time_signature.denominator)
         return None
 
     @property
@@ -105,3 +111,11 @@ class MeteredQSchemaItem(QSchemaItem):
         Return `TimeSignatureMark` or None.
         '''
         return self[2]
+
+    @property
+    def use_full_measure(self):
+        '''If True, use the full measure as the beatspan.
+
+        Return bool or None.
+        '''
+        return self[3]

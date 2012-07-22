@@ -13,7 +13,7 @@ class QSchema(abctools.AbjadObject):
 
     ### CLASS ATTRIBUTES ###
 
-    __slots__ = ('_cyclic', '_items',)
+    __slots__ = ('_items', '_lookups')
 
     ### INITIALIZER ###
 
@@ -41,15 +41,11 @@ class QSchema(abctools.AbjadObject):
         else:
             raise ValueError
 
-        self._cyclic = bool(kwargs.get('cyclic'))
-
         self._items = datastructuretools.ImmutableDictionary(items)
 
-    ### SPECIAL METHODS ###
+        self._lookups = self._create_lookups()
 
-    @abstractmethod
-    def __call__(self, duration):
-        raise NotImplemented
+    ### SPECIAL METHODS ###
 
     def __repr__(self):
         return '\n'.join(self._get_tools_package_qualified_repr_pieces())
@@ -83,6 +79,18 @@ class QSchema(abctools.AbjadObject):
 
     ### PRIVATE METHODS ###
 
+    def _create_lookups(self):
+        lookups = {}
+        fields = self.item_klass._fields
+        for field in fields:
+            lookups[field] = {0: getattr(self, field)}
+            for position, item in self.items.iteritems():
+                value = getattr(item, field)
+                if value is not None:
+                    lookups[field][position] = value
+            lookups[field] = datastructuretools.ImmutableDictionary(lookups[field])
+        return datastructuretools.ImmutableDictionary(lookups)
+
     def _get_tools_package_qualified_repr_pieces(self):
         if not len(self.items):
             return ['{}()'.format(self._tools_package_qualified_class_name)]
@@ -94,3 +102,4 @@ class QSchema(abctools.AbjadObject):
             result.append('\t{},'.format(value_repr[-1]))
         result.append('\t})')
         return result
+

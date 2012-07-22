@@ -2,7 +2,6 @@ from abjad.tools import contexttools
 from abjad.tools import durationtools
 from experimental.quantizationtools.QSchemaItem import QSchemaItem
 from experimental.quantizationtools.QGridSearchTree import QGridSearchTree
-from experimental.quantizationtools.is_valid_beatspan import is_valid_beatspan
 
 
 class UnmeteredQSchemaItem(QSchemaItem):
@@ -55,7 +54,7 @@ class UnmeteredQSchemaItem(QSchemaItem):
 
         if beatspan is not None:
             beatspan = durationtools.Duration(beatspan)
-            assert is_valid_beatspan(beatspan)
+            assert 0 < beatspan
 
         if search_tree is not None:
             search_tree = QGridSearchTree(search_tree)
