@@ -210,6 +210,23 @@ class SegmentSpecification(Specification):
             raise ValueError("'callback', 'count' or 'offset' set on nonstatal source: {!r}.".format(source))
         return source
 
+    def count_ratio_item_selector_to_uninterpreted_division_command(self, resolved_setting):
+        from experimental import selectortools
+        assert isinstance(resolved_setting.target, selectortools.CountRatioItemSelector)
+        assert isinstance(resolved_setting.target.reference, selectortools.BackgroundMeasureSliceSelector)
+        assert resolved_setting.target.reference.inequality.timespan.selector.index == self.name
+        ratio = resolved_setting.target.ratio
+        index = resolved_setting.target.index
+        time_signatures = self.time_signatures[:]
+        parts = sequencetools.partition_sequence_by_ratio_of_lengths(time_signatures, ratio)
+        part = parts[index]
+        durations = [durationtools.Duration(x) for x in part]
+        duration = sum(durations)
+        #value = self.process_divisions_value(resolved_value) # probably todo this
+        args = (resolved_setting.value, duration, resolved_setting.fresh, resolved_setting.truncate)
+        command = interpretertools.UninterpretedDivisionCommand(*args)
+        return command
+
     def get_directives(self, target=None, attribute=None):
         result = []
         for directive in self.directives:
@@ -245,23 +262,6 @@ class SegmentSpecification(Specification):
             uninterpreted_division_commands.append(command)
         return uninterpreted_division_commands
 
-    def count_ratio_item_selector_to_uninterpreted_division_command(self, resolved_setting):
-        from experimental import selectortools
-        assert isinstance(resolved_setting.target, selectortools.CountRatioItemSelector)
-        assert isinstance(resolved_setting.target.reference, selectortools.BackgroundMeasureSliceSelector)
-        assert resolved_setting.target.reference.inequality.timespan.selector.index == self.name
-        ratio = resolved_setting.target.ratio
-        index = resolved_setting.target.index
-        time_signatures = self.time_signatures[:]
-        parts = sequencetools.partition_sequence_by_ratio_of_lengths(time_signatures, ratio)
-        part = parts[index]
-        durations = [durationtools.Duration(x) for x in part]
-        duration = sum(durations)
-        #value = self.process_divisions_value(resolved_value) # probably todo this
-        args = (resolved_setting.value, duration, resolved_setting.fresh, resolved_setting.truncate)
-        command = interpretertools.UninterpretedDivisionCommand(*args)
-        return command
-
     def get_resolved_single_context_setting(self, attribute, context_name):
         from experimental import settingtools
         context = componenttools.get_first_component_in_expr_with_name(self.score_model, context_name)
@@ -284,6 +284,7 @@ class SegmentSpecification(Specification):
             if settings:
                 return settings
 
+    # deprecated behavior
     def get_rhythm_command(self, context_name):
         '''Default to rest-filled tokens if explicit rhythm not found.
         '''
@@ -294,6 +295,21 @@ class SegmentSpecification(Specification):
         else:
             rhythm_command = interpretertools.RhythmCommand(library.rest_filled_tokens, True)
         return rhythm_command
+
+    # new behavior
+    def get_rhythm_commands_that_start_during_segment(self, voice_name):
+        from experimental import selectortools
+        resolved_settings = self.get_resolved_single_context_settings('rhythm', voice_name)
+        rhythm_commands = []
+        for resolved_setting in resolved_settings:
+            self._debug(resolved_setting)
+            if isinstance(resolved_setting.target, selectortools.CountRatioItemSelector):
+                #command = self.count_ratio_item_selector_to_rhythm_command(resolved_setting)
+                raise Exception('implement me when it comes time.')
+            else:
+                rhythm_command = interpretertools.RhythmCommand(resolved_setting.value, setting.fresh)
+            rhythm_commands.append(rhythm_command)
+        return rhythm_commands
 
     def preprocess_setting_target(self, target):
         if isinstance(target, (str, list, type(self))):

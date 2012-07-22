@@ -121,7 +121,7 @@ class ScoreSpecification(Specification):
 
     # TODO: Using segment_division_lists here is a hack.
     #       Implement self.get_rhythm_commands_for_voice().
-    #       Then reimplement this method using voice_division_list together with rhythm commands.
+    #       Then reimplement this method using voice_division_list together with rhythm commands returned.
     def add_rhythms_to_voice_new(self, voice):
         rhythm_commands = self.get_rhythm_commands_for_all_segments_in_voice(voice)
         #self._debug(rhythm_commands)
@@ -295,28 +295,10 @@ class ScoreSpecification(Specification):
 
     # new behavior
     def get_improved_uninterpreted_division_commands_for_voice(self, voice):
-        improved_uninterpreted_division_commands = []
-        for segment in self.segments:
-            commands = segment.get_uninterpreted_division_commands_that_start_during_segment(voice.name)
-            improved_uninterpreted_division_commands.extend(commands)
-        return improved_uninterpreted_division_commands
-
-    def get_rhythm_commands_for_all_segments_in_voice(self, voice):
-        rhythm_commands = []
-        for segment in self.segments:
-            rhythm_command = segment.get_rhythm_command(voice.name)
-            rhythm_commands.append(rhythm_command)
-        return rhythm_commands
-
-    # deprecated behavior
-    def get_uninterpreted_division_commands_for_voice(self, voice):
         uninterpreted_division_commands = []
         for segment in self.segments:
-            resolved_value = segment.get_division_resolved_value(voice.name)
-            value = self.process_divisions_value(resolved_value.value)
-            args = (value, segment.duration, resolved_value.fresh, resolved_value.truncate)
-            command = interpretertools.UninterpretedDivisionCommand(*args)
-            uninterpreted_division_commands.append(command)
+            commands = segment.get_uninterpreted_division_commands_that_start_during_segment(voice.name)
+            uninterpreted_division_commands.extend(commands)
         return uninterpreted_division_commands
 
     def get_start_division_lists_for_voice(self, voice):
@@ -330,6 +312,33 @@ class ScoreSpecification(Specification):
             divisions, self.segment_durations)
         start_division_lists = [DivisionList(x) for x in start_division_lists]
         return start_division_lists
+
+    # deprecated behavior
+    def get_rhythm_commands_for_all_segments_in_voice(self, voice):
+        rhythm_commands = []
+        for segment in self.segments:
+            rhythm_command = segment.get_rhythm_command(voice.name)
+            rhythm_commands.append(rhythm_command)
+        return rhythm_commands
+
+    # new behavior
+    def get_rhythm_commands_for_voice(self, voice):
+        rhythm_commands = []
+        for segment in self.segments:
+            commands = segment.get_rhythm_commands_that_start_during_segment(voice.name)
+            rhythm_commands.extend(commands)
+        return rhythm_commands
+
+    # deprecated behavior
+    def get_uninterpreted_division_commands_for_voice(self, voice):
+        uninterpreted_division_commands = []
+        for segment in self.segments:
+            resolved_value = segment.get_division_resolved_value(voice.name)
+            value = self.process_divisions_value(resolved_value.value)
+            args = (value, segment.duration, resolved_value.fresh, resolved_value.truncate)
+            command = interpretertools.UninterpretedDivisionCommand(*args)
+            uninterpreted_division_commands.append(command)
+        return uninterpreted_division_commands
 
     def glue_rhythm_commands_and_start_division_lists(self, rhythm_commands, start_division_lists):
         assert len(rhythm_commands) == len(start_division_lists)

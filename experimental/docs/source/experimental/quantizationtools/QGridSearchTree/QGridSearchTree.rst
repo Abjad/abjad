@@ -147,8 +147,6 @@ Special Methods
 
 .. automethod:: experimental.quantizationtools.QGridSearchTree.QGridSearchTree.QGridSearchTree.__repr__
 
-    Inherited from :py:class:`__builtin__.dict`
-
 .. automethod:: experimental.quantizationtools.QGridSearchTree.QGridSearchTree.QGridSearchTree.__setattr__
 
     Inherited from :py:class:`__builtin__.object`
