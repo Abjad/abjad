@@ -1,9 +1,9 @@
 from abc import ABCMeta
 from abc import abstractmethod
-from experimental.interpretertools.Token import Token
+from experimental.interpretertools.Command import Command
 
 
-class DivisionToken(Token):
+class DivisionToken(Command):
     r'''.. versionadded:: 1.0
 
     Command indicating durated period of time over which a division-maker will apply.
