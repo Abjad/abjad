@@ -16,7 +16,9 @@ class RegionDivisionToken(DivisionToken):
 
     Region division tokens represent an absolute command to create divisions over a given duration.
 
-    .. note:: can both the ``fresh`` and ``truncate`` parameters be removed?
+    .. note:: can the ``fresh`` parameter be removed?
     '''
 
-    pass
+    #@property
+    #def fresh(self):
+    #    raise Exception('REMOVE ME')

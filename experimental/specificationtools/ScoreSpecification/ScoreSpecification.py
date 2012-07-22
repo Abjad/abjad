@@ -218,6 +218,7 @@ class ScoreSpecification(Specification):
                 else:
                     value = last_region_division_token.value
                     duration = last_region_division_token.duration + segment_division_token.duration
+                    #fresh = 'FOO'
                     fresh = last_region_division_token.fresh
                     truncate = segment_division_token.truncate
                     args = (value, duration, fresh, truncate)
@@ -488,6 +489,7 @@ class ScoreSpecification(Specification):
             divisions = [x.pair for x in divisions]
             divisions = [Division(x) for x in divisions]
             region_division_list = RegionDivisionList(divisions)
+            #region_division_list.fresh = 'FOO'
             region_division_list.fresh = region_division_token.fresh
             region_division_list.truncate = region_division_token.truncate
             region_division_lists.append(region_division_list)
