@@ -302,13 +302,11 @@ class SegmentSpecification(Specification):
         resolved_settings = self.get_resolved_single_context_settings('rhythm', voice_name)
         rhythm_commands = []
         for resolved_setting in resolved_settings:
-            self._debug(resolved_setting)
             if isinstance(resolved_setting.target, selectortools.CountRatioItemSelector):
-                #command = self.count_ratio_item_selector_to_rhythm_command(resolved_setting)
                 raise Exception('implement me when it comes time.')
             else:
                 rhythm_command = interpretertools.RhythmCommand(
-                    resolved_setting.value, self.duration, setting.fresh)
+                    resolved_setting.value, self.duration, resolved_setting.fresh)
             rhythm_commands.append(rhythm_command)
         return rhythm_commands
 

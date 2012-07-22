@@ -78,7 +78,6 @@ class ScoreSpecification(Specification):
         for voice in voicetools.iterate_voices_forward_in_expr(self.score):
             self.add_divisions_to_voice(voice)
 
-    # NEXT: extend this method to handle ratio selector settings.
     def add_divisions_to_voice(self, voice):
         region_division_lists = self.make_region_division_lists_for_voice(voice)
         #self._debug(region_division_lists)
@@ -96,7 +95,8 @@ class ScoreSpecification(Specification):
             self.add_segment_division_list_to_segment_payload_context_dictionaries_for_voice(
                 voice, segment_division_lists)
 
-    def add_rhythm_to_voice_for_segment_region_divisions(self, voice, rhythm_command, region_division_list):
+    # deprecated behavior
+    def add_rhythm_to_voice(self, voice, rhythm_command, region_division_list):
         maker = rhythm_command.value
         assert isinstance(maker, timetokentools.TimeTokenMaker), repr(maker)
         leaf_lists = maker(region_division_list.pairs)
@@ -106,6 +106,20 @@ class ScoreSpecification(Specification):
             durations = [x.preprolated_duration for x in containers]
             beamtools.DuratedComplexBeamSpanner(containers, durations=durations, span=1)
 
+    # new behavior
+    # soon generalize this to accommodate arbitrarily many rhythm commands per segment;
+    # current implementation merely ports forward old behavior.
+    def add_rhythm_to_voice_new(self, voice, rhythm_commands):
+        voice_division_list = self.payload_context_dictionary[voice.name]['voice_division_list']
+        self._debug(voice_division_list)
+        self._debug(rhythm_commands)
+        # generalize from this line forward; this uses the old code as a temporary port
+        assert len(rhythm_commands) == 1, repr(rhythm_commands)
+        rhythm_command = rhythm_commands[0]
+        region_division_lists = self.payload_context_dictionary[voice.name]['region_division_lists']
+        for region_division_list in region_division_lists:
+            self.add_rhythm_to_voice(voice, rhythm_command, region_division_list)
+
     def add_rhythms(self):
         for voice in voicetools.iterate_voices_forward_in_expr(self.score):
             # CURRENT WORK: Use first line for last known good behavior.
@@ -113,21 +127,17 @@ class ScoreSpecification(Specification):
             self.add_rhythms_to_voice(voice)
             #self.add_rhythms_to_voice_new(voice)
 
+    # deprecated behavior
     def add_rhythms_to_voice(self, voice):
         rhythm_commands = self.get_rhythm_commands_for_all_segments_in_voice(voice)
         region_division_lists = self.payload_context_dictionary[voice.name]['region_division_lists']
         for rhythm_command, region_division_list in zip(rhythm_commands, region_division_lists):
-            self.add_rhythm_to_voice_for_segment_region_divisions(voice, rhythm_command, region_division_list)
+            self.add_rhythm_to_voice(voice, rhythm_command, region_division_list)
 
-    # TODO: Using segment_division_lists here is a hack.
-    #       Implement self.get_rhythm_commands_for_voice().
-    #       Then reimplement this method using voice_division_list together with rhythm commands returned.
+    # new behavior implementing now ...
     def add_rhythms_to_voice_new(self, voice):
-        rhythm_commands = self.get_rhythm_commands_for_all_segments_in_voice(voice)
-        #self._debug(rhythm_commands)
-        segment_division_lists = self.payload_context_dictionary[voice.name]['segment_division_lists']
-        for rhythm_command, segment_division_list in zip(rhythm_commands, segment_division_lists):
-            self.add_rhythm_to_voice_for_segment_region_divisions(voice, rhythm_command, segment_division_list)
+        rhythm_commands = self.get_rhythm_commands_for_voice(voice)
+        self.add_rhythm_to_voice_new(voice, rhythm_commands)
 
     def add_segment_division_list_to_segment_payload_context_dictionaries_for_voice(
         self, voice, segment_division_lists):
