@@ -285,16 +285,16 @@ class SegmentSpecification(Specification):
             if settings:
                 return settings
 
-    def get_rhythm_token(self, context_name):
+    def get_rhythm_command(self, context_name):
         '''Default to rest-filled tokens if explicit rhythm not found.
         '''
         from experimental.specificationtools import library
         setting = self.get_resolved_single_context_setting('rhythm', context_name)
         if setting is not None:
-            rhythm_token = interpretertools.RhythmCommand(setting.value, setting.fresh)
+            rhythm_command = interpretertools.RhythmCommand(setting.value, setting.fresh)
         else:
-            rhythm_token = interpretertools.RhythmCommand(library.rest_filled_tokens, True)
-        return rhythm_token
+            rhythm_command = interpretertools.RhythmCommand(library.rest_filled_tokens, True)
+        return rhythm_command
 
     def preprocess_setting_target(self, target):
         if isinstance(target, (str, list, type(self))):

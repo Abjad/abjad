@@ -97,8 +97,8 @@ class ScoreSpecification(Specification):
             self.add_segment_division_list_to_segment_payload_context_dictionarys_for_voice(
                 voice, segment_division_lists)
 
-    def add_rhythm_to_voice_for_segment_region_divisions(self, voice, rhythm_token, region_division_list):
-        maker = rhythm_token.value
+    def add_rhythm_to_voice_for_segment_region_divisions(self, voice, rhythm_command, region_division_list):
+        maker = rhythm_command.value
         assert isinstance(maker, timetokentools.TimeTokenMaker), repr(maker)
         leaf_lists = maker(region_division_list.pairs)
         containers = [containertools.Container(x) for x in leaf_lists]
@@ -112,19 +112,19 @@ class ScoreSpecification(Specification):
             self.add_rhythms_to_voice(voice)
 
     def add_rhythms_to_voice(self, voice):
-        rhythm_tokens = self.get_rhythm_tokens_for_all_segments_in_voice(voice)
+        rhythm_commands = self.get_rhythm_commands_for_all_segments_in_voice(voice)
         region_division_lists = self.payload_context_dictionary[voice.name]['region_division_lists']
-        for rhythm_token, region_division_list in zip(rhythm_tokens, region_division_lists):
-            self.add_rhythm_to_voice_for_segment_region_divisions(voice, rhythm_token, region_division_list)
+        for rhythm_command, region_division_list in zip(rhythm_commands, region_division_lists):
+            self.add_rhythm_to_voice_for_segment_region_divisions(voice, rhythm_command, region_division_list)
 
     # TODO: Using segment_division_lists here is a hack.
-    #       Implement self.get_rhythm_tokens_for_all_regions_in_voice()
+    #       Implement self.get_rhythm_commands_for_all_regions_in_voice()
     #       Then reimplement this method using *region* division lists.
     def add_rhythms_to_voice_new(self, voice):
-        rhythm_tokens = self.get_rhythm_tokens_for_all_segments_in_voice(voice)
+        rhythm_commands = self.get_rhythm_commands_for_all_segments_in_voice(voice)
         segment_division_lists = self.payload_context_dictionary[voice.name]['segment_division_lists']
-        for rhythm_token, segment_division_list in zip(rhythm_tokens, segment_division_lists):
-            self.add_rhythm_to_voice_for_segment_region_divisions(voice, rhythm_token, segment_division_list)
+        for rhythm_command, segment_division_list in zip(rhythm_commands, segment_division_lists):
+            self.add_rhythm_to_voice_for_segment_region_divisions(voice, rhythm_command, segment_division_list)
 
     def add_segment_division_list_to_segment_payload_context_dictionarys_for_voice(
         self, voice, segment_division_lists):
@@ -297,12 +297,12 @@ class ScoreSpecification(Specification):
             improved_segment_division_tokens.extend(tokens)
         return improved_segment_division_tokens
 
-    def get_rhythm_tokens_for_all_segments_in_voice(self, voice):
-        rhythm_tokens = []
+    def get_rhythm_commands_for_all_segments_in_voice(self, voice):
+        rhythm_commands = []
         for segment in self.segments:
-            rhythm_token = segment.get_rhythm_token(voice.name)
-            rhythm_tokens.append(rhythm_token)
-        return rhythm_tokens
+            rhythm_command = segment.get_rhythm_command(voice.name)
+            rhythm_commands.append(rhythm_command)
+        return rhythm_commands
 
     # deprecated behavior
     def get_segment_division_tokens_for_voice(self, voice):
@@ -327,18 +327,18 @@ class ScoreSpecification(Specification):
         start_division_lists = [DivisionList(x) for x in start_division_lists]
         return start_division_lists
 
-    def glue_rhythm_tokens_and_start_division_lists(self, rhythm_tokens, start_division_lists):
-        assert len(rhythm_tokens) == len(start_division_lists)
-        assert rhythm_tokens[0].fresh
-        glued_rhythm_tokens, new_parts = [rhythm_tokens[0]], [start_division_lists[0][:]]
-        for rhythm_token, start_division_list in zip(rhythm_tokens[1:], start_division_lists[1:]):
-            if rhythm_token.value == glued_rhythm_tokens[-1].value and \
-                not rhythm_token.fresh:
+    def glue_rhythm_commands_and_start_division_lists(self, rhythm_commands, start_division_lists):
+        assert len(rhythm_commands) == len(start_division_lists)
+        assert rhythm_commands[0].fresh
+        glued_rhythm_commands, new_parts = [rhythm_commands[0]], [start_division_lists[0][:]]
+        for rhythm_command, start_division_list in zip(rhythm_commands[1:], start_division_lists[1:]):
+            if rhythm_command.value == glued_rhythm_commands[-1].value and \
+                not rhythm_command.fresh:
                 new_parts[-1].extend(start_division_list)
             else:
-                glued_rhythm_tokens.append(rhythm_token)
+                glued_rhythm_commands.append(rhythm_command)
                 new_parts.append(start_division_list[:])
-        return glued_rhythm_tokens, new_parts
+        return glued_rhythm_commands, new_parts
 
     def handle_divisions_retrieval_request(self, request):
         voice = componenttools.get_first_component_in_expr_with_name(self.score, request.voice)
