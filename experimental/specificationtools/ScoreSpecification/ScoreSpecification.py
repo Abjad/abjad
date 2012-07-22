@@ -61,6 +61,15 @@ class ScoreSpecification(Specification):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
+    def duration(self):
+        result = []
+        for segment in self.segments:
+            duration = segment.duration
+            if duration is not None:
+                result.append(duration)
+        return sum(result)
+
+    @property
     def segment_names(self):
         return [segment.name for segment in self.segments]
 
@@ -106,6 +115,9 @@ class ScoreSpecification(Specification):
 
     # deprecated behavior
     def add_rhythm_to_voice(self, voice, rhythm_command, region_division_list):
+        #self._debug(rhythm_command)
+        #self._debug(region_division_list)
+        #print ''
         maker = rhythm_command.value
         assert isinstance(maker, timetokentools.TimeTokenMaker), repr(maker)
         leaf_lists = maker(region_division_list.pairs)
@@ -132,15 +144,15 @@ class ScoreSpecification(Specification):
 #    def add_rhythms_to_voice(self, voice):
 #        from experimental import specificationtools
 #        voice_division_list = self.get_voice_division_list(voice)
-#        self._debug(voice_division_list)
+#        #self._debug(voice_division_list)
 #        if len(voice_division_list) == 0:
 #            return
 #        voice_divisions = voice_division_list.divisions
 #        voice_division_durations = [durationtools.Duration(x) for x in voice_divisions]
 #        rhythm_commands = self.get_rhythm_commands_for_voice(voice)
 #        rhythm_command_durations = [x.duration for x in rhythm_commands]
-#        self._debug(voice_division_durations)
-#        self._debug(rhythm_commands)
+#        #self._debug(voice_division_durations)
+#        #self._debug(rhythm_commands)
 #        args = (voice_division_durations, rhythm_command_durations)
 #        parts = sequencetools.partition_sequence_by_backgrounded_weights(*args)
 #        assert len(rhythm_commands) == len(parts)
@@ -338,10 +350,14 @@ class ScoreSpecification(Specification):
 
     # new behavior
     def get_rhythm_commands_for_voice(self, voice):
+        from experimental.specificationtools import library
         rhythm_commands = []
         for segment in self.segments:
             commands = segment.get_rhythm_commands_that_start_during_segment(voice.name)
             rhythm_commands.extend(commands)
+        if not rhythm_commands:
+            rhythm_command = interpretertools.RhythmCommand(library.rest_filled_tokens, self.duration, True)
+            rhythm_commands.append(rhythm_command)
         return rhythm_commands
 
     # deprecated behavior
