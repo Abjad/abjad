@@ -29,16 +29,14 @@ Read-only Properties
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
+.. autoattribute:: experimental.quantizationtools.UnmeteredQSchema.UnmeteredQSchema.UnmeteredQSchema.target_klass
+
 .. autoattribute:: experimental.quantizationtools.UnmeteredQSchema.UnmeteredQSchema.UnmeteredQSchema.tempo
 
     Inherited from :py:class:`QSchema.QSchema <experimental.quantizationtools.QSchema.QSchema.QSchema>`
 
 Special Methods
 ---------------
-
-.. automethod:: experimental.quantizationtools.UnmeteredQSchema.UnmeteredQSchema.UnmeteredQSchema.__call__
-
-    Inherited from :py:class:`QSchema.QSchema <experimental.quantizationtools.QSchema.QSchema.QSchema>`
 
 .. automethod:: experimental.quantizationtools.UnmeteredQSchema.UnmeteredQSchema.UnmeteredQSchema.__delattr__
 
@@ -51,6 +49,10 @@ Special Methods
 .. automethod:: experimental.quantizationtools.UnmeteredQSchema.UnmeteredQSchema.UnmeteredQSchema.__ge__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.quantizationtools.UnmeteredQSchema.UnmeteredQSchema.UnmeteredQSchema.__getitem__
+
+    Inherited from :py:class:`QSchema.QSchema <experimental.quantizationtools.QSchema.QSchema.QSchema>`
 
 .. automethod:: experimental.quantizationtools.UnmeteredQSchema.UnmeteredQSchema.UnmeteredQSchema.__gt__
 

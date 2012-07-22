@@ -21,6 +21,8 @@ Read-only Properties
 
 .. autoattribute:: experimental.quantizationtools.MeteredQSchemaItem.MeteredQSchemaItem.MeteredQSchemaItem.time_signature
 
+.. autoattribute:: experimental.quantizationtools.MeteredQSchemaItem.MeteredQSchemaItem.MeteredQSchemaItem.use_full_measure
+
 Methods
 -------
 

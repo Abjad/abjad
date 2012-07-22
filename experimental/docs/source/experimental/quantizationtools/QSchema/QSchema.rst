@@ -21,12 +21,12 @@ Read-only Properties
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
+.. autoattribute:: experimental.quantizationtools.QSchema.QSchema.QSchema.target_klass
+
 .. autoattribute:: experimental.quantizationtools.QSchema.QSchema.QSchema.tempo
 
 Special Methods
 ---------------
-
-.. automethod:: experimental.quantizationtools.QSchema.QSchema.QSchema.__call__
 
 .. automethod:: experimental.quantizationtools.QSchema.QSchema.QSchema.__delattr__
 
@@ -39,6 +39,8 @@ Special Methods
 .. automethod:: experimental.quantizationtools.QSchema.QSchema.QSchema.__ge__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.quantizationtools.QSchema.QSchema.QSchema.__getitem__
 
 .. automethod:: experimental.quantizationtools.QSchema.QSchema.QSchema.__gt__
 
