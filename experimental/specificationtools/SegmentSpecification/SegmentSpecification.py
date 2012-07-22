@@ -291,9 +291,9 @@ class SegmentSpecification(Specification):
         from experimental.specificationtools import library
         setting = self.get_resolved_single_context_setting('rhythm', context_name)
         if setting is not None:
-            rhythm_command = interpretertools.RhythmCommand(setting.value, setting.fresh)
+            rhythm_command = interpretertools.RhythmCommand(setting.value, self.duration, setting.fresh)
         else:
-            rhythm_command = interpretertools.RhythmCommand(library.rest_filled_tokens, True)
+            rhythm_command = interpretertools.RhythmCommand(library.rest_filled_tokens, self.duration, True)
         return rhythm_command
 
     # new behavior
@@ -307,7 +307,8 @@ class SegmentSpecification(Specification):
                 #command = self.count_ratio_item_selector_to_rhythm_command(resolved_setting)
                 raise Exception('implement me when it comes time.')
             else:
-                rhythm_command = interpretertools.RhythmCommand(resolved_setting.value, setting.fresh)
+                rhythm_command = interpretertools.RhythmCommand(
+                    resolved_setting.value, self.duration, setting.fresh)
             rhythm_commands.append(rhythm_command)
         return rhythm_commands
 
