@@ -1,8 +1,6 @@
-1. Change SegmentSpecification.get_resolved_value_with_fresh()
-   to return full-fledged class.
+1. Make divisions partitionable.
 
-2. Make an interpretertools package.
-   Migrate ScoreSpecification and SegmentSpecification interpreter code to new
+2. Migrate ScoreSpecification and SegmentSpecification interpreter code to new
    interpretertools.ScoreInterpreter class.
 
 3. Make it so that SegmentSpecification can say "import selectortools" globally.

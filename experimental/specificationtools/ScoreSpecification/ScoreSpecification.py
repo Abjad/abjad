@@ -106,38 +106,36 @@ class ScoreSpecification(Specification):
             durations = [x.preprolated_duration for x in containers]
             beamtools.DuratedComplexBeamSpanner(containers, durations=durations, span=1)
 
-    # new behavior
-    # soon generalize this to accommodate arbitrarily many rhythm commands per segment;
-    # current implementation merely ports forward old behavior.
-    def add_rhythm_to_voice_new(self, voice, rhythm_commands):
-        voice_division_list = self.payload_context_dictionary[voice.name]['voice_division_list']
-        self._debug(voice_division_list)
-        self._debug(rhythm_commands)
-        # generalize from this line forward; this uses the old code as a temporary port
-        assert len(rhythm_commands) == 1, repr(rhythm_commands)
-        rhythm_command = rhythm_commands[0]
-        region_division_lists = self.payload_context_dictionary[voice.name]['region_division_lists']
-        for region_division_list in region_division_lists:
-            self.add_rhythm_to_voice(voice, rhythm_command, region_division_list)
-
     def add_rhythms(self):
         for voice in voicetools.iterate_voices_forward_in_expr(self.score):
-            # CURRENT WORK: Use first line for last known good behavior.
-            #               Use second line for new behavior.
             self.add_rhythms_to_voice(voice)
-            #self.add_rhythms_to_voice_new(voice)
 
-    # deprecated behavior
+    # deprecated behavior; this competes with definition immediately below
     def add_rhythms_to_voice(self, voice):
         rhythm_commands = self.get_rhythm_commands_for_voice(voice)
         region_division_lists = self.payload_context_dictionary[voice.name]['region_division_lists']
+        # assertion below doesn't always hold in current implementation
+        #assert len(rhythm_commands) == len(region_division_lists), repr((region_division_lists, rhythm_commands))
         for rhythm_command, region_division_list in zip(rhythm_commands, region_division_lists):
             self.add_rhythm_to_voice(voice, rhythm_command, region_division_list)
 
-    # new behavior implementing now ...
-    def add_rhythms_to_voice_new(self, voice):
-        rhythm_commands = self.get_rhythm_commands_for_voice(voice)
-        self.add_rhythm_to_voice_new(voice, rhythm_commands)
+#    # new behavior; this competes with definition immediately above
+#    def add_rhythms_to_voice(self, voice):
+#        from experimental import specificationtools
+#        voice_division_list = self.payload_context_dictionary[voice.name]['voice_division_list']
+#        voice_divisions = voice_division_list.divisions]
+#        voice_division_durations = [durationtools.Duration(x) for x in voice_divisions]
+#        rhythm_commands = self.get_rhythm_commands_for_voice(voice)
+#        rhythm_command_durations = [x.duration for x in rhythm_commands]
+#        args = (voice_division_durations, rhythm_command_durations)
+#        parts = sequencetools.partition_sequence_by_backgrounded_weights(*args)
+#        assert len(rhythm_commands) == len(parts)
+#        parts = sequencetools.partition_sequence_once_by_counts_without_overhang(voice_divisions, len(parts))
+#        assert len(rhythm_commands) == len(parts)
+#        for rhythm_command, part in zip(rhythm_commands, parts):
+#            if part:
+#                region_division_list = specificationtools.RegionDivisionList(part)
+#                self.add_rhythm_to_voice(voice, rhythm_command, region_division_list)
 
     def add_segment_division_list_to_segment_payload_context_dictionaries_for_voice(
         self, voice, segment_division_lists):
