@@ -145,6 +145,7 @@ class SegmentSpecification(Specification):
         from experimental import timespantools
         return timespantools.Timepoint(anchor=self.selector, edge=Right)
 
+    # TODO: return [] instead of none
     @property
     def time_signatures(self):
         '''Segment time signatures::

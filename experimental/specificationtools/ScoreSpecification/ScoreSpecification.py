@@ -72,6 +72,15 @@ class ScoreSpecification(Specification):
     def segments(self):
         return self._segments
 
+    @property
+    def time_signatures(self):
+        result = []
+        for segment in self.segments:
+            time_signatures = segment.time_signatures
+            if time_signatures is not None:
+                result.extend(segment.time_signatures)
+        return result
+
     ### PUBLIC METHODS ###
 
     def add_divisions(self):
@@ -122,15 +131,21 @@ class ScoreSpecification(Specification):
 #    # new behavior; this competes with definition immediately above
 #    def add_rhythms_to_voice(self, voice):
 #        from experimental import specificationtools
-#        voice_division_list = self.payload_context_dictionary[voice.name]['voice_division_list']
-#        voice_divisions = voice_division_list.divisions]
+#        voice_division_list = self.get_voice_division_list(voice)
+#        self._debug(voice_division_list)
+#        if len(voice_division_list) == 0:
+#            return
+#        voice_divisions = voice_division_list.divisions
 #        voice_division_durations = [durationtools.Duration(x) for x in voice_divisions]
 #        rhythm_commands = self.get_rhythm_commands_for_voice(voice)
 #        rhythm_command_durations = [x.duration for x in rhythm_commands]
+#        self._debug(voice_division_durations)
+#        self._debug(rhythm_commands)
 #        args = (voice_division_durations, rhythm_command_durations)
 #        parts = sequencetools.partition_sequence_by_backgrounded_weights(*args)
 #        assert len(rhythm_commands) == len(parts)
-#        parts = sequencetools.partition_sequence_once_by_counts_without_overhang(voice_divisions, len(parts))
+#        counts = [len(part) for part in parts]
+#        parts = sequencetools.partition_sequence_once_by_counts_without_overhang(voice_divisions, counts)
 #        assert len(rhythm_commands) == len(parts)
 #        for rhythm_command, part in zip(rhythm_commands, parts):
 #            if part:
@@ -339,6 +354,14 @@ class ScoreSpecification(Specification):
             command = interpretertools.UninterpretedDivisionCommand(*args)
             uninterpreted_division_commands.append(command)
         return uninterpreted_division_commands
+
+    def get_voice_division_list(self, voice):
+        from experimental import specificationtools
+        voice_division_list = self.payload_context_dictionary[voice.name].get('voice_division_list')
+        if voice_division_list is None:
+            time_signatures = self.time_signatures
+            voice_division_list = specificationtools.VoiceDivisionList(time_signatures)
+        return voice_division_list
 
     def glue_rhythm_commands_and_start_division_lists(self, rhythm_commands, start_division_lists):
         assert len(rhythm_commands) == len(start_division_lists)

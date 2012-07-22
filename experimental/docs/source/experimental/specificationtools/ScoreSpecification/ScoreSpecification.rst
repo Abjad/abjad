@@ -43,6 +43,8 @@ Read-only Properties
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
+.. autoattribute:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.time_signatures
+
 Methods
 -------
 
@@ -93,6 +95,8 @@ Methods
 .. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.get_start_division_lists_for_voice
 
 .. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.get_uninterpreted_division_commands_for_voice
+
+.. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.get_voice_division_list
 
 .. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.glue_rhythm_commands_and_start_division_lists
 
