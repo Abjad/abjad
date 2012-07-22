@@ -11,11 +11,11 @@ Read-only Properties
 
 .. autoattribute:: experimental.interpretertools.RegionDivisionToken.RegionDivisionToken.RegionDivisionToken.duration
 
-    Inherited from :py:class:`DivisionToken.DivisionToken <experimental.interpretertools.DivisionToken.DivisionToken.DivisionToken>`
+    Inherited from :py:class:`UninterpretedDivisionToken.UninterpretedDivisionToken <experimental.interpretertools.UninterpretedDivisionToken.UninterpretedDivisionToken.UninterpretedDivisionToken>`
 
 .. autoattribute:: experimental.interpretertools.RegionDivisionToken.RegionDivisionToken.RegionDivisionToken.fresh
 
-    Inherited from :py:class:`DivisionToken.DivisionToken <experimental.interpretertools.DivisionToken.DivisionToken.DivisionToken>`
+    Inherited from :py:class:`UninterpretedDivisionToken.UninterpretedDivisionToken <experimental.interpretertools.UninterpretedDivisionToken.UninterpretedDivisionToken.UninterpretedDivisionToken>`
 
 .. autoattribute:: experimental.interpretertools.RegionDivisionToken.RegionDivisionToken.RegionDivisionToken.storage_format
 
@@ -23,15 +23,15 @@ Read-only Properties
 
 .. autoattribute:: experimental.interpretertools.RegionDivisionToken.RegionDivisionToken.RegionDivisionToken.truncate
 
-    Inherited from :py:class:`DivisionToken.DivisionToken <experimental.interpretertools.DivisionToken.DivisionToken.DivisionToken>`
+    Inherited from :py:class:`UninterpretedDivisionToken.UninterpretedDivisionToken <experimental.interpretertools.UninterpretedDivisionToken.UninterpretedDivisionToken.UninterpretedDivisionToken>`
 
 .. autoattribute:: experimental.interpretertools.RegionDivisionToken.RegionDivisionToken.RegionDivisionToken.value
 
-    Inherited from :py:class:`DivisionToken.DivisionToken <experimental.interpretertools.DivisionToken.DivisionToken.DivisionToken>`
+    Inherited from :py:class:`UninterpretedDivisionToken.UninterpretedDivisionToken <experimental.interpretertools.UninterpretedDivisionToken.UninterpretedDivisionToken.UninterpretedDivisionToken>`
 
 .. autoattribute:: experimental.interpretertools.RegionDivisionToken.RegionDivisionToken.RegionDivisionToken.vector
 
-    Inherited from :py:class:`DivisionToken.DivisionToken <experimental.interpretertools.DivisionToken.DivisionToken.DivisionToken>`
+    Inherited from :py:class:`UninterpretedDivisionToken.UninterpretedDivisionToken <experimental.interpretertools.UninterpretedDivisionToken.UninterpretedDivisionToken.UninterpretedDivisionToken>`
 
 Special Methods
 ---------------

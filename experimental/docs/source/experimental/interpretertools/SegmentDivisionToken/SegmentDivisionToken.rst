@@ -11,11 +11,11 @@ Read-only Properties
 
 .. autoattribute:: experimental.interpretertools.SegmentDivisionToken.SegmentDivisionToken.SegmentDivisionToken.duration
 
-    Inherited from :py:class:`DivisionToken.DivisionToken <experimental.interpretertools.DivisionToken.DivisionToken.DivisionToken>`
+    Inherited from :py:class:`UninterpretedDivisionToken.UninterpretedDivisionToken <experimental.interpretertools.UninterpretedDivisionToken.UninterpretedDivisionToken.UninterpretedDivisionToken>`
 
 .. autoattribute:: experimental.interpretertools.SegmentDivisionToken.SegmentDivisionToken.SegmentDivisionToken.fresh
 
-    Inherited from :py:class:`DivisionToken.DivisionToken <experimental.interpretertools.DivisionToken.DivisionToken.DivisionToken>`
+    Inherited from :py:class:`UninterpretedDivisionToken.UninterpretedDivisionToken <experimental.interpretertools.UninterpretedDivisionToken.UninterpretedDivisionToken.UninterpretedDivisionToken>`
 
 .. autoattribute:: experimental.interpretertools.SegmentDivisionToken.SegmentDivisionToken.SegmentDivisionToken.storage_format
 
@@ -23,15 +23,15 @@ Read-only Properties
 
 .. autoattribute:: experimental.interpretertools.SegmentDivisionToken.SegmentDivisionToken.SegmentDivisionToken.truncate
 
-    Inherited from :py:class:`DivisionToken.DivisionToken <experimental.interpretertools.DivisionToken.DivisionToken.DivisionToken>`
+    Inherited from :py:class:`UninterpretedDivisionToken.UninterpretedDivisionToken <experimental.interpretertools.UninterpretedDivisionToken.UninterpretedDivisionToken.UninterpretedDivisionToken>`
 
 .. autoattribute:: experimental.interpretertools.SegmentDivisionToken.SegmentDivisionToken.SegmentDivisionToken.value
 
-    Inherited from :py:class:`DivisionToken.DivisionToken <experimental.interpretertools.DivisionToken.DivisionToken.DivisionToken>`
+    Inherited from :py:class:`UninterpretedDivisionToken.UninterpretedDivisionToken <experimental.interpretertools.UninterpretedDivisionToken.UninterpretedDivisionToken.UninterpretedDivisionToken>`
 
 .. autoattribute:: experimental.interpretertools.SegmentDivisionToken.SegmentDivisionToken.SegmentDivisionToken.vector
 
-    Inherited from :py:class:`DivisionToken.DivisionToken <experimental.interpretertools.DivisionToken.DivisionToken.DivisionToken>`
+    Inherited from :py:class:`UninterpretedDivisionToken.UninterpretedDivisionToken <experimental.interpretertools.UninterpretedDivisionToken.UninterpretedDivisionToken.UninterpretedDivisionToken>`
 
 Special Methods
 ---------------

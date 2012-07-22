@@ -2,7 +2,7 @@ from experimental.interpretertools.Token import Token
 import fractions
 
 
-class DivisionToken(Token):
+class UninterpretedDivisionToken(Token):
     r'''.. versionadded:: 1.0
 
     Durated period of time over which a division-maker will apply.

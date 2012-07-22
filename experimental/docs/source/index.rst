@@ -133,11 +133,11 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
-   experimental/interpretertools/DivisionToken/DivisionToken
    experimental/interpretertools/RegionDivisionToken/RegionDivisionToken
    experimental/interpretertools/ResolvedValue/ResolvedValue
    experimental/interpretertools/RhythmToken/RhythmToken
    experimental/interpretertools/SegmentDivisionToken/SegmentDivisionToken
+   experimental/interpretertools/UninterpretedDivisionToken/UninterpretedDivisionToken
 
 :py:mod:`lyricstools <experimental.lyricstools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

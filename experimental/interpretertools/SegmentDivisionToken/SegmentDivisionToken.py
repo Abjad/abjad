@@ -1,7 +1,7 @@
-from experimental.interpretertools.DivisionToken import DivisionToken
+from experimental.interpretertools.UninterpretedDivisionToken import UninterpretedDivisionToken
 
 
-class SegmentDivisionToken(DivisionToken):
+class SegmentDivisionToken(UninterpretedDivisionToken):
     r'''.. versionadded:: 1.0
 
     Previously only zero or one division setting could be made per segment.
