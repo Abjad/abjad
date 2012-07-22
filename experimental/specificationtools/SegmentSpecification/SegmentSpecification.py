@@ -237,13 +237,12 @@ class SegmentSpecification(Specification):
         resolved_settings = self.get_resolved_single_context_settings('divisions', context_name)
         uninterpreted_division_commands = []
         for resolved_setting in resolved_settings:
-            print resolved_setting.storage_format
+            #print resolved_setting.storage_format
             if isinstance(resolved_setting.target, selectortools.CountRatioItemSelector):
                 command = self.count_ratio_item_selector_to_uninterpreted_division_command(resolved_setting)
             else:
                 raise Exception('implement me for normal case resolved setting')
             uninterpreted_division_commands.append(command)
-        self._debug(uninterpreted_division_commands, 'foo')
         return uninterpreted_division_commands
 
     def count_ratio_item_selector_to_uninterpreted_division_command(self, resolved_setting):

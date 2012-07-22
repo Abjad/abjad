@@ -79,7 +79,6 @@ class ScoreSpecification(Specification):
             self.add_divisions_to_voice(voice)
 
     # NEXT: extend this method to handle ratio selector settings.
-    #       These settings address themselves to the timespans of *incomplete* segments
     def add_divisions_to_voice(self, voice):
         region_division_lists = self.make_region_division_lists_for_voice(voice)
         #self._debug(region_division_lists)
@@ -92,9 +91,9 @@ class ScoreSpecification(Specification):
             voice_division_list = VoiceDivisionList(voice_divisions)
             self.payload_context_dictionary[voice.name]['voice_division_list'] = voice_division_list
             segment_division_lists = self.make_segment_division_lists_for_voice(voice)
-            #self._debug(segment_division_lists, 'CORRECT!')
+            #self._debug(segment_division_lists)
             self.payload_context_dictionary[voice.name]['segment_division_lists'] = segment_division_lists
-            self.add_segment_division_list_to_segment_payload_context_dictionarys_for_voice(
+            self.add_segment_division_list_to_segment_payload_context_dictionaries_for_voice(
                 voice, segment_division_lists)
 
     def add_rhythm_to_voice_for_segment_region_divisions(self, voice, rhythm_command, region_division_list):
@@ -109,7 +108,10 @@ class ScoreSpecification(Specification):
 
     def add_rhythms(self):
         for voice in voicetools.iterate_voices_forward_in_expr(self.score):
+            # CURRENT WORK: Use first line for last known good behavior.
+            #               Use second line for new behavior.
             self.add_rhythms_to_voice(voice)
+            #self.add_rhythms_to_voice_new(voice)
 
     def add_rhythms_to_voice(self, voice):
         rhythm_commands = self.get_rhythm_commands_for_all_segments_in_voice(voice)
@@ -118,15 +120,16 @@ class ScoreSpecification(Specification):
             self.add_rhythm_to_voice_for_segment_region_divisions(voice, rhythm_command, region_division_list)
 
     # TODO: Using segment_division_lists here is a hack.
-    #       Implement self.get_rhythm_commands_for_all_regions_in_voice()
-    #       Then reimplement this method using *region* division lists.
+    #       Implement self.get_rhythm_commands_for_voice().
+    #       Then reimplement this method using voice_division_list together with rhythm commands.
     def add_rhythms_to_voice_new(self, voice):
         rhythm_commands = self.get_rhythm_commands_for_all_segments_in_voice(voice)
+        #self._debug(rhythm_commands)
         segment_division_lists = self.payload_context_dictionary[voice.name]['segment_division_lists']
         for rhythm_command, segment_division_list in zip(rhythm_commands, segment_division_lists):
             self.add_rhythm_to_voice_for_segment_region_divisions(voice, rhythm_command, segment_division_list)
 
-    def add_segment_division_list_to_segment_payload_context_dictionarys_for_voice(
+    def add_segment_division_list_to_segment_payload_context_dictionaries_for_voice(
         self, voice, segment_division_lists):
         assert len(self.segments) == len(segment_division_lists)
         for segment, segment_division_list in zip(self.segments, segment_division_lists):

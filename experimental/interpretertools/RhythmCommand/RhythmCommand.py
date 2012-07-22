@@ -4,13 +4,13 @@ from experimental.interpretertools.Command import Command
 class RhythmCommand(Command):
     r'''.. versionadded:: 1.0
 
-    Rhythm command created during interpretation.
+    Command indicating durated period of time over which a rhythm-maker will apply.
     '''
     
     ### INITIALIZER ###
 
     def __init__(self, value, fresh):
-        self._value = value
+        Command.__init__(self, value, 0)
         self._fresh = fresh
 
     ### READ-ONLY PUBLIC PROPERTIES ###
@@ -18,7 +18,3 @@ class RhythmCommand(Command):
     @property
     def fresh(self):
         return self._fresh
-
-    @property
-    def value(self):
-        return self._value

@@ -11,13 +11,19 @@ Read-only Properties
 
 .. autoattribute:: experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand.duration
 
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
 .. autoattribute:: experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. autoattribute:: experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand.value
 
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
+
 .. autoattribute:: experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand.vector
+
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
 
 Special Methods
 ---------------

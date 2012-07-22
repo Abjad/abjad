@@ -11,7 +11,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.interpretertools.RegionDivisionCommand.RegionDivisionCommand.RegionDivisionCommand.duration
 
-    Inherited from :py:class:`DivisionCommand.DivisionCommand <experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand>`
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
 
 .. autoattribute:: experimental.interpretertools.RegionDivisionCommand.RegionDivisionCommand.RegionDivisionCommand.fresh
 
@@ -27,11 +27,11 @@ Read-only Properties
 
 .. autoattribute:: experimental.interpretertools.RegionDivisionCommand.RegionDivisionCommand.RegionDivisionCommand.value
 
-    Inherited from :py:class:`DivisionCommand.DivisionCommand <experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand>`
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
 
 .. autoattribute:: experimental.interpretertools.RegionDivisionCommand.RegionDivisionCommand.RegionDivisionCommand.vector
 
-    Inherited from :py:class:`DivisionCommand.DivisionCommand <experimental.interpretertools.DivisionCommand.DivisionCommand.DivisionCommand>`
+    Inherited from :py:class:`Command.Command <experimental.interpretertools.Command.Command.Command>`
 
 Special Methods
 ---------------
