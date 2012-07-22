@@ -54,9 +54,12 @@ class QSchema(abctools.AbjadObject):
             if lookup is not None:
                 result[field] = lookup
             else:
-                keys = self._lookups[field].keys()
+                keys = sorted(self._lookups[field].keys())
                 idx = bisect.bisect(keys, i)
-                key = keys[idx - 1]
+                if len(keys) == idx:
+                    key = keys[-1]
+                elif i < keys[idx]:
+                    key = keys[idx - 1]
                 result[field] = self._lookups[field][key]
         return result
 
