@@ -11,7 +11,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.interpretertools.SegmentDivisionToken.SegmentDivisionToken.SegmentDivisionToken.duration
 
-    Inherited from :py:class:`UninterpretedDivisionToken.UninterpretedDivisionToken <experimental.interpretertools.UninterpretedDivisionToken.UninterpretedDivisionToken.UninterpretedDivisionToken>`
+    Inherited from :py:class:`DivisionToken.DivisionToken <experimental.interpretertools.DivisionToken.DivisionToken.DivisionToken>`
 
 .. autoattribute:: experimental.interpretertools.SegmentDivisionToken.SegmentDivisionToken.SegmentDivisionToken.fresh
 
@@ -27,11 +27,11 @@ Read-only Properties
 
 .. autoattribute:: experimental.interpretertools.SegmentDivisionToken.SegmentDivisionToken.SegmentDivisionToken.value
 
-    Inherited from :py:class:`UninterpretedDivisionToken.UninterpretedDivisionToken <experimental.interpretertools.UninterpretedDivisionToken.UninterpretedDivisionToken.UninterpretedDivisionToken>`
+    Inherited from :py:class:`DivisionToken.DivisionToken <experimental.interpretertools.DivisionToken.DivisionToken.DivisionToken>`
 
 .. autoattribute:: experimental.interpretertools.SegmentDivisionToken.SegmentDivisionToken.SegmentDivisionToken.vector
 
-    Inherited from :py:class:`UninterpretedDivisionToken.UninterpretedDivisionToken <experimental.interpretertools.UninterpretedDivisionToken.UninterpretedDivisionToken.UninterpretedDivisionToken>`
+    Inherited from :py:class:`DivisionToken.DivisionToken <experimental.interpretertools.DivisionToken.DivisionToken.DivisionToken>`
 
 Special Methods
 ---------------
