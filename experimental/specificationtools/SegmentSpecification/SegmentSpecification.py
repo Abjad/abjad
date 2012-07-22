@@ -231,7 +231,8 @@ class SegmentSpecification(Specification):
         else:
             return interpretertools.ResolvedValue(None, False, False)
 
-    def get_improved_segment_division_tokens_for_voice(self, context_name):
+    # new behavior
+    def get_division_tokens_that_start_during_segment(self, context_name):
         from experimental import selectortools
         resolved_settings = self.get_resolved_single_context_settings('divisions', context_name)
         segment_division_tokens = []
@@ -242,6 +243,7 @@ class SegmentSpecification(Specification):
             else:
                 raise Exception('implement me for normal case resolved setting')
             segment_division_tokens.append(token)
+        self._debug(segment_division_tokens, 'foo')
         return segment_division_tokens
 
     def count_ratio_item_selector_to_segment_division_token(self, resolved_setting):

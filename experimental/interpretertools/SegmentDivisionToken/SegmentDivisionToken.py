@@ -4,7 +4,15 @@ from experimental.interpretertools.DivisionToken import DivisionToken
 class SegmentDivisionToken(DivisionToken):
     r'''.. versionadded:: 1.0
 
-    Segment division token created during interpretation.
+    Previously only zero or one division setting could be made per segment.
+
+    Now zero or more division settings can be made per segment.
+
+    What does this mean?
+
+    This means that the meaning of a segment division token is currently
+    shifting from "**the** division setting active during segment"
+    to "**one** (of possibly many) division settings active during segment".
     '''
 
     pass

@@ -39,6 +39,7 @@ class ContextProxy(AbjadObject, OrderedDict):
                 # CURRENT: toggle between these two values while implementing count ratio selectors
                 #          First line is for last known good behavior.
                 #          Second line is for newly improved behavior.
+                #          Two corresponding changes must be made in ScoreSpecification.
                 result.append(value)
                 #result.extend(value)
         return result

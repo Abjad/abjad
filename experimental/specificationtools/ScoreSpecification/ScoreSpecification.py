@@ -286,6 +286,15 @@ class ScoreSpecification(Specification):
             else:
                 return candidate_segment_number
 
+    # new behavior
+    def get_improved_segment_division_tokens_for_voice(self, voice):
+        improved_segment_division_tokens = []
+        for segment in self.segments:
+            #tokens = segment.get_improved_segment_division_tokens_for_voice(voice.name)
+            tokens = segment.get_division_tokens_that_start_during_segment(voice.name)
+            improved_segment_division_tokens.extend(tokens)
+        return improved_segment_division_tokens
+
     def get_rhythm_tokens_for_all_segments_in_voice(self, voice):
         rhythm_tokens = []
         for segment in self.segments:
@@ -293,14 +302,7 @@ class ScoreSpecification(Specification):
             rhythm_tokens.append(rhythm_token)
         return rhythm_tokens
 
-    # alphabetize later
-    def get_improved_segment_division_tokens_for_voice(self, voice):
-        improved_segment_division_tokens = []
-        for segment in self.segments:
-            tokens = segment.get_improved_segment_division_tokens_for_voice(voice.name)
-            improved_segment_division_tokens.extend(tokens)
-        return improved_segment_division_tokens
-
+    # deprecated behavior
     def get_segment_division_tokens_for_voice(self, voice):
         segment_division_tokens = []
         for segment in self.segments:
@@ -446,12 +448,23 @@ class ScoreSpecification(Specification):
 
     def make_region_division_lists_for_voice(self, voice):
         '''Called only once for each voice in score.
-        Make one division list for each region in voice.
-        Model of region is currently in flux during count ratio selector integration.
+        Make one RegionDivisionList for each region in voice.
+        Model of region is changing during count ratio selector integration.
+        What is the relationship between segments, regions and divisions?
+        A segment models a small-, medium- or large-sized section of score.
+        A division is the smallest unit of input to some material-making process;
+        A division is frequently analagous to a beat.
+        A region is (finally) defined equal to zero or more consecutive divisions.
+        The purpose of a region is yoke together divisions for input to some material-making process.
+        So regions act as a type of container of divisions.
+        Segments exhibit no necessary relationship with either regions or divisions.
+        But in the usual case a segment will comprise one (or a few) regions.
         '''
         # CURRENT: toggle between these two values while implementing count ratio selectors
         #          First line is for last known good behavior.
         #          Second line is for newly improved behavior.
+        #          Corresponding change must also be made in self.store_setting() for this to work.
+        #          And also one change in ContextProxy.
         segment_division_tokens = self.get_segment_division_tokens_for_voice(voice)
         #segment_division_tokens = self.get_improved_segment_division_tokens_for_voice(voice)
         #self._debug(segment_division_tokens)
@@ -562,11 +575,7 @@ class ScoreSpecification(Specification):
         self.store_only_one_setting(segment, context_name, attribute, resolved_setting)
         #self.store_multiple_settings(segment, context_name, attribute, resolved_setting)
 
-    def store_only_one_setting(self, segment, context_name, attribute, resolved_setting):
-        segment.resolved_settings_context_dictionary[context_name][attribute] = resolved_setting
-        if resolved_setting.persistent:
-            self.resolved_settings_context_dictionary[context_name][attribute] = resolved_setting
-
+    # new behavior
     def store_multiple_settings(self, segment, context_name, attribute, resolved_setting):
         if attribute in segment.resolved_settings_context_dictionary[context_name]:
             segment.resolved_settings_context_dictionary[context_name][attribute].append(resolved_setting)
@@ -577,6 +586,12 @@ class ScoreSpecification(Specification):
                 self.resolved_settings_context_dictionary[context_name][attribute].append(resolved_setting)
             else:
                 self.resolved_settings_context_dictionary[context_name] = [resolved_setting]
+
+    # deprecated old behavior
+    def store_only_one_setting(self, segment, context_name, attribute, resolved_setting):
+        segment.resolved_settings_context_dictionary[context_name][attribute] = resolved_setting
+        if resolved_setting.persistent:
+            self.resolved_settings_context_dictionary[context_name][attribute] = resolved_setting
 
     def store_settings(self, settings):
         for setting in settings:

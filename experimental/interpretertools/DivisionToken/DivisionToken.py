@@ -4,7 +4,9 @@ from experimental.interpretertools.Token import Token
 class DivisionToken(Token):
     r'''.. versionadded:: 1.0
 
-    Abstract division token from which concrete division tokens inherit.
+    Durated period of time over which a division-maker will apply.
+
+    .. note:: reorder input parameters to ``value``, ``duration``, ``fresh``, ``truncate``.
     '''
 
     ### INITIALIZER ###
