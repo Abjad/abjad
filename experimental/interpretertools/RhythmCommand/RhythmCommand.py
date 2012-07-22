@@ -4,7 +4,7 @@ from experimental.interpretertools.Command import Command
 class RhythmCommand(Command):
     r'''.. versionadded:: 1.0
 
-    Rhythm token created during interpretation.
+    Rhythm command created during interpretation.
     '''
     
     ### INITIALIZER ###

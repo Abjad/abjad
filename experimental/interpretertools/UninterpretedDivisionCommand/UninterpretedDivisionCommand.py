@@ -5,9 +5,9 @@ import fractions
 class UninterpretedDivisionCommand(DivisionCommand):
     r'''.. versionadded:: 1.0
 
-    Division token ``fresh`` and ``truncate`` parameters not yet interpreted.
+    Division command ``fresh`` and ``truncate`` parameters not yet interpreted.
 
-    Uninterpreted division tokens appear relatively early in the process of interpretation.
+    Uninterpreted division commands appear relatively early in the process of interpretation.
     '''
 
     ### INITIALIZER ###

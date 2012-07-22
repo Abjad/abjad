@@ -6,15 +6,15 @@ class RegionDivisionCommand(UninterpretedDivisionCommand):
 
     Durated period of time over which a division-maker will apply.
 
-    How do region division tokens and (unqualified) division tokens differ?
+    How do region division commands and (unqualified) division commands differ?
 
-    Region division tokens represent a more refined product of interpretation.
+    Region division commands represent a more refined product of interpretation.
 
-    (Unqualified) division tokens may or may not glue together to create region division tokens. 
+    (Unqualified) division commands may or may not glue together to create region division commands. 
 
-    Region division tokens never glue together.
+    Region division commands never glue together.
 
-    Region division tokens represent an absolute command to create divisions over a given duration.
+    Region division commands represent an absolute command to create divisions over a given duration.
     '''
 
     pass

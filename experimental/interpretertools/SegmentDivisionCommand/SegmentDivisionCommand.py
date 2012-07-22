@@ -10,7 +10,7 @@ class SegmentDivisionCommand(UninterpretedDivisionCommand):
 
     What does this mean?
 
-    This means that the meaning of a segment division token is currently
+    This means that the meaning of a segment division command is currently
     shifting from "**the** division setting active during segment"
     to "**one** (of possibly many) division settings active during segment".
     '''

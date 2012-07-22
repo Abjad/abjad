@@ -10,7 +10,7 @@ class DivisionCommand(Command):
     
     Bassically a ``(value, duration)`` pair.
 
-    Abstract class from which division tokens inherit.
+    Abstract class from which division commands inherit.
     '''
 
     ### CLASS ATTRIBUTES ###
