@@ -299,7 +299,11 @@ class SegmentSpecification(Specification):
     # new behavior
     def get_rhythm_commands_that_start_during_segment(self, voice_name):
         from experimental import selectortools
+        from experimental.specificationtools import library
         resolved_settings = self.get_resolved_single_context_settings('rhythm', voice_name)
+        if resolved_settings is None:
+            rhythm_command = interpretertools.RhythmCommand(library.rest_filled_tokens, self.duration, True)
+            return [rhythm_command]
         rhythm_commands = []
         for resolved_setting in resolved_settings:
             if isinstance(resolved_setting.target, selectortools.CountRatioItemSelector):

@@ -22,6 +22,17 @@ class Command(AbjadObject):
         self._value = value
         self._duration = duration
 
+    ### SPECIAL METHODS ###
+
+    def __eq__(self, expr):
+        if isinstance(expr, type(self)):
+            for my_value, expr_value in zip(self._mandatory_argument_values, expr._mandatory_argument_values):
+                if not my_value == expr_value:
+                    return False
+            else:
+                return True
+        return False
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property

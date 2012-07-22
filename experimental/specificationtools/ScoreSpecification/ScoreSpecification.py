@@ -130,6 +130,9 @@ class ScoreSpecification(Specification):
     # deprecated behavior
     def add_rhythms_to_voice(self, voice):
         rhythm_commands = self.get_rhythm_commands_for_all_segments_in_voice(voice)
+        new_rhythm_commands = self.get_rhythm_commands_for_voice(voice)
+        assert len(rhythm_commands) == len(new_rhythm_commands)
+        assert rhythm_commands == new_rhythm_commands
         region_division_lists = self.payload_context_dictionary[voice.name]['region_division_lists']
         for rhythm_command, region_division_list in zip(rhythm_commands, region_division_lists):
             self.add_rhythm_to_voice(voice, rhythm_command, region_division_list)
