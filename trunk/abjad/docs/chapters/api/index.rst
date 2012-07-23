@@ -1394,6 +1394,7 @@ Composition packages
    tools/sequencetools/negate_sequence_elements_at_indices
    tools/sequencetools/negate_sequence_elements_cyclically
    tools/sequencetools/overwrite_sequence_elements_at_indices
+   tools/sequencetools/pair_duration_sequence_elements_with_input_pair_values
    tools/sequencetools/partition_sequence_by_backgrounded_weights
    tools/sequencetools/partition_sequence_by_ratio_of_lengths
    tools/sequencetools/partition_sequence_by_ratio_of_weights
