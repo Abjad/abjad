@@ -2,6 +2,7 @@ from abjad.tools import contexttools
 from abjad.tools import durationtools
 from experimental.quantizationtools.QGridSearchTree import QGridSearchTree
 from experimental.quantizationtools.QSchema import QSchema
+from experimental.quantizationtools.QTargetItem import QTargetItem
 from experimental.quantizationtools.UnmeteredQSchemaItem import UnmeteredQSchemaItem
 
 
