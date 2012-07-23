@@ -96,7 +96,8 @@ class ScoreSpecification(Specification):
         division_region_division_lists = self.make_division_region_division_lists_for_voice(voice)
         #self._debug(division_region_division_lists)
         if division_region_division_lists:
-            self.payload_context_dictionary[voice.name]['division_region_division_lists'] = division_region_division_lists 
+            self.payload_context_dictionary[voice.name]['division_region_division_lists'] = \
+                division_region_division_lists 
             voice_divisions = []
             for division_region_division_list in division_region_division_lists:
                 voice_divisions.extend(division_region_division_list.divisions)
@@ -129,9 +130,8 @@ class ScoreSpecification(Specification):
     # deprecated behavior; this competes with definition immediately below
     def add_rhythms_to_voice(self, voice):
         rhythm_commands = self.get_rhythm_commands_for_voice(voice)
-        division_region_division_lists = self.payload_context_dictionary[voice.name]['division_region_division_lists']
-        # assertion below doesn't always hold in current implementation
-        #assert len(rhythm_commands) == len(division_region_division_lists), repr((division_region_division_lists, rhythm_commands))
+        division_region_division_lists = self.payload_context_dictionary[voice.name][
+            'division_region_division_lists']
         for rhythm_command, division_region_division_list in zip(rhythm_commands, division_region_division_lists):
             self.add_rhythm_to_voice(voice, rhythm_command, division_region_division_list)
 
@@ -146,7 +146,8 @@ class ScoreSpecification(Specification):
 #        rhythm_commands = self.get_rhythm_commands_for_voice(voice)
 #        rhythm_commands = self.fuse_like_rhythm_commands(rhythm_commands)
 #        rhythm_command_durations = [x.duration for x in rhythm_commands]
-#        division_region_division_lists = self.payload_context_dictionary[voice.name]['division_region_division_lists']
+#        division_region_division_lists = self.payload_context_dictionary[voice.name][
+#            'division_region_division_lists']
 #        region_durations = [x.duration for x in division_region_division_lists]
 #        background_weights = sequencetools.merge_duration_sequences(region_durations, rhythm_command_durations)
 #        args = (voice_division_durations, background_weights)
@@ -160,7 +161,8 @@ class ScoreSpecification(Specification):
 #        rhythm_command = rhythm_commands[0]
 #        for voice_division_part in voice_division_parts:
 #            if voice_division_part:
-#                division_region_division_list = interpretationtools.DivisionRegionDivisionList(voice_division_part)
+#                division_region_division_list = interpretationtools.DivisionRegionDivisionList(
+#                    voice_division_part)
 #                self.add_rhythm_to_voice(voice, rhythm_command, division_region_division_list)
 
     def add_segment_division_list_to_segment_payload_context_dictionaries_for_voice(
@@ -348,7 +350,8 @@ class ScoreSpecification(Specification):
         return uninterpreted_division_commands
 
     def get_start_division_lists_for_voice(self, voice):
-        division_region_division_lists = self.payload_context_dictionary[voice.name]['division_region_division_lists']
+        division_region_division_lists = self.payload_context_dictionary[voice.name][
+            'division_region_division_lists']
         divisions = []
         for division_region_division_list in division_region_division_lists:
             divisions.extend(division_region_division_list)
@@ -393,7 +396,8 @@ class ScoreSpecification(Specification):
     def handle_divisions_retrieval_request(self, request):
         voice = componenttools.get_first_component_in_expr_with_name(self.score, request.voice)
         assert isinstance(voice, voicetools.Voice), voice
-        division_region_division_lists = self.payload_context_dictionary[voice.name]['division_region_division_lists']
+        division_region_division_lists = self.payload_context_dictionary[voice.name][
+            'division_region_division_lists']
         divisions = []
         for division_region_division_list in division_region_division_lists:
             divisions.extend(division_region_division_list)
@@ -525,8 +529,10 @@ class ScoreSpecification(Specification):
         #self._debug(region_division_commands)
         division_region_division_lists = self.make_division_region_division_lists_from_region_division_commands(
             region_division_commands)
-        self.payload_context_dictionary[voice.name]['division_region_division_lists'] = division_region_division_lists[:]
-        self.payload_context_dictionary[voice.name]['division_region_division_lists'] = division_region_division_lists[:]
+        self.payload_context_dictionary[voice.name]['division_region_division_lists'] = \
+            division_region_division_lists[:]
+        self.payload_context_dictionary[voice.name]['division_region_division_lists'] = \
+            division_region_division_lists[:]
         #self._debug(division_region_division_lists)
         return division_region_division_lists
 
