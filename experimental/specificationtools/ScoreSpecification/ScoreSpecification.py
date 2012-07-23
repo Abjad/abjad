@@ -110,19 +110,16 @@ class ScoreSpecification(Specification):
             self.add_segment_division_list_to_segment_payload_context_dictionaries_for_voice(
                 voice, segment_division_lists)
 
-    #def add_rhythm_to_voice(self, voice, rhythm_command, rhythm_region_division_list):
     def add_rhythm_to_voice(self, voice, rhythm_maker, rhythm_region_division_list):
 #        self._debug(rhythm_maker)
 #        self._debug(rhythm_region_division_list)
 #        print ''
-        #maker = rhythm_command.value
         assert isinstance(rhythm_maker, timetokentools.TimeTokenMaker), repr(rhythm_maker)
+        assert isinstance(rhythm_region_division_list, interpretationtools.RhythmRegionDivisionList)
         leaf_lists = rhythm_maker(rhythm_region_division_list.pairs)
-        containers = [containertools.Container(x) for x in leaf_lists]
-        voice.extend(containers)
-        if getattr(rhythm_maker, 'beam', False):
-            durations = [x.preprolated_duration for x in containers]
-            beamtools.DuratedComplexBeamSpanner(containers, durations=durations, span=1)
+        rhythm_containers = [containertools.Container(x) for x in leaf_lists]
+        voice.extend(rhythm_containers)
+        self.conditionally_beam_rhythm_containers(rhythm_maker, rhythm_containers)
 
     def add_rhythms(self):
         for voice in voicetools.iterate_voices_forward_in_expr(self.score):
@@ -135,7 +132,9 @@ class ScoreSpecification(Specification):
             'division_region_division_lists']
         for rhythm_command, division_region_division_list in zip(rhythm_commands, division_region_division_lists):
             rhythm_maker = rhythm_command.value
-            self.add_rhythm_to_voice(voice, rhythm_maker, division_region_division_list)
+            rhythm_region_division_list = interpretationtools.RhythmRegionDivisionList(
+                division_region_division_list.pairs)
+            self.add_rhythm_to_voice(voice, rhythm_maker, rhythm_region_division_list)
 
 #    # new behavior; this competes with definition immediately above
 #    def add_rhythms_to_voice(self, voice):
@@ -270,6 +269,11 @@ class ScoreSpecification(Specification):
                     region_division_command = interpretationtools.RegionDivisionCommand(*args)
                     region_division_commands[-1] = region_division_command
         return region_division_commands
+
+    def conditionally_beam_rhythm_containers(self, rhythm_maker, rhythm_containers):
+        if getattr(rhythm_maker, 'beam', False):
+            durations = [x.preprolated_duration for x in rhythm_containers]
+            beamtools.DuratedComplexBeamSpanner(rhythm_containers, durations=durations, span=1)
 
     def evaluate_segment_index_expression(self, expression):
         r'''Evaluate segment index expression::
