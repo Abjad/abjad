@@ -93,13 +93,13 @@ class ScoreSpecification(Specification):
             self.add_divisions_to_voice(voice)
 
     def add_divisions_to_voice(self, voice):
-        region_division_lists = self.make_region_division_lists_for_voice(voice)
-        #self._debug(region_division_lists)
-        if region_division_lists:
-            self.payload_context_dictionary[voice.name]['region_division_lists'] = region_division_lists 
+        division_region_division_lists = self.make_division_region_division_lists_for_voice(voice)
+        #self._debug(division_region_division_lists)
+        if division_region_division_lists:
+            self.payload_context_dictionary[voice.name]['division_region_division_lists'] = division_region_division_lists 
             voice_divisions = []
-            for region_division_list in region_division_lists:
-                voice_divisions.extend(region_division_list.divisions)
+            for division_region_division_list in division_region_division_lists:
+                voice_divisions.extend(division_region_division_list.divisions)
             #self._debug(voice_divisions)
             voice_division_list = interpretationtools.VoiceDivisionList(voice_divisions)
             self.payload_context_dictionary[voice.name]['voice_division_list'] = voice_division_list
@@ -109,13 +109,13 @@ class ScoreSpecification(Specification):
             self.add_segment_division_list_to_segment_payload_context_dictionaries_for_voice(
                 voice, segment_division_lists)
 
-    def add_rhythm_to_voice(self, voice, rhythm_command, region_division_list):
+    def add_rhythm_to_voice(self, voice, rhythm_command, division_region_division_list):
 #        self._debug(rhythm_command)
-#        self._debug(region_division_list)
+#        self._debug(division_region_division_list)
 #        print ''
         maker = rhythm_command.value
         assert isinstance(maker, timetokentools.TimeTokenMaker), repr(maker)
-        leaf_lists = maker(region_division_list.pairs)
+        leaf_lists = maker(division_region_division_list.pairs)
         containers = [containertools.Container(x) for x in leaf_lists]
         voice.extend(containers)
         if getattr(maker, 'beam', False):
@@ -129,11 +129,11 @@ class ScoreSpecification(Specification):
     # deprecated behavior; this competes with definition immediately below
     def add_rhythms_to_voice(self, voice):
         rhythm_commands = self.get_rhythm_commands_for_voice(voice)
-        region_division_lists = self.payload_context_dictionary[voice.name]['region_division_lists']
+        division_region_division_lists = self.payload_context_dictionary[voice.name]['division_region_division_lists']
         # assertion below doesn't always hold in current implementation
-        #assert len(rhythm_commands) == len(region_division_lists), repr((region_division_lists, rhythm_commands))
-        for rhythm_command, region_division_list in zip(rhythm_commands, region_division_lists):
-            self.add_rhythm_to_voice(voice, rhythm_command, region_division_list)
+        #assert len(rhythm_commands) == len(division_region_division_lists), repr((division_region_division_lists, rhythm_commands))
+        for rhythm_command, division_region_division_list in zip(rhythm_commands, division_region_division_lists):
+            self.add_rhythm_to_voice(voice, rhythm_command, division_region_division_list)
 
 #    # new behavior; this competes with definition immediately above
 #    def add_rhythms_to_voice(self, voice):
@@ -146,8 +146,8 @@ class ScoreSpecification(Specification):
 #        rhythm_commands = self.get_rhythm_commands_for_voice(voice)
 #        rhythm_commands = self.fuse_like_rhythm_commands(rhythm_commands)
 #        rhythm_command_durations = [x.duration for x in rhythm_commands]
-#        region_division_lists = self.payload_context_dictionary[voice.name]['region_division_lists']
-#        region_durations = [x.duration for x in region_division_lists]
+#        division_region_division_lists = self.payload_context_dictionary[voice.name]['division_region_division_lists']
+#        region_durations = [x.duration for x in division_region_division_lists]
 #        background_weights = sequencetools.merge_duration_sequences(region_durations, rhythm_command_durations)
 #        args = (voice_division_durations, background_weights)
 #        voice_division_parts = sequencetools.partition_sequence_by_backgrounded_weights(*args)
@@ -160,8 +160,8 @@ class ScoreSpecification(Specification):
 #        rhythm_command = rhythm_commands[0]
 #        for voice_division_part in voice_division_parts:
 #            if voice_division_part:
-#                region_division_list = interpretationtools.DivisionRegionDivisionList(voice_division_part)
-#                self.add_rhythm_to_voice(voice, rhythm_command, region_division_list)
+#                division_region_division_list = interpretationtools.DivisionRegionDivisionList(voice_division_part)
+#                self.add_rhythm_to_voice(voice, rhythm_command, division_region_division_list)
 
     def add_segment_division_list_to_segment_payload_context_dictionaries_for_voice(
         self, voice, segment_division_lists):
@@ -348,10 +348,10 @@ class ScoreSpecification(Specification):
         return uninterpreted_division_commands
 
     def get_start_division_lists_for_voice(self, voice):
-        region_division_lists = self.payload_context_dictionary[voice.name]['region_division_lists']
+        division_region_division_lists = self.payload_context_dictionary[voice.name]['division_region_division_lists']
         divisions = []
-        for region_division_list in region_division_lists:
-            divisions.extend(region_division_list)
+        for division_region_division_list in division_region_division_lists:
+            divisions.extend(division_region_division_list)
         divisions = [mathtools.NonreducedFraction(x) for x in divisions] 
         assert sum(divisions) == self.score_duration
         start_division_lists = sequencetools.partition_sequence_by_backgrounded_weights(
@@ -393,10 +393,10 @@ class ScoreSpecification(Specification):
     def handle_divisions_retrieval_request(self, request):
         voice = componenttools.get_first_component_in_expr_with_name(self.score, request.voice)
         assert isinstance(voice, voicetools.Voice), voice
-        region_division_lists = self.payload_context_dictionary[voice.name]['region_division_lists']
+        division_region_division_lists = self.payload_context_dictionary[voice.name]['division_region_division_lists']
         divisions = []
-        for region_division_list in region_division_lists:
-            divisions.extend(region_division_list)
+        for division_region_division_list in division_region_division_lists:
+            divisions.extend(division_region_division_list)
         assert isinstance(divisions, list), divisions
         start_segment_expr = request.inequality.timespan.selector.start
         stop_segment_expr = request.inequality.timespan.selector.stop
@@ -498,7 +498,7 @@ class ScoreSpecification(Specification):
             assert setting.target.timespan == segment.timespan, [repr(setting), '\n', repr(segment.timespan)]
             self.store_setting(setting)
 
-    def make_region_division_lists_for_voice(self, voice):
+    def make_division_region_division_lists_for_voice(self, voice):
         '''Called only once for each voice in score.
         Make one DivisionRegionDivisionList for each region in voice.
         Model of region is changing during count ratio selector integration.
@@ -523,29 +523,29 @@ class ScoreSpecification(Specification):
         region_division_commands = self.change_uninterpreted_division_commands_to_region_division_commands(
             uninterpreted_division_commands)
         #self._debug(region_division_commands)
-        region_division_lists = self.make_region_division_lists_from_region_division_commands(
+        division_region_division_lists = self.make_division_region_division_lists_from_region_division_commands(
             region_division_commands)
-        self.payload_context_dictionary[voice.name]['region_division_lists'] = region_division_lists[:]
-        self.payload_context_dictionary[voice.name]['region_division_lists'] = region_division_lists[:]
-        #self._debug(region_division_lists)
-        return region_division_lists
+        self.payload_context_dictionary[voice.name]['division_region_division_lists'] = division_region_division_lists[:]
+        self.payload_context_dictionary[voice.name]['division_region_division_lists'] = division_region_division_lists[:]
+        #self._debug(division_region_division_lists)
+        return division_region_division_lists
 
-    def make_region_division_lists_from_region_division_commands(self, region_division_commands):
+    def make_division_region_division_lists_from_region_division_commands(self, region_division_commands):
         '''Return list of division lists.
         '''
-        region_division_lists = []
+        division_region_division_lists = []
         for region_division_command in region_division_commands:
             divisions = [mathtools.NonreducedFraction(x) for x in region_division_command.value]
             divisions = sequencetools.repeat_sequence_to_weight_exactly(
                 divisions, region_division_command.duration)
             divisions = [x.pair for x in divisions]
             divisions = [Division(x) for x in divisions]
-            region_division_list = interpretationtools.DivisionRegionDivisionList(divisions)
-            #region_division_list.fresh = 'FOO'
-            region_division_list.fresh = region_division_command.fresh
-            region_division_list.truncate = region_division_command.truncate
-            region_division_lists.append(region_division_list)
-        return region_division_lists
+            division_region_division_list = interpretationtools.DivisionRegionDivisionList(divisions)
+            #division_region_division_list.fresh = 'FOO'
+            division_region_division_list.fresh = region_division_command.fresh
+            division_region_division_list.truncate = region_division_command.truncate
+            division_region_division_lists.append(division_region_division_list)
+        return division_region_division_lists
 
     def make_resolved_setting(self, setting):
         from experimental import settingtools

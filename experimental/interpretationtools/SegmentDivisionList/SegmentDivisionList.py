@@ -47,7 +47,7 @@ class SegmentDivisionList(DivisionList):
     The reason for this is that the composer specified only one division-maker
     for the entire score::
 
-        >>> for x in specification.payload_context_dictionary['Voice 1']['region_division_lists']: x
+        >>> for x in specification.payload_context_dictionary['Voice 1']['division_region_division_lists']: x
         ... 
         DivisionRegionDivisionList('[3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16]')
 
