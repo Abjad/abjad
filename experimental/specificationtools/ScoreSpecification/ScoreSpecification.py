@@ -159,15 +159,17 @@ class ScoreSpecification(Specification):
 #        rhythm_region_division_lists = sequencetools.partition_sequence_once_by_counts_without_overhang(
 #            voice_divisions, rhythm_region_lengths)
 #        assert len(rhythm_region_division_lists) == len(rhythm_region_durations)
-#        # the following lines are a temporary hack
-#        rhythm_command = rhythm_commands[0]
-#        for rhythm_region_division_list in rhythm_region_division_lists:
+#        input_pairs = [(command.value, command.duration) for command in rhythm_commands]
+#        output_pairs = sequencetools.pair_duration_sequence_elements_with_input_pair_values(
+#            rhythm_region_durations, input_pairs)
+#        assert len(output_pairs) == len(rhythm_region_division_lists)
+#        for rhythm_region_division_list, output_pair in zip(rhythm_region_division_lists, output_pairs):
 #            if rhythm_region_division_list:
+#                rhythm_maker = output_pair[-1]    
 #                rhythm_region_division_list = interpretationtools.RhythmRegionDivisionList(
 #                    rhythm_region_division_list)
-#                rhythm_maker = rhythm_command.value
 #                self.add_rhythm_to_voice(voice, rhythm_maker, rhythm_region_division_list)
-
+            
     def add_segment_division_list_to_segment_payload_context_dictionaries_for_voice(
         self, voice, segment_division_lists):
         assert len(self.segments) == len(segment_division_lists)
