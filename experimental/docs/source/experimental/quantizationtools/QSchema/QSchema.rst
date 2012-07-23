@@ -28,6 +28,8 @@ Read-only Properties
 Special Methods
 ---------------
 
+.. automethod:: experimental.quantizationtools.QSchema.QSchema.QSchema.__call__
+
 .. automethod:: experimental.quantizationtools.QSchema.QSchema.QSchema.__delattr__
 
     Inherited from :py:class:`__builtin__.object`

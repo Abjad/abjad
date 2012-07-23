@@ -40,6 +40,10 @@ Read-only Properties
 Special Methods
 ---------------
 
+.. automethod:: experimental.quantizationtools.MeteredQSchema.MeteredQSchema.MeteredQSchema.__call__
+
+    Inherited from :py:class:`QSchema.QSchema <experimental.quantizationtools.QSchema.QSchema.QSchema>`
+
 .. automethod:: experimental.quantizationtools.MeteredQSchema.MeteredQSchema.MeteredQSchema.__delattr__
 
     Inherited from :py:class:`__builtin__.object`

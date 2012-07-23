@@ -9,8 +9,6 @@ quantizationtools.QTargetGrouping
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.quantizationtools.QTargetGrouping.QTargetGrouping.QTargetGrouping.beatspan
-
 .. autoattribute:: experimental.quantizationtools.QTargetGrouping.QTargetGrouping.QTargetGrouping.duration_in_ms
 
 .. autoattribute:: experimental.quantizationtools.QTargetGrouping.QTargetGrouping.QTargetGrouping.offset_in_ms
@@ -24,6 +22,8 @@ Read-only Properties
 .. autoattribute:: experimental.quantizationtools.QTargetGrouping.QTargetGrouping.QTargetGrouping.tempo
 
 .. autoattribute:: experimental.quantizationtools.QTargetGrouping.QTargetGrouping.QTargetGrouping.time_signature
+
+.. autoattribute:: experimental.quantizationtools.QTargetGrouping.QTargetGrouping.QTargetGrouping.use_full_measure
 
 Special Methods
 ---------------
