@@ -1388,6 +1388,7 @@ Composition packages
    tools/sequencetools/join_subsequences_by_sign_of_subsequence_elements
    tools/sequencetools/map_sequence_elements_to_canonic_tuples
    tools/sequencetools/map_sequence_elements_to_numbered_sublists
+   tools/sequencetools/merge_duration_sequences
    tools/sequencetools/negate_absolute_value_of_sequence_elements_at_indices
    tools/sequencetools/negate_absolute_value_of_sequence_elements_cyclically
    tools/sequencetools/negate_sequence_elements_at_indices
