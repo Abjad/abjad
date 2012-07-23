@@ -32,7 +32,7 @@ class InheritanceGraph(ImmutableDictionary):
 
     ::
 
-        >>> for parent, children in sorted(graph.items(), key=lambda x: x[0].__name__):
+        >>> for parent, children in sorted(graph.items(), key=lambda x: x[0].__name__): # doctest: +SKIP
         ...     parent, tuple(sorted(children, key=lambda x: x.__name__))
         (<class '__main__.A'>, (<class '__main__.B'>, <class '__main__.F'>))
         (<class '__main__.B'>, (<class '__main__.C'>, <class '__main__.D'>))
