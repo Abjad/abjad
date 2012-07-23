@@ -110,16 +110,17 @@ class ScoreSpecification(Specification):
             self.add_segment_division_list_to_segment_payload_context_dictionaries_for_voice(
                 voice, segment_division_lists)
 
-    def add_rhythm_to_voice(self, voice, rhythm_command, division_region_division_list):
-        self._debug(rhythm_command)
-        self._debug(division_region_division_list)
-        print ''
-        maker = rhythm_command.value
-        assert isinstance(maker, timetokentools.TimeTokenMaker), repr(maker)
-        leaf_lists = maker(division_region_division_list.pairs)
+    #def add_rhythm_to_voice(self, voice, rhythm_command, rhythm_region_division_list):
+    def add_rhythm_to_voice(self, voice, rhythm_maker, rhythm_region_division_list):
+#        self._debug(rhythm_maker)
+#        self._debug(rhythm_region_division_list)
+#        print ''
+        #maker = rhythm_command.value
+        assert isinstance(rhythm_maker, timetokentools.TimeTokenMaker), repr(rhythm_maker)
+        leaf_lists = rhythm_maker(rhythm_region_division_list.pairs)
         containers = [containertools.Container(x) for x in leaf_lists]
         voice.extend(containers)
-        if getattr(maker, 'beam', False):
+        if getattr(rhythm_maker, 'beam', False):
             durations = [x.preprolated_duration for x in containers]
             beamtools.DuratedComplexBeamSpanner(containers, durations=durations, span=1)
 
@@ -133,7 +134,8 @@ class ScoreSpecification(Specification):
         division_region_division_lists = self.payload_context_dictionary[voice.name][
             'division_region_division_lists']
         for rhythm_command, division_region_division_list in zip(rhythm_commands, division_region_division_lists):
-            self.add_rhythm_to_voice(voice, rhythm_command, division_region_division_list)
+            rhythm_maker = rhythm_command.value
+            self.add_rhythm_to_voice(voice, rhythm_maker, division_region_division_list)
 
 #    # new behavior; this competes with definition immediately above
 #    def add_rhythms_to_voice(self, voice):
@@ -149,22 +151,23 @@ class ScoreSpecification(Specification):
 #        division_region_division_lists = self.payload_context_dictionary[voice.name][
 #            'division_region_division_lists']
 #        division_region_durations = [x.duration for x in division_region_division_lists]
-#        division_region_durations = sequencetools.merge_duration_sequences(
+#        rhythm_region_durations = sequencetools.merge_duration_sequences(
 #            division_region_durations, rhythm_command_durations)
-#        args = (voice_division_durations, division_region_durations)
-#        division_region_division_duration_lists = sequencetools.partition_sequence_by_backgrounded_weights(*args)
-#        assert len(division_region_division_duration_lists) == len(division_region_durations)
-#        division_region_lengths = [len(l) for l in division_region_division_duration_lists]
-#        division_region_division_lists = sequencetools.partition_sequence_once_by_counts_without_overhang(
-#            voice_divisions, division_region_lengths)
-#        assert len(division_region_division_lists) == len(division_region_durations)
+#        args = (voice_division_durations, rhythm_region_durations)
+#        rhythm_region_division_duration_lists = sequencetools.partition_sequence_by_backgrounded_weights(*args)
+#        assert len(rhythm_region_division_duration_lists) == len(rhythm_region_durations)
+#        rhythm_region_lengths = [len(l) for l in rhythm_region_division_duration_lists]
+#        rhythm_region_division_lists = sequencetools.partition_sequence_once_by_counts_without_overhang(
+#            voice_divisions, rhythm_region_lengths)
+#        assert len(rhythm_region_division_lists) == len(rhythm_region_durations)
 #        # the following lines are a temporary hack
 #        rhythm_command = rhythm_commands[0]
-#        for division_region_division_list in division_region_division_lists:
-#            if division_region_division_list:
-#                division_region_division_list = interpretationtools.DivisionRegionDivisionList(
-#                    division_region_division_list)
-#                self.add_rhythm_to_voice(voice, rhythm_command, division_region_division_list)
+#        for rhythm_region_division_list in rhythm_region_division_lists:
+#            if rhythm_region_division_list:
+#                rhythm_region_division_list = interpretationtools.RhythmRegionDivisionList(
+#                    rhythm_region_division_list)
+#                rhythm_maker = rhythm_command.value
+#                self.add_rhythm_to_voice(voice, rhythm_maker, rhythm_region_division_list)
 
     def add_segment_division_list_to_segment_payload_context_dictionaries_for_voice(
         self, voice, segment_division_lists):
