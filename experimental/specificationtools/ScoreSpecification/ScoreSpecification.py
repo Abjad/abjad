@@ -125,51 +125,35 @@ class ScoreSpecification(Specification):
         for voice in voicetools.iterate_voices_forward_in_expr(self.score):
             self.add_rhythms_to_voice(voice)
 
-    # deprecated behavior; this competes with definition immediately below
     def add_rhythms_to_voice(self, voice):
+        from experimental import specificationtools
+        voice_division_list = self.get_voice_division_list(voice)
+        if len(voice_division_list) == 0:
+            return
+        voice_divisions = voice_division_list.divisions
+        voice_division_durations = [durationtools.Duration(x) for x in voice_divisions]
         rhythm_commands = self.get_rhythm_commands_for_voice(voice)
+        rhythm_commands = self.fuse_like_rhythm_commands(rhythm_commands)
+        rhythm_command_durations = [x.duration for x in rhythm_commands]
         division_region_division_lists = self.payload_context_dictionary[voice.name][
             'division_region_division_lists']
-        for rhythm_command, division_region_division_list in zip(rhythm_commands, division_region_division_lists):
-            rhythm_maker = rhythm_command.value
-            rhythm_region_division_list = interpretationtools.RhythmRegionDivisionList(
-                division_region_division_list.pairs)
-            self.add_rhythm_to_voice(voice, rhythm_maker, rhythm_region_division_list)
+        division_region_durations = [x.duration for x in division_region_division_lists]
+        rhythm_region_durations = sequencetools.merge_duration_sequences(
+            division_region_durations, rhythm_command_durations)
+        args = (voice_division_durations, rhythm_region_durations)
+        rhythm_region_division_duration_lists = sequencetools.partition_sequence_by_backgrounded_weights(*args)
+        assert len(rhythm_region_division_duration_lists) == len(rhythm_region_durations)
+        rhythm_region_lengths = [len(l) for l in rhythm_region_division_duration_lists]
+        rhythm_region_division_lists = sequencetools.partition_sequence_once_by_counts_without_overhang(
+            voice_divisions, rhythm_region_lengths)
+        assert len(rhythm_region_division_lists) == len(rhythm_region_durations)
+        input_pairs = [(command.value, command.duration) for command in rhythm_commands]
+        output_pairs = sequencetools.pair_duration_sequence_elements_with_input_pair_values(
+            rhythm_region_durations, input_pairs)
+        rhythm_makers = [output_pair[-1] for output_pair in output_pairs]
+        assert len(rhythm_makers) == len(rhythm_region_division_lists)
+        self.make_rhythms_and_add_to_voice(voice, rhythm_makers, rhythm_region_division_lists)
 
-#    # new behavior; this competes with definition immediately above
-#    def add_rhythms_to_voice(self, voice):
-#        from experimental import specificationtools
-#        voice_division_list = self.get_voice_division_list(voice)
-#        if len(voice_division_list) == 0:
-#            return
-#        voice_divisions = voice_division_list.divisions
-#        voice_division_durations = [durationtools.Duration(x) for x in voice_divisions]
-#        rhythm_commands = self.get_rhythm_commands_for_voice(voice)
-#        rhythm_commands = self.fuse_like_rhythm_commands(rhythm_commands)
-#        rhythm_command_durations = [x.duration for x in rhythm_commands]
-#        division_region_division_lists = self.payload_context_dictionary[voice.name][
-#            'division_region_division_lists']
-#        division_region_durations = [x.duration for x in division_region_division_lists]
-#        rhythm_region_durations = sequencetools.merge_duration_sequences(
-#            division_region_durations, rhythm_command_durations)
-#        args = (voice_division_durations, rhythm_region_durations)
-#        rhythm_region_division_duration_lists = sequencetools.partition_sequence_by_backgrounded_weights(*args)
-#        assert len(rhythm_region_division_duration_lists) == len(rhythm_region_durations)
-#        rhythm_region_lengths = [len(l) for l in rhythm_region_division_duration_lists]
-#        rhythm_region_division_lists = sequencetools.partition_sequence_once_by_counts_without_overhang(
-#            voice_divisions, rhythm_region_lengths)
-#        assert len(rhythm_region_division_lists) == len(rhythm_region_durations)
-#        input_pairs = [(command.value, command.duration) for command in rhythm_commands]
-#        output_pairs = sequencetools.pair_duration_sequence_elements_with_input_pair_values(
-#            rhythm_region_durations, input_pairs)
-#        assert len(output_pairs) == len(rhythm_region_division_lists)
-#        for rhythm_region_division_list, output_pair in zip(rhythm_region_division_lists, output_pairs):
-#            if rhythm_region_division_list:
-#                rhythm_maker = output_pair[-1]    
-#                rhythm_region_division_list = interpretationtools.RhythmRegionDivisionList(
-#                    rhythm_region_division_list)
-#                self.add_rhythm_to_voice(voice, rhythm_maker, rhythm_region_division_list)
-            
     def add_segment_division_list_to_segment_payload_context_dictionaries_for_voice(
         self, voice, segment_division_lists):
         assert len(self.segments) == len(segment_division_lists)
@@ -573,6 +557,13 @@ class ScoreSpecification(Specification):
             persistent=setting.persistent, truncate=setting.truncate, fresh=setting.fresh)
         return resolved_setting
 
+    def make_rhythms_and_add_to_voice(self, voice, rhythm_makers, rhythm_region_division_lists):
+        for rhythm_maker, rhythm_region_division_list in zip(rhythm_makers, rhythm_region_division_lists):
+            if rhythm_region_division_list:
+                rhythm_region_division_list = interpretationtools.RhythmRegionDivisionList(
+                    rhythm_region_division_list)
+                self.add_rhythm_to_voice(voice, rhythm_maker, rhythm_region_division_list)
+            
     def make_segment_division_lists_for_voice(self, voice):
         voice_division_list = self.payload_context_dictionary[voice.name]['voice_division_list']
         voice_divisions = [mathtools.NonreducedFraction(x) for x in voice_division_list.divisions]
