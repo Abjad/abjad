@@ -8,10 +8,10 @@ def test_SegmentSpecification_time_signatures_01():
     specification = ScoreSpecification(score_template)
 
     segment = specification.append_segment()
-    assert segment.time_signatures is None
+    assert segment.time_signatures == []
 
     segment.set_time_signatures(segment, [(4, 8), (3, 8)])
-    assert segment.time_signatures is None
+    assert segment.time_signatures == []
 
     score = specification.interpret()
     assert segment.time_signatures == [(4, 8), (3, 8)]

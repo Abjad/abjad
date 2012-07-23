@@ -72,8 +72,8 @@ class SegmentSpecification(Specification):
 
         Return rational or none.
         '''
-        if self.time_signatures is not None:
-            return sum([durationtools.Duration(x) for x in self.time_signatures])        
+        if self.time_signatures:
+            return durationtools.Duration(sum([durationtools.Duration(x) for x in self.time_signatures]))
 
     @property
     def multiple_context_settings(self):
@@ -144,13 +144,12 @@ class SegmentSpecification(Specification):
         from experimental import timespantools
         return timespantools.Timepoint(anchor=self.selector, edge=Right)
 
-    # TODO: return [] instead of none
     @property
     def time_signatures(self):
         '''Segment time signatures::
 
-            >>> segment.time_signatures is None
-            True
+            >>> segment.time_signatures
+            []
 
         Derived during interpretation.
 
@@ -160,7 +159,8 @@ class SegmentSpecification(Specification):
             setting = self.resolved_settings_context_dictionary.score_context_proxy.get_setting(
                 attribute='time_signatures')
         except MissingContextSettingError:
-            return None
+            #return None
+            return []
         assert isinstance(setting.value, list), setting.value
         return setting.value
 

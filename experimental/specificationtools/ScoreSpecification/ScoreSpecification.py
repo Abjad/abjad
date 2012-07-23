@@ -82,8 +82,7 @@ class ScoreSpecification(Specification):
         result = []
         for segment in self.segments:
             time_signatures = segment.time_signatures
-            if time_signatures is not None:
-                result.extend(segment.time_signatures)
+            result.extend(segment.time_signatures)
         return result
 
     ### PUBLIC METHODS ###
