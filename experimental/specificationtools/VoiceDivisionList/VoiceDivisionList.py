@@ -2,12 +2,11 @@ from experimental.specificationtools.DivisionList import DivisionList
 
 
 class VoiceDivisionList(DivisionList):
-    '''Voice division list is a type of division list.
+    r'''.. versionadded:: 1.0
 
-    Composers do not specify voice division lists; rather,
-    voice division lists arise during interpretation.
+    A voice division list is a type of division list.
 
-    Voice division list gives the complete list of divisions for a voice.
+    Voice division lists model all divisions that **start during** some voice.
     '''
 
     pass

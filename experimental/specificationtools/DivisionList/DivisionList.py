@@ -3,6 +3,21 @@ from experimental.specificationtools.Division import Division
 
 
 class DivisionList(AbjadObject):
+    r'''.. versionadded:: 1.0
+
+    List of time-contiguous divisions.
+
+    Where divisions model beats a division list models a 
+    time-contiguous list of beats.
+
+    Where divisions model measures a division list models a 
+    time-contiguous list of measures.
+
+    Division lists attach to a measure because divisions attach to a measure.
+
+    Composers do not specify division lists because division lists 
+    arise as byproduct of interpretation.
+    '''
 
     ### INITIALIZER ###
 

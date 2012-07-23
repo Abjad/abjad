@@ -29,7 +29,11 @@ class Division(NonreducedFraction, BoundedObject):
         >>> specificationtools.Division(_)
         Division('[5, 8)')
 
-    Examples follow.
+    Divisions may model beats. Divisions may model complete measures.
+    Divisions may model time objects other than beats or measures.
+
+    Divisions generally may be used to model any block of time that is 
+    to be understood as divisible into parts.
     '''
 
     ### CLASS ATTRIBUTES ###

@@ -292,8 +292,8 @@ Unstable packages (load manually)
    experimental/specificationtools/ContextProxy/ContextProxy
    experimental/specificationtools/Division/Division
    experimental/specificationtools/DivisionList/DivisionList
+   experimental/specificationtools/DivisionRegionDivisionList/DivisionRegionDivisionList
    experimental/specificationtools/HandlerRequest/HandlerRequest
-   experimental/specificationtools/RegionDivisionList/RegionDivisionList
    experimental/specificationtools/ScopedValue/ScopedValue
    experimental/specificationtools/ScoreSpecification/ScoreSpecification
    experimental/specificationtools/Segment/Segment

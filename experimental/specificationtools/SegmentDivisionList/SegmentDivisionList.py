@@ -2,14 +2,19 @@ from experimental.specificationtools.DivisionList import DivisionList
 
 
 class SegmentDivisionList(DivisionList):
-    '''Segment division list is a type of division list.
+    r'''.. versionadded:: 1.0
 
-    Composers do not specify segment division lists; rather, 
-    segment division lists arise during interpretation.
+    A segment division list is a type of division list.
 
-    Like other division lists, segment division lists are attributes of a voice.
+    Right now segment division lists model all divisions that **intersect**
+    some segment.
 
-    Segment division lists contrast with region division lists.
+    Because of this segment division lists break divisions that cross segment boundaries.
+
+    (Segment division lists will probably migrate later to model
+    all divisions that **start during** some segment instead.)
+
+    Segment division lists contrast with division region division lists.
     The best way to show this is with an example::
 
         >>> from abjad.tools import *
@@ -25,69 +30,8 @@ class SegmentDivisionList(DivisionList):
     ::
 
         >>> setting = segment.set_time_signatures(segment, [(4, 8), (3, 8)])
-        >>> z(setting)
-        settingtools.MultipleContextSetting(
-            selectortools.MultipleContextTimespanSelector(
-                contexts=['Grouped Rhythmic Staves Score'],
-                timespan=timespantools.SingleSourceTimespan(
-                    selector=selectortools.SegmentSelector(
-                        index='1'
-                        )
-                    )
-                ),
-            'time_signatures',
-            [(4, 8), (3, 8)],
-            persistent=True,
-            truncate=False
-            )
-
-    ::
-
         >>> setting = segment.set_divisions(segment.v1, [(3, 16)])
-        >>> z(setting)
-        settingtools.MultipleContextSetting(
-            selectortools.MultipleContextTimespanSelector(
-                contexts=['Voice 1'],
-                timespan=timespantools.SingleSourceTimespan(
-                    selector=selectortools.SegmentSelector(
-                        index='1'
-                        )
-                    )
-                ),
-            'divisions',
-            [(3, 16)],
-            persistent=True,
-            truncate=False
-            )
-
-    ::
-
         >>> setting = segment.set_rhythm(segment, library.thirty_seconds)
-        >>> z(setting)
-        settingtools.MultipleContextSetting(
-            selectortools.MultipleContextTimespanSelector(
-                contexts=['Grouped Rhythmic Staves Score'],
-                timespan=timespantools.SingleSourceTimespan(
-                    selector=selectortools.SegmentSelector(
-                        index='1'
-                        )
-                    )
-                ),
-            'rhythm',
-            timetokentools.OutputBurnishedSignalFilledTimeTokenMaker(
-                [1],
-                32,
-                prolation_addenda=[],
-                lefts=[0],
-                middles=[0],
-                rights=[0],
-                left_lengths=[0],
-                right_lengths=[0],
-                secondary_divisions=[]
-                ),
-            persistent=True,
-            truncate=False
-            )
 
     ::
 
@@ -98,13 +42,18 @@ class SegmentDivisionList(DivisionList):
 
         >>> score = specification.interpret()
 
-    After interpretation voice 1 has only one region division list::
+    Notice that ``'Voice 1'`` has only one division region division list.
+
+    The reason for this is that the composer specified only one division-maker
+    for the entire score::
 
         >>> for x in specification.payload_context_dictionary['Voice 1']['region_division_lists']: x
         ... 
-        RegionDivisionList('[3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16]')
+        DivisionRegionDivisionList('[3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16], [3, 16]')
 
-    But voice 1 has three segment division lists::
+    But notice that ``'Voice 1'`` has three different segment division lists.
+
+    The reason for this is that the composer specified three different segments::
 
         >>> for x in specification.payload_context_dictionary['Voice 1']['segment_division_lists']: x
         ... 
@@ -112,14 +61,15 @@ class SegmentDivisionList(DivisionList):
         SegmentDivisionList('(1, 16], [3, 16], [3, 16], [3, 16], [3, 16], [1, 16)')
         SegmentDivisionList('(2, 16], [3, 16], [3, 16], [3, 16], [3, 16]')
 
-    After interpretation each voice carries exactly one segment division list per segment.
-    
-    (In this example voice 1 carries three segment division list because the score comprises three segments.)
+    Composers may specify an arbitrary number of division-makers for any given voice.
+    This results in an arbitrary number of division regions per voice.
 
-    Segments division lists show the divisions belonging to a voice broken by score segment.
+    Composers may specify an arbitrary number of segments per score.
+    This results in an arbtirary number of segments per voice.
 
-    The broken view that segment division lists provide will frequently be at odds with the
-    unbroken divisions contained in the region division list belonging to a voice.
+    Taken together these two facts mean that the division region division lists attaching 
+    to a voice and the segment division lists attaching to that same voice do not 
+    relate to each other in any systematic way.
     '''
 
     pass

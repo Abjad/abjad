@@ -3,7 +3,7 @@ from experimental import interpretertools
 from experimental.specificationtools.AttributeRetrievalRequest import AttributeRetrievalRequest
 from experimental.specificationtools.Division import Division
 from experimental.specificationtools.DivisionList import DivisionList
-from experimental.specificationtools.RegionDivisionList import RegionDivisionList
+from experimental.specificationtools.DivisionRegionDivisionList import DivisionRegionDivisionList
 from experimental.specificationtools.ScopedValue import ScopedValue
 from experimental.specificationtools.SegmentDivisionList import SegmentDivisionList
 from experimental.specificationtools.SegmentInventory import SegmentInventory
@@ -164,7 +164,7 @@ class ScoreSpecification(Specification):
 #        rhythm_command = rhythm_commands[0]
 #        for voice_division_part in voice_division_parts:
 #            if voice_division_part:
-#                region_division_list = specificationtools.RegionDivisionList(voice_division_part)
+#                region_division_list = specificationtools.DivisionRegionDivisionList(voice_division_part)
 #                self.add_rhythm_to_voice(voice, rhythm_command, region_division_list)
 
     def add_segment_division_list_to_segment_payload_context_dictionaries_for_voice(
@@ -504,7 +504,7 @@ class ScoreSpecification(Specification):
 
     def make_region_division_lists_for_voice(self, voice):
         '''Called only once for each voice in score.
-        Make one RegionDivisionList for each region in voice.
+        Make one DivisionRegionDivisionList for each region in voice.
         Model of region is changing during count ratio selector integration.
         What is the relationship between segments, regions and divisions?
         A segment models a small-, medium- or large-sized section of score.
@@ -544,7 +544,7 @@ class ScoreSpecification(Specification):
                 divisions, region_division_command.duration)
             divisions = [x.pair for x in divisions]
             divisions = [Division(x) for x in divisions]
-            region_division_list = RegionDivisionList(divisions)
+            region_division_list = DivisionRegionDivisionList(divisions)
             #region_division_list.fresh = 'FOO'
             region_division_list.fresh = region_division_command.fresh
             region_division_list.truncate = region_division_command.truncate
