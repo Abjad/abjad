@@ -1,8 +1,8 @@
+from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
 from abjad.tools.mathtools.BoundedObject import BoundedObject
 from abjad.tools.mathtools.NonreducedFraction import NonreducedFraction
-import fractions
 
 
 class Division(NonreducedFraction, BoundedObject):
@@ -92,4 +92,4 @@ class Division(NonreducedFraction, BoundedObject):
 
     @property
     def duration(self):
-        return fractions.Fraction(self.numerator, self.denominator)
+        return durationtools.Duration(self.numerator, self.denominator)

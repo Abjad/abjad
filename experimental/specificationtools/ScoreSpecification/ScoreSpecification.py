@@ -113,7 +113,6 @@ class ScoreSpecification(Specification):
             self.add_segment_division_list_to_segment_payload_context_dictionaries_for_voice(
                 voice, segment_division_lists)
 
-    # deprecated behavior
     def add_rhythm_to_voice(self, voice, rhythm_command, region_division_list):
 #        self._debug(rhythm_command)
 #        self._debug(region_division_list)
@@ -144,7 +143,6 @@ class ScoreSpecification(Specification):
 #    def add_rhythms_to_voice(self, voice):
 #        from experimental import specificationtools
 #        voice_division_list = self.get_voice_division_list(voice)
-#        #self._debug(voice_division_list)
 #        if len(voice_division_list) == 0:
 #            return
 #        voice_divisions = voice_division_list.divisions
@@ -152,19 +150,21 @@ class ScoreSpecification(Specification):
 #        rhythm_commands = self.get_rhythm_commands_for_voice(voice)
 #        rhythm_commands = self.fuse_like_rhythm_commands(rhythm_commands)
 #        rhythm_command_durations = [x.duration for x in rhythm_commands]
-#        #self._debug(voice_division_durations)
-#        #self._debug(rhythm_commands)
 #        region_division_lists = self.payload_context_dictionary[voice.name]['region_division_lists']
-#        self._debug(region_division_lists)
-#        args = (voice_division_durations, rhythm_command_durations)
-#        parts = sequencetools.partition_sequence_by_backgrounded_weights(*args)
-#        assert len(rhythm_commands) == len(parts)
-#        counts = [len(part) for part in parts]
-#        parts = sequencetools.partition_sequence_once_by_counts_without_overhang(voice_divisions, counts)
-#        assert len(rhythm_commands) == len(parts)
-#        for rhythm_command, part in zip(rhythm_commands, parts):
-#            if part:
-#                region_division_list = specificationtools.RegionDivisionList(part)
+#        region_durations = [x.duration for x in region_division_lists]
+#        background_weights = sequencetools.merge_duration_sequences(region_durations, rhythm_command_durations)
+#        args = (voice_division_durations, background_weights)
+#        voice_division_parts = sequencetools.partition_sequence_by_backgrounded_weights(*args)
+#        assert len(background_weights) == len(voice_division_parts)
+#        counts = [len(part) for part in voice_division_parts]
+#        voice_division_parts = sequencetools.partition_sequence_once_by_counts_without_overhang(
+#            voice_divisions, counts)
+#        assert len(background_weights) == len(voice_division_parts)
+#        #for rhythm_command, voice_division_part in zip(rhythm_commands, voice_division_parts):
+#        rhythm_command = rhythm_commands[0]
+#        for voice_division_part in voice_division_parts:
+#            if voice_division_part:
+#                region_division_list = specificationtools.RegionDivisionList(voice_division_part)
 #                self.add_rhythm_to_voice(voice, rhythm_command, region_division_list)
 
     def add_segment_division_list_to_segment_payload_context_dictionaries_for_voice(
