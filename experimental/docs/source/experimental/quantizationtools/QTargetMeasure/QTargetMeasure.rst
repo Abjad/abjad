@@ -1,5 +1,5 @@
 quantizationtools.QTargetMeasure
-=================================
+================================
 
 .. inheritance-diagram:: experimental.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure
    :private-bases:
