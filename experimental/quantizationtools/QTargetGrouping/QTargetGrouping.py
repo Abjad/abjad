@@ -1,22 +1,31 @@
 from abjad.tools import abctools
+from abjad.tools import contexttools
+from abjad.tools import durationtools
+from experimental.quantizationtools.QGridSearchTree import QGridSearchTree
+from experimental.quantizationtools.tempo_scaled_rational_to_milliseconds \
+    import tempo_scaled_rational_to_milliseconds
 
 
-class QTargetGrouping(abctools.ImmutableAbjadObject):
+class QTargetGrouping(abctools.AbjadObject):
 
     ### CLASS ATTRIBUTES ###
 
-    __slots__ = ('_items', '_offset_in_ms', '_tempo', '_time_signature')
+    __slots__ = ('_items', '_offset_in_ms', '_search_tree', '_tempo', '_time_signature',
+        '_use_full_measure')
 
     ### INITIALIZER ###
 
     def __init__(self, offset_in_ms=None, search_tree=None, time_signature=None,
-        tempo=None, use_full_measure=None):
+        tempo=None, use_full_measure=False):
 
-        assert isinstance(offset_in_ms, durationtools.Offset)
-        assert isinstance(search_tree, QGridSearchTree)
-        assert isinstance(tempo, contexttools.TempoMark) and not tempo.is_imprecise
-        assert isinstance(time_signature, contexttools.TimeSignatureMark)
-        assert isinstance(use_full_measure, bool)
+        from experimental.quantizationtools.QTargetItem import QTargetItem
+
+        offset_in_ms = durationtools.Offset(offset_in_ms)
+        search_tree = QGridSearchTree(search_tree)
+        tempo = contexttools.TempoMark(tempo)
+        assert not tempo.is_imprecise
+        time_signature = contexttools.TimeSignatureMark(time_signature)
+        use_full_measure = bool(use_full_measure)
 
         items = []
 
@@ -31,7 +40,7 @@ class QTargetGrouping(abctools.ImmutableAbjadObject):
                 )
             items.append(item)
         else:
-            beatspan = Duration(1, time_signature.denominator)
+            beatspan = durationtools.Duration(1, time_signature.denominator)
             current_offset_in_ms = offset_in_ms
             beatspan_duration_in_ms = tempo_scaled_rational_to_milliseconds(beatspan, tempo)
             for i in range(time_signature.numerator):
@@ -55,12 +64,8 @@ class QTargetGrouping(abctools.ImmutableAbjadObject):
     ### READ-ONLY PUBLIC PROPERTIES ###
         
     @property
-    def beatspan(self):
-        return self._beatspan
-    
-    @property
     def duration_in_ms(self):
-        return tempo_scaled_rational_to_milliseconds(self.beatspan, self.tempo)
+        return tempo_scaled_rational_to_milliseconds(self.time_signature.duration, self.tempo)
 
     @property
     def offset_in_ms(self):
@@ -77,4 +82,8 @@ class QTargetGrouping(abctools.ImmutableAbjadObject):
     @property
     def time_signature(self):
         return self._time_signature
+
+    @property
+    def use_full_measure(self):
+        return self._use_full_measure
 

@@ -2,7 +2,6 @@ from abjad.tools import abctools
 from abjad.tools import contexttools
 from abjad.tools import durationtools
 from experimental.quantizationtools.QGridSearchTree import QGridSearchTree
-from experimental.quantizationtools.QTargetGrouping import QTargetGrouping
 from experimental.quantizationtools.tempo_scaled_rational_to_milliseconds import tempo_scaled_rational_to_milliseconds
 
 
@@ -17,11 +16,14 @@ class QTargetItem(abctools.AbjadObject):
 
     def __init__(self, beatspan=None, grouping=None, offset_in_ms=None, search_tree=None, tempo=None):
 
-        assert isinstance(offset_in_ms, durationtools.Offset)
-        assert isinstance(beatspan, durationtools.Duration)
+        from experimental.quantizationtools.QTargetGrouping import QTargetGrouping
+
+        beatspan = durationtools.Duration(beatspan)
+        offset_in_ms = durationtools.Offset(offset_in_ms)
         assert isinstance(grouping, (QTargetGrouping, type(None)))
-        assert isinstance(search_tree, QGridSearchTree)
-        assert isinstance(tempo, contexttools.TempoMark) and not tempo.is_imprecise
+        search_tree = QGridSearchTree(search_tree)
+        tempo = contexttools.TempoMark(tempo)
+        assert not tempo.is_imprecise
 
         q_events = []
         q_grids = []
