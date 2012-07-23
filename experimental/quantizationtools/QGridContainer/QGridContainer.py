@@ -1,5 +1,5 @@
 from abjad.tools import abctools
 
 
-class QGridLeafNode(abctools.AbjadObject):
+class QGridContainer(abctools.AbjadObject):
     pass
