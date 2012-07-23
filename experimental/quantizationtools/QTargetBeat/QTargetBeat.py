@@ -5,7 +5,7 @@ from experimental.quantizationtools.QGridSearchTree import QGridSearchTree
 from experimental.quantizationtools.tempo_scaled_rational_to_milliseconds import tempo_scaled_rational_to_milliseconds
 
 
-class QTargetItem(abctools.AbjadObject):
+class QTargetBeat(abctools.AbjadObject):
 
     ### CLASS ATTRIBUTES ###
 
@@ -16,11 +16,11 @@ class QTargetItem(abctools.AbjadObject):
 
     def __init__(self, beatspan=None, grouping=None, offset_in_ms=None, search_tree=None, tempo=None):
 
-        from experimental.quantizationtools.QTargetGrouping import QTargetGrouping
+        from experimental.quantizationtools.QTargetMeasure import QTargetMeasure
 
         beatspan = durationtools.Duration(beatspan)
         offset_in_ms = durationtools.Offset(offset_in_ms)
-        assert isinstance(grouping, (QTargetGrouping, type(None)))
+        assert isinstance(grouping, (QTargetMeasure, type(None)))
         search_tree = QGridSearchTree(search_tree)
         tempo = contexttools.TempoMark(tempo)
         assert not tempo.is_imprecise

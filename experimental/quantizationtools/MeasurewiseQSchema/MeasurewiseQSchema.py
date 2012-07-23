@@ -3,7 +3,7 @@ from abjad.tools import durationtools
 from experimental.quantizationtools.MeasurewiseQSchemaItem import MeasurewiseQSchemaItem
 from experimental.quantizationtools.QGridSearchTree import QGridSearchTree
 from experimental.quantizationtools.QSchema import QSchema
-from experimental.quantizationtools.QTargetGrouping import QTargetGrouping
+from experimental.quantizationtools.QTargetMeasure import QTargetMeasure
 
 
 class MeasurewiseQSchema(QSchema):
@@ -41,7 +41,7 @@ class MeasurewiseQSchema(QSchema):
 
     @property
     def target_klass(self):
-        return QTargetGrouping
+        return QTargetMeasure
 
     @property
     def time_signature(self):

@@ -184,8 +184,8 @@ Unstable packages (load manually)
    experimental/quantizationtools/QGridQuantizer/QGridQuantizer
    experimental/quantizationtools/QGridSearchTree/QGridSearchTree
    experimental/quantizationtools/QGridTempoLookup/QGridTempoLookup
-   experimental/quantizationtools/QTargetGrouping/QTargetGrouping
-   experimental/quantizationtools/QTargetItem/QTargetItem
+   experimental/quantizationtools/QTargetMeasure/QTargetMeasure
+   experimental/quantizationtools/QTargetBeat/QTargetBeat
    experimental/quantizationtools/SilentQEvent/SilentQEvent
    experimental/quantizationtools/TerminalQEvent/TerminalQEvent
 

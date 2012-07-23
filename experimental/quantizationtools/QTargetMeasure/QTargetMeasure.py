@@ -6,7 +6,7 @@ from experimental.quantizationtools.tempo_scaled_rational_to_milliseconds \
     import tempo_scaled_rational_to_milliseconds
 
 
-class QTargetGrouping(abctools.AbjadObject):
+class QTargetMeasure(abctools.AbjadObject):
 
     ### CLASS ATTRIBUTES ###
 
@@ -18,7 +18,7 @@ class QTargetGrouping(abctools.AbjadObject):
     def __init__(self, offset_in_ms=None, search_tree=None, time_signature=None,
         tempo=None, use_full_measure=False):
 
-        from experimental.quantizationtools.QTargetItem import QTargetItem
+        from experimental.quantizationtools.QTargetBeat import QTargetBeat
 
         offset_in_ms = durationtools.Offset(offset_in_ms)
         search_tree = QGridSearchTree(search_tree)
@@ -31,7 +31,7 @@ class QTargetGrouping(abctools.AbjadObject):
 
         if use_full_measure:
             beatspan = time_signature.duration
-            item = QTargetItem(
+            item = QTargetBeat(
                 beatspan=beatspan,
                 grouping=self,
                 offset_in_ms=offset_in_ms,
@@ -44,7 +44,7 @@ class QTargetGrouping(abctools.AbjadObject):
             current_offset_in_ms = offset_in_ms
             beatspan_duration_in_ms = tempo_scaled_rational_to_milliseconds(beatspan, tempo)
             for i in range(time_signature.numerator):
-                item = QTargetItem(
+                item = QTargetBeat(
                     beatspan=beatspan,
                     grouping=self,
                     offset_in_ms=current_offset_in_ms,

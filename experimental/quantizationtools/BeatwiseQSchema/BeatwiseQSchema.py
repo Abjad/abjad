@@ -2,7 +2,7 @@ from abjad.tools import contexttools
 from abjad.tools import durationtools
 from experimental.quantizationtools.QGridSearchTree import QGridSearchTree
 from experimental.quantizationtools.QSchema import QSchema
-from experimental.quantizationtools.QTargetItem import QTargetItem
+from experimental.quantizationtools.QTargetBeat import QTargetBeat
 from experimental.quantizationtools.BeatwiseQSchemaItem import BeatwiseQSchemaItem
 
 
@@ -44,4 +44,4 @@ class BeatwiseQSchema(QSchema):
 
     @property
     def target_klass(self):
-        return QTargetItem
+        return QTargetBeat
