@@ -1,0 +1,121 @@
+interpretationtools.RhythmRegionDivisionList
+============================================
+
+.. inheritance-diagram:: experimental.interpretationtools.RhythmRegionDivisionList.RhythmRegionDivisionList.RhythmRegionDivisionList
+   :private-bases:
+
+.. autoclass:: experimental.interpretationtools.RhythmRegionDivisionList.RhythmRegionDivisionList.RhythmRegionDivisionList
+
+Read-only Properties
+--------------------
+
+.. autoattribute:: experimental.interpretationtools.RhythmRegionDivisionList.RhythmRegionDivisionList.RhythmRegionDivisionList.divisions
+
+    Inherited from :py:class:`DivisionList.DivisionList <experimental.interpretationtools.DivisionList.DivisionList.DivisionList>`
+
+.. autoattribute:: experimental.interpretationtools.RhythmRegionDivisionList.RhythmRegionDivisionList.RhythmRegionDivisionList.duration
+
+    Inherited from :py:class:`DivisionList.DivisionList <experimental.interpretationtools.DivisionList.DivisionList.DivisionList>`
+
+.. autoattribute:: experimental.interpretationtools.RhythmRegionDivisionList.RhythmRegionDivisionList.RhythmRegionDivisionList.is_closed
+
+    Inherited from :py:class:`DivisionList.DivisionList <experimental.interpretationtools.DivisionList.DivisionList.DivisionList>`
+
+.. autoattribute:: experimental.interpretationtools.RhythmRegionDivisionList.RhythmRegionDivisionList.RhythmRegionDivisionList.is_half_closed
+
+    Inherited from :py:class:`DivisionList.DivisionList <experimental.interpretationtools.DivisionList.DivisionList.DivisionList>`
+
+.. autoattribute:: experimental.interpretationtools.RhythmRegionDivisionList.RhythmRegionDivisionList.RhythmRegionDivisionList.is_half_open
+
+    Inherited from :py:class:`DivisionList.DivisionList <experimental.interpretationtools.DivisionList.DivisionList.DivisionList>`
+
+.. autoattribute:: experimental.interpretationtools.RhythmRegionDivisionList.RhythmRegionDivisionList.RhythmRegionDivisionList.is_left_closed
+
+    Inherited from :py:class:`DivisionList.DivisionList <experimental.interpretationtools.DivisionList.DivisionList.DivisionList>`
+
+.. autoattribute:: experimental.interpretationtools.RhythmRegionDivisionList.RhythmRegionDivisionList.RhythmRegionDivisionList.is_left_open
+
+    Inherited from :py:class:`DivisionList.DivisionList <experimental.interpretationtools.DivisionList.DivisionList.DivisionList>`
+
+.. autoattribute:: experimental.interpretationtools.RhythmRegionDivisionList.RhythmRegionDivisionList.RhythmRegionDivisionList.is_open
+
+    Inherited from :py:class:`DivisionList.DivisionList <experimental.interpretationtools.DivisionList.DivisionList.DivisionList>`
+
+.. autoattribute:: experimental.interpretationtools.RhythmRegionDivisionList.RhythmRegionDivisionList.RhythmRegionDivisionList.is_right_closed
+
+    Inherited from :py:class:`DivisionList.DivisionList <experimental.interpretationtools.DivisionList.DivisionList.DivisionList>`
+
+.. autoattribute:: experimental.interpretationtools.RhythmRegionDivisionList.RhythmRegionDivisionList.RhythmRegionDivisionList.is_right_open
+
+    Inherited from :py:class:`DivisionList.DivisionList <experimental.interpretationtools.DivisionList.DivisionList.DivisionList>`
+
+.. autoattribute:: experimental.interpretationtools.RhythmRegionDivisionList.RhythmRegionDivisionList.RhythmRegionDivisionList.is_well_formed
+
+    Inherited from :py:class:`DivisionList.DivisionList <experimental.interpretationtools.DivisionList.DivisionList.DivisionList>`
+
+.. autoattribute:: experimental.interpretationtools.RhythmRegionDivisionList.RhythmRegionDivisionList.RhythmRegionDivisionList.pairs
+
+    Inherited from :py:class:`DivisionList.DivisionList <experimental.interpretationtools.DivisionList.DivisionList.DivisionList>`
+
+.. autoattribute:: experimental.interpretationtools.RhythmRegionDivisionList.RhythmRegionDivisionList.RhythmRegionDivisionList.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+Special Methods
+---------------
+
+.. automethod:: experimental.interpretationtools.RhythmRegionDivisionList.RhythmRegionDivisionList.RhythmRegionDivisionList.__add__
+
+    Inherited from :py:class:`DivisionList.DivisionList <experimental.interpretationtools.DivisionList.DivisionList.DivisionList>`
+
+.. automethod:: experimental.interpretationtools.RhythmRegionDivisionList.RhythmRegionDivisionList.RhythmRegionDivisionList.__delattr__
+
+    Inherited from :py:class:`__builtin__.object`
+
+.. automethod:: experimental.interpretationtools.RhythmRegionDivisionList.RhythmRegionDivisionList.RhythmRegionDivisionList.__eq__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.interpretationtools.RhythmRegionDivisionList.RhythmRegionDivisionList.RhythmRegionDivisionList.__ge__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.interpretationtools.RhythmRegionDivisionList.RhythmRegionDivisionList.RhythmRegionDivisionList.__getitem__
+
+    Inherited from :py:class:`DivisionList.DivisionList <experimental.interpretationtools.DivisionList.DivisionList.DivisionList>`
+
+.. automethod:: experimental.interpretationtools.RhythmRegionDivisionList.RhythmRegionDivisionList.RhythmRegionDivisionList.__gt__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.interpretationtools.RhythmRegionDivisionList.RhythmRegionDivisionList.RhythmRegionDivisionList.__hash__
+
+    Inherited from :py:class:`__builtin__.object`
+
+.. automethod:: experimental.interpretationtools.RhythmRegionDivisionList.RhythmRegionDivisionList.RhythmRegionDivisionList.__le__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.interpretationtools.RhythmRegionDivisionList.RhythmRegionDivisionList.RhythmRegionDivisionList.__len__
+
+    Inherited from :py:class:`DivisionList.DivisionList <experimental.interpretationtools.DivisionList.DivisionList.DivisionList>`
+
+.. automethod:: experimental.interpretationtools.RhythmRegionDivisionList.RhythmRegionDivisionList.RhythmRegionDivisionList.__lt__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.interpretationtools.RhythmRegionDivisionList.RhythmRegionDivisionList.RhythmRegionDivisionList.__ne__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.interpretationtools.RhythmRegionDivisionList.RhythmRegionDivisionList.RhythmRegionDivisionList.__repr__
+
+    Inherited from :py:class:`DivisionList.DivisionList <experimental.interpretationtools.DivisionList.DivisionList.DivisionList>`
+
+.. automethod:: experimental.interpretationtools.RhythmRegionDivisionList.RhythmRegionDivisionList.RhythmRegionDivisionList.__setattr__
+
+    Inherited from :py:class:`__builtin__.object`
+
+.. automethod:: experimental.interpretationtools.RhythmRegionDivisionList.RhythmRegionDivisionList.RhythmRegionDivisionList.__str__
+
+    Inherited from :py:class:`__builtin__.object`

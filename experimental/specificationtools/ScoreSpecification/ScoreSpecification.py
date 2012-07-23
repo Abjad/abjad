@@ -111,9 +111,9 @@ class ScoreSpecification(Specification):
                 voice, segment_division_lists)
 
     def add_rhythm_to_voice(self, voice, rhythm_command, division_region_division_list):
-#        self._debug(rhythm_command)
-#        self._debug(division_region_division_list)
-#        print ''
+        self._debug(rhythm_command)
+        self._debug(division_region_division_list)
+        print ''
         maker = rhythm_command.value
         assert isinstance(maker, timetokentools.TimeTokenMaker), repr(maker)
         leaf_lists = maker(division_region_division_list.pairs)

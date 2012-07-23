@@ -139,6 +139,7 @@ Unstable packages (load manually)
    experimental/interpretationtools/RegionDivisionCommand/RegionDivisionCommand
    experimental/interpretationtools/ResolvedValue/ResolvedValue
    experimental/interpretationtools/RhythmCommand/RhythmCommand
+   experimental/interpretationtools/RhythmRegionDivisionList/RhythmRegionDivisionList
    experimental/interpretationtools/SegmentDivisionList/SegmentDivisionList
    experimental/interpretationtools/UninterpretedDivisionCommand/UninterpretedDivisionCommand
    experimental/interpretationtools/VoiceDivisionList/VoiceDivisionList
