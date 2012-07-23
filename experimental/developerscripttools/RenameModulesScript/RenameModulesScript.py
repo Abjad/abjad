@@ -94,14 +94,14 @@ class RenameModulesScript(DeveloperScript):
         assert kind in ('class', 'function')
 
         while True:
-            message = 'Select codebase ([m]ainline, [e]xperimental):     '
+            message = 'Select codebase ([m]ainline, e[x]perimental):     '
             codebase = raw_input(message).lower()
             if codebase in ('mainline', 'experimental'):
                 break
             elif codebase == 'm':
                 codebase = 'mainline'
                 break
-            elif codebase == 'e':
+            elif codebase == 'x':
                 codebase = 'experimental'
                 break
             print ''
