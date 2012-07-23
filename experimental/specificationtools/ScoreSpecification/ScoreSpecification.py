@@ -1,5 +1,5 @@
 from abjad.tools import *
-from experimental import interpretertools
+from experimental import interpretationtools
 from experimental.specificationtools.AttributeRetrievalRequest import AttributeRetrievalRequest
 from experimental.specificationtools.Division import Division
 from experimental.specificationtools.ScopedValue import ScopedValue
@@ -101,7 +101,7 @@ class ScoreSpecification(Specification):
             for region_division_list in region_division_lists:
                 voice_divisions.extend(region_division_list.divisions)
             #self._debug(voice_divisions)
-            voice_division_list = interpretertools.VoiceDivisionList(voice_divisions)
+            voice_division_list = interpretationtools.VoiceDivisionList(voice_divisions)
             self.payload_context_dictionary[voice.name]['voice_division_list'] = voice_division_list
             segment_division_lists = self.make_segment_division_lists_for_voice(voice)
             #self._debug(segment_division_lists)
@@ -160,7 +160,7 @@ class ScoreSpecification(Specification):
 #        rhythm_command = rhythm_commands[0]
 #        for voice_division_part in voice_division_parts:
 #            if voice_division_part:
-#                region_division_list = interpretertools.DivisionRegionDivisionList(voice_division_part)
+#                region_division_list = interpretationtools.DivisionRegionDivisionList(voice_division_part)
 #                self.add_rhythm_to_voice(voice, rhythm_command, region_division_list)
 
     def add_segment_division_list_to_segment_payload_context_dictionaries_for_voice(
@@ -244,14 +244,14 @@ class ScoreSpecification(Specification):
         assert uninterpreted_division_commands[0].fresh, repr(uninterpreted_division_commands[0])
         for uninterpreted_division_command in uninterpreted_division_commands:
             if uninterpreted_division_command.fresh or uninterpreted_division_command.truncate:
-                region_division_command = interpretertools.RegionDivisionCommand(
+                region_division_command = interpretationtools.RegionDivisionCommand(
                     *uninterpreted_division_command.vector)
                 region_division_commands.append(region_division_command)
             else:
                 last_region_division_command = region_division_commands[-1]
                 assert last_region_division_command.value == uninterpreted_division_command.value
                 if last_region_division_command.truncate:
-                    region_division_command = interpretertools.RegionDivisionCommand(
+                    region_division_command = interpretationtools.RegionDivisionCommand(
                         *uninterpreted_division_command.vector)
                     region_division_commands.append(region_division_command)
                 else:
@@ -261,7 +261,7 @@ class ScoreSpecification(Specification):
                     fresh = last_region_division_command.fresh
                     truncate = uninterpreted_division_command.truncate
                     args = (value, duration, fresh, truncate)
-                    region_division_command = interpretertools.RegionDivisionCommand(*args)
+                    region_division_command = interpretationtools.RegionDivisionCommand(*args)
                     region_division_commands[-1] = region_division_command
         return region_division_commands
 
@@ -328,7 +328,7 @@ class ScoreSpecification(Specification):
                 return candidate_segment_number
 
     def fuse_like_rhythm_commands(self, rhythm_commands):
-        from experimental import interpretertools
+        from experimental import interpretationtools
         if not rhythm_commands:
             return []
         result = [copy.deepcopy(rhythm_commands[0])]
@@ -356,7 +356,7 @@ class ScoreSpecification(Specification):
         assert sum(divisions) == self.score_duration
         start_division_lists = sequencetools.partition_sequence_by_backgrounded_weights(
             divisions, self.segment_durations)
-        start_division_lists = [interpretertools.DivisionList(x) for x in start_division_lists]
+        start_division_lists = [interpretationtools.DivisionList(x) for x in start_division_lists]
         return start_division_lists
 
     # new behavior
@@ -367,7 +367,7 @@ class ScoreSpecification(Specification):
             commands = segment.get_rhythm_commands_that_start_during_segment(voice.name)
             rhythm_commands.extend(commands)
         if not rhythm_commands:
-            rhythm_command = interpretertools.RhythmCommand(library.rest_filled_tokens, self.duration, True)
+            rhythm_command = interpretationtools.RhythmCommand(library.rest_filled_tokens, self.duration, True)
             rhythm_commands.append(rhythm_command)
         return rhythm_commands
 
@@ -378,7 +378,7 @@ class ScoreSpecification(Specification):
             resolved_value = segment.get_division_resolved_value(voice.name)
             value = self.process_divisions_value(resolved_value.value)
             args = (value, segment.duration, resolved_value.fresh, resolved_value.truncate)
-            command = interpretertools.UninterpretedDivisionCommand(*args)
+            command = interpretationtools.UninterpretedDivisionCommand(*args)
             uninterpreted_division_commands.append(command)
         return uninterpreted_division_commands
 
@@ -387,7 +387,7 @@ class ScoreSpecification(Specification):
         voice_division_list = self.payload_context_dictionary[voice.name].get('voice_division_list')
         if voice_division_list is None:
             time_signatures = self.time_signatures
-            voice_division_list = interpretertools.VoiceDivisionList(time_signatures)
+            voice_division_list = interpretationtools.VoiceDivisionList(time_signatures)
         return voice_division_list
 
     def handle_divisions_retrieval_request(self, request):
@@ -540,7 +540,7 @@ class ScoreSpecification(Specification):
                 divisions, region_division_command.duration)
             divisions = [x.pair for x in divisions]
             divisions = [Division(x) for x in divisions]
-            region_division_list = interpretertools.DivisionRegionDivisionList(divisions)
+            region_division_list = interpretationtools.DivisionRegionDivisionList(divisions)
             #region_division_list.fresh = 'FOO'
             region_division_list.fresh = region_division_command.fresh
             region_division_list.truncate = region_division_command.truncate
@@ -564,7 +564,7 @@ class ScoreSpecification(Specification):
         shards = sequencetools.split_sequence_once_by_weights_with_overhang(voice_divisions, segment_durations)
         raw_segment_division_lists = []
         for i, shard in enumerate(shards[:]):
-            raw_segment_division_list = interpretertools.SegmentDivisionList(shard)
+            raw_segment_division_list = interpretationtools.SegmentDivisionList(shard)
             raw_segment_division_lists.append(raw_segment_division_list)
         segment_division_lists = self.apply_boundary_indicators_to_raw_segment_division_lists(
             voice_division_list, raw_segment_division_lists)

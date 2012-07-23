@@ -1,0 +1,89 @@
+interpretationtools.DivisionList
+================================
+
+.. inheritance-diagram:: experimental.interpretationtools.DivisionList.DivisionList.DivisionList
+   :private-bases:
+
+.. autoclass:: experimental.interpretationtools.DivisionList.DivisionList.DivisionList
+
+Read-only Properties
+--------------------
+
+.. autoattribute:: experimental.interpretationtools.DivisionList.DivisionList.DivisionList.divisions
+
+.. autoattribute:: experimental.interpretationtools.DivisionList.DivisionList.DivisionList.duration
+
+.. autoattribute:: experimental.interpretationtools.DivisionList.DivisionList.DivisionList.is_closed
+
+.. autoattribute:: experimental.interpretationtools.DivisionList.DivisionList.DivisionList.is_half_closed
+
+.. autoattribute:: experimental.interpretationtools.DivisionList.DivisionList.DivisionList.is_half_open
+
+.. autoattribute:: experimental.interpretationtools.DivisionList.DivisionList.DivisionList.is_left_closed
+
+.. autoattribute:: experimental.interpretationtools.DivisionList.DivisionList.DivisionList.is_left_open
+
+.. autoattribute:: experimental.interpretationtools.DivisionList.DivisionList.DivisionList.is_open
+
+.. autoattribute:: experimental.interpretationtools.DivisionList.DivisionList.DivisionList.is_right_closed
+
+.. autoattribute:: experimental.interpretationtools.DivisionList.DivisionList.DivisionList.is_right_open
+
+.. autoattribute:: experimental.interpretationtools.DivisionList.DivisionList.DivisionList.is_well_formed
+
+.. autoattribute:: experimental.interpretationtools.DivisionList.DivisionList.DivisionList.pairs
+
+.. autoattribute:: experimental.interpretationtools.DivisionList.DivisionList.DivisionList.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+Special Methods
+---------------
+
+.. automethod:: experimental.interpretationtools.DivisionList.DivisionList.DivisionList.__add__
+
+.. automethod:: experimental.interpretationtools.DivisionList.DivisionList.DivisionList.__delattr__
+
+    Inherited from :py:class:`__builtin__.object`
+
+.. automethod:: experimental.interpretationtools.DivisionList.DivisionList.DivisionList.__eq__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.interpretationtools.DivisionList.DivisionList.DivisionList.__ge__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.interpretationtools.DivisionList.DivisionList.DivisionList.__getitem__
+
+.. automethod:: experimental.interpretationtools.DivisionList.DivisionList.DivisionList.__gt__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.interpretationtools.DivisionList.DivisionList.DivisionList.__hash__
+
+    Inherited from :py:class:`__builtin__.object`
+
+.. automethod:: experimental.interpretationtools.DivisionList.DivisionList.DivisionList.__le__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.interpretationtools.DivisionList.DivisionList.DivisionList.__len__
+
+.. automethod:: experimental.interpretationtools.DivisionList.DivisionList.DivisionList.__lt__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.interpretationtools.DivisionList.DivisionList.DivisionList.__ne__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.interpretationtools.DivisionList.DivisionList.DivisionList.__repr__
+
+.. automethod:: experimental.interpretationtools.DivisionList.DivisionList.DivisionList.__setattr__
+
+    Inherited from :py:class:`__builtin__.object`
+
+.. automethod:: experimental.interpretationtools.DivisionList.DivisionList.DivisionList.__str__
+
+    Inherited from :py:class:`__builtin__.object`

@@ -118,30 +118,30 @@ Unstable packages (load manually)
    experimental/handlertools/pitch/OctaveTranspositionHandler/OctaveTranspositionHandler
    experimental/handlertools/pitch/TimewisePitchClassHandler/TimewisePitchClassHandler
 
-:py:mod:`interpretertools <experimental.interpretertools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`interpretationtools <experimental.interpretationtools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: abstract classes
 
 .. toctree::
    :maxdepth: 1
 
-   experimental/interpretertools/Command/Command
-   experimental/interpretertools/DivisionCommand/DivisionCommand
+   experimental/interpretationtools/Command/Command
+   experimental/interpretationtools/DivisionCommand/DivisionCommand
 
 .. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
 
-   experimental/interpretertools/DivisionList/DivisionList
-   experimental/interpretertools/DivisionRegionDivisionList/DivisionRegionDivisionList
-   experimental/interpretertools/RegionDivisionCommand/RegionDivisionCommand
-   experimental/interpretertools/ResolvedValue/ResolvedValue
-   experimental/interpretertools/RhythmCommand/RhythmCommand
-   experimental/interpretertools/SegmentDivisionList/SegmentDivisionList
-   experimental/interpretertools/UninterpretedDivisionCommand/UninterpretedDivisionCommand
-   experimental/interpretertools/VoiceDivisionList/VoiceDivisionList
+   experimental/interpretationtools/DivisionList/DivisionList
+   experimental/interpretationtools/DivisionRegionDivisionList/DivisionRegionDivisionList
+   experimental/interpretationtools/RegionDivisionCommand/RegionDivisionCommand
+   experimental/interpretationtools/ResolvedValue/ResolvedValue
+   experimental/interpretationtools/RhythmCommand/RhythmCommand
+   experimental/interpretationtools/SegmentDivisionList/SegmentDivisionList
+   experimental/interpretationtools/UninterpretedDivisionCommand/UninterpretedDivisionCommand
+   experimental/interpretationtools/VoiceDivisionList/VoiceDivisionList
 
 :py:mod:`lyricstools <experimental.lyricstools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

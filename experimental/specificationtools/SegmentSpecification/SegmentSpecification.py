@@ -1,5 +1,5 @@
 from abjad.tools import *
-from experimental import interpretertools
+from experimental import interpretationtools
 from experimental.specificationtools.exceptions import *
 from experimental.specificationtools.AttributeRetrievalIndicator import AttributeRetrievalIndicator
 from experimental.specificationtools.AttributeRetrievalRequest import AttributeRetrievalRequest
@@ -225,7 +225,7 @@ class SegmentSpecification(Specification):
         duration = sum(durations)
         #value = self.process_divisions_value(resolved_value) # probably todo this
         args = (resolved_setting.value, duration, resolved_setting.fresh, resolved_setting.truncate)
-        command = interpretertools.UninterpretedDivisionCommand(*args)
+        command = interpretationtools.UninterpretedDivisionCommand(*args)
         return command
 
     def get_directives(self, target=None, attribute=None):
@@ -242,12 +242,12 @@ class SegmentSpecification(Specification):
         '''
         setting = self.get_resolved_single_context_setting('divisions', context_name)
         if setting is not None:
-            return interpretertools.ResolvedValue(setting.value, setting.fresh, setting.truncate)
+            return interpretationtools.ResolvedValue(setting.value, setting.fresh, setting.truncate)
         setting = self.get_resolved_single_context_setting('time_signatures', context_name)
         if setting is not None:
-            return interpretertools.ResolvedValue(setting.value, setting.fresh, False)
+            return interpretationtools.ResolvedValue(setting.value, setting.fresh, False)
         else:
-            return interpretertools.ResolvedValue(None, False, False)
+            return interpretationtools.ResolvedValue(None, False, False)
 
     # new behavior
     def get_uninterpreted_division_commands_that_start_during_segment(self, context_name):
@@ -292,9 +292,9 @@ class SegmentSpecification(Specification):
         from experimental.specificationtools import library
         setting = self.get_resolved_single_context_setting('rhythm', context_name)
         if setting is not None:
-            rhythm_command = interpretertools.RhythmCommand(setting.value, self.duration, setting.fresh)
+            rhythm_command = interpretationtools.RhythmCommand(setting.value, self.duration, setting.fresh)
         else:
-            rhythm_command = interpretertools.RhythmCommand(library.rest_filled_tokens, self.duration, True)
+            rhythm_command = interpretationtools.RhythmCommand(library.rest_filled_tokens, self.duration, True)
         return rhythm_command
 
     # new behavior
@@ -309,7 +309,7 @@ class SegmentSpecification(Specification):
             if isinstance(resolved_setting.target, selectortools.CountRatioItemSelector):
                 raise Exception('implement me when it comes time.')
             else:
-                rhythm_command = interpretertools.RhythmCommand(
+                rhythm_command = interpretationtools.RhythmCommand(
                     resolved_setting.value, self.duration, resolved_setting.fresh)
             rhythm_commands.append(rhythm_command)
         return rhythm_commands
