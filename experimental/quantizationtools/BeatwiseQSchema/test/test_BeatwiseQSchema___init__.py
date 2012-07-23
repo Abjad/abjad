@@ -3,13 +3,13 @@ from abjad.tools import durationtools
 from experimental import quantizationtools
 
 
-def test_UnmeteredQSchema___init___01():
+def test_BeatwiseQSchema___init___01():
 
-    item_a = quantizationtools.UnmeteredQSchemaItem(search_tree={2: None})
-    item_b = quantizationtools.UnmeteredQSchemaItem(tempo=((1, 4), 76))
-    item_c = quantizationtools.UnmeteredQSchemaItem(beatspan=(1, 8))
+    item_a = quantizationtools.BeatwiseQSchemaItem(search_tree={2: None})
+    item_b = quantizationtools.BeatwiseQSchemaItem(tempo=((1, 4), 76))
+    item_c = quantizationtools.BeatwiseQSchemaItem(beatspan=(1, 8))
 
-    schema = quantizationtools.UnmeteredQSchema(
+    schema = quantizationtools.BeatwiseQSchema(
         {2: item_a, 4: item_b, 7: item_c},
         beatspan=durationtools.Duration(1, 32),
         search_tree={3: None},
@@ -22,9 +22,9 @@ def test_UnmeteredQSchema___init___01():
     assert schema.tempo == contexttools.TempoMark((1, 16), 32)
 
 
-def test_UnmeteredQSchema___init___02():
+def test_BeatwiseQSchema___init___02():
 
-    schema = quantizationtools.UnmeteredQSchema()
+    schema = quantizationtools.BeatwiseQSchema()
 
     assert len(schema.items) == 0
     assert schema.beatspan == durationtools.Duration(1, 4)

@@ -3,9 +3,9 @@ from abjad.tools import durationtools
 from experimental import quantizationtools
 
 
-def test_UnmeteredQSchema___getitem___01():
+def test_BeatwiseQSchema___getitem___01():
 
-    schema = quantizationtools.UnmeteredQSchema()
+    schema = quantizationtools.BeatwiseQSchema()
 
     assert schema[0] == schema[1] == schema[2] == {
         'beatspan': durationtools.Duration(1, 4),
@@ -14,13 +14,13 @@ def test_UnmeteredQSchema___getitem___01():
     }
 
 
-def test_UnmeteredQSchema___getitem___02():
+def test_BeatwiseQSchema___getitem___02():
 
-    item_a = quantizationtools.UnmeteredQSchemaItem(search_tree={2: None})
-    item_b = quantizationtools.UnmeteredQSchemaItem(tempo=((1, 4), 76))
-    item_c = quantizationtools.UnmeteredQSchemaItem(beatspan=(1, 8), search_tree={5: None})
+    item_a = quantizationtools.BeatwiseQSchemaItem(search_tree={2: None})
+    item_b = quantizationtools.BeatwiseQSchemaItem(tempo=((1, 4), 76))
+    item_c = quantizationtools.BeatwiseQSchemaItem(beatspan=(1, 8), search_tree={5: None})
 
-    schema = quantizationtools.UnmeteredQSchema(
+    schema = quantizationtools.BeatwiseQSchema(
         {2: item_a, 4: item_b, 7: item_c},
         beatspan=durationtools.Duration(1, 32),
         search_tree={3: None},

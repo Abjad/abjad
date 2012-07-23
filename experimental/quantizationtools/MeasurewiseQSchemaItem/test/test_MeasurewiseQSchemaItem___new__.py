@@ -4,9 +4,9 @@ from experimental import quantizationtools
 import py.test
 
 
-def test_MeteredQSchemaItem___new___01():
+def test_MeasurewiseQSchemaItem___new___01():
 
-    item = quantizationtools.MeteredQSchemaItem()
+    item = quantizationtools.MeasurewiseQSchemaItem()
 
     assert item.beatspan is None
     assert item.search_tree is None
@@ -14,9 +14,9 @@ def test_MeteredQSchemaItem___new___01():
     assert item.time_signature is None
 
 
-def test_MeteredQSchemaItem___new___02():
+def test_MeasurewiseQSchemaItem___new___02():
 
-    item = quantizationtools.MeteredQSchemaItem(
+    item = quantizationtools.MeasurewiseQSchemaItem(
         tempo=((1, 4), 60)
         )
 
@@ -26,9 +26,9 @@ def test_MeteredQSchemaItem___new___02():
     assert item.time_signature is None
 
 
-def test_MeteredQSchemaItem___new___03():
+def test_MeasurewiseQSchemaItem___new___03():
 
-    item = quantizationtools.MeteredQSchemaItem(
+    item = quantizationtools.MeasurewiseQSchemaItem(
         time_signature=(6, 8)
         )
 
@@ -38,9 +38,9 @@ def test_MeteredQSchemaItem___new___03():
     assert item.time_signature == contexttools.TimeSignatureMark((6, 8))
 
 
-def test_MeteredQSchemaItem___new___04():
+def test_MeasurewiseQSchemaItem___new___04():
 
-    item = quantizationtools.MeteredQSchemaItem(
+    item = quantizationtools.MeasurewiseQSchemaItem(
         tempo=((1, 4), 57),
         time_signature=(6, 8),
         )
@@ -51,7 +51,7 @@ def test_MeteredQSchemaItem___new___04():
     assert item.time_signature == contexttools.TimeSignatureMark((6, 8))
 
 
-def test_MeteredQSchemaItem___new___05():
+def test_MeasurewiseQSchemaItem___new___05():
 
     tempo = contexttools.TempoMark('lento')
-    py.test.raises('item = quantizationtools.MeteredQSchemaItem(tempo=tempo)')
+    py.test.raises('item = quantizationtools.MeasurewiseQSchemaItem(tempo=tempo)')

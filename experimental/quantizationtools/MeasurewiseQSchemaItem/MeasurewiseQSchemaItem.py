@@ -4,22 +4,22 @@ from experimental.quantizationtools.QSchemaItem import QSchemaItem
 from experimental.quantizationtools.QGridSearchTree import QGridSearchTree
 
 
-class MeteredQSchemaItem(QSchemaItem):
-    '''`MeteredQSchemaItem` represents a change of state in the timeline of a metered
+class MeasurewiseQSchemaItem(QSchemaItem):
+    '''`MeasurewiseQSchemaItem` represents a change of state in the timeline of a metered
     quantization process.
 
     ::
 
         >>> from experimental import quantizationtools
-        >>> quantizationtools.MeteredQSchemaItem()
-        MeteredQSchemaItem()
+        >>> quantizationtools.MeasurewiseQSchemaItem()
+        MeasurewiseQSchemaItem()
 
     Define a change in tempo:
 
     ::
 
-        >>> quantizationtools.MeteredQSchemaItem(tempo=((1, 4), 60))
-        MeteredQSchemaItem(
+        >>> quantizationtools.MeasurewiseQSchemaItem(tempo=((1, 4), 60))
+        MeasurewiseQSchemaItem(
             tempo=contexttools.TempoMark(
                 durationtools.Duration(1, 4),
                 60
@@ -30,8 +30,8 @@ class MeteredQSchemaItem(QSchemaItem):
 
     ::
 
-        >>> quantizationtools.MeteredQSchemaItem(tempo=((6, 8))
-        MeteredQSchemaItem(
+        >>> quantizationtools.MeasurewiseQSchemaItem(tempo=((6, 8))
+        MeasurewiseQSchemaItem(
             time_signature=contexttools.TimeSignatureMark(
                 (6, 8)
                 ),
@@ -44,9 +44,9 @@ class MeteredQSchemaItem(QSchemaItem):
         >>> _.beatspan
         Duration(1, 8)
 
-    `MeteredQSchemaItem` is immutable.
+    `MeasurewiseQSchemaItem` is immutable.
 
-    Return `MeteredQSchemaItem` instance.
+    Return `MeasurewiseQSchemaItem` instance.
     '''
 
     ### CLASS ATTRIBUTES ###

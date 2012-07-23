@@ -2,9 +2,9 @@ from abjad.tools import contexttools
 from experimental import quantizationtools
 
 
-def test_MeteredQSchema___getitem___01():
+def test_MeasurewiseQSchema___getitem___01():
 
-    schema = quantizationtools.MeteredQSchema()
+    schema = quantizationtools.MeasurewiseQSchema()
 
     assert schema[0] == schema[1] == schema[2] == {
         'search_tree': quantizationtools.QGridSearchTree(),
@@ -14,17 +14,17 @@ def test_MeteredQSchema___getitem___01():
     }
 
 
-def test_MeteredQSchema___getitem___02():
+def test_MeasurewiseQSchema___getitem___02():
 
-    item_a = quantizationtools.MeteredQSchemaItem(search_tree=quantizationtools.QGridSearchTree({2: None}))
-    item_b = quantizationtools.MeteredQSchemaItem(tempo=((1, 4), 76))
-    item_c = quantizationtools.MeteredQSchemaItem(time_signature=(3, 4))
-    item_d = quantizationtools.MeteredQSchemaItem(
+    item_a = quantizationtools.MeasurewiseQSchemaItem(search_tree=quantizationtools.QGridSearchTree({2: None}))
+    item_b = quantizationtools.MeasurewiseQSchemaItem(tempo=((1, 4), 76))
+    item_c = quantizationtools.MeasurewiseQSchemaItem(time_signature=(3, 4))
+    item_d = quantizationtools.MeasurewiseQSchemaItem(
         search_tree={5: None},
         use_full_measure=True
         )
 
-    schema = quantizationtools.MeteredQSchema(
+    schema = quantizationtools.MeasurewiseQSchema(
         {2: item_a, 4: item_b, 7: item_c, 8: item_d},
         search_tree=quantizationtools.QGridSearchTree({3: None}),
         tempo=((1, 8), 58),

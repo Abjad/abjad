@@ -175,8 +175,10 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
-   experimental/quantizationtools/MeteredQSchema/MeteredQSchema
-   experimental/quantizationtools/MeteredQSchemaItem/MeteredQSchemaItem
+   experimental/quantizationtools/BeatwiseQSchema/BeatwiseQSchema
+   experimental/quantizationtools/BeatwiseQSchemaItem/BeatwiseQSchemaItem
+   experimental/quantizationtools/MeasurewiseQSchema/MeasurewiseQSchema
+   experimental/quantizationtools/MeasurewiseQSchemaItem/MeasurewiseQSchemaItem
    experimental/quantizationtools/PitchedQEvent/PitchedQEvent
    experimental/quantizationtools/QGrid/QGrid
    experimental/quantizationtools/QGridQuantizer/QGridQuantizer
@@ -186,8 +188,6 @@ Unstable packages (load manually)
    experimental/quantizationtools/QTargetItem/QTargetItem
    experimental/quantizationtools/SilentQEvent/SilentQEvent
    experimental/quantizationtools/TerminalQEvent/TerminalQEvent
-   experimental/quantizationtools/UnmeteredQSchema/UnmeteredQSchema
-   experimental/quantizationtools/UnmeteredQSchemaItem/UnmeteredQSchemaItem
 
 .. rubric:: functions
 

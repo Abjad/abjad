@@ -4,22 +4,22 @@ from experimental.quantizationtools.QSchemaItem import QSchemaItem
 from experimental.quantizationtools.QGridSearchTree import QGridSearchTree
 
 
-class UnmeteredQSchemaItem(QSchemaItem):
-    '''`UnmeteredQSchemaItem` represents a change of state in the timeline of an unmetered
+class BeatwiseQSchemaItem(QSchemaItem):
+    '''`BeatwiseQSchemaItem` represents a change of state in the timeline of an unmetered
     quantization process.
 
     ::
 
         >>> from experimental import quantizationtools
-        >>> quantizationtools.UnmeteredQSchemaItem()
-        UnmeteredQSchemaItem()
+        >>> quantizationtools.BeatwiseQSchemaItem()
+        BeatwiseQSchemaItem()
 
     Define a change in tempo:
 
     ::
 
-        >>> quantizationtools.UnmeteredQSchemaItem(tempo=((1, 4), 60))
-        UnmeteredQSchemaItem(
+        >>> quantizationtools.BeatwiseQSchemaItem(tempo=((1, 4), 60))
+        BeatwiseQSchemaItem(
             tempo=contexttools.TempoMark(
                 durationtools.Duration(1, 4),
                 60
@@ -30,14 +30,14 @@ class UnmeteredQSchemaItem(QSchemaItem):
 
     ::
 
-        >>> quantizationtools.UnmeteredQSchemaItem(beatspan=(1, 8))
-        UnmeteredQSchemaItem(
+        >>> quantizationtools.BeatwiseQSchemaItem(beatspan=(1, 8))
+        BeatwiseQSchemaItem(
             beatspan=durationtools.Duration(1, 8),
             )
 
-    `UnmeteredQSchemaItem` is immutable.
+    `BeatwiseQSchemaItem` is immutable.
 
-    Return `UnmeteredQSchemaItem` instance.
+    Return `BeatwiseQSchemaItem` instance.
     '''
 
     ### CLASS ATTRIBUTES ###

@@ -2,8 +2,9 @@ from abjad.tools import contexttools
 from experimental import quantizationtools
 
 
-def test_MeteredQSchema___call___01():
+def test_BeatwiseQSchema___call___01():
 
-    schema = quantizationtools.MeteredQSchema()
+    schema = quantizationtools.BeatwiseQSchema()
 
     target = schema(5000)
+

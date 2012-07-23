@@ -1,12 +1,12 @@
 from abjad.tools import contexttools
 from abjad.tools import durationtools
-from experimental.quantizationtools.MeteredQSchemaItem import MeteredQSchemaItem
+from experimental.quantizationtools.MeasurewiseQSchemaItem import MeasurewiseQSchemaItem
 from experimental.quantizationtools.QGridSearchTree import QGridSearchTree
 from experimental.quantizationtools.QSchema import QSchema
 from experimental.quantizationtools.QTargetGrouping import QTargetGrouping
 
 
-class MeteredQSchema(QSchema):
+class MeasurewiseQSchema(QSchema):
 
     ### CLASS ATTRIBUTES ###
 
@@ -37,7 +37,7 @@ class MeteredQSchema(QSchema):
     @property
     def item_klass(self):
         '''The schema's item class.'''        
-        return MeteredQSchemaItem
+        return MeasurewiseQSchemaItem
 
     @property
     def target_klass(self):

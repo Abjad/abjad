@@ -4,18 +4,18 @@ from experimental import quantizationtools
 import py.test
 
 
-def test_UnmeteredQSchemaItem___new___01():
+def test_BeatwiseQSchemaItem___new___01():
 
-    item = quantizationtools.UnmeteredQSchemaItem()
+    item = quantizationtools.BeatwiseQSchemaItem()
 
     assert item.beatspan is None
     assert item.search_tree is None
     assert item.tempo is None
 
 
-def test_UnmeteredQSchemaItem___new___02():
+def test_BeatwiseQSchemaItem___new___02():
 
-    item = quantizationtools.UnmeteredQSchemaItem(
+    item = quantizationtools.BeatwiseQSchemaItem(
         tempo=((1, 4), 60)
         )
 
@@ -24,9 +24,9 @@ def test_UnmeteredQSchemaItem___new___02():
     assert item.tempo == contexttools.TempoMark((1, 4), 60)
 
 
-def test_UnmeteredQSchemaItem___new___03():
+def test_BeatwiseQSchemaItem___new___03():
 
-    item = quantizationtools.UnmeteredQSchemaItem(
+    item = quantizationtools.BeatwiseQSchemaItem(
         beatspan=(1, 8)
         )
 
@@ -35,9 +35,9 @@ def test_UnmeteredQSchemaItem___new___03():
     assert item.tempo is None
 
 
-def test_UnmeteredQSchemaItem___new___04():
+def test_BeatwiseQSchemaItem___new___04():
 
-    item = quantizationtools.UnmeteredQSchemaItem(
+    item = quantizationtools.BeatwiseQSchemaItem(
         beatspan=(1, 8),
         tempo=((1, 4), 57),
         )
@@ -47,7 +47,7 @@ def test_UnmeteredQSchemaItem___new___04():
     assert item.tempo == contexttools.TempoMark((1, 4), 57)
 
 
-def test_UnmeteredQSchemaItem___new___05():
+def test_BeatwiseQSchemaItem___new___05():
 
     tempo = contexttools.TempoMark('lento')
-    py.test.raises('item = quantizationtools.UnmeteredQSchemaItem(tempo=tempo)')
+    py.test.raises('item = quantizationtools.BeatwiseQSchemaItem(tempo=tempo)')

@@ -3,10 +3,10 @@ from abjad.tools import durationtools
 from experimental.quantizationtools.QGridSearchTree import QGridSearchTree
 from experimental.quantizationtools.QSchema import QSchema
 from experimental.quantizationtools.QTargetItem import QTargetItem
-from experimental.quantizationtools.UnmeteredQSchemaItem import UnmeteredQSchemaItem
+from experimental.quantizationtools.BeatwiseQSchemaItem import BeatwiseQSchemaItem
 
 
-class UnmeteredQSchema(QSchema):
+class BeatwiseQSchema(QSchema):
 
     ### CLASS ATTRIBUTES ###
 
@@ -40,7 +40,7 @@ class UnmeteredQSchema(QSchema):
     @property
     def item_klass(self):
         '''The schema's item class.'''
-        return UnmeteredQSchemaItem
+        return BeatwiseQSchemaItem
 
     @property
     def target_klass(self):
