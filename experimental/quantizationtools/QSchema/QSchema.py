@@ -46,6 +46,18 @@ class QSchema(abctools.AbjadObject):
 
     ### SPECIAL METHODS ###
 
+    def __call__(self, duration):
+        targets = []
+        idx, current_offset = 0, 0
+        while current_offset < duration:
+            lookup = self[idx]
+            lookup['offset_in_ms'] = current_offset
+            target = self.target_klass(**lookup)
+            targets.append(target)
+            current_offset += target.duration_in_ms
+            idx += 1
+        return tuple(targets)
+
     def __getitem__(self, i):
         assert isinstance(i, int) and 0 <= i
         result = {}
