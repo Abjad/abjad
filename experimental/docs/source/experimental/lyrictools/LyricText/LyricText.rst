@@ -1,164 +1,164 @@
-lyricstools.LyricSpace
-======================
+lyrictools.LyricText
+====================
 
-.. inheritance-diagram:: experimental.lyricstools.LyricSpace.LyricSpace.LyricSpace
+.. inheritance-diagram:: experimental.lyrictools.LyricText.LyricText.LyricText
    :private-bases:
 
-.. autoclass:: experimental.lyricstools.LyricSpace.LyricSpace.LyricSpace
+.. autoclass:: experimental.lyrictools.LyricText.LyricText.LyricText
 
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.lyricstools.LyricSpace.LyricSpace.LyricSpace.duration_in_seconds
+.. autoattribute:: experimental.lyrictools.LyricText.LyricText.LyricText.duration_in_seconds
 
     Inherited from :py:class:`leaftools.Leaf <abjad.tools.leaftools.Leaf.Leaf.Leaf>`
 
-.. autoattribute:: experimental.lyricstools.LyricSpace.LyricSpace.LyricSpace.leaf_index
+.. autoattribute:: experimental.lyrictools.LyricText.LyricText.LyricText.leaf_index
 
     Inherited from :py:class:`leaftools.Leaf <abjad.tools.leaftools.Leaf.Leaf.Leaf>`
 
-.. autoattribute:: experimental.lyricstools.LyricSpace.LyricSpace.LyricSpace.lilypond_format
+.. autoattribute:: experimental.lyrictools.LyricText.LyricText.LyricText.lilypond_format
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
-.. autoattribute:: experimental.lyricstools.LyricSpace.LyricSpace.LyricSpace.multiplied_duration
+.. autoattribute:: experimental.lyrictools.LyricText.LyricText.LyricText.multiplied_duration
 
     Inherited from :py:class:`leaftools.Leaf <abjad.tools.leaftools.Leaf.Leaf.Leaf>`
 
-.. autoattribute:: experimental.lyricstools.LyricSpace.LyricSpace.LyricSpace.override
+.. autoattribute:: experimental.lyrictools.LyricText.LyricText.LyricText.override
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
-.. autoattribute:: experimental.lyricstools.LyricSpace.LyricSpace.LyricSpace.parent
+.. autoattribute:: experimental.lyrictools.LyricText.LyricText.LyricText.parent
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
-.. autoattribute:: experimental.lyricstools.LyricSpace.LyricSpace.LyricSpace.preprolated_duration
+.. autoattribute:: experimental.lyrictools.LyricText.LyricText.LyricText.preprolated_duration
 
     Inherited from :py:class:`leaftools.Leaf <abjad.tools.leaftools.Leaf.Leaf.Leaf>`
 
-.. autoattribute:: experimental.lyricstools.LyricSpace.LyricSpace.LyricSpace.prolated_duration
+.. autoattribute:: experimental.lyrictools.LyricText.LyricText.LyricText.prolated_duration
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
-.. autoattribute:: experimental.lyricstools.LyricSpace.LyricSpace.LyricSpace.prolation
+.. autoattribute:: experimental.lyrictools.LyricText.LyricText.LyricText.prolation
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
-.. autoattribute:: experimental.lyricstools.LyricSpace.LyricSpace.LyricSpace.set
+.. autoattribute:: experimental.lyrictools.LyricText.LyricText.LyricText.set
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
-.. autoattribute:: experimental.lyricstools.LyricSpace.LyricSpace.LyricSpace.spanners
+.. autoattribute:: experimental.lyrictools.LyricText.LyricText.LyricText.spanners
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
-.. autoattribute:: experimental.lyricstools.LyricSpace.LyricSpace.LyricSpace.start_offset
+.. autoattribute:: experimental.lyrictools.LyricText.LyricText.LyricText.start_offset
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
-.. autoattribute:: experimental.lyricstools.LyricSpace.LyricSpace.LyricSpace.start_offset_in_seconds
+.. autoattribute:: experimental.lyrictools.LyricText.LyricText.LyricText.start_offset_in_seconds
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
-.. autoattribute:: experimental.lyricstools.LyricSpace.LyricSpace.LyricSpace.stop_offset
+.. autoattribute:: experimental.lyrictools.LyricText.LyricText.LyricText.stop_offset
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
-.. autoattribute:: experimental.lyricstools.LyricSpace.LyricSpace.LyricSpace.stop_offset_in_seconds
+.. autoattribute:: experimental.lyrictools.LyricText.LyricText.LyricText.stop_offset_in_seconds
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
-.. autoattribute:: experimental.lyricstools.LyricSpace.LyricSpace.LyricSpace.storage_format
+.. autoattribute:: experimental.lyrictools.LyricText.LyricText.LyricText.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 Read/write Properties
 ---------------------
 
-.. autoattribute:: experimental.lyricstools.LyricSpace.LyricSpace.LyricSpace.duration_multiplier
+.. autoattribute:: experimental.lyrictools.LyricText.LyricText.LyricText.duration_multiplier
 
     Inherited from :py:class:`leaftools.Leaf <abjad.tools.leaftools.Leaf.Leaf.Leaf>`
 
-.. autoattribute:: experimental.lyricstools.LyricSpace.LyricSpace.LyricSpace.written_duration
+.. autoattribute:: experimental.lyrictools.LyricText.LyricText.LyricText.written_duration
 
     Inherited from :py:class:`leaftools.Leaf <abjad.tools.leaftools.Leaf.Leaf.Leaf>`
 
-.. autoattribute:: experimental.lyricstools.LyricSpace.LyricSpace.LyricSpace.written_pitch_indication_is_at_sounding_pitch
+.. autoattribute:: experimental.lyrictools.LyricText.LyricText.LyricText.written_pitch_indication_is_at_sounding_pitch
 
     Inherited from :py:class:`leaftools.Leaf <abjad.tools.leaftools.Leaf.Leaf.Leaf>`
 
-.. autoattribute:: experimental.lyricstools.LyricSpace.LyricSpace.LyricSpace.written_pitch_indication_is_nonsemantic
+.. autoattribute:: experimental.lyrictools.LyricText.LyricText.LyricText.written_pitch_indication_is_nonsemantic
 
     Inherited from :py:class:`leaftools.Leaf <abjad.tools.leaftools.Leaf.Leaf.Leaf>`
 
 Special Methods
 ---------------
 
-.. automethod:: experimental.lyricstools.LyricSpace.LyricSpace.LyricSpace.__and__
+.. automethod:: experimental.lyrictools.LyricText.LyricText.LyricText.__and__
 
     Inherited from :py:class:`leaftools.Leaf <abjad.tools.leaftools.Leaf.Leaf.Leaf>`
 
-.. automethod:: experimental.lyricstools.LyricSpace.LyricSpace.LyricSpace.__delattr__
+.. automethod:: experimental.lyrictools.LyricText.LyricText.LyricText.__delattr__
 
     Inherited from :py:class:`__builtin__.object`
 
-.. automethod:: experimental.lyricstools.LyricSpace.LyricSpace.LyricSpace.__eq__
+.. automethod:: experimental.lyrictools.LyricText.LyricText.LyricText.__eq__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.lyricstools.LyricSpace.LyricSpace.LyricSpace.__ge__
+.. automethod:: experimental.lyrictools.LyricText.LyricText.LyricText.__ge__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.lyricstools.LyricSpace.LyricSpace.LyricSpace.__gt__
+.. automethod:: experimental.lyrictools.LyricText.LyricText.LyricText.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.lyricstools.LyricSpace.LyricSpace.LyricSpace.__hash__
+.. automethod:: experimental.lyrictools.LyricText.LyricText.LyricText.__hash__
 
     Inherited from :py:class:`__builtin__.object`
 
-.. automethod:: experimental.lyricstools.LyricSpace.LyricSpace.LyricSpace.__le__
+.. automethod:: experimental.lyrictools.LyricText.LyricText.LyricText.__le__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.lyricstools.LyricSpace.LyricSpace.LyricSpace.__lt__
+.. automethod:: experimental.lyrictools.LyricText.LyricText.LyricText.__lt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.lyricstools.LyricSpace.LyricSpace.LyricSpace.__mul__
+.. automethod:: experimental.lyrictools.LyricText.LyricText.LyricText.__mul__
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
-.. automethod:: experimental.lyricstools.LyricSpace.LyricSpace.LyricSpace.__ne__
+.. automethod:: experimental.lyrictools.LyricText.LyricText.LyricText.__ne__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.lyricstools.LyricSpace.LyricSpace.LyricSpace.__or__
+.. automethod:: experimental.lyrictools.LyricText.LyricText.LyricText.__or__
 
     Inherited from :py:class:`leaftools.Leaf <abjad.tools.leaftools.Leaf.Leaf.Leaf>`
 
-.. automethod:: experimental.lyricstools.LyricSpace.LyricSpace.LyricSpace.__repr__
+.. automethod:: experimental.lyrictools.LyricText.LyricText.LyricText.__repr__
 
     Inherited from :py:class:`leaftools.Leaf <abjad.tools.leaftools.Leaf.Leaf.Leaf>`
 
-.. automethod:: experimental.lyricstools.LyricSpace.LyricSpace.LyricSpace.__rmul__
+.. automethod:: experimental.lyrictools.LyricText.LyricText.LyricText.__rmul__
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
-.. automethod:: experimental.lyricstools.LyricSpace.LyricSpace.LyricSpace.__setattr__
+.. automethod:: experimental.lyrictools.LyricText.LyricText.LyricText.__setattr__
 
     Inherited from :py:class:`__builtin__.object`
 
-.. automethod:: experimental.lyricstools.LyricSpace.LyricSpace.LyricSpace.__str__
+.. automethod:: experimental.lyrictools.LyricText.LyricText.LyricText.__str__
 
     Inherited from :py:class:`leaftools.Leaf <abjad.tools.leaftools.Leaf.Leaf.Leaf>`
 
-.. automethod:: experimental.lyricstools.LyricSpace.LyricSpace.LyricSpace.__sub__
+.. automethod:: experimental.lyrictools.LyricText.LyricText.LyricText.__sub__
 
     Inherited from :py:class:`leaftools.Leaf <abjad.tools.leaftools.Leaf.Leaf.Leaf>`
 
-.. automethod:: experimental.lyricstools.LyricSpace.LyricSpace.LyricSpace.__xor__
+.. automethod:: experimental.lyrictools.LyricText.LyricText.LyricText.__xor__
 
     Inherited from :py:class:`leaftools.Leaf <abjad.tools.leaftools.Leaf.Leaf.Leaf>`

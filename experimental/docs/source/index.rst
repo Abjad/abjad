@@ -143,20 +143,20 @@ Unstable packages (load manually)
    experimental/interpretationtools/UninterpretedDivisionCommand/UninterpretedDivisionCommand
    experimental/interpretationtools/VoiceDivisionList/VoiceDivisionList
 
-:py:mod:`lyricstools <experimental.lyricstools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`lyrictools <experimental.lyrictools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
 
-   experimental/lyricstools/AddLyrics/AddLyrics
-   experimental/lyricstools/LyricExtender/LyricExtender
-   experimental/lyricstools/LyricHyphen/LyricHyphen
-   experimental/lyricstools/LyricSpace/LyricSpace
-   experimental/lyricstools/LyricText/LyricText
-   experimental/lyricstools/Lyrics/Lyrics
+   experimental/lyrictools/AddLyrics/AddLyrics
+   experimental/lyrictools/LyricExtender/LyricExtender
+   experimental/lyrictools/LyricHyphen/LyricHyphen
+   experimental/lyrictools/LyricSpace/LyricSpace
+   experimental/lyrictools/LyricText/LyricText
+   experimental/lyrictools/Lyrics/Lyrics
 
 :py:mod:`quantizationtools <experimental.quantizationtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

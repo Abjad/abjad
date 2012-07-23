@@ -2,7 +2,7 @@ import abjadbooktools
 import constrainttools
 import handlertools
 import interpretationtools
-import lyricstools
+import lyrictools
 import quantizationtools
 import settingtools
 import specificationtools

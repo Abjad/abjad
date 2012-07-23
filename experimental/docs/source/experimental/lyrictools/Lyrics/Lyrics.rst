@@ -1,203 +1,227 @@
-lyricstools.AddLyrics
-=====================
+lyrictools.Lyrics
+=================
 
-.. inheritance-diagram:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics
+.. inheritance-diagram:: experimental.lyrictools.Lyrics.Lyrics.Lyrics
    :private-bases:
 
-.. autoclass:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics
+.. autoclass:: experimental.lyrictools.Lyrics.Lyrics.Lyrics
 
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.contents_duration
+.. autoattribute:: experimental.lyrictools.Lyrics.Lyrics.Lyrics.contents_duration
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
 
-.. autoattribute:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.duration_in_seconds
+.. autoattribute:: experimental.lyrictools.Lyrics.Lyrics.Lyrics.duration_in_seconds
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
 
-.. autoattribute:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.leaves
+.. autoattribute:: experimental.lyrictools.Lyrics.Lyrics.Lyrics.engraver_consists
+
+    Inherited from :py:class:`contexttools.Context <abjad.tools.contexttools.Context.Context.Context>`
+
+.. autoattribute:: experimental.lyrictools.Lyrics.Lyrics.Lyrics.engraver_removals
+
+    Inherited from :py:class:`contexttools.Context <abjad.tools.contexttools.Context.Context.Context>`
+
+.. autoattribute:: experimental.lyrictools.Lyrics.Lyrics.Lyrics.is_semantic
+
+    Inherited from :py:class:`contexttools.Context <abjad.tools.contexttools.Context.Context.Context>`
+
+.. autoattribute:: experimental.lyrictools.Lyrics.Lyrics.Lyrics.leaves
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
 
-.. autoattribute:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.lilypond_format
+.. autoattribute:: experimental.lyrictools.Lyrics.Lyrics.Lyrics.lilypond_format
 
-    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+    Inherited from :py:class:`contexttools.Context <abjad.tools.contexttools.Context.Context.Context>`
 
-.. autoattribute:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.music
-
-    Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
-
-.. autoattribute:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.override
-
-    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
-
-.. autoattribute:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.parent
-
-    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
-
-.. autoattribute:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.preprolated_duration
+.. autoattribute:: experimental.lyrictools.Lyrics.Lyrics.Lyrics.music
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
 
-.. autoattribute:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.prolated_duration
+.. autoattribute:: experimental.lyrictools.Lyrics.Lyrics.Lyrics.override
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
-.. autoattribute:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.prolation
+.. autoattribute:: experimental.lyrictools.Lyrics.Lyrics.Lyrics.parent
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
-.. autoattribute:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.set
+.. autoattribute:: experimental.lyrictools.Lyrics.Lyrics.Lyrics.preprolated_duration
+
+    Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
+
+.. autoattribute:: experimental.lyrictools.Lyrics.Lyrics.Lyrics.prolated_duration
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
-.. autoattribute:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.spanners
+.. autoattribute:: experimental.lyrictools.Lyrics.Lyrics.Lyrics.prolation
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
-.. autoattribute:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.start_offset
+.. autoattribute:: experimental.lyrictools.Lyrics.Lyrics.Lyrics.set
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
-.. autoattribute:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.start_offset_in_seconds
+.. autoattribute:: experimental.lyrictools.Lyrics.Lyrics.Lyrics.spanners
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
-.. autoattribute:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.stop_offset
+.. autoattribute:: experimental.lyrictools.Lyrics.Lyrics.Lyrics.start_offset
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
-.. autoattribute:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.stop_offset_in_seconds
+.. autoattribute:: experimental.lyrictools.Lyrics.Lyrics.Lyrics.start_offset_in_seconds
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
-.. autoattribute:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.storage_format
+.. autoattribute:: experimental.lyrictools.Lyrics.Lyrics.Lyrics.stop_offset
+
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+
+.. autoattribute:: experimental.lyrictools.Lyrics.Lyrics.Lyrics.stop_offset_in_seconds
+
+    Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
+
+.. autoattribute:: experimental.lyrictools.Lyrics.Lyrics.Lyrics.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 Read/write Properties
 ---------------------
 
-.. autoattribute:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.is_parallel
+.. autoattribute:: experimental.lyrictools.Lyrics.Lyrics.Lyrics.context_name
+
+    Inherited from :py:class:`contexttools.Context <abjad.tools.contexttools.Context.Context.Context>`
+
+.. autoattribute:: experimental.lyrictools.Lyrics.Lyrics.Lyrics.is_nonsemantic
+
+    Inherited from :py:class:`contexttools.Context <abjad.tools.contexttools.Context.Context.Context>`
+
+.. autoattribute:: experimental.lyrictools.Lyrics.Lyrics.Lyrics.is_parallel
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
+
+.. autoattribute:: experimental.lyrictools.Lyrics.Lyrics.Lyrics.name
+
+    Inherited from :py:class:`contexttools.Context <abjad.tools.contexttools.Context.Context.Context>`
 
 Methods
 -------
 
-.. automethod:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.append
+.. automethod:: experimental.lyrictools.Lyrics.Lyrics.Lyrics.append
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
 
-.. automethod:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.extend
+.. automethod:: experimental.lyrictools.Lyrics.Lyrics.Lyrics.extend
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
 
-.. automethod:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.index
+.. automethod:: experimental.lyrictools.Lyrics.Lyrics.Lyrics.index
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
 
-.. automethod:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.insert
+.. automethod:: experimental.lyrictools.Lyrics.Lyrics.Lyrics.insert
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
 
-.. automethod:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.pop
+.. automethod:: experimental.lyrictools.Lyrics.Lyrics.Lyrics.pop
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
 
-.. automethod:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.remove
+.. automethod:: experimental.lyrictools.Lyrics.Lyrics.Lyrics.remove
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
 
 Special Methods
 ---------------
 
-.. automethod:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.__add__
+.. automethod:: experimental.lyrictools.Lyrics.Lyrics.Lyrics.__add__
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
 
-.. automethod:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.__contains__
+.. automethod:: experimental.lyrictools.Lyrics.Lyrics.Lyrics.__contains__
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
 
-.. automethod:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.__delattr__
+.. automethod:: experimental.lyrictools.Lyrics.Lyrics.Lyrics.__delattr__
 
     Inherited from :py:class:`__builtin__.object`
 
-.. automethod:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.__delitem__
+.. automethod:: experimental.lyrictools.Lyrics.Lyrics.Lyrics.__delitem__
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
 
-.. automethod:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.__eq__
+.. automethod:: experimental.lyrictools.Lyrics.Lyrics.Lyrics.__eq__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.__ge__
+.. automethod:: experimental.lyrictools.Lyrics.Lyrics.Lyrics.__ge__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.__getitem__
+.. automethod:: experimental.lyrictools.Lyrics.Lyrics.Lyrics.__getitem__
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
 
-.. automethod:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.__gt__
+.. automethod:: experimental.lyrictools.Lyrics.Lyrics.Lyrics.__gt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.__hash__
+.. automethod:: experimental.lyrictools.Lyrics.Lyrics.Lyrics.__hash__
 
     Inherited from :py:class:`__builtin__.object`
 
-.. automethod:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.__iadd__
+.. automethod:: experimental.lyrictools.Lyrics.Lyrics.Lyrics.__iadd__
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
 
-.. automethod:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.__imul__
+.. automethod:: experimental.lyrictools.Lyrics.Lyrics.Lyrics.__imul__
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
 
-.. automethod:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.__le__
+.. automethod:: experimental.lyrictools.Lyrics.Lyrics.Lyrics.__le__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.__len__
+.. automethod:: experimental.lyrictools.Lyrics.Lyrics.Lyrics.__len__
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
 
-.. automethod:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.__lt__
+.. automethod:: experimental.lyrictools.Lyrics.Lyrics.Lyrics.__lt__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.__mul__
+.. automethod:: experimental.lyrictools.Lyrics.Lyrics.Lyrics.__mul__
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
-.. automethod:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.__ne__
+.. automethod:: experimental.lyrictools.Lyrics.Lyrics.Lyrics.__ne__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-.. automethod:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.__radd__
+.. automethod:: experimental.lyrictools.Lyrics.Lyrics.Lyrics.__radd__
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
 
-.. automethod:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.__repr__
+.. automethod:: experimental.lyrictools.Lyrics.Lyrics.Lyrics.__repr__
 
-    Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
+    Inherited from :py:class:`contexttools.Context <abjad.tools.contexttools.Context.Context.Context>`
 
-.. automethod:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.__rmul__
+.. automethod:: experimental.lyrictools.Lyrics.Lyrics.Lyrics.__rmul__
 
     Inherited from :py:class:`componenttools.Component <abjad.tools.componenttools.Component.Component.Component>`
 
-.. automethod:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.__setattr__
+.. automethod:: experimental.lyrictools.Lyrics.Lyrics.Lyrics.__setattr__
 
     Inherited from :py:class:`__builtin__.object`
 
-.. automethod:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.__setitem__
+.. automethod:: experimental.lyrictools.Lyrics.Lyrics.Lyrics.__setitem__
 
     Inherited from :py:class:`containertools.Container <abjad.tools.containertools.Container.Container.Container>`
 
-.. automethod:: experimental.lyricstools.AddLyrics.AddLyrics.AddLyrics.__str__
+.. automethod:: experimental.lyrictools.Lyrics.Lyrics.Lyrics.__str__
 
     Inherited from :py:class:`__builtin__.object`
