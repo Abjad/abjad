@@ -18,10 +18,10 @@ def test_MultipleContextSettingInventory___repr___01():
     segment = specification.append_segment()
     segment.set_time_signatures(segment, [(4, 8), (3, 8)])
 
-    directive_inventory_1 = segment.directives
-    directive_inventory_2 = eval(repr(directive_inventory_1))
+    multiple_context_setting_inventory_1 = segment.multiple_context_settings
+    multiple_context_setting_inventory_2 = eval(repr(multiple_context_setting_inventory_1))
 
-    assert isinstance(directive_inventory_1, MultipleContextSettingInventory)
-    assert isinstance(directive_inventory_2, MultipleContextSettingInventory)
-    assert not directive_inventory_1 is directive_inventory_2
-    assert directive_inventory_1 == directive_inventory_2
+    assert isinstance(multiple_context_setting_inventory_1, MultipleContextSettingInventory)
+    assert isinstance(multiple_context_setting_inventory_2, MultipleContextSettingInventory)
+    assert not multiple_context_setting_inventory_1 is multiple_context_setting_inventory_2
+    assert multiple_context_setting_inventory_1 == multiple_context_setting_inventory_2

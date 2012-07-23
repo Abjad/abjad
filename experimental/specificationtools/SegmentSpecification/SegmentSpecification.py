@@ -46,13 +46,13 @@ class SegmentSpecification(Specification):
         Specification.__init__(self, score_template)
         self._score_model = self.score_template()
         self._name = name
-        self._directives = settingtools.MultipleContextSettingInventory()
+        self._multiple_context_settings = settingtools.MultipleContextSettingInventory()
 
     ### SPECIAL METHODS ###
 
     def __getitem__(self, expr):
         if isinstance(expr, int):
-            return self.directives.__getitem__(expr)
+            return self.multiple_context_settings.__getitem__(expr)
         else:
             return self.payload_context_dictionary.__getitem__(expr) 
         
@@ -60,18 +60,6 @@ class SegmentSpecification(Specification):
         return '{}({!r})'.format(self._class_name, self.name)
 
     ### READ-ONLY PUBLIC ATTRIBUTES ###
-
-    # TODO: rename to multiple_context_settings
-    @property
-    def directives(self):
-        '''Segment specification directives.
-
-            >>> segment.directives
-            MultipleContextSettingInventory([])
-
-        Return directive inventory.
-        '''
-        return self._directives
 
     @property
     def duration(self):
@@ -86,6 +74,17 @@ class SegmentSpecification(Specification):
         '''
         if self.time_signatures is not None:
             return sum([durationtools.Duration(x) for x in self.time_signatures])        
+
+    @property
+    def multiple_context_settings(self):
+        '''Segment specification multiple context settings.
+
+            >>> segment.multiple_context_settings
+            MultipleContextSettingInventory([])
+
+        Return multiple context setting inventory.
+        '''
+        return self._multiple_context_settings
 
     @property
     def name(self):
@@ -228,12 +227,12 @@ class SegmentSpecification(Specification):
         command = interpretationtools.UninterpretedDivisionCommand(*args)
         return command
 
-    def get_directives(self, target=None, attribute=None):
+    def get_multiple_context_settings(self, target=None, attribute=None):
         result = []
-        for directive in self.directives:
-            if target is None or directive.target == target:
-                if attribute is None or directive.attribute == attribute:
-                    result.append(directive)
+        for multiple_context_setting in self.multiple_context_settings:
+            if target is None or multiple_context_setting.target == target:
+                if attribute is None or multiple_context_setting.attribute == attribute:
+                    result.append(multiple_context_setting)
         return result
 
     # method does not yet handle timespans equal to fractions of a segment
@@ -652,10 +651,10 @@ class SegmentSpecification(Specification):
         assert isinstance(truncate, type(True)), repr(truncate)
         target = self.preprocess_setting_target(target)
         source = self.annotate_source(source, callback=callback, count=count, offset=offset)
-        directive = settingtools.MultipleContextSetting(target, attribute, source, 
+        multiple_context_setting = settingtools.MultipleContextSetting(target, attribute, source, 
             persistent=persistent, truncate=truncate)
-        self.directives.append(directive)
-        return directive
+        self.multiple_context_settings.append(multiple_context_setting)
+        return multiple_context_setting
 
     def set_chord_treatment(self, contexts, source, 
         count=None, persistent=True, offset=None):
@@ -764,7 +763,7 @@ class SegmentSpecification(Specification):
         return self.set_attribute(attribute, contexts, source, 
             count=count, offset=offset, persistent=persistent)
 
-    def unpack_directives(self):
-        for directive in self.directives:
-            self.settings.extend(directive.unpack())
+    def unpack_multiple_context_settings(self):
+        for multiple_context_setting in self.multiple_context_settings:
+            self.settings.extend(multiple_context_setting.unpack())
         return self.settings

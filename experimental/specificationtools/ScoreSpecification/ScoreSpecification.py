@@ -405,7 +405,7 @@ class ScoreSpecification(Specification):
         
     def interpret(self):
         self.instantiate_score()
-        self.unpack_directives()
+        self.unpack_multiple_context_settings()
         self.interpret_segment_time_signatures()
         self.add_time_signatures()
         self.calculate_segment_offset_pairs()
@@ -638,6 +638,6 @@ class ScoreSpecification(Specification):
         for setting in settings:
             self.store_setting(setting)
 
-    def unpack_directives(self):
+    def unpack_multiple_context_settings(self):
         for segment in self.segments:
-            self.settings.extend(segment.unpack_directives())
+            self.settings.extend(segment.unpack_multiple_context_settings())

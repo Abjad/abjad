@@ -23,9 +23,9 @@ def test_MultipleContextSettingInventory_storage_format_01():
     segment = score_specification.append_segment()
     segment.set_time_signatures(segment, [(4, 8), (3, 8)])
 
-    directive_inventory_1 = segment.directives
+    multiple_context_setting_inventory_1 = segment.multiple_context_settings
 
-    storage_format = directive_inventory_1.storage_format
+    storage_format = multiple_context_setting_inventory_1.storage_format
 
     r'''
     settingtools.MultipleContextSettingInventory([
@@ -48,9 +48,9 @@ def test_MultipleContextSettingInventory_storage_format_01():
 
     assert storage_format == "settingtools.MultipleContextSettingInventory([\n\tsettingtools.MultipleContextSetting(\n\t\tselectortools.MultipleContextTimespanSelector(\n\t\t\tcontexts=['Grouped Rhythmic Staves Score'],\n\t\t\ttimespan=timespantools.SingleSourceTimespan(\n\t\t\t\tselector=selectortools.SegmentSelector(\n\t\t\t\t\tindex='1'\n\t\t\t\t\t)\n\t\t\t\t)\n\t\t\t),\n\t\t'time_signatures',\n\t\t[(4, 8), (3, 8)],\n\t\tpersistent=True,\n\t\ttruncate=False\n\t\t)\n\t])"
 
-    directive_inventory_2 = eval(storage_format)
+    multiple_context_setting_inventory_2 = eval(storage_format)
 
-    assert isinstance(directive_inventory_1, MultipleContextSettingInventory)
-    assert isinstance(directive_inventory_2, MultipleContextSettingInventory)
-    assert not directive_inventory_1 is directive_inventory_2
-    assert directive_inventory_1 == directive_inventory_2
+    assert isinstance(multiple_context_setting_inventory_1, MultipleContextSettingInventory)
+    assert isinstance(multiple_context_setting_inventory_2, MultipleContextSettingInventory)
+    assert not multiple_context_setting_inventory_1 is multiple_context_setting_inventory_2
+    assert multiple_context_setting_inventory_1 == multiple_context_setting_inventory_2
