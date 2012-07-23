@@ -1,5 +1,5 @@
 quantizationtools.QGridLeaf
-===============================
+===========================
 
 .. inheritance-diagram:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf
    :private-bases:

@@ -1,5 +1,5 @@
 quantizationtools.BeatwiseQSchemaItem
-======================================
+=====================================
 
 .. inheritance-diagram:: experimental.quantizationtools.BeatwiseQSchemaItem.BeatwiseQSchemaItem.BeatwiseQSchemaItem
    :private-bases:

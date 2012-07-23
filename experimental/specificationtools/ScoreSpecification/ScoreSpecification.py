@@ -154,6 +154,8 @@ class ScoreSpecification(Specification):
 #        rhythm_command_durations = [x.duration for x in rhythm_commands]
 #        #self._debug(voice_division_durations)
 #        #self._debug(rhythm_commands)
+#        region_division_lists = self.payload_context_dictionary[voice.name]['region_division_lists']
+#        self._debug(region_division_lists)
 #        args = (voice_division_durations, rhythm_command_durations)
 #        parts = sequencetools.partition_sequence_by_backgrounded_weights(*args)
 #        assert len(rhythm_commands) == len(parts)

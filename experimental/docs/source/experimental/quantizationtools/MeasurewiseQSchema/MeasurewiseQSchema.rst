@@ -1,5 +1,5 @@
 quantizationtools.MeasurewiseQSchema
-================================
+====================================
 
 .. inheritance-diagram:: experimental.quantizationtools.MeasurewiseQSchema.MeasurewiseQSchema.MeasurewiseQSchema
    :private-bases:
