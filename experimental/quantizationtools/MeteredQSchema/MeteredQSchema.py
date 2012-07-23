@@ -3,6 +3,7 @@ from abjad.tools import durationtools
 from experimental.quantizationtools.MeteredQSchemaItem import MeteredQSchemaItem
 from experimental.quantizationtools.QGridSearchTree import QGridSearchTree
 from experimental.quantizationtools.QSchema import QSchema
+from experimental.quantizationtools.QTargetGrouping import QTargetGrouping
 
 
 class MeteredQSchema(QSchema):
