@@ -613,11 +613,17 @@ class ScoreSpecification(Specification):
         # CURRENT: toggle between these two values while implementing count ratio selectors
         #          First line is for last known good behavior.
         #          Second line is for newly improved behavior.
-        self.store_only_one_setting(segment, context_name, attribute, resolved_setting)
-        #self.store_multiple_settings(segment, context_name, attribute, resolved_setting)
+        self.store_resolved_settings(segment, context_name, attribute, resolved_setting)
+        #self.store_resolved_settings_new(segment, context_name, attribute, resolved_setting)
+
+    # deprecated behavior
+    def store_resolved_settings(self, segment, context_name, attribute, resolved_setting):
+        segment.resolved_settings_context_dictionary[context_name][attribute] = resolved_setting
+        if resolved_setting.persistent:
+            self.resolved_settings_context_dictionary[context_name][attribute] = resolved_setting
 
     # new behavior
-    def store_multiple_settings(self, segment, context_name, attribute, resolved_setting):
+    def store_resolved_settings_new(self, segment, context_name, attribute, resolved_setting):
         if attribute in segment.resolved_settings_context_dictionary[context_name]:
             segment.resolved_settings_context_dictionary[context_name][attribute].append(resolved_setting)
         else:
@@ -627,12 +633,6 @@ class ScoreSpecification(Specification):
                 self.resolved_settings_context_dictionary[context_name][attribute].append(resolved_setting)
             else:
                 self.resolved_settings_context_dictionary[context_name] = [resolved_setting]
-
-    # deprecated old behavior
-    def store_only_one_setting(self, segment, context_name, attribute, resolved_setting):
-        segment.resolved_settings_context_dictionary[context_name][attribute] = resolved_setting
-        if resolved_setting.persistent:
-            self.resolved_settings_context_dictionary[context_name][attribute] = resolved_setting
 
     def store_settings(self, settings):
         for setting in settings:

@@ -236,7 +236,7 @@ class SegmentSpecification(Specification):
                     result.append(directive)
         return result
 
-    # method does not handle timespans equal to fractions of a segment
+    # method does not yet handle timespans equal to fractions of a segment
     def get_division_resolved_value(self, context_name):
         '''Return resolved setting found in context tree or else default to segment time signatures.
         '''
@@ -249,7 +249,6 @@ class SegmentSpecification(Specification):
         else:
             return interpretationtools.ResolvedValue(None, False, False)
 
-    # new behavior
     def get_uninterpreted_division_commands_that_start_during_segment(self, context_name):
         from experimental import selectortools
         resolved_settings = self.get_resolved_single_context_settings('divisions', context_name)
@@ -285,19 +284,6 @@ class SegmentSpecification(Specification):
             if settings:
                 return settings
 
-    # deprecated behavior
-    def get_rhythm_command(self, context_name):
-        '''Default to rest-filled tokens if explicit rhythm not found.
-        '''
-        from experimental.specificationtools import library
-        setting = self.get_resolved_single_context_setting('rhythm', context_name)
-        if setting is not None:
-            rhythm_command = interpretationtools.RhythmCommand(setting.value, self.duration, setting.fresh)
-        else:
-            rhythm_command = interpretationtools.RhythmCommand(library.rest_filled_tokens, self.duration, True)
-        return rhythm_command
-
-    # new behavior
     def get_rhythm_commands_that_start_during_segment(self, voice_name):
         from experimental import selectortools
         from experimental.specificationtools import library
