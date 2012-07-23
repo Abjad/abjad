@@ -134,10 +134,14 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
+   experimental/interpretertools/DivisionList/DivisionList
+   experimental/interpretertools/DivisionRegionDivisionList/DivisionRegionDivisionList
    experimental/interpretertools/RegionDivisionCommand/RegionDivisionCommand
    experimental/interpretertools/ResolvedValue/ResolvedValue
    experimental/interpretertools/RhythmCommand/RhythmCommand
+   experimental/interpretertools/SegmentDivisionList/SegmentDivisionList
    experimental/interpretertools/UninterpretedDivisionCommand/UninterpretedDivisionCommand
+   experimental/interpretertools/VoiceDivisionList/VoiceDivisionList
 
 :py:mod:`lyricstools <experimental.lyricstools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -291,19 +295,15 @@ Unstable packages (load manually)
    experimental/specificationtools/ContextDictionary/ContextDictionary
    experimental/specificationtools/ContextProxy/ContextProxy
    experimental/specificationtools/Division/Division
-   experimental/specificationtools/DivisionList/DivisionList
-   experimental/specificationtools/DivisionRegionDivisionList/DivisionRegionDivisionList
    experimental/specificationtools/HandlerRequest/HandlerRequest
    experimental/specificationtools/ScopedValue/ScopedValue
    experimental/specificationtools/ScoreSpecification/ScoreSpecification
    experimental/specificationtools/Segment/Segment
-   experimental/specificationtools/SegmentDivisionList/SegmentDivisionList
    experimental/specificationtools/SegmentInventory/SegmentInventory
    experimental/specificationtools/SegmentSpecification/SegmentSpecification
    experimental/specificationtools/StatalServer/StatalServer
    experimental/specificationtools/StatalServerRequest/StatalServerRequest
    experimental/specificationtools/ValueRetrievalIndicator/ValueRetrievalIndicator
-   experimental/specificationtools/VoiceDivisionList/VoiceDivisionList
 
 :py:mod:`timespantools <experimental.timespantools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

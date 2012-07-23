@@ -1,4 +1,4 @@
-from experimental.specificationtools.DivisionList import DivisionList
+from experimental.interpretertools.DivisionList import DivisionList
 
 
 class SegmentDivisionList(DivisionList):

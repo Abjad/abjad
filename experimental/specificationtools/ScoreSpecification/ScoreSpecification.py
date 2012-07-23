@@ -2,16 +2,12 @@ from abjad.tools import *
 from experimental import interpretertools
 from experimental.specificationtools.AttributeRetrievalRequest import AttributeRetrievalRequest
 from experimental.specificationtools.Division import Division
-from experimental.specificationtools.DivisionList import DivisionList
-from experimental.specificationtools.DivisionRegionDivisionList import DivisionRegionDivisionList
 from experimental.specificationtools.ScopedValue import ScopedValue
-from experimental.specificationtools.SegmentDivisionList import SegmentDivisionList
 from experimental.specificationtools.SegmentInventory import SegmentInventory
 from experimental.specificationtools.SegmentSpecification import SegmentSpecification
 from experimental.selectortools.MultipleContextTimespanSelector import MultipleContextTimespanSelector
 from experimental.specificationtools.Specification import Specification
 from experimental.specificationtools.StatalServerRequest import StatalServerRequest
-from experimental.specificationtools.VoiceDivisionList import VoiceDivisionList
 import collections
 import copy
 import re
@@ -105,7 +101,7 @@ class ScoreSpecification(Specification):
             for region_division_list in region_division_lists:
                 voice_divisions.extend(region_division_list.divisions)
             #self._debug(voice_divisions)
-            voice_division_list = VoiceDivisionList(voice_divisions)
+            voice_division_list = interpretertools.VoiceDivisionList(voice_divisions)
             self.payload_context_dictionary[voice.name]['voice_division_list'] = voice_division_list
             segment_division_lists = self.make_segment_division_lists_for_voice(voice)
             #self._debug(segment_division_lists)
@@ -164,7 +160,7 @@ class ScoreSpecification(Specification):
 #        rhythm_command = rhythm_commands[0]
 #        for voice_division_part in voice_division_parts:
 #            if voice_division_part:
-#                region_division_list = specificationtools.DivisionRegionDivisionList(voice_division_part)
+#                region_division_list = interpretertools.DivisionRegionDivisionList(voice_division_part)
 #                self.add_rhythm_to_voice(voice, rhythm_command, region_division_list)
 
     def add_segment_division_list_to_segment_payload_context_dictionaries_for_voice(
@@ -360,7 +356,7 @@ class ScoreSpecification(Specification):
         assert sum(divisions) == self.score_duration
         start_division_lists = sequencetools.partition_sequence_by_backgrounded_weights(
             divisions, self.segment_durations)
-        start_division_lists = [DivisionList(x) for x in start_division_lists]
+        start_division_lists = [interpretertools.DivisionList(x) for x in start_division_lists]
         return start_division_lists
 
     # new behavior
@@ -391,7 +387,7 @@ class ScoreSpecification(Specification):
         voice_division_list = self.payload_context_dictionary[voice.name].get('voice_division_list')
         if voice_division_list is None:
             time_signatures = self.time_signatures
-            voice_division_list = specificationtools.VoiceDivisionList(time_signatures)
+            voice_division_list = interpretertools.VoiceDivisionList(time_signatures)
         return voice_division_list
 
     def handle_divisions_retrieval_request(self, request):
@@ -544,7 +540,7 @@ class ScoreSpecification(Specification):
                 divisions, region_division_command.duration)
             divisions = [x.pair for x in divisions]
             divisions = [Division(x) for x in divisions]
-            region_division_list = DivisionRegionDivisionList(divisions)
+            region_division_list = interpretertools.DivisionRegionDivisionList(divisions)
             #region_division_list.fresh = 'FOO'
             region_division_list.fresh = region_division_command.fresh
             region_division_list.truncate = region_division_command.truncate
@@ -568,7 +564,7 @@ class ScoreSpecification(Specification):
         shards = sequencetools.split_sequence_once_by_weights_with_overhang(voice_divisions, segment_durations)
         raw_segment_division_lists = []
         for i, shard in enumerate(shards[:]):
-            raw_segment_division_list = SegmentDivisionList(shard)
+            raw_segment_division_list = interpretertools.SegmentDivisionList(shard)
             raw_segment_division_lists.append(raw_segment_division_list)
         segment_division_lists = self.apply_boundary_indicators_to_raw_segment_division_lists(
             voice_division_list, raw_segment_division_lists)
