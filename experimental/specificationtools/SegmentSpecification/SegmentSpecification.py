@@ -227,6 +227,19 @@ class SegmentSpecification(Specification):
         command = interpretationtools.UninterpretedDivisionCommand(*args)
         return command
 
+    def single_context_timespan_selector_to_uninterpreted_division_command(self, resolved_setting):
+        #print 'here!'
+        #print resolved_setting.storage_format
+        from experimental import selectortools
+        assert isinstance(resolved_setting.target, selectortools.SingleContextTimespanSelector)
+        assert isinstance(resolved_setting.target.timespan.selector, selectortools.SegmentSelector)
+        assert resolved_setting.target.timespan.selector.index == self.name
+        args = (resolved_setting.value, self.duration, resolved_setting.fresh, resolved_setting.truncate) 
+        command = interpretationtools.UninterpretedDivisionCommand(*args)
+        #print command
+        #print ''
+        return command
+
     def get_multiple_context_settings(self, target=None, attribute=None):
         result = []
         for multiple_context_setting in self.multiple_context_settings:
@@ -259,7 +272,7 @@ class SegmentSpecification(Specification):
             if isinstance(resolved_setting.target, selectortools.CountRatioItemSelector):
                 command = self.count_ratio_item_selector_to_uninterpreted_division_command(resolved_setting)
             else:
-                raise Exception('implement me for normal case resolved setting')
+                command = self.single_context_timespan_selector_to_uninterpreted_division_command(resolved_setting)
             uninterpreted_division_commands.append(command)
         return uninterpreted_division_commands
 

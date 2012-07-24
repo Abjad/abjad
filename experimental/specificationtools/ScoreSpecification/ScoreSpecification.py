@@ -515,17 +515,30 @@ class ScoreSpecification(Specification):
             division_region_division_lists[:]
         return division_region_division_lists
 
+    # new: CURRENTLY WORKING ON THIS ONE
+    def region_division_command_to_division_region_division_list(self, region_division_command):
+        from experimental import selectortools
+        if isinstance(region_division_command.value, list):
+            divisions = [mathtools.NonreducedFraction(x) for x in region_division_command.value]
+            region_duration = region_division_command.duration
+            divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, region_duration)
+            divisions = [x.pair for x in divisions]
+            divisions = [Division(x) for x in divisions]
+        elif isinstance(region_division_command.value, selectortools.SingleContextDivisionSliceSelector):
+            raise Exception('IMPLEMENT ME NEXT')
+        else:
+            raise NotImplementedError('implement for {!r}.'.format(revision_division_command.value))
+        division_region_division_list = interpretationtools.DivisionRegionDivisionList(divisions)
+        division_region_division_list.fresh = region_division_command.fresh
+        division_region_division_list.truncate = region_division_command.truncate
+        return division_region_division_list
+
+    # TODO: rename self.region_division_commands_to_division_region_division_lists()
     def make_division_region_division_lists_from_region_division_commands(self, region_division_commands):
         division_region_division_lists = []
         for region_division_command in region_division_commands:
-            divisions = [mathtools.NonreducedFraction(x) for x in region_division_command.value]
-            divisions = sequencetools.repeat_sequence_to_weight_exactly(
-                divisions, region_division_command.duration)
-            divisions = [x.pair for x in divisions]
-            divisions = [Division(x) for x in divisions]
-            division_region_division_list = interpretationtools.DivisionRegionDivisionList(divisions)
-            division_region_division_list.fresh = region_division_command.fresh
-            division_region_division_list.truncate = region_division_command.truncate
+            division_region_division_list = self.region_division_command_to_division_region_division_list(
+                region_division_command)
             division_region_division_lists.append(division_region_division_list)
         return division_region_division_lists
 
