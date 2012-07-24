@@ -632,7 +632,7 @@ class ScoreSpecification(Specification):
             if attribute in self.resolved_settings_context_dictionary[context_name]:
                 self.resolved_settings_context_dictionary[context_name][attribute].append(resolved_setting)
             else:
-                self.resolved_settings_context_dictionary[context_name] = [resolved_setting]
+                self.resolved_settings_context_dictionary[context_name][attribute] = [resolved_setting]
 
     def store_settings(self, settings):
         for setting in settings:

@@ -30,8 +30,8 @@ class ContextProxyDictionary(AbjadObject, OrderedDict):
     def __setitem__(self, key, value):
         #self._debug(key, 'key')
         #self._debug(value, 'value')
-        assert isinstance(key, str)
-        assert isinstance(value, ContextProxy)
+        assert isinstance(key, str), repr(key)
+        assert isinstance(value, ContextProxy), repr(value)
         OrderedDict.__setitem__(self, key, value)
 
     ### PRIVATE METHODS ###
