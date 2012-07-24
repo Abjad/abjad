@@ -37,7 +37,7 @@ class RhythmTreeLeaf(RhythmTreeNode):
 
     ### CLASS ATTRIBUTES ###
 
-    __slots__ = ('_duration', '_parent', '_pitched')
+    __slots__ = ('_duration', '_offset', '_offsets_are_current', '_parent', '_pitched')
 
     ### INITIALIZER ###
 

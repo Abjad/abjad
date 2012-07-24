@@ -89,7 +89,7 @@ class RhythmTreeContainer(RhythmTreeNode):
 
     ### CLASS ATTRIBUTES ###
 
-    __slots__ = ('_children', '_duration', '_parent')
+    __slots__ = ('_children', '_duration', '_offsets', '_offsets_are_current', '_parent')
 
     ### INITIALIZER ###
 
@@ -134,6 +134,7 @@ class RhythmTreeContainer(RhythmTreeNode):
             nodes = [nodes]
         for node in nodes:
             node._switch_parent(None)
+        self._mark_entire_tree_for_later_update()
 
     def __getitem__(self, i):
         return self._children[i]
@@ -190,6 +191,7 @@ class RhythmTreeContainer(RhythmTreeNode):
             for node in expr:
                 node._switch_parent(self)
             self._children.__setitem__(slice(start, start), expr)
+        self._mark_entire_tree_for_later_update()
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 

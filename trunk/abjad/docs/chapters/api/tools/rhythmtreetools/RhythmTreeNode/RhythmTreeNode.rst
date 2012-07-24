@@ -9,9 +9,17 @@ rhythmtreetools.RhythmTreeNode
 Read-only Properties
 --------------------
 
+.. autoattribute:: abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode.improper_parentage
+
+.. autoattribute:: abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode.offset
+
 .. autoattribute:: abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode.parent
 
-.. autoattribute:: abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode.prolation
+.. autoattribute:: abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode.prolated_duration
+
+.. autoattribute:: abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode.proper_parentage
+
+.. autoattribute:: abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode.root_node
 
 .. autoattribute:: abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode.rtm_format
 
