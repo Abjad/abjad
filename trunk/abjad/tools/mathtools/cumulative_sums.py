@@ -21,10 +21,10 @@ def cumulative_sums(sequence):
 
 
     if not isinstance(sequence, (list, tuple)):
-        raise TypeError
+        raise TypeError('sequence {!r} must be list or tuple.')
 
     if len(sequence) == 0:
-        raise ValueError
+        raise ValueError('sequence {!r} has length 0.'.format(sequence))
 
     result = [sequence[0]]
     for element in sequence[1:]:
