@@ -253,7 +253,6 @@ class SegmentSpecification(Specification):
     def get_uninterpreted_division_commands_that_start_during_segment(self, context_name):
         from experimental import selectortools
         resolved_settings = self.get_resolved_single_context_settings('divisions', context_name)
-        self._debug(resolved_settings)
         uninterpreted_division_commands = []
         for resolved_setting in resolved_settings:
             #print resolved_setting.storage_format

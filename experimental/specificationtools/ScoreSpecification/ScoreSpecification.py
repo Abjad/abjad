@@ -364,7 +364,7 @@ class ScoreSpecification(Specification):
             commands = segment.get_uninterpreted_division_commands_that_start_during_segment(voice.name)
             if commands:
                 uninterpreted_division_commands.extend(commands)
-            else:
+            elif segment.time_signatures:
                 args = (segment.time_signatures, segment.duration, True, False) # not sure about these exactly
                 command = interpretationtools.UninterpretedDivisionCommand(*args)
                 uninterpreted_division_commands.append(command)
