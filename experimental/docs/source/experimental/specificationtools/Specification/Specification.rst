@@ -13,7 +13,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.contexts
 
-.. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.resolved_settings_context_dictionary
+.. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.resolved_settings
 
 .. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.score_name
 

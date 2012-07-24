@@ -223,7 +223,7 @@ class ScoreSpecification(Specification):
     
     def change_attribute_retrieval_indicator_to_setting(self, indicator):
         segment = self.segments[indicator.segment_name]
-        context_proxy = segment.resolved_settings_context_dictionary[indicator.context_name]
+        context_proxy = segment.resolved_settings[indicator.context_name]
         setting = context_proxy.get_setting(attribute=indicator.attribute)
         return setting
 
@@ -435,7 +435,7 @@ class ScoreSpecification(Specification):
             settings = segment.settings.get_settings(attribute='divisions')
             if not settings:
                 settings = []
-                existing_settings = self.resolved_settings_context_dictionary.get_settings(
+                existing_settings = self.resolved_settings.get_settings(
                     attribute='divisions')
                 for existing_setting in existing_settings:
                     assert existing_setting.target.timespan.encompasses_one_segment_exactly, repr(existing_setting)
@@ -456,7 +456,7 @@ class ScoreSpecification(Specification):
             settings = segment.settings.get_settings(attribute='rhythm')
             if not settings:
                 settings = []
-                existing_settings = self.resolved_settings_context_dictionary.get_settings(
+                existing_settings = self.resolved_settings.get_settings(
                     attribute='rhythm')
                 for existing_setting in existing_settings:
                     setting = existing_setting.copy_to_segment(segment)
@@ -465,7 +465,7 @@ class ScoreSpecification(Specification):
 
     def interpret_time_signatures(self):
         '''For each segment:
-        Check segment for a very explicit time signature setting.
+        Check segment for an explicit time signature setting.
         If none, check SCORE resolved settings context dictionary for current time signature setting.
         Halt interpretation if no time signature setting is found.
         Otherwise store time signature setting.
@@ -473,15 +473,19 @@ class ScoreSpecification(Specification):
         for segment in self.segments:
             settings = segment.settings.get_settings(attribute='time_signatures')
             if settings:
+                print 'EXPLICIT!'
                 assert len(settings) == 1, repr(settings)
                 setting = settings[0]
             else:
-                settings = self.resolved_settings_context_dictionary.get_settings(attribute='time_signatures')
+                print 'FROM SCORE'
+                settings = self.resolved_settings.get_settings(attribute='time_signatures')
                 if not settings:
                     return
                 assert len(settings) == 1, repr(settings)
                 setting = settings[0]
                 setting = setting.copy_to_segment(segment.name)
+            self._debug(setting)
+            print ''
             assert setting.target.context == segment.score_name, repr(setting)
             assert setting.target.timespan == segment.timespan, [repr(setting), '\n', repr(segment.timespan)]
             self.store_setting(setting)
@@ -628,30 +632,33 @@ class ScoreSpecification(Specification):
             segment_index = resolved_setting.target.timespan.selector.index
         segment = self.segments[segment_index]
         context_name = resolved_setting.target.context or \
-            segment.resolved_settings_context_dictionary.score_name
+            segment.resolved_settings.score_name
         attribute = resolved_setting.attribute
         if USE_NEW_LOGIC:
             self.store_resolved_settings_new(segment, context_name, attribute, resolved_setting)
         else:
             self.store_resolved_settings(segment, context_name, attribute, resolved_setting)
 
+    def clear_resolved_settings(self, segment, context_name, attribute):
+        del(segment.resolved_settings[context_name], attribute)
+
     # old behavior
     def store_resolved_settings(self, segment, context_name, attribute, resolved_setting):
-        segment.resolved_settings_context_dictionary[context_name][attribute] = resolved_setting
+        segment.resolved_settings[context_name][attribute] = resolved_setting
         if resolved_setting.persistent:
-            self.resolved_settings_context_dictionary[context_name][attribute] = resolved_setting
+            self.resolved_settings[context_name][attribute] = resolved_setting
 
     # new behavior
     def store_resolved_settings_new(self, segment, context_name, attribute, resolved_setting):
-        if attribute in segment.resolved_settings_context_dictionary[context_name]:
-            segment.resolved_settings_context_dictionary[context_name][attribute].append(resolved_setting)
+        if attribute in segment.resolved_settings[context_name]:
+            segment.resolved_settings[context_name][attribute].append(resolved_setting)
         else:
-            segment.resolved_settings_context_dictionary[context_name][attribute] = [resolved_setting]
+            segment.resolved_settings[context_name][attribute] = [resolved_setting]
         if resolved_setting.persistent:
-            if attribute in self.resolved_settings_context_dictionary[context_name]:
-                self.resolved_settings_context_dictionary[context_name][attribute].append(resolved_setting)
+            if attribute in self.resolved_settings[context_name]:
+                self.resolved_settings[context_name][attribute].append(resolved_setting)
             else:
-                self.resolved_settings_context_dictionary[context_name][attribute] = [resolved_setting]
+                self.resolved_settings[context_name][attribute] = [resolved_setting]
 
     def store_settings(self, settings):
         for setting in settings:

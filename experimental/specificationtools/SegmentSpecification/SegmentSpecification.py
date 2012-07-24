@@ -156,7 +156,7 @@ class SegmentSpecification(Specification):
         Return list or none.
         '''
         try:
-            setting = self.resolved_settings_context_dictionary.score_context_proxy.get_setting(
+            setting = self.resolved_settings.score_context_proxy.get_setting(
                 attribute='time_signatures')
         except MissingContextSettingError:
             #return None
@@ -281,7 +281,7 @@ class SegmentSpecification(Specification):
         from experimental import settingtools
         context = componenttools.get_first_component_in_expr_with_name(self.score_model, context_name)
         for component in componenttools.get_improper_parentage_of_component(context):
-            context_proxy = self.resolved_settings_context_dictionary[component.name]
+            context_proxy = self.resolved_settings[component.name]
             settings = context_proxy.get_settings(attribute=attribute)
             if len(settings) == 1:
                 setting = settings[0]
@@ -295,7 +295,7 @@ class SegmentSpecification(Specification):
         from experimental import settingtools
         context = componenttools.get_first_component_in_expr_with_name(self.score_model, context_name)
         for component in componenttools.get_improper_parentage_of_component(context):
-            context_proxy = self.resolved_settings_context_dictionary[component.name]
+            context_proxy = self.resolved_settings[component.name]
             settings = context_proxy.get_settings(attribute=attribute)
             if settings:
                 return settings
