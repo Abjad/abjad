@@ -32,14 +32,13 @@ class ContextProxy(AbjadObject, OrderedDict):
         assert len(settings) == 1
         return settings[0]
 
+    # the if-clause can be removed once context proxies always store multiple settings per attribute
     def get_settings(self, attribute=None):
         result = []
         for key, value in self.iteritems():
             if attribute is None or key == attribute:
-                # CURRENT: toggle between these two values while implementing count ratio selectors
-                #          First line is for last known good behavior.
-                #          Second line is for newly improved behavior.
-                #          Two corresponding changes must be made in ScoreSpecification.
-                result.append(value)
-                #result.extend(value)
+                if isinstance(value, list):
+                    result.extend(value)
+                else:
+                    result.append(value)
         return result
