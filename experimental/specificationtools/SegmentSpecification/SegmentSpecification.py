@@ -54,7 +54,7 @@ class SegmentSpecification(Specification):
         if isinstance(expr, int):
             return self.multiple_context_settings.__getitem__(expr)
         else:
-            return self.payload_context_dictionary.__getitem__(expr) 
+            return self.contexts.__getitem__(expr) 
         
     def __repr__(self):
         return '{}({!r})'.format(self._class_name, self.name)

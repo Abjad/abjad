@@ -29,7 +29,7 @@ class Specification(AbjadObject):
         self._context_names = []
         self._resolved_settings_context_dictionary = ContextDictionary(self.score_template())
         self._initialize_context_name_abbreviations()
-        self._payload_context_dictionary = ContextDictionary(self.score_template())
+        self._contexts = ContextDictionary(self.score_template())
         self._settings = settingtools.SingleContextSettingInventory()
 
     ### PRIVATE METHODS ###
@@ -49,8 +49,8 @@ class Specification(AbjadObject):
         return self._context_names
 
     @property
-    def payload_context_dictionary(self):
-        return self._payload_context_dictionary
+    def contexts(self):
+        return self._contexts
 
     @property
     def resolved_settings_context_dictionary(self):

@@ -11,7 +11,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.context_names
 
-.. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.payload_context_dictionary
+.. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.contexts
 
 .. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.resolved_settings_context_dictionary
 
