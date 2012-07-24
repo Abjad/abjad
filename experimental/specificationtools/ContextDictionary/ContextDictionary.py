@@ -63,13 +63,28 @@ class ContextDictionary(AbjadObject, OrderedDict):
             return False
 
     def get_settings(self, attribute=None, context_name=None):
+        #self._debug(attribute, 'attribute')
+        #self._debug(context_name, 'context_name')
         if context_name is None:
             context_proxies = list(self.itervalues())
         else:
             context_proxies = [self[context_name]]
+        #for context_proxy in context_proxies:
+        #    self._debug(context_proxy)
         settings = []
         for context_proxy in context_proxies:
-            settings.extend(context_proxy.get_settings(attribute=attribute))
+            # old behavior
+            if isinstance(context_proxy, ContextProxy):
+                settings.extend(context_proxy.get_settings(attribute=attribute))
+            # new behavior
+            elif isinstance(context_proxy, list):
+                for setting in context_proxy:
+                    if setting.attribute == attribute or attribute is None:
+                        settings.append(setting)
+            else:
+                raise ValueError
+        #self._debug(settings, 'settings')
+        #print ''
         return settings 
 
     def show(self):
