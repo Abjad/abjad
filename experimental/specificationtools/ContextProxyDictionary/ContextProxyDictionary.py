@@ -5,7 +5,7 @@ from experimental.specificationtools.ContextProxy import ContextProxy
 from collections import OrderedDict
 
 
-class ContextDictionary(AbjadObject, OrderedDict):
+class ContextProxyDictionary(AbjadObject, OrderedDict):
 
     ### INITIALIZER ###
 

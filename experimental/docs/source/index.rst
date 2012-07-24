@@ -293,8 +293,8 @@ Unstable packages (load manually)
    experimental/specificationtools/AttributeRetrievalIndicator/AttributeRetrievalIndicator
    experimental/specificationtools/AttributeRetrievalRequest/AttributeRetrievalRequest
    experimental/specificationtools/Callback/Callback
-   experimental/specificationtools/ContextDictionary/ContextDictionary
    experimental/specificationtools/ContextProxy/ContextProxy
+   experimental/specificationtools/ContextProxyDictionary/ContextProxyDictionary
    experimental/specificationtools/Division/Division
    experimental/specificationtools/HandlerRequest/HandlerRequest
    experimental/specificationtools/ScopedValue/ScopedValue
