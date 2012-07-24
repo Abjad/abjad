@@ -7,4 +7,4 @@
    So specificationtools will depend on selectortools. And not the other way around.
    Same with settingtools and timespantools.
 
-4. Extend DivisionList initializer with string handling.
+4. See if test_SegmentSpecification_select_ratio_of_background_measures.py works.

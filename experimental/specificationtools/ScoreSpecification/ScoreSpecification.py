@@ -12,9 +12,6 @@ import collections
 import copy
 import re
 
-#USE_NEW_LOGIC = False
-USE_NEW_LOGIC = True
-
 
 class ScoreSpecification(Specification):
     r'''.. versionadded:: 1.0
@@ -344,19 +341,7 @@ class ScoreSpecification(Specification):
             rhythm_commands.append(rhythm_command)
         return rhythm_commands
 
-    # old behavior
     def get_uninterpreted_division_commands_for_voice(self, voice):
-        uninterpreted_division_commands = []
-        for segment in self.segments:
-            resolved_value = segment.get_division_resolved_value(voice.name)
-            value = self.process_divisions_value(resolved_value.value)
-            args = (value, segment.duration, resolved_value.fresh, resolved_value.truncate)
-            command = interpretationtools.UninterpretedDivisionCommand(*args)
-            uninterpreted_division_commands.append(command)
-        return uninterpreted_division_commands
-
-    # new behavior
-    def get_uninterpreted_division_commands_for_voice_new(self, voice):
         uninterpreted_division_commands = []
         for segment in self.segments:
             commands = segment.get_uninterpreted_division_commands_that_start_during_segment(voice.name)
@@ -485,10 +470,7 @@ class ScoreSpecification(Specification):
             self.store_setting(setting, clear_persistent_first=True)
 
     def make_division_region_division_lists_for_voice(self, voice):
-        if USE_NEW_LOGIC:
-            uninterpreted_division_commands = self.get_uninterpreted_division_commands_for_voice_new(voice)
-        else:
-            uninterpreted_division_commands = self.get_uninterpreted_division_commands_for_voice(voice)
+        uninterpreted_division_commands = self.get_uninterpreted_division_commands_for_voice(voice)
         #self._debug(uninterpreted_division_commands, 'udc')
         region_division_commands = self.change_uninterpreted_division_commands_to_region_division_commands(
             uninterpreted_division_commands)
@@ -620,24 +602,14 @@ class ScoreSpecification(Specification):
         context_name = resolved_setting.target.context or \
             segment.resolved_settings.score_name
         attribute = resolved_setting.attribute
-        if USE_NEW_LOGIC:
-            self.store_resolved_settings_new(
-                segment, context_name, attribute, resolved_setting, clear_persistent_first=clear_persistent_first)
-        else:
-            self.store_resolved_settings(segment, context_name, attribute, resolved_setting)
+        self.store_resolved_settings(segment, context_name, attribute, resolved_setting, 
+            clear_persistent_first=clear_persistent_first)
 
     def clear_persistent_resolved_settings(self, context_name, attribute):
         if attribute in self.resolved_settings[context_name]:
             del(self.resolved_settings[context_name][attribute])
 
-    # old behavior
-    def store_resolved_settings(self, segment, context_name, attribute, resolved_setting):
-        segment.resolved_settings[context_name][attribute] = resolved_setting
-        if resolved_setting.persistent:
-            self.resolved_settings[context_name][attribute] = resolved_setting
-
-    # new behavior
-    def store_resolved_settings_new(self, segment, context_name, attribute, resolved_setting, 
+    def store_resolved_settings(self, segment, context_name, attribute, resolved_setting, 
         clear_persistent_first=False):
         if clear_persistent_first:
             self.clear_persistent_resolved_settings(context_name, attribute)
