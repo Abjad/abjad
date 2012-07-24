@@ -12,8 +12,8 @@ import collections
 import copy
 import re
 
-USE_NEW_LOGIC = False
-#USE_NEW_LOGIC = True
+#USE_NEW_LOGIC = False
+USE_NEW_LOGIC = True
 
 
 class ScoreSpecification(Specification):
@@ -96,7 +96,7 @@ class ScoreSpecification(Specification):
 
     def add_division_lists_to_voice(self, voice):
         division_region_division_lists = self.make_division_region_division_lists_for_voice(voice)
-        self._debug(division_region_division_lists, 'drdl')
+        #self._debug(division_region_division_lists, 'drdl')
         if division_region_division_lists:
             self.contexts[voice.name]['division_region_division_lists'] = division_region_division_lists 
             voice_division_list = self.make_voice_division_list_for_voice(voice)
@@ -105,13 +105,12 @@ class ScoreSpecification(Specification):
             self.contexts[voice.name]['segment_division_lists'] = segment_division_lists
             self.add_segment_division_list_to_segment_payload_context_dictionaries_for_voice(
                 voice, segment_division_lists)
-            self._debug(voice_division_list, 'vdl')
+            #self._debug(voice_division_list, 'vdl')
             #self._debug(segment_division_lists, 'sdl')
 
     def add_rhythm_to_voice(self, voice, rhythm_maker, rhythm_region_division_list):
 #        self._debug(rhythm_maker)
 #        self._debug(rhythm_region_division_list)
-#        print ''
         assert isinstance(rhythm_maker, timetokentools.TimeTokenMaker), repr(rhythm_maker)
         assert isinstance(rhythm_region_division_list, interpretationtools.RhythmRegionDivisionList)
         leaf_lists = rhythm_maker(rhythm_region_division_list.pairs)
@@ -133,8 +132,7 @@ class ScoreSpecification(Specification):
         rhythm_commands = self.get_rhythm_commands_for_voice(voice)
         rhythm_commands = self.fuse_like_rhythm_commands(rhythm_commands)
         rhythm_command_durations = [x.duration for x in rhythm_commands]
-        division_region_division_lists = self.contexts[voice.name][
-            'division_region_division_lists']
+        division_region_division_lists = self.contexts[voice.name]['division_region_division_lists']
         #self._debug(division_region_division_lists)
         division_region_durations = [x.duration for x in division_region_division_lists]
         #self._debug(division_region_durations)
@@ -362,7 +360,6 @@ class ScoreSpecification(Specification):
         uninterpreted_division_commands = []
         for segment in self.segments:
             commands = segment.get_uninterpreted_division_commands_that_start_during_segment(voice.name)
-            self._debug((segment, len(commands)), 'segment')
             if commands:
                 uninterpreted_division_commands.extend(commands)
             elif segment.time_signatures:
@@ -462,7 +459,7 @@ class ScoreSpecification(Specification):
                 for existing_setting in existing_settings:
                     setting = existing_setting.copy_to_segment(segment)
                     settings.append(setting)
-            self.store_settings(settings)
+            self.store_settings(settings, clear_persistent_first=True)
 
     def interpret_time_signatures(self):
         '''For each segment:
@@ -474,19 +471,15 @@ class ScoreSpecification(Specification):
         for segment in self.segments:
             settings = segment.settings.get_settings(attribute='time_signatures')
             if settings:
-                print 'EXPLICIT!'
                 assert len(settings) == 1, repr(settings)
                 setting = settings[0]
             else:
-                print 'FROM SCORE'
                 settings = self.resolved_settings.get_settings(attribute='time_signatures')
                 if not settings:
                     return
                 assert len(settings) == 1, repr(settings)
                 setting = settings[0]
                 setting = setting.copy_to_segment(segment.name)
-            self._debug(setting)
-            print ''
             assert setting.target.context == segment.score_name, repr(setting)
             assert setting.target.timespan == segment.timespan, [repr(setting), '\n', repr(segment.timespan)]
             self.store_setting(setting, clear_persistent_first=True)
@@ -496,7 +489,7 @@ class ScoreSpecification(Specification):
             uninterpreted_division_commands = self.get_uninterpreted_division_commands_for_voice_new(voice)
         else:
             uninterpreted_division_commands = self.get_uninterpreted_division_commands_for_voice(voice)
-        self._debug(uninterpreted_division_commands, 'udc')
+        #self._debug(uninterpreted_division_commands, 'udc')
         region_division_commands = self.change_uninterpreted_division_commands_to_region_division_commands(
             uninterpreted_division_commands)
         division_region_division_lists = self.region_division_commands_to_division_region_division_lists(
@@ -526,15 +519,15 @@ class ScoreSpecification(Specification):
         voice_division_list = self.contexts[voice.name]['voice_division_list']
         voice_divisions = [mathtools.NonreducedFraction(x) for x in voice_division_list.divisions]
         segment_durations = self.segment_durations
-        self._debug(voice_divisions, 'vd')
-        self._debug(segment_durations, 'sd')
+        #self._debug(voice_divisions, 'vd')
+        #self._debug(segment_durations, 'sd')
         shards = sequencetools.split_sequence_once_by_weights_with_overhang(voice_divisions, segment_durations)
         raw_segment_division_lists = []
         for i, shard in enumerate(shards[:]):
             raw_segment_division_list = interpretationtools.SegmentDivisionList(shard)
             raw_segment_division_lists.append(raw_segment_division_list)
-        self._debug(voice_division_list, 'vdl')
-        self._debug(raw_segment_division_lists, 'rsdl')
+        #self._debug(voice_division_list, 'vdl')
+        #self._debug(raw_segment_division_lists, 'rsdl')
         segment_division_lists = self.apply_boundary_indicators_to_raw_segment_division_lists(
             voice_division_list, raw_segment_division_lists)
         return segment_division_lists
@@ -634,9 +627,7 @@ class ScoreSpecification(Specification):
             self.store_resolved_settings(segment, context_name, attribute, resolved_setting)
 
     def clear_persistent_resolved_settings(self, context_name, attribute):
-        #self._debug(self.resolved_settings[context_name], 'CONTEXT PROXY')
         if attribute in self.resolved_settings[context_name]:
-            #self._debug(self.resolved_settings[context_name][attribute], 'ATTRIBUTE')
             del(self.resolved_settings[context_name][attribute])
 
     # old behavior
