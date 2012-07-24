@@ -178,7 +178,7 @@ class SegmentSpecification(Specification):
 
     ### PUBLIC METHODS ###
 
-    def add_time_signatures(self, score):
+    def add_time_signatures_to_segment(self, score):
         time_signatures = self.time_signatures
         if self.time_signatures is not None:
             measures = measuretools.make_measures_with_full_measure_spacer_skips(time_signatures)

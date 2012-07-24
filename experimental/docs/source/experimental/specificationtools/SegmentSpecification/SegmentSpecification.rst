@@ -58,7 +58,7 @@ Read-only Properties
 Methods
 -------
 
-.. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.add_time_signatures
+.. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.add_time_signatures_to_segment
 
 .. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.annotate_source
 

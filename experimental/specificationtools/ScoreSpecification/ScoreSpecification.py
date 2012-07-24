@@ -118,7 +118,7 @@ class ScoreSpecification(Specification):
         voice.extend(rhythm_containers)
         self.conditionally_beam_rhythm_containers(rhythm_maker, rhythm_containers)
 
-    def add_rhythms(self):
+    def add_rhythms_to_score(self):
         for voice in voicetools.iterate_voices_forward_in_expr(self.score):
             self.add_rhythms_to_voice(voice)
 
@@ -159,9 +159,9 @@ class ScoreSpecification(Specification):
             segment.contexts[voice.name]['segment_pairs'] = [
                 x.pair for x in segment_division_list]
 
-    def add_time_signatures(self):
+    def add_time_signatures_to_score(self):
         for segment in self.segments:
-            segment.add_time_signatures(self.score)
+            segment.add_time_signatures_to_segment(self.score)
 
     def append_segment(self, name=None):
         name = name or str(self.find_first_unused_segment_number())
@@ -403,16 +403,16 @@ class ScoreSpecification(Specification):
     def interpret(self):
         self.instantiate_score()
         self.unpack_multiple_context_settings()
-        self.interpret_segment_time_signatures()
-        self.add_time_signatures()
+        self.interpret_time_signatures()
+        self.add_time_signatures_to_score()
         self.calculate_segment_offset_pairs()
-        self.interpret_segment_divisions()
+        self.interpret_divisions()
         self.add_division_lists_to_score()
-        self.interpret_segment_rhythms()
-        self.add_rhythms()
-        self.interpret_segment_pitch_classes()
+        self.interpret_rhythms()
+        self.add_rhythms_to_score()
+        self.interpret_pitch_classes()
         self.apply_segment_pitch_classes()
-        self.interpret_segment_registration()
+        self.interpret_registration()
         self.apply_segment_registration()
         self.interpret_additional_segment_parameters()
         self.apply_additional_segment_parameters()
@@ -422,7 +422,7 @@ class ScoreSpecification(Specification):
         for segment in self.segments:
             pass
 
-    def interpret_segment_divisions(self):
+    def interpret_divisions(self):
         for segment in self.segments:
             settings = segment.settings.get_settings(attribute='divisions')
             if not settings:
@@ -435,15 +435,15 @@ class ScoreSpecification(Specification):
                     settings.append(setting)
             self.store_settings(settings)
 
-    def interpret_segment_pitch_classes(self):
+    def interpret_pitch_classes(self):
         for segment in self.segments:
             pass
 
-    def interpret_segment_registration(self):
+    def interpret_registration(self):
         for segment in self.segments:
             pass
 
-    def interpret_segment_rhythms(self):
+    def interpret_rhythms(self):
         for segment in self.segments:
             settings = segment.settings.get_settings(attribute='rhythm')
             if not settings:
@@ -455,7 +455,7 @@ class ScoreSpecification(Specification):
                     settings.append(setting)
             self.store_settings(settings)
 
-    def interpret_segment_time_signatures(self):
+    def interpret_time_signatures(self):
         '''For each segment:
         Check segment for a very explicit time signature setting.
         If none, check SCORE resolved settings context dictionary for current time signature setting.

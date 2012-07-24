@@ -56,13 +56,13 @@ Methods
 
 .. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.add_rhythm_to_voice
 
-.. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.add_rhythms
+.. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.add_rhythms_to_score
 
 .. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.add_rhythms_to_voice
 
 .. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.add_segment_division_list_to_segment_payload_context_dictionaries_for_voice
 
-.. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.add_time_signatures
+.. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.add_time_signatures_to_score
 
 .. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.append_segment
 
@@ -112,15 +112,15 @@ Methods
 
 .. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.interpret_additional_segment_parameters
 
-.. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.interpret_segment_divisions
+.. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.interpret_divisions
 
-.. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.interpret_segment_pitch_classes
+.. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.interpret_pitch_classes
 
-.. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.interpret_segment_registration
+.. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.interpret_registration
 
-.. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.interpret_segment_rhythms
+.. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.interpret_rhythms
 
-.. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.interpret_segment_time_signatures
+.. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.interpret_time_signatures
 
 .. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.make_division_region_division_lists_for_voice
 
