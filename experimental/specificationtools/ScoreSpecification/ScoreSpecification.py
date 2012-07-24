@@ -13,6 +13,7 @@ import copy
 import re
 
 USE_NEW_LOGIC = False
+#USE_NEW_LOGIC = True
 
 
 class ScoreSpecification(Specification):
@@ -134,7 +135,10 @@ class ScoreSpecification(Specification):
         rhythm_command_durations = [x.duration for x in rhythm_commands]
         division_region_division_lists = self.contexts[voice.name][
             'division_region_division_lists']
+        #self._debug(division_region_division_lists)
         division_region_durations = [x.duration for x in division_region_division_lists]
+        #self._debug(division_region_durations)
+        #self._debug(rhythm_command_durations)
         rhythm_region_durations = sequencetools.merge_duration_sequences(
             division_region_durations, rhythm_command_durations)
         args = (voice_division_durations, rhythm_region_durations)
@@ -342,7 +346,7 @@ class ScoreSpecification(Specification):
             rhythm_commands.append(rhythm_command)
         return rhythm_commands
 
-    # deprecated behavior
+    # old behavior
     def get_uninterpreted_division_commands_for_voice(self, voice):
         uninterpreted_division_commands = []
         for segment in self.segments:
@@ -358,7 +362,12 @@ class ScoreSpecification(Specification):
         uninterpreted_division_commands = []
         for segment in self.segments:
             commands = segment.get_uninterpreted_division_commands_that_start_during_segment(voice.name)
-            uninterpreted_division_commands.extend(commands)
+            if commands:
+                uninterpreted_division_commands.extend(commands)
+            else:
+                args = (segment.time_signatures, segment.duration, True, False) # not sure about these exactly
+                command = interpretationtools.UninterpretedDivisionCommand(*args)
+                uninterpreted_division_commands.append(command)
         return uninterpreted_division_commands
 
     def get_voice_division_list(self, voice):
@@ -495,6 +504,7 @@ class ScoreSpecification(Specification):
             uninterpreted_division_commands = self.get_uninterpreted_division_commands_for_voice_new(voice)
         else:
             uninterpreted_division_commands = self.get_uninterpreted_division_commands_for_voice(voice)
+        #self._debug(uninterpreted_division_commands, 'unint')
         region_division_commands = self.change_uninterpreted_division_commands_to_region_division_commands(
             uninterpreted_division_commands)
         division_region_division_lists = self.make_division_region_division_lists_from_region_division_commands(
@@ -616,7 +626,7 @@ class ScoreSpecification(Specification):
         else:
             self.store_resolved_settings(segment, context_name, attribute, resolved_setting)
 
-    # deprecated behavior
+    # old behavior
     def store_resolved_settings(self, segment, context_name, attribute, resolved_setting):
         segment.resolved_settings_context_dictionary[context_name][attribute] = resolved_setting
         if resolved_setting.persistent:

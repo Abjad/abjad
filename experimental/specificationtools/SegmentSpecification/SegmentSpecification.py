@@ -235,7 +235,8 @@ class SegmentSpecification(Specification):
                     result.append(multiple_context_setting)
         return result
 
-    # method does not yet handle timespans equal to fractions of a segment
+    # method does not yet handle timespans equal to fractions of a segment;
+    # think this is old behavior
     def get_division_resolved_value(self, context_name):
         '''Return resolved setting found in context tree or else default to segment time signatures.
         '''
@@ -248,10 +249,11 @@ class SegmentSpecification(Specification):
         else:
             return interpretationtools.ResolvedValue(None, False, False)
 
+    # this this is new behavior
     def get_uninterpreted_division_commands_that_start_during_segment(self, context_name):
         from experimental import selectortools
         resolved_settings = self.get_resolved_single_context_settings('divisions', context_name)
-        #self._debug(resolved_settings)
+        self._debug(resolved_settings)
         uninterpreted_division_commands = []
         for resolved_setting in resolved_settings:
             #print resolved_setting.storage_format
