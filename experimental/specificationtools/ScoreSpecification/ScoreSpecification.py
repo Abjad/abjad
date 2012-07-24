@@ -12,6 +12,8 @@ import collections
 import copy
 import re
 
+USE_NEW_LOGIC = False
+
 
 class ScoreSpecification(Specification):
     r'''.. versionadded:: 1.0
@@ -499,8 +501,10 @@ class ScoreSpecification(Specification):
         #          Second line is for newly improved behavior.
         #          Corresponding change must also be made in self.store_setting() for this to work.
         #          And also one change in ContextProxy.
-        uninterpreted_division_commands = self.get_uninterpreted_division_commands_for_voice(voice)
-        #uninterpreted_division_commands = self.get_uninterpreted_division_commands_for_voice_new(voice)
+        if USE_NEW_LOGIC:
+            uninterpreted_division_commands = self.get_uninterpreted_division_commands_for_voice_new(voice)
+        else:
+            uninterpreted_division_commands = self.get_uninterpreted_division_commands_for_voice(voice)
         region_division_commands = self.change_uninterpreted_division_commands_to_region_division_commands(
             uninterpreted_division_commands)
         division_region_division_lists = self.make_division_region_division_lists_from_region_division_commands(
@@ -612,8 +616,10 @@ class ScoreSpecification(Specification):
         # CURRENT: toggle between these two values while implementing count ratio selectors
         #          First line is for last known good behavior.
         #          Second line is for newly improved behavior.
-        self.store_resolved_settings(segment, context_name, attribute, resolved_setting)
-        #self.store_resolved_settings_new(segment, context_name, attribute, resolved_setting)
+        if USE_NEW_LOGIC:
+            self.store_resolved_settings_new(segment, context_name, attribute, resolved_setting)
+        else:
+            self.store_resolved_settings(segment, context_name, attribute, resolved_setting)
 
     # deprecated behavior
     def store_resolved_settings(self, segment, context_name, attribute, resolved_setting):
