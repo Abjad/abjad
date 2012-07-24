@@ -473,11 +473,11 @@ class ScoreSpecification(Specification):
         for segment in self.segments:
             settings = segment.settings.get_settings(attribute='time_signatures')
             if settings:
-                print 'EXPLICIT!'
+                #print 'EXPLICIT!'
                 assert len(settings) == 1, repr(settings)
                 setting = settings[0]
             else:
-                print 'FROM SCORE'
+                #print 'FROM SCORE'
                 settings = self.resolved_settings.get_settings(attribute='time_signatures')
                 if not settings:
                     return
@@ -488,7 +488,7 @@ class ScoreSpecification(Specification):
             print ''
             assert setting.target.context == segment.score_name, repr(setting)
             assert setting.target.timespan == segment.timespan, [repr(setting), '\n', repr(segment.timespan)]
-            self.store_setting(setting)
+            self.store_setting(setting, clear_persistent_first=True)
 
     def make_division_region_division_lists_for_voice(self, voice):
         '''Called only once for each voice in score.
@@ -620,7 +620,7 @@ class ScoreSpecification(Specification):
 
     # TODO: the really long dot-chaning here has got to go.
     #       The way to fix this is to make all selectors be able to recursively check for segment index.
-    def store_setting(self, setting):
+    def store_setting(self, setting, clear_persistent_first=False):
         '''Resolve setting and find segment specified by setting.
         Store setting in SEGMENT context tree and, if persistent, in SCORE context tree, too.
         '''
@@ -635,12 +635,16 @@ class ScoreSpecification(Specification):
             segment.resolved_settings.score_name
         attribute = resolved_setting.attribute
         if USE_NEW_LOGIC:
-            self.store_resolved_settings_new(segment, context_name, attribute, resolved_setting)
+            self.store_resolved_settings_new(
+                segment, context_name, attribute, resolved_setting, clear_persistent_first=clear_persistent_first)
         else:
             self.store_resolved_settings(segment, context_name, attribute, resolved_setting)
 
-    def clear_resolved_settings(self, segment, context_name, attribute):
-        del(segment.resolved_settings[context_name], attribute)
+    def clear_persistent_resolved_settings(self, context_name, attribute):
+        #self._debug(self.resolved_settings[context_name], 'CONTEXT PROXY')
+        if attribute in self.resolved_settings[context_name]:
+            #self._debug(self.resolved_settings[context_name][attribute], 'ATTRIBUTE')
+            del(self.resolved_settings[context_name][attribute])
 
     # old behavior
     def store_resolved_settings(self, segment, context_name, attribute, resolved_setting):
@@ -649,7 +653,10 @@ class ScoreSpecification(Specification):
             self.resolved_settings[context_name][attribute] = resolved_setting
 
     # new behavior
-    def store_resolved_settings_new(self, segment, context_name, attribute, resolved_setting):
+    def store_resolved_settings_new(self, segment, context_name, attribute, resolved_setting, 
+        clear_persistent_first=False):
+        if clear_persistent_first:
+            self.clear_persistent_resolved_settings(context_name, attribute)
         if attribute in segment.resolved_settings[context_name]:
             segment.resolved_settings[context_name][attribute].append(resolved_setting)
         else:
