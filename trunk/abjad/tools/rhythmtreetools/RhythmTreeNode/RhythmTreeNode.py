@@ -48,6 +48,7 @@ class RhythmTreeNode(abctools.AbjadObject):
             index = self._parent.index(self)
             self._parent._children.pop(index)
         self._parent = new_parent
+        self._mark_entire_tree_for_later_update()
 
     def _update_offsets_of_entire_tree(self):
         def recurse(container, current_offset):
@@ -63,7 +64,7 @@ class RhythmTreeNode(abctools.AbjadObject):
             return current_offset
         offset = durationtools.Offset(0)
         root = self.root_node
-        if root is self:
+        if root is self and not hasattr(self, 'children'):
             self._offset = offset
             self._offsets_are_current = True
         else:
@@ -140,5 +141,6 @@ class RhythmTreeNode(abctools.AbjadObject):
             assert isinstance(arg, int)
             assert 0 < arg
             self._duration = arg
+            self._mark_entire_tree_for_later_update()
         return property(**locals())
 
