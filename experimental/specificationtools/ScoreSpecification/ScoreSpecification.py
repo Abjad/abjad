@@ -481,22 +481,16 @@ class ScoreSpecification(Specification):
     def make_division_region_division_lists_for_voice(self, voice):
         '''Called only once for each voice in score.
         Make one DivisionRegionDivisionList for each region in voice.
-        Model of region is changing during count ratio selector integration.
         What is the relationship between segments, regions and divisions?
         A segment models a small-, medium- or large-sized section of score.
         A division is the smallest unit of input to some material-making process;
-        A division is frequently analagous to a beat.
-        A region is (finally) defined equal to zero or more consecutive divisions.
+        A division is frequently analagous to a beat or to a measure.
+        A region is defined equal to zero or more consecutive divisions.
         The purpose of a region is yoke together divisions for input to some material-making process.
         So regions act as a type of container of divisions.
         Segments exhibit no necessary relationship with either regions or divisions.
-        But in the usual case a segment will comprise one (or a few) regions.
+        But in the usual case a segment will comprise one region or a few regions.
         '''
-        # CURRENT: toggle between these two values while implementing count ratio selectors
-        #          First line is for last known good behavior.
-        #          Second line is for newly improved behavior.
-        #          Corresponding change must also be made in self.store_setting() for this to work.
-        #          And also one change in ContextProxy.
         if USE_NEW_LOGIC:
             uninterpreted_division_commands = self.get_uninterpreted_division_commands_for_voice_new(voice)
         else:
@@ -617,9 +611,6 @@ class ScoreSpecification(Specification):
         context_name = resolved_setting.target.context or \
             segment.resolved_settings_context_dictionary.score_name
         attribute = resolved_setting.attribute
-        # CURRENT: toggle between these two values while implementing count ratio selectors
-        #          First line is for last known good behavior.
-        #          Second line is for newly improved behavior.
         if USE_NEW_LOGIC:
             self.store_resolved_settings_new(segment, context_name, attribute, resolved_setting)
         else:

@@ -251,6 +251,7 @@ class SegmentSpecification(Specification):
     def get_uninterpreted_division_commands_that_start_during_segment(self, context_name):
         from experimental import selectortools
         resolved_settings = self.get_resolved_single_context_settings('divisions', context_name)
+        #self._debug(resolved_settings)
         uninterpreted_division_commands = []
         for resolved_setting in resolved_settings:
             #print resolved_setting.storage_format
@@ -261,6 +262,7 @@ class SegmentSpecification(Specification):
             uninterpreted_division_commands.append(command)
         return uninterpreted_division_commands
 
+    # think this is deprecated behavior
     def get_resolved_single_context_setting(self, attribute, context_name):
         from experimental import settingtools
         context = componenttools.get_first_component_in_expr_with_name(self.score_model, context_name)
@@ -274,6 +276,7 @@ class SegmentSpecification(Specification):
             elif 1 < len(settings):
                 raise Exception('multiple {!r} settings found.'.format(attribute))
     
+    # think this is new behavior
     def get_resolved_single_context_settings(self, attribute, context_name):
         from experimental import settingtools
         context = componenttools.get_first_component_in_expr_with_name(self.score_model, context_name)
@@ -282,6 +285,7 @@ class SegmentSpecification(Specification):
             settings = context_proxy.get_settings(attribute=attribute)
             if settings:
                 return settings
+        return []
 
     def get_rhythm_commands_that_start_during_segment(self, voice_name):
         from experimental import selectortools
