@@ -27,6 +27,13 @@ class ContextDictionary(AbjadObject, OrderedDict):
         contents = ', '.join([repr(x) for x in self])
         return '{}([{}])'.format(self._class_name, contents)
 
+    def __setitem__(self, key, value):
+        #self._debug(key, 'key')
+        #self._debug(value, 'value')
+        assert isinstance(key, str)
+        assert isinstance(value, ContextProxy)
+        OrderedDict.__setitem__(self, key, value)
+
     ### PRIVATE METHODS ###
 
     def _initialize_context_proxies(self):

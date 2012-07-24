@@ -155,8 +155,6 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.ContextProxy.ContextProxy.ContextProxy.__setitem__
 
-    Inherited from :py:class:`collections.OrderedDict`
-
 .. automethod:: experimental.specificationtools.ContextProxy.ContextProxy.ContextProxy.__str__
 
     Inherited from :py:class:`__builtin__.object`

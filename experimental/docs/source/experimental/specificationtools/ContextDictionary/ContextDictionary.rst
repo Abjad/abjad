@@ -161,8 +161,6 @@ Special Methods
 
 .. automethod:: experimental.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.__setitem__
 
-    Inherited from :py:class:`collections.OrderedDict`
-
 .. automethod:: experimental.specificationtools.ContextDictionary.ContextDictionary.ContextDictionary.__str__
 
     Inherited from :py:class:`__builtin__.object`
