@@ -378,11 +378,10 @@ class ScoreSpecification(Specification):
             voice_division_list = interpretationtools.VoiceDivisionList(time_signatures)
         return voice_division_list
 
-    def handle_divisions_retrieval_request(self, request):
+    def handle_division_retrieval_request(self, request):
         voice = componenttools.get_first_component_in_expr_with_name(self.score, request.voice)
         assert isinstance(voice, voicetools.Voice), voice
-        division_region_division_lists = self.contexts[voice.name][
-            'division_region_division_lists']
+        division_region_division_lists = self.contexts[voice.name]['division_region_division_lists']
         divisions = []
         for division_region_division_list in division_region_division_lists:
             divisions.extend(division_region_division_list)
@@ -507,39 +506,10 @@ class ScoreSpecification(Specification):
         #self._debug(uninterpreted_division_commands, 'unint')
         region_division_commands = self.change_uninterpreted_division_commands_to_region_division_commands(
             uninterpreted_division_commands)
-        division_region_division_lists = self.make_division_region_division_lists_from_region_division_commands(
+        division_region_division_lists = self.region_division_commands_to_division_region_division_lists(
             region_division_commands)
-        self.contexts[voice.name]['division_region_division_lists'] = \
-            division_region_division_lists[:]
-        self.contexts[voice.name]['division_region_division_lists'] = \
-            division_region_division_lists[:]
-        return division_region_division_lists
-
-    # new: CURRENTLY WORKING ON THIS ONE
-    def region_division_command_to_division_region_division_list(self, region_division_command):
-        from experimental import selectortools
-        if isinstance(region_division_command.value, list):
-            divisions = [mathtools.NonreducedFraction(x) for x in region_division_command.value]
-            region_duration = region_division_command.duration
-            divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, region_duration)
-            divisions = [x.pair for x in divisions]
-            divisions = [Division(x) for x in divisions]
-        elif isinstance(region_division_command.value, selectortools.SingleContextDivisionSliceSelector):
-            raise Exception('IMPLEMENT ME NEXT')
-        else:
-            raise NotImplementedError('implement for {!r}.'.format(revision_division_command.value))
-        division_region_division_list = interpretationtools.DivisionRegionDivisionList(divisions)
-        division_region_division_list.fresh = region_division_command.fresh
-        division_region_division_list.truncate = region_division_command.truncate
-        return division_region_division_list
-
-    # TODO: rename self.region_division_commands_to_division_region_division_lists()
-    def make_division_region_division_lists_from_region_division_commands(self, region_division_commands):
-        division_region_division_lists = []
-        for region_division_command in region_division_commands:
-            division_region_division_list = self.region_division_command_to_division_region_division_list(
-                region_division_command)
-            division_region_division_lists.append(division_region_division_list)
+        self.contexts[voice.name]['division_region_division_lists'] = division_region_division_lists[:]
+        self.contexts[voice.name]['division_region_division_lists'] = division_region_division_lists[:]
         return division_region_division_lists
 
     def make_resolved_setting(self, setting):
@@ -583,10 +553,36 @@ class ScoreSpecification(Specification):
     def process_divisions_value(self, divisions_value):
         from experimental import selectortools
         if isinstance(divisions_value, selectortools.SingleContextDivisionSliceSelector):
-            return self.handle_divisions_retrieval_request(divisions_value)
+            return self.handle_division_retrieval_request(divisions_value)
         else:
             return divisions_value
         
+    def region_division_command_to_division_region_division_list(self, region_division_command):
+        from experimental import selectortools
+        from experimental import timespantools
+        if isinstance(region_division_command.value, list):
+            divisions = [mathtools.NonreducedFraction(x) for x in region_division_command.value]
+            region_duration = region_division_command.duration
+            divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, region_duration)
+            divisions = [x.pair for x in divisions]
+            divisions = [Division(x) for x in divisions]
+        elif isinstance(region_division_command.value, selectortools.SingleContextDivisionSliceSelector):
+            divisions = self.handle_division_retrieval_request(region_division_command.value)
+        else:
+            raise NotImplementedError('implement for {!r}.'.format(revision_division_command.value))
+        division_region_division_list = interpretationtools.DivisionRegionDivisionList(divisions)
+        division_region_division_list.fresh = region_division_command.fresh
+        division_region_division_list.truncate = region_division_command.truncate
+        return division_region_division_list
+
+    def region_division_commands_to_division_region_division_lists(self, region_division_commands):
+        division_region_division_lists = []
+        for region_division_command in region_division_commands:
+            division_region_division_list = self.region_division_command_to_division_region_division_list(
+                region_division_command)
+            division_region_division_lists.append(division_region_division_list)
+        return division_region_division_lists
+
     def resolve_attribute_retrieval_request(self, request):
         setting = self.change_attribute_retrieval_indicator_to_setting(request.indicator)
         value = setting.value
