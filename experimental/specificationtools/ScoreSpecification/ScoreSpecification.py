@@ -89,27 +89,23 @@ class ScoreSpecification(Specification):
 
     ### PUBLIC METHODS ###
 
-    def add_divisions(self):
+    def add_division_lists_to_score(self):
         for voice in voicetools.iterate_voices_forward_in_expr(self.score):
-            self.add_divisions_to_voice(voice)
+            self.add_division_lists_to_voice(voice)
 
-    def add_divisions_to_voice(self, voice):
+    def add_division_lists_to_voice(self, voice):
         division_region_division_lists = self.make_division_region_division_lists_for_voice(voice)
         #self._debug(division_region_division_lists)
         if division_region_division_lists:
-            self.contexts[voice.name]['division_region_division_lists'] = \
-                division_region_division_lists 
-            voice_divisions = []
-            for division_region_division_list in division_region_division_lists:
-                voice_divisions.extend(division_region_division_list.divisions)
-            voice_division_list = interpretationtools.VoiceDivisionList(voice_divisions)
-            #self._debug(voice_division_list)
+            self.contexts[voice.name]['division_region_division_lists'] = division_region_division_lists 
+            voice_division_list = self.make_voice_division_list_for_voice(voice)
             self.contexts[voice.name]['voice_division_list'] = voice_division_list
             segment_division_lists = self.make_segment_division_lists_for_voice(voice)
-            #self._debug(segment_division_lists)
             self.contexts[voice.name]['segment_division_lists'] = segment_division_lists
             self.add_segment_division_list_to_segment_payload_context_dictionaries_for_voice(
                 voice, segment_division_lists)
+            #self._debug(voice_division_list)
+            #self._debug(segment_division_lists)
 
     def add_rhythm_to_voice(self, voice, rhythm_maker, rhythm_region_division_list):
 #        self._debug(rhythm_maker)
@@ -411,7 +407,7 @@ class ScoreSpecification(Specification):
         self.add_time_signatures()
         self.calculate_segment_offset_pairs()
         self.interpret_segment_divisions()
-        self.add_divisions()
+        self.add_division_lists_to_score()
         self.interpret_segment_rhythms()
         self.add_rhythms()
         self.interpret_segment_pitch_classes()
@@ -558,6 +554,14 @@ class ScoreSpecification(Specification):
         segment_division_lists = self.apply_boundary_indicators_to_raw_segment_division_lists(
             voice_division_list, raw_segment_division_lists)
         return segment_division_lists
+
+    def make_voice_division_list_for_voice(self, voice):
+        division_region_division_lists = self.contexts[voice.name]['division_region_division_lists']
+        voice_divisions = []
+        for division_region_division_list in division_region_division_lists:
+            voice_divisions.extend(division_region_division_list.divisions)
+        voice_division_list = interpretationtools.VoiceDivisionList(voice_divisions)
+        return voice_division_list
 
     def process_divisions_value(self, divisions_value):
         from experimental import selectortools
