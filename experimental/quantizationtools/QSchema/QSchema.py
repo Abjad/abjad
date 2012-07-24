@@ -47,16 +47,16 @@ class QSchema(abctools.AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, duration):
-        targets = []
+        target_items = []
         idx, current_offset = 0, 0
         while current_offset < duration:
             lookup = self[idx]
             lookup['offset_in_ms'] = current_offset
-            target = self.target_klass(**lookup)
-            targets.append(target)
-            current_offset += target.duration_in_ms
+            target_item = self.target_item_klass(**lookup)
+            target_items.append(target_item)
+            current_offset += target_item.duration_in_ms
             idx += 1
-        return tuple(targets)
+        return self.target_klass(target_items)
 
     def __getitem__(self, i):
         assert isinstance(i, int) and 0 <= i
@@ -99,6 +99,11 @@ class QSchema(abctools.AbjadObject):
     def search_tree(self):
         '''The default search tree.'''
         return self._search_tree
+
+    @abstractproperty
+    def target_item_klass(self):
+        '''The schema's target class' item class.'''
+        raise NotImplemented
 
     @abstractproperty
     def target_klass(self):

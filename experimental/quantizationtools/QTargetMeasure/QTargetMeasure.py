@@ -33,7 +33,6 @@ class QTargetMeasure(abctools.AbjadObject):
             beatspan = time_signature.duration
             item = QTargetBeat(
                 beatspan=beatspan,
-                grouping=self,
                 offset_in_ms=offset_in_ms,
                 search_tree=search_tree,
                 tempo=tempo
@@ -46,7 +45,6 @@ class QTargetMeasure(abctools.AbjadObject):
             for i in range(time_signature.numerator):
                 item = QTargetBeat(
                     beatspan=beatspan,
-                    grouping=self,
                     offset_in_ms=current_offset_in_ms,
                     search_tree=search_tree,
                     tempo=tempo

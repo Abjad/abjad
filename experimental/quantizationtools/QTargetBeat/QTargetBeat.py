@@ -14,13 +14,12 @@ class QTargetBeat(abctools.AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, beatspan=None, grouping=None, offset_in_ms=None, search_tree=None, tempo=None):
+    def __init__(self, beatspan=None, offset_in_ms=None, search_tree=None, tempo=None):
 
         from experimental.quantizationtools.QTargetMeasure import QTargetMeasure
 
         beatspan = durationtools.Duration(beatspan)
         offset_in_ms = durationtools.Offset(offset_in_ms)
-        assert isinstance(grouping, (QTargetMeasure, type(None)))
         search_tree = QGridSearchTree(search_tree)
         tempo = contexttools.TempoMark(tempo)
         assert not tempo.is_imprecise
@@ -29,7 +28,6 @@ class QTargetBeat(abctools.AbjadObject):
         q_grids = []
         
         self._beatspan = beatspan
-        self._grouping = grouping
         self._offset_in_ms = offset_in_ms
         self._q_events = q_events
         self._q_grids = q_grids
@@ -45,10 +43,6 @@ class QTargetBeat(abctools.AbjadObject):
     @property
     def duration_in_ms(self):
         return tempo_scaled_rational_to_milliseconds(self.beatspan, self.tempo)
-
-    @property
-    def grouping(self):
-        return self._grouping
 
     @property
     def offset_in_ms(self):

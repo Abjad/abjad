@@ -21,6 +21,8 @@ Read-only Properties
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
+.. autoattribute:: experimental.quantizationtools.QSchema.QSchema.QSchema.target_item_klass
+
 .. autoattribute:: experimental.quantizationtools.QSchema.QSchema.QSchema.target_klass
 
 .. autoattribute:: experimental.quantizationtools.QSchema.QSchema.QSchema.tempo

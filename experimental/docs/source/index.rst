@@ -182,8 +182,10 @@ Unstable packages (load manually)
 
    experimental/quantizationtools/BeatwiseQSchema/BeatwiseQSchema
    experimental/quantizationtools/BeatwiseQSchemaItem/BeatwiseQSchemaItem
+   experimental/quantizationtools/BeatwiseQTarget/BeatwiseQTarget
    experimental/quantizationtools/MeasurewiseQSchema/MeasurewiseQSchema
    experimental/quantizationtools/MeasurewiseQSchemaItem/MeasurewiseQSchemaItem
+   experimental/quantizationtools/MeasurewiseQTarget/MeasurewiseQTarget
    experimental/quantizationtools/PitchedQEvent/PitchedQEvent
    experimental/quantizationtools/QGrid/QGrid
    experimental/quantizationtools/QGridQuantizer/QGridQuantizer

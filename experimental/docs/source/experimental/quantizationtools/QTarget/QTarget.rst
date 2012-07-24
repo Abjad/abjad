@@ -9,6 +9,14 @@ quantizationtools.QTarget
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.quantizationtools.QTarget.QTarget.QTarget.beats
+
+.. autoattribute:: experimental.quantizationtools.QTarget.QTarget.QTarget.duration_in_ms
+
+.. autoattribute:: experimental.quantizationtools.QTarget.QTarget.QTarget.item_klass
+
+.. autoattribute:: experimental.quantizationtools.QTarget.QTarget.QTarget.items
+
 .. autoattribute:: experimental.quantizationtools.QTarget.QTarget.QTarget.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
