@@ -1,10 +1,8 @@
-1. Create statalservertools package.
+1. Maybe create divisiontools package.
 
-2. Maybe create divisiontools package.
-
-3. Migrate ScoreSpecification and SegmentSpecification interpreter code to new
+2. Migrate ScoreSpecification and SegmentSpecification interpreter code to new
    interpretationtools.ScoreInterpreter class.
 
-4. See if test_SegmentSpecification_select_ratio_of_background_measures.py works.
+3. See if test_SegmentSpecification_select_ratio_of_background_measures.py works.
 
-5. Make divisions partitionable.
+4. Make divisions partitionable.
