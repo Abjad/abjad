@@ -2,6 +2,7 @@ from abjad.tools import *
 from experimental import helpertools
 from experimental import interpretationtools
 from experimental import selectortools
+from experimental import settingtools
 from experimental import timespantools
 from experimental.specificationtools.SegmentInventory import SegmentInventory
 from experimental.specificationtools.SegmentSpecification import SegmentSpecification
@@ -477,7 +478,6 @@ class ScoreSpecification(Specification):
         return division_region_division_lists
 
     def make_resolved_setting(self, setting):
-        from experimental import settingtools
         if isinstance(setting, settingtools.ResolvedSingleContextSetting):
             return setting
         value = self.resolve_setting_source(setting)

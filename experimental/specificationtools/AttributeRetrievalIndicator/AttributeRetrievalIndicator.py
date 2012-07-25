@@ -1,6 +1,5 @@
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from experimental.helpertools.AttributeNameEnumeration import AttributeNameEnumeration
-#from experimental.timespantools.SingleSourceTimespan import SingleSourceTimespan
+from experimental import helpertools
 
 
 class AttributeRetrievalIndicator(AbjadObject):
@@ -15,7 +14,7 @@ class AttributeRetrievalIndicator(AbjadObject):
 
     ### CLASS ATTRIBUTES ###
 
-    attributes = AttributeNameEnumeration()
+    attributes = helpertools.AttributeNameEnumeration()
 
     ### INITIALIZER ###
 

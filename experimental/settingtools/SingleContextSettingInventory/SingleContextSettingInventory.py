@@ -1,5 +1,5 @@
 from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
-from experimental.helpertools.AttributeNameEnumeration import AttributeNameEnumeration
+from experimental import helpertools
 from experimental.settingtools.SingleContextSetting import SingleContextSetting
 
 
@@ -11,7 +11,7 @@ class SingleContextSettingInventory(ObjectInventory):
 
     ### CLASS ATTRIBUTES ###
 
-    attributes = AttributeNameEnumeration()
+    attributes = helpertools.AttributeNameEnumeration()
 
     ### PRIVATE READ-ONLY PROPERTIES ###
 

@@ -1,5 +1,5 @@
 from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
-from experimental.helpertools.AttributeNameEnumeration import AttributeNameEnumeration
+from experimental import helpertools
 from experimental.settingtools.MultipleContextSetting import MultipleContextSetting
 
 
@@ -11,7 +11,7 @@ class MultipleContextSettingInventory(ObjectInventory):
 
     ### CLASS ATTRIBUTES ###
 
-    attributes = AttributeNameEnumeration()
+    attributes = helpertools.AttributeNameEnumeration()
 
     ### READ-ONLY PRIVATE PROPERTIES ###
 

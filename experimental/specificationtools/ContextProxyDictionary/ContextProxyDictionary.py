@@ -1,6 +1,7 @@
 from abjad.tools import contexttools
 from abjad.tools import scoretools
 from abjad.tools.abctools.AbjadObject import AbjadObject
+from experimental import settingtools
 from experimental.specificationtools.ContextProxy import ContextProxy
 from collections import OrderedDict
 
@@ -95,7 +96,6 @@ class ContextProxyDictionary(AbjadObject, OrderedDict):
         return settings 
 
     def show(self):
-        from experimental import settingtools
         for context_name in self:
             print context_name
             for setting_name in self[context_name]:

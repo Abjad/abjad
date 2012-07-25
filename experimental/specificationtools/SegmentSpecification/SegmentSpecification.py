@@ -3,6 +3,7 @@ from experimental import handlertools
 from experimental import helpertools
 from experimental import interpretationtools
 from experimental import selectortools
+from experimental import settingtools
 from experimental import timespantools
 from experimental.specificationtools.exceptions import *
 from experimental.helpertools.Callback import Callback
@@ -39,7 +40,6 @@ class SegmentSpecification(Specification):
     ### INITIALIZER ###
 
     def __init__(self, score_template, name):
-        from experimental import settingtools
         assert isinstance(name, str), name
         Specification.__init__(self, score_template)
         self._score_model = self.score_template()
@@ -270,7 +270,6 @@ class SegmentSpecification(Specification):
 
     # think this is deprecated behavior
     def get_resolved_single_context_setting(self, attribute, context_name):
-        from experimental import settingtools
         context = componenttools.get_first_component_in_expr_with_name(self.score_model, context_name)
         for component in componenttools.get_improper_parentage_of_component(context):
             context_proxy = self.resolved_settings[component.name]
@@ -284,7 +283,6 @@ class SegmentSpecification(Specification):
     
     # think this is new behavior
     def get_resolved_single_context_settings(self, attribute, context_name):
-        from experimental import settingtools
         context = componenttools.get_first_component_in_expr_with_name(self.score_model, context_name)
         for component in componenttools.get_improper_parentage_of_component(context):
             context_proxy = self.resolved_settings[component.name]
@@ -639,7 +637,6 @@ class SegmentSpecification(Specification):
 
     def set_attribute(self, attribute, target, source, 
         callback=None, count=None, offset=None, persistent=True, truncate=False):
-        from experimental import settingtools
         assert attribute in self.attributes, repr(attribute)
         assert isinstance(count, (int, type(None))), repr(count)
         assert isinstance(persistent, type(True)), repr(persistent)
