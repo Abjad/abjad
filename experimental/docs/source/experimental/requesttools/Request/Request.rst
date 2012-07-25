@@ -1,5 +1,5 @@
 requesttools.Request
-===================================
+====================
 
 .. inheritance-diagram:: experimental.requesttools.Request.Request.Request
    :private-bases:

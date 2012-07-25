@@ -3,7 +3,7 @@ from abc import abstractmethod
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class RetrievalRequest(AbjadObject):
+class Request(AbjadObject):
     r'''.. versionadded:: 1.0
 
     Abstract base class for retrieval request classes.

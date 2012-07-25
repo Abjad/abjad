@@ -222,6 +222,16 @@ Unstable packages (load manually)
    experimental/quantizationtools/tempo_scaled_rational_to_milliseconds
    experimental/quantizationtools/tempo_scaled_rationals_to_q_events
 
+:py:mod:`requesttools <experimental.requesttools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: abstract classes
+
+.. toctree::
+   :maxdepth: 1
+
+   experimental/requesttools/Request/Request
+
 :py:mod:`selectortools <experimental.selectortools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -295,7 +305,6 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
-   experimental/specificationtools/RetrievalRequest/RetrievalRequest
    experimental/specificationtools/Specification/Specification
 
 .. rubric:: concrete classes

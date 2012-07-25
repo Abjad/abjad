@@ -1,8 +1,8 @@
-from experimental.specificationtools.RetrievalRequest import RetrievalRequest
+from experimental.requesttools.Request import Request
 from experimental.specificationtools.AttributeRetrievalIndicator import AttributeRetrievalIndicator
 
 
-class AttributeRetrievalRequest(RetrievalRequest):
+class AttributeRetrievalRequest(Request):
 
     ### INITIALIZER ###
 
