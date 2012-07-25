@@ -12,21 +12,21 @@ class Division(NonreducedFraction, BoundedObject):
 
     Initialize from string::
 
-        >>> from experimental import interpretationtools
+        >>> from experimental import divisiontools
 
     ::
 
-        >>> interpretationtools.Division('[5, 8)')
+        >>> divisiontools.Division('[5, 8)')
         Division('[5, 8)')
 
     Initialize from pair and optional open / closed keywords::
 
-        >>> interpretationtools.Division((5, 8), is_right_open=True)
+        >>> divisiontools.Division((5, 8), is_right_open=True)
         Division('[5, 8)')
 
     Initialize from other division:
 
-        >>> interpretationtools.Division(_)
+        >>> divisiontools.Division(_)
         Division('[5, 8)')
 
     Divisions may model beats. Divisions may model complete measures.

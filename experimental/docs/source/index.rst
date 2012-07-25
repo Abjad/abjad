@@ -88,6 +88,16 @@ Unstable packages (load manually)
 
    experimental/developerscripttools/get_developer_script_classes
 
+:py:mod:`divisiontools <experimental.divisiontools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: concrete classes
+
+.. toctree::
+   :maxdepth: 1
+
+   experimental/divisiontools/Division/Division
+
 :py:mod:`handlertools <experimental.handlertools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -158,7 +168,6 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
-   experimental/interpretationtools/Division/Division
    experimental/interpretationtools/DivisionList/DivisionList
    experimental/interpretationtools/DivisionRegionDivisionList/DivisionRegionDivisionList
    experimental/interpretationtools/RegionDivisionCommand/RegionDivisionCommand

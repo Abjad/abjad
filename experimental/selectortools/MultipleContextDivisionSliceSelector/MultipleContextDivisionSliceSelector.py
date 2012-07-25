@@ -1,3 +1,4 @@
+from experimental import divisiontools
 from experimental.selectortools.BackgroundElementSliceSelector import BackgroundElementSliceSelector
 
 
@@ -40,7 +41,7 @@ class MultipleContextDivisionSliceSelector(BackgroundElementSliceSelector):
 
     def __init__(self, contexts=None, inequality=None, start=None, stop=None):
         from experimental import interpretationtools
-        BackgroundElementSliceSelector.__init__(self, interpretationtools.Division,
+        BackgroundElementSliceSelector.__init__(self, divisiontools.Division,
             inequality=inequality, start=start, stop=stop)
         assert isinstance(contexts, (list, type(None))), repr(contexts)
         contexts = self._process_contexts(contexts)

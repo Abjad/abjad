@@ -2,7 +2,7 @@ from abjad.tools import componenttools
 from abjad.tools import contexttools
 from abjad.tools import mathtools
 from abjad.tools import voicetools
-from experimental.interpretationtools.Division import Division
+from experimental.divisiontools.Division import Division
 from experimental.selectortools.InequalitySelector import InequalitySelector
 from experimental.selectortools.ItemSelector import ItemSelector
 import types

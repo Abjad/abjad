@@ -1,3 +1,4 @@
+from experimental import divisiontools
 from experimental import helpertools
 from experimental.selectortools.BackgroundElementSliceSelector import BackgroundElementSliceSelector
 
@@ -68,7 +69,7 @@ class SingleContextDivisionSliceSelector(BackgroundElementSliceSelector):
     def __init__(self, voice, inequality=None, start=None, stop=None):
         from experimental import selectortools
         from experimental import interpretationtools
-        BackgroundElementSliceSelector.__init__(self, interpretationtools.Division,
+        BackgroundElementSliceSelector.__init__(self, divisiontools.Division,
             inequality=inequality, start=start, stop=stop)
         voice = helpertools.expr_to_component_name(voice)     
         self._voice = voice

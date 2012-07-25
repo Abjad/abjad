@@ -1,4 +1,5 @@
 from abjad.tools import *
+from experimental import divisiontools
 from experimental import helpertools
 from experimental import interpretationtools
 from experimental import requesttools
@@ -531,7 +532,7 @@ class ScoreSpecification(Specification):
             region_duration = region_division_command.duration
             divisions = sequencetools.repeat_sequence_to_weight_exactly(divisions, region_duration)
             divisions = [x.pair for x in divisions]
-            divisions = [interpretationtools.Division(x) for x in divisions]
+            divisions = [divisiontools.Division(x) for x in divisions]
         elif isinstance(region_division_command.value, selectortools.SingleContextDivisionSliceSelector):
             divisions = self.handle_division_retrieval_request(region_division_command.value)
         else:
