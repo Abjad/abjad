@@ -3,6 +3,7 @@ from abc import abstractmethod
 from abjad.tools import *
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental import helpertools
+from experimental import requesttools
 from experimental import settingtools
 
 
@@ -95,10 +96,10 @@ class Specification(AbjadObject):
 
     def retrieve_attribute(self, attribute, segment_name, context_name=None, timespan=None):
         from experimental import specificationtools
-        return specificationtools.AttributeRetrievalIndicator(
+        return requesttools.AttributeIndicator(
             attribute, segment_name, context_name=context_name, timespan=timespan)
 
     def retrieve_resolved_value(self, attribute, segment_name, context_name=None, timespan=None):
         from experimental import specificationtools
-        return specificationtools.ValueRetrievalIndicator(
+        return requesttools.ValueIndicator(
             attribute, segment_name, context_name=context_name, timespan=timespan)

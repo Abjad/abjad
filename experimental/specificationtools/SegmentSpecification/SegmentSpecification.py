@@ -2,11 +2,11 @@ from abjad.tools import *
 from experimental import handlertools
 from experimental import helpertools
 from experimental import interpretationtools
+from experimental import requesttools
 from experimental import selectortools
 from experimental import settingtools
 from experimental import timespantools
 from experimental.specificationtools.exceptions import *
-from experimental.helpertools.Callback import Callback
 from experimental.specificationtools.Specification import Specification
 from experimental.specificationtools.StatalServer import StatalServer
 import copy
@@ -181,19 +181,19 @@ class SegmentSpecification(Specification):
 
     def annotate_source(self, source, callback=None, count=None, offset=None):
         from experimental import specificationtools
-        assert isinstance(callback, (Callback, type(None))), callback
+        assert isinstance(callback, (helpertools.Callback, type(None))), callback
         assert isinstance(count, (int, type(None))), count
         assert isinstance(offset, (int, type(None))), offset
         if isinstance(source, StatalServer):
             if count is not None or offset is not None:
-                source = specificationtools.StatalServerRequest(source, count=count, offset=offset)
+                source = requesttools.StatalServerRequest(source, count=count, offset=offset)
         elif isinstance(source, handlertools.Handler):
             if offset is not None:
                 assert count is None
-                source = specificationtools.HandlerRequest(source, offset=offset)
-        elif isinstance(source, specificationtools.AttributeRetrievalIndicator):
+                source = requesttools.HandlerRequest(source, offset=offset)
+        elif isinstance(source, requesttools.AttributeIndicator):
             if any([x is not None for x in (callback, count, offset)]):
-                source = specificationtools.AttributeRetrievalRequest(
+                source = requesttools.AttributeRequest(
                     source, callback=callback, count=count, offset=offset)
         elif isinstance(source, selectortools.SingleContextDivisionSliceSelector):
             if any([x is not None for x in (callback, count, offset)]):
@@ -721,7 +721,7 @@ class SegmentSpecification(Specification):
         Set `contexts` divisions from `source` taken in retrograde.
         '''
         string = 'sequencetools.reverse_sequence'
-        callback = Callback(eval(string), string)
+        callback = helpertools.Callback(eval(string), string)
         return self.set_divisions(contexts, source, 
             callback=callback, count=count, offset=offset, persistent=persistent, truncate=truncate)
 
@@ -733,7 +733,7 @@ class SegmentSpecification(Specification):
         '''
         assert isinstance(n, int), repr(n)
         string = 'lambda x: sequencetools.rotate_sequence(x, {})'.format(n)
-        callback = Callback(eval(string), string)
+        callback = helpertools.Callback(eval(string), string)
         return self.set_divisions(contexts, source, 
             callback=callback, count=count, offset=offset, persistent=persistent, truncate=truncate)
 

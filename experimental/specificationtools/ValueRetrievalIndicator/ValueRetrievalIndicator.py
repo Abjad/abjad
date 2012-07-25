@@ -1,6 +1,0 @@
-from experimental.specificationtools.AttributeRetrievalIndicator import AttributeRetrievalIndicator
-
-
-class ValueRetrievalIndicator(AttributeRetrievalIndicator):
-
-	pass

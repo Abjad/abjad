@@ -2,7 +2,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental import helpertools
 
 
-class AttributeRetrievalIndicator(AbjadObject):
+class AttributeIndicator(AbjadObject):
     r'''.. versionadded:: 1.0
 
     Frozen request to retrieve the attribute specified against an arbitrary object in score.

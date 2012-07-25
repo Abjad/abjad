@@ -1,6 +1,7 @@
 from abjad.tools import *
 from experimental import helpertools
 from experimental import interpretationtools
+from experimental import requesttools
 from experimental import selectortools
 from experimental import settingtools
 from experimental import timespantools
@@ -559,9 +560,9 @@ class ScoreSpecification(Specification):
 
     def resolve_setting_source(self, setting):
         from experimental import specificationtools
-        if isinstance(setting.source, specificationtools.AttributeRetrievalRequest):
+        if isinstance(setting.source, requesttools.AttributeRequest):
             return self.resolve_attribute_retrieval_request(setting.source)
-        elif isinstance(setting.source, specificationtools.StatalServerRequest):
+        elif isinstance(setting.source, requesttools.StatalServerRequest):
             return setting.source()
         else:
             return setting.source

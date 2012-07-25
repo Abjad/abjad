@@ -232,6 +232,17 @@ Unstable packages (load manually)
 
    experimental/requesttools/Request/Request
 
+.. rubric:: concrete classes
+
+.. toctree::
+   :maxdepth: 1
+
+   experimental/requesttools/AttributeIndicator/AttributeIndicator
+   experimental/requesttools/AttributeRequest/AttributeRequest
+   experimental/requesttools/HandlerRequest/HandlerRequest
+   experimental/requesttools/StatalServerRequest/StatalServerRequest
+   experimental/requesttools/ValueIndicator/ValueIndicator
+
 :py:mod:`selectortools <experimental.selectortools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -312,18 +323,13 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
-   experimental/specificationtools/AttributeRetrievalIndicator/AttributeRetrievalIndicator
-   experimental/specificationtools/AttributeRetrievalRequest/AttributeRetrievalRequest
    experimental/specificationtools/ContextProxy/ContextProxy
    experimental/specificationtools/ContextProxyDictionary/ContextProxyDictionary
-   experimental/specificationtools/HandlerRequest/HandlerRequest
    experimental/specificationtools/ScoreSpecification/ScoreSpecification
    experimental/specificationtools/Segment/Segment
    experimental/specificationtools/SegmentInventory/SegmentInventory
    experimental/specificationtools/SegmentSpecification/SegmentSpecification
    experimental/specificationtools/StatalServer/StatalServer
-   experimental/specificationtools/StatalServerRequest/StatalServerRequest
-   experimental/specificationtools/ValueRetrievalIndicator/ValueRetrievalIndicator
 
 :py:mod:`timespantools <experimental.timespantools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

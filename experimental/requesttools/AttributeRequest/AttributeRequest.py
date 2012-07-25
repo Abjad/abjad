@@ -1,13 +1,13 @@
 from experimental.requesttools.Request import Request
-from experimental.specificationtools.AttributeRetrievalIndicator import AttributeRetrievalIndicator
+from experimental.requesttools.AttributeIndicator import AttributeIndicator
 
 
-class AttributeRetrievalRequest(Request):
+class AttributeRequest(Request):
 
     ### INITIALIZER ###
 
     def __init__(self, indicator, callback=None, count=None, offset=None):
-        assert isinstance(indicator, AttributeRetrievalIndicator)
+        assert isinstance(indicator, AttributeIndicator)
         self.indicator = indicator
         self.callback = callback
         self.count = count
