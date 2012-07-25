@@ -2,7 +2,6 @@ from abjad.tools import componenttools
 from abjad.tools import contexttools
 from abjad.tools import mathtools
 from abjad.tools import voicetools
-from experimental.specificationtools.Callback import Callback
 from experimental.specificationtools.Division import Division
 from experimental.specificationtools.SegmentSpecification import SegmentSpecification
 from experimental.selectortools.InequalitySelector import InequalitySelector
@@ -155,12 +154,8 @@ class SingleContextCounttimeComponentSelector(ItemSelector, InequalitySelector):
     Select ``'Voice 1'`` chord ``20`` with at least six pitches
     to start during segment ``'red'``::
 
-        >>> from experimental.specificationtools.Callback import Callback
-
-    ::
-
         >>> command = 'lambda x: 6 <= len(x)'
-        >>> predicate = Callback(eval(command), command)
+        >>> predicate = selectortools.Callback(eval(command), command)
 
     ::
 
@@ -181,7 +176,7 @@ class SingleContextCounttimeComponentSelector(ItemSelector, InequalitySelector):
                     )
                 ),
             klass=chordtools.Chord,
-            predicate=specificationtools.Callback('lambda x: 6 <= len(x)'),
+            predicate=selectortools.Callback('lambda x: 6 <= len(x)'),
             index=20
             )
 
@@ -194,7 +189,7 @@ class SingleContextCounttimeComponentSelector(ItemSelector, InequalitySelector):
         from experimental import selectortools
         assert self._interprets_as_sliceable_selector(reference), repr(reference)
         assert klass is None or selectortools.is_counttime_component_klass_expr(klass), repr(klass)
-        assert isinstance(predicate, (Callback, type(None))), repr(predicate)
+        assert isinstance(predicate, (selectortools.Callback, type(None))), repr(predicate)
         ItemSelector.__init__(self, index=index)
         InequalitySelector.__init__(self, inequality=inequality)
         self._reference = self._reference_to_storable_form(reference)
@@ -300,7 +295,7 @@ class SingleContextCounttimeComponentSelector(ItemSelector, InequalitySelector):
                             )
                         ),
                     klass=chordtools.Chord,
-                    predicate=specificationtools.Callback('lambda x: 6 <= len(x)'),
+                    predicate=selectortools.Callback('lambda x: 6 <= len(x)'),
                     index=20
                     ),
                 edge=Left
@@ -328,7 +323,7 @@ class SingleContextCounttimeComponentSelector(ItemSelector, InequalitySelector):
                             )
                         ),
                     klass=chordtools.Chord,
-                    predicate=specificationtools.Callback('lambda x: 6 <= len(x)'),
+                    predicate=selectortools.Callback('lambda x: 6 <= len(x)'),
                     index=20
                     ),
                 edge=Right
@@ -364,7 +359,7 @@ class SingleContextCounttimeComponentSelector(ItemSelector, InequalitySelector):
                             )
                         ),
                     klass=chordtools.Chord,
-                    predicate=specificationtools.Callback('lambda x: 6 <= len(x)'),
+                    predicate=selectortools.Callback('lambda x: 6 <= len(x)'),
                     index=20
                     )
                 )

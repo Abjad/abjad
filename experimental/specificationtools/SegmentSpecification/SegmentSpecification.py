@@ -2,7 +2,7 @@ from abjad.tools import *
 from experimental import handlertools
 from experimental import interpretationtools
 from experimental.specificationtools.exceptions import *
-from experimental.specificationtools.Callback import Callback
+from experimental.selectortools.Callback import Callback
 from experimental.specificationtools.Specification import Specification
 from experimental.specificationtools.StatalServer import StatalServer
 import copy

@@ -5,7 +5,6 @@ from experimental.specificationtools.Division import Division
 from experimental.specificationtools.SegmentInventory import SegmentInventory
 from experimental.specificationtools.SegmentSpecification import SegmentSpecification
 from experimental.specificationtools.Specification import Specification
-import collections
 import copy
 import re
 

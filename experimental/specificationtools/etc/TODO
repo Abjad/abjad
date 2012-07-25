@@ -12,7 +12,3 @@
 5. Move Division from specificationtools to interpretationtools.
 
 6. Create statalservertools package. Move StatalServer out of specificationtools.
-
-7. Move Callback to selectortools.
-
-8. Remove ScopeValue class.

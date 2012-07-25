@@ -1,5 +1,5 @@
 from abjad.tools import voicetools
-from experimental.specificationtools.Callback import Callback
+from experimental.selectortools.Callback import Callback
 from experimental.selectortools.InequalitySelector import InequalitySelector
 from experimental.selectortools.SliceSelector import SliceSelector
 

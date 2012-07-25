@@ -232,6 +232,7 @@ Unstable packages (load manually)
 
    experimental/selectortools/BackgroundMeasureSelector/BackgroundMeasureSelector
    experimental/selectortools/BackgroundMeasureSliceSelector/BackgroundMeasureSliceSelector
+   experimental/selectortools/Callback/Callback
    experimental/selectortools/CountRatioItemSelector/CountRatioItemSelector
    experimental/selectortools/CountRatioSliceSelector/CountRatioSliceSelector
    experimental/selectortools/DurationRatioItemSelector/DurationRatioItemSelector
@@ -294,7 +295,6 @@ Unstable packages (load manually)
    experimental/specificationtools/AttributeNameEnumeration/AttributeNameEnumeration
    experimental/specificationtools/AttributeRetrievalIndicator/AttributeRetrievalIndicator
    experimental/specificationtools/AttributeRetrievalRequest/AttributeRetrievalRequest
-   experimental/specificationtools/Callback/Callback
    experimental/specificationtools/ContextProxy/ContextProxy
    experimental/specificationtools/ContextProxyDictionary/ContextProxyDictionary
    experimental/specificationtools/Division/Division
