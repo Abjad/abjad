@@ -1,5 +1,6 @@
 from abc import ABCMeta
 from abc import abstractmethod
+from experimental import helpertools
 from experimental.selectortools.InequalitySelector import InequalitySelector
 from experimental.selectortools.SliceSelector import SliceSelector
 
@@ -15,7 +16,7 @@ class BackgroundElementSliceSelector(SliceSelector, InequalitySelector):
     @abstractmethod
     def __init__(self, klass, inequality=None, start=None, stop=None):
         from experimental import selectortools
-        assert selectortools.is_background_element_klass(klass), repr(klass)
+        assert helpertools.is_background_element_klass(klass), repr(klass)
         SliceSelector.__init__(self, start=start, stop=stop)
         InequalitySelector.__init__(self, inequality=inequality)
         if isinstance(klass, tuple):

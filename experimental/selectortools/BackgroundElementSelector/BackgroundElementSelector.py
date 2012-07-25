@@ -1,6 +1,7 @@
 from abc import ABCMeta
 from abc import abstractmethod
 from abjad.tools import introspectiontools
+from experimental import helpertools
 from experimental.selectortools.InequalitySelector import InequalitySelector
 from experimental.selectortools.ItemSelector import ItemSelector
 
@@ -20,7 +21,7 @@ class BackgroundElementSelector(ItemSelector, InequalitySelector):
     @abstractmethod
     def __init__(self, klass=None, inequality=None, index=0):
         from experimental import selectortools
-        assert selectortools.is_background_element_klass(klass), repr(klass)
+        assert helpertools.is_background_element_klass(klass), repr(klass)
         ItemSelector.__init__(self, index=index)
         InequalitySelector.__init__(self, inequality=inequality)
         if isinstance(klass, tuple):

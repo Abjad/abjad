@@ -13,16 +13,16 @@ def is_counttime_component_klass_expr(expr):
 
     True when `expr` is a tuple of one or more of these.
 
-        >>> from experimental import selectortools
+        >>> from experimental import helpertools
 
     ::
 
-        >>> selectortools.is_counttime_component_klass_expr(tuplettools.Tuplet)
+        >>> helpertools.is_counttime_component_klass_expr(tuplettools.Tuplet)
         True
 
     Otherwise false::
 
-        >>> selectortools.is_counttime_component_klass_expr(voicetools.Voice)
+        >>> helpertools.is_counttime_component_klass_expr(voicetools.Voice)
         False
 
     Return boolean.

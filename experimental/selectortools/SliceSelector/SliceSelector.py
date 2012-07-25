@@ -1,5 +1,6 @@
 from abc import ABCMeta
 from abc import abstractmethod
+from experimental import helpertools
 from experimental.selectortools.Selector import Selector
 
 
@@ -24,7 +25,7 @@ class SliceSelector(Selector):
             return contexts
         result = []
         for context in contexts:
-            component_name = selectortools.expr_to_component_name(context)
+            component_name = helpertools.expr_to_component_name(context)
             result.append(component_name)
         return result
 

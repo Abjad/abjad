@@ -6,17 +6,17 @@ def is_background_element_klass(expr):
 
     True when `expr` is any of ``Segment``, ``Measure`` or ``Division``::
 
-        >>> from experimental import selectortools
+        >>> from experimental import helpertools
         >>> from experimental import specificationtools
 
     ::
 
-        >>> selectortools.is_background_element_klass(specificationtools.Segment)
+        >>> helpertools.is_background_element_klass(specificationtools.Segment)
         True
 
     Otherwise false::
 
-        >>> selectortools.is_background_element_klass(Container)
+        >>> helpertools.is_background_element_klass(Container)
         False
 
     Return boolean.

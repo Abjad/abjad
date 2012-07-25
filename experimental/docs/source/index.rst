@@ -131,6 +131,17 @@ Unstable packages (load manually)
    experimental/helpertools/KlassInventory/KlassInventory
    experimental/helpertools/SegmentIndexExpression/SegmentIndexExpression
 
+.. rubric:: functions
+
+.. toctree::
+   :maxdepth: 1
+
+   experimental/helpertools/expr_to_component_name
+   experimental/helpertools/expr_to_score_name
+   experimental/helpertools/expr_to_segment_name
+   experimental/helpertools/is_background_element_klass
+   experimental/helpertools/is_counttime_component_klass_expr
+
 :py:mod:`interpretationtools <experimental.interpretationtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -287,11 +298,6 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
-   experimental/selectortools/expr_to_component_name
-   experimental/selectortools/expr_to_score_name
-   experimental/selectortools/expr_to_segment_name
-   experimental/selectortools/is_background_element_klass
-   experimental/selectortools/is_counttime_component_klass_expr
    experimental/selectortools/select_divisions
 
 :py:mod:`settingtools <experimental.settingtools>`

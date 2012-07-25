@@ -8,8 +8,8 @@ def select_divisions(voice, start_segment, segment_count=1):
     from experimental import timespantools
     
     # process input
-    start_segment_name = selectortools.expr_to_segment_name(start_segment)
-    voice_name = selectortools.expr_to_component_name(voice)
+    start_segment_name = helpertools.expr_to_segment_name(start_segment)
+    voice_name = helpertools.expr_to_component_name(voice)
 
     # make selector
     expression = '{!r} + {}'.format(start_segment_name, segment_count)

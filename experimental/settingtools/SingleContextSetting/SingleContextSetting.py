@@ -1,3 +1,4 @@
+from experimental import helpertools
 from experimental.settingtools.MultipleContextSetting import MultipleContextSetting
 import copy
 
@@ -113,7 +114,7 @@ class SingleContextSetting(MultipleContextSetting):
         from experimental import selectortools
         from experimental import specificationtools
         assert self.target.timespan.encompasses_one_segment_exactly, repr(self)
-        segment_name = selectortools.expr_to_segment_name(segment)
+        segment_name = helpertools.expr_to_segment_name(segment)
         segment_selector = selectortools.SegmentSelector(index=segment_name)
         #self._debug(segment)
         #self._debug(segment_selector)
