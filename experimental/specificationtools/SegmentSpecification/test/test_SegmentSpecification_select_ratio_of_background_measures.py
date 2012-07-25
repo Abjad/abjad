@@ -1,14 +1,13 @@
 from abjad.tools import *
 from experimental import selectortools
+from experimental import specificationtools
 from experimental.specificationtools import helpers
 from experimental.specificationtools import library
-import py
 
 
 def test_SegmentSpecification_select_ratio_of_background_measures_01():
-    py.test.skip('currently working on this one')
     
-    template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(n=1)
+    template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
     score_specification = specificationtools.ScoreSpecification(template)
 
     segment = score_specification.append_segment()
