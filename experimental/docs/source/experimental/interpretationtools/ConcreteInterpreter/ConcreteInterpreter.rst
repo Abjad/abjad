@@ -83,6 +83,8 @@ Methods
 Special Methods
 ---------------
 
+.. automethod:: experimental.interpretationtools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.__call__
+
 .. automethod:: experimental.interpretationtools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.__delattr__
 
     Inherited from :py:class:`__builtin__.object`

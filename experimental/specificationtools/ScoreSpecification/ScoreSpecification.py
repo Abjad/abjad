@@ -146,22 +146,7 @@ class ScoreSpecification(Specification):
     def interpret(self):
         from experimental import interpretationtools
         interpreter = interpretationtools.ConcreteInterpreter()
-        interpreter.score_specification = self
-        interpreter.instantiate_score()
-        interpreter.unpack_multiple_context_settings()
-        interpreter.interpret_time_signatures()
-        interpreter.add_time_signatures_to_score()
-        self.calculate_segment_offset_pairs()
-        interpreter.interpret_divisions()
-        interpreter.add_division_lists_to_score()
-        interpreter.interpret_rhythms()
-        interpreter.add_rhythms_to_score()
-        interpreter.interpret_pitch_classes()
-        interpreter.apply_segment_pitch_classes()
-        interpreter.interpret_registration()
-        interpreter.apply_segment_registration()
-        interpreter.interpret_additional_segment_parameters()
-        interpreter.apply_additional_segment_parameters()
+        interpreter(self)
         return self.score
 
     def make_resolved_setting(self, setting):

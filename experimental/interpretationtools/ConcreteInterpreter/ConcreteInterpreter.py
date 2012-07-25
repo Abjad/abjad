@@ -20,6 +20,24 @@ class ConcreteInterpreter(Interpreter):
 
     ### INITIALIZER ###
 
+    def __call__(self, score_specification):
+        self.score_specification = score_specification
+        self.instantiate_score()
+        self.unpack_multiple_context_settings()
+        self.interpret_time_signatures()
+        self.add_time_signatures_to_score()
+        self.score_specification.calculate_segment_offset_pairs()
+        self.interpret_divisions()
+        self.add_division_lists_to_score()
+        self.interpret_rhythms()
+        self.add_rhythms_to_score()
+        self.interpret_pitch_classes()
+        self.apply_segment_pitch_classes()
+        self.interpret_registration()
+        self.apply_segment_registration()
+        self.interpret_additional_segment_parameters()
+        self.apply_additional_segment_parameters()
+
     def __init__(self):
         pass
 
