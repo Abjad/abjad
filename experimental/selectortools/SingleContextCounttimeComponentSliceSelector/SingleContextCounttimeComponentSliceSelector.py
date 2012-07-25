@@ -1,5 +1,4 @@
 from abjad.tools import voicetools
-from experimental.selectortools.Callback import Callback
 from experimental.selectortools.InequalitySelector import InequalitySelector
 from experimental.selectortools.SliceSelector import SliceSelector
 
@@ -86,10 +85,11 @@ class SingleContextCounttimeComponentSliceSelector(SliceSelector, InequalitySele
     ### INITIALIZER ###
 
     def __init__(self, reference, inequality=None, klass=None, predicate=None, start=None, stop=None):
+        from experimental import helpertools
         from experimental import selectortools
         assert self._interprets_as_sliceable_selector(reference), repr(reference)
         assert klass is None or selectortools.is_counttime_component_klass_expr(klass), repr(klass)
-        assert isinstance(predicate, (Callback, type(None))), repr(predicate)
+        assert isinstance(predicate, (helpertools.Callback, type(None))), repr(predicate)
         SliceSelector.__init__(self, start=start, stop=stop)
         InequalitySelector.__init__(self, inequality=inequality)
         self._reference = self._reference_to_storable_form(reference)

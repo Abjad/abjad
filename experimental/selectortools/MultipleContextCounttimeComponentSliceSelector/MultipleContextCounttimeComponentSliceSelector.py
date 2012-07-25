@@ -7,6 +7,7 @@ class MultipleContextCounttimeComponentSliceSelector(SliceSelector, InequalitySe
 
     ::
 
+        >>> from experimental import helpertools
         >>> from experimental import selectortools
         >>> from experimental import timespantools
 
@@ -41,10 +42,11 @@ class MultipleContextCounttimeComponentSliceSelector(SliceSelector, InequalitySe
     ### INITIALIZER ##
 
     def __init__(self, contexts=None, inequality=None, klass=None, predicate=None, start=None, stop=None):
+        from experimental import helpertools
         from experimental import selectortools
         from experimental import specificationtools
         assert klass is None or selectortools.is_counttime_component_klass_expr(klass), repr(klass)
-        assert isinstance(predicate, (selectortools.Callback, type(None))), repr(predicate)
+        assert isinstance(predicate, (helpertools.Callback, type(None))), repr(predicate)
         SliceSelector.__init__(self, start=start, stop=stop)
         InequalitySelector.__init__(self, inequality=inequality)
         self._contexts = contexts

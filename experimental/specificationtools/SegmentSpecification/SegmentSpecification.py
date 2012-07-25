@@ -4,7 +4,7 @@ from experimental import interpretationtools
 from experimental import selectortools
 from experimental import timespantools
 from experimental.specificationtools.exceptions import *
-from experimental.selectortools.Callback import Callback
+from experimental.helpertools.Callback import Callback
 from experimental.specificationtools.Specification import Specification
 from experimental.specificationtools.StatalServer import StatalServer
 import copy

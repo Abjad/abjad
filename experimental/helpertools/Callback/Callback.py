@@ -25,4 +25,4 @@ class Callback(AbjadObject):
 
     # make special one-line storage format
     def _get_tools_package_qualified_repr_pieces(self, is_indented=True):
-        return ['selectortools.{}({!r})'.format(self._class_name, self.string)]
+        return ['helpertools.{}({!r})'.format(self._class_name, self.string)]

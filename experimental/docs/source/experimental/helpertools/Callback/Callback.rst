@@ -1,5 +1,5 @@
 helpertools.Callback
-======================
+====================
 
 .. inheritance-diagram:: experimental.helpertools.Callback.Callback.Callback
    :private-bases:

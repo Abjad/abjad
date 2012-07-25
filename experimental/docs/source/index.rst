@@ -118,6 +118,16 @@ Unstable packages (load manually)
    experimental/handlertools/pitch/OctaveTranspositionHandler/OctaveTranspositionHandler
    experimental/handlertools/pitch/TimewisePitchClassHandler/TimewisePitchClassHandler
 
+:py:mod:`helpertools <experimental.helpertools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: concrete classes
+
+.. toctree::
+   :maxdepth: 1
+
+   experimental/helpertools/Callback/Callback
+
 :py:mod:`interpretationtools <experimental.interpretationtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -233,7 +243,6 @@ Unstable packages (load manually)
 
    experimental/selectortools/BackgroundMeasureSelector/BackgroundMeasureSelector
    experimental/selectortools/BackgroundMeasureSliceSelector/BackgroundMeasureSliceSelector
-   experimental/selectortools/Callback/Callback
    experimental/selectortools/CountRatioItemSelector/CountRatioItemSelector
    experimental/selectortools/CountRatioSliceSelector/CountRatioSliceSelector
    experimental/selectortools/DurationRatioItemSelector/DurationRatioItemSelector
