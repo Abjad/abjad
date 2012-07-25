@@ -97,6 +97,11 @@ Unstable packages (load manually)
    :maxdepth: 1
 
    experimental/divisiontools/Division/Division
+   experimental/divisiontools/DivisionList/DivisionList
+   experimental/divisiontools/DivisionRegionDivisionList/DivisionRegionDivisionList
+   experimental/divisiontools/RhythmRegionDivisionList/RhythmRegionDivisionList
+   experimental/divisiontools/SegmentDivisionList/SegmentDivisionList
+   experimental/divisiontools/VoiceDivisionList/VoiceDivisionList
 
 :py:mod:`handlertools <experimental.handlertools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -168,15 +173,10 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
-   experimental/interpretationtools/DivisionList/DivisionList
-   experimental/interpretationtools/DivisionRegionDivisionList/DivisionRegionDivisionList
    experimental/interpretationtools/RegionDivisionCommand/RegionDivisionCommand
    experimental/interpretationtools/ResolvedValue/ResolvedValue
    experimental/interpretationtools/RhythmCommand/RhythmCommand
-   experimental/interpretationtools/RhythmRegionDivisionList/RhythmRegionDivisionList
-   experimental/interpretationtools/SegmentDivisionList/SegmentDivisionList
    experimental/interpretationtools/UninterpretedDivisionCommand/UninterpretedDivisionCommand
-   experimental/interpretationtools/VoiceDivisionList/VoiceDivisionList
 
 :py:mod:`lyrictools <experimental.lyrictools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

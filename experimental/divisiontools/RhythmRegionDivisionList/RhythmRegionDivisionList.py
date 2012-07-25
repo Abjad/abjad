@@ -1,4 +1,4 @@
-from experimental.interpretationtools.DivisionList import DivisionList
+from experimental.divisiontools.DivisionList import DivisionList
 
 
 class RhythmRegionDivisionList(DivisionList):

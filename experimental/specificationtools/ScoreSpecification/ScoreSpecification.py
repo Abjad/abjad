@@ -110,7 +110,7 @@ class ScoreSpecification(Specification):
 #        self._debug(rhythm_maker)
 #        self._debug(rhythm_region_division_list)
         assert isinstance(rhythm_maker, timetokentools.TimeTokenMaker), repr(rhythm_maker)
-        assert isinstance(rhythm_region_division_list, interpretationtools.RhythmRegionDivisionList)
+        assert isinstance(rhythm_region_division_list, divisiontools.RhythmRegionDivisionList)
         leaf_lists = rhythm_maker(rhythm_region_division_list.pairs)
         rhythm_containers = [containertools.Container(x) for x in leaf_lists]
         voice.extend(rhythm_containers)
@@ -357,7 +357,7 @@ class ScoreSpecification(Specification):
         voice_division_list = self.contexts[voice.name].get('voice_division_list')
         if voice_division_list is None:
             time_signatures = self.time_signatures
-            voice_division_list = interpretationtools.VoiceDivisionList(time_signatures)
+            voice_division_list = divisiontools.VoiceDivisionList(time_signatures)
         return voice_division_list
 
     def handle_division_retrieval_request(self, request):
@@ -491,7 +491,7 @@ class ScoreSpecification(Specification):
     def make_rhythms_and_add_to_voice(self, voice, rhythm_makers, rhythm_region_division_lists):
         for rhythm_maker, rhythm_region_division_list in zip(rhythm_makers, rhythm_region_division_lists):
             if rhythm_region_division_list:
-                rhythm_region_division_list = interpretationtools.RhythmRegionDivisionList(
+                rhythm_region_division_list = divisiontools.RhythmRegionDivisionList(
                     rhythm_region_division_list)
                 self.add_rhythm_to_voice(voice, rhythm_maker, rhythm_region_division_list)
             
@@ -504,7 +504,7 @@ class ScoreSpecification(Specification):
         shards = sequencetools.split_sequence_once_by_weights_with_overhang(voice_divisions, segment_durations)
         raw_segment_division_lists = []
         for i, shard in enumerate(shards[:]):
-            raw_segment_division_list = interpretationtools.SegmentDivisionList(shard)
+            raw_segment_division_list = divisiontools.SegmentDivisionList(shard)
             raw_segment_division_lists.append(raw_segment_division_list)
         #self._debug(voice_division_list, 'vdl')
         #self._debug(raw_segment_division_lists, 'rsdl')
@@ -517,7 +517,7 @@ class ScoreSpecification(Specification):
         voice_divisions = []
         for division_region_division_list in division_region_division_lists:
             voice_divisions.extend(division_region_division_list.divisions)
-        voice_division_list = interpretationtools.VoiceDivisionList(voice_divisions)
+        voice_division_list = divisiontools.VoiceDivisionList(voice_divisions)
         return voice_division_list
 
     def process_divisions_value(self, divisions_value):
@@ -537,7 +537,7 @@ class ScoreSpecification(Specification):
             divisions = self.handle_division_retrieval_request(region_division_command.value)
         else:
             raise NotImplementedError('implement for {!r}.'.format(revision_division_command.value))
-        division_region_division_list = interpretationtools.DivisionRegionDivisionList(divisions)
+        division_region_division_list = divisiontools.DivisionRegionDivisionList(divisions)
         division_region_division_list.fresh = region_division_command.fresh
         division_region_division_list.truncate = region_division_command.truncate
         return division_region_division_list
