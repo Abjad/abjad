@@ -7,7 +7,7 @@ class StatalServerRequest(AbjadObject):
     
     def __init__(self, server, count=None, offset=None):
         from experimental import specificationtools
-        assert isinstance(server, specificationtools.StatalServer)
+        assert isinstance(server, statalservertools.StatalServer)
         self.server = server
         self.count = count
         self.offset = offset

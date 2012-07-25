@@ -8,7 +8,7 @@ from experimental import settingtools
 from experimental import timespantools
 from experimental.specificationtools.exceptions import *
 from experimental.specificationtools.Specification import Specification
-from experimental.specificationtools.StatalServer import StatalServer
+from experimental.statalservertools.StatalServer import StatalServer
 import copy
 
 

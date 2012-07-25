@@ -329,7 +329,16 @@ Unstable packages (load manually)
    experimental/specificationtools/Segment/Segment
    experimental/specificationtools/SegmentInventory/SegmentInventory
    experimental/specificationtools/SegmentSpecification/SegmentSpecification
-   experimental/specificationtools/StatalServer/StatalServer
+
+:py:mod:`statalservertools <experimental.statalservertools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. rubric:: concrete classes
+
+.. toctree::
+   :maxdepth: 1
+
+   experimental/statalservertools/StatalServer/StatalServer
 
 :py:mod:`timespantools <experimental.timespantools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
