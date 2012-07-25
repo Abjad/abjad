@@ -3,7 +3,6 @@ from abjad.tools import contexttools
 from abjad.tools import mathtools
 from abjad.tools import voicetools
 from experimental.interpretationtools.Division import Division
-from experimental.specificationtools.SegmentSpecification import SegmentSpecification
 from experimental.selectortools.InequalitySelector import InequalitySelector
 from experimental.selectortools.ItemSelector import ItemSelector
 import types

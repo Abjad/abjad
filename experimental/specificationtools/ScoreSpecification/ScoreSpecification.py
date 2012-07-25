@@ -289,7 +289,6 @@ class ScoreSpecification(Specification):
 
         Return integer.
         '''
-        from experimental import selectortools
         if isinstance(expression, int):
             return expression
         if isinstance(expression, str):
@@ -315,7 +314,6 @@ class ScoreSpecification(Specification):
                 return candidate_segment_number
 
     def fuse_like_rhythm_commands(self, rhythm_commands):
-        from experimental import interpretationtools
         if not rhythm_commands:
             return []
         result = [copy.deepcopy(rhythm_commands[0])]
@@ -519,15 +517,12 @@ class ScoreSpecification(Specification):
         return voice_division_list
 
     def process_divisions_value(self, divisions_value):
-        from experimental import selectortools
         if isinstance(divisions_value, selectortools.SingleContextDivisionSliceSelector):
             return self.handle_division_retrieval_request(divisions_value)
         else:
             return divisions_value
         
     def region_division_command_to_division_region_division_list(self, region_division_command):
-        from experimental import selectortools
-        from experimental import timespantools
         if isinstance(region_division_command.value, list):
             divisions = [mathtools.NonreducedFraction(x) for x in region_division_command.value]
             region_duration = region_division_command.duration
@@ -590,7 +585,6 @@ class ScoreSpecification(Specification):
         '''Resolve setting and find segment specified by setting.
         Store setting in SEGMENT context tree and, if persistent, in SCORE context tree, too.
         '''
-        from experimental import selectortools
         resolved_setting = self.make_resolved_setting(setting)
         if isinstance(resolved_setting.target, selectortools.RatioSelector):
             segment_index = resolved_setting.target.reference.timespan.selector.inequality.timespan.selector.index

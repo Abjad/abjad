@@ -1,6 +1,8 @@
 from abjad.tools import *
 from experimental import handlertools
 from experimental import interpretationtools
+from experimental import selectortools
+from experimental import timespantools
 from experimental.specificationtools.exceptions import *
 from experimental.selectortools.Callback import Callback
 from experimental.specificationtools.Specification import Specification
@@ -15,7 +17,6 @@ class SegmentSpecification(Specification):
 
         >>> from abjad.tools import scoretemplatetools
         >>> from experimental import specificationtools
-        >>> from experimental.specificationtools import ScoreSpecification
 
     The examples below reference the following segment specification::
 
@@ -113,7 +114,6 @@ class SegmentSpecification(Specification):
 
         Return segment selector.
         '''
-        from experimental import selectortools
         return selectortools.SegmentSelector(index=self.name)
         
     @property
@@ -125,7 +125,6 @@ class SegmentSpecification(Specification):
 
         Return timepoint.
         '''
-        from experimental import timespantools
         return timespantools.Timepoint(anchor=self.selector, edge=Left)
 
     @property
@@ -137,7 +136,6 @@ class SegmentSpecification(Specification):
 
         Return timepoint.
         '''
-        from experimental import timespantools
         return timespantools.Timepoint(anchor=self.selector, edge=Right)
 
     @property
@@ -169,7 +167,6 @@ class SegmentSpecification(Specification):
 
         Return timespan.
         '''
-        from experimental import timespantools
         return timespantools.SingleSourceTimespan(selector=self.selector)
 
     ### PUBLIC METHODS ###
@@ -182,7 +179,6 @@ class SegmentSpecification(Specification):
             context.extend(measures)
 
     def annotate_source(self, source, callback=None, count=None, offset=None):
-        from experimental import selectortools
         from experimental import specificationtools
         assert isinstance(callback, (Callback, type(None))), callback
         assert isinstance(count, (int, type(None))), count
@@ -209,7 +205,6 @@ class SegmentSpecification(Specification):
         return source
 
     def count_ratio_item_selector_to_uninterpreted_division_command(self, resolved_setting):
-        from experimental import selectortools
         assert isinstance(resolved_setting.target, selectortools.CountRatioItemSelector)
         assert isinstance(resolved_setting.target.reference, selectortools.BackgroundMeasureSliceSelector)
         assert resolved_setting.target.reference.inequality.timespan.selector.index == self.name
@@ -228,7 +223,6 @@ class SegmentSpecification(Specification):
     def single_context_timespan_selector_to_uninterpreted_division_command(self, resolved_setting):
         #print 'here!'
         #print resolved_setting.storage_format
-        from experimental import selectortools
         assert isinstance(resolved_setting.target, selectortools.SingleContextTimespanSelector)
         assert isinstance(resolved_setting.target.timespan.selector, selectortools.SegmentSelector)
         assert resolved_setting.target.timespan.selector.index == self.name
@@ -262,7 +256,6 @@ class SegmentSpecification(Specification):
 
     # this this is new behavior
     def get_uninterpreted_division_commands_that_start_during_segment(self, context_name):
-        from experimental import selectortools
         resolved_settings = self.get_resolved_single_context_settings('divisions', context_name)
         uninterpreted_division_commands = []
         for resolved_setting in resolved_settings:
@@ -300,7 +293,6 @@ class SegmentSpecification(Specification):
         return []
 
     def get_rhythm_commands_that_start_during_segment(self, voice_name):
-        from experimental import selectortools
         from experimental.specificationtools import library
         resolved_settings = self.get_resolved_single_context_settings('rhythm', voice_name)
         if resolved_settings is None:
@@ -348,8 +340,6 @@ class SegmentSpecification(Specification):
 
         Return selector.
         '''
-        from experimental import selectortools
-        from experimental import timespantools
         inequality = timespantools.expr_starts_during_timespan(self.timespan)
         selector = selectortools.BackgroundMeasureSliceSelector(inequality=inequality, start=start, stop=stop)
         return selector
@@ -378,8 +368,6 @@ class SegmentSpecification(Specification):
 
         Return selector.
         '''
-        from experimental import selectortools
-        from experimental import timespantools
         inequality = timespantools.expr_starts_during_timespan(self.timespan)
         selector = selectortools.MultipleContextDivisionSliceSelector(
             contexts=contexts, inequality=inequality, start=start, stop=stop)
@@ -408,7 +396,6 @@ class SegmentSpecification(Specification):
 
         Return selector.
         '''
-        from experimental import selectortools
         selector = selectortools.MultipleContextTimespanSelector(contexts=contexts, timespan=self.timespan)
         selector = selectortools.DurationRatioItemSelector(selector, ratio, index)
         return selector
@@ -438,8 +425,6 @@ class SegmentSpecification(Specification):
 
         Return selector.
         '''
-        from experimental import selectortools
-        from experimental import timespantools
         inequality = timespantools.expr_starts_during_timespan(self.timespan)
         selector = selectortools.MultipleContextCounttimeComponentSliceSelector(
             contexts=contexts, inequality=inequality, klass=leaftools.Leaf, 
@@ -475,8 +460,6 @@ class SegmentSpecification(Specification):
 
         Return selector.
         '''
-        from experimental import selectortools
-        from experimental import timespantools
         inequality = timespantools.expr_starts_during_timespan(self.timespan)
         selector = selectortools.MultipleContextCounttimeComponentSliceSelector(
             contexts=contexts, inequality=inequality, klass=(notetools.Note, chordtools.Chord),
@@ -508,7 +491,6 @@ class SegmentSpecification(Specification):
 
         Return selector.
         '''
-        from experimental import selectortools
         selector = self.select_background_measures()
         if count:
             selector = selectortools.CountRatioItemSelector(selector, ratio, index=index)
@@ -542,7 +524,6 @@ class SegmentSpecification(Specification):
 
         Return selector.
         '''
-        from experimental import selectortools
         selector = self.select_divisions(contexts=contexts)
         if count:
             selector = selectortools.CountRatioItemSelector(selector, ratio, index=index)
@@ -577,7 +558,6 @@ class SegmentSpecification(Specification):
 
         Return selector.
         '''
-        from experimental import selectortools
         selector = self.select_leaves(contexts=contexts)
         if count:
             selector = selectortools.CountRatioItemSelector(selector, ratio, index=index)
@@ -615,7 +595,6 @@ class SegmentSpecification(Specification):
 
         Return selector.
         '''
-        from experimental import selectortools
         selector = self.select_notes_and_chords(contexts=contexts)
         if count:
             selector = selectortools.CountRatioItemSelector(selector, ratio, index=index)
@@ -642,7 +621,6 @@ class SegmentSpecification(Specification):
 
         Return selector.
         '''
-        from experimental import selectortools
         contexts = self.context_token_to_context_names(contexts)
         return selectortools.MultipleContextTimespanSelector(contexts=contexts, timespan=self.timespan)
 
