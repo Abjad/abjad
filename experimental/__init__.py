@@ -5,5 +5,6 @@ import helpertools
 import interpretationtools
 import lyrictools
 import quantizationtools
+import requesttools
 import settingtools
 import specificationtools
