@@ -1,6 +1,7 @@
 import abjadbooktools
 import constrainttools
 import handlertools
+import helpertools
 import interpretationtools
 import lyrictools
 import quantizationtools
