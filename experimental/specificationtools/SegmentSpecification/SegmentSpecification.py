@@ -154,7 +154,6 @@ class SegmentSpecification(Specification):
             setting = self.resolved_settings.score_context_proxy.get_setting(
                 attribute='time_signatures')
         except MissingContextSettingError:
-            #return None
             return []
         assert isinstance(setting.value, list), setting.value
         return setting.value
