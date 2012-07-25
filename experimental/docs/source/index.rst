@@ -167,12 +167,14 @@ Unstable packages (load manually)
 
    experimental/interpretationtools/Command/Command
    experimental/interpretationtools/DivisionCommand/DivisionCommand
+   experimental/interpretationtools/Interpreter/Interpreter
 
 .. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
 
+   experimental/interpretationtools/ConcreteInterpreter/ConcreteInterpreter
    experimental/interpretationtools/RegionDivisionCommand/RegionDivisionCommand
    experimental/interpretationtools/ResolvedValue/ResolvedValue
    experimental/interpretationtools/RhythmCommand/RhythmCommand
@@ -221,6 +223,7 @@ Unstable packages (load manually)
    experimental/quantizationtools/MeasurewiseQSchemaItem/MeasurewiseQSchemaItem
    experimental/quantizationtools/MeasurewiseQTarget/MeasurewiseQTarget
    experimental/quantizationtools/PitchedQEvent/PitchedQEvent
+   experimental/quantizationtools/ProxyQEvent/ProxyQEvent
    experimental/quantizationtools/QGrid/QGrid
    experimental/quantizationtools/QGridQuantizer/QGridQuantizer
    experimental/quantizationtools/QGridSearchTree/QGridSearchTree
