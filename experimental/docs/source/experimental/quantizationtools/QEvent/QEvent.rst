@@ -15,27 +15,8 @@ Read-only Properties
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
-Methods
--------
-
-.. automethod:: experimental.quantizationtools.QEvent.QEvent.QEvent.count
-
-    Inherited from :py:class:`__builtin__.tuple`
-
-.. automethod:: experimental.quantizationtools.QEvent.QEvent.QEvent.index
-
-    Inherited from :py:class:`__builtin__.tuple`
-
 Special Methods
 ---------------
-
-.. automethod:: experimental.quantizationtools.QEvent.QEvent.QEvent.__add__
-
-    Inherited from :py:class:`__builtin__.tuple`
-
-.. automethod:: experimental.quantizationtools.QEvent.QEvent.QEvent.__contains__
-
-    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: experimental.quantizationtools.QEvent.QEvent.QEvent.__delattr__
 
@@ -43,55 +24,31 @@ Special Methods
 
 .. automethod:: experimental.quantizationtools.QEvent.QEvent.QEvent.__eq__
 
-    Inherited from :py:class:`__builtin__.tuple`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.quantizationtools.QEvent.QEvent.QEvent.__ge__
 
-    Inherited from :py:class:`__builtin__.tuple`
-
-.. automethod:: experimental.quantizationtools.QEvent.QEvent.QEvent.__getitem__
-
-    Inherited from :py:class:`__builtin__.tuple`
-
-.. automethod:: experimental.quantizationtools.QEvent.QEvent.QEvent.__getslice__
-
-    Inherited from :py:class:`__builtin__.tuple`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.quantizationtools.QEvent.QEvent.QEvent.__gt__
 
-    Inherited from :py:class:`__builtin__.tuple`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.quantizationtools.QEvent.QEvent.QEvent.__hash__
 
-    Inherited from :py:class:`__builtin__.tuple`
-
-.. automethod:: experimental.quantizationtools.QEvent.QEvent.QEvent.__iter__
-
-    Inherited from :py:class:`__builtin__.tuple`
+    Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.quantizationtools.QEvent.QEvent.QEvent.__le__
 
-    Inherited from :py:class:`__builtin__.tuple`
-
-.. automethod:: experimental.quantizationtools.QEvent.QEvent.QEvent.__len__
-
-    Inherited from :py:class:`__builtin__.tuple`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.quantizationtools.QEvent.QEvent.QEvent.__lt__
 
-.. automethod:: experimental.quantizationtools.QEvent.QEvent.QEvent.__mul__
-
-    Inherited from :py:class:`__builtin__.tuple`
-
 .. automethod:: experimental.quantizationtools.QEvent.QEvent.QEvent.__ne__
 
-    Inherited from :py:class:`__builtin__.tuple`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.quantizationtools.QEvent.QEvent.QEvent.__repr__
-
-.. automethod:: experimental.quantizationtools.QEvent.QEvent.QEvent.__rmul__
-
-    Inherited from :py:class:`__builtin__.tuple`
 
 .. automethod:: experimental.quantizationtools.QEvent.QEvent.QEvent.__setattr__
 
