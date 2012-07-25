@@ -1,4 +1,5 @@
 from abjad.tools import *
+from experimental import handlertools
 from experimental import interpretationtools
 from experimental.specificationtools.exceptions import *
 from experimental.specificationtools.AttributeRetrievalIndicator import AttributeRetrievalIndicator
@@ -8,7 +9,6 @@ from experimental.specificationtools.HandlerRequest import HandlerRequest
 from experimental.specificationtools.Specification import Specification
 from experimental.specificationtools.StatalServer import StatalServer
 from experimental.specificationtools.StatalServerRequest import StatalServerRequest
-from experimental.handlertools.Handler import Handler
 import copy
 
 
@@ -193,7 +193,7 @@ class SegmentSpecification(Specification):
         if isinstance(source, StatalServer):
             if count is not None or offset is not None:
                 source = StatalServerRequest(source, count=count, offset=offset)
-        elif isinstance(source, Handler):
+        elif isinstance(source, handlertools.Handler):
             if offset is not None:
                 assert count is None
                 source = HandlerRequest(source, offset=offset)

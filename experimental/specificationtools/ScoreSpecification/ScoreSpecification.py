@@ -1,11 +1,11 @@
 from abjad.tools import *
 from experimental import interpretationtools
+from experimental import selectortools
 from experimental.specificationtools.AttributeRetrievalRequest import AttributeRetrievalRequest
 from experimental.specificationtools.Division import Division
 from experimental.specificationtools.ScopedValue import ScopedValue
 from experimental.specificationtools.SegmentInventory import SegmentInventory
 from experimental.specificationtools.SegmentSpecification import SegmentSpecification
-from experimental.selectortools.MultipleContextTimespanSelector import MultipleContextTimespanSelector
 from experimental.specificationtools.Specification import Specification
 from experimental.specificationtools.StatalServerRequest import StatalServerRequest
 import collections
@@ -584,7 +584,8 @@ class ScoreSpecification(Specification):
         return start_offset_pair[0], stop_offset_pair[1]
 
     def select(self, segment_name, context_names=None, timespan=None):
-        return MultipleContextTimespanSelector(segment_name, context_names=context_names, timespan=timespan)
+        return selectortools.MultipleContextTimespanSelector(
+            segment_name, context_names=context_names, timespan=timespan)
 
     # TODO: the really long dot-chaning here has got to go.
     #       The way to fix this is to make all selectors be able to recursively check for segment index.
