@@ -24,7 +24,7 @@ class BackgroundElementSelector(ItemSelector, InequalitySelector):
         ItemSelector.__init__(self, index=index)
         InequalitySelector.__init__(self, inequality=inequality)
         if isinstance(klass, tuple):
-            klass = selectortools.KlassInventory(klass)
+            klass = helpertools.KlassInventory(klass)
         self._klass = klass
 
     ### SPECIAL METHODS ###

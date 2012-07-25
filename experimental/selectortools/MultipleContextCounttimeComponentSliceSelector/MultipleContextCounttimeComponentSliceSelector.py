@@ -51,7 +51,7 @@ class MultipleContextCounttimeComponentSliceSelector(SliceSelector, InequalitySe
         InequalitySelector.__init__(self, inequality=inequality)
         self._contexts = contexts
         if isinstance(klass, tuple):
-            klass = selectortools.KlassInventory(klass)
+            klass = helpertools.KlassInventory(klass)
         self._klass = klass
         self._predicate = predicate
 

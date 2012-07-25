@@ -127,6 +127,7 @@ Unstable packages (load manually)
    :maxdepth: 1
 
    experimental/helpertools/Callback/Callback
+   experimental/helpertools/KlassInventory/KlassInventory
 
 :py:mod:`interpretationtools <experimental.interpretationtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -247,7 +248,6 @@ Unstable packages (load manually)
    experimental/selectortools/CountRatioSliceSelector/CountRatioSliceSelector
    experimental/selectortools/DurationRatioItemSelector/DurationRatioItemSelector
    experimental/selectortools/DurationRatioSliceSelector/DurationRatioSliceSelector
-   experimental/selectortools/KlassInventory/KlassInventory
    experimental/selectortools/MultipleContextCounttimeComponentSliceSelector/MultipleContextCounttimeComponentSliceSelector
    experimental/selectortools/MultipleContextDivisionSliceSelector/MultipleContextDivisionSliceSelector
    experimental/selectortools/MultipleContextTimespanSelector/MultipleContextTimespanSelector

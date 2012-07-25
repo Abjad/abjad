@@ -195,7 +195,7 @@ class SingleContextCounttimeComponentSelector(ItemSelector, InequalitySelector):
         InequalitySelector.__init__(self, inequality=inequality)
         self._reference = self._reference_to_storable_form(reference)
         if isinstance(klass, tuple):
-            klass = selectortools.KlassInventory(klass)
+            klass = helpertools.KlassInventory(klass)
         self._klass = klass
         self._predicate = predicate
     

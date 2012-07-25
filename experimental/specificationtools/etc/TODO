@@ -1,13 +1,13 @@
-1. Make divisions partitionable.
-
-2. Migrate ScoreSpecification and SegmentSpecification interpreter code to new
+1. Migrate ScoreSpecification and SegmentSpecification interpreter code to new
    interpretationtools.ScoreInterpreter class.
 
-3. Make it so that SegmentSpecification can say "import settingtools" globally.
+2. Make it so that SegmentSpecification can say "import settingtools" globally.
    So specificationtools will depend on settingtools. And not the other way around.
 
-4. See if test_SegmentSpecification_select_ratio_of_background_measures.py works.
+3. See if test_SegmentSpecification_select_ratio_of_background_measures.py works.
 
-5. Create statalservertools package. Move StatalServer out of specificationtools.
+4. Create statalservertools package. Move StatalServer out of specificationtools.
 
-6. Maybe create divisiontools package.
+5. Maybe create divisiontools package.
+
+6. Make divisions partitionable.

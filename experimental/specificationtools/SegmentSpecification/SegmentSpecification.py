@@ -451,7 +451,7 @@ class SegmentSpecification(Specification):
                             )
                         )
                     ),
-                klass=selectortools.KlassInventory([
+                klass=helpertools.KlassInventory([
                     notetools.Note,
                     chordtools.Chord
                     ]),
@@ -584,7 +584,7 @@ class SegmentSpecification(Specification):
                                 )
                             )
                         ),
-                    klass=selectortools.KlassInventory([
+                    klass=helpertools.KlassInventory([
                         notetools.Note,
                         chordtools.Chord
                         ])

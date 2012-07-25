@@ -19,7 +19,7 @@ class BackgroundElementSliceSelector(SliceSelector, InequalitySelector):
         SliceSelector.__init__(self, start=start, stop=stop)
         InequalitySelector.__init__(self, inequality=inequality)
         if isinstance(klass, tuple):
-            klass = selectortools.KlassInventory(klass)
+            klass = helpertools.KlassInventory(klass)
         self._klass = klass
 
     ### READ-ONLY PUBLIC PROPERTIES ###
