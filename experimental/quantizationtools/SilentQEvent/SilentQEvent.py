@@ -6,20 +6,30 @@ class SilentQEvent(QEvent):
 
     ### CLASS ATTRIBUTES ###
 
-    _fields = ('_attachments', '_offset',)
+    __slots__ = ('_attachments', '_offset',)
 
     ### INITIALIZER ###
 
-    def __new__(cls, offset, attachments=None):
+    def __init__(self, offset, attachments=None):
         offset = durationtools.Offset(offset)
         if attachments is None:
             attachments = ()
         else:
             attachments = tuple(attachments)
-        return tuple.__new__(cls, (offset, attachments))
+        self._offset = offset
+        self._attachments = attachments
+
+    ### SPECIAL METHODS ###
+
+    def __eq__(self, other):
+        if type(self) == type(other) and \
+            self._offset == other._offset and \
+            self._attachments == other._attachments:
+            return True
+        return False
 
     ### READ-ONLY PUBLIC ATTRIBUTES ###
 
     @property
     def attachments(self):
-        return self[1]
+        return self._attachments

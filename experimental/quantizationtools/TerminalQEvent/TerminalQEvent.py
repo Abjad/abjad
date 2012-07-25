@@ -6,10 +6,18 @@ class TerminalQEvent(QEvent):
 
     ### CLASS ATTRIBUTES ###
 
-    _fields = ('_offset',)
+    __slots__ = ('_offset')
 
     ### INITIALIZER ###
 
-    def __new__(cls, offset):
+    def __init__(self, offset):
         offset = durationtools.Offset(offset)
-        return tuple.__new__(cls, (offset,))
+        self._offset = offset
+
+    ### SPECIAL METHODS ###
+
+    def __eq__(self, other):
+        if type(self) == type(other) and \
+            self.offset == other.offset:
+            return True
+        return False
