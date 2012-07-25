@@ -126,6 +126,7 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
+   experimental/helpertools/AttributeNameEnumeration/AttributeNameEnumeration
    experimental/helpertools/Callback/Callback
    experimental/helpertools/KlassInventory/KlassInventory
    experimental/helpertools/SegmentIndexExpression/SegmentIndexExpression
@@ -302,7 +303,6 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
-   experimental/specificationtools/AttributeNameEnumeration/AttributeNameEnumeration
    experimental/specificationtools/AttributeRetrievalIndicator/AttributeRetrievalIndicator
    experimental/specificationtools/AttributeRetrievalRequest/AttributeRetrievalRequest
    experimental/specificationtools/ContextProxy/ContextProxy

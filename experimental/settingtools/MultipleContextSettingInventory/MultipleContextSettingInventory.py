@@ -1,5 +1,5 @@
 from abjad.tools.datastructuretools.ObjectInventory import ObjectInventory
-from experimental.specificationtools.AttributeNameEnumeration import AttributeNameEnumeration
+from experimental.helpertools.AttributeNameEnumeration import AttributeNameEnumeration
 from experimental.settingtools.MultipleContextSetting import MultipleContextSetting
 
 

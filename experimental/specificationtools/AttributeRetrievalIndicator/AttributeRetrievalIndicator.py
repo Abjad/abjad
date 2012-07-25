@@ -1,5 +1,5 @@
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from experimental.specificationtools.AttributeNameEnumeration import AttributeNameEnumeration
+from experimental.helpertools.AttributeNameEnumeration import AttributeNameEnumeration
 #from experimental.timespantools.SingleSourceTimespan import SingleSourceTimespan
 
 

@@ -2,7 +2,7 @@ from abc import ABCMeta
 from abc import abstractmethod
 from abjad.tools import *
 from abjad.tools.abctools.AbjadObject import AbjadObject
-from experimental.specificationtools.AttributeNameEnumeration import AttributeNameEnumeration
+from experimental.helpertools.AttributeNameEnumeration import AttributeNameEnumeration
 
 
 class Specification(AbjadObject):
