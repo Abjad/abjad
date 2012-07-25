@@ -316,6 +316,7 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
+   experimental/specificationtools/Segment/Segment
    experimental/specificationtools/Specification/Specification
 
 .. rubric:: concrete classes
@@ -326,9 +327,8 @@ Unstable packages (load manually)
    experimental/specificationtools/ContextProxy/ContextProxy
    experimental/specificationtools/ContextProxyDictionary/ContextProxyDictionary
    experimental/specificationtools/ScoreSpecification/ScoreSpecification
-   experimental/specificationtools/Segment/Segment
-   experimental/specificationtools/SegmentInventory/SegmentInventory
    experimental/specificationtools/SegmentSpecification/SegmentSpecification
+   experimental/specificationtools/SegmentSpecificationInventory/SegmentSpecificationInventory
 
 :py:mod:`statalservertools <experimental.statalservertools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

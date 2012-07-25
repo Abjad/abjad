@@ -1,3 +1,5 @@
+from abc import ABCMeta
+from abc import abstractmethod
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
@@ -16,7 +18,12 @@ class Segment(AbjadObject):
     But this class can be used if or when a need to instantiate segments arises.
     '''
 
+    ### CLASS ATTRIBUTES ##
+
+    __metaclass__ = ABCMeta
+
     ### INITIALIZER ##
 
+    @abstractmethod
     def __init__(self):
         pass

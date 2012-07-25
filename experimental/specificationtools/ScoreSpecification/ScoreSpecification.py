@@ -5,7 +5,7 @@ from experimental import requesttools
 from experimental import selectortools
 from experimental import settingtools
 from experimental import timespantools
-from experimental.specificationtools.SegmentInventory import SegmentInventory
+from experimental.specificationtools.SegmentSpecificationInventory import SegmentSpecificationInventory
 from experimental.specificationtools.SegmentSpecification import SegmentSpecification
 from experimental.specificationtools.Specification import Specification
 import copy
@@ -40,7 +40,7 @@ class ScoreSpecification(Specification):
 
     def __init__(self, score_template):
         Specification.__init__(self, score_template)
-        self._segments = SegmentInventory()
+        self._segments = SegmentSpecificationInventory()
         self._segment_specification_class = SegmentSpecification
 
     ### SPECIAL METHODS ###

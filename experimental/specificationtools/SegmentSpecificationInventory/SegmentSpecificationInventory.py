@@ -1,7 +1,7 @@
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class SegmentInventory(AbjadObject, list):
+class SegmentSpecificationInventory(AbjadObject, list):
 
     ### INITIALIZER ###
 
