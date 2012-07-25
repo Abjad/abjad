@@ -1,6 +1,6 @@
 from abjad.tools import *
 from experimental import selectortools
-from experimental.specificationtools import helpers
+from experimental import helpertools
 from experimental.specificationtools import library
 from experimental.specificationtools import ScoreSpecification
 
@@ -41,9 +41,9 @@ def test_SegmentSpecification_set_rotated_divisions_01():
         [(3, 16), (2, 16), (3, 16), (3, 16), (3, 16)]
 
     current_function_name = introspectiontools.get_current_function_name()
-    helpers.write_test_output(score, __file__, current_function_name)
+    helpertools.write_test_output(score, __file__, current_function_name)
 
-    assert score.lilypond_format == helpers.read_test_output(__file__, current_function_name)
+    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
 def test_SegmentSpecification_set_rotated_divisions_02():
@@ -90,6 +90,6 @@ def test_SegmentSpecification_set_rotated_divisions_02():
         specification.segment_specifications['T1']['Voice 4']['segment_pairs']
 
     current_function_name = introspectiontools.get_current_function_name()
-    helpers.write_test_output(score, __file__, current_function_name)
+    helpertools.write_test_output(score, __file__, current_function_name)
 
-    assert score.lilypond_format == helpers.read_test_output(__file__, current_function_name)
+    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)

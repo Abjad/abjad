@@ -1,5 +1,5 @@
 from abjad.tools import *
-from experimental.specificationtools import helpers
+from experimental import helpertools
 from experimental.specificationtools import library
 from experimental.specificationtools import ScoreSpecification
 
@@ -41,9 +41,9 @@ def test_quartet_01():
     assert specification.segment_specifications['T2'].time_signatures == [(2, 8), (2, 8)]
 
     current_function_name = introspectiontools.get_current_function_name()
-    helpers.write_test_output(score, __file__, current_function_name)
+    helpertools.write_test_output(score, __file__, current_function_name)
 
-    assert score.lilypond_format == helpers.read_test_output(__file__, current_function_name)
+    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
 
 
 def test_quartet_02():
@@ -76,6 +76,6 @@ def test_quartet_02():
     assert specification.segment_specifications['T2'].time_signatures == [(2, 8), (2, 8)]
 
     current_function_name = introspectiontools.get_current_function_name()
-    helpers.write_test_output(score, __file__, current_function_name)
+    helpertools.write_test_output(score, __file__, current_function_name)
 
-    assert score.lilypond_format == helpers.read_test_output(__file__, current_function_name)
+    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)

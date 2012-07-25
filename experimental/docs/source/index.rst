@@ -156,6 +156,8 @@ Unstable packages (load manually)
    experimental/helpertools/expr_to_segment_name
    experimental/helpertools/is_background_element_klass
    experimental/helpertools/is_counttime_component_klass_expr
+   experimental/helpertools/read_test_output
+   experimental/helpertools/write_test_output
 
 :py:mod:`interpretationtools <experimental.interpretationtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
