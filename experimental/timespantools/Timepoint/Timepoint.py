@@ -10,6 +10,7 @@ class Timepoint(AbjadObject):
 
     Timepoint equal to the left edge of score::
 
+        >>> from experimental import helpertools
         >>> from experimental import selectortools
         >>> from experimental import specificationtools
         >>> from experimental import timespantools
@@ -106,7 +107,7 @@ class Timepoint(AbjadObject):
 
     Timepoint one third of the way into the timespan of segments ``'red'`` through ``'blue'``::
 
-        >>> stop = selectortools.SegmentIndexExpression("'blue' + 1")
+        >>> stop = helpertools.SegmentIndexExpression("'blue' + 1")
         >>> segment_slice_selector = selectortools.SegmentSliceSelector(start='red', stop=stop)
         >>> timespan = timespantools.SingleSourceTimespan(selector=segment_slice_selector)
 
@@ -121,7 +122,7 @@ class Timepoint(AbjadObject):
             anchor=timespantools.SingleSourceTimespan(
                 selector=selectortools.SegmentSliceSelector(
                     start='red',
-                    stop=selectortools.SegmentIndexExpression("'blue' + 1")
+                    stop=helpertools.SegmentIndexExpression("'blue' + 1")
                     )
                 ),
             edge=Right,

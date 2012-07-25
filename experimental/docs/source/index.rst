@@ -128,6 +128,7 @@ Unstable packages (load manually)
 
    experimental/helpertools/Callback/Callback
    experimental/helpertools/KlassInventory/KlassInventory
+   experimental/helpertools/SegmentIndexExpression/SegmentIndexExpression
 
 :py:mod:`interpretationtools <experimental.interpretationtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -251,7 +252,6 @@ Unstable packages (load manually)
    experimental/selectortools/MultipleContextCounttimeComponentSliceSelector/MultipleContextCounttimeComponentSliceSelector
    experimental/selectortools/MultipleContextDivisionSliceSelector/MultipleContextDivisionSliceSelector
    experimental/selectortools/MultipleContextTimespanSelector/MultipleContextTimespanSelector
-   experimental/selectortools/SegmentIndexExpression/SegmentIndexExpression
    experimental/selectortools/SegmentSelector/SegmentSelector
    experimental/selectortools/SegmentSliceSelector/SegmentSliceSelector
    experimental/selectortools/SingleContextCounttimeComponentSelector/SingleContextCounttimeComponentSelector

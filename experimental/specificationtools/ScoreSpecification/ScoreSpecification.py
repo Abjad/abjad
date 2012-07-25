@@ -1,4 +1,5 @@
 from abjad.tools import *
+from experimental import helpertools
 from experimental import interpretationtools
 from experimental import selectortools
 from experimental import timespantools
@@ -14,6 +15,7 @@ class ScoreSpecification(Specification):
 
     ::
 
+        >>> from experimental import helpertools
         >>> from experimental import selectortools
         >>> from experimental import specificationtools
         >>> from experimental import timespantools
@@ -255,25 +257,25 @@ class ScoreSpecification(Specification):
     def evaluate_segment_index_expression(self, expression):
         r'''Evaluate segment index expression::
 
-            >>> expression = selectortools.SegmentIndexExpression("'red'")
+            >>> expression = helpertools.SegmentIndexExpression("'red'")
             >>> specification.evaluate_segment_index_expression(expression)
             0
 
         ::
 
-            >>> expression = selectortools.SegmentIndexExpression("'orange'")
+            >>> expression = helpertools.SegmentIndexExpression("'orange'")
             >>> specification.evaluate_segment_index_expression(expression)
             1
 
         ::
 
-            >>> expression = selectortools.SegmentIndexExpression("'yellow'")
+            >>> expression = helpertools.SegmentIndexExpression("'yellow'")
             >>> specification.evaluate_segment_index_expression(expression)
             2
 
         ::
 
-            >>> expression = selectortools.SegmentIndexExpression("'red' + 'orange' + 'yellow'")
+            >>> expression = helpertools.SegmentIndexExpression("'red' + 'orange' + 'yellow'")
             >>> specification.evaluate_segment_index_expression(expression)
             3
 

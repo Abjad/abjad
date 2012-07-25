@@ -6,6 +6,7 @@ class BackgroundMeasureSliceSelector(BackgroundElementSliceSelector):
 
     Select all measures in score::
 
+        >>> from experimental import helpertools
         >>> from experimental import selectortools
         >>> from experimental import specificationtools
 
@@ -77,7 +78,7 @@ class BackgroundMeasureSliceSelector(BackgroundElementSliceSelector):
 
     Select all the measures that start during the three contiguous segments starting with ``'red'``::
 
-        >>> expr = selectortools.SegmentIndexExpression("'red' + 3")
+        >>> expr = helpertools.SegmentIndexExpression("'red' + 3")
         >>> timespan = selectortools.SegmentSliceSelector(start='red', stop=expr).timespan
         >>> inequality = timespantools.expr_starts_during_timespan(timespan)
 
@@ -94,7 +95,7 @@ class BackgroundMeasureSliceSelector(BackgroundElementSliceSelector):
                 timespantools.SingleSourceTimespan(
                     selector=selectortools.SegmentSliceSelector(
                         start='red',
-                        stop=selectortools.SegmentIndexExpression("'red' + 3")
+                        stop=helpertools.SegmentIndexExpression("'red' + 3")
                         )
                     )
                 )
@@ -113,7 +114,7 @@ class BackgroundMeasureSliceSelector(BackgroundElementSliceSelector):
                 timespantools.SingleSourceTimespan(
                     selector=selectortools.SegmentSliceSelector(
                         start='red',
-                        stop=selectortools.SegmentIndexExpression("'red' + 3")
+                        stop=helpertools.SegmentIndexExpression("'red' + 3")
                         )
                     )
                 ),

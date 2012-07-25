@@ -1,5 +1,6 @@
 from abjad.tools import *
 from experimental import handlertools
+from experimental import helpertools
 from experimental import interpretationtools
 from experimental import selectortools
 from experimental import timespantools

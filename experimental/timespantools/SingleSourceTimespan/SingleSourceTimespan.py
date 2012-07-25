@@ -13,6 +13,7 @@ class SingleSourceTimespan(Timespan):
     somewhere and say "everything within my bounds is selected
     for some upcoming operation." ::
 
+        >>> from experimental import helpertools
         >>> from experimental import selectortools
         >>> from experimental import specificationtools
         >>> from experimental import timespantools
@@ -101,7 +102,7 @@ class SingleSourceTimespan(Timespan):
     Timespan starting at the left edge of the segment with the name ``'red'``
     and stopping at the right edge of the segment with the name ``'blue'``::
 
-        >>> stop = selectortools.SegmentIndexExpression("'blue' + 1")
+        >>> stop = helpertools.SegmentIndexExpression("'blue' + 1")
         >>> segment_slice_selector = selectortools.SegmentSliceSelector(start='red', stop=stop)
 
     ::

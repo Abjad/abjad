@@ -3,6 +3,7 @@ def select_divisions(voice, start_segment, segment_count=1):
 
     Return single-context division slice selector.
     '''
+    from experimental import helpertools
     from experimental import selectortools
     from experimental import timespantools
     
@@ -12,7 +13,7 @@ def select_divisions(voice, start_segment, segment_count=1):
 
     # make selector
     expression = '{!r} + {}'.format(start_segment_name, segment_count)
-    held_expression = selectortools.SegmentIndexExpression(expression)
+    held_expression = helpertools.SegmentIndexExpression(expression)
     start, stop = start_segment_name, held_expression
     selector = selectortools.SegmentSliceSelector(start=start, stop=stop)
     inequality = timespantools.expr_starts_during_timespan(selector.timespan)
