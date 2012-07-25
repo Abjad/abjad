@@ -22,7 +22,7 @@ class ConcreteInterpreter(Interpreter):
 
     def __call__(self, score_specification):
         self.score_specification = score_specification
-        self.instantiate_score()
+        self.score = self.instantiate_score()
         self.unpack_multiple_context_settings()
         self.interpret_time_signatures()
         self.add_time_signatures_to_score()
@@ -37,6 +37,7 @@ class ConcreteInterpreter(Interpreter):
         self.apply_segment_registration()
         self.interpret_additional_segment_parameters()
         self.apply_additional_segment_parameters()
+        return self.score
 
     def __init__(self):
         pass
@@ -44,7 +45,7 @@ class ConcreteInterpreter(Interpreter):
     ### PUBLIC METHODS ###
 
     def add_division_lists_to_score(self):
-        for voice in voicetools.iterate_voices_forward_in_expr(self.score_specification.score):
+        for voice in voicetools.iterate_voices_forward_in_expr(self.score):
             self.add_division_lists_to_voice(voice)
 
     def add_division_lists_to_voice(self, voice):
@@ -73,7 +74,7 @@ class ConcreteInterpreter(Interpreter):
         self.conditionally_beam_rhythm_containers(rhythm_maker, rhythm_containers)
 
     def add_rhythms_to_score(self):
-        for voice in voicetools.iterate_voices_forward_in_expr(self.score_specification.score):
+        for voice in voicetools.iterate_voices_forward_in_expr(self.score):
             self.add_rhythms_to_voice(voice)
 
     def add_rhythms_to_voice(self, voice):
@@ -118,7 +119,7 @@ class ConcreteInterpreter(Interpreter):
 
     def add_time_signatures_to_score(self):
         for segment in self.score_specification.segments:
-            segment.add_time_signatures_to_segment(self.score_specification.score)
+            segment.add_time_signatures_to_segment(self.score)
 
     def apply_additional_segment_parameters(self):
         pass
@@ -271,7 +272,7 @@ class ConcreteInterpreter(Interpreter):
         return uninterpreted_division_commands
 
     def handle_division_retrieval_request(self, request):
-        voice = componenttools.get_first_component_in_expr_with_name(self.score_specification.score, request.voice)
+        voice = componenttools.get_first_component_in_expr_with_name(self.score, request.voice)
         assert isinstance(voice, voicetools.Voice), voice
         division_region_division_lists = self.score_specification.contexts[voice.name][
             'division_region_division_lists']
@@ -295,9 +296,10 @@ class ConcreteInterpreter(Interpreter):
         return divisions
 
     def instantiate_score(self):
-        self.score_specification.score = self.score_specification.score_template()
+        score = self.score_specification.score_template()
         context = contexttools.Context(name='TimeSignatureContext', context_name='TimeSignatureContext')
-        self.score_specification.score.insert(0, context)
+        score.insert(0, context)
+        return score
 
     def interpret_additional_segment_parameters(self):
         for segment in self.score_specification.segments:

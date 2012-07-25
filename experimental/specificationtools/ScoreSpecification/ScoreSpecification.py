@@ -146,8 +146,7 @@ class ScoreSpecification(Specification):
     def interpret(self):
         from experimental import interpretationtools
         interpreter = interpretationtools.ConcreteInterpreter()
-        interpreter(self)
-        return self.score
+        return interpreter(self)
 
     def make_resolved_setting(self, setting):
         if isinstance(setting, settingtools.ResolvedSingleContextSetting):

@@ -1,10 +1,5 @@
-1. Migrate ScoreSpecification and SegmentSpecification interpreter code to new
-   interpretationtools.ScoreInterpreter class.
+1. Change ScoreSpecification.segments to ScoreSpecification.segment_specifications.
 
-2. Change ScoreSpecification.segments to ScoreSpecification.segment_specifications.
+2. See if test_SegmentSpecification_select_ratio_of_background_measures.py works.
 
-3. Change Interpreter.score_specification.score to Interpreter.score.
-
-4. See if test_SegmentSpecification_select_ratio_of_background_measures.py works.
-
-5. Make divisions (ie, nonreduced fractions) partitionable.
+3. Make divisions (ie, nonreduced fractions) partitionable.
