@@ -2,13 +2,9 @@ from abjad.tools import *
 from experimental import handlertools
 from experimental import interpretationtools
 from experimental.specificationtools.exceptions import *
-from experimental.specificationtools.AttributeRetrievalIndicator import AttributeRetrievalIndicator
-from experimental.specificationtools.AttributeRetrievalRequest import AttributeRetrievalRequest
 from experimental.specificationtools.Callback import Callback
-from experimental.specificationtools.HandlerRequest import HandlerRequest
 from experimental.specificationtools.Specification import Specification
 from experimental.specificationtools.StatalServer import StatalServer
-from experimental.specificationtools.StatalServerRequest import StatalServerRequest
 import copy
 
 
@@ -187,19 +183,21 @@ class SegmentSpecification(Specification):
 
     def annotate_source(self, source, callback=None, count=None, offset=None):
         from experimental import selectortools
+        from experimental import specificationtools
         assert isinstance(callback, (Callback, type(None))), callback
         assert isinstance(count, (int, type(None))), count
         assert isinstance(offset, (int, type(None))), offset
         if isinstance(source, StatalServer):
             if count is not None or offset is not None:
-                source = StatalServerRequest(source, count=count, offset=offset)
+                source = specificationtools.StatalServerRequest(source, count=count, offset=offset)
         elif isinstance(source, handlertools.Handler):
             if offset is not None:
                 assert count is None
-                source = HandlerRequest(source, offset=offset)
-        elif isinstance(source, AttributeRetrievalIndicator):
+                source = specificationtools.HandlerRequest(source, offset=offset)
+        elif isinstance(source, specificationtools.AttributeRetrievalIndicator):
             if any([x is not None for x in (callback, count, offset)]):
-                source = AttributeRetrievalRequest(source, callback=callback, count=count, offset=offset)
+                source = specificationtools.AttributeRetrievalRequest(
+                    source, callback=callback, count=count, offset=offset)
         elif isinstance(source, selectortools.SingleContextDivisionSliceSelector):
             if any([x is not None for x in (callback, count, offset)]):
                 source = copy.copy(source)

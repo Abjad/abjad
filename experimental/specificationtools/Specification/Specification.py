@@ -3,15 +3,20 @@ from abc import abstractmethod
 from abjad.tools import *
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental.specificationtools.AttributeNameEnumeration import AttributeNameEnumeration
-from experimental.specificationtools.AttributeRetrievalIndicator import AttributeRetrievalIndicator
-from experimental.specificationtools.ContextProxyDictionary import ContextProxyDictionary
-from experimental.specificationtools.ValueRetrievalIndicator import ValueRetrievalIndicator
 
 
 class Specification(AbjadObject):
     r'''.. versionadded:: 1.0
 
     Abstract base class from which concrete specifications inherit.
+
+    Score and segment specifications constitute the primary vehicle of composition.
+
+    Composers make settings against score and segment specifications.
+
+    Interpreter code then interprets score and segment specifications.
+
+    One or more Abjad score objects result from interpretation.
     '''
 
     ### CLASS ATTRIBUTES ###
@@ -25,11 +30,12 @@ class Specification(AbjadObject):
     @abstractmethod
     def __init__(self, score_template):
         from experimental import settingtools
+        from experimental import specificationtools
         self._score_template = score_template
         self._context_names = []
-        self._resolved_settings = ContextProxyDictionary(self.score_template())
+        self._resolved_settings = specificationtools.ContextProxyDictionary(self.score_template())
         self._initialize_context_name_abbreviations()
-        self._contexts = ContextProxyDictionary(self.score_template())
+        self._contexts = specificationtools.ContextProxyDictionary(self.score_template())
         self._settings = settingtools.SingleContextSettingInventory()
 
     ### PRIVATE METHODS ###
@@ -88,7 +94,11 @@ class Specification(AbjadObject):
         return context_names
 
     def retrieve_attribute(self, attribute, segment_name, context_name=None, timespan=None):
-        return AttributeRetrievalIndicator(attribute, segment_name, context_name=context_name, timespan=timespan)
+        from experimental import specificationtools
+        return specificationtools.AttributeRetrievalIndicator(
+            attribute, segment_name, context_name=context_name, timespan=timespan)
 
     def retrieve_resolved_value(self, attribute, segment_name, context_name=None, timespan=None):
-        return ValueRetrievalIndicator(attribute, segment_name, context_name=context_name, timespan=timespan)
+        from experimental import specificationtools
+        return specificationtools.ValueRetrievalIndicator(
+            attribute, segment_name, context_name=context_name, timespan=timespan)

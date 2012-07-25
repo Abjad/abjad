@@ -8,3 +8,11 @@
    Same with settingtools and timespantools.
 
 4. See if test_SegmentSpecification_select_ratio_of_background_measures.py works.
+
+5. Move Division from specificationtools to interpretationtools.
+
+6. Create statalservertools package. Move StatalServer out of specificationtools.
+
+7. Move Callback to selectortools.
+
+8. Remove ScopeValue class.

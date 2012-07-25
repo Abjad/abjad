@@ -1,13 +1,11 @@
 from abjad.tools import *
 from experimental import interpretationtools
 from experimental import selectortools
-from experimental.specificationtools.AttributeRetrievalRequest import AttributeRetrievalRequest
 from experimental.specificationtools.Division import Division
 from experimental.specificationtools.ScopedValue import ScopedValue
 from experimental.specificationtools.SegmentInventory import SegmentInventory
 from experimental.specificationtools.SegmentSpecification import SegmentSpecification
 from experimental.specificationtools.Specification import Specification
-from experimental.specificationtools.StatalServerRequest import StatalServerRequest
 import collections
 import copy
 import re
@@ -565,9 +563,10 @@ class ScoreSpecification(Specification):
         return result
 
     def resolve_setting_source(self, setting):
-        if isinstance(setting.source, AttributeRetrievalRequest):
+        from experimental import specificationtools
+        if isinstance(setting.source, specificationtools.AttributeRetrievalRequest):
             return self.resolve_attribute_retrieval_request(setting.source)
-        elif isinstance(setting.source, StatalServerRequest):
+        elif isinstance(setting.source, specificationtools.StatalServerRequest):
             return setting.source()
         else:
             return setting.source
