@@ -44,6 +44,52 @@ class ConcreteInterpreter(Interpreter):
             #self._debug(voice_division_list, 'vdl')
             #self._debug(segment_division_lists, 'sdl')
 
+    def add_rhythm_to_voice(self, voice, rhythm_maker, rhythm_region_division_list):
+#        self._debug(rhythm_maker)
+#        self._debug(rhythm_region_division_list)
+        assert isinstance(rhythm_maker, timetokentools.TimeTokenMaker), repr(rhythm_maker)
+        assert isinstance(rhythm_region_division_list, divisiontools.RhythmRegionDivisionList)
+        leaf_lists = rhythm_maker(rhythm_region_division_list.pairs)
+        rhythm_containers = [containertools.Container(x) for x in leaf_lists]
+        voice.extend(rhythm_containers)
+        self.conditionally_beam_rhythm_containers(rhythm_maker, rhythm_containers)
+
+    def add_rhythms_to_score(self):
+        for voice in voicetools.iterate_voices_forward_in_expr(self.score_specification.score):
+            self.add_rhythms_to_voice(voice)
+
+    def add_rhythms_to_voice(self, voice):
+        from experimental import specificationtools
+        voice_division_list = self.score_specification.get_voice_division_list(voice)
+        if len(voice_division_list) == 0:
+            return
+        voice_divisions = voice_division_list.divisions
+        voice_division_durations = [durationtools.Duration(x) for x in voice_divisions]
+        rhythm_commands = self.get_rhythm_commands_for_voice(voice)
+        rhythm_commands = self.fuse_like_rhythm_commands(rhythm_commands)
+        rhythm_command_durations = [x.duration for x in rhythm_commands]
+        division_region_division_lists = self.score_specification.contexts[voice.name][
+            'division_region_division_lists']
+        #self._debug(division_region_division_lists)
+        division_region_durations = [x.duration for x in division_region_division_lists]
+        #self._debug(division_region_durations)
+        #self._debug(rhythm_command_durations)
+        rhythm_region_durations = sequencetools.merge_duration_sequences(
+            division_region_durations, rhythm_command_durations)
+        args = (voice_division_durations, rhythm_region_durations)
+        rhythm_region_division_duration_lists = sequencetools.partition_sequence_by_backgrounded_weights(*args)
+        assert len(rhythm_region_division_duration_lists) == len(rhythm_region_durations)
+        rhythm_region_lengths = [len(l) for l in rhythm_region_division_duration_lists]
+        rhythm_region_division_lists = sequencetools.partition_sequence_once_by_counts_without_overhang(
+            voice_divisions, rhythm_region_lengths)
+        assert len(rhythm_region_division_lists) == len(rhythm_region_durations)
+        input_pairs = [(command.value, command.duration) for command in rhythm_commands]
+        output_pairs = sequencetools.pair_duration_sequence_elements_with_input_pair_values(
+            rhythm_region_durations, input_pairs)
+        rhythm_makers = [output_pair[-1] for output_pair in output_pairs]
+        assert len(rhythm_makers) == len(rhythm_region_division_lists)
+        self.make_rhythms_and_add_to_voice(voice, rhythm_makers, rhythm_region_division_lists)
+
     def add_segment_division_list_to_segment_payload_context_dictionaries_for_voice(
         self, voice, segment_division_lists):
         assert len(self.score_specification.segments) == len(segment_division_lists)
@@ -55,6 +101,15 @@ class ConcreteInterpreter(Interpreter):
     def add_time_signatures_to_score(self):
         for segment in self.score_specification.segments:
             segment.add_time_signatures_to_segment(self.score_specification.score)
+
+    def apply_additional_segment_parameters(self):
+        pass
+
+    def apply_segment_pitch_classes(self):
+        pass
+
+    def apply_segment_registration(self):
+        pass
 
     def apply_boundary_indicators_to_raw_segment_division_lists(self,
         voice_division_list, raw_segment_division_lists):
@@ -103,6 +158,11 @@ class ConcreteInterpreter(Interpreter):
                     region_division_command = interpretationtools.RegionDivisionCommand(*args)
                     region_division_commands[-1] = region_division_command
         return region_division_commands
+
+    def conditionally_beam_rhythm_containers(self, rhythm_maker, rhythm_containers):
+        if getattr(rhythm_maker, 'beam', False):
+            durations = [x.preprolated_duration for x in rhythm_containers]
+            beamtools.DuratedComplexBeamSpanner(rhythm_containers, durations=durations, span=1)
 
     def evaluate_segment_index_expression(self, expression):
         r'''Evaluate segment index expression::
@@ -155,6 +215,30 @@ class ConcreteInterpreter(Interpreter):
         result = eval(modified_string)
         return result
 
+    def fuse_like_rhythm_commands(self, rhythm_commands):
+        if not rhythm_commands:
+            return []
+        result = [copy.deepcopy(rhythm_commands[0])]
+        for rhythm_command in rhythm_commands[1:]:
+            if rhythm_command.value == result[-1].value and not rhythm_command.fresh:
+                result[-1]._duration += rhythm_command.duration
+            else:
+                result.append(copy.deepcopy(rhythm_command))
+        return result
+
+    def get_rhythm_commands_for_voice(self, voice):
+        from experimental import interpretationtools
+        from experimental.specificationtools import library
+        rhythm_commands = []
+        for segment in self.score_specification.segments:
+            commands = segment.get_rhythm_commands_that_start_during_segment(voice.name)
+            rhythm_commands.extend(commands)
+        if not rhythm_commands:
+            rhythm_command = interpretationtools.RhythmCommand(
+                library.rest_filled_tokens, self.score_specification.duration, True)
+            rhythm_commands.append(rhythm_command)
+        return rhythm_commands
+
     def get_uninterpreted_division_commands_for_voice(self, voice):
         from experimental import interpretationtools
         uninterpreted_division_commands = []
@@ -197,6 +281,18 @@ class ConcreteInterpreter(Interpreter):
         context = contexttools.Context(name='TimeSignatureContext', context_name='TimeSignatureContext')
         self.score_specification.score.insert(0, context)
 
+    def interpret_additional_segment_parameters(self):
+        for segment in self.score_specification.segments:
+            pass
+
+    def interpret_pitch_classes(self):
+        for segment in self.score_specification.segments:
+            pass
+
+    def interpret_registration(self):
+        for segment in self.score_specification.segments:
+            pass
+
     def interpret_divisions(self):
         for segment in self.score_specification.segments:
             settings = segment.settings.get_settings(attribute='divisions')
@@ -206,6 +302,18 @@ class ConcreteInterpreter(Interpreter):
                     attribute='divisions')
                 for existing_setting in existing_settings:
                     assert existing_setting.target.timespan.encompasses_one_segment_exactly, repr(existing_setting)
+                    setting = existing_setting.copy_to_segment(segment)
+                    settings.append(setting)
+            self.score_specification.store_settings(settings, clear_persistent_first=True)
+
+    def interpret_rhythms(self):
+        for segment in self.score_specification.segments:
+            settings = segment.settings.get_settings(attribute='rhythm')
+            if not settings:
+                settings = []
+                existing_settings = self.score_specification.resolved_settings.get_settings(
+                    attribute='rhythm')
+                for existing_setting in existing_settings:
                     setting = existing_setting.copy_to_segment(segment)
                     settings.append(setting)
             self.score_specification.store_settings(settings, clear_persistent_first=True)
@@ -245,6 +353,13 @@ class ConcreteInterpreter(Interpreter):
         self.score_specification.contexts[voice.name]['division_region_division_lists'] = \
             division_region_division_lists[:]
         return division_region_division_lists
+
+    def make_rhythms_and_add_to_voice(self, voice, rhythm_makers, rhythm_region_division_lists):
+        for rhythm_maker, rhythm_region_division_list in zip(rhythm_makers, rhythm_region_division_lists):
+            if rhythm_region_division_list:
+                rhythm_region_division_list = divisiontools.RhythmRegionDivisionList(
+                    rhythm_region_division_list)
+                self.add_rhythm_to_voice(voice, rhythm_maker, rhythm_region_division_list)
 
     def make_segment_division_lists_for_voice(self, voice):
         voice_division_list = self.score_specification.contexts[voice.name]['voice_division_list']

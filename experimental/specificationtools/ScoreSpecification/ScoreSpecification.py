@@ -6,8 +6,8 @@ from experimental import requesttools
 from experimental import selectortools
 from experimental import settingtools
 from experimental import timespantools
-from experimental.specificationtools.SegmentSpecificationInventory import SegmentSpecificationInventory
 from experimental.specificationtools.SegmentSpecification import SegmentSpecification
+from experimental.specificationtools.SegmentSpecificationInventory import SegmentSpecificationInventory
 from experimental.specificationtools.Specification import Specification
 import copy
 import re
@@ -88,60 +88,12 @@ class ScoreSpecification(Specification):
 
     ### PUBLIC METHODS ###
 
-    def add_rhythm_to_voice(self, voice, rhythm_maker, rhythm_region_division_list):
-#        self._debug(rhythm_maker)
-#        self._debug(rhythm_region_division_list)
-        assert isinstance(rhythm_maker, timetokentools.TimeTokenMaker), repr(rhythm_maker)
-        assert isinstance(rhythm_region_division_list, divisiontools.RhythmRegionDivisionList)
-        leaf_lists = rhythm_maker(rhythm_region_division_list.pairs)
-        rhythm_containers = [containertools.Container(x) for x in leaf_lists]
-        voice.extend(rhythm_containers)
-        self.conditionally_beam_rhythm_containers(rhythm_maker, rhythm_containers)
-
-    def add_rhythms_to_score(self):
-        for voice in voicetools.iterate_voices_forward_in_expr(self.score):
-            self.add_rhythms_to_voice(voice)
-
-    def add_rhythms_to_voice(self, voice):
-        from experimental import specificationtools
-        voice_division_list = self.get_voice_division_list(voice)
-        if len(voice_division_list) == 0:
-            return
-        voice_divisions = voice_division_list.divisions
-        voice_division_durations = [durationtools.Duration(x) for x in voice_divisions]
-        rhythm_commands = self.get_rhythm_commands_for_voice(voice)
-        rhythm_commands = self.fuse_like_rhythm_commands(rhythm_commands)
-        rhythm_command_durations = [x.duration for x in rhythm_commands]
-        division_region_division_lists = self.contexts[voice.name]['division_region_division_lists']
-        #self._debug(division_region_division_lists)
-        division_region_durations = [x.duration for x in division_region_division_lists]
-        #self._debug(division_region_durations)
-        #self._debug(rhythm_command_durations)
-        rhythm_region_durations = sequencetools.merge_duration_sequences(
-            division_region_durations, rhythm_command_durations)
-        args = (voice_division_durations, rhythm_region_durations)
-        rhythm_region_division_duration_lists = sequencetools.partition_sequence_by_backgrounded_weights(*args)
-        assert len(rhythm_region_division_duration_lists) == len(rhythm_region_durations)
-        rhythm_region_lengths = [len(l) for l in rhythm_region_division_duration_lists]
-        rhythm_region_division_lists = sequencetools.partition_sequence_once_by_counts_without_overhang(
-            voice_divisions, rhythm_region_lengths)
-        assert len(rhythm_region_division_lists) == len(rhythm_region_durations)
-        input_pairs = [(command.value, command.duration) for command in rhythm_commands]
-        output_pairs = sequencetools.pair_duration_sequence_elements_with_input_pair_values(
-            rhythm_region_durations, input_pairs)
-        rhythm_makers = [output_pair[-1] for output_pair in output_pairs]
-        assert len(rhythm_makers) == len(rhythm_region_division_lists)
-        self.make_rhythms_and_add_to_voice(voice, rhythm_makers, rhythm_region_division_lists)
-
     def append_segment(self, name=None):
         name = name or str(self.find_first_unused_segment_number())
         assert name not in self.segment_names, repr(name)
         segment = self.segment_specification_class(self.score_template, name)
         self.segments.append(segment)
         return segment
-
-    def apply_additional_segment_parameters(self):
-        pass 
 
     def apply_offset_and_count(self, request, value):
         if request.offset is not None or request.count is not None:
@@ -157,12 +109,6 @@ class ScoreSpecification(Specification):
         else:
             return value
 
-    def apply_segment_pitch_classes(self):
-        pass
-
-    def apply_segment_registration(self):
-        pass
-
     def calculate_segment_offset_pairs(self):
         segment_durations = [segment.duration for segment in self.segments]
         if sequencetools.all_are_numbers(segment_durations):
@@ -176,11 +122,6 @@ class ScoreSpecification(Specification):
         setting = context_proxy.get_setting(attribute=indicator.attribute)
         return setting
 
-    def conditionally_beam_rhythm_containers(self, rhythm_maker, rhythm_containers):
-        if getattr(rhythm_maker, 'beam', False):
-            durations = [x.preprolated_duration for x in rhythm_containers]
-            beamtools.DuratedComplexBeamSpanner(rhythm_containers, durations=durations, span=1)
-
     def find_first_unused_segment_number(self):
         candidate_segment_number = 1
         while True:
@@ -190,28 +131,6 @@ class ScoreSpecification(Specification):
                     break
             else:
                 return candidate_segment_number
-
-    def fuse_like_rhythm_commands(self, rhythm_commands):
-        if not rhythm_commands:
-            return []
-        result = [copy.deepcopy(rhythm_commands[0])]
-        for rhythm_command in rhythm_commands[1:]:
-            if rhythm_command.value == result[-1].value and not rhythm_command.fresh:
-                result[-1]._duration += rhythm_command.duration
-            else:
-                result.append(copy.deepcopy(rhythm_command))
-        return result
-
-    def get_rhythm_commands_for_voice(self, voice):
-        from experimental.specificationtools import library
-        rhythm_commands = []
-        for segment in self.segments:
-            commands = segment.get_rhythm_commands_that_start_during_segment(voice.name)
-            rhythm_commands.extend(commands)
-        if not rhythm_commands:
-            rhythm_command = interpretationtools.RhythmCommand(library.rest_filled_tokens, self.duration, True)
-            rhythm_commands.append(rhythm_command)
-        return rhythm_commands
 
     def get_voice_division_list(self, voice):
         from experimental import specificationtools
@@ -235,39 +154,15 @@ class ScoreSpecification(Specification):
         self.calculate_segment_offset_pairs()
         interpreter.interpret_divisions()
         interpreter.add_division_lists_to_score()
-        self.interpret_rhythms()
-        self.add_rhythms_to_score()
-        self.interpret_pitch_classes()
-        self.apply_segment_pitch_classes()
-        self.interpret_registration()
-        self.apply_segment_registration()
-        self.interpret_additional_segment_parameters()
-        self.apply_additional_segment_parameters()
+        interpreter.interpret_rhythms()
+        interpreter.add_rhythms_to_score()
+        interpreter.interpret_pitch_classes()
+        interpreter.apply_segment_pitch_classes()
+        interpreter.interpret_registration()
+        interpreter.apply_segment_registration()
+        interpreter.interpret_additional_segment_parameters()
+        interpreter.apply_additional_segment_parameters()
         return self.score
-
-    def interpret_additional_segment_parameters(self):
-        for segment in self.segments:
-            pass
-
-    def interpret_pitch_classes(self):
-        for segment in self.segments:
-            pass
-
-    def interpret_registration(self):
-        for segment in self.segments:
-            pass
-
-    def interpret_rhythms(self):
-        for segment in self.segments:
-            settings = segment.settings.get_settings(attribute='rhythm')
-            if not settings:
-                settings = []
-                existing_settings = self.resolved_settings.get_settings(
-                    attribute='rhythm')
-                for existing_setting in existing_settings:
-                    setting = existing_setting.copy_to_segment(segment)
-                    settings.append(setting)
-            self.store_settings(settings, clear_persistent_first=True)
 
     def make_resolved_setting(self, setting):
         if isinstance(setting, settingtools.ResolvedSingleContextSetting):
@@ -278,13 +173,6 @@ class ScoreSpecification(Specification):
             persistent=setting.persistent, truncate=setting.truncate, fresh=setting.fresh)
         return resolved_setting
 
-    def make_rhythms_and_add_to_voice(self, voice, rhythm_makers, rhythm_region_division_lists):
-        for rhythm_maker, rhythm_region_division_list in zip(rhythm_makers, rhythm_region_division_lists):
-            if rhythm_region_division_list:
-                rhythm_region_division_list = divisiontools.RhythmRegionDivisionList(
-                    rhythm_region_division_list)
-                self.add_rhythm_to_voice(voice, rhythm_maker, rhythm_region_division_list)
-            
     def process_divisions_value(self, divisions_value):
         if isinstance(divisions_value, selectortools.SingleContextDivisionSliceSelector):
             return self.handle_division_retrieval_request(divisions_value)

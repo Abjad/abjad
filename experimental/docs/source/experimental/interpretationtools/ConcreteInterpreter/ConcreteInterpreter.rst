@@ -20,15 +20,33 @@ Methods
 
 .. automethod:: experimental.interpretationtools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.add_division_lists_to_voice
 
+.. automethod:: experimental.interpretationtools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.add_rhythm_to_voice
+
+.. automethod:: experimental.interpretationtools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.add_rhythms_to_score
+
+.. automethod:: experimental.interpretationtools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.add_rhythms_to_voice
+
 .. automethod:: experimental.interpretationtools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.add_segment_division_list_to_segment_payload_context_dictionaries_for_voice
 
 .. automethod:: experimental.interpretationtools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.add_time_signatures_to_score
 
+.. automethod:: experimental.interpretationtools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.apply_additional_segment_parameters
+
 .. automethod:: experimental.interpretationtools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.apply_boundary_indicators_to_raw_segment_division_lists
+
+.. automethod:: experimental.interpretationtools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.apply_segment_pitch_classes
+
+.. automethod:: experimental.interpretationtools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.apply_segment_registration
 
 .. automethod:: experimental.interpretationtools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.change_uninterpreted_division_commands_to_region_division_commands
 
+.. automethod:: experimental.interpretationtools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.conditionally_beam_rhythm_containers
+
 .. automethod:: experimental.interpretationtools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.evaluate_segment_index_expression
+
+.. automethod:: experimental.interpretationtools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.fuse_like_rhythm_commands
+
+.. automethod:: experimental.interpretationtools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.get_rhythm_commands_for_voice
 
 .. automethod:: experimental.interpretationtools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.get_uninterpreted_division_commands_for_voice
 
@@ -36,11 +54,21 @@ Methods
 
 .. automethod:: experimental.interpretationtools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.instantiate_score
 
+.. automethod:: experimental.interpretationtools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.interpret_additional_segment_parameters
+
 .. automethod:: experimental.interpretationtools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.interpret_divisions
+
+.. automethod:: experimental.interpretationtools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.interpret_pitch_classes
+
+.. automethod:: experimental.interpretationtools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.interpret_registration
+
+.. automethod:: experimental.interpretationtools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.interpret_rhythms
 
 .. automethod:: experimental.interpretationtools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.interpret_time_signatures
 
 .. automethod:: experimental.interpretationtools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.make_division_region_division_lists_for_voice
+
+.. automethod:: experimental.interpretationtools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.make_rhythms_and_add_to_voice
 
 .. automethod:: experimental.interpretationtools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.make_segment_division_lists_for_voice
 
