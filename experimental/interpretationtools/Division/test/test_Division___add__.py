@@ -1,4 +1,4 @@
-from experimental.specificationtools.Division import Division
+from experimental.interpretationtools.Division import Division
 
 
 def test_Division___add___01():

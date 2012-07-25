@@ -86,9 +86,9 @@ class SingleContextDivisionSelector(BackgroundElementSelector):
 
     def __init__(self, voice, inequality=None, index=0):
         from experimental import selectortools
-        from experimental import specificationtools
+        from experimental import interpretationtools
         BackgroundElementSelector.__init__(
-            self, klass=specificationtools.Division, index=index, inequality=inequality)
+            self, klass=interpretationtools.Division, index=index, inequality=inequality)
         voice = selectortools.expr_to_component_name(voice)
         self._voice = voice
 

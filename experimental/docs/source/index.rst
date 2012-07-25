@@ -134,6 +134,7 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
+   experimental/interpretationtools/Division/Division
    experimental/interpretationtools/DivisionList/DivisionList
    experimental/interpretationtools/DivisionRegionDivisionList/DivisionRegionDivisionList
    experimental/interpretationtools/RegionDivisionCommand/RegionDivisionCommand
@@ -297,7 +298,6 @@ Unstable packages (load manually)
    experimental/specificationtools/AttributeRetrievalRequest/AttributeRetrievalRequest
    experimental/specificationtools/ContextProxy/ContextProxy
    experimental/specificationtools/ContextProxyDictionary/ContextProxyDictionary
-   experimental/specificationtools/Division/Division
    experimental/specificationtools/HandlerRequest/HandlerRequest
    experimental/specificationtools/ScoreSpecification/ScoreSpecification
    experimental/specificationtools/Segment/Segment

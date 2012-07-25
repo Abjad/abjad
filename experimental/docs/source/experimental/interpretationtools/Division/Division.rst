@@ -1,235 +1,235 @@
-specificationtools.Division
-===========================
+interpretationtools.Division
+============================
 
-.. inheritance-diagram:: experimental.specificationtools.Division.Division.Division
+.. inheritance-diagram:: experimental.interpretationtools.Division.Division.Division
    :private-bases:
 
-.. autoclass:: experimental.specificationtools.Division.Division.Division
+.. autoclass:: experimental.interpretationtools.Division.Division.Division
 
 Read-only Properties
 --------------------
 
-.. autoattribute:: experimental.specificationtools.Division.Division.Division.denominator
+.. autoattribute:: experimental.interpretationtools.Division.Division.Division.denominator
 
     Inherited from :py:class:`mathtools.NonreducedFraction <abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction>`
 
-.. autoattribute:: experimental.specificationtools.Division.Division.Division.duration
+.. autoattribute:: experimental.interpretationtools.Division.Division.Division.duration
 
-.. autoattribute:: experimental.specificationtools.Division.Division.Division.imag
+.. autoattribute:: experimental.interpretationtools.Division.Division.Division.imag
 
     Inherited from :py:class:`numbers.Real`
 
-.. autoattribute:: experimental.specificationtools.Division.Division.Division.is_closed
+.. autoattribute:: experimental.interpretationtools.Division.Division.Division.is_closed
 
     Inherited from :py:class:`mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
 
-.. autoattribute:: experimental.specificationtools.Division.Division.Division.is_half_closed
+.. autoattribute:: experimental.interpretationtools.Division.Division.Division.is_half_closed
 
     Inherited from :py:class:`mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
 
-.. autoattribute:: experimental.specificationtools.Division.Division.Division.is_half_open
+.. autoattribute:: experimental.interpretationtools.Division.Division.Division.is_half_open
 
     Inherited from :py:class:`mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
 
-.. autoattribute:: experimental.specificationtools.Division.Division.Division.is_open
+.. autoattribute:: experimental.interpretationtools.Division.Division.Division.is_open
 
     Inherited from :py:class:`mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
 
-.. autoattribute:: experimental.specificationtools.Division.Division.Division.numerator
+.. autoattribute:: experimental.interpretationtools.Division.Division.Division.numerator
 
     Inherited from :py:class:`mathtools.NonreducedFraction <abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction>`
 
-.. autoattribute:: experimental.specificationtools.Division.Division.Division.pair
+.. autoattribute:: experimental.interpretationtools.Division.Division.Division.pair
 
     Inherited from :py:class:`mathtools.NonreducedFraction <abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction>`
 
-.. autoattribute:: experimental.specificationtools.Division.Division.Division.real
+.. autoattribute:: experimental.interpretationtools.Division.Division.Division.real
 
     Inherited from :py:class:`numbers.Real`
 
-.. autoattribute:: experimental.specificationtools.Division.Division.Division.storage_format
+.. autoattribute:: experimental.interpretationtools.Division.Division.Division.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 Read/write Properties
 ---------------------
 
-.. autoattribute:: experimental.specificationtools.Division.Division.Division.is_left_closed
+.. autoattribute:: experimental.interpretationtools.Division.Division.Division.is_left_closed
 
     Inherited from :py:class:`mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
 
-.. autoattribute:: experimental.specificationtools.Division.Division.Division.is_left_open
+.. autoattribute:: experimental.interpretationtools.Division.Division.Division.is_left_open
 
     Inherited from :py:class:`mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
 
-.. autoattribute:: experimental.specificationtools.Division.Division.Division.is_right_closed
+.. autoattribute:: experimental.interpretationtools.Division.Division.Division.is_right_closed
 
     Inherited from :py:class:`mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
 
-.. autoattribute:: experimental.specificationtools.Division.Division.Division.is_right_open
+.. autoattribute:: experimental.interpretationtools.Division.Division.Division.is_right_open
 
     Inherited from :py:class:`mathtools.BoundedObject <abjad.tools.mathtools.BoundedObject.BoundedObject.BoundedObject>`
 
 Methods
 -------
 
-.. automethod:: experimental.specificationtools.Division.Division.Division.conjugate
+.. automethod:: experimental.interpretationtools.Division.Division.Division.conjugate
 
     Inherited from :py:class:`numbers.Real`
 
-.. automethod:: experimental.specificationtools.Division.Division.Division.from_decimal
+.. automethod:: experimental.interpretationtools.Division.Division.Division.from_decimal
 
     Inherited from :py:class:`fractions.Fraction`
 
-.. automethod:: experimental.specificationtools.Division.Division.Division.from_float
+.. automethod:: experimental.interpretationtools.Division.Division.Division.from_float
 
     Inherited from :py:class:`fractions.Fraction`
 
-.. automethod:: experimental.specificationtools.Division.Division.Division.limit_denominator
+.. automethod:: experimental.interpretationtools.Division.Division.Division.limit_denominator
 
     Inherited from :py:class:`fractions.Fraction`
 
-.. automethod:: experimental.specificationtools.Division.Division.Division.reduce
+.. automethod:: experimental.interpretationtools.Division.Division.Division.reduce
 
     Inherited from :py:class:`mathtools.NonreducedFraction <abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction>`
 
 Special Methods
 ---------------
 
-.. automethod:: experimental.specificationtools.Division.Division.Division.__abs__
+.. automethod:: experimental.interpretationtools.Division.Division.Division.__abs__
 
     Inherited from :py:class:`mathtools.NonreducedFraction <abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction>`
 
-.. automethod:: experimental.specificationtools.Division.Division.Division.__add__
+.. automethod:: experimental.interpretationtools.Division.Division.Division.__add__
 
     Inherited from :py:class:`mathtools.NonreducedFraction <abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction>`
 
-.. automethod:: experimental.specificationtools.Division.Division.Division.__complex__
+.. automethod:: experimental.interpretationtools.Division.Division.Division.__complex__
 
     Inherited from :py:class:`numbers.Real`
 
-.. automethod:: experimental.specificationtools.Division.Division.Division.__delattr__
+.. automethod:: experimental.interpretationtools.Division.Division.Division.__delattr__
 
     Inherited from :py:class:`__builtin__.object`
 
-.. automethod:: experimental.specificationtools.Division.Division.Division.__div__
+.. automethod:: experimental.interpretationtools.Division.Division.Division.__div__
 
     Inherited from :py:class:`mathtools.NonreducedFraction <abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction>`
 
-.. automethod:: experimental.specificationtools.Division.Division.Division.__divmod__
+.. automethod:: experimental.interpretationtools.Division.Division.Division.__divmod__
 
     Inherited from :py:class:`numbers.Real`
 
-.. automethod:: experimental.specificationtools.Division.Division.Division.__eq__
+.. automethod:: experimental.interpretationtools.Division.Division.Division.__eq__
 
-.. automethod:: experimental.specificationtools.Division.Division.Division.__float__
+.. automethod:: experimental.interpretationtools.Division.Division.Division.__float__
 
     Inherited from :py:class:`numbers.Rational`
 
-.. automethod:: experimental.specificationtools.Division.Division.Division.__floordiv__
+.. automethod:: experimental.interpretationtools.Division.Division.Division.__floordiv__
 
     Inherited from :py:class:`fractions.Fraction`
 
-.. automethod:: experimental.specificationtools.Division.Division.Division.__ge__
+.. automethod:: experimental.interpretationtools.Division.Division.Division.__ge__
 
     Inherited from :py:class:`mathtools.NonreducedFraction <abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction>`
 
-.. automethod:: experimental.specificationtools.Division.Division.Division.__gt__
+.. automethod:: experimental.interpretationtools.Division.Division.Division.__gt__
 
     Inherited from :py:class:`mathtools.NonreducedFraction <abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction>`
 
-.. automethod:: experimental.specificationtools.Division.Division.Division.__hash__
+.. automethod:: experimental.interpretationtools.Division.Division.Division.__hash__
 
     Inherited from :py:class:`fractions.Fraction`
 
-.. automethod:: experimental.specificationtools.Division.Division.Division.__le__
+.. automethod:: experimental.interpretationtools.Division.Division.Division.__le__
 
     Inherited from :py:class:`mathtools.NonreducedFraction <abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction>`
 
-.. automethod:: experimental.specificationtools.Division.Division.Division.__lt__
+.. automethod:: experimental.interpretationtools.Division.Division.Division.__lt__
 
     Inherited from :py:class:`mathtools.NonreducedFraction <abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction>`
 
-.. automethod:: experimental.specificationtools.Division.Division.Division.__mod__
+.. automethod:: experimental.interpretationtools.Division.Division.Division.__mod__
 
     Inherited from :py:class:`fractions.Fraction`
 
-.. automethod:: experimental.specificationtools.Division.Division.Division.__mul__
+.. automethod:: experimental.interpretationtools.Division.Division.Division.__mul__
 
     Inherited from :py:class:`mathtools.NonreducedFraction <abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction>`
 
-.. automethod:: experimental.specificationtools.Division.Division.Division.__ne__
+.. automethod:: experimental.interpretationtools.Division.Division.Division.__ne__
 
     Inherited from :py:class:`mathtools.NonreducedFraction <abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction>`
 
-.. automethod:: experimental.specificationtools.Division.Division.Division.__neg__
+.. automethod:: experimental.interpretationtools.Division.Division.Division.__neg__
 
     Inherited from :py:class:`mathtools.NonreducedFraction <abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction>`
 
-.. automethod:: experimental.specificationtools.Division.Division.Division.__nonzero__
+.. automethod:: experimental.interpretationtools.Division.Division.Division.__nonzero__
 
     Inherited from :py:class:`fractions.Fraction`
 
-.. automethod:: experimental.specificationtools.Division.Division.Division.__pos__
+.. automethod:: experimental.interpretationtools.Division.Division.Division.__pos__
 
     Inherited from :py:class:`fractions.Fraction`
 
-.. automethod:: experimental.specificationtools.Division.Division.Division.__pow__
+.. automethod:: experimental.interpretationtools.Division.Division.Division.__pow__
 
     Inherited from :py:class:`fractions.Fraction`
 
-.. automethod:: experimental.specificationtools.Division.Division.Division.__radd__
+.. automethod:: experimental.interpretationtools.Division.Division.Division.__radd__
 
     Inherited from :py:class:`mathtools.NonreducedFraction <abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction>`
 
-.. automethod:: experimental.specificationtools.Division.Division.Division.__rdiv__
+.. automethod:: experimental.interpretationtools.Division.Division.Division.__rdiv__
 
     Inherited from :py:class:`mathtools.NonreducedFraction <abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction>`
 
-.. automethod:: experimental.specificationtools.Division.Division.Division.__rdivmod__
+.. automethod:: experimental.interpretationtools.Division.Division.Division.__rdivmod__
 
     Inherited from :py:class:`numbers.Real`
 
-.. automethod:: experimental.specificationtools.Division.Division.Division.__repr__
+.. automethod:: experimental.interpretationtools.Division.Division.Division.__repr__
 
-.. automethod:: experimental.specificationtools.Division.Division.Division.__rfloordiv__
-
-    Inherited from :py:class:`fractions.Fraction`
-
-.. automethod:: experimental.specificationtools.Division.Division.Division.__rmod__
+.. automethod:: experimental.interpretationtools.Division.Division.Division.__rfloordiv__
 
     Inherited from :py:class:`fractions.Fraction`
 
-.. automethod:: experimental.specificationtools.Division.Division.Division.__rmul__
+.. automethod:: experimental.interpretationtools.Division.Division.Division.__rmod__
+
+    Inherited from :py:class:`fractions.Fraction`
+
+.. automethod:: experimental.interpretationtools.Division.Division.Division.__rmul__
 
     Inherited from :py:class:`mathtools.NonreducedFraction <abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction>`
 
-.. automethod:: experimental.specificationtools.Division.Division.Division.__rpow__
+.. automethod:: experimental.interpretationtools.Division.Division.Division.__rpow__
 
     Inherited from :py:class:`fractions.Fraction`
 
-.. automethod:: experimental.specificationtools.Division.Division.Division.__rsub__
+.. automethod:: experimental.interpretationtools.Division.Division.Division.__rsub__
 
     Inherited from :py:class:`mathtools.NonreducedFraction <abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction>`
 
-.. automethod:: experimental.specificationtools.Division.Division.Division.__rtruediv__
+.. automethod:: experimental.interpretationtools.Division.Division.Division.__rtruediv__
 
     Inherited from :py:class:`fractions.Fraction`
 
-.. automethod:: experimental.specificationtools.Division.Division.Division.__setattr__
+.. automethod:: experimental.interpretationtools.Division.Division.Division.__setattr__
 
     Inherited from :py:class:`__builtin__.object`
 
-.. automethod:: experimental.specificationtools.Division.Division.Division.__str__
+.. automethod:: experimental.interpretationtools.Division.Division.Division.__str__
 
-.. automethod:: experimental.specificationtools.Division.Division.Division.__sub__
+.. automethod:: experimental.interpretationtools.Division.Division.Division.__sub__
 
     Inherited from :py:class:`mathtools.NonreducedFraction <abjad.tools.mathtools.NonreducedFraction.NonreducedFraction.NonreducedFraction>`
 
-.. automethod:: experimental.specificationtools.Division.Division.Division.__truediv__
+.. automethod:: experimental.interpretationtools.Division.Division.Division.__truediv__
 
     Inherited from :py:class:`fractions.Fraction`
 
-.. automethod:: experimental.specificationtools.Division.Division.Division.__trunc__
+.. automethod:: experimental.interpretationtools.Division.Division.Division.__trunc__
 
     Inherited from :py:class:`fractions.Fraction`

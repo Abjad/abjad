@@ -1,4 +1,4 @@
-from experimental.specificationtools.Division import Division
+from experimental.interpretationtools.Division import Division
 from experimental.interpretationtools.DivisionList import DivisionList
 
 

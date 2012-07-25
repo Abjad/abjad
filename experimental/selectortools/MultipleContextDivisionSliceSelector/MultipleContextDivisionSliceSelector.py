@@ -39,8 +39,8 @@ class MultipleContextDivisionSliceSelector(BackgroundElementSliceSelector):
     ### INITIALIZER ###
 
     def __init__(self, contexts=None, inequality=None, start=None, stop=None):
-        from experimental import specificationtools
-        BackgroundElementSliceSelector.__init__(self, specificationtools.Division,
+        from experimental import interpretationtools
+        BackgroundElementSliceSelector.__init__(self, interpretationtools.Division,
             inequality=inequality, start=start, stop=stop)
         assert isinstance(contexts, (list, type(None))), repr(contexts)
         contexts = self._process_contexts(contexts)

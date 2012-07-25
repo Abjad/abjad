@@ -21,6 +21,7 @@ def is_background_element_klass(expr):
 
     Return boolean.
     '''
+    from experimental import interpretationtools
     from experimental import specificationtools
 
-    return expr in (specificationtools.Segment, measuretools.Measure, specificationtools.Division)
+    return expr in (specificationtools.Segment, measuretools.Measure, interpretationtools.Division)
