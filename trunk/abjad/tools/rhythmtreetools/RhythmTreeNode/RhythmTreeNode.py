@@ -115,6 +115,16 @@ class RhythmTreeNode(abctools.AbjadObject):
         return prolation
 
     @property
+    def parentage_ratios(self):
+        result = []
+        node = self
+        while node.parent is not None:
+            result.append((node.duration, node.parent.contents_duration))
+            node = node.parent
+        result.append(node.duration)
+        return tuple(result)
+
+    @property
     def proper_parentage(self):
         return self.improper_parentage[1:]
 
