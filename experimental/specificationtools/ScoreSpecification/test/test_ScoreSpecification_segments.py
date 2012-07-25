@@ -5,7 +5,7 @@ from experimental.specificationtools.ScoreSpecification import ScoreSpecificatio
 def test_ScoreSpecification_segments_01():
 
     specification = ScoreSpecification(scoretemplatetools.GroupedRhythmicStavesScoreTemplate(1))
-    assert not specification.segments
+    assert not specification.segment_specifications
 
 
 def test_ScoreSpecification_segments_02():
@@ -13,10 +13,10 @@ def test_ScoreSpecification_segments_02():
     specification = ScoreSpecification(scoretemplatetools.GroupedRhythmicStavesScoreTemplate(1))
 
     specification.append_segment()
-    assert len(specification.segments) == 1
+    assert len(specification.segment_specifications) == 1
 
     specification.append_segment()
-    assert len(specification.segments) == 2
+    assert len(specification.segment_specifications) == 2
 
-    specification.segments.pop()
-    assert len(specification.segments) == 1
+    specification.segment_specifications.pop()
+    assert len(specification.segment_specifications) == 1

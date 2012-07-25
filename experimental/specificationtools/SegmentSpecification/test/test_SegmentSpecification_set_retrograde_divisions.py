@@ -30,13 +30,13 @@ def test_SegmentSpecification_set_retrograde_divisions_01():
 
     score = specification.interpret()
 
-    assert specification.segments['1']['Voice 1']['segment_pairs'] == \
+    assert specification.segment_specifications['1']['Voice 1']['segment_pairs'] == \
         [(3, 16), (3, 16), (3, 16), (3, 16), (2, 16)]
-    assert specification.segments['1']['Voice 2']['segment_pairs'] == \
+    assert specification.segment_specifications['1']['Voice 2']['segment_pairs'] == \
         [(4, 16), (4, 16), (4, 16), (2, 16)]
-    assert specification.segments['1']['Voice 3']['segment_pairs'] == \
+    assert specification.segment_specifications['1']['Voice 3']['segment_pairs'] == \
         [(2, 16), (3, 16), (3, 16), (3, 16), (3, 16)]
-    assert specification.segments['1']['Voice 4']['segment_pairs'] == \
+    assert specification.segment_specifications['1']['Voice 4']['segment_pairs'] == \
         [(2, 16), (4, 16), (4, 16), (4, 16)]
 
     current_function_name = introspectiontools.get_current_function_name()

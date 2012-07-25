@@ -37,8 +37,8 @@ def test_quartet_01():
 
     score = specification.interpret()
 
-    assert specification.segments['T1'].time_signatures == [(3, 8), (3, 8), (2, 8), (2, 8)]
-    assert specification.segments['T2'].time_signatures == [(2, 8), (2, 8)]
+    assert specification.segment_specifications['T1'].time_signatures == [(3, 8), (3, 8), (2, 8), (2, 8)]
+    assert specification.segment_specifications['T2'].time_signatures == [(2, 8), (2, 8)]
 
     current_function_name = introspectiontools.get_current_function_name()
     helpers.write_test_output(score, __file__, current_function_name)
@@ -67,12 +67,13 @@ def test_quartet_02():
     segment.set_rhythm(lower, library.note_filled_tokens)
 
     segment = specification.append_segment(name='T2')
-    segment.set_time_signatures(segment, specification.retrieve_attribute('time_signatures', 'T1'), offset=-2, count=2)
+    segment.set_time_signatures(
+        segment, specification.retrieve_attribute('time_signatures', 'T1'), offset=-2, count=2)
 
     score = specification.interpret()
 
-    assert specification.segments['T1'].time_signatures == [(3, 8), (3, 8), (2, 8), (2, 8)]
-    assert specification.segments['T2'].time_signatures == [(2, 8), (2, 8)]
+    assert specification.segment_specifications['T1'].time_signatures == [(3, 8), (3, 8), (2, 8), (2, 8)]
+    assert specification.segment_specifications['T2'].time_signatures == [(2, 8), (2, 8)]
 
     current_function_name = introspectiontools.get_current_function_name()
     helpers.write_test_output(score, __file__, current_function_name)

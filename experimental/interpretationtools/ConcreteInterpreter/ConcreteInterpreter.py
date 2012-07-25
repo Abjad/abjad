@@ -111,15 +111,16 @@ class ConcreteInterpreter(Interpreter):
 
     def add_segment_division_list_to_segment_payload_context_dictionaries_for_voice(
         self, voice, segment_division_lists):
-        assert len(self.score_specification.segments) == len(segment_division_lists)
-        for segment, segment_division_list in zip(self.score_specification.segments, segment_division_lists):
-            segment.contexts[voice.name]['segment_division_list'] = segment_division_list
-            segment.contexts[voice.name]['segment_pairs'] = [
+        assert len(self.score_specification.segment_specifications) == len(segment_division_lists)
+        for segment_specification, segment_division_list in zip(
+            self.score_specification.segment_specifications, segment_division_lists):
+            segment_specification.contexts[voice.name]['segment_division_list'] = segment_division_list
+            segment_specification.contexts[voice.name]['segment_pairs'] = [
                 x.pair for x in segment_division_list]
 
     def add_time_signatures_to_score(self):
-        for segment in self.score_specification.segments:
-            segment.add_time_signatures_to_segment(self.score)
+        for segment_specification in self.score_specification.segment_specifications:
+            segment_specification.add_time_signatures_to_segment(self.score)
 
     def apply_additional_segment_parameters(self):
         pass
@@ -249,8 +250,8 @@ class ConcreteInterpreter(Interpreter):
         from experimental import interpretationtools
         from experimental.specificationtools import library
         rhythm_commands = []
-        for segment in self.score_specification.segments:
-            commands = segment.get_rhythm_commands_that_start_during_segment(voice.name)
+        for segment_specification in self.score_specification.segment_specifications:
+            commands = segment_specification.get_rhythm_commands_that_start_during_segment(voice.name)
             rhythm_commands.extend(commands)
         if not rhythm_commands:
             rhythm_command = interpretationtools.RhythmCommand(
@@ -261,12 +262,14 @@ class ConcreteInterpreter(Interpreter):
     def get_uninterpreted_division_commands_for_voice(self, voice):
         from experimental import interpretationtools
         uninterpreted_division_commands = []
-        for segment in self.score_specification.segments:
-            commands = segment.get_uninterpreted_division_commands_that_start_during_segment(voice.name)
+        for segment_specification in self.score_specification.segment_specifications:
+            commands = segment_specification.get_uninterpreted_division_commands_that_start_during_segment(
+                voice.name)
             if commands:
                 uninterpreted_division_commands.extend(commands)
-            elif segment.time_signatures:
-                args = (segment.time_signatures, segment.duration, True, False) # not sure about these exactly
+            elif segment_specification.time_signatures:
+                # not sure about the following line
+                args = (segment_specification.time_signatures, segment_specification.duration, True, False)
                 command = interpretationtools.UninterpretedDivisionCommand(*args)
                 uninterpreted_division_commands.append(command)
         return uninterpreted_division_commands
@@ -302,39 +305,39 @@ class ConcreteInterpreter(Interpreter):
         return score
 
     def interpret_additional_segment_parameters(self):
-        for segment in self.score_specification.segments:
+        for segment_specification in self.score_specification.segment_specifications:
             pass
 
     def interpret_pitch_classes(self):
-        for segment in self.score_specification.segments:
+        for segment_specification in self.score_specification.segment_specifications:
             pass
 
     def interpret_registration(self):
-        for segment in self.score_specification.segments:
+        for segment_specification in self.score_specification.segment_specifications:
             pass
 
     def interpret_divisions(self):
-        for segment in self.score_specification.segments:
-            settings = segment.settings.get_settings(attribute='divisions')
+        for segment_specification in self.score_specification.segment_specifications:
+            settings = segment_specification.settings.get_settings(attribute='divisions')
             if not settings:
                 settings = []
                 existing_settings = self.score_specification.resolved_settings.get_settings(
                     attribute='divisions')
                 for existing_setting in existing_settings:
                     assert existing_setting.target.timespan.encompasses_one_segment_exactly, repr(existing_setting)
-                    setting = existing_setting.copy_to_segment(segment)
+                    setting = existing_setting.copy_to_segment(segment_specification)
                     settings.append(setting)
             self.score_specification.store_settings(settings, clear_persistent_first=True)
 
     def interpret_rhythms(self):
-        for segment in self.score_specification.segments:
-            settings = segment.settings.get_settings(attribute='rhythm')
+        for segment_specification in self.score_specification.segment_specifications:
+            settings = segment_specification.settings.get_settings(attribute='rhythm')
             if not settings:
                 settings = []
                 existing_settings = self.score_specification.resolved_settings.get_settings(
                     attribute='rhythm')
                 for existing_setting in existing_settings:
-                    setting = existing_setting.copy_to_segment(segment)
+                    setting = existing_setting.copy_to_segment(segment_specification)
                     settings.append(setting)
             self.score_specification.store_settings(settings, clear_persistent_first=True)
 
@@ -345,8 +348,8 @@ class ConcreteInterpreter(Interpreter):
         Halt interpretation if no time signature setting is found.
         Otherwise store time signature setting.
         '''
-        for segment in self.score_specification.segments:
-            settings = segment.settings.get_settings(attribute='time_signatures')
+        for segment_specification in self.score_specification.segment_specifications:
+            settings = segment_specification.settings.get_settings(attribute='time_signatures')
             if settings:
                 assert len(settings) == 1, repr(settings)
                 setting = settings[0]
@@ -356,9 +359,10 @@ class ConcreteInterpreter(Interpreter):
                     return
                 assert len(settings) == 1, repr(settings)
                 setting = settings[0]
-                setting = setting.copy_to_segment(segment.name)
-            assert setting.target.context == segment.score_name, repr(setting)
-            assert setting.target.timespan == segment.timespan, [repr(setting), '\n', repr(segment.timespan)]
+                setting = setting.copy_to_segment(segment_specification.name)
+            assert setting.target.context == segment_specification.score_name, repr(setting)
+            assert setting.target.timespan == segment_specification.timespan, [
+                repr(setting), '\n', repr(segment_specification.timespan)]
             self.score_specification.store_setting(setting, clear_persistent_first=True)
 
     def make_division_region_division_lists_for_voice(self, voice):
@@ -432,5 +436,5 @@ class ConcreteInterpreter(Interpreter):
         return division_region_division_lists
 
     def unpack_multiple_context_settings(self):
-        for segment in self.score_specification.segments:
-            self.score_specification.settings.extend(segment.unpack_multiple_context_settings())
+        for segment_specification in self.score_specification.segment_specifications:
+            self.score_specification.settings.extend(segment_specification.unpack_multiple_context_settings())

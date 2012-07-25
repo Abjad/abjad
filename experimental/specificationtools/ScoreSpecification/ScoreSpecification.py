@@ -26,13 +26,13 @@ class ScoreSpecification(Specification):
     Score specification::
 
         >>> template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
-        >>> specification = specificationtools.ScoreSpecification(template)
+        >>> score_specification = specificationtools.ScoreSpecification(template)
 
     With three named segments::
 
-        >>> segment = specification.append_segment('red')
-        >>> segment = specification.append_segment('orange')
-        >>> segment = specification.append_segment('yellow')
+        >>> segment = score_specification.append_segment('red')
+        >>> segment = score_specification.append_segment('orange')
+        >>> segment = score_specification.append_segment('yellow')
 
     All score specification properties are read-only.
     '''
@@ -41,49 +41,49 @@ class ScoreSpecification(Specification):
 
     def __init__(self, score_template):
         Specification.__init__(self, score_template)
-        self._segments = SegmentSpecificationInventory()
+        self._segment_specifications = SegmentSpecificationInventory()
         self._segment_specification_class = SegmentSpecification
 
     ### SPECIAL METHODS ###
 
     def __getitem__(self, expr):
         if isinstance(expr, int):
-            return self.segments.__getitem__(expr)
+            return self.segment_specifications.__getitem__(expr)
         else:
             return self.contexts.__getitem__(expr)
 
     def __repr__(self):
-        return '{}({!r})'.format(self._class_name, self.segments)
+        return '{}({!r})'.format(self._class_name, self.segment_specifications)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
     def duration(self):
         result = []
-        for segment in self.segments:
-            duration = segment.duration
+        for segment_specification in self.segment_specifications:
+            duration = segment_specification.duration
             if duration is not None:
                 result.append(duration)
         return sum(result)
 
     @property
     def segment_names(self):
-        return [segment.name for segment in self.segments]
+        return [segment_specification.name for segment_specification in self.segment_specifications]
 
     @property
     def segment_specification_class(self):
         return self._segment_specification_class
 
     @property
-    def segments(self):
-        return self._segments
+    def segment_specifications(self):
+        return self._segment_specifications
 
     @property
     def time_signatures(self):
         result = []
-        for segment in self.segments:
-            time_signatures = segment.time_signatures
-            result.extend(segment.time_signatures)
+        for segment_specification in self.segment_specifications:
+            time_signatures = segment_specification.time_signatures
+            result.extend(segment_specification.time_signatures)
         return result
 
     ### PUBLIC METHODS ###
@@ -91,9 +91,9 @@ class ScoreSpecification(Specification):
     def append_segment(self, name=None):
         name = name or str(self.find_first_unused_segment_number())
         assert name not in self.segment_names, repr(name)
-        segment = self.segment_specification_class(self.score_template, name)
-        self.segments.append(segment)
-        return segment
+        segment_specification = self.segment_specification_class(self.score_template, name)
+        self.segment_specifications.append(segment_specification)
+        return segment_specification
 
     def apply_offset_and_count(self, request, value):
         if request.offset is not None or request.count is not None:
@@ -110,23 +110,23 @@ class ScoreSpecification(Specification):
             return value
 
     def calculate_segment_offset_pairs(self):
-        segment_durations = [segment.duration for segment in self.segments]
+        segment_durations = [x.duration for x in self.segment_specifications]
         if sequencetools.all_are_numbers(segment_durations):
             self.segment_durations = segment_durations
             self.score_duration = sum(self.segment_durations)
             self.segment_offset_pairs = mathtools.cumulative_sums_zero_pairwise(self.segment_durations)
     
     def change_attribute_retrieval_indicator_to_setting(self, indicator):
-        segment = self.segments[indicator.segment_name]
-        context_proxy = segment.resolved_settings[indicator.context_name]
+        segment_specification = self.segment_specifications[indicator.segment_name]
+        context_proxy = segment_specification.resolved_settings[indicator.context_name]
         setting = context_proxy.get_setting(attribute=indicator.attribute)
         return setting
 
     def find_first_unused_segment_number(self):
         candidate_segment_number = 1
         while True:
-            for segment in self.segments:
-                if segment.name == str(candidate_segment_number):
+            for segment_specification in self.segment_specifications:
+                if segment_specification.name == str(candidate_segment_number):
                     candidate_segment_number += 1
                     break
             else:
@@ -140,8 +140,8 @@ class ScoreSpecification(Specification):
             voice_division_list = divisiontools.VoiceDivisionList(time_signatures)
         return voice_division_list
 
-    def index(self, segment):
-        return self.segments.index(segment)
+    def index(self, segment_specification):
+        return self.segment_specifications.index(segment_specification)
 
     def interpret(self):
         from experimental import interpretationtools
@@ -182,8 +182,8 @@ class ScoreSpecification(Specification):
             return setting.source
 
     def segment_name_to_index(self, segment_name):
-        segment = self.segments[segment_name]
-        return self.index(segment)
+        segment_specification = self.segment_specifications[segment_name]
+        return self.index(segment_specification)
 
     def segment_name_to_offsets(self, segment_name, segment_count=1):
         start_segment_index = self.segment_name_to_index(segment_name)        
@@ -207,25 +207,25 @@ class ScoreSpecification(Specification):
             segment_index = resolved_setting.target.reference.timespan.selector.inequality.timespan.selector.index
         else:
             segment_index = resolved_setting.target.timespan.selector.index
-        segment = self.segments[segment_index]
+        segment_specification = self.segment_specifications[segment_index]
         context_name = resolved_setting.target.context or \
-            segment.resolved_settings.score_name
+            segment_specification.resolved_settings.score_name
         attribute = resolved_setting.attribute
-        self.store_resolved_settings(segment, context_name, attribute, resolved_setting, 
+        self.store_resolved_settings(segment_specification, context_name, attribute, resolved_setting, 
             clear_persistent_first=clear_persistent_first)
 
     def clear_persistent_resolved_settings(self, context_name, attribute):
         if attribute in self.resolved_settings[context_name]:
             del(self.resolved_settings[context_name][attribute])
 
-    def store_resolved_settings(self, segment, context_name, attribute, resolved_setting, 
+    def store_resolved_settings(self, segment_specification, context_name, attribute, resolved_setting, 
         clear_persistent_first=False):
         if clear_persistent_first:
             self.clear_persistent_resolved_settings(context_name, attribute)
-        if attribute in segment.resolved_settings[context_name]:
-            segment.resolved_settings[context_name][attribute].append(resolved_setting)
+        if attribute in segment_specification.resolved_settings[context_name]:
+            segment_specification.resolved_settings[context_name][attribute].append(resolved_setting)
         else:
-            segment.resolved_settings[context_name][attribute] = [resolved_setting]
+            segment_specification.resolved_settings[context_name][attribute] = [resolved_setting]
         if resolved_setting.persistent:
             if attribute in self.resolved_settings[context_name]:
                 self.resolved_settings[context_name][attribute].append(resolved_setting)

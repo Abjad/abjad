@@ -1,5 +1,3 @@
-1. Change ScoreSpecification.segments to ScoreSpecification.segment_specifications.
+1. See if test_SegmentSpecification_select_ratio_of_background_measures.py works.
 
-2. See if test_SegmentSpecification_select_ratio_of_background_measures.py works.
-
-3. Make divisions (ie, nonreduced fractions) partitionable.
+2. Make divisions (ie, nonreduced fractions) partitionable.

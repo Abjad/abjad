@@ -23,11 +23,11 @@ class SegmentSpecification(Specification):
     The examples below reference the following segment specification::
 
         >>> template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-        >>> specification = specificationtools.ScoreSpecification(score_template=template)
+        >>> score_specification = specificationtools.ScoreSpecification(score_template=template)
         
     ::
     
-        >>> segment = specification.append_segment('red')
+        >>> segment = score_specification.append_segment('red')
 
     ::
             

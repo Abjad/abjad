@@ -29,15 +29,15 @@ def test_SegmentSpecification_set_rotated_divisions_01():
 
     score = specification.interpret()
 
-    assert specification.segments['T1'].time_signatures == [(4, 8), (3, 8)]
+    assert specification.segment_specifications['T1'].time_signatures == [(4, 8), (3, 8)]
 
-    assert specification.segments['T1']['Voice 1']['segment_pairs'] == \
+    assert specification.segment_specifications['T1']['Voice 1']['segment_pairs'] == \
         [(3, 16), (3, 16), (3, 16), (3, 16), (2, 16)]
-    assert specification.segments['T1']['Voice 2']['segment_pairs'] == \
+    assert specification.segment_specifications['T1']['Voice 2']['segment_pairs'] == \
         [(3, 16), (3, 16), (3, 16), (2, 16), (3, 16)]
-    assert specification.segments['T1']['Voice 3']['segment_pairs'] == \
+    assert specification.segment_specifications['T1']['Voice 3']['segment_pairs'] == \
         [(3, 16), (3, 16), (2, 16), (3, 16), (3, 16)]
-    assert specification.segments['T1']['Voice 4']['segment_pairs'] == \
+    assert specification.segment_specifications['T1']['Voice 4']['segment_pairs'] == \
         [(3, 16), (2, 16), (3, 16), (3, 16), (3, 16)]
 
     current_function_name = introspectiontools.get_current_function_name()
@@ -69,25 +69,25 @@ def test_SegmentSpecification_set_rotated_divisions_02():
 
     score = specification.interpret()
 
-    assert specification.segments['T1'].time_signatures == [(4, 8), (3, 8)]
+    assert specification.segment_specifications['T1'].time_signatures == [(4, 8), (3, 8)]
 
-    assert specification.segments['T1']['Voice 1']['segment_pairs'] == \
+    assert specification.segment_specifications['T1']['Voice 1']['segment_pairs'] == \
         [(3, 16), (3, 16), (3, 16), (3, 16), (2, 16)]
-    assert specification.segments['T1']['Voice 2']['segment_pairs'] == \
+    assert specification.segment_specifications['T1']['Voice 2']['segment_pairs'] == \
         [(3, 16), (3, 16), (3, 16), (2, 16), (3, 16)]
-    assert specification.segments['T1']['Voice 3']['segment_pairs'] == \
+    assert specification.segment_specifications['T1']['Voice 3']['segment_pairs'] == \
         [(3, 16), (3, 16), (2, 16), (3, 16), (3, 16)]
-    assert specification.segments['T1']['Voice 4']['segment_pairs'] == \
+    assert specification.segment_specifications['T1']['Voice 4']['segment_pairs'] == \
         [(3, 16), (2, 16), (3, 16), (3, 16), (3, 16)]
 
-    assert specification.segments['T2']['Voice 1']['segment_pairs'] == \
-        specification.segments['T1']['Voice 1']['segment_pairs']
-    assert specification.segments['T2']['Voice 2']['segment_pairs'] == \
-        specification.segments['T1']['Voice 2']['segment_pairs']
-    assert specification.segments['T2']['Voice 3']['segment_pairs'] == \
-        specification.segments['T1']['Voice 3']['segment_pairs']
-    assert specification.segments['T2']['Voice 4']['segment_pairs'] == \
-        specification.segments['T1']['Voice 4']['segment_pairs']
+    assert specification.segment_specifications['T2']['Voice 1']['segment_pairs'] == \
+        specification.segment_specifications['T1']['Voice 1']['segment_pairs']
+    assert specification.segment_specifications['T2']['Voice 2']['segment_pairs'] == \
+        specification.segment_specifications['T1']['Voice 2']['segment_pairs']
+    assert specification.segment_specifications['T2']['Voice 3']['segment_pairs'] == \
+        specification.segment_specifications['T1']['Voice 3']['segment_pairs']
+    assert specification.segment_specifications['T2']['Voice 4']['segment_pairs'] == \
+        specification.segment_specifications['T1']['Voice 4']['segment_pairs']
 
     current_function_name = introspectiontools.get_current_function_name()
     helpers.write_test_output(score, __file__, current_function_name)
