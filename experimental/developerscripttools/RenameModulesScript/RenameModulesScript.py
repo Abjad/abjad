@@ -270,6 +270,7 @@ class RenameModulesScript(DeveloperScript):
         new_codebase, new_package_name, new_object_name):
 
         from abjad import ABJCFG
+        without_dirs = ['--without-dirs', 'build', '--without-dirs', '_build']
 
         directory = ABJCFG.ABJAD_ROOT_PATH
 
@@ -278,8 +279,8 @@ class RenameModulesScript(DeveloperScript):
 
         old_text = '{}.{}'.format(old_package_name, old_object_name)
         new_text = '{}.{}'.format(new_package_name, new_object_name)
-        command = [directory, old_text, new_text,
-            '--force', '--whole-words-only', '--verbose', '--without-dirs', 'build']
+        command = [directory, old_text, new_text, '--force', '--whole-words-only', '--verbose']
+        command.extend(without_dirs)
         ReplaceInFilesScript()(command)
 
         print ''
@@ -290,16 +291,16 @@ class RenameModulesScript(DeveloperScript):
         elif kind == 'class':
             old_text = 'test_{}_'.format(old_object_name)
             new_text = 'test_{}_'.format(new_object_name)
-        command = [directory, old_text, new_text,
-            '--force', '--verbose', '--without-dirs', 'build']
+        command = [directory, old_text, new_text, '--force', '--verbose']
+        command.extend(without_dirs)
         ReplaceInFilesScript()(command)
 
         print ''
 
         old_text = old_object_name
         new_text = new_object_name
-        command = [directory, old_text, new_text,
-            '--force', '--whole-words-only', '--verbose', '--without-dirs', 'build']
+        command = [directory, old_text, new_text, '--force', '--whole-words-only', '--verbose']
+        command.extend(without_dirs)
         ReplaceInFilesScript()(command)
 
         print ''
