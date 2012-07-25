@@ -299,7 +299,6 @@ Unstable packages (load manually)
    experimental/specificationtools/ContextProxyDictionary/ContextProxyDictionary
    experimental/specificationtools/Division/Division
    experimental/specificationtools/HandlerRequest/HandlerRequest
-   experimental/specificationtools/ScopedValue/ScopedValue
    experimental/specificationtools/ScoreSpecification/ScoreSpecification
    experimental/specificationtools/Segment/Segment
    experimental/specificationtools/SegmentInventory/SegmentInventory

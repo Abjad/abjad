@@ -2,7 +2,6 @@ from abjad.tools import *
 from experimental import interpretationtools
 from experimental import selectortools
 from experimental.specificationtools.Division import Division
-from experimental.specificationtools.ScopedValue import ScopedValue
 from experimental.specificationtools.SegmentInventory import SegmentInventory
 from experimental.specificationtools.SegmentSpecification import SegmentSpecification
 from experimental.specificationtools.Specification import Specification
