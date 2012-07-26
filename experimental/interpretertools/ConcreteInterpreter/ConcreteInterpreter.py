@@ -35,8 +35,8 @@ class ConcreteInterpreter(Interpreter):
         self.apply_segment_pitch_classes()
         self.interpret_registration()
         self.apply_segment_registration()
-        self.interpret_additional_segment_parameters()
-        self.apply_additional_segment_parameters()
+        self.interpret_additional_parameters()
+        self.apply_additional_parameters()
         return self.score
 
     def __init__(self):
@@ -129,7 +129,7 @@ class ConcreteInterpreter(Interpreter):
         for segment_specification in self.score_specification.segment_specifications:
             self.add_time_signatures_for_segment(segment_specification)
 
-    def apply_additional_segment_parameters(self):
+    def apply_additional_parameters(self):
         pass
 
     def apply_segment_pitch_classes(self):
@@ -311,7 +311,7 @@ class ConcreteInterpreter(Interpreter):
         score.insert(0, context)
         return score
 
-    def interpret_additional_segment_parameters(self):
+    def interpret_additional_parameters(self):
         for segment_specification in self.score_specification.segment_specifications:
             pass
 
