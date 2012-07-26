@@ -57,8 +57,6 @@ Special Methods
 
 .. automethod:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.__call__
 
-    Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
-
 .. automethod:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.__delattr__
 
     Inherited from :py:class:`__builtin__.object`
