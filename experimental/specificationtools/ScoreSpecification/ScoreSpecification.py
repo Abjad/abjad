@@ -112,7 +112,7 @@ class ScoreSpecification(Specification):
             self.score_duration = sum(self.segment_durations)
             self.segment_offset_pairs = mathtools.cumulative_sums_zero_pairwise(self.segment_durations)
     
-    def change_attribute_retrieval_indicator_to_resolved_single_context_setting(self, indicator):
+    def attribute_retrieval_indicator_to_resolved_single_context_setting(self, indicator):
         segment_specification = self.segment_specifications[indicator.segment_name]
         context_proxy = segment_specification.resolved_single_context_settings[indicator.context_name]
         resolved_single_context_setting = context_proxy.get_setting(attribute=indicator.attribute)
@@ -155,7 +155,7 @@ class ScoreSpecification(Specification):
         
     def resolve_attribute_retrieval_request(self, request):
         resolved_single_context_setting = \
-            self.change_attribute_retrieval_indicator_to_resolved_single_context_setting(request.indicator)
+            self.attribute_retrieval_indicator_to_resolved_single_context_setting(request.indicator)
         value = resolved_single_context_setting.value
         assert value is not None, repr(value)
         if request.callback is not None:

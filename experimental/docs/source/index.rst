@@ -237,7 +237,6 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
-   experimental/quantizationtools/is_valid_beatspan
    experimental/quantizationtools/millisecond_pitch_pairs_to_q_events
    experimental/quantizationtools/milliseconds_to_q_events
    experimental/quantizationtools/tempo_scaled_leaves_to_q_events

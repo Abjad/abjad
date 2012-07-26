@@ -28,6 +28,10 @@ Read-only Properties
 Special Methods
 ---------------
 
+.. automethod:: experimental.quantizationtools.BeatwiseQTarget.BeatwiseQTarget.BeatwiseQTarget.__call__
+
+    Inherited from :py:class:`QTarget.QTarget <experimental.quantizationtools.QTarget.QTarget.QTarget>`
+
 .. automethod:: experimental.quantizationtools.BeatwiseQTarget.BeatwiseQTarget.BeatwiseQTarget.__delattr__
 
     Inherited from :py:class:`__builtin__.object`

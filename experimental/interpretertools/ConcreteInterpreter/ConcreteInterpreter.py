@@ -156,7 +156,7 @@ class ConcreteInterpreter(Interpreter):
             segment_division_lists.append(segment_division_list)
         return segment_division_lists
 
-    def change_uninterpreted_division_commands_to_region_division_commands(self, uninterpreted_division_commands):
+    def uninterpreted_division_commands_to_region_division_commands(self, uninterpreted_division_commands):
         from experimental import interpretertools
         region_division_commands = []
         if not uninterpreted_division_commands:
@@ -380,7 +380,7 @@ class ConcreteInterpreter(Interpreter):
     def make_division_region_division_lists_for_voice(self, voice):
         uninterpreted_division_commands = self.get_uninterpreted_division_commands_for_voice(voice)
         #self._debug(uninterpreted_division_commands, 'udc')
-        region_division_commands = self.change_uninterpreted_division_commands_to_region_division_commands(
+        region_division_commands = self.uninterpreted_division_commands_to_region_division_commands(
             uninterpreted_division_commands)
         division_region_division_lists = self.region_division_commands_to_division_region_division_lists(
             region_division_commands)
