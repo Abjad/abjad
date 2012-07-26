@@ -136,8 +136,18 @@ class RhythmTreeContainer(RhythmTreeNode):
             node._switch_parent(None)
         self._mark_entire_tree_for_later_update()
 
+    def __eq__(self, other):
+        if type(self) == type(other):
+            if self.duration == other.duration:
+                if self.children == other.children:
+                    return True
+        return False
+
     def __getitem__(self, i):
         return self._children[i]
+
+    def __getnewargs__(self):
+        return (self.duration, self.children)
 
     def __iter__(self):
         for child in self._children:
