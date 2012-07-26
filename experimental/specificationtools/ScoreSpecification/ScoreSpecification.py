@@ -200,20 +200,24 @@ class ScoreSpecification(Specification):
         return selectortools.MultipleContextTimespanSelector(
             segment_name, context_names=context_names, timespan=timespan)
 
-    def store_resolved_single_context_settings(self, 
-        segment_specification, context_name, attribute, resolved_setting, clear_persistent_first=False):
+    def store_resolved_single_context_setting(self, 
+        segment_specification, context_name, attribute, resolved_single_context_setting, 
+        clear_persistent_first=False):
         if clear_persistent_first:
             self.clear_persistent_resolved_single_context_settings(context_name, attribute)
         if attribute in segment_specification.resolved_single_context_settings[context_name]:
             segment_specification.resolved_single_context_settings[context_name][attribute].append(
-                resolved_setting)
+                resolved_single_context_setting)
         else:
-            segment_specification.resolved_single_context_settings[context_name][attribute] = [resolved_setting]
-        if resolved_setting.persistent:
+            segment_specification.resolved_single_context_settings[context_name][attribute] = [
+                resolved_single_context_setting]
+        if resolved_single_context_setting.persistent:
             if attribute in self.resolved_single_context_settings[context_name]:
-                self.resolved_single_context_settings[context_name][attribute].append(resolved_setting)
+                self.resolved_single_context_settings[context_name][attribute].append(
+                    resolved_single_context_setting)
             else:
-                self.resolved_single_context_settings[context_name][attribute] = [resolved_setting]
+                self.resolved_single_context_settings[context_name][attribute] = [
+                    resolved_single_context_setting]
 
     # TODO: change name to self.store_single_context_setting()
     # TODO: the really long dot-chaning here has got to go.
@@ -227,14 +231,15 @@ class ScoreSpecification(Specification):
         '''
         resolved_single_context_setting = self.make_resolved_single_context_setting(setting)
         if isinstance(resolved_single_context_setting.target, selectortools.RatioSelector):
-            segment_index = resolved_single_context_setting.target.reference.timespan.selector.inequality.timespan.selector.index
+            setting = resolved_single_context_setting
+            segment_index = setting.target.reference.timespan.selector.inequality.timespan.selector.index
         else:
             segment_index = resolved_single_context_setting.target.timespan.selector.index
         segment_specification = self.segment_specifications[segment_index]
         context_name = resolved_single_context_setting.target.context or \
             segment_specification.resolved_single_context_settings.score_name
         attribute = resolved_single_context_setting.attribute
-        self.store_resolved_single_context_settings(
+        self.store_resolved_single_context_setting(
             segment_specification, context_name, attribute, resolved_single_context_setting, 
             clear_persistent_first=clear_persistent_first)
 
