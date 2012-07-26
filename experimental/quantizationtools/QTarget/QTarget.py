@@ -15,6 +15,11 @@ class QTarget(abctools.AbjadObject):
         assert all([isinstance(x, self.item_klass) for x in items])
         self._items = tuple(sorted(items, key=lambda x: x.offset_in_ms))
 
+    ### SPECIAL METHODS ###
+
+    def __call__(self, q_event_sequence, grace_handler=None):
+        pass
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @abstractproperty
@@ -33,4 +38,6 @@ class QTarget(abctools.AbjadObject):
     @property
     def items(self):
         return self._items
+
+    ### PUBLIC METHODS ###
 

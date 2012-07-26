@@ -4,7 +4,6 @@ from abjad.tools import contexttools
 from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
-from experimental.quantizationtools.is_valid_beatspan import is_valid_beatspan
 from experimental.quantizationtools.tempo_scaled_rational_to_milliseconds import tempo_scaled_rational_to_milliseconds
 
 
@@ -202,7 +201,6 @@ class QGridSearchTree(datastructuretools.ImmutableDictionary):
         Returns a new `QGridSearchTree`.
         '''
 
-        assert is_valid_beatspan(beatspan)
         assert isinstance(tempo, contexttools.TempoMark)
         assert 0 < threshold
 
