@@ -5,12 +5,9 @@ from experimental import interpretertools
 from experimental import requesttools
 from experimental import selectortools
 from experimental import settingtools
-from experimental import timespantools
 from experimental.specificationtools.SegmentSpecification import SegmentSpecification
 from experimental.specificationtools.SegmentSpecificationInventory import SegmentSpecificationInventory
 from experimental.specificationtools.Specification import Specification
-import copy
-import re
 
 
 class ScoreSpecification(Specification):
@@ -21,7 +18,6 @@ class ScoreSpecification(Specification):
         >>> from experimental import helpertools
         >>> from experimental import selectortools
         >>> from experimental import specificationtools
-        >>> from experimental import timespantools
 
     Score specification::
 
@@ -95,7 +91,7 @@ class ScoreSpecification(Specification):
         self.segment_specifications.append(segment_specification)
         return segment_specification
 
-    def apply_offset_and_count(self, request, value):
+    def apply_offset_and_count_to_request(self, request, value):
         if request.offset is not None or request.count is not None:
             original_value_type = type(value)
             offset = request.offset or 0
@@ -116,11 +112,11 @@ class ScoreSpecification(Specification):
             self.score_duration = sum(self.segment_durations)
             self.segment_offset_pairs = mathtools.cumulative_sums_zero_pairwise(self.segment_durations)
     
-    def change_attribute_retrieval_indicator_to_setting(self, indicator):
+    def change_attribute_retrieval_indicator_to_resolved_single_context_setting(self, indicator):
         segment_specification = self.segment_specifications[indicator.segment_name]
         context_proxy = segment_specification.resolved_single_context_settings[indicator.context_name]
-        setting = context_proxy.get_setting(attribute=indicator.attribute)
-        return setting
+        resolved_single_context_setting = context_proxy.get_setting(attribute=indicator.attribute)
+        return resolved_single_context_setting
 
     def clear_persistent_resolved_single_context_settings(self, context_name, attribute):
         if attribute in self.resolved_single_context_settings[context_name]:
@@ -148,18 +144,8 @@ class ScoreSpecification(Specification):
         return self.segment_specifications.index(segment_specification)
 
     def interpret(self):
-        from experimental import interpretertools
         interpreter = interpretertools.ConcreteInterpreter()
         return interpreter(self)
-
-    def make_resolved_single_context_setting(self, setting):
-        if isinstance(setting, settingtools.ResolvedSingleContextSetting):
-            return setting
-        value = self.resolve_setting_source(setting)
-        arguments = setting._mandatory_argument_values + (value, )
-        resolved_setting = settingtools.ResolvedSingleContextSetting(*arguments, 
-            persistent=setting.persistent, truncate=setting.truncate, fresh=setting.fresh)
-        return resolved_setting
 
     def process_divisions_value(self, divisions_value):
         if isinstance(divisions_value, selectortools.SingleContextDivisionSliceSelector):
@@ -168,22 +154,33 @@ class ScoreSpecification(Specification):
             return divisions_value
         
     def resolve_attribute_retrieval_request(self, request):
-        setting = self.change_attribute_retrieval_indicator_to_setting(request.indicator)
-        value = setting.value
+        resolved_single_context_setting = \
+            self.change_attribute_retrieval_indicator_to_resolved_single_context_setting(request.indicator)
+        value = resolved_single_context_setting.value
         assert value is not None, repr(value)
         if request.callback is not None:
             value = request.callback(value)
-        result = self.apply_offset_and_count(request, value)
+        result = self.apply_offset_and_count_to_request(request, value)
         return result
 
-    def resolve_setting_source(self, setting):
-        from experimental import specificationtools
-        if isinstance(setting.source, requesttools.AttributeRequest):
-            return self.resolve_attribute_retrieval_request(setting.source)
-        elif isinstance(setting.source, requesttools.StatalServerRequest):
-            return setting.source()
+    def resolve_single_context_setting(self, single_context_setting):
+        if isinstance(single_context_setting, settingtools.ResolvedSingleContextSetting):
+            return single_context_setting
+        value = self.resolve_single_context_setting_source(single_context_setting)
+        arguments = single_context_setting._mandatory_argument_values + (value, )
+        resolved_single_context_setting = settingtools.ResolvedSingleContextSetting(*arguments, 
+            persistent=single_context_setting.persistent, 
+            truncate=single_context_setting.truncate, 
+            fresh=single_context_setting.fresh)
+        return resolved_single_context_setting
+
+    def resolve_single_context_setting_source(self, single_context_setting):
+        if isinstance(single_context_setting.source, requesttools.AttributeRequest):
+            return self.resolve_attribute_retrieval_request(single_context_setting.source)
+        elif isinstance(single_context_setting.source, requesttools.StatalServerRequest):
+            return single_context_setting.source()
         else:
-            return setting.source
+            return single_context_setting.source
 
     def segment_name_to_index(self, segment_name):
         segment_specification = self.segment_specifications[segment_name]
@@ -199,6 +196,34 @@ class ScoreSpecification(Specification):
     def select(self, segment_name, context_names=None, timespan=None):
         return selectortools.MultipleContextTimespanSelector(
             segment_name, context_names=context_names, timespan=timespan)
+
+    # TODO: the really long dot-chaning here has got to go.
+    #       The way to fix this is to make all selectors be able to recursively check for segment index.
+    def store_single_context_setting(self, single_context_setting, clear_persistent_first=False):
+        '''Resolve single-context setting and find segment in which single-context setting starts.
+
+        Store resolved single-context setting in segment resolved single-context settings.
+
+        If setting persists then store setting in score resolved single-context settings, too.
+        '''
+        resolved_single_context_setting = self.resolve_single_context_setting(single_context_setting)
+        if isinstance(resolved_single_context_setting.target, selectortools.RatioSelector):
+            rsc_setting = resolved_single_context_setting
+            segment_index = rsc_setting.target.reference.timespan.selector.inequality.timespan.selector.index
+        else:
+            segment_index = resolved_single_context_setting.target.timespan.selector.index
+        segment_specification = self.segment_specifications[segment_index]
+        context_name = resolved_single_context_setting.target.context or \
+            segment_specification.resolved_single_context_settings.score_name
+        attribute = resolved_single_context_setting.attribute
+        self.store_resolved_single_context_setting(
+            segment_specification, context_name, attribute, resolved_single_context_setting, 
+            clear_persistent_first=clear_persistent_first)
+
+    def store_single_context_settings(self, single_context_settings, clear_persistent_first=False):
+        for single_context_setting in single_context_settings:
+            self.store_single_context_setting(
+                single_context_setting, clear_persistent_first=clear_persistent_first)
 
     def store_resolved_single_context_setting(self, 
         segment_specification, context_name, attribute, resolved_single_context_setting, 
@@ -218,32 +243,3 @@ class ScoreSpecification(Specification):
             else:
                 self.resolved_single_context_settings[context_name][attribute] = [
                     resolved_single_context_setting]
-
-    # TODO: change name to self.store_single_context_setting()
-    # TODO: the really long dot-chaning here has got to go.
-    #       The way to fix this is to make all selectors be able to recursively check for segment index.
-    def store_single_context_setting(self, setting, clear_persistent_first=False):
-        '''Resolve setting and find segment in which setting starts.
-
-        Store setting in segment context tree.
-
-        If setting persists then store setting in score context tree, too.
-        '''
-        resolved_single_context_setting = self.make_resolved_single_context_setting(setting)
-        if isinstance(resolved_single_context_setting.target, selectortools.RatioSelector):
-            setting = resolved_single_context_setting
-            segment_index = setting.target.reference.timespan.selector.inequality.timespan.selector.index
-        else:
-            segment_index = resolved_single_context_setting.target.timespan.selector.index
-        segment_specification = self.segment_specifications[segment_index]
-        context_name = resolved_single_context_setting.target.context or \
-            segment_specification.resolved_single_context_settings.score_name
-        attribute = resolved_single_context_setting.attribute
-        self.store_resolved_single_context_setting(
-            segment_specification, context_name, attribute, resolved_single_context_setting, 
-            clear_persistent_first=clear_persistent_first)
-
-    # TODO: change name to self.store_single_context_settings()
-    def store_single_context_settings(self, settings, clear_persistent_first=False):
-        for setting in settings:
-            self.store_single_context_setting(setting, clear_persistent_first=clear_persistent_first)
