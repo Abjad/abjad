@@ -1,6 +1,5 @@
 from abjad.tools import *
 from experimental import divisiontools
-from experimental import helpertools
 from experimental import interpretertools
 from experimental import requesttools
 from experimental import selectortools
@@ -15,7 +14,6 @@ class ScoreSpecification(Specification):
 
     ::
 
-        >>> from experimental import helpertools
         >>> from experimental import selectortools
         >>> from experimental import specificationtools
 
@@ -54,28 +52,173 @@ class ScoreSpecification(Specification):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
+    def context_names(self):
+        r'''Score specification context names::
+
+            >>> score_specification.context_names
+            ['Voice 1', 'Voice 2', 'Voice 3', 'Voice 4']
+
+        Only names for which context abbreviations exist are included.
+
+        Return list of strings.
+        '''
+        return Specification.context_names.fget(self)
+
+    @property
+    def contexts(self):
+        r'''Score specification context proxy dictionary::
+
+            >>> for key in score_specification.contexts:
+            ...     key
+            ... 
+            'Grouped Rhythmic Staves Score'
+            'Grouped Rhythmic Staves Staff Group'
+            'Staff 1'
+            'Staff 2'
+            'Staff 3'
+            'Staff 4'
+            'Voice 1'
+            'Voice 2'
+            'Voice 3'
+            'Voice 4'
+
+        Return context proxy dictionary.
+        '''
+        return Specification.contexts.fget(self)
+
+    @property
     def duration(self):
+        r'''Score specification duration::
+
+            >>> score_specification.duration
+            Duration(0, 1)
+
+        Return duration.
+        '''
+
         result = []
         for segment_specification in self.segment_specifications:
             duration = segment_specification.duration
             if duration is not None:
                 result.append(duration)
-        return sum(result)
+        return durationtools.Duration(sum(result))
+
+    @property
+    def resolved_single_context_settings(self):
+        r'''Score specification resolved single-context settings::
+
+            >>> for key in score_specification.resolved_single_context_settings:
+            ...     key
+            ... 
+            'Grouped Rhythmic Staves Score'
+            'Grouped Rhythmic Staves Staff Group'
+            'Staff 1'
+            'Staff 2'
+            'Staff 3'
+            'Staff 4'
+            'Voice 1'
+            'Voice 2'
+            'Voice 3'
+            'Voice 4'
+
+        Return context proxy dictionary.
+        '''
+        return Specification.resolved_single_context_settings.fget(self)
 
     @property
     def segment_names(self):
+        r'''Score segment names::
+
+            >>> score_specification.segment_names
+            ['red', 'orange', 'yellow']
+
+        Return list of zero or more strings.
+        '''
         return [segment_specification.name for segment_specification in self.segment_specifications]
 
     @property
     def segment_specification_class(self):
+        r'''Segment specification class of score specification::
+
+            >>> score_specification.segment_specification_class
+            <class 'experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification'>
+        
+        Return segment specification class.
+        '''
         return self._segment_specification_class
 
     @property
+    def score_name(self):
+        r'''Score specification score name::
+
+            >>> score_specification.score_name
+            'Grouped Rhythmic Staves Score'
+
+        Return string.
+        '''
+        return Specification.score_name.fget(self)
+        
+    @property
+    def score_template(self):
+        r'''Score specification score template::
+
+            >>> score_specification.score_template
+            GroupedRhythmicStavesScoreTemplate(staff_count=4)
+
+        Return score template.
+        '''
+        return Specification.score_template.fget(self)
+
+    @property
     def segment_specifications(self):
+        r'''Segment specifications defined against score specification::
+
+            >>> for segment_specification in score_specification.segment_specifications:
+            ...     segment_specification
+            ... 
+            SegmentSpecification('red')
+            SegmentSpecification('orange')
+            SegmentSpecification('yellow')
+
+        Return segment specification inventory.
+        '''
         return self._segment_specifications
 
     @property
+    def single_context_settings(self):
+        r'''Score specification single-context settings::
+
+            >>> score_specification.single_context_settings
+            SingleContextSettingInventory([])
+
+        Return single-context setting inventory.
+        '''
+        return Specification.single_context_settings.fget(self)
+
+    @property
+    def storage_format(self):
+        r'''Score specification storage format::
+
+            >>> z(score_specification)
+            specificationtools.ScoreSpecification(
+                scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
+                    staff_count=4
+                    )
+                )
+
+        Return string.
+        '''
+        return Specification.storage_format.fget(self)
+
+    @property
     def time_signatures(self):
+        r'''Score specification time signatures::
+
+            >>> score_specification.time_signatures
+            []
+
+        Return list of zero or more time signatures.
+        '''
         result = []
         for segment_specification in self.segment_specifications:
             time_signatures = segment_specification.time_signatures
