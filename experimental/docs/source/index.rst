@@ -207,9 +207,6 @@ Unstable packages (load manually)
 
    experimental/quantizationtools/GraceHandler/GraceHandler
    experimental/quantizationtools/QEvent/QEvent
-   experimental/quantizationtools/QGrid/QGrid
-   experimental/quantizationtools/QGridContainer/QGridContainer
-   experimental/quantizationtools/QGridLeaf/QGridLeaf
    experimental/quantizationtools/QSchema/QSchema
    experimental/quantizationtools/QSchemaItem/QSchemaItem
    experimental/quantizationtools/QTarget/QTarget
@@ -229,6 +226,9 @@ Unstable packages (load manually)
    experimental/quantizationtools/PitchedQEvent/PitchedQEvent
    experimental/quantizationtools/ProxyQEvent/ProxyQEvent
    experimental/quantizationtools/QEventSequence/QEventSequence
+   experimental/quantizationtools/QGrid/QGrid
+   experimental/quantizationtools/QGridContainer/QGridContainer
+   experimental/quantizationtools/QGridLeaf/QGridLeaf
    experimental/quantizationtools/QTargetBeat/QTargetBeat
    experimental/quantizationtools/QTargetMeasure/QTargetMeasure
    experimental/quantizationtools/SearchTree/SearchTree

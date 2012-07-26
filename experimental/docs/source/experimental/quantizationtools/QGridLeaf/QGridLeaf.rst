@@ -9,12 +9,61 @@ quantizationtools.QGridLeaf
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.improper_parentage
+
+    Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
+
+.. autoattribute:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.offset
+
+    Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
+
+.. autoattribute:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.parent
+
+    Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
+
+.. autoattribute:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.parentage_ratios
+
+    Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
+
+.. autoattribute:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.prolated_duration
+
+    Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
+
+.. autoattribute:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.proper_parentage
+
+    Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
+
+.. autoattribute:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.q_events
+
+.. autoattribute:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.root_node
+
+    Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
+
+.. autoattribute:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.rtm_format
+
+    Inherited from :py:class:`rhythmtreetools.RhythmTreeLeaf <abjad.tools.rhythmtreetools.RhythmTreeLeaf.RhythmTreeLeaf.RhythmTreeLeaf>`
+
 .. autoattribute:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
+Read/write Properties
+---------------------
+
+.. autoattribute:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.duration
+
+    Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
+
+.. autoattribute:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.pitched
+
+    Inherited from :py:class:`rhythmtreetools.RhythmTreeLeaf <abjad.tools.rhythmtreetools.RhythmTreeLeaf.RhythmTreeLeaf.RhythmTreeLeaf>`
+
 Special Methods
 ---------------
+
+.. automethod:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.__call__
+
+    Inherited from :py:class:`rhythmtreetools.RhythmTreeLeaf <abjad.tools.rhythmtreetools.RhythmTreeLeaf.RhythmTreeLeaf.RhythmTreeLeaf>`
 
 .. automethod:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.__delattr__
 
@@ -50,7 +99,7 @@ Special Methods
 
 .. automethod:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.__repr__
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`rhythmtreetools.RhythmTreeLeaf <abjad.tools.rhythmtreetools.RhythmTreeLeaf.RhythmTreeLeaf.RhythmTreeLeaf>`
 
 .. automethod:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.__setattr__
 
