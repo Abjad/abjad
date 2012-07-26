@@ -321,6 +321,13 @@ Unstable packages (load manually)
 :py:mod:`settingtools <experimental.settingtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+.. rubric:: abstract classes
+
+.. toctree::
+   :maxdepth: 1
+
+   experimental/settingtools/Setting/Setting
+
 .. rubric:: concrete classes
 
 .. toctree::

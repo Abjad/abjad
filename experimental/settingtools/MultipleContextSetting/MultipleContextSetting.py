@@ -1,8 +1,12 @@
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from experimental.settingtools.Setting import Setting
 import copy
 
 
-class MultipleContextSetting(AbjadObject):
+class MultipleContextSetting(Setting):
+    r'''.. versionadded:: 1.0
+
+    Multiple-context setting.
+    '''
 
     ### INITIALIZER ###
 
