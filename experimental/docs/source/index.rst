@@ -273,6 +273,7 @@ Unstable packages (load manually)
    :maxdepth: 1
 
    experimental/requesttools/request_source_to_request
+   experimental/requesttools/resolve_request_offset_and_count
 
 :py:mod:`selectortools <experimental.selectortools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

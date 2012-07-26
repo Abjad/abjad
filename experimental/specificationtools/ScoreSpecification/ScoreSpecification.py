@@ -15,6 +15,7 @@ class ScoreSpecification(Specification):
 
     ::
 
+        >>> from experimental import helpertools
         >>> from experimental import selectortools
         >>> from experimental import specificationtools
 
@@ -235,20 +236,6 @@ class ScoreSpecification(Specification):
         self.segment_specifications.append(segment_specification)
         return segment_specification
 
-    def apply_offset_and_count_to_request(self, request, value):
-        if request.offset is not None or request.count is not None:
-            original_value_type = type(value)
-            offset = request.offset or 0
-            count = request.count or 0
-            value = sequencetools.CyclicTuple(value)
-            if offset < 0:
-                offset = len(value) - -offset
-            result = value[offset:offset+count]
-            result = original_value_type(result)
-            return result
-        else:
-            return value
-
     def attribute_retrieval_indicator_to_resolved_single_context_setting(self, indicator):
         segment_specification = self.segment_specifications[indicator.segment_name]
         context_proxy = segment_specification.resolved_single_context_settings[indicator.context_name]
@@ -351,7 +338,7 @@ class ScoreSpecification(Specification):
         assert value is not None, repr(value)
         if request.callback is not None:
             value = request.callback(value)
-        result = self.apply_offset_and_count_to_request(request, value)
+        result = requesttools.resolve_request_offset_and_count(request, value)
         return result
 
     def resolve_single_context_setting(self, single_context_setting):
@@ -377,35 +364,35 @@ class ScoreSpecification(Specification):
         r'''Segment index expression to segment index::
 
             >>> segment_index_expression = helpertools.SegmentIndexExpression("'red'")
-            >>> specification.segment_index_expression_to_segment_index(segment_index_expression)
+            >>> score_specification.segment_index_expression_to_segment_index(segment_index_expression)
             0
 
         ::
 
             >>> segment_index_expression = helpertools.SegmentIndexExpression("'orange'")
-            >>> specification.segment_index_expression_to_segment_index(segment_index_expression)
+            >>> score_specification.segment_index_expression_to_segment_index(segment_index_expression)
             1
 
         ::
 
             >>> segment_index_expression = helpertools.SegmentIndexExpression("'yellow'")
-            >>> specification.segment_index_expression_to_segment_index(segment_index_expression)
+            >>> score_specification.segment_index_expression_to_segment_index(segment_index_expression)
             2
 
         ::
 
             >>> segment_index_expression = helpertools.SegmentIndexExpression("'red' + 'orange' + 'yellow'")
-            >>> specification.segment_index_expression_to_segment_index(segment_index_expression)
+            >>> score_specification.segment_index_expression_to_segment_index(segment_index_expression)
             3
 
         Evaluate strings directlly::
 
-            >>> specification.segment_index_expression_to_segment_index('yellow')
+            >>> score_specification.segment_index_expression_to_segment_index('yellow')
             2
 
         Return integers unchanged::
 
-            >>> specification.segment_index_expression_to_segment_index(0)
+            >>> score_specification.segment_index_expression_to_segment_index(0)
             0
 
         Return nonnegative integer.
