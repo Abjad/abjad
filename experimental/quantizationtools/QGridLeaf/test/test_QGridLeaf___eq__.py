@@ -12,9 +12,9 @@ def test_QGridLeaf___eq___01():
 def test_QGridLeaf___eq___02():
 
     a = quantizationtools.QGridLeaf(1, [])
-    b = quantizationtools.QGridLeaf(1, [quantizationtools.SilentQEvent(1000)])
+    b = quantizationtools.QGridLeaf(1, [quantizationtools.ProxyQEvent(quantizationtools.SilentQEvent(1000), 0.5)])
     c = quantizationtools.QGridLeaf(2, [])
-    d = quantizationtools.QGridLeaf(2, [quantizationtools.SilentQEvent(1000)])
+    d = quantizationtools.QGridLeaf(2, [quantizationtools.ProxyQEvent(quantizationtools.SilentQEvent(1000), 0.5)])
 
     assert a != b
     assert a != c

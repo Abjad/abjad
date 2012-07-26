@@ -30,8 +30,6 @@ Special Methods
 
 .. automethod:: experimental.quantizationtools.QGrid.QGrid.QGrid.__eq__
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
-
 .. automethod:: experimental.quantizationtools.QGrid.QGrid.QGrid.__ge__
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
