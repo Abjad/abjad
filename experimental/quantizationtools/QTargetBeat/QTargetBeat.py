@@ -9,7 +9,7 @@ class QTargetBeat(abctools.AbjadObject):
 
     ### CLASS ATTRIBUTES ###
 
-    __slots__ = ('_beatspan', '_grouping', '_offset_in_ms',
+    __slots__ = ('_beatspan', '_distances', '_grouping', '_offset_in_ms',
         '_q_events', '_q_grids', '_search_tree', '_tempo')
 
     ### INITIALIZER ###
@@ -28,6 +28,7 @@ class QTargetBeat(abctools.AbjadObject):
         q_grids = []
         
         self._beatspan = beatspan
+        self._distances = {}
         self._offset_in_ms = offset_in_ms
         self._q_events = q_events
         self._q_grids = q_grids
@@ -39,6 +40,10 @@ class QTargetBeat(abctools.AbjadObject):
     @property
     def beatspan(self):
         return self._beatspan
+
+    @property
+    def distances(self):
+        return self._distances
 
     @property
     def duration_in_ms(self):
