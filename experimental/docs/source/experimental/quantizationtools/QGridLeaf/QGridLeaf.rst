@@ -41,8 +41,6 @@ Read-only Properties
 
 .. autoattribute:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.rtm_format
 
-    Inherited from :py:class:`rhythmtreetools.RhythmTreeLeaf <abjad.tools.rhythmtreetools.RhythmTreeLeaf.RhythmTreeLeaf.RhythmTreeLeaf>`
-
 .. autoattribute:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
@@ -54,24 +52,18 @@ Read/write Properties
 
     Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
 
-.. autoattribute:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.pitched
-
-    Inherited from :py:class:`rhythmtreetools.RhythmTreeLeaf <abjad.tools.rhythmtreetools.RhythmTreeLeaf.RhythmTreeLeaf.RhythmTreeLeaf>`
-
 Special Methods
 ---------------
 
 .. automethod:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.__call__
 
-    Inherited from :py:class:`rhythmtreetools.RhythmTreeLeaf <abjad.tools.rhythmtreetools.RhythmTreeLeaf.RhythmTreeLeaf.RhythmTreeLeaf>`
+    Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
 
 .. automethod:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.__delattr__
 
     Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.__eq__
-
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.__ge__
 
@@ -99,7 +91,7 @@ Special Methods
 
 .. automethod:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.__repr__
 
-    Inherited from :py:class:`rhythmtreetools.RhythmTreeLeaf <abjad.tools.rhythmtreetools.RhythmTreeLeaf.RhythmTreeLeaf.RhythmTreeLeaf>`
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.__setattr__
 
