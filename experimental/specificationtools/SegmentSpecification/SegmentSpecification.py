@@ -215,29 +215,6 @@ class SegmentSpecification(Specification):
                     result.append(multiple_context_setting)
         return result
 
-    # method does not yet handle timespans equal to fractions of a segment;
-    # think this is old behavior
-    def get_division_resolved_value(self, context_name):
-        '''Return resolved single-context setting found in context tree.
-    
-        Or else default to segment time signatures.
-        '''
-        resolved_single_context_setting = self.get_resolved_single_context_setting('divisions', context_name)
-        if resolved_single_context_setting is not None:
-            return interpretertools.ResolvedValue(
-                resolved_single_context_setting.value, 
-                resolved_single_context_setting.fresh, 
-                resolved_single_context_setting.truncate)
-        resolved_single_context_setting = self.get_resolved_single_context_setting('time_signatures', context_name)
-        if resolved_single_context_setting is not None:
-            return interpretertools.ResolvedValue(
-                resolved_single_context_setting.value, 
-                resolved_single_context_setting.fresh, 
-                False)
-        else:
-            return interpretertools.ResolvedValue(None, False, False)
-
-    # this this is new behavior
     def get_uninterpreted_division_commands_that_start_during_segment(self, context_name):
         resolved_single_context_settings = self.get_resolved_single_context_settings('divisions', context_name)
         uninterpreted_division_commands = []
@@ -252,21 +229,6 @@ class SegmentSpecification(Specification):
             uninterpreted_division_commands.append(command)
         return uninterpreted_division_commands
 
-    # TODO: can this be removed?
-    # think this is deprecated behavior
-    def get_resolved_single_context_setting(self, attribute, context_name):
-        context = componenttools.get_first_component_in_expr_with_name(self.score_model, context_name)
-        for component in componenttools.get_improper_parentage_of_component(context):
-            context_proxy = self.resolved_single_context_settings[component.name]
-            resolved_single_context_settings = context_proxy.get_settings(attribute=attribute)
-            if len(resolved_single_context_settings) == 1:
-                resolved_single_context_setting = resolved_single_context_settings[0]
-                assert isinstance(resolved_single_context_setting, settingtools.ResolvedSingleContextSetting)
-                return resolved_single_context_setting
-            elif 1 < len(resolved_single_context_settings):
-                raise Exception('multiple {!r} resolved single-context settings found.'.format(attribute))
-    
-    # think this is new behavior
     def get_resolved_single_context_settings(self, attribute, context_name):
         context = componenttools.get_first_component_in_expr_with_name(self.score_model, context_name)
         for component in componenttools.get_improper_parentage_of_component(context):
