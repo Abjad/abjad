@@ -54,12 +54,18 @@ class RhythmTreeLeaf(RhythmTreeNode):
             return notetools.make_notes(0, total_duration)
         return resttools.make_rests(total_duration)
 
+    def __deepcopy__(self, memo):
+        return type(self)(*self.__getnewargs__())
+
     def __eq__(self, other):
         if type(self) == type(other):
             if self.duration == other.duration:
                 if self.pitched == other.pitched:
                     return True
         return False
+
+    def __getnewargs__(self):
+        return (self.duration, self.pitched)
 
     def __repr__(self):
         result = ['{}('.format(self._class_name)]

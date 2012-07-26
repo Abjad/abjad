@@ -26,6 +26,17 @@ class RhythmTreeNode(abctools.AbjadObject):
     def __call__(self, pulse_duration):
         raise NotImplemented
 
+    def __copy__(self, *args):
+        return self.__deepcopy__(None)
+        
+    @abstractmethod
+    def __deepcopy__(self, memo):
+        raise NotImplemented
+
+    @abstractmethod
+    def __getnewargs__(self):
+        raise NotImplemented
+
     ### PRIVATE METHODS ###
 
     def _get_node_state_flags(self):

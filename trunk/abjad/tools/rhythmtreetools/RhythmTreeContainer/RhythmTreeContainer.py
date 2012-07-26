@@ -2,6 +2,7 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import tuplettools
 from abjad.tools.rhythmtreetools.RhythmTreeNode import RhythmTreeNode
+import copy
 
 
 class RhythmTreeContainer(RhythmTreeNode):
@@ -128,6 +129,13 @@ class RhythmTreeContainer(RhythmTreeNode):
                 return True
         return False
     
+    def __deepcopy__(self, memo):
+        args = self.__getnewargs__()
+        return type(self)(
+            args[0],
+            [copy.deepcopy(x) for x in args[1]]
+            )
+
     def __delitem__(self, i):
         nodes = self[i]
         if not isinstance(nodes, list):
