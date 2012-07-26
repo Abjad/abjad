@@ -720,8 +720,3 @@ class SegmentSpecification(Specification):
         attribute = 'written_duration'
         return self.set_attribute(attribute, contexts, source, 
             count=count, offset=offset, persistent=persistent)
-
-    def unpack_multiple_context_settings(self):
-        for multiple_context_setting in self.multiple_context_settings:
-            self.settings.extend(multiple_context_setting.unpack())
-        return self.settings

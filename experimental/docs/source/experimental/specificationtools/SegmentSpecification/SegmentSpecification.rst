@@ -142,8 +142,6 @@ Methods
 
 .. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.single_context_timespan_selector_to_uninterpreted_division_command
 
-.. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.unpack_multiple_context_settings
-
 Special Methods
 ---------------
 

@@ -23,7 +23,7 @@ class ConcreteInterpreter(Interpreter):
     def __call__(self, score_specification):
         self.score_specification = score_specification
         self.score = self.instantiate_score()
-        self.unpack_multiple_context_settings()
+        self.unpack_multiple_context_settings_for_score()
         self.interpret_time_signatures()
         self.add_time_signatures_to_score()
         self.score_specification.calculate_segment_offset_pairs()
@@ -442,6 +442,12 @@ class ConcreteInterpreter(Interpreter):
             division_region_division_lists.append(division_region_division_list)
         return division_region_division_lists
 
-    def unpack_multiple_context_settings(self):
+    def unpack_multiple_context_settings_for_score(self):
         for segment_specification in self.score_specification.segment_specifications:
-            self.score_specification.settings.extend(segment_specification.unpack_multiple_context_settings())
+            settings = self.unpack_multiple_context_settings_for_segment(segment_specification)
+            self.score_specification.settings.extend(settings)
+
+    def unpack_multiple_context_settings_for_segment(self, segment_specification):
+        for multiple_context_setting in segment_specification.multiple_context_settings:
+            segment_specification.settings.extend(multiple_context_setting.unpack())
+        return segment_specification.settings
