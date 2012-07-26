@@ -1,5 +1,4 @@
 from abjad.tools import *
-from experimental import handlertools
 from experimental import helpertools
 from experimental import interpretertools
 from experimental import requesttools
@@ -75,12 +74,12 @@ class SegmentSpecification(Specification):
 
     @property
     def multiple_context_settings(self):
-        '''Segment specification multiple context settings.
+        '''Segment specification multiple-context settings.
 
             >>> segment.multiple_context_settings
             MultipleContextSettingInventory([])
 
-        Return multiple context setting inventory.
+        Return multiple-context setting inventory.
         '''
         return self._multiple_context_settings
 
@@ -151,12 +150,13 @@ class SegmentSpecification(Specification):
         Return list or none.
         '''
         try:
-            setting = self.resolved_single_context_settings.score_context_proxy.get_setting(
+            resolved_single_context_setting = \
+                self.resolved_single_context_settings.score_context_proxy.get_setting(
                 attribute='time_signatures')
         except MissingContextSettingError:
             return []
-        assert isinstance(setting.value, list), setting.value
-        return setting.value
+        assert isinstance(resolved_single_context_setting.value, list), resolved_single_context_setting.value
+        return resolved_single_context_setting.value
 
     @property
     def timespan(self):
@@ -171,29 +171,37 @@ class SegmentSpecification(Specification):
 
     ### PUBLIC METHODS ###
 
-    def count_ratio_item_selector_to_uninterpreted_division_command(self, resolved_setting):
-        assert isinstance(resolved_setting.target, selectortools.CountRatioItemSelector)
-        assert isinstance(resolved_setting.target.reference, selectortools.BackgroundMeasureSliceSelector)
-        assert resolved_setting.target.reference.inequality.timespan.selector.index == self.name
-        ratio = resolved_setting.target.ratio
-        index = resolved_setting.target.index
+    def count_ratio_item_selector_to_uninterpreted_division_command(self, resolved_single_context_setting):
+        assert isinstance(resolved_single_context_setting.target, selectortools.CountRatioItemSelector)
+        assert isinstance(resolved_single_context_setting.target.reference, 
+            selectortools.BackgroundMeasureSliceSelector)
+        assert resolved_single_context_setting.target.reference.inequality.timespan.selector.index == self.name
+        ratio = resolved_single_context_setting.target.ratio
+        index = resolved_single_context_setting.target.index
         time_signatures = self.time_signatures[:]
         parts = sequencetools.partition_sequence_by_ratio_of_lengths(time_signatures, ratio)
         part = parts[index]
         durations = [durationtools.Duration(x) for x in part]
         duration = sum(durations)
         #value = self.process_divisions_value(resolved_value) # probably todo this
-        args = (resolved_setting.value, duration, resolved_setting.fresh, resolved_setting.truncate)
+        args = (resolved_single_context_setting.value, 
+            duration, 
+            resolved_single_context_setting.fresh, 
+            resolved_single_context_setting.truncate)
         command = interpretertools.UninterpretedDivisionCommand(*args)
         return command
 
-    def single_context_timespan_selector_to_uninterpreted_division_command(self, resolved_setting):
+    def single_context_timespan_selector_to_uninterpreted_division_command(self, resolved_single_context_setting):
         #print 'here!'
-        #print resolved_setting.storage_format
-        assert isinstance(resolved_setting.target, selectortools.SingleContextTimespanSelector)
-        assert isinstance(resolved_setting.target.timespan.selector, selectortools.SegmentSelector)
-        assert resolved_setting.target.timespan.selector.index == self.name
-        args = (resolved_setting.value, self.duration, resolved_setting.fresh, resolved_setting.truncate) 
+        #print resolved_single_context_setting.storage_format
+        assert isinstance(resolved_single_context_setting.target, selectortools.SingleContextTimespanSelector)
+        assert isinstance(resolved_single_context_setting.target.timespan.selector, selectortools.SegmentSelector)
+        assert resolved_single_context_setting.target.timespan.selector.index == self.name
+        args = (
+            resolved_single_context_setting.value, 
+            self.duration, 
+            resolved_single_context_setting.fresh, 
+            resolved_single_context_setting.truncate) 
         command = interpretertools.UninterpretedDivisionCommand(*args)
         #print command
         #print ''
@@ -210,27 +218,37 @@ class SegmentSpecification(Specification):
     # method does not yet handle timespans equal to fractions of a segment;
     # think this is old behavior
     def get_division_resolved_value(self, context_name):
-        '''Return resolved setting found in context tree or else default to segment time signatures.
+        '''Return resolved single-context setting found in context tree.
+    
+        Or else default to segment time signatures.
         '''
-        setting = self.get_resolved_single_context_setting('divisions', context_name)
-        if setting is not None:
-            return interpretertools.ResolvedValue(setting.value, setting.fresh, setting.truncate)
-        setting = self.get_resolved_single_context_setting('time_signatures', context_name)
-        if setting is not None:
-            return interpretertools.ResolvedValue(setting.value, setting.fresh, False)
+        resolved_single_context_setting = self.get_resolved_single_context_setting('divisions', context_name)
+        if resolved_single_context_setting is not None:
+            return interpretertools.ResolvedValue(
+                resolved_single_context_setting.value, 
+                resolved_single_context_setting.fresh, 
+                resolved_single_context_setting.truncate)
+        resolved_single_context_setting = self.get_resolved_single_context_setting('time_signatures', context_name)
+        if resolved_single_context_setting is not None:
+            return interpretertools.ResolvedValue(
+                resolved_single_context_setting.value, 
+                resolved_single_context_setting.fresh, 
+                False)
         else:
             return interpretertools.ResolvedValue(None, False, False)
 
     # this this is new behavior
     def get_uninterpreted_division_commands_that_start_during_segment(self, context_name):
-        resolved_settings = self.get_resolved_single_context_settings('divisions', context_name)
+        resolved_single_context_settings = self.get_resolved_single_context_settings('divisions', context_name)
         uninterpreted_division_commands = []
-        for resolved_setting in resolved_settings:
-            #print resolved_setting.storage_format
-            if isinstance(resolved_setting.target, selectortools.CountRatioItemSelector):
-                command = self.count_ratio_item_selector_to_uninterpreted_division_command(resolved_setting)
+        for resolved_single_context_setting in resolved_single_context_settings:
+            #print resolved_single_context_setting.storage_format
+            if isinstance(resolved_single_context_setting.target, selectortools.CountRatioItemSelector):
+                command = self.count_ratio_item_selector_to_uninterpreted_division_command(
+                    resolved_single_context_setting)
             else:
-                command = self.single_context_timespan_selector_to_uninterpreted_division_command(resolved_setting)
+                command = self.single_context_timespan_selector_to_uninterpreted_division_command(
+                    resolved_single_context_setting)
             uninterpreted_division_commands.append(command)
         return uninterpreted_division_commands
 
@@ -240,36 +258,36 @@ class SegmentSpecification(Specification):
         context = componenttools.get_first_component_in_expr_with_name(self.score_model, context_name)
         for component in componenttools.get_improper_parentage_of_component(context):
             context_proxy = self.resolved_single_context_settings[component.name]
-            settings = context_proxy.get_settings(attribute=attribute)
-            if len(settings) == 1:
-                setting = settings[0]
-                assert isinstance(setting, settingtools.ResolvedSingleContextSetting)
-                return setting
-            elif 1 < len(settings):
-                raise Exception('multiple {!r} settings found.'.format(attribute))
+            resolved_single_context_settings = context_proxy.get_settings(attribute=attribute)
+            if len(resolved_single_context_settings) == 1:
+                resolved_single_context_setting = resolved_single_context_settings[0]
+                assert isinstance(resolved_single_context_setting, settingtools.ResolvedSingleContextSetting)
+                return resolved_single_context_setting
+            elif 1 < len(resolved_single_context_settings):
+                raise Exception('multiple {!r} resolved single-context settings found.'.format(attribute))
     
     # think this is new behavior
     def get_resolved_single_context_settings(self, attribute, context_name):
         context = componenttools.get_first_component_in_expr_with_name(self.score_model, context_name)
         for component in componenttools.get_improper_parentage_of_component(context):
             context_proxy = self.resolved_single_context_settings[component.name]
-            settings = context_proxy.get_settings(attribute=attribute)
-            if settings:
-                return settings
+            resolved_single_context_settings = context_proxy.get_settings(attribute=attribute)
+            if resolved_single_context_settings:
+                return resolved_single_context_settings
         return []
 
     def get_rhythm_commands_that_start_during_segment(self, voice_name):
         from experimental.specificationtools import library
-        resolved_settings = self.get_resolved_single_context_settings('rhythm', voice_name)
-        if resolved_settings is None:
+        resolved_single_context_settings = self.get_resolved_single_context_settings('rhythm', voice_name)
+        if resolved_single_context_settings is None:
             return []
         rhythm_commands = []
-        for resolved_setting in resolved_settings:
-            if isinstance(resolved_setting.target, selectortools.CountRatioItemSelector):
+        for resolved_single_context_setting in resolved_single_context_settings:
+            if isinstance(resolved_single_context_setting.target, selectortools.CountRatioItemSelector):
                 raise Exception('implement me when it comes time.')
             else:
                 rhythm_command = interpretertools.RhythmCommand(
-                    resolved_setting.value, self.duration, resolved_setting.fresh)
+                    resolved_single_context_setting.value, self.duration, resolved_single_context_setting.fresh)
             rhythm_commands.append(rhythm_command)
         return rhythm_commands
 
