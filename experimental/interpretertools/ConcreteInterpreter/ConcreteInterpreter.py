@@ -5,7 +5,6 @@ from experimental import selectortools
 from experimental import timespantools
 from experimental.interpretertools.Interpreter import Interpreter
 import copy
-import re
 
 
 class ConcreteInterpreter(Interpreter):
@@ -191,57 +190,6 @@ class ConcreteInterpreter(Interpreter):
             durations = [x.preprolated_duration for x in rhythm_containers]
             beamtools.DuratedComplexBeamSpanner(rhythm_containers, durations=durations, span=1)
 
-    def evaluate_segment_index_expression(self, expression):
-        r'''Evaluate segment index expression::
-
-            >>> expression = helpertools.SegmentIndexExpression("'red'")
-            >>> specification.evaluate_segment_index_expression(expression)
-            0
-
-        ::
-
-            >>> expression = helpertools.SegmentIndexExpression("'orange'")
-            >>> specification.evaluate_segment_index_expression(expression)
-            1
-
-        ::
-
-            >>> expression = helpertools.SegmentIndexExpression("'yellow'")
-            >>> specification.evaluate_segment_index_expression(expression)
-            2
-
-        ::
-
-            >>> expression = helpertools.SegmentIndexExpression("'red' + 'orange' + 'yellow'")
-            >>> specification.evaluate_segment_index_expression(expression)
-            3
-
-        Evaluate strings directlly::
-
-            >>> specification.evaluate_segment_index_expression('yellow')
-            2
-
-        Return integers unchanged::
-
-            >>> specification.evaluate_segment_index_expression(0)
-            0
-
-        Return integer.
-        '''
-        if isinstance(expression, int):
-            return expression
-        if isinstance(expression, str):
-            return self.score_specification.segment_name_to_index(expression)
-        quoted_string_pattern = re.compile(r"""(['"]{1}[a-zA-Z1-9 _]+['"]{1})""")
-        quoted_segment_names = quoted_string_pattern.findall(expression.string)
-        modified_string = str(expression.string)
-        for quoted_segment_name in quoted_segment_names:
-            segment_name = quoted_segment_name[1:-1]
-            segment_index = self.score_specification.segment_name_to_index(segment_name)
-            modified_string = modified_string.replace(quoted_segment_name, str(segment_index))
-        result = eval(modified_string)
-        return result
-
     def fuse_like_rhythm_commands(self, rhythm_commands):
         if not rhythm_commands:
             return []
@@ -292,8 +240,8 @@ class ConcreteInterpreter(Interpreter):
         assert isinstance(divisions, list), divisions
         start_segment_expr = request.inequality.timespan.selector.start
         stop_segment_expr = request.inequality.timespan.selector.stop
-        start_segment_index = self.evaluate_segment_index_expression(start_segment_expr)
-        stop_segment_index = self.evaluate_segment_index_expression(stop_segment_expr)
+        start_segment_index = self.score_specification.segment_index_expression_to_segment_index(start_segment_expr)
+        stop_segment_index = self.score_specification.segment_index_expression_to_segment_index(stop_segment_expr)
         segment_count =  stop_segment_index - start_segment_index
         start_offset, stop_offset = self.score_specification.segment_name_to_offsets(
             start_segment_index, segment_count)

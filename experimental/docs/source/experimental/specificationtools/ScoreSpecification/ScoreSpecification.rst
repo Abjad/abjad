@@ -74,6 +74,8 @@ Methods
 
     Inherited from :py:class:`Specification.Specification <experimental.specificationtools.Specification.Specification.Specification>`
 
+.. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.segment_index_expression_to_segment_index
+
 .. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.segment_name_to_index
 
 .. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.segment_name_to_offsets

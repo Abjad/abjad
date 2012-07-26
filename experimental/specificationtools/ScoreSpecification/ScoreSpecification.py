@@ -7,6 +7,7 @@ from experimental import settingtools
 from experimental.specificationtools.SegmentSpecification import SegmentSpecification
 from experimental.specificationtools.SegmentSpecificationInventory import SegmentSpecificationInventory
 from experimental.specificationtools.Specification import Specification
+import re
 
 
 class ScoreSpecification(Specification):
@@ -253,7 +254,10 @@ class ScoreSpecification(Specification):
         if sequencetools.all_are_numbers(segment_durations):
             self.segment_durations = segment_durations
             self.score_duration = sum(self.segment_durations)
-            self.segment_offset_pairs = mathtools.cumulative_sums_zero_pairwise(self.segment_durations)
+            segment_offset_pairs = mathtools.cumulative_sums_zero_pairwise(self.segment_durations)
+            segment_offset_pairs = [
+                (durationtools.Offset(x[0]), durationtools.Offset(x[1])) for x in segment_offset_pairs]
+            self.segment_offset_pairs = segment_offset_pairs
     
     def attribute_retrieval_indicator_to_resolved_single_context_setting(self, indicator):
         segment_specification = self.segment_specifications[indicator.segment_name]
@@ -325,16 +329,84 @@ class ScoreSpecification(Specification):
         else:
             return single_context_setting.source
 
+    def segment_index_expression_to_segment_index(self, segment_index_expression):
+        r'''Segment index expression to segment index::
+
+            >>> segment_index_expression = helpertools.SegmentIndexExpression("'red'")
+            >>> specification.segment_index_expression_to_segment_index(segment_index_expression)
+            0
+
+        ::
+
+            >>> segment_index_expression = helpertools.SegmentIndexExpression("'orange'")
+            >>> specification.segment_index_expression_to_segment_index(segment_index_expression)
+            1
+
+        ::
+
+            >>> segment_index_expression = helpertools.SegmentIndexExpression("'yellow'")
+            >>> specification.segment_index_expression_to_segment_index(segment_index_expression)
+            2
+
+        ::
+
+            >>> segment_index_expression = helpertools.SegmentIndexExpression("'red' + 'orange' + 'yellow'")
+            >>> specification.segment_index_expression_to_segment_index(segment_index_expression)
+            3
+
+        Evaluate strings directlly::
+
+            >>> specification.segment_index_expression_to_segment_index('yellow')
+            2
+
+        Return integers unchanged::
+
+            >>> specification.segment_index_expression_to_segment_index(0)
+            0
+
+        Return nonnegative integer.
+        '''
+        if isinstance(segment_index_expression, int):
+            return segment_index_expression
+        if isinstance(segment_index_expression, str):
+            return self.segment_name_to_index(segment_index_expression)
+        quoted_string_pattern = re.compile(r"""(['"]{1}[a-zA-Z1-9 _]+['"]{1})""")
+        quoted_segment_names = quoted_string_pattern.findall(segment_index_expression.string)
+        modified_string = str(segment_index_expression.string)
+        for quoted_segment_name in quoted_segment_names:
+            segment_name = quoted_segment_name[1:-1]
+            segment_index = self.segment_name_to_index(segment_name)
+            modified_string = modified_string.replace(quoted_segment_name, str(segment_index))
+        segment_index = eval(modified_string)
+        return segment_index
+
     def segment_name_to_index(self, segment_name):
+        r'''Segment name to index::
+
+            >>> score_specification.segment_name_to_index('red')
+            0
+
+        Return nonnegative integer.
+        '''
         segment_specification = self.segment_specifications[segment_name]
         return self.index(segment_specification)
 
     def segment_name_to_offsets(self, segment_name, segment_count=1):
-        start_segment_index = self.segment_name_to_index(segment_name)        
-        stop_segment_index = start_segment_index + segment_count - 1
-        start_offset_pair = self.segment_offset_pairs[start_segment_index]
-        stop_offset_pair = self.segment_offset_pairs[stop_segment_index]
-        return start_offset_pair[0], stop_offset_pair[1]
+        r'''Segment name to offsets::
+
+            >>> score_specification.segment_name_to_offsets('red') is None
+            True
+
+        Return none if interpretation has not proceeded to segment offset calculation.
+
+        Otherwise return offset pair.
+        '''
+        if hasattr(self, 'segment_offset_pairs'):
+            start_segment_index = self.segment_name_to_index(segment_name)        
+            stop_segment_index = start_segment_index + segment_count - 1
+            start_offset_pair = self.segment_offset_pairs[start_segment_index]
+            stop_offset_pair = self.segment_offset_pairs[stop_segment_index]
+            return start_offset_pair[0], stop_offset_pair[1]
 
     def select(self, segment_name, context_names=None, timespan=None):
         return selectortools.MultipleContextTimespanSelector(
