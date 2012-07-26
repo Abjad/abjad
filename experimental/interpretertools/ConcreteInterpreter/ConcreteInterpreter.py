@@ -25,7 +25,8 @@ class ConcreteInterpreter(Interpreter):
         self.unpack_multiple_context_settings_for_score()
         self.interpret_time_signatures()
         self.add_time_signatures_to_score()
-        self.score_specification.calculate_segment_offset_pairs()
+        #self.score_specification.calculate_segment_offset_pairs()
+        self.calculate_segment_offset_pairs()
         self.interpret_divisions()
         self.add_division_lists_to_score()
         self.interpret_rhythms()
@@ -184,6 +185,23 @@ class ConcreteInterpreter(Interpreter):
                     region_division_command = interpretertools.RegionDivisionCommand(*args)
                     region_division_commands[-1] = region_division_command
         return region_division_commands
+
+    def calculate_segment_offset_pairs(self):
+        '''Set ``'segment_durations'`` property on score specification.
+
+        Set ``'score_duration'`` property on score specification.
+
+        Set ``'segment_offset_pairs'`` property on score specification.
+        '''
+        segment_durations = [x.duration for x in self.score_specification.segment_specifications]
+        if sequencetools.all_are_numbers(segment_durations):
+            self.score_specification.segment_durations = segment_durations
+            self.score_specification.score_duration = sum(self.score_specification.segment_durations)
+            segment_offset_pairs = mathtools.cumulative_sums_zero_pairwise(
+                self.score_specification.segment_durations)
+            segment_offset_pairs = [
+                (durationtools.Offset(x[0]), durationtools.Offset(x[1])) for x in segment_offset_pairs]
+            self.score_specification.segment_offset_pairs = segment_offset_pairs
 
     def conditionally_beam_rhythm_containers(self, rhythm_maker, rhythm_containers):
         if getattr(rhythm_maker, 'beam', False):

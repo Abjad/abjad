@@ -249,16 +249,6 @@ class ScoreSpecification(Specification):
         else:
             return value
 
-    def calculate_segment_offset_pairs(self):
-        segment_durations = [x.duration for x in self.segment_specifications]
-        if sequencetools.all_are_numbers(segment_durations):
-            self.segment_durations = segment_durations
-            self.score_duration = sum(self.segment_durations)
-            segment_offset_pairs = mathtools.cumulative_sums_zero_pairwise(self.segment_durations)
-            segment_offset_pairs = [
-                (durationtools.Offset(x[0]), durationtools.Offset(x[1])) for x in segment_offset_pairs]
-            self.segment_offset_pairs = segment_offset_pairs
-    
     def attribute_retrieval_indicator_to_resolved_single_context_setting(self, indicator):
         segment_specification = self.segment_specifications[indicator.segment_name]
         context_proxy = segment_specification.resolved_single_context_settings[indicator.context_name]
@@ -266,10 +256,19 @@ class ScoreSpecification(Specification):
         return resolved_single_context_setting
 
     def clear_persistent_resolved_single_context_settings(self, context_name, attribute):
+        r'''Clear persistent resolved single-context settings.
+        '''
         if attribute in self.resolved_single_context_settings[context_name]:
             del(self.resolved_single_context_settings[context_name][attribute])
 
     def find_first_unused_segment_number(self):
+        r'''Find first unused segment number::
+
+            >>> score_specification.find_first_unused_segment_number()
+            1
+
+        Return positive integer.
+        '''
         candidate_segment_number = 1
         while True:
             for segment_specification in self.segment_specifications:
@@ -288,9 +287,54 @@ class ScoreSpecification(Specification):
         return voice_division_list
 
     def index(self, segment_specification):
+        r'''Segment specification to segment index.
+
+            >>> segment_specification = score_specification[0]
+            >>> segment_specification
+            SegmentSpecification('red')
+
+        ::
+
+            >>> score_specification.index(segment_specification)
+            0
+
+        Return nonnegative integer.
+        '''
         return self.segment_specifications.index(segment_specification)
 
     def interpret(self):
+        r'''Interpret score specification::
+
+            >>> score = score_specification.interpret()
+
+        ::
+
+            >>> f(score)
+            \context Score = "Grouped Rhythmic Staves Score" <<
+                \context TimeSignatureContext = "TimeSignatureContext" {
+                }
+                \context StaffGroup = "Grouped Rhythmic Staves Staff Group" <<
+                    \context RhythmicStaff = "Staff 1" {
+                        \context Voice = "Voice 1" {
+                        }
+                    }
+                    \context RhythmicStaff = "Staff 2" {
+                        \context Voice = "Voice 2" {
+                        }
+                    }
+                    \context RhythmicStaff = "Staff 3" {
+                        \context Voice = "Voice 3" {
+                        }
+                    }
+                    \context RhythmicStaff = "Staff 4" {
+                        \context Voice = "Voice 4" {
+                        }
+                    }
+                >>
+            >>
+
+        Return Abjad score object.
+        '''
         interpreter = interpretertools.ConcreteInterpreter()
         return interpreter(self)
 
