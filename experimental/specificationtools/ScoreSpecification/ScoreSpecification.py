@@ -408,10 +408,6 @@ class ScoreSpecification(Specification):
             stop_offset_pair = self.segment_offset_pairs[stop_segment_index]
             return start_offset_pair[0], stop_offset_pair[1]
 
-    def select(self, segment_name, context_names=None, timespan=None):
-        return selectortools.MultipleContextTimespanSelector(
-            segment_name, context_names=context_names, timespan=timespan)
-
     # TODO: the really long dot-chaning here has got to go.
     #       The way to fix this is to make all selectors be able to recursively check for segment index.
     def store_single_context_setting(self, single_context_setting, clear_persistent_first=False):
