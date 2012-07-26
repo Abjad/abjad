@@ -96,9 +96,9 @@ Methods
 
 .. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.store_resolved_single_context_setting
 
-.. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.store_setting
+.. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.store_single_context_setting
 
-.. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.store_settings
+.. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.store_single_context_settings
 
 Special Methods
 ---------------

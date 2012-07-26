@@ -222,7 +222,7 @@ class ScoreSpecification(Specification):
     # TODO: change name to self.store_single_context_setting()
     # TODO: the really long dot-chaning here has got to go.
     #       The way to fix this is to make all selectors be able to recursively check for segment index.
-    def store_setting(self, setting, clear_persistent_first=False):
+    def store_single_context_setting(self, setting, clear_persistent_first=False):
         '''Resolve setting and find segment in which setting starts.
 
         Store setting in segment context tree.
@@ -244,6 +244,6 @@ class ScoreSpecification(Specification):
             clear_persistent_first=clear_persistent_first)
 
     # TODO: change name to self.store_single_context_settings()
-    def store_settings(self, settings, clear_persistent_first=False):
+    def store_single_context_settings(self, settings, clear_persistent_first=False):
         for setting in settings:
-            self.store_setting(setting, clear_persistent_first=clear_persistent_first)
+            self.store_single_context_setting(setting, clear_persistent_first=clear_persistent_first)
