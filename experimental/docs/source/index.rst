@@ -205,6 +205,7 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
+   experimental/quantizationtools/GraceHandler/GraceHandler
    experimental/quantizationtools/QEvent/QEvent
    experimental/quantizationtools/QGridContainer/QGridContainer
    experimental/quantizationtools/QGridLeaf/QGridLeaf
@@ -212,6 +213,7 @@ Unstable packages (load manually)
    experimental/quantizationtools/QSchema/QSchema
    experimental/quantizationtools/QSchemaItem/QSchemaItem
    experimental/quantizationtools/QTarget/QTarget
+   experimental/quantizationtools/Quantizer/Quantizer
 
 .. rubric:: concrete classes
 
@@ -226,6 +228,7 @@ Unstable packages (load manually)
    experimental/quantizationtools/MeasurewiseQTarget/MeasurewiseQTarget
    experimental/quantizationtools/PitchedQEvent/PitchedQEvent
    experimental/quantizationtools/ProxyQEvent/ProxyQEvent
+   experimental/quantizationtools/QEventSequence/QEventSequence
    experimental/quantizationtools/QGridSearchTree/QGridSearchTree
    experimental/quantizationtools/QTargetBeat/QTargetBeat
    experimental/quantizationtools/QTargetMeasure/QTargetMeasure

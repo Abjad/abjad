@@ -11,6 +11,8 @@ Read-only Properties
 
 .. autoattribute:: experimental.quantizationtools.QTargetBeat.QTargetBeat.QTargetBeat.beatspan
 
+.. autoattribute:: experimental.quantizationtools.QTargetBeat.QTargetBeat.QTargetBeat.distances
+
 .. autoattribute:: experimental.quantizationtools.QTargetBeat.QTargetBeat.QTargetBeat.duration_in_ms
 
 .. autoattribute:: experimental.quantizationtools.QTargetBeat.QTargetBeat.QTargetBeat.offset_in_ms
