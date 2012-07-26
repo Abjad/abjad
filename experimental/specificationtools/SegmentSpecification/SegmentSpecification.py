@@ -151,7 +151,7 @@ class SegmentSpecification(Specification):
         Return list or none.
         '''
         try:
-            setting = self.resolved_settings.score_context_proxy.get_setting(
+            setting = self.resolved_single_context_settings.score_context_proxy.get_setting(
                 attribute='time_signatures')
         except MissingContextSettingError:
             return []
@@ -234,11 +234,12 @@ class SegmentSpecification(Specification):
             uninterpreted_division_commands.append(command)
         return uninterpreted_division_commands
 
+    # TODO: can this be removed?
     # think this is deprecated behavior
     def get_resolved_single_context_setting(self, attribute, context_name):
         context = componenttools.get_first_component_in_expr_with_name(self.score_model, context_name)
         for component in componenttools.get_improper_parentage_of_component(context):
-            context_proxy = self.resolved_settings[component.name]
+            context_proxy = self.resolved_single_context_settings[component.name]
             settings = context_proxy.get_settings(attribute=attribute)
             if len(settings) == 1:
                 setting = settings[0]
@@ -251,7 +252,7 @@ class SegmentSpecification(Specification):
     def get_resolved_single_context_settings(self, attribute, context_name):
         context = componenttools.get_first_component_in_expr_with_name(self.score_model, context_name)
         for component in componenttools.get_improper_parentage_of_component(context):
-            context_proxy = self.resolved_settings[component.name]
+            context_proxy = self.resolved_single_context_settings[component.name]
             settings = context_proxy.get_settings(attribute=attribute)
             if settings:
                 return settings

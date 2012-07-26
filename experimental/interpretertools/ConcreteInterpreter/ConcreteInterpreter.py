@@ -325,10 +325,10 @@ class ConcreteInterpreter(Interpreter):
 
     def interpret_divisions(self):
         for segment_specification in self.score_specification.segment_specifications:
-            settings = segment_specification.settings.get_settings(attribute='divisions')
+            settings = segment_specification.single_context_settings.get_settings(attribute='divisions')
             if not settings:
                 settings = []
-                existing_settings = self.score_specification.resolved_settings.get_settings(
+                existing_settings = self.score_specification.resolved_single_context_settings.get_settings(
                     attribute='divisions')
                 for existing_setting in existing_settings:
                     assert existing_setting.target.timespan.encompasses_one_segment_exactly, repr(existing_setting)
@@ -338,10 +338,10 @@ class ConcreteInterpreter(Interpreter):
 
     def interpret_rhythms(self):
         for segment_specification in self.score_specification.segment_specifications:
-            settings = segment_specification.settings.get_settings(attribute='rhythm')
+            settings = segment_specification.single_context_settings.get_settings(attribute='rhythm')
             if not settings:
                 settings = []
-                existing_settings = self.score_specification.resolved_settings.get_settings(
+                existing_settings = self.score_specification.resolved_single_context_settings.get_settings(
                     attribute='rhythm')
                 for existing_setting in existing_settings:
                     setting = existing_setting.copy_to_segment(segment_specification)
@@ -350,18 +350,23 @@ class ConcreteInterpreter(Interpreter):
 
     def interpret_time_signatures(self):
         '''For each segment:
+
         Check segment for an explicit time signature setting.
-        If none, check SCORE resolved settings context dictionary for current time signature setting.
+
+        If none, check score resolved settings context dictionary for current time signature setting.
+
         Halt interpretation if no time signature setting is found.
+
         Otherwise store time signature setting.
         '''
         for segment_specification in self.score_specification.segment_specifications:
-            settings = segment_specification.settings.get_settings(attribute='time_signatures')
+            settings = segment_specification.single_context_settings.get_settings(attribute='time_signatures')
             if settings:
                 assert len(settings) == 1, repr(settings)
                 setting = settings[0]
             else:
-                settings = self.score_specification.resolved_settings.get_settings(attribute='time_signatures')
+                settings = self.score_specification.resolved_single_context_settings.get_settings(
+                    attribute='time_signatures')
                 if not settings:
                     return
                 assert len(settings) == 1, repr(settings)
@@ -445,9 +450,9 @@ class ConcreteInterpreter(Interpreter):
     def unpack_multiple_context_settings_for_score(self):
         for segment_specification in self.score_specification.segment_specifications:
             settings = self.unpack_multiple_context_settings_for_segment(segment_specification)
-            self.score_specification.settings.extend(settings)
+            self.score_specification.single_context_settings.extend(settings)
 
     def unpack_multiple_context_settings_for_segment(self, segment_specification):
         for multiple_context_setting in segment_specification.multiple_context_settings:
-            segment_specification.settings.extend(multiple_context_setting.unpack())
-        return segment_specification.settings
+            segment_specification.single_context_settings.extend(multiple_context_setting.unpack())
+        return segment_specification.single_context_settings

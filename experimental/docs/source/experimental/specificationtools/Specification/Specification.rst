@@ -13,13 +13,13 @@ Read-only Properties
 
 .. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.contexts
 
-.. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.resolved_settings
+.. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.resolved_single_context_settings
 
 .. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.score_name
 
 .. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.score_template
 
-.. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.settings
+.. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.single_context_settings
 
 .. autoattribute:: experimental.specificationtools.Specification.Specification.Specification.storage_format
 

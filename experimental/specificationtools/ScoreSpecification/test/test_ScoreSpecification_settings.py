@@ -1,20 +1,21 @@
 from abjad.tools import *
-from experimental.specificationtools.ScoreSpecification import ScoreSpecification
+from experimental import specificationtools
 
 
 def test_ScoreSpecification_settings_01():
 
-    specification = ScoreSpecification(scoretemplatetools.GroupedRhythmicStavesScoreTemplate(1))
-    assert not specification.settings
+    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+    score_specification = specificationtools.ScoreSpecification(score_template)
+    assert not score_specification.single_context_settings
 
-    segment = specification.append_segment()
-    assert not specification.settings
-    assert not segment.settings
+    segment = score_specification.append_segment()
+    assert not score_specification.single_context_settings
+    assert not segment.single_context_settings
 
     segment.set_time_signatures(segment, [(4, 8), (3, 8)])
-    assert not specification.settings
-    assert not segment.settings
+    assert not score_specification.single_context_settings
+    assert not segment.single_context_settings
 
-    score = specification.interpret()
-    assert len(specification.settings) == 1
-    assert len(segment.settings) == 1
+    score = score_specification.interpret()
+    assert len(score_specification.single_context_settings) == 1
+    assert len(segment.single_context_settings) == 1

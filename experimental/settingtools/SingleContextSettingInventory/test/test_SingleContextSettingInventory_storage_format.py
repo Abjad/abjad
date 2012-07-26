@@ -19,7 +19,7 @@ def test_SingleContextSettingInventory_storage_format_01():
     segment.set_time_signatures(segment, [(4, 8), (3, 8)])
     score_specification.interpret()
 
-    setting_inventory_1 = segment.settings
+    setting_inventory_1 = segment.single_context_settings
 
     storage_format = setting_inventory_1.storage_format
 

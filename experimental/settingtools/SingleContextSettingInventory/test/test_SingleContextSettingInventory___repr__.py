@@ -15,7 +15,7 @@ def test_SingleContextSettingInventory___repr___01():
     segment = specification.append_segment()
     segment.set_time_signatures(segment, [(4, 8), (3, 8)])
 
-    setting_inventory_1 = segment.settings
+    setting_inventory_1 = segment.single_context_settings
     setting_inventory_2 = eval(repr(setting_inventory_1))
 
     assert isinstance(setting_inventory_1, SingleContextSettingInventory)

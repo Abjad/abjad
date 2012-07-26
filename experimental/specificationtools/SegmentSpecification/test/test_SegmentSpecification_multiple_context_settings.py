@@ -9,12 +9,12 @@ def test_SegmentSpecification_multiple_context_settings_01():
 
     segment = specification.append_segment()
     assert not segment.multiple_context_settings
-    assert not segment.settings
+    assert not segment.single_context_settings
 
     segment.set_time_signatures(segment, [(4, 8), (3, 8)])
     assert len(segment.multiple_context_settings) == 1
-    assert not segment.settings
+    assert not segment.single_context_settings
 
     score = specification.interpret()
     assert len(segment.multiple_context_settings) == 1
-    assert len(segment.settings) == 1
+    assert len(segment.single_context_settings) == 1
