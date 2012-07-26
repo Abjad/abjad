@@ -265,6 +265,13 @@ Unstable packages (load manually)
    experimental/requesttools/StatalServerRequest/StatalServerRequest
    experimental/requesttools/ValueIndicator/ValueIndicator
 
+.. rubric:: functions
+
+.. toctree::
+   :maxdepth: 1
+
+   experimental/requesttools/request_source_to_request
+
 :py:mod:`selectortools <experimental.selectortools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

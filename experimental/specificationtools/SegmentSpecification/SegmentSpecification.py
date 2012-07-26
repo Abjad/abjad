@@ -171,39 +171,6 @@ class SegmentSpecification(Specification):
 
     ### PUBLIC METHODS ###
 
-    def add_time_signatures_to_segment(self, score):
-        time_signatures = self.time_signatures
-        if self.time_signatures is not None:
-            measures = measuretools.make_measures_with_full_measure_spacer_skips(time_signatures)
-            context = componenttools.get_first_component_in_expr_with_name(score, 'TimeSignatureContext')
-            context.extend(measures)
-
-    def annotate_source(self, source, callback=None, count=None, offset=None):
-        from experimental import specificationtools
-        assert isinstance(callback, (helpertools.Callback, type(None))), callback
-        assert isinstance(count, (int, type(None))), count
-        assert isinstance(offset, (int, type(None))), offset
-        if isinstance(source, StatalServer):
-            if count is not None or offset is not None:
-                source = requesttools.StatalServerRequest(source, count=count, offset=offset)
-        elif isinstance(source, handlertools.Handler):
-            if offset is not None:
-                assert count is None
-                source = requesttools.HandlerRequest(source, offset=offset)
-        elif isinstance(source, requesttools.AttributeIndicator):
-            if any([x is not None for x in (callback, count, offset)]):
-                source = requesttools.AttributeRequest(
-                    source, callback=callback, count=count, offset=offset)
-        elif isinstance(source, selectortools.SingleContextDivisionSliceSelector):
-            if any([x is not None for x in (callback, count, offset)]):
-                source = copy.copy(source)
-                source.callback = callback
-                source.count = count
-                source.offset = offset
-        elif any([x is not None for x in (callback, count, offset)]):
-            raise ValueError("'callback', 'count' or 'offset' set on nonstatal source: {!r}.".format(source))
-        return source
-
     def count_ratio_item_selector_to_uninterpreted_division_command(self, resolved_setting):
         assert isinstance(resolved_setting.target, selectortools.CountRatioItemSelector)
         assert isinstance(resolved_setting.target.reference, selectortools.BackgroundMeasureSliceSelector)
@@ -641,7 +608,7 @@ class SegmentSpecification(Specification):
         assert isinstance(persistent, type(True)), repr(persistent)
         assert isinstance(truncate, type(True)), repr(truncate)
         target = self.preprocess_setting_target(target)
-        source = self.annotate_source(source, callback=callback, count=count, offset=offset)
+        source = requesttools.request_source_to_request(source, callback=callback, count=count, offset=offset)
         multiple_context_setting = settingtools.MultipleContextSetting(target, attribute, source, 
             persistent=persistent, truncate=truncate)
         self.multiple_context_settings.append(multiple_context_setting)

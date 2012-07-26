@@ -118,9 +118,16 @@ class ConcreteInterpreter(Interpreter):
             segment_specification.contexts[voice.name]['segment_pairs'] = [
                 x.pair for x in segment_division_list]
 
+    def add_time_signatures_for_segment(self, segment_specification):
+        time_signatures = segment_specification.time_signatures
+        if time_signatures is not None:
+            measures = measuretools.make_measures_with_full_measure_spacer_skips(time_signatures)
+            context = componenttools.get_first_component_in_expr_with_name(self.score, 'TimeSignatureContext')
+            context.extend(measures)
+
     def add_time_signatures_to_score(self):
         for segment_specification in self.score_specification.segment_specifications:
-            segment_specification.add_time_signatures_to_segment(self.score)
+            self.add_time_signatures_for_segment(segment_specification)
 
     def apply_additional_segment_parameters(self):
         pass
