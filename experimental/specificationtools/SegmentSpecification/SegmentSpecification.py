@@ -1,7 +1,7 @@
 from abjad.tools import *
 from experimental import handlertools
 from experimental import helpertools
-from experimental import interpretationtools
+from experimental import interpretertools
 from experimental import requesttools
 from experimental import selectortools
 from experimental import settingtools
@@ -217,7 +217,7 @@ class SegmentSpecification(Specification):
         duration = sum(durations)
         #value = self.process_divisions_value(resolved_value) # probably todo this
         args = (resolved_setting.value, duration, resolved_setting.fresh, resolved_setting.truncate)
-        command = interpretationtools.UninterpretedDivisionCommand(*args)
+        command = interpretertools.UninterpretedDivisionCommand(*args)
         return command
 
     def single_context_timespan_selector_to_uninterpreted_division_command(self, resolved_setting):
@@ -227,7 +227,7 @@ class SegmentSpecification(Specification):
         assert isinstance(resolved_setting.target.timespan.selector, selectortools.SegmentSelector)
         assert resolved_setting.target.timespan.selector.index == self.name
         args = (resolved_setting.value, self.duration, resolved_setting.fresh, resolved_setting.truncate) 
-        command = interpretationtools.UninterpretedDivisionCommand(*args)
+        command = interpretertools.UninterpretedDivisionCommand(*args)
         #print command
         #print ''
         return command
@@ -247,12 +247,12 @@ class SegmentSpecification(Specification):
         '''
         setting = self.get_resolved_single_context_setting('divisions', context_name)
         if setting is not None:
-            return interpretationtools.ResolvedValue(setting.value, setting.fresh, setting.truncate)
+            return interpretertools.ResolvedValue(setting.value, setting.fresh, setting.truncate)
         setting = self.get_resolved_single_context_setting('time_signatures', context_name)
         if setting is not None:
-            return interpretationtools.ResolvedValue(setting.value, setting.fresh, False)
+            return interpretertools.ResolvedValue(setting.value, setting.fresh, False)
         else:
-            return interpretationtools.ResolvedValue(None, False, False)
+            return interpretertools.ResolvedValue(None, False, False)
 
     # this this is new behavior
     def get_uninterpreted_division_commands_that_start_during_segment(self, context_name):
@@ -300,7 +300,7 @@ class SegmentSpecification(Specification):
             if isinstance(resolved_setting.target, selectortools.CountRatioItemSelector):
                 raise Exception('implement me when it comes time.')
             else:
-                rhythm_command = interpretationtools.RhythmCommand(
+                rhythm_command = interpretertools.RhythmCommand(
                     resolved_setting.value, self.duration, resolved_setting.fresh)
             rhythm_commands.append(rhythm_command)
         return rhythm_commands

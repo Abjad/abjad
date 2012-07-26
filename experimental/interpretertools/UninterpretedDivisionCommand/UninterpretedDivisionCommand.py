@@ -1,4 +1,4 @@
-from experimental.interpretationtools.DivisionCommand import DivisionCommand
+from experimental.interpretertools.DivisionCommand import DivisionCommand
 import fractions
 
 

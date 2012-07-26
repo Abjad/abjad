@@ -159,28 +159,28 @@ Unstable packages (load manually)
    experimental/helpertools/read_test_output
    experimental/helpertools/write_test_output
 
-:py:mod:`interpretationtools <experimental.interpretationtools>`
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+:py:mod:`interpretertools <experimental.interpretertools>`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. rubric:: abstract classes
 
 .. toctree::
    :maxdepth: 1
 
-   experimental/interpretationtools/Command/Command
-   experimental/interpretationtools/DivisionCommand/DivisionCommand
-   experimental/interpretationtools/Interpreter/Interpreter
+   experimental/interpretertools/Command/Command
+   experimental/interpretertools/DivisionCommand/DivisionCommand
+   experimental/interpretertools/Interpreter/Interpreter
 
 .. rubric:: concrete classes
 
 .. toctree::
    :maxdepth: 1
 
-   experimental/interpretationtools/ConcreteInterpreter/ConcreteInterpreter
-   experimental/interpretationtools/RegionDivisionCommand/RegionDivisionCommand
-   experimental/interpretationtools/ResolvedValue/ResolvedValue
-   experimental/interpretationtools/RhythmCommand/RhythmCommand
-   experimental/interpretationtools/UninterpretedDivisionCommand/UninterpretedDivisionCommand
+   experimental/interpretertools/ConcreteInterpreter/ConcreteInterpreter
+   experimental/interpretertools/RegionDivisionCommand/RegionDivisionCommand
+   experimental/interpretertools/ResolvedValue/ResolvedValue
+   experimental/interpretertools/RhythmCommand/RhythmCommand
+   experimental/interpretertools/UninterpretedDivisionCommand/UninterpretedDivisionCommand
 
 :py:mod:`lyrictools <experimental.lyrictools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

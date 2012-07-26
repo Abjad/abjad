@@ -1,4 +1,4 @@
-from experimental.interpretationtools.UninterpretedDivisionCommand import UninterpretedDivisionCommand
+from experimental.interpretertools.UninterpretedDivisionCommand import UninterpretedDivisionCommand
 
 
 class RegionDivisionCommand(UninterpretedDivisionCommand):

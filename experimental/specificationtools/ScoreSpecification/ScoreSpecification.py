@@ -1,7 +1,7 @@
 from abjad.tools import *
 from experimental import divisiontools
 from experimental import helpertools
-from experimental import interpretationtools
+from experimental import interpretertools
 from experimental import requesttools
 from experimental import selectortools
 from experimental import settingtools
@@ -144,8 +144,8 @@ class ScoreSpecification(Specification):
         return self.segment_specifications.index(segment_specification)
 
     def interpret(self):
-        from experimental import interpretationtools
-        interpreter = interpretationtools.ConcreteInterpreter()
+        from experimental import interpretertools
+        interpreter = interpretertools.ConcreteInterpreter()
         return interpreter(self)
 
     def make_resolved_setting(self, setting):

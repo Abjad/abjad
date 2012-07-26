@@ -3,7 +3,7 @@ from experimental import divisiontools
 from experimental import helpertools
 from experimental import selectortools
 from experimental import timespantools
-from experimental.interpretationtools.Interpreter import Interpreter
+from experimental.interpretertools.Interpreter import Interpreter
 import copy
 import re
 
@@ -150,7 +150,7 @@ class ConcreteInterpreter(Interpreter):
         return segment_division_lists
 
     def change_uninterpreted_division_commands_to_region_division_commands(self, uninterpreted_division_commands):
-        from experimental import interpretationtools
+        from experimental import interpretertools
         region_division_commands = []
         if not uninterpreted_division_commands:
             return []
@@ -159,14 +159,14 @@ class ConcreteInterpreter(Interpreter):
         assert uninterpreted_division_commands[0].fresh, repr(uninterpreted_division_commands[0])
         for uninterpreted_division_command in uninterpreted_division_commands:
             if uninterpreted_division_command.fresh or uninterpreted_division_command.truncate:
-                region_division_command = interpretationtools.RegionDivisionCommand(
+                region_division_command = interpretertools.RegionDivisionCommand(
                     *uninterpreted_division_command.vector)
                 region_division_commands.append(region_division_command)
             else:
                 last_region_division_command = region_division_commands[-1]
                 assert last_region_division_command.value == uninterpreted_division_command.value
                 if last_region_division_command.truncate:
-                    region_division_command = interpretationtools.RegionDivisionCommand(
+                    region_division_command = interpretertools.RegionDivisionCommand(
                         *uninterpreted_division_command.vector)
                     region_division_commands.append(region_division_command)
                 else:
@@ -175,7 +175,7 @@ class ConcreteInterpreter(Interpreter):
                     fresh = last_region_division_command.fresh
                     truncate = uninterpreted_division_command.truncate
                     args = (value, duration, fresh, truncate)
-                    region_division_command = interpretationtools.RegionDivisionCommand(*args)
+                    region_division_command = interpretertools.RegionDivisionCommand(*args)
                     region_division_commands[-1] = region_division_command
         return region_division_commands
 
@@ -247,20 +247,20 @@ class ConcreteInterpreter(Interpreter):
         return result
 
     def get_rhythm_commands_for_voice(self, voice):
-        from experimental import interpretationtools
+        from experimental import interpretertools
         from experimental.specificationtools import library
         rhythm_commands = []
         for segment_specification in self.score_specification.segment_specifications:
             commands = segment_specification.get_rhythm_commands_that_start_during_segment(voice.name)
             rhythm_commands.extend(commands)
         if not rhythm_commands:
-            rhythm_command = interpretationtools.RhythmCommand(
+            rhythm_command = interpretertools.RhythmCommand(
                 library.rest_filled_tokens, self.score_specification.duration, True)
             rhythm_commands.append(rhythm_command)
         return rhythm_commands
 
     def get_uninterpreted_division_commands_for_voice(self, voice):
-        from experimental import interpretationtools
+        from experimental import interpretertools
         uninterpreted_division_commands = []
         for segment_specification in self.score_specification.segment_specifications:
             commands = segment_specification.get_uninterpreted_division_commands_that_start_during_segment(
@@ -270,7 +270,7 @@ class ConcreteInterpreter(Interpreter):
             elif segment_specification.time_signatures:
                 # not sure about the following line
                 args = (segment_specification.time_signatures, segment_specification.duration, True, False)
-                command = interpretationtools.UninterpretedDivisionCommand(*args)
+                command = interpretertools.UninterpretedDivisionCommand(*args)
                 uninterpreted_division_commands.append(command)
         return uninterpreted_division_commands
 

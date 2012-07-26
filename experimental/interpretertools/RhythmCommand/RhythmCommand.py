@@ -1,4 +1,4 @@
-from experimental.interpretationtools.Command import Command
+from experimental.interpretertools.Command import Command
 
 
 class RhythmCommand(Command):
