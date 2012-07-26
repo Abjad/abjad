@@ -209,7 +209,7 @@ Unstable packages (load manually)
    experimental/quantizationtools/QEvent/QEvent
    experimental/quantizationtools/QGridContainer/QGridContainer
    experimental/quantizationtools/QGridLeaf/QGridLeaf
-   experimental/quantizationtools/QGridTree/QGridTree
+   experimental/quantizationtools/QGrid/QGrid
    experimental/quantizationtools/QSchema/QSchema
    experimental/quantizationtools/QSchemaItem/QSchemaItem
    experimental/quantizationtools/QTarget/QTarget

@@ -1,5 +1,5 @@
 from abjad.tools import abctools
 
 
-class QGridTree(abctools.AbjadObject):
+class QGrid(abctools.AbjadObject):
     pass
