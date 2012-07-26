@@ -31,20 +31,26 @@ class QEventSequence(tuple, abctools.ImmutableAbjadObject):
 
     @classmethod
     def from_tempo_scaled_leaves(klass, leaves, tempo=None):
-        pass
+        from experimental.quantizationtools import tempo_scaled_leaves_to_q_events
+        return type(self)(tempo_scaled_leaves_to_q_events(leaves, tempo))
 
     @classmethod
     def from_tempo_scaled_rationals(klass, rationals, tempo=None):
-        pass
+        from experimental.quantizationtools import tempo_scaled_rationals_to_q_events
+        return type(self)(tempo_scaled_rationals_to_q_events(rationals, tempo))
     
     @classmethod
     def from_millisecond_pitch_pairs(klass, pairs):
-        pass
+        from experimental.quantizationtools import millisecond_pitch_pairs_to_q_events
+        return type(self)(millisecond_pitch_pairs_to_q_events(pairs))
 
     @classmethod
     def from_millisecond_offsets(klass, offsets):
-        pass
+        q_events = [PitchedQEvent(x, [0]) for x in offsets[:-1]]
+        q_events.append(TerminalQEvent(offsets[-1]))
+        return type(self)(q_events)
 
     @classmethod
     def from_millisecond_durations(klass, durations):
-        pass
+        from experimental.quantizationtools import milliseconds_to_q_events
+        return type(self)(milliseconds_to_q_events(durations))

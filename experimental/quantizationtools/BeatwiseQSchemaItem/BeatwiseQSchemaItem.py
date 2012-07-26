@@ -1,7 +1,7 @@
 from abjad.tools import contexttools
 from abjad.tools import durationtools
 from experimental.quantizationtools.QSchemaItem import QSchemaItem
-from experimental.quantizationtools.QGridSearchTree import QGridSearchTree
+from experimental.quantizationtools.SearchTree import SearchTree
 
 
 class BeatwiseQSchemaItem(QSchemaItem):
@@ -57,7 +57,7 @@ class BeatwiseQSchemaItem(QSchemaItem):
             assert 0 < beatspan
 
         if search_tree is not None:
-            search_tree = QGridSearchTree(search_tree)
+            search_tree = SearchTree(search_tree)
 
         if tempo is not None:
             tempo = contexttools.TempoMark(tempo)
@@ -79,7 +79,7 @@ class BeatwiseQSchemaItem(QSchemaItem):
     def search_tree(self):
         '''The optionally defined search tree.
 
-        Return `QGridSearchTree` or `None`.
+        Return `SearchTree` or `None`.
         '''
         return self[1]
 

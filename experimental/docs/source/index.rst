@@ -229,7 +229,7 @@ Unstable packages (load manually)
    experimental/quantizationtools/PitchedQEvent/PitchedQEvent
    experimental/quantizationtools/ProxyQEvent/ProxyQEvent
    experimental/quantizationtools/QEventSequence/QEventSequence
-   experimental/quantizationtools/QGridSearchTree/QGridSearchTree
+   experimental/quantizationtools/SearchTree/SearchTree
    experimental/quantizationtools/QTargetBeat/QTargetBeat
    experimental/quantizationtools/QTargetMeasure/QTargetMeasure
    experimental/quantizationtools/SilentQEvent/SilentQEvent

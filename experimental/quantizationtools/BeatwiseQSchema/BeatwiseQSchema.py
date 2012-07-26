@@ -2,7 +2,7 @@ from abjad.tools import contexttools
 from abjad.tools import durationtools
 from experimental.quantizationtools.BeatwiseQTarget import BeatwiseQTarget
 from experimental.quantizationtools.BeatwiseQSchemaItem import BeatwiseQSchemaItem
-from experimental.quantizationtools.QGridSearchTree import QGridSearchTree
+from experimental.quantizationtools.SearchTree import SearchTree
 from experimental.quantizationtools.QSchema import QSchema
 from experimental.quantizationtools.QTargetBeat import QTargetBeat
 
@@ -21,9 +21,9 @@ class BeatwiseQSchema(QSchema):
             kwargs.get('beatspan',
                 (1, 4)))
 
-        self._search_tree = QGridSearchTree(
+        self._search_tree = SearchTree(
             kwargs.get('search_tree',
-                QGridSearchTree()))
+                SearchTree()))
 
         self._tempo = contexttools.TempoMark(
             kwargs.get('tempo',

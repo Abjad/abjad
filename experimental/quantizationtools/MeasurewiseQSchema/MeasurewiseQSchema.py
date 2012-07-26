@@ -2,7 +2,7 @@ from abjad.tools import contexttools
 from abjad.tools import durationtools
 from experimental.quantizationtools.MeasurewiseQSchemaItem import MeasurewiseQSchemaItem
 from experimental.quantizationtools.MeasurewiseQTarget import MeasurewiseQTarget
-from experimental.quantizationtools.QGridSearchTree import QGridSearchTree
+from experimental.quantizationtools.SearchTree import SearchTree
 from experimental.quantizationtools.QSchema import QSchema
 from experimental.quantizationtools.QTargetMeasure import QTargetMeasure
 
@@ -17,9 +17,9 @@ class MeasurewiseQSchema(QSchema):
 
     def __init__(self, *args, **kwargs):
 
-        self._search_tree = QGridSearchTree(
+        self._search_tree = SearchTree(
             kwargs.get('search_tree',
-                QGridSearchTree()))
+                SearchTree()))
 
         self._tempo = contexttools.TempoMark(
             kwargs.get('tempo',

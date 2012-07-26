@@ -18,7 +18,7 @@ def test_BeatwiseQSchema___init___01():
 
     assert len(schema.items) == 3
     assert schema.beatspan == durationtools.Duration(1, 32)
-    assert schema.search_tree == quantizationtools.QGridSearchTree({3: None})
+    assert schema.search_tree == quantizationtools.SearchTree({3: None})
     assert schema.tempo == contexttools.TempoMark((1, 16), 32)
 
 
@@ -28,6 +28,6 @@ def test_BeatwiseQSchema___init___02():
 
     assert len(schema.items) == 0
     assert schema.beatspan == durationtools.Duration(1, 4)
-    assert schema.search_tree == quantizationtools.QGridSearchTree()
+    assert schema.search_tree == quantizationtools.SearchTree()
     assert schema.tempo == contexttools.TempoMark((1, 4), 60)
 

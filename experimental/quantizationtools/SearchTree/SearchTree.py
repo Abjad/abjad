@@ -7,7 +7,7 @@ from abjad.tools import mathtools
 from experimental.quantizationtools.tempo_scaled_rational_to_milliseconds import tempo_scaled_rational_to_milliseconds
 
 
-class QGridSearchTree(datastructuretools.ImmutableDictionary):
+class SearchTree(datastructuretools.ImmutableDictionary):
     '''A utility class for defining the permissible divisions of a collection
     of :py:class:`~abjad.tools.quantizationtools.QGrid` objects.
 
@@ -17,16 +17,16 @@ class QGridSearchTree(datastructuretools.ImmutableDictionary):
 
     ::
 
-        >>> from experimental.quantizationtools import QGridSearchTree
+        >>> from experimental.quantizationtools import SearchTree
 
     For example, In the following tree, the beat may be divided into 2 or into 5.
     If divided into 2, it may be divided again into 2 or into 3.
 
     ::
 
-        >>> search_tree = QGridSearchTree({2: {2: None, 3: None}, 5: None})
+        >>> search_tree = SearchTree({2: {2: None, 3: None}, 5: None})
 
-    Return a new `QGridSearchTree`.
+    Return a new `SearchTree`.
     '''
 
     ### CLASS ATTRIBUTES ###
@@ -133,12 +133,12 @@ class QGridSearchTree(datastructuretools.ImmutableDictionary):
     def offsets(self):
         '''An ordered tuple of all :py:class:`~abjad.tools.durationtools.Offset`
         objects which those :py:class:`~abjad.tools.quantizationtools.QGrid`
-        objects governed by a specific `QGridSearchTree` can contain.
+        objects governed by a specific `SearchTree` can contain.
 
         ::
 
-            >>> from experimental.quantizationtools import QGridSearchTree
-            >>> qst = QGridSearchTree({2: {3: None}})
+            >>> from experimental.quantizationtools import SearchTree
+            >>> qst = SearchTree({2: {3: None}})
             >>> qst.offsets
             (Offset(0, 1), Offset(1, 6), Offset(1, 3), Offset(1, 2), Offset(2, 3), Offset(5, 6), Offset(1, 1))
 
@@ -150,13 +150,13 @@ class QGridSearchTree(datastructuretools.ImmutableDictionary):
     ### PUBLIC METHODS ###
 
     def find_subtree_divisibility(self, parentage):
-        '''Given a parentage signature, defining some subtree of a `QGridSearchTree`,
+        '''Given a parentage signature, defining some subtree of a `SearchTree`,
         return a tuple of permitted divisions of that subtree.
 
         ::
 
-            >>> from experimental.quantizationtools import QGridSearchTree
-            >>> qst = QGridSearchTree({2: {2: None, 3: {7: None, 11: None}}, 5: None})
+            >>> from experimental.quantizationtools import SearchTree
+            >>> qst = SearchTree({2: {2: None, 3: {7: None, 11: None}}, 5: None})
             >>> qst.find_subtree_divisibility((2,))
             (2, 3)
             >>> qst.find_subtree_divisibility((2, 2))
@@ -179,7 +179,7 @@ class QGridSearchTree(datastructuretools.ImmutableDictionary):
         return tuple(sorted(node.keys()))
 
     def prune(self, beatspan, tempo, threshold):
-        '''Prune those subtrees of a `QGridSearchTree` whose divisions in milliseconds,
+        '''Prune those subtrees of a `SearchTree` whose divisions in milliseconds,
         given `beatspan` and `tempo`, would be less than `threshold`.
 
         This allows a composer to specify the maximum speed any quantization
@@ -187,8 +187,8 @@ class QGridSearchTree(datastructuretools.ImmutableDictionary):
 
         ::
 
-            >>> from experimental.quantizationtools import QGridSearchTree
-            >>> qst = QGridSearchTree({2: {2: {2: {2: None}}}})
+            >>> from experimental.quantizationtools import SearchTree
+            >>> qst = SearchTree({2: {2: {2: {2: None}}}})
             >>> beatspan = Fraction(1, 4)
             >>> tempo = contexttools.TempoMark((1, 4), 60)
             >>> qst.prune(beatspan, tempo, 100)
@@ -198,7 +198,7 @@ class QGridSearchTree(datastructuretools.ImmutableDictionary):
             >>> qst.prune(beatspan, tempo, 400)
             {2: None}
 
-        Returns a new `QGridSearchTree`.
+        Returns a new `SearchTree`.
         '''
 
         assert isinstance(tempo, contexttools.TempoMark)
@@ -220,5 +220,5 @@ class QGridSearchTree(datastructuretools.ImmutableDictionary):
 
         result = recurse(self, beatspan)
         if result:
-            return QGridSearchTree(recurse(self, beatspan))
+            return SearchTree(recurse(self, beatspan))
         return result
