@@ -58,7 +58,7 @@ class ConcreteInterpreter(Interpreter):
             self.score_specification.contexts[voice.name]['voice_division_list'] = voice_division_list
             segment_division_lists = self.make_segment_division_lists_for_voice(voice)
             self.score_specification.contexts[voice.name]['segment_division_lists'] = segment_division_lists
-            self.add_segment_division_list_to_segment_payload_context_dictionaries_for_voice(
+            self.add_segment_division_lists_to_voice(
                 voice, segment_division_lists)
             #self._debug(voice_division_list, 'vdl')
             #self._debug(segment_division_lists, 'sdl')
@@ -109,7 +109,7 @@ class ConcreteInterpreter(Interpreter):
         assert len(rhythm_makers) == len(rhythm_region_division_lists)
         self.make_rhythms_and_add_to_voice(voice, rhythm_makers, rhythm_region_division_lists)
 
-    def add_segment_division_list_to_segment_payload_context_dictionaries_for_voice(
+    def add_segment_division_lists_to_voice(
         self, voice, segment_division_lists):
         assert len(self.score_specification.segment_specifications) == len(segment_division_lists)
         for segment_specification, segment_division_list in zip(
