@@ -1,18 +1,20 @@
 from abjad.tools import *
 from experimental import helpertools
+from experimental import specificationtools
 from experimental.specificationtools import library
-from experimental.specificationtools import ScoreSpecification
 import py
 
 
+# TODO: modernize this test file and then rename it
 def test_SegmentSpecification_get_timespan_from_measures_01():
     '''Measure timespan and fractional segment timespan.
     '''
     py.test.skip('working on this one now')
 
-    specification = ScoreSpecification(scoretemplatetools.GroupedRhythmicStavesScoreTemplate(n=4))
+    score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
+    score_specification = specificationtools.ScoreSpecification(score_template)
 
-    segment = specification.append_segment('red')
+    segment = score_specification.append_segment('red')
     segment.set_time_signatures(segment, [(4, 8), (3, 8)])
 
     first = segment.get_timespan_from_measures(0)
@@ -33,6 +35,6 @@ def test_SegmentSpecification_get_timespan_from_measures_01():
 
     segment.set_rhythm(segment, library.thirty_seconds)
 
-    segment = specification.append_segment()
+    segment = score_specification.append_segment()
 
-    score = specification.interpret()
+    score = score_specification.interpret()
