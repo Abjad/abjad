@@ -259,10 +259,8 @@ class SegmentSpecification(Specification):
             target = self.select_timespan(contexts=target)
         return target
 
-    # TODO: change timespan to timepoint? perhaps remove timespan keyword entirely as first step?
-    def retrieve_attribute(self, attribute, context_name=None, timespan=None):
-        return requesttools.AttributeIndicator(
-            attribute, self.segment_name, context_name=context_name, timespan=timespan)
+    def retrieve_attribute(self, attribute, context_name=None):
+        return requesttools.AttributeIndicator(attribute, self.segment_name, context_name=context_name)
 
     def select_background_measures(self, start=None, stop=None):
         '''Select the first five background measures that start during segment::

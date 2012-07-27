@@ -3,22 +3,21 @@ from abc import abstractmethod
 from abjad.tools import *
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from experimental import helpertools
-from experimental import requesttools
 from experimental import settingtools
 
 
 class Specification(AbjadObject):
     r'''.. versionadded:: 1.0
 
-    Abstract base class from which concrete specifications inherit.
+    Abstract base class from which concrete specification classes inherit.
 
     Score and segment specifications constitute the primary vehicle of composition.
 
     Composers make settings against score and segment specifications.
 
-    Interpreter code then interprets score and segment specifications.
+    Interpreter code interprets score and segment specifications.
 
-    One or more Abjad score objects result from interpretation.
+    Abjad score object results from interpretation.
     '''
 
     ### CLASS ATTRIBUTES ###
