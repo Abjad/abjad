@@ -37,6 +37,8 @@ class ScoreSpecification(Specification):
 
     ### SPECIAL METHODS ###
 
+    # TODO: change this to get items only from self.segment_specifications;
+    #       force code to getitem from self.contexts explicitly
     def __getitem__(self, expr):
         if isinstance(expr, int):
             return self.segment_specifications.__getitem__(expr)

@@ -20,9 +20,9 @@ def test_quartet_01():
     '''
     
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
-    specification = ScoreSpecification(score_template)
+    score_specification = ScoreSpecification(score_template)
 
-    segment = specification.append_segment(name='T1')
+    segment = score_specification.append_segment(name='T1')
     segment.set_time_signatures(segment, [(3, 8), (3, 8), (2, 8), (2, 8)])
 
     upper = [segment.v1, segment.v2]
@@ -32,13 +32,18 @@ def test_quartet_01():
     lower = [segment.v3, segment.v4]
     segment.set_rhythm(lower, library.note_filled_tokens)
 
-    segment = specification.append_segment(name='T2')
-    segment.set_time_signatures(segment, specification.retrieve_attribute('time_signatures', 'T1'), offset=-2, count=2)
+    segment = score_specification.append_segment(name='T2')
+    #segment.set_time_signatures(
+    #    segment, score_specification.retrieve_attribute('time_signatures', 'T1'), offset=-2, count=2)
+    segment.set_time_signatures(
+        segment, score_specification.segment_specifications['T1'].retrieve_attribute('time_signatures'), offset=-2, count=2)
 
-    score = specification.interpret()
+    score = score_specification.interpret()
 
-    assert specification.segment_specifications['T1'].time_signatures == [(3, 8), (3, 8), (2, 8), (2, 8)]
-    assert specification.segment_specifications['T2'].time_signatures == [(2, 8), (2, 8)]
+    assert score_specification.segment_specifications['T1'].time_signatures == \
+        [(3, 8), (3, 8), (2, 8), (2, 8)]
+    assert score_specification.segment_specifications['T2'].time_signatures == \
+        [(2, 8), (2, 8)]
 
     current_function_name = introspectiontools.get_current_function_name()
     helpertools.write_test_output(score, __file__, current_function_name)
@@ -53,9 +58,9 @@ def test_quartet_02():
     '''
     
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
-    specification = ScoreSpecification(score_template)
+    score_specification = ScoreSpecification(score_template)
 
-    segment = specification.append_segment(name='T1')
+    segment = score_specification.append_segment(name='T1')
     segment.set_time_signatures(segment, [(3, 8), (3, 8), (2, 8), (2, 8)])
 
     upper = [segment.v1, segment.v2]
@@ -66,14 +71,18 @@ def test_quartet_02():
     segment.set_divisions(lower, [(4, 16), (3, 16)])
     segment.set_rhythm(lower, library.note_filled_tokens)
 
-    segment = specification.append_segment(name='T2')
+    segment = score_specification.append_segment(name='T2')
+    #segment.set_time_signatures(
+    #    segment, score_specification.retrieve_attribute('time_signatures', 'T1'), offset=-2, count=2)
     segment.set_time_signatures(
-        segment, specification.retrieve_attribute('time_signatures', 'T1'), offset=-2, count=2)
+        segment, score_specification.segment_specifications['T1'].retrieve_attribute('time_signatures'), offset=-2, count=2)
 
-    score = specification.interpret()
+    score = score_specification.interpret()
 
-    assert specification.segment_specifications['T1'].time_signatures == [(3, 8), (3, 8), (2, 8), (2, 8)]
-    assert specification.segment_specifications['T2'].time_signatures == [(2, 8), (2, 8)]
+    assert score_specification.segment_specifications['T1'].time_signatures == \
+        [(3, 8), (3, 8), (2, 8), (2, 8)]
+    assert score_specification.segment_specifications['T2'].time_signatures == \
+        [(2, 8), (2, 8)]
 
     current_function_name = introspectiontools.get_current_function_name()
     helpertools.write_test_output(score, __file__, current_function_name)

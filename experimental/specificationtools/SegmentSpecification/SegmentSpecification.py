@@ -83,6 +83,7 @@ class SegmentSpecification(Specification):
         '''
         return self._multiple_context_settings
 
+    # TODO: change to self.segment_name
     @property
     def name(self):
         '''Segment name.
@@ -258,8 +259,11 @@ class SegmentSpecification(Specification):
             target = self.select_timespan(contexts=target)
         return target
 
-    def retrieve_attribute(self, attribute, **kwargs):
-        return Specification.retrieve_attribute(self, attribute, self.name, **kwargs)
+    #def retrieve_attribute(self, attribute, **kwargs):
+    #    return Specification.retrieve_attribute(self, attribute, self.name, **kwargs)
+    def retrieve_attribute(self, attribute, context_name=None, timespan=None):
+        return requesttools.AttributeIndicator(
+            attribute, self.name, context_name=context_name, timespan=timespan)
 
     def select_background_measures(self, start=None, stop=None):
         '''Select the first five background measures that start during segment::

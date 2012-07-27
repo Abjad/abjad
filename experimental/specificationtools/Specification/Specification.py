@@ -91,10 +91,3 @@ class Specification(AbjadObject):
     @property
     def single_context_settings(self):
         return self._single_context_settings
-
-    ### PUBLIC METHODS ###
-
-    def retrieve_attribute(self, attribute, segment_name, context_name=None, timespan=None):
-        from experimental import specificationtools
-        return requesttools.AttributeIndicator(
-            attribute, segment_name, context_name=context_name, timespan=timespan)
