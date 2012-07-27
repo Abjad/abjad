@@ -9,6 +9,8 @@ quantizationtools.QGrid
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.quantizationtools.QGrid.QGrid.QGrid.distance
+
 .. autoattribute:: experimental.quantizationtools.QGrid.QGrid.QGrid.leaves
 
 .. autoattribute:: experimental.quantizationtools.QGrid.QGrid.QGrid.next_downbeat
@@ -20,6 +22,15 @@ Read-only Properties
 .. autoattribute:: experimental.quantizationtools.QGrid.QGrid.QGrid.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+Methods
+-------
+
+.. automethod:: experimental.quantizationtools.QGrid.QGrid.QGrid.fit_q_events
+
+.. automethod:: experimental.quantizationtools.QGrid.QGrid.QGrid.subdivide_leaf
+
+.. automethod:: experimental.quantizationtools.QGrid.QGrid.QGrid.subdivide_leaves
 
 Special Methods
 ---------------

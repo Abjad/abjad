@@ -3,6 +3,7 @@ from abjad.tools import durationtools
 from experimental.quantizationtools.QGridContainer import QGridContainer
 from experimental.quantizationtools.QGridLeaf import QGridLeaf
 from experimental.quantizationtools.ProxyQEvent import ProxyQEvent
+import bisect
 import copy
 
 
@@ -60,6 +61,18 @@ class QGrid(abctools.AbjadObject):
         return self._next_downbeat
 
     @property
+    def distance(self):
+        q_event_count = 0
+        absolute_distance = 0
+        for leaf, offset in zip(self.leaves, self.offsets):
+            for q_event in leaf.q_events:
+                absolute_distance += abs(q_event.offset - offset)
+                q_event_count += 1
+        if q_event_count:
+            return absolute_distance / q_event_count
+        return None
+
+    @property
     def offsets(self):
         '''The offsets between 0 and 1 of all of the leaf nodes in the QGrid.'''
         return tuple([x.offset for x in self.leaves[:-1]] + [durationtools.Offset(1)])
@@ -69,6 +82,22 @@ class QGrid(abctools.AbjadObject):
         return self._root_node
 
     ### PUBLIC METHODS ###
+
+    def fit_q_events(self, q_events):
+        assert all([isinstance(x, ProxyQEvent) for x in q_events])
+        leaves, offsets = self.leaves, self.offsets
+        for q_event in q_events:
+            idx = bisect.bisect_left(offsets, q_event.offset)
+            if q_event.offset == offsets[idx]:
+                leaves[idx].q_events.append(q_event)
+            else:
+                left, right = offsets[idx - 1], offsets[idx]
+                left_diff = abs(left - q_event.offset)
+                right_diff = abs(right - q_event.offset)
+                if right_diff < left_diff:
+                    leaves[idx].q_events.append(q_event)
+                else:
+                    leaves[idx - 1].q_events.append(q_event)
 
     def subdivide_leaf(self, leaf, subdivisions):
         index = leaf.parent.index(leaf)
