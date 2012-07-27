@@ -56,6 +56,16 @@ class SegmentSpecification(Specification):
     def __repr__(self):
         return '{}({!r})'.format(self._class_name, self.segment_name)
 
+    ### PRIVATE METHODS ###
+
+    def _setting_target_to_selector(self, setting_target):
+        if isinstance(setting_target, (str, list, type(self))):
+            selector = self.select_timespan(contexts=setting_target)
+        else:
+            selector = setting_target
+        assert isinstance(selector, selectortools.Selector)
+        return selector
+
     ### READ-ONLY PUBLIC ATTRIBUTES ###
 
     @property
@@ -259,63 +269,6 @@ class SegmentSpecification(Specification):
         return timespantools.SingleSourceTimespan(selector=self.selector)
 
     ### PUBLIC METHODS ###
-
-    def count_ratio_item_selector_to_uninterpreted_division_command(self, resolved_single_context_setting):
-        assert isinstance(resolved_single_context_setting.target, selectortools.CountRatioItemSelector)
-        assert isinstance(resolved_single_context_setting.target.reference, 
-            selectortools.BackgroundMeasureSliceSelector)
-        assert resolved_single_context_setting.target.reference.inequality.timespan.selector.index == \
-            self.segment_name
-        ratio = resolved_single_context_setting.target.ratio
-        index = resolved_single_context_setting.target.index
-        time_signatures = self.time_signatures[:]
-        parts = sequencetools.partition_sequence_by_ratio_of_lengths(time_signatures, ratio)
-        part = parts[index]
-        durations = [durationtools.Duration(x) for x in part]
-        duration = sum(durations)
-        args = (resolved_single_context_setting.value, 
-            duration, 
-            resolved_single_context_setting.fresh, 
-            resolved_single_context_setting.truncate)
-        command = interpretertools.UninterpretedDivisionCommand(*args)
-        return command
-
-    def get_multiple_context_settings(self, target=None, attribute=None):
-        result = []
-        for multiple_context_setting in self.multiple_context_settings:
-            if target is None or multiple_context_setting.target == target:
-                if attribute is None or multiple_context_setting.attribute == attribute:
-                    result.append(multiple_context_setting)
-        return result
-
-    def get_resolved_single_context_settings(self, attribute, context_name):
-        context = componenttools.get_first_component_in_expr_with_name(self.score_model, context_name)
-        for component in componenttools.get_improper_parentage_of_component(context):
-            context_proxy = self.resolved_single_context_settings[component.name]
-            resolved_single_context_settings = context_proxy.get_settings(attribute=attribute)
-            if resolved_single_context_settings:
-                return resolved_single_context_settings
-        return []
-
-    def get_rhythm_commands_that_start_during_segment(self, voice_name):
-        from experimental.specificationtools import library
-        resolved_single_context_settings = self.get_resolved_single_context_settings('rhythm', voice_name)
-        if resolved_single_context_settings is None:
-            return []
-        rhythm_commands = []
-        for resolved_single_context_setting in resolved_single_context_settings:
-            if isinstance(resolved_single_context_setting.target, selectortools.CountRatioItemSelector):
-                raise Exception('implement me when it comes time.')
-            else:
-                rhythm_command = interpretertools.RhythmCommand(
-                    resolved_single_context_setting.value, self.duration, resolved_single_context_setting.fresh)
-            rhythm_commands.append(rhythm_command)
-        return rhythm_commands
-
-    def preprocess_setting_target(self, target):
-        if isinstance(target, (str, list, type(self))):
-            target = self.select_timespan(contexts=target)
-        return target
 
     def retrieve_attribute(self, attribute, context_name=None):
         return requesttools.AttributeIndicator(attribute, self.segment_name, context_name=context_name)
@@ -644,7 +597,7 @@ class SegmentSpecification(Specification):
         assert isinstance(count, (int, type(None))), repr(count)
         assert isinstance(persistent, type(True)), repr(persistent)
         assert isinstance(truncate, type(True)), repr(truncate)
-        target = self.preprocess_setting_target(target)
+        target = self._setting_target_to_selector(target)
         source = requesttools.request_source_to_request(source, callback=callback, count=count, offset=offset)
         multiple_context_setting = settingtools.MultipleContextSetting(target, attribute, source, 
             persistent=persistent, truncate=truncate)

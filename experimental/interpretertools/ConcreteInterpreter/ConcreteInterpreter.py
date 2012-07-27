@@ -216,6 +216,28 @@ class ConcreteInterpreter(Interpreter):
             durations = [x.preprolated_duration for x in rhythm_containers]
             beamtools.DuratedComplexBeamSpanner(rhythm_containers, durations=durations, span=1)
 
+    def count_ratio_item_selector_to_uninterpreted_division_command(
+        self, segment_specification, resolved_single_context_setting):
+        from experimental import interpretertools
+        assert isinstance(resolved_single_context_setting.target, selectortools.CountRatioItemSelector)
+        assert isinstance(resolved_single_context_setting.target.reference,
+            selectortools.BackgroundMeasureSliceSelector)
+        assert resolved_single_context_setting.target.reference.inequality.timespan.selector.index == \
+            segment_specification.segment_name
+        ratio = resolved_single_context_setting.target.ratio
+        index = resolved_single_context_setting.target.index
+        time_signatures = segment_specification.time_signatures[:]
+        parts = sequencetools.partition_sequence_by_ratio_of_lengths(time_signatures, ratio)
+        part = parts[index]
+        durations = [durationtools.Duration(x) for x in part]
+        duration = sum(durations)
+        args = (resolved_single_context_setting.value,
+            duration,
+            resolved_single_context_setting.fresh,
+            resolved_single_context_setting.truncate)
+        command = interpretertools.UninterpretedDivisionCommand(*args)
+        return command
+
     def division_request_to_divisions(self, division_request):
         voice = componenttools.get_first_component_in_expr_with_name(self.score, division_request.voice)
         assert isinstance(voice, voicetools.Voice), voice
@@ -252,16 +274,45 @@ class ConcreteInterpreter(Interpreter):
                 result.append(copy.deepcopy(rhythm_command))
         return result
 
+    def get_resolved_single_context_settings(self, segment_specification, attribute, context_name):
+        context = componenttools.get_first_component_in_expr_with_name(
+            segment_specification.score_model, context_name)
+        for component in componenttools.get_improper_parentage_of_component(context):
+            context_proxy = segment_specification.resolved_single_context_settings[component.name]
+            resolved_single_context_settings = context_proxy.get_settings(attribute=attribute)
+            if resolved_single_context_settings:
+                return resolved_single_context_settings
+        return []
+
     def get_rhythm_commands_for_voice(self, voice):
         from experimental import interpretertools
         from experimental.specificationtools import library
         rhythm_commands = []
         for segment_specification in self.score_specification.segment_specifications:
-            commands = segment_specification.get_rhythm_commands_that_start_during_segment(voice.name)
+            commands = self.get_rhythm_commands_that_start_during_segment(segment_specification, voice.name)
             rhythm_commands.extend(commands)
         if not rhythm_commands:
             rhythm_command = interpretertools.RhythmCommand(
                 library.rest_filled_tokens, self.score_specification.duration, True)
+            rhythm_commands.append(rhythm_command)
+        return rhythm_commands
+
+    def get_rhythm_commands_that_start_during_segment(self, segment_specification, voice_name):
+        from experimental import interpretertools
+        from experimental.specificationtools import library
+        resolved_single_context_settings = self.get_resolved_single_context_settings(
+            segment_specification, 'rhythm', voice_name)
+        if resolved_single_context_settings is None:
+            return []
+        rhythm_commands = []
+        for resolved_single_context_setting in resolved_single_context_settings:
+            if isinstance(resolved_single_context_setting.target, selectortools.CountRatioItemSelector):
+                raise Exception('implement me when it comes time.')
+            else:
+                rhythm_command = interpretertools.RhythmCommand(
+                    resolved_single_context_setting.value, 
+                    segment_specification.duration, 
+                    resolved_single_context_setting.fresh)
             rhythm_commands.append(rhythm_command)
         return rhythm_commands
 
@@ -281,14 +332,14 @@ class ConcreteInterpreter(Interpreter):
         return uninterpreted_division_commands
 
     def get_uninterpreted_division_commands_that_start_during_segment(self, segment_specification, context_name):
-        resolved_single_context_settings = segment_specification.get_resolved_single_context_settings(
-            'divisions', context_name)
+        resolved_single_context_settings = self.get_resolved_single_context_settings(
+            segment_specification, 'divisions', context_name)
         uninterpreted_division_commands = []
         for resolved_single_context_setting in resolved_single_context_settings:
             if isinstance(resolved_single_context_setting.target, selectortools.CountRatioItemSelector):
                 uninterpreted_division_command = \
-                    segment_specification.count_ratio_item_selector_to_uninterpreted_division_command(
-                    resolved_single_context_setting)
+                    self.count_ratio_item_selector_to_uninterpreted_division_command(
+                    segment_specification, resolved_single_context_setting)
             else:
                 uninterpreted_division_command = \
                     self.single_context_timespan_selector_to_uninterpreted_division_command(
