@@ -268,7 +268,6 @@ Unstable packages (load manually)
    experimental/requesttools/AttributeRequest/AttributeRequest
    experimental/requesttools/HandlerRequest/HandlerRequest
    experimental/requesttools/StatalServerRequest/StatalServerRequest
-   experimental/requesttools/ValueIndicator/ValueIndicator
 
 .. rubric:: functions
 
