@@ -9,6 +9,8 @@ quantizationtools.QEvent
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.quantizationtools.QEvent.QEvent.QEvent.index
+
 .. autoattribute:: experimental.quantizationtools.QEvent.QEvent.QEvent.offset
 
 .. autoattribute:: experimental.quantizationtools.QEvent.QEvent.QEvent.storage_format

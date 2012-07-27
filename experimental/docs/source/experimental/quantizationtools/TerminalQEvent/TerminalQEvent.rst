@@ -9,6 +9,10 @@ quantizationtools.TerminalQEvent
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.index
+
+    Inherited from :py:class:`QEvent.QEvent <experimental.quantizationtools.QEvent.QEvent.QEvent>`
+
 .. autoattribute:: experimental.quantizationtools.TerminalQEvent.TerminalQEvent.TerminalQEvent.offset
 
     Inherited from :py:class:`QEvent.QEvent <experimental.quantizationtools.QEvent.QEvent.QEvent>`

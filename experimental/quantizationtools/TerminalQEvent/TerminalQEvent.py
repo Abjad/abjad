@@ -1,4 +1,3 @@
-from abjad.tools import durationtools
 from experimental.quantizationtools.QEvent import QEvent
 
 
@@ -11,8 +10,7 @@ class TerminalQEvent(QEvent):
     ### INITIALIZER ###
 
     def __init__(self, offset):
-        offset = durationtools.Offset(offset)
-        self._offset = offset
+        QEvent.__init__(self, offset)
 
     ### SPECIAL METHODS ###
 

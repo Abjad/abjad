@@ -1,4 +1,3 @@
-from abjad.tools import durationtools
 from abjad.tools import pitchtools
 from experimental.quantizationtools.QEvent import QEvent
 
@@ -7,18 +6,17 @@ class PitchedQEvent(QEvent):
 
     ### CLASS ATTRIBUTES ###
 
-    __slots__ = ('_attachments', '_offset', '_pitches')
+    __slots__ = ('_attachments', '_index', '_offset', '_pitches')
 
     ### INITIALIZER ###
 
-    def __init__(self, offset, pitches, attachments=None):
-        offset = durationtools.Offset(offset)
+    def __init__(self, offset, pitches, attachments=None, index=None):
+        QEvent.__init__(self, offset, index=index)
         pitches = tuple([pitchtools.NamedChromaticPitch(x) for x in pitches])
         if attachments is None:
             attachments = ()
         else:
             attachments = tuple(attachments)
-        self._offset = offset
         self._pitches = pitches
         self._attachments = attachments
 
@@ -28,7 +26,8 @@ class PitchedQEvent(QEvent):
         if type(self) == type(other) and \
             self.offset == other.offset and \
             self.pitches == other.pitches and \
-            self.attachments == other.attachments:
+            self.attachments == other.attachments and \
+            self.index == other.index:
             return True
         return False
 

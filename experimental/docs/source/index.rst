@@ -231,6 +231,7 @@ Unstable packages (load manually)
    experimental/quantizationtools/QGridLeaf/QGridLeaf
    experimental/quantizationtools/QTargetBeat/QTargetBeat
    experimental/quantizationtools/QTargetMeasure/QTargetMeasure
+   experimental/quantizationtools/QuantizationJob/QuantizationJob
    experimental/quantizationtools/SearchTree/SearchTree
    experimental/quantizationtools/SilentQEvent/SilentQEvent
    experimental/quantizationtools/TerminalQEvent/TerminalQEvent

@@ -1,5 +1,6 @@
 from abc import ABCMeta, abstractmethod
 from abjad.tools import abctools
+from abjad.tools import durationtools
 
 
 class QEvent(abctools.AbjadObject):
@@ -12,7 +13,16 @@ class QEvent(abctools.AbjadObject):
 
     ### CLASS ATTRIBUTES ###
 
-    __slots__ = ('_offset')
+    __slots__ = ('_index', '_offset')
+
+
+    ### INITIALIZER ###
+
+    @abstractmethod
+    def __init__(self, offset, index=None):
+        offset = durationtools.Offset(offset)
+        self._offset = offset
+        self._index = index
 
     ### SPECIAL METHODS ###
 
@@ -26,6 +36,11 @@ class QEvent(abctools.AbjadObject):
         return False
 
     ### PRIVATE PROPERTIES ###
+
+    @property
+    def index(self):
+        '''The optional index, for sorting QEvents with identical offsets.'''
+        return self._index
 
     @property
     def offset(self):

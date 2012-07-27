@@ -11,6 +11,10 @@ Read-only Properties
 
 .. autoattribute:: experimental.quantizationtools.SilentQEvent.SilentQEvent.SilentQEvent.attachments
 
+.. autoattribute:: experimental.quantizationtools.SilentQEvent.SilentQEvent.SilentQEvent.index
+
+    Inherited from :py:class:`QEvent.QEvent <experimental.quantizationtools.QEvent.QEvent.QEvent>`
+
 .. autoattribute:: experimental.quantizationtools.SilentQEvent.SilentQEvent.SilentQEvent.offset
 
     Inherited from :py:class:`QEvent.QEvent <experimental.quantizationtools.QEvent.QEvent.QEvent>`

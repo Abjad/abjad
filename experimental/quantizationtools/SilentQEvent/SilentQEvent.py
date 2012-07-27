@@ -1,4 +1,3 @@
-from abjad.tools import durationtools
 from experimental.quantizationtools.QEvent import QEvent
 
 
@@ -10,13 +9,12 @@ class SilentQEvent(QEvent):
 
     ### INITIALIZER ###
 
-    def __init__(self, offset, attachments=None):
-        offset = durationtools.Offset(offset)
+    def __init__(self, offset, attachments=None, index=None):
+        QEvent.__init__(self, offset, index=index)
         if attachments is None:
             attachments = ()
         else:
             attachments = tuple(attachments)
-        self._offset = offset
         self._attachments = attachments
 
     ### SPECIAL METHODS ###
@@ -24,7 +22,8 @@ class SilentQEvent(QEvent):
     def __eq__(self, other):
         if type(self) == type(other) and \
             self._offset == other._offset and \
-            self._attachments == other._attachments:
+            self._attachments == other._attachments and \
+            self._index == other._index:
             return True
         return False
 
