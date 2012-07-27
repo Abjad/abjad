@@ -15,7 +15,7 @@ class SegmentSpecificationInventory(AbjadObject, list):
             return list.__getitem__(self, arg)
         elif isinstance(arg, str):
             for segment in self:
-                if segment.name == arg:
+                if segment.segment_name == arg:
                     return segment
             else:
                 raise KeyError(repr(arg))

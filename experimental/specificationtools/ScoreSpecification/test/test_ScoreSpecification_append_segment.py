@@ -9,11 +9,11 @@ def test_ScoreSpecification_append_segment_01():
     specification = ScoreSpecification(score_template)
 
     segment = specification.append_segment()
-    assert segment.name == '1'
+    assert segment.segment_name == '1'
     assert len(specification.segment_specifications) == 1
     
     segment = specification.append_segment(name='foo')
-    assert segment.name == 'foo'
+    assert segment.segment_name == 'foo'
     assert len(specification.segment_specifications) == 2
 
 

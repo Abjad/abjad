@@ -54,7 +54,7 @@ class ScoreSpecification(Specification):
         candidate_segment_number = 1
         while True:
             for segment_specification in self.segment_specifications:
-                if segment_specification.name == str(candidate_segment_number):
+                if segment_specification.segment_name == str(candidate_segment_number):
                     candidate_segment_number += 1
                     break
             else:
@@ -145,7 +145,7 @@ class ScoreSpecification(Specification):
 
         Return list of zero or more strings.
         '''
-        return [segment_specification.name for segment_specification in self.segment_specifications]
+        return [segment_specification.segment_name for segment_specification in self.segment_specifications]
 
     @property
     def segment_specification_class(self):

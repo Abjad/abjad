@@ -38,11 +38,11 @@ class SegmentSpecification(Specification):
 
     ### INITIALIZER ###
 
-    def __init__(self, score_template, name):
-        assert isinstance(name, str), name
+    def __init__(self, score_template, segment_name):
+        assert isinstance(segment_name, str), segment_name
         Specification.__init__(self, score_template)
         self._score_model = self.score_template()
-        self._name = name
+        self._segment_name = segment_name
         self._multiple_context_settings = settingtools.MultipleContextSettingInventory()
 
     ### SPECIAL METHODS ###
@@ -54,7 +54,7 @@ class SegmentSpecification(Specification):
             return self.contexts.__getitem__(expr) 
         
     def __repr__(self):
-        return '{}({!r})'.format(self._class_name, self.name)
+        return '{}({!r})'.format(self._class_name, self.segment_name)
 
     ### READ-ONLY PUBLIC ATTRIBUTES ###
 
@@ -83,18 +83,6 @@ class SegmentSpecification(Specification):
         '''
         return self._multiple_context_settings
 
-    # TODO: change to self.segment_name
-    @property
-    def name(self):
-        '''Segment name.
-
-            >>> segment.name
-            'red'
-
-        Return string.
-        '''
-        return self._name
-
     @property
     def score_model(self):
         '''Segment score model specified by user.
@@ -107,6 +95,17 @@ class SegmentSpecification(Specification):
         return self._score_model
 
     @property
+    def segment_name(self):
+        '''Segment name.
+
+            >>> segment.segment_name
+            'red'
+
+        Return string.
+        '''
+        return self._segment_name
+
+    @property
     def selector(self):
         '''Segment selector::
 
@@ -115,7 +114,7 @@ class SegmentSpecification(Specification):
 
         Return segment selector.
         '''
-        return selectortools.SegmentSelector(index=self.name)
+        return selectortools.SegmentSelector(index=self.segment_name)
         
     @property
     def start(self):
@@ -176,7 +175,8 @@ class SegmentSpecification(Specification):
         assert isinstance(resolved_single_context_setting.target, selectortools.CountRatioItemSelector)
         assert isinstance(resolved_single_context_setting.target.reference, 
             selectortools.BackgroundMeasureSliceSelector)
-        assert resolved_single_context_setting.target.reference.inequality.timespan.selector.index == self.name
+        assert resolved_single_context_setting.target.reference.inequality.timespan.selector.index == \
+            self.segment_name
         ratio = resolved_single_context_setting.target.ratio
         index = resolved_single_context_setting.target.index
         time_signatures = self.time_signatures[:]
@@ -196,7 +196,7 @@ class SegmentSpecification(Specification):
         #print resolved_single_context_setting.storage_format
         assert isinstance(resolved_single_context_setting.target, selectortools.SingleContextTimespanSelector)
         assert isinstance(resolved_single_context_setting.target.timespan.selector, selectortools.SegmentSelector)
-        assert resolved_single_context_setting.target.timespan.selector.index == self.name
+        assert resolved_single_context_setting.target.timespan.selector.index == self.segment_name
         args = (
             resolved_single_context_setting.value, 
             self.duration, 
@@ -259,11 +259,10 @@ class SegmentSpecification(Specification):
             target = self.select_timespan(contexts=target)
         return target
 
-    #def retrieve_attribute(self, attribute, **kwargs):
-    #    return Specification.retrieve_attribute(self, attribute, self.name, **kwargs)
+    # TODO: change timespan to timepoint? perhaps remove timespan keyword entirely as first step?
     def retrieve_attribute(self, attribute, context_name=None, timespan=None):
         return requesttools.AttributeIndicator(
-            attribute, self.name, context_name=context_name, timespan=timespan)
+            attribute, self.segment_name, context_name=context_name, timespan=timespan)
 
     def select_background_measures(self, start=None, stop=None):
         '''Select the first five background measures that start during segment::

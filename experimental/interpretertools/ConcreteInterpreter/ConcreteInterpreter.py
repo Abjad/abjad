@@ -355,7 +355,7 @@ class ConcreteInterpreter(Interpreter):
                     return
                 assert len(settings) == 1, repr(settings)
                 setting = settings[0]
-                setting = setting.copy_to_segment(segment_specification.name)
+                setting = setting.copy_to_segment(segment_specification.segment_name)
             assert setting.target.context == segment_specification.score_name, repr(setting)
             assert setting.target.timespan == segment_specification.timespan, [
                 repr(setting), '\n', repr(segment_specification.timespan)]

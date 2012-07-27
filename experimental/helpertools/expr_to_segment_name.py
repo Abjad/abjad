@@ -33,7 +33,7 @@ def expr_to_segment_name(expr):
     '''
     from experimental import specificationtools
     if isinstance(expr, specificationtools.SegmentSpecification):
-        return expr.name
+        return expr.segment_name
     elif isinstance(expr, str):
         return expr
     else:
