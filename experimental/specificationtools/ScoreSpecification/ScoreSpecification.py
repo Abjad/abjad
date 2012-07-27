@@ -325,21 +325,21 @@ class ScoreSpecification(Specification):
         if isinstance(segment_index_expression, int):
             return segment_index_expression
         if isinstance(segment_index_expression, str):
-            return self.segment_name_to_index(segment_index_expression)
+            return self.segment_name_to_segment_index(segment_index_expression)
         quoted_string_pattern = re.compile(r"""(['"]{1}[a-zA-Z1-9 _]+['"]{1})""")
         quoted_segment_names = quoted_string_pattern.findall(segment_index_expression.string)
         modified_string = str(segment_index_expression.string)
         for quoted_segment_name in quoted_segment_names:
             segment_name = quoted_segment_name[1:-1]
-            segment_index = self.segment_name_to_index(segment_name)
+            segment_index = self.segment_name_to_segment_index(segment_name)
             modified_string = modified_string.replace(quoted_segment_name, str(segment_index))
         segment_index = eval(modified_string)
         return segment_index
 
-    def segment_name_to_index(self, segment_name):
-        r'''Segment name to index::
+    def segment_name_to_segment_index(self, segment_name):
+        r'''Segment name to segment index::
 
-            >>> score_specification.segment_name_to_index('red')
+            >>> score_specification.segment_name_to_segment_index('red')
             0
 
         Return nonnegative integer.
@@ -347,10 +347,10 @@ class ScoreSpecification(Specification):
         segment_specification = self.segment_specifications[segment_name]
         return self.segment_specifications.index(segment_specification)
 
-    def segment_name_to_offsets(self, segment_name, segment_count=1):
-        r'''Segment name to offsets::
+    def segment_name_to_segment_offsets(self, segment_name, segment_count=1):
+        r'''Segment name to segment offsets::
 
-            >>> score_specification.segment_name_to_offsets('red') is None
+            >>> score_specification.segment_name_to_segment_offsets('red') is None
             True
 
         Return none if interpretation has not proceeded to segment offset calculation.
@@ -358,7 +358,7 @@ class ScoreSpecification(Specification):
         Otherwise return offset pair.
         '''
         if hasattr(self, 'segment_offset_pairs'):
-            start_segment_index = self.segment_name_to_index(segment_name)        
+            start_segment_index = self.segment_name_to_segment_index(segment_name)        
             stop_segment_index = start_segment_index + segment_count - 1
             start_offset_pair = self.segment_offset_pairs[start_segment_index]
             stop_offset_pair = self.segment_offset_pairs[stop_segment_index]

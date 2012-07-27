@@ -231,7 +231,7 @@ class ConcreteInterpreter(Interpreter):
             start_segment_expr)
         stop_segment_index = self.score_specification.segment_index_expression_to_segment_index(stop_segment_expr)
         segment_count =  stop_segment_index - start_segment_index
-        start_offset, stop_offset = self.score_specification.segment_name_to_offsets(
+        start_offset, stop_offset = self.score_specification.segment_name_to_segment_offsets(
             start_segment_index, segment_count)
         total_amount = stop_offset - start_offset
         divisions = [mathtools.NonreducedFraction(x) for x in divisions]
