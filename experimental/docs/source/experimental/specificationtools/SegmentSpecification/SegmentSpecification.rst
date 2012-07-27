@@ -44,8 +44,6 @@ Read-only Properties
 Methods
 -------
 
-.. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.retrieve_attribute
-
 .. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.select_background_measures
 
 .. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.select_divisions
@@ -63,6 +61,8 @@ Methods
 .. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.select_ratio_of_leaves
 
 .. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.select_ratio_of_notes_and_chords
+
+.. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.select_time_signatures
 
 .. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.select_timespan
 

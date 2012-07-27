@@ -61,9 +61,9 @@ time signature setting persists. (The setting inventory implements a get_setting
 We find that the setting inventory contains a segment-level setting that sets time signatures
 equal to a statal server call of the next 10 time signatures from TSS1 in the forward direction.
 Because we have no setting in T3 to specify otherwise (nor to augment the time signature setting
-retrieved from the persistent settings inventory) we consider replaying the time signature setting
-retrieved from the persistent settings inventory exactly. In order to do this we must check
-to see whether the time signature setting retrieved from the persistent settings inventory is
+taken from the persistent settings inventory) we consider replaying the time signature setting
+taken from the persistent settings inventory exactly. In order to do this we must check
+to see whether the time signature setting taken from the persistent settings inventory is
 in the right state to be called. We do this by examining the segments T1, T2 prior to T3
 and checking to see whether T1, T2 contain *pending* settings that specify cursor-relative
 calls against TSS1. We iterate the settings of T1, T2 and find no *pending* settings

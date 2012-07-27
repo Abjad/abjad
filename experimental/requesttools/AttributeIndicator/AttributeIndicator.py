@@ -5,9 +5,12 @@ from experimental import helpertools
 class AttributeIndicator(AbjadObject):
     r'''.. versionadded:: 1.0
 
-    Frozen request to retrieve the attribute specified against an arbitrary object in score.
+    Request to select the attribute specified against an arbitrary score object.
 
-    .. note:: class needs to be reworked to center around SingleContextCounttimeComponentSelector objects.
+    .. note:: maybe rename to AttributeSelector.
+
+    .. note:: class needs to be reworked to center around some type of single-context selector.
+        Probably also with the inclusion of a specific timepoint.
     '''
 
     ### CLASS ATTRIBUTES ###

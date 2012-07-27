@@ -270,9 +270,6 @@ class SegmentSpecification(Specification):
 
     ### PUBLIC METHODS ###
 
-    def retrieve_attribute(self, attribute, context_name=None):
-        return requesttools.AttributeIndicator(attribute, self.segment_name, context_name=context_name)
-
     def select_background_measures(self, start=None, stop=None):
         '''Select the first five background measures that start during segment::
 
@@ -556,6 +553,18 @@ class SegmentSpecification(Specification):
         else:
             selector = selectortools.DurationRatioItemSelector(selector, ratio, index=index)
         return selector
+
+    def select_time_signatures(self, context_name=None):
+        r'''Select time signatures in `context_name` that start during segment::
+
+            >>> segment.select_time_signatures()
+            AttributeIndicator('time_signatures', 'red')
+
+        Return attribute indicator.
+
+        .. note:: TODO: maybe rename AttributeIndicator to AttributeSelector.
+        '''
+        return requesttools.AttributeIndicator('time_signatures', self.segment_name, context_name=context_name)
 
     def select_timespan(self, contexts=None):
         '''Select contexts::
