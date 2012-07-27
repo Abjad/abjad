@@ -269,8 +269,8 @@ class ConcreteInterpreter(Interpreter):
         from experimental import interpretertools
         uninterpreted_division_commands = []
         for segment_specification in self.score_specification.segment_specifications:
-            commands = segment_specification.get_uninterpreted_division_commands_that_start_during_segment(
-                voice.name)
+            commands = self.get_uninterpreted_division_commands_that_start_during_segment(
+                segment_specification, voice.name)
             if commands:
                 uninterpreted_division_commands.extend(commands)
             elif segment_specification.time_signatures:
@@ -278,6 +278,22 @@ class ConcreteInterpreter(Interpreter):
                 args = (segment_specification.time_signatures, segment_specification.duration, True, False)
                 command = interpretertools.UninterpretedDivisionCommand(*args)
                 uninterpreted_division_commands.append(command)
+        return uninterpreted_division_commands
+
+    def get_uninterpreted_division_commands_that_start_during_segment(self, segment_specification, context_name):
+        resolved_single_context_settings = segment_specification.get_resolved_single_context_settings(
+            'divisions', context_name)
+        uninterpreted_division_commands = []
+        for resolved_single_context_setting in resolved_single_context_settings:
+            if isinstance(resolved_single_context_setting.target, selectortools.CountRatioItemSelector):
+                uninterpreted_division_command = \
+                    segment_specification.count_ratio_item_selector_to_uninterpreted_division_command(
+                    resolved_single_context_setting)
+            else:
+                uninterpreted_division_command = \
+                    self.single_context_timespan_selector_to_uninterpreted_division_command(
+                    segment_specification, resolved_single_context_setting)
+            uninterpreted_division_commands.append(uninterpreted_division_command)
         return uninterpreted_division_commands
 
     def get_voice_division_list(self, voice):
@@ -468,6 +484,25 @@ class ConcreteInterpreter(Interpreter):
             return single_context_setting.source()
         else:
             return single_context_setting.source
+
+    def single_context_timespan_selector_to_uninterpreted_division_command(
+        self, segment_specification, resolved_single_context_setting):
+        from experimental import interpretertools
+        #print 'here!'
+        #print resolved_single_context_setting.storage_format
+        assert isinstance(resolved_single_context_setting.target, selectortools.SingleContextTimespanSelector)
+        assert isinstance(resolved_single_context_setting.target.timespan.selector, selectortools.SegmentSelector)
+        assert resolved_single_context_setting.target.timespan.selector.index == \
+            segment_specification.segment_name
+        args = (
+            resolved_single_context_setting.value,
+            segment_specification.duration,
+            resolved_single_context_setting.fresh,
+            resolved_single_context_setting.truncate)
+        command = interpretertools.UninterpretedDivisionCommand(*args)
+        #print command
+        #print ''
+        return command
 
     def store_resolved_single_context_setting(self,
         segment_specification, context_name, attribute, resolved_single_context_setting,

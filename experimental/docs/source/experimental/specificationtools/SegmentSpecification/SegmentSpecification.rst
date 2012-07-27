@@ -52,8 +52,6 @@ Methods
 
 .. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.get_rhythm_commands_that_start_during_segment
 
-.. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.get_uninterpreted_division_commands_that_start_during_segment
-
 .. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.preprocess_setting_target
 
 .. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.retrieve_attribute
@@ -113,10 +111,6 @@ Methods
 .. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.set_tempo
 
 .. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.set_time_signatures
-
-.. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.set_written_duration
-
-.. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.single_context_timespan_selector_to_uninterpreted_division_command
 
 Special Methods
 ---------------

@@ -280,22 +280,6 @@ class SegmentSpecification(Specification):
         command = interpretertools.UninterpretedDivisionCommand(*args)
         return command
 
-    def single_context_timespan_selector_to_uninterpreted_division_command(self, resolved_single_context_setting):
-        #print 'here!'
-        #print resolved_single_context_setting.storage_format
-        assert isinstance(resolved_single_context_setting.target, selectortools.SingleContextTimespanSelector)
-        assert isinstance(resolved_single_context_setting.target.timespan.selector, selectortools.SegmentSelector)
-        assert resolved_single_context_setting.target.timespan.selector.index == self.segment_name
-        args = (
-            resolved_single_context_setting.value, 
-            self.duration, 
-            resolved_single_context_setting.fresh, 
-            resolved_single_context_setting.truncate) 
-        command = interpretertools.UninterpretedDivisionCommand(*args)
-        #print command
-        #print ''
-        return command
-
     def get_multiple_context_settings(self, target=None, attribute=None):
         result = []
         for multiple_context_setting in self.multiple_context_settings:
@@ -303,21 +287,6 @@ class SegmentSpecification(Specification):
                 if attribute is None or multiple_context_setting.attribute == attribute:
                     result.append(multiple_context_setting)
         return result
-
-    def get_uninterpreted_division_commands_that_start_during_segment(self, context_name):
-        resolved_single_context_settings = self.get_resolved_single_context_settings('divisions', context_name)
-        uninterpreted_division_commands = []
-        for resolved_single_context_setting in resolved_single_context_settings:
-            if isinstance(resolved_single_context_setting.target, selectortools.CountRatioItemSelector):
-                uninterpreted_division_command = \
-                    self.count_ratio_item_selector_to_uninterpreted_division_command(
-                    resolved_single_context_setting)
-            else:
-                uninterpreted_division_command = \
-                    self.single_context_timespan_selector_to_uninterpreted_division_command(
-                    resolved_single_context_setting)
-            uninterpreted_division_commands.append(uninterpreted_division_command)
-        return uninterpreted_division_commands
 
     def get_resolved_single_context_settings(self, attribute, context_name):
         context = componenttools.get_first_component_in_expr_with_name(self.score_model, context_name)
@@ -780,11 +749,5 @@ class SegmentSpecification(Specification):
     def set_time_signatures(self, contexts, source, 
         count=None, persistent=True, offset=None):
         attribute = 'time_signatures'
-        return self.set_attribute(attribute, contexts, source, 
-            count=count, offset=offset, persistent=persistent)
-
-    def set_written_duration(self, contexts, source, 
-        count=None, persistent=True, offset=None):
-        attribute = 'written_duration'
         return self.set_attribute(attribute, contexts, source, 
             count=count, offset=offset, persistent=persistent)

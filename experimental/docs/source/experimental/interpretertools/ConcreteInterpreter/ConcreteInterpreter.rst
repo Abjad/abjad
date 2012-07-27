@@ -56,6 +56,8 @@ Methods
 
 .. automethod:: experimental.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.get_uninterpreted_division_commands_for_voice
 
+.. automethod:: experimental.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.get_uninterpreted_division_commands_that_start_during_segment
+
 .. automethod:: experimental.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.get_voice_division_list
 
 .. automethod:: experimental.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.instantiate_score
@@ -89,6 +91,8 @@ Methods
 .. automethod:: experimental.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.resolve_single_context_setting
 
 .. automethod:: experimental.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.resolve_single_context_setting_source
+
+.. automethod:: experimental.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.single_context_timespan_selector_to_uninterpreted_division_command
 
 .. automethod:: experimental.interpretertools.ConcreteInterpreter.ConcreteInterpreter.ConcreteInterpreter.store_resolved_single_context_setting
 
