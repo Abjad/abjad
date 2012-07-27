@@ -1,5 +1,5 @@
 from abjad.tools import abctools
-from experimental.quantizationtools.ProxyQEvent import ProxyQEvent
+from experimental.quantizationtools.QEventProxy import QEventProxy
 from experimental.quantizationtools.SearchTree import SearchTree
 from experimental.quantizationtools.QGrid import QGrid
 
@@ -19,7 +19,7 @@ class QuantizationJob(abctools.AbjadObject):
 
     def __init__(self, job_id, search_tree, q_event_proxies, q_grids=None):
         assert isinstance(search_tree, SearchTree)
-        assert all([isinstance(x, ProxyQEvent) for x in q_event_proxies])
+        assert all([isinstance(x, QEventProxy) for x in q_event_proxies])
         self._job_id = job_id
         self._search_tree = search_tree
         self._q_event_proxies = tuple(q_event_proxies)

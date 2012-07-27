@@ -1,7 +1,7 @@
 from abjad.tools import durationtools
 from abjad.tools import notetools
 from abjad.tools import rhythmtreetools
-from experimental.quantizationtools.ProxyQEvent import ProxyQEvent
+from experimental.quantizationtools.QEventProxy import QEventProxy
 
 
 class QGridLeaf(rhythmtreetools.RhythmTreeNode):
@@ -17,7 +17,7 @@ class QGridLeaf(rhythmtreetools.RhythmTreeNode):
         if q_events is None:
             q_events = []
         else:
-            assert all([isinstance(x, ProxyQEvent) for x in q_events])
+            assert all([isinstance(x, QEventProxy) for x in q_events])
         self._q_events = list(q_events)
 
     ### SPECIAL METHODS ###

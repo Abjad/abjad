@@ -2,7 +2,7 @@ from abjad.tools import abctools
 from abjad.tools import durationtools
 from experimental.quantizationtools.QGridContainer import QGridContainer
 from experimental.quantizationtools.QGridLeaf import QGridLeaf
-from experimental.quantizationtools.ProxyQEvent import ProxyQEvent
+from experimental.quantizationtools.QEventProxy import QEventProxy
 import bisect
 import copy
 
@@ -84,7 +84,7 @@ class QGrid(abctools.AbjadObject):
     ### PUBLIC METHODS ###
 
     def fit_q_events(self, q_events):
-        assert all([isinstance(x, ProxyQEvent) for x in q_events])
+        assert all([isinstance(x, QEventProxy) for x in q_events])
         leaves, offsets = self.leaves, self.offsets
         for q_event in q_events:
             idx = bisect.bisect_left(offsets, q_event.offset)

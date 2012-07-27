@@ -15,7 +15,7 @@ def test_QGridLeaf___copy___01():
 def test_QGridLeaf___copy___02():
 
     leaf = quantizationtools.QGridLeaf(2, [
-        quantizationtools.ProxyQEvent(quantizationtools.SilentQEvent(1000), 0.5)
+        quantizationtools.QEventProxy(quantizationtools.SilentQEvent(1000), 0.5)
         ])
 
     copied = copy.copy(leaf)

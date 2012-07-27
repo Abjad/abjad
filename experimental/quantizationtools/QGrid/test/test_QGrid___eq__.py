@@ -14,7 +14,7 @@ def test_QGrid___eq___02():
     a = quantizationtools.QGrid(
         root_node=quantizationtools.QGridContainer(1, [
             quantizationtools.QGridLeaf(1, q_events=[
-                quantizationtools.ProxyQEvent(
+                quantizationtools.QEventProxy(
                     quantizationtools.SilentQEvent(100),
                     0.5
                     )
@@ -22,7 +22,7 @@ def test_QGrid___eq___02():
             ]),
         next_downbeat=quantizationtools.QGridLeaf(1,
             q_events=[
-                quantizationtools.ProxyQEvent(
+                quantizationtools.QEventProxy(
                     quantizationtools.TerminalQEvent(200),
                     0.9
                     )
@@ -33,7 +33,7 @@ def test_QGrid___eq___02():
     b = quantizationtools.QGrid( 
         root_node=quantizationtools.QGridContainer(1, [  
             quantizationtools.QGridLeaf(1, q_events=[ 
-                quantizationtools.ProxyQEvent( 
+                quantizationtools.QEventProxy( 
                     quantizationtools.SilentQEvent(100),
                     0.5
                     )
@@ -41,7 +41,7 @@ def test_QGrid___eq___02():
             ]),
         next_downbeat=quantizationtools.QGridLeaf(1, 
             q_events=[ 
-                quantizationtools.ProxyQEvent( 
+                quantizationtools.QEventProxy( 
                     quantizationtools.TerminalQEvent(200),
                     0.9
                     )
@@ -58,7 +58,7 @@ def test_QGrid___eq___03():
     b = quantizationtools.QGrid(
         root_node=quantizationtools.QGridContainer(1, [
             quantizationtools.QGridLeaf(1, q_events=[
-                quantizationtools.ProxyQEvent(
+                quantizationtools.QEventProxy(
                     quantizationtools.SilentQEvent(100),
                     0.5
                     )
@@ -68,7 +68,7 @@ def test_QGrid___eq___03():
     c = quantizationtools.QGrid(
         next_downbeat=quantizationtools.QGridLeaf(1,
             q_events=[ 
-                quantizationtools.ProxyQEvent(
+                quantizationtools.QEventProxy(
                     quantizationtools.TerminalQEvent(200),
                     0.9
                     )
@@ -78,7 +78,7 @@ def test_QGrid___eq___03():
     d = quantizationtools.QGrid(
         root_node=quantizationtools.QGridContainer(1, [
             quantizationtools.QGridLeaf(1, q_events=[
-                quantizationtools.ProxyQEvent(
+                quantizationtools.QEventProxy(
                     quantizationtools.SilentQEvent(100),
                     0.5
                     )
@@ -86,7 +86,7 @@ def test_QGrid___eq___03():
             ]),
         next_downbeat=quantizationtools.QGridLeaf(1,
             q_events=[
-                quantizationtools.ProxyQEvent(
+                quantizationtools.QEventProxy(
                     quantizationtools.TerminalQEvent(200),
                     0.9
                     )

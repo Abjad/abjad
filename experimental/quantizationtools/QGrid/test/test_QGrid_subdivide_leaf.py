@@ -5,11 +5,11 @@ def test_QGrid_subdivide_leaf_01():
 
     q_grid = QGrid()
 
-    a = ProxyQEvent(PitchedQEvent(0, [0]), 0)
-    b = ProxyQEvent(PitchedQEvent((9, 20), [1]), (9, 20))
-    c = ProxyQEvent(PitchedQEvent((1, 2), [2]), (1, 2))
-    d = ProxyQEvent(PitchedQEvent((11, 20), [3]), (11, 20))
-    e = ProxyQEvent(PitchedQEvent(1, [4]), 1)
+    a = QEventProxy(PitchedQEvent(0, [0]), 0)
+    b = QEventProxy(PitchedQEvent((9, 20), [1]), (9, 20))
+    c = QEventProxy(PitchedQEvent((1, 2), [2]), (1, 2))
+    d = QEventProxy(PitchedQEvent((11, 20), [3]), (11, 20))
+    e = QEventProxy(PitchedQEvent(1, [4]), 1)
 
     q_grid.leaves[0].q_events.extend([a, b, c, d])
     q_grid.leaves[1].q_events.append(e)

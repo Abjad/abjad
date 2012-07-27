@@ -224,7 +224,7 @@ Unstable packages (load manually)
    experimental/quantizationtools/MeasurewiseQSchemaItem/MeasurewiseQSchemaItem
    experimental/quantizationtools/MeasurewiseQTarget/MeasurewiseQTarget
    experimental/quantizationtools/PitchedQEvent/PitchedQEvent
-   experimental/quantizationtools/ProxyQEvent/ProxyQEvent
+   experimental/quantizationtools/QEventProxy/QEventProxy
    experimental/quantizationtools/QEventSequence/QEventSequence
    experimental/quantizationtools/QGrid/QGrid
    experimental/quantizationtools/QGridContainer/QGridContainer

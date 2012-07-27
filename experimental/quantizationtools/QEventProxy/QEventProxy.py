@@ -3,7 +3,7 @@ from abjad.tools import durationtools
 from experimental.quantizationtools.QEvent import QEvent
 
 
-class ProxyQEvent(abctools.AbjadObject):
+class QEventProxy(abctools.AbjadObject):
     '''Proxies a `QEvent`, mapping that QEvent's offset with the range of its
     beatspan to the range 0-1:
 
@@ -11,9 +11,9 @@ class ProxyQEvent(abctools.AbjadObject):
 
         >>> from experimental import quantizationtools
         >>> q_event = quantizationtools.PitchedQEvent(130, [0, 1, 4])
-        >>> proxy = quantizationtools.ProxyQEvent(q_event, 0.5)
+        >>> proxy = quantizationtools.QEventProxy(q_event, 0.5)
         >>> proxy
-        quantizationtools.ProxyQEvent(
+        quantizationtools.QEventProxy(
             quantizationtools.PitchedQEvent(
                 durationtools.Offset(130, 1),
                 (NamedChromaticPitch("c'"), NamedChromaticPitch("cs'"), NamedChromaticPitch("e'")),
@@ -22,7 +22,7 @@ class ProxyQEvent(abctools.AbjadObject):
             durationtools.Offset(1, 2)
             )
 
-    Returns `ProxyQEvent` instance.
+    Returns `QEventProxy` instance.
     '''
 
     ### CLASS ATTRIBUTES ###
