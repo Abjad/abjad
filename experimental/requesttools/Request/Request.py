@@ -6,7 +6,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 class Request(AbjadObject):
     r'''.. versionadded:: 1.0
 
-    Abstract base class for retrieval request classes.
+    Abstract base class for request classes.
     '''
 
     ### CLASS ATTRIBUTES ###

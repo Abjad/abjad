@@ -208,8 +208,8 @@ class ConcreteInterpreter(Interpreter):
             durations = [x.preprolated_duration for x in rhythm_containers]
             beamtools.DuratedComplexBeamSpanner(rhythm_containers, durations=durations, span=1)
 
-    def division_retrieval_request_to_divisions(self, division_retrieval_request):
-        voice = componenttools.get_first_component_in_expr_with_name(self.score, division_retrieval_request.voice)
+    def division_request_to_divisions(self, division_request):
+        voice = componenttools.get_first_component_in_expr_with_name(self.score, division_request.voice)
         assert isinstance(voice, voicetools.Voice), voice
         division_region_division_lists = self.score_specification.contexts[voice.name][
             'division_region_division_lists']
@@ -217,8 +217,8 @@ class ConcreteInterpreter(Interpreter):
         for division_region_division_list in division_region_division_lists:
             divisions.extend(division_region_division_list)
         assert isinstance(divisions, list), divisions
-        start_segment_expr = division_retrieval_request.inequality.timespan.selector.start
-        stop_segment_expr = division_retrieval_request.inequality.timespan.selector.stop
+        start_segment_expr = division_request.inequality.timespan.selector.start
+        stop_segment_expr = division_request.inequality.timespan.selector.stop
         start_segment_index = self.score_specification.segment_index_expression_to_segment_index(
             start_segment_expr)
         stop_segment_index = self.score_specification.segment_index_expression_to_segment_index(stop_segment_expr)
@@ -229,8 +229,8 @@ class ConcreteInterpreter(Interpreter):
         divisions = [mathtools.NonreducedFraction(x) for x in divisions]
         divisions = sequencetools.split_sequence_once_by_weights_with_overhang(divisions, [0, total_amount])
         divisions = divisions[1]
-        if division_retrieval_request.callback is not None:
-            divisions = division_retrieval_request.callback(divisions)
+        if division_request.callback is not None:
+            divisions = division_request.callback(divisions)
         return divisions
 
     def fuse_like_rhythm_commands(self, rhythm_commands):
@@ -407,8 +407,8 @@ class ConcreteInterpreter(Interpreter):
             divisions = [x.pair for x in divisions]
             divisions = [divisiontools.Division(x) for x in divisions]
         elif isinstance(region_division_command.value, selectortools.SingleContextDivisionSliceSelector):
-            division_retrieval_request = region_division_command.value
-            divisions = self.division_retrieval_request_to_divisions(division_retrieval_request)
+            division_request = region_division_command.value
+            divisions = self.division_request_to_divisions(division_request)
         else:
             raise NotImplementedError('implement for {!r}.'.format(revision_division_command.value))
         division_region_division_list = divisiontools.DivisionRegionDivisionList(divisions)

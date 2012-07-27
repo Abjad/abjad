@@ -257,7 +257,7 @@ class ScoreSpecification(Specification):
         self.segment_specifications.append(segment_specification)
         return segment_specification
 
-    def attribute_retrieval_indicator_to_resolved_single_context_setting(self, indicator):
+    def attribute_indicator_to_resolved_single_context_setting(self, indicator):
         segment_specification = self.segment_specifications[indicator.segment_name]
         context_proxy = segment_specification.resolved_single_context_settings[indicator.context_name]
         resolved_single_context_setting = context_proxy.get_setting(attribute=indicator.attribute)
@@ -305,15 +305,15 @@ class ScoreSpecification(Specification):
         interpreter = interpretertools.ConcreteInterpreter()
         return interpreter(self)
 
-    def resolve_attribute_retrieval_request(self, attribute_retrieval_request):
+    def resolve_attribute_request(self, attribute_request):
         resolved_single_context_setting = \
-            self.attribute_retrieval_indicator_to_resolved_single_context_setting(
-                attribute_retrieval_request.indicator)
+            self.attribute_indicator_to_resolved_single_context_setting(
+                attribute_request.indicator)
         value = resolved_single_context_setting.value
         assert value is not None, repr(value)
-        if attribute_retrieval_request.callback is not None:
-            value = attribute_retrieval_request.callback(value)
-        result = requesttools.resolve_request_offset_and_count(attribute_retrieval_request, value)
+        if attribute_request.callback is not None:
+            value = attribute_request.callback(value)
+        result = requesttools.resolve_request_offset_and_count(attribute_request, value)
         return result
 
     def resolve_single_context_setting(self, single_context_setting):
@@ -329,7 +329,7 @@ class ScoreSpecification(Specification):
 
     def resolve_single_context_setting_source(self, single_context_setting):
         if isinstance(single_context_setting.source, requesttools.AttributeRequest):
-            return self.resolve_attribute_retrieval_request(single_context_setting.source)
+            return self.resolve_attribute_request(single_context_setting.source)
         elif isinstance(single_context_setting.source, requesttools.StatalServerRequest):
             return single_context_setting.source()
         else:
