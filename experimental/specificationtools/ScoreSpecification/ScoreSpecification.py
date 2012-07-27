@@ -350,12 +350,10 @@ class ScoreSpecification(Specification):
     def segment_name_to_segment_offsets(self, segment_name, segment_count=1):
         r'''Segment name to segment offsets::
 
-            >>> score_specification.segment_name_to_segment_offsets('red') is None
-            True
+            >>> score_specification.segment_name_to_segment_offsets('red')
+            (Offset(0, 1), Offset(0, 1))
 
-        Return none if interpretation has not proceeded to segment offset calculation.
-
-        Otherwise return offset pair.
+        Return offset pair.
         '''
         if hasattr(self, 'segment_offset_pairs'):
             start_segment_index = self.segment_name_to_segment_index(segment_name)        

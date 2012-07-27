@@ -59,18 +59,44 @@ class SegmentSpecification(Specification):
     ### READ-ONLY PUBLIC ATTRIBUTES ###
 
     @property
+    def context_names(self):
+        r'''Segment specification context names::
+
+            >>> segment.context_names
+            ['Voice 1']
+
+        Only names for which context abbreviations exist are included.
+
+        Return list of strings.
+        '''
+        return Specification.context_names.fget(self)
+
+    @property
+    def contexts(self):
+        r'''Segment specification context proxy dictionary::
+
+            >>> for key in segment.contexts:
+            ...     key
+            ... 
+            'Grouped Rhythmic Staves Score'
+            'Grouped Rhythmic Staves Staff Group'
+            'Staff 1'
+            'Voice 1'
+
+        Return context proxy dictionary.
+        '''
+        return Specification.contexts.fget(self)
+
+    @property
     def duration(self):
         '''Segment specification duration.
 
-            >>> segment.duration is None
-            True
+            >>> segment.duration
+            Duration(0, 1)
 
-        Derived during interpretation.
-
-        Return rational or none.
+        Return duration.
         '''
-        if self.time_signatures:
-            return durationtools.Duration(sum([durationtools.Duration(x) for x in self.time_signatures]))
+        return durationtools.Duration(sum([durationtools.Duration(x) for x in self.time_signatures]))
 
     @property
     def multiple_context_settings(self):
@@ -84,8 +110,24 @@ class SegmentSpecification(Specification):
         return self._multiple_context_settings
 
     @property
+    def resolved_single_context_settings(self):
+        r'''Segment specification resolved single-context settings::
+
+            >>> for key in segment.resolved_single_context_settings:
+            ...     key
+            ... 
+            'Grouped Rhythmic Staves Score'
+            'Grouped Rhythmic Staves Staff Group'
+            'Staff 1'
+            'Voice 1'
+
+        Return context proxy dictionary.
+        '''
+        return Specification.resolved_single_context_settings.fget(self)
+
+    @property
     def score_model(self):
-        '''Segment score model specified by user.
+        '''Segment score model::
 
             >>> segment.score_model
             Score-"Grouped Rhythmic Staves Score"<<1>>
@@ -95,8 +137,30 @@ class SegmentSpecification(Specification):
         return self._score_model
 
     @property
+    def score_name(self):
+        r'''Segment specification score name::
+
+            >>> segment.score_name
+            'Grouped Rhythmic Staves Score'
+
+        Return string.
+        '''
+        return Specification.score_name.fget(self)
+
+    @property
+    def score_template(self):
+        r'''Segment specification score template::
+
+            >>> segment.score_template
+            GroupedRhythmicStavesScoreTemplate(staff_count=1)
+
+        Return score template.
+        '''
+        return Specification.score_template.fget(self)
+
+    @property
     def segment_name(self):
-        '''Segment name.
+        '''Segment specification name.
 
             >>> segment.segment_name
             'red'
@@ -107,7 +171,7 @@ class SegmentSpecification(Specification):
 
     @property
     def selector(self):
-        '''Segment selector::
+        '''Segment specification selector::
 
             >>> segment.selector
             SegmentSelector(index='red')
@@ -115,10 +179,21 @@ class SegmentSpecification(Specification):
         Return segment selector.
         '''
         return selectortools.SegmentSelector(index=self.segment_name)
-        
+
+    @property
+    def single_context_settings(self):
+        r'''Segment specification single-context settings::
+
+            >>> segment.single_context_settings
+            SingleContextSettingInventory([])
+
+        Return single-context setting inventory.
+        '''
+        return Specification.single_context_settings.fget(self)
+
     @property
     def start(self):
-        '''Segment start.
+        '''Segment specification start timepoint.
 
             >>> segment.start
             Timepoint(anchor=SegmentSelector(index='red'), edge=Left)
@@ -129,7 +204,7 @@ class SegmentSpecification(Specification):
 
     @property
     def stop(self):
-        '''Segment stop.
+        '''Segment specification stop timepoint.
 
             >>> segment.stop
             Timepoint(anchor=SegmentSelector(index='red'), edge=Right)
@@ -139,15 +214,29 @@ class SegmentSpecification(Specification):
         return timespantools.Timepoint(anchor=self.selector, edge=Right)
 
     @property
+    def storage_format(self):
+        r'''Segment specification storage format::
+
+            >>> z(segment)
+            specificationtools.SegmentSpecification(
+                scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
+                    staff_count=1
+                    ),
+                'red'
+                )
+        
+        Return string.
+        '''
+        return Specification.storage_format.fget(self)
+
+    @property
     def time_signatures(self):
-        '''Segment time signatures::
+        '''Segment specification time signatures::
 
             >>> segment.time_signatures
             []
 
-        Derived during interpretation.
-
-        Return list or none.
+        Return list of zero or more time signatures.
         '''
         try:
             resolved_single_context_setting = \
@@ -160,7 +249,7 @@ class SegmentSpecification(Specification):
 
     @property
     def timespan(self):
-        '''Segment timespan.
+        '''Segment specification timespan.
 
             >>> segment.timespan
             SingleSourceTimespan(selector=SegmentSelector(index='red'))

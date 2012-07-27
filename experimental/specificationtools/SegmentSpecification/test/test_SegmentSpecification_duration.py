@@ -8,10 +8,10 @@ def test_SegmentSpecification_duration_01():
     specification = ScoreSpecification(score_template)
 
     segment = specification.append_segment()
-    assert segment.duration is None
+    assert segment.duration == durationtools.Duration(0)
 
     segment.set_time_signatures(segment, [(4, 8), (3, 8)])
-    assert segment.duration is None
+    assert segment.duration == durationtools.Duration(0)
 
     score = specification.interpret()
     assert segment.duration == durationtools.Duration(7, 8)
