@@ -79,7 +79,7 @@ class ConcreteInterpreter(Interpreter):
 
     def add_rhythms_to_voice(self, voice):
         from experimental import specificationtools
-        voice_division_list = self.score_specification.get_voice_division_list(voice)
+        voice_division_list = self.get_voice_division_list(voice)
         if len(voice_division_list) == 0:
             return
         voice_divisions = voice_division_list.divisions
@@ -208,6 +208,31 @@ class ConcreteInterpreter(Interpreter):
             durations = [x.preprolated_duration for x in rhythm_containers]
             beamtools.DuratedComplexBeamSpanner(rhythm_containers, durations=durations, span=1)
 
+    def division_retrieval_request_to_divisions(self, division_retrieval_request):
+        voice = componenttools.get_first_component_in_expr_with_name(self.score, division_retrieval_request.voice)
+        assert isinstance(voice, voicetools.Voice), voice
+        division_region_division_lists = self.score_specification.contexts[voice.name][
+            'division_region_division_lists']
+        divisions = []
+        for division_region_division_list in division_region_division_lists:
+            divisions.extend(division_region_division_list)
+        assert isinstance(divisions, list), divisions
+        start_segment_expr = division_retrieval_request.inequality.timespan.selector.start
+        stop_segment_expr = division_retrieval_request.inequality.timespan.selector.stop
+        start_segment_index = self.score_specification.segment_index_expression_to_segment_index(
+            start_segment_expr)
+        stop_segment_index = self.score_specification.segment_index_expression_to_segment_index(stop_segment_expr)
+        segment_count =  stop_segment_index - start_segment_index
+        start_offset, stop_offset = self.score_specification.segment_name_to_offsets(
+            start_segment_index, segment_count)
+        total_amount = stop_offset - start_offset
+        divisions = [mathtools.NonreducedFraction(x) for x in divisions]
+        divisions = sequencetools.split_sequence_once_by_weights_with_overhang(divisions, [0, total_amount])
+        divisions = divisions[1]
+        if division_retrieval_request.callback is not None:
+            divisions = division_retrieval_request.callback(divisions)
+        return divisions
+
     def fuse_like_rhythm_commands(self, rhythm_commands):
         if not rhythm_commands:
             return []
@@ -247,29 +272,14 @@ class ConcreteInterpreter(Interpreter):
                 uninterpreted_division_commands.append(command)
         return uninterpreted_division_commands
 
-    def handle_division_retrieval_request(self, request):
-        voice = componenttools.get_first_component_in_expr_with_name(self.score, request.voice)
-        assert isinstance(voice, voicetools.Voice), voice
-        division_region_division_lists = self.score_specification.contexts[voice.name][
-            'division_region_division_lists']
-        divisions = []
-        for division_region_division_list in division_region_division_lists:
-            divisions.extend(division_region_division_list)
-        assert isinstance(divisions, list), divisions
-        start_segment_expr = request.inequality.timespan.selector.start
-        stop_segment_expr = request.inequality.timespan.selector.stop
-        start_segment_index = self.score_specification.segment_index_expression_to_segment_index(start_segment_expr)
-        stop_segment_index = self.score_specification.segment_index_expression_to_segment_index(stop_segment_expr)
-        segment_count =  stop_segment_index - start_segment_index
-        start_offset, stop_offset = self.score_specification.segment_name_to_offsets(
-            start_segment_index, segment_count)
-        total_amount = stop_offset - start_offset
-        divisions = [mathtools.NonreducedFraction(x) for x in divisions]
-        divisions = sequencetools.split_sequence_once_by_weights_with_overhang(divisions, [0, total_amount])
-        divisions = divisions[1]
-        if request.callback is not None:
-            divisions = request.callback(divisions)
-        return divisions
+    def get_voice_division_list(self, voice):
+        from experimental import specificationtools
+        voice_division_list = self.score_specification.contexts[voice.name].get('voice_division_list')
+        if voice_division_list is None:
+            time_signatures = self.score_specification.time_signatures
+            voice_division_list = divisiontools.VoiceDivisionList(time_signatures)
+        return voice_division_list
+
 
     def instantiate_score(self):
         score = self.score_specification.score_template()
@@ -397,7 +407,8 @@ class ConcreteInterpreter(Interpreter):
             divisions = [x.pair for x in divisions]
             divisions = [divisiontools.Division(x) for x in divisions]
         elif isinstance(region_division_command.value, selectortools.SingleContextDivisionSliceSelector):
-            divisions = self.handle_division_retrieval_request(region_division_command.value)
+            division_retrieval_request = region_division_command.value
+            divisions = self.division_retrieval_request_to_divisions(division_retrieval_request)
         else:
             raise NotImplementedError('implement for {!r}.'.format(revision_division_command.value))
         division_region_division_list = divisiontools.DivisionRegionDivisionList(divisions)

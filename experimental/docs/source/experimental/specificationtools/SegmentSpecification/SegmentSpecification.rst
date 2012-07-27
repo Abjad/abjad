@@ -58,10 +58,6 @@ Read-only Properties
 Methods
 -------
 
-.. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.context_token_to_context_names
-
-    Inherited from :py:class:`Specification.Specification <experimental.specificationtools.Specification.Specification.Specification>`
-
 .. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.count_ratio_item_selector_to_uninterpreted_division_command
 
 .. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.get_multiple_context_settings

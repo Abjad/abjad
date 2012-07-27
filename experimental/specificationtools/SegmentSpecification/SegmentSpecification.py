@@ -183,7 +183,6 @@ class SegmentSpecification(Specification):
         part = parts[index]
         durations = [durationtools.Duration(x) for x in part]
         duration = sum(durations)
-        #value = self.process_divisions_value(resolved_value) # probably todo this
         args = (resolved_single_context_setting.value, 
             duration, 
             resolved_single_context_setting.fresh, 
@@ -219,14 +218,15 @@ class SegmentSpecification(Specification):
         resolved_single_context_settings = self.get_resolved_single_context_settings('divisions', context_name)
         uninterpreted_division_commands = []
         for resolved_single_context_setting in resolved_single_context_settings:
-            #print resolved_single_context_setting.storage_format
             if isinstance(resolved_single_context_setting.target, selectortools.CountRatioItemSelector):
-                command = self.count_ratio_item_selector_to_uninterpreted_division_command(
+                uninterpreted_division_command = \
+                    self.count_ratio_item_selector_to_uninterpreted_division_command(
                     resolved_single_context_setting)
             else:
-                command = self.single_context_timespan_selector_to_uninterpreted_division_command(
+                uninterpreted_division_command = \
+                    self.single_context_timespan_selector_to_uninterpreted_division_command(
                     resolved_single_context_setting)
-            uninterpreted_division_commands.append(command)
+            uninterpreted_division_commands.append(uninterpreted_division_command)
         return uninterpreted_division_commands
 
     def get_resolved_single_context_settings(self, attribute, context_name):
@@ -567,7 +567,7 @@ class SegmentSpecification(Specification):
 
         Return selector.
         '''
-        contexts = self.context_token_to_context_names(contexts)
+        contexts = self._context_token_to_context_names(contexts)
         return selectortools.MultipleContextTimespanSelector(contexts=contexts, timespan=self.timespan)
 
     def set_aggregate(self, contexts, source, 

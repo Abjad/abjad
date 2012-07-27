@@ -28,8 +28,6 @@ Read-only Properties
 Methods
 -------
 
-.. automethod:: experimental.specificationtools.Specification.Specification.Specification.context_token_to_context_names
-
 .. automethod:: experimental.specificationtools.Specification.Specification.Specification.retrieve_attribute
 
 .. automethod:: experimental.specificationtools.Specification.Specification.Specification.retrieve_resolved_value

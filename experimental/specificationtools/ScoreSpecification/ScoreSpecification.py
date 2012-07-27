@@ -51,6 +51,18 @@ class ScoreSpecification(Specification):
     def __repr__(self):
         return '{}({!r})'.format(self._class_name, self.segment_specifications)
 
+    ### PRIVATE METHODS ###
+
+    def _find_first_unused_segment_number(self):
+        candidate_segment_number = 1
+        while True:
+            for segment_specification in self.segment_specifications:
+                if segment_specification.name == str(candidate_segment_number):
+                    candidate_segment_number += 1
+                    break
+            else:
+                return candidate_segment_number
+
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
@@ -230,7 +242,16 @@ class ScoreSpecification(Specification):
     ### PUBLIC METHODS ###
 
     def append_segment(self, name=None):
-        name = name or str(self.find_first_unused_segment_number())
+        r'''Append segment specification to score specification::
+
+            >>> score_specification.append_segment('green')
+            SegmentSpecification('green')
+
+        Assign segment `name` or first unused segment number to segment.
+
+        Return segment specification.
+        '''
+        name = name or str(self._find_first_unused_segment_number())
         assert name not in self.segment_names, repr(name)
         segment_specification = self.segment_specification_class(self.score_template, name)
         self.segment_specifications.append(segment_specification)
@@ -247,47 +268,6 @@ class ScoreSpecification(Specification):
         '''
         if attribute in self.resolved_single_context_settings[context_name]:
             del(self.resolved_single_context_settings[context_name][attribute])
-
-    def find_first_unused_segment_number(self):
-        r'''Find first unused segment number::
-
-            >>> score_specification.find_first_unused_segment_number()
-            1
-
-        Return positive integer.
-        '''
-        candidate_segment_number = 1
-        while True:
-            for segment_specification in self.segment_specifications:
-                if segment_specification.name == str(candidate_segment_number):
-                    candidate_segment_number += 1
-                    break
-            else:
-                return candidate_segment_number
-
-    def get_voice_division_list(self, voice):
-        from experimental import specificationtools
-        voice_division_list = self.contexts[voice.name].get('voice_division_list')
-        if voice_division_list is None:
-            time_signatures = self.time_signatures
-            voice_division_list = divisiontools.VoiceDivisionList(time_signatures)
-        return voice_division_list
-
-    def index(self, segment_specification):
-        r'''Segment specification to segment index.
-
-            >>> segment_specification = score_specification[0]
-            >>> segment_specification
-            SegmentSpecification('red')
-
-        ::
-
-            >>> score_specification.index(segment_specification)
-            0
-
-        Return nonnegative integer.
-        '''
-        return self.segment_specifications.index(segment_specification)
 
     def interpret(self):
         r'''Interpret score specification::
@@ -325,20 +305,15 @@ class ScoreSpecification(Specification):
         interpreter = interpretertools.ConcreteInterpreter()
         return interpreter(self)
 
-    def process_divisions_value(self, divisions_value):
-        if isinstance(divisions_value, selectortools.SingleContextDivisionSliceSelector):
-            return self.handle_division_retrieval_request(divisions_value)
-        else:
-            return divisions_value
-        
-    def resolve_attribute_retrieval_request(self, request):
+    def resolve_attribute_retrieval_request(self, attribute_retrieval_request):
         resolved_single_context_setting = \
-            self.attribute_retrieval_indicator_to_resolved_single_context_setting(request.indicator)
+            self.attribute_retrieval_indicator_to_resolved_single_context_setting(
+                attribute_retrieval_request.indicator)
         value = resolved_single_context_setting.value
         assert value is not None, repr(value)
-        if request.callback is not None:
-            value = request.callback(value)
-        result = requesttools.resolve_request_offset_and_count(request, value)
+        if attribute_retrieval_request.callback is not None:
+            value = attribute_retrieval_request.callback(value)
+        result = requesttools.resolve_request_offset_and_count(attribute_retrieval_request, value)
         return result
 
     def resolve_single_context_setting(self, single_context_setting):
@@ -420,7 +395,7 @@ class ScoreSpecification(Specification):
         Return nonnegative integer.
         '''
         segment_specification = self.segment_specifications[segment_name]
-        return self.index(segment_specification)
+        return self.segment_specifications.index(segment_specification)
 
     def segment_name_to_offsets(self, segment_name, segment_count=1):
         r'''Segment name to offsets::
@@ -438,6 +413,25 @@ class ScoreSpecification(Specification):
             start_offset_pair = self.segment_offset_pairs[start_segment_index]
             stop_offset_pair = self.segment_offset_pairs[stop_segment_index]
             return start_offset_pair[0], stop_offset_pair[1]
+
+    def store_resolved_single_context_setting(self, 
+        segment_specification, context_name, attribute, resolved_single_context_setting, 
+        clear_persistent_first=False):
+        if clear_persistent_first:
+            self.clear_persistent_resolved_single_context_settings(context_name, attribute)
+        if attribute in segment_specification.resolved_single_context_settings[context_name]:
+            segment_specification.resolved_single_context_settings[context_name][attribute].append(
+                resolved_single_context_setting)
+        else:
+            segment_specification.resolved_single_context_settings[context_name][attribute] = [
+                resolved_single_context_setting]
+        if resolved_single_context_setting.persistent:
+            if attribute in self.resolved_single_context_settings[context_name]:
+                self.resolved_single_context_settings[context_name][attribute].append(
+                    resolved_single_context_setting)
+            else:
+                self.resolved_single_context_settings[context_name][attribute] = [
+                    resolved_single_context_setting]
 
     # TODO: the really long dot-chaning here has got to go.
     #       The way to fix this is to make all selectors be able to recursively check for segment index.
@@ -466,22 +460,3 @@ class ScoreSpecification(Specification):
         for single_context_setting in single_context_settings:
             self.store_single_context_setting(
                 single_context_setting, clear_persistent_first=clear_persistent_first)
-
-    def store_resolved_single_context_setting(self, 
-        segment_specification, context_name, attribute, resolved_single_context_setting, 
-        clear_persistent_first=False):
-        if clear_persistent_first:
-            self.clear_persistent_resolved_single_context_settings(context_name, attribute)
-        if attribute in segment_specification.resolved_single_context_settings[context_name]:
-            segment_specification.resolved_single_context_settings[context_name][attribute].append(
-                resolved_single_context_setting)
-        else:
-            segment_specification.resolved_single_context_settings[context_name][attribute] = [
-                resolved_single_context_setting]
-        if resolved_single_context_setting.persistent:
-            if attribute in self.resolved_single_context_settings[context_name]:
-                self.resolved_single_context_settings[context_name][attribute].append(
-                    resolved_single_context_setting)
-            else:
-                self.resolved_single_context_settings[context_name][attribute] = [
-                    resolved_single_context_setting]

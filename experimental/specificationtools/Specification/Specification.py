@@ -41,6 +41,23 @@ class Specification(AbjadObject):
 
     ### PRIVATE METHODS ###
 
+    def _context_token_to_context_names(self, context_token):
+        if context_token is None:
+            context_names = [self.score_name] 
+        elif isinstance(context_token, type(self)):
+            context_names = [context_token.score_name]
+        elif context_token in self.context_names:
+            context_names = [context_token]
+        elif isinstance(context_token, (tuple, list)) and all([x in self.context_names for x in context_token]):
+            context_names = context_token
+        elif isinstance(context_token, contexttools.Context):
+            context_names = [context_token.name]
+        elif contexttools.all_are_contexts(context_token):
+            context_names = [context.name for context in context_token]
+        else:
+            raise ValueError('invalid context token: {!r}'.format(context_token))
+        return context_names
+
     def _initialize_context_name_abbreviations(self):
         self.context_name_abbreviations = getattr(self.score_template, 'context_name_abbreviations', {})
         for context_name_abbreviation, context_name in self.context_name_abbreviations.iteritems():
@@ -71,29 +88,11 @@ class Specification(AbjadObject):
     def score_template(self):
         return self._score_template
 
-    # TODO: change name to self.unresolved_single_context_settings
     @property
     def single_context_settings(self):
         return self._single_context_settings
 
     ### PUBLIC METHODS ###
-
-    def context_token_to_context_names(self, context_token):
-        if context_token is None:
-            context_names = [self.score_name] 
-        elif isinstance(context_token, type(self)):
-            context_names = [context_token.score_name]
-        elif context_token in self.context_names:
-            context_names = [context_token]
-        elif isinstance(context_token, (tuple, list)) and all([x in self.context_names for x in context_token]):
-            context_names = context_token
-        elif isinstance(context_token, contexttools.Context):
-            context_names = [context_token.name]
-        elif contexttools.all_are_contexts(context_token):
-            context_names = [context.name for context in context_token]
-        else:
-            raise ValueError('invalid context token: {!r}'.format(context_token))
-        return context_names
 
     def retrieve_attribute(self, attribute, segment_name, context_name=None, timespan=None):
         from experimental import specificationtools
