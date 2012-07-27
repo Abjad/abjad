@@ -5,7 +5,7 @@ from experimental.specificationtools import library
 from experimental.specificationtools import ScoreSpecification
 
 
-def test_SegmentSpecification_select_divisions_that_start_during_segment_01():
+def test_SegmentSpecification_select_divisions_01():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
     specification = ScoreSpecification(score_template)

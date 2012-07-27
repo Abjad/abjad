@@ -46,6 +46,8 @@ Methods
 
 .. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.segment_name_to_segment_offsets
 
+.. automethod:: experimental.specificationtools.ScoreSpecification.ScoreSpecification.ScoreSpecification.select_divisions
+
 Special Methods
 ---------------
 
