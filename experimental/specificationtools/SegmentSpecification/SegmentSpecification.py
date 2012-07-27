@@ -261,9 +261,6 @@ class SegmentSpecification(Specification):
     def retrieve_attribute(self, attribute, **kwargs):
         return Specification.retrieve_attribute(self, attribute, self.name, **kwargs)
 
-    def retrieve_resolved_value(self, attribute, **kwargs):
-        return Specification.retrieve_resolved_value(self, attribute, self.name, **kwargs)
-
     def select_background_measures(self, start=None, stop=None):
         '''Select the first five background measures that start during segment::
 

@@ -98,8 +98,3 @@ class Specification(AbjadObject):
         from experimental import specificationtools
         return requesttools.AttributeIndicator(
             attribute, segment_name, context_name=context_name, timespan=timespan)
-
-    def retrieve_resolved_value(self, attribute, segment_name, context_name=None, timespan=None):
-        from experimental import specificationtools
-        return requesttools.ValueIndicator(
-            attribute, segment_name, context_name=context_name, timespan=timespan)

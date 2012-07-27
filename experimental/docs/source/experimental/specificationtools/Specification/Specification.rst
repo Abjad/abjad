@@ -30,8 +30,6 @@ Methods
 
 .. automethod:: experimental.specificationtools.Specification.Specification.Specification.retrieve_attribute
 
-.. automethod:: experimental.specificationtools.Specification.Specification.Specification.retrieve_resolved_value
-
 Special Methods
 ---------------
 
