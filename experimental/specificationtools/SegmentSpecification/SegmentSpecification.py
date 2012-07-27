@@ -21,7 +21,7 @@ class SegmentSpecification(Specification):
 
     The examples below reference the following segment specification::
 
-        >>> template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
+        >>> template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
         >>> score_specification = specificationtools.ScoreSpecification(score_template=template)
         
     ::
@@ -73,7 +73,7 @@ class SegmentSpecification(Specification):
         r'''Segment specification context names::
 
             >>> segment.context_names
-            ['Voice 1']
+            ['Voice 1', 'Voice 2', 'Voice 3', 'Voice 4']
 
         Only names for which context abbreviations exist are included.
 
@@ -91,7 +91,13 @@ class SegmentSpecification(Specification):
             'Grouped Rhythmic Staves Score'
             'Grouped Rhythmic Staves Staff Group'
             'Staff 1'
+            'Staff 2'
+            'Staff 3'
+            'Staff 4'
             'Voice 1'
+            'Voice 2'
+            'Voice 3'
+            'Voice 4'
 
         Return context proxy dictionary.
         '''
@@ -129,7 +135,13 @@ class SegmentSpecification(Specification):
             'Grouped Rhythmic Staves Score'
             'Grouped Rhythmic Staves Staff Group'
             'Staff 1'
+            'Staff 2'
+            'Staff 3'
+            'Staff 4'
             'Voice 1'
+            'Voice 2'
+            'Voice 3'
+            'Voice 4'
 
         Return context proxy dictionary.
         '''
@@ -162,7 +174,7 @@ class SegmentSpecification(Specification):
         r'''Segment specification score template::
 
             >>> segment.score_template
-            GroupedRhythmicStavesScoreTemplate(staff_count=1)
+            GroupedRhythmicStavesScoreTemplate(staff_count=4)
 
         Return score template.
         '''
@@ -230,7 +242,7 @@ class SegmentSpecification(Specification):
             >>> z(segment)
             specificationtools.SegmentSpecification(
                 scoretemplatetools.GroupedRhythmicStavesScoreTemplate(
-                    staff_count=1
+                    staff_count=4
                     ),
                 'red'
                 )
@@ -590,18 +602,30 @@ class SegmentSpecification(Specification):
 
     def set_aggregate(self, contexts, source, 
         count=None, persistent=True, offset=None):
+        r'''Set aggregate of segment `contexts` to `source`.
+
+        Create, store and return ``MultipleContextSetting``.
+        '''
         attribute = 'aggregate'
         return self.set_attribute(attribute, contexts, source, 
             count=count, offset=offset, persistent=persistent)
 
     def set_articulations(self, contexts, source, 
         count=None, persistent=True, offset=None):
+        r'''Set articulations of segment `contexts` to `source`.
+
+        Create, store and return ``MultipleContextSetting``.
+        '''
         attribute = 'articulations'
         return self.set_attribute(attribute, contexts, source, 
             count=count, offset=offset, persistent=persistent)
 
     def set_attribute(self, attribute, target, source, 
         callback=None, count=None, offset=None, persistent=True, truncate=False):
+        r'''Set `attribute` for `target` from `source`.
+
+        Create, store and return ``MultipleContextSetting``.
+        '''
         assert attribute in self.attributes, repr(attribute)
         assert isinstance(count, (int, type(None))), repr(count)
         assert isinstance(persistent, type(True)), repr(persistent)
@@ -615,75 +639,129 @@ class SegmentSpecification(Specification):
 
     def set_chord_treatment(self, contexts, source, 
         count=None, persistent=True, offset=None):
+        r'''Set chord treatment of segment `contexts` to `source`.
+
+        Create, store and return ``MultipleContextSetting``.
+        '''
         attribute = 'chord_treatment'
         return self.set_attribute(attribute, contexts, source, 
             count=count, offset=offset, persistent=persistent)
 
     def set_divisions(self, contexts, source, 
         callback=None, count=None, offset=None, persistent=True, truncate=False):
+        r'''Set divisions of segment `contexts` to `source`::
+
+            >>> setting = segment.set_divisions(['Voice 1', 'Voice 3'], [(3, 16)])
+
+        ::
+
+            >>> z(setting)
+            settingtools.MultipleContextSetting(
+                selectortools.MultipleContextTimespanSelector(
+                    contexts=['Voice 1', 'Voice 3'],
+                    timespan=timespantools.SingleSourceTimespan(
+                        selector=selectortools.SegmentSelector(
+                            index='red'
+                            )
+                        )
+                    ),
+                'divisions',
+                [(3, 16)],
+                persistent=True,
+                truncate=False
+                )
+
+        Create, store and return ``MultipleContextSetting``.
+        '''
         attribute = 'divisions'
         return self.set_attribute(attribute, contexts, source, 
             callback=callback, count=count, offset=offset, persistent=persistent, truncate=truncate)
 
-    def set_duration_in_seconds(self, contexts, source, 
-        count=None, persistent=True, offset=None):
-        attribute = 'duration_in_seconds'
-        return self.set_attribute(attribute, contexts, source, 
-            count=count, offset=offset, persistent=persistent)
-
     def set_dynamics(self, contexts, source, 
         count=None, persistent=True, offset=None):
+        r'''Set dynamics of segment `contexts` to `source`.
+
+        Create, store and return ``MultipleContextSetting``.
+        '''
         attribute = 'dynamics'
         return self.set_attribute(attribute, contexts, source, 
             count=count, offset=offset, persistent=persistent)
 
     def set_marks(self, contexts, source, 
         count=None, persistent=True, offset=None):
+        r'''Set marks of segment `contexts` to `source`.
+
+        Create, store and return ``MultipleContextSetting``.
+        '''
         attribute = 'marks'
         return self.set_attribute(attribute, contexts, source, 
             count=count, offset=offset, persistent=persistent)
 
     def set_markup(self, contexts, source, 
         count=None, persistent=True, offset=None):
+        r'''Set markup of segment `contexts` to `source`.
+
+        Create, store and return ``MultipleContextSetting``.
+        '''
         attribute = 'markup'
         return self.set_attribute(attribute, contexts, source, 
             count=count, offset=offset, persistent=persistent)
 
     def set_pitch_classes(self, contexts, source, 
         count=None, persistent=True, offset=None):
+        r'''Set pitch-classes of segment `contexts` to `source`.
+
+        Create, store and return ``MultipleContextSetting``.
+        '''
         attribute = 'pitch_classes'
         return self.set_attribute(attribute, contexts, source, 
             count=count, offset=offset, persistent=persistent)
 
     def set_pitch_class_application(self, contexts, source, 
         count=None, persistent=True, offset=None):
+        r'''Set pitch-class application of segment `contexts` to `source`.
+
+        Create, store and return ``MultipleContextSetting``.
+        '''
         attribute = 'pitch_class_application'
         return self.set_attribute(attribute, contexts, source, 
             count=count, offset=offset, persistent=persistent)
 
     def set_pitch_class_transform(self, contexts, source, 
         count=None, persistent=True, offset=None):
+        r'''Set pitch-class transform of segment `contexts` to `source`.
+
+        Create, store and return ``MultipleContextSetting``.
+        '''
         attribute = 'pitch_class_transform'
         return self.set_attribute(attribute, contexts, source, 
             count=count, offset=offset, persistent=persistent)
 
-    def set_register(self, contexts, source, 
+    def set_registration(self, contexts, source, 
         count=None, persistent=True, offset=None):
-        attribute = 'register'
+        r'''Set registration of segment `contexts` to `source`.
+
+        Create, store and return ``MultipleContextSetting``.
+        '''
+        attribute = 'registration'
         return self.set_attribute(attribute, contexts, source, 
             count=count, offset=offset, persistent=persistent)
 
     def set_rhythm(self, contexts, source, 
         count=None, persistent=True, offset=None):
+        r'''Set rhythm of segment `contexts` to `source`.
+
+        Create, store and return ``MultipleContextSetting``.
+        '''
         attribute = 'rhythm'
         return self.set_attribute(attribute, contexts, source, 
             count=count, offset=offset, persistent=persistent)
 
     def set_retrograde_divisions(self, contexts, source,
         count=None, offset=None, persistent=True, truncate=True):
-        r'''.. versionadded:: 1.0
+        r'''Set divisions of segment `contexts` to retrograde `source`.
 
-        Set `contexts` divisions from `source` taken in retrograde.
+        Create, store and return ``MultipleContextSetting``.
         '''
         string = 'sequencetools.reverse_sequence'
         callback = helpertools.Callback(eval(string), string)
@@ -692,9 +770,9 @@ class SegmentSpecification(Specification):
 
     def set_rotated_divisions(self, contexts, source, n, 
         count=None, offset=None, persistent=True, truncate=True):
-        r'''.. versionadded:: 1.0
+        r'''Set divisions of segment `contexts` to `source` rotated by integer `n`.
 
-        Set `contexts` divisions from `source` rotated by integer `n`.
+        Create, store and return ``MultipleContextSetting``.
         '''
         assert isinstance(n, int), repr(n)
         string = 'lambda x: sequencetools.rotate_sequence(x, {})'.format(n)
@@ -704,12 +782,20 @@ class SegmentSpecification(Specification):
 
     def set_tempo(self, contexts, source, 
         count=None, persistent=True, offset=None):
+        r'''Set tempo of segment `contexts` to `source`.
+
+        Create, store and return ``MultipleContextSetting``.
+        '''
         attribute = 'tempo'
         return self.set_attribute(attribute, contexts, source, 
             count=count, offset=offset, persistent=persistent)
 
     def set_time_signatures(self, contexts, source, 
         count=None, persistent=True, offset=None):
+        r'''Set time signatures of segment `contexts` to `source`.
+
+        Create, store and return ``MultipleContextSetting``.
+        '''
         attribute = 'time_signatures'
         return self.set_attribute(attribute, contexts, source, 
             count=count, offset=offset, persistent=persistent)
