@@ -1,7 +1,9 @@
 from abjad.tools import *
 from experimental import divisiontools
 from experimental import helpertools
+from experimental import requesttools
 from experimental import selectortools
+from experimental import settingtools
 from experimental import timespantools
 from experimental.interpretertools.Interpreter import Interpreter
 import copy
@@ -203,6 +205,12 @@ class ConcreteInterpreter(Interpreter):
                 (durationtools.Offset(x[0]), durationtools.Offset(x[1])) for x in segment_offset_pairs]
             self.score_specification.segment_offset_pairs = segment_offset_pairs
 
+    def clear_persistent_resolved_single_context_settings(self, context_name, attribute):
+        r'''Clear persistent resolved single-context settings.
+        '''
+        if attribute in self.score_specification.resolved_single_context_settings[context_name]:
+            del(self.score_specification.resolved_single_context_settings[context_name][attribute])
+
     def conditionally_beam_rhythm_containers(self, rhythm_maker, rhythm_containers):
         if getattr(rhythm_maker, 'beam', False):
             durations = [x.preprolated_duration for x in rhythm_containers]
@@ -310,7 +318,7 @@ class ConcreteInterpreter(Interpreter):
                     assert existing_setting.target.timespan.encompasses_one_segment_exactly, repr(existing_setting)
                     setting = existing_setting.copy_to_segment(segment_specification)
                     settings.append(setting)
-            self.score_specification.store_single_context_settings(settings, clear_persistent_first=True)
+            self.store_single_context_settings(settings, clear_persistent_first=True)
 
     def interpret_rhythms(self):
         for segment_specification in self.score_specification.segment_specifications:
@@ -322,7 +330,7 @@ class ConcreteInterpreter(Interpreter):
                 for existing_setting in existing_settings:
                     setting = existing_setting.copy_to_segment(segment_specification)
                     settings.append(setting)
-            self.score_specification.store_single_context_settings(settings, clear_persistent_first=True)
+            self.store_single_context_settings(settings, clear_persistent_first=True)
 
     def interpret_time_signatures(self):
         '''For each segment:
@@ -351,7 +359,7 @@ class ConcreteInterpreter(Interpreter):
             assert setting.target.context == segment_specification.score_name, repr(setting)
             assert setting.target.timespan == segment_specification.timespan, [
                 repr(setting), '\n', repr(segment_specification.timespan)]
-            self.score_specification.store_single_context_setting(setting, clear_persistent_first=True)
+            self.store_single_context_setting(setting, clear_persistent_first=True)
 
     def make_division_region_division_lists_for_voice(self, voice):
         uninterpreted_division_commands = self.get_uninterpreted_division_commands_for_voice(voice)
@@ -423,6 +431,90 @@ class ConcreteInterpreter(Interpreter):
                 region_division_command)
             division_region_division_lists.append(division_region_division_list)
         return division_region_division_lists
+
+    # alphabetize me
+    def attribute_indicator_to_resolved_single_context_setting(self, indicator):
+        segment_specification = self.score_specification.segment_specifications[indicator.segment_name]
+        context_proxy = segment_specification.resolved_single_context_settings[indicator.context_name]
+        resolved_single_context_setting = context_proxy.get_setting(attribute=indicator.attribute)
+        return resolved_single_context_setting
+
+    def resolve_attribute_request(self, attribute_request):
+        resolved_single_context_setting = \
+            self.attribute_indicator_to_resolved_single_context_setting(
+                attribute_request.indicator)
+        value = resolved_single_context_setting.value
+        assert value is not None, repr(value)
+        if attribute_request.callback is not None:
+            value = attribute_request.callback(value)
+        result = requesttools.resolve_request_offset_and_count(attribute_request, value)
+        return result
+
+    def resolve_single_context_setting(self, single_context_setting):
+        if isinstance(single_context_setting, settingtools.ResolvedSingleContextSetting):
+            return single_context_setting
+        value = self.resolve_single_context_setting_source(single_context_setting)
+        arguments = single_context_setting._mandatory_argument_values + (value, )
+        resolved_single_context_setting = settingtools.ResolvedSingleContextSetting(*arguments,
+            persistent=single_context_setting.persistent,
+            truncate=single_context_setting.truncate,
+            fresh=single_context_setting.fresh)
+        return resolved_single_context_setting
+
+    def resolve_single_context_setting_source(self, single_context_setting):
+        if isinstance(single_context_setting.source, requesttools.AttributeRequest):
+            return self.resolve_attribute_request(single_context_setting.source)
+        elif isinstance(single_context_setting.source, requesttools.StatalServerRequest):
+            return single_context_setting.source()
+        else:
+            return single_context_setting.source
+
+    def store_resolved_single_context_setting(self,
+        segment_specification, context_name, attribute, resolved_single_context_setting,
+        clear_persistent_first=False):
+        if clear_persistent_first:
+            self.clear_persistent_resolved_single_context_settings(context_name, attribute)
+        if attribute in segment_specification.resolved_single_context_settings[context_name]:
+            segment_specification.resolved_single_context_settings[context_name][attribute].append(
+                resolved_single_context_setting)
+        else:
+            segment_specification.resolved_single_context_settings[context_name][attribute] = [
+                resolved_single_context_setting]
+        if resolved_single_context_setting.persistent:
+            if attribute in self.score_specification.resolved_single_context_settings[context_name]:
+                self.score_specification.resolved_single_context_settings[context_name][attribute].append(
+                    resolved_single_context_setting)
+            else:
+                self.score_specification.resolved_single_context_settings[context_name][attribute] = [
+                    resolved_single_context_setting]
+
+    # TODO: the really long dot-chaning here has got to go.
+    #       The way to fix this is to make all selectors be able to recursively check for segment index.
+    def store_single_context_setting(self, single_context_setting, clear_persistent_first=False):
+        '''Resolve single-context setting and find segment in which single-context setting starts.
+
+        Store resolved single-context setting in segment resolved single-context settings.
+
+        If setting persists then store setting in score resolved single-context settings, too.
+        '''
+        resolved_single_context_setting = self.resolve_single_context_setting(single_context_setting)
+        if isinstance(resolved_single_context_setting.target, selectortools.RatioSelector):
+            rsc_setting = resolved_single_context_setting
+            segment_index = rsc_setting.target.reference.timespan.selector.inequality.timespan.selector.index
+        else:
+            segment_index = resolved_single_context_setting.target.timespan.selector.index
+        segment_specification = self.score_specification.segment_specifications[segment_index]
+        context_name = resolved_single_context_setting.target.context or \
+            segment_specification.resolved_single_context_settings.score_name
+        attribute = resolved_single_context_setting.attribute
+        self.store_resolved_single_context_setting(
+            segment_specification, context_name, attribute, resolved_single_context_setting,
+            clear_persistent_first=clear_persistent_first)
+
+    def store_single_context_settings(self, single_context_settings, clear_persistent_first=False):
+        for single_context_setting in single_context_settings:
+            self.store_single_context_setting(
+                single_context_setting, clear_persistent_first=clear_persistent_first)
 
     def unpack_multiple_context_settings_for_score(self):
         for segment_specification in self.score_specification.segment_specifications:
