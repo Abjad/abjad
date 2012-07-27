@@ -205,12 +205,14 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
+   experimental/quantizationtools/ComplexSearchTree/ComplexSearchTree
    experimental/quantizationtools/GraceHandler/GraceHandler
    experimental/quantizationtools/QEvent/QEvent
    experimental/quantizationtools/QSchema/QSchema
    experimental/quantizationtools/QSchemaItem/QSchemaItem
    experimental/quantizationtools/QTarget/QTarget
    experimental/quantizationtools/Quantizer/Quantizer
+   experimental/quantizationtools/SimpleSearchTree/SimpleSearchTree
 
 .. rubric:: concrete classes
 
