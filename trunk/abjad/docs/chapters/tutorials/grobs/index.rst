@@ -1,7 +1,7 @@
 Understanding LilyPond grobs
 ============================
 
-LilyPond models music notation as a collection of *gr*aphic *ob*jects or grobs.
+LilyPond models music notation as a collection of graphic objects or grobs.
 
 Grobs control typography
 ------------------------
@@ -17,13 +17,13 @@ LilyPond grobs control the typographic details of the score:
 
    >>> f(staff)
    \new Staff {
-   	c'4 (
-   	d'4 )
-   	e'4 (
-   	f'4 )
-   	g'4 (
-   	a'4 )
-   	g'2
+       c'4 (
+       d'4 )
+       e'4 (
+       f'4 )
+       g'4 (
+       a'4 )
+       g'2
    }
 
 
@@ -55,17 +55,17 @@ You can change the appearance of LilyPond grobs with grob overrides:
 
    >>> f(staff)
    \new Staff \with {
-   	\override NoteHead #'color = #red
-   	\override StaffSymbol #'color = #blue
-   	\override Stem #'color = #red
+       \override NoteHead #'color = #red
+       \override StaffSymbol #'color = #blue
+       \override Stem #'color = #red
    } {
-   	c'4 (
-   	d'4 )
-   	e'4 (
-   	f'4 )
-   	g'4 (
-   	a'4 )
-   	g'2
+       c'4 (
+       d'4 )
+       e'4 (
+       f'4 )
+       g'4 (
+       a'4 )
+       g'2
    }
 
 
@@ -98,7 +98,7 @@ To achieve the Abjad equivalent, simply concatenate the property names with doub
    >>> staff.override.staff_grouper.staff_staff_spacing__basic_distance = 7
    >>> f(staff)
    \new Staff \with {
-   	\override StaffGrouper #'staff-staff-spacing #'basic-distance = #7
+       \override StaffGrouper #'staff-staff-spacing #'basic-distance = #7
    } {
    }
 

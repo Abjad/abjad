@@ -1,7 +1,7 @@
 Understanding LilyPond grobs
 ============================
 
-LilyPond models music notation as a collection of *gr*aphic *ob*jects or grobs.
+LilyPond models music notation as a collection of graphic objects or grobs.
 
 Grobs control typography
 ------------------------
