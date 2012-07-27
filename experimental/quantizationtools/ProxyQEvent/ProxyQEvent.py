@@ -36,7 +36,7 @@ class ProxyQEvent(abctools.AbjadObject):
         if len(args) == 2:
             q_event, offset = args[0], durationtools.Offset(args[1])
             assert isinstance(q_event, QEvent)
-            assert 0 <= args[1] <= 1
+            assert 0 <= offset <= 1
         elif len(args) == 3:
             q_event, minimum, maximum = args[0], \
                 durationtools.Offset(args[1]), \

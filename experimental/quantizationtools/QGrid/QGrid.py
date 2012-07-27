@@ -10,7 +10,7 @@ class QGrid(abctools.AbjadObject):
 
     ### CLASS ATTRIBUTES ###
 
-    __slots__ = ('_leaves', '_next_downbeat', '_offsets', '_root_node')
+    __slots__ = ('_next_downbeat', '_root_node')
 
     ### INITIALIZATION ###
 
@@ -25,8 +25,6 @@ class QGrid(abctools.AbjadObject):
 
         self._root_node = root_node
         self._next_downbeat = next_downbeat
-        self._leaves = self._root_node.leaves + (self._next_downbeat,)
-        self._offsets = tuple([x.offset for x in self.leaves[:-1]] + [durationtools.Offset(1)])
 
     ### SPECIAL METHODS ###
 
@@ -51,16 +49,56 @@ class QGrid(abctools.AbjadObject):
 
     @property
     def leaves(self):
-        return self._leaves
+        '''All of the leaf nodes in the QGrid, includeing the next downbeat's node.'''
+        return self._root_node.leaves + (self._next_downbeat,)
 
     @property
     def next_downbeat(self):
+        '''The node representing the "next" downbeat after the contents
+        of the QGrid's tree.
+        '''
         return self._next_downbeat
 
     @property
     def offsets(self):
-        return self._offsets
+        '''The offsets between 0 and 1 of all of the leaf nodes in the QGrid.'''
+        return tuple([x.offset for x in self.leaves[:-1]] + [durationtools.Offset(1)])
 
     @property
     def root_node(self):
         return self._root_node
+
+    ### PUBLIC METHODS ###
+
+    def subdivide_leaf(self, leaf, subdivisions):
+        index = leaf.parent.index(leaf)
+        container = QGridContainer(
+            leaf.duration, [
+                QGridLeaf(subdivision) for subdivision in subdivisions
+            ])
+        leaf.parent[index] = container
+        return leaf.q_events
+
+    def subdivide_leaves(self, pairs):
+        pairs = sorted(dict(pairs).items())
+        leaf_indices = [pair[0] for pair in pairs]
+        subdivisions = [pair[1] for pair in pairs]
+
+        all_leaves = self.leaves
+        leaves_to_subdivide = [all_leaves[idx] for idx in leaf_indices]
+
+        q_events = []
+        for i, leaf in enumerate(leaves_to_subdivide):
+
+            next_leaf = all_leaves[all_leaves.index(leaf) + 1]
+            if next_leaf is self.next_downbeat:
+                next_leaf_offset = durationtools.Offset(1)
+            else:
+                next_leaf_offset = next_leaf.offset
+            
+            q_events.extend(self.subdivide_leaf(leaf, subdivisions[i]))
+            for q_event in tuple(next_leaf.q_events):
+                if q_event.offset < next_leaf_offset:
+                    q_events.append(next_leaf.q_events.pop(next_leaf.q_events.index(q_event)))
+
+        return q_events
