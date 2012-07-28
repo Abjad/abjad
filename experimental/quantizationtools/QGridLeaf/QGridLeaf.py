@@ -8,19 +8,19 @@ class QGridLeaf(rhythmtreetools.RhythmTreeNode):
 
     ### CLASS ATTRIBUTES ###
 
-    __slots__ = ('_divisible', '_duration', '_offset', '_offsets_are_current',
+    __slots__ = ('_duration', '_is_divisible', '_offset', '_offsets_are_current',
         '_parent', '_q_events')
 
     ### INITIALIZER ###
 
-    def __init__(self, duration=1, q_events=None, divisible=True):
+    def __init__(self, duration=1, q_events=None, is_divisible=True):
         rhythmtreetools.RhythmTreeNode.__init__(self, duration)
         if q_events is None:
             q_events = []
         else:
             assert all([isinstance(x, QEventProxy) for x in q_events])
         self._q_events = list(q_events)
-        self._divisible = bool(divisible)
+        self._is_divisible = bool(is_divisible)
 
     ### SPECIAL METHODS ###
 
@@ -36,12 +36,12 @@ class QGridLeaf(rhythmtreetools.RhythmTreeNode):
         if type(self) == type(other):
             if self.duration == other.duration:
                 if self.q_events == other.q_events:
-                    if self._divisible == other.divisible:
+                    if self._is_divisible == other.is_divisible:
                         return True
         return False
 
     def __getnewargs__(self):
-        return (self.duration, tuple(self.q_events), self.divisible)
+        return (self.duration, tuple(self.q_events), self.is_divisible)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -56,10 +56,10 @@ class QGridLeaf(rhythmtreetools.RhythmTreeNode):
     ### READ/WRITE PUBLIC PROPERTIES ###
 
     @apply
-    def divisible():
+    def is_divisible():
         def fget(self):
             '''Flag for whether the node may be further divided under some search tree.'''
-            return self._divisible
+            return self._is_divisible
         def fset(self, arg):
-            self._divisible = bool(divisible)
+            self._is_divisible = bool(arg)
         return property(**locals())

@@ -1,5 +1,5 @@
 quantizationtools.OldSearchTree
-============================
+===============================
 
 .. inheritance-diagram:: experimental.quantizationtools.OldSearchTree.OldSearchTree.OldSearchTree
    :private-bases:

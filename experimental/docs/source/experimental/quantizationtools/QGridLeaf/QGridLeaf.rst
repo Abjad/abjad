@@ -48,11 +48,11 @@ Read-only Properties
 Read/write Properties
 ---------------------
 
-.. autoattribute:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.divisible
-
 .. autoattribute:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.duration
 
     Inherited from :py:class:`rhythmtreetools.RhythmTreeNode <abjad.tools.rhythmtreetools.RhythmTreeNode.RhythmTreeNode.RhythmTreeNode>`
+
+.. autoattribute:: experimental.quantizationtools.QGridLeaf.QGridLeaf.QGridLeaf.is_divisible
 
 Special Methods
 ---------------

@@ -9,12 +9,43 @@ quantizationtools.SimpleSearchTree
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.quantizationtools.SimpleSearchTree.SimpleSearchTree.SimpleSearchTree.default_definition
+
+    Inherited from :py:class:`SearchTree.SearchTree <experimental.quantizationtools.SearchTree.SearchTree.SearchTree>`
+
+.. autoattribute:: experimental.quantizationtools.SimpleSearchTree.SimpleSearchTree.SimpleSearchTree.definition
+
+    Inherited from :py:class:`SearchTree.SearchTree <experimental.quantizationtools.SearchTree.SearchTree.SearchTree>`
+
 .. autoattribute:: experimental.quantizationtools.SimpleSearchTree.SimpleSearchTree.SimpleSearchTree.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
+Methods
+-------
+
+.. automethod:: experimental.quantizationtools.SimpleSearchTree.SimpleSearchTree.SimpleSearchTree.find_divisible_leaf_indices
+
+    Inherited from :py:class:`SearchTree.SearchTree <experimental.quantizationtools.SearchTree.SearchTree.SearchTree>`
+
+.. automethod:: experimental.quantizationtools.SimpleSearchTree.SimpleSearchTree.SimpleSearchTree.find_leaf_subdivisions
+
+    Inherited from :py:class:`SearchTree.SearchTree <experimental.quantizationtools.SearchTree.SearchTree.SearchTree>`
+
+.. automethod:: experimental.quantizationtools.SimpleSearchTree.SimpleSearchTree.SimpleSearchTree.is_valid_definition
+
+    Inherited from :py:class:`SearchTree.SearchTree <experimental.quantizationtools.SearchTree.SearchTree.SearchTree>`
+
+.. automethod:: experimental.quantizationtools.SimpleSearchTree.SimpleSearchTree.SimpleSearchTree.make_definition_immutable
+
+    Inherited from :py:class:`SearchTree.SearchTree <experimental.quantizationtools.SearchTree.SearchTree.SearchTree>`
+
 Special Methods
 ---------------
+
+.. automethod:: experimental.quantizationtools.SimpleSearchTree.SimpleSearchTree.SimpleSearchTree.__call__
+
+    Inherited from :py:class:`SearchTree.SearchTree <experimental.quantizationtools.SearchTree.SearchTree.SearchTree>`
 
 .. automethod:: experimental.quantizationtools.SimpleSearchTree.SimpleSearchTree.SimpleSearchTree.__delattr__
 

@@ -1,5 +1,5 @@
-from abjad.tools import abctools
+from experimental.quantizationtools.SearchTree import SearchTree
 
 
-class SimpleSearchTree(abctools.AbjadObject):
+class SimpleSearchTree(SearchTree):
     pass
