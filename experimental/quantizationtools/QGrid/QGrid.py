@@ -17,8 +17,8 @@ class QGrid(abctools.AbjadObject):
 
     def __init__(self, root_node=None, next_downbeat=None):
         if root_node is None:
-            root_node = QGridContainer(1, [QGridLeaf(1)])
-        assert isinstance(root_node, QGridContainer)
+            root_node = QGridLeaf(1)
+        assert isinstance(root_node, (QGridLeaf, QGridContainer))
 
         if next_downbeat is None:
             next_downbeat = QGridLeaf(1)
@@ -51,6 +51,8 @@ class QGrid(abctools.AbjadObject):
     @property
     def leaves(self):
         '''All of the leaf nodes in the QGrid, includeing the next downbeat's node.'''
+        if isinstance(self._root_node, QGridLeaf):
+            return (self._root_node, self._next_downbeat)
         return self._root_node.leaves + (self._next_downbeat,)
 
     @property
@@ -100,12 +102,15 @@ class QGrid(abctools.AbjadObject):
                     leaves[idx - 1].q_events.append(q_event)
 
     def subdivide_leaf(self, leaf, subdivisions):
-        index = leaf.parent.index(leaf)
         container = QGridContainer(
             leaf.duration, [
                 QGridLeaf(subdivision) for subdivision in subdivisions
             ])
-        leaf.parent[index] = container
+        if leaf.parent is not None:
+            index = leaf.parent.index(leaf)
+            leaf.parent[index] = container
+        else: # otherwise, our root node is just a QGridLeaf
+            self._root_node = container
         return leaf.q_events
 
     def subdivide_leaves(self, pairs):
