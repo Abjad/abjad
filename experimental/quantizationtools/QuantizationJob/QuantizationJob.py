@@ -1,12 +1,12 @@
 from abjad.tools import abctools
 from experimental.quantizationtools.QEventProxy import QEventProxy
-from experimental.quantizationtools.SearchTree import SearchTree
+from experimental.quantizationtools.OldSearchTree import OldSearchTree
 from experimental.quantizationtools.QGrid import QGrid
 
 
 class QuantizationJob(abctools.AbjadObject):
     '''A copible, picklable class for generating all QGrids which are valid
-    under a given SearchTree for a sequence of QEventProxies.
+    under a given OldSearchTree for a sequence of QEventProxies.
 
     QuantizationJob is intended to be useful in multiprocessing-enabled environments.
     '''
@@ -18,7 +18,7 @@ class QuantizationJob(abctools.AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self, job_id, search_tree, q_event_proxies, q_grids=None):
-        assert isinstance(search_tree, SearchTree)
+        assert isinstance(search_tree, OldSearchTree)
         assert all([isinstance(x, QEventProxy) for x in q_event_proxies])
         self._job_id = job_id
         self._search_tree = search_tree

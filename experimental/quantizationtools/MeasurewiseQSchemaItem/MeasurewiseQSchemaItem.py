@@ -1,7 +1,7 @@
 from abjad.tools import contexttools
 from abjad.tools import durationtools
 from experimental.quantizationtools.QSchemaItem import QSchemaItem
-from experimental.quantizationtools.SearchTree import SearchTree
+from experimental.quantizationtools.OldSearchTree import OldSearchTree
 
 
 class MeasurewiseQSchemaItem(QSchemaItem):
@@ -59,7 +59,7 @@ class MeasurewiseQSchemaItem(QSchemaItem):
     def __new__(klass, search_tree=None, tempo=None, time_signature=None, use_full_measure=None):
         
         if search_tree is not None:
-            search_tree = SearchTree(search_tree)
+            search_tree = OldSearchTree(search_tree)
 
         if tempo is not None:
             tempo = contexttools.TempoMark(tempo)
@@ -92,7 +92,7 @@ class MeasurewiseQSchemaItem(QSchemaItem):
     def search_tree(self):
         '''The optionally defined search tree.
 
-        Return `SearchTree` or `None`.
+        Return `OldSearchTree` or `None`.
         '''
         return self[0]
 

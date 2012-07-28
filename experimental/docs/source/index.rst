@@ -234,7 +234,7 @@ Unstable packages (load manually)
    experimental/quantizationtools/QTargetBeat/QTargetBeat
    experimental/quantizationtools/QTargetMeasure/QTargetMeasure
    experimental/quantizationtools/QuantizationJob/QuantizationJob
-   experimental/quantizationtools/SearchTree/SearchTree
+   experimental/quantizationtools/OldSearchTree/OldSearchTree
    experimental/quantizationtools/SilentQEvent/SilentQEvent
    experimental/quantizationtools/TerminalQEvent/TerminalQEvent
 

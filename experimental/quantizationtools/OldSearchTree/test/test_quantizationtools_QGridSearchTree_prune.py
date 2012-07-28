@@ -1,13 +1,13 @@
 from fractions import Fraction
 from abjad.tools.contexttools import TempoMark
-from experimental.quantizationtools import SearchTree
+from experimental.quantizationtools import OldSearchTree
 
 
 def test_quantizationtools_QGridSearchTree_prune_01():
 
     beatspan = Fraction(1, 4)
     tempo = TempoMark((1, 4), 60)
-    qst = SearchTree({2: {2: {2: {2: {2: {2: None}}}}}})
+    qst = OldSearchTree({2: {2: {2: {2: {2: {2: None}}}}}})
 
     assert qst.prune(beatspan, tempo, 10) == {2: {2: {2: {2: {2: {2: None}}}}}}
     assert qst.prune(beatspan, tempo, 20) == {2: {2: {2: {2: {2: None}}}}}
