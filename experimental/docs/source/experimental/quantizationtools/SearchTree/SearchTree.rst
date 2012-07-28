@@ -1,0 +1,78 @@
+quantizationtools.SearchTree
+============================
+
+.. inheritance-diagram:: experimental.quantizationtools.SearchTree.SearchTree.SearchTree
+   :private-bases:
+
+.. autoclass:: experimental.quantizationtools.SearchTree.SearchTree.SearchTree
+
+Read-only Properties
+--------------------
+
+.. autoattribute:: experimental.quantizationtools.SearchTree.SearchTree.SearchTree.default_definition
+
+.. autoattribute:: experimental.quantizationtools.SearchTree.SearchTree.SearchTree.definition
+
+.. autoattribute:: experimental.quantizationtools.SearchTree.SearchTree.SearchTree.storage_format
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+Methods
+-------
+
+.. automethod:: experimental.quantizationtools.SearchTree.SearchTree.SearchTree.find_divisible_leaf_indices
+
+.. automethod:: experimental.quantizationtools.SearchTree.SearchTree.SearchTree.find_leaf_subdivisions
+
+.. automethod:: experimental.quantizationtools.SearchTree.SearchTree.SearchTree.is_valid_definition
+
+.. automethod:: experimental.quantizationtools.SearchTree.SearchTree.SearchTree.make_definition_immutable
+
+Special Methods
+---------------
+
+.. automethod:: experimental.quantizationtools.SearchTree.SearchTree.SearchTree.__call__
+
+.. automethod:: experimental.quantizationtools.SearchTree.SearchTree.SearchTree.__delattr__
+
+    Inherited from :py:class:`__builtin__.object`
+
+.. automethod:: experimental.quantizationtools.SearchTree.SearchTree.SearchTree.__eq__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.quantizationtools.SearchTree.SearchTree.SearchTree.__ge__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.quantizationtools.SearchTree.SearchTree.SearchTree.__gt__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.quantizationtools.SearchTree.SearchTree.SearchTree.__hash__
+
+    Inherited from :py:class:`__builtin__.object`
+
+.. automethod:: experimental.quantizationtools.SearchTree.SearchTree.SearchTree.__le__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.quantizationtools.SearchTree.SearchTree.SearchTree.__lt__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.quantizationtools.SearchTree.SearchTree.SearchTree.__ne__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.quantizationtools.SearchTree.SearchTree.SearchTree.__repr__
+
+    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+
+.. automethod:: experimental.quantizationtools.SearchTree.SearchTree.SearchTree.__setattr__
+
+    Inherited from :py:class:`__builtin__.object`
+
+.. automethod:: experimental.quantizationtools.SearchTree.SearchTree.SearchTree.__str__
+
+    Inherited from :py:class:`__builtin__.object`
