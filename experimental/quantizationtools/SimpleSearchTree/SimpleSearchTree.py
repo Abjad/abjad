@@ -40,8 +40,8 @@ class SimpleSearchTree(SearchTree):
 
     ### PUBLIC METHODS ###
 
-    def find_leaf_subdivisions(self, leaf):
-        parentage = [x[1] for x in leaf.parentage_rations[1:]]
+    def find_leaf_subdivisions(self, parentage_ratios):
+        parentage = [x[1] for x in parentage_ratios[1:]]
         node = self._definition[parentage[0]]
         for item in parentage[1:]:
             node = node[item]
