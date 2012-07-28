@@ -24,7 +24,7 @@ Read-only Properties
 Methods
 -------
 
-.. automethod:: experimental.quantizationtools.ComplexSearchTree.ComplexSearchTree.ComplexSearchTree.find_divisible_leaf_indices
+.. automethod:: experimental.quantizationtools.ComplexSearchTree.ComplexSearchTree.ComplexSearchTree.find_divisible_leaf_indices_and_subdivisions
 
     Inherited from :py:class:`SearchTree.SearchTree <experimental.quantizationtools.SearchTree.SearchTree.SearchTree>`
 
@@ -33,10 +33,6 @@ Methods
     Inherited from :py:class:`SearchTree.SearchTree <experimental.quantizationtools.SearchTree.SearchTree.SearchTree>`
 
 .. automethod:: experimental.quantizationtools.ComplexSearchTree.ComplexSearchTree.ComplexSearchTree.is_valid_definition
-
-    Inherited from :py:class:`SearchTree.SearchTree <experimental.quantizationtools.SearchTree.SearchTree.SearchTree>`
-
-.. automethod:: experimental.quantizationtools.ComplexSearchTree.ComplexSearchTree.ComplexSearchTree.make_definition_immutable
 
     Inherited from :py:class:`SearchTree.SearchTree <experimental.quantizationtools.SearchTree.SearchTree.SearchTree>`
 
@@ -53,7 +49,7 @@ Special Methods
 
 .. automethod:: experimental.quantizationtools.ComplexSearchTree.ComplexSearchTree.ComplexSearchTree.__eq__
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`SearchTree.SearchTree <experimental.quantizationtools.SearchTree.SearchTree.SearchTree>`
 
 .. automethod:: experimental.quantizationtools.ComplexSearchTree.ComplexSearchTree.ComplexSearchTree.__ge__
 

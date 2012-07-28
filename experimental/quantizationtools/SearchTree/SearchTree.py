@@ -3,6 +3,7 @@ from abjad.tools import abctools
 from abjad.tools import datastructuretools
 from abjad.tools import sequencetools
 from experimental.quantizationtools import QGrid
+import copy
 
 
 class SearchTree(abctools.AbjadObject):
@@ -18,21 +19,28 @@ class SearchTree(abctools.AbjadObject):
             definition = self.default_definition
         else:
             assert self.is_valid_definition(definition)
-        self._definition = self.make_definition_immutable(definition)
+        self._definition = definition
 
     ### SPECIAL METHODS ###
 
     def __call__(self, q_grid):
         assert isinstance(q_grid, QGrid)
-        leaves = q_grid.leaves[:-1]
-        indices = self.find_divisible_leaf_indices(leaves)
-        subdivisions = [self.find_leaf_subdivisions(leaves[i]) for i in indices]
+        indices, subdivisions = self.find_divisible_leaf_indices_and_subdivisions(q_grid)
         combinations = [x for x in sequencetools.yield_outer_product_of_sequences(subdivisions)]
         new_q_grids = []
         for combo in combinations:
             zipped = zip(indices, combo)
-            q_events = q_grid.subdivide_leaves(zipped)
+            q_events = copy.copy(q_grid).subdivide_leaves(zipped)
         return new_q_grids, q_events
+
+    def __eq__(self, other):
+        if type(self) == type(other):
+            if self.definition == other.definition:
+                return True
+        return False
+
+    def __getnewargs__(self):
+        return self.definition
 
     ### READ-ONLY PUBLIC ATTRIBUTES ###
 
@@ -42,16 +50,19 @@ class SearchTree(abctools.AbjadObject):
 
     @property
     def definition(self):
-        return self._definition
+        return copy.deepcopy(self._definition)
 
     ### PUBLIC METHODS ###
 
-    def find_divisible_leaf_indices(self, leaves):
-        indices = []
-        for i, leaf in enumerate(leaves):
-            if leaf.is_divisible and len(leaf.q_events):
-                indices.append(i)
-        return indices
+    def find_divisible_leaf_indices_and_subdivisions(self, q_grid):
+        indices, subdivisions = [], []
+        for i, leaf in enumerate(q_grid.leaves[:-1]):
+            if leaf.q_events and leaf.is_divisible:
+                leaf_subdivisions = self.find_leaf_subdivisions(leaf)
+                if leaf_subdivisions:
+                    indices.append(i)
+                    subdivisions.append(leaf_subdivisions)
+        return indices, subdivisions
 
     @abstractmethod
     def find_leaf_subdivisions(self, leaf):
@@ -60,7 +71,3 @@ class SearchTree(abctools.AbjadObject):
     @abstractmethod
     def is_valid_definition(self, definition):
         raise NotImplemented
-
-    def make_definition_immutable(self, definition):
-        pass
-        

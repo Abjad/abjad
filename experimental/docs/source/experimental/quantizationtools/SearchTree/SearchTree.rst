@@ -20,13 +20,11 @@ Read-only Properties
 Methods
 -------
 
-.. automethod:: experimental.quantizationtools.SearchTree.SearchTree.SearchTree.find_divisible_leaf_indices
+.. automethod:: experimental.quantizationtools.SearchTree.SearchTree.SearchTree.find_divisible_leaf_indices_and_subdivisions
 
 .. automethod:: experimental.quantizationtools.SearchTree.SearchTree.SearchTree.find_leaf_subdivisions
 
 .. automethod:: experimental.quantizationtools.SearchTree.SearchTree.SearchTree.is_valid_definition
-
-.. automethod:: experimental.quantizationtools.SearchTree.SearchTree.SearchTree.make_definition_immutable
 
 Special Methods
 ---------------
@@ -38,8 +36,6 @@ Special Methods
     Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.quantizationtools.SearchTree.SearchTree.SearchTree.__eq__
-
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
 
 .. automethod:: experimental.quantizationtools.SearchTree.SearchTree.SearchTree.__ge__
 

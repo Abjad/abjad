@@ -213,7 +213,6 @@ Unstable packages (load manually)
    experimental/quantizationtools/QTarget/QTarget
    experimental/quantizationtools/Quantizer/Quantizer
    experimental/quantizationtools/SearchTree/SearchTree
-   experimental/quantizationtools/SimpleSearchTree/SimpleSearchTree
 
 .. rubric:: concrete classes
 
@@ -237,6 +236,7 @@ Unstable packages (load manually)
    experimental/quantizationtools/QTargetMeasure/QTargetMeasure
    experimental/quantizationtools/QuantizationJob/QuantizationJob
    experimental/quantizationtools/SilentQEvent/SilentQEvent
+   experimental/quantizationtools/SimpleSearchTree/SimpleSearchTree
    experimental/quantizationtools/TerminalQEvent/TerminalQEvent
 
 .. rubric:: functions
