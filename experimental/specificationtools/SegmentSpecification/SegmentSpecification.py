@@ -597,6 +597,9 @@ class SegmentSpecification(Specification):
             selector = selectortools.DurationRatioItemSelector(selector, ratio, index=index)
         return selector
 
+    def select_ratio_of_segment_duration(self):
+        raise NotImplementedError('IMPLEMENT NEXT')
+
     def select_timespan(self, contexts=None):
         '''Select contexts::
 
