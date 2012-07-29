@@ -461,7 +461,7 @@ class SegmentSpecification(Specification):
             start=start, stop=stop)
         return selector
 
-    def select_ratio_of_background_measures(self, ratio, index=0, count=True):
+    def select_ratio_of_background_measures(self, ratio, index=0, is_count=True):
         r'''Select the first third of background measures starting during segment::
 
             >>> selector = segment.select_ratio_of_background_measures((1, 1, 1), 0)
@@ -487,13 +487,13 @@ class SegmentSpecification(Specification):
         Return selector.
         '''
         selector = self.select_background_measures()
-        if count:
+        if is_count:
             selector = selectortools.CountRatioItemSelector(selector, ratio, index=index)
         else:
             selector = selectortools.DurationRatioItemSelector(selector, ratio, index=index)
         return selector
 
-    def select_ratio_of_divisions(self, ratio, index, contexts=None, count=True):
+    def select_ratio_of_divisions(self, ratio, index, contexts=None, is_count=True):
         r'''Select the first third of divisions starting during segment::
 
             >>> selector = segment.select_ratio_of_divisions((1, 1, 1), 0, contexts=['Voice 1', 'Voice 3'])
@@ -520,13 +520,13 @@ class SegmentSpecification(Specification):
         Return selector.
         '''
         selector = self.select_divisions(contexts=contexts)
-        if count:
+        if is_count:
             selector = selectortools.CountRatioItemSelector(selector, ratio, index=index)
         else:
             selector = selectortools.DurationRatioItemSelector(selector, ratio, index=index)
         return selector
 
-    def select_ratio_of_leaves(self, ratio, index, contexts=None, count=True):
+    def select_ratio_of_leaves(self, ratio, index, contexts=None, is_count=True):
         r'''Select the first third of leaves starting during segment::
 
             >>> selector = segment.select_ratio_of_leaves((1, 1, 1), 0, contexts=['Voice 1', 'Voice 3'])
@@ -554,13 +554,13 @@ class SegmentSpecification(Specification):
         Return selector.
         '''
         selector = self.select_leaves(contexts=contexts)
-        if count:
+        if is_count:
             selector = selectortools.CountRatioItemSelector(selector, ratio, index=index)
         else:
             selector = selectortools.DurationRatioItemSelector(selector, ratio, index=index)
         return selector
 
-    def select_ratio_of_notes_and_chords(self, ratio, index, contexts=None, count=True):
+    def select_ratio_of_notes_and_chords(self, ratio, index, contexts=None, is_count=True):
         r'''Select the first third of notes and chords starting during segment::
 
             >>> selector = segment.select_ratio_of_notes_and_chords((1, 1, 1), 0, contexts=['Voice 1', 'Voice 3'])
@@ -591,7 +591,7 @@ class SegmentSpecification(Specification):
         Return selector.
         '''
         selector = self.select_notes_and_chords(contexts=contexts)
-        if count:
+        if is_count:
             selector = selectortools.CountRatioItemSelector(selector, ratio, index=index)
         else:
             selector = selectortools.DurationRatioItemSelector(selector, ratio, index=index)
@@ -678,6 +678,19 @@ class SegmentSpecification(Specification):
         attribute = 'divisions'
         return self._set_attribute(attribute, contexts, source, 
             callback=callback, count=count, offset=offset, persistent=persistent, truncate=truncate)
+
+    def set_divisions_new(self, source, timespan=None, contexts=None,
+        callback=None, count=None, offset=None, persist=True, truncate=False):
+        r'''New and improved division-setting method.
+
+        Create, store and return ``MultipleContextSetting``.
+        '''
+        return self._set_attribute_new(
+            'divisions',
+            timespan=timespan, contexts=contexts,
+            callback=callback, count=count, offset=offset,
+            persistent=persistent, truncate=truncate,
+            )
 
     def set_dynamics(self, contexts, source, 
         count=None, persistent=True, offset=None):
