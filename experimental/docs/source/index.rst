@@ -316,6 +316,13 @@ Unstable packages (load manually)
    experimental/selectortools/SingleContextDivisionSliceSelector/SingleContextDivisionSliceSelector
    experimental/selectortools/SingleContextTimespanSelector/SingleContextTimespanSelector
 
+.. rubric:: functions
+
+.. toctree::
+   :maxdepth: 1
+
+   experimental/selectortools/selector_to_segment_index
+
 :py:mod:`settingtools <experimental.settingtools>`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

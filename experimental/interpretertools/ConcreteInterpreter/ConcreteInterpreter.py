@@ -382,7 +382,6 @@ class ConcreteInterpreter(Interpreter):
                 existing_settings = self.score_specification.resolved_single_context_settings.get_settings(
                     attribute='divisions')
                 for existing_setting in existing_settings:
-                    assert existing_setting.target.timespan.encompasses_one_segment_exactly, repr(existing_setting)
                     setting = existing_setting.copy_to_segment(segment_specification)
                     settings.append(setting)
             self.store_single_context_settings(settings, clear_persistent_first=True)
@@ -593,33 +592,7 @@ class ConcreteInterpreter(Interpreter):
         '''
         resolved_single_context_setting = self.resolve_single_context_setting(single_context_setting)
         rsc_setting = resolved_single_context_setting
-        if isinstance(rsc_setting.target, selectortools.RatioSelector):
-            rsc_setting = rsc_setting
-            segment_index = rsc_setting.target.reference.timespan.selector.inequality.timespan.selector.index
-        elif isinstance(rsc_setting.target, selectortools.SingleContextTimespanSelector):
-            if isinstance(
-                rsc_setting.target.timespan.selector, selectortools.SegmentSelector):
-                segment_index = rsc_setting.target.timespan.selector.index
-            elif isinstance(
-                rsc_setting.target.timespan.selector, selectortools.BackgroundMeasureSliceSelector):
-                if isinstance(
-                    rsc_setting.target.timespan.selector.inequality.timespan.selector,
-                    selectortools.SegmentSelector):
-                    segment_index = rsc_setting.target.timespan.selector.inequality.timespan.selector.index
-                else:
-                    raise NotImplementedError(rsc_setting.target.timespan.selector.inequality.timespan.selector)
-            elif isinstance(
-                rsc_setting.target.timespan.selector, selectortools.DurationRatioItemSelector):
-                if isinstance(
-                    rsc_setting.target.timespan.selector.reference.selector,
-                    selectortools.SegmentSelector):
-                    segment_index = rsc_setting.target.timespan.selector.reference.selector.index    
-                else:
-                    raise NotImplementedError(rsc_setting.target.timespan.selector.reference.selector)
-            else:
-                raise NotImplementedError(rsc_setting.target.timespan.selector)
-        else:
-            raise NotImplementedError('implement for {!r}.'.format(rsc_setting.target))
+        segment_index = selectortools.selector_to_segment_index(rsc_setting)
         segment_specification = self.score_specification.segment_specifications[segment_index]
         context_name = resolved_single_context_setting.target.context or \
             segment_specification.resolved_single_context_settings.score_name

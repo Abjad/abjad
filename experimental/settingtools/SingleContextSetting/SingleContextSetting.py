@@ -94,9 +94,10 @@ class SingleContextSetting(MultipleContextSetting):
     ### PUBLIC METHODS ###
 
     def copy_to_segment(self, segment):
-        '''Only works when target timespan encompasses one segment exactly.
+        '''Create new setting. Set new setting target to timespan of `segment`.
+        Set new setting `fresh` to false.
 
-        Create new setting. Set new setting `fresh` to false.
+        Only works when self encompasses one segment exactly.
 
         Return new setting.
         '''
@@ -107,7 +108,9 @@ class SingleContextSetting(MultipleContextSetting):
         return new
 
     def set_to_segment(self, segment):
-        '''Only works when target timespan encompasses one segment exactly.
+        '''Set target of self to timespan of entire `segment`.
+
+        Only works when self encompasses one segment exactly.
 
         Return none.
         '''
@@ -116,8 +119,4 @@ class SingleContextSetting(MultipleContextSetting):
         assert self.target.timespan.encompasses_one_segment_exactly, repr(self)
         segment_name = helpertools.expr_to_segment_name(segment)
         segment_selector = selectortools.SegmentSelector(index=segment_name)
-        #self._debug(segment)
-        #self._debug(segment_selector)
-        #self.target.timespan.start.anchor._segment = segment
-        #self.target.timespan.stop.anchor._segment = segment
         self.target._timespan = segment_selector.timespan
