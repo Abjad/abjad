@@ -18,8 +18,8 @@ def test_SegmentSpecification_get_timespan_from_measures_01():
 
     first_measure = segment.select_background_measures(stop=1).timespan
     second_measure = segment.select_background_measures(start=-1).timespan
-    first_half = segment.select_ratio_of_segment_duration((1, 1), 0).timespan
-    second_half = segment.select_ratio_of_segment_duration((1, 1), 1).timespan
+    first_half = segment.select_segment_duration_ratio_item((1, 1), 0).timespan
+    second_half = segment.select_segment_duration_ratio_item((1, 1), 1).timespan
 
     segment.set_divisions_new([(3, 16)], timespan=first_measure, contexts=['Voice 1'])
     segment.set_divisions_new([(5, 16)], timespan=second_measure, contexts=['Voice 1'])
