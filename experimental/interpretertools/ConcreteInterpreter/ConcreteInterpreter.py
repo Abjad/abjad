@@ -516,11 +516,8 @@ class ConcreteInterpreter(Interpreter):
     def resolve_attribute_request(self, attribute_request):
         from experimental import requesttools
         assert isinstance(attribute_request, requesttools.AttributeRequest), repr(attribute_request)
-#        resolved_single_context_setting = \
-#            self.attribute_indicator_to_resolved_single_context_setting(
-#                attribute_request.indicator)
-        resolved_single_context_setting = \
-            self.attribute_request_to_resolved_single_context_setting(attribute_request)
+        resolved_single_context_setting = self.attribute_request_to_resolved_single_context_setting(
+            attribute_request)
         value = resolved_single_context_setting.value
         assert value is not None, repr(value)
         if attribute_request.callback is not None:

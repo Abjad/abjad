@@ -310,7 +310,6 @@ class SegmentSpecification(Specification):
 
         Return attribute request.
         '''
-        #return requesttools.AttributeIndicator('time_signatures', self.segment_name, context_name=context_name)
         return requesttools.AttributeRequest('time_signatures', self.segment_name, context_name=context_name)
 
     def select_background_measures(self, start=None, stop=None):

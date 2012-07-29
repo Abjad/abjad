@@ -24,7 +24,8 @@ def request_source_to_request(source, callback=None, count=None, offset=None):
 
     If `source` is a constant then return `source` unchanged.
 
-    If `source` is already a request then return `source` unchanged.
+    If `source` is already a request then set `callback`, `count` or `offset`
+    against `source` (if any are nonnone) and return `source`.
     '''
     from experimental import handlertools
     from experimental import requesttools
@@ -50,10 +51,6 @@ def request_source_to_request(source, callback=None, count=None, offset=None):
         if offset is not None:
             assert count is None
             request = requesttools.HandlerRequest(source, offset=offset)
-#    elif isinstance(source, requesttools.AttributeIndicator):
-#        if any([x is not None for x in (callback, count, offset)]):
-#            request = requesttools.AttributeRequest(
-#                source, callback=callback, count=count, offset=offset)
     elif isinstance(source, selectortools.SingleContextDivisionSliceSelector):
         if any([x is not None for x in (callback, count, offset)]):
             request = copy.copy(source)
