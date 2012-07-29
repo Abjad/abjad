@@ -70,8 +70,6 @@ Methods
 
 .. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.set_articulations
 
-.. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.set_attribute
-
 .. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.set_chord_treatment
 
 .. automethod:: experimental.specificationtools.SegmentSpecification.SegmentSpecification.SegmentSpecification.set_divisions

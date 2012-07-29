@@ -58,13 +58,33 @@ class SegmentSpecification(Specification):
 
     ### PRIVATE METHODS ###
 
-    def _setting_target_to_selector(self, setting_target):
-        if isinstance(setting_target, (str, list, type(self))):
-            selector = self.select_timespan(contexts=setting_target)
-        else:
-            selector = setting_target
-        assert isinstance(selector, selectortools.Selector)
-        return selector
+    def _expr_to_selector(self, expr):
+        r'''Return `expr` when `expr` is already a selector.
+        Otherwise assume `expr` to be contexts and create and 
+        return a multiple-context timespan selector.
+        '''
+        if isinstance(expr, selectortools.Selector):
+            return expr
+        elif isinstance(expr, (str, list, type(self))):
+            return self.select_timespan(contexts=expr)
+
+    def _set_attribute(self, attribute, target, source, 
+        callback=None, count=None, offset=None, persistent=True, truncate=False):
+        r'''Generalized method to create ``MultipleContextSetting`` objects.
+        Select `attribute` from `source` and set on `target`.
+        All other set methods call this method.
+        Create, store and return ``MultipleContextSetting``.
+        '''
+        assert attribute in self.attributes, repr(attribute)
+        assert isinstance(count, (int, type(None))), repr(count)
+        assert isinstance(persistent, type(True)), repr(persistent)
+        assert isinstance(truncate, type(True)), repr(truncate)
+        target = self._expr_to_selector(target)
+        source = requesttools.request_source_to_request(source, callback=callback, count=count, offset=offset)
+        multiple_context_setting = settingtools.MultipleContextSetting(target, attribute, source, 
+            persistent=persistent, truncate=truncate)
+        self.multiple_context_settings.append(multiple_context_setting)
+        return multiple_context_setting
 
     ### READ-ONLY PUBLIC ATTRIBUTES ###
 
@@ -607,7 +627,7 @@ class SegmentSpecification(Specification):
         Create, store and return ``MultipleContextSetting``.
         '''
         attribute = 'aggregate'
-        return self.set_attribute(attribute, contexts, source, 
+        return self._set_attribute(attribute, contexts, source, 
             count=count, offset=offset, persistent=persistent)
 
     def set_articulations(self, contexts, source, 
@@ -617,25 +637,8 @@ class SegmentSpecification(Specification):
         Create, store and return ``MultipleContextSetting``.
         '''
         attribute = 'articulations'
-        return self.set_attribute(attribute, contexts, source, 
+        return self._set_attribute(attribute, contexts, source, 
             count=count, offset=offset, persistent=persistent)
-
-    def set_attribute(self, attribute, target, source, 
-        callback=None, count=None, offset=None, persistent=True, truncate=False):
-        r'''Set `attribute` for `target` from `source`.
-
-        Create, store and return ``MultipleContextSetting``.
-        '''
-        assert attribute in self.attributes, repr(attribute)
-        assert isinstance(count, (int, type(None))), repr(count)
-        assert isinstance(persistent, type(True)), repr(persistent)
-        assert isinstance(truncate, type(True)), repr(truncate)
-        target = self._setting_target_to_selector(target)
-        source = requesttools.request_source_to_request(source, callback=callback, count=count, offset=offset)
-        multiple_context_setting = settingtools.MultipleContextSetting(target, attribute, source, 
-            persistent=persistent, truncate=truncate)
-        self.multiple_context_settings.append(multiple_context_setting)
-        return multiple_context_setting
 
     def set_chord_treatment(self, contexts, source, 
         count=None, persistent=True, offset=None):
@@ -644,7 +647,7 @@ class SegmentSpecification(Specification):
         Create, store and return ``MultipleContextSetting``.
         '''
         attribute = 'chord_treatment'
-        return self.set_attribute(attribute, contexts, source, 
+        return self._set_attribute(attribute, contexts, source, 
             count=count, offset=offset, persistent=persistent)
 
     def set_divisions(self, contexts, source, 
@@ -674,7 +677,7 @@ class SegmentSpecification(Specification):
         Create, store and return ``MultipleContextSetting``.
         '''
         attribute = 'divisions'
-        return self.set_attribute(attribute, contexts, source, 
+        return self._set_attribute(attribute, contexts, source, 
             callback=callback, count=count, offset=offset, persistent=persistent, truncate=truncate)
 
     def set_dynamics(self, contexts, source, 
@@ -684,7 +687,7 @@ class SegmentSpecification(Specification):
         Create, store and return ``MultipleContextSetting``.
         '''
         attribute = 'dynamics'
-        return self.set_attribute(attribute, contexts, source, 
+        return self._set_attribute(attribute, contexts, source, 
             count=count, offset=offset, persistent=persistent)
 
     def set_marks(self, contexts, source, 
@@ -694,7 +697,7 @@ class SegmentSpecification(Specification):
         Create, store and return ``MultipleContextSetting``.
         '''
         attribute = 'marks'
-        return self.set_attribute(attribute, contexts, source, 
+        return self._set_attribute(attribute, contexts, source, 
             count=count, offset=offset, persistent=persistent)
 
     def set_markup(self, contexts, source, 
@@ -704,7 +707,7 @@ class SegmentSpecification(Specification):
         Create, store and return ``MultipleContextSetting``.
         '''
         attribute = 'markup'
-        return self.set_attribute(attribute, contexts, source, 
+        return self._set_attribute(attribute, contexts, source, 
             count=count, offset=offset, persistent=persistent)
 
     def set_pitch_classes(self, contexts, source, 
@@ -714,7 +717,7 @@ class SegmentSpecification(Specification):
         Create, store and return ``MultipleContextSetting``.
         '''
         attribute = 'pitch_classes'
-        return self.set_attribute(attribute, contexts, source, 
+        return self._set_attribute(attribute, contexts, source, 
             count=count, offset=offset, persistent=persistent)
 
     def set_pitch_class_application(self, contexts, source, 
@@ -724,7 +727,7 @@ class SegmentSpecification(Specification):
         Create, store and return ``MultipleContextSetting``.
         '''
         attribute = 'pitch_class_application'
-        return self.set_attribute(attribute, contexts, source, 
+        return self._set_attribute(attribute, contexts, source, 
             count=count, offset=offset, persistent=persistent)
 
     def set_pitch_class_transform(self, contexts, source, 
@@ -734,7 +737,7 @@ class SegmentSpecification(Specification):
         Create, store and return ``MultipleContextSetting``.
         '''
         attribute = 'pitch_class_transform'
-        return self.set_attribute(attribute, contexts, source, 
+        return self._set_attribute(attribute, contexts, source, 
             count=count, offset=offset, persistent=persistent)
 
     def set_registration(self, contexts, source, 
@@ -744,7 +747,7 @@ class SegmentSpecification(Specification):
         Create, store and return ``MultipleContextSetting``.
         '''
         attribute = 'registration'
-        return self.set_attribute(attribute, contexts, source, 
+        return self._set_attribute(attribute, contexts, source, 
             count=count, offset=offset, persistent=persistent)
 
     def set_rhythm(self, contexts, source, 
@@ -754,7 +757,7 @@ class SegmentSpecification(Specification):
         Create, store and return ``MultipleContextSetting``.
         '''
         attribute = 'rhythm'
-        return self.set_attribute(attribute, contexts, source, 
+        return self._set_attribute(attribute, contexts, source, 
             count=count, offset=offset, persistent=persistent)
 
     def set_retrograde_divisions(self, contexts, source,
@@ -787,7 +790,7 @@ class SegmentSpecification(Specification):
         Create, store and return ``MultipleContextSetting``.
         '''
         attribute = 'tempo'
-        return self.set_attribute(attribute, contexts, source, 
+        return self._set_attribute(attribute, contexts, source, 
             count=count, offset=offset, persistent=persistent)
 
     def set_time_signatures(self, contexts, source, 
@@ -797,5 +800,5 @@ class SegmentSpecification(Specification):
         Create, store and return ``MultipleContextSetting``.
         '''
         attribute = 'time_signatures'
-        return self.set_attribute(attribute, contexts, source, 
+        return self._set_attribute(attribute, contexts, source, 
             count=count, offset=offset, persistent=persistent)
