@@ -595,8 +595,10 @@ class ConcreteInterpreter(Interpreter):
         if isinstance(resolved_single_context_setting.target, selectortools.RatioSelector):
             rsc_setting = resolved_single_context_setting
             segment_index = rsc_setting.target.reference.timespan.selector.inequality.timespan.selector.index
-        else:
+        elif isinstance(resolved_single_context_setting.target, selectortools.SingleContextTimespanSelector):
             segment_index = resolved_single_context_setting.target.timespan.selector.index
+        else:
+            raise NotImplementedError('implement for {!r}.'.format(resolved_single_context_setting.target))
         segment_specification = self.score_specification.segment_specifications[segment_index]
         context_name = resolved_single_context_setting.target.context or \
             segment_specification.resolved_single_context_settings.score_name

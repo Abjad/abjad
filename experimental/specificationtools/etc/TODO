@@ -1,3 +1,10 @@
 1. Make divisions (ie, nonreduced fractions) partitionable.
 
 2. Rename ratio selector 'index' keyword to 'item'.
+   Also rename ...
+        selectortools.SingleContextCounttimeComponentSelector
+        selectortools.SingleContextCounttimeComponentSliceSelector
+   ... to ...
+        selectortools.SingleContextCounttimeComponentItemSelector
+        selectortools.SingleContextCounttimeComponentSliceSelector
+   ... to cause naming parallelism between the two selector types.
