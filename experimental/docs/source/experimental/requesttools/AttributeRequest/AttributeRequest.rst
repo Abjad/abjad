@@ -16,8 +16,6 @@ Read-only Properties
 Special Methods
 ---------------
 
-.. automethod:: experimental.requesttools.AttributeRequest.AttributeRequest.AttributeRequest.__call__
-
 .. automethod:: experimental.requesttools.AttributeRequest.AttributeRequest.AttributeRequest.__delattr__
 
     Inherited from :py:class:`__builtin__.object`
