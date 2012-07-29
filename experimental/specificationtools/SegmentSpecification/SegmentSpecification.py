@@ -302,7 +302,7 @@ class SegmentSpecification(Specification):
 
     ### PUBLIC METHODS ###
 
-    def request_time_signatures(self, context_name=None):
+    def request_time_signatures(self, context_name=None, callback=None, count=None, offset=None):
         r'''Select time signatures in `context_name` that start during segment::
 
             >>> segment.request_time_signatures()
@@ -310,7 +310,8 @@ class SegmentSpecification(Specification):
 
         Return attribute request.
         '''
-        return requesttools.AttributeRequest('time_signatures', self.segment_name, context_name=context_name)
+        return requesttools.AttributeRequest('time_signatures', self.segment_name, 
+            context_name=context_name, callback=callback, count=count, offset=offset)
 
     def select_background_measures(self, start=None, stop=None):
         '''Select the first five background measures that start during segment::
