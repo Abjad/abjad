@@ -563,8 +563,11 @@ class ConcreteInterpreter(Interpreter):
         return command
 
     def store_resolved_single_context_setting(self,
-        segment_specification, context_name, attribute, resolved_single_context_setting,
-        clear_persistent_first=False):
+        segment_specification, resolved_single_context_setting, clear_persistent_first=False):
+        context_name = resolved_single_context_setting.target.context
+        if context_name is None:
+            context_name = segment_specification.resolved_single_context_settings.score_name
+        attribute = resolved_single_context_setting.attribute
         if clear_persistent_first:
             self.clear_persistent_resolved_single_context_settings(context_name, attribute)
         if attribute in segment_specification.resolved_single_context_settings[context_name]:
@@ -589,14 +592,10 @@ class ConcreteInterpreter(Interpreter):
         If setting persists then store setting in score resolved single-context settings, too.
         '''
         resolved_single_context_setting = self.resolve_single_context_setting(single_context_setting)
-        rsc_setting = resolved_single_context_setting
         segment_index = selectortools.selector_to_segment_index(resolved_single_context_setting.target)
         segment_specification = self.score_specification.segment_specifications[segment_index]
-        context_name = resolved_single_context_setting.target.context or \
-            segment_specification.resolved_single_context_settings.score_name
-        attribute = resolved_single_context_setting.attribute
         self.store_resolved_single_context_setting(
-            segment_specification, context_name, attribute, resolved_single_context_setting,
+            segment_specification, resolved_single_context_setting,
             clear_persistent_first=clear_persistent_first)
 
     def store_single_context_settings(self, single_context_settings, clear_persistent_first=False):
