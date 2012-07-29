@@ -597,8 +597,27 @@ class SegmentSpecification(Specification):
             selector = selectortools.DurationRatioItemSelector(selector, ratio, index=index)
         return selector
 
-    def select_ratio_of_segment_duration(self):
-        raise NotImplementedError('IMPLEMENT NEXT')
+    def select_segment_duration_ratio_item(self, ratio, item):
+        r'''Select the first third of segment ``'red'``::
+
+            >>> selector = segment.select_segment_duration_ratio_item((1, 1, 1), 0)
+
+        ::
+
+            >>> z(selector)
+            selectortools.DurationRatioItemSelector(
+                timespantools.SingleSourceTimespan(
+                    selector=selectortools.SegmentSelector(
+                        index='red'
+                        )
+                    ),
+                mathtools.Ratio(1, 1, 1),
+                index=0
+                )
+
+        Return duration-ratio item selector.
+        '''
+        return selectortools.DurationRatioItemSelector(self.timespan, ratio, index=item)
 
     def select_timespan(self, contexts=None):
         '''Select contexts::
@@ -617,7 +636,7 @@ class SegmentSpecification(Specification):
                     )
                 )
 
-        Return selector.
+        Return multiple-context timespan selector.
         '''
         contexts = self._context_token_to_context_names(contexts)
         return selectortools.MultipleContextTimespanSelector(contexts=contexts, timespan=self.timespan)
