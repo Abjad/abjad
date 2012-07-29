@@ -17,6 +17,10 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.BackgroundElementSelector.BackgroundElementSelector.BackgroundElementSelector.klass
 
+.. autoattribute:: experimental.selectortools.BackgroundElementSelector.BackgroundElementSelector.BackgroundElementSelector.segment_index
+
+    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
+
 .. autoattribute:: experimental.selectortools.BackgroundElementSelector.BackgroundElementSelector.BackgroundElementSelector.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

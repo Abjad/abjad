@@ -9,6 +9,10 @@ selectortools.TimespanSelector
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.selectortools.TimespanSelector.TimespanSelector.TimespanSelector.segment_index
+
+    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
+
 .. autoattribute:: experimental.selectortools.TimespanSelector.TimespanSelector.TimespanSelector.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

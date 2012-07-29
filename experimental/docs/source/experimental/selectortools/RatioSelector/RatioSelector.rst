@@ -17,6 +17,10 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.RatioSelector.RatioSelector.RatioSelector.reference
 
+.. autoattribute:: experimental.selectortools.RatioSelector.RatioSelector.RatioSelector.segment_index
+
+    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
+
 .. autoattribute:: experimental.selectortools.RatioSelector.RatioSelector.RatioSelector.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

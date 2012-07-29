@@ -44,6 +44,15 @@ class Selector(AbjadObject):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
+    def segment_index(self):
+        '''Segment index of selector, if it exists.
+
+        Raise exception when no segment index can be recursively found.
+        '''
+        from experimental import selectortools
+        return selectortools.selector_to_segment_index(self)
+
+    @property
     def timespan(self):
         '''SingleSourceTimespan of selector.
 

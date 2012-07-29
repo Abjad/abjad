@@ -548,10 +548,7 @@ class ConcreteInterpreter(Interpreter):
         from experimental import interpretertools
         #print 'here!'
         #print resolved_single_context_setting.storage_format
-        assert isinstance(resolved_single_context_setting.target, selectortools.SingleContextTimespanSelector)
-        assert isinstance(resolved_single_context_setting.target.timespan.selector, selectortools.SegmentSelector)
-        assert resolved_single_context_setting.target.timespan.selector.index == \
-            segment_specification.segment_name
+        assert resolved_single_context_setting.target.segment_index == segment_specification.segment_name
         args = (
             resolved_single_context_setting.value,
             segment_specification.duration,

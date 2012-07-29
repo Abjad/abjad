@@ -11,6 +11,10 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.ItemSelector.ItemSelector.ItemSelector.index
 
+.. autoattribute:: experimental.selectortools.ItemSelector.ItemSelector.ItemSelector.segment_index
+
+    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
+
 .. autoattribute:: experimental.selectortools.ItemSelector.ItemSelector.ItemSelector.storage_format
 
     Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`

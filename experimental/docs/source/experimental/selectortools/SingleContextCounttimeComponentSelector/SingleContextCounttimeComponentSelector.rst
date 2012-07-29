@@ -21,6 +21,10 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.SingleContextCounttimeComponentSelector.SingleContextCounttimeComponentSelector.SingleContextCounttimeComponentSelector.reference
 
+.. autoattribute:: experimental.selectortools.SingleContextCounttimeComponentSelector.SingleContextCounttimeComponentSelector.SingleContextCounttimeComponentSelector.segment_index
+
+    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
+
 .. autoattribute:: experimental.selectortools.SingleContextCounttimeComponentSelector.SingleContextCounttimeComponentSelector.SingleContextCounttimeComponentSelector.start
 
 .. autoattribute:: experimental.selectortools.SingleContextCounttimeComponentSelector.SingleContextCounttimeComponentSelector.SingleContextCounttimeComponentSelector.stop
