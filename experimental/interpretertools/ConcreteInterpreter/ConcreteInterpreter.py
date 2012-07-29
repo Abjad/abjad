@@ -581,8 +581,6 @@ class ConcreteInterpreter(Interpreter):
                 self.score_specification.resolved_single_context_settings[context_name][attribute] = [
                     resolved_single_context_setting]
 
-    # TODO: the really long dot-chaning here has got to go.
-    #       The way to fix this is to make all selectors be able to recursively check for segment index.
     def store_single_context_setting(self, single_context_setting, clear_persistent_first=False):
         '''Resolve single-context setting and find segment in which single-context setting starts.
 
@@ -592,7 +590,7 @@ class ConcreteInterpreter(Interpreter):
         '''
         resolved_single_context_setting = self.resolve_single_context_setting(single_context_setting)
         rsc_setting = resolved_single_context_setting
-        segment_index = selectortools.selector_to_segment_index(rsc_setting)
+        segment_index = selectortools.selector_to_segment_index(resolved_single_context_setting.target)
         segment_specification = self.score_specification.segment_specifications[segment_index]
         context_name = resolved_single_context_setting.target.context or \
             segment_specification.resolved_single_context_settings.score_name

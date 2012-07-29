@@ -7,33 +7,32 @@ def selector_to_segment_index(selector):
     '''
     from experimental import selectortools
     
-    rsc_setting = selector
-    if isinstance(rsc_setting.target, selectortools.RatioSelector):
-        rsc_setting = rsc_setting
-        segment_index = rsc_setting.target.reference.timespan.selector.inequality.timespan.selector.index
-    elif isinstance(rsc_setting.target, selectortools.SingleContextTimespanSelector):
+    # TODO: Change explicit checks to recursive search for SegmentSelector.
+    if isinstance(selector, selectortools.RatioSelector):
+        segment_index = selector.reference.timespan.selector.inequality.timespan.selector.index
+    elif isinstance(selector, selectortools.SingleContextTimespanSelector):
         if isinstance(
-            rsc_setting.target.timespan.selector, selectortools.SegmentSelector):
-            segment_index = rsc_setting.target.timespan.selector.index
+            selector.timespan.selector, selectortools.SegmentSelector):
+            segment_index = selector.timespan.selector.index
         elif isinstance(
-            rsc_setting.target.timespan.selector, selectortools.BackgroundMeasureSliceSelector):
+            selector.timespan.selector, selectortools.BackgroundMeasureSliceSelector):
             if isinstance(
-                rsc_setting.target.timespan.selector.inequality.timespan.selector,
+                selector.timespan.selector.inequality.timespan.selector,
                 selectortools.SegmentSelector):
-                segment_index = rsc_setting.target.timespan.selector.inequality.timespan.selector.index
+                segment_index = selector.timespan.selector.inequality.timespan.selector.index
             else:
-                raise NotImplementedError(rsc_setting.target.timespan.selector.inequality.timespan.selector)
+                raise NotImplementedError(selector.timespan.selector.inequality.timespan.selector)
         elif isinstance(
-            rsc_setting.target.timespan.selector, selectortools.DurationRatioItemSelector):
+            selector.timespan.selector, selectortools.DurationRatioItemSelector):
             if isinstance(
-                rsc_setting.target.timespan.selector.reference.selector,
+                selector.timespan.selector.reference.selector,
                 selectortools.SegmentSelector):
-                segment_index = rsc_setting.target.timespan.selector.reference.selector.index
+                segment_index = selector.timespan.selector.reference.selector.index
             else:
-                raise NotImplementedError(rsc_setting.target.timespan.selector.reference.selector)
+                raise NotImplementedError(selector.timespan.selector.reference.selector)
         else:
-            raise NotImplementedError(rsc_setting.target.timespan.selector)
+            raise NotImplementedError(selector.timespan.selector)
     else:
-        raise NotImplementedError('implement for {!r}.'.format(rsc_setting.target))
+        raise NotImplementedError('implement for {!r}.'.format(selector))
 
     return segment_index
