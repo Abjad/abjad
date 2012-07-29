@@ -80,11 +80,19 @@ class SegmentSpecification(Specification):
         assert isinstance(persistent, type(True)), repr(persistent)
         assert isinstance(truncate, type(True)), repr(truncate)
         target = self._expr_to_selector(target)
-        source = requesttools.request_source_to_request(source, callback=callback, count=count, offset=offset)
+        source = requesttools.source_to_request(source, callback=callback, count=count, offset=offset)
         multiple_context_setting = settingtools.MultipleContextSetting(target, attribute, source, 
             persistent=persistent, truncate=truncate)
         self.multiple_context_settings.append(multiple_context_setting)
         return multiple_context_setting
+
+    def _set_attribute_new(self, attribute, source, timespan=None, contexts=None,
+        callback=None, count=None, offset=None, persistent=True, truncate=False):
+        assert attribute in self.attributes, repr(attribute)
+        assert isinstance(timespan, (timespantools.Timespan, type(None))), repr(timespan)
+        assert isinstance(count, (int, type(None))), repr(count)
+        assert isinstance(persistent, type(True)), repr(persistent)
+        assert isinstance(truncate, type(True)), repr(truncate)
 
     ### READ-ONLY PUBLIC ATTRIBUTES ###
 
@@ -709,7 +717,7 @@ class SegmentSpecification(Specification):
         '''
         return self._set_attribute_new(
             'divisions',
-            timespan=timespan, contexts=contexts,
+            source, timespan=timespan, contexts=contexts,
             callback=callback, count=count, offset=offset,
             persistent=persistent, truncate=truncate,
             )
