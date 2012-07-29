@@ -9,7 +9,7 @@ class SingleContextSetting(MultipleContextSetting):
     Frozen request to set one attribute against one context-specified selection.
 
     Initialize with mandatory `target`, `attribute`, `source`
-    and optional `persistent`, `truncate`, `fresh`::
+    and optional `persist`, `truncate`, `fresh`::
 
         >>> from experimental import selectortools
         >>> from experimental import settingtools
@@ -39,7 +39,7 @@ class SingleContextSetting(MultipleContextSetting):
                 ),
             'time_signatures',
             [(4, 8), (3, 8)],
-            persistent=True,
+            persist=True,
             truncate=False,
             fresh=False
             )
@@ -58,10 +58,10 @@ class SingleContextSetting(MultipleContextSetting):
     def _check_input_arguments(self, mandatory_argument_values, keyword_argument_values):
         from experimental import specificationtools
         target, attribute, source, = mandatory_argument_values
-        persistent, truncate, fresh = keyword_argument_values
+        persist, truncate, fresh = keyword_argument_values
         assert isinstance(target, selectortools.SingleContextTimespanSelector), repr(target)
         assert isinstance(attribute, str), repr(attribute)
-        assert isinstance(persistent, bool), repr(persistent)
+        assert isinstance(persist, bool), repr(persist)
         assert isinstance(truncate, bool), repr(truncate)
         assert isinstance(fresh, type(True)), repr(fresh)
 
@@ -70,8 +70,8 @@ class SingleContextSetting(MultipleContextSetting):
             assert isinstance(args[0], type(self)), repr(args[0])
             mandatory_argument_values = args[0]._mandatory_argument_values
             keyword_argument_values = args[0]._keyword_argument_values
-            if kwargs.get('persistent') is not None:
-                keyword_argment_values[0] = kwargs.get('persistent')
+            if kwargs.get('persist') is not None:
+                keyword_argment_values[0] = kwargs.get('persist')
             if kwargs.get('truncate') is not None:
                 keyword_argment_values[0] = kwargs.get('truncate')
             if kwargs.get('fresh') is not None:
@@ -80,7 +80,7 @@ class SingleContextSetting(MultipleContextSetting):
             assert len(args) == 3, repr(args)
             mandatory_argument_values = args
             keyword_argument_values = []
-            keyword_argument_values.append(kwargs.get('persistent', True))
+            keyword_argument_values.append(kwargs.get('persist', True))
             keyword_argument_values.append(kwargs.get('truncate', False))
             keyword_argument_values.append(kwargs.get('fresh', True))
         return mandatory_argument_values, keyword_argument_values

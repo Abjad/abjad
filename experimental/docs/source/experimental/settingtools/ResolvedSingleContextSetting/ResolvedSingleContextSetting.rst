@@ -17,7 +17,7 @@ Read-only Properties
 
     Inherited from :py:class:`SingleContextSetting.SingleContextSetting <experimental.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting>`
 
-.. autoattribute:: experimental.settingtools.ResolvedSingleContextSetting.ResolvedSingleContextSetting.ResolvedSingleContextSetting.persistent
+.. autoattribute:: experimental.settingtools.ResolvedSingleContextSetting.ResolvedSingleContextSetting.ResolvedSingleContextSetting.persist
 
     Inherited from :py:class:`MultipleContextSetting.MultipleContextSetting <experimental.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting>`
 

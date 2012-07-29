@@ -33,7 +33,7 @@ class MultipleContextSetting(Setting):
     @property
     def _keyword_argument_names(self):
         return (
-            'persistent',
+            'persist',
             'truncate',
             )
 
@@ -51,8 +51,8 @@ class MultipleContextSetting(Setting):
             self.target._one_line_format,
             self._get_one_line_source_format(self.source),
             ]
-        if not self.persistent:
-            body.append(self.persistent)
+        if not self.persist:
+            body.append(self.persist)
         body = ', '.join([str(x) for x in body])
         return '{}: {}'.format(self.attribute, body)
 
@@ -63,15 +63,15 @@ class MultipleContextSetting(Setting):
             assert isinstance(args[0], type(self)), repr(args[0])
             mandatory_argument_values = args[0]._mandatory_argument_values
             keyword_argument_values = args[0]._keyword_argument_values
-            if kwargs.get('persistent') is not None:
-                keyword_argment_values[0] = kwargs.get('persistent')
+            if kwargs.get('persist') is not None:
+                keyword_argment_values[0] = kwargs.get('persist')
             if kwargs.get('truncate') is not None:
                 keyword_argument_values[1] = kwargs.get('truncate')
         else:
             assert len(args) == 3, repr(args)
             mandatory_argument_values = args
             keyword_argument_values = []
-            keyword_argument_values.append(kwargs.get('persistent', True))
+            keyword_argument_values.append(kwargs.get('persist', True))
             keyword_argument_values.append(kwargs.get('truncate', False))
         return mandatory_argument_values, keyword_argument_values
 
@@ -90,8 +90,8 @@ class MultipleContextSetting(Setting):
         return self._attribute
 
     @property
-    def persistent(self):
-        return self._persistent
+    def persist(self):
+        return self._persist
 
     @property
     def source(self):
@@ -129,6 +129,6 @@ class MultipleContextSetting(Setting):
                 target = selectortools.SingleContextTimespanSelector(context, 
                     timespan=copy.deepcopy(self.target.timespan))
             setting = settingtools.SingleContextSetting(target, self.attribute, self.source, 
-                persistent=self.persistent, truncate=self.truncate)
+                persist=self.persist, truncate=self.truncate)
             settings.append(setting)
         return settings

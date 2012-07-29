@@ -13,7 +13,8 @@ def test_MultipleContextSetting___init___02():
     '''Init from other multiple_context_setting.
     '''
 
-    multiple_context_setting_1 = MultipleContextSetting(None, 'time_signatures', [(4, 8), (3, 8)], persistent=False, truncate=False)
+    multiple_context_setting_1 = MultipleContextSetting(
+        None, 'time_signatures', [(4, 8), (3, 8)], persist=False, truncate=False)
     multiple_context_setting_2 = MultipleContextSetting(multiple_context_setting_1)
 
     assert isinstance(multiple_context_setting_1, MultipleContextSetting)

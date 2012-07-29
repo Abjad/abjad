@@ -40,13 +40,13 @@ def test_MultipleContextSettingInventory_storage_format_01():
                 ),
             'time_signatures',
             [(4, 8), (3, 8)],
-            persistent=True,
+            persist=True,
             truncate=False
             )
         ])
     '''
 
-    assert storage_format == "settingtools.MultipleContextSettingInventory([\n\tsettingtools.MultipleContextSetting(\n\t\tselectortools.MultipleContextTimespanSelector(\n\t\t\tcontexts=['Grouped Rhythmic Staves Score'],\n\t\t\ttimespan=timespantools.SingleSourceTimespan(\n\t\t\t\tselector=selectortools.SegmentSelector(\n\t\t\t\t\tindex='1'\n\t\t\t\t\t)\n\t\t\t\t)\n\t\t\t),\n\t\t'time_signatures',\n\t\t[(4, 8), (3, 8)],\n\t\tpersistent=True,\n\t\ttruncate=False\n\t\t)\n\t])"
+    assert storage_format == "settingtools.MultipleContextSettingInventory([\n\tsettingtools.MultipleContextSetting(\n\t\tselectortools.MultipleContextTimespanSelector(\n\t\t\tcontexts=['Grouped Rhythmic Staves Score'],\n\t\t\ttimespan=timespantools.SingleSourceTimespan(\n\t\t\t\tselector=selectortools.SegmentSelector(\n\t\t\t\t\tindex='1'\n\t\t\t\t\t)\n\t\t\t\t)\n\t\t\t),\n\t\t'time_signatures',\n\t\t[(4, 8), (3, 8)],\n\t\tpersist=True,\n\t\ttruncate=False\n\t\t)\n\t])"
 
     multiple_context_setting_inventory_2 = eval(storage_format)
 

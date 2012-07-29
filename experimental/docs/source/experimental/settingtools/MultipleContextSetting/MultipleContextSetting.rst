@@ -11,7 +11,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting.attribute
 
-.. autoattribute:: experimental.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting.persistent
+.. autoattribute:: experimental.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting.persist
 
 .. autoattribute:: experimental.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting.source
 

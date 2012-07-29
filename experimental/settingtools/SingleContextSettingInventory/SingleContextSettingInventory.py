@@ -22,9 +22,9 @@ class SingleContextSettingInventory(ObjectInventory):
     ### PUBLIC METHODS ###
 
     def get_setting(self, 
-        attribute=None, context_name=None, persistent=None, timespan=None, segment_name=None):
+        attribute=None, context_name=None, persist=None, timespan=None, segment_name=None):
         settings = self.get_settings(attribute=attribute, 
-            context_name=context_name, persistent=persistent, timespan=timespan, segment_name=segment_name)
+            context_name=context_name, persist=persist, timespan=timespan, segment_name=segment_name)
         if not settings:
             raise Exception(
                 'no settings for {!r} found in segment {!r}.'.format(attribute, segment_name))
@@ -34,7 +34,7 @@ class SingleContextSettingInventory(ObjectInventory):
         assert len(settings) == 1
         return settings[0]
 
-    def get_settings(self, attribute=None, context_name=None, persistent=None, timespan=None, target=None):
+    def get_settings(self, attribute=None, context_name=None, persist=None, timespan=None, target=None):
         assert attribute in self.attributes, repr(attribute)
         settings = []
         for setting in self:
@@ -43,7 +43,7 @@ class SingleContextSettingInventory(ObjectInventory):
                 (target is None or setting.target == target) and
                 (context_name is None or setting.target.context_name == context_name) and
                 (timespan is None or setting.target.timespan == timespan) and
-                (persistent is None or setting.persistent == persistent)
+                (persist is None or setting.persist == persist)
                 ):
                 settings.append(setting)
         return settings

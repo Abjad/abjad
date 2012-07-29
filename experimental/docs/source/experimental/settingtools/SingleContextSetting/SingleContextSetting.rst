@@ -15,7 +15,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting.fresh
 
-.. autoattribute:: experimental.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting.persistent
+.. autoattribute:: experimental.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting.persist
 
     Inherited from :py:class:`MultipleContextSetting.MultipleContextSetting <experimental.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting>`
 

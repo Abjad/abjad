@@ -531,7 +531,7 @@ class ConcreteInterpreter(Interpreter):
         value = self.resolve_single_context_setting_source(single_context_setting)
         arguments = single_context_setting._mandatory_argument_values + (value, )
         resolved_single_context_setting = settingtools.ResolvedSingleContextSetting(*arguments,
-            persistent=single_context_setting.persistent,
+            persist=single_context_setting.persist,
             truncate=single_context_setting.truncate,
             fresh=single_context_setting.fresh)
         return resolved_single_context_setting
@@ -574,7 +574,7 @@ class ConcreteInterpreter(Interpreter):
         else:
             segment_specification.resolved_single_context_settings[context_name][attribute] = [
                 resolved_single_context_setting]
-        if resolved_single_context_setting.persistent:
+        if resolved_single_context_setting.persist:
             if attribute in self.score_specification.resolved_single_context_settings[context_name]:
                 self.score_specification.resolved_single_context_settings[context_name][attribute].append(
                     resolved_single_context_setting)
