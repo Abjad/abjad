@@ -88,11 +88,9 @@ class SegmentSpecification(Specification):
 
     def _set_attribute_new(self, attribute, source, timespan=None, contexts=None,
         callback=None, count=None, offset=None, persistent=True, truncate=False):
-        assert attribute in self.attributes, repr(attribute)
-        assert isinstance(timespan, (timespantools.Timespan, type(None))), repr(timespan)
-        assert isinstance(count, (int, type(None))), repr(count)
-        assert isinstance(persistent, type(True)), repr(persistent)
-        assert isinstance(truncate, type(True)), repr(truncate)
+        target = selectortools.MutltipleContextTimespanSelector(contexts=contexts, timespan=timespan)
+        return self._set_attribute(attribute, target, source,
+            callback=callback, count=count, offset=offset, persistent=persistent, truncate=truncate)
 
     ### READ-ONLY PUBLIC ATTRIBUTES ###
 
