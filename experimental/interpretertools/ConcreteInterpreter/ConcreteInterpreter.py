@@ -499,17 +499,28 @@ class ConcreteInterpreter(Interpreter):
             division_region_division_lists.append(division_region_division_list)
         return division_region_division_lists
 
+#    # alphabetize me
+#    def attribute_indicator_to_resolved_single_context_setting(self, indicator):
+#        segment_specification = self.score_specification.segment_specifications[indicator.segment_name]
+#        context_proxy = segment_specification.resolved_single_context_settings[indicator.context_name]
+#        resolved_single_context_setting = context_proxy.get_setting(attribute=indicator.attribute)
+#        return resolved_single_context_setting
+
     # alphabetize me
-    def attribute_indicator_to_resolved_single_context_setting(self, indicator):
-        segment_specification = self.score_specification.segment_specifications[indicator.segment_name]
-        context_proxy = segment_specification.resolved_single_context_settings[indicator.context_name]
-        resolved_single_context_setting = context_proxy.get_setting(attribute=indicator.attribute)
+    def attribute_request_to_resolved_single_context_setting(self, attribute_request):
+        segment_specification = self.score_specification.segment_specifications[attribute_request.segment_name]
+        context_proxy = segment_specification.resolved_single_context_settings[attribute_request.context_name]
+        resolved_single_context_setting = context_proxy.get_setting(attribute=attribute_request.attribute)
         return resolved_single_context_setting
 
     def resolve_attribute_request(self, attribute_request):
+        from experimental import requesttools
+        assert isinstance(attribute_request, requesttools.AttributeRequest), repr(attribute_request)
+#        resolved_single_context_setting = \
+#            self.attribute_indicator_to_resolved_single_context_setting(
+#                attribute_request.indicator)
         resolved_single_context_setting = \
-            self.attribute_indicator_to_resolved_single_context_setting(
-                attribute_request.indicator)
+            self.attribute_request_to_resolved_single_context_setting(attribute_request)
         value = resolved_single_context_setting.value
         assert value is not None, repr(value)
         if attribute_request.callback is not None:
