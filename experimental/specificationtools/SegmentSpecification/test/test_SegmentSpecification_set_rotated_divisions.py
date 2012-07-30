@@ -14,7 +14,7 @@ def test_SegmentSpecification_set_rotated_divisions_01():
     segment = score_specification.append_segment('T1')
     segment.set_time_signatures([(4, 8), (3, 8)])
 
-    segment.set_divisions(segment.v1, [(3, 16)])
+    segment.set_divisions([(3, 16)], contexts=segment.v1)
 
     source = score_specification.select_divisions('Voice 1', 'T1', segment_count=1)
     segment.set_rotated_divisions(segment.v2, source, -1)
@@ -54,7 +54,7 @@ def test_SegmentSpecification_set_rotated_divisions_02():
     segment = score_specification.append_segment('T1')
     segment.set_time_signatures([(4, 8), (3, 8)])
     
-    segment.set_divisions(segment.v1, [(3, 16)], truncate=True)
+    segment.set_divisions([(3, 16)], contexts=segment.v1, truncate=True)
     
     source = score_specification.select_divisions('Voice 1', 'T1', segment_count=1)
     segment.set_rotated_divisions(segment.v2, source, -1)

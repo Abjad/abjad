@@ -680,11 +680,11 @@ class SegmentSpecification(Specification):
         return self._set_attribute(attribute, contexts, source, 
             count=count, offset=offset, persist=persist)
 
-    def set_divisions(self, contexts, source, 
+    def set_divisions(self, source, contexts=None,
         callback=None, count=None, offset=None, persist=True, truncate=False):
         r'''Set divisions of segment `contexts` to `source`::
 
-            >>> setting = segment.set_divisions(['Voice 1', 'Voice 3'], [(3, 16)])
+            >>> setting = segment.set_divisions([(3, 16)], contexts=['Voice 1', 'Voice 3'])
 
         ::
 
@@ -707,6 +707,7 @@ class SegmentSpecification(Specification):
         Create, store and return ``MultipleContextSetting``.
         '''
         attribute = 'divisions'
+        contexts = contexts or self
         return self._set_attribute(attribute, contexts, source, 
             callback=callback, count=count, offset=offset, persist=persist, truncate=truncate)
 
@@ -818,7 +819,7 @@ class SegmentSpecification(Specification):
         '''
         string = 'sequencetools.reverse_sequence'
         callback = helpertools.Callback(eval(string), string)
-        return self.set_divisions(contexts, source, 
+        return self.set_divisions(source, contexts=contexts,
             callback=callback, count=count, offset=offset, persist=persist, truncate=truncate)
 
     def set_rotated_divisions(self, contexts, source, n, 
@@ -830,7 +831,7 @@ class SegmentSpecification(Specification):
         assert isinstance(n, int), repr(n)
         string = 'lambda x: sequencetools.rotate_sequence(x, {})'.format(n)
         callback = helpertools.Callback(eval(string), string)
-        return self.set_divisions(contexts, source, 
+        return self.set_divisions(source, contexts=contexts,
             callback=callback, count=count, offset=offset, persist=persist, truncate=truncate)
 
     def set_tempo(self, source, contexts=None,
