@@ -4,8 +4,39 @@ import copy
 
 class MultipleContextSetting(Setting):
     r'''.. versionadded:: 1.0
+    
+        >>> from abjad.tools import *
+        >>> from experimental import specificationtools
 
-    Multiple-context setting.
+    Multiple-context setting::
+
+        >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
+        >>> score_specification = specificationtools.ScoreSpecification(score_template)
+        >>> segment = score_specification.append_segment('red')
+
+    ::
+
+        >>> multiple_context_setting = segment.set_time_signatures(segment, [(4, 8), (3, 8)])
+
+    ::
+
+        >>> z(multiple_context_setting)
+        settingtools.MultipleContextSetting(
+            selectortools.MultipleContextTimespanSelector(
+                contexts=['Grouped Rhythmic Staves Score'],
+                timespan=timespantools.SingleSourceTimespan(
+                    selector=selectortools.SegmentSelector(
+                        index='red'
+                        )
+                    )
+                ),
+            'time_signatures',
+            [(4, 8), (3, 8)],
+            persist=True,
+            truncate=False
+            )
+
+    Return multiple-context setting.
     '''
 
     ### INITIALIZER ###
