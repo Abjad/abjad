@@ -228,7 +228,6 @@ Unstable packages (load manually)
    experimental/quantizationtools/MeasurewiseQSchema/MeasurewiseQSchema
    experimental/quantizationtools/MeasurewiseQSchemaItem/MeasurewiseQSchemaItem
    experimental/quantizationtools/MeasurewiseQTarget/MeasurewiseQTarget
-   experimental/quantizationtools/OldSearchTree/OldSearchTree
    experimental/quantizationtools/ParallelJobHandler/ParallelJobHandler
    experimental/quantizationtools/ParallelJobHandlerWorker/ParallelJobHandlerWorker
    experimental/quantizationtools/PitchedQEvent/PitchedQEvent
