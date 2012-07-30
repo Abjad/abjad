@@ -32,6 +32,8 @@ Read-only Properties
 Special Methods
 ---------------
 
+.. automethod:: experimental.quantizationtools.QTargetBeat.QTargetBeat.QTargetBeat.__call__
+
 .. automethod:: experimental.quantizationtools.QTargetBeat.QTargetBeat.QTargetBeat.__delattr__
 
     Inherited from :py:class:`__builtin__.object`

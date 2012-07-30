@@ -1,7 +1,9 @@
 from abjad.tools import abctools
 from abjad.tools import contexttools
 from abjad.tools import durationtools
-from experimental.quantizationtools.OldSearchTree import OldSearchTree
+from experimental.quantizationtools.QuantizationJob import QuantizationJob
+from experimental.quantizationtools.QEvent import QEvent
+from experimental.quantizationtools.SearchTree import SearchTree
 from experimental.quantizationtools.tempo_scaled_rational_to_milliseconds import tempo_scaled_rational_to_milliseconds
 
 
@@ -20,7 +22,7 @@ class QTargetBeat(abctools.AbjadObject):
 
         beatspan = durationtools.Duration(beatspan)
         offset_in_ms = durationtools.Offset(offset_in_ms)
-        search_tree = OldSearchTree(search_tree)
+        search_tree = SearchTree(search_tree)
         tempo = contexttools.TempoMark(tempo)
         assert not tempo.is_imprecise
 
@@ -34,6 +36,18 @@ class QTargetBeat(abctools.AbjadObject):
         self._q_grids = q_grids
         self._search_tree = search_tree
         self._tempo = tempo
+
+    ### SPECIAL METHODS ###
+
+    def __call__(self, job_id):
+        if not self.q_events:
+            return None
+        assert all([isinstance(x, QEvent) for x in self.q_events])
+        q_event_proxies = []
+        for q_event in self.q_events:
+            q_event_proxy = QEventProxy(q_event, self.offset_in_ms, self.offset_in_ms + self.duration_in_ms)
+            q_event_proxies.append(q_event_proxy)
+        return QuantizationJob(job_id, self.search_tree, q_event_proxies)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -68,4 +82,3 @@ class QTargetBeat(abctools.AbjadObject):
     @property
     def tempo(self):
         return self._tempo
-

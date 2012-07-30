@@ -207,12 +207,15 @@ Unstable packages (load manually)
 
    experimental/quantizationtools/GraceHandler/GraceHandler
    experimental/quantizationtools/Heuristic/Heuristic
+   experimental/quantizationtools/JobHandler/JobHandler
+   experimental/quantizationtools/ParallelJobHandler/ParallelJobHandler
    experimental/quantizationtools/QEvent/QEvent
    experimental/quantizationtools/QSchema/QSchema
    experimental/quantizationtools/QSchemaItem/QSchemaItem
    experimental/quantizationtools/QTarget/QTarget
    experimental/quantizationtools/Quantizer/Quantizer
    experimental/quantizationtools/SearchTree/SearchTree
+   experimental/quantizationtools/SerialJobHandler/SerialJobHandler
 
 .. rubric:: concrete classes
 

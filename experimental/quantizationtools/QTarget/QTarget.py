@@ -1,5 +1,11 @@
 from abc import abstractproperty
 from abjad.tools import abctools
+from experimental.quantizationtools.DistanceHeuristic import DistanceHeuristic
+from experimental.quantizationtools.GraceHandler import GraceHandler
+from experimental.quantizationtools.Heuristic import Heuristic
+#from experimental.quantizationtools.JobHandler import JobHandler
+from experimental.quantizationtools.QEventSequence import QEventSequence
+#from experimental.quantizationtools.SerialJobHandler import SerialJobHandler
 
 
 class QTarget(abctools.AbjadObject):
@@ -17,8 +23,35 @@ class QTarget(abctools.AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, q_event_sequence, grace_handler=None):
-        pass
+    def __call__(self, q_event_sequence, grace_handler=None, heuristic=None, job_handler=None):
+        assert isinstance(q_event_sequence, QEventSequence)
+
+        if grace_handler is None:
+            grace_handler = GraceHandler()
+        assert isinstance(grace_handler, GraceHandler)
+
+        if heuristic is None:
+            heuristic = DistanceHeuristic()
+        assert isinstance(heuristic, Heuristic)
+
+        if job_handler is None:
+            job_handler = SingleProcessJobHandler()
+        assert isinstance(job_handler, JobHandler)
+
+        beats = self.beats
+        offsets = sorted([beat.offset for beat in beats])
+
+        for q_event in q_event_sequence:
+            index = bisect.bisect(offsets, q_event.offset) - 1
+            beat = beats[index]
+            beat.q_events.append(q_event)
+
+        jobs = [beat(i) for i, beat in enumerate(beats)]
+        jobs = [job for job in jobs if job]
+        jobs = job_handler(jobs)
+
+        for job in jobs:
+            beats[job.job_id].q_grids = job.q_grids
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -38,3 +71,4 @@ class QTarget(abctools.AbjadObject):
     @property
     def items(self):
         return self._items
+
