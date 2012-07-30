@@ -16,27 +16,28 @@ class ConcreteInterpreter(Interpreter):
 
     Currently the only interpreter implemented.
 
-    The ``'concrete'`` designation is temporary.
+    The ``'concrete'`` designation is provisional.
     '''
 
     ### INITIALIZER ###
 
     def __call__(self, score_specification):
+        '''Top-level interpretation entry point.
+        '''
         self.score_specification = score_specification
         self.score = self.instantiate_score()
         self.unpack_multiple_context_settings_for_score()
         self.interpret_time_signatures()
         self.add_time_signatures_to_score()
-        #self.score_specification.calculate_segment_offset_pairs()
         self.calculate_segment_offset_pairs()
         self.interpret_divisions()
         self.add_division_lists_to_score()
         self.interpret_rhythms()
         self.add_rhythms_to_score()
         self.interpret_pitch_classes()
-        self.apply_segment_pitch_classes()
+        self.apply_pitch_classes()
         self.interpret_registration()
-        self.apply_segment_registration()
+        self.apply_registration()
         self.interpret_additional_parameters()
         self.apply_additional_parameters()
         return self.score
@@ -134,29 +135,11 @@ class ConcreteInterpreter(Interpreter):
     def apply_additional_parameters(self):
         pass
 
-    def apply_segment_pitch_classes(self):
+    def apply_pitch_classes(self):
         pass
 
-    def apply_segment_registration(self):
+    def apply_registration(self):
         pass
-
-    def apply_boundary_indicators_to_raw_segment_division_lists(self,
-        voice_division_list, raw_segment_division_lists):
-        voice_divisions = voice_division_list.divisions
-        voice_divisions = [mathtools.NonreducedFraction(x) for x in voice_divisions]
-        parts = sequencetools.partition_sequence_by_backgrounded_weights(
-            voice_divisions, self.score_specification.segment_durations)
-        overage_from_previous_segment = 0
-        segment_division_lists = []
-        for part, raw_segment_division_list in zip(parts, raw_segment_division_lists):
-            segment_division_list = copy.copy(raw_segment_division_list)
-            segment_division_list[0].is_left_open = bool(overage_from_previous_segment)
-            segment_duration_plus_fringe = overage_from_previous_segment + sum(part)
-            overage_from_current_segment = segment_duration_plus_fringe - raw_segment_division_list.duration
-            segment_division_list[-1].is_right_open = bool(overage_from_current_segment)
-            overage_from_previous_segment = overage_from_current_segment
-            segment_division_lists.append(segment_division_list)
-        return segment_division_lists
 
     def uninterpreted_division_commands_to_region_division_commands(self, uninterpreted_division_commands):
         from experimental import interpretertools
@@ -262,6 +245,24 @@ class ConcreteInterpreter(Interpreter):
         if division_request.callback is not None:
             divisions = division_request.callback(divisions)
         return divisions
+
+    def fix_boundary_indicators_to_raw_segment_division_lists(self,
+        voice_division_list, raw_segment_division_lists):
+        voice_divisions = voice_division_list.divisions
+        voice_divisions = [mathtools.NonreducedFraction(x) for x in voice_divisions]
+        parts = sequencetools.partition_sequence_by_backgrounded_weights(
+            voice_divisions, self.score_specification.segment_durations)
+        overage_from_previous_segment = 0
+        segment_division_lists = []
+        for part, raw_segment_division_list in zip(parts, raw_segment_division_lists):
+            segment_division_list = copy.copy(raw_segment_division_list)
+            segment_division_list[0].is_left_open = bool(overage_from_previous_segment)
+            segment_duration_plus_fringe = overage_from_previous_segment + sum(part)
+            overage_from_current_segment = segment_duration_plus_fringe - raw_segment_division_list.duration
+            segment_division_list[-1].is_right_open = bool(overage_from_current_segment)
+            overage_from_previous_segment = overage_from_current_segment
+            segment_division_lists.append(segment_division_list)
+        return segment_division_lists
 
     def fuse_like_rhythm_commands(self, rhythm_commands):
         if not rhythm_commands:
@@ -460,7 +461,7 @@ class ConcreteInterpreter(Interpreter):
             raw_segment_division_lists.append(raw_segment_division_list)
         #self._debug(voice_division_list, 'vdl')
         #self._debug(raw_segment_division_lists, 'rsdl')
-        segment_division_lists = self.apply_boundary_indicators_to_raw_segment_division_lists(
+        segment_division_lists = self.fix_boundary_indicators_to_raw_segment_division_lists(
             voice_division_list, raw_segment_division_lists)
         return segment_division_lists
 
