@@ -61,9 +61,9 @@ class ConcreteInterpreter(Interpreter):
             self.add_division_lists_to_voice(voice)
 
     def add_division_lists_to_voice(self, voice):
-        self._debug(voice)
+        #self._debug(voice)
         division_region_division_lists = self.make_division_region_division_lists_for_voice(voice)
-        self._debug(division_region_division_lists, 'drdl')
+        #self._debug(division_region_division_lists, 'drdl')
         if division_region_division_lists:
             self.score_specification.contexts[voice.name]['division_region_division_lists'] = \
                 division_region_division_lists
@@ -350,7 +350,7 @@ class ConcreteInterpreter(Interpreter):
             segment_specification, 'divisions', context_name)
         uninterpreted_division_commands = []
         for resolved_single_context_setting in resolved_single_context_settings:
-            self._debug(resolved_single_context_setting, 'rscs')
+            #self._debug(resolved_single_context_setting, 'rscs')
             if isinstance(resolved_single_context_setting.target, selectortools.CountRatioItemSelector):
                 uninterpreted_division_command = \
                     self.count_ratio_item_selector_to_uninterpreted_division_command(
@@ -382,7 +382,7 @@ class ConcreteInterpreter(Interpreter):
 
     def make_division_region_division_lists_for_voice(self, voice):
         uninterpreted_division_commands = self.get_uninterpreted_division_commands_for_voice(voice)
-        self._debug(uninterpreted_division_commands, 'udc')
+        #self._debug(uninterpreted_division_commands, 'udc')
         region_division_commands = self.uninterpreted_division_commands_to_region_division_commands(
             uninterpreted_division_commands)
         division_region_division_lists = self.region_division_commands_to_division_region_division_lists(
@@ -503,15 +503,44 @@ class ConcreteInterpreter(Interpreter):
         #print 'here!'
         #print resolved_single_context_setting.storage_format
         assert resolved_single_context_setting.target.segment_index == segment_specification.segment_name
+        duration = self.single_context_timespan_selector_to_duration(resolved_single_context_setting.target)
+        #self._debug(segment_specification.duration, 'old duration')
+        #self._debug(duration, 'new duration')
         args = (
             resolved_single_context_setting.value,
-            segment_specification.duration,
+            #segment_specification.duration,
+            duration,
             resolved_single_context_setting.fresh,
             resolved_single_context_setting.truncate)
         command = interpretertools.UninterpretedDivisionCommand(*args)
         #print command
         #print ''
         return command
+
+    def single_context_timespan_selector_to_duration(self, selector):
+        if isinstance(selector.timespan, timespantools.SingleSourceTimespan):
+            if isinstance(selector.timespan.selector, selectortools.SegmentSelector):
+                segment_index = selector.timespan.selector.index
+                segment_specification = self.score_specification.segment_specifications[segment_index]
+                return segment_specification.duration
+            elif isinstance(selector.timespan.selector, selectortools.BackgroundMeasureSliceSelector):
+                if isinstance(
+                    selector.timespan.selector.inequality.timespan.selector, 
+                    selectortools.SegmentSelector):
+                    segment_index = selector.timespan.selector.inequality.timespan.selector.index
+                    segment_specification = self.score_specification.segment_specifications[segment_index]
+                    start = selector.timespan.selector.start
+                    stop = selector.timespan.selector.stop
+                    time_signatures = segment_specification.time_signatures[start:stop] 
+                    durations = [durationtools.Duration(x) for x in time_signatures]
+                    duration = durationtools.Duration(sum(durations))
+                    return duration
+                else:
+                    raise NotImplementedError(selector.timespan.selector.inequality.timespan.selector)
+            else:
+                raise NotImplementedError(selector.timespan.selector)
+        else:
+            raise NotImplementedError(selector.timespan)
 
     def store_additional_single_context_settings(self):
         for segment_specification in self.score_specification.segment_specifications:
