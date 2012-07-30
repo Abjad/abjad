@@ -260,7 +260,6 @@ class ConcreteInterpreter(Interpreter):
         voice_division_list, raw_segment_division_lists):
         #self._debug(voice_division_list, 'vdl')
         #self._debug(raw_segment_division_lists, 'rsdl')
-        #print ''
         voice_divisions = voice_division_list.divisions
         voice_divisions = [mathtools.NonreducedFraction(x) for x in voice_divisions]
         parts = sequencetools.partition_sequence_by_backgrounded_weights(
@@ -362,7 +361,6 @@ class ConcreteInterpreter(Interpreter):
             else:
                 raise NotImplementedError(resolved_single_context_setting.target)
             uninterpreted_division_commands.append(uninterpreted_division_command)
-        print ''
         return uninterpreted_division_commands
 
     def get_voice_division_list(self, voice):
@@ -504,17 +502,13 @@ class ConcreteInterpreter(Interpreter):
         #print resolved_single_context_setting.storage_format
         assert resolved_single_context_setting.target.segment_index == segment_specification.segment_name
         duration = self.single_context_timespan_selector_to_duration(resolved_single_context_setting.target)
-        #self._debug(segment_specification.duration, 'old duration')
-        #self._debug(duration, 'new duration')
         args = (
             resolved_single_context_setting.value,
-            #segment_specification.duration,
             duration,
             resolved_single_context_setting.fresh,
             resolved_single_context_setting.truncate)
         command = interpretertools.UninterpretedDivisionCommand(*args)
         #print command
-        #print ''
         return command
 
     def single_context_timespan_selector_to_duration(self, selector):
@@ -537,10 +531,25 @@ class ConcreteInterpreter(Interpreter):
                     return duration
                 else:
                     raise NotImplementedError(selector.timespan.selector.inequality.timespan.selector)
+            elif isinstance(selector.timespan.selector, selectortools.DurationRatioItemSelector):
+                if isinstance(selector.timespan.selector.reference, timespantools.SingleSourceTimespan):
+                    segment_index = selector.timespan.selector.reference.selector.index
+                    segment_specification = self.get_segment_specification(segment_index)
+                    duration = segment_specification.duration
+                    ratio = selector.timespan.selector.ratio
+                    index = selector.timespan.selector.index
+                    parts = mathtools.divide_number_by_ratio(duration, ratio)
+                    part = parts[index]
+                    return part
+                else:
+                    raise NotImplementedError(selector.timespan.selector.reference)
             else:
                 raise NotImplementedError(selector.timespan.selector)
         else:
             raise NotImplementedError(selector.timespan)
+
+    def get_segment_specification(self, segment_index):
+        return self.score_specification.segment_specifications[segment_index]
 
     def store_additional_single_context_settings(self):
         for segment_specification in self.score_specification.segment_specifications:
@@ -586,9 +595,6 @@ class ConcreteInterpreter(Interpreter):
                 for resolved_single_context_setting in resolved_single_context_settings:
                     single_context_setting = resolved_single_context_setting.copy_to_segment(segment_specification)
                     single_context_settings.append(single_context_setting)
-            #for single_context_setting in single_context_settings:
-            #    self._debug(single_context_setting, 'scs')
-            #print ''
             self.store_single_context_settings(single_context_settings, clear_persistent_first=True)
 
     def store_single_context_pitch_class_settings(self):

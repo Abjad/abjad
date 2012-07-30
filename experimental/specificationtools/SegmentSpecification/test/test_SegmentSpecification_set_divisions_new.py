@@ -1,14 +1,12 @@
 from abjad.tools import *
 from experimental import *
 from experimental.specificationtools import library
-import py
 
 
-# TODO: IMPLEMENT ME
-def test_SegmentSpecification_get_timespan_from_measures_01():
-    '''Measure timespan and fractional segment timespan.
+def test_SegmentSpecification_set_divisions_new_01():
+    '''Voices 1 & 2 set divisions according to ratio of background measures.
+    Voices 3 & 4 set divisions according to ratio of segment duration.
     '''
-    py.test.skip('working on this one now')
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
     score_specification = specificationtools.ScoreSpecification(score_template)
@@ -36,3 +34,8 @@ def test_SegmentSpecification_get_timespan_from_measures_01():
     segment.set_rhythm(segment, library.thirty_seconds)
     segment = score_specification.append_segment()
     score = score_specification.interpret()
+
+    current_function_name = introspectiontools.get_current_function_name()
+    helpertools.write_test_output(score, __file__, current_function_name)
+
+    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
