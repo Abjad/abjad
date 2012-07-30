@@ -4,6 +4,7 @@ from abjad.tools import durationtools
 from experimental.quantizationtools.QuantizationJob import QuantizationJob
 from experimental.quantizationtools.QEvent import QEvent
 from experimental.quantizationtools.SearchTree import SearchTree
+from experimental.quantizationtools.SimpleSearchTree import SimpleSearchTree
 from experimental.quantizationtools.tempo_scaled_rational_to_milliseconds import tempo_scaled_rational_to_milliseconds
 
 
@@ -22,7 +23,10 @@ class QTargetBeat(abctools.AbjadObject):
 
         beatspan = durationtools.Duration(beatspan)
         offset_in_ms = durationtools.Offset(offset_in_ms)
-        search_tree = SearchTree(search_tree)
+
+        if search_tree is None:
+            search_tree = SimpleSearchTree()
+        assert isinstance(search_tree, SearchTree)
         tempo = contexttools.TempoMark(tempo)
         assert not tempo.is_imprecise
 

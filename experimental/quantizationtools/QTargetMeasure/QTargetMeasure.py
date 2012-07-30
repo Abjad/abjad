@@ -1,7 +1,8 @@
 from abjad.tools import abctools
 from abjad.tools import contexttools
 from abjad.tools import durationtools
-from experimental.quantizationtools.OldSearchTree import OldSearchTree
+from experimental.quantizationtools.SearchTree import SearchTree
+from experimental.quantizationtools.SimpleSearchTree import SimpleSearchTree
 from experimental.quantizationtools.tempo_scaled_rational_to_milliseconds \
     import tempo_scaled_rational_to_milliseconds
 
@@ -21,7 +22,10 @@ class QTargetMeasure(abctools.AbjadObject):
         from experimental.quantizationtools.QTargetBeat import QTargetBeat
 
         offset_in_ms = durationtools.Offset(offset_in_ms)
-        search_tree = OldSearchTree(search_tree)
+
+        if search_tree is None:
+            search_tree = SimpleSearchTree()
+        assert isinstance(search_tree, SearchTree)
         tempo = contexttools.TempoMark(tempo)
         assert not tempo.is_imprecise
         time_signature = contexttools.TimeSignatureMark(time_signature)

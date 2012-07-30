@@ -1,7 +1,7 @@
 from abjad.tools import contexttools
 from abjad.tools import durationtools
 from experimental.quantizationtools.QSchemaItem import QSchemaItem
-from experimental.quantizationtools.OldSearchTree import OldSearchTree
+from experimental.quantizationtools.SearchTree import SearchTree
 
 
 class BeatwiseQSchemaItem(QSchemaItem):
@@ -57,7 +57,7 @@ class BeatwiseQSchemaItem(QSchemaItem):
             assert 0 < beatspan
 
         if search_tree is not None:
-            search_tree = OldSearchTree(search_tree)
+            assert isinstance(search_tree, SearchTree)
 
         if tempo is not None:
             tempo = contexttools.TempoMark(tempo)
