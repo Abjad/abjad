@@ -1,12 +1,12 @@
 from abjad.tools import abctools
 from experimental.quantizationtools.QEventProxy import QEventProxy
-from experimental.quantizationtools.OldSearchTree import OldSearchTree
+from experimental.quantizationtools.SearchTree import SearchTree
 from experimental.quantizationtools.QGrid import QGrid
 
 
 class QuantizationJob(abctools.AbjadObject):
     '''A copible, picklable class for generating all QGrids which are valid
-    under a given OldSearchTree for a sequence of QEventProxies.
+    under a given SearchTree for a sequence of QEventProxies.
 
     QuantizationJob is intended to be useful in multiprocessing-enabled environments.
     '''
@@ -18,20 +18,29 @@ class QuantizationJob(abctools.AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self, job_id, search_tree, q_event_proxies, q_grids=None):
-        assert isinstance(search_tree, OldSearchTree)
+        assert isinstance(search_tree, SearchTree)
         assert all([isinstance(x, QEventProxy) for x in q_event_proxies])
         self._job_id = job_id
         self._search_tree = search_tree
         self._q_event_proxies = tuple(q_event_proxies)
         if q_grids is None:
-            self._q_grids = []
+            self._q_grids = ()
         else:
-            self._q_grids = q_grids
+            assert all([isinstance(x, QGrid) for x in q_grids])
+            self._q_grids = tuple(q_grids)
 
     ### SPECIAL METHODS ###
 
     def __call__(self):
-        pass
+        q_grid = QGrid()
+        q_grid.fit_q_events(self.q_event_proxies)
+        old_q_grids = []
+        new_q_grids = [q_grid]
+        while new_q_grids:
+            q_grid = new_q_grids.pop()
+            new_q_grids.extend(self.search_tree(q_grid))
+            old_q_grids.append(q_grid)
+        self._q_grids = tuple(old_q_grids)
 
     def __eq__(self, other):
         if type(self) == type(other):

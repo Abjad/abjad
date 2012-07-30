@@ -24,6 +24,8 @@ Methods
 
 .. automethod:: experimental.quantizationtools.SearchTree.SearchTree.SearchTree.find_leaf_subdivisions
 
+.. automethod:: experimental.quantizationtools.SearchTree.SearchTree.SearchTree.generate_all_subdivision_commands
+
 .. automethod:: experimental.quantizationtools.SearchTree.SearchTree.SearchTree.is_valid_definition
 
 Special Methods

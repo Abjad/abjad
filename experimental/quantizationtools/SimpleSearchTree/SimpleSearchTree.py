@@ -42,6 +42,8 @@ class SimpleSearchTree(SearchTree):
 
     def find_leaf_subdivisions(self, parentage_ratios):
         parentage = [x[1] for x in parentage_ratios[1:]]
+        if not parentage:
+            return tuple((1,) * x for x in sorted(self._definition.keys()))
         node = self._definition[parentage[0]]
         for item in parentage[1:]:
             node = node[item]
@@ -49,7 +51,7 @@ class SimpleSearchTree(SearchTree):
                 return ()
         if node is None:
             return ()
-        return tuple(sorted(node.keys()))
+        return tuple((1,) * x for x in sorted(node.keys()))
 
     def is_valid_definition(self, definition):
         if not isinstance(definition, dict) or not len(definition):

@@ -101,6 +101,10 @@ class QGrid(abctools.AbjadObject):
                 else:
                     leaves[idx - 1].q_events.append(q_event)
 
+    def sort_q_events_by_index(self):
+        for leaf in self.leaves:
+            leaf.q_events.sort(key=lambda x: x.index)
+
     def subdivide_leaf(self, leaf, subdivisions):
         container = QGridContainer(
             leaf.duration, [

@@ -28,6 +28,8 @@ Methods
 
 .. automethod:: experimental.quantizationtools.QGrid.QGrid.QGrid.fit_q_events
 
+.. automethod:: experimental.quantizationtools.QGrid.QGrid.QGrid.sort_q_events_by_index
+
 .. automethod:: experimental.quantizationtools.QGrid.QGrid.QGrid.subdivide_leaf
 
 .. automethod:: experimental.quantizationtools.QGrid.QGrid.QGrid.subdivide_leaves

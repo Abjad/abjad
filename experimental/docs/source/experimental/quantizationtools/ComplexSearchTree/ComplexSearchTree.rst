@@ -32,6 +32,10 @@ Methods
 
     Inherited from :py:class:`SearchTree.SearchTree <experimental.quantizationtools.SearchTree.SearchTree.SearchTree>`
 
+.. automethod:: experimental.quantizationtools.ComplexSearchTree.ComplexSearchTree.ComplexSearchTree.generate_all_subdivision_commands
+
+    Inherited from :py:class:`SearchTree.SearchTree <experimental.quantizationtools.SearchTree.SearchTree.SearchTree>`
+
 .. automethod:: experimental.quantizationtools.ComplexSearchTree.ComplexSearchTree.ComplexSearchTree.is_valid_definition
 
     Inherited from :py:class:`SearchTree.SearchTree <experimental.quantizationtools.SearchTree.SearchTree.SearchTree>`

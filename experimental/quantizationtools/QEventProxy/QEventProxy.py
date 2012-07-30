@@ -42,7 +42,7 @@ class QEventProxy(abctools.AbjadObject):
                 durationtools.Offset(args[1]), \
                 durationtools.Offset(args[2])
             assert isinstance(q_event, QEvent)
-            assert minimum <= q_event.offset < maximum
+            assert minimum <= q_event.offset <= maximum
             offset = (q_event.offset - minimum) / (maximum - minimum)
         else:
             raise ValueError
@@ -65,6 +65,10 @@ class QEventProxy(abctools.AbjadObject):
         return ('q_event', 'offset')
 
     ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def index(self):
+        return self._q_event.index
 
     @property
     def offset(self):

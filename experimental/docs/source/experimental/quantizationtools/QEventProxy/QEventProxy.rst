@@ -9,6 +9,8 @@ quantizationtools.QEventProxy
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.quantizationtools.QEventProxy.QEventProxy.QEventProxy.index
+
 .. autoattribute:: experimental.quantizationtools.QEventProxy.QEventProxy.QEventProxy.offset
 
 .. autoattribute:: experimental.quantizationtools.QEventProxy.QEventProxy.QEventProxy.q_event

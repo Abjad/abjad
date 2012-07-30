@@ -2,7 +2,7 @@ from abc import abstractmethod, abstractproperty
 from abjad.tools import abctools
 from abjad.tools import datastructuretools
 from abjad.tools import sequencetools
-from experimental.quantizationtools import QGrid
+from experimental.quantizationtools.QGrid import QGrid
 import copy
 
 
@@ -25,13 +25,14 @@ class SearchTree(abctools.AbjadObject):
 
     def __call__(self, q_grid):
         assert isinstance(q_grid, QGrid)
-        indices, subdivisions = self.find_divisible_leaf_indices_and_subdivisions(q_grid)
-        combinations = [x for x in sequencetools.yield_outer_product_of_sequences(subdivisions)]
         new_q_grids = []
-        for combo in combinations:
-            zipped = zip(indices, combo)
-            q_events = copy.copy(q_grid).subdivide_leaves(zipped)
-        return new_q_grids, q_events
+        commands = self.generate_all_subdivision_commands(q_grid)
+        for command in commands:
+            new_q_grid = copy.copy(q_grid)
+            q_events = new_q_grid.subdivide_leaves(command)
+            new_q_grid.fit_q_events(q_events)
+            new_q_grids.append(new_q_grid)
+        return new_q_grids
 
     def __eq__(self, other):
         if type(self) == type(other):
@@ -54,15 +55,22 @@ class SearchTree(abctools.AbjadObject):
 
     ### PUBLIC METHODS ###
 
+    def generate_all_subdivision_commands(self, q_grid):
+        indices, subdivisions = self.find_divisible_leaf_indices_and_subdivisions(q_grid)
+        if not indices:
+            return ()
+        combinations = [tuple(x) for x in sequencetools.yield_outer_product_of_sequences(subdivisions)]
+        return tuple(tuple(zip(indices, combo)) for combo in combinations)
+
     def find_divisible_leaf_indices_and_subdivisions(self, q_grid):
         indices, subdivisions = [], []
         for i, leaf in enumerate(q_grid.leaves[:-1]):
             if leaf.q_events and leaf.is_divisible:
-                parentage_rations = leaf.parentage_ratios
+                parentage_ratios = leaf.parentage_ratios
                 leaf_subdivisions = self.find_leaf_subdivisions(parentage_ratios)
                 if leaf_subdivisions:
                     indices.append(i)
-                    subdivisions.append(leaf_subdivisions)
+                    subdivisions.append(tuple(leaf_subdivisions))
         return indices, subdivisions
 
     @abstractmethod

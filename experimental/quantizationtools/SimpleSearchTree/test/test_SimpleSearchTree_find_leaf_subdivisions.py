@@ -14,8 +14,8 @@ def test_SimpleSearchTree_find_leaf_subdivisions_01():
     }
     search_tree = quantizationtools.SimpleSearchTree(definition)
 
-    assert search_tree.find_leaf_subdivisions((1, (1, 2))) == (2, 3)
-    assert search_tree.find_leaf_subdivisions((1, (1, 2), (1, 2))) == (2,)
+    assert search_tree.find_leaf_subdivisions((1, (1, 2))) == ((1, 1), (1, 1, 1))
+    assert search_tree.find_leaf_subdivisions((1, (1, 2), (1, 2))) == ((1, 1),)
     assert search_tree.find_leaf_subdivisions((1, (1, 2), (1, 2), (1, 2))) == ()
     assert search_tree.find_leaf_subdivisions((1, (1, 2), (1, 3))) == ()
     assert search_tree.find_leaf_subdivisions((1, (1, 5))) == ()
