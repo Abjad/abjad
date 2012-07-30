@@ -248,6 +248,9 @@ class ConcreteInterpreter(Interpreter):
 
     def fix_boundary_indicators_to_raw_segment_division_lists(self,
         voice_division_list, raw_segment_division_lists):
+        #self._debug(voice_division_list, 'vdl')
+        #self._debug(raw_segment_division_lists, 'rsdl')
+        #print ''
         voice_divisions = voice_division_list.divisions
         voice_divisions = [mathtools.NonreducedFraction(x) for x in voice_divisions]
         parts = sequencetools.partition_sequence_by_backgrounded_weights(
@@ -376,16 +379,27 @@ class ConcreteInterpreter(Interpreter):
             pass
 
     def interpret_divisions(self):
+        '''For every segment specification:
+
+        Get every single-context division setting defined for segment.
+
+        Then store every single-context division setting in context proxy dictionaries.
+        '''
         for segment_specification in self.score_specification.segment_specifications:
-            settings = segment_specification.single_context_settings.get_settings(attribute='divisions')
-            if not settings:
-                settings = []
-                existing_settings = self.score_specification.resolved_single_context_settings.get_settings(
+            single_context_settings = segment_specification.single_context_settings.get_settings(
+                attribute='divisions')
+            if not single_context_settings:
+                single_context_settings = []
+                resolved_single_context_settings = \
+                    self.score_specification.resolved_single_context_settings.get_settings(
                     attribute='divisions')
-                for existing_setting in existing_settings:
-                    setting = existing_setting.copy_to_segment(segment_specification)
-                    settings.append(setting)
-            self.store_single_context_settings(settings, clear_persistent_first=True)
+                for resolved_single_context_setting in resolved_single_context_settings:
+                    single_context_setting = resolved_single_context_setting.copy_to_segment(segment_specification)
+                    single_context_settings.append(single_context_setting)
+            #for single_context_setting in single_context_settings:
+            #    self._debug(single_context_setting, 'scs')
+            #print ''
+            self.store_single_context_settings(single_context_settings, clear_persistent_first=True)
 
     def interpret_rhythms(self):
         for segment_specification in self.score_specification.segment_specifications:
@@ -449,6 +463,7 @@ class ConcreteInterpreter(Interpreter):
                 self.add_rhythm_to_voice(voice, rhythm_maker, rhythm_region_division_list)
 
     def make_segment_division_lists_for_voice(self, voice):
+        #self._debug(voice, 'voice')
         voice_division_list = self.score_specification.contexts[voice.name]['voice_division_list']
         voice_divisions = [mathtools.NonreducedFraction(x) for x in voice_division_list.divisions]
         segment_durations = self.score_specification.segment_durations
