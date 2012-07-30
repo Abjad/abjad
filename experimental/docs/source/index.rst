@@ -205,7 +205,6 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
-   experimental/quantizationtools/ComplexSearchTree/ComplexSearchTree
    experimental/quantizationtools/GraceHandler/GraceHandler
    experimental/quantizationtools/Heuristic/Heuristic
    experimental/quantizationtools/QEvent/QEvent
@@ -223,6 +222,7 @@ Unstable packages (load manually)
    experimental/quantizationtools/BeatwiseQSchema/BeatwiseQSchema
    experimental/quantizationtools/BeatwiseQSchemaItem/BeatwiseQSchemaItem
    experimental/quantizationtools/BeatwiseQTarget/BeatwiseQTarget
+   experimental/quantizationtools/ComplexSearchTree/ComplexSearchTree
    experimental/quantizationtools/DistanceHeuristic/DistanceHeuristic
    experimental/quantizationtools/MeasurewiseQSchema/MeasurewiseQSchema
    experimental/quantizationtools/MeasurewiseQSchemaItem/MeasurewiseQSchemaItem

@@ -37,6 +37,7 @@ def test_QuantizationJob___call___01():
     assert job.q_grids[4].root_node.rtm_format == '(1 ((1 (1 1 1)) (1 (1 1))))'
     assert job.q_grids[5].root_node.rtm_format == '(1 ((1 (1 1 1)) (1 ((1 (1 1)) (1 (1 1))))))'
     assert job.q_grids[6].root_node.rtm_format == '(1 ((1 (1 1)) (1 (1 1 1))))'
-    assert job.q_grids[7].root_node.rtm_format == '(1 ((1 ((1 (1 1)) (1 (1 1)))) (1 (1 1 1))))'
+    assert job.q_grids[7].root_node.rtm_format == '(1 ((1 (1 (1 (1 1)))) (1 (1 1 1))))'
     assert job.q_grids[8].root_node.rtm_format == '(1 ((1 (1 1)) (1 (1 1))))'
-    assert job.q_grids[9].root_node.rtm_format == '(1 ((1 ((1 (1 1)) (1 (1 1)))) (1 ((1 (1 1)) (1 (1 1))))))'
+    assert job.q_grids[9].root_node.rtm_format == '(1 ((1 (1 (1 (1 1)))) (1 ((1 (1 1)) (1 (1 1))))))'
+

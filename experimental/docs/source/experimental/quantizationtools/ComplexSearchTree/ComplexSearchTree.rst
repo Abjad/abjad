@@ -11,8 +11,6 @@ Read-only Properties
 
 .. autoattribute:: experimental.quantizationtools.ComplexSearchTree.ComplexSearchTree.ComplexSearchTree.default_definition
 
-    Inherited from :py:class:`SearchTree.SearchTree <experimental.quantizationtools.SearchTree.SearchTree.SearchTree>`
-
 .. autoattribute:: experimental.quantizationtools.ComplexSearchTree.ComplexSearchTree.ComplexSearchTree.definition
 
     Inherited from :py:class:`SearchTree.SearchTree <experimental.quantizationtools.SearchTree.SearchTree.SearchTree>`
@@ -30,15 +28,11 @@ Methods
 
 .. automethod:: experimental.quantizationtools.ComplexSearchTree.ComplexSearchTree.ComplexSearchTree.find_leaf_subdivisions
 
-    Inherited from :py:class:`SearchTree.SearchTree <experimental.quantizationtools.SearchTree.SearchTree.SearchTree>`
-
 .. automethod:: experimental.quantizationtools.ComplexSearchTree.ComplexSearchTree.ComplexSearchTree.generate_all_subdivision_commands
 
     Inherited from :py:class:`SearchTree.SearchTree <experimental.quantizationtools.SearchTree.SearchTree.SearchTree>`
 
 .. automethod:: experimental.quantizationtools.ComplexSearchTree.ComplexSearchTree.ComplexSearchTree.is_valid_definition
-
-    Inherited from :py:class:`SearchTree.SearchTree <experimental.quantizationtools.SearchTree.SearchTree.SearchTree>`
 
 Special Methods
 ---------------

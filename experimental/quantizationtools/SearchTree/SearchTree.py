@@ -66,6 +66,8 @@ class SearchTree(abctools.AbjadObject):
         indices, subdivisions = [], []
         for i, leaf in enumerate(q_grid.leaves[:-1]):
             if leaf.q_events and leaf.is_divisible:
+                if len(leaf.q_events) == 1 and leaf.q_events[0].offset == leaf.offset:
+                    continue # a perfect match, don't bother to continue subdivision
                 parentage_ratios = leaf.parentage_ratios
                 leaf_subdivisions = self.find_leaf_subdivisions(parentage_ratios)
                 if leaf_subdivisions:
