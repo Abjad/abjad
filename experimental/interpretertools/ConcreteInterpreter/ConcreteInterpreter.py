@@ -61,8 +61,9 @@ class ConcreteInterpreter(Interpreter):
             self.add_division_lists_to_voice(voice)
 
     def add_division_lists_to_voice(self, voice):
+        self._debug(voice)
         division_region_division_lists = self.make_division_region_division_lists_for_voice(voice)
-        #self._debug(division_region_division_lists, 'drdl')
+        self._debug(division_region_division_lists, 'drdl')
         if division_region_division_lists:
             self.score_specification.contexts[voice.name]['division_region_division_lists'] = \
                 division_region_division_lists
@@ -349,15 +350,19 @@ class ConcreteInterpreter(Interpreter):
             segment_specification, 'divisions', context_name)
         uninterpreted_division_commands = []
         for resolved_single_context_setting in resolved_single_context_settings:
+            self._debug(resolved_single_context_setting, 'rscs')
             if isinstance(resolved_single_context_setting.target, selectortools.CountRatioItemSelector):
                 uninterpreted_division_command = \
                     self.count_ratio_item_selector_to_uninterpreted_division_command(
                     segment_specification, resolved_single_context_setting)
-            else:
+            elif isinstance(resolved_single_context_setting.target, selectortools.SingleContextTimespanSelector):
                 uninterpreted_division_command = \
                     self.single_context_timespan_selector_to_uninterpreted_division_command(
                     segment_specification, resolved_single_context_setting)
+            else:
+                raise NotImplementedError(resolved_single_context_setting.target)
             uninterpreted_division_commands.append(uninterpreted_division_command)
+        print ''
         return uninterpreted_division_commands
 
     def get_voice_division_list(self, voice):
@@ -377,7 +382,7 @@ class ConcreteInterpreter(Interpreter):
 
     def make_division_region_division_lists_for_voice(self, voice):
         uninterpreted_division_commands = self.get_uninterpreted_division_commands_for_voice(voice)
-        #self._debug(uninterpreted_division_commands, 'udc')
+        self._debug(uninterpreted_division_commands, 'udc')
         region_division_commands = self.uninterpreted_division_commands_to_region_division_commands(
             uninterpreted_division_commands)
         division_region_division_lists = self.region_division_commands_to_division_region_division_lists(
