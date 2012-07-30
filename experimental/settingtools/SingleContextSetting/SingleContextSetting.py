@@ -57,7 +57,7 @@ class SingleContextSetting(MultipleContextSetting):
 
     def _check_input_arguments(self, mandatory_argument_values, keyword_argument_values):
         from experimental import specificationtools
-        target, attribute, source, = mandatory_argument_values
+        attribute, source, target, = mandatory_argument_values
         persist, truncate, fresh = keyword_argument_values
         assert isinstance(target, selectortools.SingleContextTimespanSelector), repr(target)
         assert isinstance(attribute, str), repr(attribute)

@@ -480,7 +480,13 @@ class ConcreteInterpreter(Interpreter):
         if isinstance(single_context_setting, settingtools.ResolvedSingleContextSetting):
             return single_context_setting
         value = self.resolve_single_context_setting_source(single_context_setting)
-        arguments = single_context_setting._mandatory_argument_values + (value, )
+        #arguments = single_context_setting._mandatory_argument_values + (value, )
+        arguments = (
+            single_context_setting.target,
+            single_context_setting.attribute,
+            single_context_setting.source,
+            value,
+            )
         resolved_single_context_setting = settingtools.ResolvedSingleContextSetting(*arguments,
             persist=single_context_setting.persist,
             truncate=single_context_setting.truncate,

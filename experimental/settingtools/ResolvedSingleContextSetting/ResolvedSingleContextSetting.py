@@ -6,7 +6,7 @@ class ResolvedSingleContextSetting(SingleContextSetting):
     ### INITIALIZER ###
 
     def __init__(self, target, attribute, source, value, persist=True, truncate=False, fresh=True):
-        SingleContextSetting.__init__(self, target, attribute, source, persist=persist, truncate=truncate)
+        SingleContextSetting.__init__(self, attribute, source, target, persist=persist, truncate=truncate)
         assert value is not None, repr(value)
         assert isinstance(fresh, bool), repr(fresh)
         self._value = value

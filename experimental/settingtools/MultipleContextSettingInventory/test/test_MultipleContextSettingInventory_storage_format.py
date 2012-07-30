@@ -1,12 +1,10 @@
 from abjad.tools import *
-from experimental import selectortools
-from experimental import settingtools
-from experimental import specificationtools
-from experimental import timespantools
+from experimental import *
 from experimental.specificationtools import library
 from experimental.settingtools.MultipleContextSetting import MultipleContextSetting
 from experimental.settingtools.MultipleContextSettingInventory import MultipleContextSettingInventory
-from experimental.selectortools.SingleContextCounttimeComponentSelector import SingleContextCounttimeComponentSelector
+from experimental.selectortools.SingleContextCounttimeComponentSelector import \
+    SingleContextCounttimeComponentSelector
 from experimental.specificationtools.ScoreSpecification import ScoreSpecification
 from experimental.selectortools.MultipleContextTimespanSelector import MultipleContextTimespanSelector
 from experimental.timespantools.Timepoint import Timepoint
@@ -18,7 +16,7 @@ def test_MultipleContextSettingInventory_storage_format_01():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    score_specification = ScoreSpecification(score_template)
+    score_specification = specificationtools.ScoreSpecification(score_template)
 
     segment = score_specification.append_segment()
     segment.set_time_signatures(segment, [(4, 8), (3, 8)])
@@ -30,6 +28,8 @@ def test_MultipleContextSettingInventory_storage_format_01():
     r'''
     settingtools.MultipleContextSettingInventory([
         settingtools.MultipleContextSetting(
+            'time_signatures',
+            [(4, 8), (3, 8)],
             selectortools.MultipleContextTimespanSelector(
                 contexts=['Grouped Rhythmic Staves Score'],
                 timespan=timespantools.SingleSourceTimespan(
@@ -38,15 +38,13 @@ def test_MultipleContextSettingInventory_storage_format_01():
                         )
                     )
                 ),
-            'time_signatures',
-            [(4, 8), (3, 8)],
             persist=True,
             truncate=False
             )
         ])
     '''
 
-    assert storage_format == "settingtools.MultipleContextSettingInventory([\n\tsettingtools.MultipleContextSetting(\n\t\tselectortools.MultipleContextTimespanSelector(\n\t\t\tcontexts=['Grouped Rhythmic Staves Score'],\n\t\t\ttimespan=timespantools.SingleSourceTimespan(\n\t\t\t\tselector=selectortools.SegmentSelector(\n\t\t\t\t\tindex='1'\n\t\t\t\t\t)\n\t\t\t\t)\n\t\t\t),\n\t\t'time_signatures',\n\t\t[(4, 8), (3, 8)],\n\t\tpersist=True,\n\t\ttruncate=False\n\t\t)\n\t])"
+    assert storage_format == "settingtools.MultipleContextSettingInventory([\n\tsettingtools.MultipleContextSetting(\n\t\t'time_signatures',\n\t\t[(4, 8), (3, 8)],\n\t\tselectortools.MultipleContextTimespanSelector(\n\t\t\tcontexts=['Grouped Rhythmic Staves Score'],\n\t\t\ttimespan=timespantools.SingleSourceTimespan(\n\t\t\t\tselector=selectortools.SegmentSelector(\n\t\t\t\t\tindex='1'\n\t\t\t\t\t)\n\t\t\t\t)\n\t\t\t),\n\t\tpersist=True,\n\t\ttruncate=False\n\t\t)\n\t])"
 
     multiple_context_setting_inventory_2 = eval(storage_format)
 

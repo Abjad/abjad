@@ -24,6 +24,8 @@ class MultipleContextSetting(Setting):
 
         >>> z(multiple_context_setting)
         settingtools.MultipleContextSetting(
+            'time_signatures',
+            [(4, 8), (3, 8)],
             selectortools.MultipleContextTimespanSelector(
                 contexts=['Grouped Rhythmic Staves Score'],
                 timespan=timespantools.SingleSourceTimespan(
@@ -32,8 +34,6 @@ class MultipleContextSetting(Setting):
                         )
                     )
                 ),
-            'time_signatures',
-            [(4, 8), (3, 8)],
             persist=True,
             truncate=False
             )
@@ -45,7 +45,7 @@ class MultipleContextSetting(Setting):
 
     def __init__(self, *args, **kwargs):
         mandatory_argument_values, keyword_argument_values = self._get_input_argument_values(*args, **kwargs)
-        target, attribute, source = mandatory_argument_values
+        attribute, source, target = mandatory_argument_values
         self._target = target
         self._attribute = attribute
         self._source = source
@@ -73,9 +73,12 @@ class MultipleContextSetting(Setting):
     @property
     def _mandatory_argument_values(self):
         return (
-            self.target,
+            #self.target,
+            #self.attribute,
+            #self.source,
             self.attribute,
             self.source,
+            self.target,
             )
 
     ### PRIVATE METHODS ###
@@ -139,7 +142,7 @@ class MultipleContextSetting(Setting):
             else:
                 target = selectortools.SingleContextTimespanSelector(context, 
                     timespan=copy.deepcopy(self.target.timespan))
-            setting = settingtools.SingleContextSetting(target, self.attribute, self.source, 
+            setting = settingtools.SingleContextSetting(self.attribute, self.source, target,
                 persist=self.persist, truncate=self.truncate)
             settings.append(setting)
         return settings

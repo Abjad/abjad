@@ -16,8 +16,6 @@ class ContextProxy(AbjadObject, OrderedDict):
         return OrderedDict.__repr__(self)
 
     def __setitem__(self, key, value):
-        #self._debug(key, 'key')
-        #self._debug(value, 'value')
         assert isinstance(key, str)
         OrderedDict.__setitem__(self, key, value)
 

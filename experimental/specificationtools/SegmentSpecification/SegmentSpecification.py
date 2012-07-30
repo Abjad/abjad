@@ -81,7 +81,7 @@ class SegmentSpecification(Specification):
         assert isinstance(truncate, type(True)), repr(truncate)
         target = self._expr_to_selector(target)
         source = requesttools.source_to_request(source, callback=callback, count=count, offset=offset)
-        multiple_context_setting = settingtools.MultipleContextSetting(target, attribute, source, 
+        multiple_context_setting = settingtools.MultipleContextSetting(attribute, source, target,
             persist=persist, truncate=truncate)
         self.multiple_context_settings.append(multiple_context_setting)
         return multiple_context_setting
@@ -687,6 +687,8 @@ class SegmentSpecification(Specification):
 
             >>> z(setting)
             settingtools.MultipleContextSetting(
+                'divisions',
+                [(3, 16)],
                 selectortools.MultipleContextTimespanSelector(
                     contexts=['Voice 1', 'Voice 3'],
                     timespan=timespantools.SingleSourceTimespan(
@@ -695,8 +697,6 @@ class SegmentSpecification(Specification):
                             )
                         )
                     ),
-                'divisions',
-                [(3, 16)],
                 persist=True,
                 truncate=False
                 )
