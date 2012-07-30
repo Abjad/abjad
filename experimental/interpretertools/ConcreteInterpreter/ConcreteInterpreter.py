@@ -22,23 +22,32 @@ class ConcreteInterpreter(Interpreter):
     ### INITIALIZER ###
 
     def __call__(self, score_specification):
-        '''Top-level interpretation entry point.
+        '''Top-level interpretation entry point::
+
+            * interpret time signatures
+            * interpret divisions
+            * interpret rhythms
+            * interpret pitch-classes
+            * interpret registration
+            * interpret additional parameters
+
+        Return Abjad score object.
         '''
         self.score_specification = score_specification
         self.score = self.instantiate_score()
         self.unpack_multiple_context_settings_for_score()
-        self.interpret_time_signatures()
+        self.store_single_context_time_signature_settings()
         self.add_time_signatures_to_score()
         self.calculate_segment_offset_pairs()
-        self.interpret_divisions()
+        self.store_single_context_division_settings()
         self.add_division_lists_to_score()
-        self.interpret_rhythms()
+        self.store_single_context_rhythm_settings()
         self.add_rhythms_to_score()
-        self.interpret_pitch_classes()
+        self.store_single_context_pitch_class_settings()
         self.apply_pitch_classes()
-        self.interpret_registration()
+        self.store_single_context_registration_settings()
         self.apply_registration()
-        self.interpret_additional_parameters()
+        self.store_additional_single_context_settings()
         self.apply_additional_parameters()
         return self.score
 
@@ -366,82 +375,6 @@ class ConcreteInterpreter(Interpreter):
         score.insert(0, context)
         return score
 
-    def interpret_additional_parameters(self):
-        for segment_specification in self.score_specification.segment_specifications:
-            pass
-
-    def interpret_pitch_classes(self):
-        for segment_specification in self.score_specification.segment_specifications:
-            pass
-
-    def interpret_registration(self):
-        for segment_specification in self.score_specification.segment_specifications:
-            pass
-
-    def interpret_divisions(self):
-        '''For every segment specification:
-
-        Get every single-context division setting defined for segment.
-
-        Then store every single-context division setting in context proxy dictionaries.
-        '''
-        for segment_specification in self.score_specification.segment_specifications:
-            single_context_settings = segment_specification.single_context_settings.get_settings(
-                attribute='divisions')
-            if not single_context_settings:
-                single_context_settings = []
-                resolved_single_context_settings = \
-                    self.score_specification.resolved_single_context_settings.get_settings(
-                    attribute='divisions')
-                for resolved_single_context_setting in resolved_single_context_settings:
-                    single_context_setting = resolved_single_context_setting.copy_to_segment(segment_specification)
-                    single_context_settings.append(single_context_setting)
-            #for single_context_setting in single_context_settings:
-            #    self._debug(single_context_setting, 'scs')
-            #print ''
-            self.store_single_context_settings(single_context_settings, clear_persistent_first=True)
-
-    def interpret_rhythms(self):
-        for segment_specification in self.score_specification.segment_specifications:
-            settings = segment_specification.single_context_settings.get_settings(attribute='rhythm')
-            if not settings:
-                settings = []
-                existing_settings = self.score_specification.resolved_single_context_settings.get_settings(
-                    attribute='rhythm')
-                for existing_setting in existing_settings:
-                    setting = existing_setting.copy_to_segment(segment_specification)
-                    settings.append(setting)
-            self.store_single_context_settings(settings, clear_persistent_first=True)
-
-    def interpret_time_signatures(self):
-        '''For each segment:
-
-        Check segment for an explicit time signature setting.
-
-        If none, check score resolved settings context dictionary for current time signature setting.
-
-        Halt interpretation if no time signature setting is found.
-
-        Otherwise store time signature setting.
-        '''
-        for segment_specification in self.score_specification.segment_specifications:
-            settings = segment_specification.single_context_settings.get_settings(attribute='time_signatures')
-            if settings:
-                assert len(settings) == 1, repr(settings)
-                setting = settings[0]
-            else:
-                settings = self.score_specification.resolved_single_context_settings.get_settings(
-                    attribute='time_signatures')
-                if not settings:
-                    return
-                assert len(settings) == 1, repr(settings)
-                setting = settings[0]
-                setting = setting.copy_to_segment(segment_specification.segment_name)
-            assert setting.target.context == segment_specification.score_name, repr(setting)
-            assert setting.target.timespan == segment_specification.timespan, [
-                repr(setting), '\n', repr(segment_specification.timespan)]
-            self.store_single_context_setting(setting, clear_persistent_first=True)
-
     def make_division_region_division_lists_for_voice(self, voice):
         uninterpreted_division_commands = self.get_uninterpreted_division_commands_for_voice(voice)
         #self._debug(uninterpreted_division_commands, 'udc')
@@ -575,6 +508,10 @@ class ConcreteInterpreter(Interpreter):
         #print ''
         return command
 
+    def store_additional_single_context_settings(self):
+        for segment_specification in self.score_specification.segment_specifications:
+            pass
+
     def store_resolved_single_context_setting(self,
         segment_specification, resolved_single_context_setting, clear_persistent_first=False):
         context_name = resolved_single_context_setting.target.context
@@ -597,6 +534,49 @@ class ConcreteInterpreter(Interpreter):
                 self.score_specification.resolved_single_context_settings[context_name][attribute] = [
                     resolved_single_context_setting]
 
+    def store_single_context_division_settings(self):
+        '''For every segment specification:
+
+        Get every single-context division setting defined for segment.
+
+        Then store every single-context division setting in context proxy dictionaries.
+        '''
+        for segment_specification in self.score_specification.segment_specifications:
+            single_context_settings = segment_specification.single_context_settings.get_settings(
+                attribute='divisions')
+            if not single_context_settings:
+                single_context_settings = []
+                resolved_single_context_settings = \
+                    self.score_specification.resolved_single_context_settings.get_settings(
+                    attribute='divisions')
+                for resolved_single_context_setting in resolved_single_context_settings:
+                    single_context_setting = resolved_single_context_setting.copy_to_segment(segment_specification)
+                    single_context_settings.append(single_context_setting)
+            #for single_context_setting in single_context_settings:
+            #    self._debug(single_context_setting, 'scs')
+            #print ''
+            self.store_single_context_settings(single_context_settings, clear_persistent_first=True)
+
+    def store_single_context_pitch_class_settings(self):
+        for segment_specification in self.score_specification.segment_specifications:
+            pass
+
+    def store_single_context_registration_settings(self):
+        for segment_specification in self.score_specification.segment_specifications:
+            pass
+
+    def store_single_context_rhythm_settings(self):
+        for segment_specification in self.score_specification.segment_specifications:
+            settings = segment_specification.single_context_settings.get_settings(attribute='rhythm')
+            if not settings:
+                settings = []
+                existing_settings = self.score_specification.resolved_single_context_settings.get_settings(
+                    attribute='rhythm')
+                for existing_setting in existing_settings:
+                    setting = existing_setting.copy_to_segment(segment_specification)
+                    settings.append(setting)
+            self.store_single_context_settings(settings, clear_persistent_first=True)
+
     def store_single_context_setting(self, single_context_setting, clear_persistent_first=False):
         '''Resolve single-context setting and find segment in which single-context setting starts.
 
@@ -615,6 +595,35 @@ class ConcreteInterpreter(Interpreter):
         for single_context_setting in single_context_settings:
             self.store_single_context_setting(
                 single_context_setting, clear_persistent_first=clear_persistent_first)
+
+    def store_single_context_time_signature_settings(self):
+        '''For each segment:
+
+        Check segment for an explicit time signature setting.
+
+        If none, check score resolved settings context dictionary for current time signature setting.
+
+        Halt interpretation if no time signature setting is found.
+
+        Otherwise store time signature setting.
+        '''
+        for segment_specification in self.score_specification.segment_specifications:
+            settings = segment_specification.single_context_settings.get_settings(attribute='time_signatures')
+            if settings:
+                assert len(settings) == 1, repr(settings)
+                setting = settings[0]
+            else:
+                settings = self.score_specification.resolved_single_context_settings.get_settings(
+                    attribute='time_signatures')
+                if not settings:
+                    return
+                assert len(settings) == 1, repr(settings)
+                setting = settings[0]
+                setting = setting.copy_to_segment(segment_specification.segment_name)
+            assert setting.target.context == segment_specification.score_name, repr(setting)
+            assert setting.target.timespan == segment_specification.timespan, [
+                repr(setting), '\n', repr(segment_specification.timespan)]
+            self.store_single_context_setting(setting, clear_persistent_first=True)
 
     def unpack_multiple_context_settings_for_score(self):
         for segment_specification in self.score_specification.segment_specifications:
