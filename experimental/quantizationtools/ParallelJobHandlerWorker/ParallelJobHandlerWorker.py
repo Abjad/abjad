@@ -19,12 +19,11 @@ class ParallelJobHandlerWorker(multiprocessing.Process, abctools.AbjadObject):
             job = self.job_queue.get( )
             if job is None:
                 # poison pill causes worker shutdown
-                # print '%s: Exiting' % proc_name
-                self.job_queue.job_done( )
+                print '{}: Exiting'.format(proc_name)
+                self.job_queue.task_done( )
                 break
-            # print '%s: %s %d' % (proc_name, job, job.offset)
+            print '{}: {!r}'.format(proc_name, job)
             job()
-            self.job_queue.job_done( )
+            self.job_queue.task_done( )
             self.result_queue.put(job)
         return
-
