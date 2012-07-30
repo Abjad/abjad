@@ -208,14 +208,12 @@ Unstable packages (load manually)
    experimental/quantizationtools/GraceHandler/GraceHandler
    experimental/quantizationtools/Heuristic/Heuristic
    experimental/quantizationtools/JobHandler/JobHandler
-   experimental/quantizationtools/ParallelJobHandler/ParallelJobHandler
    experimental/quantizationtools/QEvent/QEvent
    experimental/quantizationtools/QSchema/QSchema
    experimental/quantizationtools/QSchemaItem/QSchemaItem
    experimental/quantizationtools/QTarget/QTarget
    experimental/quantizationtools/Quantizer/Quantizer
    experimental/quantizationtools/SearchTree/SearchTree
-   experimental/quantizationtools/SerialJobHandler/SerialJobHandler
 
 .. rubric:: concrete classes
 
@@ -231,6 +229,8 @@ Unstable packages (load manually)
    experimental/quantizationtools/MeasurewiseQSchemaItem/MeasurewiseQSchemaItem
    experimental/quantizationtools/MeasurewiseQTarget/MeasurewiseQTarget
    experimental/quantizationtools/OldSearchTree/OldSearchTree
+   experimental/quantizationtools/ParallelJobHandler/ParallelJobHandler
+   experimental/quantizationtools/ParallelJobHandlerWorker/ParallelJobHandlerWorker
    experimental/quantizationtools/PitchedQEvent/PitchedQEvent
    experimental/quantizationtools/QEventProxy/QEventProxy
    experimental/quantizationtools/QEventSequence/QEventSequence
@@ -240,6 +240,7 @@ Unstable packages (load manually)
    experimental/quantizationtools/QTargetBeat/QTargetBeat
    experimental/quantizationtools/QTargetMeasure/QTargetMeasure
    experimental/quantizationtools/QuantizationJob/QuantizationJob
+   experimental/quantizationtools/SerialJobHandler/SerialJobHandler
    experimental/quantizationtools/SilentQEvent/SilentQEvent
    experimental/quantizationtools/SimpleSearchTree/SimpleSearchTree
    experimental/quantizationtools/TerminalQEvent/TerminalQEvent

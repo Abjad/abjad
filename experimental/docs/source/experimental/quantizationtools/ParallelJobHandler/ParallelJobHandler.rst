@@ -16,6 +16,8 @@ Read-only Properties
 Special Methods
 ---------------
 
+.. automethod:: experimental.quantizationtools.ParallelJobHandler.ParallelJobHandler.ParallelJobHandler.__call__
+
 .. automethod:: experimental.quantizationtools.ParallelJobHandler.ParallelJobHandler.ParallelJobHandler.__delattr__
 
     Inherited from :py:class:`__builtin__.object`
