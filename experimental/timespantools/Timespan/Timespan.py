@@ -22,16 +22,6 @@ class Timespan(AbjadObject):
     def __init__(self):
         pass
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
-
-    @property
-    def _one_line_format(self):
-        if self.selector is None:
-            return '[{} {}]'.format(self.start._one_line_format, self.stop._one_line_format)
-        else:
-            # note that this is not yet implemented
-            return '[{}]'.format(self.selector._one_line_format)
-
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property

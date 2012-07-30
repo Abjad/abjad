@@ -224,25 +224,6 @@ class Timepoint(AbjadObject):
             return self < other
         return False
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
-
-    @property
-    def _one_line_format(self):
-        values = []
-        if self.anchor is None:
-            values.append('SCORE')
-        else:
-            values.append(self.anchor._one_line_format)
-        if self.edge is not None:
-            values.append(repr(self.edge))
-        if self.multiplier is not None:
-            values.append(repr(self.multiplier))
-        if self.addendum is not None:
-            values.append(repr(self.addendum))
-        values = ' '.join(values)
-        values = '({})'.format(values)
-        return values
-
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property

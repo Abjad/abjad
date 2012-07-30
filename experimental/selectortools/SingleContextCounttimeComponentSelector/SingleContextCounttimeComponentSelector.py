@@ -224,15 +224,6 @@ class SingleContextCounttimeComponentSelector(ItemSelector, InequalitySelector):
         else:
             return True
 
-    ### READ-ONLY PRIVATE PROPERTIES ###
-
-    @property
-    def _one_line_format(self):
-        values = [str(x) for x in self._keyword_argument_values if x is not None]
-        values = ', '.join(values)
-        values = '[{}]'.format(values)
-        return values
-
     ### READ-ONLY PUBLIC PROPERTIES ###
     
     @property

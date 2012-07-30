@@ -4,6 +4,8 @@ import copy
 
 class MultipleContextSetting(Setting):
     r'''.. versionadded:: 1.0
+
+    ::
     
         >>> from abjad.tools import *
         >>> from experimental import specificationtools
@@ -76,17 +78,6 @@ class MultipleContextSetting(Setting):
             self.source,
             )
 
-    @property
-    def _one_line_format(self):
-        body = [
-            self.target._one_line_format,
-            self._get_one_line_source_format(self.source),
-            ]
-        if not self.persist:
-            body.append(self.persist)
-        body = ', '.join([str(x) for x in body])
-        return '{}: {}'.format(self.attribute, body)
-
     ### PRIVATE METHODS ###
 
     def _get_input_argument_values(self, *args, **kwargs):
@@ -106,14 +97,6 @@ class MultipleContextSetting(Setting):
             keyword_argument_values.append(kwargs.get('truncate', False))
         return mandatory_argument_values, keyword_argument_values
 
-    def _get_one_line_source_format(self, source):
-        if hasattr(source, '_one_line_format'):
-            return source._one_line_format
-        elif hasattr(source, 'name'):
-            return source.name
-        else:
-            return str(source)
-    
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
@@ -138,11 +121,8 @@ class MultipleContextSetting(Setting):
 
     ### PUBLIC METHODS ###
 
-    # TODO: implement Selector.unpack() to complement this method;
-    #       multiple-context selectors should know how to unpack themselves into single-context selectors;
     def unpack(self):
-        '''Unpacking a multiple-context setting means exploding the multiple-context
-        setting into a list of single-context settings.
+        '''Unpack multiple-context setting.
 
         Return list of single-context settings.
         '''
