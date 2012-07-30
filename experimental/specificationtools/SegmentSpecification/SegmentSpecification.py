@@ -833,12 +833,14 @@ class SegmentSpecification(Specification):
         return self._set_attribute(attribute, contexts, source, 
             count=count, offset=offset, persist=persist)
 
-    def set_time_signatures(self, contexts, source, 
+    def set_time_signatures(self, source, contexts=None,
         count=None, persist=True, offset=None):
         r'''Set time signatures of segment `contexts` to `source`.
 
         Create, store and return ``MultipleContextSetting``.
         '''
         attribute = 'time_signatures'
+        if contexts is None:
+            contexts = self
         return self._set_attribute(attribute, contexts, source, 
             count=count, offset=offset, persist=persist)

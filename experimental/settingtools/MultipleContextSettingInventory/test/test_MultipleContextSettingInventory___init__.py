@@ -11,7 +11,7 @@ def test_MultipleContextSettingInventory___init___01():
     specification = ScoreSpecification(score_template)
 
     segment = specification.append_segment()
-    segment.set_time_signatures(segment, [(4, 8), (3, 8)])
+    segment.set_time_signatures([(4, 8), (3, 8)])
 
     multiple_context_setting_inventory_1 = segment.multiple_context_settings
     multiple_context_setting_inventory_2 = MultipleContextSettingInventory(multiple_context_setting_inventory_1)

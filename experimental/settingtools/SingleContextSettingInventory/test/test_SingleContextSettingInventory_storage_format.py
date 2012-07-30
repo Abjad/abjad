@@ -13,7 +13,7 @@ def test_SingleContextSettingInventory_storage_format_01():
     score_specification = specificationtools.ScoreSpecification(score_template)
 
     segment = score_specification.append_segment()
-    segment.set_time_signatures(segment, [(4, 8), (3, 8)])
+    segment.set_time_signatures([(4, 8), (3, 8)])
     score_specification.interpret()
 
     setting_inventory_1 = segment.single_context_settings

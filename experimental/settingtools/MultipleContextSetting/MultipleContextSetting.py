@@ -18,7 +18,7 @@ class MultipleContextSetting(Setting):
 
     ::
 
-        >>> multiple_context_setting = segment.set_time_signatures(segment, [(4, 8), (3, 8)])
+        >>> multiple_context_setting = segment.set_time_signatures([(4, 8), (3, 8)])
 
     ::
 

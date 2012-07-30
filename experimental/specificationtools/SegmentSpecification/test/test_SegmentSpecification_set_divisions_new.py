@@ -12,7 +12,7 @@ def test_SegmentSpecification_set_divisions_new_01():
     score_specification = specificationtools.ScoreSpecification(score_template)
 
     segment = score_specification.append_segment('red')
-    segment.set_time_signatures(segment, [(4, 8), (3, 8)])
+    segment.set_time_signatures([(4, 8), (3, 8)])
 
     first_measure = segment.select_background_measures(stop=1).timespan
     second_measure = segment.select_background_measures(start=-1).timespan

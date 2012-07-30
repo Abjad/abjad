@@ -12,7 +12,7 @@ def test_single_segment_nonbinary_solo_01():
     specification = ScoreSpecification(score_template)
 
     segment = specification.append_segment()
-    segment.set_time_signatures(segment, [(4, 8), (3, 8)])
+    segment.set_time_signatures([(4, 8), (3, 8)])
     segment.set_divisions(segment.v1, [(1, 5)])
     segment.set_rhythm(segment, library.tuplet_monads)
 

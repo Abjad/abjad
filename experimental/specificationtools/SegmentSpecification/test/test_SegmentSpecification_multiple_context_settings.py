@@ -11,7 +11,7 @@ def test_SegmentSpecification_multiple_context_settings_01():
     assert not segment.multiple_context_settings
     assert not segment.single_context_settings
 
-    segment.set_time_signatures(segment, [(4, 8), (3, 8)])
+    segment.set_time_signatures([(4, 8), (3, 8)])
     assert len(segment.multiple_context_settings) == 1
     assert not segment.single_context_settings
 

@@ -23,7 +23,7 @@ def test_quartet_01():
     score_specification = ScoreSpecification(score_template)
 
     segment = score_specification.append_segment(name='T1')
-    segment.set_time_signatures(segment, [(3, 8), (3, 8), (2, 8), (2, 8)])
+    segment.set_time_signatures([(3, 8), (3, 8), (2, 8), (2, 8)])
 
     upper = [segment.v1, segment.v2]
     segment.set_divisions(upper, [(3, 16)])
@@ -34,7 +34,7 @@ def test_quartet_01():
 
     segment = score_specification.append_segment(name='T2')
     source = score_specification['T1'].request_time_signatures()
-    segment.set_time_signatures(segment, source, offset=-2, count=2)
+    segment.set_time_signatures(source, offset=-2, count=2)
 
     score = score_specification.interpret()
 
@@ -57,7 +57,7 @@ def test_quartet_02():
     score_specification = ScoreSpecification(score_template)
 
     segment = score_specification.append_segment(name='T1')
-    segment.set_time_signatures(segment, [(3, 8), (3, 8), (2, 8), (2, 8)])
+    segment.set_time_signatures([(3, 8), (3, 8), (2, 8), (2, 8)])
 
     upper = [segment.v1, segment.v2]
     segment.set_divisions(upper, [(5, 16)])
@@ -69,7 +69,7 @@ def test_quartet_02():
 
     segment = score_specification.append_segment(name='T2')
     source = score_specification['T1'].request_time_signatures()
-    segment.set_time_signatures(segment, source, offset=-2, count=2)
+    segment.set_time_signatures(source, offset=-2, count=2)
 
     score = score_specification.interpret()
 

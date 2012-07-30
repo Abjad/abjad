@@ -2,6 +2,7 @@ from abjad.tools import *
 from experimental import specificationtools
 
 
+# TODO: rename test file to indicate specific type of setting
 def test_ScoreSpecification_settings_01():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
@@ -12,7 +13,7 @@ def test_ScoreSpecification_settings_01():
     assert not score_specification.single_context_settings
     assert not segment.single_context_settings
 
-    segment.set_time_signatures(segment, [(4, 8), (3, 8)])
+    segment.set_time_signatures([(4, 8), (3, 8)])
     assert not score_specification.single_context_settings
     assert not segment.single_context_settings
 

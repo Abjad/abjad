@@ -11,7 +11,7 @@ def test_SegmentSpecification_select_timespan_01():
     score_specification = ScoreSpecification(score_template)
 
     segment = score_specification.append_segment('red')
-    segment.set_time_signatures(segment, [(4, 8), (3, 8)])
+    segment.set_time_signatures([(4, 8), (3, 8)])
 
     selection_1 = segment.select_timespan()
     selection_2 = selectortools.MultipleContextTimespanSelector(

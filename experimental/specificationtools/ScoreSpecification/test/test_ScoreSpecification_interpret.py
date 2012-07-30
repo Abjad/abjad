@@ -52,7 +52,7 @@ def test_ScoreSpecification_interpret_03():
     specification = ScoreSpecification(score_template)
 
     segment = specification.append_segment()
-    segment.set_time_signatures(segment, [(4, 8), (3, 8)])
+    segment.set_time_signatures([(4, 8), (3, 8)])
 
     score = specification.interpret()
 
@@ -93,7 +93,7 @@ def test_ScoreSpecification_interpret_03():
 #
 #    segment = specification.append_segment(name='A')
 #    segment.set_tempo(segment, 108)
-#    segment.set_time_signatures(segment, [(2, 8), (2, 8), (3, 8), (2, 8), (3, 8)])
+#    segment.set_time_signatures([(2, 8), (2, 8), (3, 8), (2, 8), (3, 8)])
 #    segment.set_aggregate(segment, [-38, -36, -34, -29, -28, -25, -21, -20, -19, -18, -15, -11])
 #    segment.set_pitch_classes_timewise(segment, [0, 8, 9, 11, 1, 2, 4, 6, 3, 5, 7, 10])
 #    segment.set_rhythm(segment.vn1, (repeated_quarter_divisions_right, thirty_seconds))

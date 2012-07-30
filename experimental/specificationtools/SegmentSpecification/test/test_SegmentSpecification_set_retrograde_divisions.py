@@ -12,7 +12,7 @@ def test_SegmentSpecification_set_retrograde_divisions_01():
     score_specification = specificationtools.ScoreSpecification(score_template)
 
     segment = score_specification.append_segment()
-    segment.set_time_signatures(segment, [(4, 8), (3, 8)])
+    segment.set_time_signatures([(4, 8), (3, 8)])
 
     segment.set_divisions('Voice 1', [(3, 16)], truncate=True)
     segment.set_divisions('Voice 2', [(4, 16)], truncate=True)

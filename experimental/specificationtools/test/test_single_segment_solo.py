@@ -13,7 +13,7 @@ def test_single_segment_solo_01():
     specification = specificationtools.ScoreSpecification(score_template)
 
     segment = specification.append_segment()
-    segment.set_time_signatures(segment, [(4, 8), (3, 8)])
+    segment.set_time_signatures([(4, 8), (3, 8)])
     segment.set_divisions(segment.v1, [(3, 16)])
     segment.set_rhythm(segment, library.thirty_seconds)
 
@@ -33,7 +33,7 @@ def test_single_segment_solo_02():
     specification = specificationtools.ScoreSpecification(score_template)
     
     segment = specification.append_segment()
-    segment.set_time_signatures(segment, [(4, 8), (3, 8)])
+    segment.set_time_signatures([(4, 8), (3, 8)])
     segment.set_divisions(segment.v1, [(14, 16)])
     segment.set_rhythm(segment, library.thirty_seconds)
 
@@ -54,7 +54,7 @@ def test_single_segment_solo_03():
     specification = specificationtools.ScoreSpecification(score_template)
     
     segment = specification.append_segment()
-    segment.set_time_signatures(segment, [(4, 8), (3, 8)])
+    segment.set_time_signatures([(4, 8), (3, 8)])
     segment.set_divisions(segment.v1, [(20, 16)])
     segment.set_rhythm(segment, library.thirty_seconds)
 

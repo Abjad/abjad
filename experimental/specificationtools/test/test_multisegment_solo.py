@@ -13,7 +13,7 @@ def test_multisegment_solo_01():
     specification = ScoreSpecification(score_template)
 
     segment = specification.append_segment()
-    segment.set_time_signatures(segment, [(4, 8), (3, 8)])
+    segment.set_time_signatures([(4, 8), (3, 8)])
     segment.set_divisions(segment.v1, [(3, 16)])
     segment.set_rhythm(segment, library.thirty_seconds)
 
@@ -37,7 +37,7 @@ def test_multisegment_solo_02():
     specification = ScoreSpecification(score_template)
     
     segment = specification.append_segment()
-    segment.set_time_signatures(segment, [(4, 8), (3, 8)])
+    segment.set_time_signatures([(4, 8), (3, 8)])
     segment.set_divisions(segment.v1, [(3, 16)], truncate=True)
     segment.set_rhythm(segment, library.thirty_seconds)
 
@@ -59,7 +59,7 @@ def test_multisegment_solo_03():
     specification = ScoreSpecification(score_template)
 
     segment = specification.append_segment()
-    segment.set_time_signatures(segment, [(4, 8), (3, 8)])
+    segment.set_time_signatures([(4, 8), (3, 8)])
     segment.set_divisions(segment.v1, [(14, 16)])
     segment.set_rhythm(segment, library.thirty_seconds)
 
@@ -83,7 +83,7 @@ def test_multisegment_solo_04():
     specification = ScoreSpecification(score_template)
 
     segment = specification.append_segment()
-    segment.set_time_signatures(segment, [(4, 8), (3, 8)])
+    segment.set_time_signatures([(4, 8), (3, 8)])
     segment.set_divisions(segment.v1, [(14, 16)], truncate=True)
     segment.set_rhythm(segment, library.thirty_seconds)
 
@@ -106,7 +106,7 @@ def test_multisegment_solo_05():
     specification = ScoreSpecification(score_template)
 
     segment = specification.append_segment()
-    segment.set_time_signatures(segment, [(4, 8), (3, 8)])
+    segment.set_time_signatures([(4, 8), (3, 8)])
     segment.set_divisions(segment.v1, [(20, 16)])
     segment.set_rhythm(segment, library.thirty_seconds)
 
@@ -130,7 +130,7 @@ def test_multisegment_solo_06():
     specification = ScoreSpecification(score_template)
     
     segment = specification.append_segment()
-    segment.set_time_signatures(segment, [(4, 8), (3, 8)])
+    segment.set_time_signatures([(4, 8), (3, 8)])
     segment.set_divisions(segment.v1, [(20, 16)], truncate=True)
     segment.set_rhythm(segment, library.thirty_seconds)
 
@@ -153,7 +153,7 @@ def test_multisegment_solo_07():
     specification = ScoreSpecification(score_template)
     
     segment = specification.append_segment()
-    segment.set_time_signatures(segment, [(4, 8), (3, 8)])
+    segment.set_time_signatures([(4, 8), (3, 8)])
     segment.set_divisions(segment.v1, [(15, 8)])
     segment.set_rhythm(segment, library.thirty_seconds)
 

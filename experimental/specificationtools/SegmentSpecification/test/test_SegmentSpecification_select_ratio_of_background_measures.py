@@ -11,7 +11,7 @@ def test_SegmentSpecification_select_ratio_of_background_measures_01():
     score_specification = specificationtools.ScoreSpecification(template)
 
     segment = score_specification.append_segment()
-    segment.set_time_signatures(segment, [(4, 8), (3, 8)])
+    segment.set_time_signatures([(4, 8), (3, 8)])
 
     selector = segment.select_ratio_of_background_measures((1, 1), 0)
     segment.set_divisions(selector, [(3, 16)], truncate=True)

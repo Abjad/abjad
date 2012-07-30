@@ -11,7 +11,7 @@ def test_SegmentSpecification_select_divisions_01():
     specification = ScoreSpecification(score_template)
 
     segment = specification.append_segment('red')
-    segment.set_time_signatures(segment, [(4, 8), (3, 8)])
+    segment.set_time_signatures([(4, 8), (3, 8)])
     contexts = ['Voice 1', 'Voice 3']
 
     selector_1 = segment.select_divisions(contexts=contexts, stop=5)

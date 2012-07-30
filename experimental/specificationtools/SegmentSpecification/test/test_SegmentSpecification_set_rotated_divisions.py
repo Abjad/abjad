@@ -12,7 +12,7 @@ def test_SegmentSpecification_set_rotated_divisions_01():
     score_specification = specificationtools.ScoreSpecification(score_template)
 
     segment = score_specification.append_segment('T1')
-    segment.set_time_signatures(segment, [(4, 8), (3, 8)])
+    segment.set_time_signatures([(4, 8), (3, 8)])
 
     segment.set_divisions(segment.v1, [(3, 16)])
 
@@ -52,7 +52,7 @@ def test_SegmentSpecification_set_rotated_divisions_02():
     score_specification = specificationtools.ScoreSpecification(score_template)
     
     segment = score_specification.append_segment('T1')
-    segment.set_time_signatures(segment, [(4, 8), (3, 8)])
+    segment.set_time_signatures([(4, 8), (3, 8)])
     
     segment.set_divisions(segment.v1, [(3, 16)], truncate=True)
     
