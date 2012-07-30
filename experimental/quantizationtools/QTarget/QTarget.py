@@ -38,6 +38,3 @@ class QTarget(abctools.AbjadObject):
     @property
     def items(self):
         return self._items
-
-    ### PUBLIC METHODS ###
-

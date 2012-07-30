@@ -207,6 +207,7 @@ Unstable packages (load manually)
 
    experimental/quantizationtools/ComplexSearchTree/ComplexSearchTree
    experimental/quantizationtools/GraceHandler/GraceHandler
+   experimental/quantizationtools/Heuristic/Heuristic
    experimental/quantizationtools/QEvent/QEvent
    experimental/quantizationtools/QSchema/QSchema
    experimental/quantizationtools/QSchemaItem/QSchemaItem
@@ -222,6 +223,7 @@ Unstable packages (load manually)
    experimental/quantizationtools/BeatwiseQSchema/BeatwiseQSchema
    experimental/quantizationtools/BeatwiseQSchemaItem/BeatwiseQSchemaItem
    experimental/quantizationtools/BeatwiseQTarget/BeatwiseQTarget
+   experimental/quantizationtools/DistanceHeuristic/DistanceHeuristic
    experimental/quantizationtools/MeasurewiseQSchema/MeasurewiseQSchema
    experimental/quantizationtools/MeasurewiseQSchemaItem/MeasurewiseQSchemaItem
    experimental/quantizationtools/MeasurewiseQTarget/MeasurewiseQTarget
