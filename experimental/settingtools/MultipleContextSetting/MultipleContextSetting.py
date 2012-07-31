@@ -43,18 +43,18 @@ class MultipleContextSetting(Setting):
 
     ### INITIALIZER ###
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, attribute, source, target, persist=True, truncate=False):
         from experimental import selectortools
-        mandatory_argument_values, keyword_argument_values = self._get_input_argument_values(*args, **kwargs)
-        attribute, source, target = mandatory_argument_values
-        assert isinstance(target, (selectortools.Selector, type(None)))
         assert isinstance(attribute, str)
-        self._target = target
+        assert isinstance(target, (selectortools.Selector, type(None)))
+        assert isinstance(persist, bool)
+        assert isinstance(truncate, bool)
         self._attribute = attribute
         self._source = source
-        for name, value in zip(self._keyword_argument_names, keyword_argument_values):
-            setattr(self, '_' + name, value)
-
+        self._target = target
+        self._persist = persist
+        self._truncate = truncate
+        
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
@@ -63,45 +63,6 @@ class MultipleContextSetting(Setting):
         if not self._mandatory_argument_values == expr._mandatory_argument_values:
             return False
         return self._keyword_argument_values == expr._keyword_argument_values
-
-    ### READ-ONLY PRIVATE PROPERTIES ###
-
-    @property
-    def _keyword_argument_names(self):
-        return (
-            'persist',
-            'truncate',
-            )
-
-    @property
-    def _mandatory_argument_values(self):
-        return (
-            #self.target,
-            #self.attribute,
-            #self.source,
-            self.attribute,
-            self.source,
-            self.target,
-            )
-
-    ### PRIVATE METHODS ###
-
-    def _get_input_argument_values(self, *args, **kwargs):
-        if len(args) == 1:
-            assert isinstance(args[0], type(self)), repr(args[0])
-            mandatory_argument_values = args[0]._mandatory_argument_values
-            keyword_argument_values = args[0]._keyword_argument_values
-            if kwargs.get('persist') is not None:
-                keyword_argment_values[0] = kwargs.get('persist')
-            if kwargs.get('truncate') is not None:
-                keyword_argument_values[1] = kwargs.get('truncate')
-        else:
-            assert len(args) == 3, repr(args)
-            mandatory_argument_values = args
-            keyword_argument_values = []
-            keyword_argument_values.append(kwargs.get('persist', True))
-            keyword_argument_values.append(kwargs.get('truncate', False))
-        return mandatory_argument_values, keyword_argument_values
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -133,7 +94,7 @@ class MultipleContextSetting(Setting):
     def target(self):
         '''Setting target.
 
-        Return selector (usually? always?)
+        Return selector or none.
         '''
         return self._target
 
@@ -147,6 +108,7 @@ class MultipleContextSetting(Setting):
 
     ### PUBLIC METHODS ###
 
+    # TODO: this method should implement on MultipleContextSetting and not on SingleContextSetting
     def unpack(self):
         '''Unpack multiple-context setting.
 

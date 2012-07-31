@@ -13,12 +13,6 @@ class SingleContextSettingInventory(ObjectInventory):
 
     attributes = helpertools.AttributeNameEnumeration()
 
-    ### PRIVATE READ-ONLY PROPERTIES ###
-
-    @property
-    def _item_callable(self):
-        return SingleContextSetting
-
     ### PUBLIC METHODS ###
 
     def get_setting(self, 
