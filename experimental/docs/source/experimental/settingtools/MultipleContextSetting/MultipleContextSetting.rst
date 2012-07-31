@@ -11,9 +11,15 @@ Read-only Properties
 
 .. autoattribute:: experimental.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting.attribute
 
+    Inherited from :py:class:`Setting.Setting <experimental.settingtools.Setting.Setting.Setting>`
+
 .. autoattribute:: experimental.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting.persist
 
+    Inherited from :py:class:`Setting.Setting <experimental.settingtools.Setting.Setting.Setting>`
+
 .. autoattribute:: experimental.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting.source
+
+    Inherited from :py:class:`Setting.Setting <experimental.settingtools.Setting.Setting.Setting>`
 
 .. autoattribute:: experimental.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting.storage_format
 
@@ -21,7 +27,11 @@ Read-only Properties
 
 .. autoattribute:: experimental.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting.target
 
+    Inherited from :py:class:`Setting.Setting <experimental.settingtools.Setting.Setting.Setting>`
+
 .. autoattribute:: experimental.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting.truncate
+
+    Inherited from :py:class:`Setting.Setting <experimental.settingtools.Setting.Setting.Setting>`
 
 Methods
 -------
@@ -36,6 +46,8 @@ Special Methods
     Inherited from :py:class:`__builtin__.object`
 
 .. automethod:: experimental.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting.__eq__
+
+    Inherited from :py:class:`Setting.Setting <experimental.settingtools.Setting.Setting.Setting>`
 
 .. automethod:: experimental.settingtools.MultipleContextSetting.MultipleContextSetting.MultipleContextSetting.__ge__
 
