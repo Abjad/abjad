@@ -775,6 +775,8 @@ class SegmentSpecification(Specification):
 
         Create, store and return ``MultipleContextSetting``.
         '''
+        # TODO: figure out what should go in the line immediately below
+        contexts = contexts or [self]
         return self._set_attribute_new(
             'divisions',
             source, timespan=timespan, contexts=contexts,
