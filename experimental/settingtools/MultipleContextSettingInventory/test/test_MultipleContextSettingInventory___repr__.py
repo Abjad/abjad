@@ -1,4 +1,5 @@
 from abjad.tools import *
+from experimental import *
 from experimental.selectortools.SegmentSelector import SegmentSelector
 from experimental.settingtools.MultipleContextSetting import MultipleContextSetting
 from experimental.settingtools.MultipleContextSettingInventory import MultipleContextSettingInventory
@@ -13,7 +14,7 @@ def test_MultipleContextSettingInventory___repr___01():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    specification = ScoreSpecification(score_template)
+    specification = specificationtools.ScoreSpecification(score_template)
 
     segment = specification.append_segment()
     segment.set_time_signatures([(4, 8), (3, 8)])

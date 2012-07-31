@@ -8,7 +8,7 @@ from experimental.specificationtools import ScoreSpecification
 def test_SegmentSpecification_select_divisions_01():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
-    specification = ScoreSpecification(score_template)
+    specification = specificationtools.ScoreSpecification(score_template)
 
     segment = specification.append_segment('red')
     segment.set_time_signatures([(4, 8), (3, 8)])

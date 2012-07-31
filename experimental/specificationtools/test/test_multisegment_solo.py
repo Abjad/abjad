@@ -1,7 +1,6 @@
 from abjad.tools import *
-from experimental import helpertools
+from experimental import *
 from experimental.specificationtools import library
-from experimental.specificationtools import ScoreSpecification
 
 
 def test_multisegment_solo_01():
@@ -10,7 +9,7 @@ def test_multisegment_solo_01():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    specification = ScoreSpecification(score_template)
+    specification = specificationtools.ScoreSpecification(score_template)
 
     segment = specification.append_segment()
     segment.set_time_signatures([(4, 8), (3, 8)])
@@ -34,7 +33,7 @@ def test_multisegment_solo_02():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    specification = ScoreSpecification(score_template)
+    specification = specificationtools.ScoreSpecification(score_template)
     
     segment = specification.append_segment()
     segment.set_time_signatures([(4, 8), (3, 8)])
@@ -56,7 +55,7 @@ def test_multisegment_solo_03():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    specification = ScoreSpecification(score_template)
+    specification = specificationtools.ScoreSpecification(score_template)
 
     segment = specification.append_segment()
     segment.set_time_signatures([(4, 8), (3, 8)])
@@ -80,7 +79,7 @@ def test_multisegment_solo_04():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    specification = ScoreSpecification(score_template)
+    specification = specificationtools.ScoreSpecification(score_template)
 
     segment = specification.append_segment()
     segment.set_time_signatures([(4, 8), (3, 8)])
@@ -103,7 +102,7 @@ def test_multisegment_solo_05():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    specification = ScoreSpecification(score_template)
+    specification = specificationtools.ScoreSpecification(score_template)
 
     segment = specification.append_segment()
     segment.set_time_signatures([(4, 8), (3, 8)])
@@ -127,7 +126,7 @@ def test_multisegment_solo_06():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    specification = ScoreSpecification(score_template)
+    specification = specificationtools.ScoreSpecification(score_template)
     
     segment = specification.append_segment()
     segment.set_time_signatures([(4, 8), (3, 8)])
@@ -150,7 +149,7 @@ def test_multisegment_solo_07():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    specification = ScoreSpecification(score_template)
+    specification = specificationtools.ScoreSpecification(score_template)
     
     segment = specification.append_segment()
     segment.set_time_signatures([(4, 8), (3, 8)])

@@ -1,7 +1,6 @@
 from abjad.tools import *
-from experimental import helpertools
+from experimental import *
 from experimental.specificationtools import library
-from experimental.specificationtools import ScoreSpecification
 
 
 def test_quartet_01():
@@ -20,7 +19,7 @@ def test_quartet_01():
     '''
     
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
-    score_specification = ScoreSpecification(score_template)
+    score_specification = specificationtools.ScoreSpecification(score_template)
 
     segment = score_specification.append_segment(name='T1')
     segment.set_time_signatures([(3, 8), (3, 8), (2, 8), (2, 8)])
@@ -54,7 +53,7 @@ def test_quartet_02():
     '''
     
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
-    score_specification = ScoreSpecification(score_template)
+    score_specification = specificationtools.ScoreSpecification(score_template)
 
     segment = score_specification.append_segment(name='T1')
     segment.set_time_signatures([(3, 8), (3, 8), (2, 8), (2, 8)])

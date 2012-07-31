@@ -1,7 +1,6 @@
 from abjad.tools import *
-from experimental import helpertools
+from experimental import *
 from experimental.specificationtools import library
-from experimental.specificationtools import ScoreSpecification
 
 
 def test_single_segment_nonbinary_solo_01():
@@ -9,7 +8,7 @@ def test_single_segment_nonbinary_solo_01():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    specification = ScoreSpecification(score_template)
+    specification = specificationtools.ScoreSpecification(score_template)
 
     segment = specification.append_segment()
     segment.set_time_signatures([(4, 8), (3, 8)])

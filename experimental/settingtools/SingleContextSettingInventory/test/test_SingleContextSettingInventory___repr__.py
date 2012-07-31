@@ -1,4 +1,5 @@
 from abjad.tools import *
+from experimental import *
 from experimental.settingtools.SingleContextSetting import SingleContextSetting
 from experimental.settingtools.SingleContextSettingInventory import SingleContextSettingInventory
 from experimental.specificationtools.ScoreSpecification import ScoreSpecification
@@ -10,7 +11,7 @@ def test_SingleContextSettingInventory___repr___01():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    specification = ScoreSpecification(score_template)
+    specification = specificationtools.ScoreSpecification(score_template)
 
     segment = specification.append_segment()
     segment.set_time_signatures([(4, 8), (3, 8)])

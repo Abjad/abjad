@@ -24,7 +24,7 @@ class SegmentDivisionList(DivisionList):
     ::
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-        >>> specification = ScoreSpecification(score_template)
+        >>> specification = specificationtools.ScoreSpecification(score_template)
         >>> segment = specification.append_segment()
 
     ::

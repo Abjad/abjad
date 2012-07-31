@@ -1,6 +1,6 @@
 from abjad.tools import *
+from experimental import *
 from experimental.specificationtools import library
-from experimental.specificationtools import ScoreSpecification
 
 
 def test_ScoreSpecification_interpret_01():
@@ -8,7 +8,7 @@ def test_ScoreSpecification_interpret_01():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    specification = ScoreSpecification(score_template)
+    specification = specificationtools.ScoreSpecification(score_template)
     
     score = specification.interpret()
 
@@ -33,11 +33,11 @@ def test_ScoreSpecification_interpret_02():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    specification_1 = ScoreSpecification(score_template)
+    specification_1 = specificationtools.ScoreSpecification(score_template)
 
     score_1 = specification_1.interpret()
 
-    specification_2 = ScoreSpecification(score_template)
+    specification_2 = specificationtools.ScoreSpecification(score_template)
     segment = specification_2.append_segment()
     score_2 = specification_2.interpret()
 
@@ -49,7 +49,7 @@ def test_ScoreSpecification_interpret_03():
     '''
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    specification = ScoreSpecification(score_template)
+    specification = specificationtools.ScoreSpecification(score_template)
 
     segment = specification.append_segment()
     segment.set_time_signatures([(4, 8), (3, 8)])
@@ -89,7 +89,7 @@ def test_ScoreSpecification_interpret_03():
 #def test_ScoreSpecification_interpret_04():
 #    py.test.skip('unskip after integrating pitch.')
 #
-#    specification = ScoreSpecification(scoretemplatetools.StringQuartetScoreTemplate)
+#    specification = specificationtools.ScoreSpecification(scoretemplatetools.StringQuartetScoreTemplate)
 #
 #    segment = specification.append_segment(name='A')
 #    segment.set_tempo(108)

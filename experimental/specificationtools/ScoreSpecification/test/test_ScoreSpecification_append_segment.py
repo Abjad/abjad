@@ -1,12 +1,12 @@
 from abjad.tools import *
-from experimental.specificationtools.ScoreSpecification import ScoreSpecification
+from experimental import *
 import py
 
 
 def test_ScoreSpecification_append_segment_01():
 
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    specification = ScoreSpecification(score_template)
+    specification = specificationtools.ScoreSpecification(score_template)
 
     segment = specification.append_segment()
     assert segment.segment_name == '1'
@@ -23,7 +23,7 @@ def test_ScoreSpecification_append_segment_02():
 
     
     score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=1)
-    specification = ScoreSpecification(score_template)
+    specification = specificationtools.ScoreSpecification(score_template)
 
     specification.append_segment('1')
 
