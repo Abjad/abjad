@@ -17,11 +17,11 @@ def test_SegmentSpecification_set_rotated_divisions_01():
     segment.set_divisions([(3, 16)], contexts=segment.v1)
 
     source = score_specification.select_divisions('Voice 1', 'T1', segment_count=1)
-    segment.set_rotated_divisions(segment.v2, source, -1)
-    segment.set_rotated_divisions(segment.v3, source, -2)
-    segment.set_rotated_divisions(segment.v4, source, -3)
+    segment.set_rotated_divisions(source, -1, contexts=segment.v2)
+    segment.set_rotated_divisions(source, -2, contexts=segment.v3)
+    segment.set_rotated_divisions(source, -3, contexts=segment.v4)
 
-    segment.set_rhythm(segment, library.thirty_seconds)
+    segment.set_rhythm(library.thirty_seconds)
 
     segment = score_specification.append_segment('T2')
 
@@ -57,11 +57,11 @@ def test_SegmentSpecification_set_rotated_divisions_02():
     segment.set_divisions([(3, 16)], contexts=segment.v1, truncate=True)
     
     source = score_specification.select_divisions('Voice 1', 'T1', segment_count=1)
-    segment.set_rotated_divisions(segment.v2, source, -1)
-    segment.set_rotated_divisions(segment.v3, source, -2)
-    segment.set_rotated_divisions(segment.v4, source, -3)
+    segment.set_rotated_divisions(source, -1, contexts=segment.v2)
+    segment.set_rotated_divisions(source, -2, contexts=segment.v3)
+    segment.set_rotated_divisions(source, -3, contexts=segment.v4)
     
-    segment.set_rhythm(segment, library.thirty_seconds)
+    segment.set_rhythm(library.thirty_seconds)
 
     segment = score_specification.append_segment('T2')
 

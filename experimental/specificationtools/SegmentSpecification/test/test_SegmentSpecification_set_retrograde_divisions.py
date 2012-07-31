@@ -20,10 +20,10 @@ def test_SegmentSpecification_set_retrograde_divisions_01():
     source_1 = score_specification.select_divisions('Voice 1', '1', segment_count=1)
     source_2 = score_specification.select_divisions('Voice 2', '1', segment_count=1)
 
-    segment.set_retrograde_divisions(segment.v3, source_1)
-    segment.set_retrograde_divisions(segment.v4, source_2)
+    segment.set_retrograde_divisions(source_1, contexts=segment.v3)
+    segment.set_retrograde_divisions(source_2, contexts=segment.v4)
 
-    segment.set_rhythm(segment, library.thirty_seconds)
+    segment.set_rhythm(library.thirty_seconds)
 
     segment = score_specification.append_segment()
 

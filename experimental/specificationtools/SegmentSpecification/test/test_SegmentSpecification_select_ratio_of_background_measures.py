@@ -19,7 +19,7 @@ def test_SegmentSpecification_select_ratio_of_background_measures_01():
     selector = segment.select_ratio_of_background_measures((1, 1), 1)
     segment.set_divisions([(5, 16)], contexts=selector, truncate=True)
 
-    segment.set_rhythm(segment, library.thirty_seconds)
+    segment.set_rhythm(library.thirty_seconds)
 
     score = score_specification.interpret()
 

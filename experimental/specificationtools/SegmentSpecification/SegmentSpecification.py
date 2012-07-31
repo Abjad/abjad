@@ -801,34 +801,37 @@ class SegmentSpecification(Specification):
         return self._set_attribute(attribute, contexts, source, 
             count=count, offset=offset, persist=persist)
 
-    def set_rhythm(self, contexts, source, 
+    def set_rhythm(self, source, contexts=None,
         count=None, persist=True, offset=None):
         r'''Set rhythm of segment `contexts` to `source`.
 
         Create, store and return ``MultipleContextSetting``.
         '''
+        contexts = contexts or self
         attribute = 'rhythm'
         return self._set_attribute(attribute, contexts, source, 
             count=count, offset=offset, persist=persist)
 
-    def set_retrograde_divisions(self, contexts, source,
+    def set_retrograde_divisions(self, source, contexts=None,
         count=None, offset=None, persist=True, truncate=True):
         r'''Set divisions of segment `contexts` to retrograde `source`.
 
         Create, store and return ``MultipleContextSetting``.
         '''
         string = 'sequencetools.reverse_sequence'
+        contexts = contexts or self
         callback = helpertools.Callback(eval(string), string)
         return self.set_divisions(source, contexts=contexts,
             callback=callback, count=count, offset=offset, persist=persist, truncate=truncate)
 
-    def set_rotated_divisions(self, contexts, source, n, 
+    def set_rotated_divisions(self, source, n, contexts=None,
         count=None, offset=None, persist=True, truncate=True):
         r'''Set divisions of segment `contexts` to `source` rotated by integer `n`.
 
         Create, store and return ``MultipleContextSetting``.
         '''
         assert isinstance(n, int), repr(n)
+        contexts = contexts or self
         string = 'lambda x: sequencetools.rotate_sequence(x, {})'.format(n)
         callback = helpertools.Callback(eval(string), string)
         return self.set_divisions(source, contexts=contexts,
