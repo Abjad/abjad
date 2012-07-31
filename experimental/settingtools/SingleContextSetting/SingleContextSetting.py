@@ -3,6 +3,7 @@ from experimental.settingtools.MultipleContextSetting import MultipleContextSett
 import copy
 
 
+# TODO: inherit from Setting instead of MultipleContextSetting
 class SingleContextSetting(MultipleContextSetting):
     r'''.. versionadded:: 1.0
 

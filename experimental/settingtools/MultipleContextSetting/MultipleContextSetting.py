@@ -8,7 +8,7 @@ class MultipleContextSetting(Setting):
     ::
     
         >>> from abjad.tools import *
-        >>> from experimental import specificationtools
+        >>> from experimental import *
 
     Multiple-context setting::
 
@@ -44,8 +44,11 @@ class MultipleContextSetting(Setting):
     ### INITIALIZER ###
 
     def __init__(self, *args, **kwargs):
+        from experimental import selectortools
         mandatory_argument_values, keyword_argument_values = self._get_input_argument_values(*args, **kwargs)
         attribute, source, target = mandatory_argument_values
+        assert isinstance(target, (selectortools.Selector, type(None)))
+        assert isinstance(attribute, str)
         self._target = target
         self._attribute = attribute
         self._source = source

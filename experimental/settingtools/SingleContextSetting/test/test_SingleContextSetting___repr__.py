@@ -11,7 +11,7 @@ def test_SingleContextSetting___repr___01():
 
     segment_selector = SegmentSelector(index='1')
     target = SingleContextTimespanSelector('Voice 1', timespan=segment_selector.timespan)
-    setting_1 = SingleContextSetting(target, 'time_signatures', [(4, 8), (3, 8)], fresh=False)
+    setting_1 = SingleContextSetting('time_signatures', [(4, 8), (3, 8)], target, fresh=False)
 
     setting_2 = eval(repr(setting_1))
 
