@@ -87,7 +87,7 @@ class SingleContextSetting(MultipleContextSetting):
     def fresh(self):
         '''True when single-context setting has been newly specified::
 
-            >>> setting.fresh
+            >>> single_context_setting.fresh
             False
 
         Need to clarify relationship between `persist` and `fresh` keywords.
@@ -100,7 +100,7 @@ class SingleContextSetting(MultipleContextSetting):
     def storage_format(self):
         '''Single-context setting storage format::
 
-            >>> z(setting)
+            >>> z(single_context_setting)
             settingtools.SingleContextSetting(
                 'time_signatures',
                 [(4, 8), (3, 8)],
@@ -123,8 +123,7 @@ class SingleContextSetting(MultipleContextSetting):
 
     ### PUBLIC METHODS ###
 
-    # TODO: rename more explicitly
-    def copy_to_segment(self, segment):
+    def copy_setting_to_segment(self, segment):
         '''Create new setting. Set new setting target to timespan of `segment`.
         Set new setting `fresh` to false.
 
@@ -134,12 +133,11 @@ class SingleContextSetting(MultipleContextSetting):
         '''
         assert self.target.timespan.encompasses_one_segment_exactly, repr(self)
         new = copy.deepcopy(self)
-        new.set_to_segment(segment)
+        new.set_setting_to_segment(segment)
         new._fresh = False
         return new
 
-    # TODO: rename more explicitly
-    def set_to_segment(self, segment):
+    def set_setting_to_segment(self, segment):
         '''Set target of self to timespan of entire `segment`.
 
         Only works when self encompasses one segment exactly.

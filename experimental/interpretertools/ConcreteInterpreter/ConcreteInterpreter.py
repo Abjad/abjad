@@ -599,7 +599,7 @@ class ConcreteInterpreter(Interpreter):
                     self.score_specification.resolved_single_context_settings.get_settings(
                     attribute='divisions')
                 for resolved_single_context_setting in resolved_single_context_settings:
-                    single_context_setting = resolved_single_context_setting.copy_to_segment(segment_specification)
+                    single_context_setting = resolved_single_context_setting.copy_setting_to_segment(segment_specification)
                     single_context_settings.append(single_context_setting)
             self.store_single_context_settings(single_context_settings, clear_persistent_first=True)
 
@@ -619,7 +619,7 @@ class ConcreteInterpreter(Interpreter):
                 existing_settings = self.score_specification.resolved_single_context_settings.get_settings(
                     attribute='rhythm')
                 for existing_setting in existing_settings:
-                    setting = existing_setting.copy_to_segment(segment_specification)
+                    setting = existing_setting.copy_setting_to_segment(segment_specification)
                     settings.append(setting)
             self.store_single_context_settings(settings, clear_persistent_first=True)
 
@@ -665,7 +665,7 @@ class ConcreteInterpreter(Interpreter):
                     return
                 assert len(settings) == 1, repr(settings)
                 setting = settings[0]
-                setting = setting.copy_to_segment(segment_specification.segment_name)
+                setting = setting.copy_setting_to_segment(segment_specification.segment_name)
             assert setting.target.context == segment_specification.score_name, repr(setting)
             assert setting.target.timespan == segment_specification.timespan, [
                 repr(setting), '\n', repr(segment_specification.timespan)]

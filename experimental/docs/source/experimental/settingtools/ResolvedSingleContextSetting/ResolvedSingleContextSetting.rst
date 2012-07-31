@@ -42,11 +42,11 @@ Read-only Properties
 Methods
 -------
 
-.. automethod:: experimental.settingtools.ResolvedSingleContextSetting.ResolvedSingleContextSetting.ResolvedSingleContextSetting.copy_to_segment
+.. automethod:: experimental.settingtools.ResolvedSingleContextSetting.ResolvedSingleContextSetting.ResolvedSingleContextSetting.copy_setting_to_segment
 
     Inherited from :py:class:`SingleContextSetting.SingleContextSetting <experimental.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting>`
 
-.. automethod:: experimental.settingtools.ResolvedSingleContextSetting.ResolvedSingleContextSetting.ResolvedSingleContextSetting.set_to_segment
+.. automethod:: experimental.settingtools.ResolvedSingleContextSetting.ResolvedSingleContextSetting.ResolvedSingleContextSetting.set_setting_to_segment
 
     Inherited from :py:class:`SingleContextSetting.SingleContextSetting <experimental.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting>`
 

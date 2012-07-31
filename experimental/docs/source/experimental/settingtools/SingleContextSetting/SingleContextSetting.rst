@@ -36,9 +36,9 @@ Read-only Properties
 Methods
 -------
 
-.. automethod:: experimental.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting.copy_to_segment
+.. automethod:: experimental.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting.copy_setting_to_segment
 
-.. automethod:: experimental.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting.set_to_segment
+.. automethod:: experimental.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting.set_setting_to_segment
 
 .. automethod:: experimental.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting.unpack
 
