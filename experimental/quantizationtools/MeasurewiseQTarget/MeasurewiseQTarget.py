@@ -14,3 +14,7 @@ class MeasurewiseQTarget(QTarget):
     def item_klass(self):
         return QTargetMeasure
 
+    ### PRIVATE METHODS ###
+
+    def _notate(self, grace_handler):
+        pass

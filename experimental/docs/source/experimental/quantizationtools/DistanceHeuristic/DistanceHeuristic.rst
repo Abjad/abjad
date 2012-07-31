@@ -18,6 +18,8 @@ Special Methods
 
 .. automethod:: experimental.quantizationtools.DistanceHeuristic.DistanceHeuristic.DistanceHeuristic.__call__
 
+    Inherited from :py:class:`Heuristic.Heuristic <experimental.quantizationtools.Heuristic.Heuristic.Heuristic>`
+
 .. automethod:: experimental.quantizationtools.DistanceHeuristic.DistanceHeuristic.DistanceHeuristic.__delattr__
 
     Inherited from :py:class:`__builtin__.object`

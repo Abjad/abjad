@@ -16,6 +16,8 @@ Read-only Properties
 Special Methods
 ---------------
 
+.. automethod:: experimental.quantizationtools.Heuristic.Heuristic.Heuristic.__call__
+
 .. automethod:: experimental.quantizationtools.Heuristic.Heuristic.Heuristic.__delattr__
 
     Inherited from :py:class:`__builtin__.object`

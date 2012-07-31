@@ -14,3 +14,7 @@ class BeatwiseQTarget(QTarget):
     def item_klass(self):
         return QTargetBeat
 
+    ### PRIVATE METHODS ###
+
+    def _notate(self, grace_handler):
+        pass
