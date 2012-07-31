@@ -8,7 +8,7 @@ class SingleContextDivisionSelector(BackgroundElementSelector):
 
     Select division ``3`` in ``'Voice 1'``::
 
-        >>> from experimental import selectortools
+        >>> from experimental import *
 
     ::
 

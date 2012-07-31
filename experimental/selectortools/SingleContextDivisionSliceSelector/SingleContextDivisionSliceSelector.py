@@ -8,8 +8,7 @@ class SingleContextDivisionSliceSelector(BackgroundElementSliceSelector):
 
     ::
 
-        >>> from experimental import selectortools
-        >>> from experimental import timespantools
+        >>> from experimental import *
 
     Select all ``'Voice 1'`` divisions in score::
 

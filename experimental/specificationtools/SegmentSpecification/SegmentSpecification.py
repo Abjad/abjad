@@ -16,13 +16,13 @@ class SegmentSpecification(Specification):
 
     ::
 
-        >>> from abjad.tools import scoretemplatetools
-        >>> from experimental import specificationtools
+        >>> from abjad.tools import *
+        >>> from experimental import *
 
     The examples below reference the following segment specification::
 
-        >>> template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
-        >>> score_specification = specificationtools.ScoreSpecification(score_template=template)
+        >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
+        >>> score_specification = specificationtools.ScoreSpecification(score_template=score_template)
         
     ::
     
@@ -319,6 +319,34 @@ class SegmentSpecification(Specification):
         return requesttools.AttributeRequest('time_signatures', self.segment_name, 
             context_name=context_name, callback=callback, count=count, offset=offset)
 
+    def select_background_measure(self, n):
+        '''Select background measure `n` that starts during segment::
+
+            >>> selector = segment.select_background_measure(0)
+
+        ::
+
+            >>> z(selector)
+            selectortools.BackgroundMeasureSliceSelector(
+                inequality=timespantools.TimespanInequality(
+                    timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
+                    timespantools.SingleSourceTimespan(
+                        selector=selectortools.SegmentSelector(
+                            index='red'
+                            )
+                        )
+                    ),
+                start=0,
+                stop=1
+                )
+
+        Return selector.
+        '''
+        inequality = timespantools.expr_starts_during_timespan(self.timespan)
+        start, stop = n, n + 1
+        selector = selectortools.BackgroundMeasureSliceSelector(inequality=inequality, start=start, stop=stop)
+        return selector
+
     def select_background_measures(self, start=None, stop=None):
         '''Select the first five background measures that start during segment::
 
@@ -345,6 +373,36 @@ class SegmentSpecification(Specification):
         selector = selectortools.BackgroundMeasureSliceSelector(inequality=inequality, start=start, stop=stop)
         return selector
     
+    def select_division(self, voice, n):
+        '''Select `voice` division `n` that starts during segment::
+
+            >>> selector = segment.select_division('Voice 1', 0)
+
+        ::
+            
+            >>> z(selector)
+            selectortools.SingleContextDivisionSliceSelector(
+                'Voice 1',
+                inequality=timespantools.TimespanInequality(
+                    timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
+                    timespantools.SingleSourceTimespan(
+                        selector=selectortools.SegmentSelector(
+                            index='red'
+                            )
+                        )
+                    ),
+                start=0,
+                stop=1
+                )
+
+        Return selector.
+        '''
+        inequality = timespantools.expr_starts_during_timespan(self.timespan)
+        start, stop = n, n + 1
+        selector = selectortools.SingleContextDivisionSliceSelector(
+            voice, inequality=inequality, start=start, stop=stop)
+        return selector
+
     def select_divisions(self, contexts=None, start=None, stop=None):
         '''Select the first five divisions that start during segment::
 
