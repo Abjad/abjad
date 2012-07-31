@@ -6,7 +6,7 @@ from experimental.settingtools.MultipleContextSetting import MultipleContextSett
 class MultipleContextSettingInventory(ObjectInventory):
     r'''.. versionadded:: 1.0
 
-    MultipleContextSetting inventory.
+    Multiple-context setting inventory.
     '''
 
     ### CLASS ATTRIBUTES ###

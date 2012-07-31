@@ -6,7 +6,7 @@ from experimental.settingtools.SingleContextSetting import SingleContextSetting
 class SingleContextSettingInventory(ObjectInventory):
     r'''.. versionadded:: 1.0
 
-    Context setting inventory.
+    Single-context setting inventory.
     '''
 
     ### CLASS ATTRIBUTES ###

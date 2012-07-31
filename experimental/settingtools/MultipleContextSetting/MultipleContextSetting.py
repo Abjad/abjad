@@ -5,12 +5,12 @@ import copy
 class MultipleContextSetting(Setting):
     r'''.. versionadded:: 1.0
 
-    ::
+    Multiple-context setting::
     
         >>> from abjad.tools import *
         >>> from experimental import *
 
-    Multiple-context setting::
+    Set `attribute` to `source` for multiple-context `target`:: 
 
         >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
         >>> score_specification = specificationtools.ScoreSpecification(score_template)
@@ -38,7 +38,11 @@ class MultipleContextSetting(Setting):
             truncate=False
             )
 
-    Return multiple-context setting.
+    Composers create multiple-context settings at specification-time.
+
+    Composers create mutliple-context settings with ``SegmentSpecification`` setter methods.
+
+    Multiple-context settings capture composers' musical intent.
     '''
 
     ### INITIAILIZER ###

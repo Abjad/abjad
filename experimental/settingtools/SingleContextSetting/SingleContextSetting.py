@@ -8,25 +8,38 @@ class SingleContextSetting(Setting):
 
     Single-context setting::
 
+        >>> from abjad.tools import *
         >>> from experimental import *
 
+    Set `attribute` to `source` for single-context `target`::
 
-    Set `attribute` to `source` for `target`::
-
-        >>> segment_selector = selectortools.SegmentSelector(index='red')
-        >>> target = selectortools.SingleContextTimespanSelector('Voice 1', timespan=segment_selector.timespan)
+        >>> score_template = scoretemplatetools.GroupedRhythmicStavesScoreTemplate(staff_count=4)
+        >>> score_specification = specificationtools.ScoreSpecification(score_template)
+        >>> segment = score_specification.append_segment('red')
 
     ::
 
-        >>> single_context_setting = settingtools.SingleContextSetting(
-        ... 'time_signatures', [(4, 8), (3, 8)], target, fresh=False)
+        >>> multiple_context_setting = segment.set_time_signatures([(4, 8), (3, 8)])
+
+    ::
+
+        >>> contexts = ['Voice 1', 'Voice 3']
+        >>> multiple_context_setting = segment.set_divisions([(3, 16)], contexts=contexts)
+
+    ::
+
+        >>> score = score_specification.interpret()
+
+    ::
+
+        >>> single_context_setting = score_specification.single_context_settings[1]
 
     ::
 
         >>> z(single_context_setting)
         settingtools.SingleContextSetting(
-            'time_signatures',
-            [(4, 8), (3, 8)],
+            'divisions',
+            [(3, 16)],
             selectortools.SingleContextTimespanSelector(
                 'Voice 1',
                 timespantools.SingleSourceTimespan(
@@ -37,10 +50,14 @@ class SingleContextSetting(Setting):
                 ),
             persist=True,
             truncate=False,
-            fresh=False
+            fresh=True
             )
 
-    Return single-context setting.
+    Composers do not create single-context settings.
+
+    Single-context settings are a byprodct of interpretation.
+
+    Multiple-context settings unpack to produce single-context settings.
     '''
 
     ### INITIALIZER ###
@@ -57,7 +74,7 @@ class SingleContextSetting(Setting):
         '''True when single-context setting has been newly specified::
 
             >>> single_context_setting.fresh
-            False
+            True
 
         Need to clarify relationship between `persist` and `fresh` keywords.
 
@@ -71,8 +88,8 @@ class SingleContextSetting(Setting):
 
             >>> z(single_context_setting)
             settingtools.SingleContextSetting(
-                'time_signatures',
-                [(4, 8), (3, 8)],
+                'divisions',
+                [(3, 16)],
                 selectortools.SingleContextTimespanSelector(
                     'Voice 1',
                     timespantools.SingleSourceTimespan(
@@ -83,7 +100,7 @@ class SingleContextSetting(Setting):
                     ),
                 persist=True,
                 truncate=False,
-                fresh=False
+                fresh=True
                 )
 
         Return string.
