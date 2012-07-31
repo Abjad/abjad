@@ -6,29 +6,27 @@ import copy
 class SingleContextSetting(MultipleContextSetting):
     r'''.. versionadded:: 1.0
 
-    Frozen request to set one attribute against one context-specified selection.
+    Single-context setting::
 
-    Initialize with mandatory `target`, `attribute`, `source`
-    and optional `persist`, `truncate`, `fresh`::
+        >>> from experimental import *
 
-        >>> from experimental import selectortools
-        >>> from experimental import settingtools
-        >>> from experimental import specificationtools
-        >>> from experimental import timespantools
 
-    ::
+    Set `attribute` to `source` for `target`::
 
         >>> segment_selector = selectortools.SegmentSelector(index='red')
         >>> target = selectortools.SingleContextTimespanSelector('Voice 1', timespan=segment_selector.timespan)
 
     ::
 
-        >>> setting = settingtools.SingleContextSetting(target, 'time_signatures', [(4, 8), (3, 8)], fresh=False)
+        >>> single_context_setting = settingtools.SingleContextSetting(
+        ... 'time_signatures', [(4, 8), (3, 8)], target, fresh=False)
 
     ::
 
-        >>> z(setting)
+        >>> z(single_context_setting)
         settingtools.SingleContextSetting(
+            'time_signatures',
+            [(4, 8), (3, 8)],
             selectortools.SingleContextTimespanSelector(
                 'Voice 1',
                 timespantools.SingleSourceTimespan(
@@ -37,8 +35,6 @@ class SingleContextSetting(MultipleContextSetting):
                         )
                     )
                 ),
-            'time_signatures',
-            [(4, 8), (3, 8)],
             persist=True,
             truncate=False,
             fresh=False
@@ -89,10 +85,45 @@ class SingleContextSetting(MultipleContextSetting):
 
     @property
     def fresh(self):
+        '''True when single-context setting has been newly specified::
+
+            >>> setting.fresh
+            False
+
+        Need to clarify relationship between `persist` and `fresh` keywords.
+
+        Return boolean.
+        '''
         return self._fresh
+
+    @property
+    def storage_format(self):
+        '''Single-context setting storage format::
+
+            >>> z(setting)
+            settingtools.SingleContextSetting(
+                'time_signatures',
+                [(4, 8), (3, 8)],
+                selectortools.SingleContextTimespanSelector(
+                    'Voice 1',
+                    timespantools.SingleSourceTimespan(
+                        selector=selectortools.SegmentSelector(
+                            index='red'
+                            )
+                        )
+                    ),
+                persist=True,
+                truncate=False,
+                fresh=False
+                )
+
+        Return string.
+        '''
+        return MultipleContextSetting.storage_format.fget(self)
 
     ### PUBLIC METHODS ###
 
+    # TODO: rename more explicitly
     def copy_to_segment(self, segment):
         '''Create new setting. Set new setting target to timespan of `segment`.
         Set new setting `fresh` to false.
@@ -107,6 +138,7 @@ class SingleContextSetting(MultipleContextSetting):
         new._fresh = False
         return new
 
+    # TODO: rename more explicitly
     def set_to_segment(self, segment):
         '''Set target of self to timespan of entire `segment`.
 

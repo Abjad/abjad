@@ -27,7 +27,7 @@ Read-only Properties
 
 .. autoattribute:: experimental.settingtools.ResolvedSingleContextSetting.ResolvedSingleContextSetting.ResolvedSingleContextSetting.storage_format
 
-    Inherited from :py:class:`abctools.AbjadObject <abjad.tools.abctools.AbjadObject.AbjadObject.AbjadObject>`
+    Inherited from :py:class:`SingleContextSetting.SingleContextSetting <experimental.settingtools.SingleContextSetting.SingleContextSetting.SingleContextSetting>`
 
 .. autoattribute:: experimental.settingtools.ResolvedSingleContextSetting.ResolvedSingleContextSetting.ResolvedSingleContextSetting.target
 

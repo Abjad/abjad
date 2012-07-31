@@ -104,22 +104,42 @@ class MultipleContextSetting(Setting):
 
     @property
     def attribute(self):
+        '''Setting attribute.
+
+        Return string.
+        '''
         return self._attribute
 
     @property
     def persist(self):
+        '''True when setting should persist.
+         
+        Return boolean.
+        '''
         return self._persist
 
     @property
     def source(self):
+        '''Setting source.
+
+        Many different return types are possible.
+        '''
         return self._source
 
     @property
     def target(self):
+        '''Setting target.
+
+        Return selector (usually? always?)
+        '''
         return self._target
 
     @property
     def truncate(self):
+        '''True when setting should truncate.
+
+        Return boolean.
+        '''
         return self._truncate
 
     ### PUBLIC METHODS ###
