@@ -115,10 +115,12 @@ class RhythmTreeContainer(RhythmTreeNode):
                 (duration / node.contents_duration).denominator)
             for x in node:
                 if isinstance(x, type(self)):
-                    tuplet.append(recurse(x, durationtools.Duration(x.duration, denominator)))
+                    tuplet.extend(recurse(x, durationtools.Duration(x.duration, denominator)))
                 else:
                     tuplet.extend(x((1, denominator)))
-            return tuplet
+            if tuplet.multiplier == 1:
+                return tuplet[:]
+            return [tuplet]
         result = recurse(self, pulse_duration * self.duration)
         tuplettools.remove_trivial_tuplets_in_expr(result)
         return result
