@@ -37,6 +37,8 @@ Methods
 Special Methods
 ---------------
 
+.. automethod:: experimental.quantizationtools.QGrid.QGrid.QGrid.__call__
+
 .. automethod:: experimental.quantizationtools.QGrid.QGrid.QGrid.__delattr__
 
     Inherited from :py:class:`__builtin__.object`

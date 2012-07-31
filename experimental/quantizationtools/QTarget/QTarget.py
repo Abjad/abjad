@@ -39,6 +39,7 @@ class QTarget(abctools.AbjadObject):
             job_handler = SingleProcessJobHandler()
         assert isinstance(job_handler, JobHandler)
 
+        # parcel QEvents out to each beat
         beats = self.beats
         offsets = sorted([beat.offset for beat in beats])
         for q_event in q_event_sequence:
@@ -46,15 +47,26 @@ class QTarget(abctools.AbjadObject):
             beat = beats[index]
             beat.q_events.append(q_event)
 
+        # generate QuantizationJobs and process with the JobHandler
         jobs = [beat(i) for i, beat in enumerate(beats)]
         jobs = [job for job in jobs if job]
         jobs = job_handler(jobs)
         for job in jobs:
             beats[job.job_id].q_grids = job.q_grids
 
+        # select the best QGrid for each beat, according to the Heuristic
         heuristic(self)
 
-        return self.notate(grace_handler)
+        # shift QEvents attached to each QGrid's "next downbeat"
+        # over to the next QGrid's first leaf - the real downbeat
+        self._shift_downbeat_q_events_to_next_q_grid()
+
+        # TODO: handle a final QGrid with QEvents attached to its next_downbeat.
+        # TODO: remove a final QGrid with no QEvents
+
+        # convert the QGrid representation into notation,
+        # handling grace-note behavior with the GraceHandler
+        return self._notate(grace_handler)
 
     ### READ-ONLY PUBLIC PROPERTIES ###
 
@@ -80,4 +92,12 @@ class QTarget(abctools.AbjadObject):
     @abstractmethod
     def _notate(self, grace_handler):
         raise NotImplemented
+
+    def _shift_downbeat_q_events_to_next_q_grid(self):
+        beats = self.beats
+        for one, two in sequencetools.iterate_sequence_pairwise_strict(beats):
+            one_q_events = first.q_grid.next_downbeat.q_events
+            two_q_events = second.leaves[0].q_events
+            while one_q_events:
+                two_q_events.append(one_q_events.pop())
 

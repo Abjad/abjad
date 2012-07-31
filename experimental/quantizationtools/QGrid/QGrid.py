@@ -1,5 +1,7 @@
 from abjad.tools import abctools
+from abjad.tools import containertools
 from abjad.tools import durationtools
+from abjad.tools import marktools
 from experimental.quantizationtools.QGridContainer import QGridContainer
 from experimental.quantizationtools.QGridLeaf import QGridLeaf
 from experimental.quantizationtools.QEventProxy import QEventProxy
@@ -28,6 +30,21 @@ class QGrid(abctools.AbjadObject):
         self._next_downbeat = next_downbeat
 
     ### SPECIAL METHODS ###
+
+    def __call__(self, beatspan):
+        result = self.root_node(beatspan)
+        result_leaves = []
+        for x in result:
+            if isinstance(x, containertools.Container):
+                result_leaves.extend(x.leaves)
+            else:
+                result_leaves.append(x)
+        for result_leaf, q_grid_leaf in zip(result_leaves, self.leaves[:-1]):
+            if q_grid_leaf.q_events:
+                q_events = [q_event_proxy.q_event for q_event_proxy in q_grid_leaf.q_events]
+                q_events.sort(key=lambda x: x.index)
+                marktools.Annotation('q_events', tuple(q_events))(result_leaf)
+        return result
 
     def __copy__(self, *args):
         return self.__deepcopy__(None)
