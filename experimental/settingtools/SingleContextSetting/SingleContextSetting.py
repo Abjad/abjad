@@ -1,10 +1,9 @@
 from experimental import helpertools
-from experimental.settingtools.MultipleContextSetting import MultipleContextSetting
+from experimental.settingtools.Setting import Setting
 import copy
 
 
-# TODO: inherit from Setting instead of MultipleContextSetting
-class SingleContextSetting(MultipleContextSetting):
+class SingleContextSetting(Setting):
     r'''.. versionadded:: 1.0
 
     Single-context setting::
@@ -47,7 +46,7 @@ class SingleContextSetting(MultipleContextSetting):
     ### INITIALIZER ###
 
     def __init__(self, attribute, source, target, persist=True, truncate=False, fresh=True):
-        MultipleContextSetting.__init__(self, attribute, source, target, persist=persist, truncate=truncate)
+        Setting.__init__(self, attribute, source, target, persist=persist, truncate=truncate)
         assert isinstance(fresh, bool)
         self._fresh = fresh
 
@@ -89,7 +88,7 @@ class SingleContextSetting(MultipleContextSetting):
 
         Return string.
         '''
-        return MultipleContextSetting.storage_format.fget(self)
+        return Setting.storage_format.fget(self)
 
     ### PUBLIC METHODS ###
 

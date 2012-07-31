@@ -48,7 +48,6 @@ class MultipleContextSetting(Setting):
 
     ### PUBLIC METHODS ###
 
-    # TODO: this method should implement on MultipleContextSetting and not on SingleContextSetting
     def unpack(self):
         '''Unpack multiple-context setting.
 
