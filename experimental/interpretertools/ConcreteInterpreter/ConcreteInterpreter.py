@@ -351,9 +351,10 @@ class ConcreteInterpreter(Interpreter):
 
     def get_uninterpreted_division_commands_that_start_during_segment(self, segment_specification, context_name):
         resolved_single_context_settings = self.get_resolved_single_context_settings(
-            segment_specification, 'divisions', context_name)
-        #self._debug(resolved_single_context_settings, 'rscs')
-        print ''
+            segment_specification, 'divisions', context_name, include_improper_parentage=True)
+        #for rscs in resolved_single_context_settings:
+        #    self._debug(rscs, 'rscs')
+        #print ''
         uninterpreted_division_commands = []
         for resolved_single_context_setting in resolved_single_context_settings:
             #self._debug(resolved_single_context_setting, 'rscs')

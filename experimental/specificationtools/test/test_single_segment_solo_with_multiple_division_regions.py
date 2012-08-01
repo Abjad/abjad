@@ -19,14 +19,18 @@ def test_single_segment_solo_with_multiple_division_regions_01():
     second_measure = segment.select_background_measure(1).timespan
     third_measure = segment.select_background_measure(2).timespan
 
-    # TODO: make it possible to eliminate contexts assignment in these three settings
-    segment.set_divisions_new([(2, 32)], timespan=first_measure, contexts=['Voice 1'])
-    segment.set_divisions_new([(3, 32)], timespan=second_measure, contexts=['Voice 1'])
-    #segment.set_divisions_new([(3, 32)], timespan=second_measure)
-    segment.set_divisions_new([(4, 32)], timespan=third_measure, contexts=['Voice 1'])
+    # TODO: make it possible to eliminate contexts assignment in arbitrary ones of these settings
+    #segment.set_divisions_new([(2, 32)], timespan=first_measure, contexts=['Voice 1'])
+    segment.set_divisions_new([(2, 32)], timespan=first_measure)
+    #segment.set_divisions_new([(3, 32)], timespan=second_measure, contexts=['Voice 1'])
+    segment.set_divisions_new([(3, 32)], timespan=second_measure)
+    #segment.set_divisions_new([(4, 32)], timespan=third_measure, contexts=['Voice 1'])
+    segment.set_divisions_new([(4, 32)], timespan=third_measure)
 
     segment.set_rhythm(library.thirty_seconds)
     score = score_specification.interpret()
 
     current_function_name = introspectiontools.get_current_function_name()
     helpertools.write_test_output(score, __file__, current_function_name)
+
+    assert score.lilypond_format == helpertools.read_test_output(__file__, current_function_name)
