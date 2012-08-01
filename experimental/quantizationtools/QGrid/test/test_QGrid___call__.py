@@ -29,7 +29,6 @@ def test_QGrid___call___01():
 
 
 def test_QGrid___call___02():
-    py.test.skip('FIXME')
 
     q_grid = QGrid()
     q_grid.subdivide_leaves([(0, (1, 1, 1))])
@@ -68,7 +67,6 @@ def test_QGrid___call___02():
 
 def test_QGrid___call___03():
     '''Non-binary works too.'''
-    py.test.skip('FIXME')
 
     q_grid = QGrid()
     q_grid.subdivide_leaves([(0, (1, 1))])
