@@ -486,14 +486,14 @@ class ConcreteInterpreter(Interpreter):
 
     def single_context_timespan_selector_to_duration(self, selector):
         if isinstance(selector.timespan, timespantools.SingleSourceTimespan):
-            if isinstance(selector.timespan.selector, selectortools.SegmentSelector):
+            if isinstance(selector.timespan.selector, selectortools.SegmentItemSelector):
                 segment_index = selector.timespan.selector.index
                 segment_specification = self.get_segment_specification(segment_index)
                 return segment_specification.duration
             elif isinstance(selector.timespan.selector, selectortools.BackgroundMeasureSliceSelector):
                 if isinstance(
                     selector.timespan.selector.inequality.timespan.selector, 
-                    selectortools.SegmentSelector):
+                    selectortools.SegmentItemSelector):
                     segment_index = selector.timespan.selector.inequality.timespan.selector.index
                     segment_specification = self.get_segment_specification(segment_index)
                     start = selector.timespan.selector.start

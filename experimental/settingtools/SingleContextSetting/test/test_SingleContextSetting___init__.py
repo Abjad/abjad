@@ -8,7 +8,7 @@ def test_SingleContextSetting___init___01():
     '''Initialize by hand.
     '''
 
-    segment_selector = selectortools.SegmentSelector(index='red')
+    segment_selector = selectortools.SegmentItemSelector(index='red')
     timespan = timespantools.SingleSourceTimespan(selector=segment_selector)
     target = selectortools.SingleContextTimespanSelector('Voice 1', timespan=timespan)
     setting = settingtools.SingleContextSetting('time_signatures', [(4, 8), (3, 8)], target)
@@ -19,7 +19,7 @@ def test_SingleContextSetting___init___01():
 #    '''Initialize from other setting.
 #    '''
 #
-#    segment_selector = selectortools.SegmentSelector(index='red')
+#    segment_selector = selectortools.SegmentItemSelector(index='red')
 #    timespan = timespantools.SingleSourceTimespan(selector=segment_selector)
 #    target = selectortools.SingleContextTimespanSelector('Voice 1', timespan=timespan)
 #    setting_1 = settingtools.SingleContextSetting('time_signatures', [(4, 8), (3, 8)], target, fresh=False)

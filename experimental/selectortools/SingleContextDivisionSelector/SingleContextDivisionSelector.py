@@ -17,7 +17,7 @@ class SingleContextDivisionSelector(BackgroundElementItemSelector):
 
     Select the last ``'Voice 1'`` division to start during segment ``'red'``::
 
-        >>> timespan = selectortools.SegmentSelector(index='red').timespan
+        >>> timespan = selectortools.SegmentItemSelector(index='red').timespan
         >>> inequality = timespantools.expr_starts_during_timespan(timespan=timespan)
 
     ::
@@ -32,7 +32,7 @@ class SingleContextDivisionSelector(BackgroundElementItemSelector):
             inequality=timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                 timespantools.SingleSourceTimespan(
-                    selector=selectortools.SegmentSelector(
+                    selector=selectortools.SegmentItemSelector(
                         index='red'
                         )
                     )
@@ -43,7 +43,7 @@ class SingleContextDivisionSelector(BackgroundElementItemSelector):
     Select the last ``'Voice 1'`` division to start during the last measure to start during 
     segment ``'red'``::
 
-        >>> timespan = selectortools.SegmentSelector(index='red').timespan
+        >>> timespan = selectortools.SegmentItemSelector(index='red').timespan
         >>> inequality = timespantools.expr_starts_during_timespan(timespan=timespan)
         >>> measure = selectortools.BackgroundMeasureItemSelector(inequality=inequality, index=-1)
 
@@ -65,7 +65,7 @@ class SingleContextDivisionSelector(BackgroundElementItemSelector):
                         inequality=timespantools.TimespanInequality(
                             timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                             timespantools.SingleSourceTimespan(
-                                selector=selectortools.SegmentSelector(
+                                selector=selectortools.SegmentItemSelector(
                                     index='red'
                                     )
                                 )

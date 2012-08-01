@@ -11,7 +11,7 @@ class SingleContextTimespanSelector(TimespanSelector):
 
     Select the timespan of segment ``'red'`` in ``'Voice 1'``::
 
-        >>> segment_selector = selectortools.SegmentSelector(index='red')
+        >>> segment_selector = selectortools.SegmentItemSelector(index='red')
 
     ::
 
@@ -23,7 +23,7 @@ class SingleContextTimespanSelector(TimespanSelector):
         selectortools.SingleContextTimespanSelector(
             'Voice 1',
             timespantools.SingleSourceTimespan(
-                selector=selectortools.SegmentSelector(
+                selector=selectortools.SegmentItemSelector(
                     index='red'
                     )
                 )

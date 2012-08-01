@@ -13,7 +13,7 @@ class MultipleContextTimespanSelector(TimespanSelector):
 
     Select the timespan of segment ``'red'``. Do this for both ``'Voice 1'`` and ``'Voice 3'``.
         
-        >>> segment_selector = selectortools.SegmentSelector(index='red')
+        >>> segment_selector = selectortools.SegmentItemSelector(index='red')
 
     ::
 
@@ -26,7 +26,7 @@ class MultipleContextTimespanSelector(TimespanSelector):
         selectortools.MultipleContextTimespanSelector(
             context_names=['Voice 1', 'Voice 3'],
             timespan=timespantools.SingleSourceTimespan(
-                selector=selectortools.SegmentSelector(
+                selector=selectortools.SegmentItemSelector(
                     index='red'
                     )
                 )

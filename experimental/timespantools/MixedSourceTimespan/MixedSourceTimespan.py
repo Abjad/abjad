@@ -13,14 +13,14 @@ class MixedSourceTimespan(Timespan):
     SingleSourceTimespan starting at the left edge of the last measure in the segment with name ``'red'``
     and stopping at the right edge of the first measure in the segment with name ``'blue'``::
 
-        >>> segment_selector = selectortools.SegmentSelector(index='red')
+        >>> segment_selector = selectortools.SegmentItemSelector(index='red')
         >>> inequality = timespantools.expr_starts_during_timespan(timespan=segment_selector.timespan)
         >>> measure_selector = selectortools.BackgroundMeasureItemSelector(inequality=inequality, index=-1)
         >>> start = timespantools.Timepoint(anchor=measure_selector)
 
     ::
 
-        >>> segment_selector = selectortools.SegmentSelector(index='blue')
+        >>> segment_selector = selectortools.SegmentItemSelector(index='blue')
         >>> inequality = timespantools.expr_starts_during_timespan(timespan=segment_selector.timespan)
         >>> measure_selector = selectortools.BackgroundMeasureItemSelector(inequality=inequality)
         >>> stop = timespantools.Timepoint(anchor=measure_selector, edge=Right)
@@ -38,7 +38,7 @@ class MixedSourceTimespan(Timespan):
                     inequality=timespantools.TimespanInequality(
                         timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                         timespantools.SingleSourceTimespan(
-                            selector=selectortools.SegmentSelector(
+                            selector=selectortools.SegmentItemSelector(
                                 index='red'
                                 )
                             )
@@ -51,7 +51,7 @@ class MixedSourceTimespan(Timespan):
                     inequality=timespantools.TimespanInequality(
                         timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                         timespantools.SingleSourceTimespan(
-                            selector=selectortools.SegmentSelector(
+                            selector=selectortools.SegmentItemSelector(
                                 index='blue'
                                 )
                             )

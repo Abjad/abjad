@@ -13,7 +13,7 @@ class DurationRatioItemSelector(RatioSelector, ItemSelector):
     Then partition these measures ``1:1`` by their duration.
     Then select part ``0`` of this partition::
 
-        >>> segment_selector = selectortools.SegmentSelector(index='red')
+        >>> segment_selector = selectortools.SegmentItemSelector(index='red')
         >>> inequality = timespantools.expr_starts_during_timespan(timespan=segment_selector.timespan)
         >>> background_measure_selector = selectortools.BackgroundMeasureSliceSelector(inequality=inequality)
 
@@ -30,7 +30,7 @@ class DurationRatioItemSelector(RatioSelector, ItemSelector):
                 inequality=timespantools.TimespanInequality(
                     timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                     timespantools.SingleSourceTimespan(
-                        selector=selectortools.SegmentSelector(
+                        selector=selectortools.SegmentItemSelector(
                             index='red'
                             )
                         )

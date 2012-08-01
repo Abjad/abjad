@@ -39,7 +39,7 @@ class BackgroundMeasureItemSelector(BackgroundElementItemSelector):
 
     Select the first measure starting during segment ``'red'``::
 
-        >>> segment_selector = selectortools.SegmentSelector(index='red')
+        >>> segment_selector = selectortools.SegmentItemSelector(index='red')
         >>> inequality = timespantools.expr_starts_during_timespan(timespan=segment_selector.timespan)
 
     ::
@@ -53,7 +53,7 @@ class BackgroundMeasureItemSelector(BackgroundElementItemSelector):
             inequality=timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                 timespantools.SingleSourceTimespan(
-                    selector=selectortools.SegmentSelector(
+                    selector=selectortools.SegmentItemSelector(
                         index='red'
                         )
                     )

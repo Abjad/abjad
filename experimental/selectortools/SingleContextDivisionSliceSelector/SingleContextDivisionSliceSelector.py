@@ -17,7 +17,7 @@ class SingleContextDivisionSliceSelector(BackgroundElementSliceSelector):
 
     Select all ``'Voice 1'`` divisions starting during segment ``'red'``::
 
-        >>> segment = selectortools.SegmentSelector(index='red')
+        >>> segment = selectortools.SegmentItemSelector(index='red')
         >>> timespan = segment.timespan
         >>> inequality = timespantools.expr_starts_during_timespan(timespan=timespan)
 
@@ -33,7 +33,7 @@ class SingleContextDivisionSliceSelector(BackgroundElementSliceSelector):
             inequality=timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                 timespantools.SingleSourceTimespan(
-                    selector=selectortools.SegmentSelector(
+                    selector=selectortools.SegmentItemSelector(
                         index='red'
                         )
                     )
@@ -52,7 +52,7 @@ class SingleContextDivisionSliceSelector(BackgroundElementSliceSelector):
             inequality=timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                 timespantools.SingleSourceTimespan(
-                    selector=selectortools.SegmentSelector(
+                    selector=selectortools.SegmentItemSelector(
                         index='red'
                         )
                     )

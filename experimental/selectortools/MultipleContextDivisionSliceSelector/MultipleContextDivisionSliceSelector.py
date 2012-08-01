@@ -13,7 +13,7 @@ class MultipleContextDivisionSliceSelector(BackgroundElementSliceSelector):
     Select the first five divisions starting in segment ``'red'``.
     Do this in both ``'Voice 1'`` and ``'Voice 3'``::
 
-        >>> segment_selector = selectortools.SegmentSelector(index='red')
+        >>> segment_selector = selectortools.SegmentItemSelector(index='red')
         >>> inequality = timespantools.expr_starts_during_timespan(segment_selector.timespan)
         >>> division_selector = selectortools.MultipleContextDivisionSliceSelector(
         ... context_names=['Voice 1', 'Voice 3'], inequality=inequality, stop=5)
@@ -26,7 +26,7 @@ class MultipleContextDivisionSliceSelector(BackgroundElementSliceSelector):
             inequality=timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                 timespantools.SingleSourceTimespan(
-                    selector=selectortools.SegmentSelector(
+                    selector=selectortools.SegmentItemSelector(
                         index='red'
                         )
                     )

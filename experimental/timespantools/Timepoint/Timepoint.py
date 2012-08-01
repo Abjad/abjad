@@ -39,40 +39,40 @@ class Timepoint(AbjadObject):
 
     Timepoint equal to the left edge of segment ``'red'``::
 
-        >>> segment_selector = selectortools.SegmentSelector(index='red')
+        >>> segment_selector = selectortools.SegmentItemSelector(index='red')
 
     ::
 
         >>> timespantools.Timepoint(anchor=segment_selector)
-        Timepoint(anchor=SegmentSelector(index='red'))
+        Timepoint(anchor=SegmentItemSelector(index='red'))
 
     Timepoint equal to the right edge of segment ``'red'``::
 
         >>> timespantools.Timepoint(anchor=segment_selector, edge=Right)
-        Timepoint(anchor=SegmentSelector(index='red'), edge=Right)
+        Timepoint(anchor=SegmentItemSelector(index='red'), edge=Right)
 
     Timepoint equal to ``1/8`` of a whole note after the left edge of
     segment ``'red'``::
 
         >>> timespantools.Timepoint(anchor=segment_selector, addendum=durationtools.Offset(1, 8))
-        Timepoint(anchor=SegmentSelector(index='red'), addendum=Offset(1, 8))
+        Timepoint(anchor=SegmentItemSelector(index='red'), addendum=Offset(1, 8))
 
     Timepoint equal to one third of the way into segment ``'red'``::
 
         >>> timespantools.Timepoint(anchor=segment_selector, edge=Right, multiplier=Fraction(1, 3))
-        Timepoint(anchor=SegmentSelector(index='red'), edge=Right, multiplier=Fraction(1, 3))
+        Timepoint(anchor=SegmentItemSelector(index='red'), edge=Right, multiplier=Fraction(1, 3))
 
     Timepoint equal to ``1/8`` of a whole note after the right edge of the 
     first third of segment ``'red'``::
     
         >>> timespantools.Timepoint(anchor=segment_selector, edge=Right, 
         ... multiplier=Fraction(1, 3), addendum=durationtools.Offset(1, 8))
-        Timepoint(anchor=SegmentSelector(index='red'), edge=Right, multiplier=Fraction(1, 3), addendum=Offset(1, 8))
+        Timepoint(anchor=SegmentItemSelector(index='red'), edge=Right, multiplier=Fraction(1, 3), addendum=Offset(1, 8))
 
     Timepoint equal to the left edge of ``'Voice 1'`` note ``10`` that starts
     during segment ``'red'``::
 
-        >>> segment_selector = selectortools.SegmentSelector(index='red')
+        >>> segment_selector = selectortools.SegmentItemSelector(index='red')
         >>> inequality = timespantools.expr_starts_during_timespan(timespan=segment_selector.timespan)
         >>> counttime_component_selector = selectortools.SingleContextCounttimeComponentSelector(
         ... 'Voice 1', inequality=inequality, klass=Note, index=10)
@@ -90,7 +90,7 @@ class Timepoint(AbjadObject):
                 inequality=timespantools.TimespanInequality(
                     timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                     timespantools.SingleSourceTimespan(
-                        selector=selectortools.SegmentSelector(
+                        selector=selectortools.SegmentItemSelector(
                             index='red'
                             )
                         )
@@ -140,7 +140,7 @@ class Timepoint(AbjadObject):
                 inequality=timespantools.TimespanInequality(
                     timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                     timespantools.SingleSourceTimespan(
-                        selector=selectortools.SegmentSelector(
+                        selector=selectortools.SegmentItemSelector(
                             index='red'
                             )
                         )
@@ -246,7 +246,7 @@ class Timepoint(AbjadObject):
                 inequality=timespantools.TimespanInequality(
                     timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                     timespantools.SingleSourceTimespan(
-                        selector=selectortools.SegmentSelector(
+                        selector=selectortools.SegmentItemSelector(
                             index='red'
                             )
                         )

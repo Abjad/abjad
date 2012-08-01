@@ -13,7 +13,7 @@ class MultipleContextCounttimeComponentSliceSelector(SliceSelector, InequalitySe
     Select the first ``40`` leaves starting in segment ``'red'``.
     Do this in both ``'Voice 1'`` and ``'Voice 3'``::
 
-        >>> segment_selector = selectortools.SegmentSelector(index='red')
+        >>> segment_selector = selectortools.SegmentItemSelector(index='red')
         >>> inequality = timespantools.expr_starts_during_timespan(segment_selector.timespan)
         >>> selector = selectortools.MultipleContextCounttimeComponentSliceSelector(
         ... context_names=['Voice 1', 'Voice 3'], inequality=inequality, klass=leaftools.Leaf, stop=40)
@@ -26,7 +26,7 @@ class MultipleContextCounttimeComponentSliceSelector(SliceSelector, InequalitySe
             inequality=timespantools.TimespanInequality(
                 timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                 timespantools.SingleSourceTimespan(
-                    selector=selectortools.SegmentSelector(
+                    selector=selectortools.SegmentItemSelector(
                         index='red'
                         )
                     )

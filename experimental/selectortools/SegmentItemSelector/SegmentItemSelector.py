@@ -1,7 +1,7 @@
 from experimental.selectortools.BackgroundElementItemSelector import BackgroundElementItemSelector
 
 
-class SegmentSelector(BackgroundElementItemSelector):
+class SegmentItemSelector(BackgroundElementItemSelector):
     r'''.. versionadded:: 1.0
 
     Select segment ``3``::
@@ -10,13 +10,13 @@ class SegmentSelector(BackgroundElementItemSelector):
 
     ::
 
-        >>> selectortools.SegmentSelector(index=3)
-        SegmentSelector(index=3)
+        >>> selectortools.SegmentItemSelector(index=3)
+        SegmentItemSelector(index=3)
 
     Select segment ``'red'``::
 
-        >>> selectortools.SegmentSelector(index='red')
-        SegmentSelector(index='red')
+        >>> selectortools.SegmentItemSelector(index='red')
+        SegmentItemSelector(index='red')
 
     Segment selectors are immutable.
     '''

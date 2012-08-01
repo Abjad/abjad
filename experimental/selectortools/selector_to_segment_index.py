@@ -7,18 +7,18 @@ def selector_to_segment_index(selector):
     '''
     from experimental import selectortools
     
-    # TODO: Change explicit checks to recursive search for SegmentSelector.
+    # TODO: Change explicit checks to recursive search for SegmentItemSelector.
     if isinstance(selector, selectortools.RatioSelector):
         segment_index = selector.reference.timespan.selector.inequality.timespan.selector.index
     elif isinstance(selector, selectortools.SingleContextTimespanSelector):
         if isinstance(
-            selector.timespan.selector, selectortools.SegmentSelector):
+            selector.timespan.selector, selectortools.SegmentItemSelector):
             segment_index = selector.timespan.selector.index
         elif isinstance(
             selector.timespan.selector, selectortools.BackgroundMeasureSliceSelector):
             if isinstance(
                 selector.timespan.selector.inequality.timespan.selector,
-                selectortools.SegmentSelector):
+                selectortools.SegmentItemSelector):
                 segment_index = selector.timespan.selector.inequality.timespan.selector.index
             else:
                 raise NotImplementedError(selector.timespan.selector.inequality.timespan.selector)
@@ -26,7 +26,7 @@ def selector_to_segment_index(selector):
             selector.timespan.selector, selectortools.DurationRatioItemSelector):
             if isinstance(
                 selector.timespan.selector.reference.selector,
-                selectortools.SegmentSelector):
+                selectortools.SegmentItemSelector):
                 segment_index = selector.timespan.selector.reference.selector.index
             else:
                 raise NotImplementedError(selector.timespan.selector.reference.selector)
