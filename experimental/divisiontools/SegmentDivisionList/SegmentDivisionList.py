@@ -18,8 +18,8 @@ class SegmentDivisionList(DivisionList):
     The best way to show this is with an example::
 
         >>> from abjad.tools import *
+        >>> from experimental import *
         >>> from experimental.specificationtools import library
-        >>> from experimental.specificationtools import ScoreSpecification
 
     ::
 
