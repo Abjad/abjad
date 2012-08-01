@@ -41,11 +41,6 @@ Read-only Properties
 
     Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
 
-Methods
--------
-
-.. automethod:: experimental.selectortools.BackgroundMeasureSliceSelector.BackgroundMeasureSliceSelector.BackgroundMeasureSliceSelector.get_context_name
-
 Special Methods
 ---------------
 

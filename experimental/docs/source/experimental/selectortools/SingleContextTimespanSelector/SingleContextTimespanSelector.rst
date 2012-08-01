@@ -25,11 +25,6 @@ Read-only Properties
 
     Inherited from :py:class:`TimespanSelector.TimespanSelector <experimental.selectortools.TimespanSelector.TimespanSelector.TimespanSelector>`
 
-Methods
--------
-
-.. automethod:: experimental.selectortools.SingleContextTimespanSelector.SingleContextTimespanSelector.SingleContextTimespanSelector.get_context_name
-
 Special Methods
 ---------------
 

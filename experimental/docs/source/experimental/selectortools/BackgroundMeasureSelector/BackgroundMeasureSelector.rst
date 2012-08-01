@@ -40,8 +40,6 @@ Methods
 
 .. automethod:: experimental.selectortools.BackgroundMeasureSelector.BackgroundMeasureSelector.BackgroundMeasureSelector.context_names
 
-.. automethod:: experimental.selectortools.BackgroundMeasureSelector.BackgroundMeasureSelector.BackgroundMeasureSelector.get_context_name
-
 Special Methods
 ---------------
 

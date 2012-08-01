@@ -13,7 +13,7 @@ class UninterpretedDivisionCommand(DivisionCommand):
     def __init__(self, value, duration, fresh, truncate, context_name):
         assert isinstance(fresh, bool), repr(fresh)
         assert isinstance(truncate, bool), repr(truncate)
-        assert isinstance(context_name, str)
+        assert isinstance(context_name, (str, type(None)))
         DivisionCommand.__init__(self, value, duration)
         self._fresh = fresh
         self._truncate = truncate

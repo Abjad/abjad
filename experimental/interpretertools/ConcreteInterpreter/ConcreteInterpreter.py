@@ -201,19 +201,12 @@ class ConcreteInterpreter(Interpreter):
         durations = [durationtools.Duration(x) for x in part]
         duration = sum(durations)
         #self._debug(resolved_single_context_setting.target, 'cris')
-
-        # TODO: should be able to say the following simpler line:
-        #context_name = resolved_single_context_setting.target.get_context_name(segment_specification.score_name)
-        context_name = resolved_single_context_setting.target.reference.get_context_name(
-            segment_specification.score_name)
-
-        #self._debug(context_name)
         command = interpretertools.UninterpretedDivisionCommand(
             resolved_single_context_setting.value,
             duration,
             resolved_single_context_setting.fresh,
             resolved_single_context_setting.truncate,
-            context_name
+            resolved_single_context_setting.target.context_name
             )
         return command
 
@@ -345,9 +338,9 @@ class ConcreteInterpreter(Interpreter):
     def get_uninterpreted_division_commands_that_start_during_segment(self, segment_specification, context_name):
         resolved_single_context_settings = self.get_resolved_single_context_settings(
             segment_specification, 'divisions', context_name, include_improper_parentage=True)
-        for rscs in resolved_single_context_settings:
-            #self._debug(rscs, 'rscs')
-            print ''
+        #for rscs in resolved_single_context_settings:
+        #    self._debug(rscs, 'rscs')
+        #    print ''
         uninterpreted_division_commands = []
         for resolved_single_context_setting in resolved_single_context_settings:
             #self._debug(resolved_single_context_setting, 'rscs')
@@ -363,7 +356,7 @@ class ConcreteInterpreter(Interpreter):
                 raise NotImplementedError(resolved_single_context_setting.target)
             uninterpreted_division_commands.append(uninterpreted_division_command)
             #self._debug(uninterpreted_division_command, 'uidc')
-        print ''
+        #print ''
         return uninterpreted_division_commands
 
     def get_voice_division_list(self, voice):
@@ -535,14 +528,12 @@ class ConcreteInterpreter(Interpreter):
         #print resolved_single_context_setting.storage_format
         assert resolved_single_context_setting.target.segment_index == segment_specification.segment_name
         duration = self.single_context_timespan_selector_to_duration(resolved_single_context_setting.target)
-        context_name = resolved_single_context_setting.target.get_context_name(segment_specification.score_name)
-        #self._debug(context_name)
         command = interpretertools.UninterpretedDivisionCommand(
             resolved_single_context_setting.value,
             duration,
             resolved_single_context_setting.fresh,
             resolved_single_context_setting.truncate,
-            context_name
+            resolved_single_context_setting.target.context_name
             )
         #print command
         return command
