@@ -15,14 +15,14 @@ class MixedSourceTimespan(Timespan):
 
         >>> segment_selector = selectortools.SegmentSelector(index='red')
         >>> inequality = timespantools.expr_starts_during_timespan(timespan=segment_selector.timespan)
-        >>> measure_selector = selectortools.BackgroundMeasureSelector(inequality=inequality, index=-1)
+        >>> measure_selector = selectortools.BackgroundMeasureItemSelector(inequality=inequality, index=-1)
         >>> start = timespantools.Timepoint(anchor=measure_selector)
 
     ::
 
         >>> segment_selector = selectortools.SegmentSelector(index='blue')
         >>> inequality = timespantools.expr_starts_during_timespan(timespan=segment_selector.timespan)
-        >>> measure_selector = selectortools.BackgroundMeasureSelector(inequality=inequality)
+        >>> measure_selector = selectortools.BackgroundMeasureItemSelector(inequality=inequality)
         >>> stop = timespantools.Timepoint(anchor=measure_selector, edge=Right)
         
     ::
@@ -34,7 +34,7 @@ class MixedSourceTimespan(Timespan):
         >>> z(timespan)
         timespantools.MixedSourceTimespan(
             start=timespantools.Timepoint(
-                anchor=selectortools.BackgroundMeasureSelector(
+                anchor=selectortools.BackgroundMeasureItemSelector(
                     inequality=timespantools.TimespanInequality(
                         timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                         timespantools.SingleSourceTimespan(
@@ -47,7 +47,7 @@ class MixedSourceTimespan(Timespan):
                     )
                 ),
             stop=timespantools.Timepoint(
-                anchor=selectortools.BackgroundMeasureSelector(
+                anchor=selectortools.BackgroundMeasureItemSelector(
                     inequality=timespantools.TimespanInequality(
                         timespantools.TimespanInequalityTemplate('t.start <= expr.start < t.stop'),
                         timespantools.SingleSourceTimespan(

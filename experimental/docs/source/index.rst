@@ -307,7 +307,7 @@ Unstable packages (load manually)
 .. toctree::
    :maxdepth: 1
 
-   experimental/selectortools/BackgroundMeasureSelector/BackgroundMeasureSelector
+   experimental/selectortools/BackgroundMeasureItemSelector/BackgroundMeasureItemSelector
    experimental/selectortools/BackgroundMeasureSliceSelector/BackgroundMeasureSliceSelector
    experimental/selectortools/CountRatioItemSelector/CountRatioItemSelector
    experimental/selectortools/CountRatioSliceSelector/CountRatioSliceSelector
