@@ -339,8 +339,6 @@ class ConcreteInterpreter(Interpreter):
         for segment_specification in self.score_specification.segment_specifications:
             commands = self.get_uninterpreted_division_commands_that_start_during_segment(
                 segment_specification, voice.name)
-            # CURRENT WORK:
-            #self._debug(commands, 'commands')
             if commands:
                 uninterpreted_division_commands.extend(commands)
             elif segment_specification.time_signatures:
@@ -397,9 +395,10 @@ class ConcreteInterpreter(Interpreter):
 
     def make_division_region_division_lists_for_voice(self, voice):
         uninterpreted_division_commands = self.get_uninterpreted_division_commands_for_voice(voice)
-        #self._debug(uninterpreted_division_commands, 'udc')
+        self._debug(uninterpreted_division_commands, 'udc')
         region_division_commands = self.uninterpreted_division_commands_to_region_division_commands(
             uninterpreted_division_commands)
+        self._debug(uninterpreted_division_commands, 'rdc')
         division_region_division_lists = self.region_division_commands_to_division_region_division_lists(
             region_division_commands)
         self.score_specification.contexts[voice.name]['division_region_division_lists'] = \
@@ -762,6 +761,7 @@ class ConcreteInterpreter(Interpreter):
                 repr(setting), '\n', repr(segment_specification.timespan)]
             self.store_single_context_setting(setting, clear_persistent_first=True)
 
+    # CURRENT WORK: extend this method to handle overlapping uninterpreted division commands
     def uninterpreted_division_commands_to_region_division_commands(self, uninterpreted_division_commands):
         from experimental import interpretertools
         region_division_commands = []
