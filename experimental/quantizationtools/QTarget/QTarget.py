@@ -89,6 +89,39 @@ class QTarget(abctools.AbjadObject):
 
     ### PRIVATE METHODS ###
 
+    def _notate_leaves_pairwise(self, voice, grace_handler):
+        # check first against second, notating first, tying as necessry
+        leaves = voice.leaves
+        for leaf_one, leaf_two in sequencetools.iterate_sequence_pairwise_strict(leaves):
+            leaf_one = self._notate_one_leaf(leaf_one, grace_handler)
+            if not marktools.get_annotations_attached_to_component(leaf_two):
+                klass = tietools.TieSpanner
+                spanner = tuple(spannertools.get_spanners_attached_to_component(leaf_one, klass))
+                if spanner:
+                    spanner.append(leaf_two)
+                else:
+                    klass([leaf_one, leaf_two])
+        # notate final leaf, if necessary
+        self._notate_one_leaf(leaves[-1], grace_handler)
+        
+    def _notate_one_leaf(self, leaf, grace_handler):
+        leaf_annotations = marktools.get_annotation_attached_to_component(leaf)
+        if leaf_annotations:
+            pitches, grace_container = grace_handler(leaf_annotations[0])
+            if not pitches:
+                new_leaf = resttools.Rest(leaf)
+            elif len(pitches) == 1:
+                new_leaf = chordtools.Chord(leaf)
+                new_leaf.written_pitches = pitches
+            else:
+                new_leaf = notetools.Note(leaf)
+                new_leaf.written_pitch = pitches[0]
+            if grace_container:
+                grace_container(new_leaf)
+            leaf.parent[leaf.parent.index(leaf)] = new_leaf
+            leaf = new_leaf
+        return leaf
+
     @abstractmethod
     def _notate(self, grace_handler):
         raise NotImplemented

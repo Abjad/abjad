@@ -17,4 +17,22 @@ class BeatwiseQTarget(QTarget):
     ### PRIVATE METHODS ###
 
     def _notate(self, grace_handler):
-        pass
+        voice = voicetools.Voice()
+
+        # generate the first
+        beat = self.items[0]
+        components = beat.q_grid(beat.beatspan)
+        copy.copy(beat.tempo)(components[0])
+        voice.extend(components)
+
+        # generate the rest pairwise, comparing tempi
+        for beat_one, beat_two in sequencetools.iterate_sequence_pairwise_strict(self.items):
+            components = beat_two.q_grid(beat_two.beatspan)
+            if beat_two.tempo != beat_one.tempo:
+                copy.copy(beat_two.tempo)(components[0])
+            voice.extend(components)
+
+        # apply tie chains, pitches, grace containers
+        self._notate_leaves_pairwise(voice, grace_handler)
+
+        return voice

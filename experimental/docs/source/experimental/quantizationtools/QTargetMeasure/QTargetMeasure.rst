@@ -9,6 +9,8 @@ quantizationtools.QTargetMeasure
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.beats
+
 .. autoattribute:: experimental.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.duration_in_ms
 
 .. autoattribute:: experimental.quantizationtools.QTargetMeasure.QTargetMeasure.QTargetMeasure.offset_in_ms

@@ -18,8 +18,25 @@ def milliseconds_to_q_events(milliseconds):
 
         >>> from experimental.quantizationtools import milliseconds_to_q_events
         >>> durations = [100, -250, 500]
-        >>> milliseconds_to_q_events(durations)
-        [QEvent(Offset(0, 1), 0), QEvent(Offset(100, 1), None), QEvent(Offset(350, 1), 0), QEvent(Offset(850, 1), None)]
+        >>> for x in milliseconds_to_q_events(durations): x
+        ...
+        quantizationtools.PitchedQEvent(
+            durationtools.Offset(0, 1),
+            (NamedChromaticPitch("c'"),),
+            attachments=()
+            )
+        quantizationtools.SilentQEvent(
+            durationtools.Offset(100, 1),
+            attachments=()
+            )
+        quantizationtools.PitchedQEvent(
+            durationtools.Offset(350, 1),
+            (NamedChromaticPitch("c'"),),
+            attachments=()
+            )
+        quantizationtools.TerminalQEvent(
+            durationtools.Offset(850, 1)
+            )
 
     Return a list of :py:class:`~abjad.tools.quantizationtools.QEvent` objects.
     '''

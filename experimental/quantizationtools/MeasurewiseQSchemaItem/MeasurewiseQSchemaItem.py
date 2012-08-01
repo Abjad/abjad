@@ -30,7 +30,7 @@ class MeasurewiseQSchemaItem(QSchemaItem):
 
     ::
 
-        >>> quantizationtools.MeasurewiseQSchemaItem(tempo=((6, 8))
+        >>> quantizationtools.MeasurewiseQSchemaItem(time_signature=((6, 8)))
         MeasurewiseQSchemaItem(
             time_signature=contexttools.TimeSignatureMark(
                 (6, 8)

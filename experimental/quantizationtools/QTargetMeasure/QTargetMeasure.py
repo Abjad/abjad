@@ -11,7 +11,7 @@ class QTargetMeasure(abctools.AbjadObject):
 
     ### CLASS ATTRIBUTES ###
 
-    __slots__ = ('_items', '_offset_in_ms', '_search_tree', '_tempo', '_time_signature',
+    __slots__ = ('_beats', '_offset_in_ms', '_search_tree', '_tempo', '_time_signature',
         '_use_full_measure')
 
     ### INITIALIZER ###
@@ -31,32 +31,32 @@ class QTargetMeasure(abctools.AbjadObject):
         time_signature = contexttools.TimeSignatureMark(time_signature)
         use_full_measure = bool(use_full_measure)
 
-        items = []
+        beats = []
 
         if use_full_measure:
             beatspan = time_signature.duration
-            item = QTargetBeat(
+            beat = QTargetBeat(
                 beatspan=beatspan,
                 offset_in_ms=offset_in_ms,
                 search_tree=search_tree,
                 tempo=tempo
                 )
-            items.append(item)
+            beat.append(beat)
         else:
             beatspan = durationtools.Duration(1, time_signature.denominator)
             current_offset_in_ms = offset_in_ms
             beatspan_duration_in_ms = tempo_scaled_rational_to_milliseconds(beatspan, tempo)
             for i in range(time_signature.numerator):
-                item = QTargetBeat(
+                beat = QTargetBeat(
                     beatspan=beatspan,
                     offset_in_ms=current_offset_in_ms,
                     search_tree=search_tree,
                     tempo=tempo
                     )
-                items.append(item)
+                beats.append(beat)
                 current_offset_in_ms += beatspan_duration_in_ms
 
-        self._items = tuple(items)
+        self._beats = tuple(beats)
         self._offset_in_ms = offset_in_ms
         self._search_tree = search_tree
         self._tempo = tempo
@@ -65,6 +65,10 @@ class QTargetMeasure(abctools.AbjadObject):
 
     ### READ-ONLY PUBLIC PROPERTIES ###
         
+    @property
+    def beats(self):
+        return self._beats
+
     @property
     def duration_in_ms(self):
         return tempo_scaled_rational_to_milliseconds(self.time_signature.duration, self.tempo)

@@ -24,8 +24,30 @@ def millisecond_pitch_pairs_to_q_events(pairs):
         >>> durations = [1001, 503, 230, 1340]
         >>> pitches = [None, 0, (1, 2, 3), 4.5]
         >>> pairs = zip(durations, pitches)
-        >>> millisecond_pitch_pairs_to_q_events(pairs)
-        [QEvent(Offset(0, 1), None), QEvent(Offset(1001, 1), 0), QEvent(Offset(1504, 1), (1, 2, 3)), QEvent(Offset(1734, 1), 4.5), QEvent(Offset(3074, 1), None)]
+        >>> for x in millisecond_pitch_pairs_to_q_events(pairs): x
+        ...
+        quantizationtools.SilentQEvent(
+            durationtools.Offset(0, 1),
+            attachments=()
+            )
+        quantizationtools.PitchedQEvent(
+            durationtools.Offset(1001, 1),
+            (NamedChromaticPitch("c'"),),
+            attachments=()
+            )
+        quantizationtools.PitchedQEvent(
+            durationtools.Offset(1504, 1),
+            (NamedChromaticPitch("cs'"), NamedChromaticPitch("d'"), NamedChromaticPitch("ef'")),
+            attachments=()
+            )
+        quantizationtools.PitchedQEvent(
+            durationtools.Offset(1734, 1),
+            (NamedChromaticPitch("eqs'"),),
+            attachments=()
+            )
+        quantizationtools.TerminalQEvent(
+            durationtools.Offset(3074, 1)
+            )
 
     Return a list of :py:class:`~abjad.tools.quantizationtools.QEvent` instances.
     '''

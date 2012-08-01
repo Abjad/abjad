@@ -24,8 +24,25 @@ def tempo_scaled_rationals_to_q_events(durations, tempo):
         >>> from experimental.quantizationtools import tempo_scaled_rationals_to_q_events
         >>> durations = [Duration(-1, 2), Duration(1, 4), Duration(1, 6)]
         >>> tempo = contexttools.TempoMark((1, 4), 55)
-        >>> tempo_scaled_rationals_to_q_events(durations, tempo)
-        [QEvent(Offset(0, 1), None), QEvent(Offset(24000, 11), 0), QEvent(Offset(36000, 11), 0), QEvent(Duration(4000, 1), None)]
+        >>> for x in tempo_scaled_rationals_to_q_events(durations, tempo): x
+        ...
+        quantizationtools.SilentQEvent(
+            durationtools.Offset(0, 1),
+            attachments=()
+            )
+        quantizationtools.PitchedQEvent(
+            durationtools.Offset(24000, 11),
+            (NamedChromaticPitch("c'"),),
+            attachments=()
+            )
+        quantizationtools.PitchedQEvent(
+            durationtools.Offset(36000, 11),
+            (NamedChromaticPitch("c'"),),
+            attachments=()
+            )
+        quantizationtools.TerminalQEvent(
+            durationtools.Offset(4000, 1)
+            )
 
     Return a list of :py:class:`~abjad.tools.quantizationtools.QEvent` objects.
     '''

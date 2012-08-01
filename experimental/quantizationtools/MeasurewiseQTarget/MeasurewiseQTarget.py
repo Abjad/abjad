@@ -17,4 +17,28 @@ class MeasurewiseQTarget(QTarget):
     ### PRIVATE METHODS ###
 
     def _notate(self, grace_handler):
-        pass
+        voice = voicetools.Voice()
+
+        # generate the first
+        q_target_measure = self.items[0]
+        measure = measuretools.Measure(q_target_measure.time_signature)
+        for beat in q_target_measure.beats:
+            measure.extend(beat.q_grid(beat.beatspan))
+        copy.copy(q_target_measure.tempo)(measure)
+        voice.extend(measure)
+
+        # generate the rest pairwise, comparing tempi
+        for q_target_measure_one, q_target_measure_two in \
+            sequencetools.iterate_sequence_pairwise_strict(self.items):
+            measure = measuretools.Measure(q_target_measure_two.time_signature)
+            for beat in q_target_measure_two.beats:
+                measure.extend(beat.q_grid(beat.beatspan))
+            if q_target_measure_two.tempo != q_target_measure_one.tempo:
+                copy.copy(q_target_measure_two.tempo)(measure)
+            voice.extend(measure)
+
+        # apply tie chains, pitches, grace containers
+        self._notate_leaves_pairwise(voice, grace_handler)
+
+        return voice
+

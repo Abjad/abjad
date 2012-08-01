@@ -24,8 +24,30 @@ def tempo_scaled_leaves_to_q_events(leaves, tempo=None):
         >>> from experimental.quantizationtools import tempo_scaled_leaves_to_q_events
         >>> source = Staff("c'4 r4. e'8 <g' b' d'' fs''>2")
         >>> source_tempo = contexttools.TempoMark((1, 4), 55)
-        >>> tempo_scaled_leaves_to_q_events(source[:], tempo=source_tempo)
-        [QEvent(Offset(0, 1), 0), QEvent(Offset(12000, 11), None), QEvent(Offset(30000, 11), 4), QEvent(Offset(36000, 11), (7, 11, 14, 18)), QEvent(Offset(60000, 11), None)]
+        >>> for x in tempo_scaled_leaves_to_q_events(source[:], tempo=source_tempo): x
+        ...
+        quantizationtools.PitchedQEvent(
+            durationtools.Offset(0, 1),
+            (NamedChromaticPitch("c'"),),
+            attachments=()
+            )
+        quantizationtools.SilentQEvent(
+            durationtools.Offset(12000, 11),
+            attachments=()
+            )
+        quantizationtools.PitchedQEvent(
+            durationtools.Offset(30000, 11),
+            (NamedChromaticPitch("e'"),),
+            attachments=()
+            )
+        quantizationtools.PitchedQEvent(
+            durationtools.Offset(36000, 11),
+            (NamedChromaticPitch("g'"), NamedChromaticPitch("b'"), NamedChromaticPitch("d''"), NamedChromaticPitch("fs''")),
+            attachments=()
+            )
+        quantizationtools.TerminalQEvent(
+            durationtools.Offset(60000, 11)
+            )
 
     Return a list of :py:class:`~abjad.tools.quantizationtools.QEvent` objects.
     '''
