@@ -9,6 +9,10 @@ selectortools.SingleContextDivisionSelector
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.selectortools.SingleContextDivisionSelector.SingleContextDivisionSelector.SingleContextDivisionSelector.context_name
+
+.. autoattribute:: experimental.selectortools.SingleContextDivisionSelector.SingleContextDivisionSelector.SingleContextDivisionSelector.context_names
+
 .. autoattribute:: experimental.selectortools.SingleContextDivisionSelector.SingleContextDivisionSelector.SingleContextDivisionSelector.index
 
     Inherited from :py:class:`BackgroundElementSelector.BackgroundElementSelector <experimental.selectortools.BackgroundElementSelector.BackgroundElementSelector.BackgroundElementSelector>`

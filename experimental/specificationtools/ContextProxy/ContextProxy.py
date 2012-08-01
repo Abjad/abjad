@@ -1,4 +1,4 @@
-from experimental.specificationtools.exceptions import *
+from experimental.exceptions import *
 from abjad.tools.abctools.AbjadObject import AbjadObject
 from collections import OrderedDict
 

@@ -1,4 +1,5 @@
 from abjad.tools import contexttools
+from experimental.exceptions import *
 from experimental.selectortools.TimespanSelector import TimespanSelector
 from experimental.timespantools.SingleSourceTimespan import SingleSourceTimespan
 
@@ -53,6 +54,17 @@ class MultipleContextTimespanSelector(TimespanSelector):
         return False
 
     ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def context_name(self):
+        '''Raise exception.
+        '''
+        raise MultipleContextSelectorError
+
+    @property
+    def context_names(self):
+        '''Return list of context names.
+        '''
 
     @property
     def contexts(self):

@@ -1,3 +1,4 @@
+from experimental.exceptions import *
 from experimental.selectortools.InequalitySelector import InequalitySelector
 from experimental.selectortools.SliceSelector import SliceSelector
 
@@ -54,6 +55,18 @@ class MultipleContextCounttimeComponentSliceSelector(SliceSelector, InequalitySe
         self._predicate = predicate
 
     ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def context_name(self):
+        '''Raise exception.
+        '''
+        raise MultipleContextSelectorError
+
+    @property
+    def context_names(self):
+        '''Return list of context names.
+        '''
+        return self.contexts
 
     @property
     def contexts(self):

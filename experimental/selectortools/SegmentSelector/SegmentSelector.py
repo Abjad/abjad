@@ -27,3 +27,17 @@ class SegmentSelector(BackgroundElementSelector):
         from experimental import specificationtools
         BackgroundElementSelector.__init__(self, 
             klass=specificationtools.Segment, inequality=inequality, index=index)
+
+    ### READ-ONLY PROPERTIES ###
+
+    @property
+    def context_name(self):
+        '''Return none.
+        '''
+        return
+
+    @property
+    def context_names(self):
+        '''Return empty list.
+        '''
+        return []

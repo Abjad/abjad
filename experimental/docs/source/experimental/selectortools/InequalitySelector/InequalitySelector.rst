@@ -9,6 +9,14 @@ selectortools.InequalitySelector
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector.context_name
+
+    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
+
+.. autoattribute:: experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector.context_names
+
+    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
+
 .. autoattribute:: experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector.inequality
 
 .. autoattribute:: experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector.segment_index

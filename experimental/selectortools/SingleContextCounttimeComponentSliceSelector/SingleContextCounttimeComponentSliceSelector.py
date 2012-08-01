@@ -100,6 +100,18 @@ class SingleContextCounttimeComponentSliceSelector(SliceSelector, InequalitySele
     ### READ-ONLY PUBLIC ATTRIBUTES ###
 
     @property
+    def context_name(self):
+        '''Return string.
+        '''
+        return self._voice
+
+    @property
+    def context_names(self):
+        '''Return length-``1`` string.
+        '''
+        return [self.context_name]
+
+    @property
     def klass(self):
         '''Class of counttime component selector specified by user.
 

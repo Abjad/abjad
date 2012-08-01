@@ -9,6 +9,10 @@ selectortools.Selector
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.selectortools.Selector.Selector.Selector.context_name
+
+.. autoattribute:: experimental.selectortools.Selector.Selector.Selector.context_names
+
 .. autoattribute:: experimental.selectortools.Selector.Selector.Selector.segment_index
 
 .. autoattribute:: experimental.selectortools.Selector.Selector.Selector.storage_format

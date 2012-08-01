@@ -11,6 +11,10 @@ Read-only Properties
 
 .. autoattribute:: experimental.selectortools.BackgroundMeasureSliceSelector.BackgroundMeasureSliceSelector.BackgroundMeasureSliceSelector.context
 
+.. autoattribute:: experimental.selectortools.BackgroundMeasureSliceSelector.BackgroundMeasureSliceSelector.BackgroundMeasureSliceSelector.context_name
+
+.. autoattribute:: experimental.selectortools.BackgroundMeasureSliceSelector.BackgroundMeasureSliceSelector.BackgroundMeasureSliceSelector.context_names
+
 .. autoattribute:: experimental.selectortools.BackgroundMeasureSliceSelector.BackgroundMeasureSliceSelector.BackgroundMeasureSliceSelector.contexts
 
 .. autoattribute:: experimental.selectortools.BackgroundMeasureSliceSelector.BackgroundMeasureSliceSelector.BackgroundMeasureSliceSelector.inequality

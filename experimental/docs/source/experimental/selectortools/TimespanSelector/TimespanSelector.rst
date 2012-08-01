@@ -9,6 +9,14 @@ selectortools.TimespanSelector
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.selectortools.TimespanSelector.TimespanSelector.TimespanSelector.context_name
+
+    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
+
+.. autoattribute:: experimental.selectortools.TimespanSelector.TimespanSelector.TimespanSelector.context_names
+
+    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
+
 .. autoattribute:: experimental.selectortools.TimespanSelector.TimespanSelector.TimespanSelector.segment_index
 
     Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`

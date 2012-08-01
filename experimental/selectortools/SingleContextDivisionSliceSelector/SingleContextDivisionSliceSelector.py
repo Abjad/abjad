@@ -76,6 +76,18 @@ class SingleContextDivisionSliceSelector(BackgroundElementSliceSelector):
     ### READ-ONLY PUBLIC PROPERTIES ###
 
     @property
+    def context_name(self):
+        '''Return string.
+        '''
+        return self._voice
+
+    @property
+    def context_names(self):
+        '''Return length-``1`` list.
+        '''
+        return [self.context_name]
+
+    @property
     def voice(self):
         '''Name of division slice selector voice initialized by user.
 

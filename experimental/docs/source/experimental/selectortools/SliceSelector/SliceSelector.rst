@@ -9,6 +9,14 @@ selectortools.SliceSelector
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.selectortools.SliceSelector.SliceSelector.SliceSelector.context_name
+
+    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
+
+.. autoattribute:: experimental.selectortools.SliceSelector.SliceSelector.SliceSelector.context_names
+
+    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
+
 .. autoattribute:: experimental.selectortools.SliceSelector.SliceSelector.SliceSelector.segment_index
 
     Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`

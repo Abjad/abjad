@@ -133,7 +133,19 @@ class BackgroundMeasureSliceSelector(BackgroundElementSliceSelector):
 
         Return none.
         '''
-        return None
+        return
+
+    @property
+    def context_name(self):
+        '''Return none.
+        '''
+        return
+
+    @property
+    def context_names(self):
+        '''Return empty list.
+        '''
+        return []
 
     @property
     def contexts(self):
@@ -145,7 +157,7 @@ class BackgroundMeasureSliceSelector(BackgroundElementSliceSelector):
         
         Return none.
         '''
-        return None
+        return
 
     ### PUBLIC METHODS ###
 

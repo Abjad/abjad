@@ -29,6 +29,19 @@ class RatioSelector(Selector):
         return self.reference.context        
 
     @property
+    def context_name(self):
+        '''Return string or raise exception.
+        '''
+        return self.reference.context_name
+
+
+    @property
+    def context_names(self):
+        '''Return length-``0`` or -``1`` list.
+        '''
+        return self.reference.context_names
+
+    @property
     def contexts(self):
         return self.reference.contexts
 

@@ -9,6 +9,10 @@ selectortools.SingleContextCounttimeComponentSliceSelector
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.selectortools.SingleContextCounttimeComponentSliceSelector.SingleContextCounttimeComponentSliceSelector.SingleContextCounttimeComponentSliceSelector.context_name
+
+.. autoattribute:: experimental.selectortools.SingleContextCounttimeComponentSliceSelector.SingleContextCounttimeComponentSliceSelector.SingleContextCounttimeComponentSliceSelector.context_names
+
 .. autoattribute:: experimental.selectortools.SingleContextCounttimeComponentSliceSelector.SingleContextCounttimeComponentSliceSelector.SingleContextCounttimeComponentSliceSelector.inequality
 
     Inherited from :py:class:`InequalitySelector.InequalitySelector <experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector>`

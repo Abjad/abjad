@@ -13,6 +13,14 @@ Read-only Properties
 
     Inherited from :py:class:`RatioSelector.RatioSelector <experimental.selectortools.RatioSelector.RatioSelector.RatioSelector>`
 
+.. autoattribute:: experimental.selectortools.DurationRatioItemSelector.DurationRatioItemSelector.DurationRatioItemSelector.context_name
+
+    Inherited from :py:class:`RatioSelector.RatioSelector <experimental.selectortools.RatioSelector.RatioSelector.RatioSelector>`
+
+.. autoattribute:: experimental.selectortools.DurationRatioItemSelector.DurationRatioItemSelector.DurationRatioItemSelector.context_names
+
+    Inherited from :py:class:`RatioSelector.RatioSelector <experimental.selectortools.RatioSelector.RatioSelector.RatioSelector>`
+
 .. autoattribute:: experimental.selectortools.DurationRatioItemSelector.DurationRatioItemSelector.DurationRatioItemSelector.contexts
 
     Inherited from :py:class:`RatioSelector.RatioSelector <experimental.selectortools.RatioSelector.RatioSelector.RatioSelector>`

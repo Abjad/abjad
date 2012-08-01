@@ -224,6 +224,18 @@ class SingleContextCounttimeComponentSelector(ItemSelector, InequalitySelector):
     ### READ-ONLY PUBLIC PROPERTIES ###
     
     @property
+    def context_name(self):
+        '''Return string.
+        '''
+        return self._voice
+
+    @property
+    def context_names(self):
+        '''Return length-``1`` list.
+        '''
+        return [self.context_name]
+
+    @property
     def index(self):
         '''Index of counttime component selector specified by user::
 
@@ -358,5 +370,4 @@ class SingleContextCounttimeComponentSelector(ItemSelector, InequalitySelector):
         from experimental import timespantools
 
         start, stop = self.timepoints
-        #return timespantools.SingleSourceTimespan(start=start, stop=stop)
         return timespantools.SingleSourceTimespan(selector=self)

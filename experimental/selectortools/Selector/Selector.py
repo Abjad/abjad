@@ -1,5 +1,6 @@
 from abc import ABCMeta
 from abc import abstractmethod
+from abc import abstractproperty
 from abjad.tools import containertools
 from abjad.tools import leaftools
 from abjad.tools import voicetools
@@ -42,6 +43,22 @@ class Selector(AbjadObject):
             return reference
 
     ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @abstractproperty
+    def context_name(self):
+        '''Name of context against which selector defines.
+
+        Return string or none.
+        '''
+        pass
+
+    @abstractproperty
+    def context_names(self):
+        '''List of context names against which selector defines.
+
+        Return list of zero or more strings.
+        '''
+        pass
 
     @property
     def segment_index(self):

@@ -9,6 +9,10 @@ selectortools.SegmentSelector
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.context_name
+
+.. autoattribute:: experimental.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.context_names
+
 .. autoattribute:: experimental.selectortools.SegmentSelector.SegmentSelector.SegmentSelector.index
 
     Inherited from :py:class:`BackgroundElementSelector.BackgroundElementSelector <experimental.selectortools.BackgroundElementSelector.BackgroundElementSelector.BackgroundElementSelector>`

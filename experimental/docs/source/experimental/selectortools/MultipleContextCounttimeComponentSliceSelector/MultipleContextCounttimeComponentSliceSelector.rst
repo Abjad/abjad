@@ -9,6 +9,10 @@ selectortools.MultipleContextCounttimeComponentSliceSelector
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.selectortools.MultipleContextCounttimeComponentSliceSelector.MultipleContextCounttimeComponentSliceSelector.MultipleContextCounttimeComponentSliceSelector.context_name
+
+.. autoattribute:: experimental.selectortools.MultipleContextCounttimeComponentSliceSelector.MultipleContextCounttimeComponentSliceSelector.MultipleContextCounttimeComponentSliceSelector.context_names
+
 .. autoattribute:: experimental.selectortools.MultipleContextCounttimeComponentSliceSelector.MultipleContextCounttimeComponentSliceSelector.MultipleContextCounttimeComponentSliceSelector.contexts
 
 .. autoattribute:: experimental.selectortools.MultipleContextCounttimeComponentSliceSelector.MultipleContextCounttimeComponentSliceSelector.MultipleContextCounttimeComponentSliceSelector.inequality

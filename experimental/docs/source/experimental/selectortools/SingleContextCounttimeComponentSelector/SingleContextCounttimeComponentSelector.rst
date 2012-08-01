@@ -9,6 +9,10 @@ selectortools.SingleContextCounttimeComponentSelector
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.selectortools.SingleContextCounttimeComponentSelector.SingleContextCounttimeComponentSelector.SingleContextCounttimeComponentSelector.context_name
+
+.. autoattribute:: experimental.selectortools.SingleContextCounttimeComponentSelector.SingleContextCounttimeComponentSelector.SingleContextCounttimeComponentSelector.context_names
+
 .. autoattribute:: experimental.selectortools.SingleContextCounttimeComponentSelector.SingleContextCounttimeComponentSelector.SingleContextCounttimeComponentSelector.index
 
 .. autoattribute:: experimental.selectortools.SingleContextCounttimeComponentSelector.SingleContextCounttimeComponentSelector.SingleContextCounttimeComponentSelector.inequality

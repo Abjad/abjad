@@ -116,3 +116,17 @@ class SegmentSliceSelector(BackgroundElementSliceSelector):
         from experimental import specificationtools
         BackgroundElementSliceSelector.__init__(self, specificationtools.Segment,
             inequality=inequality, start=start, stop=stop)
+
+    ### READ-ONLY PUBLIC PROPERTIES ###
+
+    @property
+    def context_name(self):
+        '''Return none.
+        '''
+        return
+
+    @property
+    def context_names(self):
+        '''Return empty list.
+        '''
+        return []

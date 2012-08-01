@@ -9,6 +9,14 @@ selectortools.ItemSelector
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.selectortools.ItemSelector.ItemSelector.ItemSelector.context_name
+
+    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
+
+.. autoattribute:: experimental.selectortools.ItemSelector.ItemSelector.ItemSelector.context_names
+
+    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
+
 .. autoattribute:: experimental.selectortools.ItemSelector.ItemSelector.ItemSelector.index
 
 .. autoattribute:: experimental.selectortools.ItemSelector.ItemSelector.ItemSelector.segment_index

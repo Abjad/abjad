@@ -9,6 +9,10 @@ selectortools.SingleContextDivisionSliceSelector
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.selectortools.SingleContextDivisionSliceSelector.SingleContextDivisionSliceSelector.SingleContextDivisionSliceSelector.context_name
+
+.. autoattribute:: experimental.selectortools.SingleContextDivisionSliceSelector.SingleContextDivisionSliceSelector.SingleContextDivisionSliceSelector.context_names
+
 .. autoattribute:: experimental.selectortools.SingleContextDivisionSliceSelector.SingleContextDivisionSliceSelector.SingleContextDivisionSliceSelector.inequality
 
     Inherited from :py:class:`InequalitySelector.InequalitySelector <experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector>`

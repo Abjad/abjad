@@ -73,6 +73,16 @@ class BackgroundMeasureSelector(BackgroundElementSelector):
 
     ### PUBLIC METHODS ###
 
+    def context_name(self):
+        '''Return none.
+        '''
+        return
+
+    def context_names(self):
+        '''Return empty list.
+        '''
+        return []
+
     def get_context_name(self, score_name):
         '''Get background measure selector context name.
 

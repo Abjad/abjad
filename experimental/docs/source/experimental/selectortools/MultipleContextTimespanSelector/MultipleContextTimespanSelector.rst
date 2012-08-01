@@ -9,6 +9,10 @@ selectortools.MultipleContextTimespanSelector
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.selectortools.MultipleContextTimespanSelector.MultipleContextTimespanSelector.MultipleContextTimespanSelector.context_name
+
+.. autoattribute:: experimental.selectortools.MultipleContextTimespanSelector.MultipleContextTimespanSelector.MultipleContextTimespanSelector.context_names
+
 .. autoattribute:: experimental.selectortools.MultipleContextTimespanSelector.MultipleContextTimespanSelector.MultipleContextTimespanSelector.contexts
 
 .. autoattribute:: experimental.selectortools.MultipleContextTimespanSelector.MultipleContextTimespanSelector.MultipleContextTimespanSelector.segment_index

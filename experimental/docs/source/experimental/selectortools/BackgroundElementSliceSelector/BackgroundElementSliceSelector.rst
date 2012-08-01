@@ -9,6 +9,14 @@ selectortools.BackgroundElementSliceSelector
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.selectortools.BackgroundElementSliceSelector.BackgroundElementSliceSelector.BackgroundElementSliceSelector.context_name
+
+    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
+
+.. autoattribute:: experimental.selectortools.BackgroundElementSliceSelector.BackgroundElementSliceSelector.BackgroundElementSliceSelector.context_names
+
+    Inherited from :py:class:`Selector.Selector <experimental.selectortools.Selector.Selector.Selector>`
+
 .. autoattribute:: experimental.selectortools.BackgroundElementSliceSelector.BackgroundElementSliceSelector.BackgroundElementSliceSelector.inequality
 
     Inherited from :py:class:`InequalitySelector.InequalitySelector <experimental.selectortools.InequalitySelector.InequalitySelector.InequalitySelector>`

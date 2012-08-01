@@ -9,6 +9,10 @@ selectortools.MultipleContextDivisionSliceSelector
 Read-only Properties
 --------------------
 
+.. autoattribute:: experimental.selectortools.MultipleContextDivisionSliceSelector.MultipleContextDivisionSliceSelector.MultipleContextDivisionSliceSelector.context_name
+
+.. autoattribute:: experimental.selectortools.MultipleContextDivisionSliceSelector.MultipleContextDivisionSliceSelector.MultipleContextDivisionSliceSelector.context_names
+
 .. autoattribute:: experimental.selectortools.MultipleContextDivisionSliceSelector.MultipleContextDivisionSliceSelector.MultipleContextDivisionSliceSelector.contexts
 
 .. autoattribute:: experimental.selectortools.MultipleContextDivisionSliceSelector.MultipleContextDivisionSliceSelector.MultipleContextDivisionSliceSelector.inequality

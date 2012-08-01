@@ -11,3 +11,6 @@
 
 3. Extend all selector classes with read-only 'context_name' property (string).
    Extend all selector classes with read-only 'context_names' property (list).  
+
+4. Rename Selector.context to Selector.context_name. 
+   Rename Selector.contexts to Selector.context_names.
