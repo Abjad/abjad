@@ -88,7 +88,11 @@ class SegmentSpecification(Specification):
 
     def _set_attribute_new(self, attribute, source, timespan=None, contexts=None,
         callback=None, count=None, offset=None, persist=True, truncate=False):
+        #self._debug(contexts, 'contexts')
+        #self._debug(timespan, 'timespan')
         target = selectortools.MultipleContextTimespanSelector(contexts=contexts, timespan=timespan)
+        #self._debug(target, 'target')
+        #print ''
         return self._set_attribute(attribute, target, source,
             callback=callback, count=count, offset=offset, persist=persist, truncate=truncate)
 
@@ -775,8 +779,9 @@ class SegmentSpecification(Specification):
 
         Create, store and return ``MultipleContextSetting``.
         '''
+        timespan = timespan or self.timespan
         # TODO: figure out what should go in the line immediately below
-        contexts = contexts or [self]
+        contexts = contexts or [self.score_name]
         return self._set_attribute_new(
             'divisions',
             source, timespan=timespan, contexts=contexts,

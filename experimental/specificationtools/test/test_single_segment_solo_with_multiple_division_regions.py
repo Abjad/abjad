@@ -22,6 +22,7 @@ def test_single_segment_solo_with_multiple_division_regions_01():
     # TODO: make it possible to eliminate contexts assignment in these three settings
     segment.set_divisions_new([(2, 32)], timespan=first_measure, contexts=['Voice 1'])
     segment.set_divisions_new([(3, 32)], timespan=second_measure, contexts=['Voice 1'])
+    #segment.set_divisions_new([(3, 32)], timespan=second_measure)
     segment.set_divisions_new([(4, 32)], timespan=third_measure, contexts=['Voice 1'])
 
     segment.set_rhythm(library.thirty_seconds)

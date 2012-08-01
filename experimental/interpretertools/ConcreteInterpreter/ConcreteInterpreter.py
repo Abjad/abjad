@@ -287,15 +287,19 @@ class ConcreteInterpreter(Interpreter):
                 result.append(copy.deepcopy(rhythm_command))
         return result
 
-    def get_resolved_single_context_settings(self, segment_specification, attribute, context_name):
+    def get_resolved_single_context_settings(self, segment_specification, attribute, context_name,
+        include_improper_parentage=False):
         context = componenttools.get_first_component_in_expr_with_name(
             segment_specification.score_model, context_name)
+        result = []
         for component in componenttools.get_improper_parentage_of_component(context):
             context_proxy = segment_specification.resolved_single_context_settings[component.name]
             resolved_single_context_settings = context_proxy.get_settings(attribute=attribute)
             if resolved_single_context_settings:
-                return resolved_single_context_settings
-        return []
+                result.extend(resolved_single_context_settings)
+                if not include_improper_parentage:
+                    break
+        return result
 
     def get_rhythm_commands_for_voice(self, voice):
         from experimental import interpretertools
@@ -335,6 +339,7 @@ class ConcreteInterpreter(Interpreter):
         for segment_specification in self.score_specification.segment_specifications:
             commands = self.get_uninterpreted_division_commands_that_start_during_segment(
                 segment_specification, voice.name)
+            #self._debug(commands, 'commands')
             if commands:
                 uninterpreted_division_commands.extend(commands)
             elif segment_specification.time_signatures:
@@ -347,6 +352,8 @@ class ConcreteInterpreter(Interpreter):
     def get_uninterpreted_division_commands_that_start_during_segment(self, segment_specification, context_name):
         resolved_single_context_settings = self.get_resolved_single_context_settings(
             segment_specification, 'divisions', context_name)
+        #self._debug(resolved_single_context_settings, 'rscs')
+        print ''
         uninterpreted_division_commands = []
         for resolved_single_context_setting in resolved_single_context_settings:
             #self._debug(resolved_single_context_setting, 'rscs')
